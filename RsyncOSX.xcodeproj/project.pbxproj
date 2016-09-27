@@ -1,0 +1,589 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		A0041EEF1D7D4357002BF081 /* ScheduleSortedAndExpanded.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0041EEE1D7D4357002BF081 /* ScheduleSortedAndExpanded.swift */; };
+		A004D81A1D9586580016914F /* ViewControllerScheduleDetailsAboutRuns.swift in Sources */ = {isa = PBXBuildFile; fileRef = A004D8191D9586580016914F /* ViewControllerScheduleDetailsAboutRuns.swift */; };
+		A00FE1A81D6A19CF00012089 /* ViewControllerNewConfigurations.swift in Sources */ = {isa = PBXBuildFile; fileRef = A00FE1A71D6A19CF00012089 /* ViewControllerNewConfigurations.swift */; };
+		A00FE1AA1D6A1AAB00012089 /* alerts.swift in Sources */ = {isa = PBXBuildFile; fileRef = A00FE1A91D6A1AAB00012089 /* alerts.swift */; };
+		A017E2A01D7D3242003016F5 /* ViewControllerEdit.swift in Sources */ = {isa = PBXBuildFile; fileRef = A017E29F1D7D3242003016F5 /* ViewControllerEdit.swift */; };
+		A02A4AD91D7EFD3D0059CECD /* ViewControllerScheduleDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = A02A4AD81D7EFD3D0059CECD /* ViewControllerScheduleDetails.swift */; };
+		A0400C851D794EF1008A3949 /* ViewControllerNewVersion.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0400C841D794EF1008A3949 /* ViewControllerNewVersion.swift */; };
+		A0400C871D794FF8008A3949 /* newVersion.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0400C861D794FF8008A3949 /* newVersion.swift */; };
+		A04492861D658EE800B3CE17 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A04492851D658EE800B3CE17 /* AppDelegate.swift */; };
+		A044928A1D658EE800B3CE17 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A04492891D658EE800B3CE17 /* Assets.xcassets */; };
+		A044928D1D658EE800B3CE17 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A044928B1D658EE800B3CE17 /* Main.storyboard */; };
+		A04492A91D658F2100B3CE17 /* ytcpsocket.c in Sources */ = {isa = PBXBuildFile; fileRef = A04492951D658F2100B3CE17 /* ytcpsocket.c */; };
+		A04492AA1D658F2100B3CE17 /* yudpsocket.c in Sources */ = {isa = PBXBuildFile; fileRef = A04492961D658F2100B3CE17 /* yudpsocket.c */; };
+		A04492AB1D658F2100B3CE17 /* argumentsConfigurations.swift in Sources */ = {isa = PBXBuildFile; fileRef = A04492971D658F2100B3CE17 /* argumentsConfigurations.swift */; };
+		A04492AC1D658F2100B3CE17 /* configuration.swift in Sources */ = {isa = PBXBuildFile; fileRef = A04492981D658F2100B3CE17 /* configuration.swift */; };
+		A04492AD1D658F2100B3CE17 /* configurationSchedule.swift in Sources */ = {isa = PBXBuildFile; fileRef = A04492991D658F2100B3CE17 /* configurationSchedule.swift */; };
+		A04492AE1D658F2100B3CE17 /* history.swift in Sources */ = {isa = PBXBuildFile; fileRef = A044929A1D658F2100B3CE17 /* history.swift */; };
+		A04492AF1D658F2100B3CE17 /* peristentStoreConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = A044929B1D658F2100B3CE17 /* peristentStoreConfiguration.swift */; };
+		A04492B01D658F2100B3CE17 /* persistenStoreScheduling.swift in Sources */ = {isa = PBXBuildFile; fileRef = A044929C1D658F2100B3CE17 /* persistenStoreScheduling.swift */; };
+		A04492B11D658F2100B3CE17 /* readwritefiles.swift in Sources */ = {isa = PBXBuildFile; fileRef = A044929D1D658F2100B3CE17 /* readwritefiles.swift */; };
+		A04492B21D658F2100B3CE17 /* rsyncProcessArguments.swift in Sources */ = {isa = PBXBuildFile; fileRef = A044929E1D658F2100B3CE17 /* rsyncProcessArguments.swift */; };
+		A04492B31D658F2100B3CE17 /* scpProcess.swift in Sources */ = {isa = PBXBuildFile; fileRef = A044929F1D658F2100B3CE17 /* scpProcess.swift */; };
+		A04492B41D658F2100B3CE17 /* scpNSTaskArguments.swift in Sources */ = {isa = PBXBuildFile; fileRef = A04492A01D658F2100B3CE17 /* scpNSTaskArguments.swift */; };
+		A04492B51D658F2100B3CE17 /* SharingManagerConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = A04492A11D658F2100B3CE17 /* SharingManagerConfiguration.swift */; };
+		A04492B61D658F2100B3CE17 /* SharingManagerSchedule.swift in Sources */ = {isa = PBXBuildFile; fileRef = A04492A21D658F2100B3CE17 /* SharingManagerSchedule.swift */; };
+		A04492B71D658F2100B3CE17 /* storeAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = A04492A31D658F2100B3CE17 /* storeAPI.swift */; };
+		A04492B81D658F2100B3CE17 /* utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = A04492A41D658F2100B3CE17 /* utils.swift */; };
+		A04492BA1D658F2100B3CE17 /* ysocket.swift in Sources */ = {isa = PBXBuildFile; fileRef = A04492A61D658F2100B3CE17 /* ysocket.swift */; };
+		A04492BB1D658F2100B3CE17 /* ytcpsocket.swift in Sources */ = {isa = PBXBuildFile; fileRef = A04492A71D658F2100B3CE17 /* ytcpsocket.swift */; };
+		A04492BC1D658F2100B3CE17 /* yudpsocket.swift in Sources */ = {isa = PBXBuildFile; fileRef = A04492A81D658F2100B3CE17 /* yudpsocket.swift */; };
+		A04972511D6595B200086EFD /* outputProcess.swift in Sources */ = {isa = PBXBuildFile; fileRef = A049724F1D6595B200086EFD /* outputProcess.swift */; };
+		A04972521D6595B200086EFD /* rsyncProcess.swift in Sources */ = {isa = PBXBuildFile; fileRef = A04972501D6595B200086EFD /* rsyncProcess.swift */; };
+		A05275DA1D6F6E0000D8ECBE /* batchdata.swift in Sources */ = {isa = PBXBuildFile; fileRef = A05275D91D6F6E0000D8ECBE /* batchdata.swift */; };
+		A054F1A91D6D773E00D27688 /* ViewControllerInformation.swift in Sources */ = {isa = PBXBuildFile; fileRef = A054F1A81D6D773E00D27688 /* ViewControllerInformation.swift */; };
+		A08110671D6DA7D8009444D3 /* ViewControllerProgressProcess.swift in Sources */ = {isa = PBXBuildFile; fileRef = A08110661D6DA7D8009444D3 /* ViewControllerProgressProcess.swift */; };
+		A091C6581D86A0A800278E74 /* ViewControllerCopyFiles.swift in Sources */ = {isa = PBXBuildFile; fileRef = A091C6571D86A0A800278E74 /* ViewControllerCopyFiles.swift */; };
+		A091C65B1D86A59500278E74 /* CopyFiles.swift in Sources */ = {isa = PBXBuildFile; fileRef = A091C65A1D86A59500278E74 /* CopyFiles.swift */; };
+		A0A403521D76BD2E00A30017 /* ViewControllerRsyncParameters.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0A403501D76BD2E00A30017 /* ViewControllerRsyncParameters.swift */; };
+		A0AA33811D6F926A00DF4C77 /* ViewControllerBatch.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0AA33801D6F926A00DF4C77 /* ViewControllerBatch.swift */; };
+		A0AD15AE1D7DB78F0004600F /* ScheduleOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0AD15AD1D7DB78F0004600F /* ScheduleOperation.swift */; };
+		A0B340B21D67077A00C6DAC3 /* ViewControllertabMain.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0B340B11D67077A00C6DAC3 /* ViewControllertabMain.swift */; };
+		A0B340B41D67079700C6DAC3 /* ViewControllertabSchedule.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0B340B31D67079700C6DAC3 /* ViewControllertabSchedule.swift */; };
+		A0B3D9741D758E20001E190E /* ViewControllerUserconfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0B3D9731D758E20001E190E /* ViewControllerUserconfiguration.swift */; };
+		A0DD27081D92DDF400D56899 /* FileDialog.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0DD27071D92DDF400D56899 /* FileDialog.swift */; };
+		A0EE98991D8948310034F1A4 /* ViewControllerInformationCopyFiles.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0EE98981D8948310034F1A4 /* ViewControllerInformationCopyFiles.swift */; };
+		A0F2E20C1D6D91AA0091E8BF /* userconfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0F2E20B1D6D91AA0091E8BF /* userconfiguration.swift */; };
+		A0FC45641D9545CC005208EF /* ScheduleDetailsAboutRuns.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0FC45631D9545CC005208EF /* ScheduleDetailsAboutRuns.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		A0041EEE1D7D4357002BF081 /* ScheduleSortedAndExpanded.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScheduleSortedAndExpanded.swift; sourceTree = "<group>"; };
+		A004D8191D9586580016914F /* ViewControllerScheduleDetailsAboutRuns.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewControllerScheduleDetailsAboutRuns.swift; sourceTree = "<group>"; };
+		A00FE1A71D6A19CF00012089 /* ViewControllerNewConfigurations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewControllerNewConfigurations.swift; sourceTree = "<group>"; };
+		A00FE1A91D6A1AAB00012089 /* alerts.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = alerts.swift; sourceTree = "<group>"; };
+		A017E29F1D7D3242003016F5 /* ViewControllerEdit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewControllerEdit.swift; sourceTree = "<group>"; };
+		A02A4AD81D7EFD3D0059CECD /* ViewControllerScheduleDetails.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewControllerScheduleDetails.swift; sourceTree = "<group>"; };
+		A0400C841D794EF1008A3949 /* ViewControllerNewVersion.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewControllerNewVersion.swift; sourceTree = "<group>"; };
+		A0400C861D794FF8008A3949 /* newVersion.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = newVersion.swift; sourceTree = "<group>"; };
+		A04492821D658EE800B3CE17 /* RsyncOSX.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RsyncOSX.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		A04492851D658EE800B3CE17 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		A04492891D658EE800B3CE17 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		A044928C1D658EE800B3CE17 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		A044928E1D658EE800B3CE17 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A04492941D658F2000B3CE17 /* RsyncOSXver30-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "RsyncOSXver30-Bridging-Header.h"; sourceTree = "<group>"; };
+		A04492951D658F2100B3CE17 /* ytcpsocket.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = ytcpsocket.c; sourceTree = "<group>"; };
+		A04492961D658F2100B3CE17 /* yudpsocket.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = yudpsocket.c; sourceTree = "<group>"; };
+		A04492971D658F2100B3CE17 /* argumentsConfigurations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = argumentsConfigurations.swift; sourceTree = "<group>"; };
+		A04492981D658F2100B3CE17 /* configuration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = configuration.swift; sourceTree = "<group>"; };
+		A04492991D658F2100B3CE17 /* configurationSchedule.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = configurationSchedule.swift; sourceTree = "<group>"; };
+		A044929A1D658F2100B3CE17 /* history.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = history.swift; sourceTree = "<group>"; };
+		A044929B1D658F2100B3CE17 /* peristentStoreConfiguration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = peristentStoreConfiguration.swift; sourceTree = "<group>"; };
+		A044929C1D658F2100B3CE17 /* persistenStoreScheduling.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = persistenStoreScheduling.swift; sourceTree = "<group>"; };
+		A044929D1D658F2100B3CE17 /* readwritefiles.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = readwritefiles.swift; sourceTree = "<group>"; };
+		A044929E1D658F2100B3CE17 /* rsyncProcessArguments.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = rsyncProcessArguments.swift; sourceTree = "<group>"; };
+		A044929F1D658F2100B3CE17 /* scpProcess.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = scpProcess.swift; sourceTree = "<group>"; };
+		A04492A01D658F2100B3CE17 /* scpNSTaskArguments.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = scpNSTaskArguments.swift; sourceTree = "<group>"; };
+		A04492A11D658F2100B3CE17 /* SharingManagerConfiguration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SharingManagerConfiguration.swift; sourceTree = "<group>"; };
+		A04492A21D658F2100B3CE17 /* SharingManagerSchedule.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SharingManagerSchedule.swift; sourceTree = "<group>"; };
+		A04492A31D658F2100B3CE17 /* storeAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = storeAPI.swift; sourceTree = "<group>"; };
+		A04492A41D658F2100B3CE17 /* utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = utils.swift; sourceTree = "<group>"; };
+		A04492A61D658F2100B3CE17 /* ysocket.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ysocket.swift; sourceTree = "<group>"; };
+		A04492A71D658F2100B3CE17 /* ytcpsocket.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ytcpsocket.swift; sourceTree = "<group>"; };
+		A04492A81D658F2100B3CE17 /* yudpsocket.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = yudpsocket.swift; sourceTree = "<group>"; };
+		A049724F1D6595B200086EFD /* outputProcess.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = outputProcess.swift; sourceTree = "<group>"; };
+		A04972501D6595B200086EFD /* rsyncProcess.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = rsyncProcess.swift; sourceTree = "<group>"; };
+		A05275D91D6F6E0000D8ECBE /* batchdata.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = batchdata.swift; sourceTree = "<group>"; };
+		A054F1A81D6D773E00D27688 /* ViewControllerInformation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewControllerInformation.swift; sourceTree = "<group>"; };
+		A08110661D6DA7D8009444D3 /* ViewControllerProgressProcess.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewControllerProgressProcess.swift; sourceTree = "<group>"; };
+		A091C6571D86A0A800278E74 /* ViewControllerCopyFiles.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewControllerCopyFiles.swift; sourceTree = "<group>"; };
+		A091C65A1D86A59500278E74 /* CopyFiles.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CopyFiles.swift; sourceTree = "<group>"; };
+		A0A403501D76BD2E00A30017 /* ViewControllerRsyncParameters.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewControllerRsyncParameters.swift; sourceTree = "<group>"; };
+		A0AA33801D6F926A00DF4C77 /* ViewControllerBatch.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewControllerBatch.swift; sourceTree = "<group>"; };
+		A0AD15AD1D7DB78F0004600F /* ScheduleOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScheduleOperation.swift; sourceTree = "<group>"; };
+		A0B340B11D67077A00C6DAC3 /* ViewControllertabMain.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewControllertabMain.swift; sourceTree = "<group>"; };
+		A0B340B31D67079700C6DAC3 /* ViewControllertabSchedule.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewControllertabSchedule.swift; sourceTree = "<group>"; };
+		A0B3D9731D758E20001E190E /* ViewControllerUserconfiguration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewControllerUserconfiguration.swift; sourceTree = "<group>"; };
+		A0DD27071D92DDF400D56899 /* FileDialog.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FileDialog.swift; sourceTree = "<group>"; };
+		A0EE98981D8948310034F1A4 /* ViewControllerInformationCopyFiles.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewControllerInformationCopyFiles.swift; sourceTree = "<group>"; };
+		A0F2E20B1D6D91AA0091E8BF /* userconfiguration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = userconfiguration.swift; sourceTree = "<group>"; };
+		A0FC45631D9545CC005208EF /* ScheduleDetailsAboutRuns.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScheduleDetailsAboutRuns.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		A044927F1D658EE800B3CE17 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		A04492791D658EE800B3CE17 = {
+			isa = PBXGroup;
+			children = (
+				A04492841D658EE800B3CE17 /* RsyncOSXver30 */,
+				A04492831D658EE800B3CE17 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		A04492831D658EE800B3CE17 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				A04492821D658EE800B3CE17 /* RsyncOSX.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		A04492841D658EE800B3CE17 /* RsyncOSXver30 */ = {
+			isa = PBXGroup;
+			children = (
+				A04492851D658EE800B3CE17 /* AppDelegate.swift */,
+				A04492C31D658FF900B3CE17 /* View */,
+				A04492BE1D658F8900B3CE17 /* Model */,
+				A04492BD1D658F7C00B3CE17 /* Controller */,
+				A04492891D658EE800B3CE17 /* Assets.xcassets */,
+				A044928B1D658EE800B3CE17 /* Main.storyboard */,
+				A044928E1D658EE800B3CE17 /* Info.plist */,
+			);
+			path = RsyncOSXver30;
+			sourceTree = "<group>";
+		};
+		A04492BD1D658F7C00B3CE17 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				A0BAA5F31D70C349003BE69F /* Schedule */,
+				A0BAA5F21D70C33A003BE69F /* Configuration */,
+				A04492A31D658F2100B3CE17 /* storeAPI.swift */,
+			);
+			name = Controller;
+			sourceTree = "<group>";
+		};
+		A04492BE1D658F8900B3CE17 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				A04492C41D65901400B3CE17 /* Utils */,
+				A091C6591D86A1F400278E74 /* CopyFiles */,
+				A05275DB1D6F6E2C00D8ECBE /* Batchrun */,
+				A04492C51D65904500B3CE17 /* Process */,
+				A04492C21D658FC300B3CE17 /* yudpsocket */,
+				A04492C11D658FB900B3CE17 /* Schedule */,
+				A04492C01D658FA600B3CE17 /* Configuration */,
+				A04492BF1D658F9400B3CE17 /* PersistentStore */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		A04492BF1D658F9400B3CE17 /* PersistentStore */ = {
+			isa = PBXGroup;
+			children = (
+				A044929A1D658F2100B3CE17 /* history.swift */,
+				A044929D1D658F2100B3CE17 /* readwritefiles.swift */,
+			);
+			name = PersistentStore;
+			sourceTree = "<group>";
+		};
+		A04492C01D658FA600B3CE17 /* Configuration */ = {
+			isa = PBXGroup;
+			children = (
+				A04492981D658F2100B3CE17 /* configuration.swift */,
+				A04492971D658F2100B3CE17 /* argumentsConfigurations.swift */,
+				A044929E1D658F2100B3CE17 /* rsyncProcessArguments.swift */,
+			);
+			name = Configuration;
+			sourceTree = "<group>";
+		};
+		A04492C11D658FB900B3CE17 /* Schedule */ = {
+			isa = PBXGroup;
+			children = (
+				A04492991D658F2100B3CE17 /* configurationSchedule.swift */,
+			);
+			name = Schedule;
+			sourceTree = "<group>";
+		};
+		A04492C21D658FC300B3CE17 /* yudpsocket */ = {
+			isa = PBXGroup;
+			children = (
+				A04492941D658F2000B3CE17 /* RsyncOSXver30-Bridging-Header.h */,
+				A04492A61D658F2100B3CE17 /* ysocket.swift */,
+				A04492A71D658F2100B3CE17 /* ytcpsocket.swift */,
+				A04492A81D658F2100B3CE17 /* yudpsocket.swift */,
+				A04492951D658F2100B3CE17 /* ytcpsocket.c */,
+				A04492961D658F2100B3CE17 /* yudpsocket.c */,
+			);
+			name = yudpsocket;
+			sourceTree = "<group>";
+		};
+		A04492C31D658FF900B3CE17 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				A0A403501D76BD2E00A30017 /* ViewControllerRsyncParameters.swift */,
+				A004D8191D9586580016914F /* ViewControllerScheduleDetailsAboutRuns.swift */,
+				A0B340B11D67077A00C6DAC3 /* ViewControllertabMain.swift */,
+				A0B340B31D67079700C6DAC3 /* ViewControllertabSchedule.swift */,
+				A054F1A81D6D773E00D27688 /* ViewControllerInformation.swift */,
+				A08110661D6DA7D8009444D3 /* ViewControllerProgressProcess.swift */,
+				A00FE1A71D6A19CF00012089 /* ViewControllerNewConfigurations.swift */,
+				A0AA33801D6F926A00DF4C77 /* ViewControllerBatch.swift */,
+				A0B3D9731D758E20001E190E /* ViewControllerUserconfiguration.swift */,
+				A0400C841D794EF1008A3949 /* ViewControllerNewVersion.swift */,
+				A017E29F1D7D3242003016F5 /* ViewControllerEdit.swift */,
+				A02A4AD81D7EFD3D0059CECD /* ViewControllerScheduleDetails.swift */,
+				A091C6571D86A0A800278E74 /* ViewControllerCopyFiles.swift */,
+				A0EE98981D8948310034F1A4 /* ViewControllerInformationCopyFiles.swift */,
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
+		A04492C41D65901400B3CE17 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				A00FE1A91D6A1AAB00012089 /* alerts.swift */,
+				A04492A41D658F2100B3CE17 /* utils.swift */,
+				A0F2E20B1D6D91AA0091E8BF /* userconfiguration.swift */,
+				A0400C861D794FF8008A3949 /* newVersion.swift */,
+				A0DD27071D92DDF400D56899 /* FileDialog.swift */,
+			);
+			name = Utils;
+			sourceTree = "<group>";
+		};
+		A04492C51D65904500B3CE17 /* Process */ = {
+			isa = PBXGroup;
+			children = (
+				A049724F1D6595B200086EFD /* outputProcess.swift */,
+				A04972501D6595B200086EFD /* rsyncProcess.swift */,
+				A0AD15AD1D7DB78F0004600F /* ScheduleOperation.swift */,
+			);
+			name = Process;
+			sourceTree = "<group>";
+		};
+		A05275DB1D6F6E2C00D8ECBE /* Batchrun */ = {
+			isa = PBXGroup;
+			children = (
+				A05275D91D6F6E0000D8ECBE /* batchdata.swift */,
+			);
+			name = Batchrun;
+			sourceTree = "<group>";
+		};
+		A091C6591D86A1F400278E74 /* CopyFiles */ = {
+			isa = PBXGroup;
+			children = (
+				A091C65A1D86A59500278E74 /* CopyFiles.swift */,
+				A04492A01D658F2100B3CE17 /* scpNSTaskArguments.swift */,
+				A044929F1D658F2100B3CE17 /* scpProcess.swift */,
+			);
+			name = CopyFiles;
+			sourceTree = "<group>";
+		};
+		A0BAA5F21D70C33A003BE69F /* Configuration */ = {
+			isa = PBXGroup;
+			children = (
+				A044929B1D658F2100B3CE17 /* peristentStoreConfiguration.swift */,
+				A04492A11D658F2100B3CE17 /* SharingManagerConfiguration.swift */,
+			);
+			name = Configuration;
+			sourceTree = "<group>";
+		};
+		A0BAA5F31D70C349003BE69F /* Schedule */ = {
+			isa = PBXGroup;
+			children = (
+				A044929C1D658F2100B3CE17 /* persistenStoreScheduling.swift */,
+				A04492A21D658F2100B3CE17 /* SharingManagerSchedule.swift */,
+				A0041EEE1D7D4357002BF081 /* ScheduleSortedAndExpanded.swift */,
+				A0FC45631D9545CC005208EF /* ScheduleDetailsAboutRuns.swift */,
+			);
+			name = Schedule;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		A04492811D658EE800B3CE17 /* RsyncOSX */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A04492911D658EE800B3CE17 /* Build configuration list for PBXNativeTarget "RsyncOSX" */;
+			buildPhases = (
+				A044927E1D658EE800B3CE17 /* Sources */,
+				A044927F1D658EE800B3CE17 /* Frameworks */,
+				A04492801D658EE800B3CE17 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = RsyncOSX;
+			productName = RsyncOSXver30;
+			productReference = A04492821D658EE800B3CE17 /* RsyncOSX.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		A044927A1D658EE800B3CE17 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0800;
+				LastUpgradeCheck = 0800;
+				ORGANIZATIONNAME = "Thomas Evensen";
+				TargetAttributes = {
+					A04492811D658EE800B3CE17 = {
+						CreatedOnToolsVersion = 8.0;
+						DevelopmentTeam = 93M47F4H9T;
+						LastSwiftMigration = 0800;
+						ProvisioningStyle = Automatic;
+					};
+				};
+			};
+			buildConfigurationList = A044927D1D658EE800B3CE17 /* Build configuration list for PBXProject "RsyncOSX" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = A04492791D658EE800B3CE17;
+			productRefGroup = A04492831D658EE800B3CE17 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				A04492811D658EE800B3CE17 /* RsyncOSX */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		A04492801D658EE800B3CE17 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A044928A1D658EE800B3CE17 /* Assets.xcassets in Resources */,
+				A044928D1D658EE800B3CE17 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		A044927E1D658EE800B3CE17 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A04972511D6595B200086EFD /* outputProcess.swift in Sources */,
+				A0AD15AE1D7DB78F0004600F /* ScheduleOperation.swift in Sources */,
+				A0B340B41D67079700C6DAC3 /* ViewControllertabSchedule.swift in Sources */,
+				A0041EEF1D7D4357002BF081 /* ScheduleSortedAndExpanded.swift in Sources */,
+				A0EE98991D8948310034F1A4 /* ViewControllerInformationCopyFiles.swift in Sources */,
+				A04492B71D658F2100B3CE17 /* storeAPI.swift in Sources */,
+				A04492B31D658F2100B3CE17 /* scpProcess.swift in Sources */,
+				A0400C871D794FF8008A3949 /* newVersion.swift in Sources */,
+				A04492AA1D658F2100B3CE17 /* yudpsocket.c in Sources */,
+				A04492B11D658F2100B3CE17 /* readwritefiles.swift in Sources */,
+				A04492B21D658F2100B3CE17 /* rsyncProcessArguments.swift in Sources */,
+				A04492AE1D658F2100B3CE17 /* history.swift in Sources */,
+				A05275DA1D6F6E0000D8ECBE /* batchdata.swift in Sources */,
+				A00FE1AA1D6A1AAB00012089 /* alerts.swift in Sources */,
+				A0F2E20C1D6D91AA0091E8BF /* userconfiguration.swift in Sources */,
+				A0FC45641D9545CC005208EF /* ScheduleDetailsAboutRuns.swift in Sources */,
+				A04492A91D658F2100B3CE17 /* ytcpsocket.c in Sources */,
+				A00FE1A81D6A19CF00012089 /* ViewControllerNewConfigurations.swift in Sources */,
+				A04492AF1D658F2100B3CE17 /* peristentStoreConfiguration.swift in Sources */,
+				A0400C851D794EF1008A3949 /* ViewControllerNewVersion.swift in Sources */,
+				A0AA33811D6F926A00DF4C77 /* ViewControllerBatch.swift in Sources */,
+				A054F1A91D6D773E00D27688 /* ViewControllerInformation.swift in Sources */,
+				A04492B81D658F2100B3CE17 /* utils.swift in Sources */,
+				A004D81A1D9586580016914F /* ViewControllerScheduleDetailsAboutRuns.swift in Sources */,
+				A04492AD1D658F2100B3CE17 /* configurationSchedule.swift in Sources */,
+				A04972521D6595B200086EFD /* rsyncProcess.swift in Sources */,
+				A04492BB1D658F2100B3CE17 /* ytcpsocket.swift in Sources */,
+				A091C65B1D86A59500278E74 /* CopyFiles.swift in Sources */,
+				A0DD27081D92DDF400D56899 /* FileDialog.swift in Sources */,
+				A0A403521D76BD2E00A30017 /* ViewControllerRsyncParameters.swift in Sources */,
+				A04492B41D658F2100B3CE17 /* scpNSTaskArguments.swift in Sources */,
+				A04492AB1D658F2100B3CE17 /* argumentsConfigurations.swift in Sources */,
+				A0B3D9741D758E20001E190E /* ViewControllerUserconfiguration.swift in Sources */,
+				A04492B61D658F2100B3CE17 /* SharingManagerSchedule.swift in Sources */,
+				A017E2A01D7D3242003016F5 /* ViewControllerEdit.swift in Sources */,
+				A0B340B21D67077A00C6DAC3 /* ViewControllertabMain.swift in Sources */,
+				A02A4AD91D7EFD3D0059CECD /* ViewControllerScheduleDetails.swift in Sources */,
+				A04492BC1D658F2100B3CE17 /* yudpsocket.swift in Sources */,
+				A04492AC1D658F2100B3CE17 /* configuration.swift in Sources */,
+				A04492B51D658F2100B3CE17 /* SharingManagerConfiguration.swift in Sources */,
+				A04492861D658EE800B3CE17 /* AppDelegate.swift in Sources */,
+				A04492BA1D658F2100B3CE17 /* ysocket.swift in Sources */,
+				A091C6581D86A0A800278E74 /* ViewControllerCopyFiles.swift in Sources */,
+				A08110671D6DA7D8009444D3 /* ViewControllerProgressProcess.swift in Sources */,
+				A04492B01D658F2100B3CE17 /* persistenStoreScheduling.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		A044928B1D658EE800B3CE17 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				A044928C1D658EE800B3CE17 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		A044928F1D658EE800B3CE17 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVES = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "-";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.12;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		A04492901D658EE800B3CE17 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVES = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "-";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.12;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = macosx;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+			};
+			name = Release;
+		};
+		A04492921D658EE800B3CE17 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "Mac Developer";
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = 93M47F4H9T;
+				INFOPLIST_FILE = RsyncOSXver30/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
+				PRODUCT_BUNDLE_IDENTIFIER = no.blogspot.RsyncOSX;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "RsyncOSXver30/RsyncOSXver30-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Debug;
+		};
+		A04492931D658EE800B3CE17 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "Mac Developer";
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = 93M47F4H9T;
+				INFOPLIST_FILE = RsyncOSXver30/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
+				PRODUCT_BUNDLE_IDENTIFIER = no.blogspot.RsyncOSX;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "RsyncOSXver30/RsyncOSXver30-Bridging-Header.h";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		A044927D1D658EE800B3CE17 /* Build configuration list for PBXProject "RsyncOSX" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A044928F1D658EE800B3CE17 /* Debug */,
+				A04492901D658EE800B3CE17 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		A04492911D658EE800B3CE17 /* Build configuration list for PBXNativeTarget "RsyncOSX" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A04492921D658EE800B3CE17 /* Debug */,
+				A04492931D658EE800B3CE17 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = A044927A1D658EE800B3CE17 /* Project object */;
+}
