@@ -92,7 +92,6 @@ class ViewControllerBatch : NSViewController, RefreshtableViewBatch, StartStopPr
                 self.mainTableView.reloadData()
             })
         }
-        
         if let pvc = self.presenting as? ViewControllertabMain {
             self.startBatch_delegate = pvc
         }
@@ -100,8 +99,6 @@ class ViewControllerBatch : NSViewController, RefreshtableViewBatch, StartStopPr
         if let pvc2 = self.presenting as? ViewControllertabMain {
             self.dismiss_delegate = pvc2
         }
-
-
     }
 
     override func viewDidAppear() {
@@ -110,12 +107,6 @@ class ViewControllerBatch : NSViewController, RefreshtableViewBatch, StartStopPr
         self.close = false
     }
 
-
-    // when row is selected
-    // setting which table row is selected
-    func tableViewSelectionDidChange(_ notification: Notification) {
-    
-    }
 
 }
 

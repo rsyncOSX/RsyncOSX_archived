@@ -58,6 +58,9 @@ class rsyncProcess {
                 if (self.inNSOperation == false) {
                     // Send message about process termination
                     self.process_update?.ProcessTermination()
+                } else {
+                    // We are in Scheduled operation and must finalize the job
+                    SharingManagerConfiguration.sharedInstance.operation?.complete(output: output)
                 }
                 NotificationCenter.default.removeObserver(self.observationCenter)
             }

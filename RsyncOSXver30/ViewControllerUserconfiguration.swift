@@ -118,7 +118,6 @@ class ViewControllerUserconfiguration : NSViewController {
         if let pvc2 = self.presenting as? ViewControllertabMain {
             self.dismiss_delegate = pvc2
         }
-
     }
     
     override func viewDidAppear() {
@@ -137,7 +136,6 @@ class ViewControllerUserconfiguration : NSViewController {
             self.rsyncPath.stringValue = config.sharedInstance.rsyncPath!
         }
         self.scheduledTaskdisableExecute.stringValue = String(config.sharedInstance.scheduledTaskdisableExecute)
-        
     }
     
 }

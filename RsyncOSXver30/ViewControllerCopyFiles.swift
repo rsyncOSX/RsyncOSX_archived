@@ -52,23 +52,18 @@ class ViewControllerCopyFiles : NSViewController, UpdateProgress, RefreshtableVi
     func complete() {
         // nothing
     }
-    
     // Set localcatalog to filePath
     @IBAction func copyToIcon(_ sender: NSButton) {
         _ = FileDialog(requester: .CopyFilesTo)
     }
-    
     // Protocol Information
     func getInformation() -> NSMutableArray {
         return self.copyObject!.getOutput()
     }
-    
     // Protocol DismissViewController
     func dismiss_view(viewcontroller: NSViewController) {
         self.dismissViewController(viewcontroller)
     }
-    
-    // StoryboardInformationCopyFilesID
     
     @IBOutlet weak var tableViewSelect: NSTableView!
     // Array to display in tableview
@@ -215,7 +210,6 @@ extension ViewControllerCopyFiles : NSTableViewDataSource {
 extension ViewControllerCopyFiles : NSTableViewDelegate {
     
     func tableView(_ tableView: NSTableView, viewFor tableColumn: NSTableColumn?, row: Int) -> NSView? {
-        
         var text:String?
         var cellIdentifier: String = ""
         let data = self.filesArray![row]
@@ -231,7 +225,6 @@ extension ViewControllerCopyFiles : NSTableViewDelegate {
     }
     
     func tableViewSelectionDidChange(_ notification: Notification) {
-        
         let myTableViewFromNotification = notification.object as! NSTableView
         let indexes = myTableViewFromNotification.selectedRowIndexes
         if let index = indexes.first {
@@ -265,8 +258,6 @@ extension ViewControllerCopyFiles : NSDraggingDestination {
     }
     
     func performDragOperation(_ sender: NSDraggingInfo) -> Bool {
-        // ... perform your magic
-        // return true/false depending on success
         return true
     }
     
