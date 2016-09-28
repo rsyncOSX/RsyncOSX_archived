@@ -37,7 +37,6 @@ class ScheduleOperation {
         // Removes the job of the stack
         if let dict = self.schedules!.jobToExecute() {
             let dateStart:Date = dict.value(forKey: "start") as! Date
-            // We are adding 5 seconds to eliminate "recursion" problems
             let secondsToWait:Double = self.schedules!.timeDoubleSeconds(dateStart, enddate: nil)
             self.waitForTask = Timer.scheduledTimer(timeInterval: secondsToWait, target: self, selector: #selector(startJob), userInfo: nil, repeats: false)
             // Set reference to Timer that kicks of the Scheduled job
@@ -51,7 +50,6 @@ class ScheduleOperation {
 class executeTask : Operation {
     
     override func main() {
-        
         // Delegate function for starting next scheduled operatin if any
         // Delegate function is triggered when NSTaskDidTerminationNotification 
         // is discovered (e.g previous job is done)
@@ -121,11 +119,6 @@ class executeTask : Operation {
                         _ = SharingManagerConfiguration.sharedInstance.setCurrentDateonConfiguration(index)
                         // Saving updated configuration from memory
                         _ = storeAPI.sharedInstance.saveConfigFromMemory()
-                        // Write ./Rsync/history.plist and backup history.plist file to server as well
-                        // let getHistory = history(localcatalog: localCatalog!, offsiteServer: offsiteServer!)
-                        // _ = getHistory.writehistoryFile()
-                        // _ = getHistory.writehistoryFileserver()
-                        
                         // Start next job, if any, by delegate
                         // and notify completed, by delegate
                         if let pvc2 = SharingManagerConfiguration.sharedInstance.ViewObjectMain as? ViewControllertabMain {

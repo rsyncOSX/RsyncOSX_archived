@@ -201,8 +201,6 @@ extension ViewControllerNewConfigurations : NSDraggingDestination {
     }
     
     func performDragOperation(_ sender: NSDraggingInfo) -> Bool {
-        // ... perform your magic
-        // return true/false depending on success
         return true
     }
     

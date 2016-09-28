@@ -62,13 +62,10 @@ class ViewControllerEdit : NSViewController {
         if let pvc = SharingManagerConfiguration.sharedInstance.ViewObjectMain as? ViewControllertabMain {
             self.readconfigurations_delegate = pvc
         }
-
         // Dismisser is root controller
         if let pvc2 = self.presenting as? ViewControllertabMain {
             self.dismiss_delegate = pvc2
         }
-
-        
     }
     
     override func viewDidAppear() {
@@ -114,8 +111,6 @@ extension ViewControllerEdit : NSDraggingDestination {
     }
     
     func performDragOperation(_ sender: NSDraggingInfo) -> Bool {
-        // ... perform your magic
-        // return true/false depending on success
         return true
     }
 }

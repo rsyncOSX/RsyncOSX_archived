@@ -310,22 +310,6 @@ class SharingManagerConfiguration {
     // Storing data from run and batchrun
     private var bachtresult = [NSMutableDictionary]()
     
-    /*
-    func addbachtresult(dict:NSMutableDictionary) {
-        self.bachtresult.append(dict)
-    }
- 
- 
-    func sizebatchresult () -> Int {
-        return self.bachtresult.count
-    }
-    
-    func getbachtresult() -> [NSMutableDictionary] {
-        return self.bachtresult
-    }
-    
-     */
-    
     /// Function toggles Configurations for batch or no
     /// batch. Function updates Configuration in memory
     /// and stores Configuration i memory to 
