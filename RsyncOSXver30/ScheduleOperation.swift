@@ -46,6 +46,7 @@ class ScheduleOperation {
     }
 }
 
+// Class for completion of Operation objects when Process object termination
 class completeScheduledOperation {
     
     // Delegate function for starting next scheduled operatin if any
@@ -57,17 +58,16 @@ class completeScheduledOperation {
     // Delegate to notify starttimer()
     weak var startTimer_delegate : StartTimer?
     // Initialize variables
-    var date:Date?
-    var dateStart:Date?
-    var dateformatter:DateFormatter?
-    var hiddenID:Int?
-    var schedule:String?
-    var index:Int?
+    private var date:Date?
+    private var dateStart:Date?
+    private var dateformatter:DateFormatter?
+    private var hiddenID:Int?
+    private var schedule:String?
+    private var index:Int?
     
     // Function for completing the Scheduled job
     // The Operation object sets reference to the completeScheduledOperation in SharingManagerConfiguration.sharedInstance.operation
     // This function is executed when rsyn process terminates
-    
     func complete(output:outputProcess) {
         // Write result to Schedule
         let datestring = self.dateformatter!.string(from: date!)
