@@ -91,6 +91,9 @@ class SharingManagerConfiguration {
     var CopyObjectMain:NSViewController?
     // Reference to the New NSViewObject
     var AddObjectMain:NSViewController?
+    // Reference to the Operation object
+    // Scheduled tasks
+    var operation:completeScheduledOperation?
 
     
     // DATA STRUCTURES

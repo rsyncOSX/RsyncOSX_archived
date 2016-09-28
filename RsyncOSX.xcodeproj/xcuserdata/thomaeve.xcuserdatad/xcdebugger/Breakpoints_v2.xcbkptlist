@@ -86,11 +86,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "RsyncOSXver30/SharingManagerConfiguration.swift"
-            timestampString = "496656163.570144"
+            timestampString = "496745565.613859"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "262"
-            endingLineNumber = "262"
+            startingLineNumber = "265"
+            endingLineNumber = "265"
             landmarkName = "destroyConfigurations()"
             landmarkType = "7">
          </BreakpointContent>
@@ -230,11 +230,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "RsyncOSXver30/SharingManagerConfiguration.swift"
-            timestampString = "496656163.570144"
+            timestampString = "496745565.613859"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "280"
-            endingLineNumber = "280"
+            startingLineNumber = "283"
+            endingLineNumber = "283"
             landmarkName = "setCurrentDateonConfiguration(_:)"
             landmarkType = "7">
             <Locations>
@@ -278,11 +278,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "RsyncOSXver30/SharingManagerConfiguration.swift"
-            timestampString = "496656163.570144"
+            timestampString = "496745565.613859"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "272"
-            endingLineNumber = "272"
+            startingLineNumber = "275"
+            endingLineNumber = "275"
             landmarkName = "setCurrentDateonConfiguration(_:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -614,12 +614,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "RsyncOSXver30/SharingManagerConfiguration.swift"
-            timestampString = "496656163.570144"
+            timestampString = "496745565.613859"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "486"
-            endingLineNumber = "486"
-            landmarkName = "getIndex(_:)"
+            startingLineNumber = "489"
+            endingLineNumber = "489"
+            landmarkName = "setRsyncCommand()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -630,12 +630,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "RsyncOSXver30/SharingManagerConfiguration.swift"
-            timestampString = "496656163.570144"
+            timestampString = "496745565.613859"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "485"
-            endingLineNumber = "485"
-            landmarkName = "getIndex(_:)"
+            startingLineNumber = "488"
+            endingLineNumber = "488"
+            landmarkName = "setRsyncCommand()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -1314,11 +1314,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "RsyncOSXver30/ScheduleOperation.swift"
-            timestampString = "496045327.814939"
+            timestampString = "496745565.613859"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "85"
-            endingLineNumber = "85"
+            startingLineNumber = "138"
+            endingLineNumber = "138"
             landmarkName = "main()"
             landmarkType = "7">
             <Locations>
@@ -1378,11 +1378,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "RsyncOSXver30/ScheduleOperation.swift"
-            timestampString = "496070441.240766"
+            timestampString = "496745565.613859"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "145"
-            endingLineNumber = "145"
+            startingLineNumber = "201"
+            endingLineNumber = "201"
             landmarkName = "main()"
             landmarkType = "7">
          </BreakpointContent>
@@ -1752,22 +1752,6 @@
             startingLineNumber = "456"
             endingLineNumber = "456"
             landmarkName = "executeTask(_:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "RsyncOSXver30/AppDelegate.swift"
-            timestampString = "496735701.01582"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "23"
-            endingLineNumber = "23"
-            landmarkName = "applicationDidFinishLaunching(_:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

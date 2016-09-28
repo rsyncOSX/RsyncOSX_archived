@@ -46,38 +46,74 @@ class ScheduleOperation {
     }
 }
 
+class completeScheduledOperation {
+    
+    // Delegate function for starting next scheduled operatin if any
+    // Delegate function is triggered when NSTaskDidTerminationNotification
+    // is discovered (e.g previous job is done)
+    weak var start_next_job_delegate:StartNextScheduledTask?
+    // Delegate function for start and completion of scheduled jobs
+    weak var notify_delegate : ScheduledJobInProgress?
+    // Delegate to notify starttimer()
+    weak var startTimer_delegate : StartTimer?
+    // Initialize variables
+    var date:Date?
+    var dateStart:Date?
+    var dateformatter:DateFormatter?
+    var hiddenID:Int?
+    var schedule:String?
+    var index:Int?
+    
+    // Function for completing the Scheduled job
+    // The Operation object sets reference to the completeScheduledOperation in SharingManagerConfiguration.sharedInstance.operation
+    // This function is executed when rsyn process terminates
+    
+    func complete(output:outputProcess) {
+        // Write result to Schedule
+        let datestring = self.dateformatter!.string(from: date!)
+        let dateStartstring = self.dateformatter!.string(from: dateStart!)
+        let numberstring = output.statistics()
+        SharingManagerSchedule.sharedInstance.addScheduleResult(self.hiddenID!, dateStart: dateStartstring, result: numberstring[0], date: datestring, schedule: schedule!)
+        // Writing timestamp to configuration
+        // Update memory configuration with rundate
+        _ = SharingManagerConfiguration.sharedInstance.setCurrentDateonConfiguration(self.index!)
+        // Saving updated configuration from memory
+        _ = storeAPI.sharedInstance.saveConfigFromMemory()
+        // Start next job, if any, by delegate
+        // and notify completed, by delegate
+        if let pvc2 = SharingManagerConfiguration.sharedInstance.ViewObjectMain as? ViewControllertabMain {
+            start_next_job_delegate = pvc2
+            notify_delegate = pvc2
+            start_next_job_delegate?.startProcess()
+            notify_delegate?.completed()
+        }
+        if let pvc3 = SharingManagerSchedule.sharedInstance.ViewObjectSchedule as? ViewControllertabSchedule {
+            startTimer_delegate = pvc3
+            startTimer_delegate?.startTimerNextJob()
+        }
+    }
+    
+    init (dict : NSDictionary) {
+        self.date = dict.value(forKey: "start") as? Date
+        self.dateStart = dict.value(forKey: "dateStart") as? Date
+        self.dateformatter = Utils.sharedInstance.setDateformat()
+        self.hiddenID = (dict.value(forKey: "hiddenID") as? Int)!
+        self.schedule = dict.value(forKey: "schedule") as? String
+        self.index = SharingManagerConfiguration.sharedInstance.getIndex(hiddenID!)
+    }
+}
+
 // Execute scheduled jobs
 class executeTask : Operation {
     
     override func main() {
-        // Delegate function for starting next scheduled operatin if any
-        // Delegate function is triggered when NSTaskDidTerminationNotification 
-        // is discovered (e.g previous job is done)
-        weak var start_next_job_delegate:StartNextScheduledTask?
         // Delegate function for start and completion of scheduled jobs
         weak var notify_delegate : ScheduledJobInProgress?
-        // Delegate to notify starttimer()
-        weak var startTimer_delegate : StartTimer?
-        
         // Variables used for rsync parameters
         let output = outputProcess()
         let job = rsyncProcess(notification: true)
         let getArguments = rsyncProcessArguments()
         var arguments:[String]?
-        // var localCatalog:String?
-        // var offsiteServer:String?
-        // Dates
-        // date is used as key for updating configuration with result of job
-        var date:Date?
-        // dateStart
-        var dateStart:Date?
-        // Schedule
-        var schedule:String?
-        // Observators
-        var obs : NSObjectProtocol!
-        // Index 
-        var index:Int = -1
-        // The config
         var config:configuration?
         
         // Get the first job of the queue
@@ -86,54 +122,14 @@ class executeTask : Operation {
                 notify_delegate = pvc
                 notify_delegate?.start()
             }
-            // Set the correct date style
-            let dateformatter = Utils.sharedInstance.setDateformat()
             if let hiddenID:Int = dict.value(forKey: "hiddenID") as? Int {
-                
                 let store:[configuration] = storeAPI.sharedInstance.getConfigurations()
                 config = store.filter({return ($0.hiddenID == hiddenID)})[0]
-                date = dict.value(forKey: "start") as? Date
-                dateStart = dict.value(forKey: "dateStart") as? Date
-                schedule = dict.value(forKey: "schedule") as? String
-                
                 if (hiddenID >= 0 && config != nil) {
-                    
                     arguments = getArguments.argumentsRsync(config!, dryRun: false, forDisplay: false)
-                    index = SharingManagerConfiguration.sharedInstance.getIndex(hiddenID)
-                    
-                    // localCatalog = config!.localCatalog
-                    // offsiteServer = config!.offsiteServer
-                    
-                    // Start NSTaskDidTerminationNotification
-                    obs = NotificationCenter.default.addObserver(forName: Process.didTerminateNotification, object: nil, queue: nil) {
-                        notification -> Void in
-                        // Remove observer
-                        NotificationCenter.default.removeObserver(obs)
-                        // Write result to Schedule
-                        let datestring = dateformatter.string(from: date!)
-                        let dateStartstring = dateformatter.string(from: dateStart!)
-                        let numberstring = output.statistics()
-                        SharingManagerSchedule.sharedInstance.addScheduleResult(hiddenID, dateStart: dateStartstring, result: numberstring[0], date: datestring, schedule: schedule!)
-                        // Writing timestamp to configuration
-                        // Update memory configuration with rundate
-                        _ = SharingManagerConfiguration.sharedInstance.setCurrentDateonConfiguration(index)
-                        // Saving updated configuration from memory
-                        _ = storeAPI.sharedInstance.saveConfigFromMemory()
-                        // Start next job, if any, by delegate
-                        // and notify completed, by delegate
-                        if let pvc2 = SharingManagerConfiguration.sharedInstance.ViewObjectMain as? ViewControllertabMain {
-                            start_next_job_delegate = pvc2
-                            notify_delegate = pvc2
-                            start_next_job_delegate?.startProcess()
-                            notify_delegate?.completed()
-                        }
-                        if let pvc3 = SharingManagerSchedule.sharedInstance.ViewObjectSchedule as? ViewControllertabSchedule {
-                            startTimer_delegate = pvc3
-                            startTimer_delegate?.startTimerNextJob()
-                        }
-                    }
-                    // End Process.didTerminateNotification
-                    
+                    // Setting reference to finalize the job
+                    // Finalize job is done when rsynctask ends
+                    SharingManagerConfiguration.sharedInstance.operation = completeScheduledOperation(dict: dict)
                     // Start the rsync job
                     GlobalMainQueue.async(execute: {
                         if (arguments != nil) {
