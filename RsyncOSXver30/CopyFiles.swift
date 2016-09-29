@@ -129,8 +129,8 @@ class CopyFiles {
         self.work = [enumscpTasks]()
         // Append workload in reverse order
         // Work are poped of top of stack
-        self.work?.append(.create)
-        self.work?.append(.scpFind)
+        self.work!.append(.create)
+        self.work!.append(.scpFind)
         // Do first part of job
         self.doWork()
     }
