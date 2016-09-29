@@ -9,10 +9,10 @@
 import Foundation
 
 
-// let str = "/Rsync/" + computerID + "/scheduleRsync.plist"
-// let str = "/Rsync/" + computerID + "/configRsync.plist"
-// let str = "/Rsync/" + computerID + "/config.plist"
-// let str = "/Rsync/" + computerID + "/rsyncarguments.plist"
+// let str = "/Rsync/" + serialNumber + "/scheduleRsync.plist"
+// let str = "/Rsync/" + serialNumber + "/configRsync.plist"
+// let str = "/Rsync/" + serialNumber + "/config.plist"
+// let str = "/Rsync/" + serialNumber + "/rsyncarguments.plist"
 
 enum enumtask {
     case schedule
@@ -28,34 +28,29 @@ class readwritefiles {
     var datafromStore : [NSDictionary]?
     // Name set for schedule, configuration or config
     private var name:String?
-    // schedule, configuration or config
-    private var task:enumtask
     // key in objectForKey, e.g key for reading what
     private var key:String?
-    
     // Default reading from disk
     // The class either reads data from persistent store or
     // returns nil if data is NOT dirty
     private var readdisk:Bool = true
+    // Mac serial number
+    private var serialNumber:String?
     
     // Set which file to read
     private var fileName : String? {
         get {
-            var path:String
             let paths = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true) as NSArray
             let docuDir = paths.firstObject as! String
-            let computerID = self.macSerialNumber()
-            // create Directory if not exist
-            self.createDirectory((docuDir + "/Rsync/" + computerID))
-            let str = "/Rsync/" + computerID + self.name!
-            path = docuDir + str
-            return path
+            self.createDirectory((docuDir + "/Rsync/" + self.serialNumber!))
+            let str = "/Rsync/" + self.serialNumber! + self.name!
+            return docuDir + str
         }
     }
 
     // Function for reading data from persistent store
-    private func readDatafromfile () -> [NSDictionary]? {
-        switch (self.task) {
+    private func readDatafromfile (task:enumtask) -> [NSDictionary]? {
+        switch (task) {
         case .schedule:
             if (SharingManagerConfiguration.sharedInstance.isDataDirty()) {
                 self.readdisk = true
@@ -107,22 +102,12 @@ class readwritefiles {
         switch (task) {
         case .schedule:
             SharingManagerConfiguration.sharedInstance.setDataDirty(dirty: true)
-            self.task = .schedule
-            self.setPreferences(task)
         case .configuration:
             SharingManagerConfiguration.sharedInstance.setDataDirty(dirty: true)
-            self.task = .configuration
-            self.setPreferences(task)
-        case .config:
-            self.task = .config
-            self.setPreferences(task)
-        case .rsyncarguments:
-            self.task = .rsyncarguments
-            self.setPreferences(task)
         default:
-            self.task = .none
-            self.name = nil
+            SharingManagerConfiguration.sharedInstance.setDataDirty(dirty: false)
         }
+        self.setPreferences(task)
         let favoritesDictionary = NSDictionary(object: array, forKey: self.key! as NSCopying)
         let succeeded = favoritesDictionary.write(toFile: self.fileName!, atomically: true)
         return succeeded
@@ -156,6 +141,8 @@ class readwritefiles {
     
     // Set preferences for which data to read or write
     private func setPreferences (_ task:enumtask) {
+        // Set the mac serial number
+        self.serialNumber = self.macSerialNumber()
         switch (task) {
         case .schedule:
             self.key = "Schedule"
@@ -172,41 +159,21 @@ class readwritefiles {
                 self.name = "/configRsync.plist"
             }
         case .config:
-            self.task = .config
             self.key = "config"
             self.name = "/config.plist"
         case .rsyncarguments:
-            self.task = .rsyncarguments
             self.key = "rsyncarguments"
             self.name = "/rsyncarguments.plist"
-         default:
-            self.task = .none
+         case .none:
             self.name = nil
+            self.readdisk = false
         }
-
         
     }
     
     init (whattoread:enumtask) {
-        switch (whattoread) {
-        case .schedule:
-            self.task = .schedule
-            self.setPreferences(self.task)
-        case .configuration:
-            self.task = .configuration
-            self.setPreferences(self.task)
-        case .config:
-            self.task = .config
-            self.setPreferences(self.task)
-        case .rsyncarguments:
-            self.task = .rsyncarguments
-            self.setPreferences(self.task)
-        case .none:
-            self.task = .none
-            self.name = nil
-            self.readdisk = false
-        }
-        self.datafromStore = self.readDatafromfile()
+        self.setPreferences(whattoread)
+        self.datafromStore = self.readDatafromfile(task: whattoread)
     }
 
 }
