@@ -24,7 +24,7 @@ struct config {
 
 
 
-class storeAPI: NSObject {
+class storeAPI {
     
     // Creates a singelton of this class
     class var  sharedInstance: storeAPI {
