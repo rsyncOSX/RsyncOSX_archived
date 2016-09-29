@@ -28,7 +28,6 @@
 		A04492B01D658F2100B3CE17 /* persistenStoreScheduling.swift in Sources */ = {isa = PBXBuildFile; fileRef = A044929C1D658F2100B3CE17 /* persistenStoreScheduling.swift */; };
 		A04492B11D658F2100B3CE17 /* readwritefiles.swift in Sources */ = {isa = PBXBuildFile; fileRef = A044929D1D658F2100B3CE17 /* readwritefiles.swift */; };
 		A04492B21D658F2100B3CE17 /* rsyncProcessArguments.swift in Sources */ = {isa = PBXBuildFile; fileRef = A044929E1D658F2100B3CE17 /* rsyncProcessArguments.swift */; };
-		A04492B31D658F2100B3CE17 /* scpProcess.swift in Sources */ = {isa = PBXBuildFile; fileRef = A044929F1D658F2100B3CE17 /* scpProcess.swift */; };
 		A04492B41D658F2100B3CE17 /* scpNSTaskArguments.swift in Sources */ = {isa = PBXBuildFile; fileRef = A04492A01D658F2100B3CE17 /* scpNSTaskArguments.swift */; };
 		A04492B51D658F2100B3CE17 /* SharingManagerConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = A04492A11D658F2100B3CE17 /* SharingManagerConfiguration.swift */; };
 		A04492B61D658F2100B3CE17 /* SharingManagerSchedule.swift in Sources */ = {isa = PBXBuildFile; fileRef = A04492A21D658F2100B3CE17 /* SharingManagerSchedule.swift */; };
@@ -81,7 +80,6 @@
 		A044929C1D658F2100B3CE17 /* persistenStoreScheduling.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = persistenStoreScheduling.swift; sourceTree = "<group>"; };
 		A044929D1D658F2100B3CE17 /* readwritefiles.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = readwritefiles.swift; sourceTree = "<group>"; };
 		A044929E1D658F2100B3CE17 /* rsyncProcessArguments.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = rsyncProcessArguments.swift; sourceTree = "<group>"; };
-		A044929F1D658F2100B3CE17 /* scpProcess.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = scpProcess.swift; sourceTree = "<group>"; };
 		A04492A01D658F2100B3CE17 /* scpNSTaskArguments.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = scpNSTaskArguments.swift; sourceTree = "<group>"; };
 		A04492A11D658F2100B3CE17 /* SharingManagerConfiguration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SharingManagerConfiguration.swift; sourceTree = "<group>"; };
 		A04492A21D658F2100B3CE17 /* SharingManagerSchedule.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SharingManagerSchedule.swift; sourceTree = "<group>"; };
@@ -271,7 +269,6 @@
 			children = (
 				A091C65A1D86A59500278E74 /* CopyFiles.swift */,
 				A04492A01D658F2100B3CE17 /* scpNSTaskArguments.swift */,
-				A044929F1D658F2100B3CE17 /* scpProcess.swift */,
 			);
 			name = CopyFiles;
 			sourceTree = "<group>";
@@ -375,7 +372,6 @@
 				A0041EEF1D7D4357002BF081 /* ScheduleSortedAndExpanded.swift in Sources */,
 				A0EE98991D8948310034F1A4 /* ViewControllerInformationCopyFiles.swift in Sources */,
 				A04492B71D658F2100B3CE17 /* storeAPI.swift in Sources */,
-				A04492B31D658F2100B3CE17 /* scpProcess.swift in Sources */,
 				A0400C871D794FF8008A3949 /* newVersion.swift in Sources */,
 				A04492AA1D658F2100B3CE17 /* yudpsocket.c in Sources */,
 				A04492B11D658F2100B3CE17 /* readwritefiles.swift in Sources */,

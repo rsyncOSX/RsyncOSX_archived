@@ -159,8 +159,9 @@ class History {
             let arguments = scpNSTaskArguments(task: enumscpTasks.scpHistory, config: config, remoteFile: nil, localCatalog: nil, drynrun: nil)
             let args:[String] = arguments.getArgs()!
             let command : String = arguments.getCommand()!
-            let task = scpProcess()
-            task.executeProcess(command, args: args)
+            let task = rsyncProcess(notification: false, tabMain: false, command : command)
+            let output = outputProcess()
+            task.executeProcess(args, output: output)
         })
     }
     
