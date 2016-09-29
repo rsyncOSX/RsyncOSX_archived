@@ -294,6 +294,7 @@ class persistentStoreConfiguration {
         _ = save.writeDatatofile(array, task: enumtask.configuration)
     }
     
+    
     init () {
         // Reading Configurations from memory or disk, if dirty read from disk
         // if not dirty set self.configurationFromStore to nil to tell
