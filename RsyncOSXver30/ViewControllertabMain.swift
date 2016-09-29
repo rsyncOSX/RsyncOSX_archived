@@ -206,13 +206,13 @@ class ViewControllertabMain : NSViewController, Information, Abort, Count, Refre
                         self.indicator_delegate?.start()
                     }
                     let arguments:[String] = SharingManagerConfiguration.sharedInstance.getrsyncArgumentOneConfiguration(index: index, argtype: .argdryRun)
-                    let process = rsyncProcess(notification: false)
+                    let process = rsyncProcess(notification: false, tabMain: true, command : nil)
                     // Setting reference to process for Abort if requiered
                     process.executeProcess(arguments, output: self.output!)
                     self.process = process.getProcess()
                 case 1:
                     let arguments:[String] = SharingManagerConfiguration.sharedInstance.getrsyncArgumentOneConfiguration(index: index, argtype: .arg)
-                    let process = rsyncProcess(notification: false)
+                    let process = rsyncProcess(notification: false, tabMain: true, command : nil)
                     // Setting reference to process for Abort if requiered
                     process.executeProcess(arguments, output: self.output!)
                     self.process = process.getProcess()
@@ -437,7 +437,7 @@ class ViewControllertabMain : NSViewController, Information, Abort, Count, Refre
         if (scheduleInProgress == false && self.scheduledJobInProgress == false) {
             self.inbatchRun = false
             if (self.process == nil && self.index != nil && self.isWorking == false) {
-                let process = rsyncProcess(notification: false)
+                let process = rsyncProcess(notification: false, tabMain: true, command : nil)
                 let arguments:[String]?
                 self.isWorking = true
                 if (self.estimated == false) {

@@ -33,31 +33,35 @@ class CopyFiles {
     private var commandDisplay:String?
     // Start and stop progress view
     weak var progress_delegate: StartStopProgressIndicatorViewBatch?
-    // Reference to task
-    var task:scpProcess?
+    // The Process object
+    var task:rsyncProcess?
+    // rsync outPut object
+    var output:outputProcess?
     
     
     // Get output from Rsync
     func getOutput() -> NSMutableArray {
-        return self.task!.getOutput()
+        return self.output!.getOutput()
     }
     
     // Estimate run
     func estimate(remotefile:String, localCatalog:String) {
         self.argumentsObject = scpNSTaskArguments(task: .copy, config: self.config!, remoteFile: remotefile, localCatalog: localCatalog, drynrun: true)
         self.arguments = self.argumentsObject!.getArgs()
-        self.command = self.argumentsObject!.getCommand()
-        self.task = scpProcess()
-        self.task!.executeProcess(self.command!, args: self.arguments!)
+        self.command = nil
+        self.task = rsyncProcess(notification: false, tabMain: false, command : nil)
+        self.output = outputProcess()
+        self.task!.executeProcess(self.arguments!, output: self.output!)
     }
     
     // Execute run
     func execute(remotefile:String, localCatalog:String) {
         self.argumentsObject = scpNSTaskArguments(task: .copy, config: self.config!, remoteFile: remotefile, localCatalog: localCatalog, drynrun: nil)
         self.arguments = self.argumentsObject!.getArgs()
-        self.command = self.argumentsObject!.getCommand()
-        self.task = scpProcess()
-        self.task!.executeProcess(self.command!, args: self.arguments!)
+        self.command = nil
+        self.task = rsyncProcess(notification: false, tabMain: false, command : nil)
+        self.output = outputProcess()
+        self.task!.executeProcess(self.arguments!, output: self.output!)
     }
     
     // Get arguments for rsync to show
@@ -67,7 +71,7 @@ class CopyFiles {
     }
     
     // As soon as we get the termination message kick of 
-    // next work
+    // the next work. Work is first ssh and then scp
     func nextWork() {
         self.doWork()
     }
@@ -82,8 +86,11 @@ class CopyFiles {
                 self.argumentsObject = scpNSTaskArguments(task: work, config: self.config!, remoteFile: nil, localCatalog: nil, drynrun: nil)
                 self.arguments = self.argumentsObject!.getArgs()
                 self.command = self.argumentsObject!.getCommand()
-                self.task = scpProcess()
-                self.task!.executeProcess(self.command!, args: self.arguments!)
+                self.command = self.argumentsObject!.getCommand()
+                self.task = rsyncProcess(notification: false, tabMain: false, command : self.command)
+                self.output = outputProcess()
+                self.task!.executeProcess(self.arguments!, output: self.output!)
+                
             } else {
                 // Files.txt are ready to read
                 self.files = self.argumentsObject?.getSearchfile()

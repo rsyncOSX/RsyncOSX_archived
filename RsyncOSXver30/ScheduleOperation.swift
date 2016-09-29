@@ -111,7 +111,7 @@ class executeTask : Operation {
         weak var notify_delegate : ScheduledJobInProgress?
         // Variables used for rsync parameters
         let output = outputProcess()
-        let job = rsyncProcess(notification: true)
+        let job = rsyncProcess(notification: true, tabMain: false, command : nil)
         let getArguments = rsyncProcessArguments()
         var arguments:[String]?
         var config:configuration?

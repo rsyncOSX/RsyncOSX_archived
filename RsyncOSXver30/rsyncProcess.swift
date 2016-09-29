@@ -18,14 +18,24 @@ class rsyncProcess {
     weak var process_update:UpdateProgress?
     // If process is created in NSOperation
     var inNSOperation:Bool?
+    // Creating obcect from tabMain
+    var tabMain:Bool?
     // Observer
     weak var observationCenter: NSObjectProtocol?
+    // Command to be executed, normally rsync
+    var command:String?
         
     func executeProcess (_ arg: [String], output:outputProcess){
         // Task
         let task = Process()
         // Setting the correct path for rsync
-        task.launchPath = SharingManagerConfiguration.sharedInstance.setRsyncCommand()
+        // If self.command != nil other command than rsync to be executed
+        // Other commands are either ssh or scp (from CopyFiles)
+        if let command = self.command {
+            task.launchPath = command
+        } else {
+            task.launchPath = SharingManagerConfiguration.sharedInstance.setRsyncCommand()
+        }
         task.arguments = arg
         // Pipe for reading output from NSTask
         let pipe = Pipe()
@@ -78,13 +88,24 @@ class rsyncProcess {
         }
     }
     
-    init (notification: Bool) {
+    init (notification: Bool, tabMain:Bool, command : String?) {
         
         self.inNSOperation = notification
+        self.tabMain = tabMain
+        self.command = command
         
         if (self.inNSOperation == false) {
-            if let pvc = SharingManagerConfiguration.sharedInstance.ViewObjectMain as? ViewControllertabMain {
-                self.process_update = pvc
+            // Check where to return the delegate call
+            // Either in ViewControllertabMain or ViewControllerCopyFiles
+            switch tabMain {
+            case true:
+                if let pvc = SharingManagerConfiguration.sharedInstance.ViewObjectMain as? ViewControllertabMain {
+                    self.process_update = pvc
+                }
+            case false:
+                if let pvc = SharingManagerConfiguration.sharedInstance.CopyObjectMain as? ViewControllerCopyFiles {
+                    self.process_update = pvc
+                }
             }
         }
     }
