@@ -8,10 +8,17 @@
 
 import Foundation
 
-// Struct for holding all configurations
-// Configurations saved is this struct
-struct config {
-    static var sharedInstance = config()
+// Class for holding all configurations
+
+class config {
+    // Creates a singelton of this class
+    class var sharedInstance: config {
+        struct Singleton {
+            static let instance = config()
+        }
+        return Singleton.instance
+    }
+    // static var sharedInstance = config()
     // If version 3 of rsync in /usr/local/bin
     var version3rsync:Int = 0
     // Optional path for rsync

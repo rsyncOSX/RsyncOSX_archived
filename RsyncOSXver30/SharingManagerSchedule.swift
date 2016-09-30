@@ -314,7 +314,7 @@ class SharingManagerSchedule {
             for i in 0 ..< self.Schedule.count {
                 // Add record only to record with no enddate
                 if (SharingManagerConfiguration.sharedInstance.gettask(hiddenID) == "backup") {
-                    if (self.Schedule[i].hiddenID == hiddenID  && self.Schedule[i].schedule == "once" && self.Schedule[i].dateStop == nil) {
+                    if (self.Schedule[i].hiddenID == hiddenID  && self.Schedule[i].schedule == "manuel" && self.Schedule[i].dateStop == nil) {
                         let dict = NSMutableDictionary()
                         dict.setObject(date, forKey: "dateExecuted" as NSCopying)
                         dict.setObject(result, forKey: "resultExecuted" as NSCopying)
@@ -330,13 +330,13 @@ class SharingManagerSchedule {
                     }
                 }
             }
+            // Record does not exist, create new Schedule (not inserted)
             if (inserted == false) {
                 if (SharingManagerConfiguration.sharedInstance.gettask(hiddenID) == "backup") {
-                    // Record does not exist, create new Schedule
                     let masterdict = NSMutableDictionary()
                     masterdict.setObject(hiddenID, forKey: "hiddenID" as NSCopying)
                     masterdict.setObject(date, forKey: "dateStart" as NSCopying)
-                    masterdict.setObject("once", forKey: "schedule" as NSCopying)
+                    masterdict.setObject("manuel", forKey: "schedule" as NSCopying)
                     
                     let dict = NSMutableDictionary()
                     dict.setObject(date, forKey: "dateExecuted" as NSCopying)

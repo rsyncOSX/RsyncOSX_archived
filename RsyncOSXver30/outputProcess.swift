@@ -136,11 +136,7 @@ class outputProcess {
     }
 
     init () {
-        // Second last String in Array rsync output of how much in what time
-        self.message = ""
-        // output Array to keep output from rsync in
-        self.output.removeAllObjects()
-        // output for batchTasks
-        self.batchoutput.removeAllObjects()
+        // Second last String in Array rsync output of how much and in what time
+        self.message = " "
     }
  }
