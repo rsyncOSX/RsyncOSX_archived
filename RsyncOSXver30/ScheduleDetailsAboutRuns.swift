@@ -33,7 +33,6 @@ class ScheduleDetailsAboutRuns {
         var row: NSMutableDictionary?
         var data = [NSMutableDictionary]()
         self.data = nil
-        
         let input = SharingManagerSchedule.sharedInstance.getSchedule()
         for i in 0 ..< input.count {
             let hiddenID = SharingManagerSchedule.sharedInstance.getSchedule()[i].hiddenID
