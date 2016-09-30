@@ -101,7 +101,7 @@ class ViewControllerRsyncParameters: NSViewController {
     override func viewDidAppear() {
         super.viewDidAppear()
         
-        var Configurations = SharingManagerConfiguration.sharedInstance.getConfigurations()
+        var Configurations:[configuration] = SharingManagerConfiguration.sharedInstance.getConfigurations()
         let index = self.getindex_delegate?.getindex()
         
         self.viewParameter1.stringValue = Configurations[index!].parameter1
@@ -165,7 +165,7 @@ class ViewControllerRsyncParameters: NSViewController {
     
     @IBAction func update(_ sender: NSButton) {
         
-        var Configurations = storeAPI.sharedInstance.getConfigurations()
+        var Configurations:[configuration] = storeAPI.sharedInstance.getConfigurations()
         // Get the index of selected configuration
         let index = self.getindex_delegate?.getindex()
         
