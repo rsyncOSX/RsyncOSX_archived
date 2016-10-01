@@ -308,7 +308,12 @@ class SharingManagerSchedule {
     /// - parameter hiddenID : hiddenID for task
     /// - parameter result : String representation of result
     /// - parameter date : String representation of date and time stamp
-    func addScheduleResultOnce(_ hiddenID: Int, result : String, date: String) {
+    func addScheduleResultManuel(_ hiddenID: Int, result : String) {
+        // Set the current date
+        let currendate = Date()
+        let dateformatter = Utils.sharedInstance.setDateformat()
+        let date = dateformatter.string(from: currendate)
+        
         if (SharingManagerConfiguration.sharedInstance.detailedlogging) {
             var inserted:Bool = false
             for i in 0 ..< self.Schedule.count {

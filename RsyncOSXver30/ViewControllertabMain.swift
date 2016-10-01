@@ -418,12 +418,8 @@ class ViewControllertabMain : NSViewController, Information, Abort, Count, Refre
         }
         // Test all remote servers for connection
         self.testAllremoteserverConnections()
-
     }
     
-    override func viewWillDisappear() {
-        super.viewWillDisappear()
-    }
     
     // Execute SINGLE TASKS only
     
@@ -580,11 +576,8 @@ class ViewControllertabMain : NSViewController, Information, Abort, Count, Refre
         SharingManagerSchedule.sharedInstance.getAllSchedules()
     }
 
-     // DO WORK START
-    
-    // Protocol UpdateProgress two functions
-    // ProcessTermination()
-    // FileHandler() 
+    // Do some real WORK start
+    // Protocol UpdateProgress two functions, ProcessTermination() and FileHandler()
     
     func ProcessTermination() {
         // If task is aborted dont do anything¢
@@ -604,13 +597,10 @@ class ViewControllertabMain : NSViewController, Information, Abort, Count, Refre
                 self.maxcount = self.output!.getOutputCount()
                 // Estimated was TRUE but was set FALSE just before the real task was executed
                 // Do an update of memory and the function is notifying when an refresh of table
-                // is done.
-                // We have JUST completed an estimation run.
+                // is done. We have JUST completed an estimation run.
                 if (self.estimated == false && self.abort == false) {
                     SharingManagerConfiguration.sharedInstance.setCurrentDateonConfiguration(self.index!)
-                    let currendate = Date()
-                    let dateformatter = Utils.sharedInstance.setDateformat()
-                    SharingManagerSchedule.sharedInstance.addScheduleResultOnce(self.hiddenID!, result: self.output!.statistics()[0], date: dateformatter.string(from: currendate))
+                    SharingManagerSchedule.sharedInstance.addScheduleResultManuel(self.hiddenID!, result: self.output!.statistics()[0])
                 }
                 // If showInfoDryrun is on present result of dryrun automatically
                 if (self.showInfoDryrun.state == 1) {
@@ -661,9 +651,7 @@ class ViewControllertabMain : NSViewController, Information, Abort, Count, Refre
                         let index = SharingManagerConfiguration.sharedInstance.getIndex(work.0)
                         let hiddenID = SharingManagerConfiguration.sharedInstance.gethiddenID(index: index)
                         SharingManagerConfiguration.sharedInstance.setCurrentDateonConfiguration(index)
-                        let currendate = Date()
-                        let dateformatter = Utils.sharedInstance.setDateformat()
-                        SharingManagerSchedule.sharedInstance.addScheduleResultOnce(hiddenID, result: self.output!.statistics()[0], date: dateformatter.string(from: currendate))
+                        SharingManagerSchedule.sharedInstance.addScheduleResultManuel(hiddenID, result: self.output!.statistics()[0])
                         // Reset counter before next run
                         self.output!.removeObjectsOutput()
                         self.runBatch()
@@ -673,7 +661,6 @@ class ViewControllertabMain : NSViewController, Information, Abort, Count, Refre
                 }
             }
         }
-
     }
     
     func FileHandler() {
@@ -700,7 +687,7 @@ class ViewControllertabMain : NSViewController, Information, Abort, Count, Refre
         }
     }
     
-    // DO WORK END
+    //  Do some real WORK end
 
 }
 
