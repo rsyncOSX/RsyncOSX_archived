@@ -625,7 +625,7 @@ class ViewControllertabMain : NSViewController, Information, Abort, Count, Refre
                     self.abort = false
                 }
                 // real run is next
-                self.dryRunOrRealRun.stringValue = "real run"
+                self.dryRunOrRealRun.stringValue = "execute"
             } else {
                 // Take care of batchRun activities
                 if let batchobject = SharingManagerConfiguration.sharedInstance.getBatchdataObject() {
@@ -652,8 +652,6 @@ class ViewControllertabMain : NSViewController, Information, Abort, Count, Refre
                         batchobject.updateInProcess(numberOfFiles: self.maxcount)
                         batchobject.setCompleted()
                         self.output?.copySummarizedResultBatch()
-                        // Reset counter before next run
-                        self.output!.removeObjectsOutput()
                         if let pvc = self.presentedViewControllers as? [ViewControllerBatch] {
                             self.refresh_delegate = pvc[0]
                             self.indicator_delegate = pvc[0]
@@ -666,6 +664,8 @@ class ViewControllertabMain : NSViewController, Information, Abort, Count, Refre
                         let currendate = Date()
                         let dateformatter = Utils.sharedInstance.setDateformat()
                         SharingManagerSchedule.sharedInstance.addScheduleResultOnce(hiddenID, result: self.output!.statistics()[0], date: dateformatter.string(from: currendate))
+                        // Reset counter before next run
+                        self.output!.removeObjectsOutput()
                         self.runBatch()
                     default :
                         break
