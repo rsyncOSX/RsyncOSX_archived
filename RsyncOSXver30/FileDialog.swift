@@ -19,7 +19,7 @@ enum WhichPath {
     case AddRemoteCatalog
 }
 
-class FileDialog {
+final class FileDialog {
     
     weak var path_delegate:GetPath?
     private var whichPath:WhichPath?

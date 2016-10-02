@@ -8,7 +8,7 @@
 
 import Foundation
 
-class rsyncProcess {
+final class rsyncProcess {
     
     // Number of calculated files to be copied
     var calculatedNumberOfFiles:Int = 0

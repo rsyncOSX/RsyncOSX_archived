@@ -24,7 +24,7 @@ struct configRsyncOSX {
 }
 
 
-class userconfiguration {
+final class userconfiguration {
     
     // Default values
     // Use version 3 og rsync

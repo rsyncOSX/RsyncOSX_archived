@@ -34,7 +34,7 @@ var GlobalDefaultQueue: DispatchQueue {
 
 // Class for different tools
 
-class Utils {
+final class Utils {
     
     // Creates a singelton of this class
     class var  sharedInstance: Utils {

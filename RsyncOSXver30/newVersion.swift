@@ -8,7 +8,7 @@
 
 import Foundation
 
-class newVersion {
+final class newVersion {
     
     private var runningVersion : String?
     private var urlPlist : String?

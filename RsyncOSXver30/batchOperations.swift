@@ -1,5 +1,5 @@
 //
-//  batchdata.swift
+//  batchOperations.swift
 //  RsyncOSXver30
 //
 //  Created by Thomas Evensen on 25/08/2016.
@@ -8,7 +8,7 @@
 
 import Foundation
 
-class batchData {
+final class batchOperations {
     
     // Set estimated (0 or 1) for row at index
     func setEstimated(numberOfFiles:Int) {

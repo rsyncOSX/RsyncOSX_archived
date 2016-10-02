@@ -8,7 +8,7 @@
 
 import Foundation
 
-class CopyFiles {
+final class CopyFiles {
     
     // Index from View
     private var index:Int?
