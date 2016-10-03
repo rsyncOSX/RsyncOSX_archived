@@ -49,19 +49,21 @@ class ViewControllertabSchedule : NSViewController, GetHiddenID, RefreshtableVie
     @IBOutlet weak var details: NSButton!
     
     // Index selected
-    var index:Int?
+    private var index:Int?
     // hiddenID
-    var hiddenID:Int?
+    private var hiddenID:Int?
     // Added schedules
-    var newSchedules:Bool?
+    private var newSchedules:Bool?
     // Timer to count down when next scheduled backup is due.
     // The timer just updates stringvalue in ViewController.
     // Another function is responsible to kick off the first
     // scheduled operation.
-    var nextTask : Timer?
+    private var nextTask : Timer?
     // Scedules object
-    var schedules : ScheduleSortedAndExpand?
-    // Delegate
+    fileprivate var schedules : ScheduleSortedAndExpand?
+    
+    // Delegates
+    // Delegate to inform new schedules added or schedules deleted
     weak var newSchedules_delegate:NewSchedules?
     // Delegate function for starting next scheduled operatin if any
     // Delegate function is triggered when NSTaskDidTerminationNotification

@@ -14,7 +14,7 @@ protocol StartNextScheduledTask : class {
 }
 
 // Class for starting scheduled task
-class ScheduleOperation {
+final class ScheduleOperation {
     
     let schedules:ScheduleSortedAndExpand?
     var waitForTask : Timer?
@@ -47,7 +47,7 @@ class ScheduleOperation {
 }
 
 // Class for completion of Operation objects when Process object termination
-class completeScheduledOperation {
+final class completeScheduledOperation {
     
     // Delegate function for starting next scheduled operatin if any
     // Delegate function is triggered when NSTaskDidTerminationNotification

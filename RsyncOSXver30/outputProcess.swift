@@ -8,7 +8,7 @@
 
 import Foundation
 
-class outputProcess {
+final class outputProcess {
     
     // Second last String in Array rsync output of how much in what time
     private var message:String = String()

@@ -38,7 +38,7 @@
 		A04492BC1D658F2100B3CE17 /* yudpsocket.swift in Sources */ = {isa = PBXBuildFile; fileRef = A04492A81D658F2100B3CE17 /* yudpsocket.swift */; };
 		A04972511D6595B200086EFD /* outputProcess.swift in Sources */ = {isa = PBXBuildFile; fileRef = A049724F1D6595B200086EFD /* outputProcess.swift */; };
 		A04972521D6595B200086EFD /* rsyncProcess.swift in Sources */ = {isa = PBXBuildFile; fileRef = A04972501D6595B200086EFD /* rsyncProcess.swift */; };
-		A05275DA1D6F6E0000D8ECBE /* batchdata.swift in Sources */ = {isa = PBXBuildFile; fileRef = A05275D91D6F6E0000D8ECBE /* batchdata.swift */; };
+		A05275DA1D6F6E0000D8ECBE /* batchOperations.swift in Sources */ = {isa = PBXBuildFile; fileRef = A05275D91D6F6E0000D8ECBE /* batchOperations.swift */; };
 		A054F1A91D6D773E00D27688 /* ViewControllerInformation.swift in Sources */ = {isa = PBXBuildFile; fileRef = A054F1A81D6D773E00D27688 /* ViewControllerInformation.swift */; };
 		A08110671D6DA7D8009444D3 /* ViewControllerProgressProcess.swift in Sources */ = {isa = PBXBuildFile; fileRef = A08110661D6DA7D8009444D3 /* ViewControllerProgressProcess.swift */; };
 		A091C6581D86A0A800278E74 /* ViewControllerCopyFiles.swift in Sources */ = {isa = PBXBuildFile; fileRef = A091C6571D86A0A800278E74 /* ViewControllerCopyFiles.swift */; };
@@ -90,7 +90,7 @@
 		A04492A81D658F2100B3CE17 /* yudpsocket.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = yudpsocket.swift; sourceTree = "<group>"; };
 		A049724F1D6595B200086EFD /* outputProcess.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = outputProcess.swift; sourceTree = "<group>"; };
 		A04972501D6595B200086EFD /* rsyncProcess.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = rsyncProcess.swift; sourceTree = "<group>"; };
-		A05275D91D6F6E0000D8ECBE /* batchdata.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = batchdata.swift; sourceTree = "<group>"; };
+		A05275D91D6F6E0000D8ECBE /* batchOperations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = batchOperations.swift; sourceTree = "<group>"; };
 		A054F1A81D6D773E00D27688 /* ViewControllerInformation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewControllerInformation.swift; sourceTree = "<group>"; };
 		A08110661D6DA7D8009444D3 /* ViewControllerProgressProcess.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewControllerProgressProcess.swift; sourceTree = "<group>"; };
 		A091C6571D86A0A800278E74 /* ViewControllerCopyFiles.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewControllerCopyFiles.swift; sourceTree = "<group>"; };
@@ -259,7 +259,7 @@
 		A05275DB1D6F6E2C00D8ECBE /* Batchrun */ = {
 			isa = PBXGroup;
 			children = (
-				A05275D91D6F6E0000D8ECBE /* batchdata.swift */,
+				A05275D91D6F6E0000D8ECBE /* batchOperations.swift */,
 			);
 			name = Batchrun;
 			sourceTree = "<group>";
@@ -377,7 +377,7 @@
 				A04492B11D658F2100B3CE17 /* readwritefiles.swift in Sources */,
 				A04492B21D658F2100B3CE17 /* rsyncProcessArguments.swift in Sources */,
 				A04492AE1D658F2100B3CE17 /* history.swift in Sources */,
-				A05275DA1D6F6E0000D8ECBE /* batchdata.swift in Sources */,
+				A05275DA1D6F6E0000D8ECBE /* batchOperations.swift in Sources */,
 				A00FE1AA1D6A1AAB00012089 /* alerts.swift in Sources */,
 				A0F2E20C1D6D91AA0091E8BF /* userconfiguration.swift in Sources */,
 				A0FC45641D9545CC005208EF /* ScheduleDetailsAboutRuns.swift in Sources */,

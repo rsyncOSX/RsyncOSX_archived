@@ -46,51 +46,58 @@ protocol ScheduledJobInProgress : class {
 }
 
 class ViewControllertabMain : NSViewController, Information, Abort, Count, RefreshtableViewtabMain, StartBatch, ReadConfigurationsAgain, RsyncUserParams, SendSelecetedIndex, NewSchedules, StartNextScheduledTask, DismissViewController, UpdateProgress, ScheduledJobInProgress {
-    
-    
+
     // Protocol function used in Process().
     weak var process_update:UpdateProgress?
-    // Main tableview
-    @IBOutlet weak var mainTableView: NSTableView!
-    // Bool if one remote server is offline
-    var remoteserverOff:Bool = false
-    var indexBoolremoteserverOff = [Bool]()
-    // Displays the rsyncCommand
-    @IBOutlet weak var rsyncCommand: NSTextField!
-    // Reference to Process task
-    var process:Process?
-    // Index to selected row, index is set when row is selected
-    var index:Int?
-    // If task is estimated
-    var estimated:Bool = false
-    // Getting output from rsync 
-    var output:outputProcess?
-    // Progressbar indicating work
-    @IBOutlet weak var working: NSProgressIndicator!
-    // Holding max count 
-    var maxcount:Int = 0
-    // Bool is working or not
-    var isWorking:Bool = false
-    // If On result of Dryrun is presented before 
-    // executing the real run
-    @IBOutlet weak var showInfoDryrun: NSButton!
-    // in batcrun or not
-    var inbatchRun:Bool = false
     // Delegate function for doing a refresh of NSTableView in ViewControllerBatch
     weak var refresh_delegate:RefreshtableViewBatch?
     // Delegate function for start/stop progress Indicator in BatchWindow
     weak var indicator_delegate:StartStopProgressIndicatorViewBatch?
-    // Abort
-    var abort:Bool = false
+
+    
+    // Main tableview
+    @IBOutlet weak var mainTableView: NSTableView!
+    // Progressbar indicating work
+    @IBOutlet weak var working: NSProgressIndicator!
+    // Displays the rsyncCommand
+    @IBOutlet weak var rsyncCommand: NSTextField!
+    // If On result of Dryrun is presented before
+    // executing the real run
+    @IBOutlet weak var showInfoDryrun: NSButton!
     // Outlet for showing if dryrun or not
     @IBOutlet weak var dryRunOrRealRun: NSTextField!
-    // task hiddenID, set when row is selected
-    var hiddenID:Int?
-    // Schedules object
-    var schedules : ScheduleSortedAndExpand?
-    // Schedules in progress
-    var scheduledJobInProgress:Bool = false
+    // Progressbar scheduled task
     @IBOutlet weak var scheduledJobworking: NSProgressIndicator!
+    
+    // REFERENCE VARIABLES
+    
+    // Reference to Process task
+    private var process:Process?
+    // Index to selected row, index is set when row is selected
+    private var index:Int?
+    // Getting output from rsync 
+    private var output:outputProcess?
+    // Holding max count 
+    private var maxcount:Int = 0
+    // HiddenID task, set when row is selected
+    private var hiddenID:Int?
+    // Reference to Schedules object
+    fileprivate var schedules : ScheduleSortedAndExpand?
+    // Bool if one or more remote server is offline
+    // Used in testing if remote server is on/off-line
+    fileprivate var remoteserverOff:Bool = false
+    fileprivate var indexBoolremoteserverOff = [Bool]()
+    
+    // STATE VARIABLES
+    
+    // Schedules in progress
+    private var scheduledJobInProgress:Bool = false
+    // In batcrun or not
+    private var inbatchRun:Bool = false
+    // True if abort is choosed
+    private var abort:Bool = false
+    // If task is estimated
+    private var estimated:Bool = false
     
     // Information about rsync output
     // self.presentViewControllerAsSheet(self.ViewControllerInformation)
@@ -140,10 +147,8 @@ class ViewControllertabMain : NSViewController, Information, Abort, Count, Refre
         return self.storyboard!.instantiateController(withIdentifier: "StoryboardEditID")
             as! NSViewController
     }()
-    
 
     /// Function for dismissing a presented view
-    ///
     /// - parameter viewcontroller: the viewcontroller to be dismissed
     func dismiss_view(viewcontroller:NSViewController) {
         self.dismissViewController(viewcontroller)
@@ -162,19 +167,22 @@ class ViewControllertabMain : NSViewController, Information, Abort, Count, Refre
         }
     }
     
-    // Protocol Count
-    // Two functions
+    // Protocol Count, two functions maxCount and inprogressCount
+    // Maxnumber of files counted
     func maxCount() -> Int {
         return self.maxcount
     }
     
+    // Counting number of files so far
     func inprogressCount() -> Int {
         return self.output!.getOutputCount()
     }
     
     // Protocol RefreshtableViewtabMain
+    // Refresh tableView in main
     func refreshInMain() {
-        // Read schedule objects again
+        // Create and read schedule objects again
+        // Releasing previous allocation before creating new one
         self.schedules = nil
         self.schedules = ScheduleSortedAndExpand()
         GlobalMainQueue.async(execute: { () -> Void in
@@ -185,14 +193,8 @@ class ViewControllertabMain : NSViewController, Information, Abort, Count, Refre
     // Protocol StartBatch
     // Two functions runcBatch and abortOperations
     func runBatch() {
-        var scheduleInProgress:Bool?
-        if (self.schedules != nil) {
-            scheduleInProgress = self.schedules!.getScheduledOperationInProgress()
-        } else {
-            scheduleInProgress = false
-        }
-        
-        if (scheduleInProgress == false ) {
+        // No scheduled opertaion in progress
+        if (self.scheduledOperationInProgress() == false ) {
             if let batchobject = SharingManagerConfiguration.sharedInstance.getBatchdataObject() {
                 // Just copy the work object.
                 // The work object will be removed in Process termination
@@ -216,7 +218,6 @@ class ViewControllertabMain : NSViewController, Information, Abort, Count, Refre
                     // Setting reference to process for Abort if requiered
                     process.executeProcess(arguments, output: self.output!)
                     self.process = process.getProcess()
-                    
                 case -1:
                     if let pvc = self.presentedViewControllers as? [ViewControllerBatch] {
                         self.indicator_delegate = pvc[0]
@@ -231,7 +232,7 @@ class ViewControllertabMain : NSViewController, Information, Abort, Count, Refre
     }
     
     func abortOperations() {
-        // Terminates the current process
+        // Terminates the running process
         self.abortProcess()
         // If batchwindow closes during process - all jobs are aborted
         if let batchobject = SharingManagerConfiguration.sharedInstance.getBatchdataObject() {
@@ -418,28 +419,16 @@ class ViewControllertabMain : NSViewController, Information, Abort, Count, Refre
         }
         // Test all remote servers for connection
         self.testAllremoteserverConnections()
-
     }
     
-    override func viewWillDisappear() {
-        super.viewWillDisappear()
-    }
     
     // Execute SINGLE TASKS only
-    
     @IBAction func executeTask(_ sender: NSButton) {
-        var scheduleInProgress:Bool?
-        if (self.schedules != nil) {
-            scheduleInProgress = self.schedules!.getScheduledOperationInProgress()
-        } else {
-            scheduleInProgress = false
-        }
-        if (scheduleInProgress == false && self.scheduledJobInProgress == false) {
+        if (self.scheduledOperationInProgress() == false){
             self.inbatchRun = false
-            if (self.process == nil && self.index != nil && self.isWorking == false) {
+            if (self.process == nil && self.index != nil) {
                 let process = rsyncProcess(notification: false, tabMain: true, command : nil)
                 let arguments:[String]?
-                self.isWorking = true
                 if (self.estimated == false) {
                     // Start the working progress indicator
                     self.working.startAnimation(nil)
@@ -469,15 +458,8 @@ class ViewControllertabMain : NSViewController, Information, Abort, Count, Refre
     }
     
     // Execute BATCH TASKS only
-    
     @IBAction func executeBatch(_ sender: NSButton) {
-        var scheduleInProgress:Bool?
-        if (self.schedules != nil) {
-            scheduleInProgress = self.schedules!.getScheduledOperationInProgress()
-        } else {
-            scheduleInProgress = false
-        }
-        if (scheduleInProgress == false && self.scheduledJobInProgress == false){
+        if (self.scheduledOperationInProgress() == false){
             // Create the output object for rsync
             self.output = nil
             self.output = outputProcess()
@@ -485,7 +467,7 @@ class ViewControllertabMain : NSViewController, Information, Abort, Count, Refre
             self.inbatchRun = true
             // Get all Configs marked for batch
             let configs = SharingManagerConfiguration.sharedInstance.getConfigurationsBatch()
-            let batchObject = batchData(batchtasks: configs)
+            let batchObject = batchOperations(batchtasks: configs)
             // Set the reference to batchData object in SharingManagerConfiguration
             SharingManagerConfiguration.sharedInstance.setbatchDataQueue(batchdata: batchObject)
             GlobalMainQueue.async(execute: { () -> Void in
@@ -496,12 +478,24 @@ class ViewControllertabMain : NSViewController, Information, Abort, Count, Refre
         }
     }
     
+    // True if scheduled task in progress
+    private func scheduledOperationInProgress() -> Bool {
+        var scheduleInProgress:Bool?
+        if (self.schedules != nil) {
+            scheduleInProgress = self.schedules!.getScheduledOperationInProgress()
+        } else {
+            scheduleInProgress = false
+        }
+        if (scheduleInProgress == false && self.scheduledJobInProgress == false){
+            return false
+        } else {
+            return true
+        }
+    }
+    
     // Testing all remote servers.
     // Adding connection true or false in array[bool]
     // Do the check in background que, reload table in global main queue
-    
-    /// Test remote servers (by TCP) for availability
-    ///
     private func testAllremoteserverConnections () {
         GlobalDefaultQueue.async(execute: { () -> Void in
             self.indexBoolremoteserverOff.removeAll()
@@ -552,7 +546,9 @@ class ViewControllertabMain : NSViewController, Information, Abort, Count, Refre
         }
     }
     
-    // Abort process
+    // Reset and abort
+    
+    // Abort ongoing process and set schedules
     private func abortProcess() {
         if let process = self.process {
             process.terminate()
@@ -562,11 +558,17 @@ class ViewControllertabMain : NSViewController, Information, Abort, Count, Refre
         }
     }
     
-    // Reset flags to enable a real task after estimate run
+    // Reset flags to enable a real run after estimate run
     private func resetflags() {
         self.process = nil
-        self.isWorking = false
-        // self.estimated = false
+        // if abort flag is set then reset abort flag
+        if self.abort == true {
+            self.abort = false
+        }
+        // Informal only
+        if (self.dryRunOrRealRun.stringValue == "estimate") {
+            self.dryRunOrRealRun.stringValue = "execute"
+        }
     }
     
     // Reread bot Configurations and Schedules from persistent store to memory
@@ -580,14 +582,11 @@ class ViewControllertabMain : NSViewController, Information, Abort, Count, Refre
         SharingManagerSchedule.sharedInstance.getAllSchedules()
     }
 
-     // DO WORK START
-    
-    // Protocol UpdateProgress two functions
-    // ProcessTermination()
-    // FileHandler() 
+    // Do some real WORK START
+    // Protocol UpdateProgress two functions, ProcessTermination() and FileHandler()
     
     func ProcessTermination() {
-        // If task is aborted dont do anything¢
+        // If task is aborted dont do anything
         if (self.abort == false) {
             // Check if in Batcrun or not
             if (self.inbatchRun == false ) {
@@ -604,13 +603,10 @@ class ViewControllertabMain : NSViewController, Information, Abort, Count, Refre
                 self.maxcount = self.output!.getOutputCount()
                 // Estimated was TRUE but was set FALSE just before the real task was executed
                 // Do an update of memory and the function is notifying when an refresh of table
-                // is done.
-                // We have JUST completed an estimation run.
+                // is done. We have JUST completed an estimation run.
                 if (self.estimated == false && self.abort == false) {
                     SharingManagerConfiguration.sharedInstance.setCurrentDateonConfiguration(self.index!)
-                    let currendate = Date()
-                    let dateformatter = Utils.sharedInstance.setDateformat()
-                    SharingManagerSchedule.sharedInstance.addScheduleResultOnce(self.hiddenID!, result: self.output!.statistics()[0], date: dateformatter.string(from: currendate))
+                    SharingManagerSchedule.sharedInstance.addScheduleResultManuel(self.hiddenID!, result: self.output!.statistics()[0])
                 }
                 // If showInfoDryrun is on present result of dryrun automatically
                 if (self.showInfoDryrun.state == 1) {
@@ -618,14 +614,8 @@ class ViewControllertabMain : NSViewController, Information, Abort, Count, Refre
                         self.presentViewControllerAsSheet(self.ViewControllerInformation)
                     })
                 }
-                // Resetting all values
+                // Resetting state values for next run which is a execute run
                 self.resetflags()
-                // Reset abort flag if true
-                if self.abort == true {
-                    self.abort = false
-                }
-                // real run is next
-                self.dryRunOrRealRun.stringValue = "execute"
             } else {
                 // Take care of batchRun activities
                 if let batchobject = SharingManagerConfiguration.sharedInstance.getBatchdataObject() {
@@ -661,9 +651,7 @@ class ViewControllertabMain : NSViewController, Information, Abort, Count, Refre
                         let index = SharingManagerConfiguration.sharedInstance.getIndex(work.0)
                         let hiddenID = SharingManagerConfiguration.sharedInstance.gethiddenID(index: index)
                         SharingManagerConfiguration.sharedInstance.setCurrentDateonConfiguration(index)
-                        let currendate = Date()
-                        let dateformatter = Utils.sharedInstance.setDateformat()
-                        SharingManagerSchedule.sharedInstance.addScheduleResultOnce(hiddenID, result: self.output!.statistics()[0], date: dateformatter.string(from: currendate))
+                        SharingManagerSchedule.sharedInstance.addScheduleResultManuel(hiddenID, result: self.output!.statistics()[0])
                         // Reset counter before next run
                         self.output!.removeObjectsOutput()
                         self.runBatch()
@@ -673,7 +661,6 @@ class ViewControllertabMain : NSViewController, Information, Abort, Count, Refre
                 }
             }
         }
-
     }
     
     func FileHandler() {
@@ -700,7 +687,7 @@ class ViewControllertabMain : NSViewController, Information, Abort, Count, Refre
         }
     }
     
-    // DO WORK END
+    //  Do some real WORK END
 
 }
 
@@ -745,7 +732,6 @@ extension ViewControllertabMain : NSTableViewDelegate {
             return object[tableColumn!.identifier] as? Int!
         } else {
             var number:Int = 0
-            // let number = self.schedules!.numberOfFutureSchedules(hiddenID)
             if let obj = self.schedules {
                 number = obj.numberOfFutureSchedules(hiddenID)
             }
