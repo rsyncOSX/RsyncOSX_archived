@@ -566,12 +566,16 @@ class ViewControllertabMain : NSViewController, Information, Abort, Count, Refre
         }
     }
     
-    // Reset flags to enable a real task after estimate run
+    // Reset flags to enable a real run after estimate run
     private func resetflags() {
         self.process = nil
         // if abort flag is set then reset abort flag
         if self.abort == true {
             self.abort = false
+        }
+        // Informal only
+        if (self.dryRunOrRealRun.stringValue == "estimate") {
+            self.dryRunOrRealRun.stringValue = "execute"
         }
     }
     
@@ -618,10 +622,8 @@ class ViewControllertabMain : NSViewController, Information, Abort, Count, Refre
                         self.presentViewControllerAsSheet(self.ViewControllerInformation)
                     })
                 }
-                // Resetting state values
+                // Resetting state values for next run which is a execute run
                 self.resetflags()
-                // real run is next
-                self.dryRunOrRealRun.stringValue = "execute"
             } else {
                 // Take care of batchRun activities
                 if let batchobject = SharingManagerConfiguration.sharedInstance.getBatchdataObject() {
