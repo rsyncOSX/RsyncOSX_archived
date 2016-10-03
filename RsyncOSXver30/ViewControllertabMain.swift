@@ -193,15 +193,8 @@ class ViewControllertabMain : NSViewController, Information, Abort, Count, Refre
     // Protocol StartBatch
     // Two functions runcBatch and abortOperations
     func runBatch() {
-        // Checking if there is a scheduled task running or not
-        var scheduleInProgress:Bool?
-        if (self.schedules != nil) {
-            scheduleInProgress = self.schedules!.getScheduledOperationInProgress()
-        } else {
-            scheduleInProgress = false
-        }
         // No scheduled opertaion in progress
-        if (scheduleInProgress == false ) {
+        if (self.scheduledOperationInProgress() == false ) {
             if let batchobject = SharingManagerConfiguration.sharedInstance.getBatchdataObject() {
                 // Just copy the work object.
                 // The work object will be removed in Process termination
@@ -225,7 +218,6 @@ class ViewControllertabMain : NSViewController, Information, Abort, Count, Refre
                     // Setting reference to process for Abort if requiered
                     process.executeProcess(arguments, output: self.output!)
                     self.process = process.getProcess()
-                    
                 case -1:
                     if let pvc = self.presentedViewControllers as? [ViewControllerBatch] {
                         self.indicator_delegate = pvc[0]
