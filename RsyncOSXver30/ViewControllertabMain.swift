@@ -68,10 +68,6 @@ class ViewControllertabMain : NSViewController, Information, Abort, Count, Refre
     @IBOutlet weak var dryRunOrRealRun: NSTextField!
     // Progressbar scheduled task
     @IBOutlet weak var scheduledJobworking: NSProgressIndicator!
-    // Bool if one or more remote server is offline
-    // Used in testing if remote server is on/off-line
-    fileprivate var remoteserverOff:Bool = false
-    fileprivate var indexBoolremoteserverOff = [Bool]()
     
     // REFERENCE VARIABLES
     
@@ -87,15 +83,18 @@ class ViewControllertabMain : NSViewController, Information, Abort, Count, Refre
     private var hiddenID:Int?
     // Reference to Schedules object
     fileprivate var schedules : ScheduleSortedAndExpand?
-   
+    // Bool if one or more remote server is offline
+    // Used in testing if remote server is on/off-line
+    fileprivate var remoteserverOff:Bool = false
+    fileprivate var indexBoolremoteserverOff = [Bool]()
     
     // STATE VARIABLES
     
     // Schedules in progress
     private var scheduledJobInProgress:Bool = false
-    // Bool is working or not
+    // True if working
     private var isWorking:Bool = false
-    // in batcrun or not
+    // In batcrun or not
     private var inbatchRun:Bool = false
     // True if abort is choosed
     private var abort:Bool = false
