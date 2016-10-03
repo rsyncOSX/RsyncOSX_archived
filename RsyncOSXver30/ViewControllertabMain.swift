@@ -431,15 +431,8 @@ class ViewControllertabMain : NSViewController, Information, Abort, Count, Refre
     
     
     // Execute SINGLE TASKS only
-    
     @IBAction func executeTask(_ sender: NSButton) {
-        var scheduleInProgress:Bool?
-        if (self.schedules != nil) {
-            scheduleInProgress = self.schedules!.getScheduledOperationInProgress()
-        } else {
-            scheduleInProgress = false
-        }
-        if (scheduleInProgress == false && self.scheduledJobInProgress == false) {
+        if (self.scheduledOperationInProgress() == false){
             self.inbatchRun = false
             if (self.process == nil && self.index != nil) {
                 let process = rsyncProcess(notification: false, tabMain: true, command : nil)
@@ -473,15 +466,8 @@ class ViewControllertabMain : NSViewController, Information, Abort, Count, Refre
     }
     
     // Execute BATCH TASKS only
-    
     @IBAction func executeBatch(_ sender: NSButton) {
-        var scheduleInProgress:Bool?
-        if (self.schedules != nil) {
-            scheduleInProgress = self.schedules!.getScheduledOperationInProgress()
-        } else {
-            scheduleInProgress = false
-        }
-        if (scheduleInProgress == false && self.scheduledJobInProgress == false){
+        if (self.scheduledOperationInProgress() == false){
             // Create the output object for rsync
             self.output = nil
             self.output = outputProcess()
@@ -500,10 +486,24 @@ class ViewControllertabMain : NSViewController, Information, Abort, Count, Refre
         }
     }
     
+    // True if scheduled task in progress
+    private func scheduledOperationInProgress() -> Bool {
+        var scheduleInProgress:Bool?
+        if (self.schedules != nil) {
+            scheduleInProgress = self.schedules!.getScheduledOperationInProgress()
+        } else {
+            scheduleInProgress = false
+        }
+        if (scheduleInProgress == false && self.scheduledJobInProgress == false){
+            return false
+        } else {
+            return true
+        }
+    }
+    
     // Testing all remote servers.
     // Adding connection true or false in array[bool]
     // Do the check in background que, reload table in global main queue
-
     private func testAllremoteserverConnections () {
         GlobalDefaultQueue.async(execute: { () -> Void in
             self.indexBoolremoteserverOff.removeAll()
@@ -586,11 +586,11 @@ class ViewControllertabMain : NSViewController, Information, Abort, Count, Refre
         SharingManagerSchedule.sharedInstance.getAllSchedules()
     }
 
-    // Do some real WORK start
+    // Do some real WORK START
     // Protocol UpdateProgress two functions, ProcessTermination() and FileHandler()
     
     func ProcessTermination() {
-        // If task is aborted dont do anything¢
+        // If task is aborted dont do anything
         if (self.abort == false) {
             // Check if in Batcrun or not
             if (self.inbatchRun == false ) {
@@ -693,7 +693,7 @@ class ViewControllertabMain : NSViewController, Information, Abort, Count, Refre
         }
     }
     
-    //  Do some real WORK end
+    //  Do some real WORK END
 
 }
 
