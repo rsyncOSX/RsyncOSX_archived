@@ -23,32 +23,17 @@ protocol SendSelecetedIndex : class {
 
 class ViewControllerRsyncParameters: NSViewController {
     
+    var parameters : RsyncParameters?
+    
     // Delegate returning params updated or not
     weak var userparamsupdated_delegate : RsyncUserParams?
     // Get index of selected row
     weak var getindex_delegate : SendSelecetedIndex?
     // Dismisser
     weak var dismiss_delegate:DismissViewController?
-    
-    // Static initial arguments
-    // DO NOT change order
-    let staticargumentArray:[String] = [
-        "select",
-        "--stats",
-        "--backup",
-        "--backup-dir",
-        "--exclude-from",
-        "--include-from",
-        "--files-from",
-        "--max-size",
-        "--suffix",
-        "delete"]
-    
-    // --backup-dir=../backup
-    // --suffix=_$(date +%Y-%m-%d.%H.%M)
-    
+        
     var argumentArray:[String]?
-    var argumentDictionary = [NSMutableDictionary]()
+    var argumentDictionary:[NSDictionary]?
     
     @IBOutlet weak var viewParameter1: NSTextField!
     @IBOutlet weak var viewParameter2: NSTextField!
@@ -81,11 +66,10 @@ class ViewControllerRsyncParameters: NSViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        // Initialize rsyncarguments
-        self.argumentDictionary.removeAll()
-        self.fillargumentsDictionary()
-        self.argumentArray = self.createArgumentsDictionary()
+        // Create RsyncParameters object and load initial parameters
+        self.parameters = RsyncParameters()
+        self.argumentArray = parameters!.getArguments()
+        self.argumentDictionary = parameters!.getArgumentsAndValues()
         if let pvc = self.presenting as? ViewControllertabMain {
             self.userparamsupdated_delegate = pvc
             self.getindex_delegate = pvc
@@ -94,13 +78,11 @@ class ViewControllerRsyncParameters: NSViewController {
         if let pvc2 = self.presenting as? ViewControllertabMain {
             self.dismiss_delegate = pvc2
         }
-
     }
  
     
     override func viewDidAppear() {
         super.viewDidAppear()
-        
         var Configurations:[configuration] = SharingManagerConfiguration.sharedInstance.getConfigurations()
         let index = self.getindex_delegate?.getindex()
         
@@ -168,71 +150,13 @@ class ViewControllerRsyncParameters: NSViewController {
         var Configurations:[configuration] = storeAPI.sharedInstance.getConfigurations()
         // Get the index of selected configuration
         let index = self.getindex_delegate?.getindex()
-        
-        if let str = self.argumentString(self.parameter8.indexOfSelectedItem, value: self.viewParameter8.stringValue) {
-            Configurations[index!].parameter8 = str
-        } else {
-            if (self.param(str1: self.parameter8.stringValue)) {
-                Configurations[index!].parameter8 = self.parameter8.stringValue + "=" + self.viewParameter8.stringValue
-            } else {
-                Configurations[index!].parameter8 = ""
-            }
-        }
-        if let str = self.argumentString(self.parameter9.indexOfSelectedItem, value: self.viewParameter9.stringValue) {
-            Configurations[index!].parameter9 = str
-        } else {
-            if (self.param(str1: self.parameter9.stringValue)) {
-                Configurations[index!].parameter9 = self.parameter9.stringValue + "=" + self.viewParameter9.stringValue
-            } else {
-                Configurations[index!].parameter9 = ""
-            }
-        }
-        if let str = self.argumentString(self.parameter10.indexOfSelectedItem, value: self.viewParameter10.stringValue) {
-            Configurations[index!].parameter10 = str
-        } else {
-            if (self.param(str1: self.parameter10.stringValue)) {
-                Configurations[index!].parameter10 = self.parameter10.stringValue + "=" + self.viewParameter10.stringValue
-            } else {
-                Configurations[index!].parameter10 = ""
-            }
-        }
-        if let str = self.argumentString(self.parameter11.indexOfSelectedItem, value: self.viewParameter11.stringValue) {
-            Configurations[index!].parameter11 = str
-        } else {
-            if (self.param(str1: self.parameter11.stringValue)) {
-                Configurations[index!].parameter11 = self.parameter11.stringValue + "=" + self.viewParameter11.stringValue
-            } else {
-                Configurations[index!].parameter11 = ""
-            }
-        }
-        if let str = self.argumentString(self.parameter12.indexOfSelectedItem, value: self.viewParameter12.stringValue) {
-            Configurations[index!].parameter12 = str
-        } else {
-            if (self.param(str1: self.parameter12.stringValue)) {
-                Configurations[index!].parameter12 = self.parameter12.stringValue + "=" + self.viewParameter12.stringValue
-            } else {
-                Configurations[index!].parameter12 = ""
-            }
-        }
-        if let str = self.argumentString(self.parameter13.indexOfSelectedItem, value: self.viewParameter13.stringValue) {
-            Configurations[index!].parameter13 = str
-        } else {
-            if (self.param(str1: self.parameter13.stringValue)) {
-                Configurations[index!].parameter13 = self.parameter13.stringValue + "=" + self.viewParameter13.stringValue
-            } else {
-                Configurations[index!].parameter13 = ""
-            }
-        }
-        if let str = self.argumentString(self.parameter14.indexOfSelectedItem, value: self.viewParameter14.stringValue) {
-            Configurations[index!].parameter14 = str
-        } else {
-            if (self.param(str1: self.parameter14.stringValue)) {
-                Configurations[index!].parameter14 = self.parameter14.stringValue + "=" + self.viewParameter14.stringValue
-
-            } else {
-                Configurations[index!].parameter14 = ""
-            }
-        }
+        Configurations[index!].parameter8 = self.parameters!.getRsyncParameter(indexCombobox: self.parameter8.indexOfSelectedItem, value: self.viewParameter8.stringValue)
+        Configurations[index!].parameter9 = self.parameters!.getRsyncParameter(indexCombobox: self.parameter9.indexOfSelectedItem, value: self.viewParameter9.stringValue)
+        Configurations[index!].parameter10 = self.parameters!.getRsyncParameter(indexCombobox: self.parameter10.indexOfSelectedItem, value: self.viewParameter10.stringValue)
+        Configurations[index!].parameter11 = self.parameters!.getRsyncParameter(indexCombobox: self.parameter11.indexOfSelectedItem, value: self.viewParameter11.stringValue)
+        Configurations[index!].parameter12 = self.parameters!.getRsyncParameter(indexCombobox: self.parameter12.indexOfSelectedItem, value: self.viewParameter12.stringValue)
+        Configurations[index!].parameter13 = self.parameters!.getRsyncParameter(indexCombobox: self.parameter13.indexOfSelectedItem, value: self.viewParameter13.stringValue)
+        Configurations[index!].parameter14 = self.parameters!.getRsyncParameter(indexCombobox: self.parameter14.indexOfSelectedItem, value: self.viewParameter14.stringValue)
         Configurations[index!].rsyncdaemon = self.rsyncdaemon.state
         if let port = self.sshport {
             Configurations[index!].sshport = Int(port.stringValue)
@@ -242,7 +166,6 @@ class ViewControllerRsyncParameters: NSViewController {
         storeAPI.sharedInstance.saveConfigFromMemory()
         // notify an update
         self.userparamsupdated_delegate?.rsyncuserparamsupdated()
-        
         // Send dismiss delegate message
         self.dismiss_delegate?.dismiss_view(viewcontroller: self)
     }
@@ -258,48 +181,6 @@ class ViewControllerRsyncParameters: NSViewController {
             }
         }
         return index
-    }
-    
-    
-    // Returns nil if new argument and value is entered
-    private func argumentString (_ rsyncIndexargument: Int, value:String) -> String? {
-        
-        var str:String?
-        var addValue:Bool?
-        
-        if rsyncIndexargument >= 0 {
-            
-            let rsyncarg = self.argumentArray?[rsyncIndexargument]
-            let result = self.argumentDictionary.filter({return ($0.value(forKey: "index") as? Int == rsyncIndexargument)})
-            if result.count > 0 {
-                addValue = (result[0].value(forKey: "value") as? Bool)!
-            } else {
-                addValue = false
-            }
-            
-            if (addValue!) {
-                if value.isEmpty {
-                    str = nil
-                } else {
-                    if (rsyncarg != self.argumentArray![0]) {
-                        str = rsyncarg! + "=" + value
-                    } else {
-                        str = value
-                    }
-                }
-            } else {
-                if (rsyncarg == self.argumentArray![1]) {
-                    str = "--stats"
-                } else if (rsyncarg == self.argumentArray![2]) {
-                    str = "--backup"
-                } else if (rsyncarg == self.argumentArray![9]) {
-                    str = ""
-                } else {
-                    str = value
-                }
-            }
-        }
-        return str
     }
     
     private func resetComboBox (_ combobox:NSComboBox, index:Int) {
@@ -348,62 +229,4 @@ class ViewControllerRsyncParameters: NSViewController {
             }
         }
     }
-    
-    // Predefined userselected paramaters are filled in a [NSMutableDictionary]
-    private func fillargumentsDictionary() {
-        var value:Bool = true
-        for i in 0 ..< self.staticargumentArray.count {
-            switch self.staticargumentArray[i] {
-            case "delete":
-                value = false
-            case "--stats":
-                value = false
-            case "--backup":
-                value = false
-            default:
-                value = true
-            }
-            let dict:NSMutableDictionary = [
-                "argument": self.staticargumentArray[i],
-                "value":value,
-                "index":i
-            ]
-            self.argumentDictionary.append(dict)
-        }
-    }
-    
-    // Function to validate if parameter is to be set nil or not
-    // Used in function update
-    private func param(str1:String) -> Bool {
-        if str1 == "delete" {
-            return false
-        } else if str1 == "select" {
-            return false
-        } else {
-            return true
-        }
-    }
-    
-    
-    // Predefined rsyncarguments are filled in here, the user might in
-    // the future fill in theire own parameters
-    private func createArgumentsDictionary() -> [String]{
-        var createargumentArray = [String]()
-        for i in 0 ..< self.argumentDictionary.count {
-            createargumentArray.append((self.argumentDictionary[i].value(forKey: "argument") as? String)!)
-        }
-        return createargumentArray
-    }
-    
-    // Return index of an presedefined argument
-    func indexOfargument(_ argument : String) -> Int {
-        let result = self.argumentDictionary.filter({return ($0.value(forKey: "argument") as? String == argument)})
-        if (result.count > 0) {
-            let dict:NSDictionary = result[0]
-            return (dict.value(forKey: "index") as? Int)!
-        } else {
-            return -1
-        }
-    }
-    
 }
