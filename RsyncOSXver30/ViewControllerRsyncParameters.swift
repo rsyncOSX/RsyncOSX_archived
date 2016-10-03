@@ -173,20 +173,7 @@ class ViewControllerRsyncParameters: NSViewController {
         // Send dismiss delegate message
         self.dismiss_delegate?.dismiss_view(viewcontroller: self)
     }
-    
-    
-    // Returns Int value of argument
-    private func valueInt (_ argument:String) -> Int {
-        var index:Int = -1
-        loop : for i in 0 ..< self.argumentArray!.count {
-            if argument == self.argumentArray![i] {
-                index = i
-                break loop
-            }
-        }
-        return index
-    }
-    
+        
     private func resetComboBox (_ combobox:NSComboBox, index:Int) {
         combobox.removeAllItems()
         combobox.addItems(withObjectValues: self.argumentArray as [String]!)
