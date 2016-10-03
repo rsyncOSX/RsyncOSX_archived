@@ -30,10 +30,13 @@ class RsyncParameters {
     // --backup-dir=../backup
     // --suffix=_$(date +%Y-%m-%d.%H.%M)
 
+    // Return static rsync arguments array
     func getArguments() -> [String] {
         return self.rsyncArguments
     }
     
+    // Return rsync arguments as NSDictionary
+    // NSDictionary holds info about rsync needs value or not
     func getArgumentsAndValues() -> [NSDictionary] {
         return self.rsyncArgumentsAndValue
     }
@@ -113,6 +116,77 @@ class RsyncParameters {
             }
         }
     }
+    
+    
+    // Returns Int value of argument
+    private func indexValue (_ argument:String) -> Int {
+        var index:Int = -1
+        loop : for i in 0 ..< self.rsyncArguments.count {
+            if argument == self.rsyncArguments[i] {
+                index = i
+                break loop
+            }
+        }
+        return index
+    }
+    
+    // Split an Rsync argument into argument and value
+    private func split (_ str:String) -> [String] {
+        let argument:String?
+        let value:String?
+        var split = str.components(separatedBy: "=")
+        argument = String(split[0])
+        if split.count > 1 {
+            value = String(split[1])
+        } else {
+            value = argument
+        }
+        return [argument!,value!]
+    }
+    
+    // Display value in combobox and value
+    func getdisplayValue (_ parameter:String) -> String {
+        let splitstr:[String] = self.split(parameter)
+        if splitstr.count > 1 {
+            let argument = splitstr[0]
+            let value = splitstr[1]
+            if (argument != value && self.indexValue(argument) >= 0)  {
+                return value
+            } else {
+                if self.indexValue(splitstr[0]) >= 0 {
+                    return "\"" + argument + "\" " + "no arguments"
+                } else {
+                    if (argument != value) {
+                        return argument + "=" + value
+                    } else {
+                        return value
+                    }
+                }
+            }
+        } else {
+            return ""
+        }
+    }
+    
+    // Display value in combobox and value
+    func getvalueCombobox (_ parameter:String) -> Int {
+        let splitstr:[String] = self.split(parameter)
+        if splitstr.count > 1 {
+            let argument = splitstr[0]
+            let value = splitstr[1]
+            if (argument != value && self.indexValue(argument) >= 0)  {
+                return self.indexValue(argument)
+            } else {
+                if self.indexValue(splitstr[0]) >= 0 {
+                    return self.indexValue(argument)
+                } else {
+                    return 0
+                }
+            }
+        }
+        return 0
+    }
+
     
     init() {
         self.fillargumentsDictionary()

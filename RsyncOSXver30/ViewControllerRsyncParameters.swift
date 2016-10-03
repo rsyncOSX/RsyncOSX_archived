@@ -23,15 +23,15 @@ protocol SendSelecetedIndex : class {
 
 class ViewControllerRsyncParameters: NSViewController {
     
+    // Object for calculating rsync parameters
     var parameters : RsyncParameters?
-    
     // Delegate returning params updated or not
     weak var userparamsupdated_delegate : RsyncUserParams?
     // Get index of selected row
     weak var getindex_delegate : SendSelecetedIndex?
     // Dismisser
     weak var dismiss_delegate:DismissViewController?
-        
+    // Reference to rsync parameters
     var argumentArray:[String]?
     var argumentDictionary:[NSDictionary]?
     
@@ -83,70 +83,74 @@ class ViewControllerRsyncParameters: NSViewController {
     
     override func viewDidAppear() {
         super.viewDidAppear()
-        var Configurations:[configuration] = SharingManagerConfiguration.sharedInstance.getConfigurations()
+        var configurations:[configuration] = SharingManagerConfiguration.sharedInstance.getConfigurations()
         let index = self.getindex_delegate?.getindex()
+        self.viewParameter1.stringValue = configurations[index!].parameter1
+        self.viewParameter2.stringValue = configurations[index!].parameter2
+        self.viewParameter3.stringValue = configurations[index!].parameter3
+        self.viewParameter4.stringValue = configurations[index!].parameter4
+        self.viewParameter5.stringValue = configurations[index!].parameter5 + " " + configurations[index!].parameter6
         
-        self.viewParameter1.stringValue = Configurations[index!].parameter1
-        self.viewParameter2.stringValue = Configurations[index!].parameter2
-        self.viewParameter3.stringValue = Configurations[index!].parameter3
-        self.viewParameter4.stringValue = Configurations[index!].parameter4
-        self.viewParameter5.stringValue = Configurations[index!].parameter5 + " " + Configurations[index!].parameter6
-        
-        if (Configurations[index!].parameter8 != nil) {
-            self.displayValues(self.viewParameter8, box: self.parameter8, parameter: Configurations[index!].parameter8!)
+        if (configurations[index!].parameter8 != nil) {
+            self.resetComboBox(self.parameter8, index: (self.parameters!.getvalueCombobox(configurations[index!].parameter8!)))
+            self.viewParameter8.stringValue = self.parameters!.getdisplayValue(configurations[index!].parameter8!)
         } else {
             self.resetComboBox(self.parameter8, index: (0))
             self.viewParameter8.stringValue = ""
         }
-        if (Configurations[index!].parameter9 != nil) {
-            self.displayValues(self.viewParameter9, box: self.parameter9, parameter: Configurations[index!].parameter9!)
+        if (configurations[index!].parameter9 != nil) {
+            self.resetComboBox(self.parameter9, index: (self.parameters!.getvalueCombobox(configurations[index!].parameter9!)))
+            self.viewParameter9.stringValue = self.parameters!.getdisplayValue(configurations[index!].parameter9!)
         } else {
             self.resetComboBox(self.parameter9, index: (0))
             self.viewParameter9.stringValue = ""
         }
-        if (Configurations[index!].parameter10 != nil) {
-            self.displayValues(self.viewParameter10, box: self.parameter10, parameter: Configurations[index!].parameter10!)
+        if (configurations[index!].parameter10 != nil) {
+            self.resetComboBox(self.parameter10, index: (self.parameters!.getvalueCombobox(configurations[index!].parameter10!)))
+            self.viewParameter10.stringValue = self.parameters!.getdisplayValue(configurations[index!].parameter10!)
         } else {
             self.resetComboBox(self.parameter10, index: (0))
             self.viewParameter10.stringValue = ""
         }
-        if (Configurations[index!].parameter11 != nil) {
-            self.displayValues(self.viewParameter11, box: self.parameter11, parameter: Configurations[index!].parameter11!)
+        if (configurations[index!].parameter11 != nil) {
+            self.resetComboBox(self.parameter11, index: (self.parameters!.getvalueCombobox(configurations[index!].parameter11!)))
+            self.viewParameter11.stringValue = self.parameters!.getdisplayValue(configurations[index!].parameter11!)
         } else {
             self.resetComboBox(self.parameter11, index: (0))
             self.viewParameter11.stringValue = ""
         }
-        if (Configurations[index!].parameter12 != nil) {
-            self.displayValues(self.viewParameter12, box: self.parameter12, parameter: Configurations[index!].parameter12!)
+        if (configurations[index!].parameter12 != nil) {
+            self.resetComboBox(self.parameter12, index: (self.parameters!.getvalueCombobox(configurations[index!].parameter12!)))
+            self.viewParameter12.stringValue = self.parameters!.getdisplayValue(configurations[index!].parameter12!)
         } else {
             self.resetComboBox(self.parameter12, index: (0))
             self.viewParameter12.stringValue = ""
         }
-        if (Configurations[index!].parameter13 != nil) {
-            self.displayValues(self.viewParameter13, box: self.parameter13, parameter: Configurations[index!].parameter13!)
+        if (configurations[index!].parameter13 != nil) {
+            self.resetComboBox(self.parameter13, index: (self.parameters!.getvalueCombobox(configurations[index!].parameter13!)))
+            self.viewParameter13.stringValue = self.parameters!.getdisplayValue(configurations[index!].parameter13!)
         } else {
             self.resetComboBox(self.parameter13, index: (0))
             self.viewParameter13.stringValue = ""
         }
-        if (Configurations[index!].parameter14 != nil) {
-            self.displayValues(self.viewParameter14, box: self.parameter14, parameter: Configurations[index!].parameter14!)
+        if (configurations[index!].parameter14 != nil) {
+            self.resetComboBox(self.parameter14, index: (self.parameters!.getvalueCombobox(configurations[index!].parameter14!)))
+            self.viewParameter14.stringValue = self.parameters!.getdisplayValue(configurations[index!].parameter14!)
         } else {
             self.resetComboBox(self.parameter14, index: (0))
             self.viewParameter14.stringValue = ""
         }
-        if (Configurations[index!].rsyncdaemon != nil) {
-            self.rsyncdaemon.state = Configurations[index!].rsyncdaemon!
+        if (configurations[index!].rsyncdaemon != nil) {
+            self.rsyncdaemon.state = configurations[index!].rsyncdaemon!
         } else {
             self.rsyncdaemon.state = NSOffState
         }
-        if (Configurations[index!].sshport != nil) {
-            self.sshport.stringValue = String(Configurations[index!].sshport!)
+        if (configurations[index!].sshport != nil) {
+            self.sshport.stringValue = String(configurations[index!].sshport!)
         }
-
     }
     
     @IBAction func update(_ sender: NSButton) {
-        
         var Configurations:[configuration] = storeAPI.sharedInstance.getConfigurations()
         // Get the index of selected configuration
         let index = self.getindex_delegate?.getindex()
@@ -189,44 +193,4 @@ class ViewControllerRsyncParameters: NSViewController {
         combobox.selectItem(at: index)
     }
     
-    // Split an Rsync argument into argument and value
-    private func split (_ str:String) -> [String] {
-        let argument:String?
-        let value:String?
-        var split = str.components(separatedBy: "=")
-        argument = String(split[0])
-        if split.count > 1 {
-            value = String(split[1])
-        } else {
-            value = argument
-        }
-        return [argument!,value!]
-    }
-    
-    // Display value in combobox and value
-    private func displayValues (_ textfield: NSTextField, box: NSComboBox, parameter:String) {
-        self.resetComboBox(box, index: (self.argumentArray!.count - 1))
-        let splitstr:[String] = self.split(parameter)
-        if splitstr.count > 1 {
-            let argument = splitstr[0]
-            let value = splitstr[1]
-            if (argument != value && self.valueInt(argument) >= 0)  {
-                box.selectItem(at: self.valueInt(argument))
-                textfield.stringValue = value
-            } else {
-                if self.valueInt(splitstr[0]) >= 0 {
-                    box.selectItem(at: self.valueInt(argument))
-                    let txt = "\"" + argument + "\" " + "no arguments"
-                    textfield.stringValue = txt
-                } else {
-                    box.selectItem(at: 0)
-                    if (argument != value) {
-                        textfield.stringValue = argument + "=" + value
-                    } else {
-                        textfield.stringValue = value
-                    }
-                }
-            }
-        }
-    }
 }
