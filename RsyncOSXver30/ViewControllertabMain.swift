@@ -92,8 +92,6 @@ class ViewControllertabMain : NSViewController, Information, Abort, Count, Refre
     
     // Schedules in progress
     private var scheduledJobInProgress:Bool = false
-    // True if working
-    private var isWorking:Bool = false
     // In batcrun or not
     private var inbatchRun:Bool = false
     // True if abort is choosed
@@ -443,10 +441,9 @@ class ViewControllertabMain : NSViewController, Information, Abort, Count, Refre
         }
         if (scheduleInProgress == false && self.scheduledJobInProgress == false) {
             self.inbatchRun = false
-            if (self.process == nil && self.index != nil && self.isWorking == false) {
+            if (self.process == nil && self.index != nil) {
                 let process = rsyncProcess(notification: false, tabMain: true, command : nil)
                 let arguments:[String]?
-                self.isWorking = true
                 if (self.estimated == false) {
                     // Start the working progress indicator
                     self.working.startAnimation(nil)
@@ -572,8 +569,7 @@ class ViewControllertabMain : NSViewController, Information, Abort, Count, Refre
     // Reset flags to enable a real task after estimate run
     private func resetflags() {
         self.process = nil
-        self.isWorking = false
-        // if abort reset abort flag
+        // if abort flag is set then reset abort flag
         if self.abort == true {
             self.abort = false
         }
