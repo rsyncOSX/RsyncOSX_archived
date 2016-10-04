@@ -26,11 +26,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "RsyncOSXver30/RsyncParameters.swift"
-            timestampString = "497193757.95705"
+            timestampString = "497256741.631086"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "110"
-            endingLineNumber = "110"
+            startingLineNumber = "113"
+            endingLineNumber = "113"
             landmarkName = "getRsyncParameter(indexCombobox:value:)"
             landmarkType = "7">
          </BreakpointContent>

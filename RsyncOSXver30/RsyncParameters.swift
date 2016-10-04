@@ -8,9 +8,9 @@
 
 import Foundation
 
-class RsyncParameters {
+final class RsyncParameters {
     
-    // NSDictionaru holding whic rsync arguments requiere and value
+    // NSDictionary holding whic rsync arguments requiere and value
     // Filled during initializing of object
     private var rsyncArgumentsAndValue = [NSDictionary]()
     
@@ -27,8 +27,11 @@ class RsyncParameters {
         "--suffix",
         "delete"]
     
-    // --backup-dir=../backup
-    // --suffix=_$(date +%Y-%m-%d.%H.%M)
+    private let backupString = ["--backup","--backup-dir=../backup","--suffix=_$(date +%Y-%m-%d.%H.%M)"]
+    
+    func getBackupString() -> [String] {
+        return self.backupString
+    }
 
     // Return static rsync arguments array
     func getArguments() -> [String] {
