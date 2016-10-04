@@ -107,9 +107,22 @@ class SharingManagerConfiguration {
     private var ConfigurationsDataSource : [NSMutableDictionary]?
     // Object for batchQueue data and operations
     private var batchdata:batchOperations?
+    // the MacSerialNumber
+    private var MacSerialNumber:String?
 
     
     // ALL THE GETTERS
+    
+    /// Function for returning the MacSerialNumber
+    func getMacSerialNumber() -> String {
+        if (self.MacSerialNumber != nil) {
+            return self.MacSerialNumber!
+        } else {
+            // Compute it, set it and return
+            self.MacSerialNumber = self.macSerialNumber()
+            return self.MacSerialNumber!
+        }
+    }
     
     /// Function for getting Configurations read into memory
     /// - parameter none: none
@@ -484,7 +497,7 @@ class SharingManagerConfiguration {
     /// Function returns the correct path for rsync
     /// according to configuration set by user or
     /// default value.
-    /// returns : full path of rsync command
+    /// - returns : full path of rsync command
     func setRsyncCommand() -> String {
         var command:String = ""
         if (self.rsyncVer3) {
@@ -498,5 +511,21 @@ class SharingManagerConfiguration {
         }
         return command
     }
+    
+    /// Function for computing MacSerialNumber
+    /// - returns : the MacSerialNumber
+    private func macSerialNumber() -> String {
+        // Get the platform expert
+        let platformExpert: io_service_t = IOServiceGetMatchingService(kIOMasterPortDefault, IOServiceMatching("IOPlatformExpertDevice"));
+        // Get the serial number as a CFString ( actually as Unmanaged<AnyObject>! )
+        let serialNumberAsCFString = IORegistryEntryCreateCFProperty(platformExpert, kIOPlatformSerialNumberKey as CFString!, kCFAllocatorDefault, 0);
+        // Release the platform expert (we're responsible)
+        IOObjectRelease(platformExpert);
+        // Take the unretained value of the unmanaged-any-object
+        // (so we're not responsible for releasing it)
+        // and pass it back as a String or, if it fails, an empty string
+        return (serialNumberAsCFString!.takeUnretainedValue() as? String) ?? ""
+    }
+
     
 }
