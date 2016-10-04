@@ -3462,6 +3462,16 @@
                                     <action selector="close:" target="K9c-yf-VMY" id="k3k-ky-rk7"/>
                                 </connections>
                             </button>
+                            <button translatesAutoresizingMaskIntoConstraints="NO" id="856-oB-aMq">
+                                <rect key="frame" x="18" y="36" width="68" height="18"/>
+                                <buttonCell key="cell" type="check" title="Backup" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="VBk-Qe-g0o">
+                                    <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="backup:" target="K9c-yf-VMY" id="rqe-gW-fY4"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <constraints>
                             <constraint firstItem="UhX-QL-32b" firstAttribute="baseline" secondItem="eH7-7W-QkX" secondAttribute="baseline" id="0Ls-JL-eTS"/>
@@ -3472,6 +3482,7 @@
                             <constraint firstItem="h17-p0-HGx" firstAttribute="trailing" secondItem="3XX-fE-HT5" secondAttribute="trailing" id="3qq-l0-n9P"/>
                             <constraint firstItem="028-As-PZF" firstAttribute="trailing" secondItem="yDF-VC-oRJ" secondAttribute="trailing" id="5P7-lj-KCe"/>
                             <constraint firstItem="xiz-1A-Kua" firstAttribute="leading" secondItem="G1S-Es-fdT" secondAttribute="leading" id="68V-8d-M0l"/>
+                            <constraint firstItem="856-oB-aMq" firstAttribute="top" secondItem="ete-As-Uhd" secondAttribute="bottom" constant="12" id="6qx-4z-nhQ"/>
                             <constraint firstItem="ebN-VZ-Zqz" firstAttribute="leading" secondItem="Ora-4m-3w7" secondAttribute="leading" id="8cC-J5-52g"/>
                             <constraint firstItem="0II-7a-Edf" firstAttribute="leading" secondItem="Rp5-WA-cza" secondAttribute="leading" id="ACf-fD-8Bh"/>
                             <constraint firstItem="3XX-fE-HT5" firstAttribute="top" secondItem="h17-p0-HGx" secondAttribute="bottom" constant="11" id="AQP-lW-v4q"/>
@@ -3511,6 +3522,7 @@
                             <constraint firstItem="Ora-4m-3w7" firstAttribute="centerY" secondItem="Sdp-zo-Fxc" secondAttribute="centerY" id="Y2s-Db-X1t"/>
                             <constraint firstItem="RPh-7l-0uy" firstAttribute="leading" secondItem="70Q-kd-5YB" secondAttribute="trailing" constant="8" symbolic="YES" id="YOz-fY-UuK"/>
                             <constraint firstItem="VIk-S3-TCa" firstAttribute="baseline" secondItem="5I0-rR-9OO" secondAttribute="baseline" id="Yoa-dB-Awa"/>
+                            <constraint firstAttribute="trailing" secondItem="856-oB-aMq" secondAttribute="trailing" constant="729" id="Zrh-HY-H4K"/>
                             <constraint firstItem="H4U-rK-bKi" firstAttribute="top" secondItem="hnr-eU-KGd" secondAttribute="bottom" constant="9" id="Zuv-4S-EYJ"/>
                             <constraint firstItem="028-As-PZF" firstAttribute="centerY" secondItem="5nL-ZE-5Jg" secondAttribute="centerY" id="a1l-GK-D6r"/>
                             <constraint firstItem="3XX-fE-HT5" firstAttribute="leading" secondItem="fwv-Pg-ERn" secondAttribute="leading" id="aT1-vG-JrD"/>
@@ -3525,6 +3537,7 @@
                             <constraint firstItem="Sdp-zo-Fxc" firstAttribute="top" secondItem="ebN-VZ-Zqz" secondAttribute="bottom" constant="8" symbolic="YES" id="eY0-YZ-Zua"/>
                             <constraint firstItem="h17-p0-HGx" firstAttribute="leading" secondItem="3XX-fE-HT5" secondAttribute="leading" id="fOx-2e-qo2"/>
                             <constraint firstItem="8lV-18-VgA" firstAttribute="trailing" secondItem="VIk-S3-TCa" secondAttribute="trailing" id="fbV-dZ-In6"/>
+                            <constraint firstItem="856-oB-aMq" firstAttribute="leading" secondItem="gfp-a1-tlg" secondAttribute="leading" constant="20" id="g4N-od-2cR"/>
                             <constraint firstItem="igq-DC-o5N" firstAttribute="leading" secondItem="T5K-j8-kUZ" secondAttribute="leading" id="g58-kE-SJd"/>
                             <constraint firstItem="fwv-Pg-ERn" firstAttribute="bottom" secondItem="028-As-PZF" secondAttribute="bottom" id="gBA-vu-pBy"/>
                             <constraint firstItem="rLP-xO-PbJ" firstAttribute="leading" secondItem="dtG-gg-a1D" secondAttribute="leading" id="h3G-8K-TLf"/>
@@ -3539,6 +3552,7 @@
                             <constraint firstItem="aDR-sk-czK" firstAttribute="baseline" secondItem="wZx-B9-Pf2" secondAttribute="baseline" id="mF4-Od-pNJ"/>
                             <constraint firstItem="fwv-Pg-ERn" firstAttribute="top" secondItem="3XX-fE-HT5" secondAttribute="bottom" constant="9" id="mH2-0v-lTj"/>
                             <constraint firstItem="rLP-xO-PbJ" firstAttribute="baseline" secondItem="hnr-eU-KGd" secondAttribute="baseline" id="mhY-1E-uzq"/>
+                            <constraint firstAttribute="bottom" secondItem="856-oB-aMq" secondAttribute="bottom" constant="38" id="q8c-u0-tet"/>
                             <constraint firstItem="ete-As-Uhd" firstAttribute="baseline" secondItem="dtG-gg-a1D" secondAttribute="baseline" id="qJ8-vJ-sfh"/>
                             <constraint firstItem="hnr-eU-KGd" firstAttribute="trailing" secondItem="H4U-rK-bKi" secondAttribute="trailing" id="qhg-PD-Kui"/>
                             <constraint firstItem="h17-p0-HGx" firstAttribute="top" secondItem="VIk-S3-TCa" secondAttribute="bottom" constant="10" id="sPt-DO-WKN"/>
@@ -3556,6 +3570,7 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="backupbutton" destination="856-oB-aMq" id="Bbf-2g-jeE"/>
                         <outlet property="parameter10" destination="xiz-1A-Kua" id="Mm3-Su-yTz"/>
                         <outlet property="parameter11" destination="G1S-Es-fdT" id="g2Z-7R-PNf"/>
                         <outlet property="parameter12" destination="028-As-PZF" id="Naa-2Q-cw5"/>
