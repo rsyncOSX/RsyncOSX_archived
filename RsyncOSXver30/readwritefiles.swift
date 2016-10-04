@@ -34,16 +34,14 @@ class readwritefiles {
     // The class either reads data from persistent store or
     // returns nil if data is NOT dirty
     private var readdisk:Bool = true
-    // Mac serial number
-    private var serialNumber:String?
     
     // Set which file to read
     private var fileName : String? {
         get {
             let paths = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true) as NSArray
             let docuDir = paths.firstObject as! String
-            self.createDirectory((docuDir + "/Rsync/" + self.serialNumber!))
-            let str = "/Rsync/" + self.serialNumber! + self.name!
+            self.createDirectory((docuDir + "/Rsync/" + SharingManagerConfiguration.sharedInstance.getMacSerialNumber()))
+            let str = "/Rsync/" + SharingManagerConfiguration.sharedInstance.getMacSerialNumber() + self.name!
             return docuDir + str
         }
     }
@@ -113,21 +111,6 @@ class readwritefiles {
         return succeeded
     }
     
-    
-    // Getting the MacSerial number
-    private func macSerialNumber() -> String {
-        // Get the platform expert
-        let platformExpert: io_service_t = IOServiceGetMatchingService(kIOMasterPortDefault, IOServiceMatching("IOPlatformExpertDevice"));
-        // Get the serial number as a CFString ( actually as Unmanaged<AnyObject>! )
-        let serialNumberAsCFString = IORegistryEntryCreateCFProperty(platformExpert, kIOPlatformSerialNumberKey as CFString!, kCFAllocatorDefault, 0);
-        // Release the platform expert (we're responsible)
-        IOObjectRelease(platformExpert);
-        // Take the unretained value of the unmanaged-any-object
-        // (so we're not responsible for releasing it)
-        // and pass it back as a String or, if it fails, an empty string
-        return (serialNumberAsCFString!.takeUnretainedValue() as? String) ?? ""
-    }
-    
     // Func that creates directory if not created
     private func createDirectory (_ path:String) {
         let fileManager = FileManager.default
@@ -141,8 +124,6 @@ class readwritefiles {
     
     // Set preferences for which data to read or write
     private func setPreferences (_ task:enumtask) {
-        // Set the mac serial number
-        self.serialNumber = self.macSerialNumber()
         switch (task) {
         case .schedule:
             self.key = "Schedule"
