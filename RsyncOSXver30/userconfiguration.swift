@@ -8,22 +8,6 @@
 
 import Foundation
 
-// Struct for holding all configurations
-// Configurations saved is this struct
-struct configRsyncOSX {
-    
-    static var sharedInstance = configRsyncOSX()
-    // If version 3 of rsync in /usr/local/bin
-    var version3rsync:Int = 0
-    // Optional path for rsync
-    var rsyncPath:String?
-    // Detailed logging
-    var detailedlogging:Int = 1
-    // Diseable Execute/Batch button
-    var scheduledTaskdisableExecute:Double = 0
-}
-
-
 final class userconfiguration {
     
     // Default values
