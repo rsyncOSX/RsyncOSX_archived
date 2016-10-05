@@ -10,6 +10,11 @@ import Foundation
 
 class rsyncProcessArguments {
     
+    // If true one of the userselecet params are --stats
+    // If not add --stats in dryrun arguments.
+    // Must check all parameter8 - paramater14
+    // both backup and restore part
+    var stats:Bool?
         
     func argumentsRsync (_ config : configuration, dryRun : Bool, forDisplay : Bool) -> [String] {
         
@@ -45,6 +50,7 @@ class rsyncProcessArguments {
         
         switch task {
         case "backup":
+            self.stats = false
             arguments.append(parameter1)
             if (forDisplay) {arguments.append(" ")}
             arguments.append(parameter2)
@@ -81,42 +87,49 @@ class rsyncProcessArguments {
             
             if (config.parameter8 != nil) {
                 if ((config.parameter8?.characters.count)! > 1) {
+                    if config.parameter8! == "--stats" {self.stats = true}
                     arguments.append(config.parameter8!)
                     if (forDisplay) {arguments.append(" ")}
                 }
             }
             if (config.parameter9 != nil) {
                 if ((config.parameter9?.characters.count)! > 1) {
+                    if config.parameter9! == "--stats" {self.stats = true}
                     arguments.append(config.parameter9!)
                     if (forDisplay) {arguments.append(" ")}
                 }
             }
             if (config.parameter10 != nil) {
                 if ((config.parameter10?.characters.count)! > 1) {
+                    if config.parameter10! == "--stats" {self.stats = true}
                     arguments.append(config.parameter10!)
                     if (forDisplay) {arguments.append(" ")}
                 }
             }
             if (config.parameter11 != nil) {
                 if ((config.parameter11?.characters.count)! > 1) {
+                    if config.parameter11! == "--stats" {self.stats = true}
                     arguments.append(config.parameter11!)
                     if (forDisplay) {arguments.append(" ")}
                 }
             }
             if (config.parameter12 != nil) {
                 if ((config.parameter12?.characters.count)! > 1) {
+                    if config.parameter12! == "--stats" {self.stats = true}
                     arguments.append(config.parameter12!)
                     if (forDisplay) {arguments.append(" ")}
                 }
             }
             if (config.parameter13 != nil) {
                 if ((config.parameter13?.characters.count)! > 1) {
+                    if config.parameter13! == "--stats" {self.stats = true}
                     arguments.append(config.parameter13!)
                     if (forDisplay) {arguments.append(" ")}
                 }
             }
             if (config.parameter14 != nil) {
                 if ((config.parameter14?.characters.count)! > 1) {
+                    if config.parameter14! == "--stats" {self.stats = true}
                     arguments.append(config.parameter14!)
                     if (forDisplay) {arguments.append(" ")}
                 }
@@ -124,6 +137,10 @@ class rsyncProcessArguments {
             if (dryRun) {
                 arguments.append(dryrun)
                 if (forDisplay) {arguments.append(" ")}
+                if (self.stats! == false) {
+                    arguments.append("--stats")
+                    if (forDisplay) {arguments.append(" ")}
+                }
             }
             arguments.append(localCatalog)
             if (offsiteServer.isEmpty) {
@@ -136,6 +153,7 @@ class rsyncProcessArguments {
                 if (forDisplay) {arguments.append(" ")}
             }
         case "restore":
+            self.stats = false
             arguments.append(parameter1)
             if (forDisplay) {arguments.append(" ")}
             arguments.append(parameter2)
@@ -172,42 +190,49 @@ class rsyncProcessArguments {
             
             if (config.parameter8 != nil) {
                 if ((config.parameter8?.characters.count)! > 1) {
+                    if config.parameter8! == "--stats" {self.stats = true}
                     arguments.append(config.parameter8!)
                     if (forDisplay) {arguments.append(" ")}
                 }
             }
             if (config.parameter9 != nil) {
                 if ((config.parameter9?.characters.count)! > 1) {
+                    if config.parameter9! == "--stats" {self.stats = true}
                     arguments.append(config.parameter9!)
                     if (forDisplay) {arguments.append(" ")}
                 }
             }
             if (config.parameter10 != nil) {
                 if ((config.parameter10?.characters.count)! > 1) {
+                    if config.parameter10! == "--stats" {self.stats = true}
                     arguments.append(config.parameter10!)
                     if (forDisplay) {arguments.append(" ")}
                 }
             }
             if (config.parameter11 != nil) {
                 if ((config.parameter11?.characters.count)! > 1) {
+                    if config.parameter11! == "--stats" {self.stats = true}
                     arguments.append(config.parameter11!)
                     if (forDisplay) {arguments.append(" ")}
                 }
             }
             if (config.parameter12 != nil) {
                 if ((config.parameter12?.characters.count)! > 1) {
+                    if config.parameter12! == "--stats" {self.stats = true}
                     arguments.append(config.parameter12!)
                     if (forDisplay) {arguments.append(" ")}
                 }
             }
             if (config.parameter13 != nil) {
                 if ((config.parameter13?.characters.count)! > 1) {
+                    if config.parameter13! == "--stats" {self.stats = true}
                     arguments.append(config.parameter13!)
                     if (forDisplay) {arguments.append(" ")}
                 }
             }
             if (config.parameter14 != nil) {
                 if ((config.parameter14?.characters.count)! > 1) {
+                    if config.parameter14! == "--stats" {self.stats = true}
                     arguments.append(config.parameter14!)
                     if (forDisplay) {arguments.append(" ")}
                 }
@@ -216,6 +241,10 @@ class rsyncProcessArguments {
             if (dryRun) {
                 arguments.append(dryrun)
                 if (forDisplay) {arguments.append(" ")}
+                if (self.stats! == false) {
+                    arguments.append("--stats")
+                    if (forDisplay) {arguments.append(" ")}
+                }
             }
             if (offsiteServer.isEmpty) {
                 arguments.append(offsiteCatalog)
