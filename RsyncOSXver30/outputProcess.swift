@@ -23,10 +23,20 @@ final class outputProcess {
     private var startIndex:Int?
     private var endIndex:Int?
     // numbers after dryrun and stats
-    private var totalnumber:Int?
+    private var totalNumber:Int?
+    private var totalDirs:Int?
+    private var totalNumberSizebytes:Double?
     private var transferredNumber:Int?
-    private var totalnumberSize:Double?
-    private var transferredNumberSize:Double?
+    private var transferredNumberSizebytes:Double?
+    // enum for returning what is asked for
+    enum enumNumbers {
+        case totalNumber
+        case totalDirs
+        case totalNumberSizebytes
+        case transferredNumber
+        case transferredNumberSizebytes
+    }
+    
     
     func removeObjectsOutput() {
         if (self.output.count > 0) {
@@ -77,13 +87,49 @@ final class outputProcess {
         }
     }
     
-    func getTransferredNumber () -> Int {
-        if (self.transferredNumber != nil) {
-            return self.transferredNumber!
-        } else {
-            return 0
+    // Get numbers from rsync (dry run)
+    func getTransferredNumbers (numbers : enumNumbers) -> Int {
+        switch numbers {
+        case .totalDirs:
+            if (self.totalDirs != nil) {
+                return self.totalDirs!
+            } else {
+                return 0
+            }
+        case .totalNumber:
+            if (self.totalNumber != nil) {
+                return self.totalNumber!
+            } else {
+                return 0
+            }
+        case .transferredNumber:
+            if (self.transferredNumber != nil) {
+                return self.transferredNumber!
+            } else {
+                return 0
+            }
+        case .totalNumberSizebytes:
+            if (self.totalNumberSizebytes != nil) {
+                return Int(self.totalNumberSizebytes!/1024)
+            } else {
+                return 0
+            }
+        case .transferredNumberSizebytes:
+            if (self.transferredNumberSizebytes != nil) {
+                return Int(self.transferredNumberSizebytes!/1024)
+            } else {
+                return 0
+            }
         }
-        
+    }
+    
+    // Function for printing all numbers rsync dry run
+    func printNumbers() {
+        print("Directorys :" + "\(self.getTransferredNumbers(numbers: .totalDirs))")
+        print("Total number of files :" + "\(self.getTransferredNumbers(numbers: .totalNumber))")
+        print("Total number of transferred files :" + "\(self.getTransferredNumbers(numbers: .transferredNumber))")
+        print("Total number of KB :" + "\(self.getTransferredNumbers(numbers: .totalNumberSizebytes))")
+        print("Total number of KB transferred :" + "\(self.getTransferredNumbers(numbers: .transferredNumberSizebytes))")
     }
     
     // Function for getting numbers out of output
@@ -97,29 +143,48 @@ final class outputProcess {
             var transferredNumberParts:[String]?
             var totalSizeParts:[String]?
             var transferredSizeParts:[String]?
-            // numbers
+            // numbers of Ints
             if (SharingManagerConfiguration.sharedInstance.rsyncVer3) {
                 numberParts = (numbers[0] as AnyObject).replacingOccurrences(of: ",", with: "").components(separatedBy: " ")
-                transferredNumberParts  = (numbers[3] as AnyObject).replacingOccurrences(of: ",", with: "").components(separatedBy: " ")
-                self.totalnumber = Int(numberParts![3])
-                self.transferredNumber = Int(transferredNumberParts![5])
+                transferredNumberParts  = (numbers[2] as AnyObject).replacingOccurrences(of: ",", with: "").components(separatedBy: " ")
+                if (numberParts != nil && transferredNumberParts != nil) {
+                    if (numberParts!.count > 7 && transferredNumberParts!.count > 7) {
+                        self.totalNumber = Int(numberParts![5])
+                        self.transferredNumber = Int(transferredNumberParts![5])
+                        self.totalDirs = Int(numberParts![7])
+                    }
+                }
+                
             } else {
                 numberParts = (numbers[0] as AnyObject).components(separatedBy: " ")
                 transferredNumberParts = (numbers[1] as AnyObject).components(separatedBy: " ")
-                self.totalnumber = Int(numberParts![3])
-                self.transferredNumber = Int(transferredNumberParts![4])
+                if (numberParts != nil && transferredNumberParts != nil) {
+                    if (numberParts!.count > 3 && transferredNumberParts!.count > 4) {
+                        self.totalNumber = Int(numberParts![3])
+                        self.transferredNumber = Int(transferredNumberParts![4])
+                    }
+                }
             }
-            // total
+            
+            // total of Bytes
             if (SharingManagerConfiguration.sharedInstance.rsyncVer3) {
                 totalSizeParts = (total[0] as AnyObject).replacingOccurrences(of: ",", with: "").components(separatedBy: " ")
                 transferredSizeParts = (total[1] as AnyObject).replacingOccurrences(of: ",", with: "").components(separatedBy: " ")
-                self.totalnumberSize = Double(totalSizeParts![3])
-                self.transferredNumberSize = Double(transferredSizeParts![4])
+                if (totalSizeParts != nil && transferredNumberParts != nil) {
+                    if (totalSizeParts!.count > 3 && transferredNumberParts!.count > 4) {
+                        self.totalNumberSizebytes = Double(totalSizeParts![3])
+                        self.transferredNumberSizebytes = Double(transferredSizeParts![4])
+                    }
+                }
             } else {
                 totalSizeParts = (total[0] as AnyObject).components(separatedBy: " ")
                 transferredSizeParts = (total[1] as AnyObject).components(separatedBy: " ")
-                self.totalnumberSize = Double(totalSizeParts![3])
-                self.transferredNumberSize = Double(transferredSizeParts![4])
+                if (totalSizeParts != nil && transferredNumberParts != nil) {
+                    if (totalSizeParts!.count > 3 && transferredNumberParts!.count > 4) {
+                        self.totalNumberSizebytes = Double(totalSizeParts![3])
+                        self.transferredNumberSizebytes = Double(transferredSizeParts![4])
+                    }
+                }
             }
         }
     }
