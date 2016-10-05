@@ -1,6 +1,5 @@
 //
-//  rsyncNSTask.swift
-//  Rsync
+//  rsyncProcess.swift
 //
 //  Created by Thomas Evensen on 08/02/16.
 //  Copyright © 2016 Thomas Evensen. All rights reserved.
@@ -62,9 +61,11 @@ final class rsyncProcess {
                     outHandle.waitForDataInBackgroundAndNotify()
                 }
             }
-        // Observator NSTask termination
+        // Observator Process termination
         self.observationCenter = NotificationCenter.default.addObserver(forName: Process.didTerminateNotification, object: task, queue: nil)
             { notification -> Void in
+                // Collectiong numbers in output
+                output.getNumbers()
                 if (self.inNSOperation == false) {
                     // Send message about process termination
                     self.process_update?.ProcessTermination()

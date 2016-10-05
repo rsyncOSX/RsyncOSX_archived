@@ -22,6 +22,11 @@ final class outputProcess {
     // output Array temporary indexes
     private var startIndex:Int?
     private var endIndex:Int?
+    // numbers after dryrun and stats
+    private var totalnumber:Int?
+    private var transferredNumber:Int?
+    private var totalnumberSize:Double?
+    private var transferredNumberSize:Double?
     
     func removeObjectsOutput() {
         if (self.output.count > 0) {
@@ -72,6 +77,47 @@ final class outputProcess {
         }
     }
     
+    // Function for getting numbers out of output
+    // after Process termination is discovered. Function
+    // is executed from rsync Process after Process termination
+    func getNumbers() {
+        let numbers = self.output.filter({(($0 as? String)?.contains("Number of"))!})
+        let total = self.output.filter({(($0 as? String)?.contains("Total"))!})
+        if (numbers.count > 1 && total.count > 1) {
+            var numberParts:[String]?
+            var transferredNumberParts:[String]?
+            var totalSizeParts:[String]?
+            var transferredSizeParts:[String]?
+            // numbers
+            if (SharingManagerConfiguration.sharedInstance.rsyncVer3) {
+                numberParts = (numbers[0] as AnyObject).replacingOccurrences(of: ",", with: "").components(separatedBy: " ")
+                transferredNumberParts  = (numbers[3] as AnyObject).replacingOccurrences(of: ",", with: "").components(separatedBy: " ")
+                self.totalnumber = Int(numberParts![3])
+                self.transferredNumber = Int(transferredNumberParts![5])
+            } else {
+                numberParts = (numbers[0] as AnyObject).components(separatedBy: " ")
+                transferredNumberParts = (numbers[1] as AnyObject).components(separatedBy: " ")
+                self.totalnumber = Int(numberParts![3])
+                self.transferredNumber = Int(transferredNumberParts![4])
+            }
+            // total
+            if (SharingManagerConfiguration.sharedInstance.rsyncVer3) {
+                totalSizeParts = (total[0] as AnyObject).replacingOccurrences(of: ",", with: "").components(separatedBy: " ")
+                transferredSizeParts = (total[1] as AnyObject).replacingOccurrences(of: ",", with: "").components(separatedBy: " ")
+                self.totalnumberSize = Double(totalSizeParts![3])
+                self.transferredNumberSize = Double(transferredSizeParts![4])
+            } else {
+                totalSizeParts = (total[0] as AnyObject).components(separatedBy: " ")
+                transferredSizeParts = (total[1] as AnyObject).components(separatedBy: " ")
+                self.totalnumberSize = Double(totalSizeParts![3])
+                self.transferredNumberSize = Double(transferredSizeParts![4])
+            }
+            print(self.totalnumber!)
+            print(self.totalnumberSize!)
+            print(self.transferredNumber!)
+            print(self.transferredNumberSize!)
+        }
+    }
     
     
     // Collecting statistics about job

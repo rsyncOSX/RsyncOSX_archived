@@ -39,6 +39,7 @@ class ViewControllerUserconfiguration : NSViewController {
             SharingManagerConfiguration.sharedInstance.rsyncVer3 = false
             config.sharedInstance.version3rsync = 0
         }
+        self.dirty = true
     }
     
     @IBOutlet weak var RsyncOSXtest: NSButton!
