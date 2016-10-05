@@ -146,12 +146,16 @@ final class outputProcess {
             // numbers of Ints
             if (SharingManagerConfiguration.sharedInstance.rsyncVer3) {
                 numberParts = (numbers[0] as AnyObject).replacingOccurrences(of: ",", with: "").components(separatedBy: " ")
-                transferredNumberParts  = (numbers[2] as AnyObject).replacingOccurrences(of: ",", with: "").components(separatedBy: " ")
+                if numbers.count > 3 {
+                    transferredNumberParts  = (numbers[3] as AnyObject).replacingOccurrences(of: ",", with: "").components(separatedBy: " ")
+                } else {
+                    transferredNumberParts  = (numbers[2] as AnyObject).replacingOccurrences(of: ",", with: "").components(separatedBy: " ")
+                }
                 if (numberParts != nil && transferredNumberParts != nil) {
-                    if (numberParts!.count > 7 && transferredNumberParts!.count > 7) {
+                    if (numberParts!.count > 7 && transferredNumberParts!.count > 5) {
                         self.totalNumber = Int(numberParts![5])
                         self.transferredNumber = Int(transferredNumberParts![5])
-                        self.totalDirs = Int(numberParts![7])
+                        self.totalDirs = Int(numberParts![7].replacingOccurrences(of: ")", with: ""))
                     }
                 }
                 
