@@ -600,7 +600,13 @@ class ViewControllertabMain : NSViewController, Information, Abort, Count, Refre
                 // Be prepared for next work
                 self.working.stopAnimation(nil)
                 // Getting max count
-                self.maxcount = self.output!.getOutputCount()
+                if (self.output!.getTransferredNumber() > 0) {
+                    print("MAX")
+                    self.maxcount = self.output!.getTransferredNumber()
+                } else {
+                    self.maxcount = self.output!.getOutputCount()
+                }
+                
                 // Estimated was TRUE but was set FALSE just before the real task was executed
                 // Do an update of memory and the function is notifying when an refresh of table
                 // is done. We have JUST completed an estimation run.

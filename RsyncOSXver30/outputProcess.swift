@@ -77,6 +77,15 @@ final class outputProcess {
         }
     }
     
+    func getTransferredNumber () -> Int {
+        if (self.transferredNumber != nil) {
+            return self.transferredNumber!
+        } else {
+            return 0
+        }
+        
+    }
+    
     // Function for getting numbers out of output
     // after Process termination is discovered. Function
     // is executed from rsync Process after Process termination
@@ -112,10 +121,6 @@ final class outputProcess {
                 self.totalnumberSize = Double(totalSizeParts![3])
                 self.transferredNumberSize = Double(transferredSizeParts![4])
             }
-            print(self.totalnumber!)
-            print(self.totalnumberSize!)
-            print(self.transferredNumber!)
-            print(self.transferredNumberSize!)
         }
     }
     
