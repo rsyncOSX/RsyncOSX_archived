@@ -45,7 +45,7 @@ final class outputProcess {
     }
    
     func copySummarizedResultBatch() {
-        let result = self.statistics()[0] + " , " + self.statistics()[1]
+        let result = self.statistics(numberOfFiles: nil)[0] + " , " + self.statistics(numberOfFiles: nil)[1]
         self.batchoutput.add(result)
     }
     
@@ -207,7 +207,7 @@ final class outputProcess {
     
     
     // Collecting statistics about job
-    func statistics() -> [String] {
+    func statistics(numberOfFiles:String?) -> [String] {
         var numberstring:String?
         var parts:[String]?
         
@@ -260,7 +260,12 @@ final class outputProcess {
             }
             i = i + 1
         }
-        numberstring = String(self.output.count) + " files : " + String(format:"%.2f",(bytesTotal/1024)/1000) + " MB in " + String(format:"%.2f",seconds) + " seconds"
+        if (numberOfFiles == nil) {
+            numberstring = String(self.output.count) + " files : " + String(format:"%.2f",(bytesTotal/1024)/1000) + " MB in " + String(format:"%.2f",seconds) + " seconds"
+        } else {
+            numberstring = numberOfFiles! + " files : " + String(format:"%.2f",(bytesTotal/1024)/1000) + " MB in " + String(format:"%.2f",seconds) + " seconds"
+        }
+        
         if (result == nil) {
             result = "hmmm...."
         }

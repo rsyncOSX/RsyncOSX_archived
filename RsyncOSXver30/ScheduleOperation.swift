@@ -72,7 +72,7 @@ final class completeScheduledOperation {
         // Write result to Schedule
         let datestring = self.dateformatter!.string(from: date!)
         let dateStartstring = self.dateformatter!.string(from: dateStart!)
-        let numberstring = output.statistics()
+        let numberstring = output.statistics(numberOfFiles: nil)
         SharingManagerSchedule.sharedInstance.addScheduleResult(self.hiddenID!, dateStart: dateStartstring, result: numberstring[0], date: datestring, schedule: schedule!)
         // Writing timestamp to configuration
         // Update memory configuration with rundate

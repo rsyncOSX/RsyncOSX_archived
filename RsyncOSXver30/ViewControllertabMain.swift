@@ -627,7 +627,7 @@ class ViewControllertabMain : NSViewController, Information, Abort, Count, Refre
                 // is done. We have JUST completed an estimation run.
                 if (self.estimated == false && self.abort == false) {
                     SharingManagerConfiguration.sharedInstance.setCurrentDateonConfiguration(self.index!)
-                    SharingManagerSchedule.sharedInstance.addScheduleResultManuel(self.hiddenID!, result: self.output!.statistics()[0])
+                    SharingManagerSchedule.sharedInstance.addScheduleResultManuel(self.hiddenID!, result: self.output!.statistics(numberOfFiles: self.transferredNumber.stringValue)[0])
                 }
                 // If showInfoDryrun is on present result of dryrun automatically
                 if (self.showInfoDryrun.state == 1) {
@@ -645,13 +645,13 @@ class ViewControllertabMain : NSViewController, Information, Abort, Count, Refre
                     // get numbers from dry-run
                     // Getting max count
                     if (self.output!.getTransferredNumbers(numbers: .totalNumber) > 0) {
-                        self.setNumbers(setvalues: true)
                         if (self.output!.getTransferredNumbers(numbers: .transferredNumber) > 0) {
                             self.maxcount = self.output!.getTransferredNumbers(numbers: .transferredNumber)
                         } else {
                             self.maxcount = self.output!.getOutputCount()
                         }
                     }
+                    self.setNumbers(setvalues: true)
                     // Setting maxcount of files in object
                     batchobject.setEstimated(numberOfFiles: self.maxcount)
                     // 0 is estimationrun, 1 is real run
@@ -681,7 +681,7 @@ class ViewControllertabMain : NSViewController, Information, Abort, Count, Refre
                         let index = SharingManagerConfiguration.sharedInstance.getIndex(work.0)
                         let hiddenID = SharingManagerConfiguration.sharedInstance.gethiddenID(index: index)
                         SharingManagerConfiguration.sharedInstance.setCurrentDateonConfiguration(index)
-                        SharingManagerSchedule.sharedInstance.addScheduleResultManuel(hiddenID, result: self.output!.statistics()[0])
+                        SharingManagerSchedule.sharedInstance.addScheduleResultManuel(hiddenID, result: self.output!.statistics(numberOfFiles: self.transferredNumber.stringValue)[0])
                         // Reset counter before next run
                         self.output!.removeObjectsOutput()
                         self.runBatch()
