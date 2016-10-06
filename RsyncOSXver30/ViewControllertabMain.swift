@@ -68,6 +68,16 @@ class ViewControllertabMain : NSViewController, Information, Abort, Count, Refre
     @IBOutlet weak var dryRunOrRealRun: NSTextField!
     // Progressbar scheduled task
     @IBOutlet weak var scheduledJobworking: NSProgressIndicator!
+    // number of files to be transferred
+    @IBOutlet weak var transferredNumber: NSTextField!
+    // size of files to be transferred
+    @IBOutlet weak var transferredNumberSizebytes: NSTextField!
+    // total number of files in remote volume
+    @IBOutlet weak var totalNumber: NSTextField!
+    // total size of files in remote volume
+    @IBOutlet weak var totalNumberSizebytes: NSTextField!
+    // total number of directories remote volume
+    @IBOutlet weak var totalDirs: NSTextField!
     
     // REFERENCE VARIABLES
     
@@ -540,6 +550,8 @@ class ViewControllertabMain : NSViewController, Information, Abort, Count, Refre
             // Reset output
             self.output = nil
             self.dryRunOrRealRun.stringValue = "estimate"
+            // Clear numbers from dryrun
+            self.setNumbers(setvalues: false)
         } else {
             self.index = nil
             self.hiddenID = nil
@@ -600,21 +612,22 @@ class ViewControllertabMain : NSViewController, Information, Abort, Count, Refre
                 // Be prepared for next work
                 self.working.stopAnimation(nil)
                 // Getting max count
-                /*
-                if (self.output!.getTransferredNumbers(numbers: .transferredNumber) > 0) {
-                    self.maxcount = self.output!.getTransferredNumbers(numbers: .transferredNumber)
-                    self.output!.printNumbers()
+                if (self.output!.getTransferredNumbers(numbers: .totalNumber) > 0) {
+                    self.setNumbers(setvalues: true)
+                    if (self.output!.getTransferredNumbers(numbers: .transferredNumber) > 0) {
+                        self.maxcount = self.output!.getTransferredNumbers(numbers: .transferredNumber)
+                    } else {
+                        self.maxcount = self.output!.getOutputCount()
+                    }
                 } else {
                     self.maxcount = self.output!.getOutputCount()
                 }
-                 */
-                self.maxcount = self.output!.getOutputCount()
                 // Estimated was TRUE but was set FALSE just before the real task was executed
                 // Do an update of memory and the function is notifying when an refresh of table
                 // is done. We have JUST completed an estimation run.
                 if (self.estimated == false && self.abort == false) {
                     SharingManagerConfiguration.sharedInstance.setCurrentDateonConfiguration(self.index!)
-                    SharingManagerSchedule.sharedInstance.addScheduleResultManuel(self.hiddenID!, result: self.output!.statistics()[0])
+                    SharingManagerSchedule.sharedInstance.addScheduleResultManuel(self.hiddenID!, result: self.output!.statistics(numberOfFiles: self.transferredNumber.stringValue)[0])
                 }
                 // If showInfoDryrun is on present result of dryrun automatically
                 if (self.showInfoDryrun.state == 1) {
@@ -629,7 +642,16 @@ class ViewControllertabMain : NSViewController, Information, Abort, Count, Refre
                 if let batchobject = SharingManagerConfiguration.sharedInstance.getBatchdataObject() {
                     // Remove the first worker object
                     let work = batchobject.nextBatchRemove()
-                    self.maxcount = self.output!.getOutputCount()
+                    // get numbers from dry-run
+                    // Getting max count
+                    if (self.output!.getTransferredNumbers(numbers: .totalNumber) > 0) {
+                        if (self.output!.getTransferredNumbers(numbers: .transferredNumber) > 0) {
+                            self.maxcount = self.output!.getTransferredNumbers(numbers: .transferredNumber)
+                        } else {
+                            self.maxcount = self.output!.getOutputCount()
+                        }
+                    }
+                    self.setNumbers(setvalues: true)
                     // Setting maxcount of files in object
                     batchobject.setEstimated(numberOfFiles: self.maxcount)
                     // 0 is estimationrun, 1 is real run
@@ -649,7 +671,7 @@ class ViewControllertabMain : NSViewController, Information, Abort, Count, Refre
                         // Update files in work
                         batchobject.updateInProcess(numberOfFiles: self.maxcount)
                         batchobject.setCompleted()
-                        self.output?.copySummarizedResultBatch()
+                        self.output?.copySummarizedResultBatch(numberOfFiles: self.transferredNumber.stringValue)
                         if let pvc = self.presentedViewControllers as? [ViewControllerBatch] {
                             self.refresh_delegate = pvc[0]
                             self.indicator_delegate = pvc[0]
@@ -659,7 +681,7 @@ class ViewControllertabMain : NSViewController, Information, Abort, Count, Refre
                         let index = SharingManagerConfiguration.sharedInstance.getIndex(work.0)
                         let hiddenID = SharingManagerConfiguration.sharedInstance.gethiddenID(index: index)
                         SharingManagerConfiguration.sharedInstance.setCurrentDateonConfiguration(index)
-                        SharingManagerSchedule.sharedInstance.addScheduleResultManuel(hiddenID, result: self.output!.statistics()[0])
+                        SharingManagerSchedule.sharedInstance.addScheduleResultManuel(hiddenID, result: self.output!.statistics(numberOfFiles: self.transferredNumber.stringValue)[0])
                         // Reset counter before next run
                         self.output!.removeObjectsOutput()
                         self.runBatch()
@@ -696,6 +718,23 @@ class ViewControllertabMain : NSViewController, Information, Abort, Count, Refre
     }
     
     //  Do some real WORK END
+    
+    private func setNumbers (setvalues : Bool) {
+        if (setvalues) {
+            self.transferredNumber.stringValue = String(self.output!.getTransferredNumbers(numbers: .transferredNumber))
+            self.transferredNumberSizebytes.stringValue = String(self.output!.getTransferredNumbers(numbers: .transferredNumberSizebytes))
+            self.totalNumber.stringValue = String(self.output!.getTransferredNumbers(numbers: .totalNumber))
+            self.totalNumberSizebytes.stringValue = String(self.output!.getTransferredNumbers(numbers: .totalNumberSizebytes))
+            self.totalDirs.stringValue = String(self.output!.getTransferredNumbers(numbers: .totalDirs))
+        } else {
+            self.transferredNumber.stringValue = ""
+            self.transferredNumberSizebytes.stringValue = ""
+            self.totalNumber.stringValue = ""
+            self.totalNumberSizebytes.stringValue = ""
+            self.totalDirs.stringValue = ""
+        }
+        
+    }
 
 }
 

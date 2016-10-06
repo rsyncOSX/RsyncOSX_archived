@@ -44,9 +44,14 @@ final class outputProcess {
         }
     }
    
-    func copySummarizedResultBatch() {
-        let result = self.statistics()[0] + " , " + self.statistics()[1]
-        self.batchoutput.add(result)
+    func copySummarizedResultBatch(numberOfFiles:String?) {
+        if (numberOfFiles != nil) {
+            let result = self.statistics(numberOfFiles: numberOfFiles!)[0] + " , " + self.statistics(numberOfFiles: numberOfFiles!)[1]
+            self.batchoutput.add(result)
+        } else {
+            let result = self.statistics(numberOfFiles: nil)[0] + " , " + self.statistics(numberOfFiles: nil)[1]
+            self.batchoutput.add(result)
+        }
     }
     
     func getOutputCount () -> Int {
@@ -134,7 +139,8 @@ final class outputProcess {
     
     // Function for getting numbers out of output
     // after Process termination is discovered. Function
-    // is executed from rsync Process after Process termination
+    // is executed from rsync Process after Process termination.
+    // And it is UGLY...
     func getNumbers() {
         let numbers = self.output.filter({(($0 as? String)?.contains("Number of"))!})
         let total = self.output.filter({(($0 as? String)?.contains("Total"))!})
@@ -143,9 +149,15 @@ final class outputProcess {
             var transferredNumberParts:[String]?
             var totalSizeParts:[String]?
             var transferredSizeParts:[String]?
-            // numbers of Ints
+            
+            // Dissection of rsync output to get the numbers.
+            // Ver3 of rsync also reports about number of directories
+            // Stock version does not.
+            
             if (SharingManagerConfiguration.sharedInstance.rsyncVer3) {
+                // Ver3 of rsync adds "," as 1000 mark, must replace it and then split numbers into components
                 numberParts = (numbers[0] as AnyObject).replacingOccurrences(of: ",", with: "").components(separatedBy: " ")
+                
                 if numbers.count > 3 {
                     transferredNumberParts  = (numbers[3] as AnyObject).replacingOccurrences(of: ",", with: "").components(separatedBy: " ")
                 } else {
@@ -158,10 +170,11 @@ final class outputProcess {
                         self.totalDirs = Int(numberParts![7].replacingOccurrences(of: ")", with: ""))
                     }
                 }
-                
             } else {
+                // Stock version of rsync
                 numberParts = (numbers[0] as AnyObject).components(separatedBy: " ")
                 transferredNumberParts = (numbers[1] as AnyObject).components(separatedBy: " ")
+                
                 if (numberParts != nil && transferredNumberParts != nil) {
                     if (numberParts!.count > 3 && transferredNumberParts!.count > 4) {
                         self.totalNumber = Int(numberParts![3])
@@ -170,10 +183,13 @@ final class outputProcess {
                 }
             }
             
-            // total of Bytes
+            // Dissection of rsync output to get the total of bytes
+            
             if (SharingManagerConfiguration.sharedInstance.rsyncVer3) {
+                // Ver3 of rsync adds "," as 1000 mark, must replace it and then split numbers into components
                 totalSizeParts = (total[0] as AnyObject).replacingOccurrences(of: ",", with: "").components(separatedBy: " ")
                 transferredSizeParts = (total[1] as AnyObject).replacingOccurrences(of: ",", with: "").components(separatedBy: " ")
+                
                 if (totalSizeParts != nil && transferredNumberParts != nil) {
                     if (totalSizeParts!.count > 3 && transferredNumberParts!.count > 4) {
                         self.totalNumberSizebytes = Double(totalSizeParts![3])
@@ -181,6 +197,7 @@ final class outputProcess {
                     }
                 }
             } else {
+                // Stock version of rsync
                 totalSizeParts = (total[0] as AnyObject).components(separatedBy: " ")
                 transferredSizeParts = (total[1] as AnyObject).components(separatedBy: " ")
                 if (totalSizeParts != nil && transferredNumberParts != nil) {
@@ -195,7 +212,7 @@ final class outputProcess {
     
     
     // Collecting statistics about job
-    func statistics() -> [String] {
+    func statistics(numberOfFiles:String?) -> [String] {
         var numberstring:String?
         var parts:[String]?
         
@@ -248,7 +265,12 @@ final class outputProcess {
             }
             i = i + 1
         }
-        numberstring = String(self.output.count) + " files : " + String(format:"%.2f",(bytesTotal/1024)/1000) + " MB in " + String(format:"%.2f",seconds) + " seconds"
+        if (numberOfFiles == nil) {
+            numberstring = String(self.output.count) + " files : " + String(format:"%.2f",(bytesTotal/1024)/1000) + " MB in " + String(format:"%.2f",seconds) + " seconds"
+        } else {
+            numberstring = numberOfFiles! + " files : " + String(format:"%.2f",(bytesTotal/1024)/1000) + " MB in " + String(format:"%.2f",seconds) + " seconds"
+        }
+        
         if (result == nil) {
             result = "hmmm...."
         }

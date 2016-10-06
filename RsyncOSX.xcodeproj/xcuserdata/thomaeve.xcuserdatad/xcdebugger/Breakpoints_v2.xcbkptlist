@@ -6,15 +6,15 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "RsyncOSXver30/outputProcess.swift"
-            timestampString = "497391479.532856"
+            timestampString = "497444501.009491"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "149"
-            endingLineNumber = "149"
+            startingLineNumber = "154"
+            endingLineNumber = "154"
             landmarkName = "getNumbers()"
             landmarkType = "7">
          </BreakpointContent>
@@ -25,61 +25,13 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "RsyncOSXver30/userconfiguration.swift"
-            timestampString = "497424989.17417"
+            filePath = "RsyncOSXver30/outputProcess.swift"
+            timestampString = "497444501.009491"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "17"
-            endingLineNumber = "17"
-            landmarkName = "init(configRsyncOSX:)"
-            landmarkType = "7">
-            <Locations>
-               <Location
-                  shouldBeEnabled = "No"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "RsyncOSX.userconfiguration.init (configRsyncOSX : Swift.Optional&lt;Swift.Array&lt;__ObjC.NSDictionary&gt;&gt;) -&gt; RsyncOSX.userconfiguration"
-                  moduleName = "RsyncOSX"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Volumes/Users/thomaeve/Documents/Xcode/Version3.0/RsyncOSXver30/userconfiguration.swift"
-                  timestampString = "497425520.866985"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "17"
-                  endingLineNumber = "17"
-                  offsetFromSymbolStart = "15">
-               </Location>
-               <Location
-                  shouldBeEnabled = "No"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "RsyncOSX.userconfiguration.init (configRsyncOSX : Swift.Optional&lt;Swift.Array&lt;__ObjC.NSDictionary&gt;&gt;) -&gt; RsyncOSX.userconfiguration"
-                  moduleName = "RsyncOSX"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Volumes/Users/thomaeve/Documents/Xcode/Version3.0/RsyncOSXver30/userconfiguration.swift"
-                  timestampString = "497425520.868206"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "17"
-                  endingLineNumber = "17"
-                  offsetFromSymbolStart = "83">
-               </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "RsyncOSXver30/storeAPI.swift"
-            timestampString = "497425067.259595"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "163"
-            endingLineNumber = "163"
-            landmarkName = "saveuserconfig()"
+            startingLineNumber = "164"
+            endingLineNumber = "164"
+            landmarkName = "getNumbers()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -89,30 +41,14 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "RsyncOSXver30/readwritefiles.swift"
-            timestampString = "497425516.110552"
+            filePath = "RsyncOSXver30/ViewControllertabMain.swift"
+            timestampString = "497450648.2386"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "108"
-            endingLineNumber = "108"
-            landmarkName = "writeDatatofile(_:task:)"
+            startingLineNumber = "659"
+            endingLineNumber = "659"
+            landmarkName = "ProcessTermination()"
             landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "RsyncOSXver30/readwritefiles.swift"
-            timestampString = "497425822.669683"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "45"
-            endingLineNumber = "45"
-            landmarkName = "readwritefiles"
-            landmarkType = "3">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>
