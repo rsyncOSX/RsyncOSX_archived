@@ -44,9 +44,14 @@ final class outputProcess {
         }
     }
    
-    func copySummarizedResultBatch() {
-        let result = self.statistics(numberOfFiles: nil)[0] + " , " + self.statistics(numberOfFiles: nil)[1]
-        self.batchoutput.add(result)
+    func copySummarizedResultBatch(numberOfFiles:String?) {
+        if (numberOfFiles != nil) {
+            let result = self.statistics(numberOfFiles: numberOfFiles!)[0] + " , " + self.statistics(numberOfFiles: numberOfFiles!)[1]
+            self.batchoutput.add(result)
+        } else {
+            let result = self.statistics(numberOfFiles: nil)[0] + " , " + self.statistics(numberOfFiles: nil)[1]
+            self.batchoutput.add(result)
+        }
     }
     
     func getOutputCount () -> Int {

@@ -671,7 +671,7 @@ class ViewControllertabMain : NSViewController, Information, Abort, Count, Refre
                         // Update files in work
                         batchobject.updateInProcess(numberOfFiles: self.maxcount)
                         batchobject.setCompleted()
-                        self.output?.copySummarizedResultBatch()
+                        self.output?.copySummarizedResultBatch(numberOfFiles: self.transferredNumber.stringValue)
                         if let pvc = self.presentedViewControllers as? [ViewControllerBatch] {
                             self.refresh_delegate = pvc[0]
                             self.indicator_delegate = pvc[0]
