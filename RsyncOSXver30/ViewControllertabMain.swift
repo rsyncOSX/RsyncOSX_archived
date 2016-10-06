@@ -612,12 +612,15 @@ class ViewControllertabMain : NSViewController, Information, Abort, Count, Refre
                 // Be prepared for next work
                 self.working.stopAnimation(nil)
                 // Getting max count
-                if (self.output!.getTransferredNumbers(numbers: .transferredNumber) > 0) {
-                    self.maxcount = self.output!.getTransferredNumbers(numbers: .transferredNumber)
+                if (self.output!.getTransferredNumbers(numbers: .totalNumber) > 0) {
                     self.setNumbers(setvalues: true)
+                    if (self.output!.getTransferredNumbers(numbers: .transferredNumber) > 0) {
+                        self.maxcount = self.output!.getTransferredNumbers(numbers: .transferredNumber)
+                    } else {
+                        self.maxcount = self.output!.getOutputCount()
+                    }
                 } else {
                     self.maxcount = self.output!.getOutputCount()
-                    self.setNumbers(setvalues: true)
                 }
                 // Estimated was TRUE but was set FALSE just before the real task was executed
                 // Do an update of memory and the function is notifying when an refresh of table
