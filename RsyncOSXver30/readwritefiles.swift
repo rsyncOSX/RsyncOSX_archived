@@ -17,7 +17,7 @@ import Foundation
 enum enumtask {
     case schedule
     case configuration
-    case config
+    case userconfig
     case rsyncarguments
     case none
 }
@@ -63,7 +63,7 @@ class readwritefiles {
             } else {
                 self.readdisk = false
             }
-        case .config:
+        case .userconfig:
             self.readdisk = true
         case .none:
             self.readdisk = false
@@ -139,7 +139,7 @@ class readwritefiles {
             } else {
                 self.name = "/configRsync.plist"
             }
-        case .config:
+        case .userconfig:
             self.key = "config"
             self.name = "/config.plist"
         case .rsyncarguments:

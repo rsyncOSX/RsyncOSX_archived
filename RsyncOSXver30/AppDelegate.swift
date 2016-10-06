@@ -18,7 +18,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         // Check for new version
         _ = newVersion()
         // Read user configuration
-        let read = readwritefiles(whattoread: enumtask.config)
+        let read = readwritefiles(whattoread: .userconfig)
         if (read.datafromStore != nil) {
             _ = userconfiguration(configRsyncOSX: read.datafromStore!)
         }

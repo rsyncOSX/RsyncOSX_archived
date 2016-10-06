@@ -22,7 +22,6 @@ enum WhichPath {
 final class FileDialog {
     
     weak var path_delegate:GetPath?
-    private var whichPath:WhichPath?
     
     private func openfiledlg (title: String, message: String, requester : WhichPath) {
         GlobalMainQueue.async(execute: { () -> Void in
