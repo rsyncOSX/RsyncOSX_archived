@@ -8,29 +8,6 @@
 
 import Foundation
 
-// Class for holding all configurations
-
-class config {
-    // Creates a singelton of this class
-    class var sharedInstance: config {
-        struct Singleton {
-            static let instance = config()
-        }
-        return Singleton.instance
-    }
-    // static var sharedInstance = config()
-    // If version 3 of rsync in /usr/local/bin
-    var version3rsync:Int = 0
-    // Optional path for rsync
-    var rsyncPath:String?
-    // Detailed logging
-    var detailedlogging:Int = 1
-    // Diseable Execute/Batch button
-    var scheduledTaskdisableExecute:Double = 0
-}
-
-
-
 class storeAPI {
     
     // Creates a singelton of this class
@@ -157,13 +134,31 @@ class storeAPI {
     
     // Saving user configuration
     func saveuserconfig () -> Bool {
+        var version3Rsync:Int?
+        var detailedlogging:Int?
+        var rsyncPath:String?
+        
+        if (SharingManagerConfiguration.sharedInstance.rsyncVer3) {
+            version3Rsync = 1
+        } else {
+            version3Rsync = 0
+        }
+        if (SharingManagerConfiguration.sharedInstance.detailedlogging) {
+            detailedlogging = 1
+        } else {
+            detailedlogging = 0
+        }
+        if (SharingManagerConfiguration.sharedInstance.rsyncPath != nil) {
+            rsyncPath = SharingManagerConfiguration.sharedInstance.rsyncPath!
+        }
+        
         let array = NSMutableArray()
         let dict:NSMutableDictionary = [
-            "version3Rsync" : config.sharedInstance.version3rsync,
-            "detailedlogging" : config.sharedInstance.detailedlogging,
-            "scheduledTaskdisableExecute": config.sharedInstance.scheduledTaskdisableExecute]
-        if ((config.sharedInstance.rsyncPath != nil)) {
-            dict.setObject(config.sharedInstance.rsyncPath!, forKey: "rsyncPath" as NSCopying)
+            "version3Rsync" : version3Rsync,
+            "detailedlogging" : detailedlogging,
+            "scheduledTaskdisableExecute": SharingManagerConfiguration.sharedInstance.scheduledTaskdisableExecute]
+        if ((rsyncPath != nil)) {
+            dict.setObject(rsyncPath!, forKey: "rsyncPath" as NSCopying)
         }
         array.add(dict)
         let task = enumtask.config

@@ -16,15 +16,11 @@ protocol ReadConfigurationsAgain : class {
 class ViewControllerUserconfiguration : NSViewController {
     
     var dirty:Bool = false
-    
-    var userconfig:userconfiguration?
     // Delegate to read configurations after toggeling between
     // test- and real mode
     weak var readconfigurations_delegate:ReadConfigurationsAgain?
     // Dismisser
     weak var dismiss_delegate:DismissViewController?
-
-    
     
     @IBOutlet weak var rsyncPath: NSTextField!
     @IBOutlet weak var version3rsync: NSButton!
@@ -34,16 +30,15 @@ class ViewControllerUserconfiguration : NSViewController {
     @IBAction func toggleversion3rsync(_ sender: NSButton) {
         if (self.version3rsync.state == NSOnState) {
             SharingManagerConfiguration.sharedInstance.rsyncVer3 = true
-            config.sharedInstance.version3rsync = 1
         } else {
             SharingManagerConfiguration.sharedInstance.rsyncVer3 = false
-            config.sharedInstance.version3rsync = 0
         }
         self.dirty = true
     }
     
     @IBOutlet weak var RsyncOSXtest: NSButton!
     
+    // We dont save this state, only valid in this run
     @IBAction func toggleRsyncOSXtest(_ sender: NSButton) {
         SharingManagerSchedule.sharedInstance.cleanAllSchedules()
         if (self.RsyncOSXtest.state == NSOnState) {
@@ -62,16 +57,14 @@ class ViewControllerUserconfiguration : NSViewController {
     @IBAction func toggleDetailedlogging(_ sender: NSButton) {
         if (self.detailedlogging.state == NSOnState) {
             SharingManagerConfiguration.sharedInstance.detailedlogging = true
-            config.sharedInstance.detailedlogging = 1
-            
         } else {
             SharingManagerConfiguration.sharedInstance.detailedlogging = false
-            config.sharedInstance.detailedlogging = 0
         }
         self.dirty = true
     }
     
     @IBAction func close(_ sender: NSButton) {
+
         if (self.dirty) {
             // Before closing save changed configuration
             self.setRsyncPath()
@@ -82,36 +75,30 @@ class ViewControllerUserconfiguration : NSViewController {
     }
     
     private func setRsyncPath(){
-        if (!self.rsyncPath.stringValue.isEmpty) {
-            if (!rsyncPath.stringValue.hasSuffix("/")){
+        if (self.rsyncPath.stringValue.isEmpty == false) {
+            if (rsyncPath.stringValue.hasSuffix("/") == false){
                 rsyncPath.stringValue = rsyncPath.stringValue + "/"
-                config.sharedInstance.rsyncPath = rsyncPath.stringValue
                 SharingManagerConfiguration.sharedInstance.rsyncPath = rsyncPath.stringValue
             }
         } else {
-            config.sharedInstance.rsyncPath = nil
+            SharingManagerConfiguration.sharedInstance.rsyncPath = nil
         }
         self.dirty = true
     }
     
     private func setscheduledTaskdisableExecute() {
-        if (!self.scheduledTaskdisableExecute.stringValue.isEmpty) {
+        if (self.scheduledTaskdisableExecute.stringValue.isEmpty == false) {
             if let time = Double(self.scheduledTaskdisableExecute.stringValue) {
                 SharingManagerConfiguration.sharedInstance.scheduledTaskdisableExecute = time
-                config.sharedInstance.scheduledTaskdisableExecute = time
-            } else {
-                self.scheduledTaskdisableExecute.stringValue = String(config.sharedInstance.scheduledTaskdisableExecute)
             }
         } else {
-            self.scheduledTaskdisableExecute.stringValue = String(config.sharedInstance.scheduledTaskdisableExecute)
+            SharingManagerConfiguration.sharedInstance.scheduledTaskdisableExecute = 0
         }
         self.dirty = true
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Read userconfiguration
-        userconfig = userconfiguration(configRsyncOSX: nil)
         if let pvc = self.presenting as? ViewControllertabMain {
             self.readconfigurations_delegate = pvc
         }
@@ -123,20 +110,25 @@ class ViewControllerUserconfiguration : NSViewController {
     
     override func viewDidAppear() {
         super.viewDidAppear()
-        // Only temporary setting
-        if (userconfig!.testRun == true) {
-            self.RsyncOSXtest.state = NSOnState
-        } else {
-            self.RsyncOSXtest.state = NSOffState
-        }
         self.dirty = false
         // Set userconfig
-        self.version3rsync.state = config.sharedInstance.version3rsync
-        self.detailedlogging.state = config.sharedInstance.detailedlogging
-        if (config.sharedInstance.rsyncPath != nil) {
-            self.rsyncPath.stringValue = config.sharedInstance.rsyncPath!
+        self.RsyncOSXtest.state = NSOffState
+        if (SharingManagerConfiguration.sharedInstance.rsyncVer3) {
+            self.version3rsync.state = 1
+        } else {
+            self.version3rsync.state = 0
         }
-        self.scheduledTaskdisableExecute.stringValue = String(config.sharedInstance.scheduledTaskdisableExecute)
+        if (SharingManagerConfiguration.sharedInstance.detailedlogging) {
+            self.detailedlogging.state = 1
+        } else {
+            self.detailedlogging.state = 0
+        }
+        if (SharingManagerConfiguration.sharedInstance.rsyncPath != nil) {
+            self.rsyncPath.stringValue = SharingManagerConfiguration.sharedInstance.rsyncPath!
+        } else {
+            self.rsyncPath.stringValue = ""
+        }
+        self.scheduledTaskdisableExecute.stringValue = String(SharingManagerConfiguration.sharedInstance.scheduledTaskdisableExecute)
     }
     
 }
