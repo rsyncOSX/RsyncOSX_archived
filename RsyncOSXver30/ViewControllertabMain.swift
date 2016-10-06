@@ -642,7 +642,16 @@ class ViewControllertabMain : NSViewController, Information, Abort, Count, Refre
                 if let batchobject = SharingManagerConfiguration.sharedInstance.getBatchdataObject() {
                     // Remove the first worker object
                     let work = batchobject.nextBatchRemove()
-                    self.maxcount = self.output!.getOutputCount()
+                    // get numbers from dry-run
+                    // Getting max count
+                    if (self.output!.getTransferredNumbers(numbers: .totalNumber) > 0) {
+                        self.setNumbers(setvalues: true)
+                        if (self.output!.getTransferredNumbers(numbers: .transferredNumber) > 0) {
+                            self.maxcount = self.output!.getTransferredNumbers(numbers: .transferredNumber)
+                        } else {
+                            self.maxcount = self.output!.getOutputCount()
+                        }
+                    }
                     // Setting maxcount of files in object
                     batchobject.setEstimated(numberOfFiles: self.maxcount)
                     // 0 is estimationrun, 1 is real run

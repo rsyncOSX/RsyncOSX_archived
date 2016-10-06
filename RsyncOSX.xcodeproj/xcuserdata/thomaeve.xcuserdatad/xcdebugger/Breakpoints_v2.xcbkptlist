@@ -10,11 +10,27 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "RsyncOSXver30/outputProcess.swift"
-            timestampString = "497437023.521265"
+            timestampString = "497444501.009491"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "150"
-            endingLineNumber = "150"
+            startingLineNumber = "154"
+            endingLineNumber = "154"
+            landmarkName = "getNumbers()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "RsyncOSXver30/outputProcess.swift"
+            timestampString = "497444501.009491"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "164"
+            endingLineNumber = "164"
             landmarkName = "getNumbers()"
             landmarkType = "7">
          </BreakpointContent>
@@ -25,13 +41,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "RsyncOSXver30/outputProcess.swift"
-            timestampString = "497437023.521265"
+            filePath = "RsyncOSXver30/ViewControllertabMain.swift"
+            timestampString = "497444826.860409"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "162"
-            endingLineNumber = "162"
-            landmarkName = "getNumbers()"
+            startingLineNumber = "656"
+            endingLineNumber = "656"
+            landmarkName = "ProcessTermination()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
