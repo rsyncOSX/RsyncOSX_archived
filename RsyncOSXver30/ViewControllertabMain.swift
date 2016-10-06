@@ -605,6 +605,7 @@ class ViewControllertabMain : NSViewController, Information, Abort, Count, Refre
                     self.output!.printNumbers()
                 } else {
                     self.maxcount = self.output!.getOutputCount()
+                    self.output!.printNumbers()
                 }
                 // Estimated was TRUE but was set FALSE just before the real task was executed
                 // Do an update of memory and the function is notifying when an refresh of table
