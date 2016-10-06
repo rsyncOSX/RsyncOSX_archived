@@ -154,16 +154,15 @@ class storeAPI {
         
         let array = NSMutableArray()
         let dict:NSMutableDictionary = [
-            "version3Rsync" : version3Rsync,
-            "detailedlogging" : detailedlogging,
+            "version3Rsync" : version3Rsync! as Int,
+            "detailedlogging" : detailedlogging! as Int,
             "scheduledTaskdisableExecute": SharingManagerConfiguration.sharedInstance.scheduledTaskdisableExecute]
         if ((rsyncPath != nil)) {
             dict.setObject(rsyncPath!, forKey: "rsyncPath" as NSCopying)
         }
         array.add(dict)
-        let task = enumtask.config
         let save = readwritefiles(whattoread: enumtask.none)
-        return save.writeDatatofile(array, task: task)
+        return save.writeDatatofile(array, task: .userconfig)
     }
     
 }

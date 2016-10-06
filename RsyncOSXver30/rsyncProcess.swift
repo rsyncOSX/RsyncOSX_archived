@@ -65,7 +65,7 @@ final class rsyncProcess {
         self.observationCenter = NotificationCenter.default.addObserver(forName: Process.didTerminateNotification, object: task, queue: nil)
             { notification -> Void in
                 // Collectiong numbers in output
-                output.getNumbers()
+                // output.getNumbers()
                 if (self.inNSOperation == false) {
                     // Send message about process termination
                     self.process_update?.ProcessTermination()
