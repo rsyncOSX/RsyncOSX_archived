@@ -143,14 +143,19 @@ final class outputProcess {
             var transferredNumberParts:[String]?
             var totalSizeParts:[String]?
             var transferredSizeParts:[String]?
+            
             // numbers of Ints
             if (SharingManagerConfiguration.sharedInstance.rsyncVer3) {
+                
                 numberParts = (numbers[0] as AnyObject).replacingOccurrences(of: ",", with: "").components(separatedBy: " ")
+                
                 if numbers.count > 3 {
+                    
                     transferredNumberParts  = (numbers[3] as AnyObject).replacingOccurrences(of: ",", with: "").components(separatedBy: " ")
                 } else {
                     transferredNumberParts  = (numbers[2] as AnyObject).replacingOccurrences(of: ",", with: "").components(separatedBy: " ")
                 }
+                
                 if (numberParts != nil && transferredNumberParts != nil) {
                     if (numberParts!.count > 7 && transferredNumberParts!.count > 5) {
                         self.totalNumber = Int(numberParts![5])
@@ -160,8 +165,10 @@ final class outputProcess {
                 }
                 
             } else {
+                
                 numberParts = (numbers[0] as AnyObject).components(separatedBy: " ")
                 transferredNumberParts = (numbers[1] as AnyObject).components(separatedBy: " ")
+                
                 if (numberParts != nil && transferredNumberParts != nil) {
                     if (numberParts!.count > 3 && transferredNumberParts!.count > 4) {
                         self.totalNumber = Int(numberParts![3])

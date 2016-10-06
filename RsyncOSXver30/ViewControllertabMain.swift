@@ -68,6 +68,16 @@ class ViewControllertabMain : NSViewController, Information, Abort, Count, Refre
     @IBOutlet weak var dryRunOrRealRun: NSTextField!
     // Progressbar scheduled task
     @IBOutlet weak var scheduledJobworking: NSProgressIndicator!
+    // number of files to be transferred
+    @IBOutlet weak var transferredNumber: NSTextField!
+    // size of files to be transferred
+    @IBOutlet weak var transferredNumberSizebytes: NSTextField!
+    // total number of files in remote volume
+    @IBOutlet weak var totalNumber: NSTextField!
+    // total size of files in remote volume
+    @IBOutlet weak var totalNumberSizebytes: NSTextField!
+    // total number of directories remote volume
+    @IBOutlet weak var totalDirs: NSTextField!
     
     // REFERENCE VARIABLES
     
@@ -540,6 +550,8 @@ class ViewControllertabMain : NSViewController, Information, Abort, Count, Refre
             // Reset output
             self.output = nil
             self.dryRunOrRealRun.stringValue = "estimate"
+            // Clear numbers from dryrun
+            self.setNumbers(setvalues: false)
         } else {
             self.index = nil
             self.hiddenID = nil
@@ -602,10 +614,10 @@ class ViewControllertabMain : NSViewController, Information, Abort, Count, Refre
                 // Getting max count
                 if (self.output!.getTransferredNumbers(numbers: .transferredNumber) > 0) {
                     self.maxcount = self.output!.getTransferredNumbers(numbers: .transferredNumber)
-                    self.output!.printNumbers()
+                    self.setNumbers(setvalues: true)
                 } else {
                     self.maxcount = self.output!.getOutputCount()
-                    self.output!.printNumbers()
+                    self.setNumbers(setvalues: true)
                 }
                 // Estimated was TRUE but was set FALSE just before the real task was executed
                 // Do an update of memory and the function is notifying when an refresh of table
@@ -694,6 +706,23 @@ class ViewControllertabMain : NSViewController, Information, Abort, Count, Refre
     }
     
     //  Do some real WORK END
+    
+    private func setNumbers (setvalues : Bool) {
+        if (setvalues) {
+            self.transferredNumber.stringValue = String(self.output!.getTransferredNumbers(numbers: .transferredNumber))
+            self.transferredNumberSizebytes.stringValue = String(self.output!.getTransferredNumbers(numbers: .transferredNumberSizebytes))
+            self.totalNumber.stringValue = String(self.output!.getTransferredNumbers(numbers: .totalNumber))
+            self.totalNumberSizebytes.stringValue = String(self.output!.getTransferredNumbers(numbers: .totalNumberSizebytes))
+            self.totalDirs.stringValue = String(self.output!.getTransferredNumbers(numbers: .totalDirs))
+        } else {
+            self.transferredNumber.stringValue = ""
+            self.transferredNumberSizebytes.stringValue = ""
+            self.totalNumber.stringValue = ""
+            self.totalNumberSizebytes.stringValue = ""
+            self.totalDirs.stringValue = ""
+        }
+        
+    }
 
 }
 
