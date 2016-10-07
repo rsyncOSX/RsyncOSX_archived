@@ -140,85 +140,62 @@ final class outputProcess {
     // Function for getting numbers out of output
     // after Process termination is discovered. Function
     // is executed from rsync Process after Process termination.
-    // And it is UGLY...
+    // And it is a kind of UGLY...
     func getNumbers() {
-        let numbers = self.output.filter({(($0 as? String)?.contains("Number of"))!})
-        let total = self.output.filter({(($0 as? String)?.contains("Total"))!})
         
         let transferredFiles = self.output.filter({(($0 as? String)?.contains("files transferred:"))!})
+        // ver 3.x - [Number of regular files transferred: 24]
+        // ver 2.x - [Number of files transferred: 24]
         let transferredFilesSize = self.output.filter({(($0 as? String)?.contains("Total transferred file size:"))!})
+        // ver 3.x - [Total transferred file size: 278,642 bytes]
+        // ver 2.x - [Total transferred file size: 278197 bytes]
         let totalFileSize = self.output.filter({(($0 as? String)?.contains("Total file size:"))!})
+        // ver 3.x - [Total file size: 1,016,382,148 bytes]
+        // ver 2.x - [Total file size: 1016381703 bytes]
         let totalFilesNumber = self.output.filter({(($0 as? String)?.contains("Number of files:"))!})
+        // ver 3.x - [Number of files: 3,956 (reg: 3,197, dir: 758, link: 1)]
+        // ver 2.x - [Number of files: 3956]
         
-        print(transferredFiles)
-        print(transferredFilesSize)
-        print(totalFileSize)
-        print(totalFilesNumber)
+        // Must make it somewhat robust, it it breaks all values is set to 0
         
-        
-        
-        if (numbers.count > 1 && total.count > 1) {
-            var numberParts:[String]?
-            var transferredNumberParts:[String]?
-            var totalSizeParts:[String]?
-            var transferredSizeParts:[String]?
-            
-            // Dissection of rsync output to get the numbers.
-            // Ver3 of rsync also reports about number of directories
-            // Stock version does not.
+        if (transferredFiles.count == 1 && transferredFilesSize.count == 1 &&  totalFileSize.count == 1 &&  totalFilesNumber.count == 1) {
             
             if (SharingManagerConfiguration.sharedInstance.rsyncVer3) {
                 // Ver3 of rsync adds "," as 1000 mark, must replace it and then split numbers into components
-                numberParts = (numbers[0] as AnyObject).replacingOccurrences(of: ",", with: "").components(separatedBy: " ")
+                let transferredFilesParts = (transferredFiles[0] as AnyObject).replacingOccurrences(of: ",", with: "").components(separatedBy: " ")
+                let transferredFilesSizeParts = (transferredFilesSize[0] as AnyObject).replacingOccurrences(of: ",", with: "").components(separatedBy: " ")
+                let totalFilesNumberParts = (totalFilesNumber[0] as AnyObject).replacingOccurrences(of: ",", with: "").components(separatedBy: " ")
+                let totalFileSizeParts = (totalFileSize[0] as AnyObject).replacingOccurrences(of: ",", with: "").components(separatedBy: " ")
                 
-                if numbers.count > 3 {
-                    transferredNumberParts  = (numbers[3] as AnyObject).replacingOccurrences(of: ",", with: "").components(separatedBy: " ")
-                } else {
-                    transferredNumberParts  = (numbers[2] as AnyObject).replacingOccurrences(of: ",", with: "").components(separatedBy: " ")
-                }
-                if (numberParts != nil && transferredNumberParts != nil) {
-                    if (numberParts!.count > 7 && transferredNumberParts!.count > 5) {
-                        self.totalNumber = Int(numberParts![5])
-                        self.transferredNumber = Int(transferredNumberParts![5])
-                        self.totalDirs = Int(numberParts![7].replacingOccurrences(of: ")", with: ""))
-                    }
-                }
+                // ["Number", "of", "regular", "files", "transferred:", "24"]
+                // ["Total", "transferred", "file", "size:", "281653", "bytes"]
+                // ["Number", "of", "files:", "3956", "(reg:", "3197", "dir:", "758", "link:", "1)"]
+                // ["Total", "file", "size:", "1016385159", "bytes"]
+                
+                if transferredFilesParts.count > 5 {self.transferredNumber = Int(transferredFilesParts[5])} else {self.transferredNumber = 0}
+                if transferredFilesSizeParts.count > 4 {self.transferredNumberSizebytes = Double(transferredFilesSizeParts[4])} else {self.transferredNumberSizebytes = 0}
+                if totalFilesNumberParts.count > 3 {self.totalNumber = Int(totalFilesNumberParts[3])} else {self.totalNumber = 0}
+                if totalFileSizeParts.count > 3 {self.totalNumberSizebytes = Double(totalFileSizeParts[3])} else {self.totalNumberSizebytes = 0}
+                if totalFilesNumberParts.count > 7 {self.totalDirs = Int(totalFilesNumberParts[7])} else {self.totalDirs = 0}
+                
             } else {
-                // Stock version of rsync
-                numberParts = (numbers[0] as AnyObject).components(separatedBy: " ")
-                transferredNumberParts = (numbers[1] as AnyObject).components(separatedBy: " ")
                 
-                if (numberParts != nil && transferredNumberParts != nil) {
-                    if (numberParts!.count > 3 && transferredNumberParts!.count > 4) {
-                        self.totalNumber = Int(numberParts![3])
-                        self.transferredNumber = Int(transferredNumberParts![4])
-                    }
-                }
-            }
-            
-            // Dissection of rsync output to get the total of bytes
-            
-            if (SharingManagerConfiguration.sharedInstance.rsyncVer3) {
-                // Ver3 of rsync adds "," as 1000 mark, must replace it and then split numbers into components
-                totalSizeParts = (total[0] as AnyObject).replacingOccurrences(of: ",", with: "").components(separatedBy: " ")
-                transferredSizeParts = (total[1] as AnyObject).replacingOccurrences(of: ",", with: "").components(separatedBy: " ")
+                let transferredFilesParts = (transferredFiles[0] as AnyObject).components(separatedBy: " ")
+                let transferredFilesSizeParts = (transferredFilesSize[0] as AnyObject).components(separatedBy: " ")
+                let totalFilesNumberParts = (totalFilesNumber[0] as AnyObject).components(separatedBy: " ")
+                let totalFileSizeParts = (totalFileSize[0] as AnyObject).components(separatedBy: " ")
                 
-                if (totalSizeParts != nil && transferredNumberParts != nil) {
-                    if (totalSizeParts!.count > 3 && transferredNumberParts!.count > 4) {
-                        self.totalNumberSizebytes = Double(totalSizeParts![3])
-                        self.transferredNumberSizebytes = Double(transferredSizeParts![4])
-                    }
-                }
-            } else {
-                // Stock version of rsync
-                totalSizeParts = (total[0] as AnyObject).components(separatedBy: " ")
-                transferredSizeParts = (total[1] as AnyObject).components(separatedBy: " ")
-                if (totalSizeParts != nil && transferredNumberParts != nil) {
-                    if (totalSizeParts!.count > 3 && transferredNumberParts!.count > 4) {
-                        self.totalNumberSizebytes = Double(totalSizeParts![3])
-                        self.transferredNumberSizebytes = Double(transferredSizeParts![4])
-                    }
-                }
+                // ["Number", "of", "files", "transferred:", "24"]
+                // ["Total", "transferred", "file", "size:", "281579", "bytes"]
+                // ["Number", "of", "files:", "3956"]
+                // ["Total", "file", "size:", "1016385085", "bytes"]
+                
+                if transferredFilesParts.count > 4 {self.transferredNumber = Int(transferredFilesParts[4])} else {self.transferredNumber = 0}
+                if transferredFilesSizeParts.count > 4 {self.transferredNumberSizebytes = Double(transferredFilesSizeParts[4])} else {self.transferredNumberSizebytes = 0}
+                if totalFilesNumberParts.count > 3 {self.totalNumber = Int(totalFilesNumberParts[3])} else {self.totalNumber = 0}
+                if totalFileSizeParts.count > 3 {self.totalNumberSizebytes = Double(totalFileSizeParts[3])} else {self.totalNumberSizebytes = 0}
+                // Rsync ver 2.x does not count directories
+                self.totalDirs = 0
             }
         }
     }
