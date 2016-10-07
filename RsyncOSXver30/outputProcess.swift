@@ -144,6 +144,19 @@ final class outputProcess {
     func getNumbers() {
         let numbers = self.output.filter({(($0 as? String)?.contains("Number of"))!})
         let total = self.output.filter({(($0 as? String)?.contains("Total"))!})
+        
+        let transferredFiles = self.output.filter({(($0 as? String)?.contains("files transferred:"))!})
+        let transferredFilesSize = self.output.filter({(($0 as? String)?.contains("Total transferred file size:"))!})
+        let totalFileSize = self.output.filter({(($0 as? String)?.contains("Total file size:"))!})
+        let totalFilesNumber = self.output.filter({(($0 as? String)?.contains("Number of files:"))!})
+        
+        print(transferredFiles)
+        print(transferredFilesSize)
+        print(totalFileSize)
+        print(totalFilesNumber)
+        
+        
+        
         if (numbers.count > 1 && total.count > 1) {
             var numberParts:[String]?
             var transferredNumberParts:[String]?
