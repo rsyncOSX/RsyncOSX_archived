@@ -197,6 +197,10 @@ final class outputProcess {
                 // Rsync ver 2.x does not count directories
                 self.totalDirs = 0
             }
+        } else {
+            // If it breaks set number of transferred files to 
+            // size of output.
+            self.transferredNumber = self.output.count
         }
     }
     
