@@ -147,7 +147,9 @@ final class RsyncParameters {
         return [argument!,value!]
     }
     
-    // Display value in combobox and value
+    // Get the rsync parameter to store in the configuration.
+    // Function computes which parameters are arguments only 
+    // e.g --backup, or --suffix=value.
     func getdisplayValue (_ parameter:String) -> String {
         let splitstr:[String] = self.split(parameter)
         if splitstr.count > 1 {
@@ -171,7 +173,8 @@ final class RsyncParameters {
         }
     }
     
-    // Display value in combobox and value
+    // Get value of rsync argument to set the corrospending
+    // value in combobox when rsync parameters are presented
     func getvalueCombobox (_ parameter:String) -> Int {
         let splitstr:[String] = self.split(parameter)
         if splitstr.count > 1 {
