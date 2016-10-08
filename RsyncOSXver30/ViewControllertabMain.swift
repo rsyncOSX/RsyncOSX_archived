@@ -45,7 +45,7 @@ protocol ScheduledJobInProgress : class {
     func completed()
 }
 
-class ViewControllertabMain : NSViewController, Information, Abort, Count, RefreshtableViewtabMain, StartBatch, ReadConfigurationsAgain, RsyncUserParams, SendSelecetedIndex, NewSchedules, StartNextScheduledTask, DismissViewController, UpdateProgress, ScheduledJobInProgress {
+class ViewControllertabMain : NSViewController, Information, Abort, Count, RefreshtableViewtabMain, StartBatch, ReadConfigurationsAgain, RsyncUserParams, SendSelecetedIndex, NewSchedules, StartNextScheduledTask, DismissViewController, UpdateProgress, ScheduledJobInProgress, RsyncChanged {
 
     // Protocol function used in Process().
     weak var process_update:UpdateProgress?
@@ -320,6 +320,14 @@ class ViewControllertabMain : NSViewController, Information, Abort, Count, Refre
         self.scheduledJobworking.stopAnimation(nil)
     }
     
+    // Protocol RsyncChanged
+    // If row is selected just update rsync command in view
+    func rsyncchanged() {
+        if let index = self.index {
+          self.rsyncCommand.stringValue = Utils.sharedInstance.setRsyncCommandDisplay(index: index, dryRun: true)
+        }
+    }
+    
     // BUTTONS AND ACTIONS
     
     @IBOutlet weak var edit: NSButton!
@@ -429,6 +437,8 @@ class ViewControllertabMain : NSViewController, Information, Abort, Count, Refre
         }
         // Test all remote servers for connection
         self.testAllremoteserverConnections()
+        // Update rsync command in view i case changed 
+        self.rsyncchanged()
     }
     
     

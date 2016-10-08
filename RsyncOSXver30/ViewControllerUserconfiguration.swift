@@ -9,8 +9,8 @@
 import Foundation
 import Cocoa
 
-protocol ReadConfigurationsAgain : class {
-    func readConfigurations()
+protocol RsyncChanged : class {
+    func rsyncchanged()
 }
 
 class ViewControllerUserconfiguration : NSViewController {
@@ -18,7 +18,7 @@ class ViewControllerUserconfiguration : NSViewController {
     var dirty:Bool = false
     // Delegate to read configurations after toggeling between
     // test- and real mode
-    weak var readconfigurations_delegate:ReadConfigurationsAgain?
+    weak var rsyncchanged_delegate:RsyncChanged?
     // Dismisser
     weak var dismiss_delegate:DismissViewController?
     
@@ -33,25 +33,11 @@ class ViewControllerUserconfiguration : NSViewController {
         } else {
             SharingManagerConfiguration.sharedInstance.rsyncVer3 = false
         }
-        self.dirty = true
-    }
-    
-    @IBOutlet weak var RsyncOSXtest: NSButton!
-    
-    // We dont save this state, only valid in this run
-    @IBAction func toggleRsyncOSXtest(_ sender: NSButton) {
-        SharingManagerSchedule.sharedInstance.cleanAllSchedules()
-        if (self.RsyncOSXtest.state == NSOnState) {
-            SharingManagerConfiguration.sharedInstance.testRun = true
-            
-        } else {
-            SharingManagerConfiguration.sharedInstance.testRun = false
+        if let pvc = self.presenting as? ViewControllertabMain {
+            self.rsyncchanged_delegate = pvc
+            self.rsyncchanged_delegate?.rsyncchanged()
         }
-        SharingManagerConfiguration.sharedInstance.setDataDirty(dirty: true)
-        // Load all tasks into memory
-        SharingManagerConfiguration.sharedInstance.getAllConfigurationsandArguments()
-        self.readconfigurations_delegate?.readConfigurations()
-
+        self.dirty = true
     }
     
     @IBAction func toggleDetailedlogging(_ sender: NSButton) {
@@ -99,9 +85,6 @@ class ViewControllerUserconfiguration : NSViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        if let pvc = self.presenting as? ViewControllertabMain {
-            self.readconfigurations_delegate = pvc
-        }
         // Dismisser is root controller
         if let pvc2 = self.presenting as? ViewControllertabMain {
             self.dismiss_delegate = pvc2
@@ -116,7 +99,6 @@ class ViewControllerUserconfiguration : NSViewController {
         super.viewDidAppear()
         self.dirty = false
         // Set userconfig
-        self.RsyncOSXtest.state = NSOffState
         if (SharingManagerConfiguration.sharedInstance.rsyncVer3) {
             self.version3rsync.state = 1
         } else {

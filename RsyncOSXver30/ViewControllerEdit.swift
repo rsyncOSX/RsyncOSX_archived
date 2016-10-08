@@ -9,6 +9,11 @@
 import Foundation
 import Cocoa
 
+protocol ReadConfigurationsAgain : class {
+    func readConfigurations()
+}
+
+
 class ViewControllerEdit : NSViewController {
     
     @IBOutlet weak var localCatalog: NSTextField!
