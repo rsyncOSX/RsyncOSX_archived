@@ -128,7 +128,7 @@ class executeTask : Operation {
                 if (hiddenID >= 0 && config != nil) {
                     arguments = getArguments.argumentsRsync(config!, dryRun: false, forDisplay: false)
                     // Setting reference to finalize the job
-                    // Finalize job is done when rsynctask ends
+                    // Finalize job is done when rsynctask ends (in process termination)
                     SharingManagerConfiguration.sharedInstance.operation = completeScheduledOperation(dict: dict)
                     // Start the rsync job
                     GlobalMainQueue.async(execute: {

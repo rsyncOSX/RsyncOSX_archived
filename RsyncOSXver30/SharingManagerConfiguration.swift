@@ -92,7 +92,7 @@ class SharingManagerConfiguration {
     // Reference to the New NSViewObject
     var AddObjectMain:NSViewController?
     // Reference to the Operation object
-    // Scheduled tasks
+    // Reference is set in when Scheduled task is executed
     var operation:completeScheduledOperation?
 
     
