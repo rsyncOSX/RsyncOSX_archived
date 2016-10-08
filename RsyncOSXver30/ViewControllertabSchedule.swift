@@ -77,6 +77,14 @@ class ViewControllertabSchedule : NSViewController, GetHiddenID, RefreshtableVie
             as! NSViewController
     }()
     
+    // Userconfiguration
+    // self.presentViewControllerAsSheet(self.ViewControllerUserconfiguration)
+    lazy var ViewControllerUserconfiguration: NSViewController = {
+        return self.storyboard!.instantiateController(withIdentifier: "StoryboardUserconfigID")
+            as! NSViewController
+    }()
+
+    
     // Telling the view to dismiss any presented Viewcontroller
     func dismiss_view(viewcontroller:NSViewController) {
         self.dismissViewController(viewcontroller)
@@ -133,6 +141,13 @@ class ViewControllertabSchedule : NSViewController, GetHiddenID, RefreshtableVie
                 }
             }
         }
+    }
+    
+    // Userconfiguration button
+    @IBAction func Userconfiguration(_ sender: NSButton) {
+        GlobalMainQueue.async(execute: { () -> Void in
+            self.presentViewControllerAsSheet(self.ViewControllerUserconfiguration)
+        })
     }
     
     // First execution starts TODAY at time

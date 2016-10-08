@@ -10,7 +10,7 @@ import Foundation
 import Cocoa
 
 
-class ViewControllerNewConfigurations: NSViewController, NSTableViewDataSource, NSTableViewDelegate, GetPath {
+class ViewControllerNewConfigurations: NSViewController, NSTableViewDataSource, NSTableViewDelegate, GetPath, DismissViewController {
     
     // Table holding all new Configurations
     @IBOutlet weak var newTableView: NSTableView!
@@ -40,6 +40,19 @@ class ViewControllerNewConfigurations: NSViewController, NSTableViewDataSource, 
     @IBOutlet weak var sshport: NSTextField!
     @IBOutlet weak var rsyncdaemon: NSButton!
     
+    // Userconfiguration
+    // self.presentViewControllerAsSheet(self.ViewControllerUserconfiguration)
+    lazy var ViewControllerUserconfiguration: NSViewController = {
+        return self.storyboard!.instantiateController(withIdentifier: "StoryboardUserconfigID")
+            as! NSViewController
+    }()
+    
+    
+    // Telling the view to dismiss any presented Viewcontroller
+    func dismiss_view(viewcontroller:NSViewController) {
+        self.dismissViewController(viewcontroller)
+    }
+
 
     // Protocol GetPath
     func pathSet(path: String?, requester : WhichPath) {
@@ -63,6 +76,13 @@ class ViewControllerNewConfigurations: NSViewController, NSTableViewDataSource, 
         _ = FileDialog(requester: .AddRemoteCatalog)
     }
     
+    // Userconfiguration button
+    @IBAction func Userconfiguration(_ sender: NSButton) {
+        GlobalMainQueue.async(execute: { () -> Void in
+            self.presentViewControllerAsSheet(self.ViewControllerUserconfiguration)
+        })
+    }
+
     
     override func viewDidLoad() {
         super.viewDidLoad()

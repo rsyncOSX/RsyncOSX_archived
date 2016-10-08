@@ -105,6 +105,10 @@ class ViewControllerUserconfiguration : NSViewController {
         // Dismisser is root controller
         if let pvc2 = self.presenting as? ViewControllertabMain {
             self.dismiss_delegate = pvc2
+        } else if let pvc2 = self.presenting as? ViewControllertabSchedule{
+            self.dismiss_delegate = pvc2
+        } else if let pvc2 = self.presenting as? ViewControllerNewConfigurations {
+            self.dismiss_delegate = pvc2
         }
     }
     
