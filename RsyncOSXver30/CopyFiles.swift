@@ -44,6 +44,14 @@ final class CopyFiles {
         return self.output!.getOutput()
     }
     
+    // Abort operation, terminate process
+    func Abort() {
+        if (self.task != nil) {
+            self.task!.abortProcess()
+        }
+        
+    }
+    
     // Estimate run
     func estimate(remotefile:String, localCatalog:String) {
         self.argumentsObject = scpNSTaskArguments(task: .copy, config: self.config!, remoteFile: remotefile, localCatalog: localCatalog, drynrun: true)

@@ -65,6 +65,13 @@ class ViewControllerCopyFiles : NSViewController, UpdateProgress, RefreshtableVi
         self.dismissViewController(viewcontroller)
     }
     
+    // Abort button
+    @IBAction func Abort(_ sender: NSButton) {
+        if (self.copyObject != nil) {
+            self.copyObject!.Abort()
+        }
+    }
+    
     @IBOutlet weak var tableViewSelect: NSTableView!
     // Array to display in tableview
     var filesArray:[String]?
