@@ -1655,7 +1655,7 @@
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnSelection="YES" multipleSelection="NO" autosaveColumns="NO" headerView="Fqx-LM-aMt" id="VmR-YZ-iuN">
-                                            <rect key="frame" x="0.0" y="0.0" width="861.5" height="303"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="859" height="303"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <size key="intercellSpacing" width="3" height="2"/>
                                             <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -1713,7 +1713,7 @@
                                                     </textFieldCell>
                                                     <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                 </tableColumn>
-                                                <tableColumn identifier="resultExecuted" width="269.83203125" minWidth="10" maxWidth="3.4028234663852886e+38" id="Lur-Sd-kBP">
+                                                <tableColumn identifier="resultExecuted" width="267.33203125" minWidth="10" maxWidth="3.4028234663852886e+38" id="Lur-Sd-kBP">
                                                     <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left" title="Result">
                                                         <font key="font" metaFont="smallSystem"/>
                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
@@ -1734,7 +1734,7 @@
                                     <constraint firstAttribute="width" constant="863" id="ZG8-dO-DLD"/>
                                     <constraint firstAttribute="height" constant="330" id="gdk-yj-jdX"/>
                                 </constraints>
-                                <scroller key="horizontalScroller" verticalHuggingPriority="750" doubleValue="0.20000000000000001" horizontal="YES" id="keS-k2-fw7">
+                                <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" doubleValue="0.20000000000000001" horizontal="YES" id="keS-k2-fw7">
                                     <rect key="frame" x="2" y="312" width="859" height="16"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
@@ -1743,7 +1743,7 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
                                 <tableHeaderView key="headerView" id="Fqx-LM-aMt">
-                                    <rect key="frame" x="0.0" y="0.0" width="861.5" height="23"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="859" height="23"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableHeaderView>
                             </scrollView>
@@ -1760,6 +1760,15 @@
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </searchFieldCell>
                             </searchField>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="l5R-jl-dxW">
+                                <rect key="frame" x="20" y="297" width="152" height="53"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <textFieldCell key="cell" lineBreakMode="charWrapping" sendsActionOnEndEditing="YES" title="Select row to show logs for one remote server" id="fSR-hc-2pd">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
                         </subviews>
                         <constraints>
                             <constraint firstAttribute="bottom" secondItem="nOG-Nc-xqW" secondAttribute="bottom" constant="20" id="5HT-Qj-qcF"/>
@@ -1778,7 +1787,7 @@
                 </viewController>
                 <customObject id="tDc-Qe-jSm" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1127" y="670"/>
+            <point key="canvasLocation" x="-1127" y="669.5"/>
         </scene>
         <!--Schedule-->
         <scene sceneID="fFE-4s-MP5">

@@ -79,7 +79,7 @@
                   offsetFromSymbolStart = "1687">
                </Location>
                <Location
-                  shouldBeEnabled = "No"
+                  shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
                   symbolName = "RsyncOSX.ViewControllertabMain.init (coder : __ObjC.NSCoder) -&gt; Swift.Optional&lt;RsyncOSX.ViewControllertabMain&gt;"
@@ -94,22 +94,6 @@
                   offsetFromSymbolStart = "1575">
                </Location>
             </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "RsyncOSXver30/ViewControllerScheduleDetailsAboutRuns.swift"
-            timestampString = "497693588.062027"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "78"
-            endingLineNumber = "78"
-            landmarkName = "tableViewSelectionDidChange(_:)"
-            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>
