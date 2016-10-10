@@ -24,7 +24,7 @@ protocol SendSelecetedIndex : class {
 class ViewControllerRsyncParameters: NSViewController {
     
     // Object for calculating rsync parameters
-    var parameters : RsyncParameters?
+    var parameters : rsyncParameters?
     // Delegate returning params updated or not
     weak var userparamsupdated_delegate : RsyncUserParams?
     // Get index of selected row
@@ -95,7 +95,7 @@ class ViewControllerRsyncParameters: NSViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Create RsyncParameters object and load initial parameters
-        self.parameters = RsyncParameters()
+        self.parameters = rsyncParameters()
         self.argumentArray = parameters!.getArguments()
         self.argumentDictionary = parameters!.getArgumentsAndValues()
         if let pvc = self.presenting as? ViewControllertabMain {

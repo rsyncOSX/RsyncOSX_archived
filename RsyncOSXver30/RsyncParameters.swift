@@ -8,7 +8,7 @@
 
 import Foundation
 
-final class RsyncParameters {
+final class rsyncParameters {
     
     // NSDictionary holding whic rsync arguments requiere and value
     // Filled during initializing of object
