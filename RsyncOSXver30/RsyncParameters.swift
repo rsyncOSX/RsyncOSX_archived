@@ -173,8 +173,10 @@ final class RsyncParameters {
         }
     }
     
-    // Get value of rsync argument to set the corrospending
-    // value in combobox when rsync parameters are presented
+    /// Function returns value of rsync argument to set the corrospending
+    /// value in combobox when rsync parameters are presented
+    /// - parameter parameter : Stringvalue of parameter
+    /// - returns : index of parameter
     func getvalueCombobox (_ parameter:String) -> Int {
         let splitstr:[String] = self.split(parameter)
         if splitstr.count > 1 {
@@ -191,6 +193,97 @@ final class RsyncParameters {
             }
         }
         return 0
+    }
+    
+    
+    /// Function calculates all userparameters (param8 - param14)
+    /// - parameter index: index of selected row
+    /// - returns: array of values with keys "indexComboBox" and "rsyncParameter", array always holding 7 records
+    
+    func setValuesViewDidLoad(index:Int) -> [NSMutableDictionary] {
+        
+        var configurations:[configuration] = SharingManagerConfiguration.sharedInstance.getConfigurations()
+        var values = [NSMutableDictionary]()
+    
+        if (configurations[index].parameter8 != nil) {
+            let dict = NSMutableDictionary()
+            dict.setObject(self.getvalueCombobox(configurations[index].parameter8!), forKey: "indexComboBox" as NSCopying)
+            dict.setObject(self.getdisplayValue(configurations[index].parameter8!), forKey: "rsyncParameter" as NSCopying)
+            values.append(dict)
+        } else {
+            let dict = NSMutableDictionary()
+            dict.setObject(0, forKey: "indexComboBox" as NSCopying)
+            dict.setObject("", forKey: "rsyncParameter" as NSCopying)
+            values.append(dict)
+        }
+        if (configurations[index].parameter9 != nil) {
+            let dict = NSMutableDictionary()
+            dict.setObject(self.getvalueCombobox(configurations[index].parameter9!), forKey: "indexComboBox" as NSCopying)
+            dict.setObject(self.getdisplayValue(configurations[index].parameter9!), forKey: "rsyncParameter" as NSCopying)
+            values.append(dict)
+        } else {
+            let dict = NSMutableDictionary()
+            dict.setObject(0, forKey: "indexComboBox" as NSCopying)
+            dict.setObject("", forKey: "rsyncParameter" as NSCopying)
+            values.append(dict)
+        }
+        if (configurations[index].parameter10 != nil) {
+            let dict = NSMutableDictionary()
+            dict.setObject(self.getvalueCombobox(configurations[index].parameter10!), forKey: "indexComboBox" as NSCopying)
+            dict.setObject(self.getdisplayValue(configurations[index].parameter10!), forKey: "rsyncParameter" as NSCopying)
+            values.append(dict)
+        } else {
+            let dict = NSMutableDictionary()
+            dict.setObject(0, forKey: "indexComboBox" as NSCopying)
+            dict.setObject("", forKey: "rsyncParameter" as NSCopying)
+            values.append(dict)
+        }
+        if (configurations[index].parameter11 != nil) {
+            let dict = NSMutableDictionary()
+            dict.setObject(self.getvalueCombobox(configurations[index].parameter11!), forKey: "indexComboBox" as NSCopying)
+            dict.setObject(self.getdisplayValue(configurations[index].parameter11!), forKey: "rsyncParameter" as NSCopying)
+            values.append(dict)
+        } else {
+            let dict = NSMutableDictionary()
+            dict.setObject(0, forKey: "indexComboBox" as NSCopying)
+            dict.setObject("", forKey: "rsyncParameter" as NSCopying)
+            values.append(dict)
+        }
+        if (configurations[index].parameter12 != nil) {
+            let dict = NSMutableDictionary()
+            dict.setObject(self.getvalueCombobox(configurations[index].parameter12!), forKey: "indexComboBox" as NSCopying)
+            dict.setObject(self.getdisplayValue(configurations[index].parameter12!), forKey: "rsyncParameter" as NSCopying)
+            values.append(dict)
+        } else {
+            let dict = NSMutableDictionary()
+            dict.setObject(0, forKey: "indexComboBox" as NSCopying)
+            dict.setObject("", forKey: "rsyncParameter" as NSCopying)
+            values.append(dict)
+        }
+        if (configurations[index].parameter13 != nil) {
+            let dict = NSMutableDictionary()
+            dict.setObject(self.getvalueCombobox(configurations[index].parameter13!), forKey: "indexComboBox" as NSCopying)
+            dict.setObject(self.getdisplayValue(configurations[index].parameter13!), forKey: "rsyncParameter" as NSCopying)
+            values.append(dict)
+        } else {
+            let dict = NSMutableDictionary()
+            dict.setObject(0, forKey: "indexComboBox" as NSCopying)
+            dict.setObject("", forKey: "rsyncParameter" as NSCopying)
+            values.append(dict)
+        }
+        if (configurations[index].parameter14 != nil) {
+            let dict = NSMutableDictionary()
+            dict.setObject(self.getvalueCombobox(configurations[index].parameter14!), forKey: "indexComboBox" as NSCopying)
+            dict.setObject(self.getdisplayValue(configurations[index].parameter14!), forKey: "rsyncParameter" as NSCopying)
+            values.append(dict)
+        } else {
+            let dict = NSMutableDictionary()
+            dict.setObject(0, forKey: "indexComboBox" as NSCopying)
+            dict.setObject("", forKey: "rsyncParameter" as NSCopying)
+            values.append(dict)
+        }
+        // Return values
+        return values
     }
 
     

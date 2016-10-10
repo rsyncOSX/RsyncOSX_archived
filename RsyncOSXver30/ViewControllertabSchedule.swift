@@ -268,7 +268,7 @@ class ViewControllertabSchedule : NSViewController, GetHiddenID, RefreshtableVie
 }
 
 extension ViewControllertabSchedule : NSTableViewDataSource {
-    // Delegate for size of table
+    
     func numberOfRows(in tableView: NSTableView) -> Int {
         return SharingManagerConfiguration.sharedInstance.ConfigurationsDataSourcecountBackupOnlyCount()
     }
@@ -276,9 +276,6 @@ extension ViewControllertabSchedule : NSTableViewDataSource {
 
 extension ViewControllertabSchedule : NSTableViewDelegate {
     
-    
-    
-    // TableView delegates
     @objc(tableView:objectValueForTableColumn:row:) func tableView(_ tableView: NSTableView, objectValueFor tableColumn: NSTableColumn?, row: Int) -> Any? {
         let object : NSDictionary = SharingManagerConfiguration.sharedInstance.getConfigurationsDataSourcecountBackupOnly()![row]
         var text:String?

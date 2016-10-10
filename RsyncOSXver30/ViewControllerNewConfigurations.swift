@@ -10,7 +10,7 @@ import Foundation
 import Cocoa
 
 
-class ViewControllerNewConfigurations: NSViewController, NSTableViewDataSource, NSTableViewDelegate, GetPath, DismissViewController {
+class ViewControllerNewConfigurations: NSViewController, GetPath, DismissViewController {
     
     // Table holding all new Configurations
     @IBOutlet weak var newTableView: NSTableView!
@@ -183,20 +183,30 @@ class ViewControllerNewConfigurations: NSViewController, NSTableViewDataSource, 
             self.setFields()
         } 
     
-    // TableView delegates
-    func tableView(_ tableView: NSTableView, objectValueFor tableColumn: NSTableColumn?, row: Int) -> Any? {
-        let object:NSMutableDictionary = SharingManagerConfiguration.sharedInstance.getnewConfigurations()![row]
-        return object[tableColumn!.identifier] as? String
-    }
+
     
-    func tableView(_ tableView: NSTableView, setObjectValue object: Any?, for tableColumn: NSTableColumn?, row: Int) {
-        self.tabledata![row].setObject(object!, forKey: (tableColumn?.identifier)! as NSCopying)
-    }
+    
+    
+}
+
+extension ViewControllerNewConfigurations : NSTableViewDataSource {
     
     func numberOfRows(in tableView: NSTableView) -> Int {
         return SharingManagerConfiguration.sharedInstance.newConfigurationsCount()
     }
     
+}
+
+extension ViewControllerNewConfigurations : NSTableViewDelegate {
+   
+    @objc(tableView:objectValueForTableColumn:row:) func tableView(_ tableView: NSTableView, objectValueFor tableColumn: NSTableColumn?, row: Int) -> Any? {
+        let object:NSMutableDictionary = SharingManagerConfiguration.sharedInstance.getnewConfigurations()![row]
+        return object[tableColumn!.identifier] as? String
+    }
+    
+    @objc(tableView:setObjectValue:forTableColumn:row:) func tableView(_ tableView: NSTableView, setObjectValue object: Any?, for tableColumn: NSTableColumn?, row: Int) {
+        self.tabledata![row].setObject(object!, forKey: (tableColumn?.identifier)! as NSCopying)
+    }
 }
 
 extension ViewControllerNewConfigurations : NSDraggingDestination {

@@ -10,7 +10,7 @@
 import Foundation
 import Cocoa
 
-class ViewControllerScheduleDetailsAboutRuns : NSViewController, NSTableViewDataSource, NSTableViewDelegate, NSSearchFieldDelegate {
+class ViewControllerScheduleDetailsAboutRuns : NSViewController {
     
     @IBOutlet weak var scheduletable: NSTableView!
     var tabledata:[NSMutableDictionary]?
@@ -33,6 +33,25 @@ class ViewControllerScheduleDetailsAboutRuns : NSViewController, NSTableViewData
         })
     }
     
+    // when row is selected
+    // setting which table row is selected
+    func tableViewSelectionDidChange(_ notification: Notification) {
+        let myTableViewFromNotification = notification.object as! NSTableView
+        let indexes = myTableViewFromNotification.selectedRowIndexes
+        if let index = indexes.first {
+            let dict = self.tabledata?[index]
+            if let server = dict?.value(forKey: "offsiteServer") as? String {
+                self.search.stringValue = server
+                self.searchFieldDidStartSearching(self.search)
+            }
+        }
+    }
+    
+}
+
+
+extension ViewControllerScheduleDetailsAboutRuns : NSSearchFieldDelegate {
+    
     func searchFieldDidStartSearching(_ sender: NSSearchField){
         if (sender.stringValue.isEmpty) {
             GlobalMainQueue.async(execute: { () -> Void in
@@ -53,12 +72,10 @@ class ViewControllerScheduleDetailsAboutRuns : NSViewController, NSTableViewData
             self.scheduletable.reloadData()
         })
     }
+    
+}
 
-    // TableView delegates
-    func tableView(_ tableView: NSTableView, objectValueFor tableColumn: NSTableColumn?, row: Int) -> Any? {
-        let object:NSMutableDictionary = self.tabledata![row]
-        return object[tableColumn!.identifier] as? String
-    }
+extension ViewControllerScheduleDetailsAboutRuns : NSTableViewDataSource {
     
     func numberOfRows(in tableView: NSTableView) -> Int {
         if (self.tabledata == nil ) {
@@ -67,20 +84,16 @@ class ViewControllerScheduleDetailsAboutRuns : NSViewController, NSTableViewData
             return (self.tabledata!.count)
         }
     }
-
-    // when row is selected
-    // setting which table row is selected
-    func tableViewSelectionDidChange(_ notification: Notification) {
-        let myTableViewFromNotification = notification.object as! NSTableView
-        let indexes = myTableViewFromNotification.selectedRowIndexes
-        if let index = indexes.first {
-            let dict = self.tabledata?[index]
-            if let server = dict?.value(forKey: "offsiteServer") as? String {
-                self.search.stringValue = server
-                self.searchFieldDidStartSearching(self.search)
-            }
-        }
-    }
-
     
 }
+
+extension ViewControllerScheduleDetailsAboutRuns : NSTableViewDelegate {
+    
+    @objc(tableView:objectValueForTableColumn:row:) func tableView(_ tableView: NSTableView, objectValueFor tableColumn: NSTableColumn?, row: Int) -> Any? {
+        let object:NSMutableDictionary = self.tabledata![row]
+        return object[tableColumn!.identifier] as? String
+    }
+    
+}
+
+
