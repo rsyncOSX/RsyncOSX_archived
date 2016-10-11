@@ -39,6 +39,7 @@ class ViewControllerNewConfigurations: NSViewController, GetPath, DismissViewCon
     @IBOutlet weak var backupID: NSTextField!
     @IBOutlet weak var sshport: NSTextField!
     @IBOutlet weak var rsyncdaemon: NSButton!
+    @IBOutlet weak var singleFile: NSButton!
     
     // Userconfiguration
     // self.presentViewControllerAsSheet(self.ViewControllerUserconfiguration)
@@ -118,15 +119,11 @@ class ViewControllerNewConfigurations: NSViewController, GetPath, DismissViewCon
     // for å hente lokal katalog
     
     private func setFields() {
-        clearFields()
         self.viewParameter1.stringValue = parameter1
         self.viewParameter2.stringValue = parameter2
         self.viewParameter3.stringValue = parameter3
         self.viewParameter4.stringValue = parameter4
         self.viewParameter5.stringValue = parameter5 + " " + parameter6
-    }
-
-    private func clearFields () {
         self.viewParameter1.stringValue = ""
         self.viewParameter2.stringValue = ""
         self.viewParameter3.stringValue = ""
@@ -138,12 +135,13 @@ class ViewControllerNewConfigurations: NSViewController, GetPath, DismissViewCon
         self.offsiteServer.stringValue = ""
         self.backupID.stringValue = ""
         self.rsyncdaemon.state = NSOffState
+        self.singleFile.state = NSOffState
     }
     
     
     @IBAction func newConfig (_ sender: NSButton) {
             
-            let dict:NSMutableDictionary = [
+        let dict:NSMutableDictionary = [
                 "task":"backup",
                 "backupID":backupID.stringValue,
                 "localCatalog":localCatalog.stringValue,
@@ -158,9 +156,14 @@ class ViewControllerNewConfigurations: NSViewController, GetPath, DismissViewCon
                 "parameter6":parameter6,
                 "dryrun":"--dry-run",
                 "rsync":"rsync",
-                "dateRun":""]
-            dict.setValue("no", forKey: "batch")
-            if (!localCatalog.stringValue.hasSuffix("/")){
+                "dateRun":"",
+                "singleFile":0]
+        dict.setValue("no", forKey: "batch")
+        if self.singleFile.state == NSOnState {
+            dict.setValue(1, forKey: "singleFile")
+        }
+    
+            if (!localCatalog.stringValue.hasSuffix("/") && self.singleFile.state == NSOffState){
                 localCatalog.stringValue = localCatalog.stringValue + "/"
                 dict.setValue(localCatalog.stringValue, forKey: "localCatalog")
             }

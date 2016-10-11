@@ -2457,6 +2457,14 @@
                                     <action selector="copyLocalCatalog:" target="3xI-3C-guU" id="gOf-VG-z0z"/>
                                 </connections>
                             </button>
+                            <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cif-N9-3mk">
+                                <rect key="frame" x="835" y="342" width="173" height="18"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <buttonCell key="cell" type="check" title="Copy single file" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="neV-Qa-xOq">
+                                    <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                            </button>
                         </subviews>
                         <constraints>
                             <constraint firstItem="3QZ-SK-L8Z" firstAttribute="leading" secondItem="Yuz-aB-bzC" secondAttribute="trailing" constant="2" id="04h-Bu-tIb"/>
@@ -2538,6 +2546,7 @@
                         <outlet property="offsiteServer" destination="Dd9-ZY-ewa" id="UxA-aT-Viu"/>
                         <outlet property="offsiteUsername" destination="SU3-FM-dip" id="iHh-g7-hch"/>
                         <outlet property="rsyncdaemon" destination="3QZ-SK-L8Z" id="UfE-FI-vh8"/>
+                        <outlet property="singleFile" destination="cif-N9-3mk" id="M7t-D2-h2K"/>
                         <outlet property="sshport" destination="mc9-Gh-Wa4" id="UCC-RU-a23"/>
                         <outlet property="viewParameter1" destination="UAM-7e-uQ9" id="GBv-Cl-bn7"/>
                         <outlet property="viewParameter2" destination="804-O7-xTM" id="O9x-cn-kJY"/>
@@ -2548,7 +2557,7 @@
                 </viewController>
                 <customObject id="eib-cb-pn8" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="19" y="1242"/>
+            <point key="canvasLocation" x="19" y="1241.5"/>
         </scene>
         <!--Details about files-->
         <scene sceneID="GIT-ED-d2h">
