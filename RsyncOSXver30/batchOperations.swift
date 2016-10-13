@@ -10,6 +10,14 @@ import Foundation
 
 final class batchOperations {
     
+    // Structure holding updated data for batchrun
+    private var data = [NSMutableDictionary]()
+    // BatchQueue
+    // First = hiddenID, second 0 estimate or 1 real run
+    private var batchQueu = [(Int,Int)]()
+    // Just holding the indexes
+    private var index = [Int]()
+    
     // Set estimated (0 or 1) for row at index
     func setEstimated(numberOfFiles:Int) {
         let index = self.index[0]
@@ -46,18 +54,8 @@ final class batchOperations {
         return self.data.count
     }
     
-    // Structure holding updated data for batchrun
-    private var data = [NSMutableDictionary]()
-    
-    // BatchQueue
-    // First = hiddenID, second 0 estimate or 1 real run
-    private var batchQueu = [(Int,Int)]()
-    
-    // Just holding the indexes
-    private var index = [Int]()
-    
     // Get next batch from Queue, REMOVES the first element
-    // (0,0) indicates end of Queue
+    // (-1,-1) indicates end of Queue
     func nextBatchRemove() -> (Int,Int) {
         if self.batchQueu.count > 0 {
            return self.batchQueu.removeFirst()
@@ -67,7 +65,7 @@ final class batchOperations {
     }
     
     // Get next batch from Queue, COPY ONLY the first element
-    // (0,0) indicates end of Queue
+    // (-1,-1) indicates end of Queue
     func nextBatchCopy() -> (Int,Int) {
         if self.batchQueu.count > 0 {
             return self.batchQueu[0]
@@ -94,9 +92,9 @@ final class batchOperations {
                 "maxnumberOfFilesCellID":"0"]
             self.data.append(row)
             // Appending data for batchQueue
-            // Estimaterun
+            // Estimaterun queu = (hiddenID,0)
             self.batchQueu.append((batchtasks[i].hiddenID,0))
-            // Real run
+            // Real run queu = (hiddenID,1)
             self.batchQueu.append((batchtasks[i].hiddenID,1))
             // Appendig index
             self.index.append(i)
