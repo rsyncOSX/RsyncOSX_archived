@@ -45,7 +45,7 @@ protocol ScheduledJobInProgress : class {
     func completed()
 }
 
-class ViewControllertabMain : NSViewController, Information, Abort, Count, RefreshtableViewtabMain, StartBatch, ReadConfigurationsAgain, RsyncUserParams, SendSelecetedIndex, NewSchedules, StartNextScheduledTask, DismissViewController, UpdateProgress, ScheduledJobInProgress, RsyncChanged {
+class ViewControllertabMain : NSViewController, Information, Abort, Count, RefreshtableViewtabMain, StartBatch, ReadConfigurationsAgain, RsyncUserParams, SendSelecetedIndex, NewSchedules, StartNextScheduledTask, DismissViewController, UpdateProgress, ScheduledJobInProgress, RsyncChanged, Connections {
 
     // Protocol function used in Process().
     weak var process_update:UpdateProgress?
@@ -97,6 +97,7 @@ class ViewControllertabMain : NSViewController, Information, Abort, Count, Refre
     // Used in testing if remote server is on/off-line
     fileprivate var remoteserverOff:Bool = false
     fileprivate var indexBoolremoteserverOff = [Bool]()
+    private var serverOff:[Bool]?
     
     // STATE VARIABLES
     
@@ -328,6 +329,12 @@ class ViewControllertabMain : NSViewController, Information, Abort, Count, Refre
         }
     }
     
+    // Protocol Connections
+    func displayConnections() {
+        self.serverOff = Utils.sharedInstance.gettestAllremoteserverConnections()
+        print(self.serverOff)
+    }
+    
     // BUTTONS AND ACTIONS
     
     @IBOutlet weak var edit: NSButton!
@@ -439,6 +446,7 @@ class ViewControllertabMain : NSViewController, Information, Abort, Count, Refre
         self.testAllremoteserverConnections()
         // Update rsync command in view i case changed 
         self.rsyncchanged()
+        Utils.sharedInstance.testAllremoteserverConnections()
     }
     
     
