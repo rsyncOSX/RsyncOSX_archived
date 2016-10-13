@@ -95,9 +95,7 @@ class ViewControllertabMain : NSViewController, Information, Abort, Count, Refre
     fileprivate var schedules : ScheduleSortedAndExpand?
     // Bool if one or more remote server is offline
     // Used in testing if remote server is on/off-line
-    fileprivate var remoteserverOff:Bool = false
-    fileprivate var indexBoolremoteserverOff = [Bool]()
-    private var serverOff:[Bool]?
+    fileprivate var serverOff:[Bool]?
     
     // STATE VARIABLES
     
@@ -332,7 +330,9 @@ class ViewControllertabMain : NSViewController, Information, Abort, Count, Refre
     // Protocol Connections
     func displayConnections() {
         self.serverOff = Utils.sharedInstance.gettestAllremoteserverConnections()
-        print(self.serverOff)
+        GlobalMainQueue.async(execute: { () -> Void in
+            self.mainTableView.reloadData()
+        })
     }
     
     // BUTTONS AND ACTIONS
@@ -443,10 +443,9 @@ class ViewControllertabMain : NSViewController, Information, Abort, Count, Refre
             })
         }
         // Test all remote servers for connection
-        self.testAllremoteserverConnections()
+        Utils.sharedInstance.testAllremoteserverConnections()
         // Update rsync command in view i case changed 
         self.rsyncchanged()
-        Utils.sharedInstance.testAllremoteserverConnections()
     }
     
     
@@ -521,39 +520,6 @@ class ViewControllertabMain : NSViewController, Information, Abort, Count, Refre
         }
     }
     
-    // Testing all remote servers.
-    // Adding connection true or false in array[bool]
-    // Do the check in background que, reload table in global main queue
-    private func testAllremoteserverConnections () {
-        GlobalDefaultQueue.async(execute: { () -> Void in
-            self.indexBoolremoteserverOff.removeAll()
-            var port:Int = 22
-            for i in 0 ..< SharingManagerConfiguration.sharedInstance.ConfigurationsDataSourcecount() {
-                let config = SharingManagerConfiguration.sharedInstance.getargumentAllConfigurations()[i] as? argumentsOneConfig
-                if ((config?.config.offsiteServer)! != "") {
-                    if let sshport:Int = config?.config.sshport {
-                        port = sshport
-                    }
-                    let (success, _) = Utils.sharedInstance.testTCPconnection((config?.config.offsiteServer)!, port: port, timeout: 1)
-                    if (success) {
-                        self.indexBoolremoteserverOff.append(false)
-                    } else {
-                        self.remoteserverOff = true
-                        self.indexBoolremoteserverOff.append(true)
-                    }
-                } else {
-                    self.indexBoolremoteserverOff.append(false)
-                }
-                // Reload table when all remote servers are checked
-                if i == (SharingManagerConfiguration.sharedInstance.ConfigurationsDataSourcecount() - 1) {
-                    GlobalMainQueue.async(execute: { () -> Void in
-                        self.mainTableView.reloadData()
-                    })
-                }
-            }
-        })
-    }
-        
     // when row is selected
     // setting which table row is selected
     func tableViewSelectionDidChange(_ notification: Notification) {
@@ -768,11 +734,14 @@ extension ViewControllertabMain : NSTableViewDelegate {
     // Function to test for remote server available or not
     // Used in tableview delegate
     private func testRow(_ row:Int) -> Bool {
-        if (row < self.indexBoolremoteserverOff.count) {
-            return self.indexBoolremoteserverOff[row]
-        } else {
-            return false
+        if let serverOff = self.serverOff {
+            if (row < serverOff.count) {
+                return serverOff[row]
+            } else {
+                return false
+            }
         }
+        return false
     }
     
     // TableView delegates
@@ -804,9 +773,9 @@ extension ViewControllertabMain : NSTableViewDelegate {
                 let returnstr = text! + " (" + String(number) + ")"
                 return returnstr
             } else {
-                if (self.remoteserverOff == false) {
-                    return object[tableColumn!.identifier] as? String
-                } else {
+                // if (self.remoteserverOff == false) {
+                //   return object[tableColumn!.identifier] as? String
+                //} else {
                     if (self.testRow(row)) {
                         text = object[tableColumn!.identifier] as? String
                         let attributedString = NSMutableAttributedString(string:(text!))
@@ -816,7 +785,7 @@ extension ViewControllertabMain : NSTableViewDelegate {
                     } else {
                         return object[tableColumn!.identifier] as? String
                     }
-                }
+                // }
             }
         }
     }
