@@ -157,8 +157,8 @@ class ViewControllertabMain : NSViewController, Information, Abort, Count, Refre
             as! NSViewController
     }()
 
-    /// Function for dismissing a presented view
-    /// - parameter viewcontroller: the viewcontroller to be dismissed
+    // Function for dismissing a presented view
+    // - parameter viewcontroller: the viewcontroller to be dismissed
     func dismiss_view(viewcontroller:NSViewController) {
         self.dismissViewController(viewcontroller)
     }
@@ -200,7 +200,8 @@ class ViewControllertabMain : NSViewController, Information, Abort, Count, Refre
     }
     
     // Protocol StartBatch
-    // Two functions runcBatch and abortOperations
+    // Two functions runcBatch and abortOperations.
+    // Functions are called from batchView.
     func runBatch() {
         // No scheduled opertaion in progress
         if (self.scheduledOperationInProgress() == false ) {
@@ -282,7 +283,7 @@ class ViewControllertabMain : NSViewController, Information, Abort, Count, Refre
         self.rsyncparams.state = 0
     }
     
-    // Protocol for sending index of row selcetd in table
+    // Protocol for sending index of row selected in table
     func getindex() -> Int {
         if (self.index != nil) {
             return self.index!
@@ -301,14 +302,16 @@ class ViewControllertabMain : NSViewController, Information, Abort, Count, Refre
     
     // Protocol NewSchedules
     // Notfied if new schedules are added.
-    // Create new schedule object
+    // Create new schedule object. Old object is
+    // released (deleted).
     func newSchedulesAdded() {
         self.schedules = nil
         self.schedules = ScheduleSortedAndExpand()
     }
     
     // Protocol ScheduledJobInProgress
-    // TWo functions start and completed
+    // TWo functions start and complete, start and stop progressview
+    // and set state on/off.
     func start() {
         self.scheduledJobInProgress = true
         self.scheduledJobworking.startAnimation(nil)
@@ -320,7 +323,7 @@ class ViewControllertabMain : NSViewController, Information, Abort, Count, Refre
     }
     
     // Protocol RsyncChanged
-    // If row is selected just update rsync command in view
+    // If row is selected an update rsync command in view
     func rsyncchanged() {
         if let index = self.index {
           self.rsyncCommand.stringValue = Utils.sharedInstance.setRsyncCommandDisplay(index: index, dryRun: true)
@@ -328,6 +331,10 @@ class ViewControllertabMain : NSViewController, Information, Abort, Count, Refre
     }
     
     // Protocol Connections
+    // Function is called when testing of remote connections are compledet.
+    // Function is just redrawing the mainTableView after getting info
+    // about which remote servers are off/on line.
+    // Remote servers offline are marked with red line in mainTableView
     func displayConnections() {
         self.serverOff = Utils.sharedInstance.gettestAllremoteserverConnections()
         GlobalMainQueue.async(execute: { () -> Void in
@@ -341,7 +348,7 @@ class ViewControllertabMain : NSViewController, Information, Abort, Count, Refre
     @IBOutlet weak var rsyncparams: NSButton!
     @IBOutlet weak var delete: NSButton!
     
-    // Menus as Radiobuttons
+    // Menus as Radiobuttons for Edit functions in tabMainView
     @IBAction func Radiobuttons(_ sender: NSButton) {
         if (self.index != nil) {
             // rsync params
@@ -414,15 +421,15 @@ class ViewControllertabMain : NSViewController, Information, Abort, Count, Refre
         self.working.usesThreadedAnimation = true
         self.scheduledJobworking.usesThreadedAnimation = true
         self.ReReadConfigurationsAndSchedules()
+        // Setting reference to self, used when calling delegate functions
         SharingManagerConfiguration.sharedInstance.ViewObjectMain = self
         // Box to show is dryrun or realrun next
         self.dryRunOrRealRun.stringValue = "estimate"
         // Create a Schedules object
+        // Start waiting for next Scheduled job (if any)
         self.schedules = ScheduleSortedAndExpand()
-        // Start waiting for next Scheduled job
         self.startProcess()
     }
-    
     
     override func viewDidAppear() {
         super.viewDidAppear()
@@ -450,6 +457,10 @@ class ViewControllertabMain : NSViewController, Information, Abort, Count, Refre
     
     
     // Execute SINGLE TASKS only
+    // Start of executing SINGLE tasks
+    // After start the function ProcessTermination()
+    // which is triggered when a Process termination is
+    // discovered, completes the task.
     @IBAction func executeTask(_ sender: NSButton) {
         if (self.scheduledOperationInProgress() == false){
             self.inbatchRun = false
@@ -473,6 +484,8 @@ class ViewControllertabMain : NSViewController, Information, Abort, Count, Refre
                 } else {
                     self.estimated = true
                 }
+                // Create two objects for doing the real work.
+                // the output object and the process object
                 self.output = outputProcess()
                 process.executeProcess(arguments!, output: self.output!)
                 self.process = process.getProcess()
@@ -485,6 +498,12 @@ class ViewControllertabMain : NSViewController, Information, Abort, Count, Refre
     }
     
     // Execute BATCH TASKS only
+    // Start of BATCH tasks.
+    // After start the function ProcessTermination()
+    // which is triggered when a Process termination is
+    // discovered, takes care of next task according to
+    // status and next work in batchOperations which
+    // also includes a queu of work.
     @IBAction func executeBatch(_ sender: NSButton) {
         if (self.scheduledOperationInProgress() == false){
             // Create the output object for rsync
@@ -578,9 +597,8 @@ class ViewControllertabMain : NSViewController, Information, Abort, Count, Refre
         SharingManagerSchedule.sharedInstance.getAllSchedules()
     }
 
-    // Do some real WORK START
+    // Delegate functions called from the Process object
     // Protocol UpdateProgress two functions, ProcessTermination() and FileHandler()
-    
     func ProcessTermination() {
         // If task is aborted dont do anything
         if (self.abort == false) {
@@ -701,8 +719,11 @@ class ViewControllertabMain : NSViewController, Information, Abort, Count, Refre
         }
     }
     
-    //  Do some real WORK END
+    //  End delegate functions Process object
     
+    
+    // Function for getting numbers out of output object updated when
+    // Process object executes the job.
     private func setNumbers (setvalues : Bool) {
         if (setvalues) {
             self.transferredNumber.stringValue = String(self.output!.getTransferredNumbers(numbers: .transferredNumber))
@@ -717,7 +738,6 @@ class ViewControllertabMain : NSViewController, Information, Abort, Count, Refre
             self.totalNumberSizebytes.stringValue = ""
             self.totalDirs.stringValue = ""
         }
-        
     }
 
 }
