@@ -124,11 +124,6 @@ class ViewControllerNewConfigurations: NSViewController, GetPath, DismissViewCon
         self.viewParameter3.stringValue = parameter3
         self.viewParameter4.stringValue = parameter4
         self.viewParameter5.stringValue = parameter5 + " " + parameter6
-        self.viewParameter1.stringValue = ""
-        self.viewParameter2.stringValue = ""
-        self.viewParameter3.stringValue = ""
-        self.viewParameter4.stringValue = ""
-        self.viewParameter5.stringValue = ""
         self.localCatalog.stringValue = ""
         self.offsiteCatalog.stringValue = ""
         self.offsiteUsername.stringValue = ""
