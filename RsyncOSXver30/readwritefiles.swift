@@ -61,7 +61,6 @@ class readwritefiles {
                 // no profile
                 str = "/Rsync/" + SharingManagerConfiguration.sharedInstance.getMacSerialNumber() + self.name!
             }
-            print (docuDir + str!)
             return docuDir + str!
         }
     }

@@ -78,6 +78,8 @@ class ViewControllertabMain : NSViewController, Information, Abort, Count, Refre
     @IBOutlet weak var totalNumberSizebytes: NSTextField!
     // total number of directories remote volume
     @IBOutlet weak var totalDirs: NSTextField!
+    // Showing info about profile
+    @IBOutlet weak var profilInfo: NSTextField!
     
     // REFERENCE VARIABLES
     
@@ -454,6 +456,8 @@ class ViewControllertabMain : NSViewController, Information, Abort, Count, Refre
         Utils.sharedInstance.testAllremoteserverConnections()
         // Update rsync command in view i case changed 
         self.rsyncchanged()
+        // Show which profile
+        self.displayProfile()
     }
     
     
@@ -739,6 +743,16 @@ class ViewControllertabMain : NSViewController, Information, Abort, Count, Refre
             self.totalNumberSizebytes.stringValue = ""
             self.totalDirs.stringValue = ""
         }
+    }
+    
+    // Function for setting profile
+    private func displayProfile() {
+        if let profile = SharingManagerConfiguration.sharedInstance.getProfile() {
+            self.profilInfo.stringValue = "Profile : " + profile
+        } else {
+            self.profilInfo.stringValue = "Profile : default"
+        }
+        
     }
 
 }
