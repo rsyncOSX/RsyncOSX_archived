@@ -61,9 +61,6 @@ class SharingManagerConfiguration {
     
     // CONFIGURATIONS RSYNCOSX
     
-    // If testdata
-    // let testRun:Bool = true›
-    var testRun:Bool = false
     // True if version 3.2.1 of rsync in /usr/local/bin
     // let rsyncVer3:Bool = true
     var rsyncVer3:Bool = false

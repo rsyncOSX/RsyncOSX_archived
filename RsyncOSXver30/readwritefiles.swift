@@ -127,18 +127,10 @@ class readwritefiles {
         switch (task) {
         case .schedule:
             self.key = "Schedule"
-            if (SharingManagerConfiguration.sharedInstance.testRun == true) {
-                self.name = "/scheduleRsynctest.plist"
-            } else {
-                self.name = "/scheduleRsync.plist"
-            }
+            self.name = "/scheduleRsync.plist"
         case .configuration:
+            self.name = "/configRsync.plist"
             self.key = "Catalogs"
-            if (SharingManagerConfiguration.sharedInstance.testRun == true) {
-                self.name = "/configRsynctest.plist"
-            } else {
-                self.name = "/configRsync.plist"
-            }
         case .userconfig:
             self.key = "config"
             self.name = "/config.plist"
