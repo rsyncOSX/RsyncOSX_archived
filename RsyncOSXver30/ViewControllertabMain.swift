@@ -413,6 +413,7 @@ class ViewControllertabMain : NSViewController, Information, Abort, Count, Refre
     // Initial functions viewDidLoad and viewDidAppear
     override func viewDidLoad() {
         super.viewDidLoad()
+        // SharingManagerConfiguration.sharedInstance.setProfile(profile: "test")
         // Do view setup here.
         // Setting delegates and datasource
         self.mainTableView.delegate = self

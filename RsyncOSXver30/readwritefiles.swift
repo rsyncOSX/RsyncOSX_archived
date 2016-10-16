@@ -34,15 +34,35 @@ class readwritefiles {
     // The class either reads data from persistent store or
     // returns nil if data is NOT dirty
     private var readdisk:Bool = true
+    // Which profile to read
+    private var profile:String?
+    // If to use profile, only configurations and schedules to read from profile
+    private var useProfile:Bool = false
     
     // Set which file to read
     private var fileName : String? {
+        
         get {
+            let str:String?
             let paths = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true) as NSArray
             let docuDir = paths.firstObject as! String
             self.createDirectory((docuDir + "/Rsync/" + SharingManagerConfiguration.sharedInstance.getMacSerialNumber()))
-            let str = "/Rsync/" + SharingManagerConfiguration.sharedInstance.getMacSerialNumber() + self.name!
-            return docuDir + str
+            
+            if (self.useProfile) {
+                // Use profile
+                if let profile = self.profile {
+                    self.createDirectory((docuDir + "/Rsync/" + SharingManagerConfiguration.sharedInstance.getMacSerialNumber()) + "/" + profile)
+                    str = "/Rsync/" + SharingManagerConfiguration.sharedInstance.getMacSerialNumber() + "/" + profile + self.name!
+                } else {
+                    // If profile not set use no profile
+                    str = "/Rsync/" + SharingManagerConfiguration.sharedInstance.getMacSerialNumber() + self.name!
+                }
+            } else {
+                // no profile
+                str = "/Rsync/" + SharingManagerConfiguration.sharedInstance.getMacSerialNumber() + self.name!
+            }
+            print (docuDir + str!)
+            return docuDir + str!
         }
     }
 
@@ -124,13 +144,22 @@ class readwritefiles {
     
     // Set preferences for which data to read or write
     private func setPreferences (_ task:enumtask) {
+        self.useProfile = false
         switch (task) {
         case .schedule:
-            self.key = "Schedule"
             self.name = "/scheduleRsync.plist"
+            self.key = "Schedule"
+            if let profile = SharingManagerConfiguration.sharedInstance.getProfile() {
+                self.profile = profile
+                self.useProfile = true
+            }
         case .configuration:
             self.name = "/configRsync.plist"
             self.key = "Catalogs"
+            if let profile = SharingManagerConfiguration.sharedInstance.getProfile() {
+                self.profile = profile
+                self.useProfile = true
+            }
         case .userconfig:
             self.key = "config"
             self.name = "/config.plist"
