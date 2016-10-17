@@ -806,19 +806,13 @@ extension ViewControllertabMain : NSTableViewDelegate {
     // TableView delegates
     @objc(tableView:objectValueForTableColumn:row:) func tableView(_ tableView: NSTableView, objectValueFor tableColumn: NSTableColumn?, row: Int) -> Any? {
         
-        if row > SharingManagerConfiguration.sharedInstance.ConfigurationsDataSourcecount() {
+        if row > SharingManagerConfiguration.sharedInstance.ConfigurationsDataSourcecount() - 1 {
             return nil
         }
-        
-        // Must do this because index out of range when delete
-        var index:Int = row
-        if index == SharingManagerConfiguration.sharedInstance.ConfigurationsDataSourcecount() {
-            index = SharingManagerConfiguration.sharedInstance.ConfigurationsDataSourcecount() - 1
-        }
-        let object : NSMutableDictionary = SharingManagerConfiguration.sharedInstance.getConfigurationsDataSource()![index]
+        let object : NSMutableDictionary = SharingManagerConfiguration.sharedInstance.getConfigurationsDataSource()![row]
         var text:String?
         var schedule :Bool = false
-        let hiddenID:Int = SharingManagerConfiguration.sharedInstance.getConfigurations()[index].hiddenID
+        let hiddenID:Int = SharingManagerConfiguration.sharedInstance.getConfigurations()[row].hiddenID
         if SharingManagerSchedule.sharedInstance.hiddenIDinSchedule(hiddenID) {
             text = object[tableColumn!.identifier] as? String
             if (text == "backup" || text == "restore") {
