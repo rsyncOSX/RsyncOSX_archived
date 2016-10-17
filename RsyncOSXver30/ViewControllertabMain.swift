@@ -158,6 +158,15 @@ class ViewControllertabMain : NSViewController, Information, Abort, Count, Refre
         return self.storyboard!.instantiateController(withIdentifier: "StoryboardEditID")
             as! NSViewController
     }()
+    
+    // Profile
+    // self.presentViewControllerAsSheet(self.ViewControllerProfile)
+    lazy var ViewControllerProfile: NSViewController = {
+        return self.storyboard!.instantiateController(withIdentifier: "ProfileID")
+            as! NSViewController
+    }()
+
+    
 
     // Function for dismissing a presented view
     // - parameter viewcontroller: the viewcontroller to be dismissed
@@ -409,6 +418,12 @@ class ViewControllertabMain : NSViewController, Information, Abort, Count, Refre
     @IBAction func Userconfiguration(_ sender: NSButton) {
         GlobalMainQueue.async(execute: { () -> Void in
             self.presentViewControllerAsSheet(self.ViewControllerUserconfiguration)
+        })
+    }
+    
+    @IBAction func profiles(_ sender: NSButton) {
+        GlobalMainQueue.async(execute: { () -> Void in
+            self.presentViewControllerAsSheet(self.ViewControllerProfile)
         })
     }
 
