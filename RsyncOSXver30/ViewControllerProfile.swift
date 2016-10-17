@@ -14,8 +14,21 @@ class ViewControllerProfile : NSViewController {
 
     // Dismisser
     weak var dismiss_delegate:DismissViewController?
+    @IBOutlet weak var delete: NSButton!
+    @IBOutlet weak var new: NSButton!
+    @IBOutlet weak var select: NSButton!
+    @IBOutlet weak var Default: NSButton!
     
     @IBAction func radioButtons(_ sender: NSButton) {
+        if (self.delete.state == 1) {
+            
+        } else if (self.new.state == 1) {
+            
+        } else if (self.select.state == 1) {
+            
+        } else if (self.Default.state == 1) {
+            
+        }
     }
     
     @IBAction func close(_ sender: NSButton) {

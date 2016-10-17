@@ -3645,11 +3645,11 @@ DQ
             <objects>
                 <viewController storyboardIdentifier="ProfileID" id="kPy-NB-0HQ" customClass="ViewControllerProfile" customModule="RsyncOSX" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="Xo0-3u-89C">
-                        <rect key="frame" x="0.0" y="0.0" width="306" height="216"/>
+                        <rect key="frame" x="0.0" y="0.0" width="306" height="186"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="JeM-Ky-gSo">
-                                <rect key="frame" x="217" y="13" width="75" height="32"/>
+                                <rect key="frame" x="217" y="14" width="75" height="32"/>
                                 <buttonCell key="cell" type="push" title="Close" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="hXq-5p-KS7">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
@@ -3659,19 +3659,19 @@ DQ
                                 </connections>
                             </button>
                             <scrollView autohidesScrollers="YES" horizontalLineScroll="19" horizontalPageScroll="10" verticalLineScroll="19" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7lc-Ln-ysQ">
-                                <rect key="frame" x="119" y="61" width="167" height="135"/>
+                                <rect key="frame" x="117" y="62" width="169" height="104"/>
                                 <clipView key="contentView" id="Csf-rb-t1Q">
-                                    <rect key="frame" x="1" y="0.0" width="165" height="134"/>
+                                    <rect key="frame" x="1" y="0.0" width="167" height="103"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnSelection="YES" multipleSelection="NO" autosaveColumns="NO" rowSizeStyle="automatic" headerView="Jgh-3N-39f" viewBased="YES" id="re6-1I-n0D">
-                                            <rect key="frame" x="0.0" y="0.0" width="165" height="111"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="167" height="80"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <size key="intercellSpacing" width="3" height="2"/>
                                             <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                             <color key="gridColor" name="gridColor" catalog="System" colorSpace="catalog"/>
                                             <tableColumns>
-                                                <tableColumn width="162" minWidth="40" maxWidth="1000" id="241-VI-fhB">
+                                                <tableColumn width="164" minWidth="40" maxWidth="1000" id="241-VI-fhB">
                                                     <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" title="Profile name">
                                                         <font key="font" metaFont="smallSystem"/>
                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
@@ -3685,11 +3685,11 @@ DQ
                                                     <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                     <prototypeCellViews>
                                                         <tableCellView id="sBn-4Y-0C1">
-                                                            <rect key="frame" x="1" y="1" width="162" height="17"/>
+                                                            <rect key="frame" x="1" y="1" width="164" height="17"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
                                                                 <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="hIA-Cj-xjk">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="162" height="17"/>
+                                                                    <rect key="frame" x="0.0" y="0.0" width="164" height="17"/>
                                                                     <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="Table View Cell" id="Z8Z-vX-Z7f">
                                                                         <font key="font" metaFont="system"/>
                                                                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
@@ -3721,23 +3721,13 @@ DQ
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
                                 <tableHeaderView key="headerView" id="Jgh-3N-39f">
-                                    <rect key="frame" x="0.0" y="0.0" width="165" height="23"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="167" height="23"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableHeaderView>
                             </scrollView>
-                            <button translatesAutoresizingMaskIntoConstraints="NO" id="zKI-zj-6C5">
-                                <rect key="frame" x="33" y="169" width="76" height="18"/>
-                                <buttonCell key="cell" type="radio" title="Delete" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="OiS-Y2-Ihs">
-                                    <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                                    <font key="font" metaFont="system"/>
-                                </buttonCell>
-                                <connections>
-                                    <action selector="radioButtons:" target="kPy-NB-0HQ" id="ktb-1E-kOQ"/>
-                                </connections>
-                            </button>
                             <button translatesAutoresizingMaskIntoConstraints="NO" id="VZs-fu-r2G">
-                                <rect key="frame" x="33" y="144" width="49" height="18"/>
-                                <buttonCell key="cell" type="radio" title="New" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="uPe-ww-f2K">
+                                <rect key="frame" x="33" y="143" width="47" height="18"/>
+                                <buttonCell key="cell" type="radio" title="new" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="uPe-ww-f2K">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
@@ -3746,8 +3736,8 @@ DQ
                                 </connections>
                             </button>
                             <button translatesAutoresizingMaskIntoConstraints="NO" id="Uqd-WD-wD5">
-                                <rect key="frame" x="33" y="119" width="46" height="18"/>
-                                <buttonCell key="cell" type="radio" title="Use" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="L6V-Rw-h20">
+                                <rect key="frame" x="33" y="121" width="59" height="18"/>
+                                <buttonCell key="cell" type="radio" title="select" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="L6V-Rw-h20">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
@@ -3756,51 +3746,76 @@ DQ
                                 </connections>
                             </button>
                             <box title="Profiles" translatesAutoresizingMaskIntoConstraints="NO" id="Nsb-sq-qUU">
-                                <rect key="frame" x="17" y="104" width="93" height="103"/>
+                                <rect key="frame" x="17" y="58" width="93" height="120"/>
                                 <view key="contentView" id="7Nn-Tg-6p0">
-                                    <rect key="frame" x="2" y="2" width="89" height="86"/>
+                                    <rect key="frame" x="2" y="2" width="89" height="103"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 </view>
                             </box>
                             <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="SjN-sW-Scz">
-                                <rect key="frame" x="20" y="20" width="124" height="22"/>
+                                <rect key="frame" x="20" y="20" width="169" height="22"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" drawsBackground="YES" id="i6h-gO-7vJ">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
+                            <button translatesAutoresizingMaskIntoConstraints="NO" id="jAn-bi-K98">
+                                <rect key="frame" x="33" y="98" width="65" height="18"/>
+                                <buttonCell key="cell" type="radio" title="default" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="QD9-hb-EB3">
+                                    <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="radioButtons:" target="kPy-NB-0HQ" id="J0Z-DA-qfK"/>
+                                </connections>
+                            </button>
+                            <button translatesAutoresizingMaskIntoConstraints="NO" id="zKI-zj-6C5">
+                                <rect key="frame" x="33" y="76" width="74" height="18"/>
+                                <buttonCell key="cell" type="radio" title="delete" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="OiS-Y2-Ihs">
+                                    <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="radioButtons:" target="kPy-NB-0HQ" id="ktb-1E-kOQ"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <constraints>
-                            <constraint firstItem="JeM-Ky-gSo" firstAttribute="leading" secondItem="SjN-sW-Scz" secondAttribute="trailing" constant="79" id="3TP-kf-yyb"/>
-                            <constraint firstItem="7lc-Ln-ysQ" firstAttribute="top" secondItem="Xo0-3u-89C" secondAttribute="top" constant="20" symbolic="YES" id="7h5-gT-9Fx"/>
-                            <constraint firstItem="JeM-Ky-gSo" firstAttribute="top" secondItem="7lc-Ln-ysQ" secondAttribute="bottom" constant="20" symbolic="YES" id="9Ig-ap-KiL"/>
-                            <constraint firstItem="Nsb-sq-qUU" firstAttribute="top" secondItem="Xo0-3u-89C" secondAttribute="top" constant="9" id="FJF-Jb-1y5"/>
-                            <constraint firstItem="Nsb-sq-qUU" firstAttribute="leading" secondItem="SjN-sW-Scz" secondAttribute="leading" id="Hbp-mZ-8QZ"/>
-                            <constraint firstItem="SjN-sW-Scz" firstAttribute="baseline" secondItem="JeM-Ky-gSo" secondAttribute="baseline" id="LXV-rM-ktF"/>
-                            <constraint firstItem="Nsb-sq-qUU" firstAttribute="leading" secondItem="Xo0-3u-89C" secondAttribute="leading" constant="20" symbolic="YES" id="Ll1-bX-yfS"/>
-                            <constraint firstItem="Uqd-WD-wD5" firstAttribute="top" secondItem="VZs-fu-r2G" secondAttribute="bottom" constant="9" id="QEg-m0-Nk1"/>
-                            <constraint firstItem="VZs-fu-r2G" firstAttribute="top" secondItem="zKI-zj-6C5" secondAttribute="bottom" constant="9" id="UEX-h6-1Q7"/>
-                            <constraint firstAttribute="trailing" secondItem="7lc-Ln-ysQ" secondAttribute="trailing" constant="20" symbolic="YES" id="UmK-xU-vjr"/>
-                            <constraint firstItem="zKI-zj-6C5" firstAttribute="trailing" secondItem="Nsb-sq-qUU" secondAttribute="trailing" id="axM-my-OCC"/>
-                            <constraint firstItem="SjN-sW-Scz" firstAttribute="top" secondItem="Nsb-sq-qUU" secondAttribute="bottom" constant="66" id="c5h-kC-eFy"/>
-                            <constraint firstItem="7lc-Ln-ysQ" firstAttribute="leading" secondItem="VZs-fu-r2G" secondAttribute="trailing" constant="39" id="cOW-AW-kjQ"/>
-                            <constraint firstItem="VZs-fu-r2G" firstAttribute="leading" secondItem="Uqd-WD-wD5" secondAttribute="leading" id="h45-gK-vgJ"/>
-                            <constraint firstItem="zKI-zj-6C5" firstAttribute="leading" secondItem="Xo0-3u-89C" secondAttribute="leading" constant="34" id="lo1-k1-YLe"/>
-                            <constraint firstItem="Uqd-WD-wD5" firstAttribute="centerY" secondItem="7lc-Ln-ysQ" secondAttribute="centerY" id="o0F-ST-SLh"/>
-                            <constraint firstItem="7lc-Ln-ysQ" firstAttribute="trailing" secondItem="JeM-Ky-gSo" secondAttribute="trailing" id="ogn-nx-SKw"/>
-                            <constraint firstAttribute="bottom" secondItem="SjN-sW-Scz" secondAttribute="bottom" constant="20" symbolic="YES" id="paB-X2-ghi"/>
-                            <constraint firstItem="zKI-zj-6C5" firstAttribute="leading" secondItem="VZs-fu-r2G" secondAttribute="leading" id="uHu-Bm-iIX"/>
-                            <constraint firstItem="7lc-Ln-ysQ" firstAttribute="leading" secondItem="zKI-zj-6C5" secondAttribute="trailing" constant="12" id="zMi-LJ-qWA"/>
+                            <constraint firstItem="jAn-bi-K98" firstAttribute="top" secondItem="Uqd-WD-wD5" secondAttribute="bottom" constant="7" id="1iM-G4-lPW"/>
+                            <constraint firstItem="SjN-sW-Scz" firstAttribute="top" secondItem="zKI-zj-6C5" secondAttribute="bottom" constant="35" id="3Bd-Xx-1gJ"/>
+                            <constraint firstItem="JeM-Ky-gSo" firstAttribute="top" secondItem="7lc-Ln-ysQ" secondAttribute="bottom" constant="20" symbolic="YES" id="877-od-syJ"/>
+                            <constraint firstAttribute="bottom" secondItem="SjN-sW-Scz" secondAttribute="bottom" constant="20" symbolic="YES" id="DFA-ch-YXB"/>
+                            <constraint firstAttribute="trailing" secondItem="7lc-Ln-ysQ" secondAttribute="trailing" constant="20" symbolic="YES" id="Hfv-GC-7p7"/>
+                            <constraint firstItem="SjN-sW-Scz" firstAttribute="top" secondItem="JeM-Ky-gSo" secondAttribute="top" id="JKr-Wx-nYT"/>
+                            <constraint firstItem="VZs-fu-r2G" firstAttribute="leading" secondItem="Xo0-3u-89C" secondAttribute="leading" constant="34" id="Jpk-mg-NKz"/>
+                            <constraint firstItem="Uqd-WD-wD5" firstAttribute="leading" secondItem="jAn-bi-K98" secondAttribute="leading" id="P2V-IM-Le1"/>
+                            <constraint firstItem="Nsb-sq-qUU" firstAttribute="bottom" secondItem="7lc-Ln-ysQ" secondAttribute="bottom" id="QBb-Gr-XC2"/>
+                            <constraint firstItem="Nsb-sq-qUU" firstAttribute="leading" secondItem="SjN-sW-Scz" secondAttribute="leading" id="QDs-Df-bQ9"/>
+                            <constraint firstItem="VZs-fu-r2G" firstAttribute="leading" secondItem="Uqd-WD-wD5" secondAttribute="leading" id="QFu-Ca-bYM"/>
+                            <constraint firstItem="JeM-Ky-gSo" firstAttribute="leading" secondItem="SjN-sW-Scz" secondAttribute="trailing" constant="34" id="QTa-AA-cum"/>
+                            <constraint firstItem="Nsb-sq-qUU" firstAttribute="top" secondItem="Xo0-3u-89C" secondAttribute="top" constant="8" id="UVu-nR-ImL"/>
+                            <constraint firstItem="7lc-Ln-ysQ" firstAttribute="leading" secondItem="jAn-bi-K98" secondAttribute="trailing" constant="21" id="gqR-6W-ILB"/>
+                            <constraint firstItem="Uqd-WD-wD5" firstAttribute="top" secondItem="VZs-fu-r2G" secondAttribute="bottom" constant="6" symbolic="YES" id="hdx-Re-MRJ"/>
+                            <constraint firstItem="zKI-zj-6C5" firstAttribute="top" secondItem="jAn-bi-K98" secondAttribute="bottom" constant="6" symbolic="YES" id="juF-5x-n7e"/>
+                            <constraint firstItem="jAn-bi-K98" firstAttribute="leading" secondItem="zKI-zj-6C5" secondAttribute="leading" id="mKl-KD-LBE"/>
+                            <constraint firstItem="7lc-Ln-ysQ" firstAttribute="leading" secondItem="zKI-zj-6C5" secondAttribute="trailing" constant="12" id="rQZ-ga-XJW"/>
+                            <constraint firstItem="Nsb-sq-qUU" firstAttribute="leading" secondItem="Xo0-3u-89C" secondAttribute="leading" constant="20" symbolic="YES" id="tPN-1X-Gdw"/>
+                            <constraint firstItem="7lc-Ln-ysQ" firstAttribute="leading" secondItem="Nsb-sq-qUU" secondAttribute="trailing" constant="10" id="wMR-cR-mV3"/>
+                            <constraint firstItem="7lc-Ln-ysQ" firstAttribute="top" secondItem="Xo0-3u-89C" secondAttribute="top" constant="20" symbolic="YES" id="ycg-4a-ioY"/>
+                            <constraint firstItem="7lc-Ln-ysQ" firstAttribute="trailing" secondItem="JeM-Ky-gSo" secondAttribute="trailing" id="znL-Ya-DCe"/>
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="Radiobuttons" destination="zKI-zj-6C5" id="7Dm-cc-tGb"/>
+                        <outlet property="Default" destination="jAn-bi-K98" id="7AW-ga-dXW"/>
+                        <outlet property="delete" destination="zKI-zj-6C5" id="xRt-go-Dyc"/>
+                        <outlet property="new" destination="VZs-fu-r2G" id="7uC-Qv-CoX"/>
+                        <outlet property="select" destination="Uqd-WD-wD5" id="YCe-f0-pNd"/>
                     </connections>
                 </viewController>
                 <customObject id="RTu-uV-wPA" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1356" y="2651"/>
+            <point key="canvasLocation" x="-1356" y="2636"/>
         </scene>
         <!--Details about files-->
         <scene sceneID="YH7-XV-N0K">
