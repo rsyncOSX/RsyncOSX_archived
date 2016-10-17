@@ -15,9 +15,11 @@ class ViewControllerProfile : NSViewController {
     // Dismisser
     weak var dismiss_delegate:DismissViewController?
     
+    @IBAction func radioButtons(_ sender: NSButton) {
+    }
+    
     @IBAction func close(_ sender: NSButton) {
         self.dismiss_delegate?.dismiss_view(viewcontroller: self)
-        
     }
 
 
