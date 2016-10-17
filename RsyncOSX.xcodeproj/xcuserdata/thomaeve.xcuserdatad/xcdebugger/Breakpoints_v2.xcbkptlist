@@ -163,33 +163,65 @@
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "RsyncOSX.profiles.getDirectorys () -&gt; __ObjC.NSArray"
+                  symbolName = "RsyncOSX.profiles.getDirectorysURLs () -&gt; Swift.Array&lt;Foundation.URL&gt;"
                   moduleName = "RsyncOSX"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Volumes/Users/thomaeve/Documents/Xcode/Version3.0/RsyncOSXver30/profiles.swift"
-                  timestampString = "498393147.887095"
+                  timestampString = "498418737.518781"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "19"
-                  endingLineNumber = "19"
-                  offsetFromSymbolStart = "35">
+                  startingLineNumber = "20"
+                  endingLineNumber = "20"
+                  offsetFromSymbolStart = "41">
                </Location>
                <Location
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "RsyncOSX.profiles.getDirectorys () -&gt; __ObjC.NSArray"
+                  symbolName = "RsyncOSX.profiles.getDirectorysURLs () -&gt; Swift.Array&lt;Foundation.URL&gt;"
                   moduleName = "RsyncOSX"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Volumes/Users/thomaeve/Documents/Xcode/Version3.0/RsyncOSXver30/profiles.swift"
-                  timestampString = "498393147.889921"
+                  timestampString = "498418737.521797"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "19"
-                  endingLineNumber = "19"
+                  startingLineNumber = "20"
+                  endingLineNumber = "20"
                   offsetFromSymbolStart = "173">
                </Location>
             </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "RsyncOSXver30/SharingManagerConfiguration.swift"
+            timestampString = "498417906.647342"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "123"
+            endingLineNumber = "123"
+            landmarkName = "setProfile(profile:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "RsyncOSXver30/readwritefiles.swift"
+            timestampString = "498418295.926102"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "111"
+            endingLineNumber = "111"
+            landmarkName = "readDatafromfile(task:)"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

@@ -9,25 +9,39 @@
 import Foundation
 import Cocoa
 
+protocol Profiles : class {
+    func newProfile()
+}
+
 
 class ViewControllerProfile : NSViewController {
 
     // Dismisser
     weak var dismiss_delegate:DismissViewController?
+    // new Profile
+    weak var newProfile_delegate:Profiles?
+    
     @IBOutlet weak var delete: NSButton!
     @IBOutlet weak var new: NSButton!
     @IBOutlet weak var select: NSButton!
     @IBOutlet weak var Default: NSButton!
     
     @IBAction func radioButtons(_ sender: NSButton) {
+        if let pvc = self.presenting as? ViewControllertabMain {
+            self.newProfile_delegate = pvc
+        }
         if (self.delete.state == 1) {
             
         } else if (self.new.state == 1) {
             
         } else if (self.select.state == 1) {
-            
+            SharingManagerConfiguration.sharedInstance.setProfile(profile: "test")
+            newProfile_delegate?.newProfile()
+            self.dismiss_delegate?.dismiss_view(viewcontroller: self)
         } else if (self.Default.state == 1) {
-            
+            SharingManagerConfiguration.sharedInstance.setProfile(profile: nil)
+            newProfile_delegate?.newProfile()
+            self.dismiss_delegate?.dismiss_view(viewcontroller: self)
         }
     }
     

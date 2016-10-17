@@ -119,7 +119,7 @@ class SharingManagerConfiguration {
     }
     
     /// Function for setting the profile
-    func setProfile(profile:String) {
+    func setProfile(profile:String?) {
         self.profile = profile
     }
     

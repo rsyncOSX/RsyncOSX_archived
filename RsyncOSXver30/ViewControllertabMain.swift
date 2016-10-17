@@ -45,7 +45,7 @@ protocol ScheduledJobInProgress : class {
     func completed()
 }
 
-class ViewControllertabMain : NSViewController, Information, Abort, Count, RefreshtableViewtabMain, StartBatch, ReadConfigurationsAgain, RsyncUserParams, SendSelecetedIndex, NewSchedules, StartNextScheduledTask, DismissViewController, UpdateProgress, ScheduledJobInProgress, RsyncChanged, Connections {
+class ViewControllertabMain : NSViewController, Information, Abort, Count, RefreshtableViewtabMain, StartBatch, ReadConfigurationsAgain, RsyncUserParams, SendSelecetedIndex, NewSchedules, StartNextScheduledTask, DismissViewController, UpdateProgress, ScheduledJobInProgress, RsyncChanged, Connections, Profiles {
 
     // Protocol function used in Process().
     weak var process_update:UpdateProgress?
@@ -172,6 +172,9 @@ class ViewControllertabMain : NSViewController, Information, Abort, Count, Refre
     // - parameter viewcontroller: the viewcontroller to be dismissed
     func dismiss_view(viewcontroller:NSViewController) {
         self.dismissViewController(viewcontroller)
+        GlobalMainQueue.async(execute: { () -> Void in
+            self.mainTableView.reloadData()
+        })
     }
     
     // Protocol Information
@@ -353,6 +356,13 @@ class ViewControllertabMain : NSViewController, Information, Abort, Count, Refre
         })
     }
     
+    // Procol Protocols
+    // Function is called from profiles when new or
+    // default profiles is seleceted
+    func newProfile() {
+        self.ReReadConfigurationsAndSchedules()
+    }
+    
     // BUTTONS AND ACTIONS
     
     @IBOutlet weak var edit: NSButton!
@@ -430,7 +440,6 @@ class ViewControllertabMain : NSViewController, Information, Abort, Count, Refre
     // Initial functions viewDidLoad and viewDidAppear
     override func viewDidLoad() {
         super.viewDidLoad()
-        // SharingManagerConfiguration.sharedInstance.setProfile(profile: "test")
         // Do view setup here.
         // Setting delegates and datasource
         self.mainTableView.delegate = self
@@ -796,6 +805,10 @@ extension ViewControllertabMain : NSTableViewDelegate {
     
     // TableView delegates
     @objc(tableView:objectValueForTableColumn:row:) func tableView(_ tableView: NSTableView, objectValueFor tableColumn: NSTableColumn?, row: Int) -> Any? {
+        
+        if row > SharingManagerConfiguration.sharedInstance.ConfigurationsDataSourcecount() {
+            return nil
+        }
         
         // Must do this because index out of range when delete
         var index:Int = row
