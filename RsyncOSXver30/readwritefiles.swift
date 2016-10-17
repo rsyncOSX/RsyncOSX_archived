@@ -9,10 +9,9 @@
 import Foundation
 
 
-// let str = "/Rsync/" + serialNumber + "/scheduleRsync.plist"
-// let str = "/Rsync/" + serialNumber + "/configRsync.plist"
+// let str = "/Rsync/" + serialNumber + profil? + "/scheduleRsync.plist"
+// let str = "/Rsync/" + serialNumber + profil? + "/configRsync.plist"
 // let str = "/Rsync/" + serialNumber + "/config.plist"
-// let str = "/Rsync/" + serialNumber + "/rsyncarguments.plist"
 
 enum enumtask {
     case schedule
@@ -43,15 +42,17 @@ class readwritefiles {
     private var fileName : String? {
         
         get {
+            //let test = profiles()
             let str:String?
             let paths = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true) as NSArray
             let docuDir = paths.firstObject as! String
-            self.createDirectory((docuDir + "/Rsync/" + SharingManagerConfiguration.sharedInstance.getMacSerialNumber()))
-            
+            let profilePath = profiles(path: docuDir + "/Rsync/" + SharingManagerConfiguration.sharedInstance.getMacSerialNumber())
+            profilePath.createDirectory()
             if (self.useProfile) {
                 // Use profile
                 if let profile = self.profile {
-                    self.createDirectory((docuDir + "/Rsync/" + SharingManagerConfiguration.sharedInstance.getMacSerialNumber()) + "/" + profile)
+                    let profilePath = profiles(path: (docuDir + "/Rsync/" + SharingManagerConfiguration.sharedInstance.getMacSerialNumber()) + "/" + profile)
+                    profilePath.createDirectory()
                     str = "/Rsync/" + SharingManagerConfiguration.sharedInstance.getMacSerialNumber() + "/" + profile + self.name!
                 } else {
                     // If profile not set use no profile
@@ -61,7 +62,7 @@ class readwritefiles {
                 // no profile
                 str = "/Rsync/" + SharingManagerConfiguration.sharedInstance.getMacSerialNumber() + self.name!
             }
-            return docuDir + str!
+            return (docuDir + str!)
         }
     }
 
@@ -130,16 +131,6 @@ class readwritefiles {
         return succeeded
     }
     
-    // Func that creates directory if not created
-    private func createDirectory (_ path:String) {
-        let fileManager = FileManager.default
-        if (fileManager.fileExists(atPath: path)) {
-            // Nothing, directory exist
-        } else {
-            do { try fileManager.createDirectory(atPath: path, withIntermediateDirectories: true, attributes: nil)}
-            catch _ as NSError { }
-        }
-    }
     
     // Set preferences for which data to read or write
     private func setPreferences (_ task:enumtask) {
