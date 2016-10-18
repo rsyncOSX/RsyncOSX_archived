@@ -81,6 +81,7 @@ class SharingManagerSchedule {
     
     /// Function for canceling next job waiting for execution.
     func cancelJobWaiting () {
+        print("Cancel job")
         self.waitForTask?.invalidate()
     }
         
