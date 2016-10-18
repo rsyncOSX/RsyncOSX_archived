@@ -52,6 +52,9 @@ class ViewControllerProfile : NSViewController {
                 SharingManagerConfiguration.sharedInstance.setProfile(profile: newprofile)
                 newProfile_delegate?.newProfile()
             }
+            self.profile = nil
+            self.profile = profiles(path: nil)
+            self.profilesArray = self.profile!.getDirectorysStrings()
             self.dismiss_delegate?.dismiss_view(viewcontroller: self)
             
         } else if (self.select.state == 1) {
