@@ -77,6 +77,14 @@ class ViewControllertabSchedule : NSViewController, GetHiddenID, RefreshtableVie
             as! NSViewController
     }()
     
+    // Userconfiguration
+    // self.presentViewControllerAsSheet(self.ViewControllerUserconfiguration)
+    lazy var ViewControllerUserconfiguration: NSViewController = {
+        return self.storyboard!.instantiateController(withIdentifier: "StoryboardUserconfigID")
+            as! NSViewController
+    }()
+
+    
     // Telling the view to dismiss any presented Viewcontroller
     func dismiss_view(viewcontroller:NSViewController) {
         self.dismissViewController(viewcontroller)
@@ -133,6 +141,13 @@ class ViewControllertabSchedule : NSViewController, GetHiddenID, RefreshtableVie
                 }
             }
         }
+    }
+    
+    // Userconfiguration button
+    @IBAction func Userconfiguration(_ sender: NSButton) {
+        GlobalMainQueue.async(execute: { () -> Void in
+            self.presentViewControllerAsSheet(self.ViewControllerUserconfiguration)
+        })
     }
     
     // First execution starts TODAY at time
@@ -253,7 +268,7 @@ class ViewControllertabSchedule : NSViewController, GetHiddenID, RefreshtableVie
 }
 
 extension ViewControllertabSchedule : NSTableViewDataSource {
-    // Delegate for size of table
+    
     func numberOfRows(in tableView: NSTableView) -> Int {
         return SharingManagerConfiguration.sharedInstance.ConfigurationsDataSourcecountBackupOnlyCount()
     }
@@ -261,9 +276,6 @@ extension ViewControllertabSchedule : NSTableViewDataSource {
 
 extension ViewControllertabSchedule : NSTableViewDelegate {
     
-    
-    
-    // TableView delegates
     @objc(tableView:objectValueForTableColumn:row:) func tableView(_ tableView: NSTableView, objectValueFor tableColumn: NSTableColumn?, row: Int) -> Any? {
         let object : NSDictionary = SharingManagerConfiguration.sharedInstance.getConfigurationsDataSourcecountBackupOnly()![row]
         var text:String?

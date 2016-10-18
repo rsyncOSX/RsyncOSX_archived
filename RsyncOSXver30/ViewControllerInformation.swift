@@ -16,7 +16,7 @@ protocol Information : class {
 
 
 
-class ViewControllerInformation : NSViewController, NSTableViewDataSource, NSTableViewDelegate {
+class ViewControllerInformation : NSViewController {
     
     // TableView
     @IBOutlet weak var detailsTable: NSTableView!
@@ -55,8 +55,10 @@ class ViewControllerInformation : NSViewController, NSTableViewDataSource, NSTab
         self.dismiss_delegate?.dismiss_view(viewcontroller: self)
     }
     
-    // NSTableView delegates
-    // return (self.information_delegate?.getInformation().count)!
+}
+
+extension ViewControllerInformation : NSTableViewDataSource {
+   
     func numberOfRows(in aTableView: NSTableView) -> Int {
         if (self.output != nil) {
             return (self.output?.count)!
@@ -64,6 +66,10 @@ class ViewControllerInformation : NSViewController, NSTableViewDataSource, NSTab
             return 0
         }
     }
+
+}
+
+extension ViewControllerInformation : NSTableViewDelegate {
     
     func tableView(_ tableView: NSTableView, viewFor tableColumn: NSTableColumn?, row: Int) -> NSView? {
         var text: String = ""
@@ -80,6 +86,9 @@ class ViewControllerInformation : NSViewController, NSTableViewDataSource, NSTab
         }
         return nil
     }
-    
-    
 }
+
+
+    
+    
+

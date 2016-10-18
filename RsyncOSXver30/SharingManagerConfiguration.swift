@@ -61,9 +61,6 @@ class SharingManagerConfiguration {
     
     // CONFIGURATIONS RSYNCOSX
     
-    // If testdata
-    // let testRun:Bool = true›
-    var testRun:Bool = false
     // True if version 3.2.1 of rsync in /usr/local/bin
     // let rsyncVer3:Bool = true
     var rsyncVer3:Bool = false
@@ -92,8 +89,10 @@ class SharingManagerConfiguration {
     // Reference to the New NSViewObject
     var AddObjectMain:NSViewController?
     // Reference to the Operation object
-    // Scheduled tasks
+    // Reference is set in when Scheduled task is executed
     var operation:completeScheduledOperation?
+    // Profile
+    private var profile:String?
 
     
     // DATA STRUCTURES
@@ -112,6 +111,17 @@ class SharingManagerConfiguration {
 
     
     // ALL THE GETTERS
+    
+    /// Function for getting the profile
+    /// If not set profile is nil
+    func getProfile() -> String? {
+        return self.profile
+    }
+    
+    /// Function for setting the profile
+    func setProfile(profile:String?) {
+        self.profile = profile
+    }
     
     /// Function for returning the MacSerialNumber
     func getMacSerialNumber() -> String {

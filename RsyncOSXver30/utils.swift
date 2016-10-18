@@ -34,7 +34,14 @@ var GlobalDefaultQueue: DispatchQueue {
 
 // Class for different tools
 
+protocol Connections : class {
+    func displayConnections()
+}
+
 final class Utils {
+    
+    private var indexBoolremoteserverOff:[Bool]?
+    weak var delegate_testconnections:Connections?
     
     // Creates a singelton of this class
     class var  sharedInstance: Utils {
@@ -91,8 +98,47 @@ final class Utils {
         return dateformatter
     }
 
-    // Tools for rsync parameters
+    // Getting the structure for test connection
+    func gettestAllremoteserverConnections() -> [Bool]? {
+        return self.indexBoolremoteserverOff
+    }
     
+    // Testing all remote servers.
+    // Adding connection true or false in array[bool]
+    // Do the check in background que, reload table in global main queue
+    func testAllremoteserverConnections () {
+        self.indexBoolremoteserverOff = [Bool]()
+        GlobalDefaultQueue.async(execute: { () -> Void in
+            // self.indexBoolremoteserverOff.removeAll()
+            var port:Int = 22
+            for i in 0 ..< SharingManagerConfiguration.sharedInstance.ConfigurationsDataSourcecount() {
+                let config = SharingManagerConfiguration.sharedInstance.getargumentAllConfigurations()[i] as? argumentsOneConfig
+                if ((config?.config.offsiteServer)! != "") {
+                    if let sshport:Int = config?.config.sshport {
+                        port = sshport
+                    }
+                    let (success, _) = Utils.sharedInstance.testTCPconnection((config?.config.offsiteServer)!, port: port, timeout: 1)
+                    if (success) {
+                        self.indexBoolremoteserverOff!.append(false)
+                    } else {
+                        // self.remoteserverOff = true
+                        self.indexBoolremoteserverOff!.append(true)
+                    }
+                } else {
+                    self.indexBoolremoteserverOff!.append(false)
+                }
+                // Reload table when all remote servers are checked
+                if i == (SharingManagerConfiguration.sharedInstance.ConfigurationsDataSourcecount() - 1) {
+                    // Send message to do a refresh
+                    if let pvc = SharingManagerConfiguration.sharedInstance.ViewObjectMain as? ViewControllertabMain {
+                        self.delegate_testconnections = pvc
+                        self.delegate_testconnections?.displayConnections()
+                    }
+                }
+            }
+        })
+    }
+
     
  }
 

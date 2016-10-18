@@ -140,6 +140,7 @@ class persistentStoreConfiguration {
         
         let localCatalog = dict1.value(forKey: "localCatalog") as? String
         let offsiteCatalog = dict1.value(forKey: "offsiteCatalog") as? String
+        let singleFile = dict1.value(forKey: "singleFile") as? Int
         
         // If localCatalog == offsiteCataog do NOT append
         if (localCatalog != offsiteCatalog) {
@@ -231,58 +232,65 @@ class persistentStoreConfiguration {
             }
             // backup part
             dict1.setObject(self.maxhiddenID + 1, forKey: "hiddenID" as NSCopying)
+            dict1.removeObject(forKey: "singleFile")
             array[j] = dict1
-            //restore part
-            let dict2:NSMutableDictionary = [
-                "task" : "restore",
-                "backupID":dict1.value(forKey: "backupID")!,
-                "localCatalog":dict1.value(forKey: "localCatalog")!,
-                "offsiteCatalog":dict1.value(forKey: "offsiteCatalog")!,
-                "batch":dict1.value(forKey: "batch")!,
-                "offsiteServer":dict1.value(forKey: "offsiteServer")!,
-                "offsiteUsername":dict1.value(forKey: "offsiteUsername")!,
-                "parameter1":dict1.value(forKey: "parameter1")!,
-                "parameter2":dict1.value(forKey: "parameter2")!,
-                "parameter3":dict1.value(forKey: "parameter3")!,
-                "parameter4":dict1.value(forKey: "parameter4")!,
-                "parameter5":dict1.value(forKey: "parameter5")!,
-                "parameter6":dict1.value(forKey: "parameter6")!,
-                "dryrun":dict1.value(forKey: "dryrun")!,
-                "rsync":dict1.value(forKey: "rsync")!,
-                "dateRun":"",
-                "hiddenID":self.maxhiddenID + 2]
-            if (dict1.value(forKey: "parameter8") != nil) {
-                dict2.setObject(dict1.value(forKey: "parameter8")!, forKey: "parameter8" as NSCopying)
+            if (singleFile == 0) {
+                // Add both a copy and restore part if catalog
+                //restore part
+                let dict2:NSMutableDictionary = [
+                    "task" : "restore",
+                    "backupID":dict1.value(forKey: "backupID")!,
+                    "localCatalog":dict1.value(forKey: "localCatalog")!,
+                    "offsiteCatalog":dict1.value(forKey: "offsiteCatalog")!,
+                    "batch":dict1.value(forKey: "batch")!,
+                    "offsiteServer":dict1.value(forKey: "offsiteServer")!,
+                    "offsiteUsername":dict1.value(forKey: "offsiteUsername")!,
+                    "parameter1":dict1.value(forKey: "parameter1")!,
+                    "parameter2":dict1.value(forKey: "parameter2")!,
+                    "parameter3":dict1.value(forKey: "parameter3")!,
+                    "parameter4":dict1.value(forKey: "parameter4")!,
+                    "parameter5":dict1.value(forKey: "parameter5")!,
+                    "parameter6":dict1.value(forKey: "parameter6")!,
+                    "dryrun":dict1.value(forKey: "dryrun")!,
+                    "rsync":dict1.value(forKey: "rsync")!,
+                    "dateRun":"",
+                    "hiddenID":self.maxhiddenID + 2]
+                if (dict1.value(forKey: "parameter8") != nil) {
+                    dict2.setObject(dict1.value(forKey: "parameter8")!, forKey: "parameter8" as NSCopying)
+                }
+                if (dict1.value(forKey: "parameter9") != nil) {
+                    dict2.setObject(dict1.value(forKey: "parameter9")!, forKey: "parameter9" as NSCopying)
+                }
+                if (dict1.value(forKey: "parameter10") != nil) {
+                    dict2.setObject(dict1.value(forKey: "parameter10")!, forKey: "parameter10" as NSCopying)
+                }
+                if (dict1.value(forKey: "parameter11") != nil) {
+                    dict2.setObject(dict1.value(forKey: "parameter11")!, forKey: "parameter11" as NSCopying)
+                }
+                if (dict1.value(forKey: "parameter12") != nil) {
+                    dict2.setObject(dict1.value(forKey: "parameter12")!, forKey: "parameter12" as NSCopying)
+                }
+                if (dict1.value(forKey: "parameter13") != nil) {
+                    dict2.setObject(dict1.value(forKey: "parameter13")!, forKey: "parameter13" as NSCopying)
+                }
+                if (dict1.value(forKey: "parameter14") != nil) {
+                    dict2.setObject(dict1.value(forKey: "parameter14")!, forKey: "parameter14" as NSCopying)
+                }
+                if (dict1.value(forKey: "rsyncdaemon") != nil) {
+                    dict2.setObject(dict1.value(forKey: "rsyncdaemon")!, forKey: "rsyncdaemon" as NSCopying)
+                }
+                if (dict1.value(forKey: "sshport") != nil) {
+                    dict2.setObject(dict1.value(forKey: "sshport")!, forKey: "sshport" as NSCopying)
+                }
+                array[j+1] = dict2
+                // Append the two records to Configuration i memory
+                // Important to save Configuration from memory after this method
+                SharingManagerConfiguration.sharedInstance.addConfigurationtoMemory(dict: dict1)
+                SharingManagerConfiguration.sharedInstance.addConfigurationtoMemory(dict: dict2)
+            } else {
+                // Singlefile Configuration - only adds the copy part
+                SharingManagerConfiguration.sharedInstance.addConfigurationtoMemory(dict: dict1)
             }
-            if (dict1.value(forKey: "parameter9") != nil) {
-                dict2.setObject(dict1.value(forKey: "parameter9")!, forKey: "parameter9" as NSCopying)
-            }
-            if (dict1.value(forKey: "parameter10") != nil) {
-                dict2.setObject(dict1.value(forKey: "parameter10")!, forKey: "parameter10" as NSCopying)
-            }
-            if (dict1.value(forKey: "parameter11") != nil) {
-                dict2.setObject(dict1.value(forKey: "parameter11")!, forKey: "parameter11" as NSCopying)
-            }
-            if (dict1.value(forKey: "parameter12") != nil) {
-                dict2.setObject(dict1.value(forKey: "parameter12")!, forKey: "parameter12" as NSCopying)
-            }
-            if (dict1.value(forKey: "parameter13") != nil) {
-                dict2.setObject(dict1.value(forKey: "parameter13")!, forKey: "parameter13" as NSCopying)
-            }
-            if (dict1.value(forKey: "parameter14") != nil) {
-                dict2.setObject(dict1.value(forKey: "parameter14")!, forKey: "parameter14" as NSCopying)
-            }
-            if (dict1.value(forKey: "rsyncdaemon") != nil) {
-                dict2.setObject(dict1.value(forKey: "rsyncdaemon")!, forKey: "rsyncdaemon" as NSCopying)
-            }
-            if (dict1.value(forKey: "sshport") != nil) {
-                dict2.setObject(dict1.value(forKey: "sshport")!, forKey: "sshport" as NSCopying)
-            }
-            array[j+1] = dict2
-            // Append the two records to Configuration i memory
-            // Important to save Confirguration from memory after this method
-            SharingManagerConfiguration.sharedInstance.addConfigurationtoMemory(dict: dict1)
-            SharingManagerConfiguration.sharedInstance.addConfigurationtoMemory(dict: dict2)
             // Method is only used from Adding New Configurations
         }
     }

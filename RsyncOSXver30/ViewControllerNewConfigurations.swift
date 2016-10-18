@@ -10,7 +10,7 @@ import Foundation
 import Cocoa
 
 
-class ViewControllerNewConfigurations: NSViewController, NSTableViewDataSource, NSTableViewDelegate, GetPath {
+class ViewControllerNewConfigurations: NSViewController, GetPath, DismissViewController {
     
     // Table holding all new Configurations
     @IBOutlet weak var newTableView: NSTableView!
@@ -39,7 +39,21 @@ class ViewControllerNewConfigurations: NSViewController, NSTableViewDataSource, 
     @IBOutlet weak var backupID: NSTextField!
     @IBOutlet weak var sshport: NSTextField!
     @IBOutlet weak var rsyncdaemon: NSButton!
+    @IBOutlet weak var singleFile: NSButton!
     
+    // Userconfiguration
+    // self.presentViewControllerAsSheet(self.ViewControllerUserconfiguration)
+    lazy var ViewControllerUserconfiguration: NSViewController = {
+        return self.storyboard!.instantiateController(withIdentifier: "StoryboardUserconfigID")
+            as! NSViewController
+    }()
+    
+    
+    // Telling the view to dismiss any presented Viewcontroller
+    func dismiss_view(viewcontroller:NSViewController) {
+        self.dismissViewController(viewcontroller)
+    }
+
 
     // Protocol GetPath
     func pathSet(path: String?, requester : WhichPath) {
@@ -63,6 +77,13 @@ class ViewControllerNewConfigurations: NSViewController, NSTableViewDataSource, 
         _ = FileDialog(requester: .AddRemoteCatalog)
     }
     
+    // Userconfiguration button
+    @IBAction func Userconfiguration(_ sender: NSButton) {
+        GlobalMainQueue.async(execute: { () -> Void in
+            self.presentViewControllerAsSheet(self.ViewControllerUserconfiguration)
+        })
+    }
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -98,32 +119,24 @@ class ViewControllerNewConfigurations: NSViewController, NSTableViewDataSource, 
     // for å hente lokal katalog
     
     private func setFields() {
-        clearFields()
         self.viewParameter1.stringValue = parameter1
         self.viewParameter2.stringValue = parameter2
         self.viewParameter3.stringValue = parameter3
         self.viewParameter4.stringValue = parameter4
         self.viewParameter5.stringValue = parameter5 + " " + parameter6
-    }
-
-    private func clearFields () {
-        self.viewParameter1.stringValue = ""
-        self.viewParameter2.stringValue = ""
-        self.viewParameter3.stringValue = ""
-        self.viewParameter4.stringValue = ""
-        self.viewParameter5.stringValue = ""
         self.localCatalog.stringValue = ""
         self.offsiteCatalog.stringValue = ""
         self.offsiteUsername.stringValue = ""
         self.offsiteServer.stringValue = ""
         self.backupID.stringValue = ""
         self.rsyncdaemon.state = NSOffState
+        self.singleFile.state = NSOffState
     }
     
     
     @IBAction func newConfig (_ sender: NSButton) {
             
-            let dict:NSMutableDictionary = [
+        let dict:NSMutableDictionary = [
                 "task":"backup",
                 "backupID":backupID.stringValue,
                 "localCatalog":localCatalog.stringValue,
@@ -138,9 +151,14 @@ class ViewControllerNewConfigurations: NSViewController, NSTableViewDataSource, 
                 "parameter6":parameter6,
                 "dryrun":"--dry-run",
                 "rsync":"rsync",
-                "dateRun":""]
-            dict.setValue("no", forKey: "batch")
-            if (!localCatalog.stringValue.hasSuffix("/")){
+                "dateRun":"",
+                "singleFile":0]
+        dict.setValue("no", forKey: "batch")
+        if self.singleFile.state == NSOnState {
+            dict.setValue(1, forKey: "singleFile")
+        }
+    
+            if (!localCatalog.stringValue.hasSuffix("/") && self.singleFile.state == NSOffState){
                 localCatalog.stringValue = localCatalog.stringValue + "/"
                 dict.setValue(localCatalog.stringValue, forKey: "localCatalog")
             }
@@ -163,20 +181,30 @@ class ViewControllerNewConfigurations: NSViewController, NSTableViewDataSource, 
             self.setFields()
         } 
     
-    // TableView delegates
-    func tableView(_ tableView: NSTableView, objectValueFor tableColumn: NSTableColumn?, row: Int) -> Any? {
-        let object:NSMutableDictionary = SharingManagerConfiguration.sharedInstance.getnewConfigurations()![row]
-        return object[tableColumn!.identifier] as? String
-    }
+
     
-    func tableView(_ tableView: NSTableView, setObjectValue object: Any?, for tableColumn: NSTableColumn?, row: Int) {
-        self.tabledata![row].setObject(object!, forKey: (tableColumn?.identifier)! as NSCopying)
-    }
+    
+    
+}
+
+extension ViewControllerNewConfigurations : NSTableViewDataSource {
     
     func numberOfRows(in tableView: NSTableView) -> Int {
         return SharingManagerConfiguration.sharedInstance.newConfigurationsCount()
     }
     
+}
+
+extension ViewControllerNewConfigurations : NSTableViewDelegate {
+   
+    @objc(tableView:objectValueForTableColumn:row:) func tableView(_ tableView: NSTableView, objectValueFor tableColumn: NSTableColumn?, row: Int) -> Any? {
+        let object:NSMutableDictionary = SharingManagerConfiguration.sharedInstance.getnewConfigurations()![row]
+        return object[tableColumn!.identifier] as? String
+    }
+    
+    @objc(tableView:setObjectValue:forTableColumn:row:) func tableView(_ tableView: NSTableView, setObjectValue object: Any?, for tableColumn: NSTableColumn?, row: Int) {
+        self.tabledata![row].setObject(object!, forKey: (tableColumn?.identifier)! as NSCopying)
+    }
 }
 
 extension ViewControllerNewConfigurations : NSDraggingDestination {

@@ -9,10 +9,9 @@
 import Foundation
 
 
-// let str = "/Rsync/" + serialNumber + "/scheduleRsync.plist"
-// let str = "/Rsync/" + serialNumber + "/configRsync.plist"
+// let str = "/Rsync/" + serialNumber + profil? + "/scheduleRsync.plist"
+// let str = "/Rsync/" + serialNumber + profil? + "/configRsync.plist"
 // let str = "/Rsync/" + serialNumber + "/config.plist"
-// let str = "/Rsync/" + serialNumber + "/rsyncarguments.plist"
 
 enum enumtask {
     case schedule
@@ -34,15 +33,35 @@ class readwritefiles {
     // The class either reads data from persistent store or
     // returns nil if data is NOT dirty
     private var readdisk:Bool = true
+    // Which profile to read
+    private var profile:String?
+    // If to use profile, only configurations and schedules to read from profile
+    private var useProfile:Bool = false
     
     // Set which file to read
     private var fileName : String? {
+        
         get {
+            let str:String?
             let paths = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true) as NSArray
             let docuDir = paths.firstObject as! String
-            self.createDirectory((docuDir + "/Rsync/" + SharingManagerConfiguration.sharedInstance.getMacSerialNumber()))
-            let str = "/Rsync/" + SharingManagerConfiguration.sharedInstance.getMacSerialNumber() + self.name!
-            return docuDir + str
+            let profilePath = profiles(path: docuDir + "/Rsync/" + SharingManagerConfiguration.sharedInstance.getMacSerialNumber())
+            profilePath.createDirectory()
+            if (self.useProfile) {
+                // Use profile
+                if let profile = self.profile {
+                    let profilePath = profiles(path: (docuDir + "/Rsync/" + SharingManagerConfiguration.sharedInstance.getMacSerialNumber()) + "/" + profile)
+                    profilePath.createDirectory()
+                    str = "/Rsync/" + SharingManagerConfiguration.sharedInstance.getMacSerialNumber() + "/" + profile + self.name!
+                } else {
+                    // If profile not set use no profile
+                    str = "/Rsync/" + SharingManagerConfiguration.sharedInstance.getMacSerialNumber() + self.name!
+                }
+            } else {
+                // no profile
+                str = "/Rsync/" + SharingManagerConfiguration.sharedInstance.getMacSerialNumber() + self.name!
+            }
+            return (docuDir + str!)
         }
     }
 
@@ -111,33 +130,24 @@ class readwritefiles {
         return succeeded
     }
     
-    // Func that creates directory if not created
-    private func createDirectory (_ path:String) {
-        let fileManager = FileManager.default
-        if (fileManager.fileExists(atPath: path)) {
-            // Nothing, directory exist
-        } else {
-            do { try fileManager.createDirectory(atPath: path, withIntermediateDirectories: true, attributes: nil)}
-            catch _ as NSError { }
-        }
-    }
     
     // Set preferences for which data to read or write
     private func setPreferences (_ task:enumtask) {
+        self.useProfile = false
         switch (task) {
         case .schedule:
+            self.name = "/scheduleRsync.plist"
             self.key = "Schedule"
-            if (SharingManagerConfiguration.sharedInstance.testRun == true) {
-                self.name = "/scheduleRsynctest.plist"
-            } else {
-                self.name = "/scheduleRsync.plist"
+            if let profile = SharingManagerConfiguration.sharedInstance.getProfile() {
+                self.profile = profile
+                self.useProfile = true
             }
         case .configuration:
+            self.name = "/configRsync.plist"
             self.key = "Catalogs"
-            if (SharingManagerConfiguration.sharedInstance.testRun == true) {
-                self.name = "/configRsynctest.plist"
-            } else {
-                self.name = "/configRsync.plist"
+            if let profile = SharingManagerConfiguration.sharedInstance.getProfile() {
+                self.profile = profile
+                self.useProfile = true
             }
         case .userconfig:
             self.key = "config"

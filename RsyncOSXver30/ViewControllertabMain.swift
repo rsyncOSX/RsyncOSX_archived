@@ -45,7 +45,7 @@ protocol ScheduledJobInProgress : class {
     func completed()
 }
 
-class ViewControllertabMain : NSViewController, Information, Abort, Count, RefreshtableViewtabMain, StartBatch, ReadConfigurationsAgain, RsyncUserParams, SendSelecetedIndex, NewSchedules, StartNextScheduledTask, DismissViewController, UpdateProgress, ScheduledJobInProgress {
+class ViewControllertabMain : NSViewController, Information, Abort, Count, RefreshtableViewtabMain, StartBatch, ReadConfigurationsAgain, RsyncUserParams, SendSelecetedIndex, NewSchedules, StartNextScheduledTask, DismissViewController, UpdateProgress, ScheduledJobInProgress, RsyncChanged, Connections, AddProfiles {
 
     // Protocol function used in Process().
     weak var process_update:UpdateProgress?
@@ -78,6 +78,8 @@ class ViewControllertabMain : NSViewController, Information, Abort, Count, Refre
     @IBOutlet weak var totalNumberSizebytes: NSTextField!
     // total number of directories remote volume
     @IBOutlet weak var totalDirs: NSTextField!
+    // Showing info about profile
+    @IBOutlet weak var profilInfo: NSTextField!
     
     // REFERENCE VARIABLES
     
@@ -95,8 +97,7 @@ class ViewControllertabMain : NSViewController, Information, Abort, Count, Refre
     fileprivate var schedules : ScheduleSortedAndExpand?
     // Bool if one or more remote server is offline
     // Used in testing if remote server is on/off-line
-    fileprivate var remoteserverOff:Bool = false
-    fileprivate var indexBoolremoteserverOff = [Bool]()
+    fileprivate var serverOff:[Bool]?
     
     // STATE VARIABLES
     
@@ -157,11 +158,23 @@ class ViewControllertabMain : NSViewController, Information, Abort, Count, Refre
         return self.storyboard!.instantiateController(withIdentifier: "StoryboardEditID")
             as! NSViewController
     }()
+    
+    // Profile
+    // self.presentViewControllerAsSheet(self.ViewControllerProfile)
+    lazy var ViewControllerProfile: NSViewController = {
+        return self.storyboard!.instantiateController(withIdentifier: "ProfileID")
+            as! NSViewController
+    }()
 
-    /// Function for dismissing a presented view
-    /// - parameter viewcontroller: the viewcontroller to be dismissed
+    
+
+    // Function for dismissing a presented view
+    // - parameter viewcontroller: the viewcontroller to be dismissed
     func dismiss_view(viewcontroller:NSViewController) {
         self.dismissViewController(viewcontroller)
+        GlobalMainQueue.async(execute: { () -> Void in
+            self.mainTableView.reloadData()
+        })
     }
     
     // Protocol Information
@@ -201,7 +214,8 @@ class ViewControllertabMain : NSViewController, Information, Abort, Count, Refre
     }
     
     // Protocol StartBatch
-    // Two functions runcBatch and abortOperations
+    // Two functions runcBatch and abortOperations.
+    // Functions are called from batchView.
     func runBatch() {
         // No scheduled opertaion in progress
         if (self.scheduledOperationInProgress() == false ) {
@@ -283,7 +297,7 @@ class ViewControllertabMain : NSViewController, Information, Abort, Count, Refre
         self.rsyncparams.state = 0
     }
     
-    // Protocol for sending index of row selcetd in table
+    // Protocol for sending index of row selected in table
     func getindex() -> Int {
         if (self.index != nil) {
             return self.index!
@@ -302,14 +316,16 @@ class ViewControllertabMain : NSViewController, Information, Abort, Count, Refre
     
     // Protocol NewSchedules
     // Notfied if new schedules are added.
-    // Create new schedule object
+    // Create new schedule object. Old object is
+    // released (deleted).
     func newSchedulesAdded() {
         self.schedules = nil
         self.schedules = ScheduleSortedAndExpand()
     }
     
     // Protocol ScheduledJobInProgress
-    // TWo functions start and completed
+    // TWo functions start and complete, start and stop progressview
+    // and set state on/off.
     func start() {
         self.scheduledJobInProgress = true
         self.scheduledJobworking.startAnimation(nil)
@@ -320,13 +336,41 @@ class ViewControllertabMain : NSViewController, Information, Abort, Count, Refre
         self.scheduledJobworking.stopAnimation(nil)
     }
     
+    // Protocol RsyncChanged
+    // If row is selected an update rsync command in view
+    func rsyncchanged() {
+        if let index = self.index {
+          self.rsyncCommand.stringValue = Utils.sharedInstance.setRsyncCommandDisplay(index: index, dryRun: true)
+        }
+    }
+    
+    // Protocol Connections
+    // Function is called when testing of remote connections are compledet.
+    // Function is just redrawing the mainTableView after getting info
+    // about which remote servers are off/on line.
+    // Remote servers offline are marked with red line in mainTableView
+    func displayConnections() {
+        self.serverOff = Utils.sharedInstance.gettestAllremoteserverConnections()
+        GlobalMainQueue.async(execute: { () -> Void in
+            self.mainTableView.reloadData()
+        })
+    }
+    
+    // Procol Protocols
+    // Function is called from profiles when new or
+    // default profiles is seleceted
+    func newProfile() {
+        self.ReReadConfigurationsAndSchedules()
+        self.displayProfile()
+    }
+    
     // BUTTONS AND ACTIONS
     
     @IBOutlet weak var edit: NSButton!
     @IBOutlet weak var rsyncparams: NSButton!
     @IBOutlet weak var delete: NSButton!
     
-    // Menus as Radiobuttons
+    // Menus as Radiobuttons for Edit functions in tabMainView
     @IBAction func Radiobuttons(_ sender: NSButton) {
         if (self.index != nil) {
             // rsync params
@@ -387,6 +431,12 @@ class ViewControllertabMain : NSViewController, Information, Abort, Count, Refre
             self.presentViewControllerAsSheet(self.ViewControllerUserconfiguration)
         })
     }
+    
+    @IBAction func profiles(_ sender: NSButton) {
+        GlobalMainQueue.async(execute: { () -> Void in
+            self.presentViewControllerAsSheet(self.ViewControllerProfile)
+        })
+    }
 
     // Initial functions viewDidLoad and viewDidAppear
     override func viewDidLoad() {
@@ -399,15 +449,15 @@ class ViewControllertabMain : NSViewController, Information, Abort, Count, Refre
         self.working.usesThreadedAnimation = true
         self.scheduledJobworking.usesThreadedAnimation = true
         self.ReReadConfigurationsAndSchedules()
+        // Setting reference to self, used when calling delegate functions
         SharingManagerConfiguration.sharedInstance.ViewObjectMain = self
         // Box to show is dryrun or realrun next
         self.dryRunOrRealRun.stringValue = "estimate"
         // Create a Schedules object
+        // Start waiting for next Scheduled job (if any)
         self.schedules = ScheduleSortedAndExpand()
-        // Start waiting for next Scheduled job
         self.startProcess()
     }
-    
     
     override func viewDidAppear() {
         super.viewDidAppear()
@@ -428,11 +478,19 @@ class ViewControllertabMain : NSViewController, Information, Abort, Count, Refre
             })
         }
         // Test all remote servers for connection
-        self.testAllremoteserverConnections()
+        Utils.sharedInstance.testAllremoteserverConnections()
+        // Update rsync command in view i case changed 
+        self.rsyncchanged()
+        // Show which profile
+        self.displayProfile()
     }
     
     
     // Execute SINGLE TASKS only
+    // Start of executing SINGLE tasks
+    // After start the function ProcessTermination()
+    // which is triggered when a Process termination is
+    // discovered, completes the task.
     @IBAction func executeTask(_ sender: NSButton) {
         if (self.scheduledOperationInProgress() == false){
             self.inbatchRun = false
@@ -456,6 +514,8 @@ class ViewControllertabMain : NSViewController, Information, Abort, Count, Refre
                 } else {
                     self.estimated = true
                 }
+                // Create two objects for doing the real work.
+                // the output object and the process object
                 self.output = outputProcess()
                 process.executeProcess(arguments!, output: self.output!)
                 self.process = process.getProcess()
@@ -468,6 +528,12 @@ class ViewControllertabMain : NSViewController, Information, Abort, Count, Refre
     }
     
     // Execute BATCH TASKS only
+    // Start of BATCH tasks.
+    // After start the function ProcessTermination()
+    // which is triggered when a Process termination is
+    // discovered, takes care of next task according to
+    // status and next work in batchOperations which
+    // also includes a queu of work.
     @IBAction func executeBatch(_ sender: NSButton) {
         if (self.scheduledOperationInProgress() == false){
             // Create the output object for rsync
@@ -503,39 +569,6 @@ class ViewControllertabMain : NSViewController, Information, Abort, Count, Refre
         }
     }
     
-    // Testing all remote servers.
-    // Adding connection true or false in array[bool]
-    // Do the check in background que, reload table in global main queue
-    private func testAllremoteserverConnections () {
-        GlobalDefaultQueue.async(execute: { () -> Void in
-            self.indexBoolremoteserverOff.removeAll()
-            var port:Int = 22
-            for i in 0 ..< SharingManagerConfiguration.sharedInstance.ConfigurationsDataSourcecount() {
-                let config = SharingManagerConfiguration.sharedInstance.getargumentAllConfigurations()[i] as? argumentsOneConfig
-                if ((config?.config.offsiteServer)! != "") {
-                    if let sshport:Int = config?.config.sshport {
-                        port = sshport
-                    }
-                    let (success, _) = Utils.sharedInstance.testTCPconnection((config?.config.offsiteServer)!, port: port, timeout: 1)
-                    if (success) {
-                        self.indexBoolremoteserverOff.append(false)
-                    } else {
-                        self.remoteserverOff = true
-                        self.indexBoolremoteserverOff.append(true)
-                    }
-                } else {
-                    self.indexBoolremoteserverOff.append(false)
-                }
-                // Reload table when all remote servers are checked
-                if i == (SharingManagerConfiguration.sharedInstance.ConfigurationsDataSourcecount() - 1) {
-                    GlobalMainQueue.async(execute: { () -> Void in
-                        self.mainTableView.reloadData()
-                    })
-                }
-            }
-        })
-    }
-        
     // when row is selected
     // setting which table row is selected
     func tableViewSelectionDidChange(_ notification: Notification) {
@@ -594,9 +627,8 @@ class ViewControllertabMain : NSViewController, Information, Abort, Count, Refre
         SharingManagerSchedule.sharedInstance.getAllSchedules()
     }
 
-    // Do some real WORK START
+    // Delegate functions called from the Process object
     // Protocol UpdateProgress two functions, ProcessTermination() and FileHandler()
-    
     func ProcessTermination() {
         // If task is aborted dont do anything
         if (self.abort == false) {
@@ -717,8 +749,11 @@ class ViewControllertabMain : NSViewController, Information, Abort, Count, Refre
         }
     }
     
-    //  Do some real WORK END
+    //  End delegate functions Process object
     
+    
+    // Function for getting numbers out of output object updated when
+    // Process object executes the job.
     private func setNumbers (setvalues : Bool) {
         if (setvalues) {
             self.transferredNumber.stringValue = String(self.output!.getTransferredNumbers(numbers: .transferredNumber))
@@ -732,6 +767,15 @@ class ViewControllertabMain : NSViewController, Information, Abort, Count, Refre
             self.totalNumber.stringValue = ""
             self.totalNumberSizebytes.stringValue = ""
             self.totalDirs.stringValue = ""
+        }
+    }
+    
+    // Function for setting profile
+    private func displayProfile() {
+        if let profile = SharingManagerConfiguration.sharedInstance.getProfile() {
+            self.profilInfo.stringValue = "Profile : " + profile
+        } else {
+            self.profilInfo.stringValue = "Profile : default"
         }
         
     }
@@ -750,25 +794,26 @@ extension ViewControllertabMain : NSTableViewDelegate {
     // Function to test for remote server available or not
     // Used in tableview delegate
     private func testRow(_ row:Int) -> Bool {
-        if (row < self.indexBoolremoteserverOff.count) {
-            return self.indexBoolremoteserverOff[row]
-        } else {
-            return false
+        if let serverOff = self.serverOff {
+            if (row < serverOff.count) {
+                return serverOff[row]
+            } else {
+                return false
+            }
         }
+        return false
     }
     
     // TableView delegates
     @objc(tableView:objectValueForTableColumn:row:) func tableView(_ tableView: NSTableView, objectValueFor tableColumn: NSTableColumn?, row: Int) -> Any? {
         
-        // Must do this because index out of range when delete
-        var index:Int = row
-        if index == SharingManagerConfiguration.sharedInstance.ConfigurationsDataSourcecount() {
-            index = SharingManagerConfiguration.sharedInstance.ConfigurationsDataSourcecount() - 1
+        if row > SharingManagerConfiguration.sharedInstance.ConfigurationsDataSourcecount() - 1 {
+            return nil
         }
-        let object : NSMutableDictionary = SharingManagerConfiguration.sharedInstance.getConfigurationsDataSource()![index]
+        let object : NSMutableDictionary = SharingManagerConfiguration.sharedInstance.getConfigurationsDataSource()![row]
         var text:String?
         var schedule :Bool = false
-        let hiddenID:Int = SharingManagerConfiguration.sharedInstance.getConfigurations()[index].hiddenID
+        let hiddenID:Int = SharingManagerConfiguration.sharedInstance.getConfigurations()[row].hiddenID
         if SharingManagerSchedule.sharedInstance.hiddenIDinSchedule(hiddenID) {
             text = object[tableColumn!.identifier] as? String
             if (text == "backup" || text == "restore") {
@@ -786,9 +831,9 @@ extension ViewControllertabMain : NSTableViewDelegate {
                 let returnstr = text! + " (" + String(number) + ")"
                 return returnstr
             } else {
-                if (self.remoteserverOff == false) {
-                    return object[tableColumn!.identifier] as? String
-                } else {
+                // if (self.remoteserverOff == false) {
+                //   return object[tableColumn!.identifier] as? String
+                //} else {
                     if (self.testRow(row)) {
                         text = object[tableColumn!.identifier] as? String
                         let attributedString = NSMutableAttributedString(string:(text!))
@@ -798,7 +843,7 @@ extension ViewControllertabMain : NSTableViewDelegate {
                     } else {
                         return object[tableColumn!.identifier] as? String
                     }
-                }
+                // }
             }
         }
     }

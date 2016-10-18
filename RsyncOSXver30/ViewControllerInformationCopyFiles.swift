@@ -8,7 +8,7 @@
 
 import Cocoa
 
-class ViewControllerInformationCopyFiles : NSViewController, NSTableViewDataSource, NSTableViewDelegate {
+class ViewControllerInformationCopyFiles : NSViewController {
     
     // TableView
     @IBOutlet weak var detailsTable: NSTableView!
@@ -47,15 +47,21 @@ class ViewControllerInformationCopyFiles : NSViewController, NSTableViewDataSour
         self.dismiss_delegate?.dismiss_view(viewcontroller: self)
     }
     
-    // NSTableView delegates
-    // return (self.information_delegate?.getInformation().count)!
+}
+
+extension ViewControllerInformationCopyFiles : NSTableViewDataSource {
+    
     func numberOfRows(in aTableView: NSTableView) -> Int {
         if (self.output != nil) {
-            return (self.output?.count)!
+            return self.output!.count
         } else {
             return 0
         }
     }
+    
+}
+
+extension ViewControllerInformationCopyFiles : NSTableViewDelegate {
     
     func tableView(_ tableView: NSTableView, viewFor tableColumn: NSTableColumn?, row: Int) -> NSView? {
         var text: String = ""
@@ -73,5 +79,9 @@ class ViewControllerInformationCopyFiles : NSViewController, NSTableViewDataSour
         return nil
     }
     
-    
 }
+
+
+    
+    
+

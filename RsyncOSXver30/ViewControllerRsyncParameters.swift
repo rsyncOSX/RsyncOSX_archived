@@ -24,7 +24,7 @@ protocol SendSelecetedIndex : class {
 class ViewControllerRsyncParameters: NSViewController {
     
     // Object for calculating rsync parameters
-    var parameters : RsyncParameters?
+    var parameters : rsyncParameters?
     // Delegate returning params updated or not
     weak var userparamsupdated_delegate : RsyncUserParams?
     // Get index of selected row
@@ -95,7 +95,7 @@ class ViewControllerRsyncParameters: NSViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Create RsyncParameters object and load initial parameters
-        self.parameters = RsyncParameters()
+        self.parameters = rsyncParameters()
         self.argumentArray = parameters!.getArguments()
         self.argumentDictionary = parameters!.getArgumentsAndValues()
         if let pvc = self.presenting as? ViewControllertabMain {
@@ -107,7 +107,6 @@ class ViewControllerRsyncParameters: NSViewController {
             self.dismiss_delegate = pvc2
         }
     }
- 
     
     override func viewDidAppear() {
         super.viewDidAppear()
@@ -120,55 +119,22 @@ class ViewControllerRsyncParameters: NSViewController {
         self.viewParameter4.stringValue = configurations[index!].parameter4
         self.viewParameter5.stringValue = configurations[index!].parameter5 + " " + configurations[index!].parameter6
         
-        if (configurations[index!].parameter8 != nil) {
-            self.resetComboBox(self.parameter8, index: (self.parameters!.getvalueCombobox(configurations[index!].parameter8!)))
-            self.viewParameter8.stringValue = self.parameters!.getdisplayValue(configurations[index!].parameter8!)
-        } else {
-            self.resetComboBox(self.parameter8, index: (0))
-            self.viewParameter8.stringValue = ""
-        }
-        if (configurations[index!].parameter9 != nil) {
-            self.resetComboBox(self.parameter9, index: (self.parameters!.getvalueCombobox(configurations[index!].parameter9!)))
-            self.viewParameter9.stringValue = self.parameters!.getdisplayValue(configurations[index!].parameter9!)
-        } else {
-            self.resetComboBox(self.parameter9, index: (0))
-            self.viewParameter9.stringValue = ""
-        }
-        if (configurations[index!].parameter10 != nil) {
-            self.resetComboBox(self.parameter10, index: (self.parameters!.getvalueCombobox(configurations[index!].parameter10!)))
-            self.viewParameter10.stringValue = self.parameters!.getdisplayValue(configurations[index!].parameter10!)
-        } else {
-            self.resetComboBox(self.parameter10, index: (0))
-            self.viewParameter10.stringValue = ""
-        }
-        if (configurations[index!].parameter11 != nil) {
-            self.resetComboBox(self.parameter11, index: (self.parameters!.getvalueCombobox(configurations[index!].parameter11!)))
-            self.viewParameter11.stringValue = self.parameters!.getdisplayValue(configurations[index!].parameter11!)
-        } else {
-            self.resetComboBox(self.parameter11, index: (0))
-            self.viewParameter11.stringValue = ""
-        }
-        if (configurations[index!].parameter12 != nil) {
-            self.resetComboBox(self.parameter12, index: (self.parameters!.getvalueCombobox(configurations[index!].parameter12!)))
-            self.viewParameter12.stringValue = self.parameters!.getdisplayValue(configurations[index!].parameter12!)
-        } else {
-            self.resetComboBox(self.parameter12, index: (0))
-            self.viewParameter12.stringValue = ""
-        }
-        if (configurations[index!].parameter13 != nil) {
-            self.resetComboBox(self.parameter13, index: (self.parameters!.getvalueCombobox(configurations[index!].parameter13!)))
-            self.viewParameter13.stringValue = self.parameters!.getdisplayValue(configurations[index!].parameter13!)
-        } else {
-            self.resetComboBox(self.parameter13, index: (0))
-            self.viewParameter13.stringValue = ""
-        }
-        if (configurations[index!].parameter14 != nil) {
-            self.resetComboBox(self.parameter14, index: (self.parameters!.getvalueCombobox(configurations[index!].parameter14!)))
-            self.viewParameter14.stringValue = self.parameters!.getdisplayValue(configurations[index!].parameter14!)
-        } else {
-            self.resetComboBox(self.parameter14, index: (0))
-            self.viewParameter14.stringValue = ""
-        }
+        // There are seven elements in array
+        let parameters:[NSMutableDictionary] = self.parameters!.setValuesViewDidLoad(index: index!)
+        self.resetComboBox(self.parameter8, index: parameters[0].value(forKey: "indexComboBox") as! Int)
+        self.viewParameter8.stringValue = parameters[0].value(forKey: "rsyncParameter") as! String
+        self.resetComboBox(self.parameter9, index: parameters[1].value(forKey: "indexComboBox") as! Int)
+        self.viewParameter9.stringValue = parameters[1].value(forKey: "rsyncParameter") as! String
+        self.resetComboBox(self.parameter10, index: parameters[2].value(forKey: "indexComboBox") as! Int)
+        self.viewParameter10.stringValue = parameters[2].value(forKey: "rsyncParameter") as! String
+        self.resetComboBox(self.parameter11, index: parameters[3].value(forKey: "indexComboBox") as! Int)
+        self.viewParameter11.stringValue = parameters[3].value(forKey: "rsyncParameter") as! String
+        self.resetComboBox(self.parameter12, index: parameters[4].value(forKey: "indexComboBox") as! Int)
+        self.viewParameter12.stringValue = parameters[4].value(forKey: "rsyncParameter") as! String
+        self.resetComboBox(self.parameter13, index: parameters[5].value(forKey: "indexComboBox") as! Int)
+        self.viewParameter13.stringValue = parameters[5].value(forKey: "rsyncParameter") as! String
+        self.resetComboBox(self.parameter14, index: parameters[6].value(forKey: "indexComboBox") as! Int)
+        self.viewParameter14.stringValue = parameters[6].value(forKey: "rsyncParameter") as! String
         if (configurations[index!].rsyncdaemon != nil) {
             self.rsyncdaemon.state = configurations[index!].rsyncdaemon!
         } else {
@@ -179,6 +145,7 @@ class ViewControllerRsyncParameters: NSViewController {
         }
     }
     
+    // Function for saving changed or new parameters for one configuration.
     @IBAction func update(_ sender: NSButton) {
         var Configurations:[configuration] = storeAPI.sharedInstance.getConfigurations()
         // Get the index of selected configuration
@@ -203,6 +170,9 @@ class ViewControllerRsyncParameters: NSViewController {
         self.dismiss_delegate?.dismiss_view(viewcontroller: self)
     }
     
+    // There are eight comboboxes
+    // All eight are initalized during ViewDidLoad and
+    // the correct index is set.
     private func resetComboBox (_ combobox:NSComboBox, index:Int) {
         combobox.removeAllItems()
         combobox.addItems(withObjectValues: self.argumentArray as [String]!)
