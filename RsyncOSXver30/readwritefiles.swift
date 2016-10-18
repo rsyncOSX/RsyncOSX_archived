@@ -42,7 +42,6 @@ class readwritefiles {
     private var fileName : String? {
         
         get {
-            //let test = profiles()
             let str:String?
             let paths = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true) as NSArray
             let docuDir = paths.firstObject as! String

@@ -12,12 +12,21 @@ class profiles {
     
     // Set the string path 
     private var filePath:String?
-    
+    // profiles root
+    // Set which file to read
+    private var profileRoot : String? {
+        get {
+            let paths = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true) as NSArray
+            let docuDir = paths.firstObject as! String
+            let profilePath = docuDir + "/Rsync/" + SharingManagerConfiguration.sharedInstance.getMacSerialNumber()
+            return profilePath
+        }
+    }
     
     // Function for returning directorys in path as array of URLs
     func getDirectorysURLs () -> [URL] {
         var array:[URL] = [URL]()
-        if let filePath = self.filePath {
+        if let filePath = self.profileRoot {
             if let fileURLs = self.getfileURLs(path: filePath) {
                 for i in 0 ..< fileURLs.count {
                     if fileURLs[i].hasDirectoryPath {
@@ -30,13 +39,16 @@ class profiles {
         return array
     }
     
+    // Function for returning profiles as array of Strings
     func getDirectorysStrings()-> [String] {
         var array:[String] = [String]()
-        if let filePath = self.filePath {
+        if let filePath = self.profileRoot {
             if let fileURLs = self.getfileURLs(path: filePath) {
                 for i in 0 ..< fileURLs.count {
                     if fileURLs[i].hasDirectoryPath {
-                        array.append(fileURLs[i].relativePath)
+                        let path = fileURLs[i].pathComponents
+                        let i = path.count
+                        array.append(path[i-1])
                     }
                 }
                 return array
@@ -71,7 +83,7 @@ class profiles {
         return nil
     }
     
-    init (path:String) {
+    init (path:String?) {
         self.filePath = path
     }
     
