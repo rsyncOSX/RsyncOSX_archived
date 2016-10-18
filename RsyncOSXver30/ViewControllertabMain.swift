@@ -360,8 +360,15 @@ class ViewControllertabMain : NSViewController, Information, Abort, Count, Refre
     // Function is called from profiles when new or
     // default profiles is seleceted
     func newProfile() {
+        weak var newProfile_delegate: AddProfiles?
         self.ReReadConfigurationsAndSchedules()
         self.displayProfile()
+        self.refreshInMain()
+        // Reset schedule
+        if let pvc = SharingManagerConfiguration.sharedInstance.ScheduleObjectMain as? ViewControllertabSchedule {
+            newProfile_delegate = pvc
+            newProfile_delegate?.newProfile()
+        }
     }
     
     // BUTTONS AND ACTIONS
