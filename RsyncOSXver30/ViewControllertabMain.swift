@@ -361,6 +361,7 @@ class ViewControllertabMain : NSViewController, Information, Abort, Count, Refre
     // default profiles is seleceted
     func newProfile() {
         self.ReReadConfigurationsAndSchedules()
+        self.displayProfile()
     }
     
     // BUTTONS AND ACTIONS

@@ -24,7 +24,7 @@ class profiles {
     }
     
     // Function for returning directorys in path as array of URLs
-    func getDirectorysURLs () -> [URL] {
+    private func getDirectorysURLs () -> [URL] {
         var array:[URL] = [URL]()
         if let filePath = self.profileRoot {
             if let fileURLs = self.getfileURLs(path: filePath) {
@@ -57,9 +57,21 @@ class profiles {
         return array
     }
     
+    // Function for creating new profile directory
+    func createProfile(profileName:String) {
+        let fileManager = FileManager.default
+        if let path = self.profileRoot {
+            let profileDirectory = path + "/" + profileName
+            if (fileManager.fileExists(atPath: profileDirectory) == false) {
+                do {
+                    try fileManager.createDirectory(atPath: profileDirectory, withIntermediateDirectories: true, attributes: nil)}
+                catch _ as NSError { }
+            }
+        }
+    }
     
     // Func that creates directory if not created
-    func createDirectory () {
+    func createDirectory() {
         let fileManager = FileManager.default
         if let path = self.filePath {
             if (fileManager.fileExists(atPath: path) == false) {

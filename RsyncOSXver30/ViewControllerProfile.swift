@@ -27,6 +27,8 @@ class ViewControllerProfile : NSViewController {
     private var profile:profiles?
     // Selecet profile to use
     fileprivate var useprofile:String?
+    // New profile
+    @IBOutlet weak var newprofile: NSTextField!
     
     // Radiobuttons
     @IBOutlet weak var delete: NSButton!
@@ -43,6 +45,14 @@ class ViewControllerProfile : NSViewController {
         if (self.delete.state == 1) {
             
         } else if (self.new.state == 1) {
+            let newprofile = self.newprofile.stringValue
+            if (newprofile.isEmpty == false) {
+                // Create new profile and use it
+                self.profile?.createProfile(profileName: newprofile)
+                SharingManagerConfiguration.sharedInstance.setProfile(profile: newprofile)
+                newProfile_delegate?.newProfile()
+            }
+            self.dismiss_delegate?.dismiss_view(viewcontroller: self)
             
         } else if (self.select.state == 1) {
             if let useprofile = self.useprofile {
@@ -50,6 +60,7 @@ class ViewControllerProfile : NSViewController {
                 newProfile_delegate?.newProfile()
             }
             self.dismiss_delegate?.dismiss_view(viewcontroller: self)
+            
         } else if (self.Default.state == 1) {
             SharingManagerConfiguration.sharedInstance.setProfile(profile: nil)
             newProfile_delegate?.newProfile()
@@ -80,6 +91,7 @@ class ViewControllerProfile : NSViewController {
         GlobalMainQueue.async(execute: { () -> Void in
             self.profilesTable.reloadData()
         })
+        self.newprofile.stringValue = ""
     }
 
 }
