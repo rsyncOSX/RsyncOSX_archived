@@ -70,6 +70,20 @@ class profiles {
         }
     }
     
+    // Function for deleting profile
+    func deleteProfile(profileName:String) {
+        let fileManager = FileManager.default
+        if let path = self.profileRoot {
+            let profileDirectory = path + "/" + profileName
+            if (fileManager.fileExists(atPath: profileDirectory) == false) {
+                do {
+                    try fileManager.removeItem(atPath: profileDirectory)}
+                catch _ as NSError { }
+            }
+        }
+    }
+    
+    
     // Func that creates directory if not created
     func createDirectory() {
         let fileManager = FileManager.default

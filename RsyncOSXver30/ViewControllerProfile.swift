@@ -43,6 +43,15 @@ class ViewControllerProfile : NSViewController {
             self.newProfile_delegate = pvc
         }
         if (self.delete.state == 1) {
+            if let useprofile = self.useprofile {
+                self.profile?.deleteProfile(profileName: useprofile)
+                SharingManagerConfiguration.sharedInstance.setProfile(profile: nil)
+                self.newProfile_delegate?.newProfile()
+            }
+            self.profile = nil
+            self.profile = profiles(path: nil)
+            self.profilesArray = self.profile!.getDirectorysStrings()
+            self.dismiss_delegate?.dismiss_view(viewcontroller: self)
             
         } else if (self.new.state == 1) {
             let newprofile = self.newprofile.stringValue
@@ -50,7 +59,7 @@ class ViewControllerProfile : NSViewController {
                 // Create new profile and use it
                 self.profile?.createProfile(profileName: newprofile)
                 SharingManagerConfiguration.sharedInstance.setProfile(profile: newprofile)
-                newProfile_delegate?.newProfile()
+                self.newProfile_delegate?.newProfile()
             }
             self.profile = nil
             self.profile = profiles(path: nil)
@@ -60,13 +69,13 @@ class ViewControllerProfile : NSViewController {
         } else if (self.select.state == 1) {
             if let useprofile = self.useprofile {
                 SharingManagerConfiguration.sharedInstance.setProfile(profile: useprofile)
-                newProfile_delegate?.newProfile()
+                self.newProfile_delegate?.newProfile()
             }
             self.dismiss_delegate?.dismiss_view(viewcontroller: self)
             
         } else if (self.Default.state == 1) {
             SharingManagerConfiguration.sharedInstance.setProfile(profile: nil)
-            newProfile_delegate?.newProfile()
+            self.newProfile_delegate?.newProfile()
             self.dismiss_delegate?.dismiss_view(viewcontroller: self)
         }
     }
