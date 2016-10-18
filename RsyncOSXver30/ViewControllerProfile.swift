@@ -34,9 +34,16 @@ class ViewControllerProfile : NSViewController {
     @IBOutlet weak var delete: NSButton!
     @IBOutlet weak var new: NSButton!
     @IBOutlet weak var select: NSButton!
-    @IBOutlet weak var Default: NSButton!
     // Table to show profiles
     @IBOutlet weak var profilesTable: NSTableView!
+    
+    // Setting default profile
+    @IBAction func defaultProfile(_ sender: NSButton) {
+        SharingManagerConfiguration.sharedInstance.setProfile(profile: nil)
+        self.newProfile_delegate?.newProfile()
+        self.useprofile = nil
+        self.dismiss_delegate?.dismiss_view(viewcontroller: self)
+    }
     
     @IBAction func radioButtons(_ sender: NSButton) {
         if let pvc = self.presenting as? ViewControllertabMain {
@@ -73,12 +80,6 @@ class ViewControllerProfile : NSViewController {
                 SharingManagerConfiguration.sharedInstance.setProfile(profile: useprofile)
                 self.newProfile_delegate?.newProfile()
             }
-            self.useprofile = nil
-            self.dismiss_delegate?.dismiss_view(viewcontroller: self)
-            
-        } else if (self.Default.state == 1) {
-            SharingManagerConfiguration.sharedInstance.setProfile(profile: nil)
-            self.newProfile_delegate?.newProfile()
             self.useprofile = nil
             self.dismiss_delegate?.dismiss_view(viewcontroller: self)
         }
