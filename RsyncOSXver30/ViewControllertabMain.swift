@@ -361,6 +361,8 @@ class ViewControllertabMain : NSViewController, Information, Abort, Count, Refre
     // default profiles is seleceted
     func newProfile() {
         weak var newProfile_delegate: AddProfiles?
+        // Cancel job waiting - if any
+        SharingManagerSchedule.sharedInstance.cancelJobWaiting()
         self.ReReadConfigurationsAndSchedules()
         self.displayProfile()
         self.refreshInMain()
