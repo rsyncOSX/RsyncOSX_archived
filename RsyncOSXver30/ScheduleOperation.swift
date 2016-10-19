@@ -32,17 +32,20 @@ final class ScheduleOperation {
     
     init () {
         SharingManagerSchedule.sharedInstance.cancelJobWaiting()
+        print("Cancel job in ScheduleOperation")
         // Create a new Schedules object
         self.schedules = ScheduleSortedAndExpand()
+        print("Creating schedules job object")
         // Removes the job of the stack
         if let dict = self.schedules!.jobToExecute() {
+            print("There ARE SCHEDULED jobs?")
             let dateStart:Date = dict.value(forKey: "start") as! Date
             let secondsToWait:Double = self.schedules!.timeDoubleSeconds(dateStart, enddate: nil)
             self.waitForTask = Timer.scheduledTimer(timeInterval: secondsToWait, target: self, selector: #selector(startJob), userInfo: nil, repeats: false)
             // Set reference to Timer that kicks of the Scheduled job
             // Reference is set for cancel job if requiered
             SharingManagerSchedule.sharedInstance.setJobWaiting(timer: self.waitForTask!)
-        }
+        } 
     }
 }
 

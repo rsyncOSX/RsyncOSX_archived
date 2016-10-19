@@ -190,6 +190,7 @@ class ViewControllertabSchedule : NSViewController, GetHiddenID, RefreshtableVie
         self.stoptime.dateValue = Date()
         if (self.schedules == nil) {
             // Create a Schedules object
+            print("Create schedule job object in tabScedule")
             self.schedules = ScheduleSortedAndExpand()
         }
         if (SharingManagerConfiguration.sharedInstance.ConfigurationsDataSourcecountBackupOnlyCount() > 0 ) {

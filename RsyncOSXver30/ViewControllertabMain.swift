@@ -361,15 +361,16 @@ class ViewControllertabMain : NSViewController, Information, Abort, Count, Refre
     // default profiles is seleceted
     func newProfile() {
         weak var newProfile_delegate: AddProfiles?
+        // By setting self.schedules = nil start jobs are restaret in ViewDidAppear
+        self.schedules = nil
         self.ReReadConfigurationsAndSchedules()
         self.displayProfile()
         self.refreshInMain()
-        // Reset schedule
+        // Reset in tabSchedule
         if let pvc = SharingManagerConfiguration.sharedInstance.ScheduleObjectMain as? ViewControllertabSchedule {
             newProfile_delegate = pvc
             newProfile_delegate?.newProfile()
         }
-        // Kick off next job if any
         self.startProcess()
     }
     
@@ -492,6 +493,10 @@ class ViewControllertabMain : NSViewController, Information, Abort, Count, Refre
         self.rsyncchanged()
         // Show which profile
         self.displayProfile()
+        if (self.schedules == nil) {
+            print("Create schedule job object in tabMain")
+            self.schedules = ScheduleSortedAndExpand()
+        }
     }
     
     
