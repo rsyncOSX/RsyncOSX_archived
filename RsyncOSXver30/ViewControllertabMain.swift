@@ -494,7 +494,6 @@ class ViewControllertabMain : NSViewController, Information, Abort, Count, Refre
         // Show which profile
         self.displayProfile()
         if (self.schedules == nil) {
-            print("Create schedule job object in tabMain")
             self.schedules = ScheduleSortedAndExpand()
         }
     }

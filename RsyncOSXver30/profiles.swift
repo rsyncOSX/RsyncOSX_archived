@@ -71,16 +71,19 @@ class profiles {
     }
     
     // Function for deleting profile
+    // if let path = URL.init(string: profileDirectory) {
+    //     try fileManager.trashItem(at: path, resultingItemURL:nil)}
     func deleteProfile(profileName:String) {
         let fileManager = FileManager.default
         if let path = self.profileRoot {
             let profileDirectory = path + "/" + profileName
             if (fileManager.fileExists(atPath: profileDirectory) == true) {
-                do {
-                    if let path = URL.init(string: profileDirectory) {
-                        try fileManager.trashItem(at: path, resultingItemURL:nil)}
-                    }
-                catch _ as NSError { }
+                let answer = Alerts.dialogOKCancel("Delete profile: " + profileName + "?", text: "Cancel or OK")
+                if (answer){
+                    do {
+                        try fileManager.removeItem(atPath: profileDirectory)}
+                    catch _ as NSError {}
+                }
             }
         }
     }

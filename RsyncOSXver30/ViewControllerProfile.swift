@@ -46,6 +46,9 @@ class ViewControllerProfile : NSViewController {
     }
     
     @IBAction func radioButtons(_ sender: NSButton) {
+    }
+    
+    @IBAction func close(_ sender: NSButton) {
         if let pvc = self.presenting as? ViewControllertabMain {
             self.newProfile_delegate = pvc
         }
@@ -84,10 +87,6 @@ class ViewControllerProfile : NSViewController {
             self.dismiss_delegate?.dismiss_view(viewcontroller: self)
         }
     }
-    
-    @IBAction func close(_ sender: NSButton) {
-        self.dismiss_delegate?.dismiss_view(viewcontroller: self)
-    }
 
 
     override func viewDidLoad() {
@@ -109,6 +108,7 @@ class ViewControllerProfile : NSViewController {
             self.profilesTable.reloadData()
         })
         self.newprofile.stringValue = ""
+        self.select.state = NSOnState
     }
 
 }
