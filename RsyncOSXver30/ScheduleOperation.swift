@@ -42,7 +42,7 @@ final class ScheduleOperation {
             // Set reference to Timer that kicks of the Scheduled job
             // Reference is set for cancel job if requiered
             SharingManagerSchedule.sharedInstance.setJobWaiting(timer: self.waitForTask!)
-        }
+        } 
     }
 }
 

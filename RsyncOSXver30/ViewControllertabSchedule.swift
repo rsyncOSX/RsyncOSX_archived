@@ -19,7 +19,7 @@ protocol StartTimer : class {
     func startTimerNextJob()
 }
 
-class ViewControllertabSchedule : NSViewController, GetHiddenID, RefreshtableViewtabSchedule, DismissViewController, StartTimer {
+class ViewControllertabSchedule : NSViewController, GetHiddenID, RefreshtableViewtabSchedule, DismissViewController, StartTimer, AddProfiles {
     
     // Protocol GetHiddenID
     func gethiddenID() -> Int {
@@ -39,6 +39,16 @@ class ViewControllertabSchedule : NSViewController, GetHiddenID, RefreshtableVie
         // Displaying next two scheduled tasks
         self.firstScheduledTask.stringValue = (self.schedules?.whenIsNextTwoTasksString()[0])!
         self.secondScheduledTask.stringValue = (self.schedules?.whenIsNextTwoTasksString()[1])!
+    }
+    
+    // Protocol AddProfiles
+    // Just reset the schedules
+    func newProfile() {
+        self.schedules = nil
+        self.firstRemoteServer.stringValue = ""
+        self.firstLocalCatalog.stringValue = ""
+        self.secondRemoteServer.stringValue = ""
+        self.secondLocalCatalog.stringValue = ""        
     }
     
     // Main tableview
@@ -168,6 +178,8 @@ class ViewControllertabSchedule : NSViewController, GetHiddenID, RefreshtableVie
         self.mainTableView.dataSource = self
         // Create a Schedules object
         self.schedules = ScheduleSortedAndExpand()
+        // Setting reference to self.
+        SharingManagerConfiguration.sharedInstance.ScheduleObjectMain = self
     }
     
     
@@ -221,22 +233,24 @@ class ViewControllertabSchedule : NSViewController, GetHiddenID, RefreshtableVie
     
     // Update display next scheduled jobs in time
     func nextScheduledtask() {
-        // Displaying next two scheduled tasks
-        self.firstScheduledTask.stringValue = (self.schedules?.whenIsNextTwoTasksString()[0])!
-        self.secondScheduledTask.stringValue = (self.schedules?.whenIsNextTwoTasksString()[1])!
-        if ((self.schedules?.remoteServerAndPathNextTwoTasks().count)! > 0) {
-            if ((self.schedules?.remoteServerAndPathNextTwoTasks().count)! > 2) {
-                self.firstRemoteServer.stringValue = (self.schedules?.remoteServerAndPathNextTwoTasks()[0])!
-                self.firstLocalCatalog.stringValue = (self.schedules?.remoteServerAndPathNextTwoTasks()[1])!
-                self.secondRemoteServer.stringValue = (self.schedules?.remoteServerAndPathNextTwoTasks()[2])!
-                self.secondLocalCatalog.stringValue = (self.schedules?.remoteServerAndPathNextTwoTasks()[3])!
-            } else {
-                self.firstRemoteServer.stringValue = (self.schedules?.remoteServerAndPathNextTwoTasks()[0])!
-                self.firstLocalCatalog.stringValue = (self.schedules?.remoteServerAndPathNextTwoTasks()[1])!
-                self.secondRemoteServer.stringValue = ""
-                self.secondLocalCatalog.stringValue = ""
+        if (self.schedules != nil) {
+            // Displaying next two scheduled tasks
+            self.firstScheduledTask.stringValue = (self.schedules?.whenIsNextTwoTasksString()[0])!
+            self.secondScheduledTask.stringValue = (self.schedules?.whenIsNextTwoTasksString()[1])!
+            if ((self.schedules?.remoteServerAndPathNextTwoTasks().count)! > 0) {
+                if ((self.schedules?.remoteServerAndPathNextTwoTasks().count)! > 2) {
+                    self.firstRemoteServer.stringValue = (self.schedules?.remoteServerAndPathNextTwoTasks()[0])!
+                    self.firstLocalCatalog.stringValue = (self.schedules?.remoteServerAndPathNextTwoTasks()[1])!
+                    self.secondRemoteServer.stringValue = (self.schedules?.remoteServerAndPathNextTwoTasks()[2])!
+                    self.secondLocalCatalog.stringValue = (self.schedules?.remoteServerAndPathNextTwoTasks()[3])!
+                } else {
+                    self.firstRemoteServer.stringValue = (self.schedules?.remoteServerAndPathNextTwoTasks()[0])!
+                    self.firstLocalCatalog.stringValue = (self.schedules?.remoteServerAndPathNextTwoTasks()[1])!
+                    self.secondRemoteServer.stringValue = ""
+                    self.secondLocalCatalog.stringValue = ""
+                }
+                
             }
-            
         }
     }
     

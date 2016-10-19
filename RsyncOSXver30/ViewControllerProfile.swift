@@ -34,15 +34,35 @@ class ViewControllerProfile : NSViewController {
     @IBOutlet weak var delete: NSButton!
     @IBOutlet weak var new: NSButton!
     @IBOutlet weak var select: NSButton!
-    @IBOutlet weak var Default: NSButton!
     // Table to show profiles
     @IBOutlet weak var profilesTable: NSTableView!
     
+    // Setting default profile
+    @IBAction func defaultProfile(_ sender: NSButton) {
+        SharingManagerConfiguration.sharedInstance.setProfile(profile: nil)
+        self.newProfile_delegate?.newProfile()
+        self.useprofile = nil
+        self.dismiss_delegate?.dismiss_view(viewcontroller: self)
+    }
+    
     @IBAction func radioButtons(_ sender: NSButton) {
+    }
+    
+    @IBAction func close(_ sender: NSButton) {
         if let pvc = self.presenting as? ViewControllertabMain {
             self.newProfile_delegate = pvc
         }
         if (self.delete.state == 1) {
+            if let useprofile = self.useprofile {
+                self.profile?.deleteProfile(profileName: useprofile)
+                SharingManagerConfiguration.sharedInstance.setProfile(profile: nil)
+                self.newProfile_delegate?.newProfile()
+            }
+            self.profile = nil
+            self.profile = profiles(path: nil)
+            self.profilesArray = self.profile!.getDirectorysStrings()
+            self.useprofile = nil
+            self.dismiss_delegate?.dismiss_view(viewcontroller: self)
             
         } else if (self.new.state == 1) {
             let newprofile = self.newprofile.stringValue
@@ -50,29 +70,22 @@ class ViewControllerProfile : NSViewController {
                 // Create new profile and use it
                 self.profile?.createProfile(profileName: newprofile)
                 SharingManagerConfiguration.sharedInstance.setProfile(profile: newprofile)
-                newProfile_delegate?.newProfile()
+                self.newProfile_delegate?.newProfile()
             }
             self.profile = nil
             self.profile = profiles(path: nil)
             self.profilesArray = self.profile!.getDirectorysStrings()
+            self.useprofile = nil
             self.dismiss_delegate?.dismiss_view(viewcontroller: self)
             
         } else if (self.select.state == 1) {
             if let useprofile = self.useprofile {
                 SharingManagerConfiguration.sharedInstance.setProfile(profile: useprofile)
-                newProfile_delegate?.newProfile()
+                self.newProfile_delegate?.newProfile()
             }
-            self.dismiss_delegate?.dismiss_view(viewcontroller: self)
-            
-        } else if (self.Default.state == 1) {
-            SharingManagerConfiguration.sharedInstance.setProfile(profile: nil)
-            newProfile_delegate?.newProfile()
+            self.useprofile = nil
             self.dismiss_delegate?.dismiss_view(viewcontroller: self)
         }
-    }
-    
-    @IBAction func close(_ sender: NSButton) {
-        self.dismiss_delegate?.dismiss_view(viewcontroller: self)
     }
 
 
@@ -95,6 +108,7 @@ class ViewControllerProfile : NSViewController {
             self.profilesTable.reloadData()
         })
         self.newprofile.stringValue = ""
+        self.select.state = NSOnState
     }
 
 }
