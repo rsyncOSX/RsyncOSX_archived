@@ -70,16 +70,16 @@ final class scpNSTaskArguments {
         self.args.append("-o")
         self.args.append("ConnectTimeout=5")
         if (self.config!.offsiteServer.isEmpty) {
-            self.args.append(self.config!.offsiteCatalog + ".Rsync/" + postfix)
+            self.args.append(self.config!.offsiteCatalog + "." + postfix)
             postfix2 = "localhost" + "_" + postfix
         } else {
-            let offsiteArguments = self.config!.offsiteUsername + "@" + self.config!.offsiteServer + ":" + self.config!.offsiteCatalog + ".Rsync/" + postfix
+            let offsiteArguments = self.config!.offsiteUsername + "@" + self.config!.offsiteServer + ":" + self.config!.offsiteCatalog + "." + postfix
             self.args.append(offsiteArguments)
             postfix2 = self.config!.offsiteServer + "_" + postfix
         }
-        self.args.append(self.config!.localCatalog + ".Rsync/" + postfix2!)
+        self.args.append(self.config!.localCatalog + "." + postfix2!)
         self.command = "/usr/bin/scp"
-        self.file = self.config!.localCatalog + ".Rsync/" + postfix2!
+        self.file = self.config!.localCatalog + "." + postfix2!
     }
     
     init (task : enumscpTasks, config : configuration, remoteFile : String?, localCatalog : String?, drynrun:Bool?) {
@@ -91,7 +91,7 @@ final class scpNSTaskArguments {
         self.config = config
         switch (task) {
         case .create:
-            // ssh user@server.com "cd offsiteCatalog; find . -print | cat > .Rsync/files.txt"
+            // ssh user@server.com "cd offsiteCatalog; find . -print | cat > .files.txt"
             if (config.sshport != nil) {
                 self.args.append("-p")
                 self.args.append(String(config.sshport!))
@@ -103,7 +103,7 @@ final class scpNSTaskArguments {
                 self.args.append("-c")
                 self.command = "/bin/bash"
             }
-            let str:String = "cd " + config.offsiteCatalog + "; find . -print | cat > .Rsync/files.txt "
+            let str:String = "cd " + config.offsiteCatalog + "; find . -print | cat > .files.txt "
             self.args.append(str)
         case .scpHistory:
             // For SCP copy history.plist from server to local store
