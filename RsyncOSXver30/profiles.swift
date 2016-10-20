@@ -10,10 +10,9 @@ import Foundation
 
 class profiles {
     
-    // Set the string path 
+    // Set the string to absolute string path
     private var filePath:String?
-    // profiles root
-    // Set which file to read
+    // profiles root - returns the root of profiles
     private var profileRoot : String? {
         get {
             let paths = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true) as NSArray
@@ -72,7 +71,6 @@ class profiles {
     
     // Function for deleting profile
     // if let path = URL.init(string: profileDirectory) {
-    //     try fileManager.trashItem(at: path, resultingItemURL:nil)}
     func deleteProfile(profileName:String) {
         let fileManager = FileManager.default
         if let path = self.profileRoot {

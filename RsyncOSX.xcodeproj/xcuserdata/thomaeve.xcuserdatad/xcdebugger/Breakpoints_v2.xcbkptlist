@@ -135,11 +135,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "RsyncOSXver30/profiles.swift"
-            timestampString = "498568696.700662"
+            timestampString = "498654417.739946"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "102"
-            endingLineNumber = "102"
+            startingLineNumber = "100"
+            endingLineNumber = "100"
             landmarkName = "createDirectory()"
             landmarkType = "7">
          </BreakpointContent>
@@ -151,11 +151,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "RsyncOSXver30/profiles.swift"
-            timestampString = "498465079.307797"
+            timestampString = "498654417.739946"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "31"
-            endingLineNumber = "31"
+            startingLineNumber = "30"
+            endingLineNumber = "30"
             landmarkName = "getDirectorysURLs()"
             landmarkType = "7">
             <Locations>
@@ -247,11 +247,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "RsyncOSXver30/profiles.swift"
-            timestampString = "498465999.2513"
+            timestampString = "498654417.739946"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "51"
-            endingLineNumber = "51"
+            startingLineNumber = "50"
+            endingLineNumber = "50"
             landmarkName = "getDirectorysStrings()"
             landmarkType = "7">
          </BreakpointContent>
@@ -263,11 +263,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "RsyncOSXver30/profiles.swift"
-            timestampString = "498568696.700662"
+            timestampString = "498654417.739946"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "80"
-            endingLineNumber = "80"
+            startingLineNumber = "78"
+            endingLineNumber = "78"
             landmarkName = "deleteProfile(profileName:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -323,7 +323,7 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "RsyncOSXver30/ViewControllertabSchedule.swift"
@@ -343,11 +343,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "RsyncOSXver30/ViewControllertabMain.swift"
-            timestampString = "498569134.120749"
+            timestampString = "498677836.095682"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "366"
-            endingLineNumber = "366"
+            startingLineNumber = "365"
+            endingLineNumber = "365"
             landmarkName = "newProfile()"
             landmarkType = "7">
          </BreakpointContent>
@@ -365,6 +365,22 @@
             startingLineNumber = "100"
             endingLineNumber = "100"
             landmarkName = "doWork()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "RsyncOSXver30/ViewControllertabSchedule.swift"
+            timestampString = "498654488.032673"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "270"
+            endingLineNumber = "270"
+            landmarkName = "tableViewSelectionDidChange(_:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

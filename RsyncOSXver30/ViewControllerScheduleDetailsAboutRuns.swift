@@ -32,21 +32,6 @@ class ViewControllerScheduleDetailsAboutRuns : NSViewController {
             self.scheduletable.reloadData()
         })
     }
-    
-    // when row is selected
-    // setting which table row is selected
-    func tableViewSelectionDidChange(_ notification: Notification) {
-        let myTableViewFromNotification = notification.object as! NSTableView
-        let indexes = myTableViewFromNotification.selectedRowIndexes
-        if let index = indexes.first {
-            let dict = self.tabledata?[index]
-            if let server = dict?.value(forKey: "offsiteServer") as? String {
-                self.search.stringValue = server
-                self.searchFieldDidStartSearching(self.search)
-            }
-        }
-    }
-    
 }
 
 
@@ -94,6 +79,20 @@ extension ViewControllerScheduleDetailsAboutRuns : NSTableViewDelegate {
         return object[tableColumn!.identifier] as? String
     }
     
+    // when row is selected
+    // setting which table row is selected
+    func tableViewSelectionDidChange(_ notification: Notification) {
+        let myTableViewFromNotification = notification.object as! NSTableView
+        let indexes = myTableViewFromNotification.selectedRowIndexes
+        if let index = indexes.first {
+            let dict = self.tabledata?[index]
+            if let server = dict?.value(forKey: "offsiteServer") as? String {
+                self.search.stringValue = server
+                self.searchFieldDidStartSearching(self.search)
+            }
+        }
+    }
+
 }
 
 

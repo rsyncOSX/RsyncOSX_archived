@@ -108,7 +108,7 @@ class ViewControllertabMain : NSViewController, Information, Abort, Count, Refre
     // True if abort is choosed
     private var abort:Bool = false
     // If task is estimated
-    private var estimated:Bool = false
+    fileprivate var estimated:Bool = false
     
     // Information about rsync output
     // self.presentViewControllerAsSheet(self.ViewControllerInformation)
@@ -307,7 +307,6 @@ class ViewControllertabMain : NSViewController, Information, Abort, Count, Refre
     }
     
     // Protocol StartNextScheduledTask
-    // Called from NSOperation ONLY
     // Start next job
     func startProcess() {
         // Start any Scheduled job
@@ -371,6 +370,7 @@ class ViewControllertabMain : NSViewController, Information, Abort, Count, Refre
             newProfile_delegate = pvc
             newProfile_delegate?.newProfile()
         }
+        // We have to start any Scheduled process again - if any
         self.startProcess()
     }
     
@@ -498,7 +498,6 @@ class ViewControllertabMain : NSViewController, Information, Abort, Count, Refre
         }
     }
     
-    
     // Execute SINGLE TASKS only
     // Start of executing SINGLE tasks
     // After start the function ProcessTermination()
@@ -582,28 +581,6 @@ class ViewControllertabMain : NSViewController, Information, Abort, Count, Refre
         }
     }
     
-    // when row is selected
-    // setting which table row is selected
-    func tableViewSelectionDidChange(_ notification: Notification) {
-        let myTableViewFromNotification = notification.object as! NSTableView
-        let indexes = myTableViewFromNotification.selectedRowIndexes
-        if let index = indexes.first {
-            self.rsyncCommand.stringValue = Utils.sharedInstance.setRsyncCommandDisplay(index: index, dryRun: true)
-            self.index = index
-            self.hiddenID = SharingManagerConfiguration.sharedInstance.gethiddenID(index: index)
-            // Reset estimated
-            self.estimated = false
-            // Reset output
-            self.output = nil
-            self.dryRunOrRealRun.stringValue = "estimate"
-            // Clear numbers from dryrun
-            self.setNumbers(setvalues: false)
-        } else {
-            self.index = nil
-            self.hiddenID = nil
-        }
-    }
-    
     // Reset and abort
     
     // Abort ongoing process and set schedules
@@ -616,7 +593,7 @@ class ViewControllertabMain : NSViewController, Information, Abort, Count, Refre
         }
     }
     
-    // Reset flags to enable a real run after estimate run
+    // Reset flag to enable a real run after estimate run
     private func resetflags() {
         self.process = nil
         // if abort flag is set then reset abort flag
@@ -656,17 +633,8 @@ class ViewControllertabMain : NSViewController, Information, Abort, Count, Refre
                 // Stopping the working progress indicator
                 // Be prepared for next work
                 self.working.stopAnimation(nil)
-                // Getting max count
-                if (self.output!.getTransferredNumbers(numbers: .totalNumber) > 0) {
-                    self.setNumbers(setvalues: true)
-                    if (self.output!.getTransferredNumbers(numbers: .transferredNumber) > 0) {
-                        self.maxcount = self.output!.getTransferredNumbers(numbers: .transferredNumber)
-                    } else {
-                        self.maxcount = self.output!.getOutputCount()
-                    }
-                } else {
-                    self.maxcount = self.output!.getOutputCount()
-                }
+                // Getting and setting max file to transfer
+                self.setmaxNumbersOfFilesToTransfer()
                 // Estimated was TRUE but was set FALSE just before the real task was executed
                 // Do an update of memory and the function is notifying when an refresh of table
                 // is done. We have JUST completed an estimation run.
@@ -688,15 +656,8 @@ class ViewControllertabMain : NSViewController, Information, Abort, Count, Refre
                     // Remove the first worker object
                     let work = batchobject.nextBatchRemove()
                     // get numbers from dry-run
-                    // Getting max count
-                    if (self.output!.getTransferredNumbers(numbers: .totalNumber) > 0) {
-                        if (self.output!.getTransferredNumbers(numbers: .transferredNumber) > 0) {
-                            self.maxcount = self.output!.getTransferredNumbers(numbers: .transferredNumber)
-                        } else {
-                            self.maxcount = self.output!.getOutputCount()
-                        }
-                    }
-                    self.setNumbers(setvalues: true)
+                    // Getting and setting max file to transfer
+                    self.setmaxNumbersOfFilesToTransfer()
                     // Setting maxcount of files in object
                     batchobject.setEstimated(numberOfFiles: self.maxcount)
                     // 0 is estimationrun, 1 is real run
@@ -764,6 +725,22 @@ class ViewControllertabMain : NSViewController, Information, Abort, Count, Refre
     
     //  End delegate functions Process object
     
+    // Function for setting max files to be copied
+    // Function is called in ProcessTermination()
+    private func setmaxNumbersOfFilesToTransfer () {
+        // Getting max count
+        if (self.output!.getTransferredNumbers(numbers: .totalNumber) > 0) {
+            self.setNumbers(setvalues: true)
+            if (self.output!.getTransferredNumbers(numbers: .transferredNumber) > 0) {
+                self.maxcount = self.output!.getTransferredNumbers(numbers: .transferredNumber)
+            } else {
+                self.maxcount = self.output!.getOutputCount()
+            }
+        } else {
+            self.maxcount = self.output!.getOutputCount()
+        }
+    }
+    
     
     // Function for getting numbers out of output object updated when
     // Process object executes the job.
@@ -792,6 +769,28 @@ class ViewControllertabMain : NSViewController, Information, Abort, Count, Refre
         }
         
     }
+    
+    // when row is selected
+    // setting which table row is selected
+    func tableViewSelectionDidChange(_ notification: Notification) {
+        let myTableViewFromNotification = notification.object as! NSTableView
+        let indexes = myTableViewFromNotification.selectedRowIndexes
+        if let index = indexes.first {
+            self.rsyncCommand.stringValue = Utils.sharedInstance.setRsyncCommandDisplay(index: index, dryRun: true)
+            self.index = index
+            self.hiddenID = SharingManagerConfiguration.sharedInstance.gethiddenID(index: index)
+            // Reset estimated
+            self.estimated = false
+            // Reset output
+            self.output = nil
+            self.dryRunOrRealRun.stringValue = "estimate"
+            // Clear numbers from dryrun
+            self.setNumbers(setvalues: false)
+        } else {
+            self.index = nil
+            self.hiddenID = nil
+        }
+    }
 
 }
 
@@ -816,6 +815,7 @@ extension ViewControllertabMain : NSTableViewDelegate {
         }
         return false
     }
+    
     
     // TableView delegates
     @objc(tableView:objectValueForTableColumn:row:) func tableView(_ tableView: NSTableView, objectValueFor tableColumn: NSTableColumn?, row: Int) -> Any? {
