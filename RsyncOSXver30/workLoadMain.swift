@@ -9,15 +9,61 @@
 import Foundation
 
 enum workMain {
-    case estimate
-    case execute
+    case estimate_singlerun
+    case execute_singlerun
     case logRunDate
     case abort
+    case estimate_batch
+    case execute_batch
+    case done
+    case empty
 }
 
 class workLoadMain {
+
+    // Work Queue
+    private var work:[workMain]?
     
-    init() {
+    func abort() {
+        self.work = nil
+    }
+    
+    // Returns the top most element.
+    // Top element is removed
+    func getWork() -> workMain {
+        if (self.work != nil) {
+            if self.work!.count > 1 {
+                return self.work!.removeFirst()
+            } else {
+                return .empty
+            }
+        } else {
+            return .empty
+        }
+    }
+    
+    init(singlerun:Bool, number:Int?) {
+        
+        self.work = [workMain]()
+        
+        switch singlerun {
+        case true:
+            self.work!.append(.estimate_singlerun)
+            self.work!.append(.execute_singlerun)
+            self.work!.append(.logRunDate)
+            self.work!.append(.done)
+            
+        case false:
+            if number != nil {
+                for _ in 0 ..< number! {
+                    self.work!.append(.estimate_batch)
+                    self.work!.append(.execute_batch)
+                    self.work!.append(.logRunDate)
+                }
+                self.work!.append(.done)
+            }
+            
+        }
         
     }
 }

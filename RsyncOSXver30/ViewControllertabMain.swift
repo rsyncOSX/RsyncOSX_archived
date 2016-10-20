@@ -741,7 +741,6 @@ class ViewControllertabMain : NSViewController, Information, Abort, Count, Refre
         }
     }
     
-    
     // Function for getting numbers out of output object updated when
     // Process object executes the job.
     private func setNumbers (setvalues : Bool) {
