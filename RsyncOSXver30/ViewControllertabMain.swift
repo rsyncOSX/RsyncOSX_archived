@@ -164,8 +164,6 @@ class ViewControllertabMain : NSViewController, Information, Abort, Count, Refre
             as! NSViewController
     }()
 
-    
-
     // Function for dismissing a presented view
     // - parameter viewcontroller: the viewcontroller to be dismissed
     func dismiss_view(viewcontroller:NSViewController) {
