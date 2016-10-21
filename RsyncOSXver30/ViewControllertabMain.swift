@@ -583,7 +583,6 @@ class ViewControllertabMain : NSViewController, Information, Abort, Count, Refre
     @IBAction func executeBatch(_ sender: NSButton) {
         
         if (self.scheduledOperationInProgress() == false){
-
             // Single task workload queue is set to nil
             self.workload = nil
             // Create the output object for rsync
@@ -669,7 +668,6 @@ class ViewControllertabMain : NSViewController, Information, Abort, Count, Refre
                 }
                 SharingManagerConfiguration.sharedInstance.setCurrentDateonConfiguration(self.index!)
                 SharingManagerSchedule.sharedInstance.addScheduleResultManuel(self.hiddenID!, result: self.output!.statistics(numberOfFiles: self.transferredNumber.stringValue)[0])
-                self.workload = nil
                 
             case .abort:
                 self.abortOperations()
@@ -714,7 +712,7 @@ class ViewControllertabMain : NSViewController, Information, Abort, Count, Refre
                 // Update files in work
                 batchobject.updateInProcess(numberOfFiles: self.maxcount)
                 batchobject.setCompleted()
-                self.output?.copySummarizedResultBatch(numberOfFiles: self.transferredNumber.stringValue)
+                self.output!.copySummarizedResultBatch(numberOfFiles: self.transferredNumber.stringValue)
                 if let pvc = self.presentedViewControllers as? [ViewControllerBatch] {
                     self.refresh_delegate = pvc[0]
                     self.indicator_delegate = pvc[0]
@@ -820,7 +818,6 @@ class ViewControllertabMain : NSViewController, Information, Abort, Count, Refre
             self.workload = nil
             self.dryRunOrRealRun.stringValue = "Estimate"
             self.process = nil
-            self.output = nil
         } else {
             self.workload = nil
         }

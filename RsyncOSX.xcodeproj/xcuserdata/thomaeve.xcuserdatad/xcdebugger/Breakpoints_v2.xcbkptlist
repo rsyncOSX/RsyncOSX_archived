@@ -6,80 +6,16 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "RsyncOSXver30/ViewControllertabMain.swift"
-            timestampString = "498749419.707884"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "556"
-            endingLineNumber = "556"
-            landmarkName = "executeTask(_:)"
-            landmarkType = "7">
-            <Locations>
-               <Location
-                  shouldBeEnabled = "No"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "RsyncOSX.ViewControllertabMain.executeTask (__ObjC.NSButton) -&gt; ()"
-                  moduleName = "RsyncOSX"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Volumes/Users/thomaeve/Documents/Xcode/Version3.0/RsyncOSXver30/ViewControllertabMain.swift"
-                  timestampString = "498727530.002122"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "538"
-                  endingLineNumber = "538"
-                  offsetFromSymbolStart = "2363">
-               </Location>
-               <Location
-                  shouldBeEnabled = "No"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "RsyncOSX.ViewControllertabMain.executeTask (__ObjC.NSButton) -&gt; ()"
-                  moduleName = "RsyncOSX"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Volumes/Users/thomaeve/Documents/Xcode/Version3.0/RsyncOSXver30/ViewControllertabMain.swift"
-                  timestampString = "498727530.00536"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "538"
-                  endingLineNumber = "538"
-                  offsetFromSymbolStart = "2440">
-               </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "RsyncOSXver30/ViewControllertabMain.swift"
-            timestampString = "498749419.707884"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "542"
-            endingLineNumber = "542"
-            landmarkName = "executeTask(_:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "RsyncOSXver30/ViewControllertabMain.swift"
-            timestampString = "498749419.707884"
+            timestampString = "498753089.736688"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "706"
-            endingLineNumber = "706"
-            landmarkName = "ProcessTermination()"
+            startingLineNumber = "180"
+            endingLineNumber = "180"
+            landmarkName = "getInformation()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
