@@ -105,8 +105,8 @@ class ViewControllertabMain : NSViewController, Information, Abort, Count, Refre
     
     // Schedules in progress
     private var scheduledJobInProgress:Bool = false
-    
-   
+
+    // Sheets
     
     // Information about rsync output
     // self.presentViewControllerAsSheet(self.ViewControllerInformation)
@@ -172,6 +172,8 @@ class ViewControllertabMain : NSViewController, Information, Abort, Count, Refre
             self.mainTableView.reloadData()
         })
     }
+    
+    // Protocol functions
     
     // Protocol Information
     func getInformation() -> NSMutableArray {
@@ -260,11 +262,9 @@ class ViewControllertabMain : NSViewController, Information, Abort, Count, Refre
             self.process = nil
         }
         
-        // TEST
         self.workload = nil
         self.workload = singleTask(abort: true)
         self.dryRunOrRealRun.stringValue = "Abort"
-        // TEST
 
         // If batchwindow closes during process - all jobs are aborted
         if let batchobject = SharingManagerConfiguration.sharedInstance.getBatchdataObject() {
