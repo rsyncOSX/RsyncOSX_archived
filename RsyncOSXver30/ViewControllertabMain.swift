@@ -110,6 +110,10 @@ class ViewControllertabMain : NSViewController, Information, Abort, Count, Refre
     // If task is estimated
     fileprivate var estimated:Bool = false
     
+    // TEST
+    private var workload:workLoadMain?
+    // TEST
+    
     // Information about rsync output
     // self.presentViewControllerAsSheet(self.ViewControllerInformation)
     lazy var ViewControllerInformation: NSViewController = {
@@ -505,6 +509,56 @@ class ViewControllertabMain : NSViewController, Information, Abort, Count, Refre
     // discovered, completes the task.
     @IBAction func executeTask(_ sender: NSButton) {
         if (self.scheduledOperationInProgress() == false){
+            
+            // TEST
+            if (self.workload == nil) {
+                self.workload = workLoadMain(singlerun: true, number: nil)
+            }
+            
+            let arguments:[String]?
+            let process = rsyncProcess(notification: false, tabMain: true, command : nil)
+            let work = self.workload!.working()
+            
+            self.process = nil
+            self.output = nil
+            
+            switch work {
+                
+            case .estimate_singlerun :
+                if let index = self.index {
+                    self.working.startAnimation(nil)
+                    arguments = SharingManagerConfiguration.sharedInstance.getrsyncArgumentOneConfiguration(index: index, argtype: .argdryRun)
+                    self.output = outputProcess()
+                    process.executeProcess(arguments!, output: self.output!)
+                    self.process = process.getProcess()
+                }
+                
+                
+            case .execute_singlerun :
+                if let index = self.index {
+                    GlobalMainQueue.async(execute: { () -> Void in
+                        self.presentViewControllerAsSheet(self.ViewControllerProgress)
+                    })
+                    arguments = SharingManagerConfiguration.sharedInstance.getrsyncArgumentOneConfiguration(index: index, argtype: .arg)
+                    self.output = outputProcess()
+                    process.executeProcess(arguments!, output: self.output!)
+                    self.process = process.getProcess()
+                }
+                
+            default:
+                self.workload = nil
+                break
+            }
+            
+            // Flip estimated
+            if (self.estimated == true) {
+                self.estimated = false
+            } else {
+                self.estimated = true
+            }
+            // TEST
+            
+            /* commented code
             self.inbatchRun = false
             if (self.process == nil && self.index != nil) {
                 let process = rsyncProcess(notification: false, tabMain: true, command : nil)
@@ -532,8 +586,9 @@ class ViewControllertabMain : NSViewController, Information, Abort, Count, Refre
                 process.executeProcess(arguments!, output: self.output!)
                 self.process = process.getProcess()
                 self.abort = false
-            } else {
             }
+            commented code */
+            
         } else {
             Alerts.showInfo("Scheduled operation in progress")
         }
@@ -789,6 +844,10 @@ class ViewControllertabMain : NSViewController, Information, Abort, Count, Refre
             self.index = nil
             self.hiddenID = nil
         }
+        
+        // TEST
+        self.workload = nil
+        // TEST
     }
 
 }

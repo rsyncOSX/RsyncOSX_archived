@@ -15,8 +15,8 @@ enum workMain {
     case abort
     case estimate_batch
     case execute_batch
-    case done
     case empty
+    case done
 }
 
 class workLoadMain {
@@ -31,8 +31,8 @@ class workLoadMain {
     
     func working() -> workMain {
         let work = self.getWork()
-        print("Next work is :" + "\(work)")
-        print("Rest of work queue is :" + "\(self.work)")
+        print("WORK       :" + "\(work)")
+        print("WORK QUEUE :" + "\(self.work!)")
         return work
     }
     
@@ -67,10 +67,9 @@ class workLoadMain {
                     self.work!.append(.estimate_batch)
                     self.work!.append(.execute_batch)
                     self.work!.append(.logRunDate)
+                    self.work!.append(.done)
                 }
-                self.work!.append(.done)
             }
-            
         }
         
     }
