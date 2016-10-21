@@ -28,9 +28,17 @@ class workLoadMain {
         self.work = nil
     }
     
+    
+    func working() -> workMain {
+        let work = self.getWork()
+        print("Next work is :" + "\(work)")
+        print("Rest of work queue is :" + "\(self.work)")
+        return work
+    }
+    
     // Returns the top most element.
     // Top element is removed
-    func getWork() -> workMain {
+    private func getWork() -> workMain {
         if (self.work != nil) {
             if self.work!.count > 1 {
                 return self.work!.removeFirst()
