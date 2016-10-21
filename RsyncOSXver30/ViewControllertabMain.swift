@@ -388,6 +388,8 @@ class ViewControllertabMain : NSViewController, Information, Abort, Count, Refre
         }
         // We have to start any Scheduled process again - if any
         self.startProcess()
+        // Check all remote servers for connection
+        Utils.sharedInstance.testAllremoteserverConnections()
     }
     
     // BUTTONS AND ACTIONS
