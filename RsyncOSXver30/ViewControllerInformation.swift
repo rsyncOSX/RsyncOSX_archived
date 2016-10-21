@@ -37,12 +37,9 @@ class ViewControllerInformation : NSViewController {
         // Setting the source for delegate function
         if let pvc = self.presenting as? ViewControllertabMain {
             self.information_delegate = pvc
+            // Dismisser is root controller
+            self.dismiss_delegate = pvc
         }
-        // Dismisser is root controller
-        if let pvc2 = self.presenting as? ViewControllertabMain {
-            self.dismiss_delegate = pvc2
-        }
-        
     }
     
     override func viewDidAppear() {
