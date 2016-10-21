@@ -71,6 +71,14 @@ class workLoadMain {
                 }
             }
         }
+    }
+    
+    init (abort:Bool) {
+        self.work = [workMain]()
+        
+        if (abort) {
+            self.work!.append(.abort)
+        }
         
     }
 }

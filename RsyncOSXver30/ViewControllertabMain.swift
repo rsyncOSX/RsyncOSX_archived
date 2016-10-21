@@ -466,7 +466,7 @@ class ViewControllertabMain : NSViewController, Information, Abort, Count, Refre
         // Setting reference to self, used when calling delegate functions
         SharingManagerConfiguration.sharedInstance.ViewObjectMain = self
         // Box to show is dryrun or realrun next
-        self.dryRunOrRealRun.stringValue = "estimate"
+        self.dryRunOrRealRun.stringValue = "Estimate"
         // Create a Schedules object
         // Start waiting for next Scheduled job (if any)
         self.schedules = ScheduleSortedAndExpand()
@@ -491,7 +491,7 @@ class ViewControllertabMain : NSViewController, Information, Abort, Count, Refre
                 self.mainTableView.reloadData()
             })
         }
-        // Test all remote servers for connection
+        // Check all remote servers for connection
         Utils.sharedInstance.testAllremoteserverConnections()
         // Update rsync command in view i case changed 
         self.rsyncchanged()
@@ -531,6 +531,7 @@ class ViewControllertabMain : NSViewController, Information, Abort, Count, Refre
                     self.output = outputProcess()
                     process.executeProcess(arguments!, output: self.output!)
                     self.process = process.getProcess()
+                    self.dryRunOrRealRun.stringValue = "Execute"
                 }
                 
                 
@@ -543,9 +544,17 @@ class ViewControllertabMain : NSViewController, Information, Abort, Count, Refre
                     self.output = outputProcess()
                     process.executeProcess(arguments!, output: self.output!)
                     self.process = process.getProcess()
+                    self.dryRunOrRealRun.stringValue = "Estimate"
+                    self.workload = nil
                 }
                 
+            case .abort :
+                self.dryRunOrRealRun.stringValue = "Estimate"
+                self.workload = nil
+        
+                
             default:
+                self.dryRunOrRealRun.stringValue = "Estimate"
                 self.workload = nil
                 break
             }
@@ -646,6 +655,11 @@ class ViewControllertabMain : NSViewController, Information, Abort, Count, Refre
             self.schedules = nil
             self.process = nil
         }
+        // TEST
+        self.workload = nil
+        self.workload = workLoadMain(abort: true)
+        self.dryRunOrRealRun.stringValue = "Abort"
+        // TEST
     }
     
     // Reset flag to enable a real run after estimate run
@@ -655,10 +669,12 @@ class ViewControllertabMain : NSViewController, Information, Abort, Count, Refre
         if self.abort == true {
             self.abort = false
         }
+        // TEST
         // Informal only
-        if (self.dryRunOrRealRun.stringValue == "estimate") {
-            self.dryRunOrRealRun.stringValue = "execute"
-        }
+        // if (self.dryRunOrRealRun.stringValue == "estimate") {
+        //    self.dryRunOrRealRun.stringValue = "execute"
+        // }
+        // TEST
     }
     
     // Reread bot Configurations and Schedules from persistent store to memory
@@ -837,17 +853,23 @@ class ViewControllertabMain : NSViewController, Information, Abort, Count, Refre
             self.estimated = false
             // Reset output
             self.output = nil
-            self.dryRunOrRealRun.stringValue = "estimate"
+            self.dryRunOrRealRun.stringValue = "Estimate"
             // Clear numbers from dryrun
             self.setNumbers(setvalues: false)
+            
+            // TEST
+            self.workload = nil
+            self.dryRunOrRealRun.stringValue = "Estimate"
+            self.process = nil
+            self.output = nil
+            // TEST
+            
         } else {
             self.index = nil
             self.hiddenID = nil
         }
         
-        // TEST
-        self.workload = nil
-        // TEST
+       
     }
 
 }
