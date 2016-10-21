@@ -36,11 +36,12 @@ class workLoadMain {
         return work
     }
     
+    
     // Returns the top most element.
     // Top element is removed
     private func getWork() -> workMain {
         if (self.work != nil) {
-            if self.work!.count > 1 {
+            if self.work!.count > 0 {
                 return self.work!.removeFirst()
             } else {
                 return .empty
@@ -50,27 +51,14 @@ class workLoadMain {
         }
     }
     
-    init(singlerun:Bool, number:Int?) {
-        
+      
+    init() {
         self.work = [workMain]()
-        
-        switch singlerun {
-        case true:
-            self.work!.append(.estimate_singlerun)
-            self.work!.append(.execute_singlerun)
-            self.work!.append(.logRunDate)
-            self.work!.append(.done)
-            
-        case false:
-            if number != nil {
-                for _ in 0 ..< number! {
-                    self.work!.append(.estimate_batch)
-                    self.work!.append(.execute_batch)
-                    self.work!.append(.logRunDate)
-                    self.work!.append(.done)
-                }
-            }
-        }
+        self.work!.append(.estimate_singlerun)
+        self.work!.append(.estimate_singlerun)
+        self.work!.append(.execute_singlerun)
+        self.work!.append(.execute_singlerun)
+        self.work!.append(.done)
     }
     
     init (abort:Bool) {
