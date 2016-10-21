@@ -98,21 +98,15 @@ class ViewControllertabMain : NSViewController, Information, Abort, Count, Refre
     // Bool if one or more remote server is offline
     // Used in testing if remote server is on/off-line
     fileprivate var serverOff:[Bool]?
+    // Single task work queu
+    private var workload:singleTask?
     
-    // STATE VARIABLES
+    // STATE VARIABLE
     
     // Schedules in progress
     private var scheduledJobInProgress:Bool = false
-    // In batcrun or not
-    private var inbatchRun:Bool = false
-    // True if abort is choosed
-    private var abort:Bool = false
-    // If task is estimated
-    fileprivate var estimated:Bool = false
     
-    // TEST
-    private var workload:workLoadMain?
-    // TEST
+   
     
     // Information about rsync output
     // self.presentViewControllerAsSheet(self.ViewControllerInformation)
@@ -184,7 +178,7 @@ class ViewControllertabMain : NSViewController, Information, Abort, Count, Refre
     // Protocol Information
     func getInformation() -> NSMutableArray {
         if (self.output != nil) {
-            if (self.inbatchRun) {
+            if (self.workload == nil) {
                 return self.output!.getOutputbatch()
             } else {
                 return self.output!.getOutput()
@@ -270,7 +264,7 @@ class ViewControllertabMain : NSViewController, Information, Abort, Count, Refre
         
         // TEST
         self.workload = nil
-        self.workload = workLoadMain(abort: true)
+        self.workload = singleTask(abort: true)
         self.dryRunOrRealRun.stringValue = "Abort"
         // TEST
 
@@ -285,7 +279,7 @@ class ViewControllertabMain : NSViewController, Information, Abort, Count, Refre
     }
     
     func closeOperation() {
-        self.resetflags()
+        self.process = nil
     }
     
     // Protocol ReadConfigurationsAgain
@@ -451,8 +445,7 @@ class ViewControllertabMain : NSViewController, Information, Abort, Count, Refre
         // abortOperations is the delegate function for 
         // aborting batch operations
         self.abortOperations()
-        self.abort = true
-        self.resetflags()
+        self.process = nil
     }
 
     // Userconfiguration button
@@ -527,9 +520,8 @@ class ViewControllertabMain : NSViewController, Information, Abort, Count, Refre
         
         if (self.scheduledOperationInProgress() == false){
             
-            // TEST
             if (self.workload == nil) {
-                self.workload = workLoadMain()
+                self.workload = singleTask()
             }
             
             let arguments:[String]?
@@ -550,7 +542,6 @@ class ViewControllertabMain : NSViewController, Information, Abort, Count, Refre
                     self.process = process.getProcess()
                     self.dryRunOrRealRun.stringValue = "Execute"
                 }
-                
                 
             case .execute_singlerun:
                 if let index = self.index {
@@ -577,46 +568,6 @@ class ViewControllertabMain : NSViewController, Information, Abort, Count, Refre
                 self.workload = nil
                 break
             }
-            
-            // Flip estimated
-            if (self.estimated == true) {
-                self.estimated = false
-            } else {
-                self.estimated = true
-            }
-            // TEST
-            
-            /* commented code
-            self.inbatchRun = false
-            if (self.process == nil && self.index != nil) {
-                let process = rsyncProcess(notification: false, tabMain: true, command : nil)
-                let arguments:[String]?
-                if (self.estimated == false) {
-                    // Start the working progress indicator
-                    self.working.startAnimation(nil)
-                    arguments = SharingManagerConfiguration.sharedInstance.getrsyncArgumentOneConfiguration(index: self.index!, argtype: .argdryRun)
-                } else {
-                    // Present taskbar progress
-                    GlobalMainQueue.async(execute: { () -> Void in
-                        self.presentViewControllerAsSheet(self.ViewControllerProgress)
-                    })
-                    arguments = SharingManagerConfiguration.sharedInstance.getrsyncArgumentOneConfiguration(index: self.index!, argtype: .arg)
-                }
-                // Flip estimated
-                if (self.estimated == true) {
-                    self.estimated = false
-                } else {
-                    self.estimated = true
-                }
-                // Create two objects for doing the real work.
-                // the output object and the process object
-                self.output = outputProcess()
-                process.executeProcess(arguments!, output: self.output!)
-                self.process = process.getProcess()
-                self.abort = false
-            }
-            commented code */
-            
         } else {
             Alerts.showInfo("Scheduled operation in progress")
         }
@@ -633,15 +584,11 @@ class ViewControllertabMain : NSViewController, Information, Abort, Count, Refre
         
         if (self.scheduledOperationInProgress() == false){
 
-            // TEST
+            // Single task workload queue is set to nil
             self.workload = nil
-            // TEST
-            
             // Create the output object for rsync
             self.output = nil
             self.output = outputProcess()
-            // Set in batchRun
-            self.inbatchRun = true
             // Get all Configs marked for batch
             let configs = SharingManagerConfiguration.sharedInstance.getConfigurationsBatch()
             let batchObject = batchOperations(batchtasks: configs)
@@ -670,22 +617,6 @@ class ViewControllertabMain : NSViewController, Information, Abort, Count, Refre
         }
     }
     
-    // Reset 
-    
-    // Reset flag to enable a real run after estimate run
-    private func resetflags() {
-        self.process = nil
-        // if abort flag is set then reset abort flag
-        if self.abort == true {
-            self.abort = false
-        }
-        // TEST
-        // Informal only
-        // if (self.dryRunOrRealRun.stringValue == "estimate") {
-        //    self.dryRunOrRealRun.stringValue = "execute"
-        // }
-        // TEST
-    }
     
     // Reread bot Configurations and Schedules from persistent store to memory
     private func ReReadConfigurationsAndSchedules() {
@@ -715,7 +646,6 @@ class ViewControllertabMain : NSViewController, Information, Abort, Count, Refre
                 self.working.stopAnimation(nil)
                 // Getting and setting max file to transfer
                 self.setmaxNumbersOfFilesToTransfer()
-                
                 // If showInfoDryrun is on present result of dryrun automatically
                 if (self.showInfoDryrun.state == 1) {
                     GlobalMainQueue.async(execute: { () -> Void in
@@ -731,25 +661,20 @@ class ViewControllertabMain : NSViewController, Information, Abort, Count, Refre
                         self.process_update?.ProcessTermination()
                     }
                 }
-                
                 // If showInfoDryrun is on present result of dryrun automatically
                 if (self.showInfoDryrun.state == 1) {
                     GlobalMainQueue.async(execute: { () -> Void in
                         self.presentViewControllerAsSheet(self.ViewControllerInformation)
                     })
                 }
-                
                 SharingManagerConfiguration.sharedInstance.setCurrentDateonConfiguration(self.index!)
                 SharingManagerSchedule.sharedInstance.addScheduleResultManuel(self.hiddenID!, result: self.output!.statistics(numberOfFiles: self.transferredNumber.stringValue)[0])
-
                 self.workload = nil
                 
             case .abort:
-                
                 self.abortOperations()
                 
             case .empty:
-                
                 self.workload = nil
                 
             default:
@@ -805,87 +730,6 @@ class ViewControllertabMain : NSViewController, Information, Abort, Count, Refre
                 self.runBatch()
             default :
                 break
-            }
-        }
-    }
-    
-    
-    func ProcessTermination2() {
-        // If task is aborted dont do anything
-        if (self.abort == false) {
-            // Check if in Batcrun or not
-            if (self.inbatchRun == false ) {
-                if let pvc2 = self.presentedViewControllers as? [ViewControllerProgressProcess] {
-                    if (pvc2.count > 0) {
-                        self.process_update = pvc2[0]
-                        self.process_update?.ProcessTermination()
-                    }
-                }
-                // Stopping the working progress indicator
-                // Be prepared for next work
-                self.working.stopAnimation(nil)
-                // Getting and setting max file to transfer
-                self.setmaxNumbersOfFilesToTransfer()
-                // Estimated was TRUE but was set FALSE just before the real task was executed
-                // Do an update of memory and the function is notifying when an refresh of table
-                // is done. We have JUST completed an estimation run.
-                if (self.estimated == false && self.abort == false) {
-                    SharingManagerConfiguration.sharedInstance.setCurrentDateonConfiguration(self.index!)
-                    SharingManagerSchedule.sharedInstance.addScheduleResultManuel(self.hiddenID!, result: self.output!.statistics(numberOfFiles: self.transferredNumber.stringValue)[0])
-                }
-                // If showInfoDryrun is on present result of dryrun automatically
-                if (self.showInfoDryrun.state == 1) {
-                    GlobalMainQueue.async(execute: { () -> Void in
-                        self.presentViewControllerAsSheet(self.ViewControllerInformation)
-                    })
-                }
-                // Resetting state values for next run which is a execute run
-                self.resetflags()
-            } else {
-                // Take care of batchRun activities
-                if let batchobject = SharingManagerConfiguration.sharedInstance.getBatchdataObject() {
-                    // Remove the first worker object
-                    let work = batchobject.nextBatchRemove()
-                    // get numbers from dry-run
-                    // Getting and setting max file to transfer
-                    self.setmaxNumbersOfFilesToTransfer()
-                    // Setting maxcount of files in object
-                    batchobject.setEstimated(numberOfFiles: self.maxcount)
-                    // 0 is estimationrun, 1 is real run
-                    switch (work.1) {
-                    case 0:
-                        // Do a refresh of NSTableView in ViewControllerBatch
-                        // Stack of ViewControllers
-                        if let pvc = self.presentedViewControllers as? [ViewControllerBatch] {
-                            self.refresh_delegate = pvc[0]
-                            self.indicator_delegate = pvc[0]
-                            self.refresh_delegate?.refreshInBatch()
-                            self.indicator_delegate?.stop()
-                        }
-                        self.runBatch()
-                    case 1:
-                        self.maxcount = self.output!.getOutputCount()
-                        // Update files in work
-                        batchobject.updateInProcess(numberOfFiles: self.maxcount)
-                        batchobject.setCompleted()
-                        self.output?.copySummarizedResultBatch(numberOfFiles: self.transferredNumber.stringValue)
-                        if let pvc = self.presentedViewControllers as? [ViewControllerBatch] {
-                            self.refresh_delegate = pvc[0]
-                            self.indicator_delegate = pvc[0]
-                            self.refresh_delegate?.refreshInBatch()
-                        }
-                        // Set date on Configuration
-                        let index = SharingManagerConfiguration.sharedInstance.getIndex(work.0)
-                        let hiddenID = SharingManagerConfiguration.sharedInstance.gethiddenID(index: index)
-                        SharingManagerConfiguration.sharedInstance.setCurrentDateonConfiguration(index)
-                        SharingManagerSchedule.sharedInstance.addScheduleResultManuel(hiddenID, result: self.output!.statistics(numberOfFiles: self.transferredNumber.stringValue)[0])
-                        // Reset counter before next run
-                        self.output!.removeObjectsOutput()
-                        self.runBatch()
-                    default :
-                        break
-                    }
-                }
             }
         }
     }
@@ -969,27 +813,17 @@ class ViewControllertabMain : NSViewController, Information, Abort, Count, Refre
             self.rsyncCommand.stringValue = Utils.sharedInstance.setRsyncCommandDisplay(index: index, dryRun: true)
             self.index = index
             self.hiddenID = SharingManagerConfiguration.sharedInstance.gethiddenID(index: index)
-            // Reset estimated
-            self.estimated = false
             // Reset output
             self.output = nil
-            self.dryRunOrRealRun.stringValue = "Estimate"
             // Clear numbers from dryrun
             self.setNumbers(setvalues: false)
-            
-            // TEST
             self.workload = nil
             self.dryRunOrRealRun.stringValue = "Estimate"
             self.process = nil
             self.output = nil
-            // TEST
-            
         } else {
-            self.index = nil
-            self.hiddenID = nil
+            self.workload = nil
         }
-        
-       
     }
 
 }

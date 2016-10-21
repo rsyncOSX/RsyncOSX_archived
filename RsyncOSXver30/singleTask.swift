@@ -8,38 +8,27 @@
 
 import Foundation
 
-enum workMain {
+enum singleWorkTask {
     case estimate_singlerun
     case execute_singlerun
-    case logRunDate
     case abort
-    case estimate_batch
-    case execute_batch
     case empty
     case done
 }
 
-class workLoadMain {
+final class singleTask {
 
     // Work Queue
-    private var work:[workMain]?
+    private var work:[singleWorkTask]?
     
-    func abort() {
-        self.work = nil
-    }
-    
-    
-    func working() -> workMain {
-        let work = self.getWork()
-        print("WORK       :" + "\(work)")
-        print("WORK QUEUE :" + "\(self.work!)")
-        return work
+    func working() -> singleWorkTask {
+        return self.getWork()
     }
     
     
     // Returns the top most element.
     // Top element is removed
-    private func getWork() -> workMain {
+    private func getWork() -> singleWorkTask {
         if (self.work != nil) {
             if self.work!.count > 0 {
                 return self.work!.removeFirst()
@@ -50,10 +39,9 @@ class workLoadMain {
             return .empty
         }
     }
-    
       
     init() {
-        self.work = [workMain]()
+        self.work = [singleWorkTask]()
         self.work!.append(.estimate_singlerun)
         self.work!.append(.estimate_singlerun)
         self.work!.append(.execute_singlerun)
@@ -62,7 +50,7 @@ class workLoadMain {
     }
     
     init (abort:Bool) {
-        self.work = [workMain]()
+        self.work = [singleWorkTask]()
         
         if (abort) {
             self.work!.append(.abort)
