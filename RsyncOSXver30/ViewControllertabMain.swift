@@ -48,7 +48,7 @@ protocol ScheduledJobInProgress : class {
 class ViewControllertabMain : NSViewController, Information, Abort, Count, RefreshtableViewtabMain, StartBatch, ReadConfigurationsAgain, RsyncUserParams, SendSelecetedIndex, NewSchedules, StartNextScheduledTask, DismissViewController, UpdateProgress, ScheduledJobInProgress, RsyncChanged, Connections, AddProfiles {
 
     // Protocol function used in Process().
-    weak var process_update:UpdateProgress?
+    weak var processupdate_delegate:UpdateProgress?
     // Delegate function for doing a refresh of NSTableView in ViewControllerBatch
     weak var refresh_delegate:RefreshtableViewBatch?
     // Delegate function for start/stop progress Indicator in BatchWindow
@@ -101,12 +101,8 @@ class ViewControllertabMain : NSViewController, Information, Abort, Count, Refre
     // Single task work queu
     private var workload:singleTask?
     
-    // STATE VARIABLE
-    
     // Schedules in progress
     private var scheduledJobInProgress:Bool = false
-
-    // Sheets
     
     // Information about rsync output
     // self.presentViewControllerAsSheet(self.ViewControllerInformation)
@@ -173,9 +169,10 @@ class ViewControllertabMain : NSViewController, Information, Abort, Count, Refre
         })
     }
     
-    // Protocol functions
+    // PROTOCOL functions
     
     // Protocol Information
+    // Get information from rsync output.
     func getInformation() -> NSMutableArray {
         if (self.output != nil) {
             if (self.workload == nil) {
@@ -194,7 +191,8 @@ class ViewControllertabMain : NSViewController, Information, Abort, Count, Refre
         return self.maxcount
     }
     
-    // Counting number of files so far
+    // Counting number of files
+    // Function is called when Process discover FileHandler notification
     func inprogressCount() -> Int {
         return self.output!.getOutputCount()
     }
@@ -261,15 +259,14 @@ class ViewControllertabMain : NSViewController, Information, Abort, Count, Refre
             self.schedules = nil
             self.process = nil
         }
-        
         self.workload = nil
         self.workload = singleTask(abort: true)
         self.dryRunOrRealRun.stringValue = "Abort"
 
         // If batchwindow closes during process - all jobs are aborted
         if let batchobject = SharingManagerConfiguration.sharedInstance.getBatchdataObject() {
-            // Have to set self.index = nil here
             self.index = nil
+            // Empty queue in batchobject
             batchobject.abortOperations()
             // Set reference to batchdata = nil
             SharingManagerConfiguration.sharedInstance.deleteBatchData()
@@ -654,8 +651,8 @@ class ViewControllertabMain : NSViewController, Information, Abort, Count, Refre
                 
                 if let pvc2 = self.presentedViewControllers as? [ViewControllerProgressProcess] {
                     if (pvc2.count > 0) {
-                        self.process_update = pvc2[0]
-                        self.process_update?.ProcessTermination()
+                        self.processupdate_delegate = pvc2[0]
+                        self.processupdate_delegate?.ProcessTermination()
                     }
                 }
                 // If showInfoDryrun is on present result of dryrun automatically
@@ -747,8 +744,8 @@ class ViewControllertabMain : NSViewController, Information, Abort, Count, Refre
             // Refresh ProgressView single run
             if let pvc2 = self.presentedViewControllers as? [ViewControllerProgressProcess] {
                 if (pvc2.count > 0) {
-                    self.process_update = pvc2[0]
-                    self.process_update?.FileHandler()
+                    self.processupdate_delegate = pvc2[0]
+                    self.processupdate_delegate?.FileHandler()
                 }
             }
         }
@@ -794,8 +791,10 @@ class ViewControllertabMain : NSViewController, Information, Abort, Count, Refre
     private func displayProfile() {
         if let profile = SharingManagerConfiguration.sharedInstance.getProfile() {
             self.profilInfo.stringValue = "Profile : " + profile
+            self.profilInfo.textColor = NSColor.blue
         } else {
             self.profilInfo.stringValue = "Profile : default"
+            self.profilInfo.textColor = NSColor.blue
         }
         
     }
