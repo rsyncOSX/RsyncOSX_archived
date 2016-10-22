@@ -262,10 +262,10 @@ class ViewControllertabMain : NSViewController, Information, Abort, Count, Refre
         self.workload = nil
         self.workload = singleTask(abort: true)
         self.dryRunOrRealRun.stringValue = "Abort"
-        self.index = nil
 
         // If batchwindow closes during process - all jobs are aborted
         if let batchobject = SharingManagerConfiguration.sharedInstance.getBatchdataObject() {
+            self.index = nil
             // Empty queue in batchobject
             batchobject.abortOperations()
             // Set reference to batchdata = nil
