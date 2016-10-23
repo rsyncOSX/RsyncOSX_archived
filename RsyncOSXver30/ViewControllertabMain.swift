@@ -261,7 +261,7 @@ class ViewControllertabMain : NSViewController, Information, Abort, Count, Refre
         }
         self.workload = nil
         self.workload = singleTask(abort: true)
-        self.dryRunOrRealRun.stringValue = "Abort"
+        self.setInfo(info: "Abort", color: NSColor.red)
 
         // If batchwindow closes during process - all jobs are aborted
         if let batchobject = SharingManagerConfiguration.sharedInstance.getBatchdataObject() {
@@ -469,8 +469,6 @@ class ViewControllertabMain : NSViewController, Information, Abort, Count, Refre
         self.ReReadConfigurationsAndSchedules()
         // Setting reference to self, used when calling delegate functions
         SharingManagerConfiguration.sharedInstance.ViewObjectMain = self
-        // Box to show is dryrun or realrun next
-        self.dryRunOrRealRun.stringValue = "Estimate"
         // Create a Schedules object
         // Start waiting for next Scheduled job (if any)
         self.schedules = ScheduleSortedAndExpand()
@@ -479,6 +477,7 @@ class ViewControllertabMain : NSViewController, Information, Abort, Count, Refre
     
     override func viewDidAppear() {
         super.viewDidAppear()
+        self.setInfo(info: "", color: NSColor.black)
         // check for new version, if true present download
         if (SharingManagerConfiguration.sharedInstance.URLnewVersion != nil) {
             if (SharingManagerConfiguration.sharedInstance.remindernewVersion == false) {
@@ -535,7 +534,7 @@ class ViewControllertabMain : NSViewController, Information, Abort, Count, Refre
                     self.output = outputProcess()
                     process.executeProcess(arguments!, output: self.output!)
                     self.process = process.getProcess()
-                    self.dryRunOrRealRun.stringValue = "Execute"
+                    self.setInfo(info: "Execute", color: NSColor.blue)
                 }
                 
             case .execute_singlerun:
@@ -547,25 +546,31 @@ class ViewControllertabMain : NSViewController, Information, Abort, Count, Refre
                     self.output = outputProcess()
                     process.executeProcess(arguments!, output: self.output!)
                     self.process = process.getProcess()
-                    self.dryRunOrRealRun.stringValue = "Estimate"
+                    self.setInfo(info: "", color: NSColor.black)
                 }
                 
             case .abort:
-                self.dryRunOrRealRun.stringValue = "Estimate"
                 self.workload = nil
+                self.setInfo(info: "Abort", color: NSColor.red)
                 
             case .empty:
-                self.dryRunOrRealRun.stringValue = "Estimate"
                 self.workload = nil
+                self.setInfo(info: "Estimate", color: NSColor.blue)
                 
             default:
-                self.dryRunOrRealRun.stringValue = "Estimate"
+                self.setInfo(info: "Estimate", color: NSColor.blue)
                 self.workload = nil
                 break
             }
         } else {
             Alerts.showInfo("Scheduled operation in progress")
         }
+    }
+    
+    private func setInfo(info:String, color:NSColor) {
+        self.dryRunOrRealRun.stringValue = info
+        self.dryRunOrRealRun.textColor = color
+    
     }
     
     // Execute BATCH TASKS only
@@ -813,7 +818,7 @@ class ViewControllertabMain : NSViewController, Information, Abort, Count, Refre
             // Clear numbers from dryrun
             self.setNumbers(setvalues: false)
             self.workload = nil
-            self.dryRunOrRealRun.stringValue = "Estimate"
+            self.setInfo(info: "Estimate", color: NSColor.blue)
             self.process = nil
         } else {
             self.workload = nil
