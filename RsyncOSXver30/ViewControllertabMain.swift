@@ -889,19 +889,15 @@ extension ViewControllertabMain : NSTableViewDelegate {
                 let returnstr = text! + " (" + String(number) + ")"
                 return returnstr
             } else {
-                // if (self.remoteserverOff == false) {
-                //   return object[tableColumn!.identifier] as? String
-                //} else {
-                    if (self.testRow(row)) {
-                        text = object[tableColumn!.identifier] as? String
-                        let attributedString = NSMutableAttributedString(string:(text!))
-                        let range = (text! as NSString).range(of: text!)
-                        attributedString.addAttribute(NSForegroundColorAttributeName, value: NSColor.red, range: range)
-                        return attributedString
-                    } else {
-                        return object[tableColumn!.identifier] as? String
-                    }
-                // }
+                if (self.testRow(row)) {
+                    text = object[tableColumn!.identifier] as? String
+                    let attributedString = NSMutableAttributedString(string:(text!))
+                    let range = (text! as NSString).range(of: text!)
+                    attributedString.addAttribute(NSForegroundColorAttributeName, value: NSColor.red, range: range)
+                    return attributedString
+                } else {
+                    return object[tableColumn!.identifier] as? String
+                }
             }
         }
     }

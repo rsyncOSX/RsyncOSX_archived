@@ -12,10 +12,9 @@ import Cocoa
 protocol StartBatch : class  {
     // Starts batch run
     func runBatch()
-    // ViewController is closed and values 
-    // must be reset
+    // Aborts executing batch
     func abortOperations()
-    // Close
+    // Either just close or close after batch done
     func closeOperation()
 }
 
