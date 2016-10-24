@@ -10,13 +10,45 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "RsyncOSXver30/ViewControllertabMain.swift"
-            timestampString = "498831086.586178"
+            timestampString = "498997515.259866"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "177"
-            endingLineNumber = "177"
-            landmarkName = "getInformation()"
+            startingLineNumber = "265"
+            endingLineNumber = "265"
+            landmarkName = "abortOperations()"
             landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "RsyncOSX.ViewControllertabMain.abortOperations () -&gt; ()"
+                  moduleName = "RsyncOSX"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Volumes/Users/thomaeve/Documents/Xcode/Version3.0/RsyncOSXver30/ViewControllertabMain.swift"
+                  timestampString = "498997827.105232"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "265"
+                  endingLineNumber = "265"
+                  offsetFromSymbolStart = "959">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "RsyncOSX.ViewControllertabMain.abortOperations () -&gt; ()"
+                  moduleName = "RsyncOSX"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Volumes/Users/thomaeve/Documents/Xcode/Version3.0/RsyncOSXver30/ViewControllertabMain.swift"
+                  timestampString = "498997827.108324"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "265"
+                  endingLineNumber = "265"
+                  offsetFromSymbolStart = "1058">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

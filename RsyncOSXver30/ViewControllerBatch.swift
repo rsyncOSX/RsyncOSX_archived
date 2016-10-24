@@ -12,16 +12,17 @@ import Cocoa
 protocol StartBatch : class  {
     // Starts batch run
     func runBatch()
-    // ViewController is closed and values 
-    // must be reset
+    // Aborts executing batch
     func abortOperations()
-    // Close
+    // Either just close or close after batch done
     func closeOperation()
 }
 
 
 class ViewControllerBatch : NSViewController, RefreshtableViewBatch, StartStopProgressIndicatorViewBatch {
     
+    // If close button or abort is pressed
+    // After execute button is pressed, close is abort
     var close:Bool?
 
     // Main tableview
@@ -50,12 +51,13 @@ class ViewControllerBatch : NSViewController, RefreshtableViewBatch, StartStopPr
     @IBAction func Execute(_ sender: NSButton) {
         self.startBatch_delegate?.runBatch()
         self.CloseButton.title = "Abort"
-        
+        self.close = false
     }
     
     // PROTOCOL FUNCTIONS
 
     // Protocol RefreshtableViewBatch
+    // Updates tableview according to progress of batch
     func refreshInBatch() {
         GlobalMainQueue.async(execute: { () -> Void in
             self.mainTableView.reloadData()
@@ -63,6 +65,7 @@ class ViewControllerBatch : NSViewController, RefreshtableViewBatch, StartStopPr
     }
     
     // Protocol StartStopProgressIndicatorViewBatch
+    // Stops estimation progressbar when real task is executing
     func stop() {
         self.working.stopAnimation(nil)
         self.label.stringValue = "Working"
@@ -70,11 +73,13 @@ class ViewControllerBatch : NSViewController, RefreshtableViewBatch, StartStopPr
     
     func start() {
         self.close = false
+        // Starts estimation progressbar when estimation starts
         self.working.startAnimation(nil)
         self.label.stringValue = "Estimating"
     }
 
     func complete() {
+        // Batch task completed
         self.label.stringValue = "Completed"
         self.CloseButton.title = "Close"
         self.close = true
@@ -92,19 +97,17 @@ class ViewControllerBatch : NSViewController, RefreshtableViewBatch, StartStopPr
                 self.mainTableView.reloadData()
             })
         }
+         // Dismisser is root controller
         if let pvc = self.presenting as? ViewControllertabMain {
             self.startBatch_delegate = pvc
-        }
-        // Dismisser is root controller
-        if let pvc2 = self.presenting as? ViewControllertabMain {
-            self.dismiss_delegate = pvc2
+            self.dismiss_delegate = pvc
         }
     }
 
     override func viewDidAppear() {
         super.viewDidAppear()
         self.working.stopAnimation(nil)
-        self.close = false
+        self.close = true
     }
 
 
