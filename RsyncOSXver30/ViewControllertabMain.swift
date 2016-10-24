@@ -277,6 +277,8 @@ class ViewControllertabMain : NSViewController, Information, Abort, Count, Refre
     
     func closeOperation() {
         self.process = nil
+        self.workload = nil
+        self.setInfo(info: "", color: NSColor.black)
     }
     
     // Protocol ReadConfigurationsAgain

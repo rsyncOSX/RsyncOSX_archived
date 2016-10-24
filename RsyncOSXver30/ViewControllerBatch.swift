@@ -104,7 +104,7 @@ class ViewControllerBatch : NSViewController, RefreshtableViewBatch, StartStopPr
     override func viewDidAppear() {
         super.viewDidAppear()
         self.working.stopAnimation(nil)
-        self.close = false
+        self.close = true
     }
 
 
