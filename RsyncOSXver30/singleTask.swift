@@ -14,6 +14,7 @@ enum singleWorkTask {
     case abort
     case empty
     case done
+    case batchrun
 }
 
 final class singleTask {
@@ -21,14 +22,23 @@ final class singleTask {
     // Work Queue
     private var work:[singleWorkTask]?
     
-    func working() -> singleWorkTask {
-        return self.getWork()
+    // Returns the top most element.
+    // Top element is read only
+    func readworking() -> singleWorkTask {
+        if (self.work != nil) {
+            if self.work!.count > 0 {
+                return self.work![0]
+            } else {
+                return .empty
+            }
+        } else {
+            return .empty
+        }
     }
-    
     
     // Returns the top most element.
     // Top element is removed
-    private func getWork() -> singleWorkTask {
+    func working() -> singleWorkTask {
         if (self.work != nil) {
             if self.work!.count > 0 {
                 return self.work!.removeFirst()
@@ -39,22 +49,18 @@ final class singleTask {
             return .empty
         }
     }
-      
+    
+    // Single run
     init() {
         self.work = [singleWorkTask]()
         self.work!.append(.estimate_singlerun)
-        self.work!.append(.estimate_singlerun)
-        self.work!.append(.execute_singlerun)
         self.work!.append(.execute_singlerun)
         self.work!.append(.done)
     }
     
-    init (abort:Bool) {
+    // Either Abort or Batchrun
+    init (task:singleWorkTask) {
         self.work = [singleWorkTask]()
-        
-        if (abort) {
-            self.work!.append(.abort)
-        }
-        
+        self.work!.append(task)
     }
 }

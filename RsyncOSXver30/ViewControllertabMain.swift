@@ -260,7 +260,7 @@ class ViewControllertabMain : NSViewController, Information, Abort, Count, Refre
             self.process = nil
         }
         self.workload = nil
-        self.workload = singleTask(abort: true)
+        self.workload = singleTask(task: .abort)
         self.setInfo(info: "Abort", color: NSColor.red)
 
         // If batchwindow closes during process - all jobs are aborted
@@ -520,12 +520,12 @@ class ViewControllertabMain : NSViewController, Information, Abort, Count, Refre
             
             let arguments:[String]?
             let process = rsyncProcess(notification: false, tabMain: true, command : nil)
-            let work = self.workload!.working()
+            // let work = self.workload!.working()
             
             self.process = nil
             self.output = nil
             
-            switch work {
+            switch (self.workload!.readworking()) {
                 
             case .estimate_singlerun:
                 if let index = self.index {
@@ -583,8 +583,12 @@ class ViewControllertabMain : NSViewController, Information, Abort, Count, Refre
     @IBAction func executeBatch(_ sender: NSButton) {
         
         if (self.scheduledOperationInProgress() == false){
-            // Single task workload queue is set to nil
+            
             self.workload = nil
+            
+            self.workload = singleTask(task: .batchrun)
+            self.setInfo(info: "Batchrun", color: NSColor.blue)
+            
             // Create the output object for rsync
             self.output = nil
             self.output = outputProcess()
@@ -633,56 +637,60 @@ class ViewControllertabMain : NSViewController, Information, Abort, Count, Refre
     
     func ProcessTermination() {
         
-        if self.workload != nil {
-            // Pop topmost element of work queue
-            let work = self.workload!.working()
+        // Making sure no nil pointer execption
+        if let workload = self.workload {
             
-            switch work {
+            if (workload.readworking() != .batchrun) {
                 
-            case .estimate_singlerun:
-                
-                // Stopping the working (estimation) progress indicator
-                self.working.stopAnimation(nil)
-                // Getting and setting max file to transfer
-                self.setmaxNumbersOfFilesToTransfer()
-                // If showInfoDryrun is on present result of dryrun automatically
-                if (self.showInfoDryrun.state == 1) {
-                    GlobalMainQueue.async(execute: { () -> Void in
-                        self.presentViewControllerAsSheet(self.ViewControllerInformation)
-                    })
-                }
-                
-            case .execute_singlerun:
-                
-                if let pvc2 = self.presentedViewControllers as? [ViewControllerProgressProcess] {
-                    if (pvc2.count > 0) {
-                        self.processupdate_delegate = pvc2[0]
-                        self.processupdate_delegate?.ProcessTermination()
+                // Pop topmost element of work queue
+                switch (self.workload!.working()) {
+                    
+                case .estimate_singlerun:
+                    
+                    // Stopping the working (estimation) progress indicator
+                    self.working.stopAnimation(nil)
+                    // Getting and setting max file to transfer
+                    self.setmaxNumbersOfFilesToTransfer()
+                    // If showInfoDryrun is on present result of dryrun automatically
+                    if (self.showInfoDryrun.state == 1) {
+                        GlobalMainQueue.async(execute: { () -> Void in
+                            self.presentViewControllerAsSheet(self.ViewControllerInformation)
+                        })
                     }
+                    
+                case .execute_singlerun:
+                    
+                    if let pvc2 = self.presentedViewControllers as? [ViewControllerProgressProcess] {
+                        if (pvc2.count > 0) {
+                            self.processupdate_delegate = pvc2[0]
+                            self.processupdate_delegate?.ProcessTermination()
+                        }
+                    }
+                    // If showInfoDryrun is on present result of dryrun automatically
+                    if (self.showInfoDryrun.state == 1) {
+                        GlobalMainQueue.async(execute: { () -> Void in
+                            self.presentViewControllerAsSheet(self.ViewControllerInformation)
+                        })
+                    }
+                    SharingManagerConfiguration.sharedInstance.setCurrentDateonConfiguration(self.index!)
+                    SharingManagerSchedule.sharedInstance.addScheduleResultManuel(self.hiddenID!, result: self.output!.statistics(numberOfFiles: self.transferredNumber.stringValue)[0])
+                    
+                case .abort:
+                    self.abortOperations()
+                    self.workload = nil
+                    
+                case .empty:
+                    self.workload = nil
+                    
+                default:
+                    self.workload = nil
+                    break
                 }
-                // If showInfoDryrun is on present result of dryrun automatically
-                if (self.showInfoDryrun.state == 1) {
-                    GlobalMainQueue.async(execute: { () -> Void in
-                        self.presentViewControllerAsSheet(self.ViewControllerInformation)
-                    })
-                }
-                SharingManagerConfiguration.sharedInstance.setCurrentDateonConfiguration(self.index!)
-                SharingManagerSchedule.sharedInstance.addScheduleResultManuel(self.hiddenID!, result: self.output!.statistics(numberOfFiles: self.transferredNumber.stringValue)[0])
-                
-            case .abort:
-                self.abortOperations()
-                
-            case .empty:
-                self.workload = nil
-                
-            default:
-                break
+            } else {
+                // We are in batch
+                self.inBatchwork()
             }
-        } else {
-            // We are in batch
-            self.inBatchwork()
         }
-       
     }
     
     private func inBatchwork() {
