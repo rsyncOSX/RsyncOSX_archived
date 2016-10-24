@@ -258,18 +258,20 @@ class ViewControllertabMain : NSViewController, Information, Abort, Count, Refre
             self.working.stopAnimation(nil)
             self.schedules = nil
             self.process = nil
+            self.workload = nil
+            self.workload = singleTask(task: .abort)
+            self.setInfo(info: "Abort", color: NSColor.red)
         }
-        self.workload = nil
-        self.workload = singleTask(task: .abort)
-        self.setInfo(info: "Abort", color: NSColor.red)
-
-        // If batchwindow closes during process - all jobs are aborted
         if let batchobject = SharingManagerConfiguration.sharedInstance.getBatchdataObject() {
-            self.index = nil
             // Empty queue in batchobject
             batchobject.abortOperations()
             // Set reference to batchdata = nil
             SharingManagerConfiguration.sharedInstance.deleteBatchData()
+            self.schedules = nil
+            self.process = nil
+            self.workload = nil
+            self.workload = singleTask(task: .abort)
+            self.setInfo(info: "Abort", color: NSColor.red)
         }
     }
     
