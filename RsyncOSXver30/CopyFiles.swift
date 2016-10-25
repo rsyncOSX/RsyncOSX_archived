@@ -81,7 +81,7 @@ final class CopyFiles {
     }
     
     // The work stack.
-    // This is the iniatil work when selecting a row to restore from.
+    // This is the initial work when selecting a row to restore from.
     // The stack is .create and .scpFind
     private func doWork() {
         if (self.work != nil) {
