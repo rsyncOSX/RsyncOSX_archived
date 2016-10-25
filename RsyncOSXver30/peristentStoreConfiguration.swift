@@ -12,7 +12,7 @@ import Foundation
 // presistent store. Class is a interface
 // for Configuration.
 
-final class persistentStoreConfiguration : readwritefiles {
+final class persistentStoreConfiguration  {
     
     // Get max hiddenID already used
     private var maxhiddenID : Int {
@@ -298,25 +298,17 @@ final class persistentStoreConfiguration : readwritefiles {
     // Writing configuration to persistent store
     private func writeToStore (_ array: NSMutableArray) {
         // Getting the object just for the write method, no read from persistent store
-        let save = readwritefiles(whattoread: enumtask.none)
-        _ = save.writeDatatofile(array, task: enumtask.configuration)
+        let save = readwritefiles(whattoread: .none)
+        _ = save.writeDatatofile(array, task: .configuration)
     }
     
     
     init () {
-        super.init(whattoread: .configuration)
         // Reading Configurations from memory or disk, if dirty read from disk
         // if not dirty set self.configurationFromStore to nil to tell
         // anyone to read Configurations from memory
-        /*
-        let read = readwritefiles(whattoread: enumtask.configuration)
+        let read = readwritefiles(whattoread: .configuration)
         if let configurationFromstore = read.datafromStore {
-            self.configurationFromStore = configurationFromstore
-        } else {
-            self.configurationFromStore = nil
-        }
-         */
-        if let configurationFromstore = self.datafromStore {
             self.configurationFromStore = configurationFromstore
         } else {
             self.configurationFromStore = nil
