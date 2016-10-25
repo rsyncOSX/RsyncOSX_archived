@@ -85,6 +85,8 @@ class ViewControllerCopyFiles : NSViewController, UpdateProgress, RefreshtableVi
     // Search field
     @IBOutlet weak var search: NSSearchField!
     @IBOutlet weak var CopyButton: NSButton!
+   
+    
     // Do the work
     @IBAction func Copy(_ sender: NSButton) {
         if (self.remoteCatalog.stringValue.isEmpty || self.localCatalog.stringValue.isEmpty) {
@@ -94,15 +96,14 @@ class ViewControllerCopyFiles : NSViewController, UpdateProgress, RefreshtableVi
                 self.rsync = true
                 self.workingRsync.startAnimation(nil)
                 if (self.estimated == false) {
-                    self.copyObject!.estimate(remotefile: remoteCatalog!.stringValue, localCatalog: localCatalog!.stringValue)
+                    self.copyObject!.execute(remotefile: remoteCatalog!.stringValue, localCatalog: localCatalog!.stringValue, dryrun: true)
                     self.CopyButton.title = "Execute"
                     self.estimated = true
                 } else {
                     self.workingRsync.startAnimation(nil)
-                    self.copyObject!.execute(remotefile: remoteCatalog!.stringValue, localCatalog: localCatalog!.stringValue)
+                    self.copyObject!.execute(remotefile: remoteCatalog!.stringValue, localCatalog: localCatalog!.stringValue, dryrun: false)
                     self.estimated = false
                 }
-                
             } else {
                 Alerts.showInfo("Please select a ROW in Execute window!")
             }

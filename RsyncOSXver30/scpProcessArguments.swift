@@ -16,7 +16,7 @@ enum enumscpTasks {
     case copy
 }
 
-final class scpNSTaskArguments {
+final class scpProcessArguments {
     
     // File to read
     private var file:String?
