@@ -225,6 +225,7 @@ class ViewControllertabSchedule : NSViewController, GetHiddenID, RefreshtableVie
             // timer == 0 do not start NSTimer, timer > 0 update frequens of NSTimer
             if (timer > 0) {
                 self.nextTask?.invalidate()
+                self.nextTask = nil
                 // Update when next task is to be executed
                 self.nextTask = Timer.scheduledTimer(timeInterval: timer, target: self, selector: #selector(nextScheduledtask), userInfo: nil, repeats: true)
             }
