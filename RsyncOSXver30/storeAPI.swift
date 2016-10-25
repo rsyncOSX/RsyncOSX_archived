@@ -161,7 +161,7 @@ class storeAPI {
             dict.setObject(rsyncPath!, forKey: "rsyncPath" as NSCopying)
         }
         array.add(dict)
-        let save = readwritefiles(whattoread: enumtask.none)
+        let save = readwritefiles(whattoread: .none)
         return save.writeDatatofile(array, task: .userconfig)
     }
     

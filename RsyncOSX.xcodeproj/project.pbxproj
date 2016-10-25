@@ -25,12 +25,11 @@
 		A04492AB1D658F2100B3CE17 /* argumentsConfigurations.swift in Sources */ = {isa = PBXBuildFile; fileRef = A04492971D658F2100B3CE17 /* argumentsConfigurations.swift */; };
 		A04492AC1D658F2100B3CE17 /* configuration.swift in Sources */ = {isa = PBXBuildFile; fileRef = A04492981D658F2100B3CE17 /* configuration.swift */; };
 		A04492AD1D658F2100B3CE17 /* configurationSchedule.swift in Sources */ = {isa = PBXBuildFile; fileRef = A04492991D658F2100B3CE17 /* configurationSchedule.swift */; };
-		A04492AE1D658F2100B3CE17 /* history.swift in Sources */ = {isa = PBXBuildFile; fileRef = A044929A1D658F2100B3CE17 /* history.swift */; };
 		A04492AF1D658F2100B3CE17 /* peristentStoreConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = A044929B1D658F2100B3CE17 /* peristentStoreConfiguration.swift */; };
 		A04492B01D658F2100B3CE17 /* persistenStoreScheduling.swift in Sources */ = {isa = PBXBuildFile; fileRef = A044929C1D658F2100B3CE17 /* persistenStoreScheduling.swift */; };
 		A04492B11D658F2100B3CE17 /* readwritefiles.swift in Sources */ = {isa = PBXBuildFile; fileRef = A044929D1D658F2100B3CE17 /* readwritefiles.swift */; };
 		A04492B21D658F2100B3CE17 /* rsyncProcessArguments.swift in Sources */ = {isa = PBXBuildFile; fileRef = A044929E1D658F2100B3CE17 /* rsyncProcessArguments.swift */; };
-		A04492B41D658F2100B3CE17 /* scpNSTaskArguments.swift in Sources */ = {isa = PBXBuildFile; fileRef = A04492A01D658F2100B3CE17 /* scpNSTaskArguments.swift */; };
+		A04492B41D658F2100B3CE17 /* scpProcessArguments.swift in Sources */ = {isa = PBXBuildFile; fileRef = A04492A01D658F2100B3CE17 /* scpProcessArguments.swift */; };
 		A04492B51D658F2100B3CE17 /* SharingManagerConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = A04492A11D658F2100B3CE17 /* SharingManagerConfiguration.swift */; };
 		A04492B61D658F2100B3CE17 /* SharingManagerSchedule.swift in Sources */ = {isa = PBXBuildFile; fileRef = A04492A21D658F2100B3CE17 /* SharingManagerSchedule.swift */; };
 		A04492B71D658F2100B3CE17 /* storeAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = A04492A31D658F2100B3CE17 /* storeAPI.swift */; };
@@ -81,12 +80,11 @@
 		A04492971D658F2100B3CE17 /* argumentsConfigurations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = argumentsConfigurations.swift; sourceTree = "<group>"; };
 		A04492981D658F2100B3CE17 /* configuration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = configuration.swift; sourceTree = "<group>"; };
 		A04492991D658F2100B3CE17 /* configurationSchedule.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = configurationSchedule.swift; sourceTree = "<group>"; };
-		A044929A1D658F2100B3CE17 /* history.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = history.swift; sourceTree = "<group>"; };
 		A044929B1D658F2100B3CE17 /* peristentStoreConfiguration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = peristentStoreConfiguration.swift; sourceTree = "<group>"; };
 		A044929C1D658F2100B3CE17 /* persistenStoreScheduling.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = persistenStoreScheduling.swift; sourceTree = "<group>"; };
 		A044929D1D658F2100B3CE17 /* readwritefiles.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = readwritefiles.swift; sourceTree = "<group>"; };
 		A044929E1D658F2100B3CE17 /* rsyncProcessArguments.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = rsyncProcessArguments.swift; sourceTree = "<group>"; };
-		A04492A01D658F2100B3CE17 /* scpNSTaskArguments.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = scpNSTaskArguments.swift; sourceTree = "<group>"; };
+		A04492A01D658F2100B3CE17 /* scpProcessArguments.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = scpProcessArguments.swift; sourceTree = "<group>"; };
 		A04492A11D658F2100B3CE17 /* SharingManagerConfiguration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SharingManagerConfiguration.swift; sourceTree = "<group>"; };
 		A04492A21D658F2100B3CE17 /* SharingManagerSchedule.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SharingManagerSchedule.swift; sourceTree = "<group>"; };
 		A04492A31D658F2100B3CE17 /* storeAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = storeAPI.swift; sourceTree = "<group>"; };
@@ -184,7 +182,6 @@
 		A04492BF1D658F9400B3CE17 /* PersistentStore */ = {
 			isa = PBXGroup;
 			children = (
-				A044929A1D658F2100B3CE17 /* history.swift */,
 				A044929D1D658F2100B3CE17 /* readwritefiles.swift */,
 				A0762A1E1DB4A8F000538CE9 /* profiles.swift */,
 			);
@@ -280,7 +277,7 @@
 			isa = PBXGroup;
 			children = (
 				A091C65A1D86A59500278E74 /* CopyFiles.swift */,
-				A04492A01D658F2100B3CE17 /* scpNSTaskArguments.swift */,
+				A04492A01D658F2100B3CE17 /* scpProcessArguments.swift */,
 			);
 			name = CopyFiles;
 			sourceTree = "<group>";
@@ -389,7 +386,6 @@
 				A04492AA1D658F2100B3CE17 /* yudpsocket.c in Sources */,
 				A04492B11D658F2100B3CE17 /* readwritefiles.swift in Sources */,
 				A04492B21D658F2100B3CE17 /* rsyncProcessArguments.swift in Sources */,
-				A04492AE1D658F2100B3CE17 /* history.swift in Sources */,
 				A05275DA1D6F6E0000D8ECBE /* batchOperations.swift in Sources */,
 				A00FE1AA1D6A1AAB00012089 /* alerts.swift in Sources */,
 				A0F2E20C1D6D91AA0091E8BF /* userconfiguration.swift in Sources */,
@@ -410,7 +406,7 @@
 				A091C65B1D86A59500278E74 /* CopyFiles.swift in Sources */,
 				A0DD27081D92DDF400D56899 /* FileDialog.swift in Sources */,
 				A0A403521D76BD2E00A30017 /* ViewControllerRsyncParameters.swift in Sources */,
-				A04492B41D658F2100B3CE17 /* scpNSTaskArguments.swift in Sources */,
+				A04492B41D658F2100B3CE17 /* scpProcessArguments.swift in Sources */,
 				A04492AB1D658F2100B3CE17 /* argumentsConfigurations.swift in Sources */,
 				A0B3D9741D758E20001E190E /* ViewControllerUserconfiguration.swift in Sources */,
 				A04492B61D658F2100B3CE17 /* SharingManagerSchedule.swift in Sources */,

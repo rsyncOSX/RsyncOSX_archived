@@ -78,15 +78,15 @@ class persistentStoreScheduling {
     // Write schedules to disk
     private func writeFile (_ array: NSMutableArray){
         // Getting the object just for the write method, no read from persistent store
-        let save = readwritefiles(whattoread: enumtask.none)
-        _ = save.writeDatatofile(array, task: enumtask.schedule)
+        let save = readwritefiles(whattoread: .none)
+        _ = save.writeDatatofile(array, task: .schedule)
     }
     
     init () {
         // Reading schedules
         // Configuration from memory or disk, if dirty read from disk
         // if not dirty from memory
-        let read = readwritefiles(whattoread: enumtask.schedule)
+        let read = readwritefiles(whattoread: .schedule)
         if let schedulesFromFile = read.datafromStore {
             self.schedulesFromFile = schedulesFromFile
         } else {

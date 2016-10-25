@@ -19,10 +19,10 @@ final class CopyFiles {
     // when files.txt is copied from remote server get the records
     private var files:[String]?
     // Arguments and command for Process object
-    var arguments:[String]?
-    var command:String?
+    private var arguments:[String]?
+    private var command:String?
     // The arguments object
-    var argumentsObject:scpNSTaskArguments?
+    var argumentsObject:scpProcessArguments?
     // Message to calling class do a refresh
     weak var refreshtable_delegate:RefreshtableViewtabMain?
     // Command real run - for the copy process (by rsync)
@@ -52,21 +52,17 @@ final class CopyFiles {
         
     }
     
-    // Estimate run
-    func estimate(remotefile:String, localCatalog:String) {
-        self.argumentsObject = scpNSTaskArguments(task: .copy, config: self.config!, remoteFile: remotefile, localCatalog: localCatalog, drynrun: true)
-        self.arguments = self.argumentsObject!.getArgs()
+    // Execute Process (either dryrun or realrun)
+    func execute(remotefile:String, localCatalog:String, dryrun:Bool) {
+        if(dryrun) {
+            self.argumentsObject = scpProcessArguments(task: .copy, config: self.config!, remoteFile: remotefile, localCatalog: localCatalog, drynrun: true)
+            self.arguments = self.argumentsObject!.getArgs()
+        } else {
+            self.argumentsObject = scpProcessArguments(task: .copy, config: self.config!, remoteFile: remotefile, localCatalog: localCatalog, drynrun: nil)
+            self.arguments = self.argumentsObject!.getArgs()
+        }
         self.command = nil
-        self.task = rsyncProcess(notification: false, tabMain: false, command : nil)
-        self.output = outputProcess()
-        self.task!.executeProcess(self.arguments!, output: self.output!)
-    }
-    
-    // Execute run
-    func execute(remotefile:String, localCatalog:String) {
-        self.argumentsObject = scpNSTaskArguments(task: .copy, config: self.config!, remoteFile: remotefile, localCatalog: localCatalog, drynrun: nil)
-        self.arguments = self.argumentsObject!.getArgs()
-        self.command = nil
+        self.output = nil
         self.task = rsyncProcess(notification: false, tabMain: false, command : nil)
         self.output = outputProcess()
         self.task!.executeProcess(self.arguments!, output: self.output!)
@@ -74,7 +70,7 @@ final class CopyFiles {
     
     // Get arguments for rsync to show
     func getCommandDisplayinView(remotefile:String, localCatalog:String) -> String? {
-        self.commandDisplay = scpNSTaskArguments(task: .copy, config: self.config!, remoteFile: remotefile, localCatalog: localCatalog, drynrun: true).getcommandDisplay()
+        self.commandDisplay = scpProcessArguments(task: .copy, config: self.config!, remoteFile: remotefile, localCatalog: localCatalog, drynrun: true).getcommandDisplay()
         return self.commandDisplay
     }
     
@@ -85,13 +81,13 @@ final class CopyFiles {
     }
     
     // The work stack.
-    // This is the iniatil work when selecting a row to restore from.
+    // This is the initial work when selecting a row to restore from.
     // The stack is .create and .scpFind
     private func doWork() {
         if (self.work != nil) {
             if (self.work!.count > 0) {
                 let work:enumscpTasks = (self.work?.removeFirst())!
-                self.argumentsObject = scpNSTaskArguments(task: work, config: self.config!, remoteFile: nil, localCatalog: nil, drynrun: nil)
+                self.argumentsObject = scpProcessArguments(task: work, config: self.config!, remoteFile: nil, localCatalog: nil, drynrun: nil)
                 self.arguments = self.argumentsObject!.getArgs()
                 self.command = self.argumentsObject!.getCommand()
                 self.command = self.argumentsObject!.getCommand()
@@ -111,6 +107,7 @@ final class CopyFiles {
             }
         }
     }
+    
     // Filter function
     func filter(search:String?) -> [String] {
         if (search != nil) {
