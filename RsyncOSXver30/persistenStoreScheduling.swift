@@ -12,19 +12,21 @@ import Foundation
 // presistent store. Class is a interface
 // for Schedule.
 
-class persistentStoreScheduling {
+final class persistentStoreScheduling : readwritefilesNew {
     
-    // Holding all scheduledata
-    private var schedulesFromFile: [NSDictionary]?
+    // Variables holds all scheduledata
+    private var schedules: [NSDictionary]?
     
-    func getschedulesFromFile() -> [NSDictionary]? {
-        return self.schedulesFromFile
+    /// Function reads schedules from permanent store
+    /// - returns : array of NSDictonarys, return might be nil if schedule is already in memory
+    func readSchedulesFromPermanentStore() -> [NSDictionary]? {
+        return self.schedules
     }
         
     // Saving Schedules from MEMORY to persistent store
     func savescheduleInMemoryToPersistentStore(){
         
-        let array = NSMutableArray()
+        var array = Array<NSDictionary>()
         // Reading Schedules from memory
         let data = SharingManagerSchedule.sharedInstance.getSchedule()
         
@@ -40,57 +42,57 @@ class persistentStoreScheduling {
             }
             if let delete = schedule.delete {
                 if (!delete) {
-                    array.add(dict)
+                    array.append(dict)
                 }
             } else {
-                array.add(dict)
+                array.append(dict)
             }
         }
         // Write array to persistent store
-        writeFile(array)
+        self.writeToStore(array)
     }
 
     
     // Saving not deleted schedule records to persistent store
     // Deleted Schedule by hiddenID
     func savescheduleDeletedRecordsToFile (_ hiddenID : Int) {
-        let array  = NSMutableArray()
-        let schedule = SharingManagerSchedule.sharedInstance.getSchedule()
-        for i in 0 ..< schedule.count {
-            let sched = schedule[i]
-            if ((sched.delete == nil) && (sched.hiddenID != hiddenID)) {
+        var array = Array<NSDictionary>()
+        let Schedule = SharingManagerSchedule.sharedInstance.getSchedule()
+        for i in 0 ..< Schedule.count {
+            let schedule = Schedule[i]
+            if ((schedule.delete == nil) && (schedule.hiddenID != hiddenID)) {
                 let dict:NSMutableDictionary = [
-                    "hiddenID" : sched.hiddenID,
-                    "dateStart":sched.dateStart,
-                    "schedule":sched.schedule,
-                    "executed":sched.executed]
-                if (sched.dateStop != nil) {
-                    dict.setValue(sched.dateStop, forKey: "dateStop")
+                    "hiddenID" : schedule.hiddenID,
+                    "dateStart":schedule.dateStart,
+                    "schedule":schedule.schedule,
+                    "executed":schedule.executed]
+                if (schedule.dateStop != nil) {
+                    dict.setValue(schedule.dateStop, forKey: "dateStop")
                 }
-                array.add(dict)
+                array.append(dict)
             }
         }
         // Write array to persistent store
-        _ = writeFile(array)
+        self.writeToStore(array)
     }
     
-    
-    // Write schedules to disk
-    private func writeFile (_ array: NSMutableArray){
+    // Writing schedules to persistent store
+    // Schedule is Array<NSDictionary>
+    private func writeToStore (_ array: Array<NSDictionary>) {
         // Getting the object just for the write method, no read from persistent store
-        let save = readwritefiles(whattoread: .none)
-        _ = save.writeDatatofile(array, task: .schedule)
+        _ = self.writeDictionarytofile(array, task: .schedule)
     }
     
-    init () {
-        // Reading schedules
-        // Configuration from memory or disk, if dirty read from disk
-        // if not dirty from memory
-        let read = readwritefiles(whattoread: .schedule)
-        if let schedulesFromFile = read.datafromStore {
-            self.schedulesFromFile = schedulesFromFile
+    override init () {
+        // Create the readwritefiles object
+        super.init()
+        // Reading Configurations from memory or disk, if dirty read from disk
+        // if not dirty set self.configurationFromStore to nil to tell
+        // anyone to read Configurations from memory
+        if let schedulesFromstore = self.getDatafromfile(task: .schedule) {
+            self.schedules = schedulesFromstore
         } else {
-            self.schedulesFromFile = nil
+            self.schedules = nil
         }
     }
 }
