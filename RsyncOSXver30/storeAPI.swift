@@ -35,9 +35,9 @@ class storeAPI {
         let read = persistentStoreConfiguration()
         // Either read from persistent store or
         // return Configurations already in memory
-        if read.getconfigurationFromStore() != nil {
+        if read.readConfigurationsFromPermanentStore() != nil {
             var Configurations = [configuration]()
-            for dict in read.getconfigurationFromStore()! {
+            for dict in read.readConfigurationsFromPermanentStore()! {
                 let conf = configuration(dictionary: dict)
                 Configurations.append(conf)
             }
