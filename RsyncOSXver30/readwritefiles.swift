@@ -1,4 +1,14 @@
 //
+//  readwritefilesNew.swift
+//  RsyncOSX
+//
+//  Created by Thomas Evensen on 25/10/2016.
+//  Copyright © 2016 Thomas Evensen. All rights reserved.
+//
+
+import Foundation
+
+//
 //  readwritefiles.swift
 //  RsyncOSX
 //
@@ -13,7 +23,7 @@ import Foundation
 // let str = "/Rsync/" + serialNumber + profil? + "/configRsync.plist"
 // let str = "/Rsync/" + serialNumber + "/config.plist"
 
-enum enumtask {
+enum readwrite {
     case schedule
     case configuration
     case userconfig
@@ -23,8 +33,6 @@ enum enumtask {
 
 class readwritefiles {
     
-    // What is read from file is read into this variable
-    var datafromStore : [NSDictionary]?
     // Name set for schedule, configuration or config
     private var name:String?
     // key in objectForKey, e.g key for reading what
@@ -40,7 +48,6 @@ class readwritefiles {
     
     // Set which file to read
     private var fileName : String? {
-        
         get {
             let str:String?
             let paths = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true) as NSArray
@@ -64,9 +71,11 @@ class readwritefiles {
             return (docuDir + str!)
         }
     }
-
+    
     // Function for reading data from persistent store
-    private func readDatafromfile (task:enumtask) -> [NSDictionary]? {
+    func getDatafromfile (task:readwrite) -> [NSDictionary]? {
+        
+        self.setPreferences(task)
         switch (task) {
         case .schedule:
             if (SharingManagerConfiguration.sharedInstance.isDataDirty()) {
@@ -95,27 +104,32 @@ class readwritefiles {
             }
         }
         if (self.readdisk == true) {
-            var itemsList = Array<NSDictionary>()
-            let dict = NSDictionary(contentsOfFile: self.fileName!)
-            let dictitems : Any? = dict?.object(forKey: self.key!)
-            if let arrayitems = dictitems as? NSArray {
+            
+            var list = Array<NSDictionary>()
+            
+            guard (self.fileName != nil) else {
+                return nil
+            }
+            let dictionary = NSDictionary(contentsOfFile: self.fileName!)
+            let items : Any? = dictionary?.object(forKey: self.key!)
+            if let arrayitems = items as? NSArray {
                 for i in 0 ..< arrayitems.count {
                     if let item = arrayitems[i] as? NSDictionary {
-                        _ = item.object(forKey: "ItemCode") as? String
-                        itemsList.append(item)
+                        _ = dictionary!.object(forKey: "ItemCode") as? String
+                        list.append(item)
                     }
                 }
             }
-            // Returning Dictionary read from disk
-            return itemsList
+            return list
         } else {
-            // Returning nil all already in memory
             return nil
         }
     }
-
+    
     // Function for write data to persistent store
-    func writeDatatofile (_ array: NSMutableArray, task:enumtask) -> Bool {
+    func writeDictionarytofile (_ array: Array<NSDictionary>, task:readwrite) -> Bool {
+
+        self.setPreferences(task)
         switch (task) {
         case .schedule:
             SharingManagerConfiguration.sharedInstance.setDataDirty(dirty: true)
@@ -125,16 +139,18 @@ class readwritefiles {
             SharingManagerConfiguration.sharedInstance.setDataDirty(dirty: false)
         }
         self.setPreferences(task)
-        let favoritesDictionary = NSDictionary(object: array, forKey: self.key! as NSCopying)
-        let succeeded = favoritesDictionary.write(toFile: self.fileName!, atomically: true)
-        return succeeded
+        let dictionary = NSDictionary(object: array, forKey: self.key! as NSCopying)
+        guard (self.fileName != nil) else {
+            return false
+        }
+            return  dictionary.write(toFile: self.fileName!, atomically: true)
     }
     
     
     // Set preferences for which data to read or write
-    private func setPreferences (_ task:enumtask) {
+    private func setPreferences (_ what:readwrite) {
         self.useProfile = false
-        switch (task) {
+        switch (what) {
         case .schedule:
             self.name = "/scheduleRsync.plist"
             self.key = "Schedule"
@@ -155,16 +171,11 @@ class readwritefiles {
         case .rsyncarguments:
             self.key = "rsyncarguments"
             self.name = "/rsyncarguments.plist"
-         case .none:
+        case .none:
             self.name = nil
             self.readdisk = false
         }
         
     }
     
-    init (whattoread:enumtask) {
-        self.setPreferences(whattoread)
-        self.datafromStore = self.readDatafromfile(task: whattoread)
-    }
-
 }

@@ -88,7 +88,6 @@ class ViewControllerNewConfigurations: NSViewController, GetPath, DismissViewCon
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do view setup here.
-        // self.tabledata = SharingManagerConfiguration.sharedInstance.getnewConfigurations()
         // Set the delegates
         self.newTableView.delegate = self
         self.newTableView.dataSource = self

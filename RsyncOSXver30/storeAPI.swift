@@ -35,9 +35,9 @@ class storeAPI {
         let read = persistentStoreConfiguration()
         // Either read from persistent store or
         // return Configurations already in memory
-        if read.getconfigurationFromStore() != nil {
+        if read.readConfigurationsFromPermanentStore() != nil {
             var Configurations = [configuration]()
-            for dict in read.getconfigurationFromStore()! {
+            for dict in read.readConfigurationsFromPermanentStore()! {
                 let conf = configuration(dictionary: dict)
                 Configurations.append(conf)
             }
@@ -95,8 +95,8 @@ class storeAPI {
         var schedule = [configurationSchedule]()
         // Either read from persistent store or
         // return Schedule already in memory
-        if read.getschedulesFromFile() != nil {
-            for dict in read.getschedulesFromFile()! {
+        if read.readSchedulesFromPermanentStore() != nil {
+            for dict in read.readSchedulesFromPermanentStore()! {
                 if let executed = dict.value(forKey: "executed") {
                     let conf = configurationSchedule(dictionary: dict, executed: executed as? NSArray)
                     schedule.append(conf)
@@ -117,9 +117,9 @@ class storeAPI {
     // Sorted and expanded are only stored in memory
     func getScheduleonly () -> [configurationSchedule] {
         let read = persistentStoreScheduling()
-        if read.getschedulesFromFile() != nil {
+        if read.readSchedulesFromPermanentStore() != nil {
             var schedule = [configurationSchedule]()
-            for dict in read.getschedulesFromFile()! {
+            for dict in read.readSchedulesFromPermanentStore()! {
                 let conf = configurationSchedule(dictionary: dict, executed: nil)
                 schedule.append(conf)
             }
@@ -133,36 +133,14 @@ class storeAPI {
     // USERCONFIG
     
     // Saving user configuration
-    func saveuserconfig () -> Bool {
-        var version3Rsync:Int?
-        var detailedlogging:Int?
-        var rsyncPath:String?
-        
-        if (SharingManagerConfiguration.sharedInstance.rsyncVer3) {
-            version3Rsync = 1
-        } else {
-            version3Rsync = 0
-        }
-        if (SharingManagerConfiguration.sharedInstance.detailedlogging) {
-            detailedlogging = 1
-        } else {
-            detailedlogging = 0
-        }
-        if (SharingManagerConfiguration.sharedInstance.rsyncPath != nil) {
-            rsyncPath = SharingManagerConfiguration.sharedInstance.rsyncPath!
-        }
-        
-        let array = NSMutableArray()
-        let dict:NSMutableDictionary = [
-            "version3Rsync" : version3Rsync! as Int,
-            "detailedlogging" : detailedlogging! as Int,
-            "scheduledTaskdisableExecute": SharingManagerConfiguration.sharedInstance.scheduledTaskdisableExecute]
-        if ((rsyncPath != nil)) {
-            dict.setObject(rsyncPath!, forKey: "rsyncPath" as NSCopying)
-        }
-        array.add(dict)
-        let save = readwritefiles(whattoread: .none)
-        return save.writeDatatofile(array, task: .userconfig)
+    func saveUserconfiguration() {
+        let store = persistentStoreUserconfiguration()
+        store.saveUserconfiguration()
+    }
+    
+    func getUserconfiguration () -> [NSDictionary]? {
+        let store = persistentStoreUserconfiguration()
+        return store.readUserconfigurationsFromPermanentStore()
     }
     
 }

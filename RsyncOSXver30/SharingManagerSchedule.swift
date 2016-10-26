@@ -82,6 +82,7 @@ class SharingManagerSchedule {
     /// Function for canceling next job waiting for execution.
     func cancelJobWaiting () {
         self.waitForTask?.invalidate()
+        self.waitForTask = nil
     }
         
     /// Function for reading all jobs for schedule and all history of past executions.
