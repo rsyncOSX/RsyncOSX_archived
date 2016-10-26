@@ -18,8 +18,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         // Check for new version
         _ = newVersion()
         // Read user configuration
-        let store = persistentStoreUserconfiguration()
-        if let userConfiguration =  store.readUserconfigurationsFromPermanentStore() {
+        if let userConfiguration =  storeAPI.sharedInstance.getUserconfiguration() {
             _ = userconfiguration(configRsyncOSX: userConfiguration)
         }
     }
