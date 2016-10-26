@@ -6,49 +6,33 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "RsyncOSXver30/outputProcess.swift"
+            timestampString = "499203108.297848"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "241"
+            endingLineNumber = "241"
+            landmarkName = "statistics(numberOfFiles:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "RsyncOSXver30/ViewControllertabMain.swift"
-            timestampString = "498997515.259866"
+            filePath = "RsyncOSXver30/outputProcess.swift"
+            timestampString = "499203244.837349"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "265"
-            endingLineNumber = "265"
-            landmarkName = "abortOperations()"
+            startingLineNumber = "232"
+            endingLineNumber = "232"
+            landmarkName = "statistics(numberOfFiles:)"
             landmarkType = "7">
-            <Locations>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "RsyncOSX.ViewControllertabMain.abortOperations () -&gt; ()"
-                  moduleName = "RsyncOSX"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Volumes/Users/thomaeve/Documents/Xcode/Version3.0/RsyncOSXver30/ViewControllertabMain.swift"
-                  timestampString = "498997827.105232"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "265"
-                  endingLineNumber = "265"
-                  offsetFromSymbolStart = "959">
-               </Location>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "RsyncOSX.ViewControllertabMain.abortOperations () -&gt; ()"
-                  moduleName = "RsyncOSX"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Volumes/Users/thomaeve/Documents/Xcode/Version3.0/RsyncOSXver30/ViewControllertabMain.swift"
-                  timestampString = "498997827.108324"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "265"
-                  endingLineNumber = "265"
-                  offsetFromSymbolStart = "1058">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>
