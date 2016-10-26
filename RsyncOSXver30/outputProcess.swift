@@ -211,15 +211,17 @@ final class outputProcess {
         var parts:[String]?
         
         if (SharingManagerConfiguration.sharedInstance.rsyncVer3) {
-            let newmessage = message.replacingOccurrences(of: ",", with: "")
+            // ["sent", "409687", "bytes", "", "received", "5331", "bytes", "", "830036.00", "bytes/sec"]
+            let newmessage = self.message.replacingOccurrences(of: ",", with: "")
             parts = newmessage.components(separatedBy: " ")
         } else {
+            // ["sent", "262826", "bytes", "", "received", "2248", "bytes", "", "58905.33", "bytes/sec"]
             parts = self.message.components(separatedBy: " ")
         }
+        
         var resultsent:String?
         var resultreceived:String?
         var result:String?
-        var i:Int = 0
         
         var bytesTotalsent:Double = 0
         var bytesTotalreceived:Double = 0
@@ -227,44 +229,40 @@ final class outputProcess {
         var bytesSec:Double = 0
         var seconds:Double = 0
         
-        for part in parts! {
-            // sent
-            if (i == 1) {
-                resultsent = part + " bytes in "
-                if (Double(part) != nil) {
-                    bytesTotalsent = Double(part)!
-                } else {
-                    return ["0","0"]
-                }
-                // received
-            } else if (i == 5) {
-                resultreceived = part + " bytes in "
-                if (Double(part) != nil) {
-                    bytesTotalreceived = Double(part)!
-                }
-            } else if (i == 8) {
-                if (bytesTotalsent > bytesTotalreceived) {
-                    // backup task
-                    result = resultsent! + part + " b/sec"
-                    bytesSec = Double(part)!
-                    seconds = bytesTotalsent/bytesSec
-                    bytesTotal = bytesTotalsent
-                } else {
-                    // restore task
-                    result = resultreceived! + part + " b/sec"
-                    bytesSec = Double(part)!
-                    seconds = bytesTotalreceived/bytesSec
-                    bytesTotal = bytesTotalreceived
-                }
-            }
-            i = i + 1
+        guard parts!.count > 9 else {
+            return ["0","0"]
         }
+        
+        guard (Double(parts![1]) != nil && (Double(parts![5]) != nil) && (Double(parts![8]) != nil) ) else {
+            return ["0","0"]
+        }
+        
+        // Sent
+        resultsent = parts![1] + " bytes in "
+        bytesTotalsent = Double(parts![1])!
+        // Received
+        resultreceived = parts![5] + " bytes in "
+        bytesTotalreceived = Double(parts![5])!
+        
+        if (bytesTotalsent > bytesTotalreceived) {
+            // backup task
+            result = resultsent! + parts![8] + " b/sec"
+            bytesSec = Double(parts![8])!
+            seconds = bytesTotalsent/bytesSec
+            bytesTotal = bytesTotalsent
+        } else {
+            // restore task
+            result = resultreceived! + parts![8] + " b/sec"
+            bytesSec = Double(parts![7])!
+            seconds = bytesTotalreceived/bytesSec
+            bytesTotal = bytesTotalreceived
+        }
+        // Dont have numbers of file as input
         if (numberOfFiles == nil) {
             numberstring = String(self.output.count) + " files : " + String(format:"%.2f",(bytesTotal/1024)/1000) + " MB in " + String(format:"%.2f",seconds) + " seconds"
         } else {
             numberstring = numberOfFiles! + " files : " + String(format:"%.2f",(bytesTotal/1024)/1000) + " MB in " + String(format:"%.2f",seconds) + " seconds"
         }
-        
         if (result == nil) {
             result = "hmmm...."
         }
