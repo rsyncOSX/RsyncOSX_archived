@@ -1,27 +1,16 @@
 //
-//  readwritefilesNew.swift
+//  readwritefiles.swift
 //  RsyncOSX
 //
 //  Created by Thomas Evensen on 25/10/2016.
 //  Copyright © 2016 Thomas Evensen. All rights reserved.
 //
-
-import Foundation
-
-//
-//  readwritefiles.swift
-//  RsyncOSX
-//
-//  Created by Thomas Evensen on 01/06/16.
-//  Copyright © 2016 Thomas Evensen. All rights reserved.
-//
-
-import Foundation
-
-
-// let str = "/Rsync/" + serialNumber + profil? + "/scheduleRsync.plist"
-// let str = "/Rsync/" + serialNumber + profil? + "/configRsync.plist"
+// let str = "/Rsync/" + serialNumber + profile? + "/scheduleRsync.plist"
+// let str = "/Rsync/" + serialNumber + profile? + "/configRsync.plist"
 // let str = "/Rsync/" + serialNumber + "/config.plist"
+
+
+import Foundation
 
 enum readwrite {
     case schedule
@@ -107,9 +96,10 @@ class readwritefiles {
             
             var list = Array<NSDictionary>()
             
-            guard (self.fileName != nil) else {
+            guard (self.fileName != nil && self.key != nil) else {
                 return nil
             }
+            
             let dictionary = NSDictionary(contentsOfFile: self.fileName!)
             let items : Any? = dictionary?.object(forKey: self.key!)
             if let arrayitems = items as? NSArray {

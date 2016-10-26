@@ -5,12 +5,11 @@
 //  Created by Thomas Evensen on 02/05/16.
 //  Copyright © 2016 Thomas Evensen. All rights reserved.
 //
-
-import Foundation
-
 // Interface between Schedule in memory and
 // presistent store. Class is a interface
 // for Schedule.
+
+import Foundation
 
 final class persistentStoreScheduling : readwritefiles {
     
