@@ -12,7 +12,7 @@ import Foundation
 // presistent store. Class is a interface
 // for Configuration.
 
-final class persistentStoreConfiguration : readwritefilesNew {
+final class persistentStoreConfiguration : readwritefiles {
     
     /// Variable computes max hiddenID used
     /// MaxhiddenID is used when new configurations

@@ -12,7 +12,7 @@ import Foundation
 // presistent store. Class is a interface
 // for Schedule.
 
-final class persistentStoreScheduling : readwritefilesNew {
+final class persistentStoreScheduling : readwritefiles {
     
     // Variables holds all scheduledata
     private var schedules: [NSDictionary]?

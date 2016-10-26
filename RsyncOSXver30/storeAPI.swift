@@ -133,36 +133,14 @@ class storeAPI {
     // USERCONFIG
     
     // Saving user configuration
-    func saveuserconfig () -> Bool {
-        var version3Rsync:Int?
-        var detailedlogging:Int?
-        var rsyncPath:String?
-        
-        if (SharingManagerConfiguration.sharedInstance.rsyncVer3) {
-            version3Rsync = 1
-        } else {
-            version3Rsync = 0
-        }
-        if (SharingManagerConfiguration.sharedInstance.detailedlogging) {
-            detailedlogging = 1
-        } else {
-            detailedlogging = 0
-        }
-        if (SharingManagerConfiguration.sharedInstance.rsyncPath != nil) {
-            rsyncPath = SharingManagerConfiguration.sharedInstance.rsyncPath!
-        }
-        
-        let array = NSMutableArray()
-        let dict:NSMutableDictionary = [
-            "version3Rsync" : version3Rsync! as Int,
-            "detailedlogging" : detailedlogging! as Int,
-            "scheduledTaskdisableExecute": SharingManagerConfiguration.sharedInstance.scheduledTaskdisableExecute]
-        if ((rsyncPath != nil)) {
-            dict.setObject(rsyncPath!, forKey: "rsyncPath" as NSCopying)
-        }
-        array.add(dict)
-        let save = readwritefiles(whattoread: .none)
-        return save.writeDatatofile(array, task: .userconfig)
+    func saveUserconfiguration() {
+        let store = persistentStoreUserconfiguration()
+        store.saveUserconfiguration()
+    }
+    
+    func getUserconfiguration () -> [NSDictionary]? {
+        let store = persistentStoreUserconfiguration()
+        return store.readUserconfigurationsFromPermanentStore()
     }
     
 }

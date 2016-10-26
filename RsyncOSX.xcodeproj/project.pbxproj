@@ -27,7 +27,6 @@
 		A04492AD1D658F2100B3CE17 /* configurationSchedule.swift in Sources */ = {isa = PBXBuildFile; fileRef = A04492991D658F2100B3CE17 /* configurationSchedule.swift */; };
 		A04492AF1D658F2100B3CE17 /* peristentStoreConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = A044929B1D658F2100B3CE17 /* peristentStoreConfiguration.swift */; };
 		A04492B01D658F2100B3CE17 /* persistenStoreScheduling.swift in Sources */ = {isa = PBXBuildFile; fileRef = A044929C1D658F2100B3CE17 /* persistenStoreScheduling.swift */; };
-		A04492B11D658F2100B3CE17 /* readwritefiles.swift in Sources */ = {isa = PBXBuildFile; fileRef = A044929D1D658F2100B3CE17 /* readwritefiles.swift */; };
 		A04492B21D658F2100B3CE17 /* rsyncProcessArguments.swift in Sources */ = {isa = PBXBuildFile; fileRef = A044929E1D658F2100B3CE17 /* rsyncProcessArguments.swift */; };
 		A04492B41D658F2100B3CE17 /* scpProcessArguments.swift in Sources */ = {isa = PBXBuildFile; fileRef = A04492A01D658F2100B3CE17 /* scpProcessArguments.swift */; };
 		A04492B51D658F2100B3CE17 /* SharingManagerConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = A04492A11D658F2100B3CE17 /* SharingManagerConfiguration.swift */; };
@@ -39,7 +38,7 @@
 		A04492BC1D658F2100B3CE17 /* yudpsocket.swift in Sources */ = {isa = PBXBuildFile; fileRef = A04492A81D658F2100B3CE17 /* yudpsocket.swift */; };
 		A04972511D6595B200086EFD /* outputProcess.swift in Sources */ = {isa = PBXBuildFile; fileRef = A049724F1D6595B200086EFD /* outputProcess.swift */; };
 		A04972521D6595B200086EFD /* rsyncProcess.swift in Sources */ = {isa = PBXBuildFile; fileRef = A04972501D6595B200086EFD /* rsyncProcess.swift */; };
-		A04C08081DBF50AF00972FE2 /* readwritefilesNew.swift in Sources */ = {isa = PBXBuildFile; fileRef = A04C08071DBF50AF00972FE2 /* readwritefilesNew.swift */; };
+		A04C08081DBF50AF00972FE2 /* readwritefiles.swift in Sources */ = {isa = PBXBuildFile; fileRef = A04C08071DBF50AF00972FE2 /* readwritefiles.swift */; };
 		A05275DA1D6F6E0000D8ECBE /* batchOperations.swift in Sources */ = {isa = PBXBuildFile; fileRef = A05275D91D6F6E0000D8ECBE /* batchOperations.swift */; };
 		A054F1A91D6D773E00D27688 /* ViewControllerInformation.swift in Sources */ = {isa = PBXBuildFile; fileRef = A054F1A81D6D773E00D27688 /* ViewControllerInformation.swift */; };
 		A0762A1F1DB4A8F000538CE9 /* profiles.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0762A1E1DB4A8F000538CE9 /* profiles.swift */; };
@@ -55,6 +54,7 @@
 		A0CACFD41DA2738500C5997A /* rsyncParameters.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0CACFD31DA2738500C5997A /* rsyncParameters.swift */; };
 		A0DD27081D92DDF400D56899 /* FileDialog.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0DD27071D92DDF400D56899 /* FileDialog.swift */; };
 		A0EE98991D8948310034F1A4 /* ViewControllerInformationCopyFiles.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0EE98981D8948310034F1A4 /* ViewControllerInformationCopyFiles.swift */; };
+		A0EFB4501DC080A9008C21A6 /* persistenStoreUserconfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0EFB44F1DC080A9008C21A6 /* persistenStoreUserconfiguration.swift */; };
 		A0F2E20C1D6D91AA0091E8BF /* userconfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0F2E20B1D6D91AA0091E8BF /* userconfiguration.swift */; };
 		A0FC45641D9545CC005208EF /* ScheduleDetailsAboutRuns.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0FC45631D9545CC005208EF /* ScheduleDetailsAboutRuns.swift */; };
 /* End PBXBuildFile section */
@@ -83,7 +83,6 @@
 		A04492991D658F2100B3CE17 /* configurationSchedule.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = configurationSchedule.swift; sourceTree = "<group>"; };
 		A044929B1D658F2100B3CE17 /* peristentStoreConfiguration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = peristentStoreConfiguration.swift; sourceTree = "<group>"; };
 		A044929C1D658F2100B3CE17 /* persistenStoreScheduling.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = persistenStoreScheduling.swift; sourceTree = "<group>"; };
-		A044929D1D658F2100B3CE17 /* readwritefiles.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = readwritefiles.swift; sourceTree = "<group>"; };
 		A044929E1D658F2100B3CE17 /* rsyncProcessArguments.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = rsyncProcessArguments.swift; sourceTree = "<group>"; };
 		A04492A01D658F2100B3CE17 /* scpProcessArguments.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = scpProcessArguments.swift; sourceTree = "<group>"; };
 		A04492A11D658F2100B3CE17 /* SharingManagerConfiguration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SharingManagerConfiguration.swift; sourceTree = "<group>"; };
@@ -95,7 +94,7 @@
 		A04492A81D658F2100B3CE17 /* yudpsocket.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = yudpsocket.swift; sourceTree = "<group>"; };
 		A049724F1D6595B200086EFD /* outputProcess.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = outputProcess.swift; sourceTree = "<group>"; };
 		A04972501D6595B200086EFD /* rsyncProcess.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = rsyncProcess.swift; sourceTree = "<group>"; };
-		A04C08071DBF50AF00972FE2 /* readwritefilesNew.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = readwritefilesNew.swift; sourceTree = "<group>"; };
+		A04C08071DBF50AF00972FE2 /* readwritefiles.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = readwritefiles.swift; sourceTree = "<group>"; };
 		A05275D91D6F6E0000D8ECBE /* batchOperations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = batchOperations.swift; sourceTree = "<group>"; };
 		A054F1A81D6D773E00D27688 /* ViewControllerInformation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewControllerInformation.swift; sourceTree = "<group>"; };
 		A0762A1E1DB4A8F000538CE9 /* profiles.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = profiles.swift; sourceTree = "<group>"; };
@@ -111,6 +110,7 @@
 		A0CACFD31DA2738500C5997A /* rsyncParameters.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = rsyncParameters.swift; sourceTree = "<group>"; };
 		A0DD27071D92DDF400D56899 /* FileDialog.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FileDialog.swift; sourceTree = "<group>"; };
 		A0EE98981D8948310034F1A4 /* ViewControllerInformationCopyFiles.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewControllerInformationCopyFiles.swift; sourceTree = "<group>"; };
+		A0EFB44F1DC080A9008C21A6 /* persistenStoreUserconfiguration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = persistenStoreUserconfiguration.swift; sourceTree = "<group>"; };
 		A0F2E20B1D6D91AA0091E8BF /* userconfiguration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = userconfiguration.swift; sourceTree = "<group>"; };
 		A0FC45631D9545CC005208EF /* ScheduleDetailsAboutRuns.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScheduleDetailsAboutRuns.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -184,9 +184,8 @@
 		A04492BF1D658F9400B3CE17 /* PersistentStore */ = {
 			isa = PBXGroup;
 			children = (
-				A044929D1D658F2100B3CE17 /* readwritefiles.swift */,
 				A0762A1E1DB4A8F000538CE9 /* profiles.swift */,
-				A04C08071DBF50AF00972FE2 /* readwritefilesNew.swift */,
+				A04C08071DBF50AF00972FE2 /* readwritefiles.swift */,
 			);
 			name = PersistentStore;
 			sourceTree = "<group>";
@@ -289,6 +288,7 @@
 			isa = PBXGroup;
 			children = (
 				A044929B1D658F2100B3CE17 /* peristentStoreConfiguration.swift */,
+				A0EFB44F1DC080A9008C21A6 /* persistenStoreUserconfiguration.swift */,
 				A04492A11D658F2100B3CE17 /* SharingManagerConfiguration.swift */,
 			);
 			name = Configuration;
@@ -387,9 +387,9 @@
 				A03876E11DB4FD9D00C14AEA /* ViewControllerProfile.swift in Sources */,
 				A0400C871D794FF8008A3949 /* newVersion.swift in Sources */,
 				A04492AA1D658F2100B3CE17 /* yudpsocket.c in Sources */,
-				A04492B11D658F2100B3CE17 /* readwritefiles.swift in Sources */,
 				A04492B21D658F2100B3CE17 /* rsyncProcessArguments.swift in Sources */,
 				A05275DA1D6F6E0000D8ECBE /* batchOperations.swift in Sources */,
+				A0EFB4501DC080A9008C21A6 /* persistenStoreUserconfiguration.swift in Sources */,
 				A00FE1AA1D6A1AAB00012089 /* alerts.swift in Sources */,
 				A0F2E20C1D6D91AA0091E8BF /* userconfiguration.swift in Sources */,
 				A0762A1F1DB4A8F000538CE9 /* profiles.swift in Sources */,
@@ -416,7 +416,7 @@
 				A017E2A01D7D3242003016F5 /* ViewControllerEdit.swift in Sources */,
 				A0B340B21D67077A00C6DAC3 /* ViewControllertabMain.swift in Sources */,
 				A02A4AD91D7EFD3D0059CECD /* ViewControllerScheduleDetails.swift in Sources */,
-				A04C08081DBF50AF00972FE2 /* readwritefilesNew.swift in Sources */,
+				A04C08081DBF50AF00972FE2 /* readwritefiles.swift in Sources */,
 				A04492BC1D658F2100B3CE17 /* yudpsocket.swift in Sources */,
 				A0CACFD41DA2738500C5997A /* rsyncParameters.swift in Sources */,
 				A04492AC1D658F2100B3CE17 /* configuration.swift in Sources */,
