@@ -103,6 +103,8 @@ class ViewControllertabMain : NSViewController, Information, Abort, Count, Refre
     
     // Schedules in progress
     private var scheduledJobInProgress:Bool = false
+    // Ready for execute again
+    private var ready:Bool = true
     
     // Information about rsync output
     // self.presentViewControllerAsSheet(self.ViewControllerInformation)
@@ -518,6 +520,7 @@ class ViewControllertabMain : NSViewController, Information, Abort, Count, Refre
         if (self.schedules == nil) {
             self.schedules = ScheduleSortedAndExpand()
         }
+        self.ready = true
     }
     
     @objc(tableViewDoubleClick:) func tableViewDoubleClick(sender:AnyObject) {
@@ -531,7 +534,10 @@ class ViewControllertabMain : NSViewController, Information, Abort, Count, Refre
     // which is triggered when a Process termination is
     // discovered, completes the task.
     @IBAction func executeTask(_ sender: NSButton) {
-        self.executeSingelTask()
+        if (self.ready) {
+            self.executeSingelTask()
+        }
+        self.ready = false
     }
     
     // Because single task can be activated by double click from 
@@ -544,7 +550,6 @@ class ViewControllertabMain : NSViewController, Information, Abort, Count, Refre
             }
             let arguments:[String]?
             let process = rsyncProcess(notification: false, tabMain: true, command : nil)
-            // let work = self.workload!.working()
             self.process = nil
             self.output = nil
             
@@ -654,6 +659,8 @@ class ViewControllertabMain : NSViewController, Information, Abort, Count, Refre
     // Protocol UpdateProgress two functions, ProcessTermination() and FileHandler()
     
     func ProcessTermination() {
+        
+        self.ready = true
         
         // Making sure no nil pointer execption
         if let workload = self.workload {
@@ -833,6 +840,7 @@ class ViewControllertabMain : NSViewController, Information, Abort, Count, Refre
     // when row is selected
     // setting which table row is selected
     func tableViewSelectionDidChange(_ notification: Notification) {
+        self.ready = true
         let myTableViewFromNotification = notification.object as! NSTableView
         let indexes = myTableViewFromNotification.selectedRowIndexes
         if let index = indexes.first {
