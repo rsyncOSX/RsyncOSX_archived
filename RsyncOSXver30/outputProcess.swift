@@ -51,7 +51,6 @@ final class outputProcess {
     }
     
     func getOutputCount () -> Int {
-        
         return self.output!.count
     }
     

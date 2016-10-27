@@ -255,6 +255,7 @@ class ViewControllertabMain : NSViewController, Information, Abort, Count, Refre
         // Terminates the running process
         if let process = self.process {
             process.terminate()
+            self.index = nil
             self.working.stopAnimation(nil)
             self.schedules = nil
             self.process = nil
@@ -263,6 +264,11 @@ class ViewControllertabMain : NSViewController, Information, Abort, Count, Refre
             self.workload = singleTask(task: .abort)
             self.setInfo(info: "Abort", color: NSColor.red)
             self.rsyncCommand.stringValue = ""
+        } else {
+            self.rsyncCommand.stringValue = "Selection out of range - aborting"
+            self.process = nil
+            self.workload = nil
+            self.index = nil
         }
         if let batchobject = SharingManagerConfiguration.sharedInstance.getBatchdataObject() {
             // Empty queue in batchobject
