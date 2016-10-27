@@ -173,7 +173,7 @@ class ViewControllertabMain : NSViewController, Information, Abort, Count, Refre
     
     // Protocol Information
     // Get information from rsync output.
-    func getInformation() -> NSMutableArray {
+    func getInformation() -> [String] {
         if (self.output != nil) {
             if (self.workload == nil) {
                 return self.output!.getOutputbatch()

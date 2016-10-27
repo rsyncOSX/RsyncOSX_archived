@@ -40,7 +40,7 @@ final class CopyFiles {
     
     
     // Get output from Rsync
-    func getOutput() -> NSMutableArray {
+    func getOutput() -> [String] {
         return self.output!.getOutput()
     }
     

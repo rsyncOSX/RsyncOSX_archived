@@ -11,7 +11,7 @@ import Cocoa
 
 // protocol for kill function
 protocol Information : class {
-    func getInformation () -> NSMutableArray
+    func getInformation () -> [String]
 }
 
 
@@ -22,7 +22,7 @@ class ViewControllerInformation : NSViewController {
     @IBOutlet weak var detailsTable: NSTableView!
     
     // output from Rsync
-    var output:NSMutableArray?
+    var output:[String]?
     
     // Delegate for getting the Information to present in table
     weak var information_delegate:Information?
@@ -73,7 +73,7 @@ extension ViewControllerInformation : NSTableViewDelegate {
         var cellIdentifier: String = ""
         
         if tableColumn == tableView.tableColumns[0] {
-            text = self.output![row] as! String
+            text = self.output![row]
             cellIdentifier = "outputID"
         }
         

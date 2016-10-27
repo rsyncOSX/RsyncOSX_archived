@@ -14,7 +14,7 @@ class ViewControllerInformationCopyFiles : NSViewController {
     @IBOutlet weak var detailsTable: NSTableView!
     
     // output from Rsync
-    var output:NSMutableArray?
+    var output:[String]?
     
     // Delegate for getting the Information to present in table
     weak var information_delegate:Information?
@@ -68,7 +68,7 @@ extension ViewControllerInformationCopyFiles : NSTableViewDelegate {
         var cellIdentifier: String = ""
         
         if tableColumn == tableView.tableColumns[0] {
-            text = self.output![row] as! String
+            text = self.output![row]
             cellIdentifier = "outputID"
         }
         
