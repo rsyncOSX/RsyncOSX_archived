@@ -259,8 +259,10 @@ class ViewControllertabMain : NSViewController, Information, Abort, Count, Refre
             self.schedules = nil
             self.process = nil
             self.workload = nil
+            // Create workqueu and add abort
             self.workload = singleTask(task: .abort)
             self.setInfo(info: "Abort", color: NSColor.red)
+            self.rsyncCommand.stringValue = ""
         }
         if let batchobject = SharingManagerConfiguration.sharedInstance.getBatchdataObject() {
             // Empty queue in batchobject
@@ -513,9 +515,7 @@ class ViewControllertabMain : NSViewController, Information, Abort, Count, Refre
     }
     
     @objc(tableViewDoubleClick:) func tableViewDoubleClick(sender:AnyObject) {
-        if (self.index != nil) {
-            self.executeSingelTask()
-        }
+        self.executeSingelTask()
     }
 
     
@@ -686,9 +686,6 @@ class ViewControllertabMain : NSViewController, Information, Abort, Count, Refre
                     }
                     SharingManagerConfiguration.sharedInstance.setCurrentDateonConfiguration(self.index!)
                     SharingManagerSchedule.sharedInstance.addScheduleResultManuel(self.hiddenID!, result: self.output!.statistics(numberOfFiles: self.transferredNumber.stringValue)[0])
-                    
-                    self.index = nil
-                    self.rsyncCommand.stringValue = ""
                     
                 case .abort:
                     self.abortOperations()
