@@ -513,8 +513,9 @@ class ViewControllertabMain : NSViewController, Information, Abort, Count, Refre
     }
     
     @objc(tableViewDoubleClick:) func tableViewDoubleClick(sender:AnyObject) {
-        self.executeSingelTask()
-       
+        if (self.index != nil) {
+            self.executeSingelTask()
+        }
     }
 
     
@@ -524,7 +525,7 @@ class ViewControllertabMain : NSViewController, Information, Abort, Count, Refre
     // which is triggered when a Process termination is
     // discovered, completes the task.
     @IBAction func executeTask(_ sender: NSButton) {
-       self.executeSingelTask()
+        self.executeSingelTask()
     }
     
     // Because single task can be activated by double click from 
@@ -686,6 +687,9 @@ class ViewControllertabMain : NSViewController, Information, Abort, Count, Refre
                     SharingManagerConfiguration.sharedInstance.setCurrentDateonConfiguration(self.index!)
                     SharingManagerSchedule.sharedInstance.addScheduleResultManuel(self.hiddenID!, result: self.output!.statistics(numberOfFiles: self.transferredNumber.stringValue)[0])
                     
+                    self.index = nil
+                    self.rsyncCommand.stringValue = ""
+                    
                 case .abort:
                     self.abortOperations()
                     self.workload = nil
@@ -840,7 +844,7 @@ class ViewControllertabMain : NSViewController, Information, Abort, Count, Refre
             self.setInfo(info: "Estimate", color: NSColor.blue)
             self.process = nil
         } else {
-            self.workload = nil
+            self.abortOperations()
         }
     }
 
