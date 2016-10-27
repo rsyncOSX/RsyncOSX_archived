@@ -42,12 +42,12 @@
                   moduleName = "RsyncOSX"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Volumes/Users/thomaeve/Documents/Xcode/Version3.0/RsyncOSXver30/ViewControllerProfile.swift"
-                  timestampString = "499251355.269068"
+                  timestampString = "499278088.116564"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "118"
-                  endingLineNumber = "118"
-                  offsetFromSymbolStart = "19">
+                  startingLineNumber = "121"
+                  endingLineNumber = "121"
+                  offsetFromSymbolStart = "402">
                </Location>
                <Location
                   shouldBeEnabled = "Yes"
@@ -57,12 +57,60 @@
                   moduleName = "RsyncOSX"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Volumes/Users/thomaeve/Documents/Xcode/Version3.0/RsyncOSXver30/ViewControllerProfile.swift"
-                  timestampString = "499251355.272386"
+                  timestampString = "499278088.119787"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "118"
-                  endingLineNumber = "118"
-                  offsetFromSymbolStart = "161">
+                  startingLineNumber = "121"
+                  endingLineNumber = "121"
+                  offsetFromSymbolStart = "537">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "RsyncOSXver30/rsyncProcess.swift"
+            timestampString = "499278083.285428"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "51"
+            endingLineNumber = "51"
+            landmarkName = "executeProcess(_:output:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "RsyncOSX.rsyncProcess.(executeProcess (Swift.Array&lt;Swift.String&gt;, output : RsyncOSX.outputProcess) -&gt; ()).(closure #1)"
+                  moduleName = "RsyncOSX"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Volumes/Users/thomaeve/Documents/Xcode/Version3.0/RsyncOSXver30/rsyncProcess.swift"
+                  timestampString = "499278088.13731"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "51"
+                  endingLineNumber = "51"
+                  offsetFromSymbolStart = "112">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "RsyncOSX.rsyncProcess.(executeProcess (Swift.Array&lt;Swift.String&gt;, output : RsyncOSX.outputProcess) -&gt; ()).(closure #1)"
+                  moduleName = "RsyncOSX"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Volumes/Users/thomaeve/Documents/Xcode/Version3.0/RsyncOSXver30/rsyncProcess.swift"
+                  timestampString = "499278088.140254"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "51"
+                  endingLineNumber = "51"
+                  offsetFromSymbolStart = "202">
                </Location>
             </Locations>
          </BreakpointContent>
