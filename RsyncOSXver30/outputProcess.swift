@@ -36,7 +36,6 @@ final class outputProcess {
         case transferredNumberSizebytes
     }
     
-    
     func removeObjectsOutput() {
         self.output = nil
     }
@@ -75,6 +74,11 @@ final class outputProcess {
     // Add line to output
     func addLine (_ str: String) {
         let sentence = str
+        
+        // Create array if == nil
+        if (self.output == nil) {
+            self.output = Array<String>()
+        }
         
         if (self.startIndex == nil) {
             self.startIndex = 0

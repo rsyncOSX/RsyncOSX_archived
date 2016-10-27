@@ -255,12 +255,20 @@ class ViewControllertabMain : NSViewController, Information, Abort, Count, Refre
         // Terminates the running process
         if let process = self.process {
             process.terminate()
+            self.index = nil
             self.working.stopAnimation(nil)
             self.schedules = nil
             self.process = nil
             self.workload = nil
+            // Create workqueu and add abort
             self.workload = singleTask(task: .abort)
             self.setInfo(info: "Abort", color: NSColor.red)
+            self.rsyncCommand.stringValue = ""
+        } else {
+            self.rsyncCommand.stringValue = "Selection out of range - aborting"
+            self.process = nil
+            self.workload = nil
+            self.index = nil
         }
         if let batchobject = SharingManagerConfiguration.sharedInstance.getBatchdataObject() {
             // Empty queue in batchobject
@@ -477,6 +485,9 @@ class ViewControllertabMain : NSViewController, Information, Abort, Count, Refre
         // Start waiting for next Scheduled job (if any)
         self.schedules = ScheduleSortedAndExpand()
         self.startProcess()
+        
+        self.mainTableView.target = self
+        self.mainTableView.doubleAction = #selector(ViewControllertabMain.tableViewDoubleClick(sender:))
     }
     
     override func viewDidAppear() {
@@ -509,28 +520,35 @@ class ViewControllertabMain : NSViewController, Information, Abort, Count, Refre
         }
     }
     
+    @objc(tableViewDoubleClick:) func tableViewDoubleClick(sender:AnyObject) {
+        self.executeSingelTask()
+    }
+
+    
     // Execute SINGLE TASKS only
     // Start of executing SINGLE tasks
     // After start the function ProcessTermination()
     // which is triggered when a Process termination is
     // discovered, completes the task.
     @IBAction func executeTask(_ sender: NSButton) {
+        self.executeSingelTask()
+    }
+    
+    // Because single task can be activated by double click from 
+    // Table as well.
+    private func executeSingelTask() {
         
         if (self.scheduledOperationInProgress() == false){
-            
             if (self.workload == nil) {
                 self.workload = singleTask()
             }
-            
             let arguments:[String]?
             let process = rsyncProcess(notification: false, tabMain: true, command : nil)
             // let work = self.workload!.working()
-            
             self.process = nil
             self.output = nil
             
             switch (self.workload!.readworking()) {
-                
             case .estimate_singlerun:
                 if let index = self.index {
                     self.working.startAnimation(nil)
@@ -540,7 +558,6 @@ class ViewControllertabMain : NSViewController, Information, Abort, Count, Refre
                     self.process = process.getProcess()
                     self.setInfo(info: "Execute", color: NSColor.blue)
                 }
-                
             case .execute_singlerun:
                 if let index = self.index {
                     GlobalMainQueue.async(execute: { () -> Void in
@@ -552,15 +569,12 @@ class ViewControllertabMain : NSViewController, Information, Abort, Count, Refre
                     self.process = process.getProcess()
                     self.setInfo(info: "", color: NSColor.black)
                 }
-                
             case .abort:
                 self.workload = nil
                 self.setInfo(info: "Abort", color: NSColor.red)
-                
             case .empty:
                 self.workload = nil
                 self.setInfo(info: "Estimate", color: NSColor.blue)
-                
             default:
                 self.setInfo(info: "Estimate", color: NSColor.blue)
                 self.workload = nil
@@ -833,7 +847,7 @@ class ViewControllertabMain : NSViewController, Information, Abort, Count, Refre
             self.setInfo(info: "Estimate", color: NSColor.blue)
             self.process = nil
         } else {
-            self.workload = nil
+            self.abortOperations()
         }
     }
 

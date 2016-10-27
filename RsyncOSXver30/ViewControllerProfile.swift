@@ -46,6 +46,7 @@ class ViewControllerProfile : NSViewController {
     }
     
     @IBAction func radioButtons(_ sender: NSButton) {
+        // Only for grouping radio buttons
     }
     
     @IBAction func close(_ sender: NSButton) {
@@ -100,6 +101,9 @@ class ViewControllerProfile : NSViewController {
         }
         self.profile = profiles(path: nil)
         self.profilesArray = self.profile!.getDirectorysStrings()
+        
+        self.profilesTable.target = self
+        self.profilesTable.doubleAction = #selector(ViewControllerProfile.tableViewDoubleClick(sender:))
     }
     
     override func viewDidAppear() {
@@ -108,9 +112,19 @@ class ViewControllerProfile : NSViewController {
             self.profilesTable.reloadData()
         })
         self.newprofile.stringValue = ""
-        self.select.state = NSOnState
     }
 
+    @objc(tableViewDoubleClick:) func tableViewDoubleClick(sender:AnyObject) {
+        if let pvc = self.presenting as? ViewControllertabMain {
+            self.newProfile_delegate = pvc
+        }
+        if let useprofile = self.useprofile {
+            SharingManagerConfiguration.sharedInstance.setProfile(profile: useprofile)
+            self.newProfile_delegate?.newProfile()
+        }
+        self.useprofile = nil
+        self.dismiss_delegate?.dismiss_view(viewcontroller: self)
+    }
 }
 
 extension ViewControllerProfile : NSTableViewDataSource {
@@ -149,5 +163,7 @@ extension ViewControllerProfile : NSTableViewDelegate {
             self.useprofile = self.profilesArray![index]
         }
     }
+    
+
 }
 
