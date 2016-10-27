@@ -524,7 +524,10 @@ class ViewControllertabMain : NSViewController, Information, Abort, Count, Refre
     }
     
     @objc(tableViewDoubleClick:) func tableViewDoubleClick(sender:AnyObject) {
-        self.executeSingelTask()
+        if (self.ready) {
+            self.executeSingelTask()
+        }
+        self.ready = false
     }
 
     
@@ -840,6 +843,9 @@ class ViewControllertabMain : NSViewController, Information, Abort, Count, Refre
     // when row is selected
     // setting which table row is selected
     func tableViewSelectionDidChange(_ notification: Notification) {
+        if (self.ready == false) {
+            self.abortOperations()
+        }
         self.ready = true
         let myTableViewFromNotification = notification.object as! NSTableView
         let indexes = myTableViewFromNotification.selectedRowIndexes
