@@ -33,7 +33,6 @@ class ViewControllerProfile : NSViewController {
     // Radiobuttons
     @IBOutlet weak var delete: NSButton!
     @IBOutlet weak var new: NSButton!
-    @IBOutlet weak var select: NSButton!
     // Table to show profiles
     @IBOutlet weak var profilesTable: NSTableView!
     
@@ -79,7 +78,7 @@ class ViewControllerProfile : NSViewController {
             self.useprofile = nil
             self.dismiss_delegate?.dismiss_view(viewcontroller: self)
             
-        } else if (self.select.state == 1) {
+        } else {
             if let useprofile = self.useprofile {
                 SharingManagerConfiguration.sharedInstance.setProfile(profile: useprofile)
                 self.newProfile_delegate?.newProfile()
