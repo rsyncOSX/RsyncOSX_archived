@@ -1,6 +1,5 @@
 //
-//  arrayNSTask.swift
-//  Rsync
+//  outputProcess.swift
 //
 //  Created by Thomas Evensen on 11/01/16.
 //  Copyright © 2016 Thomas Evensen. All rights reserved.
@@ -11,14 +10,14 @@ import Foundation
 final class outputProcess {
     
     // Second last String in Array rsync output of how much in what time
-    private var message:String = String()
+    private var message:String?
     // calculated number of files
     // set from rsync
     private var calculatedNumberOfFiles:Int?
     // output Array to keep output from rsync in
-    private var output = NSMutableArray()
+    private var output:[String]?
     // output for batchTasks
-    private var batchoutput = NSMutableArray()
+    private var batchoutput:[String]?
     // output Array temporary indexes
     private var startIndex:Int?
     private var endIndex:Int?
@@ -39,36 +38,38 @@ final class outputProcess {
     
     
     func removeObjectsOutput() {
-        if (self.output.count > 0) {
-            self.output.removeAllObjects()
-        }
+        self.output = nil
     }
    
     func copySummarizedResultBatch(numberOfFiles:String?) {
         if (numberOfFiles != nil) {
             let result = self.statistics(numberOfFiles: numberOfFiles!)[0] + " , " + self.statistics(numberOfFiles: numberOfFiles!)[1]
-            self.batchoutput.add(result)
+            self.batchoutput!.append(result)
         } else {
             let result = self.statistics(numberOfFiles: nil)[0] + " , " + self.statistics(numberOfFiles: nil)[1]
-            self.batchoutput.add(result)
+            self.batchoutput!.append(result)
         }
     }
     
     func getOutputCount () -> Int {
-        return self.output.count
+        return self.output!.count
     }
     
-    func getOutput () -> NSMutableArray {
-        return self.output
+    func getOutput () -> [String] {
+        return self.output!
     }
     
-    func getOutputbatch() -> NSMutableArray {
-        return self.batchoutput
+    func getOutputbatch() -> [String] {
+        return self.batchoutput!
     }
     
     // Return end message of Rsync
     func endMessage() -> String {
-        return self.message
+        if let message = self.message {
+            return message
+        } else {
+            return ""
+        }
     }
     
     // Add line to output
@@ -83,12 +84,12 @@ final class outputProcess {
         sentence.enumerateLines {
             line, stop in
             if line.characters.last != "/" {
-                self.output.add(line)
+                self.output!.append(line)
             }
         }
-        self.endIndex = self.output.count
+        self.endIndex = self.output!.count
         if (self.endIndex! > 2) {
-            self.message = (self.output[self.endIndex!-2] as? String)!
+            self.message = (self.output![self.endIndex!-2])
         }
     }
     
@@ -128,31 +129,23 @@ final class outputProcess {
         }
     }
     
-    // Function for printing all numbers rsync dry run
-    func printNumbers() {
-        print("Directorys :" + "\(self.getTransferredNumbers(numbers: .totalDirs))")
-        print("Total number of files :" + "\(self.getTransferredNumbers(numbers: .totalNumber))")
-        print("Total number of transferred files :" + "\(self.getTransferredNumbers(numbers: .transferredNumber))")
-        print("Total number of KB :" + "\(self.getTransferredNumbers(numbers: .totalNumberSizebytes))")
-        print("Total number of KB transferred :" + "\(self.getTransferredNumbers(numbers: .transferredNumberSizebytes))")
-    }
-    
+
     // Function for getting numbers out of output
     // after Process termination is discovered. Function
     // is executed from rsync Process after Process termination.
     // And it is a kind of UGLY...
     func getNumbers() {
         
-        let transferredFiles = self.output.filter({(($0 as? String)?.contains("files transferred:"))!})
+        let transferredFiles = self.output!.filter({(($0).contains("files transferred:"))})
         // ver 3.x - [Number of regular files transferred: 24]
         // ver 2.x - [Number of files transferred: 24]
-        let transferredFilesSize = self.output.filter({(($0 as? String)?.contains("Total transferred file size:"))!})
+        let transferredFilesSize = self.output!.filter({(($0).contains("Total transferred file size:"))})
         // ver 3.x - [Total transferred file size: 278,642 bytes]
         // ver 2.x - [Total transferred file size: 278197 bytes]
-        let totalFileSize = self.output.filter({(($0 as? String)?.contains("Total file size:"))!})
+        let totalFileSize = self.output!.filter({(($0).contains("Total file size:"))})
         // ver 3.x - [Total file size: 1,016,382,148 bytes]
         // ver 2.x - [Total file size: 1016381703 bytes]
-        let totalFilesNumber = self.output.filter({(($0 as? String)?.contains("Number of files:"))!})
+        let totalFilesNumber = self.output!.filter({(($0).contains("Number of files:"))})
         // ver 3.x - [Number of files: 3,956 (reg: 3,197, dir: 758, link: 1)]
         // ver 2.x - [Number of files: 3956]
         
@@ -200,7 +193,7 @@ final class outputProcess {
         } else {
             // If it breaks set number of transferred files to 
             // size of output.
-            self.transferredNumber = self.output.count
+            self.transferredNumber = self.output!.count
         }
     }
     
@@ -212,11 +205,11 @@ final class outputProcess {
         
         if (SharingManagerConfiguration.sharedInstance.rsyncVer3) {
             // ["sent", "409687", "bytes", "", "received", "5331", "bytes", "", "830036.00", "bytes/sec"]
-            let newmessage = self.message.replacingOccurrences(of: ",", with: "")
+            let newmessage = self.message!.replacingOccurrences(of: ",", with: "")
             parts = newmessage.components(separatedBy: " ")
         } else {
             // ["sent", "262826", "bytes", "", "received", "2248", "bytes", "", "58905.33", "bytes/sec"]
-            parts = self.message.components(separatedBy: " ")
+            parts = self.message!.components(separatedBy: " ")
         }
         
         var resultsent:String?
@@ -232,7 +225,6 @@ final class outputProcess {
         guard parts!.count > 9 else {
             return ["0","0"]
         }
-        
         guard (Double(parts![1]) != nil && (Double(parts![5]) != nil) && (Double(parts![8]) != nil) ) else {
             return ["0","0"]
         }
@@ -259,7 +251,7 @@ final class outputProcess {
         }
         // Dont have numbers of file as input
         if (numberOfFiles == nil) {
-            numberstring = String(self.output.count) + " files : " + String(format:"%.2f",(bytesTotal/1024)/1000) + " MB in " + String(format:"%.2f",seconds) + " seconds"
+            numberstring = String(self.output!.count) + " files : " + String(format:"%.2f",(bytesTotal/1024)/1000) + " MB in " + String(format:"%.2f",seconds) + " seconds"
         } else {
             numberstring = numberOfFiles! + " files : " + String(format:"%.2f",(bytesTotal/1024)/1000) + " MB in " + String(format:"%.2f",seconds) + " seconds"
         }
@@ -271,6 +263,8 @@ final class outputProcess {
 
     init () {
         // Second last String in Array rsync output of how much and in what time
-        self.message = " "
+        self.message = ""
+        self.output = Array<String>()
+        self.batchoutput = Array<String>()
     }
  }

@@ -57,7 +57,7 @@ class ViewControllerCopyFiles : NSViewController, UpdateProgress, RefreshtableVi
         _ = FileDialog(requester: .CopyFilesTo)
     }
     // Protocol Information
-    func getInformation() -> NSMutableArray {
+    func getInformation() -> [String] {
         return self.copyObject!.getOutput()
     }
     // Protocol DismissViewController
