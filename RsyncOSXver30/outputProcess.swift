@@ -249,7 +249,7 @@ final class outputProcess {
         } else {
             // restore task
             result = resultreceived! + parts![8] + " b/sec"
-            bytesSec = Double(parts![7])!
+            bytesSec = Double(parts![8])!
             seconds = bytesTotalreceived/bytesSec
             bytesTotal = bytesTotalreceived
         }
