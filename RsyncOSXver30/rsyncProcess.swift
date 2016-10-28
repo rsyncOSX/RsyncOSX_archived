@@ -76,7 +76,7 @@ final class rsyncProcess {
                     // We are in Scheduled operation and must finalize the job
                     SharingManagerConfiguration.sharedInstance.operation?.complete(output: output)
                 }
-                NotificationCenter.default.removeObserver(self.observationCenter)
+                NotificationCenter.default.removeObserver(self.observationCenter as Any)
             }
         self.ProcessReference = task
         task.launch()

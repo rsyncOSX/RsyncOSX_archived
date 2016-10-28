@@ -11,6 +11,7 @@ import Cocoa
 
 protocol RsyncChanged : class {
     func rsyncchanged()
+    func displayAllowDoubleclick()
 }
 
 class ViewControllerUserconfiguration : NSViewController {
@@ -26,6 +27,7 @@ class ViewControllerUserconfiguration : NSViewController {
     @IBOutlet weak var version3rsync: NSButton!
     @IBOutlet weak var detailedlogging: NSButton!
     @IBOutlet weak var scheduledTaskdisableExecute: NSTextField!
+    @IBOutlet weak var allowDoubleClick: NSButton!
     
     @IBAction func toggleversion3rsync(_ sender: NSButton) {
         if (self.version3rsync.state == NSOnState) {
@@ -60,6 +62,19 @@ class ViewControllerUserconfiguration : NSViewController {
         self.dismiss_delegate?.dismiss_view(viewcontroller: self)
     }
     
+    @IBAction func toggleAllowDoubleclick(_ sender: NSButton) {
+        if (self.allowDoubleClick.state == NSOnState) {
+            SharingManagerConfiguration.sharedInstance.allowDoubleclick = true
+        } else {
+            SharingManagerConfiguration.sharedInstance.allowDoubleclick = false
+        }
+        if let pvc = self.presenting as? ViewControllertabMain {
+            self.rsyncchanged_delegate = pvc
+            self.rsyncchanged_delegate?.displayAllowDoubleclick()
+        }
+        self.dirty = true
+        
+    }
     private func setRsyncPath(){
         if (self.rsyncPath.stringValue.isEmpty == false) {
             if (rsyncPath.stringValue.hasSuffix("/") == false){
@@ -100,14 +115,14 @@ class ViewControllerUserconfiguration : NSViewController {
         self.dirty = false
         // Set userconfig
         if (SharingManagerConfiguration.sharedInstance.rsyncVer3) {
-            self.version3rsync.state = 1
+            self.version3rsync.state = NSOnState
         } else {
-            self.version3rsync.state = 0
+            self.version3rsync.state = NSOffState
         }
         if (SharingManagerConfiguration.sharedInstance.detailedlogging) {
-            self.detailedlogging.state = 1
+            self.detailedlogging.state = NSOnState
         } else {
-            self.detailedlogging.state = 0
+            self.detailedlogging.state = NSOffState
         }
         if (SharingManagerConfiguration.sharedInstance.rsyncPath != nil) {
             self.rsyncPath.stringValue = SharingManagerConfiguration.sharedInstance.rsyncPath!
@@ -115,6 +130,12 @@ class ViewControllerUserconfiguration : NSViewController {
             self.rsyncPath.stringValue = ""
         }
         self.scheduledTaskdisableExecute.stringValue = String(SharingManagerConfiguration.sharedInstance.scheduledTaskdisableExecute)
+        
+        if (SharingManagerConfiguration.sharedInstance.allowDoubleclick) {
+            self.allowDoubleClick.state = NSOnState
+        } else {
+            self.allowDoubleClick.state = NSOffState
+        }
     }
     
 }

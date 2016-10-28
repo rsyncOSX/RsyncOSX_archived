@@ -80,6 +80,9 @@ class ViewControllertabMain : NSViewController, Information, Abort, Count, Refre
     @IBOutlet weak var totalDirs: NSTextField!
     // Showing info about profile
     @IBOutlet weak var profilInfo: NSTextField!
+    // Showing info about double clik or not
+    @IBOutlet weak var allowDoubleclick: NSTextField!
+    
     
     // REFERENCE VARIABLES
     
@@ -103,6 +106,8 @@ class ViewControllertabMain : NSViewController, Information, Abort, Count, Refre
     
     // Schedules in progress
     private var scheduledJobInProgress:Bool = false
+    // Ready for execute again
+    private var ready:Bool = true
     
     // Information about rsync output
     // self.presentViewControllerAsSheet(self.ViewControllerInformation)
@@ -518,10 +523,17 @@ class ViewControllertabMain : NSViewController, Information, Abort, Count, Refre
         if (self.schedules == nil) {
             self.schedules = ScheduleSortedAndExpand()
         }
+        self.ready = true
     }
     
     @objc(tableViewDoubleClick:) func tableViewDoubleClick(sender:AnyObject) {
-        self.executeSingelTask()
+        
+        if (SharingManagerConfiguration.sharedInstance.allowDoubleclick == true) {
+            if (self.ready) {
+                self.executeSingelTask()
+            }
+            self.ready = false
+        }
     }
 
     
@@ -531,7 +543,10 @@ class ViewControllertabMain : NSViewController, Information, Abort, Count, Refre
     // which is triggered when a Process termination is
     // discovered, completes the task.
     @IBAction func executeTask(_ sender: NSButton) {
-        self.executeSingelTask()
+        if (self.ready) {
+            self.executeSingelTask()
+        }
+        self.ready = false
     }
     
     // Because single task can be activated by double click from 
@@ -544,7 +559,6 @@ class ViewControllertabMain : NSViewController, Information, Abort, Count, Refre
             }
             let arguments:[String]?
             let process = rsyncProcess(notification: false, tabMain: true, command : nil)
-            // let work = self.workload!.working()
             self.process = nil
             self.output = nil
             
@@ -654,6 +668,8 @@ class ViewControllertabMain : NSViewController, Information, Abort, Count, Refre
     // Protocol UpdateProgress two functions, ProcessTermination() and FileHandler()
     
     func ProcessTermination() {
+        
+        self.ready = true
         
         // Making sure no nil pointer execption
         if let workload = self.workload {
@@ -821,18 +837,30 @@ class ViewControllertabMain : NSViewController, Information, Abort, Count, Refre
     // Function for setting profile
     private func displayProfile() {
         if let profile = SharingManagerConfiguration.sharedInstance.getProfile() {
-            self.profilInfo.stringValue = "Profile : " + profile
-            self.profilInfo.textColor = NSColor.blue
+            self.profilInfo.stringValue = "Profile: " + profile
         } else {
-            self.profilInfo.stringValue = "Profile : default"
-            self.profilInfo.textColor = NSColor.blue
+            self.profilInfo.stringValue = "Profile: default"
         }
-        
+        self.profilInfo.textColor = NSColor.blue
+    }
+    
+    // Function for setting allowDouble click
+    internal func displayAllowDoubleclick() {
+        if (SharingManagerConfiguration.sharedInstance.allowDoubleclick == true) {
+            self.allowDoubleclick.stringValue = "Double click: YES"
+        } else {
+            self.allowDoubleclick.stringValue = "Double click: NO"
+        }
+        self.allowDoubleclick.textColor = NSColor.blue
     }
     
     // when row is selected
     // setting which table row is selected
     func tableViewSelectionDidChange(_ notification: Notification) {
+        if (self.ready == false) {
+            self.abortOperations()
+        }
+        self.ready = true
         let myTableViewFromNotification = notification.object as! NSTableView
         let indexes = myTableViewFromNotification.selectedRowIndexes
         if let index = indexes.first {

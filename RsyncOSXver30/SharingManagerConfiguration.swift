@@ -71,6 +71,8 @@ class SharingManagerConfiguration {
     // Minutes before scheduled task commence disable execute/batch buttons
     // Disabled by default
     var scheduledTaskdisableExecute:Double = 0
+    // Allow double click to activate single tasks
+    var allowDoubleclick:Bool = true
     
     // OTHER SETTINGS
     
@@ -214,7 +216,7 @@ class SharingManagerConfiguration {
             self.Configurations.append(store[i])
             // Appending all arguments for rsync for One configuration to memory
             let rsyncArgumentsConfig = argumentsConfigurations(rsyncArguments: config)
-            self.argumentAllConfiguration.add(rsyncArgumentsConfig.rsyncArguments)
+            self.argumentAllConfiguration.add(rsyncArgumentsConfig.rsyncArguments!)
         }
         // Then prepare the datasource for use in tableviews
         var row: NSMutableDictionary?

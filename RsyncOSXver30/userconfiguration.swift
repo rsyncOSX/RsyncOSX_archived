@@ -11,6 +11,8 @@ import Foundation
 // Reading userconfiguration from file into RsyncOSX
 final class userconfiguration {
     
+    weak var rsyncchanged_delegate:RsyncChanged?
+    
     init (configRsyncOSX : [NSDictionary]?) {
         
         // Setting any configurations read from config file
@@ -46,7 +48,22 @@ final class userconfiguration {
                 if let minutes = dict.value(forKey: "scheduledTaskdisableExecute") as? Double {
                     SharingManagerConfiguration.sharedInstance.scheduledTaskdisableExecute = minutes
                 }
+                
+                // Allow double click to execute single tasks
+                if let allowDoubleclick = dict.value(forKey: "allowDoubleclick") as? Int {
+                    if allowDoubleclick == 1 {
+                        SharingManagerConfiguration.sharedInstance.allowDoubleclick = true
+                    } else {
+                        SharingManagerConfiguration.sharedInstance.allowDoubleclick = false
+                    }
+                }
             }
+        }
+        
+        if let pvc = SharingManagerConfiguration.sharedInstance.ViewObjectMain as? ViewControllertabMain {
+            self.rsyncchanged_delegate = pvc
+            self.rsyncchanged_delegate?.rsyncchanged()
+            self.rsyncchanged_delegate?.displayAllowDoubleclick()
         }
     }
 }
