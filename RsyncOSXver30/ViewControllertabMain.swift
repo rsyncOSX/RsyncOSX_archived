@@ -838,20 +838,23 @@ class ViewControllertabMain : NSViewController, Information, Abort, Count, Refre
     private func displayProfile() {
         if let profile = SharingManagerConfiguration.sharedInstance.getProfile() {
             self.profilInfo.stringValue = "Profile: " + profile
+            self.profilInfo.textColor = NSColor.blue
         } else {
             self.profilInfo.stringValue = "Profile: default"
+            self.profilInfo.textColor = NSColor.black
         }
-        self.profilInfo.textColor = NSColor.blue
+        
     }
     
     // Function for setting allowDouble click
     internal func displayAllowDoubleclick() {
         if (SharingManagerConfiguration.sharedInstance.allowDoubleclick == true) {
             self.allowDoubleclick.stringValue = "Double click: YES"
+            self.allowDoubleclick.textColor = NSColor.blue
         } else {
             self.allowDoubleclick.stringValue = "Double click: NO"
+            self.allowDoubleclick.textColor = NSColor.black
         }
-        self.allowDoubleclick.textColor = NSColor.blue
     }
     
     // when row is selected
