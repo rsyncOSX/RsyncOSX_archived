@@ -35,7 +35,6 @@ class ViewControllerScheduleDetails : NSViewController {
     
     @IBOutlet weak var scheduletable: NSTableView!
     
-    
     // Close view and either stop or delete Schedules
     @IBAction func close(_ sender: NSButton) {
         self.dismiss_delegate?.dismiss_view(viewcontroller: self)
@@ -112,7 +111,14 @@ extension ViewControllerScheduleDetails : NSTableViewDelegate {
 
     @objc(tableView:setObjectValue:forTableColumn:row:) func tableView(_ tableView: NSTableView, setObjectValue object: Any?, for tableColumn: NSTableColumn?, row: Int) {
         if ((tableColumn!.identifier) == "stopCellID" || (tableColumn!.identifier) == "deleteCellID") {
-            self.data![row].setObject(object as! Int, forKey: (tableColumn?.identifier)! as NSCopying)
+            switch tableColumn!.identifier {
+            case "stopCellID":
+                self.data![row].setValue(1, forKey: "stopCellID")
+            case "deleteCellID":
+                self.data![row].setValue(1, forKey: "deleteCellID")
+            default:
+                break
+            }
         }
     }
     
