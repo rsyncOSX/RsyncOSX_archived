@@ -71,6 +71,8 @@ class SharingManagerConfiguration {
     // Minutes before scheduled task commence disable execute/batch buttons
     // Disabled by default
     var scheduledTaskdisableExecute:Double = 0
+    // Allow double click to activate single tasks
+    var allowDoubleclick:Bool = true
     
     // OTHER SETTINGS
     

@@ -80,6 +80,9 @@ class ViewControllertabMain : NSViewController, Information, Abort, Count, Refre
     @IBOutlet weak var totalDirs: NSTextField!
     // Showing info about profile
     @IBOutlet weak var profilInfo: NSTextField!
+    // Showing info about double clik or not
+    @IBOutlet weak var allowDoubleclick: NSTextField!
+    
     
     // REFERENCE VARIABLES
     
@@ -524,10 +527,13 @@ class ViewControllertabMain : NSViewController, Information, Abort, Count, Refre
     }
     
     @objc(tableViewDoubleClick:) func tableViewDoubleClick(sender:AnyObject) {
-        if (self.ready) {
-            self.executeSingelTask()
+        
+        if (SharingManagerConfiguration.sharedInstance.allowDoubleclick == true) {
+            if (self.ready) {
+                self.executeSingelTask()
+            }
+            self.ready = false
         }
-        self.ready = false
     }
 
     
@@ -831,13 +837,21 @@ class ViewControllertabMain : NSViewController, Information, Abort, Count, Refre
     // Function for setting profile
     private func displayProfile() {
         if let profile = SharingManagerConfiguration.sharedInstance.getProfile() {
-            self.profilInfo.stringValue = "Profile : " + profile
-            self.profilInfo.textColor = NSColor.blue
+            self.profilInfo.stringValue = "Profile: " + profile
         } else {
-            self.profilInfo.stringValue = "Profile : default"
-            self.profilInfo.textColor = NSColor.blue
+            self.profilInfo.stringValue = "Profile: default"
         }
-        
+        self.profilInfo.textColor = NSColor.blue
+    }
+    
+    // Function for setting allowDouble click
+    internal func displayAllowDoubleclick() {
+        if (SharingManagerConfiguration.sharedInstance.allowDoubleclick == true) {
+            self.allowDoubleclick.stringValue = "Double click: YES"
+        } else {
+            self.allowDoubleclick.stringValue = "Double click: NO"
+        }
+        self.allowDoubleclick.textColor = NSColor.blue
     }
     
     // when row is selected
