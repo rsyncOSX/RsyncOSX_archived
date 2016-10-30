@@ -14,13 +14,6 @@ class ViewControllerNewVersion : NSViewController {
     @IBOutlet weak var reminder: NSButton!
     weak var dismiss_delegate:DismissViewController?
     
-    @IBAction func togglereminder(_ sender: NSButton) {
-        if self.reminder.state == NSOnState {
-            SharingManagerConfiguration.sharedInstance.remindernewVersion = true
-        } else {
-            SharingManagerConfiguration.sharedInstance.remindernewVersion = false
-        }
-    }
     @IBAction func changelogg(_ sender: NSButton) {
         NSWorkspace.shared().open(URL(string: "https://rsyncosx.blogspot.no/2016/03/revision-history.html")!)
     }
@@ -40,14 +33,6 @@ class ViewControllerNewVersion : NSViewController {
         if let pvc2 = self.presenting as? ViewControllertabMain {
             self.dismiss_delegate = pvc2
         }
-    }
-    
-    
-    override func viewDidAppear() {
-        super.viewDidAppear()
-        // check for new version
-        // if true present download
-        self.reminder.state = NSOffState
     }
     
 }
