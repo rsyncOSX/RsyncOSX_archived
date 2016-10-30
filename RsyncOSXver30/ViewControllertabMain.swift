@@ -157,6 +157,13 @@ class ViewControllertabMain : NSViewController, Information, Abort, Count, Refre
             as! NSViewController
     }()
 
+    // ScheduledBackupInWorkID
+    // self.presentViewControllerAsSheet(self.ViewControllerScheduledBackupInWork)
+    lazy var ViewControllerScheduledBackupInWork: NSViewController = {
+        return self.storyboard!.instantiateController(withIdentifier: "ScheduledBackupInWorkID")
+            as! NSViewController
+    }()
+    
     // Function for dismissing a presented view
     // - parameter viewcontroller: the viewcontroller to be dismissed
     func dismiss_view(viewcontroller:NSViewController) {
@@ -351,12 +358,12 @@ class ViewControllertabMain : NSViewController, Information, Abort, Count, Refre
     
     func notifyScheduledJob(config: configuration?) {
         if (config == nil) {
-            GlobalMainQueue.async(execute: { () -> Void in
-                Alerts.showInfo("Scheduled job did not start")
+            GlobalMainQueue.async(execute: {() -> Void in
+                Alerts.showInfo("Scheduled backup DID not execute?")
             })
         } else {
-            GlobalMainQueue.async(execute: { () -> Void in
-                Alerts.showInfo("Scheduled job")
+            GlobalMainQueue.async(execute: {() -> Void in
+                self.presentViewControllerAsSheet(self.ViewControllerScheduledBackupInWork)
             })
         }
     }

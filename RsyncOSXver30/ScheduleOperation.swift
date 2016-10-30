@@ -18,7 +18,6 @@ protocol scheduledTask : class {
     func notifyScheduledTask(config:configuration)
 }
 
-
 // Protocol when a Scehduled job is starting and stopping
 // USed to informed the presenting viewcontroller about what
 // is going on
