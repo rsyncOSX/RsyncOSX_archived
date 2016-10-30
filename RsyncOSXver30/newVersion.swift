@@ -8,11 +8,17 @@
 
 import Foundation
 
+protocol newVersionDiscovered : class {
+    func notifyNewVersion()
+}
+
 final class newVersion {
     
     private var runningVersion : String?
     private var urlPlist : String?
     private var urlNewVersion : String?
+    
+    weak var newversion_delegate: newVersionDiscovered?
     
     private func setURLnewVersion () {
         GlobalBackgroundQueue.async(execute: { () -> Void in
@@ -23,6 +29,10 @@ final class newVersion {
                         if let url = contents?.object(forKey: self.runningVersion!) {
                             self.urlNewVersion = url as? String
                             SharingManagerConfiguration.sharedInstance.URLnewVersion = self.urlNewVersion
+                            if let pvc = SharingManagerConfiguration.sharedInstance.ViewObjectMain as? ViewControllertabMain {
+                                self.newversion_delegate = pvc
+                                self.newversion_delegate?.notifyNewVersion()
+                            }
                         }
                     }
                 }

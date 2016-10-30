@@ -3337,35 +3337,18 @@ DQ
                         <rect key="frame" x="0.0" y="0.0" width="450" height="144"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
-                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="cPL-1Q-s4R">
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cPL-1Q-s4R">
                                 <rect key="frame" x="-2" y="97" width="454" height="34"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="34" id="271-zx-NQl"/>
-                                </constraints>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" title="New version is available..." id="9Zv-nL-VVC">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
-                            <button translatesAutoresizingMaskIntoConstraints="NO" id="6rB-BD-l1S">
-                                <rect key="frame" x="18" y="21" width="177" height="18"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="173" id="OpN-UP-YYU"/>
-                                </constraints>
-                                <buttonCell key="cell" type="check" title=" Dont bother me again..." bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="Cjc-gg-8qb">
-                                    <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                                    <font key="font" metaFont="system"/>
-                                </buttonCell>
-                                <connections>
-                                    <action selector="togglereminder:" target="E4i-DW-PcT" id="i37-u1-Z2g"/>
-                                </connections>
-                            </button>
-                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="vHD-RB-Khj">
+                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="vHD-RB-Khj">
                                 <rect key="frame" x="123" y="52" width="101" height="25"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="101" id="94P-Jm-z8e"/>
-                                </constraints>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <buttonCell key="cell" type="roundTextured" title="Download" bezelStyle="texturedRounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="Q6F-3P-fJy">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
@@ -3377,11 +3360,9 @@ DQ
                                     <action selector="download:" target="E4i-DW-PcT" id="oPh-R4-VqZ"/>
                                 </connections>
                             </button>
-                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="BWu-w3-9SS">
+                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="BWu-w3-9SS">
                                 <rect key="frame" x="239" y="52" width="106" height="25"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="106" id="LJz-hC-qEr"/>
-                                </constraints>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <buttonCell key="cell" type="roundTextured" title="Changelog" bezelStyle="texturedRounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="MRU-rs-ycW">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
@@ -3393,16 +3374,18 @@ DQ
                                     <action selector="changelogg:" target="E4i-DW-PcT" id="9C7-Z7-ISb"/>
                                 </connections>
                             </button>
-                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="WVx-lo-yej">
-                                <rect key="frame" x="-2" y="69" width="454" height="34"/>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="WVx-lo-yej">
+                                <rect key="frame" x="-2" y="87" width="454" height="16"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" title="(for your own safety, please verify the shasum after download)" id="HPC-E0-3iO">
                                     <font key="font" size="13" name="TimesNewRomanPSMT"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
-                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="VMh-KL-1X7">
-                                <rect key="frame" x="397" y="17" width="33" height="25"/>
+                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="VMh-KL-1X7">
+                                <rect key="frame" x="397" y="18" width="33" height="25"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <buttonCell key="cell" type="roundTextured" title="OK" bezelStyle="texturedRounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="cgs-kn-d7O">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
@@ -3415,28 +3398,7 @@ DQ
                                 </connections>
                             </button>
                         </subviews>
-                        <constraints>
-                            <constraint firstItem="vHD-RB-Khj" firstAttribute="baseline" secondItem="BWu-w3-9SS" secondAttribute="baseline" id="0cX-TQ-57h"/>
-                            <constraint firstItem="cPL-1Q-s4R" firstAttribute="leading" secondItem="WVx-lo-yej" secondAttribute="leading" id="3Ia-y8-aHs"/>
-                            <constraint firstItem="6rB-BD-l1S" firstAttribute="centerY" secondItem="VMh-KL-1X7" secondAttribute="centerY" id="5ZZ-OZ-Pev"/>
-                            <constraint firstItem="cPL-1Q-s4R" firstAttribute="leading" secondItem="5ny-Tx-yXY" secondAttribute="leading" id="7oj-Vw-dyy"/>
-                            <constraint firstItem="vHD-RB-Khj" firstAttribute="leading" secondItem="5ny-Tx-yXY" secondAttribute="leading" constant="123" id="BDX-Tf-yfz"/>
-                            <constraint firstItem="vHD-RB-Khj" firstAttribute="top" secondItem="cPL-1Q-s4R" secondAttribute="bottom" constant="21" id="G22-0s-CbW"/>
-                            <constraint firstItem="6rB-BD-l1S" firstAttribute="top" secondItem="vHD-RB-Khj" secondAttribute="bottom" constant="17" id="G2U-m8-WiZ"/>
-                            <constraint firstItem="cPL-1Q-s4R" firstAttribute="top" secondItem="5ny-Tx-yXY" secondAttribute="top" constant="13" id="Hrl-cM-FZR"/>
-                            <constraint firstAttribute="trailing" secondItem="VMh-KL-1X7" secondAttribute="trailing" constant="20" symbolic="YES" id="K4o-Qk-zk8"/>
-                            <constraint firstItem="6rB-BD-l1S" firstAttribute="leading" secondItem="5ny-Tx-yXY" secondAttribute="leading" constant="20" symbolic="YES" id="SIP-2W-leh"/>
-                            <constraint firstItem="WVx-lo-yej" firstAttribute="top" secondItem="5ny-Tx-yXY" secondAttribute="top" constant="41" id="VgN-gr-nTF"/>
-                            <constraint firstItem="VMh-KL-1X7" firstAttribute="top" secondItem="WVx-lo-yej" secondAttribute="bottom" constant="28" id="Y22-Br-45S"/>
-                            <constraint firstAttribute="trailing" secondItem="cPL-1Q-s4R" secondAttribute="trailing" id="aoQ-2J-qQ0"/>
-                            <constraint firstItem="BWu-w3-9SS" firstAttribute="leading" secondItem="vHD-RB-Khj" secondAttribute="trailing" constant="15" id="eiT-hm-7tt"/>
-                            <constraint firstItem="BWu-w3-9SS" firstAttribute="baseline" secondItem="vHD-RB-Khj" secondAttribute="firstBaseline" id="iiK-NT-BRS"/>
-                            <constraint firstItem="cPL-1Q-s4R" firstAttribute="trailing" secondItem="WVx-lo-yej" secondAttribute="trailing" id="w4r-sR-yWu"/>
-                        </constraints>
                     </view>
-                    <connections>
-                        <outlet property="reminder" destination="6rB-BD-l1S" id="hVu-Uh-vMp"/>
-                    </connections>
                 </viewController>
                 <customObject id="tTk-AH-S9E" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>

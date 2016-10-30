@@ -53,11 +53,8 @@ class SharingManagerConfiguration {
     weak var refresh_delegate:RefreshtableViewtabMain?
  
     // NEW VERSION OF RSYNCOSX
-    
     // Download URL if new version is avaliable
-    // Variable is set during startup of application
     var URLnewVersion : String?
-    var remindernewVersion : Bool = false
     
     // CONFIGURATIONS RSYNCOSX
     

@@ -45,7 +45,7 @@ protocol ScheduledJobInProgress : class {
     func completed()
 }
 
-class ViewControllertabMain : NSViewController, Information, Abort, Count, RefreshtableViewtabMain, StartBatch, ReadConfigurationsAgain, RsyncUserParams, SendSelecetedIndex, NewSchedules, StartNextScheduledTask, DismissViewController, UpdateProgress, ScheduledJobInProgress, RsyncChanged, Connections, AddProfiles {
+class ViewControllertabMain : NSViewController, Information, Abort, Count, RefreshtableViewtabMain, StartBatch, ReadConfigurationsAgain, RsyncUserParams, SendSelecetedIndex, NewSchedules, StartNextScheduledTask, DismissViewController, UpdateProgress, ScheduledJobInProgress, RsyncChanged, Connections, AddProfiles, newVersionDiscovered {
 
     // Protocol function used in Process().
     weak var processupdate_delegate:UpdateProgress?
@@ -398,6 +398,14 @@ class ViewControllertabMain : NSViewController, Information, Abort, Count, Refre
         Utils.sharedInstance.testAllremoteserverConnections()
     }
     
+    // Protocol newVersionDiscovered
+    // Notifies if new version is discovered
+    func notifyNewVersion() {
+        GlobalMainQueue.async(execute: { () -> Void in
+            self.presentViewControllerAsSheet(self.newVersionViewController)
+        })
+    }
+    
     // BUTTONS AND ACTIONS
     
     @IBOutlet weak var edit: NSButton!
@@ -490,7 +498,6 @@ class ViewControllertabMain : NSViewController, Information, Abort, Count, Refre
         // Start waiting for next Scheduled job (if any)
         self.schedules = ScheduleSortedAndExpand()
         self.startProcess()
-        
         self.mainTableView.target = self
         self.mainTableView.doubleAction = #selector(ViewControllertabMain.tableViewDoubleClick(sender:))
     }
@@ -498,14 +505,6 @@ class ViewControllertabMain : NSViewController, Information, Abort, Count, Refre
     override func viewDidAppear() {
         super.viewDidAppear()
         self.setInfo(info: "", color: NSColor.black)
-        // check for new version, if true present download
-        if (SharingManagerConfiguration.sharedInstance.URLnewVersion != nil) {
-            if (SharingManagerConfiguration.sharedInstance.remindernewVersion == false) {
-                GlobalMainQueue.async(execute: { () -> Void in
-                    self.presentViewControllerAsSheet(self.newVersionViewController)
-                })
-            }
-        }
         // Setting reference to ViewController
         // Used to call delegate function from other class
         SharingManagerConfiguration.sharedInstance.ViewObjectMain = self
@@ -527,7 +526,6 @@ class ViewControllertabMain : NSViewController, Information, Abort, Count, Refre
     }
     
     @objc(tableViewDoubleClick:) func tableViewDoubleClick(sender:AnyObject) {
-        
         if (SharingManagerConfiguration.sharedInstance.allowDoubleclick == true) {
             if (self.ready) {
                 self.executeSingelTask()
