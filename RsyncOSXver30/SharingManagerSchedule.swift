@@ -119,6 +119,8 @@ class SharingManagerSchedule {
             }
             // Setting self.Schedule as data
             self.Schedule = data
+            // Reset reference to first schedule job
+            self.scheduledJob = nil
         }
     }
 

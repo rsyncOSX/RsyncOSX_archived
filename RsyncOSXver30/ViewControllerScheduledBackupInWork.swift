@@ -27,8 +27,10 @@ class ViewControllerScheduledBackupinWork : NSViewController {
             // Dismisser is root controller
             self.dismiss_delegate = pvc
         }
+    }
+    
+    override func viewDidAppear() {
         self.setInfo()
-       
     }
     
     @IBAction func close(_ sender: NSButton) {

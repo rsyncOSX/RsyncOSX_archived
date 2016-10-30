@@ -134,7 +134,16 @@ class executeTask : Operation {
         if let dict:NSDictionary = SharingManagerSchedule.sharedInstance.scheduledJob {
             if let hiddenID:Int = dict.value(forKey: "hiddenID") as? Int {
                 let store:[configuration] = storeAPI.sharedInstance.getConfigurations()
-                config = store.filter({return ($0.hiddenID == hiddenID)})[0]
+                let configArray = store.filter({return ($0.hiddenID == hiddenID)})
+                guard configArray.count > 0 else {
+                    if let pvc = SharingManagerConfiguration.sharedInstance.ViewObjectMain as? ViewControllertabMain {
+                        notify_delegate = pvc
+                        notify_delegate?.notifyScheduledJob(config: nil)
+                    }
+                    return
+                }
+                config = configArray[0]
+                
                 guard (config != nil) else {
                     if let pvc = SharingManagerConfiguration.sharedInstance.ViewObjectMain as? ViewControllertabMain {
                         notify_delegate = pvc
@@ -142,6 +151,7 @@ class executeTask : Operation {
                     }
                     return
                 }
+                
                 // Notify that scheduled task is executing
                 if let pvc = SharingManagerConfiguration.sharedInstance.ViewObjectMain as? ViewControllertabMain {
                     notify_delegate = pvc
