@@ -94,6 +94,8 @@ class SharingManagerConfiguration {
     var operation:completeScheduledOperation?
     // Profile
     private var profile:String?
+    // Notify about scheduled process
+    var allowNotify:Bool = false
 
     
     // DATA STRUCTURES

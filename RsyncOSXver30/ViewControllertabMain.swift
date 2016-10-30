@@ -515,6 +515,8 @@ class ViewControllertabMain : NSViewController, Information, Abort, Count, Refre
     
     override func viewDidAppear() {
         super.viewDidAppear()
+        SharingManagerConfiguration.sharedInstance.allowNotify = true
+        
         self.setInfo(info: "", color: NSColor.black)
         // Setting reference to ViewController
         // Used to call delegate function from other class
@@ -534,6 +536,11 @@ class ViewControllertabMain : NSViewController, Information, Abort, Count, Refre
             self.schedules = ScheduleSortedAndExpand()
         }
         self.ready = true
+    }
+    
+    override func viewDidDisappear() {
+        super.viewDidDisappear()
+        SharingManagerConfiguration.sharedInstance.allowNotify = false
     }
     
     @objc(tableViewDoubleClick:) func tableViewDoubleClick(sender:AnyObject) {
