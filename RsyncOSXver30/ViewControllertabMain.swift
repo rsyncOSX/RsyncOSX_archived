@@ -37,14 +37,6 @@ protocol UpdateProgress : class {
     func FileHandler()
 }
 
-// Protocol when a Scehduled job is starting and stopping
-// USed to informed the presenting viewcontroller about what
-// is going on
-protocol ScheduledJobInProgress : class {
-    func start()
-    func completed()
-}
-
 class ViewControllertabMain : NSViewController, Information, Abort, Count, RefreshtableViewtabMain, StartBatch, ReadConfigurationsAgain, RsyncUserParams, SendSelecetedIndex, NewSchedules, StartNextScheduledTask, DismissViewController, UpdateProgress, ScheduledJobInProgress, RsyncChanged, Connections, AddProfiles, newVersionDiscovered {
 
     // Protocol function used in Process().
@@ -345,7 +337,7 @@ class ViewControllertabMain : NSViewController, Information, Abort, Count, Refre
     }
     
     // Protocol ScheduledJobInProgress
-    // TWo functions start and complete, start and stop progressview
+    // Three functions start, notifyScheduledJob and complete, start and stop progressview
     // and set state on/off.
     func start() {
         self.scheduledJobInProgress = true
@@ -355,6 +347,18 @@ class ViewControllertabMain : NSViewController, Information, Abort, Count, Refre
     func completed() {
         self.scheduledJobInProgress = false
         self.scheduledJobworking.stopAnimation(nil)
+    }
+    
+    func notifyScheduledJob(config: configuration?) {
+        if (config == nil) {
+            GlobalMainQueue.async(execute: { () -> Void in
+                Alerts.showInfo("Scheduled job did not start")
+            })
+        } else {
+            GlobalMainQueue.async(execute: { () -> Void in
+                Alerts.showInfo("Scheduled job")
+            })
+        }
     }
     
     // Protocol RsyncChanged
