@@ -37,14 +37,6 @@ protocol UpdateProgress : class {
     func FileHandler()
 }
 
-// Protocol when a Scehduled job is starting and stopping
-// USed to informed the presenting viewcontroller about what
-// is going on
-protocol ScheduledJobInProgress : class {
-    func start()
-    func completed()
-}
-
 class ViewControllertabMain : NSViewController, Information, Abort, Count, RefreshtableViewtabMain, StartBatch, ReadConfigurationsAgain, RsyncUserParams, SendSelecetedIndex, NewSchedules, StartNextScheduledTask, DismissViewController, UpdateProgress, ScheduledJobInProgress, RsyncChanged, Connections, AddProfiles, newVersionDiscovered {
 
     // Protocol function used in Process().
@@ -165,6 +157,13 @@ class ViewControllertabMain : NSViewController, Information, Abort, Count, Refre
             as! NSViewController
     }()
 
+    // ScheduledBackupInWorkID
+    // self.presentViewControllerAsSheet(self.ViewControllerScheduledBackupInWork)
+    lazy var ViewControllerScheduledBackupInWork: NSViewController = {
+        return self.storyboard!.instantiateController(withIdentifier: "ScheduledBackupInWorkID")
+            as! NSViewController
+    }()
+    
     // Function for dismissing a presented view
     // - parameter viewcontroller: the viewcontroller to be dismissed
     func dismiss_view(viewcontroller:NSViewController) {
@@ -345,7 +344,7 @@ class ViewControllertabMain : NSViewController, Information, Abort, Count, Refre
     }
     
     // Protocol ScheduledJobInProgress
-    // TWo functions start and complete, start and stop progressview
+    // Three functions start, notifyScheduledJob and complete, start and stop progressview
     // and set state on/off.
     func start() {
         self.scheduledJobInProgress = true
@@ -355,6 +354,18 @@ class ViewControllertabMain : NSViewController, Information, Abort, Count, Refre
     func completed() {
         self.scheduledJobInProgress = false
         self.scheduledJobworking.stopAnimation(nil)
+    }
+    
+    func notifyScheduledJob(config: configuration?) {
+        if (config == nil) {
+            GlobalMainQueue.async(execute: {() -> Void in
+                Alerts.showInfo("Scheduled backup DID not execute?")
+            })
+        } else {
+            GlobalMainQueue.async(execute: {() -> Void in
+                self.presentViewControllerAsSheet(self.ViewControllerScheduledBackupInWork)
+            })
+        }
     }
     
     // Protocol RsyncChanged
@@ -504,6 +515,8 @@ class ViewControllertabMain : NSViewController, Information, Abort, Count, Refre
     
     override func viewDidAppear() {
         super.viewDidAppear()
+        SharingManagerConfiguration.sharedInstance.allowNotify = true
+        
         self.setInfo(info: "", color: NSColor.black)
         // Setting reference to ViewController
         // Used to call delegate function from other class
@@ -523,6 +536,11 @@ class ViewControllertabMain : NSViewController, Information, Abort, Count, Refre
             self.schedules = ScheduleSortedAndExpand()
         }
         self.ready = true
+    }
+    
+    override func viewDidDisappear() {
+        super.viewDidDisappear()
+        SharingManagerConfiguration.sharedInstance.allowNotify = false
     }
     
     @objc(tableViewDoubleClick:) func tableViewDoubleClick(sender:AnyObject) {

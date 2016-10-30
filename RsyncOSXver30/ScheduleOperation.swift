@@ -13,6 +13,20 @@ protocol StartNextScheduledTask : class {
     func startProcess()
 }
 
+// Protocol inform about Scheduled task
+protocol scheduledTask : class {
+    func notifyScheduledTask(config:configuration)
+}
+
+// Protocol when a Scehduled job is starting and stopping
+// USed to informed the presenting viewcontroller about what
+// is going on
+protocol ScheduledJobInProgress : class {
+    func start()
+    func completed()
+    func notifyScheduledJob(config:configuration?)
+}
+
 // Class for starting scheduled task
 final class ScheduleOperation {
     
@@ -118,13 +132,35 @@ class executeTask : Operation {
         
         // Get the first job of the queue
         if let dict:NSDictionary = SharingManagerSchedule.sharedInstance.scheduledJob {
-            if let pvc = SharingManagerConfiguration.sharedInstance.ViewObjectMain as? ViewControllertabMain {
-                notify_delegate = pvc
-                notify_delegate?.start()
-            }
             if let hiddenID:Int = dict.value(forKey: "hiddenID") as? Int {
                 let store:[configuration] = storeAPI.sharedInstance.getConfigurations()
-                config = store.filter({return ($0.hiddenID == hiddenID)})[0]
+                let configArray = store.filter({return ($0.hiddenID == hiddenID)})
+                guard configArray.count > 0 else {
+                    if let pvc = SharingManagerConfiguration.sharedInstance.ViewObjectMain as? ViewControllertabMain {
+                        notify_delegate = pvc
+                        notify_delegate?.notifyScheduledJob(config: nil)
+                    }
+                    return
+                }
+                config = configArray[0]
+                
+                guard (config != nil) else {
+                    if let pvc = SharingManagerConfiguration.sharedInstance.ViewObjectMain as? ViewControllertabMain {
+                        notify_delegate = pvc
+                        notify_delegate?.notifyScheduledJob(config: nil)
+                    }
+                    return
+                }
+                
+                // Notify that scheduled task is executing
+                if let pvc = SharingManagerConfiguration.sharedInstance.ViewObjectMain as? ViewControllertabMain {
+                    notify_delegate = pvc
+                    notify_delegate?.start()
+                    if (SharingManagerConfiguration.sharedInstance.allowNotify == true) {
+                        notify_delegate?.notifyScheduledJob(config: config)
+                    }
+                }
+                
                 if (hiddenID >= 0 && config != nil) {
                     arguments = getArguments.argumentsRsync(config!, dryRun: false, forDisplay: false)
                     // Setting reference to finalize the job
