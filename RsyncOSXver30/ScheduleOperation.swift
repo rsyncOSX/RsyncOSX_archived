@@ -135,6 +135,7 @@ class executeTask : Operation {
             if let hiddenID:Int = dict.value(forKey: "hiddenID") as? Int {
                 let store:[configuration] = storeAPI.sharedInstance.getConfigurations()
                 let configArray = store.filter({return ($0.hiddenID == hiddenID)})
+                
                 guard configArray.count > 0 else {
                     if let pvc = SharingManagerConfiguration.sharedInstance.ViewObjectMain as? ViewControllertabMain {
                         notify_delegate = pvc
@@ -142,12 +143,13 @@ class executeTask : Operation {
                     }
                     return
                 }
+                
                 config = configArray[0]
                 
                 guard (config != nil) else {
                     if let pvc = SharingManagerConfiguration.sharedInstance.ViewObjectMain as? ViewControllertabMain {
                         notify_delegate = pvc
-                        if (SharingManagerConfiguration.sharedInstance.allowNotify == true) {
+                        if (SharingManagerConfiguration.sharedInstance.allowNotifySheduledjob == true) {
                              notify_delegate?.notifyScheduledJob(config: nil)
                         }
                     }
@@ -158,7 +160,8 @@ class executeTask : Operation {
                 if let pvc = SharingManagerConfiguration.sharedInstance.ViewObjectMain as? ViewControllertabMain {
                     notify_delegate = pvc
                     notify_delegate?.start()
-                    if (SharingManagerConfiguration.sharedInstance.allowNotify == true) {
+                    // Trying to notify when not in main view will crash RSyncOSX
+                    if (SharingManagerConfiguration.sharedInstance.allowNotifySheduledjob == true) {
                         notify_delegate?.notifyScheduledJob(config: config)
                     }
                 }

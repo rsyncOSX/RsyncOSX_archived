@@ -92,10 +92,11 @@ class SharingManagerConfiguration {
     // Reference to the Operation object
     // Reference is set in when Scheduled task is executed
     var operation:completeScheduledOperation?
-    // Profile
+    // Which profile ti use, if default nil
     private var profile:String?
     // Notify about scheduled process
-    var allowNotify:Bool = false
+    // Only allowed to notity by modal window when in main view
+    var allowNotifySheduledjob:Bool = false
 
     
     // DATA STRUCTURES
