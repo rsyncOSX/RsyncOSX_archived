@@ -232,13 +232,13 @@ class ViewControllertabMain : NSViewController, Information, Abort, Count, Refre
                         self.indicator_delegate?.start()
                     }
                     let arguments:[String] = SharingManagerConfiguration.sharedInstance.getrsyncArgumentOneConfiguration(index: index, argtype: .argdryRun)
-                    let process = rsyncProcess(notification: false, tabMain: true, command : nil)
+                    let process = rsyncProcess(operation: false, tabMain: true, command : nil)
                     // Setting reference to process for Abort if requiered
                     process.executeProcess(arguments, output: self.output!)
                     self.process = process.getProcess()
                 case 1:
                     let arguments:[String] = SharingManagerConfiguration.sharedInstance.getrsyncArgumentOneConfiguration(index: index, argtype: .arg)
-                    let process = rsyncProcess(notification: false, tabMain: true, command : nil)
+                    let process = rsyncProcess(operation: false, tabMain: true, command : nil)
                     // Setting reference to process for Abort if requiered
                     process.executeProcess(arguments, output: self.output!)
                     self.process = process.getProcess()
@@ -575,7 +575,7 @@ class ViewControllertabMain : NSViewController, Information, Abort, Count, Refre
                 self.workload = singleTask()
             }
             let arguments:[String]?
-            let process = rsyncProcess(notification: false, tabMain: true, command : nil)
+            let process = rsyncProcess(operation: false, tabMain: true, command : nil)
             self.process = nil
             self.output = nil
             
@@ -930,7 +930,7 @@ extension ViewControllertabMain : NSTableViewDelegate {
         if row > SharingManagerConfiguration.sharedInstance.ConfigurationsDataSourcecount() - 1 {
             return nil
         }
-        let object : NSMutableDictionary = SharingManagerConfiguration.sharedInstance.getConfigurationsDataSource()![row]
+        let object : NSDictionary = SharingManagerConfiguration.sharedInstance.getConfigurationsDataSource()![row]
         var text:String?
         var schedule :Bool = false
         let hiddenID:Int = SharingManagerConfiguration.sharedInstance.getConfigurations()[row].hiddenID

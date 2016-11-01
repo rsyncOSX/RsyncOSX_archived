@@ -173,8 +173,8 @@ class SharingManagerConfiguration {
     /// - returns : Array of NSDictionary
     func getConfigurationsDataSourcecountBackupOnly() -> [NSDictionary]? {
         let configurations:[configuration] = self.Configurations.filter({return ($0.task == "backup")})
-        var row: NSMutableDictionary
-        var data : [NSMutableDictionary] = []
+        var row =  NSDictionary()
+        var data = Array<NSDictionary>()
         for i in 0 ..< configurations.count {
             row = [
                 "taskCellID": configurations[i].task,
@@ -219,8 +219,8 @@ class SharingManagerConfiguration {
             self.argumentAllConfiguration.add(rsyncArgumentsConfig.rsyncArguments!)
         }
         // Then prepare the datasource for use in tableviews
-        var row: NSMutableDictionary?
-        var data = [NSMutableDictionary]()
+        var row =  NSMutableDictionary()
+        var data = Array<NSMutableDictionary>()
         self.destroyConfigurationsDataSource()
         var batch:Int = 0
         for i in 0 ..< self.Configurations.count {
@@ -238,7 +238,7 @@ class SharingManagerConfiguration {
                 "backupIDCellID":self.Configurations[i].backupID,
                 "runDateCellID":self.Configurations[i].dateRun!
             ]
-            data.append(row!)
+            data.append(row)
         }
         self.ConfigurationsDataSource = data
 
