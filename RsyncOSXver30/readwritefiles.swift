@@ -16,7 +16,6 @@ enum readwrite {
     case schedule
     case configuration
     case userconfig
-    case rsyncarguments
     case none
 }
 
@@ -84,13 +83,6 @@ class readwritefiles {
             self.readdisk = true
         case .none:
             self.readdisk = false
-        case .rsyncarguments:
-            if (SharingManagerConfiguration.sharedInstance.isDataDirty()) {
-                self.readdisk = true
-                SharingManagerConfiguration.sharedInstance.setDataDirty(dirty: false)
-            } else {
-                self.readdisk = false
-            }
         }
         if (self.readdisk == true) {
             
@@ -156,11 +148,8 @@ class readwritefiles {
                 self.useProfile = true
             }
         case .userconfig:
-            self.key = "config"
             self.name = "/config.plist"
-        case .rsyncarguments:
-            self.key = "rsyncarguments"
-            self.name = "/rsyncarguments.plist"
+            self.key = "config"
         case .none:
             self.name = nil
             self.readdisk = false
