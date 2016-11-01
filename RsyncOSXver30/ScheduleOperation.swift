@@ -13,11 +13,6 @@ protocol StartNextScheduledTask : class {
     func startProcess()
 }
 
-// Protocol inform about Scheduled task
-protocol scheduledTask : class {
-    func notifyScheduledTask(config:configuration)
-}
-
 // Protocol when a Scehduled job is starting and stopping
 // USed to informed the presenting viewcontroller about what
 // is going on
@@ -79,10 +74,10 @@ final class completeScheduledOperation {
     private var schedule:String?
     private var index:Int?
     
-    // Function for completing the Scheduled job
+    // Function for finalizing the Scheduled job
     // The Operation object sets reference to the completeScheduledOperation in SharingManagerConfiguration.sharedInstance.operation
     // This function is executed when rsyn process terminates
-    func complete(output:outputProcess) {
+    func finalizeScheduledJob(output:outputProcess) {
         // Write result to Schedule
         let datestring = self.dateformatter!.string(from: date!)
         let dateStartstring = self.dateformatter!.string(from: dateStart!)
@@ -125,7 +120,7 @@ class executeTask : Operation {
         weak var notify_delegate : ScheduledJobInProgress?
         // Variables used for rsync parameters
         let output = outputProcess()
-        let job = rsyncProcess(notification: true, tabMain: false, command : nil)
+        let job = rsyncProcess(operation: true, tabMain: false, command : nil)
         let getArguments = rsyncProcessArguments()
         var arguments:[String]?
         var config:configuration?
