@@ -64,7 +64,10 @@ class profiles {
             if (fileManager.fileExists(atPath: profileDirectory) == false) {
                 do {
                     try fileManager.createDirectory(atPath: profileDirectory, withIntermediateDirectories: true, attributes: nil)}
-                catch _ as NSError { }
+                catch let e {
+                    let error = e as NSError
+                    print(error.description)
+                }
             }
         }
     }
@@ -80,7 +83,10 @@ class profiles {
                 if (answer){
                     do {
                         try fileManager.removeItem(atPath: profileDirectory)}
-                    catch _ as NSError {}
+                    catch let e {
+                        let error = e as NSError
+                        print(error.description)
+                    }
                 }
             }
         }
@@ -93,8 +99,11 @@ class profiles {
         if let path = self.filePath {
             if (fileManager.fileExists(atPath: path) == false) {
                 do {
-                    try fileManager.createDirectory(atPath: path, withIntermediateDirectories: true, attributes: nil)}
-                catch _ as NSError { }
+                    try fileManager.createDirectory(atPath: path, withIntermediateDirectories: true, attributes: nil)
+                } catch let e {
+                    let error = e as NSError
+                    print(error.description)
+                }
             }
         }
     }
@@ -107,7 +116,11 @@ class profiles {
             do {
                 let files = try fileManager.contentsOfDirectory(at: filepath, includingPropertiesForKeys: nil , options: .skipsHiddenFiles)
                 return files
-            } catch _ as NSError { }
+            } catch let e {
+                let error = e as NSError
+                print(error.description)
+                return nil
+            }
         }
         return nil
     }
