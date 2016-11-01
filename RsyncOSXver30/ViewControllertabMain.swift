@@ -520,7 +520,7 @@ class ViewControllertabMain : NSViewController, Information, Abort, Count, Refre
     override func viewDidAppear() {
         super.viewDidAppear()
         // Allow notify about Scheduled jobs
-        SharingManagerConfiguration.sharedInstance.allowNotifySheduledjob = true
+        SharingManagerConfiguration.sharedInstance.allowNotifyinMain = true
         self.setInfo(info: "", color: NSColor.black)
         // Setting reference to ViewController
         // Used to call delegate function from other class
@@ -544,8 +544,8 @@ class ViewControllertabMain : NSViewController, Information, Abort, Count, Refre
     
     override func viewDidDisappear() {
         super.viewDidDisappear()
-        // Do not allow notify about Scheduled jobs
-        SharingManagerConfiguration.sharedInstance.allowNotifySheduledjob = false
+        // Do not allow notify in Main
+        SharingManagerConfiguration.sharedInstance.allowNotifyinMain = false
     }
     
     @objc(tableViewDoubleClick:) func tableViewDoubleClick(sender:AnyObject) {

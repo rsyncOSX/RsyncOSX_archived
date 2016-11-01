@@ -96,7 +96,7 @@ class SharingManagerConfiguration {
     private var profile:String?
     // Notify about scheduled process
     // Only allowed to notity by modal window when in main view
-    var allowNotifySheduledjob:Bool = false
+    var allowNotifyinMain:Bool = false
 
     
     // DATA STRUCTURES

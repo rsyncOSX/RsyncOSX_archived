@@ -149,7 +149,7 @@ class executeTask : Operation {
                 guard (config != nil) else {
                     if let pvc = SharingManagerConfiguration.sharedInstance.ViewObjectMain as? ViewControllertabMain {
                         notify_delegate = pvc
-                        if (SharingManagerConfiguration.sharedInstance.allowNotifySheduledjob == true) {
+                        if (SharingManagerConfiguration.sharedInstance.allowNotifyinMain == true) {
                              notify_delegate?.notifyScheduledJob(config: nil)
                         }
                     }
@@ -161,7 +161,7 @@ class executeTask : Operation {
                     notify_delegate = pvc
                     notify_delegate?.start()
                     // Trying to notify when not in main view will crash RSyncOSX
-                    if (SharingManagerConfiguration.sharedInstance.allowNotifySheduledjob == true) {
+                    if (SharingManagerConfiguration.sharedInstance.allowNotifyinMain == true) {
                         notify_delegate?.notifyScheduledJob(config: config)
                     }
                 }
