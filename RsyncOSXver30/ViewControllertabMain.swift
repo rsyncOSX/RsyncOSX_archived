@@ -232,13 +232,13 @@ class ViewControllertabMain : NSViewController, Information, Abort, Count, Refre
                         self.indicator_delegate?.start()
                     }
                     let arguments:[String] = SharingManagerConfiguration.sharedInstance.getrsyncArgumentOneConfiguration(index: index, argtype: .argdryRun)
-                    let process = rsyncProcess(notification: false, tabMain: true, command : nil)
+                    let process = rsyncProcess(operation: false, tabMain: true, command : nil)
                     // Setting reference to process for Abort if requiered
                     process.executeProcess(arguments, output: self.output!)
                     self.process = process.getProcess()
                 case 1:
                     let arguments:[String] = SharingManagerConfiguration.sharedInstance.getrsyncArgumentOneConfiguration(index: index, argtype: .arg)
-                    let process = rsyncProcess(notification: false, tabMain: true, command : nil)
+                    let process = rsyncProcess(operation: false, tabMain: true, command : nil)
                     // Setting reference to process for Abort if requiered
                     process.executeProcess(arguments, output: self.output!)
                     self.process = process.getProcess()
@@ -347,13 +347,17 @@ class ViewControllertabMain : NSViewController, Information, Abort, Count, Refre
     // Three functions start, notifyScheduledJob and complete, start and stop progressview
     // and set state on/off.
     func start() {
-        self.scheduledJobInProgress = true
-        self.scheduledJobworking.startAnimation(nil)
+        GlobalMainQueue.async(execute: {() -> Void in
+            self.scheduledJobInProgress = true
+            self.scheduledJobworking.startAnimation(nil)
+        })
     }
     
     func completed() {
-        self.scheduledJobInProgress = false
-        self.scheduledJobworking.stopAnimation(nil)
+        GlobalMainQueue.async(execute: {() -> Void in
+            self.scheduledJobInProgress = false
+            self.scheduledJobworking.stopAnimation(nil)
+        })
     }
     
     func notifyScheduledJob(config: configuration?) {
@@ -515,8 +519,8 @@ class ViewControllertabMain : NSViewController, Information, Abort, Count, Refre
     
     override func viewDidAppear() {
         super.viewDidAppear()
-        SharingManagerConfiguration.sharedInstance.allowNotify = true
-        
+        // Allow notify about Scheduled jobs
+        SharingManagerConfiguration.sharedInstance.allowNotifyinMain = true
         self.setInfo(info: "", color: NSColor.black)
         // Setting reference to ViewController
         // Used to call delegate function from other class
@@ -540,7 +544,8 @@ class ViewControllertabMain : NSViewController, Information, Abort, Count, Refre
     
     override func viewDidDisappear() {
         super.viewDidDisappear()
-        SharingManagerConfiguration.sharedInstance.allowNotify = false
+        // Do not allow notify in Main
+        SharingManagerConfiguration.sharedInstance.allowNotifyinMain = false
     }
     
     @objc(tableViewDoubleClick:) func tableViewDoubleClick(sender:AnyObject) {
@@ -574,7 +579,7 @@ class ViewControllertabMain : NSViewController, Information, Abort, Count, Refre
                 self.workload = singleTask()
             }
             let arguments:[String]?
-            let process = rsyncProcess(notification: false, tabMain: true, command : nil)
+            let process = rsyncProcess(operation: false, tabMain: true, command : nil)
             self.process = nil
             self.output = nil
             
@@ -929,7 +934,7 @@ extension ViewControllertabMain : NSTableViewDelegate {
         if row > SharingManagerConfiguration.sharedInstance.ConfigurationsDataSourcecount() - 1 {
             return nil
         }
-        let object : NSMutableDictionary = SharingManagerConfiguration.sharedInstance.getConfigurationsDataSource()![row]
+        let object : NSDictionary = SharingManagerConfiguration.sharedInstance.getConfigurationsDataSource()![row]
         var text:String?
         var schedule :Bool = false
         let hiddenID:Int = SharingManagerConfiguration.sharedInstance.getConfigurations()[row].hiddenID

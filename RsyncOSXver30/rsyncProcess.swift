@@ -16,7 +16,7 @@ final class rsyncProcess {
     // Message to calling class
     weak var process_update:UpdateProgress?
     // If process is created in NSOperation
-    var inNSOperation:Bool?
+    var inOperation:Bool?
     // Creating obcect from tabMain
     var tabMain:Bool?
     // Observer
@@ -44,6 +44,7 @@ final class rsyncProcess {
         outHandle.waitForDataInBackgroundAndNotify()
         
         // Observator for reading data from pipe
+        // Observer is removed when Process terminates
         self.observationCenter = NotificationCenter.default.addObserver(forName: NSNotification.Name.NSFileHandleDataAvailable, object: nil, queue: nil)
             { notification -> Void in
                 let data = outHandle.availableData
@@ -53,7 +54,7 @@ final class rsyncProcess {
                         // splitting the output
                         output.addLine(str as String)
                         self.calculatedNumberOfFiles = output.getOutputCount()
-                        if (self.inNSOperation == false) {
+                        if (self.inOperation == false) {
                             // Send message about files
                             self.process_update?.FileHandler()
                         }
@@ -62,6 +63,7 @@ final class rsyncProcess {
                 }
             }
         // Observator Process termination
+        // Observer is removed when Process terminates
         self.observationCenter = NotificationCenter.default.addObserver(forName: Process.didTerminateNotification, object: task, queue: nil)
             { notification -> Void in
                 // Collectiong numbers in output
@@ -69,12 +71,13 @@ final class rsyncProcess {
                 // files and bytes. getNumbers collects that info and store the result in the
                 // object.
                 output.getNumbers()
-                if (self.inNSOperation == false) {
+                if (self.inOperation == false) {
                     // Send message about process termination
                     self.process_update?.ProcessTermination()
                 } else {
                     // We are in Scheduled operation and must finalize the job
-                    SharingManagerConfiguration.sharedInstance.operation?.complete(output: output)
+                    // e.g logging date and stuff like that
+                    SharingManagerConfiguration.sharedInstance.operation?.finalizeScheduledJob(output: output)
                 }
                 NotificationCenter.default.removeObserver(self.observationCenter as Any)
             }
@@ -92,13 +95,14 @@ final class rsyncProcess {
         }
     }
     
-    init (notification: Bool, tabMain:Bool, command : String?) {
+    init (operation: Bool, tabMain:Bool, command : String?) {
         
-        self.inNSOperation = notification
+        self.inOperation = operation
         self.tabMain = tabMain
         self.command = command
         
-        if (self.inNSOperation == false) {
+        // If process object is created from a scheduled task do not set delegates.
+        if (self.inOperation == false) {
             // Check where to return the delegate call
             // Either in ViewControllertabMain or ViewControllerCopyFiles
             switch tabMain {

@@ -149,7 +149,7 @@ class SharingManagerSchedule {
     /// array of NSDictionary. Used for presenting Schedule in tableViews
     /// - returns : array of Schedules
     func getScheduleAsNSDictionary () -> [NSDictionary] {
-        var data = [NSDictionary]()
+        var data = Array<NSDictionary>()
         for i in 0 ..< self.Schedule.count {
             if self.Schedule[i].dateStop != nil {
                 if (self.Schedule[i].schedule != "stopped") {
@@ -193,7 +193,7 @@ class SharingManagerSchedule {
     func readScheduledata (_ hiddenID : Int) -> [NSMutableDictionary] {
         
         var row: NSMutableDictionary
-        var data : [NSMutableDictionary] = []
+        var data = Array<NSMutableDictionary>()
         
         for i in 0 ..< self.Schedule.count {
             if (self.Schedule[i].hiddenID == hiddenID) {

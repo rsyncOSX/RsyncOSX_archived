@@ -31,7 +31,9 @@ final class newVersion {
                             SharingManagerConfiguration.sharedInstance.URLnewVersion = self.urlNewVersion
                             if let pvc = SharingManagerConfiguration.sharedInstance.ViewObjectMain as? ViewControllertabMain {
                                 self.newversion_delegate = pvc
-                                self.newversion_delegate?.notifyNewVersion()
+                                if (SharingManagerConfiguration.sharedInstance.allowNotifyinMain == true) {
+                                    self.newversion_delegate?.notifyNewVersion()
+                                }
                             }
                         }
                     }

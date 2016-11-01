@@ -13,11 +13,6 @@ protocol StartNextScheduledTask : class {
     func startProcess()
 }
 
-// Protocol inform about Scheduled task
-protocol scheduledTask : class {
-    func notifyScheduledTask(config:configuration)
-}
-
 // Protocol when a Scehduled job is starting and stopping
 // USed to informed the presenting viewcontroller about what
 // is going on
@@ -79,10 +74,10 @@ final class completeScheduledOperation {
     private var schedule:String?
     private var index:Int?
     
-    // Function for completing the Scheduled job
+    // Function for finalizing the Scheduled job
     // The Operation object sets reference to the completeScheduledOperation in SharingManagerConfiguration.sharedInstance.operation
     // This function is executed when rsyn process terminates
-    func complete(output:outputProcess) {
+    func finalizeScheduledJob(output:outputProcess) {
         // Write result to Schedule
         let datestring = self.dateformatter!.string(from: date!)
         let dateStartstring = self.dateformatter!.string(from: dateStart!)
@@ -96,14 +91,19 @@ final class completeScheduledOperation {
         // Start next job, if any, by delegate
         // and notify completed, by delegate
         if let pvc2 = SharingManagerConfiguration.sharedInstance.ViewObjectMain as? ViewControllertabMain {
-            start_next_job_delegate = pvc2
-            notify_delegate = pvc2
-            start_next_job_delegate?.startProcess()
-            notify_delegate?.completed()
+            GlobalMainQueue.async(execute: { () -> Void in
+                self.start_next_job_delegate = pvc2
+                self.notify_delegate = pvc2
+                self.start_next_job_delegate?.startProcess()
+                self.notify_delegate?.completed()
+            })
+            
         }
         if let pvc3 = SharingManagerSchedule.sharedInstance.ViewObjectSchedule as? ViewControllertabSchedule {
-            startTimer_delegate = pvc3
-            startTimer_delegate?.startTimerNextJob()
+            GlobalMainQueue.async(execute: { () -> Void in
+                self.startTimer_delegate = pvc3
+                self.startTimer_delegate?.startTimerNextJob()
+            })
         }
     }
     
@@ -125,7 +125,7 @@ class executeTask : Operation {
         weak var notify_delegate : ScheduledJobInProgress?
         // Variables used for rsync parameters
         let output = outputProcess()
-        let job = rsyncProcess(notification: true, tabMain: false, command : nil)
+        let job = rsyncProcess(operation: true, tabMain: false, command : nil)
         let getArguments = rsyncProcessArguments()
         var arguments:[String]?
         var config:configuration?
@@ -135,6 +135,7 @@ class executeTask : Operation {
             if let hiddenID:Int = dict.value(forKey: "hiddenID") as? Int {
                 let store:[configuration] = storeAPI.sharedInstance.getConfigurations()
                 let configArray = store.filter({return ($0.hiddenID == hiddenID)})
+                
                 guard configArray.count > 0 else {
                     if let pvc = SharingManagerConfiguration.sharedInstance.ViewObjectMain as? ViewControllertabMain {
                         notify_delegate = pvc
@@ -142,12 +143,15 @@ class executeTask : Operation {
                     }
                     return
                 }
+                
                 config = configArray[0]
                 
                 guard (config != nil) else {
                     if let pvc = SharingManagerConfiguration.sharedInstance.ViewObjectMain as? ViewControllertabMain {
                         notify_delegate = pvc
-                        notify_delegate?.notifyScheduledJob(config: nil)
+                        if (SharingManagerConfiguration.sharedInstance.allowNotifyinMain == true) {
+                             notify_delegate?.notifyScheduledJob(config: nil)
+                        }
                     }
                     return
                 }
@@ -156,7 +160,8 @@ class executeTask : Operation {
                 if let pvc = SharingManagerConfiguration.sharedInstance.ViewObjectMain as? ViewControllertabMain {
                     notify_delegate = pvc
                     notify_delegate?.start()
-                    if (SharingManagerConfiguration.sharedInstance.allowNotify == true) {
+                    // Trying to notify when not in main view will crash RSyncOSX
+                    if (SharingManagerConfiguration.sharedInstance.allowNotifyinMain == true) {
                         notify_delegate?.notifyScheduledJob(config: config)
                     }
                 }

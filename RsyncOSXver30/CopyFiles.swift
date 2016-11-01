@@ -63,7 +63,7 @@ final class CopyFiles {
         }
         self.command = nil
         self.output = nil
-        self.task = rsyncProcess(notification: false, tabMain: false, command : nil)
+        self.task = rsyncProcess(operation: false, tabMain: false, command : nil)
         self.output = outputProcess()
         self.task!.executeProcess(self.arguments!, output: self.output!)
     }
@@ -91,7 +91,7 @@ final class CopyFiles {
                 self.arguments = self.argumentsObject!.getArgs()
                 self.command = self.argumentsObject!.getCommand()
                 self.command = self.argumentsObject!.getCommand()
-                self.task = rsyncProcess(notification: false, tabMain: false, command : self.command)
+                self.task = rsyncProcess(operation: false, tabMain: false, command : self.command)
                 self.output = outputProcess()
                 self.task!.executeProcess(self.arguments!, output: self.output!)
                 
