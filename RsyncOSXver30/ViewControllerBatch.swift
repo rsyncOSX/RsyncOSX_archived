@@ -67,22 +67,31 @@ class ViewControllerBatch : NSViewController, RefreshtableViewBatch, StartStopPr
     // Protocol StartStopProgressIndicatorViewBatch
     // Stops estimation progressbar when real task is executing
     func stop() {
-        self.working.stopAnimation(nil)
-        self.label.stringValue = "Working"
+        GlobalMainQueue.async(execute: { () -> Void in
+            self.working.stopAnimation(nil)
+            self.label.stringValue = "Working"
+        })
+        
     }
     
     func start() {
         self.close = false
         // Starts estimation progressbar when estimation starts
-        self.working.startAnimation(nil)
-        self.label.stringValue = "Estimating"
+        GlobalMainQueue.async(execute: { () -> Void in
+            self.working.startAnimation(nil)
+            self.label.stringValue = "Estimating"
+        })
+        
     }
 
     func complete() {
         // Batch task completed
-        self.label.stringValue = "Completed"
-        self.CloseButton.title = "Close"
-        self.close = true
+        GlobalMainQueue.async(execute: { () -> Void in
+            self.label.stringValue = "Completed"
+            self.CloseButton.title = "Close"
+            self.close = true
+        })
+        
     }
     
     // Initial functions viewDidLoad and viewDidAppear

@@ -347,13 +347,17 @@ class ViewControllertabMain : NSViewController, Information, Abort, Count, Refre
     // Three functions start, notifyScheduledJob and complete, start and stop progressview
     // and set state on/off.
     func start() {
-        self.scheduledJobInProgress = true
-        self.scheduledJobworking.startAnimation(nil)
+        GlobalMainQueue.async(execute: {() -> Void in
+            self.scheduledJobInProgress = true
+            self.scheduledJobworking.startAnimation(nil)
+        })
     }
     
     func completed() {
-        self.scheduledJobInProgress = false
-        self.scheduledJobworking.stopAnimation(nil)
+        GlobalMainQueue.async(execute: {() -> Void in
+            self.scheduledJobInProgress = false
+            self.scheduledJobworking.stopAnimation(nil)
+        })
     }
     
     func notifyScheduledJob(config: configuration?) {

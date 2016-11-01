@@ -91,14 +91,19 @@ final class completeScheduledOperation {
         // Start next job, if any, by delegate
         // and notify completed, by delegate
         if let pvc2 = SharingManagerConfiguration.sharedInstance.ViewObjectMain as? ViewControllertabMain {
-            start_next_job_delegate = pvc2
-            notify_delegate = pvc2
-            start_next_job_delegate?.startProcess()
-            notify_delegate?.completed()
+            GlobalMainQueue.async(execute: { () -> Void in
+                self.start_next_job_delegate = pvc2
+                self.notify_delegate = pvc2
+                self.start_next_job_delegate?.startProcess()
+                self.notify_delegate?.completed()
+            })
+            
         }
         if let pvc3 = SharingManagerSchedule.sharedInstance.ViewObjectSchedule as? ViewControllertabSchedule {
-            startTimer_delegate = pvc3
-            startTimer_delegate?.startTimerNextJob()
+            GlobalMainQueue.async(execute: { () -> Void in
+                self.startTimer_delegate = pvc3
+                self.startTimer_delegate?.startTimerNextJob()
+            })
         }
     }
     
