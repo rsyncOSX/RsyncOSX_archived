@@ -57,6 +57,7 @@ class ViewControllerUserconfiguration : NSViewController {
             // Before closing save changed configuration
             self.setRsyncPath()
             self.setscheduledTaskdisableExecute()
+            self.verifyRsync()
             _ = storeAPI.sharedInstance.saveUserconfiguration()
         }
         self.dismiss_delegate?.dismiss_view(viewcontroller: self)
@@ -87,6 +88,24 @@ class ViewControllerUserconfiguration : NSViewController {
         self.dirty = true
     }
     
+    // Function verifying rsync in path
+    private func verifyRsync() {
+        if (self.version3rsync.state == NSOnState) {
+            let fileManager = FileManager.default
+            if let rsyncPath = SharingManagerConfiguration.sharedInstance.rsyncPath {
+                if (fileManager.fileExists(atPath: rsyncPath) == false) {
+                    Alerts.dialogOK("No rsync found in path!", text: rsyncPath)
+                }
+            } else {
+                let path = "/usr/local/bin/rsync"
+                if (fileManager.fileExists(atPath: path) == false) {
+                    Alerts.dialogOK("No rsync found in path!", text: "/usr/local/bin")
+                }
+            }
+        }
+    }
+
+    
     private func setscheduledTaskdisableExecute() {
         if (self.scheduledTaskdisableExecute.stringValue.isEmpty == false) {
             if let time = Double(self.scheduledTaskdisableExecute.stringValue) {
@@ -108,6 +127,7 @@ class ViewControllerUserconfiguration : NSViewController {
         } else if let pvc2 = self.presenting as? ViewControllerNewConfigurations {
             self.dismiss_delegate = pvc2
         }
+        self.rsyncPath.delegate = self
     }
     
     override func viewDidAppear() {
@@ -139,3 +159,13 @@ class ViewControllerUserconfiguration : NSViewController {
     }
     
 }
+
+extension ViewControllerUserconfiguration : NSTextFieldDelegate {
+    
+    override func controlTextDidChange(_ obj: Notification) {
+        self.version3rsync.state = NSOnState
+        self.dirty = true
+    }
+    
+}
+
