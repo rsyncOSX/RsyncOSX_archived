@@ -23,8 +23,6 @@ final class rsyncProcess {
     weak var observationCenter: NSObjectProtocol?
     // Command to be executed, normally rsync
     var command:String?
-    // Abort delegate - used if no rsync
-    weak var abort_delegate:Abort?
         
     func executeProcess (_ arg: [String], output:outputProcess){
         // Task

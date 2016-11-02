@@ -52,7 +52,8 @@ final class singleTask {
     
     // Single run
     init() {
-        self.work = [singleWorkTask]()
+        self.work = nil
+        self.work = Array<singleWorkTask>()
         self.work!.append(.estimate_singlerun)
         self.work!.append(.execute_singlerun)
         self.work!.append(.done)
@@ -60,7 +61,8 @@ final class singleTask {
     
     // Either Abort or Batchrun
     init (task:singleWorkTask) {
-        self.work = [singleWorkTask]()
+        self.work = nil
+        self.work = Array<singleWorkTask>()
         self.work!.append(task)
     }
 }
