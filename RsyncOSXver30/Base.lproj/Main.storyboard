@@ -2564,6 +2564,15 @@ DQ
                                     <action selector="toggleAllowDoubleclick:" target="Psw-ga-cgO" id="P1b-pO-0y4"/>
                                 </connections>
                             </button>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="MU5-XI-9GS">
+                                <rect key="frame" x="18" y="13" width="231" height="27"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="left" title="Error : no rsync in optional path" id="CCB-zy-XDh">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
                         </subviews>
                         <constraints>
                             <constraint firstItem="vgF-FF-cIJ" firstAttribute="trailing" secondItem="u41-A5-KKx" secondAttribute="trailing" id="8H9-7U-5Lo"/>
@@ -2581,6 +2590,7 @@ DQ
                     <connections>
                         <outlet property="allowDoubleClick" destination="6tS-DH-qDj" id="XZg-VE-3wh"/>
                         <outlet property="detailedlogging" destination="dg1-Pc-D5r" id="Z5n-3i-nJ1"/>
+                        <outlet property="noRsync" destination="MU5-XI-9GS" id="apy-XI-W5g"/>
                         <outlet property="rsyncPath" destination="Raw-fd-DIw" id="9MU-5e-zvh"/>
                         <outlet property="scheduledTaskdisableExecute" destination="Tou-wf-Bf1" id="LWg-5L-dW6"/>
                         <outlet property="version3rsync" destination="pCc-fa-P8h" id="SEd-Qb-5fr"/>

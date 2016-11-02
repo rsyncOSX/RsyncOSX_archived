@@ -28,6 +28,7 @@ class ViewControllerUserconfiguration : NSViewController {
     @IBOutlet weak var detailedlogging: NSButton!
     @IBOutlet weak var scheduledTaskdisableExecute: NSTextField!
     @IBOutlet weak var allowDoubleClick: NSButton!
+    @IBOutlet weak var noRsync: NSTextField!
     
     @IBAction func toggleversion3rsync(_ sender: NSButton) {
         if (self.version3rsync.state == NSOnState) {
@@ -93,15 +94,26 @@ class ViewControllerUserconfiguration : NSViewController {
         if (self.version3rsync.state == NSOnState) {
             let fileManager = FileManager.default
             if let rsyncPath = SharingManagerConfiguration.sharedInstance.rsyncPath {
-                if (fileManager.fileExists(atPath: rsyncPath) == false) {
-                    Alerts.dialogOK("No rsync found in path!", text: rsyncPath)
+                let path = rsyncPath + "rsync"
+                if (fileManager.fileExists(atPath: path) == false) {
+                    self.noRsync.isHidden = false
+                    SharingManagerConfiguration.sharedInstance.noRysync = true
+                } else {
+                    SharingManagerConfiguration.sharedInstance.noRysync = false
+                    self.noRsync.isHidden = true
                 }
             } else {
                 let path = "/usr/local/bin/rsync"
                 if (fileManager.fileExists(atPath: path) == false) {
-                    Alerts.dialogOK("No rsync found in path!", text: "/usr/local/bin")
+                    self.noRsync.isHidden = false
+                    SharingManagerConfiguration.sharedInstance.noRysync = true
+                } else {
+                    SharingManagerConfiguration.sharedInstance.noRysync = false
+                    self.noRsync.isHidden = true
                 }
             }
+        } else {
+            SharingManagerConfiguration.sharedInstance.noRysync = false
         }
     }
 
@@ -119,6 +131,7 @@ class ViewControllerUserconfiguration : NSViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.noRsync.isHidden = true
         // Dismisser is root controller
         if let pvc2 = self.presenting as? ViewControllertabMain {
             self.dismiss_delegate = pvc2
@@ -132,6 +145,7 @@ class ViewControllerUserconfiguration : NSViewController {
     
     override func viewDidAppear() {
         super.viewDidAppear()
+        self.verifyRsync()
         self.dirty = false
         // Set userconfig
         if (SharingManagerConfiguration.sharedInstance.rsyncVer3) {
