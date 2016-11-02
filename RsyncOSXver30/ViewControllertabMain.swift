@@ -574,7 +574,7 @@ class ViewControllertabMain : NSViewController, Information, Abort, Count, Refre
     // Table as well.
     private func executeSingelTask() {
         
-        if (self.scheduledOperationInProgress() == false){
+        if (self.scheduledOperationInProgress() == false && SharingManagerConfiguration.sharedInstance.noRysync == false){
             if (self.workload == nil) {
                 self.workload = singleTask()
             }
@@ -611,12 +611,12 @@ class ViewControllertabMain : NSViewController, Information, Abort, Count, Refre
                 self.workload = nil
                 self.setInfo(info: "Estimate", color: NSColor.blue)
             default:
-                self.setInfo(info: "Estimate", color: NSColor.blue)
                 self.workload = nil
+                self.setInfo(info: "Estimate", color: NSColor.blue)
                 break
             }
         } else {
-            Alerts.showInfo("Scheduled operation in progress")
+            self.noRsync()
         }
     }
     
@@ -635,13 +635,10 @@ class ViewControllertabMain : NSViewController, Information, Abort, Count, Refre
     // also includes a queu of work.
     @IBAction func executeBatch(_ sender: NSButton) {
         
-        if (self.scheduledOperationInProgress() == false){
-            
+        if (self.scheduledOperationInProgress() == false && SharingManagerConfiguration.sharedInstance.noRysync == false){
             self.workload = nil
-            
             self.workload = singleTask(task: .batchrun)
             self.setInfo(info: "Batchrun", color: NSColor.blue)
-            
             // Create the output object for rsync
             self.output = nil
             self.output = outputProcess()
@@ -654,10 +651,20 @@ class ViewControllertabMain : NSViewController, Information, Abort, Count, Refre
                 self.presentViewControllerAsSheet(self.ViewControllerBatch)
             })
         } else {
-            Alerts.showInfo("Scheduled operation in progress")
+            self.noRsync()
         }
     }
     
+    private func noRsync() {
+        if (SharingManagerConfiguration.sharedInstance.noRysync == true) {
+            if let rsync = SharingManagerConfiguration.sharedInstance.rsyncPath {
+                Alerts.showInfo("ERROR: no rsync in " + rsync)
+            }
+        } else {
+            Alerts.showInfo("Scheduled operation in progress")
+        }
+    }
+
     // True if scheduled task in progress
     private func scheduledOperationInProgress() -> Bool {
         var scheduleInProgress:Bool?

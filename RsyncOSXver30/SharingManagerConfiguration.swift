@@ -63,6 +63,8 @@ class SharingManagerConfiguration {
     var rsyncVer3:Bool = false
     // Optional path to rsync
     var rsyncPath:String?
+    // No valid rsyncPath - true if no valid rsync is found
+    var noRysync:Bool = false
     // Detailed logging
     var detailedlogging:Bool = false
     // Minutes before scheduled task commence disable execute/batch buttons
