@@ -21,20 +21,6 @@ class ViewControllerScheduledBackupinWork : NSViewController {
     @IBOutlet weak var schedule: NSTextField!
     @IBOutlet weak var startDate: NSTextField!
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        self.waitToClose = Timer.scheduledTimer(timeInterval: 10, target: self, selector: #selector(closeView), userInfo: nil, repeats: false)
-        // Setting the source for delegate function
-        if let pvc = self.presenting as? ViewControllertabMain {
-            // Dismisser is root controller
-            self.dismiss_delegate = pvc
-        }
-    }
-    
-    override func viewDidAppear() {
-        self.setInfo()
-    }
-    
     @objc private func closeView() {
         self.dismiss_delegate?.dismiss_view(viewcontroller: self)
     }
@@ -58,5 +44,19 @@ class ViewControllerScheduledBackupinWork : NSViewController {
         }
     }
     
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        // Setting the source for delegate function
+        if let pvc = self.presenting as? ViewControllertabMain {
+            // Dismisser is root controller
+            self.dismiss_delegate = pvc
+        }
+    }
     
+    override func viewDidAppear() {
+        super.viewDidAppear()
+        self.setInfo()
+        self.waitToClose = Timer.scheduledTimer(timeInterval: 10, target: self, selector: #selector(closeView), userInfo: nil, repeats: false)
+    }
+
 }
