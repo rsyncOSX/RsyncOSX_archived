@@ -13,6 +13,7 @@ class ViewControllerScheduledBackupinWork : NSViewController {
     
     // Dismisser
     weak var dismiss_delegate:DismissViewController?
+    var waitToClose:Timer?
     
     @IBOutlet weak var localCatalog: NSTextField!
     @IBOutlet weak var remoteCatalog: NSTextField!
@@ -22,6 +23,7 @@ class ViewControllerScheduledBackupinWork : NSViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.waitToClose = Timer.scheduledTimer(timeInterval: 10, target: self, selector: #selector(closeView), userInfo: nil, repeats: false)
         // Setting the source for delegate function
         if let pvc = self.presenting as? ViewControllertabMain {
             // Dismisser is root controller
@@ -33,7 +35,13 @@ class ViewControllerScheduledBackupinWork : NSViewController {
         self.setInfo()
     }
     
+    @objc private func closeView() {
+        self.dismiss_delegate?.dismiss_view(viewcontroller: self)
+    }
+    
     @IBAction func close(_ sender: NSButton) {
+        // Invalidate timer to close view 
+        self.waitToClose?.invalidate()
         self.dismiss_delegate?.dismiss_view(viewcontroller: self)
     }
     

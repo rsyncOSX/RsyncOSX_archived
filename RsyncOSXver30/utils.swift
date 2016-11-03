@@ -32,11 +32,12 @@ var GlobalDefaultQueue: DispatchQueue {
     return DispatchQueue.global(qos: .default)
 }
 
-// Class for different tools
-
+// Protocol for doing a refresh in main view after testing for connectivity
 protocol Connections : class {
     func displayConnections()
 }
+
+// Static shared class Utils
 
 final class Utils {
     
@@ -52,6 +53,7 @@ final class Utils {
     }
     
     // Display the correct command to execute
+    // Used for displaying the commands only
     func setRsyncCommandDisplay(index:Int, dryRun:Bool) -> String {
         var str:String?
         let config = SharingManagerConfiguration.sharedInstance.getargumentAllConfigurations()[index] as? argumentsOneConfig
@@ -88,7 +90,7 @@ final class Utils {
         return (connectionOK, str)
     }
 
-
+    // Setting date format
     func setDateformat() -> DateFormatter {
         let dateformatter = DateFormatter()
         dateformatter.locale = Locale.current
@@ -107,9 +109,9 @@ final class Utils {
     // Adding connection true or false in array[bool]
     // Do the check in background que, reload table in global main queue
     func testAllremoteserverConnections () {
-        self.indexBoolremoteserverOff = [Bool]()
+        self.indexBoolremoteserverOff = nil
+        self.indexBoolremoteserverOff = Array<Bool>()
         GlobalDefaultQueue.async(execute: { () -> Void in
-            // self.indexBoolremoteserverOff.removeAll()
             var port:Int = 22
             for i in 0 ..< SharingManagerConfiguration.sharedInstance.ConfigurationsDataSourcecount() {
                 let config = SharingManagerConfiguration.sharedInstance.getargumentAllConfigurations()[i] as? argumentsOneConfig
@@ -138,7 +140,6 @@ final class Utils {
             }
         })
     }
-
     
  }
 
