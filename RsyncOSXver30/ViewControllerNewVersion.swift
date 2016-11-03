@@ -36,11 +36,15 @@ class ViewControllerNewVersion : NSViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.waitToClose = Timer.scheduledTimer(timeInterval: 10, target: self, selector: #selector(closeView), userInfo: nil, repeats: false)
         // Dismisser is root controller
         if let pvc2 = self.presenting as? ViewControllertabMain {
             self.dismiss_delegate = pvc2
         }
+    }
+    
+    override func viewDidAppear() {
+        super.viewDidAppear()
+        self.waitToClose = Timer.scheduledTimer(timeInterval: 10, target: self, selector: #selector(closeView), userInfo: nil, repeats: false)
     }
     
 }
