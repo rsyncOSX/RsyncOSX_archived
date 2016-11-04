@@ -100,6 +100,10 @@ class ViewControllertabMain : NSViewController, Information, Abort, Count, Refre
     private var scheduledJobInProgress:Bool = false
     // Ready for execute again
     private var ready:Bool = true
+    // Can load profiles
+    // Load profiles only when testing for connections are done.
+    // Application crash if not
+    private var loadProfileMenu:Bool = false
     
     // Information about rsync output
     // self.presentViewControllerAsSheet(self.ViewControllerInformation)
@@ -392,13 +396,15 @@ class ViewControllertabMain : NSViewController, Information, Abort, Count, Refre
         })
     }
     
-    // Procol Protocols
+    // Protocol AddProfile
+    // Two functions newProfile() and enableProfileMenu()
     // Function is called from profiles when new or
     // default profiles is seleceted
     func newProfile() {
         weak var newProfile_delegate: AddProfiles?
         // By setting self.schedules = nil start jobs are restaret in ViewDidAppear
         self.schedules = nil
+        self.loadProfileMenu = false
         self.ReReadConfigurationsAndSchedules()
         self.displayProfile()
         self.refreshInMain()
@@ -411,6 +417,10 @@ class ViewControllertabMain : NSViewController, Information, Abort, Count, Refre
         self.startProcess()
         // Check all remote servers for connection
         Utils.sharedInstance.testAllremoteserverConnections()
+    }
+    
+    func enableProfileMenu() {
+        self.loadProfileMenu = true
     }
     
     // Protocol newVersionDiscovered
@@ -491,9 +501,14 @@ class ViewControllertabMain : NSViewController, Information, Abort, Count, Refre
     }
     
     @IBAction func profiles(_ sender: NSButton) {
-        GlobalMainQueue.async(execute: { () -> Void in
-            self.presentViewControllerAsSheet(self.ViewControllerProfile)
-        })
+        if (self.loadProfileMenu == true) {
+            GlobalMainQueue.async(execute: { () -> Void in
+                self.presentViewControllerAsSheet(self.ViewControllerProfile)
+            })
+        } else {
+            self.displayProfile()
+        }
+        
     }
 
     // Initial functions viewDidLoad and viewDidAppear
@@ -864,6 +879,13 @@ class ViewControllertabMain : NSViewController, Information, Abort, Count, Refre
     
     // Function for setting profile
     private func displayProfile() {
+        
+        guard (self.loadProfileMenu == false) else {
+            self.profilInfo.stringValue = "Profile: please wait..."
+            self.profilInfo.textColor = NSColor.red
+            return
+        }
+        
         if let profile = SharingManagerConfiguration.sharedInstance.getProfile() {
             self.profilInfo.stringValue = "Profile: " + profile
             self.profilInfo.textColor = NSColor.blue

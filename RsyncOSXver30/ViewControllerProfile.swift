@@ -12,6 +12,7 @@ import Cocoa
 // Protocol for adding new profiles
 protocol AddProfiles : class {
     func newProfile()
+    func enableProfileMenu()
 }
 
 

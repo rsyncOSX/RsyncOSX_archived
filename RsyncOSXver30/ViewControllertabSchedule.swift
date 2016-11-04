@@ -41,7 +41,7 @@ class ViewControllertabSchedule : NSViewController, GetHiddenID, RefreshtableVie
         self.secondScheduledTask.stringValue = (self.schedules?.whenIsNextTwoTasksString()[1])!
     }
     
-    // Protocol AddProfiles
+    // Protocol AddProfiles two functions
     // Just reset the schedules
     func newProfile() {
         self.schedules = nil
@@ -49,6 +49,10 @@ class ViewControllertabSchedule : NSViewController, GetHiddenID, RefreshtableVie
         self.firstLocalCatalog.stringValue = ""
         self.secondRemoteServer.stringValue = ""
         self.secondLocalCatalog.stringValue = ""        
+    }
+    
+    func enableProfileMenu() {
+        // Nothing, just for complying to protocol
     }
     
     // Main tableview

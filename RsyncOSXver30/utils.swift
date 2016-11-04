@@ -43,6 +43,7 @@ final class Utils {
     
     private var indexBoolremoteserverOff:[Bool]?
     weak var delegate_testconnections:Connections?
+    weak var delegate_profilemenu:AddProfiles?
     
     // Creates a singelton of this class
     class var  sharedInstance: Utils {
@@ -134,7 +135,11 @@ final class Utils {
                     // Send message to do a refresh
                     if let pvc = SharingManagerConfiguration.sharedInstance.ViewObjectMain as? ViewControllertabMain {
                         self.delegate_testconnections = pvc
+                        self.delegate_profilemenu = pvc
+                        // Update table in main view
                         self.delegate_testconnections?.displayConnections()
+                        // Tell main view profile menu might presented
+                        self.delegate_profilemenu?.enableProfileMenu()
                     }
                 }
             }
