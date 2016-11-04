@@ -424,6 +424,7 @@ class ViewControllertabMain : NSViewController, Information, Abort, Count, Refre
     
     func enableProfileMenu() {
         self.loadProfileMenu = true
+        self.showProcessInfo(what: 7)
         GlobalMainQueue.async(execute: { () -> Void in
             self.displayProfile()
         })
@@ -930,7 +931,6 @@ class ViewControllertabMain : NSViewController, Information, Abort, Count, Refre
             self.abortOperations()
         }
         self.ready = true
-        self.showProcessInfo(what: 0)
         let myTableViewFromNotification = notification.object as! NSTableView
         let indexes = myTableViewFromNotification.selectedRowIndexes
         if let index = indexes.first {
@@ -954,17 +954,19 @@ class ViewControllertabMain : NSViewController, Information, Abort, Count, Refre
         GlobalMainQueue.async(execute: { () -> Void in
             switch what {
             case 1:
-                self.processInfo.stringValue = "Process:estimating"
+                self.processInfo.stringValue = "Estimating"
             case 2:
-                self.processInfo.stringValue = "Process:executing"
+                self.processInfo.stringValue = "Executing"
             case 3:
-                self.processInfo.stringValue = "Process:max number"
+                self.processInfo.stringValue = "Set max number"
             case 4:
-                self.processInfo.stringValue = "Process:log run"
+                self.processInfo.stringValue = "Log run"
             case 5:
-                self.processInfo.stringValue = "Process:count files"
+                self.processInfo.stringValue = "Count files"
             case 6:
-                self.processInfo.stringValue = "Process:change profile"
+                self.processInfo.stringValue = "Change profile"
+            case 7:
+                self.processInfo.stringValue = "Profiles enabled"
             default:
                 self.processInfo.stringValue = ""
                 break
