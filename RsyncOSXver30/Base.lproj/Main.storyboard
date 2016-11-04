@@ -701,6 +701,15 @@
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="KX4-b1-AYu">
+                                <rect key="frame" x="929" y="388" width="145" height="17"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Process :" id="1Z0-Ki-dFI">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
                         </subviews>
                         <constraints>
                             <constraint firstItem="wSD-Dl-gPc" firstAttribute="baseline" secondItem="a5P-Xw-HGm" secondAttribute="baseline" id="2TE-P1-vk0"/>
@@ -796,6 +805,7 @@
                         <outlet property="dryRunOrRealRun" destination="qkq-x4-Af5" id="oQ9-nJ-wSt"/>
                         <outlet property="edit" destination="mUx-V8-Mvc" id="1RJ-DI-YOF"/>
                         <outlet property="mainTableView" destination="gd0-mk-eEg" id="V0X-hS-6qu"/>
+                        <outlet property="processInfo" destination="KX4-b1-AYu" id="Knr-bH-exp"/>
                         <outlet property="profilInfo" destination="Gg2-se-FkF" id="XIe-l3-YkS"/>
                         <outlet property="rsyncCommand" destination="7n8-es-jH6" id="bH0-3W-ECU"/>
                         <outlet property="rsyncparams" destination="6Lb-aQ-6Zc" id="uc7-l5-Bjz"/>

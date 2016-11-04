@@ -74,6 +74,9 @@ class ViewControllertabMain : NSViewController, Information, Abort, Count, Refre
     @IBOutlet weak var profilInfo: NSTextField!
     // Showing info about double clik or not
     @IBOutlet weak var allowDoubleclick: NSTextField!
+    // Just showing process info
+    @IBOutlet weak var processInfo: NSTextField!
+    
     
     
     // REFERENCE VARIABLES
@@ -100,6 +103,10 @@ class ViewControllertabMain : NSViewController, Information, Abort, Count, Refre
     private var scheduledJobInProgress:Bool = false
     // Ready for execute again
     private var ready:Bool = true
+    // Can load profiles
+    // Load profiles only when testing for connections are done.
+    // Application crash if not
+    private var loadProfileMenu:Bool = false
     
     // Information about rsync output
     // self.presentViewControllerAsSheet(self.ViewControllerInformation)
@@ -392,13 +399,15 @@ class ViewControllertabMain : NSViewController, Information, Abort, Count, Refre
         })
     }
     
-    // Procol Protocols
+    // Protocol AddProfile
+    // Two functions newProfile() and enableProfileMenu()
     // Function is called from profiles when new or
     // default profiles is seleceted
     func newProfile() {
         weak var newProfile_delegate: AddProfiles?
         // By setting self.schedules = nil start jobs are restaret in ViewDidAppear
         self.schedules = nil
+        self.loadProfileMenu = false
         self.ReReadConfigurationsAndSchedules()
         self.displayProfile()
         self.refreshInMain()
@@ -411,6 +420,13 @@ class ViewControllertabMain : NSViewController, Information, Abort, Count, Refre
         self.startProcess()
         // Check all remote servers for connection
         Utils.sharedInstance.testAllremoteserverConnections()
+    }
+    
+    func enableProfileMenu() {
+        self.loadProfileMenu = true
+        GlobalMainQueue.async(execute: { () -> Void in
+            self.displayProfile()
+        })
     }
     
     // Protocol newVersionDiscovered
@@ -491,9 +507,15 @@ class ViewControllertabMain : NSViewController, Information, Abort, Count, Refre
     }
     
     @IBAction func profiles(_ sender: NSButton) {
-        GlobalMainQueue.async(execute: { () -> Void in
-            self.presentViewControllerAsSheet(self.ViewControllerProfile)
-        })
+        if (self.loadProfileMenu == true) {
+            self.showProcessInfo(what:6)
+            GlobalMainQueue.async(execute: { () -> Void in
+                self.presentViewControllerAsSheet(self.ViewControllerProfile)
+            })
+        } else {
+            self.displayProfile()
+        }
+        
     }
 
     // Initial functions viewDidLoad and viewDidAppear
@@ -519,6 +541,8 @@ class ViewControllertabMain : NSViewController, Information, Abort, Count, Refre
     
     override func viewDidAppear() {
         super.viewDidAppear()
+        self.loadProfileMenu = true
+        self.showProcessInfo(what: 0)
         // Allow notify about Scheduled jobs
         SharingManagerConfiguration.sharedInstance.allowNotifyinMain = true
         self.setInfo(info: "", color: NSColor.black)
@@ -587,6 +611,7 @@ class ViewControllertabMain : NSViewController, Information, Abort, Count, Refre
             case .estimate_singlerun:
                 if let index = self.index {
                     self.working.startAnimation(nil)
+                    self.showProcessInfo(what: 1)
                     arguments = SharingManagerConfiguration.sharedInstance.getrsyncArgumentOneConfiguration(index: index, argtype: .argdryRun)
                     self.output = outputProcess()
                     process.executeProcess(arguments!, output: self.output!)
@@ -594,6 +619,7 @@ class ViewControllertabMain : NSViewController, Information, Abort, Count, Refre
                     self.setInfo(info: "Execute", color: NSColor.blue)
                 }
             case .execute_singlerun:
+                self.showProcessInfo(what: 2)
                 if let index = self.index {
                     GlobalMainQueue.async(execute: { () -> Void in
                         self.presentViewControllerAsSheet(self.ViewControllerProgress)
@@ -734,6 +760,7 @@ class ViewControllertabMain : NSViewController, Information, Abort, Count, Refre
                             self.presentViewControllerAsSheet(self.ViewControllerInformation)
                         })
                     }
+                    self.showProcessInfo(what: 4)
                     SharingManagerConfiguration.sharedInstance.setCurrentDateonConfiguration(self.index!)
                     SharingManagerSchedule.sharedInstance.addScheduleResultManuel(self.hiddenID!, result: self.output!.statistics(numberOfFiles: self.transferredNumber.stringValue)[0])
                     
@@ -776,6 +803,7 @@ class ViewControllertabMain : NSViewController, Information, Abort, Count, Refre
                     self.refresh_delegate?.refreshInBatch()
                     self.indicator_delegate?.stop()
                 }
+                self.showProcessInfo(what: 1)
                 self.runBatch()
             case 1:
                 self.maxcount = self.output!.getOutputCount()
@@ -795,6 +823,7 @@ class ViewControllertabMain : NSViewController, Information, Abort, Count, Refre
                 SharingManagerSchedule.sharedInstance.addScheduleResultManuel(hiddenID, result: self.output!.statistics(numberOfFiles: self.transferredNumber.stringValue)[0])
                 // Reset counter before next run
                 self.output!.removeObjectsOutput()
+                self.showProcessInfo(what: 2)
                 self.runBatch()
             default :
                 break
@@ -803,6 +832,7 @@ class ViewControllertabMain : NSViewController, Information, Abort, Count, Refre
     }
     
     func FileHandler() {
+        self.showProcessInfo(what: 5)
         if let batchobject = SharingManagerConfiguration.sharedInstance.getBatchdataObject() {
             let work = batchobject.nextBatchCopy()
             if work.1 == 1 {
@@ -832,6 +862,7 @@ class ViewControllertabMain : NSViewController, Information, Abort, Count, Refre
     // Function is called in ProcessTermination()
     private func setmaxNumbersOfFilesToTransfer () {
         // Getting max count
+        self.showProcessInfo(what: 3)
         if (self.output!.getTransferredNumbers(numbers: .totalNumber) > 0) {
             self.setNumbers(setvalues: true)
             if (self.output!.getTransferredNumbers(numbers: .transferredNumber) > 0) {
@@ -864,6 +895,13 @@ class ViewControllertabMain : NSViewController, Information, Abort, Count, Refre
     
     // Function for setting profile
     private func displayProfile() {
+        
+        guard (self.loadProfileMenu == true) else {
+            self.profilInfo.stringValue = "Profile: please wait..."
+            self.profilInfo.textColor = NSColor.red
+            return
+        }
+        
         if let profile = SharingManagerConfiguration.sharedInstance.getProfile() {
             self.profilInfo.stringValue = "Profile: " + profile
             self.profilInfo.textColor = NSColor.blue
@@ -892,6 +930,7 @@ class ViewControllertabMain : NSViewController, Information, Abort, Count, Refre
             self.abortOperations()
         }
         self.ready = true
+        self.showProcessInfo(what: 0)
         let myTableViewFromNotification = notification.object as! NSTableView
         let indexes = myTableViewFromNotification.selectedRowIndexes
         if let index = indexes.first {
@@ -908,6 +947,29 @@ class ViewControllertabMain : NSViewController, Information, Abort, Count, Refre
         } else {
             self.abortOperations()
         }
+    }
+    
+    // Just for updating process info
+    private func showProcessInfo(what:Int) {
+        GlobalMainQueue.async(execute: { () -> Void in
+            switch what {
+            case 1:
+                self.processInfo.stringValue = "Process:estimating"
+            case 2:
+                self.processInfo.stringValue = "Process:executing"
+            case 3:
+                self.processInfo.stringValue = "Process:max number"
+            case 4:
+                self.processInfo.stringValue = "Process:log run"
+            case 5:
+                self.processInfo.stringValue = "Process:count files"
+            case 6:
+                self.processInfo.stringValue = "Process:change profile"
+            default:
+                self.processInfo.stringValue = ""
+                break
+            }
+        })
     }
 
 }
