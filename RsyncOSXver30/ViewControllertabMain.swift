@@ -421,6 +421,7 @@ class ViewControllertabMain : NSViewController, Information, Abort, Count, Refre
     
     func enableProfileMenu() {
         self.loadProfileMenu = true
+        self.displayProfile()
     }
     
     // Protocol newVersionDiscovered
@@ -534,6 +535,7 @@ class ViewControllertabMain : NSViewController, Information, Abort, Count, Refre
     
     override func viewDidAppear() {
         super.viewDidAppear()
+        self.loadProfileMenu = true
         // Allow notify about Scheduled jobs
         SharingManagerConfiguration.sharedInstance.allowNotifyinMain = true
         self.setInfo(info: "", color: NSColor.black)
@@ -880,7 +882,7 @@ class ViewControllertabMain : NSViewController, Information, Abort, Count, Refre
     // Function for setting profile
     private func displayProfile() {
         
-        guard (self.loadProfileMenu == false) else {
+        guard (self.loadProfileMenu == true) else {
             self.profilInfo.stringValue = "Profile: please wait..."
             self.profilInfo.textColor = NSColor.red
             return
