@@ -508,6 +508,7 @@ class ViewControllertabMain : NSViewController, Information, Abort, Count, Refre
     
     @IBAction func profiles(_ sender: NSButton) {
         if (self.loadProfileMenu == true) {
+            self.showProcessInfo(what:6)
             GlobalMainQueue.async(execute: { () -> Void in
                 self.presentViewControllerAsSheet(self.ViewControllerProfile)
             })
@@ -953,15 +954,17 @@ class ViewControllertabMain : NSViewController, Information, Abort, Count, Refre
         GlobalMainQueue.async(execute: { () -> Void in
             switch what {
             case 1:
-                self.processInfo.stringValue = "Process: estimating"
+                self.processInfo.stringValue = "Process:estimating"
             case 2:
-                self.processInfo.stringValue = "Process: executing"
+                self.processInfo.stringValue = "Process:executing"
             case 3:
-                self.processInfo.stringValue = "Process: max number"
+                self.processInfo.stringValue = "Process:max number"
             case 4:
-                self.processInfo.stringValue = "Process: log run"
+                self.processInfo.stringValue = "Process:log run"
             case 5:
-                self.processInfo.stringValue = "Process: count files"
+                self.processInfo.stringValue = "Process:count files"
+            case 6:
+                self.processInfo.stringValue = "Process:change profile"
             default:
                 self.processInfo.stringValue = ""
                 break
