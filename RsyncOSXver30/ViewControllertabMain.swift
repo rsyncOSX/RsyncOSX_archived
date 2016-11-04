@@ -421,7 +421,9 @@ class ViewControllertabMain : NSViewController, Information, Abort, Count, Refre
     
     func enableProfileMenu() {
         self.loadProfileMenu = true
-        self.displayProfile()
+        GlobalMainQueue.async(execute: { () -> Void in
+            self.displayProfile()
+        })
     }
     
     // Protocol newVersionDiscovered
