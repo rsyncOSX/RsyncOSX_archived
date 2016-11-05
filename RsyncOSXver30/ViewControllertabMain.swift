@@ -264,6 +264,7 @@ class ViewControllertabMain : NSViewController, Information, Abort, Count, Refre
     
     func abortOperations() {
         // Terminates the running process
+        self.showProcessInfo(what:8)
         if let process = self.process {
             process.terminate()
             self.index = nil
@@ -542,7 +543,7 @@ class ViewControllertabMain : NSViewController, Information, Abort, Count, Refre
     
     override func viewDidAppear() {
         super.viewDidAppear()
-        self.loadProfileMenu = true
+        self.loadProfileMenu = false
         self.showProcessInfo(what: 0)
         // Allow notify about Scheduled jobs
         SharingManagerConfiguration.sharedInstance.allowNotifyinMain = true
@@ -899,7 +900,7 @@ class ViewControllertabMain : NSViewController, Information, Abort, Count, Refre
         
         guard (self.loadProfileMenu == true) else {
             self.profilInfo.stringValue = "Profile: please wait..."
-            self.profilInfo.textColor = NSColor.red
+            self.profilInfo.textColor = NSColor.blue
             return
         }
         
@@ -960,13 +961,15 @@ class ViewControllertabMain : NSViewController, Information, Abort, Count, Refre
             case 3:
                 self.processInfo.stringValue = "Set max number"
             case 4:
-                self.processInfo.stringValue = "Log run"
+                self.processInfo.stringValue = "Logging run"
             case 5:
                 self.processInfo.stringValue = "Count files"
             case 6:
                 self.processInfo.stringValue = "Change profile"
             case 7:
                 self.processInfo.stringValue = "Profiles enabled"
+            case 8:
+                self.processInfo.stringValue = "Abort"
             default:
                 self.processInfo.stringValue = ""
                 break
