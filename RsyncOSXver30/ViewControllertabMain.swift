@@ -900,7 +900,7 @@ class ViewControllertabMain : NSViewController, Information, Abort, Count, Refre
         
         guard (self.loadProfileMenu == true) else {
             self.profilInfo.stringValue = "Profile: please wait..."
-            self.profilInfo.textColor = NSColor.red
+            self.profilInfo.textColor = NSColor.blue
             return
         }
         
