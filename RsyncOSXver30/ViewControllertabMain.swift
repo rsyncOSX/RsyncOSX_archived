@@ -543,7 +543,7 @@ class ViewControllertabMain : NSViewController, Information, Abort, Count, Refre
     
     override func viewDidAppear() {
         super.viewDidAppear()
-        self.loadProfileMenu = true
+        self.loadProfileMenu = false
         self.showProcessInfo(what: 0)
         // Allow notify about Scheduled jobs
         SharingManagerConfiguration.sharedInstance.allowNotifyinMain = true
