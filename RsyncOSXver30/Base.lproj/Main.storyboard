@@ -1473,7 +1473,7 @@
                             </textField>
                             <button translatesAutoresizingMaskIntoConstraints="NO" id="3oq-AZ-bPB">
                                 <rect key="frame" x="19" y="84" width="219" height="18"/>
-                                <buttonCell key="cell" type="radio" title="Details (stop and/or delete)" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="BUS-Le-eaQ">
+                                <buttonCell key="cell" type="radio" title="Stop and/or delete schedules" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="BUS-Le-eaQ">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
