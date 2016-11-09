@@ -17,7 +17,7 @@ class ViewControllerNewVersion : NSViewController {
 
     
     @IBAction func changelogg(_ sender: NSButton) {
-        NSWorkspace.shared().open(URL(string: "https://rsyncosx.blogspot.no/2016/03/revision-history.html")!)
+        NSWorkspace.shared().open(URL(string: "https://github.com/rsyncOSX/Documentation/blob/master/Docs/Changelog.md")!)
     }
     
     @IBAction func download(_ sender: NSButton) {
