@@ -2384,6 +2384,15 @@ DQ
                                     <action selector="Execute:" target="auW-64-IFG" id="qMI-ai-j8k"/>
                                 </connections>
                             </button>
+                            <textField hidden="YES" horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="w95-Na-zVc">
+                                <rect key="frame" x="-2" y="20" width="782" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" title="Close automatically in : 10 seconds" id="37P-mP-IVK">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
                         </subviews>
                         <constraints>
                             <constraint firstItem="kMM-ZX-vSQ" firstAttribute="top" secondItem="vBF-eb-i5Z" secondAttribute="bottom" constant="20" id="1Hm-lh-4bi"/>
@@ -2407,6 +2416,7 @@ DQ
                     </view>
                     <connections>
                         <outlet property="CloseButton" destination="kMM-ZX-vSQ" id="3RR-WQ-IyF"/>
+                        <outlet property="closeinseconds" destination="w95-Na-zVc" id="XZ7-IU-hPc"/>
                         <outlet property="label" destination="1lR-Vu-lR3" id="AbJ-fG-Cdu"/>
                         <outlet property="mainTableView" destination="0Yv-Sg-Gse" id="xfn-x5-hYZ"/>
                         <outlet property="working" destination="Q6y-Q5-7Ed" id="9bh-Mf-ACS"/>
