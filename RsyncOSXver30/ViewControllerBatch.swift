@@ -24,12 +24,17 @@ class ViewControllerBatch : NSViewController, RefreshtableViewBatch, StartStopPr
     // If close button or abort is pressed
     // After execute button is pressed, close is abort
     var close:Bool?
+    // Autmatic closing of view
+    var waitToClose:Timer?
+    var closeIn:Timer?
+    var seconds:Int?
 
     // Main tableview
     @IBOutlet weak var mainTableView: NSTableView!
     @IBOutlet weak var CloseButton: NSButton!
     @IBOutlet weak var working: NSProgressIndicator!
     @IBOutlet weak var label: NSTextField!
+    @IBOutlet weak var closeinseconds: NSTextField!
     
     // Iniate start of batchrun
     weak var startBatch_delegate:StartBatch?
@@ -44,6 +49,8 @@ class ViewControllerBatch : NSViewController, RefreshtableViewBatch, StartStopPr
         } else {
             self.startBatch_delegate?.abortOperations()
         }
+        self.waitToClose?.invalidate()
+        self.closeIn?.invalidate()
         self.dismiss_delegate?.dismiss_view(viewcontroller: self)
     }
     
@@ -91,8 +98,23 @@ class ViewControllerBatch : NSViewController, RefreshtableViewBatch, StartStopPr
             self.CloseButton.title = "Close"
             self.close = true
         })
-        
+        self.closeinseconds.isHidden = false
+        self.seconds = 10
+        self.waitToClose = Timer.scheduledTimer(timeInterval: 10, target: self, selector: #selector(closeView), userInfo: nil, repeats: false)
+        self.closeIn = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(setSecondsView), userInfo: nil, repeats: true)
     }
+    
+    @objc private func setSecondsView() {
+        self.seconds = self.seconds! - 1
+        self.closeinseconds.stringValue = "Close automatically in : " + String(self.seconds!) + " seconds"
+    }
+    
+    @objc private func closeView() {
+        self.waitToClose?.invalidate()
+        self.closeIn?.invalidate()
+        self.dismiss_delegate?.dismiss_view(viewcontroller: self)
+    }
+
     
     // Initial functions viewDidLoad and viewDidAppear
     override func viewDidLoad() {
@@ -115,8 +137,10 @@ class ViewControllerBatch : NSViewController, RefreshtableViewBatch, StartStopPr
 
     override func viewDidAppear() {
         super.viewDidAppear()
+        self.closeinseconds.isHidden = true
         self.working.stopAnimation(nil)
         self.close = true
+        
     }
 
 
