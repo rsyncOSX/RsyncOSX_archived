@@ -242,7 +242,7 @@ extension ViewControllerCopyFiles : NSTableViewDelegate {
             if (self.remoteCatalog.stringValue.isEmpty == false && self.localCatalog.stringValue.isEmpty == false) {
                 self.commandString.stringValue = (self.copyObject?.getCommandDisplayinView(remotefile: self.remoteCatalog.stringValue, localCatalog: self.localCatalog.stringValue))!
             } else {
-                self.commandString.stringValue = "Please select both Restore to: and Restore: to show rsync command"
+                self.commandString.stringValue = "Please select both \"Restore to:\" and \"Restore:\" to show rsync command"
             }
             self.estimated = false
             self.CopyButton.title = "Estimate"
@@ -285,7 +285,7 @@ extension ViewControllerCopyFiles : NSTextFieldDelegate {
         if (self.remoteCatalog.stringValue.isEmpty == false && self.localCatalog.stringValue.isEmpty == false) {
             self.commandString.stringValue = (self.copyObject?.getCommandDisplayinView(remotefile: self.remoteCatalog.stringValue, localCatalog: self.localCatalog.stringValue))!
         } else {
-            self.commandString.stringValue = "Please select both Restore to: and Restore: to show rsync command"
+            self.commandString.stringValue = "Please select both \"Restore to:\" and \"Restore:\" to show rsync command"
         }
     }
 }
