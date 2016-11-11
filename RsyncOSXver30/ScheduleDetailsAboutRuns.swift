@@ -28,6 +28,7 @@ class ScheduleDetailsAboutRuns {
                 return self.data
             }
         } else {
+            self.readAllfilteredData()
             if (self.data != nil) {
                 return self.data
             }
@@ -75,8 +76,41 @@ class ScheduleDetailsAboutRuns {
         }
     }
     
+    private func readAllfilteredData () {
+        var data = Array<NSDictionary>()
+        self.data = nil
+        let input = SharingManagerSchedule.sharedInstance.getSchedule()
+        
+        for i in 0 ..< input.count {
+            let hiddenID = SharingManagerSchedule.sharedInstance.getSchedule()[i].hiddenID
+            if (input[i].executed.count > 0) {
+                for j in 0 ..< input[i].executed.count {
+                    let dict = input[i].executed[j]
+                    let logdetail: NSDictionary = [
+                        "localCatalog":SharingManagerConfiguration.sharedInstance.getlocalCatalog(hiddenID),
+                        "offsiteServer":SharingManagerConfiguration.sharedInstance.getoffSiteserver(hiddenID),
+                        "dateExecuted":(dict.value(forKey: "dateExecuted") as? String)!,
+                        "resultExecuted":(dict.value(forKey: "resultExecuted") as? String)!]
+                    data.append(logdetail)
+                }
+            }
+            let dateformatter = Utils.sharedInstance.setDateformat()
+            let logsorted: [NSDictionary] = data.sorted { (dict1, dict2) -> Bool in
+                guard (dateformatter.date(from: dict1.value(forKey: "dateExecuted") as! String) != nil && (dateformatter.date(from: dict2.value(forKey: "dateExecuted") as! String) != nil)) else {
+                    return true
+                }
+                if ((dateformatter.date(from: dict1.value(forKey: "dateExecuted") as! String))!.timeIntervalSince(dateformatter.date(from: dict2.value(forKey: "dateExecuted") as! String)!) > 0 ) {
+                    return false
+                } else {
+                    return true
+                }
+            }
+            self.data = logsorted
+        }
+    }
+    
     init () {
-        self.readfilteredData(filter: nil)
+        self.readAllfilteredData()
     }
 }
 
