@@ -26,11 +26,11 @@ class ViewControllerScheduleDetailsAboutRuns : NSViewController {
     
     @IBAction func Radiobuttons(_ sender: NSButton) {
         if (self.server.state == NSOnState) {
-            self.what = searchLogs.remoteServer
+            self.what = .remoteServer
         } else if (self.Catalog.state == NSOnState) {
-            self.what = searchLogs.localCatalog
+            self.what = .localCatalog
         } else if (self.date.state == NSOnState) {
-            self.what = searchLogs.executeDate
+            self.what = .executeDate
         }
         
     }
@@ -50,6 +50,7 @@ class ViewControllerScheduleDetailsAboutRuns : NSViewController {
             self.scheduletable.reloadData()
         })
         self.server.state = NSOnState
+        self.what = .remoteServer
     }
 }
 

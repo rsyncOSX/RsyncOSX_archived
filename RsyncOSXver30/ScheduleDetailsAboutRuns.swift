@@ -12,6 +12,7 @@ enum searchLogs {
     case localCatalog
     case remoteServer
     case executeDate
+    case all
 }
 
 class ScheduleDetailsAboutRuns {
@@ -22,13 +23,13 @@ class ScheduleDetailsAboutRuns {
         if (search != nil) {
             if (search!.isEmpty == false) {
                 // Filter data
-                self.readfilteredData(filter: search)
+                self.readfilteredData(filter: search, what: what)
                 return self.data!
             } else {
                 return self.data
             }
         } else {
-            self.readAllfilteredData()
+            self.readfilteredData(filter: "all", what: .all)
             if (self.data != nil) {
                 return self.data
             }
@@ -36,33 +37,43 @@ class ScheduleDetailsAboutRuns {
         return self.data
     }
     
-    private func readfilteredData (filter : String?) {
+    private func readfilteredData (filter:String?, what:searchLogs?) {
         var data = Array<NSDictionary>()
         self.data = nil
         let input = SharingManagerSchedule.sharedInstance.getSchedule()
-        
-        guard (filter != nil) else {
-            return
-        }
-        
         for i in 0 ..< input.count {
             let hiddenID = SharingManagerSchedule.sharedInstance.getSchedule()[i].hiddenID
-            if (SharingManagerConfiguration.sharedInstance.getoffSiteserver(hiddenID).contains(filter!)) {
-                if (input[i].executed.count > 0) {
-                    for j in 0 ..< input[i].executed.count {
-                        let dict = input[i].executed[j]
-                        let logdetail: NSDictionary = [
-                            "localCatalog":SharingManagerConfiguration.sharedInstance.getlocalCatalog(hiddenID),
-                            "offsiteServer":SharingManagerConfiguration.sharedInstance.getoffSiteserver(hiddenID),
-                            "dateExecuted":(dict.value(forKey: "dateExecuted") as? String)!,
-                            "resultExecuted":(dict.value(forKey: "resultExecuted") as? String)!]
+            if (input[i].executed.count > 0) {
+                for j in 0 ..< input[i].executed.count {
+                    let dict = input[i].executed[j]
+                    let logdetail: NSDictionary = [
+                        "localCatalog":SharingManagerConfiguration.sharedInstance.getlocalCatalog(hiddenID),
+                        "offsiteServer":SharingManagerConfiguration.sharedInstance.getoffSiteserver(hiddenID),
+                        "dateExecuted":(dict.value(forKey: "dateExecuted") as? String)!,
+                        "resultExecuted":(dict.value(forKey: "resultExecuted") as? String)!]
+                    guard (filter != nil) else {
+                        return
+                    }
+                    switch what! {
+                    case .executeDate:
+                        if (logdetail.value(forKey: "dateExecuted") as! String).contains(filter!) {
+                            data.append(logdetail)
+                        }
+                    case .localCatalog:
+                        if (logdetail.value(forKey: "localCatalog") as! String).contains(filter!) {
+                            data.append(logdetail)
+                        }
+                    case .remoteServer:
+                        if (logdetail.value(forKey: "offsiteServer") as! String).contains(filter!) {
+                            data.append(logdetail)
+                        }
+                    case .all:
                         data.append(logdetail)
                     }
                 }
             }
-        
-        let dateformatter = Utils.sharedInstance.setDateformat()
-        let logsorted: [NSDictionary] = data.sorted { (dict1, dict2) -> Bool in
+            let dateformatter = Utils.sharedInstance.setDateformat()
+            let logsorted: [NSDictionary] = data.sorted { (dict1, dict2) -> Bool in
             guard (dateformatter.date(from: dict1.value(forKey: "dateExecuted") as! String) != nil && (dateformatter.date(from: dict2.value(forKey: "dateExecuted") as! String) != nil)) else {
                 return true
             }
@@ -76,41 +87,7 @@ class ScheduleDetailsAboutRuns {
         }
     }
     
-    private func readAllfilteredData () {
-        var data = Array<NSDictionary>()
-        self.data = nil
-        let input = SharingManagerSchedule.sharedInstance.getSchedule()
-        
-        for i in 0 ..< input.count {
-            let hiddenID = SharingManagerSchedule.sharedInstance.getSchedule()[i].hiddenID
-            if (input[i].executed.count > 0) {
-                for j in 0 ..< input[i].executed.count {
-                    let dict = input[i].executed[j]
-                    let logdetail: NSDictionary = [
-                        "localCatalog":SharingManagerConfiguration.sharedInstance.getlocalCatalog(hiddenID),
-                        "offsiteServer":SharingManagerConfiguration.sharedInstance.getoffSiteserver(hiddenID),
-                        "dateExecuted":(dict.value(forKey: "dateExecuted") as? String)!,
-                        "resultExecuted":(dict.value(forKey: "resultExecuted") as? String)!]
-                    data.append(logdetail)
-                }
-            }
-            let dateformatter = Utils.sharedInstance.setDateformat()
-            let logsorted: [NSDictionary] = data.sorted { (dict1, dict2) -> Bool in
-                guard (dateformatter.date(from: dict1.value(forKey: "dateExecuted") as! String) != nil && (dateformatter.date(from: dict2.value(forKey: "dateExecuted") as! String) != nil)) else {
-                    return true
-                }
-                if ((dateformatter.date(from: dict1.value(forKey: "dateExecuted") as! String))!.timeIntervalSince(dateformatter.date(from: dict2.value(forKey: "dateExecuted") as! String)!) > 0 ) {
-                    return false
-                } else {
-                    return true
-                }
-            }
-            self.data = logsorted
-        }
-    }
-    
     init () {
-        self.readAllfilteredData()
+        self.readfilteredData(filter: "all", what: .all)
     }
 }
-

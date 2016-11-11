@@ -1272,8 +1272,8 @@
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </searchFieldCell>
                             </searchField>
-                            <box title="Filter" translatesAutoresizingMaskIntoConstraints="NO" id="hzT-EC-htd">
-                                <rect key="frame" x="17" y="246" width="121" height="104"/>
+                            <box title="Filter search" translatesAutoresizingMaskIntoConstraints="NO" id="hzT-EC-htd">
+                                <rect key="frame" x="17" y="258" width="121" height="104"/>
                                 <view key="contentView" id="QDU-p3-oEL">
                                     <rect key="frame" x="2" y="2" width="117" height="87"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1313,21 +1313,19 @@
                                         </button>
                                     </subviews>
                                 </view>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="100" id="4W5-fl-qoH"/>
-                                    <constraint firstAttribute="width" constant="115" id="cKW-QI-x9b"/>
-                                </constraints>
                             </box>
                         </subviews>
                         <constraints>
                             <constraint firstAttribute="bottom" secondItem="nOG-Nc-xqW" secondAttribute="bottom" constant="20" id="5HT-Qj-qcF"/>
                             <constraint firstAttribute="trailing" secondItem="t6k-ja-pKU" secondAttribute="trailing" constant="375" id="C4T-3I-uIN"/>
-                            <constraint firstItem="hzT-EC-htd" firstAttribute="leading" secondItem="JhO-zm-vVD" secondAttribute="leading" constant="20" symbolic="YES" id="Do1-kC-SKs"/>
+                            <constraint firstItem="hzT-EC-htd" firstAttribute="leading" secondItem="JhO-zm-vVD" secondAttribute="leading" constant="20" symbolic="YES" id="DXQ-CU-1fz"/>
                             <constraint firstItem="t6k-ja-pKU" firstAttribute="top" secondItem="JhO-zm-vVD" secondAttribute="top" constant="20" id="P5b-5w-mXz"/>
                             <constraint firstItem="t6k-ja-pKU" firstAttribute="leading" secondItem="nOG-Nc-xqW" secondAttribute="leading" id="Qa2-j5-Y34"/>
+                            <constraint firstAttribute="bottom" secondItem="hzT-EC-htd" secondAttribute="bottom" constant="262" id="Sg4-cK-0nO"/>
+                            <constraint firstItem="hzT-EC-htd" firstAttribute="top" secondItem="JhO-zm-vVD" secondAttribute="top" constant="45" id="UI7-kg-Mvc"/>
+                            <constraint firstItem="nOG-Nc-xqW" firstAttribute="leading" secondItem="hzT-EC-htd" secondAttribute="trailing" constant="74" id="Unc-fi-e6Z"/>
                             <constraint firstAttribute="trailing" secondItem="nOG-Nc-xqW" secondAttribute="trailing" constant="20" id="Zdb-lv-qH0"/>
                             <constraint firstItem="t6k-ja-pKU" firstAttribute="leading" secondItem="JhO-zm-vVD" secondAttribute="leading" constant="209" id="iRG-EW-dcU"/>
-                            <constraint firstItem="hzT-EC-htd" firstAttribute="top" secondItem="nOG-Nc-xqW" secondAttribute="top" id="reX-0f-Pd4"/>
                             <constraint firstItem="nOG-Nc-xqW" firstAttribute="top" secondItem="t6k-ja-pKU" secondAttribute="bottom" constant="15" id="tji-k7-emB"/>
                         </constraints>
                     </view>

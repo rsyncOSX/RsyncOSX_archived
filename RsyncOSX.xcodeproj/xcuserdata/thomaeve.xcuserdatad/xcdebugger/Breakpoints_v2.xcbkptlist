@@ -10,11 +10,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "RsyncOSXver30/ScheduleDetailsAboutRuns.swift"
-            timestampString = "500574759.364257"
+            timestampString = "500591038.471699"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "25"
-            endingLineNumber = "25"
+            startingLineNumber = "26"
+            endingLineNumber = "26"
             landmarkName = "filter(search:what:)"
             landmarkType = "7">
          </BreakpointContent>
