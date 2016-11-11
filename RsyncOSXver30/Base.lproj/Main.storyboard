@@ -1272,29 +1272,71 @@
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </searchFieldCell>
                             </searchField>
-                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="l5R-jl-dxW">
-                                <rect key="frame" x="20" y="297" width="152" height="53"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <textFieldCell key="cell" lineBreakMode="charWrapping" sendsActionOnEndEditing="YES" title="Select row to show logs for one remote server" id="fSR-hc-2pd">
-                                    <font key="font" metaFont="system"/>
-                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                                </textFieldCell>
-                            </textField>
+                            <box title="Filter" translatesAutoresizingMaskIntoConstraints="NO" id="hzT-EC-htd">
+                                <rect key="frame" x="17" y="246" width="121" height="104"/>
+                                <view key="contentView" id="QDU-p3-oEL">
+                                    <rect key="frame" x="2" y="2" width="117" height="87"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                    <subviews>
+                                        <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Mfl-Sx-Zuk">
+                                            <rect key="frame" x="19" y="57" width="62" height="18"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                            <buttonCell key="cell" type="radio" title="Server" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="hac-u3-tm1">
+                                                <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                                <font key="font" metaFont="system"/>
+                                            </buttonCell>
+                                            <connections>
+                                                <action selector="Radiobuttons:" target="AlG-Cw-Xi9" id="HX7-OF-6Ht"/>
+                                            </connections>
+                                        </button>
+                                        <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="8XB-pb-Jsf">
+                                            <rect key="frame" x="19" y="35" width="69" height="18"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                            <buttonCell key="cell" type="radio" title="Catalog" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="lfl-dR-9aG">
+                                                <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                                <font key="font" metaFont="system"/>
+                                            </buttonCell>
+                                            <connections>
+                                                <action selector="Radiobuttons:" target="AlG-Cw-Xi9" id="yOS-gh-xVR"/>
+                                            </connections>
+                                        </button>
+                                        <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="r15-hK-EPv">
+                                            <rect key="frame" x="19" y="13" width="51" height="18"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                            <buttonCell key="cell" type="radio" title="Date" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="wXJ-OY-Dkh">
+                                                <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                                <font key="font" metaFont="system"/>
+                                            </buttonCell>
+                                            <connections>
+                                                <action selector="Radiobuttons:" target="AlG-Cw-Xi9" id="9G0-op-KJ5"/>
+                                            </connections>
+                                        </button>
+                                    </subviews>
+                                </view>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="100" id="4W5-fl-qoH"/>
+                                    <constraint firstAttribute="width" constant="115" id="cKW-QI-x9b"/>
+                                </constraints>
+                            </box>
                         </subviews>
                         <constraints>
                             <constraint firstAttribute="bottom" secondItem="nOG-Nc-xqW" secondAttribute="bottom" constant="20" id="5HT-Qj-qcF"/>
                             <constraint firstAttribute="trailing" secondItem="t6k-ja-pKU" secondAttribute="trailing" constant="375" id="C4T-3I-uIN"/>
+                            <constraint firstItem="hzT-EC-htd" firstAttribute="leading" secondItem="JhO-zm-vVD" secondAttribute="leading" constant="20" symbolic="YES" id="Do1-kC-SKs"/>
                             <constraint firstItem="t6k-ja-pKU" firstAttribute="top" secondItem="JhO-zm-vVD" secondAttribute="top" constant="20" id="P5b-5w-mXz"/>
                             <constraint firstItem="t6k-ja-pKU" firstAttribute="leading" secondItem="nOG-Nc-xqW" secondAttribute="leading" id="Qa2-j5-Y34"/>
                             <constraint firstAttribute="trailing" secondItem="nOG-Nc-xqW" secondAttribute="trailing" constant="20" id="Zdb-lv-qH0"/>
                             <constraint firstItem="t6k-ja-pKU" firstAttribute="leading" secondItem="JhO-zm-vVD" secondAttribute="leading" constant="209" id="iRG-EW-dcU"/>
+                            <constraint firstItem="hzT-EC-htd" firstAttribute="top" secondItem="nOG-Nc-xqW" secondAttribute="top" id="reX-0f-Pd4"/>
                             <constraint firstItem="nOG-Nc-xqW" firstAttribute="top" secondItem="t6k-ja-pKU" secondAttribute="bottom" constant="15" id="tji-k7-emB"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="Catalog" destination="8XB-pb-Jsf" id="XBq-Io-VM8"/>
+                        <outlet property="date" destination="r15-hK-EPv" id="rHs-9d-ay7"/>
                         <outlet property="scheduletable" destination="VmR-YZ-iuN" id="Q8s-Bw-QnZ"/>
                         <outlet property="search" destination="t6k-ja-pKU" id="lHP-Fs-hLu"/>
+                        <outlet property="server" destination="Mfl-Sx-Zuk" id="5sP-Zg-0tn"/>
                     </connections>
                 </viewController>
                 <customObject id="tDc-Qe-jSm" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>

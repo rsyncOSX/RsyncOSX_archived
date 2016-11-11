@@ -8,15 +8,21 @@
 
 import Foundation
 
+enum searchLogs {
+    case localCatalog
+    case remoteServer
+    case executeDate
+}
+
 class ScheduleDetailsAboutRuns {
     
     private var data:[NSDictionary]?
     
-    func filter(search:String?) -> [NSDictionary]? {
+    func filter(search:String?, what:searchLogs?) -> [NSDictionary]? {
         if (search != nil) {
             if (search!.isEmpty == false) {
                 // Filter data
-                self.readScheduledataDetailsAll(filter: search)
+                self.readfilteredData(filter: search)
                 return self.data!
             } else {
                 return self.data
@@ -29,20 +35,21 @@ class ScheduleDetailsAboutRuns {
         return self.data
     }
     
-    private func readScheduledataDetailsAll (filter : String?) {
+    private func readfilteredData (filter : String?) {
         var data = Array<NSDictionary>()
         self.data = nil
         let input = SharingManagerSchedule.sharedInstance.getSchedule()
         
+        guard (filter != nil) else {
+            return
+        }
+        
         for i in 0 ..< input.count {
             let hiddenID = SharingManagerSchedule.sharedInstance.getSchedule()[i].hiddenID
-            
-            if (filter == SharingManagerConfiguration.sharedInstance.getoffSiteserver(hiddenID) || filter == nil) {
-                
+            if (SharingManagerConfiguration.sharedInstance.getoffSiteserver(hiddenID).contains(filter!)) {
                 if (input[i].executed.count > 0) {
                     for j in 0 ..< input[i].executed.count {
                         let dict = input[i].executed[j]
-                        
                         let logdetail: NSDictionary = [
                             "localCatalog":SharingManagerConfiguration.sharedInstance.getlocalCatalog(hiddenID),
                             "offsiteServer":SharingManagerConfiguration.sharedInstance.getoffSiteserver(hiddenID),
@@ -52,14 +59,12 @@ class ScheduleDetailsAboutRuns {
                     }
                 }
             }
-        }
+        
         let dateformatter = Utils.sharedInstance.setDateformat()
         let logsorted: [NSDictionary] = data.sorted { (dict1, dict2) -> Bool in
-            
-            // guard (dateformatter.date(from: dict1.value(forKey: "dateExecuted") as! String) != nil && (dateformatter.date(from: dict2.value(forKey: "dateExecuted") as! String) != nil)) else {
-            //    return true
-            //}
-            
+            guard (dateformatter.date(from: dict1.value(forKey: "dateExecuted") as! String) != nil && (dateformatter.date(from: dict2.value(forKey: "dateExecuted") as! String) != nil)) else {
+                return true
+            }
             if ((dateformatter.date(from: dict1.value(forKey: "dateExecuted") as! String))!.timeIntervalSince(dateformatter.date(from: dict2.value(forKey: "dateExecuted") as! String)!) > 0 ) {
                 return false
             } else {
@@ -67,10 +72,11 @@ class ScheduleDetailsAboutRuns {
             }
         }
         self.data = logsorted
+        }
     }
     
     init () {
-        self.readScheduledataDetailsAll(filter: nil)
+        self.readfilteredData(filter: nil)
     }
 }
 

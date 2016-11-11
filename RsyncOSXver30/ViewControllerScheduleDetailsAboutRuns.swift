@@ -16,6 +16,24 @@ class ViewControllerScheduleDetailsAboutRuns : NSViewController {
     var tabledata:[NSDictionary]?
     // Search field
     @IBOutlet weak var search: NSSearchField!
+    // Buttons
+    @IBOutlet weak var server: NSButton!
+    @IBOutlet weak var Catalog: NSButton!
+    @IBOutlet weak var date: NSButton!
+    // Search after
+    var what:searchLogs?
+    
+    
+    @IBAction func Radiobuttons(_ sender: NSButton) {
+        if (self.server.state == NSOnState) {
+            self.what = searchLogs.remoteServer
+        } else if (self.Catalog.state == NSOnState) {
+            self.what = searchLogs.localCatalog
+        } else if (self.date.state == NSOnState) {
+            self.what = searchLogs.executeDate
+        }
+        
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,9 +46,10 @@ class ViewControllerScheduleDetailsAboutRuns : NSViewController {
     override func viewDidAppear() {
         super.viewDidAppear()
         GlobalMainQueue.async(execute: { () -> Void in
-            self.tabledata = ScheduleDetailsAboutRuns().filter(search: nil)
+            self.tabledata = ScheduleDetailsAboutRuns().filter(search: nil, what:nil)
             self.scheduletable.reloadData()
         })
+        self.server.state = NSOnState
     }
 }
 
@@ -40,12 +59,12 @@ extension ViewControllerScheduleDetailsAboutRuns : NSSearchFieldDelegate {
     func searchFieldDidStartSearching(_ sender: NSSearchField){
         if (sender.stringValue.isEmpty) {
             GlobalMainQueue.async(execute: { () -> Void in
-                self.tabledata = ScheduleDetailsAboutRuns().filter(search: nil)
+                self.tabledata = ScheduleDetailsAboutRuns().filter(search: nil, what:nil)
                 self.scheduletable.reloadData()
             })
         } else {
             GlobalMainQueue.async(execute: { () -> Void in
-                self.tabledata = ScheduleDetailsAboutRuns().filter(search: sender.stringValue)
+                self.tabledata = ScheduleDetailsAboutRuns().filter(search: sender.stringValue, what:self.what)
                 self.scheduletable.reloadData()
             })
         }
@@ -53,7 +72,7 @@ extension ViewControllerScheduleDetailsAboutRuns : NSSearchFieldDelegate {
     
     func searchFieldDidEndSearching(_ sender: NSSearchField){
         GlobalMainQueue.async(execute: { () -> Void in
-            self.tabledata = ScheduleDetailsAboutRuns().filter(search: nil)
+            self.tabledata = ScheduleDetailsAboutRuns().filter(search: nil, what:nil)
             self.scheduletable.reloadData()
         })
     }
