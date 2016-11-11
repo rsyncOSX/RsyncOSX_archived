@@ -13,7 +13,7 @@ import Cocoa
 class ViewControllerScheduleDetailsAboutRuns : NSViewController {
     
     @IBOutlet weak var scheduletable: NSTableView!
-    var tabledata:[NSMutableDictionary]?
+    var tabledata:[NSDictionary]?
     // Search field
     @IBOutlet weak var search: NSSearchField!
     
@@ -75,7 +75,7 @@ extension ViewControllerScheduleDetailsAboutRuns : NSTableViewDataSource {
 extension ViewControllerScheduleDetailsAboutRuns : NSTableViewDelegate {
     
     @objc(tableView:objectValueForTableColumn:row:) func tableView(_ tableView: NSTableView, objectValueFor tableColumn: NSTableColumn?, row: Int) -> Any? {
-        let object:NSMutableDictionary = self.tabledata![row]
+        let object:NSDictionary = self.tabledata![row]
         return object[tableColumn!.identifier] as? String
     }
     

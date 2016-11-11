@@ -10,9 +10,9 @@ import Foundation
 
 class ScheduleDetailsAboutRuns {
     
-    private var data:[NSMutableDictionary]?
+    private var data:[NSDictionary]?
     
-    func filter(search:String?) -> [NSMutableDictionary]? {
+    func filter(search:String?) -> [NSDictionary]? {
         if (search != nil) {
             if (search!.isEmpty == false) {
                 // Filter data
@@ -28,49 +28,49 @@ class ScheduleDetailsAboutRuns {
         }
         return self.data
     }
-
+    
     private func readScheduledataDetailsAll (filter : String?) {
-        var row: NSMutableDictionary?
-        var data = [NSMutableDictionary]()
+        var data = Array<NSDictionary>()
         self.data = nil
         let input = SharingManagerSchedule.sharedInstance.getSchedule()
+        
         for i in 0 ..< input.count {
             let hiddenID = SharingManagerSchedule.sharedInstance.getSchedule()[i].hiddenID
-            let server = SharingManagerConfiguration.sharedInstance.getoffSiteserver(hiddenID)
-            let localCatalog = SharingManagerConfiguration.sharedInstance.getlocalCatalog(hiddenID)
             
-            if (filter == server || filter == nil) {
-                row = [
-                    "offsiteServer":server,
-                    "localCatalog":localCatalog,
-                    "schedule":input[i].schedule,
-                    "dateExecuted":"",
-                    "resultExecuted":"" ]
-                data.append(row!)
+            if (filter == SharingManagerConfiguration.sharedInstance.getoffSiteserver(hiddenID) || filter == nil) {
+                
                 if (input[i].executed.count > 0) {
-                    let contstr:String = String(input[i].executed.count) + " task(s)"
-                    row!.setValue(contstr, forKey: "dateExecuted")
                     for j in 0 ..< input[i].executed.count {
                         let dict = input[i].executed[j]
-                        let dateExecuted:String = (dict.value(forKey: "dateExecuted") as? String)!
-                        let resultExecuted:String = (dict.value(forKey: "resultExecuted") as? String)!
-                        let rowdetail: NSMutableDictionary = [
-                            "dateExecuted":dateExecuted,
-                            "resultExecuted":resultExecuted]
-                        if let parent = (dict.value(forKey: "parent") as? String) {
-                            rowdetail.setValue(parent, forKey: "parent")
-                        }
-                        data.append(rowdetail)
+                        
+                        let logdetail: NSDictionary = [
+                            "localCatalog":SharingManagerConfiguration.sharedInstance.getlocalCatalog(hiddenID),
+                            "offsiteServer":SharingManagerConfiguration.sharedInstance.getoffSiteserver(hiddenID),
+                            "dateExecuted":(dict.value(forKey: "dateExecuted") as? String)!,
+                            "resultExecuted":(dict.value(forKey: "resultExecuted") as? String)!]
+                        data.append(logdetail)
                     }
                 }
             }
         }
-        self.data = data
+        let dateformatter = Utils.sharedInstance.setDateformat()
+        let logsorted: [NSDictionary] = data.sorted { (dict1, dict2) -> Bool in
+            
+            // guard (dateformatter.date(from: dict1.value(forKey: "dateExecuted") as! String) != nil && (dateformatter.date(from: dict2.value(forKey: "dateExecuted") as! String) != nil)) else {
+            //    return true
+            //}
+            
+            if ((dateformatter.date(from: dict1.value(forKey: "dateExecuted") as! String))!.timeIntervalSince(dateformatter.date(from: dict2.value(forKey: "dateExecuted") as! String)!) > 0 ) {
+                return false
+            } else {
+                return true
+            }
+        }
+        self.data = logsorted
     }
     
     init () {
         self.readScheduledataDetailsAll(filter: nil)
     }
-
-    
 }
+
