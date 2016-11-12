@@ -21,7 +21,7 @@ class ViewControllerScheduleDetailsAboutRuns : NSViewController {
     @IBOutlet weak var Catalog: NSButton!
     @IBOutlet weak var date: NSButton!
     // Search after
-    var what:searchLogs?
+    var what:filterLogs?
     
     
     @IBAction func Radiobuttons(_ sender: NSButton) {
@@ -106,9 +106,22 @@ extension ViewControllerScheduleDetailsAboutRuns : NSTableViewDelegate {
         let indexes = myTableViewFromNotification.selectedRowIndexes
         if let index = indexes.first {
             let dict = self.tabledata?[index]
-            if let server = dict?.value(forKey: "offsiteServer") as? String {
-                self.search.stringValue = server
-                self.searchFieldDidStartSearching(self.search)
+            
+            if (self.server.state == NSOnState) {
+                if let server = dict?.value(forKey: "offsiteServer") as? String {
+                    self.search.stringValue = server
+                    self.searchFieldDidStartSearching(self.search)
+                }
+            } else if (self.Catalog.state == NSOnState) {
+                if let server = dict?.value(forKey: "localCatalog") as? String {
+                    self.search.stringValue = server
+                    self.searchFieldDidStartSearching(self.search)
+                }
+            } else if (self.date.state == NSOnState) {
+                if let server = dict?.value(forKey: "dateExecuted") as? String {
+                    self.search.stringValue = server
+                    self.searchFieldDidStartSearching(self.search)
+                }
             }
         }
     }

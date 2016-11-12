@@ -8,7 +8,7 @@
 
 import Foundation
 
-enum searchLogs {
+enum filterLogs {
     case localCatalog
     case remoteServer
     case executeDate
@@ -19,17 +19,19 @@ class ScheduleDetailsAboutRuns {
     
     private var data:[NSDictionary]?
     
-    func filter(search:String?, what:searchLogs?) -> [NSDictionary]? {
+    func filter(search:String?, what:filterLogs?) -> [NSDictionary]? {
+        
         if (search != nil) {
+            
             if (search!.isEmpty == false) {
                 // Filter data
-                self.readfilteredData(filter: search, what: what)
+                self.readfilteredData(filter: search!, filterwhat: what!)
                 return self.data!
             } else {
                 return self.data
             }
         } else {
-            self.readfilteredData(filter: "all", what: .all)
+            self.readfilteredData(filter: "all", filterwhat: .all)
             if (self.data != nil) {
                 return self.data
             }
@@ -37,7 +39,7 @@ class ScheduleDetailsAboutRuns {
         return self.data
     }
     
-    private func readfilteredData (filter:String?, what:searchLogs?) {
+    private func readfilteredData (filter:String, filterwhat:filterLogs) {
         var data = Array<NSDictionary>()
         self.data = nil
         let input = SharingManagerSchedule.sharedInstance.getSchedule()
@@ -51,20 +53,18 @@ class ScheduleDetailsAboutRuns {
                         "offsiteServer":SharingManagerConfiguration.sharedInstance.getoffSiteserver(hiddenID),
                         "dateExecuted":(dict.value(forKey: "dateExecuted") as? String)!,
                         "resultExecuted":(dict.value(forKey: "resultExecuted") as? String)!]
-                    guard (filter != nil) else {
-                        return
-                    }
-                    switch what! {
+                    
+                    switch filterwhat {
                     case .executeDate:
-                        if (logdetail.value(forKey: "dateExecuted") as! String).contains(filter!) {
+                        if (logdetail.value(forKey: "dateExecuted") as! String).contains(filter) {
                             data.append(logdetail)
                         }
                     case .localCatalog:
-                        if (logdetail.value(forKey: "localCatalog") as! String).contains(filter!) {
+                        if (logdetail.value(forKey: "localCatalog") as! String).contains(filter) {
                             data.append(logdetail)
                         }
                     case .remoteServer:
-                        if (logdetail.value(forKey: "offsiteServer") as! String).contains(filter!) {
+                        if (logdetail.value(forKey: "offsiteServer") as! String).contains(filter) {
                             data.append(logdetail)
                         }
                     case .all:
@@ -88,6 +88,6 @@ class ScheduleDetailsAboutRuns {
     }
     
     init () {
-        self.readfilteredData(filter: "all", what: .all)
+        self.readfilteredData(filter: "all", filterwhat: .all)
     }
 }
