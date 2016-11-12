@@ -18,6 +18,7 @@ enum filterLogs {
 class ScheduleDetailsAboutRuns {
     
     private var data:[NSDictionary]?
+    weak var delegate_loading:loadData?
     
     func filter(search:String?, what:filterLogs?) -> [NSDictionary]? {
         
@@ -82,8 +83,13 @@ class ScheduleDetailsAboutRuns {
             } else {
                 return true
             }
-        }
-        self.data = logsorted
+            }
+            self.data = logsorted
+            if let pvc = SharingManagerConfiguration.sharedInstance.LogObjectMain  as? ViewControllerScheduleDetailsAboutRuns {
+                self.delegate_loading = pvc
+                self.delegate_loading?.stop()
+            }
+        
         }
     }
     

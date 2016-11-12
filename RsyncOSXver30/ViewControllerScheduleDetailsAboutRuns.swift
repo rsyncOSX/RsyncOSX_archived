@@ -10,7 +10,11 @@
 import Foundation
 import Cocoa
 
-class ViewControllerScheduleDetailsAboutRuns : NSViewController {
+protocol loadData : class {
+    func stop()
+}
+
+class ViewControllerScheduleDetailsAboutRuns : NSViewController, loadData {
     
     @IBOutlet weak var scheduletable: NSTableView!
     var tabledata:[NSDictionary]?
@@ -22,6 +26,8 @@ class ViewControllerScheduleDetailsAboutRuns : NSViewController {
     @IBOutlet weak var date: NSButton!
     // Search after
     var what:filterLogs?
+    
+    @IBOutlet weak var loading: NSProgressIndicator!
     
     
     @IBAction func Radiobuttons(_ sender: NSButton) {
@@ -35,16 +41,24 @@ class ViewControllerScheduleDetailsAboutRuns : NSViewController {
         
     }
     
+    func stop() {
+        self.loading.stopAnimation(nil)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do view setup here.
         self.scheduletable.delegate = self
         self.scheduletable.dataSource = self
         self.search.delegate = self
+        self.loading.usesThreadedAnimation = true
+        // Reference to LogViewController
+        SharingManagerConfiguration.sharedInstance.LogObjectMain = self
     }
     
     override func viewDidAppear() {
         super.viewDidAppear()
+        self.loading.startAnimation(nil)
         GlobalMainQueue.async(execute: { () -> Void in
             self.tabledata = ScheduleDetailsAboutRuns().filter(search: nil, what:nil)
             self.scheduletable.reloadData()
@@ -58,6 +72,7 @@ class ViewControllerScheduleDetailsAboutRuns : NSViewController {
 extension ViewControllerScheduleDetailsAboutRuns : NSSearchFieldDelegate {
     
     func searchFieldDidStartSearching(_ sender: NSSearchField){
+        self.loading.startAnimation(nil)
         if (sender.stringValue.isEmpty) {
             GlobalMainQueue.async(execute: { () -> Void in
                 self.tabledata = ScheduleDetailsAboutRuns().filter(search: nil, what:nil)
@@ -72,6 +87,7 @@ extension ViewControllerScheduleDetailsAboutRuns : NSSearchFieldDelegate {
     }
     
     func searchFieldDidEndSearching(_ sender: NSSearchField){
+        self.loading.startAnimation(nil)
         GlobalMainQueue.async(execute: { () -> Void in
             self.tabledata = ScheduleDetailsAboutRuns().filter(search: nil, what:nil)
             self.scheduletable.reloadData()
