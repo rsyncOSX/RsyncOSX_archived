@@ -54,7 +54,11 @@ class ViewControllerEdit : NSViewController {
         config[self.index!].backupID = self.backupID.stringValue
         let port = self.sshport.stringValue
         if (port.isEmpty == false) {
-            config[self.index!].sshport = Int(port)
+            if let port = Int(port) {
+                config[self.index!].sshport = port
+            }
+        } else {
+            config[self.index!].sshport = nil
         }
         config[self.index!].rsyncdaemon = self.rsyncdaemon.state
         SharingManagerConfiguration.sharedInstance.updateConfigurations(config[self.index!], index: self.index!)
