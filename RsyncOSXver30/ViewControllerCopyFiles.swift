@@ -171,6 +171,8 @@ class ViewControllerCopyFiles : NSViewController, UpdateProgress, RefreshtableVi
         self.working.usesThreadedAnimation = true
         self.workingRsync.usesThreadedAnimation = true
         self.search.delegate = self
+        
+        self.localCatalog.delegate = self
     }
     
     override func viewDidAppear() {
@@ -237,7 +239,11 @@ extension ViewControllerCopyFiles : NSTableViewDelegate {
         let indexes = myTableViewFromNotification.selectedRowIndexes
         if let index = indexes.first {
             self.remoteCatalog.stringValue = self.filesArray![index]
-            self.commandString.stringValue = (self.copyObject?.getCommandDisplayinView(remotefile: self.remoteCatalog.stringValue, localCatalog: self.localCatalog.stringValue))!
+            if (self.remoteCatalog.stringValue.isEmpty == false && self.localCatalog.stringValue.isEmpty == false) {
+                self.commandString.stringValue = (self.copyObject?.getCommandDisplayinView(remotefile: self.remoteCatalog.stringValue, localCatalog: self.localCatalog.stringValue))!
+            } else {
+                self.commandString.stringValue = "Please select both \"Restore to:\" and \"Restore:\" to show rsync command"
+            }
             self.estimated = false
             self.CopyButton.title = "Estimate"
         }
@@ -269,4 +275,17 @@ extension ViewControllerCopyFiles : NSDraggingDestination {
         return true
     }
     
+}
+
+// textDidEndEditing
+
+extension ViewControllerCopyFiles : NSTextFieldDelegate {
+    
+    override func controlTextDidEndEditing(_ obj: Notification) {
+        if (self.remoteCatalog.stringValue.isEmpty == false && self.localCatalog.stringValue.isEmpty == false) {
+            self.commandString.stringValue = (self.copyObject?.getCommandDisplayinView(remotefile: self.remoteCatalog.stringValue, localCatalog: self.localCatalog.stringValue))!
+        } else {
+            self.commandString.stringValue = "Please select both \"Restore to:\" and \"Restore:\" to show rsync command"
+        }
+    }
 }

@@ -13,9 +13,27 @@ import Cocoa
 class ViewControllerScheduleDetailsAboutRuns : NSViewController {
     
     @IBOutlet weak var scheduletable: NSTableView!
-    var tabledata:[NSMutableDictionary]?
+    var tabledata:[NSDictionary]?
     // Search field
     @IBOutlet weak var search: NSSearchField!
+    // Buttons
+    @IBOutlet weak var server: NSButton!
+    @IBOutlet weak var Catalog: NSButton!
+    @IBOutlet weak var date: NSButton!
+    // Search after
+    var what:filterLogs?
+    
+    
+    @IBAction func Radiobuttons(_ sender: NSButton) {
+        if (self.server.state == NSOnState) {
+            self.what = .remoteServer
+        } else if (self.Catalog.state == NSOnState) {
+            self.what = .localCatalog
+        } else if (self.date.state == NSOnState) {
+            self.what = .executeDate
+        }
+        
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,9 +46,11 @@ class ViewControllerScheduleDetailsAboutRuns : NSViewController {
     override func viewDidAppear() {
         super.viewDidAppear()
         GlobalMainQueue.async(execute: { () -> Void in
-            self.tabledata = ScheduleDetailsAboutRuns().filter(search: nil)
+            self.tabledata = ScheduleDetailsAboutRuns().filter(search: nil, what:nil)
             self.scheduletable.reloadData()
         })
+        self.server.state = NSOnState
+        self.what = .remoteServer
     }
 }
 
@@ -40,12 +60,12 @@ extension ViewControllerScheduleDetailsAboutRuns : NSSearchFieldDelegate {
     func searchFieldDidStartSearching(_ sender: NSSearchField){
         if (sender.stringValue.isEmpty) {
             GlobalMainQueue.async(execute: { () -> Void in
-                self.tabledata = ScheduleDetailsAboutRuns().filter(search: nil)
+                self.tabledata = ScheduleDetailsAboutRuns().filter(search: nil, what:nil)
                 self.scheduletable.reloadData()
             })
         } else {
             GlobalMainQueue.async(execute: { () -> Void in
-                self.tabledata = ScheduleDetailsAboutRuns().filter(search: sender.stringValue)
+                self.tabledata = ScheduleDetailsAboutRuns().filter(search: sender.stringValue, what:self.what)
                 self.scheduletable.reloadData()
             })
         }
@@ -53,7 +73,7 @@ extension ViewControllerScheduleDetailsAboutRuns : NSSearchFieldDelegate {
     
     func searchFieldDidEndSearching(_ sender: NSSearchField){
         GlobalMainQueue.async(execute: { () -> Void in
-            self.tabledata = ScheduleDetailsAboutRuns().filter(search: nil)
+            self.tabledata = ScheduleDetailsAboutRuns().filter(search: nil, what:nil)
             self.scheduletable.reloadData()
         })
     }
@@ -75,7 +95,7 @@ extension ViewControllerScheduleDetailsAboutRuns : NSTableViewDataSource {
 extension ViewControllerScheduleDetailsAboutRuns : NSTableViewDelegate {
     
     @objc(tableView:objectValueForTableColumn:row:) func tableView(_ tableView: NSTableView, objectValueFor tableColumn: NSTableColumn?, row: Int) -> Any? {
-        let object:NSMutableDictionary = self.tabledata![row]
+        let object:NSDictionary = self.tabledata![row]
         return object[tableColumn!.identifier] as? String
     }
     
@@ -86,9 +106,22 @@ extension ViewControllerScheduleDetailsAboutRuns : NSTableViewDelegate {
         let indexes = myTableViewFromNotification.selectedRowIndexes
         if let index = indexes.first {
             let dict = self.tabledata?[index]
-            if let server = dict?.value(forKey: "offsiteServer") as? String {
-                self.search.stringValue = server
-                self.searchFieldDidStartSearching(self.search)
+            
+            if (self.server.state == NSOnState) {
+                if let server = dict?.value(forKey: "offsiteServer") as? String {
+                    self.search.stringValue = server
+                    self.searchFieldDidStartSearching(self.search)
+                }
+            } else if (self.Catalog.state == NSOnState) {
+                if let server = dict?.value(forKey: "localCatalog") as? String {
+                    self.search.stringValue = server
+                    self.searchFieldDidStartSearching(self.search)
+                }
+            } else if (self.date.state == NSOnState) {
+                if let server = dict?.value(forKey: "dateExecuted") as? String {
+                    self.search.stringValue = server
+                    self.searchFieldDidStartSearching(self.search)
+                }
             }
         }
     }
