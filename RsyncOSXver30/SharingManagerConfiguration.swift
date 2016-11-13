@@ -95,6 +95,7 @@ class SharingManagerConfiguration {
     // Reference is set in when Scheduled task is executed
     var operation:completeScheduledOperation?
     // Which profile ti use, if default nil
+    var LogObjectMain:NSViewController?
     private var profile:String?
     // Notify about scheduled process
     // Only allowed to notity by modal window when in main view
