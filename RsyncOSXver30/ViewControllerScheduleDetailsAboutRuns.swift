@@ -28,6 +28,7 @@ class ViewControllerScheduleDetailsAboutRuns : NSViewController, loadLoggata {
     var what:filterLogs?
     // Progressview loading loggdata
     @IBOutlet weak var loadingLogdata: NSProgressIndicator!
+    @IBOutlet weak var numberOflogfiles: NSTextField!
     
     // Selecting what to filter
     @IBAction func Radiobuttons(_ sender: NSButton) {
@@ -105,8 +106,10 @@ extension ViewControllerScheduleDetailsAboutRuns : NSTableViewDataSource {
     
     func numberOfRows(in tableView: NSTableView) -> Int {
         if (self.tabledata == nil ) {
+            self.numberOflogfiles.stringValue = "Number of logs: 0"
             return 0
         } else {
+            self.numberOflogfiles.stringValue = "Number of logs: " + String(self.tabledata!.count)
             return (self.tabledata!.count)
         }
     }
