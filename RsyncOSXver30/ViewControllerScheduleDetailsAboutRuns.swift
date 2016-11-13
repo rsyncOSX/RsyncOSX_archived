@@ -108,6 +108,7 @@ extension ViewControllerScheduleDetailsAboutRuns : NSTableViewDataSource {
     func numberOfRows(in tableView: NSTableView) -> Int {
         if (self.tabledata == nil ) {
             self.numberOflogfiles.stringValue = "Number of logs: 0"
+            self.sortingLogdata.isHidden = true
             return 0
         } else {
             self.numberOflogfiles.stringValue = "Number of logs: " + String(self.tabledata!.count)
