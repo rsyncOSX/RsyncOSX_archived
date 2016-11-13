@@ -112,6 +112,16 @@ final class Utils {
     func testAllremoteserverConnections () {
         self.indexBoolremoteserverOff = nil
         self.indexBoolremoteserverOff = Array<Bool>()
+        
+        guard (SharingManagerConfiguration.sharedInstance.ConfigurationsDataSourcecount() > 0) else {
+            if let pvc = SharingManagerConfiguration.sharedInstance.ViewObjectMain as? ViewControllertabMain {
+                self.delegate_profilemenu = pvc
+                // Tell main view profile menu might presented
+                self.delegate_profilemenu?.enableProfileMenu()
+            }
+            return
+        }
+        
         GlobalDefaultQueue.async(execute: { () -> Void in
             var port:Int = 22
             for i in 0 ..< SharingManagerConfiguration.sharedInstance.ConfigurationsDataSourcecount() {
