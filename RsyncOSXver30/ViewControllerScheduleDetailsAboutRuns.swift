@@ -10,11 +10,11 @@
 import Foundation
 import Cocoa
 
-protocol loadData : class {
+protocol loadLoggata : class {
     func stop()
 }
 
-class ViewControllerScheduleDetailsAboutRuns : NSViewController, loadData {
+class ViewControllerScheduleDetailsAboutRuns : NSViewController, loadLoggata {
     
     @IBOutlet weak var scheduletable: NSTableView!
     var tabledata:[NSDictionary]?
@@ -26,10 +26,10 @@ class ViewControllerScheduleDetailsAboutRuns : NSViewController, loadData {
     @IBOutlet weak var date: NSButton!
     // Search after
     var what:filterLogs?
+    // Progressview loading loggdata
+    @IBOutlet weak var loadingLogdata: NSProgressIndicator!
     
-    @IBOutlet weak var loading: NSProgressIndicator!
-    
-    
+    // Selecting what to filter
     @IBAction func Radiobuttons(_ sender: NSButton) {
         if (self.server.state == NSOnState) {
             self.what = .remoteServer
@@ -38,11 +38,11 @@ class ViewControllerScheduleDetailsAboutRuns : NSViewController, loadData {
         } else if (self.date.state == NSOnState) {
             self.what = .executeDate
         }
-        
     }
     
+    // Protocol loadLoggata
     func stop() {
-        self.loading.stopAnimation(nil)
+        self.loadingLogdata.stopAnimation(nil)
     }
     
     override func viewDidLoad() {
@@ -51,14 +51,14 @@ class ViewControllerScheduleDetailsAboutRuns : NSViewController, loadData {
         self.scheduletable.delegate = self
         self.scheduletable.dataSource = self
         self.search.delegate = self
-        self.loading.usesThreadedAnimation = true
+        self.loadingLogdata.usesThreadedAnimation = true
         // Reference to LogViewController
         SharingManagerConfiguration.sharedInstance.LogObjectMain = self
     }
     
     override func viewDidAppear() {
         super.viewDidAppear()
-        self.loading.startAnimation(nil)
+        self.loadingLogdata.startAnimation(nil)
         GlobalMainQueue.async(execute: { () -> Void in
             self.tabledata = ScheduleDetailsAboutRuns().filter(search: nil, what:nil)
             self.scheduletable.reloadData()
@@ -66,13 +66,18 @@ class ViewControllerScheduleDetailsAboutRuns : NSViewController, loadData {
         self.server.state = NSOnState
         self.what = .remoteServer
     }
+    
+    override func viewDidDisappear() {
+        super.viewDidDisappear()
+        self.tabledata = nil
+    }
 }
 
 
 extension ViewControllerScheduleDetailsAboutRuns : NSSearchFieldDelegate {
     
     func searchFieldDidStartSearching(_ sender: NSSearchField){
-        self.loading.startAnimation(nil)
+        self.loadingLogdata.startAnimation(nil)
         if (sender.stringValue.isEmpty) {
             GlobalMainQueue.async(execute: { () -> Void in
                 self.tabledata = ScheduleDetailsAboutRuns().filter(search: nil, what:nil)
@@ -87,7 +92,7 @@ extension ViewControllerScheduleDetailsAboutRuns : NSSearchFieldDelegate {
     }
     
     func searchFieldDidEndSearching(_ sender: NSSearchField){
-        self.loading.startAnimation(nil)
+        self.loadingLogdata.startAnimation(nil)
         GlobalMainQueue.async(execute: { () -> Void in
             self.tabledata = ScheduleDetailsAboutRuns().filter(search: nil, what:nil)
             self.scheduletable.reloadData()
@@ -122,7 +127,6 @@ extension ViewControllerScheduleDetailsAboutRuns : NSTableViewDelegate {
         let indexes = myTableViewFromNotification.selectedRowIndexes
         if let index = indexes.first {
             let dict = self.tabledata?[index]
-            
             if (self.server.state == NSOnState) {
                 if let server = dict?.value(forKey: "offsiteServer") as? String {
                     self.search.stringValue = server

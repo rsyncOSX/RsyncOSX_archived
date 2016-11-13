@@ -18,12 +18,10 @@ enum filterLogs {
 class ScheduleDetailsAboutRuns {
     
     private var data:[NSDictionary]?
-    weak var delegate_loading:loadData?
+    weak var delegate_loadingLogdata:loadLoggata?
     
     func filter(search:String?, what:filterLogs?) -> [NSDictionary]? {
-        
         if (search != nil) {
-            
             if (search!.isEmpty == false) {
                 // Filter data
                 self.readfilteredData(filter: search!, filterwhat: what!)
@@ -40,6 +38,7 @@ class ScheduleDetailsAboutRuns {
         return self.data
     }
     
+    // Function for sorting and filetering loggdata
     private func readfilteredData (filter:String, filterwhat:filterLogs) {
         var data = Array<NSDictionary>()
         self.data = nil
@@ -54,7 +53,6 @@ class ScheduleDetailsAboutRuns {
                         "offsiteServer":SharingManagerConfiguration.sharedInstance.getoffSiteserver(hiddenID),
                         "dateExecuted":(dict.value(forKey: "dateExecuted") as? String)!,
                         "resultExecuted":(dict.value(forKey: "resultExecuted") as? String)!]
-                    
                     switch filterwhat {
                     case .executeDate:
                         if (logdetail.value(forKey: "dateExecuted") as! String).contains(filter) {
@@ -70,28 +68,27 @@ class ScheduleDetailsAboutRuns {
                         }
                     case .all:
                         data.append(logdetail)
+                        }
                     }
                 }
+                let dateformatter = Utils.sharedInstance.setDateformat()
+                let logsorted: [NSDictionary] = data.sorted { (dict1, dict2) -> Bool in
+                    guard (dateformatter.date(from: dict1.value(forKey: "dateExecuted") as! String) != nil && (dateformatter.date(from: dict2.value(forKey: "dateExecuted") as! String) != nil)) else {
+                        return true
+                    }
+                    if ((dateformatter.date(from: dict1.value(forKey: "dateExecuted") as! String))!.timeIntervalSince(dateformatter.date(from: dict2.value(forKey: "dateExecuted") as! String)!) > 0 ) {
+                        return false
+                    } else {
+                        return true
+                    }
+                }
+                self.data = logsorted
+                if let pvc = SharingManagerConfiguration.sharedInstance.LogObjectMain  as? ViewControllerScheduleDetailsAboutRuns {
+                    self.delegate_loadingLogdata = pvc
+                    self.delegate_loadingLogdata?.stop()
+                }
             }
-            let dateformatter = Utils.sharedInstance.setDateformat()
-            let logsorted: [NSDictionary] = data.sorted { (dict1, dict2) -> Bool in
-            guard (dateformatter.date(from: dict1.value(forKey: "dateExecuted") as! String) != nil && (dateformatter.date(from: dict2.value(forKey: "dateExecuted") as! String) != nil)) else {
-                return true
-            }
-            if ((dateformatter.date(from: dict1.value(forKey: "dateExecuted") as! String))!.timeIntervalSince(dateformatter.date(from: dict2.value(forKey: "dateExecuted") as! String)!) > 0 ) {
-                return false
-            } else {
-                return true
-            }
-            }
-            self.data = logsorted
-            if let pvc = SharingManagerConfiguration.sharedInstance.LogObjectMain  as? ViewControllerScheduleDetailsAboutRuns {
-                self.delegate_loading = pvc
-                self.delegate_loading?.stop()
-            }
-        
         }
-    }
     
     init () {
         self.readfilteredData(filter: "all", filterwhat: .all)

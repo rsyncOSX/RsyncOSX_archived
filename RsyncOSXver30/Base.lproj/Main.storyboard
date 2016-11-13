@@ -1337,6 +1337,7 @@
                         <outlet property="Catalog" destination="8XB-pb-Jsf" id="XBq-Io-VM8"/>
                         <outlet property="date" destination="r15-hK-EPv" id="rHs-9d-ay7"/>
                         <outlet property="loading" destination="6NI-sE-yP0" id="Lg8-iW-RlF"/>
+                        <outlet property="loadingLogdata" destination="6NI-sE-yP0" id="exg-Zv-dy7"/>
                         <outlet property="scheduletable" destination="VmR-YZ-iuN" id="Q8s-Bw-QnZ"/>
                         <outlet property="search" destination="t6k-ja-pKU" id="lHP-Fs-hLu"/>
                         <outlet property="server" destination="Mfl-Sx-Zuk" id="5sP-Zg-0tn"/>
