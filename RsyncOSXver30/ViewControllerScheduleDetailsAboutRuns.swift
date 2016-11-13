@@ -27,7 +27,8 @@ class ViewControllerScheduleDetailsAboutRuns : NSViewController, loadLoggata {
     // Search after
     var what:filterLogs?
     // Progressview loading loggdata
-    @IBOutlet weak var loadingLogdata: NSProgressIndicator!
+    
+    @IBOutlet weak var sortingLogdata: NSTextField!
     @IBOutlet weak var numberOflogfiles: NSTextField!
     
     // Selecting what to filter
@@ -43,7 +44,7 @@ class ViewControllerScheduleDetailsAboutRuns : NSViewController, loadLoggata {
     
     // Protocol loadLoggata
     func stop() {
-        self.loadingLogdata.stopAnimation(nil)
+        self.sortingLogdata.isHidden = true
     }
     
     override func viewDidLoad() {
@@ -52,14 +53,13 @@ class ViewControllerScheduleDetailsAboutRuns : NSViewController, loadLoggata {
         self.scheduletable.delegate = self
         self.scheduletable.dataSource = self
         self.search.delegate = self
-        self.loadingLogdata.usesThreadedAnimation = true
         // Reference to LogViewController
         SharingManagerConfiguration.sharedInstance.LogObjectMain = self
     }
     
     override func viewDidAppear() {
         super.viewDidAppear()
-        self.loadingLogdata.startAnimation(nil)
+        self.sortingLogdata.isHidden = false
         GlobalMainQueue.async(execute: { () -> Void in
             self.tabledata = ScheduleDetailsAboutRuns().filter(search: nil, what:nil)
             self.scheduletable.reloadData()
@@ -70,6 +70,7 @@ class ViewControllerScheduleDetailsAboutRuns : NSViewController, loadLoggata {
     
     override func viewDidDisappear() {
         super.viewDidDisappear()
+        self.sortingLogdata.isHidden = false
         self.tabledata = nil
     }
 }
@@ -78,7 +79,7 @@ class ViewControllerScheduleDetailsAboutRuns : NSViewController, loadLoggata {
 extension ViewControllerScheduleDetailsAboutRuns : NSSearchFieldDelegate {
     
     func searchFieldDidStartSearching(_ sender: NSSearchField){
-        self.loadingLogdata.startAnimation(nil)
+        self.sortingLogdata.isHidden = false
         if (sender.stringValue.isEmpty) {
             GlobalMainQueue.async(execute: { () -> Void in
                 self.tabledata = ScheduleDetailsAboutRuns().filter(search: nil, what:nil)
@@ -93,7 +94,7 @@ extension ViewControllerScheduleDetailsAboutRuns : NSSearchFieldDelegate {
     }
     
     func searchFieldDidEndSearching(_ sender: NSSearchField){
-        self.loadingLogdata.startAnimation(nil)
+        self.sortingLogdata.isHidden = false
         GlobalMainQueue.async(execute: { () -> Void in
             self.tabledata = ScheduleDetailsAboutRuns().filter(search: nil, what:nil)
             self.scheduletable.reloadData()
