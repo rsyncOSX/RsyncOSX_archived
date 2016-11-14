@@ -51,14 +51,23 @@ final class outputProcess {
     }
     
     func getOutputCount () -> Int {
+        guard (self.output != nil) else {
+            return 0
+        }
         return self.output!.count
     }
     
     func getOutput () -> [String] {
+        guard (self.output != nil) else {
+            return [""]
+        }
         return self.output!
     }
     
     func getOutputbatch() -> [String] {
+        guard (self.batchoutput != nil) else {
+            return [""]
+        }
         return self.batchoutput!
     }
     
