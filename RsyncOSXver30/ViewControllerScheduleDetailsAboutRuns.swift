@@ -10,11 +10,8 @@
 import Foundation
 import Cocoa
 
-protocol loadLoggata : class {
-    func stop()
-}
 
-class ViewControllerScheduleDetailsAboutRuns : NSViewController, loadLoggata {
+class ViewControllerScheduleDetailsAboutRuns : NSViewController {
     
     @IBOutlet weak var scheduletable: NSTableView!
     var tabledata:[NSDictionary]?
@@ -26,9 +23,9 @@ class ViewControllerScheduleDetailsAboutRuns : NSViewController, loadLoggata {
     @IBOutlet weak var date: NSButton!
     // Search after
     var what:filterLogs?
-    // Progressview loading loggdata
     
-    @IBOutlet weak var sortingLogdata: NSTextField!
+    // Progressview loading loggdata
+    @IBOutlet weak var sorting: NSProgressIndicator!
     @IBOutlet weak var numberOflogfiles: NSTextField!
     
     // Selecting what to filter
@@ -42,27 +39,24 @@ class ViewControllerScheduleDetailsAboutRuns : NSViewController, loadLoggata {
         }
     }
     
-    // Protocol loadLoggata
-    func stop() {
-        self.sortingLogdata.isHidden = true
-    }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do view setup here.
         self.scheduletable.delegate = self
         self.scheduletable.dataSource = self
         self.search.delegate = self
+        self.sorting.usesThreadedAnimation = true
         // Reference to LogViewController
         SharingManagerConfiguration.sharedInstance.LogObjectMain = self
     }
     
     override func viewDidAppear() {
         super.viewDidAppear()
-        self.sortingLogdata.isHidden = false
         GlobalMainQueue.async(execute: { () -> Void in
+            self.sorting.startAnimation(self)
             self.tabledata = ScheduleDetailsAboutRuns().filter(search: nil, what:nil)
             self.scheduletable.reloadData()
+            self.sorting.stopAnimation(self)
         })
         self.server.state = NSOnState
         self.what = .remoteServer
@@ -70,7 +64,7 @@ class ViewControllerScheduleDetailsAboutRuns : NSViewController, loadLoggata {
     
     override func viewDidDisappear() {
         super.viewDidDisappear()
-        self.sortingLogdata.isHidden = false
+        self.sorting.startAnimation(self)
         self.tabledata = nil
     }
 }
@@ -79,22 +73,24 @@ class ViewControllerScheduleDetailsAboutRuns : NSViewController, loadLoggata {
 extension ViewControllerScheduleDetailsAboutRuns : NSSearchFieldDelegate {
     
     func searchFieldDidStartSearching(_ sender: NSSearchField){
-        self.sortingLogdata.isHidden = false
+        self.sorting.startAnimation(self)
         if (sender.stringValue.isEmpty) {
             GlobalMainQueue.async(execute: { () -> Void in
                 self.tabledata = ScheduleDetailsAboutRuns().filter(search: nil, what:nil)
                 self.scheduletable.reloadData()
+                self.sorting.stopAnimation(self)
             })
         } else {
             GlobalMainQueue.async(execute: { () -> Void in
                 self.tabledata = ScheduleDetailsAboutRuns().filter(search: sender.stringValue, what:self.what)
                 self.scheduletable.reloadData()
+                self.sorting.stopAnimation(self)
             })
         }
     }
     
     func searchFieldDidEndSearching(_ sender: NSSearchField){
-        self.sortingLogdata.isHidden = false
+        self.sorting.startAnimation(self)
         GlobalMainQueue.async(execute: { () -> Void in
             self.tabledata = ScheduleDetailsAboutRuns().filter(search: nil, what:nil)
             self.scheduletable.reloadData()
@@ -108,7 +104,6 @@ extension ViewControllerScheduleDetailsAboutRuns : NSTableViewDataSource {
     func numberOfRows(in tableView: NSTableView) -> Int {
         if (self.tabledata == nil ) {
             self.numberOflogfiles.stringValue = "Number of logs: 0"
-            self.sortingLogdata.isHidden = true
             return 0
         } else {
             self.numberOflogfiles.stringValue = "Number of logs: " + String(self.tabledata!.count)
