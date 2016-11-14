@@ -4,8 +4,12 @@ The repository is source code for the macOS application RsyncOSX. The applicatio
 
 Here is the [RsyncOSX documentation](https://github.com/rsyncOSX/Documentation). 
 
+I have uploaded a short (about 4 minutes) [YouTube video of RsyncOSX](https://www.youtube.com/watch?v=ty1r7yvgExo) : "Downloading RsyncOSX, installing, first time configuration and using RsyncOSX for the first time. Backup (as demo) of about 120 MB of data and 4000 files to a VirtualBox FreeBSD machine."
+
 The code is **not** example of neither writing decent Swift code, OO-development or applying the MVC-pattern. It is a personal project to learn Swift and I am learning every day. I belive coding is an art and to be really good at coding requires years of experience. My experience of coding is far from that. I am happy to share the code with anyone. Sharing of code is in my opinion the best way to get quality.
 
 The code has been refactored couple of times. The latest release of RsyncOSX is quite stable. But there is still parts of code which might should be refactored.
 
 Please use the [issues page](https://github.com/rsyncOSX/Version3.x/issues) for bugs and requests for new features.
+
+
