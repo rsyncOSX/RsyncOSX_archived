@@ -66,7 +66,7 @@ class SharingManagerConfiguration {
     // No valid rsyncPath - true if no valid rsync is found
     var noRysync:Bool = false
     // Detailed logging
-    var detailedlogging:Bool = false
+    var detailedlogging:Bool = true
     // Minutes before scheduled task commence disable execute/batch buttons
     // Disabled by default
     var scheduledTaskdisableExecute:Double = 0
