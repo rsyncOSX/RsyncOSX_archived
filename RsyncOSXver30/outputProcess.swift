@@ -110,35 +110,30 @@ final class outputProcess {
     func getTransferredNumbers (numbers : enumNumbers) -> Int {
         switch numbers {
         case .totalDirs:
-            if (self.totalDirs != nil) {
-                return self.totalDirs!
-            } else {
+            guard (self.totalDirs != nil) else {
                 return 0
             }
+            return self.totalDirs!
         case .totalNumber:
-            if (self.totalNumber != nil) {
-                return self.totalNumber!
-            } else {
+            guard (self.totalNumber != nil) else {
                 return 0
             }
+            return self.totalNumber!
         case .transferredNumber:
-            if (self.transferredNumber != nil) {
-                return self.transferredNumber!
-            } else {
+            guard (self.transferredNumber != nil) else {
                 return 0
             }
+            return self.transferredNumber!
         case .totalNumberSizebytes:
-            if (self.totalNumberSizebytes != nil) {
-                return Int(self.totalNumberSizebytes!/1024)
-            } else {
+            guard (self.totalNumberSizebytes != nil) else {
                 return 0
             }
+            return Int(self.totalNumberSizebytes!/1024)
         case .transferredNumberSizebytes:
-            if (self.transferredNumberSizebytes != nil) {
-                return Int(self.transferredNumberSizebytes!/1024)
-            } else {
+            guard (self.transferredNumberSizebytes != nil) else {
                 return 0
             }
+            return Int(self.transferredNumberSizebytes!/1024)
         }
     }
     
