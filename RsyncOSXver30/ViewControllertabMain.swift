@@ -881,11 +881,11 @@ class ViewControllertabMain : NSViewController, Information, Abort, Count, Refre
     // Process object executes the job.
     private func setNumbers (setvalues : Bool) {
         if (setvalues) {
-            self.transferredNumber.stringValue = String(self.output!.getTransferredNumbers(numbers: .transferredNumber))
-            self.transferredNumberSizebytes.stringValue = String(self.output!.getTransferredNumbers(numbers: .transferredNumberSizebytes))
-            self.totalNumber.stringValue = String(self.output!.getTransferredNumbers(numbers: .totalNumber))
-            self.totalNumberSizebytes.stringValue = String(self.output!.getTransferredNumbers(numbers: .totalNumberSizebytes))
-            self.totalDirs.stringValue = String(self.output!.getTransferredNumbers(numbers: .totalDirs))
+            self.transferredNumber.stringValue = NumberFormatter.localizedString(from: NSNumber(value: self.output!.getTransferredNumbers(numbers: .transferredNumber)), number: NumberFormatter.Style.decimal)
+            self.transferredNumberSizebytes.stringValue = NumberFormatter.localizedString(from: NSNumber(value: self.output!.getTransferredNumbers(numbers: .transferredNumberSizebytes)), number: NumberFormatter.Style.decimal)
+            self.totalNumber.stringValue = NumberFormatter.localizedString(from: NSNumber(value: self.output!.getTransferredNumbers(numbers: .totalNumber)), number: NumberFormatter.Style.decimal)
+            self.totalNumberSizebytes.stringValue = NumberFormatter.localizedString(from: NSNumber(value: self.output!.getTransferredNumbers(numbers: .totalNumberSizebytes)), number: NumberFormatter.Style.decimal)
+            self.totalDirs.stringValue = NumberFormatter.localizedString(from: NSNumber(value: self.output!.getTransferredNumbers(numbers: .totalDirs)), number: NumberFormatter.Style.decimal)
         } else {
             self.transferredNumber.stringValue = ""
             self.transferredNumberSizebytes.stringValue = ""
