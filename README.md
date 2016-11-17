@@ -12,6 +12,6 @@ The code is **not** example of neither writing decent Swift code, OO-development
 
 The code has been refactored couple of times. The latest release of RsyncOSX is quite stable. But there are parts of code which might should be refactored.
 
+### Changelog
 
-
-
+The [Changelog](https://github.com/rsyncOSX/Documentation/blob/master/Docs/Changelog.md).
