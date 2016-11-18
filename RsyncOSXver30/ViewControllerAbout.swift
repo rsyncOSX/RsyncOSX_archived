@@ -17,6 +17,7 @@ class ViewControllerAbout : NSViewController {
     @IBOutlet weak var version: NSTextField!
     @IBOutlet weak var downloadbutton: NSButton!
     @IBOutlet weak var thereisanewversion: NSTextField!
+    @IBOutlet weak var checking: NSProgressIndicator!
     
     // new version
     private var runningVersion : String?
@@ -42,23 +43,28 @@ class ViewControllerAbout : NSViewController {
         self.dismiss_delegate?.dismiss_view(viewcontroller: self)
     }
     
-    @IBAction func newversion(_ sender: NSButton) {
-        if let url = URL(string: self.urlPlist!) {
-            do {
-                let contents = NSDictionary (contentsOf: url)
-                if (self.runningVersion != nil) {
-                    if let url = contents?.object(forKey: self.runningVersion!) {
-                        self.urlNewVersion = url as? String
-                        SharingManagerConfiguration.sharedInstance.URLnewVersion = self.urlNewVersion
-                        self.downloadbutton.isEnabled = true
-                        self.thereisanewversion.isHidden = false
-                    } else {
-                        self.thereisanewversion.stringValue = "Looks like using last release :"
-                        self.thereisanewversion.isHidden = false
+    private func checkforupdates() {
+        GlobalBackgroundQueue.async(execute: { () -> Void in
+            if let url = URL(string: self.urlPlist!) {
+                do {
+                    let contents = NSDictionary (contentsOf: url)
+                    if (self.runningVersion != nil) {
+                        if let url = contents?.object(forKey: self.runningVersion!) {
+                            self.urlNewVersion = url as? String
+                            SharingManagerConfiguration.sharedInstance.URLnewVersion = self.urlNewVersion
+                            self.downloadbutton.isEnabled = true
+                            self.thereisanewversion.isHidden = false
+                        } else {
+                            self.thereisanewversion.stringValue = "No new version"
+                            self.thereisanewversion.isHidden = false
+                        }
+                        GlobalMainQueue.async(execute: { () -> Void in
+                            self.checking.stopAnimation(nil)
+                        })
                     }
                 }
             }
-        }
+        })
     }
     
     override func viewDidLoad() {
@@ -77,6 +83,8 @@ class ViewControllerAbout : NSViewController {
         super.viewDidAppear()
         self.downloadbutton.isEnabled = false
         self.thereisanewversion.isHidden = true
+        self.checking.startAnimation(nil)
+        self.checkforupdates()
     }
     
     override func viewDidDisappear() {
