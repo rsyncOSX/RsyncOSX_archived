@@ -29,14 +29,17 @@ class ViewControllerAbout : NSViewController {
     
     @IBAction func changelog(_ sender: NSButton) {
         NSWorkspace.shared().open(URL(string: "https://github.com/rsyncOSX/Documentation/blob/master/Docs/Changelog.md")!)
+        self.dismiss_delegate?.dismiss_view(viewcontroller: self)
     }
     
     @IBAction func documentation(_ sender: NSButton) {
         NSWorkspace.shared().open(URL(string: "https://github.com/rsyncOSX/Documentation")!)
+        self.dismiss_delegate?.dismiss_view(viewcontroller: self)
     }
     
     @IBAction func download(_ sender: NSButton) {
         NSWorkspace.shared().open(URL(string: SharingManagerConfiguration.sharedInstance.URLnewVersion!)!)
+        self.dismiss_delegate?.dismiss_view(viewcontroller: self)
     }
     
     @IBAction func newversion(_ sender: NSButton) {
@@ -50,7 +53,7 @@ class ViewControllerAbout : NSViewController {
                         self.downloadbutton.isEnabled = true
                         self.thereisanewversion.isHidden = false
                     } else {
-                        self.thereisanewversion.stringValue = "Looks like the last release "
+                        self.thereisanewversion.stringValue = "Looks like using last release :"
                         self.thereisanewversion.isHidden = false
                     }
                 }
