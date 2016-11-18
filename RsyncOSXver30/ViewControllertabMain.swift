@@ -171,6 +171,14 @@ class ViewControllertabMain : NSViewController, Information, Abort, Count, Refre
             as! NSViewController
     }()
     
+    // About
+    // self.presentViewControllerAsSheet(self.ViewControllerAbout)
+    lazy var ViewControllerAbout: NSViewController = {
+        return self.storyboard!.instantiateController(withIdentifier: "AboutID")
+            as! NSViewController
+    }()
+    
+    
     // Function for dismissing a presented view
     // - parameter viewcontroller: the viewcontroller to be dismissed
     func dismiss_view(viewcontroller:NSViewController) {
@@ -519,6 +527,11 @@ class ViewControllertabMain : NSViewController, Information, Abort, Count, Refre
         }
         
     }
+    
+    @IBAction func About (_ sender: NSButton) {
+        self.presentViewControllerAsModalWindow(self.ViewControllerAbout)
+    }
+    
 
     // Initial functions viewDidLoad and viewDidAppear
     override func viewDidLoad() {
