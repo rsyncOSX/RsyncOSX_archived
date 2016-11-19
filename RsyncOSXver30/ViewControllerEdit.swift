@@ -26,26 +26,29 @@ class ViewControllerEdit : NSViewController {
     
     // Index selectted row
     var index:Int?
-    
     // Get index of selected row
     weak var getindex_delegate : SendSelecetedIndex?
     // after update reread configuration
     weak var readconfigurations_delegate:ReadConfigurationsAgain?
     // Dismisser
     weak var dismiss_delegate:DismissViewController?
+    // Single file
+    // Single file if last character is NOT "/"
+    var singleFile:Bool = false
     
     @IBAction func Close(_ sender: NSButton) {
         self.dismiss_delegate?.dismiss_view(viewcontroller: self)
     }
     
     @IBAction func Update(_ sender: NSButton) {
+        
         var config:[configuration] = SharingManagerConfiguration.sharedInstance.getConfigurations()
         
-        if (!self.localCatalog.stringValue.hasSuffix("/")){
+        if (self.localCatalog.stringValue.hasSuffix("/") == false && self.singleFile == false){
             self.localCatalog.stringValue = self.localCatalog.stringValue + "/"
         }
         config[self.index!].localCatalog = self.localCatalog.stringValue
-        if (!self.offsiteCatalog.stringValue.hasSuffix("/")){
+        if (self.offsiteCatalog.stringValue.hasSuffix("/") == false){
             self.offsiteCatalog.stringValue = self.offsiteCatalog.stringValue + "/"
         }
         config[self.index!].offsiteCatalog = self.offsiteCatalog.stringValue
@@ -84,6 +87,12 @@ class ViewControllerEdit : NSViewController {
             self.index = self.getindex_delegate?.getindex()
         }
         self.localCatalog.stringValue = SharingManagerConfiguration.sharedInstance.getConfigurations()[self.index!].localCatalog
+        // Check for single file
+        if (self.localCatalog.stringValue.hasSuffix("/") == false) {
+            self.singleFile = true
+        } else {
+            self.singleFile = false
+        }
         self.offsiteCatalog.stringValue = SharingManagerConfiguration.sharedInstance.getConfigurations()[self.index!].offsiteCatalog
         self.offsiteUsername.stringValue = SharingManagerConfiguration.sharedInstance.getConfigurations()[self.index!].offsiteUsername
         self.offsiteServer.stringValue = SharingManagerConfiguration.sharedInstance.getConfigurations()[self.index!].offsiteServer
