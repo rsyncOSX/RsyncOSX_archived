@@ -2936,9 +2936,9 @@ DQ
                                 </connections>
                             </button>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="qSD-iK-Od5">
-                                <rect key="frame" x="-2" y="129" width="280" height="16"/>
+                                <rect key="frame" x="-2" y="137" width="280" height="14"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" title="Version :" id="q8z-Ku-oKx">
-                                    <font key="font" metaFont="system" size="12"/>
+                                    <font key="font" metaFont="system" size="11"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
@@ -2954,17 +2954,17 @@ DQ
                                 </connections>
                             </button>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="eEm-dl-WTP">
-                                <rect key="frame" x="-2" y="169" width="280" height="17"/>
+                                <rect key="frame" x="-2" y="172" width="280" height="14"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" title="Copyright © 2016 Thomas Evensen." id="RFG-uU-oRD">
-                                    <font key="font" metaFont="system"/>
+                                    <font key="font" metaFont="system" size="11"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="rcJ-d0-Xcf">
-                                <rect key="frame" x="-2" y="148" width="280" height="17"/>
+                                <rect key="frame" x="-2" y="154" width="280" height="14"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" title="All rights reserved." id="I48-tD-2H3">
-                                    <font key="font" metaFont="system"/>
+                                    <font key="font" metaFont="system" size="11"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
@@ -2975,7 +2975,7 @@ DQ
                                     <constraint firstAttribute="height" constant="17" id="mQC-f0-bCd"/>
                                 </constraints>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" title="About RsyncOSX" id="RmT-0p-5r6">
-                                    <font key="font" metaFont="systemSemibold" size="16"/>
+                                    <font key="font" metaFont="system" size="16"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
@@ -3002,7 +3002,7 @@ DQ
                                 </connections>
                             </button>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="aay-IU-vK3">
-                                <rect key="frame" x="29" y="83" width="97" height="32"/>
+                                <rect key="frame" x="29" y="83" width="106" height="32"/>
                                 <buttonCell key="cell" type="push" title="Changelog" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="vDS-vt-fgh">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
@@ -3011,16 +3011,11 @@ DQ
                                     <action selector="changelog:" target="Fmg-bN-W4h" id="C5T-vg-dWX"/>
                                 </connections>
                             </button>
-                            <progressIndicator wantsLayer="YES" horizontalHuggingPriority="750" verticalHuggingPriority="750" maxValue="100" displayedWhenStopped="NO" bezeled="NO" indeterminate="YES" controlSize="small" style="spinning" translatesAutoresizingMaskIntoConstraints="NO" id="lYq-EX-rib">
-                                <rect key="frame" x="130" y="93" width="16" height="16"/>
-                            </progressIndicator>
                         </subviews>
                         <constraints>
                             <constraint firstItem="rcJ-d0-Xcf" firstAttribute="top" secondItem="eEm-dl-WTP" secondAttribute="bottom" constant="4" id="1R0-92-Cj8"/>
-                            <constraint firstItem="lYq-EX-rib" firstAttribute="centerY" secondItem="M9n-Ih-3tr" secondAttribute="centerY" id="3KK-Eb-Ayg"/>
                             <constraint firstItem="aay-IU-vK3" firstAttribute="baseline" secondItem="M9n-Ih-3tr" secondAttribute="baseline" id="56f-KF-J8I"/>
                             <constraint firstItem="eEm-dl-WTP" firstAttribute="top" secondItem="Hyh-2j-983" secondAttribute="bottom" constant="8" symbolic="YES" id="6NX-C7-cOu"/>
-                            <constraint firstItem="lYq-EX-rib" firstAttribute="leading" secondItem="aay-IU-vK3" secondAttribute="trailing" constant="10" id="8RT-4U-Znd"/>
                             <constraint firstItem="Hyh-2j-983" firstAttribute="top" secondItem="VH8-E3-P50" secondAttribute="top" constant="20" symbolic="YES" id="8Wj-YP-g19"/>
                             <constraint firstAttribute="trailing" secondItem="Hyh-2j-983" secondAttribute="trailing" id="9aV-eP-peu"/>
                             <constraint firstItem="M9n-Ih-3tr" firstAttribute="leading" secondItem="ZNh-nd-7hR" secondAttribute="leading" id="BVS-jr-pxU"/>
@@ -3033,14 +3028,12 @@ DQ
                             <constraint firstAttribute="trailing" secondItem="eEm-dl-WTP" secondAttribute="trailing" id="PTR-Lx-JAE"/>
                             <constraint firstItem="rcJ-d0-Xcf" firstAttribute="leading" secondItem="VH8-E3-P50" secondAttribute="leading" id="PtQ-IH-1OH"/>
                             <constraint firstItem="EZx-Vc-vlo" firstAttribute="centerY" secondItem="ZNh-nd-7hR" secondAttribute="centerY" id="T2i-cX-tmd"/>
-                            <constraint firstItem="M9n-Ih-3tr" firstAttribute="leading" secondItem="lYq-EX-rib" secondAttribute="trailing" constant="8" symbolic="YES" id="TRf-xa-zF4"/>
                             <constraint firstAttribute="trailing" secondItem="M9n-Ih-3tr" secondAttribute="trailing" constant="43" id="TYp-fo-TTh"/>
                             <constraint firstAttribute="trailing" secondItem="qSD-iK-Od5" secondAttribute="trailing" id="UDh-ad-Uuc"/>
                             <constraint firstItem="qSD-iK-Od5" firstAttribute="top" secondItem="rcJ-d0-Xcf" secondAttribute="bottom" constant="3" id="UjV-q5-feD"/>
                             <constraint firstAttribute="trailing" secondItem="2Q3-0k-gJt" secondAttribute="trailing" constant="20" symbolic="YES" id="W4D-cP-8N4"/>
                             <constraint firstAttribute="trailing" secondItem="rcJ-d0-Xcf" secondAttribute="trailing" id="W87-zS-5Fa"/>
                             <constraint firstItem="M9n-Ih-3tr" firstAttribute="trailing" secondItem="ZNh-nd-7hR" secondAttribute="trailing" id="WZO-6r-TRe"/>
-                            <constraint firstItem="qSD-iK-Od5" firstAttribute="centerX" secondItem="lYq-EX-rib" secondAttribute="centerX" id="aAN-4M-1oh"/>
                             <constraint firstItem="rcJ-d0-Xcf" firstAttribute="leading" secondItem="qSD-iK-Od5" secondAttribute="leading" id="cut-vY-lqh"/>
                             <constraint firstItem="Hyh-2j-983" firstAttribute="leading" secondItem="VH8-E3-P50" secondAttribute="leading" id="drJ-U7-Htv"/>
                             <constraint firstItem="eEm-dl-WTP" firstAttribute="trailing" secondItem="rcJ-d0-Xcf" secondAttribute="trailing" id="er8-75-hWp"/>
@@ -3055,7 +3048,6 @@ DQ
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="checking" destination="lYq-EX-rib" id="Hbx-6K-dm1"/>
                         <outlet property="downloadbutton" destination="ZNh-nd-7hR" id="KN1-dK-3ek"/>
                         <outlet property="thereisanewversion" destination="EZx-Vc-vlo" id="d0s-2A-O7x"/>
                         <outlet property="version" destination="qSD-iK-Od5" id="CcB-Wb-ucF"/>

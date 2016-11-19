@@ -17,7 +17,6 @@ class ViewControllerAbout : NSViewController {
     @IBOutlet weak var version: NSTextField!
     @IBOutlet weak var downloadbutton: NSButton!
     @IBOutlet weak var thereisanewversion: NSTextField!
-    @IBOutlet weak var checking: NSProgressIndicator!
     
     // new version
     private var runningVersion : String?
@@ -58,9 +57,6 @@ class ViewControllerAbout : NSViewController {
                             self.thereisanewversion.stringValue = "No new version"
                             self.thereisanewversion.isHidden = false
                         }
-                        GlobalMainQueue.async(execute: { () -> Void in
-                            self.checking.stopAnimation(nil)
-                        })
                     }
                 }
             }
@@ -83,7 +79,6 @@ class ViewControllerAbout : NSViewController {
         super.viewDidAppear()
         self.downloadbutton.isEnabled = false
         self.thereisanewversion.isHidden = true
-        self.checking.startAnimation(nil)
         self.checkforupdates()
     }
     
