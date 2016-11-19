@@ -27,19 +27,20 @@ class ViewControllerEdit : NSViewController {
     // Index selectted row
     var index:Int?
     // Get index of selected row
-    weak var getindex_delegate : SendSelecetedIndex?
+    weak var getindex_delegate : GetSelecetedIndex?
     // after update reread configuration
     weak var readconfigurations_delegate:ReadConfigurationsAgain?
     // Dismisser
     weak var dismiss_delegate:DismissViewController?
-    // Single file
     // Single file if last character is NOT "/"
     var singleFile:Bool = false
     
+    // Close and dismiss view
     @IBAction func Close(_ sender: NSButton) {
         self.dismiss_delegate?.dismiss_view(viewcontroller: self)
     }
     
+    // Update configuration, save and dismiss view
     @IBAction func Update(_ sender: NSButton) {
         
         var config:[configuration] = SharingManagerConfiguration.sharedInstance.getConfigurations()
@@ -71,36 +72,35 @@ class ViewControllerEdit : NSViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        if let pvc = SharingManagerConfiguration.sharedInstance.ViewObjectMain as? ViewControllertabMain {
-            self.readconfigurations_delegate = pvc
-        }
         // Dismisser is root controller
-        if let pvc2 = self.presenting as? ViewControllertabMain {
-            self.dismiss_delegate = pvc2
+        if let pvc = self.presenting as? ViewControllertabMain {
+            self.readconfigurations_delegate = pvc
+            self.dismiss_delegate = pvc
+            self.getindex_delegate = pvc
         }
     }
     
     override func viewDidAppear() {
         super.viewDidAppear()
-        if let pvc = self.presenting as? ViewControllertabMain {
-            self.getindex_delegate = pvc
-            self.index = self.getindex_delegate?.getindex()
-        }
-        self.localCatalog.stringValue = SharingManagerConfiguration.sharedInstance.getConfigurations()[self.index!].localCatalog
+        // Getting index of selected configuration
+        self.index = self.getindex_delegate?.getindex()
+        let config:configuration = SharingManagerConfiguration.sharedInstance.getConfigurations()[self.index!]
+        
+        self.localCatalog.stringValue = config.localCatalog
         // Check for single file
         if (self.localCatalog.stringValue.hasSuffix("/") == false) {
             self.singleFile = true
         } else {
             self.singleFile = false
         }
-        self.offsiteCatalog.stringValue = SharingManagerConfiguration.sharedInstance.getConfigurations()[self.index!].offsiteCatalog
-        self.offsiteUsername.stringValue = SharingManagerConfiguration.sharedInstance.getConfigurations()[self.index!].offsiteUsername
-        self.offsiteServer.stringValue = SharingManagerConfiguration.sharedInstance.getConfigurations()[self.index!].offsiteServer
-        self.backupID.stringValue = SharingManagerConfiguration.sharedInstance.getConfigurations()[self.index!].backupID
-        if let port = SharingManagerConfiguration.sharedInstance.getConfigurations()[self.index!].sshport {
+        self.offsiteCatalog.stringValue = config.offsiteCatalog
+        self.offsiteUsername.stringValue = config.offsiteUsername
+        self.offsiteServer.stringValue = config.offsiteServer
+        self.backupID.stringValue = config.backupID
+        if let port = config.sshport {
             self.sshport.stringValue = String(port)
         }
-        if let rsyncdaemon = SharingManagerConfiguration.sharedInstance.getConfigurations()[self.index!].rsyncdaemon {
+        if let rsyncdaemon = config.rsyncdaemon {
             self.rsyncdaemon.state = rsyncdaemon
         }
     }
