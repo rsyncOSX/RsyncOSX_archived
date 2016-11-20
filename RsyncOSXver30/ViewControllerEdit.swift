@@ -82,10 +82,17 @@ class ViewControllerEdit : NSViewController {
     
     override func viewDidAppear() {
         super.viewDidAppear()
+        // Reset all values in view
+        self.localCatalog.stringValue = ""
+        self.offsiteCatalog.stringValue = ""
+        self.offsiteUsername.stringValue = ""
+        self.offsiteServer.stringValue = ""
+        self.backupID.stringValue = ""
+        self.sshport.stringValue = ""
+        self.rsyncdaemon.state = NSOffState
         // Getting index of selected configuration
         self.index = self.getindex_delegate?.getindex()
         let config:configuration = SharingManagerConfiguration.sharedInstance.getConfigurations()[self.index!]
-        
         self.localCatalog.stringValue = config.localCatalog
         // Check for single file
         if (self.localCatalog.stringValue.hasSuffix("/") == false) {
