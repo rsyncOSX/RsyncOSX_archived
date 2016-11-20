@@ -37,7 +37,7 @@ protocol UpdateProgress : class {
     func FileHandler()
 }
 
-class ViewControllertabMain : NSViewController, Information, Abort, Count, RefreshtableViewtabMain, StartBatch, ReadConfigurationsAgain, RsyncUserParams, SendSelecetedIndex, NewSchedules, StartNextScheduledTask, DismissViewController, UpdateProgress, ScheduledJobInProgress, RsyncChanged, Connections, AddProfiles, newVersionDiscovered {
+class ViewControllertabMain : NSViewController, Information, Abort, Count, RefreshtableViewtabMain, StartBatch, ReadConfigurationsAgain, RsyncUserParams, GetSelecetedIndex, NewSchedules, StartNextScheduledTask, DismissViewController, UpdateProgress, ScheduledJobInProgress, RsyncChanged, Connections, AddProfiles, newVersionDiscovered {
 
     // Protocol function used in Process().
     weak var processupdate_delegate:UpdateProgress?
@@ -170,6 +170,14 @@ class ViewControllertabMain : NSViewController, Information, Abort, Count, Refre
         return self.storyboard!.instantiateController(withIdentifier: "ScheduledBackupInWorkID")
             as! NSViewController
     }()
+    
+    // About
+    // self.presentViewControllerAsSheet(self.ViewControllerAbout)
+    lazy var ViewControllerAbout: NSViewController = {
+        return self.storyboard!.instantiateController(withIdentifier: "AboutID")
+            as! NSViewController
+    }()
+    
     
     // Function for dismissing a presented view
     // - parameter viewcontroller: the viewcontroller to be dismissed
@@ -519,6 +527,11 @@ class ViewControllertabMain : NSViewController, Information, Abort, Count, Refre
         }
         
     }
+    
+    @IBAction func About (_ sender: NSButton) {
+        self.presentViewControllerAsModalWindow(self.ViewControllerAbout)
+    }
+    
 
     // Initial functions viewDidLoad and viewDidAppear
     override func viewDidLoad() {

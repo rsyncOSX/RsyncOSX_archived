@@ -16,7 +16,7 @@ class ViewControllerCopyFiles : NSViewController, UpdateProgress, RefreshtableVi
     // Index of selected row
     var index:Int?
     // Delegate for getting index from Execute view
-    weak var index_delegate:SendSelecetedIndex?
+    weak var index_delegate:GetSelecetedIndex?
     // Info about server and remote catalogs
     @IBOutlet weak var server: NSTextField!
     @IBOutlet weak var rcatalog: NSTextField!
