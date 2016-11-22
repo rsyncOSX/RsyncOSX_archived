@@ -76,7 +76,7 @@ class ViewControllerBatch : NSViewController, RefreshtableViewBatch, StartStopPr
     func stop() {
         GlobalMainQueue.async(execute: { () -> Void in
             self.working.stopAnimation(nil)
-            self.label.stringValue = "Working"
+            self.label.stringValue = "Executing"
         })
         
     }
@@ -86,6 +86,7 @@ class ViewControllerBatch : NSViewController, RefreshtableViewBatch, StartStopPr
         // Starts estimation progressbar when estimation starts
         GlobalMainQueue.async(execute: { () -> Void in
             self.working.startAnimation(nil)
+            self.label.isHidden = false
             self.label.stringValue = "Estimating"
         })
         
@@ -138,6 +139,7 @@ class ViewControllerBatch : NSViewController, RefreshtableViewBatch, StartStopPr
     override func viewDidAppear() {
         super.viewDidAppear()
         self.closeinseconds.isHidden = true
+        self.label.isHidden = true
         self.working.stopAnimation(nil)
         self.close = true
         
