@@ -389,6 +389,7 @@ class ViewControllertabMain : NSViewController, Information, Abort, Count, Refre
     // Protocol RsyncChanged
     // If row is selected an update rsync command in view
     func rsyncchanged() {
+        // Update rsync command in display
         self.setRsyncCommandDisplay()
     }
     

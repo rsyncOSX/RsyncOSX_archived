@@ -126,7 +126,6 @@ class executeTask : Operation {
         // Variables used for rsync parameters
         let output = outputProcess()
         let job = rsyncProcess(operation: true, tabMain: false, command : nil)
-        let getArguments = rsyncProcessArguments()
         var arguments:[String]?
         var config:configuration?
         
@@ -167,7 +166,7 @@ class executeTask : Operation {
                 }
                 
                 if (hiddenID >= 0 && config != nil) {
-                    arguments = getArguments.argumentsRsync(config!, dryRun: false, forDisplay: false)
+                    arguments = rsyncProcessArguments().argumentsRsync(config!, dryRun: false, forDisplay: false)
                     // Setting reference to finalize the job
                     // Finalize job is done when rsynctask ends (in process termination)
                     SharingManagerConfiguration.sharedInstance.operation = completeScheduledOperation(dict: dict)
