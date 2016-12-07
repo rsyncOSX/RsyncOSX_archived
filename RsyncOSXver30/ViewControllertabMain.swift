@@ -320,9 +320,7 @@ class ViewControllertabMain : NSViewController, Information, Abort, Count, Refre
         // Read schedule objects again
         self.schedules = nil
         self.schedules = ScheduleSortedAndExpand()
-        if (self.index != nil) {
-            self.rsyncCommand.stringValue = Utils.sharedInstance.setRsyncCommandDisplay(index: self.index!, dryRun: true)
-        }
+        self.setRsyncCommandDisplay()
     }
 
     // Protocol RsyncUserParams
@@ -330,7 +328,7 @@ class ViewControllertabMain : NSViewController, Information, Abort, Count, Refre
     // Do a reread of all Configurations
     func rsyncuserparamsupdated() {
         self.readConfigurations()
-        self.rsyncCommand.stringValue = Utils.sharedInstance.setRsyncCommandDisplay(index: self.index!, dryRun: true)
+        self.setRsyncCommandDisplay()
         self.rsyncparams.state = 0
     }
     
@@ -391,9 +389,7 @@ class ViewControllertabMain : NSViewController, Information, Abort, Count, Refre
     // Protocol RsyncChanged
     // If row is selected an update rsync command in view
     func rsyncchanged() {
-        if let index = self.index {
-          self.rsyncCommand.stringValue = Utils.sharedInstance.setRsyncCommandDisplay(index: index, dryRun: true)
-        }
+        self.setRsyncCommandDisplay()
     }
     
     // Protocol Connections
@@ -532,6 +528,30 @@ class ViewControllertabMain : NSViewController, Information, Abort, Count, Refre
         self.presentViewControllerAsModalWindow(self.ViewControllerAbout)
     }
     
+    
+    // Function for display rsync command
+    // Either --dry-run or real run
+    
+    
+    @IBOutlet weak var displayDryRun: NSButton!
+    @IBOutlet weak var displayRealRun: NSButton!
+    
+    @IBAction func displayRsyncCommand(_ sender: NSButton) {
+        self.setRsyncCommandDisplay()
+    }
+    
+    // Display correct rsync command
+    private func setRsyncCommandDisplay() {
+        if (self.displayDryRun.state == NSOnState) {
+            if let index = self.index {
+                self.rsyncCommand.stringValue = Utils.sharedInstance.setRsyncCommandDisplay(index: index, dryRun: true)
+            }
+        } else {
+            if let index = self.index {
+                self.rsyncCommand.stringValue = Utils.sharedInstance.setRsyncCommandDisplay(index: index, dryRun: false)
+            }
+        }
+    }
 
     // Initial functions viewDidLoad and viewDidAppear
     override func viewDidLoad() {
@@ -552,6 +572,8 @@ class ViewControllertabMain : NSViewController, Information, Abort, Count, Refre
         self.startProcess()
         self.mainTableView.target = self
         self.mainTableView.doubleAction = #selector(ViewControllertabMain.tableViewDoubleClick(sender:))
+        // Defaults to display dryrun command
+        self.displayDryRun.state = NSOnState
     }
     
     override func viewDidAppear() {
@@ -948,7 +970,6 @@ class ViewControllertabMain : NSViewController, Information, Abort, Count, Refre
         let myTableViewFromNotification = notification.object as! NSTableView
         let indexes = myTableViewFromNotification.selectedRowIndexes
         if let index = indexes.first {
-            self.rsyncCommand.stringValue = Utils.sharedInstance.setRsyncCommandDisplay(index: index, dryRun: true)
             self.index = index
             self.hiddenID = SharingManagerConfiguration.sharedInstance.gethiddenID(index: index)
             // Reset output
@@ -957,6 +978,7 @@ class ViewControllertabMain : NSViewController, Information, Abort, Count, Refre
             self.setNumbers(setvalues: false)
             self.workload = nil
             self.setInfo(info: "Estimate", color: NSColor.blue)
+            self.setRsyncCommandDisplay()
             self.process = nil
         } else {
             self.abortOperations()

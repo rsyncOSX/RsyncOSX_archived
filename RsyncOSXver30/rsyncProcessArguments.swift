@@ -142,9 +142,6 @@ class rsyncProcessArguments {
     /// - returns: Array of Strings
     func argumentsRsync (_ config : configuration, dryRun : Bool, forDisplay : Bool) -> [String] {
         
-        self.arguments = nil
-        self.arguments = Array<String>()
-        
         let localCatalog: String = config.localCatalog
         let offsiteCatalog: String = config.offsiteCatalog
         let offsiteUsername: String = config.offsiteUsername
@@ -200,5 +197,10 @@ class rsyncProcessArguments {
             break
         }
         return self.arguments!
+    }
+    
+    init () {
+        self.arguments = nil
+        self.arguments = Array<String>()
     }
 }
