@@ -85,7 +85,6 @@ class ViewControllerRsyncParameters: NSViewController {
             self.viewParameter14.stringValue = ""
         default : break
         }
-        
     }
     
     // Backup button - only for testing on state
@@ -183,7 +182,7 @@ class ViewControllerRsyncParameters: NSViewController {
         combobox.selectItem(at: index)
     }
     
-    // Returns nil or value from stringvalue
+    // Returns nil or value from stringvalue (rsync parameters)
     private func getValue(value:String) -> String? {
         if value.isEmpty {
             return nil
