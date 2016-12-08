@@ -51,7 +51,7 @@
 		A0B340B21D67077A00C6DAC3 /* ViewControllertabMain.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0B340B11D67077A00C6DAC3 /* ViewControllertabMain.swift */; };
 		A0B340B41D67079700C6DAC3 /* ViewControllertabSchedule.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0B340B31D67079700C6DAC3 /* ViewControllertabSchedule.swift */; };
 		A0B3D9741D758E20001E190E /* ViewControllerUserconfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0B3D9731D758E20001E190E /* ViewControllerUserconfiguration.swift */; };
-		A0CACFD41DA2738500C5997A /* rsyncParameters.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0CACFD31DA2738500C5997A /* rsyncParameters.swift */; };
+		A0CACFD41DA2738500C5997A /* RsyncParameters.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0CACFD31DA2738500C5997A /* RsyncParameters.swift */; };
 		A0DD27081D92DDF400D56899 /* FileDialog.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0DD27071D92DDF400D56899 /* FileDialog.swift */; };
 		A0EE98991D8948310034F1A4 /* ViewControllerInformationCopyFiles.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0EE98981D8948310034F1A4 /* ViewControllerInformationCopyFiles.swift */; };
 		A0EFB4501DC080A9008C21A6 /* persistentStoreUserconfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0EFB44F1DC080A9008C21A6 /* persistentStoreUserconfiguration.swift */; };
@@ -109,7 +109,7 @@
 		A0B340B11D67077A00C6DAC3 /* ViewControllertabMain.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewControllertabMain.swift; sourceTree = "<group>"; };
 		A0B340B31D67079700C6DAC3 /* ViewControllertabSchedule.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewControllertabSchedule.swift; sourceTree = "<group>"; };
 		A0B3D9731D758E20001E190E /* ViewControllerUserconfiguration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewControllerUserconfiguration.swift; sourceTree = "<group>"; };
-		A0CACFD31DA2738500C5997A /* rsyncParameters.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = rsyncParameters.swift; sourceTree = "<group>"; };
+		A0CACFD31DA2738500C5997A /* RsyncParameters.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RsyncParameters.swift; sourceTree = "<group>"; };
 		A0DD27071D92DDF400D56899 /* FileDialog.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FileDialog.swift; sourceTree = "<group>"; };
 		A0EE98981D8948310034F1A4 /* ViewControllerInformationCopyFiles.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewControllerInformationCopyFiles.swift; sourceTree = "<group>"; };
 		A0EFB44F1DC080A9008C21A6 /* persistentStoreUserconfiguration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = persistentStoreUserconfiguration.swift; sourceTree = "<group>"; };
@@ -200,7 +200,7 @@
 				A04492981D658F2100B3CE17 /* configuration.swift */,
 				A04492971D658F2100B3CE17 /* argumentsConfigurations.swift */,
 				A044929E1D658F2100B3CE17 /* rsyncProcessArguments.swift */,
-				A0CACFD31DA2738500C5997A /* rsyncParameters.swift */,
+				A0CACFD31DA2738500C5997A /* RsyncParameters.swift */,
 			);
 			name = Configuration;
 			sourceTree = "<group>";
@@ -426,7 +426,7 @@
 				A02A4AD91D7EFD3D0059CECD /* ViewControllerScheduleDetails.swift in Sources */,
 				A04C08081DBF50AF00972FE2 /* readwritefiles.swift in Sources */,
 				A04492BC1D658F2100B3CE17 /* yudpsocket.swift in Sources */,
-				A0CACFD41DA2738500C5997A /* rsyncParameters.swift in Sources */,
+				A0CACFD41DA2738500C5997A /* RsyncParameters.swift in Sources */,
 				A04492AC1D658F2100B3CE17 /* configuration.swift in Sources */,
 				A04492B51D658F2100B3CE17 /* SharingManagerConfiguration.swift in Sources */,
 				A04492861D658EE800B3CE17 /* AppDelegate.swift in Sources */,

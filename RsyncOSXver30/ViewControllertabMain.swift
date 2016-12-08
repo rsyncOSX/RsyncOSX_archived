@@ -452,6 +452,15 @@ class ViewControllertabMain : NSViewController, Information, Abort, Count, Refre
     
     // Menus as Radiobuttons for Edit functions in tabMainView
     @IBAction func Radiobuttons(_ sender: NSButton) {
+        
+        // Reset output
+        self.output = nil
+        // Clear numbers from dryrun
+        self.setNumbers(setvalues: false)
+        self.workload = nil
+        self.setInfo(info: "Estimate", color: NSColor.blue)
+        self.process = nil
+        
         if (self.index != nil) {
             // rsync params
             if (self.rsyncparams.state == 1) {
