@@ -52,20 +52,20 @@ final class RsyncParameters {
         
         switch (self.rsyncArguments[indexComboBox].1) {
         case 0:
-            return  self.rsyncArguments[indexComboBox].0
+            // Predefined rsync argument from combobox
+            // Must check if DELETE is selected
+            if self.rsyncArguments[indexComboBox].0 == self.rsyncArguments[1].0 {
+                return ""
+            } else {
+                return  self.rsyncArguments[indexComboBox].0
+            }
         case 1:
             // If value == nil value is deleted and return empty string
             guard value != nil else {
                 return ""
             }
             if self.rsyncArguments[indexComboBox].0 != self.rsyncArguments[0].0 {
-                // Predefined rsync argument from combobox
-                // Must check if DELETE is selected
-                if self.rsyncArguments[indexComboBox].0 == self.rsyncArguments[1].0 {
-                    return ""
-                } else {
-                    return self.rsyncArguments[indexComboBox].0 + "=" + value!
-                }
+                return self.rsyncArguments[indexComboBox].0 + "=" + value!
             } else {
                 // Userselected argument and value
                 return value!
@@ -73,7 +73,6 @@ final class RsyncParameters {
         default:
             return  ""
         }
-        
     }
     
     

@@ -149,13 +149,18 @@ class ViewControllerRsyncParameters: NSViewController {
         var Configurations:[configuration] = storeAPI.sharedInstance.getConfigurations()
         // Get the index of selected configuration
         let index = self.getindex_delegate?.getindex()
-        Configurations[index!].parameter8 = self.parameters!.getRsyncParameter(indexComboBox: self.parameter8.indexOfSelectedItem, value: self.viewParameter8.stringValue)
-        Configurations[index!].parameter9 = self.parameters!.getRsyncParameter(indexComboBox: self.parameter9.indexOfSelectedItem, value: self.viewParameter9.stringValue)
-        Configurations[index!].parameter10 = self.parameters!.getRsyncParameter(indexComboBox: self.parameter10.indexOfSelectedItem, value: self.viewParameter10.stringValue)
-        Configurations[index!].parameter11 = self.parameters!.getRsyncParameter(indexComboBox: self.parameter11.indexOfSelectedItem, value: self.viewParameter11.stringValue)
-        Configurations[index!].parameter12 = self.parameters!.getRsyncParameter(indexComboBox: self.parameter12.indexOfSelectedItem, value: self.viewParameter12.stringValue)
-        Configurations[index!].parameter13 = self.parameters!.getRsyncParameter(indexComboBox: self.parameter13.indexOfSelectedItem, value: self.viewParameter13.stringValue)
-        Configurations[index!].parameter14 = self.parameters!.getRsyncParameter(indexComboBox: self.parameter14.indexOfSelectedItem, value: self.viewParameter14.stringValue)
+        Configurations[index!].parameter8 = self.parameters!.getRsyncParameter(indexComboBox: self.parameter8.indexOfSelectedItem, value: getValue(value: self.viewParameter8.stringValue))
+        Configurations[index!].parameter9 = self.parameters!.getRsyncParameter(indexComboBox: self.parameter9.indexOfSelectedItem, value: getValue(value: self.viewParameter9.stringValue))
+        Configurations[index!].parameter10 = self.parameters!.getRsyncParameter(indexComboBox:
+            self.parameter10.indexOfSelectedItem, value: getValue(value: self.viewParameter10.stringValue))
+        Configurations[index!].parameter11 = self.parameters!.getRsyncParameter(indexComboBox:
+            self.parameter11.indexOfSelectedItem, value: getValue(value: self.viewParameter11.stringValue))
+        Configurations[index!].parameter12 = self.parameters!.getRsyncParameter(indexComboBox:
+            self.parameter12.indexOfSelectedItem, value: getValue(value: self.viewParameter12.stringValue))
+        Configurations[index!].parameter13 = self.parameters!.getRsyncParameter(indexComboBox:
+            self.parameter13.indexOfSelectedItem, value: getValue(value: self.viewParameter13.stringValue))
+        Configurations[index!].parameter14 = self.parameters!.getRsyncParameter(indexComboBox:
+            self.parameter14.indexOfSelectedItem, value: getValue(value: self.viewParameter14.stringValue))
         Configurations[index!].rsyncdaemon = self.rsyncdaemon.state
         if let port = self.sshport {
             Configurations[index!].sshport = Int(port.stringValue)
@@ -176,6 +181,15 @@ class ViewControllerRsyncParameters: NSViewController {
         combobox.removeAllItems()
         combobox.addItems(withObjectValues: self.comboBoxValues as [String]!)
         combobox.selectItem(at: index)
+    }
+    
+    // Returns nil or value from stringvalue
+    private func getValue(value:String) -> String? {
+        if value.isEmpty {
+            return nil
+        } else {
+            return value
+        }
     }
     
 }
