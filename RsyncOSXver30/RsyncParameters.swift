@@ -14,7 +14,8 @@ final class RsyncParameters {
     typealias argument = (String , Int)
     // Static initial arguments, DO NOT change order
     private let rsyncArguments:[argument] = [
-        ("select",1),
+        ("user",1),
+        ("delete",0),
         ("--stats",0),
         ("--backup",0),
         ("--backup-dir",1),
@@ -22,8 +23,7 @@ final class RsyncParameters {
         ("--include-from",1),
         ("--files-from",1),
         ("--max-size",1),
-        ("--suffix",1),
-        ("delete",0)]
+        ("--suffix",1)]
     
     // Preselected parameters for storing a backup of deleted or changed files before
     // rsync synchonises the directories
@@ -54,17 +54,22 @@ final class RsyncParameters {
         case 0:
             return  self.rsyncArguments[indexComboBox].0
         case 1:
+            // If value == nil value is deleted and return empty string
             guard value != nil else {
                 return ""
             }
             if self.rsyncArguments[indexComboBox].0 != self.rsyncArguments[0].0 {
                 // Predefined rsync argument from combobox
-                return self.rsyncArguments[indexComboBox].0 + "=" + value!
+                // Must check if DELETE is selected
+                if self.rsyncArguments[indexComboBox].0 == self.rsyncArguments[1].0 {
+                    return ""
+                } else {
+                    return self.rsyncArguments[indexComboBox].0 + "=" + value!
+                }
             } else {
                 // Userselected argument and value
                 return value!
             }
-            
         default:
             return  ""
         }
