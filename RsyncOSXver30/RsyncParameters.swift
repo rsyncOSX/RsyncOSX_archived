@@ -28,7 +28,7 @@ final class RsyncParameters {
     // Preselected parameters for storing a backup of deleted or changed files before
     // rsync synchronises the directories
     private let backupString = ["--backup","--backup-dir=../backup"]
-    private let suffixString = ["--suffix=_ $(date +%Y-%m-%d.%H.%M)"]
+    private let suffixString = ["--suffix=_`date +'%Y-%m-%d.%H.%M'`"]
 
     /// Function for getting string for backup parameters
     /// - parameter none: none
