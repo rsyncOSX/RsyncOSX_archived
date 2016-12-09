@@ -8,115 +8,85 @@
 
 import Foundation
 
-final class rsyncParameters {
+final class RsyncParameters {
     
-    // NSDictionary holding whic rsync arguments requiere and value
-    // Filled during initializing of object
-    private var rsyncArgumentsAndValue = [NSDictionary]()
-    
+    // Tuple for rsync argument and value
+    typealias argument = (String , Int)
     // Static initial arguments, DO NOT change order
-    private let rsyncArguments:[String] = [
-        "select",
-        "--stats",
-        "--backup",
-        "--backup-dir",
-        "--exclude-from",
-        "--include-from",
-        "--files-from",
-        "--max-size",
-        "--suffix",
-        "delete"]
+    private let rsyncArguments:[argument] = [
+        ("user",1),
+        ("delete",0),
+        ("--stats",0),
+        ("--backup",0),
+        ("--backup-dir",1),
+        ("--exclude-from",1),
+        ("--include-from",1),
+        ("--files-from",1),
+        ("--max-size",1),
+        ("--suffix",1)]
     
-    private let backupString = ["--backup","--backup-dir=../backup","--suffix=_$(date +%Y-%m-%d.%H.%M)"]
-    
+    // Preselected parameters for storing a backup of deleted or changed files before
+    // rsync synchronises the directories
+    private let backupString = ["--backup","--backup-dir=../backup"]
+    private let suffixString = ["--suffix=_ $(date +%Y-%m-%d.%H.%M)"]
+
+    /// Function for getting string for backup parameters
+    /// - parameter none: none
+    /// - return : array of String
     func getBackupString() -> [String] {
         return self.backupString
     }
+    
+    /// Function for getting string for suffix parameter
+    /// - parameter none: none
+    /// - return : array of String
+    func getSuffixString() -> [String] {
+        return self.suffixString
+    }
 
-    // Return static rsync arguments array
-    func getArguments() -> [String] {
-        return self.rsyncArguments
-    }
-    
-    // Return rsync arguments as NSDictionary
-    // NSDictionary holds info about rsync needs value or not
-    func getArgumentsAndValues() -> [NSDictionary] {
-        return self.rsyncArgumentsAndValue
-    }
-    
-    // Predefined userselected paramaters are filled in a [NSMutableDictionary]
-    private func fillargumentsDictionary() {
-        var value:Bool = true
+    /// Function for getting for rsync arguments to use in ComboBoxes in ViewControllerRsyncParameters
+    /// - parameter none: none
+    /// - return : array of String
+    func getComboBoxValues() -> [String] {
+        var values = Array<String>()
         for i in 0 ..< self.rsyncArguments.count {
-            switch self.rsyncArguments[i] {
-            case "delete":
-                value = false
-            case "--stats":
-                value = false
-            case "--backup":
-                value = false
-            default:
-                value = true
-            }
-            let dict:NSMutableDictionary = [
-                "argument": self.rsyncArguments[i],
-                "value":value,
-                "index":i]
-            self.rsyncArgumentsAndValue.append(dict)
+            values.append(self.rsyncArguments[i].0)
         }
+        return values
     }
     
-    // Returns nil if new argument and value is entered
-    private func argumentString (_ rsyncIndexargument: Int, value:String) -> String? {
-        
-        var str:String?
-        var addValue:Bool?
-        
-        if rsyncIndexargument >= 0 {
-            
-            let rsyncarg = self.rsyncArguments[rsyncIndexargument]
-            let result = self.rsyncArgumentsAndValue.filter({return ($0.value(forKey: "index") as? Int == rsyncIndexargument)})
-            if result.count > 0 {
-                addValue = (result[0].value(forKey: "value") as? Bool)!
-            } else {
-                addValue = false
-            }
-            
-            if (addValue!) {
-                if value.isEmpty {
-                    str = nil
-                } else {
-                    if (rsyncarg != self.rsyncArguments[0]) {
-                        str = rsyncarg + "=" + value
-                    } else {
-                        str = value
-                    }
-                }
-            } else {
-                if (rsyncarg == self.rsyncArguments[1]) {
-                    str = "--stats"
-                } else if (rsyncarg == self.rsyncArguments[2]) {
-                    str = "--backup"
-                } else if (rsyncarg == self.rsyncArguments[9]) {
-                    str = ""
-                } else {
-                    str = value
-                }
-            }
+    // Computes the raw argument for rsync to save in configuration
+    /// Function for computing the raw argument for rsync to save in configuration
+    /// - parameter indexComboBox: index of selected ComboBox
+    /// - parameter value: the value of rsync parameter
+    /// - return: array of String
+    
+    func getRsyncParameter (indexComboBox:Int, value:String?) -> String {
+        guard  indexComboBox < self.rsyncArguments.count else {
+            return ""
         }
-        return str
-    }
-
-    // Set correct rsyncparameter
-    func getRsyncParameter (indexCombobox:Int, value:String?) -> String {
-        if let str = self.argumentString(indexCombobox, value: value!) {
-            return str
-        } else {
-            if (indexCombobox == 0 || indexCombobox == 9) {
-                return  ""
+        switch (self.rsyncArguments[indexComboBox].1) {
+        case 0:
+            // Predefined rsync argument from combobox
+            // Must check if DELETE is selected
+            if self.rsyncArguments[indexComboBox].0 == self.rsyncArguments[1].0 {
+                return ""
             } else {
-                return self.rsyncArguments[indexCombobox] + "=" + value!
+                return  self.rsyncArguments[indexComboBox].0
             }
+        case 1:
+            // If value == nil value is deleted and return empty string
+            guard value != nil else {
+                return ""
+            }
+            if self.rsyncArguments[indexComboBox].0 != self.rsyncArguments[0].0 {
+                return self.rsyncArguments[indexComboBox].0 + "=" + value!
+            } else {
+                // Userselected argument and value
+                return value!
+            }
+        default:
+            return  ""
         }
     }
     
@@ -125,7 +95,7 @@ final class rsyncParameters {
     private func indexValue (_ argument:String) -> Int {
         var index:Int = -1
         loop : for i in 0 ..< self.rsyncArguments.count {
-            if argument == self.rsyncArguments[i] {
+            if argument == self.rsyncArguments[i].0 {
                 index = i
                 break loop
             }
@@ -199,95 +169,52 @@ final class rsyncParameters {
     /// Function calculates all userparameters (param8 - param14)
     /// - parameter index: index of selected row
     /// - returns: array of values with keys "indexComboBox" and "rsyncParameter", array always holding 7 records
-    
     func setValuesViewDidLoad(index:Int) -> [NSMutableDictionary] {
-        
         var configurations:[configuration] = SharingManagerConfiguration.sharedInstance.getConfigurations()
         var values = [NSMutableDictionary]()
-    
-        if (configurations[index].parameter8 != nil) {
-            let dict = NSMutableDictionary()
-            dict.setObject(self.getvalueCombobox(configurations[index].parameter8!), forKey: "indexComboBox" as NSCopying)
-            dict.setObject(self.getdisplayValue(configurations[index].parameter8!), forKey: "rsyncParameter" as NSCopying)
-            values.append(dict)
-        } else {
-            let dict = NSMutableDictionary()
-            dict.setObject(0, forKey: "indexComboBox" as NSCopying)
-            dict.setObject("", forKey: "rsyncParameter" as NSCopying)
-            values.append(dict)
-        }
-        if (configurations[index].parameter9 != nil) {
-            let dict = NSMutableDictionary()
-            dict.setObject(self.getvalueCombobox(configurations[index].parameter9!), forKey: "indexComboBox" as NSCopying)
-            dict.setObject(self.getdisplayValue(configurations[index].parameter9!), forKey: "rsyncParameter" as NSCopying)
-            values.append(dict)
-        } else {
-            let dict = NSMutableDictionary()
-            dict.setObject(0, forKey: "indexComboBox" as NSCopying)
-            dict.setObject("", forKey: "rsyncParameter" as NSCopying)
-            values.append(dict)
-        }
-        if (configurations[index].parameter10 != nil) {
-            let dict = NSMutableDictionary()
-            dict.setObject(self.getvalueCombobox(configurations[index].parameter10!), forKey: "indexComboBox" as NSCopying)
-            dict.setObject(self.getdisplayValue(configurations[index].parameter10!), forKey: "rsyncParameter" as NSCopying)
-            values.append(dict)
-        } else {
-            let dict = NSMutableDictionary()
-            dict.setObject(0, forKey: "indexComboBox" as NSCopying)
-            dict.setObject("", forKey: "rsyncParameter" as NSCopying)
-            values.append(dict)
-        }
-        if (configurations[index].parameter11 != nil) {
-            let dict = NSMutableDictionary()
-            dict.setObject(self.getvalueCombobox(configurations[index].parameter11!), forKey: "indexComboBox" as NSCopying)
-            dict.setObject(self.getdisplayValue(configurations[index].parameter11!), forKey: "rsyncParameter" as NSCopying)
-            values.append(dict)
-        } else {
-            let dict = NSMutableDictionary()
-            dict.setObject(0, forKey: "indexComboBox" as NSCopying)
-            dict.setObject("", forKey: "rsyncParameter" as NSCopying)
-            values.append(dict)
-        }
-        if (configurations[index].parameter12 != nil) {
-            let dict = NSMutableDictionary()
-            dict.setObject(self.getvalueCombobox(configurations[index].parameter12!), forKey: "indexComboBox" as NSCopying)
-            dict.setObject(self.getdisplayValue(configurations[index].parameter12!), forKey: "rsyncParameter" as NSCopying)
-            values.append(dict)
-        } else {
-            let dict = NSMutableDictionary()
-            dict.setObject(0, forKey: "indexComboBox" as NSCopying)
-            dict.setObject("", forKey: "rsyncParameter" as NSCopying)
-            values.append(dict)
-        }
-        if (configurations[index].parameter13 != nil) {
-            let dict = NSMutableDictionary()
-            dict.setObject(self.getvalueCombobox(configurations[index].parameter13!), forKey: "indexComboBox" as NSCopying)
-            dict.setObject(self.getdisplayValue(configurations[index].parameter13!), forKey: "rsyncParameter" as NSCopying)
-            values.append(dict)
-        } else {
-            let dict = NSMutableDictionary()
-            dict.setObject(0, forKey: "indexComboBox" as NSCopying)
-            dict.setObject("", forKey: "rsyncParameter" as NSCopying)
-            values.append(dict)
-        }
-        if (configurations[index].parameter14 != nil) {
-            let dict = NSMutableDictionary()
-            dict.setObject(self.getvalueCombobox(configurations[index].parameter14!), forKey: "indexComboBox" as NSCopying)
-            dict.setObject(self.getdisplayValue(configurations[index].parameter14!), forKey: "rsyncParameter" as NSCopying)
-            values.append(dict)
-        } else {
-            let dict = NSMutableDictionary()
-            dict.setObject(0, forKey: "indexComboBox" as NSCopying)
-            dict.setObject("", forKey: "rsyncParameter" as NSCopying)
-            values.append(dict)
-        }
+        values.append(self.getParamAsDictionary(config: configurations[index],parameter: 8))
+        values.append(self.getParamAsDictionary(config: configurations[index],parameter: 9))
+        values.append(self.getParamAsDictionary(config: configurations[index],parameter: 10))
+        values.append(self.getParamAsDictionary(config: configurations[index],parameter: 11))
+        values.append(self.getParamAsDictionary(config: configurations[index],parameter: 12))
+        values.append(self.getParamAsDictionary(config: configurations[index],parameter: 13))
+        values.append(self.getParamAsDictionary(config: configurations[index],parameter: 14))
         // Return values
         return values
     }
 
-    
-    init() {
-        self.fillargumentsDictionary()
+    // Function for creating NSMutableDictionary of stored rsync parameters
+    private func getParamAsDictionary(config:configuration, parameter:Int) -> NSMutableDictionary {
+        let dict = NSMutableDictionary()
+        var param:String?
+        
+        switch parameter {
+        case 8:
+            param = config.parameter8
+        case 9:
+            param = config.parameter9
+        case 10:
+            param = config.parameter10
+        case 11:
+            param = config.parameter11
+        case 12:
+            param = config.parameter12
+        case 13:
+            param = config.parameter13
+        case 14:
+            param = config.parameter14
+        default:
+            param = nil
+        }
+        if (param != nil) {
+            dict.setObject(self.getvalueCombobox(param!), forKey: "indexComboBox" as NSCopying)
+            dict.setObject(self.getdisplayValue(param!), forKey: "rsyncParameter" as NSCopying)
+            return dict
+        } else {
+            dict.setObject(0, forKey: "indexComboBox" as NSCopying)
+            dict.setObject("", forKey: "rsyncParameter" as NSCopying)
+            return dict
+        }
     }
+
 }
