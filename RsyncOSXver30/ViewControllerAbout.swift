@@ -28,7 +28,7 @@ class ViewControllerAbout : NSViewController {
     }
     
     @IBAction func changelog(_ sender: NSButton) {
-        NSWorkspace.shared().open(URL(string: "https://github.com/rsyncOSX/Documentation/blob/master/Docs/Changelog.md")!)
+        NSWorkspace.shared().open(URL(string: "https://github.com/rsyncOSX/Documentation/blob/master/docs/Changelog.md")!)
         self.dismiss_delegate?.dismiss_view(viewcontroller: self)
     }
     
