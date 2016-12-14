@@ -41,6 +41,7 @@ class ViewControllerUserconfiguration : NSViewController {
             self.rsyncchanged_delegate?.rsyncchanged()
         }
         self.dirty = true
+        self.verifyRsync()
     }
     
     @IBAction func toggleDetailedlogging(_ sender: NSButton) {
@@ -103,6 +104,7 @@ class ViewControllerUserconfiguration : NSViewController {
                     self.noRsync.isHidden = true
                 }
             } else {
+                
                 let path = "/usr/local/bin/rsync"
                 if (fileManager.fileExists(atPath: path) == false) {
                     self.noRsync.isHidden = false
@@ -114,6 +116,7 @@ class ViewControllerUserconfiguration : NSViewController {
             }
         } else {
             SharingManagerConfiguration.sharedInstance.noRysync = false
+            self.noRsync.isHidden = true
         }
     }
 
@@ -131,7 +134,6 @@ class ViewControllerUserconfiguration : NSViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.noRsync.isHidden = true
         // Dismisser is root controller
         if let pvc2 = self.presenting as? ViewControllertabMain {
             self.dismiss_delegate = pvc2
@@ -145,9 +147,16 @@ class ViewControllerUserconfiguration : NSViewController {
     
     override func viewDidAppear() {
         super.viewDidAppear()
-        self.verifyRsync()
+        
         self.dirty = false
         // Set userconfig
+        self.checkUserConfig()
+        // Check path for rsync
+        self.verifyRsync()
+    }
+    
+    // Function for check and set user configuration
+    private func checkUserConfig() {
         if (SharingManagerConfiguration.sharedInstance.rsyncVer3) {
             self.version3rsync.state = NSOnState
         } else {

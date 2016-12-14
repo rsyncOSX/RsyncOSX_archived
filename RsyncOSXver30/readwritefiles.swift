@@ -94,6 +94,12 @@ class readwritefiles {
             
             let dictionary = NSDictionary(contentsOfFile: self.fileName!)
             let items : Any? = dictionary?.object(forKey: self.key!)
+            
+            // If no items return nil
+            guard items != nil else {
+                return nil
+            }
+            
             if let arrayitems = items as? NSArray {
                 for i in 0 ..< arrayitems.count {
                     if let item = arrayitems[i] as? NSDictionary {

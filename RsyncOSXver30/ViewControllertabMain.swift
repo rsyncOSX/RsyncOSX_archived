@@ -611,6 +611,7 @@ class ViewControllertabMain : NSViewController, Information, Abort, Count, Refre
             self.schedules = ScheduleSortedAndExpand()
         }
         self.ready = true
+        self.displayAllowDoubleclick()
     }
     
     override func viewDidDisappear() {
@@ -732,6 +733,8 @@ class ViewControllertabMain : NSViewController, Information, Abort, Count, Refre
         if (SharingManagerConfiguration.sharedInstance.noRysync == true) {
             if let rsync = SharingManagerConfiguration.sharedInstance.rsyncPath {
                 Alerts.showInfo("ERROR: no rsync in " + rsync)
+            } else {
+                Alerts.showInfo("ERROR: no rsync in /usr/local/bin")
             }
         } else {
             Alerts.showInfo("Scheduled operation in progress")
