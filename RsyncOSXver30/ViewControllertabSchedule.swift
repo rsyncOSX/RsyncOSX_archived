@@ -19,12 +19,8 @@ protocol StartTimer : class {
     func startTimerNextJob()
 }
 
-class ViewControllertabSchedule : NSViewController, GetHiddenID, RefreshtableViewtabSchedule, DismissViewController, StartTimer, AddProfiles {
+class ViewControllertabSchedule : NSViewController, RefreshtableViewtabSchedule, DismissViewController, StartTimer, AddProfiles {
     
-    // Protocol GetHiddenID
-    func gethiddenID() -> Int {
-        return self.hiddenID!
-    }
     
     // Protocol RefreshtableViewtabSchedule
     func refreshInSchedule() {
@@ -65,7 +61,7 @@ class ViewControllertabSchedule : NSViewController, GetHiddenID, RefreshtableVie
     // Index selected
     private var index:Int?
     // hiddenID
-    private var hiddenID:Int?
+    fileprivate var hiddenID:Int?
     // Added schedules
     private var newSchedules:Bool?
     // Timer to count down when next scheduled backup is due.
@@ -331,6 +327,15 @@ extension ViewControllertabSchedule : NSTableViewDelegate {
             SharingManagerConfiguration.sharedInstance.getConfigurationsDataSource()![row].setObject(object!, forKey: (tableColumn?.identifier)! as NSCopying)
             SharingManagerConfiguration.sharedInstance.setBatchYesNo(row)
         }
+    }
+    
+}
+
+extension  ViewControllertabSchedule: GetHiddenID {
+    
+    // Protocol GetHiddenID
+    func gethiddenID() -> Int {
+        return self.hiddenID!
     }
     
 }

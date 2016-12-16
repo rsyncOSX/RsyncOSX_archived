@@ -37,7 +37,7 @@ protocol UpdateProgress : class {
     func FileHandler()
 }
 
-class ViewControllertabMain : NSViewController, Information, Abort, Count, RefreshtableViewtabMain, StartBatch, ReadConfigurationsAgain, RsyncUserParams, GetSelecetedIndex, NewSchedules, StartNextScheduledTask, DismissViewController, UpdateProgress, ScheduledJobInProgress, RsyncChanged, Connections, AddProfiles, newVersionDiscovered {
+class ViewControllertabMain : NSViewController, Abort, RefreshtableViewtabMain, ReadConfigurationsAgain, RsyncUserParams, GetSelecetedIndex, NewSchedules, StartNextScheduledTask, DismissViewController, UpdateProgress, ScheduledJobInProgress, RsyncChanged, Connections, AddProfiles, newVersionDiscovered {
 
     // Protocol function used in Process().
     weak var processupdate_delegate:UpdateProgress?
@@ -45,7 +45,6 @@ class ViewControllertabMain : NSViewController, Information, Abort, Count, Refre
     weak var refresh_delegate:RefreshtableViewBatch?
     // Delegate function for start/stop progress Indicator in BatchWindow
     weak var indicator_delegate:StartStopProgressIndicatorViewBatch?
-
     
     // Main tableview
     @IBOutlet weak var mainTableView: NSTableView!
@@ -78,35 +77,34 @@ class ViewControllertabMain : NSViewController, Information, Abort, Count, Refre
     @IBOutlet weak var processInfo: NSTextField!
     
     
-    
     // REFERENCE VARIABLES
     
     // Reference to Process task
-    private var process:Process?
+    fileprivate var process:Process?
     // Index to selected row, index is set when row is selected
-    private var index:Int?
+    fileprivate var index:Int?
     // Getting output from rsync 
-    private var output:outputProcess?
+    fileprivate var output:outputProcess?
     // Holding max count 
-    private var maxcount:Int = 0
+    fileprivate var maxcount:Int = 0
     // HiddenID task, set when row is selected
-    private var hiddenID:Int?
+    fileprivate var hiddenID:Int?
     // Reference to Schedules object
     fileprivate var schedules : ScheduleSortedAndExpand?
     // Bool if one or more remote server is offline
     // Used in testing if remote server is on/off-line
     fileprivate var serverOff:[Bool]?
     // Single task work queu
-    private var workload:singleTask?
+    fileprivate var workload:singleTask?
     
     // Schedules in progress
-    private var scheduledJobInProgress:Bool = false
+    fileprivate var scheduledJobInProgress:Bool = false
     // Ready for execute again
-    private var ready:Bool = true
+    fileprivate var ready:Bool = true
     // Can load profiles
     // Load profiles only when testing for connections are done.
     // Application crash if not
-    private var loadProfileMenu:Bool = false
+    fileprivate var loadProfileMenu:Bool = false
     
     // Information about rsync output
     // self.presentViewControllerAsSheet(self.ViewControllerInformation)
@@ -190,26 +188,6 @@ class ViewControllertabMain : NSViewController, Information, Abort, Count, Refre
     
     // PROTOCOL functions
     
-    // Protocol Information
-    // Get information from rsync output.
-    func getInformation() -> [String] {
-        if (self.output != nil) {
-            if (self.workload == nil) {
-                return self.output!.getOutputbatch()
-            } else {
-                return self.output!.getOutput()
-            }
-        } else {
-            return [""]
-        }
-    }
-    
-    // Protocol Count, two functions maxCount and inprogressCount
-    // Maxnumber of files counted
-    func maxCount() -> Int {
-        return self.maxcount
-    }
-    
     // Counting number of files
     // Function is called when Process discover FileHandler notification
     func inprogressCount() -> Int {
@@ -228,86 +206,6 @@ class ViewControllertabMain : NSViewController, Information, Abort, Count, Refre
         })
     }
     
-    // Protocol StartBatch
-    // Two functions runcBatch and abortOperations.
-    // Functions are called from batchView.
-    func runBatch() {
-        // No scheduled opertaion in progress
-        if (self.scheduledOperationInProgress() == false ) {
-            if let batchobject = SharingManagerConfiguration.sharedInstance.getBatchdataObject() {
-                // Just copy the work object.
-                // The work object will be removed in Process termination
-                let work = batchobject.nextBatchCopy()
-                // Get the index if given hiddenID (in work.0)
-                let index:Int = SharingManagerConfiguration.sharedInstance.getIndex(work.0)
-                switch (work.1) {
-                case 0:
-                    if let pvc = self.presentedViewControllers as? [ViewControllerBatch] {
-                        self.indicator_delegate = pvc[0]
-                        self.indicator_delegate?.start()
-                    }
-                    let arguments:[String] = SharingManagerConfiguration.sharedInstance.getrsyncArgumentOneConfiguration(index: index, argtype: .argdryRun)
-                    let process = rsyncProcess(operation: false, tabMain: true, command : nil)
-                    // Setting reference to process for Abort if requiered
-                    process.executeProcess(arguments, output: self.output!)
-                    self.process = process.getProcess()
-                case 1:
-                    let arguments:[String] = SharingManagerConfiguration.sharedInstance.getrsyncArgumentOneConfiguration(index: index, argtype: .arg)
-                    let process = rsyncProcess(operation: false, tabMain: true, command : nil)
-                    // Setting reference to process for Abort if requiered
-                    process.executeProcess(arguments, output: self.output!)
-                    self.process = process.getProcess()
-                case -1:
-                    if let pvc = self.presentedViewControllers as? [ViewControllerBatch] {
-                        self.indicator_delegate = pvc[0]
-                        self.indicator_delegate?.complete()
-                    }
-                default : break
-                }
-            }
-        } else {
-            Alerts.showInfo("Scheduled operation in progress")
-        }
-    }
-    
-    func abortOperations() {
-        // Terminates the running process
-        self.showProcessInfo(what:8)
-        if let process = self.process {
-            process.terminate()
-            self.index = nil
-            self.working.stopAnimation(nil)
-            self.schedules = nil
-            self.process = nil
-            self.workload = nil
-            // Create workqueu and add abort
-            self.workload = singleTask(task: .abort)
-            self.setInfo(info: "Abort", color: NSColor.red)
-            self.rsyncCommand.stringValue = ""
-        } else {
-            self.rsyncCommand.stringValue = "Selection out of range - aborting"
-            self.process = nil
-            self.workload = nil
-            self.index = nil
-        }
-        if let batchobject = SharingManagerConfiguration.sharedInstance.getBatchdataObject() {
-            // Empty queue in batchobject
-            batchobject.abortOperations()
-            // Set reference to batchdata = nil
-            SharingManagerConfiguration.sharedInstance.deleteBatchData()
-            self.schedules = nil
-            self.process = nil
-            self.workload = nil
-            self.workload = singleTask(task: .abort)
-            self.setInfo(info: "Abort", color: NSColor.red)
-        }
-    }
-    
-    func closeOperation() {
-        self.process = nil
-        self.workload = nil
-        self.setInfo(info: "", color: NSColor.black)
-    }
     
     // Protocol ReadConfigurationsAgain
     func readConfigurations() {
@@ -694,7 +592,7 @@ class ViewControllertabMain : NSViewController, Information, Abort, Count, Refre
         }
     }
     
-    private func setInfo(info:String, color:NSColor) {
+    fileprivate func setInfo(info:String, color:NSColor) {
         self.dryRunOrRealRun.stringValue = info
         self.dryRunOrRealRun.textColor = color
     
@@ -742,7 +640,7 @@ class ViewControllertabMain : NSViewController, Information, Abort, Count, Refre
     }
 
     // True if scheduled task in progress
-    private func scheduledOperationInProgress() -> Bool {
+    fileprivate func scheduledOperationInProgress() -> Bool {
         var scheduleInProgress:Bool?
         if (self.schedules != nil) {
             scheduleInProgress = self.schedules!.getScheduledOperationInProgress()
@@ -999,7 +897,7 @@ class ViewControllertabMain : NSViewController, Information, Abort, Count, Refre
     }
     
     // Just for updating process info
-    private func showProcessInfo(what:Int) {
+    fileprivate func showProcessInfo(what:Int) {
         GlobalMainQueue.async(execute: { () -> Void in
             switch what {
             case 1:
@@ -1097,6 +995,119 @@ extension ViewControllertabMain : NSTableViewDelegate {
         }
     }
     
+}
+
+extension ViewControllertabMain: Information {
+    
+    // Protocol Information
+    // Get information from rsync output.
+    func getInformation() -> [String] {
+        if (self.output != nil) {
+            if (self.workload == nil) {
+                return self.output!.getOutputbatch()
+            } else {
+                return self.output!.getOutput()
+            }
+        } else {
+            return [""]
+        }
+    }
+    
+}
+
+extension ViewControllertabMain: Count {
+    
+    // Protocol Count, two functions maxCount and inprogressCount
+    // Maxnumber of files counted
+    func maxCount() -> Int {
+        return self.maxcount
+    }
+
+}
+
+extension ViewControllertabMain: StartBatch {
+    
+    // Protocol StartBatch
+    // Two functions runcBatch and abortOperations.
+    // Functions are called from batchView.
+    func runBatch() {
+        // No scheduled opertaion in progress
+        if (self.scheduledOperationInProgress() == false ) {
+            if let batchobject = SharingManagerConfiguration.sharedInstance.getBatchdataObject() {
+                // Just copy the work object.
+                // The work object will be removed in Process termination
+                let work = batchobject.nextBatchCopy()
+                // Get the index if given hiddenID (in work.0)
+                let index:Int = SharingManagerConfiguration.sharedInstance.getIndex(work.0)
+                switch (work.1) {
+                case 0:
+                    if let pvc = self.presentedViewControllers as? [ViewControllerBatch] {
+                        self.indicator_delegate = pvc[0]
+                        self.indicator_delegate?.start()
+                    }
+                    let arguments:[String] = SharingManagerConfiguration.sharedInstance.getrsyncArgumentOneConfiguration(index: index, argtype: .argdryRun)
+                    let process = rsyncProcess(operation: false, tabMain: true, command : nil)
+                    // Setting reference to process for Abort if requiered
+                    process.executeProcess(arguments, output: self.output!)
+                    self.process = process.getProcess()
+                case 1:
+                    let arguments:[String] = SharingManagerConfiguration.sharedInstance.getrsyncArgumentOneConfiguration(index: index, argtype: .arg)
+                    let process = rsyncProcess(operation: false, tabMain: true, command : nil)
+                    // Setting reference to process for Abort if requiered
+                    process.executeProcess(arguments, output: self.output!)
+                    self.process = process.getProcess()
+                case -1:
+                    if let pvc = self.presentedViewControllers as? [ViewControllerBatch] {
+                        self.indicator_delegate = pvc[0]
+                        self.indicator_delegate?.complete()
+                    }
+                default : break
+                }
+            }
+        } else {
+            Alerts.showInfo("Scheduled operation in progress")
+        }
+    }
+    
+    func abortOperations() {
+        // Terminates the running process
+        self.showProcessInfo(what:8)
+        if let process = self.process {
+            process.terminate()
+            self.index = nil
+            self.working.stopAnimation(nil)
+            self.schedules = nil
+            self.process = nil
+            self.workload = nil
+            // Create workqueu and add abort
+            self.workload = singleTask(task: .abort)
+            self.setInfo(info: "Abort", color: NSColor.red)
+            self.rsyncCommand.stringValue = ""
+        } else {
+            self.rsyncCommand.stringValue = "Selection out of range - aborting"
+            self.process = nil
+            self.workload = nil
+            self.index = nil
+        }
+        if let batchobject = SharingManagerConfiguration.sharedInstance.getBatchdataObject() {
+            // Empty queue in batchobject
+            batchobject.abortOperations()
+            // Set reference to batchdata = nil
+            SharingManagerConfiguration.sharedInstance.deleteBatchData()
+            self.schedules = nil
+            self.process = nil
+            self.workload = nil
+            self.workload = singleTask(task: .abort)
+            self.setInfo(info: "Abort", color: NSColor.red)
+        }
+    }
+    
+    func closeOperation() {
+        self.process = nil
+        self.workload = nil
+        self.setInfo(info: "", color: NSColor.black)
+    }
+
 }
 
 
