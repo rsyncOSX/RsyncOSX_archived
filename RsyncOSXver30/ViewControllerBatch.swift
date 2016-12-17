@@ -19,7 +19,7 @@ protocol StartBatch : class  {
 }
 
 
-class ViewControllerBatch : NSViewController, RefreshtableViewBatch, StartStopProgressIndicatorViewBatch {
+class ViewControllerBatch : NSViewController {
     
     // If close button or abort is pressed
     // After execute button is pressed, close is abort
@@ -61,56 +61,12 @@ class ViewControllerBatch : NSViewController, RefreshtableViewBatch, StartStopPr
         self.close = false
     }
     
-    // PROTOCOL FUNCTIONS
-
-    // Protocol RefreshtableViewBatch
-    // Updates tableview according to progress of batch
-    func refreshInBatch() {
-        GlobalMainQueue.async(execute: { () -> Void in
-            self.mainTableView.reloadData()
-        })
-    }
-    
-    // Protocol StartStopProgressIndicatorViewBatch
-    // Stops estimation progressbar when real task is executing
-    func stop() {
-        GlobalMainQueue.async(execute: { () -> Void in
-            self.working.stopAnimation(nil)
-            self.label.stringValue = "Executing"
-        })
-        
-    }
-    
-    func start() {
-        self.close = false
-        // Starts estimation progressbar when estimation starts
-        GlobalMainQueue.async(execute: { () -> Void in
-            self.working.startAnimation(nil)
-            self.label.isHidden = false
-            self.label.stringValue = "Estimating"
-        })
-        
-    }
-
-    func complete() {
-        // Batch task completed
-        GlobalMainQueue.async(execute: { () -> Void in
-            self.label.stringValue = "Completed"
-            self.CloseButton.title = "Close"
-            self.close = true
-        })
-        self.closeinseconds.isHidden = false
-        self.seconds = 10
-        self.waitToClose = Timer.scheduledTimer(timeInterval: 10, target: self, selector: #selector(closeView), userInfo: nil, repeats: false)
-        self.closeIn = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(setSecondsView), userInfo: nil, repeats: true)
-    }
-    
-    @objc private func setSecondsView() {
+    @objc fileprivate func setSecondsView() {
         self.seconds = self.seconds! - 1
         self.closeinseconds.stringValue = "Close automatically in : " + String(self.seconds!) + " seconds"
     }
     
-    @objc private func closeView() {
+    @objc fileprivate func closeView() {
         self.waitToClose?.invalidate()
         self.closeIn?.invalidate()
         self.dismiss_delegate?.dismiss_view(viewcontroller: self)
@@ -173,6 +129,54 @@ extension ViewControllerBatch : NSTableViewDelegate {
             SharingManagerConfiguration.sharedInstance.getConfigurationsDataSource()![row].setObject(object!, forKey: (tableColumn?.identifier)! as NSCopying)
             SharingManagerConfiguration.sharedInstance.setBatchYesNo(row)
         }
+    }
+    
+}
+
+extension ViewControllerBatch: StartStopProgressIndicatorViewBatch {
+    
+    // Stops estimation progressbar when real task is executing
+    func stop() {
+        GlobalMainQueue.async(execute: { () -> Void in
+            self.working.stopAnimation(nil)
+            self.label.stringValue = "Executing"
+        })
+        
+    }
+    
+    func start() {
+        self.close = false
+        // Starts estimation progressbar when estimation starts
+        GlobalMainQueue.async(execute: { () -> Void in
+            self.working.startAnimation(nil)
+            self.label.isHidden = false
+            self.label.stringValue = "Estimating"
+        })
+        
+    }
+    
+    func complete() {
+        // Batch task completed
+        GlobalMainQueue.async(execute: { () -> Void in
+            self.label.stringValue = "Completed"
+            self.CloseButton.title = "Close"
+            self.close = true
+        })
+        self.closeinseconds.isHidden = false
+        self.seconds = 10
+        self.waitToClose = Timer.scheduledTimer(timeInterval: 10, target: self, selector: #selector(closeView), userInfo: nil, repeats: false)
+        self.closeIn = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(setSecondsView), userInfo: nil, repeats: true)
+    }
+    
+}
+
+extension ViewControllerBatch: RefreshtableViewBatch {
+    
+    // Updates tableview according to progress of batch
+    func refreshInBatch() {
+        GlobalMainQueue.async(execute: { () -> Void in
+            self.mainTableView.reloadData()
+        })
     }
     
 }

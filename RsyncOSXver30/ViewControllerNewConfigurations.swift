@@ -10,7 +10,7 @@ import Foundation
 import Cocoa
 
 
-class ViewControllerNewConfigurations: NSViewController, GetPath, DismissViewController {
+class ViewControllerNewConfigurations: NSViewController {
     
     // Table holding all new Configurations
     @IBOutlet weak var newTableView: NSTableView!
@@ -47,27 +47,6 @@ class ViewControllerNewConfigurations: NSViewController, GetPath, DismissViewCon
         return self.storyboard!.instantiateController(withIdentifier: "StoryboardUserconfigID")
             as! NSViewController
     }()
-    
-    
-    // Telling the view to dismiss any presented Viewcontroller
-    func dismiss_view(viewcontroller:NSViewController) {
-        self.dismissViewController(viewcontroller)
-    }
-
-
-    // Protocol GetPath
-    func pathSet(path: String?, requester : WhichPath) {
-        if let setpath = path {
-            switch (requester) {
-            case .AddLocalCatalog:
-                self.localCatalog.stringValue = setpath
-            case .AddRemoteCatalog:
-                self.offsiteCatalog.stringValue = setpath
-            default:
-                break
-            }
-        }
-    }
     
     @IBAction func copyLocalCatalog(_ sender: NSButton) {
         _ = FileDialog(requester: .AddLocalCatalog)
@@ -229,6 +208,32 @@ extension ViewControllerNewConfigurations : NSDraggingDestination {
     
     func performDragOperation(_ sender: NSDraggingInfo) -> Bool {
         return true
+    }
+    
+}
+
+extension ViewControllerNewConfigurations: GetPath {
+    
+    func pathSet(path: String?, requester : WhichPath) {
+        if let setpath = path {
+            switch (requester) {
+            case .AddLocalCatalog:
+                self.localCatalog.stringValue = setpath
+            case .AddRemoteCatalog:
+                self.offsiteCatalog.stringValue = setpath
+            default:
+                break
+            }
+        }
+    }
+    
+}
+
+extension ViewControllerNewConfigurations: DismissViewController {
+    
+    // Telling the view to dismiss any presented Viewcontroller
+    func dismiss_view(viewcontroller:NSViewController) {
+        self.dismissViewController(viewcontroller)
     }
     
 }
