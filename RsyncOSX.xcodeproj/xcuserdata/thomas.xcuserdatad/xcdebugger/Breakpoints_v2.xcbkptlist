@@ -26,11 +26,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "RsyncOSXver30/ViewControllertabMain.swift"
-            timestampString = "503588011.60984"
+            timestampString = "503652578.545687"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "549"
-            endingLineNumber = "549"
+            startingLineNumber = "384"
+            endingLineNumber = "384"
             landmarkName = "executeSingelTask()"
             landmarkType = "7">
          </BreakpointContent>
