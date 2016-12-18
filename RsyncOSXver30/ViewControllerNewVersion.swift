@@ -20,7 +20,7 @@ class ViewControllerNewVersion : NSViewController {
     @IBOutlet weak var closeinseconds: NSTextField!
     
     @IBAction func changelogg(_ sender: NSButton) {
-        NSWorkspace.shared().open(URL(string: "https://github.com/rsyncOSX/Documentation/blob/master/Docs/Changelog.md")!)
+        NSWorkspace.shared().open(URL(string: "https://github.com/rsyncOSX/Documentation/blob/master/docs/Changelog.md")!)
     }
     
     @IBAction func download(_ sender: NSButton) {

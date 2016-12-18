@@ -27,7 +27,7 @@ protocol Count : class {
     func inprogressCount() -> Int
 }
 
-class ViewControllerProgressProcess : NSViewController, UpdateProgress {
+class ViewControllerProgressProcess : NSViewController {
     
     var count:Double = 0
     var maxcount: Double = 0
@@ -67,7 +67,7 @@ class ViewControllerProgressProcess : NSViewController, UpdateProgress {
         self.stopProgressbar()
     }
     
-    private func stopProgressbar() {
+    fileprivate func stopProgressbar() {
         self.progress.stopAnimation(self)
     }
     
@@ -81,9 +81,15 @@ class ViewControllerProgressProcess : NSViewController, UpdateProgress {
         self.progress.startAnimation(self)
     }
     
-    private func updateProgressbar(_ value:Double) {
+    fileprivate func updateProgressbar(_ value:Double) {
         self.progress.doubleValue = value
     }
+    
+    
+    
+}
+
+extension ViewControllerProgressProcess: UpdateProgress {
     
     // Protocol UpdateProgress
     
@@ -95,6 +101,6 @@ class ViewControllerProgressProcess : NSViewController, UpdateProgress {
     func FileHandler() {
         self.updateProgressbar(Double((self.count_delegate?.inprogressCount())!))
     }
-    
+
     
 }

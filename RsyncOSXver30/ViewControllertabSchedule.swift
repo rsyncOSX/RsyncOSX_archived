@@ -19,41 +19,7 @@ protocol StartTimer : class {
     func startTimerNextJob()
 }
 
-class ViewControllertabSchedule : NSViewController, GetHiddenID, RefreshtableViewtabSchedule, DismissViewController, StartTimer, AddProfiles {
-    
-    // Protocol GetHiddenID
-    func gethiddenID() -> Int {
-        return self.hiddenID!
-    }
-    
-    // Protocol RefreshtableViewtabSchedule
-    func refreshInSchedule() {
-        if (SharingManagerConfiguration.sharedInstance.ConfigurationsDataSourcecountBackupOnlyCount() > 0 ) {
-            GlobalMainQueue.async(execute: { () -> Void in
-                self.mainTableView.reloadData()
-            })
-        }
-        // Create a New schedules object
-        self.schedules = nil
-        self.schedules = ScheduleSortedAndExpand()
-        // Displaying next two scheduled tasks
-        self.firstScheduledTask.stringValue = (self.schedules?.whenIsNextTwoTasksString()[0])!
-        self.secondScheduledTask.stringValue = (self.schedules?.whenIsNextTwoTasksString()[1])!
-    }
-    
-    // Protocol AddProfiles two functions
-    // Just reset the schedules
-    func newProfile() {
-        self.schedules = nil
-        self.firstRemoteServer.stringValue = ""
-        self.firstLocalCatalog.stringValue = ""
-        self.secondRemoteServer.stringValue = ""
-        self.secondLocalCatalog.stringValue = ""        
-    }
-    
-    func enableProfileMenu() {
-        // Nothing, just for complying to protocol
-    }
+class ViewControllertabSchedule : NSViewController {
     
     // Main tableview
     @IBOutlet weak var mainTableView: NSTableView!
@@ -65,7 +31,7 @@ class ViewControllertabSchedule : NSViewController, GetHiddenID, RefreshtableVie
     // Index selected
     private var index:Int?
     // hiddenID
-    private var hiddenID:Int?
+    fileprivate var hiddenID:Int?
     // Added schedules
     private var newSchedules:Bool?
     // Timer to count down when next scheduled backup is due.
@@ -98,13 +64,6 @@ class ViewControllertabSchedule : NSViewController, GetHiddenID, RefreshtableVie
             as! NSViewController
     }()
 
-    
-    // Telling the view to dismiss any presented Viewcontroller
-    func dismiss_view(viewcontroller:NSViewController) {
-        self.dismissViewController(viewcontroller)
-    }
-
-    
     @IBOutlet weak var firstScheduledTask: NSTextField!
     @IBOutlet weak var secondScheduledTask: NSTextField!
     @IBOutlet weak var firstRemoteServer: NSTextField!
@@ -259,15 +218,6 @@ class ViewControllertabSchedule : NSViewController, GetHiddenID, RefreshtableVie
         }
     }
     
-    // Protocol function StartTimer
-    // Called from Process
-    func startTimerNextJob() {
-        self.schedules = ScheduleSortedAndExpand()
-        self.firstRemoteServer.stringValue = ""
-        self.firstLocalCatalog.stringValue = ""
-        self.startTimer()
-    }
-    
     // when row is selected
     // setting which table row is selected
     func tableViewSelectionDidChange(_ notification: Notification) {
@@ -334,3 +284,69 @@ extension ViewControllertabSchedule : NSTableViewDelegate {
     }
     
 }
+
+extension  ViewControllertabSchedule: GetHiddenID {
+    
+    func gethiddenID() -> Int {
+        return self.hiddenID!
+    }
+    
+}
+
+extension ViewControllertabSchedule: DismissViewController {
+    
+    // Function for dismissing a presented view
+    // - parameter viewcontroller: the viewcontroller to be dismissed
+    // Telling the view to dismiss any presented Viewcontroller
+    func dismiss_view(viewcontroller:NSViewController) {
+        self.dismissViewController(viewcontroller)
+    }
+}
+
+extension ViewControllertabSchedule: AddProfiles {
+    
+    // Just reset the schedules
+    func newProfile() {
+        self.schedules = nil
+        self.firstRemoteServer.stringValue = ""
+        self.firstLocalCatalog.stringValue = ""
+        self.secondRemoteServer.stringValue = ""
+        self.secondLocalCatalog.stringValue = ""
+    }
+    
+    func enableProfileMenu() {
+        // Nothing, just for complying to protocol
+    }
+
+}
+
+extension ViewControllertabSchedule: RefreshtableViewtabSchedule {
+    
+    func refreshInSchedule() {
+        if (SharingManagerConfiguration.sharedInstance.ConfigurationsDataSourcecountBackupOnlyCount() > 0 ) {
+            GlobalMainQueue.async(execute: { () -> Void in
+                self.mainTableView.reloadData()
+            })
+        }
+        // Create a New schedules object
+        self.schedules = nil
+        self.schedules = ScheduleSortedAndExpand()
+        // Displaying next two scheduled tasks
+        self.firstScheduledTask.stringValue = (self.schedules?.whenIsNextTwoTasksString()[0])!
+        self.secondScheduledTask.stringValue = (self.schedules?.whenIsNextTwoTasksString()[1])!
+    }
+
+    
+}
+
+extension ViewControllertabSchedule: StartTimer {
+    
+    // Called from Process
+    func startTimerNextJob() {
+        self.schedules = ScheduleSortedAndExpand()
+        self.firstRemoteServer.stringValue = ""
+        self.firstLocalCatalog.stringValue = ""
+        self.startTimer()
+    }
+}
+
