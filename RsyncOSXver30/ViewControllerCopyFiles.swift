@@ -9,7 +9,7 @@
 import Foundation
 import Cocoa
 
-class ViewControllerCopyFiles : NSViewController, UpdateProgress, RefreshtableViewtabMain, StartStopProgressIndicatorViewBatch, Information,  DismissViewController, NSSearchFieldDelegate, GetPath {
+class ViewControllerCopyFiles : NSViewController {
     
     // Object to hold search data
     var copyObject : CopyFiles?
@@ -32,37 +32,9 @@ class ViewControllerCopyFiles : NSViewController, UpdateProgress, RefreshtableVi
             as! NSViewController
     }()
     
-    
-    // Proctocol function RefreshtableViewtabMain
-    // Do a refresh of table
-    func refreshInMain() {
-        GlobalMainQueue.async(execute: { () -> Void in
-            self.filesArray = self.copyObject?.filter(search: nil)
-            self.tableViewSelect.reloadData()
-        })
-    }
-    
-    // Protocol StartStopProgressIndicatorViewBatch
-    func stop() {
-        self.working.stopAnimation(nil)
-    }
-    func start() {
-        self.working.startAnimation(nil)
-    }
-    func complete() {
-        // nothing
-    }
-    // Set localcatalog to filePath
+     // Set localcatalog to filePath
     @IBAction func copyToIcon(_ sender: NSButton) {
         _ = FileDialog(requester: .CopyFilesTo)
-    }
-    // Protocol Information
-    func getInformation() -> [String] {
-        return self.copyObject!.getOutput()
-    }
-    // Protocol DismissViewController
-    func dismiss_view(viewcontroller: NSViewController) {
-        self.dismissViewController(viewcontroller)
     }
     
     // Abort button
@@ -109,6 +81,7 @@ class ViewControllerCopyFiles : NSViewController, UpdateProgress, RefreshtableVi
             }
         }
     }
+    
     // Getting index from Execute View
     @IBAction func GetIndex(_ sender: NSButton) {
         self.copyObject = nil
@@ -124,34 +97,7 @@ class ViewControllerCopyFiles : NSViewController, UpdateProgress, RefreshtableVi
             Alerts.showInfo("Please select a ROW in Execute window!")
         }
     }
-    
-    // Protocol UpdateProgress
-    // Messages from Process when job is done or in progress
-    
-    // When Process outputs anything to filehandler
-    func FileHandler() {
-        // nothing
-    }
-    
-    // When Process terminates
-    func ProcessTermination() {
-        if (rsync == false) {
-            // do next job within copyobject
-            self.copyObject!.nextWork()
-        } else {
-            self.workingRsync.stopAnimation(nil)
-            self.presentViewControllerAsSheet(self.ViewControllerInformation)
-        }
         
-    }
-    
-    // Protocol GetPath
-    func pathSet(path: String?, requester : WhichPath) {
-        if let setpath = path {
-            self.localCatalog.stringValue = setpath
-        }
-    }
-    
     private func displayRemoteserver(index:Int) {
         let hiddenID = SharingManagerConfiguration.sharedInstance.gethiddenID(index: index)
         self.server.stringValue = SharingManagerConfiguration.sharedInstance.getoffSiteserver(hiddenID)
@@ -181,7 +127,11 @@ class ViewControllerCopyFiles : NSViewController, UpdateProgress, RefreshtableVi
         self.localCatalog.stringValue = ""
     }
     
+}
 
+
+extension ViewControllerCopyFiles: NSSearchFieldDelegate {
+    
     func searchFieldDidStartSearching(_ sender: NSSearchField){
         if (sender.stringValue.isEmpty) {
             GlobalMainQueue.async(execute: { () -> Void in
@@ -205,7 +155,7 @@ class ViewControllerCopyFiles : NSViewController, UpdateProgress, RefreshtableVi
     
 }
 
-extension ViewControllerCopyFiles : NSTableViewDataSource {
+extension ViewControllerCopyFiles: NSTableViewDataSource {
     
     func numberOfRows(in tableViewMaster: NSTableView) -> Int {
         if (self.filesArray != nil) {
@@ -250,7 +200,7 @@ extension ViewControllerCopyFiles : NSTableViewDelegate {
     }
 }
 
-extension ViewControllerCopyFiles : NSDraggingDestination {
+extension ViewControllerCopyFiles: NSDraggingDestination {
     
     private func draggingEntered(sender: NSDraggingInfo) -> NSDragOperation {
         let sourceDragMask = sender.draggingSourceOperationMask()
@@ -279,13 +229,86 @@ extension ViewControllerCopyFiles : NSDraggingDestination {
 
 // textDidEndEditing
 
-extension ViewControllerCopyFiles : NSTextFieldDelegate {
+extension ViewControllerCopyFiles: NSTextFieldDelegate {
     
     override func controlTextDidEndEditing(_ obj: Notification) {
         if (self.remoteCatalog.stringValue.isEmpty == false && self.localCatalog.stringValue.isEmpty == false) {
             self.commandString.stringValue = (self.copyObject?.getCommandDisplayinView(remotefile: self.remoteCatalog.stringValue, localCatalog: self.localCatalog.stringValue))!
         } else {
             self.commandString.stringValue = "Please select both \"Restore to:\" and \"Restore:\" to show rsync command"
+        }
+    }
+}
+
+extension ViewControllerCopyFiles: RefreshtableViewtabMain {
+    
+    // Do a refresh of table
+    func refreshInMain() {
+        GlobalMainQueue.async(execute: { () -> Void in
+            self.filesArray = self.copyObject?.filter(search: nil)
+            self.tableViewSelect.reloadData()
+        })
+    }
+}
+
+extension ViewControllerCopyFiles: StartStopProgressIndicatorViewBatch {
+    
+    // Protocol StartStopProgressIndicatorViewBatch
+    func stop() {
+        self.working.stopAnimation(nil)
+    }
+    func start() {
+        self.working.startAnimation(nil)
+    }
+    func complete() {
+        // nothing
+    }
+}
+
+extension ViewControllerCopyFiles: UpdateProgress {
+    
+    // Messages from Process when job is done or in progress
+
+    
+    // When Process terminates
+    func ProcessTermination() {
+        if (rsync == false) {
+            // do next job within copyobject
+            self.copyObject!.nextWork()
+        } else {
+            self.workingRsync.stopAnimation(nil)
+            self.presentViewControllerAsSheet(self.ViewControllerInformation)
+        }
+        
+    }
+    
+    // When Process outputs anything to filehandler
+    func FileHandler() {
+        // nothing
+    }
+}
+
+extension ViewControllerCopyFiles: Information {
+    
+    // Protocol Information
+    func getInformation() -> [String] {
+        return self.copyObject!.getOutput()
+    }
+}
+
+extension ViewControllerCopyFiles: DismissViewController {
+    
+    // Protocol DismissViewController
+    func dismiss_view(viewcontroller: NSViewController) {
+        self.dismissViewController(viewcontroller)
+    }
+}
+
+extension ViewControllerCopyFiles: GetPath {
+    
+    func pathSet(path: String?, requester : WhichPath) {
+        if let setpath = path {
+            self.localCatalog.stringValue = setpath
         }
     }
 }
