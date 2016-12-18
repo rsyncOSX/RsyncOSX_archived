@@ -20,7 +20,7 @@ class rsyncProcessArguments {
     // Set initial parameter1 .. paramater6
     // Parameters is computed by RsyncOSX
     
-    private func setInitialParameters(_ config : configuration, dryRun : Bool, forDisplay : Bool) {
+    private func setParameters1ToParameters6(_ config : configuration, dryRun : Bool, forDisplay : Bool) {
         
         let parameter1: String = config.parameter1
         let parameter2: String = config.parameter2
@@ -66,61 +66,33 @@ class rsyncProcessArguments {
     // Brute force, check every parameter
     // Not special elegant, but it works
     
-    private func setUserSelectedParameters(_ config : configuration, dryRun : Bool, forDisplay : Bool) {
+    private func setParameters8ToParameters14(_ config : configuration, dryRun : Bool, forDisplay : Bool) {
         
         let dryrun: String = config.dryrun
         self.stats = false
         
         if (config.parameter8 != nil) {
-            if ((config.parameter8?.characters.count)! > 1) {
-                if config.parameter8! == "--stats" {self.stats = true}
-                self.arguments!.append(config.parameter8!)
-                if (forDisplay) {self.arguments!.append(" ")}
-            }
+            self.appendParameter(parameter: config.parameter8!, forDisplay: forDisplay)
         }
         if (config.parameter9 != nil) {
-            if ((config.parameter9?.characters.count)! > 1) {
-                if config.parameter9! == "--stats" {self.stats = true}
-                self.arguments!.append(config.parameter9!)
-                if (forDisplay) {self.arguments!.append(" ")}
-            }
+            self.appendParameter(parameter: config.parameter9!, forDisplay: forDisplay)
         }
         if (config.parameter10 != nil) {
-            if ((config.parameter10?.characters.count)! > 1) {
-                if config.parameter10! == "--stats" {self.stats = true}
-                self.arguments!.append(config.parameter10!)
-                if (forDisplay) {self.arguments!.append(" ")}
-            }
+            self.appendParameter(parameter: config.parameter10!, forDisplay: forDisplay)
         }
         if (config.parameter11 != nil) {
-            if ((config.parameter11?.characters.count)! > 1) {
-                if config.parameter11! == "--stats" {self.stats = true}
-                self.arguments!.append(config.parameter11!)
-                if (forDisplay) {self.arguments!.append(" ")}
-            }
+            self.appendParameter(parameter: config.parameter11!, forDisplay: forDisplay)
         }
         if (config.parameter12 != nil) {
-            if ((config.parameter12?.characters.count)! > 1) {
-                if config.parameter12! == "--stats" {self.stats = true}
-                self.arguments!.append(config.parameter12!)
-                if (forDisplay) {self.arguments!.append(" ")}
-            }
+            self.appendParameter(parameter: config.parameter12!, forDisplay: forDisplay)
         }
         if (config.parameter13 != nil) {
-            if ((config.parameter13?.characters.count)! > 1) {
-                if config.parameter13! == "--stats" {self.stats = true}
-                self.arguments!.append(config.parameter13!)
-                if (forDisplay) {self.arguments!.append(" ")}
-            }
+            self.appendParameter(parameter: config.parameter13!, forDisplay: forDisplay)
         }
         if (config.parameter14 != nil) {
-            if ((config.parameter14?.characters.count)! > 1) {
-                if config.parameter14! == "--stats" {self.stats = true}
-                self.arguments!.append(config.parameter14!)
-                if (forDisplay) {self.arguments!.append(" ")}
-            }
+            self.appendParameter(parameter: config.parameter14!, forDisplay: forDisplay)
         }
-        
+        // If drynrun append --stats parameter to collect info about run
         if (dryRun) {
             self.arguments!.append(dryrun)
             if (forDisplay) {self.arguments!.append(" ")}
@@ -131,6 +103,21 @@ class rsyncProcessArguments {
         }
 
     }
+    
+    // Check userselected parameter and append it
+    // to arguments array passed to rsync or displayed
+    // on screen.
+    
+    private func appendParameter (parameter:String, forDisplay : Bool) {
+        if ((parameter.characters.count) > 1) {
+            if parameter == "--stats" {self.stats = true}
+            self.arguments!.append(parameter)
+            if (forDisplay) {
+                self.arguments!.append(" ")
+            }
+        }
+    }
+    
     
     /// Function for initialize arguments array. RsyncOSX computes four argumentstrings
     /// two arguments for dryrun, one for rsync and one for display
@@ -163,11 +150,10 @@ class rsyncProcessArguments {
         switch config.task {
             
         case "backup":
-            self.setInitialParameters(config, dryRun: dryRun, forDisplay: forDisplay)
-            self.setUserSelectedParameters(config, dryRun: dryRun, forDisplay: forDisplay)
+            self.setParameters1ToParameters6(config, dryRun: dryRun, forDisplay: forDisplay)
+            self.setParameters8ToParameters14(config, dryRun: dryRun, forDisplay: forDisplay)
             // Backup
             self.arguments!.append(localCatalog)
-            
             if (offsiteServer.isEmpty) {
                 if (forDisplay) {self.arguments!.append(" ")}
                 self.arguments!.append(offsiteCatalog)
@@ -179,10 +165,8 @@ class rsyncProcessArguments {
             }
             
         case "restore":
-            
-            self.setInitialParameters(config, dryRun: dryRun, forDisplay: forDisplay)
-            self.setUserSelectedParameters(config, dryRun: dryRun, forDisplay: forDisplay)
-            
+            self.setParameters1ToParameters6(config, dryRun: dryRun, forDisplay: forDisplay)
+            self.setParameters8ToParameters14(config, dryRun: dryRun, forDisplay: forDisplay)
             if (offsiteServer.isEmpty) {
                 self.arguments!.append(offsiteCatalog)
                 if (forDisplay) {self.arguments!.append(" ")}
