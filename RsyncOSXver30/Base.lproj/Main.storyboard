@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16C67" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="abu-zT-Ht4">
     <dependencies>
+        <deployment identifier="macosx"/>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="11762"/>
         <capability name="Alignment constraints to the first baseline" minToolsVersion="6.0"/>
         <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
@@ -1732,7 +1733,7 @@
         <!--Add-->
         <scene sceneID="Djw-1M-Bvf">
             <objects>
-                <viewController title="Add" id="3xI-3C-guU" customClass="ViewControllerNewConfigurations" customModule="RsyncOSX" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Add" id="3xI-3C-guU" customClass="ViewControllerNewConfigurations" customModule="RsyncOSX" sceneMemberID="viewController">
                     <view key="view" id="fs3-Ij-mBm" customClass="View">
                         <rect key="frame" x="0.0" y="0.0" width="1092" height="407"/>
                         <autoresizingMask key="autoresizingMask"/>
