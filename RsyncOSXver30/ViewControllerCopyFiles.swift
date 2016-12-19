@@ -251,7 +251,7 @@ extension ViewControllerCopyFiles: RefreshtableViewtabMain {
     }
 }
 
-extension ViewControllerCopyFiles: StartStopProgressIndicatorViewBatch {
+extension ViewControllerCopyFiles: StartStopProgressIndicator {
     
     // Protocol StartStopProgressIndicatorViewBatch
     func stop() {

@@ -24,7 +24,7 @@ final class singleTask {
     
     // Returns the top most element.
     // Top element is read only
-    func readworking() -> singleWorkTask {
+    func peek() -> singleWorkTask {
         if (self.work != nil) {
             if self.work!.count > 0 {
                 return self.work![0]
@@ -38,7 +38,7 @@ final class singleTask {
     
     // Returns the top most element.
     // Top element is removed
-    func working() -> singleWorkTask {
+    func pop() -> singleWorkTask {
         if (self.work != nil) {
             if self.work!.count > 0 {
                 return self.work!.removeFirst()

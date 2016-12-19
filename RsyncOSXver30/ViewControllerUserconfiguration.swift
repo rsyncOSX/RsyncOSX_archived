@@ -9,6 +9,9 @@
 import Foundation
 import Cocoa
 
+
+// Protocol for doing updates when optional path for rsync is changed
+// or user enable or disable doubleclick to execte
 protocol RsyncChanged : class {
     func rsyncchanged()
     func displayAllowDoubleclick()

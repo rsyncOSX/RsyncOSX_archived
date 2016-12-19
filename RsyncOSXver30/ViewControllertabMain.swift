@@ -11,12 +11,12 @@ import Foundation
 import Cocoa
 
 // Protocol for doing a refresh of updated tableView
-protocol RefreshtableViewBatch : class {
-    func refreshInBatch()
+protocol RefreshTable : class {
+    func refresh()
 }
 
 // Protocols for instruction start/stop progressviewindicator
-protocol StartStopProgressIndicatorViewBatch : class {
+protocol StartStopProgressIndicator : class {
     func start()
     func stop()
     func complete()
@@ -29,9 +29,8 @@ protocol DismissViewController : class {
     func dismiss_view(viewcontroller:NSViewController)
 }
 
-// Protocol when called when Process discovers
-// Process termination and when Filehandler discover data
-// Used in Process.
+// Protocol for either completion of work or update progress when Process discovers a
+// process termination and when filehandler discover data
 protocol UpdateProgress : class {
     func ProcessTermination()
     func FileHandler()
@@ -42,9 +41,9 @@ class ViewControllertabMain : NSViewController {
     // Protocol function used in Process().
     weak var processupdate_delegate:UpdateProgress?
     // Delegate function for doing a refresh of NSTableView in ViewControllerBatch
-    weak var refresh_delegate:RefreshtableViewBatch?
+    weak var refresh_delegate:RefreshTable?
     // Delegate function for start/stop progress Indicator in BatchWindow
-    weak var indicator_delegate:StartStopProgressIndicatorViewBatch?
+    weak var indicator_delegate:StartStopProgressIndicator?
     
     // Main tableview
     @IBOutlet weak var mainTableView: NSTableView!
@@ -255,6 +254,7 @@ class ViewControllertabMain : NSViewController {
         })
     }
     
+    // Selecting profiles
     @IBAction func profiles(_ sender: NSButton) {
         if (self.loadProfileMenu == true) {
             self.showProcessInfo(what:6)
@@ -267,6 +267,7 @@ class ViewControllertabMain : NSViewController {
         
     }
     
+    // Selecting Abort
     @IBAction func About (_ sender: NSButton) {
         self.presentViewControllerAsModalWindow(self.ViewControllerAbout)
     }
@@ -274,16 +275,13 @@ class ViewControllertabMain : NSViewController {
     
     // Function for display rsync command
     // Either --dry-run or real run
-    
-    
     @IBOutlet weak var displayDryRun: NSButton!
     @IBOutlet weak var displayRealRun: NSButton!
-    
     @IBAction func displayRsyncCommand(_ sender: NSButton) {
         self.setRsyncCommandDisplay()
     }
     
-    // Display correct rsync command
+    // Display correct rsync command in view
     fileprivate func setRsyncCommandDisplay() {
         if (self.displayDryRun.state == NSOnState) {
             if let index = self.index {
@@ -375,8 +373,7 @@ class ViewControllertabMain : NSViewController {
         self.ready = false
     }
     
-    // Because single task can be activated by double click from 
-    // Table as well.
+    // Single task can be activated by double click from table
     private func executeSingelTask() {
         
         if (self.scheduledOperationInProgress() == false && SharingManagerConfiguration.sharedInstance.noRysync == false){
@@ -388,7 +385,7 @@ class ViewControllertabMain : NSViewController {
             self.process = nil
             self.output = nil
             
-            switch (self.workload!.readworking()) {
+            switch (self.workload!.peek()) {
             case .estimate_singlerun:
                 if let index = self.index {
                     self.working.startAnimation(nil)
@@ -520,7 +517,7 @@ class ViewControllertabMain : NSViewController {
                 if let pvc = self.presentedViewControllers as? [ViewControllerBatch] {
                     self.refresh_delegate = pvc[0]
                     self.indicator_delegate = pvc[0]
-                    self.refresh_delegate?.refreshInBatch()
+                    self.refresh_delegate?.refresh()
                     self.indicator_delegate?.stop()
                 }
                 self.showProcessInfo(what: 1)
@@ -534,7 +531,7 @@ class ViewControllertabMain : NSViewController {
                 if let pvc = self.presentedViewControllers as? [ViewControllerBatch] {
                     self.refresh_delegate = pvc[0]
                     self.indicator_delegate = pvc[0]
-                    self.refresh_delegate?.refreshInBatch()
+                    self.refresh_delegate?.refresh()
                 }
                 // Set date on Configuration
                 let index = SharingManagerConfiguration.sharedInstance.getIndex(work.0)
@@ -1066,10 +1063,10 @@ extension ViewControllertabMain: UpdateProgress {
         // Making sure no nil pointer execption
         if let workload = self.workload {
             
-            if (workload.readworking() != .batchrun) {
+            if (workload.peek() != .batchrun) {
                 
                 // Pop topmost element of work queue
-                switch (self.workload!.working()) {
+                switch (self.workload!.pop()) {
                     
                 case .estimate_singlerun:
                     
@@ -1131,7 +1128,7 @@ extension ViewControllertabMain: UpdateProgress {
                 // Refresh view in Batchwindow
                 if let pvc = self.presentedViewControllers as? [ViewControllerBatch] {
                     self.refresh_delegate = pvc[0]
-                    self.refresh_delegate?.refreshInBatch()
+                    self.refresh_delegate?.refresh()
                 }
             }
         } else {
