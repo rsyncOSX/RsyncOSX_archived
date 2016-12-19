@@ -12,7 +12,6 @@ class ViewControllerInformationCopyFiles : NSViewController {
     
     // TableView
     @IBOutlet weak var detailsTable: NSTableView!
-    
     // output from Rsync
     var output:[String]?
     

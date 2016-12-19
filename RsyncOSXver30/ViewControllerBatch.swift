@@ -133,7 +133,7 @@ extension ViewControllerBatch : NSTableViewDelegate {
     
 }
 
-extension ViewControllerBatch: StartStopProgressIndicatorViewBatch {
+extension ViewControllerBatch: StartStopProgressIndicator {
     
     // Stops estimation progressbar when real task is executing
     func stop() {
@@ -170,10 +170,10 @@ extension ViewControllerBatch: StartStopProgressIndicatorViewBatch {
     
 }
 
-extension ViewControllerBatch: RefreshtableViewBatch {
+extension ViewControllerBatch: RefreshTable {
     
     // Updates tableview according to progress of batch
-    func refreshInBatch() {
+    func refresh() {
         GlobalMainQueue.async(execute: { () -> Void in
             self.mainTableView.reloadData()
         })

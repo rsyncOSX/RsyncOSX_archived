@@ -32,7 +32,7 @@ final class CopyFiles {
     // String to display in view
     private var commandDisplay:String?
     // Start and stop progress view
-    weak var progress_delegate: StartStopProgressIndicatorViewBatch?
+    weak var progress_delegate: StartStopProgressIndicator?
     // The Process object
     var task:rsyncProcess?
     // rsync outPut object

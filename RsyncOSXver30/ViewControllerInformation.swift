@@ -14,8 +14,6 @@ protocol Information : class {
     func getInformation () -> [String]
 }
 
-
-
 class ViewControllerInformation : NSViewController {
     
     // TableView

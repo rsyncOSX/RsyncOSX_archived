@@ -9,6 +9,8 @@
 import Foundation
 import Cocoa
 
+
+// Protocol for instruction RsyncOSX to read configurations data again
 protocol ReadConfigurationsAgain : class {
     func readConfigurations()
 }
