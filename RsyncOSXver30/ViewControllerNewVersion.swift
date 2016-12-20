@@ -13,8 +13,9 @@ class ViewControllerNewVersion : NSViewController {
     
     // External resources
     private var resource:Resources?
-    
+    // Dismiss delegate
     weak var dismiss_delegate:DismissViewController?
+    // Timer function for automatic dismiss view
     var waitToClose:Timer?
     var closeIn:Timer?
     var seconds:Int?
@@ -29,6 +30,10 @@ class ViewControllerNewVersion : NSViewController {
     }
     
     @IBAction func download(_ sender: NSButton) {
+        guard SharingManagerConfiguration.sharedInstance.URLnewVersion != nil else {
+            self.dismiss_delegate?.dismiss_view(viewcontroller: self)
+            return
+        }
         NSWorkspace.shared().open(URL(string: SharingManagerConfiguration.sharedInstance.URLnewVersion!)!)
         self.dismiss_delegate?.dismiss_view(viewcontroller: self)
     }
@@ -60,6 +65,7 @@ class ViewControllerNewVersion : NSViewController {
     }
     
     override func viewDidAppear() {
+        // Seconds before autodismiss view
         self.seconds = 10
         super.viewDidAppear()
         self.waitToClose = Timer.scheduledTimer(timeInterval: 10, target: self, selector: #selector(closeView), userInfo: nil, repeats: false)

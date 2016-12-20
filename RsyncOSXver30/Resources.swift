@@ -8,6 +8,7 @@
 
 import Foundation
 
+// Enumtype type of resource
 enum resourceType {
     case changelog
     case documents
@@ -16,10 +17,12 @@ enum resourceType {
 
 struct Resources {
     
+    // Resource strings
     private var changelog:String = "https://github.com/rsyncOSX/Documentation/blob/master/docs/Changelog.md"
     private var documents: String = "https://github.com/rsyncOSX/Documentation"
     private var urlPlist: String = "https://dl.dropboxusercontent.com/u/52503631/versionRsyncOSX.plist?raw=1"
     
+    // Get the resource.
     func getResource (resource: resourceType) -> String {
         switch resource {
         case .changelog:
@@ -29,7 +32,6 @@ struct Resources {
         case .urlPlist:
             return self.urlPlist
         }
-    
     }
     
 }

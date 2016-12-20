@@ -23,7 +23,7 @@ class ViewControllerAbout : NSViewController {
     private var urlPlist : String?
     private var urlNewVersion : String?
     
-    // External resources
+    // External resources as documents, download
     private var resource:Resources?
     
     @IBAction func dismiss(_ sender: NSButton) {
@@ -45,6 +45,10 @@ class ViewControllerAbout : NSViewController {
     }
     
     @IBAction func download(_ sender: NSButton) {
+        guard SharingManagerConfiguration.sharedInstance.URLnewVersion != nil else {
+            self.dismiss_delegate?.dismiss_view(viewcontroller: self)
+            return
+        }
         NSWorkspace.shared().open(URL(string: SharingManagerConfiguration.sharedInstance.URLnewVersion!)!)
         self.dismiss_delegate?.dismiss_view(viewcontroller: self)
     }
