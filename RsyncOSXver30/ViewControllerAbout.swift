@@ -23,17 +23,24 @@ class ViewControllerAbout : NSViewController {
     private var urlPlist : String?
     private var urlNewVersion : String?
     
+    // External resources
+    private var resource:Resources?
+    
     @IBAction func dismiss(_ sender: NSButton) {
         self.dismiss_delegate?.dismiss_view(viewcontroller: self)
     }
     
     @IBAction func changelog(_ sender: NSButton) {
-        NSWorkspace.shared().open(URL(string: "https://github.com/rsyncOSX/Documentation/blob/master/docs/Changelog.md")!)
+        if let resource = self.resource {
+            NSWorkspace.shared().open(URL(string: resource.getResource(resource: .changelog))!)
+        }
         self.dismiss_delegate?.dismiss_view(viewcontroller: self)
     }
     
     @IBAction func documentation(_ sender: NSButton) {
-        NSWorkspace.shared().open(URL(string: "https://github.com/rsyncOSX/Documentation")!)
+        if let resource = self.resource {
+            NSWorkspace.shared().open(URL(string: resource.getResource(resource: .documents))!)
+        }
         self.dismiss_delegate?.dismiss_view(viewcontroller: self)
     }
     
@@ -65,14 +72,18 @@ class ViewControllerAbout : NSViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.urlPlist = "https://dl.dropboxusercontent.com/u/52503631/versionRsyncOSX.plist?raw=1"
+        // External resource object
+        self.resource = Resources()
+        if let resource = self.resource {
+            self.urlPlist = resource.getResource(resource: .urlPlist)
+        }
         if let pvc = self.presenting as? ViewControllertabMain {
             self.dismiss_delegate = pvc
         }
         let infoPlist = Bundle.main.infoDictionary
-        let vernumber = infoPlist?["CFBundleShortVersionString"] as! String
-        self.version.stringValue = "RsyncOSX ver: " + vernumber
-        self.runningVersion = vernumber
+        let version = infoPlist?["CFBundleShortVersionString"] as! String
+        self.version.stringValue = "RsyncOSX ver: " + version
+        self.runningVersion = version
     }
     
     override func viewDidAppear() {

@@ -11,16 +11,21 @@ import Cocoa
 
 class ViewControllerNewVersion : NSViewController {
     
-    @IBOutlet weak var reminder: NSButton!
+    // External resources
+    private var resource:Resources?
+    
     weak var dismiss_delegate:DismissViewController?
     var waitToClose:Timer?
     var closeIn:Timer?
     var seconds:Int?
-
+    
+    @IBOutlet weak var reminder: NSButton!
     @IBOutlet weak var closeinseconds: NSTextField!
     
     @IBAction func changelogg(_ sender: NSButton) {
-        NSWorkspace.shared().open(URL(string: "https://github.com/rsyncOSX/Documentation/blob/master/docs/Changelog.md")!)
+        if let resource = self.resource {
+            NSWorkspace.shared().open(URL(string: resource.getResource(resource: .changelog))!)
+        }
     }
     
     @IBAction func download(_ sender: NSButton) {
@@ -47,6 +52,7 @@ class ViewControllerNewVersion : NSViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.resource = Resources()
         // Dismisser is root controller
         if let pvc2 = self.presenting as? ViewControllertabMain {
             self.dismiss_delegate = pvc2
