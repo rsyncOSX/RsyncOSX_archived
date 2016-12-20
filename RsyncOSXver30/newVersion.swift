@@ -18,6 +18,9 @@ final class newVersion {
     private var urlPlist : String?
     private var urlNewVersion : String?
     
+    // External resources
+    private var resource:Resources?
+    
     weak var newversion_delegate: newVersionDiscovered?
     
     private func setURLnewVersion () {
@@ -49,8 +52,11 @@ final class newVersion {
         if version != nil {
             self.runningVersion = version as? String
         }
-        // read data from dropbox
-        self.urlPlist = "https://dl.dropboxusercontent.com/u/52503631/versionRsyncOSX.plist?raw=1"
+        
+        self.resource = Resources()
+        if let resource = self.resource {
+            self.urlPlist = resource.getResource(resource: .urlPlist)
+        }
         self.setURLnewVersion()
     }
     

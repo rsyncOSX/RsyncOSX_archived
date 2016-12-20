@@ -11,19 +11,29 @@ import Cocoa
 
 class ViewControllerNewVersion : NSViewController {
     
-    @IBOutlet weak var reminder: NSButton!
+    // External resources
+    private var resource:Resources?
+    // Dismiss delegate
     weak var dismiss_delegate:DismissViewController?
+    // Timer function for automatic dismiss view
     var waitToClose:Timer?
     var closeIn:Timer?
     var seconds:Int?
-
+    
+    @IBOutlet weak var reminder: NSButton!
     @IBOutlet weak var closeinseconds: NSTextField!
     
     @IBAction func changelogg(_ sender: NSButton) {
-        NSWorkspace.shared().open(URL(string: "https://github.com/rsyncOSX/Documentation/blob/master/docs/Changelog.md")!)
+        if let resource = self.resource {
+            NSWorkspace.shared().open(URL(string: resource.getResource(resource: .changelog))!)
+        }
     }
     
     @IBAction func download(_ sender: NSButton) {
+        guard SharingManagerConfiguration.sharedInstance.URLnewVersion != nil else {
+            self.dismiss_delegate?.dismiss_view(viewcontroller: self)
+            return
+        }
         NSWorkspace.shared().open(URL(string: SharingManagerConfiguration.sharedInstance.URLnewVersion!)!)
         self.dismiss_delegate?.dismiss_view(viewcontroller: self)
     }
@@ -47,6 +57,7 @@ class ViewControllerNewVersion : NSViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.resource = Resources()
         // Dismisser is root controller
         if let pvc2 = self.presenting as? ViewControllertabMain {
             self.dismiss_delegate = pvc2
@@ -54,6 +65,7 @@ class ViewControllerNewVersion : NSViewController {
     }
     
     override func viewDidAppear() {
+        // Seconds before autodismiss view
         self.seconds = 10
         super.viewDidAppear()
         self.waitToClose = Timer.scheduledTimer(timeInterval: 10, target: self, selector: #selector(closeView), userInfo: nil, repeats: false)
