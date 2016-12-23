@@ -292,8 +292,6 @@ class SharingManagerConfiguration {
         self.Configurations.removeAll()
         self.argumentAllConfiguration.removeAllObjects()
         self.ConfigurationsDataSource = nil
-        // And we must clean all Schedules as well.
-        SharingManagerSchedule.sharedInstance.cleanAllSchedules()
     }
 
     /// Function sets currentDate on Configuration when executed on task 

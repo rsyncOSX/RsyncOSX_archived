@@ -312,6 +312,8 @@ extension ViewControllertabSchedule: AddProfiles {
         self.firstLocalCatalog.stringValue = ""
         self.secondRemoteServer.stringValue = ""
         self.secondLocalCatalog.stringValue = ""
+        // Must unload Schedule data before new Profile is loaded.
+        SharingManagerSchedule.sharedInstance.resetSchedule()
     }
     
     func enableProfileMenu() {
