@@ -905,6 +905,13 @@ extension ViewControllertabMain: AddProfiles {
             newProfile_delegate = pvc
             newProfile_delegate?.newProfile()
         }
+        // Must unload Schedule data before new Profile is loaded.
+        // This is due to a glitch in design in 
+        // SharingManagerSchedule.sharedInstance.getAllSchedules()
+        // If no new Schedules in profile exists old Schedules are 
+        // kept in memory. Force a clean of old Schedules before read 
+        // Schedules for new profile.
+        SharingManagerSchedule.sharedInstance.destroySchedule()
         // Read configurations and Scheduledata
         self.ReReadConfigurationsAndSchedules()
         self.displayProfile()

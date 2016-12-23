@@ -49,7 +49,8 @@ class SharingManagerSchedule {
     
     /// Function for resetting Schedule.
     /// Only used when new profiles are loaded.
-    func resetSchedule() {
+    /// This is due to a glitch in design.
+    func destroySchedule() {
         self.Schedule.removeAll()
     }
 

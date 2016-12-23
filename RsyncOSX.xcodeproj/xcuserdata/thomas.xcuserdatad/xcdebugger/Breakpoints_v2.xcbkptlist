@@ -10,11 +10,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "RsyncOSXver30/SharingManagerSchedule.swift"
-            timestampString = "504204204.343648"
+            timestampString = "504222920.256596"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "87"
-            endingLineNumber = "87"
+            startingLineNumber = "88"
+            endingLineNumber = "88"
             landmarkName = "getAllSchedules()"
             landmarkType = "7">
          </BreakpointContent>
