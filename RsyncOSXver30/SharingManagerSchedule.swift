@@ -33,8 +33,6 @@ class SharingManagerSchedule {
     // Reference to Timer in scheduled operation
     // Used to terminate scheduled jobs
     private var waitForTask : Timer?
-    // Variabl if Schedule data must be is changed and must bed read into memory again
-    var ScheduleIsDirty:Bool = true
     // Reference to the first Scheduled job
     // Is set when SortedAndExpanded is calculated
     var scheduledJob:NSDictionary?
@@ -48,6 +46,12 @@ class SharingManagerSchedule {
     // Array to store all scheduled jobs and history of executions
     // Will be kept in memory until destroyed
     private var Schedule = [configurationSchedule]()
+    
+    /// Function for resetting Schedule.
+    /// Only used when new profiles are loaded.
+    func resetSchedule() {
+        self.Schedule.removeAll()
+    }
 
     // THE GETTERS
     
@@ -55,21 +59,6 @@ class SharingManagerSchedule {
     // self.Schedule is privat data
     func getSchedule()-> [configurationSchedule] {
         return self.Schedule
-    }
-    
-    // CLEANING FUNCTION 
-    
-    // Function to clean all Schedules and scheduled job
-    // Cleans everything
-    func cleanAllSchedules() {
-        self.cancelJobWaiting()
-        self.destroySchedule()
-        self.ScheduleIsDirty = true
-    }
-    
-    // DESTROY FUNCTIONS
-    private func destroySchedule() {
-        self.Schedule.removeAll()
     }
     
     /// Function for setting reference to waiting job e.g. to the timer.
@@ -104,7 +93,7 @@ class SharingManagerSchedule {
         if store != nil {
             var data:[configurationSchedule] = [configurationSchedule]()
             // Deleting any existing Schedule
-            self.destroySchedule()
+            self.Schedule.removeAll()
             // Reading new schedule into memory
             for i in 0 ..< store!.count {
                 data.append(store![i])

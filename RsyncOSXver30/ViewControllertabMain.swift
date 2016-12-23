@@ -492,9 +492,8 @@ class ViewControllertabMain : NSViewController {
         // Reading main Configurations to memory
         SharingManagerConfiguration.sharedInstance.setDataDirty(dirty: true)
         SharingManagerConfiguration.sharedInstance.getAllConfigurationsandArguments()
-        // Read all Scheduled data
+        // Read all Scheduled data again
         SharingManagerConfiguration.sharedInstance.setDataDirty(dirty: true)
-        // Read all scheduled data
         SharingManagerSchedule.sharedInstance.getAllSchedules()
     }
 
@@ -901,14 +900,16 @@ extension ViewControllertabMain: AddProfiles {
         // By setting self.schedules = nil start jobs are restaret in ViewDidAppear
         self.schedules = nil
         self.loadProfileMenu = false
-        self.ReReadConfigurationsAndSchedules()
-        self.displayProfile()
-        self.refreshInMain()
         // Reset in tabSchedule
         if let pvc = SharingManagerConfiguration.sharedInstance.ScheduleObjectMain as? ViewControllertabSchedule {
             newProfile_delegate = pvc
             newProfile_delegate?.newProfile()
         }
+        // Read configurations and Scheduledata
+        self.ReReadConfigurationsAndSchedules()
+        self.displayProfile()
+        self.refreshInMain()
+        
         // We have to start any Scheduled process again - if any
         self.startProcess()
         // Check all remote servers for connection
