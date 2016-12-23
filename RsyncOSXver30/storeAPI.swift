@@ -43,7 +43,16 @@ class storeAPI {
             }
             return Configurations
         } else {
-            return SharingManagerConfiguration.sharedInstance.getConfigurations()
+            // New and empty profile, return a empty Configuration
+            // If profile is in use profilename is set. Default profile
+            // profilename is nil.
+            if SharingManagerConfiguration.sharedInstance.getProfile() != nil {
+                let Configurations = [configuration]()
+                return Configurations
+            } else {
+                return SharingManagerConfiguration.sharedInstance.getConfigurations()
+            }
+            
         }
     }
     
