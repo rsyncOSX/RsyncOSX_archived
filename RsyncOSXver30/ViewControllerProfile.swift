@@ -54,6 +54,7 @@ class ViewControllerProfile : NSViewController {
             self.newProfile_delegate = pvc
         }
         if (self.delete.state == 1) {
+            // Delete profile
             if let useprofile = self.useprofile {
                 self.profile?.deleteProfile(profileName: useprofile)
                 SharingManagerConfiguration.sharedInstance.setProfile(profile: nil)
@@ -66,6 +67,7 @@ class ViewControllerProfile : NSViewController {
             self.dismiss_delegate?.dismiss_view(viewcontroller: self)
             
         } else if (self.new.state == 1) {
+            // Create new profile
             let newprofile = self.newprofile.stringValue
             if (newprofile.isEmpty == false) {
                 // Create new profile and use it
@@ -80,6 +82,7 @@ class ViewControllerProfile : NSViewController {
             self.dismiss_delegate?.dismiss_view(viewcontroller: self)
             
         } else {
+            // Use profile
             if let useprofile = self.useprofile {
                 SharingManagerConfiguration.sharedInstance.setProfile(profile: useprofile)
                 self.newProfile_delegate?.newProfile()
@@ -101,7 +104,6 @@ class ViewControllerProfile : NSViewController {
         }
         self.profile = profiles(path: nil)
         self.profilesArray = self.profile!.getDirectorysStrings()
-        
         self.profilesTable.target = self
         self.profilesTable.doubleAction = #selector(ViewControllerProfile.tableViewDoubleClick(sender:))
     }

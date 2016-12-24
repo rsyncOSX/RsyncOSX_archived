@@ -307,6 +307,8 @@ extension ViewControllertabSchedule: AddProfiles {
     
     // Just reset the schedules
     func newProfile() {
+        // Resetting the reference to ScheduleSortedAndExpand object.
+        // New object is created when a new profile is loaded.
         self.schedules = nil
         self.firstRemoteServer.stringValue = ""
         self.firstLocalCatalog.stringValue = ""
