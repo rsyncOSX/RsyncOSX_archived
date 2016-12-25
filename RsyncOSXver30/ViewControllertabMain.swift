@@ -390,7 +390,7 @@ class ViewControllertabMain : NSViewController {
                 if let index = self.index {
                     self.working.startAnimation(nil)
                     self.showProcessInfo(what: 1)
-                    arguments = SharingManagerConfiguration.sharedInstance.getrsyncArgumentOneConfiguration(index: index, argtype: .argdryRun)
+                    arguments = SharingManagerConfiguration.sharedInstance.getRsyncArgumentOneConfig(index: index, argtype: .argdryRun)
                     self.output = outputProcess()
                     process.executeProcess(arguments!, output: self.output!)
                     self.process = process.getProcess()
@@ -402,7 +402,7 @@ class ViewControllertabMain : NSViewController {
                     GlobalMainQueue.async(execute: { () -> Void in
                         self.presentViewControllerAsSheet(self.ViewControllerProgress)
                     })
-                    arguments = SharingManagerConfiguration.sharedInstance.getrsyncArgumentOneConfiguration(index: index, argtype: .arg)
+                    arguments = SharingManagerConfiguration.sharedInstance.getRsyncArgumentOneConfig(index: index, argtype: .arg)
                     self.output = outputProcess()
                     process.executeProcess(arguments!, output: self.output!)
                     self.process = process.getProcess()
@@ -491,10 +491,10 @@ class ViewControllertabMain : NSViewController {
     fileprivate func ReReadConfigurationsAndSchedules() {
         // Reading main Configurations to memory
         SharingManagerConfiguration.sharedInstance.setDataDirty(dirty: true)
-        SharingManagerConfiguration.sharedInstance.getAllConfigurationsandArguments()
+        SharingManagerConfiguration.sharedInstance.readAllConfigurationsAndArguments()
         // Read all Scheduled data again
         SharingManagerConfiguration.sharedInstance.setDataDirty(dirty: true)
-        SharingManagerSchedule.sharedInstance.getAllSchedules()
+        SharingManagerSchedule.sharedInstance.readAllSchedules()
     }
 
     
@@ -795,13 +795,13 @@ extension ViewControllertabMain: StartBatch {
                         self.indicator_delegate = pvc[0]
                         self.indicator_delegate?.start()
                     }
-                    let arguments:[String] = SharingManagerConfiguration.sharedInstance.getrsyncArgumentOneConfiguration(index: index, argtype: .argdryRun)
+                    let arguments:[String] = SharingManagerConfiguration.sharedInstance.getRsyncArgumentOneConfig(index: index, argtype: .argdryRun)
                     let process = rsyncProcess(operation: false, tabMain: true, command : nil)
                     // Setting reference to process for Abort if requiered
                     process.executeProcess(arguments, output: self.output!)
                     self.process = process.getProcess()
                 case 1:
-                    let arguments:[String] = SharingManagerConfiguration.sharedInstance.getrsyncArgumentOneConfiguration(index: index, argtype: .arg)
+                    let arguments:[String] = SharingManagerConfiguration.sharedInstance.getRsyncArgumentOneConfig(index: index, argtype: .arg)
                     let process = rsyncProcess(operation: false, tabMain: true, command : nil)
                     // Setting reference to process for Abort if requiered
                     process.executeProcess(arguments, output: self.output!)
@@ -846,7 +846,7 @@ extension ViewControllertabMain: RefreshtableViewtabMain {
 extension ViewControllertabMain: ReadConfigurationsAgain {
     
     func readConfigurations() {
-        SharingManagerConfiguration.sharedInstance.getAllConfigurationsandArguments()
+        SharingManagerConfiguration.sharedInstance.readAllConfigurationsAndArguments()
         if (SharingManagerConfiguration.sharedInstance.ConfigurationsDataSourcecount() > 0 ) {
             GlobalMainQueue.async(execute: { () -> Void in
                 self.mainTableView.reloadData()

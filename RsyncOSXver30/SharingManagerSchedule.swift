@@ -76,7 +76,7 @@ class SharingManagerSchedule {
     }
         
     /// Function for reading all jobs for schedule and all history of past executions.
-    /// Schedules are stored in self.Schedule.
+    /// Schedules are stored in self.Schedule. Schedules are sorted after hiddenID.
     /// If Schedule already in memory AND not dirty do not read them again. If Schedule is 
     /// dirty, clean memory and read all Shedules into memory.
     /// The Schedules stored in memory is only the plan for each task. E.g for
@@ -85,7 +85,7 @@ class SharingManagerSchedule {
     /// another object based upon the plan for Schedules. It is only the plans
     /// which are stored to permanent store.
     /// The functions does NOT cancel waiting jobs or recalculate next scheduled job.
-    func getAllSchedules() {
+    func readAllSchedules() {
         var store:[configurationSchedule]?
         store = storeAPI.sharedInstance.getScheduleandhistory()
         // If Schedule already in memory dont read them again
@@ -102,9 +102,9 @@ class SharingManagerSchedule {
             // Sorting schedule after hiddenID
             data.sort { (schedule1, schedule2) -> Bool in
                 if (schedule1.hiddenID > schedule2.hiddenID) {
-                    return true
-                } else {
                     return false
+                } else {
+                    return true
                 }
             }
             // Setting self.Schedule as data
@@ -242,6 +242,27 @@ class SharingManagerSchedule {
                 storeAPI.sharedInstance.saveScheduleFromMemory()
                 // Send message about refresh tableView
                 self.doaRefreshTableviewMain()
+            }
+        }
+    }
+    
+    /// Function for deleting log row
+    /// - parameter hiddenID : hiddenID
+    /// - parameter parent : key to log row
+    /// - parameter resultExecuted : resultExecuted
+    /// - parameter dateExecuted : dateExecuted
+    func deleteLogRow (hiddenID:Int, parent:String, resultExecuted:String, dateExecuted:String) {
+        var result = self.Schedule.filter({return ($0.hiddenID == hiddenID)})
+        if result.count > 0 {
+            loop: for i in 0 ..< result.count {
+                let delete = result[i].executed.filter({return (($0.value(forKey: "parent") as? String) == parent &&
+                                                                ($0.value(forKey: "resultExecuted") as? String) == resultExecuted &&
+                                                                ($0.value(forKey: "dateExecuted") as? String) == dateExecuted)})
+                if delete.count == 1 {
+                    let index = result[i].executed.index(of: delete[0])
+                    result[i].executed.remove(at: index!)
+                    break loop
+                }
             }
         }
     }
@@ -409,7 +430,6 @@ class SharingManagerSchedule {
     func checkKey (_ dict1 : NSDictionary, dict2 : NSDictionary) -> Bool {
         let keyexecute = dict1.value(forKey: "parent") as? String
         let keyparent = self.computeKey(dict2)
-        
         if (keyparent == keyexecute) {
             return true
         } else {

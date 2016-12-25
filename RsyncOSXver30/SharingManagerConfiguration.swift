@@ -117,6 +117,53 @@ class SharingManagerConfiguration {
     private var MacSerialNumber:String?
 
     
+    // READ and SET all Configurations and arguments for rsync in object
+    
+    
+    /// Function is reading all Configurations into memory from permanent store and
+    /// prepare all arguments for rsync. All configurations are stored in the private
+    /// variable within object.
+    /// Function is destroying any previous Configurations before loading new
+    /// configurations and computing new arguments.
+    /// - parameter none: none
+    func readAllConfigurationsAndArguments() {
+        let store:[configuration] = storeAPI.sharedInstance.getConfigurations()
+        self.destroyConfigurations()
+        // We read all stored configurations into memory
+        for i in 0 ..< store.count {
+            let config = argumentsOneConfig(backupID: store[i].backupID, task: store[i].task, config:store[i], index: i)
+            // Appending one (of many?) Config read from store to memory
+            self.Configurations.append(store[i])
+            // Appending all arguments for rsync for One configuration to memory
+            let rsyncArgumentsConfig = argumentsConfigurations(rsyncArguments: config)
+            self.argumentAllConfiguration.add(rsyncArgumentsConfig.rsyncArguments!)
+        }
+        // Then prepare the datasource for use in tableviews as Dictionarys
+        var row =  NSMutableDictionary()
+        var data = Array<NSMutableDictionary>()
+        self.destroyConfigurationsDataSource()
+        var batch:Int = 0
+        for i in 0 ..< self.Configurations.count {
+            if(self.Configurations[i].batch == "yes") {
+                batch = 1
+            } else {
+                batch = 0
+            }
+            row = [
+                "taskCellID": self.Configurations[i].task,
+                "batchCellID":batch,
+                "localCatalogCellID":self.Configurations[i].localCatalog,
+                "offsiteCatalogCellID":self.Configurations[i].offsiteCatalog,
+                "offsiteServerCellID":self.Configurations[i].offsiteServer,
+                "backupIDCellID":self.Configurations[i].backupID,
+                "runDateCellID":self.Configurations[i].dateRun!
+            ]
+            data.append(row)
+        }
+        self.ConfigurationsDataSource = data
+        
+    }
+    
     // ALL THE GETTERS
     
     /// Function for getting the profile
@@ -147,19 +194,14 @@ class SharingManagerConfiguration {
     func getConfigurations() -> [configuration] {
         return self.Configurations
     }
+    
     /// Function for getting arguments for all Configurations read into memory
     /// - parameter none: none
     /// - returns : Array of arguments
     func getargumentAllConfigurations() -> NSMutableArray {
         return self.argumentAllConfiguration
     }
-    /// Function for getting Configurations read into memory
-    /// as datasource for tableViews
-    /// - parameter none: none
-    /// - returns : Array of Configurations
-    func getConfigurationsDataSource() -> [NSMutableDictionary]? {
-        return self.ConfigurationsDataSource
-    }
+    
     /// Function for getting the number of configurations used in NSTableViews
     /// - parameter none: none
     /// - returns : Int
@@ -169,6 +211,14 @@ class SharingManagerConfiguration {
         } else {
             return self.ConfigurationsDataSource!.count
         }
+    }
+
+    /// Function for getting Configurations read into memory
+    /// as datasource for tableViews
+    /// - parameter none: none
+    /// - returns : Array of Configurations
+    func getConfigurationsDataSource() -> [NSMutableDictionary]? {
+        return self.ConfigurationsDataSource
     }
     
     /// Function for getting all Configurations marked as backup (not restore)
@@ -192,6 +242,12 @@ class SharingManagerConfiguration {
         }
     return data
     }
+    
+    /// Function returns all Configurations marked for backup.
+    /// - returns : array of Configurations
+    func getConfigurationsBatch() -> [configuration] {
+        return self.Configurations.filter({return ($0.task == "backup") && ($0.batch == "yes")})
+    }
 
     /// Function for returning count of all Configurations marked as backup (not restore)
     /// - parameter none: none
@@ -204,56 +260,12 @@ class SharingManagerConfiguration {
         }
     }
     
-    /// Function is reading all Configurations into memory from permanent store and
-    /// prepare all arguments for rsync. All configurations are stored in the private
-    /// variable within object.
-    /// Function is destroying any previous Configurations before loading new 
-    /// configurations and computing new arguments.
-    /// - parameter none: none
-    func getAllConfigurationsandArguments() {
-        let store:[configuration] = storeAPI.sharedInstance.getConfigurations()
-        self.destroyConfigurations()
-        for i in 0 ..< store.count {
-            let config = argumentsOneConfig(backupID: store[i].backupID, task: store[i].task, config:store[i], index: i)
-            // Appending one (of many?) Config read from store to memory
-            self.Configurations.append(store[i])
-            // Appending all arguments for rsync for One configuration to memory
-            let rsyncArgumentsConfig = argumentsConfigurations(rsyncArguments: config)
-            self.argumentAllConfiguration.add(rsyncArgumentsConfig.rsyncArguments!)
-        }
-        // Then prepare the datasource for use in tableviews
-        var row =  NSMutableDictionary()
-        var data = Array<NSMutableDictionary>()
-        self.destroyConfigurationsDataSource()
-        var batch:Int = 0
-        for i in 0 ..< self.Configurations.count {
-            if(self.Configurations[i].batch == "yes") {
-                batch = 1
-            } else {
-                batch = 0
-            }
-            row = [
-                "taskCellID": self.Configurations[i].task,
-                "batchCellID":batch,
-                "localCatalogCellID":self.Configurations[i].localCatalog,
-                "offsiteCatalogCellID":self.Configurations[i].offsiteCatalog,
-                "offsiteServerCellID":self.Configurations[i].offsiteServer,
-                "backupIDCellID":self.Configurations[i].backupID,
-                "runDateCellID":self.Configurations[i].dateRun!
-            ]
-            data.append(row)
-        }
-        self.ConfigurationsDataSource = data
-
-    }
-
-    
     /// Function computes arguments for rsync, either arguments for
     /// real runn or arguments for --dry-run for Configuration at selected index
     /// - parameter index: index of Configuration
     /// - parameter argtype : either .arg or .argdryRun (of enumtype argumentsRsync)
     /// - returns : array of Strings holding all computed arguments
-    func getrsyncArgumentOneConfiguration (index:Int, argtype : argumentsRsync) -> [String] {
+    func getRsyncArgumentOneConfig (index:Int, argtype : argumentsRsync) -> [String] {
         let allarguments = self.argumentAllConfiguration[index] as! argumentsOneConfig
         switch argtype {
         case .arg:
@@ -306,7 +318,7 @@ class SharingManagerConfiguration {
         // Saving updated configuration in memory to persistent store
         storeAPI.sharedInstance.saveConfigFromMemory()
         // Reread Configuration and update datastructure for tableViews
-        self.getAllConfigurationsandArguments()
+        self.readAllConfigurationsAndArguments()
         // Call the view and do a refresh of tableView
         if let pvc = self.ViewObjectMain as? ViewControllertabMain {
             self.refresh_delegate = pvc
@@ -340,9 +352,6 @@ class SharingManagerConfiguration {
         storeAPI.sharedInstance.saveConfigFromMemory()
     }
     
-    // Storing data from run and batchrun
-    private var bachtresult = [NSMutableDictionary]()
-    
     /// Function toggles Configurations for batch or no
     /// batch. Function updates Configuration in memory
     /// and stores Configuration i memory to 
@@ -356,7 +365,7 @@ class SharingManagerConfiguration {
         }
         storeAPI.sharedInstance.saveConfigFromMemory()
         // Reread Configuration and update datastructure for tableViews
-        self.getAllConfigurationsandArguments()
+        self.readAllConfigurationsAndArguments()
         // Call the view and do a refresh of tableView
         if let pvc = self.ViewObjectMain as? ViewControllertabMain {
             self.refresh_delegate = pvc
@@ -364,11 +373,7 @@ class SharingManagerConfiguration {
         }
     }
     
-    /// Function returns all Configurations marked for backup.
-    /// - returns : array of Configurations
-    func getConfigurationsBatch() -> [configuration] {
-        return self.Configurations.filter({return ($0.task == "backup") && ($0.batch == "yes")})
-    }
+ 
     
     /// Function sets reference to object holding data and methods
     /// for batch execution of Configurations
@@ -422,6 +427,8 @@ class SharingManagerConfiguration {
         }
     }
     
+    /// Function is getting all added (new) configurations
+    /// - returns : Array of Dictionary storing all new configurations
     func getnewConfigurations () -> [NSMutableDictionary]? {
         return self.newConfigurations
     }

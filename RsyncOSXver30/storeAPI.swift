@@ -76,7 +76,7 @@ class storeAPI {
         // Reset structure holding new configurations
         SharingManagerConfiguration.sharedInstance.destroyNewConfigurations()
         // Read all Configurations again to get all arguments
-        SharingManagerConfiguration.sharedInstance.getAllConfigurationsandArguments()
+        SharingManagerConfiguration.sharedInstance.readAllConfigurationsAndArguments()
     }
     
     
@@ -87,7 +87,7 @@ class storeAPI {
     func saveScheduleFromMemory() {
         let store = persistentStoreScheduling()
         store.savescheduleInMemoryToPersistentStore()
-        SharingManagerSchedule.sharedInstance.getAllSchedules()
+        SharingManagerSchedule.sharedInstance.readAllSchedules()
         // Kick off Scheduled job again
         // This is because saving schedule from memory might have
         // changed the schedule and this kicks off the changed
