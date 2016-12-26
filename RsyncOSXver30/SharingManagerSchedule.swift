@@ -38,7 +38,7 @@ class SharingManagerSchedule {
     var scheduledJob:NSDictionary?
     // Reference to NSViewObjects requiered for protocol functions for kikcking of scheduled jobs
     var ViewObjectSchedule: NSViewController?
-    // Delegate functions
+    // Delegate functionsn for doing a refresh of NSTableView
     weak var refresh_delegate:RefreshtableViewtabMain?
     // Delegate function for doing a refresh of NSTableView in ViewControllerScheduleDetailsAboutRuns
     weak var refresh_delegate_logview:RefreshTable?
@@ -259,10 +259,16 @@ class SharingManagerSchedule {
                                                                 ($0.value(forKey: "resultExecuted") as? String) == resultExecuted &&
                                                                 ($0.value(forKey: "dateExecuted") as? String) == dateExecuted)})
                 if delete.count == 1 {
+                    // Get index of record storing the logrecord
                     let indexA = self.Schedule.index(where: { $0.dateStart == result[i].dateStart &&
                         $0.schedule == result[i].schedule &&
                         $0.hiddenID == result[i].hiddenID})
+                    // Get the index of the logrecord itself and remove the the record
                     let indexB = result[i].executed.index(of: delete[0])
+                    // Guard index not nil
+                    guard (indexA != nil && indexB != nil) else {
+                        return
+                    }
                     result[i].executed.remove(at: indexB!)
                     self.Schedule[indexA!].executed = result[i].executed
                     // Do a refresh of table
