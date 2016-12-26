@@ -9,13 +9,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "RsyncOSXver30/SharingManagerSchedule.swift"
-            timestampString = "504204204.343648"
+            filePath = "RsyncOSXver30/persistentStoreScheduling.swift"
+            timestampString = "504446336.151796"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "87"
-            endingLineNumber = "87"
-            landmarkName = "getAllSchedules()"
+            startingLineNumber = "37"
+            endingLineNumber = "37"
+            landmarkName = "savescheduleInMemoryToPersistentStore()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

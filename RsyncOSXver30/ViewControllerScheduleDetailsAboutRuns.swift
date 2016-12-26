@@ -13,17 +13,21 @@ import Cocoa
 
 class ViewControllerScheduleDetailsAboutRuns : NSViewController {
     
-    @IBOutlet weak var scheduletable: NSTableView!
+    // Reference to variable holding tabledata
     var tabledata:[NSDictionary]?
+    // Reference to variable selected row as NSDictionary
+    var row:NSDictionary?
+    // Search after
+    var what:filterLogs?
+
+
+    @IBOutlet weak var scheduletable: NSTableView!
     // Search field
     @IBOutlet weak var search: NSSearchField!
     // Buttons
     @IBOutlet weak var server: NSButton!
     @IBOutlet weak var Catalog: NSButton!
     @IBOutlet weak var date: NSButton!
-    // Search after
-    var what:filterLogs?
-    
     // Progressview loading loggdata
     @IBOutlet weak var sorting: NSProgressIndicator!
     @IBOutlet weak var numberOflogfiles: NSTextField!
@@ -39,6 +43,21 @@ class ViewControllerScheduleDetailsAboutRuns : NSViewController {
         }
     }
     
+    @IBOutlet weak var deleteButton: NSButton!
+    @IBAction func deleteRow(_ sender: NSButton) {
+        
+        guard self.row != nil else {
+            self.deleteButton.state = NSOffState
+            return
+        }
+        SharingManagerSchedule.sharedInstance.deleteLogRow(hiddenID: self.row?.value(forKey: "hiddenID") as! Int,
+                                                           parent: self.row?.value(forKey: "parent") as! String,
+                                                           resultExecuted: self.row?.value(forKey: "resultExecuted") as! String,
+                                                           dateExecuted:self.row?.value(forKey: "dateExecuted") as! String)
+        self.deleteButton.state = NSOffState
+        
+        
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do view setup here.
@@ -60,6 +79,7 @@ class ViewControllerScheduleDetailsAboutRuns : NSViewController {
         })
         self.server.state = NSOnState
         self.what = .remoteServer
+        self.deleteButton.state = NSOffState
     }
     
     override func viewDidDisappear() {
@@ -125,19 +145,19 @@ extension ViewControllerScheduleDetailsAboutRuns : NSTableViewDelegate {
         let myTableViewFromNotification = notification.object as! NSTableView
         let indexes = myTableViewFromNotification.selectedRowIndexes
         if let index = indexes.first {
-            let dict = self.tabledata?[index]
+            self.row = self.tabledata?[index]
             if (self.server.state == NSOnState) {
-                if let server = dict?.value(forKey: "offsiteServer") as? String {
+                if let server = self.row?.value(forKey: "offsiteServer") as? String {
                     self.search.stringValue = server
                     self.searchFieldDidStartSearching(self.search)
                 }
             } else if (self.Catalog.state == NSOnState) {
-                if let server = dict?.value(forKey: "localCatalog") as? String {
+                if let server = self.row?.value(forKey: "localCatalog") as? String {
                     self.search.stringValue = server
                     self.searchFieldDidStartSearching(self.search)
                 }
             } else if (self.date.state == NSOnState) {
-                if let server = dict?.value(forKey: "dateExecuted") as? String {
+                if let server = self.row?.value(forKey: "dateExecuted") as? String {
                     self.search.stringValue = server
                     self.searchFieldDidStartSearching(self.search)
                 }
@@ -146,5 +166,18 @@ extension ViewControllerScheduleDetailsAboutRuns : NSTableViewDelegate {
     }
 
 }
+
+extension ViewControllerScheduleDetailsAboutRuns: RefreshTable {
+    
+    // Refresh tableView
+    func refresh() {
+        GlobalMainQueue.async(execute: { () -> Void in
+            self.tabledata = ScheduleDetailsAboutRuns().filter(search: nil, what:nil)
+            self.scheduletable.reloadData()
+        })
+        self.row = nil
+    }
+}
+
 
 

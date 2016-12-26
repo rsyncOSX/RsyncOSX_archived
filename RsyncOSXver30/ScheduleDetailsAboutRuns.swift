@@ -81,7 +81,9 @@ class ScheduleDetailsAboutRuns {
                         "localCatalog":SharingManagerConfiguration.sharedInstance.getlocalCatalog(hiddenID),
                         "offsiteServer":SharingManagerConfiguration.sharedInstance.getoffSiteserver(hiddenID),
                         "dateExecuted":(dict.value(forKey: "dateExecuted") as? String)!,
-                        "resultExecuted":(dict.value(forKey: "resultExecuted") as? String)!]
+                        "resultExecuted":(dict.value(forKey: "resultExecuted") as? String)!,
+                        "parent":(dict.value(forKey: "parent") as? String)!,
+                        "hiddenID":hiddenID]
                     data.append(logdetail)
                 }
             }
