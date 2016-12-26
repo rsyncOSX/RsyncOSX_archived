@@ -174,8 +174,8 @@ extension ViewControllerScheduleDetailsAboutRuns: RefreshTable {
         GlobalMainQueue.async(execute: { () -> Void in
             self.tabledata = ScheduleDetailsAboutRuns().filter(search: nil, what:nil)
             self.scheduletable.reloadData()
-            self.sorting.stopAnimation(self)
         })
+        self.row = nil
     }
 }
 
