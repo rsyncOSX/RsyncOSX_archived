@@ -40,6 +40,8 @@ class SharingManagerSchedule {
     var ViewObjectSchedule: NSViewController?
     // Delegate functions
     weak var refresh_delegate:RefreshtableViewtabMain?
+    // Delegate function for doing a refresh of NSTableView in ViewControllerScheduleDetailsAboutRuns
+    weak var refresh_delegate_logview:RefreshTable?
     
     // DATA STRUCTURE
     
@@ -216,11 +218,9 @@ class SharingManagerSchedule {
         var update:Bool = false
         
         if (data.count) > 0 {
-            
             let hiddenID = data[0].value(forKey: "hiddenID") as? Int
             let stop = data.filter({ return (($0.value(forKey: "stopCellID") as? Int) == 1)})
             let delete = data.filter({ return (($0.value(forKey: "deleteCellID") as? Int) == 1)})
-           
             // Delete Schedules
             if (delete.count > 0) {
                 update = true
@@ -259,8 +259,19 @@ class SharingManagerSchedule {
                                                                 ($0.value(forKey: "resultExecuted") as? String) == resultExecuted &&
                                                                 ($0.value(forKey: "dateExecuted") as? String) == dateExecuted)})
                 if delete.count == 1 {
-                    let index = result[i].executed.index(of: delete[0])
-                    result[i].executed.remove(at: index!)
+                    let indexA = self.Schedule.index(where: { $0.dateStart == result[i].dateStart &&
+                        $0.schedule == result[i].schedule &&
+                        $0.hiddenID == result[i].hiddenID})
+                    let indexB = result[i].executed.index(of: delete[0])
+                    result[i].executed.remove(at: indexB!)
+                    self.Schedule[indexA!].executed = result[i].executed
+                    // Do a refresh of table
+                    if let pvc = SharingManagerConfiguration.sharedInstance.LogObjectMain as? ViewControllerScheduleDetailsAboutRuns {
+                        self.refresh_delegate_logview = pvc
+                        self.refresh_delegate_logview?.refresh()
+                    }
+                    // Save schedule including logs
+                    storeAPI.sharedInstance.saveScheduleFromMemory()
                     break loop
                 }
             }

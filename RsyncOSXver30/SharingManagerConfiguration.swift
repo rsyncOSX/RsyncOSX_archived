@@ -94,7 +94,7 @@ class SharingManagerConfiguration {
     // Reference to the Operation object
     // Reference is set in when Scheduled task is executed
     var operation:completeScheduledOperation?
-    // Which profile ti use, if default nil
+    // Which profile to use, if default nil
     var LogObjectMain:NSViewController?
     private var profile:String?
     // Notify about scheduled process
