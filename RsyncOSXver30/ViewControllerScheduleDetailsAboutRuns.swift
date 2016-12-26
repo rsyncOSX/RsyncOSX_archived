@@ -17,6 +17,9 @@ class ViewControllerScheduleDetailsAboutRuns : NSViewController {
     var tabledata:[NSDictionary]?
     // Reference to variable selected row as NSDictionary
     var row:NSDictionary?
+    // Search after
+    var what:filterLogs?
+
 
     @IBOutlet weak var scheduletable: NSTableView!
     // Search field
@@ -25,9 +28,6 @@ class ViewControllerScheduleDetailsAboutRuns : NSViewController {
     @IBOutlet weak var server: NSButton!
     @IBOutlet weak var Catalog: NSButton!
     @IBOutlet weak var date: NSButton!
-    // Search after
-    var what:filterLogs?
-    
     // Progressview loading loggdata
     @IBOutlet weak var sorting: NSProgressIndicator!
     @IBOutlet weak var numberOflogfiles: NSTextField!
@@ -47,6 +47,7 @@ class ViewControllerScheduleDetailsAboutRuns : NSViewController {
     @IBAction func deleteRow(_ sender: NSButton) {
         
         guard self.row != nil else {
+            self.deleteButton.state = NSOffState
             return
         }
         SharingManagerSchedule.sharedInstance.deleteLogRow(hiddenID: self.row?.value(forKey: "hiddenID") as! Int,
