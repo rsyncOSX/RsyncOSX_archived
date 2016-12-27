@@ -13,11 +13,6 @@
 import Foundation
 import Cocoa
 
-// Protocol for doing a refresh of updated tableView
-protocol RefreshtableViewtabSchedule : class {
-    func refreshInSchedule()
-}
-
 class SharingManagerSchedule {    
 
     // Creates a singelton of this class
