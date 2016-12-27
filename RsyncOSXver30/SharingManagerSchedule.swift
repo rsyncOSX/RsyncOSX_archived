@@ -36,7 +36,7 @@ class SharingManagerSchedule {
     // Delegate functionsn for doing a refresh of NSTableView
     weak var refresh_delegate:RefreshtableView?
     // Delegate function for doing a refresh of NSTableView in ViewControllerScheduleDetailsAboutRuns
-    weak var refresh_delegate_logview:RefreshTable?
+    weak var refresh_delegate_logview:RefreshtableView?
     
     // DATA STRUCTURE
     

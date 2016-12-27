@@ -10,11 +10,6 @@
 import Foundation
 import Cocoa
 
-// Protocol for doing a refresh of updated tableView
-protocol RefreshTable : class {
-    func refresh()
-}
-
 // Protocols for instruction start/stop progressviewindicator
 protocol StartStopProgressIndicator : class {
     func start()
@@ -41,7 +36,7 @@ class ViewControllertabMain : NSViewController {
     // Protocol function used in Process().
     weak var processupdate_delegate:UpdateProgress?
     // Delegate function for doing a refresh of NSTableView in ViewControllerBatch
-    weak var refresh_delegate:RefreshTable?
+    weak var refresh_delegate:RefreshtableView?
     // Delegate function for start/stop progress Indicator in BatchWindow
     weak var indicator_delegate:StartStopProgressIndicator?
     

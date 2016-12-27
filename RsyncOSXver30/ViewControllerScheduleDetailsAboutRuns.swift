@@ -167,7 +167,7 @@ extension ViewControllerScheduleDetailsAboutRuns : NSTableViewDelegate {
 
 }
 
-extension ViewControllerScheduleDetailsAboutRuns: RefreshTable {
+extension ViewControllerScheduleDetailsAboutRuns: RefreshtableView {
     
     // Refresh tableView
     func refresh() {
