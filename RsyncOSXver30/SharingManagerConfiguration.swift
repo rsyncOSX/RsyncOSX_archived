@@ -23,8 +23,9 @@ enum argumentsRsync {
 }
 
 // Protocol for doing a refresh of updated tableView
-protocol RefreshtableViewtabMain : class {
-    func refreshInMain()
+protocol RefreshtableView: class {
+    // Declare function for refresh tableView
+    func refresh()
 }
 
 class SharingManagerConfiguration {
@@ -50,7 +51,7 @@ class SharingManagerConfiguration {
     }
     
     // Delegate functions
-    weak var refresh_delegate:RefreshtableViewtabMain?
+    weak var refresh_delegate:RefreshtableView?
  
     // NEW VERSION OF RSYNCOSX
     // Download URL if new version is avaliable
@@ -322,7 +323,7 @@ class SharingManagerConfiguration {
         // Call the view and do a refresh of tableView
         if let pvc = self.ViewObjectMain as? ViewControllertabMain {
             self.refresh_delegate = pvc
-            self.refresh_delegate?.refreshInMain()
+            self.refresh_delegate?.refresh()
         }
     }
     
@@ -369,7 +370,7 @@ class SharingManagerConfiguration {
         // Call the view and do a refresh of tableView
         if let pvc = self.ViewObjectMain as? ViewControllertabMain {
             self.refresh_delegate = pvc
-            self.refresh_delegate?.refreshInMain()
+            self.refresh_delegate?.refresh()
         }
     }
     

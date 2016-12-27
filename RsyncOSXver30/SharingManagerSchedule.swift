@@ -39,7 +39,7 @@ class SharingManagerSchedule {
     // Reference to NSViewObjects requiered for protocol functions for kikcking of scheduled jobs
     var ViewObjectSchedule: NSViewController?
     // Delegate functionsn for doing a refresh of NSTableView
-    weak var refresh_delegate:RefreshtableViewtabMain?
+    weak var refresh_delegate:RefreshtableView?
     // Delegate function for doing a refresh of NSTableView in ViewControllerScheduleDetailsAboutRuns
     weak var refresh_delegate_logview:RefreshTable?
     
@@ -320,7 +320,7 @@ class SharingManagerSchedule {
         // Send message about refresh tableView
         if let pvc = SharingManagerConfiguration.sharedInstance.ViewObjectMain as? ViewControllertabMain {
             self.refresh_delegate = pvc
-            self.refresh_delegate?.refreshInMain()
+            self.refresh_delegate?.refresh()
         }
     }
     

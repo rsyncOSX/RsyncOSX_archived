@@ -24,7 +24,7 @@ class ViewControllerScheduleDetails : NSViewController {
     // Delegate functions
     // Pick up hiddenID from row
     weak var getHiddenID_delegate:GetHiddenID?
-    weak var refresh_delegate:RefreshtableViewtabMain?
+    weak var refresh_delegate:RefreshtableView?
     weak var refresh_delegate2:RefreshtableViewtabSchedule?
     // Dismisser
     weak var dismiss_delegate:DismissViewController?
@@ -45,7 +45,7 @@ class ViewControllerScheduleDetails : NSViewController {
     @IBAction func update(_ sender: NSButton) {
         if let data = self.data {
             SharingManagerSchedule.sharedInstance.deleteOrStopSchedules(data : data)
-            self.refresh_delegate?.refreshInMain()
+            self.refresh_delegate?.refresh()
             self.refresh_delegate2?.refreshInSchedule()
         }
         self.dismiss_delegate?.dismiss_view(viewcontroller: self)

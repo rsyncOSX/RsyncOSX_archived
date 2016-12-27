@@ -24,7 +24,7 @@ final class CopyFiles {
     // The arguments object
     var argumentsObject:scpProcessArguments?
     // Message to calling class do a refresh
-    weak var refreshtable_delegate:RefreshtableViewtabMain?
+    weak var refreshtable_delegate:RefreshtableView?
     // Command real run - for the copy process (by rsync)
     private var argumentsRsync:[String]?
     // Command dry-run - for the copy process (by rsync)
@@ -101,7 +101,7 @@ final class CopyFiles {
                 if let pvc = SharingManagerConfiguration.sharedInstance.CopyObjectMain as? ViewControllerCopyFiles {
                     self.progress_delegate = pvc
                     self.refreshtable_delegate = pvc
-                    self.refreshtable_delegate?.refreshInMain()
+                    self.refreshtable_delegate?.refresh()
                     self.progress_delegate?.stop()
                 }
             }

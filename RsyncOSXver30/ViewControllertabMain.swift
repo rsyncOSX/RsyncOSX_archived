@@ -223,7 +223,7 @@ class ViewControllertabMain : NSViewController {
                         self.newSchedulesAdded()
                         self.hiddenID = nil
                         self.index = nil
-                        self.refreshInMain()
+                        self.refresh()
                     }
                 }
             }
@@ -827,10 +827,10 @@ extension ViewControllertabMain: StartBatch {
 
 }
 
-extension ViewControllertabMain: RefreshtableViewtabMain {
+extension ViewControllertabMain: RefreshtableView {
 
     // Refresh tableView in main
-    func refreshInMain() {
+    func refresh() {
         // Create and read schedule objects again
         // Releasing previous allocation before creating new one
         self.schedules = nil
@@ -915,7 +915,8 @@ extension ViewControllertabMain: AddProfiles {
         // Read configurations and Scheduledata
         self.ReReadConfigurationsAndSchedules()
         self.displayProfile()
-        self.refreshInMain()
+        // Do a refresh of tableView
+        self.refresh()
         
         // We have to start any Scheduled process again - if any
         self.startProcess()
