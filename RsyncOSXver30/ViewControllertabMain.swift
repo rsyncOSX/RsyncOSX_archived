@@ -10,11 +10,6 @@
 import Foundation
 import Cocoa
 
-// Protocol for doing a refresh of updated tableView
-protocol RefreshTable : class {
-    func refresh()
-}
-
 // Protocols for instruction start/stop progressviewindicator
 protocol StartStopProgressIndicator : class {
     func start()
@@ -41,7 +36,7 @@ class ViewControllertabMain : NSViewController {
     // Protocol function used in Process().
     weak var processupdate_delegate:UpdateProgress?
     // Delegate function for doing a refresh of NSTableView in ViewControllerBatch
-    weak var refresh_delegate:RefreshTable?
+    weak var refresh_delegate:RefreshtableView?
     // Delegate function for start/stop progress Indicator in BatchWindow
     weak var indicator_delegate:StartStopProgressIndicator?
     
@@ -223,7 +218,7 @@ class ViewControllertabMain : NSViewController {
                         self.newSchedulesAdded()
                         self.hiddenID = nil
                         self.index = nil
-                        self.refreshInMain()
+                        self.refresh()
                     }
                 }
             }
@@ -827,10 +822,10 @@ extension ViewControllertabMain: StartBatch {
 
 }
 
-extension ViewControllertabMain: RefreshtableViewtabMain {
+extension ViewControllertabMain: RefreshtableView {
 
     // Refresh tableView in main
-    func refreshInMain() {
+    func refresh() {
         // Create and read schedule objects again
         // Releasing previous allocation before creating new one
         self.schedules = nil
@@ -915,7 +910,8 @@ extension ViewControllertabMain: AddProfiles {
         // Read configurations and Scheduledata
         self.ReReadConfigurationsAndSchedules()
         self.displayProfile()
-        self.refreshInMain()
+        // Do a refresh of tableView
+        self.refresh()
         
         // We have to start any Scheduled process again - if any
         self.startProcess()

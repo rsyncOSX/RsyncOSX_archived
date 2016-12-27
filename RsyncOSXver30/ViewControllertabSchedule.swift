@@ -96,15 +96,15 @@ class ViewControllertabSchedule : NSViewController {
                 GlobalMainQueue.async(execute: { () -> Void in
                      self.presentViewControllerAsSheet(self.ViewControllerScheduleDetails)
                 })
+                self.details.state = NSOffState
             }
-            
             if (details == false) {
                 let answer = Alerts.dialogOKCancel("Add Schedule?", text: "Cancel or OK")
                 if (answer) {
                     SharingManagerSchedule.sharedInstance.addScheduleData(self.hiddenID!, schedule: schedule!, start: startdate, stop: stopdate)
                     self.newSchedules = true
                     // Refresh table and recalculate the Schedules jobs
-                    self.refreshInSchedule()
+                    self.refresh()
                     self.startTimer()
                     // Start next job, if any, by delegate
                     if let pvc = SharingManagerConfiguration.sharedInstance.ViewObjectMain as? ViewControllertabMain {
@@ -322,9 +322,9 @@ extension ViewControllertabSchedule: AddProfiles {
 
 }
 
-extension ViewControllertabSchedule: RefreshtableViewtabSchedule {
+extension ViewControllertabSchedule: RefreshtableView {
     
-    func refreshInSchedule() {
+    func refresh() {
         if (SharingManagerConfiguration.sharedInstance.ConfigurationsDataSourcecountBackupOnlyCount() > 0 ) {
             GlobalMainQueue.async(execute: { () -> Void in
                 self.mainTableView.reloadData()
@@ -337,7 +337,6 @@ extension ViewControllertabSchedule: RefreshtableViewtabSchedule {
         self.firstScheduledTask.stringValue = (self.schedules?.whenIsNextTwoTasksString()[0])!
         self.secondScheduledTask.stringValue = (self.schedules?.whenIsNextTwoTasksString()[1])!
     }
-
     
 }
 

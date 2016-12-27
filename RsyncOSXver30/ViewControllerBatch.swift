@@ -170,7 +170,7 @@ extension ViewControllerBatch: StartStopProgressIndicator {
     
 }
 
-extension ViewControllerBatch: RefreshTable {
+extension ViewControllerBatch: RefreshtableView {
     
     // Updates tableview according to progress of batch
     func refresh() {

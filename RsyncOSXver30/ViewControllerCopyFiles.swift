@@ -240,10 +240,10 @@ extension ViewControllerCopyFiles: NSTextFieldDelegate {
     }
 }
 
-extension ViewControllerCopyFiles: RefreshtableViewtabMain {
+extension ViewControllerCopyFiles: RefreshtableView {
     
     // Do a refresh of table
-    func refreshInMain() {
+    func refresh() {
         GlobalMainQueue.async(execute: { () -> Void in
             self.filesArray = self.copyObject?.filter(search: nil)
             self.tableViewSelect.reloadData()
