@@ -11,7 +11,7 @@ import Cocoa
 
 // Protocol for adding new profiles
 protocol AddProfiles : class {
-    func newProfile()
+    func newProfile(new:Bool)
     func enableProfileMenu()
 }
 
@@ -40,7 +40,7 @@ class ViewControllerProfile : NSViewController {
     // Setting default profile
     @IBAction func defaultProfile(_ sender: NSButton) {
         SharingManagerConfiguration.sharedInstance.setProfile(profile: nil)
-        self.newProfile_delegate?.newProfile()
+        self.newProfile_delegate?.newProfile( new: false)
         self.useprofile = nil
         self.dismiss_delegate?.dismiss_view(viewcontroller: self)
     }
@@ -58,7 +58,7 @@ class ViewControllerProfile : NSViewController {
             if let useprofile = self.useprofile {
                 self.profile?.deleteProfile(profileName: useprofile)
                 SharingManagerConfiguration.sharedInstance.setProfile(profile: nil)
-                self.newProfile_delegate?.newProfile()
+                self.newProfile_delegate?.newProfile(new: false)
             }
             self.profile = nil
             self.profile = profiles(path: nil)
@@ -73,7 +73,7 @@ class ViewControllerProfile : NSViewController {
                 // Create new profile and use it
                 self.profile?.createProfile(profileName: newprofile)
                 SharingManagerConfiguration.sharedInstance.setProfile(profile: newprofile)
-                self.newProfile_delegate?.newProfile()
+                self.newProfile_delegate?.newProfile(new: true)
             }
             self.profile = nil
             self.profile = profiles(path: nil)
@@ -85,7 +85,7 @@ class ViewControllerProfile : NSViewController {
             // Use profile
             if let useprofile = self.useprofile {
                 SharingManagerConfiguration.sharedInstance.setProfile(profile: useprofile)
-                self.newProfile_delegate?.newProfile()
+                self.newProfile_delegate?.newProfile(new: false)
             }
             self.useprofile = nil
             self.dismiss_delegate?.dismiss_view(viewcontroller: self)
@@ -122,7 +122,7 @@ class ViewControllerProfile : NSViewController {
         }
         if let useprofile = self.useprofile {
             SharingManagerConfiguration.sharedInstance.setProfile(profile: useprofile)
-            self.newProfile_delegate?.newProfile()
+            self.newProfile_delegate?.newProfile(new: false)
         }
         self.useprofile = nil
         self.dismiss_delegate?.dismiss_view(viewcontroller: self)

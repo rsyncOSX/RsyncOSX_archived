@@ -43,17 +43,8 @@ class storeAPI {
             }
             return Configurations
         } else {
-            // Either is Configuration not dirty or profile is
-            // changed with a empty configuration. If profile 
-            // profilename =! nil the return a empty Configuration.
-            if SharingManagerConfiguration.sharedInstance.getProfile() != nil {
-                // Return a empty configuration
-                return [configuration]()
-            } else {
-                // Return configuration from memory
-                return SharingManagerConfiguration.sharedInstance.getConfigurations()
-            }
-            
+            // Return configuration from memory
+            return SharingManagerConfiguration.sharedInstance.getConfigurations()
         }
     }
     
