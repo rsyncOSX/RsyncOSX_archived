@@ -29,6 +29,7 @@ final class RsyncParameters {
     // rsync synchronises the directories
     private let backupString = ["--backup","--backup-dir=../backup"]
     private let suffixString = ["--suffix=_`date +'%Y-%m-%d.%H.%M'`"]
+    private let suffixString2 = ["--suffix=_$(date +%Y-%m-%d.%H.%M)"]
 
     /// Function for getting string for backup parameters
     /// - parameter none: none

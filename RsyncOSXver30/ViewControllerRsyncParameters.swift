@@ -160,6 +160,10 @@ class ViewControllerRsyncParameters: NSViewController {
     // Function for saving changed or new parameters for one configuration.
     @IBAction func update(_ sender: NSButton) {
         var Configurations:[configuration] = storeAPI.sharedInstance.getConfigurations()
+        guard Configurations.count > 0 else {
+            // If Configurations == 0 by any change will not cause RsyncOSX to crash
+            return
+        }
         // Get the index of selected configuration
         let index = self.getindex_delegate?.getindex()
         Configurations[index!].parameter8 = self.parameters!.getRsyncParameter(indexComboBox: self.parameter8.indexOfSelectedItem, value: getValue(value: self.viewParameter8.stringValue))
