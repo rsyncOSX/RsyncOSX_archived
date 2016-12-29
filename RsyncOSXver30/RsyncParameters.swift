@@ -44,6 +44,13 @@ final class RsyncParameters {
     func getSuffixString() -> [String] {
         return self.suffixString
     }
+    
+    /// Function for getting string for alternative suffix parameter
+    /// - parameter none: none
+    /// - return : array of String
+    func getSuffixString2() -> [String] {
+        return self.suffixString2
+    }
 
     /// Function for getting for rsync arguments to use in ComboBoxes in ViewControllerRsyncParameters
     /// - parameter none: none
