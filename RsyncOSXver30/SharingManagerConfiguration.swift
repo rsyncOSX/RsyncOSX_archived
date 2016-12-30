@@ -301,7 +301,7 @@ class SharingManagerConfiguration {
     /// Function destroys records holding data about all Configurations, all
     /// arguments for Configurations and configurations as datasource for
     /// presenting Configurations in tableviews.
-    private func destroyConfigurations() {
+    func destroyConfigurations() {
         self.Configurations.removeAll()
         self.argumentAllConfiguration.removeAllObjects()
         self.ConfigurationsDataSource = nil

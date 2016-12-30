@@ -890,15 +890,29 @@ extension ViewControllertabMain: AddProfiles {
     
     // Function is called from profiles when new or
     // default profiles is seleceted
-    func newProfile() {
+    func newProfile(new : Bool) {
         weak var newProfile_delegate: AddProfiles?
         // By setting self.schedules = nil start jobs are restaret in ViewDidAppear
         self.schedules = nil
         self.loadProfileMenu = false
+        
+        guard (new == false) else {
+            // A new and empty profile is created
+            SharingManagerSchedule.sharedInstance.destroySchedule()
+            SharingManagerConfiguration.sharedInstance.destroyConfigurations()
+            // Reset in tabSchedule
+            if let pvc = SharingManagerConfiguration.sharedInstance.ScheduleObjectMain as? ViewControllertabSchedule {
+                newProfile_delegate = pvc
+                newProfile_delegate?.newProfile(new: true)
+            }
+            self.refresh()
+            return
+        }
+        
         // Reset in tabSchedule
         if let pvc = SharingManagerConfiguration.sharedInstance.ScheduleObjectMain as? ViewControllertabSchedule {
             newProfile_delegate = pvc
-            newProfile_delegate?.newProfile()
+            newProfile_delegate?.newProfile(new: false)
         }
         // Must unload Schedule data before new Profile is loaded.
         // This is due to a glitch in design in 
@@ -912,7 +926,6 @@ extension ViewControllertabMain: AddProfiles {
         self.displayProfile()
         // Do a refresh of tableView
         self.refresh()
-        
         // We have to start any Scheduled process again - if any
         self.startProcess()
         // Check all remote servers for connection

@@ -3628,13 +3628,24 @@ DQ
                                             </textFieldCell>
                                         </textField>
                                         <button translatesAutoresizingMaskIntoConstraints="NO" id="0II-os-whp">
-                                            <rect key="frame" x="18" y="40" width="83" height="18"/>
-                                            <buttonCell key="cell" type="check" title="add suffix" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="Am3-Ji-1Ox">
+                                            <rect key="frame" x="18" y="40" width="195" height="18"/>
+                                            <buttonCell key="cell" type="check" title="add suffix or this alternative " bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="Am3-Ji-1Ox">
                                                 <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                                 <font key="font" metaFont="system"/>
                                             </buttonCell>
                                             <connections>
                                                 <action selector="suffix:" target="K9c-yf-VMY" id="6oD-Ae-BvX"/>
+                                            </connections>
+                                        </button>
+                                        <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="pba-kf-bqk">
+                                            <rect key="frame" x="217" y="40" width="56" height="18"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                            <buttonCell key="cell" type="check" title="suffix" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="QPs-xd-DDF">
+                                                <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                                <font key="font" metaFont="system"/>
+                                            </buttonCell>
+                                            <connections>
+                                                <action selector="suffix2:" target="K9c-yf-VMY" id="yoT-cV-HXl"/>
                                             </connections>
                                         </button>
                                     </subviews>
@@ -3777,6 +3788,7 @@ DQ
                         <outlet property="rsyncdaemon" destination="i2I-Oh-x29" id="ruM-fu-hdf"/>
                         <outlet property="sshport" destination="RPh-7l-0uy" id="Xi7-wl-vzd"/>
                         <outlet property="suffixButton" destination="0II-os-whp" id="q4O-Nn-OKX"/>
+                        <outlet property="suffixButton2" destination="pba-kf-bqk" id="lNT-95-Tvv"/>
                         <outlet property="viewParameter1" destination="8lV-18-VgA" id="NpZ-IK-7Vl"/>
                         <outlet property="viewParameter10" destination="eH7-7W-QkX" id="4zd-Ig-50I"/>
                         <outlet property="viewParameter11" destination="0II-7a-Edf" id="YeC-Vz-tjI"/>

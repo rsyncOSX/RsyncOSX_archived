@@ -86,7 +86,6 @@ class ViewControllerRsyncParameters: NSViewController {
     // Parameters are appended to last parameter (14).
     
     @IBOutlet weak var suffixButton: NSButton!
-    
     @IBAction func suffix(_ sender: NSButton) {
         switch self.suffixButton.state {
         case 1:
@@ -98,6 +97,21 @@ class ViewControllerRsyncParameters: NSViewController {
         default:
             break
         }
+    }
+    
+    @IBOutlet weak var suffixButton2: NSButton!
+    @IBAction func suffix2(_ sender: NSButton) {
+        switch self.suffixButton2.state {
+        case 1:
+            self.resetComboBox(self.parameter14, index: (self.parameters!.getvalueCombobox(self.parameters!.getSuffixString2()[0])))
+            self.viewParameter14.stringValue = self.parameters!.getdisplayValue(self.parameters!.getSuffixString2()[0])
+        case 0:
+            self.resetComboBox(self.parameter14, index: (0))
+            self.viewParameter14.stringValue = ""
+        default:
+            break
+        }
+        
     }
     
     // Backup button - only for testing on state
@@ -123,6 +137,7 @@ class ViewControllerRsyncParameters: NSViewController {
         super.viewDidAppear()
         self.backupbutton.state = 0
         self.suffixButton.state = 0
+        self.suffixButton2.state = 0
         var configurations:[configuration] = SharingManagerConfiguration.sharedInstance.getConfigurations()
         let index = self.getindex_delegate?.getindex()
         self.viewParameter1.stringValue = configurations[index!].parameter1
@@ -160,6 +175,10 @@ class ViewControllerRsyncParameters: NSViewController {
     // Function for saving changed or new parameters for one configuration.
     @IBAction func update(_ sender: NSButton) {
         var Configurations:[configuration] = storeAPI.sharedInstance.getConfigurations()
+        guard Configurations.count > 0 else {
+            // If Configurations == 0 by any change will not cause RsyncOSX to crash
+            return
+        }
         // Get the index of selected configuration
         let index = self.getindex_delegate?.getindex()
         Configurations[index!].parameter8 = self.parameters!.getRsyncParameter(indexComboBox: self.parameter8.indexOfSelectedItem, value: getValue(value: self.viewParameter8.stringValue))

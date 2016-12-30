@@ -29,6 +29,7 @@ final class RsyncParameters {
     // rsync synchronises the directories
     private let backupString = ["--backup","--backup-dir=../backup"]
     private let suffixString = ["--suffix=_`date +'%Y-%m-%d.%H.%M'`"]
+    private let suffixString2 = ["--suffix=_$(date +%Y-%m-%d.%H.%M)"]
 
     /// Function for getting string for backup parameters
     /// - parameter none: none
@@ -42,6 +43,13 @@ final class RsyncParameters {
     /// - return : array of String
     func getSuffixString() -> [String] {
         return self.suffixString
+    }
+    
+    /// Function for getting string for alternative suffix parameter
+    /// - parameter none: none
+    /// - return : array of String
+    func getSuffixString2() -> [String] {
+        return self.suffixString2
     }
 
     /// Function for getting for rsync arguments to use in ComboBoxes in ViewControllerRsyncParameters
