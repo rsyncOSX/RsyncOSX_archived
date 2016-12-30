@@ -6,6 +6,10 @@ The repository is source code for the macOS application RsyncOSX. The applicatio
 
 To compile the code, install Xcode and open the RsyncOSX project file. Before compiling, open in Xcode, the `RsyncOSX/General` preference page (after opening the RsyncOSX project file) and replace your own credentials in `Signing`, or just disable Signing. And then compile your own version of RsyncOSX.
 
+## versionRsyncOSX
+
+The file `versionRsyncOSX.plist` is checked (in background) by RsyncOSX at every startup. The file is hosted on Dropbox (for the moment) at URL `https://dl.dropboxusercontent.com/u/52503631/versionRsyncOSX.plist?raw=1`. The content of file is `version number` and link to new `RsyncOSX.dmg` file. At startup RsyncOSX checks its own version number with version numbers listed in file. If RsyncOSX match own version number with remote file there is released a newer version of RsyncOSX.
+
 ### Graphics
 
 I have uplodaded the [Gimp file](https://github.com/rsyncOSX/RsyncOSXicon) which is base for the RsyncOSX icon. [Help](https://github.com/rsyncOSX/RsyncOSXicon/issues/1) is wanted to create a better looking icon.
