@@ -4,11 +4,11 @@ The repository is source code for the macOS application RsyncOSX. The applicatio
 
 ### Compile
 
-To compile the code, install Xcode and open the RsyncOSX project file. Before compiling, open in Xcode, the `RsyncOSX/General` preference page (after opening the RsyncOSX project file) and replace your own credentials in `Signing`, or just disable Signing. And then compile your own version of RsyncOSX.
+To compile the code, install Xcode and open the RsyncOSX project file. Before compiling, open in Xcode, the `RsyncOSX/General` preference page (after opening the RsyncOSX project file) and replace your own credentials in `Signing`, or just disable Signing. Then compile your own version of RsyncOSX.
 
 ## versionRsyncOSX
 
-The file `versionRsyncOSX.plist` is checked (in background) by RsyncOSX at every startup. The file is hosted on Dropbox (for the moment) at URL `https://dl.dropboxusercontent.com/u/52503631/versionRsyncOSX.plist?raw=1`. The content of file is `version number` and link to new `RsyncOSX.dmg` file. At startup RsyncOSX checks its own version number with version numbers listed in file. If RsyncOSX match own version number with remote file there is released a newer version of RsyncOSX.
+The file `versionRsyncOSX.plist` is checked (in a asynchron background que) by RsyncOSX at every startup. The file is hosted on Dropbox (for the moment) at URL `https://dl.dropboxusercontent.com/u/52503631/versionRsyncOSX.plist?raw=1`. The content of URL is `version number` and link to new `RsyncOSX.dmg` file. At startup RsyncOSX checks its version number compared to version numbers listed in URL. If there is a match between RsyncOSX version number and URL there is released a newer version of RsyncOSX.
 
 ### Graphics
 
@@ -24,7 +24,6 @@ Please use the [issues page](https://github.com/rsyncOSX/Version3.x/issues) for 
 
 The code is **not** example of neither writing decent Swift code, OO-development or applying the MVC-pattern. It is a personal project to learn Swift and I am learning every day. I belive coding is an art and to be really good at coding requires years of experience. My experience of coding is far from that. I am happy to share the code with anyone. Sharing of code is in my opinion the best way to get quality.
 
-The code has been refactored couple of times. The latest release of RsyncOSX is quite stable. But there are parts of code which might should be refactored.
 
 ### Changelog
 
