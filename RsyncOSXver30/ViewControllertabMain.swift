@@ -221,6 +221,7 @@ class ViewControllertabMain : NSViewController {
                         self.refresh()
                     }
                 }
+                self.delete.state = NSOffState
             }
         } else {
             self.rsyncCommand.stringValue = " ... Please select a task first ..."
@@ -1024,6 +1025,9 @@ extension ViewControllertabMain: DismissViewController {
     // - parameter viewcontroller: the viewcontroller to be dismissed
     func dismiss_view(viewcontroller:NSViewController) {
         self.dismissViewController(viewcontroller)
+        // Reset radiobuttons
+        self.edit.state = NSOffState
+        self.rsyncparams.state = NSOffState
         GlobalMainQueue.async(execute: { () -> Void in
             self.mainTableView.reloadData()
         })
