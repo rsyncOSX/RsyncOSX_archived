@@ -216,14 +216,19 @@ class ViewControllertabMain : NSViewController {
                         // And create a new Schedule object
                         // Just calling the protocol function
                         self.newSchedulesAdded()
+                        self.deselectRow(index: self.index)
                         self.hiddenID = nil
                         self.index = nil
                         self.refresh()
                     }
                 }
+                self.delete.state = NSOffState
             }
         } else {
             self.rsyncCommand.stringValue = " ... Please select a task first ..."
+            self.delete.state = NSOffState
+            self.rsyncparams.state = NSOffState
+            self.edit.state = NSOffState
         }
     }
     
@@ -252,7 +257,7 @@ class ViewControllertabMain : NSViewController {
     // Selecting profiles
     @IBAction func profiles(_ sender: NSButton) {
         if (self.loadProfileMenu == true) {
-            self.showProcessInfo(what:6)
+            self.showProcessInfo(info:.Change_profile)
             GlobalMainQueue.async(execute: { () -> Void in
                 self.presentViewControllerAsSheet(self.ViewControllerProfile)
             })
@@ -315,7 +320,7 @@ class ViewControllertabMain : NSViewController {
     override func viewDidAppear() {
         super.viewDidAppear()
         self.loadProfileMenu = false
-        self.showProcessInfo(what: 0)
+        self.showProcessInfo(info: .Blank)
         // Allow notify about Scheduled jobs
         SharingManagerConfiguration.sharedInstance.allowNotifyinMain = true
         self.setInfo(info: "", color: NSColor.black)
@@ -384,7 +389,7 @@ class ViewControllertabMain : NSViewController {
             case .estimate_singlerun:
                 if let index = self.index {
                     self.working.startAnimation(nil)
-                    self.showProcessInfo(what: 1)
+                    self.showProcessInfo(info: .Estimating)
                     arguments = SharingManagerConfiguration.sharedInstance.getRsyncArgumentOneConfig(index: index, argtype: .argdryRun)
                     self.output = outputProcess()
                     process.executeProcess(arguments!, output: self.output!)
@@ -392,7 +397,7 @@ class ViewControllertabMain : NSViewController {
                     self.setInfo(info: "Execute", color: NSColor.blue)
                 }
             case .execute_singlerun:
-                self.showProcessInfo(what: 2)
+                self.showProcessInfo(info: .Executing)
                 if let index = self.index {
                     GlobalMainQueue.async(execute: { () -> Void in
                         self.presentViewControllerAsSheet(self.ViewControllerProgress)
@@ -514,7 +519,7 @@ class ViewControllertabMain : NSViewController {
                     self.refresh_delegate?.refresh()
                     self.indicator_delegate?.stop()
                 }
-                self.showProcessInfo(what: 1)
+                self.showProcessInfo(info: .Estimating)
                 self.runBatch()
             case 1:
                 self.maxcount = self.output!.getOutputCount()
@@ -534,7 +539,7 @@ class ViewControllertabMain : NSViewController {
                 SharingManagerSchedule.sharedInstance.addScheduleResultManuel(hiddenID, result: self.output!.statistics(numberOfFiles: self.transferredNumber.stringValue)[0])
                 // Reset counter before next run
                 self.output!.removeObjectsOutput()
-                self.showProcessInfo(what: 2)
+                self.showProcessInfo(info: .Executing)
                 self.runBatch()
             default :
                 break
@@ -549,7 +554,7 @@ class ViewControllertabMain : NSViewController {
     // Function is called in ProcessTermination()
     fileprivate func setmaxNumbersOfFilesToTransfer () {
         // Getting max count
-        self.showProcessInfo(what: 3)
+        self.showProcessInfo(info: .Set_max_Number)
         if (self.output!.getTransferredNumbers(numbers: .totalNumber) > 0) {
             self.setNumbers(setvalues: true)
             if (self.output!.getTransferredNumbers(numbers: .transferredNumber) > 0) {
@@ -635,27 +640,35 @@ class ViewControllertabMain : NSViewController {
         }
     }
     
+    // deselect a row after row is deleted
+    private func deselectRow(index:Int?) {
+        guard index != nil else {
+            return
+        }
+        self.mainTableView.deselectRow(index!)
+    }
+    
     // Just for updating process info
-    fileprivate func showProcessInfo(what:Int) {
+    fileprivate func showProcessInfo(info:displayProcessInfo) {
         GlobalMainQueue.async(execute: { () -> Void in
-            switch what {
-            case 1:
+            switch info {
+            case .Estimating:
                 self.processInfo.stringValue = "Estimating"
-            case 2:
+            case .Executing:
                 self.processInfo.stringValue = "Executing"
-            case 3:
+            case .Set_max_Number:
                 self.processInfo.stringValue = "Set max number"
-            case 4:
+            case .Logging_run:
                 self.processInfo.stringValue = "Logging run"
-            case 5:
+            case .Count_files:
                 self.processInfo.stringValue = "Count files"
-            case 6:
+            case .Change_profile:
                 self.processInfo.stringValue = "Change profile"
-            case 7:
+            case .Profiles_enabled:
                 self.processInfo.stringValue = "Profiles enabled"
-            case 8:
+            case .Abort:
                 self.processInfo.stringValue = "Abort"
-            default:
+            case .Blank:
                 self.processInfo.stringValue = ""
                 break
             }
@@ -934,7 +947,7 @@ extension ViewControllertabMain: AddProfiles {
     
     func enableProfileMenu() {
         self.loadProfileMenu = true
-        self.showProcessInfo(what: 7)
+        self.showProcessInfo(info: .Profiles_enabled)
         GlobalMainQueue.async(execute: { () -> Void in
             self.displayProfile()
         })
@@ -1024,6 +1037,9 @@ extension ViewControllertabMain: DismissViewController {
     // - parameter viewcontroller: the viewcontroller to be dismissed
     func dismiss_view(viewcontroller:NSViewController) {
         self.dismissViewController(viewcontroller)
+        // Reset radiobuttons
+        self.edit.state = NSOffState
+        self.rsyncparams.state = NSOffState
         GlobalMainQueue.async(execute: { () -> Void in
             self.mainTableView.reloadData()
         })
@@ -1035,7 +1051,7 @@ extension ViewControllertabMain: Abort {
     
     func abortOperations() {
         // Terminates the running process
-        self.showProcessInfo(what:8)
+        self.showProcessInfo(info:.Abort)
         if let process = self.process {
             process.terminate()
             self.index = nil
@@ -1112,7 +1128,7 @@ extension ViewControllertabMain: UpdateProgress {
                             self.presentViewControllerAsSheet(self.ViewControllerInformation)
                         })
                     }
-                    self.showProcessInfo(what: 4)
+                    self.showProcessInfo(info: .Logging_run)
                     SharingManagerConfiguration.sharedInstance.setCurrentDateonConfiguration(self.index!)
                     SharingManagerSchedule.sharedInstance.addScheduleResultManuel(self.hiddenID!, result: self.output!.statistics(numberOfFiles: self.transferredNumber.stringValue)[0])
                     
@@ -1135,7 +1151,7 @@ extension ViewControllertabMain: UpdateProgress {
     }
     
     func FileHandler() {
-        self.showProcessInfo(what: 5)
+        self.showProcessInfo(info: .Count_files)
         if let batchobject = SharingManagerConfiguration.sharedInstance.getBatchdataObject() {
             let work = batchobject.nextBatchCopy()
             if work.1 == 1 {

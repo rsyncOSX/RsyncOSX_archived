@@ -113,6 +113,11 @@ class ViewControllertabSchedule : NSViewController {
                     }
                 }
             }
+            // Reset radiobuttons
+            self.once.state = NSOffState
+            self.daily.state = NSOffState
+            self.weekly.state = NSOffState
+            self.details.state = NSOffState
         }
     }
     

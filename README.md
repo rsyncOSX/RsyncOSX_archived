@@ -1,6 +1,12 @@
 ## RsyncOSX
 
-The repository is source code for the macOS application RsyncOSX. The application is implemented in Swift 3.x by using Xcode version 8.x. The application is **not** depended upon any third party binary distributions. There is, however, only one third party source code included to check for TCP connections. The check is for informal use only and can be removed. All other code is stock use of Swift 3.x and libraries as part of Xcode version 8.x. 
+The repository is source code for the macOS application RsyncOSX. The application is implemented by Swift 3.x by using Xcode version 8.x. The application is **not** depended upon any third party binary distributions. There is, however, only one third party source code included to check for TCP connections. The check is for informal use only and can be removed. All other code is stock use of Swift 3.x and libraries as part of Xcode version 8.x. 
+
+### MacUpdate
+
+RsyncOSX is also released on [MacUpdate](https://www.macupdate.com/app/mac/56516/rsyncosx) as well. The application is downloaded about 6,800 times from MacUpdate (all versions, January 2017). There is also a [Google Blog](https://rsyncosx.blogspot.no/) about RsyncOSX. Many users download RsyncOSX from the blog. RsyncOSX does also  inform users about new releases and link to download new version. 
+
+To be honest, I have **no idea** how many users of RsyncOSX there is. 
 
 ### Compile
 
