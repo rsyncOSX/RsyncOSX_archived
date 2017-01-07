@@ -32,6 +32,19 @@ var GlobalDefaultQueue: DispatchQueue {
     return DispatchQueue.global(qos: .default)
 }
 
+// Used in mainTab to present info about process
+enum displayProcessInfo {
+    case Estimating
+    case Executing
+    case Set_max_Number
+    case Logging_run
+    case Count_files
+    case Change_profile
+    case Profiles_enabled
+    case Abort
+    case Blank
+}
+
 // Protocol for doing a refresh in main view after testing for connectivity
 protocol Connections : class {
     func displayConnections()
