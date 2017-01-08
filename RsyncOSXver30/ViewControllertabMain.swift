@@ -20,18 +20,23 @@ protocol StartStopProgressIndicator : class {
 // Protocol for dismiss a viewcontroller
 // It is the presenting viewcontroller which is
 // responsible to dismiss the viewcontroller
-protocol DismissViewController : class {
+protocol DismissViewController: class {
     func dismiss_view(viewcontroller:NSViewController)
 }
 
 // Protocol for either completion of work or update progress when Process discovers a
 // process termination and when filehandler discover data
-protocol UpdateProgress : class {
+protocol UpdateProgress: class {
     func ProcessTermination()
     func FileHandler()
 }
 
-class ViewControllertabMain : NSViewController {
+// Protocol for deselecting rowtable
+protocol deselectRowTable: class {
+    func deselectRow()
+}
+
+class ViewControllertabMain: NSViewController {
 
     // Protocol function used in Process().
     weak var processupdate_delegate:UpdateProgress?
@@ -635,17 +640,7 @@ class ViewControllertabMain : NSViewController {
             self.setInfo(info: "Estimate", color: NSColor.blue)
             self.setRsyncCommandDisplay()
             self.process = nil
-        } else {
-            self.abortOperations()
         }
-    }
-    
-    // deselect a row after row is deleted
-    fileprivate func deselectRow() {
-        guard self.index != nil else {
-            return
-        }
-        self.mainTableView.deselectRow(self.index!)
     }
     
     // Just for updating process info
@@ -1175,4 +1170,14 @@ extension ViewControllertabMain: UpdateProgress {
         }
     }
     
+}
+
+extension ViewControllertabMain: deselectRowTable {
+    // deselect a row after row is deleted
+    func deselectRow() {
+        guard self.index != nil else {
+            return
+        }
+        self.mainTableView.deselectRow(self.index!)
+    }
 }

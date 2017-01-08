@@ -37,6 +37,8 @@ class SharingManagerSchedule {
     weak var refresh_delegate:RefreshtableView?
     // Delegate function for doing a refresh of NSTableView in ViewControllerScheduleDetailsAboutRuns
     weak var refresh_delegate_logview:RefreshtableView?
+    // Delegate function for deselect row in table main view after loggdata is saved
+    weak var deselectRow_delegate:deselectRowTable?
     
     // DATA STRUCTURE
     
@@ -387,7 +389,11 @@ class SharingManagerSchedule {
                 }
             }
             if (inserted) {
-               storeAPI.sharedInstance.saveScheduleFromMemory()
+                storeAPI.sharedInstance.saveScheduleFromMemory()
+                if let pvc = SharingManagerConfiguration.sharedInstance.ViewObjectMain as? ViewControllertabMain {
+                    self.deselectRow_delegate = pvc
+                    self.deselectRow_delegate?.deselectRow()
+                }
             }
         }
     }
