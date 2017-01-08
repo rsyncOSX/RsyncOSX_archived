@@ -1131,11 +1131,9 @@ extension ViewControllertabMain: UpdateProgress {
                     self.showProcessInfo(info: .Logging_run)
                     SharingManagerConfiguration.sharedInstance.setCurrentDateonConfiguration(self.index!)
                     SharingManagerSchedule.sharedInstance.addScheduleResultManuel(self.hiddenID!, result: self.output!.statistics(numberOfFiles: self.transferredNumber.stringValue)[0])
-                    self.deselectRow()
                     
                 case .abort:
                     self.abortOperations()
-                    self.deselectRow()
                     self.workload = nil
                     
                 case .empty:
