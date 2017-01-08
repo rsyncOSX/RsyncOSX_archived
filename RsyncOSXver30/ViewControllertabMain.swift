@@ -641,7 +641,7 @@ class ViewControllertabMain : NSViewController {
     }
     
     // deselect a row after row is deleted
-    private func deselectRow() {
+    fileprivate func deselectRow() {
         guard self.index != nil else {
             return
         }
