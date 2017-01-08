@@ -216,7 +216,7 @@ class ViewControllertabMain : NSViewController {
                         // And create a new Schedule object
                         // Just calling the protocol function
                         self.newSchedulesAdded()
-                        self.deselectRow(index: self.index)
+                        self.deselectRow()
                         self.hiddenID = nil
                         self.index = nil
                         self.refresh()
@@ -641,11 +641,11 @@ class ViewControllertabMain : NSViewController {
     }
     
     // deselect a row after row is deleted
-    private func deselectRow(index:Int?) {
-        guard index != nil else {
+    private func deselectRow() {
+        guard self.index != nil else {
             return
         }
-        self.mainTableView.deselectRow(index!)
+        self.mainTableView.deselectRow(self.index!)
     }
     
     // Just for updating process info
