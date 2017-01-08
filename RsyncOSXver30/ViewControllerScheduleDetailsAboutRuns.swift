@@ -19,6 +19,8 @@ class ViewControllerScheduleDetailsAboutRuns : NSViewController {
     var row:NSDictionary?
     // Search after
     var what:filterLogs?
+    // Index selected row
+    var index:Int?
 
 
     @IBOutlet weak var scheduletable: NSTableView!
@@ -50,6 +52,7 @@ class ViewControllerScheduleDetailsAboutRuns : NSViewController {
             self.deleteButton.state = NSOffState
             return
         }
+        self.deselectRow()
         SharingManagerSchedule.sharedInstance.deleteLogRow(hiddenID: self.row?.value(forKey: "hiddenID") as! Int,
                                                            parent: self.row?.value(forKey: "parent") as! String,
                                                            resultExecuted: self.row?.value(forKey: "resultExecuted") as! String,
@@ -77,7 +80,9 @@ class ViewControllerScheduleDetailsAboutRuns : NSViewController {
             self.scheduletable.reloadData()
             self.sorting.stopAnimation(self)
         })
-        self.server.state = NSOnState
+        self.server.state = NSOffState
+        self.Catalog.state = NSOffState
+        self.date.state = NSOffState
         self.what = .remoteServer
         self.deleteButton.state = NSOffState
     }
@@ -86,6 +91,14 @@ class ViewControllerScheduleDetailsAboutRuns : NSViewController {
         super.viewDidDisappear()
         self.sorting.startAnimation(self)
         self.tabledata = nil
+    }
+    
+    // deselect a row after row is deleted
+    private func deselectRow() {
+        guard self.index != nil else {
+            return
+        }
+        self.scheduletable.deselectRow(self.index!)
     }
 }
 
@@ -114,6 +127,9 @@ extension ViewControllerScheduleDetailsAboutRuns : NSSearchFieldDelegate {
             self.tabledata = ScheduleDetailsAboutRuns().filter(search: nil, what:nil)
             self.scheduletable.reloadData()
         })
+        self.server.state = NSOffState
+        self.Catalog.state = NSOffState
+        self.date.state = NSOffState
     }
     
 }
@@ -145,6 +161,7 @@ extension ViewControllerScheduleDetailsAboutRuns : NSTableViewDelegate {
         let myTableViewFromNotification = notification.object as! NSTableView
         let indexes = myTableViewFromNotification.selectedRowIndexes
         if let index = indexes.first {
+            self.index = index
             self.row = self.tabledata?[index]
             if (self.server.state == NSOnState) {
                 if let server = self.row?.value(forKey: "offsiteServer") as? String {
