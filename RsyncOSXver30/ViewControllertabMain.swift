@@ -640,8 +640,6 @@ class ViewControllertabMain: NSViewController {
             self.setInfo(info: "Estimate", color: NSColor.blue)
             self.setRsyncCommandDisplay()
             self.process = nil
-        } else {
-            self.abortOperations()
         }
     }
     
