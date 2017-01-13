@@ -33,4 +33,4 @@ The code is **not** example of neither writing decent Swift code, OO-development
 
 ### Changelog
 
-The [Changelog](https://github.com/rsyncOSX/Documentation/blob/master/Docs/Changelog.md).
+The [Changelog](https://github.com/rsyncOSX/Documentation/blob/master/docs/Changelog.md).
