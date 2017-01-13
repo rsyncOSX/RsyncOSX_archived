@@ -272,12 +272,13 @@
                                 <toolbarItem reference="jd9-Mf-S8W"/>
                                 <toolbarItem reference="wiK-ZO-ZDm"/>
                                 <toolbarItem reference="quu-OS-Fs0"/>
-                                <toolbarItem reference="nNQ-oV-bI4"/>
+                                <toolbarItem reference="wiK-ZO-ZDm"/>
                                 <toolbarItem reference="wiK-ZO-ZDm"/>
                                 <toolbarItem reference="8uy-WP-uGC"/>
                                 <toolbarItem reference="wiK-ZO-ZDm"/>
                                 <toolbarItem reference="MoK-gA-6LM"/>
                                 <toolbarItem reference="cR7-5i-thI"/>
+                                <toolbarItem reference="wiK-ZO-ZDm"/>
                                 <toolbarItem reference="wiK-ZO-ZDm"/>
                             </defaultToolbarItems>
                         </toolbar>
@@ -2059,6 +2060,19 @@
                                 <view key="contentView" id="uKr-oj-PV3">
                                     <rect key="frame" x="2" y="2" width="561" height="196"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                    <subviews>
+                                        <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="vgz-68-zbF">
+                                            <rect key="frame" x="464" y="3" width="93" height="32"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                            <buttonCell key="cell" type="push" title="Add new" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="sE6-n6-Lin">
+                                                <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                                <font key="font" metaFont="system"/>
+                                            </buttonCell>
+                                            <connections>
+                                                <action selector="AddConfig:" target="3xI-3C-guU" id="ZvR-NG-Qds"/>
+                                            </connections>
+                                        </button>
+                                    </subviews>
                                 </view>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="209" id="jO6-Uh-a8e"/>

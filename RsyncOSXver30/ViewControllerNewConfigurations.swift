@@ -112,56 +112,51 @@ class ViewControllerNewConfigurations: NSViewController {
     }
     
     
-    @IBAction func newConfig (_ sender: NSButton) {
-            
+    @IBAction func AddConfig(_ sender: NSButton) {
         let dict:NSMutableDictionary = [
-                "task":"backup",
-                "backupID":backupID.stringValue,
-                "localCatalog":localCatalog.stringValue,
-                "offsiteCatalog":offsiteCatalog.stringValue,
-                "offsiteServer":offsiteServer.stringValue,
-                "offsiteUsername":offsiteUsername.stringValue,
-                "parameter1":parameter1,
-                "parameter2":parameter2,
-                "parameter3":parameter3,
-                "parameter4":parameter4,
-                "parameter5":parameter5,
-                "parameter6":parameter6,
-                "dryrun":"--dry-run",
-                "rsync":"rsync",
-                "dateRun":"",
-                "singleFile":0]
+            "task":"backup",
+            "backupID":backupID.stringValue,
+            "localCatalog":localCatalog.stringValue,
+            "offsiteCatalog":offsiteCatalog.stringValue,
+            "offsiteServer":offsiteServer.stringValue,
+            "offsiteUsername":offsiteUsername.stringValue,
+            "parameter1":parameter1,
+            "parameter2":parameter2,
+            "parameter3":parameter3,
+            "parameter4":parameter4,
+            "parameter5":parameter5,
+            "parameter6":parameter6,
+            "dryrun":"--dry-run",
+            "rsync":"rsync",
+            "dateRun":"",
+            "singleFile":0]
         dict.setValue("no", forKey: "batch")
         if self.singleFile.state == NSOnState {
             dict.setValue(1, forKey: "singleFile")
         }
-    
-            if (!localCatalog.stringValue.hasSuffix("/") && self.singleFile.state == NSOffState){
-                localCatalog.stringValue = localCatalog.stringValue + "/"
-                dict.setValue(localCatalog.stringValue, forKey: "localCatalog")
+        
+        if (!localCatalog.stringValue.hasSuffix("/") && self.singleFile.state == NSOffState){
+            localCatalog.stringValue = localCatalog.stringValue + "/"
+            dict.setValue(localCatalog.stringValue, forKey: "localCatalog")
+        }
+        if (!offsiteCatalog.stringValue.hasSuffix("/")){
+            offsiteCatalog.stringValue = offsiteCatalog.stringValue + "/"
+            dict.setValue(offsiteCatalog.stringValue, forKey: "offsiteCatalog")
+        }
+        dict.setObject(self.rsyncdaemon.state, forKey: "rsyncdaemon" as NSCopying)
+        if (sshport.stringValue != "") {
+            if let port:Int = Int(self.sshport.stringValue) {
+                dict.setObject(port, forKey: "sshport" as NSCopying)
             }
-            if (!offsiteCatalog.stringValue.hasSuffix("/")){
-                offsiteCatalog.stringValue = offsiteCatalog.stringValue + "/"
-                dict.setValue(offsiteCatalog.stringValue, forKey: "offsiteCatalog")
-            }
-            dict.setObject(self.rsyncdaemon.state, forKey: "rsyncdaemon" as NSCopying)
-            if (sshport.stringValue != "") {
-                if let port:Int = Int(self.sshport.stringValue) {
-                    dict.setObject(port, forKey: "sshport" as NSCopying)
-                }
-            }
-            SharingManagerConfiguration.sharedInstance.addNewConfigurations(dict)
-            self.tabledata = SharingManagerConfiguration.sharedInstance.getnewConfigurations()
-            GlobalMainQueue.async(execute: { () -> Void in
-                self.newTableView.reloadData()
-            })
-            self.newConfigs = true
-            self.setFields()
-        } 
-    
-
-    
-    
+        }
+        SharingManagerConfiguration.sharedInstance.addNewConfigurations(dict)
+        self.tabledata = SharingManagerConfiguration.sharedInstance.getnewConfigurations()
+        GlobalMainQueue.async(execute: { () -> Void in
+            self.newTableView.reloadData()
+        })
+        self.newConfigs = true
+        self.setFields()
+    }
     
 }
 
