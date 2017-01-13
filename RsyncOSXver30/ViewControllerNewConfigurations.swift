@@ -135,13 +135,13 @@ class ViewControllerNewConfigurations: NSViewController {
             dict.setValue(1, forKey: "singleFile")
         }
         
-        if (!localCatalog.stringValue.hasSuffix("/") && self.singleFile.state == NSOffState){
-            localCatalog.stringValue = localCatalog.stringValue + "/"
-            dict.setValue(localCatalog.stringValue, forKey: "localCatalog")
+        if (!self.localCatalog.stringValue.hasSuffix("/") && self.singleFile.state == NSOffState){
+            self.localCatalog.stringValue = self.localCatalog.stringValue + "/"
+            dict.setValue(self.localCatalog.stringValue, forKey: "localCatalog")
         }
-        if (!offsiteCatalog.stringValue.hasSuffix("/")){
-            offsiteCatalog.stringValue = offsiteCatalog.stringValue + "/"
-            dict.setValue(offsiteCatalog.stringValue, forKey: "offsiteCatalog")
+        if (!self.offsiteCatalog.stringValue.hasSuffix("/")){
+            self.offsiteCatalog.stringValue = self.offsiteCatalog.stringValue + "/"
+            dict.setValue(self.offsiteCatalog.stringValue, forKey: "offsiteCatalog")
         }
         dict.setObject(self.rsyncdaemon.state, forKey: "rsyncdaemon" as NSCopying)
         if (sshport.stringValue != "") {
@@ -149,6 +149,19 @@ class ViewControllerNewConfigurations: NSViewController {
                 dict.setObject(port, forKey: "sshport" as NSCopying)
             }
         }
+        
+        guard self.localCatalog.stringValue != "/" else {
+            self.offsiteCatalog.stringValue = ""
+            self.localCatalog.stringValue = ""
+            return
+        }
+        
+        guard self.offsiteCatalog.stringValue != "/" else {
+            self.offsiteCatalog.stringValue = ""
+            self.localCatalog.stringValue = ""
+            return
+        }
+        
         SharingManagerConfiguration.sharedInstance.addNewConfigurations(dict)
         self.tabledata = SharingManagerConfiguration.sharedInstance.getnewConfigurations()
         GlobalMainQueue.async(execute: { () -> Void in
