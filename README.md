@@ -8,10 +8,6 @@ RsyncOSX is also released on [MacUpdate](https://www.macupdate.com/app/mac/56516
 
 To be honest, I have **no idea** how many users of RsyncOSX there is. 
 
-### Changelog
-
-The [Changelog](https://github.com/rsyncOSX/Documentation/blob/master/Docs/Changelog.md).
-
 
 ### Rsync
 
@@ -46,3 +42,6 @@ Please use the [issues page](https://github.com/rsyncOSX/Version3.x/issues) for 
 
 The code is **not** example of neither writing decent Swift code, OO-development or applying the MVC-pattern. It is a personal project to learn Swift and I am learning every day. I belive coding is an art and to be really good at coding requires years of experience. My experience of coding is far from that. I am happy to share the code with anyone. Sharing of code is in my opinion the best way to get quality.
 
+### Changelog
+
+The [Changelog](https://github.com/rsyncOSX/Documentation/blob/master/Docs/Changelog.md).
