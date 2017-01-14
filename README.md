@@ -11,13 +11,13 @@ To be honest, I have **no idea** how many users of RsyncOSX there is.
 
 ### Rsync
 
-The default version of `rsync` in macOS is quite old (version 2.6.9, protocol version 29). This version was [released](https://download.samba.org/pub/rsync/src/rsync-2.6.9-NEWS) nov 2006. The latest release of rsync is version 3.1.2 protocol 31, [released](https://download.samba.org/pub/rsync/src/rsync-3.1.2-NEWS) 21 Dec 2015. There are at least two solutions to install the latest version of rsync for use in RsyncOSX:
+The default version of `rsync` in macOS is old (version 2.6.9, protocol version 29). Version [2.6.9](https://download.samba.org/pub/rsync/src/rsync-2.6.9-NEWS) was released in nov 2006. The current release of rsync is version [3.1.2](https://download.samba.org/pub/rsync/src/rsync-3.1.2-NEWS) protocol 31, released 21 Dec 2015. There are at least two options to get and install the current version of rsync for use in RsyncOSX:
 
-- install Xcode and download the [source](https://rsync.samba.org/) from rsync.samba.org
+- install Xcode and download the rsync [source](https://rsync.samba.org/) from rsync.samba.org
 	- untar the source archive and use `make` to compile and install, rsync compiles without any issues on macOS
 - install [homebrew](https://en.wikipedia.org/wiki/Homebrew_(package_management_software)) and then install rsync as part of homebrew
 
-In RsyncOSX select [Configuration](https://github.com/rsyncOSX/Documentation/blob/master/docs/UserConfiguration.md) and set path for optional version of rysnc.
+In RsyncOSX select [RsyncOSX configuration](https://github.com/rsyncOSX/Documentation/blob/master/docs/UserConfiguration.md) and set path for optional version of rsync.
 
 
 ### Compile
