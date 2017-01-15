@@ -291,10 +291,14 @@ class ViewControllertabMain: NSViewController {
         if (self.displayDryRun.state == NSOnState) {
             if let index = self.index {
                 self.rsyncCommand.stringValue = Utils.sharedInstance.setRsyncCommandDisplay(index: index, dryRun: true)
+            } else {
+                self.rsyncCommand.stringValue = ""
             }
         } else {
             if let index = self.index {
                 self.rsyncCommand.stringValue = Utils.sharedInstance.setRsyncCommandDisplay(index: index, dryRun: false)
+            } else {
+                self.rsyncCommand.stringValue = ""
             }
         }
     }
@@ -640,6 +644,12 @@ class ViewControllertabMain: NSViewController {
             self.setInfo(info: "Estimate", color: NSColor.blue)
             self.setRsyncCommandDisplay()
             self.process = nil
+        } else {
+            self.index = nil
+            self.process = nil
+            self.setInfo(info: "Estimate", color: NSColor.blue)
+            self.setRsyncCommandDisplay()
+            
         }
     }
     
