@@ -78,6 +78,8 @@ final class rsyncProcess {
                     // We are in Scheduled operation and must finalize the job
                     // e.g logging date and stuff like that
                     SharingManagerConfiguration.sharedInstance.operation?.finalizeScheduledJob(output: output)
+                    // After logging is done set reference to object = nil
+                    SharingManagerConfiguration.sharedInstance.operation = nil
                 }
                 NotificationCenter.default.removeObserver(self.observationCenter as Any)
             }

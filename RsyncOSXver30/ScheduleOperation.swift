@@ -14,7 +14,7 @@ protocol StartNextScheduledTask : class {
 }
 
 // Protocol when a Scehduled job is starting and stopping
-// USed to informed the presenting viewcontroller about what
+// Used to informed the presenting viewcontroller about what
 // is going on
 protocol ScheduledJobInProgress : class {
     func start()
@@ -22,10 +22,18 @@ protocol ScheduledJobInProgress : class {
     func notifyScheduledJob(config:configuration?)
 }
 
-// Class for starting scheduled task
+// Class for creating and preparing the scheduled task
+// The class set up a Timer for waiting for the first task to be
+// executed. The class creates a object holding all jobs in
+// queue for execution. The class calculates the number of
+// seconds to wait before the firste scheduled task is executed.
+// It set up a Timer to wait for the first job to execute. And when
+// time is due it create a Operation object and dump the object onto the 
+// OperationQueue for imidiate execution.
+
 final class ScheduleOperation {
     
-    let schedules:ScheduleSortedAndExpand?
+    var schedules:ScheduleSortedAndExpand?
     var waitForTask : Timer?
     var queue : OperationQueue?
     
@@ -34,12 +42,17 @@ final class ScheduleOperation {
         // The Process itself is executed in GlobalMainQueue
         GlobalBackgroundQueue.async(execute: {
             let queue = OperationQueue()
+            // Create the Operation object which executes the
+            // scheduled job
             let task = executeTask()
+            // Add the Operation object to the queue for execution.
+            // The queue executes the main() task whenever everything is ready for execution
             queue.addOperation(task)
         })
     }
     
     init () {
+        // Cancel any current job waiting for execution
         SharingManagerSchedule.sharedInstance.cancelJobWaiting()
         // Create a new Schedules object
         self.schedules = ScheduleSortedAndExpand()
@@ -51,133 +64,9 @@ final class ScheduleOperation {
             // Set reference to Timer that kicks of the Scheduled job
             // Reference is set for cancel job if requiered
             SharingManagerSchedule.sharedInstance.setJobWaiting(timer: self.waitForTask!)
-        } 
-    }
-}
-
-// Class for completion of Operation objects when Process object termination
-final class completeScheduledOperation {
-    
-    // Delegate function for starting next scheduled operatin if any
-    // Delegate function is triggered when NSTaskDidTerminationNotification
-    // is discovered (e.g previous job is done)
-    weak var start_next_job_delegate:StartNextScheduledTask?
-    // Delegate function for start and completion of scheduled jobs
-    weak var notify_delegate : ScheduledJobInProgress?
-    // Delegate to notify starttimer()
-    weak var startTimer_delegate : StartTimer?
-    // Initialize variables
-    private var date:Date?
-    private var dateStart:Date?
-    private var dateformatter:DateFormatter?
-    private var hiddenID:Int?
-    private var schedule:String?
-    private var index:Int?
-    
-    // Function for finalizing the Scheduled job
-    // The Operation object sets reference to the completeScheduledOperation in SharingManagerConfiguration.sharedInstance.operation
-    // This function is executed when rsyn process terminates
-    func finalizeScheduledJob(output:outputProcess) {
-        // Write result to Schedule
-        let datestring = self.dateformatter!.string(from: date!)
-        let dateStartstring = self.dateformatter!.string(from: dateStart!)
-        let numberstring = output.statistics(numberOfFiles: nil)
-        SharingManagerSchedule.sharedInstance.addScheduleResult(self.hiddenID!, dateStart: dateStartstring, result: numberstring[0], date: datestring, schedule: schedule!)
-        // Writing timestamp to configuration
-        // Update memory configuration with rundate
-        _ = SharingManagerConfiguration.sharedInstance.setCurrentDateonConfiguration(self.index!)
-        // Saving updated configuration from memory
-        _ = storeAPI.sharedInstance.saveConfigFromMemory()
-        // Start next job, if any, by delegate
-        // and notify completed, by delegate
-        if let pvc2 = SharingManagerConfiguration.sharedInstance.ViewObjectMain as? ViewControllertabMain {
-            GlobalMainQueue.async(execute: { () -> Void in
-                self.start_next_job_delegate = pvc2
-                self.notify_delegate = pvc2
-                self.start_next_job_delegate?.startProcess()
-                self.notify_delegate?.completed()
-            })
-            
-        }
-        if let pvc3 = SharingManagerSchedule.sharedInstance.ViewObjectSchedule as? ViewControllertabSchedule {
-            GlobalMainQueue.async(execute: { () -> Void in
-                self.startTimer_delegate = pvc3
-                self.startTimer_delegate?.startTimerNextJob()
-            })
-        }
-    }
-    
-    init (dict : NSDictionary) {
-        self.date = dict.value(forKey: "start") as? Date
-        self.dateStart = dict.value(forKey: "dateStart") as? Date
-        self.dateformatter = Utils.sharedInstance.setDateformat()
-        self.hiddenID = (dict.value(forKey: "hiddenID") as? Int)!
-        self.schedule = dict.value(forKey: "schedule") as? String
-        self.index = SharingManagerConfiguration.sharedInstance.getIndex(hiddenID!)
-    }
-}
-
-// Execute scheduled jobs
-class executeTask : Operation {
-    
-    override func main() {
-        // Delegate function for start and completion of scheduled jobs
-        weak var notify_delegate : ScheduledJobInProgress?
-        // Variables used for rsync parameters
-        let output = outputProcess()
-        let job = rsyncProcess(operation: true, tabMain: false, command : nil)
-        var arguments:[String]?
-        var config:configuration?
-        
-        // Get the first job of the queue
-        if let dict:NSDictionary = SharingManagerSchedule.sharedInstance.scheduledJob {
-            if let hiddenID:Int = dict.value(forKey: "hiddenID") as? Int {
-                let store:[configuration] = storeAPI.sharedInstance.getConfigurations()
-                let configArray = store.filter({return ($0.hiddenID == hiddenID)})
-                
-                guard configArray.count > 0 else {
-                    if let pvc = SharingManagerConfiguration.sharedInstance.ViewObjectMain as? ViewControllertabMain {
-                        notify_delegate = pvc
-                        notify_delegate?.notifyScheduledJob(config: nil)
-                    }
-                    return
-                }
-                
-                config = configArray[0]
-                
-                guard (config != nil) else {
-                    if let pvc = SharingManagerConfiguration.sharedInstance.ViewObjectMain as? ViewControllertabMain {
-                        notify_delegate = pvc
-                        if (SharingManagerConfiguration.sharedInstance.allowNotifyinMain == true) {
-                             notify_delegate?.notifyScheduledJob(config: nil)
-                        }
-                    }
-                    return
-                }
-                
-                // Notify that scheduled task is executing
-                if let pvc = SharingManagerConfiguration.sharedInstance.ViewObjectMain as? ViewControllertabMain {
-                    notify_delegate = pvc
-                    notify_delegate?.start()
-                    // Trying to notify when not in main view will crash RSyncOSX
-                    if (SharingManagerConfiguration.sharedInstance.allowNotifyinMain == true) {
-                        notify_delegate?.notifyScheduledJob(config: config)
-                    }
-                }
-                
-                if (hiddenID >= 0 && config != nil) {
-                    arguments = rsyncProcessArguments().argumentsRsync(config!, dryRun: false, forDisplay: false)
-                    // Setting reference to finalize the job
-                    // Finalize job is done when rsynctask ends (in process termination)
-                    SharingManagerConfiguration.sharedInstance.operation = completeScheduledOperation(dict: dict)
-                    // Start the rsync job
-                    GlobalMainQueue.async(execute: {
-                        if (arguments != nil) {
-                            job.executeProcess(arguments!, output: output)
-                        }
-                    })
-                }
-            }
+        } else {
+            // No jobs to execute, no need to keep reference to object
+            self.schedules = nil
         }
     }
 }
