@@ -103,12 +103,38 @@ extension ViewControllerScheduleDetails : NSTableViewDelegate {
     
     // TableView delegates
     @objc(tableView:objectValueForTableColumn:row:) func tableView(_ tableView: NSTableView, objectValueFor tableColumn: NSTableColumn?, row: Int) -> Any? {
+        
+        // If active schedule color row blue
+        var active:Bool = false
+        
         if (row < self.data!.count) {
             let object:NSMutableDictionary = self.data![row]
+            if  object.value(forKey: "schedule") as? String == "once" ||
+                object.value(forKey: "schedule") as? String == "daily" ||
+                object.value(forKey: "schedule") as? String == "weekly" {
+                
+                let dateformatter = Utils.sharedInstance.setDateformat()
+                let dateStop:Date = dateformatter.date(from: object.value(forKey: "dateStop") as!String)!
+                if (dateStop.timeIntervalSinceNow > 0) {
+                    active = true
+                } else {
+                    active = false
+                }
+            }
+            
             if ((tableColumn!.identifier) == "stopCellID" || (tableColumn!.identifier) == "deleteCellID") {
-                return object[tableColumn!.identifier] as? Int
+                   return object[tableColumn!.identifier] as? Int
+                
             } else {
-                return object[tableColumn!.identifier] as? String
+                if (active) {
+                    let text = object[tableColumn!.identifier] as? String
+                    let attributedString = NSMutableAttributedString(string:(text!))
+                    let range = (text! as NSString).range(of: text!)
+                    attributedString.addAttribute(NSForegroundColorAttributeName, value: NSColor.blue, range: range)
+                    return attributedString
+                } else {
+                    return object[tableColumn!.identifier] as? String
+                }
             }
         }
         return nil

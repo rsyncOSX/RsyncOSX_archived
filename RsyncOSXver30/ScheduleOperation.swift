@@ -33,9 +33,11 @@ protocol ScheduledJobInProgress : class {
 
 final class ScheduleOperation {
     
-    var schedules:ScheduleSortedAndExpand?
-    var waitForTask : Timer?
-    var queue : OperationQueue?
+    private var schedules:ScheduleSortedAndExpand?
+    private var waitForTask : Timer?
+    private var queue : OperationQueue?
+    private var secondsToWait:Double?
+
     
     @objc private func startJob() {
         // Start the task in BackgroundQueue
@@ -59,8 +61,13 @@ final class ScheduleOperation {
         // Removes the job of the stack
         if let dict = self.schedules!.jobToExecute() {
             let dateStart:Date = dict.value(forKey: "start") as! Date
-            let secondsToWait:Double = self.schedules!.timeDoubleSeconds(dateStart, enddate: nil)
-            self.waitForTask = Timer.scheduledTimer(timeInterval: secondsToWait, target: self, selector: #selector(startJob), userInfo: nil, repeats: false)
+            self.secondsToWait = self.schedules!.timeDoubleSeconds(dateStart, enddate: nil)
+            
+            guard self.secondsToWait != nil else {
+                return
+            }
+            
+            self.waitForTask = Timer.scheduledTimer(timeInterval: self.secondsToWait!, target: self, selector: #selector(startJob), userInfo: nil, repeats: false)
             // Set reference to Timer that kicks of the Scheduled job
             // Reference is set for cancel job if requiered
             SharingManagerSchedule.sharedInstance.setJobWaiting(timer: self.waitForTask!)
