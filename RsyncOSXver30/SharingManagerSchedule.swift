@@ -192,7 +192,8 @@ class SharingManagerSchedule {
                     "deleteCellID":0,
                     "dateStop":"",
                     "schedule":self.Schedule[i].schedule,
-                    "hiddenID":Schedule[i].hiddenID
+                    "hiddenID":Schedule[i].hiddenID,
+                    "numberoflogs": String(Schedule[i].executed.count)
                 ]
                 if (self.Schedule[i].dateStop == nil) {
                     row.setValue("no stop date", forKey: "dateStop")
