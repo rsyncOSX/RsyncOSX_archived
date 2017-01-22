@@ -60,6 +60,8 @@ final class completeScheduledOperation {
                 self.startTimer_delegate?.startTimerNextJob()
             })
         }
+        // Reset reference til scheduled job
+        SharingManagerSchedule.sharedInstance.scheduledJob = nil
     }
     
     init (dict : NSDictionary) {

@@ -178,7 +178,7 @@ class SharingManagerSchedule {
     
     /// Function reads all Schedule data for one task by hiddenID
     /// - parameter hiddenID : hiddenID for task
-    /// - returns : array of Schedules
+    /// - returns : array of Schedules sorted after startDate
     func readScheduledata (_ hiddenID : Int) -> [NSMutableDictionary] {
         
         var row: NSMutableDictionary
@@ -203,6 +203,15 @@ class SharingManagerSchedule {
                     row.setValue(1, forKey: "stopCellID")
                 }
                 data.append(row)
+            }
+            // Sorting schedule after dateStart, last startdate on top
+            data.sort { (schedule1, schedule2) -> Bool in
+                let dateformatter = Utils.sharedInstance.setDateformat()
+                if (dateformatter.date(from: schedule1.value(forKey: "dateStart") as! String)! > dateformatter.date(from: schedule2.value(forKey: "dateStart") as! String)!) {
+                    return true
+                } else {
+                    return false
+                }
             }
         }
         return data
