@@ -94,9 +94,9 @@ class ScheduleDetailsAboutRuns {
                 return true
             }
             if ((dateformatter.date(from: dict1.value(forKey: "dateExecuted") as! String))!.timeIntervalSince(dateformatter.date(from: dict2.value(forKey: "dateExecuted") as! String)!) > 0 ) {
-                return false
-            } else {
                 return true
+            } else {
+                return false
             }
         }
     }
