@@ -105,12 +105,15 @@ class ViewControllertabSchedule : NSViewController {
                     self.newSchedules = true
                     // Refresh table and recalculate the Schedules jobs
                     self.refresh()
-                    self.startTimer()
                     // Start next job, if any, by delegate
                     if let pvc = SharingManagerConfiguration.sharedInstance.ViewObjectMain as? ViewControllertabMain {
                         start_next_job_delegate = pvc
                         start_next_job_delegate?.startProcess()
                     }
+                    // Displaying next two scheduled tasks
+                    self.nextScheduledtask()
+                    // Call function to check if a scheduled backup is due for countdown
+                    self.startTimer()
                 }
             }
             // Reset radiobuttons
