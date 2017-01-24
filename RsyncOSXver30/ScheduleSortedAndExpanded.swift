@@ -66,7 +66,7 @@ class ScheduleSortedAndExpand {
         for i in 0 ..< self.ScheduleAsNSDictionary!.count {
             
             let dict = self.ScheduleAsNSDictionary![i]
-            let dateStop:Date = dateformatter.date(from: dict.value(forKey: "dateStop") as!String)!
+            let dateStop:Date = dateformatter.date(from: dict.value(forKey: "dateStop") as! String)!
             let dateStart:Date = dateformatter.date(from: dict.value(forKey: "dateStart") as!String)!
             
             let days:Double = dateStop.timeIntervalSinceNow/(60*60*24)
