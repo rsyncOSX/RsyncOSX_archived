@@ -365,7 +365,6 @@ class ViewControllertabMain: NSViewController {
         self.workload = nil
         self.process = nil
         self.output = nil
-        self.index = nil
         self.setRsyncCommandDisplay()
 
     }
