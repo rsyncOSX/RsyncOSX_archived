@@ -33,7 +33,7 @@ protocol ScheduledJobInProgress : class {
 
 final class ScheduleOperation {
     
-    private var schedules:ScheduleSortedAndExpand?
+    private var scheduledJobs:ScheduleSortedAndExpand?
     private var waitForTask : Timer?
     private var queue : OperationQueue?
     private var secondsToWait:Double?
@@ -57,11 +57,11 @@ final class ScheduleOperation {
         // Cancel any current job waiting for execution
         SharingManagerSchedule.sharedInstance.cancelJobWaiting()
         // Create a new Schedules object
-        self.schedules = ScheduleSortedAndExpand()
+        self.scheduledJobs = ScheduleSortedAndExpand()
         // Removes the job of the stack
-        if let dict = self.schedules!.jobToExecute() {
+        if let dict = self.scheduledJobs!.jobToExecute() {
             let dateStart:Date = dict.value(forKey: "start") as! Date
-            self.secondsToWait = self.schedules!.timeDoubleSeconds(dateStart, enddate: nil)
+            self.secondsToWait = self.scheduledJobs!.timeDoubleSeconds(dateStart, enddate: nil)
             
             guard self.secondsToWait != nil else {
                 return
@@ -73,7 +73,7 @@ final class ScheduleOperation {
             SharingManagerSchedule.sharedInstance.setJobWaiting(timer: self.waitForTask!)
         } else {
             // No jobs to execute, no need to keep reference to object
-            self.schedules = nil
+            self.scheduledJobs = nil
         }
     }
 }

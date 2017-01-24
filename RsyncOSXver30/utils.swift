@@ -107,7 +107,8 @@ final class Utils {
     // Setting date format
     func setDateformat() -> DateFormatter {
         let dateformatter = DateFormatter()
-        dateformatter.locale = Locale.current
+        // We are forcing en_US format of date strings
+        dateformatter.locale = Locale(identifier: "en_US")
         dateformatter.dateStyle = .medium
         dateformatter.timeStyle = .short
         dateformatter.dateFormat = "dd MMM yyyy HH:mm"
