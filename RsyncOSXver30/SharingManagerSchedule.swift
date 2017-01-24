@@ -178,7 +178,7 @@ class SharingManagerSchedule {
     
     /// Function reads all Schedule data for one task by hiddenID
     /// - parameter hiddenID : hiddenID for task
-    /// - returns : array of Schedules
+    /// - returns : array of Schedules sorted after startDate
     func readScheduledata (_ hiddenID : Int) -> [NSMutableDictionary] {
         
         var row: NSMutableDictionary
@@ -192,7 +192,8 @@ class SharingManagerSchedule {
                     "deleteCellID":0,
                     "dateStop":"",
                     "schedule":self.Schedule[i].schedule,
-                    "hiddenID":Schedule[i].hiddenID
+                    "hiddenID":Schedule[i].hiddenID,
+                    "numberoflogs": String(Schedule[i].executed.count)
                 ]
                 if (self.Schedule[i].dateStop == nil) {
                     row.setValue("no stop date", forKey: "dateStop")
@@ -203,6 +204,15 @@ class SharingManagerSchedule {
                     row.setValue(1, forKey: "stopCellID")
                 }
                 data.append(row)
+            }
+            // Sorting schedule after dateStart, last startdate on top
+            data.sort { (schedule1, schedule2) -> Bool in
+                let dateformatter = Utils.sharedInstance.setDateformat()
+                if (dateformatter.date(from: schedule1.value(forKey: "dateStart") as! String)! > dateformatter.date(from: schedule2.value(forKey: "dateStart") as! String)!) {
+                    return true
+                } else {
+                    return false
+                }
             }
         }
         return data
@@ -352,10 +362,10 @@ class SharingManagerSchedule {
                         dict.setObject(date, forKey: "dateExecuted" as NSCopying)
                         dict.setObject(result, forKey: "resultExecuted" as NSCopying)
                         let dictKey:NSDictionary = [
-                            "dateStart":self.Schedule[i].dateStart,
+                            // "dateStart":self.Schedule[i].dateStart,
+                            "dateStart":"01 Jan 1900 00:00",
                             "schedule":self.Schedule[i].schedule,
                             "hiddenID":self.Schedule[i].hiddenID]
-                        
                         let parent : String = self.computeKey(dictKey)
                         dict.setValue(parent, forKey: "parent")
                         self.Schedule[i].executed.append(dict)
@@ -368,7 +378,8 @@ class SharingManagerSchedule {
                 if (SharingManagerConfiguration.sharedInstance.gettask(hiddenID) == "backup") {
                     let masterdict = NSMutableDictionary()
                     masterdict.setObject(hiddenID, forKey: "hiddenID" as NSCopying)
-                    masterdict.setObject(date, forKey: "dateStart" as NSCopying)
+                    // masterdict.setObject(date, forKey: "dateStart" as NSCopying)
+                    masterdict.setObject("01 Jan 1900 00:00", forKey: "dateStart" as NSCopying)
                     masterdict.setObject("manuel", forKey: "schedule" as NSCopying)
                     
                     let dict = NSMutableDictionary()
@@ -384,7 +395,7 @@ class SharingManagerSchedule {
                     executed.add(dict)
                     let newSchedule = configurationSchedule(dictionary: masterdict, executed: executed)
                     self.Schedule.append(newSchedule)
-                    // Set insetred true to force write of record
+                    // Set inseted true to force write of record
                     inserted = true
                 }
             }

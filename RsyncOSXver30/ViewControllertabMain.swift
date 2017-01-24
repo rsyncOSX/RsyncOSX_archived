@@ -358,6 +358,16 @@ class ViewControllertabMain: NSViewController {
         super.viewDidDisappear()
         // Do not allow notify in Main
         SharingManagerConfiguration.sharedInstance.allowNotifyinMain = false
+        if (self.workload == nil) {
+            self.workload = singleTask()
+        }
+        
+        self.workload = nil
+        self.process = nil
+        self.output = nil
+        self.index = nil
+        self.setRsyncCommandDisplay()
+
     }
     
     @objc(tableViewDoubleClick:) func tableViewDoubleClick(sender:AnyObject) {

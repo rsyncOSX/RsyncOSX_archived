@@ -59,6 +59,8 @@
 		A0F3F9251DC65CE9001D305F /* ViewControllerScheduledBackupInWork.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0F3F9241DC65CE9001D305F /* ViewControllerScheduledBackupInWork.swift */; };
 		A0FAF5CF1DDF2E5F0009FE7A /* ViewControllerAbout.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0FAF5CE1DDF2E5F0009FE7A /* ViewControllerAbout.swift */; };
 		A0FC45641D9545CC005208EF /* ScheduleDetailsAboutRuns.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0FC45631D9545CC005208EF /* ScheduleDetailsAboutRuns.swift */; };
+		E9374D2C1E3299E800CD3945 /* executeTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9374D2B1E3299E800CD3945 /* executeTask.swift */; };
+		E9374D2E1E329A5800CD3945 /* completeScheduledOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9374D2D1E329A5800CD3945 /* completeScheduledOperation.swift */; };
 		E96CA1FE1E094C3000CD1D03 /* Resources.swift in Sources */ = {isa = PBXBuildFile; fileRef = E96CA1FD1E094C3000CD1D03 /* Resources.swift */; };
 /* End PBXBuildFile section */
 
@@ -118,6 +120,8 @@
 		A0F3F9241DC65CE9001D305F /* ViewControllerScheduledBackupInWork.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewControllerScheduledBackupInWork.swift; sourceTree = "<group>"; };
 		A0FAF5CE1DDF2E5F0009FE7A /* ViewControllerAbout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewControllerAbout.swift; sourceTree = "<group>"; };
 		A0FC45631D9545CC005208EF /* ScheduleDetailsAboutRuns.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScheduleDetailsAboutRuns.swift; sourceTree = "<group>"; };
+		E9374D2B1E3299E800CD3945 /* executeTask.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = executeTask.swift; sourceTree = "<group>"; };
+		E9374D2D1E329A5800CD3945 /* completeScheduledOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = completeScheduledOperation.swift; sourceTree = "<group>"; };
 		E96CA1FD1E094C3000CD1D03 /* Resources.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Resources.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -175,6 +179,7 @@
 		A04492BE1D658F8900B3CE17 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				E9374D2A1E32992900CD3945 /* ScheduledOperations */,
 				A04492C41D65901400B3CE17 /* Utils */,
 				A091C6591D86A1F400278E74 /* CopyFiles */,
 				A05275DB1D6F6E2C00D8ECBE /* Execution */,
@@ -270,7 +275,6 @@
 			children = (
 				A049724F1D6595B200086EFD /* outputProcess.swift */,
 				A04972501D6595B200086EFD /* rsyncProcess.swift */,
-				A0AD15AD1D7DB78F0004600F /* ScheduleOperation.swift */,
 			);
 			name = Process;
 			sourceTree = "<group>";
@@ -312,6 +316,16 @@
 				A0FC45631D9545CC005208EF /* ScheduleDetailsAboutRuns.swift */,
 			);
 			name = Schedule;
+			sourceTree = "<group>";
+		};
+		E9374D2A1E32992900CD3945 /* ScheduledOperations */ = {
+			isa = PBXGroup;
+			children = (
+				A0AD15AD1D7DB78F0004600F /* ScheduleOperation.swift */,
+				E9374D2B1E3299E800CD3945 /* executeTask.swift */,
+				E9374D2D1E329A5800CD3945 /* completeScheduledOperation.swift */,
+			);
+			name = ScheduledOperations;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -405,7 +419,9 @@
 				A0762A1F1DB4A8F000538CE9 /* profiles.swift in Sources */,
 				A0FC45641D9545CC005208EF /* ScheduleDetailsAboutRuns.swift in Sources */,
 				A04492A91D658F2100B3CE17 /* ytcpsocket.c in Sources */,
+				E9374D2C1E3299E800CD3945 /* executeTask.swift in Sources */,
 				A00FE1A81D6A19CF00012089 /* ViewControllerNewConfigurations.swift in Sources */,
+				E9374D2E1E329A5800CD3945 /* completeScheduledOperation.swift in Sources */,
 				A04492AF1D658F2100B3CE17 /* peristentStoreConfiguration.swift in Sources */,
 				A0400C851D794EF1008A3949 /* ViewControllerNewVersion.swift in Sources */,
 				A0F3F9251DC65CE9001D305F /* ViewControllerScheduledBackupInWork.swift in Sources */,
