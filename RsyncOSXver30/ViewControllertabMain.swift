@@ -587,7 +587,7 @@ class ViewControllertabMain: NSViewController {
     
     // Function for getting numbers out of output object updated when
     // Process object executes the job.
-    private func setNumbers (setvalues : Bool) {
+    fileprivate func setNumbers (setvalues : Bool) {
         if (setvalues) {
             self.transferredNumber.stringValue = NumberFormatter.localizedString(from: NSNumber(value: self.output!.getTransferredNumbers(numbers: .transferredNumber)), number: NumberFormatter.Style.decimal)
             self.transferredNumberSizebytes.stringValue = NumberFormatter.localizedString(from: NSNumber(value: self.output!.getTransferredNumbers(numbers: .transferredNumberSizebytes)), number: NumberFormatter.Style.decimal)
@@ -922,6 +922,15 @@ extension ViewControllertabMain: AddProfiles {
         // By setting self.schedules = nil start jobs are restaret in ViewDidAppear
         self.schedules = nil
         self.loadProfileMenu = false
+        
+        // Reset any queue of work
+        // Reset numbers
+        self.workload = nil
+        self.process = nil
+        self.output = nil
+        self.setRsyncCommandDisplay()
+        self.setInfo(info: "Estimate", color: NSColor.blue)
+        self.setNumbers(setvalues: false)
         
         guard (new == false) else {
             // A new and empty profile is created
