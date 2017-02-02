@@ -1209,3 +1209,11 @@ extension ViewControllertabMain: deselectRowTable {
         self.mainTableView.deselectRow(self.index!)
     }
 }
+
+extension ViewControllertabMain: RsyncError {
+    func error() {
+        // display error
+        // Reset work queue
+        print("error")
+    }
+}
