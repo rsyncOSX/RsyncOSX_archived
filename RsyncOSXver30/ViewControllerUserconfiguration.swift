@@ -32,7 +32,7 @@ class ViewControllerUserconfiguration : NSViewController {
     @IBOutlet weak var scheduledTaskdisableExecute: NSTextField!
     @IBOutlet weak var allowDoubleClick: NSButton!
     @IBOutlet weak var noRsync: NSTextField!
-    @IBOutlet weak var error: NSButton!
+    @IBOutlet weak var rsyncerror: NSButton!
     
     @IBAction func toggleversion3rsync(_ sender: NSButton) {
         if (self.version3rsync.state == NSOnState) {
@@ -84,6 +84,12 @@ class ViewControllerUserconfiguration : NSViewController {
     }
     
     @IBAction func toggleError(_ sender: NSButton) {
+        if (self.rsyncerror.state == NSOnState) {
+            SharingManagerConfiguration.sharedInstance.rsyncerror = true
+        } else {
+            SharingManagerConfiguration.sharedInstance.rsyncerror = false
+        }
+        self.dirty = true
     }
     
     private func setRsyncPath(){
@@ -156,7 +162,6 @@ class ViewControllerUserconfiguration : NSViewController {
     
     override func viewDidAppear() {
         super.viewDidAppear()
-        
         self.dirty = false
         // Set userconfig
         self.checkUserConfig()
@@ -189,9 +194,9 @@ class ViewControllerUserconfiguration : NSViewController {
             self.allowDoubleClick.state = NSOffState
         }
         if (SharingManagerConfiguration.sharedInstance.rsyncerror) {
-            self.error.state = NSOnState
+            self.rsyncerror.state = NSOnState
         } else {
-            self.error.state = NSOffState
+            self.rsyncerror.state = NSOffState
         }
     }
     

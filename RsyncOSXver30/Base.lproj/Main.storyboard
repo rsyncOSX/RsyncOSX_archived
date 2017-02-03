@@ -2730,9 +2730,9 @@ DQ
                     <connections>
                         <outlet property="allowDoubleClick" destination="6tS-DH-qDj" id="XZg-VE-3wh"/>
                         <outlet property="detailedlogging" destination="dg1-Pc-D5r" id="Z5n-3i-nJ1"/>
-                        <outlet property="error" destination="1oq-7z-Ctu" id="RR0-W1-XGj"/>
                         <outlet property="noRsync" destination="MU5-XI-9GS" id="apy-XI-W5g"/>
                         <outlet property="rsyncPath" destination="Raw-fd-DIw" id="9MU-5e-zvh"/>
+                        <outlet property="rsyncerror" destination="1oq-7z-Ctu" id="E3s-SB-4qE"/>
                         <outlet property="scheduledTaskdisableExecute" destination="Tou-wf-Bf1" id="LWg-5L-dW6"/>
                         <outlet property="version3rsync" destination="pCc-fa-P8h" id="SEd-Qb-5fr"/>
                     </connections>
