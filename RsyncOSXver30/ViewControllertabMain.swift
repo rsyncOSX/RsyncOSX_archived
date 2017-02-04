@@ -1125,7 +1125,6 @@ extension ViewControllertabMain: UpdateProgress {
                 switch (self.workload!.pop()) {
                     
                 case .estimate_singlerun:
-                    
                     // Stopping the working (estimation) progress indicator
                     self.working.stopAnimation(nil)
                     // Getting and setting max file to transfer
@@ -1137,7 +1136,6 @@ extension ViewControllertabMain: UpdateProgress {
                         })
                     }
                 case .error:
-                    
                     // Stopping the working (estimation) progress indicator
                     self.working.stopAnimation(nil)
                     // If showInfoDryrun is on present result of dryrun automatically
@@ -1145,7 +1143,6 @@ extension ViewControllertabMain: UpdateProgress {
                         self.presentViewControllerAsSheet(self.ViewControllerInformation)
                     })
                 case .execute_singlerun:
-                    
                     if let pvc2 = self.presentedViewControllers as? [ViewControllerProgressProcess] {
                         if (pvc2.count > 0) {
                             self.processupdate_delegate = pvc2[0]
@@ -1161,14 +1158,11 @@ extension ViewControllertabMain: UpdateProgress {
                     self.showProcessInfo(info: .Logging_run)
                     SharingManagerConfiguration.sharedInstance.setCurrentDateonConfiguration(self.index!)
                     SharingManagerSchedule.sharedInstance.addScheduleResultManuel(self.hiddenID!, result: self.output!.statistics(numberOfFiles: self.transferredNumber.stringValue)[0])
-                    
                 case .abort:
                     self.abortOperations()
                     self.workload = nil
-                    
                 case .empty:
                     self.workload = nil
-                    
                 default:
                     self.workload = nil
                     break
@@ -1218,13 +1212,26 @@ extension ViewControllertabMain: deselectRowTable {
 }
 
 extension ViewControllertabMain: RsyncError {
-    func error() {
+    func rsyncerror() {
         // Set on or off in user configuration
         if (SharingManagerConfiguration.sharedInstance.rsyncerror) {
+            GlobalMainQueue.async(execute: { () -> Void in
+                self.setInfo(info: "Error", color: NSColor.red)
+                self.showProcessInfo(info: .Error)
+                self.setRsyncCommandDisplay()
+                self.workload!.error()
+            })
+        }
+    }
+}
+
+extension ViewControllertabMain: FileError {
+    func fileerror(errorstr:String) {
+        GlobalMainQueue.async(execute: { () -> Void in
             self.setInfo(info: "Error", color: NSColor.red)
             self.showProcessInfo(info: .Error)
-            self.setRsyncCommandDisplay()
-            self.workload!.error()
-        }
+            // Dump the errormessage in rsynccommand field
+            self.rsyncCommand.stringValue = errorstr
+        })
     }
 }

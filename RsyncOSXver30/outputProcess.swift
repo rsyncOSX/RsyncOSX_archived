@@ -8,7 +8,7 @@
 import Foundation
 
 protocol RsyncError: class {
-    func error()
+    func rsyncerror()
 }
 
 
@@ -171,9 +171,8 @@ final class outputProcess {
         if error.count > 0 {
             if let pvc = SharingManagerConfiguration.sharedInstance.ViewObjectMain {
                 self.error_delegate = pvc as? ViewControllertabMain
-                self.error_delegate?.error()
+                self.error_delegate?.rsyncerror()
             }
-            
         }
         
         // Must make it somewhat robust, it it breaks all values is set to 0

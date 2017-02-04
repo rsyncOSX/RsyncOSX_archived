@@ -16,7 +16,6 @@ enum resourceType {
 }
 
 struct Resources {
-    
     // Resource strings
     private var changelog:String = "https://github.com/rsyncOSX/Documentation/blob/master/docs/Changelog.md"
     private var documents: String = "https://github.com/rsyncOSX/Documentation"

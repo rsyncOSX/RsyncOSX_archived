@@ -45,23 +45,21 @@ class ViewControllerScheduleDetailsAboutRuns : NSViewController {
         }
     }
     
+    // Delete row
     @IBOutlet weak var deleteButton: NSButton!
     @IBAction func deleteRow(_ sender: NSButton) {
-        
         guard self.row != nil else {
             self.deleteButton.state = NSOffState
             return
         }
-        
         SharingManagerSchedule.sharedInstance.deleteLogRow(hiddenID: self.row?.value(forKey: "hiddenID") as! Int,
                                                            parent: self.row?.value(forKey: "parent") as! String,
                                                            resultExecuted: self.row?.value(forKey: "resultExecuted") as! String,
                                                            dateExecuted:self.row?.value(forKey: "dateExecuted") as! String)
         self.deleteButton.state = NSOffState
         self.deselectRow()
-        
-        
     }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do view setup here.

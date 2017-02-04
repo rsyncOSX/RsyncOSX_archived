@@ -53,7 +53,6 @@ final class userconfiguration {
             } else {
                 SharingManagerConfiguration.sharedInstance.rsyncerror = false
             }
-            
         }
     }
     

@@ -11,7 +11,6 @@ import Foundation
 
 enum enumscpTasks {
     case create
-    case scpHistory
     case scpFind
     case copy
 }
@@ -105,9 +104,6 @@ final class scpProcessArguments {
             }
             let str:String = "cd " + config.offsiteCatalog + "; find . -print | cat > .files.txt "
             self.args.append(str)
-        case .scpHistory:
-            // For SCP copy history.plist from server to local store
-            self.setSCParguments("history.plist")
         case .scpFind:
             // For SCP copy result of find . -name from server to local store
             self.setSCParguments("files.txt")

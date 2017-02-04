@@ -119,7 +119,6 @@ class ViewControllerUserconfiguration : NSViewController {
                     self.noRsync.isHidden = true
                 }
             } else {
-                
                 let path = "/usr/local/bin/rsync"
                 if (fileManager.fileExists(atPath: path) == false) {
                     self.noRsync.isHidden = false
@@ -187,7 +186,6 @@ class ViewControllerUserconfiguration : NSViewController {
             self.rsyncPath.stringValue = ""
         }
         self.scheduledTaskdisableExecute.stringValue = String(SharingManagerConfiguration.sharedInstance.scheduledTaskdisableExecute)
-        
         if (SharingManagerConfiguration.sharedInstance.allowDoubleclick) {
             self.allowDoubleClick.state = NSOnState
         } else {
