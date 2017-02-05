@@ -361,12 +361,7 @@ class ViewControllertabMain: NSViewController {
         if (self.workload == nil) {
             self.workload = singleTask()
         }
-        
-        self.workload = nil
-        self.process = nil
-        self.output = nil
-        self.setRsyncCommandDisplay()
-
+        self.reset()
     }
     
     @objc(tableViewDoubleClick:) func tableViewDoubleClick(sender:AnyObject) {
@@ -650,16 +645,12 @@ class ViewControllertabMain: NSViewController {
             // Clear numbers from dryrun
             self.setNumbers(setvalues: false)
             self.workload = nil
-            self.setInfo(info: "Estimate", color: NSColor.blue)
-            self.setRsyncCommandDisplay()
-            self.process = nil
         } else {
             self.index = nil
-            self.process = nil
-            self.setInfo(info: "Estimate", color: NSColor.blue)
-            self.setRsyncCommandDisplay()
-            
         }
+        self.process = nil
+        self.setInfo(info: "Estimate", color: NSColor.blue)
+        self.setRsyncCommandDisplay()
     }
     
     // Just for updating process info
@@ -682,11 +673,20 @@ class ViewControllertabMain: NSViewController {
                 self.processInfo.stringValue = "Profiles enabled"
             case .Abort:
                 self.processInfo.stringValue = "Abort"
+            case .Error:
+                self.processInfo.stringValue = "Rsync error"
             case .Blank:
                 self.processInfo.stringValue = ""
-                break
             }
         })
+    }
+    
+    // Reset workqueue
+    fileprivate func reset() {
+        self.workload = nil
+        self.process = nil
+        self.output = nil
+        self.setRsyncCommandDisplay()
     }
 
 }
@@ -1125,7 +1125,6 @@ extension ViewControllertabMain: UpdateProgress {
                 switch (self.workload!.pop()) {
                     
                 case .estimate_singlerun:
-                    
                     // Stopping the working (estimation) progress indicator
                     self.working.stopAnimation(nil)
                     // Getting and setting max file to transfer
@@ -1136,9 +1135,14 @@ extension ViewControllertabMain: UpdateProgress {
                             self.presentViewControllerAsSheet(self.ViewControllerInformation)
                         })
                     }
-                    
+                case .error:
+                    // Stopping the working (estimation) progress indicator
+                    self.working.stopAnimation(nil)
+                    // If showInfoDryrun is on present result of dryrun automatically
+                    GlobalMainQueue.async(execute: { () -> Void in
+                        self.presentViewControllerAsSheet(self.ViewControllerInformation)
+                    })
                 case .execute_singlerun:
-                    
                     if let pvc2 = self.presentedViewControllers as? [ViewControllerProgressProcess] {
                         if (pvc2.count > 0) {
                             self.processupdate_delegate = pvc2[0]
@@ -1154,14 +1158,11 @@ extension ViewControllertabMain: UpdateProgress {
                     self.showProcessInfo(info: .Logging_run)
                     SharingManagerConfiguration.sharedInstance.setCurrentDateonConfiguration(self.index!)
                     SharingManagerSchedule.sharedInstance.addScheduleResultManuel(self.hiddenID!, result: self.output!.statistics(numberOfFiles: self.transferredNumber.stringValue)[0])
-                    
                 case .abort:
                     self.abortOperations()
                     self.workload = nil
-                    
                 case .empty:
                     self.workload = nil
-                    
                 default:
                     self.workload = nil
                     break
@@ -1207,5 +1208,30 @@ extension ViewControllertabMain: deselectRowTable {
             return
         }
         self.mainTableView.deselectRow(self.index!)
+    }
+}
+
+extension ViewControllertabMain: RsyncError {
+    func rsyncerror() {
+        // Set on or off in user configuration
+        if (SharingManagerConfiguration.sharedInstance.rsyncerror) {
+            GlobalMainQueue.async(execute: { () -> Void in
+                self.setInfo(info: "Error", color: NSColor.red)
+                self.showProcessInfo(info: .Error)
+                self.setRsyncCommandDisplay()
+                self.workload!.error()
+            })
+        }
+    }
+}
+
+extension ViewControllertabMain: FileError {
+    func fileerror(errorstr:String) {
+        GlobalMainQueue.async(execute: { () -> Void in
+            self.setInfo(info: "Error", color: NSColor.red)
+            self.showProcessInfo(info: .Error)
+            // Dump the errormessage in rsynccommand field
+            self.rsyncCommand.stringValue = errorstr
+        })
     }
 }

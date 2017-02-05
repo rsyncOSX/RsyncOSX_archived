@@ -150,6 +150,8 @@ class ViewControllerNewConfigurations: NSViewController {
             }
         }
         
+        // If add button is selected without any values
+        
         guard self.localCatalog.stringValue != "/" else {
             self.offsiteCatalog.stringValue = ""
             self.localCatalog.stringValue = ""

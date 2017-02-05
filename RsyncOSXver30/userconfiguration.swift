@@ -46,6 +46,14 @@ final class userconfiguration {
                 SharingManagerConfiguration.sharedInstance.allowDoubleclick = false
             }
         }
+        // Allow rsync errors to reset work Queueu
+        if let errors = dict.value(forKey: "rsyncerror") as? Int {
+            if errors == 1 {
+                SharingManagerConfiguration.sharedInstance.rsyncerror = true
+            } else {
+                SharingManagerConfiguration.sharedInstance.rsyncerror = false
+            }
+        }
     }
     
     init (configRsyncOSX : [NSDictionary]?) {

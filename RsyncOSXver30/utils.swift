@@ -43,6 +43,7 @@ enum displayProcessInfo {
     case Profiles_enabled
     case Abort
     case Blank
+    case Error
 }
 
 // Protocol for doing a refresh in main view after testing for connectivity

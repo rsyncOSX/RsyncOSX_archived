@@ -8,8 +8,16 @@
 
 import Foundation
 
-class profiles {
+// Protocol for reporting file errors
+protocol FileError: class {
+    func fileerror(errorstr:String)
+}
+
+
+final class profiles {
     
+    // Delegate for reporting file error if any to main view
+    weak var error_delegate: FileError?
     // Set the string to absolute string path
     private var filePath:String?
     // profiles root - returns the root of profiles
@@ -66,7 +74,7 @@ class profiles {
                     try fileManager.createDirectory(atPath: profileDirectory, withIntermediateDirectories: true, attributes: nil)}
                 catch let e {
                     let error = e as NSError
-                    print(error.description)
+                    self.error(errorstr: error.description)
                 }
             }
         }
@@ -85,7 +93,7 @@ class profiles {
                         try fileManager.removeItem(atPath: profileDirectory)}
                     catch let e {
                         let error = e as NSError
-                        print(error.description)
+                        self.error(errorstr: error.description)
                     }
                 }
             }
@@ -102,7 +110,7 @@ class profiles {
                     try fileManager.createDirectory(atPath: path, withIntermediateDirectories: true, attributes: nil)
                 } catch let e {
                     let error = e as NSError
-                    print(error.description)
+                    self.error(errorstr: error.description)
                 }
             }
         }
@@ -118,11 +126,19 @@ class profiles {
                 return files
             } catch let e {
                 let error = e as NSError
-                print(error.description)
+                self.error(errorstr: error.description)
                 return nil
             }
         }
         return nil
+    }
+    
+    // Private func for propagating any file error to main view
+    private func error(errorstr:String) {
+        if let pvc = SharingManagerConfiguration.sharedInstance.ViewObjectMain {
+            self.error_delegate = pvc as? ViewControllertabMain
+            self.error_delegate?.fileerror(errorstr: errorstr)
+        }
     }
     
     init (path:String?) {

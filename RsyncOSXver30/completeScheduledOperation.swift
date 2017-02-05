@@ -52,7 +52,6 @@ final class completeScheduledOperation {
                 self.start_next_job_delegate?.startProcess()
                 self.notify_delegate?.completed()
             })
-            
         }
         if let pvc3 = SharingManagerSchedule.sharedInstance.ViewObjectSchedule as? ViewControllertabSchedule {
             GlobalMainQueue.async(execute: { () -> Void in

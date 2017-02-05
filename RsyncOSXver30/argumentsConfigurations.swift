@@ -41,7 +41,6 @@ struct argumentsConfigurations {
     // Arguments are prepared during startup
     var rsyncArguments: argumentsOneConfig?
     // Object for preparing rsync arguments
-    
     init(rsyncArguments: argumentsOneConfig) {
         self.rsyncArguments = rsyncArguments
         self.rsyncArguments!.task = rsyncArguments.config.task

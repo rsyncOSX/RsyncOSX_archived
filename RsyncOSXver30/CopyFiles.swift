@@ -90,11 +90,9 @@ final class CopyFiles {
                 self.argumentsObject = scpProcessArguments(task: work, config: self.config!, remoteFile: nil, localCatalog: nil, drynrun: nil)
                 self.arguments = self.argumentsObject!.getArgs()
                 self.command = self.argumentsObject!.getCommand()
-                self.command = self.argumentsObject!.getCommand()
                 self.task = rsyncProcess(operation: false, tabMain: false, command : self.command)
                 self.output = outputProcess()
                 self.task!.executeProcess(self.arguments!, output: self.output!)
-                
             } else {
                 // Files.txt are ready to read
                 self.files = self.argumentsObject?.getSearchfile()

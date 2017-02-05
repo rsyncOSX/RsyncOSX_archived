@@ -26,6 +26,7 @@ final class persistentStoreUserconfiguration : readwritefiles {
         var detailedlogging:Int?
         var rsyncPath:String?
         var allowDoubleclick:Int?
+        var rsyncerror:Int?
         
         if (SharingManagerConfiguration.sharedInstance.rsyncVer3) {
             version3Rsync = 1
@@ -47,13 +48,20 @@ final class persistentStoreUserconfiguration : readwritefiles {
             allowDoubleclick = 0
         }
         
+        if (SharingManagerConfiguration.sharedInstance.rsyncerror) {
+            rsyncerror = 1
+        } else {
+            rsyncerror = 0
+        }
+        
         var array = Array<NSDictionary>()
         
         let dict:NSMutableDictionary = [
             "version3Rsync" : version3Rsync! as Int,
             "detailedlogging" : detailedlogging! as Int,
             "scheduledTaskdisableExecute": SharingManagerConfiguration.sharedInstance.scheduledTaskdisableExecute,
-            "allowDoubleclick" : allowDoubleclick! as Int]
+            "allowDoubleclick" : allowDoubleclick! as Int,
+            "rsyncerror" : rsyncerror! as Int]
         
         if ((rsyncPath != nil)) {
             dict.setObject(rsyncPath!, forKey: "rsyncPath" as NSCopying)

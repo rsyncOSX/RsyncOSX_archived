@@ -101,7 +101,6 @@ class rsyncProcessArguments {
                 if (forDisplay) {self.arguments!.append(" ")}
             }
         }
-
     }
     
     // Check userselected parameter and append it
@@ -133,7 +132,6 @@ class rsyncProcessArguments {
         let offsiteCatalog: String = config.offsiteCatalog
         let offsiteUsername: String = config.offsiteUsername
         let offsiteServer: String = config.offsiteServer
-        
         var offsiteArguments: String?
         if (offsiteServer.isEmpty == false) {
             if (config.rsyncdaemon != nil) {

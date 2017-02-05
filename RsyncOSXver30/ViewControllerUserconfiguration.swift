@@ -32,6 +32,7 @@ class ViewControllerUserconfiguration : NSViewController {
     @IBOutlet weak var scheduledTaskdisableExecute: NSTextField!
     @IBOutlet weak var allowDoubleClick: NSButton!
     @IBOutlet weak var noRsync: NSTextField!
+    @IBOutlet weak var rsyncerror: NSButton!
     
     @IBAction func toggleversion3rsync(_ sender: NSButton) {
         if (self.version3rsync.state == NSOnState) {
@@ -81,6 +82,16 @@ class ViewControllerUserconfiguration : NSViewController {
         self.dirty = true
         
     }
+    
+    @IBAction func toggleError(_ sender: NSButton) {
+        if (self.rsyncerror.state == NSOnState) {
+            SharingManagerConfiguration.sharedInstance.rsyncerror = true
+        } else {
+            SharingManagerConfiguration.sharedInstance.rsyncerror = false
+        }
+        self.dirty = true
+    }
+    
     private func setRsyncPath(){
         if (self.rsyncPath.stringValue.isEmpty == false) {
             if (rsyncPath.stringValue.hasSuffix("/") == false){
@@ -92,6 +103,7 @@ class ViewControllerUserconfiguration : NSViewController {
         }
         self.dirty = true
     }
+
     
     // Function verifying rsync in path
     private func verifyRsync() {
@@ -107,7 +119,6 @@ class ViewControllerUserconfiguration : NSViewController {
                     self.noRsync.isHidden = true
                 }
             } else {
-                
                 let path = "/usr/local/bin/rsync"
                 if (fileManager.fileExists(atPath: path) == false) {
                     self.noRsync.isHidden = false
@@ -150,7 +161,6 @@ class ViewControllerUserconfiguration : NSViewController {
     
     override func viewDidAppear() {
         super.viewDidAppear()
-        
         self.dirty = false
         // Set userconfig
         self.checkUserConfig()
@@ -176,11 +186,15 @@ class ViewControllerUserconfiguration : NSViewController {
             self.rsyncPath.stringValue = ""
         }
         self.scheduledTaskdisableExecute.stringValue = String(SharingManagerConfiguration.sharedInstance.scheduledTaskdisableExecute)
-        
         if (SharingManagerConfiguration.sharedInstance.allowDoubleclick) {
             self.allowDoubleClick.state = NSOnState
         } else {
             self.allowDoubleClick.state = NSOffState
+        }
+        if (SharingManagerConfiguration.sharedInstance.rsyncerror) {
+            self.rsyncerror.state = NSOnState
+        } else {
+            self.rsyncerror.state = NSOffState
         }
     }
     

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16C67" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="abu-zT-Ht4">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16D32" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="abu-zT-Ht4">
     <dependencies>
         <deployment identifier="macosx"/>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="11762"/>
@@ -2566,11 +2566,11 @@ DQ
             <objects>
                 <viewController title="View Controller Configuration" storyboardIdentifier="StoryboardUserconfigID" id="Psw-ga-cgO" customClass="ViewControllerUserconfiguration" customModule="RsyncOSX" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="SDJ-iR-PEg">
-                        <rect key="frame" x="0.0" y="0.0" width="501" height="271"/>
+                        <rect key="frame" x="0.0" y="0.0" width="501" height="322"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="VbY-yX-iqY">
-                                <rect key="frame" x="18" y="229" width="465" height="22"/>
+                                <rect key="frame" x="18" y="280" width="465" height="22"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="left" title="RsyncOSX configuration" id="wIc-Bq-nTz">
                                     <font key="font" metaFont="systemLight" size="18"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -2591,13 +2591,13 @@ DQ
                                 </connections>
                             </button>
                             <box title="Configurations saved to permanent store" translatesAutoresizingMaskIntoConstraints="NO" id="vgF-FF-cIJ">
-                                <rect key="frame" x="17" y="57" width="467" height="162"/>
+                                <rect key="frame" x="17" y="68" width="467" height="202"/>
                                 <view key="contentView" id="dSE-x8-8Gm">
-                                    <rect key="frame" x="2" y="2" width="463" height="145"/>
+                                    <rect key="frame" x="2" y="2" width="463" height="185"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <button translatesAutoresizingMaskIntoConstraints="NO" id="pCc-fa-P8h">
-                                            <rect key="frame" x="36" y="122" width="400" height="18"/>
+                                            <rect key="frame" x="36" y="162" width="400" height="18"/>
                                             <buttonCell key="cell" type="check" title=" version 3.1.2 of rsync (set optional path if not in /usr/local/bin)" bezelStyle="regularSquare" imagePosition="left" alignment="left" state="on" inset="2" id="f6o-pt-x0z">
                                                 <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                                 <font key="font" metaFont="system"/>
@@ -2607,7 +2607,11 @@ DQ
                                             </connections>
                                         </button>
                                         <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Raw-fd-DIw">
-                                            <rect key="frame" x="210" y="97" width="206" height="19"/>
+                                            <rect key="frame" x="210" y="137" width="206" height="19"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="206" id="SPK-E6-3nn"/>
+                                                <constraint firstAttribute="height" constant="19" id="gVE-RH-FgM"/>
+                                            </constraints>
                                             <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" alignment="left" bezelStyle="round" id="b2I-ky-1DA">
                                                 <font key="font" metaFont="system"/>
                                                 <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
@@ -2615,7 +2619,7 @@ DQ
                                             </textFieldCell>
                                         </textField>
                                         <button translatesAutoresizingMaskIntoConstraints="NO" id="dg1-Pc-D5r">
-                                            <rect key="frame" x="36" y="72" width="400" height="18"/>
+                                            <rect key="frame" x="36" y="112" width="170" height="18"/>
                                             <buttonCell key="cell" type="check" title=" detailed logging" bezelStyle="regularSquare" imagePosition="left" alignment="left" state="on" inset="2" id="dsn-9I-wI5">
                                                 <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                                 <font key="font" metaFont="system"/>
@@ -2625,10 +2629,7 @@ DQ
                                             </connections>
                                         </button>
                                         <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="cK0-aL-8M2">
-                                            <rect key="frame" x="37" y="98" width="169" height="17"/>
-                                            <constraints>
-                                                <constraint firstAttribute="width" constant="165" id="GLW-nH-P27"/>
-                                            </constraints>
+                                            <rect key="frame" x="37" y="138" width="169" height="17"/>
                                             <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="optional path for rsync :" id="m7F-8t-VwR">
                                                 <font key="font" metaFont="system"/>
                                                 <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -2636,11 +2637,7 @@ DQ
                                             </textFieldCell>
                                         </textField>
                                         <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Tou-wf-Bf1">
-                                            <rect key="frame" x="343" y="43" width="73" height="19"/>
-                                            <constraints>
-                                                <constraint firstAttribute="width" constant="73" id="97S-Ji-HWr"/>
-                                                <constraint firstAttribute="height" constant="19" id="9ZL-uO-ppB"/>
-                                            </constraints>
+                                            <rect key="frame" x="343" y="83" width="73" height="19"/>
                                             <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" alignment="right" bezelStyle="round" id="9b0-RK-Isp">
                                                 <font key="font" metaFont="system"/>
                                                 <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
@@ -2648,7 +2645,7 @@ DQ
                                             </textFieldCell>
                                         </textField>
                                         <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="v0W-y3-e2B">
-                                            <rect key="frame" x="37" y="44" width="300" height="17"/>
+                                            <rect key="frame" x="37" y="84" width="300" height="17"/>
                                             <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="Disable Execute minutes before Scheduled task :" id="ghs-gR-o7q">
                                                 <font key="font" metaFont="system"/>
                                                 <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -2657,29 +2654,32 @@ DQ
                                         </textField>
                                     </subviews>
                                     <constraints>
-                                        <constraint firstItem="cK0-aL-8M2" firstAttribute="leading" secondItem="v0W-y3-e2B" secondAttribute="leading" id="2nT-ar-ibl"/>
-                                        <constraint firstItem="dg1-Pc-D5r" firstAttribute="top" secondItem="Raw-fd-DIw" secondAttribute="bottom" constant="9" id="DCn-ob-9t0"/>
-                                        <constraint firstItem="v0W-y3-e2B" firstAttribute="centerY" secondItem="Tou-wf-Bf1" secondAttribute="centerY" id="GFR-yI-Fo4"/>
-                                        <constraint firstItem="pCc-fa-P8h" firstAttribute="trailing" secondItem="dg1-Pc-D5r" secondAttribute="trailing" id="PL3-Fa-7Zn"/>
-                                        <constraint firstAttribute="trailing" secondItem="Raw-fd-DIw" secondAttribute="trailing" constant="47" id="RlO-MD-iWp"/>
-                                        <constraint firstItem="pCc-fa-P8h" firstAttribute="leading" secondItem="dSE-x8-8Gm" secondAttribute="leading" constant="38" id="RzV-Ox-PIA"/>
-                                        <constraint firstItem="cK0-aL-8M2" firstAttribute="centerY" secondItem="Raw-fd-DIw" secondAttribute="centerY" id="Tju-Kd-Cg6"/>
-                                        <constraint firstItem="pCc-fa-P8h" firstAttribute="top" secondItem="dSE-x8-8Gm" secondAttribute="top" constant="7" id="UNb-81-eYb"/>
-                                        <constraint firstItem="Raw-fd-DIw" firstAttribute="trailing" secondItem="Tou-wf-Bf1" secondAttribute="trailing" id="Whp-YC-frk"/>
-                                        <constraint firstItem="pCc-fa-P8h" firstAttribute="leading" secondItem="dg1-Pc-D5r" secondAttribute="leading" id="YWw-HF-RSh"/>
-                                        <constraint firstItem="Raw-fd-DIw" firstAttribute="leading" secondItem="cK0-aL-8M2" secondAttribute="trailing" constant="6" id="cR4-cs-zFA"/>
-                                        <constraint firstItem="v0W-y3-e2B" firstAttribute="top" secondItem="dg1-Pc-D5r" secondAttribute="bottom" constant="13" id="fVZ-Jp-9Cy"/>
-                                        <constraint firstItem="cK0-aL-8M2" firstAttribute="leading" secondItem="dSE-x8-8Gm" secondAttribute="leading" constant="39" id="hOW-0N-1YN"/>
-                                        <constraint firstItem="Tou-wf-Bf1" firstAttribute="top" secondItem="dg1-Pc-D5r" secondAttribute="bottom" constant="12" id="rJe-DX-LKd"/>
-                                        <constraint firstItem="Raw-fd-DIw" firstAttribute="top" secondItem="pCc-fa-P8h" secondAttribute="bottom" constant="8" symbolic="YES" id="tuJ-MH-7lC"/>
-                                        <constraint firstItem="Tou-wf-Bf1" firstAttribute="leading" secondItem="v0W-y3-e2B" secondAttribute="trailing" constant="8" symbolic="YES" id="vL3-V7-GEw"/>
-                                        <constraint firstAttribute="bottom" secondItem="Tou-wf-Bf1" secondAttribute="bottom" constant="43" id="w9S-VH-idh"/>
-                                        <constraint firstItem="cK0-aL-8M2" firstAttribute="top" secondItem="pCc-fa-P8h" secondAttribute="bottom" constant="9" id="zo3-9U-ghQ"/>
+                                        <constraint firstItem="Raw-fd-DIw" firstAttribute="leading" secondItem="cK0-aL-8M2" secondAttribute="trailing" constant="6" id="2iF-IT-zq4"/>
+                                        <constraint firstItem="v0W-y3-e2B" firstAttribute="top" secondItem="dg1-Pc-D5r" secondAttribute="bottom" constant="13" id="30n-vI-KzL"/>
+                                        <constraint firstItem="pCc-fa-P8h" firstAttribute="top" secondItem="dSE-x8-8Gm" secondAttribute="top" constant="7" id="5SB-mt-RRb"/>
+                                        <constraint firstItem="pCc-fa-P8h" firstAttribute="leading" secondItem="dSE-x8-8Gm" secondAttribute="leading" constant="38" id="5WU-2u-x84"/>
+                                        <constraint firstAttribute="bottom" secondItem="Tou-wf-Bf1" secondAttribute="bottom" constant="83" id="8hR-cC-Bi9"/>
+                                        <constraint firstAttribute="trailing" secondItem="Raw-fd-DIw" secondAttribute="trailing" constant="47" id="9h8-56-sse"/>
+                                        <constraint firstItem="cK0-aL-8M2" firstAttribute="leading" secondItem="dSE-x8-8Gm" secondAttribute="leading" constant="39" id="DTY-UE-75e"/>
+                                        <constraint firstAttribute="bottom" secondItem="v0W-y3-e2B" secondAttribute="bottom" constant="84" id="PDA-oL-dIP"/>
+                                        <constraint firstItem="Tou-wf-Bf1" firstAttribute="top" secondItem="Raw-fd-DIw" secondAttribute="bottom" constant="35" id="SAQ-NJ-UzP"/>
+                                        <constraint firstItem="Raw-fd-DIw" firstAttribute="top" secondItem="pCc-fa-P8h" secondAttribute="bottom" constant="8" id="YBb-qf-knX"/>
+                                        <constraint firstItem="Tou-wf-Bf1" firstAttribute="centerY" secondItem="v0W-y3-e2B" secondAttribute="centerY" id="ZrO-SW-F3L"/>
+                                        <constraint firstItem="Tou-wf-Bf1" firstAttribute="leading" secondItem="v0W-y3-e2B" secondAttribute="trailing" constant="8" symbolic="YES" id="b6o-jd-zXr"/>
+                                        <constraint firstItem="dg1-Pc-D5r" firstAttribute="top" secondItem="cK0-aL-8M2" secondAttribute="bottom" constant="10" id="cQd-Wu-eKL"/>
+                                        <constraint firstItem="v0W-y3-e2B" firstAttribute="leading" secondItem="dSE-x8-8Gm" secondAttribute="leading" constant="39" id="fbg-Ta-l7h"/>
+                                        <constraint firstItem="Raw-fd-DIw" firstAttribute="trailing" secondItem="Tou-wf-Bf1" secondAttribute="trailing" id="p9L-yh-73e"/>
+                                        <constraint firstItem="dg1-Pc-D5r" firstAttribute="trailing" secondItem="cK0-aL-8M2" secondAttribute="trailing" id="scl-ZO-Jz3"/>
+                                        <constraint firstItem="dg1-Pc-D5r" firstAttribute="leading" secondItem="pCc-fa-P8h" secondAttribute="leading" id="zfd-5K-Ffe"/>
                                     </constraints>
                                 </view>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="461" id="Gbn-qw-N7E"/>
+                                    <constraint firstAttribute="height" constant="198" id="roo-rF-Rf9"/>
+                                </constraints>
                             </box>
                             <button translatesAutoresizingMaskIntoConstraints="NO" id="6tS-DH-qDj">
-                                <rect key="frame" x="56" y="74" width="273" height="18"/>
+                                <rect key="frame" x="56" y="125" width="273" height="18"/>
                                 <buttonCell key="cell" type="check" title="Allow double click to execute single tasks" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="LVU-GD-VRx">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                     <font key="font" metaFont="system"/>
@@ -2688,27 +2688,43 @@ DQ
                                     <action selector="toggleAllowDoubleclick:" target="Psw-ga-cgO" id="P1b-pO-0y4"/>
                                 </connections>
                             </button>
-                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="MU5-XI-9GS">
-                                <rect key="frame" x="18" y="13" width="231" height="27"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="MU5-XI-9GS">
+                                <rect key="frame" x="18" y="20" width="231" height="20"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="227" id="EIf-x8-lVj"/>
+                                </constraints>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="left" title="Error : no rsync in optional path" id="CCB-zy-XDh">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
+                            <button translatesAutoresizingMaskIntoConstraints="NO" id="1oq-7z-Ctu">
+                                <rect key="frame" x="56" y="88" width="249" height="18"/>
+                                <buttonCell key="cell" type="check" title="Allow rsync error to reset work queue" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="Ogf-Fi-1BO">
+                                    <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="toggleError:" target="Psw-ga-cgO" id="Ry1-av-lKI"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <constraints>
-                            <constraint firstItem="vgF-FF-cIJ" firstAttribute="trailing" secondItem="u41-A5-KKx" secondAttribute="trailing" id="8H9-7U-5Lo"/>
-                            <constraint firstItem="VbY-yX-iqY" firstAttribute="leading" secondItem="vgF-FF-cIJ" secondAttribute="leading" id="CRR-xc-nhE"/>
-                            <constraint firstItem="VbY-yX-iqY" firstAttribute="top" secondItem="SDJ-iR-PEg" secondAttribute="top" constant="20" symbolic="YES" id="E2j-7F-iXK"/>
-                            <constraint firstAttribute="trailing" secondItem="VbY-yX-iqY" secondAttribute="trailing" constant="20" symbolic="YES" id="Ser-of-ICt"/>
-                            <constraint firstItem="VbY-yX-iqY" firstAttribute="leading" secondItem="SDJ-iR-PEg" secondAttribute="leading" constant="20" symbolic="YES" id="gd6-f5-E1V"/>
-                            <constraint firstItem="6tS-DH-qDj" firstAttribute="leading" secondItem="SDJ-iR-PEg" secondAttribute="leading" constant="58" id="ncJ-zy-LTU"/>
-                            <constraint firstAttribute="bottom" secondItem="u41-A5-KKx" secondAttribute="bottom" constant="20" symbolic="YES" id="ssU-HJ-9wY"/>
-                            <constraint firstItem="u41-A5-KKx" firstAttribute="top" secondItem="vgF-FF-cIJ" secondAttribute="bottom" constant="20" symbolic="YES" id="wrO-B2-x4j"/>
-                            <constraint firstAttribute="bottom" secondItem="6tS-DH-qDj" secondAttribute="bottom" constant="76" id="zK1-ss-sXt"/>
-                            <constraint firstItem="VbY-yX-iqY" firstAttribute="trailing" secondItem="vgF-FF-cIJ" secondAttribute="trailing" id="zsY-UU-GFc"/>
+                            <constraint firstAttribute="trailing" secondItem="vgF-FF-cIJ" secondAttribute="trailing" constant="20" id="0Ve-R6-hGZ"/>
+                            <constraint firstItem="MU5-XI-9GS" firstAttribute="firstBaseline" secondItem="u41-A5-KKx" secondAttribute="baseline" id="FfG-kA-RM5"/>
+                            <constraint firstItem="MU5-XI-9GS" firstAttribute="leading" secondItem="vgF-FF-cIJ" secondAttribute="leading" id="MDM-7i-6vR"/>
+                            <constraint firstItem="1oq-7z-Ctu" firstAttribute="top" secondItem="6tS-DH-qDj" secondAttribute="bottom" constant="23" id="ThU-8K-prG"/>
+                            <constraint firstItem="MU5-XI-9GS" firstAttribute="bottom" secondItem="u41-A5-KKx" secondAttribute="bottom" id="aj7-gM-S2X"/>
+                            <constraint firstAttribute="bottom" secondItem="1oq-7z-Ctu" secondAttribute="bottom" constant="90" id="dHd-FN-cVP"/>
+                            <constraint firstItem="1oq-7z-Ctu" firstAttribute="leading" secondItem="6tS-DH-qDj" secondAttribute="leading" id="hhG-R2-jqc"/>
+                            <constraint firstItem="VbY-yX-iqY" firstAttribute="trailing" secondItem="vgF-FF-cIJ" secondAttribute="trailing" id="jLg-qn-cbw"/>
+                            <constraint firstItem="vgF-FF-cIJ" firstAttribute="top" secondItem="SDJ-iR-PEg" secondAttribute="top" constant="52" id="jQy-OX-D9W"/>
+                            <constraint firstAttribute="trailing" secondItem="u41-A5-KKx" secondAttribute="trailing" constant="20" id="lOh-iL-9sR"/>
+                            <constraint firstAttribute="bottom" secondItem="u41-A5-KKx" secondAttribute="bottom" constant="20" id="lq4-Jx-lHU"/>
+                            <constraint firstItem="MU5-XI-9GS" firstAttribute="leading" secondItem="VbY-yX-iqY" secondAttribute="leading" id="pcx-Sp-GX7"/>
+                            <constraint firstItem="VbY-yX-iqY" firstAttribute="top" secondItem="SDJ-iR-PEg" secondAttribute="top" constant="20" symbolic="YES" id="tdP-LO-Wed"/>
+                            <constraint firstItem="6tS-DH-qDj" firstAttribute="leading" secondItem="SDJ-iR-PEg" secondAttribute="leading" constant="58" id="wOZ-Ug-7nm"/>
                         </constraints>
                     </view>
                     <connections>
@@ -2716,13 +2732,14 @@ DQ
                         <outlet property="detailedlogging" destination="dg1-Pc-D5r" id="Z5n-3i-nJ1"/>
                         <outlet property="noRsync" destination="MU5-XI-9GS" id="apy-XI-W5g"/>
                         <outlet property="rsyncPath" destination="Raw-fd-DIw" id="9MU-5e-zvh"/>
+                        <outlet property="rsyncerror" destination="1oq-7z-Ctu" id="E3s-SB-4qE"/>
                         <outlet property="scheduledTaskdisableExecute" destination="Tou-wf-Bf1" id="LWg-5L-dW6"/>
                         <outlet property="version3rsync" destination="pCc-fa-P8h" id="SEd-Qb-5fr"/>
                     </connections>
                 </viewController>
                 <customObject id="mqj-jt-V17" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="314.5" y="1691.5"/>
+            <point key="canvasLocation" x="314.5" y="1717"/>
         </scene>
         <!--View Controller Edit-->
         <scene sceneID="5Mo-Eu-OTy">

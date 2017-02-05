@@ -101,6 +101,8 @@ class SharingManagerConfiguration {
     // Notify about scheduled process
     // Only allowed to notity by modal window when in main view
     var allowNotifyinMain:Bool = false
+    // If rsync error reset workqueue
+    var rsyncerror:Bool = true
 
     
     // DATA STRUCTURES

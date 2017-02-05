@@ -15,6 +15,7 @@ enum singleWorkTask {
     case empty
     case done
     case batchrun
+    case error
 }
 
 final class singleTask {
@@ -47,6 +48,14 @@ final class singleTask {
             }
         } else {
             return .empty
+        }
+    }
+    
+    // rsync error
+    // Pushing error token ontop of stack
+    func error() {
+        if (self.work != nil) {
+            self.work!.insert(.error, at: 0)
         }
     }
     
