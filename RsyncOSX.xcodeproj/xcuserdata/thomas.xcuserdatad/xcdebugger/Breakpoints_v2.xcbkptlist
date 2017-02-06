@@ -22,7 +22,7 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "RsyncOSXver30/SharingManagerConfiguration.swift"
@@ -33,6 +33,54 @@
             endingLineNumber = "133"
             landmarkName = "readAllConfigurationsAndArguments()"
             landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "RsyncOSXver30/profiles.swift"
+            timestampString = "507973259.935142"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "138"
+            endingLineNumber = "138"
+            landmarkName = "error(errorstr:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "RsyncOSX.profiles.(error in _D2047FEEFCAC534B06B318C13D211EAA) (errorstr : Swift.String) -&gt; ()"
+                  moduleName = "RsyncOSX"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Volumes/Home/thomas/Documents/Xcode/Version3.0/RsyncOSXver30/profiles.swift"
+                  timestampString = "507973268.121664"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "138"
+                  endingLineNumber = "138"
+                  offsetFromSymbolStart = "27">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "RsyncOSX.profiles.(error in _D2047FEEFCAC534B06B318C13D211EAA) (errorstr : Swift.String) -&gt; ()"
+                  moduleName = "RsyncOSX"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Volumes/Home/thomas/Documents/Xcode/Version3.0/RsyncOSXver30/profiles.swift"
+                  timestampString = "507973268.124964"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "138"
+                  endingLineNumber = "138"
+                  offsetFromSymbolStart = "103">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>
