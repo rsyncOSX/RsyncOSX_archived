@@ -171,5 +171,19 @@ final class Utils {
         })
     }
     
+    // Function for verifying thar rsync is present in either
+    // standard path or path set by user
+    func noRsync() {
+        if (SharingManagerConfiguration.sharedInstance.noRysync == true) {
+            if let rsync = SharingManagerConfiguration.sharedInstance.rsyncPath {
+                Alerts.showInfo("ERROR: no rsync in " + rsync)
+            } else {
+                Alerts.showInfo("ERROR: no rsync in /usr/local/bin")
+            }
+        } else {
+            Alerts.showInfo("Scheduled operation in progress")
+        }
+    }
+
  }
 
