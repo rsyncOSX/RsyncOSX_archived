@@ -304,6 +304,8 @@ class ViewControllertabMain: NSViewController {
     }
 
     // Initial functions viewDidLoad and viewDidAppear
+    // Leaving view viewDidDisappear
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do view setup here.
@@ -364,6 +366,7 @@ class ViewControllertabMain: NSViewController {
         self.reset()
     }
     
+    // Execute tasks by double click in table
     @objc(tableViewDoubleClick:) func tableViewDoubleClick(sender:AnyObject) {
         if (SharingManagerConfiguration.sharedInstance.allowDoubleclick == true) {
             if (self.ready) {
@@ -433,7 +436,7 @@ class ViewControllertabMain: NSViewController {
                 break
             }
         } else {
-            self.noRsync()
+             Utils.sharedInstance.noRsync()
         }
     }
     
@@ -468,22 +471,10 @@ class ViewControllertabMain: NSViewController {
                 self.presentViewControllerAsSheet(self.ViewControllerBatch)
             })
         } else {
-            self.noRsync()
+            Utils.sharedInstance.noRsync()
         }
     }
     
-    private func noRsync() {
-        if (SharingManagerConfiguration.sharedInstance.noRysync == true) {
-            if let rsync = SharingManagerConfiguration.sharedInstance.rsyncPath {
-                Alerts.showInfo("ERROR: no rsync in " + rsync)
-            } else {
-                Alerts.showInfo("ERROR: no rsync in /usr/local/bin")
-            }
-        } else {
-            Alerts.showInfo("Scheduled operation in progress")
-        }
-    }
-
     // True if scheduled task in progress
     fileprivate func scheduledOperationInProgress() -> Bool {
         var scheduleInProgress:Bool?
@@ -565,7 +556,7 @@ class ViewControllertabMain: NSViewController {
     
     // Function for setting max files to be copied
     // Function is called in ProcessTermination()
-    fileprivate func setmaxNumbersOfFilesToTransfer () {
+    fileprivate func setmaxNumbersOfFilesToTransfer() {
         // Getting max count
         self.showProcessInfo(info: .Set_max_Number)
         if (self.output!.getTransferredNumbers(numbers: .totalNumber) > 0) {
@@ -767,6 +758,7 @@ extension ViewControllertabMain : NSTableViewDelegate {
     
 }
 
+// Get output from rsync command
 extension ViewControllertabMain: Information {
     
     // Get information from rsync output.
@@ -784,6 +776,7 @@ extension ViewControllertabMain: Information {
     
 }
 
+// Counting
 extension ViewControllertabMain: Count {
     
     // Maxnumber of files counted
@@ -799,6 +792,7 @@ extension ViewControllertabMain: Count {
 
 }
 
+// Executing task(s) in batch
 extension ViewControllertabMain: StartBatch {
     
     // Functions are called from batchView.
@@ -849,6 +843,7 @@ extension ViewControllertabMain: StartBatch {
 
 }
 
+// Scheduled task are changed, read schedule again og redraw table
 extension ViewControllertabMain: RefreshtableView {
 
     // Refresh tableView in main
@@ -864,7 +859,7 @@ extension ViewControllertabMain: RefreshtableView {
 }
 
 
-
+// Configuration to task is changed, reread configurations again
 extension ViewControllertabMain: ReadConfigurationsAgain {
     
     func readConfigurations() {
@@ -883,6 +878,7 @@ extension ViewControllertabMain: ReadConfigurationsAgain {
 }
 
 
+// Parameters to rsync is changed
 extension ViewControllertabMain: RsyncUserParams {
     
     // Do a reread of all Configurations
@@ -893,6 +889,7 @@ extension ViewControllertabMain: RsyncUserParams {
     }
 }
 
+// Get index of selected row
 extension ViewControllertabMain: GetSelecetedIndex {
     
     func getindex() -> Int {
@@ -904,6 +901,7 @@ extension ViewControllertabMain: GetSelecetedIndex {
     }
 }
 
+// Next scheduled job is started, if any
 extension ViewControllertabMain: StartNextScheduledTask {
     
     // Start next job
@@ -913,6 +911,7 @@ extension ViewControllertabMain: StartNextScheduledTask {
     }
 }
 
+// New profile is loaded.
 extension ViewControllertabMain: AddProfiles {
     
     // Function is called from profiles when new or
@@ -978,6 +977,8 @@ extension ViewControllertabMain: AddProfiles {
 
 }
 
+
+// A scheduled task is executed
 extension ViewControllertabMain: ScheduledJobInProgress {
     
     func start() {
@@ -1008,8 +1009,9 @@ extension ViewControllertabMain: ScheduledJobInProgress {
 
 }
 
+// New scheduled task entered. Delete old one and
+// calculated new object (queue)
 extension ViewControllertabMain: NewSchedules {
-    
     // Create new schedule object. Old object is
     // released (deleted).
     func newSchedulesAdded() {
@@ -1019,18 +1021,19 @@ extension ViewControllertabMain: NewSchedules {
     
 }
 
+
+// Rsync path is changed, update displayed rsync command
 extension ViewControllertabMain: RsyncChanged {
-    
     // If row is selected an update rsync command in view
     func rsyncchanged() {
         // Update rsync command in display
         self.setRsyncCommandDisplay()
     }
-    
 }
 
+// Check for remote connections, reload table
+// when completed.
 extension ViewControllertabMain: Connections {
-    
     // Function is called when testing of remote connections are compledet.
     // Function is just redrawing the mainTableView after getting info
     // about which remote servers are off/on line.
@@ -1043,8 +1046,8 @@ extension ViewControllertabMain: Connections {
     }
 }
 
+// Uuups, new version is discovered
 extension ViewControllertabMain: newVersionDiscovered {
-    
     // Notifies if new version is discovered
     func notifyNewVersion() {
         GlobalMainQueue.async(execute: { () -> Void in
@@ -1054,8 +1057,9 @@ extension ViewControllertabMain: newVersionDiscovered {
     
 }
 
+
+// Dismisser for sheets
 extension ViewControllertabMain: DismissViewController {
-    
     // Function for dismissing a presented view
     // - parameter viewcontroller: the viewcontroller to be dismissed
     func dismiss_view(viewcontroller:NSViewController) {
@@ -1070,8 +1074,10 @@ extension ViewControllertabMain: DismissViewController {
     
 }
 
+// If abort is selected during execution of task
+// Either single task or batch
 extension ViewControllertabMain: Abort {
-    
+    // Abort any task, either single- or batch task
     func abortOperations() {
         // Terminates the running process
         self.showProcessInfo(info:.Abort)
@@ -1107,6 +1113,10 @@ extension ViewControllertabMain: Abort {
     
 }
 
+
+// Called when either a terminatopn of Process is
+// discovered or data is availiable in the filehandler
+// See file rsyncProcess.swift.
 extension ViewControllertabMain: UpdateProgress {
     
     // Delegate functions called from the Process object
@@ -1201,6 +1211,7 @@ extension ViewControllertabMain: UpdateProgress {
     
 }
 
+// Deselect a row
 extension ViewControllertabMain: deselectRowTable {
     // deselect a row after row is deleted
     func deselectRow() {
@@ -1211,6 +1222,8 @@ extension ViewControllertabMain: deselectRowTable {
     }
 }
 
+
+// If rsync throws any error
 extension ViewControllertabMain: RsyncError {
     func rsyncerror() {
         // Set on or off in user configuration
@@ -1225,6 +1238,7 @@ extension ViewControllertabMain: RsyncError {
     }
 }
 
+// If, for any reason, handling files or directory throws an error
 extension ViewControllertabMain: FileError {
     func fileerror(errorstr:String) {
         GlobalMainQueue.async(execute: { () -> Void in
