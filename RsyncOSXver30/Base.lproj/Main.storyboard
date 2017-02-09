@@ -1755,7 +1755,7 @@
         <scene sceneID="Djw-1M-Bvf">
             <objects>
                 <viewController title="Add" id="3xI-3C-guU" customClass="ViewControllerNewConfigurations" customModule="RsyncOSX" sceneMemberID="viewController">
-                    <view key="view" id="fs3-Ij-mBm" customClass="View">
+                    <view key="view" id="fs3-Ij-mBm">
                         <rect key="frame" x="0.0" y="0.0" width="1092" height="407"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
