@@ -75,7 +75,7 @@ class ViewControllerScheduleDetailsAboutRuns : NSViewController {
         super.viewDidAppear()
         GlobalMainQueue.async(execute: { () -> Void in
             self.sorting.startAnimation(self)
-            self.tabledata = ScheduleDetailsAboutRuns().filter(search: nil, what:nil)
+            self.tabledata = ScheduleLoggData().filter(search: nil, what:nil)
             self.scheduletable.reloadData()
             self.sorting.stopAnimation(self)
         })
@@ -108,13 +108,13 @@ extension ViewControllerScheduleDetailsAboutRuns : NSSearchFieldDelegate {
         self.sorting.startAnimation(self)
         if (sender.stringValue.isEmpty) {
             GlobalMainQueue.async(execute: { () -> Void in
-                self.tabledata = ScheduleDetailsAboutRuns().filter(search: nil, what:nil)
+                self.tabledata = ScheduleLoggData().filter(search: nil, what:nil)
                 self.scheduletable.reloadData()
                 self.sorting.stopAnimation(self)
             })
         } else {
             GlobalMainQueue.async(execute: { () -> Void in
-                self.tabledata = ScheduleDetailsAboutRuns().filter(search: sender.stringValue, what:self.what)
+                self.tabledata = ScheduleLoggData().filter(search: sender.stringValue, what:self.what)
                 self.scheduletable.reloadData()
                 self.sorting.stopAnimation(self)
             })
@@ -123,7 +123,7 @@ extension ViewControllerScheduleDetailsAboutRuns : NSSearchFieldDelegate {
     
     func searchFieldDidEndSearching(_ sender: NSSearchField){
         GlobalMainQueue.async(execute: { () -> Void in
-            self.tabledata = ScheduleDetailsAboutRuns().filter(search: nil, what:nil)
+            self.tabledata = ScheduleLoggData().filter(search: nil, what:nil)
             self.scheduletable.reloadData()
         })
         self.server.state = NSOffState
@@ -188,7 +188,7 @@ extension ViewControllerScheduleDetailsAboutRuns: RefreshtableView {
     // Refresh tableView
     func refresh() {
         GlobalMainQueue.async(execute: { () -> Void in
-            self.tabledata = ScheduleDetailsAboutRuns().filter(search: nil, what:nil)
+            self.tabledata = ScheduleLoggData().filter(search: nil, what:nil)
             self.scheduletable.reloadData()
         })
         self.row = nil
