@@ -1,10 +1,12 @@
 //
-//  ScheduleDetailsAboutRuns.swift
+//  ScheduleLoggData.swift
 //  RsyncOSX
 //
 //  Created by Thomas Evensen on 23/09/2016.
 //  Copyright © 2016 Thomas Evensen. All rights reserved.
 //
+// Object for sorting and holding logg data about all tasks.
+// Detailed logging must be set on if logging data.
 
 import Foundation
 
@@ -14,7 +16,7 @@ enum filterLogs {
     case executeDate
 }
 
-class ScheduleDetailsAboutRuns {
+final class ScheduleLoggData {
     
     // Reference to filtered data
     private var data:[NSDictionary]?
@@ -38,9 +40,8 @@ class ScheduleDetailsAboutRuns {
     }
     
     
-    // Function for sorting and filetering loggdata
+    // Function for sorting and filtering loggdata
     private func readfilteredData (filter:String, filterwhat:filterLogs) {
-        
         var data = Array<NSDictionary>()
         self.data = nil
         // Check if loggdata exist
