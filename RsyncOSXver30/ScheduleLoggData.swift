@@ -79,8 +79,8 @@ final class ScheduleLoggData {
                 for j in 0 ..< input[i].executed.count {
                     let dict = input[i].executed[j]
                     let logdetail: NSDictionary = [
-                        "localCatalog":SharingManagerConfiguration.sharedInstance.getlocalCatalog(hiddenID),
-                        "offsiteServer":SharingManagerConfiguration.sharedInstance.getoffSiteserver(hiddenID),
+                        "localCatalog":SharingManagerConfiguration.sharedInstance.getResourceConfiguration(hiddenID, resource: .localCatalog),
+                        "offsiteServer":SharingManagerConfiguration.sharedInstance.getResourceConfiguration(hiddenID, resource: .offsiteServer),
                         "dateExecuted":(dict.value(forKey: "dateExecuted") as? String)!,
                         "resultExecuted":(dict.value(forKey: "resultExecuted") as? String)!,
                         "parent":(dict.value(forKey: "parent") as? String)!,

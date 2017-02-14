@@ -443,60 +443,37 @@ class SharingManagerConfiguration {
     
     
     // GET VALUES BY HIDDENID
-
+    
+    // Enum which resource to return
+    enum resourceInConfiguration {
+        case remoteCatalog
+        case localCatalog
+        case offsiteServer
+        case task
+    }
+    
     /// Function is getting the remote catalog in a spesific Configuration
     /// - parameter hiddenID: hiddenID for Configuration
-    /// - returns : remote catalog
-    func getremoteCatalog(_ hiddenID:Int) -> String {
+    /// - parameter resource: which resource to get from configuration
+    /// - returns : resource
+    func getResourceConfiguration(_ hiddenID:Int, resource:resourceInConfiguration) -> String {
         var result = self.Configurations.filter({return ($0.hiddenID == hiddenID)})
-        if result.count > 0 {
-            let config = result.removeFirst()
-            return config.offsiteCatalog
-        } else {
+        guard result.count > 0 else {
             return ""
         }
-    }
-    
-    /// Function is getting the local catalog in a spesific Configuration
-    /// - parameter hiddenID: hiddenID for Configuration
-    /// - returns : local catalog
-    func getlocalCatalog (_ hiddenID:Int) -> String {
-        var result = self.Configurations.filter({return ($0.hiddenID == hiddenID)})
-        if result.count > 0 {
-            let config = result.removeFirst()
-            return config.localCatalog
-        } else {
-            return ""
-        }
-    }
-    
-    /// Function is getting the remote server in a spesific Configuration
-    /// - parameter hiddenID: hiddenID for Configuration
-    /// - returns : remote server or empty server
-    func getoffSiteserver (_ hiddenID:Int) -> String {
-        var result = self.Configurations.filter({return ($0.hiddenID == hiddenID)})
-        if result.count > 0 {
-            let config = result.removeFirst()
-            if config.offsiteServer.isEmpty {
+        switch resource {
+        case .localCatalog:
+            return result[0].localCatalog
+        case .remoteCatalog:
+            return result[0].offsiteCatalog
+        case .offsiteServer:
+            if result[0].offsiteServer.isEmpty {
                 return "localhost"
             } else {
-                return config.offsiteServer
+                return result[0].offsiteServer
             }
-        } else {
-            return ""
-        }
-    }
-    
-    /// Function is getting the task for a spesific Configuration
-    /// - parameter hiddenID: hiddenID for Configuration
-    /// - returns : task (either backup or restore)
-    func gettask (_ hiddenID:Int) -> String {
-        var result = self.Configurations.filter({return ($0.hiddenID == hiddenID)})
-        if result.count > 0 {
-            let config = result.removeFirst()
-            return config.task
-        } else {
-            return ""
+        case .task:
+            return result[0].task
         }
     }
     
@@ -526,17 +503,15 @@ class SharingManagerConfiguration {
     /// default value.
     /// - returns : full path of rsync command
     func setRsyncCommand() -> String {
-        var command:String = ""
         if (self.rsyncVer3) {
             if (self.rsyncPath == nil) {
-                command = "/usr/local/bin/rsync"
+                return "/usr/local/bin/rsync"
             } else {
-                command = self.rsyncPath! + "rsync"
+                return self.rsyncPath! + "rsync"
             }
         } else {
-            command = "/usr/bin/rsync"
+            return "/usr/bin/rsync"
         }
-        return command
     }
     
     /// Function for computing MacSerialNumber

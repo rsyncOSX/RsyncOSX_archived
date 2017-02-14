@@ -1,5 +1,5 @@
 //
-//  workLoadMain.swift
+//  singleTask.swift
 //  RsyncOSX
 //
 //  Created by Thomas Evensen on 13/10/2016.

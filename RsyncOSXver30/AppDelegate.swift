@@ -19,7 +19,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         _ = newVersion()
         // Read user configuration
         if let userConfiguration =  storeAPI.sharedInstance.getUserconfiguration() {
-            _ = userconfiguration(configRsyncOSX: userConfiguration)
+            // userConfiguration is never nil if object is created
+            _ = userconfiguration(userconfigRsyncOSX: userConfiguration)
         }
     }
 

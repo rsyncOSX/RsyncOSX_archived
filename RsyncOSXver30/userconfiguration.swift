@@ -56,19 +56,15 @@ final class userconfiguration {
         }
     }
     
-    init (configRsyncOSX : [NSDictionary]?) {
-        
-        // Setting configurations read from config file
-        if let userconfiguration = configRsyncOSX {
-            if (userconfiguration.count > 0) {
-                self.readUserconfiguration(dict: userconfiguration[0])
-            }
-            // If userconfiguration is read from disk update info in main view
-            if let pvc = SharingManagerConfiguration.sharedInstance.ViewObjectMain as? ViewControllertabMain {
-                self.rsyncchanged_delegate = pvc
-                self.rsyncchanged_delegate?.rsyncchanged()
-                self.rsyncchanged_delegate?.displayAllowDoubleclick()
-            }
+    init (userconfigRsyncOSX : [NSDictionary]) {
+        if (userconfigRsyncOSX.count > 0) {
+            self.readUserconfiguration(dict: userconfigRsyncOSX[0])
+        }
+        // If userconfiguration is read from disk update info in main view
+        if let pvc = SharingManagerConfiguration.sharedInstance.ViewObjectMain as? ViewControllertabMain {
+            self.rsyncchanged_delegate = pvc
+            self.rsyncchanged_delegate?.rsyncchanged()
+            self.rsyncchanged_delegate?.displayAllowDoubleclick()
         }
     }
 }

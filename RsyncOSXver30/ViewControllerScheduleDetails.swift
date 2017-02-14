@@ -81,9 +81,9 @@ class ViewControllerScheduleDetails : NSViewController {
         GlobalMainQueue.async(execute: { () -> Void in
             self.scheduletable.reloadData()
         })
-        self.localCatalog.stringValue = SharingManagerConfiguration.sharedInstance.getlocalCatalog(self.hiddendID!)
-        self.remoteCatalog.stringValue = SharingManagerConfiguration.sharedInstance.getremoteCatalog(self.hiddendID!)
-        self.offsiteServer.stringValue = SharingManagerConfiguration.sharedInstance.getoffSiteserver(self.hiddendID!)
+        self.localCatalog.stringValue = SharingManagerConfiguration.sharedInstance.getResourceConfiguration(self.hiddendID!, resource: .localCatalog)
+        self.remoteCatalog.stringValue = SharingManagerConfiguration.sharedInstance.getResourceConfiguration(self.hiddendID!, resource: .remoteCatalog)
+        self.offsiteServer.stringValue = SharingManagerConfiguration.sharedInstance.getResourceConfiguration(self.hiddendID!, resource: .offsiteServer)
     }
 }
 
