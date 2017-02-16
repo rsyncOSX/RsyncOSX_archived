@@ -370,8 +370,6 @@ class SharingManagerConfiguration {
         }
     }
     
- 
-    
     /// Function sets reference to object holding data and methods
     /// for batch execution of Configurations
     /// - parameter batchdata: object holding data and methods for executing Configurations in batch

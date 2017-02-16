@@ -1,5 +1,5 @@
 //
-//  ViewControllerScheduleDetailsAboutRuns.swift
+//  ViewControllerLoggData.swift
 //  RsyncOSX
 //  The ViewController is the logview
 //
@@ -11,7 +11,7 @@ import Foundation
 import Cocoa
 
 
-class ViewControllerScheduleDetailsAboutRuns : NSViewController {
+class ViewControllerLoggData : NSViewController {
     
     // Reference to variable holding tabledata
     var tabledata:[NSDictionary]?
@@ -43,6 +43,7 @@ class ViewControllerScheduleDetailsAboutRuns : NSViewController {
         } else if (self.date.state == NSOnState) {
             self.what = .executeDate
         }
+        self.filterLogg()
     }
     
     // Delete row
@@ -99,10 +100,41 @@ class ViewControllerScheduleDetailsAboutRuns : NSViewController {
         }
         self.scheduletable.deselectRow(self.index!)
     }
+    
+    // filter data
+    fileprivate func filterLogg() {
+        
+        guard self.index != nil else {
+            return
+        }
+        
+        guard self.index! < self.tabledata!.count else {
+            return
+        }
+        
+        self.row = self.tabledata?[self.index!]
+        if (self.server.state == NSOnState) {
+            if let server = self.row?.value(forKey: "offsiteServer") as? String {
+                self.search.stringValue = server
+                self.searchFieldDidStartSearching(self.search)
+            }
+        } else if (self.Catalog.state == NSOnState) {
+            if let server = self.row?.value(forKey: "localCatalog") as? String {
+                self.search.stringValue = server
+                self.searchFieldDidStartSearching(self.search)
+            }
+        } else if (self.date.state == NSOnState) {
+            if let server = self.row?.value(forKey: "dateExecuted") as? String {
+                self.search.stringValue = server
+                self.searchFieldDidStartSearching(self.search)
+            }
+        }
+    
+    }
 }
 
 
-extension ViewControllerScheduleDetailsAboutRuns : NSSearchFieldDelegate {
+extension ViewControllerLoggData : NSSearchFieldDelegate {
     
     func searchFieldDidStartSearching(_ sender: NSSearchField){
         self.sorting.startAnimation(self)
@@ -122,6 +154,7 @@ extension ViewControllerScheduleDetailsAboutRuns : NSSearchFieldDelegate {
     }
     
     func searchFieldDidEndSearching(_ sender: NSSearchField){
+        self.index = nil
         GlobalMainQueue.async(execute: { () -> Void in
             self.tabledata = ScheduleLoggData().filter(search: nil, what:nil)
             self.scheduletable.reloadData()
@@ -133,7 +166,7 @@ extension ViewControllerScheduleDetailsAboutRuns : NSSearchFieldDelegate {
     
 }
 
-extension ViewControllerScheduleDetailsAboutRuns : NSTableViewDataSource {
+extension ViewControllerLoggData : NSTableViewDataSource {
     
     func numberOfRows(in tableView: NSTableView) -> Int {
         if (self.tabledata == nil ) {
@@ -147,7 +180,7 @@ extension ViewControllerScheduleDetailsAboutRuns : NSTableViewDataSource {
     
 }
 
-extension ViewControllerScheduleDetailsAboutRuns : NSTableViewDelegate {
+extension ViewControllerLoggData : NSTableViewDelegate {
     
     @objc(tableView:objectValueForTableColumn:row:) func tableView(_ tableView: NSTableView, objectValueFor tableColumn: NSTableColumn?, row: Int) -> Any? {
         let object:NSDictionary = self.tabledata![row]
@@ -161,29 +194,13 @@ extension ViewControllerScheduleDetailsAboutRuns : NSTableViewDelegate {
         let indexes = myTableViewFromNotification.selectedRowIndexes
         if let index = indexes.first {
             self.index = index
-            self.row = self.tabledata?[index]
-            if (self.server.state == NSOnState) {
-                if let server = self.row?.value(forKey: "offsiteServer") as? String {
-                    self.search.stringValue = server
-                    self.searchFieldDidStartSearching(self.search)
-                }
-            } else if (self.Catalog.state == NSOnState) {
-                if let server = self.row?.value(forKey: "localCatalog") as? String {
-                    self.search.stringValue = server
-                    self.searchFieldDidStartSearching(self.search)
-                }
-            } else if (self.date.state == NSOnState) {
-                if let server = self.row?.value(forKey: "dateExecuted") as? String {
-                    self.search.stringValue = server
-                    self.searchFieldDidStartSearching(self.search)
-                }
-            }
+            self.filterLogg()
         }
     }
 
 }
 
-extension ViewControllerScheduleDetailsAboutRuns: RefreshtableView {
+extension ViewControllerLoggData: RefreshtableView {
     
     // Refresh tableView
     func refresh() {

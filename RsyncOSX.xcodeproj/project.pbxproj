@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		A0041EEF1D7D4357002BF081 /* ScheduleSortedAndExpanded.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0041EEE1D7D4357002BF081 /* ScheduleSortedAndExpanded.swift */; };
-		A004D81A1D9586580016914F /* ViewControllerScheduleDetailsAboutRuns.swift in Sources */ = {isa = PBXBuildFile; fileRef = A004D8191D9586580016914F /* ViewControllerScheduleDetailsAboutRuns.swift */; };
+		A004D81A1D9586580016914F /* ViewControllerLoggData.swift in Sources */ = {isa = PBXBuildFile; fileRef = A004D8191D9586580016914F /* ViewControllerLoggData.swift */; };
 		A00FE1A81D6A19CF00012089 /* ViewControllerNewConfigurations.swift in Sources */ = {isa = PBXBuildFile; fileRef = A00FE1A71D6A19CF00012089 /* ViewControllerNewConfigurations.swift */; };
 		A00FE1AA1D6A1AAB00012089 /* alerts.swift in Sources */ = {isa = PBXBuildFile; fileRef = A00FE1A91D6A1AAB00012089 /* alerts.swift */; };
 		A017E2A01D7D3242003016F5 /* ViewControllerEdit.swift in Sources */ = {isa = PBXBuildFile; fileRef = A017E29F1D7D3242003016F5 /* ViewControllerEdit.swift */; };
@@ -66,7 +66,7 @@
 
 /* Begin PBXFileReference section */
 		A0041EEE1D7D4357002BF081 /* ScheduleSortedAndExpanded.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScheduleSortedAndExpanded.swift; sourceTree = "<group>"; };
-		A004D8191D9586580016914F /* ViewControllerScheduleDetailsAboutRuns.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewControllerScheduleDetailsAboutRuns.swift; sourceTree = "<group>"; };
+		A004D8191D9586580016914F /* ViewControllerLoggData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewControllerLoggData.swift; sourceTree = "<group>"; };
 		A00FE1A71D6A19CF00012089 /* ViewControllerNewConfigurations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewControllerNewConfigurations.swift; sourceTree = "<group>"; };
 		A00FE1A91D6A1AAB00012089 /* alerts.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = alerts.swift; sourceTree = "<group>"; };
 		A017E29F1D7D3242003016F5 /* ViewControllerEdit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewControllerEdit.swift; sourceTree = "<group>"; };
@@ -237,7 +237,7 @@
 			isa = PBXGroup;
 			children = (
 				A0A403501D76BD2E00A30017 /* ViewControllerRsyncParameters.swift */,
-				A004D8191D9586580016914F /* ViewControllerScheduleDetailsAboutRuns.swift */,
+				A004D8191D9586580016914F /* ViewControllerLoggData.swift */,
 				A0B340B11D67077A00C6DAC3 /* ViewControllertabMain.swift */,
 				A0B340B31D67079700C6DAC3 /* ViewControllertabSchedule.swift */,
 				A054F1A81D6D773E00D27688 /* ViewControllerInformation.swift */,
@@ -429,7 +429,7 @@
 				A054F1A91D6D773E00D27688 /* ViewControllerInformation.swift in Sources */,
 				A0430ADA1DAFFD3C00BBC106 /* singleTask.swift in Sources */,
 				A04492B81D658F2100B3CE17 /* utils.swift in Sources */,
-				A004D81A1D9586580016914F /* ViewControllerScheduleDetailsAboutRuns.swift in Sources */,
+				A004D81A1D9586580016914F /* ViewControllerLoggData.swift in Sources */,
 				A04492AD1D658F2100B3CE17 /* configurationSchedule.swift in Sources */,
 				A04972521D6595B200086EFD /* rsyncProcess.swift in Sources */,
 				A04492BB1D658F2100B3CE17 /* ytcpsocket.swift in Sources */,

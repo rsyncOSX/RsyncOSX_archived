@@ -279,7 +279,7 @@ class SharingManagerSchedule {
                     result[i].executed.remove(at: indexB!)
                     self.Schedule[indexA!].executed = result[i].executed
                     // Do a refresh of table
-                    if let pvc = SharingManagerConfiguration.sharedInstance.LogObjectMain as? ViewControllerScheduleDetailsAboutRuns {
+                    if let pvc = SharingManagerConfiguration.sharedInstance.LogObjectMain as? ViewControllerLoggData {
                         self.refresh_delegate_logview = pvc
                         self.refresh_delegate_logview?.refresh()
                     }
