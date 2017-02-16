@@ -207,13 +207,13 @@ class ScheduleSortedAndExpand {
             }
             if (dict1 != nil) {
                 hiddenID1 = dict1?.value(forKey: "hiddenID") as? Int
-                array.append(SharingManagerConfiguration.sharedInstance.getoffSiteserver(hiddenID1!))
-                array.append(SharingManagerConfiguration.sharedInstance.getlocalCatalog(hiddenID1!))
+                array.append(SharingManagerConfiguration.sharedInstance.getResourceConfiguration(hiddenID1!, resource: .offsiteServer))
+                array.append(SharingManagerConfiguration.sharedInstance.getResourceConfiguration(hiddenID1!, resource: .localCatalog))
                 }
             if (dict2 != nil) {
                 hiddenID2 = dict2?.value(forKey: "hiddenID") as? Int
-                array.append(SharingManagerConfiguration.sharedInstance.getoffSiteserver(hiddenID2!))
-                array.append(SharingManagerConfiguration.sharedInstance.getlocalCatalog(hiddenID2!))
+                array.append(SharingManagerConfiguration.sharedInstance.getResourceConfiguration(hiddenID2!, resource: .offsiteServer))
+                array.append(SharingManagerConfiguration.sharedInstance.getResourceConfiguration(hiddenID2!, resource: .localCatalog))
             }
         }
         // Return either 0, 2 or 4 elements

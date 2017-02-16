@@ -100,8 +100,8 @@ class ViewControllerCopyFiles : NSViewController {
         
     private func displayRemoteserver(index:Int) {
         let hiddenID = SharingManagerConfiguration.sharedInstance.gethiddenID(index: index)
-        self.server.stringValue = SharingManagerConfiguration.sharedInstance.getoffSiteserver(hiddenID)
-        self.rcatalog.stringValue = SharingManagerConfiguration.sharedInstance.getremoteCatalog(hiddenID)
+        self.server.stringValue = SharingManagerConfiguration.sharedInstance.getResourceConfiguration(hiddenID, resource: .offsiteServer)
+        self.rcatalog.stringValue = SharingManagerConfiguration.sharedInstance.getResourceConfiguration(hiddenID, resource: .remoteCatalog)
     }
     
     override func viewDidLoad() {

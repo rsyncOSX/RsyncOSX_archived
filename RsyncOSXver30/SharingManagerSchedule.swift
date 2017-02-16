@@ -356,7 +356,7 @@ class SharingManagerSchedule {
             var inserted:Bool = false
             for i in 0 ..< self.Schedule.count {
                 // Add record only to record with no enddate
-                if (SharingManagerConfiguration.sharedInstance.gettask(hiddenID) == "backup") {
+                if (SharingManagerConfiguration.sharedInstance.getResourceConfiguration(hiddenID, resource: .task) == "backup") {
                     if (self.Schedule[i].hiddenID == hiddenID  && self.Schedule[i].schedule == "manuel" && self.Schedule[i].dateStop == nil) {
                         let dict = NSMutableDictionary()
                         dict.setObject(date, forKey: "dateExecuted" as NSCopying)
@@ -375,7 +375,7 @@ class SharingManagerSchedule {
             }
             // Record does not exist, create new Schedule (not inserted)
             if (inserted == false) {
-                if (SharingManagerConfiguration.sharedInstance.gettask(hiddenID) == "backup") {
+                if (SharingManagerConfiguration.sharedInstance.getResourceConfiguration(hiddenID, resource: .task) == "backup") {
                     let masterdict = NSMutableDictionary()
                     masterdict.setObject(hiddenID, forKey: "hiddenID" as NSCopying)
                     // masterdict.setObject(date, forKey: "dateStart" as NSCopying)
@@ -422,7 +422,7 @@ class SharingManagerSchedule {
                 if (self.Schedule[i].hiddenID == hiddenID  &&
                     self.Schedule[i].schedule == schedule &&
                     self.Schedule[i].dateStart == dateStart) {
-                    if (SharingManagerConfiguration.sharedInstance.gettask(hiddenID) == "backup") {
+                    if (SharingManagerConfiguration.sharedInstance.getResourceConfiguration(hiddenID, resource: .task) == "backup") {
                         let dict = NSMutableDictionary()
                         dict.setObject(date, forKey: "dateExecuted" as NSCopying)
                         dict.setObject(result, forKey: "resultExecuted" as NSCopying)

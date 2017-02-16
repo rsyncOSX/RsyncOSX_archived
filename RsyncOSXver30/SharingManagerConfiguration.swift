@@ -76,21 +76,17 @@ class SharingManagerConfiguration {
     
     // OTHER SETTINGS
     
-    // During loading of configuration into memory also
-    // copy (by /usr/bin/scp and NSTask) history.plist file
-    // from server to local directory
-    private var getHistory:Bool = false
     // reference to Process, used for kill in executing task
     var process:Process?
     // Variabl if arguments to Rsync is changed and must be read into memory again
     private var readRsyncArguments:Bool = true
-    // Reference to NSViewObjects requiered for protocol functions for kikcking of scheduled jobs
+    // Reference to manin View
     var ViewObjectMain: NSViewController?
-    // Reference to NSViewObject for protocol functions for CopyFiles
+    // Reference to Copy files
     var CopyObjectMain:NSViewController?
-    // Reference to the New NSViewObject
+    // Reference to the Add tasks
     var AddObjectMain:NSViewController?
-    // Reference to the  Schedule NSViewObject
+    // Reference to the  Schedule
     var ScheduleObjectMain:NSViewController?
     // Reference to the Operation object
     // Reference is set in when Scheduled task is executed
@@ -164,7 +160,6 @@ class SharingManagerConfiguration {
             data.append(row)
         }
         self.ConfigurationsDataSource = data
-        
     }
     
     // ALL THE GETTERS
@@ -182,13 +177,12 @@ class SharingManagerConfiguration {
     
     /// Function for returning the MacSerialNumber
     func getMacSerialNumber() -> String {
-        if (self.MacSerialNumber != nil) {
-            return self.MacSerialNumber!
-        } else {
+        guard (self.MacSerialNumber != nil) else {
             // Compute it, set it and return
             self.MacSerialNumber = self.macSerialNumber()
             return self.MacSerialNumber!
         }
+        return self.MacSerialNumber!
     }
     
     /// Function for getting Configurations read into memory
@@ -256,8 +250,8 @@ class SharingManagerConfiguration {
     /// - parameter none: none
     /// - returns : Int
     func ConfigurationsDataSourcecountBackupOnlyCount() -> Int {
-        if let count = self.getConfigurationsDataSourcecountBackupOnly()?.count {
-            return count
+        if let number = self.getConfigurationsDataSourcecountBackupOnly() {
+            return number.count
         } else {
             return 0
         }
@@ -395,11 +389,10 @@ class SharingManagerConfiguration {
     /// Function is getting the number of rows batchDataQueue
     /// - returns : the number of rows
     func batchDataQueuecount() -> Int {
-        if (self.batchdata != nil) {
-            return (self.batchdata?.getbatchDataQueuecount())!
-        } else {
+        guard (self.batchdata != nil) else {
             return 0
         }
+        return self.batchdata!.getbatchDataQueuecount()
     }
     
     /// Function is getting the updated batch data queue
@@ -413,21 +406,19 @@ class SharingManagerConfiguration {
     // Temporary structure to hold added Configurations before writing to permanent store
     private var newConfigurations :[NSMutableDictionary]?
     
-    
     func addNewConfigurations(_ row: NSMutableDictionary) {
-        if let _ = self.newConfigurations {
-            self.newConfigurations?.append(row)
-        } else {
+        guard (self.newConfigurations != nil) else {
             self.newConfigurations = [row]
+            return
         }
+        self.newConfigurations!.append(row)
     }
     
     func newConfigurationsCount() -> Int {
-        if let _ = self.newConfigurations {
-            return self.newConfigurations!.count
-        } else {
+        guard (self.newConfigurations != nil) else {
             return 0
         }
+        return self.newConfigurations!.count
     }
     
     /// Function is getting all added (new) configurations
@@ -443,60 +434,40 @@ class SharingManagerConfiguration {
     
     
     // GET VALUES BY HIDDENID
-
+    
+    // Enum which resource to return
+    enum resourceInConfiguration {
+        case remoteCatalog
+        case localCatalog
+        case offsiteServer
+        case task
+    }
+    
     /// Function is getting the remote catalog in a spesific Configuration
     /// - parameter hiddenID: hiddenID for Configuration
-    /// - returns : remote catalog
-    func getremoteCatalog(_ hiddenID:Int) -> String {
+    /// - parameter resource: which resource to get from configuration
+    /// - returns : resource
+    func getResourceConfiguration(_ hiddenID:Int, resource:resourceInConfiguration) -> String {
+        
         var result = self.Configurations.filter({return ($0.hiddenID == hiddenID)})
-        if result.count > 0 {
-            let config = result.removeFirst()
-            return config.offsiteCatalog
-        } else {
+        
+        guard result.count > 0 else {
             return ""
         }
-    }
-    
-    /// Function is getting the local catalog in a spesific Configuration
-    /// - parameter hiddenID: hiddenID for Configuration
-    /// - returns : local catalog
-    func getlocalCatalog (_ hiddenID:Int) -> String {
-        var result = self.Configurations.filter({return ($0.hiddenID == hiddenID)})
-        if result.count > 0 {
-            let config = result.removeFirst()
-            return config.localCatalog
-        } else {
-            return ""
-        }
-    }
-    
-    /// Function is getting the remote server in a spesific Configuration
-    /// - parameter hiddenID: hiddenID for Configuration
-    /// - returns : remote server or empty server
-    func getoffSiteserver (_ hiddenID:Int) -> String {
-        var result = self.Configurations.filter({return ($0.hiddenID == hiddenID)})
-        if result.count > 0 {
-            let config = result.removeFirst()
-            if config.offsiteServer.isEmpty {
+        
+        switch resource {
+        case .localCatalog:
+            return result[0].localCatalog
+        case .remoteCatalog:
+            return result[0].offsiteCatalog
+        case .offsiteServer:
+            if result[0].offsiteServer.isEmpty {
                 return "localhost"
             } else {
-                return config.offsiteServer
+                return result[0].offsiteServer
             }
-        } else {
-            return ""
-        }
-    }
-    
-    /// Function is getting the task for a spesific Configuration
-    /// - parameter hiddenID: hiddenID for Configuration
-    /// - returns : task (either backup or restore)
-    func gettask (_ hiddenID:Int) -> String {
-        var result = self.Configurations.filter({return ($0.hiddenID == hiddenID)})
-        if result.count > 0 {
-            let config = result.removeFirst()
-            return config.task
-        } else {
-            return ""
+        case .task:
+            return result[0].task
         }
     }
     
@@ -526,28 +497,26 @@ class SharingManagerConfiguration {
     /// default value.
     /// - returns : full path of rsync command
     func setRsyncCommand() -> String {
-        var command:String = ""
         if (self.rsyncVer3) {
             if (self.rsyncPath == nil) {
-                command = "/usr/local/bin/rsync"
+                return "/usr/local/bin/rsync"
             } else {
-                command = self.rsyncPath! + "rsync"
+                return self.rsyncPath! + "rsync"
             }
         } else {
-            command = "/usr/bin/rsync"
+            return "/usr/bin/rsync"
         }
-        return command
     }
     
     /// Function for computing MacSerialNumber
     /// - returns : the MacSerialNumber
     private func macSerialNumber() -> String {
         // Get the platform expert
-        let platformExpert: io_service_t = IOServiceGetMatchingService(kIOMasterPortDefault, IOServiceMatching("IOPlatformExpertDevice"));
+        let platformExpert: io_service_t = IOServiceGetMatchingService(kIOMasterPortDefault, IOServiceMatching("IOPlatformExpertDevice"))
         // Get the serial number as a CFString ( actually as Unmanaged<AnyObject>! )
-        let serialNumberAsCFString = IORegistryEntryCreateCFProperty(platformExpert, kIOPlatformSerialNumberKey as CFString!, kCFAllocatorDefault, 0);
+        let serialNumberAsCFString = IORegistryEntryCreateCFProperty(platformExpert, kIOPlatformSerialNumberKey as CFString!, kCFAllocatorDefault, 0)
         // Release the platform expert (we're responsible)
-        IOObjectRelease(platformExpert);
+        IOObjectRelease(platformExpert)
         // Take the unretained value of the unmanaged-any-object
         // (so we're not responsible for releasing it)
         // and pass it back as a String or, if it fails, an empty string
