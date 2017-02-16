@@ -76,21 +76,17 @@ class SharingManagerConfiguration {
     
     // OTHER SETTINGS
     
-    // During loading of configuration into memory also
-    // copy (by /usr/bin/scp and NSTask) history.plist file
-    // from server to local directory
-    private var getHistory:Bool = false
     // reference to Process, used for kill in executing task
     var process:Process?
     // Variabl if arguments to Rsync is changed and must be read into memory again
     private var readRsyncArguments:Bool = true
-    // Reference to NSViewObjects requiered for protocol functions for kikcking of scheduled jobs
+    // Reference to manin View
     var ViewObjectMain: NSViewController?
-    // Reference to NSViewObject for protocol functions for CopyFiles
+    // Reference to Copy files
     var CopyObjectMain:NSViewController?
-    // Reference to the New NSViewObject
+    // Reference to the Add tasks
     var AddObjectMain:NSViewController?
-    // Reference to the  Schedule NSViewObject
+    // Reference to the  Schedule
     var ScheduleObjectMain:NSViewController?
     // Reference to the Operation object
     // Reference is set in when Scheduled task is executed
@@ -164,7 +160,6 @@ class SharingManagerConfiguration {
             data.append(row)
         }
         self.ConfigurationsDataSource = data
-        
     }
     
     // ALL THE GETTERS
@@ -182,13 +177,12 @@ class SharingManagerConfiguration {
     
     /// Function for returning the MacSerialNumber
     func getMacSerialNumber() -> String {
-        if (self.MacSerialNumber != nil) {
-            return self.MacSerialNumber!
-        } else {
+        guard (self.MacSerialNumber != nil) else {
             // Compute it, set it and return
             self.MacSerialNumber = self.macSerialNumber()
             return self.MacSerialNumber!
         }
+        return self.MacSerialNumber!
     }
     
     /// Function for getting Configurations read into memory
@@ -256,8 +250,8 @@ class SharingManagerConfiguration {
     /// - parameter none: none
     /// - returns : Int
     func ConfigurationsDataSourcecountBackupOnlyCount() -> Int {
-        if let count = self.getConfigurationsDataSourcecountBackupOnly()?.count {
-            return count
+        if let number = self.getConfigurationsDataSourcecountBackupOnly() {
+            return number.count
         } else {
             return 0
         }
@@ -395,11 +389,10 @@ class SharingManagerConfiguration {
     /// Function is getting the number of rows batchDataQueue
     /// - returns : the number of rows
     func batchDataQueuecount() -> Int {
-        if (self.batchdata != nil) {
-            return (self.batchdata?.getbatchDataQueuecount())!
-        } else {
+        guard (self.batchdata != nil) else {
             return 0
         }
+        return self.batchdata!.getbatchDataQueuecount()
     }
     
     /// Function is getting the updated batch data queue
@@ -413,21 +406,19 @@ class SharingManagerConfiguration {
     // Temporary structure to hold added Configurations before writing to permanent store
     private var newConfigurations :[NSMutableDictionary]?
     
-    
     func addNewConfigurations(_ row: NSMutableDictionary) {
-        if let _ = self.newConfigurations {
-            self.newConfigurations?.append(row)
-        } else {
+        guard (self.newConfigurations != nil) else {
             self.newConfigurations = [row]
+            return
         }
+        self.newConfigurations!.append(row)
     }
     
     func newConfigurationsCount() -> Int {
-        if let _ = self.newConfigurations {
-            return self.newConfigurations!.count
-        } else {
+        guard (self.newConfigurations != nil) else {
             return 0
         }
+        return self.newConfigurations!.count
     }
     
     /// Function is getting all added (new) configurations
@@ -457,10 +448,13 @@ class SharingManagerConfiguration {
     /// - parameter resource: which resource to get from configuration
     /// - returns : resource
     func getResourceConfiguration(_ hiddenID:Int, resource:resourceInConfiguration) -> String {
+        
         var result = self.Configurations.filter({return ($0.hiddenID == hiddenID)})
+        
         guard result.count > 0 else {
             return ""
         }
+        
         switch resource {
         case .localCatalog:
             return result[0].localCatalog
@@ -518,11 +512,11 @@ class SharingManagerConfiguration {
     /// - returns : the MacSerialNumber
     private func macSerialNumber() -> String {
         // Get the platform expert
-        let platformExpert: io_service_t = IOServiceGetMatchingService(kIOMasterPortDefault, IOServiceMatching("IOPlatformExpertDevice"));
+        let platformExpert: io_service_t = IOServiceGetMatchingService(kIOMasterPortDefault, IOServiceMatching("IOPlatformExpertDevice"))
         // Get the serial number as a CFString ( actually as Unmanaged<AnyObject>! )
-        let serialNumberAsCFString = IORegistryEntryCreateCFProperty(platformExpert, kIOPlatformSerialNumberKey as CFString!, kCFAllocatorDefault, 0);
+        let serialNumberAsCFString = IORegistryEntryCreateCFProperty(platformExpert, kIOPlatformSerialNumberKey as CFString!, kCFAllocatorDefault, 0)
         // Release the platform expert (we're responsible)
-        IOObjectRelease(platformExpert);
+        IOObjectRelease(platformExpert)
         // Take the unretained value of the unmanaged-any-object
         // (so we're not responsible for releasing it)
         // and pass it back as a String or, if it fails, an empty string
