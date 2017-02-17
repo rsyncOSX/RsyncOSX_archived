@@ -29,7 +29,7 @@ class executeTask : Operation {
         // Get the first job of the queue
         if let dict:NSDictionary = SharingManagerSchedule.sharedInstance.scheduledJob {
             if let hiddenID:Int = dict.value(forKey: "hiddenID") as? Int {
-                let store:[configuration] = storeAPI.sharedInstance.getConfigurations()
+                let store:[configuration] = persistentStoreAPI.sharedInstance.getConfigurations()
                 let configArray = store.filter({return ($0.hiddenID == hiddenID)})
                 
                 guard configArray.count > 0 else {

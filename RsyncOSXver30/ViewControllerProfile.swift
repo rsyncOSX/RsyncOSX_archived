@@ -75,7 +75,7 @@ class ViewControllerProfile : NSViewController {
                 SharingManagerConfiguration.sharedInstance.setProfile(profile: newprofile)
                 // Destroy old configuration and save default configuration
                 SharingManagerConfiguration.sharedInstance.destroyConfigurations()
-                storeAPI.sharedInstance.saveConfigFromMemory()
+                persistentStoreAPI.sharedInstance.saveConfigFromMemory()
                 self.newProfile_delegate?.newProfile(new: true)
             }
             self.profile = nil

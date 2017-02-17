@@ -88,7 +88,7 @@ class ViewControllerNewConfigurations: NSViewController {
     override func viewWillDisappear() {
         super.viewWillDisappear()
         if (self.newConfigs) {
-            storeAPI.sharedInstance.saveNewConfigurations()
+            persistentStoreAPI.sharedInstance.saveNewConfigurations()
             self.newConfigs = false
         }
     }

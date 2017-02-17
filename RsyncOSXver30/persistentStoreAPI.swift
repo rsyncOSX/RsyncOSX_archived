@@ -1,5 +1,5 @@
 //
-//  storeAPI.swift
+//  persistentStoreAPI.swift
 //  RsyncOSX
 //
 //  Created by Thomas Evensen on 09/12/15.
@@ -8,18 +8,18 @@
 
 import Foundation
 
-class storeAPI {
+final class persistentStoreAPI {
     
     // Creates a singelton of this class
-    class var  sharedInstance: storeAPI {
+    class var  sharedInstance: persistentStoreAPI {
         struct Singleton {
-            static let instance = storeAPI()
+            static let instance = persistentStoreAPI()
         }
         return Singleton.instance
     }
     
     // Delegate function for starting next scheduled operatin if any
-    // Delegate function is triggered when NSTaskDidTerminationNotification
+    // Delegate function is triggered when Process.didTerminateNotification
     // is discovered (e.g previous job is done)
     weak var start_next_job_delegate:StartNextScheduledTask?
     

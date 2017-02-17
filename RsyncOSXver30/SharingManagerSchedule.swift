@@ -86,7 +86,7 @@ class SharingManagerSchedule {
     /// The functions does NOT cancel waiting jobs or recalculate next scheduled job.
     func readAllSchedules() {
         var store:[configurationSchedule]?
-        store = storeAPI.sharedInstance.getScheduleandhistory()
+        store = persistentStoreAPI.sharedInstance.getScheduleandhistory()
         // If Schedule already in memory dont read them again
         // Schedules are only read into memory if Dirty
         
@@ -131,7 +131,7 @@ class SharingManagerSchedule {
         self.Schedule.append(newSchedule)
         // Set data dirty
         SharingManagerConfiguration.sharedInstance.setDataDirty(dirty: true)
-        storeAPI.sharedInstance.saveScheduleFromMemory()
+        persistentStoreAPI.sharedInstance.saveScheduleFromMemory()
     }
 
     /// Function is reading Schedule plans and transform plans to 
@@ -170,7 +170,7 @@ class SharingManagerSchedule {
             }
         }
         if (delete) {
-            storeAPI.sharedInstance.saveScheduleFromMemory()
+            persistentStoreAPI.sharedInstance.saveScheduleFromMemory()
             // Send message about refresh tableView
             self.doaRefreshTableviewMain()
         }
@@ -246,7 +246,7 @@ class SharingManagerSchedule {
             }
             if (update) {
                 // Saving the resulting data file
-                storeAPI.sharedInstance.saveScheduleFromMemory()
+                persistentStoreAPI.sharedInstance.saveScheduleFromMemory()
                 // Send message about refresh tableView
                 self.doaRefreshTableviewMain()
             }
@@ -284,7 +284,7 @@ class SharingManagerSchedule {
                         self.refresh_delegate_logview?.refresh()
                     }
                     // Save schedule including logs
-                    storeAPI.sharedInstance.saveScheduleFromMemory()
+                    persistentStoreAPI.sharedInstance.saveScheduleFromMemory()
                     break loop
                 }
             }
@@ -400,7 +400,7 @@ class SharingManagerSchedule {
                 }
             }
             if (inserted) {
-                storeAPI.sharedInstance.saveScheduleFromMemory()
+                persistentStoreAPI.sharedInstance.saveScheduleFromMemory()
                 if let pvc = SharingManagerConfiguration.sharedInstance.ViewObjectMain as? ViewControllertabMain {
                     self.deselectRow_delegate = pvc
                     self.deselectRow_delegate?.deselectRow()
@@ -436,7 +436,7 @@ class SharingManagerSchedule {
                         let parent : String = self.computeKey(dictKey)
                         dict.setValue(parent, forKey: "parent")
                         self.Schedule[i].executed.append(dict)
-                        storeAPI.sharedInstance.saveScheduleFromMemory()
+                        persistentStoreAPI.sharedInstance.saveScheduleFromMemory()
                         break loop
                     }
                 }
