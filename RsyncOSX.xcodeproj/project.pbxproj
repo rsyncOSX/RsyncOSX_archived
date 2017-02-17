@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		A0041EEF1D7D4357002BF081 /* ScheduleSortedAndExpanded.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0041EEE1D7D4357002BF081 /* ScheduleSortedAndExpanded.swift */; };
-		A004D81A1D9586580016914F /* ViewControllerScheduleDetailsAboutRuns.swift in Sources */ = {isa = PBXBuildFile; fileRef = A004D8191D9586580016914F /* ViewControllerScheduleDetailsAboutRuns.swift */; };
+		A004D81A1D9586580016914F /* ViewControllerLoggData.swift in Sources */ = {isa = PBXBuildFile; fileRef = A004D8191D9586580016914F /* ViewControllerLoggData.swift */; };
 		A00FE1A81D6A19CF00012089 /* ViewControllerNewConfigurations.swift in Sources */ = {isa = PBXBuildFile; fileRef = A00FE1A71D6A19CF00012089 /* ViewControllerNewConfigurations.swift */; };
 		A00FE1AA1D6A1AAB00012089 /* alerts.swift in Sources */ = {isa = PBXBuildFile; fileRef = A00FE1A91D6A1AAB00012089 /* alerts.swift */; };
 		A017E2A01D7D3242003016F5 /* ViewControllerEdit.swift in Sources */ = {isa = PBXBuildFile; fileRef = A017E29F1D7D3242003016F5 /* ViewControllerEdit.swift */; };
@@ -31,7 +31,7 @@
 		A04492B41D658F2100B3CE17 /* scpProcessArguments.swift in Sources */ = {isa = PBXBuildFile; fileRef = A04492A01D658F2100B3CE17 /* scpProcessArguments.swift */; };
 		A04492B51D658F2100B3CE17 /* SharingManagerConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = A04492A11D658F2100B3CE17 /* SharingManagerConfiguration.swift */; };
 		A04492B61D658F2100B3CE17 /* SharingManagerSchedule.swift in Sources */ = {isa = PBXBuildFile; fileRef = A04492A21D658F2100B3CE17 /* SharingManagerSchedule.swift */; };
-		A04492B71D658F2100B3CE17 /* storeAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = A04492A31D658F2100B3CE17 /* storeAPI.swift */; };
+		A04492B71D658F2100B3CE17 /* persistentStoreAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = A04492A31D658F2100B3CE17 /* persistentStoreAPI.swift */; };
 		A04492B81D658F2100B3CE17 /* utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = A04492A41D658F2100B3CE17 /* utils.swift */; };
 		A04492BA1D658F2100B3CE17 /* ysocket.swift in Sources */ = {isa = PBXBuildFile; fileRef = A04492A61D658F2100B3CE17 /* ysocket.swift */; };
 		A04492BB1D658F2100B3CE17 /* ytcpsocket.swift in Sources */ = {isa = PBXBuildFile; fileRef = A04492A71D658F2100B3CE17 /* ytcpsocket.swift */; };
@@ -66,7 +66,7 @@
 
 /* Begin PBXFileReference section */
 		A0041EEE1D7D4357002BF081 /* ScheduleSortedAndExpanded.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScheduleSortedAndExpanded.swift; sourceTree = "<group>"; };
-		A004D8191D9586580016914F /* ViewControllerScheduleDetailsAboutRuns.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewControllerScheduleDetailsAboutRuns.swift; sourceTree = "<group>"; };
+		A004D8191D9586580016914F /* ViewControllerLoggData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewControllerLoggData.swift; sourceTree = "<group>"; };
 		A00FE1A71D6A19CF00012089 /* ViewControllerNewConfigurations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewControllerNewConfigurations.swift; sourceTree = "<group>"; };
 		A00FE1A91D6A1AAB00012089 /* alerts.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = alerts.swift; sourceTree = "<group>"; };
 		A017E29F1D7D3242003016F5 /* ViewControllerEdit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewControllerEdit.swift; sourceTree = "<group>"; };
@@ -92,7 +92,7 @@
 		A04492A01D658F2100B3CE17 /* scpProcessArguments.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = scpProcessArguments.swift; sourceTree = "<group>"; };
 		A04492A11D658F2100B3CE17 /* SharingManagerConfiguration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SharingManagerConfiguration.swift; sourceTree = "<group>"; };
 		A04492A21D658F2100B3CE17 /* SharingManagerSchedule.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SharingManagerSchedule.swift; sourceTree = "<group>"; };
-		A04492A31D658F2100B3CE17 /* storeAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = storeAPI.swift; sourceTree = "<group>"; };
+		A04492A31D658F2100B3CE17 /* persistentStoreAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = persistentStoreAPI.swift; sourceTree = "<group>"; };
 		A04492A41D658F2100B3CE17 /* utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = utils.swift; sourceTree = "<group>"; };
 		A04492A61D658F2100B3CE17 /* ysocket.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ysocket.swift; sourceTree = "<group>"; };
 		A04492A71D658F2100B3CE17 /* ytcpsocket.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ytcpsocket.swift; sourceTree = "<group>"; };
@@ -171,7 +171,7 @@
 			children = (
 				A0BAA5F31D70C349003BE69F /* Schedule */,
 				A0BAA5F21D70C33A003BE69F /* Configuration */,
-				A04492A31D658F2100B3CE17 /* storeAPI.swift */,
+				A04492A31D658F2100B3CE17 /* persistentStoreAPI.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -237,7 +237,7 @@
 			isa = PBXGroup;
 			children = (
 				A0A403501D76BD2E00A30017 /* ViewControllerRsyncParameters.swift */,
-				A004D8191D9586580016914F /* ViewControllerScheduleDetailsAboutRuns.swift */,
+				A004D8191D9586580016914F /* ViewControllerLoggData.swift */,
 				A0B340B11D67077A00C6DAC3 /* ViewControllertabMain.swift */,
 				A0B340B31D67079700C6DAC3 /* ViewControllertabSchedule.swift */,
 				A054F1A81D6D773E00D27688 /* ViewControllerInformation.swift */,
@@ -406,7 +406,7 @@
 				A0B340B41D67079700C6DAC3 /* ViewControllertabSchedule.swift in Sources */,
 				A0041EEF1D7D4357002BF081 /* ScheduleSortedAndExpanded.swift in Sources */,
 				A0EE98991D8948310034F1A4 /* ViewControllerInformationCopyFiles.swift in Sources */,
-				A04492B71D658F2100B3CE17 /* storeAPI.swift in Sources */,
+				A04492B71D658F2100B3CE17 /* persistentStoreAPI.swift in Sources */,
 				A03876E11DB4FD9D00C14AEA /* ViewControllerProfile.swift in Sources */,
 				A0400C871D794FF8008A3949 /* newVersion.swift in Sources */,
 				A04492AA1D658F2100B3CE17 /* yudpsocket.c in Sources */,
@@ -429,7 +429,7 @@
 				A054F1A91D6D773E00D27688 /* ViewControllerInformation.swift in Sources */,
 				A0430ADA1DAFFD3C00BBC106 /* singleTask.swift in Sources */,
 				A04492B81D658F2100B3CE17 /* utils.swift in Sources */,
-				A004D81A1D9586580016914F /* ViewControllerScheduleDetailsAboutRuns.swift in Sources */,
+				A004D81A1D9586580016914F /* ViewControllerLoggData.swift in Sources */,
 				A04492AD1D658F2100B3CE17 /* configurationSchedule.swift in Sources */,
 				A04972521D6595B200086EFD /* rsyncProcess.swift in Sources */,
 				A04492BB1D658F2100B3CE17 /* ytcpsocket.swift in Sources */,

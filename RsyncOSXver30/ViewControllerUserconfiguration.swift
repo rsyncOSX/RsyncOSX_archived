@@ -64,7 +64,7 @@ class ViewControllerUserconfiguration : NSViewController {
             self.setRsyncPath()
             self.setscheduledTaskdisableExecute()
             self.verifyRsync()
-            _ = storeAPI.sharedInstance.saveUserconfiguration()
+            _ = persistentStoreAPI.sharedInstance.saveUserconfiguration()
         }
         self.dismiss_delegate?.dismiss_view(viewcontroller: self)
     }

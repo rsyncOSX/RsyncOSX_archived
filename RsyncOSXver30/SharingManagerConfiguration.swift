@@ -126,7 +126,7 @@ class SharingManagerConfiguration {
     /// configurations and computing new arguments.
     /// - parameter none: none
     func readAllConfigurationsAndArguments() {
-        let store:[configuration] = storeAPI.sharedInstance.getConfigurations()
+        let store:[configuration] = persistentStoreAPI.sharedInstance.getConfigurations()
         self.destroyConfigurations()
         // We read all stored configurations into memory
         for i in 0 ..< store.count {
@@ -313,7 +313,7 @@ class SharingManagerConfiguration {
         let dateformatter = Utils.sharedInstance.setDateformat()
         self.Configurations[index].dateRun = dateformatter.string(from: currendate)
         // Saving updated configuration in memory to persistent store
-        storeAPI.sharedInstance.saveConfigFromMemory()
+        persistentStoreAPI.sharedInstance.saveConfigFromMemory()
         // Reread Configuration and update datastructure for tableViews
         self.readAllConfigurationsAndArguments()
         // Call the view and do a refresh of tableView
@@ -336,7 +336,7 @@ class SharingManagerConfiguration {
     /// - parameter index: index to Configuration to replace by config
     func updateConfigurations (_ config: configuration, index:Int) {
         self.Configurations[index] = config
-        storeAPI.sharedInstance.saveConfigFromMemory()
+        persistentStoreAPI.sharedInstance.saveConfigFromMemory()
     }
     
     /// Function deletes Configuration in memory at hiddenID and
@@ -346,7 +346,7 @@ class SharingManagerConfiguration {
     func deleteConfigurationsByhiddenID (hiddenID:Int) {
         let index = self.getIndex(hiddenID)
         self.Configurations.remove(at: index)
-        storeAPI.sharedInstance.saveConfigFromMemory()
+        persistentStoreAPI.sharedInstance.saveConfigFromMemory()
     }
     
     /// Function toggles Configurations for batch or no
@@ -360,7 +360,7 @@ class SharingManagerConfiguration {
         } else {
             self.Configurations[index].batch = "yes"
         }
-        storeAPI.sharedInstance.saveConfigFromMemory()
+        persistentStoreAPI.sharedInstance.saveConfigFromMemory()
         // Reread Configuration and update datastructure for tableViews
         self.readAllConfigurationsAndArguments()
         // Call the view and do a refresh of tableView
@@ -369,8 +369,6 @@ class SharingManagerConfiguration {
             self.refresh_delegate?.refresh()
         }
     }
-    
- 
     
     /// Function sets reference to object holding data and methods
     /// for batch execution of Configurations
@@ -429,7 +427,7 @@ class SharingManagerConfiguration {
     
     // Function for appending new Configurations to memory
     func appendNewConfigurations () {
-        storeAPI.sharedInstance.saveNewConfigurations()
+        persistentStoreAPI.sharedInstance.saveNewConfigurations()
     }
     
     

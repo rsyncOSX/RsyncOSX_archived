@@ -26,16 +26,17 @@ final class ScheduleLoggData {
     
     // Function for filter loggdata
     func filter(search:String?, what:filterLogs?) -> [NSDictionary]? {
-        if (search != nil) {
-            if (search!.isEmpty == false) {
-                // Filter data
-                self.readfilteredData(filter: search!, filterwhat: what!)
-                return self.data!
-            } else {
-                return self.data
-            }
-        } else {
+        
+        guard search != nil else {
             return self.loggdata
+        }
+    
+        if (search!.isEmpty == false) {
+            // Filter data
+            self.readfilteredData(filter: search!, filterwhat: what!)
+            return self.data!
+        } else {
+            return self.data
         }
     }
     
@@ -44,10 +45,11 @@ final class ScheduleLoggData {
     private func readfilteredData (filter:String, filterwhat:filterLogs) {
         var data = Array<NSDictionary>()
         self.data = nil
-        // Check if loggdata exist
+        
         guard self.loggdata != nil else {
             return
         }
+        
         for i in 0 ..< self.loggdata!.count {
             
             switch filterwhat {
