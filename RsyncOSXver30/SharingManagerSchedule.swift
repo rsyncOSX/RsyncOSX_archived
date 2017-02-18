@@ -27,7 +27,7 @@ class SharingManagerSchedule {
     
     // Reference to Timer in scheduled operation
     // Used to terminate scheduled jobs
-    private var waitForTask : Timer?
+    private var waitForTask: Timer?
     // Reference to the first Scheduled job
     // Is set when SortedAndExpanded is calculated
     var scheduledJob:NSDictionary?
@@ -44,7 +44,7 @@ class SharingManagerSchedule {
     
     // Array to store all scheduled jobs and history of executions
     // Will be kept in memory until destroyed
-    private var Schedule = [configurationSchedule]()
+    private var Schedule = Array<configurationSchedule>()
     
     /// Function for resetting Schedule.
     /// Only used when new profiles are loaded.
@@ -57,7 +57,7 @@ class SharingManagerSchedule {
     
     // Return reference to Schedule data
     // self.Schedule is privat data
-    func getSchedule()-> [configurationSchedule] {
+    func getSchedule()-> Array<configurationSchedule> {
         return self.Schedule
     }
     
@@ -85,13 +85,13 @@ class SharingManagerSchedule {
     /// which are stored to permanent store.
     /// The functions does NOT cancel waiting jobs or recalculate next scheduled job.
     func readAllSchedules() {
-        var store:[configurationSchedule]?
+        var store:Array<configurationSchedule>?
         store = persistentStoreAPI.sharedInstance.getScheduleandhistory()
         // If Schedule already in memory dont read them again
         // Schedules are only read into memory if Dirty
         
         if store != nil {
-            var data:[configurationSchedule] = [configurationSchedule]()
+            var data = Array<configurationSchedule>()
             // Deleting any existing Schedule
             self.Schedule.removeAll()
             // Reading new schedule into memory
@@ -137,7 +137,7 @@ class SharingManagerSchedule {
     /// Function is reading Schedule plans and transform plans to 
     /// array of NSDictionary. Used for presenting Schedule in tableViews
     /// - returns : array of Schedules
-    func getScheduleAsNSDictionary () -> [NSDictionary] {
+    func getScheduleAsNSDictionary () -> Array<NSDictionary> {
         var data = Array<NSDictionary>()
         for i in 0 ..< self.Schedule.count {
             if self.Schedule[i].dateStop != nil {
@@ -179,7 +179,7 @@ class SharingManagerSchedule {
     /// Function reads all Schedule data for one task by hiddenID
     /// - parameter hiddenID : hiddenID for task
     /// - returns : array of Schedules sorted after startDate
-    func readScheduledata (_ hiddenID : Int) -> [NSMutableDictionary] {
+    func readScheduledata (_ hiddenID : Int) -> Array<NSMutableDictionary> {
         
         var row: NSMutableDictionary
         var data = Array<NSMutableDictionary>()
@@ -220,7 +220,7 @@ class SharingManagerSchedule {
     
     /// Function either deletes or stops Schedules.
     /// - parameter data : array of Schedules which some of them are either marked for stop or delete
-    func deleteOrStopSchedules (data:[NSMutableDictionary]) {
+    func deleteOrStopSchedules (data:Array<NSMutableDictionary>) {
     
         var update:Bool = false
         
@@ -319,7 +319,6 @@ class SharingManagerSchedule {
          
         }
     }
-    
     
     // Protocol function
     // Send message to main view do a refresh of table
@@ -444,7 +443,6 @@ class SharingManagerSchedule {
         }
     }
     
-    
     // Computing key for checking of parent.
     // Parent key is stored in executed dictionary
     func computeKey (_ dict : NSDictionary) -> String {
@@ -469,7 +467,7 @@ class SharingManagerSchedule {
     // Returning the set of executed tasks for å schedule.
     // Used for recalcutlate the parent key when task change schedule
     // from active to "stopped"
-    private func getScheduleExecuted (_ hiddenID:Int) -> [NSMutableDictionary]? {
+    private func getScheduleExecuted (_ hiddenID:Int) -> Array<NSMutableDictionary>? {
         var result = self.Schedule.filter({return ($0.hiddenID == hiddenID) && ($0.schedule == "stopped")})
         if result.count > 0 {
             let schedule = result.removeFirst()
@@ -481,7 +479,7 @@ class SharingManagerSchedule {
     
     // Computing new parentkeys AFTER new schedule is updated.
     // Returning set updated keys
-    private func computeNewParentKeys (_ hiddenID:Int) -> [NSMutableDictionary]? {
+    private func computeNewParentKeys (_ hiddenID:Int) -> Array<NSMutableDictionary>? {
         var dict:NSMutableDictionary?
         var result = self.Schedule.filter({return ($0.hiddenID == hiddenID) && ($0.schedule == "stopped")})
         var executed:[NSMutableDictionary]?
