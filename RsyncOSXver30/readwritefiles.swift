@@ -33,6 +33,8 @@ class readwritefiles {
     private var profile:String?
     // If to use profile, only configurations and schedules to read from profile
     private var useProfile:Bool = false
+    // task to do
+    private var task:readwrite?
     
     // Set which file to read
     private var fileName : String? {
@@ -61,10 +63,13 @@ class readwritefiles {
     }
     
     // Function for reading data from persistent store
-    func getDatafromfile (task:readwrite) -> [NSDictionary]? {
+    func getDatafromfile () -> [NSDictionary]? {
         
-        self.setPreferences(task)
-        switch (task) {
+        guard (self.task != nil)  else {
+            return nil
+        }
+        
+        switch (self.task!) {
         case .schedule:
             if (SharingManagerConfiguration.sharedInstance.isDataDirty()) {
                 self.readdisk = true
@@ -136,9 +141,10 @@ class readwritefiles {
     
     
     // Set preferences for which data to read or write
-    private func setPreferences (_ what:readwrite) {
+    private func setPreferences (_ task:readwrite) {
         self.useProfile = false
-        switch (what) {
+        self.task = task
+        switch (self.task!) {
         case .schedule:
             self.name = "/scheduleRsync.plist"
             self.key = "Schedule"
@@ -161,6 +167,10 @@ class readwritefiles {
             self.readdisk = false
         }
         
+    }
+    
+    init(task:readwrite) {
+        self.setPreferences(task)
     }
     
 }

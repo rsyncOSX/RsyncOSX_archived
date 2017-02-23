@@ -78,13 +78,13 @@ final class persistentStoreUserconfiguration : readwritefiles {
     }
 
 
-    override init () {
+    init () {
         // Create the readwritefiles object
-        super.init()
+        super.init(task: .userconfig)
         // Reading Configurations from memory or disk, if dirty read from disk
         // if not dirty set self.configurationFromStore to nil to tell
         // anyone to read Configurations from memory
-        if let userconfigurationFromstore = self.getDatafromfile(task: .userconfig) {
+        if let userconfigurationFromstore = self.getDatafromfile() {
             self.userconfiguration = userconfigurationFromstore
         } else {
             self.userconfiguration = nil
