@@ -245,8 +245,8 @@ final class persistentStoreConfiguration : readwritefiles {
         // Reading Configurations from memory or disk, if dirty read from disk
         // if not dirty set self.configurationFromStore to nil to tell
         // anyone to read Configurations from memory
-        if let configurationFromstore = self.getDatafromfile() {
-            self.configurations = configurationFromstore
+        if let configurationFromPersistentstore = self.getDatafromfile() {
+            self.configurations = configurationFromPersistentstore
         } else {
             self.configurations = nil
         }

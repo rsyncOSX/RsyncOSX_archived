@@ -92,7 +92,6 @@ class readwritefiles {
         if (self.readdisk == true) {
             
             var list = Array<NSDictionary>()
-            
             guard (self.fileName != nil && self.key != nil) else {
                 return nil
             }
@@ -123,20 +122,23 @@ class readwritefiles {
     func writeDictionarytofile (_ array: Array<NSDictionary>, task:readwrite) -> Bool {
 
         self.setPreferences(task)
-        switch (task) {
+        guard (self.task != nil)  else {
+            return false
+        }
+        switch (self.task!) {
         case .schedule:
             SharingManagerConfiguration.sharedInstance.setDataDirty(dirty: true)
         case .configuration:
             SharingManagerConfiguration.sharedInstance.setDataDirty(dirty: true)
         default:
+            // Only set data dirty if either Configuration or Schedules are written to persistent store
             SharingManagerConfiguration.sharedInstance.setDataDirty(dirty: false)
         }
-        self.setPreferences(task)
         let dictionary = NSDictionary(object: array, forKey: self.key! as NSCopying)
         guard (self.fileName != nil) else {
             return false
         }
-            return  dictionary.write(toFile: self.fileName!, atomically: true)
+        return  dictionary.write(toFile: self.fileName!, atomically: true)
     }
     
     

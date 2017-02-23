@@ -90,6 +90,4 @@ final class persistentStoreUserconfiguration : readwritefiles {
             self.userconfiguration = nil
         }
     }
-
-    
 }

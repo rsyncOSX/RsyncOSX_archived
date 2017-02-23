@@ -88,8 +88,8 @@ final class persistentStoreScheduling : readwritefiles {
         // Reading Configurations from memory or disk, if dirty read from disk
         // if not dirty set self.configurationFromStore to nil to tell
         // anyone to read Configurations from memory
-        if let schedulesFromstore = self.getDatafromfile() {
-            self.schedules = schedulesFromstore
+        if let schedulesFromPersistentstore = self.getDatafromfile() {
+            self.schedules = schedulesFromPersistentstore
         } else {
             self.schedules = nil
         }
