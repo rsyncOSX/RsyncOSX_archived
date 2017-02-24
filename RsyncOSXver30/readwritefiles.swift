@@ -33,6 +33,8 @@ class readwritefiles {
     private var profile:String?
     // If to use profile, only configurations and schedules to read from profile
     private var useProfile:Bool = false
+    // task to do
+    private var task:readwrite?
     
     // Set which file to read
     private var fileName : String? {
@@ -61,10 +63,13 @@ class readwritefiles {
     }
     
     // Function for reading data from persistent store
-    func getDatafromfile (task:readwrite) -> [NSDictionary]? {
+    func getDatafromfile () -> [NSDictionary]? {
         
-        self.setPreferences(task)
-        switch (task) {
+        guard (self.task != nil)  else {
+            return nil
+        }
+        
+        switch (self.task!) {
         case .schedule:
             if (SharingManagerConfiguration.sharedInstance.isDataDirty()) {
                 self.readdisk = true
@@ -87,7 +92,6 @@ class readwritefiles {
         if (self.readdisk == true) {
             
             var list = Array<NSDictionary>()
-            
             guard (self.fileName != nil && self.key != nil) else {
                 return nil
             }
@@ -118,27 +122,31 @@ class readwritefiles {
     func writeDictionarytofile (_ array: Array<NSDictionary>, task:readwrite) -> Bool {
 
         self.setPreferences(task)
-        switch (task) {
+        guard (self.task != nil)  else {
+            return false
+        }
+        switch (self.task!) {
         case .schedule:
             SharingManagerConfiguration.sharedInstance.setDataDirty(dirty: true)
         case .configuration:
             SharingManagerConfiguration.sharedInstance.setDataDirty(dirty: true)
         default:
+            // Only set data dirty if either Configuration or Schedules are written to persistent store
             SharingManagerConfiguration.sharedInstance.setDataDirty(dirty: false)
         }
-        self.setPreferences(task)
         let dictionary = NSDictionary(object: array, forKey: self.key! as NSCopying)
         guard (self.fileName != nil) else {
             return false
         }
-            return  dictionary.write(toFile: self.fileName!, atomically: true)
+        return  dictionary.write(toFile: self.fileName!, atomically: true)
     }
     
     
     // Set preferences for which data to read or write
-    private func setPreferences (_ what:readwrite) {
+    private func setPreferences (_ task:readwrite) {
         self.useProfile = false
-        switch (what) {
+        self.task = task
+        switch (self.task!) {
         case .schedule:
             self.name = "/scheduleRsync.plist"
             self.key = "Schedule"
@@ -161,6 +169,10 @@ class readwritefiles {
             self.readdisk = false
         }
         
+    }
+    
+    init(task:readwrite) {
+        self.setPreferences(task)
     }
     
 }

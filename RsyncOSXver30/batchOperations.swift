@@ -11,12 +11,12 @@ import Foundation
 final class batchOperations {
     
     // Structure holding updated data for batchrun
-    private var data = [NSMutableDictionary]()
+    private var data = Array<NSMutableDictionary>()
     // BatchQueue
     // First = hiddenID, second 0 estimate or 1 real run
     private var batchQueu = [(Int,Int)]()
     // Just holding the indexes
-    private var index = [Int]()
+    private var index = Array<Int>()
     
     // Set estimated (0 or 1) for row at index
     func setEstimated(numberOfFiles:Int) {
@@ -45,7 +45,7 @@ final class batchOperations {
     }
     
     // Return data
-    func getupdatedBatchdata() -> [NSMutableDictionary] {
+    func getupdatedBatchdata() -> Array<NSMutableDictionary> {
         return self.data
     }
     
@@ -57,21 +57,19 @@ final class batchOperations {
     // Get next batch from Queue, REMOVES the first element
     // (-1,-1) indicates end of Queue
     func nextBatchRemove() -> (Int,Int) {
-        if self.batchQueu.count > 0 {
-           return self.batchQueu.removeFirst()
-        } else {
+        guard self.batchQueu.count > 0 else {
             return (-1,-1)
         }
+        return self.batchQueu.removeFirst()
     }
     
     // Get next batch from Queue, COPY ONLY the first element
     // (-1,-1) indicates end of Queue
     func nextBatchCopy() -> (Int,Int) {
-        if self.batchQueu.count > 0 {
-            return self.batchQueu[0]
-        } else {
+        guard self.batchQueu.count > 0 else {
             return (-1,-1)
         }
+        return self.batchQueu[0]
     }
     
     // Func abort Queue

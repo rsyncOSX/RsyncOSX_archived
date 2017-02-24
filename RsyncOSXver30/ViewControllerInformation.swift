@@ -20,7 +20,7 @@ class ViewControllerInformation : NSViewController {
     @IBOutlet weak var detailsTable: NSTableView!
     
     // output from Rsync
-    var output:[String]?
+    var output:Array<String>?
     
     // Delegate for getting the Information to present in table
     weak var information_delegate:Information?

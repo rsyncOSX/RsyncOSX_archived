@@ -82,14 +82,14 @@ final class persistentStoreScheduling : readwritefiles {
         _ = self.writeDictionarytofile(array, task: .schedule)
     }
     
-    override init () {
+    init () {
         // Create the readwritefiles object
-        super.init()
+        super.init(task: .schedule)
         // Reading Configurations from memory or disk, if dirty read from disk
         // if not dirty set self.configurationFromStore to nil to tell
         // anyone to read Configurations from memory
-        if let schedulesFromstore = self.getDatafromfile(task: .schedule) {
-            self.schedules = schedulesFromstore
+        if let schedulesFromPersistentstore = self.getDatafromfile() {
+            self.schedules = schedulesFromPersistentstore
         } else {
             self.schedules = nil
         }

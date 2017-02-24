@@ -13,7 +13,7 @@ final class RsyncParameters {
     // Tuple for rsync argument and value
     typealias argument = (String , Int)
     // Static initial arguments, DO NOT change order
-    private let rsyncArguments:[argument] = [
+    private let rsyncArguments:Array<argument> = [
         ("user",1),
         ("delete",0),
         ("--stats",0),
@@ -34,28 +34,28 @@ final class RsyncParameters {
     /// Function for getting string for backup parameters
     /// - parameter none: none
     /// - return : array of String
-    func getBackupString() -> [String] {
+    func getBackupString() -> Array<String> {
         return self.backupString
     }
     
     /// Function for getting string for suffix parameter
     /// - parameter none: none
     /// - return : array of String
-    func getSuffixString() -> [String] {
+    func getSuffixString() -> Array<String> {
         return self.suffixString
     }
     
     /// Function for getting string for alternative suffix parameter
     /// - parameter none: none
     /// - return : array of String
-    func getSuffixString2() -> [String] {
+    func getSuffixString2() -> Array<String> {
         return self.suffixString2
     }
 
     /// Function for getting for rsync arguments to use in ComboBoxes in ViewControllerRsyncParameters
     /// - parameter none: none
     /// - return : array of String
-    func getComboBoxValues() -> [String] {
+    func getComboBoxValues() -> Array<String> {
         var values = Array<String>()
         for i in 0 ..< self.rsyncArguments.count {
             values.append(self.rsyncArguments[i].0)
@@ -112,7 +112,7 @@ final class RsyncParameters {
     }
     
     // Split an Rsync argument into argument and value
-    private func split (_ str:String) -> [String] {
+    private func split (_ str:String) -> Array<String> {
         let argument:String?
         let value:String?
         var split = str.components(separatedBy: "=")
@@ -129,25 +129,23 @@ final class RsyncParameters {
     // Function computes which parameters are arguments only 
     // e.g --backup, or --suffix=value.
     func getdisplayValue (_ parameter:String) -> String {
-        let splitstr:[String] = self.split(parameter)
-        if splitstr.count > 1 {
-            let argument = splitstr[0]
-            let value = splitstr[1]
-            if (argument != value && self.indexValue(argument) >= 0)  {
-                return value
-            } else {
-                if self.indexValue(splitstr[0]) >= 0 {
-                    return "\"" + argument + "\" " + "no arguments"
-                } else {
-                    if (argument != value) {
-                        return argument + "=" + value
-                    } else {
-                        return value
-                    }
-                }
-            }
-        } else {
+        let splitstr:Array<String> = self.split(parameter)
+        guard splitstr.count > 1 else {
             return ""
+        }
+        let argument = splitstr[0]
+        let value = splitstr[1]
+        if (argument != value && self.indexValue(argument) >= 0)  {
+            return value
+        } else {
+            if self.indexValue(splitstr[0]) >= 0 {
+                return "\"" + argument + "\" " + "no arguments"
+            } else {
+                guard (argument != value) else {
+                    return value
+                }
+                return argument + "=" + value
+            }
         }
     }
     
@@ -156,30 +154,29 @@ final class RsyncParameters {
     /// - parameter parameter : Stringvalue of parameter
     /// - returns : index of parameter
     func getvalueCombobox (_ parameter:String) -> Int {
-        let splitstr:[String] = self.split(parameter)
-        if splitstr.count > 1 {
-            let argument = splitstr[0]
-            let value = splitstr[1]
-            if (argument != value && self.indexValue(argument) >= 0)  {
-                return self.indexValue(argument)
-            } else {
-                if self.indexValue(splitstr[0]) >= 0 {
-                    return self.indexValue(argument)
-                } else {
-                    return 0
-                }
-            }
+        let splitstr:Array<String> = self.split(parameter)
+        guard splitstr.count > 1 else {
+            return 0
         }
-        return 0
+        let argument = splitstr[0]
+        let value = splitstr[1]
+        if (argument != value && self.indexValue(argument) >= 0)  {
+            return self.indexValue(argument)
+        } else {
+            guard self.indexValue(splitstr[0]) >= 0 else {
+                return 0
+            }
+            return self.indexValue(argument)
+        }
     }
     
     
     /// Function calculates all userparameters (param8 - param14)
     /// - parameter index: index of selected row
     /// - returns: array of values with keys "indexComboBox" and "rsyncParameter", array always holding 7 records
-    func setValuesViewDidLoad(index:Int) -> [NSMutableDictionary] {
-        var configurations:[configuration] = SharingManagerConfiguration.sharedInstance.getConfigurations()
-        var values = [NSMutableDictionary]()
+    func setValuesViewDidLoad(index:Int) -> Array<NSMutableDictionary>{
+        var configurations:Array<configuration> = SharingManagerConfiguration.sharedInstance.getConfigurations()
+        var values = Array<NSMutableDictionary>()
         values.append(self.getParamAsDictionary(config: configurations[index],parameter: 8))
         values.append(self.getParamAsDictionary(config: configurations[index],parameter: 9))
         values.append(self.getParamAsDictionary(config: configurations[index],parameter: 10))
@@ -224,5 +221,4 @@ final class RsyncParameters {
             return dict
         }
     }
-
 }

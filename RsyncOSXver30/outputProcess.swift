@@ -15,14 +15,14 @@ protocol RsyncError: class {
 final class outputProcess {
     
     // Second last String in Array rsync output of how much in what time
-    private var message:String?
+    private var resultRsync:String?
     // calculated number of files
     // set from rsync
     private var calculatedNumberOfFiles:Int?
     // output Array to keep output from rsync in
-    private var output:[String]?
+    private var output:Array<String>?
     // output for batchTasks
-    private var batchoutput:[String]?
+    private var batchoutput:Array<String>?
     // output Array temporary indexes
     private var startIndex:Int?
     private var endIndex:Int?
@@ -32,6 +32,7 @@ final class outputProcess {
     private var totalNumberSizebytes:Double?
     private var transferredNumber:Int?
     private var transferredNumberSizebytes:Double?
+    
     // enum for returning what is asked for
     enum enumNumbers {
         case totalNumber
@@ -81,7 +82,7 @@ final class outputProcess {
     
     // Return end message of Rsync
     func endMessage() -> String {
-        if let message = self.message {
+        if let message = self.resultRsync {
             return message
         } else {
             return ""
@@ -110,7 +111,7 @@ final class outputProcess {
         }
         self.endIndex = self.output!.count
         if (self.endIndex! > 2) {
-            self.message = (self.output![self.endIndex!-2])
+            self.resultRsync = (self.output![self.endIndex!-2])
         }
     }
     
@@ -231,11 +232,11 @@ final class outputProcess {
         
         if (SharingManagerConfiguration.sharedInstance.rsyncVer3) {
             // ["sent", "409687", "bytes", "", "received", "5331", "bytes", "", "830036.00", "bytes/sec"]
-            let newmessage = self.message!.replacingOccurrences(of: ",", with: "")
+            let newmessage = self.resultRsync!.replacingOccurrences(of: ",", with: "")
             parts = newmessage.components(separatedBy: " ")
         } else {
             // ["sent", "262826", "bytes", "", "received", "2248", "bytes", "", "58905.33", "bytes/sec"]
-            parts = self.message!.components(separatedBy: " ")
+            parts = self.resultRsync!.components(separatedBy: " ")
         }
         
         var resultsent:String?
@@ -289,7 +290,7 @@ final class outputProcess {
 
     init () {
         // Second last String in Array rsync output of how much and in what time
-        self.message = ""
+        self.resultRsync = ""
         self.output = Array<String>()
         self.batchoutput = Array<String>()
     }
