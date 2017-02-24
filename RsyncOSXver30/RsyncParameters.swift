@@ -169,56 +169,51 @@ final class RsyncParameters {
             return self.indexValue(argument)
         }
     }
-    
-    
-    /// Function calculates all userparameters (param8 - param14)
-    /// - parameter index: index of selected row
-    /// - returns: array of values with keys "indexComboBox" and "rsyncParameter", array always holding 7 records
-    func setValuesViewDidLoad(index:Int) -> Array<NSMutableDictionary>{
-        var configurations:Array<configuration> = SharingManagerConfiguration.sharedInstance.getConfigurations()
-        var values = Array<NSMutableDictionary>()
-        values.append(self.getParamAsDictionary(config: configurations[index],parameter: 8))
-        values.append(self.getParamAsDictionary(config: configurations[index],parameter: 9))
-        values.append(self.getParamAsDictionary(config: configurations[index],parameter: 10))
-        values.append(self.getParamAsDictionary(config: configurations[index],parameter: 11))
-        values.append(self.getParamAsDictionary(config: configurations[index],parameter: 12))
-        values.append(self.getParamAsDictionary(config: configurations[index],parameter: 13))
-        values.append(self.getParamAsDictionary(config: configurations[index],parameter: 14))
-        // Return values
-        return values
-    }
 
-    // Function for creating NSMutableDictionary of stored rsync parameters
-    private func getParamAsDictionary(config:configuration, parameter:Int) -> NSMutableDictionary {
-        let dict = NSMutableDictionary()
-        var param:String?
+    
+    func getParameter (config:configuration, parameter:Int) -> (Int, String) {
+        
+        var value:(Int,String)?
         
         switch parameter {
         case 8:
-            param = config.parameter8
+            guard config.parameter8 != nil else {
+                return (0,"")
+            }
+            value = (self.getvalueCombobox(config.parameter8!), self.getdisplayValue(config.parameter8!))
         case 9:
-            param = config.parameter9
+            guard config.parameter9 != nil else {
+                return (0,"")
+            }
+            value = (self.getvalueCombobox(config.parameter9!), self.getdisplayValue(config.parameter9!))
         case 10:
-            param = config.parameter10
+            guard config.parameter10 != nil else {
+                return (0,"")
+            }
+            value = (self.getvalueCombobox(config.parameter10!), self.getdisplayValue(config.parameter10!))
         case 11:
-            param = config.parameter11
+            guard config.parameter11 != nil else {
+                return (0,"")
+            }
+            value = (self.getvalueCombobox(config.parameter11!), self.getdisplayValue(config.parameter11!))
         case 12:
-            param = config.parameter12
+            guard config.parameter12 != nil else {
+                return (0,"")
+            }
+            value = (self.getvalueCombobox(config.parameter12!), self.getdisplayValue(config.parameter12!))
         case 13:
-            param = config.parameter13
+            guard config.parameter13 != nil else {
+                return (0,"")
+            }
+            value = (self.getvalueCombobox(config.parameter13!), self.getdisplayValue(config.parameter13!))
         case 14:
-            param = config.parameter14
+            guard config.parameter14 != nil else {
+                return (0,"")
+            }
+            value = (self.getvalueCombobox(config.parameter14!), self.getdisplayValue(config.parameter14!))
         default:
-            param = nil
+            value = (0,"")
         }
-        if (param != nil) {
-            dict.setObject(self.getvalueCombobox(param!), forKey: "indexComboBox" as NSCopying)
-            dict.setObject(self.getdisplayValue(param!), forKey: "rsyncParameter" as NSCopying)
-            return dict
-        } else {
-            dict.setObject(0, forKey: "indexComboBox" as NSCopying)
-            dict.setObject("", forKey: "rsyncParameter" as NSCopying)
-            return dict
-        }
+        return value!
     }
 }
