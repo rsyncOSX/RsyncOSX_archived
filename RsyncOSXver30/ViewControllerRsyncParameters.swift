@@ -50,7 +50,6 @@ class ViewControllerRsyncParameters: NSViewController {
     @IBOutlet weak var viewParameter14: NSTextField!
     @IBOutlet weak var rsyncdaemon: NSButton!
     @IBOutlet weak var sshport: NSTextField!
-    
     // Comboboxes
     @IBOutlet weak var parameter8: NSComboBox!
     @IBOutlet weak var parameter9: NSComboBox!
@@ -120,9 +119,7 @@ class ViewControllerRsyncParameters: NSViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Create RsyncParameters object and load initial parameters
-        self.parameters = RsyncParameters()
-        self.comboBoxValues = parameters!.getComboBoxValues()
+        // Get index of seleceted row
         if let pvc = self.presenting as? ViewControllertabMain {
             self.userparamsupdated_delegate = pvc
             self.getindex_delegate = pvc
@@ -135,6 +132,11 @@ class ViewControllerRsyncParameters: NSViewController {
     
     override func viewDidAppear() {
         super.viewDidAppear()
+        
+        // Create RsyncParameters object and load initial parameters
+        self.parameters = RsyncParameters()
+        self.comboBoxValues = parameters!.getComboBoxValues()
+        
         self.backupbutton.state = 0
         self.suffixButton.state = 0
         self.suffixButton2.state = 0
@@ -177,6 +179,11 @@ class ViewControllerRsyncParameters: NSViewController {
         if (configurations[index!].sshport != nil) {
             self.sshport.stringValue = String(configurations[index!].sshport!)
         }
+    }
+    
+    override func viewDidDisappear() {
+        super.viewDidDisappear()
+        self.parameters = nil
     }
     
     // Function for saving changed or new parameters for one configuration.
