@@ -1,3 +1,4 @@
+
 //
 //  ViewControllerRsyncParameters.swift
 //  Rsync
@@ -122,7 +123,6 @@ class ViewControllerRsyncParameters: NSViewController {
         // Create RsyncParameters object and load initial parameters
         self.parameters = RsyncParameters()
         self.comboBoxValues = parameters!.getComboBoxValues()
-        // self.argumentDictionary = parameters!.getArgumentsAndValues()
         if let pvc = self.presenting as? ViewControllertabMain {
             self.userparamsupdated_delegate = pvc
             self.getindex_delegate = pvc
@@ -146,28 +146,28 @@ class ViewControllerRsyncParameters: NSViewController {
         self.viewParameter4.stringValue = configurations[index!].parameter4
         self.viewParameter5.stringValue = configurations[index!].parameter5 + " " + configurations[index!].parameter6
         
-        // There are seven elements in array
+        // There are seven user seleected rsync parameters
         
-        self.resetComboBox(self.parameter8, index: self.parameters!.getParameter(config: configurations[index!], parameter: 8).0)
-        self.viewParameter8.stringValue = self.parameters!.getParameter(config: configurations[index!], parameter: 8).1
+        self.resetComboBox(self.parameter8, index: self.parameters!.getParameter(config: configurations[index!], rsyncparameternumber: 8).0)
+        self.viewParameter8.stringValue = self.parameters!.getParameter(config: configurations[index!], rsyncparameternumber: 8).1
 
-        self.resetComboBox(self.parameter9, index: self.parameters!.getParameter(config: configurations[index!], parameter: 9).0)
-        self.viewParameter9.stringValue = self.parameters!.getParameter(config: configurations[index!], parameter: 9).1
+        self.resetComboBox(self.parameter9, index: self.parameters!.getParameter(config: configurations[index!], rsyncparameternumber: 9).0)
+        self.viewParameter9.stringValue = self.parameters!.getParameter(config: configurations[index!], rsyncparameternumber: 9).1
         
-        self.resetComboBox(self.parameter10, index: self.parameters!.getParameter(config: configurations[index!], parameter: 10).0)
-        self.viewParameter10.stringValue = self.parameters!.getParameter(config: configurations[index!], parameter: 10).1
+        self.resetComboBox(self.parameter10, index: self.parameters!.getParameter(config: configurations[index!], rsyncparameternumber: 10).0)
+        self.viewParameter10.stringValue = self.parameters!.getParameter(config: configurations[index!], rsyncparameternumber: 10).1
         
-        self.resetComboBox(self.parameter11, index: self.parameters!.getParameter(config: configurations[index!], parameter: 11).0)
-        self.viewParameter11.stringValue = self.parameters!.getParameter(config: configurations[index!], parameter: 11).1
+        self.resetComboBox(self.parameter11, index: self.parameters!.getParameter(config: configurations[index!], rsyncparameternumber: 11).0)
+        self.viewParameter11.stringValue = self.parameters!.getParameter(config: configurations[index!], rsyncparameternumber: 11).1
         
-        self.resetComboBox(self.parameter12, index: self.parameters!.getParameter(config: configurations[index!], parameter: 12).0)
-        self.viewParameter12.stringValue = self.parameters!.getParameter(config: configurations[index!], parameter: 12).1
+        self.resetComboBox(self.parameter12, index: self.parameters!.getParameter(config: configurations[index!], rsyncparameternumber: 12).0)
+        self.viewParameter12.stringValue = self.parameters!.getParameter(config: configurations[index!], rsyncparameternumber: 12).1
         
-        self.resetComboBox(self.parameter13, index: self.parameters!.getParameter(config: configurations[index!], parameter: 13).0)
-        self.viewParameter13.stringValue = self.parameters!.getParameter(config: configurations[index!], parameter: 13).1
+        self.resetComboBox(self.parameter13, index: self.parameters!.getParameter(config: configurations[index!], rsyncparameternumber: 13).0)
+        self.viewParameter13.stringValue = self.parameters!.getParameter(config: configurations[index!], rsyncparameternumber: 13).1
         
-        self.resetComboBox(self.parameter14, index: self.parameters!.getParameter(config: configurations[index!], parameter: 14).0)
-        self.viewParameter14.stringValue = self.parameters!.getParameter(config: configurations[index!], parameter: 14).1
+        self.resetComboBox(self.parameter14, index: self.parameters!.getParameter(config: configurations[index!], rsyncparameternumber: 14).0)
+        self.viewParameter14.stringValue = self.parameters!.getParameter(config: configurations[index!], rsyncparameternumber: 14).1
         
         if (configurations[index!].rsyncdaemon != nil) {
             self.rsyncdaemon.state = configurations[index!].rsyncdaemon!

@@ -68,7 +68,6 @@ final class RsyncParameters {
     /// - parameter indexComboBox: index of selected ComboBox
     /// - parameter value: the value of rsync parameter
     /// - return: array of String
-    
     func getRsyncParameter (indexComboBox:Int, value:String?) -> String {
         guard  indexComboBox < self.rsyncArguments.count else {
             return ""
@@ -170,12 +169,16 @@ final class RsyncParameters {
         }
     }
 
-    
-    func getParameter (config:configuration, parameter:Int) -> (Int, String) {
+    /// Function returns value of rsync a touple to set the corrospending
+    /// value in combobox and the corrosponding rsync value when rsync parameters are presented
+    /// - parameter config : a configuration
+    /// - parameter rsyncparameternumber : which stored rsync parameter, integer 8 - 14
+    /// - returns : touple with index to for combobox and corresponding rsync value
+    func getParameter (config:configuration, rsyncparameternumber:Int) -> (Int, String) {
         
         var value:(Int,String)?
         
-        switch parameter {
+        switch rsyncparameternumber {
         case 8:
             guard config.parameter8 != nil else {
                 return (0,"")
