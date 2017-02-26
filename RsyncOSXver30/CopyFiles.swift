@@ -34,7 +34,7 @@ final class CopyFiles {
     // Start and stop progress view
     weak var progress_delegate: StartStopProgressIndicator?
     // The Process object
-    var task:rsyncProcess?
+    var task:RsyncProcess?
     // rsync outPut object
     var output:outputProcess?
     
@@ -63,7 +63,7 @@ final class CopyFiles {
         }
         self.command = nil
         self.output = nil
-        self.task = rsyncProcess(operation: false, tabMain: false, command : nil)
+        self.task = RsyncProcess(operation: false, tabMain: false, command : nil)
         self.output = outputProcess()
         self.task!.executeProcess(self.arguments!, output: self.output!)
     }
@@ -90,7 +90,7 @@ final class CopyFiles {
                 self.argumentsObject = scpProcessArguments(task: work, config: self.config!, remoteFile: nil, localCatalog: nil, drynrun: nil)
                 self.arguments = self.argumentsObject!.getArgs()
                 self.command = self.argumentsObject!.getCommand()
-                self.task = rsyncProcess(operation: false, tabMain: false, command : self.command)
+                self.task = RsyncProcess(operation: false, tabMain: false, command : self.command)
                 self.output = outputProcess()
                 self.task!.executeProcess(self.arguments!, output: self.output!)
             } else {

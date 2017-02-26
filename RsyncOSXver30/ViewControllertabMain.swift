@@ -397,7 +397,7 @@ class ViewControllertabMain: NSViewController {
                 self.workload = singleTask()
             }
             let arguments:[String]?
-            let process = rsyncProcess(operation: false, tabMain: true, command : nil)
+            let process = RsyncProcess(operation: false, tabMain: true, command : nil)
             self.process = nil
             self.output = nil
             
@@ -812,13 +812,13 @@ extension ViewControllertabMain: StartBatch {
                         self.indicator_delegate?.start()
                     }
                     let arguments:[String] = SharingManagerConfiguration.sharedInstance.getRsyncArgumentOneConfig(index: index, argtype: .argdryRun)
-                    let process = rsyncProcess(operation: false, tabMain: true, command : nil)
+                    let process = RsyncProcess(operation: false, tabMain: true, command : nil)
                     // Setting reference to process for Abort if requiered
                     process.executeProcess(arguments, output: self.output!)
                     self.process = process.getProcess()
                 case 1:
                     let arguments:[String] = SharingManagerConfiguration.sharedInstance.getRsyncArgumentOneConfig(index: index, argtype: .arg)
-                    let process = rsyncProcess(operation: false, tabMain: true, command : nil)
+                    let process = RsyncProcess(operation: false, tabMain: true, command : nil)
                     // Setting reference to process for Abort if requiered
                     process.executeProcess(arguments, output: self.output!)
                     self.process = process.getProcess()
