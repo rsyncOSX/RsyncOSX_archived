@@ -56,7 +56,7 @@ extension ViewControllerInformation : NSTableViewDataSource {
    
     func numberOfRows(in aTableView: NSTableView) -> Int {
         if (self.output != nil) {
-            return (self.output?.count)!
+            return self.output!.count
         } else {
             return 0
         }

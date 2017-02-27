@@ -205,23 +205,24 @@ class ViewControllertabSchedule : NSViewController {
     
     // Update display next scheduled jobs in time
     func nextScheduledtask() {
-        if (self.schedules != nil) {
-            // Displaying next two scheduled tasks
-            self.firstScheduledTask.stringValue = (self.schedules?.whenIsNextTwoTasksString()[0])!
-            self.secondScheduledTask.stringValue = (self.schedules?.whenIsNextTwoTasksString()[1])!
-            if ((self.schedules?.remoteServerAndPathNextTwoTasks().count)! > 0) {
-                if ((self.schedules?.remoteServerAndPathNextTwoTasks().count)! > 2) {
-                    self.firstRemoteServer.stringValue = (self.schedules?.remoteServerAndPathNextTwoTasks()[0])!
-                    self.firstLocalCatalog.stringValue = (self.schedules?.remoteServerAndPathNextTwoTasks()[1])!
-                    self.secondRemoteServer.stringValue = (self.schedules?.remoteServerAndPathNextTwoTasks()[2])!
-                    self.secondLocalCatalog.stringValue = (self.schedules?.remoteServerAndPathNextTwoTasks()[3])!
-                } else {
-                    self.firstRemoteServer.stringValue = (self.schedules?.remoteServerAndPathNextTwoTasks()[0])!
-                    self.firstLocalCatalog.stringValue = (self.schedules?.remoteServerAndPathNextTwoTasks()[1])!
-                    self.secondRemoteServer.stringValue = ""
-                    self.secondLocalCatalog.stringValue = ""
-                }
-                
+        
+        guard self.schedules != nil else {
+            return
+        }
+        // Displaying next two scheduled tasks
+        self.firstScheduledTask.stringValue = self.schedules!.whenIsNextTwoTasksString()[0]
+        self.secondScheduledTask.stringValue = self.schedules!.whenIsNextTwoTasksString()[1]
+        if (self.schedules!.remoteServerAndPathNextTwoTasks().count > 0) {
+            if ((self.schedules!.remoteServerAndPathNextTwoTasks().count) > 2) {
+                self.firstRemoteServer.stringValue = self.schedules!.remoteServerAndPathNextTwoTasks()[0]
+                self.firstLocalCatalog.stringValue = self.schedules!.remoteServerAndPathNextTwoTasks()[1]
+                self.secondRemoteServer.stringValue = self.schedules!.remoteServerAndPathNextTwoTasks()[2]
+                self.secondLocalCatalog.stringValue = self.schedules!.remoteServerAndPathNextTwoTasks()[3]
+            } else {
+                self.firstRemoteServer.stringValue = self.schedules!.remoteServerAndPathNextTwoTasks()[0]
+                self.firstLocalCatalog.stringValue = self.schedules!.remoteServerAndPathNextTwoTasks()[1]
+                self.secondRemoteServer.stringValue = ""
+                self.secondLocalCatalog.stringValue = ""
             }
         }
     }
@@ -342,8 +343,8 @@ extension ViewControllertabSchedule: RefreshtableView {
         self.schedules = nil
         self.schedules = ScheduleSortedAndExpand()
         // Displaying next two scheduled tasks
-        self.firstScheduledTask.stringValue = (self.schedules?.whenIsNextTwoTasksString()[0])!
-        self.secondScheduledTask.stringValue = (self.schedules?.whenIsNextTwoTasksString()[1])!
+        self.firstScheduledTask.stringValue = self.schedules!.whenIsNextTwoTasksString()[0]
+        self.secondScheduledTask.stringValue = self.schedules!.whenIsNextTwoTasksString()[1]
     }
     
 }
