@@ -14,11 +14,11 @@ class ScheduleSortedAndExpand {
     
     // Array to store all scheduled jobs and history of executions
     // Will be kept in memory until destroyed
-    private var ScheduleAsNSDictionary:[NSDictionary]?
-    private var ScheduleAsConfiguration:[configurationSchedule]?
+    private var ScheduleAsNSDictionary:Array<NSDictionary>?
+    private var ScheduleAsConfiguration:Array<configurationSchedule>?
     // Sorting and expanding Schedule data.
     // Private func called from getScheduledTasks()
-    private var sortedAndExpandedScheduleData:[NSDictionary]?
+    private var sortedAndExpandedScheduleData:Array<NSDictionary>?
     // Schedule in progress
     private var scheduleInProgress:Bool = false
     
@@ -27,14 +27,14 @@ class ScheduleSortedAndExpand {
     // First job to execute.Job is first element in 
     // self.sortedAndExpandedScheduleData
     func jobToExecute() -> NSDictionary? {
-        if ((self.sortedAndExpandedScheduleData?.count)! > 0) {
-            return self.sortedAndExpandedScheduleData?[0]
-        } else {
+        guard (self.sortedAndExpandedScheduleData!.count) > 0 else {
             return nil
         }
+        return self.sortedAndExpandedScheduleData![0]
     }
+    
     // Returns reference to all sorted and expanded schedules
-    func getsortedAndExpandedScheduleData() -> [NSDictionary]? {
+    func getsortedAndExpandedScheduleData() -> Array<NSDictionary>? {
         return self.sortedAndExpandedScheduleData
     }
     
@@ -59,8 +59,7 @@ class ScheduleSortedAndExpand {
     // Expanding and sorting Scheduledata
     private func sortAndExpandScheduleData() {
         
-        var expandedData = [NSDictionary]()
-        // Dateformat
+        var expandedData = Array<NSDictionary>()
         let dateformatter = Utils.sharedInstance.setDateformat()
 
         for i in 0 ..< self.ScheduleAsNSDictionary!.count {
@@ -189,101 +188,98 @@ class ScheduleSortedAndExpand {
     }
     
     
-    func remoteServerAndPathNextTwoTasks() -> [String] {
+    func remoteServerAndPathNextTwoTasks() -> Array<String> {
         var dict1:NSDictionary?
         var dict2:NSDictionary?
-        var hiddenID1:Int?
-        var hiddenID2:Int?
-        var array = [String]()
+        var array = Array<String>()
         
-        if (self.sortedAndExpandedScheduleData != nil) {
-            if (self.sortedAndExpandedScheduleData?.count)! > 1 {
-                dict1 = self.sortedAndExpandedScheduleData?[0]
-                dict2 = self.sortedAndExpandedScheduleData?[1]
-            } else {
-                if (self.sortedAndExpandedScheduleData?.count)! > 0 {
-                    dict1 = self.sortedAndExpandedScheduleData?[0]
-                }
+        guard (self.sortedAndExpandedScheduleData != nil) else {
+            return [""]
+        }
+        
+        if (self.sortedAndExpandedScheduleData!.count) > 1 {
+            dict1 = self.sortedAndExpandedScheduleData![0]
+            dict2 = self.sortedAndExpandedScheduleData![1]
+        } else {
+            if (self.sortedAndExpandedScheduleData!.count) > 0 {
+                dict1 = self.sortedAndExpandedScheduleData![0]
             }
-            if (dict1 != nil) {
-                hiddenID1 = dict1?.value(forKey: "hiddenID") as? Int
-                array.append(SharingManagerConfiguration.sharedInstance.getResourceConfiguration(hiddenID1!, resource: .offsiteServer))
-                array.append(SharingManagerConfiguration.sharedInstance.getResourceConfiguration(hiddenID1!, resource: .localCatalog))
-                }
-            if (dict2 != nil) {
-                hiddenID2 = dict2?.value(forKey: "hiddenID") as? Int
-                array.append(SharingManagerConfiguration.sharedInstance.getResourceConfiguration(hiddenID2!, resource: .offsiteServer))
-                array.append(SharingManagerConfiguration.sharedInstance.getResourceConfiguration(hiddenID2!, resource: .localCatalog))
+        }
+        if (dict1 != nil) {
+            let hiddenID1 = dict1!.value(forKey: "hiddenID") as? Int
+            array.append(SharingManagerConfiguration.sharedInstance.getResourceConfiguration(hiddenID1!, resource: .offsiteServer))
+            array.append(SharingManagerConfiguration.sharedInstance.getResourceConfiguration(hiddenID1!, resource: .localCatalog))
             }
+        if (dict2 != nil) {
+            let hiddenID2 = dict2?.value(forKey: "hiddenID") as? Int
+            array.append(SharingManagerConfiguration.sharedInstance.getResourceConfiguration(hiddenID2!, resource: .offsiteServer))
+            array.append(SharingManagerConfiguration.sharedInstance.getResourceConfiguration(hiddenID2!, resource: .localCatalog))
         }
         // Return either 0, 2 or 4 elements
         return array
     }
     
     // Info on first screen - two first scheduled backups.
-    func whenIsNextTwoTasksString() -> [String]{
+    func whenIsNextTwoTasksString() -> Array<String> {
         
         var firstbackup:String?
         var secondbackup:String?
         
-        if (self.sortedAndExpandedScheduleData != nil) {
-            // We are calculating the first object
-            if (self.sortedAndExpandedScheduleData?.count)! > 0 {
-                
-                if (self.sortedAndExpandedScheduleData?.count)! > 0 {
-                    if let minutes1 = self.sortedAndExpandedScheduleData?[0] {
-                        let date1:Date = (minutes1.value(forKey: "start") as? Date)!
-                        firstbackup = self.timeString(date1, enddate: nil)
-                    }
-                } else {
-                    firstbackup = " ... none ..."
-                    secondbackup = " ... none ..."
-                }
-                if (self.sortedAndExpandedScheduleData?.count)! > 1 {
-                    if let minutes2 = self.sortedAndExpandedScheduleData?[1] {
-                        let date2:Date = (minutes2.value(forKey: "start") as? Date)!
-                        secondbackup = self.timeString(date2, enddate: nil)
-                    }
-                } else {
-                    secondbackup = " ... none ..."
+        guard self.sortedAndExpandedScheduleData != nil else {
+            return [" ... none ...", " ... none ..."]
+        }
+        
+        // We are calculating the first object
+        if (self.sortedAndExpandedScheduleData!.count) > 0 {
+            if (self.sortedAndExpandedScheduleData!.count) > 0 {
+                if let minutes1 = self.sortedAndExpandedScheduleData?[0] {
+                    let date1:Date = (minutes1.value(forKey: "start") as? Date)!
+                    firstbackup = self.timeString(date1, enddate: nil)
                 }
             } else {
                 firstbackup = " ... none ..."
                 secondbackup = " ... none ..."
             }
-            return [firstbackup!,secondbackup!]
+            if (self.sortedAndExpandedScheduleData!.count) > 1 {
+                if let minutes2 = self.sortedAndExpandedScheduleData?[1] {
+                    let date2:Date = (minutes2.value(forKey: "start") as? Date)!
+                    secondbackup = self.timeString(date2, enddate: nil)
+                }
+            } else {
+                secondbackup = " ... none ..."
+            }
         } else {
-            return [" ... none ...", " ... none ..."]
+            firstbackup = " ... none ..."
+            secondbackup = " ... none ..."
         }
+        return [firstbackup!,secondbackup!]
     }
     
     
     // Returns when to next tasks ar due in seconds
-    func whenIsNextTwoTasksDouble() -> [Double] {
+    func whenIsNextTwoTasksDouble() -> Array<Double> {
         
         var firstbackup:Double?
         var secondbackup:Double?
         // We are calculating the first object
-        if (self.sortedAndExpandedScheduleData?.count)! > 0 {
-            if (self.sortedAndExpandedScheduleData?.count)! > 0 {
-                if let minutes1 = self.sortedAndExpandedScheduleData?[0] {
-                    let date1:Date = (minutes1.value(forKey: "start") as? Date)!
-                    firstbackup = self.timeDoubleMinutes(date1, enddate: nil)
-                }
-            } else {
-                firstbackup = -1
-                secondbackup = -1
-            }
-            if (self.sortedAndExpandedScheduleData?.count)! > 1 {
-                if let minutes2 = self.sortedAndExpandedScheduleData?[1] {
-                    let date2:Date = (minutes2.value(forKey: "start") as? Date)!
-                    secondbackup = self.timeDoubleMinutes(date2, enddate: nil)
-                }
-            } else {
-                secondbackup = -1
+        guard (self.sortedAndExpandedScheduleData!.count > 0) else {
+            return [-1,-1]
+        }
+        if (self.sortedAndExpandedScheduleData!.count) > 0 {
+            if let minutes1 = self.sortedAndExpandedScheduleData?[0] {
+                let date1:Date = (minutes1.value(forKey: "start") as? Date)!
+                firstbackup = self.timeDoubleMinutes(date1, enddate: nil)
             }
         } else {
             firstbackup = -1
+            secondbackup = -1
+        }
+        if (self.sortedAndExpandedScheduleData!.count) > 1 {
+            if let minutes2 = self.sortedAndExpandedScheduleData?[1] {
+                let date2:Date = (minutes2.value(forKey: "start") as? Date)!
+                secondbackup = self.timeDoubleMinutes(date2, enddate: nil)
+            }
+        } else {
             secondbackup = -1
         }
         return [firstbackup!,secondbackup!]
