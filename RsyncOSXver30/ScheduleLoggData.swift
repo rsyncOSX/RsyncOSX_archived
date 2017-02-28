@@ -19,10 +19,10 @@ enum filterLogs {
 final class ScheduleLoggData {
     
     // Reference to filtered data
-    private var data:[NSDictionary]?
+    private var data:Array<NSDictionary>?
     // Reference to all sorted loggdata
     // Loggdata is only sorted and read once
-    private var loggdata:[NSDictionary]?
+    private var loggdata:Array<NSDictionary>?
     
     // Function for filter loggdata
     func filter(search:String?, what:filterLogs?) -> [NSDictionary]? {
