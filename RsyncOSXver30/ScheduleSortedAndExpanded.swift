@@ -354,13 +354,40 @@ class ScheduleSortedAndExpand {
             return 0
         }
     }
+    
+    /// Function is reading Schedule plans and transform plans to
+    /// array of NSDictionary. Used for presenting Schedule in tableViews
+    /// - returns : none
+    private func createScheduleAsNSDictionary () {
+        
+        guard self.ScheduleAsConfiguration != nil else {
+            return
+        }
+        
+        var data = Array<NSDictionary>()
+        for i in 0 ..< self.ScheduleAsConfiguration!.count {
+            if self.ScheduleAsConfiguration![i].dateStop != nil {
+                if (self.ScheduleAsConfiguration![i].schedule != "stopped") {
+                    let dict :NSDictionary = [
+                        "dateStart": self.ScheduleAsConfiguration![i].dateStart,
+                        "dateStop": self.ScheduleAsConfiguration![i].dateStop!,
+                        "hiddenID": self.ScheduleAsConfiguration![i].hiddenID,
+                        "schedule": self.ScheduleAsConfiguration![i].schedule
+                    ]
+                    data.append(dict as NSDictionary)
+                }
+            }
+        }
+        self.ScheduleAsNSDictionary = data
+    }
+
 
     // Number of seconds ahead of time to read
     // scheduled jobs
     init () {
         // Getting the Schedule and expanding all the jobs
-        self.ScheduleAsNSDictionary = SharingManagerSchedule.sharedInstance.getScheduleAsNSDictionary()
         self.ScheduleAsConfiguration = SharingManagerSchedule.sharedInstance.getSchedule()
+        self.createScheduleAsNSDictionary()
         self.sortAndExpandScheduleData()
     }
 }

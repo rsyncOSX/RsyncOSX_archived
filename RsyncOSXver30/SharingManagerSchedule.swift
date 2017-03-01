@@ -133,27 +133,6 @@ class SharingManagerSchedule {
         SharingManagerConfiguration.sharedInstance.setDataDirty(dirty: true)
         persistentStoreAPI.sharedInstance.saveScheduleFromMemory()
     }
-
-    /// Function is reading Schedule plans and transform plans to 
-    /// array of NSDictionary. Used for presenting Schedule in tableViews
-    /// - returns : array of Schedules
-    func getScheduleAsNSDictionary () -> Array<NSDictionary> {
-        var data = Array<NSDictionary>()
-        for i in 0 ..< self.Schedule.count {
-            if self.Schedule[i].dateStop != nil {
-                if (self.Schedule[i].schedule != "stopped") {
-                    let dict :NSDictionary = [
-                        "dateStart": self.Schedule[i].dateStart,
-                        "dateStop": self.Schedule[i].dateStop!,
-                        "hiddenID": self.Schedule[i].hiddenID,
-                        "schedule": self.Schedule[i].schedule
-                    ]
-                    data.append(dict as NSDictionary)
-                }
-            }
-        }
-        return data
-    }
     
     /// Function deletes all Schedules by hiddenID. Invoked when Configurations are
     /// deleted. When a Configuration are deleted all tasks connected to
@@ -482,7 +461,7 @@ class SharingManagerSchedule {
     private func computeNewParentKeys (_ hiddenID:Int) -> Array<NSMutableDictionary>? {
         var dict:NSMutableDictionary?
         var result = self.Schedule.filter({return ($0.hiddenID == hiddenID) && ($0.schedule == "stopped")})
-        var executed:[NSMutableDictionary]?
+        var executed:Array<NSMutableDictionary>?
         if result.count > 0 {
             let scheduleConfig = result[0]
             
@@ -506,7 +485,7 @@ class SharingManagerSchedule {
     // Setting updated executes to schedule.
     // Used when a group is set from active to "stopped"
     private func updateExecutedNewKey (_ hiddenID:Int) {
-        let executed:[NSMutableDictionary]? = self.computeNewParentKeys(hiddenID)
+        let executed:Array<NSMutableDictionary>? = self.computeNewParentKeys(hiddenID)
         loop : for i in 0 ..< self.Schedule.count {
             if self.Schedule[i].hiddenID == hiddenID {
                 if executed != nil {
