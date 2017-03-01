@@ -188,6 +188,7 @@ class ScheduleSortedAndExpand {
     }
     
     
+    // Info about next remote servers and paths for scheduled backup.
     func remoteServerAndPathNextTwoTasks() -> Array<String> {
         var dict1:NSDictionary?
         var dict2:NSDictionary?
@@ -324,7 +325,6 @@ class ScheduleSortedAndExpand {
     // Calculation of time to a spesific date
     // Used in view of all tasks
     func timeString (_ startdate:Date, enddate:Date?) -> String {
-        
         var result:String?
         let seconds:Double = self.seconds(startdate, enddate: enddate)
         let (hr,  minf) = modf (seconds / 3600)
@@ -356,14 +356,12 @@ class ScheduleSortedAndExpand {
     }
     
     /// Function is reading Schedule plans and transform plans to
-    /// array of NSDictionary. Used for presenting Schedule in tableViews
+    /// array of NSDictionary.
     /// - returns : none
     private func createScheduleAsNSDictionary () {
-        
         guard self.ScheduleAsConfiguration != nil else {
             return
         }
-        
         var data = Array<NSDictionary>()
         for i in 0 ..< self.ScheduleAsConfiguration!.count {
             if self.ScheduleAsConfiguration![i].dateStop != nil {
