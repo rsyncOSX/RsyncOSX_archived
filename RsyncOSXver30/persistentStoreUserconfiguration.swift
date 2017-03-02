@@ -8,14 +8,14 @@
 
 import Foundation
 
-final class persistentStoreUserconfiguration : readwritefiles {
+final class persistentStoreUserconfiguration: readwritefiles {
     
     /// Variable holds all configuration data
-    private var userconfiguration : [NSDictionary]?
+    private var userconfiguration : Array<NSDictionary>?
     
     /// Function reads configurations from permanent store
     /// - returns : array of NSDictonarys, return might be nil
-    func readUserconfigurationsFromPermanentStore() ->  [NSDictionary]? {
+    func readUserconfigurationsFromPermanentStore() -> Array<NSDictionary>? {
         return self.userconfiguration
     }
 
@@ -76,7 +76,6 @@ final class persistentStoreUserconfiguration : readwritefiles {
         // Getting the object just for the write method, no read from persistent store
         _ = self.writeDictionarytofile(array, task: .userconfig)
     }
-
 
     init () {
         // Create the readwritefiles object
