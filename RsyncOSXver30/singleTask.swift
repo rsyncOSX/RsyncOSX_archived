@@ -21,42 +21,39 @@ enum singleWorkTask {
 final class singleTask {
 
     // Work Queue
-    private var work:[singleWorkTask]?
+    private var work:Array<singleWorkTask>?
     
     // Returns the top most element.
     // Top element is read only
     func peek() -> singleWorkTask {
-        if (self.work != nil) {
-            if self.work!.count > 0 {
-                return self.work![0]
-            } else {
-                return .empty
-            }
-        } else {
+        guard self.work != nil else {
             return .empty
         }
+        guard self.work!.count > 0 else {
+            return .empty
+        }
+        return self.work![0]
     }
     
     // Returns the top most element.
     // Top element is removed
     func pop() -> singleWorkTask {
-        if (self.work != nil) {
-            if self.work!.count > 0 {
-                return self.work!.removeFirst()
-            } else {
-                return .empty
-            }
-        } else {
+        guard self.work != nil else {
             return .empty
         }
+        guard self.work!.count > 0 else {
+            return .empty
+        }
+        return self.work!.removeFirst()
     }
     
     // rsync error
     // Pushing error token ontop of stack
     func error() {
-        if (self.work != nil) {
-            self.work!.insert(.error, at: 0)
+        guard self.work != nil else {
+            return
         }
+        self.work!.insert(.error, at: 0)
     }
     
     // Single run

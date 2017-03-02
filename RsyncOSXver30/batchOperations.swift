@@ -78,7 +78,7 @@ final class batchOperations {
         self.batchQueu.removeAll()
     }
     
-    init (batchtasks : [configuration]) {
+    init (batchtasks : Array<configuration>) {
         for i in 0 ..< batchtasks.count {
             let row:NSMutableDictionary = [
                 "taskCellID": batchtasks[i].task,

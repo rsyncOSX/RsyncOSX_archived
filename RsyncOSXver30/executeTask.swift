@@ -35,7 +35,9 @@ class executeTask : Operation {
                 guard configArray.count > 0 else {
                     if let pvc = SharingManagerConfiguration.sharedInstance.ViewObjectMain as? ViewControllertabMain {
                         notify_delegate = pvc
-                        notify_delegate?.notifyScheduledJob(config: nil)
+                        if (SharingManagerConfiguration.sharedInstance.allowNotifyinMain == true) {
+                            notify_delegate?.notifyScheduledJob(config: nil)
+                        }
                     }
                     return
                 }
