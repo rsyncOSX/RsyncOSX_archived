@@ -56,5 +56,9 @@
 	<string>https://dl.dropboxusercontent.com/u/52503631/RsyncOSX.dmg?dl=0</string>
 	<key>3.9.1</key>
 	<string>https://dl.dropboxusercontent.com/u/52503631/RsyncOSX.dmg?dl=0</string>
+	<key>3.9.5</key>
+	<string>https://github.com/rsyncOSX/Version3.x/releases/download/v3.9.7/RsyncOSX.dmg</string>
+	<key>3.9.6</key>
+	<string>https://github.com/rsyncOSX/Version3.x/releases/download/v3.9.7/RsyncOSX.dmg</string>
 </dict>
 </plist>
