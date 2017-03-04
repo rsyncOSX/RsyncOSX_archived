@@ -19,14 +19,13 @@ class ViewControllerCopyFilesSource : NSViewController {
     
     // Dismisser
     weak var dismiss_delegate:DismissViewController?
+    // Set index
+    weak var setIndex_delegate:ViewControllerCopyFiles?
     
     // ACTIONS AND BUTTONS
     @IBAction func Close(_ sender: NSButton) {
         self.dismiss_delegate?.dismiss_view(viewcontroller: self)
     }
-    
-    // Selected hiddenID
-    var object:NSDictionary?
     
     // Initial functions viewDidLoad and viewDidAppear
     override func viewDidLoad() {
@@ -57,9 +56,15 @@ class ViewControllerCopyFilesSource : NSViewController {
         let myTableViewFromNotification = notification.object as! NSTableView
         let indexes = myTableViewFromNotification.selectedRowIndexes
         if let index = indexes.first {
-            self.object = SharingManagerConfiguration.sharedInstance.getConfigurationsDataSourcecountBackupOnly()![index]
-        } else {
-            self.object = nil
+            if let pvc = self.presenting as? ViewControllerCopyFiles {
+                self.setIndex_delegate = pvc
+                let object = SharingManagerConfiguration.sharedInstance.getConfigurationsDataSourcecountBackupOnly()![index]
+                let hiddenID = object.value(forKey: "hiddenID") as? Int
+                guard hiddenID != nil else {
+                    return
+                }
+                self.setIndex_delegate?.SetIndex(Index: SharingManagerConfiguration.sharedInstance.getIndex(hiddenID!)) 
+            }
         }
     }
     

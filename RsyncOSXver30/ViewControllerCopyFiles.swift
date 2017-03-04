@@ -9,6 +9,10 @@
 import Foundation
 import Cocoa
 
+protocol setIndex:class {
+    func SetIndex(Index:Int)
+}
+
 class ViewControllerCopyFiles : NSViewController {
     
     // Object to hold search data
@@ -92,33 +96,38 @@ class ViewControllerCopyFiles : NSViewController {
     // Getting index from Execute View
     @IBAction func GetIndex(_ sender: NSButton) {
         self.copyObject = nil
-        if let pvc = SharingManagerConfiguration.sharedInstance.ViewObjectMain as? ViewControllertabMain {
-            self.index_delegate = pvc
-            self.index = self.index_delegate?.getindex()
-        }
         if let index = self.index {
             self.copyObject = CopyFiles(index: index)
             self.working.startAnimation(nil)
             self.displayRemoteserver(index: index)
         } else {
-            // Empty tabledata
-            self.filesArray = nil
-            self.refresh()
-            self.displayRemoteserver(index: nil)
+            // Reset search data
+            self.resetCopySource()
             // Get Copy Source
             self.presentViewControllerAsSheet(self.ViewControllerSource)
         }
     }
-        
-    private func displayRemoteserver(index:Int?) {
+    
+    // Reset copy source
+    fileprivate func resetCopySource() {
+        // Empty tabledata
+        self.index = nil
+        self.filesArray = nil
+        self.refresh()
+        self.displayRemoteserver(index: nil)
+    }
+    
+    fileprivate func displayRemoteserver(index:Int?) {
         guard index != nil else {
             self.server.stringValue = ""
             self.rcatalog.stringValue = ""
             return
         }
         let hiddenID = SharingManagerConfiguration.sharedInstance.gethiddenID(index: index!)
-        self.server.stringValue = SharingManagerConfiguration.sharedInstance.getResourceConfiguration(hiddenID, resource: .offsiteServer)
-        self.rcatalog.stringValue = SharingManagerConfiguration.sharedInstance.getResourceConfiguration(hiddenID, resource: .remoteCatalog)
+        GlobalMainQueue.async(execute: { () -> Void in
+            self.server.stringValue = SharingManagerConfiguration.sharedInstance.getResourceConfiguration(hiddenID, resource: .offsiteServer)
+            self.rcatalog.stringValue = SharingManagerConfiguration.sharedInstance.getResourceConfiguration(hiddenID, resource: .remoteCatalog)
+        })
     }
     
     override func viewDidLoad() {
@@ -139,8 +148,17 @@ class ViewControllerCopyFiles : NSViewController {
     
     override func viewDidAppear() {
         super.viewDidAppear()
+        if let pvc = SharingManagerConfiguration.sharedInstance.ViewObjectMain as? ViewControllertabMain {
+            self.index_delegate = pvc
+            self.index = self.index_delegate?.getindex()
+        }
         self.CopyButton.title = "Estimate"
         self.localCatalog.stringValue = ""
+    }
+    
+    override func viewDidDisappear() {
+        super.viewDidDisappear()
+        self.resetCopySource()
     }
     
 }
@@ -326,5 +344,12 @@ extension ViewControllerCopyFiles: GetPath {
         if let setpath = path {
             self.localCatalog.stringValue = setpath
         }
+    }
+}
+
+extension ViewControllerCopyFiles: setIndex {
+    func SetIndex(Index: Int) {
+        self.index = Index
+        self.displayRemoteserver(index: Index)
     }
 }
