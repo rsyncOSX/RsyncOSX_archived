@@ -10,11 +10,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "RsyncOSXver30/ViewControllerCopyFiles.swift"
-            timestampString = "510337665.595258"
+            timestampString = "510338297.217093"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "351"
-            endingLineNumber = "351"
+            startingLineNumber = "355"
+            endingLineNumber = "355"
             landmarkName = "SetIndex(Index:)"
             landmarkType = "7">
          </BreakpointContent>

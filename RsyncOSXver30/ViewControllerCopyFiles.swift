@@ -108,6 +108,10 @@ class ViewControllerCopyFiles : NSViewController {
         }
     }
     
+    @IBAction func Reset(_ sender: NSButton) {
+        self.resetCopySource()
+    }
+    
     // Reset copy source
     fileprivate func resetCopySource() {
         // Empty tabledata
