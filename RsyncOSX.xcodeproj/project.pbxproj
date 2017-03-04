@@ -62,6 +62,7 @@
 		E9374D2C1E3299E800CD3945 /* executeTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9374D2B1E3299E800CD3945 /* executeTask.swift */; };
 		E9374D2E1E329A5800CD3945 /* completeScheduledOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9374D2D1E329A5800CD3945 /* completeScheduledOperation.swift */; };
 		E96CA1FE1E094C3000CD1D03 /* Resources.swift in Sources */ = {isa = PBXBuildFile; fileRef = E96CA1FD1E094C3000CD1D03 /* Resources.swift */; };
+		E9E763711E6AEA5300B45E8D /* ViewControllerCopyFilesSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9E763701E6AEA5300B45E8D /* ViewControllerCopyFilesSource.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -123,6 +124,7 @@
 		E9374D2B1E3299E800CD3945 /* executeTask.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = executeTask.swift; sourceTree = "<group>"; };
 		E9374D2D1E329A5800CD3945 /* completeScheduledOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = completeScheduledOperation.swift; sourceTree = "<group>"; };
 		E96CA1FD1E094C3000CD1D03 /* Resources.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Resources.swift; sourceTree = "<group>"; };
+		E9E763701E6AEA5300B45E8D /* ViewControllerCopyFilesSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewControllerCopyFilesSource.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -253,6 +255,7 @@
 				A03876E01DB4FD9D00C14AEA /* ViewControllerProfile.swift */,
 				A0F3F9241DC65CE9001D305F /* ViewControllerScheduledBackupInWork.swift */,
 				A0FAF5CE1DDF2E5F0009FE7A /* ViewControllerAbout.swift */,
+				E9E763701E6AEA5300B45E8D /* ViewControllerCopyFilesSource.swift */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -417,6 +420,7 @@
 				A00FE1AA1D6A1AAB00012089 /* alerts.swift in Sources */,
 				A0F2E20C1D6D91AA0091E8BF /* userconfiguration.swift in Sources */,
 				A0762A1F1DB4A8F000538CE9 /* profiles.swift in Sources */,
+				E9E763711E6AEA5300B45E8D /* ViewControllerCopyFilesSource.swift in Sources */,
 				A0FC45641D9545CC005208EF /* ScheduleLoggData.swift in Sources */,
 				A04492A91D658F2100B3CE17 /* ytcpsocket.c in Sources */,
 				E9374D2C1E3299E800CD3945 /* executeTask.swift in Sources */,

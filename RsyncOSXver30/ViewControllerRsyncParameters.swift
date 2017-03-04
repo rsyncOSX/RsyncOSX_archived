@@ -19,7 +19,7 @@ protocol RsyncUserParams : class {
 // Protocol for sending selected index in tableView
 // The protocol is implemented in ViewControllertabMain
 protocol GetSelecetedIndex : class {
-    func getindex() -> Int
+    func getindex() -> Int?
 }
 
 class ViewControllerRsyncParameters: NSViewController {

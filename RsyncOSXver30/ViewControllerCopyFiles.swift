@@ -32,6 +32,13 @@ class ViewControllerCopyFiles : NSViewController {
             as! NSViewController
     }()
     
+    // Source for CopyFiles
+    // self.presentViewControllerAsSheet(self.ViewControllerAbout)
+    lazy var ViewControllerSource: NSViewController = {
+        return self.storyboard!.instantiateController(withIdentifier: "CopyFilesID")
+            as! NSViewController
+    }()
+    
      // Set localcatalog to filePath
     @IBAction func copyToIcon(_ sender: NSButton) {
         _ = FileDialog(requester: .CopyFilesTo)
@@ -46,7 +53,7 @@ class ViewControllerCopyFiles : NSViewController {
     
     @IBOutlet weak var tableViewSelect: NSTableView!
     // Array to display in tableview
-    var filesArray:[String]?
+    fileprivate var filesArray:[String]?
     // Present the commandstring
     @IBOutlet weak var commandString: NSTextField!
     @IBOutlet weak var remoteCatalog: NSTextField!
@@ -89,17 +96,27 @@ class ViewControllerCopyFiles : NSViewController {
             self.index_delegate = pvc
             self.index = self.index_delegate?.getindex()
         }
-        if (self.index! > -1) {
-            self.copyObject = CopyFiles(index: self.index!)
+        if let index = self.index {
+            self.copyObject = CopyFiles(index: index)
             self.working.startAnimation(nil)
-            self.displayRemoteserver(index: self.index!)
+            self.displayRemoteserver(index: index)
         } else {
-            Alerts.showInfo("Please select a ROW in Execute window!")
+            // Empty tabledata
+            self.filesArray = nil
+            self.refresh()
+            self.displayRemoteserver(index: nil)
+            // Get Copy Source
+            self.presentViewControllerAsSheet(self.ViewControllerSource)
         }
     }
         
-    private func displayRemoteserver(index:Int) {
-        let hiddenID = SharingManagerConfiguration.sharedInstance.gethiddenID(index: index)
+    private func displayRemoteserver(index:Int?) {
+        guard index != nil else {
+            self.server.stringValue = ""
+            self.rcatalog.stringValue = ""
+            return
+        }
+        let hiddenID = SharingManagerConfiguration.sharedInstance.gethiddenID(index: index!)
         self.server.stringValue = SharingManagerConfiguration.sharedInstance.getResourceConfiguration(hiddenID, resource: .offsiteServer)
         self.rcatalog.stringValue = SharingManagerConfiguration.sharedInstance.getResourceConfiguration(hiddenID, resource: .remoteCatalog)
     }
@@ -117,7 +134,6 @@ class ViewControllerCopyFiles : NSViewController {
         self.working.usesThreadedAnimation = true
         self.workingRsync.usesThreadedAnimation = true
         self.search.delegate = self
-        
         self.localCatalog.delegate = self
     }
     
