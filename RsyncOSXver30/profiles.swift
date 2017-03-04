@@ -31,8 +31,8 @@ final class profiles {
     }
     
     // Function for returning directorys in path as array of URLs
-    private func getDirectorysURLs () -> [URL] {
-        var array:[URL] = [URL]()
+    private func getDirectorysURLs () -> Array<URL> {
+        var array:Array<URL> = Array<URL>()
         if let filePath = self.profileRoot {
             if let fileURLs = self.getfileURLs(path: filePath) {
                 for i in 0 ..< fileURLs.count {
@@ -47,8 +47,8 @@ final class profiles {
     }
     
     // Function for returning profiles as array of Strings
-    func getDirectorysStrings()-> [String] {
-        var array:[String] = [String]()
+    func getDirectorysStrings()-> Array<String> {
+        var array:Array<String> = Array<String>()
         if let filePath = self.profileRoot {
             if let fileURLs = self.getfileURLs(path: filePath) {
                 for i in 0 ..< fileURLs.count {
@@ -118,7 +118,7 @@ final class profiles {
 
     
     // Function for setting fileURLs for a given path
-    private func getfileURLs (path:String) -> [URL]? {
+    private func getfileURLs (path:String) -> Array<URL>? {
         let fileManager = FileManager.default
         if let filepath = URL.init(string: path) {
             do {

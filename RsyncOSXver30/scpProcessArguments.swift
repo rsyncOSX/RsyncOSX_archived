@@ -76,9 +76,16 @@ final class scpProcessArguments {
             self.args.append(offsiteArguments)
             postfix2 = self.config!.offsiteServer + "_" + postfix
         }
-        self.args.append(self.config!.localCatalog + "." + postfix2!)
+        
+        // self.args.append(self.config!.localCatalog + "." + postfix2!)
+        // self.command = "/usr/bin/scp"
+        // self.file = self.config!.localCatalog + "." + postfix2!
+        // We just create the .files in root Documents directory
+        let paths = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true) as NSArray
+        let docuDir = paths.firstObject as! String
+        self.args.append(docuDir + "/" + "." + postfix2!)
         self.command = "/usr/bin/scp"
-        self.file = self.config!.localCatalog + "." + postfix2!
+        self.file = docuDir + "/" + "." + postfix2!
     }
     
     init (task : enumscpTasks, config : configuration, remoteFile : String?, localCatalog : String?, drynrun:Bool?) {
