@@ -89,6 +89,7 @@ final class CopyFiles {
         }
         
         if (self.work!.count > 0) {
+            self.output = nil
             let work:enumscpTasks = (self.work?.removeFirst())!
             self.argumentsObject = scpProcessArguments(task: work, config: self.config!, remoteFile: nil, localCatalog: nil, drynrun: nil)
             self.arguments = self.argumentsObject!.getArgs()
