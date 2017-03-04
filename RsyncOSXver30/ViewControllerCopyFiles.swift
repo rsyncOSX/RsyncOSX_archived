@@ -21,6 +21,7 @@ class ViewControllerCopyFiles : NSViewController {
     var index:Int?
     // Delegate for getting index from Execute view
     weak var index_delegate:GetSelecetedIndex?
+    
     // Info about server and remote catalogs
     @IBOutlet weak var server: NSTextField!
     @IBOutlet weak var rcatalog: NSTextField!
@@ -50,9 +51,10 @@ class ViewControllerCopyFiles : NSViewController {
     
     // Abort button
     @IBAction func Abort(_ sender: NSButton) {
-        if (self.copyObject != nil) {
-            self.copyObject!.Abort()
+        guard (self.copyObject != nil) else {
+            return
         }
+        self.copyObject!.Abort()
     }
     
     @IBOutlet weak var tableViewSelect: NSTableView!
@@ -122,7 +124,7 @@ class ViewControllerCopyFiles : NSViewController {
     }
     
     fileprivate func displayRemoteserver(index:Int?) {
-        guard index != nil else {
+        guard (index != nil) else {
             self.server.stringValue = ""
             self.rcatalog.stringValue = ""
             return
@@ -155,6 +157,9 @@ class ViewControllerCopyFiles : NSViewController {
         if let pvc = SharingManagerConfiguration.sharedInstance.ViewObjectMain as? ViewControllertabMain {
             self.index_delegate = pvc
             self.index = self.index_delegate?.getindex()
+            if let index = self.index {
+                self.displayRemoteserver(index: index)
+            }
         }
         self.CopyButton.title = "Estimate"
         self.localCatalog.stringValue = ""
@@ -184,6 +189,7 @@ extension ViewControllerCopyFiles: NSSearchFieldDelegate {
         }
         
     }
+    
     func searchFieldDidEndSearching(_ sender: NSSearchField){
         GlobalMainQueue.async(execute: { () -> Void in
             self.filesArray = self.copyObject?.filter(search: nil)
@@ -196,16 +202,15 @@ extension ViewControllerCopyFiles: NSSearchFieldDelegate {
 extension ViewControllerCopyFiles: NSTableViewDataSource {
     
     func numberOfRows(in tableViewMaster: NSTableView) -> Int {
-        if (self.filesArray != nil) {
-            return (self.filesArray?.count)!
-        } else {
+        guard self.filesArray != nil else {
             return 0
         }
+        return self.filesArray!.count
     }
 }
 
 
-extension ViewControllerCopyFiles : NSTableViewDelegate {
+extension ViewControllerCopyFiles: NSTableViewDelegate {
     
     func tableView(_ tableView: NSTableView, viewFor tableColumn: NSTableColumn?, row: Int) -> NSView? {
         var text:String?
