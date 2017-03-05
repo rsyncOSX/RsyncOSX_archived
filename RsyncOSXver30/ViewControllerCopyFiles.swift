@@ -121,6 +121,9 @@ class ViewControllerCopyFiles : NSViewController {
         self.filesArray = nil
         self.refresh()
         self.displayRemoteserver(index: nil)
+        self.remoteCatalog.stringValue = ""
+        self.localCatalog.stringValue = ""
+        
     }
     
     fileprivate func displayRemoteserver(index:Int?) {
