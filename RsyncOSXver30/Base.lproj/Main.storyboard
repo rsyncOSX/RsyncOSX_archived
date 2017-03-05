@@ -1033,7 +1033,7 @@
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
-                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="hhm-KY-QVD">
+                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="hhm-KY-QVD" userLabel="Select Button">
                                 <rect key="frame" x="726" y="307" width="93" height="32"/>
                                 <buttonCell key="cell" type="push" title="Select" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="m6v-Vt-u5d">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -1178,6 +1178,7 @@
                     </view>
                     <connections>
                         <outlet property="CopyButton" destination="HvM-lg-JjX" id="RIx-1n-Z4j"/>
+                        <outlet property="SelectButton" destination="hhm-KY-QVD" id="CcP-B9-XaL"/>
                         <outlet property="commandString" destination="XwF-K5-R4q" id="wSn-jP-VtU"/>
                         <outlet property="localCatalog" destination="L6A-JJ-Mvd" id="Nkp-wQ-iEO"/>
                         <outlet property="rcatalog" destination="zPh-wH-B2h" id="Bhx-Mo-gre"/>

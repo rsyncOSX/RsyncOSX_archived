@@ -70,7 +70,8 @@ class ViewControllerCopyFiles : NSViewController {
     // Search field
     @IBOutlet weak var search: NSSearchField!
     @IBOutlet weak var CopyButton: NSButton!
-   
+    // Select source button
+    @IBOutlet weak var SelectButton: NSButton!
     
     // Do the work
     @IBAction func Copy(_ sender: NSButton) {
@@ -123,6 +124,7 @@ class ViewControllerCopyFiles : NSViewController {
         self.displayRemoteserver(index: nil)
         self.remoteCatalog.stringValue = ""
         self.localCatalog.stringValue = ""
+        self.SelectButton.title = "Get source"
         
     }
     
@@ -130,6 +132,7 @@ class ViewControllerCopyFiles : NSViewController {
         guard (index != nil) else {
             self.server.stringValue = ""
             self.rcatalog.stringValue = ""
+            self.SelectButton.title = "Get source"
             return
         }
         let hiddenID = SharingManagerConfiguration.sharedInstance.gethiddenID(index: index!)
@@ -137,6 +140,7 @@ class ViewControllerCopyFiles : NSViewController {
             self.server.stringValue = SharingManagerConfiguration.sharedInstance.getResourceConfiguration(hiddenID, resource: .offsiteServer)
             self.rcatalog.stringValue = SharingManagerConfiguration.sharedInstance.getResourceConfiguration(hiddenID, resource: .remoteCatalog)
         })
+        self.SelectButton.title = "Get files"
     }
     
     override func viewDidLoad() {
