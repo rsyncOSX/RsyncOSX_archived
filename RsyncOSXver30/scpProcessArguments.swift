@@ -12,7 +12,7 @@ import Foundation
 enum enumscpTasks {
     case create
     case scpFind
-    case copy
+    case rsync
 }
 
 final class scpProcessArguments {
@@ -27,10 +27,6 @@ final class scpProcessArguments {
     private var command:String?
     // config, is set in init
     private var config:configuration?
-    // Output of NSTask
-    private var output:Array<String>?
-    
-    private var stringArray:Array<String>?
     
     // Getting arguments
     func getArguments() -> Array<String>? {
@@ -58,20 +54,17 @@ final class scpProcessArguments {
         return stringArray
     }
 
-    
     init (task : enumscpTasks, config : configuration, remoteFile : String?, localCatalog : String?, drynrun:Bool?) {
         
         // Initialize the argument array
         self.arguments = nil
         self.arguments = Array<String>()
-        // Initialize the output
-        self.output = nil
-        self.output = Array<String>()
         // Set config
         self.config = config
         
         switch (task) {
         case .create:
+            // Remote creating the file.txt
             let arguments = filetxtArguments(config: config)
             self.arguments = arguments.getArguments()
             self.command = arguments.getCommand()
@@ -82,7 +75,8 @@ final class scpProcessArguments {
             self.arguments = arguments.getArguments()
             self.command = arguments.getCommand()
             self.file = arguments.getFile()
-        case .copy:
+        case .rsync:
+            // Arguments for rsync
             let arguments = rsyncArguments(config: config, remoteFile: remoteFile, localCatalog: localCatalog, drynrun: drynrun)
             self.arguments = arguments.getArguments()
             self.command = arguments.getCommand()

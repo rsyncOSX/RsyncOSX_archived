@@ -54,10 +54,10 @@ final class CopyFiles {
     // Execute Process (either dryrun or realrun)
     func execute(remotefile:String, localCatalog:String, dryrun:Bool) {
         if(dryrun) {
-            self.argumentsObject = scpProcessArguments(task: .copy, config: self.config!, remoteFile: remotefile, localCatalog: localCatalog, drynrun: true)
+            self.argumentsObject = scpProcessArguments(task: .rsync, config: self.config!, remoteFile: remotefile, localCatalog: localCatalog, drynrun: true)
             self.arguments = self.argumentsObject!.getArguments()
         } else {
-            self.argumentsObject = scpProcessArguments(task: .copy, config: self.config!, remoteFile: remotefile, localCatalog: localCatalog, drynrun: nil)
+            self.argumentsObject = scpProcessArguments(task: .rsync, config: self.config!, remoteFile: remotefile, localCatalog: localCatalog, drynrun: nil)
             self.arguments = self.argumentsObject!.getArguments()
         }
         self.command = nil
@@ -69,7 +69,7 @@ final class CopyFiles {
     
     // Get arguments for rsync to show
     func getCommandDisplayinView(remotefile:String, localCatalog:String) -> String? {
-        self.commandDisplay = scpProcessArguments(task: .copy, config: self.config!, remoteFile: remotefile, localCatalog: localCatalog, drynrun: true).getcommandDisplay()
+        self.commandDisplay = scpProcessArguments(task: .rsync, config: self.config!, remoteFile: remotefile, localCatalog: localCatalog, drynrun: true).getcommandDisplay()
         return self.commandDisplay
     }
     
