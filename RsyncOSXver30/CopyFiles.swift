@@ -55,10 +55,10 @@ final class CopyFiles {
     func execute(remotefile:String, localCatalog:String, dryrun:Bool) {
         if(dryrun) {
             self.argumentsObject = scpProcessArguments(task: .copy, config: self.config!, remoteFile: remotefile, localCatalog: localCatalog, drynrun: true)
-            self.arguments = self.argumentsObject!.getArgs()
+            self.arguments = self.argumentsObject!.getArguments()
         } else {
             self.argumentsObject = scpProcessArguments(task: .copy, config: self.config!, remoteFile: remotefile, localCatalog: localCatalog, drynrun: nil)
-            self.arguments = self.argumentsObject!.getArgs()
+            self.arguments = self.argumentsObject!.getArguments()
         }
         self.command = nil
         self.output = nil
@@ -92,7 +92,7 @@ final class CopyFiles {
             self.output = nil
             let work:enumscpTasks = (self.work?.removeFirst())!
             self.argumentsObject = scpProcessArguments(task: work, config: self.config!, remoteFile: nil, localCatalog: nil, drynrun: nil)
-            self.arguments = self.argumentsObject!.getArgs()
+            self.arguments = self.argumentsObject!.getArguments()
             self.command = self.argumentsObject!.getCommand()
             self.task = RsyncProcess(operation: false, tabMain: false, command : self.command)
             self.output = outputProcess()
