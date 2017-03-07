@@ -82,12 +82,12 @@ class ViewControllerCopyFiles : NSViewController {
                 self.rsync = true
                 self.workingRsync.startAnimation(nil)
                 if (self.estimated == false) {
-                    self.copyObject!.execute(remotefile: remoteCatalog!.stringValue, localCatalog: localCatalog!.stringValue, dryrun: true)
+                    self.copyObject!.executeRsync(remotefile: remoteCatalog!.stringValue, localCatalog: localCatalog!.stringValue, dryrun: true)
                     self.CopyButton.title = "Execute"
                     self.estimated = true
                 } else {
                     self.workingRsync.startAnimation(nil)
-                    self.copyObject!.execute(remotefile: remoteCatalog!.stringValue, localCatalog: localCatalog!.stringValue, dryrun: false)
+                    self.copyObject!.executeRsync(remotefile: remoteCatalog!.stringValue, localCatalog: localCatalog!.stringValue, dryrun: false)
                     self.estimated = false
                 }
             } else {

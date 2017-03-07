@@ -9,9 +9,9 @@
 import Foundation
 
 
-enum enumscpTasks {
+enum enumscopyfiles {
     case create
-    case scpFind
+    case scp
     case rsync
 }
 
@@ -54,7 +54,7 @@ final class scpProcessArguments {
         return stringArray
     }
 
-    init (task : enumscpTasks, config : configuration, remoteFile : String?, localCatalog : String?, drynrun:Bool?) {
+    init (task : enumscopyfiles, config : configuration, remoteFile : String?, localCatalog : String?, drynrun:Bool?) {
         
         // Initialize the argument array
         self.arguments = nil
@@ -69,7 +69,7 @@ final class scpProcessArguments {
             self.arguments = arguments.getArguments()
             self.command = arguments.getCommand()
             self.file = arguments.getFile()
-        case .scpFind:
+        case .scp:
             // For SCP copy result of find . -name from server to local store
             let arguments = scpArguments(config: config, postfix: "files.txt")
             self.arguments = arguments.getArguments()

@@ -13,7 +13,7 @@ final class CopyFiles {
     // Index from View
     private var index:Int?
     // stack of Work
-    private var work:Array<enumscpTasks>?
+    private var work:Array<enumscopyfiles>?
     // Setting the configuration element according to index
     private var config:configuration?
     // when files.txt is copied from remote server get the records
@@ -46,13 +46,14 @@ final class CopyFiles {
     
     // Abort operation, terminate process
     func Abort() {
-        if (self.task != nil) {
-            self.task!.abortProcess()
+        guard self.task != nil else {
+            return
         }
+        self.task!.abortProcess()
     }
     
     // Execute Process (either dryrun or realrun)
-    func execute(remotefile:String, localCatalog:String, dryrun:Bool) {
+    func executeRsync(remotefile:String, localCatalog:String, dryrun:Bool) {
         if(dryrun) {
             self.argumentsObject = scpProcessArguments(task: .rsync, config: self.config!, remoteFile: remotefile, localCatalog: localCatalog, drynrun: true)
             self.arguments = self.argumentsObject!.getArguments()
@@ -81,7 +82,7 @@ final class CopyFiles {
     
     // The work stack.
     // This is the initial work when selecting a row to restore from.
-    // The stack is .create and .scpFind
+    // The stack is .create and .scp
     private func doWork() {
         
         guard (self.work != nil) else {
@@ -90,7 +91,7 @@ final class CopyFiles {
         
         if (self.work!.count > 0) {
             self.output = nil
-            let work:enumscpTasks = (self.work?.removeFirst())!
+            let work:enumscopyfiles = self.work!.removeFirst()
             self.argumentsObject = scpProcessArguments(task: work, config: self.config!, remoteFile: nil, localCatalog: nil, drynrun: nil)
             self.arguments = self.argumentsObject!.getArguments()
             self.command = self.argumentsObject!.getCommand()
@@ -99,7 +100,7 @@ final class CopyFiles {
             self.task!.executeProcess(self.arguments!, output: self.output!)
         } else {
             // Files.txt are ready to read
-            self.files = self.argumentsObject?.getSearchfile()
+            self.files = self.argumentsObject!.getSearchfile()
             if let pvc = SharingManagerConfiguration.sharedInstance.CopyObjectMain as? ViewControllerCopyFiles {
                 self.progress_delegate = pvc
                 self.refreshtable_delegate = pvc
@@ -135,11 +136,10 @@ final class CopyFiles {
         self.index = index
         self.config = SharingManagerConfiguration.sharedInstance.getConfigurations()[self.index!]
         // Create inital stack of work
-        self.work = Array<enumscpTasks>()
-        // Append workload in reverse order
+        self.work = Array<enumscopyfiles>()
         // Work are poped of top of stack
         self.work!.append(.create)
-        self.work!.append(.scpFind)
+        self.work!.append(.scp)
         // Do first part of job
         self.doWork()
     }
