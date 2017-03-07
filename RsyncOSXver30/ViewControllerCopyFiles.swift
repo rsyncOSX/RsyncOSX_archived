@@ -9,8 +9,12 @@
 import Foundation
 import Cocoa
 
-protocol setIndex:class {
+protocol setIndex: class {
     func SetIndex(Index:Int)
+}
+
+protocol getSource: class {
+    func GetSource(Index:Int)
 }
 
 class ViewControllerCopyFiles : NSViewController {
@@ -367,5 +371,17 @@ extension ViewControllerCopyFiles: setIndex {
     func SetIndex(Index: Int) {
         self.index = Index
         self.displayRemoteserver(index: Index)
+    }
+}
+
+extension ViewControllerCopyFiles: getSource {
+    func GetSource(Index: Int) {
+        self.index = Index
+        self.displayRemoteserver(index: Index)
+        if let index = self.index {
+            self.copyObject = CopyFiles(index: index)
+            self.working.startAnimation(nil)
+            self.displayRemoteserver(index: index)
+        }
     }
 }

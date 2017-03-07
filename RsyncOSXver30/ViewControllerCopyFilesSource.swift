@@ -21,6 +21,10 @@ class ViewControllerCopyFilesSource : NSViewController {
     weak var dismiss_delegate:DismissViewController?
     // Set index
     weak var setIndex_delegate:ViewControllerCopyFiles?
+    // GetSource
+    weak var getSource_delegate:ViewControllerCopyFiles?
+    // Index
+    private var index:Int?
     
     // ACTIONS AND BUTTONS
     @IBAction func Close(_ sender: NSButton) {
@@ -46,7 +50,10 @@ class ViewControllerCopyFilesSource : NSViewController {
     }
     
     @objc(tableViewDoubleClick:) func tableViewDoubleClick(sender:AnyObject) {
-        
+        if let pvc = self.presenting as? ViewControllerCopyFiles {
+            self.getSource_delegate = pvc
+            self.getSource_delegate?.GetSource(Index: self.index!)
+        }
         self.dismiss_delegate?.dismiss_view(viewcontroller: self)
     }
     
@@ -63,7 +70,8 @@ class ViewControllerCopyFilesSource : NSViewController {
                 guard hiddenID != nil else {
                     return
                 }
-                self.setIndex_delegate?.SetIndex(Index: SharingManagerConfiguration.sharedInstance.getIndex(hiddenID!)) 
+                self.index = SharingManagerConfiguration.sharedInstance.getIndex(hiddenID!)
+                self.setIndex_delegate?.SetIndex(Index: self.index!)
             }
         }
     }
