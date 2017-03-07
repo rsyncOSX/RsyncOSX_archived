@@ -28,7 +28,7 @@ To compile the code, install Xcode and open the RsyncOSX project file. Before co
 
 ### Graphics
 
-I have uplodaded the [Gimp file](https://github.com/rsyncOSX/RsyncOSXicon) which is base for the RsyncOSX icon. [Help](https://github.com/rsyncOSX/RsyncOSXicon/issues/1) is wanted to create a better looking icon.
+From version 4.0.0 there is a new application icon for RsyncOSX. The new icon is created by [Forrest Walter](http://www.forrestwalter.com/). 
 
 ### How to use RsyncOSX
 
