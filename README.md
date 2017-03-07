@@ -4,7 +4,7 @@ The repository is source code for the macOS application RsyncOSX. The applicatio
 
 ### MacUpdate
 
-RsyncOSX is also released on [MacUpdate](https://www.macupdate.com/app/mac/56516/rsyncosx) as well. The application is downloaded about 6,800 times from MacUpdate (all versions, January 2017). There is also a [Google Blog](https://rsyncosx.blogspot.no/) about RsyncOSX. Many users download RsyncOSX from the blog. RsyncOSX does also  inform users about new releases and link to download new version. 
+RsyncOSX is also released on [MacUpdate](https://www.macupdate.com/app/mac/56516/rsyncosx) as well. The application is downloaded about 7,500 times from MacUpdate (all versions, March 2017). There is also a [Google Blog](https://rsyncosx.blogspot.no/) about RsyncOSX. Many users download RsyncOSX from the blog. RsyncOSX does also  inform users about new releases and link to download new version. 
 
 To be honest, I have **no idea** how many users of RsyncOSX there is. 
 
