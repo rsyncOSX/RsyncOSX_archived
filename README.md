@@ -26,7 +26,7 @@ In RsyncOSX select [RsyncOSX configuration](https://github.com/rsyncOSX/Document
 To compile the code, install Xcode and open the RsyncOSX project file. Before compiling, open in Xcode, the `RsyncOSX/General` preference page (after opening the RsyncOSX project file) and replace your own credentials in `Signing`, or just disable Signing. Then compile your own version of RsyncOSX.
 
 
-### Graphics
+### Application icon
 
 From version 4.0.0 there is a new application icon for RsyncOSX. The new icon is created by [Forrest Walter](http://www.forrestwalter.com/). 
 

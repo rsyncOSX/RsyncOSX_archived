@@ -52,7 +52,9 @@ class ViewControllerCopyFilesSource : NSViewController {
     @objc(tableViewDoubleClick:) func tableViewDoubleClick(sender:AnyObject) {
         if let pvc = self.presenting as? ViewControllerCopyFiles {
             self.getSource_delegate = pvc
-            self.getSource_delegate?.GetSource(Index: self.index!)
+            if let index = self.index {
+                self.getSource_delegate?.GetSource(Index: index)
+            }
         }
         self.dismiss_delegate?.dismiss_view(viewcontroller: self)
     }
