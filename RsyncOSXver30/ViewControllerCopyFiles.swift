@@ -9,6 +9,14 @@
 import Foundation
 import Cocoa
 
+protocol setIndex: class {
+    func SetIndex(Index:Int)
+}
+
+protocol getSource: class {
+    func GetSource(Index:Int)
+}
+
 class ViewControllerCopyFiles : NSViewController {
     
     // Object to hold search data
@@ -17,6 +25,7 @@ class ViewControllerCopyFiles : NSViewController {
     var index:Int?
     // Delegate for getting index from Execute view
     weak var index_delegate:GetSelecetedIndex?
+    
     // Info about server and remote catalogs
     @IBOutlet weak var server: NSTextField!
     @IBOutlet weak var rcatalog: NSTextField!
@@ -32,6 +41,13 @@ class ViewControllerCopyFiles : NSViewController {
             as! NSViewController
     }()
     
+    // Source for CopyFiles
+    // self.presentViewControllerAsSheet(self.ViewControllerAbout)
+    lazy var ViewControllerSource: NSViewController = {
+        return self.storyboard!.instantiateController(withIdentifier: "CopyFilesID")
+            as! NSViewController
+    }()
+    
      // Set localcatalog to filePath
     @IBAction func copyToIcon(_ sender: NSButton) {
         _ = FileDialog(requester: .CopyFilesTo)
@@ -39,14 +55,15 @@ class ViewControllerCopyFiles : NSViewController {
     
     // Abort button
     @IBAction func Abort(_ sender: NSButton) {
-        if (self.copyObject != nil) {
-            self.copyObject!.Abort()
+        guard (self.copyObject != nil) else {
+            return
         }
+        self.copyObject!.Abort()
     }
     
     @IBOutlet weak var tableViewSelect: NSTableView!
     // Array to display in tableview
-    var filesArray:[String]?
+    fileprivate var filesArray:[String]?
     // Present the commandstring
     @IBOutlet weak var commandString: NSTextField!
     @IBOutlet weak var remoteCatalog: NSTextField!
@@ -57,7 +74,8 @@ class ViewControllerCopyFiles : NSViewController {
     // Search field
     @IBOutlet weak var search: NSSearchField!
     @IBOutlet weak var CopyButton: NSButton!
-   
+    // Select source button
+    @IBOutlet weak var SelectButton: NSButton!
     
     // Do the work
     @IBAction func Copy(_ sender: NSButton) {
@@ -68,12 +86,12 @@ class ViewControllerCopyFiles : NSViewController {
                 self.rsync = true
                 self.workingRsync.startAnimation(nil)
                 if (self.estimated == false) {
-                    self.copyObject!.execute(remotefile: remoteCatalog!.stringValue, localCatalog: localCatalog!.stringValue, dryrun: true)
+                    self.copyObject!.executeRsync(remotefile: remoteCatalog!.stringValue, localCatalog: localCatalog!.stringValue, dryrun: true)
                     self.CopyButton.title = "Execute"
                     self.estimated = true
                 } else {
                     self.workingRsync.startAnimation(nil)
-                    self.copyObject!.execute(remotefile: remoteCatalog!.stringValue, localCatalog: localCatalog!.stringValue, dryrun: false)
+                    self.copyObject!.executeRsync(remotefile: remoteCatalog!.stringValue, localCatalog: localCatalog!.stringValue, dryrun: false)
                     self.estimated = false
                 }
             } else {
@@ -85,23 +103,48 @@ class ViewControllerCopyFiles : NSViewController {
     // Getting index from Execute View
     @IBAction func GetIndex(_ sender: NSButton) {
         self.copyObject = nil
-        if let pvc = SharingManagerConfiguration.sharedInstance.ViewObjectMain as? ViewControllertabMain {
-            self.index_delegate = pvc
-            self.index = self.index_delegate?.getindex()
-        }
-        if (self.index! > -1) {
-            self.copyObject = CopyFiles(index: self.index!)
+        if let index = self.index {
+            self.copyObject = CopyFiles(index: index)
             self.working.startAnimation(nil)
-            self.displayRemoteserver(index: self.index!)
+            self.displayRemoteserver(index: index)
         } else {
-            Alerts.showInfo("Please select a ROW in Execute window!")
+            // Reset search data
+            self.resetCopySource()
+            // Get Copy Source
+            self.presentViewControllerAsSheet(self.ViewControllerSource)
         }
     }
+    
+    @IBAction func Reset(_ sender: NSButton) {
+        self.resetCopySource()
+    }
+    
+    // Reset copy source
+    fileprivate func resetCopySource() {
+        // Empty tabledata
+        self.index = nil
+        self.filesArray = nil
+        self.refresh()
+        self.displayRemoteserver(index: nil)
+        self.remoteCatalog.stringValue = ""
+        self.localCatalog.stringValue = ""
+        self.SelectButton.title = "Get source"
         
-    private func displayRemoteserver(index:Int) {
-        let hiddenID = SharingManagerConfiguration.sharedInstance.gethiddenID(index: index)
-        self.server.stringValue = SharingManagerConfiguration.sharedInstance.getResourceConfiguration(hiddenID, resource: .offsiteServer)
-        self.rcatalog.stringValue = SharingManagerConfiguration.sharedInstance.getResourceConfiguration(hiddenID, resource: .remoteCatalog)
+    }
+    
+    fileprivate func displayRemoteserver(index:Int?) {
+        guard (index != nil) else {
+            self.server.stringValue = ""
+            self.rcatalog.stringValue = ""
+            self.SelectButton.title = "Get source"
+            return
+        }
+        let hiddenID = SharingManagerConfiguration.sharedInstance.gethiddenID(index: index!)
+        GlobalMainQueue.async(execute: { () -> Void in
+            self.server.stringValue = SharingManagerConfiguration.sharedInstance.getResourceConfiguration(hiddenID, resource: .offsiteServer)
+            self.rcatalog.stringValue = SharingManagerConfiguration.sharedInstance.getResourceConfiguration(hiddenID, resource: .remoteCatalog)
+        })
+        self.SelectButton.title = "Get files"
     }
     
     override func viewDidLoad() {
@@ -117,14 +160,25 @@ class ViewControllerCopyFiles : NSViewController {
         self.working.usesThreadedAnimation = true
         self.workingRsync.usesThreadedAnimation = true
         self.search.delegate = self
-        
         self.localCatalog.delegate = self
     }
     
     override func viewDidAppear() {
         super.viewDidAppear()
+        if let pvc = SharingManagerConfiguration.sharedInstance.ViewObjectMain as? ViewControllertabMain {
+            self.index_delegate = pvc
+            self.index = self.index_delegate?.getindex()
+            if let index = self.index {
+                self.displayRemoteserver(index: index)
+            }
+        }
         self.CopyButton.title = "Estimate"
         self.localCatalog.stringValue = ""
+    }
+    
+    override func viewDidDisappear() {
+        super.viewDidDisappear()
+        self.resetCopySource()
     }
     
 }
@@ -146,6 +200,7 @@ extension ViewControllerCopyFiles: NSSearchFieldDelegate {
         }
         
     }
+    
     func searchFieldDidEndSearching(_ sender: NSSearchField){
         GlobalMainQueue.async(execute: { () -> Void in
             self.filesArray = self.copyObject?.filter(search: nil)
@@ -158,16 +213,15 @@ extension ViewControllerCopyFiles: NSSearchFieldDelegate {
 extension ViewControllerCopyFiles: NSTableViewDataSource {
     
     func numberOfRows(in tableViewMaster: NSTableView) -> Int {
-        if (self.filesArray != nil) {
-            return (self.filesArray?.count)!
-        } else {
+        guard self.filesArray != nil else {
             return 0
         }
+        return self.filesArray!.count
     }
 }
 
 
-extension ViewControllerCopyFiles : NSTableViewDelegate {
+extension ViewControllerCopyFiles: NSTableViewDelegate {
     
     func tableView(_ tableView: NSTableView, viewFor tableColumn: NSTableColumn?, row: Int) -> NSView? {
         var text:String?
@@ -309,6 +363,25 @@ extension ViewControllerCopyFiles: GetPath {
     func pathSet(path: String?, requester : WhichPath) {
         if let setpath = path {
             self.localCatalog.stringValue = setpath
+        }
+    }
+}
+
+extension ViewControllerCopyFiles: setIndex {
+    func SetIndex(Index: Int) {
+        self.index = Index
+        self.displayRemoteserver(index: Index)
+    }
+}
+
+extension ViewControllerCopyFiles: getSource {
+    func GetSource(Index: Int) {
+        self.index = Index
+        self.displayRemoteserver(index: Index)
+        if let index = self.index {
+            self.copyObject = CopyFiles(index: index)
+            self.working.startAnimation(nil)
+            self.displayRemoteserver(index: index)
         }
     }
 }

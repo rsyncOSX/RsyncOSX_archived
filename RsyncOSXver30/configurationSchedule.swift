@@ -13,7 +13,7 @@ struct configurationSchedule {
     var dateStart: String
     var dateStop: String?
     var schedule : String
-    var executed = [NSMutableDictionary]()
+    var executed = Array<NSMutableDictionary>()
     var delete:Bool?
     
     init(dictionary: NSDictionary, executed : NSArray?) {

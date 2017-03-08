@@ -4,7 +4,7 @@ The repository is source code for the macOS application RsyncOSX. The applicatio
 
 ### MacUpdate
 
-RsyncOSX is also released on [MacUpdate](https://www.macupdate.com/app/mac/56516/rsyncosx) as well. The application is downloaded about 6,800 times from MacUpdate (all versions, January 2017). There is also a [Google Blog](https://rsyncosx.blogspot.no/) about RsyncOSX. Many users download RsyncOSX from the blog. RsyncOSX does also  inform users about new releases and link to download new version. 
+RsyncOSX is also released on [MacUpdate](https://www.macupdate.com/app/mac/56516/rsyncosx) as well. The application is downloaded about 7,500 times from MacUpdate (all versions, March 2017). There is also a [Google Blog](https://rsyncosx.blogspot.no/) about RsyncOSX. Many users download RsyncOSX from the blog. RsyncOSX does also  inform users about new releases and link to download new version. 
 
 To be honest, I have **no idea** how many users of RsyncOSX there is. 
 
@@ -26,9 +26,9 @@ In RsyncOSX select [RsyncOSX configuration](https://github.com/rsyncOSX/Document
 To compile the code, install Xcode and open the RsyncOSX project file. Before compiling, open in Xcode, the `RsyncOSX/General` preference page (after opening the RsyncOSX project file) and replace your own credentials in `Signing`, or just disable Signing. Then compile your own version of RsyncOSX.
 
 
-### Graphics
+### Application icon
 
-I have uplodaded the [Gimp file](https://github.com/rsyncOSX/RsyncOSXicon) which is base for the RsyncOSX icon. [Help](https://github.com/rsyncOSX/RsyncOSXicon/issues/1) is wanted to create a better looking icon.
+From version 4.0.0 there is a new application icon for RsyncOSX. The new icon is created by [Forrest Walter](http://www.forrestwalter.com/). 
 
 ### How to use RsyncOSX
 

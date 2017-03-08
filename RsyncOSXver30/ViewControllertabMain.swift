@@ -892,12 +892,14 @@ extension ViewControllertabMain: RsyncUserParams {
 // Get index of selected row
 extension ViewControllertabMain: GetSelecetedIndex {
     
-    func getindex() -> Int {
-        if (self.index != nil) {
-            return self.index!
-        } else {
-            return -1
+    func getindex() -> Int? {
+        
+        guard self.index != nil else {
+            return nil
         }
+        let index = self.index
+        self.deselectRow()
+        return index
     }
 }
 
