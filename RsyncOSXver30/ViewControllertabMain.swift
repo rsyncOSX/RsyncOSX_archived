@@ -248,8 +248,10 @@ class ViewControllertabMain: NSViewController {
     @IBAction func Abort(_ sender: NSButton) {
         // abortOperations is the delegate function for 
         // aborting batch operations
-        self.abortOperations()
-        self.process = nil
+        GlobalMainQueue.async(execute: { () -> Void in
+            self.abortOperations()
+            self.process = nil
+        })
     }
 
     // Userconfiguration button

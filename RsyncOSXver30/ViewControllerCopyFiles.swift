@@ -55,11 +55,15 @@ class ViewControllerCopyFiles : NSViewController {
     
     // Abort button
     @IBAction func Abort(_ sender: NSButton) {
-        guard (self.copyObject != nil) else {
-            return
-        }
-        self.copyObject!.Abort()
+        GlobalMainQueue.async(execute: { () -> Void in
+            self.working.stopAnimation(nil)
+            guard (self.copyObject != nil) else {
+                return
+            }
+            self.copyObject!.Abort()
+        })
     }
+
     
     @IBOutlet weak var tableViewSelect: NSTableView!
     // Array to display in tableview
