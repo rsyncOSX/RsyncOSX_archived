@@ -106,9 +106,11 @@ class ViewControllerCopyFiles : NSViewController {
     @IBAction func GetIndex(_ sender: NSButton) {
         self.copyFiles = nil
         if let index = self.index {
-            self.copyFiles = CopyFiles(index: index)
-            self.working.startAnimation(nil)
-            self.displayRemoteserver(index: index)
+            GlobalMainQueue.async(execute: { () -> Void in
+                self.copyFiles = CopyFiles(index: index)
+                self.working.startAnimation(nil)
+                self.displayRemoteserver(index: index)
+            })
         } else {
             // Reset search data
             self.resetCopySource()
@@ -228,6 +230,10 @@ extension ViewControllerCopyFiles: NSTableViewDelegate {
     func tableView(_ tableView: NSTableView, viewFor tableColumn: NSTableColumn?, row: Int) -> NSView? {
         var text:String?
         var cellIdentifier: String = ""
+        guard self.filesArray != nil else {
+            return nil
+        }
+        
         let data = self.filesArray![row]
         if tableColumn == tableView.tableColumns[0] {
             text = data
@@ -244,6 +250,9 @@ extension ViewControllerCopyFiles: NSTableViewDelegate {
         let myTableViewFromNotification = notification.object as! NSTableView
         let indexes = myTableViewFromNotification.selectedRowIndexes
         if let index = indexes.first {
+            guard self.filesArray != nil else {
+                return
+            }
             self.remoteCatalog.stringValue = self.filesArray![index]
             if (self.remoteCatalog.stringValue.isEmpty == false && self.localCatalog.stringValue.isEmpty == false) {
                 self.commandString.stringValue = self.copyFiles!.getCommandDisplayinView(remotefile: self.remoteCatalog.stringValue, localCatalog: self.localCatalog.stringValue)
