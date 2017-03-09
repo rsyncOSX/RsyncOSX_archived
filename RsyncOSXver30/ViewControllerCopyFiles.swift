@@ -20,7 +20,7 @@ protocol getSource: class {
 class ViewControllerCopyFiles : NSViewController {
     
     // Object to hold search data
-    var copyObject : CopyFiles?
+    var copyFiles : CopyFiles?
     // Index of selected row
     var index:Int?
     // Delegate for getting index from Execute view
@@ -56,10 +56,10 @@ class ViewControllerCopyFiles : NSViewController {
     // Abort button
     @IBAction func Abort(_ sender: NSButton) {
         self.working.stopAnimation(nil)
-        guard (self.copyObject != nil) else {
+        guard (self.copyFiles != nil) else {
             return
         }
-        self.copyObject!.Abort()
+        self.copyFiles!.Abort()
     }
 
     
@@ -84,16 +84,16 @@ class ViewControllerCopyFiles : NSViewController {
         if (self.remoteCatalog.stringValue.isEmpty || self.localCatalog.stringValue.isEmpty) {
             Alerts.showInfo("From: or To: cannot be empty!")
         } else {
-            if (self.copyObject != nil) {
+            if (self.copyFiles != nil) {
                 self.rsync = true
                 self.workingRsync.startAnimation(nil)
                 if (self.estimated == false) {
-                    self.copyObject!.executeRsync(remotefile: remoteCatalog!.stringValue, localCatalog: localCatalog!.stringValue, dryrun: true)
+                    self.copyFiles!.executeRsync(remotefile: remoteCatalog!.stringValue, localCatalog: localCatalog!.stringValue, dryrun: true)
                     self.CopyButton.title = "Execute"
                     self.estimated = true
                 } else {
                     self.workingRsync.startAnimation(nil)
-                    self.copyObject!.executeRsync(remotefile: remoteCatalog!.stringValue, localCatalog: localCatalog!.stringValue, dryrun: false)
+                    self.copyFiles!.executeRsync(remotefile: remoteCatalog!.stringValue, localCatalog: localCatalog!.stringValue, dryrun: false)
                     self.estimated = false
                 }
             } else {
@@ -104,9 +104,9 @@ class ViewControllerCopyFiles : NSViewController {
     
     // Getting index from Execute View
     @IBAction func GetIndex(_ sender: NSButton) {
-        self.copyObject = nil
+        self.copyFiles = nil
         if let index = self.index {
-            self.copyObject = CopyFiles(index: index)
+            self.copyFiles = CopyFiles(index: index)
             self.working.startAnimation(nil)
             self.displayRemoteserver(index: index)
         } else {
@@ -191,12 +191,12 @@ extension ViewControllerCopyFiles: NSSearchFieldDelegate {
     func searchFieldDidStartSearching(_ sender: NSSearchField){
         if (sender.stringValue.isEmpty) {
             GlobalMainQueue.async(execute: { () -> Void in
-                self.filesArray = self.copyObject?.filter(search: nil)
+                self.filesArray = self.copyFiles?.filter(search: nil)
                 self.tableViewSelect.reloadData()
             })
         } else {
             GlobalMainQueue.async(execute: { () -> Void in
-                self.filesArray = self.copyObject?.filter(search: sender.stringValue)
+                self.filesArray = self.copyFiles?.filter(search: sender.stringValue)
                 self.tableViewSelect.reloadData()
             })
         }
@@ -205,7 +205,7 @@ extension ViewControllerCopyFiles: NSSearchFieldDelegate {
     
     func searchFieldDidEndSearching(_ sender: NSSearchField){
         GlobalMainQueue.async(execute: { () -> Void in
-            self.filesArray = self.copyObject?.filter(search: nil)
+            self.filesArray = self.copyFiles?.filter(search: nil)
             self.tableViewSelect.reloadData()
         })
     }
@@ -246,7 +246,7 @@ extension ViewControllerCopyFiles: NSTableViewDelegate {
         if let index = indexes.first {
             self.remoteCatalog.stringValue = self.filesArray![index]
             if (self.remoteCatalog.stringValue.isEmpty == false && self.localCatalog.stringValue.isEmpty == false) {
-                self.commandString.stringValue = (self.copyObject?.getCommandDisplayinView(remotefile: self.remoteCatalog.stringValue, localCatalog: self.localCatalog.stringValue))!
+                self.commandString.stringValue = self.copyFiles!.getCommandDisplayinView(remotefile: self.remoteCatalog.stringValue, localCatalog: self.localCatalog.stringValue)
             } else {
                 self.commandString.stringValue = "Please select both \"Restore to:\" and \"Restore:\" to show rsync command"
             }
@@ -289,7 +289,7 @@ extension ViewControllerCopyFiles: NSTextFieldDelegate {
     
     override func controlTextDidEndEditing(_ obj: Notification) {
         if (self.remoteCatalog.stringValue.isEmpty == false && self.localCatalog.stringValue.isEmpty == false) {
-            self.commandString.stringValue = (self.copyObject?.getCommandDisplayinView(remotefile: self.remoteCatalog.stringValue, localCatalog: self.localCatalog.stringValue))!
+            self.commandString.stringValue = (self.copyFiles!.getCommandDisplayinView(remotefile: self.remoteCatalog.stringValue, localCatalog: self.localCatalog.stringValue))
         } else {
             self.commandString.stringValue = "Please select both \"Restore to:\" and \"Restore:\" to show rsync command"
         }
@@ -300,8 +300,12 @@ extension ViewControllerCopyFiles: RefreshtableView {
     
     // Do a refresh of table
     func refresh() {
+        
+        guard self.copyFiles != nil else {
+            return
+        }
         GlobalMainQueue.async(execute: { () -> Void in
-            self.filesArray = self.copyObject?.filter(search: nil)
+            self.filesArray = self.copyFiles!.filter(search: nil)
             self.tableViewSelect.reloadData()
         })
     }
@@ -330,7 +334,7 @@ extension ViewControllerCopyFiles: UpdateProgress {
     func ProcessTermination() {
         if (rsync == false) {
             // do next job within copyobject
-            self.copyObject!.nextWork()
+            self.copyFiles!.nextWork()
         } else {
             self.workingRsync.stopAnimation(nil)
             self.presentViewControllerAsSheet(self.ViewControllerInformation)
@@ -348,7 +352,7 @@ extension ViewControllerCopyFiles: Information {
     
     // Protocol Information
     func getInformation() -> [String] {
-        return self.copyObject!.getOutput()
+        return self.copyFiles!.getOutput()
     }
 }
 
@@ -381,7 +385,7 @@ extension ViewControllerCopyFiles: getSource {
         self.index = Index
         self.displayRemoteserver(index: Index)
         if let index = self.index {
-            self.copyObject = CopyFiles(index: index)
+            self.copyFiles = CopyFiles(index: index)
             self.working.startAnimation(nil)
             self.displayRemoteserver(index: index)
         }
