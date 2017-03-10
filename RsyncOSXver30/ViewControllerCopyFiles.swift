@@ -106,11 +106,9 @@ class ViewControllerCopyFiles : NSViewController {
     @IBAction func GetIndex(_ sender: NSButton) {
         self.copyFiles = nil
         if let index = self.index {
-            GlobalMainQueue.async(execute: { () -> Void in
-                self.copyFiles = CopyFiles(index: index)
-                self.working.startAnimation(nil)
-                self.displayRemoteserver(index: index)
-            })
+            self.copyFiles = CopyFiles(index: index)
+            self.working.startAnimation(nil)
+            self.displayRemoteserver(index: index)
         } else {
             // Reset search data
             self.resetCopySource()
