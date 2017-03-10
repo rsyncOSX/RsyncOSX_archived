@@ -398,8 +398,8 @@ class ViewControllertabMain: NSViewController {
             if (self.workload == nil) {
                 self.workload = singleTask()
             }
-            let arguments:[String]?
-            let process = RsyncProcess(operation: false, tabMain: true, command : nil)
+            
+            let arguments: Array<String>?
             self.process = nil
             self.output = nil
             
@@ -409,8 +409,9 @@ class ViewControllertabMain: NSViewController {
                     self.working.startAnimation(nil)
                     self.showProcessInfo(info: .Estimating)
                     arguments = SharingManagerConfiguration.sharedInstance.getRsyncArgumentOneConfig(index: index, argtype: .argdryRun)
+                    let process = Rsync(arguments: arguments)
                     self.output = outputProcess()
-                    process.executeProcess(arguments!, output: self.output!)
+                    process.executeProcess(output: self.output!)
                     self.process = process.getProcess()
                     self.setInfo(info: "Execute", color: NSColor.blue)
                 }
@@ -422,7 +423,8 @@ class ViewControllertabMain: NSViewController {
                     })
                     arguments = SharingManagerConfiguration.sharedInstance.getRsyncArgumentOneConfig(index: index, argtype: .arg)
                     self.output = outputProcess()
-                    process.executeProcess(arguments!, output: self.output!)
+                    let process = Rsync(arguments: arguments)
+                    process.executeProcess(output: self.output!)
                     self.process = process.getProcess()
                     self.setInfo(info: "", color: NSColor.black)
                 }
@@ -814,15 +816,15 @@ extension ViewControllertabMain: StartBatch {
                         self.indicator_delegate?.start()
                     }
                     let arguments:[String] = SharingManagerConfiguration.sharedInstance.getRsyncArgumentOneConfig(index: index, argtype: .argdryRun)
-                    let process = RsyncProcess(operation: false, tabMain: true, command : nil)
+                    let process = Rsync(arguments: arguments)
                     // Setting reference to process for Abort if requiered
-                    process.executeProcess(arguments, output: self.output!)
+                    process.executeProcess(output: self.output!)
                     self.process = process.getProcess()
                 case 1:
                     let arguments:[String] = SharingManagerConfiguration.sharedInstance.getRsyncArgumentOneConfig(index: index, argtype: .arg)
-                    let process = RsyncProcess(operation: false, tabMain: true, command : nil)
+                    let process = Rsync(arguments: arguments)
                     // Setting reference to process for Abort if requiered
-                    process.executeProcess(arguments, output: self.output!)
+                    process.executeProcess(output: self.output!)
                     self.process = process.getProcess()
                 case -1:
                     if let pvc = self.presentedViewControllers as? [ViewControllerBatch] {
