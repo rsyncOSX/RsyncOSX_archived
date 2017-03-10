@@ -28,7 +28,7 @@
 		A04492AF1D658F2100B3CE17 /* peristentStoreConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = A044929B1D658F2100B3CE17 /* peristentStoreConfiguration.swift */; };
 		A04492B01D658F2100B3CE17 /* persistentStoreScheduling.swift in Sources */ = {isa = PBXBuildFile; fileRef = A044929C1D658F2100B3CE17 /* persistentStoreScheduling.swift */; };
 		A04492B21D658F2100B3CE17 /* rsyncProcessArguments.swift in Sources */ = {isa = PBXBuildFile; fileRef = A044929E1D658F2100B3CE17 /* rsyncProcessArguments.swift */; };
-		A04492B41D658F2100B3CE17 /* scpProcessArguments.swift in Sources */ = {isa = PBXBuildFile; fileRef = A04492A01D658F2100B3CE17 /* scpProcessArguments.swift */; };
+		A04492B41D658F2100B3CE17 /* CopyFileprocessArguments.swift in Sources */ = {isa = PBXBuildFile; fileRef = A04492A01D658F2100B3CE17 /* CopyFileprocessArguments.swift */; };
 		A04492B51D658F2100B3CE17 /* SharingManagerConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = A04492A11D658F2100B3CE17 /* SharingManagerConfiguration.swift */; };
 		A04492B61D658F2100B3CE17 /* SharingManagerSchedule.swift in Sources */ = {isa = PBXBuildFile; fileRef = A04492A21D658F2100B3CE17 /* SharingManagerSchedule.swift */; };
 		A04492B71D658F2100B3CE17 /* persistentStoreAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = A04492A31D658F2100B3CE17 /* persistentStoreAPI.swift */; };
@@ -96,7 +96,7 @@
 		A044929B1D658F2100B3CE17 /* peristentStoreConfiguration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = peristentStoreConfiguration.swift; sourceTree = "<group>"; };
 		A044929C1D658F2100B3CE17 /* persistentStoreScheduling.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = persistentStoreScheduling.swift; sourceTree = "<group>"; };
 		A044929E1D658F2100B3CE17 /* rsyncProcessArguments.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = rsyncProcessArguments.swift; sourceTree = "<group>"; };
-		A04492A01D658F2100B3CE17 /* scpProcessArguments.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = scpProcessArguments.swift; sourceTree = "<group>"; };
+		A04492A01D658F2100B3CE17 /* CopyFileprocessArguments.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CopyFileprocessArguments.swift; sourceTree = "<group>"; };
 		A04492A11D658F2100B3CE17 /* SharingManagerConfiguration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SharingManagerConfiguration.swift; sourceTree = "<group>"; };
 		A04492A21D658F2100B3CE17 /* SharingManagerSchedule.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SharingManagerSchedule.swift; sourceTree = "<group>"; };
 		A04492A31D658F2100B3CE17 /* persistentStoreAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = persistentStoreAPI.swift; sourceTree = "<group>"; };
@@ -310,7 +310,7 @@
 			isa = PBXGroup;
 			children = (
 				A091C65A1D86A59500278E74 /* CopyFiles.swift */,
-				A04492A01D658F2100B3CE17 /* scpProcessArguments.swift */,
+				A04492A01D658F2100B3CE17 /* CopyFileprocessArguments.swift */,
 				E9230C091E6DDA49001D9954 /* scpArguments.swift */,
 				E9230C0B1E6DDBBD001D9954 /* filetxtArguments.swift */,
 				E9230C0D1E6DDC57001D9954 /* rsyncArguments.swift */,
@@ -459,7 +459,7 @@
 				A091C65B1D86A59500278E74 /* CopyFiles.swift in Sources */,
 				A0DD27081D92DDF400D56899 /* FileDialog.swift in Sources */,
 				A0A403521D76BD2E00A30017 /* ViewControllerRsyncParameters.swift in Sources */,
-				A04492B41D658F2100B3CE17 /* scpProcessArguments.swift in Sources */,
+				A04492B41D658F2100B3CE17 /* CopyFileprocessArguments.swift in Sources */,
 				E9CF14141E729540008E8A15 /* RsyncScheduled.swift in Sources */,
 				A04492AB1D658F2100B3CE17 /* argumentsConfigurations.swift in Sources */,
 				A0B3D9741D758E20001E190E /* ViewControllerUserconfiguration.swift in Sources */,

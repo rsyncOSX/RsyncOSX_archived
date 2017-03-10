@@ -226,7 +226,7 @@ final class outputProcess {
     
     
     // Collecting statistics about job
-    func statistics(numberOfFiles:String?) -> [String] {
+    func statistics(numberOfFiles:String?) -> Array<String> {
         var numberstring:String?
         var parts:[String]?
         

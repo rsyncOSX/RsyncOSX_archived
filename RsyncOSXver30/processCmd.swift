@@ -26,7 +26,7 @@ class processCmd {
     var arguments:Array<String>?
     
     func executeProcess (output:outputProcess){
-        // Task
+        // Process
         let task = Process()
         // Setting the correct path for rsync
         // If self.command != nil other command than rsync to be executed
@@ -55,8 +55,7 @@ class processCmd {
                     // splitting the output
                     output.addLine(str as String)
                     self.calculatedNumberOfFiles = output.getOutputCount()
-                    
-                    
+                    // Check if in a scheduled operation, if not use delegate to inform about progress
                     if (self.aScheduledOperation! == false) {
                         // Send message about files
                         self.delegate_update?.FileHandler()
@@ -75,7 +74,7 @@ class processCmd {
             // object.
             
             output.getNumbers()
-            
+             // Check if in a scheduled operation, if not use delegate to inform about termination of Process()
             if (self.aScheduledOperation! == false) {
                 // Send message about process termination
                 self.delegate_update?.ProcessTermination()

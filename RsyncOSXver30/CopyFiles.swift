@@ -22,7 +22,7 @@ final class CopyFiles {
     private var arguments:Array<String>?
     private var command:String?
     // The arguments object
-    var argumentsObject:scpProcessArguments?
+    var argumentsObject:CopyFileprocessArguments?
     // Message to calling class do a refresh
     weak var refreshtable_delegate:RefreshtableView?
     // Command real run - for the copy process (by rsync)
@@ -54,11 +54,16 @@ final class CopyFiles {
     
     // Execute Process (either dryrun or realrun)
     func executeRsync(remotefile:String, localCatalog:String, dryrun:Bool) {
+        
+        guard self.config != nil else {
+            return
+        }
+        
         if(dryrun) {
-            self.argumentsObject = scpProcessArguments(task: .rsync, config: self.config!, remoteFile: remotefile, localCatalog: localCatalog, drynrun: true)
+            self.argumentsObject = CopyFileprocessArguments(task: .rsync, config: self.config!, remoteFile: remotefile, localCatalog: localCatalog, drynrun: true)
             self.arguments = self.argumentsObject!.getArguments()
         } else {
-            self.argumentsObject = scpProcessArguments(task: .rsync, config: self.config!, remoteFile: remotefile, localCatalog: localCatalog, drynrun: nil)
+            self.argumentsObject = CopyFileprocessArguments(task: .rsync, config: self.config!, remoteFile: remotefile, localCatalog: localCatalog, drynrun: nil)
             self.arguments = self.argumentsObject!.getArguments()
         }
         self.command = nil
@@ -70,7 +75,12 @@ final class CopyFiles {
     
     // Get arguments for rsync to show
     func getCommandDisplayinView(remotefile:String, localCatalog:String) -> String {
-        self.commandDisplay = scpProcessArguments(task: .rsync, config: self.config!, remoteFile: remotefile, localCatalog: localCatalog, drynrun: true).getcommandDisplay()
+        
+        guard self.config != nil else {
+            return ""
+        }
+        
+        self.commandDisplay = CopyFileprocessArguments(task: .rsync, config: self.config!, remoteFile: remotefile, localCatalog: localCatalog, drynrun: true).getcommandDisplay()
         guard self.commandDisplay != nil else {
             return ""
         }
@@ -95,7 +105,7 @@ final class CopyFiles {
         if (self.work!.count > 0) {
             self.output = nil
             let work:enumscopyfiles = self.work!.removeFirst()
-            self.argumentsObject = scpProcessArguments(task: work, config: self.config!, remoteFile: nil, localCatalog: nil, drynrun: nil)
+            self.argumentsObject = CopyFileprocessArguments(task: work, config: self.config!, remoteFile: nil, localCatalog: nil, drynrun: nil)
             self.arguments = self.argumentsObject!.getArguments()
             self.command = self.argumentsObject!.getCommand()
             self.process = commandCopyFiles(command : self.command, arguments: self.arguments)

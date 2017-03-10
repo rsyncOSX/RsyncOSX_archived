@@ -15,7 +15,7 @@ enum enumscopyfiles {
     case rsync
 }
 
-final class scpProcessArguments {
+final class CopyFileprocessArguments {
     
     // File to read
     private var file:String?
