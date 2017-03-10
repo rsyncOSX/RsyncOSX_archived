@@ -38,8 +38,11 @@ final class scpProcessArguments {
     }
     
     // Getting the command to display in view
-    func getcommandDisplay() -> String? {
-        return self.argDisplay
+    func getcommandDisplay() -> String {
+        guard self.argDisplay != nil else {
+            return ""
+        }
+        return self.argDisplay!
     }
     
     // Reading content of txt file into an Array of String

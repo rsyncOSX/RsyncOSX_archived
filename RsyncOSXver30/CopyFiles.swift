@@ -69,9 +69,12 @@ final class CopyFiles {
     }
     
     // Get arguments for rsync to show
-    func getCommandDisplayinView(remotefile:String, localCatalog:String) -> String? {
+    func getCommandDisplayinView(remotefile:String, localCatalog:String) -> String {
         self.commandDisplay = scpProcessArguments(task: .rsync, config: self.config!, remoteFile: remotefile, localCatalog: localCatalog, drynrun: true).getcommandDisplay()
-        return self.commandDisplay
+        guard self.commandDisplay != nil else {
+            return ""
+        }
+        return self.commandDisplay!
     }
     
     // As soon as we get the termination message kick of 
