@@ -37,7 +37,6 @@
 		A04492BB1D658F2100B3CE17 /* ytcpsocket.swift in Sources */ = {isa = PBXBuildFile; fileRef = A04492A71D658F2100B3CE17 /* ytcpsocket.swift */; };
 		A04492BC1D658F2100B3CE17 /* yudpsocket.swift in Sources */ = {isa = PBXBuildFile; fileRef = A04492A81D658F2100B3CE17 /* yudpsocket.swift */; };
 		A04972511D6595B200086EFD /* outputProcess.swift in Sources */ = {isa = PBXBuildFile; fileRef = A049724F1D6595B200086EFD /* outputProcess.swift */; };
-		A04972521D6595B200086EFD /* RsyncProcess.swift in Sources */ = {isa = PBXBuildFile; fileRef = A04972501D6595B200086EFD /* RsyncProcess.swift */; };
 		A04C08081DBF50AF00972FE2 /* readwritefiles.swift in Sources */ = {isa = PBXBuildFile; fileRef = A04C08071DBF50AF00972FE2 /* readwritefiles.swift */; };
 		A05275DA1D6F6E0000D8ECBE /* batchOperations.swift in Sources */ = {isa = PBXBuildFile; fileRef = A05275D91D6F6E0000D8ECBE /* batchOperations.swift */; };
 		A054F1A91D6D773E00D27688 /* ViewControllerInformation.swift in Sources */ = {isa = PBXBuildFile; fileRef = A054F1A81D6D773E00D27688 /* ViewControllerInformation.swift */; };
@@ -106,7 +105,6 @@
 		A04492A71D658F2100B3CE17 /* ytcpsocket.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ytcpsocket.swift; sourceTree = "<group>"; };
 		A04492A81D658F2100B3CE17 /* yudpsocket.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = yudpsocket.swift; sourceTree = "<group>"; };
 		A049724F1D6595B200086EFD /* outputProcess.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = outputProcess.swift; sourceTree = "<group>"; };
-		A04972501D6595B200086EFD /* RsyncProcess.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RsyncProcess.swift; sourceTree = "<group>"; };
 		A04C08071DBF50AF00972FE2 /* readwritefiles.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = readwritefiles.swift; sourceTree = "<group>"; };
 		A05275D91D6F6E0000D8ECBE /* batchOperations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = batchOperations.swift; sourceTree = "<group>"; };
 		A054F1A81D6D773E00D27688 /* ViewControllerInformation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewControllerInformation.swift; sourceTree = "<group>"; };
@@ -291,7 +289,6 @@
 			isa = PBXGroup;
 			children = (
 				A049724F1D6595B200086EFD /* outputProcess.swift */,
-				A04972501D6595B200086EFD /* RsyncProcess.swift */,
 				E9FFA02C1E7287E100B7AB2B /* processCmd.swift */,
 				E9FFA02E1E728C6E00B7AB2B /* Rsync.swift */,
 				E9CF14131E729540008E8A15 /* RsyncScheduled.swift */,
@@ -458,7 +455,6 @@
 				A04492B81D658F2100B3CE17 /* utils.swift in Sources */,
 				A004D81A1D9586580016914F /* ViewControllerLoggData.swift in Sources */,
 				A04492AD1D658F2100B3CE17 /* configurationSchedule.swift in Sources */,
-				A04972521D6595B200086EFD /* RsyncProcess.swift in Sources */,
 				A04492BB1D658F2100B3CE17 /* ytcpsocket.swift in Sources */,
 				A091C65B1D86A59500278E74 /* CopyFiles.swift in Sources */,
 				A0DD27081D92DDF400D56899 /* FileDialog.swift in Sources */,
