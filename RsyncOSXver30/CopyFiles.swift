@@ -34,7 +34,7 @@ final class CopyFiles {
     // Start and stop progress view
     weak var progress_delegate: StartStopProgressIndicator?
     // The Process object
-    var task:RsyncProcess?
+    var process:commandCopyFiles?
     // rsync outPut object
     var output:outputProcess?
     
@@ -46,10 +46,10 @@ final class CopyFiles {
     
     // Abort operation, terminate process
     func Abort() {
-        guard self.task != nil else {
+        guard self.process != nil else {
             return
         }
-        self.task!.abortProcess()
+        self.process!.abortProcess()
     }
     
     // Execute Process (either dryrun or realrun)
@@ -63,9 +63,9 @@ final class CopyFiles {
         }
         self.command = nil
         self.output = nil
-        self.task = RsyncProcess(operation: false, tabMain: false, command : nil)
+        self.process = commandCopyFiles(command : nil, arguments: self.arguments)
         self.output = outputProcess()
-        self.task!.executeProcess(self.arguments!, output: self.output!)
+        self.process!.executeProcess(output: self.output!)
     }
     
     // Get arguments for rsync to show
@@ -98,9 +98,11 @@ final class CopyFiles {
             self.argumentsObject = scpProcessArguments(task: work, config: self.config!, remoteFile: nil, localCatalog: nil, drynrun: nil)
             self.arguments = self.argumentsObject!.getArguments()
             self.command = self.argumentsObject!.getCommand()
-            self.task = RsyncProcess(operation: false, tabMain: false, command : self.command)
+            self.process = commandCopyFiles(command : self.command, arguments: self.arguments)
             self.output = outputProcess()
-            self.task!.executeProcess(self.arguments!, output: self.output!)
+            self.process!.executeProcess(output: self.output!)
+            
+            
         } else {
             // Files.txt are ready to read
             self.files = self.argumentsObject!.getSearchfile()
