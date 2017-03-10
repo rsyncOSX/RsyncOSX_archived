@@ -13,7 +13,7 @@ final class Rsync: processCmd {
     init (arguments:Array<String>?) {
         
         super.init()
-        // Set command to execute
+        // Set command to execute, if nil picks up command from config
         self.command = nil
         // Set arguments array
         self.arguments = arguments

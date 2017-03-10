@@ -15,13 +15,13 @@ final class RsyncScheduled: processCmd {
     init (arguments:Array<String>?) {
         
         super.init()
-        // Set command to execute
+        // Set command to execute, if nil picks up command from config
         self.command = nil
         // Set arguments array
         self.arguments = arguments
         // Defaults to not a Scheduled task
         self.aScheduledOperation = true
-        // A scheduled Process
+        // A scheduled Process, no need for upadates in view
         self.delegate_update = nil
     }
     

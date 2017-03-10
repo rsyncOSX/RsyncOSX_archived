@@ -73,6 +73,7 @@ class processCmd {
             // Forcing a --stats in dryrun which produces a summarized detail about
             // files and bytes. getNumbers collects that info and store the result in the
             // object.
+            
             output.getNumbers()
             
             if (self.aScheduledOperation! == false) {
@@ -85,7 +86,6 @@ class processCmd {
                 // After logging is done set reference to object = nil
                 SharingManagerConfiguration.sharedInstance.operation = nil
             }
-            
             NotificationCenter.default.removeObserver(self.observationCenter as Any)
         }
         self.ProcessReference = task

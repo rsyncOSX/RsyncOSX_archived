@@ -13,10 +13,11 @@ final class commandCopyFiles: processCmd {
     init (command:String?, arguments:Array<String>?) {
         
         super.init()
-        // Set command to execute
+        // Set command to execute, either ssh or scp
         if let cmd = command {
             self.command = cmd
         } else {
+            // Set command to execute, if nil picks up command from config
             self.command = nil
         }
         self.arguments = arguments
