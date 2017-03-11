@@ -463,9 +463,6 @@ class ViewControllertabMain: NSViewController {
             self.workload = nil
             self.workload = singleTask(task: .batchrun)
             self.setInfo(info: "Batchrun", color: NSColor.blue)
-            // Create the output object for rsync
-            self.output = nil
-            self.output = outputProcess()
             // Get all Configs marked for batch
             let configs = SharingManagerConfiguration.sharedInstance.getConfigurationsBatch()
             let batchObject = batchOperations(batchtasks: configs)
@@ -545,8 +542,6 @@ class ViewControllertabMain: NSViewController {
                 let hiddenID = SharingManagerConfiguration.sharedInstance.gethiddenID(index: index)
                 SharingManagerConfiguration.sharedInstance.setCurrentDateonConfiguration(index)
                 SharingManagerSchedule.sharedInstance.addScheduleResultManuel(hiddenID, result: self.output!.statistics(numberOfFiles: self.transferredNumber.stringValue)[0])
-                // Reset counter before next run
-                self.output!.removeObjectsOutput()
                 self.showProcessInfo(info: .Executing)
                 self.runBatch()
             default :
@@ -809,19 +804,24 @@ extension ViewControllertabMain: StartBatch {
                 let work = batchobject.nextBatchCopy()
                 // Get the index if given hiddenID (in work.0)
                 let index:Int = SharingManagerConfiguration.sharedInstance.getIndex(work.0)
+                
+                // Create the output object for rsync
+                self.output = nil
+                self.output = outputProcess()
+                
                 switch (work.1) {
                 case 0:
                     if let pvc = self.presentedViewControllers as? [ViewControllerBatch] {
                         self.indicator_delegate = pvc[0]
                         self.indicator_delegate?.start()
                     }
-                    let arguments:[String] = SharingManagerConfiguration.sharedInstance.getRsyncArgumentOneConfig(index: index, argtype: .argdryRun)
+                    let arguments:Array<String> = SharingManagerConfiguration.sharedInstance.getRsyncArgumentOneConfig(index: index, argtype: .argdryRun)
                     let process = Rsync(arguments: arguments)
                     // Setting reference to process for Abort if requiered
                     process.executeProcess(output: self.output!)
                     self.process = process.getProcess()
                 case 1:
-                    let arguments:[String] = SharingManagerConfiguration.sharedInstance.getRsyncArgumentOneConfig(index: index, argtype: .arg)
+                    let arguments:Array<String> = SharingManagerConfiguration.sharedInstance.getRsyncArgumentOneConfig(index: index, argtype: .arg)
                     let process = Rsync(arguments: arguments)
                     // Setting reference to process for Abort if requiered
                     process.executeProcess(output: self.output!)

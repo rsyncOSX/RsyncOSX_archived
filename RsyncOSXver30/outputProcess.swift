@@ -45,10 +45,6 @@ final class outputProcess {
     // Error delegate
     weak var error_delegate:ViewControllertabMain?
     
-    func removeObjectsOutput() {
-        self.output = nil
-    }
-   
     func copySummarizedResultBatch(numberOfFiles:String?) {
         if (numberOfFiles != nil) {
             let result = self.statistics(numberOfFiles: numberOfFiles!)[0] + " , " + self.statistics(numberOfFiles: numberOfFiles!)[1]
