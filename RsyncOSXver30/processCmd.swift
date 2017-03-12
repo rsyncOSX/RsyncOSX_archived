@@ -72,7 +72,6 @@ class processCmd {
             // Forcing a --stats in dryrun which produces a summarized detail about
             // files and bytes. getNumbers collects that info and store the result in the
             // object.
-            
             output.getNumbers()
              // Check if in a scheduled operation, if not use delegate to inform about termination of Process()
             if (self.aScheduledOperation! == false) {
@@ -81,7 +80,9 @@ class processCmd {
             } else {
                 // We are in Scheduled operation and must finalize the job
                 // e.g logging date and stuff like that
-                SharingManagerConfiguration.sharedInstance.operation?.finalizeScheduledJob(output: output)
+                if (SharingManagerConfiguration.sharedInstance.operation != nil) {
+                    SharingManagerConfiguration.sharedInstance.operation!.finalizeScheduledJob(output: output)
+                }
                 // After logging is done set reference to object = nil
                 SharingManagerConfiguration.sharedInstance.operation = nil
             }

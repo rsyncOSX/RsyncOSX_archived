@@ -67,6 +67,7 @@
 		E96CA1FE1E094C3000CD1D03 /* Resources.swift in Sources */ = {isa = PBXBuildFile; fileRef = E96CA1FD1E094C3000CD1D03 /* Resources.swift */; };
 		E9CF14141E729540008E8A15 /* RsyncScheduled.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9CF14131E729540008E8A15 /* RsyncScheduled.swift */; };
 		E9CF14161E729636008E8A15 /* commandCopyFiles.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9CF14151E729636008E8A15 /* commandCopyFiles.swift */; };
+		E9DCEA871E75F67200A69B4D /* Batchoutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9DCEA861E75F67200A69B4D /* Batchoutput.swift */; };
 		E9E763711E6AEA5300B45E8D /* ViewControllerCopyFilesSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9E763701E6AEA5300B45E8D /* ViewControllerCopyFilesSource.swift */; };
 		E9FFA02D1E7287E100B7AB2B /* processCmd.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9FFA02C1E7287E100B7AB2B /* processCmd.swift */; };
 		E9FFA02F1E728C6E00B7AB2B /* Rsync.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9FFA02E1E728C6E00B7AB2B /* Rsync.swift */; };
@@ -136,6 +137,7 @@
 		E96CA1FD1E094C3000CD1D03 /* Resources.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Resources.swift; sourceTree = "<group>"; };
 		E9CF14131E729540008E8A15 /* RsyncScheduled.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RsyncScheduled.swift; sourceTree = "<group>"; };
 		E9CF14151E729636008E8A15 /* commandCopyFiles.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = commandCopyFiles.swift; sourceTree = "<group>"; };
+		E9DCEA861E75F67200A69B4D /* Batchoutput.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Batchoutput.swift; sourceTree = "<group>"; };
 		E9E763701E6AEA5300B45E8D /* ViewControllerCopyFilesSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewControllerCopyFilesSource.swift; sourceTree = "<group>"; };
 		E9FFA02C1E7287E100B7AB2B /* processCmd.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = processCmd.swift; sourceTree = "<group>"; };
 		E9FFA02E1E728C6E00B7AB2B /* Rsync.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Rsync.swift; sourceTree = "<group>"; };
@@ -292,6 +294,7 @@
 			isa = PBXGroup;
 			children = (
 				A049724F1D6595B200086EFD /* outputProcess.swift */,
+				E9DCEA861E75F67200A69B4D /* Batchoutput.swift */,
 				E9FFA02C1E7287E100B7AB2B /* processCmd.swift */,
 				E9FFA02E1E728C6E00B7AB2B /* Rsync.swift */,
 				E9CF14131E729540008E8A15 /* RsyncScheduled.swift */,
@@ -440,6 +443,7 @@
 				A05275DA1D6F6E0000D8ECBE /* batchOperations.swift in Sources */,
 				A0EFB4501DC080A9008C21A6 /* persistentStoreUserconfiguration.swift in Sources */,
 				A00FE1AA1D6A1AAB00012089 /* alerts.swift in Sources */,
+				E9DCEA871E75F67200A69B4D /* Batchoutput.swift in Sources */,
 				A0F2E20C1D6D91AA0091E8BF /* userconfiguration.swift in Sources */,
 				A0762A1F1DB4A8F000538CE9 /* profiles.swift in Sources */,
 				E9FFA02F1E728C6E00B7AB2B /* Rsync.swift in Sources */,

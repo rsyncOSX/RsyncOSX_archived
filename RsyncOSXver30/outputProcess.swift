@@ -231,7 +231,7 @@ final class outputProcess {
     // Collecting statistics about job
     func statistics(numberOfFiles:String?) -> Array<String> {
         var numberstring:String?
-        var parts:[String]?
+        var parts:Array<String>?
         
         if (SharingManagerConfiguration.sharedInstance.rsyncVer3) {
             // ["sent", "409687", "bytes", "", "received", "5331", "bytes", "", "830036.00", "bytes/sec"]
