@@ -125,9 +125,15 @@ final class outputProcess {
             }
             return Int(self.transferredNumberSizebytes!/1024)
         case .new:
-            return 0
+            guard (self.newfiles != nil) else {
+                return 0
+            }
+            return Int(self.newfiles!)
         case .delete:
-            return 0
+            guard (self.deletefiles != nil) else {
+                return 0
+            }
+            return Int(self.deletefiles!)
         }
     }
     
@@ -175,6 +181,8 @@ final class outputProcess {
                 let transferredFilesSizeParts = (transferredFilesSize[0] as AnyObject).replacingOccurrences(of: ",", with: "").components(separatedBy: " ")
                 let totalFilesNumberParts = (totalFilesNumber[0] as AnyObject).replacingOccurrences(of: ",", with: "").components(separatedBy: " ")
                 let totalFileSizeParts = (totalFileSize[0] as AnyObject).replacingOccurrences(of: ",", with: "").components(separatedBy: " ")
+                let newParts = (new[0] as AnyObject).replacingOccurrences(of: ",", with: "").components(separatedBy: " ")
+                let deleteParts = (delete[0] as AnyObject).replacingOccurrences(of: ",", with: "").components(separatedBy: " ")
                 
                 // ["Number", "of", "regular", "files", "transferred:", "24"]
                 // ["Total", "transferred", "file", "size:", "281653", "bytes"]
@@ -188,8 +196,8 @@ final class outputProcess {
                 if totalFilesNumberParts.count > 5 {self.totalNumber = Int(totalFilesNumberParts[5])} else {self.totalNumber = 0}
                 if totalFileSizeParts.count > 3 {self.totalNumberSizebytes = Double(totalFileSizeParts[3])} else {self.totalNumberSizebytes = 0}
                 if totalFilesNumberParts.count > 7 {self.totalDirs = Int(totalFilesNumberParts[7].replacingOccurrences(of: ")", with: ""))} else {self.totalDirs = 0}
-                if new.count > 4 {self.newfiles = Int(new[5])} else {self.newfiles = 0}
-                if delete.count > 4 {self.deletefiles = Int(delete[5])} else {self.deletefiles = 0}
+                if newParts.count > 4 {self.newfiles = Int(newParts[4])} else {self.newfiles = 0}
+                if deleteParts.count > 4 {self.deletefiles = Int(deleteParts[4])} else {self.deletefiles = 0}
                 
             } else {
                 
