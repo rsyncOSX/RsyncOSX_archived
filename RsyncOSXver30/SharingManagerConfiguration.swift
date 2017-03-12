@@ -99,6 +99,8 @@ class SharingManagerConfiguration {
     var allowNotifyinMain:Bool = false
     // If rsync error reset workqueue
     var rsyncerror:Bool = true
+    // Reference to helper
+    var help:Help?
 
     
     // DATA STRUCTURES

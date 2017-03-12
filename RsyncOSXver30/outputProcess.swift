@@ -21,8 +21,6 @@ final class outputProcess {
     private var calculatedNumberOfFiles:Int?
     // output Array to keep output from rsync in
     private var output:Array<String>?
-    // output for batchTasks
-    private var batchoutput:Array<String>?
     // output Array temporary indexes
     private var startIndex:Int?
     private var endIndex:Int?
@@ -32,6 +30,8 @@ final class outputProcess {
     private var totalNumberSizebytes:Double?
     private var transferredNumber:Int?
     private var transferredNumberSizebytes:Double?
+    private var newfiles:Int?
+    private var deletefiles:Int?
     
     // enum for returning what is asked for
     enum enumNumbers {
@@ -40,20 +40,12 @@ final class outputProcess {
         case totalNumberSizebytes
         case transferredNumber
         case transferredNumberSizebytes
+        case new
+        case delete
     }
     
     // Error delegate
     weak var error_delegate:ViewControllertabMain?
-    
-    func copySummarizedResultBatch(numberOfFiles:String?) {
-        if (numberOfFiles != nil) {
-            let result = self.statistics(numberOfFiles: numberOfFiles!)[0] + " , " + self.statistics(numberOfFiles: numberOfFiles!)[1]
-            self.batchoutput!.append(result)
-        } else {
-            let result = self.statistics(numberOfFiles: nil)[0] + " , " + self.statistics(numberOfFiles: nil)[1]
-            self.batchoutput!.append(result)
-        }
-    }
     
     func getOutputCount () -> Int {
         guard (self.output != nil) else {
@@ -62,18 +54,11 @@ final class outputProcess {
         return self.output!.count
     }
     
-    func getOutput () -> [String] {
+    func getOutput () -> Array<String> {
         guard (self.output != nil) else {
             return [""]
         }
         return self.output!
-    }
-    
-    func getOutputbatch() -> [String] {
-        guard (self.batchoutput != nil) else {
-            return [""]
-        }
-        return self.batchoutput!
     }
     
     // Return end message of Rsync
@@ -139,6 +124,10 @@ final class outputProcess {
                 return 0
             }
             return Int(self.transferredNumberSizebytes!/1024)
+        case .new:
+            return 0
+        case .delete:
+            return 0
         }
     }
     
@@ -162,6 +151,10 @@ final class outputProcess {
         // ver 3.x - [Number of files: 3,956 (reg: 3,197, dir: 758, link: 1)]
         // ver 2.x - [Number of files: 3956]
         let error = self.output!.filter({(($0).contains("rsync error:"))})
+        // New files
+        let new = self.output!.filter({(($0).contains("Number of created files:"))})
+        // Delete files
+        let delete = self.output!.filter({(($0).contains("Number of deleted files:"))})
         
         // There is an error in transferring files
         // We only informs in main view if error
@@ -187,12 +180,16 @@ final class outputProcess {
                 // ["Total", "transferred", "file", "size:", "281653", "bytes"]
                 // ["Number", "of", "files:", "3956", "(reg:", "3197", "dir:", "758", "link:", "1)"]
                 // ["Total", "file", "size:", "1016385159", "bytes"]
+                // ["Number" "of" "created" "files:" "0"]
+                // ["Number" "of" "deleted" "files:" "0"]
                 
                 if transferredFilesParts.count > 5 {self.transferredNumber = Int(transferredFilesParts[5])} else {self.transferredNumber = 0}
                 if transferredFilesSizeParts.count > 4 {self.transferredNumberSizebytes = Double(transferredFilesSizeParts[4])} else {self.transferredNumberSizebytes = 0}
                 if totalFilesNumberParts.count > 5 {self.totalNumber = Int(totalFilesNumberParts[5])} else {self.totalNumber = 0}
                 if totalFileSizeParts.count > 3 {self.totalNumberSizebytes = Double(totalFileSizeParts[3])} else {self.totalNumberSizebytes = 0}
                 if totalFilesNumberParts.count > 7 {self.totalDirs = Int(totalFilesNumberParts[7].replacingOccurrences(of: ")", with: ""))} else {self.totalDirs = 0}
+                if new.count > 4 {self.newfiles = Int(new[5])} else {self.newfiles = 0}
+                if delete.count > 4 {self.deletefiles = Int(delete[5])} else {self.deletefiles = 0}
                 
             } else {
                 
@@ -212,6 +209,8 @@ final class outputProcess {
                 if totalFileSizeParts.count > 3 {self.totalNumberSizebytes = Double(totalFileSizeParts[3])} else {self.totalNumberSizebytes = 0}
                 // Rsync ver 2.x does not count directories
                 self.totalDirs = 0
+                self.newfiles = 0
+                self.deletefiles = 0
             }
         } else {
             // If it breaks set number of transferred files to 
@@ -285,9 +284,6 @@ final class outputProcess {
     }
 
     init () {
-        // Second last String in Array rsync output of how much and in what time
-        self.resultRsync = ""
         self.output = Array<String>()
-        self.batchoutput = Array<String>()
     }
  }

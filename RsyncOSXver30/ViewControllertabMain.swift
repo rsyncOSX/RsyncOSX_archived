@@ -74,6 +74,10 @@ class ViewControllertabMain: NSViewController {
     @IBOutlet weak var allowDoubleclick: NSTextField!
     // Just showing process info
     @IBOutlet weak var processInfo: NSTextField!
+    // New files
+    @IBOutlet weak var newfiles: NSTextField!
+    // Delete files
+    @IBOutlet weak var deletefiles: NSTextField!
     
     
     // REFERENCE VARIABLES
@@ -531,7 +535,6 @@ class ViewControllertabMain: NSViewController {
                 // Update files in work
                 batchobject.updateInProcess(numberOfFiles: self.maxcount)
                 batchobject.setCompleted()
-                self.output!.copySummarizedResultBatch(numberOfFiles: self.transferredNumber.stringValue)
                 if let pvc = self.presentedViewControllers as? [ViewControllerBatch] {
                     self.refresh_delegate = pvc[0]
                     self.indicator_delegate = pvc[0]
@@ -572,19 +575,23 @@ class ViewControllertabMain: NSViewController {
     
     // Function for getting numbers out of output object updated when
     // Process object executes the job.
-    fileprivate func setNumbers (setvalues : Bool) {
+    fileprivate func setNumbers(setvalues: Bool) {
         if (setvalues) {
             self.transferredNumber.stringValue = NumberFormatter.localizedString(from: NSNumber(value: self.output!.getTransferredNumbers(numbers: .transferredNumber)), number: NumberFormatter.Style.decimal)
             self.transferredNumberSizebytes.stringValue = NumberFormatter.localizedString(from: NSNumber(value: self.output!.getTransferredNumbers(numbers: .transferredNumberSizebytes)), number: NumberFormatter.Style.decimal)
             self.totalNumber.stringValue = NumberFormatter.localizedString(from: NSNumber(value: self.output!.getTransferredNumbers(numbers: .totalNumber)), number: NumberFormatter.Style.decimal)
             self.totalNumberSizebytes.stringValue = NumberFormatter.localizedString(from: NSNumber(value: self.output!.getTransferredNumbers(numbers: .totalNumberSizebytes)), number: NumberFormatter.Style.decimal)
             self.totalDirs.stringValue = NumberFormatter.localizedString(from: NSNumber(value: self.output!.getTransferredNumbers(numbers: .totalDirs)), number: NumberFormatter.Style.decimal)
+            self.newfiles.stringValue = NumberFormatter.localizedString(from: NSNumber(value: self.output!.getTransferredNumbers(numbers: .new)), number: NumberFormatter.Style.decimal)
+            self.deletefiles.stringValue = NumberFormatter.localizedString(from: NSNumber(value: self.output!.getTransferredNumbers(numbers: .delete)), number: NumberFormatter.Style.decimal)
         } else {
             self.transferredNumber.stringValue = ""
             self.transferredNumberSizebytes.stringValue = ""
             self.totalNumber.stringValue = ""
             self.totalNumberSizebytes.stringValue = ""
             self.totalDirs.stringValue = ""
+            self.newfiles.stringValue = ""
+            self.deletefiles.stringValue = ""
         }
     }
     
@@ -761,10 +768,10 @@ extension ViewControllertabMain : NSTableViewDelegate {
 extension ViewControllertabMain: Information {
     
     // Get information from rsync output.
-    func getInformation() -> [String] {
+    func getInformation() -> Array<String> {
         if (self.output != nil) {
             if (self.workload == nil) {
-                return self.output!.getOutputbatch()
+                return self.output!.getOutput()
             } else {
                 return self.output!.getOutput()
             }
