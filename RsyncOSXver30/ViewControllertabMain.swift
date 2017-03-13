@@ -88,6 +88,8 @@ class ViewControllertabMain: NSViewController {
     fileprivate var index:Int?
     // Getting output from rsync 
     fileprivate var output:outputProcess?
+    // Getting output from batchrun
+    fileprivate var outputbatch:outputBatch?
     // Holding max count 
     fileprivate var maxcount:Int = 0
     // HiddenID task, set when row is selected
@@ -465,6 +467,7 @@ class ViewControllertabMain: NSViewController {
         
         if (self.scheduledOperationInProgress() == false && SharingManagerConfiguration.sharedInstance.noRysync == false){
             self.workload = nil
+            self.outputbatch = nil
             self.workload = singleTask(task: .batchrun)
             self.setInfo(info: "Batchrun", color: NSColor.blue)
             // Get all Configs marked for batch
@@ -510,6 +513,11 @@ class ViewControllertabMain: NSViewController {
     fileprivate func inBatchwork() {
         // Take care of batchRun activities
         if let batchobject = SharingManagerConfiguration.sharedInstance.getBatchdataObject() {
+            
+            if (self.outputbatch == nil) {
+                self.outputbatch = outputBatch()
+            }
+            
             // Remove the first worker object
             let work = batchobject.nextBatchRemove()
             // get numbers from dry-run
@@ -546,6 +554,7 @@ class ViewControllertabMain: NSViewController {
                 SharingManagerConfiguration.sharedInstance.setCurrentDateonConfiguration(index)
                 SharingManagerSchedule.sharedInstance.addScheduleResultManuel(hiddenID, result: self.output!.statistics(numberOfFiles: self.transferredNumber.stringValue)[0])
                 self.showProcessInfo(info: .Executing)
+                self.outputbatch!.addLine(str: self.output!.statistics(numberOfFiles: self.transferredNumber.stringValue)[0])
                 self.runBatch()
             default :
                 break
@@ -769,12 +778,11 @@ extension ViewControllertabMain: Information {
     
     // Get information from rsync output.
     func getInformation() -> Array<String> {
-        if (self.output != nil) {
-            if (self.workload == nil) {
-                return self.output!.getOutput()
-            } else {
-                return self.output!.getOutput()
-            }
+        
+        if (self.outputbatch != nil) {
+            return self.outputbatch!.getOutput()
+        } else if (self.output != nil) {
+            return self.output!.getOutput()
         } else {
             return [""]
         }
@@ -940,6 +948,7 @@ extension ViewControllertabMain: AddProfiles {
         self.workload = nil
         self.process = nil
         self.output = nil
+        self.outputbatch = nil
         self.setRsyncCommandDisplay()
         self.setInfo(info: "Estimate", color: NSColor.blue)
         self.setNumbers(setvalues: false)
