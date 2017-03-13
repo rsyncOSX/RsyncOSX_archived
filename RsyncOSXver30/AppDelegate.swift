@@ -23,6 +23,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             _ = userconfiguration(userconfigRsyncOSX: userConfiguration)
         }
         
+        // Object for presenting help files
         SharingManagerConfiguration.sharedInstance.help = Help()
     }
 

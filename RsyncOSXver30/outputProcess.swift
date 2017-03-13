@@ -215,7 +215,7 @@ final class outputProcess {
                 if transferredFilesSizeParts.count > 4 {self.transferredNumberSizebytes = Double(transferredFilesSizeParts[4])} else {self.transferredNumberSizebytes = 0}
                 if totalFilesNumberParts.count > 3 {self.totalNumber = Int(totalFilesNumberParts[3])} else {self.totalNumber = 0}
                 if totalFileSizeParts.count > 3 {self.totalNumberSizebytes = Double(totalFileSizeParts[3])} else {self.totalNumberSizebytes = 0}
-                // Rsync ver 2.x does not count directories
+                // Rsync ver 2.x does not count directories, new files or deleted files
                 self.totalDirs = 0
                 self.newfiles = 0
                 self.deletefiles = 0
