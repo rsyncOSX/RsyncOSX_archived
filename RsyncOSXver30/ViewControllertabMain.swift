@@ -648,6 +648,7 @@ class ViewControllertabMain: NSViewController {
             self.hiddenID = SharingManagerConfiguration.sharedInstance.gethiddenID(index: index)
             // Reset output
             self.output = nil
+            self.outputbatch = nil
             // Clear numbers from dryrun
             self.setNumbers(setvalues: false)
             self.workload = nil
