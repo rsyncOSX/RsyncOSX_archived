@@ -554,7 +554,15 @@ class ViewControllertabMain: NSViewController {
                 SharingManagerConfiguration.sharedInstance.setCurrentDateonConfiguration(index)
                 SharingManagerSchedule.sharedInstance.addScheduleResultManuel(hiddenID, result: self.output!.statistics(numberOfFiles: self.transferredNumber.stringValue)[0])
                 self.showProcessInfo(info: .Executing)
-                self.outputbatch!.addLine(str: self.output!.statistics(numberOfFiles: self.transferredNumber.stringValue)[0])
+                let config = SharingManagerConfiguration.sharedInstance.getConfigurations()[index]
+                if config.offsiteServer.isEmpty {
+                    let result = config.localCatalog + " , " + "localhost" + " , " + self.output!.statistics(numberOfFiles: self.transferredNumber.stringValue)[0]
+                    self.outputbatch!.addLine(str: result)
+                } else {
+                    let result = config.localCatalog + " , " + config.offsiteServer + " , " + self.output!.statistics(numberOfFiles: self.transferredNumber.stringValue)[0]
+                    self.outputbatch!.addLine(str: result)
+                }
+                
                 self.runBatch()
             default :
                 break
