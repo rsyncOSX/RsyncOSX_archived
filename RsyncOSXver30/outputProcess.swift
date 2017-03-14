@@ -84,12 +84,12 @@ final class outputProcess {
         } else {
             self.startIndex = self.getOutputCount()+1
         }
-        sentence.enumerateLines {
-            line, stop in
+        sentence.enumerateLines { (line, _) in
             if line.characters.last != "/" {
                 self.output!.append(line)
             }
         }
+        
         self.endIndex = self.output!.count
         if (self.endIndex! > 2) {
             self.resultRsync = (self.output![self.endIndex!-2])
@@ -232,6 +232,11 @@ final class outputProcess {
     func statistics(numberOfFiles:String?) -> Array<String> {
         var numberstring:String?
         var parts:Array<String>?
+        
+        
+        guard (self.resultRsync != nil) else {
+            return ["0","0"]
+        }
         
         if (SharingManagerConfiguration.sharedInstance.rsyncVer3) {
             // ["sent", "409687", "bytes", "", "received", "5331", "bytes", "", "830036.00", "bytes/sec"]
