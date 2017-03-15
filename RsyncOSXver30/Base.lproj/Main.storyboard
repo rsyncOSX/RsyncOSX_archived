@@ -138,6 +138,7 @@
                                         <menuItem title="RsyncOSX Help" keyEquivalent="?" id="FKE-Sm-Kum">
                                             <connections>
                                                 <action selector="showHelp:" target="Ady-hI-5gd" id="y7X-2Q-9no"/>
+                                                <segue destination="KvD-eY-wiH" kind="show" id="gDW-Q1-BhP"/>
                                             </connections>
                                         </menuItem>
                                     </items>
@@ -153,6 +154,19 @@
                 <customObject id="Ady-hI-5gd" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-294" y="-105"/>
+        </scene>
+        <!--Help-->
+        <scene sceneID="t0e-hK-Fsa">
+            <objects>
+                <viewController title="Help" storyboardIdentifier="HelpID" id="KvD-eY-wiH" customClass="ViewControllerHelp" customModule="RsyncOSX" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" id="kvP-ec-fsl">
+                        <rect key="frame" x="0.0" y="0.0" width="450" height="300"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </view>
+                </viewController>
+                <customObject id="o20-z7-IiX" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1010" y="149"/>
         </scene>
         <!--Window Controller-->
         <scene sceneID="GeT-NB-lhy">
@@ -202,14 +216,14 @@
                                         </connections>
                                     </button>
                                 </toolbarItem>
-                                <toolbarItem implicitItemIdentifier="61C4402E-B287-49B8-BBB4-0CBB623F28A5" label="Add" paletteLabel="Custom View" image="NSAddTemplate" id="nNQ-oV-bI4">
+                                <toolbarItem implicitItemIdentifier="61C4402E-B287-49B8-BBB4-0CBB623F28A5" label="Help" paletteLabel="Custom View" image="NSApplicationIcon" id="nNQ-oV-bI4">
                                     <nil key="toolTip"/>
                                     <size key="minSize" width="48" height="43"/>
                                     <size key="maxSize" width="60" height="48"/>
                                     <button key="view" id="2CG-ch-nST">
                                         <rect key="frame" x="8" y="14" width="60" height="43"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                        <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="NSAddTemplate" imagePosition="only" alignment="center" borderStyle="border" imageScaling="proportionallyUpOrDown" inset="2" id="PDw-4m-kK7">
+                                        <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="NSApplicationIcon" imagePosition="only" alignment="center" borderStyle="border" imageScaling="proportionallyUpOrDown" inset="2" id="PDw-4m-kK7">
                                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                             <font key="font" metaFont="system"/>
                                         </buttonCell>
@@ -289,7 +303,7 @@
                 </windowController>
                 <customObject id="Rv5-yv-lsc" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-274" y="198"/>
+            <point key="canvasLocation" x="-411" y="250"/>
         </scene>
         <!--Tab View Controller-->
         <scene sceneID="Hwe-jL-WAZ">
@@ -4700,8 +4714,8 @@ DQ
     </scenes>
     <resources>
         <image name="NSActionTemplate" width="14" height="14"/>
-        <image name="NSAddTemplate" width="11" height="11"/>
         <image name="NSAdvanced" width="32" height="32"/>
+        <image name="NSApplicationIcon" width="128" height="128"/>
         <image name="NSFolder" width="32" height="32"/>
         <image name="NSInfo" width="32" height="32"/>
         <image name="NSStopProgressFreestandingTemplate" width="14" height="14"/>
