@@ -22,6 +22,9 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             // userConfiguration is never nil if object is created
             _ = userconfiguration(userconfigRsyncOSX: userConfiguration)
         }
+        
+        // Object for presenting help files
+        SharingManagerConfiguration.sharedInstance.help = Help()
     }
 
     func applicationWillTerminate(_ aNotification: Notification) {

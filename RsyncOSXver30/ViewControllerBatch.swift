@@ -56,7 +56,7 @@ class ViewControllerBatch : NSViewController {
     
     // Execute batch
     @IBAction func Execute(_ sender: NSButton) {
-        self.startBatch_delegate?.runBatch()
+        self.startBatch_delegate!.runBatch()
         self.CloseButton.title = "Abort"
         self.close = false
     }

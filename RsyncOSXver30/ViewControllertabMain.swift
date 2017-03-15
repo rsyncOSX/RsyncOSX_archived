@@ -74,6 +74,10 @@ class ViewControllertabMain: NSViewController {
     @IBOutlet weak var allowDoubleclick: NSTextField!
     // Just showing process info
     @IBOutlet weak var processInfo: NSTextField!
+    // New files
+    @IBOutlet weak var newfiles: NSTextField!
+    // Delete files
+    @IBOutlet weak var deletefiles: NSTextField!
     
     
     // REFERENCE VARIABLES
@@ -84,6 +88,8 @@ class ViewControllertabMain: NSViewController {
     fileprivate var index:Int?
     // Getting output from rsync 
     fileprivate var output:outputProcess?
+    // Getting output from batchrun
+    fileprivate var outputbatch:outputBatch?
     // Holding max count 
     fileprivate var maxcount:Int = 0
     // HiddenID task, set when row is selected
@@ -461,11 +467,9 @@ class ViewControllertabMain: NSViewController {
         
         if (self.scheduledOperationInProgress() == false && SharingManagerConfiguration.sharedInstance.noRysync == false){
             self.workload = nil
+            self.outputbatch = nil
             self.workload = singleTask(task: .batchrun)
             self.setInfo(info: "Batchrun", color: NSColor.blue)
-            // Create the output object for rsync
-            self.output = nil
-            self.output = outputProcess()
             // Get all Configs marked for batch
             let configs = SharingManagerConfiguration.sharedInstance.getConfigurationsBatch()
             let batchObject = batchOperations(batchtasks: configs)
@@ -509,6 +513,11 @@ class ViewControllertabMain: NSViewController {
     fileprivate func inBatchwork() {
         // Take care of batchRun activities
         if let batchobject = SharingManagerConfiguration.sharedInstance.getBatchdataObject() {
+            
+            if (self.outputbatch == nil) {
+                self.outputbatch = outputBatch()
+            }
+            
             // Remove the first worker object
             let work = batchobject.nextBatchRemove()
             // get numbers from dry-run
@@ -534,7 +543,6 @@ class ViewControllertabMain: NSViewController {
                 // Update files in work
                 batchobject.updateInProcess(numberOfFiles: self.maxcount)
                 batchobject.setCompleted()
-                self.output!.copySummarizedResultBatch(numberOfFiles: self.transferredNumber.stringValue)
                 if let pvc = self.presentedViewControllers as? [ViewControllerBatch] {
                     self.refresh_delegate = pvc[0]
                     self.indicator_delegate = pvc[0]
@@ -545,9 +553,16 @@ class ViewControllertabMain: NSViewController {
                 let hiddenID = SharingManagerConfiguration.sharedInstance.gethiddenID(index: index)
                 SharingManagerConfiguration.sharedInstance.setCurrentDateonConfiguration(index)
                 SharingManagerSchedule.sharedInstance.addScheduleResultManuel(hiddenID, result: self.output!.statistics(numberOfFiles: self.transferredNumber.stringValue)[0])
-                // Reset counter before next run
-                self.output!.removeObjectsOutput()
                 self.showProcessInfo(info: .Executing)
+                let config = SharingManagerConfiguration.sharedInstance.getConfigurations()[index]
+                if config.offsiteServer.isEmpty {
+                    let result = config.localCatalog + " , " + "localhost" + " , " + self.output!.statistics(numberOfFiles: self.transferredNumber.stringValue)[0]
+                    self.outputbatch!.addLine(str: result)
+                } else {
+                    let result = config.localCatalog + " , " + config.offsiteServer + " , " + self.output!.statistics(numberOfFiles: self.transferredNumber.stringValue)[0]
+                    self.outputbatch!.addLine(str: result)
+                }
+                
                 self.runBatch()
             default :
                 break
@@ -577,19 +592,23 @@ class ViewControllertabMain: NSViewController {
     
     // Function for getting numbers out of output object updated when
     // Process object executes the job.
-    fileprivate func setNumbers (setvalues : Bool) {
+    fileprivate func setNumbers(setvalues: Bool) {
         if (setvalues) {
             self.transferredNumber.stringValue = NumberFormatter.localizedString(from: NSNumber(value: self.output!.getTransferredNumbers(numbers: .transferredNumber)), number: NumberFormatter.Style.decimal)
             self.transferredNumberSizebytes.stringValue = NumberFormatter.localizedString(from: NSNumber(value: self.output!.getTransferredNumbers(numbers: .transferredNumberSizebytes)), number: NumberFormatter.Style.decimal)
             self.totalNumber.stringValue = NumberFormatter.localizedString(from: NSNumber(value: self.output!.getTransferredNumbers(numbers: .totalNumber)), number: NumberFormatter.Style.decimal)
             self.totalNumberSizebytes.stringValue = NumberFormatter.localizedString(from: NSNumber(value: self.output!.getTransferredNumbers(numbers: .totalNumberSizebytes)), number: NumberFormatter.Style.decimal)
             self.totalDirs.stringValue = NumberFormatter.localizedString(from: NSNumber(value: self.output!.getTransferredNumbers(numbers: .totalDirs)), number: NumberFormatter.Style.decimal)
+            self.newfiles.stringValue = NumberFormatter.localizedString(from: NSNumber(value: self.output!.getTransferredNumbers(numbers: .new)), number: NumberFormatter.Style.decimal)
+            self.deletefiles.stringValue = NumberFormatter.localizedString(from: NSNumber(value: self.output!.getTransferredNumbers(numbers: .delete)), number: NumberFormatter.Style.decimal)
         } else {
             self.transferredNumber.stringValue = ""
             self.transferredNumberSizebytes.stringValue = ""
             self.totalNumber.stringValue = ""
             self.totalNumberSizebytes.stringValue = ""
             self.totalDirs.stringValue = ""
+            self.newfiles.stringValue = ""
+            self.deletefiles.stringValue = ""
         }
     }
     
@@ -637,6 +656,7 @@ class ViewControllertabMain: NSViewController {
             self.hiddenID = SharingManagerConfiguration.sharedInstance.gethiddenID(index: index)
             // Reset output
             self.output = nil
+            self.outputbatch = nil
             // Clear numbers from dryrun
             self.setNumbers(setvalues: false)
             self.workload = nil
@@ -766,13 +786,12 @@ extension ViewControllertabMain : NSTableViewDelegate {
 extension ViewControllertabMain: Information {
     
     // Get information from rsync output.
-    func getInformation() -> [String] {
-        if (self.output != nil) {
-            if (self.workload == nil) {
-                return self.output!.getOutputbatch()
-            } else {
-                return self.output!.getOutput()
-            }
+    func getInformation() -> Array<String> {
+        
+        if (self.outputbatch != nil) {
+            return self.outputbatch!.getOutput()
+        } else if (self.output != nil) {
+            return self.output!.getOutput()
         } else {
             return [""]
         }
@@ -809,19 +828,24 @@ extension ViewControllertabMain: StartBatch {
                 let work = batchobject.nextBatchCopy()
                 // Get the index if given hiddenID (in work.0)
                 let index:Int = SharingManagerConfiguration.sharedInstance.getIndex(work.0)
+                
+                // Create the output object for rsync
+                self.output = nil
+                self.output = outputProcess()
+                
                 switch (work.1) {
                 case 0:
                     if let pvc = self.presentedViewControllers as? [ViewControllerBatch] {
                         self.indicator_delegate = pvc[0]
                         self.indicator_delegate?.start()
                     }
-                    let arguments:[String] = SharingManagerConfiguration.sharedInstance.getRsyncArgumentOneConfig(index: index, argtype: .argdryRun)
+                    let arguments:Array<String> = SharingManagerConfiguration.sharedInstance.getRsyncArgumentOneConfig(index: index, argtype: .argdryRun)
                     let process = Rsync(arguments: arguments)
                     // Setting reference to process for Abort if requiered
                     process.executeProcess(output: self.output!)
                     self.process = process.getProcess()
                 case 1:
-                    let arguments:[String] = SharingManagerConfiguration.sharedInstance.getRsyncArgumentOneConfig(index: index, argtype: .arg)
+                    let arguments:Array<String> = SharingManagerConfiguration.sharedInstance.getRsyncArgumentOneConfig(index: index, argtype: .arg)
                     let process = Rsync(arguments: arguments)
                     // Setting reference to process for Abort if requiered
                     process.executeProcess(output: self.output!)
@@ -933,6 +957,7 @@ extension ViewControllertabMain: AddProfiles {
         self.workload = nil
         self.process = nil
         self.output = nil
+        self.outputbatch = nil
         self.setRsyncCommandDisplay()
         self.setInfo(info: "Estimate", color: NSColor.blue)
         self.setNumbers(setvalues: false)
