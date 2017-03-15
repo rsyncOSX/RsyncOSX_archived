@@ -11,10 +11,11 @@ import Cocoa
 
 enum helpdocs {
     case changelog
-    case documentstart
+    case documents
     case singletask
     case batchtask
     case rsyncparameters
+    case configuration
 }
 
 final class Help {
@@ -24,6 +25,7 @@ final class Help {
     private var singletask: String = "https://rsyncosx.github.io/Documentation/docs/SingleTask.html"
     private var batchtask: String = "https://rsyncosx.github.io/Documentation/docs/BatchTask.html"
     private var rsyncparameters: String = "https://rsyncosx.github.io/Documentation/docs/Parameters.html"
+    private var configuration: String = "https://rsyncosx.github.io/Documentation/docs/UserConfiguration.html"
     
     
     private var resource:String?
@@ -39,7 +41,7 @@ final class Help {
         switch what {
         case .changelog:
             self.resource = self.changelog
-        case .documentstart:
+        case .documents:
             self.resource = self.documentstart
         case .singletask:
             self.resource = self.singletask
@@ -47,6 +49,9 @@ final class Help {
             self.resource = self.batchtask
         case .rsyncparameters:
             self.resource = self.rsyncparameters
+        case .configuration:
+            self.resource = self.configuration
+            
         }
         self.show()
     }

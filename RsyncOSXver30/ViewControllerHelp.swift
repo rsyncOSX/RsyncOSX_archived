@@ -9,10 +9,21 @@
 import Foundation
 import Cocoa
 
+protocol selectHelp: class {
+    func SelectHelp(help:helpdocs)
+}
+
 class ViewControllerHelp: NSViewController {
     
+    @IBOutlet weak var Documents: NSButton!
+    @IBOutlet weak var Singeltask: NSButton!
+    @IBOutlet weak var Batchtask: NSButton!
+    @IBOutlet weak var Configuration: NSButton!
+    @IBOutlet weak var Rsyncparameters: NSButton!
+    @IBOutlet weak var Changelog: NSButton!
     
-    
+    @IBAction func help(_ sender: NSButton) {
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,5 +33,24 @@ class ViewControllerHelp: NSViewController {
         super.viewDidAppear()
     }
     
-    
+}
+
+extension ViewControllerHelp: selectHelp {
+    func SelectHelp(help: helpdocs) {
+        switch (help) {
+        case .batchtask:
+            self.Batchtask.state = NSOnState
+        case .changelog:
+            self.Changelog.state = NSOnState
+        case .rsyncparameters:
+            self.Rsyncparameters.state = NSOnState
+        case .singletask:
+            self.Singeltask.state = NSOnState
+        case .configuration:
+            self.Configuration.state = NSOnState
+        case .documents:
+            self.Documents.state = NSOnState
+            
+        }
+    }
 }
