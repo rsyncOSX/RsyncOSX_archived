@@ -160,11 +160,11 @@
             <objects>
                 <viewController title="Help" storyboardIdentifier="HelpID" id="KvD-eY-wiH" customClass="ViewControllerHelp" customModule="RsyncOSX" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="kvP-ec-fsl">
-                        <rect key="frame" x="0.0" y="0.0" width="450" height="300"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="258"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="4rv-cB-WrM">
-                                <rect key="frame" x="73" y="215" width="135" height="18"/>
+                                <rect key="frame" x="19" y="221" width="135" height="18"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <buttonCell key="cell" type="radio" title="Documents" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="hZF-43-Fkc">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
@@ -172,7 +172,7 @@
                                 </buttonCell>
                             </button>
                             <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="WZG-SW-7tY">
-                                <rect key="frame" x="73" y="193" width="135" height="18"/>
+                                <rect key="frame" x="19" y="199" width="135" height="18"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <buttonCell key="cell" type="radio" title="Single task" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="4wP-Zp-fdG">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
@@ -183,7 +183,7 @@
                                 </connections>
                             </button>
                             <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5UK-BQ-h4e">
-                                <rect key="frame" x="73" y="171" width="135" height="18"/>
+                                <rect key="frame" x="19" y="177" width="135" height="18"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <buttonCell key="cell" type="radio" title="Batch task" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="FEi-cr-YMv">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
@@ -194,9 +194,9 @@
                                 </connections>
                             </button>
                             <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="TJP-fc-UoV">
-                                <rect key="frame" x="73" y="149" width="135" height="18"/>
+                                <rect key="frame" x="19" y="155" width="135" height="18"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <buttonCell key="cell" type="radio" title="Configuration" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="i6t-Jq-hr5">
+                                <buttonCell key="cell" type="radio" title="User configuration" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="i6t-Jq-hr5">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
@@ -205,7 +205,7 @@
                                 </connections>
                             </button>
                             <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="eUd-cW-daG">
-                                <rect key="frame" x="73" y="127" width="135" height="18"/>
+                                <rect key="frame" x="19" y="133" width="135" height="18"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <buttonCell key="cell" type="radio" title="Rsync Parameters" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="P5k-9T-y9Y">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
@@ -216,7 +216,7 @@
                                 </connections>
                             </button>
                             <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dNa-hm-Vg2">
-                                <rect key="frame" x="73" y="215" width="135" height="18"/>
+                                <rect key="frame" x="19" y="221" width="135" height="18"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <buttonCell key="cell" type="radio" title="Documents" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="J08-4J-NoK">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
@@ -227,7 +227,7 @@
                                 </connections>
                             </button>
                             <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cce-Vm-OkY">
-                                <rect key="frame" x="73" y="105" width="135" height="18"/>
+                                <rect key="frame" x="19" y="111" width="135" height="18"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <buttonCell key="cell" type="radio" title="Changelog" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="MWy-fg-yE2">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
@@ -237,20 +237,79 @@
                                     <action selector="help:" target="KvD-eY-wiH" id="Jwb-uw-JRE"/>
                                 </connections>
                             </button>
+                            <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="uSc-B0-BWm">
+                                <rect key="frame" x="19" y="89" width="135" height="18"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <buttonCell key="cell" type="radio" title="Add" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="RNN-Lo-xth">
+                                    <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="help:" target="KvD-eY-wiH" id="UTh-1N-Qhp"/>
+                                </connections>
+                            </button>
+                            <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="v8M-pT-5ny">
+                                <rect key="frame" x="19" y="67" width="135" height="18"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <buttonCell key="cell" type="radio" title="Schedule" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="Qzt-6p-Dbd">
+                                    <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="help:" target="KvD-eY-wiH" id="76r-ek-ahX"/>
+                                </connections>
+                            </button>
+                            <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ddw-rq-0nx">
+                                <rect key="frame" x="19" y="45" width="135" height="18"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <buttonCell key="cell" type="radio" title="Copy files" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="2Ks-Fd-5qw">
+                                    <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="help:" target="KvD-eY-wiH" id="ddC-Zi-uVm"/>
+                                </connections>
+                            </button>
+                            <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="3zg-pP-S3w">
+                                <rect key="frame" x="19" y="22" width="135" height="18"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <buttonCell key="cell" type="radio" title="Logging" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="rYS-gt-rxu">
+                                    <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="help:" target="KvD-eY-wiH" id="pwQ-BJ-QVG"/>
+                                </connections>
+                            </button>
+                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="P9H-lt-5JC">
+                                <rect key="frame" x="229" y="13" width="74" height="32"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <buttonCell key="cell" type="push" title="Show" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="rB4-7G-KUa">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="Show:" target="KvD-eY-wiH" id="jo6-w6-OqX"/>
+                                </connections>
+                            </button>
                         </subviews>
                     </view>
                     <connections>
+                        <outlet property="Add" destination="uSc-B0-BWm" id="gNA-O2-Qew"/>
                         <outlet property="Batchtask" destination="5UK-BQ-h4e" id="wby-wh-ODG"/>
                         <outlet property="Changelog" destination="cce-Vm-OkY" id="rlX-8o-Y94"/>
                         <outlet property="Configuration" destination="TJP-fc-UoV" id="Iby-DF-vT6"/>
+                        <outlet property="Copyfiles" destination="ddw-rq-0nx" id="Q6o-9J-6i2"/>
                         <outlet property="Documents" destination="dNa-hm-Vg2" id="p7X-rZ-5To"/>
+                        <outlet property="Logging" destination="3zg-pP-S3w" id="Nss-2i-FDR"/>
                         <outlet property="Rsyncparameters" destination="eUd-cW-daG" id="NQI-o4-J4d"/>
+                        <outlet property="Schedule" destination="v8M-pT-5ny" id="2ca-3I-tJH"/>
                         <outlet property="Singeltask" destination="WZG-SW-7tY" id="L9h-cY-MZo"/>
                     </connections>
                 </viewController>
                 <customObject id="o20-z7-IiX" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1010" y="149"/>
+            <point key="canvasLocation" x="-1075" y="128"/>
         </scene>
         <!--Window Controller-->
         <scene sceneID="GeT-NB-lhy">

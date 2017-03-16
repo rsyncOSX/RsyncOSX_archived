@@ -12,6 +12,9 @@ import Cocoa
 
 class ViewControllerNewConfigurations: NSViewController {
     
+    // Delegate for Help
+    weak var help_delegate:selectHelp?
+    
     // Table holding all new Configurations
     @IBOutlet weak var newTableView: NSTableView!
     
@@ -83,6 +86,10 @@ class ViewControllerNewConfigurations: NSViewController {
     override func viewDidAppear() {
         super.viewDidAppear()
         self.setFields()
+        if let pvc = SharingManagerConfiguration.sharedInstance.HelpObject as? ViewControllerHelp {
+            self.help_delegate = pvc
+            self.help_delegate?.SelectHelp(help: .add)
+        }
     }
     
     override func viewWillDisappear() {

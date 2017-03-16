@@ -15,14 +15,28 @@ protocol selectHelp: class {
 
 class ViewControllerHelp: NSViewController {
     
+    fileprivate var showwhat:helpdocs?
+    
     @IBOutlet weak var Documents: NSButton!
     @IBOutlet weak var Singeltask: NSButton!
     @IBOutlet weak var Batchtask: NSButton!
     @IBOutlet weak var Configuration: NSButton!
     @IBOutlet weak var Rsyncparameters: NSButton!
     @IBOutlet weak var Changelog: NSButton!
+    @IBOutlet weak var Add: NSButton!
+    @IBOutlet weak var Schedule: NSButton!
+    @IBOutlet weak var Copyfiles: NSButton!
+    @IBOutlet weak var Logging: NSButton!
     
     @IBAction func help(_ sender: NSButton) {
+    }
+    
+    @IBAction func Show(_ sender: NSButton) {
+        let help = Help()
+        guard self.showwhat != nil else {
+            return
+        }
+        help.help(what: self.showwhat!)
     }
     
     override func viewDidLoad() {
@@ -42,6 +56,7 @@ class ViewControllerHelp: NSViewController {
 
 extension ViewControllerHelp: selectHelp {
     func SelectHelp(help: helpdocs) {
+        
         switch (help) {
         case .batchtask:
             self.Batchtask.state = NSOnState
@@ -55,7 +70,15 @@ extension ViewControllerHelp: selectHelp {
             self.Configuration.state = NSOnState
         case .documents:
             self.Documents.state = NSOnState
-            
+        case .add:
+            self.Add.state = NSOnState
+        case .schedule:
+            self.Schedule.state = NSOnState
+        case .copyfiles:
+            self.Copyfiles.state = NSOnState
+        case .logging:
+            self.Logging.state = NSOnState
         }
+        self.showwhat = help
     }
 }
