@@ -49,6 +49,7 @@ class ViewControllerHelp: NSViewController {
     }
     
     override func viewDidDisappear() {
+        super.viewDidDisappear()
         SharingManagerConfiguration.sharedInstance.HelpObject = nil
     }
     
