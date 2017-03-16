@@ -93,6 +93,8 @@ class SharingManagerConfiguration {
     var operation:completeScheduledOperation?
     // Which profile to use, if default nil
     var LogObjectMain:NSViewController?
+    // Reference to Help view
+    var HelpObject:NSViewController?
     private var profile:String?
     // Notify about scheduled process
     // Only allowed to notity by modal window when in main view

@@ -31,6 +31,11 @@ class ViewControllerHelp: NSViewController {
     
     override func viewDidAppear() {
         super.viewDidAppear()
+        SharingManagerConfiguration.sharedInstance.HelpObject = self
+    }
+    
+    override func viewDidDisappear() {
+        SharingManagerConfiguration.sharedInstance.HelpObject = nil
     }
     
 }
