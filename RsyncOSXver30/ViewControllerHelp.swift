@@ -29,6 +29,27 @@ class ViewControllerHelp: NSViewController {
     @IBOutlet weak var Logging: NSButton!
     
     @IBAction func help(_ sender: NSButton) {
+        if self.Batchtask.state == NSOnState {
+            self.showwhat = .batchtask
+        } else if self.Changelog.state == NSOnState {
+            self.showwhat = .changelog
+        } else if self.Rsyncparameters.state  == NSOnState {
+            self.showwhat = .rsyncparameters
+        } else if self.Singeltask.state == NSOnState {
+            self.showwhat = .singletask
+        } else if self.Configuration.state == NSOnState {
+            self.showwhat = .configuration
+        } else if self.Documents.state == NSOnState {
+            self.showwhat = .documents
+        } else if self.Add.state == NSOnState {
+            self.showwhat = .add
+        } else if self.Schedule.state == NSOnState {
+            self.showwhat = .schedule
+        } else if self.Copyfiles.state == NSOnState {
+            self.showwhat = .copyfiles
+        } else if self.Logging.state == NSOnState {
+            self.showwhat = .logging
+        }
     }
     
     @IBAction func Show(_ sender: NSButton) {
