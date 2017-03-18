@@ -927,13 +927,10 @@ extension ViewControllertabMain: RsyncUserParams {
 extension ViewControllertabMain: GetSelecetedIndex {
     
     func getindex() -> Int? {
-        
         guard self.index != nil else {
             return nil
         }
-        let index = self.index
-        self.deselectRow()
-        return index
+        return self.index!
     }
 }
 
