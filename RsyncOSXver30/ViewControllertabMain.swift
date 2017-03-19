@@ -44,6 +44,8 @@ class ViewControllertabMain: NSViewController {
     weak var refresh_delegate:RefreshtableView?
     // Delegate function for start/stop progress Indicator in BatchWindow
     weak var indicator_delegate:StartStopProgressIndicator?
+    // Delegate for Help
+    weak var help_delegate:selectHelp?
     
     // Main tableview
     @IBOutlet weak var mainTableView: NSTableView!
@@ -362,6 +364,10 @@ class ViewControllertabMain: NSViewController {
         }
         self.ready = true
         self.displayAllowDoubleclick()
+        if let pvc = SharingManagerConfiguration.sharedInstance.HelpObject as? ViewControllerHelp {
+            self.help_delegate = pvc
+            self.help_delegate?.SelectHelp(help: .singletask)
+        }
     }
     
     override func viewDidDisappear() {
@@ -921,13 +927,10 @@ extension ViewControllertabMain: RsyncUserParams {
 extension ViewControllertabMain: GetSelecetedIndex {
     
     func getindex() -> Int? {
-        
         guard self.index != nil else {
             return nil
         }
-        let index = self.index
-        self.deselectRow()
-        return index
+        return self.index!
     }
 }
 

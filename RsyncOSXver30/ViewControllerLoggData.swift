@@ -13,6 +13,8 @@ import Cocoa
 
 class ViewControllerLoggData : NSViewController {
     
+    // Delegate for Help
+    weak var help_delegate:selectHelp?
     // Reference to variable holding tabledata
     var tabledata:[NSDictionary]?
     // Reference to variable selected row as NSDictionary
@@ -85,6 +87,10 @@ class ViewControllerLoggData : NSViewController {
         self.date.state = NSOffState
         self.what = .remoteServer
         self.deleteButton.state = NSOffState
+        if let pvc = SharingManagerConfiguration.sharedInstance.HelpObject as? ViewControllerHelp {
+            self.help_delegate = pvc
+            self.help_delegate?.SelectHelp(help: .logging)
+        }
     }
     
     override func viewDidDisappear() {

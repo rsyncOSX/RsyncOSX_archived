@@ -115,12 +115,17 @@ extension ViewControllerBatch : NSTableViewDelegate {
     
     // TableView delegates
     @objc(tableView:objectValueForTableColumn:row:) func tableView(_ tableView: NSTableView, objectValueFor tableColumn: NSTableColumn?, row: Int) -> Any? {
-            let object : NSMutableDictionary = SharingManagerConfiguration.sharedInstance.getbatchDataQueue()![row]
-            if ((tableColumn!.identifier) == "estimatedCellID" || (tableColumn!.identifier) == "completedCellID" ) {
-                return object[tableColumn!.identifier] as? Int!
-            } else {
-                return object[tableColumn!.identifier] as? String
-            }
+        
+        guard SharingManagerConfiguration.sharedInstance.getbatchDataQueue() != nil else {
+            return nil
+        }
+        
+        let object : NSMutableDictionary = SharingManagerConfiguration.sharedInstance.getbatchDataQueue()![row]
+        if ((tableColumn!.identifier) == "estimatedCellID" || (tableColumn!.identifier) == "completedCellID" ) {
+            return object[tableColumn!.identifier] as? Int!
+        } else {
+            return object[tableColumn!.identifier] as? String
+        }
     }
     
     // Toggling batch
