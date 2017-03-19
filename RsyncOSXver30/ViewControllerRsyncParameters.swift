@@ -195,6 +195,11 @@ class ViewControllerRsyncParameters: NSViewController {
         }
         // Get the index of selected configuration
         let index = self.getindex_delegate?.getindex()
+        
+        guard index != nil else {
+            return
+        }
+        
         Configurations[index!].parameter8 = self.parameters!.getRsyncParameter(indexComboBox:
             self.parameter8.indexOfSelectedItem, value: getValue(value: self.viewParameter8.stringValue))
         Configurations[index!].parameter9 = self.parameters!.getRsyncParameter(indexComboBox:
