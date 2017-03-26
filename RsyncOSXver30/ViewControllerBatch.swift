@@ -24,10 +24,12 @@ class ViewControllerBatch : NSViewController {
     // If close button or abort is pressed
     // After execute button is pressed, close is abort
     var close:Bool?
-    // Autmatic closing of view
+    // Automatic closing of view
     var waitToClose:Timer?
     var closeIn:Timer?
     var seconds:Int?
+    // Working on row
+    var row:Int?
 
     // Main tableview
     @IBOutlet weak var mainTableView: NSTableView!
@@ -115,11 +117,9 @@ extension ViewControllerBatch : NSTableViewDelegate {
     
     // TableView delegates
     @objc(tableView:objectValueForTableColumn:row:) func tableView(_ tableView: NSTableView, objectValueFor tableColumn: NSTableColumn?, row: Int) -> Any? {
-        
         guard SharingManagerConfiguration.sharedInstance.getbatchDataQueue() != nil else {
             return nil
         }
-        
         let object : NSMutableDictionary = SharingManagerConfiguration.sharedInstance.getbatchDataQueue()![row]
         if ((tableColumn!.identifier) == "estimatedCellID" || (tableColumn!.identifier) == "completedCellID" ) {
             return object[tableColumn!.identifier] as? Int!
@@ -128,34 +128,26 @@ extension ViewControllerBatch : NSTableViewDelegate {
         }
     }
     
-    // Toggling batch
-    @objc(tableView:setObjectValue:forTableColumn:row:) func tableView(_ tableView: NSTableView, setObjectValue object: Any?, for tableColumn: NSTableColumn?, row: Int) {
-        if (SharingManagerConfiguration.sharedInstance.getConfigurations()[row].task == "backup") {
-            SharingManagerConfiguration.sharedInstance.getConfigurationsDataSource()![row].setObject(object!, forKey: (tableColumn?.identifier)! as NSCopying)
-            SharingManagerConfiguration.sharedInstance.setBatchYesNo(row)
-        }
-    }
-    
 }
 
 extension ViewControllerBatch: StartStopProgressIndicator {
     
-    // Stops estimation progressbar when real task is executing
     func stop() {
+        let row = SharingManagerConfiguration.sharedInstance.getBatchdataObject()!.getRow() + 1
         GlobalMainQueue.async(execute: { () -> Void in
-            self.working.stopAnimation(nil)
-            self.label.stringValue = "Executing"
+            self.label.stringValue = "Executing task: " + String(row)
         })
         
     }
     
     func start() {
         self.close = false
+        let row = SharingManagerConfiguration.sharedInstance.getBatchdataObject()!.getRow() + 1
         // Starts estimation progressbar when estimation starts
         GlobalMainQueue.async(execute: { () -> Void in
             self.working.startAnimation(nil)
             self.label.isHidden = false
-            self.label.stringValue = "Estimating"
+            self.label.stringValue = "Estimating task: " + String(row)
         })
         
     }
@@ -163,6 +155,7 @@ extension ViewControllerBatch: StartStopProgressIndicator {
     func complete() {
         // Batch task completed
         GlobalMainQueue.async(execute: { () -> Void in
+            self.working.stopAnimation(nil)
             self.label.stringValue = "Completed"
             self.CloseButton.title = "Close"
             self.close = true

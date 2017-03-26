@@ -2598,13 +2598,13 @@ DQ
                                             <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                             <color key="gridColor" name="gridColor" catalog="System" colorSpace="catalog"/>
                                             <tableColumns>
-                                                <tableColumn identifier="taskCellID" width="80.703125" minWidth="40" maxWidth="1000" id="qfC-8t-e7C">
-                                                    <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" title="Task">
+                                                <tableColumn identifier="taskCellID" width="61.703125" minWidth="40" maxWidth="1000" id="qfC-8t-e7C">
+                                                    <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="center" title="Task">
                                                         <font key="font" metaFont="smallSystem"/>
                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="backgroundColor" name="headerColor" catalog="System" colorSpace="catalog"/>
                                                     </tableHeaderCell>
-                                                    <textFieldCell key="dataCell" lineBreakMode="truncatingTail" title="Text Cell" id="aO0-eB-xFM">
+                                                    <textFieldCell key="dataCell" lineBreakMode="truncatingTail" alignment="center" title="Text Cell" id="aO0-eB-xFM">
                                                         <font key="font" metaFont="system"/>
                                                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -2717,7 +2717,7 @@ DQ
                                 </textFieldCell>
                             </textField>
                             <progressIndicator wantsLayer="YES" horizontalHuggingPriority="750" verticalHuggingPriority="750" maxValue="100" displayedWhenStopped="NO" bezeled="NO" indeterminate="YES" controlSize="small" style="spinning" translatesAutoresizingMaskIntoConstraints="NO" id="Q6y-Q5-7Ed">
-                                <rect key="frame" x="94" y="24" width="16" height="16"/>
+                                <rect key="frame" x="151" y="24" width="16" height="16"/>
                             </progressIndicator>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="kMM-ZX-vSQ">
                                 <rect key="frame" x="689" y="13" width="75" height="32"/>
@@ -2763,7 +2763,7 @@ DQ
                             <constraint firstItem="kMM-ZX-vSQ" firstAttribute="leading" secondItem="fsl-j9-KAO" secondAttribute="trailing" constant="12" id="eVR-tB-Gtx"/>
                             <constraint firstItem="fsl-j9-KAO" firstAttribute="leading" secondItem="w95-Na-zVc" secondAttribute="trailing" constant="8" symbolic="YES" id="f7P-Hq-1hk"/>
                             <constraint firstItem="fsl-j9-KAO" firstAttribute="baseline" secondItem="kMM-ZX-vSQ" secondAttribute="baseline" id="fIg-4v-mpw"/>
-                            <constraint firstItem="Q6y-Q5-7Ed" firstAttribute="leading" secondItem="1lR-Vu-lR3" secondAttribute="trailing" constant="8" symbolic="YES" id="gsf-Ni-Eld"/>
+                            <constraint firstItem="Q6y-Q5-7Ed" firstAttribute="leading" secondItem="1lR-Vu-lR3" secondAttribute="trailing" constant="65" id="gsf-Ni-Eld"/>
                             <constraint firstItem="kMM-ZX-vSQ" firstAttribute="leading" secondItem="fsl-j9-KAO" secondAttribute="trailing" constant="12" symbolic="YES" id="h0y-yH-1Is"/>
                             <constraint firstItem="Q6y-Q5-7Ed" firstAttribute="centerY" secondItem="w95-Na-zVc" secondAttribute="centerY" id="nrx-cQ-zFD"/>
                             <constraint firstAttribute="trailing" secondItem="vBF-eb-i5Z" secondAttribute="trailing" constant="20" symbolic="YES" id="r0s-ey-2iT"/>

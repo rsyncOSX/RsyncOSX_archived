@@ -399,14 +399,14 @@ class SharingManagerConfiguration {
     
     /// Function is getting the updated batch data queue
     /// - returns : reference to the batch data queue
-    func getbatchDataQueue() -> [NSMutableDictionary]? {
+    func getbatchDataQueue() -> Array<NSMutableDictionary>? {
         return self.batchdata?.getupdatedBatchdata()
     }
     
     // ADDING CONFIGURATUÌONS
     
     // Temporary structure to hold added Configurations before writing to permanent store
-    private var newConfigurations :[NSMutableDictionary]?
+    private var newConfigurations :Array<NSMutableDictionary>?
     
     func addNewConfigurations(_ row: NSMutableDictionary) {
         guard (self.newConfigurations != nil) else {
