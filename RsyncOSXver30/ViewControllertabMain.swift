@@ -1159,7 +1159,6 @@ extension ViewControllertabMain: UpdateProgress {
     func ProcessTermination() {
         
         self.ready = true
-        
         // Making sure no nil pointer execption
         if let workload = self.workload {
             

@@ -156,7 +156,7 @@ extension ViewControllerBatch: StartStopProgressIndicator {
         // Batch task completed
         GlobalMainQueue.async(execute: { () -> Void in
             self.working.stopAnimation(nil)
-            self.label.stringValue = "Completed"
+            self.label.stringValue = "Completed all task(s)"
             self.CloseButton.title = "Close"
             self.close = true
         })
