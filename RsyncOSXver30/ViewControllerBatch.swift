@@ -98,7 +98,6 @@ class ViewControllerBatch : NSViewController {
     override func viewDidAppear() {
         super.viewDidAppear()
         self.closeinseconds.isHidden = true
-        self.label.isHidden = true
         self.working.stopAnimation(nil)
         self.close = true
         
@@ -141,7 +140,7 @@ extension ViewControllerBatch: StartStopProgressIndicator {
     func stop() {
         let row = SharingManagerConfiguration.sharedInstance.getBatchdataObject()!.getRow() + 1
         GlobalMainQueue.async(execute: { () -> Void in
-            self.label.stringValue = "Executing task: "
+            self.label.stringValue = "Executing task "
             self.rownumber.stringValue = String(row)
         })
         
@@ -153,8 +152,7 @@ extension ViewControllerBatch: StartStopProgressIndicator {
         // Starts estimation progressbar when estimation starts
         GlobalMainQueue.async(execute: { () -> Void in
             self.working.startAnimation(nil)
-            self.label.isHidden = false
-            self.label.stringValue = "Estimating task: "
+            self.label.stringValue = "Estimating task "
             self.rownumber.stringValue = String(row)
         })
         
