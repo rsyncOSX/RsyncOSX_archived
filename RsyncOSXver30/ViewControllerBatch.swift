@@ -37,6 +37,7 @@ class ViewControllerBatch : NSViewController {
     @IBOutlet weak var working: NSProgressIndicator!
     @IBOutlet weak var label: NSTextField!
     @IBOutlet weak var closeinseconds: NSTextField!
+    @IBOutlet weak var rownumber: NSTextField!
     
     // Iniate start of batchrun
     weak var startBatch_delegate:StartBatch?
@@ -124,7 +125,12 @@ extension ViewControllerBatch : NSTableViewDelegate {
         if ((tableColumn!.identifier) == "estimatedCellID" || (tableColumn!.identifier) == "completedCellID" ) {
             return object[tableColumn!.identifier] as? Int!
         } else {
-            return object[tableColumn!.identifier] as? String
+            if (row == SharingManagerConfiguration.sharedInstance.getBatchdataObject()!.getRow() && tableColumn!.identifier == "taskCellID") {
+                return (object[tableColumn!.identifier] as? String)! + " *"
+            } else {
+                return object[tableColumn!.identifier] as? String
+            }
+            
         }
     }
     
@@ -135,7 +141,8 @@ extension ViewControllerBatch: StartStopProgressIndicator {
     func stop() {
         let row = SharingManagerConfiguration.sharedInstance.getBatchdataObject()!.getRow() + 1
         GlobalMainQueue.async(execute: { () -> Void in
-            self.label.stringValue = "Executing task: " + String(row)
+            self.label.stringValue = "Executing task: "
+            self.rownumber.stringValue = String(row)
         })
         
     }
@@ -147,7 +154,8 @@ extension ViewControllerBatch: StartStopProgressIndicator {
         GlobalMainQueue.async(execute: { () -> Void in
             self.working.startAnimation(nil)
             self.label.isHidden = false
-            self.label.stringValue = "Estimating task: " + String(row)
+            self.label.stringValue = "Estimating task: "
+            self.rownumber.stringValue = String(row)
         })
         
     }
