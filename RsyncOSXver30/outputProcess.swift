@@ -46,6 +46,8 @@ final class outputProcess {
     
     // Error delegate
     weak var error_delegate:ViewControllertabMain?
+    // Last record of rsync 
+    weak var lastrecord_delegate:ViewControllertabMain?
     
     func getOutputCount () -> Int {
         guard (self.output != nil) else {
