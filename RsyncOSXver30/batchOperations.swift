@@ -101,6 +101,9 @@ final class batchOperations {
                 "completedCellID":0,
                 "numberOfFilesCellID":"0",
                 "maxnumberOfFilesCellID":"0"]
+            if ((row.object(forKey: "offsiteServerCellID") as? String)!.isEmpty) {
+                row.setValue("localhost", forKey: "offsiteServerCellID")
+            }
             self.data.append(row)
             // Appending data for batchQueue
             // Estimaterun queu = (hiddenID,0)
