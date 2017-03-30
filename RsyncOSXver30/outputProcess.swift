@@ -169,22 +169,10 @@ final class outputProcess {
         let totalFilesNumber = self.output!.filter({(($0).contains("Number of files:"))})
         // ver 3.x - [Number of files: 3,956 (reg: 3,197, dir: 758, link: 1)]
         // ver 2.x - [Number of files: 3956]
-        // let error = self.output!.filter({(($0).contains("rsync error:"))})
         // New files
         let new = self.output!.filter({(($0).contains("Number of created files:"))})
         // Delete files
         let delete = self.output!.filter({(($0).contains("Number of deleted files:"))})
-        
-        // There is an error in transferring files
-        // We only informs in main view if error
-        /*
-        if error.count > 0 {
-            if let pvc = SharingManagerConfiguration.sharedInstance.ViewObjectMain {
-                self.error_delegate = pvc as? ViewControllertabMain
-                self.error_delegate?.rsyncerror()
-            }
-        }
-         */
         
         // Must make it somewhat robust, it it breaks all values is set to 0
         
