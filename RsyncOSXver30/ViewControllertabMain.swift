@@ -1269,6 +1269,11 @@ extension ViewControllertabMain: RsyncError {
                 self.showProcessInfo(info: .Error)
                 self.setRsyncCommandDisplay()
                 self.workload!.error()
+                // Abort any operations
+                if let process = self.process {
+                    process.terminate()
+                    self.process = nil
+                }
             })
         }
     }
