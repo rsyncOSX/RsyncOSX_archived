@@ -46,6 +46,8 @@ final class outputProcess {
     
     // Error delegate
     weak var error_delegate:ViewControllertabMain?
+    // Last record of rsync 
+    weak var lastrecord_delegate:ViewControllertabMain?
     
     func getOutputCount () -> Int {
         guard (self.output != nil) else {
@@ -93,6 +95,17 @@ final class outputProcess {
         self.endIndex = self.output!.count
         if (self.endIndex! > 2) {
             self.resultRsync = (self.output![self.endIndex!-2])
+        }
+        
+        // rsync error
+        let error = sentence.contains("rsync error:")
+        // There is an error in transferring files
+        // We only informs in main view if error
+        if error {
+            if let pvc = SharingManagerConfiguration.sharedInstance.ViewObjectMain {
+                self.error_delegate = pvc as? ViewControllertabMain
+                self.error_delegate?.rsyncerror()
+            }
         }
     }
     
@@ -156,20 +169,10 @@ final class outputProcess {
         let totalFilesNumber = self.output!.filter({(($0).contains("Number of files:"))})
         // ver 3.x - [Number of files: 3,956 (reg: 3,197, dir: 758, link: 1)]
         // ver 2.x - [Number of files: 3956]
-        let error = self.output!.filter({(($0).contains("rsync error:"))})
         // New files
         let new = self.output!.filter({(($0).contains("Number of created files:"))})
         // Delete files
         let delete = self.output!.filter({(($0).contains("Number of deleted files:"))})
-        
-        // There is an error in transferring files
-        // We only informs in main view if error
-        if error.count > 0 {
-            if let pvc = SharingManagerConfiguration.sharedInstance.ViewObjectMain {
-                self.error_delegate = pvc as? ViewControllertabMain
-                self.error_delegate?.rsyncerror()
-            }
-        }
         
         // Must make it somewhat robust, it it breaks all values is set to 0
         

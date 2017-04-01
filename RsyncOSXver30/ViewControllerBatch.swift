@@ -24,10 +24,12 @@ class ViewControllerBatch : NSViewController {
     // If close button or abort is pressed
     // After execute button is pressed, close is abort
     var close:Bool?
-    // Autmatic closing of view
+    // Automatic closing of view
     var waitToClose:Timer?
     var closeIn:Timer?
     var seconds:Int?
+    // Working on row
+    var row:Int?
 
     // Main tableview
     @IBOutlet weak var mainTableView: NSTableView!
@@ -35,6 +37,7 @@ class ViewControllerBatch : NSViewController {
     @IBOutlet weak var working: NSProgressIndicator!
     @IBOutlet weak var label: NSTextField!
     @IBOutlet weak var closeinseconds: NSTextField!
+    @IBOutlet weak var rownumber: NSTextField!
     
     // Iniate start of batchrun
     weak var startBatch_delegate:StartBatch?
@@ -95,7 +98,6 @@ class ViewControllerBatch : NSViewController {
     override func viewDidAppear() {
         super.viewDidAppear()
         self.closeinseconds.isHidden = true
-        self.label.isHidden = true
         self.working.stopAnimation(nil)
         self.close = true
         
@@ -115,24 +117,19 @@ extension ViewControllerBatch : NSTableViewDelegate {
     
     // TableView delegates
     @objc(tableView:objectValueForTableColumn:row:) func tableView(_ tableView: NSTableView, objectValueFor tableColumn: NSTableColumn?, row: Int) -> Any? {
-        
         guard SharingManagerConfiguration.sharedInstance.getbatchDataQueue() != nil else {
             return nil
         }
-        
         let object : NSMutableDictionary = SharingManagerConfiguration.sharedInstance.getbatchDataQueue()![row]
         if ((tableColumn!.identifier) == "estimatedCellID" || (tableColumn!.identifier) == "completedCellID" ) {
             return object[tableColumn!.identifier] as? Int!
         } else {
-            return object[tableColumn!.identifier] as? String
-        }
-    }
-    
-    // Toggling batch
-    @objc(tableView:setObjectValue:forTableColumn:row:) func tableView(_ tableView: NSTableView, setObjectValue object: Any?, for tableColumn: NSTableColumn?, row: Int) {
-        if (SharingManagerConfiguration.sharedInstance.getConfigurations()[row].task == "backup") {
-            SharingManagerConfiguration.sharedInstance.getConfigurationsDataSource()![row].setObject(object!, forKey: (tableColumn?.identifier)! as NSCopying)
-            SharingManagerConfiguration.sharedInstance.setBatchYesNo(row)
+            if (row == SharingManagerConfiguration.sharedInstance.getBatchdataObject()!.getRow() && tableColumn!.identifier == "taskCellID") {
+                return (object[tableColumn!.identifier] as? String)! + " *"
+            } else {
+                return object[tableColumn!.identifier] as? String
+            }
+            
         }
     }
     
@@ -140,22 +137,23 @@ extension ViewControllerBatch : NSTableViewDelegate {
 
 extension ViewControllerBatch: StartStopProgressIndicator {
     
-    // Stops estimation progressbar when real task is executing
     func stop() {
+        let row = SharingManagerConfiguration.sharedInstance.getBatchdataObject()!.getRow() + 1
         GlobalMainQueue.async(execute: { () -> Void in
-            self.working.stopAnimation(nil)
-            self.label.stringValue = "Executing"
+            self.label.stringValue = "Executing task "
+            self.rownumber.stringValue = String(row)
         })
         
     }
     
     func start() {
         self.close = false
+        let row = SharingManagerConfiguration.sharedInstance.getBatchdataObject()!.getRow() + 1
         // Starts estimation progressbar when estimation starts
         GlobalMainQueue.async(execute: { () -> Void in
             self.working.startAnimation(nil)
-            self.label.isHidden = false
-            self.label.stringValue = "Estimating"
+            self.label.stringValue = "Estimating task "
+            self.rownumber.stringValue = String(row)
         })
         
     }
@@ -163,7 +161,8 @@ extension ViewControllerBatch: StartStopProgressIndicator {
     func complete() {
         // Batch task completed
         GlobalMainQueue.async(execute: { () -> Void in
-            self.label.stringValue = "Completed"
+            self.working.stopAnimation(nil)
+            self.label.stringValue = "Completed all task(s)"
             self.CloseButton.title = "Close"
             self.close = true
         })

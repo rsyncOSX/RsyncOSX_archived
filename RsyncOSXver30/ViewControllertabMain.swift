@@ -556,10 +556,7 @@ class ViewControllertabMain: NSViewController {
                 }
                 // Set date on Configuration
                 let index = SharingManagerConfiguration.sharedInstance.getIndex(work.0)
-                let hiddenID = SharingManagerConfiguration.sharedInstance.gethiddenID(index: index)
-                SharingManagerConfiguration.sharedInstance.setCurrentDateonConfiguration(index)
-                SharingManagerSchedule.sharedInstance.addScheduleResultManuel(hiddenID, result: self.output!.statistics(numberOfFiles: self.transferredNumber.stringValue)[0])
-                self.showProcessInfo(info: .Executing)
+                
                 let config = SharingManagerConfiguration.sharedInstance.getConfigurations()[index]
                 if config.offsiteServer.isEmpty {
                     let result = config.localCatalog + " , " + "localhost" + " , " + self.output!.statistics(numberOfFiles: self.transferredNumber.stringValue)[0]
@@ -568,6 +565,11 @@ class ViewControllertabMain: NSViewController {
                     let result = config.localCatalog + " , " + config.offsiteServer + " , " + self.output!.statistics(numberOfFiles: self.transferredNumber.stringValue)[0]
                     self.outputbatch!.addLine(str: result)
                 }
+                
+                let hiddenID = SharingManagerConfiguration.sharedInstance.gethiddenID(index: index)
+                SharingManagerConfiguration.sharedInstance.setCurrentDateonConfiguration(index)
+                SharingManagerSchedule.sharedInstance.addScheduleResultManuel(hiddenID, result: self.output!.statistics(numberOfFiles: self.transferredNumber.stringValue)[0])
+                self.showProcessInfo(info: .Executing)
                 
                 self.runBatch()
             default :
@@ -1159,7 +1161,6 @@ extension ViewControllertabMain: UpdateProgress {
     func ProcessTermination() {
         
         self.ready = true
-        
         // Making sure no nil pointer execption
         if let workload = self.workload {
             
@@ -1187,6 +1188,10 @@ extension ViewControllertabMain: UpdateProgress {
                         self.presentViewControllerAsSheet(self.ViewControllerInformation)
                     })
                 case .execute_singlerun:
+                    self.showProcessInfo(info: .Logging_run)
+                    SharingManagerConfiguration.sharedInstance.setCurrentDateonConfiguration(self.index!)
+                    SharingManagerSchedule.sharedInstance.addScheduleResultManuel(self.hiddenID!, result: self.output!.statistics(numberOfFiles: self.transferredNumber.stringValue)[0])
+                    
                     if let pvc2 = self.presentedViewControllers as? [ViewControllerProgressProcess] {
                         if (pvc2.count > 0) {
                             self.processupdate_delegate = pvc2[0]
@@ -1199,9 +1204,6 @@ extension ViewControllertabMain: UpdateProgress {
                             self.presentViewControllerAsSheet(self.ViewControllerInformation)
                         })
                     }
-                    self.showProcessInfo(info: .Logging_run)
-                    SharingManagerConfiguration.sharedInstance.setCurrentDateonConfiguration(self.index!)
-                    SharingManagerSchedule.sharedInstance.addScheduleResultManuel(self.hiddenID!, result: self.output!.statistics(numberOfFiles: self.transferredNumber.stringValue)[0])
                 case .abort:
                     self.abortOperations()
                     self.workload = nil
@@ -1267,6 +1269,11 @@ extension ViewControllertabMain: RsyncError {
                 self.showProcessInfo(info: .Error)
                 self.setRsyncCommandDisplay()
                 self.workload!.error()
+                // Abort any operations
+                if let process = self.process {
+                    process.terminate()
+                    self.process = nil
+                }
             })
         }
     }
@@ -1283,3 +1290,5 @@ extension ViewControllertabMain: FileError {
         })
     }
 }
+
+

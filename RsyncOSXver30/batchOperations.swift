@@ -17,18 +17,30 @@ final class batchOperations {
     private var batchQueu = [(Int,Int)]()
     // Just holding the indexes
     private var index = Array<Int>()
+    // Holding value for working on row
+    private var row:Int?
+    
+    // Returning current row
+    func getRow() -> Int {
+        guard self.row != nil else {
+            return 0
+        }
+        return self.row!
+    }
     
     // Set estimated (0 or 1) for row at index
     func setEstimated(numberOfFiles:Int) {
         let index = self.index[0]
         self.data[index].setValue(1, forKey: "estimatedCellID")
         self.data[index].setValue(String(numberOfFiles), forKey: "maxnumberOfFilesCellID")
+        self.row = index
     }
     
     // Set percent completed during process
     func updateInProcess(numberOfFiles:Int) {
         let index = self.index[0]
         self.data[index].setValue(String(numberOfFiles), forKey: "numberOfFilesCellID")
+        self.row = index
     }
     
     // Set Completed
@@ -37,6 +49,7 @@ final class batchOperations {
         let numberOfFiles = self.data[index].value(forKey: "maxnumberOfFilesCellID")
         self.data[index].setValue(numberOfFiles, forKey: "numberOfFilesCellID")
         self.data[index].setValue(1, forKey: "completedCellID")
+        self.row = index
     }
     
     // Pops of the first element of index Queue
@@ -81,13 +94,16 @@ final class batchOperations {
     init (batchtasks : Array<configuration>) {
         for i in 0 ..< batchtasks.count {
             let row:NSMutableDictionary = [
-                "taskCellID": batchtasks[i].task,
+                "taskCellID": String(i+1),
                 "localCatalogCellID":batchtasks[i].localCatalog,
                 "offsiteServerCellID":batchtasks[i].offsiteServer,
                 "estimatedCellID":0,
                 "completedCellID":0,
                 "numberOfFilesCellID":"0",
                 "maxnumberOfFilesCellID":"0"]
+            if ((row.object(forKey: "offsiteServerCellID") as? String)!.isEmpty) {
+                row.setValue("localhost", forKey: "offsiteServerCellID")
+            }
             self.data.append(row)
             // Appending data for batchQueue
             // Estimaterun queu = (hiddenID,0)
