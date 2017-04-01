@@ -43,3 +43,7 @@ The code is **not** example of neither writing decent Swift code, OO-development
 ### Changelog
 
 The [Changelog](https://github.com/rsyncOSX/Documentation/blob/master/docs/Changelog.md).
+
+### My NAS setup
+
+I have setup up my own [NAS](https://github.com/rsyncOSX/Documentation/blob/master/docs/DIYNAS.md). My NAS SW is now FreeNAS Corral. I am doing backups by using RsyncOSX and sharing out disk by AFP and SMB.
