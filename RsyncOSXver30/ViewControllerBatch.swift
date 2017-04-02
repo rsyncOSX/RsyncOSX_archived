@@ -100,7 +100,10 @@ class ViewControllerBatch : NSViewController {
         self.closeinseconds.isHidden = true
         self.working.stopAnimation(nil)
         self.close = true
-        
+        self.label.stringValue = "Progress "
+        self.rownumber.stringValue = ""
+        self.CloseButton.title = "Close"
+        self.close = true
     }
 
 
@@ -129,10 +132,8 @@ extension ViewControllerBatch : NSTableViewDelegate {
             } else {
                 return object[tableColumn!.identifier] as? String
             }
-            
         }
     }
-    
 }
 
 extension ViewControllerBatch: StartStopProgressIndicator {
