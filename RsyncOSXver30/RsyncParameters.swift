@@ -69,7 +69,7 @@ final class RsyncParameters {
     /// - parameter value: the value of rsync parameter
     /// - return: array of String
     func getRsyncParameter (indexComboBox:Int, value:String?) -> String {
-        guard  indexComboBox < self.rsyncArguments.count else {
+        guard  indexComboBox < self.rsyncArguments.count && indexComboBox > -1 else {
             return ""
         }
         switch (self.rsyncArguments[indexComboBox].1) {
