@@ -99,7 +99,7 @@ extension ViewControllerProgressProcess: UpdateProgress {
     }
     
     func FileHandler() {
-        self.updateProgressbar(Double((self.count_delegate?.inprogressCount())!))
+        self.updateProgressbar(Double(self.count_delegate!.inprogressCount()))
     }
 
     
