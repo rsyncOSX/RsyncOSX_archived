@@ -527,10 +527,10 @@ class ViewControllertabMain: NSViewController {
             if (self.output!.getTransferredNumbers(numbers: .transferredNumber) > 0) {
                 self.maxcount = self.output!.getTransferredNumbers(numbers: .transferredNumber)
             } else {
-                self.maxcount = self.output!.getOutputCount()
+                self.maxcount = self.output!.getMaxcount()
             }
         } else {
-            self.maxcount = self.output!.getOutputCount()
+            self.maxcount = self.output!.getMaxcount()
         }
     }
     
@@ -843,7 +843,7 @@ extension ViewControllertabMain: StartBatch {
                 self.showProcessInfo(info: .Estimating)
                 self.runBatch()
             case 1:
-                self.maxcount = self.output!.getOutputCount()
+                self.maxcount = self.output!.getMaxcount()
                 // Update files in work
                 batchobject.updateInProcess(numberOfFiles: self.maxcount)
                 batchobject.setCompleted()
@@ -963,10 +963,7 @@ extension ViewControllertabMain: RsyncUserParams {
 extension ViewControllertabMain: GetSelecetedIndex {
     
     func getindex() -> Int? {
-        guard self.index != nil else {
-            return nil
-        }
-        return self.index!
+        return self.index
     }
 }
 
@@ -1210,13 +1207,15 @@ extension ViewControllertabMain: UpdateProgress {
         }
     }
     
+    // Function is triggered when Process outputs data in filehandler
+    // Process is either in singleRun or batchRun
     func FileHandler() {
         self.showProcessInfo(info: .Count_files)
         if let batchobject = SharingManagerConfiguration.sharedInstance.getBatchdataObject() {
             let work = batchobject.nextBatchCopy()
             if work.1 == 1 {
                 // Real work is done
-                self.maxcount = self.output!.getOutputCount()
+                self.maxcount = self.output!.getMaxcount()
                 batchobject.updateInProcess(numberOfFiles: self.maxcount)
                 // Refresh view in Batchwindow
                 if let pvc = self.presentedViewControllers as? [ViewControllerBatch] {

@@ -51,12 +51,15 @@ final class outputProcess {
     // Last record of rsync 
     weak var lastrecord_delegate:ViewControllertabMain?
     
-    func getOutputCount () -> Int {
-        //guard (self.output != nil) else {
-        //    return 0
-        //}
-        // return self.output!.count
+    func getMaxcount() -> Int {
         return self.maxNumber
+    }
+    
+    func getOutputCount () -> Int {
+        guard (self.output != nil) else {
+            return 0
+        }
+        return self.output!.count
     }
     
     func getOutput () -> Array<String> {
