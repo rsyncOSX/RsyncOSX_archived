@@ -16,6 +16,8 @@ protocol StartBatch : class  {
     func abortOperations()
     // Either just close or close after batch done
     func closeOperation()
+    // called when in executing batch
+    func inBatchwork()
 }
 
 
