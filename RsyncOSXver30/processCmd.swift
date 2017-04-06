@@ -72,7 +72,7 @@ class processCmd {
             // Forcing a --stats in dryrun which produces a summarized detail about
             // files and bytes. getNumbers collects that info and store the result in the
             // object.
-            output.getNumbers()
+            output.setNumbers()
              // Check if in a scheduled operation, if not use delegate to inform about termination of Process()
             if (self.aScheduledOperation! == false) {
                 // Send message about process termination

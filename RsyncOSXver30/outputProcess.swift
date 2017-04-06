@@ -32,6 +32,8 @@ final class outputProcess {
     private var transferredNumberSizebytes:Double?
     private var newfiles:Int?
     private var deletefiles:Int?
+    // Maxnumber
+    private var maxNumber:Int = 0
     
     // enum for returning what is asked for
     enum enumNumbers {
@@ -48,6 +50,10 @@ final class outputProcess {
     weak var error_delegate:ViewControllertabMain?
     // Last record of rsync 
     weak var lastrecord_delegate:ViewControllertabMain?
+    
+    func getMaxcount() -> Int {
+        return self.maxNumber
+    }
     
     func getOutputCount () -> Int {
         guard (self.output != nil) else {
@@ -93,6 +99,9 @@ final class outputProcess {
         }
         
         self.endIndex = self.output!.count
+        // Set maxnumber so far
+        self.maxNumber = self.endIndex!
+        
         if (self.endIndex! > 2) {
             self.resultRsync = (self.output![self.endIndex!-2])
         }
@@ -155,7 +164,7 @@ final class outputProcess {
     // after Process termination is discovered. Function
     // is executed from rsync Process after Process termination.
     // And it is a kind of UGLY...
-    func getNumbers() {
+    func setNumbers() {
         
         let transferredFiles = self.output!.filter({(($0).contains("files transferred:"))})
         // ver 3.x - [Number of regular files transferred: 24]

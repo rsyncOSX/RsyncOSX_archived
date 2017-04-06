@@ -16,25 +16,20 @@
 
 import Cocoa
 
-// Protocol for Abort function
-protocol Abort : class {
-    func abortOperations()
-}
 
 // Protocol for progress indicator
-protocol Count : class {
+protocol Count: class {
     func maxCount() -> Int
     func inprogressCount() -> Int
 }
 
-class ViewControllerProgressProcess : NSViewController {
+class ViewControllerProgressProcess: NSViewController {
     
     var count:Double = 0
     var maxcount: Double = 0
     var calculatedNumberOfFiles:Int?
     
     // Delegates
-    weak var abort_delegate:Abort?
     weak var count_delegate:Count?
     // Dismisser
     weak var dismiss_delegate:DismissViewController?
@@ -46,13 +41,10 @@ class ViewControllerProgressProcess : NSViewController {
         super.viewDidLoad()
         // Do view setup here.
         // Load protocol functions
-        if let pvc = self.presenting as? ViewControllertabMain {
-            self.abort_delegate = pvc
-            self.count_delegate = pvc
-        }
         // Dismisser is root controller
-        if let pvc2 = self.presenting as? ViewControllertabMain {
-            self.dismiss_delegate = pvc2
+        if let pvc = self.presenting as? ViewControllertabMain {
+            self.count_delegate = pvc
+            self.dismiss_delegate = pvc
         }
     }
     

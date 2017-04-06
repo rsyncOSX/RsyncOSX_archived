@@ -514,75 +514,11 @@ class ViewControllertabMain: NSViewController {
         SharingManagerConfiguration.sharedInstance.setDataDirty(dirty: true)
         SharingManagerSchedule.sharedInstance.readAllSchedules()
     }
-
-    
-    fileprivate func inBatchwork() {
-        // Take care of batchRun activities
-        if let batchobject = SharingManagerConfiguration.sharedInstance.getBatchdataObject() {
-            
-            if (self.outputbatch == nil) {
-                self.outputbatch = outputBatch()
-            }
-            
-            // Remove the first worker object
-            let work = batchobject.nextBatchRemove()
-            // get numbers from dry-run
-            // Getting and setting max file to transfer
-            self.setmaxNumbersOfFilesToTransfer()
-            // Setting maxcount of files in object
-            batchobject.setEstimated(numberOfFiles: self.maxcount)
-            // 0 is estimationrun, 1 is real run
-            switch (work.1) {
-            case 0:
-                // Do a refresh of NSTableView in ViewControllerBatch
-                // Stack of ViewControllers
-                if let pvc = self.presentedViewControllers as? [ViewControllerBatch] {
-                    self.refresh_delegate = pvc[0]
-                    self.indicator_delegate = pvc[0]
-                    self.refresh_delegate?.refresh()
-                    self.indicator_delegate?.stop()
-                }
-                self.showProcessInfo(info: .Estimating)
-                self.runBatch()
-            case 1:
-                self.maxcount = self.output!.getOutputCount()
-                // Update files in work
-                batchobject.updateInProcess(numberOfFiles: self.maxcount)
-                batchobject.setCompleted()
-                if let pvc = self.presentedViewControllers as? [ViewControllerBatch] {
-                    self.refresh_delegate = pvc[0]
-                    self.indicator_delegate = pvc[0]
-                    self.refresh_delegate?.refresh()
-                }
-                // Set date on Configuration
-                let index = SharingManagerConfiguration.sharedInstance.getIndex(work.0)
-                
-                let config = SharingManagerConfiguration.sharedInstance.getConfigurations()[index]
-                if config.offsiteServer.isEmpty {
-                    let result = config.localCatalog + " , " + "localhost" + " , " + self.output!.statistics(numberOfFiles: self.transferredNumber.stringValue)[0]
-                    self.outputbatch!.addLine(str: result)
-                } else {
-                    let result = config.localCatalog + " , " + config.offsiteServer + " , " + self.output!.statistics(numberOfFiles: self.transferredNumber.stringValue)[0]
-                    self.outputbatch!.addLine(str: result)
-                }
-                
-                let hiddenID = SharingManagerConfiguration.sharedInstance.gethiddenID(index: index)
-                SharingManagerConfiguration.sharedInstance.setCurrentDateonConfiguration(index)
-                SharingManagerSchedule.sharedInstance.addScheduleResultManuel(hiddenID, result: self.output!.statistics(numberOfFiles: self.transferredNumber.stringValue)[0])
-                self.showProcessInfo(info: .Executing)
-                
-                self.runBatch()
-            default :
-                break
-            }
-        }
-    }
-    
     
     //  End delegate functions Process object
     
-    // Function for setting max files to be copied
-    // Function is called in ProcessTermination()
+    // Function for setting max files to be transferred
+    // Function is called in self.ProcessTermination()
     fileprivate func setmaxNumbersOfFilesToTransfer() {
         // Getting max count
         self.showProcessInfo(info: .Set_max_Number)
@@ -591,10 +527,10 @@ class ViewControllertabMain: NSViewController {
             if (self.output!.getTransferredNumbers(numbers: .transferredNumber) > 0) {
                 self.maxcount = self.output!.getTransferredNumbers(numbers: .transferredNumber)
             } else {
-                self.maxcount = self.output!.getOutputCount()
+                self.maxcount = self.output!.getMaxcount()
             }
         } else {
-            self.maxcount = self.output!.getOutputCount()
+            self.maxcount = self.output!.getMaxcount()
         }
     }
     
@@ -876,6 +812,104 @@ extension ViewControllertabMain: StartBatch {
         self.workload = nil
         self.setInfo(info: "", color: NSColor.black)
     }
+    
+    func inBatchwork() {
+        // Take care of batchRun activities
+        if let batchobject = SharingManagerConfiguration.sharedInstance.getBatchdataObject() {
+            
+            if (self.outputbatch == nil) {
+                self.outputbatch = outputBatch()
+            }
+            
+            // Remove the first worker object
+            let work = batchobject.nextBatchRemove()
+            // get numbers from dry-run
+            // Getting and setting max file to transfer
+            self.setmaxNumbersOfFilesToTransfer()
+            // Setting maxcount of files in object
+            batchobject.setEstimated(numberOfFiles: self.maxcount)
+            // 0 is estimationrun, 1 is real run
+            switch (work.1) {
+            case 0:
+                
+                // Do a refresh of NSTableView in ViewControllerBatch
+                // Stack of ViewControllers
+                if let pvc = self.presentedViewControllers as? [ViewControllerBatch] {
+                    self.refresh_delegate = pvc[0]
+                    self.indicator_delegate = pvc[0]
+                    self.refresh_delegate?.refresh()
+                    self.indicator_delegate?.stop()
+                }
+                self.showProcessInfo(info: .Estimating)
+                self.runBatch()
+            case 1:
+                self.maxcount = self.output!.getMaxcount()
+                // Update files in work
+                batchobject.updateInProcess(numberOfFiles: self.maxcount)
+                batchobject.setCompleted()
+                if let pvc = self.presentedViewControllers as? [ViewControllerBatch] {
+                    self.refresh_delegate = pvc[0]
+                    self.indicator_delegate = pvc[0]
+                    self.refresh_delegate?.refresh()
+                }
+                // Set date on Configuration
+                let index = SharingManagerConfiguration.sharedInstance.getIndex(work.0)
+                
+                let config = SharingManagerConfiguration.sharedInstance.getConfigurations()[index]
+                if config.offsiteServer.isEmpty {
+                    let result = config.localCatalog + " , " + "localhost" + " , " + self.output!.statistics(numberOfFiles: self.transferredNumber.stringValue)[0]
+                    self.outputbatch!.addLine(str: result)
+                } else {
+                    let result = config.localCatalog + " , " + config.offsiteServer + " , " + self.output!.statistics(numberOfFiles: self.transferredNumber.stringValue)[0]
+                    self.outputbatch!.addLine(str: result)
+                }
+                
+                let hiddenID = SharingManagerConfiguration.sharedInstance.gethiddenID(index: index)
+                SharingManagerConfiguration.sharedInstance.setCurrentDateonConfiguration(index)
+                SharingManagerSchedule.sharedInstance.addScheduleResultManuel(hiddenID, result: self.output!.statistics(numberOfFiles: self.transferredNumber.stringValue)[0])
+                self.showProcessInfo(info: .Executing)
+                
+                self.runBatch()
+            default :
+                break
+            }
+        }
+    }
+    
+    // Abort any task, either single- or batch task
+    func abortOperations() {
+        // Terminates the running process
+        self.showProcessInfo(info:.Abort)
+        if let process = self.process {
+            process.terminate()
+            self.index = nil
+            self.working.stopAnimation(nil)
+            self.schedules = nil
+            self.process = nil
+            self.workload = nil
+            // Create workqueu and add abort
+            self.workload = singleTask(task: .abort)
+            self.setInfo(info: "Abort", color: NSColor.red)
+            self.rsyncCommand.stringValue = ""
+        } else {
+            self.rsyncCommand.stringValue = "Selection out of range - aborting"
+            self.process = nil
+            self.workload = nil
+            self.index = nil
+        }
+        if let batchobject = SharingManagerConfiguration.sharedInstance.getBatchdataObject() {
+            // Empty queue in batchobject
+            batchobject.abortOperations()
+            // Set reference to batchdata = nil
+            SharingManagerConfiguration.sharedInstance.deleteBatchData()
+            self.schedules = nil
+            self.process = nil
+            self.workload = nil
+            self.workload = singleTask(task: .abort)
+            self.setInfo(info: "Abort", color: NSColor.red)
+        }
+    }
+
 
 }
 
@@ -929,10 +963,7 @@ extension ViewControllertabMain: RsyncUserParams {
 extension ViewControllertabMain: GetSelecetedIndex {
     
     func getindex() -> Int? {
-        guard self.index != nil else {
-            return nil
-        }
-        return self.index!
+        return self.index
     }
 }
 
@@ -1042,7 +1073,6 @@ extension ViewControllertabMain: ScheduledJobInProgress {
             })
         }
     }
-
 }
 
 // New scheduled task entered. Delete old one and
@@ -1054,7 +1084,6 @@ extension ViewControllertabMain: NewSchedules {
         self.schedules = nil
         self.schedules = ScheduleSortedAndExpand()
     }
-    
 }
 
 
@@ -1090,7 +1119,6 @@ extension ViewControllertabMain: newVersionDiscovered {
             self.presentViewControllerAsSheet(self.newVersionViewController)
         })
     }
-    
 }
 
 
@@ -1107,48 +1135,7 @@ extension ViewControllertabMain: DismissViewController {
             self.mainTableView.reloadData()
         })
     }
-    
 }
-
-// If abort is selected during execution of task
-// Either single task or batch
-extension ViewControllertabMain: Abort {
-    // Abort any task, either single- or batch task
-    func abortOperations() {
-        // Terminates the running process
-        self.showProcessInfo(info:.Abort)
-        if let process = self.process {
-            process.terminate()
-            self.index = nil
-            self.working.stopAnimation(nil)
-            self.schedules = nil
-            self.process = nil
-            self.workload = nil
-            // Create workqueu and add abort
-            self.workload = singleTask(task: .abort)
-            self.setInfo(info: "Abort", color: NSColor.red)
-            self.rsyncCommand.stringValue = ""
-        } else {
-            self.rsyncCommand.stringValue = "Selection out of range - aborting"
-            self.process = nil
-            self.workload = nil
-            self.index = nil
-        }
-        if let batchobject = SharingManagerConfiguration.sharedInstance.getBatchdataObject() {
-            // Empty queue in batchobject
-            batchobject.abortOperations()
-            // Set reference to batchdata = nil
-            SharingManagerConfiguration.sharedInstance.deleteBatchData()
-            self.schedules = nil
-            self.process = nil
-            self.workload = nil
-            self.workload = singleTask(task: .abort)
-            self.setInfo(info: "Abort", color: NSColor.red)
-        }
-    }
-    
-}
-
 
 // Called when either a terminatopn of Process is
 // discovered or data is availiable in the filehandler
@@ -1220,13 +1207,15 @@ extension ViewControllertabMain: UpdateProgress {
         }
     }
     
+    // Function is triggered when Process outputs data in filehandler
+    // Process is either in singleRun or batchRun
     func FileHandler() {
         self.showProcessInfo(info: .Count_files)
         if let batchobject = SharingManagerConfiguration.sharedInstance.getBatchdataObject() {
             let work = batchobject.nextBatchCopy()
             if work.1 == 1 {
                 // Real work is done
-                self.maxcount = self.output!.getOutputCount()
+                self.maxcount = self.output!.getMaxcount()
                 batchobject.updateInProcess(numberOfFiles: self.maxcount)
                 // Refresh view in Batchwindow
                 if let pvc = self.presentedViewControllers as? [ViewControllerBatch] {
