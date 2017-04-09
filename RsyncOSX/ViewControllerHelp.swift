@@ -9,10 +9,6 @@
 import Foundation
 import Cocoa
 
-protocol selectHelp: class {
-    func SelectHelp(help:helpdocs)
-}
-
 class ViewControllerHelp: NSViewController {
     
     fileprivate var showwhat:helpdocs?
@@ -78,33 +74,4 @@ class ViewControllerHelp: NSViewController {
         SharingManagerConfiguration.sharedInstance.HelpObject = nil
     }
     
-}
-
-extension ViewControllerHelp: selectHelp {
-    func SelectHelp(help: helpdocs) {
-        
-        switch (help) {
-        case .batchtask:
-            self.Batchtask.state = NSOnState
-        case .changelog:
-            self.Changelog.state = NSOnState
-        case .rsyncparameters:
-            self.RsyncStdParameters.state = NSOnState
-        case .singletask:
-            self.Singeltask.state = NSOnState
-        case .configuration:
-            self.Configuration.state = NSOnState
-        case .documents:
-            self.Documents.state = NSOnState
-        case .add:
-            self.Add.state = NSOnState
-        case .schedule:
-            self.Schedule.state = NSOnState
-        case .copyfiles:
-            self.Copyfiles.state = NSOnState
-        case .logging:
-            self.Logging.state = NSOnState
-        }
-        self.showwhat = help
-    }
 }
