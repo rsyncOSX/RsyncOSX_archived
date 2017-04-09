@@ -90,7 +90,6 @@
 		A04492891D658EE800B3CE17 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A044928C1D658EE800B3CE17 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		A044928E1D658EE800B3CE17 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		A04492941D658F2000B3CE17 /* RsyncOSX-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "RsyncOSX-Bridging-Header.h"; sourceTree = "<group>"; };
 		A04492951D658F2100B3CE17 /* ytcpsocket.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = ytcpsocket.c; sourceTree = "<group>"; };
 		A04492961D658F2100B3CE17 /* yudpsocket.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = yudpsocket.c; sourceTree = "<group>"; };
 		A04492971D658F2100B3CE17 /* argumentsConfigurations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = argumentsConfigurations.swift; sourceTree = "<group>"; };
@@ -183,7 +182,6 @@
 				A044928B1D658EE800B3CE17 /* Main.storyboard */,
 				A044928E1D658EE800B3CE17 /* Info.plist */,
 			);
-			name = RsyncOSX;
 			path = RsyncOSX;
 			sourceTree = "<group>";
 		};
@@ -244,7 +242,6 @@
 		A04492C21D658FC300B3CE17 /* yudpsocket */ = {
 			isa = PBXGroup;
 			children = (
-				A04492941D658F2000B3CE17 /* RsyncOSX-Bridging-Header.h */,
 				A04492A61D658F2100B3CE17 /* ysocket.swift */,
 				A04492A71D658F2100B3CE17 /* ytcpsocket.swift */,
 				A04492A81D658F2100B3CE17 /* yudpsocket.swift */,

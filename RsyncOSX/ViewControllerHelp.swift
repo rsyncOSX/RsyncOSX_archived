@@ -21,19 +21,23 @@ class ViewControllerHelp: NSViewController {
     @IBOutlet weak var Singeltask: NSButton!
     @IBOutlet weak var Batchtask: NSButton!
     @IBOutlet weak var Configuration: NSButton!
-    @IBOutlet weak var Rsyncparameters: NSButton!
+    @IBOutlet weak var RsyncStdParameters: NSButton!
     @IBOutlet weak var Changelog: NSButton!
     @IBOutlet weak var Add: NSButton!
     @IBOutlet weak var Schedule: NSButton!
     @IBOutlet weak var Copyfiles: NSButton!
     @IBOutlet weak var Logging: NSButton!
+    @IBOutlet weak var DIYNAS: NSButton!
+    @IBOutlet weak var Idea: NSButton!
+    @IBOutlet weak var passwordless: NSButton!
+    @IBOutlet weak var RsyncParameters: NSButton!
     
     @IBAction func help(_ sender: NSButton) {
         if self.Batchtask.state == NSOnState {
             self.showwhat = .batchtask
         } else if self.Changelog.state == NSOnState {
             self.showwhat = .changelog
-        } else if self.Rsyncparameters.state  == NSOnState {
+        } else if self.RsyncStdParameters.state  == NSOnState {
             self.showwhat = .rsyncparameters
         } else if self.Singeltask.state == NSOnState {
             self.showwhat = .singletask
@@ -85,7 +89,7 @@ extension ViewControllerHelp: selectHelp {
         case .changelog:
             self.Changelog.state = NSOnState
         case .rsyncparameters:
-            self.Rsyncparameters.state = NSOnState
+            self.RsyncStdParameters.state = NSOnState
         case .singletask:
             self.Singeltask.state = NSOnState
         case .configuration:
