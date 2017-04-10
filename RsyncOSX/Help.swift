@@ -20,6 +20,11 @@ enum helpdocs {
     case schedule
     case copyfiles
     case logging
+    case rsyncstdparameters
+    case diynas
+    case idea
+    case passwordless
+    case source
 }
 
 final class Help {
@@ -28,14 +33,18 @@ final class Help {
     private var documentstart: String = "https://rsyncosx.github.io/Documentation/"
     private var singletask: String = "https://rsyncosx.github.io/Documentation/docs/SingleTask.html"
     private var batchtask: String = "https://rsyncosx.github.io/Documentation/docs/BatchTask.html"
-    private var rsyncparameters: String = "https://rsyncosx.github.io/Documentation/docs/Parameters.html"
+    private var rsyncparameters: String = "https://rsyncosx.github.io/Documentation/docs/RsyncParameters.html"
+    private var rsyncstdparameters: String = "https://rsyncosx.github.io/Documentation/docs/Parameters.html"
     private var configuration: String = "https://rsyncosx.github.io/Documentation/docs/UserConfiguration.html"
     private var add: String = "https://rsyncosx.github.io/Documentation/docs/AddConfigurations.html"
     private var schedule: String = "https://rsyncosx.github.io/Documentation/docs/ScheduleTasks.html"
     private var copyfiles:String = "https://rsyncosx.github.io/Documentation/docs/CopySingleFiles.html"
     private var logging: String = "https://rsyncosx.github.io/Documentation/docs/Logging.html"
-    
-    
+    private var diynas: String = "https://rsyncosx.github.io/Documentation/docs/DIYNAS.html"
+    private var idea: String = "https://rsyncosx.github.io/Documentation/docs/Idea.html"
+    private var passwordless: String = "https://rsyncosx.github.io/Documentation/docs/PasswordlessLogin.html"
+    private var soure:String = "https://github.com/rsyncOSX/RsyncOSX"
+
     private var resource:String?
     
     
@@ -67,7 +76,16 @@ final class Help {
             self.resource = self.copyfiles
         case .logging:
             self.resource = self.logging
-            
+        case .rsyncstdparameters:
+            self.resource = self.rsyncstdparameters
+        case .diynas:
+            self.resource = self.diynas
+        case .idea:
+            self.resource = self.idea
+        case .passwordless:
+            self.resource = self.passwordless
+        case .source:
+            self.resource = self.soure
         }
         self.show()
     }

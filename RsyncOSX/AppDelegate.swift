@@ -21,10 +21,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         if let userConfiguration =  persistentStoreAPI.sharedInstance.getUserconfiguration() {
             // userConfiguration is never nil if object is created
             _ = userconfiguration(userconfigRsyncOSX: userConfiguration)
-        }
         
-        // Object for presenting help files
-        SharingManagerConfiguration.sharedInstance.help = Help()
+        }
     }
 
     func applicationWillTerminate(_ aNotification: Notification) {

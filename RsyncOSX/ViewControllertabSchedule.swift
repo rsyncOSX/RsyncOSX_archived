@@ -49,8 +49,6 @@ class ViewControllertabSchedule : NSViewController {
     // Delegate function is triggered when NSTaskDidTerminationNotification
     // is discovered (e.g previous job is done)
     weak var start_next_job_delegate:StartNextScheduledTask?
-    // Delegate for Help
-    weak var help_delegate:selectHelp?
     
     // Information Schedule details
     // self.presentViewControllerAsSheet(self.ViewControllerScheduleDetails)
@@ -175,10 +173,6 @@ class ViewControllertabSchedule : NSViewController {
         self.startTimer()
         // Reference to self
         SharingManagerSchedule.sharedInstance.ViewObjectSchedule = self
-        if let pvc = SharingManagerConfiguration.sharedInstance.HelpObject as? ViewControllerHelp {
-            self.help_delegate = pvc
-            self.help_delegate?.SelectHelp(help: .schedule)
-        }
     }
     
     override func viewDidDisappear() {

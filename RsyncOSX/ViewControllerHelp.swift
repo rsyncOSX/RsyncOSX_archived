@@ -9,10 +9,6 @@
 import Foundation
 import Cocoa
 
-protocol selectHelp: class {
-    func SelectHelp(help:helpdocs)
-}
-
 class ViewControllerHelp: NSViewController {
     
     fileprivate var showwhat:helpdocs?
@@ -21,19 +17,24 @@ class ViewControllerHelp: NSViewController {
     @IBOutlet weak var Singeltask: NSButton!
     @IBOutlet weak var Batchtask: NSButton!
     @IBOutlet weak var Configuration: NSButton!
-    @IBOutlet weak var Rsyncparameters: NSButton!
+    @IBOutlet weak var RsyncStdParameters: NSButton!
     @IBOutlet weak var Changelog: NSButton!
     @IBOutlet weak var Add: NSButton!
     @IBOutlet weak var Schedule: NSButton!
     @IBOutlet weak var Copyfiles: NSButton!
     @IBOutlet weak var Logging: NSButton!
+    @IBOutlet weak var DIYNAS: NSButton!
+    @IBOutlet weak var Idea: NSButton!
+    @IBOutlet weak var passwordless: NSButton!
+    @IBOutlet weak var RsyncParameters: NSButton!
+    @IBOutlet weak var source: NSButton!
     
     @IBAction func help(_ sender: NSButton) {
         if self.Batchtask.state == NSOnState {
             self.showwhat = .batchtask
         } else if self.Changelog.state == NSOnState {
             self.showwhat = .changelog
-        } else if self.Rsyncparameters.state  == NSOnState {
+        } else if self.RsyncStdParameters.state  == NSOnState {
             self.showwhat = .rsyncparameters
         } else if self.Singeltask.state == NSOnState {
             self.showwhat = .singletask
@@ -49,10 +50,21 @@ class ViewControllerHelp: NSViewController {
             self.showwhat = .copyfiles
         } else if self.Logging.state == NSOnState {
             self.showwhat = .logging
+        } else if self.DIYNAS.state == NSOnState {
+            self.showwhat = .diynas
+        } else if self.Idea.state == NSOnState {
+            self.showwhat = .idea
+        } else if self.passwordless.state == NSOnState {
+            self.showwhat = .passwordless
+        } else if self.RsyncStdParameters.state == NSOnState {
+            self.showwhat = .rsyncstdparameters
+        } else if self.source.state == NSOnState {
+            self.showwhat = .source
         }
+        self.show()
     }
     
-    @IBAction func Show(_ sender: NSButton) {
+    private func show() {
         let help = Help()
         guard self.showwhat != nil else {
             return
@@ -74,33 +86,4 @@ class ViewControllerHelp: NSViewController {
         SharingManagerConfiguration.sharedInstance.HelpObject = nil
     }
     
-}
-
-extension ViewControllerHelp: selectHelp {
-    func SelectHelp(help: helpdocs) {
-        
-        switch (help) {
-        case .batchtask:
-            self.Batchtask.state = NSOnState
-        case .changelog:
-            self.Changelog.state = NSOnState
-        case .rsyncparameters:
-            self.Rsyncparameters.state = NSOnState
-        case .singletask:
-            self.Singeltask.state = NSOnState
-        case .configuration:
-            self.Configuration.state = NSOnState
-        case .documents:
-            self.Documents.state = NSOnState
-        case .add:
-            self.Add.state = NSOnState
-        case .schedule:
-            self.Schedule.state = NSOnState
-        case .copyfiles:
-            self.Copyfiles.state = NSOnState
-        case .logging:
-            self.Logging.state = NSOnState
-        }
-        self.showwhat = help
-    }
 }

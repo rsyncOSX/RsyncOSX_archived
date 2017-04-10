@@ -25,8 +25,6 @@ class ViewControllerCopyFiles : NSViewController {
     var index:Int?
     // Delegate for getting index from Execute view
     weak var index_delegate:GetSelecetedIndex?
-    // Delegate for Help
-    weak var help_delegate:selectHelp?
     
     // Info about server and remote catalogs
     @IBOutlet weak var server: NSTextField!
@@ -178,10 +176,6 @@ class ViewControllerCopyFiles : NSViewController {
         }
         self.CopyButton.title = "Estimate"
         self.localCatalog.stringValue = ""
-        if let pvc = SharingManagerConfiguration.sharedInstance.HelpObject as? ViewControllerHelp {
-            self.help_delegate = pvc
-            self.help_delegate?.SelectHelp(help: .copyfiles)
-        }
     }
     
     override func viewDidDisappear() {
