@@ -17,11 +17,11 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         
         // Check for new version
         _ = newVersion()
+        
         // Read user configuration
         if let userConfiguration =  persistentStoreAPI.sharedInstance.getUserconfiguration() {
             // userConfiguration is never nil if object is created
             _ = userconfiguration(userconfigRsyncOSX: userConfiguration)
-        
         }
     }
 
