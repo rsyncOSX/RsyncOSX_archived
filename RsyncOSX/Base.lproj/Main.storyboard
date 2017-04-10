@@ -1101,15 +1101,15 @@
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 </view>
                             </box>
-                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="vmK-Pv-KdV">
-                                <rect key="frame" x="1004" y="13" width="74" height="32"/>
+                            <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="RDi-Ry-FQI">
+                                <rect key="frame" x="650" y="160" width="99" height="18"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <buttonCell key="cell" type="push" title="Show" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="yXd-o2-WTI">
-                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                <buttonCell key="cell" type="radio" title="Source code" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="cGN-vI-Den">
+                                    <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
                                 <connections>
-                                    <action selector="Show:" target="JOY-OC-nIv" id="rZS-aH-6BG"/>
+                                    <action selector="help:" target="JOY-OC-nIv" id="Gws-CJ-ajj"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -1129,6 +1129,7 @@
                         <outlet property="Schedule" destination="rwB-Cp-izc" id="1i0-A3-Sth"/>
                         <outlet property="Singeltask" destination="dKU-FH-Yps" id="RQq-sh-ujd"/>
                         <outlet property="passwordless" destination="bwF-2K-1wh" id="S87-0e-iEg"/>
+                        <outlet property="source" destination="RDi-Ry-FQI" id="mOv-73-9kD"/>
                     </connections>
                 </viewController>
                 <customObject id="jyt-m5-Pvu" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>

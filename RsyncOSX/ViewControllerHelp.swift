@@ -27,6 +27,7 @@ class ViewControllerHelp: NSViewController {
     @IBOutlet weak var Idea: NSButton!
     @IBOutlet weak var passwordless: NSButton!
     @IBOutlet weak var RsyncParameters: NSButton!
+    @IBOutlet weak var source: NSButton!
     
     @IBAction func help(_ sender: NSButton) {
         if self.Batchtask.state == NSOnState {
@@ -49,10 +50,21 @@ class ViewControllerHelp: NSViewController {
             self.showwhat = .copyfiles
         } else if self.Logging.state == NSOnState {
             self.showwhat = .logging
+        } else if self.DIYNAS.state == NSOnState {
+            self.showwhat = .diynas
+        } else if self.Idea.state == NSOnState {
+            self.showwhat = .idea
+        } else if self.passwordless.state == NSOnState {
+            self.showwhat = .passwordless
+        } else if self.RsyncStdParameters.state == NSOnState {
+            self.showwhat = .rsyncstdparameters
+        } else if self.source.state == NSOnState {
+            self.showwhat = .source
         }
+        self.show()
     }
     
-    @IBAction func Show(_ sender: NSButton) {
+    private func show() {
         let help = Help()
         guard self.showwhat != nil else {
             return
