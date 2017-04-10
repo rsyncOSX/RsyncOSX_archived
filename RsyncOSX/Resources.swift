@@ -19,7 +19,7 @@ struct Resources {
     // Resource strings
     private var changelog: String = "https://rsyncosx.github.io/Documentation/docs/Changelog.html"
     private var documents: String = "https://rsyncosx.github.io/Documentation/"
-    private var urlPlist: String = "https://raw.githubusercontent.com/rsyncOSX/Version3.x/master/versionRsyncOSX/versionRsyncOSX.plist"
+    private var urlPlist: String = "https://raw.githubusercontent.com/rsyncOSX/RsyncOSX/master/versionRsyncOSX/versionRsyncOSX.plist"
     // Get the resource.
     func getResource (resource: resourceType) -> String {
         switch resource {
