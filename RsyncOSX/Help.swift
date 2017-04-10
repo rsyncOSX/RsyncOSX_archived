@@ -43,7 +43,7 @@ final class Help {
     private var diynas: String = "https://rsyncosx.github.io/Documentation/docs/DIYNAS.html"
     private var idea: String = "https://rsyncosx.github.io/Documentation/docs/Idea.html"
     private var passwordless: String = "https://rsyncosx.github.io/Documentation/docs/PasswordlessLogin.html"
-    private var soure:String = "https://github.com/rsyncOSX/RsyncOSX"
+    private var source:String = "https://github.com/rsyncOSX/RsyncOSX"
 
     private var resource:String?
     
@@ -85,7 +85,7 @@ final class Help {
         case .passwordless:
             self.resource = self.passwordless
         case .source:
-            self.resource = self.soure
+            self.resource = self.source
         }
         self.show()
     }
