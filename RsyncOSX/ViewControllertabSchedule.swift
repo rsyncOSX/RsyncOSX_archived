@@ -105,7 +105,7 @@ class ViewControllertabSchedule : NSViewController {
                     // Refresh table and recalculate the Schedules jobs
                     self.refresh()
                     // Start next job, if any, by delegate
-                    if let pvc = SharingManagerConfiguration.sharedInstance.ViewObjectMain as? ViewControllertabMain {
+                    if let pvc = SharingManagerConfiguration.sharedInstance.ViewControllertabMain as? ViewControllertabMain {
                         start_next_job_delegate = pvc
                         start_next_job_delegate?.startProcess()
                     }
@@ -149,7 +149,7 @@ class ViewControllertabSchedule : NSViewController {
         // Create a Schedules object
         self.schedules = ScheduleSortedAndExpand()
         // Setting reference to self.
-        SharingManagerConfiguration.sharedInstance.ScheduleObjectMain = self
+        SharingManagerConfiguration.sharedInstance.ViewControllertabSchedule = self
     }
     
     
@@ -179,7 +179,7 @@ class ViewControllertabSchedule : NSViewController {
         super.viewDidDisappear()
         if (self.newSchedules!) {
             self.newSchedules = false
-            if let pvc = SharingManagerConfiguration.sharedInstance.ViewObjectMain as? ViewControllertabMain {
+            if let pvc = SharingManagerConfiguration.sharedInstance.ViewControllertabMain as? ViewControllertabMain {
                 self.newSchedules_delegate = pvc
                 // Notify new schedules are added
                 self.newSchedules_delegate?.newSchedulesAdded()

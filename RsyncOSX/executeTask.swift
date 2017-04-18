@@ -32,7 +32,7 @@ class executeTask : Operation {
                 let configArray = store.filter({return ($0.hiddenID == hiddenID)})
                 
                 guard configArray.count > 0 else {
-                    if let pvc = SharingManagerConfiguration.sharedInstance.ViewObjectMain as? ViewControllertabMain {
+                    if let pvc = SharingManagerConfiguration.sharedInstance.ViewControllertabMain as? ViewControllertabMain {
                         notify_delegate = pvc
                         if (SharingManagerConfiguration.sharedInstance.allowNotifyinMain == true) {
                             notify_delegate?.notifyScheduledJob(config: nil)
@@ -44,7 +44,7 @@ class executeTask : Operation {
                 config = configArray[0]
                 
                 guard (config != nil) else {
-                    if let pvc = SharingManagerConfiguration.sharedInstance.ViewObjectMain as? ViewControllertabMain {
+                    if let pvc = SharingManagerConfiguration.sharedInstance.ViewControllertabMain as? ViewControllertabMain {
                         notify_delegate = pvc
                         if (SharingManagerConfiguration.sharedInstance.allowNotifyinMain == true) {
                             notify_delegate?.notifyScheduledJob(config: nil)
@@ -54,7 +54,7 @@ class executeTask : Operation {
                 }
                 
                 // Notify that scheduled task is executing
-                if let pvc = SharingManagerConfiguration.sharedInstance.ViewObjectMain as? ViewControllertabMain {
+                if let pvc = SharingManagerConfiguration.sharedInstance.ViewControllertabMain as? ViewControllertabMain {
                     notify_delegate = pvc
                     notify_delegate?.start()
                     // Trying to notify when not in main view will crash RSyncOSX

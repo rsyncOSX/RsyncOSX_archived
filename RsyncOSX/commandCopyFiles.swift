@@ -25,7 +25,7 @@ final class commandCopyFiles: processCmd {
         self.aScheduledOperation = false
         
         // Process is inated from CopyFiles
-        if let pvc = SharingManagerConfiguration.sharedInstance.CopyObjectMain as? ViewControllerCopyFiles {
+        if let pvc = SharingManagerConfiguration.sharedInstance.ViewControllerCopyFiles as? ViewControllerCopyFiles {
             self.delegate_update = pvc
         }
     }

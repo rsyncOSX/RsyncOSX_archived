@@ -116,7 +116,7 @@ final class CopyFiles {
         } else {
             // Files.txt are ready to read
             self.files = self.argumentsObject!.getSearchfile()
-            if let pvc = SharingManagerConfiguration.sharedInstance.CopyObjectMain as? ViewControllerCopyFiles {
+            if let pvc = SharingManagerConfiguration.sharedInstance.ViewControllerCopyFiles as? ViewControllerCopyFiles {
                 self.progress_delegate = pvc
                 self.refreshtable_delegate = pvc
                 self.refreshtable_delegate?.refresh()

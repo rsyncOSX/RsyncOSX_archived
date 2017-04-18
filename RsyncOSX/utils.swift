@@ -129,7 +129,7 @@ final class Utils {
         self.indexBoolremoteserverOff = Array<Bool>()
         
         guard (SharingManagerConfiguration.sharedInstance.ConfigurationsDataSourcecount() > 0) else {
-            if let pvc = SharingManagerConfiguration.sharedInstance.ViewObjectMain as? ViewControllertabMain {
+            if let pvc = SharingManagerConfiguration.sharedInstance.ViewControllertabMain as? ViewControllertabMain {
                 self.delegate_profilemenu = pvc
                 // Tell main view profile menu might presented
                 self.delegate_profilemenu?.enableProfileMenu()
@@ -158,7 +158,7 @@ final class Utils {
                 // Reload table when all remote servers are checked
                 if i == (SharingManagerConfiguration.sharedInstance.ConfigurationsDataSourcecount() - 1) {
                     // Send message to do a refresh
-                    if let pvc = SharingManagerConfiguration.sharedInstance.ViewObjectMain as? ViewControllertabMain {
+                    if let pvc = SharingManagerConfiguration.sharedInstance.ViewControllertabMain as? ViewControllertabMain {
                         self.delegate_testconnections = pvc
                         self.delegate_profilemenu = pvc
                         // Update table in main view

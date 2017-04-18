@@ -87,18 +87,4 @@ class ViewControllerHelp: NSViewController {
         help.help(what: self.showwhat!)
     }
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-    }
-    
-    override func viewDidAppear() {
-        super.viewDidAppear()
-        SharingManagerConfiguration.sharedInstance.HelpObject = self
-    }
-    
-    override func viewDidDisappear() {
-        super.viewDidDisappear()
-        SharingManagerConfiguration.sharedInstance.HelpObject = nil
-    }
-    
 }

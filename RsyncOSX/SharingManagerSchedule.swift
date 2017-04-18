@@ -258,7 +258,7 @@ class SharingManagerSchedule {
                     result[i].executed.remove(at: indexB!)
                     self.Schedule[indexA!].executed = result[i].executed
                     // Do a refresh of table
-                    if let pvc = SharingManagerConfiguration.sharedInstance.LogObjectMain as? ViewControllerLoggData {
+                    if let pvc = SharingManagerConfiguration.sharedInstance.ViewControllerLoggData as? ViewControllerLoggData {
                         self.refresh_delegate_logview = pvc
                         self.refresh_delegate_logview?.refresh()
                     }
@@ -303,7 +303,7 @@ class SharingManagerSchedule {
     // Send message to main view do a refresh of table
     private func doaRefreshTableviewMain() {
         // Send message about refresh tableView
-        if let pvc = SharingManagerConfiguration.sharedInstance.ViewObjectMain as? ViewControllertabMain {
+        if let pvc = SharingManagerConfiguration.sharedInstance.ViewControllertabMain as? ViewControllertabMain {
             self.refresh_delegate = pvc
             self.refresh_delegate?.refresh()
         }
@@ -379,7 +379,7 @@ class SharingManagerSchedule {
             }
             if (inserted) {
                 persistentStoreAPI.sharedInstance.saveScheduleFromMemory()
-                if let pvc = SharingManagerConfiguration.sharedInstance.ViewObjectMain as? ViewControllertabMain {
+                if let pvc = SharingManagerConfiguration.sharedInstance.ViewControllertabMain as? ViewControllertabMain {
                     self.deselectRow_delegate = pvc
                     self.deselectRow_delegate?.deselectRow()
                 }

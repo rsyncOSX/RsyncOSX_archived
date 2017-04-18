@@ -83,7 +83,7 @@ final class persistentStoreAPI {
         // This is because saving schedule from memory might have
         // changed the schedule and this kicks off the changed
         // schedule again.
-        if let pvc = SharingManagerConfiguration.sharedInstance.ViewObjectMain as? ViewControllertabMain {
+        if let pvc = SharingManagerConfiguration.sharedInstance.ViewControllertabMain as? ViewControllertabMain {
             start_next_job_delegate = pvc
             start_next_job_delegate?.startProcess()
         }

@@ -135,7 +135,7 @@ final class profiles {
     
     // Private func for propagating any file error to main view
     private func error(errorstr:String) {
-        if let pvc = SharingManagerConfiguration.sharedInstance.ViewObjectMain {
+        if let pvc = SharingManagerConfiguration.sharedInstance.ViewControllertabMain {
             self.error_delegate = pvc as? ViewControllertabMain
             self.error_delegate?.fileerror(errorstr: errorstr)
         }

@@ -152,7 +152,7 @@ class ViewControllerCopyFiles : NSViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Setting reference to ViewObject
-        SharingManagerConfiguration.sharedInstance.CopyObjectMain = self
+        SharingManagerConfiguration.sharedInstance.ViewControllerCopyFiles = self
         self.tableViewSelect.delegate = self
         self.tableViewSelect.dataSource = self
         // Register for drag and drop
@@ -167,7 +167,7 @@ class ViewControllerCopyFiles : NSViewController {
     
     override func viewDidAppear() {
         super.viewDidAppear()
-        if let pvc = SharingManagerConfiguration.sharedInstance.ViewObjectMain as? ViewControllertabMain {
+        if let pvc = SharingManagerConfiguration.sharedInstance.ViewControllertabMain as? ViewControllertabMain {
             self.index_delegate = pvc
             self.index = self.index_delegate?.getindex()
             if let index = self.index {

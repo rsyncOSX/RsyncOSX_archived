@@ -69,7 +69,7 @@ class ViewControllerLoggData : NSViewController {
         self.search.delegate = self
         self.sorting.usesThreadedAnimation = true
         // Reference to LogViewController
-        SharingManagerConfiguration.sharedInstance.LogObjectMain = self
+        SharingManagerConfiguration.sharedInstance.ViewControllerLoggData = self
     }
     
     override func viewDidAppear() {
