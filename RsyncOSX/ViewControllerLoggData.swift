@@ -53,6 +53,14 @@ class ViewControllerLoggData : NSViewController {
             self.deleteButton.state = NSOffState
             return
         }
+        /* ScheduleWriteLoggData
+        let delete = ScheduleWriteLoggData(schedule: SharingManagerSchedule.sharedInstance.getSchedule())
+        delete.deleteLogRow(hiddenID: self.row?.value(forKey: "hiddenID") as! Int,
+                            parent: self.row?.value(forKey: "parent") as! String,
+                            resultExecuted: self.row?.value(forKey: "resultExecuted") as! String,
+                            dateExecuted:self.row?.value(forKey: "dateExecuted") as! String)
+        */
+        
         SharingManagerSchedule.sharedInstance.deleteLogRow(hiddenID: self.row?.value(forKey: "hiddenID") as! Int,
                                                            parent: self.row?.value(forKey: "parent") as! String,
                                                            resultExecuted: self.row?.value(forKey: "resultExecuted") as! String,
