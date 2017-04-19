@@ -14,7 +14,7 @@ class ScheduleWriteLoggData {
     
     // Array to store all scheduled jobs and history of executions
     // Will be kept in memory until destroyed
-    private var Schedule = Array<configurationSchedule>()
+    var Schedule = Array<configurationSchedule>()
     // Delegate function for doing a refresh of NSTableView in ViewControllerScheduleDetailsAboutRuns
     weak var refresh_delegate_logview:RefreshtableView?
     // Delegate function for deselect row in table main view after loggdata is saved
@@ -163,17 +163,13 @@ class ScheduleWriteLoggData {
     
     // Computing key for checking of parent.
     // Parent key is stored in executed dictionary
-    private func computeKey (_ dict : NSDictionary) -> String {
+    func computeKey (_ dict : NSDictionary) -> String {
         var key:String?
         let hiddenID:Int = (dict.value(forKey: "hiddenID") as? Int)!
         let schedule:String = (dict.value(forKey: "schedule") as? String)!
         let dateStart:String = (dict.value(forKey: "dateStart") as? String)!
         key = String(hiddenID) + schedule + dateStart
         return key!
-    }
-    
-    init(schedule:Array<configurationSchedule>) {
-        self.Schedule = schedule
     }
     
 }
