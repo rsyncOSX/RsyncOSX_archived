@@ -25,6 +25,9 @@ class SharingManagerSchedule: ScheduleWriteLoggData {
     
     // CONFIGURATIONS RSYNCOSX
     
+    // Schedule is defined in ScheduleWriteLoggData class
+    // var Schedule = Array<configurationSchedule>()
+    
     // Reference to Timer in scheduled operation
     // Used to terminate scheduled jobs
     private var waitForTask: Timer?

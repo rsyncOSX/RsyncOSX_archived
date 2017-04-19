@@ -27,6 +27,10 @@ class ScheduleSortedAndExpand {
     // First job to execute.Job is first element in 
     // self.sortedAndExpandedScheduleData
     func jobToExecute() -> NSDictionary? {
+        
+        guard (self.sortedAndExpandedScheduleData != nil) else {
+            return nil
+        }
         guard (self.sortedAndExpandedScheduleData!.count) > 0 else {
             return nil
         }
@@ -73,65 +77,68 @@ class ScheduleSortedAndExpand {
             let seconds:Double = dateStop.timeIntervalSinceNow
             
             // Get all jobs which are not executed
-            if (seconds >= 0) {
-                switch (schedule) {
-                case "once" :
-                    let hiddenID = dict.value(forKey: "hiddenID") as! Int
-                    let dict : NSDictionary = [
-                        "start": dateStop,
-                        "hiddenID": hiddenID,
-                        "dateStart":dateStart,
-                        "schedule":schedule]
-                    expandedData.append(dict)
-                case "daily":
-                    var k = Int(days)
-                    if ( k < 370) {
-                        if k > 30 {
-                            k = 30
-                        }
-                        for j in 0 ..< k {
-                            var dateComponent = DateComponents()
-                            dateComponent.day = j+1
-                            let cal = Calendar.current
-                            if let start:Date = cal.date(byAdding: dateComponent, to: dateStart) {
-                                if (start.timeIntervalSinceNow > 0) {
-                                    let hiddenID = dict.value(forKey: "hiddenID") as! Int
-                                    let dict : NSDictionary = [
-                                        "start": start,
-                                        "hiddenID": hiddenID,
-                                        "dateStart":dateStart,
-                                        "schedule":schedule]
-                                    expandedData.append(dict)
-                                }
+            
+            guard seconds >= 0 else {
+                return
+            }
+            
+            switch (schedule) {
+            case "once" :
+                let hiddenID = dict.value(forKey: "hiddenID") as! Int
+                let dict : NSDictionary = [
+                    "start": dateStop,
+                    "hiddenID": hiddenID,
+                    "dateStart":dateStart,
+                    "schedule":schedule]
+                expandedData.append(dict)
+            case "daily":
+                var k = Int(days)
+                if ( k < 370) {
+                    if k > 30 {
+                        k = 30
+                    }
+                    for j in 0 ..< k {
+                        var dateComponent = DateComponents()
+                        dateComponent.day = j+1
+                        let cal = Calendar.current
+                        if let start:Date = cal.date(byAdding: dateComponent, to: dateStart) {
+                            if (start.timeIntervalSinceNow > 0) {
+                                let hiddenID = dict.value(forKey: "hiddenID") as! Int
+                                let dict : NSDictionary = [
+                                    "start": start,
+                                    "hiddenID": hiddenID,
+                                    "dateStart":dateStart,
+                                    "schedule":schedule]
+                                expandedData.append(dict)
                             }
                         }
                     }
-                case "weekly":
-                    var k = Int(days)
-                    if (k < 370) {
-                        if (k > 30) {
-                            k = 30
-                        }
-                        for j in 0 ..< Int(k/7) {
-                            var dateComponent = DateComponents()
-                            dateComponent.day = ((j+1)*7)
-                            let cal = Calendar.current
-                            if let start:Date = cal.date(byAdding: dateComponent, to: dateStart) {
-                                if (start.timeIntervalSinceNow > 0) {
-                                    let hiddenID = dict.value(forKey: "hiddenID") as! Int
-                                    let dict : NSDictionary = [
-                                        "start": start,
-                                        "hiddenID": hiddenID,
-                                        "dateStart":dateStart,
-                                        "schedule":schedule]
-                                    expandedData.append(dict)
-                                }
-                            }
-                        }
-                    }
-                default:
-                    break
                 }
+            case "weekly":
+                var k = Int(days)
+                if (k < 370) {
+                    if (k > 30) {
+                        k = 30
+                    }
+                    for j in 0 ..< Int(k/7) {
+                        var dateComponent = DateComponents()
+                        dateComponent.day = ((j+1)*7)
+                        let cal = Calendar.current
+                        if let start:Date = cal.date(byAdding: dateComponent, to: dateStart) {
+                            if (start.timeIntervalSinceNow > 0) {
+                                let hiddenID = dict.value(forKey: "hiddenID") as! Int
+                                let dict : NSDictionary = [
+                                    "start": start,
+                                    "hiddenID": hiddenID,
+                                    "dateStart":dateStart,
+                                    "schedule":schedule]
+                                expandedData.append(dict)
+                            }
+                        }
+                    }
+                }
+            default:
+                break
             }
         }
         
