@@ -218,6 +218,9 @@ class ViewControllertabSchedule : NSViewController {
                 self.secondRemoteServer.stringValue = self.schedules!.remoteServerAndPathNextTwoTasks()[2]
                 self.secondLocalCatalog.stringValue = self.schedules!.remoteServerAndPathNextTwoTasks()[3]
             } else {
+                guard self.schedules!.remoteServerAndPathNextTwoTasks().count == 2 else {
+                    return
+                }
                 self.firstRemoteServer.stringValue = self.schedules!.remoteServerAndPathNextTwoTasks()[0]
                 self.firstLocalCatalog.stringValue = self.schedules!.remoteServerAndPathNextTwoTasks()[1]
                 self.secondRemoteServer.stringValue = ""
