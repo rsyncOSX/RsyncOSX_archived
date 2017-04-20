@@ -22,8 +22,6 @@ class ScheduleSortedAndExpand {
     // Schedule in progress
     private var scheduleInProgress:Bool = false
     
-    // ALL THE GETTERS
-    
     // First job to execute.Job is first element in 
     // self.sortedAndExpandedScheduleData
     func jobToExecute() -> NSDictionary? {
@@ -155,6 +153,43 @@ class ScheduleSortedAndExpand {
     }
     
     
+    // Calculates number of future Schedules ID by hiddenID
+    func numberOfFutureSchedules (_ hiddenID : Int) -> Int {
+        if let result = self.sortedAndExpandedScheduleData?.filter({return (($0.value(forKey: "hiddenID") as? Int)! == hiddenID
+            && ($0.value(forKey: "start") as? Date)!.timeIntervalSinceNow > 0 )}) {
+            return result.count
+        } else {
+            return 0
+        }
+    }
+    
+    /// Function is reading Schedule plans and transform plans to
+    /// array of NSDictionary.
+    /// - returns : none
+    private func createScheduleAsNSDictionary () {
+        guard self.ScheduleAsConfiguration != nil else {
+            return
+        }
+        var data = Array<NSDictionary>()
+        for i in 0 ..< self.ScheduleAsConfiguration!.count {
+            if self.ScheduleAsConfiguration![i].dateStop != nil {
+                if (self.ScheduleAsConfiguration![i].schedule != "stopped") {
+                    let dict :NSDictionary = [
+                        "dateStart": self.ScheduleAsConfiguration![i].dateStart,
+                        "dateStop": self.ScheduleAsConfiguration![i].dateStop!,
+                        "hiddenID": self.ScheduleAsConfiguration![i].hiddenID,
+                        "schedule": self.ScheduleAsConfiguration![i].schedule
+                    ]
+                    data.append(dict as NSDictionary)
+                }
+            }
+        }
+        self.ScheduleAsNSDictionary = data
+    }
+
+    // Number of seconds ahead of time to read
+    // scheduled jobs
+    
     // Start timer or not in either main start window
     // Or in main execute window
     // seconds > 0 and <= 1800 every 1 second ( 0 - 30 minutes )
@@ -193,7 +228,6 @@ class ScheduleSortedAndExpand {
         }
     }
     
-    
     // Info about next remote servers and paths for scheduled backup.
     func remoteServerAndPathNextTwoTasks() -> Array<String> {
         var dict1:NSDictionary?
@@ -216,7 +250,7 @@ class ScheduleSortedAndExpand {
             let hiddenID1 = dict1!.value(forKey: "hiddenID") as? Int
             array.append(SharingManagerConfiguration.sharedInstance.getResourceConfiguration(hiddenID1!, resource: .offsiteServer))
             array.append(SharingManagerConfiguration.sharedInstance.getResourceConfiguration(hiddenID1!, resource: .localCatalog))
-            }
+        }
         if (dict2 != nil) {
             let hiddenID2 = dict2?.value(forKey: "hiddenID") as? Int
             array.append(SharingManagerConfiguration.sharedInstance.getResourceConfiguration(hiddenID2!, resource: .offsiteServer))
@@ -323,14 +357,12 @@ class ScheduleSortedAndExpand {
         return seconds
     }
     
-    
     // Returns number of hours between start and stop date
     func timehourInt(_ startdate:Date, enddate:Date?) -> Int {
         let seconds:Double = self.seconds(startdate, enddate: enddate)
         let (hr,  _) = modf (seconds / 3600)
         return Int(hr)
     }
-    
     
     // Calculation of time to a spesific date
     // Used in view of all tasks
@@ -354,44 +386,7 @@ class ScheduleSortedAndExpand {
         }
         return result!
     }
-    
-    // Calculates number of future Schedules ID by hiddenID
-    func numberOfFutureSchedules (_ hiddenID : Int) -> Int {
-        if let result = self.sortedAndExpandedScheduleData?.filter({return (($0.value(forKey: "hiddenID") as? Int)! == hiddenID
-            && ($0.value(forKey: "start") as? Date)!.timeIntervalSinceNow > 0 )}) {
-            return result.count
-        } else {
-            return 0
-        }
-    }
-    
-    /// Function is reading Schedule plans and transform plans to
-    /// array of NSDictionary.
-    /// - returns : none
-    private func createScheduleAsNSDictionary () {
-        guard self.ScheduleAsConfiguration != nil else {
-            return
-        }
-        var data = Array<NSDictionary>()
-        for i in 0 ..< self.ScheduleAsConfiguration!.count {
-            if self.ScheduleAsConfiguration![i].dateStop != nil {
-                if (self.ScheduleAsConfiguration![i].schedule != "stopped") {
-                    let dict :NSDictionary = [
-                        "dateStart": self.ScheduleAsConfiguration![i].dateStart,
-                        "dateStop": self.ScheduleAsConfiguration![i].dateStop!,
-                        "hiddenID": self.ScheduleAsConfiguration![i].hiddenID,
-                        "schedule": self.ScheduleAsConfiguration![i].schedule
-                    ]
-                    data.append(dict as NSDictionary)
-                }
-            }
-        }
-        self.ScheduleAsNSDictionary = data
-    }
 
-
-    // Number of seconds ahead of time to read
-    // scheduled jobs
     init () {
         // Getting the Schedule and expanding all the jobs
         self.ScheduleAsConfiguration = SharingManagerSchedule.sharedInstance.getSchedule()

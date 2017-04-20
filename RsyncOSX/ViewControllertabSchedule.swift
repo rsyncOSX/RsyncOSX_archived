@@ -79,16 +79,27 @@ class ViewControllertabSchedule : NSViewController {
         let seconds:TimeInterval = self.stoptime.dateValue.timeIntervalSinceNow
         // Date and time for stop
         let stopdate:Date = self.stopdate.dateValue.addingTimeInterval(seconds)
+        let secondsstart:TimeInterval = self.stopdate.dateValue.timeIntervalSinceNow
         var schedule:String?
         var details:Bool = false
+        var range:Bool = false
         
         if (self.index != nil) {
             if (self.once.state == 1) {
                 schedule = "once"
+                if secondsstart > 0 {
+                    range = true
+                }
             } else if (self.daily.state == 1) {
                 schedule = "daily"
+                if (secondsstart >= (60*60*24)) {
+                    range = true
+                }
             } else if (self.weekly.state == 1) {
                 schedule = "weekly"
+                if (secondsstart >= (60*60*24*7)) {
+                    range = true
+                }
             } else if (self.details.state == 1) {
                 // Details
                 details = true
@@ -97,7 +108,7 @@ class ViewControllertabSchedule : NSViewController {
                 })
                 self.details.state = NSOffState
             }
-            if (details == false) {
+            if (details == false && range == true) {
                 let answer = Alerts.dialogOKCancel("Add Schedule?", text: "Cancel or OK")
                 if (answer) {
                     SharingManagerSchedule.sharedInstance.addScheduleData(self.hiddenID!, schedule: schedule!, start: startdate, stop: stopdate)
