@@ -140,7 +140,6 @@ class ScheduleSortedAndExpand {
             default:
                 break
             }
-        }
         
         let sorted: [NSDictionary] = expandedData.sorted { (dict1, dict2) -> Bool in
             if ((dict1.value(forKey: "start") as! Date).timeIntervalSince(dict2.value(forKey: "start") as! Date)) > 0 {
@@ -149,10 +148,10 @@ class ScheduleSortedAndExpand {
                 return true
             }
         }
-        
         self.sortedAndExpandedScheduleData = sorted
         // Set reference to the first scheduled job
         SharingManagerSchedule.sharedInstance.scheduledJob = self.jobToExecute()
+        }
     }
     
     
@@ -270,6 +269,10 @@ class ScheduleSortedAndExpand {
         var firstbackup:Double?
         var secondbackup:Double?
         // We are calculating the first object
+        
+        guard (self.sortedAndExpandedScheduleData != nil) else {
+            return [-1,-1]
+        }
         guard (self.sortedAndExpandedScheduleData!.count > 0) else {
             return [-1,-1]
         }

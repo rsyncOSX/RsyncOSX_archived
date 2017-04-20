@@ -1251,12 +1251,15 @@ extension ViewControllertabMain: RsyncError {
                 self.setInfo(info: "Error", color: NSColor.red)
                 self.showProcessInfo(info: .Error)
                 self.setRsyncCommandDisplay()
-                self.workload!.error()
                 // Abort any operations
                 if let process = self.process {
                     process.terminate()
                     self.process = nil
                 }
+                guard (self.workload != nil) else {
+                    return
+                }
+                self.workload!.error()
             })
         }
     }
