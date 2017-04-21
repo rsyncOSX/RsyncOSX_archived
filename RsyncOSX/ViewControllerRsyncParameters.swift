@@ -71,8 +71,11 @@ class ViewControllerRsyncParameters: NSViewController {
         case 1:
             self.resetComboBox(self.parameter12, index: (self.parameters!.getvalueCombobox(self.parameters!.getBackupString()[0])))
             self.viewParameter12.stringValue = self.parameters!.getdisplayValue(self.parameters!.getBackupString()[0])
+            let hiddenID = SharingManagerConfiguration.sharedInstance.gethiddenID(index: (self.getindex_delegate?.getindex())!)
+            let localcatalog = SharingManagerConfiguration.sharedInstance.getResourceConfiguration(hiddenID, resource: .localCatalog)
+            let localcatalogParts = (localcatalog as AnyObject).components(separatedBy: "/")
             self.resetComboBox(self.parameter13, index: (self.parameters!.getvalueCombobox(self.parameters!.getBackupString()[1])))
-            self.viewParameter13.stringValue = self.parameters!.getdisplayValue(self.parameters!.getBackupString()[1])
+            self.viewParameter13.stringValue = "../backup" + "_" + localcatalogParts[localcatalogParts.count - 2]
         case 0:
             self.resetComboBox(self.parameter12, index: (0))
             self.viewParameter12.stringValue = ""
