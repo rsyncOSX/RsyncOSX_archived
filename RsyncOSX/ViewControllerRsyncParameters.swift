@@ -90,6 +90,7 @@ class ViewControllerRsyncParameters: NSViewController {
     
     @IBOutlet weak var suffixButton: NSButton!
     @IBAction func suffix(_ sender: NSButton) {
+        self.suffixButton2.state = NSOffState
         switch self.suffixButton.state {
         case 1:
             self.resetComboBox(self.parameter14, index: (self.parameters!.getvalueCombobox(self.parameters!.getSuffixString()[0])))
@@ -104,6 +105,7 @@ class ViewControllerRsyncParameters: NSViewController {
     
     @IBOutlet weak var suffixButton2: NSButton!
     @IBAction func suffix2(_ sender: NSButton) {
+        self.suffixButton.state = NSOffState
         switch self.suffixButton2.state {
         case 1:
             self.resetComboBox(self.parameter14, index: (self.parameters!.getvalueCombobox(self.parameters!.getSuffixString2()[0])))

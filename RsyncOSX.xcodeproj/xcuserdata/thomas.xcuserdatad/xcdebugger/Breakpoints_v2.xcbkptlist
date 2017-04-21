@@ -26,11 +26,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "RsyncOSX/ViewControllerRsyncParameters.swift"
-            timestampString = "514471146.077872"
+            timestampString = "514482361.799796"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "208"
-            endingLineNumber = "208"
+            startingLineNumber = "210"
+            endingLineNumber = "210"
             landmarkName = "update(_:)"
             landmarkType = "7">
          </BreakpointContent>
