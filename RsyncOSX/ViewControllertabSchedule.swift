@@ -89,16 +89,22 @@ class ViewControllertabSchedule : NSViewController {
                 schedule = "once"
                 if secondsstart > 0 {
                     range = true
+                } else {
+                    self.firstLocalCatalog.stringValue = "Startdate has passed..."
                 }
             } else if (self.daily.state == 1) {
                 schedule = "daily"
                 if (secondsstart >= (60*60*24)) {
                     range = true
+                } else {
+                    self.firstLocalCatalog.stringValue = "Startdate has to be more than 24 hours ahead..."
                 }
             } else if (self.weekly.state == 1) {
                 schedule = "weekly"
                 if (secondsstart >= (60*60*24*7)) {
                     range = true
+                } else {
+                    self.firstLocalCatalog.stringValue = "Startdate has to be more than 7 days ahead..."
                 }
             } else if (self.details.state == 1) {
                 // Details
