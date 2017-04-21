@@ -63,7 +63,6 @@ class ViewControllerRsyncParameters: NSViewController {
          self.dismiss_delegate?.dismiss_view(viewcontroller: self)
     }
     
-    
     // Function for enabling backup of changed files in a backup catalog.
     // Parameters are appended to last two parameters (12 and 13).
     @IBAction func backup(_ sender: NSButton) {
@@ -81,6 +80,8 @@ class ViewControllerRsyncParameters: NSViewController {
             self.viewParameter12.stringValue = ""
             self.resetComboBox(self.parameter13, index: (0))
             self.viewParameter13.stringValue = ""
+            self.resetComboBox(self.parameter14, index: (0))
+            self.viewParameter14.stringValue = ""
         default : break
         }
     }
