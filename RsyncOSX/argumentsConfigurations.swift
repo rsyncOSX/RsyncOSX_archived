@@ -15,14 +15,11 @@ struct argumentsOneConfig {
     var task:String
     var backupID:String
     var config:configuration
-    var arg:[String]?
-    var argdryRun:[String]?
-    var argDisplay:[String]?
-    var argdryRunDisplay:[String]?
-    var serverdate:String?
-    var localdate:String?
+    var arg:Array<String>?
+    var argdryRun:Array<String>?
+    var argDisplay:Array<String>?
+    var argdryRunDisplay:Array<String>?
     var index:Int
-    var warning:Bool = false
     
     init(backupID:String, task:String, config:configuration, index:Int) {
         self.backupID = backupID
@@ -36,7 +33,6 @@ struct argumentsOneConfig {
 // stored configuration.
 
 struct argumentsConfigurations {
-
     // Record to store all arguments for rsync
     // Arguments are prepared during startup
     var rsyncArguments: argumentsOneConfig?

@@ -15,7 +15,7 @@ class rsyncProcessArguments {
     // Must check all parameter8 - paramater14
     // both backup and restore part
     private var stats:Bool?
-    private var arguments:[String]?
+    private var arguments:Array<String>?
     
     // Set initial parameter1 .. paramater6
     // Parameters is computed by RsyncOSX
