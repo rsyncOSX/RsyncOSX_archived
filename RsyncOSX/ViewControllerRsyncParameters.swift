@@ -63,7 +63,6 @@ class ViewControllerRsyncParameters: NSViewController {
          self.dismiss_delegate?.dismiss_view(viewcontroller: self)
     }
     
-    
     // Function for enabling backup of changed files in a backup catalog.
     // Parameters are appended to last two parameters (12 and 13).
     @IBAction func backup(_ sender: NSButton) {
@@ -71,13 +70,18 @@ class ViewControllerRsyncParameters: NSViewController {
         case 1:
             self.resetComboBox(self.parameter12, index: (self.parameters!.getvalueCombobox(self.parameters!.getBackupString()[0])))
             self.viewParameter12.stringValue = self.parameters!.getdisplayValue(self.parameters!.getBackupString()[0])
+            let hiddenID = SharingManagerConfiguration.sharedInstance.gethiddenID(index: (self.getindex_delegate?.getindex())!)
+            let localcatalog = SharingManagerConfiguration.sharedInstance.getResourceConfiguration(hiddenID, resource: .localCatalog)
+            let localcatalogParts = (localcatalog as AnyObject).components(separatedBy: "/")
             self.resetComboBox(self.parameter13, index: (self.parameters!.getvalueCombobox(self.parameters!.getBackupString()[1])))
-            self.viewParameter13.stringValue = self.parameters!.getdisplayValue(self.parameters!.getBackupString()[1])
+            self.viewParameter13.stringValue = "../backup" + "_" + localcatalogParts[localcatalogParts.count - 2]
         case 0:
             self.resetComboBox(self.parameter12, index: (0))
             self.viewParameter12.stringValue = ""
             self.resetComboBox(self.parameter13, index: (0))
             self.viewParameter13.stringValue = ""
+            self.resetComboBox(self.parameter14, index: (0))
+            self.viewParameter14.stringValue = ""
         default : break
         }
     }
@@ -87,6 +91,7 @@ class ViewControllerRsyncParameters: NSViewController {
     
     @IBOutlet weak var suffixButton: NSButton!
     @IBAction func suffix(_ sender: NSButton) {
+        self.suffixButton2.state = NSOffState
         switch self.suffixButton.state {
         case 1:
             self.resetComboBox(self.parameter14, index: (self.parameters!.getvalueCombobox(self.parameters!.getSuffixString()[0])))
@@ -101,6 +106,7 @@ class ViewControllerRsyncParameters: NSViewController {
     
     @IBOutlet weak var suffixButton2: NSButton!
     @IBAction func suffix2(_ sender: NSButton) {
+        self.suffixButton.state = NSOffState
         switch self.suffixButton2.state {
         case 1:
             self.resetComboBox(self.parameter14, index: (self.parameters!.getvalueCombobox(self.parameters!.getSuffixString2()[0])))

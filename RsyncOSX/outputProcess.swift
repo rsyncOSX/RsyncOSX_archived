@@ -111,7 +111,7 @@ final class outputProcess {
         // There is an error in transferring files
         // We only informs in main view if error
         if error {
-            if let pvc = SharingManagerConfiguration.sharedInstance.ViewObjectMain {
+            if let pvc = SharingManagerConfiguration.sharedInstance.ViewControllertabMain {
                 self.error_delegate = pvc as? ViewControllertabMain
                 self.error_delegate?.rsyncerror()
             }

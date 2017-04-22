@@ -81,20 +81,18 @@ class SharingManagerConfiguration {
     // Variabl if arguments to Rsync is changed and must be read into memory again
     private var readRsyncArguments:Bool = true
     // Reference to manin View
-    var ViewObjectMain: NSViewController?
+    var ViewControllertabMain: NSViewController?
     // Reference to Copy files
-    var CopyObjectMain:NSViewController?
-    // Reference to the Add tasks
-    var AddObjectMain:NSViewController?
+    var ViewControllerCopyFiles:NSViewController?
+    // Reference to the New tasks
+    var ViewControllerNewConfigurations:NSViewController?
     // Reference to the  Schedule
-    var ScheduleObjectMain:NSViewController?
+    var ViewControllertabSchedule:NSViewController?
     // Reference to the Operation object
     // Reference is set in when Scheduled task is executed
     var operation:completeScheduledOperation?
     // Which profile to use, if default nil
-    var LogObjectMain:NSViewController?
-    // Reference to Help view
-    var HelpObject:NSViewController?
+    var ViewControllerLoggData:NSViewController?
     private var profile:String?
     // Notify about scheduled process
     // Only allowed to notity by modal window when in main view
@@ -319,7 +317,7 @@ class SharingManagerConfiguration {
         // Reread Configuration and update datastructure for tableViews
         self.readAllConfigurationsAndArguments()
         // Call the view and do a refresh of tableView
-        if let pvc = self.ViewObjectMain as? ViewControllertabMain {
+        if let pvc = self.ViewControllertabMain as? ViewControllertabMain {
             self.refresh_delegate = pvc
             self.refresh_delegate?.refresh()
         }
@@ -366,7 +364,7 @@ class SharingManagerConfiguration {
         // Reread Configuration and update datastructure for tableViews
         self.readAllConfigurationsAndArguments()
         // Call the view and do a refresh of tableView
-        if let pvc = self.ViewObjectMain as? ViewControllertabMain {
+        if let pvc = self.ViewControllertabMain as? ViewControllertabMain {
             self.refresh_delegate = pvc
             self.refresh_delegate?.refresh()
         }

@@ -79,16 +79,33 @@ class ViewControllertabSchedule : NSViewController {
         let seconds:TimeInterval = self.stoptime.dateValue.timeIntervalSinceNow
         // Date and time for stop
         let stopdate:Date = self.stopdate.dateValue.addingTimeInterval(seconds)
+        let secondsstart:TimeInterval = self.stopdate.dateValue.timeIntervalSinceNow
         var schedule:String?
         var details:Bool = false
+        var range:Bool = false
         
         if (self.index != nil) {
             if (self.once.state == 1) {
                 schedule = "once"
+                if secondsstart > 0 {
+                    range = true
+                } else {
+                    self.info(str: "Startdate has passed...")
+                }
             } else if (self.daily.state == 1) {
                 schedule = "daily"
+                if (secondsstart >= (60*60*24)) {
+                    range = true
+                } else {
+                    self.info(str: "Startdate has to be more than 24 hours ahead...")
+                }
             } else if (self.weekly.state == 1) {
                 schedule = "weekly"
+                if (secondsstart >= (60*60*24*7)) {
+                    range = true
+                } else {
+                    self.info(str: "Startdate has to be more than 7 days ahead...")
+                }
             } else if (self.details.state == 1) {
                 // Details
                 details = true
@@ -97,7 +114,7 @@ class ViewControllertabSchedule : NSViewController {
                 })
                 self.details.state = NSOffState
             }
-            if (details == false) {
+            if (details == false && range == true) {
                 let answer = Alerts.dialogOKCancel("Add Schedule?", text: "Cancel or OK")
                 if (answer) {
                     SharingManagerSchedule.sharedInstance.addScheduleData(self.hiddenID!, schedule: schedule!, start: startdate, stop: stopdate)
@@ -105,7 +122,7 @@ class ViewControllertabSchedule : NSViewController {
                     // Refresh table and recalculate the Schedules jobs
                     self.refresh()
                     // Start next job, if any, by delegate
-                    if let pvc = SharingManagerConfiguration.sharedInstance.ViewObjectMain as? ViewControllertabMain {
+                    if let pvc = SharingManagerConfiguration.sharedInstance.ViewControllertabMain as? ViewControllertabMain {
                         start_next_job_delegate = pvc
                         start_next_job_delegate?.startProcess()
                     }
@@ -121,6 +138,11 @@ class ViewControllertabSchedule : NSViewController {
             self.weekly.state = NSOffState
             self.details.state = NSOffState
         }
+    }
+    
+    private func info(str:String) {
+        self.firstLocalCatalog.textColor = NSColor.red
+        self.firstLocalCatalog.stringValue = str
     }
     
     // Userconfiguration button
@@ -149,7 +171,7 @@ class ViewControllertabSchedule : NSViewController {
         // Create a Schedules object
         self.schedules = ScheduleSortedAndExpand()
         // Setting reference to self.
-        SharingManagerConfiguration.sharedInstance.ScheduleObjectMain = self
+        SharingManagerConfiguration.sharedInstance.ViewControllertabSchedule = self
     }
     
     
@@ -179,7 +201,7 @@ class ViewControllertabSchedule : NSViewController {
         super.viewDidDisappear()
         if (self.newSchedules!) {
             self.newSchedules = false
-            if let pvc = SharingManagerConfiguration.sharedInstance.ViewObjectMain as? ViewControllertabMain {
+            if let pvc = SharingManagerConfiguration.sharedInstance.ViewControllertabMain as? ViewControllertabMain {
                 self.newSchedules_delegate = pvc
                 // Notify new schedules are added
                 self.newSchedules_delegate?.newSchedulesAdded()
@@ -209,6 +231,7 @@ class ViewControllertabSchedule : NSViewController {
             return
         }
         // Displaying next two scheduled tasks
+        self.firstLocalCatalog.textColor = NSColor.black
         self.firstScheduledTask.stringValue = self.schedules!.whenIsNextTwoTasksString()[0]
         self.secondScheduledTask.stringValue = self.schedules!.whenIsNextTwoTasksString()[1]
         if (self.schedules!.remoteServerAndPathNextTwoTasks().count > 0) {
@@ -218,6 +241,9 @@ class ViewControllertabSchedule : NSViewController {
                 self.secondRemoteServer.stringValue = self.schedules!.remoteServerAndPathNextTwoTasks()[2]
                 self.secondLocalCatalog.stringValue = self.schedules!.remoteServerAndPathNextTwoTasks()[3]
             } else {
+                guard self.schedules!.remoteServerAndPathNextTwoTasks().count == 2 else {
+                    return
+                }
                 self.firstRemoteServer.stringValue = self.schedules!.remoteServerAndPathNextTwoTasks()[0]
                 self.firstLocalCatalog.stringValue = self.schedules!.remoteServerAndPathNextTwoTasks()[1]
                 self.secondRemoteServer.stringValue = ""
@@ -338,6 +364,10 @@ extension ViewControllertabSchedule: RefreshtableView {
                 self.mainTableView.reloadData()
             })
         }
+        self.firstRemoteServer.stringValue = ""
+        self.firstLocalCatalog.stringValue = ""
+        self.secondRemoteServer.stringValue = ""
+        self.secondLocalCatalog.stringValue = ""
         // Create a New schedules object
         self.schedules = nil
         self.schedules = ScheduleSortedAndExpand()

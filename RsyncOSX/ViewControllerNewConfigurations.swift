@@ -77,7 +77,7 @@ class ViewControllerNewConfigurations: NSViewController {
         // Tooltip
         self.localCatalog.toolTip = "By using Finder drag and drop filepaths."
         self.offsiteCatalog.toolTip = "By using Finder drag and drop filepaths."
-        SharingManagerConfiguration.sharedInstance.AddObjectMain = self
+        SharingManagerConfiguration.sharedInstance.ViewControllerNewConfigurations = self
     }
     
     override func viewDidAppear() {

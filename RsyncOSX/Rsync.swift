@@ -21,7 +21,7 @@ final class Rsync: processCmd {
         self.aScheduledOperation = false
         
         // Process is inated from Main
-        if let pvc = SharingManagerConfiguration.sharedInstance.ViewObjectMain as? ViewControllertabMain {
+        if let pvc = SharingManagerConfiguration.sharedInstance.ViewControllertabMain as? ViewControllertabMain {
             self.delegate_update = pvc
         }
     }

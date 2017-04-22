@@ -325,7 +325,7 @@ class ViewControllertabMain: NSViewController {
         self.scheduledJobworking.usesThreadedAnimation = true
         self.ReReadConfigurationsAndSchedules()
         // Setting reference to self, used when calling delegate functions
-        SharingManagerConfiguration.sharedInstance.ViewObjectMain = self
+        SharingManagerConfiguration.sharedInstance.ViewControllertabMain = self
         // Create a Schedules object
         // Start waiting for next Scheduled job (if any)
         self.schedules = ScheduleSortedAndExpand()
@@ -345,7 +345,7 @@ class ViewControllertabMain: NSViewController {
         self.setInfo(info: "", color: NSColor.black)
         // Setting reference to ViewController
         // Used to call delegate function from other class
-        SharingManagerConfiguration.sharedInstance.ViewObjectMain = self
+        SharingManagerConfiguration.sharedInstance.ViewControllertabMain = self
         if (SharingManagerConfiguration.sharedInstance.ConfigurationsDataSourcecount() > 0 ) {
             GlobalMainQueue.async(execute: { () -> Void in
                 self.mainTableView.reloadData()
@@ -997,7 +997,7 @@ extension ViewControllertabMain: AddProfiles {
             SharingManagerSchedule.sharedInstance.destroySchedule()
             SharingManagerConfiguration.sharedInstance.destroyConfigurations()
             // Reset in tabSchedule
-            if let pvc = SharingManagerConfiguration.sharedInstance.ScheduleObjectMain as? ViewControllertabSchedule {
+            if let pvc = SharingManagerConfiguration.sharedInstance.ViewControllertabSchedule as? ViewControllertabSchedule {
                 newProfile_delegate = pvc
                 newProfile_delegate?.newProfile(new: true)
             }
@@ -1006,7 +1006,7 @@ extension ViewControllertabMain: AddProfiles {
         }
         
         // Reset in tabSchedule
-        if let pvc = SharingManagerConfiguration.sharedInstance.ScheduleObjectMain as? ViewControllertabSchedule {
+        if let pvc = SharingManagerConfiguration.sharedInstance.ViewControllertabSchedule as? ViewControllertabSchedule {
             newProfile_delegate = pvc
             newProfile_delegate?.newProfile(new: false)
         }
@@ -1251,12 +1251,15 @@ extension ViewControllertabMain: RsyncError {
                 self.setInfo(info: "Error", color: NSColor.red)
                 self.showProcessInfo(info: .Error)
                 self.setRsyncCommandDisplay()
-                self.workload!.error()
                 // Abort any operations
                 if let process = self.process {
                     process.terminate()
                     self.process = nil
                 }
+                guard (self.workload != nil) else {
+                    return
+                }
+                self.workload!.error()
             })
         }
     }
