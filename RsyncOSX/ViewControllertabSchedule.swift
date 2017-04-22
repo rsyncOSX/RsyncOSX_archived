@@ -90,21 +90,21 @@ class ViewControllertabSchedule : NSViewController {
                 if secondsstart > 0 {
                     range = true
                 } else {
-                    self.firstLocalCatalog.stringValue = "Startdate has passed..."
+                    self.info(str: "Startdate has passed...")
                 }
             } else if (self.daily.state == 1) {
                 schedule = "daily"
                 if (secondsstart >= (60*60*24)) {
                     range = true
                 } else {
-                    self.firstLocalCatalog.stringValue = "Startdate has to be more than 24 hours ahead..."
+                    self.info(str: "Startdate has to be more than 24 hours ahead...")
                 }
             } else if (self.weekly.state == 1) {
                 schedule = "weekly"
                 if (secondsstart >= (60*60*24*7)) {
                     range = true
                 } else {
-                    self.firstLocalCatalog.stringValue = "Startdate has to be more than 7 days ahead..."
+                    self.info(str: "Startdate has to be more than 7 days ahead...")
                 }
             } else if (self.details.state == 1) {
                 // Details
@@ -138,6 +138,11 @@ class ViewControllertabSchedule : NSViewController {
             self.weekly.state = NSOffState
             self.details.state = NSOffState
         }
+    }
+    
+    private func info(str:String) {
+        self.firstLocalCatalog.textColor = NSColor.red
+        self.firstLocalCatalog.stringValue = str
     }
     
     // Userconfiguration button
@@ -226,6 +231,7 @@ class ViewControllertabSchedule : NSViewController {
             return
         }
         // Displaying next two scheduled tasks
+        self.firstLocalCatalog.textColor = NSColor.black
         self.firstScheduledTask.stringValue = self.schedules!.whenIsNextTwoTasksString()[0]
         self.secondScheduledTask.stringValue = self.schedules!.whenIsNextTwoTasksString()[1]
         if (self.schedules!.remoteServerAndPathNextTwoTasks().count > 0) {
@@ -358,6 +364,10 @@ extension ViewControllertabSchedule: RefreshtableView {
                 self.mainTableView.reloadData()
             })
         }
+        self.firstRemoteServer.stringValue = ""
+        self.firstLocalCatalog.stringValue = ""
+        self.secondRemoteServer.stringValue = ""
+        self.secondLocalCatalog.stringValue = ""
         // Create a New schedules object
         self.schedules = nil
         self.schedules = ScheduleSortedAndExpand()
