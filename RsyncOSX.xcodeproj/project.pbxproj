@@ -58,6 +58,7 @@
 		A0F3F9251DC65CE9001D305F /* ViewControllerScheduledBackupInWork.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0F3F9241DC65CE9001D305F /* ViewControllerScheduledBackupInWork.swift */; };
 		A0FAF5CF1DDF2E5F0009FE7A /* ViewControllerAbout.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0FAF5CE1DDF2E5F0009FE7A /* ViewControllerAbout.swift */; };
 		A0FC45641D9545CC005208EF /* ScheduleLoggData.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0FC45631D9545CC005208EF /* ScheduleLoggData.swift */; };
+		E905DC111EACF7550003BF37 /* ViewControllerSsh.swift in Sources */ = {isa = PBXBuildFile; fileRef = E905DC101EACF7550003BF37 /* ViewControllerSsh.swift */; };
 		E91A68901EA777690056BCFC /* ScheduleWriteLoggData.swift in Sources */ = {isa = PBXBuildFile; fileRef = E91A688F1EA777690056BCFC /* ScheduleWriteLoggData.swift */; };
 		E9230C0A1E6DDA49001D9954 /* scpArguments.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9230C091E6DDA49001D9954 /* scpArguments.swift */; };
 		E9230C0C1E6DDBBD001D9954 /* filetxtArguments.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9230C0B1E6DDBBD001D9954 /* filetxtArguments.swift */; };
@@ -71,6 +72,7 @@
 		E9CF14161E729636008E8A15 /* commandCopyFiles.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9CF14151E729636008E8A15 /* commandCopyFiles.swift */; };
 		E9DCEA871E75F67200A69B4D /* outputBatch.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9DCEA861E75F67200A69B4D /* outputBatch.swift */; };
 		E9E763711E6AEA5300B45E8D /* ViewControllerCopyFilesSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9E763701E6AEA5300B45E8D /* ViewControllerCopyFilesSource.swift */; };
+		E9EC78711EACE082001EED9B /* ssh.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9EC78701EACE082001EED9B /* ssh.swift */; };
 		E9FFA02D1E7287E100B7AB2B /* processCmd.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9FFA02C1E7287E100B7AB2B /* processCmd.swift */; };
 		E9FFA02F1E728C6E00B7AB2B /* Rsync.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9FFA02E1E728C6E00B7AB2B /* Rsync.swift */; };
 /* End PBXBuildFile section */
@@ -129,6 +131,7 @@
 		A0F3F9241DC65CE9001D305F /* ViewControllerScheduledBackupInWork.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewControllerScheduledBackupInWork.swift; sourceTree = "<group>"; };
 		A0FAF5CE1DDF2E5F0009FE7A /* ViewControllerAbout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewControllerAbout.swift; sourceTree = "<group>"; };
 		A0FC45631D9545CC005208EF /* ScheduleLoggData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScheduleLoggData.swift; sourceTree = "<group>"; };
+		E905DC101EACF7550003BF37 /* ViewControllerSsh.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewControllerSsh.swift; sourceTree = "<group>"; };
 		E91A688F1EA777690056BCFC /* ScheduleWriteLoggData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScheduleWriteLoggData.swift; sourceTree = "<group>"; };
 		E9230C091E6DDA49001D9954 /* scpArguments.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = scpArguments.swift; sourceTree = "<group>"; };
 		E9230C0B1E6DDBBD001D9954 /* filetxtArguments.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = filetxtArguments.swift; sourceTree = "<group>"; };
@@ -142,6 +145,7 @@
 		E9CF14151E729636008E8A15 /* commandCopyFiles.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = commandCopyFiles.swift; sourceTree = "<group>"; };
 		E9DCEA861E75F67200A69B4D /* outputBatch.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = outputBatch.swift; sourceTree = "<group>"; };
 		E9E763701E6AEA5300B45E8D /* ViewControllerCopyFilesSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewControllerCopyFilesSource.swift; sourceTree = "<group>"; };
+		E9EC78701EACE082001EED9B /* ssh.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ssh.swift; sourceTree = "<group>"; };
 		E9FFA02C1E7287E100B7AB2B /* processCmd.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = processCmd.swift; sourceTree = "<group>"; };
 		E9FFA02E1E728C6E00B7AB2B /* Rsync.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Rsync.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -201,6 +205,7 @@
 		A04492BE1D658F8900B3CE17 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				E9EC786F1EACE063001EED9B /* ssh */,
 				E9374D2A1E32992900CD3945 /* ScheduledOperations */,
 				A04492C41D65901400B3CE17 /* Utils */,
 				A091C6591D86A1F400278E74 /* CopyFiles */,
@@ -276,6 +281,7 @@
 				A0FAF5CE1DDF2E5F0009FE7A /* ViewControllerAbout.swift */,
 				E9E763701E6AEA5300B45E8D /* ViewControllerCopyFilesSource.swift */,
 				E93D82131E79C69500B20965 /* ViewControllerHelp.swift */,
+				E905DC101EACF7550003BF37 /* ViewControllerSsh.swift */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -365,6 +371,14 @@
 				E9374D2D1E329A5800CD3945 /* completeScheduledOperation.swift */,
 			);
 			name = ScheduledOperations;
+			sourceTree = "<group>";
+		};
+		E9EC786F1EACE063001EED9B /* ssh */ = {
+			isa = PBXGroup;
+			children = (
+				E9EC78701EACE082001EED9B /* ssh.swift */,
+			);
+			name = ssh;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -488,6 +502,8 @@
 				A0FAF5CF1DDF2E5F0009FE7A /* ViewControllerAbout.swift in Sources */,
 				A017E2A01D7D3242003016F5 /* ViewControllerEdit.swift in Sources */,
 				A0B340B21D67077A00C6DAC3 /* ViewControllertabMain.swift in Sources */,
+				E9EC78711EACE082001EED9B /* ssh.swift in Sources */,
+				E905DC111EACF7550003BF37 /* ViewControllerSsh.swift in Sources */,
 				E93D82141E79C69500B20965 /* ViewControllerHelp.swift in Sources */,
 				E91A68901EA777690056BCFC /* ScheduleWriteLoggData.swift in Sources */,
 				E9FFA02D1E7287E100B7AB2B /* processCmd.swift in Sources */,

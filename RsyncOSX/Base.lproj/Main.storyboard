@@ -302,6 +302,7 @@
                         <tabViewItem id="gOf-XL-ZbX"/>
                         <tabViewItem id="aXU-PU-6Yq"/>
                         <tabViewItem id="stw-KU-gw0"/>
+                        <tabViewItem id="Ty6-To-jtK"/>
                     </tabViewItems>
                     <tabView key="tabView" type="noTabsNoBorder" id="oAg-LW-cIr">
                         <rect key="frame" x="0.0" y="-58" width="450" height="123"/>
@@ -316,6 +317,7 @@
                         <segue destination="GJH-xK-5LY" kind="relationship" relationship="tabItems" id="iJj-kL-Tje"/>
                         <segue destination="AlG-Cw-Xi9" kind="relationship" relationship="tabItems" id="AMX-9u-aUB"/>
                         <segue destination="JOY-OC-nIv" kind="relationship" relationship="tabItems" id="YaN-OP-DOy"/>
+                        <segue destination="B9V-8v-Aba" kind="relationship" relationship="tabItems" id="hpt-AH-P81"/>
                     </connections>
                 </tabViewController>
                 <customObject id="am9-td-Qjg" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
@@ -914,6 +916,19 @@
                 <customObject id="aBq-uD-wbZ" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-1109" y="1241.5"/>
+        </scene>
+        <!--Ssh-->
+        <scene sceneID="Cfs-fa-Wlg">
+            <objects>
+                <viewController title="Ssh" id="B9V-8v-Aba" customClass="ViewControllerSsh" customModule="RsyncOSX" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" id="ejw-ZV-C5b">
+                        <rect key="frame" x="0.0" y="0.0" width="1092" height="381"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </view>
+                </viewController>
+                <customObject id="rmz-oH-xzJ" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="582" y="-465"/>
         </scene>
         <!--Help-->
         <scene sceneID="hhx-zY-crQ">
@@ -4931,7 +4946,7 @@ DQ
                 </viewController>
                 <customObject id="uNp-Tp-xff" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="314" y="-313"/>
+            <point key="canvasLocation" x="-500" y="-349"/>
         </scene>
     </scenes>
     <resources>

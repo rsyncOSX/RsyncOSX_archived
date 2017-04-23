@@ -13,25 +13,37 @@ protocol FileError: class {
     func fileerror(errorstr:String)
 }
 
+enum Root {
+    case profileRoot
+    case userRoot
+}
 
-final class profiles {
+
+class profiles {
     
     // Delegate for reporting file error if any to main view
     weak var error_delegate: FileError?
     // Set the string to absolute string path
     private var filePath:String?
+    // Which root
+    private var root:Root?
     // profiles root - returns the root of profiles
-    private var profileRoot : String? {
+    fileprivate var profileRoot: String? {
         get {
-            let paths = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true) as NSArray
-            let docuDir = paths.firstObject as! String
-            let profilePath = docuDir + "/Rsync/" + SharingManagerConfiguration.sharedInstance.getMacSerialNumber()
-            return profilePath
+            switch self.root! {
+            case .profileRoot:
+                let paths = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true) as NSArray
+                let docuDir = paths.firstObject as! String
+                let profilePath = docuDir + "/Rsync/" + SharingManagerConfiguration.sharedInstance.getMacSerialNumber()
+                return profilePath
+            case .userRoot:
+                return NSHomeDirectory() + "/.ssh/"
+            }
         }
     }
     
     // Function for returning directorys in path as array of URLs
-    private func getDirectorysURLs () -> Array<URL> {
+    func getDirectorysURLs() -> Array<URL> {
         var array:Array<URL> = Array<URL>()
         if let filePath = self.profileRoot {
             if let fileURLs = self.getfileURLs(path: filePath) {
@@ -45,6 +57,23 @@ final class profiles {
         }
         return array
     }
+    
+    // Function for returning files in path as array of URLs
+    func getFilesURLs() -> Array<URL> {
+        var array:Array<URL> = Array<URL>()
+        if let filePath = self.profileRoot {
+            if let fileURLs = self.getfileURLs(path: filePath) {
+                for i in 0 ..< fileURLs.count {
+                    if fileURLs[i].isFileURL {
+                        array.append(fileURLs[i])
+                    }
+                }
+                return array
+            }
+        }
+        return array
+    }
+    
     
     // Function for returning profiles as array of Strings
     func getDirectorysStrings()-> Array<String> {
@@ -141,7 +170,8 @@ final class profiles {
         }
     }
     
-    init (path:String?) {
+    init (path:String?, root:Root) {
+        self.root = root
         self.filePath = path
     }
     
