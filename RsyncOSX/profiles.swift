@@ -43,35 +43,71 @@ class profiles {
     }
     
     // Function for returning directorys in path as array of URLs
-    func getDirectorysURLs() -> Array<URL> {
-        var array:Array<URL> = Array<URL>()
+    func getDirectorysURLs() -> Array<URL>? {
+        var array:Array<URL>?
         if let filePath = self.profileRoot {
             if let fileURLs = self.getfileURLs(path: filePath) {
+                array = Array<URL>()
                 for i in 0 ..< fileURLs.count {
                     if fileURLs[i].hasDirectoryPath {
-                        array.append(fileURLs[i])
+                        array!.append(fileURLs[i])
                     }
                 }
                 return array
             }
         }
-        return array
+        return nil
     }
     
     // Function for returning files in path as array of URLs
-    func getFilesURLs() -> Array<URL> {
-        var array:Array<URL> = Array<URL>()
+    func getFilesURLs() -> Array<URL>? {
+        var array:Array<URL>?
         if let filePath = self.profileRoot {
+            let fileManager = FileManager.default
+            var isDir:ObjCBool = false
+            if fileManager.fileExists(atPath: filePath, isDirectory:&isDir) {
+                guard isDir.boolValue else {
+                    return nil
+                }
+            } else {
+                return nil
+            }
             if let fileURLs = self.getfileURLs(path: filePath) {
+                array = Array<URL>()
                 for i in 0 ..< fileURLs.count {
                     if fileURLs[i].isFileURL {
-                        array.append(fileURLs[i])
+                        array!.append(fileURLs[i])
                     }
                 }
                 return array
             }
         }
-        return array
+        return nil
+    }
+    
+    func getFileStrings() -> Array<String>? {
+        var array:Array<String>?
+        if let filePath = self.profileRoot {
+            let fileManager = FileManager.default
+            var isDir:ObjCBool = false
+            if fileManager.fileExists(atPath: filePath, isDirectory:&isDir) {
+                guard isDir.boolValue else {
+                    return nil
+                }
+            } else {
+                return nil
+            }
+            if let fileURLs = self.getfileURLs(path: filePath) {
+                array = Array<String>()
+                for i in 0 ..< fileURLs.count {
+                    if fileURLs[i].isFileURL {
+                        array!.append(fileURLs[i].absoluteString)
+                    }
+                }
+                return array
+            }
+        }
+        return nil
     }
     
     

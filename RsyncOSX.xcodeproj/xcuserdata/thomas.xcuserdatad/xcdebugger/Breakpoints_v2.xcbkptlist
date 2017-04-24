@@ -9,13 +9,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "RsyncOSX/ViewControllerSsh.swift"
-            timestampString = "514654985.729525"
+            filePath = "RsyncOSX/profiles.swift"
+            timestampString = "514752283.161701"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "25"
-            endingLineNumber = "25"
-            landmarkName = "viewDidAppear()"
+            startingLineNumber = "91"
+            endingLineNumber = "91"
+            landmarkName = "getFileStrings()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
