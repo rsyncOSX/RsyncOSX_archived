@@ -11,6 +11,9 @@ import Cocoa
 
 class ssh: files {
     
+    // Delegate for reporting file error if any to main view
+    weak var error_delegate: ReportErrorInMain?
+    
     let rsa:String = "id_rsa.pub"
     let dsa:String = "id_dsa.pub"
     var dsaBool:Bool = false
@@ -41,5 +44,15 @@ class ssh: files {
         self.dsaBool = self.check(str: dsa)
     }
     
+}
+
+extension ssh: ReportError {
+    // Private func for propagating any file error to main view
+    func reportError(errorstr:String) {
+        if let pvc = SharingManagerConfiguration.sharedInstance.ViewControllertabMain {
+            self.error_delegate = pvc as? ViewControllertabMain
+            self.error_delegate?.fileerror(errorstr: errorstr)
+        }
+    }
     
 }

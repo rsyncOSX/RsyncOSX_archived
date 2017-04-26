@@ -8,15 +8,10 @@
 
 import Foundation
 
-// Protocol for reporting file errors
-protocol FileError: class {
-    func fileerror(errorstr:String)
-}
-
 class profiles: files {
     
     // Delegate for reporting file error if any to main view
-    weak var error_delegate: FileError?
+    weak var error_delegate: ReportErrorInMain?
     
     // Function for creating new profile directory
     func createProfile(profileName:String) {
@@ -28,7 +23,7 @@ class profiles: files {
                     try fileManager.createDirectory(atPath: profileDirectory, withIntermediateDirectories: true, attributes: nil)}
                 catch let e {
                     let error = e as NSError
-                    self.error(errorstr: error.description)
+                    self.reportError(errorstr: error.description)
                 }
             }
         }
@@ -47,23 +42,25 @@ class profiles: files {
                         try fileManager.removeItem(atPath: profileDirectory)}
                     catch let e {
                         let error = e as NSError
-                        self.error(errorstr: error.description)
+                        self.reportError(errorstr: error.description)
                     }
                 }
             }
         }
     }
-     
+    
+    init (path:String?) {
+        super.init(path: path, root: .profileRoot)
+    }
+}
+
+extension profiles: ReportError {
     // Private func for propagating any file error to main view
-    private func error(errorstr:String) {
+    func reportError(errorstr:String) {
         if let pvc = SharingManagerConfiguration.sharedInstance.ViewControllertabMain {
             self.error_delegate = pvc as? ViewControllertabMain
             self.error_delegate?.fileerror(errorstr: errorstr)
         }
-    }
-    
-    init (path:String?) {
-        super.init(path: path, root: .profileRoot)
     }
     
 }

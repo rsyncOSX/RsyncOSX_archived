@@ -15,7 +15,6 @@ protocol AddProfiles : class {
     func enableProfileMenu()
 }
 
-
 class ViewControllerProfile : NSViewController {
 
     // Dismisser

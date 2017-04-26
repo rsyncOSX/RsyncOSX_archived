@@ -13,9 +13,15 @@ enum Root {
     case userRoot
 }
 
+protocol ReportError: class {
+    func reportError(errorstr:String)
+}
+
 
 class files {
     
+    // Report error
+    weak var reportError_delegate: ReportError?
     // Set the string to absolute string path
     var filePath:String?
     // Which root
@@ -132,7 +138,7 @@ class files {
                     try fileManager.createDirectory(atPath: path, withIntermediateDirectories: true, attributes: nil)
                 } catch let e {
                     let error = e as NSError
-                    // self.error(errorstr: error.description)
+                    self.reportError_delegate?.reportError(errorstr: error.description)
                 }
             }
         }
@@ -148,7 +154,7 @@ class files {
                 return files
             } catch let e {
                 let error = e as NSError
-                // self.error(errorstr: error.description)
+                self.reportError_delegate?.reportError(errorstr: error.description)
                 return nil
             }
         }
