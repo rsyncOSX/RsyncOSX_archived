@@ -19,6 +19,9 @@ class ssh: files {
     var dsaBool:Bool = false
     var rsaBool:Bool = false
     
+    var rsaURLpath:URL?
+    var dsaURLpath:URL?
+    
     var fileURLS:Array<URL>?
     var fileStrings:Array<String>?
     
@@ -29,12 +32,21 @@ class ssh: files {
         guard self.fileStrings != nil else {
             return false
         }
-        guard self.fileStrings!.filter({$0.contains(str)}).count > 0 else {
+        guard self.fileStrings!.filter({$0.contains(str)}).count == 1 else {
             return false
         }
         
+        switch str {
+        case self.rsa:
+            self.rsaURLpath = URL(string: self.fileStrings!.filter({$0.contains(str)})[0])
+        case self.dsa:
+            self.dsaURLpath = URL(string: self.fileStrings!.filter({$0.contains(str)})[0])
+        default:
+            break
+        }
         return true
     }
+    
     
     init() {
         super.init(path: nil, root: .userRoot)
