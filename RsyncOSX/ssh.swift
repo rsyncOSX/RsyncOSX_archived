@@ -9,7 +9,7 @@
 import Foundation
 import Cocoa
 
-class ssh: profiles {
+class ssh: files {
     
     let rsa:String = "id_rsa.pub"
     let dsa:String = "id_dsa.pub"
