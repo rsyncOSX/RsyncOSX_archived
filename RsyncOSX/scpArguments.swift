@@ -21,7 +21,6 @@ final class scpArguments {
         
         if let config = self.config {
             var postfix2:String?
-            // For SCP copy history.plist from server to local store
             if (config.sshport != nil) {
                 self.args!.append("-P")
                 self.args!.append(String(config.sshport!))
