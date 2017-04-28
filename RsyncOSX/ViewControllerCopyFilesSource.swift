@@ -44,6 +44,8 @@ class ViewControllerCopyFilesSource : NSViewController {
         // Dismisser is root controller
         if let pvc = self.presenting as? ViewControllerCopyFiles {
             self.dismiss_delegate = pvc
+        } else if let pvc = self.presenting as? ViewControllerSsh {
+            self.dismiss_delegate = pvc
         }
         // Double click on row to select
         self.mainTableView.doubleAction = #selector(ViewControllerCopyFilesSource.tableViewDoubleClick(sender:))
