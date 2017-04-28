@@ -30,7 +30,7 @@ final class scpArgumentsSsh {
             return
         }
         
-        guard self.config!.offsiteServer.isEmpty else {
+        guard (self.config!.offsiteServer.isEmpty == false) else {
             return
         }
         
@@ -67,8 +67,9 @@ final class scpArgumentsSsh {
         return self.command
     }
     
-    init(config: configuration, path:String, key:String) {
-        self.config = config
+    init(hiddenID: Int, path:String, key:String) {
+        
+        self.config = SharingManagerConfiguration.sharedInstance.getConfigurations()[SharingManagerConfiguration.sharedInstance.getIndex(hiddenID)]
         // Initialize the argument array
         self.args = nil
         self.args = Array<String>()

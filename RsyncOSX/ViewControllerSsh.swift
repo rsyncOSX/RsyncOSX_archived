@@ -14,13 +14,13 @@ class ViewControllerSsh: NSViewController {
     var ras:Bool = false
     var dsa:Bool = false
     var Ssh:ssh?
+    
+    // hiddenID of selected index
     var hiddenID:Int?
     
     @IBOutlet weak var dsaCheck: NSButton!
     @IBOutlet weak var rsaCheck: NSButton!
     
-    // Index of selected row
-    var index:Int?
     // Delegate for getting index from Execute view
     weak var index_delegate:GetSelecetedIndex?
     
@@ -42,6 +42,14 @@ class ViewControllerSsh: NSViewController {
         self.presentViewControllerAsSheet(self.ViewControllerSource)
     }
     
+    @IBAction func check(_ sender: NSButton) {
+        
+        guard self.Ssh != nil else {
+            return
+        }
+        self.Ssh!.check(str: "rsa", hiddenID: self.hiddenID!)
+        
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
     }

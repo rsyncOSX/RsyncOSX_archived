@@ -9,46 +9,14 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "RsyncOSX/ViewControllerCopyFiles.swift"
-            timestampString = "515076307.68018"
+            filePath = "RsyncOSX/ssh.swift"
+            timestampString = "515098737.199"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "134"
-            endingLineNumber = "134"
-            landmarkName = "resetCopySource()"
+            startingLineNumber = "75"
+            endingLineNumber = "75"
+            landmarkName = "check(str:hiddenID:)"
             landmarkType = "7">
-            <Locations>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "RsyncOSX.ViewControllerCopyFiles.(resetCopySource in _5A327A6C95D1443D02143C2C0D595D4F) () -&gt; ()"
-                  moduleName = "RsyncOSX"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Volumes/Home/thomas/Documents/Xcode/Source/RsyncOSX/ViewControllerCopyFiles.swift"
-                  timestampString = "515076314.246673"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "134"
-                  endingLineNumber = "134"
-                  offsetFromSymbolStart = "935">
-               </Location>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "RsyncOSX.ViewControllerCopyFiles.((resetCopySource in _5A327A6C95D1443D02143C2C0D595D4F) () -&gt; ()).(closure #1)"
-                  moduleName = "RsyncOSX"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Volumes/Home/thomas/Documents/Xcode/Source/RsyncOSX/ViewControllerCopyFiles.swift"
-                  timestampString = "515076314.254658"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "135"
-                  endingLineNumber = "135"
-                  offsetFromSymbolStart = "19">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -57,13 +25,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "RsyncOSX/ViewControllerCopyFiles.swift"
-            timestampString = "515076439.282854"
+            filePath = "RsyncOSX/scpArgumentsSsh.swift"
+            timestampString = "515098809.915664"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "107"
-            endingLineNumber = "107"
-            landmarkName = "GetIndex(_:)"
+            startingLineNumber = "29"
+            endingLineNumber = "29"
+            landmarkName = "arguments(path:key:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
