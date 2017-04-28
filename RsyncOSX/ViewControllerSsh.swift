@@ -14,6 +14,7 @@ class ViewControllerSsh: NSViewController {
     var ras:Bool = false
     var dsa:Bool = false
     var Ssh:ssh?
+    var hiddenID:Int?
     
     @IBOutlet weak var dsaCheck: NSButton!
     @IBOutlet weak var rsaCheck: NSButton!
@@ -66,5 +67,13 @@ extension ViewControllerSsh: DismissViewController {
     // Protocol DismissViewController
     func dismiss_view(viewcontroller: NSViewController) {
         self.dismissViewController(viewcontroller)
+    }
+}
+
+extension ViewControllerSsh: getSource {
+    
+    // Returning hiddenID as Index
+    func GetSource(Index: Int) {
+        self.hiddenID = Index
     }
 }
