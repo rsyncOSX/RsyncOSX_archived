@@ -21,8 +21,10 @@ final class scpArgumentsSsh {
     
     // Set parameters for SCP for copy public ssh key to server
     // scp ~/.ssh/id_rsa.pub user@server.com:.ssh/authorized_keys
+    //  Check if pub key exists on remote server
+    //  ssh thomas@10.0.0.58 "ls -al ~/.ssh/authorized_keys"
     
-    private func arguments(path:String, key:String) {
+    private func argumentsScpPubKey(path:String, key:String) {
         
         var offsiteArguments:String?
         
@@ -33,6 +35,9 @@ final class scpArgumentsSsh {
         guard (self.config!.offsiteServer.isEmpty == false) else {
             return
         }
+        
+        self.args = nil
+        self.args = Array<String>()
         
         if (self.config!.sshport != nil) {
             self.args!.append("-P")
@@ -53,10 +58,39 @@ final class scpArgumentsSsh {
         self.command = "/usr/bin/scp"
     }
     
-    func getArguments() -> Array<String>? {
-        guard self.args != nil else {
-            return nil
+    private func argumentsScheckRemotePubKey(key:String) {
+        
+        var offsiteArguments:String?
+        
+        guard self.config != nil else {
+            return
         }
+        
+        guard (self.config!.offsiteServer.isEmpty == false) else {
+            return
+        }
+        
+        self.args = nil
+        self.args = Array<String>()
+        
+        if (self.config!.sshport != nil) {
+            self.args!.append("-P")
+            self.args!.append(String(self.config!.sshport!))
+        }
+        offsiteArguments = self.config!.offsiteUsername + "@" + self.config!.offsiteServer
+        self.args!.append(offsiteArguments!)
+        
+        if key == "rsa" {
+            self.args!.append("ls -al ~/.ssh/authorized_keys")
+        } else {
+            self.args!.append("ls -al ~/.ssh/authorized_keys2")
+        }
+        self.command = "/usr/bin/ssh"
+    }
+    
+    func getArguments(key:String, path:String) -> Array<String>? {
+        // Create the arguments
+        self.argumentsScpPubKey(path: path, key: key)
         return self.args
     }
     
@@ -67,12 +101,9 @@ final class scpArgumentsSsh {
         return self.command
     }
     
-    init(hiddenID: Int, path:String, key:String) {
+    init(hiddenID: Int) {
         
         self.config = SharingManagerConfiguration.sharedInstance.getConfigurations()[SharingManagerConfiguration.sharedInstance.getIndex(hiddenID)]
         // Initialize the argument array
-        self.args = nil
-        self.args = Array<String>()
-        self.arguments(path: path, key: key)
     }
 }

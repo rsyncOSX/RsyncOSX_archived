@@ -6,6 +6,7 @@
 //  Copyright © 2017 Thomas Evensen. All rights reserved.
 //
 
+
 import Foundation
 import Cocoa
 
@@ -35,21 +36,20 @@ class ssh: files {
     
     // Check if rsa and/or dsa is existing in .ssh catalog
     
-    func existPubKeys (str:String) -> Bool {
+    func existPubKeys (key:String) -> Bool {
         guard self.fileStrings != nil else {
             return false
         }
-        guard self.fileStrings!.filter({$0.contains(str)}).count == 1 else {
+        guard self.fileStrings!.filter({$0.contains(key)}).count == 1 else {
             return false
         }
-        
-        switch str {
+        switch key {
         case self.rsa:
-            self.rsaURLpath = URL(string: self.fileStrings!.filter({$0.contains(str)})[0])
-            self.rsaStringPath = self.fileStrings!.filter({$0.contains(str)})[0]
+            self.rsaURLpath = URL(string: self.fileStrings!.filter({$0.contains(key)})[0])
+            self.rsaStringPath = self.fileStrings!.filter({$0.contains(key)})[0]
         case self.dsa:
-            self.dsaURLpath = URL(string: self.fileStrings!.filter({$0.contains(str)})[0])
-            self.dasStringPath = self.fileStrings!.filter({$0.contains(str)})[0]
+            self.dsaURLpath = URL(string: self.fileStrings!.filter({$0.contains(key)})[0])
+            self.dasStringPath = self.fileStrings!.filter({$0.contains(key)})[0]
         default:
             break
         }
@@ -57,23 +57,23 @@ class ssh: files {
     }
     
     
-    func ScpPubKey(str: String, hiddenID:Int) {
-        switch str {
+    func ScpPubKey(key: String, hiddenID:Int) {
+        self.scpArguments = scpArgumentsSsh(hiddenID: hiddenID)
+        switch key {
         case "rsa":
             guard self.rsaStringPath != nil else {
                 return
             }
-            self.scpArguments = scpArgumentsSsh(hiddenID: hiddenID, path: self.rsaStringPath!, key: str)
+            self.arguments = scpArguments!.getArguments(key: key, path: self.rsaStringPath!)
         case "dsa":
             guard self.dasStringPath != nil else {
                 return
             }
-            self.scpArguments = scpArgumentsSsh(hiddenID: hiddenID, path: self.dasStringPath!, key: str)
+            self.arguments = scpArguments!.getArguments(key: key, path: self.dasStringPath!)
         default:
             break
         }
         self.command = self.scpArguments!.getCommand()
-        self.arguments = self.scpArguments!.getArguments()
     }
     
     
@@ -81,8 +81,8 @@ class ssh: files {
         super.init(path: nil, root: .userRoot)
         self.fileURLS = self.getFilesURLs()
         self.fileStrings = self.getFileStrings()
-        self.rsaPubKey = self.existPubKeys(str: rsa)
-        self.dsaPubKey = self.existPubKeys(str: dsa)
+        self.rsaPubKey = self.existPubKeys(key: rsa)
+        self.dsaPubKey = self.existPubKeys(key: dsa)
     }
     
 }
