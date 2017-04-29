@@ -22,6 +22,8 @@ class ViewControllerSsh: NSViewController {
     @IBOutlet weak var dsaCheck: NSButton!
     @IBOutlet weak var rsaCheck: NSButton!
     @IBOutlet weak var detailsTable: NSTableView!
+    @IBOutlet weak var scpRsaPubKeyButton: NSButton!
+    @IBOutlet weak var scpDsaPubKeyButton: NSButton!
     
     // Delegate for getting index from Execute view
     weak var index_delegate:GetSelecetedIndex?
@@ -34,6 +36,8 @@ class ViewControllerSsh: NSViewController {
     }()
 
     @IBAction func Source(_ sender: NSButton) {
+        self.scpDsaPubKeyButton.isEnabled = true
+        self.scpRsaPubKeyButton.isEnabled = true
         self.presentViewControllerAsSheet(self.ViewControllerSource)
     }
     
@@ -76,6 +80,8 @@ class ViewControllerSsh: NSViewController {
     
     override func viewDidAppear() {
         super.viewDidAppear()
+        self.scpDsaPubKeyButton.isEnabled = false
+        self.scpRsaPubKeyButton.isEnabled = false
         self.Ssh = ssh()
         if self.Ssh!.rsaPubKey {
             self.rsaCheck.state = NSOnState

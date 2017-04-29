@@ -11,7 +11,6 @@ import Foundation
 final class commandSsh: processCmd {
     
     init (command:String?, arguments:Array<String>?) {
-        
         super.init()
         // Set command to execute, either ssh or scp
         if let cmd = command {
@@ -24,6 +23,7 @@ final class commandSsh: processCmd {
         // Not a scheduled operation
         self.aScheduledOperation = false
         // Process is inated from Ssh
+        // ProcessTermination()
         if let pvc = SharingManagerConfiguration.sharedInstance.ViewControllerSsh as? ViewControllerSsh {
             self.delegate_update = pvc
         }

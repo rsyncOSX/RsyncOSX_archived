@@ -11,7 +11,6 @@ import Foundation
 final class commandCopyFiles: processCmd {
     
     init (command:String?, arguments:Array<String>?) {
-        
         super.init()
         // Set command to execute, either ssh or scp
         if let cmd = command {
@@ -23,8 +22,8 @@ final class commandCopyFiles: processCmd {
         self.arguments = arguments
         // Defaults to not a Scheduled task
         self.aScheduledOperation = false
-        
         // Process is inated from CopyFiles
+        // ProcessTermination()
         if let pvc = SharingManagerConfiguration.sharedInstance.ViewControllerCopyFiles as? ViewControllerCopyFiles {
             self.delegate_update = pvc
         }

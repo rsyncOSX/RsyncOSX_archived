@@ -93,7 +93,7 @@ class SharingManagerConfiguration {
     var operation:completeScheduledOperation?
     // Which profile to use, if default nil
     var ViewControllerLoggData:NSViewController?
-    // Reference to Ssh viwe
+    // Reference to Ssh view
     var ViewControllerSsh:NSViewController?
     private var profile:String?
     // Notify about scheduled process

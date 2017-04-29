@@ -964,20 +964,20 @@
                                 </connections>
                             </button>
                             <scrollView fixedFrame="YES" autohidesScrollers="YES" horizontalLineScroll="19" horizontalPageScroll="10" verticalLineScroll="19" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="B0f-st-J8B">
-                                <rect key="frame" x="68" y="20" width="508" height="135"/>
+                                <rect key="frame" x="68" y="20" width="686" height="135"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <clipView key="contentView" ambiguous="YES" id="Lc9-nX-Kk7">
-                                    <rect key="frame" x="1" y="0.0" width="506" height="134"/>
+                                    <rect key="frame" x="1" y="0.0" width="684" height="134"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnSelection="YES" multipleSelection="NO" autosaveColumns="NO" rowSizeStyle="automatic" headerView="DJN-Va-eEl" viewBased="YES" id="5pm-po-8G2">
-                                            <rect key="frame" x="0.0" y="0.0" width="506" height="111"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="684" height="111"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <size key="intercellSpacing" width="3" height="2"/>
                                             <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                             <color key="gridColor" name="gridColor" catalog="System" colorSpace="catalog"/>
                                             <tableColumns>
-                                                <tableColumn width="500.5" minWidth="40" maxWidth="1000" id="wh3-18-AJ4">
+                                                <tableColumn width="672.5" minWidth="40" maxWidth="1000" id="wh3-18-AJ4">
                                                     <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border">
                                                         <font key="font" metaFont="smallSystem"/>
                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
@@ -991,11 +991,11 @@
                                                     <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                     <prototypeCellViews>
                                                         <tableCellView identifier="outputID" id="19R-gb-VcL">
-                                                            <rect key="frame" x="1" y="1" width="500.5" height="17"/>
+                                                            <rect key="frame" x="1" y="1" width="672.5" height="17"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
                                                                 <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4iQ-TL-PRC">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="500.5" height="17"/>
+                                                                    <rect key="frame" x="0.0" y="0.0" width="672.5" height="17"/>
                                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                                                     <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="Table View Cell" id="gKi-ca-sia">
                                                                         <font key="font" metaFont="system"/>
@@ -1015,7 +1015,7 @@
                                     </subviews>
                                 </clipView>
                                 <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="YES" id="e6M-Ii-UKK">
-                                    <rect key="frame" x="1" y="119" width="223" height="15"/>
+                                    <rect key="frame" x="1" y="7" width="0.0" height="16"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
                                 <scroller key="verticalScroller" hidden="YES" verticalHuggingPriority="750" doubleValue="1" horizontal="NO" id="4Ta-cf-exK">
@@ -1023,7 +1023,7 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
                                 <tableHeaderView key="headerView" id="DJN-Va-eEl">
-                                    <rect key="frame" x="0.0" y="0.0" width="506" height="23"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="684" height="23"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableHeaderView>
                             </scrollView>
@@ -1044,6 +1044,8 @@
                         <outlet property="detailsTable" destination="5pm-po-8G2" id="ymN-RW-GPY"/>
                         <outlet property="dsaCheck" destination="gXP-YJ-JVy" id="VJo-ox-Ls0"/>
                         <outlet property="rsaCheck" destination="MQY-l7-2Lf" id="RH0-aw-hO1"/>
+                        <outlet property="scpDsaPubKeyButton" destination="XMA-t5-a6y" id="pi4-PN-H9x"/>
+                        <outlet property="scpRsaPubKeyButton" destination="EpF-GF-ffb" id="klZ-KW-ED0"/>
                     </connections>
                 </viewController>
                 <customObject id="rmz-oH-xzJ" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
