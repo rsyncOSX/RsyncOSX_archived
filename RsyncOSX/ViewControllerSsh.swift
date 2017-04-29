@@ -15,19 +15,16 @@ class ViewControllerSsh: NSViewController {
     var Ssh:ssh?
     // hiddenID of selected index
     var hiddenID:Int?
+    // Output
+    // output from Rsync
+    var output:Array<String>?
     
     @IBOutlet weak var dsaCheck: NSButton!
     @IBOutlet weak var rsaCheck: NSButton!
+    @IBOutlet weak var detailsTable: NSTableView!
     
     // Delegate for getting index from Execute view
     weak var index_delegate:GetSelecetedIndex?
-    
-    // Information about rsync output
-    // self.presentViewControllerAsSheet(self.ViewControllerInformation)
-    lazy var ViewControllerInformation: NSViewController = {
-        return self.storyboard!.instantiateController(withIdentifier: "StoryboardInformationCopyFilesID")
-            as! NSViewController
-    }()
     
     // Source for CopyFiles
     // self.presentViewControllerAsSheet(self.ViewControllerAbout)
@@ -69,6 +66,12 @@ class ViewControllerSsh: NSViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        // Reference to self
+        SharingManagerConfiguration.sharedInstance.ViewControllerSsh = self
+        // Do view setup here.
+        self.detailsTable.delegate = self
+        self.detailsTable.dataSource = self
+        self.output = nil
     }
     
     override func viewDidAppear() {
@@ -101,4 +104,53 @@ extension ViewControllerSsh: getSource {
     func GetSource(Index: Int) {
         self.hiddenID = Index
     }
+}
+
+extension ViewControllerSsh : NSTableViewDataSource {
+    
+    func numberOfRows(in aTableView: NSTableView) -> Int {
+        if (self.output != nil) {
+            return self.output!.count
+        } else {
+            return 0
+        }
+    }
+    
+}
+
+extension ViewControllerSsh : NSTableViewDelegate {
+    
+    func tableView(_ tableView: NSTableView, viewFor tableColumn: NSTableColumn?, row: Int) -> NSView? {
+        var text: String = ""
+        var cellIdentifier: String = ""
+        
+        if tableColumn == tableView.tableColumns[0] {
+            text = self.output![row]
+            cellIdentifier = "outputID"
+        }
+        
+        if let cell = tableView.make(withIdentifier: cellIdentifier, owner: nil) as? NSTableCellView {
+            cell.textField?.stringValue = text
+            return cell
+        }
+        return nil
+    }
+}
+
+extension ViewControllerSsh: UpdateProgress {
+    
+    // Protocol UpdateProgress
+    
+    func ProcessTermination() {
+        self.output = self.Ssh!.getOutput()
+        GlobalMainQueue.async(execute: { () -> Void in
+            self.detailsTable.reloadData()
+        })
+    }
+    
+    func FileHandler() {
+        // self.updateProgressbar(Double(self.count_delegate!.inprogressCount()))
+    }
+    
+    
 }

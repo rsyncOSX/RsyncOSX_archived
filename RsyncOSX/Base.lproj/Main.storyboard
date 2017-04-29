@@ -301,8 +301,8 @@
                         <tabViewItem identifier="" id="Oau-Kd-gbS"/>
                         <tabViewItem id="gOf-XL-ZbX"/>
                         <tabViewItem id="aXU-PU-6Yq"/>
-                        <tabViewItem id="stw-KU-gw0"/>
                         <tabViewItem id="Ty6-To-jtK"/>
+                        <tabViewItem id="stw-KU-gw0"/>
                     </tabViewItems>
                     <tabView key="tabView" type="noTabsNoBorder" id="oAg-LW-cIr">
                         <rect key="frame" x="0.0" y="-58" width="450" height="123"/>
@@ -316,8 +316,8 @@
                         <segue destination="rht-JI-asq" kind="relationship" relationship="tabItems" id="U2e-si-zob"/>
                         <segue destination="GJH-xK-5LY" kind="relationship" relationship="tabItems" id="iJj-kL-Tje"/>
                         <segue destination="AlG-Cw-Xi9" kind="relationship" relationship="tabItems" id="AMX-9u-aUB"/>
-                        <segue destination="JOY-OC-nIv" kind="relationship" relationship="tabItems" id="YaN-OP-DOy"/>
                         <segue destination="B9V-8v-Aba" kind="relationship" relationship="tabItems" id="hpt-AH-P81"/>
+                        <segue destination="JOY-OC-nIv" kind="relationship" relationship="tabItems" id="YaN-OP-DOy"/>
                     </connections>
                 </tabViewController>
                 <customObject id="am9-td-Qjg" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
@@ -953,7 +953,7 @@
                                 </connections>
                             </button>
                             <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="EpF-GF-ffb">
-                                <rect key="frame" x="62" y="183" width="107" height="32"/>
+                                <rect key="frame" x="62" y="197" width="107" height="32"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <buttonCell key="cell" type="push" title="Scp rsa" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="b7H-be-D9j">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -963,8 +963,72 @@
                                     <action selector="scpRsaPubKey:" target="B9V-8v-Aba" id="yER-Vx-pDh"/>
                                 </connections>
                             </button>
+                            <scrollView fixedFrame="YES" autohidesScrollers="YES" horizontalLineScroll="19" horizontalPageScroll="10" verticalLineScroll="19" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="B0f-st-J8B">
+                                <rect key="frame" x="68" y="20" width="508" height="135"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <clipView key="contentView" ambiguous="YES" id="Lc9-nX-Kk7">
+                                    <rect key="frame" x="1" y="0.0" width="506" height="134"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                    <subviews>
+                                        <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnSelection="YES" multipleSelection="NO" autosaveColumns="NO" rowSizeStyle="automatic" headerView="DJN-Va-eEl" viewBased="YES" id="5pm-po-8G2">
+                                            <rect key="frame" x="0.0" y="0.0" width="506" height="111"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <size key="intercellSpacing" width="3" height="2"/>
+                                            <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                            <color key="gridColor" name="gridColor" catalog="System" colorSpace="catalog"/>
+                                            <tableColumns>
+                                                <tableColumn width="500.5" minWidth="40" maxWidth="1000" id="wh3-18-AJ4">
+                                                    <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border">
+                                                        <font key="font" metaFont="smallSystem"/>
+                                                        <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
+                                                        <color key="backgroundColor" name="headerColor" catalog="System" colorSpace="catalog"/>
+                                                    </tableHeaderCell>
+                                                    <textFieldCell key="dataCell" lineBreakMode="truncatingTail" selectable="YES" editable="YES" title="Text Cell" id="43A-a5-y1p">
+                                                        <font key="font" metaFont="system"/>
+                                                        <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                                        <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                                    </textFieldCell>
+                                                    <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
+                                                    <prototypeCellViews>
+                                                        <tableCellView identifier="outputID" id="19R-gb-VcL">
+                                                            <rect key="frame" x="1" y="1" width="500.5" height="17"/>
+                                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                                            <subviews>
+                                                                <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4iQ-TL-PRC">
+                                                                    <rect key="frame" x="0.0" y="0.0" width="500.5" height="17"/>
+                                                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                                                                    <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="Table View Cell" id="gKi-ca-sia">
+                                                                        <font key="font" metaFont="system"/>
+                                                                        <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                                                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                                                    </textFieldCell>
+                                                                </textField>
+                                                            </subviews>
+                                                            <connections>
+                                                                <outlet property="textField" destination="4iQ-TL-PRC" id="SaX-Zd-Mck"/>
+                                                            </connections>
+                                                        </tableCellView>
+                                                    </prototypeCellViews>
+                                                </tableColumn>
+                                            </tableColumns>
+                                        </tableView>
+                                    </subviews>
+                                </clipView>
+                                <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="YES" id="e6M-Ii-UKK">
+                                    <rect key="frame" x="1" y="119" width="223" height="15"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </scroller>
+                                <scroller key="verticalScroller" hidden="YES" verticalHuggingPriority="750" doubleValue="1" horizontal="NO" id="4Ta-cf-exK">
+                                    <rect key="frame" x="224" y="17" width="15" height="102"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </scroller>
+                                <tableHeaderView key="headerView" id="DJN-Va-eEl">
+                                    <rect key="frame" x="0.0" y="0.0" width="506" height="23"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableHeaderView>
+                            </scrollView>
                             <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="XMA-t5-a6y">
-                                <rect key="frame" x="62" y="150" width="107" height="32"/>
+                                <rect key="frame" x="62" y="164" width="107" height="32"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <buttonCell key="cell" type="push" title="Scp dsa" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="SY3-0j-XBA">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -977,6 +1041,7 @@
                         </subviews>
                     </view>
                     <connections>
+                        <outlet property="detailsTable" destination="5pm-po-8G2" id="ymN-RW-GPY"/>
                         <outlet property="dsaCheck" destination="gXP-YJ-JVy" id="VJo-ox-Ls0"/>
                         <outlet property="rsaCheck" destination="MQY-l7-2Lf" id="RH0-aw-hO1"/>
                     </connections>
@@ -5001,7 +5066,7 @@ DQ
                 </viewController>
                 <customObject id="uNp-Tp-xff" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-500" y="-349"/>
+            <point key="canvasLocation" x="-536" y="-362"/>
         </scene>
     </scenes>
     <resources>

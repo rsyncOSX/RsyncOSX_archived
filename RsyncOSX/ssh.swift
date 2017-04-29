@@ -38,6 +38,9 @@ class ssh: files {
     var process:commandSsh?
     var output:outputProcess?
     
+    // Output from process
+    var array:Array<String>?
+    
     // Check if rsa and/or dsa is existing in local .ssh catalog
     func existPubKeys (key:String) -> Bool {
         guard self.fileStrings != nil else {
@@ -85,6 +88,13 @@ class ssh: files {
         self.process = commandSsh(command: self.command, arguments: self.arguments)
         self.output = outputProcess()
         self.process!.executeProcess(output: self.output!)
+       
+        
+    }
+    
+    // get output
+    func getOutput() -> Array<String> {
+        return self.output!.getOutput()
     }
     
     init() {

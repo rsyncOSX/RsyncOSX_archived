@@ -23,6 +23,10 @@ final class commandSsh: processCmd {
         self.arguments = arguments
         // Not a scheduled operation
         self.aScheduledOperation = false
+        // Process is inated from Ssh
+        if let pvc = SharingManagerConfiguration.sharedInstance.ViewControllerSsh as? ViewControllerSsh {
+            self.delegate_update = pvc
+        }
     }
     
 }
