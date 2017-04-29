@@ -51,7 +51,6 @@ class ViewControllerSsh: NSViewController {
         }
         self.Ssh!.ScpPubKey(key: "rsa", hiddenID: self.hiddenID!)
         self.Ssh!.checkPubKeyRemote()
-        
     }
     
     
@@ -65,6 +64,7 @@ class ViewControllerSsh: NSViewController {
             return
         }
         self.Ssh!.ScpPubKey(key: "dsa", hiddenID: self.hiddenID!)
+        self.Ssh!.checkPubKeyRemote()
     }
     
     override func viewDidLoad() {

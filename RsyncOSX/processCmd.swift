@@ -88,6 +88,7 @@ class processCmd {
             }
             NotificationCenter.default.removeObserver(self.observationCenter as Any)
         }
+        
         self.ProcessReference = task
         task.launch()
     }
