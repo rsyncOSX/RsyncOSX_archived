@@ -58,6 +58,8 @@ final class scpArgumentsSsh {
         self.command = "/usr/bin/scp"
     }
     
+    
+    
     private func argumentsScheckRemotePubKey(key:String) {
         
         var offsiteArguments:String?
@@ -90,7 +92,8 @@ final class scpArgumentsSsh {
     
     func getArguments(key:String, path:String) -> Array<String>? {
         // Create the arguments
-        self.argumentsScpPubKey(path: path, key: key)
+        // self.argumentsScpPubKey(path: path, key: key)
+        self.argumentsScheckRemotePubKey(key: "rsa")
         return self.args
     }
     

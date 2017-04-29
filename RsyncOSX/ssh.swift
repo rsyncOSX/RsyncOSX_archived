@@ -34,6 +34,10 @@ class ssh: files {
     var command:String?
     var arguments:Array<String>?
     
+    // Process
+    var process:commandSsh?
+    var output:outputProcess?
+    
     // Check if rsa and/or dsa is existing in .ssh catalog
     
     func existPubKeys (key:String) -> Bool {
@@ -76,6 +80,14 @@ class ssh: files {
         self.command = self.scpArguments!.getCommand()
     }
     
+    
+    func checkPubKeyRemote() {
+        
+        self.process = commandSsh(command: self.command, arguments: self.arguments)
+        self.output = outputProcess()
+        self.process!.executeProcess(output: self.output!)
+        
+    }
     
     init() {
         super.init(path: nil, root: .userRoot)
