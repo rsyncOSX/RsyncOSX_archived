@@ -11,10 +11,8 @@ import Cocoa
 
 class ViewControllerSsh: NSViewController {
     
-    var ras:Bool = false
-    var dsa:Bool = false
+    // The object which checks for keys
     var Ssh:ssh?
-    
     // hiddenID of selected index
     var hiddenID:Int?
     
@@ -42,14 +40,32 @@ class ViewControllerSsh: NSViewController {
         self.presentViewControllerAsSheet(self.ViewControllerSource)
     }
     
-    @IBAction func check(_ sender: NSButton) {
+    @IBAction func scpRsaPubKey(_ sender: NSButton) {
+        
+        guard self.hiddenID != nil else {
+            return
+        }
         
         guard self.Ssh != nil else {
             return
         }
-        self.Ssh!.check(str: "rsa", hiddenID: self.hiddenID!)
+        self.Ssh!.ScpPubKey(str: "rsa", hiddenID: self.hiddenID!)
         
     }
+    
+    
+    @IBAction func scpDsaPubKey(_ sender: NSButton) {
+        
+        guard self.hiddenID != nil else {
+            return
+        }
+        
+        guard self.Ssh != nil else {
+            return
+        }
+        self.Ssh!.ScpPubKey(str: "dsa", hiddenID: self.hiddenID!)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
     }
@@ -57,12 +73,12 @@ class ViewControllerSsh: NSViewController {
     override func viewDidAppear() {
         super.viewDidAppear()
         self.Ssh = ssh()
-        if self.Ssh!.rsaBool {
+        if self.Ssh!.rsaPubKey {
             self.rsaCheck.state = NSOnState
         } else {
             self.rsaCheck.state = NSOffState
         }
-        if self.Ssh!.dsaBool {
+        if self.Ssh!.dsaPubKey {
             self.dsaCheck.state = NSOnState
         } else {
             self.dsaCheck.state = NSOffState

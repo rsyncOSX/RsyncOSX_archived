@@ -16,8 +16,8 @@ final class scpArgumentsSsh {
     private var file:String?
     private var stringArray:Array<String>?
     
-    private var rsaPubkey:String = ".ssh/authorized_keys"
-    private var dsaPubkey:String = ".ssh/authorized_keys2"
+    private var rsaPubkeyString:String = ".ssh/authorized_keys"
+    private var dsaPubkeyString:String = ".ssh/authorized_keys2"
     
     // Set parameters for SCP for copy public ssh key to server
     // scp ~/.ssh/id_rsa.pub user@server.com:.ssh/authorized_keys
@@ -45,9 +45,9 @@ final class scpArgumentsSsh {
         self.args!.append("ConnectTimeout=5")
         self.args!.append(path)
         if key == "rsa" {
-          offsiteArguments = self.config!.offsiteUsername + "@" + self.config!.offsiteServer + ":" + rsaPubkey
+          offsiteArguments = self.config!.offsiteUsername + "@" + self.config!.offsiteServer + ":" + rsaPubkeyString
         } else {
-          offsiteArguments = self.config!.offsiteUsername + "@" + self.config!.offsiteServer + ":" + dsaPubkey
+          offsiteArguments = self.config!.offsiteUsername + "@" + self.config!.offsiteServer + ":" + dsaPubkeyString
         }
         self.args!.append(offsiteArguments!)
         self.command = "/usr/bin/scp"

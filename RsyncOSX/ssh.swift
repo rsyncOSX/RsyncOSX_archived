@@ -12,16 +12,17 @@ import Cocoa
 class ssh: files {
     
     // Delegate for reporting file error if any to main view
+    // Comply to protocol
     weak var error_delegate: ReportErrorInMain?
     
     let rsa:String = "id_rsa.pub"
     let dsa:String = "id_dsa.pub"
-    var dsaBool:Bool = false
-    var rsaBool:Bool = false
+    var dsaPubKey:Bool = false
+    var rsaPubKey:Bool = false
     
+    // Full paths to public keys
     var rsaURLpath:URL?
     var dsaURLpath:URL?
-    
     var rsaStringPath:String?
     var dasStringPath:String?
     
@@ -34,7 +35,7 @@ class ssh: files {
     
     // Check if rsa and/or dsa is existing in .ssh catalog
     
-    func source (str:String) -> Bool {
+    func existPubKeys (str:String) -> Bool {
         guard self.fileStrings != nil else {
             return false
         }
@@ -56,7 +57,7 @@ class ssh: files {
     }
     
     
-    func check(str: String, hiddenID:Int) {
+    func ScpPubKey(str: String, hiddenID:Int) {
         switch str {
         case "rsa":
             guard self.rsaStringPath != nil else {
@@ -80,8 +81,8 @@ class ssh: files {
         super.init(path: nil, root: .userRoot)
         self.fileURLS = self.getFilesURLs()
         self.fileStrings = self.getFileStrings()
-        self.rsaBool = self.source(str: rsa)
-        self.dsaBool = self.source(str: dsa)
+        self.rsaPubKey = self.existPubKeys(str: rsa)
+        self.dsaPubKey = self.existPubKeys(str: dsa)
     }
     
 }
