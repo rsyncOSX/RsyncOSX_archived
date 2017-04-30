@@ -24,6 +24,8 @@ class ViewControllerSsh: NSViewController {
     @IBOutlet weak var detailsTable: NSTableView!
     @IBOutlet weak var scpRsaPubKeyButton: NSButton!
     @IBOutlet weak var scpDsaPubKeyButton: NSButton!
+    @IBOutlet weak var checkRsaPubKeyButton: NSButton!
+    @IBOutlet weak var checkDsaPubKeyButton: NSButton!
     
     // Delegate for getting index from Execute view
     weak var index_delegate:GetSelecetedIndex?
@@ -38,6 +40,8 @@ class ViewControllerSsh: NSViewController {
     @IBAction func Source(_ sender: NSButton) {
         self.scpDsaPubKeyButton.isEnabled = true
         self.scpRsaPubKeyButton.isEnabled = true
+        self.checkDsaPubKeyButton.isEnabled = true
+        self.checkRsaPubKeyButton.isEnabled = true
         self.presentViewControllerAsSheet(self.ViewControllerSource)
     }
     
@@ -46,12 +50,11 @@ class ViewControllerSsh: NSViewController {
         guard self.hiddenID != nil else {
             return
         }
-        
         guard self.Ssh != nil else {
             return
         }
         self.Ssh!.ScpPubKey(key: "rsa", hiddenID: self.hiddenID!)
-        self.Ssh!.checkPubKeyRemote()
+        self.Ssh!.executeSshCommand()
     }
     
     
@@ -60,12 +63,36 @@ class ViewControllerSsh: NSViewController {
         guard self.hiddenID != nil else {
             return
         }
-        
         guard self.Ssh != nil else {
             return
         }
         self.Ssh!.ScpPubKey(key: "dsa", hiddenID: self.hiddenID!)
-        self.Ssh!.checkPubKeyRemote()
+        self.Ssh!.executeSshCommand()
+    }
+    
+    @IBAction func checkRsaPubKey(_ sender: NSButton) {
+        guard self.hiddenID != nil else {
+            return
+        }
+        
+        guard self.Ssh != nil else {
+            return
+        }
+        self.Ssh!.checkRemotePubKey(key: "rsa", hiddenID: self.hiddenID!)
+        self.Ssh!.executeSshCommand()
+    }
+    
+    @IBAction func checkDsaPubKey(_ sender: NSButton) {
+        guard self.hiddenID != nil else {
+            return
+        }
+        
+        guard self.Ssh != nil else {
+            return
+        }
+        self.Ssh!.checkRemotePubKey(key: "dsa", hiddenID: self.hiddenID!)
+        self.Ssh!.executeSshCommand()
+        
     }
     
     override func viewDidLoad() {
@@ -82,6 +109,9 @@ class ViewControllerSsh: NSViewController {
         super.viewDidAppear()
         self.scpDsaPubKeyButton.isEnabled = false
         self.scpRsaPubKeyButton.isEnabled = false
+        self.checkDsaPubKeyButton.isEnabled = false
+        self.checkRsaPubKeyButton.isEnabled = false
+        
         self.Ssh = ssh()
         if self.Ssh!.rsaPubKey {
             self.rsaCheck.state = NSOnState

@@ -100,7 +100,10 @@ class files {
                 array = Array<String>()
                 for i in 0 ..< fileURLs.count {
                     if fileURLs[i].isFileURL {
-                        array!.append(fileURLs[i].absoluteString)
+                        // File path
+                        // .path is /Volume..
+                        // .absoluteString is file:///Volume
+                        array!.append(fileURLs[i].path)
                     }
                 }
                 return array

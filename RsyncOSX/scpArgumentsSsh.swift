@@ -16,8 +16,8 @@ final class scpArgumentsSsh {
     private var file:String?
     private var stringArray:Array<String>?
     
-    private var rsaPubkeyString:String = ".ssh/authorized_keys"
-    private var dsaPubkeyString:String = ".ssh/authorized_keys2"
+    private var rsaPubkeyString:String = ".ssh_test/authorized_keys"
+    private var dsaPubkeyString:String = ".ssh_test/authorized_keys2"
     
     // Set parameters for SCP for copy public ssh key to server
     // scp ~/.ssh/id_rsa.pub user@server.com:.ssh/authorized_keys
@@ -83,17 +83,20 @@ final class scpArgumentsSsh {
         self.args!.append(offsiteArguments!)
         
         if key == "rsa" {
-            self.args!.append("ls -al ~/.ssh/authorized_keys")
+            self.args!.append("ls -al ~/" + rsaPubkeyString)
         } else {
-            self.args!.append("ls -al ~/.ssh/authorized_keys2")
+            self.args!.append("ls -al ~/" + dsaPubkeyString)
         }
         self.command = "/usr/bin/ssh"
     }
     
-    func getArguments(key:String, path:String) -> Array<String>? {
+    func getArguments(key:String, path:String?) -> Array<String>? {
         // Create the arguments
-        // self.argumentsScpPubKey(path: path, key: key)
-        self.argumentsScheckRemotePubKey(key: "rsa")
+        if path == nil {
+            self.argumentsScheckRemotePubKey(key: key)
+        } else {
+            self.argumentsScpPubKey(path: path!, key: key)
+        }
         return self.args
     }
     

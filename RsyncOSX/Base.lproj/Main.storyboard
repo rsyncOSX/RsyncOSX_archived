@@ -991,11 +991,11 @@
                                                     <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                     <prototypeCellViews>
                                                         <tableCellView identifier="outputID" id="19R-gb-VcL">
-                                                            <rect key="frame" x="1" y="1" width="672.5" height="17"/>
+                                                            <rect key="frame" x="1" y="1" width="672" height="17"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
                                                                 <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4iQ-TL-PRC">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="672.5" height="17"/>
+                                                                    <rect key="frame" x="0.0" y="0.0" width="672" height="17"/>
                                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                                                     <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="Table View Cell" id="gKi-ca-sia">
                                                                         <font key="font" metaFont="system"/>
@@ -1038,9 +1038,33 @@
                                     <action selector="scpDsaPubKey:" target="B9V-8v-Aba" id="9Lg-Qc-Yin"/>
                                 </connections>
                             </button>
+                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="HLU-Ok-6oP">
+                                <rect key="frame" x="189" y="197" width="101" height="32"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <buttonCell key="cell" type="push" title="Check rsa" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="goN-EU-g61">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="checkRsaPubKey:" target="B9V-8v-Aba" id="csa-u3-ueI"/>
+                                </connections>
+                            </button>
+                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="FX4-ec-hrT">
+                                <rect key="frame" x="188" y="164" width="104" height="32"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <buttonCell key="cell" type="push" title="Check dsa" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="hq8-Fq-pip">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="checkDsaPubKey:" target="B9V-8v-Aba" id="Iik-vI-cOp"/>
+                                </connections>
+                            </button>
                         </subviews>
                     </view>
                     <connections>
+                        <outlet property="checkDsaPubKeyButton" destination="FX4-ec-hrT" id="drv-3S-gOw"/>
+                        <outlet property="checkRsaPubKeyButton" destination="HLU-Ok-6oP" id="gce-B6-pGa"/>
                         <outlet property="detailsTable" destination="5pm-po-8G2" id="ymN-RW-GPY"/>
                         <outlet property="dsaCheck" destination="gXP-YJ-JVy" id="VJo-ox-Ls0"/>
                         <outlet property="rsaCheck" destination="MQY-l7-2Lf" id="RH0-aw-hO1"/>
