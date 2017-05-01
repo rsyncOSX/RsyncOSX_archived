@@ -68,12 +68,12 @@ class ssh: files {
             guard self.rsaStringPath != nil else {
                 return
             }
-            self.arguments = scpArguments!.getArguments(key: key, path: self.rsaStringPath!)
+            self.arguments = scpArguments!.getArguments(operation: .scpKey, key: key, path: self.rsaStringPath!)
         case "dsa":
             guard self.dasStringPath != nil else {
                 return
             }
-            self.arguments = scpArguments!.getArguments(key: key, path: self.dasStringPath!)
+            self.arguments = scpArguments!.getArguments(operation: .scpKey, key: key, path: self.dasStringPath!)
         default:
             break
         }
@@ -88,12 +88,12 @@ class ssh: files {
             guard self.rsaStringPath != nil else {
                 return
             }
-            self.arguments = scpArguments!.getArguments(key: key, path: nil)
+            self.arguments = scpArguments!.getArguments(operation: .checkKey, key: key, path: nil)
         case "dsa":
             guard self.dasStringPath != nil else {
                 return
             }
-            self.arguments = scpArguments!.getArguments(key: key, path: nil)
+            self.arguments = scpArguments!.getArguments(operation: .checkKey, key: key, path: nil)
         default:
             break
         }

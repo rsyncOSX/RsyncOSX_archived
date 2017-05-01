@@ -98,8 +98,7 @@ final class scpArgumentsSsh {
     private func argumentsCreateKeys(key:String) {
         self.args = nil
         self.args = Array<String>()
-        self.args!.append("-t")
-        self.args!.append(key)
+        self.args!.append("-t" + key)
         self.args!.append("-q")
         self.command = "/usr/bin/ssh-keygen"
         
