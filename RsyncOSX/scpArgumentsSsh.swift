@@ -8,6 +8,14 @@
 
 import Foundation
 
+enum sshOperations {
+    case scpKey
+    case checkKey
+    case createKey
+    case createRemoteSshCatalog
+    
+}
+
 final class scpArgumentsSsh {
     
     private var config:configuration?
@@ -21,9 +29,6 @@ final class scpArgumentsSsh {
     
     // Set parameters for SCP for copy public ssh key to server
     // scp ~/.ssh/id_rsa.pub user@server.com:.ssh/authorized_keys
-    //  Check if pub key exists on remote server
-    //  ssh thomas@10.0.0.58 "ls -al ~/.ssh/authorized_keys"
-    
     private func argumentsScpPubKey(path:String, key:String) {
         
         var offsiteArguments:String?
@@ -38,7 +43,6 @@ final class scpArgumentsSsh {
         
         self.args = nil
         self.args = Array<String>()
-        
         if (self.config!.sshport != nil) {
             self.args!.append("-P")
             self.args!.append(String(self.config!.sshport!))
@@ -59,7 +63,8 @@ final class scpArgumentsSsh {
     }
     
     
-    
+    //  Check if pub key exists on remote server
+    //  ssh thomas@10.0.0.58 "ls -al ~/.ssh/authorized_keys"
     private func argumentsScheckRemotePubKey(key:String) {
         
         var offsiteArguments:String?
@@ -74,7 +79,6 @@ final class scpArgumentsSsh {
         
         self.args = nil
         self.args = Array<String>()
-        
         if (self.config!.sshport != nil) {
             self.args!.append("-P")
             self.args!.append(String(self.config!.sshport!))
@@ -90,12 +94,53 @@ final class scpArgumentsSsh {
         self.command = "/usr/bin/ssh"
     }
     
-    func getArguments(key:String, path:String?) -> Array<String>? {
-        // Create the arguments
-        if path == nil {
+    // Create key with ssh-keygen
+    private func argumentsCreateKeys(key:String) {
+        self.args = nil
+        self.args = Array<String>()
+        self.args!.append("-t")
+        self.args!.append(key)
+        self.args!.append("-q")
+        self.command = "/usr/bin/ssh-keygen"
+        
+    }
+    
+    //  Create remote catalog
+    private func argumentsCreateRemoteSshCatalog() {
+        
+        var offsiteArguments:String?
+        
+        guard self.config != nil else {
+            return
+        }
+        
+        guard (self.config!.offsiteServer.isEmpty == false) else {
+            return
+        }
+        
+        self.args = nil
+        self.args = Array<String>()
+        if (self.config!.sshport != nil) {
+            self.args!.append("-P")
+            self.args!.append(String(self.config!.sshport!))
+        }
+        offsiteArguments = self.config!.offsiteUsername + "@" + self.config!.offsiteServer
+        self.args!.append(offsiteArguments!)
+        self.args!.append("mkdir ~/.ssh_test")
+        self.command = "/usr/bin/ssh"
+    }
+    
+    // Set the correct arguments
+    func getArguments(operation:sshOperations, key:String, path:String?) -> Array<String>? {
+        switch operation {
+        case .checkKey:
             self.argumentsScheckRemotePubKey(key: key)
-        } else {
+        case .createKey:
+            self.argumentsCreateKeys(key: key)
+        case .scpKey:
             self.argumentsScpPubKey(path: path!, key: key)
+        case .createRemoteSshCatalog:
+            self.argumentsCreateRemoteSshCatalog()
         }
         return self.args
     }
@@ -108,8 +153,6 @@ final class scpArgumentsSsh {
     }
     
     init(hiddenID: Int) {
-        
         self.config = SharingManagerConfiguration.sharedInstance.getConfigurations()[SharingManagerConfiguration.sharedInstance.getIndex(hiddenID)]
-        // Initialize the argument array
     }
 }

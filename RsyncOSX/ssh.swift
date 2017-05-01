@@ -106,8 +106,6 @@ class ssh: files {
         self.process = commandSsh(command: self.command, arguments: self.arguments)
         self.output = outputProcess()
         self.process!.executeProcess(output: self.output!)
-       
-        
     }
     
     // get output
