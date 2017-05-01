@@ -39,6 +39,28 @@ class ssh: files {
     var output:outputProcess?
     
     
+    // Create Keys
+    
+    func creatKeysRsa(hiddenID:Int) {
+        self.scpArguments = scpArgumentsSsh(hiddenID: hiddenID)
+        self.arguments = scpArguments!.getArguments(operation: .createKey, key: "rsa", path: nil)
+        self.command = self.scpArguments!.getCommand()
+        self.executeSshCommand()
+    }
+    
+    func createKeysDsa(hiddenID:Int) {
+        self.scpArguments = scpArgumentsSsh(hiddenID: hiddenID)
+        self.arguments = scpArguments!.getArguments(operation: .createKey, key: "dsa", path: nil)
+        self.command = self.scpArguments!.getCommand()
+        self.executeSshCommand()
+    }
+    
+    // Check for keys
+    func checkKeys() {
+        self.rsaPubKey = self.existPubKeys(key: rsa)
+        self.dsaPubKey = self.existPubKeys(key: dsa)
+    }
+    
     // Check if rsa and/or dsa is existing in local .ssh catalog
     func existPubKeys (key:String) -> Bool {
         guard self.fileStrings != nil else {
@@ -117,8 +139,7 @@ class ssh: files {
         super.init(path: nil, root: .userRoot)
         self.fileURLS = self.getFilesURLs()
         self.fileStrings = self.getFileStrings()
-        self.rsaPubKey = self.existPubKeys(key: rsa)
-        self.dsaPubKey = self.existPubKeys(key: dsa)
+        self.checkKeys()
     }
     
 }

@@ -26,6 +26,8 @@ class ViewControllerSsh: NSViewController {
     @IBOutlet weak var scpDsaPubKeyButton: NSButton!
     @IBOutlet weak var checkRsaPubKeyButton: NSButton!
     @IBOutlet weak var checkDsaPubKeyButton: NSButton!
+    @IBOutlet weak var createRsaKey: NSButton!
+    @IBOutlet weak var createDsaKey: NSButton!
     
     // Delegate for getting index from Execute view
     weak var index_delegate:GetSelecetedIndex?
@@ -36,6 +38,26 @@ class ViewControllerSsh: NSViewController {
         return self.storyboard!.instantiateController(withIdentifier: "CopyFilesID")
             as! NSViewController
     }()
+    
+    @IBAction func RadioButtonsCreateKeyPair(_ sender: NSButton) {
+        
+    }
+    
+    @IBAction func createPublicPrivateKeyPair(_ sender: NSButton) {
+        guard self.hiddenID != nil else {
+            return
+        }
+        guard self.Ssh != nil else {
+            return
+        }
+        if (self.createRsaKey.state == NSOnState) {
+            self.Ssh!.creatKeysRsa(hiddenID: self.hiddenID!)
+        }
+        
+        if (self.createDsaKey.state == NSOnState){
+            self.Ssh!.createKeysDsa(hiddenID: self.hiddenID!)
+        }
+    }
 
     @IBAction func Source(_ sender: NSButton) {
         self.scpDsaPubKeyButton.isEnabled = true
@@ -111,8 +133,14 @@ class ViewControllerSsh: NSViewController {
         self.scpRsaPubKeyButton.isEnabled = false
         self.checkDsaPubKeyButton.isEnabled = false
         self.checkRsaPubKeyButton.isEnabled = false
-        
         self.Ssh = ssh()
+        // Check for keys
+        self.checkPrivatePublicKey()
+        
+    }
+    
+    private func checkPrivatePublicKey() {
+        self.Ssh!.checkKeys()
         if self.Ssh!.rsaPubKey {
             self.rsaCheck.state = NSOnState
         } else {
@@ -124,6 +152,7 @@ class ViewControllerSsh: NSViewController {
             self.dsaCheck.state = NSOffState
         }
     }
+
 }
 
 extension ViewControllerSsh: DismissViewController {
@@ -181,6 +210,7 @@ extension ViewControllerSsh: UpdateProgress {
         self.output = self.Ssh!.getOutput()
         GlobalMainQueue.async(execute: { () -> Void in
             self.detailsTable.reloadData()
+            self.Ssh!.checkKeys()
         })
     }
     
