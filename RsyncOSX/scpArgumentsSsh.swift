@@ -96,11 +96,19 @@ final class scpArgumentsSsh {
     }
     
     // Create key with ssh-keygen
-    private func argumentsCreateKeys(key:String) {
+    private func argumentsCreateKeys(path:String, key:String) {
         self.args = nil
         self.args = Array<String>()
+        self.args!.append("-f")
+        if (key == "rsa") {
+            self.args!.append(path + "id_rsa")
+        } else {
+            self.args!.append(path + "id_dsa")
+        }
         self.args!.append("-t")
         self.args!.append(key)
+        self.args!.append("-N")
+        self.args!.append("")
         self.command = "/usr/bin/ssh-keygen"
         
     }
@@ -164,7 +172,7 @@ final class scpArgumentsSsh {
         case .checkKey:
             self.argumentsScheckRemotePubKey(key: key)
         case .createKey:
-            self.argumentsCreateKeys(key: key)
+            self.argumentsCreateKeys(path: path!, key: key)
         case .scpKey:
             self.argumentsScpPubKey(path: path!, key: key)
         case .createRemoteSshCatalog:
