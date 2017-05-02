@@ -16,12 +16,13 @@ class ssh: files {
     // Comply to protocol
     weak var error_delegate: ReportErrorInMain?
     
-    let rsa:String = "id_rsa.pub"
-    let dsa:String = "id_dsa.pub"
-    var dsaPubKey:Bool = false
-    var rsaPubKey:Bool = false
+    // Local pub keys
+    let rsaPubKey:String = "id_rsa.pub"
+    let dsaPubKey:String = "id_dsa.pub"
+    var dsaPubKeyExist:Bool = false
+    var rsaPubKeyExist:Bool = false
     
-    // Full paths to public keys
+    // Full paths to local public keys
     var rsaURLpath:URL?
     var dsaURLpath:URL?
     var rsaStringPath:String?
@@ -42,23 +43,25 @@ class ssh: files {
     // Create Keys
     
     func creatKeysRsa(hiddenID:Int) {
+        self.scpArguments = nil
         self.scpArguments = scpArgumentsSsh(hiddenID: hiddenID)
         self.arguments = scpArguments!.getArguments(operation: .createKey, key: "rsa", path: nil)
         self.command = self.scpArguments!.getCommand()
-        self.executeSshCommand()
+        // self.executeSshCommand()
     }
     
     func createKeysDsa(hiddenID:Int) {
+        self.scpArguments = nil
         self.scpArguments = scpArgumentsSsh(hiddenID: hiddenID)
         self.arguments = scpArguments!.getArguments(operation: .createKey, key: "dsa", path: nil)
         self.command = self.scpArguments!.getCommand()
-        self.executeSshCommand()
+        // self.executeSshCommand()
     }
     
-    // Check for keys
+    // Check for local public keys
     func checkKeys() {
-        self.rsaPubKey = self.existPubKeys(key: rsa)
-        self.dsaPubKey = self.existPubKeys(key: dsa)
+        self.dsaPubKeyExist = self.existPubKeys(key: rsaPubKey)
+        self.rsaPubKeyExist = self.existPubKeys(key: dsaPubKey)
     }
     
     // Check if rsa and/or dsa is existing in local .ssh catalog
@@ -70,10 +73,10 @@ class ssh: files {
             return false
         }
         switch key {
-        case self.rsa:
+        case self.rsaPubKey:
             self.rsaURLpath = URL(string: self.fileStrings!.filter({$0.contains(key)})[0])
             self.rsaStringPath = self.fileStrings!.filter({$0.contains(key)})[0]
-        case self.dsa:
+        case self.rsaPubKey:
             self.dsaURLpath = URL(string: self.fileStrings!.filter({$0.contains(key)})[0])
             self.dasStringPath = self.fileStrings!.filter({$0.contains(key)})[0]
         default:
@@ -84,6 +87,7 @@ class ssh: files {
     
     // Secure copy of public key from local to remote catalog
     func ScpPubKey(key: String, hiddenID:Int) {
+        self.scpArguments = nil
         self.scpArguments = scpArgumentsSsh(hiddenID: hiddenID)
         switch key {
         case "rsa":
@@ -104,6 +108,7 @@ class ssh: files {
     
     // Check for remote pub keys
     func checkRemotePubKey(key: String, hiddenID:Int) {
+        self.scpArguments = nil
         self.scpArguments = scpArgumentsSsh(hiddenID: hiddenID)
         switch key {
         case "rsa":
@@ -122,8 +127,16 @@ class ssh: files {
         self.command = self.scpArguments!.getCommand()
     }
     
+    // Chmod remote .ssh directory
+    func chmodSsh(key: String, hiddenID:Int) {
+        self.scpArguments = nil
+        self.scpArguments = scpArgumentsSsh(hiddenID: hiddenID)
+        self.arguments = scpArguments!.getArguments(operation: .chmod, key: key, path: nil)
+        self.command = self.scpArguments!.getCommand()
+    }
     
-    // Check if public key is present remote
+    
+    // Execute command
     func executeSshCommand() {
         self.process = commandSsh(command: self.command, arguments: self.arguments)
         self.output = outputProcess()

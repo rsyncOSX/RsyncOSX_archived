@@ -13,6 +13,7 @@ enum sshOperations {
     case checkKey
     case createKey
     case createRemoteSshCatalog
+    case chmod
     
 }
 
@@ -104,6 +105,34 @@ final class scpArgumentsSsh {
         
     }
     
+    // Chmod .ssh catalog
+    private func argumentsChmod(key:String) {
+        var offsiteArguments:String?
+        
+        guard self.config != nil else {
+            return
+        }
+        guard (self.config!.offsiteServer.isEmpty == false) else {
+            return
+        }
+        
+        self.args = nil
+        self.args = Array<String>()
+        if (self.config!.sshport != nil) {
+            self.args!.append("-P")
+            self.args!.append(String(self.config!.sshport!))
+        }
+        offsiteArguments = self.config!.offsiteUsername + "@" + self.config!.offsiteServer
+        self.args!.append(offsiteArguments!)
+        
+        if key == "rsa" {
+            self.args!.append("chmod 700 ~/.ssh_test; chmod 600 ~/.ssh_test/authorized_keys")
+        } else {
+            self.args!.append("chmod 700 ~/.ssh_test; chmod 600 ~/.ssh_test/authorized_keys2")
+        }
+        self.command = "/usr/bin/ssh"
+    }
+    
     //  Create remote catalog
     private func argumentsCreateRemoteSshCatalog() {
         
@@ -140,7 +169,11 @@ final class scpArgumentsSsh {
             self.argumentsScpPubKey(path: path!, key: key)
         case .createRemoteSshCatalog:
             self.argumentsCreateRemoteSshCatalog()
+        case .chmod:
+            self.argumentsChmod(key: key)
+            
         }
+        
         return self.args
     }
     

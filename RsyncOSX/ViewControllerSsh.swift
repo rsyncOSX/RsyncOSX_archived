@@ -141,16 +141,27 @@ class ViewControllerSsh: NSViewController {
     
     private func checkPrivatePublicKey() {
         self.Ssh!.checkKeys()
-        if self.Ssh!.rsaPubKey {
+        if self.Ssh!.rsaPubKeyExist {
             self.rsaCheck.state = NSOnState
         } else {
             self.rsaCheck.state = NSOffState
         }
-        if self.Ssh!.dsaPubKey {
+        if self.Ssh!.dsaPubKeyExist {
             self.dsaCheck.state = NSOnState
         } else {
             self.dsaCheck.state = NSOffState
         }
+    }
+    
+    @IBAction func chmodSsh(_ sender: NSButton) {
+        if (self.createRsaKey.state == NSOnState) {
+            self.Ssh!.chmodSsh(key: "rsa", hiddenID: self.hiddenID!)
+        }
+        
+        if (self.createDsaKey.state == NSOnState){
+           self.Ssh!.chmodSsh(key: "dsa", hiddenID: self.hiddenID!)
+        }
+        self.Ssh!.executeSshCommand()
     }
 
 }
