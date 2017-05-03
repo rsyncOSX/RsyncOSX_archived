@@ -22,8 +22,6 @@ class files {
     
     // Report error
     weak var reportError_delegate: ReportError?
-    // Set the string to absolute string path
-    var filePath:String?
     // Which root
     var root:Root?
     // Root of files
@@ -136,7 +134,7 @@ class files {
     // Func that creates directory if not created
     func createDirectory() {
         let fileManager = FileManager.default
-        if let path = self.filePath {
+        if let path = self.FilesRoot {
             // Profile root
             if (fileManager.fileExists(atPath: path) == false) {
                 do {
@@ -167,9 +165,8 @@ class files {
         return nil
     }
         
-    init (path:String?, root:Root) {
+    init (root:Root) {
         self.root = root
-        self.filePath = path
     }
     
 }

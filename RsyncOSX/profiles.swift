@@ -50,7 +50,7 @@ class profiles: files {
     }
     
     init (path:String?) {
-        super.init(path: path, root: .profileRoot)
+        super.init(root: .profileRoot)
     }
 }
 

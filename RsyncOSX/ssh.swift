@@ -150,7 +150,7 @@ class ssh: files {
     }
     
     init() {
-        super.init(path: nil, root: .sshRoot)
+        super.init(root: .sshRoot)
         self.KeyFileURLS = self.getFilesURLs()
         self.KeyFileStrings = self.getFileStrings()
         self.checkKeys()
