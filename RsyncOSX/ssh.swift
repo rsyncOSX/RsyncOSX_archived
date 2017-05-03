@@ -42,7 +42,7 @@ class ssh: files {
     var output:outputProcess?
     
     
-    // Create Keys
+    // Create rsa keys
     func createKeysRsa() {
         self.scpArguments = nil
         self.scpArguments = scpArgumentsSsh(hiddenID: nil)
@@ -51,6 +51,7 @@ class ssh: files {
         self.executeSshCommand()
     }
     
+    // Create dsa keys
     func createKeysDsa() {
         self.scpArguments = nil
         self.scpArguments = scpArgumentsSsh(hiddenID: nil)
@@ -61,8 +62,8 @@ class ssh: files {
     
     // Check for local public keys
     func checkKeys() {
-        self.dsaPubKeyExist = self.existPubKeys(key: rsaPubKey)
-        self.rsaPubKeyExist = self.existPubKeys(key: dsaPubKey)
+        self.dsaPubKeyExist = self.existPubKeys(key: self.dsaPubKey)
+        self.rsaPubKeyExist = self.existPubKeys(key: self.rsaPubKey)
     }
     
     // Check if rsa and/or dsa is existing in local .ssh catalog

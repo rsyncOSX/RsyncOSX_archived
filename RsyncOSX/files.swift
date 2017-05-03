@@ -28,11 +28,13 @@ class files {
     var FilesRoot: String? {
         get {
             switch self.root! {
+            // Profiles
             case .profileRoot:
                 let paths = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true) as NSArray
                 let docuDir = paths.firstObject as! String
                 let profilePath = docuDir + "/Rsync/" + SharingManagerConfiguration.sharedInstance.getMacSerialNumber()
                 return profilePath
+            // .ssh/
             case .sshRoot:
                 return NSHomeDirectory() + "/.ssh_test/"
             }

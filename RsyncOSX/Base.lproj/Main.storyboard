@@ -937,7 +937,7 @@
                                 </connections>
                             </button>
                             <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="EpF-GF-ffb">
-                                <rect key="frame" x="62" y="197" width="107" height="32"/>
+                                <rect key="frame" x="315" y="283" width="107" height="32"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <buttonCell key="cell" type="push" title="Scp rsa" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="b7H-be-D9j">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -948,20 +948,20 @@
                                 </connections>
                             </button>
                             <scrollView fixedFrame="YES" autohidesScrollers="YES" horizontalLineScroll="19" horizontalPageScroll="10" verticalLineScroll="19" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="B0f-st-J8B">
-                                <rect key="frame" x="68" y="20" width="686" height="135"/>
+                                <rect key="frame" x="20" y="20" width="856" height="135"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <clipView key="contentView" ambiguous="YES" id="Lc9-nX-Kk7">
-                                    <rect key="frame" x="1" y="0.0" width="684" height="134"/>
+                                    <rect key="frame" x="1" y="0.0" width="854" height="134"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnSelection="YES" multipleSelection="NO" autosaveColumns="NO" rowSizeStyle="automatic" headerView="DJN-Va-eEl" viewBased="YES" id="5pm-po-8G2">
-                                            <rect key="frame" x="0.0" y="0.0" width="684" height="111"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="854" height="111"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <size key="intercellSpacing" width="3" height="2"/>
                                             <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                             <color key="gridColor" name="gridColor" catalog="System" colorSpace="catalog"/>
                                             <tableColumns>
-                                                <tableColumn width="672.5" minWidth="40" maxWidth="1000" id="wh3-18-AJ4">
+                                                <tableColumn width="849" minWidth="40" maxWidth="1000" id="wh3-18-AJ4">
                                                     <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border">
                                                         <font key="font" metaFont="smallSystem"/>
                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
@@ -975,11 +975,11 @@
                                                     <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                     <prototypeCellViews>
                                                         <tableCellView identifier="outputID" id="19R-gb-VcL">
-                                                            <rect key="frame" x="1" y="1" width="672" height="17"/>
+                                                            <rect key="frame" x="1" y="1" width="849" height="17"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
                                                                 <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4iQ-TL-PRC">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="672" height="17"/>
+                                                                    <rect key="frame" x="0.0" y="0.0" width="849" height="17"/>
                                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                                                     <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="Table View Cell" id="gKi-ca-sia">
                                                                         <font key="font" metaFont="system"/>
@@ -1007,12 +1007,12 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
                                 <tableHeaderView key="headerView" id="DJN-Va-eEl">
-                                    <rect key="frame" x="0.0" y="0.0" width="684" height="23"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="854" height="23"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableHeaderView>
                             </scrollView>
                             <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="XMA-t5-a6y">
-                                <rect key="frame" x="62" y="164" width="107" height="32"/>
+                                <rect key="frame" x="315" y="250" width="107" height="32"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <buttonCell key="cell" type="push" title="Scp dsa" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="SY3-0j-XBA">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -1023,7 +1023,7 @@
                                 </connections>
                             </button>
                             <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="HLU-Ok-6oP">
-                                <rect key="frame" x="189" y="197" width="101" height="32"/>
+                                <rect key="frame" x="442" y="283" width="101" height="32"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <buttonCell key="cell" type="push" title="Check rsa" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="goN-EU-g61">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -1034,7 +1034,7 @@
                                 </connections>
                             </button>
                             <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="FX4-ec-hrT">
-                                <rect key="frame" x="188" y="164" width="104" height="32"/>
+                                <rect key="frame" x="441" y="250" width="104" height="32"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <buttonCell key="cell" type="push" title="Check dsa" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="hq8-Fq-pip">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -1045,7 +1045,7 @@
                                 </connections>
                             </button>
                             <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="On6-88-D5F">
-                                <rect key="frame" x="211" y="305" width="69" height="18"/>
+                                <rect key="frame" x="31" y="202" width="69" height="18"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <buttonCell key="cell" type="radio" title="Rsa key" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="wmz-CK-ZzC">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
@@ -1056,7 +1056,7 @@
                                 </connections>
                             </button>
                             <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="7AP-6h-C0i">
-                                <rect key="frame" x="211" y="281" width="70" height="18"/>
+                                <rect key="frame" x="31" y="178" width="70" height="18"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <buttonCell key="cell" type="radio" title="Dsa key" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="LtM-4s-IJ1">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
@@ -1067,7 +1067,7 @@
                                 </connections>
                             </button>
                             <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="oGK-Wc-GpX">
-                                <rect key="frame" x="194" y="333" width="105" height="32"/>
+                                <rect key="frame" x="14" y="230" width="105" height="32"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <buttonCell key="cell" type="push" title="Create key" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="JF9-s4-tD7">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -1077,24 +1077,34 @@
                                     <action selector="createPublicPrivateKeyPair:" target="B9V-8v-Aba" id="Vag-cb-aiV"/>
                                 </connections>
                             </button>
-                            <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="MQY-l7-2Lf">
-                                <rect key="frame" x="303" y="206" width="174" height="18"/>
+                            <box fixedFrame="YES" title="Local ssh keys" translatesAutoresizingMaskIntoConstraints="NO" id="srs-cz-k0D">
+                                <rect key="frame" x="17" y="266" width="197" height="95"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <buttonCell key="cell" type="check" title="A rsa public key is found." bezelStyle="regularSquare" imagePosition="left" inset="2" id="a0m-Z1-grn">
-                                    <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                                    <font key="font" metaFont="system"/>
-                                </buttonCell>
-                            </button>
-                            <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="gXP-YJ-JVy">
-                                <rect key="frame" x="303" y="182" width="177" height="18"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <buttonCell key="cell" type="check" title="A dsa public key is found." bezelStyle="regularSquare" imagePosition="left" inset="2" id="EeS-fZ-csl">
-                                    <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                                    <font key="font" metaFont="system"/>
-                                </buttonCell>
-                            </button>
+                                <view key="contentView" id="kSa-fg-o53">
+                                    <rect key="frame" x="2" y="2" width="193" height="78"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                    <subviews>
+                                        <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="MQY-l7-2Lf">
+                                            <rect key="frame" x="5" y="42" width="174" height="18"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                            <buttonCell key="cell" type="check" title="A rsa public key is found." bezelStyle="regularSquare" imagePosition="left" inset="2" id="a0m-Z1-grn">
+                                                <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                                <font key="font" metaFont="system"/>
+                                            </buttonCell>
+                                        </button>
+                                        <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="gXP-YJ-JVy">
+                                            <rect key="frame" x="5" y="18" width="177" height="18"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                            <buttonCell key="cell" type="check" title="A dsa public key is found." bezelStyle="regularSquare" imagePosition="left" inset="2" id="EeS-fZ-csl">
+                                                <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                                <font key="font" metaFont="system"/>
+                                            </buttonCell>
+                                        </button>
+                                    </subviews>
+                                </view>
+                            </box>
                             <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="PUs-Xh-OSZ">
-                                <rect key="frame" x="461" y="333" width="84" height="32"/>
+                                <rect key="frame" x="581" y="324" width="84" height="32"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <buttonCell key="cell" type="push" title="Chmod" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="st3-39-dxe">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>

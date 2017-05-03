@@ -44,7 +44,7 @@ class ViewControllerSsh: NSViewController {
     }()
     
     @IBAction func RadioButtonsCreateKeyPair(_ sender: NSButton) {
-        
+        // For selecting either of them
     }
     
     @IBAction func createPublicPrivateKeyPair(_ sender: NSButton) {
@@ -62,10 +62,6 @@ class ViewControllerSsh: NSViewController {
     }
 
     @IBAction func Source(_ sender: NSButton) {
-        self.scpDsaPubKeyButton.isEnabled = true
-        self.scpRsaPubKeyButton.isEnabled = true
-        self.checkDsaPubKeyButton.isEnabled = true
-        self.checkRsaPubKeyButton.isEnabled = true
         self.presentViewControllerAsSheet(self.ViewControllerSource)
     }
     
@@ -142,7 +138,10 @@ class ViewControllerSsh: NSViewController {
         
     }
     
-    private func checkPrivatePublicKey() {
+    func checkPrivatePublicKey() {
+        
+        self.Ssh = nil
+        self.Ssh = ssh()
         self.Ssh!.checkKeys()
         if self.Ssh!.rsaPubKeyExist {
             self.rsaCheck.state = NSOnState
@@ -178,6 +177,13 @@ extension ViewControllerSsh: DismissViewController {
     // Protocol DismissViewController
     func dismiss_view(viewcontroller: NSViewController) {
         self.dismissViewController(viewcontroller)
+        guard self.hiddenID != nil else {
+            return
+        }
+        self.scpDsaPubKeyButton.isEnabled = true
+        self.scpRsaPubKeyButton.isEnabled = true
+        self.checkDsaPubKeyButton.isEnabled = true
+        self.checkRsaPubKeyButton.isEnabled = true
     }
 }
 
@@ -228,7 +234,7 @@ extension ViewControllerSsh: UpdateProgress {
         self.output = self.Ssh!.getOutput()
         GlobalMainQueue.async(execute: { () -> Void in
             self.detailsTable.reloadData()
-            self.Ssh!.checkKeys()
+            self.checkPrivatePublicKey()
         })
     }
     
