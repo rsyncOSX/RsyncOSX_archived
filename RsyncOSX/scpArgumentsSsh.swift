@@ -134,9 +134,9 @@ final class scpArgumentsSsh {
         self.args!.append(offsiteArguments!)
         
         if key == "rsa" {
-            self.args!.append("chmod 700 ~/.ssh_test; chmod 600 ~/.ssh_test/authorized_keys")
+            self.args!.append("chmod 700 ~/.ssh_test; chmod 600 ~/" + self.RemoteRsaPubkeyString)
         } else {
-            self.args!.append("chmod 700 ~/.ssh_test; chmod 600 ~/.ssh_test/authorized_keys2")
+            self.args!.append("chmod 700 ~/.ssh_test; chmod 600 ~/" + self.RemoteDsaPubkeyString)
         }
         self.command = "/usr/bin/ssh"
     }

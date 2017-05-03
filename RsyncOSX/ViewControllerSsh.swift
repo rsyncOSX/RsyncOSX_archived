@@ -33,6 +33,8 @@ class ViewControllerSsh: NSViewController {
     @IBOutlet weak var createDsaKey: NSButton!
     @IBOutlet weak var createKeys: NSButton!
     
+    @IBOutlet weak var chmodKeyButton: NSButton!
+    
     // Delegate for getting index from Execute view
     weak var index_delegate:GetSelecetedIndex?
     
@@ -131,6 +133,7 @@ class ViewControllerSsh: NSViewController {
         self.scpRsaPubKeyButton.isEnabled = false
         self.checkDsaPubKeyButton.isEnabled = false
         self.checkRsaPubKeyButton.isEnabled = false
+        self.chmodKeyButton.isEnabled = false
         self.Ssh = ssh()
         // Check for keys
         self.checkPrivatePublicKey()
@@ -160,6 +163,15 @@ class ViewControllerSsh: NSViewController {
     }
     
     @IBAction func chmodSsh(_ sender: NSButton) {
+        
+        guard self.hiddenID != nil else {
+            return
+        }
+        
+        guard self.Ssh != nil else {
+            return
+        }
+        
         if (self.createRsaKey.state == NSOnState) {
             self.Ssh!.chmodSsh(key: "rsa", hiddenID: self.hiddenID!)
         }
@@ -184,6 +196,7 @@ extension ViewControllerSsh: DismissViewController {
         self.scpRsaPubKeyButton.isEnabled = true
         self.checkDsaPubKeyButton.isEnabled = true
         self.checkRsaPubKeyButton.isEnabled = true
+        self.chmodKeyButton.isEnabled = true
     }
 }
 
