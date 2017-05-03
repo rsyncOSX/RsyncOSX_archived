@@ -29,8 +29,9 @@ class ssh: files {
     var rsaStringPath:String?
     var dsaStringPath:String?
     
-    var fileURLS:Array<URL>?
-    var fileStrings:Array<String>?
+    // Arrays listing all key files
+    var KeyFileURLS:Array<URL>?
+    var KeyFileStrings:Array<String>?
     
     var scpArguments:scpArgumentsSsh?
     var command:String?
@@ -66,19 +67,19 @@ class ssh: files {
     
     // Check if rsa and/or dsa is existing in local .ssh catalog
     func existPubKeys (key:String) -> Bool {
-        guard self.fileStrings != nil else {
+        guard self.KeyFileStrings != nil else {
             return false
         }
-        guard self.fileStrings!.filter({$0.contains(key)}).count == 1 else {
+        guard self.KeyFileStrings!.filter({$0.contains(key)}).count == 1 else {
             return false
         }
         switch key {
-        case self.rsaPubKey:
-            self.rsaURLpath = URL(string: self.fileStrings!.filter({$0.contains(key)})[0])
-            self.rsaStringPath = self.fileStrings!.filter({$0.contains(key)})[0]
-        case self.rsaPubKey:
-            self.dsaURLpath = URL(string: self.fileStrings!.filter({$0.contains(key)})[0])
-            self.dsaStringPath = self.fileStrings!.filter({$0.contains(key)})[0]
+        case rsaPubKey:
+            self.rsaURLpath = URL(string: self.KeyFileStrings!.filter({$0.contains(key)})[0])
+            self.rsaStringPath = self.KeyFileStrings!.filter({$0.contains(key)})[0]
+        case dsaPubKey:
+            self.dsaURLpath = URL(string: self.KeyFileStrings!.filter({$0.contains(key)})[0])
+            self.dsaStringPath = self.KeyFileStrings!.filter({$0.contains(key)})[0]
         default:
             break
         }
@@ -150,8 +151,8 @@ class ssh: files {
     
     init() {
         super.init(path: nil, root: .userRoot)
-        self.fileURLS = self.getFilesURLs()
-        self.fileStrings = self.getFileStrings()
+        self.KeyFileURLS = self.getFilesURLs()
+        self.KeyFileStrings = self.getFileStrings()
         self.checkKeys()
     }
     
