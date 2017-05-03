@@ -60,7 +60,7 @@ class ViewControllerProfile : NSViewController {
                 self.newProfile_delegate?.newProfile(new: false)
             }
             self.profile = nil
-            self.profile = profiles(path: nil)
+            self.profile = profiles()
             self.profilesArray = self.profile!.getDirectorysStrings()
             self.useprofile = nil
             self.dismiss_delegate?.dismiss_view(viewcontroller: self)
@@ -78,7 +78,7 @@ class ViewControllerProfile : NSViewController {
                 self.newProfile_delegate?.newProfile(new: true)
             }
             self.profile = nil
-            self.profile = profiles(path: nil)
+            self.profile = profiles()
             self.profilesArray = self.profile!.getDirectorysStrings()
             self.useprofile = nil
             self.dismiss_delegate?.dismiss_view(viewcontroller: self)
@@ -104,7 +104,7 @@ class ViewControllerProfile : NSViewController {
         if let pvc = self.presenting as? ViewControllertabMain {
             self.dismiss_delegate = pvc
         }
-        self.profile = profiles(path: nil)
+        self.profile = profiles()
         self.profilesArray = self.profile!.getDirectorysStrings()
         self.profilesTable.target = self
         self.profilesTable.doubleAction = #selector(ViewControllerProfile.tableViewDoubleClick(sender:))

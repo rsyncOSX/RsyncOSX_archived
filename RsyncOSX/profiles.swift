@@ -49,7 +49,7 @@ class profiles: files {
         }
     }
     
-    init (path:String?) {
+    init () {
         super.init(root: .profileRoot)
     }
 }

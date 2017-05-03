@@ -42,12 +42,12 @@ class readwritefiles {
             let str:String?
             let paths = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true) as NSArray
             let docuDir = paths.firstObject as! String
-            let profilePath = profiles(path: docuDir + "/Rsync/" + SharingManagerConfiguration.sharedInstance.getMacSerialNumber())
+            let profilePath = profiles()
             profilePath.createDirectory()
             if (self.useProfile) {
                 // Use profile
                 if let profile = self.profile {
-                    let profilePath = profiles(path: (docuDir + "/Rsync/" + SharingManagerConfiguration.sharedInstance.getMacSerialNumber()) + "/" + profile)
+                    let profilePath = profiles()
                     profilePath.createDirectory()
                     str = "/Rsync/" + SharingManagerConfiguration.sharedInstance.getMacSerialNumber() + "/" + profile + self.name!
                 } else {
