@@ -22,12 +22,16 @@ class ViewControllerSsh: NSViewController {
     @IBOutlet weak var dsaCheck: NSButton!
     @IBOutlet weak var rsaCheck: NSButton!
     @IBOutlet weak var detailsTable: NSTableView!
+    
     @IBOutlet weak var scpRsaPubKeyButton: NSButton!
     @IBOutlet weak var scpDsaPubKeyButton: NSButton!
+    
     @IBOutlet weak var checkRsaPubKeyButton: NSButton!
     @IBOutlet weak var checkDsaPubKeyButton: NSButton!
+    
     @IBOutlet weak var createRsaKey: NSButton!
     @IBOutlet weak var createDsaKey: NSButton!
+    @IBOutlet weak var createKeys: NSButton!
     
     // Delegate for getting index from Execute view
     weak var index_delegate:GetSelecetedIndex?
@@ -44,18 +48,16 @@ class ViewControllerSsh: NSViewController {
     }
     
     @IBAction func createPublicPrivateKeyPair(_ sender: NSButton) {
-        guard self.hiddenID != nil else {
-            return
-        }
+        
         guard self.Ssh != nil else {
             return
         }
         if (self.createRsaKey.state == NSOnState) {
-            self.Ssh!.creatKeysRsa(hiddenID: self.hiddenID!)
+            self.Ssh!.createKeysRsa()
         }
         
         if (self.createDsaKey.state == NSOnState){
-            self.Ssh!.createKeysDsa(hiddenID: self.hiddenID!)
+            self.Ssh!.createKeysDsa()
         }
     }
 
@@ -137,19 +139,24 @@ class ViewControllerSsh: NSViewController {
         // Check for keys
         self.checkPrivatePublicKey()
         
+        
     }
     
     private func checkPrivatePublicKey() {
         self.Ssh!.checkKeys()
         if self.Ssh!.rsaPubKeyExist {
             self.rsaCheck.state = NSOnState
+            self.createKeys.isEnabled = false
         } else {
             self.rsaCheck.state = NSOffState
+            self.createKeys.isEnabled = true
         }
         if self.Ssh!.dsaPubKeyExist {
             self.dsaCheck.state = NSOnState
+            self.createKeys.isEnabled = false
         } else {
             self.dsaCheck.state = NSOffState
+            self.createKeys.isEnabled = true
         }
     }
     

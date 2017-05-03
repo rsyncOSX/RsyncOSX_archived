@@ -16,7 +16,7 @@ class ssh: files {
     // Comply to protocol
     weak var error_delegate: ReportErrorInMain?
     
-    // Local pub keys
+    // Local pubic rsa and dsa based keys
     let rsaPubKey:String = "id_rsa.pub"
     let dsaPubKey:String = "id_dsa.pub"
     var dsaPubKeyExist:Bool = false
@@ -43,18 +43,18 @@ class ssh: files {
     
     
     // Create Keys
-    func creatKeysRsa(hiddenID:Int) {
+    func createKeysRsa() {
         self.scpArguments = nil
-        self.scpArguments = scpArgumentsSsh(hiddenID: hiddenID)
-        self.arguments = scpArguments!.getArguments(operation: .createKey, key: "rsa", path: self.rsaStringPath)
+        self.scpArguments = scpArgumentsSsh(hiddenID: nil)
+        self.arguments = scpArguments!.getArguments(operation: .createKey, key: "rsa", path: self.FilesRoot)
         self.command = self.scpArguments!.getCommand()
         self.executeSshCommand()
     }
     
-    func createKeysDsa(hiddenID:Int) {
+    func createKeysDsa() {
         self.scpArguments = nil
-        self.scpArguments = scpArgumentsSsh(hiddenID: hiddenID)
-        self.arguments = scpArguments!.getArguments(operation: .createKey, key: "dsa", path: self.dsaStringPath)
+        self.scpArguments = scpArgumentsSsh(hiddenID: nil)
+        self.arguments = scpArguments!.getArguments(operation: .createKey, key: "dsa", path: self.FilesRoot)
         self.command = self.scpArguments!.getCommand()
         self.executeSshCommand()
     }
@@ -150,10 +150,11 @@ class ssh: files {
     }
     
     init() {
-        super.init(path: nil, root: .userRoot)
+        super.init(path: nil, root: .sshRoot)
         self.KeyFileURLS = self.getFilesURLs()
         self.KeyFileStrings = self.getFileStrings()
         self.checkKeys()
+        self.createDirectory()
     }
     
 }

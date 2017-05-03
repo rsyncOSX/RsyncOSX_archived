@@ -25,8 +25,8 @@ final class scpArgumentsSsh {
     private var file:String?
     private var stringArray:Array<String>?
     
-    private var rsaPubkeyString:String = ".ssh_test/authorized_keys"
-    private var dsaPubkeyString:String = ".ssh_test/authorized_keys2"
+    private var RemoteRsaPubkeyString:String = ".ssh_test/authorized_keys"
+    private var RemoteDsaPubkeyString:String = ".ssh_test/authorized_keys2"
     
     // Set parameters for SCP for copy public ssh key to server
     // scp ~/.ssh/id_rsa.pub user@server.com:.ssh/authorized_keys
@@ -55,9 +55,9 @@ final class scpArgumentsSsh {
         self.args!.append("ConnectTimeout=5")
         self.args!.append(path)
         if key == "rsa" {
-          offsiteArguments = self.config!.offsiteUsername + "@" + self.config!.offsiteServer + ":" + rsaPubkeyString
+          offsiteArguments = self.config!.offsiteUsername + "@" + self.config!.offsiteServer + ":" + self.RemoteRsaPubkeyString
         } else {
-          offsiteArguments = self.config!.offsiteUsername + "@" + self.config!.offsiteServer + ":" + dsaPubkeyString
+          offsiteArguments = self.config!.offsiteUsername + "@" + self.config!.offsiteServer + ":" + self.RemoteDsaPubkeyString
         }
         self.args!.append(offsiteArguments!)
         self.command = "/usr/bin/scp"
@@ -88,9 +88,9 @@ final class scpArgumentsSsh {
         self.args!.append(offsiteArguments!)
         
         if key == "rsa" {
-            self.args!.append("ls -al ~/" + rsaPubkeyString)
+            self.args!.append("ls -al ~/" + self.RemoteRsaPubkeyString)
         } else {
-            self.args!.append("ls -al ~/" + dsaPubkeyString)
+            self.args!.append("ls -al ~/" + self.RemoteDsaPubkeyString)
         }
         self.command = "/usr/bin/ssh"
     }
@@ -101,9 +101,9 @@ final class scpArgumentsSsh {
         self.args = Array<String>()
         self.args!.append("-f")
         if (key == "rsa") {
-            self.args!.append(path + "id_rsa")
-        } else {
-            self.args!.append(path + "id_dsa")
+             self.args!.append(path + "id_rsa")
+         } else {
+             self.args!.append(path + "id_dsa")
         }
         self.args!.append("-t")
         self.args!.append(key)
@@ -192,7 +192,12 @@ final class scpArgumentsSsh {
         return self.command
     }
     
-    init(hiddenID: Int) {
-        self.config = SharingManagerConfiguration.sharedInstance.getConfigurations()[SharingManagerConfiguration.sharedInstance.getIndex(hiddenID)]
+    init(hiddenID: Int?) {
+        
+        if (hiddenID != nil) {
+            self.config = SharingManagerConfiguration.sharedInstance.getConfigurations()[SharingManagerConfiguration.sharedInstance.getIndex(hiddenID!)]
+        } else {
+            self.config = nil
+        }
     }
 }

@@ -10,7 +10,7 @@ import Foundation
 
 enum Root {
     case profileRoot
-    case userRoot
+    case sshRoot
 }
 
 protocol ReportError: class {
@@ -27,7 +27,7 @@ class files {
     // Which root
     var root:Root?
     // Root of files
-    var fileRoot: String? {
+    var FilesRoot: String? {
         get {
             switch self.root! {
             case .profileRoot:
@@ -35,8 +35,8 @@ class files {
                 let docuDir = paths.firstObject as! String
                 let profilePath = docuDir + "/Rsync/" + SharingManagerConfiguration.sharedInstance.getMacSerialNumber()
                 return profilePath
-            case .userRoot:
-                return NSHomeDirectory() + "/.ssh/"
+            case .sshRoot:
+                return NSHomeDirectory() + "/.ssh_test/"
             }
         }
     }
@@ -44,7 +44,7 @@ class files {
     // Function for returning directorys in path as array of URLs
     func getDirectorysURLs() -> Array<URL>? {
         var array:Array<URL>?
-        if let filePath = self.fileRoot {
+        if let filePath = self.FilesRoot {
             if let fileURLs = self.getfileURLs(path: filePath) {
                 array = Array<URL>()
                 for i in 0 ..< fileURLs.count {
@@ -61,7 +61,7 @@ class files {
     // Function for returning files in path as array of URLs
     func getFilesURLs() -> Array<URL>? {
         var array:Array<URL>?
-        if let filePath = self.fileRoot {
+        if let filePath = self.FilesRoot {
             let fileManager = FileManager.default
             var isDir:ObjCBool = false
             if fileManager.fileExists(atPath: filePath, isDirectory:&isDir) {
@@ -84,9 +84,10 @@ class files {
         return nil
     }
     
+    // Function for returning files in path as array of Strings
     func getFileStrings() -> Array<String>? {
         var array:Array<String>?
-        if let filePath = self.fileRoot {
+        if let filePath = self.FilesRoot {
             let fileManager = FileManager.default
             var isDir:ObjCBool = false
             if fileManager.fileExists(atPath: filePath, isDirectory:&isDir) {
@@ -116,7 +117,7 @@ class files {
     // Function for returning profiles as array of Strings
     func getDirectorysStrings()-> Array<String> {
         var array:Array<String> = Array<String>()
-        if let filePath = self.fileRoot {
+        if let filePath = self.FilesRoot {
             if let fileURLs = self.getfileURLs(path: filePath) {
                 for i in 0 ..< fileURLs.count {
                     if fileURLs[i].hasDirectoryPath {
@@ -136,6 +137,7 @@ class files {
     func createDirectory() {
         let fileManager = FileManager.default
         if let path = self.filePath {
+            // Profile root
             if (fileManager.fileExists(atPath: path) == false) {
                 do {
                     try fileManager.createDirectory(atPath: path, withIntermediateDirectories: true, attributes: nil)
@@ -144,6 +146,7 @@ class files {
                     self.reportError_delegate?.reportError(errorstr: error.description)
                 }
             }
+            
         }
     }
     

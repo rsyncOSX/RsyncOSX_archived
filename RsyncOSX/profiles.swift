@@ -16,7 +16,7 @@ class profiles: files {
     // Function for creating new profile directory
     func createProfile(profileName:String) {
         let fileManager = FileManager.default
-        if let path = self.fileRoot {
+        if let path = self.FilesRoot {
             let profileDirectory = path + "/" + profileName
             if (fileManager.fileExists(atPath: profileDirectory) == false) {
                 do {
@@ -33,7 +33,7 @@ class profiles: files {
     // if let path = URL.init(string: profileDirectory) {
     func deleteProfile(profileName:String) {
         let fileManager = FileManager.default
-        if let path = self.fileRoot {
+        if let path = self.FilesRoot {
             let profileDirectory = path + "/" + profileName
             if (fileManager.fileExists(atPath: profileDirectory) == true) {
                 let answer = Alerts.dialogOKCancel("Delete profile: " + profileName + "?", text: "Cancel or OK")

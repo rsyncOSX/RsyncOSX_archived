@@ -1110,6 +1110,7 @@
                         <outlet property="checkDsaPubKeyButton" destination="FX4-ec-hrT" id="drv-3S-gOw"/>
                         <outlet property="checkRsaPubKeyButton" destination="HLU-Ok-6oP" id="gce-B6-pGa"/>
                         <outlet property="createDsaKey" destination="7AP-6h-C0i" id="JSg-8d-rqI"/>
+                        <outlet property="createKeys" destination="oGK-Wc-GpX" id="4Ug-XK-dx6"/>
                         <outlet property="createRsaKey" destination="On6-88-D5F" id="TYz-mJ-myk"/>
                         <outlet property="detailsTable" destination="5pm-po-8G2" id="ymN-RW-GPY"/>
                         <outlet property="dsaCheck" destination="gXP-YJ-JVy" id="VJo-ox-Ls0"/>
