@@ -1114,6 +1114,17 @@
                                     <action selector="checkDsaPubKey:" target="B9V-8v-Aba" id="Iik-vI-cOp"/>
                                 </connections>
                             </button>
+                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dhy-Nx-rAf">
+                                <rect key="frame" x="257" y="218" width="107" height="32"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <buttonCell key="cell" type="push" title="Terminal" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="lV3-TO-Uao">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="TerminalApp:" target="B9V-8v-Aba" id="Zof-Hl-KmT"/>
+                                </connections>
+                            </button>
                         </subviews>
                     </view>
                     <connections>

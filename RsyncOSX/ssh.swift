@@ -150,6 +150,11 @@ class ssh: files {
         return self.output!.getOutput()
     }
     
+    // Open Terminal.app
+    func openTerminal() {
+        NSWorkspace.shared().open(URL(fileURLWithPath: "/Applications/Utilities/Terminal.app"))
+    }
+    
     init() {
         super.init(root: .sshRoot)
         self.KeyFileURLS = self.getFilesURLs()

@@ -45,6 +45,13 @@ class ViewControllerSsh: NSViewController {
             as! NSViewController
     }()
     
+    @IBAction func TerminalApp(_ sender: NSButton) {
+        guard self.Ssh != nil else {
+            return
+        }
+        self.Ssh!.openTerminal()
+    }
+    
     @IBAction func RadioButtonsCreateKeyPair(_ sender: NSButton) {
         // For selecting either of them
     }

@@ -166,6 +166,7 @@ final class scpArgumentsSsh {
         self.command = "/usr/bin/ssh"
     }
     
+    
     // Set the correct arguments
     func getArguments(operation:sshOperations, key:String, path:String?) -> Array<String>? {
         switch operation {
