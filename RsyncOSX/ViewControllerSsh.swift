@@ -62,11 +62,11 @@ class ViewControllerSsh: NSViewController {
             return
         }
         if (self.createRsaKey.state == NSOnState) {
-            self.Ssh!.createKeysRsa()
+            self.Ssh!.createLocalKeysRsa()
         }
         
         if (self.createDsaKey.state == NSOnState){
-            self.Ssh!.createKeysDsa()
+            self.Ssh!.createLocalKeysDsa()
         }
     }
 
@@ -152,7 +152,7 @@ class ViewControllerSsh: NSViewController {
         
         self.Ssh = nil
         self.Ssh = ssh()
-        self.Ssh!.checkKeys()
+        self.Ssh!.CheckForLocalPubKeys()
         if self.Ssh!.rsaPubKeyExist {
             self.rsaCheck.state = NSOnState
             self.createKeys.isEnabled = false

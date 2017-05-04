@@ -16,7 +16,7 @@ class ssh: files {
     // Comply to protocol
     weak var error_delegate: ReportErrorInMain?
     
-    // Local pubic rsa and dsa based keys
+    // Local public rsa and dsa based keys
     let rsaPubKey:String = "id_rsa.pub"
     let dsaPubKey:String = "id_dsa.pub"
     var dsaPubKeyExist:Bool = false
@@ -42,8 +42,8 @@ class ssh: files {
     var output:outputProcess?
     
     
-    // Create rsa keys
-    func createKeysRsa() {
+    // Create local rsa keys
+    func createLocalKeysRsa() {
         self.scpArguments = nil
         self.scpArguments = scpArgumentsSsh(hiddenID: nil)
         self.arguments = scpArguments!.getArguments(operation: .createKey, key: "rsa", path: self.FilesRoot)
@@ -51,8 +51,8 @@ class ssh: files {
         self.executeSshCommand()
     }
     
-    // Create dsa keys
-    func createKeysDsa() {
+    // Create local dsa keys
+    func createLocalKeysDsa() {
         self.scpArguments = nil
         self.scpArguments = scpArgumentsSsh(hiddenID: nil)
         self.arguments = scpArguments!.getArguments(operation: .createKey, key: "dsa", path: self.FilesRoot)
@@ -61,13 +61,13 @@ class ssh: files {
     }
     
     // Check for local public keys
-    func checkKeys() {
-        self.dsaPubKeyExist = self.existPubKeys(key: self.dsaPubKey)
-        self.rsaPubKeyExist = self.existPubKeys(key: self.rsaPubKey)
+    func CheckForLocalPubKeys() {
+        self.dsaPubKeyExist = self.IsLocalPublicKeysPresent(key: self.dsaPubKey)
+        self.rsaPubKeyExist = self.IsLocalPublicKeysPresent(key: self.rsaPubKey)
     }
     
     // Check if rsa and/or dsa is existing in local .ssh catalog
-    func existPubKeys (key:String) -> Bool {
+    func IsLocalPublicKeysPresent (key:String) -> Bool {
         guard self.KeyFileStrings != nil else {
             return false
         }
@@ -159,7 +159,7 @@ class ssh: files {
         super.init(root: .sshRoot)
         self.KeyFileURLS = self.getFilesURLs()
         self.KeyFileStrings = self.getFileStrings()
-        self.checkKeys()
+        self.CheckForLocalPubKeys()
         self.createDirectory()
     }
     
