@@ -376,6 +376,12 @@ class ViewControllertabMain: NSViewController {
         if (self.workload == nil) {
             self.workload = singleTask()
         }
+        
+       
+        // If a process is running keep it running
+        guard self.process == nil else {
+            return
+        }
         self.reset()
     }
     
