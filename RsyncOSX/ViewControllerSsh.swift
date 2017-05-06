@@ -33,7 +33,8 @@ class ViewControllerSsh: NSViewController {
     @IBOutlet weak var createDsaKey: NSButton!
     @IBOutlet weak var createKeys: NSButton!
     
-    @IBOutlet weak var chmodKeyButton: NSButton!
+    @IBOutlet weak var chmodKeyButtonRsa: NSButton!
+    @IBOutlet weak var chmodKeyButtonDsa: NSButton!
     
     // Delegate for getting index from Execute view
     weak var index_delegate:GetSelecetedIndex?
@@ -140,7 +141,8 @@ class ViewControllerSsh: NSViewController {
         self.scpRsaPubKeyButton.isEnabled = false
         self.checkDsaPubKeyButton.isEnabled = false
         self.checkRsaPubKeyButton.isEnabled = false
-        self.chmodKeyButton.isEnabled = false
+        self.chmodKeyButtonRsa.isEnabled = false
+        self.chmodKeyButtonDsa.isEnabled = false
         self.Ssh = ssh()
         // Check for keys
         self.checkPrivatePublicKey()
@@ -169,8 +171,7 @@ class ViewControllerSsh: NSViewController {
         }
     }
     
-    @IBAction func chmodSsh(_ sender: NSButton) {
-        
+    @IBAction func chmodSshRsa(_ sender: NSButton) {
         guard self.hiddenID != nil else {
             return
         }
@@ -178,17 +179,22 @@ class ViewControllerSsh: NSViewController {
         guard self.Ssh != nil else {
             return
         }
-        
-        if (self.createRsaKey.state == NSOnState) {
-            self.Ssh!.chmodSsh(key: "rsa", hiddenID: self.hiddenID!)
-        }
-        
-        if (self.createDsaKey.state == NSOnState){
-           self.Ssh!.chmodSsh(key: "dsa", hiddenID: self.hiddenID!)
-        }
+        self.Ssh!.chmodSsh(key: "rsa", hiddenID: self.hiddenID!)
         self.Ssh!.executeSshCommand()
     }
 
+    @IBAction func chmodSshDsa(_ sender: NSButton) {
+        guard self.hiddenID != nil else {
+            return
+        }
+        
+        guard self.Ssh != nil else {
+            return
+        }
+        self.Ssh!.chmodSsh(key: "dsa", hiddenID: self.hiddenID!)
+        self.Ssh!.executeSshCommand()
+    }
+    
 }
 
 extension ViewControllerSsh: DismissViewController {
@@ -203,7 +209,8 @@ extension ViewControllerSsh: DismissViewController {
         self.scpRsaPubKeyButton.isEnabled = true
         self.checkDsaPubKeyButton.isEnabled = true
         self.checkRsaPubKeyButton.isEnabled = true
-        self.chmodKeyButton.isEnabled = true
+        self.chmodKeyButtonRsa.isEnabled = true
+        self.chmodKeyButtonDsa.isEnabled = true
     }
 }
 
