@@ -12,6 +12,8 @@ import Cocoa
 
 class ssh: files {
     
+    var commandCopyPasteTermninal:String?
+    
     // Delegate for reporting file error if any to main view
     // Comply to protocol
     weak var error_delegate: ReportErrorInMain?
@@ -106,6 +108,7 @@ class ssh: files {
             break
         }
         self.command = self.scpArguments!.getCommand()
+        self.commandCopyPasteTermninal = self.scpArguments!.commandCopyPasteTermninal
     }
     
     // Check for remote pub keys
@@ -137,6 +140,14 @@ class ssh: files {
         self.command = self.scpArguments!.getCommand()
     }
     
+    // Create remote ssh directory
+    func createSshRemoteDirectory(hiddenID:Int) {
+        self.scpArguments = nil
+        self.scpArguments = scpArgumentsSsh(hiddenID: hiddenID)
+        self.arguments = scpArguments!.getArguments(operation: .createRemoteSshCatalog, key: nil, path: nil)
+        self.command = self.scpArguments!.getCommand()
+        self.commandCopyPasteTermninal = self.scpArguments!.commandCopyPasteTermninal
+    }
     
     // Execute command
     func executeSshCommand() {

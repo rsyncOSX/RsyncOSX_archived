@@ -35,6 +35,9 @@ class ViewControllerSsh: NSViewController {
     
     @IBOutlet weak var chmodKeyButtonRsa: NSButton!
     @IBOutlet weak var chmodKeyButtonDsa: NSButton!
+    @IBOutlet weak var scpRsaCopyPasteCommand: NSTextField!
+    @IBOutlet weak var scpDsaCopyPasteCommand: NSTextField!
+    @IBOutlet weak var sshCreateRemoteCatalog: NSTextField!
     
     // Delegate for getting index from Execute view
     weak var index_delegate:GetSelecetedIndex?
@@ -75,6 +78,18 @@ class ViewControllerSsh: NSViewController {
         self.presentViewControllerAsSheet(self.ViewControllerSource)
     }
     
+    @IBAction func createRemoteSshDirectory(_ sender: NSButton) {
+        guard self.hiddenID != nil else {
+            return
+        }
+        guard self.Ssh != nil else {
+            return
+        }
+        self.Ssh!.createSshRemoteDirectory(hiddenID: self.hiddenID!)
+        // self.Ssh!.executeSshCommand()
+        self.sshCreateRemoteCatalog.stringValue = Ssh!.commandCopyPasteTermninal!
+    }
+    
     @IBAction func scpRsaPubKey(_ sender: NSButton) {
         
         guard self.hiddenID != nil else {
@@ -84,7 +99,8 @@ class ViewControllerSsh: NSViewController {
             return
         }
         self.Ssh!.ScpPubKey(key: "rsa", hiddenID: self.hiddenID!)
-        self.Ssh!.executeSshCommand()
+        // self.Ssh!.executeSshCommand()
+        self.scpRsaCopyPasteCommand.stringValue = Ssh!.commandCopyPasteTermninal!
     }
     
     
@@ -97,7 +113,8 @@ class ViewControllerSsh: NSViewController {
             return
         }
         self.Ssh!.ScpPubKey(key: "dsa", hiddenID: self.hiddenID!)
-        self.Ssh!.executeSshCommand()
+        // self.Ssh!.executeSshCommand()
+        self.scpDsaCopyPasteCommand.stringValue = Ssh!.commandCopyPasteTermninal!
     }
     
     @IBAction func checkRsaPubKey(_ sender: NSButton) {

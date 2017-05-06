@@ -19,6 +19,8 @@ enum sshOperations {
 
 final class scpArgumentsSsh {
     
+    var commandCopyPasteTermninal:String?
+    
     private var config:configuration?
     private var args:Array<String>?
     private var command:String?
@@ -61,6 +63,12 @@ final class scpArgumentsSsh {
         }
         self.args!.append(offsiteArguments!)
         self.command = "/usr/bin/scp"
+        
+        self.commandCopyPasteTermninal = nil
+        self.commandCopyPasteTermninal = self.command! + " " + self.args![0]
+        for i in 1 ..< self.args!.count {
+            self.commandCopyPasteTermninal = self.commandCopyPasteTermninal! + " " + self.args![i]
+        }
     }
     
     
@@ -95,7 +103,7 @@ final class scpArgumentsSsh {
         self.command = "/usr/bin/ssh"
     }
     
-    // Create key with ssh-keygen
+    // Create local key with ssh-keygen
     private func argumentsCreateKeys(path:String, key:String) {
         self.args = nil
         self.args = Array<String>()
@@ -164,22 +172,29 @@ final class scpArgumentsSsh {
         self.args!.append(offsiteArguments!)
         self.args!.append("mkdir ~/.ssh_test")
         self.command = "/usr/bin/ssh"
+        
+        self.commandCopyPasteTermninal = nil
+        self.commandCopyPasteTermninal = self.command! + " " + self.args![0] + " \""
+        for i in 1 ..< self.args!.count {
+            self.commandCopyPasteTermninal = self.commandCopyPasteTermninal! + " " + self.args![i]
+        }
+        self.commandCopyPasteTermninal = self.commandCopyPasteTermninal! + "\""
     }
     
     
     // Set the correct arguments
-    func getArguments(operation:sshOperations, key:String, path:String?) -> Array<String>? {
+    func getArguments(operation:sshOperations, key:String?, path:String?) -> Array<String>? {
         switch operation {
         case .checkKey:
-            self.argumentsScheckRemotePubKey(key: key)
+            self.argumentsScheckRemotePubKey(key: key!)
         case .createKey:
-            self.argumentsCreateKeys(path: path!, key: key)
+            self.argumentsCreateKeys(path: path!, key: key!)
         case .scpKey:
-            self.argumentsScpPubKey(path: path!, key: key)
+            self.argumentsScpPubKey(path: path!, key: key!)
         case .createRemoteSshCatalog:
             self.argumentsCreateRemoteSshCatalog()
         case .chmod:
-            self.argumentsChmod(key: key)
+            self.argumentsChmod(key: key!)
             
         }
         
