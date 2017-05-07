@@ -32,9 +32,6 @@ class ViewControllerSsh: NSViewController {
     @IBOutlet weak var createRsaKey: NSButton!
     @IBOutlet weak var createDsaKey: NSButton!
     @IBOutlet weak var createKeys: NSButton!
-    
-    @IBOutlet weak var chmodKeyButtonRsa: NSButton!
-    @IBOutlet weak var chmodKeyButtonDsa: NSButton!
     @IBOutlet weak var sshCreatRemoteSshButton: NSButton!
     
     
@@ -135,7 +132,8 @@ class ViewControllerSsh: NSViewController {
         guard self.Ssh != nil else {
             return
         }
-        self.Ssh!.checkRemotePubKey(key: "rsa", hiddenID: self.hiddenID!)
+        // First chmod key then list key (Processtermination)
+        self.Ssh!.chmodSsh(key: "rsa", hiddenID: self.hiddenID!)
         self.Ssh!.executeSshCommand()
     }
     
@@ -147,7 +145,8 @@ class ViewControllerSsh: NSViewController {
         guard self.Ssh != nil else {
             return
         }
-        self.Ssh!.checkRemotePubKey(key: "dsa", hiddenID: self.hiddenID!)
+        // First chmod key then list key (Processtermination)
+        self.Ssh!.chmodSsh(key: "dsa", hiddenID: self.hiddenID!)
         self.Ssh!.executeSshCommand()
         
     }
@@ -168,8 +167,6 @@ class ViewControllerSsh: NSViewController {
         self.scpRsaPubKeyButton.isEnabled = false
         self.checkDsaPubKeyButton.isEnabled = false
         self.checkRsaPubKeyButton.isEnabled = false
-        self.chmodKeyButtonRsa.isEnabled = false
-        self.chmodKeyButtonDsa.isEnabled = false
         self.sshCreatRemoteSshButton.isEnabled = false
         self.Ssh = ssh()
         // Check for keys
@@ -179,7 +176,6 @@ class ViewControllerSsh: NSViewController {
     }
     
     func checkPrivatePublicKey() {
-        
         self.Ssh = nil
         self.Ssh = ssh()
         self.Ssh!.CheckForLocalPubKeys()
@@ -198,31 +194,6 @@ class ViewControllerSsh: NSViewController {
             self.createKeys.isEnabled = true
         }
     }
-    
-    @IBAction func chmodSshRsa(_ sender: NSButton) {
-        guard self.hiddenID != nil else {
-            return
-        }
-        
-        guard self.Ssh != nil else {
-            return
-        }
-        self.Ssh!.chmodSsh(key: "rsa", hiddenID: self.hiddenID!)
-        self.Ssh!.executeSshCommand()
-    }
-
-    @IBAction func chmodSshDsa(_ sender: NSButton) {
-        guard self.hiddenID != nil else {
-            return
-        }
-        
-        guard self.Ssh != nil else {
-            return
-        }
-        self.Ssh!.chmodSsh(key: "dsa", hiddenID: self.hiddenID!)
-        self.Ssh!.executeSshCommand()
-    }
-    
 }
 
 extension ViewControllerSsh: DismissViewController {
@@ -237,8 +208,6 @@ extension ViewControllerSsh: DismissViewController {
         self.scpRsaPubKeyButton.isEnabled = true
         self.checkDsaPubKeyButton.isEnabled = true
         self.checkRsaPubKeyButton.isEnabled = true
-        self.chmodKeyButtonRsa.isEnabled = true
-        self.chmodKeyButtonDsa.isEnabled = true
         self.sshCreatRemoteSshButton.isEnabled = true
     }
 }
@@ -285,18 +254,40 @@ extension ViewControllerSsh : NSTableViewDelegate {
 extension ViewControllerSsh: UpdateProgress {
     
     // Protocol UpdateProgress
-    
     func ProcessTermination() {
         self.output = self.Ssh!.getOutput()
         GlobalMainQueue.async(execute: { () -> Void in
             self.detailsTable.reloadData()
             self.checkPrivatePublicKey()
         })
+        // Check if chmod remote ssh directory is next work
+        guard self.Ssh!.chmod != nil else {
+            return
+        }
+        guard self.hiddenID != nil else {
+            return
+        }
+        guard self.Ssh != nil else {
+            return
+        }
+        
+        switch self.Ssh!.chmod!.pop() {
+        case .chmodRsa:
+            self.Ssh!.checkRemotePubKey(key: "rsa", hiddenID: self.hiddenID!)
+            self.Ssh!.executeSshCommand()
+        case .chmodDsa:
+            self.Ssh!.checkRemotePubKey(key: "dsa", hiddenID: self.hiddenID!)
+            self.Ssh!.executeSshCommand()
+        default:
+            self.Ssh!.chmod = nil
+        }
     }
     
     func FileHandler() {
-        // self.updateProgressbar(Double(self.count_delegate!.inprogressCount()))
+        self.output = self.Ssh!.getOutput()
+        GlobalMainQueue.async(execute: { () -> Void in
+            self.detailsTable.reloadData()
+        })
     }
-    
     
 }

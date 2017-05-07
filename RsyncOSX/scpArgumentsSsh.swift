@@ -92,7 +92,8 @@ final class scpArgumentsSsh {
         
         if key == "rsa" {
             self.args!.append("ls -al ~/" + self.RemoteRsaPubkeyString)
-        } else {
+        }
+        if key == "dsa" {
             self.args!.append("ls -al ~/" + self.RemoteDsaPubkeyString)
         }
         self.command = "/usr/bin/ssh"
