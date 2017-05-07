@@ -1372,26 +1372,39 @@
                                 </connections>
                             </button>
                             <box fixedFrame="YES" title="General info" translatesAutoresizingMaskIntoConstraints="NO" id="yR1-bB-6OC">
-                                <rect key="frame" x="640" y="133" width="159" height="159"/>
+                                <rect key="frame" x="640" y="108" width="159" height="184"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <view key="contentView" id="PL3-r1-x0e">
-                                    <rect key="frame" x="2" y="2" width="155" height="142"/>
+                                    <rect key="frame" x="2" y="2" width="155" height="167"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 </view>
                             </box>
                             <box fixedFrame="YES" title="Using RsyncOSX" translatesAutoresizingMaskIntoConstraints="NO" id="FwT-r8-lWd">
-                                <rect key="frame" x="246" y="133" width="161" height="159"/>
+                                <rect key="frame" x="246" y="108" width="161" height="184"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <view key="contentView" id="r9h-XX-eVr">
-                                    <rect key="frame" x="2" y="2" width="157" height="142"/>
+                                    <rect key="frame" x="2" y="2" width="157" height="167"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                    <subviews>
+                                        <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="GGF-WK-cCh">
+                                            <rect key="frame" x="24" y="28" width="45" height="18"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                            <buttonCell key="cell" type="radio" title="Ssh" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="0LZ-I4-vmd">
+                                                <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                                <font key="font" metaFont="system"/>
+                                            </buttonCell>
+                                            <connections>
+                                                <action selector="help:" target="JOY-OC-nIv" id="chj-IZ-caZ"/>
+                                            </connections>
+                                        </button>
+                                    </subviews>
                                 </view>
                             </box>
                             <box fixedFrame="YES" title="Additional resources" translatesAutoresizingMaskIntoConstraints="NO" id="HzS-lR-CM5">
-                                <rect key="frame" x="434" y="133" width="183" height="159"/>
+                                <rect key="frame" x="434" y="108" width="183" height="184"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <view key="contentView" id="ndO-3R-JDc">
-                                    <rect key="frame" x="2" y="2" width="179" height="142"/>
+                                    <rect key="frame" x="2" y="2" width="179" height="167"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 </view>
                             </box>
@@ -1422,6 +1435,7 @@
                         <outlet property="RsyncStdParameters" destination="agq-mv-Ryh" id="dG7-84-ceH"/>
                         <outlet property="Schedule" destination="rwB-Cp-izc" id="1i0-A3-Sth"/>
                         <outlet property="Singeltask" destination="dKU-FH-Yps" id="RQq-sh-ujd"/>
+                        <outlet property="Ssh" destination="GGF-WK-cCh" id="BNd-Qe-mJ2"/>
                         <outlet property="passwordless" destination="bwF-2K-1wh" id="S87-0e-iEg"/>
                         <outlet property="source" destination="RDi-Ry-FQI" id="mOv-73-9kD"/>
                     </connections>
