@@ -54,7 +54,6 @@ final class scpArgumentsSsh {
         self.args!.append("-p")
         self.args!.append("-q")
         self.args!.append("-o")
-        self.args!.append("ConnectTimeout=5")
         self.args!.append(path)
         if key == "rsa" {
           offsiteArguments = self.config!.offsiteUsername + "@" + self.config!.offsiteServer + ":" + self.RemoteRsaPubkeyString

@@ -35,6 +35,9 @@ class ViewControllerSsh: NSViewController {
     
     @IBOutlet weak var chmodKeyButtonRsa: NSButton!
     @IBOutlet weak var chmodKeyButtonDsa: NSButton!
+    @IBOutlet weak var sshCreatRemoteSshButton: NSButton!
+    
+    
     @IBOutlet weak var scpRsaCopyPasteCommand: NSTextField!
     @IBOutlet weak var scpDsaCopyPasteCommand: NSTextField!
     @IBOutlet weak var sshCreateRemoteCatalog: NSTextField!
@@ -85,6 +88,10 @@ class ViewControllerSsh: NSViewController {
         guard self.Ssh != nil else {
             return
         }
+        guard Ssh!.commandCopyPasteTermninal != nil else {
+            self.sshCreateRemoteCatalog.stringValue = " ... not a remote server ..."
+            return
+        }
         self.Ssh!.createSshRemoteDirectory(hiddenID: self.hiddenID!)
         // self.Ssh!.executeSshCommand()
         self.sshCreateRemoteCatalog.stringValue = Ssh!.commandCopyPasteTermninal!
@@ -96,6 +103,9 @@ class ViewControllerSsh: NSViewController {
             return
         }
         guard self.Ssh != nil else {
+            return
+        }
+        guard Ssh!.commandCopyPasteTermninal != nil else {
             return
         }
         self.Ssh!.ScpPubKey(key: "rsa", hiddenID: self.hiddenID!)
@@ -110,6 +120,9 @@ class ViewControllerSsh: NSViewController {
             return
         }
         guard self.Ssh != nil else {
+            return
+        }
+        guard Ssh!.commandCopyPasteTermninal != nil else {
             return
         }
         self.Ssh!.ScpPubKey(key: "dsa", hiddenID: self.hiddenID!)
@@ -160,6 +173,7 @@ class ViewControllerSsh: NSViewController {
         self.checkRsaPubKeyButton.isEnabled = false
         self.chmodKeyButtonRsa.isEnabled = false
         self.chmodKeyButtonDsa.isEnabled = false
+        self.sshCreatRemoteSshButton.isEnabled = false
         self.Ssh = ssh()
         // Check for keys
         self.checkPrivatePublicKey()
@@ -228,6 +242,7 @@ extension ViewControllerSsh: DismissViewController {
         self.checkRsaPubKeyButton.isEnabled = true
         self.chmodKeyButtonRsa.isEnabled = true
         self.chmodKeyButtonDsa.isEnabled = true
+        self.sshCreatRemoteSshButton.isEnabled = true
     }
 }
 
