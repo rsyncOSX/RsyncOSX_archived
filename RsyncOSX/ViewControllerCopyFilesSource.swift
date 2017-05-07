@@ -23,6 +23,7 @@ class ViewControllerCopyFilesSource : NSViewController {
     weak var setIndex_delegate:ViewControllerCopyFiles?
     // GetSource
     weak var getSource_delegate:ViewControllerCopyFiles?
+    weak var getSource_delegate2:ViewControllerSsh?
     // Index
     private var index:Int?
     
@@ -44,9 +45,20 @@ class ViewControllerCopyFilesSource : NSViewController {
         // Dismisser is root controller
         if let pvc = self.presenting as? ViewControllerCopyFiles {
             self.dismiss_delegate = pvc
+        } else if let pvc = self.presenting as? ViewControllerSsh {
+            self.dismiss_delegate = pvc
         }
         // Double click on row to select
         self.mainTableView.doubleAction = #selector(ViewControllerCopyFilesSource.tableViewDoubleClick(sender:))
+    }
+    
+    override func viewDidAppear() {
+        // Dismisser is root controller
+        if let pvc = self.presenting as? ViewControllerCopyFiles {
+            self.dismiss_delegate = pvc
+        } else if let pvc = self.presenting as? ViewControllerSsh {
+            self.dismiss_delegate = pvc
+        }
     }
     
     @objc(tableViewDoubleClick:) func tableViewDoubleClick(sender:AnyObject) {
@@ -55,7 +67,13 @@ class ViewControllerCopyFilesSource : NSViewController {
             if let index = self.index {
                 self.getSource_delegate?.GetSource(Index: index)
             }
+        } else if let pvc = self.presenting as? ViewControllerSsh {
+            self.getSource_delegate2 = pvc
+            if let index = self.index {
+                self.getSource_delegate2?.GetSource(Index: index)
+            }
         }
+        
         self.dismiss_delegate?.dismiss_view(viewcontroller: self)
     }
     
@@ -74,6 +92,13 @@ class ViewControllerCopyFilesSource : NSViewController {
                 }
                 self.index = SharingManagerConfiguration.sharedInstance.getIndex(hiddenID!)
                 self.setIndex_delegate?.SetIndex(Index: self.index!)
+            } else if let _ = self.presenting as? ViewControllerSsh {
+                let object = SharingManagerConfiguration.sharedInstance.getConfigurationsDataSourcecountBackupOnly()![index]
+                let hiddenID = object.value(forKey: "hiddenID") as? Int
+                guard hiddenID != nil else {
+                    return
+                }
+                self.index = hiddenID!
             }
         }
     }

@@ -36,6 +36,11 @@ protocol deselectRowTable: class {
     func deselectRow()
 }
 
+// Protocol for reporting file errors
+protocol ReportErrorInMain: class {
+    func fileerror(errorstr:String)
+}
+
 class ViewControllertabMain: NSViewController {
 
     // Protocol function used in Process().
@@ -370,6 +375,12 @@ class ViewControllertabMain: NSViewController {
         SharingManagerConfiguration.sharedInstance.allowNotifyinMain = false
         if (self.workload == nil) {
             self.workload = singleTask()
+        }
+        
+       
+        // If a process is running keep it running
+        guard self.process == nil else {
+            return
         }
         self.reset()
     }
@@ -1266,7 +1277,7 @@ extension ViewControllertabMain: RsyncError {
 }
 
 // If, for any reason, handling files or directory throws an error
-extension ViewControllertabMain: FileError {
+extension ViewControllertabMain: ReportErrorInMain {
     func fileerror(errorstr:String) {
         GlobalMainQueue.async(execute: { () -> Void in
             self.setInfo(info: "Error", color: NSColor.red)

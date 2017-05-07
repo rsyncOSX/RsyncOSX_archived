@@ -131,7 +131,6 @@ class ViewControllerCopyFiles : NSViewController {
         self.remoteCatalog.stringValue = ""
         self.localCatalog.stringValue = ""
         self.SelectButton.title = "Get source"
-        
     }
     
     fileprivate func displayRemoteserver(index:Int?) {

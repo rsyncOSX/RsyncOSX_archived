@@ -1,14 +1,14 @@
 //
-//  RsyncCopyFiles.swift
+//  sshprocessCmd.swift
 //  RsyncOSX
 //
-//  Created by Thomas Evensen on 10.03.2017.
+//  Created by Thomas Evensen on 29.04.2017.
 //  Copyright © 2017 Thomas Evensen. All rights reserved.
 //
 
 import Foundation
 
-final class commandCopyFiles: processCmd {
+final class commandSsh: processCmd {
     
     init (command:String?, arguments:Array<String>?) {
         super.init()
@@ -20,14 +20,13 @@ final class commandCopyFiles: processCmd {
             self.command = nil
         }
         self.arguments = arguments
-        // Defaults to not a Scheduled task
+        // Not a scheduled operation
         self.aScheduledOperation = false
-        // Process is inated from CopyFiles
+        // Process is initated from Ssh
         // ProcessTermination()
-        if let pvc = SharingManagerConfiguration.sharedInstance.ViewControllerCopyFiles as? ViewControllerCopyFiles {
+        if let pvc = SharingManagerConfiguration.sharedInstance.ViewControllerSsh as? ViewControllerSsh {
             self.delegate_update = pvc
         }
     }
     
 }
-

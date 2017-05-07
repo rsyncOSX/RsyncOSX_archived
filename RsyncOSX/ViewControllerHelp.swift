@@ -28,6 +28,7 @@ class ViewControllerHelp: NSViewController {
     @IBOutlet weak var passwordless: NSButton!
     @IBOutlet weak var RsyncParameters: NSButton!
     @IBOutlet weak var source: NSButton!
+    @IBOutlet weak var Ssh: NSButton!
     
     @IBAction func help(_ sender: NSButton) {
         if self.Batchtask.state == NSOnState {
@@ -75,6 +76,9 @@ class ViewControllerHelp: NSViewController {
         } else if self.source.state == NSOnState {
             self.showwhat = .source
             self.source.state = NSOffState
+        } else if self.Ssh.state == NSOnState {
+            self.showwhat = .ssh
+            self.Ssh.state = NSOffState
         }
         self.show()
     }
