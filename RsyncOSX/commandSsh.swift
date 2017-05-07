@@ -19,6 +19,7 @@ final class commandSsh: processCmd {
             // Set command to execute, if nil picks up command from config
             self.command = nil
         }
+        
         self.arguments = arguments
         // Not a scheduled operation
         self.aScheduledOperation = false

@@ -1019,17 +1019,17 @@
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="MQY-l7-2Lf">
-                                            <rect key="frame" x="5" y="149" width="174" height="18"/>
+                                            <rect key="frame" x="5" y="149" width="165" height="18"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                            <buttonCell key="cell" type="check" title="A rsa public key is found." bezelStyle="regularSquare" imagePosition="left" enabled="NO" inset="2" id="a0m-Z1-grn">
+                                            <buttonCell key="cell" type="check" title="Rsa public key is found." bezelStyle="regularSquare" imagePosition="left" enabled="NO" inset="2" id="a0m-Z1-grn">
                                                 <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                                 <font key="font" metaFont="system"/>
                                             </buttonCell>
                                         </button>
                                         <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="gXP-YJ-JVy">
-                                            <rect key="frame" x="5" y="125" width="177" height="18"/>
+                                            <rect key="frame" x="5" y="125" width="166" height="18"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                            <buttonCell key="cell" type="check" title="A dsa public key is found." bezelStyle="regularSquare" imagePosition="left" enabled="NO" inset="2" id="EeS-fZ-csl">
+                                            <buttonCell key="cell" type="check" title="Dsa public key is found." bezelStyle="regularSquare" imagePosition="left" enabled="NO" inset="2" id="EeS-fZ-csl">
                                                 <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                                 <font key="font" metaFont="system"/>
                                             </buttonCell>
@@ -1067,7 +1067,7 @@
                                             </connections>
                                         </button>
                                         <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="HLU-Ok-6oP">
-                                            <rect key="frame" x="201" y="28" width="121" height="32"/>
+                                            <rect key="frame" x="131" y="28" width="121" height="32"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             <buttonCell key="cell" type="push" title="Check rsa" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="goN-EU-g61">
                                                 <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -1078,7 +1078,7 @@
                                             </connections>
                                         </button>
                                         <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="FX4-ec-hrT">
-                                            <rect key="frame" x="201" y="1" width="121" height="32"/>
+                                            <rect key="frame" x="131" y="1" width="121" height="32"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             <buttonCell key="cell" type="push" title="Check dsa" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="hq8-Fq-pip">
                                                 <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -1148,28 +1148,6 @@
                                                 <action selector="TerminalApp:" target="B9V-8v-Aba" id="Zof-Hl-KmT"/>
                                             </connections>
                                         </button>
-                                        <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="PUs-Xh-OSZ">
-                                            <rect key="frame" x="131" y="28" width="74" height="32"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                            <buttonCell key="cell" type="push" title="Chmod" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="st3-39-dxe">
-                                                <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                                <font key="font" metaFont="system"/>
-                                            </buttonCell>
-                                            <connections>
-                                                <action selector="chmodSshRsa:" target="B9V-8v-Aba" id="JxR-Mz-NTH"/>
-                                            </connections>
-                                        </button>
-                                        <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="uyQ-kL-ZQR">
-                                            <rect key="frame" x="131" y="1" width="74" height="32"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                            <buttonCell key="cell" type="push" title="Chmod" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="QsX-60-sPM">
-                                                <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                                <font key="font" metaFont="system"/>
-                                            </buttonCell>
-                                            <connections>
-                                                <action selector="chmodSshDsa:" target="B9V-8v-Aba" id="DZq-yl-b8D"/>
-                                            </connections>
-                                        </button>
                                     </subviews>
                                 </view>
                             </box>
@@ -1189,8 +1167,6 @@
                     <connections>
                         <outlet property="checkDsaPubKeyButton" destination="FX4-ec-hrT" id="drv-3S-gOw"/>
                         <outlet property="checkRsaPubKeyButton" destination="HLU-Ok-6oP" id="gce-B6-pGa"/>
-                        <outlet property="chmodKeyButtonDsa" destination="uyQ-kL-ZQR" id="vnE-On-R3p"/>
-                        <outlet property="chmodKeyButtonRsa" destination="PUs-Xh-OSZ" id="CGO-Lb-kgz"/>
                         <outlet property="createDsaKey" destination="7AP-6h-C0i" id="JSg-8d-rqI"/>
                         <outlet property="createKeys" destination="oGK-Wc-GpX" id="4Ug-XK-dx6"/>
                         <outlet property="createRsaKey" destination="On6-88-D5F" id="TYz-mJ-myk"/>
