@@ -88,12 +88,13 @@ class ViewControllerSsh: NSViewController {
         guard self.Ssh != nil else {
             return
         }
+        
+        self.Ssh!.createSshRemoteDirectory(hiddenID: self.hiddenID!)
+        // self.Ssh!.executeSshCommand()
         guard Ssh!.commandCopyPasteTermninal != nil else {
             self.sshCreateRemoteCatalog.stringValue = " ... not a remote server ..."
             return
         }
-        self.Ssh!.createSshRemoteDirectory(hiddenID: self.hiddenID!)
-        // self.Ssh!.executeSshCommand()
         self.sshCreateRemoteCatalog.stringValue = Ssh!.commandCopyPasteTermninal!
     }
     
@@ -105,11 +106,11 @@ class ViewControllerSsh: NSViewController {
         guard self.Ssh != nil else {
             return
         }
+        self.Ssh!.ScpPubKey(key: "rsa", hiddenID: self.hiddenID!)
+        // self.Ssh!.executeSshCommand()
         guard Ssh!.commandCopyPasteTermninal != nil else {
             return
         }
-        self.Ssh!.ScpPubKey(key: "rsa", hiddenID: self.hiddenID!)
-        // self.Ssh!.executeSshCommand()
         self.scpRsaCopyPasteCommand.stringValue = Ssh!.commandCopyPasteTermninal!
     }
     
@@ -122,11 +123,12 @@ class ViewControllerSsh: NSViewController {
         guard self.Ssh != nil else {
             return
         }
+        
+        self.Ssh!.ScpPubKey(key: "dsa", hiddenID: self.hiddenID!)
+        // self.Ssh!.executeSshCommand()
         guard Ssh!.commandCopyPasteTermninal != nil else {
             return
         }
-        self.Ssh!.ScpPubKey(key: "dsa", hiddenID: self.hiddenID!)
-        // self.Ssh!.executeSshCommand()
         self.scpDsaCopyPasteCommand.stringValue = Ssh!.commandCopyPasteTermninal!
     }
     
