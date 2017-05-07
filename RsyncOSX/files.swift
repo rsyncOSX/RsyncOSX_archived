@@ -36,7 +36,7 @@ class files {
                 return profilePath
             // .ssh/
             case .sshRoot:
-                return NSHomeDirectory() + "/.ssh_test/"
+                return NSHomeDirectory() + "/.ssh/"
             }
         }
     }

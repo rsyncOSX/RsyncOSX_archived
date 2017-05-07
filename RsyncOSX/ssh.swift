@@ -46,6 +46,11 @@ class ssh: files {
     
     // Create local rsa keys
     func createLocalKeysRsa() {
+        
+        guard self.rsaPubKeyExist == false else {
+            return
+        }
+        
         self.scpArguments = nil
         self.scpArguments = scpArgumentsSsh(hiddenID: nil)
         self.arguments = scpArguments!.getArguments(operation: .createKey, key: "rsa", path: self.FilesRoot)
@@ -55,6 +60,11 @@ class ssh: files {
     
     // Create local dsa keys
     func createLocalKeysDsa() {
+        
+        guard self.dsaPubKeyExist == false else {
+            return
+        }
+        
         self.scpArguments = nil
         self.scpArguments = scpArgumentsSsh(hiddenID: nil)
         self.arguments = scpArguments!.getArguments(operation: .createKey, key: "dsa", path: self.FilesRoot)

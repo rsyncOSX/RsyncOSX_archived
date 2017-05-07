@@ -27,8 +27,8 @@ final class scpArgumentsSsh {
     private var file:String?
     private var stringArray:Array<String>?
     
-    private var RemoteRsaPubkeyString:String = ".ssh_test/authorized_keys"
-    private var RemoteDsaPubkeyString:String = ".ssh_test/authorized_keys2"
+    private var RemoteRsaPubkeyString:String = ".ssh/authorized_keys"
+    private var RemoteDsaPubkeyString:String = ".ssh/authorized_keys2"
     
     // Set parameters for SCP for copy public ssh key to server
     // scp ~/.ssh/id_rsa.pub user@server.com:.ssh/authorized_keys
@@ -50,10 +50,6 @@ final class scpArgumentsSsh {
             self.args!.append("-P")
             self.args!.append(String(self.config!.sshport!))
         }
-        self.args!.append("-B")
-        self.args!.append("-p")
-        self.args!.append("-q")
-        self.args!.append("-o")
         self.args!.append(path)
         if key == "rsa" {
           offsiteArguments = self.config!.offsiteUsername + "@" + self.config!.offsiteServer + ":" + self.RemoteRsaPubkeyString
@@ -141,9 +137,9 @@ final class scpArgumentsSsh {
         self.args!.append(offsiteArguments!)
         
         if key == "rsa" {
-            self.args!.append("chmod 700 ~/.ssh_test; chmod 600 ~/" + self.RemoteRsaPubkeyString)
+            self.args!.append("chmod 700 ~/.ssh; chmod 600 ~/" + self.RemoteRsaPubkeyString)
         } else {
-            self.args!.append("chmod 700 ~/.ssh_test; chmod 600 ~/" + self.RemoteDsaPubkeyString)
+            self.args!.append("chmod 700 ~/.ssh; chmod 600 ~/" + self.RemoteDsaPubkeyString)
         }
         self.command = "/usr/bin/ssh"
     }
@@ -169,7 +165,7 @@ final class scpArgumentsSsh {
         }
         offsiteArguments = self.config!.offsiteUsername + "@" + self.config!.offsiteServer
         self.args!.append(offsiteArguments!)
-        self.args!.append("mkdir ~/.ssh_test")
+        self.args!.append("mkdir ~/.ssh")
         self.command = "/usr/bin/ssh"
         
         self.commandCopyPasteTermninal = nil
