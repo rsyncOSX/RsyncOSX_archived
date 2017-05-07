@@ -45,13 +45,14 @@ class ViewControllerSsh: NSViewController {
     // Delegate for getting index from Execute view
     weak var index_delegate:GetSelecetedIndex?
     
-    // Source for CopyFiles
+    // Source for CopyFiles and Ssh
     // self.presentViewControllerAsSheet(self.ViewControllerAbout)
     lazy var ViewControllerSource: NSViewController = {
         return self.storyboard!.instantiateController(withIdentifier: "CopyFilesID")
             as! NSViewController
     }()
     
+    // Open the Terminal.app for pasting commands
     @IBAction func TerminalApp(_ sender: NSButton) {
         guard self.Ssh != nil else {
             return
@@ -59,6 +60,7 @@ class ViewControllerSsh: NSViewController {
         self.Ssh!.openTerminal()
     }
     
+    // Just for grouping rsa and dsa radiobuttons
     @IBAction func RadioButtonsCreateKeyPair(_ sender: NSButton) {
         // For selecting either of them
     }
@@ -88,9 +90,7 @@ class ViewControllerSsh: NSViewController {
         guard self.Ssh != nil else {
             return
         }
-        
         self.Ssh!.createSshRemoteDirectory(hiddenID: self.hiddenID!)
-        // self.Ssh!.executeSshCommand()
         guard Ssh!.commandCopyPasteTermninal != nil else {
             self.sshCreateRemoteCatalog.stringValue = " ... not a remote server ..."
             return
@@ -99,7 +99,6 @@ class ViewControllerSsh: NSViewController {
     }
     
     @IBAction func scpRsaPubKey(_ sender: NSButton) {
-        
         guard self.hiddenID != nil else {
             return
         }
@@ -107,7 +106,6 @@ class ViewControllerSsh: NSViewController {
             return
         }
         self.Ssh!.ScpPubKey(key: "rsa", hiddenID: self.hiddenID!)
-        // self.Ssh!.executeSshCommand()
         guard Ssh!.commandCopyPasteTermninal != nil else {
             return
         }
@@ -116,16 +114,13 @@ class ViewControllerSsh: NSViewController {
     
     
     @IBAction func scpDsaPubKey(_ sender: NSButton) {
-        
         guard self.hiddenID != nil else {
             return
         }
         guard self.Ssh != nil else {
             return
         }
-        
         self.Ssh!.ScpPubKey(key: "dsa", hiddenID: self.hiddenID!)
-        // self.Ssh!.executeSshCommand()
         guard Ssh!.commandCopyPasteTermninal != nil else {
             return
         }
