@@ -255,9 +255,7 @@ extension ViewControllerSsh: UpdateProgress {
     
     // Protocol UpdateProgress
     func ProcessTermination() {
-        self.output = self.Ssh!.getOutput()
         GlobalMainQueue.async(execute: { () -> Void in
-            self.detailsTable.reloadData()
             self.checkPrivatePublicKey()
         })
         // Check if chmod remote ssh directory is next work
