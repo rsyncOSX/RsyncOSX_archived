@@ -151,7 +151,7 @@ class files {
     }
     
     
-    // Function for setting fileURLs for a given path
+    // Function for getting fileURLs for a given path
     func getfileURLs (path:String) -> Array<URL>? {
         let fileManager = FileManager.default
         if let filepath = URL.init(string: path) {
@@ -165,6 +165,16 @@ class files {
             }
         }
         return nil
+    }
+    
+    // Check if file exist or not
+    func checkFileExist(file:String) -> Bool {
+        let fileManager = FileManager.default
+        if fileManager.fileExists(atPath: file) {
+            return true
+        } else {
+            return false
+        }
     }
         
     init (root:Root) {
