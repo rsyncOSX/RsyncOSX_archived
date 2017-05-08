@@ -18,6 +18,8 @@ class ViewControllerSsh: NSViewController {
     // Output
     // output from Rsync
     var output:Array<String>?
+    // Execute or not
+    var execute:Bool = false
     
     @IBOutlet weak var dsaCheck: NSButton!
     @IBOutlet weak var rsaCheck: NSButton!
@@ -89,7 +91,7 @@ class ViewControllerSsh: NSViewController {
         }
         self.Ssh!.createSshRemoteDirectory(hiddenID: self.hiddenID!)
         guard Ssh!.commandCopyPasteTermninal != nil else {
-            self.sshCreateRemoteCatalog.stringValue = " ... not a remote server ..."
+            self.sshCreateRemoteCatalog.stringValue = " ... no remote server ..."
             return
         }
         self.sshCreateRemoteCatalog.stringValue = Ssh!.commandCopyPasteTermninal!
@@ -125,6 +127,11 @@ class ViewControllerSsh: NSViewController {
     }
     
     @IBAction func checkRsaPubKey(_ sender: NSButton) {
+    
+        guard self.execute else {
+            return
+        }
+        
         guard self.hiddenID != nil else {
             return
         }
@@ -138,6 +145,11 @@ class ViewControllerSsh: NSViewController {
     }
     
     @IBAction func checkDsaPubKey(_ sender: NSButton) {
+        
+        guard self.execute else {
+            return
+        }
+        
         guard self.hiddenID != nil else {
             return
         }
@@ -217,6 +229,13 @@ extension ViewControllerSsh: getSource {
     // Returning hiddenID as Index
     func GetSource(Index: Int) {
         self.hiddenID = Index
+        // Make sure that there is a offiseserver, if not set self.index = nil
+        let config = SharingManagerConfiguration.sharedInstance.getConfigurations()[SharingManagerConfiguration.sharedInstance.getIndex(hiddenID!)]
+        if config.offsiteServer.isEmpty == true {
+            self.execute = false
+        } else {
+            self.execute = true
+        }
     }
 }
 
