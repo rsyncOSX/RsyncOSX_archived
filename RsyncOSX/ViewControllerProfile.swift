@@ -30,9 +30,6 @@ class ViewControllerProfile : NSViewController {
     // New profile
     @IBOutlet weak var newprofile: NSTextField!
     
-    // Radiobuttons
-    @IBOutlet weak var delete: NSButton!
-    @IBOutlet weak var new: NSButton!
     // Table to show profiles
     @IBOutlet weak var profilesTable: NSTableView!
     
@@ -44,54 +41,47 @@ class ViewControllerProfile : NSViewController {
         self.dismiss_delegate?.dismiss_view(viewcontroller: self)
     }
     
-    @IBAction func radioButtons(_ sender: NSButton) {
-        // Only for grouping radio buttons
+    // Add and load new profile
+    @IBAction func AddProfile(_ sender: NSButton) {
+        let newprofile = self.newprofile.stringValue
+        if (newprofile.isEmpty == false) {
+            // Create new profile and use it
+            self.profile?.createProfile(profileName: newprofile)
+            SharingManagerConfiguration.sharedInstance.setProfile(profile: newprofile)
+            // Destroy old configuration and save default configuration
+            SharingManagerConfiguration.sharedInstance.destroyConfigurations()
+            persistentStoreAPI.sharedInstance.saveConfigFromMemory()
+            self.newProfile_delegate?.newProfile(new: true)
+        }
+        self.profile = nil
+        self.profile = profiles()
+        self.profilesArray = self.profile!.getDirectorysStrings()
+        self.useprofile = nil
+        self.dismiss_delegate?.dismiss_view(viewcontroller: self)
     }
     
+    // Delete profile
+    @IBAction func DeleteProfile(_ sender: NSButton) {
+        if let useprofile = self.useprofile {
+            self.profile?.deleteProfile(profileName: useprofile)
+            SharingManagerConfiguration.sharedInstance.setProfile(profile: nil)
+            self.newProfile_delegate?.newProfile(new: false)
+        }
+        self.profile = nil
+        self.profile = profiles()
+        self.profilesArray = self.profile!.getDirectorysStrings()
+        self.useprofile = nil
+        self.dismiss_delegate?.dismiss_view(viewcontroller: self)
+    }
+    
+    // Use profile or close
     @IBAction func close(_ sender: NSButton) {
-        if let pvc = self.presenting as? ViewControllertabMain {
-            self.newProfile_delegate = pvc
+        if let useprofile = self.useprofile {
+            SharingManagerConfiguration.sharedInstance.setProfile(profile: useprofile)
+            self.newProfile_delegate?.newProfile(new: false)
         }
-        if (self.delete.state == 1) {
-            // Delete profile
-            if let useprofile = self.useprofile {
-                self.profile?.deleteProfile(profileName: useprofile)
-                SharingManagerConfiguration.sharedInstance.setProfile(profile: nil)
-                self.newProfile_delegate?.newProfile(new: false)
-            }
-            self.profile = nil
-            self.profile = profiles()
-            self.profilesArray = self.profile!.getDirectorysStrings()
-            self.useprofile = nil
-            self.dismiss_delegate?.dismiss_view(viewcontroller: self)
-            
-        } else if (self.new.state == 1) {
-            // Create new profile
-            let newprofile = self.newprofile.stringValue
-            if (newprofile.isEmpty == false) {
-                // Create new profile and use it
-                self.profile?.createProfile(profileName: newprofile)
-                SharingManagerConfiguration.sharedInstance.setProfile(profile: newprofile)
-                // Destroy old configuration and save default configuration
-                SharingManagerConfiguration.sharedInstance.destroyConfigurations()
-                persistentStoreAPI.sharedInstance.saveConfigFromMemory()
-                self.newProfile_delegate?.newProfile(new: true)
-            }
-            self.profile = nil
-            self.profile = profiles()
-            self.profilesArray = self.profile!.getDirectorysStrings()
-            self.useprofile = nil
-            self.dismiss_delegate?.dismiss_view(viewcontroller: self)
-            
-        } else {
-            // Use profile
-            if let useprofile = self.useprofile {
-                SharingManagerConfiguration.sharedInstance.setProfile(profile: useprofile)
-                self.newProfile_delegate?.newProfile(new: false)
-            }
-            self.useprofile = nil
-            self.dismiss_delegate?.dismiss_view(viewcontroller: self)
-        }
+        self.useprofile = nil
+        self.dismiss_delegate?.dismiss_view(viewcontroller: self)
     }
 
 
@@ -112,6 +102,9 @@ class ViewControllerProfile : NSViewController {
     
     override func viewDidAppear() {
         super.viewDidAppear()
+        if let pvc = self.presenting as? ViewControllertabMain {
+            self.newProfile_delegate = pvc
+        }
         GlobalMainQueue.async(execute: { () -> Void in
             self.profilesTable.reloadData()
         })
