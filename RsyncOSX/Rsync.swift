@@ -12,14 +12,7 @@ final class Rsync: processCmd {
     
     init (arguments:Array<String>?) {
         
-        super.init()
-        // Set command to execute, if nil picks up command from config
-        self.command = nil
-        // Set arguments array
-        self.arguments = arguments
-        // Defaults to not a Scheduled task
-        self.aScheduledOperation = false
-        
+        super.init(command: nil, arguments: arguments, aScheduledOperation: false)
         // Process is inated from Main
         if let pvc = SharingManagerConfiguration.sharedInstance.ViewControllertabMain as? ViewControllertabMain {
             self.delegate_update = pvc

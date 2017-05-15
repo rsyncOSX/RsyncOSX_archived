@@ -103,5 +103,11 @@ class processCmd {
         }
     }
     
+    init(command:String?, arguments:Array<String>?, aScheduledOperation:Bool) {
+        self.command = command
+        self.arguments = arguments
+        self.aScheduledOperation = aScheduledOperation
+    }
+    
 }
 
