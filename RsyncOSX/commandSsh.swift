@@ -11,18 +11,7 @@ import Foundation
 final class commandSsh: processCmd {
     
     init (command:String?, arguments:Array<String>?) {
-        super.init()
-        // Set command to execute, either ssh or scp
-        if let cmd = command {
-            self.command = cmd
-        } else {
-            // Set command to execute, if nil picks up command from config
-            self.command = nil
-        }
-        
-        self.arguments = arguments
-        // Not a scheduled operation
-        self.aScheduledOperation = false
+        super.init(command: command, arguments: arguments, aScheduledOperation: false)
         // Process is initated from Ssh
         // ProcessTermination()
         if let pvc = SharingManagerConfiguration.sharedInstance.ViewControllerSsh as? ViewControllerSsh {
