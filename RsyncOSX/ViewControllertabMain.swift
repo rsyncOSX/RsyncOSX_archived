@@ -1289,10 +1289,8 @@ extension ViewControllertabMain: ReportErrorInMain {
 }
 
 // Abort task from progressview
-extension ViewControllertabMain: KillOperations {
-    func Killtask () {
-        self.abortOperations()
-    }
+extension ViewControllertabMain: AbortOperations {
+    
 }
 
 
