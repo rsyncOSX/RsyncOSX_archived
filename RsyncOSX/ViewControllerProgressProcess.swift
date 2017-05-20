@@ -23,6 +23,11 @@ protocol Count: class {
     func inprogressCount() -> Int
 }
 
+// Protocol for aborting task
+protocol KillOperations: class {
+    func Killtask()
+}
+
 class ViewControllerProgressProcess: NSViewController {
     
     var count:Double = 0
@@ -33,9 +38,15 @@ class ViewControllerProgressProcess: NSViewController {
     weak var count_delegate:Count?
     // Dismisser
     weak var dismiss_delegate:DismissViewController?
+    // Abort operations
+    weak var abort_delegate:KillOperations?
     
     @IBOutlet weak var progress: NSProgressIndicator!
     
+    @IBAction func Abort(_ sender: NSButton) {
+        self.abort_delegate?.Killtask()
+        self.ProcessTermination()
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -45,6 +56,7 @@ class ViewControllerProgressProcess: NSViewController {
         if let pvc = self.presenting as? ViewControllertabMain {
             self.count_delegate = pvc
             self.dismiss_delegate = pvc
+            self.abort_delegate = pvc
         }
     }
     

@@ -285,7 +285,7 @@ class ViewControllertabMain: NSViewController {
         
     }
     
-    // Selecting Abort
+    // Selecting About
     @IBAction func About (_ sender: NSButton) {
         self.presentViewControllerAsModalWindow(self.ViewControllerAbout)
     }
@@ -1285,6 +1285,13 @@ extension ViewControllertabMain: ReportErrorInMain {
             // Dump the errormessage in rsynccommand field
             self.rsyncCommand.stringValue = errorstr
         })
+    }
+}
+
+// Abort task from progressview
+extension ViewControllertabMain: KillOperations {
+    func Killtask () {
+        self.abortOperations()
     }
 }
 
