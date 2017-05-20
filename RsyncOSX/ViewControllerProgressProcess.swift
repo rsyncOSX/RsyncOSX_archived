@@ -24,8 +24,8 @@ protocol Count: class {
 }
 
 // Protocol for aborting task
-protocol KillOperations: class {
-    func Killtask()
+protocol AbortOperations: class {
+    func abortOperations()
 }
 
 class ViewControllerProgressProcess: NSViewController {
@@ -39,12 +39,12 @@ class ViewControllerProgressProcess: NSViewController {
     // Dismisser
     weak var dismiss_delegate:DismissViewController?
     // Abort operations
-    weak var abort_delegate:KillOperations?
+    weak var abort_delegate:AbortOperations?
     
     @IBOutlet weak var progress: NSProgressIndicator!
     
     @IBAction func Abort(_ sender: NSButton) {
-        self.abort_delegate?.Killtask()
+        self.abort_delegate?.abortOperations()
         self.ProcessTermination()
     }
     
