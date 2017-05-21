@@ -29,6 +29,17 @@ class ViewControllerCopyFilesSource : NSViewController {
     
     // ACTIONS AND BUTTONS
     @IBAction func Close(_ sender: NSButton) {
+        if let pvc = self.presenting as? ViewControllerCopyFiles {
+            self.getSource_delegate = pvc
+            if let index = self.index {
+                self.getSource_delegate?.GetSource(Index: index)
+            }
+        } else if let pvc = self.presenting as? ViewControllerSsh {
+            self.getSource_delegate2 = pvc
+            if let index = self.index {
+                self.getSource_delegate2?.GetSource(Index: index)
+            }
+        }
         self.dismiss_delegate?.dismiss_view(viewcontroller: self)
     }
     
