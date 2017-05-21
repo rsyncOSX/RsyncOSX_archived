@@ -340,7 +340,11 @@ extension ViewControllerCopyFiles: UpdateProgress {
     func ProcessTermination() {
         if (rsync == false) {
             // do next job within copyobject
-            self.copyFiles!.nextWork()
+            // self.copyFiles!.nextWork()
+            
+            self.copyFiles!.setRemoteFileList()
+            self.refresh()
+            self.stop()
         } else {
             self.workingRsync.stopAnimation(nil)
             self.presentViewControllerAsSheet(self.ViewControllerInformation)

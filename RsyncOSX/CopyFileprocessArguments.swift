@@ -10,9 +10,8 @@ import Foundation
 
 
 enum enumscopyfiles {
-    case create
-    case scp
     case rsync
+    case du
 }
 
 final class CopyFileprocessArguments {
@@ -66,24 +65,19 @@ final class CopyFileprocessArguments {
         self.config = config
         
         switch (task) {
-        case .create:
-            // Remote creating the file.txt
-            let arguments = filetxtArguments(config: config)
-            self.arguments = arguments.getArguments()
-            self.command = arguments.getCommand()
-            self.file = arguments.getFile()
-        case .scp:
-            // For SCP copy result of find . -name from server to local store
-            let arguments = scpArguments(config: config, postfix: "files.txt")
-            self.arguments = arguments.getArguments()
-            self.command = arguments.getCommand()
-            self.file = arguments.getFile()
         case .rsync:
             // Arguments for rsync
             let arguments = rsyncArguments(config: config, remoteFile: remoteFile, localCatalog: localCatalog, drynrun: drynrun)
             self.arguments = arguments.getArguments()
             self.command = arguments.getCommand()
             self.file = arguments.getFile()
+        case .du:
+            // Remote du -a
+            let arguments = getRemoteFilelist(config: config)
+            self.arguments = arguments.getArguments()
+            self.command = arguments.getCommand()
+            self.file = arguments.getFile()
+            
         }
     }
 }
