@@ -68,6 +68,7 @@
 		E93D82141E79C69500B20965 /* ViewControllerHelp.swift in Sources */ = {isa = PBXBuildFile; fileRef = E93D82131E79C69500B20965 /* ViewControllerHelp.swift */; };
 		E96CA1FE1E094C3000CD1D03 /* Resources.swift in Sources */ = {isa = PBXBuildFile; fileRef = E96CA1FD1E094C3000CD1D03 /* Resources.swift */; };
 		E9A8D81C1ED20AEB009648DE /* getRemoteFilelist.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9A8D81B1ED20AEB009648DE /* getRemoteFilelist.swift */; };
+		E9C6EA8A1ED2AE2F00680D4D /* numbers.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9C6EA891ED2AE2F00680D4D /* numbers.swift */; };
 		E9CF14141E729540008E8A15 /* RsyncScheduled.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9CF14131E729540008E8A15 /* RsyncScheduled.swift */; };
 		E9CF14161E729636008E8A15 /* commandCopyFiles.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9CF14151E729636008E8A15 /* commandCopyFiles.swift */; };
 		E9DCEA871E75F67200A69B4D /* outputBatch.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9DCEA861E75F67200A69B4D /* outputBatch.swift */; };
@@ -143,6 +144,7 @@
 		E93D82131E79C69500B20965 /* ViewControllerHelp.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewControllerHelp.swift; sourceTree = "<group>"; };
 		E96CA1FD1E094C3000CD1D03 /* Resources.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Resources.swift; sourceTree = "<group>"; };
 		E9A8D81B1ED20AEB009648DE /* getRemoteFilelist.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = getRemoteFilelist.swift; sourceTree = "<group>"; };
+		E9C6EA891ED2AE2F00680D4D /* numbers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = numbers.swift; sourceTree = "<group>"; };
 		E9CF14131E729540008E8A15 /* RsyncScheduled.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RsyncScheduled.swift; sourceTree = "<group>"; };
 		E9CF14151E729636008E8A15 /* commandCopyFiles.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = commandCopyFiles.swift; sourceTree = "<group>"; };
 		E9DCEA861E75F67200A69B4D /* outputBatch.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = outputBatch.swift; sourceTree = "<group>"; };
@@ -314,6 +316,7 @@
 				E9FFA02E1E728C6E00B7AB2B /* Rsync.swift */,
 				E9CF14131E729540008E8A15 /* RsyncScheduled.swift */,
 				E9CF14151E729636008E8A15 /* commandCopyFiles.swift */,
+				E9C6EA891ED2AE2F00680D4D /* numbers.swift */,
 			);
 			name = Process;
 			sourceTree = "<group>";
@@ -486,6 +489,7 @@
 				A0EFB4501DC080A9008C21A6 /* persistentStoreUserconfiguration.swift in Sources */,
 				A00FE1AA1D6A1AAB00012089 /* alerts.swift in Sources */,
 				E9DCEA871E75F67200A69B4D /* outputBatch.swift in Sources */,
+				E9C6EA8A1ED2AE2F00680D4D /* numbers.swift in Sources */,
 				A0F2E20C1D6D91AA0091E8BF /* userconfiguration.swift in Sources */,
 				A0762A1F1DB4A8F000538CE9 /* profiles.swift in Sources */,
 				E9FFA02F1E728C6E00B7AB2B /* Rsync.swift in Sources */,

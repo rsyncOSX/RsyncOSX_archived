@@ -1,29 +1,14 @@
 //
-//  outputProcess.swift
+//  numbers.swift
+//  RsyncOSX
 //
-//  Created by Thomas Evensen on 11/01/16.
-//  Copyright © 2016 Thomas Evensen. All rights reserved.
+//  Created by Thomas Evensen on 22.05.2017.
+//  Copyright © 2017 Thomas Evensen. All rights reserved.
 //
 
 import Foundation
 
-protocol RsyncError: class {
-    func rsyncerror()
-}
-
-// enum for returning what is asked for
-enum enumNumbers {
-    case totalNumber
-    case totalDirs
-    case totalNumberSizebytes
-    case transferredNumber
-    case transferredNumberSizebytes
-    case new
-    case delete
-}
-
-
-final class outputProcess {
+final class numbers {
     
     // Second last String in Array rsync output of how much in what time
     private var resultRsync:String?
@@ -32,9 +17,6 @@ final class outputProcess {
     private var calculatedNumberOfFiles:Int?
     // output Array to keep output from rsync in
     private var output:Array<String>?
-    // output Array temporary indexes
-    private var startIndex:Int?
-    private var endIndex:Int?
     // numbers after dryrun and stats
     private var totalNumber:Int?
     private var totalDirs:Int?
@@ -45,95 +27,6 @@ final class outputProcess {
     private var deletefiles:Int?
     // Maxnumber
     private var maxNumber:Int = 0
-    
-    
-    // Error delegate
-    weak var error_delegate:ViewControllertabMain?
-    // Last record of rsync 
-    weak var lastrecord_delegate:ViewControllertabMain?
-    
-    func getMaxcount() -> Int {
-        return self.maxNumber
-    }
-    
-    func getOutputCount () -> Int {
-        guard (self.output != nil) else {
-            return 0
-        }
-        return self.output!.count
-    }
-    
-    func getOutput () -> Array<String> {
-        guard (self.output != nil) else {
-            return [""]
-        }
-        return self.output!
-    }
-    
-    // Return end message of Rsync
-    func endMessage() -> String {
-        if let message = self.resultRsync {
-            return message
-        } else {
-            return ""
-        }
-    }
-    
-    // Add line to output
-    func addLine (_ str: String) {
-        let sentence = str
-        
-        if (self.startIndex == nil) {
-            self.startIndex = 0
-        } else {
-            self.startIndex = self.getOutputCount()+1
-        }
-        sentence.enumerateLines { (line, _) in
-            if line.characters.last != "/" {
-                self.output!.append(line)
-            }
-        }
-        self.endIndex = self.output!.count
-        // Set maxnumber so far
-        self.maxNumber = self.endIndex!
-        
-        if (self.endIndex! > 2) {
-            self.resultRsync = (self.output![self.endIndex!-2])
-        }
-        // rsync error
-        let error = sentence.contains("rsync error:")
-        // There is an error in transferring files
-        // We only informs in main view if error
-        if error {
-            if let pvc = SharingManagerConfiguration.sharedInstance.ViewControllertabMain {
-                self.error_delegate = pvc as? ViewControllertabMain
-                self.error_delegate?.rsyncerror()
-            }
-        }
-    }
-    
-    // Add line to output
-    func addLine2 (_ str: String) {
-        let sentence = str
-        
-        if (self.startIndex == nil) {
-            self.startIndex = 0
-        } else {
-            self.startIndex = self.getOutputCount()+1
-        }
-        sentence.enumerateLines { (line, _) in
-            self.output!.append(line)
-        }
-        
-        self.endIndex = self.output!.count
-        // Set maxnumber so far
-        self.maxNumber = self.endIndex!
-        
-        if (self.endIndex! > 2) {
-            self.resultRsync = (self.output![self.endIndex!-2])
-        }
-    }
-
     
     // Get numbers from rsync (dry run)
     func getTransferredNumbers (numbers : enumNumbers) -> Int {
@@ -176,7 +69,7 @@ final class outputProcess {
         }
     }
     
-
+    
     // Function for getting numbers out of output
     // after Process termination is discovered. Function
     // is executed from rsync Process after Process termination.
@@ -250,7 +143,7 @@ final class outputProcess {
                 self.deletefiles = 0
             }
         } else {
-            // If it breaks set number of transferred files to 
+            // If it breaks set number of transferred files to
             // size of output.
             self.transferredNumber = self.output!.count
         }
@@ -324,8 +217,9 @@ final class outputProcess {
         }
         return [numberstring!, result!]
     }
-
-    init () {
-        self.output = Array<String>()
+    
+    init (output:Array<String>) {
+        self.output = output
     }
- }
+}
+
