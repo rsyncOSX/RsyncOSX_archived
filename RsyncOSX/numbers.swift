@@ -8,7 +8,7 @@
 
 import Foundation
 
-final class numbers {
+final class Numbers {
     
     // Second last String in Array rsync output of how much in what time
     private var resultRsync:String?
@@ -18,18 +18,19 @@ final class numbers {
     // output Array to keep output from rsync in
     private var output:Array<String>?
     // numbers after dryrun and stats
-    private var totalNumber:Int?
-    private var totalDirs:Int?
-    private var totalNumberSizebytes:Double?
-    private var transferredNumber:Int?
-    private var transferredNumberSizebytes:Double?
-    private var newfiles:Int?
-    private var deletefiles:Int?
+    var totalNumber:Int?
+    var totalDirs:Int?
+    var totalNumberSizebytes:Double?
+    var transferredNumber:Int?
+    var transferredNumberSizebytes:Double?
+    var newfiles:Int?
+    var deletefiles:Int?
     // Maxnumber
     private var maxNumber:Int = 0
     
     // Get numbers from rsync (dry run)
     func getTransferredNumbers (numbers : enumNumbers) -> Int {
+        
         switch numbers {
         case .totalDirs:
             guard (self.totalDirs != nil) else {
@@ -68,6 +69,7 @@ final class numbers {
             return Int(self.deletefiles!)
         }
     }
+
     
     
     // Function for getting numbers out of output
