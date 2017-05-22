@@ -13,8 +13,6 @@ final class Numbers {
     // Second last String in Array rsync output of how much in what time
     private var resultRsync:String?
     // calculated number of files
-    // set from rsync
-    private var calculatedNumberOfFiles:Int?
     // output Array to keep output from rsync in
     private var output:Array<String>?
     // numbers after dryrun and stats
@@ -25,8 +23,6 @@ final class Numbers {
     var transferredNumberSizebytes:Double?
     var newfiles:Int?
     var deletefiles:Int?
-    // Maxnumber
-    private var maxNumber:Int = 0
     
     // Get numbers from rsync (dry run)
     func getTransferredNumbers (numbers : enumNumbers) -> Int {
@@ -70,7 +66,6 @@ final class Numbers {
         }
     }
 
-    
     
     // Function for getting numbers out of output
     // after Process termination is discovered. Function

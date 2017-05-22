@@ -28,23 +28,11 @@ final class outputProcess {
     // Second last String in Array rsync output of how much in what time
     private var resultRsync:String?
     // calculated number of files
-    // set from rsync
-    private var calculatedNumberOfFiles:Int?
     // output Array to keep output from rsync in
     private var output:Array<String>?
     // output Array temporary indexes
     private var startIndex:Int?
     private var endIndex:Int?
-    // numbers after dryrun and stats
-    /*
-    private var totalNumber:Int?
-    private var totalDirs:Int?
-    private var totalNumberSizebytes:Double?
-    private var transferredNumber:Int?
-    private var transferredNumberSizebytes:Double?
-    private var newfiles:Int?
-    private var deletefiles:Int?
-    */
     // Maxnumber
     private var maxNumber:Int = 0
     
@@ -134,72 +122,6 @@ final class outputProcess {
         if (self.endIndex! > 2) {
             self.resultRsync = (self.output![self.endIndex!-2])
         }
-    }
-
-    
-    // Get numbers from rsync (dry run)
-    func getTransferredNumbers (numbers : enumNumbers) -> Int {
-        
-        let number = Numbers(output: self.output!)
-        number.setNumbers()
-        
-        
-        switch numbers {
-        case .totalDirs:
-            guard (number.totalDirs != nil) else {
-                return 0
-            }
-            return number.totalDirs!
-        case .totalNumber:
-            guard (number.totalNumber != nil) else {
-                return 0
-            }
-            return number.totalNumber!
-        case .transferredNumber:
-            guard (number.transferredNumber != nil) else {
-                return 0
-            }
-            return number.transferredNumber!
-        case .totalNumberSizebytes:
-            guard (number.totalNumberSizebytes != nil) else {
-                return 0
-            }
-            return Int(number.totalNumberSizebytes!/1024)
-        case .transferredNumberSizebytes:
-            guard (number.transferredNumberSizebytes != nil) else {
-                return 0
-            }
-            return Int(number.transferredNumberSizebytes!/1024)
-        case .new:
-            guard (number.newfiles != nil) else {
-                return 0
-            }
-            return Int(number.newfiles!)
-        case .delete:
-            guard (number.deletefiles != nil) else {
-                return 0
-            }
-            return Int(number.deletefiles!)
-        }
-    }
-    
-
-    // Function for getting numbers out of output
-    // after Process termination is discovered. Function
-    // is executed from rsync Process after Process termination.
-    // And it is a kind of UGLY...
-    func setNumbers() {
-        let number = Numbers(output: self.output!)
-        number.setNumbers()
-    }
-    
-    
-    // Collecting statistics about job
-    func statistics(numberOfFiles:String?) -> Array<String> {
-        
-        let number = Numbers(output: self.output!)
-        return number.statistics(numberOfFiles: numberOfFiles)
-
     }
 
     init () {

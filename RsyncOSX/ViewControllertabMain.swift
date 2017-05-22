@@ -525,12 +525,16 @@ class ViewControllertabMain: NSViewController {
     // Function for setting max files to be transferred
     // Function is called in self.ProcessTermination()
     fileprivate func setmaxNumbersOfFilesToTransfer() {
+        
+        let number = Numbers(output: self.output!.getOutput())
+        number.setNumbers()
+        
         // Getting max count
         self.showProcessInfo(info: .Set_max_Number)
-        if (self.output!.getTransferredNumbers(numbers: .totalNumber) > 0) {
+        if (number.getTransferredNumbers(numbers: .totalNumber) > 0) {
             self.setNumbers(setvalues: true)
-            if (self.output!.getTransferredNumbers(numbers: .transferredNumber) > 0) {
-                self.maxcount = self.output!.getTransferredNumbers(numbers: .transferredNumber)
+            if (number.getTransferredNumbers(numbers: .transferredNumber) > 0) {
+                self.maxcount = number.getTransferredNumbers(numbers: .transferredNumber)
             } else {
                 self.maxcount = self.output!.getMaxcount()
             }
@@ -543,13 +547,17 @@ class ViewControllertabMain: NSViewController {
     // Process object executes the job.
     fileprivate func setNumbers(setvalues: Bool) {
         if (setvalues) {
-            self.transferredNumber.stringValue = NumberFormatter.localizedString(from: NSNumber(value: self.output!.getTransferredNumbers(numbers: .transferredNumber)), number: NumberFormatter.Style.decimal)
-            self.transferredNumberSizebytes.stringValue = NumberFormatter.localizedString(from: NSNumber(value: self.output!.getTransferredNumbers(numbers: .transferredNumberSizebytes)), number: NumberFormatter.Style.decimal)
-            self.totalNumber.stringValue = NumberFormatter.localizedString(from: NSNumber(value: self.output!.getTransferredNumbers(numbers: .totalNumber)), number: NumberFormatter.Style.decimal)
-            self.totalNumberSizebytes.stringValue = NumberFormatter.localizedString(from: NSNumber(value: self.output!.getTransferredNumbers(numbers: .totalNumberSizebytes)), number: NumberFormatter.Style.decimal)
-            self.totalDirs.stringValue = NumberFormatter.localizedString(from: NSNumber(value: self.output!.getTransferredNumbers(numbers: .totalDirs)), number: NumberFormatter.Style.decimal)
-            self.newfiles.stringValue = NumberFormatter.localizedString(from: NSNumber(value: self.output!.getTransferredNumbers(numbers: .new)), number: NumberFormatter.Style.decimal)
-            self.deletefiles.stringValue = NumberFormatter.localizedString(from: NSNumber(value: self.output!.getTransferredNumbers(numbers: .delete)), number: NumberFormatter.Style.decimal)
+            
+            let number = Numbers(output: self.output!.getOutput())
+            number.setNumbers()
+            
+            self.transferredNumber.stringValue = NumberFormatter.localizedString(from: NSNumber(value: number.getTransferredNumbers(numbers: .transferredNumber)), number: NumberFormatter.Style.decimal)
+            self.transferredNumberSizebytes.stringValue = NumberFormatter.localizedString(from: NSNumber(value: number.getTransferredNumbers(numbers: .transferredNumberSizebytes)), number: NumberFormatter.Style.decimal)
+            self.totalNumber.stringValue = NumberFormatter.localizedString(from: NSNumber(value: number.getTransferredNumbers(numbers: .totalNumber)), number: NumberFormatter.Style.decimal)
+            self.totalNumberSizebytes.stringValue = NumberFormatter.localizedString(from: NSNumber(value: number.getTransferredNumbers(numbers: .totalNumberSizebytes)), number: NumberFormatter.Style.decimal)
+            self.totalDirs.stringValue = NumberFormatter.localizedString(from: NSNumber(value: number.getTransferredNumbers(numbers: .totalDirs)), number: NumberFormatter.Style.decimal)
+            self.newfiles.stringValue = NumberFormatter.localizedString(from: NSNumber(value: number.getTransferredNumbers(numbers: .new)), number: NumberFormatter.Style.decimal)
+            self.deletefiles.stringValue = NumberFormatter.localizedString(from: NSNumber(value: number.getTransferredNumbers(numbers: .delete)), number: NumberFormatter.Style.decimal)
         } else {
             self.transferredNumber.stringValue = ""
             self.transferredNumberSizebytes.stringValue = ""
@@ -849,6 +857,9 @@ extension ViewControllertabMain: StartBatch {
                 self.runBatch()
             case 1:
                 self.maxcount = self.output!.getMaxcount()
+                let number = Numbers(output: self.output!.getOutput())
+                number.setNumbers()
+                
                 // Update files in work
                 batchobject.updateInProcess(numberOfFiles: self.maxcount)
                 batchobject.setCompleted()
@@ -862,16 +873,16 @@ extension ViewControllertabMain: StartBatch {
                 
                 let config = SharingManagerConfiguration.sharedInstance.getConfigurations()[index]
                 if config.offsiteServer.isEmpty {
-                    let result = config.localCatalog + " , " + "localhost" + " , " + self.output!.statistics(numberOfFiles: self.transferredNumber.stringValue)[0]
+                    let result = config.localCatalog + " , " + "localhost" + " , " + number.statistics(numberOfFiles: self.transferredNumber.stringValue)[0]
                     self.outputbatch!.addLine(str: result)
                 } else {
-                    let result = config.localCatalog + " , " + config.offsiteServer + " , " + self.output!.statistics(numberOfFiles: self.transferredNumber.stringValue)[0]
+                    let result = config.localCatalog + " , " + config.offsiteServer + " , " + number.statistics(numberOfFiles: self.transferredNumber.stringValue)[0]
                     self.outputbatch!.addLine(str: result)
                 }
                 
                 let hiddenID = SharingManagerConfiguration.sharedInstance.gethiddenID(index: index)
                 SharingManagerConfiguration.sharedInstance.setCurrentDateonConfiguration(index)
-                SharingManagerSchedule.sharedInstance.addScheduleResultManuel(hiddenID, result: self.output!.statistics(numberOfFiles: self.transferredNumber.stringValue)[0])
+                SharingManagerSchedule.sharedInstance.addScheduleResultManuel(hiddenID, result: number.statistics(numberOfFiles: self.transferredNumber.stringValue)[0])
                 self.showProcessInfo(info: .Executing)
                 
                 self.runBatch()
@@ -1181,8 +1192,10 @@ extension ViewControllertabMain: UpdateProgress {
                     })
                 case .execute_singlerun:
                     self.showProcessInfo(info: .Logging_run)
+                    let number = Numbers(output: self.output!.getOutput())
+                    number.setNumbers()
                     SharingManagerConfiguration.sharedInstance.setCurrentDateonConfiguration(self.index!)
-                    SharingManagerSchedule.sharedInstance.addScheduleResultManuel(self.hiddenID!, result: self.output!.statistics(numberOfFiles: self.transferredNumber.stringValue)[0])
+                    SharingManagerSchedule.sharedInstance.addScheduleResultManuel(self.hiddenID!, result: number.statistics(numberOfFiles: self.transferredNumber.stringValue)[0])
                     
                     if let pvc2 = self.presentedViewControllers as? [ViewControllerProgressProcess] {
                         if (pvc2.count > 0) {
