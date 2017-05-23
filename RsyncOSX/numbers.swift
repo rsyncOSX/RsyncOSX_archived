@@ -217,6 +217,9 @@ final class Numbers {
     
     init (output:Array<String>) {
         self.output = output
+        if (self.output!.count > 2) {
+            self.resultRsync = (self.output![self.output!.count-2])
+        }
     }
 }
 
