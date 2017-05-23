@@ -8,7 +8,7 @@
 
 import Foundation
 
-final class rsyncArguments {
+final class rsyncArguments: ProcessArguments {
     
     private var config:configuration?
     private var args:Array<String>?
@@ -75,13 +75,6 @@ final class rsyncArguments {
             return nil
         }
         return self.command
-    }
-    
-    func getFile() -> String? {
-        guard self.file != nil else {
-            return nil
-        }
-        return self.file
     }
     
     init(config: configuration, remoteFile : String?, localCatalog : String?, drynrun:Bool?) {

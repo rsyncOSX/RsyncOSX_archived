@@ -8,7 +8,12 @@
 
 import Foundation
 
-final class getRemoteFilelist {
+protocol ProcessArguments {
+    func getArguments() -> Array<String>?
+    func getCommand() -> String?
+}
+
+final class getRemoteFilelist: ProcessArguments {
     
     private var config:configuration?
     private var args:Array<String>?
@@ -30,8 +35,8 @@ final class getRemoteFilelist {
                 self.args!.append("-c")
                 self.command = "/bin/bash"
             }
-            let str:String = "cd " + config.offsiteCatalog + ";du -a -h"
-            // let str:String = "cd " + config.offsiteCatalog + ";find . -print"
+            // let str:String = "cd " + config.offsiteCatalog + ";du -a -h"
+            let str:String = "cd " + config.offsiteCatalog + ";find . -print"
             self.args!.append(str)
         }
     }
@@ -50,14 +55,6 @@ final class getRemoteFilelist {
         }
         return self.command
     }
-    
-    func getFile() -> String? {
-        guard self.file != nil else {
-            return nil
-        }
-        return self.file
-    }
-    
     
     init(config: configuration) {
         

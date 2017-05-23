@@ -14,7 +14,7 @@ enum enumscopyfiles {
     case du
 }
 
-final class CopyFileprocessArguments {
+final class CopyFileprocessArguments: ProcessArguments {
     
     // File to read
     private var file:String?
@@ -44,18 +44,7 @@ final class CopyFileprocessArguments {
         return self.argDisplay!
     }
     
-    // Reading content of txt file into an Array of String
-    func getSearchfile() -> Array<String>? {
-        var stringArray:Array<String>?
-        if let file = self.file {
-            let fileContent = try? String(contentsOfFile: file, encoding: String.Encoding.utf8)
-            if fileContent != nil {
-                stringArray = fileContent!.components(separatedBy: CharacterSet.newlines)
-            }
-        }
-        return stringArray
-    }
-
+ 
     init (task : enumscopyfiles, config : configuration, remoteFile : String?, localCatalog : String?, drynrun:Bool?) {
         
         // Initialize the argument array
@@ -70,14 +59,11 @@ final class CopyFileprocessArguments {
             let arguments = rsyncArguments(config: config, remoteFile: remoteFile, localCatalog: localCatalog, drynrun: drynrun)
             self.arguments = arguments.getArguments()
             self.command = arguments.getCommand()
-            self.file = arguments.getFile()
         case .du:
             // Remote du -a
             let arguments = getRemoteFilelist(config: config)
             self.arguments = arguments.getArguments()
             self.command = arguments.getCommand()
-            self.file = arguments.getFile()
-            
         }
     }
 }
