@@ -4838,20 +4838,6 @@ DQ
                         <rect key="frame" x="0.0" y="0.0" width="344" height="206"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
-                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="JeM-Ky-gSo">
-                                <rect key="frame" x="255" y="13" width="75" height="32"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <buttonCell key="cell" type="push" title="Close" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="hXq-5p-KS7">
-                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                    <font key="font" metaFont="system"/>
-                                    <string key="keyEquivalent" base64-UTF8="YES">
-DQ
-</string>
-                                </buttonCell>
-                                <connections>
-                                    <action selector="close:" target="kPy-NB-0HQ" id="czM-O8-yOL"/>
-                                </connections>
-                            </button>
                             <scrollView fixedFrame="YES" autohidesScrollers="YES" horizontalLineScroll="19" horizontalPageScroll="10" verticalLineScroll="19" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7lc-Ln-ysQ">
                                 <rect key="frame" x="20" y="61" width="182" height="125"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
@@ -4967,6 +4953,20 @@ DQ
                                     <action selector="DeleteProfile:" target="kPy-NB-0HQ" id="G60-Gu-G4A"/>
                                 </connections>
                             </button>
+                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="JeM-Ky-gSo">
+                                <rect key="frame" x="271" y="13" width="59" height="32"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <buttonCell key="cell" type="push" title="OK" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="hXq-5p-KS7">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                    <string key="keyEquivalent" base64-UTF8="YES">
+DQ
+</string>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="close:" target="kPy-NB-0HQ" id="czM-O8-yOL"/>
+                                </connections>
+                            </button>
                         </subviews>
                     </view>
                     <connections>
@@ -5059,9 +5059,20 @@ DQ
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableHeaderView>
                             </scrollView>
-                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dnA-SO-98k">
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="OaY-25-Oi1">
+                                <rect key="frame" x="18" y="20" width="330" height="21"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="21" id="fpE-St-Tpl"/>
+                                    <constraint firstAttribute="width" constant="326" id="qZJ-fy-u7U"/>
+                                </constraints>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" title="Either double click on row or select row and OK button" id="AMs-qg-ohN">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="dnA-SO-98k">
                                 <rect key="frame" x="421" y="13" width="59" height="32"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <buttonCell key="cell" type="push" title="OK" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="h4F-dN-GN0">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
@@ -5075,7 +5086,13 @@ DQ
                             </button>
                         </subviews>
                         <constraints>
+                            <constraint firstItem="OaY-25-Oi1" firstAttribute="leading" secondItem="Kzb-MX-sbu" secondAttribute="leading" constant="20" id="25h-Ij-Fdj"/>
+                            <constraint firstItem="OaY-25-Oi1" firstAttribute="top" secondItem="86u-4S-Owq" secondAttribute="bottom" constant="20" id="CfN-uv-Z3q"/>
+                            <constraint firstAttribute="bottom" secondItem="dnA-SO-98k" secondAttribute="bottom" constant="20" id="JpE-cZ-Yr7"/>
+                            <constraint firstItem="dnA-SO-98k" firstAttribute="top" secondItem="86u-4S-Owq" secondAttribute="bottom" constant="20" id="KDB-MZ-mDG"/>
+                            <constraint firstAttribute="bottom" secondItem="OaY-25-Oi1" secondAttribute="bottom" constant="20" id="NDg-9B-FHU"/>
                             <constraint firstItem="86u-4S-Owq" firstAttribute="leading" secondItem="Kzb-MX-sbu" secondAttribute="leading" constant="20" symbolic="YES" id="aM7-W6-CTw"/>
+                            <constraint firstAttribute="trailing" secondItem="dnA-SO-98k" secondAttribute="trailing" constant="20" id="r9i-Ro-AMT"/>
                             <constraint firstItem="86u-4S-Owq" firstAttribute="top" secondItem="Kzb-MX-sbu" secondAttribute="top" constant="20" symbolic="YES" id="ubS-cL-SML"/>
                         </constraints>
                     </view>

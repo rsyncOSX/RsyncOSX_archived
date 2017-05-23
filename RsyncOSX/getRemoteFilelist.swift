@@ -1,14 +1,19 @@
 //
-//  filetxtArguments.swift
+//  getRemoteFilelist.swift
 //  RsyncOSX
 //
-//  Created by Thomas Evensen on 06.03.2017.
+//  Created by Thomas Evensen on 21.05.2017.
 //  Copyright © 2017 Thomas Evensen. All rights reserved.
 //
 
 import Foundation
 
-final class filetxtArguments {
+protocol ProcessArguments {
+    func getArguments() -> Array<String>?
+    func getCommand() -> String?
+}
+
+final class getRemoteFilelist: ProcessArguments {
     
     private var config:configuration?
     private var args:Array<String>?
@@ -18,7 +23,7 @@ final class filetxtArguments {
     // Set arguments for remote create of files.txt
     private func arguments() {
         if let config = self.config {
-            // ssh user@server.com "cd offsiteCatalog; find . -print | cat > .files.txt"
+            // ssh user@server.com "cd offsiteCatalog; du ."
             if (config.sshport != nil) {
                 self.args!.append("-p")
                 self.args!.append(String(config.sshport!))
@@ -30,10 +35,12 @@ final class filetxtArguments {
                 self.args!.append("-c")
                 self.command = "/bin/bash"
             }
-            let str:String = "cd " + config.offsiteCatalog + "; find . -print | cat > .files.txt "
+            // let str:String = "cd " + config.offsiteCatalog + ";du -a -h"
+            let str:String = "cd " + config.offsiteCatalog + ";find . -print"
             self.args!.append(str)
         }
     }
+    
     
     func getArguments() -> Array<String>? {
         guard self.args != nil else {
@@ -48,14 +55,6 @@ final class filetxtArguments {
         }
         return self.command
     }
-    
-    func getFile() -> String? {
-        guard self.file != nil else {
-            return nil
-        }
-        return self.file
-    }
-    
     
     init(config: configuration) {
         

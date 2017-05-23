@@ -33,10 +33,14 @@ final class completeScheduledOperation {
     // The Operation object sets reference to the completeScheduledOperation in SharingManagerConfiguration.sharedInstance.operation
     // This function is executed when rsyn process terminates
     func finalizeScheduledJob(output:outputProcess) {
+        
         // Write result to Schedule
         let datestring = self.dateformatter!.string(from: date!)
         let dateStartstring = self.dateformatter!.string(from: dateStart!)
-        let numberstring = output.statistics(numberOfFiles: nil)
+        let number = Numbers(output: output.getOutput())
+        number.setNumbers()
+        let numberstring = number.statistics(numberOfFiles: nil)
+        
         SharingManagerSchedule.sharedInstance.addScheduleResult(self.hiddenID!, dateStart: dateStartstring, result: numberstring[0], date: datestring, schedule: schedule!)
         // Writing timestamp to configuration
         // Update memory configuration with rundate

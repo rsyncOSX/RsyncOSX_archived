@@ -12,8 +12,6 @@ final class CopyFiles {
     
     // Index from View
     private var index:Int?
-    // stack of Work
-    private var work:Array<enumscopyfiles>?
     // Setting the configuration element according to index
     private var config:configuration?
     // when files.txt is copied from remote server get the records
@@ -87,42 +85,18 @@ final class CopyFiles {
         return self.commandDisplay!
     }
     
-    // As soon as we get the termination message kick of 
-    // the next work. Work is first ssh and then scp
-    func nextWork() {
-        self.doWork()
+    private func getRemoteFileList() {
+        self.output = nil
+        self.argumentsObject = CopyFileprocessArguments(task: .du, config: self.config!, remoteFile: nil, localCatalog: nil, drynrun: nil)
+        self.arguments = self.argumentsObject!.getArguments()
+        self.command = self.argumentsObject!.getCommand()
+        self.process = commandCopyFiles(command : self.command, arguments: self.arguments)
+        self.output = outputProcess()
+        self.process!.executeProcess(output: self.output!)
     }
     
-    // The work stack.
-    // This is the initial work when selecting a row to restore from.
-    // The stack is .create and .scp
-    private func doWork() {
-        
-        guard (self.work != nil) else {
-            return
-        }
-        
-        if (self.work!.count > 0) {
-            self.output = nil
-            let work:enumscopyfiles = self.work!.removeFirst()
-            self.argumentsObject = CopyFileprocessArguments(task: work, config: self.config!, remoteFile: nil, localCatalog: nil, drynrun: nil)
-            self.arguments = self.argumentsObject!.getArguments()
-            self.command = self.argumentsObject!.getCommand()
-            self.process = commandCopyFiles(command : self.command, arguments: self.arguments)
-            self.output = outputProcess()
-            self.process!.executeProcess(output: self.output!)
-            
-            
-        } else {
-            // Files.txt are ready to read
-            self.files = self.argumentsObject!.getSearchfile()
-            if let pvc = SharingManagerConfiguration.sharedInstance.ViewControllerCopyFiles as? ViewControllerCopyFiles {
-                self.progress_delegate = pvc
-                self.refreshtable_delegate = pvc
-                self.refreshtable_delegate?.refresh()
-                self.progress_delegate?.stop()
-            }
-        }
+    func setRemoteFileList(){
+        self.files = self.output!.getOutput()
     }
     
     // Filter function
@@ -150,13 +124,7 @@ final class CopyFiles {
         // Setting index and configuration object
         self.index = index
         self.config = SharingManagerConfiguration.sharedInstance.getConfigurations()[self.index!]
-        // Create inital stack of work
-        self.work = Array<enumscopyfiles>()
-        // Work are poped of top of stack
-        self.work!.append(.create)
-        self.work!.append(.scp)
-        // Do first part of job
-        self.doWork()
+        self.getRemoteFileList()
     }
     
   }
