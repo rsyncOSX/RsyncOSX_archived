@@ -1192,10 +1192,6 @@ extension ViewControllertabMain: UpdateProgress {
                     })
                 case .execute_singlerun:
                     self.showProcessInfo(info: .Logging_run)
-                    let number = Numbers(output: self.output!.getOutput())
-                    number.setNumbers()
-                    SharingManagerConfiguration.sharedInstance.setCurrentDateonConfiguration(self.index!)
-                    SharingManagerSchedule.sharedInstance.addScheduleResultManuel(self.hiddenID!, result: number.statistics(numberOfFiles: self.transferredNumber.stringValue)[0])
                     
                     if let pvc2 = self.presentedViewControllers as? [ViewControllerProgressProcess] {
                         if (pvc2.count > 0) {
@@ -1209,6 +1205,11 @@ extension ViewControllertabMain: UpdateProgress {
                             self.presentViewControllerAsSheet(self.ViewControllerInformation)
                         })
                     }
+                    // Logg run
+                    let number = Numbers(output: self.output!.getOutput())
+                    number.setNumbers()
+                    SharingManagerConfiguration.sharedInstance.setCurrentDateonConfiguration(self.index!)
+                    SharingManagerSchedule.sharedInstance.addScheduleResultManuel(self.hiddenID!, result: number.statistics(numberOfFiles: self.transferredNumber.stringValue)[0])
                 case .abort:
                     self.abortOperations()
                     self.workload = nil

@@ -5,6 +5,8 @@
 //  Created by Thomas Evensen on 22.05.2017.
 //  Copyright © 2017 Thomas Evensen. All rights reserved.
 //
+//  Class for crunching numbers from rsyn output.  Numbers are
+//  informal only, either used in main view or for logging purposes.
 
 import Foundation
 
@@ -229,6 +231,7 @@ final class Numbers {
     
     init (output:Array<String>) {
         self.output = output
+        // Getting the summarized output from output.
         if (self.output!.count > 2) {
             self.resultRsync = (self.output![self.output!.count-2])
         }
