@@ -25,8 +25,6 @@ enum enumNumbers {
 
 final class outputProcess {
     
-    // Second last String in Array rsync output of how much in what time
-    private var resultRsync:String?
     // calculated number of files
     // output Array to keep output from rsync in
     private var output:Array<String>?
@@ -60,14 +58,6 @@ final class outputProcess {
         return self.output!
     }
     
-    // Return end message of Rsync
-    func endMessage() -> String {
-        if let message = self.resultRsync {
-            return message
-        } else {
-            return ""
-        }
-    }
     
     // Add line to output
     func addLine (_ str: String) {
@@ -87,9 +77,6 @@ final class outputProcess {
         // Set maxnumber so far
         self.maxNumber = self.endIndex!
         
-        if (self.endIndex! > 2) {
-            self.resultRsync = (self.output![self.endIndex!-2])
-        }
         // rsync error
         let error = sentence.contains("rsync error:")
         // There is an error in transferring files
@@ -119,9 +106,6 @@ final class outputProcess {
         // Set maxnumber so far
         self.maxNumber = self.endIndex!
         
-        if (self.endIndex! > 2) {
-            self.resultRsync = (self.output![self.endIndex!-2])
-        }
     }
 
     init () {
