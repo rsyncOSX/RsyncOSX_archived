@@ -8,6 +8,18 @@
 
 import Foundation
 
+// enum for returning what is asked for
+enum enumNumbers {
+    case totalNumber
+    case totalDirs
+    case totalNumberSizebytes
+    case transferredNumber
+    case transferredNumberSizebytes
+    case new
+    case delete
+}
+
+
 final class Numbers {
     
     // Second last String in Array rsync output of how much in what time

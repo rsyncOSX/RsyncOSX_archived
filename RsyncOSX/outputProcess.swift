@@ -11,18 +11,6 @@ protocol RsyncError: class {
     func rsyncerror()
 }
 
-// enum for returning what is asked for
-enum enumNumbers {
-    case totalNumber
-    case totalDirs
-    case totalNumberSizebytes
-    case transferredNumber
-    case transferredNumberSizebytes
-    case new
-    case delete
-}
-
-
 final class outputProcess {
     
     // calculated number of files
