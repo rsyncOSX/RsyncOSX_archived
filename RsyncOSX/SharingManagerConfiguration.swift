@@ -111,7 +111,7 @@ class SharingManagerConfiguration {
     // Initialized during startup
     private var argumentAllConfiguration =  NSMutableArray()
     // Datasource for NSTableViews
-    private var ConfigurationsDataSource : [NSMutableDictionary]?
+    private var ConfigurationsDataSource : Array<NSMutableDictionary>?
     // Object for batchQueue data and operations
     private var batchdata:batchOperations?
     // the MacSerialNumber

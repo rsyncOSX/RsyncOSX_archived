@@ -98,7 +98,7 @@ final class CopyFiles {
     func setRemoteFileList(){
         self.files = self.output!.getOutput()
     }
-    
+        
     // Filter function
     func filter(search:String?) -> Array<String> {
         

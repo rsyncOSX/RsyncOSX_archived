@@ -231,9 +231,15 @@ extension ViewControllerCopyFiles: NSTableViewDelegate {
             return nil
         }
         
-        let data = self.filesArray![row]
+        var split = self.filesArray![row].components(separatedBy: "\t")
+        
         if tableColumn == tableView.tableColumns[0] {
-            text = data
+            if split.count > 1 {
+                text = split[0] + " - " + split[1]
+            } else {
+                text = split[0]
+            }
+            
             cellIdentifier = "dataID"
         }
         if let cell = tableView.make(withIdentifier: cellIdentifier, owner: self) as? NSTableCellView {
@@ -339,8 +345,6 @@ extension ViewControllerCopyFiles: UpdateProgress {
     // When Process terminates
     func ProcessTermination() {
         if (rsync == false) {
-            // do next job within copyobject
-            // self.copyFiles!.nextWork()
             
             self.copyFiles!.setRemoteFileList()
             self.refresh()
