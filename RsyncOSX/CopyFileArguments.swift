@@ -14,7 +14,7 @@ enum enumscopyfiles {
     case du
 }
 
-final class CopyFileprocessArguments: ProcessArguments {
+final class CopyFileArguments: ProcessArguments {
     
     // File to read
     private var file:String?
@@ -61,7 +61,7 @@ final class CopyFileprocessArguments: ProcessArguments {
             self.command = arguments.getCommand()
         case .du:
             // Remote du -a
-            let arguments = getRemoteFilelist(config: config)
+            let arguments = getRemoteFilesArguments(config: config)
             self.arguments = arguments.getArguments()
             self.command = arguments.getCommand()
         }

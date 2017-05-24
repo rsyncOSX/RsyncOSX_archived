@@ -20,7 +20,7 @@ final class CopyFiles {
     private var arguments:Array<String>?
     private var command:String?
     // The arguments object
-    var argumentsObject:CopyFileprocessArguments?
+    var argumentsObject:CopyFileArguments?
     // Message to calling class do a refresh
     weak var refreshtable_delegate:RefreshtableView?
     // Command real run - for the copy process (by rsync)
@@ -58,10 +58,10 @@ final class CopyFiles {
         }
         
         if(dryrun) {
-            self.argumentsObject = CopyFileprocessArguments(task: .rsync, config: self.config!, remoteFile: remotefile, localCatalog: localCatalog, drynrun: true)
+            self.argumentsObject = CopyFileArguments(task: .rsync, config: self.config!, remoteFile: remotefile, localCatalog: localCatalog, drynrun: true)
             self.arguments = self.argumentsObject!.getArguments()
         } else {
-            self.argumentsObject = CopyFileprocessArguments(task: .rsync, config: self.config!, remoteFile: remotefile, localCatalog: localCatalog, drynrun: nil)
+            self.argumentsObject = CopyFileArguments(task: .rsync, config: self.config!, remoteFile: remotefile, localCatalog: localCatalog, drynrun: nil)
             self.arguments = self.argumentsObject!.getArguments()
         }
         self.command = nil
@@ -78,7 +78,7 @@ final class CopyFiles {
             return ""
         }
         
-        self.commandDisplay = CopyFileprocessArguments(task: .rsync, config: self.config!, remoteFile: remotefile, localCatalog: localCatalog, drynrun: true).getcommandDisplay()
+        self.commandDisplay = CopyFileArguments(task: .rsync, config: self.config!, remoteFile: remotefile, localCatalog: localCatalog, drynrun: true).getcommandDisplay()
         guard self.commandDisplay != nil else {
             return ""
         }
@@ -87,7 +87,7 @@ final class CopyFiles {
     
     private func getRemoteFileList() {
         self.output = nil
-        self.argumentsObject = CopyFileprocessArguments(task: .du, config: self.config!, remoteFile: nil, localCatalog: nil, drynrun: nil)
+        self.argumentsObject = CopyFileArguments(task: .du, config: self.config!, remoteFile: nil, localCatalog: nil, drynrun: nil)
         self.arguments = self.argumentsObject!.getArguments()
         self.command = self.argumentsObject!.getCommand()
         self.process = commandCopyFiles(command : self.command, arguments: self.arguments)

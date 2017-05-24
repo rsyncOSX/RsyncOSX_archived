@@ -13,7 +13,7 @@ protocol ProcessArguments {
     func getCommand() -> String?
 }
 
-final class getRemoteFilelist: ProcessArguments {
+final class getRemoteFilesArguments: ProcessArguments {
     
     private var config:configuration?
     private var args:Array<String>?
@@ -35,8 +35,8 @@ final class getRemoteFilelist: ProcessArguments {
                 self.args!.append("-c")
                 self.command = "/bin/bash"
             }
-            // let str:String = "cd " + config.offsiteCatalog + ";du -a -h"
-            let str:String = "cd " + config.offsiteCatalog + ";find . -print"
+            let str:String = "cd " + config.offsiteCatalog + ";du -a -h"
+            // let str:String = "cd " + config.offsiteCatalog + ";find . -print"
             self.args!.append(str)
         }
     }
