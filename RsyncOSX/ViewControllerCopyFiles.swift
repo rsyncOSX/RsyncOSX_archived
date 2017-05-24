@@ -256,7 +256,15 @@ extension ViewControllerCopyFiles: NSTableViewDelegate {
             guard self.filesArray != nil else {
                 return
             }
-            self.remoteCatalog.stringValue = self.filesArray![index]
+            
+            let split = self.filesArray![index].components(separatedBy: "\t")
+            
+            guard split.count > 1 else {
+                return
+            }
+            
+            self.remoteCatalog.stringValue = split[1]
+            
             if (self.remoteCatalog.stringValue.isEmpty == false && self.localCatalog.stringValue.isEmpty == false) {
                 self.commandString.stringValue = self.copyFiles!.getCommandDisplayinView(remotefile: self.remoteCatalog.stringValue, localCatalog: self.localCatalog.stringValue)
             } else {
