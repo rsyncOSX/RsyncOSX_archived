@@ -17,6 +17,8 @@ final class commandCopyFiles: processCmd {
         if let pvc = SharingManagerConfiguration.sharedInstance.ViewControllerCopyFiles as? ViewControllerCopyFiles {
             self.delegate_update = pvc
         }
+        // Just for using another appending output function
+        self.copyfiles = true
     }
     
 }
