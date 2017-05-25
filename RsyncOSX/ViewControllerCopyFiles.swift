@@ -129,7 +129,6 @@ class ViewControllerCopyFiles : NSViewController {
         self.refresh()
         self.displayRemoteserver(index: nil)
         self.remoteCatalog.stringValue = ""
-        self.localCatalog.stringValue = ""
         self.SelectButton.title = "Get source"
     }
     
@@ -174,7 +173,11 @@ class ViewControllerCopyFiles : NSViewController {
             }
         }
         self.CopyButton.title = "Estimate"
-        self.localCatalog.stringValue = ""
+        if let restorePath = SharingManagerConfiguration.sharedInstance.restorePath {
+            self.localCatalog.stringValue = restorePath
+        } else {
+            self.localCatalog.stringValue = ""
+        }
     }
     
     override func viewDidDisappear() {
