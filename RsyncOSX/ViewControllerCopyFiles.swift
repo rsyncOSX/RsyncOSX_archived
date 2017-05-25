@@ -234,13 +234,19 @@ extension ViewControllerCopyFiles: NSTableViewDelegate {
         var split = self.filesArray![row].components(separatedBy: "\t")
         
         if tableColumn == tableView.tableColumns[0] {
+                text = split[0]
+            
+            cellIdentifier = "sizeID"
+        }
+        
+        if tableColumn == tableView.tableColumns[1] {
             if split.count > 1 {
-                text = split[0] + " - " + split[1]
+                text = split[1]
             } else {
                 text = split[0]
             }
             
-            cellIdentifier = "dataID"
+            cellIdentifier = "fileID"
         }
         if let cell = tableView.make(withIdentifier: cellIdentifier, owner: self) as? NSTableCellView {
             cell.textField?.stringValue = text!
