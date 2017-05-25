@@ -193,8 +193,17 @@ class ViewControllerCopyFiles : NSViewController {
             return
         }
         
+        guard (self.remoteCatalog!.stringValue.isEmpty == false ) else {
+            return
+        }
+        
+        guard (self.localCatalog!.stringValue.isEmpty == false ) else {
+            return
+        }
+        
         let answer = Alerts.dialogOKCancel("Copy single files or directory", text: "Start copy?")
         if (answer){
+            
             self.rsync = true
             self.workingRsync.startAnimation(nil)
             self.copyFiles!.executeRsync(remotefile: remoteCatalog!.stringValue, localCatalog: localCatalog!.stringValue, dryrun: false)
