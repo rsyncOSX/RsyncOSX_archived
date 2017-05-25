@@ -161,6 +161,8 @@ class ViewControllerCopyFiles : NSViewController {
         self.workingRsync.usesThreadedAnimation = true
         self.search.delegate = self
         self.localCatalog.delegate = self
+        // Double click on row to select
+        self.tableViewSelect.doubleAction = #selector(self.tableViewDoubleClick(sender:))
     }
     
     override func viewDidAppear() {
@@ -184,6 +186,21 @@ class ViewControllerCopyFiles : NSViewController {
         super.viewDidDisappear()
         self.resetCopySource()
     }
+    
+    @objc(tableViewDoubleClick:) func tableViewDoubleClick(sender:AnyObject) {
+        
+        guard self.index != nil else {
+            return
+        }
+        
+        let answer = Alerts.dialogOKCancel("Copy single files or directory", text: "Start copy?")
+        if (answer){
+            self.rsync = true
+            self.workingRsync.startAnimation(nil)
+            self.copyFiles!.executeRsync(remotefile: remoteCatalog!.stringValue, localCatalog: localCatalog!.stringValue, dryrun: false)
+        }
+    }
+
     
 }
 
@@ -362,7 +379,6 @@ extension ViewControllerCopyFiles: UpdateProgress {
     // When Process terminates
     func ProcessTermination() {
         if (rsync == false) {
-            
             self.copyFiles!.setRemoteFileList()
             self.refresh()
             self.stop()
