@@ -126,7 +126,9 @@ class ViewControllerCopyFiles : NSViewController {
         // Empty tabledata
         self.index = nil
         self.filesArray = nil
-        self.refresh()
+        GlobalMainQueue.async(execute: { () -> Void in
+            self.tableViewSelect.reloadData()
+        })
         self.displayRemoteserver(index: nil)
         self.remoteCatalog.stringValue = ""
         self.SelectButton.title = "Get source"
