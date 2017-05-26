@@ -73,6 +73,8 @@ class SharingManagerConfiguration {
     var scheduledTaskdisableExecute:Double = 0
     // Allow double click to activate single tasks
     var allowDoubleclick:Bool = true
+    // Temporary path for restore
+    var restorePath:String?
     
     // OTHER SETTINGS
     

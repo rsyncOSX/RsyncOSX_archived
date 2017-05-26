@@ -27,6 +27,7 @@ final class persistentStoreUserconfiguration: readwritefiles {
         var rsyncPath:String?
         var allowDoubleclick:Int?
         var rsyncerror:Int?
+        var restorePath:String?
         
         if (SharingManagerConfiguration.sharedInstance.rsyncVer3) {
             version3Rsync = 1
@@ -41,13 +42,14 @@ final class persistentStoreUserconfiguration: readwritefiles {
         if (SharingManagerConfiguration.sharedInstance.rsyncPath != nil) {
             rsyncPath = SharingManagerConfiguration.sharedInstance.rsyncPath!
         }
-        
+        if (SharingManagerConfiguration.sharedInstance.restorePath != nil) {
+            restorePath = SharingManagerConfiguration.sharedInstance.restorePath!
+        }
         if (SharingManagerConfiguration.sharedInstance.allowDoubleclick) {
             allowDoubleclick = 1
         } else {
             allowDoubleclick = 0
         }
-        
         if (SharingManagerConfiguration.sharedInstance.rsyncerror) {
             rsyncerror = 1
         } else {
@@ -65,6 +67,9 @@ final class persistentStoreUserconfiguration: readwritefiles {
         
         if ((rsyncPath != nil)) {
             dict.setObject(rsyncPath!, forKey: "rsyncPath" as NSCopying)
+        }
+        if ((restorePath != nil)) {
+            dict.setObject(restorePath!, forKey: "restorePath" as NSCopying)
         }
         array.append(dict)
         self.writeToStore(array)

@@ -34,6 +34,12 @@ final class userconfiguration {
         if let rsyncPath = dict.value(forKey: "rsyncPath") as? String {
             SharingManagerConfiguration.sharedInstance.rsyncPath = rsyncPath
         }
+        // Temporary path for restores single files or directory
+        if let restorePath = dict.value(forKey: "restorePath") as? String {
+            SharingManagerConfiguration.sharedInstance.restorePath = restorePath
+        } else {
+            SharingManagerConfiguration.sharedInstance.restorePath = NSHomeDirectory() + "/tmp/"
+        }
         // Disable Excute/taskbutton before scheduled task is commencing
         if let minutes = dict.value(forKey: "scheduledTaskdisableExecute") as? Double {
             SharingManagerConfiguration.sharedInstance.scheduledTaskdisableExecute = minutes

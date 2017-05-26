@@ -33,6 +33,7 @@ class ViewControllerUserconfiguration : NSViewController {
     @IBOutlet weak var allowDoubleClick: NSButton!
     @IBOutlet weak var noRsync: NSTextField!
     @IBOutlet weak var rsyncerror: NSButton!
+    @IBOutlet weak var restorePath: NSTextField!
     
     @IBAction func toggleversion3rsync(_ sender: NSButton) {
         if (self.version3rsync.state == NSOnState) {
@@ -64,6 +65,7 @@ class ViewControllerUserconfiguration : NSViewController {
             self.setRsyncPath()
             self.setscheduledTaskdisableExecute()
             self.verifyRsync()
+            self.setRestorePath()
             _ = persistentStoreAPI.sharedInstance.saveUserconfiguration()
         }
         self.dismiss_delegate?.dismiss_view(viewcontroller: self)
@@ -100,6 +102,18 @@ class ViewControllerUserconfiguration : NSViewController {
             }
         } else {
             SharingManagerConfiguration.sharedInstance.rsyncPath = nil
+        }
+        self.dirty = true
+    }
+    
+    private func setRestorePath(){
+        if (self.restorePath.stringValue.isEmpty == false) {
+            if (restorePath.stringValue.hasSuffix("/") == false){
+                restorePath.stringValue = restorePath.stringValue + "/"
+                SharingManagerConfiguration.sharedInstance.restorePath = restorePath.stringValue
+            }
+        } else {
+            SharingManagerConfiguration.sharedInstance.restorePath = nil
         }
         self.dirty = true
     }
@@ -157,6 +171,7 @@ class ViewControllerUserconfiguration : NSViewController {
             self.dismiss_delegate = pvc2
         }
         self.rsyncPath.delegate = self
+        self.restorePath.delegate = self
     }
     
     override func viewDidAppear() {
@@ -195,6 +210,11 @@ class ViewControllerUserconfiguration : NSViewController {
             self.rsyncerror.state = NSOnState
         } else {
             self.rsyncerror.state = NSOffState
+        }
+        if (SharingManagerConfiguration.sharedInstance.restorePath != nil) {
+            self.restorePath.stringValue = SharingManagerConfiguration.sharedInstance.restorePath!
+        } else {
+            self.restorePath.stringValue = ""
         }
     }
     
