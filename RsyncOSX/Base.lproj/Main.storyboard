@@ -234,14 +234,14 @@
                                         </connections>
                                     </button>
                                 </toolbarItem>
-                                <toolbarItem implicitItemIdentifier="0BC8B22B-DB33-4837-BCA8-FFC7E3BBBCE1" label="Abort" paletteLabel="Abort" image="NSStopProgressFreestandingTemplate" id="8uy-WP-uGC">
+                                <toolbarItem implicitItemIdentifier="0BC8B22B-DB33-4837-BCA8-FFC7E3BBBCE1" label="Abort" paletteLabel="Abort" image="NSStatusUnavailable" id="8uy-WP-uGC">
                                     <nil key="toolTip"/>
                                     <size key="minSize" width="48" height="43"/>
                                     <size key="maxSize" width="60" height="48"/>
                                     <button key="view" id="c5B-Q0-6t4">
                                         <rect key="frame" x="0.0" y="14" width="60" height="43"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                        <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="NSStopProgressFreestandingTemplate" imagePosition="only" alignment="center" borderStyle="border" imageScaling="proportionallyUpOrDown" inset="2" id="G8P-Eh-vgb">
+                                        <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="NSStatusUnavailable" imagePosition="only" alignment="center" borderStyle="border" imageScaling="proportionallyUpOrDown" inset="2" id="G8P-Eh-vgb">
                                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                             <font key="font" metaFont="system"/>
                                         </buttonCell>
@@ -250,14 +250,14 @@
                                         </connections>
                                     </button>
                                 </toolbarItem>
-                                <toolbarItem implicitItemIdentifier="FF456882-6AAD-4991-89C5-417E4701ADE6" label="Execute" paletteLabel="Execute" image="NSActionTemplate" id="quu-OS-Fs0">
+                                <toolbarItem implicitItemIdentifier="FF456882-6AAD-4991-89C5-417E4701ADE6" label="Execute" paletteLabel="Execute" image="NSSlideshowTemplate" id="quu-OS-Fs0">
                                     <nil key="toolTip"/>
                                     <size key="minSize" width="48" height="43"/>
                                     <size key="maxSize" width="60" height="48"/>
                                     <button key="view" id="5sJ-qI-MY1">
                                         <rect key="frame" x="0.0" y="14" width="60" height="43"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                        <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="NSActionTemplate" imagePosition="only" alignment="center" borderStyle="border" imageScaling="proportionallyUpOrDown" inset="2" id="Mx0-qb-70n">
+                                        <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="NSSlideshowTemplate" imagePosition="only" alignment="center" borderStyle="border" imageScaling="proportionallyUpOrDown" inset="2" id="Mx0-qb-70n">
                                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                             <font key="font" metaFont="system"/>
                                         </buttonCell>
@@ -5240,6 +5240,7 @@ DQ
         <image name="NSApplicationIcon" width="128" height="128"/>
         <image name="NSFolder" width="32" height="32"/>
         <image name="NSInfo" width="32" height="32"/>
-        <image name="NSStopProgressFreestandingTemplate" width="14" height="14"/>
+        <image name="NSSlideshowTemplate" width="17" height="14"/>
+        <image name="NSStatusUnavailable" width="16" height="16"/>
     </resources>
 </document>
