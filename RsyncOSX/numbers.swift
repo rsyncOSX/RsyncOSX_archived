@@ -168,8 +168,12 @@ final class Numbers {
         
         
         guard (self.resultRsync != nil) else {
-            let size = numberOfFiles! + " files :" + sizeOfFiles! + " KB" + " in xx seconds"
-            return [size,"0"]
+            if (numberOfFiles == nil || sizeOfFiles == nil) {
+                return ["0","0"]
+            } else {
+                let size = numberOfFiles! + " files :" + sizeOfFiles! + " KB" + " in xx seconds"
+                return [size,"0"]
+            }
         }
         
         if (SharingManagerConfiguration.sharedInstance.rsyncVer3) {
