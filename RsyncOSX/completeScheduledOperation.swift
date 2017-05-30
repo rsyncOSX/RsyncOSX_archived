@@ -39,7 +39,7 @@ final class completeScheduledOperation {
         let dateStartstring = self.dateformatter!.string(from: dateStart!)
         let number = Numbers(output: output.getOutput())
         number.setNumbers()
-        let numberstring = number.statistics(numberOfFiles: nil)
+        let numberstring = number.statistics(numberOfFiles: nil, sizeOfFiles: nil)
         
         SharingManagerSchedule.sharedInstance.addScheduleResult(self.hiddenID!, dateStart: dateStartstring, result: numberstring[0], date: datestring, schedule: schedule!)
         // Writing timestamp to configuration

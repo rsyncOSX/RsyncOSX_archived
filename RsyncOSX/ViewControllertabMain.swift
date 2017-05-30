@@ -873,16 +873,16 @@ extension ViewControllertabMain: StartBatch {
                 
                 let config = SharingManagerConfiguration.sharedInstance.getConfigurations()[index]
                 if config.offsiteServer.isEmpty {
-                    let result = config.localCatalog + " , " + "localhost" + " , " + number.statistics(numberOfFiles: self.transferredNumber.stringValue)[0]
+                    let result = config.localCatalog + " , " + "localhost" + " , " + number.statistics(numberOfFiles: self.transferredNumber.stringValue, sizeOfFiles: self.transferredNumberSizebytes.stringValue)[0]
                     self.outputbatch!.addLine(str: result)
                 } else {
-                    let result = config.localCatalog + " , " + config.offsiteServer + " , " + number.statistics(numberOfFiles: self.transferredNumber.stringValue)[0]
+                    let result = config.localCatalog + " , " + config.offsiteServer + " , " + number.statistics(numberOfFiles: self.transferredNumber.stringValue,sizeOfFiles: self.transferredNumberSizebytes.stringValue)[0]
                     self.outputbatch!.addLine(str: result)
                 }
                 
                 let hiddenID = SharingManagerConfiguration.sharedInstance.gethiddenID(index: index)
                 SharingManagerConfiguration.sharedInstance.setCurrentDateonConfiguration(index)
-                SharingManagerSchedule.sharedInstance.addScheduleResultManuel(hiddenID, result: number.statistics(numberOfFiles: self.transferredNumber.stringValue)[0])
+                SharingManagerSchedule.sharedInstance.addScheduleResultManuel(hiddenID, result: number.statistics(numberOfFiles: self.transferredNumber.stringValue,sizeOfFiles: self.transferredNumberSizebytes.stringValue)[0])
                 self.showProcessInfo(info: .Executing)
                 
                 self.runBatch()
@@ -1209,7 +1209,7 @@ extension ViewControllertabMain: UpdateProgress {
                     let number = Numbers(output: self.output!.getOutput())
                     number.setNumbers()
                     SharingManagerConfiguration.sharedInstance.setCurrentDateonConfiguration(self.index!)
-                    SharingManagerSchedule.sharedInstance.addScheduleResultManuel(self.hiddenID!, result: number.statistics(numberOfFiles: self.transferredNumber.stringValue)[0])
+                    SharingManagerSchedule.sharedInstance.addScheduleResultManuel(self.hiddenID!, result: number.statistics(numberOfFiles: self.transferredNumber.stringValue, sizeOfFiles: self.transferredNumberSizebytes.stringValue)[0])
                 case .abort:
                     self.abortOperations()
                     self.workload = nil
