@@ -171,7 +171,7 @@ final class Numbers {
             if (numberOfFiles == nil || sizeOfFiles == nil) {
                 return ["0","0"]
             } else {
-                let size = numberOfFiles! + " files :" + sizeOfFiles! + " KB" + " in xx seconds"
+                let size = numberOfFiles! + " files :" + sizeOfFiles! + " KB" + " in just a few seconds"
                 return [size,"0"]
             }
         }
