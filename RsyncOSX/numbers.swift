@@ -162,13 +162,18 @@ final class Numbers {
     
     
     // Collecting statistics about job
-    func statistics(numberOfFiles:String?) -> Array<String> {
+    func statistics(numberOfFiles:String?, sizeOfFiles:String?) -> Array<String> {
         var numberstring:String?
         var parts:Array<String>?
         
         
         guard (self.resultRsync != nil) else {
-            return ["0","0"]
+            if (numberOfFiles == nil || sizeOfFiles == nil) {
+                return ["0","0"]
+            } else {
+                let size = numberOfFiles! + " files :" + sizeOfFiles! + " KB" + " in just a few seconds"
+                return [size,"0"]
+            }
         }
         
         if (SharingManagerConfiguration.sharedInstance.rsyncVer3) {
