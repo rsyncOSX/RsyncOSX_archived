@@ -20,7 +20,7 @@ class rsyncProcessArguments {
     // Set initial parameter1 .. paramater6
     // Parameters is computed by RsyncOSX
     
-    private func setParameters1ToParameters6(_ config : configuration, dryRun : Bool, forDisplay : Bool) {
+    private func setParameters1To6(_ config : configuration, dryRun : Bool, forDisplay : Bool) {
         
         let parameter1: String = config.parameter1
         let parameter2: String = config.parameter2
@@ -66,7 +66,7 @@ class rsyncProcessArguments {
     // Brute force, check every parameter
     // Not special elegant, but it works
     
-    private func setParameters8ToParameters14(_ config : configuration, dryRun : Bool, forDisplay : Bool) {
+    private func setParameters8To14(_ config : configuration, dryRun : Bool, forDisplay : Bool) {
         
         let dryrun: String = config.dryrun
         self.stats = false
@@ -109,7 +109,9 @@ class rsyncProcessArguments {
     
     private func appendParameter (parameter:String, forDisplay : Bool) {
         if ((parameter.characters.count) > 1) {
-            if parameter == "--stats" {self.stats = true}
+            if parameter == "--stats" {
+                self.stats = true
+            }
             self.arguments!.append(parameter)
             if (forDisplay) {
                 self.arguments!.append(" ")
@@ -126,7 +128,7 @@ class rsyncProcessArguments {
     /// - parameter dryRun: true if compute dryrun arguments, false if compute arguments for real run
     /// - paramater forDisplay: true if for display, false if not
     /// - returns: Array of Strings
-    func argumentsRsync (_ config : configuration, dryRun : Bool, forDisplay : Bool) -> [String] {
+    func argumentsRsync (_ config : configuration, dryRun : Bool, forDisplay : Bool) -> Array<String> {
         
         let localCatalog: String = config.localCatalog
         let offsiteCatalog: String = config.offsiteCatalog
@@ -148,8 +150,8 @@ class rsyncProcessArguments {
         switch config.task {
             
         case "backup":
-            self.setParameters1ToParameters6(config, dryRun: dryRun, forDisplay: forDisplay)
-            self.setParameters8ToParameters14(config, dryRun: dryRun, forDisplay: forDisplay)
+            self.setParameters1To6(config, dryRun: dryRun, forDisplay: forDisplay)
+            self.setParameters8To14(config, dryRun: dryRun, forDisplay: forDisplay)
             // Backup
             self.arguments!.append(localCatalog)
             if (offsiteServer.isEmpty) {
@@ -163,8 +165,8 @@ class rsyncProcessArguments {
             }
             
         case "restore":
-            self.setParameters1ToParameters6(config, dryRun: dryRun, forDisplay: forDisplay)
-            self.setParameters8ToParameters14(config, dryRun: dryRun, forDisplay: forDisplay)
+            self.setParameters1To6(config, dryRun: dryRun, forDisplay: forDisplay)
+            self.setParameters8To14(config, dryRun: dryRun, forDisplay: forDisplay)
             if (offsiteServer.isEmpty) {
                 self.arguments!.append(offsiteCatalog)
                 if (forDisplay) {self.arguments!.append(" ")}

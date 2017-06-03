@@ -30,6 +30,9 @@ final class RsyncParameters {
     private let backupString = ["--backup","--backup-dir=../backup"]
     private let suffixString = ["--suffix=_`date +'%Y-%m-%d.%H.%M'`"]
     private let suffixString2 = ["--suffix=_$(date +%Y-%m-%d.%H.%M)"]
+    
+    // Reference to config
+    private var config:configuration?
 
     /// Function for getting string for backup parameters
     /// - parameter none: none
@@ -174,49 +177,53 @@ final class RsyncParameters {
     /// - parameter config : a configuration
     /// - parameter rsyncparameternumber : which stored rsync parameter, integer 8 - 14
     /// - returns : touple with index to for combobox and corresponding rsync value
-    func getParameter (config:configuration, rsyncparameternumber:Int) -> (Int, String) {
+    func getParameter (rsyncparameternumber:Int) -> (Int, String) {
         
         var value:(Int,String)?
         
         switch rsyncparameternumber {
         case 8:
-            guard config.parameter8 != nil else {
+            guard self.config!.parameter8 != nil else {
                 return (0,"")
             }
-            value = (self.getvalueCombobox(config.parameter8!), self.getdisplayValue(config.parameter8!))
+            value = (self.getvalueCombobox(self.config!.parameter8!), self.getdisplayValue(self.config!.parameter8!))
         case 9:
-            guard config.parameter9 != nil else {
+            guard self.config!.parameter9 != nil else {
                 return (0,"")
             }
-            value = (self.getvalueCombobox(config.parameter9!), self.getdisplayValue(config.parameter9!))
+            value = (self.getvalueCombobox(self.config!.parameter9!), self.getdisplayValue(self.config!.parameter9!))
         case 10:
-            guard config.parameter10 != nil else {
+            guard self.config!.parameter10 != nil else {
                 return (0,"")
             }
-            value = (self.getvalueCombobox(config.parameter10!), self.getdisplayValue(config.parameter10!))
+            value = (self.getvalueCombobox(self.config!.parameter10!), self.getdisplayValue(self.config!.parameter10!))
         case 11:
-            guard config.parameter11 != nil else {
+            guard self.config!.parameter11 != nil else {
                 return (0,"")
             }
-            value = (self.getvalueCombobox(config.parameter11!), self.getdisplayValue(config.parameter11!))
+            value = (self.getvalueCombobox(self.config!.parameter11!), self.getdisplayValue(self.config!.parameter11!))
         case 12:
-            guard config.parameter12 != nil else {
+            guard self.config!.parameter12 != nil else {
                 return (0,"")
             }
-            value = (self.getvalueCombobox(config.parameter12!), self.getdisplayValue(config.parameter12!))
+            value = (self.getvalueCombobox(self.config!.parameter12!), self.getdisplayValue(self.config!.parameter12!))
         case 13:
-            guard config.parameter13 != nil else {
+            guard self.config!.parameter13 != nil else {
                 return (0,"")
             }
-            value = (self.getvalueCombobox(config.parameter13!), self.getdisplayValue(config.parameter13!))
+            value = (self.getvalueCombobox(self.config!.parameter13!), self.getdisplayValue(self.config!.parameter13!))
         case 14:
-            guard config.parameter14 != nil else {
+            guard self.config!.parameter14 != nil else {
                 return (0,"")
             }
-            value = (self.getvalueCombobox(config.parameter14!), self.getdisplayValue(config.parameter14!))
+            value = (self.getvalueCombobox(self.config!.parameter14!), self.getdisplayValue(self.config!.parameter14!))
         default:
             value = (0,"")
         }
         return value!
+    }
+    
+    init(config:configuration) {
+        self.config = config
     }
 }
