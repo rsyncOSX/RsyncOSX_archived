@@ -68,19 +68,19 @@ class ViewControllerRsyncParameters: NSViewController {
     @IBAction func backup(_ sender: NSButton) {
         switch self.backupbutton.state {
         case 1:
-            self.resetComboBox(self.parameter12, index: (self.parameters!.getvalueCombobox(self.parameters!.getBackupString()[0])))
+            self.setValueComboBox(combobox: self.parameter12, index: (self.parameters!.getvalueCombobox(self.parameters!.getBackupString()[0])))
             self.viewParameter12.stringValue = self.parameters!.getdisplayValue(self.parameters!.getBackupString()[0])
             let hiddenID = SharingManagerConfiguration.sharedInstance.gethiddenID(index: (self.getindex_delegate?.getindex())!)
             let localcatalog = SharingManagerConfiguration.sharedInstance.getResourceConfiguration(hiddenID, resource: .localCatalog)
             let localcatalogParts = (localcatalog as AnyObject).components(separatedBy: "/")
-            self.resetComboBox(self.parameter13, index: (self.parameters!.getvalueCombobox(self.parameters!.getBackupString()[1])))
+            self.setValueComboBox(combobox: self.parameter13, index: (self.parameters!.getvalueCombobox(self.parameters!.getBackupString()[1])))
             self.viewParameter13.stringValue = "../backup" + "_" + localcatalogParts[localcatalogParts.count - 2]
         case 0:
-            self.resetComboBox(self.parameter12, index: (0))
+            self.setValueComboBox(combobox: self.parameter12, index: (0))
             self.viewParameter12.stringValue = ""
-            self.resetComboBox(self.parameter13, index: (0))
+            self.setValueComboBox(combobox: self.parameter13, index: (0))
             self.viewParameter13.stringValue = ""
-            self.resetComboBox(self.parameter14, index: (0))
+            self.setValueComboBox(combobox: self.parameter14, index: (0))
             self.viewParameter14.stringValue = ""
         default : break
         }
@@ -94,10 +94,10 @@ class ViewControllerRsyncParameters: NSViewController {
         self.suffixButton2.state = NSOffState
         switch self.suffixButton.state {
         case 1:
-            self.resetComboBox(self.parameter14, index: (self.parameters!.getvalueCombobox(self.parameters!.getSuffixString()[0])))
+            self.setValueComboBox(combobox: self.parameter14, index: (self.parameters!.getvalueCombobox(self.parameters!.getSuffixString()[0])))
             self.viewParameter14.stringValue = self.parameters!.getdisplayValue(self.parameters!.getSuffixString()[0])
         case 0:
-            self.resetComboBox(self.parameter14, index: (0))
+            self.setValueComboBox(combobox: self.parameter14, index: (0))
             self.viewParameter14.stringValue = ""
         default:
             break
@@ -109,10 +109,10 @@ class ViewControllerRsyncParameters: NSViewController {
         self.suffixButton.state = NSOffState
         switch self.suffixButton2.state {
         case 1:
-            self.resetComboBox(self.parameter14, index: (self.parameters!.getvalueCombobox(self.parameters!.getSuffixString2()[0])))
+            self.setValueComboBox(combobox: self.parameter14, index: (self.parameters!.getvalueCombobox(self.parameters!.getSuffixString2()[0])))
             self.viewParameter14.stringValue = self.parameters!.getdisplayValue(self.parameters!.getSuffixString2()[0])
         case 0:
-            self.resetComboBox(self.parameter14, index: (0))
+            self.setValueComboBox(combobox: self.parameter14, index: (0))
             self.viewParameter14.stringValue = ""
         default:
             break
@@ -139,15 +139,20 @@ class ViewControllerRsyncParameters: NSViewController {
     override func viewDidAppear() {
         super.viewDidAppear()
         
+        var configurations:[configuration] = SharingManagerConfiguration.sharedInstance.getConfigurations()
+        let index = self.getindex_delegate?.getindex()
+        
+        guard index != nil else {
+            return
+        }
+        
         // Create RsyncParameters object and load initial parameters
-        self.parameters = RsyncParameters()
+        self.parameters = RsyncParameters(config: configurations[index!])
         self.comboBoxValues = parameters!.getComboBoxValues()
         
         self.backupbutton.state = 0
         self.suffixButton.state = 0
         self.suffixButton2.state = 0
-        var configurations:[configuration] = SharingManagerConfiguration.sharedInstance.getConfigurations()
-        let index = self.getindex_delegate?.getindex()
         self.viewParameter1.stringValue = configurations[index!].parameter1
         self.viewParameter2.stringValue = configurations[index!].parameter2
         self.viewParameter3.stringValue = configurations[index!].parameter3
@@ -155,27 +160,26 @@ class ViewControllerRsyncParameters: NSViewController {
         self.viewParameter5.stringValue = configurations[index!].parameter5 + " " + configurations[index!].parameter6
         
         // There are seven user seleected rsync parameters
-        
-        self.resetComboBox(self.parameter8, index: self.parameters!.getParameter(config: configurations[index!], rsyncparameternumber: 8).0)
-        self.viewParameter8.stringValue = self.parameters!.getParameter(config: configurations[index!], rsyncparameternumber: 8).1
+        self.setValueComboBox(combobox: self.parameter8, index: self.parameters!.getParameter(rsyncparameternumber: 8).0)
+        self.viewParameter8.stringValue = self.parameters!.getParameter(rsyncparameternumber: 8).1
 
-        self.resetComboBox(self.parameter9, index: self.parameters!.getParameter(config: configurations[index!], rsyncparameternumber: 9).0)
-        self.viewParameter9.stringValue = self.parameters!.getParameter(config: configurations[index!], rsyncparameternumber: 9).1
+        self.setValueComboBox(combobox: self.parameter9, index: self.parameters!.getParameter(rsyncparameternumber: 9).0)
+        self.viewParameter9.stringValue = self.parameters!.getParameter(rsyncparameternumber: 9).1
         
-        self.resetComboBox(self.parameter10, index: self.parameters!.getParameter(config: configurations[index!], rsyncparameternumber: 10).0)
-        self.viewParameter10.stringValue = self.parameters!.getParameter(config: configurations[index!], rsyncparameternumber: 10).1
+        self.setValueComboBox(combobox: self.parameter10, index: self.parameters!.getParameter(rsyncparameternumber: 10).0)
+        self.viewParameter10.stringValue = self.parameters!.getParameter(rsyncparameternumber: 10).1
         
-        self.resetComboBox(self.parameter11, index: self.parameters!.getParameter(config: configurations[index!], rsyncparameternumber: 11).0)
-        self.viewParameter11.stringValue = self.parameters!.getParameter(config: configurations[index!], rsyncparameternumber: 11).1
+        self.setValueComboBox(combobox: self.parameter11, index: self.parameters!.getParameter(rsyncparameternumber: 11).0)
+        self.viewParameter11.stringValue = self.parameters!.getParameter(rsyncparameternumber: 11).1
         
-        self.resetComboBox(self.parameter12, index: self.parameters!.getParameter(config: configurations[index!], rsyncparameternumber: 12).0)
-        self.viewParameter12.stringValue = self.parameters!.getParameter(config: configurations[index!], rsyncparameternumber: 12).1
+        self.setValueComboBox(combobox: self.parameter12, index: self.parameters!.getParameter(rsyncparameternumber: 12).0)
+        self.viewParameter12.stringValue = self.parameters!.getParameter(rsyncparameternumber: 12).1
         
-        self.resetComboBox(self.parameter13, index: self.parameters!.getParameter(config: configurations[index!], rsyncparameternumber: 13).0)
-        self.viewParameter13.stringValue = self.parameters!.getParameter(config: configurations[index!], rsyncparameternumber: 13).1
+        self.setValueComboBox(combobox: self.parameter13, index: self.parameters!.getParameter(rsyncparameternumber: 13).0)
+        self.viewParameter13.stringValue = self.parameters!.getParameter(rsyncparameternumber: 13).1
         
-        self.resetComboBox(self.parameter14, index: self.parameters!.getParameter(config: configurations[index!], rsyncparameternumber: 14).0)
-        self.viewParameter14.stringValue = self.parameters!.getParameter(config: configurations[index!], rsyncparameternumber: 14).1
+        self.setValueComboBox(combobox: self.parameter14, index: self.parameters!.getParameter(rsyncparameternumber: 14).0)
+        self.viewParameter14.stringValue = self.parameters!.getParameter(rsyncparameternumber: 14).1
         
         if (configurations[index!].rsyncdaemon != nil) {
             self.rsyncdaemon.state = configurations[index!].rsyncdaemon!
@@ -236,7 +240,7 @@ class ViewControllerRsyncParameters: NSViewController {
     // There are eight comboboxes
     // All eight are initalized during ViewDidLoad and
     // the correct index is set.
-    private func resetComboBox (_ combobox:NSComboBox, index:Int) {
+    private func setValueComboBox (combobox:NSComboBox, index:Int) {
         combobox.removeAllItems()
         combobox.addItems(withObjectValues: self.comboBoxValues as [String]!)
         combobox.selectItem(at: index)
