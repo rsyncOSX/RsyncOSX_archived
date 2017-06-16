@@ -14,13 +14,11 @@ From version 4.0.0 there is a new application icon for RsyncOSX. The new icon is
 
 The [Changelog](https://github.com/rsyncOSX/Documentation/blob/master/docs/Changelog.md).
 
-## The code
+### The code
 
-The code is **not** example of neither writing _decent Swift code_, _OO-development_ or _applying the MVC-pattern_. It all started as a project to learn the _basics_ about Swift and Xcode. And I am still learning, every day.
+What is my experience after about a year into my Swift project? Writing swift code is fun and addicting. But I experience from time to time some of the code I am writing is a kind of "brute force". I am reading blogs and other resources about coding in Swift. Some ideas I do pick up, some I don´t understand and others again are like this is how I should have done it. I'm not a professional or full-time programmer and it means I have to accept that the parts of the code in RsyncOSX could have been better and more efficient. The RsyncOSX project is for fun only.
 
-**May 2017**: What is my experience after about a year into my Swift project? Writing code is fun and addicting. But I experience that parts of the code I am writing is a kind of "brute force". From time to time I am reading blogs and other resources about coding in Swift. Some ideas I do pick up, some I don´t understand and others again are like this is how I should have done it. And I am a kind of OK with that. I am not a professional programmer. The project is for fun only.
-
-But, I will continue to refactor code whenever I have got some ideas reading other code. I will continue adding minor enhancements to RsyncOSX (at least for some time). And I use RsyncOSX every day myself.
+I will continue to refactor code whenever I have got some ideas reading other code. I will continue adding minor enhancements to RsyncOSX (at least for some time). And I use RsyncOSX every day myself.
 
 ### Rsync
 
@@ -33,11 +31,11 @@ The default version of `rsync` in macOS is old (version 2.6.9, [protocol](https:
 
 In RsyncOSX select [RsyncOSX configuration](https://github.com/rsyncOSX/Documentation/blob/master/docs/UserConfiguration.md) and set path for optional version of rsync.
 
-### MacUpdate
+### MacUpdate and Softpedia
 
-RsyncOSX is also released on [MacUpdate](https://www.macupdate.com/app/mac/56516/rsyncosx) as well. The application is downloaded about 8000 times from MacUpdate (all versions, April 2017). RsyncOSX does also inform users about new releases and link to download new version.
+RsyncOSX is also released on [MacUpdate](https://www.macupdate.com/app/mac/56516/rsyncosx) and linked for download on [Softpedia](http://mac.softpedia.com/get/Internet-Utilities/RsyncOSX.shtml) as well. The application is downloaded about 8900 times from MacUpdate and 2200 times from Softpedia (all versions, June 2017). RsyncOSX does also inform users about new releases and link to download new version.
 
-To be honest, I have **no idea** how many users of RsyncOSX there is.
+To be honest, I have **no idea** how many users of RsyncOSX there are. And I am very happy that some users find it useful.
 
 ### How to use RsyncOSX
 
