@@ -43,4 +43,4 @@ There are some [documents](https://rsyncosx.github.io/Documentation/) about Rsyn
 
 ### My NAS setup
 
-I have setup up my own [NAS](https://github.com/rsyncOSX/Documentation/blob/master/docs/DIYNAS.md). My NAS SW is now FreeNAS Corral. I am doing backups by using RsyncOSX and sharing out disk by AFP and SMB.
+I have setup up my own [NAS](https://github.com/rsyncOSX/Documentation/blob/master/docs/DIYNAS.md). My NAS SW is now FreeNAS. I am doing backups by using RsyncOSX and sharing out disk by AFP and SMB.
