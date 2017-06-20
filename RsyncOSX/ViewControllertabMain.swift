@@ -103,7 +103,7 @@ class ViewControllertabMain: NSViewController {
     fileprivate var schedules : ScheduleSortedAndExpand?
     // Bool if one or more remote server is offline
     // Used in testing if remote server is on/off-line
-    fileprivate var serverOff:[Bool]?
+    fileprivate var serverOff:Array<Bool>?
     // Single task work queu
     fileprivate var workload:singleTask?
     
@@ -201,7 +201,7 @@ class ViewControllertabMain: NSViewController {
         // Clear numbers from dryrun
         self.setNumbers(setvalues: false)
         self.workload = nil
-        self.setInfo(info: "Estimate", color: NSColor.blue)
+        self.setInfo(info: "Estimate", color: .blue)
         self.process = nil
         
         if (self.index != nil) {
@@ -347,7 +347,7 @@ class ViewControllertabMain: NSViewController {
         self.showProcessInfo(info: .Blank)
         // Allow notify about Scheduled jobs
         SharingManagerConfiguration.sharedInstance.allowNotifyinMain = true
-        self.setInfo(info: "", color: NSColor.black)
+        self.setInfo(info: "", color: .black)
         // Setting reference to ViewController
         // Used to call delegate function from other class
         SharingManagerConfiguration.sharedInstance.ViewControllertabMain = self
@@ -430,7 +430,7 @@ class ViewControllertabMain: NSViewController {
                     self.output = outputProcess()
                     process.executeProcess(output: self.output!)
                     self.process = process.getProcess()
-                    self.setInfo(info: "Execute", color: NSColor.blue)
+                    self.setInfo(info: "Execute", color: .blue)
                 }
             case .execute_singlerun:
                 self.showProcessInfo(info: .Executing)
@@ -443,17 +443,17 @@ class ViewControllertabMain: NSViewController {
                     let process = Rsync(arguments: arguments)
                     process.executeProcess(output: self.output!)
                     self.process = process.getProcess()
-                    self.setInfo(info: "", color: NSColor.black)
+                    self.setInfo(info: "", color: .black)
                 }
             case .abort:
                 self.workload = nil
-                self.setInfo(info: "Abort", color: NSColor.red)
+                self.setInfo(info: "Abort", color: .red)
             case .empty:
                 self.workload = nil
-                self.setInfo(info: "Estimate", color: NSColor.blue)
+                self.setInfo(info: "Estimate", color: .blue)
             default:
                 self.workload = nil
-                self.setInfo(info: "Estimate", color: NSColor.blue)
+                self.setInfo(info: "Estimate", color: .blue)
                 break
             }
         } else {
@@ -480,7 +480,7 @@ class ViewControllertabMain: NSViewController {
             self.workload = nil
             self.outputbatch = nil
             self.workload = singleTask(task: .batchrun)
-            self.setInfo(info: "Batchrun", color: NSColor.blue)
+            self.setInfo(info: "Batchrun", color: .blue)
             // Get all Configs marked for batch
             let configs = SharingManagerConfiguration.sharedInstance.getConfigurationsBatch()
             let batchObject = batchOperations(batchtasks: configs)
@@ -574,16 +574,16 @@ class ViewControllertabMain: NSViewController {
         
         guard (self.loadProfileMenu == true) else {
             self.profilInfo.stringValue = "Profile: please wait..."
-            self.profilInfo.textColor = NSColor.blue
+            self.profilInfo.textColor = .blue
             return
         }
         
         if let profile = SharingManagerConfiguration.sharedInstance.getProfile() {
             self.profilInfo.stringValue = "Profile: " + profile
-            self.profilInfo.textColor = NSColor.blue
+            self.profilInfo.textColor = .blue
         } else {
             self.profilInfo.stringValue = "Profile: default"
-            self.profilInfo.textColor = NSColor.black
+            self.profilInfo.textColor = .black
         }
         
     }
@@ -592,10 +592,10 @@ class ViewControllertabMain: NSViewController {
     internal func displayAllowDoubleclick() {
         if (SharingManagerConfiguration.sharedInstance.allowDoubleclick == true) {
             self.allowDoubleclick.stringValue = "Double click: YES"
-            self.allowDoubleclick.textColor = NSColor.blue
+            self.allowDoubleclick.textColor = .blue
         } else {
             self.allowDoubleclick.stringValue = "Double click: NO"
-            self.allowDoubleclick.textColor = NSColor.black
+            self.allowDoubleclick.textColor = .black
         }
     }
     
@@ -621,7 +621,7 @@ class ViewControllertabMain: NSViewController {
             self.index = nil
         }
         self.process = nil
-        self.setInfo(info: "Estimate", color: NSColor.blue)
+        self.setInfo(info: "Estimate", color: .blue)
         self.setRsyncCommandDisplay()
     }
     
@@ -823,7 +823,7 @@ extension ViewControllertabMain: StartBatch {
     func closeOperation() {
         self.process = nil
         self.workload = nil
-        self.setInfo(info: "", color: NSColor.black)
+        self.setInfo(info: "", color: .black)
     }
     
     func inBatchwork() {
@@ -905,7 +905,7 @@ extension ViewControllertabMain: StartBatch {
             self.workload = nil
             // Create workqueu and add abort
             self.workload = singleTask(task: .abort)
-            self.setInfo(info: "Abort", color: NSColor.red)
+            self.setInfo(info: "Abort", color: .red)
             self.rsyncCommand.stringValue = ""
         } else {
             self.rsyncCommand.stringValue = "Selection out of range - aborting"
@@ -922,7 +922,7 @@ extension ViewControllertabMain: StartBatch {
             self.process = nil
             self.workload = nil
             self.workload = singleTask(task: .abort)
-            self.setInfo(info: "Abort", color: NSColor.red)
+            self.setInfo(info: "Abort", color: .red)
         }
     }
 
@@ -1011,7 +1011,7 @@ extension ViewControllertabMain: AddProfiles {
         self.output = nil
         self.outputbatch = nil
         self.setRsyncCommandDisplay()
-        self.setInfo(info: "Estimate", color: NSColor.blue)
+        self.setInfo(info: "Estimate", color: .blue)
         self.setNumbers(setvalues: false)
         
         guard (new == false) else {
@@ -1273,7 +1273,7 @@ extension ViewControllertabMain: RsyncError {
         // Set on or off in user configuration
         if (SharingManagerConfiguration.sharedInstance.rsyncerror) {
             GlobalMainQueue.async(execute: { () -> Void in
-                self.setInfo(info: "Error", color: NSColor.red)
+                self.setInfo(info: "Error", color: .red)
                 self.showProcessInfo(info: .Error)
                 self.setRsyncCommandDisplay()
                 // Abort any operations
@@ -1294,7 +1294,7 @@ extension ViewControllertabMain: RsyncError {
 extension ViewControllertabMain: ReportErrorInMain {
     func fileerror(errorstr:String) {
         GlobalMainQueue.async(execute: { () -> Void in
-            self.setInfo(info: "Error", color: NSColor.red)
+            self.setInfo(info: "Error", color: .red)
             self.showProcessInfo(info: .Error)
             // Dump the errormessage in rsynccommand field
             self.rsyncCommand.stringValue = errorstr
