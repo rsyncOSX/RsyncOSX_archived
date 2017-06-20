@@ -10,56 +10,6 @@
 import Foundation
 import Cocoa
 
-enum chmodTask {
-    case chmodRsa
-    case chmodDsa
-    case empty
-}
-
-final class chmodWorkTask {
-    
-    // Work Queue
-    private var work:Array<chmodTask>?
-    
-    // Returns the top most element.
-    // Top element is read only
-    func peek() -> chmodTask {
-        guard self.work != nil else {
-            return .empty
-        }
-        guard self.work!.count > 0 else {
-            return .empty
-        }
-        return self.work![0]
-    }
-    
-    // Returns the top most element.
-    // Top element is removed
-    func pop() -> chmodTask {
-        guard self.work != nil else {
-            return .empty
-        }
-        guard self.work!.count > 0 else {
-            return .empty
-        }
-        return self.work!.removeFirst()
-    }
-    
-    // Single run
-    init(key:String) {
-        self.work = nil
-        self.work = Array<chmodTask>()
-        switch key {
-        case "rsa":
-            self.work!.append(.chmodRsa)
-        case "dsa":
-            self.work!.append(.chmodDsa)
-        default:
-            self.work = nil
-            break
-        }
-    }
-}
 
 class ssh: files {
     
@@ -72,6 +22,7 @@ class ssh: files {
     // Local public rsa and dsa based keys
     let rsaPubKey:String = "id_rsa.pub"
     let dsaPubKey:String = "id_dsa.pub"
+    let sshCatalog:String = ".ssh/"
     var dsaPubKeyExist:Bool = false
     var rsaPubKeyExist:Bool = false
     
@@ -95,11 +46,12 @@ class ssh: files {
     var output:outputProcess?
     
     // Chmod
-    var chmod:chmodWorkTask?
+    var chmod:chmodPubKey?
     
     // Create local rsa keys
     func createLocalKeysRsa() {
         
+        // Abort if key exists
         guard self.rsaPubKeyExist == false else {
             return
         }
@@ -114,6 +66,7 @@ class ssh: files {
     // Create local dsa keys
     func createLocalKeysDsa() {
         
+        // Abort if key exists
         guard self.dsaPubKeyExist == false else {
             return
         }
@@ -136,18 +89,18 @@ class ssh: files {
         guard self.KeyFileStrings != nil else {
             return false
         }
-        guard self.KeyFileStrings!.filter({$0.contains(key)}).count == 1 else {
+        guard self.KeyFileStrings!.filter({$0.contains(key)}).count > 0 else {
             return false
         }
         switch key {
         case rsaPubKey:
-            self.rsaURLpath = URL(string: self.KeyFileStrings!.filter({$0.contains(key)})[0])
-            self.rsaStringPath = self.KeyFileStrings!.filter({$0.contains(key)})[0]
+            self.rsaURLpath = URL(string: self.KeyFileStrings!.filter({$0.contains(self.sshCatalog + key)})[0])
+            self.rsaStringPath = self.KeyFileStrings!.filter({$0.contains(self.sshCatalog + key)})[0]
         case dsaPubKey:
-            self.dsaURLpath = URL(string: self.KeyFileStrings!.filter({$0.contains(key)})[0])
-            self.dsaStringPath = self.KeyFileStrings!.filter({$0.contains(key)})[0]
+            self.dsaURLpath = URL(string: self.KeyFileStrings!.filter({$0.contains(self.sshCatalog + key)})[0])
+            self.dsaStringPath = self.KeyFileStrings!.filter({$0.contains(self.sshCatalog + key)})[0]
         default:
-            break
+            return false
         }
         return true
     }
@@ -195,15 +148,6 @@ class ssh: files {
         self.command = self.scpArguments!.getCommand()
     }
     
-    // Chmod remote .ssh directory
-    func chmodSsh(key: String, hiddenID:Int) {
-        self.scpArguments = nil
-        self.scpArguments = scpArgumentsSsh(hiddenID: hiddenID)
-        self.arguments = scpArguments!.getArguments(operation: .chmod, key: key, path: nil)
-        self.command = self.scpArguments!.getCommand()
-        self.chmod = chmodWorkTask(key:key)
-    }
-    
     // Create remote ssh directory
     func createSshRemoteDirectory(hiddenID:Int) {
         self.scpArguments = nil
@@ -211,6 +155,15 @@ class ssh: files {
         self.arguments = scpArguments!.getArguments(operation: .createRemoteSshCatalog, key: nil, path: nil)
         self.command = self.scpArguments!.getCommand()
         self.commandCopyPasteTermninal = self.scpArguments!.commandCopyPasteTermninal
+    }
+    
+    // Chmod remote .ssh directory
+    func chmodSsh(key: String, hiddenID:Int) {
+        self.scpArguments = nil
+        self.scpArguments = scpArgumentsSsh(hiddenID: hiddenID)
+        self.arguments = scpArguments!.getArguments(operation: .chmod, key: key, path: nil)
+        self.command = self.scpArguments!.getCommand()
+        self.chmod = chmodPubKey(key:key)
     }
     
     // Execute command
@@ -241,7 +194,7 @@ class ssh: files {
 }
 
 extension ssh: ReportError {
-    // Private func for propagating any file error to main view
+    // Propagating any file error to main view
     func reportError(errorstr:String) {
         if let pvc = SharingManagerConfiguration.sharedInstance.ViewControllertabMain {
             self.error_delegate = pvc as? ViewControllertabMain

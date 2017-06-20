@@ -71,9 +71,6 @@ class ViewControllerNewConfigurations: NSViewController {
         self.newTableView.delegate = self
         self.newTableView.dataSource = self
         SharingManagerConfiguration.sharedInstance.destroyNewConfigurations()
-        // Allow dragging
-        self.localCatalog.register(forDraggedTypes: [NSFilenamesPboardType])
-        self.offsiteCatalog.register(forDraggedTypes: [NSFilenamesPboardType])
         // Tooltip
         self.localCatalog.toolTip = "By using Finder drag and drop filepaths."
         self.offsiteCatalog.toolTip = "By using Finder drag and drop filepaths."
@@ -193,33 +190,6 @@ extension ViewControllerNewConfigurations : NSTableViewDelegate {
     @objc(tableView:setObjectValue:forTableColumn:row:) func tableView(_ tableView: NSTableView, setObjectValue object: Any?, for tableColumn: NSTableColumn?, row: Int) {
         self.tabledata![row].setObject(object!, forKey: (tableColumn?.identifier)! as NSCopying)
     }
-}
-
-extension ViewControllerNewConfigurations : NSDraggingDestination {
-    
-    private func draggingEntered(sender: NSDraggingInfo) -> NSDragOperation {
-        let sourceDragMask = sender.draggingSourceOperationMask()
-        let pboard = sender.draggingPasteboard()
-        if pboard.availableType(from: [NSFilenamesPboardType]) == NSFilenamesPboardType {
-            if sourceDragMask.rawValue & NSDragOperation.generic.rawValue != 0 {
-                return NSDragOperation.copy
-            }
-        }
-        return NSDragOperation.copy
-    }
-    
-    private func draggingUpdated(sender: NSDraggingInfo) -> NSDragOperation {
-        return NSDragOperation.generic
-    }
-    
-    func prepareForDragOperation(_ sender: NSDraggingInfo) -> Bool {
-        return true
-    }
-    
-    func performDragOperation(_ sender: NSDraggingInfo) -> Bool {
-        return true
-    }
-    
 }
 
 extension ViewControllerNewConfigurations: GetPath {

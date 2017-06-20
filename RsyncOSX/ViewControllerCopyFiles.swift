@@ -313,33 +313,6 @@ extension ViewControllerCopyFiles: NSTableViewDelegate {
     }
 }
 
-extension ViewControllerCopyFiles: NSDraggingDestination {
-    
-    private func draggingEntered(sender: NSDraggingInfo) -> NSDragOperation {
-        let sourceDragMask = sender.draggingSourceOperationMask()
-        let pboard = sender.draggingPasteboard()
-        if pboard.availableType(from: [NSFilenamesPboardType]) == NSFilenamesPboardType {
-            if sourceDragMask.rawValue & NSDragOperation.generic.rawValue != 0 {
-                return NSDragOperation.copy
-            }
-        }
-        return NSDragOperation.copy
-    }
-    
-    private func draggingUpdated(sender: NSDraggingInfo) -> NSDragOperation {
-        return NSDragOperation.generic
-    }
-    
-    func prepareForDragOperation(_ sender: NSDraggingInfo) -> Bool {
-        return true
-    }
-    
-    func performDragOperation(_ sender: NSDraggingInfo) -> Bool {
-        return true
-    }
-    
-}
-
 // textDidEndEditing
 
 extension ViewControllerCopyFiles: NSTextFieldDelegate {
