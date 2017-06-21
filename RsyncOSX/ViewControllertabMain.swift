@@ -1083,7 +1083,7 @@ extension ViewControllertabMain: UpdateProgress {
         if let singletask = self.singletask {
             singletask.ProcessTermination()
         } else if let _ = self.batchtask {
-            self.runBatch()
+            self.inBatchwork()
         }
         
     }
