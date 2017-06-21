@@ -11,7 +11,7 @@ import Foundation
 import Cocoa
 
 // Protocols for instruction start/stop progressviewindicator
-protocol StartStopProgressIndicator : class {
+protocol StartStopProgressIndicator: class {
     func start()
     func stop()
     func complete()
@@ -623,34 +623,6 @@ class ViewControllertabMain: NSViewController {
         self.process = nil
         self.setInfo(info: "Estimate", color: .blue)
         self.setRsyncCommandDisplay()
-    }
-    
-    // Just for updating process info
-    fileprivate func showProcessInfo(info:displayProcessInfo) {
-        GlobalMainQueue.async(execute: { () -> Void in
-            switch info {
-            case .Estimating:
-                self.processInfo.stringValue = "Estimating"
-            case .Executing:
-                self.processInfo.stringValue = "Executing"
-            case .Set_max_Number:
-                self.processInfo.stringValue = "Set max number"
-            case .Logging_run:
-                self.processInfo.stringValue = "Logging run"
-            case .Count_files:
-                self.processInfo.stringValue = "Count files"
-            case .Change_profile:
-                self.processInfo.stringValue = "Change profile"
-            case .Profiles_enabled:
-                self.processInfo.stringValue = "Profiles enabled"
-            case .Abort:
-                self.processInfo.stringValue = "Abort"
-            case .Error:
-                self.processInfo.stringValue = "Rsync error"
-            case .Blank:
-                self.processInfo.stringValue = ""
-            }
-        })
     }
     
     // Reset workqueue
@@ -1305,6 +1277,72 @@ extension ViewControllertabMain: ReportErrorInMain {
 // Abort task from progressview
 extension ViewControllertabMain: AbortOperations {
     
+}
+
+// Start cleanup
+
+extension ViewControllertabMain: StartStopProgressIndicatorSingleTask {
+    func startIndicator() {
+        self.working.startAnimation(nil)
+    }
+    
+    func stopIndicator() {
+        self.working.stopAnimation(nil)
+    }
+}
+
+extension ViewControllertabMain:Task {
+    
+    // Just for updating process info
+    func showProcessInfo(info:displayProcessInfo) {
+        GlobalMainQueue.async(execute: { () -> Void in
+            switch info {
+            case .Estimating:
+                self.processInfo.stringValue = "Estimating"
+            case .Executing:
+                self.processInfo.stringValue = "Executing"
+            case .Set_max_Number:
+                self.processInfo.stringValue = "Set max number"
+            case .Logging_run:
+                self.processInfo.stringValue = "Logging run"
+            case .Count_files:
+                self.processInfo.stringValue = "Count files"
+            case .Change_profile:
+                self.processInfo.stringValue = "Change profile"
+            case .Profiles_enabled:
+                self.processInfo.stringValue = "Profiles enabled"
+            case .Abort:
+                self.processInfo.stringValue = "Abort"
+            case .Error:
+                self.processInfo.stringValue = "Rsync error"
+            case .Blank:
+                self.processInfo.stringValue = ""
+            }
+        })
+    }
+
+    
+    func presentViewProgress() {
+        GlobalMainQueue.async(execute: { () -> Void in
+            self.presentViewControllerAsSheet(self.ViewControllerProgress)
+        })
+    }
+    
+    func presentViewInformation() {
+        GlobalMainQueue.async(execute: { () -> Void in
+            self.presentViewControllerAsSheet(self.ViewControllerInformation)
+        })
+        
+    }
+    
+    func terminateProgressProcess() {
+        if let pvc2 = self.presentedViewControllers as? [ViewControllerProgressProcess] {
+            if (pvc2.count > 0) {
+                self.processupdate_delegate = pvc2[0]
+                self.processupdate_delegate?.ProcessTermination()
+            }
+        }
+    }
 }
 
 

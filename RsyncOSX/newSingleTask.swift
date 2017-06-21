@@ -9,14 +9,33 @@
 import Foundation
 import Cocoa
 
-class newTask {
+
+// Protocols for instruction start/stop progressviewindicator
+protocol StartStopProgressIndicatorSingleTask: class {
+    func startIndicator()
+    func stopIndicator()
+}
+
+protocol Task: class {
+    func showProcessInfo(info:displayProcessInfo)
+    func presentViewProgress()
+    func presentViewInformation()
+    func terminateProgressProcess()
+}
+
+class newSingleTask {
     
     // Protocol function used in Process().
     weak var processupdate_delegate:UpdateProgress?
     // Delegate function for doing a refresh of NSTableView in ViewControllerBatch
     weak var refresh_delegate:RefreshtableView?
+    
+    
+    
     // Delegate function for start/stop progress Indicator in BatchWindow
-    weak var indicator_delegate:StartStopProgressIndicator?
+    weak var indicator_delegate:StartStopProgressIndicatorSingleTask?
+    // Delegate function for show process step and present View
+    weak var task_delegate:Task?
     
     // REFERENCE VARIABLES
     
@@ -58,8 +77,6 @@ class newTask {
     private var totalDirs:String?
     private var newfiles:String?
     private var deletefiles:String?
-    
-    
 
     
     // Display correct rsync command in view
@@ -88,6 +105,8 @@ class newTask {
             switch (self.workload!.peek()) {
             case .estimate_singlerun:
                 if let index = self.index {
+                    self.indicator_delegate?.startIndicator()
+                    self.task_delegate?.showProcessInfo(info: .Estimating)
                     // NB: self.working.startAnimation(nil)
                     // NB: self.showProcessInfo(info: .Estimating)
                     arguments = SharingManagerConfiguration.sharedInstance.getRsyncArgumentOneConfig(index: index, argtype: .argdryRun)
@@ -99,10 +118,14 @@ class newTask {
                 }
             case .execute_singlerun:
                 // NB: self.showProcessInfo(info: .Executing)
+                self.task_delegate?.showProcessInfo(info: .Executing)
                 if let index = self.index {
+                    self.task_delegate?.presentViewProgress()
+                    /*
                     GlobalMainQueue.async(execute: { () -> Void in
                         // NB: self.presentViewControllerAsSheet(self.ViewControllerProgress)
                     })
+                    */
                     arguments = SharingManagerConfiguration.sharedInstance.getRsyncArgumentOneConfig(index: index, argtype: .arg)
                     self.output = outputProcess()
                     let process = Rsync(arguments: arguments)
@@ -125,6 +148,84 @@ class newTask {
             Utils.sharedInstance.noRsync()
         }
     }
+    
+    
+    
+    func ProcessTermination() {
+        
+        self.ready = true
+        // Making sure no nil pointer execption
+        if let workload = self.workload {
+            
+            // Pop topmost element of work queue
+            switch (workload.pop()) {
+                
+            case .estimate_singlerun:
+                // Stopping the working (estimation) progress indicator
+                self.indicator_delegate?.stopIndicator()
+                //NB: self.working.stopAnimation(nil)
+                // Getting and setting max file to transfer
+                self.setmaxNumbersOfFilesToTransfer()
+                // If showInfoDryrun is on present result of dryrun automatically
+                self.task_delegate?.presentViewInformation()
+                /* NB:
+                if (self.showInfoDryrun.state == 1) {
+                    GlobalMainQueue.async(execute: { () -> Void in
+                        self.presentViewControllerAsSheet(self.ViewControllerInformation)
+                    })
+                }
+                */
+            case .error:
+                // Stopping the working (estimation) progress indicator
+                self.indicator_delegate?.stopIndicator()
+                //NB: self.working.stopAnimation(nil)
+                // If showInfoDryrun is on present result of dryrun automatically
+                self.task_delegate?.presentViewInformation()
+                /* NB:
+                GlobalMainQueue.async(execute: { () -> Void in
+                    self.presentViewControllerAsSheet(self.ViewControllerInformation)
+                })
+                */
+            case .execute_singlerun:
+                //NB: self.showProcessInfo(info: .Logging_run)
+                self.task_delegate?.showProcessInfo(info: .Logging_run)
+                
+                /* NB:
+                if let pvc2 = self.presentedViewControllers as? [ViewControllerProgressProcess] {
+                    if (pvc2.count > 0) {
+                        self.processupdate_delegate = pvc2[0]
+                        self.processupdate_delegate?.ProcessTermination()
+                    }
+                }
+                */
+                self.task_delegate?.terminateProgressProcess()
+                
+                // If showInfoDryrun is on present result of dryrun automatically
+                self.task_delegate?.presentViewInformation()
+                /* NB:
+                if (self.showInfoDryrun.state == 1) {
+                    GlobalMainQueue.async(execute: { () -> Void in
+                        self.presentViewControllerAsSheet(self.ViewControllerInformation)
+                    })
+                }
+                */
+                // Logg run
+                let number = Numbers(output: self.output!.getOutput())
+                number.setNumbers()
+                SharingManagerConfiguration.sharedInstance.setCurrentDateonConfiguration(self.index!)
+                SharingManagerSchedule.sharedInstance.addScheduleResultManuel(self.hiddenID!, result: number.statistics(numberOfFiles: self.transferredNumber, sizeOfFiles: self.transferredNumberSizebytes)[0])
+            case .abort:
+                //NB: self.abortOperations()
+                self.workload = nil
+            case .empty:
+                self.workload = nil
+            default:
+                self.workload = nil
+                break
+            }
+        }
+    }
+
     
     func setInfo(info:String, color:NSColor) {
         // NB: self.dryRunOrRealRun.stringValue = info
@@ -248,6 +349,13 @@ class newTask {
         self.config = config
         self.dryrun = dryrun
         self.index = index
+        if let pvc = SharingManagerConfiguration.sharedInstance.ViewControllertabMain as? ViewControllertabMain {
+            self.indicator_delegate = pvc
+            self.task_delegate = pvc
+        }
+        
+            
+        
         
     }
     

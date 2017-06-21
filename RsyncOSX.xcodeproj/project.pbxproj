@@ -68,7 +68,7 @@
 		E93D82141E79C69500B20965 /* ViewControllerHelp.swift in Sources */ = {isa = PBXBuildFile; fileRef = E93D82131E79C69500B20965 /* ViewControllerHelp.swift */; };
 		E96CA1FE1E094C3000CD1D03 /* Resources.swift in Sources */ = {isa = PBXBuildFile; fileRef = E96CA1FD1E094C3000CD1D03 /* Resources.swift */; };
 		E989CE961EF948D0000CB7C2 /* chmodPubKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = E989CE951EF948D0000CB7C2 /* chmodPubKey.swift */; };
-		E98A0EEB1EF953FD0006B595 /* newTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = E98A0EEA1EF953FD0006B595 /* newTask.swift */; };
+		E98A0EEB1EF953FD0006B595 /* newSingleTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = E98A0EEA1EF953FD0006B595 /* newSingleTask.swift */; };
 		E9A8D81C1ED20AEB009648DE /* getRemoteFilesArguments.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9A8D81B1ED20AEB009648DE /* getRemoteFilesArguments.swift */; };
 		E9C6EA8A1ED2AE2F00680D4D /* numbers.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9C6EA891ED2AE2F00680D4D /* numbers.swift */; };
 		E9CF14141E729540008E8A15 /* RsyncScheduled.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9CF14131E729540008E8A15 /* RsyncScheduled.swift */; };
@@ -146,7 +146,7 @@
 		E93D82131E79C69500B20965 /* ViewControllerHelp.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewControllerHelp.swift; sourceTree = "<group>"; };
 		E96CA1FD1E094C3000CD1D03 /* Resources.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Resources.swift; sourceTree = "<group>"; };
 		E989CE951EF948D0000CB7C2 /* chmodPubKey.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = chmodPubKey.swift; sourceTree = "<group>"; };
-		E98A0EEA1EF953FD0006B595 /* newTask.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = newTask.swift; sourceTree = "<group>"; };
+		E98A0EEA1EF953FD0006B595 /* newSingleTask.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = newSingleTask.swift; sourceTree = "<group>"; };
 		E9A8D81B1ED20AEB009648DE /* getRemoteFilesArguments.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = getRemoteFilesArguments.swift; sourceTree = "<group>"; };
 		E9C6EA891ED2AE2F00680D4D /* numbers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = numbers.swift; sourceTree = "<group>"; };
 		E9CF14131E729540008E8A15 /* RsyncScheduled.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RsyncScheduled.swift; sourceTree = "<group>"; };
@@ -329,7 +329,7 @@
 			children = (
 				A0430AD91DAFFD3C00BBC106 /* singleTask.swift */,
 				A05275D91D6F6E0000D8ECBE /* batchOperations.swift */,
-				E98A0EEA1EF953FD0006B595 /* newTask.swift */,
+				E98A0EEA1EF953FD0006B595 /* newSingleTask.swift */,
 			);
 			name = Execution;
 			sourceTree = "<group>";
@@ -500,7 +500,7 @@
 				E96CA1FE1E094C3000CD1D03 /* Resources.swift in Sources */,
 				A04492B21D658F2100B3CE17 /* rsyncProcessArguments.swift in Sources */,
 				E9230C0E1E6DDC57001D9954 /* rsyncArguments.swift in Sources */,
-				E98A0EEB1EF953FD0006B595 /* newTask.swift in Sources */,
+				E98A0EEB1EF953FD0006B595 /* newSingleTask.swift in Sources */,
 				A05275DA1D6F6E0000D8ECBE /* batchOperations.swift in Sources */,
 				A0EFB4501DC080A9008C21A6 /* persistentStoreUserconfiguration.swift in Sources */,
 				A00FE1AA1D6A1AAB00012089 /* alerts.swift in Sources */,
