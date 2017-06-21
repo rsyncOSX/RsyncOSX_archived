@@ -67,6 +67,7 @@
 		E9374D2E1E329A5800CD3945 /* completeScheduledOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9374D2D1E329A5800CD3945 /* completeScheduledOperation.swift */; };
 		E93D82141E79C69500B20965 /* ViewControllerHelp.swift in Sources */ = {isa = PBXBuildFile; fileRef = E93D82131E79C69500B20965 /* ViewControllerHelp.swift */; };
 		E96CA1FE1E094C3000CD1D03 /* Resources.swift in Sources */ = {isa = PBXBuildFile; fileRef = E96CA1FD1E094C3000CD1D03 /* Resources.swift */; };
+		E97C09A71EFAFBC400E86999 /* newBatchTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = E97C09A61EFAFBC400E86999 /* newBatchTask.swift */; };
 		E989CE961EF948D0000CB7C2 /* chmodPubKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = E989CE951EF948D0000CB7C2 /* chmodPubKey.swift */; };
 		E98A0EEB1EF953FD0006B595 /* newSingleTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = E98A0EEA1EF953FD0006B595 /* newSingleTask.swift */; };
 		E9A8D81C1ED20AEB009648DE /* getRemoteFilesArguments.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9A8D81B1ED20AEB009648DE /* getRemoteFilesArguments.swift */; };
@@ -145,6 +146,7 @@
 		E9374D2D1E329A5800CD3945 /* completeScheduledOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = completeScheduledOperation.swift; sourceTree = "<group>"; };
 		E93D82131E79C69500B20965 /* ViewControllerHelp.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewControllerHelp.swift; sourceTree = "<group>"; };
 		E96CA1FD1E094C3000CD1D03 /* Resources.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Resources.swift; sourceTree = "<group>"; };
+		E97C09A61EFAFBC400E86999 /* newBatchTask.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = newBatchTask.swift; sourceTree = "<group>"; };
 		E989CE951EF948D0000CB7C2 /* chmodPubKey.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = chmodPubKey.swift; sourceTree = "<group>"; };
 		E98A0EEA1EF953FD0006B595 /* newSingleTask.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = newSingleTask.swift; sourceTree = "<group>"; };
 		E9A8D81B1ED20AEB009648DE /* getRemoteFilesArguments.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = getRemoteFilesArguments.swift; sourceTree = "<group>"; };
@@ -330,6 +332,7 @@
 				A0430AD91DAFFD3C00BBC106 /* singleTask.swift */,
 				A05275D91D6F6E0000D8ECBE /* batchOperations.swift */,
 				E98A0EEA1EF953FD0006B595 /* newSingleTask.swift */,
+				E97C09A61EFAFBC400E86999 /* newBatchTask.swift */,
 			);
 			name = Execution;
 			sourceTree = "<group>";
@@ -513,6 +516,7 @@
 				E9E763711E6AEA5300B45E8D /* ViewControllerCopyFilesSource.swift in Sources */,
 				A0FC45641D9545CC005208EF /* ScheduleLoggData.swift in Sources */,
 				A04492A91D658F2100B3CE17 /* ytcpsocket.c in Sources */,
+				E97C09A71EFAFBC400E86999 /* newBatchTask.swift in Sources */,
 				E9374D2C1E3299E800CD3945 /* executeTask.swift in Sources */,
 				A00FE1A81D6A19CF00012089 /* ViewControllerNewConfigurations.swift in Sources */,
 				E9374D2E1E329A5800CD3945 /* completeScheduledOperation.swift in Sources */,

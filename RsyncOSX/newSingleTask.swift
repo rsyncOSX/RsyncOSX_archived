@@ -9,7 +9,6 @@
 import Foundation
 import Cocoa
 
-
 // Protocols for instruction start/stop progressviewindicator
 protocol StartStopProgressIndicatorSingleTask: class {
     func startIndicator()
@@ -19,7 +18,7 @@ protocol StartStopProgressIndicatorSingleTask: class {
 protocol Task: class {
     func showProcessInfo(info:displayProcessInfo)
     func presentViewProgress()
-    func presentViewInformation()
+    func presentViewInformation(output: outputProcess)
     func terminateProgressProcess()
 }
 
@@ -48,7 +47,7 @@ class newSingleTask {
     // Index to selected row, index is set when row is selected
     private var index:Int?
     // Getting output from rsync
-    private var output:outputProcess?
+    var output:outputProcess?
     // Getting output from batchrun
     private var outputbatch:outputBatch?
     // Holding max count
@@ -70,28 +69,18 @@ class newSingleTask {
     fileprivate var loadProfileMenu:Bool = false
     
     // Numbers
-    private var transferredNumber:String?
-    private var transferredNumberSizebytes:String?
-    private var totalNumber:String?
-    private var totalNumberSizebytes:String?
-    private var totalDirs:String?
-    private var newfiles:String?
-    private var deletefiles:String?
+    
+    var transferredNumber:String?
+    var transferredNumberSizebytes:String?
+    var totalNumber:String?
+    var totalNumberSizebytes:String?
+    var totalDirs:String?
+    var newfiles:String?
+    var deletefiles:String?
 
     
-    // Display correct rsync command in view
-    func setRsyncCommandDisplay() -> String {
-        guard (self.dryrun != nil || self.index != nil)  else {
-            return ""
-        }
-        return Utils.sharedInstance.setRsyncCommandDisplay(index: self.index!, dryRun: self.dryrun!)
-    }
-    
-    
-    
-    
     // Single task can be activated by double click from table
-    func executeSingelTask() {
+    func executeSingleTask() {
         
         if (self.scheduledOperationInProgress() == false && SharingManagerConfiguration.sharedInstance.noRysync == false){
             if (self.workload == nil) {
@@ -115,6 +104,9 @@ class newSingleTask {
                     process.executeProcess(output: self.output!)
                     self.process = process.getProcess()
                     self.setInfo(info: "Execute", color: .blue)
+                    
+                    // Next run is real run
+                    self.dryrun = false
                 }
             case .execute_singlerun:
                 // NB: self.showProcessInfo(info: .Executing)
@@ -167,7 +159,7 @@ class newSingleTask {
                 // Getting and setting max file to transfer
                 self.setmaxNumbersOfFilesToTransfer()
                 // If showInfoDryrun is on present result of dryrun automatically
-                self.task_delegate?.presentViewInformation()
+                self.task_delegate?.presentViewInformation(output: self.output!)
                 /* NB:
                 if (self.showInfoDryrun.state == 1) {
                     GlobalMainQueue.async(execute: { () -> Void in
@@ -180,7 +172,7 @@ class newSingleTask {
                 self.indicator_delegate?.stopIndicator()
                 //NB: self.working.stopAnimation(nil)
                 // If showInfoDryrun is on present result of dryrun automatically
-                self.task_delegate?.presentViewInformation()
+                self.task_delegate?.presentViewInformation(output: self.output!)
                 /* NB:
                 GlobalMainQueue.async(execute: { () -> Void in
                     self.presentViewControllerAsSheet(self.ViewControllerInformation)
@@ -201,7 +193,7 @@ class newSingleTask {
                 self.task_delegate?.terminateProgressProcess()
                 
                 // If showInfoDryrun is on present result of dryrun automatically
-                self.task_delegate?.presentViewInformation()
+                self.task_delegate?.presentViewInformation(output: self.output!)
                 /* NB:
                 if (self.showInfoDryrun.state == 1) {
                     GlobalMainQueue.async(execute: { () -> Void in
@@ -233,33 +225,6 @@ class newSingleTask {
         
     }
     
-    // Execute BATCH TASKS only
-    // Start of BATCH tasks.
-    // After start the function ProcessTermination()
-    // which is triggered when a Process termination is
-    // discovered, takes care of next task according to
-    // status and next work in batchOperations which
-    // also includes a queu of work.
-    func executeBatch() {
-        
-        if (self.scheduledOperationInProgress() == false && SharingManagerConfiguration.sharedInstance.noRysync == false){
-            self.workload = nil
-            self.outputbatch = nil
-            self.workload = singleTask(task: .batchrun)
-            self.setInfo(info: "Batchrun", color: .blue)
-            // Get all Configs marked for batch
-            let configs = SharingManagerConfiguration.sharedInstance.getConfigurationsBatch()
-            let batchObject = batchOperations(batchtasks: configs)
-            // Set the reference to batchData object in SharingManagerConfiguration
-            SharingManagerConfiguration.sharedInstance.setbatchDataQueue(batchdata: batchObject)
-            GlobalMainQueue.async(execute: { () -> Void in
-                // NB: self.presentViewControllerAsSheet(self.ViewControllerBatch)
-            })
-        } else {
-            Utils.sharedInstance.noRsync()
-        }
-    }
-    
     // True if scheduled task in progress
     func scheduledOperationInProgress() -> Bool {
         var scheduleInProgress:Bool?
@@ -275,18 +240,6 @@ class newSingleTask {
         }
     }
     
-    
-    // Reread bot Configurations and Schedules from persistent store to memory
-    func ReReadConfigurationsAndSchedules() {
-        // Reading main Configurations to memory
-        SharingManagerConfiguration.sharedInstance.setDataDirty(dirty: true)
-        SharingManagerConfiguration.sharedInstance.readAllConfigurationsAndArguments()
-        // Read all Scheduled data again
-        SharingManagerConfiguration.sharedInstance.setDataDirty(dirty: true)
-        SharingManagerSchedule.sharedInstance.readAllSchedules()
-    }
-    
-    //  End delegate functions Process object
     
     // Function for setting max files to be transferred
     // Function is called in self.ProcessTermination()
@@ -335,20 +288,11 @@ class newSingleTask {
         }
     }
     
-    
-    // Reset workqueue
-    fileprivate func reset() {
-        self.workload = nil
-        self.process = nil
-        self.output = nil
-        // NB: self.setRsyncCommandDisplay()
-    }
-    
-    
-    init(config: configuration, dryrun: Bool, index: Int) {
-        self.config = config
-        self.dryrun = dryrun
+    init(index: Int) {
+        
+        self.dryrun = true
         self.index = index
+        
         if let pvc = SharingManagerConfiguration.sharedInstance.ViewControllertabMain as? ViewControllertabMain {
             self.indicator_delegate = pvc
             self.task_delegate = pvc
