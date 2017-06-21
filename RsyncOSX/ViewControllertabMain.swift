@@ -393,8 +393,10 @@ class ViewControllertabMain: NSViewController {
     // Execute tasks by double click in table
     @objc(tableViewDoubleClick:) func tableViewDoubleClick(sender:AnyObject) {
         if (SharingManagerConfiguration.sharedInstance.allowDoubleclick == true) {
-            self.executeSingleTask()
-            
+            if (self.ready) {
+                self.executeSingleTask()
+            }
+            self.ready = false
         }
     }
 
@@ -405,11 +407,16 @@ class ViewControllertabMain: NSViewController {
     // which is triggered when a Process termination is
     // discovered, completes the task.
     @IBAction func executeTask(_ sender: NSButton) {
-        self.executeSingleTask()
+        if (self.ready) {
+            self.executeSingleTask()
+        }
+        self.ready = false
     }
     
     // Single task can be activated by double click from table
     private func executeSingleTask() {
+        
+        self.batchtask = nil
         
         guard self.singletask != nil else {
             // Dry run
@@ -438,6 +445,7 @@ class ViewControllertabMain: NSViewController {
     // also includes a queu of work.
     @IBAction func executeBatch(_ sender: NSButton) {
         
+        self.singletask = nil
         self.batchtask = newBatchTask()
         // self.batchtask?.executeBatch()
         
@@ -1070,7 +1078,14 @@ extension ViewControllertabMain: UpdateProgress {
     // Protocol UpdateProgress two functions, ProcessTermination() and FileHandler()
     
     func ProcessTermination() {
-        self.singletask?.ProcessTermination()
+        self.ready = true
+        // NB: must check if single run or batch run
+        if let singletask = self.singletask {
+            singletask.ProcessTermination()
+        } else if let _ = self.batchtask {
+            self.runBatch()
+        }
+        
     }
     
     // Function is triggered when Process outputs data in filehandler
