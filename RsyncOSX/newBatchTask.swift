@@ -30,8 +30,6 @@ final class newBatchTask {
     // Delegate for presenting batchView
     weak var batchView_delegate:BatchTask?
     
-    
-    
     // Delegate function for start/stop progress Indicator in BatchWindow
     weak var indicator_delegate:StartStopProgressIndicatorSingleTask?
     // Delegate function for show process step and present View
@@ -60,12 +58,6 @@ final class newBatchTask {
     // Some max numbers
     private var transferredNumber:String?
     private var transferredNumberSizebytes:String?
-
-    
-    func ProcessTermination() {
-        self.inBatchwork()
-    }
-    
     
     // Execute BATCH TASKS only
     // Start of BATCH tasks.
@@ -118,12 +110,12 @@ final class newBatchTask {
                 // Get the index if given hiddenID (in work.0)
                 let index:Int = SharingManagerConfiguration.sharedInstance.getIndex(work.0)
                 
-                // Create the output object for rsync
-                self.output = nil
-                self.output = outputProcess()
-                
                 switch (work.1) {
                 case 0:
+                    // Create the output object for rsync
+                    self.output = nil
+                    self.output = outputProcess()
+                    
                     self.batchView_delegate?.progressIndicatorViewBatch(operation: .start)
                     let arguments:Array<String> = SharingManagerConfiguration.sharedInstance.getRsyncArgumentOneConfig(index: index, argtype: .argdryRun)
                     let process = Rsync(arguments: arguments)
@@ -131,6 +123,13 @@ final class newBatchTask {
                     process.executeProcess(output: self.output!)
                     self.process = process.getProcess()
                 case 1:
+                    
+                    // Getting and setting max file to transfer
+                    self.task_delegate?.setmaxNumbersOfFilesToTransfer(output: self.output)
+                    // Create the output object for rsync
+                    self.output = nil
+                    self.output = outputProcess()
+                    
                     let arguments:Array<String> = SharingManagerConfiguration.sharedInstance.getRsyncArgumentOneConfig(index: index, argtype: .arg)
                     let process = Rsync(arguments: arguments)
                     // Setting reference to process for Abort if requiered
@@ -168,8 +167,6 @@ final class newBatchTask {
             switch (work.1) {
             case 0:
                 // dry-run
-                // Getting and setting max file to transfer
-                self.task_delegate?.setmaxNumbersOfFilesToTransfer(output: self.output)
                 // Setting maxcount of files in object
                 batchobject.setEstimated(numberOfFiles: self.maxcount)
                 // Do a refresh of NSTableView in ViewControllerBatch
@@ -190,7 +187,6 @@ final class newBatchTask {
                 self.batchView_delegate?.progressIndicatorViewBatch(operation: .refresh)
                 // Set date on Configuration
                 let index = SharingManagerConfiguration.sharedInstance.getIndex(work.0)
-                
                 let config = SharingManagerConfiguration.sharedInstance.getConfigurations()[index]
                 // Get transferred numbers from view
                 self.transferredNumber = self.task_delegate?.gettransferredNumber()

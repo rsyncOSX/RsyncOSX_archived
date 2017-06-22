@@ -47,7 +47,7 @@ final class newSingleTask {
     // Index to selected row, index is set when row is selected
     private var index:Int?
     // Getting output from rsync
-    private var output:outputProcess?
+    var output:outputProcess?
     // Holding max count
     private var maxcount:Int = 0
     // HiddenID task, set when row is selected

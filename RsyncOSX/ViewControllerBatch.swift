@@ -9,6 +9,11 @@
 import Foundation
 import Cocoa
 
+// Return the created batchobject
+protocol getBatchObect: class {
+    func batchOject() -> newBatchTask
+}
+
 class ViewControllerBatch : NSViewController {
     
     
@@ -21,6 +26,8 @@ class ViewControllerBatch : NSViewController {
     var seconds:Int?
     // Working on row
     var row:Int?
+    // Batchobject
+    var batchTask:newBatchTask?
 
     // Main tableview
     @IBOutlet weak var mainTableView: NSTableView!
@@ -50,8 +57,8 @@ class ViewControllerBatch : NSViewController {
     
     // Execute batch
     @IBAction func Execute(_ sender: NSButton) {
-        let batchTask = newBatchTask()
-        batchTask.runBatch()
+        self.batchTask = newBatchTask()
+        self.batchTask!.runBatch()
         self.CloseButton.title = "Abort"
         self.close = false
     }
@@ -173,6 +180,14 @@ extension ViewControllerBatch: RefreshtableView {
         GlobalMainQueue.async(execute: { () -> Void in
             self.mainTableView.reloadData()
         })
+    }
+    
+}
+
+extension ViewControllerBatch: getBatchObect {
+    
+    func batchOject() -> newBatchTask {
+        return self.batchTask!
     }
     
 }
