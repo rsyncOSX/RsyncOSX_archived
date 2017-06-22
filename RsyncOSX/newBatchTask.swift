@@ -163,14 +163,15 @@ final class newBatchTask {
             // Remove the first worker object
             let work = batchobject.nextBatchRemove()
             // get numbers from dry-run
-            // Getting and setting max file to transfer
-            self.task_delegate?.setmaxNumbersOfFilesToTransfer(output: self.output)
-            // Setting maxcount of files in object
-            batchobject.setEstimated(numberOfFiles: self.maxcount)
+            
             // 0 is estimationrun, 1 is real run
             switch (work.1) {
             case 0:
-                
+                // dry-run
+                // Getting and setting max file to transfer
+                self.task_delegate?.setmaxNumbersOfFilesToTransfer(output: self.output)
+                // Setting maxcount of files in object
+                batchobject.setEstimated(numberOfFiles: self.maxcount)
                 // Do a refresh of NSTableView in ViewControllerBatch
                 // Stack of ViewControllers
                 
@@ -178,6 +179,7 @@ final class newBatchTask {
                 self.task_delegate?.showProcessInfo(info: .Estimating)
                 self.runBatch()
             case 1:
+                // Real run
                 self.maxcount = self.output!.getMaxcount()
                 let number = Numbers(output: self.output!.getOutput())
                 number.setNumbers()
