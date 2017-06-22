@@ -64,7 +64,7 @@ final class newBatchTask {
             // NB: self.setInfo(info: "Batchrun", color: .blue)
             // Get all Configs marked for batch
             let configs = SharingManagerConfiguration.sharedInstance.getConfigurationsBatch()
-            let batchObject = batchOperations(batchtasks: configs)
+            let batchObject = batchTask(batchtasks: configs)
             // Set the reference to batchData object in SharingManagerConfiguration
             SharingManagerConfiguration.sharedInstance.setbatchDataQueue(batchdata: batchObject)
             GlobalMainQueue.async(execute: { () -> Void in
