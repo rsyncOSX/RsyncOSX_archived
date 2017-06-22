@@ -925,28 +925,29 @@ extension ViewControllertabMain: UpdateProgress {
     // Process is either in singleRun or batchRun
     func FileHandler() {
         self.showProcessInfo(info: .Count_files)
-        if let batchobject = SharingManagerConfiguration.sharedInstance.getBatchdataObject() {
-            let work = batchobject.nextBatchCopy()
-            if work.1 == 1 {
-                // Real work is done
-                batchobject.updateInProcess(numberOfFiles: self.batchtask!.output!.getMaxcount())
-                // Refresh view in Batchwindow
-                if let pvc = self.presentedViewControllers as? [ViewControllerBatch] {
-                    self.refresh_delegate = pvc[0]
-                    self.refresh_delegate?.refresh()
+        if self.batchtask != nil {
+            if let batchobject = SharingManagerConfiguration.sharedInstance.getBatchdataObject() {
+                let work = batchobject.nextBatchCopy()
+                if work.1 == 1 {
+                    // Real work is done
+                    batchobject.updateInProcess(numberOfFiles: self.batchtask!.output!.getMaxcount())
+                    // Refresh view in Batchwindow
+                    if let pvc = self.presentedViewControllers as? [ViewControllerBatch] {
+                        self.refresh_delegate = pvc[0]
+                        self.refresh_delegate?.refresh()
+                    }
                 }
-            }
-        } else {
-            // Refresh ProgressView single run
-            if let pvc2 = self.presentedViewControllers as? [ViewControllerProgressProcess] {
-                if (pvc2.count > 0) {
-                    self.processupdate_delegate = pvc2[0]
-                    self.processupdate_delegate?.FileHandler()
+        } else if self.singletask != nil {
+                // Refresh ProgressView single run
+                if let pvc2 = self.presentedViewControllers as? [ViewControllerProgressProcess] {
+                    if (pvc2.count > 0) {
+                        self.processupdate_delegate = pvc2[0]
+                        self.processupdate_delegate?.FileHandler()
+                    }
                 }
             }
         }
     }
-    
 }
 
 // Deselect a row
