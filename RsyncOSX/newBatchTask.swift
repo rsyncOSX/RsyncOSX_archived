@@ -7,6 +7,19 @@
 //
 
 import Foundation
+import Cocoa
+
+protocol BatchTask: class {
+    func presentViewBatch()
+    func progressIndicatorViewBatch(operation: batchViewProgressIndicator)
+}
+
+enum batchViewProgressIndicator {
+    case start
+    case stop
+    case complete
+    case refresh
+}
 
 final class newBatchTask {
     
@@ -14,6 +27,8 @@ final class newBatchTask {
     weak var processupdate_delegate:UpdateProgress?
     // Delegate function for doing a refresh of NSTableView in ViewControllerBatch
     weak var refresh_delegate:RefreshtableView?
+    // Delegate for presenting batchView
+    weak var batchView_delegate:BatchTask?
     
     
     
@@ -44,8 +59,13 @@ final class newBatchTask {
     // Schedules in progress
     fileprivate var scheduledJobInProgress:Bool = false
     
+    // Some max numbers
+    private var transferredNumber:String?
+    private var transferredNumberSizebytes:String?
+
+    
     func ProcessTermination() {
-        
+        self.inBatchwork()
     }
     
     
@@ -67,9 +87,8 @@ final class newBatchTask {
             let batchObject = batchTask(batchtasks: configs)
             // Set the reference to batchData object in SharingManagerConfiguration
             SharingManagerConfiguration.sharedInstance.setbatchDataQueue(batchdata: batchObject)
-            GlobalMainQueue.async(execute: { () -> Void in
-                // NB: self.presentViewControllerAsSheet(self.ViewControllerBatch)
-            })
+            // Present batchView
+            self.batchView_delegate?.presentViewBatch()
         } else {
             Utils.sharedInstance.noRsync()
         }
@@ -90,12 +109,148 @@ final class newBatchTask {
         }
     }
     
+    // Functions are called from batchView.
+    func runBatch() {
+        // No scheduled opertaion in progress
+        if (self.scheduledOperationInProgress() == false ) {
+            if let batchobject = SharingManagerConfiguration.sharedInstance.getBatchdataObject() {
+                // Just copy the work object.
+                // The work object will be removed in Process termination
+                let work = batchobject.nextBatchCopy()
+                // Get the index if given hiddenID (in work.0)
+                let index:Int = SharingManagerConfiguration.sharedInstance.getIndex(work.0)
+                
+                // Create the output object for rsync
+                self.output = nil
+                self.output = outputProcess()
+                
+                switch (work.1) {
+                case 0:
+                    self.batchView_delegate?.progressIndicatorViewBatch(operation: .start)
+                    /*
+                    if let pvc = self.presentedViewControllers as? [ViewControllerBatch] {
+                        self.indicator_delegate = pvc[0]
+                        self.indicator_delegate?.start()
+                    }
+                    */
+                    let arguments:Array<String> = SharingManagerConfiguration.sharedInstance.getRsyncArgumentOneConfig(index: index, argtype: .argdryRun)
+                    let process = Rsync(arguments: arguments)
+                    // Setting reference to process for Abort if requiered
+                    process.executeProcess(output: self.output!)
+                    self.process = process.getProcess()
+                case 1:
+                    let arguments:Array<String> = SharingManagerConfiguration.sharedInstance.getRsyncArgumentOneConfig(index: index, argtype: .arg)
+                    let process = Rsync(arguments: arguments)
+                    // Setting reference to process for Abort if requiered
+                    process.executeProcess(output: self.output!)
+                    self.process = process.getProcess()
+                case -1:
+                    self.batchView_delegate?.progressIndicatorViewBatch(operation: .complete)
+                    /*
+                    if let pvc = self.presentedViewControllers as? [ViewControllerBatch] {
+                        self.indicator_delegate = pvc[0]
+                        self.indicator_delegate?.complete()
+                    }
+                    */
+                default : break
+                }
+            }
+        } else {
+            Alerts.showInfo("Scheduled operation in progress")
+        }
+    }
+    
+    func closeOperation() {
+        self.process = nil
+        self.workload = nil
+        self.task_delegate?.setInfo(info: "", color: .black)
+    }
+    
+    func inBatchwork() {
+        // Take care of batchRun activities
+        if let batchobject = SharingManagerConfiguration.sharedInstance.getBatchdataObject() {
+            
+            if (self.outputbatch == nil) {
+                self.outputbatch = outputBatch()
+            }
+            
+            // Remove the first worker object
+            let work = batchobject.nextBatchRemove()
+            // get numbers from dry-run
+            // Getting and setting max file to transfer
+            self.task_delegate?.setmaxNumbersOfFilesToTransfer(output: self.output)
+            // Setting maxcount of files in object
+            batchobject.setEstimated(numberOfFiles: self.maxcount)
+            // 0 is estimationrun, 1 is real run
+            switch (work.1) {
+            case 0:
+                
+                // Do a refresh of NSTableView in ViewControllerBatch
+                // Stack of ViewControllers
+                
+                self.batchView_delegate?.progressIndicatorViewBatch(operation: .stop)
+                /*
+                if let pvc = self.presentedViewControllers as? [ViewControllerBatch] {
+                    self.refresh_delegate = pvc[0]
+                    self.indicator_delegate = pvc[0]
+                    self.refresh_delegate?.refresh()
+                    self.indicator_delegate?.stop()
+                }
+                */
+                self.task_delegate?.showProcessInfo(info: .Estimating)
+                self.runBatch()
+            case 1:
+                self.maxcount = self.output!.getMaxcount()
+                let number = Numbers(output: self.output!.getOutput())
+                number.setNumbers()
+                
+                // Update files in work
+                batchobject.updateInProcess(numberOfFiles: self.maxcount)
+                batchobject.setCompleted()
+                self.batchView_delegate?.progressIndicatorViewBatch(operation: .refresh)
+                /*
+                if let pvc = self.presentedViewControllers as? [ViewControllerBatch] {
+                    self.refresh_delegate = pvc[0]
+                    self.indicator_delegate = pvc[0]
+                    self.refresh_delegate?.refresh()
+                }
+                */
+                // Set date on Configuration
+                let index = SharingManagerConfiguration.sharedInstance.getIndex(work.0)
+                
+                let config = SharingManagerConfiguration.sharedInstance.getConfigurations()[index]
+                // Get transferred numbers from view
+                self.transferredNumber = self.task_delegate?.gettransferredNumber()
+                self.transferredNumberSizebytes = self.task_delegate?.gettransferredNumberSizebytes()
+                
+                if config.offsiteServer.isEmpty {
+                    let result = config.localCatalog + " , " + "localhost" + " , " + number.statistics(numberOfFiles: self.transferredNumber, sizeOfFiles: self.transferredNumberSizebytes)[0]
+                    self.outputbatch!.addLine(str: result)
+                } else {
+                    let result = config.localCatalog + " , " + config.offsiteServer + " , " + number.statistics(numberOfFiles: self.transferredNumber,sizeOfFiles: self.transferredNumberSizebytes)[0]
+                    self.outputbatch!.addLine(str: result)
+                }
+                
+                let hiddenID = SharingManagerConfiguration.sharedInstance.gethiddenID(index: index)
+                SharingManagerConfiguration.sharedInstance.setCurrentDateonConfiguration(index)
+                SharingManagerSchedule.sharedInstance.addScheduleResultManuel(hiddenID, result: number.statistics(numberOfFiles: self.transferredNumber,sizeOfFiles: self.transferredNumberSizebytes)[0])
+                self.task_delegate?.showProcessInfo(info: .Executing)
+                
+                self.runBatch()
+            default :
+                break
+            }
+        }
+    }
+
+    
     
     init() {
         
         if let pvc = SharingManagerConfiguration.sharedInstance.ViewControllertabMain as? ViewControllertabMain {
             self.indicator_delegate = pvc
             self.task_delegate = pvc
+            self.batchView_delegate = pvc
         }
         
     }

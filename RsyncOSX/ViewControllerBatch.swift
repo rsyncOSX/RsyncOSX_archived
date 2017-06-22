@@ -9,19 +9,8 @@
 import Foundation
 import Cocoa
 
-protocol StartBatch : class  {
-    // Starts batch run
-    func runBatch()
-    // Aborts executing batch
-    func abortOperations()
-    // Either just close or close after batch done
-    func closeOperation()
-    // called when in executing batch
-    func inBatchwork()
-}
-
-
 class ViewControllerBatch : NSViewController {
+    
     
     // If close button or abort is pressed
     // After execute button is pressed, close is abort
@@ -41,18 +30,18 @@ class ViewControllerBatch : NSViewController {
     @IBOutlet weak var closeinseconds: NSTextField!
     @IBOutlet weak var rownumber: NSTextField!
     
-    // Iniate start of batchrun
-    weak var startBatch_delegate:StartBatch?
     // Dismisser
     weak var dismiss_delegate:DismissViewController?
 
     // ACTIONS AND BUTTONS
     
     @IBAction func Close(_ sender: NSButton) {
+        
+        let batchTask = newBatchTask()
         if (self.close!) {
-            self.startBatch_delegate?.closeOperation()
+            batchTask.closeOperation()
         } else {
-            self.startBatch_delegate?.abortOperations()
+            // batchTask.abortOperations()
         }
         self.waitToClose?.invalidate()
         self.closeIn?.invalidate()
@@ -61,7 +50,8 @@ class ViewControllerBatch : NSViewController {
     
     // Execute batch
     @IBAction func Execute(_ sender: NSButton) {
-        self.startBatch_delegate!.runBatch()
+        let batchTask = newBatchTask()
+        batchTask.runBatch()
         self.CloseButton.title = "Abort"
         self.close = false
     }
@@ -92,7 +82,6 @@ class ViewControllerBatch : NSViewController {
         }
          // Dismisser is root controller
         if let pvc = self.presenting as? ViewControllertabMain {
-            self.startBatch_delegate = pvc
             self.dismiss_delegate = pvc
         }
     }
