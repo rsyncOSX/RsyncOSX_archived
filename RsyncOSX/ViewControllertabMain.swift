@@ -430,11 +430,6 @@ class ViewControllertabMain: NSViewController {
         
     }
     
-    fileprivate func setInfo(info:String, color:NSColor) {
-        self.dryRunOrRealRun.stringValue = info
-        self.dryRunOrRealRun.textColor = color
-    
-    }
     
     // Execute BATCH TASKS only
     // Start of BATCH tasks.
@@ -1233,6 +1228,23 @@ extension ViewControllertabMain:Task {
                 self.processupdate_delegate?.ProcessTermination()
             }
         }
+    }
+    
+    func setInfo(info:String, color:colorInfo) {
+        
+        switch color {
+        case .red:
+            self.dryRunOrRealRun.textColor = .red
+        case .black:
+            self.dryRunOrRealRun.textColor = .black
+        case .blue:
+            self.dryRunOrRealRun.textColor = .blue
+        }
+        self.dryRunOrRealRun.stringValue = info
+    }
+    
+    func singleTaskAbort() {
+        self.abortOperations()
     }
 }
 

@@ -14,7 +14,6 @@ enum singleWorkTask {
     case abort
     case empty
     case done
-    case batchrun
     case error
 }
 

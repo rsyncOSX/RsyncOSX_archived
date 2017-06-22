@@ -20,16 +20,17 @@ protocol Task: class {
     func presentViewProgress()
     func presentViewInformation(output: outputProcess)
     func terminateProgressProcess()
+    func setInfo(info:String, color:colorInfo)
+    func singleTaskAbort()
+}
+
+enum colorInfo {
+    case red
+    case blue
+    case black
 }
 
 class newSingleTask {
-    
-    // Protocol function used in Process().
-    weak var processupdate_delegate:UpdateProgress?
-    // Delegate function for doing a refresh of NSTableView in ViewControllerBatch
-    weak var refresh_delegate:RefreshtableView?
-    
-    
     
     // Delegate function for start/stop progress Indicator in BatchWindow
     weak var indicator_delegate:StartStopProgressIndicatorSingleTask?
@@ -38,8 +39,6 @@ class newSingleTask {
     
     // REFERENCE VARIABLES
     
-    // Reference to config
-    private var config:configuration?
     // dryrun or not
     private var dryrun:Bool?
     // Reference to Process task
@@ -47,9 +46,7 @@ class newSingleTask {
     // Index to selected row, index is set when row is selected
     private var index:Int?
     // Getting output from rsync
-    var output:outputProcess?
-    // Getting output from batchrun
-    private var outputbatch:outputBatch?
+    private var output:outputProcess?
     // Holding max count
     private var maxcount:Int = 0
     // HiddenID task, set when row is selected
@@ -58,15 +55,10 @@ class newSingleTask {
     private var schedules : ScheduleSortedAndExpand?
     // Single task work queu
     private var workload:singleTask?
-    
     // Schedules in progress
     fileprivate var scheduledJobInProgress:Bool = false
     // Ready for execute again
     fileprivate var ready:Bool = true
-    // Can load profiles
-    // Load profiles only when testing for connections are done.
-    // Application crash if not
-    fileprivate var loadProfileMenu:Bool = false
     
     // Numbers
     
@@ -94,46 +86,40 @@ class newSingleTask {
             switch (self.workload!.peek()) {
             case .estimate_singlerun:
                 if let index = self.index {
+                    // Start animation and show process info
                     self.indicator_delegate?.startIndicator()
                     self.task_delegate?.showProcessInfo(info: .Estimating)
-                    // NB: self.working.startAnimation(nil)
-                    // NB: self.showProcessInfo(info: .Estimating)
+                    
                     arguments = SharingManagerConfiguration.sharedInstance.getRsyncArgumentOneConfig(index: index, argtype: .argdryRun)
                     let process = Rsync(arguments: arguments)
                     self.output = outputProcess()
                     process.executeProcess(output: self.output!)
                     self.process = process.getProcess()
-                    self.setInfo(info: "Execute", color: .blue)
-                    
+                    self.task_delegate?.setInfo(info: "Execute", color: .blue)
                     // Next run is real run
                     self.dryrun = false
                 }
             case .execute_singlerun:
-                // NB: self.showProcessInfo(info: .Executing)
                 self.task_delegate?.showProcessInfo(info: .Executing)
                 if let index = self.index {
+                    // Show progress view
                     self.task_delegate?.presentViewProgress()
-                    /*
-                    GlobalMainQueue.async(execute: { () -> Void in
-                        // NB: self.presentViewControllerAsSheet(self.ViewControllerProgress)
-                    })
-                    */
                     arguments = SharingManagerConfiguration.sharedInstance.getRsyncArgumentOneConfig(index: index, argtype: .arg)
                     self.output = outputProcess()
                     let process = Rsync(arguments: arguments)
                     process.executeProcess(output: self.output!)
                     self.process = process.getProcess()
-                    self.setInfo(info: "", color: .black)
+                    self.task_delegate?.setInfo(info: "", color: .black)
                 }
             case .abort:
                 self.workload = nil
-                self.setInfo(info: "Abort", color: .red)
+                self.task_delegate?.setInfo(info: "Abort", color: .red)
             case .empty:
                 self.workload = nil
-                self.setInfo(info: "Estimate", color: .blue)
+                self.task_delegate?.setInfo(info: "Estimate", color: .blue)
             default:
                 self.workload = nil
-                self.setInfo(info: "Estimate", color: .blue)
+                self.task_delegate?.setInfo(info: "Estimate", color: .blue)
                 break
             }
         } else {
@@ -155,59 +141,30 @@ class newSingleTask {
             case .estimate_singlerun:
                 // Stopping the working (estimation) progress indicator
                 self.indicator_delegate?.stopIndicator()
-                //NB: self.working.stopAnimation(nil)
                 // Getting and setting max file to transfer
-                self.setmaxNumbersOfFilesToTransfer()
+                self.setmaxNumbersOfFilesToTransfer(output: self.output)
                 // If showInfoDryrun is on present result of dryrun automatically
                 self.task_delegate?.presentViewInformation(output: self.output!)
-                /* NB:
-                if (self.showInfoDryrun.state == 1) {
-                    GlobalMainQueue.async(execute: { () -> Void in
-                        self.presentViewControllerAsSheet(self.ViewControllerInformation)
-                    })
-                }
-                */
             case .error:
                 // Stopping the working (estimation) progress indicator
                 self.indicator_delegate?.stopIndicator()
                 //NB: self.working.stopAnimation(nil)
                 // If showInfoDryrun is on present result of dryrun automatically
                 self.task_delegate?.presentViewInformation(output: self.output!)
-                /* NB:
-                GlobalMainQueue.async(execute: { () -> Void in
-                    self.presentViewControllerAsSheet(self.ViewControllerInformation)
-                })
-                */
             case .execute_singlerun:
                 //NB: self.showProcessInfo(info: .Logging_run)
                 self.task_delegate?.showProcessInfo(info: .Logging_run)
-                
-                /* NB:
-                if let pvc2 = self.presentedViewControllers as? [ViewControllerProgressProcess] {
-                    if (pvc2.count > 0) {
-                        self.processupdate_delegate = pvc2[0]
-                        self.processupdate_delegate?.ProcessTermination()
-                    }
-                }
-                */
+                // Process termination and close progress view
                 self.task_delegate?.terminateProgressProcess()
-                
                 // If showInfoDryrun is on present result of dryrun automatically
                 self.task_delegate?.presentViewInformation(output: self.output!)
-                /* NB:
-                if (self.showInfoDryrun.state == 1) {
-                    GlobalMainQueue.async(execute: { () -> Void in
-                        self.presentViewControllerAsSheet(self.ViewControllerInformation)
-                    })
-                }
-                */
                 // Logg run
                 let number = Numbers(output: self.output!.getOutput())
                 number.setNumbers()
                 SharingManagerConfiguration.sharedInstance.setCurrentDateonConfiguration(self.index!)
                 SharingManagerSchedule.sharedInstance.addScheduleResultManuel(self.hiddenID!, result: number.statistics(numberOfFiles: self.transferredNumber, sizeOfFiles: self.transferredNumberSizebytes)[0])
             case .abort:
-                //NB: self.abortOperations()
+                self.task_delegate?.singleTaskAbort()
                 self.workload = nil
             case .empty:
                 self.workload = nil
@@ -218,12 +175,6 @@ class newSingleTask {
         }
     }
 
-    
-    func setInfo(info:String, color:NSColor) {
-        // NB: self.dryRunOrRealRun.stringValue = info
-        // NB: self.dryRunOrRealRun.textColor = color
-        
-    }
     
     // True if scheduled task in progress
     func scheduledOperationInProgress() -> Bool {
@@ -243,9 +194,13 @@ class newSingleTask {
     
     // Function for setting max files to be transferred
     // Function is called in self.ProcessTermination()
-    func setmaxNumbersOfFilesToTransfer() {
+    func setmaxNumbersOfFilesToTransfer(output : outputProcess?) {
+
+        guard output != nil else {
+            return
+        }
         
-        let number = Numbers(output: self.output!.getOutput())
+        let number = Numbers(output: output!.getOutput())
         number.setNumbers()
         
         // Getting max count
@@ -255,10 +210,10 @@ class newSingleTask {
             if (number.getTransferredNumbers(numbers: .transferredNumber) > 0) {
                 self.maxcount = number.getTransferredNumbers(numbers: .transferredNumber)
             } else {
-                self.maxcount = self.output!.getMaxcount()
+                self.maxcount = output!.getMaxcount()
             }
         } else {
-            self.maxcount = self.output!.getMaxcount()
+            self.maxcount = output!.getMaxcount()
         }
     }
     
