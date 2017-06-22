@@ -415,7 +415,13 @@ class ViewControllertabMain: NSViewController {
     
     // Single task can be activated by double click from table
     private func executeSingleTask() {
+        
+        guard self.index != nil else {
+            return
+        }
+        
         self.batchtask = nil
+        
         guard self.singletask != nil else {
             // Dry run
             self.singletask = newSingleTask(index: self.index!)
