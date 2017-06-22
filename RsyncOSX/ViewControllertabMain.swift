@@ -943,8 +943,7 @@ extension ViewControllertabMain: UpdateProgress {
             let work = batchobject.nextBatchCopy()
             if work.1 == 1 {
                 // Real work is done
-                self.maxcount = self.output!.getMaxcount()
-                batchobject.updateInProcess(numberOfFiles: self.maxcount)
+                batchobject.updateInProcess(numberOfFiles: self.batchtask!.output!.getMaxcount())
                 // Refresh view in Batchwindow
                 if let pvc = self.presentedViewControllers as? [ViewControllerBatch] {
                     self.refresh_delegate = pvc[0]
