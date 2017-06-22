@@ -110,7 +110,7 @@ class ViewControllertabMain: NSViewController {
     // Used in testing if remote server is on/off-line
     fileprivate var serverOff:Array<Bool>?
     // Single task work queu
-    fileprivate var workload:singleTask?
+    fileprivate var workload:singleTaskWorkQueu?
     
     // Schedules in progress
     fileprivate var scheduledJobInProgress:Bool = false
@@ -379,7 +379,7 @@ class ViewControllertabMain: NSViewController {
         // Do not allow notify in Main
         SharingManagerConfiguration.sharedInstance.allowNotifyinMain = false
         if (self.workload == nil) {
-            self.workload = singleTask()
+            self.workload = singleTaskWorkQueu()
         }
         
        
@@ -789,7 +789,7 @@ extension ViewControllertabMain: StartBatch {
             self.process = nil
             self.workload = nil
             // Create workqueu and add abort
-            self.workload = singleTask(task: .abort)
+            self.workload = singleTaskWorkQueu(task: .abort)
             self.setInfo(info: "Abort", color: .red)
             self.rsyncCommand.stringValue = ""
         } else {
@@ -806,7 +806,7 @@ extension ViewControllertabMain: StartBatch {
             self.schedules = nil
             self.process = nil
             self.workload = nil
-            self.workload = singleTask(task: .abort)
+            self.workload = singleTaskWorkQueu(task: .abort)
             self.setInfo(info: "Abort", color: .red)
         }
     }
@@ -1216,7 +1216,8 @@ extension ViewControllertabMain:SingleTask {
         self.dryRunOrRealRun.stringValue = info
     }
     
-    func singleTaskAbort() {
+    func singleTaskAbort(process:Process?) {
+        self.process = process
         self.abortOperations()
     }
     

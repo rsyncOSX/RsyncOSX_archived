@@ -14,13 +14,14 @@ protocol StartStopProgressIndicatorSingleTask: class {
     func stopIndicator()
 }
 
+// Protocol functions implemented in main view
 protocol SingleTask: class {
     func showProcessInfo(info:displayProcessInfo)
     func presentViewProgress()
     func presentViewInformation(output: outputProcess)
     func terminateProgressProcess()
     func setInfo(info:String, color:colorInfo)
-    func singleTaskAbort()
+    func singleTaskAbort(process:Process?)
     func setNumbers(output:outputProcess?)
     func setmaxNumbersOfFilesToTransfer(output : outputProcess?)
     func gettransferredNumber() -> String
@@ -33,17 +34,14 @@ enum colorInfo {
     case black
 }
 
-class newSingleTask {
+final class newSingleTask {
     
     // Delegate function for start/stop progress Indicator in BatchWindow
     weak var indicator_delegate:StartStopProgressIndicatorSingleTask?
-    // Delegate function for show process step and present View
+    // Delegate functions for kicking of various functions during 
+    // process task
     weak var task_delegate:SingleTask?
     
-    // REFERENCE VARIABLES
-    
-    // dryrun or not
-    private var dryrun:Bool?
     // Reference to Process task
     private var process:Process?
     // Index to selected row, index is set when row is selected
@@ -57,7 +55,7 @@ class newSingleTask {
     // Reference to Schedules object
     private var schedules : ScheduleSortedAndExpand?
     // Single task work queu
-    private var workload:singleTask?
+    private var workload:singleTaskWorkQueu?
     // Schedules in progress
     fileprivate var scheduledJobInProgress:Bool = false
     // Ready for execute again
@@ -75,7 +73,7 @@ class newSingleTask {
         
         if (self.scheduledOperationInProgress() == false && SharingManagerConfiguration.sharedInstance.noRysync == false){
             if (self.workload == nil) {
-                self.workload = singleTask()
+                self.workload = singleTaskWorkQueu()
             }
             
             let arguments: Array<String>?
@@ -95,8 +93,6 @@ class newSingleTask {
                     process.executeProcess(output: self.output!)
                     self.process = process.getProcess()
                     self.task_delegate?.setInfo(info: "Execute", color: .blue)
-                    // Next run is real run
-                    self.dryrun = false
                 }
             case .execute_singlerun:
                 self.task_delegate?.showProcessInfo(info: .Executing)
@@ -167,7 +163,7 @@ class newSingleTask {
                 let hiddenID = SharingManagerConfiguration.sharedInstance.gethiddenID(index: self.index!)
                 SharingManagerSchedule.sharedInstance.addScheduleResultManuel(hiddenID, result: number.statistics(numberOfFiles: self.transferredNumber, sizeOfFiles: self.transferredNumberSizebytes)[0])
             case .abort:
-                self.task_delegate?.singleTaskAbort()
+                self.task_delegate?.singleTaskAbort(process: self.process)
                 self.workload = nil
             case .empty:
                 self.workload = nil
@@ -196,7 +192,6 @@ class newSingleTask {
     
     init(index: Int) {
         
-        self.dryrun = true
         self.index = index
         
         if let pvc = SharingManagerConfiguration.sharedInstance.ViewControllertabMain as? ViewControllertabMain {

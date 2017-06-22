@@ -8,7 +8,7 @@
 
 import Foundation
 
-class newBatchTask {
+final class newBatchTask {
     
     // Protocol function used in Process().
     weak var processupdate_delegate:UpdateProgress?
@@ -39,7 +39,7 @@ class newBatchTask {
     // Reference to Schedules object
     private var schedules : ScheduleSortedAndExpand?
     // Single task work queu
-    private var workload:singleTask?
+    private var workload:singleTaskWorkQueu?
     
     // Schedules in progress
     fileprivate var scheduledJobInProgress:Bool = false

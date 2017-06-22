@@ -1,5 +1,5 @@
 //
-//  singleTask.swift
+//  singleTaskWorkQueu.swift
 //  RsyncOSX
 //
 //  Created by Thomas Evensen on 13/10/2016.
@@ -8,7 +8,7 @@
 
 import Foundation
 
-enum singleWorkTask {
+enum singleTaskWork {
     case estimate_singlerun
     case execute_singlerun
     case abort
@@ -17,14 +17,14 @@ enum singleWorkTask {
     case error
 }
 
-final class singleTask {
+final class singleTaskWorkQueu {
 
     // Work Queue
-    private var work:Array<singleWorkTask>?
+    private var work:Array<singleTaskWork>?
     
     // Returns the top most element.
     // Top element is read only
-    func peek() -> singleWorkTask {
+    func peek() -> singleTaskWork {
         guard self.work != nil else {
             return .empty
         }
@@ -36,7 +36,7 @@ final class singleTask {
     
     // Returns the top most element.
     // Top element is removed
-    func pop() -> singleWorkTask {
+    func pop() -> singleTaskWork {
         guard self.work != nil else {
             return .empty
         }
@@ -58,16 +58,16 @@ final class singleTask {
     // Single run
     init() {
         self.work = nil
-        self.work = Array<singleWorkTask>()
+        self.work = Array<singleTaskWork>()
         self.work!.append(.estimate_singlerun)
         self.work!.append(.execute_singlerun)
         self.work!.append(.done)
     }
     
     // Either Abort or Batchrun
-    init (task:singleWorkTask) {
+    init (task:singleTaskWork) {
         self.work = nil
-        self.work = Array<singleWorkTask>()
+        self.work = Array<singleTaskWork>()
         self.work!.append(task)
     }
 }
