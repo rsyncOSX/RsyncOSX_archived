@@ -381,8 +381,6 @@ class ViewControllertabMain: NSViewController {
         if (self.workload == nil) {
             self.workload = singleTaskWorkQueu()
         }
-        
-       
         // If a process is running keep it running
         guard self.process == nil else {
             return
@@ -415,9 +413,7 @@ class ViewControllertabMain: NSViewController {
     
     // Single task can be activated by double click from table
     private func executeSingleTask() {
-        
         self.batchtask = nil
-        
         guard self.singletask != nil else {
             // Dry run
             self.singletask = newSingleTask(index: self.index!)
@@ -426,24 +422,14 @@ class ViewControllertabMain: NSViewController {
         }
         // Real run
         self.singletask?.executeSingleTask()
-        
-        
     }
     
     
     // Execute BATCH TASKS only
-    // Start of BATCH tasks.
-    // After start the function ProcessTermination()
-    // which is triggered when a Process termination is
-    // discovered, takes care of next task according to
-    // status and next work in batchOperations which
-    // also includes a queu of work.
     @IBAction func executeBatch(_ sender: NSButton) {
-        
         self.singletask = nil
         self.batchtask = newBatchTask()
         self.batchtask?.executeBatch()
-        
     }
     
     // Reread bot Configurations and Schedules from persistent store to memory

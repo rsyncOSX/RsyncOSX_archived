@@ -41,8 +41,6 @@ final class newBatchTask {
     
     // Reference to Process task
     private var process:Process?
-    // Index to selected row, index is set when row is selected
-    private var index:Int?
     // Getting output from rsync
     var output:outputProcess?
     // Getting output from batchrun
@@ -57,7 +55,7 @@ final class newBatchTask {
     private var workload:singleTaskWorkQueu?
     
     // Schedules in progress
-    fileprivate var scheduledJobInProgress:Bool = false
+    private var scheduledJobInProgress:Bool = false
     
     // Some max numbers
     private var transferredNumber:String?
@@ -127,12 +125,6 @@ final class newBatchTask {
                 switch (work.1) {
                 case 0:
                     self.batchView_delegate?.progressIndicatorViewBatch(operation: .start)
-                    /*
-                    if let pvc = self.presentedViewControllers as? [ViewControllerBatch] {
-                        self.indicator_delegate = pvc[0]
-                        self.indicator_delegate?.start()
-                    }
-                    */
                     let arguments:Array<String> = SharingManagerConfiguration.sharedInstance.getRsyncArgumentOneConfig(index: index, argtype: .argdryRun)
                     let process = Rsync(arguments: arguments)
                     // Setting reference to process for Abort if requiered
@@ -146,12 +138,6 @@ final class newBatchTask {
                     self.process = process.getProcess()
                 case -1:
                     self.batchView_delegate?.progressIndicatorViewBatch(operation: .complete)
-                    /*
-                    if let pvc = self.presentedViewControllers as? [ViewControllerBatch] {
-                        self.indicator_delegate = pvc[0]
-                        self.indicator_delegate?.complete()
-                    }
-                    */
                 default : break
                 }
             }
@@ -189,14 +175,6 @@ final class newBatchTask {
                 // Stack of ViewControllers
                 
                 self.batchView_delegate?.progressIndicatorViewBatch(operation: .stop)
-                /*
-                if let pvc = self.presentedViewControllers as? [ViewControllerBatch] {
-                    self.refresh_delegate = pvc[0]
-                    self.indicator_delegate = pvc[0]
-                    self.refresh_delegate?.refresh()
-                    self.indicator_delegate?.stop()
-                }
-                */
                 self.task_delegate?.showProcessInfo(info: .Estimating)
                 self.runBatch()
             case 1:
@@ -208,13 +186,6 @@ final class newBatchTask {
                 batchobject.updateInProcess(numberOfFiles: self.maxcount)
                 batchobject.setCompleted()
                 self.batchView_delegate?.progressIndicatorViewBatch(operation: .refresh)
-                /*
-                if let pvc = self.presentedViewControllers as? [ViewControllerBatch] {
-                    self.refresh_delegate = pvc[0]
-                    self.indicator_delegate = pvc[0]
-                    self.refresh_delegate?.refresh()
-                }
-                */
                 // Set date on Configuration
                 let index = SharingManagerConfiguration.sharedInstance.getIndex(work.0)
                 
@@ -242,7 +213,6 @@ final class newBatchTask {
             }
         }
     }
-
     
     
     init() {
@@ -252,7 +222,6 @@ final class newBatchTask {
             self.task_delegate = pvc
             self.batchView_delegate = pvc
         }
-        
     }
     
 }
