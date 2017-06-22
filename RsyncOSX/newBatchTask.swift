@@ -130,7 +130,7 @@ final class newBatchTask {
                     self.output = nil
                     self.output = outputProcess()
                     
-                    let arguments:Array<String> = SharingManagerConfiguration.sharedInstance.getRsyncArgumentOneConfig(index: index, argtype: .arg)
+                    let arguments:Array<String> = SharingManagerConfiguration.sharedInstance.getRsyncArgumentOneConfig(index: index, argtype: .argdryRun)
                     let process = Rsync(arguments: arguments)
                     // Setting reference to process for Abort if requiered
                     process.executeProcess(output: self.output!)

@@ -1105,30 +1105,34 @@ extension ViewControllertabMain:SingleTask {
     // Process object executes the job.
     func setNumbers(output:outputProcess?) {
         
-        guard output != nil else {
+        GlobalMainQueue.async(execute: { () -> Void in
             
-            self.transferredNumber.stringValue = ""
-            self.transferredNumberSizebytes.stringValue = ""
-            self.totalNumber.stringValue = ""
-            self.totalNumberSizebytes.stringValue = ""
-            self.totalDirs.stringValue = ""
-            self.newfiles.stringValue = ""
-            self.deletefiles.stringValue = ""
+            guard output != nil else {
+                
+                self.transferredNumber.stringValue = ""
+                self.transferredNumberSizebytes.stringValue = ""
+                self.totalNumber.stringValue = ""
+                self.totalNumberSizebytes.stringValue = ""
+                self.totalDirs.stringValue = ""
+                self.newfiles.stringValue = ""
+                self.deletefiles.stringValue = ""
+                
+                return
+            }
             
-            return
-        }
+            
+            let number = Numbers(output: output!.getOutput())
+            number.setNumbers()
+            
+            self.transferredNumber.stringValue = NumberFormatter.localizedString(from: NSNumber(value: number.getTransferredNumbers(numbers: .transferredNumber)), number: NumberFormatter.Style.decimal)
+            self.transferredNumberSizebytes.stringValue = NumberFormatter.localizedString(from: NSNumber(value: number.getTransferredNumbers(numbers: .transferredNumberSizebytes)), number: NumberFormatter.Style.decimal)
+            self.totalNumber.stringValue = NumberFormatter.localizedString(from: NSNumber(value: number.getTransferredNumbers(numbers: .totalNumber)), number: NumberFormatter.Style.decimal)
+            self.totalNumberSizebytes.stringValue = NumberFormatter.localizedString(from: NSNumber(value: number.getTransferredNumbers(numbers: .totalNumberSizebytes)), number: NumberFormatter.Style.decimal)
+            self.totalDirs.stringValue = NumberFormatter.localizedString(from: NSNumber(value: number.getTransferredNumbers(numbers: .totalDirs)), number: NumberFormatter.Style.decimal)
+            self.newfiles.stringValue = NumberFormatter.localizedString(from: NSNumber(value: number.getTransferredNumbers(numbers: .new)), number: NumberFormatter.Style.decimal)
+            self.deletefiles.stringValue = NumberFormatter.localizedString(from: NSNumber(value: number.getTransferredNumbers(numbers: .delete)), number: NumberFormatter.Style.decimal)
+        })
         
-        
-        let number = Numbers(output: output!.getOutput())
-        number.setNumbers()
-            
-        self.transferredNumber.stringValue = NumberFormatter.localizedString(from: NSNumber(value: number.getTransferredNumbers(numbers: .transferredNumber)), number: NumberFormatter.Style.decimal)
-        self.transferredNumberSizebytes.stringValue = NumberFormatter.localizedString(from: NSNumber(value: number.getTransferredNumbers(numbers: .transferredNumberSizebytes)), number: NumberFormatter.Style.decimal)
-        self.totalNumber.stringValue = NumberFormatter.localizedString(from: NSNumber(value: number.getTransferredNumbers(numbers: .totalNumber)), number: NumberFormatter.Style.decimal)
-        self.totalNumberSizebytes.stringValue = NumberFormatter.localizedString(from: NSNumber(value: number.getTransferredNumbers(numbers: .totalNumberSizebytes)), number: NumberFormatter.Style.decimal)
-        self.totalDirs.stringValue = NumberFormatter.localizedString(from: NSNumber(value: number.getTransferredNumbers(numbers: .totalDirs)), number: NumberFormatter.Style.decimal)
-        self.newfiles.stringValue = NumberFormatter.localizedString(from: NSNumber(value: number.getTransferredNumbers(numbers: .new)), number: NumberFormatter.Style.decimal)
-        self.deletefiles.stringValue = NumberFormatter.localizedString(from: NSNumber(value: number.getTransferredNumbers(numbers: .delete)), number: NumberFormatter.Style.decimal)
     }
     
     // Function for setting max files to be transferred
