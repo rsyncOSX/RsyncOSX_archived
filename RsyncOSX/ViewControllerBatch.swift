@@ -10,8 +10,8 @@ import Foundation
 import Cocoa
 
 // Return the created batchobject
-protocol getBatchObect: class {
-    func batchOject() -> newBatchTask
+protocol getNewBatchTask: class {
+    func getTaskObject() -> newBatchTask
 }
 
 class ViewControllerBatch : NSViewController {
@@ -184,9 +184,9 @@ extension ViewControllerBatch: RefreshtableView {
     
 }
 
-extension ViewControllerBatch: getBatchObect {
+extension ViewControllerBatch: getNewBatchTask {
     
-    func batchOject() -> newBatchTask {
+    func getTaskObject() -> newBatchTask {
         return self.batchTask!
     }
     

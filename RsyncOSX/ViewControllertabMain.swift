@@ -55,7 +55,7 @@ class ViewControllertabMain: NSViewController {
     // Delegate function for start/stop progress Indicator in BatchWindow
     weak var indicator_delegate:StartStopProgressIndicator?
     // Delegate function getting batchTaskObject
-    weak var batchObject_delegate:getBatchObect?
+    weak var batchObject_delegate:getNewBatchTask?
     
     // Main tableview
     @IBOutlet weak var mainTableView: NSTableView!
@@ -929,7 +929,7 @@ extension ViewControllertabMain: UpdateProgress {
             // Batch run
             if let pvc = self.presentedViewControllers as? [ViewControllerBatch] {
                 self.batchObject_delegate = pvc[0]
-                self.batchtask = self.batchObject_delegate?.batchOject()
+                self.batchtask = self.batchObject_delegate?.getTaskObject()
             }
             self.output = self.batchtask!.output
             self.batchtask!.inBatchwork()
