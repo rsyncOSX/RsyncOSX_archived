@@ -7,7 +7,6 @@
 //
 
 import Foundation
-import Cocoa
 
 // Protocols for instruction start/stop progressviewindicator
 protocol StartStopProgressIndicatorSingleTask: class {
@@ -15,13 +14,17 @@ protocol StartStopProgressIndicatorSingleTask: class {
     func stopIndicator()
 }
 
-protocol Task: class {
+protocol SingleTask: class {
     func showProcessInfo(info:displayProcessInfo)
     func presentViewProgress()
     func presentViewInformation(output: outputProcess)
     func terminateProgressProcess()
     func setInfo(info:String, color:colorInfo)
     func singleTaskAbort()
+    func setNumbers(output:outputProcess?)
+    func setmaxNumbersOfFilesToTransfer(output : outputProcess?)
+    func gettransferredNumber() -> String
+    func gettransferredNumberSizebytes() -> String
 }
 
 enum colorInfo {
@@ -35,7 +38,7 @@ class newSingleTask {
     // Delegate function for start/stop progress Indicator in BatchWindow
     weak var indicator_delegate:StartStopProgressIndicatorSingleTask?
     // Delegate function for show process step and present View
-    weak var task_delegate:Task?
+    weak var task_delegate:SingleTask?
     
     // REFERENCE VARIABLES
     
@@ -60,15 +63,11 @@ class newSingleTask {
     // Ready for execute again
     fileprivate var ready:Bool = true
     
-    // Numbers
+    // Some max numbers
+    private var transferredNumber:String?
+    private var transferredNumberSizebytes:String?
     
-    var transferredNumber:String?
-    var transferredNumberSizebytes:String?
-    var totalNumber:String?
-    var totalNumberSizebytes:String?
-    var totalDirs:String?
-    var newfiles:String?
-    var deletefiles:String?
+  
 
     
     // Single task can be activated by double click from table
@@ -142,7 +141,7 @@ class newSingleTask {
                 // Stopping the working (estimation) progress indicator
                 self.indicator_delegate?.stopIndicator()
                 // Getting and setting max file to transfer
-                self.setmaxNumbersOfFilesToTransfer(output: self.output)
+                self.task_delegate?.setmaxNumbersOfFilesToTransfer(output: self.output)
                 // If showInfoDryrun is on present result of dryrun automatically
                 self.task_delegate?.presentViewInformation(output: self.output!)
             case .error:
@@ -161,8 +160,12 @@ class newSingleTask {
                 // Logg run
                 let number = Numbers(output: self.output!.getOutput())
                 number.setNumbers()
+                // Get transferred numbers from view
+                self.transferredNumber = self.task_delegate?.gettransferredNumber()
+                self.transferredNumberSizebytes = self.task_delegate?.gettransferredNumberSizebytes()
                 SharingManagerConfiguration.sharedInstance.setCurrentDateonConfiguration(self.index!)
-                SharingManagerSchedule.sharedInstance.addScheduleResultManuel(self.hiddenID!, result: number.statistics(numberOfFiles: self.transferredNumber, sizeOfFiles: self.transferredNumberSizebytes)[0])
+                let hiddenID = SharingManagerConfiguration.sharedInstance.gethiddenID(index: self.index!)
+                SharingManagerSchedule.sharedInstance.addScheduleResultManuel(hiddenID, result: number.statistics(numberOfFiles: self.transferredNumber, sizeOfFiles: self.transferredNumberSizebytes)[0])
             case .abort:
                 self.task_delegate?.singleTaskAbort()
                 self.workload = nil
@@ -188,58 +191,6 @@ class newSingleTask {
             return false
         } else {
             return true
-        }
-    }
-    
-    
-    // Function for setting max files to be transferred
-    // Function is called in self.ProcessTermination()
-    func setmaxNumbersOfFilesToTransfer(output : outputProcess?) {
-
-        guard output != nil else {
-            return
-        }
-        
-        let number = Numbers(output: output!.getOutput())
-        number.setNumbers()
-        
-        // Getting max count
-        // self.showProcessInfo(info: .Set_max_Number)
-        if (number.getTransferredNumbers(numbers: .totalNumber) > 0) {
-            self.setNumbers(setvalues: true)
-            if (number.getTransferredNumbers(numbers: .transferredNumber) > 0) {
-                self.maxcount = number.getTransferredNumbers(numbers: .transferredNumber)
-            } else {
-                self.maxcount = output!.getMaxcount()
-            }
-        } else {
-            self.maxcount = output!.getMaxcount()
-        }
-    }
-    
-    // Function for getting numbers out of output object updated when
-    // Process object executes the job.
-    func setNumbers(setvalues: Bool) {
-        if (setvalues) {
-            
-            let number = Numbers(output: self.output!.getOutput())
-            number.setNumbers()
-            
-            self.transferredNumber = NumberFormatter.localizedString(from: NSNumber(value: number.getTransferredNumbers(numbers: .transferredNumber)), number: NumberFormatter.Style.decimal)
-            self.transferredNumberSizebytes = NumberFormatter.localizedString(from: NSNumber(value: number.getTransferredNumbers(numbers: .transferredNumberSizebytes)), number: NumberFormatter.Style.decimal)
-            self.totalNumber = NumberFormatter.localizedString(from: NSNumber(value: number.getTransferredNumbers(numbers: .totalNumber)), number: NumberFormatter.Style.decimal)
-            self.totalNumberSizebytes = NumberFormatter.localizedString(from: NSNumber(value: number.getTransferredNumbers(numbers: .totalNumberSizebytes)), number: NumberFormatter.Style.decimal)
-            self.totalDirs = NumberFormatter.localizedString(from: NSNumber(value: number.getTransferredNumbers(numbers: .totalDirs)), number: NumberFormatter.Style.decimal)
-            self.newfiles = NumberFormatter.localizedString(from: NSNumber(value: number.getTransferredNumbers(numbers: .new)), number: NumberFormatter.Style.decimal)
-            self.deletefiles = NumberFormatter.localizedString(from: NSNumber(value: number.getTransferredNumbers(numbers: .delete)), number: NumberFormatter.Style.decimal)
-        } else {
-            self.transferredNumber = ""
-            self.transferredNumberSizebytes = ""
-            self.totalNumber = ""
-            self.totalNumberSizebytes = ""
-            self.totalDirs = ""
-            self.newfiles = ""
-            self.deletefiles = ""
         }
     }
     

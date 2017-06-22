@@ -204,7 +204,7 @@ class ViewControllertabMain: NSViewController {
         // Reset output
         self.output = nil
         // Clear numbers from dryrun
-        self.setNumbers(setvalues: false)
+        self.setNumbers(output: nil)
         self.workload = nil
         self.setInfo(info: "Estimate", color: .blue)
         self.process = nil
@@ -468,7 +468,7 @@ class ViewControllertabMain: NSViewController {
         // Getting max count
         self.showProcessInfo(info: .Set_max_Number)
         if (number.getTransferredNumbers(numbers: .totalNumber) > 0) {
-            self.setNumbers(setvalues: true)
+            self.setNumbers(output: self.output)
             if (number.getTransferredNumbers(numbers: .transferredNumber) > 0) {
                 self.maxcount = number.getTransferredNumbers(numbers: .transferredNumber)
             } else {
@@ -476,32 +476,6 @@ class ViewControllertabMain: NSViewController {
             }
         } else {
             self.maxcount = self.output!.getMaxcount()
-        }
-    }
-    
-    // Function for getting numbers out of output object updated when
-    // Process object executes the job.
-    fileprivate func setNumbers(setvalues: Bool) {
-        if (setvalues) {
-            
-            let number = Numbers(output: self.output!.getOutput())
-            number.setNumbers()
-            
-            self.transferredNumber.stringValue = NumberFormatter.localizedString(from: NSNumber(value: number.getTransferredNumbers(numbers: .transferredNumber)), number: NumberFormatter.Style.decimal)
-            self.transferredNumberSizebytes.stringValue = NumberFormatter.localizedString(from: NSNumber(value: number.getTransferredNumbers(numbers: .transferredNumberSizebytes)), number: NumberFormatter.Style.decimal)
-            self.totalNumber.stringValue = NumberFormatter.localizedString(from: NSNumber(value: number.getTransferredNumbers(numbers: .totalNumber)), number: NumberFormatter.Style.decimal)
-            self.totalNumberSizebytes.stringValue = NumberFormatter.localizedString(from: NSNumber(value: number.getTransferredNumbers(numbers: .totalNumberSizebytes)), number: NumberFormatter.Style.decimal)
-            self.totalDirs.stringValue = NumberFormatter.localizedString(from: NSNumber(value: number.getTransferredNumbers(numbers: .totalDirs)), number: NumberFormatter.Style.decimal)
-            self.newfiles.stringValue = NumberFormatter.localizedString(from: NSNumber(value: number.getTransferredNumbers(numbers: .new)), number: NumberFormatter.Style.decimal)
-            self.deletefiles.stringValue = NumberFormatter.localizedString(from: NSNumber(value: number.getTransferredNumbers(numbers: .delete)), number: NumberFormatter.Style.decimal)
-        } else {
-            self.transferredNumber.stringValue = ""
-            self.transferredNumberSizebytes.stringValue = ""
-            self.totalNumber.stringValue = ""
-            self.totalNumberSizebytes.stringValue = ""
-            self.totalDirs.stringValue = ""
-            self.newfiles.stringValue = ""
-            self.deletefiles.stringValue = ""
         }
     }
     
@@ -551,7 +525,7 @@ class ViewControllertabMain: NSViewController {
             self.output = nil
             self.outputbatch = nil
             // Clear numbers from dryrun
-            self.setNumbers(setvalues: false)
+            self.setNumbers(output: nil)
             self.workload = nil
         } else {
             self.index = nil
@@ -923,7 +897,7 @@ extension ViewControllertabMain: AddProfiles {
         self.outputbatch = nil
         self.setRsyncCommandDisplay()
         self.setInfo(info: "Estimate", color: .blue)
-        self.setNumbers(setvalues: false)
+        self.setNumbers(output: nil)
         
         guard (new == false) else {
             // A new and empty profile is created
@@ -1164,7 +1138,7 @@ extension ViewControllertabMain: AbortOperations {
     
 }
 
-// Start cleanup
+// Extensions from here are used in either newSingleTask or newBatchTask
 
 extension ViewControllertabMain: StartStopProgressIndicatorSingleTask {
     func startIndicator() {
@@ -1176,7 +1150,7 @@ extension ViewControllertabMain: StartStopProgressIndicatorSingleTask {
     }
 }
 
-extension ViewControllertabMain:Task {
+extension ViewControllertabMain:SingleTask {
     
     // Just for updating process info
     func showProcessInfo(info:displayProcessInfo) {
@@ -1205,7 +1179,6 @@ extension ViewControllertabMain:Task {
             }
         })
     }
-
     
     func presentViewProgress() {
         GlobalMainQueue.async(execute: { () -> Void in
@@ -1246,6 +1219,75 @@ extension ViewControllertabMain:Task {
     func singleTaskAbort() {
         self.abortOperations()
     }
+    
+    // Function for getting numbers out of output object updated when
+    // Process object executes the job.
+    func setNumbers(output:outputProcess?) {
+        
+        guard output != nil else {
+            
+            self.transferredNumber.stringValue = ""
+            self.transferredNumberSizebytes.stringValue = ""
+            self.totalNumber.stringValue = ""
+            self.totalNumberSizebytes.stringValue = ""
+            self.totalDirs.stringValue = ""
+            self.newfiles.stringValue = ""
+            self.deletefiles.stringValue = ""
+            
+            return
+        }
+        
+        
+        let number = Numbers(output: output!.getOutput())
+        number.setNumbers()
+            
+        self.transferredNumber.stringValue = NumberFormatter.localizedString(from: NSNumber(value: number.getTransferredNumbers(numbers: .transferredNumber)), number: NumberFormatter.Style.decimal)
+        self.transferredNumberSizebytes.stringValue = NumberFormatter.localizedString(from: NSNumber(value: number.getTransferredNumbers(numbers: .transferredNumberSizebytes)), number: NumberFormatter.Style.decimal)
+        self.totalNumber.stringValue = NumberFormatter.localizedString(from: NSNumber(value: number.getTransferredNumbers(numbers: .totalNumber)), number: NumberFormatter.Style.decimal)
+        self.totalNumberSizebytes.stringValue = NumberFormatter.localizedString(from: NSNumber(value: number.getTransferredNumbers(numbers: .totalNumberSizebytes)), number: NumberFormatter.Style.decimal)
+        self.totalDirs.stringValue = NumberFormatter.localizedString(from: NSNumber(value: number.getTransferredNumbers(numbers: .totalDirs)), number: NumberFormatter.Style.decimal)
+        self.newfiles.stringValue = NumberFormatter.localizedString(from: NSNumber(value: number.getTransferredNumbers(numbers: .new)), number: NumberFormatter.Style.decimal)
+        self.deletefiles.stringValue = NumberFormatter.localizedString(from: NSNumber(value: number.getTransferredNumbers(numbers: .delete)), number: NumberFormatter.Style.decimal)
+    }
+    
+    // Function for setting max files to be transferred
+    // Function is called in self.ProcessTermination()
+    func setmaxNumbersOfFilesToTransfer(output : outputProcess?) {
+        
+        guard output != nil else {
+            return
+        }
+        
+        let number = Numbers(output: output!.getOutput())
+        number.setNumbers()
+        
+        // Getting max count
+        self.showProcessInfo(info: .Set_max_Number)
+        if (number.getTransferredNumbers(numbers: .totalNumber) > 0) {
+            self.setNumbers(output: output)
+            if (number.getTransferredNumbers(numbers: .transferredNumber) > 0) {
+                self.maxcount = number.getTransferredNumbers(numbers: .transferredNumber)
+            } else {
+                self.maxcount = output!.getMaxcount()
+            }
+        } else {
+            self.maxcount = output!.getMaxcount()
+        }
+    }
+    
+    // Returns number set from dryrun to use in logging run 
+    // after a real run. Logging is in newSingleTask object.
+    
+    func gettransferredNumber() -> String {
+        return self.transferredNumber.stringValue
+    }
+    
+    func gettransferredNumberSizebytes() -> String {
+        return self.transferredNumberSizebytes.stringValue
+        
+    }
+
+
 }
 
 

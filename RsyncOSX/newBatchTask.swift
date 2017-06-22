@@ -7,7 +7,6 @@
 //
 
 import Foundation
-import Cocoa
 
 class newBatchTask {
     
@@ -21,14 +20,10 @@ class newBatchTask {
     // Delegate function for start/stop progress Indicator in BatchWindow
     weak var indicator_delegate:StartStopProgressIndicatorSingleTask?
     // Delegate function for show process step and present View
-    weak var task_delegate:Task?
+    weak var task_delegate:SingleTask?
     
     // REFERENCE VARIABLES
     
-    // Reference to config
-    private var config:configuration?
-    // dryrun or not
-    private var dryrun:Bool?
     // Reference to Process task
     private var process:Process?
     // Index to selected row, index is set when row is selected
@@ -48,22 +43,6 @@ class newBatchTask {
     
     // Schedules in progress
     fileprivate var scheduledJobInProgress:Bool = false
-    // Ready for execute again
-    fileprivate var ready:Bool = true
-    // Can load profiles
-    // Load profiles only when testing for connections are done.
-    // Application crash if not
-    fileprivate var loadProfileMenu:Bool = false
-    
-    // Numbers
-    
-    var transferredNumber:String?
-    var transferredNumberSizebytes:String?
-    var totalNumber:String?
-    var totalNumberSizebytes:String?
-    var totalDirs:String?
-    var newfiles:String?
-    var deletefiles:String?
     
     func ProcessTermination() {
         
@@ -111,62 +90,6 @@ class newBatchTask {
         }
     }
     
-    // Function for setting max files to be transferred
-    // Function is called in self.ProcessTermination()
-    func setmaxNumbersOfFilesToTransfer() {
-        
-        let number = Numbers(output: self.output!.getOutput())
-        number.setNumbers()
-        
-        // Getting max count
-        // self.showProcessInfo(info: .Set_max_Number)
-        if (number.getTransferredNumbers(numbers: .totalNumber) > 0) {
-            self.setNumbers(setvalues: true)
-            if (number.getTransferredNumbers(numbers: .transferredNumber) > 0) {
-                self.maxcount = number.getTransferredNumbers(numbers: .transferredNumber)
-            } else {
-                self.maxcount = self.output!.getMaxcount()
-            }
-        } else {
-            self.maxcount = self.output!.getMaxcount()
-        }
-    }
-    
-    // Function for getting numbers out of output object updated when
-    // Process object executes the job.
-    func setNumbers(setvalues: Bool) {
-        if (setvalues) {
-            
-            let number = Numbers(output: self.output!.getOutput())
-            number.setNumbers()
-            
-            self.transferredNumber = NumberFormatter.localizedString(from: NSNumber(value: number.getTransferredNumbers(numbers: .transferredNumber)), number: NumberFormatter.Style.decimal)
-            self.transferredNumberSizebytes = NumberFormatter.localizedString(from: NSNumber(value: number.getTransferredNumbers(numbers: .transferredNumberSizebytes)), number: NumberFormatter.Style.decimal)
-            self.totalNumber = NumberFormatter.localizedString(from: NSNumber(value: number.getTransferredNumbers(numbers: .totalNumber)), number: NumberFormatter.Style.decimal)
-            self.totalNumberSizebytes = NumberFormatter.localizedString(from: NSNumber(value: number.getTransferredNumbers(numbers: .totalNumberSizebytes)), number: NumberFormatter.Style.decimal)
-            self.totalDirs = NumberFormatter.localizedString(from: NSNumber(value: number.getTransferredNumbers(numbers: .totalDirs)), number: NumberFormatter.Style.decimal)
-            self.newfiles = NumberFormatter.localizedString(from: NSNumber(value: number.getTransferredNumbers(numbers: .new)), number: NumberFormatter.Style.decimal)
-            self.deletefiles = NumberFormatter.localizedString(from: NSNumber(value: number.getTransferredNumbers(numbers: .delete)), number: NumberFormatter.Style.decimal)
-        } else {
-            self.transferredNumber = ""
-            self.transferredNumberSizebytes = ""
-            self.totalNumber = ""
-            self.totalNumberSizebytes = ""
-            self.totalDirs = ""
-            self.newfiles = ""
-            self.deletefiles = ""
-        }
-    }
-    
-    
-    // Reset workqueue
-    fileprivate func reset() {
-        self.workload = nil
-        self.process = nil
-        self.output = nil
-        // NB: self.setRsyncCommandDisplay()
-    }
-    
     
     init() {
         
@@ -174,9 +97,6 @@ class newBatchTask {
             self.indicator_delegate = pvc
             self.task_delegate = pvc
         }
-        
-        
-        
         
     }
     
