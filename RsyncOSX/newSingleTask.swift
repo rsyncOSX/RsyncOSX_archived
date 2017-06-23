@@ -205,7 +205,6 @@ extension newSingleTask: Count {
     
     // Maxnumber of files counted
     func maxCount() -> Int {
-        print(self.maxcount)
         return self.maxcount
     }
     
@@ -215,7 +214,6 @@ extension newSingleTask: Count {
         guard self.output != nil else {
             return 0
         }
-        print(self.output!.getOutputCount())
         return self.output!.getOutputCount()
     }
     
