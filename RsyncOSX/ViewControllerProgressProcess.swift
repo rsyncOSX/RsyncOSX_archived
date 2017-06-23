@@ -57,13 +57,13 @@ class ViewControllerProgressProcess: NSViewController {
             self.dismiss_delegate = pvc
             self.abort_delegate = pvc
         }
-        if let pvc2 = SharingManagerConfiguration.sharedInstance.SingleTask {
-            self.count_delegate = pvc2
-        }
     }
     
     override func viewDidAppear() {
         super.viewDidAppear()
+        if let pvc2 = SharingManagerConfiguration.sharedInstance.SingleTask {
+            self.count_delegate = pvc2
+        }
         self.calculatedNumberOfFiles = self.count_delegate?.maxCount()
         self.initiateProgressbar()
     }

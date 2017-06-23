@@ -205,12 +205,17 @@ extension newSingleTask: Count {
     
     // Maxnumber of files counted
     func maxCount() -> Int {
+        print(self.maxcount)
         return self.maxcount
     }
     
     // Counting number of files
     // Function is called when Process discover FileHandler notification
     func inprogressCount() -> Int {
+        guard self.output != nil else {
+            return 0
+        }
+        print(self.output!.getOutputCount())
         return self.output!.getOutputCount()
     }
     
