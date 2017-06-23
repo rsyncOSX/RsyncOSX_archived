@@ -933,6 +933,7 @@ extension ViewControllertabMain: UpdateProgress {
                 let work = batchobject.nextBatchCopy()
                 if work.1 == 1 {
                     // Real work is done
+                    self.process = self.batchtask!.process
                     batchobject.updateInProcess(numberOfFiles: self.batchtask!.output!.getMaxcount())
                     // Refresh view in Batchwindow
                     if let pvc = self.presentedViewControllers as? [ViewControllerBatch] {
@@ -948,6 +949,7 @@ extension ViewControllertabMain: UpdateProgress {
                 // Refresh ProgressView single run
                 // Must get output from rsync
                 self.output = self.singletask!.output
+                self.process = self.singletask!.process
                 if let pvc2 = self.presentedViewControllers as? [ViewControllerProgressProcess] {
                     if (pvc2.count > 0) {
                         self.processupdate_delegate = pvc2[0]
