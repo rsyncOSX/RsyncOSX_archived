@@ -59,14 +59,14 @@ final class newBatchTask {
     private var transferredNumber:String?
     private var transferredNumberSizebytes:String?
     
-    // Execute BATCH TASKS only
+    // Present BATCH TASKS only
     // Start of BATCH tasks.
     // After start the function ProcessTermination()
     // which is triggered when a Process termination is
     // discovered, takes care of next task according to
     // status and next work in batchOperations which
     // also includes a queu of work.
-    func executeBatch() {
+    func presentBatchView() {
         
         if (self.scheduledOperationInProgress() == false && SharingManagerConfiguration.sharedInstance.noRysync == false){
             self.workload = nil
@@ -100,7 +100,7 @@ final class newBatchTask {
     }
     
     // Functions are called from batchView.
-    func runBatch() {
+    func executeBatch() {
         // No scheduled opertaion in progress
         if (self.scheduledOperationInProgress() == false ) {
             if let batchobject = SharingManagerConfiguration.sharedInstance.getBatchdataObject() {
@@ -130,7 +130,7 @@ final class newBatchTask {
                     self.output = nil
                     self.output = outputProcess()
                     
-                    let arguments:Array<String> = SharingManagerConfiguration.sharedInstance.getRsyncArgumentOneConfig(index: index, argtype: .argdryRun)
+                    let arguments:Array<String> = SharingManagerConfiguration.sharedInstance.getRsyncArgumentOneConfig(index: index, argtype: .arg)
                     let process = Rsync(arguments: arguments)
                     // Setting reference to process for Abort if requiered
                     process.executeProcess(output: self.output!)
@@ -151,7 +151,7 @@ final class newBatchTask {
         self.task_delegate?.setInfo(info: "", color: .black)
     }
     
-    func inBatchwork() {
+    func executeNextBatchTask() {
         // Take care of batchRun activities
         if let batchobject = SharingManagerConfiguration.sharedInstance.getBatchdataObject() {
             
@@ -174,7 +174,7 @@ final class newBatchTask {
                 
                 self.batchView_delegate?.progressIndicatorViewBatch(operation: .stop)
                 self.task_delegate?.showProcessInfo(info: .Estimating)
-                self.runBatch()
+                self.executeBatch()
             case 1:
                 // Real run
                 self.maxcount = self.output!.getMaxcount()
@@ -205,7 +205,7 @@ final class newBatchTask {
                 SharingManagerSchedule.sharedInstance.addScheduleResultManuel(hiddenID, result: number.statistics(numberOfFiles: self.transferredNumber,sizeOfFiles: self.transferredNumberSizebytes)[0])
                 self.task_delegate?.showProcessInfo(info: .Executing)
                 
-                self.runBatch()
+                self.executeBatch()
             default :
                 break
             }

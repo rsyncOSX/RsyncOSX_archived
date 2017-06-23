@@ -37,18 +37,21 @@ class ViewControllerBatch : NSViewController {
     @IBOutlet weak var closeinseconds: NSTextField!
     @IBOutlet weak var rownumber: NSTextField!
     
-    // Dismisser
+    // Delegeta to Dismisser
     weak var dismiss_delegate:DismissViewController?
+    // Delegate to Abort operations
+    weak var abort_delegate:AbortOperations?
 
     // ACTIONS AND BUTTONS
     
     @IBAction func Close(_ sender: NSButton) {
         
-        let batchTask = newBatchTask()
+        
         if (self.close!) {
+            let batchTask = newBatchTask()
             batchTask.closeOperation()
         } else {
-            // batchTask.abortOperations()
+            self.abort_delegate?.abortOperations()
         }
         self.waitToClose?.invalidate()
         self.closeIn?.invalidate()
@@ -58,7 +61,7 @@ class ViewControllerBatch : NSViewController {
     // Execute batch
     @IBAction func Execute(_ sender: NSButton) {
         self.batchTask = newBatchTask()
-        self.batchTask!.runBatch()
+        self.batchTask!.executeBatch()
         self.CloseButton.title = "Abort"
         self.close = false
     }
@@ -90,6 +93,7 @@ class ViewControllerBatch : NSViewController {
          // Dismisser is root controller
         if let pvc = self.presenting as? ViewControllertabMain {
             self.dismiss_delegate = pvc
+            self.abort_delegate = pvc
         }
     }
 

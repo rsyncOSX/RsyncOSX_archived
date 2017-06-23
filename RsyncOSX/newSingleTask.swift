@@ -1,5 +1,5 @@
 //
-//  newTask.swift
+//  newSingleTask.swift
 //  RsyncOSX
 //
 //  Created by Thomas Evensen on 20.06.2017.
@@ -38,8 +38,8 @@ final class newSingleTask {
     
     // Delegate function for start/stop progress Indicator in BatchWindow
     weak var indicator_delegate:StartStopProgressIndicatorSingleTask?
-    // Delegate functions for kicking of various functions during 
-    // process task
+    // Delegate functions for kicking of various updates (informal) during
+    // process task in main View
     weak var task_delegate:SingleTask?
     
     // Reference to Process task
@@ -65,9 +65,6 @@ final class newSingleTask {
     private var transferredNumber:String?
     private var transferredNumberSizebytes:String?
     
-  
-
-    
     // Single task can be activated by double click from table
     func executeSingleTask() {
         
@@ -86,7 +83,6 @@ final class newSingleTask {
                     // Start animation and show process info
                     self.indicator_delegate?.startIndicator()
                     self.task_delegate?.showProcessInfo(info: .Estimating)
-                    
                     arguments = SharingManagerConfiguration.sharedInstance.getRsyncArgumentOneConfig(index: index, argtype: .argdryRun)
                     let process = Rsync(arguments: arguments)
                     self.output = outputProcess()

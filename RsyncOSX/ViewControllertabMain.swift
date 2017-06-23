@@ -439,7 +439,8 @@ class ViewControllertabMain: NSViewController {
     @IBAction func executeBatch(_ sender: NSButton) {
         self.singletask = nil
         self.batchtask = newBatchTask()
-        self.batchtask?.executeBatch()
+        // Present batch view
+        self.batchtask?.presentBatchView()
     }
     
     // Reread bot Configurations and Schedules from persistent store to memory
@@ -541,41 +542,6 @@ class ViewControllertabMain: NSViewController {
         self.output = nil
         self.setRsyncCommandDisplay()
     }
-    
-    // Abort any task, either single- or batch task
-    func abortOperations() {
-        // Terminates the running process
-        self.showProcessInfo(info:.Abort)
-        if let process = self.process {
-            process.terminate()
-            self.index = nil
-            self.working.stopAnimation(nil)
-            self.schedules = nil
-            self.process = nil
-            self.workload = nil
-            // Create workqueu and add abort
-            self.workload = singleTaskWorkQueu(task: .abort)
-            self.setInfo(info: "Abort", color: .red)
-            self.rsyncCommand.stringValue = ""
-        } else {
-            self.rsyncCommand.stringValue = "Selection out of range - aborting"
-            self.process = nil
-            self.workload = nil
-            self.index = nil
-        }
-        if let batchobject = SharingManagerConfiguration.sharedInstance.getBatchdataObject() {
-            // Empty queue in batchobject
-            batchobject.abortOperations()
-            // Set reference to batchdata = nil
-            SharingManagerConfiguration.sharedInstance.deleteBatchData()
-            self.schedules = nil
-            self.process = nil
-            self.workload = nil
-            self.workload = singleTaskWorkQueu(task: .abort)
-            self.setInfo(info: "Abort", color: .red)
-        }
-    }
-
 }
 
 
@@ -919,7 +885,7 @@ extension ViewControllertabMain: UpdateProgress {
             }
             self.output = self.batchtask!.output
             self.process = self.batchtask!.process
-            self.batchtask!.inBatchwork()
+            self.batchtask!.executeNextBatchTask()
         }
         
     }
@@ -929,10 +895,12 @@ extension ViewControllertabMain: UpdateProgress {
     func FileHandler() {
         self.showProcessInfo(info: .Count_files)
         if self.batchtask != nil {
+            // Batch run
             if let batchobject = SharingManagerConfiguration.sharedInstance.getBatchdataObject() {
                 let work = batchobject.nextBatchCopy()
                 if work.1 == 1 {
                     // Real work is done
+                    // Must set reference to Process object in case of Abort
                     self.process = self.batchtask!.process
                     batchobject.updateInProcess(numberOfFiles: self.batchtask!.output!.getMaxcount())
                     // Refresh view in Batchwindow
@@ -941,23 +909,24 @@ extension ViewControllertabMain: UpdateProgress {
                         self.refresh_delegate?.refresh()
                     }
                 }
-                }
-            } else {
-                guard self.singletask != nil else {
-                    return
-                }
-                // Refresh ProgressView single run
-                // Must get output from rsync
-                self.output = self.singletask!.output
-                self.process = self.singletask!.process
-                if let pvc2 = self.presentedViewControllers as? [ViewControllerProgressProcess] {
-                    if (pvc2.count > 0) {
-                        self.processupdate_delegate = pvc2[0]
-                        self.processupdate_delegate?.FileHandler()
-                    }
+            }
+        } else {
+        // Single task run
+            guard self.singletask != nil else {
+                return
+            }
+            // Refresh ProgressView single run
+            // Must get output from rsync and set reference 
+            // to Process object in case of Abort
+            self.output = self.singletask!.output
+            self.process = self.singletask!.process
+            if let pvc2 = self.presentedViewControllers as? [ViewControllerProgressProcess] {
+                if (pvc2.count > 0) {
+                    self.processupdate_delegate = pvc2[0]
+                    self.processupdate_delegate?.FileHandler()
                 }
             }
-        
+        }
     }
 }
 
@@ -1010,6 +979,41 @@ extension ViewControllertabMain: ReportErrorInMain {
 
 // Abort task from progressview
 extension ViewControllertabMain: AbortOperations {
+    
+    // Abort any task, either single- or batch task
+    func abortOperations() {
+        // Terminates the running process
+        self.showProcessInfo(info:.Abort)
+        if let process = self.process {
+            process.terminate()
+            self.index = nil
+            self.working.stopAnimation(nil)
+            self.schedules = nil
+            self.process = nil
+            self.workload = nil
+            // Create workqueu and add abort
+            self.workload = singleTaskWorkQueu(task: .abort)
+            self.setInfo(info: "Abort", color: .red)
+            self.rsyncCommand.stringValue = ""
+        } else {
+            self.rsyncCommand.stringValue = "Selection out of range - aborting"
+            self.process = nil
+            self.workload = nil
+            self.index = nil
+        }
+        if let batchobject = SharingManagerConfiguration.sharedInstance.getBatchdataObject() {
+            // Empty queue in batchobject
+            batchobject.abortOperations()
+            // Set reference to batchdata = nil
+            SharingManagerConfiguration.sharedInstance.deleteBatchData()
+            self.schedules = nil
+            self.process = nil
+            self.workload = nil
+            self.workload = singleTaskWorkQueu(task: .abort)
+            self.setInfo(info: "Abort", color: .red)
+        }
+    }
+
     
 }
 
