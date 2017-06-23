@@ -54,9 +54,13 @@ class ViewControllerProgressProcess: NSViewController {
         // Load protocol functions
         // Dismisser is root controller
         if let pvc = self.presenting as? ViewControllertabMain {
-            self.count_delegate = pvc
+            
             self.dismiss_delegate = pvc
             self.abort_delegate = pvc
+        }
+        
+        if let pvc2 = SharingManagerConfiguration.sharedInstance.SingleTask {
+            self.count_delegate = pvc2
         }
     }
     

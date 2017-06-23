@@ -103,6 +103,8 @@ class SharingManagerConfiguration {
     var allowNotifyinMain:Bool = false
     // If rsync error reset workqueue
     var rsyncerror:Bool = true
+    // Reference to singletask object
+    var SingleTask:newSingleTask?
 
     
     // DATA STRUCTURES

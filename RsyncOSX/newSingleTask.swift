@@ -43,13 +43,13 @@ final class newSingleTask {
     weak var task_delegate:SingleTask?
     
     // Reference to Process task
-    private var process:Process?
+    var process:Process?
     // Index to selected row, index is set when row is selected
     private var index:Int?
     // Getting output from rsync
     var output:outputProcess?
     // Holding max count
-    private var maxcount:Int = 0
+    fileprivate var maxcount:Int = 0
     // HiddenID task, set when row is selected
     private var hiddenID:Int?
     // Reference to Schedules object
@@ -138,6 +138,7 @@ final class newSingleTask {
                 self.indicator_delegate?.stopIndicator()
                 // Getting and setting max file to transfer
                 self.task_delegate?.setmaxNumbersOfFilesToTransfer(output: self.output)
+                self.maxcount = self.output!.getMaxcount()
                 // If showInfoDryrun is on present result of dryrun automatically
                 self.task_delegate?.presentViewInformation(output: self.output!)
             case .error:
@@ -199,9 +200,23 @@ final class newSingleTask {
             self.task_delegate = pvc
         }
         
-            
-        
-        
     }
     
 }
+
+// Counting
+extension newSingleTask: Count {
+    
+    // Maxnumber of files counted
+    func maxCount() -> Int {
+        return self.maxcount
+    }
+    
+    // Counting number of files
+    // Function is called when Process discover FileHandler notification
+    func inprogressCount() -> Int {
+        return self.output!.getOutputCount()
+    }
+    
+}
+

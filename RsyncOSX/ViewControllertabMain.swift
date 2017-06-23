@@ -426,6 +426,8 @@ class ViewControllertabMain: NSViewController {
             // Dry run
             self.singletask = newSingleTask(index: self.index!)
             self.singletask?.executeSingleTask()
+            // Set reference to singleTask object
+            SharingManagerConfiguration.sharedInstance.SingleTask = self.singletask
             return
         }
         // Real run
@@ -669,23 +671,6 @@ extension ViewControllertabMain: Information {
     
 }
 
-// Counting
-extension ViewControllertabMain: Count {
-    
-    // Maxnumber of files counted
-    func maxCount() -> Int {
-        return self.maxcount
-    }
-    
-    // Counting number of files
-    // Function is called when Process discover FileHandler notification
-    func inprogressCount() -> Int {
-        return self.output!.getOutputCount()
-    }
-
-}
-
-
 // Scheduled task are changed, read schedule again og redraw table
 extension ViewControllertabMain: RefreshtableView {
 
@@ -923,6 +908,7 @@ extension ViewControllertabMain: UpdateProgress {
         // NB: must check if single run or batch run
         if let singletask = self.singletask {
             self.output = singletask.output
+            self.process = singletask.process
             singletask.ProcessTermination()
             
         } else  {
@@ -932,6 +918,7 @@ extension ViewControllertabMain: UpdateProgress {
                 self.batchtask = self.batchObject_delegate?.getTaskObject()
             }
             self.output = self.batchtask!.output
+            self.process = self.batchtask!.process
             self.batchtask!.inBatchwork()
         }
         
@@ -953,8 +940,14 @@ extension ViewControllertabMain: UpdateProgress {
                         self.refresh_delegate?.refresh()
                     }
                 }
-        } else if self.singletask != nil {
+                }
+            } else {
+                guard self.singletask != nil else {
+                    return
+                }
                 // Refresh ProgressView single run
+                // Must get output from rsync
+                self.output = self.singletask!.output
                 if let pvc2 = self.presentedViewControllers as? [ViewControllerProgressProcess] {
                     if (pvc2.count > 0) {
                         self.processupdate_delegate = pvc2[0]
@@ -962,7 +955,7 @@ extension ViewControllertabMain: UpdateProgress {
                     }
                 }
             }
-        }
+        
     }
 }
 

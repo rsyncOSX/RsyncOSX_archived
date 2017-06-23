@@ -38,7 +38,7 @@ final class newBatchTask {
     // REFERENCE VARIABLES
     
     // Reference to Process task
-    private var process:Process?
+    var process:Process?
     // Getting output from rsync
     var output:outputProcess?
     // Getting output from batchrun
