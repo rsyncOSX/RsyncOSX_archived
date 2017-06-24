@@ -65,8 +65,6 @@ class ViewControllertabMain: NSViewController {
     @IBOutlet weak var rsyncCommand: NSTextField!
     // If On result of Dryrun is presented before
     // executing the real run
-    @IBOutlet weak var showInfoDryrun: NSButton!
-    // Outlet for showing if dryrun or not
     @IBOutlet weak var dryRunOrRealRun: NSTextField!
     // Progressbar scheduled task
     @IBOutlet weak var scheduledJobworking: NSProgressIndicator!

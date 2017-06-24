@@ -10,11 +10,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "RsyncOSX/ViewControllertabMain.swift"
-            timestampString = "520009979.559593"
+            timestampString = "520010376.217873"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "905"
-            endingLineNumber = "905"
+            startingLineNumber = "903"
+            endingLineNumber = "903"
             landmarkName = "ProcessTermination()"
             landmarkType = "7">
          </BreakpointContent>
