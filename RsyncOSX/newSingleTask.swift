@@ -52,8 +52,6 @@ final class newSingleTask {
     fileprivate var maxcount:Int = 0
     // HiddenID task, set when row is selected
     private var hiddenID:Int?
-    // Reference to Schedules object
-    private var schedules : ScheduleSortedAndExpand?
     // Single task work queu
     private var workload:singleTaskWorkQueu?
     // Schedules in progress
@@ -68,56 +66,51 @@ final class newSingleTask {
     // Single task can be activated by double click from table
     func executeSingleTask() {
         
-        if (self.scheduledOperationInProgress() == false && SharingManagerConfiguration.sharedInstance.noRysync == false){
-            if (self.workload == nil) {
-                self.workload = singleTaskWorkQueu()
-            }
+        if (self.workload == nil) {
+            self.workload = singleTaskWorkQueu()
+        }
             
-            let arguments: Array<String>?
-            self.process = nil
-            self.output = nil
+        let arguments: Array<String>?
+        self.process = nil
+        self.output = nil
             
-            switch (self.workload!.peek()) {
-            case .estimate_singlerun:
-                if let index = self.index {
-                    // Start animation and show process info
-                    self.indicator_delegate?.startIndicator()
-                    self.task_delegate?.showProcessInfo(info: .Estimating)
-                    arguments = SharingManagerConfiguration.sharedInstance.getRsyncArgumentOneConfig(index: index, argtype: .argdryRun)
-                    let process = Rsync(arguments: arguments)
-                    self.output = outputProcess()
-                    process.executeProcess(output: self.output!)
-                    self.process = process.getProcess()
-                    self.task_delegate?.setInfo(info: "Execute", color: .blue)
-                }
-            case .execute_singlerun:
-                self.task_delegate?.showProcessInfo(info: .Executing)
-                if let index = self.index {
-                    // Show progress view
-                    self.task_delegate?.presentViewProgress()
-                    arguments = SharingManagerConfiguration.sharedInstance.getRsyncArgumentOneConfig(index: index, argtype: .arg)
-                    self.output = outputProcess()
-                    let process = Rsync(arguments: arguments)
-                    process.executeProcess(output: self.output!)
-                    self.process = process.getProcess()
-                    self.task_delegate?.setInfo(info: "", color: .black)
-                }
-            case .abort:
-                self.workload = nil
-                self.task_delegate?.setInfo(info: "Abort", color: .red)
-            case .empty:
-                self.workload = nil
-                self.task_delegate?.setInfo(info: "Estimate", color: .blue)
-            default:
-                self.workload = nil
-                self.task_delegate?.setInfo(info: "Estimate", color: .blue)
-                break
+        switch (self.workload!.peek()) {
+        case .estimate_singlerun:
+            if let index = self.index {
+                // Start animation and show process info
+                self.indicator_delegate?.startIndicator()
+                self.task_delegate?.showProcessInfo(info: .Estimating)
+                arguments = SharingManagerConfiguration.sharedInstance.getRsyncArgumentOneConfig(index: index, argtype: .argdryRun)
+                let process = Rsync(arguments: arguments)
+                self.output = outputProcess()
+                process.executeProcess(output: self.output!)
+                self.process = process.getProcess()
+                self.task_delegate?.setInfo(info: "Execute", color: .blue)
             }
-        } else {
-            Utils.sharedInstance.noRsync()
+        case .execute_singlerun:
+            self.task_delegate?.showProcessInfo(info: .Executing)
+            if let index = self.index {
+                // Show progress view
+                self.task_delegate?.presentViewProgress()
+                arguments = SharingManagerConfiguration.sharedInstance.getRsyncArgumentOneConfig(index: index, argtype: .arg)
+                self.output = outputProcess()
+                let process = Rsync(arguments: arguments)
+                process.executeProcess(output: self.output!)
+                self.process = process.getProcess()
+                self.task_delegate?.setInfo(info: "", color: .black)
+            }
+        case .abort:
+            self.workload = nil
+            self.task_delegate?.setInfo(info: "Abort", color: .red)
+        case .empty:
+            self.workload = nil
+            self.task_delegate?.setInfo(info: "Estimate", color: .blue)
+        default:
+            self.workload = nil
+            self.task_delegate?.setInfo(info: "Estimate", color: .blue)
+            break
         }
     }
-    
     
     
     func ProcessTermination() {
@@ -171,22 +164,6 @@ final class newSingleTask {
         }
     }
 
-    
-    // True if scheduled task in progress
-    func scheduledOperationInProgress() -> Bool {
-        var scheduleInProgress:Bool?
-        if (self.schedules != nil) {
-            scheduleInProgress = self.schedules!.getScheduledOperationInProgress()
-        } else {
-            scheduleInProgress = false
-        }
-        if (scheduleInProgress == false && self.scheduledJobInProgress == false){
-            return false
-        } else {
-            return true
-        }
-    }
-    
     init(index: Int) {
         
         self.index = index

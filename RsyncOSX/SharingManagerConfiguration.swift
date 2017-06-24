@@ -117,7 +117,7 @@ class SharingManagerConfiguration {
     // Datasource for NSTableViews
     private var ConfigurationsDataSource : Array<NSMutableDictionary>?
     // Object for batchQueue data and operations
-    private var batchdata:batchTask?
+    private var batchdata:batchTaskWorkQueu?
     // the MacSerialNumber
     private var MacSerialNumber:String?
 
@@ -379,14 +379,14 @@ class SharingManagerConfiguration {
     /// Function sets reference to object holding data and methods
     /// for batch execution of Configurations
     /// - parameter batchdata: object holding data and methods for executing Configurations in batch
-    func setbatchDataQueue (batchdata:batchTask) {
+    func setbatchDataQueue (batchdata:batchTaskWorkQueu) {
         self.batchdata = batchdata
     }
     
     /// Function return the reference to object holding data and methods
     /// for batch execution of Configurations.
     /// - returns : reference to to object holding data and methods
-    func getBatchdataObject() -> batchTask? {
+    func getBatchdataObject() -> batchTaskWorkQueu? {
         return self.batchdata
     }
 

@@ -38,7 +38,7 @@
 		A04492BC1D658F2100B3CE17 /* yudpsocket.swift in Sources */ = {isa = PBXBuildFile; fileRef = A04492A81D658F2100B3CE17 /* yudpsocket.swift */; };
 		A04972511D6595B200086EFD /* outputProcess.swift in Sources */ = {isa = PBXBuildFile; fileRef = A049724F1D6595B200086EFD /* outputProcess.swift */; };
 		A04C08081DBF50AF00972FE2 /* readwritefiles.swift in Sources */ = {isa = PBXBuildFile; fileRef = A04C08071DBF50AF00972FE2 /* readwritefiles.swift */; };
-		A05275DA1D6F6E0000D8ECBE /* batchTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = A05275D91D6F6E0000D8ECBE /* batchTask.swift */; };
+		A05275DA1D6F6E0000D8ECBE /* batchTaskWorkQueu.swift in Sources */ = {isa = PBXBuildFile; fileRef = A05275D91D6F6E0000D8ECBE /* batchTaskWorkQueu.swift */; };
 		A054F1A91D6D773E00D27688 /* ViewControllerInformation.swift in Sources */ = {isa = PBXBuildFile; fileRef = A054F1A81D6D773E00D27688 /* ViewControllerInformation.swift */; };
 		A0762A1F1DB4A8F000538CE9 /* profiles.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0762A1E1DB4A8F000538CE9 /* profiles.swift */; };
 		A08110671D6DA7D8009444D3 /* ViewControllerProgressProcess.swift in Sources */ = {isa = PBXBuildFile; fileRef = A08110661D6DA7D8009444D3 /* ViewControllerProgressProcess.swift */; };
@@ -117,7 +117,7 @@
 		A04492A81D658F2100B3CE17 /* yudpsocket.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = yudpsocket.swift; sourceTree = "<group>"; };
 		A049724F1D6595B200086EFD /* outputProcess.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = outputProcess.swift; sourceTree = "<group>"; };
 		A04C08071DBF50AF00972FE2 /* readwritefiles.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = readwritefiles.swift; sourceTree = "<group>"; };
-		A05275D91D6F6E0000D8ECBE /* batchTask.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = batchTask.swift; sourceTree = "<group>"; };
+		A05275D91D6F6E0000D8ECBE /* batchTaskWorkQueu.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = batchTaskWorkQueu.swift; sourceTree = "<group>"; };
 		A054F1A81D6D773E00D27688 /* ViewControllerInformation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewControllerInformation.swift; sourceTree = "<group>"; };
 		A0762A1E1DB4A8F000538CE9 /* profiles.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = profiles.swift; sourceTree = "<group>"; };
 		A08110661D6DA7D8009444D3 /* ViewControllerProgressProcess.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewControllerProgressProcess.swift; sourceTree = "<group>"; };
@@ -330,7 +330,7 @@
 			isa = PBXGroup;
 			children = (
 				A0430AD91DAFFD3C00BBC106 /* singleTaskWorkQueu.swift */,
-				A05275D91D6F6E0000D8ECBE /* batchTask.swift */,
+				A05275D91D6F6E0000D8ECBE /* batchTaskWorkQueu.swift */,
 				E98A0EEA1EF953FD0006B595 /* newSingleTask.swift */,
 				E97C09A61EFAFBC400E86999 /* newBatchTask.swift */,
 			);
@@ -504,7 +504,7 @@
 				A04492B21D658F2100B3CE17 /* rsyncProcessArguments.swift in Sources */,
 				E9230C0E1E6DDC57001D9954 /* rsyncArguments.swift in Sources */,
 				E98A0EEB1EF953FD0006B595 /* newSingleTask.swift in Sources */,
-				A05275DA1D6F6E0000D8ECBE /* batchTask.swift in Sources */,
+				A05275DA1D6F6E0000D8ECBE /* batchTaskWorkQueu.swift in Sources */,
 				A0EFB4501DC080A9008C21A6 /* persistentStoreUserconfiguration.swift in Sources */,
 				A00FE1AA1D6A1AAB00012089 /* alerts.swift in Sources */,
 				E9DCEA871E75F67200A69B4D /* outputBatch.swift in Sources */,

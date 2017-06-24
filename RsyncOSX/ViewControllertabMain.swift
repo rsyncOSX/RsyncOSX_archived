@@ -390,6 +390,22 @@ class ViewControllertabMain: NSViewController {
         self.reset()
     }
     
+    // True if scheduled task in progress
+    func scheduledOperationInProgress() -> Bool {
+        var scheduleInProgress:Bool?
+        if (self.schedules != nil) {
+            scheduleInProgress = self.schedules!.getScheduledOperationInProgress()
+        } else {
+            scheduleInProgress = false
+        }
+        if (scheduleInProgress == false && self.scheduledJobInProgress == false){
+            return false
+        } else {
+            return true
+        }
+    }
+
+    
     // Execute tasks by double click in table
     @objc(tableViewDoubleClick:) func tableViewDoubleClick(sender:AnyObject) {
         if (SharingManagerConfiguration.sharedInstance.allowDoubleclick == true) {
@@ -416,6 +432,16 @@ class ViewControllertabMain: NSViewController {
     // Single task can be activated by double click from table
     private func executeSingleTask() {
         
+        guard scheduledOperationInProgress() == false else {
+            Alerts.showInfo("Scheduled operation in progress")
+            return
+        }
+        
+        guard SharingManagerConfiguration.sharedInstance.noRysync == false else {
+            Utils.sharedInstance.noRsync()
+            return
+        }
+        
         guard self.index != nil else {
             return
         }
@@ -437,6 +463,17 @@ class ViewControllertabMain: NSViewController {
     
     // Execute BATCH TASKS only
     @IBAction func executeBatch(_ sender: NSButton) {
+        
+        guard scheduledOperationInProgress() == false else {
+            Alerts.showInfo("Scheduled operation in progress")
+            return
+        }
+        
+        guard SharingManagerConfiguration.sharedInstance.noRysync == false else {
+            Utils.sharedInstance.noRsync()
+            return
+        }
+        
         self.singletask = nil
         self.setNumbers(output: nil)
         self.batchtask = newBatchTask()

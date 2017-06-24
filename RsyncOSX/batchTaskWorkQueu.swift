@@ -8,7 +8,7 @@
 
 import Foundation
 
-final class batchTask {
+final class batchTaskWorkQueu {
     
     // Structure holding updated data for batchrun
     private var data = Array<NSMutableDictionary>()

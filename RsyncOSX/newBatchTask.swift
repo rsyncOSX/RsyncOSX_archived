@@ -47,8 +47,6 @@ final class newBatchTask {
     private var maxcount:Int = 0
     // HiddenID task, set when row is selected
     private var hiddenID:Int?
-    // Reference to Schedules object
-    private var schedules : ScheduleSortedAndExpand?
     // Single task work queu
     private var workload:singleTaskWorkQueu?
     
@@ -67,74 +65,51 @@ final class newBatchTask {
     // status and next work in batchOperations which
     // also includes a queu of work.
     func presentBatchView() {
-        
-        if (self.scheduledOperationInProgress() == false && SharingManagerConfiguration.sharedInstance.noRysync == false){
-            self.workload = nil
-            self.outputbatch = nil
-            // NB: self.setInfo(info: "Batchrun", color: .blue)
-            // Get all Configs marked for batch
-            let configs = SharingManagerConfiguration.sharedInstance.getConfigurationsBatch()
-            let batchObject = batchTask(batchtasks: configs)
-            // Set the reference to batchData object in SharingManagerConfiguration
-            SharingManagerConfiguration.sharedInstance.setbatchDataQueue(batchdata: batchObject)
-            // Present batchView
-            self.batchView_delegate?.presentViewBatch()
-        } else {
-            Utils.sharedInstance.noRsync()
-        }
-    }
-    
-    // True if scheduled task in progress
-    func scheduledOperationInProgress() -> Bool {
-        var scheduleInProgress:Bool?
-        if (self.schedules != nil) {
-            scheduleInProgress = self.schedules!.getScheduledOperationInProgress()
-        } else {
-            scheduleInProgress = false
-        }
-        if (scheduleInProgress == false && self.scheduledJobInProgress == false){
-            return false
-        } else {
-            return true
-        }
+        self.workload = nil
+        self.outputbatch = nil
+        // NB: self.setInfo(info: "Batchrun", color: .blue)
+        // Get all Configs marked for batch
+        let configs = SharingManagerConfiguration.sharedInstance.getConfigurationsBatch()
+        let batchObject = batchTaskWorkQueu(batchtasks: configs)
+        // Set the reference to batchData object in SharingManagerConfiguration
+        SharingManagerConfiguration.sharedInstance.setbatchDataQueue(batchdata: batchObject)
+        // Present batchView
+        self.batchView_delegate?.presentViewBatch()
     }
     
     // Functions are called from batchView.
     func executeBatch() {
         // No scheduled opertaion in progress
-        if (self.scheduledOperationInProgress() == false ) {
-            if let batchobject = SharingManagerConfiguration.sharedInstance.getBatchdataObject() {
-                // Just copy the work object.
-                // The work object will be removed in Process termination
-                let work = batchobject.nextBatchCopy()
-                // Get the index if given hiddenID (in work.0)
-                let index:Int = SharingManagerConfiguration.sharedInstance.getIndex(work.0)
+        
+        if let batchobject = SharingManagerConfiguration.sharedInstance.getBatchdataObject() {
+            // Just copy the work object.
+            // The work object will be removed in Process termination
+            let work = batchobject.nextBatchCopy()
+            // Get the index if given hiddenID (in work.0)
+            let index:Int = SharingManagerConfiguration.sharedInstance.getIndex(work.0)
                 
-                // Create the output object for rsync
-                self.output = nil
-                self.output = outputProcess()
+            // Create the output object for rsync
+            self.output = nil
+            self.output = outputProcess()
                 
-                switch (work.1) {
-                case 0:
-                    self.batchView_delegate?.progressIndicatorViewBatch(operation: .start)
-                    let arguments:Array<String> = SharingManagerConfiguration.sharedInstance.getRsyncArgumentOneConfig(index: index, argtype: .argdryRun)
-                    let process = Rsync(arguments: arguments)
-                    // Setting reference to process for Abort if requiered
-                    process.executeProcess(output: self.output!)
-                    self.process = process.getProcess()
-                case 1:
-                    let arguments:Array<String> = SharingManagerConfiguration.sharedInstance.getRsyncArgumentOneConfig(index: index, argtype: .arg)
-                    let process = Rsync(arguments: arguments)
-                    // Setting reference to process for Abort if requiered
-                    process.executeProcess(output: self.output!)
-                    self.process = process.getProcess()
-                case -1:
-                    self.batchView_delegate?.progressIndicatorViewBatch(operation: .complete)
-                default : break
-                }
+            switch (work.1) {
+            case 0:
+                self.batchView_delegate?.progressIndicatorViewBatch(operation: .start)
+                let arguments:Array<String> = SharingManagerConfiguration.sharedInstance.getRsyncArgumentOneConfig(index: index, argtype: .argdryRun)
+                let process = Rsync(arguments: arguments)
+                // Setting reference to process for Abort if requiered
+                process.executeProcess(output: self.output!)
+                self.process = process.getProcess()
+            case 1:
+                let arguments:Array<String> = SharingManagerConfiguration.sharedInstance.getRsyncArgumentOneConfig(index: index, argtype: .arg)
+                let process = Rsync(arguments: arguments)
+                // Setting reference to process for Abort if requiered
+                process.executeProcess(output: self.output!)
+                self.process = process.getProcess()
+            case -1:
+                self.batchView_delegate?.progressIndicatorViewBatch(operation: .complete)
+            default : break
             }
-        } else {
-            Alerts.showInfo("Scheduled operation in progress")
         }
     }
     
