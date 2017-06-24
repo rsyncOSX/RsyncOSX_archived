@@ -43,8 +43,6 @@ final class newBatchTask {
     var output:outputProcess?
     // Getting output from batchrun
     private var outputbatch:outputBatch?
-    // Holding max count
-    private var maxcount:Int = 0
     // HiddenID task, set when row is selected
     private var hiddenID:Int?
     // Single task work queu
@@ -87,11 +85,11 @@ final class newBatchTask {
             let work = batchobject.nextBatchCopy()
             // Get the index if given hiddenID (in work.0)
             let index:Int = SharingManagerConfiguration.sharedInstance.getIndex(work.0)
-                
+            
             // Create the output object for rsync
             self.output = nil
             self.output = outputProcess()
-                
+            
             switch (work.1) {
             case 0:
                 self.batchView_delegate?.progressIndicatorViewBatch(operation: .start)
@@ -136,7 +134,7 @@ final class newBatchTask {
             case 0:
                 // dry-run
                 // Setting maxcount of files in object
-                batchobject.setEstimated(numberOfFiles: self.maxcount)
+                batchobject.setEstimated(numberOfFiles: self.output!.getMaxcount())
                 // Do a refresh of NSTableView in ViewControllerBatch
                 // Stack of ViewControllers
                 self.batchView_delegate?.progressIndicatorViewBatch(operation: .stop)
@@ -144,12 +142,11 @@ final class newBatchTask {
                 
             case 1:
                 // Real run
-                self.maxcount = self.output!.getMaxcount()
                 let number = Numbers(output: self.output!.getOutput())
                 number.setNumbers()
                 
                 // Update files in work
-                batchobject.updateInProcess(numberOfFiles: self.maxcount)
+                batchobject.updateInProcess(numberOfFiles: self.output!.getMaxcount())
                 batchobject.setCompleted()
                 self.batchView_delegate?.progressIndicatorViewBatch(operation: .refresh)
                 
@@ -157,8 +154,8 @@ final class newBatchTask {
                 let index = SharingManagerConfiguration.sharedInstance.getIndex(work.0)
                 let config = SharingManagerConfiguration.sharedInstance.getConfigurations()[index]
                 // Get transferred numbers from view
-                self.transferredNumber = self.task_delegate?.gettransferredNumber()
-                self.transferredNumberSizebytes = self.task_delegate?.gettransferredNumberSizebytes()
+                self.transferredNumber = String(number.getTransferredNumbers(numbers: .transferredNumber))
+                self.transferredNumberSizebytes = String(number.getTransferredNumbers(numbers: .transferredNumberSizebytes))
                 
                 if config.offsiteServer.isEmpty {
                     let result = config.localCatalog + " , " + "localhost" + " , " + number.statistics(numberOfFiles: self.transferredNumber, sizeOfFiles: self.transferredNumberSizebytes)[0]
@@ -189,3 +186,4 @@ final class newBatchTask {
     }
     
 }
+
