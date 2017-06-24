@@ -858,8 +858,17 @@ extension ViewControllertabMain: UpdateProgress {
             singletask.ProcessTermination()
             
         } else  {
+            
             // Batch run
             if let pvc = self.presentedViewControllers as? [ViewControllerBatch] {
+                
+                // If abort in batchview just bail out and terminate. The
+                // Process Termination is caused by terminate the Process task
+                
+                guard pvc.count > 0 else {
+                    return
+                }
+                
                 self.batchObject_delegate = pvc[0]
                 self.batchtask = self.batchObject_delegate?.getTaskObject()
             }
