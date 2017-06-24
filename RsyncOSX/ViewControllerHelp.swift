@@ -31,54 +31,54 @@ class ViewControllerHelp: NSViewController {
     @IBOutlet weak var Ssh: NSButton!
     
     @IBAction func help(_ sender: NSButton) {
-        if self.Batchtask.state == NSOnState {
+        if self.Batchtask.state == NSControl.StateValue.onState {
             self.showwhat = .batchtask
-            self.Batchtask.state = NSOffState
-        } else if self.Changelog.state == NSOnState {
+            self.Batchtask.state = NSControl.StateValue.offState
+        } else if self.Changelog.state == NSControl.StateValue.onState {
             self.showwhat = .changelog
-            self.Changelog.state = NSOffState
-        } else if self.RsyncStdParameters.state  == NSOnState {
+            self.Changelog.state = NSControl.StateValue.offState
+        } else if self.RsyncStdParameters.state  == NSControl.StateValue.onState {
             self.showwhat = .rsyncparameters
-            self.RsyncStdParameters.state = NSOffState
-        } else if self.Singeltask.state == NSOnState {
+            self.RsyncStdParameters.state = NSControl.StateValue.offState
+        } else if self.Singeltask.state == NSControl.StateValue.onState {
             self.showwhat = .singletask
-            self.Singeltask.state = NSOffState
-        } else if self.Configuration.state == NSOnState {
+            self.Singeltask.state = NSControl.StateValue.offState
+        } else if self.Configuration.state == NSControl.StateValue.onState {
             self.showwhat = .configuration
-            self.Configuration.state = NSOffState
-        } else if self.Documents.state == NSOnState {
+            self.Configuration.state = NSControl.StateValue.offState
+        } else if self.Documents.state == NSControl.StateValue.onState {
             self.showwhat = .documents
-            self.Documents.state = NSOffState
-        } else if self.Add.state == NSOnState {
+            self.Documents.state = NSControl.StateValue.offState
+        } else if self.Add.state == NSControl.StateValue.onState {
             self.showwhat = .add
-            self.Add.state = NSOffState
-        } else if self.Schedule.state == NSOnState {
+            self.Add.state = NSControl.StateValue.offState
+        } else if self.Schedule.state == NSControl.StateValue.onState {
             self.showwhat = .schedule
-            self.Schedule.state = NSOffState
-        } else if self.Copyfiles.state == NSOnState {
+            self.Schedule.state = NSControl.StateValue.offState
+        } else if self.Copyfiles.state == NSControl.StateValue.onState {
             self.showwhat = .copyfiles
-            self.Copyfiles.state = NSOffState
-        } else if self.Logging.state == NSOnState {
+            self.Copyfiles.state = NSControl.StateValue.offState
+        } else if self.Logging.state == NSControl.StateValue.onState {
             self.showwhat = .logging
-            self.Logging.state = NSOffState
-        } else if self.DIYNAS.state == NSOnState {
+            self.Logging.state = NSControl.StateValue.offState
+        } else if self.DIYNAS.state == NSControl.StateValue.onState {
             self.showwhat = .diynas
-            self.DIYNAS.state = NSOffState
-        } else if self.Idea.state == NSOnState {
+            self.DIYNAS.state = NSControl.StateValue.offState
+        } else if self.Idea.state == NSControl.StateValue.onState {
             self.showwhat = .idea
-            self.Idea.state = NSOffState
-        } else if self.passwordless.state == NSOnState {
+            self.Idea.state = NSControl.StateValue.offState
+        } else if self.passwordless.state == NSControl.StateValue.onState {
             self.showwhat = .passwordless
-            self.passwordless.state = NSOffState
-        } else if self.RsyncStdParameters.state == NSOnState {
+            self.passwordless.state = NSControl.StateValue.offState
+        } else if self.RsyncStdParameters.state == NSControl.StateValue.onState {
             self.showwhat = .rsyncstdparameters
-            self.RsyncStdParameters.state = NSOffState
-        } else if self.source.state == NSOnState {
+            self.RsyncStdParameters.state = NSControl.StateValue.offState
+        } else if self.source.state == NSControl.StateValue.onState {
             self.showwhat = .source
-            self.source.state = NSOffState
-        } else if self.Ssh.state == NSOnState {
+            self.source.state = NSControl.StateValue.offState
+        } else if self.Ssh.state == NSControl.StateValue.onState {
             self.showwhat = .ssh
-            self.Ssh.state = NSOffState
+            self.Ssh.state = NSControl.StateValue.offState
         }
         self.show()
     }

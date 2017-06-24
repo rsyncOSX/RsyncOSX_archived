@@ -52,7 +52,7 @@ final class Help {
     
     private func show() {
         if let resource = self.resource {
-            NSWorkspace.shared().open(URL(string: resource)!)
+            NSWorkspace.shared.open(URL(string: resource)!)
         }
     }
     

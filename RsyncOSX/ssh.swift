@@ -180,7 +180,7 @@ class ssh: files {
     
     // Open Terminal.app
     func openTerminal() {
-        NSWorkspace.shared().open(URL(fileURLWithPath: "/Applications/Utilities/Terminal.app"))
+        NSWorkspace.shared.open(URL(fileURLWithPath: "/Applications/Utilities/Terminal.app"))
     }
     
     init() {

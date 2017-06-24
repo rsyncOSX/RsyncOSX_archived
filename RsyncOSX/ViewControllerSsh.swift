@@ -47,7 +47,7 @@ class ViewControllerSsh: NSViewController {
     // Source for CopyFiles and Ssh
     // self.presentViewControllerAsSheet(self.ViewControllerAbout)
     lazy var ViewControllerSource: NSViewController = {
-        return self.storyboard!.instantiateController(withIdentifier: "CopyFilesID")
+        return self.storyboard!.instantiateController(withIdentifier: NSStoryboard.SceneIdentifier(rawValue: "CopyFilesID"))
             as! NSViewController
     }()
     
@@ -69,11 +69,11 @@ class ViewControllerSsh: NSViewController {
         guard self.Ssh != nil else {
             return
         }
-        if (self.createRsaKey.state == NSOnState) {
+        if (self.createRsaKey.state == NSControl.StateValue.onState) {
             self.Ssh!.createLocalKeysRsa()
         }
         
-        if (self.createDsaKey.state == NSOnState){
+        if (self.createDsaKey.state == NSControl.StateValue.onState){
             self.Ssh!.createLocalKeysDsa()
         }
     }
@@ -192,17 +192,17 @@ class ViewControllerSsh: NSViewController {
         self.Ssh = ssh()
         self.Ssh!.CheckForLocalPubKeys()
         if self.Ssh!.rsaPubKeyExist {
-            self.rsaCheck.state = NSOnState
+            self.rsaCheck.state = NSControl.StateValue.onState
             self.createKeys.isEnabled = false
         } else {
-            self.rsaCheck.state = NSOffState
+            self.rsaCheck.state = NSControl.StateValue.offState
             self.createKeys.isEnabled = true
         }
         if self.Ssh!.dsaPubKeyExist {
-            self.dsaCheck.state = NSOnState
+            self.dsaCheck.state = NSControl.StateValue.onState
             self.createKeys.isEnabled = false
         } else {
-            self.dsaCheck.state = NSOffState
+            self.dsaCheck.state = NSControl.StateValue.offState
             self.createKeys.isEnabled = true
         }
     }
@@ -262,7 +262,7 @@ extension ViewControllerSsh : NSTableViewDelegate {
             cellIdentifier = "outputID"
         }
         
-        if let cell = tableView.make(withIdentifier: cellIdentifier, owner: nil) as? NSTableCellView {
+        if let cell = tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: cellIdentifier), owner: nil) as? NSTableCellView {
             cell.textField?.stringValue = text
             return cell
         }

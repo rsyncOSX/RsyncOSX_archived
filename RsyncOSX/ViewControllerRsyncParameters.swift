@@ -91,7 +91,7 @@ class ViewControllerRsyncParameters: NSViewController {
     
     @IBOutlet weak var suffixButton: NSButton!
     @IBAction func suffix(_ sender: NSButton) {
-        self.suffixButton2.state = NSOffState
+        self.suffixButton2.state = NSControl.StateValue.offState
         switch self.suffixButton.state {
         case 1:
             self.setValueComboBox(combobox: self.parameter14, index: (self.parameters!.getvalueCombobox(self.parameters!.getSuffixString()[0])))
@@ -106,7 +106,7 @@ class ViewControllerRsyncParameters: NSViewController {
     
     @IBOutlet weak var suffixButton2: NSButton!
     @IBAction func suffix2(_ sender: NSButton) {
-        self.suffixButton.state = NSOffState
+        self.suffixButton.state = NSControl.StateValue.offState
         switch self.suffixButton2.state {
         case 1:
             self.setValueComboBox(combobox: self.parameter14, index: (self.parameters!.getvalueCombobox(self.parameters!.getSuffixString2()[0])))
@@ -150,9 +150,9 @@ class ViewControllerRsyncParameters: NSViewController {
         self.parameters = RsyncParameters(config: configurations[index!])
         self.comboBoxValues = parameters!.getComboBoxValues()
         
-        self.backupbutton.state = 0
-        self.suffixButton.state = 0
-        self.suffixButton2.state = 0
+        self.backupbutton.state = NSControl.StateValue(rawValue: 0)
+        self.suffixButton.state = NSControl.StateValue(rawValue: 0)
+        self.suffixButton2.state = NSControl.StateValue(rawValue: 0)
         self.viewParameter1.stringValue = configurations[index!].parameter1
         self.viewParameter2.stringValue = configurations[index!].parameter2
         self.viewParameter3.stringValue = configurations[index!].parameter3
@@ -182,9 +182,9 @@ class ViewControllerRsyncParameters: NSViewController {
         self.viewParameter14.stringValue = self.parameters!.getParameter(rsyncparameternumber: 14).1
         
         if (configurations[index!].rsyncdaemon != nil) {
-            self.rsyncdaemon.state = configurations[index!].rsyncdaemon!
+            self.rsyncdaemon.state = NSControl.StateValue(rawValue: configurations[index!].rsyncdaemon!)
         } else {
-            self.rsyncdaemon.state = NSOffState
+            self.rsyncdaemon.state = NSControl.StateValue.offState
         }
         if (configurations[index!].sshport != nil) {
             self.sshport.stringValue = String(configurations[index!].sshport!)
@@ -224,7 +224,7 @@ class ViewControllerRsyncParameters: NSViewController {
             self.parameter13.indexOfSelectedItem, value: getValue(value: self.viewParameter13.stringValue))
         Configurations[index!].parameter14 = self.parameters!.getRsyncParameter(indexComboBox:
             self.parameter14.indexOfSelectedItem, value: getValue(value: self.viewParameter14.stringValue))
-        Configurations[index!].rsyncdaemon = self.rsyncdaemon.state
+        Configurations[index!].rsyncdaemon = self.rsyncdaemon.state.rawValue
         if let port = self.sshport {
             Configurations[index!].sshport = Int(port.stringValue)
         }

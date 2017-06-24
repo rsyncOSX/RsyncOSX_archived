@@ -44,7 +44,7 @@ class ViewControllerNewConfigurations: NSViewController {
     // Userconfiguration
     // self.presentViewControllerAsSheet(self.ViewControllerUserconfiguration)
     lazy var ViewControllerUserconfiguration: NSViewController = {
-        return self.storyboard!.instantiateController(withIdentifier: "StoryboardUserconfigID")
+        return self.storyboard!.instantiateController(withIdentifier: NSStoryboard.SceneIdentifier(rawValue: "StoryboardUserconfigID"))
             as! NSViewController
     }()
     
@@ -104,8 +104,8 @@ class ViewControllerNewConfigurations: NSViewController {
         self.offsiteUsername.stringValue = ""
         self.offsiteServer.stringValue = ""
         self.backupID.stringValue = ""
-        self.rsyncdaemon.state = NSOffState
-        self.singleFile.state = NSOffState
+        self.rsyncdaemon.state = NSControl.StateValue.offState
+        self.singleFile.state = NSControl.StateValue.offState
     }
     
     
@@ -128,11 +128,11 @@ class ViewControllerNewConfigurations: NSViewController {
             "dateRun":"",
             "singleFile":0]
         dict.setValue("no", forKey: "batch")
-        if self.singleFile.state == NSOnState {
+        if self.singleFile.state == NSControl.StateValue.onState {
             dict.setValue(1, forKey: "singleFile")
         }
         
-        if (!self.localCatalog.stringValue.hasSuffix("/") && self.singleFile.state == NSOffState){
+        if (!self.localCatalog.stringValue.hasSuffix("/") && self.singleFile.state == NSControl.StateValue.offState){
             self.localCatalog.stringValue = self.localCatalog.stringValue + "/"
             dict.setValue(self.localCatalog.stringValue, forKey: "localCatalog")
         }

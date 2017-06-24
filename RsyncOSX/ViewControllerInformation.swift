@@ -75,7 +75,7 @@ extension ViewControllerInformation : NSTableViewDelegate {
             cellIdentifier = "outputID"
         }
         
-        if let cell = tableView.make(withIdentifier: cellIdentifier, owner: nil) as? NSTableCellView {
+        if let cell = tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: cellIdentifier), owner: nil) as? NSTableCellView {
             cell.textField?.stringValue = text
             return cell
         }

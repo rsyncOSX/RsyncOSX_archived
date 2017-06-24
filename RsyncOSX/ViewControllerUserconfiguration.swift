@@ -36,7 +36,7 @@ class ViewControllerUserconfiguration : NSViewController {
     @IBOutlet weak var restorePath: NSTextField!
     
     @IBAction func toggleversion3rsync(_ sender: NSButton) {
-        if (self.version3rsync.state == NSOnState) {
+        if (self.version3rsync.state == NSControl.StateValue.onState) {
             SharingManagerConfiguration.sharedInstance.rsyncVer3 = true
         } else {
             SharingManagerConfiguration.sharedInstance.rsyncVer3 = false
@@ -50,7 +50,7 @@ class ViewControllerUserconfiguration : NSViewController {
     }
     
     @IBAction func toggleDetailedlogging(_ sender: NSButton) {
-        if (self.detailedlogging.state == NSOnState) {
+        if (self.detailedlogging.state == NSControl.StateValue.onState) {
             SharingManagerConfiguration.sharedInstance.detailedlogging = true
         } else {
             SharingManagerConfiguration.sharedInstance.detailedlogging = false
@@ -72,7 +72,7 @@ class ViewControllerUserconfiguration : NSViewController {
     }
     
     @IBAction func toggleAllowDoubleclick(_ sender: NSButton) {
-        if (self.allowDoubleClick.state == NSOnState) {
+        if (self.allowDoubleClick.state == NSControl.StateValue.onState) {
             SharingManagerConfiguration.sharedInstance.allowDoubleclick = true
         } else {
             SharingManagerConfiguration.sharedInstance.allowDoubleclick = false
@@ -86,7 +86,7 @@ class ViewControllerUserconfiguration : NSViewController {
     }
     
     @IBAction func toggleError(_ sender: NSButton) {
-        if (self.rsyncerror.state == NSOnState) {
+        if (self.rsyncerror.state == NSControl.StateValue.onState) {
             SharingManagerConfiguration.sharedInstance.rsyncerror = true
         } else {
             SharingManagerConfiguration.sharedInstance.rsyncerror = false
@@ -121,7 +121,7 @@ class ViewControllerUserconfiguration : NSViewController {
     
     // Function verifying rsync in path
     private func verifyRsync() {
-        if (self.version3rsync.state == NSOnState) {
+        if (self.version3rsync.state == NSControl.StateValue.onState) {
             let fileManager = FileManager.default
             if let rsyncPath = SharingManagerConfiguration.sharedInstance.rsyncPath {
                 let path = rsyncPath + "rsync"
@@ -186,14 +186,14 @@ class ViewControllerUserconfiguration : NSViewController {
     // Function for check and set user configuration
     private func checkUserConfig() {
         if (SharingManagerConfiguration.sharedInstance.rsyncVer3) {
-            self.version3rsync.state = NSOnState
+            self.version3rsync.state = NSControl.StateValue.onState
         } else {
-            self.version3rsync.state = NSOffState
+            self.version3rsync.state = NSControl.StateValue.offState
         }
         if (SharingManagerConfiguration.sharedInstance.detailedlogging) {
-            self.detailedlogging.state = NSOnState
+            self.detailedlogging.state = NSControl.StateValue.onState
         } else {
-            self.detailedlogging.state = NSOffState
+            self.detailedlogging.state = NSControl.StateValue.offState
         }
         if (SharingManagerConfiguration.sharedInstance.rsyncPath != nil) {
             self.rsyncPath.stringValue = SharingManagerConfiguration.sharedInstance.rsyncPath!
@@ -202,14 +202,14 @@ class ViewControllerUserconfiguration : NSViewController {
         }
         self.scheduledTaskdisableExecute.stringValue = String(SharingManagerConfiguration.sharedInstance.scheduledTaskdisableExecute)
         if (SharingManagerConfiguration.sharedInstance.allowDoubleclick) {
-            self.allowDoubleClick.state = NSOnState
+            self.allowDoubleClick.state = NSControl.StateValue.onState
         } else {
-            self.allowDoubleClick.state = NSOffState
+            self.allowDoubleClick.state = NSControl.StateValue.offState
         }
         if (SharingManagerConfiguration.sharedInstance.rsyncerror) {
-            self.rsyncerror.state = NSOnState
+            self.rsyncerror.state = NSControl.StateValue.onState
         } else {
-            self.rsyncerror.state = NSOffState
+            self.rsyncerror.state = NSControl.StateValue.offState
         }
         if (SharingManagerConfiguration.sharedInstance.restorePath != nil) {
             self.restorePath.stringValue = SharingManagerConfiguration.sharedInstance.restorePath!
@@ -223,7 +223,7 @@ class ViewControllerUserconfiguration : NSViewController {
 extension ViewControllerUserconfiguration : NSTextFieldDelegate {
     
     override func controlTextDidChange(_ obj: Notification) {
-        self.version3rsync.state = NSOnState
+        self.version3rsync.state = NSControl.StateValue.onState
         self.dirty = true
     }
     

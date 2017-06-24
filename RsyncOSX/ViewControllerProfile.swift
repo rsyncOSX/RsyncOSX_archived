@@ -146,7 +146,7 @@ extension ViewControllerProfile : NSTableViewDelegate {
             text = data
             cellIdentifier = "profilesID"
         }
-        if let cell = tableView.make(withIdentifier: cellIdentifier, owner: self) as? NSTableCellView {
+        if let cell = tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: cellIdentifier), owner: self) as? NSTableCellView {
             cell.textField?.stringValue = text!
             return cell
         }

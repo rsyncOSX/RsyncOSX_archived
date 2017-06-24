@@ -25,7 +25,7 @@ class ViewControllerNewVersion : NSViewController {
     
     @IBAction func changelogg(_ sender: NSButton) {
         if let resource = self.resource {
-            NSWorkspace.shared().open(URL(string: resource.getResource(resource: .changelog))!)
+            NSWorkspace.shared.open(URL(string: resource.getResource(resource: .changelog))!)
         }
     }
     
@@ -34,7 +34,7 @@ class ViewControllerNewVersion : NSViewController {
             self.dismiss_delegate?.dismiss_view(viewcontroller: self)
             return
         }
-        NSWorkspace.shared().open(URL(string: SharingManagerConfiguration.sharedInstance.URLnewVersion!)!)
+        NSWorkspace.shared.open(URL(string: SharingManagerConfiguration.sharedInstance.URLnewVersion!)!)
         self.dismiss_delegate?.dismiss_view(viewcontroller: self)
     }
     

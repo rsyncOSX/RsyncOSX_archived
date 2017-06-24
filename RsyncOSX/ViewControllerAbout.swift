@@ -32,14 +32,14 @@ class ViewControllerAbout : NSViewController {
     
     @IBAction func changelog(_ sender: NSButton) {
         if let resource = self.resource {
-            NSWorkspace.shared().open(URL(string: resource.getResource(resource: .changelog))!)
+            NSWorkspace.shared.open(URL(string: resource.getResource(resource: .changelog))!)
         }
         self.dismiss_delegate?.dismiss_view(viewcontroller: self)
     }
     
     @IBAction func documentation(_ sender: NSButton) {
         if let resource = self.resource {
-            NSWorkspace.shared().open(URL(string: resource.getResource(resource: .documents))!)
+            NSWorkspace.shared.open(URL(string: resource.getResource(resource: .documents))!)
         }
         self.dismiss_delegate?.dismiss_view(viewcontroller: self)
     }
@@ -49,7 +49,7 @@ class ViewControllerAbout : NSViewController {
             self.dismiss_delegate?.dismiss_view(viewcontroller: self)
             return
         }
-        NSWorkspace.shared().open(URL(string: SharingManagerConfiguration.sharedInstance.URLnewVersion!)!)
+        NSWorkspace.shared.open(URL(string: SharingManagerConfiguration.sharedInstance.URLnewVersion!)!)
         self.dismiss_delegate?.dismiss_view(viewcontroller: self)
     }
     

@@ -66,7 +66,7 @@ class ViewControllerEdit : NSViewController {
         } else {
             config[self.index!].sshport = nil
         }
-        config[self.index!].rsyncdaemon = self.rsyncdaemon.state
+        config[self.index!].rsyncdaemon = self.rsyncdaemon.state.rawValue
         SharingManagerConfiguration.sharedInstance.updateConfigurations(config[self.index!], index: self.index!)
         self.readconfigurations_delegate?.readConfigurations()
         self.dismiss_delegate?.dismiss_view(viewcontroller: self)
@@ -91,7 +91,7 @@ class ViewControllerEdit : NSViewController {
         self.offsiteServer.stringValue = ""
         self.backupID.stringValue = ""
         self.sshport.stringValue = ""
-        self.rsyncdaemon.state = NSOffState
+        self.rsyncdaemon.state = NSControl.StateValue.offState
         // Getting index of selected configuration
         self.index = self.getindex_delegate?.getindex()
         let config:configuration = SharingManagerConfiguration.sharedInstance.getConfigurations()[self.index!]
@@ -110,7 +110,7 @@ class ViewControllerEdit : NSViewController {
             self.sshport.stringValue = String(port)
         }
         if let rsyncdaemon = config.rsyncdaemon {
-            self.rsyncdaemon.state = rsyncdaemon
+            self.rsyncdaemon.state = NSControl.StateValue(rawValue: rsyncdaemon)
         }
     }
     

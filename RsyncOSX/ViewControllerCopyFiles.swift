@@ -37,14 +37,14 @@ class ViewControllerCopyFiles : NSViewController {
     // Information about rsync output
     // self.presentViewControllerAsSheet(self.ViewControllerInformation)
     lazy var ViewControllerInformation: NSViewController = {
-        return self.storyboard!.instantiateController(withIdentifier: "StoryboardInformationCopyFilesID")
+        return self.storyboard!.instantiateController(withIdentifier: NSStoryboard.SceneIdentifier(rawValue: "StoryboardInformationCopyFilesID"))
             as! NSViewController
     }()
     
     // Source for CopyFiles
     // self.presentViewControllerAsSheet(self.ViewControllerAbout)
     lazy var ViewControllerSource: NSViewController = {
-        return self.storyboard!.instantiateController(withIdentifier: "CopyFilesID")
+        return self.storyboard!.instantiateController(withIdentifier: NSStoryboard.SceneIdentifier(rawValue: "CopyFilesID"))
             as! NSViewController
     }()
     
@@ -156,8 +156,8 @@ class ViewControllerCopyFiles : NSViewController {
         self.tableViewSelect.delegate = self
         self.tableViewSelect.dataSource = self
         // Register for drag and drop
-        self.localCatalog.register(forDraggedTypes: [NSFilenamesPboardType])
-        self.remoteCatalog.register(forDraggedTypes: [NSFilenamesPboardType])
+        self.localCatalog.registerForDraggedTypes([NSFilenamesPboardType])
+        self.remoteCatalog.registerForDraggedTypes([NSFilenamesPboardType])
         // Progress indicator
         self.working.usesThreadedAnimation = true
         self.workingRsync.usesThreadedAnimation = true
@@ -279,7 +279,7 @@ extension ViewControllerCopyFiles: NSTableViewDelegate {
             
             cellIdentifier = "fileID"
         }
-        if let cell = tableView.make(withIdentifier: cellIdentifier, owner: self) as? NSTableCellView {
+        if let cell = tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: cellIdentifier), owner: self) as? NSTableCellView {
             cell.textField?.stringValue = text!
             return cell
         }

@@ -130,7 +130,7 @@ extension ViewControllerScheduleDetails : NSTableViewDelegate {
                     let text = object[tableColumn!.identifier] as? String
                     let attributedString = NSMutableAttributedString(string:(text!))
                     let range = (text! as NSString).range(of: text!)
-                    attributedString.addAttribute(NSForegroundColorAttributeName, value: NSColor.red, range: range)
+                    attributedString.addAttribute(NSAttributedStringKey.foregroundColor, value: NSColor.red, range: range)
                     return attributedString
                 } else {
                     return object[tableColumn!.identifier] as? String

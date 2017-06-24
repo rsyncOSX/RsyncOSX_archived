@@ -53,14 +53,14 @@ class ViewControllertabSchedule : NSViewController {
     // Information Schedule details
     // self.presentViewControllerAsSheet(self.ViewControllerScheduleDetails)
     lazy var ViewControllerScheduleDetails: NSViewController = {
-        return self.storyboard!.instantiateController(withIdentifier: "StoryboardScheduleID")
+        return self.storyboard!.instantiateController(withIdentifier: NSStoryboard.SceneIdentifier(rawValue: "StoryboardScheduleID"))
             as! NSViewController
     }()
     
     // Userconfiguration
     // self.presentViewControllerAsSheet(self.ViewControllerUserconfiguration)
     lazy var ViewControllerUserconfiguration: NSViewController = {
-        return self.storyboard!.instantiateController(withIdentifier: "StoryboardUserconfigID")
+        return self.storyboard!.instantiateController(withIdentifier: NSStoryboard.SceneIdentifier(rawValue: "StoryboardUserconfigID"))
             as! NSViewController
     }()
 
@@ -112,7 +112,7 @@ class ViewControllertabSchedule : NSViewController {
                 GlobalMainQueue.async(execute: { () -> Void in
                      self.presentViewControllerAsSheet(self.ViewControllerScheduleDetails)
                 })
-                self.details.state = NSOffState
+                self.details.state = NSControl.StateValue.offState
             }
             if (details == false && range == true) {
                 let answer = Alerts.dialogOKCancel("Add Schedule?", text: "Cancel or OK")
@@ -133,10 +133,10 @@ class ViewControllertabSchedule : NSViewController {
                 }
             }
             // Reset radiobuttons
-            self.once.state = NSOffState
-            self.daily.state = NSOffState
-            self.weekly.state = NSOffState
-            self.details.state = NSOffState
+            self.once.state = NSControl.StateValue.offState
+            self.daily.state = NSControl.StateValue.offState
+            self.weekly.state = NSControl.StateValue.offState
+            self.details.state = NSControl.StateValue.offState
         }
     }
     
@@ -225,7 +225,7 @@ class ViewControllertabSchedule : NSViewController {
     }
     
     // Update display next scheduled jobs in time
-    func nextScheduledtask() {
+    @objc func nextScheduledtask() {
         
         guard self.schedules != nil else {
             return

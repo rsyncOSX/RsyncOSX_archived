@@ -124,70 +124,70 @@ class ViewControllertabMain: NSViewController {
     // Information about rsync output
     // self.presentViewControllerAsSheet(self.ViewControllerInformation)
     lazy var ViewControllerInformation: NSViewController = {
-        return self.storyboard!.instantiateController(withIdentifier: "StoryboardInformationID")
+        return self.storyboard!.instantiateController(withIdentifier: NSStoryboard.SceneIdentifier(rawValue: "StoryboardInformationID"))
             as! NSViewController
     }()
     
     // Progressbar process 
     // self.presentViewControllerAsSheet(self.ViewControllerProgress)
     lazy var ViewControllerProgress: NSViewController = {
-        return self.storyboard!.instantiateController(withIdentifier: "StoryboardProgressID")
+        return self.storyboard!.instantiateController(withIdentifier: NSStoryboard.SceneIdentifier(rawValue: "StoryboardProgressID"))
             as! NSViewController
     }()
     
     // Batch process
     // self.presentViewControllerAsSheet(self.ViewControllerBatch)
     lazy var ViewControllerBatch: NSViewController = {
-        return self.storyboard!.instantiateController(withIdentifier: "StoryboardBatchID")
+        return self.storyboard!.instantiateController(withIdentifier: NSStoryboard.SceneIdentifier(rawValue: "StoryboardBatchID"))
             as! NSViewController
     }()
 
     // Userconfiguration
     // self.presentViewControllerAsSheet(self.ViewControllerUserconfiguration)
     lazy var ViewControllerUserconfiguration: NSViewController = {
-        return self.storyboard!.instantiateController(withIdentifier: "StoryboardUserconfigID")
+        return self.storyboard!.instantiateController(withIdentifier: NSStoryboard.SceneIdentifier(rawValue: "StoryboardUserconfigID"))
             as! NSViewController
     }()
     
     // Rsync userparams
     // self.presentViewControllerAsSheet(self.ViewControllerRsyncParams)
     lazy var ViewControllerRsyncParams: NSViewController = {
-        return self.storyboard!.instantiateController(withIdentifier: "StoryboardRsyncParamsID")
+        return self.storyboard!.instantiateController(withIdentifier: NSStoryboard.SceneIdentifier(rawValue: "StoryboardRsyncParamsID"))
             as! NSViewController
     }()
 
     // New version window
     // self.presentViewControllerAsSheet(self.newVersionViewController)
     lazy var newVersionViewController: NSViewController = {
-        return self.storyboard!.instantiateController(withIdentifier: "StoryboardnewVersionID")
+        return self.storyboard!.instantiateController(withIdentifier: NSStoryboard.SceneIdentifier(rawValue: "StoryboardnewVersionID"))
             as! NSViewController
     }()
     
     // Edit
     // self.presentViewControllerAsSheet(self.editViewController)
     lazy var editViewController: NSViewController = {
-        return self.storyboard!.instantiateController(withIdentifier: "StoryboardEditID")
+        return self.storyboard!.instantiateController(withIdentifier: NSStoryboard.SceneIdentifier(rawValue: "StoryboardEditID"))
             as! NSViewController
     }()
     
     // Profile
     // self.presentViewControllerAsSheet(self.ViewControllerProfile)
     lazy var ViewControllerProfile: NSViewController = {
-        return self.storyboard!.instantiateController(withIdentifier: "ProfileID")
+        return self.storyboard!.instantiateController(withIdentifier: NSStoryboard.SceneIdentifier(rawValue: "ProfileID"))
             as! NSViewController
     }()
 
     // ScheduledBackupInWorkID
     // self.presentViewControllerAsSheet(self.ViewControllerScheduledBackupInWork)
     lazy var ViewControllerScheduledBackupInWork: NSViewController = {
-        return self.storyboard!.instantiateController(withIdentifier: "ScheduledBackupInWorkID")
+        return self.storyboard!.instantiateController(withIdentifier: NSStoryboard.SceneIdentifier(rawValue: "ScheduledBackupInWorkID"))
             as! NSViewController
     }()
     
     // About
     // self.presentViewControllerAsSheet(self.ViewControllerAbout)
     lazy var ViewControllerAbout: NSViewController = {
-        return self.storyboard!.instantiateController(withIdentifier: "AboutID")
+        return self.storyboard!.instantiateController(withIdentifier: NSStoryboard.SceneIdentifier(rawValue: "AboutID"))
             as! NSViewController
     }()
     
@@ -243,13 +243,13 @@ class ViewControllertabMain: NSViewController {
                         self.refresh()
                     }
                 }
-                self.delete.state = NSOffState
+                self.delete.state = NSControl.StateValue.offState
             }
         } else {
             self.rsyncCommand.stringValue = " ... Please select a task first ..."
-            self.delete.state = NSOffState
-            self.rsyncparams.state = NSOffState
-            self.edit.state = NSOffState
+            self.delete.state = NSControl.StateValue.offState
+            self.rsyncparams.state = NSControl.StateValue.offState
+            self.edit.state = NSControl.StateValue.offState
         }
     }
     
@@ -306,7 +306,7 @@ class ViewControllertabMain: NSViewController {
     
     // Display correct rsync command in view
     fileprivate func setRsyncCommandDisplay() {
-        if (self.displayDryRun.state == NSOnState) {
+        if (self.displayDryRun.state == NSControl.StateValue.onState) {
             if let index = self.index {
                 self.rsyncCommand.stringValue = Utils.sharedInstance.setRsyncCommandDisplay(index: index, dryRun: true)
             } else {
@@ -343,7 +343,7 @@ class ViewControllertabMain: NSViewController {
         self.mainTableView.target = self
         self.mainTableView.doubleAction = #selector(ViewControllertabMain.tableViewDoubleClick(sender:))
         // Defaults to display dryrun command
-        self.displayDryRun.state = NSOnState
+        self.displayDryRun.state = NSControl.StateValue.onState
     }
     
     override func viewDidAppear() {
@@ -617,7 +617,7 @@ extension ViewControllertabMain : NSTableViewDelegate {
                     text = object[tableColumn!.identifier] as? String
                     let attributedString = NSMutableAttributedString(string:(text!))
                     let range = (text! as NSString).range(of: text!)
-                    attributedString.addAttribute(NSForegroundColorAttributeName, value: NSColor.red, range: range)
+                    attributedString.addAttribute(NSAttributedStringKey.foregroundColor, value: NSColor.red, range: range)
                     return attributedString
                 } else {
                     return object[tableColumn!.identifier] as? String
@@ -694,7 +694,7 @@ extension ViewControllertabMain: RsyncUserParams {
     func rsyncuserparamsupdated() {
         self.readConfigurations()
         self.setRsyncCommandDisplay()
-        self.rsyncparams.state = 0
+        self.rsyncparams.state = NSControl.StateValue(rawValue: 0)
     }
 }
 
@@ -868,8 +868,8 @@ extension ViewControllertabMain: DismissViewController {
     func dismiss_view(viewcontroller:NSViewController) {
         self.dismissViewController(viewcontroller)
         // Reset radiobuttons
-        self.edit.state = NSOffState
-        self.rsyncparams.state = NSOffState
+        self.edit.state = NSControl.StateValue.offState
+        self.rsyncparams.state = NSControl.StateValue.offState
         GlobalMainQueue.async(execute: { () -> Void in
             self.mainTableView.reloadData()
         })
