@@ -110,12 +110,12 @@ final class newBatchTask {
                 // Get the index if given hiddenID (in work.0)
                 let index:Int = SharingManagerConfiguration.sharedInstance.getIndex(work.0)
                 
+                // Create the output object for rsync
+                self.output = nil
+                self.output = outputProcess()
+                
                 switch (work.1) {
                 case 0:
-                    // Create the output object for rsync
-                    self.output = nil
-                    self.output = outputProcess()
-                    
                     self.batchView_delegate?.progressIndicatorViewBatch(operation: .start)
                     let arguments:Array<String> = SharingManagerConfiguration.sharedInstance.getRsyncArgumentOneConfig(index: index, argtype: .argdryRun)
                     let process = Rsync(arguments: arguments)
@@ -123,13 +123,6 @@ final class newBatchTask {
                     process.executeProcess(output: self.output!)
                     self.process = process.getProcess()
                 case 1:
-                    
-                    // Getting and setting max file to transfer
-                    // self.task_delegate?.setmaxNumbersOfFilesToTransfer(output: self.output)
-                    // Create the output object for rsync
-                    self.output = nil
-                    self.output = outputProcess()
-                    
                     let arguments:Array<String> = SharingManagerConfiguration.sharedInstance.getRsyncArgumentOneConfig(index: index, argtype: .arg)
                     let process = Rsync(arguments: arguments)
                     // Setting reference to process for Abort if requiered
@@ -163,9 +156,7 @@ final class newBatchTask {
             
             // Remove the first worker object
             let work = batchobject.nextBatchRemove()
-            // get numbers from dry-run
-            
-            // 0 is estimationrun, 1 is real run
+            // (work.0) is estimationrun, (work.1) is real run
             switch (work.1) {
             case 0:
                 // dry-run
@@ -173,13 +164,9 @@ final class newBatchTask {
                 batchobject.setEstimated(numberOfFiles: self.maxcount)
                 // Do a refresh of NSTableView in ViewControllerBatch
                 // Stack of ViewControllers
-                
                 self.batchView_delegate?.progressIndicatorViewBatch(operation: .stop)
-                self.task_delegate?.showProcessInfo(info: .Executing)
-                // Getting and setting max file to transfer
-                self.task_delegate?.setmaxNumbersOfFilesToTransfer(output: self.output)
-                
                 self.executeBatch()
+                
             case 1:
                 // Real run
                 self.maxcount = self.output!.getMaxcount()
@@ -209,8 +196,6 @@ final class newBatchTask {
                 let hiddenID = SharingManagerConfiguration.sharedInstance.gethiddenID(index: index)
                 SharingManagerConfiguration.sharedInstance.setCurrentDateonConfiguration(index)
                 SharingManagerSchedule.sharedInstance.addScheduleResultManuel(hiddenID, result: number.statistics(numberOfFiles: self.transferredNumber,sizeOfFiles: self.transferredNumberSizebytes)[0])
-                // Real run completed, next dry-run
-                self.task_delegate?.showProcessInfo(info: .Estimating)
                 
                 self.executeBatch()
             default :
@@ -221,7 +206,6 @@ final class newBatchTask {
     
     
     init() {
-        
         if let pvc = SharingManagerConfiguration.sharedInstance.ViewControllertabMain as? ViewControllertabMain {
             self.indicator_delegate = pvc
             self.task_delegate = pvc

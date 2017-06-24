@@ -438,6 +438,7 @@ class ViewControllertabMain: NSViewController {
     // Execute BATCH TASKS only
     @IBAction func executeBatch(_ sender: NSButton) {
         self.singletask = nil
+        self.setNumbers(output: nil)
         self.batchtask = newBatchTask()
         // Present batch view
         self.batchtask?.presentBatchView()
