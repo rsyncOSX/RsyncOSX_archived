@@ -454,28 +454,7 @@ class ViewControllertabMain: NSViewController {
     }
     
     //  End delegate functions Process object
-    
-    // Function for setting max files to be transferred
-    // Function is called in self.ProcessTermination()
-    fileprivate func setmaxNumbersOfFilesToTransfer() {
         
-        let number = Numbers(output: self.output!.getOutput())
-        number.setNumbers()
-        
-        // Getting max count
-        self.showProcessInfo(info: .Set_max_Number)
-        if (number.getTransferredNumbers(numbers: .totalNumber) > 0) {
-            self.setNumbers(output: self.output)
-            if (number.getTransferredNumbers(numbers: .transferredNumber) > 0) {
-                self.maxcount = number.getTransferredNumbers(numbers: .transferredNumber)
-            } else {
-                self.maxcount = self.output!.getMaxcount()
-            }
-        } else {
-            self.maxcount = self.output!.getMaxcount()
-        }
-    }
-    
     // Function for setting profile
     fileprivate func displayProfile() {
         
@@ -885,7 +864,7 @@ extension ViewControllertabMain: UpdateProgress {
             }
             self.output = self.batchtask!.output
             self.process = self.batchtask!.process
-            self.batchtask!.executeNextBatchTask()
+            self.batchtask!.ProcessTermination()
         }
         
     }
@@ -1013,7 +992,6 @@ extension ViewControllertabMain: AbortOperations {
             self.setInfo(info: "Abort", color: .red)
         }
     }
-
     
 }
 
@@ -1118,7 +1096,6 @@ extension ViewControllertabMain:SingleTask {
                 
                 return
             }
-            
             
             let number = Numbers(output: output!.getOutput())
             number.setNumbers()

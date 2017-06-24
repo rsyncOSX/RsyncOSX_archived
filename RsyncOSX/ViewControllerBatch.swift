@@ -48,8 +48,8 @@ class ViewControllerBatch : NSViewController {
         
         
         if (self.close!) {
-            let batchTask = newBatchTask()
-            batchTask.closeOperation()
+            self.batchTask = newBatchTask()
+            self.batchTask!.closeOperation()
         } else {
             self.abort_delegate?.abortOperations()
         }
@@ -106,6 +106,12 @@ class ViewControllerBatch : NSViewController {
         self.rownumber.stringValue = ""
         self.CloseButton.title = "Close"
         self.close = true
+        self.batchTask = nil
+    }
+    
+    override func viewDidDisappear() {
+        super.viewDidDisappear()
+        self.batchTask = nil
     }
 
 

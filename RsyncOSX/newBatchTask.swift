@@ -125,7 +125,7 @@ final class newBatchTask {
                 case 1:
                     
                     // Getting and setting max file to transfer
-                    self.task_delegate?.setmaxNumbersOfFilesToTransfer(output: self.output)
+                    // self.task_delegate?.setmaxNumbersOfFilesToTransfer(output: self.output)
                     // Create the output object for rsync
                     self.output = nil
                     self.output = outputProcess()
@@ -151,7 +151,9 @@ final class newBatchTask {
         self.task_delegate?.setInfo(info: "", color: .black)
     }
     
-    func executeNextBatchTask() {
+    // Called when ProcessTermination is called in main View.
+    // Either dryn-run or realrun completed.
+    func ProcessTermination() {
         // Take care of batchRun activities
         if let batchobject = SharingManagerConfiguration.sharedInstance.getBatchdataObject() {
             
@@ -173,7 +175,10 @@ final class newBatchTask {
                 // Stack of ViewControllers
                 
                 self.batchView_delegate?.progressIndicatorViewBatch(operation: .stop)
-                self.task_delegate?.showProcessInfo(info: .Estimating)
+                self.task_delegate?.showProcessInfo(info: .Executing)
+                // Getting and setting max file to transfer
+                self.task_delegate?.setmaxNumbersOfFilesToTransfer(output: self.output)
+                
                 self.executeBatch()
             case 1:
                 // Real run
@@ -185,6 +190,7 @@ final class newBatchTask {
                 batchobject.updateInProcess(numberOfFiles: self.maxcount)
                 batchobject.setCompleted()
                 self.batchView_delegate?.progressIndicatorViewBatch(operation: .refresh)
+                
                 // Set date on Configuration
                 let index = SharingManagerConfiguration.sharedInstance.getIndex(work.0)
                 let config = SharingManagerConfiguration.sharedInstance.getConfigurations()[index]
@@ -203,7 +209,8 @@ final class newBatchTask {
                 let hiddenID = SharingManagerConfiguration.sharedInstance.gethiddenID(index: index)
                 SharingManagerConfiguration.sharedInstance.setCurrentDateonConfiguration(index)
                 SharingManagerSchedule.sharedInstance.addScheduleResultManuel(hiddenID, result: number.statistics(numberOfFiles: self.transferredNumber,sizeOfFiles: self.transferredNumberSizebytes)[0])
-                self.task_delegate?.showProcessInfo(info: .Executing)
+                // Real run completed, next dry-run
+                self.task_delegate?.showProcessInfo(info: .Estimating)
                 
                 self.executeBatch()
             default :
