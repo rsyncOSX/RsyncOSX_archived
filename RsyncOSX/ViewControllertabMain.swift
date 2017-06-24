@@ -211,21 +211,21 @@ class ViewControllertabMain: NSViewController {
         
         if (self.index != nil) {
             // rsync params
-            if (self.rsyncparams.state == 1) {
+            if (self.rsyncparams.state == .on) {
                 if (self.index != nil) {
                     GlobalMainQueue.async(execute: { () -> Void in
                         self.presentViewControllerAsSheet(self.ViewControllerRsyncParams)
                     })
                 }
             // Edit task
-            } else if (self.edit.state == 1) {
+            } else if (self.edit.state == .on) {
                 if (self.index != nil) {
                     GlobalMainQueue.async(execute: { () -> Void in
                         self.presentViewControllerAsSheet(self.editViewController)
                     })
                 }
             // Delete files
-            } else if (self.delete.state == 1) {
+            } else if (self.delete.state == .on) {
                 let answer = Alerts.dialogOKCancel("Delete selected task?", text: "Cancel or OK")
                 if (answer) {
                     if (self.hiddenID != nil) {
@@ -602,7 +602,7 @@ extension ViewControllertabMain : NSTableViewDelegate {
                 schedule = true
             }
         }
-        if ((tableColumn!.identifier) == "batchCellID") {
+        if (tableColumn!.identifier.rawValue == "batchCellID") {
             return object[tableColumn!.identifier] as? Int!
         } else {
             var number:Int = 0

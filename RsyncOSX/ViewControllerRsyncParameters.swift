@@ -67,7 +67,7 @@ class ViewControllerRsyncParameters: NSViewController {
     // Parameters are appended to last two parameters (12 and 13).
     @IBAction func backup(_ sender: NSButton) {
         switch self.backupbutton.state {
-        case 1:
+        case .on:
             self.setValueComboBox(combobox: self.parameter12, index: (self.parameters!.getvalueCombobox(self.parameters!.getBackupString()[0])))
             self.viewParameter12.stringValue = self.parameters!.getdisplayValue(self.parameters!.getBackupString()[0])
             let hiddenID = SharingManagerConfiguration.sharedInstance.gethiddenID(index: (self.getindex_delegate?.getindex())!)
@@ -75,7 +75,7 @@ class ViewControllerRsyncParameters: NSViewController {
             let localcatalogParts = (localcatalog as AnyObject).components(separatedBy: "/")
             self.setValueComboBox(combobox: self.parameter13, index: (self.parameters!.getvalueCombobox(self.parameters!.getBackupString()[1])))
             self.viewParameter13.stringValue = "../backup" + "_" + localcatalogParts[localcatalogParts.count - 2]
-        case 0:
+        case .off:
             self.setValueComboBox(combobox: self.parameter12, index: (0))
             self.viewParameter12.stringValue = ""
             self.setValueComboBox(combobox: self.parameter13, index: (0))
@@ -93,10 +93,10 @@ class ViewControllerRsyncParameters: NSViewController {
     @IBAction func suffix(_ sender: NSButton) {
         self.suffixButton2.state = NSControl.StateValue.offState
         switch self.suffixButton.state {
-        case 1:
+        case .on:
             self.setValueComboBox(combobox: self.parameter14, index: (self.parameters!.getvalueCombobox(self.parameters!.getSuffixString()[0])))
             self.viewParameter14.stringValue = self.parameters!.getdisplayValue(self.parameters!.getSuffixString()[0])
-        case 0:
+        case .off:
             self.setValueComboBox(combobox: self.parameter14, index: (0))
             self.viewParameter14.stringValue = ""
         default:
@@ -108,10 +108,10 @@ class ViewControllerRsyncParameters: NSViewController {
     @IBAction func suffix2(_ sender: NSButton) {
         self.suffixButton.state = NSControl.StateValue.offState
         switch self.suffixButton2.state {
-        case 1:
+        case .on:
             self.setValueComboBox(combobox: self.parameter14, index: (self.parameters!.getvalueCombobox(self.parameters!.getSuffixString2()[0])))
             self.viewParameter14.stringValue = self.parameters!.getdisplayValue(self.parameters!.getSuffixString2()[0])
-        case 0:
+        case .off:
             self.setValueComboBox(combobox: self.parameter14, index: (0))
             self.viewParameter14.stringValue = ""
         default:

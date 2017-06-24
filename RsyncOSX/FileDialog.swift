@@ -33,7 +33,7 @@ final class FileDialog {
         myFiledialog.title = title
         myFiledialog.message = message
         let value = myFiledialog.runModal()
-        switch (value) {
+        switch (value.rawValue) {
         case 0: break
         case 1:
             // Select is choosen

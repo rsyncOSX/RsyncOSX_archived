@@ -85,28 +85,28 @@ class ViewControllertabSchedule : NSViewController {
         var range:Bool = false
         
         if (self.index != nil) {
-            if (self.once.state == 1) {
+            if (self.once.state == .on) {
                 schedule = "once"
                 if self.stoptime.dateValue.timeIntervalSinceNow > 0 {
                     range = true
                 } else {
                     self.info(str: "Startdate has passed...")
                 }
-            } else if (self.daily.state == 1) {
+            } else if (self.daily.state  == .on) {
                 schedule = "daily"
                 if (secondsstart >= (60*60*24)) {
                     range = true
                 } else {
                     self.info(str: "Startdate has to be more than 24 hours ahead...")
                 }
-            } else if (self.weekly.state == 1) {
+            } else if (self.weekly.state  == .on) {
                 schedule = "weekly"
                 if (secondsstart >= (60*60*24*7)) {
                     range = true
                 } else {
                     self.info(str: "Startdate has to be more than 7 days ahead...")
                 }
-            } else if (self.details.state == 1) {
+            } else if (self.details.state  == .on) {
                 // Details
                 details = true
                 GlobalMainQueue.async(execute: { () -> Void in
@@ -292,7 +292,7 @@ extension ViewControllertabSchedule : NSTableViewDelegate {
                 schedule = true
             }
         }
-        if ((tableColumn!.identifier) == "batchCellID") {
+        if (tableColumn!.identifier.rawValue == "batchCellID") {
             return object[tableColumn!.identifier] as? Int!
         } else {
             if (self.schedules != nil) {

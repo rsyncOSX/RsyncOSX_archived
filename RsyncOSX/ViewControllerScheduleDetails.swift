@@ -122,7 +122,7 @@ extension ViewControllerScheduleDetails : NSTableViewDelegate {
                 }
             }
             
-            if ((tableColumn!.identifier) == "stopCellID" || (tableColumn!.identifier) == "deleteCellID") {
+            if (tableColumn!.identifier.rawValue == "stopCellID" || tableColumn!.identifier.rawValue == "deleteCellID") {
                    return object[tableColumn!.identifier] as? Int
                 
             } else {
@@ -141,8 +141,8 @@ extension ViewControllerScheduleDetails : NSTableViewDelegate {
     }
 
     @objc(tableView:setObjectValue:forTableColumn:row:) func tableView(_ tableView: NSTableView, setObjectValue object: Any?, for tableColumn: NSTableColumn?, row: Int) {
-        if ((tableColumn!.identifier) == "stopCellID" || (tableColumn!.identifier) == "deleteCellID") {
-            switch tableColumn!.identifier {
+        if (tableColumn!.identifier.rawValue == "stopCellID" || tableColumn!.identifier.rawValue == "deleteCellID") {
+            switch tableColumn!.identifier.rawValue {
             case "stopCellID":
                 self.data![row].setValue(1, forKey: "stopCellID")
             case "deleteCellID":

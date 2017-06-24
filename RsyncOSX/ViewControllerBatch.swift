@@ -132,10 +132,10 @@ extension ViewControllerBatch : NSTableViewDelegate {
             return nil
         }
         let object : NSMutableDictionary = SharingManagerConfiguration.sharedInstance.getbatchDataQueue()![row]
-        if ((tableColumn!.identifier) == "estimatedCellID" || (tableColumn!.identifier) == "completedCellID" ) {
+        if (tableColumn!.identifier.rawValue == "estimatedCellID" || tableColumn!.identifier.rawValue == "completedCellID" ) {
             return object[tableColumn!.identifier] as? Int!
         } else {
-            if (row == SharingManagerConfiguration.sharedInstance.getBatchdataObject()!.getRow() && tableColumn!.identifier == "taskCellID") {
+            if (row == SharingManagerConfiguration.sharedInstance.getBatchdataObject()!.getRow() && tableColumn!.identifier.rawValue == "taskCellID") {
                 return (object[tableColumn!.identifier] as? String)! + " *"
             } else {
                 return object[tableColumn!.identifier] as? String

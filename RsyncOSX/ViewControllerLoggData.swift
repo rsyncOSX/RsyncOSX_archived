@@ -190,7 +190,7 @@ extension ViewControllerLoggData : NSTableViewDataSource {
 
 extension ViewControllerLoggData : NSTableViewDelegate {
     
-    @objc(tableView:objectValueForTableColumn:row:) func tableView(_ tableView: NSTableView, objectValueFor tableColumn: NSTableColumn?, row: Int) -> Any? {
+    func tableView(_ tableView: NSTableView, objectValueFor tableColumn: NSTableColumn?, row: Int) -> Any? {
         let object:NSDictionary = self.tabledata![row]
         return object[tableColumn!.identifier] as? String
     }
