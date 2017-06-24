@@ -12,6 +12,7 @@ import Cocoa
 protocol BatchTask: class {
     func presentViewBatch()
     func progressIndicatorViewBatch(operation: batchViewProgressIndicator)
+    func setOutputBatch(outputbatch:outputBatch?)
 }
 
 enum batchViewProgressIndicator {
@@ -105,6 +106,7 @@ final class newBatchTask {
                 process.executeProcess(output: self.output!)
                 self.process = process.getProcess()
             case -1:
+                self.batchView_delegate?.setOutputBatch(outputbatch: self.outputbatch)
                 self.batchView_delegate?.progressIndicatorViewBatch(operation: .complete)
             default : break
             }

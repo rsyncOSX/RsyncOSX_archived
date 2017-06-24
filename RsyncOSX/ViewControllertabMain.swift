@@ -1233,6 +1233,10 @@ extension ViewControllertabMain: BatchTask {
             
         }
     }
+    
+    func setOutputBatch(outputbatch:outputBatch?) {
+        self.outputbatch = outputbatch
+    }
 }
 
 
