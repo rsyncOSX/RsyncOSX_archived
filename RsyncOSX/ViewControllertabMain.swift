@@ -100,8 +100,6 @@ class ViewControllertabMain: NSViewController {
     fileprivate var output:outputProcess?
     // Getting output from batchrun
     fileprivate var outputbatch:outputBatch?
-    // Holding max count 
-    fileprivate var maxcount:Int = 0
     // HiddenID task, set when row is selected
     fileprivate var hiddenID:Int?
     // Reference to Schedules object
@@ -1129,6 +1127,8 @@ extension ViewControllertabMain:SingleTask {
         
         GlobalMainQueue.async(execute: { () -> Void in
             
+            self.showProcessInfo(info: .Set_max_Number)
+            
             guard output != nil else {
                 
                 self.transferredNumber.stringValue = ""
@@ -1154,31 +1154,6 @@ extension ViewControllertabMain:SingleTask {
             self.deletefiles.stringValue = NumberFormatter.localizedString(from: NSNumber(value: number.getTransferredNumbers(numbers: .delete)), number: NumberFormatter.Style.decimal)
         })
         
-    }
-    
-    // Function for setting max files to be transferred
-    // Function is called in self.ProcessTermination()
-    func setmaxNumbersOfFilesToTransfer(output : outputProcess?) {
-        
-        guard output != nil else {
-            return
-        }
-        
-        let number = Numbers(output: output!.getOutput())
-        number.setNumbers()
-        
-        // Getting max count
-        self.showProcessInfo(info: .Set_max_Number)
-        if (number.getTransferredNumbers(numbers: .totalNumber) > 0) {
-            self.setNumbers(output: output)
-            if (number.getTransferredNumbers(numbers: .transferredNumber) > 0) {
-                self.maxcount = number.getTransferredNumbers(numbers: .transferredNumber)
-            } else {
-                self.maxcount = output!.getMaxcount()
-            }
-        } else {
-            self.maxcount = output!.getMaxcount()
-        }
     }
     
     // Returns number set from dryrun to use in logging run 
