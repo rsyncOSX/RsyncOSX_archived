@@ -11,3 +11,5 @@ The views has no knowledge about the models or data stored about configurations,
 The configurations are read from permanent store and kept in memory during lifetime. Each record (one task) are read from permanent store as `NSDictionary` and loaded in an array of configurations. A [configuration](https://github.com/rsyncOSX/RsyncOSX/blob/master/RsyncOSX/configuration.swift) is a struct holding all data about one task.
 
 The object [SharingManagerConfigurations.swift](https://github.com/rsyncOSX/RsyncOSX/blob/master/RsyncOSX/SharingManagerConfiguration.swift) holds all data and methods operating on configurations. The method `readAllConfigurationsAndArguments` read all data about configurations to memory. Every time a configuration is read the rsync arguments are computed and loaded into memory by the object [argumentsConfigurations.swift](https://github.com/rsyncOSX/RsyncOSX/blob/master/RsyncOSX/argumentsConfigurations.swift).
+
+To be continued.
