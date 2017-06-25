@@ -87,7 +87,7 @@ class ViewControllertabSchedule : NSViewController {
         if (self.index != nil) {
             if (self.once.state == 1) {
                 schedule = "once"
-                if self.stoptime.dateValue.timeIntervalSinceNow > 0 {
+                if secondsstart > 0 {
                     range = true
                 } else {
                     self.info(str: "Startdate has passed...")
