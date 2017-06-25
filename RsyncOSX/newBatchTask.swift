@@ -45,8 +45,6 @@ final class newBatchTask {
     private var outputbatch:outputBatch?
     // HiddenID task, set when row is selected
     private var hiddenID:Int?
-    // Single task work queu
-    private var workload:singleTaskWorkQueu?
     
     // Schedules in progress
     private var scheduledJobInProgress:Bool = false
@@ -63,7 +61,6 @@ final class newBatchTask {
     // status and next work in batchOperations which
     // also includes a queu of work.
     func presentBatchView() {
-        self.workload = nil
         self.outputbatch = nil
         // NB: self.setInfo(info: "Batchrun", color: .blue)
         // Get all Configs marked for batch
@@ -113,9 +110,18 @@ final class newBatchTask {
     
     func closeOperation() {
         self.process = nil
-        self.workload = nil
         self.task_delegate?.setInfo(info: "", color: .black)
     }
+    
+    // Error and stop execution
+    func Error() {
+        // Just pop off remaining work
+        if let batchobject = SharingManagerConfiguration.sharedInstance.getBatchdataObject() {
+            batchobject.abortOperations()
+            self.executeBatch()
+        }
+    }
+
     
     // Called when ProcessTermination is called in main View.
     // Either dryn-run or realrun completed.

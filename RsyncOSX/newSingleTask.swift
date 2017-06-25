@@ -132,9 +132,9 @@ final class newSingleTask {
             case .error:
                 // Stopping the working (estimation) progress indicator
                 self.indicator_delegate?.stopIndicator()
-                //NB: self.working.stopAnimation(nil)
                 // If showInfoDryrun is on present result of dryrun automatically
                 self.task_delegate?.presentViewInformation(output: self.output!)
+                // self.task_delegate?.singleTaskAbort(process: self.process)
             case .execute_singlerun:
                 //NB: self.showProcessInfo(info: .Logging_run)
                 self.task_delegate?.showProcessInfo(info: .Logging_run)
@@ -161,6 +161,14 @@ final class newSingleTask {
                 break
             }
         }
+    }
+    
+    // Put error token ontop of workload
+    func Error() {
+        guard self.workload != nil else {
+            return
+        }
+        self.workload!.error()
     }
 
     init(index: Int) {

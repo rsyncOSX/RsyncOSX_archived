@@ -107,8 +107,6 @@ class ViewControllertabMain: NSViewController {
     // Bool if one or more remote server is offline
     // Used in testing if remote server is on/off-line
     fileprivate var serverOff:Array<Bool>?
-    // Single task work queu
-    fileprivate var workload:singleTaskWorkQueu?
     
     // Schedules in progress
     fileprivate var scheduledJobInProgress:Bool = false
@@ -203,7 +201,6 @@ class ViewControllertabMain: NSViewController {
         self.output = nil
         // Clear numbers from dryrun
         self.setNumbers(output: nil)
-        self.workload = nil
         self.setInfo(info: "Estimate", color: .blue)
         self.process = nil
         
@@ -376,9 +373,6 @@ class ViewControllertabMain: NSViewController {
         super.viewDidDisappear()
         // Do not allow notify in Main
         SharingManagerConfiguration.sharedInstance.allowNotifyinMain = false
-        if (self.workload == nil) {
-            self.workload = singleTaskWorkQueu()
-        }
         // If a process is running keep it running
         guard self.process == nil else {
             return
@@ -536,7 +530,6 @@ class ViewControllertabMain: NSViewController {
             self.outputbatch = nil
             // Clear numbers from dryrun
             self.setNumbers(output: nil)
-            self.workload = nil
         } else {
             self.index = nil
         }
@@ -550,7 +543,6 @@ class ViewControllertabMain: NSViewController {
     
     // Reset workqueue
     fileprivate func reset() {
-        self.workload = nil
         self.process = nil
         self.output = nil
         self.setRsyncCommandDisplay()
@@ -727,7 +719,6 @@ extension ViewControllertabMain: AddProfiles {
         
         // Reset any queue of work
         // Reset numbers
-        self.workload = nil
         self.process = nil
         self.output = nil
         self.outputbatch = nil
@@ -978,10 +969,16 @@ extension ViewControllertabMain: RsyncError {
                     process.terminate()
                     self.process = nil
                 }
-                guard (self.workload != nil) else {
-                    return
+                
+                // Either error in single task or batch task
+                
+                if (self.singletask != nil) {
+                    self.singletask!.Error()
                 }
-                self.workload!.error()
+                
+                if (self.batchtask != nil) {
+                    self.batchtask!.Error()
+                }
             })
         }
     }
@@ -1012,15 +1009,12 @@ extension ViewControllertabMain: AbortOperations {
             self.working.stopAnimation(nil)
             self.schedules = nil
             self.process = nil
-            self.workload = nil
             // Create workqueu and add abort
-            self.workload = singleTaskWorkQueu(task: .abort)
             self.setInfo(info: "Abort", color: .red)
             self.rsyncCommand.stringValue = ""
         } else {
             self.rsyncCommand.stringValue = "Selection out of range - aborting"
             self.process = nil
-            self.workload = nil
             self.index = nil
         }
         if let batchobject = SharingManagerConfiguration.sharedInstance.getBatchdataObject() {
@@ -1030,8 +1024,6 @@ extension ViewControllertabMain: AbortOperations {
             SharingManagerConfiguration.sharedInstance.deleteBatchData()
             self.schedules = nil
             self.process = nil
-            self.workload = nil
-            self.workload = singleTaskWorkQueu(task: .abort)
             self.setInfo(info: "Abort", color: .red)
         }
     }
