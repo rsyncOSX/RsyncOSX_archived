@@ -36,11 +36,11 @@ class ViewControllerLoggData : NSViewController {
     
     // Selecting what to filter
     @IBAction func Radiobuttons(_ sender: NSButton) {
-        if (self.server.state == NSControl.StateValue.onState) {
+        if (self.server.state == .on) {
             self.what = .remoteServer
-        } else if (self.Catalog.state == NSControl.StateValue.onState) {
+        } else if (self.Catalog.state == .on) {
             self.what = .localCatalog
-        } else if (self.date.state == NSControl.StateValue.onState) {
+        } else if (self.date.state == .on) {
             self.what = .executeDate
         }
         self.filterLogg()
@@ -50,7 +50,7 @@ class ViewControllerLoggData : NSViewController {
     @IBOutlet weak var deleteButton: NSButton!
     @IBAction func deleteRow(_ sender: NSButton) {
         guard self.row != nil else {
-            self.deleteButton.state = NSControl.StateValue.offState
+            self.deleteButton.state = .off
             return
         }
         /* ScheduleWriteLoggData
@@ -65,7 +65,7 @@ class ViewControllerLoggData : NSViewController {
                                                            parent: self.row?.value(forKey: "parent") as! String,
                                                            resultExecuted: self.row?.value(forKey: "resultExecuted") as! String,
                                                            dateExecuted:self.row?.value(forKey: "dateExecuted") as! String)
-        self.deleteButton.state = NSControl.StateValue.offState
+        self.deleteButton.state = .off
         self.deselectRow()
     }
     
@@ -88,11 +88,11 @@ class ViewControllerLoggData : NSViewController {
             self.scheduletable.reloadData()
             self.sorting.stopAnimation(self)
         })
-        self.server.state = NSControl.StateValue.offState
-        self.Catalog.state = NSControl.StateValue.offState
-        self.date.state = NSControl.StateValue.offState
+        self.server.state = .off
+        self.Catalog.state = .off
+        self.date.state = .off
         self.what = .remoteServer
-        self.deleteButton.state = NSControl.StateValue.offState
+        self.deleteButton.state = .off
     }
     
     override func viewDidDisappear() {
@@ -121,17 +121,17 @@ class ViewControllerLoggData : NSViewController {
         }
         
         self.row = self.tabledata?[self.index!]
-        if (self.server.state == NSControl.StateValue.onState) {
+        if (self.server.state == .on) {
             if let server = self.row?.value(forKey: "offsiteServer") as? String {
                 self.search.stringValue = server
                 self.searchFieldDidStartSearching(self.search)
             }
-        } else if (self.Catalog.state == NSControl.StateValue.onState) {
+        } else if (self.Catalog.state == .on) {
             if let server = self.row?.value(forKey: "localCatalog") as? String {
                 self.search.stringValue = server
                 self.searchFieldDidStartSearching(self.search)
             }
-        } else if (self.date.state == NSControl.StateValue.onState) {
+        } else if (self.date.state == .on) {
             if let server = self.row?.value(forKey: "dateExecuted") as? String {
                 self.search.stringValue = server
                 self.searchFieldDidStartSearching(self.search)
@@ -167,9 +167,9 @@ extension ViewControllerLoggData : NSSearchFieldDelegate {
             self.tabledata = ScheduleLoggData().filter(search: nil, what:nil)
             self.scheduletable.reloadData()
         })
-        self.server.state = NSControl.StateValue.offState
-        self.Catalog.state = NSControl.StateValue.offState
-        self.date.state = NSControl.StateValue.offState
+        self.server.state = .off
+        self.Catalog.state = .off
+        self.date.state = .off
     }
     
 }

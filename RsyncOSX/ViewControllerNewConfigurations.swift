@@ -104,8 +104,8 @@ class ViewControllerNewConfigurations: NSViewController {
         self.offsiteUsername.stringValue = ""
         self.offsiteServer.stringValue = ""
         self.backupID.stringValue = ""
-        self.rsyncdaemon.state = NSControl.StateValue.offState
-        self.singleFile.state = NSControl.StateValue.offState
+        self.rsyncdaemon.state = .off
+        self.singleFile.state = .off
     }
     
     
@@ -128,11 +128,11 @@ class ViewControllerNewConfigurations: NSViewController {
             "dateRun":"",
             "singleFile":0]
         dict.setValue("no", forKey: "batch")
-        if self.singleFile.state == NSControl.StateValue.onState {
+        if self.singleFile.state == .on {
             dict.setValue(1, forKey: "singleFile")
         }
         
-        if (!self.localCatalog.stringValue.hasSuffix("/") && self.singleFile.state == NSControl.StateValue.offState){
+        if (!self.localCatalog.stringValue.hasSuffix("/") && self.singleFile.state == .off){
             self.localCatalog.stringValue = self.localCatalog.stringValue + "/"
             dict.setValue(self.localCatalog.stringValue, forKey: "localCatalog")
         }

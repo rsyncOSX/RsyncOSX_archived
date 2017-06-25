@@ -91,7 +91,7 @@ class ViewControllerEdit : NSViewController {
         self.offsiteServer.stringValue = ""
         self.backupID.stringValue = ""
         self.sshport.stringValue = ""
-        self.rsyncdaemon.state = NSControl.StateValue.offState
+        self.rsyncdaemon.state = .off
         // Getting index of selected configuration
         self.index = self.getindex_delegate?.getindex()
         let config:configuration = SharingManagerConfiguration.sharedInstance.getConfigurations()[self.index!]

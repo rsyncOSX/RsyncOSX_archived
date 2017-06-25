@@ -112,7 +112,7 @@ class ViewControllertabSchedule : NSViewController {
                 GlobalMainQueue.async(execute: { () -> Void in
                      self.presentViewControllerAsSheet(self.ViewControllerScheduleDetails)
                 })
-                self.details.state = NSControl.StateValue.offState
+                self.details.state = .off
             }
             if (details == false && range == true) {
                 let answer = Alerts.dialogOKCancel("Add Schedule?", text: "Cancel or OK")
@@ -133,10 +133,10 @@ class ViewControllertabSchedule : NSViewController {
                 }
             }
             // Reset radiobuttons
-            self.once.state = NSControl.StateValue.offState
-            self.daily.state = NSControl.StateValue.offState
-            self.weekly.state = NSControl.StateValue.offState
-            self.details.state = NSControl.StateValue.offState
+            self.once.state = .off
+            self.daily.state = .off
+            self.weekly.state = .off
+            self.details.state = .off
         }
     }
     

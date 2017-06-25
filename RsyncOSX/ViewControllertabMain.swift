@@ -243,13 +243,13 @@ class ViewControllertabMain: NSViewController {
                         self.refresh()
                     }
                 }
-                self.delete.state = NSControl.StateValue.offState
+                self.delete.state = .off
             }
         } else {
             self.rsyncCommand.stringValue = " ... Please select a task first ..."
-            self.delete.state = NSControl.StateValue.offState
-            self.rsyncparams.state = NSControl.StateValue.offState
-            self.edit.state = NSControl.StateValue.offState
+            self.delete.state = .off
+            self.rsyncparams.state = .off
+            self.edit.state = .off
         }
     }
     
@@ -306,7 +306,7 @@ class ViewControllertabMain: NSViewController {
     
     // Display correct rsync command in view
     fileprivate func setRsyncCommandDisplay() {
-        if (self.displayDryRun.state == NSControl.StateValue.onState) {
+        if (self.displayDryRun.state == .on) {
             if let index = self.index {
                 self.rsyncCommand.stringValue = Utils.sharedInstance.setRsyncCommandDisplay(index: index, dryRun: true)
             } else {
@@ -343,7 +343,7 @@ class ViewControllertabMain: NSViewController {
         self.mainTableView.target = self
         self.mainTableView.doubleAction = #selector(ViewControllertabMain.tableViewDoubleClick(sender:))
         // Defaults to display dryrun command
-        self.displayDryRun.state = NSControl.StateValue.onState
+        self.displayDryRun.state = .on
     }
     
     override func viewDidAppear() {
@@ -868,8 +868,8 @@ extension ViewControllertabMain: DismissViewController {
     func dismiss_view(viewcontroller:NSViewController) {
         self.dismissViewController(viewcontroller)
         // Reset radiobuttons
-        self.edit.state = NSControl.StateValue.offState
-        self.rsyncparams.state = NSControl.StateValue.offState
+        self.edit.state = .off
+        self.rsyncparams.state = .off
         GlobalMainQueue.async(execute: { () -> Void in
             self.mainTableView.reloadData()
         })

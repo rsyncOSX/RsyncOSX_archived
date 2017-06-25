@@ -91,7 +91,7 @@ class ViewControllerRsyncParameters: NSViewController {
     
     @IBOutlet weak var suffixButton: NSButton!
     @IBAction func suffix(_ sender: NSButton) {
-        self.suffixButton2.state = NSControl.StateValue.offState
+        self.suffixButton2.state = .off
         switch self.suffixButton.state {
         case .on:
             self.setValueComboBox(combobox: self.parameter14, index: (self.parameters!.getvalueCombobox(self.parameters!.getSuffixString()[0])))
@@ -106,7 +106,7 @@ class ViewControllerRsyncParameters: NSViewController {
     
     @IBOutlet weak var suffixButton2: NSButton!
     @IBAction func suffix2(_ sender: NSButton) {
-        self.suffixButton.state = NSControl.StateValue.offState
+        self.suffixButton.state = .off
         switch self.suffixButton2.state {
         case .on:
             self.setValueComboBox(combobox: self.parameter14, index: (self.parameters!.getvalueCombobox(self.parameters!.getSuffixString2()[0])))
@@ -184,7 +184,7 @@ class ViewControllerRsyncParameters: NSViewController {
         if (configurations[index!].rsyncdaemon != nil) {
             self.rsyncdaemon.state = NSControl.StateValue(rawValue: configurations[index!].rsyncdaemon!)
         } else {
-            self.rsyncdaemon.state = NSControl.StateValue.offState
+            self.rsyncdaemon.state = .off
         }
         if (configurations[index!].sshport != nil) {
             self.sshport.stringValue = String(configurations[index!].sshport!)
