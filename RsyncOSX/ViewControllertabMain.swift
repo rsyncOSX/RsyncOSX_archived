@@ -373,11 +373,6 @@ class ViewControllertabMain: NSViewController {
         super.viewDidDisappear()
         // Do not allow notify in Main
         SharingManagerConfiguration.sharedInstance.allowNotifyinMain = false
-        // If a process is running keep it running
-        guard self.process == nil else {
-            return
-        }
-        self.reset()
     }
     
     // True if scheduled task in progress
@@ -481,8 +476,6 @@ class ViewControllertabMain: NSViewController {
         SharingManagerSchedule.sharedInstance.readAllSchedules()
     }
     
-    //  End delegate functions Process object
-        
     // Function for setting profile
     fileprivate func displayProfile() {
         
@@ -534,19 +527,12 @@ class ViewControllertabMain: NSViewController {
             self.index = nil
         }
         self.process = nil
-        
         self.singletask = nil
-        
+        self.batchtask = nil
         self.setInfo(info: "Estimate", color: .blue)
         self.setRsyncCommandDisplay()
     }
     
-    // Reset workqueue
-    fileprivate func reset() {
-        self.process = nil
-        self.output = nil
-        self.setRsyncCommandDisplay()
-    }
 }
 
 
