@@ -76,68 +76,70 @@ class ScheduleSortedAndExpand {
             
             // Get all jobs which are not executed
             
-            guard seconds >= 0 else {
-                return
-            }
+            // Get all jobs which are not executed
             
-            switch (schedule) {
-            case "once" :
-                let hiddenID = dict.value(forKey: "hiddenID") as! Int
-                let dict : NSDictionary = [
-                    "start": dateStop,
-                    "hiddenID": hiddenID,
-                    "dateStart":dateStart,
-                    "schedule":schedule]
-                expandedData.append(dict)
-            case "daily":
-                var k = Int(days)
-                if ( k < 370) {
-                    if k > 30 {
-                        k = 30
-                    }
-                    for j in 0 ..< k {
-                        var dateComponent = DateComponents()
-                        dateComponent.day = j+1
-                        let cal = Calendar.current
-                        if let start:Date = cal.date(byAdding: dateComponent, to: dateStart) {
-                            if (start.timeIntervalSinceNow > 0) {
-                                let hiddenID = dict.value(forKey: "hiddenID") as! Int
-                                let dict : NSDictionary = [
-                                    "start": start,
-                                    "hiddenID": hiddenID,
-                                    "dateStart":dateStart,
-                                    "schedule":schedule]
-                                expandedData.append(dict)
+            if (seconds > 0) {
+                
+                switch (schedule) {
+                case "once" :
+                    let hiddenID = dict.value(forKey: "hiddenID") as! Int
+                    let dict : NSDictionary = [
+                        "start": dateStop,
+                        "hiddenID": hiddenID,
+                        "dateStart":dateStart,
+                        "schedule":schedule]
+                    expandedData.append(dict)
+                case "daily":
+                    var k = Int(days)
+                    if ( k < 370) {
+                        if k > 30 {
+                            k = 30
+                        }
+                        for j in 0 ..< k {
+                            var dateComponent = DateComponents()
+                            dateComponent.day = j+1
+                            let cal = Calendar.current
+                            if let start:Date = cal.date(byAdding: dateComponent, to: dateStart) {
+                                if (start.timeIntervalSinceNow > 0) {
+                                    let hiddenID = dict.value(forKey: "hiddenID") as! Int
+                                    let dict : NSDictionary = [
+                                        "start": start,
+                                        "hiddenID": hiddenID,
+                                        "dateStart":dateStart,
+                                        "schedule":schedule]
+                                    expandedData.append(dict)
+                                }
                             }
                         }
                     }
-                }
-            case "weekly":
-                var k = Int(days)
-                if (k < 370) {
-                    if (k > 30) {
-                        k = 30
-                    }
-                    for j in 0 ..< Int(k/7) {
-                        var dateComponent = DateComponents()
-                        dateComponent.day = ((j+1)*7)
-                        let cal = Calendar.current
-                        if let start:Date = cal.date(byAdding: dateComponent, to: dateStart) {
-                            if (start.timeIntervalSinceNow > 0) {
-                                let hiddenID = dict.value(forKey: "hiddenID") as! Int
-                                let dict : NSDictionary = [
-                                    "start": start,
-                                    "hiddenID": hiddenID,
-                                    "dateStart":dateStart,
-                                    "schedule":schedule]
-                                expandedData.append(dict)
+                case "weekly":
+                    var k = Int(days)
+                    if (k < 370) {
+                        if (k > 30) {
+                            k = 30
+                        }
+                        for j in 0 ..< Int(k/7) {
+                            var dateComponent = DateComponents()
+                            dateComponent.day = ((j+1)*7)
+                            let cal = Calendar.current
+                            if let start:Date = cal.date(byAdding: dateComponent, to: dateStart) {
+                                if (start.timeIntervalSinceNow > 0) {
+                                    let hiddenID = dict.value(forKey: "hiddenID") as! Int
+                                    let dict : NSDictionary = [
+                                        "start": start,
+                                        "hiddenID": hiddenID,
+                                        "dateStart":dateStart,
+                                        "schedule":schedule]
+                                    expandedData.append(dict)
+                                }
                             }
                         }
                     }
+                default:
+                    break
                 }
-            default:
-                break
             }
+
         
         let sorted: [NSDictionary] = expandedData.sorted { (dict1, dict2) -> Bool in
             if ((dict1.value(forKey: "start") as! Date).timeIntervalSince(dict2.value(forKey: "start") as! Date)) > 0 {
