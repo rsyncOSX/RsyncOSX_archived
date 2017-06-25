@@ -5,7 +5,6 @@
 //  Created by Thomas Evensen on 20.06.2017.
 //  Copyright © 2017 Thomas Evensen. All rights reserved.
 //
-
 import Foundation
 
 // Protocols for instruction start/stop progressviewindicator
@@ -68,11 +67,11 @@ final class newSingleTask {
         if (self.workload == nil) {
             self.workload = singleTaskWorkQueu()
         }
-            
+        
         let arguments: Array<String>?
         self.process = nil
         self.output = nil
-            
+        
         switch (self.workload!.peek()) {
         case .estimate_singlerun:
             if let index = self.index {
@@ -132,9 +131,9 @@ final class newSingleTask {
             case .error:
                 // Stopping the working (estimation) progress indicator
                 self.indicator_delegate?.stopIndicator()
-                //NB: self.working.stopAnimation(nil)
                 // If showInfoDryrun is on present result of dryrun automatically
                 self.task_delegate?.presentViewInformation(output: self.output!)
+            // self.task_delegate?.singleTaskAbort(process: self.process)
             case .execute_singlerun:
                 //NB: self.showProcessInfo(info: .Logging_run)
                 self.task_delegate?.showProcessInfo(info: .Logging_run)
@@ -162,7 +161,15 @@ final class newSingleTask {
             }
         }
     }
-
+    
+    // Put error token ontop of workload
+    func Error() {
+        guard self.workload != nil else {
+            return
+        }
+        self.workload!.error()
+    }
+    
     init(index: Int) {
         
         self.index = index
@@ -192,6 +199,5 @@ extension newSingleTask: Count {
         }
         return self.output!.getOutputCount()
     }
-    
 }
 
