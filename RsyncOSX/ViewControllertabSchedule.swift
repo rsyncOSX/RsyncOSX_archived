@@ -74,7 +74,8 @@ class ViewControllertabSchedule : NSViewController {
     @IBAction func chooseSchedule(_ sender: NSButton) {
         
         // Date and time for start
-        let startdate:Date = self.stoptime.dateValue
+        // Pick choosed time
+        let startdate:Date = Date()
         // Seconds from now to starttime
         let seconds:TimeInterval = self.stoptime.dateValue.timeIntervalSinceNow
         // Date and time for stop
@@ -87,7 +88,7 @@ class ViewControllertabSchedule : NSViewController {
         if (self.index != nil) {
             if (self.once.state == .on) {
                 schedule = "once"
-                if secondsstart > 0 {
+                if seconds > 0 {
                     range = true
                 } else {
                     self.info(str: "Startdate has passed...")
