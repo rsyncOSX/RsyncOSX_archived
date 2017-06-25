@@ -87,7 +87,7 @@ class ViewControllertabSchedule : NSViewController {
         if (self.index != nil) {
             if (self.once.state == 1) {
                 schedule = "once"
-                if self.stoptime.dateValue.timeIntervalSinceNow > 0 {
+                if secondsstart > 0 {
                     range = true
                 } else {
                     self.info(str: "Startdate has passed...")
@@ -141,7 +141,7 @@ class ViewControllertabSchedule : NSViewController {
     }
     
     private func info(str:String) {
-        self.firstLocalCatalog.textColor = NSColor.red
+        self.firstLocalCatalog.textColor = .red
         self.firstLocalCatalog.stringValue = str
     }
     
@@ -231,7 +231,7 @@ class ViewControllertabSchedule : NSViewController {
             return
         }
         // Displaying next two scheduled tasks
-        self.firstLocalCatalog.textColor = NSColor.black
+        self.firstLocalCatalog.textColor = .black
         self.firstScheduledTask.stringValue = self.schedules!.whenIsNextTwoTasksString()[0]
         self.secondScheduledTask.stringValue = self.schedules!.whenIsNextTwoTasksString()[1]
         if (self.schedules!.remoteServerAndPathNextTwoTasks().count > 0) {

@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="12120" systemVersion="16F73" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="abu-zT-Ht4">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16F73" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="abu-zT-Ht4">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="12120"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="12121"/>
         <capability name="Alignment constraints to the first baseline" minToolsVersion="6.0"/>
         <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
         <capability name="box content view" minToolsVersion="7.0"/>
@@ -677,13 +677,6 @@
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 </view>
                             </box>
-                            <button translatesAutoresizingMaskIntoConstraints="NO" id="2Cb-VY-020">
-                                <rect key="frame" x="12" y="112" width="92" height="18"/>
-                                <buttonCell key="cell" type="check" title="Information" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="nzP-wC-kf8">
-                                    <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                                    <font key="font" metaFont="system"/>
-                                </buttonCell>
-                            </button>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Gg2-se-FkF">
                                 <rect key="frame" x="181" y="388" width="167" height="17"/>
                                 <constraints>
@@ -715,7 +708,7 @@
                                 </textFieldCell>
                             </textField>
                             <button translatesAutoresizingMaskIntoConstraints="NO" id="g7r-rp-4kz">
-                                <rect key="frame" x="580" y="88" width="67" height="18"/>
+                                <rect key="frame" x="594" y="88" width="67" height="18"/>
                                 <buttonCell key="cell" type="radio" title="Dry ryn" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="2tH-gF-ycx">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                     <font key="font" metaFont="system"/>
@@ -725,7 +718,7 @@
                                 </connections>
                             </button>
                             <button translatesAutoresizingMaskIntoConstraints="NO" id="3DG-2b-5po">
-                                <rect key="frame" x="667" y="88" width="72" height="18"/>
+                                <rect key="frame" x="681" y="88" width="72" height="18"/>
                                 <buttonCell key="cell" type="radio" title="Real run" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="dzR-DR-VEo">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                     <font key="font" metaFont="system"/>
@@ -810,8 +803,6 @@
                             <constraint firstItem="6Lb-aQ-6Zc" firstAttribute="leading" secondItem="X1w-Np-lS3" secondAttribute="leading" id="4Hi-dJ-g5y"/>
                             <constraint firstItem="fyc-hd-Fqh" firstAttribute="top" secondItem="WbP-J3-f5z" secondAttribute="top" id="50s-hK-fGi"/>
                             <constraint firstItem="ajb-fx-OK1" firstAttribute="baseline" secondItem="ZMP-pU-PWi" secondAttribute="baseline" id="5Ws-gg-s6y"/>
-                            <constraint firstItem="yxt-uy-I5b" firstAttribute="leading" secondItem="2Cb-VY-020" secondAttribute="leading" id="66A-ii-m0w"/>
-                            <constraint firstItem="2Cb-VY-020" firstAttribute="top" secondItem="QdJ-n1-Mtr" secondAttribute="bottom" constant="16" id="6dO-Bw-aAB"/>
                             <constraint firstAttribute="bottom" secondItem="SiX-5v-JHf" secondAttribute="bottom" constant="25" id="9Hg-jF-2WA"/>
                             <constraint firstItem="ajb-fx-OK1" firstAttribute="baseline" secondItem="SiX-5v-JHf" secondAttribute="firstBaseline" id="9bM-da-8yd"/>
                             <constraint firstItem="D1P-rD-gU0" firstAttribute="leading" secondItem="bVP-Nd-WlD" secondAttribute="trailing" constant="79" id="9ts-AC-cC0"/>
@@ -820,7 +811,7 @@
                             <constraint firstItem="ihR-vZ-M7c" firstAttribute="leading" secondItem="qkq-x4-Af5" secondAttribute="trailing" constant="25" id="EIO-0G-B1M"/>
                             <constraint firstItem="mUx-V8-Mvc" firstAttribute="centerX" secondItem="qkq-x4-Af5" secondAttribute="centerX" id="I4t-mv-anW"/>
                             <constraint firstItem="3DG-2b-5po" firstAttribute="leading" secondItem="g7r-rp-4kz" secondAttribute="trailing" constant="23" id="IIU-sZ-54A"/>
-                            <constraint firstAttribute="trailing" secondItem="3DG-2b-5po" secondAttribute="trailing" constant="355" id="IJC-61-6xd"/>
+                            <constraint firstAttribute="trailing" secondItem="3DG-2b-5po" secondAttribute="trailing" constant="341" id="IJC-61-6xd"/>
                             <constraint firstItem="D1P-rD-gU0" firstAttribute="top" secondItem="ZMP-pU-PWi" secondAttribute="top" id="Iuf-Wg-2d7"/>
                             <constraint firstItem="74N-MA-FWg" firstAttribute="leading" secondItem="Gg2-se-FkF" secondAttribute="trailing" constant="8" symbolic="YES" id="JkN-fz-bKV"/>
                             <constraint firstItem="hnd-F8-jzy" firstAttribute="top" secondItem="lb5-Xb-uyK" secondAttribute="bottom" constant="8" symbolic="YES" id="KFg-so-uoF"/>
@@ -833,10 +824,8 @@
                             <constraint firstItem="3DG-2b-5po" firstAttribute="baseline" secondItem="g7r-rp-4kz" secondAttribute="baseline" id="Oeh-Nn-rg8"/>
                             <constraint firstItem="wSD-Dl-gPc" firstAttribute="top" secondItem="H9R-yL-P6I" secondAttribute="top" id="Oku-2j-1Lb"/>
                             <constraint firstItem="cWf-pc-KAt" firstAttribute="leading" secondItem="lb5-Xb-uyK" secondAttribute="leading" id="Pfd-6V-Wul"/>
-                            <constraint firstItem="2Cb-VY-020" firstAttribute="top" secondItem="yxt-uy-I5b" secondAttribute="bottom" constant="26" id="QFj-Yu-Syu"/>
                             <constraint firstItem="fyc-hd-Fqh" firstAttribute="baseline" secondItem="WbP-J3-f5z" secondAttribute="baseline" id="QXm-uU-8gj"/>
                             <constraint firstItem="yxt-uy-I5b" firstAttribute="top" secondItem="hnd-F8-jzy" secondAttribute="bottom" constant="1" id="QsV-6j-ya0"/>
-                            <constraint firstItem="fyc-hd-Fqh" firstAttribute="top" secondItem="2Cb-VY-020" secondAttribute="bottom" constant="11" id="R0p-RM-exB"/>
                             <constraint firstItem="lb5-Xb-uyK" firstAttribute="leading" secondItem="QdJ-n1-Mtr" secondAttribute="leading" id="RHk-gp-sxE"/>
                             <constraint firstItem="ZhK-mF-Dgw" firstAttribute="centerX" secondItem="lb5-Xb-uyK" secondAttribute="centerX" id="SBf-2p-Evv"/>
                             <constraint firstItem="kx3-m2-HBw" firstAttribute="leading" secondItem="cWf-pc-KAt" secondAttribute="leading" id="TrM-AH-9Cc"/>
@@ -861,12 +850,12 @@
                             <constraint firstItem="bVP-Nd-WlD" firstAttribute="baseline" secondItem="D1P-rD-gU0" secondAttribute="baseline" id="azB-os-pQ2"/>
                             <constraint firstItem="H9R-yL-P6I" firstAttribute="trailing" secondItem="SiX-5v-JHf" secondAttribute="trailing" id="beo-OH-W4k"/>
                             <constraint firstItem="IFg-Xf-ODx" firstAttribute="leading" secondItem="a5P-Xw-HGm" secondAttribute="trailing" constant="5" id="bpF-Lg-BgM"/>
-                            <constraint firstItem="2Cb-VY-020" firstAttribute="leading" secondItem="fyc-hd-Fqh" secondAttribute="leading" id="bvn-mH-azF"/>
                             <constraint firstItem="kx3-m2-HBw" firstAttribute="trailing" secondItem="cWf-pc-KAt" secondAttribute="trailing" id="cGj-PH-mPZ"/>
                             <constraint firstItem="IFg-Xf-ODx" firstAttribute="trailing" secondItem="ajb-fx-OK1" secondAttribute="trailing" id="clC-by-9Wj"/>
                             <constraint firstItem="6Lb-aQ-6Zc" firstAttribute="centerX" secondItem="kx3-m2-HBw" secondAttribute="centerX" id="d0d-lC-Rk6"/>
                             <constraint firstItem="qkq-x4-Af5" firstAttribute="top" secondItem="kx3-m2-HBw" secondAttribute="bottom" constant="23" id="d5P-Jx-epk"/>
                             <constraint firstItem="74N-MA-FWg" firstAttribute="centerX" secondItem="IFg-Xf-ODx" secondAttribute="centerX" id="gSB-E5-qfX"/>
+                            <constraint firstItem="fyc-hd-Fqh" firstAttribute="top" secondItem="yxt-uy-I5b" secondAttribute="bottom" constant="51" id="gk6-hM-jxS"/>
                             <constraint firstItem="cWf-pc-KAt" firstAttribute="top" secondItem="kx3-m2-HBw" secondAttribute="bottom" constant="8" symbolic="YES" id="hTj-Ub-TeV"/>
                             <constraint firstItem="wSD-Dl-gPc" firstAttribute="leading" secondItem="fyc-hd-Fqh" secondAttribute="trailing" constant="8" symbolic="YES" id="i4q-Er-hQq"/>
                             <constraint firstItem="bVP-Nd-WlD" firstAttribute="leading" secondItem="SiX-5v-JHf" secondAttribute="trailing" constant="2" id="jeO-gj-VYq"/>
@@ -875,8 +864,8 @@
                             <constraint firstItem="SiX-5v-JHf" firstAttribute="baseline" secondItem="ajb-fx-OK1" secondAttribute="baseline" id="mq4-fo-SOo"/>
                             <constraint firstItem="lb5-Xb-uyK" firstAttribute="trailing" secondItem="yxt-uy-I5b" secondAttribute="trailing" id="nj4-J1-F7M"/>
                             <constraint firstItem="a5P-Xw-HGm" firstAttribute="leading" secondItem="H9R-yL-P6I" secondAttribute="trailing" constant="14" id="q9Y-XR-qGa"/>
-                            <constraint firstItem="2Cb-VY-020" firstAttribute="bottom" secondItem="ihR-vZ-M7c" secondAttribute="bottom" id="qXi-a8-uSE"/>
                             <constraint firstItem="H9R-yL-P6I" firstAttribute="leading" secondItem="SiX-5v-JHf" secondAttribute="leading" id="qiK-3P-rqg"/>
+                            <constraint firstItem="fyc-hd-Fqh" firstAttribute="top" secondItem="QdJ-n1-Mtr" secondAttribute="bottom" constant="41" id="ree-uU-e3V"/>
                             <constraint firstItem="ZMP-pU-PWi" firstAttribute="leading" secondItem="ajb-fx-OK1" secondAttribute="trailing" constant="37" id="sUx-Rl-jq8"/>
                             <constraint firstItem="hnd-F8-jzy" firstAttribute="centerX" secondItem="yxt-uy-I5b" secondAttribute="centerX" id="tII-Dz-rmN"/>
                             <constraint firstItem="ihR-vZ-M7c" firstAttribute="leading" secondItem="mUx-V8-Mvc" secondAttribute="trailing" constant="41" id="tRA-5H-3K7"/>
@@ -904,7 +893,6 @@
                         <outlet property="rsyncCommand" destination="7n8-es-jH6" id="bH0-3W-ECU"/>
                         <outlet property="rsyncparams" destination="6Lb-aQ-6Zc" id="uc7-l5-Bjz"/>
                         <outlet property="scheduledJobworking" destination="hnd-F8-jzy" id="BaA-Rt-95e"/>
-                        <outlet property="showInfoDryrun" destination="2Cb-VY-020" id="Dhx-4w-Mv9"/>
                         <outlet property="totalDirs" destination="ZMP-pU-PWi" id="BWy-QK-Edy"/>
                         <outlet property="totalNumber" destination="IFg-Xf-ODx" id="PEU-mH-vGF"/>
                         <outlet property="totalNumberSizebytes" destination="ajb-fx-OK1" id="05f-QP-HmX"/>

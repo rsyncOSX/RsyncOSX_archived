@@ -11,7 +11,7 @@ import Foundation
 import Cocoa
 
 // Protocols for instruction start/stop progressviewindicator
-protocol StartStopProgressIndicator : class {
+protocol StartStopProgressIndicator: class {
     func start()
     func stop()
     func complete()
@@ -42,6 +42,11 @@ protocol ReportErrorInMain: class {
 }
 
 class ViewControllertabMain: NSViewController {
+    
+    // Reference to the single taskobject
+    var singletask:newSingleTask?
+    // Reference to batch taskobject
+    var batchtask:newBatchTask?
 
     // Protocol function used in Process().
     weak var processupdate_delegate:UpdateProgress?
@@ -49,6 +54,8 @@ class ViewControllertabMain: NSViewController {
     weak var refresh_delegate:RefreshtableView?
     // Delegate function for start/stop progress Indicator in BatchWindow
     weak var indicator_delegate:StartStopProgressIndicator?
+    // Delegate function getting batchTaskObject
+    weak var batchObject_delegate:getNewBatchTask?
     
     // Main tableview
     @IBOutlet weak var mainTableView: NSTableView!
@@ -58,8 +65,6 @@ class ViewControllertabMain: NSViewController {
     @IBOutlet weak var rsyncCommand: NSTextField!
     // If On result of Dryrun is presented before
     // executing the real run
-    @IBOutlet weak var showInfoDryrun: NSButton!
-    // Outlet for showing if dryrun or not
     @IBOutlet weak var dryRunOrRealRun: NSTextField!
     // Progressbar scheduled task
     @IBOutlet weak var scheduledJobworking: NSProgressIndicator!
@@ -95,17 +100,13 @@ class ViewControllertabMain: NSViewController {
     fileprivate var output:outputProcess?
     // Getting output from batchrun
     fileprivate var outputbatch:outputBatch?
-    // Holding max count 
-    fileprivate var maxcount:Int = 0
     // HiddenID task, set when row is selected
     fileprivate var hiddenID:Int?
     // Reference to Schedules object
     fileprivate var schedules : ScheduleSortedAndExpand?
     // Bool if one or more remote server is offline
     // Used in testing if remote server is on/off-line
-    fileprivate var serverOff:[Bool]?
-    // Single task work queu
-    fileprivate var workload:singleTask?
+    fileprivate var serverOff:Array<Bool>?
     
     // Schedules in progress
     fileprivate var scheduledJobInProgress:Bool = false
@@ -199,9 +200,8 @@ class ViewControllertabMain: NSViewController {
         // Reset output
         self.output = nil
         // Clear numbers from dryrun
-        self.setNumbers(setvalues: false)
-        self.workload = nil
-        self.setInfo(info: "Estimate", color: NSColor.blue)
+        self.setNumbers(output: nil)
+        self.setInfo(info: "Estimate", color: .blue)
         self.process = nil
         
         if (self.index != nil) {
@@ -347,7 +347,7 @@ class ViewControllertabMain: NSViewController {
         self.showProcessInfo(info: .Blank)
         // Allow notify about Scheduled jobs
         SharingManagerConfiguration.sharedInstance.allowNotifyinMain = true
-        self.setInfo(info: "", color: NSColor.black)
+        self.setInfo(info: "", color: .black)
         // Setting reference to ViewController
         // Used to call delegate function from other class
         SharingManagerConfiguration.sharedInstance.ViewControllertabMain = self
@@ -373,11 +373,6 @@ class ViewControllertabMain: NSViewController {
         super.viewDidDisappear()
         // Do not allow notify in Main
         SharingManagerConfiguration.sharedInstance.allowNotifyinMain = false
-        if (self.workload == nil) {
-            self.workload = singleTask()
-        }
-        
-       
         // If a process is running keep it running
         guard self.process == nil else {
             return
@@ -385,11 +380,27 @@ class ViewControllertabMain: NSViewController {
         self.reset()
     }
     
+    // True if scheduled task in progress
+    func scheduledOperationInProgress() -> Bool {
+        var scheduleInProgress:Bool?
+        if (self.schedules != nil) {
+            scheduleInProgress = self.schedules!.getScheduledOperationInProgress()
+        } else {
+            scheduleInProgress = false
+        }
+        if (scheduleInProgress == false && self.scheduledJobInProgress == false){
+            return false
+        } else {
+            return true
+        }
+    }
+
+    
     // Execute tasks by double click in table
     @objc(tableViewDoubleClick:) func tableViewDoubleClick(sender:AnyObject) {
         if (SharingManagerConfiguration.sharedInstance.allowDoubleclick == true) {
             if (self.ready) {
-                self.executeSingelTask()
+                self.executeSingleTask()
             }
             self.ready = false
         }
@@ -403,112 +414,62 @@ class ViewControllertabMain: NSViewController {
     // discovered, completes the task.
     @IBAction func executeTask(_ sender: NSButton) {
         if (self.ready) {
-            self.executeSingelTask()
+            self.executeSingleTask()
         }
         self.ready = false
     }
     
     // Single task can be activated by double click from table
-    private func executeSingelTask() {
+    private func executeSingleTask() {
         
-        if (self.scheduledOperationInProgress() == false && SharingManagerConfiguration.sharedInstance.noRysync == false){
-            if (self.workload == nil) {
-                self.workload = singleTask()
-            }
-            
-            let arguments: Array<String>?
-            self.process = nil
-            self.output = nil
-            
-            switch (self.workload!.peek()) {
-            case .estimate_singlerun:
-                if let index = self.index {
-                    self.working.startAnimation(nil)
-                    self.showProcessInfo(info: .Estimating)
-                    arguments = SharingManagerConfiguration.sharedInstance.getRsyncArgumentOneConfig(index: index, argtype: .argdryRun)
-                    let process = Rsync(arguments: arguments)
-                    self.output = outputProcess()
-                    process.executeProcess(output: self.output!)
-                    self.process = process.getProcess()
-                    self.setInfo(info: "Execute", color: NSColor.blue)
-                }
-            case .execute_singlerun:
-                self.showProcessInfo(info: .Executing)
-                if let index = self.index {
-                    GlobalMainQueue.async(execute: { () -> Void in
-                        self.presentViewControllerAsSheet(self.ViewControllerProgress)
-                    })
-                    arguments = SharingManagerConfiguration.sharedInstance.getRsyncArgumentOneConfig(index: index, argtype: .arg)
-                    self.output = outputProcess()
-                    let process = Rsync(arguments: arguments)
-                    process.executeProcess(output: self.output!)
-                    self.process = process.getProcess()
-                    self.setInfo(info: "", color: NSColor.black)
-                }
-            case .abort:
-                self.workload = nil
-                self.setInfo(info: "Abort", color: NSColor.red)
-            case .empty:
-                self.workload = nil
-                self.setInfo(info: "Estimate", color: NSColor.blue)
-            default:
-                self.workload = nil
-                self.setInfo(info: "Estimate", color: NSColor.blue)
-                break
-            }
-        } else {
-             Utils.sharedInstance.noRsync()
+        guard scheduledOperationInProgress() == false else {
+            Alerts.showInfo("Scheduled operation in progress")
+            return
         }
+        
+        guard SharingManagerConfiguration.sharedInstance.noRysync == false else {
+            Utils.sharedInstance.noRsync()
+            return
+        }
+        
+        guard self.index != nil else {
+            return
+        }
+        
+        self.batchtask = nil
+        
+        guard self.singletask != nil else {
+            // Dry run
+            self.singletask = newSingleTask(index: self.index!)
+            self.singletask?.executeSingleTask()
+            // Set reference to singleTask object
+            SharingManagerConfiguration.sharedInstance.SingleTask = self.singletask
+            return
+        }
+        // Real run
+        self.singletask?.executeSingleTask()
     }
     
-    fileprivate func setInfo(info:String, color:NSColor) {
-        self.dryRunOrRealRun.stringValue = info
-        self.dryRunOrRealRun.textColor = color
-    
-    }
     
     // Execute BATCH TASKS only
-    // Start of BATCH tasks.
-    // After start the function ProcessTermination()
-    // which is triggered when a Process termination is
-    // discovered, takes care of next task according to
-    // status and next work in batchOperations which
-    // also includes a queu of work.
     @IBAction func executeBatch(_ sender: NSButton) {
         
-        if (self.scheduledOperationInProgress() == false && SharingManagerConfiguration.sharedInstance.noRysync == false){
-            self.workload = nil
-            self.outputbatch = nil
-            self.workload = singleTask(task: .batchrun)
-            self.setInfo(info: "Batchrun", color: NSColor.blue)
-            // Get all Configs marked for batch
-            let configs = SharingManagerConfiguration.sharedInstance.getConfigurationsBatch()
-            let batchObject = batchOperations(batchtasks: configs)
-            // Set the reference to batchData object in SharingManagerConfiguration
-            SharingManagerConfiguration.sharedInstance.setbatchDataQueue(batchdata: batchObject)
-            GlobalMainQueue.async(execute: { () -> Void in
-                self.presentViewControllerAsSheet(self.ViewControllerBatch)
-            })
-        } else {
+        guard scheduledOperationInProgress() == false else {
+            Alerts.showInfo("Scheduled operation in progress")
+            return
+        }
+        
+        guard SharingManagerConfiguration.sharedInstance.noRysync == false else {
             Utils.sharedInstance.noRsync()
+            return
         }
+        
+        self.singletask = nil
+        self.setNumbers(output: nil)
+        self.batchtask = newBatchTask()
+        // Present batch view
+        self.batchtask?.presentBatchView()
     }
-    
-    // True if scheduled task in progress
-    fileprivate func scheduledOperationInProgress() -> Bool {
-        var scheduleInProgress:Bool?
-        if (self.schedules != nil) {
-            scheduleInProgress = self.schedules!.getScheduledOperationInProgress()
-        } else {
-            scheduleInProgress = false
-        }
-        if (scheduleInProgress == false && self.scheduledJobInProgress == false){
-            return false
-        } else {
-            return true
-        }
-    }
-    
     
     // Reread bot Configurations and Schedules from persistent store to memory
     fileprivate func ReReadConfigurationsAndSchedules() {
@@ -521,69 +482,22 @@ class ViewControllertabMain: NSViewController {
     }
     
     //  End delegate functions Process object
-    
-    // Function for setting max files to be transferred
-    // Function is called in self.ProcessTermination()
-    fileprivate func setmaxNumbersOfFilesToTransfer() {
         
-        let number = Numbers(output: self.output!.getOutput())
-        number.setNumbers()
-        
-        // Getting max count
-        self.showProcessInfo(info: .Set_max_Number)
-        if (number.getTransferredNumbers(numbers: .totalNumber) > 0) {
-            self.setNumbers(setvalues: true)
-            if (number.getTransferredNumbers(numbers: .transferredNumber) > 0) {
-                self.maxcount = number.getTransferredNumbers(numbers: .transferredNumber)
-            } else {
-                self.maxcount = self.output!.getMaxcount()
-            }
-        } else {
-            self.maxcount = self.output!.getMaxcount()
-        }
-    }
-    
-    // Function for getting numbers out of output object updated when
-    // Process object executes the job.
-    fileprivate func setNumbers(setvalues: Bool) {
-        if (setvalues) {
-            
-            let number = Numbers(output: self.output!.getOutput())
-            number.setNumbers()
-            
-            self.transferredNumber.stringValue = NumberFormatter.localizedString(from: NSNumber(value: number.getTransferredNumbers(numbers: .transferredNumber)), number: NumberFormatter.Style.decimal)
-            self.transferredNumberSizebytes.stringValue = NumberFormatter.localizedString(from: NSNumber(value: number.getTransferredNumbers(numbers: .transferredNumberSizebytes)), number: NumberFormatter.Style.decimal)
-            self.totalNumber.stringValue = NumberFormatter.localizedString(from: NSNumber(value: number.getTransferredNumbers(numbers: .totalNumber)), number: NumberFormatter.Style.decimal)
-            self.totalNumberSizebytes.stringValue = NumberFormatter.localizedString(from: NSNumber(value: number.getTransferredNumbers(numbers: .totalNumberSizebytes)), number: NumberFormatter.Style.decimal)
-            self.totalDirs.stringValue = NumberFormatter.localizedString(from: NSNumber(value: number.getTransferredNumbers(numbers: .totalDirs)), number: NumberFormatter.Style.decimal)
-            self.newfiles.stringValue = NumberFormatter.localizedString(from: NSNumber(value: number.getTransferredNumbers(numbers: .new)), number: NumberFormatter.Style.decimal)
-            self.deletefiles.stringValue = NumberFormatter.localizedString(from: NSNumber(value: number.getTransferredNumbers(numbers: .delete)), number: NumberFormatter.Style.decimal)
-        } else {
-            self.transferredNumber.stringValue = ""
-            self.transferredNumberSizebytes.stringValue = ""
-            self.totalNumber.stringValue = ""
-            self.totalNumberSizebytes.stringValue = ""
-            self.totalDirs.stringValue = ""
-            self.newfiles.stringValue = ""
-            self.deletefiles.stringValue = ""
-        }
-    }
-    
     // Function for setting profile
     fileprivate func displayProfile() {
         
         guard (self.loadProfileMenu == true) else {
             self.profilInfo.stringValue = "Profile: please wait..."
-            self.profilInfo.textColor = NSColor.blue
+            self.profilInfo.textColor = .blue
             return
         }
         
         if let profile = SharingManagerConfiguration.sharedInstance.getProfile() {
             self.profilInfo.stringValue = "Profile: " + profile
-            self.profilInfo.textColor = NSColor.blue
+            self.profilInfo.textColor = .blue
         } else {
             self.profilInfo.stringValue = "Profile: default"
-            self.profilInfo.textColor = NSColor.black
+            self.profilInfo.textColor = .black
         }
         
     }
@@ -592,10 +506,10 @@ class ViewControllertabMain: NSViewController {
     internal func displayAllowDoubleclick() {
         if (SharingManagerConfiguration.sharedInstance.allowDoubleclick == true) {
             self.allowDoubleclick.stringValue = "Double click: YES"
-            self.allowDoubleclick.textColor = NSColor.blue
+            self.allowDoubleclick.textColor = .blue
         } else {
             self.allowDoubleclick.stringValue = "Double click: NO"
-            self.allowDoubleclick.textColor = NSColor.black
+            self.allowDoubleclick.textColor = .black
         }
     }
     
@@ -615,52 +529,24 @@ class ViewControllertabMain: NSViewController {
             self.output = nil
             self.outputbatch = nil
             // Clear numbers from dryrun
-            self.setNumbers(setvalues: false)
-            self.workload = nil
+            self.setNumbers(output: nil)
         } else {
             self.index = nil
         }
         self.process = nil
-        self.setInfo(info: "Estimate", color: NSColor.blue)
+        
+        self.singletask = nil
+        
+        self.setInfo(info: "Estimate", color: .blue)
         self.setRsyncCommandDisplay()
-    }
-    
-    // Just for updating process info
-    fileprivate func showProcessInfo(info:displayProcessInfo) {
-        GlobalMainQueue.async(execute: { () -> Void in
-            switch info {
-            case .Estimating:
-                self.processInfo.stringValue = "Estimating"
-            case .Executing:
-                self.processInfo.stringValue = "Executing"
-            case .Set_max_Number:
-                self.processInfo.stringValue = "Set max number"
-            case .Logging_run:
-                self.processInfo.stringValue = "Logging run"
-            case .Count_files:
-                self.processInfo.stringValue = "Count files"
-            case .Change_profile:
-                self.processInfo.stringValue = "Change profile"
-            case .Profiles_enabled:
-                self.processInfo.stringValue = "Profiles enabled"
-            case .Abort:
-                self.processInfo.stringValue = "Abort"
-            case .Error:
-                self.processInfo.stringValue = "Rsync error"
-            case .Blank:
-                self.processInfo.stringValue = ""
-            }
-        })
     }
     
     // Reset workqueue
     fileprivate func reset() {
-        self.workload = nil
         self.process = nil
         self.output = nil
         self.setRsyncCommandDisplay()
     }
-
 }
 
 
@@ -756,179 +642,6 @@ extension ViewControllertabMain: Information {
     
 }
 
-// Counting
-extension ViewControllertabMain: Count {
-    
-    // Maxnumber of files counted
-    func maxCount() -> Int {
-        return self.maxcount
-    }
-    
-    // Counting number of files
-    // Function is called when Process discover FileHandler notification
-    func inprogressCount() -> Int {
-        return self.output!.getOutputCount()
-    }
-
-}
-
-// Executing task(s) in batch
-extension ViewControllertabMain: StartBatch {
-    
-    // Functions are called from batchView.
-    func runBatch() {
-        // No scheduled opertaion in progress
-        if (self.scheduledOperationInProgress() == false ) {
-            if let batchobject = SharingManagerConfiguration.sharedInstance.getBatchdataObject() {
-                // Just copy the work object.
-                // The work object will be removed in Process termination
-                let work = batchobject.nextBatchCopy()
-                // Get the index if given hiddenID (in work.0)
-                let index:Int = SharingManagerConfiguration.sharedInstance.getIndex(work.0)
-                
-                // Create the output object for rsync
-                self.output = nil
-                self.output = outputProcess()
-                
-                switch (work.1) {
-                case 0:
-                    if let pvc = self.presentedViewControllers as? [ViewControllerBatch] {
-                        self.indicator_delegate = pvc[0]
-                        self.indicator_delegate?.start()
-                    }
-                    let arguments:Array<String> = SharingManagerConfiguration.sharedInstance.getRsyncArgumentOneConfig(index: index, argtype: .argdryRun)
-                    let process = Rsync(arguments: arguments)
-                    // Setting reference to process for Abort if requiered
-                    process.executeProcess(output: self.output!)
-                    self.process = process.getProcess()
-                case 1:
-                    let arguments:Array<String> = SharingManagerConfiguration.sharedInstance.getRsyncArgumentOneConfig(index: index, argtype: .arg)
-                    let process = Rsync(arguments: arguments)
-                    // Setting reference to process for Abort if requiered
-                    process.executeProcess(output: self.output!)
-                    self.process = process.getProcess()
-                case -1:
-                    if let pvc = self.presentedViewControllers as? [ViewControllerBatch] {
-                        self.indicator_delegate = pvc[0]
-                        self.indicator_delegate?.complete()
-                    }
-                default : break
-                }
-            }
-        } else {
-            Alerts.showInfo("Scheduled operation in progress")
-        }
-    }
-    
-    func closeOperation() {
-        self.process = nil
-        self.workload = nil
-        self.setInfo(info: "", color: NSColor.black)
-    }
-    
-    func inBatchwork() {
-        // Take care of batchRun activities
-        if let batchobject = SharingManagerConfiguration.sharedInstance.getBatchdataObject() {
-            
-            if (self.outputbatch == nil) {
-                self.outputbatch = outputBatch()
-            }
-            
-            // Remove the first worker object
-            let work = batchobject.nextBatchRemove()
-            // get numbers from dry-run
-            // Getting and setting max file to transfer
-            self.setmaxNumbersOfFilesToTransfer()
-            // Setting maxcount of files in object
-            batchobject.setEstimated(numberOfFiles: self.maxcount)
-            // 0 is estimationrun, 1 is real run
-            switch (work.1) {
-            case 0:
-                
-                // Do a refresh of NSTableView in ViewControllerBatch
-                // Stack of ViewControllers
-                if let pvc = self.presentedViewControllers as? [ViewControllerBatch] {
-                    self.refresh_delegate = pvc[0]
-                    self.indicator_delegate = pvc[0]
-                    self.refresh_delegate?.refresh()
-                    self.indicator_delegate?.stop()
-                }
-                self.showProcessInfo(info: .Estimating)
-                self.runBatch()
-            case 1:
-                self.maxcount = self.output!.getMaxcount()
-                let number = Numbers(output: self.output!.getOutput())
-                number.setNumbers()
-                
-                // Update files in work
-                batchobject.updateInProcess(numberOfFiles: self.maxcount)
-                batchobject.setCompleted()
-                if let pvc = self.presentedViewControllers as? [ViewControllerBatch] {
-                    self.refresh_delegate = pvc[0]
-                    self.indicator_delegate = pvc[0]
-                    self.refresh_delegate?.refresh()
-                }
-                // Set date on Configuration
-                let index = SharingManagerConfiguration.sharedInstance.getIndex(work.0)
-                
-                let config = SharingManagerConfiguration.sharedInstance.getConfigurations()[index]
-                if config.offsiteServer.isEmpty {
-                    let result = config.localCatalog + " , " + "localhost" + " , " + number.statistics(numberOfFiles: self.transferredNumber.stringValue, sizeOfFiles: self.transferredNumberSizebytes.stringValue)[0]
-                    self.outputbatch!.addLine(str: result)
-                } else {
-                    let result = config.localCatalog + " , " + config.offsiteServer + " , " + number.statistics(numberOfFiles: self.transferredNumber.stringValue,sizeOfFiles: self.transferredNumberSizebytes.stringValue)[0]
-                    self.outputbatch!.addLine(str: result)
-                }
-                
-                let hiddenID = SharingManagerConfiguration.sharedInstance.gethiddenID(index: index)
-                SharingManagerConfiguration.sharedInstance.setCurrentDateonConfiguration(index)
-                SharingManagerSchedule.sharedInstance.addScheduleResultManuel(hiddenID, result: number.statistics(numberOfFiles: self.transferredNumber.stringValue,sizeOfFiles: self.transferredNumberSizebytes.stringValue)[0])
-                self.showProcessInfo(info: .Executing)
-                
-                self.runBatch()
-            default :
-                break
-            }
-        }
-    }
-    
-    // Abort any task, either single- or batch task
-    func abortOperations() {
-        // Terminates the running process
-        self.showProcessInfo(info:.Abort)
-        if let process = self.process {
-            process.terminate()
-            self.index = nil
-            self.working.stopAnimation(nil)
-            self.schedules = nil
-            self.process = nil
-            self.workload = nil
-            // Create workqueu and add abort
-            self.workload = singleTask(task: .abort)
-            self.setInfo(info: "Abort", color: NSColor.red)
-            self.rsyncCommand.stringValue = ""
-        } else {
-            self.rsyncCommand.stringValue = "Selection out of range - aborting"
-            self.process = nil
-            self.workload = nil
-            self.index = nil
-        }
-        if let batchobject = SharingManagerConfiguration.sharedInstance.getBatchdataObject() {
-            // Empty queue in batchobject
-            batchobject.abortOperations()
-            // Set reference to batchdata = nil
-            SharingManagerConfiguration.sharedInstance.deleteBatchData()
-            self.schedules = nil
-            self.process = nil
-            self.workload = nil
-            self.workload = singleTask(task: .abort)
-            self.setInfo(info: "Abort", color: NSColor.red)
-        }
-    }
-
-
-}
-
 // Scheduled task are changed, read schedule again og redraw table
 extension ViewControllertabMain: RefreshtableView {
 
@@ -1006,13 +719,12 @@ extension ViewControllertabMain: AddProfiles {
         
         // Reset any queue of work
         // Reset numbers
-        self.workload = nil
         self.process = nil
         self.output = nil
         self.outputbatch = nil
         self.setRsyncCommandDisplay()
-        self.setInfo(info: "Estimate", color: NSColor.blue)
-        self.setNumbers(setvalues: false)
+        self.setInfo(info: "Estimate", color: .blue)
+        self.setNumbers(output: nil)
         
         guard (new == false) else {
             // A new and empty profile is created
@@ -1162,88 +874,65 @@ extension ViewControllertabMain: UpdateProgress {
     // Protocol UpdateProgress two functions, ProcessTermination() and FileHandler()
     
     func ProcessTermination() {
-        
         self.ready = true
-        // Making sure no nil pointer execption
-        if let workload = self.workload {
+        // NB: must check if single run or batch run
+        if let singletask = self.singletask {
+            self.output = singletask.output
+            self.process = singletask.process
+            singletask.ProcessTermination()
             
-            if (workload.peek() != .batchrun) {
+        } else  {
+            
+            // Batch run
+            if let pvc = self.presentedViewControllers as? [ViewControllerBatch] {
                 
-                // Pop topmost element of work queue
-                switch (self.workload!.pop()) {
-                    
-                case .estimate_singlerun:
-                    // Stopping the working (estimation) progress indicator
-                    self.working.stopAnimation(nil)
-                    // Getting and setting max file to transfer
-                    self.setmaxNumbersOfFilesToTransfer()
-                    // If showInfoDryrun is on present result of dryrun automatically
-                    if (self.showInfoDryrun.state == 1) {
-                        GlobalMainQueue.async(execute: { () -> Void in
-                            self.presentViewControllerAsSheet(self.ViewControllerInformation)
-                        })
-                    }
-                case .error:
-                    // Stopping the working (estimation) progress indicator
-                    self.working.stopAnimation(nil)
-                    // If showInfoDryrun is on present result of dryrun automatically
-                    GlobalMainQueue.async(execute: { () -> Void in
-                        self.presentViewControllerAsSheet(self.ViewControllerInformation)
-                    })
-                case .execute_singlerun:
-                    self.showProcessInfo(info: .Logging_run)
-                    
-                    if let pvc2 = self.presentedViewControllers as? [ViewControllerProgressProcess] {
-                        if (pvc2.count > 0) {
-                            self.processupdate_delegate = pvc2[0]
-                            self.processupdate_delegate?.ProcessTermination()
-                        }
-                    }
-                    // If showInfoDryrun is on present result of dryrun automatically
-                    if (self.showInfoDryrun.state == 1) {
-                        GlobalMainQueue.async(execute: { () -> Void in
-                            self.presentViewControllerAsSheet(self.ViewControllerInformation)
-                        })
-                    }
-                    // Logg run
-                    let number = Numbers(output: self.output!.getOutput())
-                    number.setNumbers()
-                    SharingManagerConfiguration.sharedInstance.setCurrentDateonConfiguration(self.index!)
-                    SharingManagerSchedule.sharedInstance.addScheduleResultManuel(self.hiddenID!, result: number.statistics(numberOfFiles: self.transferredNumber.stringValue, sizeOfFiles: self.transferredNumberSizebytes.stringValue)[0])
-                case .abort:
-                    self.abortOperations()
-                    self.workload = nil
-                case .empty:
-                    self.workload = nil
-                default:
-                    self.workload = nil
-                    break
+                // If abort in batchview just bail out and terminate. The
+                // Process Termination is caused by terminate the Process task
+                
+                guard pvc.count > 0 else {
+                    return
                 }
-            } else {
-                // We are in batch
-                self.inBatchwork()
+                
+                self.batchObject_delegate = pvc[0]
+                self.batchtask = self.batchObject_delegate?.getTaskObject()
             }
+            self.output = self.batchtask!.output
+            self.process = self.batchtask!.process
+            self.batchtask!.ProcessTermination()
         }
+        
     }
     
     // Function is triggered when Process outputs data in filehandler
     // Process is either in singleRun or batchRun
     func FileHandler() {
         self.showProcessInfo(info: .Count_files)
-        if let batchobject = SharingManagerConfiguration.sharedInstance.getBatchdataObject() {
-            let work = batchobject.nextBatchCopy()
-            if work.1 == 1 {
-                // Real work is done
-                self.maxcount = self.output!.getMaxcount()
-                batchobject.updateInProcess(numberOfFiles: self.maxcount)
-                // Refresh view in Batchwindow
-                if let pvc = self.presentedViewControllers as? [ViewControllerBatch] {
-                    self.refresh_delegate = pvc[0]
-                    self.refresh_delegate?.refresh()
+        if self.batchtask != nil {
+            // Batch run
+            if let batchobject = SharingManagerConfiguration.sharedInstance.getBatchdataObject() {
+                let work = batchobject.nextBatchCopy()
+                if work.1 == 1 {
+                    // Real work is done
+                    // Must set reference to Process object in case of Abort
+                    self.process = self.batchtask!.process
+                    batchobject.updateInProcess(numberOfFiles: self.batchtask!.output!.getMaxcount())
+                    // Refresh view in Batchwindow
+                    if let pvc = self.presentedViewControllers as? [ViewControllerBatch] {
+                        self.refresh_delegate = pvc[0]
+                        self.refresh_delegate?.refresh()
+                    }
                 }
             }
         } else {
+        // Single task run
+            guard self.singletask != nil else {
+                return
+            }
             // Refresh ProgressView single run
+            // Must get output from rsync and set reference 
+            // to Process object in case of Abort
+            self.output = self.singletask!.output
+            self.process = self.singletask!.process
             if let pvc2 = self.presentedViewControllers as? [ViewControllerProgressProcess] {
                 if (pvc2.count > 0) {
                     self.processupdate_delegate = pvc2[0]
@@ -1252,7 +941,6 @@ extension ViewControllertabMain: UpdateProgress {
             }
         }
     }
-    
 }
 
 // Deselect a row
@@ -1273,7 +961,7 @@ extension ViewControllertabMain: RsyncError {
         // Set on or off in user configuration
         if (SharingManagerConfiguration.sharedInstance.rsyncerror) {
             GlobalMainQueue.async(execute: { () -> Void in
-                self.setInfo(info: "Error", color: NSColor.red)
+                self.setInfo(info: "Error", color: .red)
                 self.showProcessInfo(info: .Error)
                 self.setRsyncCommandDisplay()
                 // Abort any operations
@@ -1281,10 +969,16 @@ extension ViewControllertabMain: RsyncError {
                     process.terminate()
                     self.process = nil
                 }
-                guard (self.workload != nil) else {
-                    return
+                
+                // Either error in single task or batch task
+                
+                if (self.singletask != nil) {
+                    self.singletask!.Error()
                 }
-                self.workload!.error()
+                
+                if (self.batchtask != nil) {
+                    self.batchtask!.Error()
+                }
             })
         }
     }
@@ -1294,7 +988,7 @@ extension ViewControllertabMain: RsyncError {
 extension ViewControllertabMain: ReportErrorInMain {
     func fileerror(errorstr:String) {
         GlobalMainQueue.async(execute: { () -> Void in
-            self.setInfo(info: "Error", color: NSColor.red)
+            self.setInfo(info: "Error", color: .red)
             self.showProcessInfo(info: .Error)
             // Dump the errormessage in rsynccommand field
             self.rsyncCommand.stringValue = errorstr
@@ -1305,6 +999,211 @@ extension ViewControllertabMain: ReportErrorInMain {
 // Abort task from progressview
 extension ViewControllertabMain: AbortOperations {
     
+    // Abort any task, either single- or batch task
+    func abortOperations() {
+        // Terminates the running process
+        self.showProcessInfo(info:.Abort)
+        if let process = self.process {
+            process.terminate()
+            self.index = nil
+            self.working.stopAnimation(nil)
+            self.schedules = nil
+            self.process = nil
+            // Create workqueu and add abort
+            self.setInfo(info: "Abort", color: .red)
+            self.rsyncCommand.stringValue = ""
+        } else {
+            self.rsyncCommand.stringValue = "Selection out of range - aborting"
+            self.process = nil
+            self.index = nil
+        }
+        if let batchobject = SharingManagerConfiguration.sharedInstance.getBatchdataObject() {
+            // Empty queue in batchobject
+            batchobject.abortOperations()
+            // Set reference to batchdata = nil
+            SharingManagerConfiguration.sharedInstance.deleteBatchData()
+            self.schedules = nil
+            self.process = nil
+            self.setInfo(info: "Abort", color: .red)
+        }
+    }
+    
+}
+
+// Extensions from here are used in either newSingleTask or newBatchTask
+
+extension ViewControllertabMain: StartStopProgressIndicatorSingleTask {
+    func startIndicator() {
+        self.working.startAnimation(nil)
+    }
+    
+    func stopIndicator() {
+        self.working.stopAnimation(nil)
+    }
+}
+
+extension ViewControllertabMain:SingleTask {
+    
+    // Just for updating process info
+    func showProcessInfo(info:displayProcessInfo) {
+        GlobalMainQueue.async(execute: { () -> Void in
+            switch info {
+            case .Estimating:
+                self.processInfo.stringValue = "Estimating"
+            case .Executing:
+                self.processInfo.stringValue = "Executing"
+            case .Set_max_Number:
+                self.processInfo.stringValue = "Set max number"
+            case .Logging_run:
+                self.processInfo.stringValue = "Logging run"
+            case .Count_files:
+                self.processInfo.stringValue = "Count files"
+            case .Change_profile:
+                self.processInfo.stringValue = "Change profile"
+            case .Profiles_enabled:
+                self.processInfo.stringValue = "Profiles enabled"
+            case .Abort:
+                self.processInfo.stringValue = "Abort"
+            case .Error:
+                self.processInfo.stringValue = "Rsync error"
+            case .Blank:
+                self.processInfo.stringValue = ""
+            }
+        })
+    }
+    
+    func presentViewProgress() {
+        GlobalMainQueue.async(execute: { () -> Void in
+            self.presentViewControllerAsSheet(self.ViewControllerProgress)
+        })
+    }
+    
+    func presentViewInformation(output: outputProcess) {
+        self.output = output
+        GlobalMainQueue.async(execute: { () -> Void in
+            self.presentViewControllerAsSheet(self.ViewControllerInformation)
+        })
+        
+    }
+    
+    func terminateProgressProcess() {
+        if let pvc2 = self.presentedViewControllers as? [ViewControllerProgressProcess] {
+            if (pvc2.count > 0) {
+                self.processupdate_delegate = pvc2[0]
+                self.processupdate_delegate?.ProcessTermination()
+            }
+        }
+    }
+    
+    func setInfo(info:String, color:colorInfo) {
+        
+        switch color {
+        case .red:
+            self.dryRunOrRealRun.textColor = .red
+        case .black:
+            self.dryRunOrRealRun.textColor = .black
+        case .blue:
+            self.dryRunOrRealRun.textColor = .blue
+        }
+        self.dryRunOrRealRun.stringValue = info
+    }
+    
+    func singleTaskAbort(process:Process?) {
+        self.process = process
+        self.abortOperations()
+    }
+    
+    // Function for getting numbers out of output object updated when
+    // Process object executes the job.
+    func setNumbers(output:outputProcess?) {
+        
+        GlobalMainQueue.async(execute: { () -> Void in
+            
+            self.showProcessInfo(info: .Set_max_Number)
+            
+            guard output != nil else {
+                
+                self.transferredNumber.stringValue = ""
+                self.transferredNumberSizebytes.stringValue = ""
+                self.totalNumber.stringValue = ""
+                self.totalNumberSizebytes.stringValue = ""
+                self.totalDirs.stringValue = ""
+                self.newfiles.stringValue = ""
+                self.deletefiles.stringValue = ""
+                
+                return
+            }
+            
+            let number = Numbers(output: output!.getOutput())
+            number.setNumbers()
+            
+            self.transferredNumber.stringValue = NumberFormatter.localizedString(from: NSNumber(value: number.getTransferredNumbers(numbers: .transferredNumber)), number: NumberFormatter.Style.decimal)
+            self.transferredNumberSizebytes.stringValue = NumberFormatter.localizedString(from: NSNumber(value: number.getTransferredNumbers(numbers: .transferredNumberSizebytes)), number: NumberFormatter.Style.decimal)
+            self.totalNumber.stringValue = NumberFormatter.localizedString(from: NSNumber(value: number.getTransferredNumbers(numbers: .totalNumber)), number: NumberFormatter.Style.decimal)
+            self.totalNumberSizebytes.stringValue = NumberFormatter.localizedString(from: NSNumber(value: number.getTransferredNumbers(numbers: .totalNumberSizebytes)), number: NumberFormatter.Style.decimal)
+            self.totalDirs.stringValue = NumberFormatter.localizedString(from: NSNumber(value: number.getTransferredNumbers(numbers: .totalDirs)), number: NumberFormatter.Style.decimal)
+            self.newfiles.stringValue = NumberFormatter.localizedString(from: NSNumber(value: number.getTransferredNumbers(numbers: .new)), number: NumberFormatter.Style.decimal)
+            self.deletefiles.stringValue = NumberFormatter.localizedString(from: NSNumber(value: number.getTransferredNumbers(numbers: .delete)), number: NumberFormatter.Style.decimal)
+        })
+        
+    }
+        
+    // Returns number set from dryrun to use in logging run 
+    // after a real run. Logging is in newSingleTask object.
+    
+    func gettransferredNumber() -> String {
+        return self.transferredNumber.stringValue
+    }
+    
+    func gettransferredNumberSizebytes() -> String {
+        return self.transferredNumberSizebytes.stringValue
+        
+    }
+
+
+}
+
+extension ViewControllertabMain: BatchTask {
+    
+    func presentViewBatch() {
+        GlobalMainQueue.async(execute: { () -> Void in
+            self.presentViewControllerAsSheet(self.ViewControllerBatch)
+        })
+    }
+    
+    func progressIndicatorViewBatch(operation: batchViewProgressIndicator) {
+        switch operation {
+        case .stop:
+            if let pvc = self.presentedViewControllers as? [ViewControllerBatch] {
+                self.indicator_delegate = pvc[0]
+                self.refresh_delegate = pvc[0]
+                self.indicator_delegate?.stop()
+                self.refresh_delegate?.refresh()
+                
+            }
+        case .start:
+            if let pvc = self.presentedViewControllers as? [ViewControllerBatch] {
+                self.indicator_delegate = pvc[0]
+                self.indicator_delegate?.start()
+            }
+        case .complete:
+            if let pvc = self.presentedViewControllers as? [ViewControllerBatch] {
+                self.indicator_delegate = pvc[0]
+                self.indicator_delegate?.complete()
+            }
+            
+        case .refresh:
+            if let pvc = self.presentedViewControllers as? [ViewControllerBatch] {
+                self.refresh_delegate = pvc[0]
+                self.refresh_delegate?.refresh()
+            }
+            
+        }
+    }
+    
+    func setOutputBatch(outputbatch:outputBatch?) {
+        self.outputbatch = outputbatch
+    }
 }
 
 

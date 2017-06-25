@@ -34,11 +34,11 @@ class ViewControllerProgressProcess: NSViewController {
     var maxcount: Double = 0
     var calculatedNumberOfFiles:Int?
     
-    // Delegates
+    // Delegate to count max number and updates during progress
     weak var count_delegate:Count?
-    // Dismisser
+    // Delegate to dismisser
     weak var dismiss_delegate:DismissViewController?
-    // Abort operations
+    // Delegate to Abort operations
     weak var abort_delegate:AbortOperations?
     
     @IBOutlet weak var progress: NSProgressIndicator!
@@ -54,7 +54,6 @@ class ViewControllerProgressProcess: NSViewController {
         // Load protocol functions
         // Dismisser is root controller
         if let pvc = self.presenting as? ViewControllertabMain {
-            self.count_delegate = pvc
             self.dismiss_delegate = pvc
             self.abort_delegate = pvc
         }
@@ -62,6 +61,9 @@ class ViewControllerProgressProcess: NSViewController {
     
     override func viewDidAppear() {
         super.viewDidAppear()
+        if let pvc2 = SharingManagerConfiguration.sharedInstance.SingleTask {
+            self.count_delegate = pvc2
+        }
         self.calculatedNumberOfFiles = self.count_delegate?.maxCount()
         self.initiateProgressbar()
     }
@@ -95,14 +97,20 @@ class ViewControllerProgressProcess: NSViewController {
 
 extension ViewControllerProgressProcess: UpdateProgress {
     
-    // Protocol UpdateProgress
+    // When processtermination is discovered in real task progressbar is stopped
+    // and progressview is dismissed. Real run is completed.
     
     func ProcessTermination() {
         self.stopProgressbar()
         self.dismiss_delegate?.dismiss_view(viewcontroller: self)
     }
     
+    // Update progressview during task
+    
     func FileHandler() {
+        guard self.count_delegate != nil else {
+            return
+        }
         self.updateProgressbar(Double(self.count_delegate!.inprogressCount()))
     }
 

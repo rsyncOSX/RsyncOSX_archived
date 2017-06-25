@@ -9,19 +9,13 @@
 import Foundation
 import Cocoa
 
-protocol StartBatch : class  {
-    // Starts batch run
-    func runBatch()
-    // Aborts executing batch
-    func abortOperations()
-    // Either just close or close after batch done
-    func closeOperation()
-    // called when in executing batch
-    func inBatchwork()
+// Return the created batchobject
+protocol getNewBatchTask: class {
+    func getTaskObject() -> newBatchTask
 }
 
-
 class ViewControllerBatch : NSViewController {
+    
     
     // If close button or abort is pressed
     // After execute button is pressed, close is abort
@@ -32,6 +26,8 @@ class ViewControllerBatch : NSViewController {
     var seconds:Int?
     // Working on row
     var row:Int?
+    // Batchobject
+    var batchTask:newBatchTask?
 
     // Main tableview
     @IBOutlet weak var mainTableView: NSTableView!
@@ -41,18 +37,21 @@ class ViewControllerBatch : NSViewController {
     @IBOutlet weak var closeinseconds: NSTextField!
     @IBOutlet weak var rownumber: NSTextField!
     
-    // Iniate start of batchrun
-    weak var startBatch_delegate:StartBatch?
-    // Dismisser
+    // Delegeta to Dismisser
     weak var dismiss_delegate:DismissViewController?
+    // Delegate to Abort operations
+    weak var abort_delegate:AbortOperations?
 
     // ACTIONS AND BUTTONS
     
     @IBAction func Close(_ sender: NSButton) {
+        
+        
         if (self.close!) {
-            self.startBatch_delegate?.closeOperation()
+            self.batchTask = newBatchTask()
+            self.batchTask!.closeOperation()
         } else {
-            self.startBatch_delegate?.abortOperations()
+            self.abort_delegate?.abortOperations()
         }
         self.waitToClose?.invalidate()
         self.closeIn?.invalidate()
@@ -61,7 +60,8 @@ class ViewControllerBatch : NSViewController {
     
     // Execute batch
     @IBAction func Execute(_ sender: NSButton) {
-        self.startBatch_delegate!.runBatch()
+        self.batchTask = newBatchTask()
+        self.batchTask!.executeBatch()
         self.CloseButton.title = "Abort"
         self.close = false
     }
@@ -92,8 +92,8 @@ class ViewControllerBatch : NSViewController {
         }
          // Dismisser is root controller
         if let pvc = self.presenting as? ViewControllertabMain {
-            self.startBatch_delegate = pvc
             self.dismiss_delegate = pvc
+            self.abort_delegate = pvc
         }
     }
 
@@ -106,6 +106,12 @@ class ViewControllerBatch : NSViewController {
         self.rownumber.stringValue = ""
         self.CloseButton.title = "Close"
         self.close = true
+        self.batchTask = nil
+    }
+    
+    override func viewDidDisappear() {
+        super.viewDidDisappear()
+        self.batchTask = nil
     }
 
 
@@ -184,6 +190,14 @@ extension ViewControllerBatch: RefreshtableView {
         GlobalMainQueue.async(execute: { () -> Void in
             self.mainTableView.reloadData()
         })
+    }
+    
+}
+
+extension ViewControllerBatch: getNewBatchTask {
+    
+    func getTaskObject() -> newBatchTask {
+        return self.batchTask!
     }
     
 }
