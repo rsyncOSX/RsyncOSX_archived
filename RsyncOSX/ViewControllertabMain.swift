@@ -282,7 +282,6 @@ class ViewControllertabMain: NSViewController {
         } else {
             self.displayProfile()
         }
-        
     }
     
     // Selecting About
@@ -492,7 +491,6 @@ class ViewControllertabMain: NSViewController {
             self.profilInfo.stringValue = "Profile: default"
             self.profilInfo.textColor = .black
         }
-        
     }
     
     // Function for setting allowDouble click
@@ -532,7 +530,6 @@ class ViewControllertabMain: NSViewController {
         self.setInfo(info: "Estimate", color: .blue)
         self.setRsyncCommandDisplay()
     }
-    
 }
 
 
@@ -608,7 +605,6 @@ extension ViewControllertabMain : NSTableViewDelegate {
             SharingManagerConfiguration.sharedInstance.setBatchYesNo(row)
         }
     }
-    
 }
 
 // Get output from rsync command
@@ -625,7 +621,6 @@ extension ViewControllertabMain: Information {
             return [""]
         }
     }
-    
 }
 
 // Scheduled task are changed, read schedule again og redraw table
@@ -755,7 +750,6 @@ extension ViewControllertabMain: AddProfiles {
             self.displayProfile()
         })
     }
-
 }
 
 
@@ -886,7 +880,6 @@ extension ViewControllertabMain: UpdateProgress {
             self.process = self.batchtask!.process
             self.batchtask!.ProcessTermination()
         }
-        
     }
     
     // Function is triggered when Process outputs data in filehandler
@@ -1013,7 +1006,6 @@ extension ViewControllertabMain: AbortOperations {
             self.setInfo(info: "Abort", color: .red)
         }
     }
-    
 }
 
 // Extensions from here are used in either newSingleTask or newBatchTask
@@ -1069,7 +1061,6 @@ extension ViewControllertabMain:SingleTask {
         GlobalMainQueue.async(execute: { () -> Void in
             self.presentViewControllerAsSheet(self.ViewControllerInformation)
         })
-        
     }
     
     func terminateProgressProcess() {
@@ -1143,10 +1134,7 @@ extension ViewControllertabMain:SingleTask {
     
     func gettransferredNumberSizebytes() -> String {
         return self.transferredNumberSizebytes.stringValue
-        
     }
-
-
 }
 
 extension ViewControllertabMain: BatchTask {
