@@ -373,11 +373,6 @@ class ViewControllertabMain: NSViewController {
         super.viewDidDisappear()
         // Do not allow notify in Main
         SharingManagerConfiguration.sharedInstance.allowNotifyinMain = false
-        // If a process is running keep it running
-        guard self.process == nil else {
-            return
-        }
-        self.reset()
     }
     
     // True if scheduled task in progress
@@ -481,8 +476,6 @@ class ViewControllertabMain: NSViewController {
         SharingManagerSchedule.sharedInstance.readAllSchedules()
     }
     
-    //  End delegate functions Process object
-        
     // Function for setting profile
     fileprivate func displayProfile() {
         
@@ -499,7 +492,6 @@ class ViewControllertabMain: NSViewController {
             self.profilInfo.stringValue = "Profile: default"
             self.profilInfo.textColor = .black
         }
-        
     }
     
     // Function for setting allowDouble click
@@ -534,17 +526,10 @@ class ViewControllertabMain: NSViewController {
             self.index = nil
         }
         self.process = nil
-        
         self.singletask = nil
+        self.batchtask = nil
         
         self.setInfo(info: "Estimate", color: .blue)
-        self.setRsyncCommandDisplay()
-    }
-    
-    // Reset workqueue
-    fileprivate func reset() {
-        self.process = nil
-        self.output = nil
         self.setRsyncCommandDisplay()
     }
 }
@@ -622,7 +607,6 @@ extension ViewControllertabMain : NSTableViewDelegate {
             SharingManagerConfiguration.sharedInstance.setBatchYesNo(row)
         }
     }
-    
 }
 
 // Get output from rsync command
@@ -639,7 +623,6 @@ extension ViewControllertabMain: Information {
             return [""]
         }
     }
-    
 }
 
 // Scheduled task are changed, read schedule again og redraw table
@@ -673,7 +656,6 @@ extension ViewControllertabMain: ReadConfigurationsAgain {
         self.schedules = ScheduleSortedAndExpand()
         self.setRsyncCommandDisplay()
     }
-    
 }
 
 
@@ -769,7 +751,6 @@ extension ViewControllertabMain: AddProfiles {
             self.displayProfile()
         })
     }
-
 }
 
 
@@ -900,7 +881,6 @@ extension ViewControllertabMain: UpdateProgress {
             self.process = self.batchtask!.process
             self.batchtask!.ProcessTermination()
         }
-        
     }
     
     // Function is triggered when Process outputs data in filehandler
@@ -971,15 +951,12 @@ extension ViewControllertabMain: RsyncError {
                 }
                 
                 // Either error in single task or batch task
-                
                 if (self.singletask != nil) {
                     self.singletask!.Error()
                 }
-                
                 if (self.batchtask != nil) {
                     self.batchtask!.Error()
                 }
-                
             })
         }
     }
@@ -1084,7 +1061,6 @@ extension ViewControllertabMain:SingleTask {
         GlobalMainQueue.async(execute: { () -> Void in
             self.presentViewControllerAsSheet(self.ViewControllerInformation)
         })
-        
     }
     
     func terminateProgressProcess() {
@@ -1146,7 +1122,6 @@ extension ViewControllertabMain:SingleTask {
             self.newfiles.stringValue = NumberFormatter.localizedString(from: NSNumber(value: number.getTransferredNumbers(numbers: .new)), number: NumberFormatter.Style.decimal)
             self.deletefiles.stringValue = NumberFormatter.localizedString(from: NSNumber(value: number.getTransferredNumbers(numbers: .delete)), number: NumberFormatter.Style.decimal)
         })
-        
     }
     
     // Returns number set from dryrun to use in logging run 
@@ -1158,9 +1133,7 @@ extension ViewControllertabMain:SingleTask {
     
     func gettransferredNumberSizebytes() -> String {
         return self.transferredNumberSizebytes.stringValue
-        
     }
-
 
 }
 
@@ -1180,7 +1153,6 @@ extension ViewControllertabMain: BatchTask {
                 self.refresh_delegate = pvc[0]
                 self.indicator_delegate?.stop()
                 self.refresh_delegate?.refresh()
-                
             }
         case .start:
             if let pvc = self.presentedViewControllers as? [ViewControllerBatch] {
@@ -1192,13 +1164,11 @@ extension ViewControllertabMain: BatchTask {
                 self.indicator_delegate = pvc[0]
                 self.indicator_delegate?.complete()
             }
-            
         case .refresh:
             if let pvc = self.presentedViewControllers as? [ViewControllerBatch] {
                 self.refresh_delegate = pvc[0]
                 self.refresh_delegate?.refresh()
             }
-            
         }
     }
     
