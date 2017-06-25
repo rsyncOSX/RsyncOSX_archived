@@ -76,8 +76,6 @@ class ScheduleSortedAndExpand {
             
             // Get all jobs which are not executed
             
-            // Get all jobs which are not executed
-            
             if (seconds > 0) {
                 
                 switch (schedule) {
@@ -139,8 +137,8 @@ class ScheduleSortedAndExpand {
                     break
                 }
             }
-
-        
+            
+            
         let sorted: [NSDictionary] = expandedData.sorted { (dict1, dict2) -> Bool in
             if ((dict1.value(forKey: "start") as! Date).timeIntervalSince(dict2.value(forKey: "start") as! Date)) > 0 {
                 return false
