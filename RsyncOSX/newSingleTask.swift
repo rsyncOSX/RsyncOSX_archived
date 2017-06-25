@@ -23,7 +23,6 @@ protocol SingleTask: class {
     func setInfo(info:String, color:colorInfo)
     func singleTaskAbort(process:Process?)
     func setNumbers(output:outputProcess?)
-    func setmaxNumbersOfFilesToTransfer(output : outputProcess?)
     func gettransferredNumber() -> String
     func gettransferredNumberSizebytes() -> String
 }
@@ -126,7 +125,7 @@ final class newSingleTask {
                 // Stopping the working (estimation) progress indicator
                 self.indicator_delegate?.stopIndicator()
                 // Getting and setting max file to transfer
-                self.task_delegate?.setmaxNumbersOfFilesToTransfer(output: self.output)
+                self.task_delegate?.setNumbers(output: self.output)
                 self.maxcount = self.output!.getMaxcount()
                 // If showInfoDryrun is on present result of dryrun automatically
                 self.task_delegate?.presentViewInformation(output: self.output!)

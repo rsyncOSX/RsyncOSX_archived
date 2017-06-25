@@ -30,7 +30,6 @@ final class newBatchTask {
     weak var refresh_delegate:RefreshtableView?
     // Delegate for presenting batchView
     weak var batchView_delegate:BatchTask?
-    
     // Delegate function for start/stop progress Indicator in BatchWindow
     weak var indicator_delegate:StartStopProgressIndicatorSingleTask?
     // Delegate function for show process step and present View
@@ -78,7 +77,6 @@ final class newBatchTask {
     
     // Functions are called from batchView.
     func executeBatch() {
-        // No scheduled opertaion in progress
         
         if let batchobject = SharingManagerConfiguration.sharedInstance.getBatchdataObject() {
             // Just copy the work object.
@@ -122,7 +120,7 @@ final class newBatchTask {
     // Called when ProcessTermination is called in main View.
     // Either dryn-run or realrun completed.
     func ProcessTermination() {
-        // Take care of batchRun activities
+
         if let batchobject = SharingManagerConfiguration.sharedInstance.getBatchdataObject() {
             
             if (self.outputbatch == nil) {
