@@ -4,13 +4,13 @@ This is documentation of the design and code of RsyncOSX. I have just commenced 
 
 # High Level design
 
-The views has no knowledge about the models or data stored about configurations, schedules and logdata. All data presented in RsyncOSX are most table data. To present table data I am using the `NSTableViewDelegate`. All data stored to permanent store are saved in xml-files ([plist](https://en.wikipedia.org/wiki/Property_list) files). I am **not** using the Core Data mostly because the data about `configurations`, `schedules` and `logs` are simple and there are no need for a complex datamodel.
+The views has no knowledge about the models or data stored about configurations, schedules and logdata. All data presented in RsyncOSX are mostly table data. To present table data I am using the `NSTableViewDelegate`. All data stored to permanent store are saved in xml-files ([plist](https://en.wikipedia.org/wiki/Property_list) files). I am **not** using the Core Data because the data about `configurations`, `schedules` and `logs` are simple and there is no need for a complex datamodel.
 
 ## Configurations (tasks)
 
-The configurations are read from permanent store and kept in memory during lifetime. Each record (one task) are read from permanent store as `NSDictionary` and loaded in an array of configurations. A [configuration](https://github.com/rsyncOSX/RsyncOSX/blob/master/RsyncOSX/configuration.swift) is a struct holding all data about one task.
+The configurations are read from the permanent store and kept in memory during lifetime. Each record (one task) are read from permanent store as a `NSDictionary` item and loaded in an `Array<configuration>`. A [configuration](https://github.com/rsyncOSX/RsyncOSX/blob/master/RsyncOSX/configuration.swift) is a struct holding all data about one task.
 
-The object [SharingManagerConfigurations.swift](https://github.com/rsyncOSX/RsyncOSX/blob/master/RsyncOSX/SharingManagerConfiguration.swift) holds all data and methods operating on configurations. The method `readAllConfigurationsAndArguments` read all data about configurations to memory. Every time a configuration is read the rsync arguments are computed and loaded into memory by the object [argumentsConfigurations.swift](https://github.com/rsyncOSX/RsyncOSX/blob/master/RsyncOSX/argumentsConfigurations.swift). There are four types of arguments which are computed during startup, arguments for `--dry-run` and real run and both arguments for presentation on screen. All configuration data is stored in memory as an `Array<String>`. Each configuration is allocated a uniq computed nonsense key `hiddenID = Int`.
+The object [SharingManagerConfigurations.swift](https://github.com/rsyncOSX/RsyncOSX/blob/master/RsyncOSX/SharingManagerConfiguration.swift) holds all data and methods operating on configurations. The method `readAllConfigurationsAndArguments` read all data about configurations to memory. Every time a configuration is read the rsync arguments are computed by the object [argumentsConfigurations.swift](https://github.com/rsyncOSX/RsyncOSX/blob/master/RsyncOSX/argumentsConfigurations.swift) and  and loaded into memory as attribute to each `configuration`. There are four types of arguments which are computed during startup, arguments for `--dry-run` and real run and both arguments for presentation on screen. Each configuration is allocated a uniq computed nonsense key `hiddenID = Int`.
 
 ### Changes to configurations
 
@@ -20,4 +20,4 @@ Any changes to configurations (edit, delete, new, parameters to rsync) is a thre
 - after a update the configuration in memory configurations are saved to permanent store
 - the configurations in memory are wiped out and loaded into memory from the permanent store to compute any new values due to changes
 
-This is a kind of brute force. No code needed for partly upgrading and it secures a 100% correct and updated configuration in memory at all time. Saving, wiping memory and reading configurations is done in matter of milliseconds. 
+This is a kind of brute force. No code needed for partly upgrading and it secures a 100% correct and updated configuration in memory at all time. Saving, wiping memory and reading configurations is done in matter of milliseconds.
