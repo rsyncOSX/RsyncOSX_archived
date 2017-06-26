@@ -140,12 +140,15 @@ final class Utils {
         GlobalDefaultQueue.async(execute: { () -> Void in
             var port:Int = 22
             for i in 0 ..< SharingManagerConfiguration.sharedInstance.ConfigurationsDataSourcecount() {
-                let config = SharingManagerConfiguration.sharedInstance.getargumentAllConfigurations()[i] as? argumentsOneConfig
-                if ((config?.config.offsiteServer)! != "") {
-                    if let sshport:Int = config?.config.sshport {
+                let record = SharingManagerConfiguration.sharedInstance.getargumentAllConfigurations()[i] as? argumentsOneConfig
+                guard record != nil else {
+                    return
+                }
+                if (record!.config!.offsiteServer != "") {
+                    if let sshport:Int = record?.config!.sshport {
                         port = sshport
                     }
-                    let (success, _) = Utils.sharedInstance.testTCPconnection((config?.config.offsiteServer)!, port: port, timeout: 1)
+                    let (success, _) = Utils.sharedInstance.testTCPconnection(record!.config!.offsiteServer, port: port, timeout: 1)
                     if (success) {
                         self.indexBoolremoteserverOff!.append(false)
                     } else {
