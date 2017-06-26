@@ -138,33 +138,35 @@ final class Utils {
         }
         
         GlobalDefaultQueue.async(execute: { () -> Void in
+            
             var port:Int = 22
             for i in 0 ..< SharingManagerConfiguration.sharedInstance.ConfigurationsDataSourcecount() {
-                let config = SharingManagerConfiguration.sharedInstance.getargumentAllConfigurations()[i] as? argumentsOneConfig
-                if ((config?.config.offsiteServer)! != "") {
-                    if let sshport:Int = config?.config.sshport {
-                        port = sshport
-                    }
-                    let (success, _) = Utils.sharedInstance.testTCPconnection((config?.config.offsiteServer)!, port: port, timeout: 1)
-                    if (success) {
-                        self.indexBoolremoteserverOff!.append(false)
+                if let record = SharingManagerConfiguration.sharedInstance.getargumentAllConfigurations()[i] as? argumentsOneConfig {
+                    if (record.config!.offsiteServer != "") {
+                        if let sshport:Int = record.config!.sshport {
+                            port = sshport
+                        }
+                        let (success, _) = Utils.sharedInstance.testTCPconnection(record.config!.offsiteServer, port: port, timeout: 1)
+                        if (success) {
+                            self.indexBoolremoteserverOff!.append(false)
+                        } else {
+                            // self.remoteserverOff = true
+                            self.indexBoolremoteserverOff!.append(true)
+                        }
                     } else {
-                        // self.remoteserverOff = true
-                        self.indexBoolremoteserverOff!.append(true)
+                        self.indexBoolremoteserverOff!.append(false)
                     }
-                } else {
-                    self.indexBoolremoteserverOff!.append(false)
-                }
-                // Reload table when all remote servers are checked
-                if i == (SharingManagerConfiguration.sharedInstance.ConfigurationsDataSourcecount() - 1) {
-                    // Send message to do a refresh
-                    if let pvc = SharingManagerConfiguration.sharedInstance.ViewControllertabMain as? ViewControllertabMain {
-                        self.delegate_testconnections = pvc
-                        self.delegate_profilemenu = pvc
-                        // Update table in main view
-                        self.delegate_testconnections?.displayConnections()
-                        // Tell main view profile menu might presented
-                        self.delegate_profilemenu?.enableProfileMenu()
+                    // Reload table when all remote servers are checked
+                    if i == (SharingManagerConfiguration.sharedInstance.ConfigurationsDataSourcecount() - 1) {
+                        // Send message to do a refresh
+                        if let pvc = SharingManagerConfiguration.sharedInstance.ViewControllertabMain as? ViewControllertabMain {
+                            self.delegate_testconnections = pvc
+                            self.delegate_profilemenu = pvc
+                            // Update table in main view
+                            self.delegate_testconnections?.displayConnections()
+                            // Tell main view profile menu might presented
+                            self.delegate_profilemenu?.enableProfileMenu()
+                        }
                     }
                 }
             }
