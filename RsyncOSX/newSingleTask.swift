@@ -68,11 +68,11 @@ final class newSingleTask {
         if (self.workload == nil) {
             self.workload = singleTaskWorkQueu()
         }
-            
+        
         let arguments: Array<String>?
         self.process = nil
         self.output = nil
-            
+        
         switch (self.workload!.peek()) {
         case .estimate_singlerun:
             if let index = self.index {
@@ -134,7 +134,7 @@ final class newSingleTask {
                 self.indicator_delegate?.stopIndicator()
                 // If showInfoDryrun is on present result of dryrun automatically
                 self.task_delegate?.presentViewInformation(output: self.output!)
-                // self.task_delegate?.singleTaskAbort(process: self.process)
+            // self.task_delegate?.singleTaskAbort(process: self.process)
             case .execute_singlerun:
                 //NB: self.showProcessInfo(info: .Logging_run)
                 self.task_delegate?.showProcessInfo(info: .Logging_run)
@@ -170,7 +170,7 @@ final class newSingleTask {
         }
         self.workload!.error()
     }
-
+    
     init(index: Int) {
         
         self.index = index
