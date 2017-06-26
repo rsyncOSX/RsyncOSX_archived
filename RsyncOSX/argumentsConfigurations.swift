@@ -1,5 +1,5 @@
 //
-//  argumentsCinfigurations.swift
+//  argumentsConfigurations.swift
 //
 //  Created by Thomas Evensen on 09/02/16.
 //  Copyright © 2016 Thomas Evensen. All rights reserved.
@@ -12,9 +12,9 @@ import Foundation
 // and a version to show in view of both
 struct argumentsOneConfig {
    
-    var task:String
-    var backupID:String
-    var config:configuration
+    var task:String?
+    var backupID:String?
+    var config:configuration?
     var arg:Array<String>?
     var argdryRun:Array<String>?
     var argDisplay:Array<String>?
@@ -39,13 +39,13 @@ struct argumentsConfigurations {
     // Object for preparing rsync arguments
     init(rsyncArguments: argumentsOneConfig) {
         self.rsyncArguments = rsyncArguments
-        self.rsyncArguments!.task = rsyncArguments.config.task
-        self.rsyncArguments!.backupID = rsyncArguments.config.backupID
+        self.rsyncArguments!.task = rsyncArguments.config!.task
+        self.rsyncArguments!.backupID = rsyncArguments.config!.backupID
         // prepare all arguments task
-        self.rsyncArguments!.arg = rsyncProcessArguments().argumentsRsync(rsyncArguments.config, dryRun: false, forDisplay: false)
-        self.rsyncArguments!.argDisplay = rsyncProcessArguments().argumentsRsync(rsyncArguments.config, dryRun: false, forDisplay: true)
-        self.rsyncArguments!.argdryRun = rsyncProcessArguments().argumentsRsync(rsyncArguments.config, dryRun: true, forDisplay: false)
-        self.rsyncArguments!.argdryRunDisplay = rsyncProcessArguments().argumentsRsync(rsyncArguments.config, dryRun: true, forDisplay: true)
+        self.rsyncArguments!.arg = rsyncProcessArguments().argumentsRsync(rsyncArguments.config!, dryRun: false, forDisplay: false)
+        self.rsyncArguments!.argDisplay = rsyncProcessArguments().argumentsRsync(rsyncArguments.config!, dryRun: false, forDisplay: true)
+        self.rsyncArguments!.argdryRun = rsyncProcessArguments().argumentsRsync(rsyncArguments.config!, dryRun: true, forDisplay: false)
+        self.rsyncArguments!.argdryRunDisplay = rsyncProcessArguments().argumentsRsync(rsyncArguments.config!, dryRun: true, forDisplay: true)
     }
 }
 
