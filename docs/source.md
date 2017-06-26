@@ -10,6 +10,14 @@ The views has no knowledge about the models or data stored about configurations,
 
 The configurations are read from permanent store and kept in memory during lifetime. Each record (one task) are read from permanent store as `NSDictionary` and loaded in an array of configurations. A [configuration](https://github.com/rsyncOSX/RsyncOSX/blob/master/RsyncOSX/configuration.swift) is a struct holding all data about one task.
 
-The object [SharingManagerConfigurations.swift](https://github.com/rsyncOSX/RsyncOSX/blob/master/RsyncOSX/SharingManagerConfiguration.swift) holds all data and methods operating on configurations. The method `readAllConfigurationsAndArguments` read all data about configurations to memory. Every time a configuration is read the rsync arguments are computed and loaded into memory by the object [argumentsConfigurations.swift](https://github.com/rsyncOSX/RsyncOSX/blob/master/RsyncOSX/argumentsConfigurations.swift).
+The object [SharingManagerConfigurations.swift](https://github.com/rsyncOSX/RsyncOSX/blob/master/RsyncOSX/SharingManagerConfiguration.swift) holds all data and methods operating on configurations. The method `readAllConfigurationsAndArguments` read all data about configurations to memory. Every time a configuration is read the rsync arguments are computed and loaded into memory by the object [argumentsConfigurations.swift](https://github.com/rsyncOSX/RsyncOSX/blob/master/RsyncOSX/argumentsConfigurations.swift). There are four types of arguments which are computed during startup, arguments for `--dry-run` and real run and both arguments for presentation on screen. All configuration data is stored in memory as an `Array<String>`. Each configuration is allocated a uniq computed nonsense key `hiddenID = Int`.
 
-To be continued.
+### Changes to configurations
+
+Any changes to configurations (edit, delete, new, parameters to rsync) is a three step operation:
+
+- any changes to configurations are updated in memory
+- after a update the configuration in memory configurations are saved to permanent store
+- the configurations in memory are wiped out and loaded into memory from the permanent store to compute any new values due to changes
+
+This is a kind of brute force. No code needed for partly upgrading and it secures a 100% correct and updated configuration in memory at all time. Saving, wiping memory and reading configurations is done in matter of milliseconds. 
