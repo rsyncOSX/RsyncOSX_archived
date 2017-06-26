@@ -2,8 +2,8 @@
 //  SharingManagerConfiguration.swift
 //  Rsync
 //
-//  This object stays in memory runtime and holds key data and operations on Configurations. 
-//  The obect is the model for the Configurations but also acts as Controller when 
+//  This object stays in memory runtime and holds key data and operations on Configurations.
+//  The obect is the model for the Configurations but also acts as Controller when
 //  the ViewControllers reads or updates data.
 //
 //  The object also holds various configurations for RsyncOSX and references to
@@ -52,7 +52,7 @@ class SharingManagerConfiguration {
     
     // Delegate functions
     weak var refresh_delegate:RefreshtableView?
- 
+    
     // NEW VERSION OF RSYNCOSX
     // Download URL if new version is avaliable
     var URLnewVersion : String?
@@ -105,12 +105,12 @@ class SharingManagerConfiguration {
     var rsyncerror:Bool = true
     // Reference to singletask object
     var SingleTask:newSingleTask?
-
+    
     
     // DATA STRUCTURES
     
     // The main structure storing all Configurations for tasks
-    private var Configurations = [configuration]()
+    private var Configurations = Array<configuration>()
     // Array to store argumenst for all tasks.
     // Initialized during startup
     private var argumentAllConfiguration =  NSMutableArray()
@@ -120,7 +120,7 @@ class SharingManagerConfiguration {
     private var batchdata:batchTaskWorkQueu?
     // the MacSerialNumber
     private var MacSerialNumber:String?
-
+    
     
     // READ and SET all Configurations and arguments for rsync in object
     
@@ -132,7 +132,7 @@ class SharingManagerConfiguration {
     /// configurations and computing new arguments.
     /// - parameter none: none
     func readAllConfigurationsAndArguments() {
-        let store:[configuration] = persistentStoreAPI.sharedInstance.getConfigurations()
+        let store:Array<configuration> = persistentStoreAPI.sharedInstance.getConfigurations()
         self.destroyConfigurations()
         // We read all stored configurations into memory
         for i in 0 ..< store.count {
@@ -194,7 +194,7 @@ class SharingManagerConfiguration {
     /// Function for getting Configurations read into memory
     /// - parameter none: none
     /// - returns : Array of configurations
-    func getConfigurations() -> [configuration] {
+    func getConfigurations() -> Array<configuration> {
         return self.Configurations
     }
     
@@ -215,7 +215,7 @@ class SharingManagerConfiguration {
             return self.ConfigurationsDataSource!.count
         }
     }
-
+    
     /// Function for getting Configurations read into memory
     /// as datasource for tableViews
     /// - parameter none: none
@@ -243,7 +243,7 @@ class SharingManagerConfiguration {
             ]
             data.append(row)
         }
-    return data
+        return data
     }
     
     /// Function returns all Configurations marked for backup.
@@ -251,7 +251,7 @@ class SharingManagerConfiguration {
     func getConfigurationsBatch() -> [configuration] {
         return self.Configurations.filter({return ($0.task == "backup") && ($0.batch == "yes")})
     }
-
+    
     /// Function for returning count of all Configurations marked as backup (not restore)
     /// - parameter none: none
     /// - returns : Int
@@ -268,7 +268,7 @@ class SharingManagerConfiguration {
     /// - parameter index: index of Configuration
     /// - parameter argtype : either .arg or .argdryRun (of enumtype argumentsRsync)
     /// - returns : array of Strings holding all computed arguments
-    func getRsyncArgumentOneConfig (index:Int, argtype : argumentsRsync) -> [String] {
+    func getRsyncArgumentOneConfig (index:Int, argtype : argumentsRsync) -> Array<String> {
         let allarguments = self.argumentAllConfiguration[index] as! argumentsOneConfig
         switch argtype {
         case .arg:
@@ -277,7 +277,7 @@ class SharingManagerConfiguration {
             return allarguments.argdryRun!
         }
     }
-
+    
     /// Function is adding new Configurations to existing
     /// configurations in memory.
     /// - parameter dict : new record configuration
@@ -292,9 +292,9 @@ class SharingManagerConfiguration {
     func destroyNewConfigurations() {
         self.newConfigurations = nil
     }
-
     
-    /// Function destroys records holding added configurations as datasource 
+    
+    /// Function destroys records holding added configurations as datasource
     /// for presenting Configurations in tableviews
     private func destroyConfigurationsDataSource() {
         self.ConfigurationsDataSource = nil
@@ -308,8 +308,8 @@ class SharingManagerConfiguration {
         self.argumentAllConfiguration.removeAllObjects()
         self.ConfigurationsDataSource = nil
     }
-
-    /// Function sets currentDate on Configuration when executed on task 
+    
+    /// Function sets currentDate on Configuration when executed on task
     /// stored in memory and then saves updated configuration from memory to persistent store.
     /// Function also notifies Execute view to refresh data
     /// in tableView.
@@ -330,7 +330,7 @@ class SharingManagerConfiguration {
     }
     
     
-    /// Function destroys reference to object holding data and 
+    /// Function destroys reference to object holding data and
     /// methods for executing batch work
     func deleteBatchData() {
         self.batchdata = nil
@@ -357,7 +357,7 @@ class SharingManagerConfiguration {
     
     /// Function toggles Configurations for batch or no
     /// batch. Function updates Configuration in memory
-    /// and stores Configuration i memory to 
+    /// and stores Configuration i memory to
     /// persisten store
     /// - parameter index: index of Configuration to toogle batch on/off
     func setBatchYesNo (_ index:Int) {
@@ -389,7 +389,7 @@ class SharingManagerConfiguration {
     func getBatchdataObject() -> batchTaskWorkQueu? {
         return self.batchdata
     }
-
+    
     /// Function is getting the number of rows batchDataQueue
     /// - returns : the number of rows
     func batchDataQueuecount() -> Int {
@@ -495,7 +495,7 @@ class SharingManagerConfiguration {
     func gethiddenID (index : Int) -> Int {
         return self.Configurations[index].hiddenID
     }
-
+    
     /// Function returns the correct path for rsync
     /// according to configuration set by user or
     /// default value.
@@ -526,6 +526,4 @@ class SharingManagerConfiguration {
         // and pass it back as a String or, if it fails, an empty string
         return (serialNumberAsCFString!.takeUnretainedValue() as? String) ?? ""
     }
-
-    
 }
