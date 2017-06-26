@@ -410,6 +410,7 @@ class ViewControllertabMain: NSViewController {
         if (self.ready) {
             self.executeSingleTask()
         }
+        // Dont execute a second task when the first is started. 
         self.ready = false
     }
     

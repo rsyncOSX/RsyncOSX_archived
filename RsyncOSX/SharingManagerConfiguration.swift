@@ -110,7 +110,7 @@ class SharingManagerConfiguration {
     // DATA STRUCTURES
     
     // The main structure storing all Configurations for tasks
-    private var Configurations = [configuration]()
+    private var Configurations = Array<configuration>()
     // Array to store argumenst for all tasks.
     // Initialized during startup
     private var argumentAllConfiguration =  NSMutableArray()
@@ -132,7 +132,7 @@ class SharingManagerConfiguration {
     /// configurations and computing new arguments.
     /// - parameter none: none
     func readAllConfigurationsAndArguments() {
-        let store:[configuration] = persistentStoreAPI.sharedInstance.getConfigurations()
+        let store:Array<configuration> = persistentStoreAPI.sharedInstance.getConfigurations()
         self.destroyConfigurations()
         // We read all stored configurations into memory
         for i in 0 ..< store.count {
@@ -194,7 +194,7 @@ class SharingManagerConfiguration {
     /// Function for getting Configurations read into memory
     /// - parameter none: none
     /// - returns : Array of configurations
-    func getConfigurations() -> [configuration] {
+    func getConfigurations() -> Array<configuration> {
         return self.Configurations
     }
     
@@ -268,7 +268,7 @@ class SharingManagerConfiguration {
     /// - parameter index: index of Configuration
     /// - parameter argtype : either .arg or .argdryRun (of enumtype argumentsRsync)
     /// - returns : array of Strings holding all computed arguments
-    func getRsyncArgumentOneConfig (index:Int, argtype : argumentsRsync) -> [String] {
+    func getRsyncArgumentOneConfig (index:Int, argtype : argumentsRsync) -> Array<String> {
         let allarguments = self.argumentAllConfiguration[index] as! argumentsOneConfig
         switch argtype {
         case .arg:
