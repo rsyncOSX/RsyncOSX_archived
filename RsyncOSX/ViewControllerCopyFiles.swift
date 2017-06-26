@@ -155,9 +155,6 @@ class ViewControllerCopyFiles : NSViewController {
         SharingManagerConfiguration.sharedInstance.ViewControllerCopyFiles = self
         self.tableViewSelect.delegate = self
         self.tableViewSelect.dataSource = self
-        // Register for drag and drop
-        self.localCatalog.register(forDraggedTypes: [NSFilenamesPboardType])
-        self.remoteCatalog.register(forDraggedTypes: [NSFilenamesPboardType])
         // Progress indicator
         self.working.usesThreadedAnimation = true
         self.workingRsync.usesThreadedAnimation = true
