@@ -12,6 +12,8 @@ The configurations are read from the permanent store and kept in memory during l
 
 The object [SharingManagerConfigurations.swift](https://github.com/rsyncOSX/RsyncOSX/blob/master/RsyncOSX/SharingManagerConfiguration.swift) holds all data and methods operating on configurations. The method `readAllConfigurationsAndArguments` read all data about configurations to memory. Every time a configuration is read the rsync arguments are computed by the object [argumentsConfigurations.swift](https://github.com/rsyncOSX/RsyncOSX/blob/master/RsyncOSX/argumentsConfigurations.swift) and  and loaded into memory as attribute to each `configuration`. There are four types of arguments which are computed during startup, arguments for `--dry-run` and real run and both arguments for presentation on screen. Each configuration is allocated a uniq computed nonsense key `hiddenID = Int`.
 
+The The object [SharingManagerConfigurations.swift](https://github.com/rsyncOSX/RsyncOSX/blob/master/RsyncOSX/SharingManagerConfiguration.swift) also creates and holds a `Array<NSMutableDictionary>` holding all data about configurations and computed values of arguments to rsync. Computed values are not saved to permanent store. They are computed when loaded. The method `getConfigurationsDataSource()` returns the computed `Array<NSMutableDictionary>` and is the data object loaded by the `NSTableViewDelegate` delegate methods to load data into tables in view. As an example see [ViewControllertabMain.swift](https://github.com/rsyncOSX/RsyncOSX/blob/master/RsyncOSX/ViewControllertabMain.swift) and `func tableView(_ tableView: NSTableView, objectValueFor tableColumn: NSTableColumn?, row: Int) -> Any?` how data is loaded into tables.
+
 ### Changes to configurations
 
 Any changes to configurations (edit, delete, new, parameters to rsync) is a three step operation:
@@ -20,4 +22,4 @@ Any changes to configurations (edit, delete, new, parameters to rsync) is a thre
 - after a update the configuration in memory configurations are saved to permanent store
 - the configurations in memory are wiped out and loaded into memory from the permanent store to compute any new values due to changes
 
-This is a kind of brute force. No code needed for partly upgrading and it secures a 100% correct and updated configuration in memory at all time. Saving, wiping memory and reading configurations is done in matter of milliseconds.
+This is a kind of brute force. No code needed for partly update and it secures a 100% correct and updated configuration in memory at all time. Saving, wiping memory and reading configurations is done in matter of milliseconds.
