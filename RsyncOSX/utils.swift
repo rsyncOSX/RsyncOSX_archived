@@ -71,7 +71,7 @@ final class Utils {
     // Used for displaying the commands only
     func setRsyncCommandDisplay(index:Int, dryRun:Bool) -> String {
         var str:String?
-        let config = SharingManagerConfiguration.sharedInstance.getargumentAllConfigurations()[index] as? ArgumentsOneConfig
+        let config = SharingManagerConfiguration.sharedInstance.getargumentAllConfigurations()[index] as? ArgumentsOneConfiguration
         if (dryRun) {
                 str = SharingManagerConfiguration.sharedInstance.setRsyncCommand() + " "
                 if let count = config?.argdryRunDisplay?.count {
@@ -141,7 +141,7 @@ final class Utils {
             
             var port:Int = 22
             for i in 0 ..< SharingManagerConfiguration.sharedInstance.ConfigurationsDataSourcecount() {
-                if let record = SharingManagerConfiguration.sharedInstance.getargumentAllConfigurations()[i] as? ArgumentsOneConfig {
+                if let record = SharingManagerConfiguration.sharedInstance.getargumentAllConfigurations()[i] as? ArgumentsOneConfiguration {
                     if (record.config!.offsiteServer != "") {
                         if let sshport:Int = record.config!.sshport {
                             port = sshport
