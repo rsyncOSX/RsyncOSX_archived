@@ -113,7 +113,7 @@ class SharingManagerConfiguration {
     private var Configurations = Array<configuration>()
     // Array to store argumenst for all tasks.
     // Initialized during startup
-    private var argumentAllConfiguration =  NSMutableArray()
+    private var argumentAllConfigurations =  NSMutableArray()
     // Datasource for NSTableViews
     private var ConfigurationsDataSource : Array<NSMutableDictionary>?
     // Object for batchQueue data and operations
@@ -136,12 +136,12 @@ class SharingManagerConfiguration {
         self.destroyConfigurations()
         // We read all stored configurations into memory
         for i in 0 ..< store.count {
-            let config = argumentsOneConfig(backupID: store[i].backupID, task: store[i].task, config:store[i], index: i)
+            //let config = ArgumentsOneConfig(config:store[i])
             // Appending one (of many?) Config read from store to memory
             self.Configurations.append(store[i])
             // Appending all arguments for rsync for One configuration to memory
-            let rsyncArgumentsConfig = argumentsConfigurations(rsyncArguments: config)
-            self.argumentAllConfiguration.add(rsyncArgumentsConfig.rsyncArguments!)
+            let rsyncArgumentsOneConfig = ArgumentsOneConfiguration(config: store[i])
+            self.argumentAllConfigurations.add(rsyncArgumentsOneConfig)
         }
         // Then prepare the datasource for use in tableviews as Dictionarys
         var row =  NSMutableDictionary()
@@ -202,7 +202,7 @@ class SharingManagerConfiguration {
     /// - parameter none: none
     /// - returns : Array of arguments
     func getargumentAllConfigurations() -> NSMutableArray {
-        return self.argumentAllConfiguration
+        return self.argumentAllConfigurations
     }
     
     /// Function for getting the number of configurations used in NSTableViews
@@ -269,7 +269,7 @@ class SharingManagerConfiguration {
     /// - parameter argtype : either .arg or .argdryRun (of enumtype argumentsRsync)
     /// - returns : array of Strings holding all computed arguments
     func getRsyncArgumentOneConfig (index:Int, argtype : argumentsRsync) -> Array<String> {
-        let allarguments = self.argumentAllConfiguration[index] as! argumentsOneConfig
+        let allarguments = self.argumentAllConfigurations[index] as! ArgumentsOneConfiguration
         switch argtype {
         case .arg:
             return allarguments.arg!
@@ -305,7 +305,7 @@ class SharingManagerConfiguration {
     /// presenting Configurations in tableviews.
     func destroyConfigurations() {
         self.Configurations.removeAll()
-        self.argumentAllConfiguration.removeAllObjects()
+        self.argumentAllConfigurations.removeAllObjects()
         self.ConfigurationsDataSource = nil
     }
     
@@ -526,4 +526,6 @@ class SharingManagerConfiguration {
         // and pass it back as a String or, if it fails, an empty string
         return (serialNumberAsCFString!.takeUnretainedValue() as? String) ?? ""
     }
+    
+    
 }

@@ -71,22 +71,22 @@ final class Utils {
     // Used for displaying the commands only
     func setRsyncCommandDisplay(index:Int, dryRun:Bool) -> String {
         var str:String?
-        let config = SharingManagerConfiguration.sharedInstance.getargumentAllConfigurations()[index] as? argumentsOneConfig
+        let config = SharingManagerConfiguration.sharedInstance.getargumentAllConfigurations()[index] as? ArgumentsOneConfiguration
         if (dryRun) {
-                str = SharingManagerConfiguration.sharedInstance.setRsyncCommand() + " "
-                if let count = config?.argdryRunDisplay?.count {
-                    for i in 0 ..< count {
-                        str = str! + (config?.argdryRunDisplay![i])!
-                    }
-                }
-        } else {
             str = SharingManagerConfiguration.sharedInstance.setRsyncCommand() + " "
-                if let count = config?.argDisplay?.count {
-                    for i in 0 ..< count {
-                        str = str! + (config?.argDisplay![i])!
-                    }
+            if let count = config?.argdryRunDisplay?.count {
+                for i in 0 ..< count {
+                    str = str! + (config?.argdryRunDisplay![i])!
                 }
             }
+        } else {
+            str = SharingManagerConfiguration.sharedInstance.setRsyncCommand() + " "
+            if let count = config?.argDisplay?.count {
+                for i in 0 ..< count {
+                    str = str! + (config?.argDisplay![i])!
+                }
+            }
+        }
         return str!
     }
     
@@ -104,7 +104,7 @@ final class Utils {
         }
         return (connectionOK, str)
     }
-
+    
     // Setting date format
     func setDateformat() -> DateFormatter {
         let dateformatter = DateFormatter()
@@ -115,7 +115,7 @@ final class Utils {
         dateformatter.dateFormat = "dd MMM yyyy HH:mm"
         return dateformatter
     }
-
+    
     // Getting the structure for test connection
     func gettestAllremoteserverConnections() -> [Bool]? {
         return self.indexBoolremoteserverOff
@@ -138,9 +138,10 @@ final class Utils {
         }
         
         GlobalDefaultQueue.async(execute: { () -> Void in
+            
             var port:Int = 22
             for i in 0 ..< SharingManagerConfiguration.sharedInstance.ConfigurationsDataSourcecount() {
-                if let record = SharingManagerConfiguration.sharedInstance.getargumentAllConfigurations()[i] as? argumentsOneConfig {
+                if let record = SharingManagerConfiguration.sharedInstance.getargumentAllConfigurations()[i] as? ArgumentsOneConfiguration {
                     if (record.config!.offsiteServer != "") {
                         if let sshport:Int = record.config!.sshport {
                             port = sshport
@@ -185,6 +186,6 @@ final class Utils {
             Alerts.showInfo("Scheduled operation in progress")
         }
     }
-
- }
+    
+}
 
