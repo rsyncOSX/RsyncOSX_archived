@@ -1,8 +1,8 @@
 # Documentation of RsyncOSX source
 
-This is documentation of the design and code of RsyncOSX. I have just commenced the documentation (June 2017) and it will take time to complete. Why am I doing it? Well, primary for fun but i might learn something from it as well. The design is based upon ideas of the [MVC](https://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93controller) pattern. The objective is to separate the view and the model.
+This is documentation of the design and code of RsyncOSX. I have just commenced the documentation (June 2017) and it will take time to complete. Why am I doing it? Well, primary for fun but i might learn something from it as well. The design is based upon ideas of the [MVC](https://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93controller) pattern. One of the objectives is to separate the views and models.
 
-First will the data and methods operating on the data be documented before details about how RsyncOSX is working after data about configurations and schedules are loaded to memory.
+First will the data (model) and some of the methods operating on the data be documented. After that details about how RsyncOSX is working after data about configurations and schedules are loaded to memory. RsyncOSX kicks off the `rsync` utility to do the real work. The `rsync` is executed in a `Process` object. Any time RsyncOSX [executes](https://github.com/rsyncOSX/RsyncOSX/blob/master/RsyncOSX/processCmd.swift) a command RsyncOSX is listening for two notifications `didTerminateNotification` and `NSFileHandleDataAvailable`. Those two notifications kicks of other functions depended upon the state of RsyncOSX.
 
 # High Level design
 
