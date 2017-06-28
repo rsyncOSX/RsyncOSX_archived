@@ -1021,7 +1021,7 @@ extension ViewControllertabMain: StartStopProgressIndicatorSingleTask {
     }
 }
 
-extension ViewControllertabMain:SingleTask {
+extension ViewControllertabMain: SingleTask {
     
     // Just for updating process info
     func showProcessInfo(info:displayProcessInfo) {
@@ -1051,12 +1051,14 @@ extension ViewControllertabMain:SingleTask {
         })
     }
     
+    // Present progress View of task
     func presentViewProgress() {
         GlobalMainQueue.async(execute: { () -> Void in
             self.presentViewControllerAsSheet(self.ViewControllerProgress)
         })
     }
     
+    // Present detailed report about task
     func presentViewInformation(output: outputProcess) {
         self.output = output
         GlobalMainQueue.async(execute: { () -> Void in
@@ -1064,6 +1066,8 @@ extension ViewControllertabMain:SingleTask {
         })
     }
     
+    // Called when a processTermination is discovered. A delegate
+    // function is triggered in progress view
     func terminateProgressProcess() {
         if let pvc2 = self.presentedViewControllers as? [ViewControllerProgressProcess] {
             if (pvc2.count > 0) {
@@ -1073,6 +1077,7 @@ extension ViewControllertabMain:SingleTask {
         }
     }
     
+    // Sets info in main view
     func setInfo(info:String, color:colorInfo) {
         
         switch color {
