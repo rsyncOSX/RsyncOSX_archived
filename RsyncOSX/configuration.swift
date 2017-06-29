@@ -39,6 +39,8 @@ struct configuration {
     
     init(dictionary: NSDictionary) {
         
+        // Parameters 1 - 6 is mandatory, set by RsyncOSX.
+        
         self.hiddenID = dictionary.object(forKey: "hiddenID") as! Int
         self.task = dictionary.object(forKey: "task") as! String
         self.localCatalog = dictionary.object(forKey: "localCatalog") as! String
@@ -56,11 +58,15 @@ struct configuration {
         self.offsiteServer = dictionary.object(forKey: "offsiteServer") as! String
         self.backupID = dictionary.object(forKey: "backupID") as! String
         
+        // Last run of task
+        
         if let dateRun = dictionary.object(forKey: "dateRun") {
             self.dateRun = dateRun as? String
         } else {
             self.dateRun = " "
         }
+        
+        // Parameters 8 - 14 is user selected, as well as ssh port.
         
         if let parameter8 = dictionary.object(forKey: "parameter8") {
             self.parameter8 = parameter8 as? String
@@ -90,8 +96,6 @@ struct configuration {
         if let sshport = dictionary.object(forKey: "sshport") {
             self.sshport = sshport as? Int
         }
-        
-        
     }
 }
 
