@@ -8,17 +8,24 @@ To compile the code, install Xcode and open the RsyncOSX project file. Before co
 
 ### Application icon
 
-From version 4.0.0 there is a new application icon for RsyncOSX. The new icon is created by [Forrest Walter](http://www.forrestwalter.com/).
+The application icon is created by [Forrest Walter](http://www.forrestwalter.com/).
 
 ### Changelog
 
 The [Changelog](https://github.com/rsyncOSX/Documentation/blob/master/docs/Changelog.md).
+
+
+### How to use RsyncOSX
+
+There are some [documents](https://rsyncosx.github.io/Documentation/) about RsyncOSX and a short [YouTube demo](https://www.youtube.com/watch?v=ty1r7yvgExo) (about 5 minutes long) : "Downloading RsyncOSX, installing, first time configuration and using RsyncOSX for the first time. Backup (as demo) of about 120 MB of data and 4000 files to a VirtualBox FreeBSD machine."
 
 ### The code
 
 What is my experience after about a year into my Swift project? Writing swift code is fun and addicting. But I experience from time to time some of the code I am writing is a kind of "brute force". I am reading blogs and other resources about coding in Swift. Some ideas I do pick up, some I don´t understand and others again are like this is how I should have done it. I'm not a professional or full-time programmer and it means I have to accept that the parts of the code in RsyncOSX could have been better and more efficient. The RsyncOSX project is for fun only.
 
 I will continue to refactor code whenever I have got some ideas reading other code. I will continue adding minor enhancements to RsyncOSX (at least for some time). And I use RsyncOSX every day myself.
+
+Details about how RsyncOSX is built [here](https://rsyncosx.github.io/Documentation/docs/source/source.html).
 
 ### Rsync
 
@@ -37,9 +44,6 @@ RsyncOSX is also released on [MacUpdate](https://www.macupdate.com/app/mac/56516
 
 To be honest, I have **no idea** how many users of RsyncOSX there are. And I am very happy that some users find it useful.
 
-### How to use RsyncOSX
-
-There are some [documents](https://rsyncosx.github.io/Documentation/) about RsyncOSX and a short [YouTube demo](https://www.youtube.com/watch?v=ty1r7yvgExo) (about 5 minutes long) : "Downloading RsyncOSX, installing, first time configuration and using RsyncOSX for the first time. Backup (as demo) of about 120 MB of data and 4000 files to a VirtualBox FreeBSD machine."
 
 ### My NAS setup
 
