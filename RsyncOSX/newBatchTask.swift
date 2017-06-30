@@ -81,11 +81,11 @@ final class newBatchTask {
             let work = batchobject.nextBatchCopy()
             // Get the index if given hiddenID (in work.0)
             let index:Int = SharingManagerConfiguration.sharedInstance.getIndex(work.0)
-            
+                
             // Create the output object for rsync
             self.output = nil
             self.output = outputProcess()
-            
+                
             switch (work.1) {
             case 0:
                 self.batchView_delegate?.progressIndicatorViewBatch(operation: .start)
@@ -121,12 +121,12 @@ final class newBatchTask {
             self.executeBatch()
         }
     }
-    
+
     
     // Called when ProcessTermination is called in main View.
     // Either dryn-run or realrun completed.
     func ProcessTermination() {
-        
+
         if let batchobject = SharingManagerConfiguration.sharedInstance.getBatchdataObject() {
             
             if (self.outputbatch == nil) {

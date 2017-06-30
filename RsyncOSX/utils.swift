@@ -73,20 +73,20 @@ final class Utils {
         var str:String?
         let config = SharingManagerConfiguration.sharedInstance.getargumentAllConfigurations()[index] as? ArgumentsOneConfiguration
         if (dryRun) {
-            str = SharingManagerConfiguration.sharedInstance.setRsyncCommand() + " "
-            if let count = config?.argdryRunDisplay?.count {
-                for i in 0 ..< count {
-                    str = str! + (config?.argdryRunDisplay![i])!
+                str = SharingManagerConfiguration.sharedInstance.setRsyncCommand() + " "
+                if let count = config?.argdryRunDisplay?.count {
+                    for i in 0 ..< count {
+                        str = str! + (config?.argdryRunDisplay![i])!
+                    }
                 }
-            }
         } else {
             str = SharingManagerConfiguration.sharedInstance.setRsyncCommand() + " "
-            if let count = config?.argDisplay?.count {
-                for i in 0 ..< count {
-                    str = str! + (config?.argDisplay![i])!
+                if let count = config?.argDisplay?.count {
+                    for i in 0 ..< count {
+                        str = str! + (config?.argDisplay![i])!
+                    }
                 }
             }
-        }
         return str!
     }
     
@@ -104,7 +104,7 @@ final class Utils {
         }
         return (connectionOK, str)
     }
-    
+
     // Setting date format
     func setDateformat() -> DateFormatter {
         let dateformatter = DateFormatter()
@@ -115,7 +115,7 @@ final class Utils {
         dateformatter.dateFormat = "dd MMM yyyy HH:mm"
         return dateformatter
     }
-    
+
     // Getting the structure for test connection
     func gettestAllremoteserverConnections() -> [Bool]? {
         return self.indexBoolremoteserverOff
@@ -186,6 +186,6 @@ final class Utils {
             Alerts.showInfo("Scheduled operation in progress")
         }
     }
-    
-}
+
+ }
 
