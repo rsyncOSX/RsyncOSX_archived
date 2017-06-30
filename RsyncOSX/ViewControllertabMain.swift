@@ -248,6 +248,15 @@ class ViewControllertabMain: NSViewController {
         }
     }
     
+    @IBOutlet weak var TCPButton: NSButton!
+    @IBAction func TCP(_ sender: NSButton) {
+        self.TCPButton.isEnabled = false
+        self.loadProfileMenu = false
+        self.displayProfile()
+        Utils.sharedInstance.testAllremoteserverConnections()
+    }
+    
+    
     // Presenting Information from Rsync
     @IBAction func Information(_ sender: NSButton) {
         GlobalMainQueue.async(execute: { () -> Void in
@@ -356,10 +365,12 @@ class ViewControllertabMain: NSViewController {
             })
         }
         // Check all remote servers for connection
-        Utils.sharedInstance.testAllremoteserverConnections()
+        // Utils.sharedInstance.testAllremoteserverConnections()
         // Update rsync command in view i case changed 
         self.rsyncchanged()
         // Show which profile
+        // self.displayProfile()
+        self.loadProfileMenu = true
         self.displayProfile()
         if (self.schedules == nil) {
             self.schedules = ScheduleSortedAndExpand()
@@ -495,6 +506,7 @@ class ViewControllertabMain: NSViewController {
             self.profilInfo.stringValue = "Profile: default"
             self.profilInfo.textColor = .black
         }
+        self.TCPButton.isEnabled = true
     }
     
     // Function for setting allowDouble click
@@ -996,6 +1008,7 @@ extension ViewControllertabMain: AbortOperations {
             self.setInfo(info: "Abort", color: .red)
             self.rsyncCommand.stringValue = ""
         } else {
+            self.working.stopAnimation(nil)
             self.rsyncCommand.stringValue = "Selection out of range - aborting"
             self.process = nil
             self.index = nil
