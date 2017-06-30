@@ -791,6 +791,17 @@
                                     <constraint firstAttribute="height" constant="90" id="jVJ-Md-kY3"/>
                                 </constraints>
                             </box>
+                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="pBg-ke-1AM">
+                                <rect key="frame" x="40" y="107" width="66" height="32"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <buttonCell key="cell" type="push" title="TCP" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="Ky4-Ji-GW5">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="TCP:" target="egt-C3-u4G" id="SkC-Q2-C61"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <constraints>
                             <constraint firstItem="cWf-pc-KAt" firstAttribute="trailing" secondItem="QdJ-n1-Mtr" secondAttribute="trailing" id="07k-NQ-WA6"/>
@@ -879,6 +890,7 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="TCPButton" destination="pBg-ke-1AM" id="PpZ-o6-LqC"/>
                         <outlet property="allowDoubleclick" destination="74N-MA-FWg" id="OWv-mw-hEC"/>
                         <outlet property="delete" destination="X1w-Np-lS3" id="eOe-LK-Bzr"/>
                         <outlet property="deletefiles" destination="uOY-XE-EU5" id="BTy-3T-PDG"/>
