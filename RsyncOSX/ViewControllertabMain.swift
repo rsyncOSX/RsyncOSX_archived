@@ -417,6 +417,8 @@ class ViewControllertabMain: NSViewController {
     // Single task can be activated by double click from table
     private func executeSingleTask() {
         
+        self.batchtask = nil
+        
         guard scheduledOperationInProgress() == false else {
             Alerts.showInfo("Scheduled operation in progress")
             return
@@ -431,23 +433,25 @@ class ViewControllertabMain: NSViewController {
             return
         }
         
-        self.batchtask = nil
-        
         guard self.singletask != nil else {
             // Dry run
             self.singletask = newSingleTask(index: self.index!)
-            self.singletask?.executeSingleTask()
+            self.singletask!.executeSingleTask()
             // Set reference to singleTask object
+            // Reference is only set when a dry-run is executed. 
+            // Singletask object stays alive during both dry-run and realrun.
             SharingManagerConfiguration.sharedInstance.SingleTask = self.singletask
             return
         }
         // Real run
-        self.singletask?.executeSingleTask()
+        self.singletask!.executeSingleTask()
     }
     
     
     // Execute BATCH TASKS only
     @IBAction func executeBatch(_ sender: NSButton) {
+        
+        self.singletask = nil
         
         guard scheduledOperationInProgress() == false else {
             Alerts.showInfo("Scheduled operation in progress")
@@ -459,11 +463,10 @@ class ViewControllertabMain: NSViewController {
             return
         }
         
-        self.singletask = nil
         self.setNumbers(output: nil)
         self.batchtask = newBatchTask()
         // Present batch view
-        self.batchtask?.presentBatchView()
+        self.batchtask!.presentBatchView()
     }
     
     // Reread bot Configurations and Schedules from persistent store to memory
