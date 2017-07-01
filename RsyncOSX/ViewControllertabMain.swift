@@ -248,6 +248,14 @@ class ViewControllertabMain: NSViewController {
         }
     }
     
+    @IBOutlet weak var TCPButton: NSButton!
+    @IBAction func TCP(_ sender: NSButton) {
+        self.TCPButton.isEnabled = false
+        self.loadProfileMenu = false
+        self.displayProfile()
+        Utils.sharedInstance.testAllremoteserverConnections()
+    }
+    
     // Presenting Information from Rsync
     @IBAction func Information(_ sender: NSButton) {
         GlobalMainQueue.async(execute: { () -> Void in
@@ -356,11 +364,10 @@ class ViewControllertabMain: NSViewController {
                 self.mainTableView.reloadData()
             })
         }
-        // Check all remote servers for connection
-        Utils.sharedInstance.testAllremoteserverConnections()
-        // Update rsync command in view i case changed 
+        // Update rsync command in view i case changed
         self.rsyncchanged()
         // Show which profile
+        self.loadProfileMenu = true
         self.displayProfile()
         if (self.schedules == nil) {
             self.schedules = ScheduleSortedAndExpand()
@@ -492,6 +499,7 @@ class ViewControllertabMain: NSViewController {
             self.profilInfo.stringValue = "Profile: default"
             self.profilInfo.textColor = .black
         }
+        self.TCPButton.isEnabled = true
     }
     
     // Function for setting allowDouble click
@@ -813,6 +821,12 @@ extension ViewControllertabMain: Connections {
     // about which remote servers are off/on line.
     // Remote servers offline are marked with red line in mainTableView
     func displayConnections() {
+        
+        // Only do a reload if we are in the main view
+        guard SharingManagerConfiguration.sharedInstance.allowNotifyinMain == true else {
+            return
+        }
+        
         self.serverOff = Utils.sharedInstance.gettestAllremoteserverConnections()
         GlobalMainQueue.async(execute: { () -> Void in
             self.mainTableView.reloadData()
