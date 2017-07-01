@@ -1005,6 +1005,7 @@ extension ViewControllertabMain: AbortOperations {
             self.setInfo(info: "Abort", color: .red)
             self.rsyncCommand.stringValue = ""
         } else {
+            self.working.stopAnimation(nil)
             self.rsyncCommand.stringValue = "Selection out of range - aborting"
             self.process = nil
             self.index = nil
