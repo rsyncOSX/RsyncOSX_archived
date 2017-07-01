@@ -828,6 +828,12 @@ extension ViewControllertabMain: Connections {
     // about which remote servers are off/on line.
     // Remote servers offline are marked with red line in mainTableView
     func displayConnections() {
+        
+        // Only do a reload if we are in the main view
+        guard SharingManagerConfiguration.sharedInstance.allowNotifyinMain == true else {
+            return
+        }
+        
         self.serverOff = Utils.sharedInstance.gettestAllremoteserverConnections()
         GlobalMainQueue.async(execute: { () -> Void in
             self.mainTableView.reloadData()
