@@ -364,12 +364,8 @@ class ViewControllertabMain: NSViewController {
                 self.mainTableView.reloadData()
             })
         }
-        // Check all remote servers for connection
-        // Utils.sharedInstance.testAllremoteserverConnections()
-        // Update rsync command in view i case changed 
+        // Update rsync command in view i case changed
         self.rsyncchanged()
-        // Show which profile
-        // self.displayProfile()
         self.loadProfileMenu = true
         self.displayProfile()
         if (self.schedules == nil) {
