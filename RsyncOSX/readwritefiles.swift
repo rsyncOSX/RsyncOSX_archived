@@ -12,7 +12,7 @@
 
 import Foundation
 
-enum readwrite {
+enum whatToReadWrite {
     case schedule
     case configuration
     case userconfig
@@ -34,7 +34,7 @@ class readwritefiles {
     // If to use profile, only configurations and schedules to read from profile
     private var useProfile:Bool = false
     // task to do
-    private var task:readwrite?
+    private var task:whatToReadWrite?
     
     // Set which file to read
     private var fileName : String? {
@@ -63,7 +63,7 @@ class readwritefiles {
     }
     
     // Function for reading data from persistent store
-    func getDatafromfile () -> [NSDictionary]? {
+    func getDatafromfile () -> Array<NSDictionary>? {
         
         guard (self.task != nil)  else {
             return nil
@@ -119,7 +119,7 @@ class readwritefiles {
     }
     
     // Function for write data to persistent store
-    func writeDictionarytofile (_ array: Array<NSDictionary>, task:readwrite) -> Bool {
+    func writeDictionarytofile (_ array: Array<NSDictionary>, task:whatToReadWrite) -> Bool {
 
         self.setPreferences(task)
         guard (self.task != nil)  else {
@@ -143,7 +143,7 @@ class readwritefiles {
     
     
     // Set preferences for which data to read or write
-    private func setPreferences (_ task:readwrite) {
+    private func setPreferences (_ task:whatToReadWrite) {
         self.useProfile = false
         self.task = task
         switch (self.task!) {
@@ -171,7 +171,7 @@ class readwritefiles {
         
     }
     
-    init(task:readwrite) {
+    init(task:whatToReadWrite) {
         self.setPreferences(task)
     }
     
