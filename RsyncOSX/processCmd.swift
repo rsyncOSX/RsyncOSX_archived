@@ -95,14 +95,17 @@ class processCmd {
         task.launch()
     }
     
+    // Get the reference to the Process object.
     func getProcess() -> Process? {
         return self.ProcessReference
     }
     
+    // Terminate Process, used when user Aborts task.
     func abortProcess() {
-        if self.ProcessReference != nil {
-            self.ProcessReference!.terminate()
+        guard self.ProcessReference != nil else {
+            return
         }
+        self.ProcessReference!.terminate()
     }
     
     init(command:String?, arguments:Array<String>?, aScheduledOperation:Bool) {
