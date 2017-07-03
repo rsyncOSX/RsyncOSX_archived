@@ -54,7 +54,7 @@ class processCmd {
             if data.count > 0 {
                 if let str = NSString(data: data, encoding: String.Encoding.utf8.rawValue) {
                     // Add files to be copied, the output.addString takes care of
-                    // splitting the output
+                    // splitting the output.
                     if (self.copyfiles) {
                         output.addLine2(str as String)
                     } else {
@@ -95,14 +95,17 @@ class processCmd {
         task.launch()
     }
     
+    // Get the reference to the Process object.
     func getProcess() -> Process? {
         return self.ProcessReference
     }
     
+    // Terminate Process, used when user Aborts task.
     func abortProcess() {
-        if self.ProcessReference != nil {
-            self.ProcessReference!.terminate()
+        guard self.ProcessReference != nil else {
+            return
         }
+        self.ProcessReference!.terminate()
     }
     
     init(command:String?, arguments:Array<String>?, aScheduledOperation:Bool) {
