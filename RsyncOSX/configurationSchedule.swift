@@ -13,7 +13,7 @@ struct configurationSchedule {
     var dateStart: String
     var dateStop: String?
     var schedule : String
-    var executed = Array<NSMutableDictionary>()
+    var logrecords = Array<NSMutableDictionary>()
     var delete:Bool?
     
     init(dictionary: NSDictionary, executed : NSArray?) {
@@ -25,7 +25,7 @@ struct configurationSchedule {
         }
         if (executed != nil) {
              for i in 0 ..< executed!.count {
-                self.executed.append(executed![i] as! NSMutableDictionary)
+                self.logrecords.append(executed![i] as! NSMutableDictionary)
             }
         }
     }

@@ -62,11 +62,16 @@ class ViewControllerAbout : NSViewController {
                         if let url = contents?.object(forKey: self.runningVersion!) {
                             self.urlNewVersion = url as? String
                             SharingManagerConfiguration.sharedInstance.URLnewVersion = self.urlNewVersion
-                            self.downloadbutton.isEnabled = true
-                            self.thereisanewversion.isHidden = false
+                            GlobalMainQueue.async(execute: { () -> Void in
+                                self.downloadbutton.isEnabled = true
+                                self.thereisanewversion.isHidden = false
+                            })
+                            
                         } else {
-                            self.thereisanewversion.stringValue = "No new version"
-                            self.thereisanewversion.isHidden = false
+                            GlobalMainQueue.async(execute: { () -> Void in
+                                self.thereisanewversion.stringValue = "No new version"
+                                self.thereisanewversion.isHidden = false
+                            })
                         }
                     }
                 }

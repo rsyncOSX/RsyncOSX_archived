@@ -171,7 +171,7 @@ class SharingManagerSchedule: ScheduleWriteLoggData {
                     "dateStop":"",
                     "schedule":self.Schedule[i].schedule,
                     "hiddenID":Schedule[i].hiddenID,
-                    "numberoflogs": String(Schedule[i].executed.count)
+                    "numberoflogs": String(Schedule[i].logrecords.count)
                 ]
                 if (self.Schedule[i].dateStop == nil) {
                     row.setValue("no stop date", forKey: "dateStop")
@@ -298,7 +298,7 @@ class SharingManagerSchedule: ScheduleWriteLoggData {
         var result = self.Schedule.filter({return ($0.hiddenID == hiddenID) && ($0.schedule == "stopped")})
         if result.count > 0 {
             let schedule = result.removeFirst()
-            return schedule.executed
+            return schedule.logrecords
         } else {
             return nil
         }
@@ -333,11 +333,11 @@ class SharingManagerSchedule: ScheduleWriteLoggData {
     // Setting updated executes to schedule.
     // Used when a group is set from active to "stopped"
     private func updateExecutedNewKey (_ hiddenID:Int) {
-        let executed:Array<NSMutableDictionary>? = self.computeNewParentKeys(hiddenID)
+        let logrecord:Array<NSMutableDictionary>? = self.computeNewParentKeys(hiddenID)
         loop : for i in 0 ..< self.Schedule.count {
             if self.Schedule[i].hiddenID == hiddenID {
-                if executed != nil {
-                    self.Schedule[i].executed = executed!
+                if logrecord != nil {
+                    self.Schedule[i].logrecords = logrecord!
                 }
                 break loop
             }

@@ -77,9 +77,9 @@ final class ScheduleLoggData {
         let input:[configurationSchedule] = SharingManagerSchedule.sharedInstance.getSchedule()
         for i in 0 ..< input.count {
             let hiddenID = SharingManagerSchedule.sharedInstance.getSchedule()[i].hiddenID
-            if (input[i].executed.count > 0) {
-                for j in 0 ..< input[i].executed.count {
-                    let dict = input[i].executed[j]
+            if (input[i].logrecords.count > 0) {
+                for j in 0 ..< input[i].logrecords.count {
+                    let dict = input[i].logrecords[j]
                     let logdetail: NSDictionary = [
                         "localCatalog":SharingManagerConfiguration.sharedInstance.getResourceConfiguration(hiddenID, resource: .localCatalog),
                         "offsiteServer":SharingManagerConfiguration.sharedInstance.getResourceConfiguration(hiddenID, resource: .offsiteServer),
