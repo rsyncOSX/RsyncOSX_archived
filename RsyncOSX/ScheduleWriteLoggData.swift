@@ -108,9 +108,9 @@ class ScheduleWriteLoggData {
                     let parent : String = self.computeKey(masterdict)
                     dict.setValue(parent, forKey: "parent")
                     
-                    let executed = NSMutableArray()
-                    executed.add(dict)
-                    let newSchedule = configurationSchedule(dictionary: masterdict, executed: executed)
+                    let log = NSMutableArray()
+                    log.add(dict)
+                    let newSchedule = configurationSchedule(dictionary: masterdict, log: log)
                     self.Schedule.append(newSchedule)
                     // Set inseted true to force write of record
                     inserted = true

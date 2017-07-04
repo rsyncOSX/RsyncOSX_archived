@@ -126,7 +126,7 @@ class SharingManagerSchedule: ScheduleWriteLoggData {
         dict.setObject(dateformatter.string(from: start), forKey: "dateStart" as NSCopying)
         dict.setObject(dateformatter.string(from: stop), forKey: "dateStop" as NSCopying)
         dict.setObject(schedule, forKey: "schedule" as NSCopying)
-        let newSchedule = configurationSchedule(dictionary: dict, executed: nil)
+        let newSchedule = configurationSchedule(dictionary: dict, log: nil)
         self.Schedule.append(newSchedule)
         // Set data dirty
         SharingManagerConfiguration.sharedInstance.setDataDirty(dirty: true)

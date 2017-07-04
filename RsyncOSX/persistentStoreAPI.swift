@@ -99,10 +99,10 @@ final class persistentStoreAPI {
         if read.readSchedulesFromPermanentStore() != nil {
             for dict in read.readSchedulesFromPermanentStore()! {
                 if let executed = dict.value(forKey: "executed") {
-                    let conf = configurationSchedule(dictionary: dict, executed: executed as? NSArray)
+                    let conf = configurationSchedule(dictionary: dict, log: executed as? NSArray)
                     schedule.append(conf)
                 } else {
-                    let conf = configurationSchedule(dictionary: dict, executed: nil)
+                    let conf = configurationSchedule(dictionary: dict, log: nil)
                     schedule.append(conf)
                 }
             }
@@ -121,7 +121,7 @@ final class persistentStoreAPI {
         if read.readSchedulesFromPermanentStore() != nil {
             var schedule = [configurationSchedule]()
             for dict in read.readSchedulesFromPermanentStore()! {
-                let conf = configurationSchedule(dictionary: dict, executed: nil)
+                let conf = configurationSchedule(dictionary: dict, log: nil)
                 schedule.append(conf)
             }
             return schedule
