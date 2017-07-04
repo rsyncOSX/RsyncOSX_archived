@@ -98,8 +98,8 @@ final class persistentStoreAPI {
         // return Schedule already in memory
         if read.readSchedulesFromPermanentStore() != nil {
             for dict in read.readSchedulesFromPermanentStore()! {
-                if let executed = dict.value(forKey: "executed") {
-                    let conf = configurationSchedule(dictionary: dict, log: executed as? NSArray)
+                if let log = dict.value(forKey: "executed") {
+                    let conf = configurationSchedule(dictionary: dict, log: log as? NSArray)
                     schedule.append(conf)
                 } else {
                     let conf = configurationSchedule(dictionary: dict, log: nil)
