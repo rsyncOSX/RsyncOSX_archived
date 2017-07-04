@@ -29,7 +29,7 @@ class ScheduleWriteLoggData {
         var result = self.Schedule.filter({return ($0.hiddenID == hiddenID)})
         if result.count > 0 {
             loop: for i in 0 ..< result.count {
-                let delete = result[i].executed.filter({return (($0.value(forKey: "parent") as? String) == parent &&
+                let delete = result[i].logrecords.filter({return (($0.value(forKey: "parent") as? String) == parent &&
                     ($0.value(forKey: "resultExecuted") as? String) == resultExecuted &&
                     ($0.value(forKey: "dateExecuted") as? String) == dateExecuted)})
                 if delete.count == 1 {
@@ -38,13 +38,13 @@ class ScheduleWriteLoggData {
                         $0.schedule == result[i].schedule &&
                         $0.hiddenID == result[i].hiddenID})
                     // Get the index of the logrecord itself and remove the the record
-                    let indexB = result[i].executed.index(of: delete[0])
+                    let indexB = result[i].logrecords.index(of: delete[0])
                     // Guard index not nil
                     guard (indexA != nil && indexB != nil) else {
                         return
                     }
-                    result[i].executed.remove(at: indexB!)
-                    self.Schedule[indexA!].executed = result[i].executed
+                    result[i].logrecords.remove(at: indexB!)
+                    self.Schedule[indexA!].logrecords = result[i].logrecords
                     // Do a refresh of table
                     if let pvc = SharingManagerConfiguration.sharedInstance.ViewControllerLoggData as? ViewControllerLoggData {
                         self.refresh_delegate_logview = pvc
@@ -85,7 +85,7 @@ class ScheduleWriteLoggData {
                             "hiddenID":self.Schedule[i].hiddenID]
                         let parent : String = self.computeKey(dictKey)
                         dict.setValue(parent, forKey: "parent")
-                        self.Schedule[i].executed.append(dict)
+                        self.Schedule[i].logrecords.append(dict)
                         inserted = true
                     }
                 }
@@ -110,7 +110,7 @@ class ScheduleWriteLoggData {
                     
                     let executed = NSMutableArray()
                     executed.add(dict)
-                    let newSchedule = configurationSchedule(dictionary: masterdict, executed: executed)
+                    let newSchedule = configurationSchedule(dictionary: masterdict, log: executed)
                     self.Schedule.append(newSchedule)
                     // Set inseted true to force write of record
                     inserted = true
@@ -152,7 +152,7 @@ class ScheduleWriteLoggData {
                         ]
                         let parent : String = self.computeKey(dictKey)
                         dict.setValue(parent, forKey: "parent")
-                        self.Schedule[i].executed.append(dict)
+                        self.Schedule[i].logrecords.append(dict)
                         persistentStoreAPI.sharedInstance.saveScheduleFromMemory()
                         break loop
                     }

@@ -35,7 +35,7 @@ final class persistentStoreScheduling: readwritefiles {
                 "hiddenID" : schedule.hiddenID,
                 "dateStart":schedule.dateStart,
                 "schedule":schedule.schedule,
-                "executed":schedule.executed]
+                "executed":schedule.logrecords]
             if (schedule.dateStop != nil) {
                 dict.setValue(schedule.dateStop, forKey: "dateStop")
             }
@@ -64,7 +64,7 @@ final class persistentStoreScheduling: readwritefiles {
                     "hiddenID" : schedule.hiddenID,
                     "dateStart":schedule.dateStart,
                     "schedule":schedule.schedule,
-                    "executed":schedule.executed]
+                    "executed":schedule.logrecords]
                 if (schedule.dateStop != nil) {
                     dict.setValue(schedule.dateStop, forKey: "dateStop")
                 }

@@ -13,19 +13,19 @@ struct configurationSchedule {
     var dateStart: String
     var dateStop: String?
     var schedule : String
-    var executed = Array<NSMutableDictionary>()
+    var logrecords = Array<NSMutableDictionary>()
     var delete:Bool?
     
-    init(dictionary: NSDictionary, executed : NSArray?) {
+    init(dictionary: NSDictionary, log : NSArray?) {
         self.hiddenID = dictionary.object(forKey: "hiddenID") as! Int
         self.dateStart = dictionary.object(forKey: "dateStart") as! String
         self.schedule = dictionary.object(forKey: "schedule") as! String
         if let date = dictionary.object(forKey: "dateStop") as? String {
             self.dateStop = date
         }
-        if (executed != nil) {
-             for i in 0 ..< executed!.count {
-                self.executed.append(executed![i] as! NSMutableDictionary)
+        if (log != nil) {
+             for i in 0 ..< log!.count {
+                self.logrecords.append(log![i] as! NSMutableDictionary)
             }
         }
     }

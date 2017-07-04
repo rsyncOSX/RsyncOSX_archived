@@ -126,7 +126,7 @@ class SharingManagerSchedule: ScheduleWriteLoggData {
         dict.setObject(dateformatter.string(from: start), forKey: "dateStart" as NSCopying)
         dict.setObject(dateformatter.string(from: stop), forKey: "dateStop" as NSCopying)
         dict.setObject(schedule, forKey: "schedule" as NSCopying)
-        let newSchedule = configurationSchedule(dictionary: dict, executed: nil)
+        let newSchedule = configurationSchedule(dictionary: dict, log: nil)
         self.Schedule.append(newSchedule)
         // Set data dirty
         SharingManagerConfiguration.sharedInstance.setDataDirty(dirty: true)
@@ -171,7 +171,7 @@ class SharingManagerSchedule: ScheduleWriteLoggData {
                     "dateStop":"",
                     "schedule":self.Schedule[i].schedule,
                     "hiddenID":Schedule[i].hiddenID,
-                    "numberoflogs": String(Schedule[i].executed.count)
+                    "numberoflogs": String(Schedule[i].logrecords.count)
                 ]
                 if (self.Schedule[i].dateStop == nil) {
                     row.setValue("no stop date", forKey: "dateStop")
@@ -298,7 +298,7 @@ class SharingManagerSchedule: ScheduleWriteLoggData {
         var result = self.Schedule.filter({return ($0.hiddenID == hiddenID) && ($0.schedule == "stopped")})
         if result.count > 0 {
             let schedule = result.removeFirst()
-            return schedule.executed
+            return schedule.logrecords
         } else {
             return nil
         }
@@ -337,7 +337,7 @@ class SharingManagerSchedule: ScheduleWriteLoggData {
         loop : for i in 0 ..< self.Schedule.count {
             if self.Schedule[i].hiddenID == hiddenID {
                 if executed != nil {
-                    self.Schedule[i].executed = executed!
+                    self.Schedule[i].logrecords = executed!
                 }
                 break loop
             }
