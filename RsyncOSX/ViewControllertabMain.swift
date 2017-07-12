@@ -743,13 +743,13 @@ extension ViewControllertabMain: AddProfiles {
         SharingManagerSchedule.sharedInstance.destroySchedule()
         // Read configurations and Scheduledata
         self.ReReadConfigurationsAndSchedules()
+        // Make sure loading profile
+        self.loadProfileMenu = true
         self.displayProfile()
         // Do a refresh of tableView
         self.refresh()
         // We have to start any Scheduled process again - if any
         self.startProcess()
-        // Check all remote servers for connection
-        Utils.sharedInstance.testAllremoteserverConnections()
     }
     
     func enableProfileMenu() {
