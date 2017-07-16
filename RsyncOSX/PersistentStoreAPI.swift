@@ -58,7 +58,7 @@ final class PersistentStoreAPI {
     func saveNewConfigurations() {
         let save = PersistentStoreConfiguration()
         let newConfigurations = SharingManagerConfiguration.sharedInstance.getnewConfigurations()
-        if (newConfigurations != nil) {
+        if newConfigurations != nil {
             for i in 0 ..< newConfigurations!.count {
                     save.addConfigurationsToMemory(newConfigurations![i])
                 }

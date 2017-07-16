@@ -49,7 +49,7 @@ final class OutputProcess {
     func addLine (_ str: String) {
         let sentence = str
 
-        if (self.startIndex == nil) {
+        if self.startIndex == nil {
             self.startIndex = 0
         } else {
             self.startIndex = self.getOutputCount()+1
@@ -79,7 +79,7 @@ final class OutputProcess {
     func addLine2 (_ str: String) {
         let sentence = str
 
-        if (self.startIndex == nil) {
+        if self.startIndex == nil {
             self.startIndex = 0
         } else {
             self.startIndex = self.getOutputCount()+1

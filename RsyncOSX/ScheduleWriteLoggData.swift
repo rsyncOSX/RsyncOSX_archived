@@ -91,7 +91,7 @@ class ScheduleWriteLoggData {
                 }
             }
             // Record does not exist, create new Schedule (not inserted)
-            if (inserted == false) {
+            if inserted == false {
                 if (SharingManagerConfiguration.sharedInstance.getResourceConfiguration(hiddenID, resource: .task) == "backup") {
                     let masterdict = NSMutableDictionary()
                     masterdict.setObject(hiddenID, forKey: "hiddenID" as NSCopying)
@@ -116,7 +116,7 @@ class ScheduleWriteLoggData {
                     inserted = true
                 }
             }
-            if (inserted) {
+            if inserted {
                 PersistentStoreAPI.sharedInstance.saveScheduleFromMemory()
                 if let pvc = SharingManagerConfiguration.sharedInstance.viewControllertabMain as? ViewControllertabMain {
                     self.deselectrowDelegate = pvc

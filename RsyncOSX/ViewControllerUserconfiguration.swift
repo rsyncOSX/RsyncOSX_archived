@@ -182,33 +182,33 @@ class ViewControllerUserconfiguration: NSViewController {
 
     // Function for check and set user configuration
     private func checkUserConfig() {
-        if (SharingManagerConfiguration.sharedInstance.rsyncVer3) {
+        if SharingManagerConfiguration.sharedInstance.rsyncVer3 {
             self.version3rsync.state = .on
         } else {
             self.version3rsync.state = .off
         }
-        if (SharingManagerConfiguration.sharedInstance.detailedlogging) {
+        if SharingManagerConfiguration.sharedInstance.detailedlogging {
             self.detailedlogging.state = .on
         } else {
             self.detailedlogging.state = .off
         }
-        if (SharingManagerConfiguration.sharedInstance.rsyncPath != nil) {
+        if SharingManagerConfiguration.sharedInstance.rsyncPath != nil {
             self.rsyncPath.stringValue = SharingManagerConfiguration.sharedInstance.rsyncPath!
         } else {
             self.rsyncPath.stringValue = ""
         }
         self.scheduledTaskdisableExecute.stringValue = String(SharingManagerConfiguration.sharedInstance.scheduledTaskdisableExecute)
-        if (SharingManagerConfiguration.sharedInstance.allowDoubleclick) {
+        if SharingManagerConfiguration.sharedInstance.allowDoubleclick {
             self.allowDoubleClick.state = .on
         } else {
             self.allowDoubleClick.state = .off
         }
-        if (SharingManagerConfiguration.sharedInstance.rsyncerror) {
+        if SharingManagerConfiguration.sharedInstance.rsyncerror {
             self.rsyncerror.state = .on
         } else {
             self.rsyncerror.state = .off
         }
-        if (SharingManagerConfiguration.sharedInstance.restorePath != nil) {
+        if SharingManagerConfiguration.sharedInstance.restorePath != nil {
             self.restorePath.stringValue = SharingManagerConfiguration.sharedInstance.restorePath!
         } else {
             self.restorePath.stringValue = ""

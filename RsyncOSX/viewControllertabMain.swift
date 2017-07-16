@@ -212,7 +212,7 @@ class ViewControllertabMain: NSViewController {
                 }
             // Edit task
             } else if self.edit.state == .on {
-                if (self.index != nil) {
+                if self.index != nil {
                     globalMainQueue.async(execute: { () -> Void in
                         self.presentViewControllerAsSheet(self.editViewController)
                     })

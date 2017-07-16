@@ -55,7 +55,7 @@ class ViewControllerInformation: NSViewController {
 extension ViewControllerInformation : NSTableViewDataSource {
 
     func numberOfRows(in aTableView: NSTableView) -> Int {
-        if (self.output != nil) {
+        if self.output != nil {
             return self.output!.count
         } else {
             return 0

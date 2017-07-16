@@ -328,7 +328,7 @@ class ScheduleSortedAndExpand {
 
     // Calculate seconds from now to startdate
     private func seconds (_ startdate: Date, enddate: Date?) -> Double {
-        if (enddate == nil) {
+        if enddate == nil {
             return startdate.timeIntervalSinceNow
         } else {
             return enddate!.timeIntervalSince(startdate)

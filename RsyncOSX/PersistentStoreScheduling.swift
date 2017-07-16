@@ -58,7 +58,7 @@ final class PersistentStoreScheduling: Readwritefiles {
         let Schedule = SharingManagerSchedule.sharedInstance.getSchedule()
         for i in 0 ..< Schedule.count {
             let schedule = Schedule[i]
-            if ((schedule.delete == nil) && (schedule.hiddenID != hiddenID)) {
+            if schedule.delete == nil && schedule.hiddenID != hiddenID {
                 let dict: NSMutableDictionary = [
                     "hiddenID": schedule.hiddenID,
                     "dateStart": schedule.dateStart,

@@ -46,7 +46,7 @@ final class ScpArgumentsSsh {
 
         self.args = nil
         self.args = Array<String>()
-        if (self.config!.sshport != nil) {
+        if self.config!.sshport != nil {
             self.args!.append("-P")
             self.args!.append(String(self.config!.sshport!))
         }

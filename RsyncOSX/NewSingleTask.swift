@@ -65,7 +65,7 @@ final class NewSingleTask {
     // Single task can be activated by double click from table
     func executeSingleTask() {
 
-        if (self.workload == nil) {
+        if self.workload == nil {
             self.workload = SingleTaskWorkQueu()
         }
 

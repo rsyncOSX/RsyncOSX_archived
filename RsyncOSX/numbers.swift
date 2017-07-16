@@ -164,7 +164,7 @@ final class Numbers {
         var parts: Array<String>?
 
         guard self.resultRsync != nil else {
-            if (numberOfFiles == nil || sizeOfFiles == nil) {
+            if numberOfFiles == nil || sizeOfFiles == nil {
                 return ["0", "0"]
             } else {
                 let size = numberOfFiles! + " files :" + sizeOfFiles! + " KB" + " in just a few seconds"
@@ -219,12 +219,12 @@ final class Numbers {
             bytesTotal = bytesTotalreceived
         }
         // Dont have numbers of file as input
-        if (numberOfFiles == nil) {
+        if numberOfFiles == nil {
             numberstring = String(self.output!.count) + " files : " + String(format:"%.2f", (bytesTotal/1024)/1000) + " MB in " + String(format:"%.2f", seconds) + " seconds"
         } else {
             numberstring = numberOfFiles! + " files : " + String(format:"%.2f", (bytesTotal/1024)/1000) + " MB in " + String(format:"%.2f", seconds) + " seconds"
         }
-        if (result == nil) {
+        if result == nil {
             result = "hmmm...."
         }
         return [numberstring!, result!]

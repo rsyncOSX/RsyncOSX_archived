@@ -85,7 +85,7 @@ class ViewControllertabSchedule: NSViewController {
         var details: Bool = false
         var range: Bool = false
 
-        if (self.index != nil) {
+        if self.index != nil {
             if (self.once.state == .on) {
                 schedule = "once"
                 if seconds > 0 {
@@ -180,7 +180,7 @@ class ViewControllertabSchedule: NSViewController {
         // Set initial values of dates to now
         self.stopdate.dateValue = Date()
         self.stoptime.dateValue = Date()
-        if (self.schedules == nil) {
+        if self.schedules == nil {
             // Create a Schedules object
             self.schedules = ScheduleSortedAndExpand()
         }
@@ -212,7 +212,7 @@ class ViewControllertabSchedule: NSViewController {
     // Start timer
     func startTimer() {
         // Find out if count down and update display
-        if (self.schedules != nil) {
+        if self.schedules != nil {
             let timer: Double = self.schedules!.startTimerseconds()
             // timer == 0 do not start NSTimer, timer > 0 update frequens of NSTimer
             if (timer > 0) {
@@ -288,14 +288,14 @@ extension ViewControllertabSchedule : NSTableViewDelegate {
         let hiddenID: Int = (object.value(forKey: "hiddenID") as? Int)!
         if SharingManagerSchedule.sharedInstance.hiddenIDinSchedule(hiddenID) {
             text = object[tableColumn!.identifier] as? String
-            if (text == "backup" || text == "restore") {
+            if text == "backup" || text == "restore" {
                 schedule = true
             }
         }
         if (tableColumn!.identifier.rawValue == "batchCellID") {
             return object[tableColumn!.identifier] as? Int!
         } else {
-            if (self.schedules != nil) {
+            if self.schedules != nil {
                 number = self.schedules!.numberOfFutureSchedules(hiddenID)
             } else {
                 number = 0

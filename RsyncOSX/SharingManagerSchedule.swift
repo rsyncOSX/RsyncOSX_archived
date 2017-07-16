@@ -177,7 +177,7 @@ class SharingManagerSchedule: ScheduleWriteLoggData {
                 } else {
                     row.setValue(self.schedule[i].dateStop, forKey: "dateStop")
                 }
-                if (self.schedule[i].schedule == "stopped") {
+                if self.schedule[i].schedule == "stopped" {
                     row.setValue(1, forKey: "stopCellID")
                 }
                 data.append(row)

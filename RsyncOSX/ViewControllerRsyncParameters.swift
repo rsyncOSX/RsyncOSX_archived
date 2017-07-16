@@ -180,12 +180,12 @@ class ViewControllerRsyncParameters: NSViewController {
         self.setValueComboBox(combobox: self.parameter14, index: self.parameters!.getParameter(rsyncparameternumber: 14).0)
         self.viewParameter14.stringValue = self.parameters!.getParameter(rsyncparameternumber: 14).1
 
-        if (configurations[index!].rsyncdaemon != nil) {
+        if configurations[index!].rsyncdaemon != nil {
             self.rsyncdaemon.state = NSControl.StateValue(rawValue: configurations[index!].rsyncdaemon!)
         } else {
             self.rsyncdaemon.state = .off
         }
-        if (configurations[index!].sshport != nil) {
+        if configurations[index!].sshport != nil {
             self.sshport.stringValue = String(configurations[index!].sshport!)
         }
     }

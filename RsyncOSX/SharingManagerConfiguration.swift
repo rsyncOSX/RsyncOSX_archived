@@ -206,7 +206,7 @@ class SharingManagerConfiguration {
     /// - parameter none: none
     /// - returns : Int
     func configurationsDataSourcecount() -> Int {
-        if (self.configurationsDataSource == nil) {
+        if self.configurationsDataSource == nil {
             return 0
         } else {
             return self.configurationsDataSource!.count
@@ -495,8 +495,8 @@ class SharingManagerConfiguration {
     /// default value.
     /// - returns : full path of rsync command
     func setRsyncCommand() -> String {
-        if (self.rsyncVer3) {
-            if (self.rsyncPath == nil) {
+        if self.rsyncVer3 {
+            if self.rsyncPath == nil {
                 return "/usr/local/bin/rsync"
             } else {
                 return self.rsyncPath! + "rsync"
