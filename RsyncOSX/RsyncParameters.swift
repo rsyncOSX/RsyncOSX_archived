@@ -11,9 +11,9 @@ import Foundation
 final class RsyncParameters {
 
     // Tuple for rsync argument and value
-    typealias argument = (String, Int)
+    typealias Argument = (String, Int)
     // Static initial arguments, DO NOT change order
-    private let rsyncArguments: Array<argument> = [
+    private let rsyncArguments: Array<Argument> = [
         ("user", 1),
         ("delete", 0),
         ("--stats", 0),
@@ -26,7 +26,7 @@ final class RsyncParameters {
         ("--suffix", 1)]
 
     // Array storing combobox values
-    private var ComboBoxValues: Array<String>?
+    private var comboBoxValues: Array<String>?
 
     // Preselected parameters for storing a backup of deleted or changed files before
     // rsync synchronises the directories
@@ -62,10 +62,10 @@ final class RsyncParameters {
     /// - parameter none: none
     /// - return : array of String
     func getComboBoxValues() -> Array<String> {
-        guard self.ComboBoxValues != nil else {
+        guard self.comboBoxValues != nil else {
             return [""]
         }
-        return self.ComboBoxValues!
+        return self.comboBoxValues!
     }
 
     // Computes the raw argument for rsync to save in configuration
@@ -227,10 +227,10 @@ final class RsyncParameters {
     init(config: Configuration) {
         self.config = config
         // Set string array for Comboboxes
-        self.ComboBoxValues = nil
-        self.ComboBoxValues = Array<String>()
+        self.comboBoxValues = nil
+        self.comboBoxValues = Array<String>()
         for i in 0 ..< self.rsyncArguments.count {
-            self.ComboBoxValues!.append(self.rsyncArguments[i].0)
+            self.comboBoxValues!.append(self.rsyncArguments[i].0)
         }
     }
 }

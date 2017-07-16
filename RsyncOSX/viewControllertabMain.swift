@@ -193,7 +193,7 @@ class ViewControllertabMain: NSViewController {
     @IBOutlet weak var delete: NSButton!
 
     // Menus as Radiobuttons for Edit functions in tabMainView
-    @IBAction func Radiobuttons(_ sender: NSButton) {
+    @IBAction func radiobuttons(_ sender: NSButton) {
 
         // Reset output
         self.output = nil
@@ -255,14 +255,14 @@ class ViewControllertabMain: NSViewController {
     }
 
     // Presenting Information from Rsync
-    @IBAction func Information(_ sender: NSButton) {
+    @IBAction func information(_ sender: NSButton) {
         globalMainQueue.async(execute: { () -> Void in
             self.presentViewControllerAsSheet(self.viewControllerInformation)
         })
     }
 
     // Abort button
-    @IBAction func Abort(_ sender: NSButton) {
+    @IBAction func abort(_ sender: NSButton) {
         // abortOperations is the delegate function for 
         // aborting batch operations
         globalMainQueue.async(execute: { () -> Void in
@@ -272,7 +272,7 @@ class ViewControllertabMain: NSViewController {
     }
 
     // Userconfiguration button
-    @IBAction func Userconfiguration(_ sender: NSButton) {
+    @IBAction func userconfiguration(_ sender: NSButton) {
         globalMainQueue.async(execute: { () -> Void in
             self.presentViewControllerAsSheet(self.viewControllerUserconfiguration)
         })
@@ -292,7 +292,7 @@ class ViewControllertabMain: NSViewController {
     }
 
     // Selecting About
-    @IBAction func About (_ sender: NSButton) {
+    @IBAction func about (_ sender: NSButton) {
         self.presentViewControllerAsModalWindow(self.viewControllerAbout)
     }
 
@@ -335,7 +335,7 @@ class ViewControllertabMain: NSViewController {
         self.scheduledJobworking.usesThreadedAnimation = true
         self.reReadConfigurationsAndSchedules()
         // Setting reference to self, used when calling delegate functions
-        SharingManagerConfiguration.sharedInstance.ViewControllertabMain = self
+        SharingManagerConfiguration.sharedInstance.viewControllertabMain = self
         // Create a Schedules object
         // Start waiting for next Scheduled job (if any)
         self.schedules = ScheduleSortedAndExpand()
@@ -355,8 +355,8 @@ class ViewControllertabMain: NSViewController {
         self.setInfo(info: "", color: .black)
         // Setting reference to ViewController
         // Used to call delegate function from other class
-        SharingManagerConfiguration.sharedInstance.ViewControllertabMain = self
-        if SharingManagerConfiguration.sharedInstance.ConfigurationsDataSourcecount() > 0 {
+        SharingManagerConfiguration.sharedInstance.viewControllertabMain = self
+        if SharingManagerConfiguration.sharedInstance.configurationsDataSourcecount() > 0 {
             globalMainQueue.async(execute: { () -> Void in
                 self.mainTableView.reloadData()
             })
@@ -440,7 +440,7 @@ class ViewControllertabMain: NSViewController {
             self.singletask = NewSingleTask(index: self.index!)
             self.singletask?.executeSingleTask()
             // Set reference to singleTask object
-            SharingManagerConfiguration.sharedInstance.SingleTask = self.singletask
+            SharingManagerConfiguration.sharedInstance.singleTask = self.singletask
             return
         }
         // Real run
@@ -542,7 +542,7 @@ extension ViewControllertabMain : NSTableViewDataSource {
 
     // Delegate for size of table
     func numberOfRows(in tableView: NSTableView) -> Int {
-        return SharingManagerConfiguration.sharedInstance.ConfigurationsDataSourcecount()
+        return SharingManagerConfiguration.sharedInstance.configurationsDataSourcecount()
     }
 }
 
@@ -564,7 +564,7 @@ extension ViewControllertabMain : NSTableViewDelegate {
     // TableView delegates
     @objc(tableView:objectValueForTableColumn:row:) func tableView(_ tableView: NSTableView, objectValueFor tableColumn: NSTableColumn?, row: Int) -> Any? {
 
-        if row > SharingManagerConfiguration.sharedInstance.ConfigurationsDataSourcecount() - 1 {
+        if row > SharingManagerConfiguration.sharedInstance.configurationsDataSourcecount() - 1 {
             return nil
         }
         let object: NSDictionary = SharingManagerConfiguration.sharedInstance.getConfigurationsDataSource()![row]
@@ -645,7 +645,7 @@ extension ViewControllertabMain: ReadConfigurationsAgain {
 
     func readConfigurations() {
         SharingManagerConfiguration.sharedInstance.readAllConfigurationsAndArguments()
-        if (SharingManagerConfiguration.sharedInstance.ConfigurationsDataSourcecount() > 0 ) {
+        if (SharingManagerConfiguration.sharedInstance.configurationsDataSourcecount() > 0 ) {
             globalMainQueue.async(execute: { () -> Void in
                 self.mainTableView.reloadData()
             })
@@ -711,7 +711,7 @@ extension ViewControllertabMain: AddProfiles {
             SharingManagerSchedule.sharedInstance.destroySchedule()
             SharingManagerConfiguration.sharedInstance.destroyConfigurations()
             // Reset in tabSchedule
-            if let pvc = SharingManagerConfiguration.sharedInstance.ViewControllertabSchedule as? ViewControllertabSchedule {
+            if let pvc = SharingManagerConfiguration.sharedInstance.viewControllertabSchedule as? ViewControllertabSchedule {
                 newProfileDelegate = pvc
                 newProfileDelegate?.newProfile(new: true)
             }
@@ -720,7 +720,7 @@ extension ViewControllertabMain: AddProfiles {
         }
 
         // Reset in tabSchedule
-        if let pvc = SharingManagerConfiguration.sharedInstance.ViewControllertabSchedule as? ViewControllertabSchedule {
+        if let pvc = SharingManagerConfiguration.sharedInstance.viewControllertabSchedule as? ViewControllertabSchedule {
             newProfileDelegate = pvc
             newProfileDelegate?.newProfile(new: false)
         }

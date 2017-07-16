@@ -13,7 +13,7 @@ class ViewControllerCopyFilesSource: NSViewController {
 
     // Main tableview
     @IBOutlet weak var mainTableView: NSTableView!
-    @IBOutlet weak var CloseButton: NSButton!
+    @IBOutlet weak var closeButton: NSButton!
 
     // Dismisser
     weak var dismissDelegate: DismissViewController?
@@ -26,7 +26,7 @@ class ViewControllerCopyFilesSource: NSViewController {
     private var index: Int?
 
     // ACTIONS AND BUTTONS
-    @IBAction func Close(_ sender: NSButton) {
+    @IBAction func close(_ sender: NSButton) {
         if let pvc = self.presenting as? ViewControllerCopyFiles {
             self.getSourceDelegate = pvc
             if let index = self.index {
@@ -89,7 +89,7 @@ class ViewControllerCopyFilesSource: NSViewController {
     // when row is selected
     // setting which table row is selected
     func tableViewSelectionDidChange(_ notification: Notification) {
-        let myTableViewFromNotification = notification.object as! NSTableView
+        let myTableViewFromNotification = (notification.object as? NSTableView)!
         let indexes = myTableViewFromNotification.selectedRowIndexes
         if let index = indexes.first {
             if let pvc = self.presenting as? ViewControllerCopyFiles {

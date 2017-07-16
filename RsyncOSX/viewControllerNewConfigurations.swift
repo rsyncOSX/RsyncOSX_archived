@@ -42,9 +42,9 @@ class ViewControllerNewConfigurations: NSViewController {
 
     // Userconfiguration
     // self.presentViewControllerAsSheet(self.ViewControllerUserconfiguration)
-    lazy var ViewControllerUserconfiguration: NSViewController = {
-        return self.storyboard!.instantiateController(withIdentifier: NSStoryboard.SceneIdentifier(rawValue: "StoryboardUserconfigID"))
-            as! NSViewController
+    lazy var viewControllerUserconfiguration: NSViewController = {
+        return (self.storyboard!.instantiateController(withIdentifier: NSStoryboard.SceneIdentifier(rawValue: "StoryboardUserconfigID"))
+            as? NSViewController)!
     }()
 
     @IBAction func copyLocalCatalog(_ sender: NSButton) {
@@ -56,9 +56,9 @@ class ViewControllerNewConfigurations: NSViewController {
     }
 
     // Userconfiguration button
-    @IBAction func Userconfiguration(_ sender: NSButton) {
+    @IBAction func userconfiguration(_ sender: NSButton) {
         globalMainQueue.async(execute: { () -> Void in
-            self.presentViewControllerAsSheet(self.ViewControllerUserconfiguration)
+            self.presentViewControllerAsSheet(self.viewControllerUserconfiguration)
         })
     }
 
@@ -72,7 +72,7 @@ class ViewControllerNewConfigurations: NSViewController {
         // Tooltip
         self.localCatalog.toolTip = "By using Finder drag and drop filepaths."
         self.offsiteCatalog.toolTip = "By using Finder drag and drop filepaths."
-        SharingManagerConfiguration.sharedInstance.ViewControllerNewConfigurations = self
+        SharingManagerConfiguration.sharedInstance.viewControllerNewConfigurations = self
     }
 
     override func viewDidAppear() {
@@ -106,7 +106,7 @@ class ViewControllerNewConfigurations: NSViewController {
         self.singleFile.state = .off
     }
 
-    @IBAction func AddConfig(_ sender: NSButton) {
+    @IBAction func addConfig(_ sender: NSButton) {
         let dict: NSMutableDictionary = [
             "task": "backup",
             "backupID": backupID.stringValue,
@@ -130,11 +130,11 @@ class ViewControllerNewConfigurations: NSViewController {
         }
 
         if (!self.localCatalog.stringValue.hasSuffix("/") && self.singleFile.state == .off) {
-            self.localCatalog.stringValue = self.localCatalog.stringValue + "/"
+            self.localCatalog.stringValue += "/"
             dict.setValue(self.localCatalog.stringValue, forKey: "localCatalog")
         }
         if (!self.offsiteCatalog.stringValue.hasSuffix("/")) {
-            self.offsiteCatalog.stringValue = self.offsiteCatalog.stringValue + "/"
+            self.offsiteCatalog.stringValue += "/"
             dict.setValue(self.offsiteCatalog.stringValue, forKey: "offsiteCatalog")
         }
         dict.setObject(self.rsyncdaemon.state, forKey: "rsyncdaemon" as NSCopying)

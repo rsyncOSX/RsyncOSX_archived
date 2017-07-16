@@ -83,20 +83,20 @@ class SharingManagerConfiguration {
     // Variabl if arguments to Rsync is changed and must be read into memory again
     private var readRsyncArguments: Bool = true
     // Reference to manin View
-    var ViewControllertabMain: NSViewController?
+    var viewControllertabMain: NSViewController?
     // Reference to Copy files
-    var ViewControllerCopyFiles: NSViewController?
+    var viewControllerCopyFiles: NSViewController?
     // Reference to the New tasks
-    var ViewControllerNewConfigurations: NSViewController?
+    var viewControllerNewConfigurations: NSViewController?
     // Reference to the  Schedule
-    var ViewControllertabSchedule: NSViewController?
+    var viewControllertabSchedule: NSViewController?
     // Reference to the Operation object
     // Reference is set in when Scheduled task is executed
     var operation: CompleteScheduledOperation?
     // Which profile to use, if default nil
-    var ViewControllerLoggData: NSViewController?
+    var viewControllerLoggData: NSViewController?
     // Reference to Ssh view
-    var ViewControllerSsh: NSViewController?
+    var viewControllerSsh: NSViewController?
     private var profile: String?
     // Notify about scheduled process
     // Only allowed to notity by modal window when in main view
@@ -104,21 +104,21 @@ class SharingManagerConfiguration {
     // If rsync error reset workqueue
     var rsyncerror: Bool = true
     // Reference to singletask object
-    var SingleTask: NewSingleTask?
+    var singleTask: NewSingleTask?
 
     // DATA STRUCTURES
 
     // The main structure storing all Configurations for tasks
-    private var Configurations = Array<Configuration>()
+    private var configurations = Array<Configuration>()
     // Array to store argumenst for all tasks.
     // Initialized during startup
     private var argumentAllConfigurations =  NSMutableArray()
     // Datasource for NSTableViews
-    private var ConfigurationsDataSource: Array<NSMutableDictionary>?
+    private var configurationsDataSource: Array<NSMutableDictionary>?
     // Object for batchQueue data and operations
     private var batchdata: BatchTaskWorkQueu?
     // the MacSerialNumber
-    private var MacSerialNumber: String?
+    private var macSerialNumber: String?
 
     // READ and SET all Configurations and arguments for rsync in object
 
@@ -135,7 +135,7 @@ class SharingManagerConfiguration {
         for i in 0 ..< store.count {
             //let config = ArgumentsOneConfig(config:store[i])
             // Appending one (of many?) Config read from store to memory
-            self.Configurations.append(store[i])
+            self.configurations.append(store[i])
             // Appending all arguments for rsync for One configuration to memory
             let rsyncArgumentsOneConfig = ArgumentsOneConfiguration(config: store[i])
             self.argumentAllConfigurations.add(rsyncArgumentsOneConfig)
@@ -145,24 +145,24 @@ class SharingManagerConfiguration {
         var data = Array<NSMutableDictionary>()
         self.destroyConfigurationsDataSource()
         var batch: Int = 0
-        for i in 0 ..< self.Configurations.count {
-            if(self.Configurations[i].batch == "yes") {
+        for i in 0 ..< self.configurations.count {
+            if(self.configurations[i].batch == "yes") {
                 batch = 1
             } else {
                 batch = 0
             }
             row = [
-                "taskCellID": self.Configurations[i].task,
+                "taskCellID": self.configurations[i].task,
                 "batchCellID": batch,
-                "localCatalogCellID": self.Configurations[i].localCatalog,
-                "offsiteCatalogCellID": self.Configurations[i].offsiteCatalog,
-                "offsiteServerCellID": self.Configurations[i].offsiteServer,
-                "backupIDCellID": self.Configurations[i].backupID,
-                "runDateCellID": self.Configurations[i].dateRun!
+                "localCatalogCellID": self.configurations[i].localCatalog,
+                "offsiteCatalogCellID": self.configurations[i].offsiteCatalog,
+                "offsiteServerCellID": self.configurations[i].offsiteServer,
+                "backupIDCellID": self.configurations[i].backupID,
+                "runDateCellID": self.configurations[i].dateRun!
             ]
             data.append(row)
         }
-        self.ConfigurationsDataSource = data
+        self.configurationsDataSource = data
     }
 
     // ALL THE GETTERS
@@ -180,19 +180,19 @@ class SharingManagerConfiguration {
 
     /// Function for returning the MacSerialNumber
     func getMacSerialNumber() -> String {
-        guard (self.MacSerialNumber != nil) else {
+        guard (self.macSerialNumber != nil) else {
             // Compute it, set it and return
-            self.MacSerialNumber = self.macSerialNumber()
-            return self.MacSerialNumber!
+            self.macSerialNumber = self.getmacSerialNumber()
+            return self.macSerialNumber!
         }
-        return self.MacSerialNumber!
+        return self.macSerialNumber!
     }
 
     /// Function for getting Configurations read into memory
     /// - parameter none: none
     /// - returns : Array of configurations
     func getConfigurations() -> Array<Configuration> {
-        return self.Configurations
+        return self.configurations
     }
 
     /// Function for getting arguments for all Configurations read into memory
@@ -205,11 +205,11 @@ class SharingManagerConfiguration {
     /// Function for getting the number of configurations used in NSTableViews
     /// - parameter none: none
     /// - returns : Int
-    func ConfigurationsDataSourcecount() -> Int {
-        if (self.ConfigurationsDataSource == nil) {
+    func configurationsDataSourcecount() -> Int {
+        if (self.configurationsDataSource == nil) {
             return 0
         } else {
-            return self.ConfigurationsDataSource!.count
+            return self.configurationsDataSource!.count
         }
     }
 
@@ -218,14 +218,14 @@ class SharingManagerConfiguration {
     /// - parameter none: none
     /// - returns : Array of Configurations
     func getConfigurationsDataSource() -> [NSMutableDictionary]? {
-        return self.ConfigurationsDataSource
+        return self.configurationsDataSource
     }
 
     /// Function for getting all Configurations marked as backup (not restore)
     /// - parameter none: none
     /// - returns : Array of NSDictionary
     func getConfigurationsDataSourcecountBackupOnly() -> [NSDictionary]? {
-        let configurations: [Configuration] = self.Configurations.filter({return ($0.task == "backup")})
+        let configurations: [Configuration] = self.configurations.filter({return ($0.task == "backup")})
         var row =  NSDictionary()
         var data = Array<NSDictionary>()
         for i in 0 ..< configurations.count {
@@ -246,13 +246,13 @@ class SharingManagerConfiguration {
     /// Function returns all Configurations marked for backup.
     /// - returns : array of Configurations
     func getConfigurationsBatch() -> [Configuration] {
-        return self.Configurations.filter({return ($0.task == "backup") && ($0.batch == "yes")})
+        return self.configurations.filter({return ($0.task == "backup") && ($0.batch == "yes")})
     }
 
     /// Function for returning count of all Configurations marked as backup (not restore)
     /// - parameter none: none
     /// - returns : Int
-    func ConfigurationsDataSourcecountBackupOnlyCount() -> Int {
+    func configurationsDataSourcecountBackupOnlyCount() -> Int {
         if let number = self.getConfigurationsDataSourcecountBackupOnly() {
             return number.count
         } else {
@@ -266,7 +266,7 @@ class SharingManagerConfiguration {
     /// - parameter argtype : either .arg or .argdryRun (of enumtype argumentsRsync)
     /// - returns : array of Strings holding all computed arguments
     func getRsyncArgumentOneConfig (index: Int, argtype: ArgumentsRsync) -> Array<String> {
-        let allarguments = self.argumentAllConfigurations[index] as! ArgumentsOneConfiguration
+        let allarguments = (self.argumentAllConfigurations[index] as? ArgumentsOneConfiguration)!
         switch argtype {
         case .arg:
             return allarguments.arg!
@@ -280,7 +280,7 @@ class SharingManagerConfiguration {
     /// - parameter dict : new record configuration
     func addConfigurationtoMemory (dict: NSDictionary) {
         let config = Configuration(dictionary: dict)
-        self.Configurations.append(config)
+        self.configurations.append(config)
     }
 
     // DESTROY FUNCTIONS
@@ -293,16 +293,16 @@ class SharingManagerConfiguration {
     /// Function destroys records holding added configurations as datasource 
     /// for presenting Configurations in tableviews
     private func destroyConfigurationsDataSource() {
-        self.ConfigurationsDataSource = nil
+        self.configurationsDataSource = nil
     }
 
     /// Function destroys records holding data about all Configurations, all
     /// arguments for Configurations and configurations as datasource for
     /// presenting Configurations in tableviews.
     func destroyConfigurations() {
-        self.Configurations.removeAll()
+        self.configurations.removeAll()
         self.argumentAllConfigurations.removeAllObjects()
-        self.ConfigurationsDataSource = nil
+        self.configurationsDataSource = nil
     }
 
     /// Function sets currentDate on Configuration when executed on task 
@@ -313,13 +313,13 @@ class SharingManagerConfiguration {
     func setCurrentDateonConfiguration (_ index: Int) {
         let currendate = Date()
         let dateformatter = Utils.sharedInstance.setDateformat()
-        self.Configurations[index].dateRun = dateformatter.string(from: currendate)
+        self.configurations[index].dateRun = dateformatter.string(from: currendate)
         // Saving updated configuration in memory to persistent store
         PersistentStoreAPI.sharedInstance.saveConfigFromMemory()
         // Reread Configuration and update datastructure for tableViews
         self.readAllConfigurationsAndArguments()
         // Call the view and do a refresh of tableView
-        if let pvc = self.ViewControllertabMain as? ViewControllertabMain {
+        if let pvc = self.viewControllertabMain as? ViewControllertabMain {
             self.refreshDelegate = pvc
             self.refreshDelegate?.refresh()
         }
@@ -336,7 +336,7 @@ class SharingManagerConfiguration {
     /// - parameter config: updated configuration
     /// - parameter index: index to Configuration to replace by config
     func updateConfigurations (_ config: Configuration, index: Int) {
-        self.Configurations[index] = config
+        self.configurations[index] = config
         PersistentStoreAPI.sharedInstance.saveConfigFromMemory()
     }
 
@@ -346,7 +346,7 @@ class SharingManagerConfiguration {
     /// - parameter hiddenID: hiddenID which is unique for every Configuration
     func deleteConfigurationsByhiddenID (hiddenID: Int) {
         let index = self.getIndex(hiddenID)
-        self.Configurations.remove(at: index)
+        self.configurations.remove(at: index)
         PersistentStoreAPI.sharedInstance.saveConfigFromMemory()
     }
 
@@ -356,16 +356,16 @@ class SharingManagerConfiguration {
     /// persisten store
     /// - parameter index: index of Configuration to toogle batch on/off
     func setBatchYesNo (_ index: Int) {
-        if (self.Configurations[index].batch == "yes") {
-            self.Configurations[index].batch = "no"
+        if (self.configurations[index].batch == "yes") {
+            self.configurations[index].batch = "no"
         } else {
-            self.Configurations[index].batch = "yes"
+            self.configurations[index].batch = "yes"
         }
         PersistentStoreAPI.sharedInstance.saveConfigFromMemory()
         // Reread Configuration and update datastructure for tableViews
         self.readAllConfigurationsAndArguments()
         // Call the view and do a refresh of tableView
-        if let pvc = self.ViewControllertabMain as? ViewControllertabMain {
+        if let pvc = self.viewControllertabMain as? ViewControllertabMain {
             self.refreshDelegate = pvc
             self.refreshDelegate?.refresh()
         }
@@ -434,7 +434,7 @@ class SharingManagerConfiguration {
     // GET VALUES BY HIDDENID
 
     // Enum which resource to return
-    enum resourceInConfiguration {
+    enum ResourceInConfiguration {
         case remoteCatalog
         case localCatalog
         case offsiteServer
@@ -445,9 +445,9 @@ class SharingManagerConfiguration {
     /// - parameter hiddenID: hiddenID for Configuration
     /// - parameter resource: which resource to get from configuration
     /// - returns : resource
-    func getResourceConfiguration(_ hiddenID: Int, resource: resourceInConfiguration) -> String {
+    func getResourceConfiguration(_ hiddenID: Int, resource: ResourceInConfiguration) -> String {
 
-        var result = self.Configurations.filter({return ($0.hiddenID == hiddenID)})
+        var result = self.configurations.filter({return ($0.hiddenID == hiddenID)})
 
         guard result.count > 0 else {
             return ""
@@ -474,8 +474,8 @@ class SharingManagerConfiguration {
     /// - returns : index of Configuration
     func getIndex(_ hiddenID: Int) -> Int {
         var index: Int = -1
-        loop: for i in 0 ..< self.Configurations.count {
-            if (self.Configurations[i].hiddenID == hiddenID) {
+        loop: for i in 0 ..< self.configurations.count {
+            if (self.configurations[i].hiddenID == hiddenID) {
                 index = i
                 break loop
             }
@@ -487,7 +487,7 @@ class SharingManagerConfiguration {
     /// - parameter index: index for Configuration
     /// - returns : hiddenID for Configuration
     func gethiddenID (index: Int) -> Int {
-        return self.Configurations[index].hiddenID
+        return self.configurations[index].hiddenID
     }
 
     /// Function returns the correct path for rsync
@@ -508,7 +508,7 @@ class SharingManagerConfiguration {
 
     /// Function for computing MacSerialNumber
     /// - returns : the MacSerialNumber
-    private func macSerialNumber() -> String {
+    private func getmacSerialNumber() -> String {
         // Get the platform expert
         let platformExpert: io_service_t = IOServiceGetMatchingService(kIOMasterPortDefault, IOServiceMatching("IOPlatformExpertDevice"))
         // Get the serial number as a CFString ( actually as Unmanaged<AnyObject>! )

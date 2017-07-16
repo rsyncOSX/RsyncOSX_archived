@@ -123,7 +123,7 @@ class ViewControllertabSchedule: NSViewController {
                     // Refresh table and recalculate the Schedules jobs
                     self.refresh()
                     // Start next job, if any, by delegate
-                    if let pvc = SharingManagerConfiguration.sharedInstance.ViewControllertabMain as? ViewControllertabMain {
+                    if let pvc = SharingManagerConfiguration.sharedInstance.viewControllertabMain as? ViewControllertabMain {
                         startnextjobDelegate = pvc
                         startnextjobDelegate?.startProcess()
                     }
@@ -147,7 +147,7 @@ class ViewControllertabSchedule: NSViewController {
     }
 
     // Userconfiguration button
-    @IBAction func Userconfiguration(_ sender: NSButton) {
+    @IBAction func userconfiguration(_ sender: NSButton) {
         globalMainQueue.async(execute: { () -> Void in
             self.presentViewControllerAsSheet(self.viewControllerUserconfiguration)
         })
@@ -172,7 +172,7 @@ class ViewControllertabSchedule: NSViewController {
         // Create a Schedules object
         self.schedules = ScheduleSortedAndExpand()
         // Setting reference to self.
-        SharingManagerConfiguration.sharedInstance.ViewControllertabSchedule = self
+        SharingManagerConfiguration.sharedInstance.viewControllertabSchedule = self
     }
 
     override func viewDidAppear() {
@@ -184,7 +184,7 @@ class ViewControllertabSchedule: NSViewController {
             // Create a Schedules object
             self.schedules = ScheduleSortedAndExpand()
         }
-        if (SharingManagerConfiguration.sharedInstance.ConfigurationsDataSourcecountBackupOnlyCount() > 0 ) {
+        if (SharingManagerConfiguration.sharedInstance.configurationsDataSourcecountBackupOnlyCount() > 0 ) {
             globalMainQueue.async(execute: { () -> Void in
                 self.mainTableView.reloadData()
             })
@@ -194,14 +194,14 @@ class ViewControllertabSchedule: NSViewController {
         // Call function to check if a scheduled backup is due for countdown
         self.startTimer()
         // Reference to self
-        SharingManagerSchedule.sharedInstance.ViewObjectSchedule = self
+        SharingManagerSchedule.sharedInstance.viewObjectSchedule = self
     }
 
     override func viewDidDisappear() {
         super.viewDidDisappear()
         if (self.newSchedules!) {
             self.newSchedules = false
-            if let pvc = SharingManagerConfiguration.sharedInstance.ViewControllertabMain as? ViewControllertabMain {
+            if let pvc = SharingManagerConfiguration.sharedInstance.viewControllertabMain as? ViewControllertabMain {
                 self.newSchedulesDelegate = pvc
                 // Notify new schedules are added
                 self.newSchedulesDelegate?.newSchedulesAdded()
@@ -255,7 +255,7 @@ class ViewControllertabSchedule: NSViewController {
     // when row is selected
     // setting which table row is selected
     func tableViewSelectionDidChange(_ notification: Notification) {
-        let myTableViewFromNotification = notification.object as! NSTableView
+        let myTableViewFromNotification = (notification.object as? NSTableView)!
         let indexes = myTableViewFromNotification.selectedRowIndexes
         if let index = indexes.first {
             // Set index
@@ -273,7 +273,7 @@ class ViewControllertabSchedule: NSViewController {
 extension ViewControllertabSchedule : NSTableViewDataSource {
 
     func numberOfRows(in tableView: NSTableView) -> Int {
-        return SharingManagerConfiguration.sharedInstance.ConfigurationsDataSourcecountBackupOnlyCount()
+        return SharingManagerConfiguration.sharedInstance.configurationsDataSourcecountBackupOnlyCount()
     }
 }
 
@@ -359,7 +359,7 @@ extension ViewControllertabSchedule: AddProfiles {
 extension ViewControllertabSchedule: RefreshtableView {
 
     func refresh() {
-        if (SharingManagerConfiguration.sharedInstance.ConfigurationsDataSourcecountBackupOnlyCount() > 0 ) {
+        if (SharingManagerConfiguration.sharedInstance.configurationsDataSourcecountBackupOnlyCount() > 0 ) {
             globalMainQueue.async(execute: { () -> Void in
                 self.mainTableView.reloadData()
             })

@@ -8,23 +8,23 @@
 
 import Foundation
 
-enum singleTaskWork {
-    case estimate_singlerun
-    case execute_singlerun
+enum SingleTaskWork {
+    case estimatesinglerun
+    case executesinglerun
     case abort
     case empty
     case done
     case error
 }
 
-final class singleTaskWorkQueu {
+final class SingleTaskWorkQueu {
 
     // Work Queue
-    private var work: Array<singleTaskWork>?
+    private var work: Array<SingleTaskWork>?
 
     // Returns the top most element.
     // Top element is read only
-    func peek() -> singleTaskWork {
+    func peek() -> SingleTaskWork {
         guard self.work != nil else {
             return .empty
         }
@@ -36,7 +36,7 @@ final class singleTaskWorkQueu {
 
     // Returns the top most element.
     // Top element is removed
-    func pop() -> singleTaskWork {
+    func pop() -> SingleTaskWork {
         guard self.work != nil else {
             return .empty
         }
@@ -58,16 +58,16 @@ final class singleTaskWorkQueu {
     // Single run
     init() {
         self.work = nil
-        self.work = Array<singleTaskWork>()
-        self.work!.append(.estimate_singlerun)
-        self.work!.append(.execute_singlerun)
+        self.work = Array<SingleTaskWork>()
+        self.work!.append(.estimatesinglerun)
+        self.work!.append(.executesinglerun)
         self.work!.append(.done)
     }
 
     // Either Abort or Batchrun
-    init (task: singleTaskWork) {
+    init (task: SingleTaskWork) {
         self.work = nil
-        self.work = Array<singleTaskWork>()
+        self.work = Array<SingleTaskWork>()
         self.work!.append(task)
     }
 }

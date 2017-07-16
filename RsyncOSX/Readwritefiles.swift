@@ -11,14 +11,14 @@
 
 import Foundation
 
-enum whatToReadWrite {
+enum WhatToReadWrite {
     case schedule
     case configuration
     case userconfig
     case none
 }
 
-class readwritefiles {
+class Readwritefiles {
 
     // Name set for schedule, configuration or config
     private var name: String?
@@ -33,17 +33,17 @@ class readwritefiles {
     // If to use profile, only configurations and schedules to read from profile
     private var useProfile: Bool = false
     // task to do
-    private var task: whatToReadWrite?
+    private var task: WhatToReadWrite?
 
     // Set which file to read
     private var fileName: String? {
         get {
             let str: String?
             let paths = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true) as NSArray
-            let docuDir = paths.firstObject as! String
+            let docuDir = (paths.firstObject as? String)!
             let profilePath = Profiles()
             profilePath.createDirectory()
-            if (self.useProfile) {
+            if self.useProfile {
                 // Use profile
                 if let profile = self.profile {
                     let profilePath = Profiles()
@@ -64,20 +64,20 @@ class readwritefiles {
     // Function for reading data from persistent store
     func getDatafromfile () -> Array<NSDictionary>? {
 
-        guard (self.task != nil)  else {
+        guard self.task != nil  else {
             return nil
         }
 
-        switch (self.task!) {
+        switch self.task! {
         case .schedule:
-            if (SharingManagerConfiguration.sharedInstance.isDataDirty()) {
+            if SharingManagerConfiguration.sharedInstance.isDataDirty() {
                 self.readdisk = true
                 SharingManagerConfiguration.sharedInstance.setDataDirty(dirty: false)
             } else {
                 self.readdisk = false
             }
         case .configuration:
-            if (SharingManagerConfiguration.sharedInstance.isDataDirty()) {
+            if SharingManagerConfiguration.sharedInstance.isDataDirty() {
                 self.readdisk = true
                 SharingManagerConfiguration.sharedInstance.setDataDirty(dirty: false)
             } else {
@@ -88,10 +88,10 @@ class readwritefiles {
         case .none:
             self.readdisk = false
         }
-        if (self.readdisk == true) {
+        if self.readdisk == true {
 
             var list = Array<NSDictionary>()
-            guard (self.fileName != nil && self.key != nil) else {
+            guard self.fileName != nil && self.key != nil else {
                 return nil
             }
 
@@ -118,13 +118,13 @@ class readwritefiles {
     }
 
     // Function for write data to persistent store
-    func writeDictionarytofile (_ array: Array<NSDictionary>, task: whatToReadWrite) -> Bool {
+    func writeDictionarytofile (_ array: Array<NSDictionary>, task: WhatToReadWrite) -> Bool {
 
         self.setPreferences(task)
-        guard (self.task != nil)  else {
+        guard self.task != nil  else {
             return false
         }
-        switch (self.task!) {
+        switch self.task! {
         case .schedule:
             SharingManagerConfiguration.sharedInstance.setDataDirty(dirty: true)
         case .configuration:
@@ -134,17 +134,17 @@ class readwritefiles {
             SharingManagerConfiguration.sharedInstance.setDataDirty(dirty: false)
         }
         let dictionary = NSDictionary(object: array, forKey: self.key! as NSCopying)
-        guard (self.fileName != nil) else {
+        guard self.fileName != nil else {
             return false
         }
         return  dictionary.write(toFile: self.fileName!, atomically: true)
     }
 
     // Set preferences for which data to read or write
-    private func setPreferences (_ task: whatToReadWrite) {
+    private func setPreferences (_ task: WhatToReadWrite) {
         self.useProfile = false
         self.task = task
-        switch (self.task!) {
+        switch self.task! {
         case .schedule:
             self.name = "/scheduleRsync.plist"
             self.key = "Schedule"
@@ -169,7 +169,7 @@ class readwritefiles {
 
     }
 
-    init(task: whatToReadWrite) {
+    init(task: WhatToReadWrite) {
         self.setPreferences(task)
     }
 

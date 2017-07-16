@@ -54,7 +54,7 @@ class ViewControllerCopyFiles: NSViewController {
     }
 
     // Abort button
-    @IBAction func Abort(_ sender: NSButton) {
+    @IBAction func abort(_ sender: NSButton) {
         self.working.stopAnimation(nil)
         guard self.copyFiles != nil else {
             return
@@ -74,12 +74,12 @@ class ViewControllerCopyFiles: NSViewController {
     @IBOutlet weak var workingRsync: NSProgressIndicator!
     // Search field
     @IBOutlet weak var search: NSSearchField!
-    @IBOutlet weak var CopyButton: NSButton!
+    @IBOutlet weak var copyButton: NSButton!
     // Select source button
-    @IBOutlet weak var SelectButton: NSButton!
+    @IBOutlet weak var selectButton: NSButton!
 
     // Do the work
-    @IBAction func Copy(_ sender: NSButton) {
+    @IBAction func copy(_ sender: NSButton) {
         if (self.remoteCatalog.stringValue.isEmpty || self.localCatalog.stringValue.isEmpty) {
             Alerts.showInfo("From: or To: cannot be empty!")
         } else {
@@ -88,7 +88,7 @@ class ViewControllerCopyFiles: NSViewController {
                 self.workingRsync.startAnimation(nil)
                 if (self.estimated == false) {
                     self.copyFiles!.executeRsync(remotefile: remoteCatalog!.stringValue, localCatalog: localCatalog!.stringValue, dryrun: true)
-                    self.CopyButton.title = "Execute"
+                    self.copyButton.title = "Execute"
                     self.estimated = true
                 } else {
                     self.workingRsync.startAnimation(nil)
@@ -102,7 +102,7 @@ class ViewControllerCopyFiles: NSViewController {
     }
 
     // Getting index from Execute View
-    @IBAction func GetIndex(_ sender: NSButton) {
+    @IBAction func getIndex(_ sender: NSButton) {
         self.copyFiles = nil
         if let index = self.index {
             self.copyFiles = CopyFiles(index: index)
@@ -116,7 +116,7 @@ class ViewControllerCopyFiles: NSViewController {
         }
     }
 
-    @IBAction func Reset(_ sender: NSButton) {
+    @IBAction func reset(_ sender: NSButton) {
         self.resetCopySource()
     }
 
@@ -130,14 +130,14 @@ class ViewControllerCopyFiles: NSViewController {
         })
         self.displayRemoteserver(index: nil)
         self.remoteCatalog.stringValue = ""
-        self.SelectButton.title = "Get source"
+        self.selectButton.title = "Get source"
     }
 
     fileprivate func displayRemoteserver(index: Int?) {
         guard (index != nil) else {
             self.server.stringValue = ""
             self.rcatalog.stringValue = ""
-            self.SelectButton.title = "Get source"
+            self.selectButton.title = "Get source"
             return
         }
         let hiddenID = SharingManagerConfiguration.sharedInstance.gethiddenID(index: index!)
@@ -145,13 +145,13 @@ class ViewControllerCopyFiles: NSViewController {
             self.server.stringValue = SharingManagerConfiguration.sharedInstance.getResourceConfiguration(hiddenID, resource: .offsiteServer)
             self.rcatalog.stringValue = SharingManagerConfiguration.sharedInstance.getResourceConfiguration(hiddenID, resource: .remoteCatalog)
         })
-        self.SelectButton.title = "Get files"
+        self.selectButton.title = "Get files"
     }
 
     override func viewDidLoad() {
         super.viewDidLoad()
         // Setting reference to ViewObject
-        SharingManagerConfiguration.sharedInstance.ViewControllerCopyFiles = self
+        SharingManagerConfiguration.sharedInstance.viewControllerCopyFiles = self
         self.tableViewSelect.delegate = self
         self.tableViewSelect.dataSource = self
         // Progress indicator
@@ -165,14 +165,14 @@ class ViewControllerCopyFiles: NSViewController {
 
     override func viewDidAppear() {
         super.viewDidAppear()
-        if let pvc = SharingManagerConfiguration.sharedInstance.ViewControllertabMain as? ViewControllertabMain {
+        if let pvc = SharingManagerConfiguration.sharedInstance.viewControllertabMain as? ViewControllertabMain {
             self.indexDelegate = pvc
             self.index = self.indexDelegate?.getindex()
             if let index = self.index {
                 self.displayRemoteserver(index: index)
             }
         }
-        self.CopyButton.title = "Estimate"
+        self.copyButton.title = "Estimate"
         if let restorePath = SharingManagerConfiguration.sharedInstance.restorePath {
             self.localCatalog.stringValue = restorePath
         } else {
@@ -301,7 +301,7 @@ extension ViewControllerCopyFiles: NSTableViewDelegate {
                 self.commandString.stringValue = "Please select both \"Restore to:\" and \"Restore:\" to show rsync command"
             }
             self.estimated = false
-            self.CopyButton.title = "Estimate"
+            self.copyButton.title = "Estimate"
         }
     }
 }

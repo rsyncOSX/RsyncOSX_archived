@@ -14,7 +14,7 @@ final class CommandCopyFiles: ProcessCmd {
         super.init(command: command, arguments: arguments, aScheduledOperation: false)
         // Process is inated from CopyFiles
         // ProcessTermination()
-        if let pvc = SharingManagerConfiguration.sharedInstance.ViewControllerCopyFiles as? ViewControllerCopyFiles {
+        if let pvc = SharingManagerConfiguration.sharedInstance.viewControllerCopyFiles as? ViewControllerCopyFiles {
             self.updateDelegate = pvc
         }
         // Just for using another appending output function

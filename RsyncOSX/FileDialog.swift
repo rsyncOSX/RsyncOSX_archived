@@ -41,17 +41,17 @@ final class FileDialog {
             // We are sending over the path to the correct requestor
             switch requester {
             case .copyFilesTo:
-                if let pvc = SharingManagerConfiguration.sharedInstance.ViewControllerCopyFiles as? ViewControllerCopyFiles {
+                if let pvc = SharingManagerConfiguration.sharedInstance.viewControllerCopyFiles as? ViewControllerCopyFiles {
                     self.pathDelegate = pvc
                     self.pathDelegate?.pathSet(path: path, requester: .copyFilesTo)
                 }
             case .addLocalCatalog:
-                if let pvc = SharingManagerConfiguration.sharedInstance.ViewControllerNewConfigurations as? ViewControllerNewConfigurations {
+                if let pvc = SharingManagerConfiguration.sharedInstance.viewControllerNewConfigurations as? ViewControllerNewConfigurations {
                     self.pathDelegate = pvc
                     self.pathDelegate?.pathSet(path: path, requester: .addLocalCatalog)
                 }
             case .addRemoteCatalog:
-                if let pvc = SharingManagerConfiguration.sharedInstance.ViewControllerNewConfigurations as? ViewControllerNewConfigurations {
+                if let pvc = SharingManagerConfiguration.sharedInstance.viewControllerNewConfigurations as? ViewControllerNewConfigurations {
                     self.pathDelegate = pvc
                     self.pathDelegate?.pathSet(path: path, requester: .addRemoteCatalog)
                 }

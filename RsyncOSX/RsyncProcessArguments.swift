@@ -8,7 +8,7 @@
 
 import Foundation
 
-class rsyncProcessArguments {
+class RsyncProcessArguments {
 
     // If true one of the userselecet params are --stats
     // If not add --stats in dryrun arguments.

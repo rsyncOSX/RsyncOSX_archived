@@ -32,7 +32,7 @@ class ExecuteTask: Operation {
                 let configArray = store.filter({return ($0.hiddenID == hiddenID)})
 
                 guard configArray.count > 0 else {
-                    if let pvc = SharingManagerConfiguration.sharedInstance.ViewControllertabMain as? ViewControllertabMain {
+                    if let pvc = SharingManagerConfiguration.sharedInstance.viewControllertabMain as? ViewControllertabMain {
                         notifyDelegate = pvc
                         if (SharingManagerConfiguration.sharedInstance.allowNotifyinMain == true) {
                             notifyDelegate?.notifyScheduledJob(config: nil)
@@ -44,7 +44,7 @@ class ExecuteTask: Operation {
                 config = configArray[0]
 
                 guard (config != nil) else {
-                    if let pvc = SharingManagerConfiguration.sharedInstance.ViewControllertabMain as? ViewControllertabMain {
+                    if let pvc = SharingManagerConfiguration.sharedInstance.viewControllertabMain as? ViewControllertabMain {
                         notifyDelegate = pvc
                         if (SharingManagerConfiguration.sharedInstance.allowNotifyinMain == true) {
                             notifyDelegate?.notifyScheduledJob(config: nil)
@@ -54,7 +54,7 @@ class ExecuteTask: Operation {
                 }
 
                 // Notify that scheduled task is executing
-                if let pvc = SharingManagerConfiguration.sharedInstance.ViewControllertabMain as? ViewControllertabMain {
+                if let pvc = SharingManagerConfiguration.sharedInstance.viewControllertabMain as? ViewControllertabMain {
                     notifyDelegate = pvc
                     notifyDelegate?.start()
                     // Trying to notify when not in main view will crash RSyncOSX
@@ -64,7 +64,7 @@ class ExecuteTask: Operation {
                 }
 
                 if (hiddenID >= 0 && config != nil) {
-                    arguments = rsyncProcessArguments().argumentsRsync(config!, dryRun: false, forDisplay: false)
+                    arguments = RsyncProcessArguments().argumentsRsync(config!, dryRun: false, forDisplay: false)
                     // Setting reference to finalize the job
                     // Finalize job is done when rsynctask ends (in process termination)
                     SharingManagerConfiguration.sharedInstance.operation = CompleteScheduledOperation(dict: dict)

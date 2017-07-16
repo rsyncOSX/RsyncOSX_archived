@@ -32,7 +32,7 @@ final class NewVersion {
                         if let url = contents?.object(forKey: self.runningVersion!) {
                             self.urlNewVersion = url as? String
                             SharingManagerConfiguration.sharedInstance.URLnewVersion = self.urlNewVersion
-                            if let pvc = SharingManagerConfiguration.sharedInstance.ViewControllertabMain as? ViewControllertabMain {
+                            if let pvc = SharingManagerConfiguration.sharedInstance.viewControllertabMain as? ViewControllertabMain {
                                 self.newversionDelegate = pvc
                                 if (SharingManagerConfiguration.sharedInstance.allowNotifyinMain == true) {
                                     self.newversionDelegate?.notifyNewVersion()

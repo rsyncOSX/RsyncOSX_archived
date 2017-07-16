@@ -492,7 +492,7 @@
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
                                 <connections>
-                                    <action selector="Radiobuttons:" target="egt-C3-u4G" id="lEu-ro-75X"/>
+                                    <action selector="radiobuttons" target="egt-C3-u4G" id="lEu-ro-75X"/>
                                 </connections>
                             </button>
                             <button translatesAutoresizingMaskIntoConstraints="NO" id="6Lb-aQ-6Zc">
@@ -502,7 +502,7 @@
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
                                 <connections>
-                                    <action selector="Radiobuttons:" target="egt-C3-u4G" id="hsj-d8-VWI"/>
+                                    <action selector="radiobuttons" target="egt-C3-u4G" id="hsj-d8-VWI"/>
                                 </connections>
                             </button>
                             <button translatesAutoresizingMaskIntoConstraints="NO" id="X1w-Np-lS3">
@@ -512,7 +512,7 @@
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
                                 <connections>
-                                    <action selector="Radiobuttons:" target="egt-C3-u4G" id="lTt-lc-puP"/>
+                                    <action selector="radiobuttons" target="egt-C3-u4G" id="lTt-lc-puP"/>
                                 </connections>
                             </button>
                             <box title="Edit" translatesAutoresizingMaskIntoConstraints="NO" id="kx3-m2-HBw">
@@ -1650,7 +1650,7 @@
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
                                 <connections>
-                                    <action selector="GetIndex:" target="GJH-xK-5LY" id="9tB-2N-kvI"/>
+                                    <action selector="getIndex" target="GJH-xK-5LY" id="9tB-2N-kvI"/>
                                 </connections>
                             </button>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="HvM-lg-JjX">
@@ -1660,7 +1660,7 @@
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
                                 <connections>
-                                    <action selector="Copy:" target="GJH-xK-5LY" id="cfD-Tp-gfN"/>
+                                    <action selector="copy" target="GJH-xK-5LY" id="cfD-Tp-gfN"/>
                                 </connections>
                             </button>
                             <box title="Source for restore file or catalog" translatesAutoresizingMaskIntoConstraints="NO" id="irb-Gi-c2A">
@@ -1720,7 +1720,7 @@
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
                                 <connections>
-                                    <action selector="Reset:" target="GJH-xK-5LY" id="eHJ-Tv-aVt"/>
+                                    <action selector="reset" target="GJH-xK-5LY" id="eHJ-Tv-aVt"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -1787,13 +1787,13 @@
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="CopyButton" destination="HvM-lg-JjX" id="RIx-1n-Z4j"/>
-                        <outlet property="SelectButton" destination="hhm-KY-QVD" id="CcP-B9-XaL"/>
                         <outlet property="commandString" destination="XwF-K5-R4q" id="wSn-jP-VtU"/>
+                        <outlet property="copyButton" destination="HvM-lg-JjX" id="RIx-1n-Z4j"/>
                         <outlet property="localCatalog" destination="L6A-JJ-Mvd" id="Nkp-wQ-iEO"/>
                         <outlet property="rcatalog" destination="zPh-wH-B2h" id="Bhx-Mo-gre"/>
                         <outlet property="remoteCatalog" destination="1ES-5z-SmE" id="WZe-oK-FUr"/>
                         <outlet property="search" destination="D7K-Le-RDk" id="jB3-Yw-FoO"/>
+                        <outlet property="selectButton" destination="hhm-KY-QVD" id="CcP-B9-XaL"/>
                         <outlet property="server" destination="dh3-kj-jDm" id="FOB-eX-KO6"/>
                         <outlet property="tableViewSelect" destination="FOY-xS-bUA" id="Iy8-O7-aFx"/>
                         <outlet property="working" destination="ZGP-nY-o1u" id="cfd-Jz-qh4"/>
@@ -2689,7 +2689,7 @@
                                                 <font key="font" metaFont="system"/>
                                             </buttonCell>
                                             <connections>
-                                                <action selector="AddConfig:" target="3xI-3C-guU" id="ZvR-NG-Qds"/>
+                                                <action selector="addConfig" target="3xI-3C-guU" id="ZvR-NG-Qds"/>
                                             </connections>
                                         </button>
                                     </subviews>
@@ -3083,7 +3083,7 @@ DQ
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
                                 <connections>
-                                    <action selector="Close:" target="auW-64-IFG" id="ctB-cr-lPa"/>
+                                    <action selector="close" target="auW-64-IFG" id="ctB-cr-lPa"/>
                                 </connections>
                             </button>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="fsl-j9-KAO">
@@ -3097,7 +3097,7 @@ DQ
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
                                 <connections>
-                                    <action selector="Execute:" target="auW-64-IFG" id="qMI-ai-j8k"/>
+                                    <action selector="execute" target="auW-64-IFG" id="qMI-ai-j8k"/>
                                 </connections>
                             </button>
                             <textField hidden="YES" horizontalHuggingPriority="251" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="w95-Na-zVc">
@@ -3144,7 +3144,7 @@ DQ
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="CloseButton" destination="kMM-ZX-vSQ" id="3RR-WQ-IyF"/>
+                        <outlet property="closeButton" destination="kMM-ZX-vSQ" id="3RR-WQ-IyF"/>
                         <outlet property="closeinseconds" destination="w95-Na-zVc" id="XZ7-IU-hPc"/>
                         <outlet property="label" destination="1lR-Vu-lR3" id="AbJ-fG-Cdu"/>
                         <outlet property="mainTableView" destination="0Yv-Sg-Gse" id="xfn-x5-hYZ"/>
@@ -3183,7 +3183,7 @@ DQ
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
                                 <connections>
-                                    <action selector="Abort:" target="sDH-LN-0H4" id="nna-aL-DNM"/>
+                                    <action selector="abort" target="sDH-LN-0H4" id="nna-aL-DNM"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -3536,7 +3536,7 @@ DQ
 </string>
                                 </buttonCell>
                                 <connections>
-                                    <action selector="Update:" target="CrF-Wa-Hfa" id="weA-j3-Hy9"/>
+                                    <action selector="update" target="CrF-Wa-Hfa" id="weA-j3-Hy9"/>
                                 </connections>
                             </button>
                             <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="x1V-LT-9gD">
@@ -3547,7 +3547,7 @@ DQ
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
                                 <connections>
-                                    <action selector="Close:" target="CrF-Wa-Hfa" id="v5b-Fh-38R"/>
+                                    <action selector="close" target="CrF-Wa-Hfa" id="v5b-Fh-38R"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -4939,7 +4939,7 @@ DQ
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
                                 <connections>
-                                    <action selector="AddProfile:" target="kPy-NB-0HQ" id="0uT-qz-8tQ"/>
+                                    <action selector="addProfile" target="kPy-NB-0HQ" id="0uT-qz-8tQ"/>
                                 </connections>
                             </button>
                             <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="zR4-nc-JKN">
@@ -4961,7 +4961,7 @@ DQ
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
                                 <connections>
-                                    <action selector="DeleteProfile:" target="kPy-NB-0HQ" id="G60-Gu-G4A"/>
+                                    <action selector="deleteProfile" target="kPy-NB-0HQ" id="G60-Gu-G4A"/>
                                 </connections>
                             </button>
                             <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="JeM-Ky-gSo">
@@ -5092,7 +5092,7 @@ DQ
 </string>
                                 </buttonCell>
                                 <connections>
-                                    <action selector="Close:" target="EOK-1X-FQE" id="gtq-TO-b5A"/>
+                                    <action selector="close" target="EOK-1X-FQE" id="gtq-TO-b5A"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -5108,7 +5108,7 @@ DQ
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="CloseButton" destination="dnA-SO-98k" id="CaY-D5-FTL"/>
+                        <outlet property="closeButton" destination="dnA-SO-98k" id="CaY-D5-FTL"/>
                         <outlet property="mainTableView" destination="EPR-q7-sUM" id="xZb-QL-ksU"/>
                     </connections>
                 </viewController>

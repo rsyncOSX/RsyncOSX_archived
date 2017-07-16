@@ -41,8 +41,8 @@ public class TCPClient: YSocket {
      * connect to server
      * return success or fail with message
      */
-    public func connect(timeout t: Int) -> (Bool, String) {
-        let rs: Int32=c_ytcpsocket_connect(host: self.addr, port: Int32(self.port), timeout: Int32(t))
+    public func connect(timeout time: Int) -> (Bool, String) {
+        let rs: Int32=c_ytcpsocket_connect(host: self.addr, port: Int32(self.port), timeout: Int32(time))
         if rs>0 {
             self.fd=rs
             return (true, "connect success")
@@ -76,10 +76,10 @@ public class TCPClient: YSocket {
     * send data
     * return success or fail with message
     */
-    public func send(data d: [UInt8]) -> (Bool, String) {
+    public func send(data dat: [UInt8]) -> (Bool, String) {
         if let fd: Int32=self.fd {
-            let sendsize: Int32=c_ytcpsocket_send(fd: fd, buff: d, len: Int32(d.count))
-            if Int(sendsize)==d.count {
+            let sendsize: Int32=c_ytcpsocket_send(fd: fd, buff: dat, len: Int32(dat.count))
+            if Int(sendsize)==dat.count {
                return (true, "send success")
             } else {
                 return (false, "send error")
@@ -92,10 +92,10 @@ public class TCPClient: YSocket {
     * send string
     * return success or fail with message
     */
-    public func send(str s: String) -> (Bool, String) {
+    public func send(str: String) -> (Bool, String) {
         if let fd: Int32=self.fd {
-            let sendsize: Int32=c_ytcpsocket_send(fd: fd, buff: s, len: Int32(strlen(s)))
-            if sendsize==Int32(strlen(s)) {
+            let sendsize: Int32=c_ytcpsocket_send(fd: fd, buff: str, len: Int32(strlen(str)))
+            if sendsize==Int32(strlen(str)) {
                 return (true, "send success")
             } else {
                 return (false, "send error")
@@ -108,12 +108,12 @@ public class TCPClient: YSocket {
     *
     * send nsdata
     */
-    public func send(data d: NSData) -> (Bool, String) {
+    public func send(data dat: NSData) -> (Bool, String) {
         if let fd: Int32=self.fd {
-            var buff: [UInt8] = [UInt8](repeating:0x0, count:d.length)
-            d.getBytes(&buff, length: d.length)
-            let sendsize: Int32=c_ytcpsocket_send(fd: fd, buff: buff, len: Int32(d.length))
-            if sendsize==Int32(d.length) {
+            var buff: [UInt8] = [UInt8](repeating:0x0, count:dat.length)
+            dat.getBytes(&buff, length: dat.length)
+            let sendsize: Int32=c_ytcpsocket_send(fd: fd, buff: buff, len: Int32(dat.length))
+            if sendsize==Int32(dat.length) {
                 return (true, "send success")
             } else {
                 return (false, "send error")

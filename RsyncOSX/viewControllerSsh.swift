@@ -12,7 +12,7 @@ import Cocoa
 class ViewControllerSsh: NSViewController {
 
     // The object which checks for keys
-    var sshcmd: ssh?
+    var sshcmd: Ssh?
     // hiddenID of selected index
     var hiddenID: Int?
     // Output
@@ -103,7 +103,7 @@ class ViewControllerSsh: NSViewController {
         guard self.sshcmd != nil else {
             return
         }
-        self.sshcmd!.ScpPubKey(key: "rsa", hiddenID: self.hiddenID!)
+        self.sshcmd!.scpPubKey(key: "rsa", hiddenID: self.hiddenID!)
         guard sshcmd!.commandCopyPasteTermninal != nil else {
             return
         }
@@ -117,7 +117,7 @@ class ViewControllerSsh: NSViewController {
         guard self.sshcmd != nil else {
             return
         }
-        self.sshcmd!.ScpPubKey(key: "dsa", hiddenID: self.hiddenID!)
+        self.sshcmd!.scpPubKey(key: "dsa", hiddenID: self.hiddenID!)
         guard sshcmd!.commandCopyPasteTermninal != nil else {
             return
         }
@@ -164,7 +164,7 @@ class ViewControllerSsh: NSViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Reference to self
-        SharingManagerConfiguration.sharedInstance.ViewControllerSsh = self
+        SharingManagerConfiguration.sharedInstance.viewControllerSsh = self
         // Do view setup here.
         self.detailsTable.delegate = self
         self.detailsTable.dataSource = self
@@ -178,7 +178,7 @@ class ViewControllerSsh: NSViewController {
         self.checkDsaPubKeyButton.isEnabled = false
         self.checkRsaPubKeyButton.isEnabled = false
         self.sshCreatRemoteSshButton.isEnabled = false
-        self.sshcmd = ssh()
+        self.sshcmd = Ssh()
         // Check for keys
         self.checkPrivatePublicKey()
 
@@ -186,8 +186,8 @@ class ViewControllerSsh: NSViewController {
 
     func checkPrivatePublicKey() {
         self.sshcmd = nil
-        self.sshcmd = ssh()
-        self.sshcmd!.CheckForLocalPubKeys()
+        self.sshcmd = Ssh()
+        self.sshcmd!.checkForLocalPubKeys()
         if self.sshcmd!.rsaPubKeyExist {
             self.rsaCheck.state = .on
             self.createKeys.isEnabled = false

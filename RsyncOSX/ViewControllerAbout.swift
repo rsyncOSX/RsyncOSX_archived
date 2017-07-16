@@ -90,7 +90,7 @@ class ViewControllerAbout: NSViewController {
             self.dismissDelegate = pvc
         }
         let infoPlist = Bundle.main.infoDictionary
-        let version = infoPlist?["CFBundleShortVersionString"] as! String
+        let version = (infoPlist?["CFBundleShortVersionString"] as? String)!
         self.version.stringValue = "RsyncOSX ver: " + version
         self.runningVersion = version
     }

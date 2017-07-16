@@ -37,8 +37,8 @@ public class YSocket {
         self.addr=""
         self.port=0
     }
-    public init(addr a: String, port p: Int) {
-        self.addr=a
-        self.port=p
+    public init(addr adr: String, port por: Int) {
+        self.addr=adr
+        self.port=por
     }
 }

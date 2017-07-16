@@ -11,7 +11,7 @@
 
 import Foundation
 
-final class PersistentStoreConfiguration: readwritefiles {
+final class PersistentStoreConfiguration: Readwritefiles {
 
     /// Variable computes max hiddenID used
     /// MaxhiddenID is used when new configurations

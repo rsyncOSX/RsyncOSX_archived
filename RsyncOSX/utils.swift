@@ -128,8 +128,8 @@ final class Utils {
         self.indexBoolremoteserverOff = nil
         self.indexBoolremoteserverOff = Array<Bool>()
 
-        guard (SharingManagerConfiguration.sharedInstance.ConfigurationsDataSourcecount() > 0) else {
-            if let pvc = SharingManagerConfiguration.sharedInstance.ViewControllertabMain as? ViewControllertabMain {
+        guard (SharingManagerConfiguration.sharedInstance.configurationsDataSourcecount() > 0) else {
+            if let pvc = SharingManagerConfiguration.sharedInstance.viewControllertabMain as? ViewControllertabMain {
                 self.profilemenuDelegate = pvc
                 // Tell main view profile menu might presented
                 self.profilemenuDelegate?.enableProfileMenu()
@@ -140,7 +140,7 @@ final class Utils {
         globalDefaultQueue.async(execute: { () -> Void in
 
             var port: Int = 22
-            for i in 0 ..< SharingManagerConfiguration.sharedInstance.ConfigurationsDataSourcecount() {
+            for i in 0 ..< SharingManagerConfiguration.sharedInstance.configurationsDataSourcecount() {
                 if let record = SharingManagerConfiguration.sharedInstance.getargumentAllConfigurations()[i] as? ArgumentsOneConfiguration {
                     if (record.config!.offsiteServer != "") {
                         if let sshport: Int = record.config!.sshport {
@@ -157,9 +157,9 @@ final class Utils {
                         self.indexBoolremoteserverOff!.append(false)
                     }
                     // Reload table when all remote servers are checked
-                    if i == (SharingManagerConfiguration.sharedInstance.ConfigurationsDataSourcecount() - 1) {
+                    if i == (SharingManagerConfiguration.sharedInstance.configurationsDataSourcecount() - 1) {
                         // Send message to do a refresh
-                        if let pvc = SharingManagerConfiguration.sharedInstance.ViewControllertabMain as? ViewControllertabMain {
+                        if let pvc = SharingManagerConfiguration.sharedInstance.viewControllertabMain as? ViewControllertabMain {
                             self.testconnectionsDelegate = pvc
                             self.profilemenuDelegate = pvc
                             // Update table in main view

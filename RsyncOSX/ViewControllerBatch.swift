@@ -30,7 +30,7 @@ class ViewControllerBatch: NSViewController {
 
     // Main tableview
     @IBOutlet weak var mainTableView: NSTableView!
-    @IBOutlet weak var CloseButton: NSButton!
+    @IBOutlet weak var closeButton: NSButton!
     @IBOutlet weak var working: NSProgressIndicator!
     @IBOutlet weak var label: NSTextField!
     @IBOutlet weak var closeinseconds: NSTextField!
@@ -43,7 +43,7 @@ class ViewControllerBatch: NSViewController {
 
     // ACTIONS AND BUTTONS
 
-    @IBAction func Close(_ sender: NSButton) {
+    @IBAction func close(_ sender: NSButton) {
 
         if (self.close!) {
             self.batchTask = NewBatchTask()
@@ -57,10 +57,10 @@ class ViewControllerBatch: NSViewController {
     }
 
     // Execute batch
-    @IBAction func Execute(_ sender: NSButton) {
+    @IBAction func execute(_ sender: NSButton) {
         self.batchTask = NewBatchTask()
         self.batchTask!.executeBatch()
-        self.CloseButton.title = "Abort"
+        self.closeButton.title = "Abort"
         self.close = false
     }
 
@@ -101,7 +101,7 @@ class ViewControllerBatch: NSViewController {
         self.close = true
         self.label.stringValue = "Progress "
         self.rownumber.stringValue = ""
-        self.CloseButton.title = "Close"
+        self.closeButton.title = "Close"
         self.close = true
         self.batchTask = nil
     }
@@ -168,7 +168,7 @@ extension ViewControllerBatch: StartStopProgressIndicator {
         globalMainQueue.async(execute: { () -> Void in
             self.working.stopAnimation(nil)
             self.label.stringValue = "Completed all task(s)"
-            self.CloseButton.title = "Close"
+            self.closeButton.title = "Close"
             self.close = true
         })
         self.closeinseconds.isHidden = false

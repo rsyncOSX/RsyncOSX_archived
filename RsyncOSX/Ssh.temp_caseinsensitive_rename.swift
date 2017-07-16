@@ -9,7 +9,7 @@
 import Foundation
 import Cocoa
 
-class ssh: Files {
+class Ssh: Files {
 
     var commandCopyPasteTermninal: String?
 
@@ -32,8 +32,8 @@ class ssh: Files {
     var dsaStringPath: String?
 
     // Arrays listing all key files
-    var KeyFileURLS: Array<URL>?
-    var KeyFileStrings: Array<String>?
+    var keyFileURLS: Array<URL>?
+    var keyFileStrings: Array<String>?
 
     var scpArguments: ScpArgumentsSsh?
     var command: String?
@@ -77,13 +77,13 @@ class ssh: Files {
     }
 
     // Check for local public keys
-    func CheckForLocalPubKeys() {
-        self.dsaPubKeyExist = self.IsLocalPublicKeysPresent(key: self.dsaPubKey)
-        self.rsaPubKeyExist = self.IsLocalPublicKeysPresent(key: self.rsaPubKey)
+    func checkForLocalPubKeys() {
+        self.dsaPubKeyExist = self.isLocalPublicKeysPresent(key: self.dsaPubKey)
+        self.rsaPubKeyExist = self.isLocalPublicKeysPresent(key: self.rsaPubKey)
     }
 
     // Check if rsa and/or dsa is existing in local .ssh catalog
-    func IsLocalPublicKeysPresent (key: String) -> Bool {
+    func isLocalPublicKeysPresent (key: String) -> Bool {
         guard self.KeyFileStrings != nil else {
             return false
         }
@@ -104,7 +104,7 @@ class ssh: Files {
     }
 
     // Secure copy of public key from local to remote catalog
-    func ScpPubKey(key: String, hiddenID: Int) {
+    func scpPubKey(key: String, hiddenID: Int) {
         self.scpArguments = nil
         self.scpArguments = ScpArgumentsSsh(hiddenID: hiddenID)
         switch key {
@@ -185,16 +185,16 @@ class ssh: Files {
         super.init(root: .sshRoot)
         self.KeyFileURLS = self.getFilesURLs()
         self.KeyFileStrings = self.getFileStrings()
-        self.CheckForLocalPubKeys()
+        self.checkForLocalPubKeys()
         self.createDirectory()
     }
 
 }
 
-extension ssh: ReportError {
+extension Ssh: ReportError {
     // Propagating any file error to main view
     func reportError(errorstr: String) {
-        if let pvc = SharingManagerConfiguration.sharedInstance.ViewControllertabMain {
+        if let pvc = SharingManagerConfiguration.sharedInstance.viewControllertabMain {
             self.errorDelegate = pvc as? ViewControllertabMain
             self.errorDelegate?.fileerror(errorstr: errorstr)
         }

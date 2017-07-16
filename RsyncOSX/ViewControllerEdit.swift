@@ -36,12 +36,12 @@ class ViewControllerEdit: NSViewController {
     var singleFile: Bool = false
 
     // Close and dismiss view
-    @IBAction func Close(_ sender: NSButton) {
+    @IBAction func close(_ sender: NSButton) {
         self.dismissDelegate?.dismiss_view(viewcontroller: self)
     }
 
     // Update configuration, save and dismiss view
-    @IBAction func Update(_ sender: NSButton) {
+    @IBAction func update(_ sender: NSButton) {
 
         var config: [Configuration] = SharingManagerConfiguration.sharedInstance.getConfigurations()
 

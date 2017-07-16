@@ -14,7 +14,7 @@ class ScheduleWriteLoggData {
 
     // Array to store all scheduled jobs and history of executions
     // Will be kept in memory until destroyed
-    var Schedule = Array<ConfigurationSchedule>()
+    var schedule = Array<ConfigurationSchedule>()
     // Delegate function for doing a refresh of NSTableView in ViewControllerScheduleDetailsAboutRuns
     weak var refreshlogviewDelegate: RefreshtableView?
     // Delegate function for deselect row in table main view after loggdata is saved
@@ -26,7 +26,7 @@ class ScheduleWriteLoggData {
     /// - parameter resultExecuted : resultExecuted
     /// - parameter dateExecuted : dateExecuted
     func deleteLogRow (hiddenID: Int, parent: String, resultExecuted: String, dateExecuted: String) {
-        var result = self.Schedule.filter({return ($0.hiddenID == hiddenID)})
+        var result = self.schedule.filter({return ($0.hiddenID == hiddenID)})
         if result.count > 0 {
             loop: for i in 0 ..< result.count {
                 let delete = result[i].logrecords.filter({return (($0.value(forKey: "parent") as? String) == parent &&
@@ -34,7 +34,7 @@ class ScheduleWriteLoggData {
                     ($0.value(forKey: "dateExecuted") as? String) == dateExecuted)})
                 if delete.count == 1 {
                     // Get index of record storing the logrecord
-                    let indexA = self.Schedule.index(where: { $0.dateStart == result[i].dateStart &&
+                    let indexA = self.schedule.index(where: { $0.dateStart == result[i].dateStart &&
                         $0.schedule == result[i].schedule &&
                         $0.hiddenID == result[i].hiddenID})
                     // Get the index of the logrecord itself and remove the the record
@@ -44,9 +44,9 @@ class ScheduleWriteLoggData {
                         return
                     }
                     result[i].logrecords.remove(at: indexB!)
-                    self.Schedule[indexA!].logrecords = result[i].logrecords
+                    self.schedule[indexA!].logrecords = result[i].logrecords
                     // Do a refresh of table
-                    if let pvc = SharingManagerConfiguration.sharedInstance.ViewControllerLoggData as? ViewControllerLoggData {
+                    if let pvc = SharingManagerConfiguration.sharedInstance.viewControllerLoggData as? ViewControllerLoggData {
                         self.refreshlogviewDelegate = pvc
                         self.refreshlogviewDelegate?.refresh()
                     }
@@ -71,21 +71,21 @@ class ScheduleWriteLoggData {
 
         if (SharingManagerConfiguration.sharedInstance.detailedlogging) {
             var inserted: Bool = false
-            for i in 0 ..< self.Schedule.count {
+            for i in 0 ..< self.schedule.count {
                 // Add record only to record with no enddate
                 if (SharingManagerConfiguration.sharedInstance.getResourceConfiguration(hiddenID, resource: .task) == "backup") {
-                    if (self.Schedule[i].hiddenID == hiddenID  && self.Schedule[i].schedule == "manuel" && self.Schedule[i].dateStop == nil) {
+                    if (self.schedule[i].hiddenID == hiddenID  && self.schedule[i].schedule == "manuel" && self.schedule[i].dateStop == nil) {
                         let dict = NSMutableDictionary()
                         dict.setObject(date, forKey: "dateExecuted" as NSCopying)
                         dict.setObject(result, forKey: "resultExecuted" as NSCopying)
                         let dictKey: NSDictionary = [
                             // "dateStart":self.Schedule[i].dateStart,
                             "dateStart": "01 Jan 1900 00:00",
-                            "schedule": self.Schedule[i].schedule,
-                            "hiddenID": self.Schedule[i].hiddenID]
+                            "schedule": self.schedule[i].schedule,
+                            "hiddenID": self.schedule[i].hiddenID]
                         let parent: String = self.computeKey(dictKey)
                         dict.setValue(parent, forKey: "parent")
-                        self.Schedule[i].logrecords.append(dict)
+                        self.schedule[i].logrecords.append(dict)
                         inserted = true
                     }
                 }
@@ -111,14 +111,14 @@ class ScheduleWriteLoggData {
                     let executed = NSMutableArray()
                     executed.add(dict)
                     let newSchedule = ConfigurationSchedule(dictionary: masterdict, log: executed)
-                    self.Schedule.append(newSchedule)
+                    self.schedule.append(newSchedule)
                     // Set inseted true to force write of record
                     inserted = true
                 }
             }
             if (inserted) {
                 PersistentStoreAPI.sharedInstance.saveScheduleFromMemory()
-                if let pvc = SharingManagerConfiguration.sharedInstance.ViewControllertabMain as? ViewControllertabMain {
+                if let pvc = SharingManagerConfiguration.sharedInstance.viewControllertabMain as? ViewControllertabMain {
                     self.deselectrowDelegate = pvc
                     self.deselectrowDelegate?.deselectRow()
                 }
@@ -135,10 +135,10 @@ class ScheduleWriteLoggData {
     /// - parameter schedule : schedule of task
     func addScheduleResult(_ hiddenID: Int, dateStart: String, result: String, date: String, schedule: String) {
         if (SharingManagerConfiguration.sharedInstance.detailedlogging) {
-            loop : for i in 0 ..< self.Schedule.count {
-                if (self.Schedule[i].hiddenID == hiddenID  &&
-                    self.Schedule[i].schedule == schedule &&
-                    self.Schedule[i].dateStart == dateStart) {
+            loop : for i in 0 ..< self.schedule.count {
+                if (self.schedule[i].hiddenID == hiddenID  &&
+                    self.schedule[i].schedule == schedule &&
+                    self.schedule[i].dateStart == dateStart) {
                     if (SharingManagerConfiguration.sharedInstance.getResourceConfiguration(hiddenID, resource: .task) == "backup") {
                         let dict = NSMutableDictionary()
                         dict.setObject(date, forKey: "dateExecuted" as NSCopying)
@@ -146,13 +146,13 @@ class ScheduleWriteLoggData {
                         // Compute key to parent
                         // Just to pass schedule in dictionary, no saved but used for computing key to parent
                         let dictKey: NSDictionary = [
-                            "dateStart": self.Schedule[i].dateStart,
-                            "schedule": self.Schedule[i].schedule,
-                            "hiddenID": self.Schedule[i].hiddenID
+                            "dateStart": self.schedule[i].dateStart,
+                            "schedule": self.schedule[i].schedule,
+                            "hiddenID": self.schedule[i].hiddenID
                         ]
                         let parent: String = self.computeKey(dictKey)
                         dict.setValue(parent, forKey: "parent")
-                        self.Schedule[i].logrecords.append(dict)
+                        self.schedule[i].logrecords.append(dict)
                         PersistentStoreAPI.sharedInstance.saveScheduleFromMemory()
                         break loop
                     }

@@ -49,7 +49,7 @@ final class CompleteScheduledOperation {
         _ = PersistentStoreAPI.sharedInstance.saveConfigFromMemory()
         // Start next job, if any, by delegate
         // and notify completed, by delegate
-        if let pvc2 = SharingManagerConfiguration.sharedInstance.ViewControllertabMain as? ViewControllertabMain {
+        if let pvc2 = SharingManagerConfiguration.sharedInstance.viewControllertabMain as? ViewControllertabMain {
             globalMainQueue.async(execute: { () -> Void in
                 self.startnextjobDelegate = pvc2
                 self.notifyDelegate = pvc2
@@ -57,7 +57,7 @@ final class CompleteScheduledOperation {
                 self.notifyDelegate?.completed()
             })
         }
-        if let pvc3 = SharingManagerSchedule.sharedInstance.ViewObjectSchedule as? ViewControllertabSchedule {
+        if let pvc3 = SharingManagerSchedule.sharedInstance.viewObjectSchedule as? ViewControllertabSchedule {
             globalMainQueue.async(execute: { () -> Void in
                 self.startTimerDelegate = pvc3
                 self.startTimerDelegate?.startTimerNextJob()

@@ -182,7 +182,7 @@ final class NewBatchTask {
     }
 
     init() {
-        if let pvc = SharingManagerConfiguration.sharedInstance.ViewControllertabMain as? ViewControllertabMain {
+        if let pvc = SharingManagerConfiguration.sharedInstance.viewControllertabMain as? ViewControllertabMain {
             self.indicatorDelegate = pvc
             self.taskDelegate = pvc
             self.batchViewDelegate = pvc

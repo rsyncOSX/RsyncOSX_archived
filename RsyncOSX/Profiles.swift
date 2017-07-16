@@ -55,7 +55,7 @@ class Profiles: Files {
 extension Profiles: ReportError {
     // Private func for propagating any file error to main view
     func reportError(errorstr: String) {
-        if let pvc = SharingManagerConfiguration.sharedInstance.ViewControllertabMain {
+        if let pvc = SharingManagerConfiguration.sharedInstance.viewControllertabMain {
             self.errorDelegate = pvc as? ViewControllertabMain
             self.errorDelegate?.fileerror(errorstr: errorstr)
         }

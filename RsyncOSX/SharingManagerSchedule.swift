@@ -35,7 +35,7 @@ class SharingManagerSchedule: ScheduleWriteLoggData {
     // Is set when SortedAndExpanded is calculated
     var scheduledJob: NSDictionary?
     // Reference to NSViewObjects requiered for protocol functions for kikcking of scheduled jobs
-    var ViewObjectSchedule: NSViewController?
+    var viewObjectSchedule: NSViewController?
     // Delegate functionsn for doing a refresh of NSTableView
     weak var refreshDelegate: RefreshtableView?
 
@@ -49,7 +49,7 @@ class SharingManagerSchedule: ScheduleWriteLoggData {
     /// Only used when new profiles are loaded.
     /// This is due to a glitch in design.
     func destroySchedule() {
-        self.Schedule.removeAll()
+        self.schedule.removeAll()
     }
 
     // THE GETTERS
@@ -57,7 +57,7 @@ class SharingManagerSchedule: ScheduleWriteLoggData {
     // Return reference to Schedule data
     // self.Schedule is privat data
     func getSchedule()-> Array<ConfigurationSchedule> {
-        return self.Schedule
+        return self.schedule
     }
 
     /// Function for setting reference to waiting job e.g. to the timer.
@@ -92,7 +92,7 @@ class SharingManagerSchedule: ScheduleWriteLoggData {
         if store != nil {
             var data = Array<ConfigurationSchedule>()
             // Deleting any existing Schedule
-            self.Schedule.removeAll()
+            self.schedule.removeAll()
             // Reading new schedule into memory
             for i in 0 ..< store!.count {
                 data.append(store![i])
@@ -106,7 +106,7 @@ class SharingManagerSchedule: ScheduleWriteLoggData {
                 }
             }
             // Setting self.Schedule as data
-            self.Schedule = data
+            self.schedule = data
             // Reset reference to first schedule job
             self.scheduledJob = nil
         }
@@ -126,7 +126,7 @@ class SharingManagerSchedule: ScheduleWriteLoggData {
         dict.setObject(dateformatter.string(from: stop), forKey: "dateStop" as NSCopying)
         dict.setObject(schedule, forKey: "schedule" as NSCopying)
         let newSchedule = ConfigurationSchedule(dictionary: dict, log: nil)
-        self.Schedule.append(newSchedule)
+        self.schedule.append(newSchedule)
         // Set data dirty
         SharingManagerConfiguration.sharedInstance.setDataDirty(dirty: true)
         PersistentStoreAPI.sharedInstance.saveScheduleFromMemory()
@@ -138,11 +138,11 @@ class SharingManagerSchedule: ScheduleWriteLoggData {
     /// - parameter hiddenID : hiddenID for task
     func deleteSchedulesbyHiddenID(hiddenID: Int) {
         var delete: Bool = false
-        for i in 0 ..< self.Schedule.count {
-            if (self.Schedule[i].hiddenID == hiddenID) {
+        for i in 0 ..< self.schedule.count {
+            if (self.schedule[i].hiddenID == hiddenID) {
                 // Mark Schedules for delete
                 // Cannot delete in memory, index out of bound is result
-                self.Schedule[i].delete = true
+                self.schedule[i].delete = true
                 delete = true
             }
         }
@@ -161,23 +161,23 @@ class SharingManagerSchedule: ScheduleWriteLoggData {
         var row: NSMutableDictionary
         var data = Array<NSMutableDictionary>()
 
-        for i in 0 ..< self.Schedule.count {
-            if (self.Schedule[i].hiddenID == hiddenID) {
+        for i in 0 ..< self.schedule.count {
+            if (self.schedule[i].hiddenID == hiddenID) {
                 row = [
-                    "dateStart": self.Schedule[i].dateStart,
+                    "dateStart": self.schedule[i].dateStart,
                     "stopCellID": 0,
                     "deleteCellID": 0,
                     "dateStop": "",
-                    "schedule": self.Schedule[i].schedule,
-                    "hiddenID": Schedule[i].hiddenID,
-                    "numberoflogs": String(Schedule[i].logrecords.count)
+                    "schedule": self.schedule[i].schedule,
+                    "hiddenID": schedule[i].hiddenID,
+                    "numberoflogs": String(schedule[i].logrecords.count)
                 ]
-                if (self.Schedule[i].dateStop == nil) {
+                if (self.schedule[i].dateStop == nil) {
                     row.setValue("no stop date", forKey: "dateStop")
                 } else {
-                    row.setValue(self.Schedule[i].dateStop, forKey: "dateStop")
+                    row.setValue(self.schedule[i].dateStop, forKey: "dateStop")
                 }
-                if (self.Schedule[i].schedule == "stopped") {
+                if (self.schedule[i].schedule == "stopped") {
                     row.setValue(1, forKey: "stopCellID")
                 }
                 data.append(row)
@@ -185,7 +185,7 @@ class SharingManagerSchedule: ScheduleWriteLoggData {
             // Sorting schedule after dateStart, last startdate on top
             data.sort { (schedule1, schedule2) -> Bool in
                 let dateformatter = Utils.sharedInstance.setDateformat()
-                if (dateformatter.date(from: schedule1.value(forKey: "dateStart") as! String)! > dateformatter.date(from: schedule2.value(forKey: "dateStart") as! String)!) {
+                if dateformatter.date(from: (schedule1.value(forKey: "dateStart") as? String)!)! > dateformatter.date(from: (schedule2.value(forKey: "dateStart") as? String)!)! {
                     return true
                 } else {
                     return false
@@ -232,12 +232,12 @@ class SharingManagerSchedule: ScheduleWriteLoggData {
 
     // Test if Schedule record in memory is set to delete or not
     private func delete (dict: NSDictionary) {
-        loop :  for i in 0 ..< self.Schedule.count {
-            if dict.value(forKey: "hiddenID") as? Int == self.Schedule[i].hiddenID {
-                if (dict.value(forKey: "dateStop") as? String == self.Schedule[i].dateStop || self.Schedule[i].dateStop == nil &&
-                    dict.value(forKey: "schedule") as? String == self.Schedule[i].schedule &&
-                    dict.value(forKey: "dateStart") as? String == self.Schedule[i].dateStart) {
-                    self.Schedule[i].delete = true
+        loop :  for i in 0 ..< self.schedule.count {
+            if dict.value(forKey: "hiddenID") as? Int == self.schedule[i].hiddenID {
+                if (dict.value(forKey: "dateStop") as? String == self.schedule[i].dateStop || self.schedule[i].dateStop == nil &&
+                    dict.value(forKey: "schedule") as? String == self.schedule[i].schedule &&
+                    dict.value(forKey: "dateStart") as? String == self.schedule[i].dateStart) {
+                    self.schedule[i].delete = true
                     break
                 }
             }
@@ -246,12 +246,12 @@ class SharingManagerSchedule: ScheduleWriteLoggData {
 
     // Test if Schedule record in memory is set to stop er not
     private func stop (dict: NSDictionary) {
-        loop :  for i in 0 ..< self.Schedule.count {
-            if (dict.value(forKey: "hiddenID") as? Int == self.Schedule[i].hiddenID) {
-                if (dict.value(forKey: "dateStop") as? String == self.Schedule[i].dateStop || self.Schedule[i].dateStop == nil &&
-                    dict.value(forKey: "schedule") as? String == self.Schedule[i].schedule &&
-                    dict.value(forKey: "dateStart") as? String == self.Schedule[i].dateStart) {
-                    self.Schedule[i].schedule = "stopped"
+        loop :  for i in 0 ..< self.schedule.count {
+            if (dict.value(forKey: "hiddenID") as? Int == self.schedule[i].hiddenID) {
+                if (dict.value(forKey: "dateStop") as? String == self.schedule[i].dateStop || self.schedule[i].dateStop == nil &&
+                    dict.value(forKey: "schedule") as? String == self.schedule[i].schedule &&
+                    dict.value(forKey: "dateStart") as? String == self.schedule[i].dateStart) {
+                    self.schedule[i].schedule = "stopped"
                     break
                 }
             }
@@ -263,7 +263,7 @@ class SharingManagerSchedule: ScheduleWriteLoggData {
     // Send message to main view do a refresh of table
     private func doaRefreshTableviewMain() {
         // Send message about refresh tableView
-        if let pvc = SharingManagerConfiguration.sharedInstance.ViewControllertabMain as? ViewControllertabMain {
+        if let pvc = SharingManagerConfiguration.sharedInstance.viewControllertabMain as? ViewControllertabMain {
             self.refreshDelegate = pvc
             self.refreshDelegate?.refresh()
         }
@@ -271,7 +271,7 @@ class SharingManagerSchedule: ScheduleWriteLoggData {
 
     // Check if hiddenID is in Scheduled tasks
     func hiddenIDinSchedule (_ hiddenID: Int) -> Bool {
-        let result = self.Schedule.filter({return ($0.hiddenID == hiddenID && $0.dateStop != nil)})
+        let result = self.schedule.filter({return ($0.hiddenID == hiddenID && $0.dateStop != nil)})
         if result.isEmpty {
             return false
         } else {
@@ -293,7 +293,7 @@ class SharingManagerSchedule: ScheduleWriteLoggData {
     // Used for recalcutlate the parent key when task change schedule
     // from active to "stopped"
     private func getScheduleExecuted (_ hiddenID: Int) -> Array<NSMutableDictionary>? {
-        var result = self.Schedule.filter({return ($0.hiddenID == hiddenID) && ($0.schedule == "stopped")})
+        var result = self.schedule.filter({return ($0.hiddenID == hiddenID) && ($0.schedule == "stopped")})
         if result.count > 0 {
             let schedule = result.removeFirst()
             return schedule.logrecords
@@ -306,7 +306,7 @@ class SharingManagerSchedule: ScheduleWriteLoggData {
     // Returning set updated keys
     private func computeNewParentKeys (_ hiddenID: Int) -> Array<NSMutableDictionary>? {
         var dict: NSMutableDictionary?
-        var result = self.Schedule.filter({return ($0.hiddenID == hiddenID) && ($0.schedule == "stopped")})
+        var result = self.schedule.filter({return ($0.hiddenID == hiddenID) && ($0.schedule == "stopped")})
         var executed: Array<NSMutableDictionary>?
         if result.count > 0 {
             let scheduleConfig = result[0]
@@ -332,10 +332,10 @@ class SharingManagerSchedule: ScheduleWriteLoggData {
     // Used when a group is set from active to "stopped"
     private func updateExecutedNewKey (_ hiddenID: Int) {
         let executed: Array<NSMutableDictionary>? = self.computeNewParentKeys(hiddenID)
-        loop : for i in 0 ..< self.Schedule.count {
-            if self.Schedule[i].hiddenID == hiddenID {
+        loop : for i in 0 ..< self.schedule.count {
+            if self.schedule[i].hiddenID == hiddenID {
                 if executed != nil {
-                    self.Schedule[i].logrecords = executed!
+                    self.schedule[i].logrecords = executed!
                 }
                 break loop
             }

@@ -42,7 +42,7 @@ class ViewControllerProgressProcess: NSViewController {
 
     @IBOutlet weak var progress: NSProgressIndicator!
 
-    @IBAction func Abort(_ sender: NSButton) {
+    @IBAction func abort(_ sender: NSButton) {
         self.abortDelegate?.abortOperations()
         self.processTermination()
     }
@@ -60,7 +60,7 @@ class ViewControllerProgressProcess: NSViewController {
 
     override func viewDidAppear() {
         super.viewDidAppear()
-        if let pvc2 = SharingManagerConfiguration.sharedInstance.SingleTask {
+        if let pvc2 = SharingManagerConfiguration.sharedInstance.singleTask {
             self.countDelegate = pvc2
         }
         self.calculatedNumberOfFiles = self.countDelegate?.maxCount()

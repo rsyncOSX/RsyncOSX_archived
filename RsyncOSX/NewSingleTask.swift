@@ -52,7 +52,7 @@ final class NewSingleTask {
     // HiddenID task, set when row is selected
     private var hiddenID: Int?
     // Single task work queu
-    private var workload: singleTaskWorkQueu?
+    private var workload: SingleTaskWorkQueu?
     // Schedules in progress
     fileprivate var scheduledJobInProgress: Bool = false
     // Ready for execute again
@@ -66,7 +66,7 @@ final class NewSingleTask {
     func executeSingleTask() {
 
         if (self.workload == nil) {
-            self.workload = singleTaskWorkQueu()
+            self.workload = SingleTaskWorkQueu()
         }
 
         let arguments: Array<String>?
@@ -74,7 +74,7 @@ final class NewSingleTask {
         self.output = nil
 
         switch (self.workload!.peek()) {
-        case .estimate_singlerun:
+        case .estimatesinglerun:
             if let index = self.index {
                 // Start animation and show process info
                 self.indicatorDelegate?.startIndicator()
@@ -86,7 +86,7 @@ final class NewSingleTask {
                 self.process = process.getProcess()
                 self.taskDelegate?.setInfo(info: "Execute", color: .blue)
             }
-        case .execute_singlerun:
+        case .executesinglerun:
             self.taskDelegate?.showProcessInfo(info: .executing)
             if let index = self.index {
                 // Show progress view
@@ -120,7 +120,7 @@ final class NewSingleTask {
             // Pop topmost element of work queue
             switch (workload.pop()) {
 
-            case .estimate_singlerun:
+            case .estimatesinglerun:
                 // Stopping the working (estimation) progress indicator
                 self.indicatorDelegate?.stopIndicator()
                 // Getting and setting max file to transfer
@@ -134,7 +134,7 @@ final class NewSingleTask {
                 // If showInfoDryrun is on present result of dryrun automatically
                 self.taskDelegate?.presentViewInformation(output: self.output!)
                 // self.taskDelegate?.singleTaskAbort(process: self.process)
-            case .execute_singlerun:
+            case .executesinglerun:
                 //NB: self.showProcessInfo(info: .Logging_run)
                 self.taskDelegate?.showProcessInfo(info: .loggingrun)
                 // Process termination and close progress view
@@ -149,7 +149,12 @@ final class NewSingleTask {
                 self.transferredNumberSizebytes = self.taskDelegate?.gettransferredNumberSizebytes()
                 SharingManagerConfiguration.sharedInstance.setCurrentDateonConfiguration(self.index!)
                 let hiddenID = SharingManagerConfiguration.sharedInstance.gethiddenID(index: self.index!)
+                let numberOffFiles = self.transferredNumber
+                let sizeOfFiles = self.transferredNumberSizebytes
+                
                 SharingManagerSchedule.sharedInstance.addScheduleResultManuel(hiddenID, result: number.statistics(numberOfFiles: self.transferredNumber, sizeOfFiles: self.transferredNumberSizebytes)[0])
+                
+                
             case .abort:
                 self.taskDelegate?.singleTaskAbort(process: self.process)
                 self.workload = nil
@@ -174,7 +179,7 @@ final class NewSingleTask {
 
         self.index = index
 
-        if let pvc = SharingManagerConfiguration.sharedInstance.ViewControllertabMain as? ViewControllertabMain {
+        if let pvc = SharingManagerConfiguration.sharedInstance.viewControllertabMain as? ViewControllertabMain {
             self.indicatorDelegate = pvc
             self.taskDelegate = pvc
         }

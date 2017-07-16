@@ -42,7 +42,7 @@ class ViewControllerProfile: NSViewController {
     }
 
     // Add and load new profile
-    @IBAction func AddProfile(_ sender: NSButton) {
+    @IBAction func addProfile(_ sender: NSButton) {
         let newprofile = self.newprofile.stringValue
         if (newprofile.isEmpty == false) {
             // Create new profile and use it
@@ -61,7 +61,7 @@ class ViewControllerProfile: NSViewController {
     }
 
     // Delete profile
-    @IBAction func DeleteProfile(_ sender: NSButton) {
+    @IBAction func deleteProfile(_ sender: NSButton) {
         if let useprofile = self.useprofile {
             self.profile?.deleteProfile(profileName: useprofile)
             SharingManagerConfiguration.sharedInstance.setProfile(profile: nil)
@@ -152,7 +152,7 @@ extension ViewControllerProfile : NSTableViewDelegate {
     }
 
     func tableViewSelectionDidChange(_ notification: Notification) {
-        let myTableViewFromNotification = notification.object as! NSTableView
+        let myTableViewFromNotification = (notification.object as? NSTableView)!
         let indexes = myTableViewFromNotification.selectedRowIndexes
         if let index = indexes.first {
             self.useprofile = self.profilesArray![index]
