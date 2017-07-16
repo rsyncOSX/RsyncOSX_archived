@@ -7,6 +7,8 @@
 //  Copyright © 2016 Thomas Evensen. All rights reserved.
 //
 
+//swiftlint:disable syntactic_sugar disable file_length disable cyclomatic_complexity line_length
+
 import Foundation
 import Cocoa
 
