@@ -9,26 +9,25 @@
 import Foundation
 
 final class persistentStoreUserconfiguration: readwritefiles {
-    
+
     /// Variable holds all configuration data
-    private var userconfiguration : Array<NSDictionary>?
-    
+    private var userconfiguration: Array<NSDictionary>?
+
     /// Function reads configurations from permanent store
     /// - returns : array of NSDictonarys, return might be nil
     func readUserconfigurationsFromPermanentStore() -> Array<NSDictionary>? {
         return self.userconfiguration
     }
 
-    
     // Saving user configuration
     func saveUserconfiguration () {
-        var version3Rsync:Int?
-        var detailedlogging:Int?
-        var rsyncPath:String?
-        var allowDoubleclick:Int?
-        var rsyncerror:Int?
-        var restorePath:String?
-        
+        var version3Rsync: Int?
+        var detailedlogging: Int?
+        var rsyncPath: String?
+        var allowDoubleclick: Int?
+        var rsyncerror: Int?
+        var restorePath: String?
+
         if (SharingManagerConfiguration.sharedInstance.rsyncVer3) {
             version3Rsync = 1
         } else {
@@ -55,16 +54,16 @@ final class persistentStoreUserconfiguration: readwritefiles {
         } else {
             rsyncerror = 0
         }
-        
+
         var array = Array<NSDictionary>()
-        
-        let dict:NSMutableDictionary = [
-            "version3Rsync" : version3Rsync! as Int,
-            "detailedlogging" : detailedlogging! as Int,
+
+        let dict: NSMutableDictionary = [
+            "version3Rsync": version3Rsync! as Int,
+            "detailedlogging": detailedlogging! as Int,
             "scheduledTaskdisableExecute": SharingManagerConfiguration.sharedInstance.scheduledTaskdisableExecute,
-            "allowDoubleclick" : allowDoubleclick! as Int,
-            "rsyncerror" : rsyncerror! as Int]
-        
+            "allowDoubleclick": allowDoubleclick! as Int,
+            "rsyncerror": rsyncerror! as Int]
+
         if ((rsyncPath != nil)) {
             dict.setObject(rsyncPath!, forKey: "rsyncPath" as NSCopying)
         }

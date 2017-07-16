@@ -9,7 +9,6 @@
 import Foundation
 import Cocoa
 
-
 // Protocol for doing updates when optional path for rsync is changed
 // or user enable or disable doubleclick to execte
 protocol RsyncChanged : class {
@@ -17,15 +16,15 @@ protocol RsyncChanged : class {
     func displayAllowDoubleclick()
 }
 
-class ViewControllerUserconfiguration : NSViewController {
-    
-    var dirty:Bool = false
+class ViewControllerUserconfiguration: NSViewController {
+
+    var dirty: Bool = false
     // Delegate to read configurations after toggeling between
     // test- and real mode
-    weak var rsyncchanged_delegate:RsyncChanged?
+    weak var rsyncchanged_delegate: RsyncChanged?
     // Dismisser
-    weak var dismiss_delegate:DismissViewController?
-    
+    weak var dismiss_delegate: DismissViewController?
+
     @IBOutlet weak var rsyncPath: NSTextField!
     @IBOutlet weak var version3rsync: NSButton!
     @IBOutlet weak var detailedlogging: NSButton!
@@ -34,7 +33,7 @@ class ViewControllerUserconfiguration : NSViewController {
     @IBOutlet weak var noRsync: NSTextField!
     @IBOutlet weak var rsyncerror: NSButton!
     @IBOutlet weak var restorePath: NSTextField!
-    
+
     @IBAction func toggleversion3rsync(_ sender: NSButton) {
         if (self.version3rsync.state == .on) {
             SharingManagerConfiguration.sharedInstance.rsyncVer3 = true
@@ -48,7 +47,7 @@ class ViewControllerUserconfiguration : NSViewController {
         self.dirty = true
         self.verifyRsync()
     }
-    
+
     @IBAction func toggleDetailedlogging(_ sender: NSButton) {
         if (self.detailedlogging.state == .on) {
             SharingManagerConfiguration.sharedInstance.detailedlogging = true
@@ -57,7 +56,7 @@ class ViewControllerUserconfiguration : NSViewController {
         }
         self.dirty = true
     }
-    
+
     @IBAction func close(_ sender: NSButton) {
 
         if (self.dirty) {
@@ -66,11 +65,11 @@ class ViewControllerUserconfiguration : NSViewController {
             self.setscheduledTaskdisableExecute()
             self.verifyRsync()
             self.setRestorePath()
-            _ = persistentStoreAPI.sharedInstance.saveUserconfiguration()
+            _ = PersistentStoreAPI.sharedInstance.saveUserconfiguration()
         }
         self.dismiss_delegate?.dismiss_view(viewcontroller: self)
     }
-    
+
     @IBAction func toggleAllowDoubleclick(_ sender: NSButton) {
         if (self.allowDoubleClick.state == .on) {
             SharingManagerConfiguration.sharedInstance.allowDoubleclick = true
@@ -82,9 +81,9 @@ class ViewControllerUserconfiguration : NSViewController {
             self.rsyncchanged_delegate?.displayAllowDoubleclick()
         }
         self.dirty = true
-        
+
     }
-    
+
     @IBAction func toggleError(_ sender: NSButton) {
         if (self.rsyncerror.state == .on) {
             SharingManagerConfiguration.sharedInstance.rsyncerror = true
@@ -93,10 +92,10 @@ class ViewControllerUserconfiguration : NSViewController {
         }
         self.dirty = true
     }
-    
-    private func setRsyncPath(){
+
+    private func setRsyncPath() {
         if (self.rsyncPath.stringValue.isEmpty == false) {
-            if (rsyncPath.stringValue.hasSuffix("/") == false){
+            if (rsyncPath.stringValue.hasSuffix("/") == false) {
                 rsyncPath.stringValue = rsyncPath.stringValue + "/"
                 SharingManagerConfiguration.sharedInstance.rsyncPath = rsyncPath.stringValue
             }
@@ -105,10 +104,10 @@ class ViewControllerUserconfiguration : NSViewController {
         }
         self.dirty = true
     }
-    
-    private func setRestorePath(){
+
+    private func setRestorePath() {
         if (self.restorePath.stringValue.isEmpty == false) {
-            if (restorePath.stringValue.hasSuffix("/") == false){
+            if (restorePath.stringValue.hasSuffix("/") == false) {
                 restorePath.stringValue = restorePath.stringValue + "/"
                 SharingManagerConfiguration.sharedInstance.restorePath = restorePath.stringValue
             }
@@ -118,7 +117,6 @@ class ViewControllerUserconfiguration : NSViewController {
         self.dirty = true
     }
 
-    
     // Function verifying rsync in path
     private func verifyRsync() {
         if (self.version3rsync.state == .on) {
@@ -148,7 +146,6 @@ class ViewControllerUserconfiguration : NSViewController {
         }
     }
 
-    
     private func setscheduledTaskdisableExecute() {
         if (self.scheduledTaskdisableExecute.stringValue.isEmpty == false) {
             if let time = Double(self.scheduledTaskdisableExecute.stringValue) {
@@ -159,13 +156,13 @@ class ViewControllerUserconfiguration : NSViewController {
         }
         self.dirty = true
     }
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         // Dismisser is root controller
         if let pvc2 = self.presenting as? ViewControllertabMain {
             self.dismiss_delegate = pvc2
-        } else if let pvc2 = self.presenting as? ViewControllertabSchedule{
+        } else if let pvc2 = self.presenting as? ViewControllertabSchedule {
             self.dismiss_delegate = pvc2
         } else if let pvc2 = self.presenting as? ViewControllerNewConfigurations {
             self.dismiss_delegate = pvc2
@@ -173,7 +170,7 @@ class ViewControllerUserconfiguration : NSViewController {
         self.rsyncPath.delegate = self
         self.restorePath.delegate = self
     }
-    
+
     override func viewDidAppear() {
         super.viewDidAppear()
         self.dirty = false
@@ -182,7 +179,7 @@ class ViewControllerUserconfiguration : NSViewController {
         // Check path for rsync
         self.verifyRsync()
     }
-    
+
     // Function for check and set user configuration
     private func checkUserConfig() {
         if (SharingManagerConfiguration.sharedInstance.rsyncVer3) {
@@ -217,15 +214,14 @@ class ViewControllerUserconfiguration : NSViewController {
             self.restorePath.stringValue = ""
         }
     }
-    
+
 }
 
 extension ViewControllerUserconfiguration : NSTextFieldDelegate {
-    
+
     override func controlTextDidChange(_ obj: Notification) {
         self.version3rsync.state = .on
         self.dirty = true
     }
-    
-}
 
+}

@@ -19,7 +19,7 @@ protocol StartNextScheduledTask : class {
 protocol ScheduledJobInProgress : class {
     func start()
     func completed()
-    func notifyScheduledJob(config:configuration?)
+    func notifyScheduledJob(config: Configuration?)
 }
 
 // Class for creating and preparing the scheduled task
@@ -32,17 +32,16 @@ protocol ScheduledJobInProgress : class {
 // OperationQueue for imidiate execution.
 
 final class ScheduleOperation {
-    
-    private var scheduledJobs:ScheduleSortedAndExpand?
-    private var waitForTask : Timer?
-    private var queue : OperationQueue?
-    private var secondsToWait:Double?
 
-    
+    private var scheduledJobs: ScheduleSortedAndExpand?
+    private var waitForTask: Timer?
+    private var queue: OperationQueue?
+    private var secondsToWait: Double?
+
     @objc private func startJob() {
         // Start the task in BackgroundQueue
         // The Process itself is executed in GlobalMainQueue
-        GlobalBackgroundQueue.async(execute: {
+        globalBackgroundQueue.async(execute: {
             let queue = OperationQueue()
             // Create the Operation object which executes the
             // scheduled job
@@ -52,7 +51,7 @@ final class ScheduleOperation {
             queue.addOperation(task)
         })
     }
-    
+
     init () {
         // Cancel any current job waiting for execution
         SharingManagerSchedule.sharedInstance.cancelJobWaiting()
@@ -60,13 +59,13 @@ final class ScheduleOperation {
         self.scheduledJobs = ScheduleSortedAndExpand()
         // Removes the job of the stack
         if let dict = self.scheduledJobs!.jobToExecute() {
-            let dateStart:Date = dict.value(forKey: "start") as! Date
+            let dateStart: Date = dict.value(forKey: "start") as! Date
             self.secondsToWait = self.scheduledJobs!.timeDoubleSeconds(dateStart, enddate: nil)
-            
+
             guard self.secondsToWait != nil else {
                 return
             }
-            
+
             self.waitForTask = Timer.scheduledTimer(timeInterval: self.secondsToWait!, target: self, selector: #selector(startJob), userInfo: nil, repeats: false)
             // Set reference to Timer that kicks of the Scheduled job
             // Reference is set for cancel job if requiered

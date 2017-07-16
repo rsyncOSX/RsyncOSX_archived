@@ -11,15 +11,14 @@ import Cocoa
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {
 
-
     func applicationDidFinishLaunching(_ aNotification: Notification) {
         // Insert code here to initialize your application
-        
+
         // Check for new version
         _ = newVersion()
-        
+
         // Read user configuration
-        if let userConfiguration =  persistentStoreAPI.sharedInstance.getUserconfiguration() {
+        if let userConfiguration =  PersistentStoreAPI.sharedInstance.getUserconfiguration() {
             // userConfiguration is never nil if object is created
             _ = userconfiguration(userconfigRsyncOSX: userConfiguration)
         }
@@ -29,6 +28,4 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         // Insert code here to tear down your application
     }
 
-
 }
-

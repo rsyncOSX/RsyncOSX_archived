@@ -10,18 +10,16 @@
 import Foundation
 import Cocoa
 
+class ViewControllerLoggData: NSViewController {
 
-class ViewControllerLoggData : NSViewController {
-    
     // Reference to variable holding tabledata
-    var tabledata:[NSDictionary]?
+    var tabledata: [NSDictionary]?
     // Reference to variable selected row as NSDictionary
-    var row:NSDictionary?
+    var row: NSDictionary?
     // Search after
-    var what:filterLogs?
+    var what: filterLogs?
     // Index selected row
-    var index:Int?
-
+    var index: Int?
 
     @IBOutlet weak var scheduletable: NSTableView!
     // Search field
@@ -33,7 +31,7 @@ class ViewControllerLoggData : NSViewController {
     // Progressview loading loggdata
     @IBOutlet weak var sorting: NSProgressIndicator!
     @IBOutlet weak var numberOflogfiles: NSTextField!
-    
+
     // Selecting what to filter
     @IBAction func Radiobuttons(_ sender: NSButton) {
         if (self.server.state == .on) {
@@ -45,7 +43,7 @@ class ViewControllerLoggData : NSViewController {
         }
         self.filterLogg()
     }
-    
+
     // Delete row
     @IBOutlet weak var deleteButton: NSButton!
     @IBAction func deleteRow(_ sender: NSButton) {
@@ -60,7 +58,7 @@ class ViewControllerLoggData : NSViewController {
         self.deleteButton.state = .off
         self.deselectRow()
     }
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do view setup here.
@@ -71,10 +69,10 @@ class ViewControllerLoggData : NSViewController {
         // Reference to LogViewController
         SharingManagerConfiguration.sharedInstance.ViewControllerLoggData = self
     }
-    
+
     override func viewDidAppear() {
         super.viewDidAppear()
-        GlobalMainQueue.async(execute: { () -> Void in
+        globalMainQueue.async(execute: { () -> Void in
             self.sorting.startAnimation(self)
             self.tabledata = ScheduleLoggData().filter(search: nil, what:nil)
             self.scheduletable.reloadData()
@@ -86,13 +84,13 @@ class ViewControllerLoggData : NSViewController {
         self.what = .remoteServer
         self.deleteButton.state = .off
     }
-    
+
     override func viewDidDisappear() {
         super.viewDidDisappear()
         self.sorting.startAnimation(self)
         self.tabledata = nil
     }
-    
+
     // deselect a row after row is deleted
     private func deselectRow() {
         guard self.index != nil else {
@@ -100,18 +98,18 @@ class ViewControllerLoggData : NSViewController {
         }
         self.scheduletable.deselectRow(self.index!)
     }
-    
+
     // filter data
     fileprivate func filterLogg() {
-        
+
         guard self.index != nil else {
             return
         }
-        
+
         guard self.index! < self.tabledata!.count else {
             return
         }
-        
+
         self.row = self.tabledata?[self.index!]
         if (self.server.state == .on) {
             if let server = self.row?.value(forKey: "offsiteServer") as? String {
@@ -129,33 +127,32 @@ class ViewControllerLoggData : NSViewController {
                 self.searchFieldDidStartSearching(self.search)
             }
         }
-    
+
     }
 }
 
-
 extension ViewControllerLoggData : NSSearchFieldDelegate {
-    
-    func searchFieldDidStartSearching(_ sender: NSSearchField){
+
+    func searchFieldDidStartSearching(_ sender: NSSearchField) {
         self.sorting.startAnimation(self)
         if (sender.stringValue.isEmpty) {
-            GlobalMainQueue.async(execute: { () -> Void in
+            globalMainQueue.async(execute: { () -> Void in
                 self.tabledata = ScheduleLoggData().filter(search: nil, what:nil)
                 self.scheduletable.reloadData()
                 self.sorting.stopAnimation(self)
             })
         } else {
-            GlobalMainQueue.async(execute: { () -> Void in
+            globalMainQueue.async(execute: { () -> Void in
                 self.tabledata = ScheduleLoggData().filter(search: sender.stringValue, what:self.what)
                 self.scheduletable.reloadData()
                 self.sorting.stopAnimation(self)
             })
         }
     }
-    
-    func searchFieldDidEndSearching(_ sender: NSSearchField){
+
+    func searchFieldDidEndSearching(_ sender: NSSearchField) {
         self.index = nil
-        GlobalMainQueue.async(execute: { () -> Void in
+        globalMainQueue.async(execute: { () -> Void in
             self.tabledata = ScheduleLoggData().filter(search: nil, what:nil)
             self.scheduletable.reloadData()
         })
@@ -163,11 +160,11 @@ extension ViewControllerLoggData : NSSearchFieldDelegate {
         self.Catalog.state = .off
         self.date.state = .off
     }
-    
+
 }
 
 extension ViewControllerLoggData : NSTableViewDataSource {
-    
+
     func numberOfRows(in tableView: NSTableView) -> Int {
         if (self.tabledata == nil ) {
             self.numberOflogfiles.stringValue = "Number of logs: 0"
@@ -177,16 +174,16 @@ extension ViewControllerLoggData : NSTableViewDataSource {
             return (self.tabledata!.count)
         }
     }
-    
+
 }
 
 extension ViewControllerLoggData : NSTableViewDelegate {
-    
+
     func tableView(_ tableView: NSTableView, objectValueFor tableColumn: NSTableColumn?, row: Int) -> Any? {
-        let object:NSDictionary = self.tabledata![row]
+        let object: NSDictionary = self.tabledata![row]
         return object[tableColumn!.identifier] as? String
     }
-    
+
     // when row is selected
     // setting which table row is selected
     func tableViewSelectionDidChange(_ notification: Notification) {
@@ -201,16 +198,13 @@ extension ViewControllerLoggData : NSTableViewDelegate {
 }
 
 extension ViewControllerLoggData: RefreshtableView {
-    
+
     // Refresh tableView
     func refresh() {
-        GlobalMainQueue.async(execute: { () -> Void in
+        globalMainQueue.async(execute: { () -> Void in
             self.tabledata = ScheduleLoggData().filter(search: nil, what:nil)
             self.scheduletable.reloadData()
         })
         self.row = nil
     }
 }
-
-
-

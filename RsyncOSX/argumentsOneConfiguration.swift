@@ -12,15 +12,15 @@ import Foundation
 // and a version to show in view of both
 
 struct ArgumentsOneConfiguration {
-    
-    var config:configuration?
-    var arg:Array<String>?
-    var argdryRun:Array<String>?
-    var argDisplay:Array<String>?
-    var argdryRunDisplay:Array<String>?
-    
-    init(config:configuration) {
-        
+
+    var config: Configuration?
+    var arg: Array<String>?
+    var argdryRun: Array<String>?
+    var argDisplay: Array<String>?
+    var argdryRunDisplay: Array<String>?
+
+    init(config: Configuration) {
+
         // The configuration
         self.config = config
         // All arguments for rsync is computed, two sets. One for dry-run and one for real run.
@@ -31,4 +31,3 @@ struct ArgumentsOneConfiguration {
         self.argdryRunDisplay = rsyncProcessArguments().argumentsRsync(config, dryRun: true, forDisplay: true)
     }
 }
-

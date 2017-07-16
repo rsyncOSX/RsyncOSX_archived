@@ -10,9 +10,9 @@ import Foundation
 import Cocoa
 
 class ViewControllerHelp: NSViewController {
-    
-    fileprivate var showwhat:helpdocs?
-    
+
+    fileprivate var showwhat: helpdocs?
+
     @IBOutlet weak var Documents: NSButton!
     @IBOutlet weak var Singeltask: NSButton!
     @IBOutlet weak var Batchtask: NSButton!
@@ -29,7 +29,7 @@ class ViewControllerHelp: NSViewController {
     @IBOutlet weak var RsyncParameters: NSButton!
     @IBOutlet weak var source: NSButton!
     @IBOutlet weak var Ssh: NSButton!
-    
+
     @IBAction func help(_ sender: NSButton) {
         if self.Batchtask.state == .on {
             self.showwhat = .batchtask
@@ -82,7 +82,7 @@ class ViewControllerHelp: NSViewController {
         }
         self.show()
     }
-    
+
     private func show() {
         let help = Help()
         guard self.showwhat != nil else {
@@ -90,5 +90,5 @@ class ViewControllerHelp: NSViewController {
         }
         help.help(what: self.showwhat!)
     }
-    
+
 }

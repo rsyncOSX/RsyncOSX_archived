@@ -8,9 +8,9 @@
 
 import Foundation
 
-final class commandSsh: processCmd {
-    
-    init (command:String?, arguments:Array<String>?) {
+final class CommandSsh: processCmd {
+
+    init (command: String?, arguments: Array<String>?) {
         super.init(command: command, arguments: arguments, aScheduledOperation: false)
         // Process is initated from Ssh
         // ProcessTermination()
@@ -18,5 +18,5 @@ final class commandSsh: processCmd {
             self.delegate_update = pvc
         }
     }
-    
+
 }

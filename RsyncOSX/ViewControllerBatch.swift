@@ -14,20 +14,19 @@ protocol getNewBatchTask: class {
     func getTaskObject() -> newBatchTask
 }
 
-class ViewControllerBatch : NSViewController {
-    
-    
+class ViewControllerBatch: NSViewController {
+
     // If close button or abort is pressed
     // After execute button is pressed, close is abort
-    var close:Bool?
+    var close: Bool?
     // Automatic closing of view
-    var waitToClose:Timer?
-    var closeIn:Timer?
-    var seconds:Int?
+    var waitToClose: Timer?
+    var closeIn: Timer?
+    var seconds: Int?
     // Working on row
-    var row:Int?
+    var row: Int?
     // Batchobject
-    var batchTask:newBatchTask?
+    var batchTask: newBatchTask?
 
     // Main tableview
     @IBOutlet weak var mainTableView: NSTableView!
@@ -36,28 +35,27 @@ class ViewControllerBatch : NSViewController {
     @IBOutlet weak var label: NSTextField!
     @IBOutlet weak var closeinseconds: NSTextField!
     @IBOutlet weak var rownumber: NSTextField!
-    
+
     // Delegeta to Dismisser
-    weak var dismiss_delegate:DismissViewController?
+    weak var dismissDelegate: DismissViewController?
     // Delegate to Abort operations
-    weak var abort_delegate:AbortOperations?
+    weak var abortDelegate: AbortOperations?
 
     // ACTIONS AND BUTTONS
-    
+
     @IBAction func Close(_ sender: NSButton) {
-        
-        
+
         if (self.close!) {
             self.batchTask = newBatchTask()
             self.batchTask!.closeOperation()
         } else {
-            self.abort_delegate?.abortOperations()
+            self.abortDelegate?.abortOperations()
         }
         self.waitToClose?.invalidate()
         self.closeIn?.invalidate()
-        self.dismiss_delegate?.dismiss_view(viewcontroller: self)
+        self.dismissDelegate?.dismiss_view(viewcontroller: self)
     }
-    
+
     // Execute batch
     @IBAction func Execute(_ sender: NSButton) {
         self.batchTask = newBatchTask()
@@ -65,19 +63,18 @@ class ViewControllerBatch : NSViewController {
         self.CloseButton.title = "Abort"
         self.close = false
     }
-    
+
     @objc fileprivate func setSecondsView() {
         self.seconds = self.seconds! - 1
         self.closeinseconds.stringValue = "Close automatically in : " + String(self.seconds!) + " seconds"
     }
-    
+
     @objc fileprivate func closeView() {
         self.waitToClose?.invalidate()
         self.closeIn?.invalidate()
-        self.dismiss_delegate?.dismiss_view(viewcontroller: self)
+        self.dismissDelegate?.dismiss_view(viewcontroller: self)
     }
 
-    
     // Initial functions viewDidLoad and viewDidAppear
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -86,14 +83,14 @@ class ViewControllerBatch : NSViewController {
         self.mainTableView.delegate = self
         self.mainTableView.dataSource = self
         if (SharingManagerConfiguration.sharedInstance.batchDataQueuecount() > 0 ) {
-            GlobalMainQueue.async(execute: { () -> Void in
+            globalMainQueue.async(execute: { () -> Void in
                 self.mainTableView.reloadData()
             })
         }
          // Dismisser is root controller
         if let pvc = self.presenting as? ViewControllertabMain {
-            self.dismiss_delegate = pvc
-            self.abort_delegate = pvc
+            self.dismissDelegate = pvc
+            self.abortDelegate = pvc
         }
     }
 
@@ -108,12 +105,11 @@ class ViewControllerBatch : NSViewController {
         self.close = true
         self.batchTask = nil
     }
-    
+
     override func viewDidDisappear() {
         super.viewDidDisappear()
         self.batchTask = nil
     }
-
 
 }
 
@@ -125,13 +121,13 @@ extension ViewControllerBatch : NSTableViewDataSource {
 }
 
 extension ViewControllerBatch : NSTableViewDelegate {
-    
+
     // TableView delegates
     @objc(tableView:objectValueForTableColumn:row:) func tableView(_ tableView: NSTableView, objectValueFor tableColumn: NSTableColumn?, row: Int) -> Any? {
         guard SharingManagerConfiguration.sharedInstance.getbatchDataQueue() != nil else {
             return nil
         }
-        let object : NSMutableDictionary = SharingManagerConfiguration.sharedInstance.getbatchDataQueue()![row]
+        let object: NSMutableDictionary = SharingManagerConfiguration.sharedInstance.getbatchDataQueue()![row]
         if (tableColumn!.identifier.rawValue == "estimatedCellID" || tableColumn!.identifier.rawValue == "completedCellID" ) {
             return object[tableColumn!.identifier] as? Int!
         } else {
@@ -145,31 +141,31 @@ extension ViewControllerBatch : NSTableViewDelegate {
 }
 
 extension ViewControllerBatch: StartStopProgressIndicator {
-    
+
     func stop() {
         let row = SharingManagerConfiguration.sharedInstance.getBatchdataObject()!.getRow() + 1
-        GlobalMainQueue.async(execute: { () -> Void in
+        globalMainQueue.async(execute: { () -> Void in
             self.label.stringValue = "Executing task "
             self.rownumber.stringValue = String(row)
         })
-        
+
     }
-    
+
     func start() {
         self.close = false
         let row = SharingManagerConfiguration.sharedInstance.getBatchdataObject()!.getRow() + 1
         // Starts estimation progressbar when estimation starts
-        GlobalMainQueue.async(execute: { () -> Void in
+        globalMainQueue.async(execute: { () -> Void in
             self.working.startAnimation(nil)
             self.label.stringValue = "Estimating task "
             self.rownumber.stringValue = String(row)
         })
-        
+
     }
-    
+
     func complete() {
         // Batch task completed
-        GlobalMainQueue.async(execute: { () -> Void in
+        globalMainQueue.async(execute: { () -> Void in
             self.working.stopAnimation(nil)
             self.label.stringValue = "Completed all task(s)"
             self.CloseButton.title = "Close"
@@ -180,24 +176,24 @@ extension ViewControllerBatch: StartStopProgressIndicator {
         self.waitToClose = Timer.scheduledTimer(timeInterval: 10, target: self, selector: #selector(closeView), userInfo: nil, repeats: false)
         self.closeIn = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(setSecondsView), userInfo: nil, repeats: true)
     }
-    
+
 }
 
 extension ViewControllerBatch: RefreshtableView {
-    
+
     // Updates tableview according to progress of batch
     func refresh() {
-        GlobalMainQueue.async(execute: { () -> Void in
+        globalMainQueue.async(execute: { () -> Void in
             self.mainTableView.reloadData()
         })
     }
-    
+
 }
 
 extension ViewControllerBatch: getNewBatchTask {
-    
+
     func getTaskObject() -> newBatchTask {
         return self.batchTask!
     }
-    
+
 }

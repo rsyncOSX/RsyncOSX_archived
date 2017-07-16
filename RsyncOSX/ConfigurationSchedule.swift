@@ -8,16 +8,16 @@
 
 import Foundation
 
-struct configurationSchedule {
-    var hiddenID : Int
+struct ConfigurationSchedule {
+    var hiddenID: Int
     var dateStart: String
     var dateStop: String?
-    var schedule : String
+    var schedule: String
     var logrecords = Array<NSMutableDictionary>()
-    var delete:Bool?
-    
-    init(dictionary: NSDictionary, log : NSArray?) {
-        self.hiddenID = dictionary.object(forKey: "hiddenID") as! Int
+    var delete: Bool?
+
+    init(dictionary: NSDictionary, log: NSArray?) {
+        self.hiddenID = (dictionary.object(forKey: "hiddenID") as? Int)!
         self.dateStart = dictionary.object(forKey: "dateStart") as! String
         self.schedule = dictionary.object(forKey: "schedule") as! String
         if let date = dictionary.object(forKey: "dateStop") as? String {
@@ -30,4 +30,3 @@ struct configurationSchedule {
         }
     }
 }
-

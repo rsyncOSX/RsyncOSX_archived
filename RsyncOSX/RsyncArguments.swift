@@ -8,24 +8,24 @@
 
 import Foundation
 
-final class rsyncArguments: ProcessArguments {
-    
-    private var config:configuration?
-    private var args:Array<String>?
-    private var command:String?
-    private var file:String?
-    private var argDisplay:String?
-    
+final class RsyncArguments: ProcessArguments {
+
+    private var config: Configuration?
+    private var args: Array<String>?
+    private var command: String?
+    private var file: String?
+    private var argDisplay: String?
+
     // Set parameters for rsync
-    private func arguments(remoteFile : String?, localCatalog : String?, drynrun:Bool?) {
-        
+    private func arguments(remoteFile: String?, localCatalog: String?, drynrun: Bool?) {
+
         if let config = self.config {
             // Drop the two first characeters ("./") as result from the find . -name
-            let remote_with_whitespace:String = String(remoteFile!.characters.dropFirst(2))
+            let remote_with_whitespace: String = String(remoteFile!.characters.dropFirst(2))
             // Replace remote for white spaces
-            let whitespace:String = "\\ "
+            let whitespace: String = "\\ "
             let remote = remote_with_whitespace.replacingOccurrences(of: " ", with: whitespace)
-            let local:String = localCatalog!
+            let local: String = localCatalog!
             if (config.sshport != nil) {
                 self.args!.append("-e")
                 self.args!.append("ssh -p " + String(config.sshport!))
@@ -62,28 +62,28 @@ final class rsyncArguments: ProcessArguments {
             }
         }
     }
-    
+
     func getArguments() -> Array<String>? {
         guard self.args != nil else {
             return nil
         }
         return self.args
     }
-    
+
     func getCommand() -> String? {
         guard self.command != nil else {
             return nil
         }
         return self.command
     }
-    
-    init(config: configuration, remoteFile : String?, localCatalog : String?, drynrun:Bool?) {
-        
+
+    init(config: Configuration, remoteFile: String?, localCatalog: String?, drynrun: Bool?) {
+
         self.config = config
         // Initialize the argument array
         self.args = nil
         self.args = Array<String>()
         self.arguments(remoteFile: remoteFile, localCatalog: localCatalog, drynrun: drynrun)
-        
+
     }
 }

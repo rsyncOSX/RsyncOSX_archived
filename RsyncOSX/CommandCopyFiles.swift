@@ -8,9 +8,9 @@
 
 import Foundation
 
-final class commandCopyFiles: processCmd {
-    
-     init (command:String?, arguments:Array<String>?) {
+final class CommandCopyFiles: processCmd {
+
+     init (command: String?, arguments: Array<String>?) {
         super.init(command: command, arguments: arguments, aScheduledOperation: false)
         // Process is inated from CopyFiles
         // ProcessTermination()
@@ -20,6 +20,5 @@ final class commandCopyFiles: processCmd {
         // Just for using another appending output function
         self.copyfiles = true
     }
-    
-}
 
+}

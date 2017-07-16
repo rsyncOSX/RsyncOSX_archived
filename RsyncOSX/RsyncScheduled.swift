@@ -11,10 +11,10 @@ import Foundation
 import Foundation
 
 final class RsyncScheduled: processCmd {
-    
-    init (arguments:Array<String>?) {
+
+    init (arguments: Array<String>?) {
         super.init(command: nil, arguments: arguments, aScheduledOperation: true)
         self.delegate_update = nil
     }
-    
+
 }

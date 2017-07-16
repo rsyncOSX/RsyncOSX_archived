@@ -9,19 +9,19 @@
 import Foundation
 
 class rsyncProcessArguments {
-    
+
     // If true one of the userselecet params are --stats
     // If not add --stats in dryrun arguments.
     // Must check all parameter8 - paramater14
     // both backup and restore part
-    private var stats:Bool?
-    private var arguments:Array<String>?
-    
+    private var stats: Bool?
+    private var arguments: Array<String>?
+
     // Set initial parameter1 .. paramater6
     // Parameters is computed by RsyncOSX
-    
-    private func setParameters1To6(_ config : configuration, dryRun : Bool, forDisplay : Bool) {
-        
+
+    private func setParameters1To6(_ config: Configuration, dryRun: Bool, forDisplay: Bool) {
+
         let parameter1: String = config.parameter1
         let parameter2: String = config.parameter2
         let parameter3: String = config.parameter3
@@ -29,7 +29,7 @@ class rsyncProcessArguments {
         let parameter5: String = config.parameter5
         let parameter6: String = config.parameter6
         let offsiteServer: String = config.offsiteServer
-        
+
         self.arguments!.append(parameter1)
         if (forDisplay) {self.arguments!.append(" ")}
         self.arguments!.append(parameter2)
@@ -60,17 +60,16 @@ class rsyncProcessArguments {
             if (forDisplay) {self.arguments!.append(" ")}
         }
     }
-    
-    
+
     // Compute user selected parameters parameter8 ... parameter14
     // Brute force, check every parameter
     // Not special elegant, but it works
-    
-    private func setParameters8To14(_ config : configuration, dryRun : Bool, forDisplay : Bool) {
-        
+
+    private func setParameters8To14(_ config: Configuration, dryRun: Bool, forDisplay: Bool) {
+
         let dryrun: String = config.dryrun
         self.stats = false
-        
+
         if (config.parameter8 != nil) {
             self.appendParameter(parameter: config.parameter8!, forDisplay: forDisplay)
         }
@@ -102,12 +101,12 @@ class rsyncProcessArguments {
             }
         }
     }
-    
+
     // Check userselected parameter and append it
     // to arguments array passed to rsync or displayed
     // on screen.
-    
-    private func appendParameter (parameter:String, forDisplay : Bool) {
+
+    private func appendParameter (parameter: String, forDisplay: Bool) {
         if ((parameter.characters.count) > 1) {
             if parameter == "--stats" {
                 self.stats = true
@@ -118,8 +117,7 @@ class rsyncProcessArguments {
             }
         }
     }
-    
-    
+
     /// Function for initialize arguments array. RsyncOSX computes four argumentstrings
     /// two arguments for dryrun, one for rsync and one for display
     /// two arguments for realrun, one for rsync and one for display
@@ -128,8 +126,8 @@ class rsyncProcessArguments {
     /// - parameter dryRun: true if compute dryrun arguments, false if compute arguments for real run
     /// - paramater forDisplay: true if for display, false if not
     /// - returns: Array of Strings
-    func argumentsRsync (_ config : configuration, dryRun : Bool, forDisplay : Bool) -> Array<String> {
-        
+    func argumentsRsync (_ config: Configuration, dryRun: Bool, forDisplay: Bool) -> Array<String> {
+
         let localCatalog: String = config.localCatalog
         let offsiteCatalog: String = config.offsiteCatalog
         let offsiteUsername: String = config.offsiteUsername
@@ -146,9 +144,9 @@ class rsyncProcessArguments {
                 offsiteArguments = offsiteUsername + "@" + offsiteServer + ":" + offsiteCatalog
             }
         }
-        
+
         switch config.task {
-            
+
         case "backup":
             self.setParameters1To6(config, dryRun: dryRun, forDisplay: forDisplay)
             self.setParameters8To14(config, dryRun: dryRun, forDisplay: forDisplay)
@@ -163,7 +161,7 @@ class rsyncProcessArguments {
                 self.arguments!.append(offsiteArguments!)
                 if (forDisplay) {self.arguments!.append(" ")}
             }
-            
+
         case "restore":
             self.setParameters1To6(config, dryRun: dryRun, forDisplay: forDisplay)
             self.setParameters8To14(config, dryRun: dryRun, forDisplay: forDisplay)
@@ -182,7 +180,7 @@ class rsyncProcessArguments {
         }
         return self.arguments!
     }
-    
+
     init () {
         self.arguments = nil
         self.arguments = Array<String>()

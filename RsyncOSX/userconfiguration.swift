@@ -10,10 +10,10 @@ import Foundation
 
 // Reading userconfiguration from file into RsyncOSX
 final class userconfiguration {
-    
-    weak var rsyncchanged_delegate:RsyncChanged?
-    
-    private func readUserconfiguration(dict : NSDictionary) {
+
+    weak var rsyncchanged_delegate: RsyncChanged?
+
+    private func readUserconfiguration(dict: NSDictionary) {
         // Another version of rsync
         if let version3rsync = dict.value(forKey: "version3Rsync") as? Int {
             if version3rsync == 1 {
@@ -61,8 +61,8 @@ final class userconfiguration {
             }
         }
     }
-    
-    init (userconfigRsyncOSX : [NSDictionary]) {
+
+    init (userconfigRsyncOSX: [NSDictionary]) {
         if (userconfigRsyncOSX.count > 0) {
             self.readUserconfiguration(dict: userconfigRsyncOSX[0])
         }

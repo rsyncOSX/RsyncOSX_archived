@@ -15,10 +15,10 @@ enum chmodTask {
 }
 
 final class chmodPubKey {
-    
+
     // Work Queue
-    private var work:Array<chmodTask>?
-    
+    private var work: Array<chmodTask>?
+
     // Returns the top most element.
     // Top element is read only
     func peek() -> chmodTask {
@@ -30,7 +30,7 @@ final class chmodPubKey {
         }
         return self.work![0]
     }
-    
+
     // Returns the top most element.
     // Top element is removed
     func pop() -> chmodTask {
@@ -42,9 +42,9 @@ final class chmodPubKey {
         }
         return self.work!.removeFirst()
     }
-    
+
     // Single run
-    init(key:String) {
+    init(key: String) {
         self.work = nil
         self.work = Array<chmodTask>()
         switch key {

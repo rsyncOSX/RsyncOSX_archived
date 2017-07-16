@@ -9,40 +9,38 @@
 import Foundation
 import Cocoa
 
+class ViewControllerCopyFilesSource: NSViewController {
 
-class ViewControllerCopyFilesSource : NSViewController {
-    
-    
     // Main tableview
     @IBOutlet weak var mainTableView: NSTableView!
     @IBOutlet weak var CloseButton: NSButton!
-    
+
     // Dismisser
-    weak var dismiss_delegate:DismissViewController?
+    weak var dismissDelegate: DismissViewController?
     // Set index
-    weak var setIndex_delegate:ViewControllerCopyFiles?
+    weak var setIndexDelegate: ViewControllerCopyFiles?
     // GetSource
-    weak var getSource_delegate:ViewControllerCopyFiles?
-    weak var getSource_delegate2:ViewControllerSsh?
+    weak var getSourceDelegate: ViewControllerCopyFiles?
+    weak var getSourceDelegate2: ViewControllerSsh?
     // Index
-    private var index:Int?
-    
+    private var index: Int?
+
     // ACTIONS AND BUTTONS
     @IBAction func Close(_ sender: NSButton) {
         if let pvc = self.presenting as? ViewControllerCopyFiles {
-            self.getSource_delegate = pvc
+            self.getSourceDelegate = pvc
             if let index = self.index {
-                self.getSource_delegate?.GetSource(Index: index)
+                self.getSourceDelegate?.GetSource(Index: index)
             }
         } else if let pvc = self.presenting as? ViewControllerSsh {
-            self.getSource_delegate2 = pvc
+            self.getSourceDelegate2 = pvc
             if let index = self.index {
-                self.getSource_delegate2?.GetSource(Index: index)
+                self.getSourceDelegate2?.GetSource(Index: index)
             }
         }
-        self.dismiss_delegate?.dismiss_view(viewcontroller: self)
+        self.dismissDelegate?.dismiss_view(viewcontroller: self)
     }
-    
+
     // Initial functions viewDidLoad and viewDidAppear
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -50,44 +48,44 @@ class ViewControllerCopyFilesSource : NSViewController {
         // Setting delegates and datasource
         self.mainTableView.delegate = self
         self.mainTableView.dataSource = self
-        GlobalMainQueue.async(execute: { () -> Void in
+        globalMainQueue.async(execute: { () -> Void in
             self.mainTableView.reloadData()
         })
         // Dismisser is root controller
         if let pvc = self.presenting as? ViewControllerCopyFiles {
-            self.dismiss_delegate = pvc
+            self.dismissDelegate = pvc
         } else if let pvc = self.presenting as? ViewControllerSsh {
-            self.dismiss_delegate = pvc
+            self.dismissDelegate = pvc
         }
         // Double click on row to select
         self.mainTableView.doubleAction = #selector(ViewControllerCopyFilesSource.tableViewDoubleClick(sender:))
     }
-    
+
     override func viewDidAppear() {
         // Dismisser is root controller
         if let pvc = self.presenting as? ViewControllerCopyFiles {
-            self.dismiss_delegate = pvc
+            self.dismissDelegate = pvc
         } else if let pvc = self.presenting as? ViewControllerSsh {
-            self.dismiss_delegate = pvc
+            self.dismissDelegate = pvc
         }
     }
-    
-    @objc(tableViewDoubleClick:) func tableViewDoubleClick(sender:AnyObject) {
+
+    @objc(tableViewDoubleClick:) func tableViewDoubleClick(sender: AnyObject) {
         if let pvc = self.presenting as? ViewControllerCopyFiles {
-            self.getSource_delegate = pvc
+            self.getSourceDelegate = pvc
             if let index = self.index {
-                self.getSource_delegate?.GetSource(Index: index)
+                self.getSourceDelegate?.GetSource(Index: index)
             }
         } else if let pvc = self.presenting as? ViewControllerSsh {
-            self.getSource_delegate2 = pvc
+            self.getSourceDelegate2 = pvc
             if let index = self.index {
-                self.getSource_delegate2?.GetSource(Index: index)
+                self.getSourceDelegate2?.GetSource(Index: index)
             }
         }
-        
-        self.dismiss_delegate?.dismiss_view(viewcontroller: self)
+
+        self.dismissDelegate?.dismiss_view(viewcontroller: self)
     }
-    
+
     // when row is selected
     // setting which table row is selected
     func tableViewSelectionDidChange(_ notification: Notification) {
@@ -95,14 +93,14 @@ class ViewControllerCopyFilesSource : NSViewController {
         let indexes = myTableViewFromNotification.selectedRowIndexes
         if let index = indexes.first {
             if let pvc = self.presenting as? ViewControllerCopyFiles {
-                self.setIndex_delegate = pvc
+                self.setIndexDelegate = pvc
                 let object = SharingManagerConfiguration.sharedInstance.getConfigurationsDataSourcecountBackupOnly()![index]
                 let hiddenID = object.value(forKey: "hiddenID") as? Int
                 guard hiddenID != nil else {
                     return
                 }
                 self.index = SharingManagerConfiguration.sharedInstance.getIndex(hiddenID!)
-                self.setIndex_delegate?.SetIndex(Index: self.index!)
+                self.setIndexDelegate?.SetIndex(Index: self.index!)
             } else if let _ = self.presenting as? ViewControllerSsh {
                 let object = SharingManagerConfiguration.sharedInstance.getConfigurationsDataSourcecountBackupOnly()![index]
                 let hiddenID = object.value(forKey: "hiddenID") as? Int
@@ -113,7 +111,7 @@ class ViewControllerCopyFilesSource : NSViewController {
             }
         }
     }
-    
+
 }
 
 extension ViewControllerCopyFilesSource: NSTableViewDataSource {
@@ -127,15 +125,14 @@ extension ViewControllerCopyFilesSource: NSTableViewDataSource {
 }
 
 extension ViewControllerCopyFilesSource: NSTableViewDelegate {
-    
+
     // TableView delegates
     @objc(tableView:objectValueForTableColumn:row:) func tableView(_ tableView: NSTableView, objectValueFor tableColumn: NSTableColumn?, row: Int) -> Any? {
         guard SharingManagerConfiguration.sharedInstance.getConfigurationsDataSourcecountBackupOnly() != nil else {
             return nil
         }
-        let object : NSDictionary = SharingManagerConfiguration.sharedInstance.getConfigurationsDataSourcecountBackupOnly()![row]
+        let object: NSDictionary = SharingManagerConfiguration.sharedInstance.getConfigurationsDataSourcecountBackupOnly()![row]
         return object[tableColumn!.identifier] as? String
     }
-    
-}
 
+}

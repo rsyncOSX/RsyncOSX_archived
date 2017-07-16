@@ -14,16 +14,15 @@ enum Root {
 }
 
 protocol ReportError: class {
-    func reportError(errorstr:String)
+    func reportError(errorstr: String)
 }
 
-
 class files {
-    
+
     // Report error
     weak var reportError_delegate: ReportError?
     // Which root
-    var root:Root?
+    var root: Root?
     // Root of files
     var FilesRoot: String? {
         get {
@@ -40,10 +39,10 @@ class files {
             }
         }
     }
-    
+
     // Function for returning directorys in path as array of URLs
     func getDirectorysURLs() -> Array<URL>? {
-        var array:Array<URL>?
+        var array: Array<URL>?
         if let filePath = self.FilesRoot {
             if let fileURLs = self.getfileURLs(path: filePath) {
                 array = Array<URL>()
@@ -57,13 +56,13 @@ class files {
         }
         return nil
     }
-    
+
     // Function for returning files in path as array of URLs
     func getFilesURLs() -> Array<URL>? {
-        var array:Array<URL>?
+        var array: Array<URL>?
         if let filePath = self.FilesRoot {
             let fileManager = FileManager.default
-            var isDir:ObjCBool = false
+            var isDir: ObjCBool = false
             if fileManager.fileExists(atPath: filePath, isDirectory:&isDir) {
                 guard isDir.boolValue else {
                     return nil
@@ -83,13 +82,13 @@ class files {
         }
         return nil
     }
-    
+
     // Function for returning files in path as array of Strings
     func getFileStrings() -> Array<String>? {
-        var array:Array<String>?
+        var array: Array<String>?
         if let filePath = self.FilesRoot {
             let fileManager = FileManager.default
-            var isDir:ObjCBool = false
+            var isDir: ObjCBool = false
             if fileManager.fileExists(atPath: filePath, isDirectory:&isDir) {
                 guard isDir.boolValue else {
                     return nil
@@ -112,11 +111,10 @@ class files {
         }
         return nil
     }
-    
-    
+
     // Function for returning profiles as array of Strings
     func getDirectorysStrings()-> Array<String> {
-        var array:Array<String> = Array<String>()
+        var array: Array<String> = Array<String>()
         if let filePath = self.FilesRoot {
             if let fileURLs = self.getfileURLs(path: filePath) {
                 for i in 0 ..< fileURLs.count {
@@ -131,8 +129,7 @@ class files {
         }
         return array
     }
-    
-    
+
     // Func that creates directory if not created
     func createDirectory() {
         let fileManager = FileManager.default
@@ -146,17 +143,16 @@ class files {
                     self.reportError_delegate?.reportError(errorstr: error.description)
                 }
             }
-            
+
         }
     }
-    
-    
+
     // Function for getting fileURLs for a given path
-    func getfileURLs (path:String) -> Array<URL>? {
+    func getfileURLs (path: String) -> Array<URL>? {
         let fileManager = FileManager.default
         if let filepath = URL.init(string: path) {
             do {
-                let files = try fileManager.contentsOfDirectory(at: filepath, includingPropertiesForKeys: nil , options: .skipsHiddenFiles)
+                let files = try fileManager.contentsOfDirectory(at: filepath, includingPropertiesForKeys: nil, options: .skipsHiddenFiles)
                 return files
             } catch let e {
                 let error = e as NSError
@@ -166,9 +162,9 @@ class files {
         }
         return nil
     }
-    
+
     // Check if file exist or not
-    func checkFileExist(file:String) -> Bool {
+    func checkFileExist(file: String) -> Bool {
         let fileManager = FileManager.default
         if fileManager.fileExists(atPath: file) {
             return true
@@ -176,10 +172,9 @@ class files {
             return false
         }
     }
-        
-    init (root:Root) {
+
+    init (root: Root) {
         self.root = root
     }
-    
-}
 
+}

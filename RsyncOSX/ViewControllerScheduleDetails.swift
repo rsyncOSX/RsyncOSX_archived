@@ -9,41 +9,40 @@
 import Foundation
 import Cocoa
 
-
 // Protocol for getting the hiddenID for a configuration
 protocol GetHiddenID : class {
     func gethiddenID() -> Int
 }
 
-class ViewControllerScheduleDetails : NSViewController {
-    
+class ViewControllerScheduleDetails: NSViewController {
+
     @IBOutlet weak var localCatalog: NSTextField!
     @IBOutlet weak var remoteCatalog: NSTextField!
     @IBOutlet weak var offsiteServer: NSTextField!
-    
+
     // Delegate functions
     // Pick up hiddenID from row
-    weak var getHiddenID_delegate:GetHiddenID?
+    weak var getHiddenID_delegate: GetHiddenID?
     // Protocolfunction for doing a refresh in ViewControllertabMain
-    weak var refresh_delegate:RefreshtableView?
+    weak var refresh_delegate: RefreshtableView?
     // Protocolfunction for doing a refresh in ViewControllertabSchedule
-    weak var refresh_delegate2:RefreshtableView?
+    weak var refresh_delegate2: RefreshtableView?
     // Protocolfunction for dismiss the ViewController
-    weak var dismiss_delegate:DismissViewController?
-    
-    var hiddendID:Int?
+    weak var dismiss_delegate: DismissViewController?
+
+    var hiddendID: Int?
     // Data for tableView
-    var data:[NSMutableDictionary]?
+    var data: [NSMutableDictionary]?
     // Notification center
-    var observationCenter : NSObjectProtocol!
-    
+    var observationCenter: NSObjectProtocol!
+
     @IBOutlet weak var scheduletable: NSTableView!
-    
+
     // Close view and either stop or delete Schedules
     @IBAction func close(_ sender: NSButton) {
         self.dismiss_delegate?.dismiss_view(viewcontroller: self)
     }
-    
+
     @IBAction func update(_ sender: NSButton) {
         if let data = self.data {
             SharingManagerSchedule.sharedInstance.deleteOrStopSchedules(data : data)
@@ -53,7 +52,7 @@ class ViewControllerScheduleDetails : NSViewController {
         }
         self.dismiss_delegate?.dismiss_view(viewcontroller: self)
     }
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         if let pvc = self.presenting as? ViewControllertabMain {
@@ -72,13 +71,13 @@ class ViewControllerScheduleDetails : NSViewController {
             self.hiddendID = self.getHiddenID_delegate?.gethiddenID()
         }
     }
-    
+
     override func viewDidAppear() {
         super.viewDidAppear()
         self.hiddendID = self.getHiddenID_delegate?.gethiddenID()
         self.data = SharingManagerSchedule.sharedInstance.readScheduledata(self.hiddendID!)
-        
-        GlobalMainQueue.async(execute: { () -> Void in
+
+        globalMainQueue.async(execute: { () -> Void in
             self.scheduletable.reloadData()
         })
         self.localCatalog.stringValue = SharingManagerConfiguration.sharedInstance.getResourceConfiguration(self.hiddendID!, resource: .localCatalog)
@@ -88,7 +87,7 @@ class ViewControllerScheduleDetails : NSViewController {
 }
 
 extension ViewControllerScheduleDetails : NSTableViewDataSource {
-    
+
     func numberOfRows(in tableView: NSTableView) -> Int {
         if (self.hiddendID != nil && self.data != nil) {
             return (self.data!.count)
@@ -96,35 +95,35 @@ extension ViewControllerScheduleDetails : NSTableViewDataSource {
             return 0
         }
     }
-    
+
 }
 
 extension ViewControllerScheduleDetails : NSTableViewDelegate {
-    
+
     // TableView delegates
     @objc(tableView:objectValueForTableColumn:row:) func tableView(_ tableView: NSTableView, objectValueFor tableColumn: NSTableColumn?, row: Int) -> Any? {
-        
+
         // If active schedule color row blue
-        var active:Bool = false
-        
+        var active: Bool = false
+
         if (row < self.data!.count) {
-            let object:NSMutableDictionary = self.data![row]
+            let object: NSMutableDictionary = self.data![row]
             if  object.value(forKey: "schedule") as? String == "once" ||
                 object.value(forKey: "schedule") as? String == "daily" ||
                 object.value(forKey: "schedule") as? String == "weekly" {
-                
+
                 let dateformatter = Utils.sharedInstance.setDateformat()
-                let dateStop:Date = dateformatter.date(from: object.value(forKey: "dateStop") as!String)!
+                let dateStop: Date = dateformatter.date(from: object.value(forKey: "dateStop") as!String)!
                 if (dateStop.timeIntervalSinceNow > 0) {
                     active = true
                 } else {
                     active = false
                 }
             }
-            
+
             if (tableColumn!.identifier.rawValue == "stopCellID" || tableColumn!.identifier.rawValue == "deleteCellID") {
                    return object[tableColumn!.identifier] as? Int
-                
+
             } else {
                 if (active) {
                     let text = object[tableColumn!.identifier] as? String
@@ -152,5 +151,5 @@ extension ViewControllerScheduleDetails : NSTableViewDelegate {
             }
         }
     }
-    
+
 }

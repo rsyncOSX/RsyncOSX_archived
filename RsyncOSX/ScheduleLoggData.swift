@@ -17,20 +17,20 @@ enum filterLogs {
 }
 
 final class ScheduleLoggData {
-    
+
     // Reference to filtered data
-    private var data:Array<NSDictionary>?
+    private var data: Array<NSDictionary>?
     // Reference to all sorted loggdata
     // Loggdata is only sorted and read once
-    private var loggdata:Array<NSDictionary>?
-    
+    private var loggdata: Array<NSDictionary>?
+
     // Function for filter loggdata
-    func filter(search:String?, what:filterLogs?) -> [NSDictionary]? {
-        
+    func filter(search: String?, what: filterLogs?) -> [NSDictionary]? {
+
         guard search != nil else {
             return self.loggdata
         }
-    
+
         if (search!.isEmpty == false) {
             // Filter data
             self.readfilteredData(filter: search!, filterwhat: what!)
@@ -39,19 +39,18 @@ final class ScheduleLoggData {
             return self.data
         }
     }
-    
-    
+
     // Function for sorting and filtering loggdata
-    private func readfilteredData (filter:String, filterwhat:filterLogs) {
+    private func readfilteredData (filter: String, filterwhat: filterLogs) {
         var data = Array<NSDictionary>()
         self.data = nil
-        
+
         guard self.loggdata != nil else {
             return
         }
-        
+
         for i in 0 ..< self.loggdata!.count {
-            
+
             switch filterwhat {
             case .executeDate:
                 if (self.loggdata![i].value(forKey: "dateExecuted") as! String).contains(filter) {
@@ -69,24 +68,24 @@ final class ScheduleLoggData {
         }
         self.data = data
     }
-    
+
     // Function for sorting loggdata before any filtering.
     // Loggdata is only read and sorted once
     private func readAndSortAllLoggdata() {
         var data = Array<NSDictionary>()
-        let input:[configurationSchedule] = SharingManagerSchedule.sharedInstance.getSchedule()
+        let input: [ConfigurationSchedule] = SharingManagerSchedule.sharedInstance.getSchedule()
         for i in 0 ..< input.count {
             let hiddenID = SharingManagerSchedule.sharedInstance.getSchedule()[i].hiddenID
             if (input[i].logrecords.count > 0) {
                 for j in 0 ..< input[i].logrecords.count {
                     let dict = input[i].logrecords[j]
                     let logdetail: NSDictionary = [
-                        "localCatalog":SharingManagerConfiguration.sharedInstance.getResourceConfiguration(hiddenID, resource: .localCatalog),
-                        "offsiteServer":SharingManagerConfiguration.sharedInstance.getResourceConfiguration(hiddenID, resource: .offsiteServer),
-                        "dateExecuted":(dict.value(forKey: "dateExecuted") as? String)!,
-                        "resultExecuted":(dict.value(forKey: "resultExecuted") as? String)!,
-                        "parent":(dict.value(forKey: "parent") as? String)!,
-                        "hiddenID":hiddenID]
+                        "localCatalog": SharingManagerConfiguration.sharedInstance.getResourceConfiguration(hiddenID, resource: .localCatalog),
+                        "offsiteServer": SharingManagerConfiguration.sharedInstance.getResourceConfiguration(hiddenID, resource: .offsiteServer),
+                        "dateExecuted": (dict.value(forKey: "dateExecuted") as? String)!,
+                        "resultExecuted": (dict.value(forKey: "resultExecuted") as? String)!,
+                        "parent": (dict.value(forKey: "parent") as? String)!,
+                        "hiddenID": hiddenID]
                     data.append(logdetail)
                 }
             }
@@ -103,7 +102,7 @@ final class ScheduleLoggData {
             }
         }
     }
-    
+
     init () {
         // Read and sort loggdata only once
         if self.loggdata == nil {

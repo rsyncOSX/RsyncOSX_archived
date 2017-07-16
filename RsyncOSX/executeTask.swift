@@ -15,22 +15,22 @@ import Foundation
 // is set in the static object. The finalize object is invoked
 // when the job discover (observs) the termination of the process.
 
-class executeTask : Operation {
-    
+class executeTask: Operation {
+
     override func main() {
         // Delegate function for start and completion of scheduled jobs
-        weak var notify_delegate : ScheduledJobInProgress?
+        weak var notify_delegate: ScheduledJobInProgress?
         // Variables used for rsync parameters
         let output = outputProcess()
-        var arguments:Array<String>?
-        var config:configuration?
-        
+        var arguments: Array<String>?
+        var config: Configuration?
+
         // Get the first job of the queue
-        if let dict:NSDictionary = SharingManagerSchedule.sharedInstance.scheduledJob {
-            if let hiddenID:Int = dict.value(forKey: "hiddenID") as? Int {
-                let store:[configuration] = persistentStoreAPI.sharedInstance.getConfigurations()
+        if let dict: NSDictionary = SharingManagerSchedule.sharedInstance.scheduledJob {
+            if let hiddenID: Int = dict.value(forKey: "hiddenID") as? Int {
+                let store: [Configuration] = PersistentStoreAPI.sharedInstance.getConfigurations()
                 let configArray = store.filter({return ($0.hiddenID == hiddenID)})
-                
+
                 guard configArray.count > 0 else {
                     if let pvc = SharingManagerConfiguration.sharedInstance.ViewControllertabMain as? ViewControllertabMain {
                         notify_delegate = pvc
@@ -40,9 +40,9 @@ class executeTask : Operation {
                     }
                     return
                 }
-                
+
                 config = configArray[0]
-                
+
                 guard (config != nil) else {
                     if let pvc = SharingManagerConfiguration.sharedInstance.ViewControllertabMain as? ViewControllertabMain {
                         notify_delegate = pvc
@@ -52,7 +52,7 @@ class executeTask : Operation {
                     }
                     return
                 }
-                
+
                 // Notify that scheduled task is executing
                 if let pvc = SharingManagerConfiguration.sharedInstance.ViewControllertabMain as? ViewControllertabMain {
                     notify_delegate = pvc
@@ -62,14 +62,14 @@ class executeTask : Operation {
                         notify_delegate?.notifyScheduledJob(config: config)
                     }
                 }
-                
+
                 if (hiddenID >= 0 && config != nil) {
                     arguments = rsyncProcessArguments().argumentsRsync(config!, dryRun: false, forDisplay: false)
                     // Setting reference to finalize the job
                     // Finalize job is done when rsynctask ends (in process termination)
                     SharingManagerConfiguration.sharedInstance.operation = completeScheduledOperation(dict: dict)
                     // Start the rsync job
-                    GlobalMainQueue.async(execute: {
+                    globalMainQueue.async(execute: {
                         if (arguments != nil) {
                             let process = RsyncScheduled(arguments: arguments)
                             process.executeProcess(output: output)
@@ -80,4 +80,3 @@ class executeTask : Operation {
         }
     }
 }
-

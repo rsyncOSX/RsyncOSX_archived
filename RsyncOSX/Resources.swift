@@ -31,5 +31,5 @@ struct Resources {
             return self.urlPlist
         }
     }
-    
+
 }

@@ -9,25 +9,25 @@
 import Foundation
 
 class processCmd {
-    
+
     // Number of calculated files to be copied
-    var calculatedNumberOfFiles:Int = 0
+    var calculatedNumberOfFiles: Int = 0
     // Variable for reference to Process
-    var ProcessReference:Process?
+    var ProcessReference: Process?
     // Message to calling class
-    weak var delegate_update:UpdateProgress?
+    weak var delegate_update: UpdateProgress?
     // If process is created in Operation
-    var aScheduledOperation:Bool?
+    var aScheduledOperation: Bool?
     // Observer
     weak var observationCenter: NSObjectProtocol?
     // Command to be executed, normally rsync
-    var command:String?
+    var command: String?
     // Arguments to command
-    var arguments:Array<String>?
+    var arguments: Array<String>?
     // Output from CopyFiles or not
-    var copyfiles:Bool = false
-    
-    func executeProcess (output:outputProcess){
+    var copyfiles: Bool = false
+
+    func executeProcess (output: outputProcess) {
         // Process
         let task = Process()
         // Setting the correct path for rsync
@@ -45,11 +45,10 @@ class processCmd {
         task.standardError = pipe
         let outHandle = pipe.fileHandleForReading
         outHandle.waitForDataInBackgroundAndNotify()
-        
+
         // Observator for reading data from pipe
         // Observer is removed when Process terminates
-        self.observationCenter = NotificationCenter.default.addObserver(forName: NSNotification.Name.NSFileHandleDataAvailable, object: nil, queue: nil)
-        { notification -> Void in
+        self.observationCenter = NotificationCenter.default.addObserver(forName: NSNotification.Name.NSFileHandleDataAvailable, object: nil, queue: nil) { _ -> Void in
             let data = outHandle.availableData
             if data.count > 0 {
                 if let str = NSString(data: data, encoding: String.Encoding.utf8.rawValue) {
@@ -64,7 +63,7 @@ class processCmd {
                     // Check if in a scheduled operation, if not use delegate to inform about progress
                     if (self.aScheduledOperation! == false) {
                         // Send message about files
-                        self.delegate_update?.FileHandler()
+                        self.delegate_update?.fileHandler()
                     }
                 }
                 outHandle.waitForDataInBackgroundAndNotify()
@@ -72,13 +71,12 @@ class processCmd {
         }
         // Observator Process termination
         // Observer is removed when Process terminates
-        self.observationCenter = NotificationCenter.default.addObserver(forName: Process.didTerminateNotification, object: task, queue: nil)
-        { notification -> Void in
-            
+        self.observationCenter = NotificationCenter.default.addObserver(forName: Process.didTerminateNotification, object: task, queue: nil) { _ -> Void in
+
             // Check if in a scheduled operation, if not use delegate to inform about termination of Process()
             if (self.aScheduledOperation! == false) {
                 // Send message about process termination
-                self.delegate_update?.ProcessTermination()
+                self.delegate_update?.processTermination()
             } else {
                 // We are in Scheduled operation and must finalize the job
                 // e.g logging date and stuff like that
@@ -90,16 +88,16 @@ class processCmd {
             }
             NotificationCenter.default.removeObserver(self.observationCenter as Any)
         }
-        
+
         self.ProcessReference = task
         task.launch()
     }
-    
+
     // Get the reference to the Process object.
     func getProcess() -> Process? {
         return self.ProcessReference
     }
-    
+
     // Terminate Process, used when user Aborts task.
     func abortProcess() {
         guard self.ProcessReference != nil else {
@@ -107,12 +105,11 @@ class processCmd {
         }
         self.ProcessReference!.terminate()
     }
-    
-    init(command:String?, arguments:Array<String>?, aScheduledOperation:Bool) {
+
+    init(command: String?, arguments: Array<String>?, aScheduledOperation: Bool) {
         self.command = command
         self.arguments = arguments
         self.aScheduledOperation = aScheduledOperation
     }
-    
-}
 
+}

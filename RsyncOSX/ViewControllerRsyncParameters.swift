@@ -1,4 +1,3 @@
-
 //
 //  ViewControllerRsyncParameters.swift
 //  Rsync
@@ -23,18 +22,18 @@ protocol GetSelecetedIndex : class {
 }
 
 class ViewControllerRsyncParameters: NSViewController {
-    
+
     // Object for calculating rsync parameters
-    var parameters : RsyncParameters?
+    var parameters: RsyncParameters?
     // Delegate returning params updated or not
-    weak var userparamsupdated_delegate : RsyncUserParams?
+    weak var userparamsupdated_delegate: RsyncUserParams?
     // Get index of selected row
-    weak var getindex_delegate : GetSelecetedIndex?
+    weak var getindex_delegate: GetSelecetedIndex?
     // Dismisser
-    weak var dismiss_delegate:DismissViewController?
+    weak var dismiss_delegate: DismissViewController?
     // Reference to rsync parameters to use in combox
     var comboBoxValues = Array<String>()
-    
+
     @IBOutlet weak var viewParameter1: NSTextField!
     @IBOutlet weak var viewParameter2: NSTextField!
     @IBOutlet weak var viewParameter3: NSTextField!
@@ -58,11 +57,11 @@ class ViewControllerRsyncParameters: NSViewController {
     @IBOutlet weak var parameter12: NSComboBox!
     @IBOutlet weak var parameter13: NSComboBox!
     @IBOutlet weak var parameter14: NSComboBox!
-    
+
     @IBAction func close(_ sender: NSButton) {
          self.dismiss_delegate?.dismiss_view(viewcontroller: self)
     }
-    
+
     // Function for enabling backup of changed files in a backup catalog.
     // Parameters are appended to last two parameters (12 and 13).
     @IBAction func backup(_ sender: NSButton) {
@@ -85,10 +84,10 @@ class ViewControllerRsyncParameters: NSViewController {
         default : break
         }
     }
-    
+
     // Function for enabling suffix date + time changed files. 
     // Parameters are appended to last parameter (14).
-    
+
     @IBOutlet weak var suffixButton: NSButton!
     @IBAction func suffix(_ sender: NSButton) {
         self.suffixButton2.state = .off
@@ -103,7 +102,7 @@ class ViewControllerRsyncParameters: NSViewController {
             break
         }
     }
-    
+
     @IBOutlet weak var suffixButton2: NSButton!
     @IBAction func suffix2(_ sender: NSButton) {
         self.suffixButton.state = .off
@@ -117,12 +116,12 @@ class ViewControllerRsyncParameters: NSViewController {
         default:
             break
         }
-        
+
     }
-    
+
     // Backup button - only for testing on state
     @IBOutlet weak var backupbutton: NSButton!
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         // Get index of seleceted row
@@ -135,21 +134,21 @@ class ViewControllerRsyncParameters: NSViewController {
             self.dismiss_delegate = pvc2
         }
     }
-    
+
     override func viewDidAppear() {
         super.viewDidAppear()
-        
-        var configurations:[configuration] = SharingManagerConfiguration.sharedInstance.getConfigurations()
+
+        var configurations: [Configuration] = SharingManagerConfiguration.sharedInstance.getConfigurations()
         let index = self.getindex_delegate?.getindex()
-        
+
         guard index != nil else {
             return
         }
-        
+
         // Create RsyncParameters object and load initial parameters
         self.parameters = RsyncParameters(config: configurations[index!])
         self.comboBoxValues = parameters!.getComboBoxValues()
-        
+
         self.backupbutton.state = NSControl.StateValue(rawValue: 0)
         self.suffixButton.state = NSControl.StateValue(rawValue: 0)
         self.suffixButton2.state = NSControl.StateValue(rawValue: 0)
@@ -158,29 +157,29 @@ class ViewControllerRsyncParameters: NSViewController {
         self.viewParameter3.stringValue = configurations[index!].parameter3
         self.viewParameter4.stringValue = configurations[index!].parameter4
         self.viewParameter5.stringValue = configurations[index!].parameter5 + " " + configurations[index!].parameter6
-        
+
         // There are seven user seleected rsync parameters
         self.setValueComboBox(combobox: self.parameter8, index: self.parameters!.getParameter(rsyncparameternumber: 8).0)
         self.viewParameter8.stringValue = self.parameters!.getParameter(rsyncparameternumber: 8).1
 
         self.setValueComboBox(combobox: self.parameter9, index: self.parameters!.getParameter(rsyncparameternumber: 9).0)
         self.viewParameter9.stringValue = self.parameters!.getParameter(rsyncparameternumber: 9).1
-        
+
         self.setValueComboBox(combobox: self.parameter10, index: self.parameters!.getParameter(rsyncparameternumber: 10).0)
         self.viewParameter10.stringValue = self.parameters!.getParameter(rsyncparameternumber: 10).1
-        
+
         self.setValueComboBox(combobox: self.parameter11, index: self.parameters!.getParameter(rsyncparameternumber: 11).0)
         self.viewParameter11.stringValue = self.parameters!.getParameter(rsyncparameternumber: 11).1
-        
+
         self.setValueComboBox(combobox: self.parameter12, index: self.parameters!.getParameter(rsyncparameternumber: 12).0)
         self.viewParameter12.stringValue = self.parameters!.getParameter(rsyncparameternumber: 12).1
-        
+
         self.setValueComboBox(combobox: self.parameter13, index: self.parameters!.getParameter(rsyncparameternumber: 13).0)
         self.viewParameter13.stringValue = self.parameters!.getParameter(rsyncparameternumber: 13).1
-        
+
         self.setValueComboBox(combobox: self.parameter14, index: self.parameters!.getParameter(rsyncparameternumber: 14).0)
         self.viewParameter14.stringValue = self.parameters!.getParameter(rsyncparameternumber: 14).1
-        
+
         if (configurations[index!].rsyncdaemon != nil) {
             self.rsyncdaemon.state = NSControl.StateValue(rawValue: configurations[index!].rsyncdaemon!)
         } else {
@@ -190,26 +189,26 @@ class ViewControllerRsyncParameters: NSViewController {
             self.sshport.stringValue = String(configurations[index!].sshport!)
         }
     }
-    
+
     override func viewDidDisappear() {
         super.viewDidDisappear()
         self.parameters = nil
     }
-    
+
     // Function for saving changed or new parameters for one configuration.
     @IBAction func update(_ sender: NSButton) {
-        var Configurations:[configuration] = persistentStoreAPI.sharedInstance.getConfigurations()
+        var Configurations: [Configuration] = PersistentStoreAPI.sharedInstance.getConfigurations()
         guard Configurations.count > 0 else {
             // If Configurations == 0 by any change will not cause RsyncOSX to crash
             return
         }
         // Get the index of selected configuration
         let index = self.getindex_delegate?.getindex()
-        
+
         guard index != nil else {
             return
         }
-        
+
         Configurations[index!].parameter8 = self.parameters!.getRsyncParameter(indexComboBox:
             self.parameter8.indexOfSelectedItem, value: getValue(value: self.viewParameter8.stringValue))
         Configurations[index!].parameter9 = self.parameters!.getRsyncParameter(indexComboBox:
@@ -230,29 +229,29 @@ class ViewControllerRsyncParameters: NSViewController {
         }
         // Update configuration in memory before saving
         SharingManagerConfiguration.sharedInstance.updateConfigurations(Configurations[index!], index: index!)
-        persistentStoreAPI.sharedInstance.saveConfigFromMemory()
+        PersistentStoreAPI.sharedInstance.saveConfigFromMemory()
         // notify an update
         self.userparamsupdated_delegate?.rsyncuserparamsupdated()
         // Send dismiss delegate message
         self.dismiss_delegate?.dismiss_view(viewcontroller: self)
     }
-    
+
     // There are eight comboboxes
     // All eight are initalized during ViewDidLoad and
     // the correct index is set.
-    private func setValueComboBox (combobox:NSComboBox, index:Int) {
+    private func setValueComboBox (combobox: NSComboBox, index: Int) {
         combobox.removeAllItems()
         combobox.addItems(withObjectValues: self.comboBoxValues as [String]!)
         combobox.selectItem(at: index)
     }
-    
+
     // Returns nil or value from stringvalue (rsync parameters)
-    private func getValue(value:String) -> String? {
+    private func getValue(value: String) -> String? {
         if value.isEmpty {
             return nil
         } else {
             return value
         }
     }
-    
+
 }

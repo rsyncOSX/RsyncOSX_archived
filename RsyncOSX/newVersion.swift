@@ -13,18 +13,18 @@ protocol newVersionDiscovered : class {
 }
 
 final class newVersion {
-    
-    private var runningVersion : String?
-    private var urlPlist : String?
-    private var urlNewVersion : String?
-    
+
+    private var runningVersion: String?
+    private var urlPlist: String?
+    private var urlNewVersion: String?
+
     // External resources
-    private var resource:Resources?
-    
+    private var resource: Resources?
+
     weak var newversion_delegate: newVersionDiscovered?
-    
+
     private func setURLnewVersion () {
-        GlobalBackgroundQueue.async(execute: { () -> Void in
+        globalBackgroundQueue.async(execute: { () -> Void in
             if let url = URL(string: self.urlPlist!) {
                 do {
                     let contents = NSDictionary (contentsOf: url)
@@ -41,24 +41,22 @@ final class newVersion {
                         }
                     }
                 }
-            } 
+            }
         })
     }
 
-    
     init () {
         let infoPlist = Bundle.main.infoDictionary
         let version = infoPlist?["CFBundleShortVersionString"]
         if version != nil {
             self.runningVersion = version as? String
         }
-        
+
         self.resource = Resources()
         if let resource = self.resource {
             self.urlPlist = resource.getResource(resource: .urlPlist)
         }
         self.setURLnewVersion()
     }
-    
-}
 
+}

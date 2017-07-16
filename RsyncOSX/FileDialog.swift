@@ -10,7 +10,7 @@ import Foundation
 import Cocoa
 
 protocol GetPath : class {
-    func pathSet(path : String?, requester : WhichPath)
+    func pathSet(path: String?, requester: WhichPath)
 }
 
 enum WhichPath {
@@ -20,10 +20,10 @@ enum WhichPath {
 }
 
 final class FileDialog {
-    
-    weak var path_delegate:GetPath?
-    
-    private func openfiledlg (title: String, message: String, requester : WhichPath) { 
+
+    weak var path_delegate: GetPath?
+
+    private func openfiledlg (title: String, message: String, requester: WhichPath) {
         let myFiledialog: NSOpenPanel = NSOpenPanel()
         myFiledialog.prompt = "Select"
         // myFiledialog.worksWhenModal = true
@@ -59,8 +59,8 @@ final class FileDialog {
             default:break
         }
     }
-    
-    init(requester : WhichPath) {
+
+    init(requester: WhichPath) {
         self.openfiledlg(title: "Catalogs", message: "Select catalog", requester : requester)
     }
 }

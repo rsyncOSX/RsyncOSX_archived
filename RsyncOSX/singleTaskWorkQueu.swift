@@ -20,8 +20,8 @@ enum singleTaskWork {
 final class singleTaskWorkQueu {
 
     // Work Queue
-    private var work:Array<singleTaskWork>?
-    
+    private var work: Array<singleTaskWork>?
+
     // Returns the top most element.
     // Top element is read only
     func peek() -> singleTaskWork {
@@ -33,7 +33,7 @@ final class singleTaskWorkQueu {
         }
         return self.work![0]
     }
-    
+
     // Returns the top most element.
     // Top element is removed
     func pop() -> singleTaskWork {
@@ -45,7 +45,7 @@ final class singleTaskWorkQueu {
         }
         return self.work!.removeFirst()
     }
-    
+
     // rsync error
     // Pushing error token ontop of stack
     func error() {
@@ -54,7 +54,7 @@ final class singleTaskWorkQueu {
         }
         self.work!.insert(.error, at: 0)
     }
-    
+
     // Single run
     init() {
         self.work = nil
@@ -63,9 +63,9 @@ final class singleTaskWorkQueu {
         self.work!.append(.execute_singlerun)
         self.work!.append(.done)
     }
-    
+
     // Either Abort or Batchrun
-    init (task:singleTaskWork) {
+    init (task: singleTaskWork) {
         self.work = nil
         self.work = Array<singleTaskWork>()
         self.work!.append(task)

@@ -8,42 +8,42 @@
 
 import Foundation
 
-var GlobalMainQueue: DispatchQueue {
+var globalMainQueue: DispatchQueue {
     return DispatchQueue.main
 }
 
-var GlobalBackgroundQueue: DispatchQueue {
+var globalBackgroundQueue: DispatchQueue {
     return DispatchQueue.global(qos: .background)
 }
 
-var GlobalUserInitiatedQueue: DispatchQueue {
+var globalUserInitiatedQueue: DispatchQueue {
     return DispatchQueue.global(qos: .userInitiated)
 }
 
-var GlobalUtilityQueue: DispatchQueue {
+var globalUtilityQueue: DispatchQueue {
     return DispatchQueue.global(qos: .utility)
 }
 
-var GlobalUserInteractiveQueue: DispatchQueue {
+var globalUserInteractiveQueue: DispatchQueue {
     return DispatchQueue.global(qos: .userInteractive)
 }
 
-var GlobalDefaultQueue: DispatchQueue {
+var globalDefaultQueue: DispatchQueue {
     return DispatchQueue.global(qos: .default)
 }
 
 // Used in mainTab to present info about process
-enum displayProcessInfo {
-    case Estimating
-    case Executing
-    case Set_max_Number
-    case Logging_run
-    case Count_files
-    case Change_profile
-    case Profiles_enabled
-    case Abort
-    case Blank
-    case Error
+enum DisplayProcessInfo {
+    case estimating
+    case executing
+    case setmaxNumber
+    case loggingrun
+    case countfiles
+    case changeprofile
+    case profilesenabled
+    case abort
+    case blank
+    case error
 }
 
 // Protocol for doing a refresh in main view after testing for connectivity
@@ -54,11 +54,11 @@ protocol Connections : class {
 // Static shared class Utils
 
 final class Utils {
-    
-    private var indexBoolremoteserverOff:[Bool]?
-    weak var delegate_testconnections:Connections?
-    weak var delegate_profilemenu:AddProfiles?
-    
+
+    private var indexBoolremoteserverOff: [Bool]?
+    weak var testconnectionsDelegate: Connections?
+    weak var profilemenuDelegate: AddProfiles?
+
     // Creates a singelton of this class
     class var  sharedInstance: Utils {
         struct Singleton {
@@ -66,11 +66,11 @@ final class Utils {
         }
         return Singleton.instance
     }
-    
+
     // Display the correct command to execute
     // Used for displaying the commands only
-    func setRsyncCommandDisplay(index:Int, dryRun:Bool) -> String {
-        var str:String?
+    func setRsyncCommandDisplay(index: Int, dryRun: Bool) -> String {
+        var str: String?
         let config = SharingManagerConfiguration.sharedInstance.getargumentAllConfigurations()[index] as? ArgumentsOneConfiguration
         if (dryRun) {
                 str = SharingManagerConfiguration.sharedInstance.setRsyncCommand() + " "
@@ -89,12 +89,12 @@ final class Utils {
             }
         return str!
     }
-    
+
     // Test for TCP connection
-    func testTCPconnection (_ addr:String, port:Int, timeout:Int) -> (Bool, String) {
-        var connectionOK:Bool = false
-        var str:String = ""
-        let client:TCPClient = TCPClient(addr: addr, port: port)
+    func testTCPconnection (_ addr: String, port: Int, timeout: Int) -> (Bool, String) {
+        var connectionOK: Bool = false
+        var str: String = ""
+        let client: TCPClient = TCPClient(addr: addr, port: port)
         let (success, errmsg) = client.connect(timeout: timeout)
         connectionOK = success
         if connectionOK {
@@ -120,30 +120,30 @@ final class Utils {
     func gettestAllremoteserverConnections() -> [Bool]? {
         return self.indexBoolremoteserverOff
     }
-    
+
     // Testing all remote servers.
     // Adding connection true or false in array[bool]
     // Do the check in background que, reload table in global main queue
     func testAllremoteserverConnections () {
         self.indexBoolremoteserverOff = nil
         self.indexBoolremoteserverOff = Array<Bool>()
-        
+
         guard (SharingManagerConfiguration.sharedInstance.ConfigurationsDataSourcecount() > 0) else {
             if let pvc = SharingManagerConfiguration.sharedInstance.ViewControllertabMain as? ViewControllertabMain {
-                self.delegate_profilemenu = pvc
+                self.profilemenuDelegate = pvc
                 // Tell main view profile menu might presented
-                self.delegate_profilemenu?.enableProfileMenu()
+                self.profilemenuDelegate?.enableProfileMenu()
             }
             return
         }
-        
-        GlobalDefaultQueue.async(execute: { () -> Void in
-            
-            var port:Int = 22
+
+        globalDefaultQueue.async(execute: { () -> Void in
+
+            var port: Int = 22
             for i in 0 ..< SharingManagerConfiguration.sharedInstance.ConfigurationsDataSourcecount() {
                 if let record = SharingManagerConfiguration.sharedInstance.getargumentAllConfigurations()[i] as? ArgumentsOneConfiguration {
                     if (record.config!.offsiteServer != "") {
-                        if let sshport:Int = record.config!.sshport {
+                        if let sshport: Int = record.config!.sshport {
                             port = sshport
                         }
                         let (success, _) = Utils.sharedInstance.testTCPconnection(record.config!.offsiteServer, port: port, timeout: 1)
@@ -160,19 +160,19 @@ final class Utils {
                     if i == (SharingManagerConfiguration.sharedInstance.ConfigurationsDataSourcecount() - 1) {
                         // Send message to do a refresh
                         if let pvc = SharingManagerConfiguration.sharedInstance.ViewControllertabMain as? ViewControllertabMain {
-                            self.delegate_testconnections = pvc
-                            self.delegate_profilemenu = pvc
+                            self.testconnectionsDelegate = pvc
+                            self.profilemenuDelegate = pvc
                             // Update table in main view
-                            self.delegate_testconnections?.displayConnections()
+                            self.testconnectionsDelegate?.displayConnections()
                             // Tell main view profile menu might presented
-                            self.delegate_profilemenu?.enableProfileMenu()
+                            self.profilemenuDelegate?.enableProfileMenu()
                         }
                     }
                 }
             }
         })
     }
-    
+
     // Function for verifying thar rsync is present in either
     // standard path or path set by user
     func noRsync() {
@@ -188,4 +188,3 @@ final class Utils {
     }
 
  }
-

@@ -9,8 +9,8 @@
 import Foundation
 
 final class outputBatch {
-    
-    var output:Array<String>?
+
+    var output: Array<String>?
 
     func getOutputCount () -> Int {
         guard (self.output != nil) else {
@@ -18,14 +18,14 @@ final class outputBatch {
         }
         return self.output!.count
     }
-    
+
     func getOutput () -> Array<String> {
         guard (self.output != nil) else {
             return [""]
         }
         return self.output!
     }
-    
+
     // Add line to output
     func addLine (str: String) {
         // Create array if == nil
@@ -34,7 +34,7 @@ final class outputBatch {
         }
         self.output!.append(str)
     }
-    
+
     init() {
         self.output = nil
         self.output = Array<String>()

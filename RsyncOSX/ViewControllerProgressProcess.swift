@@ -16,7 +16,6 @@
 
 import Cocoa
 
-
 // Protocol for progress indicator
 protocol Count: class {
     func maxCount() -> Int
@@ -29,25 +28,25 @@ protocol AbortOperations: class {
 }
 
 class ViewControllerProgressProcess: NSViewController {
-    
-    var count:Double = 0
+
+    var count: Double = 0
     var maxcount: Double = 0
-    var calculatedNumberOfFiles:Int?
-    
+    var calculatedNumberOfFiles: Int?
+
     // Delegate to count max number and updates during progress
-    weak var count_delegate:Count?
+    weak var count_delegate: Count?
     // Delegate to dismisser
-    weak var dismiss_delegate:DismissViewController?
+    weak var dismiss_delegate: DismissViewController?
     // Delegate to Abort operations
-    weak var abort_delegate:AbortOperations?
-    
+    weak var abort_delegate: AbortOperations?
+
     @IBOutlet weak var progress: NSProgressIndicator!
-    
+
     @IBAction func Abort(_ sender: NSButton) {
         self.abort_delegate?.abortOperations()
-        self.ProcessTermination()
+        self.processTermination()
     }
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do view setup here.
@@ -58,7 +57,7 @@ class ViewControllerProgressProcess: NSViewController {
             self.abort_delegate = pvc
         }
     }
-    
+
     override func viewDidAppear() {
         super.viewDidAppear()
         if let pvc2 = SharingManagerConfiguration.sharedInstance.SingleTask {
@@ -67,16 +66,16 @@ class ViewControllerProgressProcess: NSViewController {
         self.calculatedNumberOfFiles = self.count_delegate?.maxCount()
         self.initiateProgressbar()
     }
-    
+
     override func viewWillDisappear() {
         super.viewWillDisappear()
         self.stopProgressbar()
     }
-    
+
     fileprivate func stopProgressbar() {
         self.progress.stopAnimation(self)
     }
-    
+
     // Progress bars
     private func initiateProgressbar() {
         if let calculatedNumberOfFiles = self.calculatedNumberOfFiles {
@@ -86,33 +85,30 @@ class ViewControllerProgressProcess: NSViewController {
         self.progress.doubleValue = 0
         self.progress.startAnimation(self)
     }
-    
-    fileprivate func updateProgressbar(_ value:Double) {
+
+    fileprivate func updateProgressbar(_ value: Double) {
         self.progress.doubleValue = value
     }
-    
-    
-    
+
 }
 
 extension ViewControllerProgressProcess: UpdateProgress {
-    
+
     // When processtermination is discovered in real task progressbar is stopped
     // and progressview is dismissed. Real run is completed.
-    
-    func ProcessTermination() {
+
+    func processTermination() {
         self.stopProgressbar()
         self.dismiss_delegate?.dismiss_view(viewcontroller: self)
     }
-    
+
     // Update progressview during task
-    
-    func FileHandler() {
+
+    func fileHandler() {
         guard self.count_delegate != nil else {
             return
         }
         self.updateProgressbar(Double(self.count_delegate!.inprogressCount()))
     }
 
-    
 }

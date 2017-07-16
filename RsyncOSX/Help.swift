@@ -29,7 +29,7 @@ enum helpdocs {
 }
 
 final class Help {
-    
+
     private var changelog: String = "https://rsyncosx.github.io/Documentation/docs/Changelog.html"
     private var documentstart: String = "https://rsyncosx.github.io/Documentation/"
     private var singletask: String = "https://rsyncosx.github.io/Documentation/docs/SingleTask.html"
@@ -39,24 +39,23 @@ final class Help {
     private var configuration: String = "https://rsyncosx.github.io/Documentation/docs/UserConfiguration.html"
     private var add: String = "https://rsyncosx.github.io/Documentation/docs/AddConfigurations.html"
     private var schedule: String = "https://rsyncosx.github.io/Documentation/docs/ScheduleTasks.html"
-    private var copyfiles:String = "https://rsyncosx.github.io/Documentation/docs/CopySingleFiles.html"
+    private var copyfiles: String = "https://rsyncosx.github.io/Documentation/docs/CopySingleFiles.html"
     private var logging: String = "https://rsyncosx.github.io/Documentation/docs/Logging.html"
     private var diynas: String = "https://rsyncosx.github.io/Documentation/docs/DIYNAS.html"
     private var idea: String = "https://rsyncosx.github.io/Documentation/docs/Idea.html"
     private var passwordless: String = "https://rsyncosx.github.io/Documentation/docs/PasswordlessLogin.html"
-    private var source:String = "https://github.com/rsyncOSX/RsyncOSX"
-    private var ssh:String = "https://rsyncosx.github.io/Documentation/docs/ssh.html"
+    private var source: String = "https://github.com/rsyncOSX/RsyncOSX"
+    private var ssh: String = "https://rsyncosx.github.io/Documentation/docs/ssh.html"
 
-    private var resource:String?
-    
-    
+    private var resource: String?
+
     private func show() {
         if let resource = self.resource {
             NSWorkspace.shared.open(URL(string: resource)!)
         }
     }
-    
-    func help(what:helpdocs) {
+
+    func help(what: helpdocs) {
         switch what {
         case .changelog:
             self.resource = self.changelog
@@ -93,6 +92,5 @@ final class Help {
         }
         self.show()
     }
-    
-    
+
 }

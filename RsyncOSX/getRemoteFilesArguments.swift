@@ -14,12 +14,12 @@ protocol ProcessArguments {
 }
 
 final class getRemoteFilesArguments: ProcessArguments {
-    
-    private var config:configuration?
-    private var args:Array<String>?
-    private var command:String?
-    private var file:String?
-    
+
+    private var config: Configuration?
+    private var args: Array<String>?
+    private var command: String?
+    private var file: String?
+
     // Set arguments for remote create of files.txt
     private func arguments() {
         if let config = self.config {
@@ -35,35 +35,33 @@ final class getRemoteFilesArguments: ProcessArguments {
                 self.args!.append("-c")
                 self.command = "/bin/bash"
             }
-            let str:String = "cd " + config.offsiteCatalog + ";du -a -h"
+            let str: String = "cd " + config.offsiteCatalog + ";du -a -h"
             // let str:String = "cd " + config.offsiteCatalog + ";find . -print"
             self.args!.append(str)
         }
     }
-    
-    
+
     func getArguments() -> Array<String>? {
         guard self.args != nil else {
             return nil
         }
         return self.args
     }
-    
+
     func getCommand() -> String? {
         guard self.command != nil else {
             return nil
         }
         return self.command
     }
-    
-    init(config: configuration) {
-        
+
+    init(config: Configuration) {
+
         self.config = config
         // Initialize the argument array
         self.args = nil
         self.args = Array<String>()
         self.arguments()
-        
+
     }
 }
-

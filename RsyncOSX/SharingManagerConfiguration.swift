@@ -29,7 +29,7 @@ protocol RefreshtableView: class {
 }
 
 class SharingManagerConfiguration {
-    
+
     // Creates a singelton of this class
     class var  sharedInstance: SharingManagerConfiguration {
         struct Singleton {
@@ -37,94 +37,91 @@ class SharingManagerConfiguration {
         }
         return Singleton.instance
     }
-    
+
     // Variabl if Data is changed, saved to Store
     // and must be read into memory again
-    private var dirtyData:Bool = true
+    private var dirtyData: Bool = true
     // Get value
     func isDataDirty() -> Bool {
         return self.dirtyData
     }
     // Set value
-    func setDataDirty(dirty:Bool) {
+    func setDataDirty(dirty: Bool) {
         self.dirtyData = dirty
     }
-    
+
     // Delegate functions
-    weak var refresh_delegate:RefreshtableView?
- 
+    weak var refresh_delegate: RefreshtableView?
+
     // NEW VERSION OF RSYNCOSX
     // Download URL if new version is avaliable
-    var URLnewVersion : String?
-    
+    var URLnewVersion: String?
+
     // CONFIGURATIONS RSYNCOSX
-    
+
     // True if version 3.2.1 of rsync in /usr/local/bin
     // let rsyncVer3:Bool = true
-    var rsyncVer3:Bool = false
+    var rsyncVer3: Bool = false
     // Optional path to rsync
-    var rsyncPath:String?
+    var rsyncPath: String?
     // No valid rsyncPath - true if no valid rsync is found
-    var noRysync:Bool = false
+    var noRysync: Bool = false
     // Detailed logging
-    var detailedlogging:Bool = true
+    var detailedlogging: Bool = true
     // Minutes before scheduled task commence disable execute/batch buttons
     // Disabled by default
-    var scheduledTaskdisableExecute:Double = 0
+    var scheduledTaskdisableExecute: Double = 0
     // Allow double click to activate single tasks
-    var allowDoubleclick:Bool = true
+    var allowDoubleclick: Bool = true
     // Temporary path for restore
-    var restorePath:String?
-    
+    var restorePath: String?
+
     // OTHER SETTINGS
-    
+
     // reference to Process, used for kill in executing task
-    var process:Process?
+    var process: Process?
     // Variabl if arguments to Rsync is changed and must be read into memory again
-    private var readRsyncArguments:Bool = true
+    private var readRsyncArguments: Bool = true
     // Reference to manin View
     var ViewControllertabMain: NSViewController?
     // Reference to Copy files
-    var ViewControllerCopyFiles:NSViewController?
+    var ViewControllerCopyFiles: NSViewController?
     // Reference to the New tasks
-    var ViewControllerNewConfigurations:NSViewController?
+    var ViewControllerNewConfigurations: NSViewController?
     // Reference to the  Schedule
-    var ViewControllertabSchedule:NSViewController?
+    var ViewControllertabSchedule: NSViewController?
     // Reference to the Operation object
     // Reference is set in when Scheduled task is executed
-    var operation:completeScheduledOperation?
+    var operation: completeScheduledOperation?
     // Which profile to use, if default nil
-    var ViewControllerLoggData:NSViewController?
+    var ViewControllerLoggData: NSViewController?
     // Reference to Ssh view
-    var ViewControllerSsh:NSViewController?
-    private var profile:String?
+    var ViewControllerSsh: NSViewController?
+    private var profile: String?
     // Notify about scheduled process
     // Only allowed to notity by modal window when in main view
-    var allowNotifyinMain:Bool = false
+    var allowNotifyinMain: Bool = false
     // If rsync error reset workqueue
-    var rsyncerror:Bool = true
+    var rsyncerror: Bool = true
     // Reference to singletask object
-    var SingleTask:newSingleTask?
+    var SingleTask: newSingleTask?
 
-    
     // DATA STRUCTURES
-    
+
     // The main structure storing all Configurations for tasks
-    private var Configurations = Array<configuration>()
+    private var Configurations = Array<Configuration>()
     // Array to store argumenst for all tasks.
     // Initialized during startup
     private var argumentAllConfigurations =  NSMutableArray()
     // Datasource for NSTableViews
-    private var ConfigurationsDataSource : Array<NSMutableDictionary>?
+    private var ConfigurationsDataSource: Array<NSMutableDictionary>?
     // Object for batchQueue data and operations
-    private var batchdata:batchTaskWorkQueu?
+    private var batchdata: BatchTaskWorkQueu?
     // the MacSerialNumber
-    private var MacSerialNumber:String?
+    private var MacSerialNumber: String?
 
-    
     // READ and SET all Configurations and arguments for rsync in object
-    
-    
+
     /// Function is reading all Configurations into memory from permanent store and
     /// prepare all arguments for rsync. All configurations are stored in the private
     /// variable within object.
@@ -132,7 +129,7 @@ class SharingManagerConfiguration {
     /// configurations and computing new arguments.
     /// - parameter none: none
     func readAllConfigurationsAndArguments() {
-        let store:Array<configuration> = persistentStoreAPI.sharedInstance.getConfigurations()
+        let store: Array<Configuration> = PersistentStoreAPI.sharedInstance.getConfigurations()
         self.destroyConfigurations()
         // We read all stored configurations into memory
         for i in 0 ..< store.count {
@@ -147,7 +144,7 @@ class SharingManagerConfiguration {
         var row =  NSMutableDictionary()
         var data = Array<NSMutableDictionary>()
         self.destroyConfigurationsDataSource()
-        var batch:Int = 0
+        var batch: Int = 0
         for i in 0 ..< self.Configurations.count {
             if(self.Configurations[i].batch == "yes") {
                 batch = 1
@@ -156,31 +153,31 @@ class SharingManagerConfiguration {
             }
             row = [
                 "taskCellID": self.Configurations[i].task,
-                "batchCellID":batch,
-                "localCatalogCellID":self.Configurations[i].localCatalog,
-                "offsiteCatalogCellID":self.Configurations[i].offsiteCatalog,
-                "offsiteServerCellID":self.Configurations[i].offsiteServer,
-                "backupIDCellID":self.Configurations[i].backupID,
-                "runDateCellID":self.Configurations[i].dateRun!
+                "batchCellID": batch,
+                "localCatalogCellID": self.Configurations[i].localCatalog,
+                "offsiteCatalogCellID": self.Configurations[i].offsiteCatalog,
+                "offsiteServerCellID": self.Configurations[i].offsiteServer,
+                "backupIDCellID": self.Configurations[i].backupID,
+                "runDateCellID": self.Configurations[i].dateRun!
             ]
             data.append(row)
         }
         self.ConfigurationsDataSource = data
     }
-    
+
     // ALL THE GETTERS
-    
+
     /// Function for getting the profile
     /// If not set profile is nil
     func getProfile() -> String? {
         return self.profile
     }
-    
+
     /// Function for setting the profile
-    func setProfile(profile:String?) {
+    func setProfile(profile: String?) {
         self.profile = profile
     }
-    
+
     /// Function for returning the MacSerialNumber
     func getMacSerialNumber() -> String {
         guard (self.MacSerialNumber != nil) else {
@@ -190,21 +187,21 @@ class SharingManagerConfiguration {
         }
         return self.MacSerialNumber!
     }
-    
+
     /// Function for getting Configurations read into memory
     /// - parameter none: none
     /// - returns : Array of configurations
-    func getConfigurations() -> Array<configuration> {
+    func getConfigurations() -> Array<Configuration> {
         return self.Configurations
     }
-    
+
     /// Function for getting arguments for all Configurations read into memory
     /// - parameter none: none
     /// - returns : Array of arguments
     func getargumentAllConfigurations() -> NSMutableArray {
         return self.argumentAllConfigurations
     }
-    
+
     /// Function for getting the number of configurations used in NSTableViews
     /// - parameter none: none
     /// - returns : Int
@@ -223,32 +220,32 @@ class SharingManagerConfiguration {
     func getConfigurationsDataSource() -> [NSMutableDictionary]? {
         return self.ConfigurationsDataSource
     }
-    
+
     /// Function for getting all Configurations marked as backup (not restore)
     /// - parameter none: none
     /// - returns : Array of NSDictionary
     func getConfigurationsDataSourcecountBackupOnly() -> [NSDictionary]? {
-        let configurations:[configuration] = self.Configurations.filter({return ($0.task == "backup")})
+        let configurations: [Configuration] = self.Configurations.filter({return ($0.task == "backup")})
         var row =  NSDictionary()
         var data = Array<NSDictionary>()
         for i in 0 ..< configurations.count {
             row = [
                 "taskCellID": configurations[i].task,
-                "hiddenID":configurations[i].hiddenID,
-                "localCatalogCellID":configurations[i].localCatalog,
-                "offsiteCatalogCellID":configurations[i].offsiteCatalog,
-                "offsiteServerCellID":configurations[i].offsiteServer,
-                "backupIDCellID":configurations[i].backupID,
-                "runDateCellID":configurations[i].dateRun!
+                "hiddenID": configurations[i].hiddenID,
+                "localCatalogCellID": configurations[i].localCatalog,
+                "offsiteCatalogCellID": configurations[i].offsiteCatalog,
+                "offsiteServerCellID": configurations[i].offsiteServer,
+                "backupIDCellID": configurations[i].backupID,
+                "runDateCellID": configurations[i].dateRun!
             ]
             data.append(row)
         }
     return data
     }
-    
+
     /// Function returns all Configurations marked for backup.
     /// - returns : array of Configurations
-    func getConfigurationsBatch() -> [configuration] {
+    func getConfigurationsBatch() -> [Configuration] {
         return self.Configurations.filter({return ($0.task == "backup") && ($0.batch == "yes")})
     }
 
@@ -262,13 +259,13 @@ class SharingManagerConfiguration {
             return 0
         }
     }
-    
+
     /// Function computes arguments for rsync, either arguments for
     /// real runn or arguments for --dry-run for Configuration at selected index
     /// - parameter index: index of Configuration
     /// - parameter argtype : either .arg or .argdryRun (of enumtype argumentsRsync)
     /// - returns : array of Strings holding all computed arguments
-    func getRsyncArgumentOneConfig (index:Int, argtype : argumentsRsync) -> Array<String> {
+    func getRsyncArgumentOneConfig (index: Int, argtype: argumentsRsync) -> Array<String> {
         let allarguments = self.argumentAllConfigurations[index] as! ArgumentsOneConfiguration
         switch argtype {
         case .arg:
@@ -281,25 +278,24 @@ class SharingManagerConfiguration {
     /// Function is adding new Configurations to existing
     /// configurations in memory.
     /// - parameter dict : new record configuration
-    func addConfigurationtoMemory (dict:NSDictionary) {
-        let config = configuration(dictionary: dict)
+    func addConfigurationtoMemory (dict: NSDictionary) {
+        let config = Configuration(dictionary: dict)
         self.Configurations.append(config)
     }
-    
+
     // DESTROY FUNCTIONS
-    
+
     /// Function destroys records holding added configurations
     func destroyNewConfigurations() {
         self.newConfigurations = nil
     }
 
-    
     /// Function destroys records holding added configurations as datasource 
     /// for presenting Configurations in tableviews
     private func destroyConfigurationsDataSource() {
         self.ConfigurationsDataSource = nil
     }
-    
+
     /// Function destroys records holding data about all Configurations, all
     /// arguments for Configurations and configurations as datasource for
     /// presenting Configurations in tableviews.
@@ -314,12 +310,12 @@ class SharingManagerConfiguration {
     /// Function also notifies Execute view to refresh data
     /// in tableView.
     /// - parameter index: index of Configuration to update
-    func setCurrentDateonConfiguration (_ index:Int) {
+    func setCurrentDateonConfiguration (_ index: Int) {
         let currendate = Date()
         let dateformatter = Utils.sharedInstance.setDateformat()
         self.Configurations[index].dateRun = dateformatter.string(from: currendate)
         // Saving updated configuration in memory to persistent store
-        persistentStoreAPI.sharedInstance.saveConfigFromMemory()
+        PersistentStoreAPI.sharedInstance.saveConfigFromMemory()
         // Reread Configuration and update datastructure for tableViews
         self.readAllConfigurationsAndArguments()
         // Call the view and do a refresh of tableView
@@ -328,45 +324,44 @@ class SharingManagerConfiguration {
             self.refresh_delegate?.refresh()
         }
     }
-    
-    
+
     /// Function destroys reference to object holding data and 
     /// methods for executing batch work
     func deleteBatchData() {
         self.batchdata = nil
     }
-    
+
     /// Function is updating Configurations in memory (by record) and
     /// then saves updated Configurations from memory to persistent store
     /// - parameter config: updated configuration
     /// - parameter index: index to Configuration to replace by config
-    func updateConfigurations (_ config: configuration, index:Int) {
+    func updateConfigurations (_ config: Configuration, index: Int) {
         self.Configurations[index] = config
-        persistentStoreAPI.sharedInstance.saveConfigFromMemory()
+        PersistentStoreAPI.sharedInstance.saveConfigFromMemory()
     }
-    
+
     /// Function deletes Configuration in memory at hiddenID and
     /// then saves updated Configurations from memory to persistent store.
     /// Function computes index by hiddenID.
     /// - parameter hiddenID: hiddenID which is unique for every Configuration
-    func deleteConfigurationsByhiddenID (hiddenID:Int) {
+    func deleteConfigurationsByhiddenID (hiddenID: Int) {
         let index = self.getIndex(hiddenID)
         self.Configurations.remove(at: index)
-        persistentStoreAPI.sharedInstance.saveConfigFromMemory()
+        PersistentStoreAPI.sharedInstance.saveConfigFromMemory()
     }
-    
+
     /// Function toggles Configurations for batch or no
     /// batch. Function updates Configuration in memory
     /// and stores Configuration i memory to 
     /// persisten store
     /// - parameter index: index of Configuration to toogle batch on/off
-    func setBatchYesNo (_ index:Int) {
+    func setBatchYesNo (_ index: Int) {
         if (self.Configurations[index].batch == "yes") {
             self.Configurations[index].batch = "no"
         } else {
             self.Configurations[index].batch = "yes"
         }
-        persistentStoreAPI.sharedInstance.saveConfigFromMemory()
+        PersistentStoreAPI.sharedInstance.saveConfigFromMemory()
         // Reread Configuration and update datastructure for tableViews
         self.readAllConfigurationsAndArguments()
         // Call the view and do a refresh of tableView
@@ -375,18 +370,18 @@ class SharingManagerConfiguration {
             self.refresh_delegate?.refresh()
         }
     }
-    
+
     /// Function sets reference to object holding data and methods
     /// for batch execution of Configurations
     /// - parameter batchdata: object holding data and methods for executing Configurations in batch
-    func setbatchDataQueue (batchdata:batchTaskWorkQueu) {
+    func setbatchDataQueue (batchdata: BatchTaskWorkQueu) {
         self.batchdata = batchdata
     }
-    
+
     /// Function return the reference to object holding data and methods
     /// for batch execution of Configurations.
     /// - returns : reference to to object holding data and methods
-    func getBatchdataObject() -> batchTaskWorkQueu? {
+    func getBatchdataObject() -> BatchTaskWorkQueu? {
         return self.batchdata
     }
 
@@ -398,18 +393,18 @@ class SharingManagerConfiguration {
         }
         return self.batchdata!.getbatchDataQueuecount()
     }
-    
+
     /// Function is getting the updated batch data queue
     /// - returns : reference to the batch data queue
     func getbatchDataQueue() -> Array<NSMutableDictionary>? {
         return self.batchdata?.getupdatedBatchdata()
     }
-    
+
     // ADDING CONFIGURATUÌONS
-    
+
     // Temporary structure to hold added Configurations before writing to permanent store
-    private var newConfigurations :Array<NSMutableDictionary>?
-    
+    private var newConfigurations: Array<NSMutableDictionary>?
+
     func addNewConfigurations(_ row: NSMutableDictionary) {
         guard (self.newConfigurations != nil) else {
             self.newConfigurations = [row]
@@ -417,28 +412,27 @@ class SharingManagerConfiguration {
         }
         self.newConfigurations!.append(row)
     }
-    
+
     func newConfigurationsCount() -> Int {
         guard (self.newConfigurations != nil) else {
             return 0
         }
         return self.newConfigurations!.count
     }
-    
+
     /// Function is getting all added (new) configurations
     /// - returns : Array of Dictionary storing all new configurations
     func getnewConfigurations () -> [NSMutableDictionary]? {
         return self.newConfigurations
     }
-    
+
     // Function for appending new Configurations to memory
     func appendNewConfigurations () {
-        persistentStoreAPI.sharedInstance.saveNewConfigurations()
+        PersistentStoreAPI.sharedInstance.saveNewConfigurations()
     }
-    
-    
+
     // GET VALUES BY HIDDENID
-    
+
     // Enum which resource to return
     enum resourceInConfiguration {
         case remoteCatalog
@@ -446,19 +440,19 @@ class SharingManagerConfiguration {
         case offsiteServer
         case task
     }
-    
+
     /// Function is getting the remote catalog in a spesific Configuration
     /// - parameter hiddenID: hiddenID for Configuration
     /// - parameter resource: which resource to get from configuration
     /// - returns : resource
-    func getResourceConfiguration(_ hiddenID:Int, resource:resourceInConfiguration) -> String {
-        
+    func getResourceConfiguration(_ hiddenID: Int, resource: resourceInConfiguration) -> String {
+
         var result = self.Configurations.filter({return ($0.hiddenID == hiddenID)})
-        
+
         guard result.count > 0 else {
             return ""
         }
-        
+
         switch resource {
         case .localCatalog:
             return result[0].localCatalog
@@ -474,12 +468,12 @@ class SharingManagerConfiguration {
             return result[0].task
         }
     }
-    
+
     /// Function is getting the index of a spesific Configuration
     /// - parameter hiddenID: hiddenID for Configuration
     /// - returns : index of Configuration
-    func getIndex(_ hiddenID:Int) -> Int {
-        var index:Int = -1
+    func getIndex(_ hiddenID: Int) -> Int {
+        var index: Int = -1
         loop: for i in 0 ..< self.Configurations.count {
             if (self.Configurations[i].hiddenID == hiddenID) {
                 index = i
@@ -488,11 +482,11 @@ class SharingManagerConfiguration {
         }
         return index
     }
-    
+
     /// Function is getting the hiddenID for a spesific Configuration
     /// - parameter index: index for Configuration
     /// - returns : hiddenID for Configuration
-    func gethiddenID (index : Int) -> Int {
+    func gethiddenID (index: Int) -> Int {
         return self.Configurations[index].hiddenID
     }
 
@@ -511,7 +505,7 @@ class SharingManagerConfiguration {
             return "/usr/bin/rsync"
         }
     }
-    
+
     /// Function for computing MacSerialNumber
     /// - returns : the MacSerialNumber
     private func macSerialNumber() -> String {
@@ -527,5 +521,4 @@ class SharingManagerConfiguration {
         return (serialNumberAsCFString!.takeUnretainedValue() as? String) ?? ""
     }
 
-    
 }

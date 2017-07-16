@@ -9,15 +9,13 @@
 import Foundation
 import Cocoa
 
-
 // Protocol for instruction RsyncOSX to read configurations data again
 protocol ReadConfigurationsAgain : class {
     func readConfigurations()
 }
 
+class ViewControllerEdit: NSViewController {
 
-class ViewControllerEdit : NSViewController {
-    
     @IBOutlet weak var localCatalog: NSTextField!
     @IBOutlet weak var offsiteCatalog: NSTextField!
     @IBOutlet weak var offsiteUsername: NSTextField!
@@ -25,33 +23,33 @@ class ViewControllerEdit : NSViewController {
     @IBOutlet weak var backupID: NSTextField!
     @IBOutlet weak var sshport: NSTextField!
     @IBOutlet weak var rsyncdaemon: NSButton!
-    
+
     // Index selectted row
-    var index:Int?
+    var index: Int?
     // Get index of selected row
-    weak var getindex_delegate : GetSelecetedIndex?
+    weak var getindex_delegate: GetSelecetedIndex?
     // after update reread configuration
-    weak var readconfigurations_delegate:ReadConfigurationsAgain?
+    weak var readconfigurations_delegate: ReadConfigurationsAgain?
     // Dismisser
-    weak var dismiss_delegate:DismissViewController?
+    weak var dismiss_delegate: DismissViewController?
     // Single file if last character is NOT "/"
-    var singleFile:Bool = false
-    
+    var singleFile: Bool = false
+
     // Close and dismiss view
     @IBAction func Close(_ sender: NSButton) {
         self.dismiss_delegate?.dismiss_view(viewcontroller: self)
     }
-    
+
     // Update configuration, save and dismiss view
     @IBAction func Update(_ sender: NSButton) {
-        
-        var config:[configuration] = SharingManagerConfiguration.sharedInstance.getConfigurations()
-        
-        if (self.localCatalog.stringValue.hasSuffix("/") == false && self.singleFile == false){
+
+        var config: [Configuration] = SharingManagerConfiguration.sharedInstance.getConfigurations()
+
+        if (self.localCatalog.stringValue.hasSuffix("/") == false && self.singleFile == false) {
             self.localCatalog.stringValue = self.localCatalog.stringValue + "/"
         }
         config[self.index!].localCatalog = self.localCatalog.stringValue
-        if (self.offsiteCatalog.stringValue.hasSuffix("/") == false){
+        if (self.offsiteCatalog.stringValue.hasSuffix("/") == false) {
             self.offsiteCatalog.stringValue = self.offsiteCatalog.stringValue + "/"
         }
         config[self.index!].offsiteCatalog = self.offsiteCatalog.stringValue
@@ -71,7 +69,7 @@ class ViewControllerEdit : NSViewController {
         self.readconfigurations_delegate?.readConfigurations()
         self.dismiss_delegate?.dismiss_view(viewcontroller: self)
     }
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         // Dismisser is root controller
@@ -81,7 +79,7 @@ class ViewControllerEdit : NSViewController {
             self.getindex_delegate = pvc
         }
     }
-    
+
     override func viewDidAppear() {
         super.viewDidAppear()
         // Reset all values in view
@@ -94,7 +92,7 @@ class ViewControllerEdit : NSViewController {
         self.rsyncdaemon.state = .off
         // Getting index of selected configuration
         self.index = self.getindex_delegate?.getindex()
-        let config:configuration = SharingManagerConfiguration.sharedInstance.getConfigurations()[self.index!]
+        let config: Configuration = SharingManagerConfiguration.sharedInstance.getConfigurations()[self.index!]
         self.localCatalog.stringValue = config.localCatalog
         // Check for single file
         if (self.localCatalog.stringValue.hasSuffix("/") == false) {
@@ -113,5 +111,5 @@ class ViewControllerEdit : NSViewController {
             self.rsyncdaemon.state = NSControl.StateValue(rawValue: rsyncdaemon)
         }
     }
-    
+
 }
