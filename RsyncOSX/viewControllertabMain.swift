@@ -1066,7 +1066,7 @@ extension ViewControllertabMain:SingleTask {
 
     func terminateProgressProcess() {
         if let pvc2 = self.presentedViewControllers as? [ViewControllerProgressProcess] {
-            if (pvc2.count > 0) {
+            if pvc2.count > 0 {
                 self.processupdateDelegate = pvc2[0]
                 self.processupdateDelegate?.processTermination()
             }

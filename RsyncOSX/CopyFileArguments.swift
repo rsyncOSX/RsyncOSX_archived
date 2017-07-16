@@ -51,7 +51,7 @@ final class CopyFileArguments: ProcessArguments {
         // Set config
         self.config = config
 
-        switch (task) {
+        switch task {
         case .rsyncCmd:
             // Arguments for rsync
             let arguments = RsyncArguments(config: config, remoteFile: remoteFile, localCatalog: localCatalog, drynrun: drynrun)

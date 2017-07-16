@@ -77,7 +77,7 @@ final class RsyncParameters {
         guard  indexComboBox < self.rsyncArguments.count && indexComboBox > -1 else {
             return ""
         }
-        switch (self.rsyncArguments[indexComboBox].1) {
+        switch self.rsyncArguments[indexComboBox].1 {
         case 0:
             // Predefined rsync argument from combobox
             // Must check if DELETE is selected

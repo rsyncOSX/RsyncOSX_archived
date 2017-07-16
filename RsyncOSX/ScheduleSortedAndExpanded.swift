@@ -77,7 +77,7 @@ class ScheduleSortedAndExpand {
 
             if (seconds > 0) {
 
-                switch (schedule) {
+                switch schedule {
                 case "once" :
                     let hiddenID = (dict.value(forKey: "hiddenID") as? Int)!
                     let dict: NSDictionary = [

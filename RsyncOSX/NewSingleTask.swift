@@ -73,7 +73,7 @@ final class NewSingleTask {
         self.process = nil
         self.output = nil
 
-        switch (self.workload!.peek()) {
+        switch self.workload!.peek() {
         case .estimatesinglerun:
             if let index = self.index {
                 // Start animation and show process info
@@ -118,7 +118,7 @@ final class NewSingleTask {
         if let workload = self.workload {
 
             // Pop topmost element of work queue
-            switch (workload.pop()) {
+            switch workload.pop() {
 
             case .estimatesinglerun:
                 // Stopping the working (estimation) progress indicator
@@ -151,10 +151,7 @@ final class NewSingleTask {
                 let hiddenID = SharingManagerConfiguration.sharedInstance.gethiddenID(index: self.index!)
                 let numberOffFiles = self.transferredNumber
                 let sizeOfFiles = self.transferredNumberSizebytes
-                
-                SharingManagerSchedule.sharedInstance.addScheduleResultManuel(hiddenID, result: number.statistics(numberOfFiles: self.transferredNumber, sizeOfFiles: self.transferredNumberSizebytes)[0])
-                
-                
+                SharingManagerSchedule.sharedInstance.addScheduleResultManuel(hiddenID, result: number.statistics(numberOfFiles: numberOffFiles, sizeOfFiles: sizeOfFiles)[0])
             case .abort:
                 self.taskDelegate?.singleTaskAbort(process: self.process)
                 self.workload = nil

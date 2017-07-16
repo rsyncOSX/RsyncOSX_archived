@@ -86,7 +86,7 @@ final class NewBatchTask {
             self.output = nil
             self.output = OutputProcess()
 
-            switch (work.1) {
+            switch work.1 {
             case 0:
                 self.batchViewDelegate?.progressIndicatorViewBatch(operation: .start)
                 let arguments: Array<String> = SharingManagerConfiguration.sharedInstance.getRsyncArgumentOneConfig(index: index, argtype: .argdryRun)
@@ -135,7 +135,7 @@ final class NewBatchTask {
             // Remove the first worker object
             let work = batchobject.nextBatchRemove()
             // (work.0) is estimationrun, (work.1) is real run
-            switch (work.1) {
+            switch work.1 {
             case 0:
                 // dry-run
                 // Setting maxcount of files in object
@@ -172,7 +172,10 @@ final class NewBatchTask {
 
                 let hiddenID = SharingManagerConfiguration.sharedInstance.gethiddenID(index: index)
                 SharingManagerConfiguration.sharedInstance.setCurrentDateonConfiguration(index)
-                SharingManagerSchedule.sharedInstance.addScheduleResultManuel(hiddenID, result: number.statistics(numberOfFiles: self.transferredNumber, sizeOfFiles: self.transferredNumberSizebytes)[0])
+                
+                let numberOffFiles = self.transferredNumber
+                let sizeOfFiles = self.transferredNumberSizebytes
+                SharingManagerSchedule.sharedInstance.addScheduleResultManuel(hiddenID, result: number.statistics(numberOfFiles: numberOffFiles, sizeOfFiles: sizeOfFiles)[0])
 
                 self.executeBatch()
             default :

@@ -193,7 +193,7 @@ extension ViewControllerNewConfigurations: GetPath {
 
     func pathSet(path: String?, requester: WhichPath) {
         if let setpath = path {
-            switch (requester) {
+            switch requester {
             case .addLocalCatalog:
                 self.localCatalog.stringValue = setpath
             case .addRemoteCatalog:
