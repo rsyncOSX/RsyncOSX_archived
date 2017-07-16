@@ -12,7 +12,7 @@
 //  Created by Thomas Evensen on 08/02/16.
 //  Copyright © 2016 Thomas Evensen. All rights reserved.
 //
-//swiftlint:disable syntactic_sugar disable file_length disable cyclomatic_complexity line_length  type_body_length control_statement
+//swiftlint:disable syntactic_sugar line_length file_length cyclomatic_complexity type_body_length control_statement
 
 import Foundation
 import Cocoa
@@ -69,9 +69,6 @@ class SharingManagerConfiguration {
     var noRysync: Bool = false
     // Detailed logging
     var detailedlogging: Bool = true
-    // Minutes before scheduled task commence disable execute/batch buttons
-    // Disabled by default
-    var scheduledTaskdisableExecute: Double = 0
     // Allow double click to activate single tasks
     var allowDoubleclick: Bool = true
     // Temporary path for restore
@@ -476,7 +473,7 @@ class SharingManagerConfiguration {
     func getIndex(_ hiddenID: Int) -> Int {
         var index: Int = -1
         loop: for i in 0 ..< self.configurations.count {
-            if (self.configurations[i].hiddenID == hiddenID) {
+            if self.configurations[i].hiddenID == hiddenID {
                 index = i
                 break loop
             }

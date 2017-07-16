@@ -5,6 +5,7 @@
 //  Created by Thomas Evensen on 26.04.2017.
 //  Copyright © 2017 Thomas Evensen. All rights reserved.
 //
+//swiftlint:disable syntactic_sugar line_length
 
 import Foundation
 
@@ -25,18 +26,16 @@ class Files {
     var root: Root?
     // Root of files
     var rootfiles: String? {
-        get {
-            switch self.root! {
-            // Profiles
-            case .profileRoot:
-                let paths = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true) as NSArray
-                let docuDir = (paths.firstObject as? String)!
-                let profilePath = docuDir + "/Rsync/" + SharingManagerConfiguration.sharedInstance.getMacSerialNumber()
-                return profilePath
-            // .ssh/
-            case .sshRoot:
-                return NSHomeDirectory() + "/.ssh/"
-            }
+        switch self.root! {
+        // Profiles
+        case .profileRoot:
+            let paths = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true) as NSArray
+            let docuDir = (paths.firstObject as? String)!
+            let profilePath = docuDir + "/Rsync/" + SharingManagerConfiguration.sharedInstance.getMacSerialNumber()
+            return profilePath
+        // .ssh/
+        case .sshRoot:
+            return NSHomeDirectory() + "/.ssh/"
         }
     }
 
@@ -46,10 +45,8 @@ class Files {
         if let filePath = self.rootfiles {
             if let fileURLs = self.getfileURLs(path: filePath) {
                 array = Array<URL>()
-                for i in 0 ..< fileURLs.count {
-                    if fileURLs[i].hasDirectoryPath {
-                        array!.append(fileURLs[i])
-                    }
+                for i in 0 ..< fileURLs.count where fileURLs[i].hasDirectoryPath {
+                    array!.append(fileURLs[i])
                 }
                 return array
             }
@@ -72,10 +69,8 @@ class Files {
             }
             if let fileURLs = self.getfileURLs(path: filePath) {
                 array = Array<URL>()
-                for i in 0 ..< fileURLs.count {
-                    if fileURLs[i].isFileURL {
-                        array!.append(fileURLs[i])
-                    }
+                for i in 0 ..< fileURLs.count where fileURLs[i].isFileURL {
+                    array!.append(fileURLs[i])
                 }
                 return array
             }
@@ -98,13 +93,8 @@ class Files {
             }
             if let fileURLs = self.getfileURLs(path: filePath) {
                 array = Array<String>()
-                for i in 0 ..< fileURLs.count {
-                    if fileURLs[i].isFileURL {
-                        // File path
-                        // .path is /Volume..
-                        // .absoluteString is file:///Volume
-                        array!.append(fileURLs[i].path)
-                    }
+                for i in 0 ..< fileURLs.count where fileURLs[i].isFileURL {
+                    array!.append(fileURLs[i].path)
                 }
                 return array
             }
@@ -117,12 +107,10 @@ class Files {
         var array: Array<String> = Array<String>()
         if let filePath = self.rootfiles {
             if let fileURLs = self.getfileURLs(path: filePath) {
-                for i in 0 ..< fileURLs.count {
-                    if fileURLs[i].hasDirectoryPath {
-                        let path = fileURLs[i].pathComponents
-                        let i = path.count
-                        array.append(path[i-1])
-                    }
+                for i in 0 ..< fileURLs.count where fileURLs[i].hasDirectoryPath {
+                    let path = fileURLs[i].pathComponents
+                    let i = path.count
+                    array.append(path[i-1])
                 }
                 return array
             }
@@ -135,7 +123,7 @@ class Files {
         let fileManager = FileManager.default
         if let path = self.rootfiles {
             // Profile root
-            if (fileManager.fileExists(atPath: path) == false) {
+            if fileManager.fileExists(atPath: path) == false {
                 do {
                     try fileManager.createDirectory(atPath: path, withIntermediateDirectories: true, attributes: nil)
                 } catch let e {

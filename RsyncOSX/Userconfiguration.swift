@@ -5,6 +5,7 @@
 //  Created by Thomas Evensen on 24/08/2016.
 //  Copyright © 2016 Thomas Evensen. All rights reserved.
 //
+//swiftlint:disable syntactic_sugar
 
 import Foundation
 
@@ -40,10 +41,6 @@ final class Userconfiguration {
         } else {
             SharingManagerConfiguration.sharedInstance.restorePath = NSHomeDirectory() + "/tmp/"
         }
-        // Disable Excute/taskbutton before scheduled task is commencing
-        if let minutes = dict.value(forKey: "scheduledTaskdisableExecute") as? Double {
-            SharingManagerConfiguration.sharedInstance.scheduledTaskdisableExecute = minutes
-        }
         // Allow double click to execute single tasks
         if let allowDoubleclick = dict.value(forKey: "allowDoubleclick") as? Int {
             if allowDoubleclick == 1 {
@@ -63,7 +60,7 @@ final class Userconfiguration {
     }
 
     init (userconfigRsyncOSX: [NSDictionary]) {
-        if (userconfigRsyncOSX.count > 0) {
+        if userconfigRsyncOSX.count > 0 {
             self.readUserconfiguration(dict: userconfigRsyncOSX[0])
         }
         // If userconfiguration is read from disk update info in main view

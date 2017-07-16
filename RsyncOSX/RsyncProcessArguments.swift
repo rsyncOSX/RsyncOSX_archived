@@ -5,6 +5,7 @@
 //  Created by Thomas Evensen on 08/02/16.
 //  Copyright © 2016 Thomas Evensen. All rights reserved.
 //
+//swiftlint:disable syntactic_sugar cyclomatic_complexity
 
 import Foundation
 
@@ -31,33 +32,33 @@ class RsyncProcessArguments {
         let offsiteServer: String = config.offsiteServer
 
         self.arguments!.append(parameter1)
-        if (forDisplay) {self.arguments!.append(" ")}
+        if forDisplay {self.arguments!.append(" ")}
         self.arguments!.append(parameter2)
-        if (forDisplay) {self.arguments!.append(" ")}
-        if (offsiteServer.isEmpty) {
+        if forDisplay {self.arguments!.append(" ")}
+        if offsiteServer.isEmpty {
             // nothing
         } else {
             self.arguments!.append(parameter3)
-            if (forDisplay) {self.arguments!.append(" ")}
+            if forDisplay {self.arguments!.append(" ")}
         }
         self.arguments!.append(parameter4)
-        if (forDisplay) {self.arguments!.append(" ")}
-        if (offsiteServer.isEmpty) {
+        if forDisplay {self.arguments!.append(" ")}
+        if offsiteServer.isEmpty {
             // nothing
         } else {
             // -e
             self.arguments!.append(parameter5)
-            if (forDisplay) {self.arguments!.append(" ")}
+            if forDisplay {self.arguments!.append(" ")}
             if let sshport = config.sshport {
                 // "ssh -p xxx"
-                if (forDisplay) {self.arguments!.append(" \"")}
+                if forDisplay {self.arguments!.append(" \"")}
                 self.arguments!.append("ssh -p " + String(sshport))
-                if (forDisplay) {self.arguments!.append("\" ")}
+                if forDisplay {self.arguments!.append("\" ")}
             } else {
                 // ssh
                 self.arguments!.append(parameter6)
             }
-            if (forDisplay) {self.arguments!.append(" ")}
+            if forDisplay {self.arguments!.append(" ")}
         }
     }
 
@@ -70,34 +71,34 @@ class RsyncProcessArguments {
         let dryrun: String = config.dryrun
         self.stats = false
 
-        if (config.parameter8 != nil) {
+        if config.parameter8 != nil {
             self.appendParameter(parameter: config.parameter8!, forDisplay: forDisplay)
         }
-        if (config.parameter9 != nil) {
+        if config.parameter9 != nil {
             self.appendParameter(parameter: config.parameter9!, forDisplay: forDisplay)
         }
-        if (config.parameter10 != nil) {
+        if config.parameter10 != nil {
             self.appendParameter(parameter: config.parameter10!, forDisplay: forDisplay)
         }
-        if (config.parameter11 != nil) {
+        if config.parameter11 != nil {
             self.appendParameter(parameter: config.parameter11!, forDisplay: forDisplay)
         }
-        if (config.parameter12 != nil) {
+        if config.parameter12 != nil {
             self.appendParameter(parameter: config.parameter12!, forDisplay: forDisplay)
         }
-        if (config.parameter13 != nil) {
+        if config.parameter13 != nil {
             self.appendParameter(parameter: config.parameter13!, forDisplay: forDisplay)
         }
-        if (config.parameter14 != nil) {
+        if config.parameter14 != nil {
             self.appendParameter(parameter: config.parameter14!, forDisplay: forDisplay)
         }
         // If drynrun append --stats parameter to collect info about run
-        if (dryRun) {
+        if dryRun {
             self.arguments!.append(dryrun)
-            if (forDisplay) {self.arguments!.append(" ")}
-            if (self.stats! == false) {
+            if forDisplay {self.arguments!.append(" ")}
+            if self.stats! == false {
                 self.arguments!.append("--stats")
-                if (forDisplay) {self.arguments!.append(" ")}
+                if forDisplay {self.arguments!.append(" ")}
             }
         }
     }
@@ -107,12 +108,12 @@ class RsyncProcessArguments {
     // on screen.
 
     private func appendParameter (parameter: String, forDisplay: Bool) {
-        if ((parameter.characters.count) > 1) {
+        if parameter.characters.count > 1 {
             if parameter == "--stats" {
                 self.stats = true
             }
             self.arguments!.append(parameter)
-            if (forDisplay) {
+            if forDisplay {
                 self.arguments!.append(" ")
             }
         }
@@ -133,9 +134,9 @@ class RsyncProcessArguments {
         let offsiteUsername: String = config.offsiteUsername
         let offsiteServer: String = config.offsiteServer
         var offsiteArguments: String?
-        if (offsiteServer.isEmpty == false) {
-            if (config.rsyncdaemon != nil) {
-                if (config.rsyncdaemon == 1) {
+        if offsiteServer.isEmpty == false {
+            if config.rsyncdaemon != nil {
+                if config.rsyncdaemon == 1 {
                     offsiteArguments = offsiteUsername + "@" + offsiteServer + "::" + offsiteCatalog
                 } else {
                     offsiteArguments = offsiteUsername + "@" + offsiteServer + ":" + offsiteCatalog
@@ -152,26 +153,26 @@ class RsyncProcessArguments {
             self.setParameters8To14(config, dryRun: dryRun, forDisplay: forDisplay)
             // Backup
             self.arguments!.append(localCatalog)
-            if (offsiteServer.isEmpty) {
-                if (forDisplay) {self.arguments!.append(" ")}
+            if offsiteServer.isEmpty {
+                if forDisplay {self.arguments!.append(" ")}
                 self.arguments!.append(offsiteCatalog)
-                if (forDisplay) {self.arguments!.append(" ")}
+                if forDisplay {self.arguments!.append(" ")}
             } else {
-                if (forDisplay) {self.arguments!.append(" ")}
+                if forDisplay {self.arguments!.append(" ")}
                 self.arguments!.append(offsiteArguments!)
-                if (forDisplay) {self.arguments!.append(" ")}
+                if forDisplay {self.arguments!.append(" ")}
             }
 
         case "restore":
             self.setParameters1To6(config, dryRun: dryRun, forDisplay: forDisplay)
             self.setParameters8To14(config, dryRun: dryRun, forDisplay: forDisplay)
-            if (offsiteServer.isEmpty) {
+            if offsiteServer.isEmpty {
                 self.arguments!.append(offsiteCatalog)
-                if (forDisplay) {self.arguments!.append(" ")}
+                if forDisplay {self.arguments!.append(" ")}
             } else {
-                if (forDisplay) {self.arguments!.append(" ")}
+                if forDisplay {self.arguments!.append(" ")}
                 self.arguments!.append(offsiteArguments!)
-                if (forDisplay) {self.arguments!.append(" ")}
+                if forDisplay {self.arguments!.append(" ")}
             }
             // Restore
             self.arguments!.append(localCatalog)

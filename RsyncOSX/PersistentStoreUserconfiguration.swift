@@ -5,6 +5,7 @@
 //  Created by Thomas Evensen on 26/10/2016.
 //  Copyright © 2016 Thomas Evensen. All rights reserved.
 //
+//swiftlint:disable syntactic_sugar disable
 
 import Foundation
 
@@ -60,7 +61,6 @@ final class PersistentStoreUserconfiguration: Readwritefiles {
         let dict: NSMutableDictionary = [
             "version3Rsync": version3Rsync! as Int,
             "detailedlogging": detailedlogging! as Int,
-            "scheduledTaskdisableExecute": SharingManagerConfiguration.sharedInstance.scheduledTaskdisableExecute,
             "allowDoubleclick": allowDoubleclick! as Int,
             "rsyncerror": rsyncerror! as Int]
 

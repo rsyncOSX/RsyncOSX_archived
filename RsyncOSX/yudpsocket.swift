@@ -27,6 +27,7 @@ ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
 (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
 SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
+//swiftlint:disable syntactic_sugar file_length disable cyclomatic_complexity line_length identifier_name large_tuple
 
 import Foundation
 
@@ -134,7 +135,6 @@ public class UDPServer: YSocket {
             self.fd=fd
         }
     }
-    //TODO add multycast and boardcast
     public func recv(expectlen: Int) -> ([UInt8]?, String, Int) {
         if let fd: Int32 = self.fd {
             var buff: [UInt8] = [UInt8](repeating:0x0, count:expectlen)

@@ -5,6 +5,7 @@
 //  Created by Thomas Evensen on 02/09/2016.
 //  Copyright © 2016 Thomas Evensen. All rights reserved.
 //
+//swiftlint:disable line_length
 
 import Foundation
 
@@ -28,13 +29,13 @@ final class NewVersion {
             if let url = URL(string: self.urlPlist!) {
                 do {
                     let contents = NSDictionary (contentsOf: url)
-                    if (self.runningVersion != nil) {
+                    if self.runningVersion != nil {
                         if let url = contents?.object(forKey: self.runningVersion!) {
                             self.urlNewVersion = url as? String
                             SharingManagerConfiguration.sharedInstance.URLnewVersion = self.urlNewVersion
                             if let pvc = SharingManagerConfiguration.sharedInstance.viewControllertabMain as? ViewControllertabMain {
                                 self.newversionDelegate = pvc
-                                if (SharingManagerConfiguration.sharedInstance.allowNotifyinMain == true) {
+                                if SharingManagerConfiguration.sharedInstance.allowNotifyinMain == true {
                                     self.newversionDelegate?.notifyNewVersion()
                                 }
                             }

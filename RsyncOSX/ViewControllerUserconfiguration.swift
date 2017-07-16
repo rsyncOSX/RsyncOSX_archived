@@ -6,7 +6,7 @@
 //  Copyright © 2016 Thomas Evensen. All rights reserved.
 //
 
-//swiftlint:disable syntactic_sugar disable file_length disable cyclomatic_complexity line_length
+//swiftlint:disable syntactic_sugar file_length cyclomatic_complexity line_length
 
 import Foundation
 import Cocoa
@@ -30,14 +30,13 @@ class ViewControllerUserconfiguration: NSViewController {
     @IBOutlet weak var rsyncPath: NSTextField!
     @IBOutlet weak var version3rsync: NSButton!
     @IBOutlet weak var detailedlogging: NSButton!
-    @IBOutlet weak var scheduledTaskdisableExecute: NSTextField!
     @IBOutlet weak var allowDoubleClick: NSButton!
     @IBOutlet weak var noRsync: NSTextField!
     @IBOutlet weak var rsyncerror: NSButton!
     @IBOutlet weak var restorePath: NSTextField!
 
     @IBAction func toggleversion3rsync(_ sender: NSButton) {
-        if (self.version3rsync.state == .on) {
+        if self.version3rsync.state == .on {
             SharingManagerConfiguration.sharedInstance.rsyncVer3 = true
         } else {
             SharingManagerConfiguration.sharedInstance.rsyncVer3 = false
@@ -64,7 +63,6 @@ class ViewControllerUserconfiguration: NSViewController {
         if (self.dirty) {
             // Before closing save changed configuration
             self.setRsyncPath()
-            self.setscheduledTaskdisableExecute()
             self.verifyRsync()
             self.setRestorePath()
             _ = PersistentStoreAPI.sharedInstance.saveUserconfiguration()
@@ -147,18 +145,7 @@ class ViewControllerUserconfiguration: NSViewController {
             self.noRsync.isHidden = true
         }
     }
-
-    private func setscheduledTaskdisableExecute() {
-        if (self.scheduledTaskdisableExecute.stringValue.isEmpty == false) {
-            if let time = Double(self.scheduledTaskdisableExecute.stringValue) {
-                SharingManagerConfiguration.sharedInstance.scheduledTaskdisableExecute = time
-            }
-        } else {
-            SharingManagerConfiguration.sharedInstance.scheduledTaskdisableExecute = 0
-        }
-        self.dirty = true
-    }
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Dismisser is root controller
@@ -199,7 +186,6 @@ class ViewControllerUserconfiguration: NSViewController {
         } else {
             self.rsyncPath.stringValue = ""
         }
-        self.scheduledTaskdisableExecute.stringValue = String(SharingManagerConfiguration.sharedInstance.scheduledTaskdisableExecute)
         if SharingManagerConfiguration.sharedInstance.allowDoubleclick {
             self.allowDoubleClick.state = .on
         } else {

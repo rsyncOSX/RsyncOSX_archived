@@ -5,7 +5,7 @@
 //  Created by Thomas Evensen on 18/11/2016.
 //  Copyright © 2016 Thomas Evensen. All rights reserved.
 //
-//swiftlint:disable syntactic_sugar disable file_length disable cyclomatic_complexity line_length
+//swiftlint:disable syntactic_sugar file_length cyclomatic_complexity line_length
 
 import Foundation
 import Cocoa
@@ -59,7 +59,7 @@ class ViewControllerAbout: NSViewController {
             if let url = URL(string: self.urlPlist!) {
                 do {
                     let contents = NSDictionary (contentsOf: url)
-                    if (self.runningVersion != nil) {
+                    if self.runningVersion != nil {
                         if let url = contents?.object(forKey: self.runningVersion!) {
                             self.urlNewVersion = url as? String
                             SharingManagerConfiguration.sharedInstance.URLnewVersion = self.urlNewVersion

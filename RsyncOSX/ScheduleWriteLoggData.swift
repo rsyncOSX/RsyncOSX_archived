@@ -5,6 +5,7 @@
 //  Created by Thomas Evensen on 19.04.2017.
 //  Copyright © 2017 Thomas Evensen. All rights reserved.
 //
+//swiftlint:disable syntactic_sugar line_length
 
 import Foundation
 import Foundation
@@ -69,7 +70,7 @@ class ScheduleWriteLoggData {
         let dateformatter = Utils.sharedInstance.setDateformat()
         let date = dateformatter.string(from: currendate)
 
-        if (SharingManagerConfiguration.sharedInstance.detailedlogging) {
+        if SharingManagerConfiguration.sharedInstance.detailedlogging {
             var inserted: Bool = false
             for i in 0 ..< self.schedule.count {
                 // Add record only to record with no enddate

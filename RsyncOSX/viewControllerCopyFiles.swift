@@ -5,7 +5,7 @@
 //  Created by Thomas Evensen on 12/09/2016.
 //  Copyright © 2016 Thomas Evensen. All rights reserved.
 //
-//swiftlint:disable syntactic_sugar disable file_length disable cyclomatic_complexity line_length
+//swiftlint:disable syntactic_sugar file_length cyclomatic_complexity line_length
 
 import Foundation
 import Cocoa
@@ -81,13 +81,13 @@ class ViewControllerCopyFiles: NSViewController {
 
     // Do the work
     @IBAction func copy(_ sender: NSButton) {
-        if (self.remoteCatalog.stringValue.isEmpty || self.localCatalog.stringValue.isEmpty) {
+        if self.remoteCatalog.stringValue.isEmpty || self.localCatalog.stringValue.isEmpty {
             Alerts.showInfo("From: or To: cannot be empty!")
         } else {
-            if (self.copyFiles != nil) {
+            if self.copyFiles != nil {
                 self.rsync = true
                 self.workingRsync.startAnimation(nil)
-                if (self.estimated == false) {
+                if self.estimated == false {
                     self.copyFiles!.executeRsync(remotefile: remoteCatalog!.stringValue, localCatalog: localCatalog!.stringValue, dryrun: true)
                     self.copyButton.title = "Execute"
                     self.estimated = true
@@ -214,7 +214,7 @@ class ViewControllerCopyFiles: NSViewController {
 extension ViewControllerCopyFiles: NSSearchFieldDelegate {
 
     func searchFieldDidStartSearching(_ sender: NSSearchField) {
-        if (sender.stringValue.isEmpty) {
+        if sender.stringValue.isEmpty {
             globalMainQueue.async(execute: { () -> Void in
                 self.filesArray = self.copyFiles?.filter(search: nil)
                 self.tableViewSelect.reloadData()

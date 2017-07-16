@@ -5,6 +5,7 @@
 //  Created by Thomas Evensen on 03/10/2016.
 //  Copyright © 2016 Thomas Evensen. All rights reserved.
 //
+//swiftlint:disable syntactic_sugar cyclomatic_complexity
 
 import Foundation
 
@@ -138,7 +139,7 @@ final class RsyncParameters {
         }
         let argument = splitstr[0]
         let value = splitstr[1]
-        if (argument != value && self.indexValue(argument) >= 0) {
+        if argument != value && self.indexValue(argument) >= 0 {
             return value
         } else {
             if self.indexValue(splitstr[0]) >= 0 {
@@ -163,7 +164,7 @@ final class RsyncParameters {
         }
         let argument = splitstr[0]
         let value = splitstr[1]
-        if (argument != value && self.indexValue(argument) >= 0) {
+        if argument != value && self.indexValue(argument) >= 0 {
             return self.indexValue(argument)
         } else {
             guard self.indexValue(splitstr[0]) >= 0 else {

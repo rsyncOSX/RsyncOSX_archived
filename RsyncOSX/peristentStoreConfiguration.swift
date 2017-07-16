@@ -17,22 +17,20 @@ final class PersistentStoreConfiguration: Readwritefiles {
     /// MaxhiddenID is used when new configurations
     /// are added.
     private var maxhiddenID: Int {
-        get {
-            // Reading Configurations from memory
-            let store: [Configuration] = SharingManagerConfiguration.sharedInstance.getConfigurations()
-            if (store.count > 0) {
-                _ = store.sorted { (config1, config2) -> Bool in
-                    if (config1.hiddenID > config2.hiddenID) {
-                        return true
-                    } else {
-                        return false
-                    }
+        // Reading Configurations from memory
+        let store: [Configuration] = SharingManagerConfiguration.sharedInstance.getConfigurations()
+        if store.count > 0 {
+            _ = store.sorted { (config1, config2) -> Bool in
+                if config1.hiddenID > config2.hiddenID {
+                    return true
+                } else {
+                    return false
                 }
-                let index = store.count-1
-                return store[index].hiddenID
-            } else {
-                return 0
             }
+            let index = store.count-1
+            return store[index].hiddenID
+        } else {
+            return 0
         }
     }
 

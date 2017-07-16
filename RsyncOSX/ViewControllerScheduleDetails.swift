@@ -5,7 +5,7 @@
 //  Created by Thomas Evensen on 06/09/2016.
 //  Copyright © 2016 Thomas Evensen. All rights reserved.
 //
-//swiftlint:disable syntactic_sugar disable file_length disable cyclomatic_complexity line_length
+//swiftlint:disable syntactic_sugar file_length cyclomatic_complexity line_length
 
 import Foundation
 import Cocoa
@@ -141,7 +141,7 @@ extension ViewControllerScheduleDetails : NSTableViewDelegate {
     }
 
     @objc(tableView:setObjectValue:forTableColumn:row:) func tableView(_ tableView: NSTableView, setObjectValue object: Any?, for tableColumn: NSTableColumn?, row: Int) {
-        if (tableColumn!.identifier.rawValue == "stopCellID" || tableColumn!.identifier.rawValue == "deleteCellID") {
+        if tableColumn!.identifier.rawValue == "stopCellID" || tableColumn!.identifier.rawValue == "deleteCellID" {
             switch tableColumn!.identifier.rawValue {
             case "stopCellID":
                 self.data![row].setValue(1, forKey: "stopCellID")

@@ -8,6 +8,8 @@
 // let str = "/Rsync/" + serialNumber + profile? + "/scheduleRsync.plist"
 // let str = "/Rsync/" + serialNumber + profile? + "/configRsync.plist"
 // let str = "/Rsync/" + serialNumber + "/config.plist"
+//
+//swiftlint:disable synctactic_sugar
 
 import Foundation
 
@@ -37,28 +39,26 @@ class Readwritefiles {
 
     // Set which file to read
     private var fileName: String? {
-        get {
-            let str: String?
-            let paths = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true) as NSArray
-            let docuDir = (paths.firstObject as? String)!
-            let profilePath = Profiles()
-            profilePath.createDirectory()
-            if self.useProfile {
-                // Use profile
-                if let profile = self.profile {
-                    let profilePath = Profiles()
-                    profilePath.createDirectory()
-                    str = "/Rsync/" + SharingManagerConfiguration.sharedInstance.getMacSerialNumber() + "/" + profile + self.name!
-                } else {
-                    // If profile not set use no profile
-                    str = "/Rsync/" + SharingManagerConfiguration.sharedInstance.getMacSerialNumber() + self.name!
-                }
+        let str: String?
+        let paths = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true) as NSArray
+        let docuDir = (paths.firstObject as? String)!
+        let profilePath = Profiles()
+        profilePath.createDirectory()
+        if self.useProfile {
+            // Use profile
+            if let profile = self.profile {
+                let profilePath = Profiles()
+                profilePath.createDirectory()
+                str = "/Rsync/" + SharingManagerConfiguration.sharedInstance.getMacSerialNumber() + "/" + profile + self.name!
             } else {
-                // no profile
+                // If profile not set use no profile
                 str = "/Rsync/" + SharingManagerConfiguration.sharedInstance.getMacSerialNumber() + self.name!
             }
-            return (docuDir + str!)
+        } else {
+            // no profile
+            str = "/Rsync/" + SharingManagerConfiguration.sharedInstance.getMacSerialNumber() + self.name!
         }
+        return (docuDir + str!)
     }
 
     // Function for reading data from persistent store

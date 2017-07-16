@@ -8,6 +8,7 @@
 // Interface between Schedule in memory and
 // presistent store. Class is a interface
 // for Schedule.
+//swiftlint:disable syntactic_sugar
 
 import Foundation
 
@@ -36,11 +37,11 @@ final class PersistentStoreScheduling: Readwritefiles {
                 "dateStart": schedule.dateStart,
                 "schedule": schedule.schedule,
                 "executed": schedule.logrecords]
-            if (schedule.dateStop != nil) {
+            if schedule.dateStop != nil {
                 dict.setValue(schedule.dateStop, forKey: "dateStop")
             }
             if let delete = schedule.delete {
-                if (!delete) {
+                if !delete {
                     array.append(dict)
                 }
             } else {
@@ -64,7 +65,7 @@ final class PersistentStoreScheduling: Readwritefiles {
                     "dateStart": schedule.dateStart,
                     "schedule": schedule.schedule,
                     "executed": schedule.logrecords]
-                if (schedule.dateStop != nil) {
+                if schedule.dateStop != nil {
                     dict.setValue(schedule.dateStop, forKey: "dateStop")
                 }
                 array.append(dict)

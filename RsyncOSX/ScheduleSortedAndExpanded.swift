@@ -5,8 +5,7 @@
 //  Created by Thomas Evensen on 05/09/2016.
 //  Copyright © 2016 Thomas Evensen. All rights reserved.
 //
-//swiftlint:disable syntactic_sugar disable file_length disable cyclomatic_complexity line_length  type_body_length control_statement
-
+//swiftlint:disable syntactic_sugar file_length disable cyclomatic_complexity line_length  type_body_length control_statement
 
 import Foundation
 
@@ -45,14 +44,7 @@ class ScheduleSortedAndExpand {
     // True if scheduled process is about to start
     func getScheduledOperationInProgress() -> Bool {
         // Calculate next schedule in progress
-        if (self.whenIsNextTwoTasksDouble()[0] > 0 &&
-            self.whenIsNextTwoTasksDouble()[0] < SharingManagerConfiguration.sharedInstance.scheduledTaskdisableExecute) {
-            // Value 0 disables the function
-            if (SharingManagerConfiguration.sharedInstance.scheduledTaskdisableExecute > 0) {
-                self.scheduleInProgress = true
-            } else {
-                self.scheduleInProgress = false
-            }
+        if self.whenIsNextTwoTasksDouble()[0] > 0 {
         } else {
             self.scheduleInProgress = false
         }
@@ -170,17 +162,15 @@ class ScheduleSortedAndExpand {
             return
         }
         var data = Array<NSDictionary>()
-        for i in 0 ..< self.scheduleAsConfiguration!.count {
-            if self.scheduleAsConfiguration![i].dateStop != nil {
-                if (self.scheduleAsConfiguration![i].schedule != "stopped") {
-                    let dict: NSDictionary = [
-                        "dateStart": self.scheduleAsConfiguration![i].dateStart,
-                        "dateStop": self.scheduleAsConfiguration![i].dateStop!,
-                        "hiddenID": self.scheduleAsConfiguration![i].hiddenID,
-                        "schedule": self.scheduleAsConfiguration![i].schedule
-                    ]
-                    data.append(dict as NSDictionary)
-                }
+        for i in 0 ..< self.scheduleAsConfiguration!.count where self.scheduleAsConfiguration![i].dateStop != nil {
+            if (self.scheduleAsConfiguration![i].schedule != "stopped") {
+                let dict: NSDictionary = [
+                    "dateStart": self.scheduleAsConfiguration![i].dateStart,
+                    "dateStop": self.scheduleAsConfiguration![i].dateStop!,
+                    "hiddenID": self.scheduleAsConfiguration![i].hiddenID,
+                    "schedule": self.scheduleAsConfiguration![i].schedule
+                ]
+                data.append(dict as NSDictionary)
             }
         }
         self.scheduleAsNSDictionary = data
