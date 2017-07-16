@@ -37,7 +37,7 @@ class SharingManagerSchedule: ScheduleWriteLoggData {
     // Reference to NSViewObjects requiered for protocol functions for kikcking of scheduled jobs
     var ViewObjectSchedule: NSViewController?
     // Delegate functionsn for doing a refresh of NSTableView
-    weak var refresh_delegate: RefreshtableView?
+    weak var refreshDelegate: RefreshtableView?
 
     // DATA STRUCTURE
 
@@ -264,8 +264,8 @@ class SharingManagerSchedule: ScheduleWriteLoggData {
     private func doaRefreshTableviewMain() {
         // Send message about refresh tableView
         if let pvc = SharingManagerConfiguration.sharedInstance.ViewControllertabMain as? ViewControllertabMain {
-            self.refresh_delegate = pvc
-            self.refresh_delegate?.refresh()
+            self.refreshDelegate = pvc
+            self.refreshDelegate?.refresh()
         }
     }
 

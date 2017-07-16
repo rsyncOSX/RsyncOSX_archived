@@ -19,7 +19,7 @@ class ExecuteTask: Operation {
 
     override func main() {
         // Delegate function for start and completion of scheduled jobs
-        weak var notify_delegate: ScheduledJobInProgress?
+        weak var notifyDelegate: ScheduledJobInProgress?
         // Variables used for rsync parameters
         let output = outputProcess()
         var arguments: Array<String>?
@@ -33,9 +33,9 @@ class ExecuteTask: Operation {
 
                 guard configArray.count > 0 else {
                     if let pvc = SharingManagerConfiguration.sharedInstance.ViewControllertabMain as? ViewControllertabMain {
-                        notify_delegate = pvc
+                        notifyDelegate = pvc
                         if (SharingManagerConfiguration.sharedInstance.allowNotifyinMain == true) {
-                            notify_delegate?.notifyScheduledJob(config: nil)
+                            notifyDelegate?.notifyScheduledJob(config: nil)
                         }
                     }
                     return
@@ -45,9 +45,9 @@ class ExecuteTask: Operation {
 
                 guard (config != nil) else {
                     if let pvc = SharingManagerConfiguration.sharedInstance.ViewControllertabMain as? ViewControllertabMain {
-                        notify_delegate = pvc
+                        notifyDelegate = pvc
                         if (SharingManagerConfiguration.sharedInstance.allowNotifyinMain == true) {
-                            notify_delegate?.notifyScheduledJob(config: nil)
+                            notifyDelegate?.notifyScheduledJob(config: nil)
                         }
                     }
                     return
@@ -55,11 +55,11 @@ class ExecuteTask: Operation {
 
                 // Notify that scheduled task is executing
                 if let pvc = SharingManagerConfiguration.sharedInstance.ViewControllertabMain as? ViewControllertabMain {
-                    notify_delegate = pvc
-                    notify_delegate?.start()
+                    notifyDelegate = pvc
+                    notifyDelegate?.start()
                     // Trying to notify when not in main view will crash RSyncOSX
                     if (SharingManagerConfiguration.sharedInstance.allowNotifyinMain == true) {
-                        notify_delegate?.notifyScheduledJob(config: config)
+                        notifyDelegate?.notifyScheduledJob(config: config)
                     }
                 }
 

@@ -44,7 +44,7 @@ protocol ReportErrorInMain: class {
 class ViewControllertabMain: NSViewController {
 
     // Reference to the single taskobject
-    var singletask: newSingleTask?
+    var singletask: NewSingleTask?
     // Reference to batch taskobject
     var batchtask: newBatchTask?
 
@@ -437,7 +437,7 @@ class ViewControllertabMain: NSViewController {
 
         guard self.singletask != nil else {
             // Dry run
-            self.singletask = newSingleTask(index: self.index!)
+            self.singletask = NewSingleTask(index: self.index!)
             self.singletask?.executeSingleTask()
             // Set reference to singleTask object
             SharingManagerConfiguration.sharedInstance.SingleTask = self.singletask
@@ -692,7 +692,7 @@ extension ViewControllertabMain: AddProfiles {
     // Function is called from profiles when new or
     // default profiles is seleceted
     func newProfile(new: Bool) {
-        weak var newProfile_delegate: AddProfiles?
+        weak var newProfileDelegate: AddProfiles?
         // By setting self.schedules = nil start jobs are restaret in ViewDidAppear
         self.schedules = nil
         self.loadProfileMenu = false
@@ -712,8 +712,8 @@ extension ViewControllertabMain: AddProfiles {
             SharingManagerConfiguration.sharedInstance.destroyConfigurations()
             // Reset in tabSchedule
             if let pvc = SharingManagerConfiguration.sharedInstance.ViewControllertabSchedule as? ViewControllertabSchedule {
-                newProfile_delegate = pvc
-                newProfile_delegate?.newProfile(new: true)
+                newProfileDelegate = pvc
+                newProfileDelegate?.newProfile(new: true)
             }
             self.refresh()
             return
@@ -721,8 +721,8 @@ extension ViewControllertabMain: AddProfiles {
 
         // Reset in tabSchedule
         if let pvc = SharingManagerConfiguration.sharedInstance.ViewControllertabSchedule as? ViewControllertabSchedule {
-            newProfile_delegate = pvc
-            newProfile_delegate?.newProfile(new: false)
+            newProfileDelegate = pvc
+            newProfileDelegate?.newProfile(new: false)
         }
         // Must unload Schedule data before new Profile is loaded.
         // This is due to a glitch in design in 
@@ -1073,7 +1073,7 @@ extension ViewControllertabMain:SingleTask {
         }
     }
 
-    func setInfo(info: String, color: colorInfo) {
+    func setInfo(info: String, color: ColorInfo) {
 
         switch color {
         case .red:

@@ -51,7 +51,7 @@ class SharingManagerConfiguration {
     }
 
     // Delegate functions
-    weak var refresh_delegate: RefreshtableView?
+    weak var refreshDelegate: RefreshtableView?
 
     // NEW VERSION OF RSYNCOSX
     // Download URL if new version is avaliable
@@ -104,7 +104,7 @@ class SharingManagerConfiguration {
     // If rsync error reset workqueue
     var rsyncerror: Bool = true
     // Reference to singletask object
-    var SingleTask: newSingleTask?
+    var SingleTask: NewSingleTask?
 
     // DATA STRUCTURES
 
@@ -320,8 +320,8 @@ class SharingManagerConfiguration {
         self.readAllConfigurationsAndArguments()
         // Call the view and do a refresh of tableView
         if let pvc = self.ViewControllertabMain as? ViewControllertabMain {
-            self.refresh_delegate = pvc
-            self.refresh_delegate?.refresh()
+            self.refreshDelegate = pvc
+            self.refreshDelegate?.refresh()
         }
     }
 
@@ -366,8 +366,8 @@ class SharingManagerConfiguration {
         self.readAllConfigurationsAndArguments()
         // Call the view and do a refresh of tableView
         if let pvc = self.ViewControllertabMain as? ViewControllertabMain {
-            self.refresh_delegate = pvc
-            self.refresh_delegate?.refresh()
+            self.refreshDelegate = pvc
+            self.refreshDelegate?.refresh()
         }
     }
 

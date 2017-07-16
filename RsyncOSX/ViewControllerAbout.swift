@@ -12,7 +12,7 @@ import Cocoa
 class ViewControllerAbout: NSViewController {
 
     // Dismisser
-    weak var dismiss_delegate: DismissViewController?
+    weak var dismissDelegate: DismissViewController?
     // RsyncOSX version
     @IBOutlet weak var version: NSTextField!
     @IBOutlet weak var downloadbutton: NSButton!
@@ -27,30 +27,30 @@ class ViewControllerAbout: NSViewController {
     private var resource: Resources?
 
     @IBAction func dismiss(_ sender: NSButton) {
-        self.dismiss_delegate?.dismiss_view(viewcontroller: self)
+        self.dismissDelegate?.dismiss_view(viewcontroller: self)
     }
 
     @IBAction func changelog(_ sender: NSButton) {
         if let resource = self.resource {
             NSWorkspace.shared.open(URL(string: resource.getResource(resource: .changelog))!)
         }
-        self.dismiss_delegate?.dismiss_view(viewcontroller: self)
+        self.dismissDelegate?.dismiss_view(viewcontroller: self)
     }
 
     @IBAction func documentation(_ sender: NSButton) {
         if let resource = self.resource {
             NSWorkspace.shared.open(URL(string: resource.getResource(resource: .documents))!)
         }
-        self.dismiss_delegate?.dismiss_view(viewcontroller: self)
+        self.dismissDelegate?.dismiss_view(viewcontroller: self)
     }
 
     @IBAction func download(_ sender: NSButton) {
         guard SharingManagerConfiguration.sharedInstance.URLnewVersion != nil else {
-            self.dismiss_delegate?.dismiss_view(viewcontroller: self)
+            self.dismissDelegate?.dismiss_view(viewcontroller: self)
             return
         }
         NSWorkspace.shared.open(URL(string: SharingManagerConfiguration.sharedInstance.URLnewVersion!)!)
-        self.dismiss_delegate?.dismiss_view(viewcontroller: self)
+        self.dismissDelegate?.dismiss_view(viewcontroller: self)
     }
 
     private func checkforupdates() {
@@ -87,7 +87,7 @@ class ViewControllerAbout: NSViewController {
             self.urlPlist = resource.getResource(resource: .urlPlist)
         }
         if let pvc = self.presenting as? ViewControllertabMain {
-            self.dismiss_delegate = pvc
+            self.dismissDelegate = pvc
         }
         let infoPlist = Bundle.main.infoDictionary
         let version = infoPlist?["CFBundleShortVersionString"] as! String

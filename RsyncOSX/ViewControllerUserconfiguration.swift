@@ -21,9 +21,9 @@ class ViewControllerUserconfiguration: NSViewController {
     var dirty: Bool = false
     // Delegate to read configurations after toggeling between
     // test- and real mode
-    weak var rsyncchanged_delegate: RsyncChanged?
+    weak var rsyncchangedDelegate: RsyncChanged?
     // Dismisser
-    weak var dismiss_delegate: DismissViewController?
+    weak var dismissDelegate: DismissViewController?
 
     @IBOutlet weak var rsyncPath: NSTextField!
     @IBOutlet weak var version3rsync: NSButton!
@@ -41,8 +41,8 @@ class ViewControllerUserconfiguration: NSViewController {
             SharingManagerConfiguration.sharedInstance.rsyncVer3 = false
         }
         if let pvc = self.presenting as? ViewControllertabMain {
-            self.rsyncchanged_delegate = pvc
-            self.rsyncchanged_delegate?.rsyncchanged()
+            self.rsyncchangedDelegate = pvc
+            self.rsyncchangedDelegate?.rsyncchanged()
         }
         self.dirty = true
         self.verifyRsync()
@@ -67,7 +67,7 @@ class ViewControllerUserconfiguration: NSViewController {
             self.setRestorePath()
             _ = PersistentStoreAPI.sharedInstance.saveUserconfiguration()
         }
-        self.dismiss_delegate?.dismiss_view(viewcontroller: self)
+        self.dismissDelegate?.dismiss_view(viewcontroller: self)
     }
 
     @IBAction func toggleAllowDoubleclick(_ sender: NSButton) {
@@ -77,8 +77,8 @@ class ViewControllerUserconfiguration: NSViewController {
             SharingManagerConfiguration.sharedInstance.allowDoubleclick = false
         }
         if let pvc = self.presenting as? ViewControllertabMain {
-            self.rsyncchanged_delegate = pvc
-            self.rsyncchanged_delegate?.displayAllowDoubleclick()
+            self.rsyncchangedDelegate = pvc
+            self.rsyncchangedDelegate?.displayAllowDoubleclick()
         }
         self.dirty = true
 
@@ -161,11 +161,11 @@ class ViewControllerUserconfiguration: NSViewController {
         super.viewDidLoad()
         // Dismisser is root controller
         if let pvc2 = self.presenting as? ViewControllertabMain {
-            self.dismiss_delegate = pvc2
+            self.dismissDelegate = pvc2
         } else if let pvc2 = self.presenting as? ViewControllertabSchedule {
-            self.dismiss_delegate = pvc2
+            self.dismissDelegate = pvc2
         } else if let pvc2 = self.presenting as? ViewControllerNewConfigurations {
-            self.dismiss_delegate = pvc2
+            self.dismissDelegate = pvc2
         }
         self.rsyncPath.delegate = self
         self.restorePath.delegate = self

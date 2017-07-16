@@ -16,9 +16,9 @@ class ViewControllerInformationCopyFiles: NSViewController {
     var output: [String]?
 
     // Delegate for getting the Information to present in table
-    weak var information_delegate: Information?
+    weak var informationDelegate: Information?
     // Dismisser
-    weak var dismiss_delegate: DismissViewController?
+    weak var dismissDelegate: DismissViewController?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,23 +27,23 @@ class ViewControllerInformationCopyFiles: NSViewController {
         detailsTable.dataSource = self
         // Setting the source for delegate function
         if let pvc = self.presenting as? ViewControllerCopyFiles {
-            self.information_delegate = pvc
+            self.informationDelegate = pvc
         }
         // Dismisser is root controller
         if let pvc2 = self.presenting as? ViewControllerCopyFiles {
-            self.dismiss_delegate = pvc2
+            self.dismissDelegate = pvc2
         }
 
     }
 
     override func viewDidAppear() {
         super.viewDidAppear()
-        self.output = self.information_delegate?.getInformation()
+        self.output = self.informationDelegate?.getInformation()
         detailsTable.reloadData()
     }
 
     @IBAction func close(_ sender: NSButton) {
-        self.dismiss_delegate?.dismiss_view(viewcontroller: self)
+        self.dismissDelegate?.dismiss_view(viewcontroller: self)
     }
 
 }

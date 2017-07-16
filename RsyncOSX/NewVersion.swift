@@ -12,7 +12,7 @@ protocol newVersionDiscovered : class {
     func notifyNewVersion()
 }
 
-final class newVersion {
+final class NewVersion {
 
     private var runningVersion: String?
     private var urlPlist: String?
@@ -21,7 +21,7 @@ final class newVersion {
     // External resources
     private var resource: Resources?
 
-    weak var newversion_delegate: newVersionDiscovered?
+    weak var newversionDelegate: newVersionDiscovered?
 
     private func setURLnewVersion () {
         globalBackgroundQueue.async(execute: { () -> Void in
@@ -33,9 +33,9 @@ final class newVersion {
                             self.urlNewVersion = url as? String
                             SharingManagerConfiguration.sharedInstance.URLnewVersion = self.urlNewVersion
                             if let pvc = SharingManagerConfiguration.sharedInstance.ViewControllertabMain as? ViewControllertabMain {
-                                self.newversion_delegate = pvc
+                                self.newversionDelegate = pvc
                                 if (SharingManagerConfiguration.sharedInstance.allowNotifyinMain == true) {
-                                    self.newversion_delegate?.notifyNewVersion()
+                                    self.newversionDelegate?.notifyNewVersion()
                                 }
                             }
                         }

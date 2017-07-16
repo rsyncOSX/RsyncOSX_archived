@@ -11,7 +11,7 @@
 import Foundation
 
 // enum for returning what is asked for
-enum enumNumbers {
+enum EnumNumbers {
     case totalNumber
     case totalDirs
     case totalNumberSizebytes
@@ -38,7 +38,7 @@ final class Numbers {
     var deletefiles: Int?
 
     // Get numbers from rsync (dry run)
-    func getTransferredNumbers (numbers: enumNumbers) -> Int {
+    func getTransferredNumbers (numbers: EnumNumbers) -> Int {
 
         switch numbers {
         case .totalDirs:

@@ -25,15 +25,15 @@ enum batchViewProgressIndicator {
 final class newBatchTask {
 
     // Protocol function used in Process().
-    weak var processupdate_delegate: UpdateProgress?
+    weak var processupdateDelegate: UpdateProgress?
     // Delegate function for doing a refresh of NSTableView in ViewControllerBatch
-    weak var refresh_delegate: RefreshtableView?
+    weak var refreshDelegate: RefreshtableView?
     // Delegate for presenting batchView
-    weak var batchView_delegate: BatchTask?
+    weak var batchViewDelegate: BatchTask?
     // Delegate function for start/stop progress Indicator in BatchWindow
-    weak var indicator_delegate: StartStopProgressIndicatorSingleTask?
+    weak var indicatorDelegate: StartStopProgressIndicatorSingleTask?
     // Delegate function for show process step and present View
-    weak var task_delegate: SingleTask?
+    weak var taskDelegate: SingleTask?
 
     // REFERENCE VARIABLES
 
@@ -69,7 +69,7 @@ final class newBatchTask {
         // Set the reference to batchData object in SharingManagerConfiguration
         SharingManagerConfiguration.sharedInstance.setbatchDataQueue(batchdata: batchObject)
         // Present batchView
-        self.batchView_delegate?.presentViewBatch()
+        self.batchViewDelegate?.presentViewBatch()
     }
 
     // Functions are called from batchView.
@@ -88,7 +88,7 @@ final class newBatchTask {
 
             switch (work.1) {
             case 0:
-                self.batchView_delegate?.progressIndicatorViewBatch(operation: .start)
+                self.batchViewDelegate?.progressIndicatorViewBatch(operation: .start)
                 let arguments: Array<String> = SharingManagerConfiguration.sharedInstance.getRsyncArgumentOneConfig(index: index, argtype: .argdryRun)
                 let process = Rsync(arguments: arguments)
                 // Setting reference to process for Abort if requiered
@@ -101,8 +101,8 @@ final class newBatchTask {
                 process.executeProcess(output: self.output!)
                 self.process = process.getProcess()
             case -1:
-                self.batchView_delegate?.setOutputBatch(outputbatch: self.outputbatch)
-                self.batchView_delegate?.progressIndicatorViewBatch(operation: .complete)
+                self.batchViewDelegate?.setOutputBatch(outputbatch: self.outputbatch)
+                self.batchViewDelegate?.progressIndicatorViewBatch(operation: .complete)
             default : break
             }
         }
@@ -110,7 +110,7 @@ final class newBatchTask {
 
     func closeOperation() {
         self.process = nil
-        self.task_delegate?.setInfo(info: "", color: .black)
+        self.taskDelegate?.setInfo(info: "", color: .black)
     }
 
     // Error and stop execution
@@ -142,7 +142,7 @@ final class newBatchTask {
                 batchobject.setEstimated(numberOfFiles: self.output!.getMaxcount())
                 // Do a refresh of NSTableView in ViewControllerBatch
                 // Stack of ViewControllers
-                self.batchView_delegate?.progressIndicatorViewBatch(operation: .stop)
+                self.batchViewDelegate?.progressIndicatorViewBatch(operation: .stop)
                 self.executeBatch()
 
             case 1:
@@ -153,7 +153,7 @@ final class newBatchTask {
                 // Update files in work
                 batchobject.updateInProcess(numberOfFiles: self.output!.getMaxcount())
                 batchobject.setCompleted()
-                self.batchView_delegate?.progressIndicatorViewBatch(operation: .refresh)
+                self.batchViewDelegate?.progressIndicatorViewBatch(operation: .refresh)
 
                 // Set date on Configuration
                 let index = SharingManagerConfiguration.sharedInstance.getIndex(work.0)
@@ -183,9 +183,9 @@ final class newBatchTask {
 
     init() {
         if let pvc = SharingManagerConfiguration.sharedInstance.ViewControllertabMain as? ViewControllertabMain {
-            self.indicator_delegate = pvc
-            self.task_delegate = pvc
-            self.batchView_delegate = pvc
+            self.indicatorDelegate = pvc
+            self.taskDelegate = pvc
+            self.batchViewDelegate = pvc
         }
     }
 

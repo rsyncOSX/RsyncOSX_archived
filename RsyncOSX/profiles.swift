@@ -11,7 +11,7 @@ import Foundation
 class profiles: Files {
 
     // Delegate for reporting file error if any to main view
-    weak var error_delegate: ReportErrorInMain?
+    weak var errorDelegate: ReportErrorInMain?
 
     // Function for creating new profile directory
     func createProfile(profileName: String) {
@@ -56,8 +56,8 @@ extension profiles: ReportError {
     // Private func for propagating any file error to main view
     func reportError(errorstr: String) {
         if let pvc = SharingManagerConfiguration.sharedInstance.ViewControllertabMain {
-            self.error_delegate = pvc as? ViewControllertabMain
-            self.error_delegate?.fileerror(errorstr: errorstr)
+            self.errorDelegate = pvc as? ViewControllertabMain
+            self.errorDelegate?.fileerror(errorstr: errorstr)
         }
     }
 

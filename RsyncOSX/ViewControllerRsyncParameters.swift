@@ -26,11 +26,11 @@ class ViewControllerRsyncParameters: NSViewController {
     // Object for calculating rsync parameters
     var parameters: RsyncParameters?
     // Delegate returning params updated or not
-    weak var userparamsupdated_delegate: RsyncUserParams?
+    weak var userparamsupdatedDelegate: RsyncUserParams?
     // Get index of selected row
-    weak var getindex_delegate: GetSelecetedIndex?
+    weak var getindexDelegate: GetSelecetedIndex?
     // Dismisser
-    weak var dismiss_delegate: DismissViewController?
+    weak var dismissDelegate: DismissViewController?
     // Reference to rsync parameters to use in combox
     var comboBoxValues = Array<String>()
 
@@ -59,7 +59,7 @@ class ViewControllerRsyncParameters: NSViewController {
     @IBOutlet weak var parameter14: NSComboBox!
 
     @IBAction func close(_ sender: NSButton) {
-         self.dismiss_delegate?.dismiss_view(viewcontroller: self)
+         self.dismissDelegate?.dismiss_view(viewcontroller: self)
     }
 
     // Function for enabling backup of changed files in a backup catalog.
@@ -69,7 +69,7 @@ class ViewControllerRsyncParameters: NSViewController {
         case .on:
             self.setValueComboBox(combobox: self.parameter12, index: (self.parameters!.getvalueCombobox(self.parameters!.getBackupString()[0])))
             self.viewParameter12.stringValue = self.parameters!.getdisplayValue(self.parameters!.getBackupString()[0])
-            let hiddenID = SharingManagerConfiguration.sharedInstance.gethiddenID(index: (self.getindex_delegate?.getindex())!)
+            let hiddenID = SharingManagerConfiguration.sharedInstance.gethiddenID(index: (self.getindexDelegate?.getindex())!)
             let localcatalog = SharingManagerConfiguration.sharedInstance.getResourceConfiguration(hiddenID, resource: .localCatalog)
             let localcatalogParts = (localcatalog as AnyObject).components(separatedBy: "/")
             self.setValueComboBox(combobox: self.parameter13, index: (self.parameters!.getvalueCombobox(self.parameters!.getBackupString()[1])))
@@ -126,12 +126,12 @@ class ViewControllerRsyncParameters: NSViewController {
         super.viewDidLoad()
         // Get index of seleceted row
         if let pvc = self.presenting as? ViewControllertabMain {
-            self.userparamsupdated_delegate = pvc
-            self.getindex_delegate = pvc
+            self.userparamsupdatedDelegate = pvc
+            self.getindexDelegate = pvc
         }
         // Dismisser is root controller
         if let pvc2 = self.presenting as? ViewControllertabMain {
-            self.dismiss_delegate = pvc2
+            self.dismissDelegate = pvc2
         }
     }
 
@@ -139,7 +139,7 @@ class ViewControllerRsyncParameters: NSViewController {
         super.viewDidAppear()
 
         var configurations: [Configuration] = SharingManagerConfiguration.sharedInstance.getConfigurations()
-        let index = self.getindex_delegate?.getindex()
+        let index = self.getindexDelegate?.getindex()
 
         guard index != nil else {
             return
@@ -203,7 +203,7 @@ class ViewControllerRsyncParameters: NSViewController {
             return
         }
         // Get the index of selected configuration
-        let index = self.getindex_delegate?.getindex()
+        let index = self.getindexDelegate?.getindex()
 
         guard index != nil else {
             return
@@ -231,9 +231,9 @@ class ViewControllerRsyncParameters: NSViewController {
         SharingManagerConfiguration.sharedInstance.updateConfigurations(Configurations[index!], index: index!)
         PersistentStoreAPI.sharedInstance.saveConfigFromMemory()
         // notify an update
-        self.userparamsupdated_delegate?.rsyncuserparamsupdated()
+        self.userparamsupdatedDelegate?.rsyncuserparamsupdated()
         // Send dismiss delegate message
-        self.dismiss_delegate?.dismiss_view(viewcontroller: self)
+        self.dismissDelegate?.dismiss_view(viewcontroller: self)
     }
 
     // There are eight comboboxes

@@ -15,7 +15,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         // Insert code here to initialize your application
 
         // Check for new version
-        _ = newVersion()
+        _ = NewVersion()
 
         // Read user configuration
         if let userConfiguration =  PersistentStoreAPI.sharedInstance.getUserconfiguration() {

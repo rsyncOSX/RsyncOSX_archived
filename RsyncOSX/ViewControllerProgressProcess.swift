@@ -34,16 +34,16 @@ class ViewControllerProgressProcess: NSViewController {
     var calculatedNumberOfFiles: Int?
 
     // Delegate to count max number and updates during progress
-    weak var count_delegate: Count?
+    weak var countDelegate: Count?
     // Delegate to dismisser
-    weak var dismiss_delegate: DismissViewController?
+    weak var dismissDelegate: DismissViewController?
     // Delegate to Abort operations
-    weak var abort_delegate: AbortOperations?
+    weak var abortDelegate: AbortOperations?
 
     @IBOutlet weak var progress: NSProgressIndicator!
 
     @IBAction func Abort(_ sender: NSButton) {
-        self.abort_delegate?.abortOperations()
+        self.abortDelegate?.abortOperations()
         self.processTermination()
     }
 
@@ -53,17 +53,17 @@ class ViewControllerProgressProcess: NSViewController {
         // Load protocol functions
         // Dismisser is root controller
         if let pvc = self.presenting as? ViewControllertabMain {
-            self.dismiss_delegate = pvc
-            self.abort_delegate = pvc
+            self.dismissDelegate = pvc
+            self.abortDelegate = pvc
         }
     }
 
     override func viewDidAppear() {
         super.viewDidAppear()
         if let pvc2 = SharingManagerConfiguration.sharedInstance.SingleTask {
-            self.count_delegate = pvc2
+            self.countDelegate = pvc2
         }
-        self.calculatedNumberOfFiles = self.count_delegate?.maxCount()
+        self.calculatedNumberOfFiles = self.countDelegate?.maxCount()
         self.initiateProgressbar()
     }
 
@@ -99,16 +99,16 @@ extension ViewControllerProgressProcess: UpdateProgress {
 
     func processTermination() {
         self.stopProgressbar()
-        self.dismiss_delegate?.dismiss_view(viewcontroller: self)
+        self.dismissDelegate?.dismiss_view(viewcontroller: self)
     }
 
     // Update progressview during task
 
     func fileHandler() {
-        guard self.count_delegate != nil else {
+        guard self.countDelegate != nil else {
             return
         }
-        self.updateProgressbar(Double(self.count_delegate!.inprogressCount()))
+        self.updateProgressbar(Double(self.countDelegate!.inprogressCount()))
     }
 
 }

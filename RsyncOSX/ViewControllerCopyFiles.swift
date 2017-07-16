@@ -24,7 +24,7 @@ class ViewControllerCopyFiles: NSViewController {
     // Index of selected row
     var index: Int?
     // Delegate for getting index from Execute view
-    weak var index_delegate: GetSelecetedIndex?
+    weak var indexDelegate: GetSelecetedIndex?
 
     // Info about server and remote catalogs
     @IBOutlet weak var server: NSTextField!
@@ -166,8 +166,8 @@ class ViewControllerCopyFiles: NSViewController {
     override func viewDidAppear() {
         super.viewDidAppear()
         if let pvc = SharingManagerConfiguration.sharedInstance.ViewControllertabMain as? ViewControllertabMain {
-            self.index_delegate = pvc
-            self.index = self.index_delegate?.getindex()
+            self.indexDelegate = pvc
+            self.index = self.indexDelegate?.getindex()
             if let index = self.index {
                 self.displayRemoteserver(index: index)
             }

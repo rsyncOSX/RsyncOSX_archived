@@ -12,7 +12,7 @@ import Cocoa
 class ViewControllerScheduledBackupinWork: NSViewController {
 
     // Dismisser
-    weak var dismiss_delegate: DismissViewController?
+    weak var dismissDelegate: DismissViewController?
     var waitToClose: Timer?
     var closeIn: Timer?
     var seconds: Int?
@@ -27,14 +27,14 @@ class ViewControllerScheduledBackupinWork: NSViewController {
     @objc private func closeView() {
         self.waitToClose?.invalidate()
         self.closeIn?.invalidate()
-        self.dismiss_delegate?.dismiss_view(viewcontroller: self)
+        self.dismissDelegate?.dismiss_view(viewcontroller: self)
     }
 
     @IBAction func close(_ sender: NSButton) {
         // Invalidate timer to close view 
         self.waitToClose?.invalidate()
         self.closeIn?.invalidate()
-        self.dismiss_delegate?.dismiss_view(viewcontroller: self)
+        self.dismissDelegate?.dismiss_view(viewcontroller: self)
     }
 
     private func setInfo() {
@@ -60,7 +60,7 @@ class ViewControllerScheduledBackupinWork: NSViewController {
         // Setting the source for delegate function
         if let pvc = self.presenting as? ViewControllertabMain {
             // Dismisser is root controller
-            self.dismiss_delegate = pvc
+            self.dismissDelegate = pvc
         }
     }
 

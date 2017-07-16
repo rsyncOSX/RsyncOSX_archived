@@ -46,11 +46,11 @@ class ViewControllerEdit: NSViewController {
         var config: [Configuration] = SharingManagerConfiguration.sharedInstance.getConfigurations()
 
         if (self.localCatalog.stringValue.hasSuffix("/") == false && self.singleFile == false) {
-            self.localCatalog.stringValue = self.localCatalog.stringValue + "/"
+            self.localCatalog.stringValue += "/"
         }
         config[self.index!].localCatalog = self.localCatalog.stringValue
         if (self.offsiteCatalog.stringValue.hasSuffix("/") == false) {
-            self.offsiteCatalog.stringValue = self.offsiteCatalog.stringValue + "/"
+            self.offsiteCatalog.stringValue += "/"
         }
         config[self.index!].offsiteCatalog = self.offsiteCatalog.stringValue
         config[self.index!].offsiteServer = self.offsiteServer.stringValue

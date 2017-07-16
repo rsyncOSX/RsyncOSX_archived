@@ -15,7 +15,7 @@ class ssh: Files {
 
     // Delegate for reporting file error if any to main view
     // Comply to protocol
-    weak var error_delegate: ReportErrorInMain?
+    weak var errorDelegate: ReportErrorInMain?
 
     // Local public rsa and dsa based keys
     let rsaPubKey: String = "id_rsa.pub"
@@ -195,8 +195,8 @@ extension ssh: ReportError {
     // Propagating any file error to main view
     func reportError(errorstr: String) {
         if let pvc = SharingManagerConfiguration.sharedInstance.ViewControllertabMain {
-            self.error_delegate = pvc as? ViewControllertabMain
-            self.error_delegate?.fileerror(errorstr: errorstr)
+            self.errorDelegate = pvc as? ViewControllertabMain
+            self.errorDelegate?.fileerror(errorstr: errorstr)
         }
     }
 

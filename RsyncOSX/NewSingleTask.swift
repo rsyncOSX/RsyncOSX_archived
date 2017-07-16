@@ -20,26 +20,26 @@ protocol SingleTask: class {
     func presentViewProgress()
     func presentViewInformation(output: outputProcess)
     func terminateProgressProcess()
-    func setInfo(info: String, color: colorInfo)
+    func setInfo(info: String, color: ColorInfo)
     func singleTaskAbort(process: Process?)
     func setNumbers(output: outputProcess?)
     func gettransferredNumber() -> String
     func gettransferredNumberSizebytes() -> String
 }
 
-enum colorInfo {
+enum ColorInfo {
     case red
     case blue
     case black
 }
 
-final class newSingleTask {
+final class NewSingleTask {
 
     // Delegate function for start/stop progress Indicator in BatchWindow
-    weak var indicator_delegate: StartStopProgressIndicatorSingleTask?
+    weak var indicatorDelegate: StartStopProgressIndicatorSingleTask?
     // Delegate functions for kicking of various updates (informal) during
     // process task in main View
-    weak var task_delegate: SingleTask?
+    weak var taskDelegate: SingleTask?
 
     // Reference to Process task
     var process: Process?
@@ -77,36 +77,36 @@ final class newSingleTask {
         case .estimate_singlerun:
             if let index = self.index {
                 // Start animation and show process info
-                self.indicator_delegate?.startIndicator()
-                self.task_delegate?.showProcessInfo(info: .estimating)
+                self.indicatorDelegate?.startIndicator()
+                self.taskDelegate?.showProcessInfo(info: .estimating)
                 arguments = SharingManagerConfiguration.sharedInstance.getRsyncArgumentOneConfig(index: index, argtype: .argdryRun)
                 let process = Rsync(arguments: arguments)
                 self.output = outputProcess()
                 process.executeProcess(output: self.output!)
                 self.process = process.getProcess()
-                self.task_delegate?.setInfo(info: "Execute", color: .blue)
+                self.taskDelegate?.setInfo(info: "Execute", color: .blue)
             }
         case .execute_singlerun:
-            self.task_delegate?.showProcessInfo(info: .executing)
+            self.taskDelegate?.showProcessInfo(info: .executing)
             if let index = self.index {
                 // Show progress view
-                self.task_delegate?.presentViewProgress()
+                self.taskDelegate?.presentViewProgress()
                 arguments = SharingManagerConfiguration.sharedInstance.getRsyncArgumentOneConfig(index: index, argtype: .arg)
                 self.output = outputProcess()
                 let process = Rsync(arguments: arguments)
                 process.executeProcess(output: self.output!)
                 self.process = process.getProcess()
-                self.task_delegate?.setInfo(info: "", color: .black)
+                self.taskDelegate?.setInfo(info: "", color: .black)
             }
         case .abort:
             self.workload = nil
-            self.task_delegate?.setInfo(info: "Abort", color: .red)
+            self.taskDelegate?.setInfo(info: "Abort", color: .red)
         case .empty:
             self.workload = nil
-            self.task_delegate?.setInfo(info: "Estimate", color: .blue)
+            self.taskDelegate?.setInfo(info: "Estimate", color: .blue)
         default:
             self.workload = nil
-            self.task_delegate?.setInfo(info: "Estimate", color: .blue)
+            self.taskDelegate?.setInfo(info: "Estimate", color: .blue)
             break
         }
     }
@@ -122,36 +122,36 @@ final class newSingleTask {
 
             case .estimate_singlerun:
                 // Stopping the working (estimation) progress indicator
-                self.indicator_delegate?.stopIndicator()
+                self.indicatorDelegate?.stopIndicator()
                 // Getting and setting max file to transfer
-                self.task_delegate?.setNumbers(output: self.output)
+                self.taskDelegate?.setNumbers(output: self.output)
                 self.maxcount = self.output!.getMaxcount()
                 // If showInfoDryrun is on present result of dryrun automatically
-                self.task_delegate?.presentViewInformation(output: self.output!)
+                self.taskDelegate?.presentViewInformation(output: self.output!)
             case .error:
                 // Stopping the working (estimation) progress indicator
-                self.indicator_delegate?.stopIndicator()
+                self.indicatorDelegate?.stopIndicator()
                 // If showInfoDryrun is on present result of dryrun automatically
-                self.task_delegate?.presentViewInformation(output: self.output!)
-                // self.task_delegate?.singleTaskAbort(process: self.process)
+                self.taskDelegate?.presentViewInformation(output: self.output!)
+                // self.taskDelegate?.singleTaskAbort(process: self.process)
             case .execute_singlerun:
                 //NB: self.showProcessInfo(info: .Logging_run)
-                self.task_delegate?.showProcessInfo(info: .loggingrun)
+                self.taskDelegate?.showProcessInfo(info: .loggingrun)
                 // Process termination and close progress view
-                self.task_delegate?.terminateProgressProcess()
+                self.taskDelegate?.terminateProgressProcess()
                 // If showInfoDryrun is on present result of dryrun automatically
-                self.task_delegate?.presentViewInformation(output: self.output!)
+                self.taskDelegate?.presentViewInformation(output: self.output!)
                 // Logg run
                 let number = Numbers(output: self.output!.getOutput())
                 number.setNumbers()
                 // Get transferred numbers from view
-                self.transferredNumber = self.task_delegate?.gettransferredNumber()
-                self.transferredNumberSizebytes = self.task_delegate?.gettransferredNumberSizebytes()
+                self.transferredNumber = self.taskDelegate?.gettransferredNumber()
+                self.transferredNumberSizebytes = self.taskDelegate?.gettransferredNumberSizebytes()
                 SharingManagerConfiguration.sharedInstance.setCurrentDateonConfiguration(self.index!)
                 let hiddenID = SharingManagerConfiguration.sharedInstance.gethiddenID(index: self.index!)
                 SharingManagerSchedule.sharedInstance.addScheduleResultManuel(hiddenID, result: number.statistics(numberOfFiles: self.transferredNumber, sizeOfFiles: self.transferredNumberSizebytes)[0])
             case .abort:
-                self.task_delegate?.singleTaskAbort(process: self.process)
+                self.taskDelegate?.singleTaskAbort(process: self.process)
                 self.workload = nil
             case .empty:
                 self.workload = nil
@@ -175,8 +175,8 @@ final class newSingleTask {
         self.index = index
 
         if let pvc = SharingManagerConfiguration.sharedInstance.ViewControllertabMain as? ViewControllertabMain {
-            self.indicator_delegate = pvc
-            self.task_delegate = pvc
+            self.indicatorDelegate = pvc
+            self.taskDelegate = pvc
         }
 
     }
@@ -184,7 +184,7 @@ final class newSingleTask {
 }
 
 // Counting
-extension newSingleTask: Count {
+extension NewSingleTask: Count {
 
     // Maxnumber of files counted
     func maxCount() -> Int {

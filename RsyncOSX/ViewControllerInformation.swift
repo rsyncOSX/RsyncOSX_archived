@@ -23,9 +23,9 @@ class ViewControllerInformation: NSViewController {
     var output: Array<String>?
 
     // Delegate for getting the Information to present in table
-    weak var information_delegate: Information?
+    weak var informationDelegate: Information?
     // Dismisser
-    weak var dismiss_delegate: DismissViewController?
+    weak var dismissDelegate: DismissViewController?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,20 +34,20 @@ class ViewControllerInformation: NSViewController {
         detailsTable.dataSource = self
         // Setting the source for delegate function
         if let pvc = self.presenting as? ViewControllertabMain {
-            self.information_delegate = pvc
+            self.informationDelegate = pvc
             // Dismisser is root controller
-            self.dismiss_delegate = pvc
+            self.dismissDelegate = pvc
         }
     }
 
     override func viewDidAppear() {
         super.viewDidAppear()
-        self.output = self.information_delegate?.getInformation()
+        self.output = self.informationDelegate?.getInformation()
         detailsTable.reloadData()
     }
 
     @IBAction func close(_ sender: NSButton) {
-        self.dismiss_delegate?.dismiss_view(viewcontroller: self)
+        self.dismissDelegate?.dismiss_view(viewcontroller: self)
     }
 
 }

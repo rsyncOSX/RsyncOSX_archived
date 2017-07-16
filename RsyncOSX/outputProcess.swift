@@ -23,9 +23,9 @@ final class outputProcess {
     private var maxNumber: Int = 0
 
     // Error delegate
-    weak var error_delegate: ViewControllertabMain?
+    weak var errorDelegate: ViewControllertabMain?
     // Last record of rsync 
-    weak var lastrecord_delegate: ViewControllertabMain?
+    weak var lastrecordDelegate: ViewControllertabMain?
 
     func getMaxcount() -> Int {
         return self.maxNumber
@@ -69,8 +69,8 @@ final class outputProcess {
         // We only informs in main view if error
         if error {
             if let pvc = SharingManagerConfiguration.sharedInstance.ViewControllertabMain {
-                self.error_delegate = pvc as? ViewControllertabMain
-                self.error_delegate?.rsyncerror()
+                self.errorDelegate = pvc as? ViewControllertabMain
+                self.errorDelegate?.rsyncerror()
             }
         }
     }

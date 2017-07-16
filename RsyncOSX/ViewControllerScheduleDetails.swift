@@ -22,13 +22,13 @@ class ViewControllerScheduleDetails: NSViewController {
 
     // Delegate functions
     // Pick up hiddenID from row
-    weak var getHiddenID_delegate: GetHiddenID?
+    weak var getHiddenIDDelegate: GetHiddenID?
     // Protocolfunction for doing a refresh in ViewControllertabMain
-    weak var refresh_delegate: RefreshtableView?
+    weak var refreshDelegate: RefreshtableView?
     // Protocolfunction for doing a refresh in ViewControllertabSchedule
-    weak var refresh_delegate2: RefreshtableView?
+    weak var refreshDelegate2: RefreshtableView?
     // Protocolfunction for dismiss the ViewController
-    weak var dismiss_delegate: DismissViewController?
+    weak var dismissDelegate: DismissViewController?
 
     var hiddendID: Int?
     // Data for tableView
@@ -40,41 +40,41 @@ class ViewControllerScheduleDetails: NSViewController {
 
     // Close view and either stop or delete Schedules
     @IBAction func close(_ sender: NSButton) {
-        self.dismiss_delegate?.dismiss_view(viewcontroller: self)
+        self.dismissDelegate?.dismiss_view(viewcontroller: self)
     }
 
     @IBAction func update(_ sender: NSButton) {
         if let data = self.data {
             SharingManagerSchedule.sharedInstance.deleteOrStopSchedules(data : data)
             // Do a refresh of tableViews in both ViewControllertabMain and ViewControllertabSchedule
-            self.refresh_delegate?.refresh()
-            self.refresh_delegate2?.refresh()
+            self.refreshDelegate?.refresh()
+            self.refreshDelegate2?.refresh()
         }
-        self.dismiss_delegate?.dismiss_view(viewcontroller: self)
+        self.dismissDelegate?.dismiss_view(viewcontroller: self)
     }
 
     override func viewDidLoad() {
         super.viewDidLoad()
         if let pvc = self.presenting as? ViewControllertabMain {
-            self.refresh_delegate = pvc
+            self.refreshDelegate = pvc
         }
         // Dismisser is root controller
         if let pvc2 = self.presenting as? ViewControllertabSchedule {
-            self.dismiss_delegate = pvc2
-            self.refresh_delegate2 = pvc2
+            self.dismissDelegate = pvc2
+            self.refreshDelegate2 = pvc2
         }
         // Do view setup here.
         self.scheduletable.delegate = self
         self.scheduletable.dataSource = self
         if let pvc3 = self.presenting as? ViewControllertabSchedule {
-            self.getHiddenID_delegate = pvc3
-            self.hiddendID = self.getHiddenID_delegate?.gethiddenID()
+            self.getHiddenIDDelegate = pvc3
+            self.hiddendID = self.getHiddenIDDelegate?.gethiddenID()
         }
     }
 
     override func viewDidAppear() {
         super.viewDidAppear()
-        self.hiddendID = self.getHiddenID_delegate?.gethiddenID()
+        self.hiddendID = self.getHiddenIDDelegate?.gethiddenID()
         self.data = SharingManagerSchedule.sharedInstance.readScheduledata(self.hiddendID!)
 
         globalMainQueue.async(execute: { () -> Void in
