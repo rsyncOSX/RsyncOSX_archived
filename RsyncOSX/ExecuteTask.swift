@@ -21,7 +21,7 @@ class ExecuteTask: Operation {
         // Delegate function for start and completion of scheduled jobs
         weak var notifyDelegate: ScheduledJobInProgress?
         // Variables used for rsync parameters
-        let output = outputProcess()
+        let output = OutputProcess()
         var arguments: Array<String>?
         var config: Configuration?
 

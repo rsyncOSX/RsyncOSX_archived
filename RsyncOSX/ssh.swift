@@ -41,7 +41,7 @@ class ssh: Files {
 
     // Process
     var process: CommandSsh?
-    var output: outputProcess?
+    var output: OutputProcess?
 
     // Chmod
     var chmod: ChmodPubKey?
@@ -167,7 +167,7 @@ class ssh: Files {
     // Execute command
     func executeSshCommand() {
         self.process = CommandSsh(command: self.command, arguments: self.arguments)
-        self.output = outputProcess()
+        self.output = OutputProcess()
         self.process!.executeProcess(output: self.output!)
     }
 

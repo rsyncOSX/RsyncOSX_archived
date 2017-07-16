@@ -34,7 +34,7 @@ final class CopyFiles {
     // The Process object
     var process: CommandCopyFiles?
     // rsync outPut object
-    var output: outputProcess?
+    var output: OutputProcess?
 
     // Get output from Rsync
     func getOutput() -> Array<String> {
@@ -66,7 +66,7 @@ final class CopyFiles {
         self.command = nil
         self.output = nil
         self.process = CommandCopyFiles(command : nil, arguments: self.arguments)
-        self.output = outputProcess()
+        self.output = OutputProcess()
         self.process!.executeProcess(output: self.output!)
     }
 
@@ -90,7 +90,7 @@ final class CopyFiles {
         self.arguments = self.argumentsObject!.getArguments()
         self.command = self.argumentsObject!.getCommand()
         self.process = CommandCopyFiles(command : self.command, arguments: self.arguments)
-        self.output = outputProcess()
+        self.output = OutputProcess()
         self.process!.executeProcess(output: self.output!)
     }
 

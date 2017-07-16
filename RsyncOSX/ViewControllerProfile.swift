@@ -24,7 +24,7 @@ class ViewControllerProfile: NSViewController {
     // Array to display in tableview
     fileprivate var profilesArray: [String]?
     // The profiles object
-    private var profile: profiles?
+    private var profile: Profiles?
     // Selecet profile to use
     fileprivate var useprofile: String?
     // New profile
@@ -54,7 +54,7 @@ class ViewControllerProfile: NSViewController {
             self.newProfileDelegate?.newProfile(new: true)
         }
         self.profile = nil
-        self.profile = profiles()
+        self.profile = Profiles()
         self.profilesArray = self.profile!.getDirectorysStrings()
         self.useprofile = nil
         self.dismissDelegate?.dismiss_view(viewcontroller: self)
@@ -68,7 +68,7 @@ class ViewControllerProfile: NSViewController {
             self.newProfileDelegate?.newProfile(new: false)
         }
         self.profile = nil
-        self.profile = profiles()
+        self.profile = Profiles()
         self.profilesArray = self.profile!.getDirectorysStrings()
         self.useprofile = nil
         self.dismissDelegate?.dismiss_view(viewcontroller: self)
@@ -93,7 +93,7 @@ class ViewControllerProfile: NSViewController {
         if let pvc = self.presenting as? ViewControllertabMain {
             self.dismissDelegate = pvc
         }
-        self.profile = profiles()
+        self.profile = Profiles()
         self.profilesArray = self.profile!.getDirectorysStrings()
         self.profilesTable.target = self
         self.profilesTable.doubleAction = #selector(ViewControllerProfile.tableViewDoubleClick(sender:))

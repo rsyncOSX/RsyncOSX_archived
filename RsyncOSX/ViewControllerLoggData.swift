@@ -26,19 +26,19 @@ class ViewControllerLoggData: NSViewController {
     @IBOutlet weak var search: NSSearchField!
     // Buttons
     @IBOutlet weak var server: NSButton!
-    @IBOutlet weak var Catalog: NSButton!
+    @IBOutlet weak var catalog: NSButton!
     @IBOutlet weak var date: NSButton!
     // Progressview loading loggdata
     @IBOutlet weak var sorting: NSProgressIndicator!
     @IBOutlet weak var numberOflogfiles: NSTextField!
 
     // Selecting what to filter
-    @IBAction func Radiobuttons(_ sender: NSButton) {
-        if (self.server.state == .on) {
+    @IBAction func radiobuttons(_ sender: NSButton) {
+        if self.server.state == .on {
             self.what = .remoteServer
-        } else if (self.Catalog.state == .on) {
+        } else if self.catalog.state == .on {
             self.what = .localCatalog
-        } else if (self.date.state == .on) {
+        } else if self.date.state == .on {
             self.what = .executeDate
         }
         self.filterLogg()
@@ -79,7 +79,7 @@ class ViewControllerLoggData: NSViewController {
             self.sorting.stopAnimation(self)
         })
         self.server.state = .off
-        self.Catalog.state = .off
+        self.catalog.state = .off
         self.date.state = .off
         self.what = .remoteServer
         self.deleteButton.state = .off
@@ -111,17 +111,17 @@ class ViewControllerLoggData: NSViewController {
         }
 
         self.row = self.tabledata?[self.index!]
-        if (self.server.state == .on) {
+        if self.server.state == .on {
             if let server = self.row?.value(forKey: "offsiteServer") as? String {
                 self.search.stringValue = server
                 self.searchFieldDidStartSearching(self.search)
             }
-        } else if (self.Catalog.state == .on) {
+        } else if self.catalog.state == .on {
             if let server = self.row?.value(forKey: "localCatalog") as? String {
                 self.search.stringValue = server
                 self.searchFieldDidStartSearching(self.search)
             }
-        } else if (self.date.state == .on) {
+        } else if self.date.state == .on {
             if let server = self.row?.value(forKey: "dateExecuted") as? String {
                 self.search.stringValue = server
                 self.searchFieldDidStartSearching(self.search)
@@ -135,7 +135,7 @@ extension ViewControllerLoggData : NSSearchFieldDelegate {
 
     func searchFieldDidStartSearching(_ sender: NSSearchField) {
         self.sorting.startAnimation(self)
-        if (sender.stringValue.isEmpty) {
+        if sender.stringValue.isEmpty {
             globalMainQueue.async(execute: { () -> Void in
                 self.tabledata = ScheduleLoggData().filter(search: nil, what:nil)
                 self.scheduletable.reloadData()
@@ -157,7 +157,7 @@ extension ViewControllerLoggData : NSSearchFieldDelegate {
             self.scheduletable.reloadData()
         })
         self.server.state = .off
-        self.Catalog.state = .off
+        self.catalog.state = .off
         self.date.state = .off
     }
 
@@ -166,7 +166,7 @@ extension ViewControllerLoggData : NSSearchFieldDelegate {
 extension ViewControllerLoggData : NSTableViewDataSource {
 
     func numberOfRows(in tableView: NSTableView) -> Int {
-        if (self.tabledata == nil ) {
+        if self.tabledata == nil {
             self.numberOflogfiles.stringValue = "Number of logs: 0"
             return 0
         } else {
@@ -187,7 +187,7 @@ extension ViewControllerLoggData : NSTableViewDelegate {
     // when row is selected
     // setting which table row is selected
     func tableViewSelectionDidChange(_ notification: Notification) {
-        let myTableViewFromNotification = notification.object as! NSTableView
+        let myTableViewFromNotification = (notification.object as? NSTableView)!
         let indexes = myTableViewFromNotification.selectedRowIndexes
         if let index = indexes.first {
             self.index = index

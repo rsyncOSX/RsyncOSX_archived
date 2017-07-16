@@ -100,7 +100,7 @@ class ViewControllerCopyFilesSource: NSViewController {
                     return
                 }
                 self.index = SharingManagerConfiguration.sharedInstance.getIndex(hiddenID!)
-                self.setIndexDelegate?.SetIndex(Index: self.index!)
+                self.setIndexDelegate?.setIndex(index: self.index!)
             } else if let _ = self.presenting as? ViewControllerSsh {
                 let object = SharingManagerConfiguration.sharedInstance.getConfigurationsDataSourcecountBackupOnly()![index]
                 let hiddenID = object.value(forKey: "hiddenID") as? Int

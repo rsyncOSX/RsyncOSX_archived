@@ -11,7 +11,7 @@ protocol RsyncError: class {
     func rsyncerror()
 }
 
-final class outputProcess {
+final class OutputProcess {
 
     // calculated number of files
     // output Array to keep output from rsync in

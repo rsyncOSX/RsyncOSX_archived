@@ -8,14 +8,14 @@
 
 import Foundation
 
-final class CommandSsh: processCmd {
+final class CommandSsh: ProcessCmd {
 
     init (command: String?, arguments: Array<String>?) {
         super.init(command: command, arguments: arguments, aScheduledOperation: false)
         // Process is initated from Ssh
         // ProcessTermination()
         if let pvc = SharingManagerConfiguration.sharedInstance.ViewControllerSsh as? ViewControllerSsh {
-            self.delegate_update = pvc
+            self.updateDelegate = pvc
         }
     }
 

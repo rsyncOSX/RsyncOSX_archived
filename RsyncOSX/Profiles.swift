@@ -8,7 +8,7 @@
 
 import Foundation
 
-class profiles: Files {
+class Profiles: Files {
 
     // Delegate for reporting file error if any to main view
     weak var errorDelegate: ReportErrorInMain?
@@ -52,7 +52,7 @@ class profiles: Files {
     }
 }
 
-extension profiles: ReportError {
+extension Profiles: ReportError {
     // Private func for propagating any file error to main view
     func reportError(errorstr: String) {
         if let pvc = SharingManagerConfiguration.sharedInstance.ViewControllertabMain {

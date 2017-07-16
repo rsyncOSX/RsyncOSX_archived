@@ -8,14 +8,14 @@
 
 import Foundation
 
-final class Rsync: processCmd {
+final class Rsync: ProcessCmd {
 
     init (arguments: Array<String>?) {
 
         super.init(command: nil, arguments: arguments, aScheduledOperation: false)
         // Process is inated from Main
         if let pvc = SharingManagerConfiguration.sharedInstance.ViewControllertabMain as? ViewControllertabMain {
-            self.delegate_update = pvc
+            self.updateDelegate = pvc
         }
     }
 

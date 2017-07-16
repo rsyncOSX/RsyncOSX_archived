@@ -8,14 +8,14 @@
 
 import Foundation
 
-class processCmd {
+class ProcessCmd {
 
     // Number of calculated files to be copied
     var calculatedNumberOfFiles: Int = 0
     // Variable for reference to Process
-    var ProcessReference: Process?
+    var processReference: Process?
     // Message to calling class
-    weak var delegate_update: UpdateProgress?
+    weak var updateDelegate: UpdateProgress?
     // If process is created in Operation
     var aScheduledOperation: Bool?
     // Observer
@@ -27,7 +27,7 @@ class processCmd {
     // Output from CopyFiles or not
     var copyfiles: Bool = false
 
-    func executeProcess (output: outputProcess) {
+    func executeProcess (output: OutputProcess) {
         // Process
         let task = Process()
         // Setting the correct path for rsync
@@ -63,7 +63,7 @@ class processCmd {
                     // Check if in a scheduled operation, if not use delegate to inform about progress
                     if (self.aScheduledOperation! == false) {
                         // Send message about files
-                        self.delegate_update?.fileHandler()
+                        self.updateDelegate?.fileHandler()
                     }
                 }
                 outHandle.waitForDataInBackgroundAndNotify()
@@ -76,7 +76,7 @@ class processCmd {
             // Check if in a scheduled operation, if not use delegate to inform about termination of Process()
             if (self.aScheduledOperation! == false) {
                 // Send message about process termination
-                self.delegate_update?.processTermination()
+                self.updateDelegate?.processTermination()
             } else {
                 // We are in Scheduled operation and must finalize the job
                 // e.g logging date and stuff like that
@@ -89,21 +89,21 @@ class processCmd {
             NotificationCenter.default.removeObserver(self.observationCenter as Any)
         }
 
-        self.ProcessReference = task
+        self.processReference = task
         task.launch()
     }
 
     // Get the reference to the Process object.
     func getProcess() -> Process? {
-        return self.ProcessReference
+        return self.processReference
     }
 
     // Terminate Process, used when user Aborts task.
     func abortProcess() {
-        guard self.ProcessReference != nil else {
+        guard self.processReference != nil else {
             return
         }
-        self.ProcessReference!.terminate()
+        self.processReference!.terminate()
     }
 
     init(command: String?, arguments: Array<String>?, aScheduledOperation: Bool) {

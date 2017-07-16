@@ -32,7 +32,7 @@ final class CompleteScheduledOperation {
     // Function for finalizing the Scheduled job
     // The Operation object sets reference to the completeScheduledOperation in SharingManagerConfiguration.sharedInstance.operation
     // This function is executed when rsyn process terminates
-    func finalizeScheduledJob(output: outputProcess) {
+    func finalizeScheduledJob(output: OutputProcess) {
 
         // Write result to Schedule
         let datestring = self.dateformatter!.string(from: date!)

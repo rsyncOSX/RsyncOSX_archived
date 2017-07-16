@@ -51,7 +51,7 @@ class ViewControllerSsh: NSViewController {
     }()
 
     // Open the Terminal.app for pasting commands
-    @IBAction func TerminalApp(_ sender: NSButton) {
+    @IBAction func terminalApp(_ sender: NSButton) {
         guard self.sshcmd != nil else {
             return
         }
@@ -59,7 +59,7 @@ class ViewControllerSsh: NSViewController {
     }
 
     // Just for grouping rsa and dsa radiobuttons
-    @IBAction func RadioButtonsCreateKeyPair(_ sender: NSButton) {
+    @IBAction func radioButtonsCreateKeyPair(_ sender: NSButton) {
         // For selecting either of them
     }
 
@@ -77,7 +77,7 @@ class ViewControllerSsh: NSViewController {
         }
     }
 
-    @IBAction func Source(_ sender: NSButton) {
+    @IBAction func source(_ sender: NSButton) {
         self.presentViewControllerAsSheet(self.viewControllerSource)
     }
 

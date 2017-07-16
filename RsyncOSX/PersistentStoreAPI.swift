@@ -32,7 +32,7 @@ final class PersistentStoreAPI {
 
     // Read configurations from persisten store
     func getConfigurations() -> [Configuration] {
-        let read = persistentStoreConfiguration()
+        let read = PersistentStoreConfiguration()
         // Either read from persistent store or
         // return Configurations already in memory
         if read.readConfigurationsFromPermanentStore() != nil {
@@ -50,13 +50,13 @@ final class PersistentStoreAPI {
 
     // Saving configuration from memory to persistent store
     func saveConfigFromMemory() {
-        let save = persistentStoreConfiguration()
+        let save = PersistentStoreConfiguration()
         save.saveconfigInMemoryToPersistentStore()
     }
 
     // Saving added configuration from meory
     func saveNewConfigurations() {
-        let save = persistentStoreConfiguration()
+        let save = PersistentStoreConfiguration()
         let newConfigurations = SharingManagerConfiguration.sharedInstance.getnewConfigurations()
         if (newConfigurations != nil) {
             for i in 0 ..< newConfigurations!.count {
@@ -132,12 +132,12 @@ final class PersistentStoreAPI {
 
     // Saving user configuration
     func saveUserconfiguration() {
-        let store = persistentStoreUserconfiguration()
+        let store = PersistentStoreUserconfiguration()
         store.saveUserconfiguration()
     }
 
     func getUserconfiguration () -> [NSDictionary]? {
-        let store = persistentStoreUserconfiguration()
+        let store = PersistentStoreUserconfiguration()
         return store.readUserconfigurationsFromPermanentStore()
     }
 

@@ -11,18 +11,18 @@ import Cocoa
 
 protocol BatchTask: class {
     func presentViewBatch()
-    func progressIndicatorViewBatch(operation: batchViewProgressIndicator)
+    func progressIndicatorViewBatch(operation: BatchViewProgressIndicator)
     func setOutputBatch(outputbatch: OutputBatch?)
 }
 
-enum batchViewProgressIndicator {
+enum BatchViewProgressIndicator {
     case start
     case stop
     case complete
     case refresh
 }
 
-final class newBatchTask {
+final class NewBatchTask {
 
     // Protocol function used in Process().
     weak var processupdateDelegate: UpdateProgress?
@@ -40,7 +40,7 @@ final class newBatchTask {
     // Reference to Process task
     var process: Process?
     // Getting output from rsync
-    var output: outputProcess?
+    var output: OutputProcess?
     // Getting output from batchrun
     private var outputbatch: OutputBatch?
     // HiddenID task, set when row is selected
@@ -84,7 +84,7 @@ final class newBatchTask {
 
             // Create the output object for rsync
             self.output = nil
-            self.output = outputProcess()
+            self.output = OutputProcess()
 
             switch (work.1) {
             case 0:
@@ -128,7 +128,7 @@ final class newBatchTask {
 
         if let batchobject = SharingManagerConfiguration.sharedInstance.getBatchdataObject() {
 
-            if (self.outputbatch == nil) {
+            if self.outputbatch == nil {
                 self.outputbatch = OutputBatch()
             }
 

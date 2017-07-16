@@ -46,7 +46,7 @@ class ViewControllertabMain: NSViewController {
     // Reference to the single taskobject
     var singletask: NewSingleTask?
     // Reference to batch taskobject
-    var batchtask: newBatchTask?
+    var batchtask: NewBatchTask?
 
     // Protocol function used in Process().
     weak var processupdateDelegate: UpdateProgress?
@@ -96,7 +96,7 @@ class ViewControllertabMain: NSViewController {
     // Index to selected row, index is set when row is selected
     fileprivate var index: Int?
     // Getting output from rsync 
-    fileprivate var output: outputProcess?
+    fileprivate var output: OutputProcess?
     // Getting output from batchrun
     fileprivate var outputbatch: OutputBatch?
     // HiddenID task, set when row is selected
@@ -462,7 +462,7 @@ class ViewControllertabMain: NSViewController {
 
         self.singletask = nil
         self.setNumbers(output: nil)
-        self.batchtask = newBatchTask()
+        self.batchtask = NewBatchTask()
         // Present batch view
         self.batchtask?.presentBatchView()
     }
@@ -861,7 +861,7 @@ extension ViewControllertabMain: UpdateProgress {
         if let singletask = self.singletask {
             self.output = singletask.output
             self.process = singletask.process
-            singletask.ProcessTermination()
+            singletask.processTermination()
 
         } else {
 
@@ -952,7 +952,7 @@ extension ViewControllertabMain: RsyncError {
 
                 // Either error in single task or batch task
                 if self.singletask != nil {
-                    self.singletask!.Error()
+                    self.singletask!.error()
                 }
                 if self.batchtask != nil {
                     self.batchtask!.error()
@@ -1057,7 +1057,7 @@ extension ViewControllertabMain:SingleTask {
         })
     }
 
-    func presentViewInformation(output: outputProcess) {
+    func presentViewInformation(output: OutputProcess) {
         self.output = output
         globalMainQueue.async(execute: { () -> Void in
             self.presentViewControllerAsSheet(self.viewControllerInformation)
@@ -1093,7 +1093,7 @@ extension ViewControllertabMain:SingleTask {
 
     // Function for getting numbers out of output object updated when
     // Process object executes the job.
-    func setNumbers(output: outputProcess?) {
+    func setNumbers(output: OutputProcess?) {
 
         globalMainQueue.async(execute: { () -> Void in
 
@@ -1146,7 +1146,7 @@ extension ViewControllertabMain: BatchTask {
         })
     }
 
-    func progressIndicatorViewBatch(operation: batchViewProgressIndicator) {
+    func progressIndicatorViewBatch(operation: BatchViewProgressIndicator) {
         switch operation {
         case .stop:
             if let pvc = self.presentedViewControllers as? [ViewControllerBatch] {

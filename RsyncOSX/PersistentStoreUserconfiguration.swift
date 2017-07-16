@@ -8,7 +8,7 @@
 
 import Foundation
 
-final class persistentStoreUserconfiguration: readwritefiles {
+final class PersistentStoreUserconfiguration: readwritefiles {
 
     /// Variable holds all configuration data
     private var userconfiguration: Array<NSDictionary>?

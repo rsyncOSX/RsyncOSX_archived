@@ -18,11 +18,11 @@ protocol StartStopProgressIndicatorSingleTask: class {
 protocol SingleTask: class {
     func showProcessInfo(info: DisplayProcessInfo)
     func presentViewProgress()
-    func presentViewInformation(output: outputProcess)
+    func presentViewInformation(output: OutputProcess)
     func terminateProgressProcess()
     func setInfo(info: String, color: ColorInfo)
     func singleTaskAbort(process: Process?)
-    func setNumbers(output: outputProcess?)
+    func setNumbers(output: OutputProcess?)
     func gettransferredNumber() -> String
     func gettransferredNumberSizebytes() -> String
 }
@@ -46,7 +46,7 @@ final class NewSingleTask {
     // Index to selected row, index is set when row is selected
     private var index: Int?
     // Getting output from rsync
-    var output: outputProcess?
+    var output: OutputProcess?
     // Holding max count
     fileprivate var maxcount: Int = 0
     // HiddenID task, set when row is selected
@@ -81,7 +81,7 @@ final class NewSingleTask {
                 self.taskDelegate?.showProcessInfo(info: .estimating)
                 arguments = SharingManagerConfiguration.sharedInstance.getRsyncArgumentOneConfig(index: index, argtype: .argdryRun)
                 let process = Rsync(arguments: arguments)
-                self.output = outputProcess()
+                self.output = OutputProcess()
                 process.executeProcess(output: self.output!)
                 self.process = process.getProcess()
                 self.taskDelegate?.setInfo(info: "Execute", color: .blue)
@@ -92,7 +92,7 @@ final class NewSingleTask {
                 // Show progress view
                 self.taskDelegate?.presentViewProgress()
                 arguments = SharingManagerConfiguration.sharedInstance.getRsyncArgumentOneConfig(index: index, argtype: .arg)
-                self.output = outputProcess()
+                self.output = OutputProcess()
                 let process = Rsync(arguments: arguments)
                 process.executeProcess(output: self.output!)
                 self.process = process.getProcess()
@@ -111,7 +111,7 @@ final class NewSingleTask {
         }
     }
 
-    func ProcessTermination() {
+    func processTermination() {
 
         self.ready = true
         // Making sure no nil pointer execption
@@ -163,7 +163,7 @@ final class NewSingleTask {
     }
 
     // Put error token ontop of workload
-    func Error() {
+    func error() {
         guard self.workload != nil else {
             return
         }

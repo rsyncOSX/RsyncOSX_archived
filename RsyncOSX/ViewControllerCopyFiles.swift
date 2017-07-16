@@ -10,7 +10,7 @@ import Foundation
 import Cocoa
 
 protocol setIndex: class {
-    func SetIndex(Index: Int)
+    func setIndex(index: Int)
 }
 
 protocol getSource: class {
@@ -36,16 +36,16 @@ class ViewControllerCopyFiles: NSViewController {
 
     // Information about rsync output
     // self.presentViewControllerAsSheet(self.ViewControllerInformation)
-    lazy var ViewControllerInformation: NSViewController = {
-        return self.storyboard!.instantiateController(withIdentifier: NSStoryboard.SceneIdentifier(rawValue: "StoryboardInformationCopyFilesID"))
-            as! NSViewController
+    lazy var viewControllerInformation: NSViewController = {
+        return (self.storyboard!.instantiateController(withIdentifier: NSStoryboard.SceneIdentifier(rawValue: "StoryboardInformationCopyFilesID"))
+            as? NSViewController)!
     }()
 
     // Source for CopyFiles
     // self.presentViewControllerAsSheet(self.ViewControllerAbout)
-    lazy var ViewControllerSource: NSViewController = {
-        return self.storyboard!.instantiateController(withIdentifier: NSStoryboard.SceneIdentifier(rawValue: "CopyFilesID"))
-            as! NSViewController
+    lazy var viewControllerSource: NSViewController = {
+        return (self.storyboard!.instantiateController(withIdentifier: NSStoryboard.SceneIdentifier(rawValue: "CopyFilesID"))
+            as? NSViewController)!
     }()
 
      // Set localcatalog to filePath
@@ -56,7 +56,7 @@ class ViewControllerCopyFiles: NSViewController {
     // Abort button
     @IBAction func Abort(_ sender: NSButton) {
         self.working.stopAnimation(nil)
-        guard (self.copyFiles != nil) else {
+        guard self.copyFiles != nil else {
             return
         }
         self.copyFiles!.abort()
@@ -112,7 +112,7 @@ class ViewControllerCopyFiles: NSViewController {
             // Reset search data
             self.resetCopySource()
             // Get Copy Source
-            self.presentViewControllerAsSheet(self.ViewControllerSource)
+            self.presentViewControllerAsSheet(self.viewControllerSource)
         }
     }
 
@@ -280,7 +280,7 @@ extension ViewControllerCopyFiles: NSTableViewDelegate {
     }
 
     func tableViewSelectionDidChange(_ notification: Notification) {
-        let myTableViewFromNotification = notification.object as! NSTableView
+        let myTableViewFromNotification = (notification.object as? NSTableView)!
         let indexes = myTableViewFromNotification.selectedRowIndexes
         if let index = indexes.first {
             guard self.filesArray != nil else {
@@ -360,7 +360,7 @@ extension ViewControllerCopyFiles: UpdateProgress {
             self.stop()
         } else {
             self.workingRsync.stopAnimation(nil)
-            self.presentViewControllerAsSheet(self.ViewControllerInformation)
+            self.presentViewControllerAsSheet(self.viewControllerInformation)
         }
 
     }
@@ -397,9 +397,9 @@ extension ViewControllerCopyFiles: GetPath {
 }
 
 extension ViewControllerCopyFiles: setIndex {
-    func SetIndex(Index: Int) {
-        self.index = Index
-        self.displayRemoteserver(index: Index)
+    func setIndex(index: Int) {
+        self.index = index
+        self.displayRemoteserver(index: index)
     }
 }
 

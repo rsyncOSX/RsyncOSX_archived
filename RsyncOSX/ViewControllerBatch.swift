@@ -11,7 +11,7 @@ import Cocoa
 
 // Return the created batchobject
 protocol getNewBatchTask: class {
-    func getTaskObject() -> newBatchTask
+    func getTaskObject() -> NewBatchTask
 }
 
 class ViewControllerBatch: NSViewController {
@@ -26,7 +26,7 @@ class ViewControllerBatch: NSViewController {
     // Working on row
     var row: Int?
     // Batchobject
-    var batchTask: newBatchTask?
+    var batchTask: NewBatchTask?
 
     // Main tableview
     @IBOutlet weak var mainTableView: NSTableView!
@@ -46,7 +46,7 @@ class ViewControllerBatch: NSViewController {
     @IBAction func Close(_ sender: NSButton) {
 
         if (self.close!) {
-            self.batchTask = newBatchTask()
+            self.batchTask = NewBatchTask()
             self.batchTask!.closeOperation()
         } else {
             self.abortDelegate?.abortOperations()
@@ -58,7 +58,7 @@ class ViewControllerBatch: NSViewController {
 
     // Execute batch
     @IBAction func Execute(_ sender: NSButton) {
-        self.batchTask = newBatchTask()
+        self.batchTask = NewBatchTask()
         self.batchTask!.executeBatch()
         self.CloseButton.title = "Abort"
         self.close = false
@@ -192,7 +192,7 @@ extension ViewControllerBatch: RefreshtableView {
 
 extension ViewControllerBatch: getNewBatchTask {
 
-    func getTaskObject() -> newBatchTask {
+    func getTaskObject() -> NewBatchTask {
         return self.batchTask!
     }
 
