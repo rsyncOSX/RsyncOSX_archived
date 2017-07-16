@@ -10,7 +10,7 @@
 
 import Foundation
 
-enum filterLogs {
+enum Filterlogs {
     case localCatalog
     case remoteServer
     case executeDate
@@ -25,13 +25,13 @@ final class ScheduleLoggData {
     private var loggdata: Array<NSDictionary>?
 
     // Function for filter loggdata
-    func filter(search: String?, what: filterLogs?) -> [NSDictionary]? {
+    func filter(search: String?, what: Filterlogs?) -> [NSDictionary]? {
 
         guard search != nil else {
             return self.loggdata
         }
 
-        if (search!.isEmpty == false) {
+        if search!.isEmpty == false {
             // Filter data
             self.readfilteredData(filter: search!, filterwhat: what!)
             return self.data!
@@ -41,7 +41,7 @@ final class ScheduleLoggData {
     }
 
     // Function for sorting and filtering loggdata
-    private func readfilteredData (filter: String, filterwhat: filterLogs) {
+    private func readfilteredData (filter: String, filterwhat: Filterlogs) {
         var data = Array<NSDictionary>()
         self.data = nil
 
@@ -53,15 +53,15 @@ final class ScheduleLoggData {
 
             switch filterwhat {
             case .executeDate:
-                if (self.loggdata![i].value(forKey: "dateExecuted") as! String).contains(filter) {
+                if (self.loggdata![i].value(forKey: "dateExecuted") as? String)!.contains(filter) {
                     data.append(self.loggdata![i])
                 }
             case .localCatalog:
-                if (self.loggdata![i].value(forKey: "localCatalog") as! String).contains(filter) {
+                if (self.loggdata![i].value(forKey: "localCatalog") as? String)!.contains(filter) {
                     data.append(self.loggdata![i])
                 }
             case .remoteServer:
-                if (self.loggdata![i].value(forKey: "offsiteServer") as! String).contains(filter) {
+                if (self.loggdata![i].value(forKey: "offsiteServer") as? String)!.contains(filter) {
                     data.append(self.loggdata![i])
                 }
             }
@@ -76,7 +76,7 @@ final class ScheduleLoggData {
         let input: [ConfigurationSchedule] = SharingManagerSchedule.sharedInstance.getSchedule()
         for i in 0 ..< input.count {
             let hiddenID = SharingManagerSchedule.sharedInstance.getSchedule()[i].hiddenID
-            if (input[i].logrecords.count > 0) {
+            if input[i].logrecords.count > 0 {
                 for j in 0 ..< input[i].logrecords.count {
                     let dict = input[i].logrecords[j]
                     let logdetail: NSDictionary = [
@@ -92,10 +92,10 @@ final class ScheduleLoggData {
         }
         let dateformatter = Utils.sharedInstance.setDateformat()
         self.loggdata = data.sorted { (dict1, dict2) -> Bool in
-            guard (dateformatter.date(from: dict1.value(forKey: "dateExecuted") as! String) != nil && (dateformatter.date(from: dict2.value(forKey: "dateExecuted") as! String) != nil)) else {
+            guard dateformatter.date(from: (dict1.value(forKey: "dateExecuted") as? String)!) != nil && (dateformatter.date(from: (dict2.value(forKey: "dateExecuted") as? String)!) != nil) else {
                 return true
             }
-            if ((dateformatter.date(from: dict1.value(forKey: "dateExecuted") as! String))!.timeIntervalSince(dateformatter.date(from: dict2.value(forKey: "dateExecuted") as! String)!) > 0 ) {
+            if (dateformatter.date(from: (dict1.value(forKey: "dateExecuted") as? String)!))!.timeIntervalSince(dateformatter.date(from: (dict2.value(forKey: "dateExecuted") as? String)!)!) > 0 {
                 return true
             } else {
                 return false

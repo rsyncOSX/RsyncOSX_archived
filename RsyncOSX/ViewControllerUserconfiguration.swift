@@ -96,7 +96,7 @@ class ViewControllerUserconfiguration: NSViewController {
     private func setRsyncPath() {
         if (self.rsyncPath.stringValue.isEmpty == false) {
             if (rsyncPath.stringValue.hasSuffix("/") == false) {
-                rsyncPath.stringValue = rsyncPath.stringValue + "/"
+                rsyncPath.stringValue += "/"
                 SharingManagerConfiguration.sharedInstance.rsyncPath = rsyncPath.stringValue
             }
         } else {
@@ -108,7 +108,7 @@ class ViewControllerUserconfiguration: NSViewController {
     private func setRestorePath() {
         if (self.restorePath.stringValue.isEmpty == false) {
             if (restorePath.stringValue.hasSuffix("/") == false) {
-                restorePath.stringValue = restorePath.stringValue + "/"
+                restorePath.stringValue += "/"
                 SharingManagerConfiguration.sharedInstance.restorePath = restorePath.stringValue
             }
         } else {

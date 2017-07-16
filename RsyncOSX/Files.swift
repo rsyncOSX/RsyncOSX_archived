@@ -24,13 +24,13 @@ class Files {
     // Which root
     var root: Root?
     // Root of files
-    var FilesRoot: String? {
+    var rootfiles: String? {
         get {
             switch self.root! {
             // Profiles
             case .profileRoot:
                 let paths = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true) as NSArray
-                let docuDir = paths.firstObject as! String
+                let docuDir = (paths.firstObject as? String)!
                 let profilePath = docuDir + "/Rsync/" + SharingManagerConfiguration.sharedInstance.getMacSerialNumber()
                 return profilePath
             // .ssh/
@@ -43,7 +43,7 @@ class Files {
     // Function for returning directorys in path as array of URLs
     func getDirectorysURLs() -> Array<URL>? {
         var array: Array<URL>?
-        if let filePath = self.FilesRoot {
+        if let filePath = self.rootfiles {
             if let fileURLs = self.getfileURLs(path: filePath) {
                 array = Array<URL>()
                 for i in 0 ..< fileURLs.count {
@@ -60,7 +60,7 @@ class Files {
     // Function for returning files in path as array of URLs
     func getFilesURLs() -> Array<URL>? {
         var array: Array<URL>?
-        if let filePath = self.FilesRoot {
+        if let filePath = self.rootfiles {
             let fileManager = FileManager.default
             var isDir: ObjCBool = false
             if fileManager.fileExists(atPath: filePath, isDirectory:&isDir) {
@@ -86,7 +86,7 @@ class Files {
     // Function for returning files in path as array of Strings
     func getFileStrings() -> Array<String>? {
         var array: Array<String>?
-        if let filePath = self.FilesRoot {
+        if let filePath = self.rootfiles {
             let fileManager = FileManager.default
             var isDir: ObjCBool = false
             if fileManager.fileExists(atPath: filePath, isDirectory:&isDir) {
@@ -115,7 +115,7 @@ class Files {
     // Function for returning profiles as array of Strings
     func getDirectorysStrings()-> Array<String> {
         var array: Array<String> = Array<String>()
-        if let filePath = self.FilesRoot {
+        if let filePath = self.rootfiles {
             if let fileURLs = self.getfileURLs(path: filePath) {
                 for i in 0 ..< fileURLs.count {
                     if fileURLs[i].hasDirectoryPath {
@@ -133,7 +133,7 @@ class Files {
     // Func that creates directory if not created
     func createDirectory() {
         let fileManager = FileManager.default
-        if let path = self.FilesRoot {
+        if let path = self.rootfiles {
             // Profile root
             if (fileManager.fileExists(atPath: path) == false) {
                 do {

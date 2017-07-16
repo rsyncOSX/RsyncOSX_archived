@@ -124,7 +124,6 @@ public class UDPClient: YSocket {
             return (false, "socket not open")
         }
     }
-    //TODO add multycast and boardcast
 }
 
 public class UDPServer: YSocket {

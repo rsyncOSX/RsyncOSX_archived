@@ -202,31 +202,31 @@ class ViewControllertabMain: NSViewController {
         self.setInfo(info: "Estimate", color: .blue)
         self.process = nil
 
-        if (self.index != nil) {
+        if self.index != nil {
             // rsync params
-            if (self.rsyncparams.state == .on) {
-                if (self.index != nil) {
+            if self.rsyncparams.state == .on {
+                if self.index != nil {
                     globalMainQueue.async(execute: { () -> Void in
                         self.presentViewControllerAsSheet(self.viewControllerRsyncParams)
                     })
                 }
             // Edit task
-            } else if (self.edit.state == .on) {
+            } else if self.edit.state == .on {
                 if (self.index != nil) {
                     globalMainQueue.async(execute: { () -> Void in
                         self.presentViewControllerAsSheet(self.editViewController)
                     })
                 }
             // Delete files
-            } else if (self.delete.state == .on) {
+            } else if self.delete.state == .on {
                 let answer = Alerts.dialogOKCancel("Delete selected task?", text: "Cancel or OK")
-                if (answer) {
-                    if (self.hiddenID != nil) {
+                if answer {
+                    if self.hiddenID != nil {
                         // Delete Configurations and Schedules by hiddenID
                         SharingManagerConfiguration.sharedInstance.deleteConfigurationsByhiddenID(hiddenID: self.hiddenID!)
                         SharingManagerSchedule.sharedInstance.deleteSchedulesbyHiddenID(hiddenID: self.hiddenID!)
                         // Reading main Configurations and Schedule to memory
-                        self.ReReadConfigurationsAndSchedules()
+                        self.reReadConfigurationsAndSchedules()
                         // And create a new Schedule object
                         // Just calling the protocol function
                         self.newSchedulesAdded()
@@ -280,7 +280,7 @@ class ViewControllertabMain: NSViewController {
 
     // Selecting profiles
     @IBAction func profiles(_ sender: NSButton) {
-        if (self.loadProfileMenu == true) {
+        if self.loadProfileMenu == true {
             self.showProcessInfo(info:.changeprofile)
             globalMainQueue.async(execute: { () -> Void in
                 self.presentViewControllerAsSheet(self.viewControllerProfile)
@@ -333,7 +333,7 @@ class ViewControllertabMain: NSViewController {
         // Progress indicator
         self.working.usesThreadedAnimation = true
         self.scheduledJobworking.usesThreadedAnimation = true
-        self.ReReadConfigurationsAndSchedules()
+        self.reReadConfigurationsAndSchedules()
         // Setting reference to self, used when calling delegate functions
         SharingManagerConfiguration.sharedInstance.ViewControllertabMain = self
         // Create a Schedules object
@@ -356,7 +356,7 @@ class ViewControllertabMain: NSViewController {
         // Setting reference to ViewController
         // Used to call delegate function from other class
         SharingManagerConfiguration.sharedInstance.ViewControllertabMain = self
-        if (SharingManagerConfiguration.sharedInstance.ConfigurationsDataSourcecount() > 0 ) {
+        if SharingManagerConfiguration.sharedInstance.ConfigurationsDataSourcecount() > 0 {
             globalMainQueue.async(execute: { () -> Void in
                 self.mainTableView.reloadData()
             })
@@ -366,7 +366,7 @@ class ViewControllertabMain: NSViewController {
         // Show which profile
         self.loadProfileMenu = true
         self.displayProfile()
-        if (self.schedules == nil) {
+        if self.schedules == nil {
             self.schedules = ScheduleSortedAndExpand()
         }
         self.ready = true
@@ -382,12 +382,12 @@ class ViewControllertabMain: NSViewController {
     // True if scheduled task in progress
     func scheduledOperationInProgress() -> Bool {
         var scheduleInProgress: Bool?
-        if (self.schedules != nil) {
+        if self.schedules != nil {
             scheduleInProgress = self.schedules!.getScheduledOperationInProgress()
         } else {
             scheduleInProgress = false
         }
-        if (scheduleInProgress == false && self.scheduledJobInProgress == false) {
+        if scheduleInProgress == false && self.scheduledJobInProgress == false {
             return false
         } else {
             return true
@@ -396,8 +396,8 @@ class ViewControllertabMain: NSViewController {
 
     // Execute tasks by double click in table
     @objc(tableViewDoubleClick:) func tableViewDoubleClick(sender: AnyObject) {
-        if (SharingManagerConfiguration.sharedInstance.allowDoubleclick == true) {
-            if (self.ready) {
+        if SharingManagerConfiguration.sharedInstance.allowDoubleclick == true {
+            if self.ready {
                 self.executeSingleTask()
             }
             self.ready = false
@@ -410,7 +410,7 @@ class ViewControllertabMain: NSViewController {
     // which is triggered when a Process termination is
     // discovered, completes the task.
     @IBAction func executeTask(_ sender: NSButton) {
-        if (self.ready) {
+        if self.ready {
             self.executeSingleTask()
         }
         self.ready = false
@@ -468,7 +468,7 @@ class ViewControllertabMain: NSViewController {
     }
 
     // Reread bot Configurations and Schedules from persistent store to memory
-    fileprivate func ReReadConfigurationsAndSchedules() {
+    fileprivate func reReadConfigurationsAndSchedules() {
         // Reading main Configurations to memory
         SharingManagerConfiguration.sharedInstance.setDataDirty(dirty: true)
         SharingManagerConfiguration.sharedInstance.readAllConfigurationsAndArguments()
@@ -480,7 +480,7 @@ class ViewControllertabMain: NSViewController {
     // Function for setting profile
     fileprivate func displayProfile() {
 
-        guard (self.loadProfileMenu == true) else {
+        guard self.loadProfileMenu == true else {
             self.profilInfo.stringValue = "Profile: please wait..."
             self.profilInfo.textColor = .blue
             return
@@ -498,7 +498,7 @@ class ViewControllertabMain: NSViewController {
 
     // Function for setting allowDouble click
     internal func displayAllowDoubleclick() {
-        if (SharingManagerConfiguration.sharedInstance.allowDoubleclick == true) {
+        if SharingManagerConfiguration.sharedInstance.allowDoubleclick == true {
             self.allowDoubleclick.stringValue = "Double click: YES"
             self.allowDoubleclick.textColor = .blue
         } else {
@@ -510,11 +510,11 @@ class ViewControllertabMain: NSViewController {
     // when row is selected
     // setting which table row is selected
     func tableViewSelectionDidChange(_ notification: Notification) {
-        if (self.ready == false) {
+        if self.ready == false {
             self.abortOperations()
         }
         self.ready = true
-        let myTableViewFromNotification = notification.object as! NSTableView
+        let myTableViewFromNotification = (notification.object as? NSTableView)!
         let indexes = myTableViewFromNotification.selectedRowIndexes
         if let index = indexes.first {
             self.index = index
@@ -552,7 +552,7 @@ extension ViewControllertabMain : NSTableViewDelegate {
     // Used in tableview delegate
     private func testRow(_ row: Int) -> Bool {
         if let serverOff = self.serverOff {
-            if (row < serverOff.count) {
+            if row < serverOff.count {
                 return serverOff[row]
             } else {
                 return false
@@ -573,22 +573,22 @@ extension ViewControllertabMain : NSTableViewDelegate {
         let hiddenID: Int = SharingManagerConfiguration.sharedInstance.getConfigurations()[row].hiddenID
         if SharingManagerSchedule.sharedInstance.hiddenIDinSchedule(hiddenID) {
             text = object[tableColumn!.identifier] as? String
-            if (text == "backup" || text == "restore") {
+            if text == "backup" || text == "restore" {
                 schedule = true
             }
         }
-        if (tableColumn!.identifier.rawValue == "batchCellID") {
+        if tableColumn!.identifier.rawValue == "batchCellID" {
             return object[tableColumn!.identifier] as? Int!
         } else {
             var number: Int = 0
             if let obj = self.schedules {
                 number = obj.numberOfFutureSchedules(hiddenID)
             }
-            if (schedule && number > 0) {
+            if schedule && number > 0 {
                 let returnstr = text! + " (" + String(number) + ")"
                 return returnstr
             } else {
-                if (self.testRow(row)) {
+                if self.testRow(row) {
                     text = object[tableColumn!.identifier] as? String
                     let attributedString = NSMutableAttributedString(string:(text!))
                     let range = (text! as NSString).range(of: text!)
@@ -603,7 +603,7 @@ extension ViewControllertabMain : NSTableViewDelegate {
 
     // Toggling batch
     @objc(tableView:setObjectValue:forTableColumn:row:) func tableView(_ tableView: NSTableView, setObjectValue object: Any?, for tableColumn: NSTableColumn?, row: Int) {
-        if (SharingManagerConfiguration.sharedInstance.getConfigurations()[row].task == "backup") {
+        if SharingManagerConfiguration.sharedInstance.getConfigurations()[row].task == "backup" {
             SharingManagerConfiguration.sharedInstance.setBatchYesNo(row)
         }
     }
@@ -615,9 +615,9 @@ extension ViewControllertabMain: Information {
     // Get information from rsync output.
     func getInformation() -> Array<String> {
 
-        if (self.outputbatch != nil) {
+        if self.outputbatch != nil {
             return self.outputbatch!.getOutput()
-        } else if (self.output != nil) {
+        } else if self.output != nil {
             return self.output!.getOutput()
         } else {
             return [""]
@@ -706,7 +706,7 @@ extension ViewControllertabMain: AddProfiles {
         self.setInfo(info: "Estimate", color: .blue)
         self.setNumbers(output: nil)
 
-        guard (new == false) else {
+        guard new == false else {
             // A new and empty profile is created
             SharingManagerSchedule.sharedInstance.destroySchedule()
             SharingManagerConfiguration.sharedInstance.destroyConfigurations()
@@ -732,7 +732,7 @@ extension ViewControllertabMain: AddProfiles {
         // Schedules for new profile.
         SharingManagerSchedule.sharedInstance.destroySchedule()
         // Read configurations and Scheduledata
-        self.ReReadConfigurationsAndSchedules()
+        self.reReadConfigurationsAndSchedules()
         // Make sure loading profile
         self.loadProfileMenu = true
         self.displayProfile()
@@ -769,7 +769,7 @@ extension ViewControllertabMain: ScheduledJobInProgress {
     }
 
     func notifyScheduledJob(config: Configuration?) {
-        if (config == nil) {
+        if config == nil {
             globalMainQueue.async(execute: {() -> Void in
                 Alerts.showInfo("Scheduled backup DID not execute?")
             })
@@ -915,7 +915,7 @@ extension ViewControllertabMain: UpdateProgress {
             self.output = self.singletask!.output
             self.process = self.singletask!.process
             if let pvc2 = self.presentedViewControllers as? [ViewControllerProgressProcess] {
-                if (pvc2.count > 0) {
+                if pvc2.count > 0 {
                     self.processupdateDelegate = pvc2[0]
                     self.processupdateDelegate?.fileHandler()
                 }
@@ -939,7 +939,7 @@ extension ViewControllertabMain: deselectRowTable {
 extension ViewControllertabMain: RsyncError {
     func rsyncerror() {
         // Set on or off in user configuration
-        if (SharingManagerConfiguration.sharedInstance.rsyncerror) {
+        if SharingManagerConfiguration.sharedInstance.rsyncerror {
             globalMainQueue.async(execute: { () -> Void in
                 self.setInfo(info: "Error", color: .red)
                 self.showProcessInfo(info: .error)
@@ -951,10 +951,10 @@ extension ViewControllertabMain: RsyncError {
                 }
 
                 // Either error in single task or batch task
-                if (self.singletask != nil) {
+                if self.singletask != nil {
                     self.singletask!.Error()
                 }
-                if (self.batchtask != nil) {
+                if self.batchtask != nil {
                     self.batchtask!.error()
                 }
             })
@@ -1115,7 +1115,7 @@ extension ViewControllertabMain:SingleTask {
             let number = Numbers(output: output!.getOutput())
             number.setNumbers()
 
-            self.transferredNumber.stringValue = NumberFormatter.localizedString(from: NSNumber(value: number.getTransferredNumbers(numbers: .transferredNumber)), number: NumberFormatter.Style.decimal)
+            self.transferredNumber.stringValue = NumberFormatter.localizedString(from:NSNumber(value: number.getTransferredNumbers(numbers: .transferredNumber)), number: NumberFormatter.Style.decimal)
             self.transferredNumberSizebytes.stringValue = NumberFormatter.localizedString(from: NSNumber(value: number.getTransferredNumbers(numbers: .transferredNumberSizebytes)), number: NumberFormatter.Style.decimal)
             self.totalNumber.stringValue = NumberFormatter.localizedString(from: NSNumber(value: number.getTransferredNumbers(numbers: .totalNumber)), number: NumberFormatter.Style.decimal)
             self.totalNumberSizebytes.stringValue = NumberFormatter.localizedString(from: NSNumber(value: number.getTransferredNumbers(numbers: .totalNumberSizebytes)), number: NumberFormatter.Style.decimal)

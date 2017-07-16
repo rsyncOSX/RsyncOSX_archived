@@ -66,11 +66,11 @@ class ScheduleSortedAndExpand {
         for i in 0 ..< self.scheduleAsNSDictionary!.count {
 
             let dict = self.scheduleAsNSDictionary![i]
-            let dateStop: Date = dateformatter.date(from: dict.value(forKey: "dateStop") as! String)!
-            let dateStart: Date = dateformatter.date(from: dict.value(forKey: "dateStart") as!String)!
+            let dateStop: Date = dateformatter.date(from: (dict.value(forKey: "dateStop") as? String)!)!
+            let dateStart: Date = dateformatter.date(from: (dict.value(forKey: "dateStart") as? String)!)!
 
             let days: Double = dateStop.timeIntervalSinceNow/(60*60*24)
-            let schedule: String = dict.value(forKey: "schedule") as! String
+            let schedule: String = (dict.value(forKey: "schedule") as? String)!
             let seconds: Double = dateStop.timeIntervalSinceNow
 
             // Get all jobs which are not executed
@@ -79,7 +79,7 @@ class ScheduleSortedAndExpand {
 
                 switch (schedule) {
                 case "once" :
-                    let hiddenID = dict.value(forKey: "hiddenID") as! Int
+                    let hiddenID = (dict.value(forKey: "hiddenID") as? Int)!
                     let dict: NSDictionary = [
                         "start": dateStop,
                         "hiddenID": hiddenID,
@@ -98,7 +98,7 @@ class ScheduleSortedAndExpand {
                             let cal = Calendar.current
                             if let start: Date = cal.date(byAdding: dateComponent, to: dateStart) {
                                 if (start.timeIntervalSinceNow > 0) {
-                                    let hiddenID = dict.value(forKey: "hiddenID") as! Int
+                                    let hiddenID = (dict.value(forKey: "hiddenID") as? Int)!
                                     let dict: NSDictionary = [
                                         "start": start,
                                         "hiddenID": hiddenID,
@@ -121,7 +121,7 @@ class ScheduleSortedAndExpand {
                             let cal = Calendar.current
                             if let start: Date = cal.date(byAdding: dateComponent, to: dateStart) {
                                 if (start.timeIntervalSinceNow > 0) {
-                                    let hiddenID = dict.value(forKey: "hiddenID") as! Int
+                                    let hiddenID = (dict.value(forKey: "hiddenID") as? Int)!
                                     let dict: NSDictionary = [
                                         "start": start,
                                         "hiddenID": hiddenID,
@@ -138,7 +138,7 @@ class ScheduleSortedAndExpand {
             }
 
         let sorted: [NSDictionary] = expandedData.sorted { (dict1, dict2) -> Bool in
-            if ((dict1.value(forKey: "start") as! Date).timeIntervalSince(dict2.value(forKey: "start") as! Date)) > 0 {
+            if (dict1.value(forKey: "start") as? Date)!.timeIntervalSince((dict2.value(forKey: "start") as? Date)!) > 0 {
                 return false
             } else {
                 return true

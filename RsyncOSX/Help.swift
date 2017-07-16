@@ -9,7 +9,7 @@
 import Foundation
 import Cocoa
 
-enum helpdocs {
+enum Helpdocs {
     case changelog
     case documents
     case singletask
@@ -55,7 +55,7 @@ final class Help {
         }
     }
 
-    func help(what: helpdocs) {
+    func help(what: Helpdocs) {
         switch what {
         case .changelog:
             self.resource = self.changelog

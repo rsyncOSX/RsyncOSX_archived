@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="13122.19" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="abu-zT-Ht4">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="13122.19" systemVersion="16F73" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="abu-zT-Ht4">
     <dependencies>
         <deployment identifier="macosx"/>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="13122.19"/>
@@ -1359,6 +1359,25 @@
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 </view>
                             </box>
+                            <box fixedFrame="YES" title="Additional resources" translatesAutoresizingMaskIntoConstraints="NO" id="HzS-lR-CM5">
+                                <rect key="frame" x="434" y="108" width="183" height="184"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <view key="contentView" id="ndO-3R-JDc">
+                                    <rect key="frame" x="2" y="2" width="179" height="167"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                </view>
+                            </box>
+                            <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="RDi-Ry-FQI">
+                                <rect key="frame" x="650" y="160" width="99" height="18"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <buttonCell key="cell" type="radio" title="Source code" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="cGN-vI-Den">
+                                    <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="help:" target="JOY-OC-nIv" id="Gws-CJ-ajj"/>
+                                </connections>
+                            </button>
                             <box fixedFrame="YES" title="Using RsyncOSX" translatesAutoresizingMaskIntoConstraints="NO" id="FwT-r8-lWd">
                                 <rect key="frame" x="246" y="108" width="161" height="184"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
@@ -1380,44 +1399,25 @@
                                     </subviews>
                                 </view>
                             </box>
-                            <box fixedFrame="YES" title="Additional resources" translatesAutoresizingMaskIntoConstraints="NO" id="HzS-lR-CM5">
-                                <rect key="frame" x="434" y="108" width="183" height="184"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <view key="contentView" id="ndO-3R-JDc">
-                                    <rect key="frame" x="2" y="2" width="179" height="167"/>
-                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                </view>
-                            </box>
-                            <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="RDi-Ry-FQI">
-                                <rect key="frame" x="650" y="160" width="99" height="18"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <buttonCell key="cell" type="radio" title="Source code" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="cGN-vI-Den">
-                                    <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                                    <font key="font" metaFont="system"/>
-                                </buttonCell>
-                                <connections>
-                                    <action selector="help:" target="JOY-OC-nIv" id="Gws-CJ-ajj"/>
-                                </connections>
-                            </button>
                         </subviews>
                     </view>
                     <connections>
-                        <outlet property="Add" destination="Yhn-1c-Lpv" id="jdK-in-Awl"/>
-                        <outlet property="Batchtask" destination="K6Q-Ta-iQD" id="z7a-fl-FOg"/>
-                        <outlet property="Changelog" destination="F6X-5O-s8M" id="bm9-2v-rG4"/>
-                        <outlet property="Configuration" destination="MeX-sD-P2j" id="sPH-3D-XTV"/>
-                        <outlet property="Copyfiles" destination="nug-pY-1yE" id="dav-Fe-mnL"/>
-                        <outlet property="DIYNAS" destination="Gir-br-gTZ" id="Q0q-Vp-gvE"/>
-                        <outlet property="Documents" destination="rrF-FD-NZk" id="ge6-QM-C5r"/>
-                        <outlet property="Idea" destination="O3N-1N-HwP" id="s7S-OU-hAn"/>
-                        <outlet property="Logging" destination="XMd-Vt-3Xu" id="AOA-Ed-EhD"/>
-                        <outlet property="RsyncParameters" destination="yev-4Z-tUv" id="BWL-mA-MDH"/>
-                        <outlet property="RsyncStdParameters" destination="agq-mv-Ryh" id="dG7-84-ceH"/>
-                        <outlet property="Schedule" destination="rwB-Cp-izc" id="1i0-A3-Sth"/>
-                        <outlet property="Singeltask" destination="dKU-FH-Yps" id="RQq-sh-ujd"/>
-                        <outlet property="Ssh" destination="GGF-WK-cCh" id="BNd-Qe-mJ2"/>
-                        <outlet property="passwordless" destination="bwF-2K-1wh" id="S87-0e-iEg"/>
+                        <outlet property="add" destination="Yhn-1c-Lpv" id="Uzl-94-Wna"/>
+                        <outlet property="batchtask" destination="K6Q-Ta-iQD" id="AFo-xz-3GH"/>
+                        <outlet property="changelog" destination="F6X-5O-s8M" id="oSc-GV-Yr3"/>
+                        <outlet property="configuration" destination="MeX-sD-P2j" id="jRJ-zQ-gwu"/>
+                        <outlet property="copyfiles" destination="nug-pY-1yE" id="RZH-tJ-ITK"/>
+                        <outlet property="diynas" destination="Gir-br-gTZ" id="Vph-xT-6cX"/>
+                        <outlet property="documents" destination="rrF-FD-NZk" id="Ezr-7S-7T9"/>
+                        <outlet property="idea" destination="O3N-1N-HwP" id="v1c-ae-ofG"/>
+                        <outlet property="logging" destination="XMd-Vt-3Xu" id="kND-7V-jJz"/>
+                        <outlet property="passwordless" destination="bwF-2K-1wh" id="nTT-2g-IQ3"/>
+                        <outlet property="rsyncParameters" destination="yev-4Z-tUv" id="R4p-yA-ZcE"/>
+                        <outlet property="rsyncStdParameters" destination="agq-mv-Ryh" id="O5V-nG-zz7"/>
+                        <outlet property="schedule" destination="rwB-Cp-izc" id="BWQ-E2-2Mh"/>
+                        <outlet property="singletask" destination="dKU-FH-Yps" id="hbh-fG-CVv"/>
                         <outlet property="source" destination="RDi-Ry-FQI" id="mOv-73-9kD"/>
+                        <outlet property="ssh" destination="GGF-WK-cCh" id="R7W-VA-xcG"/>
                     </connections>
                 </viewController>
                 <customObject id="jyt-m5-Pvu" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>

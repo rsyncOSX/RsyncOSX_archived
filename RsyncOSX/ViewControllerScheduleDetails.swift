@@ -89,7 +89,7 @@ class ViewControllerScheduleDetails: NSViewController {
 extension ViewControllerScheduleDetails : NSTableViewDataSource {
 
     func numberOfRows(in tableView: NSTableView) -> Int {
-        if (self.hiddendID != nil && self.data != nil) {
+        if self.hiddendID != nil && self.data != nil {
             return (self.data!.count)
         } else {
             return 0
@@ -106,26 +106,26 @@ extension ViewControllerScheduleDetails : NSTableViewDelegate {
         // If active schedule color row blue
         var active: Bool = false
 
-        if (row < self.data!.count) {
+        if row < self.data!.count {
             let object: NSMutableDictionary = self.data![row]
             if  object.value(forKey: "schedule") as? String == "once" ||
                 object.value(forKey: "schedule") as? String == "daily" ||
                 object.value(forKey: "schedule") as? String == "weekly" {
 
                 let dateformatter = Utils.sharedInstance.setDateformat()
-                let dateStop: Date = dateformatter.date(from: object.value(forKey: "dateStop") as!String)!
-                if (dateStop.timeIntervalSinceNow > 0) {
+                let dateStop: Date = dateformatter.date(from: (object.value(forKey: "dateStop") as? String)!)!
+                if dateStop.timeIntervalSinceNow > 0 {
                     active = true
                 } else {
                     active = false
                 }
             }
 
-            if (tableColumn!.identifier.rawValue == "stopCellID" || tableColumn!.identifier.rawValue == "deleteCellID") {
+            if tableColumn!.identifier.rawValue == "stopCellID" || tableColumn!.identifier.rawValue == "deleteCellID" {
                    return object[tableColumn!.identifier] as? Int
 
             } else {
-                if (active) {
+                if active {
                     let text = object[tableColumn!.identifier] as? String
                     let attributedString = NSMutableAttributedString(string:(text!))
                     let range = (text! as NSString).range(of: text!)

@@ -12,7 +12,7 @@ import Cocoa
 class ViewControllerSsh: NSViewController {
 
     // The object which checks for keys
-    var Ssh: ssh?
+    var sshcmd: ssh?
     // hiddenID of selected index
     var hiddenID: Int?
     // Output
@@ -52,10 +52,10 @@ class ViewControllerSsh: NSViewController {
 
     // Open the Terminal.app for pasting commands
     @IBAction func TerminalApp(_ sender: NSButton) {
-        guard self.Ssh != nil else {
+        guard self.sshcmd != nil else {
             return
         }
-        self.Ssh!.openTerminal()
+        self.sshcmd!.openTerminal()
     }
 
     // Just for grouping rsa and dsa radiobuttons
@@ -65,15 +65,15 @@ class ViewControllerSsh: NSViewController {
 
     @IBAction func createPublicPrivateKeyPair(_ sender: NSButton) {
 
-        guard self.Ssh != nil else {
+        guard self.sshcmd != nil else {
             return
         }
         if self.createRsaKey.state == .on {
-            self.Ssh!.createLocalKeysRsa()
+            self.sshcmd!.createLocalKeysRsa()
         }
 
         if self.createDsaKey.state == .on {
-            self.Ssh!.createLocalKeysDsa()
+            self.sshcmd!.createLocalKeysDsa()
         }
     }
 
@@ -85,43 +85,43 @@ class ViewControllerSsh: NSViewController {
         guard self.hiddenID != nil else {
             return
         }
-        guard self.Ssh != nil else {
+        guard self.sshcmd != nil else {
             return
         }
-        self.Ssh!.createSshRemoteDirectory(hiddenID: self.hiddenID!)
-        guard Ssh!.commandCopyPasteTermninal != nil else {
+        self.sshcmd!.createSshRemoteDirectory(hiddenID: self.hiddenID!)
+        guard sshcmd!.commandCopyPasteTermninal != nil else {
             self.sshCreateRemoteCatalog.stringValue = " ... no remote server ..."
             return
         }
-        self.sshCreateRemoteCatalog.stringValue = Ssh!.commandCopyPasteTermninal!
+        self.sshCreateRemoteCatalog.stringValue = sshcmd!.commandCopyPasteTermninal!
     }
 
     @IBAction func scpRsaPubKey(_ sender: NSButton) {
         guard self.hiddenID != nil else {
             return
         }
-        guard self.Ssh != nil else {
+        guard self.sshcmd != nil else {
             return
         }
-        self.Ssh!.ScpPubKey(key: "rsa", hiddenID: self.hiddenID!)
-        guard Ssh!.commandCopyPasteTermninal != nil else {
+        self.sshcmd!.ScpPubKey(key: "rsa", hiddenID: self.hiddenID!)
+        guard sshcmd!.commandCopyPasteTermninal != nil else {
             return
         }
-        self.scpRsaCopyPasteCommand.stringValue = Ssh!.commandCopyPasteTermninal!
+        self.scpRsaCopyPasteCommand.stringValue = sshcmd!.commandCopyPasteTermninal!
     }
 
     @IBAction func scpDsaPubKey(_ sender: NSButton) {
         guard self.hiddenID != nil else {
             return
         }
-        guard self.Ssh != nil else {
+        guard self.sshcmd != nil else {
             return
         }
-        self.Ssh!.ScpPubKey(key: "dsa", hiddenID: self.hiddenID!)
-        guard Ssh!.commandCopyPasteTermninal != nil else {
+        self.sshcmd!.ScpPubKey(key: "dsa", hiddenID: self.hiddenID!)
+        guard sshcmd!.commandCopyPasteTermninal != nil else {
             return
         }
-        self.scpDsaCopyPasteCommand.stringValue = Ssh!.commandCopyPasteTermninal!
+        self.scpDsaCopyPasteCommand.stringValue = sshcmd!.commandCopyPasteTermninal!
     }
 
     @IBAction func checkRsaPubKey(_ sender: NSButton) {
@@ -134,12 +134,12 @@ class ViewControllerSsh: NSViewController {
             return
         }
 
-        guard self.Ssh != nil else {
+        guard self.sshcmd != nil else {
             return
         }
         // First chmod key then list key (Processtermination)
-        self.Ssh!.chmodSsh(key: "rsa", hiddenID: self.hiddenID!)
-        self.Ssh!.executeSshCommand()
+        self.sshcmd!.chmodSsh(key: "rsa", hiddenID: self.hiddenID!)
+        self.sshcmd!.executeSshCommand()
     }
 
     @IBAction func checkDsaPubKey(_ sender: NSButton) {
@@ -152,12 +152,12 @@ class ViewControllerSsh: NSViewController {
             return
         }
 
-        guard self.Ssh != nil else {
+        guard self.sshcmd != nil else {
             return
         }
         // First chmod key then list key (Processtermination)
-        self.Ssh!.chmodSsh(key: "dsa", hiddenID: self.hiddenID!)
-        self.Ssh!.executeSshCommand()
+        self.sshcmd!.chmodSsh(key: "dsa", hiddenID: self.hiddenID!)
+        self.sshcmd!.executeSshCommand()
 
     }
 
@@ -178,24 +178,24 @@ class ViewControllerSsh: NSViewController {
         self.checkDsaPubKeyButton.isEnabled = false
         self.checkRsaPubKeyButton.isEnabled = false
         self.sshCreatRemoteSshButton.isEnabled = false
-        self.Ssh = ssh()
+        self.sshcmd = ssh()
         // Check for keys
         self.checkPrivatePublicKey()
 
     }
 
     func checkPrivatePublicKey() {
-        self.Ssh = nil
-        self.Ssh = ssh()
-        self.Ssh!.CheckForLocalPubKeys()
-        if self.Ssh!.rsaPubKeyExist {
+        self.sshcmd = nil
+        self.sshcmd = ssh()
+        self.sshcmd!.CheckForLocalPubKeys()
+        if self.sshcmd!.rsaPubKeyExist {
             self.rsaCheck.state = .on
             self.createKeys.isEnabled = false
         } else {
             self.rsaCheck.state = .off
             self.createKeys.isEnabled = true
         }
-        if self.Ssh!.dsaPubKeyExist {
+        if self.sshcmd!.dsaPubKeyExist {
             self.dsaCheck.state = .on
             self.createKeys.isEnabled = false
         } else {
@@ -275,30 +275,30 @@ extension ViewControllerSsh: UpdateProgress {
             self.checkPrivatePublicKey()
         })
         // Check if chmod remote ssh directory is next work
-        guard self.Ssh!.chmod != nil else {
+        guard self.sshcmd!.chmod != nil else {
             return
         }
         guard self.hiddenID != nil else {
             return
         }
-        guard self.Ssh != nil else {
+        guard self.sshcmd != nil else {
             return
         }
 
-        switch self.Ssh!.chmod!.pop() {
+        switch self.sshcmd!.chmod!.pop() {
         case .chmodRsa:
-            self.Ssh!.checkRemotePubKey(key: "rsa", hiddenID: self.hiddenID!)
-            self.Ssh!.executeSshCommand()
+            self.sshcmd!.checkRemotePubKey(key: "rsa", hiddenID: self.hiddenID!)
+            self.sshcmd!.executeSshCommand()
         case .chmodDsa:
-            self.Ssh!.checkRemotePubKey(key: "dsa", hiddenID: self.hiddenID!)
-            self.Ssh!.executeSshCommand()
+            self.sshcmd!.checkRemotePubKey(key: "dsa", hiddenID: self.hiddenID!)
+            self.sshcmd!.executeSshCommand()
         default:
-            self.Ssh!.chmod = nil
+            self.sshcmd!.chmod = nil
         }
     }
 
     func fileHandler() {
-        self.output = self.Ssh!.getOutput()
+        self.output = self.sshcmd!.getOutput()
         globalMainQueue.async(execute: { () -> Void in
             self.detailsTable.reloadData()
         })
