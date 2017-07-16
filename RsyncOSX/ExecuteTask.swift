@@ -15,7 +15,7 @@ import Foundation
 // is set in the static object. The finalize object is invoked
 // when the job discover (observs) the termination of the process.
 
-class executeTask: Operation {
+class ExecuteTask: Operation {
 
     override func main() {
         // Delegate function for start and completion of scheduled jobs
@@ -67,7 +67,7 @@ class executeTask: Operation {
                     arguments = rsyncProcessArguments().argumentsRsync(config!, dryRun: false, forDisplay: false)
                     // Setting reference to finalize the job
                     // Finalize job is done when rsynctask ends (in process termination)
-                    SharingManagerConfiguration.sharedInstance.operation = completeScheduledOperation(dict: dict)
+                    SharingManagerConfiguration.sharedInstance.operation = CompleteScheduledOperation(dict: dict)
                     // Start the rsync job
                     globalMainQueue.async(execute: {
                         if (arguments != nil) {

@@ -9,7 +9,7 @@
 import Foundation
 import Cocoa
 
-class ssh: files {
+class ssh: Files {
 
     var commandCopyPasteTermninal: String?
 
@@ -35,7 +35,7 @@ class ssh: files {
     var KeyFileURLS: Array<URL>?
     var KeyFileStrings: Array<String>?
 
-    var scpArguments: scpArgumentsSsh?
+    var scpArguments: ScpArgumentsSsh?
     var command: String?
     var arguments: Array<String>?
 
@@ -44,7 +44,7 @@ class ssh: files {
     var output: outputProcess?
 
     // Chmod
-    var chmod: chmodPubKey?
+    var chmod: ChmodPubKey?
 
     // Create local rsa keys
     func createLocalKeysRsa() {
@@ -55,7 +55,7 @@ class ssh: files {
         }
 
         self.scpArguments = nil
-        self.scpArguments = scpArgumentsSsh(hiddenID: nil)
+        self.scpArguments = ScpArgumentsSsh(hiddenID: nil)
         self.arguments = scpArguments!.getArguments(operation: .createKey, key: "rsa", path: self.FilesRoot)
         self.command = self.scpArguments!.getCommand()
         self.executeSshCommand()
@@ -70,7 +70,7 @@ class ssh: files {
         }
 
         self.scpArguments = nil
-        self.scpArguments = scpArgumentsSsh(hiddenID: nil)
+        self.scpArguments = ScpArgumentsSsh(hiddenID: nil)
         self.arguments = scpArguments!.getArguments(operation: .createKey, key: "dsa", path: self.FilesRoot)
         self.command = self.scpArguments!.getCommand()
         self.executeSshCommand()
@@ -106,7 +106,7 @@ class ssh: files {
     // Secure copy of public key from local to remote catalog
     func ScpPubKey(key: String, hiddenID: Int) {
         self.scpArguments = nil
-        self.scpArguments = scpArgumentsSsh(hiddenID: hiddenID)
+        self.scpArguments = ScpArgumentsSsh(hiddenID: hiddenID)
         switch key {
         case "rsa":
             guard self.rsaStringPath != nil else {
@@ -128,7 +128,7 @@ class ssh: files {
     // Check for remote pub keys
     func checkRemotePubKey(key: String, hiddenID: Int) {
         self.scpArguments = nil
-        self.scpArguments = scpArgumentsSsh(hiddenID: hiddenID)
+        self.scpArguments = ScpArgumentsSsh(hiddenID: hiddenID)
         switch key {
         case "rsa":
             guard self.rsaStringPath != nil else {
@@ -149,7 +149,7 @@ class ssh: files {
     // Create remote ssh directory
     func createSshRemoteDirectory(hiddenID: Int) {
         self.scpArguments = nil
-        self.scpArguments = scpArgumentsSsh(hiddenID: hiddenID)
+        self.scpArguments = ScpArgumentsSsh(hiddenID: hiddenID)
         self.arguments = scpArguments!.getArguments(operation: .createRemoteSshCatalog, key: nil, path: nil)
         self.command = self.scpArguments!.getCommand()
         self.commandCopyPasteTermninal = self.scpArguments!.commandCopyPasteTermninal
@@ -158,10 +158,10 @@ class ssh: files {
     // Chmod remote .ssh directory
     func chmodSsh(key: String, hiddenID: Int) {
         self.scpArguments = nil
-        self.scpArguments = scpArgumentsSsh(hiddenID: hiddenID)
+        self.scpArguments = ScpArgumentsSsh(hiddenID: hiddenID)
         self.arguments = scpArguments!.getArguments(operation: .chmod, key: key, path: nil)
         self.command = self.scpArguments!.getCommand()
-        self.chmod = chmodPubKey(key:key)
+        self.chmod = ChmodPubKey(key:key)
     }
 
     // Execute command

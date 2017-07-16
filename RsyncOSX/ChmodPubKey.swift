@@ -8,20 +8,20 @@
 
 import Foundation
 
-enum chmodTask {
+enum ChmodTask {
     case chmodRsa
     case chmodDsa
     case empty
 }
 
-final class chmodPubKey {
+final class ChmodPubKey {
 
     // Work Queue
-    private var work: Array<chmodTask>?
+    private var work: Array<ChmodTask>?
 
     // Returns the top most element.
     // Top element is read only
-    func peek() -> chmodTask {
+    func peek() -> ChmodTask {
         guard self.work != nil else {
             return .empty
         }
@@ -33,7 +33,7 @@ final class chmodPubKey {
 
     // Returns the top most element.
     // Top element is removed
-    func pop() -> chmodTask {
+    func pop() -> ChmodTask {
         guard self.work != nil else {
             return .empty
         }
@@ -46,7 +46,7 @@ final class chmodPubKey {
     // Single run
     init(key: String) {
         self.work = nil
-        self.work = Array<chmodTask>()
+        self.work = Array<ChmodTask>()
         switch key {
         case "rsa":
             self.work!.append(.chmodRsa)

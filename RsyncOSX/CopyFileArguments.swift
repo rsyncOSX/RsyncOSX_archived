@@ -8,9 +8,9 @@
 
 import Foundation
 
-enum enumscopyfiles {
-    case rsync
-    case du
+enum Enumscopyfiles {
+    case rsyncCmd
+    case duCmd
 }
 
 final class CopyFileArguments: ProcessArguments {
@@ -43,7 +43,7 @@ final class CopyFileArguments: ProcessArguments {
         return self.argDisplay!
     }
 
-    init (task: enumscopyfiles, config: Configuration, remoteFile: String?, localCatalog: String?, drynrun: Bool?) {
+    init (task: Enumscopyfiles, config: Configuration, remoteFile: String?, localCatalog: String?, drynrun: Bool?) {
 
         // Initialize the argument array
         self.arguments = nil
@@ -52,14 +52,14 @@ final class CopyFileArguments: ProcessArguments {
         self.config = config
 
         switch (task) {
-        case .rsync:
+        case .rsyncCmd:
             // Arguments for rsync
             let arguments = RsyncArguments(config: config, remoteFile: remoteFile, localCatalog: localCatalog, drynrun: drynrun)
             self.arguments = arguments.getArguments()
             self.command = arguments.getCommand()
-        case .du:
+        case .duCmd:
             // Remote du -a
-            let arguments = getRemoteFilesArguments(config: config)
+            let arguments = GetRemoteFilesArguments(config: config)
             self.arguments = arguments.getArguments()
             self.command = arguments.getCommand()
         }

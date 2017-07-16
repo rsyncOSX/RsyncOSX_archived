@@ -17,7 +17,7 @@ import Foundation
 import Cocoa
 
 // Used to select argument
-enum argumentsRsync {
+enum ArgumentsRsync {
     case arg
     case argdryRun
 }
@@ -92,7 +92,7 @@ class SharingManagerConfiguration {
     var ViewControllertabSchedule: NSViewController?
     // Reference to the Operation object
     // Reference is set in when Scheduled task is executed
-    var operation: completeScheduledOperation?
+    var operation: CompleteScheduledOperation?
     // Which profile to use, if default nil
     var ViewControllerLoggData: NSViewController?
     // Reference to Ssh view
@@ -265,7 +265,7 @@ class SharingManagerConfiguration {
     /// - parameter index: index of Configuration
     /// - parameter argtype : either .arg or .argdryRun (of enumtype argumentsRsync)
     /// - returns : array of Strings holding all computed arguments
-    func getRsyncArgumentOneConfig (index: Int, argtype: argumentsRsync) -> Array<String> {
+    func getRsyncArgumentOneConfig (index: Int, argtype: ArgumentsRsync) -> Array<String> {
         let allarguments = self.argumentAllConfigurations[index] as! ArgumentsOneConfiguration
         switch argtype {
         case .arg:

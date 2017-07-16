@@ -45,7 +45,7 @@ final class ScheduleOperation {
             let queue = OperationQueue()
             // Create the Operation object which executes the
             // scheduled job
-            let task = executeTask()
+            let task = ExecuteTask()
             // Add the Operation object to the queue for execution.
             // The queue executes the main() task whenever everything is ready for execution
             queue.addOperation(task)
@@ -59,7 +59,7 @@ final class ScheduleOperation {
         self.scheduledJobs = ScheduleSortedAndExpand()
         // Removes the job of the stack
         if let dict = self.scheduledJobs!.jobToExecute() {
-            let dateStart: Date = dict.value(forKey: "start") as! Date
+            let dateStart: Date = (dict.value(forKey: "start") as? Date)!
             self.secondsToWait = self.scheduledJobs!.timeDoubleSeconds(dateStart, enddate: nil)
 
             guard self.secondsToWait != nil else {

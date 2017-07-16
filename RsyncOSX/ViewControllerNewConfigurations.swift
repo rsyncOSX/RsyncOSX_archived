@@ -48,11 +48,11 @@ class ViewControllerNewConfigurations: NSViewController {
     }()
 
     @IBAction func copyLocalCatalog(_ sender: NSButton) {
-        _ = FileDialog(requester: .AddLocalCatalog)
+        _ = FileDialog(requester: .addLocalCatalog)
     }
 
     @IBAction func copyRemoteCatalog(_ sender: NSButton) {
-        _ = FileDialog(requester: .AddRemoteCatalog)
+        _ = FileDialog(requester: .addRemoteCatalog)
     }
 
     // Userconfiguration button
@@ -194,9 +194,9 @@ extension ViewControllerNewConfigurations: GetPath {
     func pathSet(path: String?, requester: WhichPath) {
         if let setpath = path {
             switch (requester) {
-            case .AddLocalCatalog:
+            case .addLocalCatalog:
                 self.localCatalog.stringValue = setpath
-            case .AddRemoteCatalog:
+            case .addRemoteCatalog:
                 self.offsiteCatalog.stringValue = setpath
             default:
                 break

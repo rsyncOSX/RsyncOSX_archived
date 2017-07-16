@@ -9,9 +9,9 @@
 import Foundation
 
 // Reading userconfiguration from file into RsyncOSX
-final class userconfiguration {
+final class Userconfiguration {
 
-    weak var rsyncchanged_delegate: RsyncChanged?
+    weak var rsyncchangedDelegate: RsyncChanged?
 
     private func readUserconfiguration(dict: NSDictionary) {
         // Another version of rsync
@@ -68,9 +68,9 @@ final class userconfiguration {
         }
         // If userconfiguration is read from disk update info in main view
         if let pvc = SharingManagerConfiguration.sharedInstance.ViewControllertabMain as? ViewControllertabMain {
-            self.rsyncchanged_delegate = pvc
-            self.rsyncchanged_delegate?.rsyncchanged()
-            self.rsyncchanged_delegate?.displayAllowDoubleclick()
+            self.rsyncchangedDelegate = pvc
+            self.rsyncchangedDelegate?.rsyncchanged()
+            self.rsyncchangedDelegate?.displayAllowDoubleclick()
         }
     }
 }

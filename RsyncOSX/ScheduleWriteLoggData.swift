@@ -16,9 +16,9 @@ class ScheduleWriteLoggData {
     // Will be kept in memory until destroyed
     var Schedule = Array<ConfigurationSchedule>()
     // Delegate function for doing a refresh of NSTableView in ViewControllerScheduleDetailsAboutRuns
-    weak var refresh_delegate_logview: RefreshtableView?
+    weak var refreshlogviewDelegate: RefreshtableView?
     // Delegate function for deselect row in table main view after loggdata is saved
-    weak var deselectRow_delegate: deselectRowTable?
+    weak var deselectrowDelegate: deselectRowTable?
 
     /// Function for deleting log row
     /// - parameter hiddenID : hiddenID
@@ -47,8 +47,8 @@ class ScheduleWriteLoggData {
                     self.Schedule[indexA!].logrecords = result[i].logrecords
                     // Do a refresh of table
                     if let pvc = SharingManagerConfiguration.sharedInstance.ViewControllerLoggData as? ViewControllerLoggData {
-                        self.refresh_delegate_logview = pvc
-                        self.refresh_delegate_logview?.refresh()
+                        self.refreshlogviewDelegate = pvc
+                        self.refreshlogviewDelegate?.refresh()
                     }
                     // Save schedule including logs
                     PersistentStoreAPI.sharedInstance.saveScheduleFromMemory()
@@ -119,8 +119,8 @@ class ScheduleWriteLoggData {
             if (inserted) {
                 PersistentStoreAPI.sharedInstance.saveScheduleFromMemory()
                 if let pvc = SharingManagerConfiguration.sharedInstance.ViewControllertabMain as? ViewControllertabMain {
-                    self.deselectRow_delegate = pvc
-                    self.deselectRow_delegate?.deselectRow()
+                    self.deselectrowDelegate = pvc
+                    self.deselectrowDelegate?.deselectRow()
                 }
             }
         }

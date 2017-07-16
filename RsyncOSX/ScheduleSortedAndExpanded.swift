@@ -14,8 +14,8 @@ class ScheduleSortedAndExpand {
 
     // Array to store all scheduled jobs and history of executions
     // Will be kept in memory until destroyed
-    private var ScheduleAsNSDictionary: Array<NSDictionary>?
-    private var ScheduleAsConfiguration: Array<ConfigurationSchedule>?
+    private var scheduleAsNSDictionary: Array<NSDictionary>?
+    private var scheduleAsConfiguration: Array<ConfigurationSchedule>?
     // Sorting and expanding Schedule data.
     // Private func called from getScheduledTasks()
     private var sortedAndExpandedScheduleData: Array<NSDictionary>?
@@ -63,9 +63,9 @@ class ScheduleSortedAndExpand {
         var expandedData = Array<NSDictionary>()
         let dateformatter = Utils.sharedInstance.setDateformat()
 
-        for i in 0 ..< self.ScheduleAsNSDictionary!.count {
+        for i in 0 ..< self.scheduleAsNSDictionary!.count {
 
-            let dict = self.ScheduleAsNSDictionary![i]
+            let dict = self.scheduleAsNSDictionary![i]
             let dateStop: Date = dateformatter.date(from: dict.value(forKey: "dateStop") as! String)!
             let dateStart: Date = dateformatter.date(from: dict.value(forKey: "dateStart") as!String)!
 
@@ -164,24 +164,24 @@ class ScheduleSortedAndExpand {
     /// array of NSDictionary.
     /// - returns : none
     private func createScheduleAsNSDictionary () {
-        guard self.ScheduleAsConfiguration != nil else {
+        guard self.scheduleAsConfiguration != nil else {
             return
         }
         var data = Array<NSDictionary>()
-        for i in 0 ..< self.ScheduleAsConfiguration!.count {
-            if self.ScheduleAsConfiguration![i].dateStop != nil {
-                if (self.ScheduleAsConfiguration![i].schedule != "stopped") {
+        for i in 0 ..< self.scheduleAsConfiguration!.count {
+            if self.scheduleAsConfiguration![i].dateStop != nil {
+                if (self.scheduleAsConfiguration![i].schedule != "stopped") {
                     let dict: NSDictionary = [
-                        "dateStart": self.ScheduleAsConfiguration![i].dateStart,
-                        "dateStop": self.ScheduleAsConfiguration![i].dateStop!,
-                        "hiddenID": self.ScheduleAsConfiguration![i].hiddenID,
-                        "schedule": self.ScheduleAsConfiguration![i].schedule
+                        "dateStart": self.scheduleAsConfiguration![i].dateStart,
+                        "dateStop": self.scheduleAsConfiguration![i].dateStop!,
+                        "hiddenID": self.scheduleAsConfiguration![i].hiddenID,
+                        "schedule": self.scheduleAsConfiguration![i].schedule
                     ]
                     data.append(dict as NSDictionary)
                 }
             }
         }
-        self.ScheduleAsNSDictionary = data
+        self.scheduleAsNSDictionary = data
     }
 
     // Number of seconds ahead of time to read
@@ -385,7 +385,7 @@ class ScheduleSortedAndExpand {
 
     init () {
         // Getting the Schedule and expanding all the jobs
-        self.ScheduleAsConfiguration = SharingManagerSchedule.sharedInstance.getSchedule()
+        self.scheduleAsConfiguration = SharingManagerSchedule.sharedInstance.getSchedule()
         self.createScheduleAsNSDictionary()
         self.sortAndExpandScheduleData()
     }

@@ -41,13 +41,13 @@ class ViewControllerSsh: NSViewController {
     @IBOutlet weak var sshCreateRemoteCatalog: NSTextField!
 
     // Delegate for getting index from Execute view
-    weak var index_delegate: GetSelecetedIndex?
+    weak var indexDelegate: GetSelecetedIndex?
 
     // Source for CopyFiles and Ssh
     // self.presentViewControllerAsSheet(self.ViewControllerAbout)
-    lazy var ViewControllerSource: NSViewController = {
-        return self.storyboard!.instantiateController(withIdentifier: NSStoryboard.SceneIdentifier(rawValue: "CopyFilesID"))
-            as! NSViewController
+    lazy var viewControllerSource: NSViewController = {
+        return (self.storyboard!.instantiateController(withIdentifier: NSStoryboard.SceneIdentifier(rawValue: "CopyFilesID"))
+            as? NSViewController)!
     }()
 
     // Open the Terminal.app for pasting commands
@@ -68,17 +68,17 @@ class ViewControllerSsh: NSViewController {
         guard self.Ssh != nil else {
             return
         }
-        if (self.createRsaKey.state == .on) {
+        if self.createRsaKey.state == .on {
             self.Ssh!.createLocalKeysRsa()
         }
 
-        if (self.createDsaKey.state == .on) {
+        if self.createDsaKey.state == .on {
             self.Ssh!.createLocalKeysDsa()
         }
     }
 
     @IBAction func Source(_ sender: NSButton) {
-        self.presentViewControllerAsSheet(self.ViewControllerSource)
+        self.presentViewControllerAsSheet(self.viewControllerSource)
     }
 
     @IBAction func createRemoteSshDirectory(_ sender: NSButton) {
@@ -224,8 +224,8 @@ extension ViewControllerSsh: DismissViewController {
 extension ViewControllerSsh: getSource {
 
     // Returning hiddenID as Index
-    func GetSource(Index: Int) {
-        self.hiddenID = Index
+    func getSource(index: Int) {
+        self.hiddenID = index
         // Make sure that there is a offiseserver, if not set self.index = nil
         let config = SharingManagerConfiguration.sharedInstance.getConfigurations()[SharingManagerConfiguration.sharedInstance.getIndex(hiddenID!)]
         if config.offsiteServer.isEmpty == true {
@@ -239,7 +239,7 @@ extension ViewControllerSsh: getSource {
 extension ViewControllerSsh : NSTableViewDataSource {
 
     func numberOfRows(in aTableView: NSTableView) -> Int {
-        if (self.output != nil) {
+        if self.output != nil {
             return self.output!.count
         } else {
             return 0

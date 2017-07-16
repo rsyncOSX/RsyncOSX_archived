@@ -17,10 +17,10 @@ protocol ReportError: class {
     func reportError(errorstr: String)
 }
 
-class files {
+class Files {
 
     // Report error
-    weak var reportError_delegate: ReportError?
+    weak var reportErrorDelegate: ReportError?
     // Which root
     var root: Root?
     // Root of files
@@ -140,7 +140,7 @@ class files {
                     try fileManager.createDirectory(atPath: path, withIntermediateDirectories: true, attributes: nil)
                 } catch let e {
                     let error = e as NSError
-                    self.reportError_delegate?.reportError(errorstr: error.description)
+                    self.reportErrorDelegate?.reportError(errorstr: error.description)
                 }
             }
 
@@ -156,7 +156,7 @@ class files {
                 return files
             } catch let e {
                 let error = e as NSError
-                self.reportError_delegate?.reportError(errorstr: error.description)
+                self.reportErrorDelegate?.reportError(errorstr: error.description)
                 return nil
             }
         }

@@ -14,7 +14,7 @@ protocol setIndex: class {
 }
 
 protocol getSource: class {
-    func GetSource(Index: Int)
+    func getSource(index: Int)
 }
 
 class ViewControllerCopyFiles: NSViewController {
@@ -50,7 +50,7 @@ class ViewControllerCopyFiles: NSViewController {
 
      // Set localcatalog to filePath
     @IBAction func copyToIcon(_ sender: NSButton) {
-        _ = FileDialog(requester: .CopyFilesTo)
+        _ = FileDialog(requester: .copyFilesTo)
     }
 
     // Abort button
@@ -59,7 +59,7 @@ class ViewControllerCopyFiles: NSViewController {
         guard (self.copyFiles != nil) else {
             return
         }
-        self.copyFiles!.Abort()
+        self.copyFiles!.abort()
     }
 
     @IBOutlet weak var tableViewSelect: NSTableView!
@@ -404,9 +404,9 @@ extension ViewControllerCopyFiles: setIndex {
 }
 
 extension ViewControllerCopyFiles: getSource {
-    func GetSource(Index: Int) {
-        self.index = Index
-        self.displayRemoteserver(index: Index)
+    func getSource(index: Int) {
+        self.index = index
+        self.displayRemoteserver(index: index)
         if let index = self.index {
             self.copyFiles = CopyFiles(index: index)
             self.working.startAnimation(nil)

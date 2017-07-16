@@ -11,16 +11,16 @@ import Foundation
 // Class for completion of Operation objects when Process object termination.
 // The object does also kicks of next scheduled job by setting new
 // waiter time.
-final class completeScheduledOperation {
+final class CompleteScheduledOperation {
 
     // Delegate function for starting next scheduled operatin if any
     // Delegate function is triggered when NSTaskDidTerminationNotification
     // is discovered (e.g previous job is done)
-    weak var start_next_job_delegate: StartNextScheduledTask?
+    weak var startnextjobDelegate: StartNextScheduledTask?
     // Delegate function for start and completion of scheduled jobs
-    weak var notify_delegate: ScheduledJobInProgress?
+    weak var notifyDelegate: ScheduledJobInProgress?
     // Delegate to notify starttimer()
-    weak var startTimer_delegate: StartTimer?
+    weak var startTimerDelegate: StartTimer?
     // Initialize variables
     private var date: Date?
     private var dateStart: Date?
@@ -51,16 +51,16 @@ final class completeScheduledOperation {
         // and notify completed, by delegate
         if let pvc2 = SharingManagerConfiguration.sharedInstance.ViewControllertabMain as? ViewControllertabMain {
             globalMainQueue.async(execute: { () -> Void in
-                self.start_next_job_delegate = pvc2
-                self.notify_delegate = pvc2
-                self.start_next_job_delegate?.startProcess()
-                self.notify_delegate?.completed()
+                self.startnextjobDelegate = pvc2
+                self.notifyDelegate = pvc2
+                self.startnextjobDelegate?.startProcess()
+                self.notifyDelegate?.completed()
             })
         }
         if let pvc3 = SharingManagerSchedule.sharedInstance.ViewObjectSchedule as? ViewControllertabSchedule {
             globalMainQueue.async(execute: { () -> Void in
-                self.startTimer_delegate = pvc3
-                self.startTimer_delegate?.startTimerNextJob()
+                self.startTimerDelegate = pvc3
+                self.startTimerDelegate?.startTimerNextJob()
             })
         }
         // Reset reference til scheduled job

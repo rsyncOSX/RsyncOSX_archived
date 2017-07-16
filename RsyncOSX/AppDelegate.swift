@@ -20,7 +20,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         // Read user configuration
         if let userConfiguration =  PersistentStoreAPI.sharedInstance.getUserconfiguration() {
             // userConfiguration is never nil if object is created
-            _ = userconfiguration(userconfigRsyncOSX: userConfiguration)
+            _ = Userconfiguration(userconfigRsyncOSX: userConfiguration)
         }
     }
 

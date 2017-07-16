@@ -14,14 +14,14 @@ protocol GetPath : class {
 }
 
 enum WhichPath {
-    case CopyFilesTo
-    case AddLocalCatalog
-    case AddRemoteCatalog
+    case copyFilesTo
+    case addLocalCatalog
+    case addRemoteCatalog
 }
 
 final class FileDialog {
 
-    weak var path_delegate: GetPath?
+    weak var pathDelegate: GetPath?
 
     private func openfiledlg (title: String, message: String, requester: WhichPath) {
         let myFiledialog: NSOpenPanel = NSOpenPanel()
@@ -33,27 +33,27 @@ final class FileDialog {
         myFiledialog.title = title
         myFiledialog.message = message
         let value = myFiledialog.runModal()
-        switch (value.rawValue) {
+        switch value.rawValue {
         case 0: break
         case 1:
             // Select is choosen
             let path = myFiledialog.url?.relativePath
             // We are sending over the path to the correct requestor
-            switch (requester) {
-            case .CopyFilesTo:
+            switch requester {
+            case .copyFilesTo:
                 if let pvc = SharingManagerConfiguration.sharedInstance.ViewControllerCopyFiles as? ViewControllerCopyFiles {
-                    self.path_delegate = pvc
-                    self.path_delegate?.pathSet(path: path, requester: .CopyFilesTo)
+                    self.pathDelegate = pvc
+                    self.pathDelegate?.pathSet(path: path, requester: .copyFilesTo)
                 }
-            case .AddLocalCatalog:
+            case .addLocalCatalog:
                 if let pvc = SharingManagerConfiguration.sharedInstance.ViewControllerNewConfigurations as? ViewControllerNewConfigurations {
-                    self.path_delegate = pvc
-                    self.path_delegate?.pathSet(path: path, requester: .AddLocalCatalog)
+                    self.pathDelegate = pvc
+                    self.pathDelegate?.pathSet(path: path, requester: .addLocalCatalog)
                 }
-            case .AddRemoteCatalog:
+            case .addRemoteCatalog:
                 if let pvc = SharingManagerConfiguration.sharedInstance.ViewControllerNewConfigurations as? ViewControllerNewConfigurations {
-                    self.path_delegate = pvc
-                    self.path_delegate?.pathSet(path: path, requester: .AddRemoteCatalog)
+                    self.pathDelegate = pvc
+                    self.pathDelegate?.pathSet(path: path, requester: .addRemoteCatalog)
                 }
             }
             default:break

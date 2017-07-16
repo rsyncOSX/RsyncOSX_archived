@@ -13,7 +13,7 @@ protocol ProcessArguments {
     func getCommand() -> String?
 }
 
-final class getRemoteFilesArguments: ProcessArguments {
+final class GetRemoteFilesArguments: ProcessArguments {
 
     private var config: Configuration?
     private var args: Array<String>?

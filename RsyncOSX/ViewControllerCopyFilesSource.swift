@@ -30,12 +30,12 @@ class ViewControllerCopyFilesSource: NSViewController {
         if let pvc = self.presenting as? ViewControllerCopyFiles {
             self.getSourceDelegate = pvc
             if let index = self.index {
-                self.getSourceDelegate?.GetSource(Index: index)
+                self.getSourceDelegate?.getSource(index: index)
             }
         } else if let pvc = self.presenting as? ViewControllerSsh {
             self.getSourceDelegate2 = pvc
             if let index = self.index {
-                self.getSourceDelegate2?.GetSource(Index: index)
+                self.getSourceDelegate2?.getSource(index: index)
             }
         }
         self.dismissDelegate?.dismiss_view(viewcontroller: self)
@@ -74,12 +74,12 @@ class ViewControllerCopyFilesSource: NSViewController {
         if let pvc = self.presenting as? ViewControllerCopyFiles {
             self.getSourceDelegate = pvc
             if let index = self.index {
-                self.getSourceDelegate?.GetSource(Index: index)
+                self.getSourceDelegate?.getSource(index: index)
             }
         } else if let pvc = self.presenting as? ViewControllerSsh {
             self.getSourceDelegate2 = pvc
             if let index = self.index {
-                self.getSourceDelegate2?.GetSource(Index: index)
+                self.getSourceDelegate2?.getSource(index: index)
             }
         }
 

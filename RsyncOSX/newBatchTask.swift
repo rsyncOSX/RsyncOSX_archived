@@ -12,7 +12,7 @@ import Cocoa
 protocol BatchTask: class {
     func presentViewBatch()
     func progressIndicatorViewBatch(operation: batchViewProgressIndicator)
-    func setOutputBatch(outputbatch: outputBatch?)
+    func setOutputBatch(outputbatch: OutputBatch?)
 }
 
 enum batchViewProgressIndicator {
@@ -42,7 +42,7 @@ final class newBatchTask {
     // Getting output from rsync
     var output: outputProcess?
     // Getting output from batchrun
-    private var outputbatch: outputBatch?
+    private var outputbatch: OutputBatch?
     // HiddenID task, set when row is selected
     private var hiddenID: Int?
 
@@ -114,7 +114,7 @@ final class newBatchTask {
     }
 
     // Error and stop execution
-    func Error() {
+    func error() {
         // Just pop off remaining work
         if let batchobject = SharingManagerConfiguration.sharedInstance.getBatchdataObject() {
             batchobject.abortOperations()
@@ -124,12 +124,12 @@ final class newBatchTask {
 
     // Called when ProcessTermination is called in main View.
     // Either dryn-run or realrun completed.
-    func ProcessTermination() {
+    func processTermination() {
 
         if let batchobject = SharingManagerConfiguration.sharedInstance.getBatchdataObject() {
 
             if (self.outputbatch == nil) {
-                self.outputbatch = outputBatch()
+                self.outputbatch = OutputBatch()
             }
 
             // Remove the first worker object

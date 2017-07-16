@@ -8,7 +8,7 @@
 
 import Foundation
 
-class profiles: files {
+class profiles: Files {
 
     // Delegate for reporting file error if any to main view
     weak var error_delegate: ReportErrorInMain?

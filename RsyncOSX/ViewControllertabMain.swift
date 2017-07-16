@@ -98,7 +98,7 @@ class ViewControllertabMain: NSViewController {
     // Getting output from rsync 
     fileprivate var output: outputProcess?
     // Getting output from batchrun
-    fileprivate var outputbatch: outputBatch?
+    fileprivate var outputbatch: OutputBatch?
     // HiddenID task, set when row is selected
     fileprivate var hiddenID: Int?
     // Reference to Schedules object
@@ -306,7 +306,7 @@ class ViewControllertabMain: NSViewController {
 
     // Display correct rsync command in view
     fileprivate func setRsyncCommandDisplay() {
-        if (self.displayDryRun.state == .on) {
+        if self.displayDryRun.state == .on {
             if let index = self.index {
                 self.rsyncCommand.stringValue = Utils.sharedInstance.setRsyncCommandDisplay(index: index, dryRun: true)
             } else {
@@ -880,7 +880,7 @@ extension ViewControllertabMain: UpdateProgress {
             }
             self.output = self.batchtask!.output
             self.process = self.batchtask!.process
-            self.batchtask!.ProcessTermination()
+            self.batchtask!.processTermination()
         }
     }
 
@@ -955,7 +955,7 @@ extension ViewControllertabMain: RsyncError {
                     self.singletask!.Error()
                 }
                 if (self.batchtask != nil) {
-                    self.batchtask!.Error()
+                    self.batchtask!.error()
                 }
             })
         }
@@ -1173,7 +1173,7 @@ extension ViewControllertabMain: BatchTask {
         }
     }
 
-    func setOutputBatch(outputbatch: outputBatch?) {
+    func setOutputBatch(outputbatch: OutputBatch?) {
         self.outputbatch = outputbatch
     }
 }

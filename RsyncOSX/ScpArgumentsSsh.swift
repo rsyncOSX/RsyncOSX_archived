@@ -8,7 +8,7 @@
 
 import Foundation
 
-enum sshOperations {
+enum SshOperations {
     case scpKey
     case checkKey
     case createKey
@@ -17,7 +17,7 @@ enum sshOperations {
 
 }
 
-final class scpArgumentsSsh {
+final class ScpArgumentsSsh {
 
     var commandCopyPasteTermninal: String?
 
@@ -27,8 +27,8 @@ final class scpArgumentsSsh {
     private var file: String?
     private var stringArray: Array<String>?
 
-    private var RemoteRsaPubkeyString: String = ".ssh/authorized_keys"
-    private var RemoteDsaPubkeyString: String = ".ssh/authorized_keys2"
+    private var remoteRsaPubkeyString: String = ".ssh/authorized_keys"
+    private var remoteDsaPubkeyString: String = ".ssh/authorized_keys2"
 
     // Set parameters for SCP for copy public ssh key to server
     // scp ~/.ssh/id_rsa.pub user@server.com:.ssh/authorized_keys
@@ -52,9 +52,9 @@ final class scpArgumentsSsh {
         }
         self.args!.append(path)
         if key == "rsa" {
-          offsiteArguments = self.config!.offsiteUsername + "@" + self.config!.offsiteServer + ":" + self.RemoteRsaPubkeyString
+          offsiteArguments = self.config!.offsiteUsername + "@" + self.config!.offsiteServer + ":" + self.remoteRsaPubkeyString
         } else {
-          offsiteArguments = self.config!.offsiteUsername + "@" + self.config!.offsiteServer + ":" + self.RemoteDsaPubkeyString
+          offsiteArguments = self.config!.offsiteUsername + "@" + self.config!.offsiteServer + ":" + self.remoteDsaPubkeyString
         }
         self.args!.append(offsiteArguments!)
         self.command = "/usr/bin/scp"
@@ -90,10 +90,10 @@ final class scpArgumentsSsh {
         self.args!.append(offsiteArguments!)
 
         if key == "rsa" {
-            self.args!.append("ls -al ~/" + self.RemoteRsaPubkeyString)
+            self.args!.append("ls -al ~/" + self.remoteRsaPubkeyString)
         }
         if key == "dsa" {
-            self.args!.append("ls -al ~/" + self.RemoteDsaPubkeyString)
+            self.args!.append("ls -al ~/" + self.remoteDsaPubkeyString)
         }
         self.command = "/usr/bin/ssh"
     }
@@ -137,9 +137,9 @@ final class scpArgumentsSsh {
         self.args!.append(offsiteArguments!)
 
         if key == "rsa" {
-            self.args!.append("chmod 700 ~/.ssh; chmod 600 ~/" + self.RemoteRsaPubkeyString)
+            self.args!.append("chmod 700 ~/.ssh; chmod 600 ~/" + self.remoteRsaPubkeyString)
         } else {
-            self.args!.append("chmod 700 ~/.ssh; chmod 600 ~/" + self.RemoteDsaPubkeyString)
+            self.args!.append("chmod 700 ~/.ssh; chmod 600 ~/" + self.remoteDsaPubkeyString)
         }
         self.command = "/usr/bin/ssh"
     }
@@ -177,7 +177,7 @@ final class scpArgumentsSsh {
     }
 
     // Set the correct arguments
-    func getArguments(operation: sshOperations, key: String?, path: String?) -> Array<String>? {
+    func getArguments(operation: SshOperations, key: String?, path: String?) -> Array<String>? {
         switch operation {
         case .checkKey:
             self.argumentsScheckRemotePubKey(key: key!)
