@@ -43,7 +43,7 @@ class ExecuteTask: Operation {
 
                 config = configArray[0]
 
-                guard (config != nil) else {
+                guard config != nil else {
                     if let pvc = SharingManagerConfiguration.sharedInstance.viewControllertabMain as? ViewControllertabMain {
                         notifyDelegate = pvc
                         if (SharingManagerConfiguration.sharedInstance.allowNotifyinMain == true) {

@@ -180,7 +180,7 @@ class SharingManagerConfiguration {
 
     /// Function for returning the MacSerialNumber
     func getMacSerialNumber() -> String {
-        guard (self.macSerialNumber != nil) else {
+        guard self.macSerialNumber != nil else {
             // Compute it, set it and return
             self.macSerialNumber = self.getmacSerialNumber()
             return self.macSerialNumber!
@@ -388,7 +388,7 @@ class SharingManagerConfiguration {
     /// Function is getting the number of rows batchDataQueue
     /// - returns : the number of rows
     func batchDataQueuecount() -> Int {
-        guard (self.batchdata != nil) else {
+        guard self.batchdata != nil else {
             return 0
         }
         return self.batchdata!.getbatchDataQueuecount()
@@ -406,7 +406,7 @@ class SharingManagerConfiguration {
     private var newConfigurations: Array<NSMutableDictionary>?
 
     func addNewConfigurations(_ row: NSMutableDictionary) {
-        guard (self.newConfigurations != nil) else {
+        guard self.newConfigurations != nil else {
             self.newConfigurations = [row]
             return
         }
@@ -414,7 +414,7 @@ class SharingManagerConfiguration {
     }
 
     func newConfigurationsCount() -> Int {
-        guard (self.newConfigurations != nil) else {
+        guard self.newConfigurations != nil else {
             return 0
         }
         return self.newConfigurations!.count

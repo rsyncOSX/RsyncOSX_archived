@@ -134,7 +134,7 @@ class ViewControllerCopyFiles: NSViewController {
     }
 
     fileprivate func displayRemoteserver(index: Int?) {
-        guard (index != nil) else {
+        guard index != nil else {
             self.server.stringValue = ""
             self.rcatalog.stringValue = ""
             self.selectButton.title = "Get source"
@@ -191,16 +191,16 @@ class ViewControllerCopyFiles: NSViewController {
             return
         }
 
-        guard (self.remoteCatalog!.stringValue.isEmpty == false ) else {
+        guard self.remoteCatalog!.stringValue.isEmpty == false else {
             return
         }
 
-        guard (self.localCatalog!.stringValue.isEmpty == false ) else {
+        guard self.localCatalog!.stringValue.isEmpty == false else {
             return
         }
 
         let answer = Alerts.dialogOKCancel("Copy single files or directory", text: "Start copy?")
-        if (answer) {
+        if answer {
 
             self.rsync = true
             self.workingRsync.startAnimation(nil)

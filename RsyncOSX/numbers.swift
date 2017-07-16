@@ -42,37 +42,37 @@ final class Numbers {
 
         switch numbers {
         case .totalDirs:
-            guard (self.totalDirs != nil) else {
+            guard self.totalDirs != nil else {
                 return 0
             }
             return self.totalDirs!
         case .totalNumber:
-            guard (self.totalNumber != nil) else {
+            guard self.totalNumber != nil else {
                 return 0
             }
             return self.totalNumber!
         case .transferredNumber:
-            guard (self.transferredNumber != nil) else {
+            guard self.transferredNumber != nil else {
                 return 0
             }
             return self.transferredNumber!
         case .totalNumberSizebytes:
-            guard (self.totalNumberSizebytes != nil) else {
+            guard self.totalNumberSizebytes != nil else {
                 return 0
             }
             return Int(self.totalNumberSizebytes!/1024)
         case .transferredNumberSizebytes:
-            guard (self.transferredNumberSizebytes != nil) else {
+            guard self.transferredNumberSizebytes != nil else {
                 return 0
             }
             return Int(self.transferredNumberSizebytes!/1024)
         case .new:
-            guard (self.newfiles != nil) else {
+            guard self.newfiles != nil else {
                 return 0
             }
             return Int(self.newfiles!)
         case .delete:
-            guard (self.deletefiles != nil) else {
+            guard self.deletefiles != nil else {
                 return 0
             }
             return Int(self.deletefiles!)
@@ -163,7 +163,7 @@ final class Numbers {
         var numberstring: String?
         var parts: Array<String>?
 
-        guard (self.resultRsync != nil) else {
+        guard self.resultRsync != nil else {
             if (numberOfFiles == nil || sizeOfFiles == nil) {
                 return ["0", "0"]
             } else {
@@ -194,7 +194,7 @@ final class Numbers {
         guard parts!.count > 9 else {
             return ["0", "0"]
         }
-        guard (Double(parts![1]) != nil && (Double(parts![5]) != nil) && (Double(parts![8]) != nil) ) else {
+        guard Double(parts![1]) != nil && (Double(parts![5]) != nil) && (Double(parts![8]) != nil) else {
             return ["0", "0"]
         }
 

@@ -40,7 +40,7 @@ class ScheduleWriteLoggData {
                     // Get the index of the logrecord itself and remove the the record
                     let indexB = result[i].logrecords.index(of: delete[0])
                     // Guard index not nil
-                    guard (indexA != nil && indexB != nil) else {
+                    guard indexA != nil && indexB != nil else {
                         return
                     }
                     result[i].logrecords.remove(at: indexB!)

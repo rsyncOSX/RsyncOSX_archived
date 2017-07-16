@@ -128,7 +128,7 @@ final class Utils {
         self.indexBoolremoteserverOff = nil
         self.indexBoolremoteserverOff = Array<Bool>()
 
-        guard (SharingManagerConfiguration.sharedInstance.configurationsDataSourcecount() > 0) else {
+        guard SharingManagerConfiguration.sharedInstance.configurationsDataSourcecount() > 0 else {
             if let pvc = SharingManagerConfiguration.sharedInstance.viewControllertabMain as? ViewControllertabMain {
                 self.profilemenuDelegate = pvc
                 // Tell main view profile menu might presented

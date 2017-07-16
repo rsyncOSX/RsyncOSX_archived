@@ -144,7 +144,7 @@ final class RsyncParameters {
             if self.indexValue(splitstr[0]) >= 0 {
                 return "\"" + argument + "\" " + "no arguments"
             } else {
-                guard (argument != value) else {
+                guard argument != value else {
                     return value
                 }
                 return argument + "=" + value

@@ -26,10 +26,10 @@ class ScheduleSortedAndExpand {
     // self.sortedAndExpandedScheduleData
     func jobToExecute() -> NSDictionary? {
 
-        guard (self.sortedAndExpandedScheduleData != nil) else {
+        guard self.sortedAndExpandedScheduleData != nil else {
             return nil
         }
-        guard (self.sortedAndExpandedScheduleData!.count) > 0 else {
+        guard self.sortedAndExpandedScheduleData!.count > 0 else {
             return nil
         }
         return self.sortedAndExpandedScheduleData![0]
@@ -231,7 +231,7 @@ class ScheduleSortedAndExpand {
         var dict2: NSDictionary?
         var array = Array<String>()
 
-        guard (self.sortedAndExpandedScheduleData != nil) else {
+        guard self.sortedAndExpandedScheduleData != nil else {
             return [""]
         }
 
@@ -300,10 +300,10 @@ class ScheduleSortedAndExpand {
         var secondbackup: Double?
         // We are calculating the first object
 
-        guard (self.sortedAndExpandedScheduleData != nil) else {
+        guard self.sortedAndExpandedScheduleData != nil else {
             return [-1, -1]
         }
-        guard (self.sortedAndExpandedScheduleData!.count > 0) else {
+        guard self.sortedAndExpandedScheduleData!.count > 0 else {
             return [-1, -1]
         }
         if (self.sortedAndExpandedScheduleData!.count) > 0 {

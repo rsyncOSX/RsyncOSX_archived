@@ -32,14 +32,14 @@ final class OutputProcess {
     }
 
     func getOutputCount () -> Int {
-        guard (self.output != nil) else {
+        guard self.output != nil else {
             return 0
         }
         return self.output!.count
     }
 
     func getOutput () -> Array<String> {
-        guard (self.output != nil) else {
+        guard self.output != nil else {
             return [""]
         }
         return self.output!

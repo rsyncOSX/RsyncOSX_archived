@@ -40,7 +40,7 @@ final class ScpArgumentsSsh {
             return
         }
 
-        guard (self.config!.offsiteServer.isEmpty == false) else {
+        guard self.config!.offsiteServer.isEmpty == false else {
             return
         }
 
@@ -76,7 +76,7 @@ final class ScpArgumentsSsh {
             return
         }
 
-        guard (self.config!.offsiteServer.isEmpty == false) else {
+        guard self.config!.offsiteServer.isEmpty == false else {
             return
         }
 
@@ -123,7 +123,7 @@ final class ScpArgumentsSsh {
         guard self.config != nil else {
             return
         }
-        guard (self.config!.offsiteServer.isEmpty == false) else {
+        guard self.config!.offsiteServer.isEmpty == false else {
             return
         }
 
@@ -153,7 +153,7 @@ final class ScpArgumentsSsh {
             return
         }
 
-        guard (self.config!.offsiteServer.isEmpty == false) else {
+        guard self.config!.offsiteServer.isEmpty == false else {
             return
         }
 
