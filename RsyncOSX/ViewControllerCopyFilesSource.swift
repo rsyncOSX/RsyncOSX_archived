@@ -83,7 +83,6 @@ class ViewControllerCopyFilesSource: NSViewController {
                 self.getSourceDelegate2?.getSource(index: index)
             }
         }
-
         self.dismissDelegate?.dismiss_view(viewcontroller: self)
     }
 
@@ -102,7 +101,7 @@ class ViewControllerCopyFilesSource: NSViewController {
                 }
                 self.index = SharingManagerConfiguration.sharedInstance.getIndex(hiddenID!)
                 self.setIndexDelegate?.setIndex(index: self.index!)
-            } else if let _ = self.presenting as? ViewControllerSsh {
+            } else if self.presenting as? ViewControllerSsh != nil {
                 let object = SharingManagerConfiguration.sharedInstance.getConfigurationsDataSourcecountBackupOnly()![index]
                 let hiddenID = object.value(forKey: "hiddenID") as? Int
                 guard hiddenID != nil else {

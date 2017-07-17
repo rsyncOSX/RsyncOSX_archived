@@ -8,7 +8,7 @@
 // Interface between Configuration in memory and
 // presistent store. Class is a interface
 // for Configuration.
-//swiftlint:disable syntactic_sugar line_length cyclomatic_complexity
+//swiftlint:disable syntactic_sugar line_length cyclomatic_complexity function_body_length
 
 import Foundation
 

@@ -5,12 +5,11 @@
 //  Created by Thomas Evensen on 05/09/2016.
 //  Copyright © 2016 Thomas Evensen. All rights reserved.
 //
-//swiftlint:disable syntactic_sugar file_length cyclomatic_complexity line_length type_body_length control_statement function_body_length
+//swiftlint:disable syntactic_sugar file_length cyclomatic_complexity line_length type_body_length
 
 import Foundation
 
 class ScheduleSortedAndExpand {
-
     // DATA STRUCTURES
 
     // Array to store all scheduled jobs and history of executions
@@ -19,26 +18,15 @@ class ScheduleSortedAndExpand {
     private var scheduleAsConfiguration: Array<ConfigurationSchedule>?
     // Unsorted expanded data
     private var expandedData = Array<NSDictionary>()
-    // Variables to calculate schedules
-    private var dateStart: Date?
-    private var days: Double?
-    private var schedule: String?
     // Sorting and expanding Schedule data.
-    // Private func called from getScheduledTasks()
     private var sortedAndExpandedScheduleData: Array<NSDictionary>?
     // Schedule in progress
     private var scheduleInProgress: Bool = false
 
     // First job to execute.Job is first element in 
-    // self.sortedAndExpandedScheduleData
     func jobToExecute() -> NSDictionary? {
-
-        guard self.sortedAndExpandedScheduleData != nil else {
-            return nil
-        }
-        guard self.sortedAndExpandedScheduleData!.count > 0 else {
-            return nil
-        }
+        guard self.sortedAndExpandedScheduleData != nil else { return nil}
+        guard self.sortedAndExpandedScheduleData!.count > 0 else {return nil}
         return self.sortedAndExpandedScheduleData![0]
     }
 
@@ -56,18 +44,17 @@ class ScheduleSortedAndExpand {
         }
         return self.scheduleInProgress
     }
+    // Calculate daily schedules
     private func daily (days: Double, dateStart: Date, schedule: String, dict: NSDictionary) {
         var k = Int(days)
-        if ( k < 370) {
-            if k > 30 {
-                k = 30
-            }
+        if k < 370 {
+            if k > 30 { k = 30 }
             for j in 0 ..< k {
                 var dateComponent = DateComponents()
                 dateComponent.day = j+1
                 let cal = Calendar.current
                 if let start: Date = cal.date(byAdding: dateComponent, to: dateStart) {
-                    if (start.timeIntervalSinceNow > 0) {
+                    if start.timeIntervalSinceNow > 0 {
                         let hiddenID = (dict.value(forKey: "hiddenID") as? Int)!
                         let dictSchedule: NSDictionary = [
                             "start": start,
@@ -80,18 +67,17 @@ class ScheduleSortedAndExpand {
             }
         }
     }
+    // Calculate weekly schedules
     private func weekly (days: Double, dateStart: Date, schedule: String, dict: NSDictionary) {
         var k = Int(days)
-        if (k < 370) {
-            if (k > 30) {
-                k = 30
-            }
+        if k < 370 {
+            if k > 30 {k = 30}
             for j in 0 ..< Int(k/7) {
                 var dateComponent = DateComponents()
                 dateComponent.day = ((j+1)*7)
                 let cal = Calendar.current
                 if let start: Date = cal.date(byAdding: dateComponent, to: dateStart) {
-                    if (start.timeIntervalSinceNow > 0) {
+                    if start.timeIntervalSinceNow > 0 {
                         let hiddenID = (dict.value(forKey: "hiddenID") as? Int)!
                         let dictSchedule: NSDictionary = [
                             "start": start,
@@ -107,10 +93,7 @@ class ScheduleSortedAndExpand {
 
     // Expanding and sorting Scheduledata
     private func sortAndExpandScheduleData() {
-
-        // var expandedData = Array<NSDictionary>()
         let dateformatter = Utils.sharedInstance.setDateformat()
-
         for i in 0 ..< self.scheduleAsNSDictionary!.count {
 
             let dict = self.scheduleAsNSDictionary![i]
@@ -122,8 +105,7 @@ class ScheduleSortedAndExpand {
 
             // Get all jobs which are not executed
 
-            if (seconds > 0) {
-
+            if seconds > 0 {
                 switch schedule {
                 case "once" :
                     let hiddenID = (dict.value(forKey: "hiddenID") as? Int)!
@@ -134,64 +116,20 @@ class ScheduleSortedAndExpand {
                         "schedule": schedule]
                     self.expandedData.append(dict)
                 case "daily":
-                    var k = Int(days)
-                    if ( k < 370) {
-                        if k > 30 {
-                            k = 30
-                        }
-                        for j in 0 ..< k {
-                            var dateComponent = DateComponents()
-                            dateComponent.day = j+1
-                            let cal = Calendar.current
-                            if let start: Date = cal.date(byAdding: dateComponent, to: dateStart) {
-                                if (start.timeIntervalSinceNow > 0) {
-                                    let hiddenID = (dict.value(forKey: "hiddenID") as? Int)!
-                                    let dict: NSDictionary = [
-                                        "start": start,
-                                        "hiddenID": hiddenID,
-                                        "dateStart": dateStart,
-                                        "schedule": schedule]
-                                    expandedData.append(dict)
-                                }
-                            }
-                        }
-                    }
+                    self.daily(days: days, dateStart: dateStart, schedule: schedule, dict: dict)
                 case "weekly":
-                    var k = Int(days)
-                    if (k < 370) {
-                        if (k > 30) {
-                            k = 30
-                        }
-                        for j in 0 ..< Int(k/7) {
-                            var dateComponent = DateComponents()
-                            dateComponent.day = ((j+1)*7)
-                            let cal = Calendar.current
-                            if let start: Date = cal.date(byAdding: dateComponent, to: dateStart) {
-                                if (start.timeIntervalSinceNow > 0) {
-                                    let hiddenID = (dict.value(forKey: "hiddenID") as? Int)!
-                                    let dict: NSDictionary = [
-                                        "start": start,
-                                        "hiddenID": hiddenID,
-                                        "dateStart": dateStart,
-                                        "schedule": schedule]
-                                    expandedData.append(dict)
-                                }
-                            }
-                        }
-                    }
+                    self.weekly(days: days, dateStart: dateStart, schedule: schedule, dict: dict)
                 default:
                     break
                 }
             }
-
-        self.sortedAndExpandedScheduleData = self.expandedData.sorted { (dict1, dict2) -> Bool in
-            if (dict1.value(forKey: "start") as? Date)!.timeIntervalSince((dict2.value(forKey: "start") as? Date)!) > 0 {
-                return false
-            } else {
-                return true
+            self.sortedAndExpandedScheduleData = self.expandedData.sorted { (dict1, dict2) -> Bool in
+                if (dict1.value(forKey: "start") as? Date)!.timeIntervalSince((dict2.value(forKey: "start") as? Date)!) > 0 {
+                    return false
+                } else {
+                    return true
+                }
             }
-        }
-        // self.sortedAndExpandedScheduleData = sorted
         // Set reference to the first scheduled job
         SharingManagerSchedule.sharedInstance.scheduledJob = self.jobToExecute()
         }
@@ -242,17 +180,17 @@ class ScheduleSortedAndExpand {
             let seconds = self.timeDoubleSeconds(dateStart, enddate: nil)
 
             // 30 minutes every second
-            if (seconds > 0 && seconds <= 1800) {
+            if seconds > 0 && seconds <= 1800 {
                 // Update every second
                 return 1
                 // 30 minutes and 2 hours every minute
-            } else if (seconds > 1800 && seconds <= 7200) {
+            } else if seconds > 1800 && seconds <= 7200 {
                 return 60
                 // 2 and 6 hours every 5 minutes
-            } else if (seconds > 7200 && seconds <= 21600) {
+            } else if seconds > 7200 && seconds <= 21600 {
                 return 300
                 // 7 and 24 hours every 30 minutes
-            } else if (seconds <= 86400 ) {
+            } else if seconds <= 86400 {
                 // Dont start
                 return 1800
             } else {
@@ -260,7 +198,7 @@ class ScheduleSortedAndExpand {
                 return 0
             }
         } else {
-            if (self.scheduleInProgress) {
+            if self.scheduleInProgress {
                 return 1
             } else {
                 return 0
@@ -286,12 +224,12 @@ class ScheduleSortedAndExpand {
                 dict1 = self.sortedAndExpandedScheduleData![0]
             }
         }
-        if (dict1 != nil) {
+        if dict1 != nil {
             let hiddenID1 = dict1!.value(forKey: "hiddenID") as? Int
             array.append(SharingManagerConfiguration.sharedInstance.getResourceConfiguration(hiddenID1!, resource: .offsiteServer))
             array.append(SharingManagerConfiguration.sharedInstance.getResourceConfiguration(hiddenID1!, resource: .localCatalog))
         }
-        if (dict2 != nil) {
+        if dict2 != nil {
             let hiddenID2 = dict2?.value(forKey: "hiddenID") as? Int
             array.append(SharingManagerConfiguration.sharedInstance.getResourceConfiguration(hiddenID2!, resource: .offsiteServer))
             array.append(SharingManagerConfiguration.sharedInstance.getResourceConfiguration(hiddenID2!, resource: .localCatalog))
@@ -411,16 +349,16 @@ class ScheduleSortedAndExpand {
         let (hr, minf) = modf (seconds / 3600)
         let (min, secf) = modf (60 * minf)
         // hr, min, 60 * secf
-        if (hr == 0 && min == 0) {
+        if hr == 0 && min == 0 {
             result = String(format:"%.0f", 60 * secf) + " seconds"
-        } else if ( hr == 0 && min < 60) {
+        } else if hr == 0 && min < 60 {
             result = String(format:"%.0f", min) + " minutes " + String(format:"%.0f", 60 * secf) + " seconds"
-        } else if (hr < 25 ) {
+        } else if hr < 25 {
             result = String(format:"%.0f", hr) + " hours " + String(format:"%.0f", min) + " minutes"
         } else {
             result = String(format:"%.0f", hr/24) + " days"
         }
-        if (secf <= 0) {
+        if secf <= 0 {
             result = " ... working ... "
         }
         return result!
