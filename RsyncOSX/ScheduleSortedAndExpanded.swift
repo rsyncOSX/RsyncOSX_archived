@@ -5,7 +5,7 @@
 //  Created by Thomas Evensen on 05/09/2016.
 //  Copyright © 2016 Thomas Evensen. All rights reserved.
 //
-//swiftlint:disable syntactic_sugar file_length cyclomatic_complexity line_length type_body_length control_statement
+//swiftlint:disable syntactic_sugar file_length cyclomatic_complexity line_length type_body_length control_statement function_body_length
 
 import Foundation
 
@@ -17,6 +17,12 @@ class ScheduleSortedAndExpand {
     // Will be kept in memory until destroyed
     private var scheduleAsNSDictionary: Array<NSDictionary>?
     private var scheduleAsConfiguration: Array<ConfigurationSchedule>?
+    // Unsorted expanded data
+    private var expandedData = Array<NSDictionary>()
+    // Variables to calculate schedules
+    private var dateStart: Date?
+    private var days: Double?
+    private var schedule: String?
     // Sorting and expanding Schedule data.
     // Private func called from getScheduledTasks()
     private var sortedAndExpandedScheduleData: Array<NSDictionary>?
@@ -50,11 +56,59 @@ class ScheduleSortedAndExpand {
         }
         return self.scheduleInProgress
     }
+    private func daily (days: Double, dateStart: Date, schedule: String, dict: NSDictionary) {
+        var k = Int(days)
+        if ( k < 370) {
+            if k > 30 {
+                k = 30
+            }
+            for j in 0 ..< k {
+                var dateComponent = DateComponents()
+                dateComponent.day = j+1
+                let cal = Calendar.current
+                if let start: Date = cal.date(byAdding: dateComponent, to: dateStart) {
+                    if (start.timeIntervalSinceNow > 0) {
+                        let hiddenID = (dict.value(forKey: "hiddenID") as? Int)!
+                        let dictSchedule: NSDictionary = [
+                            "start": start,
+                            "hiddenID": hiddenID,
+                            "dateStart": dateStart,
+                            "schedule": schedule]
+                        self.expandedData.append(dictSchedule)
+                    }
+                }
+            }
+        }
+    }
+    private func weekly (days: Double, dateStart: Date, schedule: String, dict: NSDictionary) {
+        var k = Int(days)
+        if (k < 370) {
+            if (k > 30) {
+                k = 30
+            }
+            for j in 0 ..< Int(k/7) {
+                var dateComponent = DateComponents()
+                dateComponent.day = ((j+1)*7)
+                let cal = Calendar.current
+                if let start: Date = cal.date(byAdding: dateComponent, to: dateStart) {
+                    if (start.timeIntervalSinceNow > 0) {
+                        let hiddenID = (dict.value(forKey: "hiddenID") as? Int)!
+                        let dictSchedule: NSDictionary = [
+                            "start": start,
+                            "hiddenID": hiddenID,
+                            "dateStart": dateStart,
+                            "schedule": schedule]
+                        self.expandedData.append(dictSchedule)
+                    }
+                }
+            }
+        }
+    }
 
     // Expanding and sorting Scheduledata
     private func sortAndExpandScheduleData() {
 
-        var expandedData = Array<NSDictionary>()
+        // var expandedData = Array<NSDictionary>()
         let dateformatter = Utils.sharedInstance.setDateformat()
 
         for i in 0 ..< self.scheduleAsNSDictionary!.count {
@@ -62,7 +116,6 @@ class ScheduleSortedAndExpand {
             let dict = self.scheduleAsNSDictionary![i]
             let dateStop: Date = dateformatter.date(from: (dict.value(forKey: "dateStop") as? String)!)!
             let dateStart: Date = dateformatter.date(from: (dict.value(forKey: "dateStart") as? String)!)!
-
             let days: Double = dateStop.timeIntervalSinceNow/(60*60*24)
             let schedule: String = (dict.value(forKey: "schedule") as? String)!
             let seconds: Double = dateStop.timeIntervalSinceNow
@@ -79,7 +132,7 @@ class ScheduleSortedAndExpand {
                         "hiddenID": hiddenID,
                         "dateStart": dateStart,
                         "schedule": schedule]
-                    expandedData.append(dict)
+                    self.expandedData.append(dict)
                 case "daily":
                     var k = Int(days)
                     if ( k < 370) {
@@ -131,14 +184,14 @@ class ScheduleSortedAndExpand {
                 }
             }
 
-        let sorted: [NSDictionary] = expandedData.sorted { (dict1, dict2) -> Bool in
+        self.sortedAndExpandedScheduleData = self.expandedData.sorted { (dict1, dict2) -> Bool in
             if (dict1.value(forKey: "start") as? Date)!.timeIntervalSince((dict2.value(forKey: "start") as? Date)!) > 0 {
                 return false
             } else {
                 return true
             }
         }
-        self.sortedAndExpandedScheduleData = sorted
+        // self.sortedAndExpandedScheduleData = sorted
         // Set reference to the first scheduled job
         SharingManagerSchedule.sharedInstance.scheduledJob = self.jobToExecute()
         }
@@ -162,8 +215,7 @@ class ScheduleSortedAndExpand {
             return
         }
         var data = Array<NSDictionary>()
-        for i in 0 ..< self.scheduleAsConfiguration!.count where self.scheduleAsConfiguration![i].dateStop != nil {
-            if self.scheduleAsConfiguration![i].schedule != "stopped" {
+        for i in 0 ..< self.scheduleAsConfiguration!.count where self.scheduleAsConfiguration![i].dateStop != nil && self.scheduleAsConfiguration![i].schedule != "stopped" {
                 let dict: NSDictionary = [
                     "dateStart": self.scheduleAsConfiguration![i].dateStart,
                     "dateStop": self.scheduleAsConfiguration![i].dateStop!,
@@ -172,7 +224,6 @@ class ScheduleSortedAndExpand {
                 ]
                 data.append(dict as NSDictionary)
             }
-        }
         self.scheduleAsNSDictionary = data
     }
 

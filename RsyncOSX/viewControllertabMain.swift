@@ -7,7 +7,7 @@
 //  Copyright © 2016 Thomas Evensen. All rights reserved.
 //
 
-//swiftlint:disable syntactic_sugar file_length cyclomatic_complexity line_length
+//swiftlint:disable syntactic_sugar file_length cyclomatic_complexity line_length type_body_length
 
 import Foundation
 import Cocoa
@@ -647,7 +647,7 @@ extension ViewControllertabMain: ReadConfigurationsAgain {
 
     func readConfigurations() {
         SharingManagerConfiguration.sharedInstance.readAllConfigurationsAndArguments()
-        if SharingManagerConfiguration.sharedInstance.configurationsDataSourcecount() > 0  {
+        if SharingManagerConfiguration.sharedInstance.configurationsDataSourcecount() > 0 {
             globalMainQueue.async(execute: { () -> Void in
                 self.mainTableView.reloadData()
             })

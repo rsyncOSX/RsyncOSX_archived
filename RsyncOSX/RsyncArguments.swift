@@ -27,7 +27,7 @@ final class RsyncArguments: ProcessArguments {
             let whitespace: String = "\\ "
             let remote = remote_with_whitespace.replacingOccurrences(of: " ", with: whitespace)
             let local: String = localCatalog!
-            if (config.sshport != nil) {
+            if config.sshport != nil {
                 self.args!.append("-e")
                 self.args!.append("ssh -p " + String(config.sshport!))
             } else {
@@ -37,16 +37,16 @@ final class RsyncArguments: ProcessArguments {
             self.args!.append("--archive")
             self.args!.append("--verbose")
             // If copy over network compress files
-            if (config.offsiteServer.isEmpty) {
+            if config.offsiteServer.isEmpty {
                 self.args!.append("--compress")
             }
             // Set dryrun or not
-            if (drynrun != nil) {
-                if (drynrun == true) {
+            if drynrun != nil {
+                if drynrun == true {
                     self.args!.append("--dry-run")
                 }
             }
-            if (config.offsiteServer.isEmpty) {
+            if config.offsiteServer.isEmpty {
                 self.args!.append(config.offsiteCatalog + remote)
             } else {
                 let offsiteArguments = config.offsiteUsername + "@" + config.offsiteServer + ":" + config.offsiteCatalog + remote

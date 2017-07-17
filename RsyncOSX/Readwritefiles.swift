@@ -9,7 +9,7 @@
 // let str = "/Rsync/" + serialNumber + profile? + "/configRsync.plist"
 // let str = "/Rsync/" + serialNumber + "/config.plist"
 //
-//swiftlint:disable synctactic_sugar line_length cyclomatic_complexity
+//swiftlint:disable syntactic_sugar line_length cyclomatic_complexity
 
 import Foundation
 

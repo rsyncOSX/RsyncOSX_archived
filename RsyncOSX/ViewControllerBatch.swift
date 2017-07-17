@@ -47,7 +47,7 @@ class ViewControllerBatch: NSViewController {
 
     @IBAction func close(_ sender: NSButton) {
 
-        if (self.close!) {
+        if self.close! {
             self.batchTask = NewBatchTask()
             self.batchTask!.closeOperation()
         } else {
@@ -84,7 +84,7 @@ class ViewControllerBatch: NSViewController {
         // Setting delegates and datasource
         self.mainTableView.delegate = self
         self.mainTableView.dataSource = self
-        if (SharingManagerConfiguration.sharedInstance.batchDataQueuecount() > 0 ) {
+        if SharingManagerConfiguration.sharedInstance.batchDataQueuecount() > 0 {
             globalMainQueue.async(execute: { () -> Void in
                 self.mainTableView.reloadData()
             })
@@ -130,10 +130,10 @@ extension ViewControllerBatch : NSTableViewDelegate {
             return nil
         }
         let object: NSMutableDictionary = SharingManagerConfiguration.sharedInstance.getbatchDataQueue()![row]
-        if (tableColumn!.identifier.rawValue == "estimatedCellID" || tableColumn!.identifier.rawValue == "completedCellID" ) {
+        if tableColumn!.identifier.rawValue == "estimatedCellID" || tableColumn!.identifier.rawValue == "completedCellID" {
             return object[tableColumn!.identifier] as? Int!
         } else {
-            if (row == SharingManagerConfiguration.sharedInstance.getBatchdataObject()!.getRow() && tableColumn!.identifier.rawValue == "taskCellID") {
+            if row == SharingManagerConfiguration.sharedInstance.getBatchdataObject()!.getRow() && tableColumn!.identifier.rawValue == "taskCellID" {
                 return (object[tableColumn!.identifier] as? String)! + " *"
             } else {
                 return object[tableColumn!.identifier] as? String

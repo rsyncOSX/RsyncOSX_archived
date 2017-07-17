@@ -6,7 +6,7 @@
 //  Copyright © 2016 Thomas Evensen. All rights reserved.
 //
 
-//swiftlint:disable syntactic_sugar file_length cyclomatic_complexity line_length
+//swiftlint:disable syntactic_sugar file_length cyclomatic_complexity line_length function_body_length
 
 import Foundation
 import Cocoa
@@ -88,28 +88,28 @@ class ViewControllertabSchedule: NSViewController {
         var range: Bool = false
 
         if self.index != nil {
-            if (self.once.state == .on) {
+            if self.once.state == .on {
                 schedule = "once"
                 if seconds > 0 {
                     range = true
                 } else {
                     self.info(str: "Startdate has passed...")
                 }
-            } else if (self.daily.state  == .on) {
+            } else if self.daily.state  == .on {
                 schedule = "daily"
-                if (secondsstart >= (60*60*24)) {
+                if secondsstart >= (60*60*24) {
                     range = true
                 } else {
                     self.info(str: "Startdate has to be more than 24 hours ahead...")
                 }
-            } else if (self.weekly.state  == .on) {
+            } else if self.weekly.state  == .on {
                 schedule = "weekly"
-                if (secondsstart >= (60*60*24*7)) {
+                if secondsstart >= (60*60*24*7) {
                     range = true
                 } else {
                     self.info(str: "Startdate has to be more than 7 days ahead...")
                 }
-            } else if (self.details.state  == .on) {
+            } else if self.details.state  == .on {
                 // Details
                 details = true
                 globalMainQueue.async(execute: { () -> Void in
@@ -117,9 +117,9 @@ class ViewControllertabSchedule: NSViewController {
                 })
                 self.details.state = .off
             }
-            if (details == false && range == true) {
+            if details == false && range == true {
                 let answer = Alerts.dialogOKCancel("Add Schedule?", text: "Cancel or OK")
-                if (answer) {
+                if answer {
                     SharingManagerSchedule.sharedInstance.addScheduleData(self.hiddenID!, schedule: schedule!, start: startdate, stop: stopdate)
                     self.newSchedules = true
                     // Refresh table and recalculate the Schedules jobs
@@ -186,7 +186,7 @@ class ViewControllertabSchedule: NSViewController {
             // Create a Schedules object
             self.schedules = ScheduleSortedAndExpand()
         }
-        if (SharingManagerConfiguration.sharedInstance.configurationsDataSourcecountBackupOnlyCount() > 0 ) {
+        if SharingManagerConfiguration.sharedInstance.configurationsDataSourcecountBackupOnlyCount() > 0 {
             globalMainQueue.async(execute: { () -> Void in
                 self.mainTableView.reloadData()
             })
@@ -201,7 +201,7 @@ class ViewControllertabSchedule: NSViewController {
 
     override func viewDidDisappear() {
         super.viewDidDisappear()
-        if (self.newSchedules!) {
+        if self.newSchedules! {
             self.newSchedules = false
             if let pvc = SharingManagerConfiguration.sharedInstance.viewControllertabMain as? ViewControllertabMain {
                 self.newSchedulesDelegate = pvc
@@ -217,7 +217,7 @@ class ViewControllertabSchedule: NSViewController {
         if self.schedules != nil {
             let timer: Double = self.schedules!.startTimerseconds()
             // timer == 0 do not start NSTimer, timer > 0 update frequens of NSTimer
-            if (timer > 0) {
+            if timer > 0 {
                 self.nextTask?.invalidate()
                 self.nextTask = nil
                 // Update when next task is to be executed
@@ -236,8 +236,8 @@ class ViewControllertabSchedule: NSViewController {
         self.firstLocalCatalog.textColor = .black
         self.firstScheduledTask.stringValue = self.schedules!.whenIsNextTwoTasksString()[0]
         self.secondScheduledTask.stringValue = self.schedules!.whenIsNextTwoTasksString()[1]
-        if (self.schedules!.remoteServerAndPathNextTwoTasks().count > 0) {
-            if ((self.schedules!.remoteServerAndPathNextTwoTasks().count) > 2) {
+        if self.schedules!.remoteServerAndPathNextTwoTasks().count > 0 {
+            if self.schedules!.remoteServerAndPathNextTwoTasks().count > 2 {
                 self.firstRemoteServer.stringValue = self.schedules!.remoteServerAndPathNextTwoTasks()[0]
                 self.firstLocalCatalog.stringValue = self.schedules!.remoteServerAndPathNextTwoTasks()[1]
                 self.secondRemoteServer.stringValue = self.schedules!.remoteServerAndPathNextTwoTasks()[2]
@@ -294,7 +294,7 @@ extension ViewControllertabSchedule : NSTableViewDelegate {
                 schedule = true
             }
         }
-        if (tableColumn!.identifier.rawValue == "batchCellID") {
+        if tableColumn!.identifier.rawValue == "batchCellID" {
             return object[tableColumn!.identifier] as? Int!
         } else {
             if self.schedules != nil {
@@ -302,7 +302,7 @@ extension ViewControllertabSchedule : NSTableViewDelegate {
             } else {
                 number = 0
             }
-            if (schedule && number! > 0) {
+            if schedule && number! > 0 {
                 let returnstr = text! + " (" + String(number!) + ")"
                 return returnstr
             } else {
@@ -313,7 +313,7 @@ extension ViewControllertabSchedule : NSTableViewDelegate {
 
     // Toggling batch
     @objc(tableView:setObjectValue:forTableColumn:row:) func tableView(_ tableView: NSTableView, setObjectValue object: Any?, for tableColumn: NSTableColumn?, row: Int) {
-        if (SharingManagerConfiguration.sharedInstance.getConfigurations()[row].task == "backup") {
+        if SharingManagerConfiguration.sharedInstance.getConfigurations()[row].task == "backup" {
             SharingManagerConfiguration.sharedInstance.getConfigurationsDataSource()![row].setObject(object!, forKey: (tableColumn?.identifier)! as NSCopying)
             SharingManagerConfiguration.sharedInstance.setBatchYesNo(row)
         }
@@ -361,7 +361,7 @@ extension ViewControllertabSchedule: AddProfiles {
 extension ViewControllertabSchedule: RefreshtableView {
 
     func refresh() {
-        if (SharingManagerConfiguration.sharedInstance.configurationsDataSourcecountBackupOnlyCount() > 0 ) {
+        if SharingManagerConfiguration.sharedInstance.configurationsDataSourcecountBackupOnlyCount() > 0 {
             globalMainQueue.async(execute: { () -> Void in
                 self.mainTableView.reloadData()
             })

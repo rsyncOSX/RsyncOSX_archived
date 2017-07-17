@@ -25,11 +25,11 @@ final class GetRemoteFilesArguments: ProcessArguments {
     private func arguments() {
         if let config = self.config {
             // ssh user@server.com "cd offsiteCatalog; du ."
-            if (config.sshport != nil) {
+            if config.sshport != nil {
                 self.args!.append("-p")
                 self.args!.append(String(config.sshport!))
             }
-            if (config.offsiteServer.isEmpty == false) {
+            if config.offsiteServer.isEmpty == false {
                 self.args!.append(config.offsiteUsername + "@" + config.offsiteServer)
                 self.command = "/usr/bin/ssh"
             } else {

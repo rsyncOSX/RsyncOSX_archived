@@ -73,7 +73,7 @@ final class Utils {
     func setRsyncCommandDisplay(index: Int, dryRun: Bool) -> String {
         var str: String?
         let config = SharingManagerConfiguration.sharedInstance.getargumentAllConfigurations()[index] as? ArgumentsOneConfiguration
-        if (dryRun) {
+        if dryRun {
                 str = SharingManagerConfiguration.sharedInstance.setRsyncCommand() + " "
                 if let count = config?.argdryRunDisplay?.count {
                     for i in 0 ..< count {
@@ -143,12 +143,12 @@ final class Utils {
             var port: Int = 22
             for i in 0 ..< SharingManagerConfiguration.sharedInstance.configurationsDataSourcecount() {
                 if let record = SharingManagerConfiguration.sharedInstance.getargumentAllConfigurations()[i] as? ArgumentsOneConfiguration {
-                    if (record.config!.offsiteServer != "") {
+                    if record.config!.offsiteServer != "" {
                         if let sshport: Int = record.config!.sshport {
                             port = sshport
                         }
                         let (success, _) = Utils.sharedInstance.testTCPconnection(record.config!.offsiteServer, port: port, timeout: 1)
-                        if (success) {
+                        if success {
                             self.indexBoolremoteserverOff!.append(false)
                         } else {
                             // self.remoteserverOff = true
@@ -177,7 +177,7 @@ final class Utils {
     // Function for verifying thar rsync is present in either
     // standard path or path set by user
     func noRsync() {
-        if (SharingManagerConfiguration.sharedInstance.noRysync == true) {
+        if SharingManagerConfiguration.sharedInstance.noRysync == true {
             if let rsync = SharingManagerConfiguration.sharedInstance.rsyncPath {
                 Alerts.showInfo("ERROR: no rsync in " + rsync)
             } else {
