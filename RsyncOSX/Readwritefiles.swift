@@ -9,7 +9,7 @@
 // let str = "/Rsync/" + serialNumber + profile? + "/configRsync.plist"
 // let str = "/Rsync/" + serialNumber + "/config.plist"
 //
-//swiftlint:disable syntactic_sugar line_length cyclomatic_complexity
+//swiftlint:disable syntactic_sugar line_length
 
 import Foundation
 
@@ -89,37 +89,37 @@ class Readwritefiles {
             self.readdisk = false
         }
         if self.readdisk == true {
-
-            var list = Array<NSDictionary>()
-            guard self.fileName != nil && self.key != nil else {
-                return nil
-            }
-
-            let dictionary = NSDictionary(contentsOfFile: self.fileName!)
-            let items : Any? = dictionary?.object(forKey: self.key!)
-
-            // If no items return nil
-            guard items != nil else {
-                return nil
-            }
-
-            if let arrayitems = items as? NSArray {
-                for i in 0 ..< arrayitems.count {
-                    if let item = arrayitems[i] as? NSDictionary {
-                        _ = dictionary!.object(forKey: "ItemCode") as? String
-                        list.append(item)
-                    }
-                }
-            }
-            return list
+            return self.readDatafromPersistentStorage()
         } else {
             return nil
         }
     }
 
+    // Read data from persistent storage
+    private func readDatafromPersistentStorage() -> Array<NSDictionary>? {
+        var list = Array<NSDictionary>()
+        guard self.fileName != nil && self.key != nil else {
+            return nil
+        }
+        let dictionary = NSDictionary(contentsOfFile: self.fileName!)
+        let items : Any? = dictionary?.object(forKey: self.key!)
+        // If no items return nil
+        guard items != nil else {
+            return nil
+        }
+        if let arrayitems = items as? NSArray {
+            for i in 0 ..< arrayitems.count {
+                if let item = arrayitems[i] as? NSDictionary {
+                    _ = dictionary!.object(forKey: "ItemCode") as? String
+                    list.append(item)
+                }
+            }
+        }
+        return list
+    }
+
     // Function for write data to persistent store
     func writeDictionarytofile (_ array: Array<NSDictionary>, task: WhatToReadWrite) -> Bool {
-
         self.setPreferences(task)
         guard self.task != nil  else {
             return false
@@ -166,7 +166,6 @@ class Readwritefiles {
             self.name = nil
             self.readdisk = false
         }
-
     }
 
     init(task: WhatToReadWrite) {
