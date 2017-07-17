@@ -74,8 +74,8 @@ class ScheduleWriteLoggData {
             var inserted: Bool = false
             for i in 0 ..< self.schedule.count {
                 // Add record only to record with no enddate
-                if (SharingManagerConfiguration.sharedInstance.getResourceConfiguration(hiddenID, resource: .task) == "backup") {
-                    if (self.schedule[i].hiddenID == hiddenID  && self.schedule[i].schedule == "manuel" && self.schedule[i].dateStop == nil) {
+                if SharingManagerConfiguration.sharedInstance.getResourceConfiguration(hiddenID, resource: .task) == "backup" {
+                    if self.schedule[i].hiddenID == hiddenID  && self.schedule[i].schedule == "manuel" && self.schedule[i].dateStop == nil {
                         let dict = NSMutableDictionary()
                         dict.setObject(date, forKey: "dateExecuted" as NSCopying)
                         dict.setObject(result, forKey: "resultExecuted" as NSCopying)
@@ -135,11 +135,11 @@ class ScheduleWriteLoggData {
     /// - parameter date : String representation of date and time stamp for task executed
     /// - parameter schedule : schedule of task
     func addScheduleResult(_ hiddenID: Int, dateStart: String, result: String, date: String, schedule: String) {
-        if (SharingManagerConfiguration.sharedInstance.detailedlogging) {
+        if SharingManagerConfiguration.sharedInstance.detailedlogging {
             loop : for i in 0 ..< self.schedule.count {
-                if (self.schedule[i].hiddenID == hiddenID  &&
+                if self.schedule[i].hiddenID == hiddenID  &&
                     self.schedule[i].schedule == schedule &&
-                    self.schedule[i].dateStart == dateStart) {
+                    self.schedule[i].dateStart == dateStart {
                     if (SharingManagerConfiguration.sharedInstance.getResourceConfiguration(hiddenID, resource: .task) == "backup") {
                         let dict = NSMutableDictionary()
                         dict.setObject(date, forKey: "dateExecuted" as NSCopying)

@@ -46,11 +46,11 @@ class ViewControllerEdit: NSViewController {
 
         var config: [Configuration] = SharingManagerConfiguration.sharedInstance.getConfigurations()
 
-        if (self.localCatalog.stringValue.hasSuffix("/") == false && self.singleFile == false) {
+        if self.localCatalog.stringValue.hasSuffix("/") == false && self.singleFile == false {
             self.localCatalog.stringValue += "/"
         }
         config[self.index!].localCatalog = self.localCatalog.stringValue
-        if (self.offsiteCatalog.stringValue.hasSuffix("/") == false) {
+        if self.offsiteCatalog.stringValue.hasSuffix("/") == false {
             self.offsiteCatalog.stringValue += "/"
         }
         config[self.index!].offsiteCatalog = self.offsiteCatalog.stringValue
@@ -58,7 +58,7 @@ class ViewControllerEdit: NSViewController {
         config[self.index!].offsiteUsername = self.offsiteUsername.stringValue
         config[self.index!].backupID = self.backupID.stringValue
         let port = self.sshport.stringValue
-        if (port.isEmpty == false) {
+        if port.isEmpty == false {
             if let port = Int(port) {
                 config[self.index!].sshport = port
             }
@@ -96,7 +96,7 @@ class ViewControllerEdit: NSViewController {
         let config: Configuration = SharingManagerConfiguration.sharedInstance.getConfigurations()[self.index!]
         self.localCatalog.stringValue = config.localCatalog
         // Check for single file
-        if (self.localCatalog.stringValue.hasSuffix("/") == false) {
+        if self.localCatalog.stringValue.hasSuffix("/") == false {
             self.singleFile = true
         } else {
             self.singleFile = false

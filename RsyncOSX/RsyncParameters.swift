@@ -106,11 +106,9 @@ final class RsyncParameters {
     // Returns Int value of argument
     private func indexValue (_ argument: String) -> Int {
         var index: Int = -1
-        loop : for i in 0 ..< self.rsyncArguments.count {
-            if argument == self.rsyncArguments[i].0 {
-                index = i
-                break loop
-            }
+        loop : for i in 0 ..< self.rsyncArguments.count where argument == self.rsyncArguments[i].0 {
+            index = i
+            break loop
         }
         return index
     }

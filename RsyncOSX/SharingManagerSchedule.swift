@@ -9,7 +9,7 @@
 //  Created by Thomas Evensen on 09/05/16.
 //  Copyright © 2016 Thomas Evensen. All rights reserved.
 //
-//swiftlint:disable syntactic_sugar disable file_length disable cyclomatic_complexity line_length  type_body_length control_statement
+//swiftlint:disable syntactic_sugar file_length disable cyclomatic_complexity line_length type_body_length control_statement
 
 import Foundation
 import Cocoa
@@ -139,13 +139,11 @@ class SharingManagerSchedule: ScheduleWriteLoggData {
     /// - parameter hiddenID : hiddenID for task
     func deleteSchedulesbyHiddenID(hiddenID: Int) {
         var delete: Bool = false
-        for i in 0 ..< self.schedule.count {
-            if (self.schedule[i].hiddenID == hiddenID) {
-                // Mark Schedules for delete
-                // Cannot delete in memory, index out of bound is result
-                self.schedule[i].delete = true
-                delete = true
-            }
+        for i in 0 ..< self.schedule.count where self.schedule[i].hiddenID == hiddenID {
+            // Mark Schedules for delete
+            // Cannot delete in memory, index out of bound is result
+            self.schedule[i].delete = true
+            delete = true
         }
         if (delete) {
             PersistentStoreAPI.sharedInstance.saveScheduleFromMemory()
@@ -333,13 +331,11 @@ class SharingManagerSchedule: ScheduleWriteLoggData {
     // Used when a group is set from active to "stopped"
     private func updateExecutedNewKey (_ hiddenID: Int) {
         let executed: Array<NSMutableDictionary>? = self.computeNewParentKeys(hiddenID)
-        loop : for i in 0 ..< self.schedule.count {
-            if self.schedule[i].hiddenID == hiddenID {
-                if executed != nil {
-                    self.schedule[i].logrecords = executed!
-                }
-                break loop
+        loop : for i in 0 ..< self.schedule.count where self.schedule[i].hiddenID == hiddenID {
+            if executed != nil {
+                self.schedule[i].logrecords = executed!
             }
+            break loop
         }
     }
 

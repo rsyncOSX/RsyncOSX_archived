@@ -5,6 +5,7 @@
 //  Created by Thomas Evensen on 17/10/2016.
 //  Copyright © 2016 Thomas Evensen. All rights reserved.
 //
+//swiftlint:disable line_length
 
 import Foundation
 
@@ -18,7 +19,7 @@ class Profiles: Files {
         let fileManager = FileManager.default
         if let path = self.rootfiles {
             let profileDirectory = path + "/" + profileName
-            if (fileManager.fileExists(atPath: profileDirectory) == false) {
+            if fileManager.fileExists(atPath: profileDirectory) == false {
                 do {
                     try fileManager.createDirectory(atPath: profileDirectory, withIntermediateDirectories: true, attributes: nil)} catch let e {
                     let error = e as NSError
@@ -34,9 +35,9 @@ class Profiles: Files {
         let fileManager = FileManager.default
         if let path = self.rootfiles {
             let profileDirectory = path + "/" + profileName
-            if (fileManager.fileExists(atPath: profileDirectory) == true) {
+            if fileManager.fileExists(atPath: profileDirectory) == true {
                 let answer = Alerts.dialogOKCancel("Delete profile: " + profileName + "?", text: "Cancel or OK")
-                if (answer) {
+                if answer {
                     do {
                         try fileManager.removeItem(atPath: profileDirectory)} catch let e {
                         let error = e as NSError

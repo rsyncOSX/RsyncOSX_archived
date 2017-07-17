@@ -5,6 +5,7 @@
 //  Created by Thomas Evensen on 10.03.2017.
 //  Copyright © 2017 Thomas Evensen. All rights reserved.
 //
+//swiftlint:disable syntactic_sugar line_length
 
 import Foundation
 
@@ -54,14 +55,14 @@ class ProcessCmd {
                 if let str = NSString(data: data, encoding: String.Encoding.utf8.rawValue) {
                     // Add files to be copied, the output.addString takes care of
                     // splitting the output
-                    if (self.copyfiles) {
+                    if self.copyfiles {
                         output.addLine2(str as String)
                     } else {
                         output.addLine(str as String)
                     }
                     self.calculatedNumberOfFiles = output.getOutputCount()
                     // Check if in a scheduled operation, if not use delegate to inform about progress
-                    if (self.aScheduledOperation! == false) {
+                    if self.aScheduledOperation! == false {
                         // Send message about files
                         self.updateDelegate?.fileHandler()
                     }
@@ -74,13 +75,13 @@ class ProcessCmd {
         self.observationCenter = NotificationCenter.default.addObserver(forName: Process.didTerminateNotification, object: task, queue: nil) { _ -> Void in
 
             // Check if in a scheduled operation, if not use delegate to inform about termination of Process()
-            if (self.aScheduledOperation! == false) {
+            if self.aScheduledOperation! == false {
                 // Send message about process termination
                 self.updateDelegate?.processTermination()
             } else {
                 // We are in Scheduled operation and must finalize the job
                 // e.g logging date and stuff like that
-                if (SharingManagerConfiguration.sharedInstance.operation != nil) {
+                if SharingManagerConfiguration.sharedInstance.operation != nil {
                     SharingManagerConfiguration.sharedInstance.operation!.finalizeScheduledJob(output: output)
                 }
                 // After logging is done set reference to object = nil

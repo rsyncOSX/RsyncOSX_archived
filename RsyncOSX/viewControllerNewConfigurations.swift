@@ -84,7 +84,7 @@ class ViewControllerNewConfigurations: NSViewController {
 
     override func viewWillDisappear() {
         super.viewWillDisappear()
-        if (self.newConfigs) {
+        if self.newConfigs {
             PersistentStoreAPI.sharedInstance.saveNewConfigurations()
             self.newConfigs = false
         }
@@ -131,16 +131,16 @@ class ViewControllerNewConfigurations: NSViewController {
             dict.setValue(1, forKey: "singleFile")
         }
 
-        if (!self.localCatalog.stringValue.hasSuffix("/") && self.singleFile.state == .off) {
+        if !self.localCatalog.stringValue.hasSuffix("/") && self.singleFile.state == .off {
             self.localCatalog.stringValue += "/"
             dict.setValue(self.localCatalog.stringValue, forKey: "localCatalog")
         }
-        if (!self.offsiteCatalog.stringValue.hasSuffix("/")) {
+        if !self.offsiteCatalog.stringValue.hasSuffix("/") {
             self.offsiteCatalog.stringValue += "/"
             dict.setValue(self.offsiteCatalog.stringValue, forKey: "offsiteCatalog")
         }
         dict.setObject(self.rsyncdaemon.state, forKey: "rsyncdaemon" as NSCopying)
-        if (sshport.stringValue != "") {
+        if sshport.stringValue != "" {
             if let port: Int = Int(self.sshport.stringValue) {
                 dict.setObject(port, forKey: "sshport" as NSCopying)
             }

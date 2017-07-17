@@ -45,7 +45,7 @@ class ViewControllerProfile: NSViewController {
     // Add and load new profile
     @IBAction func addProfile(_ sender: NSButton) {
         let newprofile = self.newprofile.stringValue
-        if (newprofile.isEmpty == false) {
+        if newprofile.isEmpty == false {
             // Create new profile and use it
             self.profile?.createProfile(profileName: newprofile)
             SharingManagerConfiguration.sharedInstance.setProfile(profile: newprofile)
