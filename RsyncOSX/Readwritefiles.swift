@@ -5,11 +5,11 @@
 //  Created by Thomas Evensen on 25/10/2016.
 //  Copyright © 2016 Thomas Evensen. All rights reserved.
 //
-// let str = "/Rsync/" + serialNumber + profile? + "/scheduleRsync.plist"
-// let str = "/Rsync/" + serialNumber + profile? + "/configRsync.plist"
-// let str = "/Rsync/" + serialNumber + "/config.plist"
-//
-//swiftlint:disable syntactic_sugar line_length
+//  let str = "/Rsync/" + serialNumber + profile? + "/scheduleRsync.plist"
+//  let str = "/Rsync/" + serialNumber + profile? + "/configRsync.plist"
+//  let str = "/Rsync/" + serialNumber + "/config.plist"
+//  swiftlint OK - 17 July 2017
+//  swiftlint:disable syntactic_sugar line_length
 
 import Foundation
 

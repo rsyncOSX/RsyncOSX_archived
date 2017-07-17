@@ -4,7 +4,8 @@
 //  Created by Thomas Evensen on 09/02/16.
 //  Copyright © 2016 Thomas Evensen. All rights reserved.
 //
-//swiftlint:disable syntactic_sugar disable
+//  swiftlint OK - 17 July 2017
+//  swiftlint:disable syntactic_sugar disable
 
 import Foundation
 
@@ -21,7 +22,6 @@ struct ArgumentsOneConfiguration {
     var argdryRunDisplay: Array<String>?
 
     init(config: Configuration) {
-
         // The configuration
         self.config = config
         // All arguments for rsync is computed, two sets. One for dry-run and one for real run.

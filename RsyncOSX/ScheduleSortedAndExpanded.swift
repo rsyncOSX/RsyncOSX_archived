@@ -4,8 +4,8 @@
 //
 //  Created by Thomas Evensen on 05/09/2016.
 //  Copyright © 2016 Thomas Evensen. All rights reserved.
-//
-//swiftlint:disable syntactic_sugar file_length cyclomatic_complexity line_length type_body_length
+//  swiftlint More work to fix - 17 July 2017
+//  swiftlint:disable syntactic_sugar file_length cyclomatic_complexity line_length type_body_length
 
 import Foundation
 
@@ -44,6 +44,7 @@ class ScheduleSortedAndExpand {
         }
         return self.scheduleInProgress
     }
+
     // Calculate daily schedules
     private func daily (days: Double, dateStart: Date, schedule: String, dict: NSDictionary) {
         var k = Int(days)
@@ -67,6 +68,7 @@ class ScheduleSortedAndExpand {
             }
         }
     }
+
     // Calculate weekly schedules
     private func weekly (days: Double, dateStart: Date, schedule: String, dict: NSDictionary) {
         var k = Int(days)
@@ -95,7 +97,6 @@ class ScheduleSortedAndExpand {
     private func sortAndExpandScheduleData() {
         let dateformatter = Utils.sharedInstance.setDateformat()
         for i in 0 ..< self.scheduleAsNSDictionary!.count {
-
             let dict = self.scheduleAsNSDictionary![i]
             let dateStop: Date = dateformatter.date(from: (dict.value(forKey: "dateStop") as? String)!)!
             let dateStart: Date = dateformatter.date(from: (dict.value(forKey: "dateStart") as? String)!)!
@@ -104,7 +105,6 @@ class ScheduleSortedAndExpand {
             let seconds: Double = dateStop.timeIntervalSinceNow
 
             // Get all jobs which are not executed
-
             if seconds > 0 {
                 switch schedule {
                 case "once" :
