@@ -472,11 +472,9 @@ class SharingManagerConfiguration {
     /// - returns : index of Configuration
     func getIndex(_ hiddenID: Int) -> Int {
         var index: Int = -1
-        loop: for i in 0 ..< self.configurations.count {
-            if self.configurations[i].hiddenID == hiddenID {
+        loop: for i in 0 ..< self.configurations.count where self.configurations[i].hiddenID == hiddenID {
                 index = i
                 break loop
-            }
         }
         return index
     }

@@ -7,6 +7,7 @@
 //
 //  Class for crunching numbers from rsyn output.  Numbers are
 //  informal only, either used in main view or for logging purposes.
+//swiftlint:disable syntactic_sugar line_length
 
 import Foundation
 
@@ -104,9 +105,9 @@ final class Numbers {
 
         // Must make it somewhat robust, it it breaks all values is set to 0
 
-        if (transferredFiles.count == 1 && transferredFilesSize.count == 1 &&  totalFileSize.count == 1 &&  totalFilesNumber.count == 1) {
+        if transferredFiles.count == 1 && transferredFilesSize.count == 1 &&  totalFileSize.count == 1 &&  totalFilesNumber.count == 1 {
 
-            if (SharingManagerConfiguration.sharedInstance.rsyncVer3) {
+            if SharingManagerConfiguration.sharedInstance.rsyncVer3 {
                 // Ver3 of rsync adds "," as 1000 mark, must replace it and then split numbers into components
                 let transferredFilesParts = (transferredFiles[0] as AnyObject).replacingOccurrences(of: ",", with: "").components(separatedBy: " ")
                 let transferredFilesSizeParts = (transferredFilesSize[0] as AnyObject).replacingOccurrences(of: ",", with: "").components(separatedBy: " ")
@@ -172,7 +173,7 @@ final class Numbers {
             }
         }
 
-        if (SharingManagerConfiguration.sharedInstance.rsyncVer3) {
+        if SharingManagerConfiguration.sharedInstance.rsyncVer3 {
             // ["sent", "409687", "bytes", "", "received", "5331", "bytes", "", "830036.00", "bytes/sec"]
             let newmessage = self.resultRsync!.replacingOccurrences(of: ",", with: "")
             parts = newmessage.components(separatedBy: " ")
@@ -205,7 +206,7 @@ final class Numbers {
         resultreceived = parts![5] + " bytes in "
         bytesTotalreceived = Double(parts![5])!
 
-        if (bytesTotalsent > bytesTotalreceived) {
+        if bytesTotalsent > bytesTotalreceived {
             // backup task
             result = resultsent! + parts![8] + " b/sec"
             bytesSec = Double(parts![8])!
@@ -233,7 +234,7 @@ final class Numbers {
     init (output: Array<String>) {
         self.output = output
         // Getting the summarized output from output.
-        if (self.output!.count > 2) {
+        if self.output!.count > 2 {
             self.resultRsync = (self.output![self.output!.count-2])
         }
     }

@@ -50,7 +50,7 @@ class ViewControllerUserconfiguration: NSViewController {
     }
 
     @IBAction func toggleDetailedlogging(_ sender: NSButton) {
-        if (self.detailedlogging.state == .on) {
+        if self.detailedlogging.state == .on {
             SharingManagerConfiguration.sharedInstance.detailedlogging = true
         } else {
             SharingManagerConfiguration.sharedInstance.detailedlogging = false
@@ -59,8 +59,7 @@ class ViewControllerUserconfiguration: NSViewController {
     }
 
     @IBAction func close(_ sender: NSButton) {
-
-        if (self.dirty) {
+        if self.dirty {
             // Before closing save changed configuration
             self.setRsyncPath()
             self.verifyRsync()
@@ -71,7 +70,7 @@ class ViewControllerUserconfiguration: NSViewController {
     }
 
     @IBAction func toggleAllowDoubleclick(_ sender: NSButton) {
-        if (self.allowDoubleClick.state == .on) {
+        if self.allowDoubleClick.state == .on {
             SharingManagerConfiguration.sharedInstance.allowDoubleclick = true
         } else {
             SharingManagerConfiguration.sharedInstance.allowDoubleclick = false
@@ -85,7 +84,7 @@ class ViewControllerUserconfiguration: NSViewController {
     }
 
     @IBAction func toggleError(_ sender: NSButton) {
-        if (self.rsyncerror.state == .on) {
+        if self.rsyncerror.state == .on {
             SharingManagerConfiguration.sharedInstance.rsyncerror = true
         } else {
             SharingManagerConfiguration.sharedInstance.rsyncerror = false
@@ -94,8 +93,8 @@ class ViewControllerUserconfiguration: NSViewController {
     }
 
     private func setRsyncPath() {
-        if (self.rsyncPath.stringValue.isEmpty == false) {
-            if (rsyncPath.stringValue.hasSuffix("/") == false) {
+        if self.rsyncPath.stringValue.isEmpty == false {
+            if rsyncPath.stringValue.hasSuffix("/") == false {
                 rsyncPath.stringValue += "/"
                 SharingManagerConfiguration.sharedInstance.rsyncPath = rsyncPath.stringValue
             }
@@ -106,8 +105,8 @@ class ViewControllerUserconfiguration: NSViewController {
     }
 
     private func setRestorePath() {
-        if (self.restorePath.stringValue.isEmpty == false) {
-            if (restorePath.stringValue.hasSuffix("/") == false) {
+        if self.restorePath.stringValue.isEmpty == false {
+            if restorePath.stringValue.hasSuffix("/") == false {
                 restorePath.stringValue += "/"
                 SharingManagerConfiguration.sharedInstance.restorePath = restorePath.stringValue
             }
@@ -119,11 +118,11 @@ class ViewControllerUserconfiguration: NSViewController {
 
     // Function verifying rsync in path
     private func verifyRsync() {
-        if (self.version3rsync.state == .on) {
+        if self.version3rsync.state == .on {
             let fileManager = FileManager.default
             if let rsyncPath = SharingManagerConfiguration.sharedInstance.rsyncPath {
                 let path = rsyncPath + "rsync"
-                if (fileManager.fileExists(atPath: path) == false) {
+                if fileManager.fileExists(atPath: path) == false {
                     self.noRsync.isHidden = false
                     SharingManagerConfiguration.sharedInstance.noRysync = true
                 } else {
@@ -132,7 +131,7 @@ class ViewControllerUserconfiguration: NSViewController {
                 }
             } else {
                 let path = "/usr/local/bin/rsync"
-                if (fileManager.fileExists(atPath: path) == false) {
+                if fileManager.fileExists(atPath: path) == false {
                     self.noRsync.isHidden = false
                     SharingManagerConfiguration.sharedInstance.noRysync = true
                 } else {
@@ -145,7 +144,6 @@ class ViewControllerUserconfiguration: NSViewController {
             self.noRsync.isHidden = true
         }
     }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Dismisser is root controller

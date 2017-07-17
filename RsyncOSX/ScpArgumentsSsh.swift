@@ -5,6 +5,7 @@
 //  Created by Thomas Evensen on 27.04.2017.
 //  Copyright © 2017 Thomas Evensen. All rights reserved.
 //
+//swiftlint:disable syntactic_sugar line_length
 
 import Foundation
 
@@ -82,7 +83,7 @@ final class ScpArgumentsSsh {
 
         self.args = nil
         self.args = Array<String>()
-        if (self.config!.sshport != nil) {
+        if self.config!.sshport != nil {
             self.args!.append("-P")
             self.args!.append(String(self.config!.sshport!))
         }
@@ -103,7 +104,7 @@ final class ScpArgumentsSsh {
         self.args = nil
         self.args = Array<String>()
         self.args!.append("-f")
-        if (key == "rsa") {
+        if key == "rsa" {
              self.args!.append(path + "id_rsa")
          } else {
              self.args!.append(path + "id_dsa")
@@ -129,7 +130,7 @@ final class ScpArgumentsSsh {
 
         self.args = nil
         self.args = Array<String>()
-        if (self.config!.sshport != nil) {
+        if self.config!.sshport != nil {
             self.args!.append("-P")
             self.args!.append(String(self.config!.sshport!))
         }
@@ -159,7 +160,7 @@ final class ScpArgumentsSsh {
 
         self.args = nil
         self.args = Array<String>()
-        if (self.config!.sshport != nil) {
+        if self.config!.sshport != nil {
             self.args!.append("-P")
             self.args!.append(String(self.config!.sshport!))
         }
@@ -204,7 +205,7 @@ final class ScpArgumentsSsh {
 
     init(hiddenID: Int?) {
 
-        if (hiddenID != nil) {
+        if hiddenID != nil {
             self.config = SharingManagerConfiguration.sharedInstance.getConfigurations()[SharingManagerConfiguration.sharedInstance.getIndex(hiddenID!)]
         } else {
             self.config = nil

@@ -296,7 +296,7 @@ extension ViewControllerCopyFiles: NSTableViewDelegate {
 
             self.remoteCatalog.stringValue = split[1]
 
-            if (self.remoteCatalog.stringValue.isEmpty == false && self.localCatalog.stringValue.isEmpty == false) {
+            if self.remoteCatalog.stringValue.isEmpty == false && self.localCatalog.stringValue.isEmpty == false {
                 self.commandString.stringValue = self.copyFiles!.getCommandDisplayinView(remotefile: self.remoteCatalog.stringValue, localCatalog: self.localCatalog.stringValue)
             } else {
                 self.commandString.stringValue = "Please select both \"Restore to:\" and \"Restore:\" to show rsync command"
@@ -312,7 +312,7 @@ extension ViewControllerCopyFiles: NSTableViewDelegate {
 extension ViewControllerCopyFiles: NSTextFieldDelegate {
 
     override func controlTextDidEndEditing(_ obj: Notification) {
-        if (self.remoteCatalog.stringValue.isEmpty == false && self.localCatalog.stringValue.isEmpty == false) {
+        if self.remoteCatalog.stringValue.isEmpty == false && self.localCatalog.stringValue.isEmpty == false {
             self.commandString.stringValue = (self.copyFiles!.getCommandDisplayinView(remotefile: self.remoteCatalog.stringValue, localCatalog: self.localCatalog.stringValue))
         } else {
             self.commandString.stringValue = "Please select both \"Restore to:\" and \"Restore:\" to show rsync command"
@@ -355,7 +355,7 @@ extension ViewControllerCopyFiles: UpdateProgress {
 
     // When Process terminates
     func processTermination() {
-        if (rsync == false) {
+        if rsync == false {
             self.copyFiles!.setRemoteFileList()
             self.refresh()
             self.stop()

@@ -5,7 +5,7 @@
 //  Created by Thomas Evensen on 05/09/2016.
 //  Copyright © 2016 Thomas Evensen. All rights reserved.
 //
-//swiftlint:disable syntactic_sugar file_length disable cyclomatic_complexity line_length  type_body_length control_statement
+//swiftlint:disable syntactic_sugar file_length cyclomatic_complexity line_length type_body_length control_statement
 
 import Foundation
 
@@ -163,7 +163,7 @@ class ScheduleSortedAndExpand {
         }
         var data = Array<NSDictionary>()
         for i in 0 ..< self.scheduleAsConfiguration!.count where self.scheduleAsConfiguration![i].dateStop != nil {
-            if (self.scheduleAsConfiguration![i].schedule != "stopped") {
+            if self.scheduleAsConfiguration![i].schedule != "stopped" {
                 let dict: NSDictionary = [
                     "dateStart": self.scheduleAsConfiguration![i].dateStart,
                     "dateStop": self.scheduleAsConfiguration![i].dateStop!,
