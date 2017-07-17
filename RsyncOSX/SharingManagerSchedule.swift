@@ -9,7 +9,7 @@
 //  Created by Thomas Evensen on 09/05/16.
 //  Copyright © 2016 Thomas Evensen. All rights reserved.
 //
-//swiftlint:disable syntactic_sugar file_length cyclomatic_complexity line_length type_body_length control_statement
+//  swiftlint:disable syntactic_sugar file_length cyclomatic_complexity line_length type_body_length
 
 import Foundation
 import Cocoa
@@ -100,7 +100,7 @@ class SharingManagerSchedule: ScheduleWriteLoggData {
             }
             // Sorting schedule after hiddenID
             data.sort { (schedule1, schedule2) -> Bool in
-                if (schedule1.hiddenID > schedule2.hiddenID) {
+                if schedule1.hiddenID > schedule2.hiddenID {
                     return false
                 } else {
                     return true
@@ -145,7 +145,7 @@ class SharingManagerSchedule: ScheduleWriteLoggData {
             self.schedule[i].delete = true
             delete = true
         }
-        if (delete) {
+        if delete {
             PersistentStoreAPI.sharedInstance.saveScheduleFromMemory()
             // Send message about refresh tableView
             self.doaRefreshTableviewMain()
@@ -161,7 +161,7 @@ class SharingManagerSchedule: ScheduleWriteLoggData {
         var data = Array<NSMutableDictionary>()
 
         for i in 0 ..< self.schedule.count {
-            if (self.schedule[i].hiddenID == hiddenID) {
+            if self.schedule[i].hiddenID == hiddenID {
                 row = [
                     "dateStart": self.schedule[i].dateStart,
                     "stopCellID": 0,
@@ -171,7 +171,7 @@ class SharingManagerSchedule: ScheduleWriteLoggData {
                     "hiddenID": schedule[i].hiddenID,
                     "numberoflogs": String(schedule[i].logrecords.count)
                 ]
-                if (self.schedule[i].dateStop == nil) {
+                if self.schedule[i].dateStop == nil {
                     row.setValue("no stop date", forKey: "dateStop")
                 } else {
                     row.setValue(self.schedule[i].dateStop, forKey: "dateStop")
@@ -205,14 +205,14 @@ class SharingManagerSchedule: ScheduleWriteLoggData {
             let stop = data.filter({ return (($0.value(forKey: "stopCellID") as? Int) == 1)})
             let delete = data.filter({ return (($0.value(forKey: "deleteCellID") as? Int) == 1)})
             // Delete Schedules
-            if (delete.count > 0) {
+            if delete.count > 0 {
                 update = true
                 for i in 0 ..< delete.count {
                     self.delete(dict: delete[i])
                 }
             }
             // Stop Schedules
-            if (stop.count > 0) {
+            if stop.count > 0 {
                 update = true
                 for i in 0 ..< stop.count {
                     self.stop(dict: stop[i])
@@ -220,7 +220,7 @@ class SharingManagerSchedule: ScheduleWriteLoggData {
                 // Computing new parent key before saving to disk.
                 self.updateExecutedNewKey(hiddenID!)
             }
-            if (update) {
+            if update {
                 // Saving the resulting data file
                 PersistentStoreAPI.sharedInstance.saveScheduleFromMemory()
                 // Send message about refresh tableView
@@ -233,9 +233,9 @@ class SharingManagerSchedule: ScheduleWriteLoggData {
     private func delete (dict: NSDictionary) {
         loop :  for i in 0 ..< self.schedule.count {
             if dict.value(forKey: "hiddenID") as? Int == self.schedule[i].hiddenID {
-                if (dict.value(forKey: "dateStop") as? String == self.schedule[i].dateStop || self.schedule[i].dateStop == nil &&
+                if dict.value(forKey: "dateStop") as? String == self.schedule[i].dateStop || self.schedule[i].dateStop == nil &&
                     dict.value(forKey: "schedule") as? String == self.schedule[i].schedule &&
-                    dict.value(forKey: "dateStart") as? String == self.schedule[i].dateStart) {
+                    dict.value(forKey: "dateStart") as? String == self.schedule[i].dateStart {
                     self.schedule[i].delete = true
                     break
                 }
@@ -245,16 +245,13 @@ class SharingManagerSchedule: ScheduleWriteLoggData {
 
     // Test if Schedule record in memory is set to stop er not
     private func stop (dict: NSDictionary) {
-        loop :  for i in 0 ..< self.schedule.count {
-            if (dict.value(forKey: "hiddenID") as? Int == self.schedule[i].hiddenID) {
-                if (dict.value(forKey: "dateStop") as? String == self.schedule[i].dateStop || self.schedule[i].dateStop == nil &&
-                    dict.value(forKey: "schedule") as? String == self.schedule[i].schedule &&
-                    dict.value(forKey: "dateStart") as? String == self.schedule[i].dateStart) {
-                    self.schedule[i].schedule = "stopped"
-                    break
-                }
+        loop :  for i in 0 ..< self.schedule.count where dict.value(forKey: "hiddenID") as? Int == self.schedule[i].hiddenID {
+            if dict.value(forKey: "dateStop") as? String == self.schedule[i].dateStop || self.schedule[i].dateStop == nil &&
+                dict.value(forKey: "schedule") as? String == self.schedule[i].schedule &&
+                dict.value(forKey: "dateStart") as? String == self.schedule[i].dateStart {
+                self.schedule[i].schedule = "stopped"
+                break
             }
-
         }
     }
 
@@ -281,7 +278,7 @@ class SharingManagerSchedule: ScheduleWriteLoggData {
     func checkKey (_ dict1: NSDictionary, dict2: NSDictionary) -> Bool {
         let keyexecute = dict1.value(forKey: "parent") as? String
         let keyparent = self.computeKey(dict2)
-        if (keyparent == keyexecute) {
+        if keyparent == keyexecute {
             return true
         } else {
             return false

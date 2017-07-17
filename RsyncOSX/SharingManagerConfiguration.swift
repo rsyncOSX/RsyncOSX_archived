@@ -11,8 +11,8 @@
 //
 //  Created by Thomas Evensen on 08/02/16.
 //  Copyright © 2016 Thomas Evensen. All rights reserved.
-//
-//swiftlint:disable syntactic_sugar line_length file_length cyclomatic_complexity type_body_length control_statement
+//  swiftlint More work to fix - 17 July 2017
+//  swiftlint:disable syntactic_sugar line_length file_length cyclomatic_complexity type_body_length
 
 import Foundation
 import Cocoa
@@ -144,7 +144,7 @@ class SharingManagerConfiguration {
         self.destroyConfigurationsDataSource()
         var batch: Int = 0
         for i in 0 ..< self.configurations.count {
-            if(self.configurations[i].batch == "yes") {
+            if self.configurations[i].batch == "yes" {
                 batch = 1
             } else {
                 batch = 0
@@ -354,7 +354,7 @@ class SharingManagerConfiguration {
     /// persisten store
     /// - parameter index: index of Configuration to toogle batch on/off
     func setBatchYesNo (_ index: Int) {
-        if (self.configurations[index].batch == "yes") {
+        if self.configurations[index].batch == "yes" {
             self.configurations[index].batch = "no"
         } else {
             self.configurations[index].batch = "yes"
@@ -450,7 +450,6 @@ class SharingManagerConfiguration {
         guard result.count > 0 else {
             return ""
         }
-
         switch resource {
         case .localCatalog:
             return result[0].localCatalog

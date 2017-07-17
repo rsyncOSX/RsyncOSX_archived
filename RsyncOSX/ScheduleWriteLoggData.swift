@@ -8,7 +8,6 @@
 //swiftlint:disable syntactic_sugar line_length
 
 import Foundation
-import Foundation
 import Cocoa
 
 class ScheduleWriteLoggData {

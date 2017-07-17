@@ -5,7 +5,7 @@
 //  Created by Thomas Evensen on 03/10/2016.
 //  Copyright © 2016 Thomas Evensen. All rights reserved.
 //
-//swiftlint:disable syntactic_sugar cyclomatic_complexity
+//  swiftlint:disable syntactic_sugar cyclomatic_complexity
 
 import Foundation
 
@@ -130,7 +130,7 @@ final class RsyncParameters {
     // Get the rsync parameter to store in the configuration.
     // Function computes which parameters are arguments only 
     // e.g --backup, or --suffix=value.
-    func getdisplayValue (_ parameter: String) -> String {
+    func displayValue (_ parameter: String) -> String {
         let splitstr: Array<String> = self.split(parameter)
         guard splitstr.count > 1 else {
             return ""
@@ -155,7 +155,7 @@ final class RsyncParameters {
     /// value in combobox when rsync parameters are presented
     /// - parameter parameter : Stringvalue of parameter
     /// - returns : index of parameter
-    func getvalueCombobox (_ parameter: String) -> Int {
+    func valueCombo (_ parameter: String) -> Int {
         let splitstr: Array<String> = self.split(parameter)
         guard splitstr.count > 1 else {
             return 0
@@ -175,7 +175,7 @@ final class RsyncParameters {
     /// Function returns value of rsync a touple to set the corrosponding
     /// value in combobox and the corrosponding rsync value when rsync parameters are presented
     /// - parameter rsyncparameternumber : which stored rsync parameter, integer 8 - 14
-    /// - returns : touple with index to for combobox and corresponding rsync value
+    /// - returns : touple with index for combobox and corresponding rsync value
     func getParameter (rsyncparameternumber: Int) -> (Int, String) {
 
         guard self.config != nil else {
@@ -184,40 +184,33 @@ final class RsyncParameters {
 
         switch rsyncparameternumber {
         case 8:
-            guard self.config!.parameter8 != nil else {
-                return (0, "")
-            }
-            return (self.getvalueCombobox(self.config!.parameter8!), self.getdisplayValue(self.config!.parameter8!))
+            guard self.config!.parameter8 != nil else {return (0, "")}
+            let value = (self.valueCombo(self.config!.parameter8!), self.displayValue(self.config!.parameter8!) )
+            return value
         case 9:
-            guard self.config!.parameter9 != nil else {
-                return (0, "")
-            }
-            return (self.getvalueCombobox(self.config!.parameter9!), self.getdisplayValue(self.config!.parameter9!))
+            guard self.config!.parameter9 != nil else {return (0, "")}
+            let value = (self.valueCombo(self.config!.parameter9!), self.displayValue(self.config!.parameter9!) )
+            return value
         case 10:
-            guard self.config!.parameter10 != nil else {
-                return (0, "")
-            }
-            return (self.getvalueCombobox(self.config!.parameter10!), self.getdisplayValue(self.config!.parameter10!))
+            guard self.config!.parameter10 != nil else {return (0, "")}
+            let value = (self.valueCombo(self.config!.parameter10!), self.displayValue(self.config!.parameter10!) )
+            return value
         case 11:
-            guard self.config!.parameter11 != nil else {
-                return (0, "")
-            }
-            return (self.getvalueCombobox(self.config!.parameter11!), self.getdisplayValue(self.config!.parameter11!))
+            guard self.config!.parameter11 != nil else {return (0, "")}
+            let value = (self.valueCombo(self.config!.parameter11!), self.displayValue(self.config!.parameter11!) )
+            return value
         case 12:
-            guard self.config!.parameter12 != nil else {
-                return (0, "")
-            }
-            return (self.getvalueCombobox(self.config!.parameter12!), self.getdisplayValue(self.config!.parameter12!))
+            guard self.config!.parameter12 != nil else {return (0, "")}
+            let value = (self.valueCombo(self.config!.parameter12!), self.displayValue(self.config!.parameter12!) )
+            return value
         case 13:
-            guard self.config!.parameter13 != nil else {
-                return (0, "")
-            }
-            return (self.getvalueCombobox(self.config!.parameter13!), self.getdisplayValue(self.config!.parameter13!))
+            guard self.config!.parameter13 != nil else {return (0, "")}
+            let value = (self.valueCombo(self.config!.parameter13!), self.displayValue(self.config!.parameter13!) )
+            return value
         case 14:
-            guard self.config!.parameter14 != nil else {
-                return (0, "")
-            }
-            return (self.getvalueCombobox(self.config!.parameter14!), self.getdisplayValue(self.config!.parameter14!))
+            guard self.config!.parameter14 != nil else {return (0, "")}
+            let value = (self.valueCombo(self.config!.parameter14!), self.displayValue(self.config!.parameter14!) )
+            return value
         default:
             return (0, "")
         }

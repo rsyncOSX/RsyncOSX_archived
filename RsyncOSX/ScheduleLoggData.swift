@@ -45,13 +45,10 @@ final class ScheduleLoggData {
     private func readfilteredData (filter: String, filterwhat: Filterlogs) {
         var data = Array<NSDictionary>()
         self.data = nil
-
         guard self.loggdata != nil else {
             return
         }
-
         for i in 0 ..< self.loggdata!.count {
-
             switch filterwhat {
             case .executeDate:
                 if (self.loggdata![i].value(forKey: "dateExecuted") as? String)!.contains(filter) {
