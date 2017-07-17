@@ -173,7 +173,6 @@ final class NewBatchTask {
 
                 let hiddenID = SharingManagerConfiguration.sharedInstance.gethiddenID(index: index)
                 SharingManagerConfiguration.sharedInstance.setCurrentDateonConfiguration(index)
-                
                 let numberOffFiles = self.transferredNumber
                 let sizeOfFiles = self.transferredNumberSizebytes
                 SharingManagerSchedule.sharedInstance.addScheduleResultManuel(hiddenID, result: number.statistics(numberOfFiles: numberOffFiles, sizeOfFiles: sizeOfFiles)[0])

@@ -67,7 +67,7 @@ final class PersistentStoreConfiguration: Readwritefiles {
         let singleFile = backup.value(forKey: "singleFile") as? Int
 
         // If localCatalog == offsiteCataog do NOT append
-        if (localCatalog != offsiteCatalog) {
+        if localCatalog != offsiteCatalog {
 
             var array = Array<NSDictionary>()
             // Get existing configurations from memory
@@ -81,7 +81,7 @@ final class PersistentStoreConfiguration: Readwritefiles {
             backup.setObject(self.maxhiddenID + 1, forKey: "hiddenID" as NSCopying)
             backup.removeObject(forKey: "singleFile")
             array.append(backup)
-            if (singleFile == 0) {
+            if singleFile == 0 {
                 array.append(self.setRestorePart(dict: backup))
                 // Append the two records to Configuration i memory
                 // Important to save Configuration from memory after this method
@@ -118,60 +118,60 @@ final class PersistentStoreConfiguration: Readwritefiles {
             "dateRun": config.dateRun!,
             "hiddenID": config.hiddenID]
         // All parameters parameter8 - parameter14 are set = nil if isEmpty
-        if (config.parameter8 != nil) {
-            if (config.parameter8!.isEmpty) {
+        if config.parameter8 != nil {
+            if config.parameter8!.isEmpty {
                 config.parameter8 = nil
             } else {
                 dict.setObject(config.parameter8!, forKey: "parameter8" as NSCopying)
             }
         }
-        if (config.parameter9 != nil) {
-            if (config.parameter9!.isEmpty) {
+        if config.parameter9 != nil {
+            if config.parameter9!.isEmpty {
                 config.parameter9 = nil
             } else {
                 dict.setObject(config.parameter9!, forKey: "parameter9" as NSCopying)
             }
         }
-        if (config.parameter10 != nil) {
-            if (config.parameter10!.isEmpty) {
+        if config.parameter10 != nil {
+            if config.parameter10!.isEmpty {
                 config.parameter10 = nil
             } else {
                 dict.setObject(config.parameter10!, forKey: "parameter10" as NSCopying)
             }
         }
-        if (config.parameter11 != nil) {
-            if (config.parameter11!.isEmpty) {
+        if config.parameter11 != nil {
+            if config.parameter11!.isEmpty {
                 config.parameter11 = nil
             } else {
                 dict.setObject(config.parameter11!, forKey: "parameter11" as NSCopying)
             }
         }
-        if (config.parameter12 != nil) {
-            if (config.parameter12!.isEmpty) {
+        if config.parameter12 != nil {
+            if config.parameter12!.isEmpty {
                 config.parameter12 = nil
             } else {
                 dict.setObject(config.parameter12!, forKey: "parameter12" as NSCopying)
             }
         }
-        if (config.parameter13 != nil) {
-            if (config.parameter13!.isEmpty) {
+        if config.parameter13 != nil {
+            if config.parameter13!.isEmpty {
                 config.parameter13 = nil
             } else {
                 dict.setObject(config.parameter13!, forKey: "parameter13" as NSCopying)
             }
         }
-        if (config.parameter14 != nil) {
-            if (config.parameter14!.isEmpty) {
+        if config.parameter14 != nil {
+            if config.parameter14!.isEmpty {
                 config.parameter14 = nil
             } else {
                 dict.setObject(config.parameter14!, forKey: "parameter14" as NSCopying)
             }
         }
         // All Ints are set
-        if (config.rsyncdaemon != nil) {
+        if config.rsyncdaemon != nil {
             dict.setObject(config.rsyncdaemon!, forKey: "rsyncdaemon" as NSCopying)
         }
-        if (config.sshport != nil) {
+        if config.sshport != nil {
             dict.setObject(config.sshport!, forKey: "sshport" as NSCopying)
         }
         return dict
@@ -198,31 +198,31 @@ final class PersistentStoreConfiguration: Readwritefiles {
             "rsync": dict.value(forKey: "rsync")!,
             "dateRun": "",
             "hiddenID": self.maxhiddenID + 2]
-        if (dict.value(forKey: "parameter8") != nil) {
+        if dict.value(forKey: "parameter8") != nil {
             restore.setObject(dict.value(forKey: "parameter8")!, forKey: "parameter8" as NSCopying)
         }
-        if (dict.value(forKey: "parameter9") != nil) {
+        if dict.value(forKey: "parameter9") != nil {
             restore.setObject(dict.value(forKey: "parameter9")!, forKey: "parameter9" as NSCopying)
         }
-        if (dict.value(forKey: "parameter10") != nil) {
+        if dict.value(forKey: "parameter10") != nil {
             restore.setObject(dict.value(forKey: "parameter10")!, forKey: "parameter10" as NSCopying)
         }
-        if (dict.value(forKey: "parameter11") != nil) {
+        if dict.value(forKey: "parameter11") != nil {
             restore.setObject(dict.value(forKey: "parameter11")!, forKey: "parameter11" as NSCopying)
         }
-        if (dict.value(forKey: "parameter12") != nil) {
+        if dict.value(forKey: "parameter12") != nil {
             restore.setObject(dict.value(forKey: "parameter12")!, forKey: "parameter12" as NSCopying)
         }
-        if (dict.value(forKey: "parameter13") != nil) {
+        if dict.value(forKey: "parameter13") != nil {
             restore.setObject(dict.value(forKey: "parameter13")!, forKey: "parameter13" as NSCopying)
         }
-        if (dict.value(forKey: "parameter14") != nil) {
+        if dict.value(forKey: "parameter14") != nil {
             restore.setObject(dict.value(forKey: "parameter14")!, forKey: "parameter14" as NSCopying)
         }
-        if (dict.value(forKey: "rsyncdaemon") != nil) {
+        if dict.value(forKey: "rsyncdaemon") != nil {
             restore.setObject(dict.value(forKey: "rsyncdaemon")!, forKey: "rsyncdaemon" as NSCopying)
         }
-        if (dict.value(forKey: "sshport") != nil) {
+        if dict.value(forKey: "sshport") != nil {
             restore.setObject(dict.value(forKey: "sshport")!, forKey: "sshport" as NSCopying)
         }
         return restore
