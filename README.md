@@ -2,6 +2,12 @@
 
 The repository is source code for the macOS application RsyncOSX. The application is implemented by Swift 3.x by using Xcode version 8.x. The application is **not** depended upon any third party binary distributions. There is, however, only one third party source code included to check for TCP connections. The check is for informal use only and can be removed. All other code is stock use of Swift 3.x and libraries as part of Xcode version 8.x.
 
+### Next version 4.5.x - macOS High Sierra, Xcode 9 and Swift 4
+
+[RsyncOSX](https://github.com/rsyncOSX/RsyncOSX/tree/Xcode9_Swift4) is converted to Swift 4, compiled with Xcode 9 and tested on macOS 10.13, all beta versions. I have one MacBook Pro which is installed with latest beta of macOS 10.13 (High Sierra).
+
+As part of next version of RsyncOSX I am using [SwiftLint](https://github.com/realm/SwiftLint) as tool for writing more readable code. Adapting RsyncOSX to SwiftLint rules will take some time. There are about 11,000 lines of code in RsyncOSX (too many?). Many changes in code has been applied, but there are still some more to do before RsyncOSX is compliant to SwiftLint rules.
+
 ### Compile
 
 To compile the code, install Xcode and open the RsyncOSX project file. Before compiling, open in Xcode, the `RsyncOSX/General` preference page (after opening the RsyncOSX project file) and replace your own credentials in `Signing`, or just disable Signing. Then compile your own version of RsyncOSX.
@@ -40,7 +46,7 @@ In RsyncOSX select [RsyncOSX configuration](https://github.com/rsyncOSX/Document
 
 ### MacUpdate and Softpedia
 
-RsyncOSX is also released on [MacUpdate](https://www.macupdate.com/app/mac/56516/rsyncosx) and linked for download on [Softpedia](http://mac.softpedia.com/get/Internet-Utilities/RsyncOSX.shtml) as well. The application is downloaded about 8900 times from MacUpdate and 2200 times from Softpedia (all versions, June 2017). RsyncOSX does also inform users about new releases and link to download new version.
+RsyncOSX is also released on [MacUpdate](https://www.macupdate.com/app/mac/56516/rsyncosx) and linked for download on [Softpedia](http://mac.softpedia.com/get/Internet-Utilities/RsyncOSX.shtml) as well. The application is downloaded about 9300 times from MacUpdate and 2400 times from Softpedia (all versions, July 2017). RsyncOSX does also inform users about new releases and link to download new version.
 
 To be honest, I have **no idea** how many users of RsyncOSX there are. And I am very happy that some users find it useful.
 
