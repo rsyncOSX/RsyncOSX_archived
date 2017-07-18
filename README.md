@@ -2,12 +2,11 @@
 
 The repository is source code for the macOS application RsyncOSX. The application is implemented by Swift 3.x by using Xcode version 8.x. The application is **not** depended upon any third party binary distributions. There is, however, only one third party source code included to check for TCP connections. The check is for informal use only and can be removed. All other code is stock use of Swift 3.x and libraries as part of Xcode version 8.x.
 
-### Next version (macOS High Sierra, Xcode 9 and Swift 4)
+### Next version 4.5.x - macOS High Sierra, Xcode 9 and Swift 4
 
-RsyncOSX is converted to [Swift 4](https://github.com/rsyncOSX/RsyncOSX/tree/Xcode9_Swift4), compiled with Xcode 9 and tested on macOS 10.13, all beta versions. I have one MacBook Pro which is installed with latest beta of macOS 10.13 (High Sierra).
+[RsyncOSX](https://github.com/rsyncOSX/RsyncOSX/tree/Xcode9_Swift4) is converted to Swift 4, compiled with Xcode 9 and tested on macOS 10.13, all beta versions. I have one MacBook Pro which is installed with latest beta of macOS 10.13 (High Sierra).
 
-As part of next version of RsyncOSX I am using [SwiftLint](https://github.com/realm/SwiftLint) as tool for writing more readable code. Adapting RsyncOSX to SwiftLint rules will take some time. There are about 11,000 lines of code in RsyncOSX (to many?). Many changes in code has been applied, but there are still some more to do before RsyncOSX compliant to SwiftLint rules.
-
+As part of next version of RsyncOSX I am using [SwiftLint](https://github.com/realm/SwiftLint) as tool for writing more readable code. Adapting RsyncOSX to SwiftLint rules will take some time. There are about 11,000 lines of code in RsyncOSX (too many?). Many changes in code has been applied, but there are still some more to do before RsyncOSX is compliant to SwiftLint rules.
 
 ### Compile
 
