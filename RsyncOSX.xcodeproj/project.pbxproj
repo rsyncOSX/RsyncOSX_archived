@@ -29,8 +29,8 @@
 		A04492B01D658F2100B3CE17 /* PersistentStoreScheduling.swift in Sources */ = {isa = PBXBuildFile; fileRef = A044929C1D658F2100B3CE17 /* PersistentStoreScheduling.swift */; };
 		A04492B21D658F2100B3CE17 /* RsyncProcessArguments.swift in Sources */ = {isa = PBXBuildFile; fileRef = A044929E1D658F2100B3CE17 /* RsyncProcessArguments.swift */; };
 		A04492B41D658F2100B3CE17 /* CopyFileArguments.swift in Sources */ = {isa = PBXBuildFile; fileRef = A04492A01D658F2100B3CE17 /* CopyFileArguments.swift */; };
-		A04492B51D658F2100B3CE17 /* SharingManagerConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = A04492A11D658F2100B3CE17 /* SharingManagerConfiguration.swift */; };
-		A04492B61D658F2100B3CE17 /* SharingManagerSchedule.swift in Sources */ = {isa = PBXBuildFile; fileRef = A04492A21D658F2100B3CE17 /* SharingManagerSchedule.swift */; };
+		A04492B51D658F2100B3CE17 /* Configurations.swift in Sources */ = {isa = PBXBuildFile; fileRef = A04492A11D658F2100B3CE17 /* Configurations.swift */; };
+		A04492B61D658F2100B3CE17 /* Schedules.swift in Sources */ = {isa = PBXBuildFile; fileRef = A04492A21D658F2100B3CE17 /* Schedules.swift */; };
 		A04492B71D658F2100B3CE17 /* PersistentStoreAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = A04492A31D658F2100B3CE17 /* PersistentStoreAPI.swift */; };
 		A04492B81D658F2100B3CE17 /* utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = A04492A41D658F2100B3CE17 /* utils.swift */; };
 		A04492BA1D658F2100B3CE17 /* ysocket.swift in Sources */ = {isa = PBXBuildFile; fileRef = A04492A61D658F2100B3CE17 /* ysocket.swift */; };
@@ -108,8 +108,8 @@
 		A044929C1D658F2100B3CE17 /* PersistentStoreScheduling.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersistentStoreScheduling.swift; sourceTree = "<group>"; };
 		A044929E1D658F2100B3CE17 /* RsyncProcessArguments.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RsyncProcessArguments.swift; sourceTree = "<group>"; };
 		A04492A01D658F2100B3CE17 /* CopyFileArguments.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CopyFileArguments.swift; sourceTree = "<group>"; };
-		A04492A11D658F2100B3CE17 /* SharingManagerConfiguration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SharingManagerConfiguration.swift; sourceTree = "<group>"; };
-		A04492A21D658F2100B3CE17 /* SharingManagerSchedule.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SharingManagerSchedule.swift; sourceTree = "<group>"; };
+		A04492A11D658F2100B3CE17 /* Configurations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Configurations.swift; sourceTree = "<group>"; };
+		A04492A21D658F2100B3CE17 /* Schedules.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Schedules.swift; sourceTree = "<group>"; };
 		A04492A31D658F2100B3CE17 /* PersistentStoreAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersistentStoreAPI.swift; sourceTree = "<group>"; };
 		A04492A41D658F2100B3CE17 /* utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = utils.swift; sourceTree = "<group>"; };
 		A04492A61D658F2100B3CE17 /* ysocket.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ysocket.swift; sourceTree = "<group>"; };
@@ -353,7 +353,7 @@
 			children = (
 				A044929B1D658F2100B3CE17 /* peristentStoreConfiguration.swift */,
 				A0EFB44F1DC080A9008C21A6 /* PersistentStoreUserconfiguration.swift */,
-				A04492A11D658F2100B3CE17 /* SharingManagerConfiguration.swift */,
+				A04492A11D658F2100B3CE17 /* Configurations.swift */,
 			);
 			name = Configuration;
 			sourceTree = "<group>";
@@ -362,7 +362,7 @@
 			isa = PBXGroup;
 			children = (
 				A044929C1D658F2100B3CE17 /* PersistentStoreScheduling.swift */,
-				A04492A21D658F2100B3CE17 /* SharingManagerSchedule.swift */,
+				A04492A21D658F2100B3CE17 /* Schedules.swift */,
 				A0041EEE1D7D4357002BF081 /* ScheduleSortedAndExpanded.swift */,
 			);
 			name = Schedule;
@@ -555,7 +555,7 @@
 				E9CF14141E729540008E8A15 /* RsyncScheduled.swift in Sources */,
 				A04492AB1D658F2100B3CE17 /* argumentsOneConfiguration.swift in Sources */,
 				A0B3D9741D758E20001E190E /* ViewControllerUserconfiguration.swift in Sources */,
-				A04492B61D658F2100B3CE17 /* SharingManagerSchedule.swift in Sources */,
+				A04492B61D658F2100B3CE17 /* Schedules.swift in Sources */,
 				E9CF14161E729636008E8A15 /* CommandCopyFiles.swift in Sources */,
 				A0FAF5CF1DDF2E5F0009FE7A /* ViewControllerAbout.swift in Sources */,
 				A017E2A01D7D3242003016F5 /* ViewControllerEdit.swift in Sources */,
@@ -570,7 +570,7 @@
 				A04492BC1D658F2100B3CE17 /* yudpsocket.swift in Sources */,
 				A0CACFD41DA2738500C5997A /* RsyncParameters.swift in Sources */,
 				A04492AC1D658F2100B3CE17 /* Configuration.swift in Sources */,
-				A04492B51D658F2100B3CE17 /* SharingManagerConfiguration.swift in Sources */,
+				A04492B51D658F2100B3CE17 /* Configurations.swift in Sources */,
 				A04492861D658EE800B3CE17 /* AppDelegate.swift in Sources */,
 				A04492BA1D658F2100B3CE17 /* ysocket.swift in Sources */,
 				A091C6581D86A0A800278E74 /* viewControllerCopyFiles.swift in Sources */,

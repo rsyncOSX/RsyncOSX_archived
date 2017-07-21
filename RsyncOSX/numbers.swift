@@ -107,7 +107,7 @@ final class Numbers {
 
         if transferredFiles.count == 1 && transferredFilesSize.count == 1 &&  totalFileSize.count == 1 &&  totalFilesNumber.count == 1 {
 
-            if SharingManagerConfiguration.sharedInstance.rsyncVer3 {
+            if Configurations.shared.rsyncVer3 {
                 // Ver3 of rsync adds "," as 1000 mark, must replace it and then split numbers into components
                 let transferredFilesParts = (transferredFiles[0] as AnyObject).replacingOccurrences(of: ",", with: "").components(separatedBy: " ")
                 let transferredFilesSizeParts = (transferredFilesSize[0] as AnyObject).replacingOccurrences(of: ",", with: "").components(separatedBy: " ")
@@ -173,7 +173,7 @@ final class Numbers {
             }
         }
 
-        if SharingManagerConfiguration.sharedInstance.rsyncVer3 {
+        if Configurations.shared.rsyncVer3 {
             // ["sent", "409687", "bytes", "", "received", "5331", "bytes", "", "830036.00", "bytes/sec"]
             let newmessage = self.resultRsync!.replacingOccurrences(of: ",", with: "")
             parts = newmessage.components(separatedBy: " ")

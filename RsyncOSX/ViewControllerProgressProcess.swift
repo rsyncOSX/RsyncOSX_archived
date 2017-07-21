@@ -54,7 +54,7 @@ class ViewControllerProgressProcess: NSViewController {
 
     override func viewDidAppear() {
         super.viewDidAppear()
-        if let pvc2 = SharingManagerConfiguration.sharedInstance.singleTask {
+        if let pvc2 = Configurations.shared.singleTask {
             self.countDelegate = pvc2
         }
         self.calculatedNumberOfFiles = self.countDelegate?.maxCount()

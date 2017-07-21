@@ -55,7 +55,7 @@ final class ScheduleOperation {
 
     init () {
         // Cancel any current job waiting for execution
-        SharingManagerSchedule.sharedInstance.cancelJobWaiting()
+        Schedules.shared.cancelJobWaiting()
         // Create a new Schedules object
         self.scheduledJobs = ScheduleSortedAndExpand()
         // Removes the job of the stack
@@ -70,7 +70,7 @@ final class ScheduleOperation {
             self.waitForTask = Timer.scheduledTimer(timeInterval: self.secondsToWait!, target: self, selector: #selector(startJob), userInfo: nil, repeats: false)
             // Set reference to Timer that kicks of the Scheduled job
             // Reference is set for cancel job if requiered
-            SharingManagerSchedule.sharedInstance.setJobWaiting(timer: self.waitForTask!)
+            Schedules.shared.setJobWaiting(timer: self.waitForTask!)
         } else {
             // No jobs to execute, no need to keep reference to object
             self.scheduledJobs = nil

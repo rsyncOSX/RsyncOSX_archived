@@ -28,7 +28,7 @@ final class PersistentStoreScheduling: Readwritefiles {
 
         var array = Array<NSDictionary>()
         // Reading Schedules from memory
-        let data = SharingManagerSchedule.sharedInstance.getSchedule()
+        let data = Schedules.shared.getSchedule()
 
         for i in 0 ..< data.count {
             let schedule = data[i]
@@ -56,7 +56,7 @@ final class PersistentStoreScheduling: Readwritefiles {
     // Deleted Schedule by hiddenID
     func savescheduleDeletedRecordsToFile (_ hiddenID: Int) {
         var array = Array<NSDictionary>()
-        let Schedule = SharingManagerSchedule.sharedInstance.getSchedule()
+        let Schedule = Schedules.shared.getSchedule()
         for i in 0 ..< Schedule.count {
             let schedule = Schedule[i]
             if schedule.delete == nil && schedule.hiddenID != hiddenID {

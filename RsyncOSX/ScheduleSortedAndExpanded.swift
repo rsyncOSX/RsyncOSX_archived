@@ -95,7 +95,7 @@ class ScheduleSortedAndExpand {
 
     // Expanding and sorting Scheduledata
     private func sortAndExpandScheduleData() {
-        let dateformatter = Utils.sharedInstance.setDateformat()
+        let dateformatter = Utils.shared.setDateformat()
         for i in 0 ..< self.scheduleAsNSDictionary!.count {
             let dict = self.scheduleAsNSDictionary![i]
             let dateStop: Date = dateformatter.date(from: (dict.value(forKey: "dateStop") as? String)!)!
@@ -131,7 +131,7 @@ class ScheduleSortedAndExpand {
                 }
             }
         // Set reference to the first scheduled job
-        SharingManagerSchedule.sharedInstance.scheduledJob = self.jobToExecute()
+        Schedules.shared.scheduledJob = self.jobToExecute()
         }
     }
 
@@ -226,13 +226,13 @@ class ScheduleSortedAndExpand {
         }
         if dict1 != nil {
             let hiddenID1 = dict1!.value(forKey: "hiddenID") as? Int
-            array.append(SharingManagerConfiguration.sharedInstance.getResourceConfiguration(hiddenID1!, resource: .offsiteServer))
-            array.append(SharingManagerConfiguration.sharedInstance.getResourceConfiguration(hiddenID1!, resource: .localCatalog))
+            array.append(Configurations.shared.getResourceConfiguration(hiddenID1!, resource: .offsiteServer))
+            array.append(Configurations.shared.getResourceConfiguration(hiddenID1!, resource: .localCatalog))
         }
         if dict2 != nil {
             let hiddenID2 = dict2?.value(forKey: "hiddenID") as? Int
-            array.append(SharingManagerConfiguration.sharedInstance.getResourceConfiguration(hiddenID2!, resource: .offsiteServer))
-            array.append(SharingManagerConfiguration.sharedInstance.getResourceConfiguration(hiddenID2!, resource: .localCatalog))
+            array.append(Configurations.shared.getResourceConfiguration(hiddenID2!, resource: .offsiteServer))
+            array.append(Configurations.shared.getResourceConfiguration(hiddenID2!, resource: .localCatalog))
         }
         // Return either 0, 2 or 4 elements
         return array
@@ -366,7 +366,7 @@ class ScheduleSortedAndExpand {
 
     init () {
         // Getting the Schedule and expanding all the jobs
-        self.scheduleAsConfiguration = SharingManagerSchedule.sharedInstance.getSchedule()
+        self.scheduleAsConfiguration = Schedules.shared.getSchedule()
         self.createScheduleAsNSDictionary()
         self.sortAndExpandScheduleData()
     }

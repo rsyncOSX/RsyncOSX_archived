@@ -29,28 +29,28 @@ final class PersistentStoreUserconfiguration: Readwritefiles {
         var rsyncerror: Int?
         var restorePath: String?
 
-        if SharingManagerConfiguration.sharedInstance.rsyncVer3 {
+        if Configurations.shared.rsyncVer3 {
             version3Rsync = 1
         } else {
             version3Rsync = 0
         }
-        if SharingManagerConfiguration.sharedInstance.detailedlogging {
+        if Configurations.shared.detailedlogging {
             detailedlogging = 1
         } else {
             detailedlogging = 0
         }
-        if SharingManagerConfiguration.sharedInstance.rsyncPath != nil {
-            rsyncPath = SharingManagerConfiguration.sharedInstance.rsyncPath!
+        if Configurations.shared.rsyncPath != nil {
+            rsyncPath = Configurations.shared.rsyncPath!
         }
-        if SharingManagerConfiguration.sharedInstance.restorePath != nil {
-            restorePath = SharingManagerConfiguration.sharedInstance.restorePath!
+        if Configurations.shared.restorePath != nil {
+            restorePath = Configurations.shared.restorePath!
         }
-        if SharingManagerConfiguration.sharedInstance.allowDoubleclick {
+        if Configurations.shared.allowDoubleclick {
             allowDoubleclick = 1
         } else {
             allowDoubleclick = 0
         }
-        if SharingManagerConfiguration.sharedInstance.rsyncerror {
+        if Configurations.shared.rsyncerror {
             rsyncerror = 1
         } else {
             rsyncerror = 0

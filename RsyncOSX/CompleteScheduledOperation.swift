@@ -42,15 +42,15 @@ final class CompleteScheduledOperation {
         number.setNumbers()
         let numberstring = number.statistics(numberOfFiles: nil, sizeOfFiles: nil)
 
-        SharingManagerSchedule.sharedInstance.addScheduleResult(self.hiddenID!, dateStart: dateStartstring, result: numberstring[0], date: datestring, schedule: schedule!)
+        Schedules.shared.addScheduleResult(self.hiddenID!, dateStart: dateStartstring, result: numberstring[0], date: datestring, schedule: schedule!)
         // Writing timestamp to configuration
         // Update memory configuration with rundate
-        _ = SharingManagerConfiguration.sharedInstance.setCurrentDateonConfiguration(self.index!)
+        _ = Configurations.shared.setCurrentDateonConfiguration(self.index!)
         // Saving updated configuration from memory
         _ = PersistentStoreAPI.sharedInstance.saveConfigFromMemory()
         // Start next job, if any, by delegate
         // and notify completed, by delegate
-        if let pvc2 = SharingManagerConfiguration.sharedInstance.viewControllertabMain as? ViewControllertabMain {
+        if let pvc2 = Configurations.shared.viewControllertabMain as? ViewControllertabMain {
             globalMainQueue.async(execute: { () -> Void in
                 self.startnextjobDelegate = pvc2
                 self.notifyDelegate = pvc2
@@ -58,22 +58,22 @@ final class CompleteScheduledOperation {
                 self.notifyDelegate?.completed()
             })
         }
-        if let pvc3 = SharingManagerSchedule.sharedInstance.viewObjectSchedule as? ViewControllertabSchedule {
+        if let pvc3 = Schedules.shared.viewObjectSchedule as? ViewControllertabSchedule {
             globalMainQueue.async(execute: { () -> Void in
                 self.startTimerDelegate = pvc3
                 self.startTimerDelegate?.startTimerNextJob()
             })
         }
         // Reset reference til scheduled job
-        SharingManagerSchedule.sharedInstance.scheduledJob = nil
+        Schedules.shared.scheduledJob = nil
     }
 
     init (dict: NSDictionary) {
         self.date = dict.value(forKey: "start") as? Date
         self.dateStart = dict.value(forKey: "dateStart") as? Date
-        self.dateformatter = Utils.sharedInstance.setDateformat()
+        self.dateformatter = Utils.shared.setDateformat()
         self.hiddenID = (dict.value(forKey: "hiddenID") as? Int)!
         self.schedule = dict.value(forKey: "schedule") as? String
-        self.index = SharingManagerConfiguration.sharedInstance.getIndex(hiddenID!)
+        self.index = Configurations.shared.getIndex(hiddenID!)
     }
 }

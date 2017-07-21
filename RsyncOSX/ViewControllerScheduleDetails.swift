@@ -46,7 +46,7 @@ class ViewControllerScheduleDetails: NSViewController {
 
     @IBAction func update(_ sender: NSButton) {
         if let data = self.data {
-            SharingManagerSchedule.sharedInstance.deleteOrStopSchedules(data : data)
+            Schedules.shared.deleteOrStopSchedules(data : data)
             // Do a refresh of tableViews in both ViewControllertabMain and ViewControllertabSchedule
             self.refreshDelegate?.refresh()
             self.refreshDelegate2?.refresh()
@@ -76,14 +76,14 @@ class ViewControllerScheduleDetails: NSViewController {
     override func viewDidAppear() {
         super.viewDidAppear()
         self.hiddendID = self.getHiddenIDDelegate?.gethiddenID()
-        self.data = SharingManagerSchedule.sharedInstance.readScheduledata(self.hiddendID!)
+        self.data = Schedules.shared.readScheduledata(self.hiddendID!)
 
         globalMainQueue.async(execute: { () -> Void in
             self.scheduletable.reloadData()
         })
-        self.localCatalog.stringValue = SharingManagerConfiguration.sharedInstance.getResourceConfiguration(self.hiddendID!, resource: .localCatalog)
-        self.remoteCatalog.stringValue = SharingManagerConfiguration.sharedInstance.getResourceConfiguration(self.hiddendID!, resource: .remoteCatalog)
-        self.offsiteServer.stringValue = SharingManagerConfiguration.sharedInstance.getResourceConfiguration(self.hiddendID!, resource: .offsiteServer)
+        self.localCatalog.stringValue = Configurations.shared.getResourceConfiguration(self.hiddendID!, resource: .localCatalog)
+        self.remoteCatalog.stringValue = Configurations.shared.getResourceConfiguration(self.hiddendID!, resource: .remoteCatalog)
+        self.offsiteServer.stringValue = Configurations.shared.getResourceConfiguration(self.hiddendID!, resource: .offsiteServer)
     }
 }
 
@@ -113,7 +113,7 @@ extension ViewControllerScheduleDetails : NSTableViewDelegate {
                 object.value(forKey: "schedule") as? String == "daily" ||
                 object.value(forKey: "schedule") as? String == "weekly" {
 
-                let dateformatter = Utils.sharedInstance.setDateformat()
+                let dateformatter = Utils.shared.setDateformat()
                 let dateStop: Date = dateformatter.date(from: (object.value(forKey: "dateStop") as? String)!)!
                 if dateStop.timeIntervalSinceNow > 0 {
                     active = true

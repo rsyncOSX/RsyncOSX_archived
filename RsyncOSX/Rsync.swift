@@ -15,7 +15,7 @@ final class Rsync: ProcessCmd {
 
         super.init(command: nil, arguments: arguments, aScheduledOperation: false)
         // Process is inated from Main
-        if let pvc = SharingManagerConfiguration.sharedInstance.viewControllertabMain as? ViewControllertabMain {
+        if let pvc = Configurations.shared.viewControllertabMain as? ViewControllertabMain {
             self.updateDelegate = pvc
         }
     }

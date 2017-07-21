@@ -39,12 +39,12 @@ class ViewControllerScheduledBackupinWork: NSViewController {
     }
 
     private func setInfo() {
-        if let dict: NSDictionary = SharingManagerSchedule.sharedInstance.scheduledJob {
+        if let dict: NSDictionary = Schedules.shared.scheduledJob {
             self.startDate.stringValue = String(describing: (dict.value(forKey: "start") as? Date)!)
             self.schedule.stringValue = (dict.value(forKey: "schedule") as? String)!
             let hiddenID = (dict.value(forKey: "hiddenID") as? Int)!
-            let index = SharingManagerConfiguration.sharedInstance.getIndex(hiddenID)
-            let config: Configuration = SharingManagerConfiguration.sharedInstance.getConfigurations()[index]
+            let index = Configurations.shared.getIndex(hiddenID)
+            let config: Configuration = Configurations.shared.getConfigurations()[index]
             self.remoteServer.stringValue = config.offsiteServer
             self.remoteCatalog.stringValue = config.offsiteCatalog
             self.localCatalog.stringValue = config.localCatalog

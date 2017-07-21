@@ -53,7 +53,7 @@ class ViewControllerLoggData: NSViewController {
             self.deleteButton.state = .off
             return
         }
-        SharingManagerSchedule.sharedInstance.deleteLogRow(hiddenID: (self.row?.value(forKey: "hiddenID") as? Int)!,
+        Schedules.shared.deleteLogRow(hiddenID: (self.row?.value(forKey: "hiddenID") as? Int)!,
                                                            parent: (self.row?.value(forKey: "parent") as? String)!,
                                                            resultExecuted: (self.row?.value(forKey: "resultExecuted") as? String)!,
                                                            dateExecuted:(self.row?.value(forKey: "dateExecuted") as? String)!)
@@ -69,7 +69,7 @@ class ViewControllerLoggData: NSViewController {
         self.search.delegate = self
         self.sorting.usesThreadedAnimation = true
         // Reference to LogViewController
-        SharingManagerConfiguration.sharedInstance.viewControllerLoggData = self
+        Configurations.shared.viewControllerLoggData = self
     }
 
     override func viewDidAppear() {

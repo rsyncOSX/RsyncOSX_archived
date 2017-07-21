@@ -36,7 +36,7 @@ class ViewControllerProfile: NSViewController {
 
     // Setting default profile
     @IBAction func defaultProfile(_ sender: NSButton) {
-        SharingManagerConfiguration.sharedInstance.setProfile(profile: nil)
+        Configurations.shared.setProfile(profile: nil)
         self.newProfileDelegate?.newProfile( new: false)
         self.useprofile = nil
         self.dismissDelegate?.dismiss_view(viewcontroller: self)
@@ -48,9 +48,9 @@ class ViewControllerProfile: NSViewController {
         if newprofile.isEmpty == false {
             // Create new profile and use it
             self.profile?.createProfile(profileName: newprofile)
-            SharingManagerConfiguration.sharedInstance.setProfile(profile: newprofile)
+            Configurations.shared.setProfile(profile: newprofile)
             // Destroy old configuration and save default configuration
-            SharingManagerConfiguration.sharedInstance.destroyConfigurations()
+            Configurations.shared.destroyConfigurations()
             PersistentStoreAPI.sharedInstance.saveConfigFromMemory()
             self.newProfileDelegate?.newProfile(new: true)
         }
@@ -65,7 +65,7 @@ class ViewControllerProfile: NSViewController {
     @IBAction func deleteProfile(_ sender: NSButton) {
         if let useprofile = self.useprofile {
             self.profile?.deleteProfile(profileName: useprofile)
-            SharingManagerConfiguration.sharedInstance.setProfile(profile: nil)
+            Configurations.shared.setProfile(profile: nil)
             self.newProfileDelegate?.newProfile(new: false)
         }
         self.profile = nil
@@ -78,7 +78,7 @@ class ViewControllerProfile: NSViewController {
     // Use profile or close
     @IBAction func close(_ sender: NSButton) {
         if let useprofile = self.useprofile {
-            SharingManagerConfiguration.sharedInstance.setProfile(profile: useprofile)
+            Configurations.shared.setProfile(profile: useprofile)
             self.newProfileDelegate?.newProfile(new: false)
         }
         self.useprofile = nil
@@ -116,7 +116,7 @@ class ViewControllerProfile: NSViewController {
             self.newProfileDelegate = pvc
         }
         if let useprofile = self.useprofile {
-            SharingManagerConfiguration.sharedInstance.setProfile(profile: useprofile)
+            Configurations.shared.setProfile(profile: useprofile)
             self.newProfileDelegate?.newProfile(new: false)
         }
         self.useprofile = nil

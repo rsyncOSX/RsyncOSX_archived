@@ -61,7 +61,7 @@ final class Utils {
     weak var profilemenuDelegate: AddProfiles?
 
     // Creates a singelton of this class
-    class var  sharedInstance: Utils {
+    class var  shared: Utils {
         struct Singleton {
             static let instance = Utils()
         }
@@ -72,16 +72,16 @@ final class Utils {
     // Used for displaying the commands only
     func setRsyncCommandDisplay(index: Int, dryRun: Bool) -> String {
         var str: String?
-        let config = SharingManagerConfiguration.sharedInstance.getargumentAllConfigurations()[index] as? ArgumentsOneConfiguration
+        let config = Configurations.shared.getargumentAllConfigurations()[index] as? ArgumentsOneConfiguration
         if dryRun {
-                str = SharingManagerConfiguration.sharedInstance.setRsyncCommand() + " "
+                str = Configurations.shared.setRsyncCommand() + " "
                 if let count = config?.argdryRunDisplay?.count {
                     for i in 0 ..< count {
                         str = str! + (config?.argdryRunDisplay![i])!
                     }
                 }
         } else {
-            str = SharingManagerConfiguration.sharedInstance.setRsyncCommand() + " "
+            str = Configurations.shared.setRsyncCommand() + " "
                 if let count = config?.argDisplay?.count {
                     for i in 0 ..< count {
                         str = str! + (config?.argDisplay![i])!
@@ -129,8 +129,8 @@ final class Utils {
         self.indexBoolremoteserverOff = nil
         self.indexBoolremoteserverOff = Array<Bool>()
 
-        guard SharingManagerConfiguration.sharedInstance.configurationsDataSourcecount() > 0 else {
-            if let pvc = SharingManagerConfiguration.sharedInstance.viewControllertabMain as? ViewControllertabMain {
+        guard Configurations.shared.configurationsDataSourcecount() > 0 else {
+            if let pvc = Configurations.shared.viewControllertabMain as? ViewControllertabMain {
                 self.profilemenuDelegate = pvc
                 // Tell main view profile menu might presented
                 self.profilemenuDelegate?.enableProfileMenu()
@@ -141,13 +141,13 @@ final class Utils {
         globalDefaultQueue.async(execute: { () -> Void in
 
             var port: Int = 22
-            for i in 0 ..< SharingManagerConfiguration.sharedInstance.configurationsDataSourcecount() {
-                if let record = SharingManagerConfiguration.sharedInstance.getargumentAllConfigurations()[i] as? ArgumentsOneConfiguration {
+            for i in 0 ..< Configurations.shared.configurationsDataSourcecount() {
+                if let record = Configurations.shared.getargumentAllConfigurations()[i] as? ArgumentsOneConfiguration {
                     if record.config!.offsiteServer != "" {
                         if let sshport: Int = record.config!.sshport {
                             port = sshport
                         }
-                        let (success, _) = Utils.sharedInstance.testTCPconnection(record.config!.offsiteServer, port: port, timeout: 1)
+                        let (success, _) = Utils.shared.testTCPconnection(record.config!.offsiteServer, port: port, timeout: 1)
                         if success {
                             self.indexBoolremoteserverOff!.append(false)
                         } else {
@@ -158,9 +158,9 @@ final class Utils {
                         self.indexBoolremoteserverOff!.append(false)
                     }
                     // Reload table when all remote servers are checked
-                    if i == (SharingManagerConfiguration.sharedInstance.configurationsDataSourcecount() - 1) {
+                    if i == (Configurations.shared.configurationsDataSourcecount() - 1) {
                         // Send message to do a refresh
-                        if let pvc = SharingManagerConfiguration.sharedInstance.viewControllertabMain as? ViewControllertabMain {
+                        if let pvc = Configurations.shared.viewControllertabMain as? ViewControllertabMain {
                             self.testconnectionsDelegate = pvc
                             self.profilemenuDelegate = pvc
                             // Update table in main view
@@ -177,8 +177,8 @@ final class Utils {
     // Function for verifying thar rsync is present in either
     // standard path or path set by user
     func noRsync() {
-        if SharingManagerConfiguration.sharedInstance.noRysync == true {
-            if let rsync = SharingManagerConfiguration.sharedInstance.rsyncPath {
+        if Configurations.shared.noRysync == true {
+            if let rsync = Configurations.shared.rsyncPath {
                 Alerts.showInfo("ERROR: no rsync in " + rsync)
             } else {
                 Alerts.showInfo("ERROR: no rsync in /usr/local/bin")
@@ -191,12 +191,12 @@ final class Utils {
     // Function to verify rsync
     func verifyRsync() {
         let fileManager = FileManager.default
-        if let rsyncPath = SharingManagerConfiguration.sharedInstance.rsyncPath {
+        if let rsyncPath = Configurations.shared.rsyncPath {
             let path = rsyncPath + "rsync"
             if fileManager.fileExists(atPath: path) == false {
-                SharingManagerConfiguration.sharedInstance.noRysync = true
+                Configurations.shared.noRysync = true
             } else {
-                SharingManagerConfiguration.sharedInstance.noRysync = false
+                Configurations.shared.noRysync = false
             }
         }
     }

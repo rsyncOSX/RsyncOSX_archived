@@ -122,7 +122,7 @@ final class CopyFiles {
     init (index: Int) {
         // Setting index and configuration object
         self.index = index
-        self.config = SharingManagerConfiguration.sharedInstance.getConfigurations()[self.index!]
+        self.config = Configurations.shared.getConfigurations()[self.index!]
         self.getRemoteFileList()
     }
 

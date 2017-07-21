@@ -225,8 +225,8 @@ class ViewControllertabMain: NSViewController {
                 if answer {
                     if self.hiddenID != nil {
                         // Delete Configurations and Schedules by hiddenID
-                        SharingManagerConfiguration.sharedInstance.deleteConfigurationsByhiddenID(hiddenID: self.hiddenID!)
-                        SharingManagerSchedule.sharedInstance.deleteSchedulesbyHiddenID(hiddenID: self.hiddenID!)
+                        Configurations.shared.deleteConfigurationsByhiddenID(hiddenID: self.hiddenID!)
+                        Schedules.shared.deleteSchedulesbyHiddenID(hiddenID: self.hiddenID!)
                         // Reading main Configurations and Schedule to memory
                         self.reReadConfigurationsAndSchedules()
                         // And create a new Schedule object
@@ -253,7 +253,7 @@ class ViewControllertabMain: NSViewController {
         self.TCPButton.isEnabled = false
         self.loadProfileMenu = false
         self.displayProfile()
-        Utils.sharedInstance.testAllremoteserverConnections()
+        Utils.shared.testAllremoteserverConnections()
     }
 
     // Presenting Information from Rsync
@@ -310,13 +310,19 @@ class ViewControllertabMain: NSViewController {
     fileprivate func setRsyncCommandDisplay() {
         if self.displayDryRun.state == .on {
             if let index = self.index {
-                self.rsyncCommand.stringValue = Utils.sharedInstance.setRsyncCommandDisplay(index: index, dryRun: true)
+                guard index <= Configurations.shared.getConfigurations().count else {
+                    return
+                }
+                self.rsyncCommand.stringValue = Utils.shared.setRsyncCommandDisplay(index: index, dryRun: true)
             } else {
                 self.rsyncCommand.stringValue = ""
             }
         } else {
             if let index = self.index {
-                self.rsyncCommand.stringValue = Utils.sharedInstance.setRsyncCommandDisplay(index: index, dryRun: false)
+                guard index <= Configurations.shared.getConfigurations().count else {
+                    return
+                }
+                self.rsyncCommand.stringValue = Utils.shared.setRsyncCommandDisplay(index: index, dryRun: false)
             } else {
                 self.rsyncCommand.stringValue = ""
             }
@@ -337,7 +343,7 @@ class ViewControllertabMain: NSViewController {
         self.scheduledJobworking.usesThreadedAnimation = true
         self.reReadConfigurationsAndSchedules()
         // Setting reference to self, used when calling delegate functions
-        SharingManagerConfiguration.sharedInstance.viewControllertabMain = self
+        Configurations.shared.viewControllertabMain = self
         // Create a Schedules object
         // Start waiting for next Scheduled job (if any)
         self.schedules = ScheduleSortedAndExpand()
@@ -353,12 +359,12 @@ class ViewControllertabMain: NSViewController {
         self.loadProfileMenu = false
         self.showProcessInfo(info: .blank)
         // Allow notify about Scheduled jobs
-        SharingManagerConfiguration.sharedInstance.allowNotifyinMain = true
+        Configurations.shared.allowNotifyinMain = true
         self.setInfo(info: "", color: .black)
         // Setting reference to ViewController
         // Used to call delegate function from other class
-        SharingManagerConfiguration.sharedInstance.viewControllertabMain = self
-        if SharingManagerConfiguration.sharedInstance.configurationsDataSourcecount() > 0 {
+        Configurations.shared.viewControllertabMain = self
+        if Configurations.shared.configurationsDataSourcecount() > 0 {
             globalMainQueue.async(execute: { () -> Void in
                 self.mainTableView.reloadData()
             })
@@ -378,7 +384,7 @@ class ViewControllertabMain: NSViewController {
     override func viewDidDisappear() {
         super.viewDidDisappear()
         // Do not allow notify in Main
-        SharingManagerConfiguration.sharedInstance.allowNotifyinMain = false
+        Configurations.shared.allowNotifyinMain = false
     }
 
     // True if scheduled task in progress
@@ -398,7 +404,7 @@ class ViewControllertabMain: NSViewController {
 
     // Execute tasks by double click in table
     @objc(tableViewDoubleClick:) func tableViewDoubleClick(sender: AnyObject) {
-        if SharingManagerConfiguration.sharedInstance.allowDoubleclick == true {
+        if Configurations.shared.allowDoubleclick == true {
             if self.ready {
                 self.executeSingleTask()
             }
@@ -426,8 +432,8 @@ class ViewControllertabMain: NSViewController {
             return
         }
 
-        guard SharingManagerConfiguration.sharedInstance.noRysync == false else {
-            Utils.sharedInstance.noRsync()
+        guard Configurations.shared.noRysync == false else {
+            Utils.shared.noRsync()
             return
         }
 
@@ -442,7 +448,7 @@ class ViewControllertabMain: NSViewController {
             self.singletask = NewSingleTask(index: self.index!)
             self.singletask?.executeSingleTask()
             // Set reference to singleTask object
-            SharingManagerConfiguration.sharedInstance.singleTask = self.singletask
+            Configurations.shared.singleTask = self.singletask
             return
         }
         // Real run
@@ -457,8 +463,8 @@ class ViewControllertabMain: NSViewController {
             return
         }
 
-        guard SharingManagerConfiguration.sharedInstance.noRysync == false else {
-            Utils.sharedInstance.noRsync()
+        guard Configurations.shared.noRysync == false else {
+            Utils.shared.noRsync()
             return
         }
 
@@ -472,11 +478,11 @@ class ViewControllertabMain: NSViewController {
     // Reread bot Configurations and Schedules from persistent store to memory
     fileprivate func reReadConfigurationsAndSchedules() {
         // Reading main Configurations to memory
-        SharingManagerConfiguration.sharedInstance.setDataDirty(dirty: true)
-        SharingManagerConfiguration.sharedInstance.readAllConfigurationsAndArguments()
+        Configurations.shared.setDataDirty(dirty: true)
+        Configurations.shared.readAllConfigurationsAndArguments()
         // Read all Scheduled data again
-        SharingManagerConfiguration.sharedInstance.setDataDirty(dirty: true)
-        SharingManagerSchedule.sharedInstance.readAllSchedules()
+        Configurations.shared.setDataDirty(dirty: true)
+        Schedules.shared.readAllSchedules()
     }
 
     // Function for setting profile
@@ -488,7 +494,7 @@ class ViewControllertabMain: NSViewController {
             return
         }
 
-        if let profile = SharingManagerConfiguration.sharedInstance.getProfile() {
+        if let profile = Configurations.shared.getProfile() {
             self.profilInfo.stringValue = "Profile: " + profile
             self.profilInfo.textColor = .blue
         } else {
@@ -496,11 +502,12 @@ class ViewControllertabMain: NSViewController {
             self.profilInfo.textColor = .black
         }
         self.TCPButton.isEnabled = true
+        self.setRsyncCommandDisplay()
     }
 
     // Function for setting allowDouble click
     internal func displayAllowDoubleclick() {
-        if SharingManagerConfiguration.sharedInstance.allowDoubleclick == true {
+        if Configurations.shared.allowDoubleclick == true {
             self.allowDoubleclick.stringValue = "Double click: YES"
             self.allowDoubleclick.textColor = .blue
         } else {
@@ -520,7 +527,7 @@ class ViewControllertabMain: NSViewController {
         let indexes = myTableViewFromNotification.selectedRowIndexes
         if let index = indexes.first {
             self.index = index
-            self.hiddenID = SharingManagerConfiguration.sharedInstance.gethiddenID(index: index)
+            self.hiddenID = Configurations.shared.gethiddenID(index: index)
             // Reset output
             self.output = nil
             self.outputbatch = nil
@@ -544,7 +551,7 @@ extension ViewControllertabMain : NSTableViewDataSource {
 
     // Delegate for size of table
     func numberOfRows(in tableView: NSTableView) -> Int {
-        return SharingManagerConfiguration.sharedInstance.configurationsDataSourcecount()
+        return Configurations.shared.configurationsDataSourcecount()
     }
 }
 
@@ -566,14 +573,14 @@ extension ViewControllertabMain : NSTableViewDelegate {
     // TableView delegates
     @objc(tableView:objectValueForTableColumn:row:) func tableView(_ tableView: NSTableView, objectValueFor tableColumn: NSTableColumn?, row: Int) -> Any? {
 
-        if row > SharingManagerConfiguration.sharedInstance.configurationsDataSourcecount() - 1 {
+        if row > Configurations.shared.configurationsDataSourcecount() - 1 {
             return nil
         }
-        let object: NSDictionary = SharingManagerConfiguration.sharedInstance.getConfigurationsDataSource()![row]
+        let object: NSDictionary = Configurations.shared.getConfigurationsDataSource()![row]
         var text: String?
         var schedule: Bool = false
-        let hiddenID: Int = SharingManagerConfiguration.sharedInstance.getConfigurations()[row].hiddenID
-        if SharingManagerSchedule.sharedInstance.hiddenIDinSchedule(hiddenID) {
+        let hiddenID: Int = Configurations.shared.getConfigurations()[row].hiddenID
+        if Schedules.shared.hiddenIDinSchedule(hiddenID) {
             text = object[tableColumn!.identifier] as? String
             if text == "backup" || text == "restore" {
                 schedule = true
@@ -605,8 +612,8 @@ extension ViewControllertabMain : NSTableViewDelegate {
 
     // Toggling batch
     @objc(tableView:setObjectValue:forTableColumn:row:) func tableView(_ tableView: NSTableView, setObjectValue object: Any?, for tableColumn: NSTableColumn?, row: Int) {
-        if SharingManagerConfiguration.sharedInstance.getConfigurations()[row].task == "backup" {
-            SharingManagerConfiguration.sharedInstance.setBatchYesNo(row)
+        if Configurations.shared.getConfigurations()[row].task == "backup" {
+            Configurations.shared.setBatchYesNo(row)
         }
     }
 }
@@ -646,8 +653,8 @@ extension ViewControllertabMain: RefreshtableView {
 extension ViewControllertabMain: ReadConfigurationsAgain {
 
     func readConfigurations() {
-        SharingManagerConfiguration.sharedInstance.readAllConfigurationsAndArguments()
-        if SharingManagerConfiguration.sharedInstance.configurationsDataSourcecount() > 0 {
+        Configurations.shared.readAllConfigurationsAndArguments()
+        if Configurations.shared.configurationsDataSourcecount() > 0 {
             globalMainQueue.async(execute: { () -> Void in
                 self.mainTableView.reloadData()
             })
@@ -710,10 +717,10 @@ extension ViewControllertabMain: AddProfiles {
 
         guard new == false else {
             // A new and empty profile is created
-            SharingManagerSchedule.sharedInstance.destroySchedule()
-            SharingManagerConfiguration.sharedInstance.destroyConfigurations()
+            Schedules.shared.destroySchedule()
+            Configurations.shared.destroyConfigurations()
             // Reset in tabSchedule
-            if let pvc = SharingManagerConfiguration.sharedInstance.viewControllertabSchedule as? ViewControllertabSchedule {
+            if let pvc = Configurations.shared.viewControllertabSchedule as? ViewControllertabSchedule {
                 newProfileDelegate = pvc
                 newProfileDelegate?.newProfile(new: true)
             }
@@ -722,7 +729,7 @@ extension ViewControllertabMain: AddProfiles {
         }
 
         // Reset in tabSchedule
-        if let pvc = SharingManagerConfiguration.sharedInstance.viewControllertabSchedule as? ViewControllertabSchedule {
+        if let pvc = Configurations.shared.viewControllertabSchedule as? ViewControllertabSchedule {
             newProfileDelegate = pvc
             newProfileDelegate?.newProfile(new: false)
         }
@@ -732,7 +739,7 @@ extension ViewControllertabMain: AddProfiles {
         // If no new Schedules in profile exists old Schedules are 
         // kept in memory. Force a clean of old Schedules before read 
         // Schedules for new profile.
-        SharingManagerSchedule.sharedInstance.destroySchedule()
+        Schedules.shared.destroySchedule()
         // Read configurations and Scheduledata
         self.reReadConfigurationsAndSchedules()
         // Make sure loading profile
@@ -813,11 +820,11 @@ extension ViewControllertabMain: Connections {
     func displayConnections() {
 
         // Only do a reload if we are in the main view
-        guard SharingManagerConfiguration.sharedInstance.allowNotifyinMain == true else {
+        guard Configurations.shared.allowNotifyinMain == true else {
             return
         }
 
-        self.serverOff = Utils.sharedInstance.gettestAllremoteserverConnections()
+        self.serverOff = Utils.shared.gettestAllremoteserverConnections()
         globalMainQueue.async(execute: { () -> Void in
             self.mainTableView.reloadData()
         })
@@ -892,7 +899,7 @@ extension ViewControllertabMain: UpdateProgress {
         self.showProcessInfo(info: .countfiles)
         if self.batchtask != nil {
             // Batch run
-            if let batchobject = SharingManagerConfiguration.sharedInstance.getBatchdataObject() {
+            if let batchobject = Configurations.shared.getBatchdataObject() {
                 let work = batchobject.nextBatchCopy()
                 if work.1 == 1 {
                     // Real work is done
@@ -941,7 +948,7 @@ extension ViewControllertabMain: deselectRowTable {
 extension ViewControllertabMain: RsyncError {
     func rsyncerror() {
         // Set on or off in user configuration
-        if SharingManagerConfiguration.sharedInstance.rsyncerror {
+        if Configurations.shared.rsyncerror {
             globalMainQueue.async(execute: { () -> Void in
                 self.setInfo(info: "Error", color: .red)
                 self.showProcessInfo(info: .error)
@@ -998,11 +1005,11 @@ extension ViewControllertabMain: AbortOperations {
             self.process = nil
             self.index = nil
         }
-        if let batchobject = SharingManagerConfiguration.sharedInstance.getBatchdataObject() {
+        if let batchobject = Configurations.shared.getBatchdataObject() {
             // Empty queue in batchobject
             batchobject.abortOperations()
             // Set reference to batchdata = nil
-            SharingManagerConfiguration.sharedInstance.deleteBatchData()
+            Configurations.shared.deleteBatchData()
             self.schedules = nil
             self.process = nil
             self.setInfo(info: "Abort", color: .red)

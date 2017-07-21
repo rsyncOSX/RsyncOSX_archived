@@ -29,12 +29,12 @@ protocol RefreshtableView: class {
     func refresh()
 }
 
-class SharingManagerConfiguration {
+class Configurations {
 
     // Creates a singelton of this class
-    class var  sharedInstance: SharingManagerConfiguration {
+    class var  shared: Configurations {
         struct Singleton {
-            static let instance = SharingManagerConfiguration()
+            static let instance = Configurations()
         }
         return Singleton.instance
     }
@@ -310,7 +310,7 @@ class SharingManagerConfiguration {
     /// - parameter index: index of Configuration to update
     func setCurrentDateonConfiguration (_ index: Int) {
         let currendate = Date()
-        let dateformatter = Utils.sharedInstance.setDateformat()
+        let dateformatter = Utils.shared.setDateformat()
         self.configurations[index].dateRun = dateformatter.string(from: currendate)
         // Saving updated configuration in memory to persistent store
         PersistentStoreAPI.sharedInstance.saveConfigFromMemory()

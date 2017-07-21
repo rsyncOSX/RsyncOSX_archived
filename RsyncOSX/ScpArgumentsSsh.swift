@@ -206,7 +206,7 @@ final class ScpArgumentsSsh {
     init(hiddenID: Int?) {
 
         if hiddenID != nil {
-            self.config = SharingManagerConfiguration.sharedInstance.getConfigurations()[SharingManagerConfiguration.sharedInstance.getIndex(hiddenID!)]
+            self.config = Configurations.shared.getConfigurations()[Configurations.shared.getIndex(hiddenID!)]
         } else {
             self.config = nil
         }

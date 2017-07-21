@@ -71,15 +71,15 @@ final class ScheduleLoggData {
     // Loggdata is only read and sorted once
     private func readAndSortAllLoggdata() {
         var data = Array<NSDictionary>()
-        let input: [ConfigurationSchedule] = SharingManagerSchedule.sharedInstance.getSchedule()
+        let input: [ConfigurationSchedule] = Schedules.shared.getSchedule()
         for i in 0 ..< input.count {
-            let hiddenID = SharingManagerSchedule.sharedInstance.getSchedule()[i].hiddenID
+            let hiddenID = Schedules.shared.getSchedule()[i].hiddenID
             if input[i].logrecords.count > 0 {
                 for j in 0 ..< input[i].logrecords.count {
                     let dict = input[i].logrecords[j]
                     let logdetail: NSDictionary = [
-                        "localCatalog": SharingManagerConfiguration.sharedInstance.getResourceConfiguration(hiddenID, resource: .localCatalog),
-                        "offsiteServer": SharingManagerConfiguration.sharedInstance.getResourceConfiguration(hiddenID, resource: .offsiteServer),
+                        "localCatalog": Configurations.shared.getResourceConfiguration(hiddenID, resource: .localCatalog),
+                        "offsiteServer": Configurations.shared.getResourceConfiguration(hiddenID, resource: .offsiteServer),
                         "dateExecuted": (dict.value(forKey: "dateExecuted") as? String)!,
                         "resultExecuted": (dict.value(forKey: "resultExecuted") as? String)!,
                         "parent": (dict.value(forKey: "parent") as? String)!,
@@ -88,7 +88,7 @@ final class ScheduleLoggData {
                 }
             }
         }
-        let dateformatter = Utils.sharedInstance.setDateformat()
+        let dateformatter = Utils.shared.setDateformat()
         self.loggdata = data.sorted { (dict1, dict2) -> Bool in
             guard dateformatter.date(from: (dict1.value(forKey: "dateExecuted") as? String)!) != nil && (dateformatter.date(from: (dict2.value(forKey: "dateExecuted") as? String)!) != nil) else {
                 return true

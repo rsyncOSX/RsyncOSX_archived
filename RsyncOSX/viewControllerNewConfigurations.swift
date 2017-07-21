@@ -70,11 +70,11 @@ class ViewControllerNewConfigurations: NSViewController {
         // Set the delegates
         self.newTableView.delegate = self
         self.newTableView.dataSource = self
-        SharingManagerConfiguration.sharedInstance.destroyNewConfigurations()
+        Configurations.shared.destroyNewConfigurations()
         // Tooltip
         self.localCatalog.toolTip = "By using Finder drag and drop filepaths."
         self.offsiteCatalog.toolTip = "By using Finder drag and drop filepaths."
-        SharingManagerConfiguration.sharedInstance.viewControllerNewConfigurations = self
+        Configurations.shared.viewControllerNewConfigurations = self
     }
 
     override func viewDidAppear() {
@@ -160,8 +160,8 @@ class ViewControllerNewConfigurations: NSViewController {
             return
         }
 
-        SharingManagerConfiguration.sharedInstance.addNewConfigurations(dict)
-        self.tabledata = SharingManagerConfiguration.sharedInstance.getnewConfigurations()
+        Configurations.shared.addNewConfigurations(dict)
+        self.tabledata = Configurations.shared.getnewConfigurations()
         globalMainQueue.async(execute: { () -> Void in
             self.newTableView.reloadData()
         })
@@ -174,7 +174,7 @@ class ViewControllerNewConfigurations: NSViewController {
 extension ViewControllerNewConfigurations : NSTableViewDataSource {
 
     func numberOfRows(in tableView: NSTableView) -> Int {
-        return SharingManagerConfiguration.sharedInstance.newConfigurationsCount()
+        return Configurations.shared.newConfigurationsCount()
     }
 
 }
@@ -182,7 +182,7 @@ extension ViewControllerNewConfigurations : NSTableViewDataSource {
 extension ViewControllerNewConfigurations : NSTableViewDelegate {
 
     @objc(tableView:objectValueForTableColumn:row:) func tableView(_ tableView: NSTableView, objectValueFor tableColumn: NSTableColumn?, row: Int) -> Any? {
-        let object: NSMutableDictionary = SharingManagerConfiguration.sharedInstance.getnewConfigurations()![row]
+        let object: NSMutableDictionary = Configurations.shared.getnewConfigurations()![row]
         return object[tableColumn!.identifier] as? String
     }
 

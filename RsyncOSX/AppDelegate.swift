@@ -24,7 +24,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         }
 
         // Check for rsync
-        Utils.sharedInstance.verifyRsync()
+        Utils.shared.verifyRsync()
     }
 
     func applicationWillTerminate(_ aNotification: Notification) {

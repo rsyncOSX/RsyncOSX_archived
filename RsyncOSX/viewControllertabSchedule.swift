@@ -120,12 +120,12 @@ class ViewControllertabSchedule: NSViewController {
             if details == false && range == true {
                 let answer = Alerts.dialogOKCancel("Add Schedule?", text: "Cancel or OK")
                 if answer {
-                    SharingManagerSchedule.sharedInstance.addScheduleData(self.hiddenID!, schedule: schedule!, start: startdate, stop: stopdate)
+                    Schedules.shared.addScheduleData(self.hiddenID!, schedule: schedule!, start: startdate, stop: stopdate)
                     self.newSchedules = true
                     // Refresh table and recalculate the Schedules jobs
                     self.refresh()
                     // Start next job, if any, by delegate
-                    if let pvc = SharingManagerConfiguration.sharedInstance.viewControllertabMain as? ViewControllertabMain {
+                    if let pvc = Configurations.shared.viewControllertabMain as? ViewControllertabMain {
                         startnextjobDelegate = pvc
                         startnextjobDelegate?.startProcess()
                     }
@@ -174,7 +174,7 @@ class ViewControllertabSchedule: NSViewController {
         // Create a Schedules object
         self.schedules = ScheduleSortedAndExpand()
         // Setting reference to self.
-        SharingManagerConfiguration.sharedInstance.viewControllertabSchedule = self
+        Configurations.shared.viewControllertabSchedule = self
     }
 
     override func viewDidAppear() {
@@ -186,7 +186,7 @@ class ViewControllertabSchedule: NSViewController {
             // Create a Schedules object
             self.schedules = ScheduleSortedAndExpand()
         }
-        if SharingManagerConfiguration.sharedInstance.configurationsDataSourcecountBackupOnlyCount() > 0 {
+        if Configurations.shared.configurationsDataSourcecountBackupOnlyCount() > 0 {
             globalMainQueue.async(execute: { () -> Void in
                 self.mainTableView.reloadData()
             })
@@ -196,14 +196,14 @@ class ViewControllertabSchedule: NSViewController {
         // Call function to check if a scheduled backup is due for countdown
         self.startTimer()
         // Reference to self
-        SharingManagerSchedule.sharedInstance.viewObjectSchedule = self
+        Schedules.shared.viewObjectSchedule = self
     }
 
     override func viewDidDisappear() {
         super.viewDidDisappear()
         if self.newSchedules! {
             self.newSchedules = false
-            if let pvc = SharingManagerConfiguration.sharedInstance.viewControllertabMain as? ViewControllertabMain {
+            if let pvc = Configurations.shared.viewControllertabMain as? ViewControllertabMain {
                 self.newSchedulesDelegate = pvc
                 // Notify new schedules are added
                 self.newSchedulesDelegate?.newSchedulesAdded()
@@ -262,7 +262,7 @@ class ViewControllertabSchedule: NSViewController {
         if let index = indexes.first {
             // Set index
             self.index = index
-            let dict = SharingManagerConfiguration.sharedInstance.getConfigurationsDataSourcecountBackupOnly()![index]
+            let dict = Configurations.shared.getConfigurationsDataSourcecountBackupOnly()![index]
             self.hiddenID = dict.value(forKey: "hiddenID") as? Int
         } else {
             self.index = nil
@@ -275,20 +275,20 @@ class ViewControllertabSchedule: NSViewController {
 extension ViewControllertabSchedule : NSTableViewDataSource {
 
     func numberOfRows(in tableView: NSTableView) -> Int {
-        return SharingManagerConfiguration.sharedInstance.configurationsDataSourcecountBackupOnlyCount()
+        return Configurations.shared.configurationsDataSourcecountBackupOnlyCount()
     }
 }
 
 extension ViewControllertabSchedule : NSTableViewDelegate {
 
     @objc(tableView:objectValueForTableColumn:row:) func tableView(_ tableView: NSTableView, objectValueFor tableColumn: NSTableColumn?, row: Int) -> Any? {
-        let object: NSDictionary = SharingManagerConfiguration.sharedInstance.getConfigurationsDataSourcecountBackupOnly()![row]
+        let object: NSDictionary = Configurations.shared.getConfigurationsDataSourcecountBackupOnly()![row]
         var text: String?
         var schedule: Bool = false
         var number: Int?
 
         let hiddenID: Int = (object.value(forKey: "hiddenID") as? Int)!
-        if SharingManagerSchedule.sharedInstance.hiddenIDinSchedule(hiddenID) {
+        if Schedules.shared.hiddenIDinSchedule(hiddenID) {
             text = object[tableColumn!.identifier] as? String
             if text == "backup" || text == "restore" {
                 schedule = true
@@ -313,9 +313,9 @@ extension ViewControllertabSchedule : NSTableViewDelegate {
 
     // Toggling batch
     @objc(tableView:setObjectValue:forTableColumn:row:) func tableView(_ tableView: NSTableView, setObjectValue object: Any?, for tableColumn: NSTableColumn?, row: Int) {
-        if SharingManagerConfiguration.sharedInstance.getConfigurations()[row].task == "backup" {
-            SharingManagerConfiguration.sharedInstance.getConfigurationsDataSource()![row].setObject(object!, forKey: (tableColumn?.identifier)! as NSCopying)
-            SharingManagerConfiguration.sharedInstance.setBatchYesNo(row)
+        if Configurations.shared.getConfigurations()[row].task == "backup" {
+            Configurations.shared.getConfigurationsDataSource()![row].setObject(object!, forKey: (tableColumn?.identifier)! as NSCopying)
+            Configurations.shared.setBatchYesNo(row)
         }
     }
 
@@ -361,7 +361,7 @@ extension ViewControllertabSchedule: AddProfiles {
 extension ViewControllertabSchedule: RefreshtableView {
 
     func refresh() {
-        if SharingManagerConfiguration.sharedInstance.configurationsDataSourcecountBackupOnlyCount() > 0 {
+        if Configurations.shared.configurationsDataSourcecountBackupOnlyCount() > 0 {
             globalMainQueue.async(execute: { () -> Void in
                 self.mainTableView.reloadData()
             })

@@ -44,7 +44,7 @@ class ViewControllerEdit: NSViewController {
     // Update configuration, save and dismiss view
     @IBAction func update(_ sender: NSButton) {
 
-        var config: [Configuration] = SharingManagerConfiguration.sharedInstance.getConfigurations()
+        var config: [Configuration] = Configurations.shared.getConfigurations()
 
         if self.localCatalog.stringValue.hasSuffix("/") == false && self.singleFile == false {
             self.localCatalog.stringValue += "/"
@@ -66,7 +66,7 @@ class ViewControllerEdit: NSViewController {
             config[self.index!].sshport = nil
         }
         config[self.index!].rsyncdaemon = self.rsyncdaemon.state.rawValue
-        SharingManagerConfiguration.sharedInstance.updateConfigurations(config[self.index!], index: self.index!)
+        Configurations.shared.updateConfigurations(config[self.index!], index: self.index!)
         self.readconfigurationsDelegate?.readConfigurations()
         self.dismissDelegate?.dismiss_view(viewcontroller: self)
     }
@@ -93,7 +93,7 @@ class ViewControllerEdit: NSViewController {
         self.rsyncdaemon.state = .off
         // Getting index of selected configuration
         self.index = self.getindexDelegate?.getindex()
-        let config: Configuration = SharingManagerConfiguration.sharedInstance.getConfigurations()[self.index!]
+        let config: Configuration = Configurations.shared.getConfigurations()[self.index!]
         self.localCatalog.stringValue = config.localCatalog
         // Check for single file
         if self.localCatalog.stringValue.hasSuffix("/") == false {

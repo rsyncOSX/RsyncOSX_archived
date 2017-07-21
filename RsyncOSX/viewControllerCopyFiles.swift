@@ -141,10 +141,10 @@ class ViewControllerCopyFiles: NSViewController {
             self.selectButton.title = "Get source"
             return
         }
-        let hiddenID = SharingManagerConfiguration.sharedInstance.gethiddenID(index: index!)
+        let hiddenID = Configurations.shared.gethiddenID(index: index!)
         globalMainQueue.async(execute: { () -> Void in
-            self.server.stringValue = SharingManagerConfiguration.sharedInstance.getResourceConfiguration(hiddenID, resource: .offsiteServer)
-            self.rcatalog.stringValue = SharingManagerConfiguration.sharedInstance.getResourceConfiguration(hiddenID, resource: .remoteCatalog)
+            self.server.stringValue = Configurations.shared.getResourceConfiguration(hiddenID, resource: .offsiteServer)
+            self.rcatalog.stringValue = Configurations.shared.getResourceConfiguration(hiddenID, resource: .remoteCatalog)
         })
         self.selectButton.title = "Get files"
     }
@@ -152,7 +152,7 @@ class ViewControllerCopyFiles: NSViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Setting reference to ViewObject
-        SharingManagerConfiguration.sharedInstance.viewControllerCopyFiles = self
+        Configurations.shared.viewControllerCopyFiles = self
         self.tableViewSelect.delegate = self
         self.tableViewSelect.dataSource = self
         // Progress indicator
@@ -166,7 +166,7 @@ class ViewControllerCopyFiles: NSViewController {
 
     override func viewDidAppear() {
         super.viewDidAppear()
-        if let pvc = SharingManagerConfiguration.sharedInstance.viewControllertabMain as? ViewControllertabMain {
+        if let pvc = Configurations.shared.viewControllertabMain as? ViewControllertabMain {
             self.indexDelegate = pvc
             self.index = self.indexDelegate?.getindex()
             if let index = self.index {
@@ -174,7 +174,7 @@ class ViewControllerCopyFiles: NSViewController {
             }
         }
         self.copyButton.title = "Estimate"
-        if let restorePath = SharingManagerConfiguration.sharedInstance.restorePath {
+        if let restorePath = Configurations.shared.restorePath {
             self.localCatalog.stringValue = restorePath
         } else {
             self.localCatalog.stringValue = ""

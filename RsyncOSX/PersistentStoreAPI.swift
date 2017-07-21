@@ -44,7 +44,7 @@ final class PersistentStoreAPI {
             return Configurations
         } else {
             // Return configuration from memory
-            return SharingManagerConfiguration.sharedInstance.getConfigurations()
+            return Configurations.shared.getConfigurations()
         }
     }
 
@@ -57,7 +57,7 @@ final class PersistentStoreAPI {
     // Saving added configuration from meory
     func saveNewConfigurations() {
         let save = PersistentStoreConfiguration()
-        let newConfigurations = SharingManagerConfiguration.sharedInstance.getnewConfigurations()
+        let newConfigurations = Configurations.shared.getnewConfigurations()
         if newConfigurations != nil {
             for i in 0 ..< newConfigurations!.count {
                     save.addConfigurationsToMemory(newConfigurations![i])
@@ -65,9 +65,9 @@ final class PersistentStoreAPI {
             save.saveconfigInMemoryToPersistentStore()
         }
         // Reset structure holding new configurations
-        SharingManagerConfiguration.sharedInstance.destroyNewConfigurations()
+        Configurations.shared.destroyNewConfigurations()
         // Read all Configurations again to get all arguments
-        SharingManagerConfiguration.sharedInstance.readAllConfigurationsAndArguments()
+        Configurations.shared.readAllConfigurationsAndArguments()
     }
 
     // SCHEDULE
@@ -76,12 +76,12 @@ final class PersistentStoreAPI {
     func saveScheduleFromMemory() {
         let store = PersistentStoreScheduling()
         store.savescheduleInMemoryToPersistentStore()
-        SharingManagerSchedule.sharedInstance.readAllSchedules()
+        Schedules.shared.readAllSchedules()
         // Kick off Scheduled job again
         // This is because saving schedule from memory might have
         // changed the schedule and this kicks off the changed
         // schedule again.
-        if let pvc = SharingManagerConfiguration.sharedInstance.viewControllertabMain as? ViewControllertabMain {
+        if let pvc = Configurations.shared.viewControllertabMain as? ViewControllertabMain {
             startnextjobDelegate = pvc
             startnextjobDelegate?.startProcess()
         }
@@ -124,7 +124,7 @@ final class PersistentStoreAPI {
             }
             return schedule
         } else {
-            return SharingManagerSchedule.sharedInstance.getSchedule()
+            return Schedules.shared.getSchedule()
         }
     }
 

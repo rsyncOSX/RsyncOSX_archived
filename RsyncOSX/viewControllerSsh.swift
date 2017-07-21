@@ -165,7 +165,7 @@ class ViewControllerSsh: NSViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Reference to self
-        SharingManagerConfiguration.sharedInstance.viewControllerSsh = self
+        Configurations.shared.viewControllerSsh = self
         // Do view setup here.
         self.detailsTable.delegate = self
         self.detailsTable.dataSource = self
@@ -228,7 +228,7 @@ extension ViewControllerSsh: getSource {
     func getSource(index: Int) {
         self.hiddenID = index
         // Make sure that there is a offiseserver, if not set self.index = nil
-        let config = SharingManagerConfiguration.sharedInstance.getConfigurations()[SharingManagerConfiguration.sharedInstance.getIndex(hiddenID!)]
+        let config = Configurations.shared.getConfigurations()[Configurations.shared.getIndex(hiddenID!)]
         if config.offsiteServer.isEmpty == true {
             self.execute = false
         } else {

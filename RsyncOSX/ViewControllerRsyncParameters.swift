@@ -71,8 +71,8 @@ class ViewControllerRsyncParameters: NSViewController {
         case .on:
             self.setValueComboBox(combobox: self.parameter12, index: (self.parameters!.valueCombo(self.parameters!.getBackupString()[0])))
             self.viewParameter12.stringValue = self.parameters!.displayValue(self.parameters!.getBackupString()[0])
-            let hiddenID = SharingManagerConfiguration.sharedInstance.gethiddenID(index: (self.getindexDelegate?.getindex())!)
-            let localcatalog = SharingManagerConfiguration.sharedInstance.getResourceConfiguration(hiddenID, resource: .localCatalog)
+            let hiddenID = Configurations.shared.gethiddenID(index: (self.getindexDelegate?.getindex())!)
+            let localcatalog = Configurations.shared.getResourceConfiguration(hiddenID, resource: .localCatalog)
             let localcatalogParts = (localcatalog as AnyObject).components(separatedBy: "/")
             self.setValueComboBox(combobox: self.parameter13, index: (self.parameters!.valueCombo(self.parameters!.getBackupString()[1])))
             self.viewParameter13.stringValue = "../backup" + "_" + localcatalogParts[localcatalogParts.count - 2]
@@ -140,7 +140,7 @@ class ViewControllerRsyncParameters: NSViewController {
     override func viewDidAppear() {
         super.viewDidAppear()
 
-        var configurations: [Configuration] = SharingManagerConfiguration.sharedInstance.getConfigurations()
+        var configurations: [Configuration] = Configurations.shared.getConfigurations()
         let index = self.getindexDelegate?.getindex()
 
         guard index != nil else {
@@ -199,8 +199,8 @@ class ViewControllerRsyncParameters: NSViewController {
 
     // Function for saving changed or new parameters for one configuration.
     @IBAction func update(_ sender: NSButton) {
-        var Configurations: [Configuration] = PersistentStoreAPI.sharedInstance.getConfigurations()
-        guard Configurations.count > 0 else {
+        var configurations: [Configuration] = PersistentStoreAPI.sharedInstance.getConfigurations()
+        guard configurations.count > 0 else {
             // If Configurations == 0 by any change will not cause RsyncOSX to crash
             return
         }
@@ -211,26 +211,26 @@ class ViewControllerRsyncParameters: NSViewController {
             return
         }
 
-        Configurations[index!].parameter8 = self.parameters!.getRsyncParameter(indexComboBox:
+        configurations[index!].parameter8 = self.parameters!.getRsyncParameter(indexComboBox:
             self.parameter8.indexOfSelectedItem, value: getValue(value: self.viewParameter8.stringValue))
-        Configurations[index!].parameter9 = self.parameters!.getRsyncParameter(indexComboBox:
+        configurations[index!].parameter9 = self.parameters!.getRsyncParameter(indexComboBox:
             self.parameter9.indexOfSelectedItem, value: getValue(value: self.viewParameter9.stringValue))
-        Configurations[index!].parameter10 = self.parameters!.getRsyncParameter(indexComboBox:
+        configurations[index!].parameter10 = self.parameters!.getRsyncParameter(indexComboBox:
             self.parameter10.indexOfSelectedItem, value: getValue(value: self.viewParameter10.stringValue))
-        Configurations[index!].parameter11 = self.parameters!.getRsyncParameter(indexComboBox:
+        configurations[index!].parameter11 = self.parameters!.getRsyncParameter(indexComboBox:
             self.parameter11.indexOfSelectedItem, value: getValue(value: self.viewParameter11.stringValue))
-        Configurations[index!].parameter12 = self.parameters!.getRsyncParameter(indexComboBox:
+        configurations[index!].parameter12 = self.parameters!.getRsyncParameter(indexComboBox:
             self.parameter12.indexOfSelectedItem, value: getValue(value: self.viewParameter12.stringValue))
-        Configurations[index!].parameter13 = self.parameters!.getRsyncParameter(indexComboBox:
+        configurations[index!].parameter13 = self.parameters!.getRsyncParameter(indexComboBox:
             self.parameter13.indexOfSelectedItem, value: getValue(value: self.viewParameter13.stringValue))
-        Configurations[index!].parameter14 = self.parameters!.getRsyncParameter(indexComboBox:
+        configurations[index!].parameter14 = self.parameters!.getRsyncParameter(indexComboBox:
             self.parameter14.indexOfSelectedItem, value: getValue(value: self.viewParameter14.stringValue))
-        Configurations[index!].rsyncdaemon = self.rsyncdaemon.state.rawValue
+        configurations[index!].rsyncdaemon = self.rsyncdaemon.state.rawValue
         if let port = self.sshport {
-            Configurations[index!].sshport = Int(port.stringValue)
+            configurations[index!].sshport = Int(port.stringValue)
         }
         // Update configuration in memory before saving
-        SharingManagerConfiguration.sharedInstance.updateConfigurations(Configurations[index!], index: index!)
+        Configurations.shared.updateConfigurations(configurations[index!], index: index!)
         PersistentStoreAPI.sharedInstance.saveConfigFromMemory()
         // notify an update
         self.userparamsupdatedDelegate?.rsyncuserparamsupdated()

@@ -18,43 +18,43 @@ final class Userconfiguration {
         // Another version of rsync
         if let version3rsync = dict.value(forKey: "version3Rsync") as? Int {
             if version3rsync == 1 {
-                SharingManagerConfiguration.sharedInstance.rsyncVer3 = true
+                Configurations.shared.rsyncVer3 = true
             } else {
-                SharingManagerConfiguration.sharedInstance.rsyncVer3 = false
+                Configurations.shared.rsyncVer3 = false
             }
         }
         // Detailed logging
         if let detailedlogging = dict.value(forKey: "detailedlogging") as? Int {
             if detailedlogging == 1 {
-                SharingManagerConfiguration.sharedInstance.detailedlogging = true
+                Configurations.shared.detailedlogging = true
             } else {
-                SharingManagerConfiguration.sharedInstance.detailedlogging = false
+                Configurations.shared.detailedlogging = false
             }
         }
         // Optional path for rsync
         if let rsyncPath = dict.value(forKey: "rsyncPath") as? String {
-            SharingManagerConfiguration.sharedInstance.rsyncPath = rsyncPath
+            Configurations.shared.rsyncPath = rsyncPath
         }
         // Temporary path for restores single files or directory
         if let restorePath = dict.value(forKey: "restorePath") as? String {
-            SharingManagerConfiguration.sharedInstance.restorePath = restorePath
+            Configurations.shared.restorePath = restorePath
         } else {
-            SharingManagerConfiguration.sharedInstance.restorePath = NSHomeDirectory() + "/tmp/"
+            Configurations.shared.restorePath = NSHomeDirectory() + "/tmp/"
         }
         // Allow double click to execute single tasks
         if let allowDoubleclick = dict.value(forKey: "allowDoubleclick") as? Int {
             if allowDoubleclick == 1 {
-                SharingManagerConfiguration.sharedInstance.allowDoubleclick = true
+                Configurations.shared.allowDoubleclick = true
             } else {
-                SharingManagerConfiguration.sharedInstance.allowDoubleclick = false
+                Configurations.shared.allowDoubleclick = false
             }
         }
         // Allow rsync errors to reset work Queueu
         if let errors = dict.value(forKey: "rsyncerror") as? Int {
             if errors == 1 {
-                SharingManagerConfiguration.sharedInstance.rsyncerror = true
+                Configurations.shared.rsyncerror = true
             } else {
-                SharingManagerConfiguration.sharedInstance.rsyncerror = false
+                Configurations.shared.rsyncerror = false
             }
         }
     }
@@ -64,7 +64,7 @@ final class Userconfiguration {
             self.readUserconfiguration(dict: userconfigRsyncOSX[0])
         }
         // If userconfiguration is read from disk update info in main view
-        if let pvc = SharingManagerConfiguration.sharedInstance.viewControllertabMain as? ViewControllertabMain {
+        if let pvc = Configurations.shared.viewControllertabMain as? ViewControllertabMain {
             self.rsyncchangedDelegate = pvc
             self.rsyncchangedDelegate?.rsyncchanged()
             self.rsyncchangedDelegate?.displayAllowDoubleclick()

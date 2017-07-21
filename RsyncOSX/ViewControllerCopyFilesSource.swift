@@ -94,15 +94,15 @@ class ViewControllerCopyFilesSource: NSViewController {
         if let index = indexes.first {
             if let pvc = self.presenting as? ViewControllerCopyFiles {
                 self.setIndexDelegate = pvc
-                let object = SharingManagerConfiguration.sharedInstance.getConfigurationsDataSourcecountBackupOnly()![index]
+                let object = Configurations.shared.getConfigurationsDataSourcecountBackupOnly()![index]
                 let hiddenID = object.value(forKey: "hiddenID") as? Int
                 guard hiddenID != nil else {
                     return
                 }
-                self.index = SharingManagerConfiguration.sharedInstance.getIndex(hiddenID!)
+                self.index = Configurations.shared.getIndex(hiddenID!)
                 self.setIndexDelegate?.setIndex(index: self.index!)
             } else if self.presenting as? ViewControllerSsh != nil {
-                let object = SharingManagerConfiguration.sharedInstance.getConfigurationsDataSourcecountBackupOnly()![index]
+                let object = Configurations.shared.getConfigurationsDataSourcecountBackupOnly()![index]
                 let hiddenID = object.value(forKey: "hiddenID") as? Int
                 guard hiddenID != nil else {
                     return
@@ -117,10 +117,10 @@ class ViewControllerCopyFilesSource: NSViewController {
 extension ViewControllerCopyFilesSource: NSTableViewDataSource {
     // Delegate for size of table
     func numberOfRows(in tableView: NSTableView) -> Int {
-        guard SharingManagerConfiguration.sharedInstance.getConfigurationsDataSourcecountBackupOnly() != nil else {
+        guard Configurations.shared.getConfigurationsDataSourcecountBackupOnly() != nil else {
             return 0
         }
-        return SharingManagerConfiguration.sharedInstance.getConfigurationsDataSourcecountBackupOnly()!.count
+        return Configurations.shared.getConfigurationsDataSourcecountBackupOnly()!.count
     }
 }
 
@@ -128,10 +128,10 @@ extension ViewControllerCopyFilesSource: NSTableViewDelegate {
 
     // TableView delegates
     @objc(tableView:objectValueForTableColumn:row:) func tableView(_ tableView: NSTableView, objectValueFor tableColumn: NSTableColumn?, row: Int) -> Any? {
-        guard SharingManagerConfiguration.sharedInstance.getConfigurationsDataSourcecountBackupOnly() != nil else {
+        guard Configurations.shared.getConfigurationsDataSourcecountBackupOnly() != nil else {
             return nil
         }
-        let object: NSDictionary = SharingManagerConfiguration.sharedInstance.getConfigurationsDataSourcecountBackupOnly()![row]
+        let object: NSDictionary = Configurations.shared.getConfigurationsDataSourcecountBackupOnly()![row]
         return object[tableColumn!.identifier] as? String
     }
 

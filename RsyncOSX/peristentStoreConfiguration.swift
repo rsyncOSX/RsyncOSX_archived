@@ -19,7 +19,7 @@ final class PersistentStoreConfiguration: Readwritefiles {
     /// are added.
     private var maxhiddenID: Int {
         // Reading Configurations from memory
-        let store: [Configuration] = SharingManagerConfiguration.sharedInstance.getConfigurations()
+        let store: [Configuration] = Configurations.shared.getConfigurations()
         if store.count > 0 {
             _ = store.sorted { (config1, config2) -> Bool in
                 if config1.hiddenID > config2.hiddenID {
@@ -49,8 +49,8 @@ final class PersistentStoreConfiguration: Readwritefiles {
     func saveconfigInMemoryToPersistentStore() {
         var array = Array<NSDictionary>()
         // Reading Configurations from memory
-        let Configurations: [Configuration] = SharingManagerConfiguration.sharedInstance.getConfigurations()
-        for i in 0 ..< Configurations.count {
+        let configurations: [Configuration] = Configurations.shared.getConfigurations()
+        for i in 0 ..< configurations.count {
             array.append(self.dictionaryFromconfig(index: i))
         }
         // Write array to persistent store
@@ -71,10 +71,10 @@ final class PersistentStoreConfiguration: Readwritefiles {
 
             var array = Array<NSDictionary>()
             // Get existing configurations from memory
-            let Configurations: [Configuration] = SharingManagerConfiguration.sharedInstance.getConfigurations()
+            let configurations: [Configuration] = Configurations.shared.getConfigurations()
 
             // copy existing backups before adding
-            for i in 0 ..< Configurations.count {
+            for i in 0 ..< configurations.count {
                 array.append(self.dictionaryFromconfig(index: i))
             }
             // backup part
@@ -85,11 +85,11 @@ final class PersistentStoreConfiguration: Readwritefiles {
                 array.append(self.setRestorePart(dict: backup))
                 // Append the two records to Configuration i memory
                 // Important to save Configuration from memory after this method
-                SharingManagerConfiguration.sharedInstance.addConfigurationtoMemory(dict: array[array.count - 2])
-                SharingManagerConfiguration.sharedInstance.addConfigurationtoMemory(dict: array[array.count - 1])
+                Configurations.shared.addConfigurationtoMemory(dict: array[array.count - 2])
+                Configurations.shared.addConfigurationtoMemory(dict: array[array.count - 1])
             } else {
                 // Singlefile Configuration - only adds the copy part
-                SharingManagerConfiguration.sharedInstance.addConfigurationtoMemory(dict: array[array.count - 1])
+                Configurations.shared.addConfigurationtoMemory(dict: array[array.count - 1])
             }
             // Method is only used from Adding New Configurations
         }
@@ -98,7 +98,7 @@ final class PersistentStoreConfiguration: Readwritefiles {
     // Function for returning a NSMutabledictionary from a configuration record
     private func dictionaryFromconfig (index: Int) -> NSMutableDictionary {
 
-        var config: Configuration = SharingManagerConfiguration.sharedInstance.getConfigurations()[index]
+        var config: Configuration = Configurations.shared.getConfigurations()[index]
         let dict: NSMutableDictionary = [
             "task": config.task,
             "backupID": config.backupID,

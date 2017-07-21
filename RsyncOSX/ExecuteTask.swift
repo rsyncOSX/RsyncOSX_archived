@@ -27,15 +27,15 @@ class ExecuteTask: Operation {
         var config: Configuration?
 
         // Get the first job of the queue
-        if let dict: NSDictionary = SharingManagerSchedule.sharedInstance.scheduledJob {
+        if let dict: NSDictionary = Schedules.shared.scheduledJob {
             if let hiddenID: Int = dict.value(forKey: "hiddenID") as? Int {
                 let store: [Configuration] = PersistentStoreAPI.sharedInstance.getConfigurations()
                 let configArray = store.filter({return ($0.hiddenID == hiddenID)})
 
                 guard configArray.count > 0 else {
-                    if let pvc = SharingManagerConfiguration.sharedInstance.viewControllertabMain as? ViewControllertabMain {
+                    if let pvc = Configurations.shared.viewControllertabMain as? ViewControllertabMain {
                         notifyDelegate = pvc
-                        if SharingManagerConfiguration.sharedInstance.allowNotifyinMain == true {
+                        if Configurations.shared.allowNotifyinMain == true {
                             notifyDelegate?.notifyScheduledJob(config: nil)
                         }
                     }
@@ -45,9 +45,9 @@ class ExecuteTask: Operation {
                 config = configArray[0]
 
                 guard config != nil else {
-                    if let pvc = SharingManagerConfiguration.sharedInstance.viewControllertabMain as? ViewControllertabMain {
+                    if let pvc = Configurations.shared.viewControllertabMain as? ViewControllertabMain {
                         notifyDelegate = pvc
-                        if SharingManagerConfiguration.sharedInstance.allowNotifyinMain == true {
+                        if Configurations.shared.allowNotifyinMain == true {
                             notifyDelegate?.notifyScheduledJob(config: nil)
                         }
                     }
@@ -55,11 +55,11 @@ class ExecuteTask: Operation {
                 }
 
                 // Notify that scheduled task is executing
-                if let pvc = SharingManagerConfiguration.sharedInstance.viewControllertabMain as? ViewControllertabMain {
+                if let pvc = Configurations.shared.viewControllertabMain as? ViewControllertabMain {
                     notifyDelegate = pvc
                     notifyDelegate?.start()
                     // Trying to notify when not in main view will crash RSyncOSX
-                    if SharingManagerConfiguration.sharedInstance.allowNotifyinMain == true {
+                    if Configurations.shared.allowNotifyinMain == true {
                         notifyDelegate?.notifyScheduledJob(config: config)
                     }
                 }
@@ -68,7 +68,7 @@ class ExecuteTask: Operation {
                     arguments = RsyncProcessArguments().argumentsRsync(config!, dryRun: false, forDisplay: false)
                     // Setting reference to finalize the job
                     // Finalize job is done when rsynctask ends (in process termination)
-                    SharingManagerConfiguration.sharedInstance.operation = CompleteScheduledOperation(dict: dict)
+                    Configurations.shared.operation = CompleteScheduledOperation(dict: dict)
                     // Start the rsync job
                     globalMainQueue.async(execute: {
                         if arguments != nil {

@@ -14,12 +14,12 @@
 import Foundation
 import Cocoa
 
-class SharingManagerSchedule: ScheduleWriteLoggData {
+class Schedules: ScheduleWriteLoggData {
 
     // Creates a singelton of this class
-    class var  sharedInstance: SharingManagerSchedule {
+    class var  shared: Schedules {
         struct Singleton {
-            static let instance = SharingManagerSchedule()
+            static let instance = Schedules()
         }
         return Singleton.instance
     }
@@ -120,7 +120,7 @@ class SharingManagerSchedule: ScheduleWriteLoggData {
     /// - parameter start: start date and time
     /// - parameter stop: stop date and time
     func addScheduleData (_ hiddenID: Int, schedule: String, start: Date, stop: Date) {
-        let dateformatter = Utils.sharedInstance.setDateformat()
+        let dateformatter = Utils.shared.setDateformat()
         let dict = NSMutableDictionary()
         dict.setObject(hiddenID, forKey: "hiddenID" as NSCopying)
         dict.setObject(dateformatter.string(from: start), forKey: "dateStart" as NSCopying)
@@ -129,7 +129,7 @@ class SharingManagerSchedule: ScheduleWriteLoggData {
         let newSchedule = ConfigurationSchedule(dictionary: dict, log: nil)
         self.schedule.append(newSchedule)
         // Set data dirty
-        SharingManagerConfiguration.sharedInstance.setDataDirty(dirty: true)
+        Configurations.shared.setDataDirty(dirty: true)
         PersistentStoreAPI.sharedInstance.saveScheduleFromMemory()
     }
 
@@ -183,7 +183,7 @@ class SharingManagerSchedule: ScheduleWriteLoggData {
             }
             // Sorting schedule after dateStart, last startdate on top
             data.sort { (schedule1, schedule2) -> Bool in
-                let dateformatter = Utils.sharedInstance.setDateformat()
+                let dateformatter = Utils.shared.setDateformat()
                 if dateformatter.date(from: (schedule1.value(forKey: "dateStart") as? String)!)! > dateformatter.date(from: (schedule2.value(forKey: "dateStart") as? String)!)! {
                     return true
                 } else {
@@ -259,7 +259,7 @@ class SharingManagerSchedule: ScheduleWriteLoggData {
     // Send message to main view do a refresh of table
     private func doaRefreshTableviewMain() {
         // Send message about refresh tableView
-        if let pvc = SharingManagerConfiguration.sharedInstance.viewControllertabMain as? ViewControllertabMain {
+        if let pvc = Configurations.shared.viewControllertabMain as? ViewControllertabMain {
             self.refreshDelegate = pvc
             self.refreshDelegate?.refresh()
         }

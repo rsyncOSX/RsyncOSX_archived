@@ -49,14 +49,14 @@ class Readwritefiles {
             if let profile = self.profile {
                 let profilePath = Profiles()
                 profilePath.createDirectory()
-                str = "/Rsync/" + SharingManagerConfiguration.sharedInstance.getMacSerialNumber() + "/" + profile + self.name!
+                str = "/Rsync/" + Configurations.shared.getMacSerialNumber() + "/" + profile + self.name!
             } else {
                 // If profile not set use no profile
-                str = "/Rsync/" + SharingManagerConfiguration.sharedInstance.getMacSerialNumber() + self.name!
+                str = "/Rsync/" + Configurations.shared.getMacSerialNumber() + self.name!
             }
         } else {
             // no profile
-            str = "/Rsync/" + SharingManagerConfiguration.sharedInstance.getMacSerialNumber() + self.name!
+            str = "/Rsync/" + Configurations.shared.getMacSerialNumber() + self.name!
         }
         return (docuDir + str!)
     }
@@ -70,16 +70,16 @@ class Readwritefiles {
 
         switch self.task! {
         case .schedule:
-            if SharingManagerConfiguration.sharedInstance.isDataDirty() {
+            if Configurations.shared.isDataDirty() {
                 self.readdisk = true
-                SharingManagerConfiguration.sharedInstance.setDataDirty(dirty: false)
+                Configurations.shared.setDataDirty(dirty: false)
             } else {
                 self.readdisk = false
             }
         case .configuration:
-            if SharingManagerConfiguration.sharedInstance.isDataDirty() {
+            if Configurations.shared.isDataDirty() {
                 self.readdisk = true
-                SharingManagerConfiguration.sharedInstance.setDataDirty(dirty: false)
+                Configurations.shared.setDataDirty(dirty: false)
             } else {
                 self.readdisk = false
             }
@@ -126,12 +126,12 @@ class Readwritefiles {
         }
         switch self.task! {
         case .schedule:
-            SharingManagerConfiguration.sharedInstance.setDataDirty(dirty: true)
+            Configurations.shared.setDataDirty(dirty: true)
         case .configuration:
-            SharingManagerConfiguration.sharedInstance.setDataDirty(dirty: true)
+            Configurations.shared.setDataDirty(dirty: true)
         default:
             // Only set data dirty if either Configuration or Schedules are written to persistent store
-            SharingManagerConfiguration.sharedInstance.setDataDirty(dirty: false)
+            Configurations.shared.setDataDirty(dirty: false)
         }
         let dictionary = NSDictionary(object: array, forKey: self.key! as NSCopying)
         guard self.fileName != nil else {
@@ -148,14 +148,14 @@ class Readwritefiles {
         case .schedule:
             self.name = "/scheduleRsync.plist"
             self.key = "Schedule"
-            if let profile = SharingManagerConfiguration.sharedInstance.getProfile() {
+            if let profile = Configurations.shared.getProfile() {
                 self.profile = profile
                 self.useProfile = true
             }
         case .configuration:
             self.name = "/configRsync.plist"
             self.key = "Catalogs"
-            if let profile = SharingManagerConfiguration.sharedInstance.getProfile() {
+            if let profile = Configurations.shared.getProfile() {
                 self.profile = profile
                 self.useProfile = true
             }

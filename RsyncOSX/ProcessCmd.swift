@@ -37,7 +37,7 @@ class ProcessCmd {
         if let command = self.command {
             task.launchPath = command
         } else {
-            task.launchPath = SharingManagerConfiguration.sharedInstance.setRsyncCommand()
+            task.launchPath = Configurations.shared.setRsyncCommand()
         }
         task.arguments = self.arguments
         // Pipe for reading output from Process
@@ -81,11 +81,11 @@ class ProcessCmd {
             } else {
                 // We are in Scheduled operation and must finalize the job
                 // e.g logging date and stuff like that
-                if SharingManagerConfiguration.sharedInstance.operation != nil {
-                    SharingManagerConfiguration.sharedInstance.operation!.finalizeScheduledJob(output: output)
+                if Configurations.shared.operation != nil {
+                    Configurations.shared.operation!.finalizeScheduledJob(output: output)
                 }
                 // After logging is done set reference to object = nil
-                SharingManagerConfiguration.sharedInstance.operation = nil
+                Configurations.shared.operation = nil
             }
             NotificationCenter.default.removeObserver(self.observationCenter as Any)
         }
