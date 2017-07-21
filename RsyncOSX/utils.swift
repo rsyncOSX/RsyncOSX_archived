@@ -188,4 +188,16 @@ final class Utils {
         }
     }
 
- }
+    // Function to verify rsync
+    func verifyRsync() {
+        let fileManager = FileManager.default
+        if let rsyncPath = SharingManagerConfiguration.sharedInstance.rsyncPath {
+            let path = rsyncPath + "rsync"
+            if fileManager.fileExists(atPath: path) == false {
+                SharingManagerConfiguration.sharedInstance.noRysync = true
+            } else {
+                SharingManagerConfiguration.sharedInstance.noRysync = false
+            }
+        }
+    }
+}
