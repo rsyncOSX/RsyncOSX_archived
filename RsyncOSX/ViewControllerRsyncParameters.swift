@@ -151,9 +151,9 @@ class ViewControllerRsyncParameters: NSViewController {
         self.parameters = RsyncParameters(config: configurations[index!])
         self.comboBoxValues = parameters!.getComboBoxValues()
 
-        self.backupbutton.state = NSControl.StateValue(rawValue: 0)
-        self.suffixButton.state = NSControl.StateValue(rawValue: 0)
-        self.suffixButton2.state = NSControl.StateValue(rawValue: 0)
+        self.backupbutton.state = .off
+        self.suffixButton.state = .off
+        self.suffixButton2.state = .off
         self.viewParameter1.stringValue = configurations[index!].parameter1
         self.viewParameter2.stringValue = configurations[index!].parameter2
         self.viewParameter3.stringValue = configurations[index!].parameter3

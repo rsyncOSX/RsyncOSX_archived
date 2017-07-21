@@ -308,24 +308,17 @@ class ViewControllertabMain: NSViewController {
 
     // Display correct rsync command in view
     fileprivate func setRsyncCommandDisplay() {
-        if self.displayDryRun.state == .on {
-            if let index = self.index {
-                guard index <= Configurations.shared.getConfigurations().count else {
-                    return
-                }
-                self.rsyncCommand.stringValue = Utils.shared.setRsyncCommandDisplay(index: index, dryRun: true)
+        if let index = self.index {
+            guard index <= Configurations.shared.getConfigurations().count else {
+                return
+            }
+            if self.displayDryRun.state == .on {
+                self.rsyncCommand.stringValue = Utils.shared.rsyncpathtodisplay(index: index, dryRun: true)
             } else {
-                self.rsyncCommand.stringValue = ""
+                self.rsyncCommand.stringValue = Utils.shared.rsyncpathtodisplay(index: index, dryRun: false)
             }
         } else {
-            if let index = self.index {
-                guard index <= Configurations.shared.getConfigurations().count else {
-                    return
-                }
-                self.rsyncCommand.stringValue = Utils.shared.setRsyncCommandDisplay(index: index, dryRun: false)
-            } else {
-                self.rsyncCommand.stringValue = ""
-            }
+            self.rsyncCommand.stringValue = ""
         }
     }
 
@@ -624,7 +617,6 @@ extension ViewControllertabMain: Information {
 
     // Get information from rsync output.
     func getInformation() -> Array<String> {
-
         if self.outputbatch != nil {
             return self.outputbatch!.getOutput()
         } else if self.output != nil {
@@ -674,7 +666,7 @@ extension ViewControllertabMain: RsyncUserParams {
     func rsyncuserparamsupdated() {
         self.readConfigurations()
         self.setRsyncCommandDisplay()
-        self.rsyncparams.state = NSControl.StateValue(rawValue: 0)
+        self.rsyncparams.state = .off
     }
 }
 

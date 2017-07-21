@@ -68,45 +68,6 @@ final class Utils {
         return Singleton.instance
     }
 
-    // Display the correct command to execute
-    // Used for displaying the commands only
-    func setRsyncCommandDisplay(index: Int, dryRun: Bool) -> String {
-        var str: String?
-        let config = Configurations.shared.getargumentAllConfigurations()[index] as? ArgumentsOneConfiguration
-        if dryRun {
-                str = self.setRsyncCommand() + " "
-                if let count = config?.argdryRunDisplay?.count {
-                    for i in 0 ..< count {
-                        str = str! + (config?.argdryRunDisplay![i])!
-                    }
-                }
-        } else {
-            str = self.setRsyncCommand() + " "
-                if let count = config?.argDisplay?.count {
-                    for i in 0 ..< count {
-                        str = str! + (config?.argDisplay![i])!
-                    }
-                }
-            }
-        return str!
-    }
-
-    /// Function returns the correct path for rsync
-    /// according to configuration set by user or
-    /// default value.
-    /// - returns : full path of rsync command
-    func setRsyncCommand() -> String {
-        if Configurations.shared.rsyncVer3 {
-            if Configurations.shared.rsyncPath == nil {
-                return "/usr/local/bin/rsync"
-            } else {
-                return Configurations.shared.rsyncPath! + "rsync"
-            }
-        } else {
-            return "/usr/bin/rsync"
-        }
-    }
-
     // Test for TCP connection
     func testTCPconnection (_ addr: String, port: Int, timeout: Int) -> (Bool, String) {
         var connectionOK: Bool = false
@@ -204,8 +165,8 @@ final class Utils {
         }
     }
 
-    // Function to verify rsync
-    func verifyRsync() {
+    // Function to verify full rsyncpath
+    func verifyrsyncpath() {
         let fileManager = FileManager.default
         let path: String?
         // If not in /usr/bin or /usr/local/bin
@@ -221,6 +182,45 @@ final class Utils {
             Configurations.shared.noRysync = true
         } else {
             Configurations.shared.noRysync = false
+        }
+    }
+
+    // Display the correct command to execute
+    // Used for displaying the commands only
+    func rsyncpathtodisplay(index: Int, dryRun: Bool) -> String {
+        var str: String?
+        let config = Configurations.shared.getargumentAllConfigurations()[index] as? ArgumentsOneConfiguration
+        if dryRun {
+            str = self.rsyncpath() + " "
+            if let count = config?.argdryRunDisplay?.count {
+                for i in 0 ..< count {
+                    str = str! + (config?.argdryRunDisplay![i])!
+                }
+            }
+        } else {
+            str = self.rsyncpath() + " "
+            if let count = config?.argDisplay?.count {
+                for i in 0 ..< count {
+                    str = str! + (config?.argDisplay![i])!
+                }
+            }
+        }
+        return str!
+    }
+
+    /// Function returns the correct path for rsync
+    /// according to configuration set by user or
+    /// default value.
+    /// - returns : full path of rsync command
+    func rsyncpath() -> String {
+        if Configurations.shared.rsyncVer3 {
+            if Configurations.shared.rsyncPath == nil {
+                return "/usr/local/bin/rsync"
+            } else {
+                return Configurations.shared.rsyncPath! + "rsync"
+            }
+        } else {
+            return "/usr/bin/rsync"
         }
     }
 }

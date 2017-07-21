@@ -38,7 +38,7 @@ class ViewControllerUserconfiguration: NSViewController {
     @IBAction func toggleversion3rsync(_ sender: NSButton) {
         if self.version3rsync.state == .on {
             Configurations.shared.rsyncVer3 = true
-            if self.rsyncPath.stringValue.isEmpty {
+            if self.rsyncPath.stringValue == "" {
                 Configurations.shared.rsyncPath = nil
             }
         } else {
