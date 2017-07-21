@@ -1,5 +1,5 @@
 //
-//  persistenStoreUserconfiguration.swift
+//  PersistentStoreageUserconfiguration.swift
 //  RsyncOSX
 //
 //  Created by Thomas Evensen on 26/10/2016.
@@ -9,7 +9,7 @@
 
 import Foundation
 
-final class PersistentStoreUserconfiguration: Readwritefiles {
+final class PersistentStoreageUserconfiguration: Readwritefiles {
 
     /// Variable holds all configuration data
     private var userconfiguration: Array<NSDictionary>?

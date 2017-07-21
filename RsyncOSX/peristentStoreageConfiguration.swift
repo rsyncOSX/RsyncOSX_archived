@@ -1,5 +1,5 @@
 //
-//  persistentBackupStore.swift
+//  PersistentStoreageConfiguration.swift
 //  RsyncOSX
 //
 //  Created by Thomas Evensen on 09/12/15.
@@ -12,7 +12,7 @@
 
 import Foundation
 
-final class PersistentStoreConfiguration: Readwritefiles {
+final class PersistentStoreageConfiguration: Readwritefiles {
 
     /// Variable computes max hiddenID used
     /// MaxhiddenID is used when new configurations

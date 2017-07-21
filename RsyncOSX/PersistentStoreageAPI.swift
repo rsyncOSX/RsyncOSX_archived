@@ -8,12 +8,12 @@
 
 import Foundation
 
-final class PersistentStoreAPI {
+final class PersistentStoreageAPI {
 
     // Creates a singelton of this class
-    class var  sharedInstance: PersistentStoreAPI {
+    class var  shared: PersistentStoreageAPI {
         struct Singleton {
-            static let instance = PersistentStoreAPI()
+            static let instance = PersistentStoreageAPI()
         }
         return Singleton.instance
     }
@@ -32,7 +32,7 @@ final class PersistentStoreAPI {
 
     // Read configurations from persisten store
     func getConfigurations() -> [Configuration] {
-        let read = PersistentStoreConfiguration()
+        let read = PersistentStoreageConfiguration()
         // Either read from persistent store or
         // return Configurations already in memory
         if read.readConfigurationsFromPermanentStore() != nil {
@@ -50,13 +50,13 @@ final class PersistentStoreAPI {
 
     // Saving configuration from memory to persistent store
     func saveConfigFromMemory() {
-        let save = PersistentStoreConfiguration()
+        let save = PersistentStoreageConfiguration()
         save.saveconfigInMemoryToPersistentStore()
     }
 
     // Saving added configuration from meory
     func saveNewConfigurations() {
-        let save = PersistentStoreConfiguration()
+        let save = PersistentStoreageConfiguration()
         let newConfigurations = Configurations.shared.getnewConfigurations()
         if newConfigurations != nil {
             for i in 0 ..< newConfigurations!.count {
@@ -132,12 +132,12 @@ final class PersistentStoreAPI {
 
     // Saving user configuration
     func saveUserconfiguration() {
-        let store = PersistentStoreUserconfiguration()
+        let store = PersistentStoreageUserconfiguration()
         store.saveUserconfiguration()
     }
 
     func getUserconfiguration () -> [NSDictionary]? {
-        let store = PersistentStoreUserconfiguration()
+        let store = PersistentStoreageUserconfiguration()
         return store.readUserconfigurationsFromPermanentStore()
     }
 

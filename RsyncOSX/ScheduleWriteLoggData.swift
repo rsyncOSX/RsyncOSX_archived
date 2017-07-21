@@ -51,7 +51,7 @@ class ScheduleWriteLoggData {
                         self.refreshlogviewDelegate?.refresh()
                     }
                     // Save schedule including logs
-                    PersistentStoreAPI.sharedInstance.saveScheduleFromMemory()
+                    PersistentStoreageAPI.shared.saveScheduleFromMemory()
                     break loop
                 }
             }
@@ -117,7 +117,7 @@ class ScheduleWriteLoggData {
                 }
             }
             if inserted {
-                PersistentStoreAPI.sharedInstance.saveScheduleFromMemory()
+                PersistentStoreageAPI.shared.saveScheduleFromMemory()
                 if let pvc = Configurations.shared.viewControllertabMain as? ViewControllertabMain {
                     self.deselectrowDelegate = pvc
                     self.deselectrowDelegate?.deselectRow()
@@ -153,7 +153,7 @@ class ScheduleWriteLoggData {
                         let parent: String = self.computeKey(dictKey)
                         dict.setValue(parent, forKey: "parent")
                         self.schedule[i].logrecords.append(dict)
-                        PersistentStoreAPI.sharedInstance.saveScheduleFromMemory()
+                        PersistentStoreageAPI.shared.saveScheduleFromMemory()
                         break loop
                     }
                 }

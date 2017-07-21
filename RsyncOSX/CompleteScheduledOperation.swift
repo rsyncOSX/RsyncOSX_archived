@@ -47,7 +47,7 @@ final class CompleteScheduledOperation {
         // Update memory configuration with rundate
         _ = Configurations.shared.setCurrentDateonConfiguration(self.index!)
         // Saving updated configuration from memory
-        _ = PersistentStoreAPI.sharedInstance.saveConfigFromMemory()
+        _ = PersistentStoreageAPI.shared.saveConfigFromMemory()
         // Start next job, if any, by delegate
         // and notify completed, by delegate
         if let pvc2 = Configurations.shared.viewControllertabMain as? ViewControllertabMain {

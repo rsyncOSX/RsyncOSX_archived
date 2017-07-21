@@ -199,7 +199,7 @@ class ViewControllerRsyncParameters: NSViewController {
 
     // Function for saving changed or new parameters for one configuration.
     @IBAction func update(_ sender: NSButton) {
-        var configurations: [Configuration] = PersistentStoreAPI.sharedInstance.getConfigurations()
+        var configurations: [Configuration] = PersistentStoreageAPI.shared.getConfigurations()
         guard configurations.count > 0 else {
             // If Configurations == 0 by any change will not cause RsyncOSX to crash
             return
@@ -231,7 +231,7 @@ class ViewControllerRsyncParameters: NSViewController {
         }
         // Update configuration in memory before saving
         Configurations.shared.updateConfigurations(configurations[index!], index: index!)
-        PersistentStoreAPI.sharedInstance.saveConfigFromMemory()
+        PersistentStoreageAPI.shared.saveConfigFromMemory()
         // notify an update
         self.userparamsupdatedDelegate?.rsyncuserparamsupdated()
         // Send dismiss delegate message

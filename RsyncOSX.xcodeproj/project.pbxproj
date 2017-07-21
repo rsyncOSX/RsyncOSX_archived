@@ -25,13 +25,13 @@
 		A04492AB1D658F2100B3CE17 /* argumentsOneConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = A04492971D658F2100B3CE17 /* argumentsOneConfiguration.swift */; };
 		A04492AC1D658F2100B3CE17 /* Configuration.swift in Sources */ = {isa = PBXBuildFile; fileRef = A04492981D658F2100B3CE17 /* Configuration.swift */; };
 		A04492AD1D658F2100B3CE17 /* ConfigurationSchedule.swift in Sources */ = {isa = PBXBuildFile; fileRef = A04492991D658F2100B3CE17 /* ConfigurationSchedule.swift */; };
-		A04492AF1D658F2100B3CE17 /* peristentStoreConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = A044929B1D658F2100B3CE17 /* peristentStoreConfiguration.swift */; };
+		A04492AF1D658F2100B3CE17 /* peristentStoreageConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = A044929B1D658F2100B3CE17 /* peristentStoreageConfiguration.swift */; };
 		A04492B01D658F2100B3CE17 /* PersistentStoreScheduling.swift in Sources */ = {isa = PBXBuildFile; fileRef = A044929C1D658F2100B3CE17 /* PersistentStoreScheduling.swift */; };
 		A04492B21D658F2100B3CE17 /* RsyncProcessArguments.swift in Sources */ = {isa = PBXBuildFile; fileRef = A044929E1D658F2100B3CE17 /* RsyncProcessArguments.swift */; };
 		A04492B41D658F2100B3CE17 /* CopyFileArguments.swift in Sources */ = {isa = PBXBuildFile; fileRef = A04492A01D658F2100B3CE17 /* CopyFileArguments.swift */; };
 		A04492B51D658F2100B3CE17 /* Configurations.swift in Sources */ = {isa = PBXBuildFile; fileRef = A04492A11D658F2100B3CE17 /* Configurations.swift */; };
 		A04492B61D658F2100B3CE17 /* Schedules.swift in Sources */ = {isa = PBXBuildFile; fileRef = A04492A21D658F2100B3CE17 /* Schedules.swift */; };
-		A04492B71D658F2100B3CE17 /* PersistentStoreAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = A04492A31D658F2100B3CE17 /* PersistentStoreAPI.swift */; };
+		A04492B71D658F2100B3CE17 /* PersistentStoreageAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = A04492A31D658F2100B3CE17 /* PersistentStoreageAPI.swift */; };
 		A04492B81D658F2100B3CE17 /* utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = A04492A41D658F2100B3CE17 /* utils.swift */; };
 		A04492BA1D658F2100B3CE17 /* ysocket.swift in Sources */ = {isa = PBXBuildFile; fileRef = A04492A61D658F2100B3CE17 /* ysocket.swift */; };
 		A04492BB1D658F2100B3CE17 /* ytcpsocket.swift in Sources */ = {isa = PBXBuildFile; fileRef = A04492A71D658F2100B3CE17 /* ytcpsocket.swift */; };
@@ -53,7 +53,7 @@
 		A0CACFD41DA2738500C5997A /* RsyncParameters.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0CACFD31DA2738500C5997A /* RsyncParameters.swift */; };
 		A0DD27081D92DDF400D56899 /* FileDialog.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0DD27071D92DDF400D56899 /* FileDialog.swift */; };
 		A0EE98991D8948310034F1A4 /* ViewControllerInformationCopyFiles.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0EE98981D8948310034F1A4 /* ViewControllerInformationCopyFiles.swift */; };
-		A0EFB4501DC080A9008C21A6 /* PersistentStoreUserconfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0EFB44F1DC080A9008C21A6 /* PersistentStoreUserconfiguration.swift */; };
+		A0EFB4501DC080A9008C21A6 /* PersistentStoreageUserconfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0EFB44F1DC080A9008C21A6 /* PersistentStoreageUserconfiguration.swift */; };
 		A0F2E20C1D6D91AA0091E8BF /* Userconfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0F2E20B1D6D91AA0091E8BF /* Userconfiguration.swift */; };
 		A0F3F9251DC65CE9001D305F /* ViewControllerScheduledBackupInWork.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0F3F9241DC65CE9001D305F /* ViewControllerScheduledBackupInWork.swift */; };
 		A0FAF5CF1DDF2E5F0009FE7A /* ViewControllerAbout.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0FAF5CE1DDF2E5F0009FE7A /* ViewControllerAbout.swift */; };
@@ -104,13 +104,13 @@
 		A04492971D658F2100B3CE17 /* argumentsOneConfiguration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = argumentsOneConfiguration.swift; sourceTree = "<group>"; };
 		A04492981D658F2100B3CE17 /* Configuration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Configuration.swift; sourceTree = "<group>"; };
 		A04492991D658F2100B3CE17 /* ConfigurationSchedule.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConfigurationSchedule.swift; sourceTree = "<group>"; };
-		A044929B1D658F2100B3CE17 /* peristentStoreConfiguration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = peristentStoreConfiguration.swift; sourceTree = "<group>"; };
+		A044929B1D658F2100B3CE17 /* peristentStoreageConfiguration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = peristentStoreageConfiguration.swift; sourceTree = "<group>"; };
 		A044929C1D658F2100B3CE17 /* PersistentStoreScheduling.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersistentStoreScheduling.swift; sourceTree = "<group>"; };
 		A044929E1D658F2100B3CE17 /* RsyncProcessArguments.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RsyncProcessArguments.swift; sourceTree = "<group>"; };
 		A04492A01D658F2100B3CE17 /* CopyFileArguments.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CopyFileArguments.swift; sourceTree = "<group>"; };
 		A04492A11D658F2100B3CE17 /* Configurations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Configurations.swift; sourceTree = "<group>"; };
 		A04492A21D658F2100B3CE17 /* Schedules.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Schedules.swift; sourceTree = "<group>"; };
-		A04492A31D658F2100B3CE17 /* PersistentStoreAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersistentStoreAPI.swift; sourceTree = "<group>"; };
+		A04492A31D658F2100B3CE17 /* PersistentStoreageAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersistentStoreageAPI.swift; sourceTree = "<group>"; };
 		A04492A41D658F2100B3CE17 /* utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = utils.swift; sourceTree = "<group>"; };
 		A04492A61D658F2100B3CE17 /* ysocket.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ysocket.swift; sourceTree = "<group>"; };
 		A04492A71D658F2100B3CE17 /* ytcpsocket.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ytcpsocket.swift; sourceTree = "<group>"; };
@@ -132,7 +132,7 @@
 		A0CACFD31DA2738500C5997A /* RsyncParameters.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RsyncParameters.swift; sourceTree = "<group>"; };
 		A0DD27071D92DDF400D56899 /* FileDialog.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FileDialog.swift; sourceTree = "<group>"; };
 		A0EE98981D8948310034F1A4 /* ViewControllerInformationCopyFiles.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewControllerInformationCopyFiles.swift; sourceTree = "<group>"; };
-		A0EFB44F1DC080A9008C21A6 /* PersistentStoreUserconfiguration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersistentStoreUserconfiguration.swift; sourceTree = "<group>"; };
+		A0EFB44F1DC080A9008C21A6 /* PersistentStoreageUserconfiguration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersistentStoreageUserconfiguration.swift; sourceTree = "<group>"; };
 		A0F2E20B1D6D91AA0091E8BF /* Userconfiguration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Userconfiguration.swift; sourceTree = "<group>"; };
 		A0F3F9241DC65CE9001D305F /* ViewControllerScheduledBackupInWork.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewControllerScheduledBackupInWork.swift; sourceTree = "<group>"; };
 		A0FAF5CE1DDF2E5F0009FE7A /* ViewControllerAbout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewControllerAbout.swift; sourceTree = "<group>"; };
@@ -209,7 +209,7 @@
 				E91A688E1EA7771B0056BCFC /* Logging */,
 				A0BAA5F31D70C349003BE69F /* Schedule */,
 				A0BAA5F21D70C33A003BE69F /* Configuration */,
-				A04492A31D658F2100B3CE17 /* PersistentStoreAPI.swift */,
+				A04492A31D658F2100B3CE17 /* PersistentStoreageAPI.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -351,8 +351,8 @@
 		A0BAA5F21D70C33A003BE69F /* Configuration */ = {
 			isa = PBXGroup;
 			children = (
-				A044929B1D658F2100B3CE17 /* peristentStoreConfiguration.swift */,
-				A0EFB44F1DC080A9008C21A6 /* PersistentStoreUserconfiguration.swift */,
+				A044929B1D658F2100B3CE17 /* peristentStoreageConfiguration.swift */,
+				A0EFB44F1DC080A9008C21A6 /* PersistentStoreageUserconfiguration.swift */,
 				A04492A11D658F2100B3CE17 /* Configurations.swift */,
 			);
 			name = Configuration;
@@ -511,7 +511,7 @@
 				A0041EEF1D7D4357002BF081 /* ScheduleSortedAndExpanded.swift in Sources */,
 				E9A8D81C1ED20AEB009648DE /* getRemoteFilesArguments.swift in Sources */,
 				A0EE98991D8948310034F1A4 /* ViewControllerInformationCopyFiles.swift in Sources */,
-				A04492B71D658F2100B3CE17 /* PersistentStoreAPI.swift in Sources */,
+				A04492B71D658F2100B3CE17 /* PersistentStoreageAPI.swift in Sources */,
 				E989CE961EF948D0000CB7C2 /* ChmodPubKey.swift in Sources */,
 				E9E88FD01EB25A080028432F /* ScpArgumentsSsh.swift in Sources */,
 				A03876E11DB4FD9D00C14AEA /* ViewControllerProfile.swift in Sources */,
@@ -522,7 +522,7 @@
 				E9230C0E1E6DDC57001D9954 /* RsyncArguments.swift in Sources */,
 				E98A0EEB1EF953FD0006B595 /* NewSingleTask.swift in Sources */,
 				A05275DA1D6F6E0000D8ECBE /* BatchTaskWorkQueu.swift in Sources */,
-				A0EFB4501DC080A9008C21A6 /* PersistentStoreUserconfiguration.swift in Sources */,
+				A0EFB4501DC080A9008C21A6 /* PersistentStoreageUserconfiguration.swift in Sources */,
 				A00FE1AA1D6A1AAB00012089 /* alerts.swift in Sources */,
 				E9DCEA871E75F67200A69B4D /* OutputBatch.swift in Sources */,
 				E9C6EA8A1ED2AE2F00680D4D /* numbers.swift in Sources */,
@@ -537,7 +537,7 @@
 				E9374D2C1E3299E800CD3945 /* ExecuteTask.swift in Sources */,
 				A00FE1A81D6A19CF00012089 /* viewControllerNewConfigurations.swift in Sources */,
 				E9374D2E1E329A5800CD3945 /* CompleteScheduledOperation.swift in Sources */,
-				A04492AF1D658F2100B3CE17 /* peristentStoreConfiguration.swift in Sources */,
+				A04492AF1D658F2100B3CE17 /* peristentStoreageConfiguration.swift in Sources */,
 				A0400C851D794EF1008A3949 /* ViewControllerNewVersion.swift in Sources */,
 				A0F3F9251DC65CE9001D305F /* ViewControllerScheduledBackupInWork.swift in Sources */,
 				A0AA33811D6F926A00DF4C77 /* ViewControllerBatch.swift in Sources */,

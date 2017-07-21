@@ -127,7 +127,7 @@ class Configurations {
     /// configurations and computing new arguments.
     /// - parameter none: none
     func readAllConfigurationsAndArguments() {
-        let store: Array<Configuration> = PersistentStoreAPI.sharedInstance.getConfigurations()
+        let store: Array<Configuration> = PersistentStoreageAPI.shared.getConfigurations()
         self.destroyConfigurations()
         // We read all stored configurations into memory
         for i in 0 ..< store.count {
@@ -313,7 +313,7 @@ class Configurations {
         let dateformatter = Utils.shared.setDateformat()
         self.configurations[index].dateRun = dateformatter.string(from: currendate)
         // Saving updated configuration in memory to persistent store
-        PersistentStoreAPI.sharedInstance.saveConfigFromMemory()
+        PersistentStoreageAPI.shared.saveConfigFromMemory()
         // Reread Configuration and update datastructure for tableViews
         self.readAllConfigurationsAndArguments()
         // Call the view and do a refresh of tableView
@@ -335,7 +335,7 @@ class Configurations {
     /// - parameter index: index to Configuration to replace by config
     func updateConfigurations (_ config: Configuration, index: Int) {
         self.configurations[index] = config
-        PersistentStoreAPI.sharedInstance.saveConfigFromMemory()
+        PersistentStoreageAPI.shared.saveConfigFromMemory()
     }
 
     /// Function deletes Configuration in memory at hiddenID and
@@ -345,7 +345,7 @@ class Configurations {
     func deleteConfigurationsByhiddenID (hiddenID: Int) {
         let index = self.getIndex(hiddenID)
         self.configurations.remove(at: index)
-        PersistentStoreAPI.sharedInstance.saveConfigFromMemory()
+        PersistentStoreageAPI.shared.saveConfigFromMemory()
     }
 
     /// Function toggles Configurations for batch or no
@@ -359,7 +359,7 @@ class Configurations {
         } else {
             self.configurations[index].batch = "yes"
         }
-        PersistentStoreAPI.sharedInstance.saveConfigFromMemory()
+        PersistentStoreageAPI.shared.saveConfigFromMemory()
         // Reread Configuration and update datastructure for tableViews
         self.readAllConfigurationsAndArguments()
         // Call the view and do a refresh of tableView
@@ -426,7 +426,7 @@ class Configurations {
 
     // Function for appending new Configurations to memory
     func appendNewConfigurations () {
-        PersistentStoreAPI.sharedInstance.saveNewConfigurations()
+        PersistentStoreageAPI.shared.saveNewConfigurations()
     }
 
     // GET VALUES BY HIDDENID
