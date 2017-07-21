@@ -64,9 +64,9 @@
 		E9374D2C1E3299E800CD3945 /* ExecuteTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9374D2B1E3299E800CD3945 /* ExecuteTask.swift */; };
 		E9374D2E1E329A5800CD3945 /* CompleteScheduledOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9374D2D1E329A5800CD3945 /* CompleteScheduledOperation.swift */; };
 		E93D82141E79C69500B20965 /* ViewControllerHelp.swift in Sources */ = {isa = PBXBuildFile; fileRef = E93D82131E79C69500B20965 /* ViewControllerHelp.swift */; };
-		E9609EF31F229EC600F5BFAA /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9609EF21F229EC600F5BFAA /* Utils.swift */; };
 		E9609EF51F229F5900F5BFAA /* PersistentStoreageConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9609EF41F229F5900F5BFAA /* PersistentStoreageConfiguration.swift */; };
 		E96CA1FE1E094C3000CD1D03 /* Resources.swift in Sources */ = {isa = PBXBuildFile; fileRef = E96CA1FD1E094C3000CD1D03 /* Resources.swift */; };
+		E97B93D21F22A2B600A197A2 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = E97B93D11F22A2B600A197A2 /* Utils.swift */; };
 		E97C09A71EFAFBC400E86999 /* NewBatchTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = E97C09A61EFAFBC400E86999 /* NewBatchTask.swift */; };
 		E989CE961EF948D0000CB7C2 /* ChmodPubKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = E989CE951EF948D0000CB7C2 /* ChmodPubKey.swift */; };
 		E98A0EEB1EF953FD0006B595 /* NewSingleTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = E98A0EEA1EF953FD0006B595 /* NewSingleTask.swift */; };
@@ -143,9 +143,9 @@
 		E9374D2B1E3299E800CD3945 /* ExecuteTask.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExecuteTask.swift; sourceTree = "<group>"; };
 		E9374D2D1E329A5800CD3945 /* CompleteScheduledOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CompleteScheduledOperation.swift; sourceTree = "<group>"; };
 		E93D82131E79C69500B20965 /* ViewControllerHelp.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewControllerHelp.swift; sourceTree = "<group>"; };
-		E9609EF21F229EC600F5BFAA /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
 		E9609EF41F229F5900F5BFAA /* PersistentStoreageConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistentStoreageConfiguration.swift; sourceTree = "<group>"; };
 		E96CA1FD1E094C3000CD1D03 /* Resources.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Resources.swift; sourceTree = "<group>"; };
+		E97B93D11F22A2B600A197A2 /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
 		E97C09A61EFAFBC400E86999 /* NewBatchTask.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewBatchTask.swift; sourceTree = "<group>"; };
 		E989CE951EF948D0000CB7C2 /* ChmodPubKey.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChmodPubKey.swift; sourceTree = "<group>"; };
 		E98A0EEA1EF953FD0006B595 /* NewSingleTask.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewSingleTask.swift; sourceTree = "<group>"; };
@@ -306,7 +306,7 @@
 				A0DD27071D92DDF400D56899 /* FileDialog.swift */,
 				E96CA1FD1E094C3000CD1D03 /* Resources.swift */,
 				E92E1B971E7438CF004876D8 /* Help.swift */,
-				E9609EF21F229EC600F5BFAA /* Utils.swift */,
+				E97B93D11F22A2B600A197A2 /* Utils.swift */,
 			);
 			name = Utils;
 			sourceTree = "<group>";
@@ -552,6 +552,7 @@
 				A0A403521D76BD2E00A30017 /* ViewControllerRsyncParameters.swift in Sources */,
 				A04492B41D658F2100B3CE17 /* CopyFileArguments.swift in Sources */,
 				E9CF14141E729540008E8A15 /* RsyncScheduled.swift in Sources */,
+				E97B93D21F22A2B600A197A2 /* Utils.swift in Sources */,
 				A04492AB1D658F2100B3CE17 /* ArgumentsOneConfiguration.swift in Sources */,
 				A0B3D9741D758E20001E190E /* ViewControllerUserconfiguration.swift in Sources */,
 				A04492B61D658F2100B3CE17 /* Schedules.swift in Sources */,
@@ -560,7 +561,6 @@
 				A017E2A01D7D3242003016F5 /* ViewControllerEdit.swift in Sources */,
 				A0B340B21D67077A00C6DAC3 /* ViewControllertabMain.swift in Sources */,
 				E9EC78711EACE082001EED9B /* Ssh.swift in Sources */,
-				E9609EF31F229EC600F5BFAA /* Utils.swift in Sources */,
 				E905DC111EACF7550003BF37 /* ViewControllerSsh.swift in Sources */,
 				E93D82141E79C69500B20965 /* ViewControllerHelp.swift in Sources */,
 				E91A68901EA777690056BCFC /* ScheduleWriteLoggData.swift in Sources */,
