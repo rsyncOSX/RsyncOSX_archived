@@ -1,5 +1,5 @@
 //
-//  utils.swift
+//  Utils.swift
 //  Rsync
 //
 //  Created by Thomas Evensen on 09/02/16.
