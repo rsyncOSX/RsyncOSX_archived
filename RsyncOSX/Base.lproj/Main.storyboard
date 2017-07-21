@@ -245,7 +245,7 @@
                                             <font key="font" metaFont="system"/>
                                         </buttonCell>
                                         <connections>
-                                            <action selector="Abort:" target="Rv5-yv-lsc" id="o9b-NF-SV6"/>
+                                            <action selector="abort:" target="Rv5-yv-lsc" id="WPd-Nh-ohn"/>
                                         </connections>
                                     </button>
                                 </toolbarItem>
@@ -291,7 +291,7 @@
                 </windowController>
                 <customObject id="Rv5-yv-lsc" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-411" y="250"/>
+            <point key="canvasLocation" x="-628" y="224"/>
         </scene>
         <!--Tab View Controller-->
         <scene sceneID="Hwe-jL-WAZ">
