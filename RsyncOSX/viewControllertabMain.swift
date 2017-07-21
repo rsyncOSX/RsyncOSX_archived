@@ -735,7 +735,7 @@ extension ViewControllertabMain: AddProfiles {
         }
         // Must unload Schedule data before new Profile is loaded.
         // This is due to a glitch in design in 
-        // SharingManagerSchedule.sharedInstance.getAllSchedules()
+        // Schedules.shared.getAllSchedules()
         // If no new Schedules in profile exists old Schedules are 
         // kept in memory. Force a clean of old Schedules before read 
         // Schedules for new profile.

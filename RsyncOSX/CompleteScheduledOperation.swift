@@ -31,7 +31,7 @@ final class CompleteScheduledOperation {
     private var index: Int?
 
     // Function for finalizing the Scheduled job
-    // The Operation object sets reference to the completeScheduledOperation in SharingManagerConfiguration.sharedInstance.operation
+    // The Operation object sets reference to the completeScheduledOperation in Schedules.shared.operation
     // This function is executed when rsyn process terminates
     func finalizeScheduledJob(output: OutputProcess) {
 
