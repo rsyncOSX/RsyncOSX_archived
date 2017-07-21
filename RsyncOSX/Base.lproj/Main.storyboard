@@ -22,7 +22,7 @@
                                         <menuItem title="About RsyncOSX" id="5kV-Vb-QxS">
                                             <modifierMask key="keyEquivalentModifierMask"/>
                                             <connections>
-                                                <action selector="About:" target="Ady-hI-5gd" id="GoC-Ij-Wof"/>
+                                                <action selector="about:" target="Ady-hI-5gd" id="4Ow-qi-4NZ"/>
                                             </connections>
                                         </menuItem>
                                         <menuItem isSeparatorItem="YES" id="VOq-y0-SEH"/>
