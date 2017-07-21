@@ -69,5 +69,7 @@ final class Userconfiguration {
             self.rsyncchangedDelegate?.rsyncchanged()
             self.rsyncchangedDelegate?.displayAllowDoubleclick()
         }
+        // Check for rsync
+        Utils.shared.verifyRsync()
     }
 }

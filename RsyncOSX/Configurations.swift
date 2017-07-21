@@ -485,22 +485,6 @@ class Configurations {
         return self.configurations[index].hiddenID
     }
 
-    /// Function returns the correct path for rsync
-    /// according to configuration set by user or
-    /// default value.
-    /// - returns : full path of rsync command
-    func setRsyncCommand() -> String {
-        if self.rsyncVer3 {
-            if self.rsyncPath == nil {
-                return "/usr/local/bin/rsync"
-            } else {
-                return self.rsyncPath! + "rsync"
-            }
-        } else {
-            return "/usr/bin/rsync"
-        }
-    }
-
     /// Function for computing MacSerialNumber
     /// - returns : the MacSerialNumber
     private func getmacSerialNumber() -> String {

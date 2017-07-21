@@ -74,14 +74,14 @@ final class Utils {
         var str: String?
         let config = Configurations.shared.getargumentAllConfigurations()[index] as? ArgumentsOneConfiguration
         if dryRun {
-                str = Configurations.shared.setRsyncCommand() + " "
+                str = self.setRsyncCommand() + " "
                 if let count = config?.argdryRunDisplay?.count {
                     for i in 0 ..< count {
                         str = str! + (config?.argdryRunDisplay![i])!
                     }
                 }
         } else {
-            str = Configurations.shared.setRsyncCommand() + " "
+            str = self.setRsyncCommand() + " "
                 if let count = config?.argDisplay?.count {
                     for i in 0 ..< count {
                         str = str! + (config?.argDisplay![i])!
@@ -89,6 +89,22 @@ final class Utils {
                 }
             }
         return str!
+    }
+
+    /// Function returns the correct path for rsync
+    /// according to configuration set by user or
+    /// default value.
+    /// - returns : full path of rsync command
+    func setRsyncCommand() -> String {
+        if Configurations.shared.rsyncVer3 {
+            if Configurations.shared.rsyncPath == nil {
+                return "/usr/local/bin/rsync"
+            } else {
+                return Configurations.shared.rsyncPath! + "rsync"
+            }
+        } else {
+            return "/usr/bin/rsync"
+        }
     }
 
     // Test for TCP connection
@@ -191,13 +207,20 @@ final class Utils {
     // Function to verify rsync
     func verifyRsync() {
         let fileManager = FileManager.default
+        let path: String?
+        // If not in /usr/bin or /usr/local/bin
+        // rsyncPath is set if none of the above
         if let rsyncPath = Configurations.shared.rsyncPath {
-            let path = rsyncPath + "rsync"
-            if fileManager.fileExists(atPath: path) == false {
-                Configurations.shared.noRysync = true
-            } else {
-                Configurations.shared.noRysync = false
-            }
+            path = rsyncPath + "rsync"
+        } else if Configurations.shared.rsyncVer3 {
+            path = "/usr/local/bin/" + "rsync"
+        } else {
+            path = "/usr/bin/" + "rsync"
+        }
+        if fileManager.fileExists(atPath: path!) == false {
+            Configurations.shared.noRysync = true
+        } else {
+            Configurations.shared.noRysync = false
         }
     }
 }

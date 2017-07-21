@@ -379,6 +379,7 @@ class ViewControllertabMain: NSViewController {
         }
         self.ready = true
         self.displayAllowDoubleclick()
+
     }
 
     override func viewDidDisappear() {

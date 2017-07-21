@@ -22,9 +22,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             // userConfiguration is never nil if object is created
             _ = Userconfiguration(userconfigRsyncOSX: userConfiguration)
         }
-
-        // Check for rsync
-        Utils.shared.verifyRsync()
     }
 
     func applicationWillTerminate(_ aNotification: Notification) {

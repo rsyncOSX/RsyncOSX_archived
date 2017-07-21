@@ -38,6 +38,9 @@ class ViewControllerUserconfiguration: NSViewController {
     @IBAction func toggleversion3rsync(_ sender: NSButton) {
         if self.version3rsync.state == .on {
             Configurations.shared.rsyncVer3 = true
+            if self.rsyncPath.stringValue.isEmpty {
+                Configurations.shared.rsyncPath = nil
+            }
         } else {
             Configurations.shared.rsyncVer3 = false
         }
@@ -118,32 +121,27 @@ class ViewControllerUserconfiguration: NSViewController {
 
     // Function verifying rsync in path
     private func verifyRsync() {
+        var path: String?
+        let fileManager = FileManager.default
+
         if self.version3rsync.state == .on {
-            let fileManager = FileManager.default
             if let rsyncPath = Configurations.shared.rsyncPath {
-                let path = rsyncPath + "rsync"
-                if fileManager.fileExists(atPath: path) == false {
-                    self.noRsync.isHidden = false
-                    Configurations.shared.noRysync = true
-                } else {
-                    Configurations.shared.noRysync = false
-                    self.noRsync.isHidden = true
-                }
+                path = rsyncPath + "rsync"
             } else {
-                let path = "/usr/local/bin/rsync"
-                if fileManager.fileExists(atPath: path) == false {
-                    self.noRsync.isHidden = false
-                    Configurations.shared.noRysync = true
-                } else {
-                    Configurations.shared.noRysync = false
-                    self.noRsync.isHidden = true
-                }
+                path = "/usr/local/bin/" + "rsync"
             }
         } else {
-            Configurations.shared.noRysync = false
+            path = "/usr/bin/" + "rsync"
+        }
+        if fileManager.fileExists(atPath: path!) {
             self.noRsync.isHidden = true
+            Configurations.shared.noRysync = false
+        } else {
+            self.noRsync.isHidden = false
+            Configurations.shared.noRysync = true
         }
     }
+
     override func viewDidLoad() {
         super.viewDidLoad()
         // Dismisser is root controller
