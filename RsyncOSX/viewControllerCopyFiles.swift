@@ -26,7 +26,6 @@ class ViewControllerCopyFiles: NSViewController {
     var index: Int?
     // Delegate for getting index from Execute view
     weak var indexDelegate: GetSelecetedIndex?
-
     // Info about server and remote catalogs
     @IBOutlet weak var server: NSTextField!
     @IBOutlet weak var rcatalog: NSTextField!
