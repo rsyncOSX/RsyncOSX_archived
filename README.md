@@ -10,7 +10,7 @@ As part of next version of RsyncOSX I am using [SwiftLint](https://github.com/re
 
 #### Changes in code
 
-Almost all changes in code after release 4.4.6 is done in branch [Xcode9_Swift4](https://github.com/rsyncOSX/RsyncOSX/tree/Xcode9_Swift4). There are still changes to do in code (adapting to SwiftLint) and enhancements to do. This version will be released as soon as Apple releases macOS High Sierra and Xcode 9.
+Almost all changes in code after release 4.4.6 is done in branch [Xcode9_Swift4](https://github.com/rsyncOSX/RsyncOSX/tree/Xcode9_Swift4). There are still changes in the code due to adapting to SwiftLint and other enhancements. This version will be released as soon as Apple releases macOS High Sierra and Xcode 9.
 
 ### Compile
 
