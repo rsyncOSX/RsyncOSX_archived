@@ -6,7 +6,11 @@ The repository is source code for the macOS application RsyncOSX. The applicatio
 
 [RsyncOSX](https://github.com/rsyncOSX/RsyncOSX/tree/Xcode9_Swift4) is converted to Swift 4, compiled with Xcode 9 and tested on macOS 10.13, all beta versions. I have one MacBook Pro which is installed with latest beta of macOS 10.13 (High Sierra).
 
-As part of next version of RsyncOSX I am using [SwiftLint](https://github.com/realm/SwiftLint) as tool for writing more readable code. Adapting RsyncOSX to SwiftLint rules will take some time. There are about 11,000 lines of code in RsyncOSX (too many?). Many changes in code has been applied, but there are still some more to do before RsyncOSX is compliant to SwiftLint rules.
+As part of next version of RsyncOSX I am using [SwiftLint](https://github.com/realm/SwiftLint) as tool for writing more readable code. Adapting RsyncOSX to SwiftLint rules will take some time. There are about 11,000 lines of code in RsyncOSX (too many?). Many changes in code has been applied, but there are still some more to do before RsyncOSX is more compliant to SwiftLint rules.
+
+#### Changes in code
+
+Almost all changes in code after release 4.4.6 is done in branch [Xcode9_Swift4](https://github.com/rsyncOSX/RsyncOSX/tree/Xcode9_Swift4). There are still changes to do in code (adapting to SwiftLint) and enhancements to do. This version will be released as soon as Apple releases macOS High Sierra and Xcode 9.
 
 ### Compile
 
