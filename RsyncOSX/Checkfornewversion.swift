@@ -12,7 +12,7 @@ protocol newVersionDiscovered : class {
     func notifyNewVersion()
 }
 
-final class NewVersion {
+final class Checkfornewversion {
 
     private var runningVersion: String?
     private var urlPlist: String?

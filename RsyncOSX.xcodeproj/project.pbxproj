@@ -15,7 +15,7 @@
 		A02A4AD91D7EFD3D0059CECD /* ViewControllerScheduleDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = A02A4AD81D7EFD3D0059CECD /* ViewControllerScheduleDetails.swift */; };
 		A03876E11DB4FD9D00C14AEA /* ViewControllerProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = A03876E01DB4FD9D00C14AEA /* ViewControllerProfile.swift */; };
 		A0400C851D794EF1008A3949 /* ViewControllerNewVersion.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0400C841D794EF1008A3949 /* ViewControllerNewVersion.swift */; };
-		A0400C871D794FF8008A3949 /* NewVersion.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0400C861D794FF8008A3949 /* NewVersion.swift */; };
+		A0400C871D794FF8008A3949 /* Checkfornewversion.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0400C861D794FF8008A3949 /* Checkfornewversion.swift */; };
 		A0430ADA1DAFFD3C00BBC106 /* SingleTaskWorkQueu.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0430AD91DAFFD3C00BBC106 /* SingleTaskWorkQueu.swift */; };
 		A04492861D658EE800B3CE17 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A04492851D658EE800B3CE17 /* AppDelegate.swift */; };
 		A044928A1D658EE800B3CE17 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A04492891D658EE800B3CE17 /* Assets.xcassets */; };
@@ -92,7 +92,7 @@
 		A02A4AD81D7EFD3D0059CECD /* ViewControllerScheduleDetails.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewControllerScheduleDetails.swift; sourceTree = "<group>"; };
 		A03876E01DB4FD9D00C14AEA /* ViewControllerProfile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewControllerProfile.swift; sourceTree = "<group>"; };
 		A0400C841D794EF1008A3949 /* ViewControllerNewVersion.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewControllerNewVersion.swift; sourceTree = "<group>"; };
-		A0400C861D794FF8008A3949 /* NewVersion.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewVersion.swift; sourceTree = "<group>"; };
+		A0400C861D794FF8008A3949 /* Checkfornewversion.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Checkfornewversion.swift; sourceTree = "<group>"; };
 		A0430AD91DAFFD3C00BBC106 /* SingleTaskWorkQueu.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SingleTaskWorkQueu.swift; sourceTree = "<group>"; };
 		A04492821D658EE800B3CE17 /* RsyncOSX.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RsyncOSX.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A04492851D658EE800B3CE17 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -302,7 +302,7 @@
 			children = (
 				A00FE1A91D6A1AAB00012089 /* Alerts.swift */,
 				A0F2E20B1D6D91AA0091E8BF /* Userconfiguration.swift */,
-				A0400C861D794FF8008A3949 /* NewVersion.swift */,
+				A0400C861D794FF8008A3949 /* Checkfornewversion.swift */,
 				A0DD27071D92DDF400D56899 /* FileDialog.swift */,
 				E96CA1FD1E094C3000CD1D03 /* Resources.swift */,
 				E92E1B971E7438CF004876D8 /* Help.swift */,
@@ -517,7 +517,7 @@
 				E989CE961EF948D0000CB7C2 /* ChmodPubKey.swift in Sources */,
 				E9E88FD01EB25A080028432F /* ScpArgumentsSsh.swift in Sources */,
 				A03876E11DB4FD9D00C14AEA /* ViewControllerProfile.swift in Sources */,
-				A0400C871D794FF8008A3949 /* NewVersion.swift in Sources */,
+				A0400C871D794FF8008A3949 /* Checkfornewversion.swift in Sources */,
 				A04492AA1D658F2100B3CE17 /* yudpsocket.c in Sources */,
 				E96CA1FE1E094C3000CD1D03 /* Resources.swift in Sources */,
 				A04492B21D658F2100B3CE17 /* RsyncProcessArguments.swift in Sources */,

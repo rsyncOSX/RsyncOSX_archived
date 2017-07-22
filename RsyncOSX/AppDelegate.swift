@@ -13,10 +13,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
     func applicationDidFinishLaunching(_ aNotification: Notification) {
         // Insert code here to initialize your application
-
         // Check for new version
-        _ = NewVersion()
-
+        _ = Checkfornewversion()
         // Read user configuration
         if let userConfiguration =  PersistentStoreageAPI.shared.getUserconfiguration() {
             // userConfiguration is never nil if object is created
