@@ -5,7 +5,7 @@
 //  Created by Thomas Evensen on 08/02/16.
 //  Copyright © 2016 Thomas Evensen. All rights reserved.
 //
-//swiftlint:disable syntactic_sugar cyclomatic_complexity
+//swiftlint:disable syntactic_sugar cyclomatic_complexity line_length
 
 import Foundation
 
@@ -17,12 +17,16 @@ class RsyncProcessArguments {
     // both backup and restore part
     private var stats: Bool?
     private var arguments: Array<String>?
+    var localCatalog: String?
+    var offsiteCatalog: String?
+    var offsiteUsername: String?
+    var offsiteServer: String?
+    var offsiteArguments: String?
 
     // Set initial parameter1 .. paramater6
     // Parameters is computed by RsyncOSX
 
     private func setParameters1To6(_ config: Configuration, dryRun: Bool, forDisplay: Bool) {
-
         let parameter1: String = config.parameter1
         let parameter2: String = config.parameter2
         let parameter3: String = config.parameter3
@@ -30,7 +34,6 @@ class RsyncProcessArguments {
         let parameter5: String = config.parameter5
         let parameter6: String = config.parameter6
         let offsiteServer: String = config.offsiteServer
-
         self.arguments!.append(parameter1)
         if forDisplay {self.arguments!.append(" ")}
         self.arguments!.append(parameter2)
@@ -67,10 +70,8 @@ class RsyncProcessArguments {
     // Not special elegant, but it works
 
     private func setParameters8To14(_ config: Configuration, dryRun: Bool, forDisplay: Bool) {
-
         let dryrun: String = config.dryrun
         self.stats = false
-
         if config.parameter8 != nil {
             self.appendParameter(parameter: config.parameter8!, forDisplay: forDisplay)
         }
@@ -128,58 +129,58 @@ class RsyncProcessArguments {
     /// - paramater forDisplay: true if for display, false if not
     /// - returns: Array of Strings
     func argumentsRsync (_ config: Configuration, dryRun: Bool, forDisplay: Bool) -> Array<String> {
-
-        let localCatalog: String = config.localCatalog
-        let offsiteCatalog: String = config.offsiteCatalog
-        let offsiteUsername: String = config.offsiteUsername
-        let offsiteServer: String = config.offsiteServer
-        var offsiteArguments: String?
-        if offsiteServer.isEmpty == false {
+        self.localCatalog = config.localCatalog
+        self.offsiteCatalog = config.offsiteCatalog
+        self.offsiteUsername = config.offsiteUsername
+        self.offsiteServer = config.offsiteServer
+        if self.offsiteServer!.isEmpty == false {
             if config.rsyncdaemon != nil {
                 if config.rsyncdaemon == 1 {
-                    offsiteArguments = offsiteUsername + "@" + offsiteServer + "::" + offsiteCatalog
+                    self.offsiteArguments = self.offsiteUsername! + "@" + self.offsiteServer! + "::" + self.offsiteCatalog!
                 } else {
-                    offsiteArguments = offsiteUsername + "@" + offsiteServer + ":" + offsiteCatalog
+                    self.offsiteArguments = self.offsiteUsername! + "@" + self.offsiteServer! + ":" + self.offsiteCatalog!
                 }
             } else {
-                offsiteArguments = offsiteUsername + "@" + offsiteServer + ":" + offsiteCatalog
+                self.offsiteArguments = self.offsiteUsername! + "@" + self.offsiteServer! + ":" + self.offsiteCatalog!
             }
         }
-
+        self.setParameters1To6(config, dryRun: dryRun, forDisplay: forDisplay)
+        self.setParameters8To14(config, dryRun: dryRun, forDisplay: forDisplay)
         switch config.task {
-
         case "backup":
-            self.setParameters1To6(config, dryRun: dryRun, forDisplay: forDisplay)
-            self.setParameters8To14(config, dryRun: dryRun, forDisplay: forDisplay)
-            // Backup
-            self.arguments!.append(localCatalog)
-            if offsiteServer.isEmpty {
-                if forDisplay {self.arguments!.append(" ")}
-                self.arguments!.append(offsiteCatalog)
-                if forDisplay {self.arguments!.append(" ")}
-            } else {
-                if forDisplay {self.arguments!.append(" ")}
-                self.arguments!.append(offsiteArguments!)
-                if forDisplay {self.arguments!.append(" ")}
-            }
-
+            self.argumentsforbackup(dryRun: dryRun, forDisplay: forDisplay)
         case "restore":
-            self.setParameters1To6(config, dryRun: dryRun, forDisplay: forDisplay)
-            self.setParameters8To14(config, dryRun: dryRun, forDisplay: forDisplay)
-            if offsiteServer.isEmpty {
-                self.arguments!.append(offsiteCatalog)
-                if forDisplay {self.arguments!.append(" ")}
-            } else {
-                if forDisplay {self.arguments!.append(" ")}
-                self.arguments!.append(offsiteArguments!)
-                if forDisplay {self.arguments!.append(" ")}
-            }
-            // Restore
-            self.arguments!.append(localCatalog)
+            self.argumentsforrestore(dryRun: dryRun, forDisplay: forDisplay)
         default:
             break
         }
         return self.arguments!
+    }
+
+    private func argumentsforbackup(dryRun: Bool, forDisplay: Bool) {
+        // Backup
+        self.arguments!.append(self.localCatalog!)
+        if self.offsiteServer!.isEmpty {
+            if forDisplay {self.arguments!.append(" ")}
+            self.arguments!.append(self.offsiteCatalog!)
+            if forDisplay {self.arguments!.append(" ")}
+        } else {
+            if forDisplay {self.arguments!.append(" ")}
+            self.arguments!.append(offsiteArguments!)
+            if forDisplay {self.arguments!.append(" ")}
+        }
+    }
+
+    private func argumentsforrestore(dryRun: Bool, forDisplay: Bool) {
+        if self.offsiteServer!.isEmpty {
+            self.arguments!.append(self.offsiteCatalog!)
+            if forDisplay {self.arguments!.append(" ")}
+        } else {
+            if forDisplay {self.arguments!.append(" ")}
+            self.arguments!.append(offsiteArguments!)
+            if forDisplay {self.arguments!.append(" ")}
+        }
+        self.arguments!.append(self.localCatalog!)
     }
 
     init () {
