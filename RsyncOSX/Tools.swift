@@ -1,9 +1,9 @@
 //
-//  Utils.swift
-//  Rsync
+//  Tools.swift
+//  RsyncOSX
 //
-//  Created by Thomas Evensen on 09/02/16.
-//  Copyright © 2016 Thomas Evensen. All rights reserved.
+//  Created by Thomas Evensen on 22.07.2017.
+//  Copyright © 2017 Thomas Evensen. All rights reserved.
 //
 //swiftlint:disable syntactic_sugar line_length
 
@@ -54,16 +54,16 @@ protocol Connections : class {
 
 // Static shared class Utils
 
-final class Utils {
+final class Tools {
 
     private var indexBoolremoteserverOff: [Bool]?
     weak var testconnectionsDelegate: Connections?
     weak var profilemenuDelegate: AddProfiles?
 
     // Creates a singelton of this class
-    class var  shared: Utils {
+    class var  shared: Tools {
         struct Singleton {
-            static let instance = Utils()
+            static let instance = Tools()
         }
         return Singleton.instance
     }
@@ -124,7 +124,7 @@ final class Utils {
                         if let sshport: Int = record.config!.sshport {
                             port = sshport
                         }
-                        let (success, _) = Utils.shared.testTCPconnection(record.config!.offsiteServer, port: port, timeout: 1)
+                        let (success, _) = Tools.shared.testTCPconnection(record.config!.offsiteServer, port: port, timeout: 1)
                         if success {
                             self.indexBoolremoteserverOff!.append(false)
                         } else {

@@ -113,7 +113,7 @@ extension ViewControllerScheduleDetails : NSTableViewDelegate {
                 object.value(forKey: "schedule") as? String == "daily" ||
                 object.value(forKey: "schedule") as? String == "weekly" {
 
-                let dateformatter = Utils.shared.setDateformat()
+                let dateformatter = Tools.shared.setDateformat()
                 let dateStop: Date = dateformatter.date(from: (object.value(forKey: "dateStop") as? String)!)!
                 if dateStop.timeIntervalSinceNow > 0 {
                     active = true

@@ -310,7 +310,7 @@ class Configurations {
     /// - parameter index: index of Configuration to update
     func setCurrentDateonConfiguration (_ index: Int) {
         let currendate = Date()
-        let dateformatter = Utils.shared.setDateformat()
+        let dateformatter = Tools.shared.setDateformat()
         self.configurations[index].dateRun = dateformatter.string(from: currendate)
         // Saving updated configuration in memory to persistent store
         PersistentStoreageAPI.shared.saveConfigFromMemory()

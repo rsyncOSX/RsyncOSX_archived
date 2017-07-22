@@ -88,7 +88,7 @@ final class ScheduleLoggData {
                 }
             }
         }
-        let dateformatter = Utils.shared.setDateformat()
+        let dateformatter = Tools.shared.setDateformat()
         self.loggdata = data.sorted { (dict1, dict2) -> Bool in
             guard dateformatter.date(from: (dict1.value(forKey: "dateExecuted") as? String)!) != nil && (dateformatter.date(from: (dict2.value(forKey: "dateExecuted") as? String)!) != nil) else {
                 return true

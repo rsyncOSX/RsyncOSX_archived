@@ -95,7 +95,7 @@ class ScheduleSortedAndExpand {
 
     // Expanding and sorting Scheduledata
     private func sortAndExpandScheduleData() {
-        let dateformatter = Utils.shared.setDateformat()
+        let dateformatter = Tools.shared.setDateformat()
         for i in 0 ..< self.scheduleAsNSDictionary!.count {
             let dict = self.scheduleAsNSDictionary![i]
             let dateStop: Date = dateformatter.date(from: (dict.value(forKey: "dateStop") as? String)!)!

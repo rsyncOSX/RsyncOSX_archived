@@ -71,7 +71,7 @@ final class CompleteScheduledOperation {
     init (dict: NSDictionary) {
         self.date = dict.value(forKey: "start") as? Date
         self.dateStart = dict.value(forKey: "dateStart") as? Date
-        self.dateformatter = Utils.shared.setDateformat()
+        self.dateformatter = Tools.shared.setDateformat()
         self.hiddenID = (dict.value(forKey: "hiddenID") as? Int)!
         self.schedule = dict.value(forKey: "schedule") as? String
         self.index = Configurations.shared.getIndex(hiddenID!)

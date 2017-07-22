@@ -37,7 +37,7 @@ class ProcessCmd {
         if let command = self.command {
             task.launchPath = command
         } else {
-            task.launchPath = Utils.shared.rsyncpath()
+            task.launchPath = Tools.shared.rsyncpath()
         }
         task.arguments = self.arguments
         // Pipe for reading output from Process

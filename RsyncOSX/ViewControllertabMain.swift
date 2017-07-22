@@ -253,7 +253,7 @@ class ViewControllertabMain: NSViewController {
         self.TCPButton.isEnabled = false
         self.loadProfileMenu = false
         self.displayProfile()
-        Utils.shared.testAllremoteserverConnections()
+        Tools.shared.testAllremoteserverConnections()
     }
 
     // Presenting Information from Rsync
@@ -313,9 +313,9 @@ class ViewControllertabMain: NSViewController {
                 return
             }
             if self.displayDryRun.state == .on {
-                self.rsyncCommand.stringValue = Utils.shared.rsyncpathtodisplay(index: index, dryRun: true)
+                self.rsyncCommand.stringValue = Tools.shared.rsyncpathtodisplay(index: index, dryRun: true)
             } else {
-                self.rsyncCommand.stringValue = Utils.shared.rsyncpathtodisplay(index: index, dryRun: false)
+                self.rsyncCommand.stringValue = Tools.shared.rsyncpathtodisplay(index: index, dryRun: false)
             }
         } else {
             self.rsyncCommand.stringValue = ""
@@ -427,7 +427,7 @@ class ViewControllertabMain: NSViewController {
         }
 
         guard Configurations.shared.noRysync == false else {
-            Utils.shared.noRsync()
+            Tools.shared.noRsync()
             return
         }
 
@@ -458,7 +458,7 @@ class ViewControllertabMain: NSViewController {
         }
 
         guard Configurations.shared.noRysync == false else {
-            Utils.shared.noRsync()
+            Tools.shared.noRsync()
             return
         }
 
@@ -817,7 +817,7 @@ extension ViewControllertabMain: Connections {
             return
         }
 
-        self.serverOff = Utils.shared.gettestAllremoteserverConnections()
+        self.serverOff = Tools.shared.gettestAllremoteserverConnections()
         globalMainQueue.async(execute: { () -> Void in
             self.mainTableView.reloadData()
         })

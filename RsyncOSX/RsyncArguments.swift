@@ -55,7 +55,7 @@ final class RsyncArguments: ProcessArguments {
             self.args!.append(local)
             // Set command to Process /usr/bin/rysnc or /usr/local/bin/rsync
             // or other set by userconfiguration
-            self.command = Utils.shared.rsyncpath()
+            self.command = Tools.shared.rsyncpath()
             // Prepare the display version of arguments
             self.argDisplay = self.command! + " "
             for i in 0 ..< self.args!.count {
