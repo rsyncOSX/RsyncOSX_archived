@@ -5,7 +5,7 @@
 //  Created by Thomas Evensen on 03/10/2016.
 //  Copyright © 2016 Thomas Evensen. All rights reserved.
 //
-//  swiftlint:disable syntactic_sugar cyclomatic_complexity
+//  swiftlint:disable syntactic_sugar cyclomatic_complexity line_length
 
 import Foundation
 
@@ -104,7 +104,7 @@ final class RsyncParameters {
     }
 
     // Returns Int value of argument
-    private func indexValue (_ argument: String) -> Int {
+    private func indexofrsyncparameter (_ argument: String) -> Int {
         var index: Int = -1
         loop : for i in 0 ..< self.rsyncArguments.count where argument == self.rsyncArguments[i].0 {
             index = i
@@ -130,17 +130,17 @@ final class RsyncParameters {
     // Get the rsync parameter to store in the configuration.
     // Function computes which parameters are arguments only 
     // e.g --backup, or --suffix=value.
-    func displayValue (_ parameter: String) -> String {
+    func rsyncparametertodisplay (_ parameter: String) -> String {
         let splitstr: Array<String> = self.split(parameter)
         guard splitstr.count > 1 else {
             return ""
         }
         let argument = splitstr[0]
         let value = splitstr[1]
-        if argument != value && self.indexValue(argument) >= 0 {
+        if argument != value && self.indexofrsyncparameter(argument) >= 0 {
             return value
         } else {
-            if self.indexValue(splitstr[0]) >= 0 {
+            if self.indexofrsyncparameter(splitstr[0]) >= 0 {
                 return "\"" + argument + "\" " + "no arguments"
             } else {
                 guard argument != value else {
@@ -155,20 +155,20 @@ final class RsyncParameters {
     /// value in combobox when rsync parameters are presented
     /// - parameter parameter : Stringvalue of parameter
     /// - returns : index of parameter
-    func valueCombo (_ parameter: String) -> Int {
+    func indextouseinCombobox (_ parameter: String) -> Int {
         let splitstr: Array<String> = self.split(parameter)
         guard splitstr.count > 1 else {
             return 0
         }
         let argument = splitstr[0]
         let value = splitstr[1]
-        if argument != value && self.indexValue(argument) >= 0 {
-            return self.indexValue(argument)
+        if argument != value && self.indexofrsyncparameter(argument) >= 0 {
+            return self.indexofrsyncparameter(argument)
         } else {
-            guard self.indexValue(splitstr[0]) >= 0 else {
+            guard self.indexofrsyncparameter(splitstr[0]) >= 0 else {
                 return 0
             }
-            return self.indexValue(argument)
+            return self.indexofrsyncparameter(argument)
         }
     }
 
@@ -185,31 +185,31 @@ final class RsyncParameters {
         switch rsyncparameternumber {
         case 8:
             guard self.config!.parameter8 != nil else {return (0, "")}
-            let value = (self.valueCombo(self.config!.parameter8!), self.displayValue(self.config!.parameter8!) )
+            let value = (self.indextouseinCombobox(self.config!.parameter8!), self.rsyncparametertodisplay(self.config!.parameter8!) )
             return value
         case 9:
             guard self.config!.parameter9 != nil else {return (0, "")}
-            let value = (self.valueCombo(self.config!.parameter9!), self.displayValue(self.config!.parameter9!) )
+            let value = (self.indextouseinCombobox(self.config!.parameter9!), self.rsyncparametertodisplay(self.config!.parameter9!) )
             return value
         case 10:
             guard self.config!.parameter10 != nil else {return (0, "")}
-            let value = (self.valueCombo(self.config!.parameter10!), self.displayValue(self.config!.parameter10!) )
+            let value = (self.indextouseinCombobox(self.config!.parameter10!), self.rsyncparametertodisplay(self.config!.parameter10!) )
             return value
         case 11:
             guard self.config!.parameter11 != nil else {return (0, "")}
-            let value = (self.valueCombo(self.config!.parameter11!), self.displayValue(self.config!.parameter11!) )
+            let value = (self.indextouseinCombobox(self.config!.parameter11!), self.rsyncparametertodisplay(self.config!.parameter11!) )
             return value
         case 12:
             guard self.config!.parameter12 != nil else {return (0, "")}
-            let value = (self.valueCombo(self.config!.parameter12!), self.displayValue(self.config!.parameter12!) )
+            let value = (self.indextouseinCombobox(self.config!.parameter12!), self.rsyncparametertodisplay(self.config!.parameter12!) )
             return value
         case 13:
             guard self.config!.parameter13 != nil else {return (0, "")}
-            let value = (self.valueCombo(self.config!.parameter13!), self.displayValue(self.config!.parameter13!) )
+            let value = (self.indextouseinCombobox(self.config!.parameter13!), self.rsyncparametertodisplay(self.config!.parameter13!) )
             return value
         case 14:
             guard self.config!.parameter14 != nil else {return (0, "")}
-            let value = (self.valueCombo(self.config!.parameter14!), self.displayValue(self.config!.parameter14!) )
+            let value = (self.indextouseinCombobox(self.config!.parameter14!), self.rsyncparametertodisplay(self.config!.parameter14!) )
             return value
         default:
             return (0, "")
