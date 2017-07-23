@@ -40,11 +40,11 @@ final class Checkfornewversion {
                                 if Configurations.shared.allowNotifyinMain == true {
                                     self.newversionDelegate?.notifyNewVersion()
                                 }
-                            } else {
-                                if let pvc = Configurations.shared.viewControllerAbout as? ViewControllerAbout {
-                                    self.newversionDelegate = pvc
-                                    self.newversionDelegate?.notifyNewVersion()
-                                }
+                            }
+                        } else {
+                            if let pvc = Configurations.shared.viewControllerAbout as? ViewControllerAbout {
+                                self.newversionDelegate = pvc
+                                self.newversionDelegate?.notifyNewVersion()
                             }
                         }
                     }
