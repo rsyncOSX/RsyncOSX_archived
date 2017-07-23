@@ -5,7 +5,7 @@
 //  Created by Thomas Evensen on 03/10/2016.
 //  Copyright © 2016 Thomas Evensen. All rights reserved.
 //
-//  swiftlint:disable syntactic_sugar cyclomatic_complexity line_length
+//  swiftlint:disable syntactic_sugar
 
 import Foundation
 
@@ -129,8 +129,11 @@ final class RsyncParameters {
 
     /// Function returns index and value of rsync argument to set the corrospending
     /// value in combobox when rsync parameters are presented and stored in configuration
-    func indexandvaluersyncparameter(_ parameter: String) -> (Int, String) {
-        let splitstr: Array<String> = self.split(parameter)
+    func indexandvaluersyncparameter(_ parameter: String?) -> (Int, String) {
+        guard parameter != nil else {
+            return (0, "")
+        }
+        let splitstr: Array<String> = self.split(parameter!)
         guard splitstr.count > 1 else {
             return (0, "")
         }
@@ -170,34 +173,29 @@ final class RsyncParameters {
     /// - parameter rsyncparameternumber : which stored rsync parameter, integer 8 - 14
     /// - returns : touple with index for combobox and corresponding rsync value
     func getParameter (rsyncparameternumber: Int) -> (Int, String) {
+        var indexandvalue: (Int, String)?
         guard self.config != nil else {
             return (0, "")
         }
         switch rsyncparameternumber {
         case 8:
-            guard self.config!.parameter8 != nil else {return (0, "")}
-            return self.indexandvaluersyncparameter(self.config!.parameter8!)
+           indexandvalue = self.indexandvaluersyncparameter(self.config!.parameter8)
         case 9:
-            guard self.config!.parameter9 != nil else {return (0, "")}
-            return self.indexandvaluersyncparameter(self.config!.parameter9!)
+            indexandvalue = self.indexandvaluersyncparameter(self.config!.parameter9)
         case 10:
-            guard self.config!.parameter10 != nil else {return (0, "")}
-            return self.indexandvaluersyncparameter(self.config!.parameter10!)
+            indexandvalue = self.indexandvaluersyncparameter(self.config!.parameter10)
         case 11:
-            guard self.config!.parameter11 != nil else {return (0, "")}
-            return self.indexandvaluersyncparameter(self.config!.parameter11!)
+            indexandvalue = self.indexandvaluersyncparameter(self.config!.parameter11)
         case 12:
-            guard self.config!.parameter12 != nil else {return (0, "")}
-            return self.indexandvaluersyncparameter(self.config!.parameter12!)
+            indexandvalue = self.indexandvaluersyncparameter(self.config!.parameter12)
         case 13:
-            guard self.config!.parameter13 != nil else {return (0, "")}
-            return self.indexandvaluersyncparameter(self.config!.parameter13!)
+            indexandvalue = self.indexandvaluersyncparameter(self.config!.parameter13)
         case 14:
-            guard self.config!.parameter14 != nil else {return (0, "")}
-            return self.indexandvaluersyncparameter(self.config!.parameter14!)
+            indexandvalue = self.indexandvaluersyncparameter(self.config!.parameter14)
         default:
             return (0, "")
         }
+        return indexandvalue!
     }
 
     init(config: Configuration) {
