@@ -23,7 +23,7 @@ final class Checkfornewversion {
 
     weak var newversionDelegate: newVersionDiscovered?
 
-    private func setURLnewVersion () {
+    private func setURLnewVersion (inMain: Bool) {
         globalBackgroundQueue.async(execute: { () -> Void in
             if let url = URL(string: self.urlPlist!) {
                 do {
@@ -34,10 +34,17 @@ final class Checkfornewversion {
                     if let url = contents?.object(forKey: self.runningVersion!) {
                         self.urlNewVersion = url as? String
                         Configurations.shared.URLnewVersion = self.urlNewVersion
-                        if let pvc = Configurations.shared.viewControllertabMain as? ViewControllertabMain {
-                            self.newversionDelegate = pvc
-                            if Configurations.shared.allowNotifyinMain == true {
-                                self.newversionDelegate?.notifyNewVersion()
+                        if inMain {
+                            if let pvc = Configurations.shared.viewControllertabMain as? ViewControllertabMain {
+                                self.newversionDelegate = pvc
+                                if Configurations.shared.allowNotifyinMain == true {
+                                    self.newversionDelegate?.notifyNewVersion()
+                                }
+                            } else {
+                                if let pvc = Configurations.shared.viewControllerAbout as? ViewControllerAbout {
+                                    self.newversionDelegate = pvc
+                                    self.newversionDelegate?.notifyNewVersion()
+                                }
                             }
                         }
                     }
@@ -46,7 +53,7 @@ final class Checkfornewversion {
         })
     }
 
-    init () {
+    init (inMain: Bool) {
         let infoPlist = Bundle.main.infoDictionary
         let version = infoPlist?["CFBundleShortVersionString"]
         if version != nil {
@@ -57,7 +64,7 @@ final class Checkfornewversion {
         if let resource = self.resource {
             self.urlPlist = resource.getResource(resource: .urlPlist)
         }
-        self.setURLnewVersion()
+        self.setURLnewVersion(inMain: inMain)
     }
 
 }

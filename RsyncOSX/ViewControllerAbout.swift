@@ -54,32 +54,6 @@ class ViewControllerAbout: NSViewController {
         self.dismissDelegate?.dismiss_view(viewcontroller: self)
     }
 
-    private func checkforupdates() {
-        globalBackgroundQueue.async(execute: { () -> Void in
-            if let url = URL(string: self.urlPlist!) {
-                do {
-                    let contents = NSDictionary (contentsOf: url)
-                    if self.runningVersion != nil {
-                        if let url = contents?.object(forKey: self.runningVersion!) {
-                            self.urlNewVersion = url as? String
-                            Configurations.shared.URLnewVersion = self.urlNewVersion
-                            globalMainQueue.async(execute: { () -> Void in
-                                self.downloadbutton.isEnabled = true
-                                self.thereisanewversion.isHidden = false
-                            })
-                        } else {
-                            globalMainQueue.async(execute: { () -> Void in
-                                self.thereisanewversion.stringValue = "No new version"
-                                self.thereisanewversion.isHidden = false
-                            })
-
-                        }
-                    }
-                }
-            }
-        })
-    }
-
     override func viewDidLoad() {
         super.viewDidLoad()
         // External resource object
@@ -91,16 +65,17 @@ class ViewControllerAbout: NSViewController {
             self.dismissDelegate = pvc
         }
         let infoPlist = Bundle.main.infoDictionary
-        let version = (infoPlist?["CFBundleShortVersionString"] as? String)!
-        self.version.stringValue = "RsyncOSX ver: " + version
-        self.runningVersion = version
+        self.version.stringValue = "RsyncOSX ver: " + (infoPlist?["CFBundleShortVersionString"] as? String)!
+        // Reference to About
+        Configurations.shared.viewControllerAbout = self
     }
 
     override func viewDidAppear() {
         super.viewDidAppear()
         self.downloadbutton.isEnabled = false
         self.thereisanewversion.isHidden = true
-        self.checkforupdates()
+        // Check for new version
+        _ = Checkfornewversion(inMain: false)
     }
 
     override func viewDidDisappear() {
@@ -109,4 +84,14 @@ class ViewControllerAbout: NSViewController {
         self.thereisanewversion.isHidden = true
     }
 
+}
+
+extension ViewControllerAbout: newVersionDiscovered {
+    // Notifies if new version is discovered
+    func notifyNewVersion() {
+        globalMainQueue.async(execute: { () -> Void in
+            self.downloadbutton.isEnabled = true
+            self.thereisanewversion.isHidden = false
+        })
+    }
 }

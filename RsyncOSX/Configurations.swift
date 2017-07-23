@@ -95,6 +95,8 @@ class Configurations {
     var viewControllerLoggData: NSViewController?
     // Reference to Ssh view
     var viewControllerSsh: NSViewController?
+    // Reference to About
+    var viewControllerAbout: NSViewController?
     private var profile: String?
     // Notify about scheduled process
     // Only allowed to notity by modal window when in main view
