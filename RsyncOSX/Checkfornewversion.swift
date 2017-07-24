@@ -23,7 +23,8 @@ final class Checkfornewversion {
 
     weak var newversionDelegate: newVersionDiscovered?
 
-    private func setURLnewVersion (inMain: Bool) {
+    //If new version set URL for download link and notify caller
+    private func urlnewVersion (inMain: Bool) {
         globalBackgroundQueue.async(execute: { () -> Void in
             if let url = URL(string: self.urlPlist!) {
                 do {
@@ -33,6 +34,7 @@ final class Checkfornewversion {
                     }
                     if let url = contents?.object(forKey: self.runningVersion!) {
                         self.urlNewVersion = url as? String
+                        // Setting reference to new vesrion if any
                         Configurations.shared.URLnewVersion = self.urlNewVersion
                         if inMain {
                             if let pvc = Configurations.shared.viewControllertabMain as? ViewControllertabMain {
@@ -53,6 +55,11 @@ final class Checkfornewversion {
         })
     }
 
+    // Return version of RsyncOSX
+    func rsyncOSXversion() -> String? {
+        return self.runningVersion
+    }
+
     init (inMain: Bool) {
         let infoPlist = Bundle.main.infoDictionary
         let version = infoPlist?["CFBundleShortVersionString"]
@@ -64,7 +71,7 @@ final class Checkfornewversion {
         if let resource = self.resource {
             self.urlPlist = resource.getResource(resource: .urlPlist)
         }
-        self.setURLnewVersion(inMain: inMain)
+        self.urlnewVersion(inMain: inMain)
     }
 
 }

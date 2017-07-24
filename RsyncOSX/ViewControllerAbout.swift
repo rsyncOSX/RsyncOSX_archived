@@ -20,10 +20,7 @@ class ViewControllerAbout: NSViewController {
     @IBOutlet weak var thereisanewversion: NSTextField!
 
     // new version
-    private var runningVersion: String?
-    private var urlPlist: String?
-    private var urlNewVersion: String?
-
+    var checkfornewversion: Checkfornewversion?
     // External resources as documents, download
     private var resource: Resources?
 
@@ -56,18 +53,12 @@ class ViewControllerAbout: NSViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // External resource object
-        self.resource = Resources()
-        if let resource = self.resource {
-            self.urlPlist = resource.getResource(resource: .urlPlist)
-        }
         if let pvc = self.presenting as? ViewControllertabMain {
             self.dismissDelegate = pvc
         }
-        let infoPlist = Bundle.main.infoDictionary
-        self.version.stringValue = "RsyncOSX ver: " + (infoPlist?["CFBundleShortVersionString"] as? String)!
         // Reference to About
         Configurations.shared.viewControllerAbout = self
+        self.resource = Resources()
     }
 
     override func viewDidAppear() {
@@ -75,7 +66,10 @@ class ViewControllerAbout: NSViewController {
         self.downloadbutton.isEnabled = false
         self.thereisanewversion.isHidden = true
         // Check for new version
-        _ = Checkfornewversion(inMain: false)
+        self.checkfornewversion = Checkfornewversion(inMain: false)
+        if let version = self.checkfornewversion!.rsyncOSXversion() {
+            self.version.stringValue = "RsyncOSX ver: " + version
+        }
     }
 
     override func viewDidDisappear() {
