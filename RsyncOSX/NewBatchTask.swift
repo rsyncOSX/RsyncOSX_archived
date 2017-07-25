@@ -12,13 +12,8 @@ import Cocoa
 
 protocol BatchTask: class {
     func presentViewBatch()
-<<<<<<< HEAD:RsyncOSX/NewBatchTask.swift
     func progressIndicatorViewBatch(operation: BatchViewProgressIndicator)
     func setOutputBatch(outputbatch: OutputBatch?)
-=======
-    func progressIndicatorViewBatch(operation: batchViewProgressIndicator)
-    func setOutputBatch(outputbatch:outputBatch?)
->>>>>>> master:RsyncOSX/newBatchTask.swift
 }
 
 enum BatchViewProgressIndicator {
@@ -35,11 +30,7 @@ final class NewBatchTask {
     // Delegate function for doing a refresh of NSTableView in ViewControllerBatch
     weak var refreshDelegate: RefreshtableView?
     // Delegate for presenting batchView
-<<<<<<< HEAD:RsyncOSX/NewBatchTask.swift
     weak var batchViewDelegate: BatchTask?
-=======
-    weak var batchView_delegate:BatchTask?
->>>>>>> master:RsyncOSX/newBatchTask.swift
     // Delegate function for start/stop progress Indicator in BatchWindow
     weak var indicatorDelegate: StartStopProgressIndicatorSingleTask?
     // Delegate function for show process step and present View
@@ -52,17 +43,10 @@ final class NewBatchTask {
     // Getting output from rsync
     var output: OutputProcess?
     // Getting output from batchrun
-<<<<<<< HEAD:RsyncOSX/NewBatchTask.swift
     private var outputbatch: OutputBatch?
     // HiddenID task, set when row is selected
     private var hiddenID: Int?
 
-=======
-    private var outputbatch:outputBatch?
-    // HiddenID task, set when row is selected
-    private var hiddenID:Int?
-    
->>>>>>> master:RsyncOSX/newBatchTask.swift
     // Schedules in progress
     private var scheduledJobInProgress: Bool = false
 
@@ -91,13 +75,8 @@ final class NewBatchTask {
 
     // Functions are called from batchView.
     func executeBatch() {
-<<<<<<< HEAD:RsyncOSX/NewBatchTask.swift
 
         if let batchobject = Configurations.shared.getBatchdataObject() {
-=======
-        
-        if let batchobject = SharingManagerConfiguration.sharedInstance.getBatchdataObject() {
->>>>>>> master:RsyncOSX/newBatchTask.swift
             // Just copy the work object.
             // The work object will be removed in Process termination
             let work = batchobject.nextBatchCopy()
@@ -123,13 +102,8 @@ final class NewBatchTask {
                 process.executeProcess(output: self.output!)
                 self.process = process.getProcess()
             case -1:
-<<<<<<< HEAD:RsyncOSX/NewBatchTask.swift
                 self.batchViewDelegate?.setOutputBatch(outputbatch: self.outputbatch)
                 self.batchViewDelegate?.progressIndicatorViewBatch(operation: .complete)
-=======
-                self.batchView_delegate?.setOutputBatch(outputbatch: self.outputbatch)
-                self.batchView_delegate?.progressIndicatorViewBatch(operation: .complete)
->>>>>>> master:RsyncOSX/newBatchTask.swift
             default : break
             }
         }
@@ -137,7 +111,6 @@ final class NewBatchTask {
 
     func closeOperation() {
         self.process = nil
-<<<<<<< HEAD:RsyncOSX/NewBatchTask.swift
         self.taskDelegate?.setInfo(info: "", color: .black)
     }
 
@@ -158,29 +131,6 @@ final class NewBatchTask {
 
             if self.outputbatch == nil {
                 self.outputbatch = OutputBatch()
-=======
-        self.task_delegate?.setInfo(info: "", color: .black)
-    }
-    
-    // Error and stop execution
-    func Error() {
-        // Just pop off remaining work
-        if let batchobject = SharingManagerConfiguration.sharedInstance.getBatchdataObject() {
-            batchobject.abortOperations()
-            self.executeBatch()
-        }
-    }
-
-    
-    // Called when ProcessTermination is called in main View.
-    // Either dryn-run or realrun completed.
-    func ProcessTermination() {
-
-        if let batchobject = SharingManagerConfiguration.sharedInstance.getBatchdataObject() {
-            
-            if (self.outputbatch == nil) {
-                self.outputbatch = outputBatch()
->>>>>>> master:RsyncOSX/newBatchTask.swift
             }
 
             // Remove the first worker object
@@ -212,11 +162,7 @@ final class NewBatchTask {
                 // Get transferred numbers from view
                 self.transferredNumber = String(number.getTransferredNumbers(numbers: .transferredNumber))
                 self.transferredNumberSizebytes = String(number.getTransferredNumbers(numbers: .transferredNumberSizebytes))
-<<<<<<< HEAD:RsyncOSX/NewBatchTask.swift
 
-=======
-                
->>>>>>> master:RsyncOSX/newBatchTask.swift
                 if config.offsiteServer.isEmpty {
                     let result = config.localCatalog + " , " + "localhost" + " , " + number.statistics(numberOfFiles: self.transferredNumber, sizeOfFiles: self.transferredNumberSizebytes)[0]
                     self.outputbatch!.addLine(str: result)
