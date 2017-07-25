@@ -5,7 +5,7 @@
 //  Created by Thomas Evensen on 20/01/2017.
 //  Copyright © 2017 Thomas Evensen. All rights reserved.
 //
-//swiftlint:disable syntactic_sugar file_length line_length cyclomatic_complexity
+//swiftlint:disable syntactic_sugar file_length line_length
 
 import Foundation
 
@@ -31,7 +31,6 @@ class ExecuteTask: Operation {
             if let hiddenID: Int = dict.value(forKey: "hiddenID") as? Int {
                 let store: [Configuration] = PersistentStoreageAPI.shared.getConfigurations()
                 let configArray = store.filter({return ($0.hiddenID == hiddenID)})
-
                 guard configArray.count > 0 else {
                     if let pvc = Configurations.shared.viewControllertabMain as? ViewControllertabMain {
                         notifyDelegate = pvc
@@ -41,19 +40,7 @@ class ExecuteTask: Operation {
                     }
                     return
                 }
-
                 config = configArray[0]
-
-                guard config != nil else {
-                    if let pvc = Configurations.shared.viewControllertabMain as? ViewControllertabMain {
-                        notifyDelegate = pvc
-                        if Configurations.shared.allowNotifyinMain == true {
-                            notifyDelegate?.notifyScheduledJob(config: nil)
-                        }
-                    }
-                    return
-                }
-
                 // Notify that scheduled task is executing
                 if let pvc = Configurations.shared.viewControllertabMain as? ViewControllertabMain {
                     notifyDelegate = pvc
