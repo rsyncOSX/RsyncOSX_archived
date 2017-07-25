@@ -24,7 +24,6 @@
 		A04492AA1D658F2100B3CE17 /* yudpsocket.c in Sources */ = {isa = PBXBuildFile; fileRef = A04492961D658F2100B3CE17 /* yudpsocket.c */; };
 		A04492AB1D658F2100B3CE17 /* ArgumentsOneConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = A04492971D658F2100B3CE17 /* ArgumentsOneConfiguration.swift */; };
 		A04492AC1D658F2100B3CE17 /* Configuration.swift in Sources */ = {isa = PBXBuildFile; fileRef = A04492981D658F2100B3CE17 /* Configuration.swift */; };
-		A04492AD1D658F2100B3CE17 /* ConfigurationSchedule.swift in Sources */ = {isa = PBXBuildFile; fileRef = A04492991D658F2100B3CE17 /* ConfigurationSchedule.swift */; };
 		A04492B01D658F2100B3CE17 /* PersistentStoreScheduling.swift in Sources */ = {isa = PBXBuildFile; fileRef = A044929C1D658F2100B3CE17 /* PersistentStoreScheduling.swift */; };
 		A04492B21D658F2100B3CE17 /* RsyncProcessArguments.swift in Sources */ = {isa = PBXBuildFile; fileRef = A044929E1D658F2100B3CE17 /* RsyncProcessArguments.swift */; };
 		A04492B41D658F2100B3CE17 /* CopyFileArguments.swift in Sources */ = {isa = PBXBuildFile; fileRef = A04492A01D658F2100B3CE17 /* CopyFileArguments.swift */; };
@@ -69,7 +68,8 @@
 		E96CA1FE1E094C3000CD1D03 /* Resources.swift in Sources */ = {isa = PBXBuildFile; fileRef = E96CA1FD1E094C3000CD1D03 /* Resources.swift */; };
 		E97C09A71EFAFBC400E86999 /* NewBatchTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = E97C09A61EFAFBC400E86999 /* NewBatchTask.swift */; };
 		E989CE961EF948D0000CB7C2 /* ChmodPubKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = E989CE951EF948D0000CB7C2 /* ChmodPubKey.swift */; };
-		E98A0EEB1EF953FD0006B595 /* NewSingleTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = E98A0EEA1EF953FD0006B595 /* NewSingleTask.swift */; };
+		E9A65E981F278B2B00842BBF /* NewSingleTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9A65E971F278B2A00842BBF /* NewSingleTask.swift */; };
+		E9A65E991F278C5400842BBF /* ConfigurationSchedule.swift in Sources */ = {isa = PBXBuildFile; fileRef = A04492991D658F2100B3CE17 /* ConfigurationSchedule.swift */; };
 		E9A8D81C1ED20AEB009648DE /* GetRemoteFilesArguments.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9A8D81B1ED20AEB009648DE /* GetRemoteFilesArguments.swift */; };
 		E9C6EA8A1ED2AE2F00680D4D /* numbers.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9C6EA891ED2AE2F00680D4D /* numbers.swift */; };
 		E9CF14141E729540008E8A15 /* RsyncScheduled.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9CF14131E729540008E8A15 /* RsyncScheduled.swift */; };
@@ -148,7 +148,7 @@
 		E96CA1FD1E094C3000CD1D03 /* Resources.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Resources.swift; sourceTree = "<group>"; };
 		E97C09A61EFAFBC400E86999 /* NewBatchTask.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewBatchTask.swift; sourceTree = "<group>"; };
 		E989CE951EF948D0000CB7C2 /* ChmodPubKey.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChmodPubKey.swift; sourceTree = "<group>"; };
-		E98A0EEA1EF953FD0006B595 /* NewSingleTask.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewSingleTask.swift; sourceTree = "<group>"; };
+		E9A65E971F278B2A00842BBF /* NewSingleTask.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewSingleTask.swift; sourceTree = "<group>"; };
 		E9A8D81B1ED20AEB009648DE /* GetRemoteFilesArguments.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GetRemoteFilesArguments.swift; sourceTree = "<group>"; };
 		E9C6EA891ED2AE2F00680D4D /* numbers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = numbers.swift; sourceTree = "<group>"; };
 		E9CF14131E729540008E8A15 /* RsyncScheduled.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RsyncScheduled.swift; sourceTree = "<group>"; };
@@ -328,9 +328,9 @@
 		A05275DB1D6F6E2C00D8ECBE /* Execution */ = {
 			isa = PBXGroup;
 			children = (
+				E9A65E971F278B2A00842BBF /* NewSingleTask.swift */,
 				A0430AD91DAFFD3C00BBC106 /* SingleTaskWorkQueu.swift */,
 				A05275D91D6F6E0000D8ECBE /* BatchTaskWorkQueu.swift */,
-				E98A0EEA1EF953FD0006B595 /* NewSingleTask.swift */,
 				E97C09A61EFAFBC400E86999 /* NewBatchTask.swift */,
 			);
 			name = Execution;
@@ -522,9 +522,9 @@
 				E96CA1FE1E094C3000CD1D03 /* Resources.swift in Sources */,
 				A04492B21D658F2100B3CE17 /* RsyncProcessArguments.swift in Sources */,
 				E9230C0E1E6DDC57001D9954 /* RsyncArguments.swift in Sources */,
-				E98A0EEB1EF953FD0006B595 /* NewSingleTask.swift in Sources */,
 				A05275DA1D6F6E0000D8ECBE /* BatchTaskWorkQueu.swift in Sources */,
 				A0EFB4501DC080A9008C21A6 /* PersistentStoreageUserconfiguration.swift in Sources */,
+				E9A65E991F278C5400842BBF /* ConfigurationSchedule.swift in Sources */,
 				A00FE1AA1D6A1AAB00012089 /* Alerts.swift in Sources */,
 				E9DCEA871E75F67200A69B4D /* OutputBatch.swift in Sources */,
 				E9C6EA8A1ED2AE2F00680D4D /* numbers.swift in Sources */,
@@ -543,9 +543,9 @@
 				A0F3F9251DC65CE9001D305F /* ViewControllerScheduledBackupInWork.swift in Sources */,
 				A0AA33811D6F926A00DF4C77 /* ViewControllerBatch.swift in Sources */,
 				A054F1A91D6D773E00D27688 /* ViewControllerInformation.swift in Sources */,
+				E9A65E981F278B2B00842BBF /* NewSingleTask.swift in Sources */,
 				A0430ADA1DAFFD3C00BBC106 /* SingleTaskWorkQueu.swift in Sources */,
 				A004D81A1D9586580016914F /* ViewControllerLoggData.swift in Sources */,
-				A04492AD1D658F2100B3CE17 /* ConfigurationSchedule.swift in Sources */,
 				E9F4EBB81EB4C32D006EEEF1 /* CommandSsh.swift in Sources */,
 				A04492BB1D658F2100B3CE17 /* ytcpsocket.swift in Sources */,
 				A091C65B1D86A59500278E74 /* CopyFiles.swift in Sources */,
