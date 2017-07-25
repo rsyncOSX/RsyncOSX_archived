@@ -1,5 +1,5 @@
 //
-//  configurationSchedule.swift
+//  ConfigurationSchedule.swift
 //  RsyncOSX
 //
 //  Created by Thomas Evensen on 02/05/16.
@@ -25,7 +25,7 @@ struct ConfigurationSchedule {
             self.dateStop = date
         }
         if log != nil {
-             for i in 0 ..< log!.count {
+            for i in 0 ..< log!.count {
                 self.logrecords.append((log![i] as? NSMutableDictionary)!)
             }
         }

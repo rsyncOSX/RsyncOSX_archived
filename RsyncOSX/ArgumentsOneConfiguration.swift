@@ -10,7 +10,7 @@
 import Foundation
 
 // Struct for to store info for ONE configuration.
-// Struct is storing rsync arguments for real run, dryrun 
+// Struct is storing rsync arguments for real run, dryrun
 // and a version to show in view of both
 
 struct ArgumentsOneConfiguration {

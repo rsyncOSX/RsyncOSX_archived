@@ -1,5 +1,5 @@
 //
-//  readwritefiles.swift
+//  Readwritefiles.swift
 //  RsyncOSX
 //
 //  Created by Thomas Evensen on 25/10/2016.

@@ -1,5 +1,5 @@
 //
-//  newSingleTask.swift
+//  NewSingleTask.swift
 //  RsyncOSX
 //
 //  Created by Thomas Evensen on 20.06.2017.
@@ -35,7 +35,6 @@ enum ColorInfo {
 }
 
 final class NewSingleTask {
-
     // Delegate function for start/stop progress Indicator in BatchWindow
     weak var indicatorDelegate: StartStopProgressIndicatorSingleTask?
     // Delegate functions for kicking of various updates (informal) during
@@ -134,7 +133,7 @@ final class NewSingleTask {
                 self.indicatorDelegate?.stopIndicator()
                 // If showInfoDryrun is on present result of dryrun automatically
                 self.taskDelegate?.presentViewInformation(output: self.output!)
-                // self.taskDelegate?.singleTaskAbort(process: self.process)
+            // self.taskDelegate?.singleTaskAbort(process: self.process)
             case .executesinglerun:
                 //NB: self.showProcessInfo(info: .Logging_run)
                 self.taskDelegate?.showProcessInfo(info: .loggingrun)
