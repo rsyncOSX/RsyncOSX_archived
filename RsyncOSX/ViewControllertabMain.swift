@@ -7,6 +7,8 @@
 //  Copyright © 2016 Thomas Evensen. All rights reserved.
 //
 
+//swiftlint:disable syntactic_sugar file_length cyclomatic_complexity line_length type_body_length
+
 import Foundation
 import Cocoa
 
@@ -21,14 +23,14 @@ protocol StartStopProgressIndicator: class {
 // It is the presenting viewcontroller which is
 // responsible to dismiss the viewcontroller
 protocol DismissViewController: class {
-    func dismiss_view(viewcontroller:NSViewController)
+    func dismiss_view(viewcontroller: NSViewController)
 }
 
 // Protocol for either completion of work or update progress when Process discovers a
 // process termination and when filehandler discover data
 protocol UpdateProgress: class {
-    func ProcessTermination()
-    func FileHandler()
+    func processTermination()
+    func fileHandler()
 }
 
 // Protocol for deselecting rowtable
@@ -38,25 +40,25 @@ protocol deselectRowTable: class {
 
 // Protocol for reporting file errors
 protocol ReportErrorInMain: class {
-    func fileerror(errorstr:String)
+    func fileerror(errorstr: String)
 }
 
 class ViewControllertabMain: NSViewController {
-    
+
     // Reference to the single taskobject
-    var singletask:newSingleTask?
+    var singletask: NewSingleTask?
     // Reference to batch taskobject
-    var batchtask:newBatchTask?
+    var batchtask: NewBatchTask?
 
     // Protocol function used in Process().
-    weak var processupdate_delegate:UpdateProgress?
+    weak var processupdateDelegate: UpdateProgress?
     // Delegate function for doing a refresh of NSTableView in ViewControllerBatch
-    weak var refresh_delegate:RefreshtableView?
+    weak var refreshDelegate: RefreshtableView?
     // Delegate function for start/stop progress Indicator in BatchWindow
-    weak var indicator_delegate:StartStopProgressIndicator?
+    weak var indicatorDelegate: StartStopProgressIndicator?
     // Delegate function getting batchTaskObject
-    weak var batchObject_delegate:getNewBatchTask?
-    
+    weak var batchObjectDelegate: getNewBatchTask?
+
     // Main tableview
     @IBOutlet weak var mainTableView: NSTableView!
     // Progressbar indicating work
@@ -88,147 +90,154 @@ class ViewControllertabMain: NSViewController {
     @IBOutlet weak var newfiles: NSTextField!
     // Delete files
     @IBOutlet weak var deletefiles: NSTextField!
-    
-    
+
     // REFERENCE VARIABLES
-    
+
     // Reference to Process task
-    fileprivate var process:Process?
+    fileprivate var process: Process?
     // Index to selected row, index is set when row is selected
-    fileprivate var index:Int?
+    fileprivate var index: Int?
     // Getting output from rsync 
-    fileprivate var output:outputProcess?
+    fileprivate var output: OutputProcess?
     // Getting output from batchrun
+<<<<<<< HEAD
+    fileprivate var outputbatch: OutputBatch?
+=======
     fileprivate var outputbatch:outputBatch?
+>>>>>>> master
     // HiddenID task, set when row is selected
-    fileprivate var hiddenID:Int?
+    fileprivate var hiddenID: Int?
     // Reference to Schedules object
-    fileprivate var schedules : ScheduleSortedAndExpand?
+    fileprivate var schedules: ScheduleSortedAndExpand?
     // Bool if one or more remote server is offline
     // Used in testing if remote server is on/off-line
+<<<<<<< HEAD
+    fileprivate var serverOff: Array<Bool>?
+
+=======
     fileprivate var serverOff:Array<Bool>?
     
+>>>>>>> master
     // Schedules in progress
-    fileprivate var scheduledJobInProgress:Bool = false
+    fileprivate var scheduledJobInProgress: Bool = false
     // Ready for execute again
-    fileprivate var ready:Bool = true
+    fileprivate var ready: Bool = true
     // Can load profiles
     // Load profiles only when testing for connections are done.
     // Application crash if not
-    fileprivate var loadProfileMenu:Bool = false
-    
+    fileprivate var loadProfileMenu: Bool = false
+
     // Information about rsync output
     // self.presentViewControllerAsSheet(self.ViewControllerInformation)
-    lazy var ViewControllerInformation: NSViewController = {
-        return self.storyboard!.instantiateController(withIdentifier: "StoryboardInformationID")
-            as! NSViewController
+    lazy var viewControllerInformation: NSViewController = {
+        return (self.storyboard!.instantiateController(withIdentifier: NSStoryboard.SceneIdentifier(rawValue: "StoryboardInformationID"))
+        as? NSViewController)!
     }()
-    
+
     // Progressbar process 
     // self.presentViewControllerAsSheet(self.ViewControllerProgress)
-    lazy var ViewControllerProgress: NSViewController = {
-        return self.storyboard!.instantiateController(withIdentifier: "StoryboardProgressID")
-            as! NSViewController
+    lazy var viewControllerProgress: NSViewController = {
+        return (self.storyboard!.instantiateController(withIdentifier: NSStoryboard.SceneIdentifier(rawValue: "StoryboardProgressID"))
+            as? NSViewController)!
     }()
-    
+
     // Batch process
     // self.presentViewControllerAsSheet(self.ViewControllerBatch)
-    lazy var ViewControllerBatch: NSViewController = {
-        return self.storyboard!.instantiateController(withIdentifier: "StoryboardBatchID")
-            as! NSViewController
+    lazy var viewControllerBatch: NSViewController = {
+        return (self.storyboard!.instantiateController(withIdentifier: NSStoryboard.SceneIdentifier(rawValue: "StoryboardBatchID"))
+            as? NSViewController)!
     }()
 
     // Userconfiguration
     // self.presentViewControllerAsSheet(self.ViewControllerUserconfiguration)
-    lazy var ViewControllerUserconfiguration: NSViewController = {
-        return self.storyboard!.instantiateController(withIdentifier: "StoryboardUserconfigID")
-            as! NSViewController
+    lazy var viewControllerUserconfiguration: NSViewController = {
+        return (self.storyboard!.instantiateController(withIdentifier: NSStoryboard.SceneIdentifier(rawValue: "StoryboardUserconfigID"))
+            as? NSViewController)!
     }()
-    
+
     // Rsync userparams
     // self.presentViewControllerAsSheet(self.ViewControllerRsyncParams)
-    lazy var ViewControllerRsyncParams: NSViewController = {
-        return self.storyboard!.instantiateController(withIdentifier: "StoryboardRsyncParamsID")
-            as! NSViewController
+    lazy var viewControllerRsyncParams: NSViewController = {
+        return (self.storyboard!.instantiateController(withIdentifier: NSStoryboard.SceneIdentifier(rawValue: "StoryboardRsyncParamsID"))
+            as? NSViewController)!
     }()
 
     // New version window
     // self.presentViewControllerAsSheet(self.newVersionViewController)
     lazy var newVersionViewController: NSViewController = {
-        return self.storyboard!.instantiateController(withIdentifier: "StoryboardnewVersionID")
-            as! NSViewController
+        return (self.storyboard!.instantiateController(withIdentifier: NSStoryboard.SceneIdentifier(rawValue: "StoryboardnewVersionID"))
+            as? NSViewController)!
     }()
-    
+
     // Edit
     // self.presentViewControllerAsSheet(self.editViewController)
     lazy var editViewController: NSViewController = {
-        return self.storyboard!.instantiateController(withIdentifier: "StoryboardEditID")
-            as! NSViewController
+        return (self.storyboard!.instantiateController(withIdentifier: NSStoryboard.SceneIdentifier(rawValue: "StoryboardEditID"))
+            as? NSViewController)!
     }()
-    
+
     // Profile
     // self.presentViewControllerAsSheet(self.ViewControllerProfile)
-    lazy var ViewControllerProfile: NSViewController = {
-        return self.storyboard!.instantiateController(withIdentifier: "ProfileID")
-            as! NSViewController
+    lazy var viewControllerProfile: NSViewController = {
+        return (self.storyboard!.instantiateController(withIdentifier: NSStoryboard.SceneIdentifier(rawValue: "ProfileID"))
+            as? NSViewController)!
     }()
 
     // ScheduledBackupInWorkID
     // self.presentViewControllerAsSheet(self.ViewControllerScheduledBackupInWork)
-    lazy var ViewControllerScheduledBackupInWork: NSViewController = {
-        return self.storyboard!.instantiateController(withIdentifier: "ScheduledBackupInWorkID")
-            as! NSViewController
+    lazy var viewControllerScheduledBackupInWork: NSViewController = {
+        return (self.storyboard!.instantiateController(withIdentifier: NSStoryboard.SceneIdentifier(rawValue: "ScheduledBackupInWorkID"))
+            as? NSViewController)!
     }()
-    
+
     // About
     // self.presentViewControllerAsSheet(self.ViewControllerAbout)
-    lazy var ViewControllerAbout: NSViewController = {
-        return self.storyboard!.instantiateController(withIdentifier: "AboutID")
-            as! NSViewController
+    lazy var viewControllerAbout: NSViewController = {
+        return (self.storyboard!.instantiateController(withIdentifier: NSStoryboard.SceneIdentifier(rawValue: "AboutID"))
+            as? NSViewController)!
     }()
-    
-    
+
     // BUTTONS AND ACTIONS
-    
+
     @IBOutlet weak var edit: NSButton!
     @IBOutlet weak var rsyncparams: NSButton!
     @IBOutlet weak var delete: NSButton!
-    
+
     // Menus as Radiobuttons for Edit functions in tabMainView
-    @IBAction func Radiobuttons(_ sender: NSButton) {
-        
+    @IBAction func radiobuttons(_ sender: NSButton) {
+
         // Reset output
         self.output = nil
         // Clear numbers from dryrun
         self.setNumbers(output: nil)
         self.setInfo(info: "Estimate", color: .blue)
         self.process = nil
-        
-        if (self.index != nil) {
+
+        if self.index != nil {
             // rsync params
-            if (self.rsyncparams.state == 1) {
-                if (self.index != nil) {
-                    GlobalMainQueue.async(execute: { () -> Void in
-                        self.presentViewControllerAsSheet(self.ViewControllerRsyncParams)
+            if self.rsyncparams.state == .on {
+                if self.index != nil {
+                    globalMainQueue.async(execute: { () -> Void in
+                        self.presentViewControllerAsSheet(self.viewControllerRsyncParams)
                     })
                 }
             // Edit task
-            } else if (self.edit.state == 1) {
-                if (self.index != nil) {
-                    GlobalMainQueue.async(execute: { () -> Void in
+            } else if self.edit.state == .on {
+                if self.index != nil {
+                    globalMainQueue.async(execute: { () -> Void in
                         self.presentViewControllerAsSheet(self.editViewController)
                     })
                 }
             // Delete files
-            } else if (self.delete.state == 1) {
+            } else if self.delete.state == .on {
                 let answer = Alerts.dialogOKCancel("Delete selected task?", text: "Cancel or OK")
-                if (answer) {
-                    if (self.hiddenID != nil) {
+                if answer {
+                    if self.hiddenID != nil {
                         // Delete Configurations and Schedules by hiddenID
-                        SharingManagerConfiguration.sharedInstance.deleteConfigurationsByhiddenID(hiddenID: self.hiddenID!)
-                        SharingManagerSchedule.sharedInstance.deleteSchedulesbyHiddenID(hiddenID: self.hiddenID!)
+                        Configurations.shared.deleteConfigurationsByhiddenID(hiddenID: self.hiddenID!)
+                        Schedules.shared.deleteSchedulesbyHiddenID(hiddenID: self.hiddenID!)
                         // Reading main Configurations and Schedule to memory
-                        self.ReReadConfigurationsAndSchedules()
+                        self.reReadConfigurationsAndSchedules()
                         // And create a new Schedule object
                         // Just calling the protocol function
                         self.newSchedulesAdded()
@@ -238,67 +247,80 @@ class ViewControllertabMain: NSViewController {
                         self.refresh()
                     }
                 }
-                self.delete.state = NSOffState
+                self.delete.state = .off
             }
         } else {
             self.rsyncCommand.stringValue = " ... Please select a task first ..."
-            self.delete.state = NSOffState
-            self.rsyncparams.state = NSOffState
-            self.edit.state = NSOffState
+            self.delete.state = .off
+            self.rsyncparams.state = .off
+            self.edit.state = .off
         }
     }
+<<<<<<< HEAD
+
+=======
     
+>>>>>>> master
     @IBOutlet weak var TCPButton: NSButton!
     @IBAction func TCP(_ sender: NSButton) {
         self.TCPButton.isEnabled = false
         self.loadProfileMenu = false
         self.displayProfile()
+<<<<<<< HEAD
+        Tools.shared.testAllremoteserverConnections()
+    }
+
+=======
         Utils.sharedInstance.testAllremoteserverConnections()
     }
     
     
+>>>>>>> master
     // Presenting Information from Rsync
-    @IBAction func Information(_ sender: NSButton) {
-        GlobalMainQueue.async(execute: { () -> Void in
-            self.presentViewControllerAsSheet(self.ViewControllerInformation)
+    @IBAction func information(_ sender: NSButton) {
+        globalMainQueue.async(execute: { () -> Void in
+            self.presentViewControllerAsSheet(self.viewControllerInformation)
         })
     }
-    
+
     // Abort button
-    @IBAction func Abort(_ sender: NSButton) {
+    @IBAction func abort(_ sender: NSButton) {
         // abortOperations is the delegate function for 
         // aborting batch operations
-        GlobalMainQueue.async(execute: { () -> Void in
+        globalMainQueue.async(execute: { () -> Void in
             self.abortOperations()
             self.process = nil
         })
     }
 
     // Userconfiguration button
-    @IBAction func Userconfiguration(_ sender: NSButton) {
-        GlobalMainQueue.async(execute: { () -> Void in
-            self.presentViewControllerAsSheet(self.ViewControllerUserconfiguration)
+    @IBAction func userconfiguration(_ sender: NSButton) {
+        globalMainQueue.async(execute: { () -> Void in
+            self.presentViewControllerAsSheet(self.viewControllerUserconfiguration)
         })
     }
-    
+
     // Selecting profiles
     @IBAction func profiles(_ sender: NSButton) {
-        if (self.loadProfileMenu == true) {
-            self.showProcessInfo(info:.Change_profile)
-            GlobalMainQueue.async(execute: { () -> Void in
-                self.presentViewControllerAsSheet(self.ViewControllerProfile)
+        if self.loadProfileMenu == true {
+            self.showProcessInfo(info:.changeprofile)
+            globalMainQueue.async(execute: { () -> Void in
+                self.presentViewControllerAsSheet(self.viewControllerProfile)
             })
         } else {
             self.displayProfile()
         }
+<<<<<<< HEAD
+
+=======
+>>>>>>> master
     }
-    
+
     // Selecting About
-    @IBAction func About (_ sender: NSButton) {
-        self.presentViewControllerAsModalWindow(self.ViewControllerAbout)
+    @IBAction func about (_ sender: NSButton) {
+        self.presentViewControllerAsModalWindow(self.viewControllerAbout)
     }
-    
-    
+
     // Function for display rsync command
     // Either --dry-run or real run
     @IBOutlet weak var displayDryRun: NSButton!
@@ -306,27 +328,26 @@ class ViewControllertabMain: NSViewController {
     @IBAction func displayRsyncCommand(_ sender: NSButton) {
         self.setRsyncCommandDisplay()
     }
-    
+
     // Display correct rsync command in view
     fileprivate func setRsyncCommandDisplay() {
-        if (self.displayDryRun.state == NSOnState) {
-            if let index = self.index {
-                self.rsyncCommand.stringValue = Utils.sharedInstance.setRsyncCommandDisplay(index: index, dryRun: true)
+        if let index = self.index {
+            guard index <= Configurations.shared.getConfigurations().count else {
+                return
+            }
+            if self.displayDryRun.state == .on {
+                self.rsyncCommand.stringValue = Tools.shared.rsyncpathtodisplay(index: index, dryRun: true)
             } else {
-                self.rsyncCommand.stringValue = ""
+                self.rsyncCommand.stringValue = Tools.shared.rsyncpathtodisplay(index: index, dryRun: false)
             }
         } else {
-            if let index = self.index {
-                self.rsyncCommand.stringValue = Utils.sharedInstance.setRsyncCommandDisplay(index: index, dryRun: false)
-            } else {
-                self.rsyncCommand.stringValue = ""
-            }
+            self.rsyncCommand.stringValue = ""
         }
     }
 
     // Initial functions viewDidLoad and viewDidAppear
     // Leaving view viewDidDisappear
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do view setup here.
@@ -336,9 +357,9 @@ class ViewControllertabMain: NSViewController {
         // Progress indicator
         self.working.usesThreadedAnimation = true
         self.scheduledJobworking.usesThreadedAnimation = true
-        self.ReReadConfigurationsAndSchedules()
+        self.reReadConfigurationsAndSchedules()
         // Setting reference to self, used when calling delegate functions
-        SharingManagerConfiguration.sharedInstance.ViewControllertabMain = self
+        Configurations.shared.viewControllertabMain = self
         // Create a Schedules object
         // Start waiting for next Scheduled job (if any)
         self.schedules = ScheduleSortedAndExpand()
@@ -346,99 +367,121 @@ class ViewControllertabMain: NSViewController {
         self.mainTableView.target = self
         self.mainTableView.doubleAction = #selector(ViewControllertabMain.tableViewDoubleClick(sender:))
         // Defaults to display dryrun command
-        self.displayDryRun.state = NSOnState
+        self.displayDryRun.state = .on
     }
-    
+
     override func viewDidAppear() {
         super.viewDidAppear()
         self.loadProfileMenu = false
-        self.showProcessInfo(info: .Blank)
+        self.showProcessInfo(info: .blank)
         // Allow notify about Scheduled jobs
-        SharingManagerConfiguration.sharedInstance.allowNotifyinMain = true
+        Configurations.shared.allowNotifyinMain = true
         self.setInfo(info: "", color: .black)
         // Setting reference to ViewController
         // Used to call delegate function from other class
-        SharingManagerConfiguration.sharedInstance.ViewControllertabMain = self
-        if (SharingManagerConfiguration.sharedInstance.ConfigurationsDataSourcecount() > 0 ) {
-            GlobalMainQueue.async(execute: { () -> Void in
+        Configurations.shared.viewControllertabMain = self
+        if Configurations.shared.configurationsDataSourcecount() > 0 {
+            globalMainQueue.async(execute: { () -> Void in
                 self.mainTableView.reloadData()
             })
         }
         // Update rsync command in view i case changed
         self.rsyncchanged()
+<<<<<<< HEAD
+        // Show which profile
+=======
+>>>>>>> master
         self.loadProfileMenu = true
         self.displayProfile()
-        if (self.schedules == nil) {
+        if self.schedules == nil {
             self.schedules = ScheduleSortedAndExpand()
         }
         self.ready = true
         self.displayAllowDoubleclick()
+
     }
-    
+
     override func viewDidDisappear() {
         super.viewDidDisappear()
         // Do not allow notify in Main
+<<<<<<< HEAD
+        Configurations.shared.allowNotifyinMain = false
+=======
         SharingManagerConfiguration.sharedInstance.allowNotifyinMain = false
+>>>>>>> master
     }
-    
+
     // True if scheduled task in progress
     func scheduledOperationInProgress() -> Bool {
-        var scheduleInProgress:Bool?
-        if (self.schedules != nil) {
+        var scheduleInProgress: Bool?
+        if self.schedules != nil {
             scheduleInProgress = self.schedules!.getScheduledOperationInProgress()
         } else {
             scheduleInProgress = false
         }
-        if (scheduleInProgress == false && self.scheduledJobInProgress == false){
+        if scheduleInProgress == false && self.scheduledJobInProgress == false {
             return false
         } else {
             return true
         }
     }
 
-    
     // Execute tasks by double click in table
-    @objc(tableViewDoubleClick:) func tableViewDoubleClick(sender:AnyObject) {
-        if (SharingManagerConfiguration.sharedInstance.allowDoubleclick == true) {
-            if (self.ready) {
+    @objc(tableViewDoubleClick:) func tableViewDoubleClick(sender: AnyObject) {
+        if Configurations.shared.allowDoubleclick == true {
+            if self.ready {
                 self.executeSingleTask()
             }
             self.ready = false
         }
     }
 
-    
     // Execute SINGLE TASKS only
     // Start of executing SINGLE tasks
     // After start the function ProcessTermination()
     // which is triggered when a Process termination is
     // discovered, completes the task.
     @IBAction func executeTask(_ sender: NSButton) {
-        if (self.ready) {
+        if self.ready {
             self.executeSingleTask()
         }
         // Dont execute a second task when the first is started. 
         self.ready = false
     }
-    
+
     // Single task can be activated by double click from table
     private func executeSingleTask() {
+<<<<<<< HEAD
+
+=======
         
         self.batchtask = nil
         
+>>>>>>> master
         guard scheduledOperationInProgress() == false else {
             Alerts.showInfo("Scheduled operation in progress")
             return
         }
-        
-        guard SharingManagerConfiguration.sharedInstance.noRysync == false else {
-            Utils.sharedInstance.noRsync()
+
+        guard Configurations.shared.noRysync == false else {
+            Tools.shared.noRsync()
             return
         }
-        
+
         guard self.index != nil else {
             return
         }
+<<<<<<< HEAD
+
+        self.batchtask = nil
+
+        guard self.singletask != nil else {
+            // Dry run
+            self.singletask = NewSingleTask(index: self.index!)
+            self.singletask?.executeSingleTask()
+            // Set reference to singleTask object
+            Configurations.shared.singleTask = self.singletask
+=======
         
         guard self.singletask != nil else {
             // Dry run
@@ -448,54 +491,67 @@ class ViewControllertabMain: NSViewController {
             // Reference is only set when a dry-run is executed. 
             // Singletask object stays alive during both dry-run and realrun.
             SharingManagerConfiguration.sharedInstance.SingleTask = self.singletask
+>>>>>>> master
             return
         }
         // Real run
         self.singletask!.executeSingleTask()
     }
-    
-    
+
     // Execute BATCH TASKS only
     @IBAction func executeBatch(_ sender: NSButton) {
+<<<<<<< HEAD
+
+=======
         
         self.singletask = nil
         
+>>>>>>> master
         guard scheduledOperationInProgress() == false else {
             Alerts.showInfo("Scheduled operation in progress")
             return
         }
-        
-        guard SharingManagerConfiguration.sharedInstance.noRysync == false else {
-            Utils.sharedInstance.noRsync()
+
+        guard Configurations.shared.noRysync == false else {
+            Tools.shared.noRsync()
             return
         }
+<<<<<<< HEAD
+
+        self.singletask = nil
+=======
         
+>>>>>>> master
         self.setNumbers(output: nil)
-        self.batchtask = newBatchTask()
+        self.batchtask = NewBatchTask()
         // Present batch view
         self.batchtask!.presentBatchView()
     }
-    
+
     // Reread bot Configurations and Schedules from persistent store to memory
-    fileprivate func ReReadConfigurationsAndSchedules() {
+    fileprivate func reReadConfigurationsAndSchedules() {
         // Reading main Configurations to memory
-        SharingManagerConfiguration.sharedInstance.setDataDirty(dirty: true)
-        SharingManagerConfiguration.sharedInstance.readAllConfigurationsAndArguments()
+        Configurations.shared.setDataDirty(dirty: true)
+        Configurations.shared.readAllConfigurationsAndArguments()
         // Read all Scheduled data again
-        SharingManagerConfiguration.sharedInstance.setDataDirty(dirty: true)
-        SharingManagerSchedule.sharedInstance.readAllSchedules()
+        Configurations.shared.setDataDirty(dirty: true)
+        Schedules.shared.readAllSchedules()
     }
+<<<<<<< HEAD
+
+=======
     
+>>>>>>> master
     // Function for setting profile
     fileprivate func displayProfile() {
-        
-        guard (self.loadProfileMenu == true) else {
+
+        guard self.loadProfileMenu == true else {
             self.profilInfo.stringValue = "Profile: please wait..."
             self.profilInfo.textColor = .blue
             return
         }
-        
-        if let profile = SharingManagerConfiguration.sharedInstance.getProfile() {
+
+        if let profile = Configurations.shared.getProfile() {
             self.profilInfo.stringValue = "Profile: " + profile
             self.profilInfo.textColor = .blue
         } else {
@@ -503,11 +559,15 @@ class ViewControllertabMain: NSViewController {
             self.profilInfo.textColor = .black
         }
         self.TCPButton.isEnabled = true
+<<<<<<< HEAD
+        self.setRsyncCommandDisplay()
+=======
+>>>>>>> master
     }
-    
+
     // Function for setting allowDouble click
     internal func displayAllowDoubleclick() {
-        if (SharingManagerConfiguration.sharedInstance.allowDoubleclick == true) {
+        if Configurations.shared.allowDoubleclick == true {
             self.allowDoubleclick.stringValue = "Double click: YES"
             self.allowDoubleclick.textColor = .blue
         } else {
@@ -515,19 +575,19 @@ class ViewControllertabMain: NSViewController {
             self.allowDoubleclick.textColor = .black
         }
     }
-    
+
     // when row is selected
     // setting which table row is selected
     func tableViewSelectionDidChange(_ notification: Notification) {
-        if (self.ready == false) {
+        if self.ready == false {
             self.abortOperations()
         }
         self.ready = true
-        let myTableViewFromNotification = notification.object as! NSTableView
+        let myTableViewFromNotification = (notification.object as? NSTableView)!
         let indexes = myTableViewFromNotification.selectedRowIndexes
         if let index = indexes.first {
             self.index = index
-            self.hiddenID = SharingManagerConfiguration.sharedInstance.gethiddenID(index: index)
+            self.hiddenID = Configurations.shared.gethiddenID(index: index)
             // Reset output
             self.output = nil
             self.outputbatch = nil
@@ -539,29 +599,32 @@ class ViewControllertabMain: NSViewController {
         self.process = nil
         self.singletask = nil
         self.batchtask = nil
+<<<<<<< HEAD
+
+=======
+>>>>>>> master
         self.setInfo(info: "Estimate", color: .blue)
         self.setRsyncCommandDisplay()
     }
 }
 
-
 // Extensions
 
 extension ViewControllertabMain : NSTableViewDataSource {
-    
+
     // Delegate for size of table
     func numberOfRows(in tableView: NSTableView) -> Int {
-        return SharingManagerConfiguration.sharedInstance.ConfigurationsDataSourcecount()
+        return Configurations.shared.configurationsDataSourcecount()
     }
 }
 
 extension ViewControllertabMain : NSTableViewDelegate {
-    
+
     // Function to test for remote server available or not
     // Used in tableview delegate
-    private func testRow(_ row:Int) -> Bool {
+    private func testRow(_ row: Int) -> Bool {
         if let serverOff = self.serverOff {
-            if (row < serverOff.count) {
+            if row < serverOff.count {
                 return serverOff[row]
             } else {
                 return false
@@ -569,40 +632,39 @@ extension ViewControllertabMain : NSTableViewDelegate {
         }
         return false
     }
-    
-    
+
     // TableView delegates
     @objc(tableView:objectValueForTableColumn:row:) func tableView(_ tableView: NSTableView, objectValueFor tableColumn: NSTableColumn?, row: Int) -> Any? {
-        
-        if row > SharingManagerConfiguration.sharedInstance.ConfigurationsDataSourcecount() - 1 {
+
+        if row > Configurations.shared.configurationsDataSourcecount() - 1 {
             return nil
         }
-        let object : NSDictionary = SharingManagerConfiguration.sharedInstance.getConfigurationsDataSource()![row]
-        var text:String?
-        var schedule :Bool = false
-        let hiddenID:Int = SharingManagerConfiguration.sharedInstance.getConfigurations()[row].hiddenID
-        if SharingManagerSchedule.sharedInstance.hiddenIDinSchedule(hiddenID) {
+        let object: NSDictionary = Configurations.shared.getConfigurationsDataSource()![row]
+        var text: String?
+        var schedule: Bool = false
+        let hiddenID: Int = Configurations.shared.getConfigurations()[row].hiddenID
+        if Schedules.shared.hiddenIDinSchedule(hiddenID) {
             text = object[tableColumn!.identifier] as? String
-            if (text == "backup" || text == "restore") {
+            if text == "backup" || text == "restore" {
                 schedule = true
             }
         }
-        if ((tableColumn!.identifier) == "batchCellID") {
+        if tableColumn!.identifier.rawValue == "batchCellID" {
             return object[tableColumn!.identifier] as? Int!
         } else {
-            var number:Int = 0
+            var number: Int = 0
             if let obj = self.schedules {
                 number = obj.numberOfFutureSchedules(hiddenID)
             }
-            if (schedule && number > 0) {
+            if schedule && number > 0 {
                 let returnstr = text! + " (" + String(number) + ")"
                 return returnstr
             } else {
-                if (self.testRow(row)) {
+                if self.testRow(row) {
                     text = object[tableColumn!.identifier] as? String
                     let attributedString = NSMutableAttributedString(string:(text!))
                     let range = (text! as NSString).range(of: text!)
-                    attributedString.addAttribute(NSForegroundColorAttributeName, value: NSColor.red, range: range)
+                    attributedString.addAttribute(NSAttributedStringKey.foregroundColor, value: NSColor.red, range: range)
                     return attributedString
                 } else {
                     return object[tableColumn!.identifier] as? String
@@ -610,24 +672,23 @@ extension ViewControllertabMain : NSTableViewDelegate {
             }
         }
     }
-    
+
     // Toggling batch
     @objc(tableView:setObjectValue:forTableColumn:row:) func tableView(_ tableView: NSTableView, setObjectValue object: Any?, for tableColumn: NSTableColumn?, row: Int) {
-        if (SharingManagerConfiguration.sharedInstance.getConfigurations()[row].task == "backup") {
-            SharingManagerConfiguration.sharedInstance.setBatchYesNo(row)
+        if Configurations.shared.getConfigurations()[row].task == "backup" {
+            Configurations.shared.setBatchYesNo(row)
         }
     }
 }
 
 // Get output from rsync command
 extension ViewControllertabMain: Information {
-    
+
     // Get information from rsync output.
     func getInformation() -> Array<String> {
-        
-        if (self.outputbatch != nil) {
+        if self.outputbatch != nil {
             return self.outputbatch!.getOutput()
-        } else if (self.output != nil) {
+        } else if self.output != nil {
             return self.output!.getOutput()
         } else {
             return [""]
@@ -644,20 +705,19 @@ extension ViewControllertabMain: RefreshtableView {
         // Releasing previous allocation before creating new one
         self.schedules = nil
         self.schedules = ScheduleSortedAndExpand()
-        GlobalMainQueue.async(execute: { () -> Void in
+        globalMainQueue.async(execute: { () -> Void in
             self.mainTableView.reloadData()
         })
     }
 }
 
-
 // Configuration to task is changed, reread configurations again
 extension ViewControllertabMain: ReadConfigurationsAgain {
-    
+
     func readConfigurations() {
-        SharingManagerConfiguration.sharedInstance.readAllConfigurationsAndArguments()
-        if (SharingManagerConfiguration.sharedInstance.ConfigurationsDataSourcecount() > 0 ) {
-            GlobalMainQueue.async(execute: { () -> Void in
+        Configurations.shared.readAllConfigurationsAndArguments()
+        if Configurations.shared.configurationsDataSourcecount() > 0 {
+            globalMainQueue.async(execute: { () -> Void in
                 self.mainTableView.reloadData()
             })
         }
@@ -666,24 +726,22 @@ extension ViewControllertabMain: ReadConfigurationsAgain {
         self.schedules = ScheduleSortedAndExpand()
         self.setRsyncCommandDisplay()
     }
-    
 }
-
 
 // Parameters to rsync is changed
 extension ViewControllertabMain: RsyncUserParams {
-    
+
     // Do a reread of all Configurations
     func rsyncuserparamsupdated() {
         self.readConfigurations()
         self.setRsyncCommandDisplay()
-        self.rsyncparams.state = 0
+        self.rsyncparams.state = .off
     }
 }
 
 // Get index of selected row
 extension ViewControllertabMain: GetSelecetedIndex {
-    
+
     func getindex() -> Int? {
         return self.index
     }
@@ -691,7 +749,7 @@ extension ViewControllertabMain: GetSelecetedIndex {
 
 // Next scheduled job is started, if any
 extension ViewControllertabMain: StartNextScheduledTask {
-    
+
     // Start next job
     func startProcess() {
         // Start any Scheduled job
@@ -701,15 +759,15 @@ extension ViewControllertabMain: StartNextScheduledTask {
 
 // New profile is loaded.
 extension ViewControllertabMain: AddProfiles {
-    
+
     // Function is called from profiles when new or
     // default profiles is seleceted
-    func newProfile(new : Bool) {
-        weak var newProfile_delegate: AddProfiles?
+    func newProfile(new: Bool) {
+        weak var newProfileDelegate: AddProfiles?
         // By setting self.schedules = nil start jobs are restaret in ViewDidAppear
         self.schedules = nil
         self.loadProfileMenu = false
-        
+
         // Reset any queue of work
         // Reset numbers
         self.process = nil
@@ -718,78 +776,77 @@ extension ViewControllertabMain: AddProfiles {
         self.setRsyncCommandDisplay()
         self.setInfo(info: "Estimate", color: .blue)
         self.setNumbers(output: nil)
-        
-        guard (new == false) else {
+
+        guard new == false else {
             // A new and empty profile is created
-            SharingManagerSchedule.sharedInstance.destroySchedule()
-            SharingManagerConfiguration.sharedInstance.destroyConfigurations()
+            Schedules.shared.destroySchedule()
+            Configurations.shared.destroyConfigurations()
             // Reset in tabSchedule
-            if let pvc = SharingManagerConfiguration.sharedInstance.ViewControllertabSchedule as? ViewControllertabSchedule {
-                newProfile_delegate = pvc
-                newProfile_delegate?.newProfile(new: true)
+            if let pvc = Configurations.shared.viewControllertabSchedule as? ViewControllertabSchedule {
+                newProfileDelegate = pvc
+                newProfileDelegate?.newProfile(new: true)
             }
             self.refresh()
             return
         }
-        
+
         // Reset in tabSchedule
-        if let pvc = SharingManagerConfiguration.sharedInstance.ViewControllertabSchedule as? ViewControllertabSchedule {
-            newProfile_delegate = pvc
-            newProfile_delegate?.newProfile(new: false)
+        if let pvc = Configurations.shared.viewControllertabSchedule as? ViewControllertabSchedule {
+            newProfileDelegate = pvc
+            newProfileDelegate?.newProfile(new: false)
         }
         // Must unload Schedule data before new Profile is loaded.
         // This is due to a glitch in design in 
-        // SharingManagerSchedule.sharedInstance.getAllSchedules()
+        // Schedules.shared.getAllSchedules()
         // If no new Schedules in profile exists old Schedules are 
         // kept in memory. Force a clean of old Schedules before read 
         // Schedules for new profile.
-        SharingManagerSchedule.sharedInstance.destroySchedule()
+        Schedules.shared.destroySchedule()
         // Read configurations and Scheduledata
-        self.ReReadConfigurationsAndSchedules()
+        self.reReadConfigurationsAndSchedules()
+        // Make sure loading profile
+        self.loadProfileMenu = true
         self.displayProfile()
         // Do a refresh of tableView
         self.refresh()
         // We have to start any Scheduled process again - if any
         self.startProcess()
-        // Check all remote servers for connection
-        Utils.sharedInstance.testAllremoteserverConnections()
     }
-    
+
     func enableProfileMenu() {
         self.loadProfileMenu = true
-        self.showProcessInfo(info: .Profiles_enabled)
-        GlobalMainQueue.async(execute: { () -> Void in
+        self.showProcessInfo(info: .profilesenabled)
+        globalMainQueue.async(execute: { () -> Void in
             self.displayProfile()
         })
     }
 }
 
-
 // A scheduled task is executed
 extension ViewControllertabMain: ScheduledJobInProgress {
-    
+
     func start() {
-        GlobalMainQueue.async(execute: {() -> Void in
+        globalMainQueue.async(execute: {() -> Void in
             self.scheduledJobInProgress = true
             self.scheduledJobworking.startAnimation(nil)
         })
     }
-    
+
     func completed() {
-        GlobalMainQueue.async(execute: {() -> Void in
+        globalMainQueue.async(execute: {() -> Void in
             self.scheduledJobInProgress = false
             self.scheduledJobworking.stopAnimation(nil)
         })
     }
-    
-    func notifyScheduledJob(config: configuration?) {
-        if (config == nil) {
-            GlobalMainQueue.async(execute: {() -> Void in
+
+    func notifyScheduledJob(config: Configuration?) {
+        if config == nil {
+            globalMainQueue.async(execute: {() -> Void in
                 Alerts.showInfo("Scheduled backup DID not execute?")
             })
         } else {
-            GlobalMainQueue.async(execute: {() -> Void in
-                self.presentViewControllerAsSheet(self.ViewControllerScheduledBackupInWork)
+            globalMainQueue.async(execute: {() -> Void in
+                self.presentViewControllerAsSheet(self.viewControllerScheduledBackupInWork)
             })
         }
     }
@@ -805,7 +862,6 @@ extension ViewControllertabMain: NewSchedules {
         self.schedules = ScheduleSortedAndExpand()
     }
 }
-
 
 // Rsync path is changed, update displayed rsync command
 extension ViewControllertabMain: RsyncChanged {
@@ -824,6 +880,16 @@ extension ViewControllertabMain: Connections {
     // about which remote servers are off/on line.
     // Remote servers offline are marked with red line in mainTableView
     func displayConnections() {
+<<<<<<< HEAD
+
+        // Only do a reload if we are in the main view
+        guard Configurations.shared.allowNotifyinMain == true else {
+            return
+        }
+
+        self.serverOff = Tools.shared.gettestAllremoteserverConnections()
+        globalMainQueue.async(execute: { () -> Void in
+=======
         
         // Only do a reload if we are in the main view
         guard SharingManagerConfiguration.sharedInstance.allowNotifyinMain == true else {
@@ -832,6 +898,7 @@ extension ViewControllertabMain: Connections {
         
         self.serverOff = Utils.sharedInstance.gettestAllremoteserverConnections()
         GlobalMainQueue.async(execute: { () -> Void in
+>>>>>>> master
             self.mainTableView.reloadData()
         })
     }
@@ -841,23 +908,22 @@ extension ViewControllertabMain: Connections {
 extension ViewControllertabMain: newVersionDiscovered {
     // Notifies if new version is discovered
     func notifyNewVersion() {
-        GlobalMainQueue.async(execute: { () -> Void in
+        globalMainQueue.async(execute: { () -> Void in
             self.presentViewControllerAsSheet(self.newVersionViewController)
         })
     }
 }
 
-
 // Dismisser for sheets
 extension ViewControllertabMain: DismissViewController {
     // Function for dismissing a presented view
     // - parameter viewcontroller: the viewcontroller to be dismissed
-    func dismiss_view(viewcontroller:NSViewController) {
+    func dismiss_view(viewcontroller: NSViewController) {
         self.dismissViewController(viewcontroller)
         // Reset radiobuttons
-        self.edit.state = NSOffState
-        self.rsyncparams.state = NSOffState
-        GlobalMainQueue.async(execute: { () -> Void in
+        self.edit.state = .off
+        self.rsyncparams.state = .off
+        globalMainQueue.async(execute: { () -> Void in
             self.mainTableView.reloadData()
         })
     }
@@ -867,46 +933,46 @@ extension ViewControllertabMain: DismissViewController {
 // discovered or data is availiable in the filehandler
 // See file rsyncProcess.swift.
 extension ViewControllertabMain: UpdateProgress {
-    
+
     // Delegate functions called from the Process object
     // Protocol UpdateProgress two functions, ProcessTermination() and FileHandler()
-    
-    func ProcessTermination() {
+
+    func processTermination() {
         self.ready = true
         // NB: must check if single run or batch run
         if let singletask = self.singletask {
             self.output = singletask.output
             self.process = singletask.process
-            singletask.ProcessTermination()
-            
-        } else  {
-            
+            singletask.processTermination()
+
+        } else {
+
             // Batch run
             if let pvc = self.presentedViewControllers as? [ViewControllerBatch] {
-                
+
                 // If abort in batchview just bail out and terminate. The
                 // Process Termination is caused by terminate the Process task
-                
+
                 guard pvc.count > 0 else {
                     return
                 }
-                
-                self.batchObject_delegate = pvc[0]
-                self.batchtask = self.batchObject_delegate?.getTaskObject()
+
+                self.batchObjectDelegate = pvc[0]
+                self.batchtask = self.batchObjectDelegate?.getTaskObject()
             }
             self.output = self.batchtask!.output
             self.process = self.batchtask!.process
-            self.batchtask!.ProcessTermination()
+            self.batchtask!.processTermination()
         }
     }
-    
+
     // Function is triggered when Process outputs data in filehandler
     // Process is either in singleRun or batchRun
-    func FileHandler() {
-        self.showProcessInfo(info: .Count_files)
+    func fileHandler() {
+        self.showProcessInfo(info: .countfiles)
         if self.batchtask != nil {
             // Batch run
-            if let batchobject = SharingManagerConfiguration.sharedInstance.getBatchdataObject() {
+            if let batchobject = Configurations.shared.getBatchdataObject() {
                 let work = batchobject.nextBatchCopy()
                 if work.1 == 1 {
                     // Real work is done
@@ -915,8 +981,8 @@ extension ViewControllertabMain: UpdateProgress {
                     batchobject.updateInProcess(numberOfFiles: self.batchtask!.output!.getMaxcount())
                     // Refresh view in Batchwindow
                     if let pvc = self.presentedViewControllers as? [ViewControllerBatch] {
-                        self.refresh_delegate = pvc[0]
-                        self.refresh_delegate?.refresh()
+                        self.refreshDelegate = pvc[0]
+                        self.refreshDelegate?.refresh()
                     }
                 }
             }
@@ -931,9 +997,9 @@ extension ViewControllertabMain: UpdateProgress {
             self.output = self.singletask!.output
             self.process = self.singletask!.process
             if let pvc2 = self.presentedViewControllers as? [ViewControllerProgressProcess] {
-                if (pvc2.count > 0) {
-                    self.processupdate_delegate = pvc2[0]
-                    self.processupdate_delegate?.FileHandler()
+                if pvc2.count > 0 {
+                    self.processupdateDelegate = pvc2[0]
+                    self.processupdateDelegate?.fileHandler()
                 }
             }
         }
@@ -951,21 +1017,29 @@ extension ViewControllertabMain: deselectRowTable {
     }
 }
 
-
 // If rsync throws any error
 extension ViewControllertabMain: RsyncError {
     func rsyncerror() {
         // Set on or off in user configuration
-        if (SharingManagerConfiguration.sharedInstance.rsyncerror) {
-            GlobalMainQueue.async(execute: { () -> Void in
+        if Configurations.shared.rsyncerror {
+            globalMainQueue.async(execute: { () -> Void in
                 self.setInfo(info: "Error", color: .red)
-                self.showProcessInfo(info: .Error)
+                self.showProcessInfo(info: .error)
                 self.setRsyncCommandDisplay()
                 // Abort any operations
                 if let process = self.process {
                     process.terminate()
                     self.process = nil
                 }
+<<<<<<< HEAD
+
+                // Either error in single task or batch task
+                if self.singletask != nil {
+                    self.singletask!.error()
+                }
+                if self.batchtask != nil {
+                    self.batchtask!.error()
+=======
                 
                 // Either error in single task or batch task
                 
@@ -975,6 +1049,7 @@ extension ViewControllertabMain: RsyncError {
                 
                 if (self.batchtask != nil) {
                     self.batchtask!.Error()
+>>>>>>> master
                 }
             })
         }
@@ -983,10 +1058,10 @@ extension ViewControllertabMain: RsyncError {
 
 // If, for any reason, handling files or directory throws an error
 extension ViewControllertabMain: ReportErrorInMain {
-    func fileerror(errorstr:String) {
-        GlobalMainQueue.async(execute: { () -> Void in
+    func fileerror(errorstr: String) {
+        globalMainQueue.async(execute: { () -> Void in
             self.setInfo(info: "Error", color: .red)
-            self.showProcessInfo(info: .Error)
+            self.showProcessInfo(info: .error)
             // Dump the errormessage in rsynccommand field
             self.rsyncCommand.stringValue = errorstr
         })
@@ -995,11 +1070,11 @@ extension ViewControllertabMain: ReportErrorInMain {
 
 // Abort task from progressview
 extension ViewControllertabMain: AbortOperations {
-    
+
     // Abort any task, either single- or batch task
     func abortOperations() {
         // Terminates the running process
-        self.showProcessInfo(info:.Abort)
+        self.showProcessInfo(info:.abort)
         if let process = self.process {
             process.terminate()
             self.index = nil
@@ -1015,16 +1090,20 @@ extension ViewControllertabMain: AbortOperations {
             self.process = nil
             self.index = nil
         }
-        if let batchobject = SharingManagerConfiguration.sharedInstance.getBatchdataObject() {
+        if let batchobject = Configurations.shared.getBatchdataObject() {
             // Empty queue in batchobject
             batchobject.abortOperations()
             // Set reference to batchdata = nil
-            SharingManagerConfiguration.sharedInstance.deleteBatchData()
+            Configurations.shared.deleteBatchData()
             self.schedules = nil
             self.process = nil
             self.setInfo(info: "Abort", color: .red)
         }
     }
+<<<<<<< HEAD
+
+=======
+>>>>>>> master
 }
 
 // Extensions from here are used in either newSingleTask or newBatchTask
@@ -1033,71 +1112,95 @@ extension ViewControllertabMain: StartStopProgressIndicatorSingleTask {
     func startIndicator() {
         self.working.startAnimation(nil)
     }
-    
+
     func stopIndicator() {
         self.working.stopAnimation(nil)
     }
 }
 
+<<<<<<< HEAD
+extension ViewControllertabMain:SingleTask {
+
+=======
 extension ViewControllertabMain: SingleTask {
     
+>>>>>>> master
     // Just for updating process info
-    func showProcessInfo(info:displayProcessInfo) {
-        GlobalMainQueue.async(execute: { () -> Void in
+    func showProcessInfo(info: DisplayProcessInfo) {
+        globalMainQueue.async(execute: { () -> Void in
             switch info {
-            case .Estimating:
+            case .estimating:
                 self.processInfo.stringValue = "Estimating"
-            case .Executing:
+            case .executing:
                 self.processInfo.stringValue = "Executing"
-            case .Set_max_Number:
+            case .setmaxNumber:
                 self.processInfo.stringValue = "Set max number"
-            case .Logging_run:
+            case .loggingrun:
                 self.processInfo.stringValue = "Logging run"
-            case .Count_files:
+            case .countfiles:
                 self.processInfo.stringValue = "Count files"
-            case .Change_profile:
+            case .changeprofile:
                 self.processInfo.stringValue = "Change profile"
-            case .Profiles_enabled:
+            case .profilesenabled:
                 self.processInfo.stringValue = "Profiles enabled"
-            case .Abort:
+            case .abort:
                 self.processInfo.stringValue = "Abort"
-            case .Error:
+            case .error:
                 self.processInfo.stringValue = "Rsync error"
-            case .Blank:
+            case .blank:
                 self.processInfo.stringValue = ""
             }
         })
     }
+<<<<<<< HEAD
+
+=======
     
     // Present progress View of task
+>>>>>>> master
     func presentViewProgress() {
-        GlobalMainQueue.async(execute: { () -> Void in
-            self.presentViewControllerAsSheet(self.ViewControllerProgress)
+        globalMainQueue.async(execute: { () -> Void in
+            self.presentViewControllerAsSheet(self.viewControllerProgress)
         })
     }
+<<<<<<< HEAD
+
+    func presentViewInformation(output: OutputProcess) {
+=======
     
     // Present detailed report about task
     func presentViewInformation(output: outputProcess) {
+>>>>>>> master
         self.output = output
-        GlobalMainQueue.async(execute: { () -> Void in
-            self.presentViewControllerAsSheet(self.ViewControllerInformation)
+        globalMainQueue.async(execute: { () -> Void in
+            self.presentViewControllerAsSheet(self.viewControllerInformation)
         })
     }
+<<<<<<< HEAD
+
+=======
     
     // Called when a processTermination is discovered. A delegate
     // function is triggered in progress view
+>>>>>>> master
     func terminateProgressProcess() {
         if let pvc2 = self.presentedViewControllers as? [ViewControllerProgressProcess] {
-            if (pvc2.count > 0) {
-                self.processupdate_delegate = pvc2[0]
-                self.processupdate_delegate?.ProcessTermination()
+            if pvc2.count > 0 {
+                self.processupdateDelegate = pvc2[0]
+                self.processupdateDelegate?.processTermination()
             }
         }
     }
+<<<<<<< HEAD
+
+    func setInfo(info: String, color: ColorInfo) {
+
+=======
     
     // Sets info in main view
     func setInfo(info:String, color:colorInfo) {
         
+>>>>>>> master
         switch color {
         case .red:
             self.dryRunOrRealRun.textColor = .red
@@ -1108,22 +1211,31 @@ extension ViewControllertabMain: SingleTask {
         }
         self.dryRunOrRealRun.stringValue = info
     }
-    
-    func singleTaskAbort(process:Process?) {
+
+    func singleTaskAbort(process: Process?) {
         self.process = process
         self.abortOperations()
     }
-    
+
     // Function for getting numbers out of output object updated when
     // Process object executes the job.
+<<<<<<< HEAD
+    func setNumbers(output: OutputProcess?) {
+
+        globalMainQueue.async(execute: { () -> Void in
+
+            self.showProcessInfo(info: .setmaxNumber)
+
+=======
     func setNumbers(output:outputProcess?) {
         
         GlobalMainQueue.async(execute: { () -> Void in
             
             self.showProcessInfo(info: .Set_max_Number)
             
+>>>>>>> master
             guard output != nil else {
-                
+
                 self.transferredNumber.stringValue = ""
                 self.transferredNumberSizebytes.stringValue = ""
                 self.totalNumber.stringValue = ""
@@ -1131,14 +1243,14 @@ extension ViewControllertabMain: SingleTask {
                 self.totalDirs.stringValue = ""
                 self.newfiles.stringValue = ""
                 self.deletefiles.stringValue = ""
-                
+
                 return
             }
-            
+
             let number = Numbers(output: output!.getOutput())
             number.setNumbers()
-            
-            self.transferredNumber.stringValue = NumberFormatter.localizedString(from: NSNumber(value: number.getTransferredNumbers(numbers: .transferredNumber)), number: NumberFormatter.Style.decimal)
+
+            self.transferredNumber.stringValue = NumberFormatter.localizedString(from:NSNumber(value: number.getTransferredNumbers(numbers: .transferredNumber)), number: NumberFormatter.Style.decimal)
             self.transferredNumberSizebytes.stringValue = NumberFormatter.localizedString(from: NSNumber(value: number.getTransferredNumbers(numbers: .transferredNumberSizebytes)), number: NumberFormatter.Style.decimal)
             self.totalNumber.stringValue = NumberFormatter.localizedString(from: NSNumber(value: number.getTransferredNumbers(numbers: .totalNumber)), number: NumberFormatter.Style.decimal)
             self.totalNumberSizebytes.stringValue = NumberFormatter.localizedString(from: NSNumber(value: number.getTransferredNumbers(numbers: .totalNumberSizebytes)), number: NumberFormatter.Style.decimal)
@@ -1146,62 +1258,73 @@ extension ViewControllertabMain: SingleTask {
             self.newfiles.stringValue = NumberFormatter.localizedString(from: NSNumber(value: number.getTransferredNumbers(numbers: .new)), number: NumberFormatter.Style.decimal)
             self.deletefiles.stringValue = NumberFormatter.localizedString(from: NSNumber(value: number.getTransferredNumbers(numbers: .delete)), number: NumberFormatter.Style.decimal)
         })
-        
     }
+<<<<<<< HEAD
+
+=======
         
+>>>>>>> master
     // Returns number set from dryrun to use in logging run 
     // after a real run. Logging is in newSingleTask object.
-    
+
     func gettransferredNumber() -> String {
         return self.transferredNumber.stringValue
     }
-    
+
     func gettransferredNumberSizebytes() -> String {
         return self.transferredNumberSizebytes.stringValue
     }
+<<<<<<< HEAD
+
+=======
+>>>>>>> master
 }
 
 extension ViewControllertabMain: BatchTask {
-    
+
     func presentViewBatch() {
-        GlobalMainQueue.async(execute: { () -> Void in
-            self.presentViewControllerAsSheet(self.ViewControllerBatch)
+        globalMainQueue.async(execute: { () -> Void in
+            self.presentViewControllerAsSheet(self.viewControllerBatch)
         })
     }
-    
-    func progressIndicatorViewBatch(operation: batchViewProgressIndicator) {
+
+    func progressIndicatorViewBatch(operation: BatchViewProgressIndicator) {
         switch operation {
         case .stop:
             if let pvc = self.presentedViewControllers as? [ViewControllerBatch] {
-                self.indicator_delegate = pvc[0]
-                self.refresh_delegate = pvc[0]
-                self.indicator_delegate?.stop()
-                self.refresh_delegate?.refresh()
-                
+                self.indicatorDelegate = pvc[0]
+                self.refreshDelegate = pvc[0]
+                self.indicatorDelegate?.stop()
+                self.refreshDelegate?.refresh()
             }
         case .start:
             if let pvc = self.presentedViewControllers as? [ViewControllerBatch] {
-                self.indicator_delegate = pvc[0]
-                self.indicator_delegate?.start()
+                self.indicatorDelegate = pvc[0]
+                self.indicatorDelegate?.start()
             }
         case .complete:
             if let pvc = self.presentedViewControllers as? [ViewControllerBatch] {
-                self.indicator_delegate = pvc[0]
-                self.indicator_delegate?.complete()
+                self.indicatorDelegate = pvc[0]
+                self.indicatorDelegate?.complete()
             }
-            
         case .refresh:
             if let pvc = self.presentedViewControllers as? [ViewControllerBatch] {
-                self.refresh_delegate = pvc[0]
-                self.refresh_delegate?.refresh()
+                self.refreshDelegate = pvc[0]
+                self.refreshDelegate?.refresh()
             }
-            
         }
     }
+<<<<<<< HEAD
+=======
     
     func setOutputBatch(outputbatch:outputBatch?) {
         self.outputbatch = outputbatch
     }
 }
 
+>>>>>>> master
 
+    func setOutputBatch(outputbatch: OutputBatch?) {
+        self.outputbatch = outputbatch
+    }
+}

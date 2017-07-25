@@ -5,19 +5,19 @@
 //  Created by Thomas Evensen on 10.03.2017.
 //  Copyright © 2017 Thomas Evensen. All rights reserved.
 //
+//  swiftlint:disable syntactic_sugar
 
 import Foundation
 
-final class Rsync: processCmd {
-    
-    init (arguments:Array<String>?) {
-        
+final class Rsync: ProcessCmd {
+
+    init (arguments: Array<String>?) {
+
         super.init(command: nil, arguments: arguments, aScheduledOperation: false)
         // Process is inated from Main
-        if let pvc = SharingManagerConfiguration.sharedInstance.ViewControllertabMain as? ViewControllertabMain {
-            self.delegate_update = pvc
+        if let pvc = Configurations.shared.viewControllertabMain as? ViewControllertabMain {
+            self.updateDelegate = pvc
         }
     }
-    
-}
 
+}

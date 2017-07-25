@@ -6,16 +6,9 @@
 //  Copyright © 2016 Thomas Evensen. All rights reserved.
 //
 
-//
-//  ViewControllerProgress.swift
-//  Rsync
-//
-//  Created by Thomas Evensen on 30/03/16.
-//  Copyright © 2016 Thomas Evensen. All rights reserved.
-//
+//swiftlint:disable syntactic_sugar file_length cyclomatic_complexity line_length
 
 import Cocoa
-
 
 // Protocol for progress indicator
 protocol Count: class {
@@ -29,54 +22,54 @@ protocol AbortOperations: class {
 }
 
 class ViewControllerProgressProcess: NSViewController {
-    
-    var count:Double = 0
+
+    var count: Double = 0
     var maxcount: Double = 0
-    var calculatedNumberOfFiles:Int?
-    
+    var calculatedNumberOfFiles: Int?
+
     // Delegate to count max number and updates during progress
-    weak var count_delegate:Count?
+    weak var countDelegate: Count?
     // Delegate to dismisser
-    weak var dismiss_delegate:DismissViewController?
+    weak var dismissDelegate: DismissViewController?
     // Delegate to Abort operations
-    weak var abort_delegate:AbortOperations?
-    
+    weak var abortDelegate: AbortOperations?
+
     @IBOutlet weak var progress: NSProgressIndicator!
-    
-    @IBAction func Abort(_ sender: NSButton) {
-        self.abort_delegate?.abortOperations()
-        self.ProcessTermination()
+
+    @IBAction func abort(_ sender: NSButton) {
+        self.abortDelegate?.abortOperations()
+        self.processTermination()
     }
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do view setup here.
         // Load protocol functions
         // Dismisser is root controller
         if let pvc = self.presenting as? ViewControllertabMain {
-            self.dismiss_delegate = pvc
-            self.abort_delegate = pvc
+            self.dismissDelegate = pvc
+            self.abortDelegate = pvc
         }
     }
-    
+
     override func viewDidAppear() {
         super.viewDidAppear()
-        if let pvc2 = SharingManagerConfiguration.sharedInstance.SingleTask {
-            self.count_delegate = pvc2
+        if let pvc2 = Configurations.shared.singleTask {
+            self.countDelegate = pvc2
         }
-        self.calculatedNumberOfFiles = self.count_delegate?.maxCount()
+        self.calculatedNumberOfFiles = self.countDelegate?.maxCount()
         self.initiateProgressbar()
     }
-    
+
     override func viewWillDisappear() {
         super.viewWillDisappear()
         self.stopProgressbar()
     }
-    
+
     fileprivate func stopProgressbar() {
         self.progress.stopAnimation(self)
     }
-    
+
     // Progress bars
     private func initiateProgressbar() {
         if let calculatedNumberOfFiles = self.calculatedNumberOfFiles {
@@ -86,33 +79,30 @@ class ViewControllerProgressProcess: NSViewController {
         self.progress.doubleValue = 0
         self.progress.startAnimation(self)
     }
-    
-    fileprivate func updateProgressbar(_ value:Double) {
+
+    fileprivate func updateProgressbar(_ value: Double) {
         self.progress.doubleValue = value
     }
-    
-    
-    
+
 }
 
 extension ViewControllerProgressProcess: UpdateProgress {
-    
+
     // When processtermination is discovered in real task progressbar is stopped
     // and progressview is dismissed. Real run is completed.
-    
-    func ProcessTermination() {
+
+    func processTermination() {
         self.stopProgressbar()
-        self.dismiss_delegate?.dismiss_view(viewcontroller: self)
-    }
-    
-    // Update progressview during task
-    
-    func FileHandler() {
-        guard self.count_delegate != nil else {
-            return
-        }
-        self.updateProgressbar(Double(self.count_delegate!.inprogressCount()))
+        self.dismissDelegate?.dismiss_view(viewcontroller: self)
     }
 
-    
+    // Update progressview during task
+
+    func fileHandler() {
+        guard self.countDelegate != nil else {
+            return
+        }
+        self.updateProgressbar(Double(self.countDelegate!.inprogressCount()))
+    }
+
 }

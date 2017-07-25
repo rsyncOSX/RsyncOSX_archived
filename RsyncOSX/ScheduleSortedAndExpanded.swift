@@ -4,66 +4,91 @@
 //
 //  Created by Thomas Evensen on 05/09/2016.
 //  Copyright © 2016 Thomas Evensen. All rights reserved.
-//
+//  swiftlint More work to fix - 17 July 2017
+//  swiftlint:disable syntactic_sugar file_length cyclomatic_complexity line_length type_body_length
 
 import Foundation
 
 class ScheduleSortedAndExpand {
-    
     // DATA STRUCTURES
-    
+
     // Array to store all scheduled jobs and history of executions
     // Will be kept in memory until destroyed
-    private var ScheduleAsNSDictionary:Array<NSDictionary>?
-    private var ScheduleAsConfiguration:Array<configurationSchedule>?
+    private var scheduleAsNSDictionary: Array<NSDictionary>?
+    private var scheduleAsConfiguration: Array<ConfigurationSchedule>?
+    // Unsorted expanded data
+    private var expandedData = Array<NSDictionary>()
     // Sorting and expanding Schedule data.
-    // Private func called from getScheduledTasks()
-    private var sortedAndExpandedScheduleData:Array<NSDictionary>?
+    private var sortedAndExpandedScheduleData: Array<NSDictionary>?
     // Schedule in progress
-    private var scheduleInProgress:Bool = false
-    
+    private var scheduleInProgress: Bool = false
+
     // First job to execute.Job is first element in 
-    // self.sortedAndExpandedScheduleData
     func jobToExecute() -> NSDictionary? {
-        
-        guard (self.sortedAndExpandedScheduleData != nil) else {
-            return nil
-        }
-        guard (self.sortedAndExpandedScheduleData!.count) > 0 else {
-            return nil
-        }
+        guard self.sortedAndExpandedScheduleData != nil else { return nil}
+        guard self.sortedAndExpandedScheduleData!.count > 0 else {return nil}
         return self.sortedAndExpandedScheduleData![0]
     }
-    
+
     // Returns reference to all sorted and expanded schedules
     func getsortedAndExpandedScheduleData() -> Array<NSDictionary>? {
         return self.sortedAndExpandedScheduleData
     }
-    
+
     // True if scheduled process is about to start
     func getScheduledOperationInProgress() -> Bool {
         // Calculate next schedule in progress
-        if (self.whenIsNextTwoTasksDouble()[0] > 0 &&
-            self.whenIsNextTwoTasksDouble()[0] < SharingManagerConfiguration.sharedInstance.scheduledTaskdisableExecute) {
-            // Value 0 disables the function
-            if (SharingManagerConfiguration.sharedInstance.scheduledTaskdisableExecute > 0) {
-                self.scheduleInProgress = true
-            } else {
-                self.scheduleInProgress = false
-            }
+        if self.whenIsNextTwoTasksDouble()[0] > 0 {
         } else {
             self.scheduleInProgress = false
         }
         return self.scheduleInProgress
     }
-    
-    
-    // Expanding and sorting Scheduledata
-    private func sortAndExpandScheduleData() {
-        
-        var expandedData = Array<NSDictionary>()
-        let dateformatter = Utils.sharedInstance.setDateformat()
 
+<<<<<<< HEAD
+    // Calculate daily schedules
+    private func daily (days: Double, dateStart: Date, schedule: String, dict: NSDictionary) {
+        var k = Int(days)
+        if k < 370 {
+            if k > 30 { k = 30 }
+            for j in 0 ..< k {
+                var dateComponent = DateComponents()
+                dateComponent.day = j+1
+                let cal = Calendar.current
+                if let start: Date = cal.date(byAdding: dateComponent, to: dateStart) {
+                    if start.timeIntervalSinceNow > 0 {
+                        let hiddenID = (dict.value(forKey: "hiddenID") as? Int)!
+                        let dictSchedule: NSDictionary = [
+                            "start": start,
+                            "hiddenID": hiddenID,
+                            "dateStart": dateStart,
+                            "schedule": schedule]
+                        self.expandedData.append(dictSchedule)
+                    }
+                }
+            }
+        }
+    }
+
+    // Calculate weekly schedules
+    private func weekly (days: Double, dateStart: Date, schedule: String, dict: NSDictionary) {
+        var k = Int(days)
+        if k < 370 {
+            if k > 30 {k = 30}
+            for j in 0 ..< Int(k/7) {
+                var dateComponent = DateComponents()
+                dateComponent.day = ((j+1)*7)
+                let cal = Calendar.current
+                if let start: Date = cal.date(byAdding: dateComponent, to: dateStart) {
+                    if start.timeIntervalSinceNow > 0 {
+                        let hiddenID = (dict.value(forKey: "hiddenID") as? Int)!
+                        let dictSchedule: NSDictionary = [
+                            "start": start,
+                            "hiddenID": hiddenID,
+                            "dateStart": dateStart,
+                            "schedule": schedule]
+                        self.expandedData.append(dictSchedule)
+=======
         for i in 0 ..< self.ScheduleAsNSDictionary!.count {
             
             let dict = self.ScheduleAsNSDictionary![i]
@@ -132,10 +157,13 @@ class ScheduleSortedAndExpand {
                                 }
                             }
                         }
+>>>>>>> master
                     }
                 default:
                     break
                 }
+<<<<<<< HEAD
+=======
             }
             
             
@@ -144,17 +172,55 @@ class ScheduleSortedAndExpand {
                 return false
             } else {
                 return true
+>>>>>>> master
             }
         }
-        self.sortedAndExpandedScheduleData = sorted
+    }
+
+    // Expanding and sorting Scheduledata
+    private func sortAndExpandScheduleData() {
+        let dateformatter = Tools.shared.setDateformat()
+        for i in 0 ..< self.scheduleAsNSDictionary!.count {
+            let dict = self.scheduleAsNSDictionary![i]
+            let dateStop: Date = dateformatter.date(from: (dict.value(forKey: "dateStop") as? String)!)!
+            let dateStart: Date = dateformatter.date(from: (dict.value(forKey: "dateStart") as? String)!)!
+            let days: Double = dateStop.timeIntervalSinceNow/(60*60*24)
+            let schedule: String = (dict.value(forKey: "schedule") as? String)!
+            let seconds: Double = dateStop.timeIntervalSinceNow
+
+            // Get all jobs which are not executed
+            if seconds > 0 {
+                switch schedule {
+                case "once" :
+                    let hiddenID = (dict.value(forKey: "hiddenID") as? Int)!
+                    let dict: NSDictionary = [
+                        "start": dateStop,
+                        "hiddenID": hiddenID,
+                        "dateStart": dateStart,
+                        "schedule": schedule]
+                    self.expandedData.append(dict)
+                case "daily":
+                    self.daily(days: days, dateStart: dateStart, schedule: schedule, dict: dict)
+                case "weekly":
+                    self.weekly(days: days, dateStart: dateStart, schedule: schedule, dict: dict)
+                default:
+                    break
+                }
+            }
+            self.sortedAndExpandedScheduleData = self.expandedData.sorted { (dict1, dict2) -> Bool in
+                if (dict1.value(forKey: "start") as? Date)!.timeIntervalSince((dict2.value(forKey: "start") as? Date)!) > 0 {
+                    return false
+                } else {
+                    return true
+                }
+            }
         // Set reference to the first scheduled job
-        SharingManagerSchedule.sharedInstance.scheduledJob = self.jobToExecute()
+        Schedules.shared.scheduledJob = self.jobToExecute()
         }
     }
-    
-    
+
     // Calculates number of future Schedules ID by hiddenID
-    func numberOfFutureSchedules (_ hiddenID : Int) -> Int {
+    func numberOfFutureSchedules (_ hiddenID: Int) -> Int {
         if let result = self.sortedAndExpandedScheduleData?.filter({return (($0.value(forKey: "hiddenID") as? Int)! == hiddenID
             && ($0.value(forKey: "start") as? Date)!.timeIntervalSinceNow > 0 )}) {
             return result.count
@@ -162,34 +228,30 @@ class ScheduleSortedAndExpand {
             return 0
         }
     }
-    
+
     /// Function is reading Schedule plans and transform plans to
     /// array of NSDictionary.
     /// - returns : none
     private func createScheduleAsNSDictionary () {
-        guard self.ScheduleAsConfiguration != nil else {
+        guard self.scheduleAsConfiguration != nil else {
             return
         }
         var data = Array<NSDictionary>()
-        for i in 0 ..< self.ScheduleAsConfiguration!.count {
-            if self.ScheduleAsConfiguration![i].dateStop != nil {
-                if (self.ScheduleAsConfiguration![i].schedule != "stopped") {
-                    let dict :NSDictionary = [
-                        "dateStart": self.ScheduleAsConfiguration![i].dateStart,
-                        "dateStop": self.ScheduleAsConfiguration![i].dateStop!,
-                        "hiddenID": self.ScheduleAsConfiguration![i].hiddenID,
-                        "schedule": self.ScheduleAsConfiguration![i].schedule
-                    ]
-                    data.append(dict as NSDictionary)
-                }
+        for i in 0 ..< self.scheduleAsConfiguration!.count where self.scheduleAsConfiguration![i].dateStop != nil && self.scheduleAsConfiguration![i].schedule != "stopped" {
+                let dict: NSDictionary = [
+                    "dateStart": self.scheduleAsConfiguration![i].dateStart,
+                    "dateStop": self.scheduleAsConfiguration![i].dateStop!,
+                    "hiddenID": self.scheduleAsConfiguration![i].hiddenID,
+                    "schedule": self.scheduleAsConfiguration![i].schedule
+                ]
+                data.append(dict as NSDictionary)
             }
-        }
-        self.ScheduleAsNSDictionary = data
+        self.scheduleAsNSDictionary = data
     }
 
     // Number of seconds ahead of time to read
     // scheduled jobs
-    
+
     // Start timer or not in either main start window
     // Or in main execute window
     // seconds > 0 and <= 1800 every 1 second ( 0 - 30 minutes )
@@ -198,21 +260,21 @@ class ScheduleSortedAndExpand {
     // seconds > 21600 <= 24 x 3600 = 86,400 every 1/2 hour = 1800 seconds (30 minutes) ( 6 hours - 24 hours)
     func startTimerseconds () -> Double {
         if let start = self.jobToExecute() {
-            let dateStart:Date = (start.value(forKey: "start") as? Date)!
+            let dateStart: Date = (start.value(forKey: "start") as? Date)!
             let seconds = self.timeDoubleSeconds(dateStart, enddate: nil)
-            
+
             // 30 minutes every second
-            if (seconds > 0 && seconds <= 1800) {
+            if seconds > 0 && seconds <= 1800 {
                 // Update every second
                 return 1
                 // 30 minutes and 2 hours every minute
-            } else if (seconds > 1800 && seconds <= 7200)  {
+            } else if seconds > 1800 && seconds <= 7200 {
                 return 60
                 // 2 and 6 hours every 5 minutes
-            } else if (seconds > 7200 && seconds <= 21600)  {
+            } else if seconds > 7200 && seconds <= 21600 {
                 return 300
                 // 7 and 24 hours every 30 minutes
-            } else if (seconds <= 86400 ) {
+            } else if seconds <= 86400 {
                 // Dont start
                 return 1800
             } else {
@@ -220,24 +282,24 @@ class ScheduleSortedAndExpand {
                 return 0
             }
         } else {
-            if (self.scheduleInProgress) {
+            if self.scheduleInProgress {
                 return 1
             } else {
                 return 0
             }
         }
     }
-    
+
     // Info about next remote servers and paths for scheduled backup.
     func remoteServerAndPathNextTwoTasks() -> Array<String> {
-        var dict1:NSDictionary?
-        var dict2:NSDictionary?
+        var dict1: NSDictionary?
+        var dict2: NSDictionary?
         var array = Array<String>()
-        
-        guard (self.sortedAndExpandedScheduleData != nil) else {
+
+        guard self.sortedAndExpandedScheduleData != nil else {
             return [""]
         }
-        
+
         if (self.sortedAndExpandedScheduleData!.count) > 1 {
             dict1 = self.sortedAndExpandedScheduleData![0]
             dict2 = self.sortedAndExpandedScheduleData![1]
@@ -246,35 +308,35 @@ class ScheduleSortedAndExpand {
                 dict1 = self.sortedAndExpandedScheduleData![0]
             }
         }
-        if (dict1 != nil) {
+        if dict1 != nil {
             let hiddenID1 = dict1!.value(forKey: "hiddenID") as? Int
-            array.append(SharingManagerConfiguration.sharedInstance.getResourceConfiguration(hiddenID1!, resource: .offsiteServer))
-            array.append(SharingManagerConfiguration.sharedInstance.getResourceConfiguration(hiddenID1!, resource: .localCatalog))
+            array.append(Configurations.shared.getResourceConfiguration(hiddenID1!, resource: .offsiteServer))
+            array.append(Configurations.shared.getResourceConfiguration(hiddenID1!, resource: .localCatalog))
         }
-        if (dict2 != nil) {
+        if dict2 != nil {
             let hiddenID2 = dict2?.value(forKey: "hiddenID") as? Int
-            array.append(SharingManagerConfiguration.sharedInstance.getResourceConfiguration(hiddenID2!, resource: .offsiteServer))
-            array.append(SharingManagerConfiguration.sharedInstance.getResourceConfiguration(hiddenID2!, resource: .localCatalog))
+            array.append(Configurations.shared.getResourceConfiguration(hiddenID2!, resource: .offsiteServer))
+            array.append(Configurations.shared.getResourceConfiguration(hiddenID2!, resource: .localCatalog))
         }
         // Return either 0, 2 or 4 elements
         return array
     }
-    
+
     // Info on first screen - two first scheduled backups.
     func whenIsNextTwoTasksString() -> Array<String> {
-        
-        var firstbackup:String?
-        var secondbackup:String?
-        
+
+        var firstbackup: String?
+        var secondbackup: String?
+
         guard self.sortedAndExpandedScheduleData != nil else {
             return [" ... none ...", " ... none ..."]
         }
-        
+
         // We are calculating the first object
         if (self.sortedAndExpandedScheduleData!.count) > 0 {
             if (self.sortedAndExpandedScheduleData!.count) > 0 {
                 if let minutes1 = self.sortedAndExpandedScheduleData?[0] {
-                    let date1:Date = (minutes1.value(forKey: "start") as? Date)!
+                    let date1: Date = (minutes1.value(forKey: "start") as? Date)!
                     firstbackup = self.timeString(date1, enddate: nil)
                 }
             } else {
@@ -283,7 +345,7 @@ class ScheduleSortedAndExpand {
             }
             if (self.sortedAndExpandedScheduleData!.count) > 1 {
                 if let minutes2 = self.sortedAndExpandedScheduleData?[1] {
-                    let date2:Date = (minutes2.value(forKey: "start") as? Date)!
+                    let date2: Date = (minutes2.value(forKey: "start") as? Date)!
                     secondbackup = self.timeString(date2, enddate: nil)
                 }
             } else {
@@ -293,26 +355,25 @@ class ScheduleSortedAndExpand {
             firstbackup = " ... none ..."
             secondbackup = " ... none ..."
         }
-        return [firstbackup!,secondbackup!]
+        return [firstbackup!, secondbackup!]
     }
-    
-    
+
     // Returns when to next tasks ar due in seconds
     func whenIsNextTwoTasksDouble() -> Array<Double> {
-        
-        var firstbackup:Double?
-        var secondbackup:Double?
+
+        var firstbackup: Double?
+        var secondbackup: Double?
         // We are calculating the first object
-        
-        guard (self.sortedAndExpandedScheduleData != nil) else {
-            return [-1,-1]
+
+        guard self.sortedAndExpandedScheduleData != nil else {
+            return [-1, -1]
         }
-        guard (self.sortedAndExpandedScheduleData!.count > 0) else {
-            return [-1,-1]
+        guard self.sortedAndExpandedScheduleData!.count > 0 else {
+            return [-1, -1]
         }
         if (self.sortedAndExpandedScheduleData!.count) > 0 {
             if let minutes1 = self.sortedAndExpandedScheduleData?[0] {
-                let date1:Date = (minutes1.value(forKey: "start") as? Date)!
+                let date1: Date = (minutes1.value(forKey: "start") as? Date)!
                 firstbackup = self.timeDoubleMinutes(date1, enddate: nil)
             }
         } else {
@@ -321,67 +382,67 @@ class ScheduleSortedAndExpand {
         }
         if (self.sortedAndExpandedScheduleData!.count) > 1 {
             if let minutes2 = self.sortedAndExpandedScheduleData?[1] {
-                let date2:Date = (minutes2.value(forKey: "start") as? Date)!
+                let date2: Date = (minutes2.value(forKey: "start") as? Date)!
                 secondbackup = self.timeDoubleMinutes(date2, enddate: nil)
             }
         } else {
             secondbackup = -1
         }
-        return [firstbackup!,secondbackup!]
+        return [firstbackup!, secondbackup!]
     }
-    
+
     // Calculate seconds from now to startdate
-    private func seconds (_ startdate:Date, enddate:Date?) -> Double {
-        if (enddate == nil) {
+    private func seconds (_ startdate: Date, enddate: Date?) -> Double {
+        if enddate == nil {
             return startdate.timeIntervalSinceNow
         } else {
             return enddate!.timeIntervalSince(startdate)
         }
     }
-    
+
     // Calculation of time to a spesific date
     // Used in view of all tasks
     // Returns time in minutes
-    func timeDoubleMinutes (_ startdate:Date, enddate:Date?) -> Double {
-        let seconds:Double = self.seconds(startdate, enddate: enddate)
-        let (_,  minf) = modf (seconds / 3600)
+    func timeDoubleMinutes (_ startdate: Date, enddate: Date?) -> Double {
+        let seconds: Double = self.seconds(startdate, enddate: enddate)
+        let (_, minf) = modf (seconds / 3600)
         let (min, _) = modf (60 * minf)
         return min
     }
-    
+
     // Calculation of time to a spesific date
     // Used in view of all tasks
     // Returns time in seconds
-    func timeDoubleSeconds (_ startdate:Date, enddate:Date?) -> Double {
-        let seconds:Double = self.seconds(startdate, enddate: enddate)
+    func timeDoubleSeconds (_ startdate: Date, enddate: Date?) -> Double {
+        let seconds: Double = self.seconds(startdate, enddate: enddate)
         return seconds
     }
-    
+
     // Returns number of hours between start and stop date
-    func timehourInt(_ startdate:Date, enddate:Date?) -> Int {
-        let seconds:Double = self.seconds(startdate, enddate: enddate)
-        let (hr,  _) = modf (seconds / 3600)
+    func timehourInt(_ startdate: Date, enddate: Date?) -> Int {
+        let seconds: Double = self.seconds(startdate, enddate: enddate)
+        let (hr, _) = modf (seconds / 3600)
         return Int(hr)
     }
-    
+
     // Calculation of time to a spesific date
     // Used in view of all tasks
-    func timeString (_ startdate:Date, enddate:Date?) -> String {
-        var result:String?
-        let seconds:Double = self.seconds(startdate, enddate: enddate)
-        let (hr,  minf) = modf (seconds / 3600)
+    func timeString (_ startdate: Date, enddate: Date?) -> String {
+        var result: String?
+        let seconds: Double = self.seconds(startdate, enddate: enddate)
+        let (hr, minf) = modf (seconds / 3600)
         let (min, secf) = modf (60 * minf)
         // hr, min, 60 * secf
-        if (hr == 0 && min == 0) {
+        if hr == 0 && min == 0 {
             result = String(format:"%.0f", 60 * secf) + " seconds"
-        } else if ( hr == 0 && min < 60) {
+        } else if hr == 0 && min < 60 {
             result = String(format:"%.0f", min) + " minutes " + String(format:"%.0f", 60 * secf) + " seconds"
-        } else if (hr < 25 ) {
+        } else if hr < 25 {
             result = String(format:"%.0f", hr) + " hours " + String(format:"%.0f", min) + " minutes"
         } else {
             result = String(format:"%.0f", hr/24) + " days"
         }
-        if (secf <= 0) {
+        if secf <= 0 {
             result = " ... working ... "
         }
         return result!
@@ -389,7 +450,7 @@ class ScheduleSortedAndExpand {
 
     init () {
         // Getting the Schedule and expanding all the jobs
-        self.ScheduleAsConfiguration = SharingManagerSchedule.sharedInstance.getSchedule()
+        self.scheduleAsConfiguration = Schedules.shared.getSchedule()
         self.createScheduleAsNSDictionary()
         self.sortAndExpandScheduleData()
     }

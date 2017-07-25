@@ -5,84 +5,85 @@
 //  Created by Thomas Evensen on 15.03.2017.
 //  Copyright © 2017 Thomas Evensen. All rights reserved.
 //
+//swiftlint:disable syntactic_sugar file_length cyclomatic_complexity line_length function_body_length
 
 import Foundation
 import Cocoa
 
 class ViewControllerHelp: NSViewController {
-    
-    fileprivate var showwhat:helpdocs?
-    
-    @IBOutlet weak var Documents: NSButton!
-    @IBOutlet weak var Singeltask: NSButton!
-    @IBOutlet weak var Batchtask: NSButton!
-    @IBOutlet weak var Configuration: NSButton!
-    @IBOutlet weak var RsyncStdParameters: NSButton!
-    @IBOutlet weak var Changelog: NSButton!
-    @IBOutlet weak var Add: NSButton!
-    @IBOutlet weak var Schedule: NSButton!
-    @IBOutlet weak var Copyfiles: NSButton!
-    @IBOutlet weak var Logging: NSButton!
-    @IBOutlet weak var DIYNAS: NSButton!
-    @IBOutlet weak var Idea: NSButton!
+
+    fileprivate var showwhat: Helpdocs?
+
+    @IBOutlet weak var documents: NSButton!
+    @IBOutlet weak var singletask: NSButton!
+    @IBOutlet weak var batchtask: NSButton!
+    @IBOutlet weak var configuration: NSButton!
+    @IBOutlet weak var rsyncStdParameters: NSButton!
+    @IBOutlet weak var changelog: NSButton!
+    @IBOutlet weak var add: NSButton!
+    @IBOutlet weak var schedule: NSButton!
+    @IBOutlet weak var copyfiles: NSButton!
+    @IBOutlet weak var logging: NSButton!
+    @IBOutlet weak var diynas: NSButton!
+    @IBOutlet weak var idea: NSButton!
     @IBOutlet weak var passwordless: NSButton!
-    @IBOutlet weak var RsyncParameters: NSButton!
+    @IBOutlet weak var rsyncParameters: NSButton!
     @IBOutlet weak var source: NSButton!
-    @IBOutlet weak var Ssh: NSButton!
-    
+    @IBOutlet weak var ssh: NSButton!
+
     @IBAction func help(_ sender: NSButton) {
-        if self.Batchtask.state == NSOnState {
+        if self.batchtask.state == .on {
             self.showwhat = .batchtask
-            self.Batchtask.state = NSOffState
-        } else if self.Changelog.state == NSOnState {
+            self.batchtask.state = .off
+        } else if self.changelog.state == .on {
             self.showwhat = .changelog
-            self.Changelog.state = NSOffState
-        } else if self.RsyncStdParameters.state  == NSOnState {
+            self.changelog.state = .off
+        } else if self.rsyncStdParameters.state  == .on {
             self.showwhat = .rsyncparameters
-            self.RsyncStdParameters.state = NSOffState
-        } else if self.Singeltask.state == NSOnState {
+            self.rsyncStdParameters.state = .off
+        } else if self.singletask.state == .on {
             self.showwhat = .singletask
-            self.Singeltask.state = NSOffState
-        } else if self.Configuration.state == NSOnState {
+            self.singletask.state = .off
+        } else if self.configuration.state == .on {
             self.showwhat = .configuration
-            self.Configuration.state = NSOffState
-        } else if self.Documents.state == NSOnState {
+            self.configuration.state = .off
+        } else if self.documents.state == .on {
             self.showwhat = .documents
-            self.Documents.state = NSOffState
-        } else if self.Add.state == NSOnState {
+            self.documents.state = .off
+        } else if self.add.state == .on {
             self.showwhat = .add
-            self.Add.state = NSOffState
-        } else if self.Schedule.state == NSOnState {
+            self.add.state = .off
+        } else if self.schedule.state == .on {
             self.showwhat = .schedule
-            self.Schedule.state = NSOffState
-        } else if self.Copyfiles.state == NSOnState {
+            self.schedule.state = .off
+        } else if self.copyfiles.state == .on {
             self.showwhat = .copyfiles
-            self.Copyfiles.state = NSOffState
-        } else if self.Logging.state == NSOnState {
+            self.copyfiles.state = .off
+        } else if self.logging.state == .on {
             self.showwhat = .logging
-            self.Logging.state = NSOffState
-        } else if self.DIYNAS.state == NSOnState {
+            self.logging.state = .off
+        } else if self.diynas.state == .on {
             self.showwhat = .diynas
-            self.DIYNAS.state = NSOffState
-        } else if self.Idea.state == NSOnState {
+            self.diynas.state = .off
+        } else if self.idea.state == .on {
             self.showwhat = .idea
-            self.Idea.state = NSOffState
-        } else if self.passwordless.state == NSOnState {
+            self.idea.state = .off
+        } else if self.passwordless.state == .on {
             self.showwhat = .passwordless
-            self.passwordless.state = NSOffState
-        } else if self.RsyncStdParameters.state == NSOnState {
+            self.passwordless.state = .off
+        } else if self.rsyncStdParameters.state == .on {
             self.showwhat = .rsyncstdparameters
-            self.RsyncStdParameters.state = NSOffState
-        } else if self.source.state == NSOnState {
+            self.rsyncStdParameters.state = .off
+        } else if self.source.state == .on {
             self.showwhat = .source
-            self.source.state = NSOffState
-        } else if self.Ssh.state == NSOnState {
+            self.source.state = .off
+        } else if self.ssh.state == .on {
             self.showwhat = .ssh
-            self.Ssh.state = NSOffState
+            self.ssh.state = .off
         }
         self.show()
     }
-    
+
     private func show() {
         let help = Help()
         guard self.showwhat != nil else {
@@ -90,5 +91,5 @@ class ViewControllerHelp: NSViewController {
         }
         help.help(what: self.showwhat!)
     }
-    
+
 }

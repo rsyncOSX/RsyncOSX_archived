@@ -5,25 +5,26 @@
 //  Created by Thomas Evensen on 21/09/2016.
 //  Copyright © 2016 Thomas Evensen. All rights reserved.
 //
+//swiftlint:disable line_length
 
 import Foundation
 import Cocoa
 
 protocol GetPath : class {
-    func pathSet(path : String?, requester : WhichPath)
+    func pathSet(path: String?, requester: WhichPath)
 }
 
 enum WhichPath {
-    case CopyFilesTo
-    case AddLocalCatalog
-    case AddRemoteCatalog
+    case copyFilesTo
+    case addLocalCatalog
+    case addRemoteCatalog
 }
 
 final class FileDialog {
-    
-    weak var path_delegate:GetPath?
-    
-    private func openfiledlg (title: String, message: String, requester : WhichPath) { 
+
+    weak var pathDelegate: GetPath?
+
+    private func openfiledlg (title: String, message: String, requester: WhichPath) {
         let myFiledialog: NSOpenPanel = NSOpenPanel()
         myFiledialog.prompt = "Select"
         // myFiledialog.worksWhenModal = true
@@ -33,34 +34,34 @@ final class FileDialog {
         myFiledialog.title = title
         myFiledialog.message = message
         let value = myFiledialog.runModal()
-        switch (value) {
+        switch value.rawValue {
         case 0: break
         case 1:
             // Select is choosen
             let path = myFiledialog.url?.relativePath
             // We are sending over the path to the correct requestor
-            switch (requester) {
-            case .CopyFilesTo:
-                if let pvc = SharingManagerConfiguration.sharedInstance.ViewControllerCopyFiles as? ViewControllerCopyFiles {
-                    self.path_delegate = pvc
-                    self.path_delegate?.pathSet(path: path, requester: .CopyFilesTo)
+            switch requester {
+            case .copyFilesTo:
+                if let pvc = Configurations.shared.viewControllerCopyFiles as? ViewControllerCopyFiles {
+                    self.pathDelegate = pvc
+                    self.pathDelegate?.pathSet(path: path, requester: .copyFilesTo)
                 }
-            case .AddLocalCatalog:
-                if let pvc = SharingManagerConfiguration.sharedInstance.ViewControllerNewConfigurations as? ViewControllerNewConfigurations {
-                    self.path_delegate = pvc
-                    self.path_delegate?.pathSet(path: path, requester: .AddLocalCatalog)
+            case .addLocalCatalog:
+                if let pvc = Configurations.shared.viewControllerNewConfigurations as? ViewControllerNewConfigurations {
+                    self.pathDelegate = pvc
+                    self.pathDelegate?.pathSet(path: path, requester: .addLocalCatalog)
                 }
-            case .AddRemoteCatalog:
-                if let pvc = SharingManagerConfiguration.sharedInstance.ViewControllerNewConfigurations as? ViewControllerNewConfigurations {
-                    self.path_delegate = pvc
-                    self.path_delegate?.pathSet(path: path, requester: .AddRemoteCatalog)
+            case .addRemoteCatalog:
+                if let pvc = Configurations.shared.viewControllerNewConfigurations as? ViewControllerNewConfigurations {
+                    self.pathDelegate = pvc
+                    self.pathDelegate?.pathSet(path: path, requester: .addRemoteCatalog)
                 }
             }
             default:break
         }
     }
-    
-    init(requester : WhichPath) {
+
+    init(requester: WhichPath) {
         self.openfiledlg(title: "Catalogs", message: "Select catalog", requester : requester)
     }
 }

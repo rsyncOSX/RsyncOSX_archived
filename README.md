@@ -1,6 +1,8 @@
 ## RsyncOSX
 
-The repository is source code for the macOS application RsyncOSX. The application is implemented by Swift 3.x by using Xcode version 8.x. The application is **not** depended upon any third party binary distributions. There is, however, only one third party source code included to check for TCP connections. The check is for informal use only and can be removed. All other code is stock use of Swift 3.x and libraries as part of Xcode version 8.x.
+The repository is source code for the macOS application RsyncOSX. The application is implemented by Swift 4.x by using Xcode version 9.x. The application is **not** depended upon any third party binary distributions. There is, however, only one third party source code included to check for TCP connections. The check is for informal use only and can be removed. All other code is stock use of Swift 4.x and libraries as part of Xcode version 9.x.
+
+I have also commenced using [SwiftLint](https://github.com/realm/SwiftLint) to make the code compliant to SwiftLint style guide. It will take some time before all warnings are gone.
 
 ### Next version 4.5.x - macOS High Sierra, Xcode 9 and Swift 4
 
@@ -18,7 +20,11 @@ To compile the code, install Xcode and open the RsyncOSX project file. Before co
 
 ### Application icon
 
+<<<<<<< HEAD
+The application icon is created by [Forrest Walter](http://www.forrestwalter.com/). All rights reserved to Forrest Walter.
+=======
 The application icon is created by [Forrest Walter](http://www.forrestwalter.com/).
+>>>>>>> master
 
 ### Changelog
 
