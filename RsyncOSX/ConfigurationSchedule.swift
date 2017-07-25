@@ -16,7 +16,7 @@ struct ConfigurationSchedule {
     var schedule: String
     var logrecords = Array<NSMutableDictionary>()
     var delete: Bool?
-    
+
     init(dictionary: NSDictionary, log: NSArray?) {
         self.hiddenID = (dictionary.object(forKey: "hiddenID") as? Int)!
         self.dateStart = (dictionary.object(forKey: "dateStart") as? String)!
@@ -31,4 +31,3 @@ struct ConfigurationSchedule {
         }
     }
 }
-

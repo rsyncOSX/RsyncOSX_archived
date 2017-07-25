@@ -21,7 +21,7 @@ enum WhatToReadWrite {
 }
 
 class Readwritefiles {
-    
+
     // Name set for schedule, configuration or config
     private var name: String?
     // key in objectForKey, e.g key for reading what
@@ -36,7 +36,7 @@ class Readwritefiles {
     private var useProfile: Bool = false
     // task to do
     private var task: WhatToReadWrite?
-    
+
     // Set which file to read
     private var fileName: String? {
         let str: String?
@@ -60,14 +60,14 @@ class Readwritefiles {
         }
         return (docuDir + str!)
     }
-    
+
     // Function for reading data from persistent store
     func getDatafromfile () -> Array<NSDictionary>? {
-        
+
         guard self.task != nil  else {
             return nil
         }
-        
+
         switch self.task! {
         case .schedule:
             if Configurations.shared.isDataDirty() {
@@ -94,7 +94,7 @@ class Readwritefiles {
             return nil
         }
     }
-    
+
     // Read data from persistent storage
     private func readDatafromPersistentStorage() -> Array<NSDictionary>? {
         var list = Array<NSDictionary>()
@@ -117,7 +117,7 @@ class Readwritefiles {
         }
         return list
     }
-    
+
     // Function for write data to persistent store
     func writeDictionarytofile (_ array: Array<NSDictionary>, task: WhatToReadWrite) -> Bool {
         self.setPreferences(task)
@@ -139,7 +139,7 @@ class Readwritefiles {
         }
         return  dictionary.write(toFile: self.fileName!, atomically: true)
     }
-    
+
     // Set preferences for which data to read or write
     private func setPreferences (_ task: WhatToReadWrite) {
         self.useProfile = false
@@ -167,10 +167,9 @@ class Readwritefiles {
             self.readdisk = false
         }
     }
-    
+
     init(task: WhatToReadWrite) {
         self.setPreferences(task)
     }
-    
-}
 
+}

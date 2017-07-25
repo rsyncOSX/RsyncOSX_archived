@@ -14,13 +14,13 @@ import Foundation
 // and a version to show in view of both
 
 struct ArgumentsOneConfiguration {
-    
+
     var config: Configuration?
     var arg: Array<String>?
     var argdryRun: Array<String>?
     var argDisplay: Array<String>?
     var argdryRunDisplay: Array<String>?
-    
+
     init(config: Configuration) {
         // The configuration
         self.config = config
@@ -32,4 +32,3 @@ struct ArgumentsOneConfiguration {
         self.argdryRunDisplay = RsyncProcessArguments().argumentsRsync(config, dryRun: true, forDisplay: true)
     }
 }
-
