@@ -5,7 +5,7 @@
 //  Created by Thomas Evensen on 08/02/16.
 //  Copyright © 2016 Thomas Evensen. All rights reserved.
 //
-//swiftlint:disable syntactic_sugar cyclomatic_complexity line_length
+//swiftlint:disable syntactic_sugar line_length
 
 import Foundation
 
@@ -31,8 +31,6 @@ class RsyncProcessArguments {
         let parameter2: String = config.parameter2
         let parameter3: String = config.parameter3
         let parameter4: String = config.parameter4
-        let parameter5: String = config.parameter5
-        let parameter6: String = config.parameter6
         let offsiteServer: String = config.offsiteServer
         self.arguments!.append(parameter1)
         if forDisplay {self.arguments!.append(" ")}
@@ -49,20 +47,26 @@ class RsyncProcessArguments {
         if offsiteServer.isEmpty {
             // nothing
         } else {
-            // -e
-            self.arguments!.append(parameter5)
-            if forDisplay {self.arguments!.append(" ")}
-            if let sshport = config.sshport {
-                // "ssh -p xxx"
-                if forDisplay {self.arguments!.append(" \"")}
-                self.arguments!.append("ssh -p " + String(sshport))
-                if forDisplay {self.arguments!.append("\" ")}
-            } else {
-                // ssh
-                self.arguments!.append(parameter6)
-            }
-            if forDisplay {self.arguments!.append(" ")}
+            self.sshportparameter(config, forDisplay: forDisplay)
         }
+    }
+
+    private func sshportparameter(_ config: Configuration, forDisplay: Bool) {
+        let parameter5: String = config.parameter5
+        let parameter6: String = config.parameter6
+        // -e
+        self.arguments!.append(parameter5)
+        if forDisplay {self.arguments!.append(" ")}
+        if let sshport = config.sshport {
+            // "ssh -p xxx"
+            if forDisplay {self.arguments!.append(" \"")}
+            self.arguments!.append("ssh -p " + String(sshport))
+            if forDisplay {self.arguments!.append("\" ")}
+        } else {
+            // ssh
+            self.arguments!.append(parameter6)
+        }
+        if forDisplay {self.arguments!.append(" ")}
     }
 
     // Compute user selected parameters parameter8 ... parameter14
@@ -70,7 +74,6 @@ class RsyncProcessArguments {
     // Not special elegant, but it works
 
     private func setParameters8To14(_ config: Configuration, dryRun: Bool, forDisplay: Bool) {
-        let dryrun: String = config.dryrun
         self.stats = false
         if config.parameter8 != nil {
             self.appendParameter(parameter: config.parameter8!, forDisplay: forDisplay)
@@ -95,12 +98,17 @@ class RsyncProcessArguments {
         }
         // If drynrun append --stats parameter to collect info about run
         if dryRun {
-            self.arguments!.append(dryrun)
+            self.dryrunparameter(config, forDisplay: forDisplay)
+        }
+    }
+
+    private func dryrunparameter(_ config: Configuration, forDisplay: Bool) {
+        let dryrun: String = config.dryrun
+        self.arguments!.append(dryrun)
+        if forDisplay {self.arguments!.append(" ")}
+        if self.stats! == false {
+            self.arguments!.append("--stats")
             if forDisplay {self.arguments!.append(" ")}
-            if self.stats! == false {
-                self.arguments!.append("--stats")
-                if forDisplay {self.arguments!.append(" ")}
-            }
         }
     }
 
