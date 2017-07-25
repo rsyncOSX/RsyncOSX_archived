@@ -5,7 +5,7 @@
 //  Created by Thomas Evensen on 20.06.2017.
 //  Copyright © 2017 Thomas Evensen. All rights reserved.
 //
-//swiftlint:disable syntactic_sugar line_length
+// swiftlint:disable syntactic_sugar line_length
 
 import Foundation
 
@@ -174,14 +174,11 @@ final class NewSingleTask {
     }
 
     init(index: Int) {
-
         self.index = index
-
         if let pvc = Configurations.shared.viewControllertabMain as? ViewControllertabMain {
             self.indicatorDelegate = pvc
             self.taskDelegate = pvc
         }
-
     }
 
 }
