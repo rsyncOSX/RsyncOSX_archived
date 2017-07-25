@@ -44,7 +44,11 @@ class ScheduleWriteLoggData {
                         return
                     }
                     result[i].logrecords.remove(at: indexB!)
+<<<<<<< HEAD
                     self.schedule[indexA!].logrecords = result[i].logrecords
+=======
+                    self.Schedule[indexA!].logrecords = result[i].logrecords
+>>>>>>> master
                     // Do a refresh of table
                     if let pvc = Configurations.shared.viewControllerLoggData as? ViewControllerLoggData {
                         self.refreshlogviewDelegate = pvc
@@ -85,7 +89,11 @@ class ScheduleWriteLoggData {
                             "hiddenID": self.schedule[i].hiddenID]
                         let parent: String = self.computeKey(dictKey)
                         dict.setValue(parent, forKey: "parent")
+<<<<<<< HEAD
                         self.schedule[i].logrecords.append(dict)
+=======
+                        self.Schedule[i].logrecords.append(dict)
+>>>>>>> master
                         inserted = true
                     }
                 }
@@ -107,11 +115,19 @@ class ScheduleWriteLoggData {
                     // Just to pass schedule in dictionary, no saved but used for computing key to parent
                     let parent: String = self.computeKey(masterdict)
                     dict.setValue(parent, forKey: "parent")
+<<<<<<< HEAD
 
                     let executed = NSMutableArray()
                     executed.add(dict)
                     let newSchedule = ConfigurationSchedule(dictionary: masterdict, log: executed)
                     self.schedule.append(newSchedule)
+=======
+                    
+                    let log = NSMutableArray()
+                    log.add(dict)
+                    let newSchedule = configurationSchedule(dictionary: masterdict, log: log)
+                    self.Schedule.append(newSchedule)
+>>>>>>> master
                     // Set inseted true to force write of record
                     inserted = true
                 }
@@ -152,8 +168,13 @@ class ScheduleWriteLoggData {
                         ]
                         let parent: String = self.computeKey(dictKey)
                         dict.setValue(parent, forKey: "parent")
+<<<<<<< HEAD
                         self.schedule[i].logrecords.append(dict)
                         PersistentStoreageAPI.shared.saveScheduleFromMemory()
+=======
+                        self.Schedule[i].logrecords.append(dict)
+                        persistentStoreAPI.sharedInstance.saveScheduleFromMemory()
+>>>>>>> master
                         break loop
                     }
                 }

@@ -126,8 +126,13 @@ class Schedules: ScheduleWriteLoggData {
         dict.setObject(dateformatter.string(from: start), forKey: "dateStart" as NSCopying)
         dict.setObject(dateformatter.string(from: stop), forKey: "dateStop" as NSCopying)
         dict.setObject(schedule, forKey: "schedule" as NSCopying)
+<<<<<<< HEAD:RsyncOSX/Schedules.swift
         let newSchedule = ConfigurationSchedule(dictionary: dict, log: nil)
         self.schedule.append(newSchedule)
+=======
+        let newSchedule = configurationSchedule(dictionary: dict, log: nil)
+        self.Schedule.append(newSchedule)
+>>>>>>> master:RsyncOSX/SharingManagerSchedule.swift
         // Set data dirty
         Configurations.shared.setDataDirty(dirty: true)
         PersistentStoreageAPI.shared.saveScheduleFromMemory()
@@ -163,6 +168,7 @@ class Schedules: ScheduleWriteLoggData {
         for i in 0 ..< self.schedule.count {
             if self.schedule[i].hiddenID == hiddenID {
                 row = [
+<<<<<<< HEAD:RsyncOSX/Schedules.swift
                     "dateStart": self.schedule[i].dateStart,
                     "stopCellID": 0,
                     "deleteCellID": 0,
@@ -170,6 +176,15 @@ class Schedules: ScheduleWriteLoggData {
                     "schedule": self.schedule[i].schedule,
                     "hiddenID": schedule[i].hiddenID,
                     "numberoflogs": String(schedule[i].logrecords.count)
+=======
+                    "dateStart": self.Schedule[i].dateStart,
+                    "stopCellID":0,
+                    "deleteCellID":0,
+                    "dateStop":"",
+                    "schedule":self.Schedule[i].schedule,
+                    "hiddenID":Schedule[i].hiddenID,
+                    "numberoflogs": String(Schedule[i].logrecords.count)
+>>>>>>> master:RsyncOSX/SharingManagerSchedule.swift
                 ]
                 if self.schedule[i].dateStop == nil {
                     row.setValue("no stop date", forKey: "dateStop")
@@ -326,11 +341,22 @@ class Schedules: ScheduleWriteLoggData {
 
     // Setting updated executes to schedule.
     // Used when a group is set from active to "stopped"
+<<<<<<< HEAD:RsyncOSX/Schedules.swift
     private func updateExecutedNewKey (_ hiddenID: Int) {
         let executed: Array<NSMutableDictionary>? = self.computeNewParentKeys(hiddenID)
         loop : for i in 0 ..< self.schedule.count where self.schedule[i].hiddenID == hiddenID {
             if executed != nil {
                 self.schedule[i].logrecords = executed!
+=======
+    private func updateExecutedNewKey (_ hiddenID:Int) {
+        let logrecord:Array<NSMutableDictionary>? = self.computeNewParentKeys(hiddenID)
+        loop : for i in 0 ..< self.Schedule.count {
+            if self.Schedule[i].hiddenID == hiddenID {
+                if logrecord != nil {
+                    self.Schedule[i].logrecords = logrecord!
+                }
+                break loop
+>>>>>>> master:RsyncOSX/SharingManagerSchedule.swift
             }
             break loop
         }

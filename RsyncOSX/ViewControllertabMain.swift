@@ -100,15 +100,24 @@ class ViewControllertabMain: NSViewController {
     // Getting output from rsync 
     fileprivate var output: OutputProcess?
     // Getting output from batchrun
+<<<<<<< HEAD
     fileprivate var outputbatch: OutputBatch?
+=======
+    fileprivate var outputbatch:outputBatch?
+>>>>>>> master
     // HiddenID task, set when row is selected
     fileprivate var hiddenID: Int?
     // Reference to Schedules object
     fileprivate var schedules: ScheduleSortedAndExpand?
     // Bool if one or more remote server is offline
     // Used in testing if remote server is on/off-line
+<<<<<<< HEAD
     fileprivate var serverOff: Array<Bool>?
 
+=======
+    fileprivate var serverOff:Array<Bool>?
+    
+>>>>>>> master
     // Schedules in progress
     fileprivate var scheduledJobInProgress: Bool = false
     // Ready for execute again
@@ -247,15 +256,26 @@ class ViewControllertabMain: NSViewController {
             self.edit.state = .off
         }
     }
+<<<<<<< HEAD
 
+=======
+    
+>>>>>>> master
     @IBOutlet weak var TCPButton: NSButton!
     @IBAction func TCP(_ sender: NSButton) {
         self.TCPButton.isEnabled = false
         self.loadProfileMenu = false
         self.displayProfile()
+<<<<<<< HEAD
         Tools.shared.testAllremoteserverConnections()
     }
 
+=======
+        Utils.sharedInstance.testAllremoteserverConnections()
+    }
+    
+    
+>>>>>>> master
     // Presenting Information from Rsync
     @IBAction func information(_ sender: NSButton) {
         globalMainQueue.async(execute: { () -> Void in
@@ -290,7 +310,10 @@ class ViewControllertabMain: NSViewController {
         } else {
             self.displayProfile()
         }
+<<<<<<< HEAD
 
+=======
+>>>>>>> master
     }
 
     // Selecting About
@@ -364,7 +387,10 @@ class ViewControllertabMain: NSViewController {
         }
         // Update rsync command in view i case changed
         self.rsyncchanged()
+<<<<<<< HEAD
         // Show which profile
+=======
+>>>>>>> master
         self.loadProfileMenu = true
         self.displayProfile()
         if self.schedules == nil {
@@ -378,7 +404,11 @@ class ViewControllertabMain: NSViewController {
     override func viewDidDisappear() {
         super.viewDidDisappear()
         // Do not allow notify in Main
+<<<<<<< HEAD
         Configurations.shared.allowNotifyinMain = false
+=======
+        SharingManagerConfiguration.sharedInstance.allowNotifyinMain = false
+>>>>>>> master
     }
 
     // True if scheduled task in progress
@@ -415,12 +445,19 @@ class ViewControllertabMain: NSViewController {
         if self.ready {
             self.executeSingleTask()
         }
+        // Dont execute a second task when the first is started. 
         self.ready = false
     }
 
     // Single task can be activated by double click from table
     private func executeSingleTask() {
+<<<<<<< HEAD
 
+=======
+        
+        self.batchtask = nil
+        
+>>>>>>> master
         guard scheduledOperationInProgress() == false else {
             Alerts.showInfo("Scheduled operation in progress")
             return
@@ -434,6 +471,7 @@ class ViewControllertabMain: NSViewController {
         guard self.index != nil else {
             return
         }
+<<<<<<< HEAD
 
         self.batchtask = nil
 
@@ -443,15 +481,32 @@ class ViewControllertabMain: NSViewController {
             self.singletask?.executeSingleTask()
             // Set reference to singleTask object
             Configurations.shared.singleTask = self.singletask
+=======
+        
+        guard self.singletask != nil else {
+            // Dry run
+            self.singletask = newSingleTask(index: self.index!)
+            self.singletask!.executeSingleTask()
+            // Set reference to singleTask object
+            // Reference is only set when a dry-run is executed. 
+            // Singletask object stays alive during both dry-run and realrun.
+            SharingManagerConfiguration.sharedInstance.SingleTask = self.singletask
+>>>>>>> master
             return
         }
         // Real run
-        self.singletask?.executeSingleTask()
+        self.singletask!.executeSingleTask()
     }
 
     // Execute BATCH TASKS only
     @IBAction func executeBatch(_ sender: NSButton) {
+<<<<<<< HEAD
 
+=======
+        
+        self.singletask = nil
+        
+>>>>>>> master
         guard scheduledOperationInProgress() == false else {
             Alerts.showInfo("Scheduled operation in progress")
             return
@@ -461,12 +516,16 @@ class ViewControllertabMain: NSViewController {
             Tools.shared.noRsync()
             return
         }
+<<<<<<< HEAD
 
         self.singletask = nil
+=======
+        
+>>>>>>> master
         self.setNumbers(output: nil)
         self.batchtask = NewBatchTask()
         // Present batch view
-        self.batchtask?.presentBatchView()
+        self.batchtask!.presentBatchView()
     }
 
     // Reread bot Configurations and Schedules from persistent store to memory
@@ -478,7 +537,11 @@ class ViewControllertabMain: NSViewController {
         Configurations.shared.setDataDirty(dirty: true)
         Schedules.shared.readAllSchedules()
     }
+<<<<<<< HEAD
 
+=======
+    
+>>>>>>> master
     // Function for setting profile
     fileprivate func displayProfile() {
 
@@ -496,7 +559,10 @@ class ViewControllertabMain: NSViewController {
             self.profilInfo.textColor = .black
         }
         self.TCPButton.isEnabled = true
+<<<<<<< HEAD
         self.setRsyncCommandDisplay()
+=======
+>>>>>>> master
     }
 
     // Function for setting allowDouble click
@@ -533,7 +599,10 @@ class ViewControllertabMain: NSViewController {
         self.process = nil
         self.singletask = nil
         self.batchtask = nil
+<<<<<<< HEAD
 
+=======
+>>>>>>> master
         self.setInfo(info: "Estimate", color: .blue)
         self.setRsyncCommandDisplay()
     }
@@ -811,6 +880,7 @@ extension ViewControllertabMain: Connections {
     // about which remote servers are off/on line.
     // Remote servers offline are marked with red line in mainTableView
     func displayConnections() {
+<<<<<<< HEAD
 
         // Only do a reload if we are in the main view
         guard Configurations.shared.allowNotifyinMain == true else {
@@ -819,6 +889,16 @@ extension ViewControllertabMain: Connections {
 
         self.serverOff = Tools.shared.gettestAllremoteserverConnections()
         globalMainQueue.async(execute: { () -> Void in
+=======
+        
+        // Only do a reload if we are in the main view
+        guard SharingManagerConfiguration.sharedInstance.allowNotifyinMain == true else {
+            return
+        }
+        
+        self.serverOff = Utils.sharedInstance.gettestAllremoteserverConnections()
+        GlobalMainQueue.async(execute: { () -> Void in
+>>>>>>> master
             self.mainTableView.reloadData()
         })
     }
@@ -951,6 +1031,7 @@ extension ViewControllertabMain: RsyncError {
                     process.terminate()
                     self.process = nil
                 }
+<<<<<<< HEAD
 
                 // Either error in single task or batch task
                 if self.singletask != nil {
@@ -958,6 +1039,17 @@ extension ViewControllertabMain: RsyncError {
                 }
                 if self.batchtask != nil {
                     self.batchtask!.error()
+=======
+                
+                // Either error in single task or batch task
+                
+                if (self.singletask != nil) {
+                    self.singletask!.Error()
+                }
+                
+                if (self.batchtask != nil) {
+                    self.batchtask!.Error()
+>>>>>>> master
                 }
             })
         }
@@ -1008,7 +1100,10 @@ extension ViewControllertabMain: AbortOperations {
             self.setInfo(info: "Abort", color: .red)
         }
     }
+<<<<<<< HEAD
 
+=======
+>>>>>>> master
 }
 
 // Extensions from here are used in either newSingleTask or newBatchTask
@@ -1023,8 +1118,13 @@ extension ViewControllertabMain: StartStopProgressIndicatorSingleTask {
     }
 }
 
+<<<<<<< HEAD
 extension ViewControllertabMain:SingleTask {
 
+=======
+extension ViewControllertabMain: SingleTask {
+    
+>>>>>>> master
     // Just for updating process info
     func showProcessInfo(info: DisplayProcessInfo) {
         globalMainQueue.async(execute: { () -> Void in
@@ -1052,20 +1152,37 @@ extension ViewControllertabMain:SingleTask {
             }
         })
     }
+<<<<<<< HEAD
 
+=======
+    
+    // Present progress View of task
+>>>>>>> master
     func presentViewProgress() {
         globalMainQueue.async(execute: { () -> Void in
             self.presentViewControllerAsSheet(self.viewControllerProgress)
         })
     }
+<<<<<<< HEAD
 
     func presentViewInformation(output: OutputProcess) {
+=======
+    
+    // Present detailed report about task
+    func presentViewInformation(output: outputProcess) {
+>>>>>>> master
         self.output = output
         globalMainQueue.async(execute: { () -> Void in
             self.presentViewControllerAsSheet(self.viewControllerInformation)
         })
     }
+<<<<<<< HEAD
 
+=======
+    
+    // Called when a processTermination is discovered. A delegate
+    // function is triggered in progress view
+>>>>>>> master
     func terminateProgressProcess() {
         if let pvc2 = self.presentedViewControllers as? [ViewControllerProgressProcess] {
             if pvc2.count > 0 {
@@ -1074,9 +1191,16 @@ extension ViewControllertabMain:SingleTask {
             }
         }
     }
+<<<<<<< HEAD
 
     func setInfo(info: String, color: ColorInfo) {
 
+=======
+    
+    // Sets info in main view
+    func setInfo(info:String, color:colorInfo) {
+        
+>>>>>>> master
         switch color {
         case .red:
             self.dryRunOrRealRun.textColor = .red
@@ -1095,12 +1219,21 @@ extension ViewControllertabMain:SingleTask {
 
     // Function for getting numbers out of output object updated when
     // Process object executes the job.
+<<<<<<< HEAD
     func setNumbers(output: OutputProcess?) {
 
         globalMainQueue.async(execute: { () -> Void in
 
             self.showProcessInfo(info: .setmaxNumber)
 
+=======
+    func setNumbers(output:outputProcess?) {
+        
+        GlobalMainQueue.async(execute: { () -> Void in
+            
+            self.showProcessInfo(info: .Set_max_Number)
+            
+>>>>>>> master
             guard output != nil else {
 
                 self.transferredNumber.stringValue = ""
@@ -1126,7 +1259,11 @@ extension ViewControllertabMain:SingleTask {
             self.deletefiles.stringValue = NumberFormatter.localizedString(from: NSNumber(value: number.getTransferredNumbers(numbers: .delete)), number: NumberFormatter.Style.decimal)
         })
     }
+<<<<<<< HEAD
 
+=======
+        
+>>>>>>> master
     // Returns number set from dryrun to use in logging run 
     // after a real run. Logging is in newSingleTask object.
 
@@ -1137,7 +1274,10 @@ extension ViewControllertabMain:SingleTask {
     func gettransferredNumberSizebytes() -> String {
         return self.transferredNumberSizebytes.stringValue
     }
+<<<<<<< HEAD
 
+=======
+>>>>>>> master
 }
 
 extension ViewControllertabMain: BatchTask {
@@ -1174,6 +1314,15 @@ extension ViewControllertabMain: BatchTask {
             }
         }
     }
+<<<<<<< HEAD
+=======
+    
+    func setOutputBatch(outputbatch:outputBatch?) {
+        self.outputbatch = outputbatch
+    }
+}
+
+>>>>>>> master
 
     func setOutputBatch(outputbatch: OutputBatch?) {
         self.outputbatch = outputbatch

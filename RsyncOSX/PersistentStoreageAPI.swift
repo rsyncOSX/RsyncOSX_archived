@@ -97,10 +97,17 @@ final class PersistentStoreageAPI {
         if read.readSchedulesFromPermanentStore() != nil {
             for dict in read.readSchedulesFromPermanentStore()! {
                 if let log = dict.value(forKey: "executed") {
+<<<<<<< HEAD:RsyncOSX/PersistentStoreageAPI.swift
                     let conf = ConfigurationSchedule(dictionary: dict, log: log as? NSArray)
                     schedule.append(conf)
                 } else {
                     let conf = ConfigurationSchedule(dictionary: dict, log: nil)
+=======
+                    let conf = configurationSchedule(dictionary: dict, log: log as? NSArray)
+                    schedule.append(conf)
+                } else {
+                    let conf = configurationSchedule(dictionary: dict, log: nil)
+>>>>>>> master:RsyncOSX/persistentStoreAPI.swift
                     schedule.append(conf)
                 }
             }
@@ -119,7 +126,11 @@ final class PersistentStoreageAPI {
         if read.readSchedulesFromPermanentStore() != nil {
             var schedule = [ConfigurationSchedule]()
             for dict in read.readSchedulesFromPermanentStore()! {
+<<<<<<< HEAD:RsyncOSX/PersistentStoreageAPI.swift
                 let conf = ConfigurationSchedule(dictionary: dict, log: nil)
+=======
+                let conf = configurationSchedule(dictionary: dict, log: nil)
+>>>>>>> master:RsyncOSX/persistentStoreAPI.swift
                 schedule.append(conf)
             }
             return schedule

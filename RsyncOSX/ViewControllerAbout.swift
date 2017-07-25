@@ -50,7 +50,37 @@ class ViewControllerAbout: NSViewController {
         NSWorkspace.shared.open(URL(string: Configurations.shared.URLnewVersion!)!)
         self.dismissDelegate?.dismiss_view(viewcontroller: self)
     }
+<<<<<<< HEAD
 
+=======
+    
+    private func checkforupdates() {
+        GlobalBackgroundQueue.async(execute: { () -> Void in
+            if let url = URL(string: self.urlPlist!) {
+                do {
+                    let contents = NSDictionary (contentsOf: url)
+                    if (self.runningVersion != nil) {
+                        if let url = contents?.object(forKey: self.runningVersion!) {
+                            self.urlNewVersion = url as? String
+                            SharingManagerConfiguration.sharedInstance.URLnewVersion = self.urlNewVersion
+                            GlobalMainQueue.async(execute: { () -> Void in
+                                self.downloadbutton.isEnabled = true
+                                self.thereisanewversion.isHidden = false
+                            })
+                            
+                        } else {
+                            GlobalMainQueue.async(execute: { () -> Void in
+                                self.thereisanewversion.stringValue = "No new version"
+                                self.thereisanewversion.isHidden = false
+                            })
+                        }
+                    }
+                }
+            }
+        })
+    }
+    
+>>>>>>> master
     override func viewDidLoad() {
         super.viewDidLoad()
         if let pvc = self.presenting as? ViewControllertabMain {

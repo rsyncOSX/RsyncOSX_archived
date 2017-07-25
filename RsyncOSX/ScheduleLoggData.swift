@@ -73,8 +73,13 @@ final class ScheduleLoggData {
         var data = Array<NSDictionary>()
         let input: [ConfigurationSchedule] = Schedules.shared.getSchedule()
         for i in 0 ..< input.count {
+<<<<<<< HEAD
             let hiddenID = Schedules.shared.getSchedule()[i].hiddenID
             if input[i].logrecords.count > 0 {
+=======
+            let hiddenID = SharingManagerSchedule.sharedInstance.getSchedule()[i].hiddenID
+            if (input[i].logrecords.count > 0) {
+>>>>>>> master
                 for j in 0 ..< input[i].logrecords.count {
                     let dict = input[i].logrecords[j]
                     let logdetail: NSDictionary = [

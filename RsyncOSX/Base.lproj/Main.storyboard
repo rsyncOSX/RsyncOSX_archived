@@ -781,14 +781,25 @@
                                     <constraint firstAttribute="height" constant="90" id="jVJ-Md-kY3"/>
                                 </constraints>
                             </box>
+<<<<<<< HEAD
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="vZ8-RO-Huz">
                                 <rect key="frame" x="39" y="107" width="66" height="32"/>
                                 <buttonCell key="cell" type="push" title="TCP" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="FaP-hR-iYc">
+=======
+                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="pBg-ke-1AM">
+                                <rect key="frame" x="40" y="107" width="66" height="32"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <buttonCell key="cell" type="push" title="TCP" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="Ky4-Ji-GW5">
+>>>>>>> master
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
                                 <connections>
+<<<<<<< HEAD
                                     <action selector="TCP:" target="egt-C3-u4G" id="Xqo-AU-gd2"/>
+=======
+                                    <action selector="TCP:" target="egt-C3-u4G" id="SkC-Q2-C61"/>
+>>>>>>> master
                                 </connections>
                             </button>
                         </subviews>
@@ -862,7 +873,11 @@
                         </constraints>
                     </view>
                     <connections>
+<<<<<<< HEAD
                         <outlet property="TCPButton" destination="vZ8-RO-Huz" id="Rgc-t6-PQm"/>
+=======
+                        <outlet property="TCPButton" destination="pBg-ke-1AM" id="PpZ-o6-LqC"/>
+>>>>>>> master
                         <outlet property="allowDoubleclick" destination="74N-MA-FWg" id="OWv-mw-hEC"/>
                         <outlet property="delete" destination="X1w-Np-lS3" id="eOe-LK-Bzr"/>
                         <outlet property="deletefiles" destination="uOY-XE-EU5" id="BTy-3T-PDG"/>
