@@ -54,13 +54,8 @@ class ProcessCmd {
             if data.count > 0 {
                 if let str = NSString(data: data, encoding: String.Encoding.utf8.rawValue) {
                     // Add files to be copied, the output.addString takes care of
-<<<<<<< HEAD:RsyncOSX/ProcessCmd.swift
                     // splitting the output
                     if self.copyfiles {
-=======
-                    // splitting the output.
-                    if (self.copyfiles) {
->>>>>>> master:RsyncOSX/processCmd.swift
                         output.addLine2(str as String)
                     } else {
                         output.addLine(str as String)
@@ -98,16 +93,11 @@ class ProcessCmd {
         self.processReference = task
         task.launch()
     }
-<<<<<<< HEAD:RsyncOSX/ProcessCmd.swift
 
-=======
-    
->>>>>>> master:RsyncOSX/processCmd.swift
     // Get the reference to the Process object.
     func getProcess() -> Process? {
         return self.processReference
     }
-<<<<<<< HEAD:RsyncOSX/ProcessCmd.swift
 
     // Terminate Process, used when user Aborts task.
     func abortProcess() {
@@ -115,15 +105,6 @@ class ProcessCmd {
             return
         }
         self.processReference!.terminate()
-=======
-    
-    // Terminate Process, used when user Aborts task.
-    func abortProcess() {
-        guard self.ProcessReference != nil else {
-            return
-        }
-        self.ProcessReference!.terminate()
->>>>>>> master:RsyncOSX/processCmd.swift
     }
 
     init(command: String?, arguments: Array<String>?, aScheduledOperation: Bool) {

@@ -32,21 +32,12 @@ final class PersistentStoreScheduling: Readwritefiles {
 
         for i in 0 ..< data.count {
             let schedule = data[i]
-<<<<<<< HEAD:RsyncOSX/PersistentStoreScheduling.swift
             let dict: NSMutableDictionary = [
                 "hiddenID": schedule.hiddenID,
                 "dateStart": schedule.dateStart,
                 "schedule": schedule.schedule,
                 "executed": schedule.logrecords]
             if schedule.dateStop != nil {
-=======
-            let dict:NSMutableDictionary = [
-                "hiddenID" : schedule.hiddenID,
-                "dateStart":schedule.dateStart,
-                "schedule":schedule.schedule,
-                "executed":schedule.logrecords]
-            if (schedule.dateStop != nil) {
->>>>>>> master:RsyncOSX/persistentStoreScheduling.swift
                 dict.setValue(schedule.dateStop, forKey: "dateStop")
             }
             if let delete = schedule.delete {
@@ -68,7 +59,6 @@ final class PersistentStoreScheduling: Readwritefiles {
         let Schedule = Schedules.shared.getSchedule()
         for i in 0 ..< Schedule.count {
             let schedule = Schedule[i]
-<<<<<<< HEAD:RsyncOSX/PersistentStoreScheduling.swift
             if schedule.delete == nil && schedule.hiddenID != hiddenID {
                 let dict: NSMutableDictionary = [
                     "hiddenID": schedule.hiddenID,
@@ -76,15 +66,6 @@ final class PersistentStoreScheduling: Readwritefiles {
                     "schedule": schedule.schedule,
                     "executed": schedule.logrecords]
                 if schedule.dateStop != nil {
-=======
-            if ((schedule.delete == nil) && (schedule.hiddenID != hiddenID)) {
-                let dict:NSMutableDictionary = [
-                    "hiddenID" : schedule.hiddenID,
-                    "dateStart":schedule.dateStart,
-                    "schedule":schedule.schedule,
-                    "executed":schedule.logrecords]
-                if (schedule.dateStop != nil) {
->>>>>>> master:RsyncOSX/persistentStoreScheduling.swift
                     dict.setValue(schedule.dateStop, forKey: "dateStop")
                 }
                 array.append(dict)

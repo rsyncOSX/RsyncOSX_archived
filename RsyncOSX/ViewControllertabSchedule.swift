@@ -77,11 +77,7 @@ class ViewControllertabSchedule: NSViewController {
 
         // Date and time for start
         // Pick choosed time
-<<<<<<< HEAD
         let startdate: Date = Date()
-=======
-        let startdate:Date = Date()
->>>>>>> master
         // Seconds from now to starttime
         let seconds: TimeInterval = self.stoptime.dateValue.timeIntervalSinceNow
         // Date and time for stop

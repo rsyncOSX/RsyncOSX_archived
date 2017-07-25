@@ -109,11 +109,7 @@ class Configurations {
     // DATA STRUCTURES
 
     // The main structure storing all Configurations for tasks
-<<<<<<< HEAD:RsyncOSX/Configurations.swift
     private var configurations = Array<Configuration>()
-=======
-    private var Configurations = Array<configuration>()
->>>>>>> master:RsyncOSX/SharingManagerConfiguration.swift
     // Array to store argumenst for all tasks.
     // Initialized during startup
     private var argumentAllConfigurations =  NSMutableArray()
@@ -133,11 +129,7 @@ class Configurations {
     /// configurations and computing new arguments.
     /// - parameter none: none
     func readAllConfigurationsAndArguments() {
-<<<<<<< HEAD:RsyncOSX/Configurations.swift
         let store: Array<Configuration> = PersistentStoreageAPI.shared.getConfigurations()
-=======
-        let store:Array<configuration> = persistentStoreAPI.sharedInstance.getConfigurations()
->>>>>>> master:RsyncOSX/SharingManagerConfiguration.swift
         self.destroyConfigurations()
         // We read all stored configurations into memory
         for i in 0 ..< store.count {
@@ -199,13 +191,8 @@ class Configurations {
     /// Function for getting Configurations read into memory
     /// - parameter none: none
     /// - returns : Array of configurations
-<<<<<<< HEAD:RsyncOSX/Configurations.swift
     func getConfigurations() -> Array<Configuration> {
         return self.configurations
-=======
-    func getConfigurations() -> Array<configuration> {
-        return self.Configurations
->>>>>>> master:RsyncOSX/SharingManagerConfiguration.swift
     }
 
     /// Function for getting arguments for all Configurations read into memory
@@ -278,13 +265,8 @@ class Configurations {
     /// - parameter index: index of Configuration
     /// - parameter argtype : either .arg or .argdryRun (of enumtype argumentsRsync)
     /// - returns : array of Strings holding all computed arguments
-<<<<<<< HEAD:RsyncOSX/Configurations.swift
     func getRsyncArgumentOneConfig (index: Int, argtype: ArgumentsRsync) -> Array<String> {
         let allarguments = (self.argumentAllConfigurations[index] as? ArgumentsOneConfiguration)!
-=======
-    func getRsyncArgumentOneConfig (index:Int, argtype : argumentsRsync) -> Array<String> {
-        let allarguments = self.argumentAllConfigurations[index] as! ArgumentsOneConfiguration
->>>>>>> master:RsyncOSX/SharingManagerConfiguration.swift
         switch argtype {
         case .arg:
             return allarguments.arg!
@@ -318,15 +300,9 @@ class Configurations {
     /// arguments for Configurations and configurations as datasource for
     /// presenting Configurations in tableviews.
     func destroyConfigurations() {
-<<<<<<< HEAD:RsyncOSX/Configurations.swift
         self.configurations.removeAll()
         self.argumentAllConfigurations.removeAllObjects()
         self.configurationsDataSource = nil
-=======
-        self.Configurations.removeAll()
-        self.argumentAllConfigurations.removeAllObjects()
-        self.ConfigurationsDataSource = nil
->>>>>>> master:RsyncOSX/SharingManagerConfiguration.swift
     }
 
     /// Function sets currentDate on Configuration when executed on task 
