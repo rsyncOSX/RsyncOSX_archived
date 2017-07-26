@@ -5,7 +5,7 @@
 //  Created by Thomas Evensen on 30/10/2016.
 //  Copyright © 2016 Thomas Evensen. All rights reserved.
 //
-//swiftlint:disable syntactic_sugar file_length cyclomatic_complexity line_length
+// swiftlint:disable syntactic_sugar file_length cyclomatic_complexity line_length
 
 import Foundation
 import Cocoa
@@ -32,7 +32,7 @@ class ViewControllerScheduledBackupinWork: NSViewController {
     }
 
     @IBAction func close(_ sender: NSButton) {
-        // Invalidate timer to close view 
+        // Invalidate timer to close view
         self.waitToClose?.invalidate()
         self.closeIn?.invalidate()
         self.dismissDelegate?.dismiss_view(viewcontroller: self)
