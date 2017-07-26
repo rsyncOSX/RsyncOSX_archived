@@ -50,7 +50,6 @@ class ExecuteTask: Operation {
                         notifyDelegate?.notifyScheduledJob(config: config)
                     }
                 }
-
                 if hiddenID >= 0 && config != nil {
                     arguments = RsyncProcessArguments().argumentsRsync(config!, dryRun: false, forDisplay: false)
                     // Setting reference to finalize the job

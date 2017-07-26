@@ -52,11 +52,9 @@ final class CopyFiles {
 
     // Execute Process (either dryrun or realrun)
     func executeRsync(remotefile: String, localCatalog: String, dryrun: Bool) {
-
         guard self.config != nil else {
             return
         }
-
         if dryrun {
             self.argumentsObject = CopyFileArguments(task: .rsyncCmd, config: self.config!, remoteFile: remotefile, localCatalog: localCatalog, drynrun: true)
             self.arguments = self.argumentsObject!.getArguments()
@@ -73,11 +71,9 @@ final class CopyFiles {
 
     // Get arguments for rsync to show
     func getCommandDisplayinView(remotefile: String, localCatalog: String) -> String {
-
         guard self.config != nil else {
             return ""
         }
-
         self.commandDisplay = CopyFileArguments(task: .rsyncCmd, config: self.config!, remoteFile: remotefile, localCatalog: localCatalog, drynrun: true).getcommandDisplay()
         guard self.commandDisplay != nil else {
             return ""
@@ -101,16 +97,13 @@ final class CopyFiles {
 
     // Filter function
     func filter(search: String?) -> Array<String> {
-
         guard search != nil else {
             if self.files != nil {
                 return self.files!
             } else {
               return [""]
             }
-
         }
-
         if search!.isEmpty == false {
             // Filter data
             return self.files!.filter({$0.contains(search!)})

@@ -48,10 +48,10 @@ final class Help {
     private var source: String = "https://github.com/rsyncOSX/RsyncOSX"
     private var ssh: String = "https://rsyncosx.github.io/Documentation/docs/ssh.html"
 
-    private var resource: String?
+    private var htmltoshow: String?
 
     private func show() {
-        if let resource = self.resource {
+        if let resource = self.htmltoshow {
             NSWorkspace.shared.open(URL(string: resource)!)
         }
     }
@@ -59,37 +59,37 @@ final class Help {
     func help(what: Helpdocs) {
         switch what {
         case .changelog:
-            self.resource = self.changelog
+            self.htmltoshow = self.changelog
         case .documents:
-            self.resource = self.documentstart
+            self.htmltoshow = self.documentstart
         case .singletask:
-            self.resource = self.singletask
+            self.htmltoshow = self.singletask
         case .batchtask:
-            self.resource = self.batchtask
+            self.htmltoshow = self.batchtask
         case .rsyncparameters:
-            self.resource = self.rsyncparameters
+            self.htmltoshow = self.rsyncparameters
         case .configuration:
-            self.resource = self.configuration
+            self.htmltoshow = self.configuration
         case .add:
-            self.resource = self.add
+            self.htmltoshow = self.add
         case .schedule:
-            self.resource = self.schedule
+            self.htmltoshow = self.schedule
         case .copyfiles:
-            self.resource = self.copyfiles
+            self.htmltoshow = self.copyfiles
         case .logging:
-            self.resource = self.logging
+            self.htmltoshow = self.logging
         case .rsyncstdparameters:
-            self.resource = self.rsyncstdparameters
+            self.htmltoshow = self.rsyncstdparameters
         case .diynas:
-            self.resource = self.diynas
+            self.htmltoshow = self.diynas
         case .idea:
-            self.resource = self.idea
+            self.htmltoshow = self.idea
         case .passwordless:
-            self.resource = self.passwordless
+            self.htmltoshow = self.passwordless
         case .source:
-            self.resource = self.source
+            self.htmltoshow = self.source
         case .ssh:
-            self.resource = self.ssh
+            self.htmltoshow = self.ssh
         }
         self.show()
     }

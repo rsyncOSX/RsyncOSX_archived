@@ -62,11 +62,9 @@ final class ScheduleOperation {
         if let dict = self.scheduledJobs!.jobToExecute() {
             let dateStart: Date = (dict.value(forKey: "start") as? Date)!
             self.secondsToWait = self.scheduledJobs!.timeDoubleSeconds(dateStart, enddate: nil)
-
             guard self.secondsToWait != nil else {
                 return
             }
-
             self.waitForTask = Timer.scheduledTimer(timeInterval: self.secondsToWait!, target: self, selector: #selector(startJob), userInfo: nil, repeats: false)
             // Set reference to Timer that kicks of the Scheduled job
             // Reference is set for cancel job if requiered

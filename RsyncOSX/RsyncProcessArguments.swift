@@ -11,10 +11,6 @@ import Foundation
 
 class RsyncProcessArguments {
 
-    // If true one of the userselecet params are --stats
-    // If not add --stats in dryrun arguments.
-    // Must check all parameter8 - paramater14
-    // both backup and restore part
     private var stats: Bool?
     private var arguments: Array<String>?
     var localCatalog: String?
@@ -23,8 +19,7 @@ class RsyncProcessArguments {
     var offsiteServer: String?
     var offsiteArguments: String?
 
-    // Set initial parameter1 .. paramater6
-    // Parameters is computed by RsyncOSX
+    // Set initial parameter1 .. paramater6, parameters are computed by RsyncOSX
 
     private func setParameters1To6(_ config: Configuration, dryRun: Bool, forDisplay: Bool) {
         let parameter1: String = config.parameter1
@@ -70,8 +65,7 @@ class RsyncProcessArguments {
     }
 
     // Compute user selected parameters parameter8 ... parameter14
-    // Brute force, check every parameter
-    // Not special elegant, but it works
+    // Brute force, check every parameter, not special elegant, but it works
 
     private func setParameters8To14(_ config: Configuration, dryRun: Bool, forDisplay: Bool) {
         self.stats = false

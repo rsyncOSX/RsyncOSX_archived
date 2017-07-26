@@ -45,7 +45,6 @@ final class CopyFileArguments: ProcessArguments {
     }
 
     init (task: Enumscopyfiles, config: Configuration, remoteFile: String?, localCatalog: String?, drynrun: Bool?) {
-
         // Initialize the argument array
         self.arguments = nil
         self.arguments = Array<String>()

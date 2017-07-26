@@ -50,6 +50,7 @@ class ViewControllerProfile: NSViewController {
             self.profile?.createProfile(profileName: newprofile)
             Configurations.shared.setProfile(profile: newprofile)
             // Destroy old configuration and save default configuration
+            // New Configurations must be saved as empty Configurations
             Configurations.shared.destroyConfigurations()
             PersistentStoreageAPI.shared.saveConfigFromMemory()
             self.newProfileDelegate?.newProfile(new: true)
