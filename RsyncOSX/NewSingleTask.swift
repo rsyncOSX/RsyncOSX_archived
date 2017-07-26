@@ -133,7 +133,6 @@ final class NewSingleTask {
                 self.indicatorDelegate?.stopIndicator()
                 // If showInfoDryrun is on present result of dryrun automatically
                 self.taskDelegate?.presentViewInformation(output: self.output!)
-            // self.taskDelegate?.singleTaskAbort(process: self.process)
             case .executesinglerun:
                 //NB: self.showProcessInfo(info: .Logging_run)
                 self.taskDelegate?.showProcessInfo(info: .loggingrun)

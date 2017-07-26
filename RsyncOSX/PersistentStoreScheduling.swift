@@ -8,7 +8,8 @@
 //   Interface between Schedule in memory and
 //   presistent store. Class is a interface
 //   for Schedule.
-//  swiftlint:disable syntactic_sugar
+//
+//   swiftlint:disable syntactic_sugar
 
 import Foundation
 

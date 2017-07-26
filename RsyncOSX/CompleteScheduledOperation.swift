@@ -44,10 +44,7 @@ final class CompleteScheduledOperation {
 
         Schedules.shared.addScheduleResult(self.hiddenID!, dateStart: dateStartstring, result: numberstring[0], date: datestring, schedule: schedule!)
         // Writing timestamp to configuration
-        // Update memory configuration with rundate
         _ = Configurations.shared.setCurrentDateonConfiguration(self.index!)
-        // Saving updated configuration from memory
-        _ = PersistentStoreageAPI.shared.saveConfigFromMemory()
         // Start next job, if any, by delegate
         // and notify completed, by delegate
         if let pvc2 = Configurations.shared.viewControllertabMain as? ViewControllertabMain {

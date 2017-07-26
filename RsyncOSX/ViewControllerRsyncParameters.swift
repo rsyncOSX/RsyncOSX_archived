@@ -210,7 +210,6 @@ class ViewControllerRsyncParameters: NSViewController {
             }
             // Update configuration in memory before saving
             Configurations.shared.updateConfigurations(configurations[index], index: index)
-            PersistentStoreageAPI.shared.saveConfigFromMemory()
             // notify an update
             self.userparamsupdatedDelegate?.rsyncuserparamsupdated()
         }

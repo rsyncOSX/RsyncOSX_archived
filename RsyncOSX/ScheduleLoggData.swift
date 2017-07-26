@@ -5,8 +5,9 @@
 //  Created by Thomas Evensen on 23/09/2016.
 //  Copyright © 2016 Thomas Evensen. All rights reserved.
 //
-// Object for sorting and holding logg data about all tasks.
-// Detailed logging must be set on if logging data.
+//  Object for sorting and holding logg data about all tasks.
+//  Detailed logging must be set on if logging data.
+//
 //  swiftlint:disable syntactic_sugar line_length
 
 import Foundation
@@ -27,11 +28,9 @@ final class ScheduleLoggData {
 
     // Function for filter loggdata
     func filter(search: String?, what: Filterlogs?) -> [NSDictionary]? {
-
         guard search != nil else {
             return self.loggdata
         }
-
         if search!.isEmpty == false {
             // Filter data
             self.readfilteredData(filter: search!, filterwhat: what!)
