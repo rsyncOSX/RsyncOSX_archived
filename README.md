@@ -2,9 +2,9 @@
 
 Important : this version is not compliant with Xcode 8 and Swift 3.
 
-### Next version 4.5.x - macOS High Sierra, Xcode 9 and Swift 4
+### Next version 4.5.x - Xcode 9, Swift 4 and macOS High Sierra
 
-The repository is source code for the macOS application RsyncOSX. The application is implemented in **Swift 4** by using **Xcode version 9 beta4** The application is **not** depended upon any third party binary distributions. There is, however, only one third party source code included to check for TCP connections. The check is for informal use only and can be removed. All other code is stock use of Swift 4.x and libraries as part of Xcode version 9.x.
+This is the source code for the macOS application RsyncOSX. The application is implemented in **Swift 4** by using **Xcode version 9 beta4**. RsyncOSX is **not** depended upon any third party binary distributions. There is, however, only one third party source code included to check for TCP connections. The check is for informal use only and can be removed. All other code is stock use of Swift 4 and libraries as part of Xcode version 9.
 
 As part of this version of RsyncOSX I am using [SwiftLint](https://github.com/realm/SwiftLint) as tool for writing more readable code. Adapting RsyncOSX to SwiftLint rules will take some time. There are about 11,000 lines of code in RsyncOSX (too many?). Many changes in code has been applied, but there are still some more to do before RsyncOSX is more compliant to SwiftLint rules.
 
@@ -24,7 +24,7 @@ The [Changelog](https://github.com/rsyncOSX/Documentation/blob/master/docs/Chang
 
 There are some [documents](https://rsyncosx.github.io/Documentation/) about RsyncOSX and a short [YouTube demo](https://www.youtube.com/watch?v=ty1r7yvgExo) (about 5 minutes long) : "Downloading RsyncOSX, installing, first time configuration and using RsyncOSX for the first time. Backup (as demo) of about 120 MB of data and 4000 files to a VirtualBox FreeBSD machine."
 
-### The code
+### Development
 
 What is my experience after about a year into my Swift project? Writing swift code is fun and addicting. But I experience from time to time some of the code I am writing is a kind of "brute force". I am reading blogs and other resources about coding in Swift. Some ideas I do pick up, some I don´t understand and others again are like this is how I should have done it. I'm not a professional or full-time programmer and it means I have to accept that the parts of the code in RsyncOSX could have been better and more efficient. The RsyncOSX project is for fun only.
 
