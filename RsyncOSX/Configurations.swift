@@ -1,6 +1,5 @@
 //
-//  SharingManagerConfiguration.swift
-//  Rsync
+//  Configurations.swift
 //
 //  This object stays in memory runtime and holds key data and operations on Configurations. 
 //  The obect is the model for the Configurations but also acts as Controller when 

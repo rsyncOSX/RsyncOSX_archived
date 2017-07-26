@@ -5,7 +5,7 @@
 //  Created by Thomas Evensen on 17.06.2017.
 //  Copyright © 2017 Thomas Evensen. All rights reserved.
 //
-//swiftlint:disable syntactic_sugar disable
+//  swiftlint:disable syntactic_sugar disable
 
 import Foundation
 

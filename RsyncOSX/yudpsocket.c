@@ -27,7 +27,7 @@
  (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-//swiftlint:disable syntactic_sugar disable file_length disable cyclomatic_complexity line_length identifier_name
+//  swiftlint:disable syntactic_sugar disable file_length disable cyclomatic_complexity line_length identifier_name
 
 #include <stdio.h>
 #include <stdlib.h>
