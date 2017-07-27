@@ -5,7 +5,7 @@
 //  Created by Thomas Evensen on 06.03.2017.
 //  Copyright © 2017 Thomas Evensen. All rights reserved.
 //
-//  swiftlint:disable syntactic_sugar line_length
+//  swiftlint:disable syntactic_sugar
 
 import Foundation
 
@@ -49,8 +49,8 @@ final class RsyncArguments: ProcessArguments {
             if config.offsiteServer.isEmpty {
                 self.args!.append(config.offsiteCatalog + remote)
             } else {
-                let offsiteArguments = config.offsiteUsername + "@" + config.offsiteServer + ":" + config.offsiteCatalog + remote
-                self.args!.append(offsiteArguments)
+                let rarg = config.offsiteUsername + "@" + config.offsiteServer + ":" + config.offsiteCatalog + remote
+                self.args!.append(rarg)
             }
             self.args!.append(local)
             // Set command to Process /usr/bin/rysnc or /usr/local/bin/rsync
@@ -79,12 +79,10 @@ final class RsyncArguments: ProcessArguments {
     }
 
     init(config: Configuration, remoteFile: String?, localCatalog: String?, drynrun: Bool?) {
-
         self.config = config
         // Initialize the argument array
         self.args = nil
         self.args = Array<String>()
         self.arguments(remoteFile: remoteFile, localCatalog: localCatalog, drynrun: drynrun)
-
     }
 }

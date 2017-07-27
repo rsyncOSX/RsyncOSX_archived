@@ -5,7 +5,7 @@
 //  Created by Thomas Evensen on 12/09/2016.
 //  Copyright © 2016 Thomas Evensen. All rights reserved.
 //
-//  swiftlint:disable syntactic_sugar line_length
+//  swiftlint:disable syntactic_sugar
 
 import Foundation
 
@@ -56,10 +56,16 @@ final class CopyFiles {
             return
         }
         if dryrun {
-            self.argumentsObject = CopyFileArguments(task: .rsyncCmd, config: self.config!, remoteFile: remotefile, localCatalog: localCatalog, drynrun: true)
+            self.argumentsObject = CopyFileArguments(task: .rsyncCmd,
+                                                     config: self.config!,
+                                                     remoteFile: remotefile,
+                                                     localCatalog: localCatalog, drynrun: true)
             self.arguments = self.argumentsObject!.getArguments()
         } else {
-            self.argumentsObject = CopyFileArguments(task: .rsyncCmd, config: self.config!, remoteFile: remotefile, localCatalog: localCatalog, drynrun: nil)
+            self.argumentsObject = CopyFileArguments(task: .rsyncCmd,
+                                                     config: self.config!,
+                                                     remoteFile: remotefile,
+                                                     localCatalog: localCatalog, drynrun: nil)
             self.arguments = self.argumentsObject!.getArguments()
         }
         self.command = nil
@@ -74,7 +80,11 @@ final class CopyFiles {
         guard self.config != nil else {
             return ""
         }
-        self.commandDisplay = CopyFileArguments(task: .rsyncCmd, config: self.config!, remoteFile: remotefile, localCatalog: localCatalog, drynrun: true).getcommandDisplay()
+        self.commandDisplay = CopyFileArguments(task: .rsyncCmd,
+                                                config: self.config!,
+                                                remoteFile: remotefile,
+                                                localCatalog: localCatalog,
+                                                drynrun: true).getcommandDisplay()
         guard self.commandDisplay != nil else {
             return ""
         }
@@ -83,7 +93,10 @@ final class CopyFiles {
 
     private func getRemoteFileList() {
         self.output = nil
-        self.argumentsObject = CopyFileArguments(task: .duCmd, config: self.config!, remoteFile: nil, localCatalog: nil, drynrun: nil)
+        self.argumentsObject = CopyFileArguments(task: .duCmd,
+                                                 config: self.config!,
+                                                 remoteFile: nil,
+                                                 localCatalog: nil, drynrun: nil)
         self.arguments = self.argumentsObject!.getArguments()
         self.command = self.argumentsObject!.getCommand()
         self.process = CommandCopyFiles(command : self.command, arguments: self.arguments)

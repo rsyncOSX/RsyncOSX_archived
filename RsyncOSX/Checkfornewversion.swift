@@ -66,7 +66,6 @@ final class Checkfornewversion {
         if version != nil {
             self.runningVersion = version as? String
         }
-
         self.resource = Resources()
         if let resource = self.resource {
             self.urlPlist = resource.getResource(resource: .urlPlist)

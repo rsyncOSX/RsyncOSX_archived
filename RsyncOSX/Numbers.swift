@@ -160,10 +160,9 @@ final class Numbers {
     }
 
     // Collecting statistics about job
-    func statistics(numberOfFiles: String?, sizeOfFiles: String?) -> Array<String> {
+    func stats(numberOfFiles: String?, sizeOfFiles: String?) -> Array<String> {
         var numberstring: String?
         var parts: Array<String>?
-
         guard self.resultRsync != nil else {
             if numberOfFiles == nil || sizeOfFiles == nil {
                 return ["0", "0"]
@@ -172,7 +171,6 @@ final class Numbers {
                 return [size, "0"]
             }
         }
-
         if Configurations.shared.rsyncVer3 {
             // ["sent", "409687", "bytes", "", "received", "5331", "bytes", "", "830036.00", "bytes/sec"]
             let newmessage = self.resultRsync!.replacingOccurrences(of: ",", with: "")
@@ -181,24 +179,20 @@ final class Numbers {
             // ["sent", "262826", "bytes", "", "received", "2248", "bytes", "", "58905.33", "bytes/sec"]
             parts = self.resultRsync!.components(separatedBy: " ")
         }
-
         var resultsent: String?
         var resultreceived: String?
         var result: String?
-
         var bytesTotalsent: Double = 0
         var bytesTotalreceived: Double = 0
         var bytesTotal: Double = 0
         var bytesSec: Double = 0
         var seconds: Double = 0
-
         guard parts!.count > 9 else {
             return ["0", "0"]
         }
         guard Double(parts![1]) != nil && (Double(parts![5]) != nil) && (Double(parts![8]) != nil) else {
             return ["0", "0"]
         }
-
         // Sent
         resultsent = parts![1] + " bytes in "
         bytesTotalsent = Double(parts![1])!

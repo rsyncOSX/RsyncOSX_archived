@@ -5,7 +5,7 @@
 //  Created by Thomas Evensen on 08/02/16.
 //  Copyright © 2016 Thomas Evensen. All rights reserved.
 //
-//  swiftlint:disable syntactic_sugar line_length
+//  swiftlint:disable syntactic_sugar
 
 import Foundation
 
@@ -17,7 +17,7 @@ class RsyncProcessArguments {
     var offsiteCatalog: String?
     var offsiteUsername: String?
     var offsiteServer: String?
-    var offsiteArguments: String?
+    var remoteargs: String?
 
     // Set initial parameter1 .. paramater6, parameters are computed by RsyncOSX
 
@@ -138,12 +138,12 @@ class RsyncProcessArguments {
         if self.offsiteServer!.isEmpty == false {
             if config.rsyncdaemon != nil {
                 if config.rsyncdaemon == 1 {
-                    self.offsiteArguments = self.offsiteUsername! + "@" + self.offsiteServer! + "::" + self.offsiteCatalog!
+                    self.remoteargs = self.offsiteUsername! + "@" + self.offsiteServer! + "::" + self.offsiteCatalog!
                 } else {
-                    self.offsiteArguments = self.offsiteUsername! + "@" + self.offsiteServer! + ":" + self.offsiteCatalog!
+                    self.remoteargs = self.offsiteUsername! + "@" + self.offsiteServer! + ":" + self.offsiteCatalog!
                 }
             } else {
-                self.offsiteArguments = self.offsiteUsername! + "@" + self.offsiteServer! + ":" + self.offsiteCatalog!
+                self.remoteargs = self.offsiteUsername! + "@" + self.offsiteServer! + ":" + self.offsiteCatalog!
             }
         }
         self.setParameters1To6(config, dryRun: dryRun, forDisplay: forDisplay)
@@ -168,7 +168,7 @@ class RsyncProcessArguments {
             if forDisplay {self.arguments!.append(" ")}
         } else {
             if forDisplay {self.arguments!.append(" ")}
-            self.arguments!.append(offsiteArguments!)
+            self.arguments!.append(remoteargs!)
             if forDisplay {self.arguments!.append(" ")}
         }
     }
@@ -179,7 +179,7 @@ class RsyncProcessArguments {
             if forDisplay {self.arguments!.append(" ")}
         } else {
             if forDisplay {self.arguments!.append(" ")}
-            self.arguments!.append(offsiteArguments!)
+            self.arguments!.append(remoteargs!)
             if forDisplay {self.arguments!.append(" ")}
         }
         self.arguments!.append(self.localCatalog!)

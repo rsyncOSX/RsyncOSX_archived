@@ -119,7 +119,7 @@ class ViewControllertabSchedule: NSViewController {
             if details == false && range == true {
                 let answer = Alerts.dialogOKCancel("Add Schedule?", text: "Cancel or OK")
                 if answer {
-                    Schedules.shared.addScheduleData(self.hiddenID!, schedule: schedule!, start: startdate, stop: stopdate)
+                    Schedules.shared.addschedule(self.hiddenID!, schedule: schedule!, start: startdate, stop: stopdate)
                     self.newSchedules = true
                     // Refresh table and recalculate the Schedules jobs
                     self.refresh()

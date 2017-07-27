@@ -79,7 +79,7 @@ final class NewSingleTask {
                 // Start animation and show process info
                 self.indicatorDelegate?.startIndicator()
                 self.taskDelegate?.showProcessInfo(info: .estimating)
-                arguments = Configurations.shared.getRsyncArgumentOneConfig(index: index, argtype: .argdryRun)
+                arguments = Configurations.shared.arguments4rsync(index: index, argtype: .argdryRun)
                 let process = Rsync(arguments: arguments)
                 self.output = OutputProcess()
                 process.executeProcess(output: self.output!)
@@ -91,7 +91,7 @@ final class NewSingleTask {
             if let index = self.index {
                 // Show progress view
                 self.taskDelegate?.presentViewProgress()
-                arguments = Configurations.shared.getRsyncArgumentOneConfig(index: index, argtype: .arg)
+                arguments = Configurations.shared.arguments4rsync(index: index, argtype: .arg)
                 self.output = OutputProcess()
                 let process = Rsync(arguments: arguments)
                 process.executeProcess(output: self.output!)
@@ -150,7 +150,7 @@ final class NewSingleTask {
                 let hiddenID = Configurations.shared.gethiddenID(index: self.index!)
                 let numberOffFiles = self.transferredNumber
                 let sizeOfFiles = self.transferredNumberSizebytes
-                Schedules.shared.addScheduleResultManuel(hiddenID, result: number.statistics(numberOfFiles: numberOffFiles, sizeOfFiles: sizeOfFiles)[0])
+                Schedules.shared.addresultmanuel(hiddenID, result: number.stats(numberOfFiles: numberOffFiles, sizeOfFiles: sizeOfFiles)[0])
             case .abort:
                 self.taskDelegate?.singleTaskAbort(process: self.process)
                 self.workload = nil

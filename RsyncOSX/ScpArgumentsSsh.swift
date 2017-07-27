@@ -5,7 +5,7 @@
 //  Created by Thomas Evensen on 27.04.2017.
 //  Copyright © 2017 Thomas Evensen. All rights reserved.
 //
-//  swiftlint:disable syntactic_sugar line_length
+//  swiftlint:disable syntactic_sugar
 
 import Foundation
 
@@ -35,16 +35,13 @@ final class ScpArgumentsSsh {
     // scp ~/.ssh/id_rsa.pub user@server.com:.ssh/authorized_keys
     private func argumentsScpPubKey(path: String, key: String) {
 
-        var offsiteArguments: String?
-
+        var remotearg: String?
         guard self.config != nil else {
             return
         }
-
         guard self.config!.offsiteServer.isEmpty == false else {
             return
         }
-
         self.args = nil
         self.args = Array<String>()
         if self.config!.sshport != nil {
@@ -53,13 +50,12 @@ final class ScpArgumentsSsh {
         }
         self.args!.append(path)
         if key == "rsa" {
-          offsiteArguments = self.config!.offsiteUsername + "@" + self.config!.offsiteServer + ":" + self.remoteRsaPubkeyString
+          remotearg = self.config!.offsiteUsername + "@" + self.config!.offsiteServer + ":" + self.remoteRsaPubkeyString
         } else {
-          offsiteArguments = self.config!.offsiteUsername + "@" + self.config!.offsiteServer + ":" + self.remoteDsaPubkeyString
+          remotearg = self.config!.offsiteUsername + "@" + self.config!.offsiteServer + ":" + self.remoteDsaPubkeyString
         }
-        self.args!.append(offsiteArguments!)
+        self.args!.append(remotearg!)
         self.command = "/usr/bin/scp"
-
         self.commandCopyPasteTermninal = nil
         self.commandCopyPasteTermninal = self.command! + " " + self.args![0]
         for i in 1 ..< self.args!.count {
@@ -71,25 +67,21 @@ final class ScpArgumentsSsh {
     //  ssh thomas@10.0.0.58 "ls -al ~/.ssh/authorized_keys"
     private func argumentsScheckRemotePubKey(key: String) {
 
-        var offsiteArguments: String?
-
+        var remotearg: String?
         guard self.config != nil else {
             return
         }
-
         guard self.config!.offsiteServer.isEmpty == false else {
             return
         }
-
         self.args = nil
         self.args = Array<String>()
         if self.config!.sshport != nil {
             self.args!.append("-P")
             self.args!.append(String(self.config!.sshport!))
         }
-        offsiteArguments = self.config!.offsiteUsername + "@" + self.config!.offsiteServer
-        self.args!.append(offsiteArguments!)
-
+        remotearg = self.config!.offsiteUsername + "@" + self.config!.offsiteServer
+        self.args!.append(remotearg!)
         if key == "rsa" {
             self.args!.append("ls -al ~/" + self.remoteRsaPubkeyString)
         }
@@ -119,24 +111,21 @@ final class ScpArgumentsSsh {
 
     // Chmod .ssh catalog
     private func argumentsChmod(key: String) {
-        var offsiteArguments: String?
-
+        var remotearg: String?
         guard self.config != nil else {
             return
         }
         guard self.config!.offsiteServer.isEmpty == false else {
             return
         }
-
         self.args = nil
         self.args = Array<String>()
         if self.config!.sshport != nil {
             self.args!.append("-P")
             self.args!.append(String(self.config!.sshport!))
         }
-        offsiteArguments = self.config!.offsiteUsername + "@" + self.config!.offsiteServer
-        self.args!.append(offsiteArguments!)
-
+        remotearg = self.config!.offsiteUsername + "@" + self.config!.offsiteServer
+        self.args!.append(remotearg!)
         if key == "rsa" {
             self.args!.append("chmod 700 ~/.ssh; chmod 600 ~/" + self.remoteRsaPubkeyString)
         } else {
@@ -148,27 +137,23 @@ final class ScpArgumentsSsh {
     //  Create remote catalog
     private func argumentsCreateRemoteSshCatalog() {
 
-        var offsiteArguments: String?
-
+        var remotearg: String?
         guard self.config != nil else {
             return
         }
-
         guard self.config!.offsiteServer.isEmpty == false else {
             return
         }
-
         self.args = nil
         self.args = Array<String>()
         if self.config!.sshport != nil {
             self.args!.append("-P")
             self.args!.append(String(self.config!.sshport!))
         }
-        offsiteArguments = self.config!.offsiteUsername + "@" + self.config!.offsiteServer
-        self.args!.append(offsiteArguments!)
+        remotearg = self.config!.offsiteUsername + "@" + self.config!.offsiteServer
+        self.args!.append(remotearg!)
         self.args!.append("mkdir ~/.ssh")
         self.command = "/usr/bin/ssh"
-
         self.commandCopyPasteTermninal = nil
         self.commandCopyPasteTermninal = self.command! + " " + self.args![0] + " \""
         for i in 1 ..< self.args!.count {
@@ -192,7 +177,6 @@ final class ScpArgumentsSsh {
             self.argumentsChmod(key: key!)
 
         }
-
         return self.args
     }
 

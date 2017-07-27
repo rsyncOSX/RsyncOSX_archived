@@ -225,7 +225,7 @@ class ViewControllertabMain: NSViewController {
                     if self.hiddenID != nil {
                         // Delete Configurations and Schedules by hiddenID
                         Configurations.shared.deleteConfigurationsByhiddenID(hiddenID: self.hiddenID!)
-                        Schedules.shared.deleteSchedulesbyHiddenID(hiddenID: self.hiddenID!)
+                        Schedules.shared.deletechedule(hiddenID: self.hiddenID!)
                         // Reading main Configurations and Schedule to memory
                         self.reReadConfigurationsAndSchedules()
                         // And create a new Schedule object

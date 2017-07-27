@@ -5,7 +5,6 @@
 //  Created by Thomas Evensen on 07/05/16.
 //  Copyright © 2016 Thomas Evensen. All rights reserved.
 //
-//  swiftlint:disable line_length
 
 import Foundation
 
@@ -44,8 +43,7 @@ final class ScheduleOperation {
         // The Process itself is executed in GlobalMainQueue
         globalBackgroundQueue.async(execute: {
             let queue = OperationQueue()
-            // Create the Operation object which executes the
-            // scheduled job
+            // Create the Operation object which executes the scheduled job
             let task = ExecuteTask()
             // Add the Operation object to the queue for execution.
             // The queue executes the main() task whenever everything is ready for execution
@@ -65,7 +63,10 @@ final class ScheduleOperation {
             guard self.secondsToWait != nil else {
                 return
             }
-            self.waitForTask = Timer.scheduledTimer(timeInterval: self.secondsToWait!, target: self, selector: #selector(startJob), userInfo: nil, repeats: false)
+            self.waitForTask = Timer.scheduledTimer(timeInterval: self.secondsToWait!,
+                                                    target: self,
+                                                    selector: #selector(startJob),
+                                                    userInfo: nil, repeats: false)
             // Set reference to Timer that kicks of the Scheduled job
             // Reference is set for cancel job if requiered
             Schedules.shared.setJobWaiting(timer: self.waitForTask!)

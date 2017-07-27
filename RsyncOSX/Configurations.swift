@@ -12,7 +12,7 @@
 //  Copyright © 2016 Thomas Evensen. All rights reserved.
 //  swiftlint More work to fix - 17 July 2017
 //
-//  swiftlint:disable syntactic_sugar line_length file_length type_body_length
+//  swiftlint:disable syntactic_sugar file_length
 
 import Foundation
 import Cocoa
@@ -117,10 +117,6 @@ class Configurations {
     private var configurationsDataSource: Array<NSMutableDictionary>?
     // Object for batchQueue data and operations
     private var batchdata: BatchTaskWorkQueu?
-    // the MacSerialNumber
-    private var macSerialNumber: String?
-
-    // READ and SET all Configurations and arguments for rsync in object
 
     /// Function is reading all Configurations into memory from permanent store and
     /// prepare all arguments for rsync. All configurations are stored in the private
@@ -133,10 +129,7 @@ class Configurations {
         self.destroyConfigurations()
         // We read all stored configurations into memory
         for i in 0 ..< store.count {
-            //let config = ArgumentsOneConfig(config:store[i])
-            // Appending one (of many?) Config read from store to memory
             self.configurations.append(store[i])
-            // Appending all arguments for rsync for One configuration to memory
             let rsyncArgumentsOneConfig = ArgumentsOneConfiguration(config: store[i])
             self.argumentAllConfigurations.add(rsyncArgumentsOneConfig)
         }
@@ -165,10 +158,7 @@ class Configurations {
         self.configurationsDataSource = data
     }
 
-    // ALL THE GETTERS
-
     /// Function for getting the profile
-    /// If not set profile is nil
     func getProfile() -> String? {
         return self.profile
     }
@@ -176,16 +166,6 @@ class Configurations {
     /// Function for setting the profile
     func setProfile(profile: String?) {
         self.profile = profile
-    }
-
-    /// Function for returning the MacSerialNumber
-    func getMacSerialNumber() -> String {
-        guard self.macSerialNumber != nil else {
-            // Compute it, set it and return
-            self.macSerialNumber = self.getmacSerialNumber()
-            return self.macSerialNumber!
-        }
-        return self.macSerialNumber!
     }
 
     /// Function for getting Configurations read into memory
@@ -265,7 +245,7 @@ class Configurations {
     /// - parameter index: index of Configuration
     /// - parameter argtype : either .arg or .argdryRun (of enumtype argumentsRsync)
     /// - returns : array of Strings holding all computed arguments
-    func getRsyncArgumentOneConfig (index: Int, argtype: ArgumentsRsync) -> Array<String> {
+    func arguments4rsync (index: Int, argtype: ArgumentsRsync) -> Array<String> {
         let allarguments = (self.argumentAllConfigurations[index] as? ArgumentsOneConfiguration)!
         switch argtype {
         case .arg:
@@ -282,8 +262,6 @@ class Configurations {
         let config = Configuration(dictionary: dict)
         self.configurations.append(config)
     }
-
-    // DESTROY FUNCTIONS
 
     /// Function destroys records holding added configurations
     func destroyNewConfigurations() {
@@ -362,9 +340,7 @@ class Configurations {
             self.configurations[index].batch = "yes"
         }
         PersistentStoreageAPI.shared.saveConfigFromMemory()
-        // Reread Configuration and update datastructure for tableViews
         self.readAllConfigurationsAndArguments()
-        // Call the view and do a refresh of tableView
         if let pvc = self.viewControllertabMain as? ViewControllertabMain {
             self.refreshDelegate = pvc
             self.refreshDelegate?.refresh()
@@ -400,8 +376,6 @@ class Configurations {
         return self.batchdata?.getupdatedBatchdata()
     }
 
-    // ADDING CONFIGURATUÌONS
-
     // Temporary structure to hold added Configurations before writing to permanent store
     private var newConfigurations: Array<NSMutableDictionary>?
 
@@ -431,8 +405,6 @@ class Configurations {
         PersistentStoreageAPI.shared.saveNewConfigurations()
     }
 
-    // GET VALUES BY HIDDENID
-
     // Enum which resource to return
     enum ResourceInConfiguration {
         case remoteCatalog
@@ -441,10 +413,6 @@ class Configurations {
         case task
     }
 
-    /// Function is getting the remote catalog in a spesific Configuration
-    /// - parameter hiddenID: hiddenID for Configuration
-    /// - parameter resource: which resource to get from configuration
-    /// - returns : resource
     func getResourceConfiguration(_ hiddenID: Int, resource: ResourceInConfiguration) -> String {
 
         var result = self.configurations.filter({return ($0.hiddenID == hiddenID)})
@@ -468,9 +436,6 @@ class Configurations {
         }
     }
 
-    /// Function is getting the index of a spesific Configuration
-    /// - parameter hiddenID: hiddenID for Configuration
-    /// - returns : index of Configuration
     func getIndex(_ hiddenID: Int) -> Int {
         var index: Int = -1
         loop: for i in 0 ..< self.configurations.count where self.configurations[i].hiddenID == hiddenID {
@@ -480,26 +445,8 @@ class Configurations {
         return index
     }
 
-    /// Function is getting the hiddenID for a spesific Configuration
-    /// - parameter index: index for Configuration
-    /// - returns : hiddenID for Configuration
     func gethiddenID (index: Int) -> Int {
         return self.configurations[index].hiddenID
-    }
-
-    /// Function for computing MacSerialNumber
-    /// - returns : the MacSerialNumber
-    private func getmacSerialNumber() -> String {
-        // Get the platform expert
-        let platformExpert: io_service_t = IOServiceGetMatchingService(kIOMasterPortDefault, IOServiceMatching("IOPlatformExpertDevice"))
-        // Get the serial number as a CFString ( actually as Unmanaged<AnyObject>! )
-        let serialNumberAsCFString = IORegistryEntryCreateCFProperty(platformExpert, kIOPlatformSerialNumberKey as CFString!, kCFAllocatorDefault, 0)
-        // Release the platform expert (we're responsible)
-        IOObjectRelease(platformExpert)
-        // Take the unretained value of the unmanaged-any-object
-        // (so we're not responsible for releasing it)
-        // and pass it back as a String or, if it fails, an empty string
-        return (serialNumberAsCFString!.takeUnretainedValue() as? String) ?? ""
     }
 
 }

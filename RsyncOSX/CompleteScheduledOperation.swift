@@ -5,7 +5,6 @@
 //  Created by Thomas Evensen on 20/01/2017.
 //  Copyright © 2017 Thomas Evensen. All rights reserved.
 //
-//  swiftlint:disable line_length
 
 import Foundation
 
@@ -40,13 +39,14 @@ final class CompleteScheduledOperation {
         let dateStartstring = self.dateformatter!.string(from: dateStart!)
         let number = Numbers(output: output.getOutput())
         number.setNumbers()
-        let numberstring = number.statistics(numberOfFiles: nil, sizeOfFiles: nil)
-
-        Schedules.shared.addScheduleResult(self.hiddenID!, dateStart: dateStartstring, result: numberstring[0], date: datestring, schedule: schedule!)
+        let numberstring = number.stats(numberOfFiles: nil, sizeOfFiles: nil)
+        Schedules.shared.addresultschedule(self.hiddenID!,
+                                           dateStart: dateStartstring,
+                                           result: numberstring[0],
+                                           date: datestring, schedule: schedule!)
         // Writing timestamp to configuration
         _ = Configurations.shared.setCurrentDateonConfiguration(self.index!)
-        // Start next job, if any, by delegate
-        // and notify completed, by delegate
+        // Start next job, if any, by delegate and notify completed, by delegate
         if let pvc2 = Configurations.shared.viewControllertabMain as? ViewControllertabMain {
             globalMainQueue.async(execute: { () -> Void in
                 self.startnextjobDelegate = pvc2

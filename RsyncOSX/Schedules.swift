@@ -114,7 +114,7 @@ class Schedules: ScheduleWriteLoggData {
     /// - parameter schedule: schedule
     /// - parameter start: start date and time
     /// - parameter stop: stop date and time
-    func addScheduleData (_ hiddenID: Int, schedule: String, start: Date, stop: Date) {
+    func addschedule (_ hiddenID: Int, schedule: String, start: Date, stop: Date) {
         let dateformatter = Tools.shared.setDateformat()
         let dict = NSMutableDictionary()
         dict.setObject(hiddenID, forKey: "hiddenID" as NSCopying)
@@ -132,7 +132,7 @@ class Schedules: ScheduleWriteLoggData {
     /// deleted. When a Configuration are deleted all tasks connected to
     /// Configuration has to  be deleted.
     /// - parameter hiddenID : hiddenID for task
-    func deleteSchedulesbyHiddenID(hiddenID: Int) {
+    func deletechedule(hiddenID: Int) {
         var delete: Bool = false
         for i in 0 ..< self.schedule.count where self.schedule[i].hiddenID == hiddenID {
             // Mark Schedules for delete
@@ -150,7 +150,7 @@ class Schedules: ScheduleWriteLoggData {
     /// Function reads all Schedule data for one task by hiddenID
     /// - parameter hiddenID : hiddenID for task
     /// - returns : array of Schedules sorted after startDate
-    func readScheduledata (_ hiddenID: Int) -> Array<NSMutableDictionary> {
+    func readschedule (_ hiddenID: Int) -> Array<NSMutableDictionary> {
 
         var row: NSMutableDictionary
         var data = Array<NSMutableDictionary>()
@@ -191,7 +191,7 @@ class Schedules: ScheduleWriteLoggData {
 
     /// Function either deletes or stops Schedules.
     /// - parameter data : array of Schedules which some of them are either marked for stop or delete
-    func deleteOrStopSchedules (data: Array<NSMutableDictionary>) {
+    func deleteorstopschedule (data: Array<NSMutableDictionary>) {
 
         var update: Bool = false
 
