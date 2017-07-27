@@ -59,7 +59,7 @@ final class ScheduleOperation {
         // Removes the job of the stack
         if let dict = self.scheduledJobs!.jobToExecute() {
             let dateStart: Date = (dict.value(forKey: "start") as? Date)!
-            self.secondsToWait = self.scheduledJobs!.timeDoubleSeconds(dateStart, enddate: nil)
+            self.secondsToWait = Tools.shared.timeDoubleSeconds(dateStart, enddate: nil)
             guard self.secondsToWait != nil else {
                 return
             }
