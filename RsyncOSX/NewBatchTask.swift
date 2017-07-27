@@ -35,9 +35,6 @@ final class NewBatchTask {
     weak var indicatorDelegate: StartStopProgressIndicatorSingleTask?
     // Delegate function for show process step and present View
     weak var taskDelegate: SingleTask?
-
-    // REFERENCE VARIABLES
-
     // Reference to Process task
     var process: Process?
     // Getting output from rsync
@@ -139,7 +136,6 @@ final class NewBatchTask {
                 // Stack of ViewControllers
                 self.batchViewDelegate?.progressIndicatorViewBatch(operation: .stop)
                 self.executeBatch()
-
             case 1:
                 // Real run
                 let number = Numbers(output: self.output!.getOutput())
@@ -148,7 +144,6 @@ final class NewBatchTask {
                 batchobject.updateInProcess(numberOfFiles: self.output!.getMaxcount())
                 batchobject.setCompleted()
                 self.batchViewDelegate?.progressIndicatorViewBatch(operation: .refresh)
-
                 // Set date on Configuration
                 let index = Configurations.shared.getIndex(work.0)
                 let config = Configurations.shared.getConfigurations()[index]
@@ -156,21 +151,20 @@ final class NewBatchTask {
                 self.transfernum = String(number.getTransferredNumbers(numbers: .transferredNumber))
                 self.transferbytes = String(number.getTransferredNumbers(numbers: .transferredNumberSizebytes))
                 if config.offsiteServer.isEmpty {
-                    let numbers = number.statistics(numberOfFiles: self.transfernum, sizeOfFiles: self.transferbytes)[0]
+                    let numbers = number.stats(numberOfFiles: self.transfernum, sizeOfFiles: self.transferbytes)[0]
                     let result = config.localCatalog + " , " + "localhost" + " , " + numbers
                     self.outputbatch!.addLine(str: result)
                 } else {
-                    let numbers = number.statistics(numberOfFiles: self.transfernum, sizeOfFiles: self.transferbytes)[0]
+                    let numbers = number.stats(numberOfFiles: self.transfernum, sizeOfFiles: self.transferbytes)[0]
                     let result = config.localCatalog + " , " + config.offsiteServer + " , " + numbers
                     self.outputbatch!.addLine(str: result)
                 }
-
                 let hiddenID = Configurations.shared.gethiddenID(index: index)
                 Configurations.shared.setCurrentDateonConfiguration(index)
                 let numberOffFiles = self.transfernum
                 let sizeOfFiles = self.transferbytes
-                Schedules.shared.addScheduleResultManuel(hiddenID, result: number.statistics(numberOfFiles: numberOffFiles,
-                                                                                             sizeOfFiles: sizeOfFiles)[0])
+                Schedules.shared.addresultmanuel(hiddenID,
+                                     result: number.stats(numberOfFiles: numberOffFiles, sizeOfFiles: sizeOfFiles)[0])
                 self.executeBatch()
             default :
                 break

@@ -160,7 +160,7 @@ final class Numbers {
     }
 
     // Collecting statistics about job
-    func statistics(numberOfFiles: String?, sizeOfFiles: String?) -> Array<String> {
+    func stats(numberOfFiles: String?, sizeOfFiles: String?) -> Array<String> {
         var numberstring: String?
         var parts: Array<String>?
         guard self.resultRsync != nil else {

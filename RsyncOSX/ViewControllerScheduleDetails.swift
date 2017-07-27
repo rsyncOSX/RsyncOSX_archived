@@ -46,7 +46,7 @@ class ViewControllerScheduleDetails: NSViewController {
 
     @IBAction func update(_ sender: NSButton) {
         if let data = self.data {
-            Schedules.shared.deleteOrStopSchedules(data : data)
+            Schedules.shared.deleteorstopschedule(data : data)
             // Do a refresh of tableViews in both ViewControllertabMain and ViewControllertabSchedule
             self.refreshDelegate?.refresh()
             self.refreshDelegate2?.refresh()
@@ -76,7 +76,7 @@ class ViewControllerScheduleDetails: NSViewController {
     override func viewDidAppear() {
         super.viewDidAppear()
         self.hiddendID = self.getHiddenIDDelegate?.gethiddenID()
-        self.data = Schedules.shared.readScheduledata(self.hiddendID!)
+        self.data = Schedules.shared.readschedule(self.hiddendID!)
 
         globalMainQueue.async(execute: { () -> Void in
             self.scheduletable.reloadData()

@@ -39,8 +39,8 @@ final class CompleteScheduledOperation {
         let dateStartstring = self.dateformatter!.string(from: dateStart!)
         let number = Numbers(output: output.getOutput())
         number.setNumbers()
-        let numberstring = number.statistics(numberOfFiles: nil, sizeOfFiles: nil)
-        Schedules.shared.addScheduleResult(self.hiddenID!,
+        let numberstring = number.stats(numberOfFiles: nil, sizeOfFiles: nil)
+        Schedules.shared.addresultschedule(self.hiddenID!,
                                            dateStart: dateStartstring,
                                            result: numberstring[0],
                                            date: datestring, schedule: schedule!)

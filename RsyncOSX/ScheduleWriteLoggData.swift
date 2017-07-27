@@ -25,7 +25,7 @@ class ScheduleWriteLoggData {
     /// - parameter parent : key to log row
     /// - parameter resultExecuted : resultExecuted
     /// - parameter dateExecuted : dateExecuted
-    func deleteLogRow (hiddenID: Int, parent: String, resultExecuted: String, dateExecuted: String) {
+    func deletelogrow (hiddenID: Int, parent: String, resultExecuted: String, dateExecuted: String) {
         var result = self.schedule.filter({return ($0.hiddenID == hiddenID)})
         if result.count > 0 {
             loop: for i in 0 ..< result.count {
@@ -63,7 +63,7 @@ class ScheduleWriteLoggData {
     /// - parameter hiddenID : hiddenID for task
     /// - parameter result : String representation of result
     /// - parameter date : String representation of date and time stamp
-    func addScheduleResultManuel(_ hiddenID: Int, result: String) {
+    func addresultmanuel(_ hiddenID: Int, result: String) {
         // Set the current date
         let currendate = Date()
         let dateformatter = Tools.shared.setDateformat()
@@ -133,7 +133,7 @@ class ScheduleWriteLoggData {
     /// - parameter result : String representation of result
     /// - parameter date : String representation of date and time stamp for task executed
     /// - parameter schedule : schedule of task
-    func addScheduleResult(_ hiddenID: Int, dateStart: String, result: String, date: String, schedule: String) {
+    func addresultschedule(_ hiddenID: Int, dateStart: String, result: String, date: String, schedule: String) {
         if Configurations.shared.detailedlogging {
             loop : for i in 0 ..< self.schedule.count {
                 if self.schedule[i].hiddenID == hiddenID  &&
