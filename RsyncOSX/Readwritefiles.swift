@@ -49,14 +49,14 @@ class Readwritefiles {
             if let profile = self.profile {
                 let profilePath = Profiles()
                 profilePath.createDirectory()
-                str = "/Rsync/" + Configurations.shared.getMacSerialNumber() + "/" + profile + self.name!
+                str = "/Rsync/" + Tools.shared.getMacSerialNumber() + "/" + profile + self.name!
             } else {
                 // If profile not set use no profile
-                str = "/Rsync/" + Configurations.shared.getMacSerialNumber() + self.name!
+                str = "/Rsync/" + Tools.shared.getMacSerialNumber() + self.name!
             }
         } else {
             // no profile
-            str = "/Rsync/" + Configurations.shared.getMacSerialNumber() + self.name!
+            str = "/Rsync/" + Tools.shared.getMacSerialNumber() + self.name!
         }
         return (docuDir + str!)
     }

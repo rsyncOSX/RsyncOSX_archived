@@ -59,6 +59,8 @@ final class Tools {
     private var indexBoolremoteserverOff: [Bool]?
     weak var testconnectionsDelegate: Connections?
     weak var profilemenuDelegate: AddProfiles?
+    // the MacSerialNumber
+    private var macSerialNumber: String?
 
     // Creates a singelton of this class
     class var  shared: Tools {
@@ -223,4 +225,30 @@ final class Tools {
             return "/usr/bin/rsync"
         }
     }
+
+    /// Function for computing MacSerialNumber
+    /// - returns : the MacSerialNumber
+    func computemacSerialNumber() -> String {
+        // Get the platform expert
+        let platformExpert: io_service_t = IOServiceGetMatchingService(kIOMasterPortDefault, IOServiceMatching("IOPlatformExpertDevice"))
+        // Get the serial number as a CFString ( actually as Unmanaged<AnyObject>! )
+        let serialNumberAsCFString = IORegistryEntryCreateCFProperty(platformExpert, kIOPlatformSerialNumberKey as CFString!, kCFAllocatorDefault, 0)
+        // Release the platform expert (we're responsible)
+        IOObjectRelease(platformExpert)
+        // Take the unretained value of the unmanaged-any-object
+        // (so we're not responsible for releasing it)
+        // and pass it back as a String or, if it fails, an empty string
+        return (serialNumberAsCFString!.takeUnretainedValue() as? String) ?? ""
+    }
+
+    /// Function for returning the MacSerialNumber
+    func getMacSerialNumber() -> String {
+        guard self.macSerialNumber != nil else {
+            // Compute it, set it and return
+            self.macSerialNumber = self.computemacSerialNumber()
+            return self.macSerialNumber!
+        }
+        return self.macSerialNumber!
+    }
+
 }
