@@ -5,7 +5,7 @@
 //  Created by Thomas Evensen on 21.06.2017.
 //  Copyright © 2017 Thomas Evensen. All rights reserved.
 //
-//  swiftlint:disable syntactic_sugar line_length
+//  swiftlint:disable syntactic_sugar
 
 import Foundation
 import Cocoa
@@ -46,13 +46,11 @@ final class NewBatchTask {
     private var outputbatch: OutputBatch?
     // HiddenID task, set when row is selected
     private var hiddenID: Int?
-
     // Schedules in progress
     private var scheduledJobInProgress: Bool = false
-
     // Some max numbers
-    private var transferredNumber: String?
-    private var transferredNumberSizebytes: String?
+    private var transfernum: String?
+    private var transferbytes: String?
 
     // Present BATCH TASKS only
     // Start of BATCH tasks.
@@ -75,7 +73,6 @@ final class NewBatchTask {
 
     // Functions are called from batchView.
     func executeBatch() {
-
         if let batchobject = Configurations.shared.getBatchdataObject() {
             // Just copy the work object.
             // The work object will be removed in Process termination
@@ -90,13 +87,13 @@ final class NewBatchTask {
             switch work.1 {
             case 0:
                 self.batchViewDelegate?.progressIndicatorViewBatch(operation: .start)
-                let arguments: Array<String> = Configurations.shared.getRsyncArgumentOneConfig(index: index, argtype: .argdryRun)
+                let arguments: Array<String> = Configurations.shared.arguments4rsync(index: index, argtype: .argdryRun)
                 let process = Rsync(arguments: arguments)
                 // Setting reference to process for Abort if requiered
                 process.executeProcess(output: self.output!)
                 self.process = process.getProcess()
             case 1:
-                let arguments: Array<String> = Configurations.shared.getRsyncArgumentOneConfig(index: index, argtype: .arg)
+                let arguments: Array<String> = Configurations.shared.arguments4rsync(index: index, argtype: .arg)
                 let process = Rsync(arguments: arguments)
                 // Setting reference to process for Abort if requiered
                 process.executeProcess(output: self.output!)
@@ -126,13 +123,10 @@ final class NewBatchTask {
     // Called when ProcessTermination is called in main View.
     // Either dryn-run or realrun completed.
     func processTermination() {
-
         if let batchobject = Configurations.shared.getBatchdataObject() {
-
             if self.outputbatch == nil {
                 self.outputbatch = OutputBatch()
             }
-
             // Remove the first worker object
             let work = batchobject.nextBatchRemove()
             // (work.0) is estimationrun, (work.1) is real run
@@ -150,7 +144,6 @@ final class NewBatchTask {
                 // Real run
                 let number = Numbers(output: self.output!.getOutput())
                 number.setNumbers()
-
                 // Update files in work
                 batchobject.updateInProcess(numberOfFiles: self.output!.getMaxcount())
                 batchobject.setCompleted()
@@ -160,23 +153,24 @@ final class NewBatchTask {
                 let index = Configurations.shared.getIndex(work.0)
                 let config = Configurations.shared.getConfigurations()[index]
                 // Get transferred numbers from view
-                self.transferredNumber = String(number.getTransferredNumbers(numbers: .transferredNumber))
-                self.transferredNumberSizebytes = String(number.getTransferredNumbers(numbers: .transferredNumberSizebytes))
-
+                self.transfernum = String(number.getTransferredNumbers(numbers: .transferredNumber))
+                self.transferbytes = String(number.getTransferredNumbers(numbers: .transferredNumberSizebytes))
                 if config.offsiteServer.isEmpty {
-                    let result = config.localCatalog + " , " + "localhost" + " , " + number.statistics(numberOfFiles: self.transferredNumber, sizeOfFiles: self.transferredNumberSizebytes)[0]
+                    let numbers = number.statistics(numberOfFiles: self.transfernum, sizeOfFiles: self.transferbytes)[0]
+                    let result = config.localCatalog + " , " + "localhost" + " , " + numbers
                     self.outputbatch!.addLine(str: result)
                 } else {
-                    let result = config.localCatalog + " , " + config.offsiteServer + " , " + number.statistics(numberOfFiles: self.transferredNumber, sizeOfFiles: self.transferredNumberSizebytes)[0]
+                    let numbers = number.statistics(numberOfFiles: self.transfernum, sizeOfFiles: self.transferbytes)[0]
+                    let result = config.localCatalog + " , " + config.offsiteServer + " , " + numbers
                     self.outputbatch!.addLine(str: result)
                 }
 
                 let hiddenID = Configurations.shared.gethiddenID(index: index)
                 Configurations.shared.setCurrentDateonConfiguration(index)
-                let numberOffFiles = self.transferredNumber
-                let sizeOfFiles = self.transferredNumberSizebytes
-                Schedules.shared.addScheduleResultManuel(hiddenID, result: number.statistics(numberOfFiles: numberOffFiles, sizeOfFiles: sizeOfFiles)[0])
-
+                let numberOffFiles = self.transfernum
+                let sizeOfFiles = self.transferbytes
+                Schedules.shared.addScheduleResultManuel(hiddenID, result: number.statistics(numberOfFiles: numberOffFiles,
+                                                                                             sizeOfFiles: sizeOfFiles)[0])
                 self.executeBatch()
             default :
                 break

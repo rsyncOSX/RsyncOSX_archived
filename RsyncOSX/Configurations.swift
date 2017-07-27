@@ -245,7 +245,7 @@ class Configurations {
     /// - parameter index: index of Configuration
     /// - parameter argtype : either .arg or .argdryRun (of enumtype argumentsRsync)
     /// - returns : array of Strings holding all computed arguments
-    func getRsyncArgumentOneConfig (index: Int, argtype: ArgumentsRsync) -> Array<String> {
+    func arguments4rsync (index: Int, argtype: ArgumentsRsync) -> Array<String> {
         let allarguments = (self.argumentAllConfigurations[index] as? ArgumentsOneConfiguration)!
         switch argtype {
         case .arg:

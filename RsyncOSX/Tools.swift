@@ -5,7 +5,7 @@
 //  Created by Thomas Evensen on 22.07.2017.
 //  Copyright © 2017 Thomas Evensen. All rights reserved.
 //
-//  swiftlint:disable syntactic_sugar line_length
+//  swiftlint:disable syntactic_sugar
 
 import Foundation
 
@@ -116,9 +116,7 @@ final class Tools {
             }
             return
         }
-
         globalDefaultQueue.async(execute: { () -> Void in
-
             var port: Int = 22
             for i in 0 ..< Configurations.shared.configurationsDataSourcecount() {
                 if let record = Configurations.shared.getargumentAllConfigurations()[i] as? ArgumentsOneConfiguration {
@@ -126,7 +124,8 @@ final class Tools {
                         if let sshport: Int = record.config!.sshport {
                             port = sshport
                         }
-                        let (success, _) = Tools.shared.testTCPconnection(record.config!.offsiteServer, port: port, timeout: 1)
+                        let (success, _) = Tools.shared.testTCPconnection(record.config!.offsiteServer,
+                                                                          port: port, timeout: 1)
                         if success {
                             self.indexBoolremoteserverOff!.append(false)
                         } else {
@@ -153,8 +152,6 @@ final class Tools {
         })
     }
 
-    // Function for verifying thar rsync is present in either
-    // standard path or path set by user
     func noRsync() {
         if Configurations.shared.noRysync == true {
             if let rsync = Configurations.shared.rsyncPath {
@@ -227,12 +224,14 @@ final class Tools {
     }
 
     /// Function for computing MacSerialNumber
-    /// - returns : the MacSerialNumber
     func computemacSerialNumber() -> String {
         // Get the platform expert
-        let platformExpert: io_service_t = IOServiceGetMatchingService(kIOMasterPortDefault, IOServiceMatching("IOPlatformExpertDevice"))
+        let platformExpert: io_service_t = IOServiceGetMatchingService(kIOMasterPortDefault,
+                                                                       IOServiceMatching("IOPlatformExpertDevice"))
         // Get the serial number as a CFString ( actually as Unmanaged<AnyObject>! )
-        let serialNumberAsCFString = IORegistryEntryCreateCFProperty(platformExpert, kIOPlatformSerialNumberKey as CFString!, kCFAllocatorDefault, 0)
+        let serialNumberAsCFString = IORegistryEntryCreateCFProperty(platformExpert,
+                                                                     kIOPlatformSerialNumberKey as CFString!,
+                                                                     kCFAllocatorDefault, 0)
         // Release the platform expert (we're responsible)
         IOObjectRelease(platformExpert)
         // Take the unretained value of the unmanaged-any-object
