@@ -9,7 +9,7 @@
 //  Created by Thomas Evensen on 09/05/16.
 //  Copyright © 2016 Thomas Evensen. All rights reserved.
 //
-//  swiftlint:disable syntactic_sugar file_length cyclomatic_complexity line_length type_body_length
+//  swiftlint:disable syntactic_sugar file_length  line_length type_body_length
 
 import Foundation
 import Cocoa
@@ -23,11 +23,6 @@ class Schedules: ScheduleWriteLoggData {
         }
         return Singleton.instance
     }
-
-    // CONFIGURATIONS RSYNCOSX
-
-    // Schedule is defined in ScheduleWriteLoggData class
-    // var Schedule = Array<configurationSchedule>()
 
     // Reference to Timer in scheduled operation
     // Used to terminate scheduled jobs

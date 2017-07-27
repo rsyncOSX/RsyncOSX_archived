@@ -8,7 +8,7 @@
 // Interface between Configuration in memory and
 // presistent store. Class is a interface
 // for Configuration.
-//  swiftlint:disable syntactic_sugar line_length cyclomatic_complexity function_body_length
+//  swiftlint:disable syntactic_sugar line_length function_body_length
 
 import Foundation
 
@@ -117,55 +117,34 @@ final class PersistentStoreageConfiguration: Readwritefiles {
             "rsync": config.rsync,
             "dateRun": config.dateRun!,
             "hiddenID": config.hiddenID]
-        // All parameters parameter8 - parameter14 are set = nil if isEmpty
+        // All parameters parameter8 - parameter14 are set
+        config.parameter8 = self.checkparameter(param: config.parameter8)
         if config.parameter8 != nil {
-            if config.parameter8!.isEmpty {
-                config.parameter8 = nil
-            } else {
-                dict.setObject(config.parameter8!, forKey: "parameter8" as NSCopying)
-            }
+            dict.setObject(config.parameter8!, forKey: "parameter8" as NSCopying)
         }
+        config.parameter9 = self.checkparameter(param: config.parameter9)
         if config.parameter9 != nil {
-            if config.parameter9!.isEmpty {
-                config.parameter9 = nil
-            } else {
-                dict.setObject(config.parameter9!, forKey: "parameter9" as NSCopying)
-            }
+            dict.setObject(config.parameter8!, forKey: "parameter9" as NSCopying)
         }
+        config.parameter10 = self.checkparameter(param: config.parameter10)
         if config.parameter10 != nil {
-            if config.parameter10!.isEmpty {
-                config.parameter10 = nil
-            } else {
-                dict.setObject(config.parameter10!, forKey: "parameter10" as NSCopying)
-            }
+            dict.setObject(config.parameter10!, forKey: "parameter10" as NSCopying)
         }
+        config.parameter11 = self.checkparameter(param: config.parameter11)
         if config.parameter11 != nil {
-            if config.parameter11!.isEmpty {
-                config.parameter11 = nil
-            } else {
-                dict.setObject(config.parameter11!, forKey: "parameter11" as NSCopying)
-            }
+            dict.setObject(config.parameter11!, forKey: "parameter11" as NSCopying)
         }
+        config.parameter12 = self.checkparameter(param: config.parameter12)
         if config.parameter12 != nil {
-            if config.parameter12!.isEmpty {
-                config.parameter12 = nil
-            } else {
-                dict.setObject(config.parameter12!, forKey: "parameter12" as NSCopying)
-            }
+            dict.setObject(config.parameter12!, forKey: "parameter12" as NSCopying)
         }
+        config.parameter13 = self.checkparameter(param: config.parameter13)
         if config.parameter13 != nil {
-            if config.parameter13!.isEmpty {
-                config.parameter13 = nil
-            } else {
-                dict.setObject(config.parameter13!, forKey: "parameter13" as NSCopying)
-            }
+            dict.setObject(config.parameter13!, forKey: "parameter13" as NSCopying)
         }
+        config.parameter14 = self.checkparameter(param: config.parameter14)
         if config.parameter14 != nil {
-            if config.parameter14!.isEmpty {
-                config.parameter14 = nil
-            } else {
-                dict.setObject(config.parameter14!, forKey: "parameter14" as NSCopying)
-            }
+            dict.setObject(config.parameter14!, forKey: "parameter14" as NSCopying)
         }
         // All Ints are set
         if config.rsyncdaemon != nil {
@@ -175,6 +154,17 @@ final class PersistentStoreageConfiguration: Readwritefiles {
             dict.setObject(config.sshport!, forKey: "sshport" as NSCopying)
         }
         return dict
+    }
+
+    private func checkparameter (param: String?) -> String? {
+        if let parameter = param {
+            guard parameter.isEmpty == false else {
+                return nil
+            }
+            return parameter
+        } else {
+            return nil
+        }
     }
 
     // Function for setting the restore part of newly created added configuration

@@ -11,7 +11,8 @@
 //  Created by Thomas Evensen on 08/02/16.
 //  Copyright © 2016 Thomas Evensen. All rights reserved.
 //  swiftlint More work to fix - 17 July 2017
-//  swiftlint:disable syntactic_sugar line_length file_length cyclomatic_complexity type_body_length
+//
+//  swiftlint:disable syntactic_sugar line_length file_length type_body_length
 
 import Foundation
 import Cocoa
