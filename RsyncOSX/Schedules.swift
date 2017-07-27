@@ -9,7 +9,7 @@
 //  Created by Thomas Evensen on 09/05/16.
 //  Copyright © 2016 Thomas Evensen. All rights reserved.
 //
-//  swiftlint:disable syntactic_sugar file_length  line_length type_body_length
+//  swiftlint:disable syntactic_sugar
 
 import Foundation
 import Cocoa
@@ -84,7 +84,6 @@ class Schedules: ScheduleWriteLoggData {
         store = PersistentStoreageAPI.shared.getScheduleandhistory()
         // If Schedule already in memory dont read them again
         // Schedules are only read into memory if Dirty
-
         if store != nil {
             var data = Array<ConfigurationSchedule>()
             // Deleting any existing Schedule
@@ -151,10 +150,8 @@ class Schedules: ScheduleWriteLoggData {
     /// - parameter hiddenID : hiddenID for task
     /// - returns : array of Schedules sorted after startDate
     func readschedule (_ hiddenID: Int) -> Array<NSMutableDictionary> {
-
         var row: NSMutableDictionary
         var data = Array<NSMutableDictionary>()
-
         for i in 0 ..< self.schedule.count {
             if self.schedule[i].hiddenID == hiddenID {
                 row = [
@@ -177,9 +174,10 @@ class Schedules: ScheduleWriteLoggData {
                 data.append(row)
             }
             // Sorting schedule after dateStart, last startdate on top
-            data.sort { (schedule1, schedule2) -> Bool in
+            data.sort { (sched1, sched2) -> Bool in
                 let dateformatter = Tools.shared.setDateformat()
-                if dateformatter.date(from: (schedule1.value(forKey: "dateStart") as? String)!)! > dateformatter.date(from: (schedule2.value(forKey: "dateStart") as? String)!)! {
+                if dateformatter.date(from: (sched1.value(forKey: "dateStart") as? String)!)! >
+                    dateformatter.date(from: (sched2.value(forKey: "dateStart") as? String)!)! {
                     return true
                 } else {
                     return false
@@ -192,9 +190,7 @@ class Schedules: ScheduleWriteLoggData {
     /// Function either deletes or stops Schedules.
     /// - parameter data : array of Schedules which some of them are either marked for stop or delete
     func deleteorstopschedule (data: Array<NSMutableDictionary>) {
-
         var update: Bool = false
-
         if (data.count) > 0 {
             let hiddenID = data[0].value(forKey: "hiddenID") as? Int
             let stop = data.filter({ return (($0.value(forKey: "stopCellID") as? Int) == 1)})
@@ -228,7 +224,8 @@ class Schedules: ScheduleWriteLoggData {
     private func delete (dict: NSDictionary) {
         loop :  for i in 0 ..< self.schedule.count {
             if dict.value(forKey: "hiddenID") as? Int == self.schedule[i].hiddenID {
-                if dict.value(forKey: "dateStop") as? String == self.schedule[i].dateStop || self.schedule[i].dateStop == nil &&
+                if dict.value(forKey: "dateStop") as? String == self.schedule[i].dateStop ||
+                    self.schedule[i].dateStop == nil &&
                     dict.value(forKey: "schedule") as? String == self.schedule[i].schedule &&
                     dict.value(forKey: "dateStart") as? String == self.schedule[i].dateStart {
                     self.schedule[i].delete = true
@@ -240,8 +237,10 @@ class Schedules: ScheduleWriteLoggData {
 
     // Test if Schedule record in memory is set to stop er not
     private func stop (dict: NSDictionary) {
-        loop :  for i in 0 ..< self.schedule.count where dict.value(forKey: "hiddenID") as? Int == self.schedule[i].hiddenID {
-            if dict.value(forKey: "dateStop") as? String == self.schedule[i].dateStop || self.schedule[i].dateStop == nil &&
+        loop :  for i in 0 ..< self.schedule.count where
+            dict.value(forKey: "hiddenID") as? Int == self.schedule[i].hiddenID {
+            if dict.value(forKey: "dateStop") as? String == self.schedule[i].dateStop ||
+                self.schedule[i].dateStop == nil &&
                 dict.value(forKey: "schedule") as? String == self.schedule[i].schedule &&
                 dict.value(forKey: "dateStart") as? String == self.schedule[i].dateStart {
                 self.schedule[i].schedule = "stopped"
@@ -301,13 +300,11 @@ class Schedules: ScheduleWriteLoggData {
         var executed: Array<NSMutableDictionary>?
         if result.count > 0 {
             let scheduleConfig = result[0]
-
             dict = [
                 "hiddenID": scheduleConfig.hiddenID,
                 "schedule": scheduleConfig.schedule,
                 "dateStart": scheduleConfig.dateStart
             ]
-
             if let dicts = self.getScheduleExecuted(hiddenID) {
                 for i in 0 ..< dicts.count {
                     let key = self.computeKey(dict!)
