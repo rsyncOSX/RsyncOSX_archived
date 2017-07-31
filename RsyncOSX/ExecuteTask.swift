@@ -30,7 +30,7 @@ class ExecuteTask: Operation {
         // Get the first job of the queue
         if let dict: NSDictionary = Schedules.shared.scheduledJob {
             if let hiddenID: Int = dict.value(forKey: "hiddenID") as? Int {
-                let store: [Configuration] = PersistentStoreageAPI.shared.getConfigurations()
+                let store: [Configuration] = PersistentStorageAPI.shared.getConfigurations()
                 let configArray = store.filter({return ($0.hiddenID == hiddenID)})
                 guard configArray.count > 0 else {
                     if let pvc = Configurations.shared.viewControllertabMain as? ViewControllertabMain {

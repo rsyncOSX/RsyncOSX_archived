@@ -81,7 +81,7 @@ class Schedules: ScheduleWriteLoggData {
     /// The functions does NOT cancel waiting jobs or recalculate next scheduled job.
     func readAllSchedules() {
         var store: Array<ConfigurationSchedule>?
-        store = PersistentStoreageAPI.shared.getScheduleandhistory()
+        store = PersistentStorageAPI.shared.getScheduleandhistory()
         // If Schedule already in memory dont read them again
         // Schedules are only read into memory if Dirty
         if store != nil {
@@ -124,7 +124,7 @@ class Schedules: ScheduleWriteLoggData {
         self.schedule.append(newSchedule)
         // Set data dirty
         Configurations.shared.setDataDirty(dirty: true)
-        PersistentStoreageAPI.shared.saveScheduleFromMemory()
+        PersistentStorageAPI.shared.saveScheduleFromMemory()
     }
 
     /// Function deletes all Schedules by hiddenID. Invoked when Configurations are
@@ -140,7 +140,7 @@ class Schedules: ScheduleWriteLoggData {
             delete = true
         }
         if delete {
-            PersistentStoreageAPI.shared.saveScheduleFromMemory()
+            PersistentStorageAPI.shared.saveScheduleFromMemory()
             // Send message about refresh tableView
             self.doaRefreshTableviewMain()
         }
@@ -213,7 +213,7 @@ class Schedules: ScheduleWriteLoggData {
             }
             if update {
                 // Saving the resulting data file
-                PersistentStoreageAPI.shared.saveScheduleFromMemory()
+                PersistentStorageAPI.shared.saveScheduleFromMemory()
                 // Send message about refresh tableView
                 self.doaRefreshTableviewMain()
             }

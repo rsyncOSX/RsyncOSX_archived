@@ -13,7 +13,7 @@
 
 import Foundation
 
-final class PersistentStoreageScheduling: Readwritefiles {
+final class PersistentStorageScheduling: Readwritefiles {
 
     // Variables holds all scheduledata
     private var schedules: [NSDictionary]?

@@ -184,7 +184,7 @@ class ViewControllerRsyncParameters: NSViewController {
 
     // Function for saving changed or new parameters for one configuration.
     @IBAction func update(_ sender: NSButton) {
-        var configurations: [Configuration] = PersistentStoreageAPI.shared.getConfigurations()
+        var configurations: [Configuration] = PersistentStorageAPI.shared.getConfigurations()
         guard configurations.count > 0 else {
             return
         }

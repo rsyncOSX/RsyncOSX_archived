@@ -16,7 +16,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         // Check for new version
         _ = Checkfornewversion(inMain: true)
         // Read user configuration
-        if let userConfiguration =  PersistentStoreageAPI.shared.getUserconfiguration() {
+        if let userConfiguration =  PersistentStorageAPI.shared.getUserconfiguration() {
             // userConfiguration is never nil if object is created
             _ = Userconfiguration(userconfigRsyncOSX: userConfiguration)
         }
