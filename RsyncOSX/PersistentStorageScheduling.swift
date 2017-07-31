@@ -13,7 +13,7 @@
 
 import Foundation
 
-final class PersistentStoreScheduling: Readwritefiles {
+final class PersistentStorageScheduling: Readwritefiles {
 
     // Variables holds all scheduledata
     private var schedules: [NSDictionary]?
@@ -80,7 +80,7 @@ final class PersistentStoreScheduling: Readwritefiles {
     // Schedule is Array<NSDictionary>
     private func writeToStore (_ array: Array<NSDictionary>) {
         // Getting the object just for the write method, no read from persistent store
-        _ = self.writeDictionarytofile(array, task: .schedule)
+        _ = self.writeDatatoPersistentStorage(array, task: .schedule)
     }
 
     init () {

@@ -53,15 +53,9 @@ class Configurations {
 
     // Delegate functions
     weak var refreshDelegate: RefreshtableView?
-
-    // NEW VERSION OF RSYNCOSX
     // Download URL if new version is avaliable
     var URLnewVersion: String?
-
-    // CONFIGURATIONS RSYNCOSX
-
     // True if version 3.2.1 of rsync in /usr/local/bin
-    // let rsyncVer3:Bool = true
     var rsyncVer3: Bool = false
     // Optional path to rsync
     var rsyncPath: String?
@@ -73,8 +67,6 @@ class Configurations {
     var allowDoubleclick: Bool = true
     // Temporary path for restore
     var restorePath: String?
-
-    // OTHER SETTINGS
 
     // reference to Process, used for kill in executing task
     var process: Process?
@@ -106,8 +98,6 @@ class Configurations {
     // Reference to singletask object
     var singleTask: NewSingleTask?
 
-    // DATA STRUCTURES
-
     // The main structure storing all Configurations for tasks
     private var configurations = Array<Configuration>()
     // Array to store argumenst for all tasks.
@@ -125,7 +115,7 @@ class Configurations {
     /// configurations and computing new arguments.
     /// - parameter none: none
     func readAllConfigurationsAndArguments() {
-        let store: Array<Configuration> = PersistentStoreageAPI.shared.getConfigurations()
+        let store: Array<Configuration> = PersistentStorageAPI.shared.getConfigurations()
         self.destroyConfigurations()
         // We read all stored configurations into memory
         for i in 0 ..< store.count {
@@ -293,7 +283,7 @@ class Configurations {
         let dateformatter = Tools.shared.setDateformat()
         self.configurations[index].dateRun = dateformatter.string(from: currendate)
         // Saving updated configuration in memory to persistent store
-        PersistentStoreageAPI.shared.saveConfigFromMemory()
+        PersistentStorageAPI.shared.saveConfigFromMemory()
         // Reread Configuration and update datastructure for tableViews
         self.readAllConfigurationsAndArguments()
         // Call the view and do a refresh of tableView
@@ -315,7 +305,7 @@ class Configurations {
     /// - parameter index: index to Configuration to replace by config
     func updateConfigurations (_ config: Configuration, index: Int) {
         self.configurations[index] = config
-        PersistentStoreageAPI.shared.saveConfigFromMemory()
+        PersistentStorageAPI.shared.saveConfigFromMemory()
     }
 
     /// Function deletes Configuration in memory at hiddenID and
@@ -325,7 +315,7 @@ class Configurations {
     func deleteConfigurationsByhiddenID (hiddenID: Int) {
         let index = self.getIndex(hiddenID)
         self.configurations.remove(at: index)
-        PersistentStoreageAPI.shared.saveConfigFromMemory()
+        PersistentStorageAPI.shared.saveConfigFromMemory()
     }
 
     /// Function toggles Configurations for batch or no
@@ -339,7 +329,7 @@ class Configurations {
         } else {
             self.configurations[index].batch = "yes"
         }
-        PersistentStoreageAPI.shared.saveConfigFromMemory()
+        PersistentStorageAPI.shared.saveConfigFromMemory()
         self.readAllConfigurationsAndArguments()
         if let pvc = self.viewControllertabMain as? ViewControllertabMain {
             self.refreshDelegate = pvc
@@ -402,7 +392,7 @@ class Configurations {
 
     // Function for appending new Configurations to memory
     func appendNewConfigurations () {
-        PersistentStoreageAPI.shared.saveNewConfigurations()
+        PersistentStorageAPI.shared.saveNewConfigurations()
     }
 
     // Enum which resource to return
@@ -414,9 +404,7 @@ class Configurations {
     }
 
     func getResourceConfiguration(_ hiddenID: Int, resource: ResourceInConfiguration) -> String {
-
         var result = self.configurations.filter({return ($0.hiddenID == hiddenID)})
-
         guard result.count > 0 else {
             return ""
         }
@@ -448,5 +436,4 @@ class Configurations {
     func gethiddenID (index: Int) -> Int {
         return self.configurations[index].hiddenID
     }
-
 }

@@ -52,7 +52,7 @@ class ViewControllerProfile: NSViewController {
             // Destroy old configuration and save default configuration
             // New Configurations must be saved as empty Configurations
             Configurations.shared.destroyConfigurations()
-            PersistentStoreageAPI.shared.saveConfigFromMemory()
+            PersistentStorageAPI.shared.saveConfigFromMemory()
             self.newProfileDelegate?.newProfile(new: true)
         }
         self.profile = nil

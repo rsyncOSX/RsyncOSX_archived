@@ -66,7 +66,7 @@ class ViewControllerUserconfiguration: NSViewController {
             self.setRsyncPath()
             self.verifyRsync()
             self.setRestorePath()
-            _ = PersistentStoreageAPI.shared.saveUserconfiguration()
+            _ = PersistentStorageAPI.shared.saveUserconfiguration()
         }
         self.dismissDelegate?.dismiss_view(viewcontroller: self)
     }

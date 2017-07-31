@@ -5,7 +5,8 @@
 //  Created by Thomas Evensen on 20.06.2017.
 //  Copyright © 2017 Thomas Evensen. All rights reserved.
 //
-// swiftlint:disable syntactic_sugar line_length
+//  SwiftLint: OK 31 July 2017
+//  swiftlint:disable syntactic_sugar
 
 import Foundation
 
@@ -150,7 +151,8 @@ final class NewSingleTask {
                 let hiddenID = Configurations.shared.gethiddenID(index: self.index!)
                 let numberOffFiles = self.transferredNumber
                 let sizeOfFiles = self.transferredNumberSizebytes
-                Schedules.shared.addresultmanuel(hiddenID, result: number.stats(numberOfFiles: numberOffFiles, sizeOfFiles: sizeOfFiles)[0])
+                Schedules.shared.addresultmanuel(hiddenID,
+                                     result: number.stats(numberOfFiles: numberOffFiles, sizeOfFiles: sizeOfFiles)[0])
             case .abort:
                 self.taskDelegate?.singleTaskAbort(process: self.process)
                 self.workload = nil

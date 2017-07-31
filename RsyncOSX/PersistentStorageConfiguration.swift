@@ -5,11 +5,12 @@
 //  Created by Thomas Evensen on 09/12/15.
 //  Copyright © 2015 Thomas Evensen. All rights reserved.
 //
-//  swiftlint:disable syntactic_sugar  function_body_length
+//  SwiftLint: OK 31 July 2017
+//  swiftlint:disable syntactic_sugar function_body_length
 
 import Foundation
 
-final class PersistentStoreageConfiguration: Readwritefiles {
+final class PersistentStorageConfiguration: Readwritefiles {
 
     /// Variable computes max hiddenID used
     /// MaxhiddenID is used when new configurations
@@ -219,7 +220,7 @@ final class PersistentStoreageConfiguration: Readwritefiles {
     // Configuration is Array<NSDictionary>
     private func writeToStore (_ array: Array<NSDictionary>) {
         // Getting the object just for the write method, no read from persistent store
-        _ = self.writeDictionarytofile(array, task: .configuration)
+        _ = self.writeDatatoPersistentStorage(array, task: .configuration)
     }
 
     init () {

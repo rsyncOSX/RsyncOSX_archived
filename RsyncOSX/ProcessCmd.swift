@@ -5,6 +5,7 @@
 //  Created by Thomas Evensen on 10.03.2017.
 //  Copyright © 2017 Thomas Evensen. All rights reserved.
 //
+//  SwiftLint: OK 31 July 2017
 //  swiftlint:disable syntactic_sugar line_length
 
 import Foundation
@@ -20,7 +21,7 @@ class ProcessCmd {
     // If process is created in Operation
     var aScheduledOperation: Bool?
     // Observer
-    weak var observationCenter: NSObjectProtocol?
+    weak var notifications: NSObjectProtocol?
     // Command to be executed, normally rsync
     var command: String?
     // Arguments to command
@@ -49,7 +50,8 @@ class ProcessCmd {
 
         // Observator for reading data from pipe
         // Observer is removed when Process terminates
-        self.observationCenter = NotificationCenter.default.addObserver(forName: NSNotification.Name.NSFileHandleDataAvailable, object: nil, queue: nil) { _ -> Void in
+        self.notifications = NotificationCenter.default.addObserver(forName: NSNotification.Name.NSFileHandleDataAvailable,
+                                                            object: nil, queue: nil) { _ -> Void in
             let data = outHandle.availableData
             if data.count > 0 {
                 if let str = NSString(data: data, encoding: String.Encoding.utf8.rawValue) {
@@ -72,7 +74,8 @@ class ProcessCmd {
         }
         // Observator Process termination
         // Observer is removed when Process terminates
-        self.observationCenter = NotificationCenter.default.addObserver(forName: Process.didTerminateNotification, object: task, queue: nil) { _ -> Void in
+        self.notifications = NotificationCenter.default.addObserver(forName: Process.didTerminateNotification,
+                                                            object: task, queue: nil) { _ -> Void in
 
             // Check if in a scheduled operation, if not use delegate to inform about termination of Process()
             if self.aScheduledOperation! == false {
@@ -87,7 +90,7 @@ class ProcessCmd {
                 // After logging is done set reference to object = nil
                 Configurations.shared.operation = nil
             }
-            NotificationCenter.default.removeObserver(self.observationCenter as Any)
+            NotificationCenter.default.removeObserver(self.notifications as Any)
         }
 
         self.processReference = task

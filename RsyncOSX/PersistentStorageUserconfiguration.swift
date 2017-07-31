@@ -9,7 +9,7 @@
 
 import Foundation
 
-final class PersistentStoreageUserconfiguration: Readwritefiles {
+final class PersistentStorageUserconfiguration: Readwritefiles {
 
     /// Variable holds all configuration data
     private var userconfiguration: Array<NSDictionary>?
@@ -78,7 +78,7 @@ final class PersistentStoreageUserconfiguration: Readwritefiles {
     // Configuration is Array<NSDictionary>
     private func writeToStore (_ array: Array<NSDictionary>) {
         // Getting the object just for the write method, no read from persistent store
-        _ = self.writeDictionarytofile(array, task: .userconfig)
+        _ = self.writeDatatoPersistentStorage(array, task: .userconfig)
     }
 
     init () {

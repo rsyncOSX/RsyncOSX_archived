@@ -608,6 +608,8 @@ extension ViewControllertabMain : NSTableViewDelegate {
         if Configurations.shared.getConfigurations()[row].task == "backup" {
             Configurations.shared.setBatchYesNo(row)
         }
+        self.singletask = nil
+        self.setInfo(info: "Estimate", color: .blue)
     }
 }
 
