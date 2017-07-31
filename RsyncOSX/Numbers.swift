@@ -7,7 +7,7 @@
 //
 //  Class for crunching numbers from rsyn output.  Numbers are
 //  informal only, either used in main view or for logging purposes.
-//  swiftlint:disable syntactic_sugar line_length cyclomatic_complexity function_body_length
+//  swiftlint:disable syntactic_sugar cyclomatic_complexity function_body_length
 
 import Foundation
 
@@ -86,13 +86,13 @@ final class Numbers {
     // And it is a kind of UGLY...
     func setNumbers() {
 
-        let transferredFiles = self.output!.filter({(($0).contains("files transferred:"))})
+        let files = self.output!.filter({(($0).contains("files transferred:"))})
         // ver 3.x - [Number of regular files transferred: 24]
         // ver 2.x - [Number of files transferred: 24]
-        let transferredFilesSize = self.output!.filter({(($0).contains("Total transferred file size:"))})
+        let filesSize = self.output!.filter({(($0).contains("Total transferred file size:"))})
         // ver 3.x - [Total transferred file size: 278,642 bytes]
         // ver 2.x - [Total transferred file size: 278197 bytes]
-        let totalFileSize = self.output!.filter({(($0).contains("Total file size:"))})
+        let totalfileSize = self.output!.filter({(($0).contains("Total file size:"))})
         // ver 3.x - [Total file size: 1,016,382,148 bytes]
         // ver 2.x - [Total file size: 1016381703 bytes]
         let totalFilesNumber = self.output!.filter({(($0).contains("Number of files:"))})
@@ -105,14 +105,15 @@ final class Numbers {
 
         // Must make it somewhat robust, it it breaks all values is set to 0
 
-        if transferredFiles.count == 1 && transferredFilesSize.count == 1 &&  totalFileSize.count == 1 &&  totalFilesNumber.count == 1 {
+        if files.count == 1 && filesSize.count == 1 &&
+            totalfileSize.count == 1 &&  totalFilesNumber.count == 1 {
 
             if Configurations.shared.rsyncVer3 {
                 // Ver3 of rsync adds "," as 1000 mark, must replace it and then split numbers into components
-                let transferredFilesParts = (transferredFiles[0] as AnyObject).replacingOccurrences(of: ",", with: "").components(separatedBy: " ")
-                let transferredFilesSizeParts = (transferredFilesSize[0] as AnyObject).replacingOccurrences(of: ",", with: "").components(separatedBy: " ")
-                let totalFilesNumberParts = (totalFilesNumber[0] as AnyObject).replacingOccurrences(of: ",", with: "").components(separatedBy: " ")
-                let totalFileSizeParts = (totalFileSize[0] as AnyObject).replacingOccurrences(of: ",", with: "").components(separatedBy: " ")
+                let filesParts = (files[0] as AnyObject).replacingOccurrences(of: ",", with: "").components(separatedBy: " ")
+                let filesPartsSize = (filesSize[0] as AnyObject).replacingOccurrences(of: ",", with: "").components(separatedBy: " ")
+                let totalfilesParts = (totalFilesNumber[0] as AnyObject).replacingOccurrences(of: ",", with: "").components(separatedBy: " ")
+                let totalfilesPartsSize = (totalfileSize[0] as AnyObject).replacingOccurrences(of: ",", with: "").components(separatedBy: " ")
                 let newParts = (new[0] as AnyObject).replacingOccurrences(of: ",", with: "").components(separatedBy: " ")
                 let deleteParts = (delete[0] as AnyObject).replacingOccurrences(of: ",", with: "").components(separatedBy: " ")
 
@@ -123,30 +124,30 @@ final class Numbers {
                 // ["Number" "of" "created" "files:" "0"]
                 // ["Number" "of" "deleted" "files:" "0"]
 
-                if transferredFilesParts.count > 5 {self.transferredNumber = Int(transferredFilesParts[5])} else {self.transferredNumber = 0}
-                if transferredFilesSizeParts.count > 4 {self.transferredNumberSizebytes = Double(transferredFilesSizeParts[4])} else {self.transferredNumberSizebytes = 0}
-                if totalFilesNumberParts.count > 5 {self.totalNumber = Int(totalFilesNumberParts[5])} else {self.totalNumber = 0}
-                if totalFileSizeParts.count > 3 {self.totalNumberSizebytes = Double(totalFileSizeParts[3])} else {self.totalNumberSizebytes = 0}
-                if totalFilesNumberParts.count > 7 {self.totalDirs = Int(totalFilesNumberParts[7].replacingOccurrences(of: ")", with: ""))} else {self.totalDirs = 0}
+                if filesParts.count > 5 {self.transferredNumber = Int(filesParts[5])} else {self.transferredNumber = 0}
+                if filesPartsSize.count > 4 {self.transferredNumberSizebytes = Double(filesPartsSize[4])} else {self.transferredNumberSizebytes = 0}
+                if totalfilesParts.count > 5 {self.totalNumber = Int(totalfilesParts[5])} else {self.totalNumber = 0}
+                if totalfilesPartsSize.count > 3 {self.totalNumberSizebytes = Double(totalfilesPartsSize[3])} else {self.totalNumberSizebytes = 0}
+                if totalfilesParts.count > 7 {self.totalDirs = Int(totalfilesParts[7].replacingOccurrences(of: ")", with: ""))} else {self.totalDirs = 0}
                 if newParts.count > 4 {self.newfiles = Int(newParts[4])} else {self.newfiles = 0}
                 if deleteParts.count > 4 {self.deletefiles = Int(deleteParts[4])} else {self.deletefiles = 0}
 
             } else {
 
-                let transferredFilesParts = (transferredFiles[0] as AnyObject).components(separatedBy: " ")
-                let transferredFilesSizeParts = (transferredFilesSize[0] as AnyObject).components(separatedBy: " ")
-                let totalFilesNumberParts = (totalFilesNumber[0] as AnyObject).components(separatedBy: " ")
-                let totalFileSizeParts = (totalFileSize[0] as AnyObject).components(separatedBy: " ")
+                let filesParts = (files[0] as AnyObject).components(separatedBy: " ")
+                let filesPartsSize = (filesSize[0] as AnyObject).components(separatedBy: " ")
+                let totalfilesParts = (totalFilesNumber[0] as AnyObject).components(separatedBy: " ")
+                let totalfilesPartsSize = (totalfileSize[0] as AnyObject).components(separatedBy: " ")
 
                 // ["Number", "of", "files", "transferred:", "24"]
                 // ["Total", "transferred", "file", "size:", "281579", "bytes"]
                 // ["Number", "of", "files:", "3956"]
                 // ["Total", "file", "size:", "1016385085", "bytes"]
 
-                if transferredFilesParts.count > 4 {self.transferredNumber = Int(transferredFilesParts[4])} else {self.transferredNumber = 0}
-                if transferredFilesSizeParts.count > 4 {self.transferredNumberSizebytes = Double(transferredFilesSizeParts[4])} else {self.transferredNumberSizebytes = 0}
-                if totalFilesNumberParts.count > 3 {self.totalNumber = Int(totalFilesNumberParts[3])} else {self.totalNumber = 0}
-                if totalFileSizeParts.count > 3 {self.totalNumberSizebytes = Double(totalFileSizeParts[3])} else {self.totalNumberSizebytes = 0}
+                if filesParts.count > 4 {self.transferredNumber = Int(filesParts[4])} else {self.transferredNumber = 0}
+                if filesPartsSize.count > 4 {self.transferredNumberSizebytes = Double(filesPartsSize[4])} else {self.transferredNumberSizebytes = 0}
+                if totalfilesParts.count > 3 {self.totalNumber = Int(totalfilesParts[3])} else {self.totalNumber = 0}
+                if totalfilesPartsSize.count > 3 {self.totalNumberSizebytes = Double(totalfilesPartsSize[3])} else {self.totalNumberSizebytes = 0}
                 // Rsync ver 2.x does not count directories, new files or deleted files
                 self.totalDirs = 0
                 self.newfiles = 0
