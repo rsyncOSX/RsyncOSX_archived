@@ -44,6 +44,9 @@
 #include <fcntl.h>
 #include <signal.h>
 #include <sys/select.h>
+
+int select(int, fd_set *, fd_set *, fd_set * , struct timeval *);
+
 void ytcpsocket_set_block(int socket,int on) {
     int flags;
     flags = fcntl(socket,F_GETFL,0);

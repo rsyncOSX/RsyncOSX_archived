@@ -220,7 +220,7 @@ final class PersistentStoreageConfiguration: Readwritefiles {
     // Configuration is Array<NSDictionary>
     private func writeToStore (_ array: Array<NSDictionary>) {
         // Getting the object just for the write method, no read from persistent store
-        _ = self.writeDictionarytofile(array, task: .configuration)
+        _ = self.writeDatatoPersistentStorage(array, task: .configuration)
     }
 
     init () {

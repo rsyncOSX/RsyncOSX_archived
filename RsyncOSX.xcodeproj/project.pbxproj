@@ -23,7 +23,7 @@
 		A04492A91D658F2100B3CE17 /* ytcpsocket.c in Sources */ = {isa = PBXBuildFile; fileRef = A04492951D658F2100B3CE17 /* ytcpsocket.c */; };
 		A04492AA1D658F2100B3CE17 /* yudpsocket.c in Sources */ = {isa = PBXBuildFile; fileRef = A04492961D658F2100B3CE17 /* yudpsocket.c */; };
 		A04492AC1D658F2100B3CE17 /* Configuration.swift in Sources */ = {isa = PBXBuildFile; fileRef = A04492981D658F2100B3CE17 /* Configuration.swift */; };
-		A04492B01D658F2100B3CE17 /* PersistentStoreScheduling.swift in Sources */ = {isa = PBXBuildFile; fileRef = A044929C1D658F2100B3CE17 /* PersistentStoreScheduling.swift */; };
+		A04492B01D658F2100B3CE17 /* PersistentStoreageScheduling.swift in Sources */ = {isa = PBXBuildFile; fileRef = A044929C1D658F2100B3CE17 /* PersistentStoreageScheduling.swift */; };
 		A04492B21D658F2100B3CE17 /* RsyncProcessArguments.swift in Sources */ = {isa = PBXBuildFile; fileRef = A044929E1D658F2100B3CE17 /* RsyncProcessArguments.swift */; };
 		A04492B41D658F2100B3CE17 /* CopyFileArguments.swift in Sources */ = {isa = PBXBuildFile; fileRef = A04492A01D658F2100B3CE17 /* CopyFileArguments.swift */; };
 		A04492B51D658F2100B3CE17 /* Configurations.swift in Sources */ = {isa = PBXBuildFile; fileRef = A04492A11D658F2100B3CE17 /* Configurations.swift */; };
@@ -102,7 +102,7 @@
 		A04492951D658F2100B3CE17 /* ytcpsocket.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = ytcpsocket.c; sourceTree = "<group>"; };
 		A04492961D658F2100B3CE17 /* yudpsocket.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = yudpsocket.c; sourceTree = "<group>"; };
 		A04492981D658F2100B3CE17 /* Configuration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Configuration.swift; sourceTree = "<group>"; };
-		A044929C1D658F2100B3CE17 /* PersistentStoreScheduling.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersistentStoreScheduling.swift; sourceTree = "<group>"; };
+		A044929C1D658F2100B3CE17 /* PersistentStoreageScheduling.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersistentStoreageScheduling.swift; sourceTree = "<group>"; };
 		A044929E1D658F2100B3CE17 /* RsyncProcessArguments.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RsyncProcessArguments.swift; sourceTree = "<group>"; };
 		A04492A01D658F2100B3CE17 /* CopyFileArguments.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CopyFileArguments.swift; sourceTree = "<group>"; };
 		A04492A11D658F2100B3CE17 /* Configurations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Configurations.swift; sourceTree = "<group>"; };
@@ -361,7 +361,7 @@
 		A0BAA5F31D70C349003BE69F /* Schedule */ = {
 			isa = PBXGroup;
 			children = (
-				A044929C1D658F2100B3CE17 /* PersistentStoreScheduling.swift */,
+				A044929C1D658F2100B3CE17 /* PersistentStoreageScheduling.swift */,
 				A04492A21D658F2100B3CE17 /* Schedules.swift */,
 				A0041EEE1D7D4357002BF081 /* ScheduleSortedAndExpanded.swift */,
 			);
@@ -576,7 +576,7 @@
 				A091C6581D86A0A800278E74 /* ViewControllerCopyFiles.swift in Sources */,
 				E92E1B981E7438CF004876D8 /* Help.swift in Sources */,
 				A08110671D6DA7D8009444D3 /* ViewControllerProgressProcess.swift in Sources */,
-				A04492B01D658F2100B3CE17 /* PersistentStoreScheduling.swift in Sources */,
+				A04492B01D658F2100B3CE17 /* PersistentStoreageScheduling.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

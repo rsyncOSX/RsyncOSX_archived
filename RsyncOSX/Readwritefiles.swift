@@ -119,7 +119,7 @@ class Readwritefiles {
     }
 
     // Function for write data to persistent store
-    func writeDictionarytofile (_ array: Array<NSDictionary>, task: WhatToReadWrite) -> Bool {
+    func writeDatatoPersistentStorage (_ array: Array<NSDictionary>, task: WhatToReadWrite) -> Bool {
         self.setPreferences(task)
         guard self.task != nil  else {
             return false

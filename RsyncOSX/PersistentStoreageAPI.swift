@@ -74,7 +74,7 @@ final class PersistentStoreageAPI {
 
     // Saving Schedules from memory to persistent store
     func saveScheduleFromMemory() {
-        let store = PersistentStoreScheduling()
+        let store = PersistentStoreageScheduling()
         store.savescheduleInMemoryToPersistentStore()
         Schedules.shared.readAllSchedules()
         // Kick off Scheduled job again
@@ -90,7 +90,7 @@ final class PersistentStoreageAPI {
     // Read schedules and history
     // If no Schedule from persistent store return nil
     func getScheduleandhistory () -> [ConfigurationSchedule]? {
-        let read = PersistentStoreScheduling()
+        let read = PersistentStoreageScheduling()
         var schedule = [ConfigurationSchedule]()
         // Either read from persistent store or
         // return Schedule already in memory
@@ -115,7 +115,7 @@ final class PersistentStoreageAPI {
     // Readig schedules only (not sorted and expanden)
     // Sorted and expanded are only stored in memory
     func getScheduleonly () -> [ConfigurationSchedule] {
-        let read = PersistentStoreScheduling()
+        let read = PersistentStoreageScheduling()
         if read.readSchedulesFromPermanentStore() != nil {
             var schedule = [ConfigurationSchedule]()
             for dict in read.readSchedulesFromPermanentStore()! {
