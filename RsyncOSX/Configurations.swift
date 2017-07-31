@@ -12,7 +12,7 @@
 //  Copyright © 2016 Thomas Evensen. All rights reserved.
 //  swiftlint More work to fix - 17 July 2017
 //
-//  swiftlint:disable syntactic_sugar file_length
+//  swiftlint:disable syntactic_sugar
 
 import Foundation
 import Cocoa
@@ -53,15 +53,9 @@ class Configurations {
 
     // Delegate functions
     weak var refreshDelegate: RefreshtableView?
-
-    // NEW VERSION OF RSYNCOSX
     // Download URL if new version is avaliable
     var URLnewVersion: String?
-
-    // CONFIGURATIONS RSYNCOSX
-
     // True if version 3.2.1 of rsync in /usr/local/bin
-    // let rsyncVer3:Bool = true
     var rsyncVer3: Bool = false
     // Optional path to rsync
     var rsyncPath: String?
@@ -73,8 +67,6 @@ class Configurations {
     var allowDoubleclick: Bool = true
     // Temporary path for restore
     var restorePath: String?
-
-    // OTHER SETTINGS
 
     // reference to Process, used for kill in executing task
     var process: Process?
@@ -105,8 +97,6 @@ class Configurations {
     var rsyncerror: Bool = true
     // Reference to singletask object
     var singleTask: NewSingleTask?
-
-    // DATA STRUCTURES
 
     // The main structure storing all Configurations for tasks
     private var configurations = Array<Configuration>()
@@ -414,9 +404,7 @@ class Configurations {
     }
 
     func getResourceConfiguration(_ hiddenID: Int, resource: ResourceInConfiguration) -> String {
-
         var result = self.configurations.filter({return ($0.hiddenID == hiddenID)})
-
         guard result.count > 0 else {
             return ""
         }
@@ -448,5 +436,4 @@ class Configurations {
     func gethiddenID (index: Int) -> Int {
         return self.configurations[index].hiddenID
     }
-
 }
