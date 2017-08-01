@@ -36,7 +36,8 @@ class ViewControllerBatch: NSViewController {
     @IBOutlet weak var label: NSTextField!
     @IBOutlet weak var closeinseconds: NSTextField!
     @IBOutlet weak var rownumber: NSTextField!
-
+    @IBOutlet weak var executeButton: NSButton!
+    
     // Delegeta to Dismisser
     weak var dismissDelegate: DismissViewController?
     // Delegate to Abort operations
@@ -62,6 +63,7 @@ class ViewControllerBatch: NSViewController {
         self.batchTask = NewBatchTask()
         self.batchTask!.executeBatch()
         self.closeButton.title = "Abort"
+        self.executeButton.isEnabled = false
         self.close = false
     }
 
@@ -98,6 +100,7 @@ class ViewControllerBatch: NSViewController {
     override func viewDidAppear() {
         super.viewDidAppear()
         self.closeinseconds.isHidden = true
+        self.executeButton.isEnabled = true
         self.working.stopAnimation(nil)
         self.close = true
         self.label.stringValue = "Progress "
