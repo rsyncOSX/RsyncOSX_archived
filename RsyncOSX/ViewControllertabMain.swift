@@ -1099,11 +1099,8 @@ extension ViewControllertabMain:SingleTask {
     func setNumbers(output: OutputProcess?) {
 
         globalMainQueue.async(execute: { () -> Void in
-
             self.showProcessInfo(info: .setmaxNumber)
-
             guard output != nil else {
-
                 self.transferredNumber.stringValue = ""
                 self.transferredNumberSizebytes.stringValue = ""
                 self.totalNumber.stringValue = ""
@@ -1111,13 +1108,10 @@ extension ViewControllertabMain:SingleTask {
                 self.totalDirs.stringValue = ""
                 self.newfiles.stringValue = ""
                 self.deletefiles.stringValue = ""
-
                 return
             }
-
             let number = Numbers(output: output!.getOutput())
             number.setNumbers()
-
             self.transferredNumber.stringValue = NumberFormatter.localizedString(from:NSNumber(value: number.getTransferredNumbers(numbers: .transferredNumber)), number: NumberFormatter.Style.decimal)
             self.transferredNumberSizebytes.stringValue = NumberFormatter.localizedString(from: NSNumber(value: number.getTransferredNumbers(numbers: .transferredNumberSizebytes)), number: NumberFormatter.Style.decimal)
             self.totalNumber.stringValue = NumberFormatter.localizedString(from: NSNumber(value: number.getTransferredNumbers(numbers: .totalNumber)), number: NumberFormatter.Style.decimal)
