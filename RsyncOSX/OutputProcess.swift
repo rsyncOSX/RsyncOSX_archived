@@ -15,18 +15,11 @@ protocol RsyncError: class {
 
 final class OutputProcess {
 
-    // calculated number of files
-    // output Array to keep output from rsync in
     private var output: Array<String>?
-    // output Array temporary indexes
     private var startIndex: Int?
     private var endIndex: Int?
-    // Maxnumber
     private var maxNumber: Int = 0
-
-    // Error delegate
     weak var errorDelegate: ViewControllertabMain?
-    // Last record of rsync 
     weak var lastrecordDelegate: ViewControllertabMain?
 
     func getMaxcount() -> Int {
@@ -50,7 +43,6 @@ final class OutputProcess {
     // Add line to output
     func addLine (_ str: String) {
         let sentence = str
-
         if self.startIndex == nil {
             self.startIndex = 0
         } else {
@@ -64,7 +56,6 @@ final class OutputProcess {
         self.endIndex = self.output!.count
         // Set maxnumber so far
         self.maxNumber = self.endIndex!
-
         // rsync error
         let error = sentence.contains("rsync error:")
         // There is an error in transferring files
@@ -80,7 +71,6 @@ final class OutputProcess {
     // Add line to output
     func addLine2 (_ str: String) {
         let sentence = str
-
         if self.startIndex == nil {
             self.startIndex = 0
         } else {
@@ -89,11 +79,9 @@ final class OutputProcess {
         sentence.enumerateLines { (line, _) in
             self.output!.append(line)
         }
-
         self.endIndex = self.output!.count
         // Set maxnumber so far
         self.maxNumber = self.endIndex!
-
     }
 
     init () {

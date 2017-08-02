@@ -76,7 +76,6 @@ class ProcessCmd {
         // Observer is removed when Process terminates
         self.notifications = NotificationCenter.default.addObserver(forName: Process.didTerminateNotification,
                                                             object: task, queue: nil) { _ -> Void in
-
             // Check if in a scheduled operation, if not use delegate to inform about termination of Process()
             if self.aScheduledOperation! == false {
                 // Send message about process termination
@@ -92,7 +91,6 @@ class ProcessCmd {
             }
             NotificationCenter.default.removeObserver(self.notifications as Any)
         }
-
         self.processReference = task
         task.launch()
     }

@@ -63,11 +63,9 @@ class Readwritefiles {
 
     // Function for reading data from persistent store
     func getDatafromfile () -> Array<NSDictionary>? {
-
         guard self.task != nil  else {
             return nil
         }
-
         switch self.task! {
         case .schedule:
             if Configurations.shared.isDataDirty() {

@@ -20,7 +20,6 @@ protocol ReportError: class {
 
 class Files {
 
-    // Report error
     weak var reportErrorDelegate: ReportError?
     // Which root
     var root: Root?
@@ -131,7 +130,6 @@ class Files {
                     self.reportErrorDelegate?.reportError(errorstr: error.description)
                 }
             }
-
         }
     }
 

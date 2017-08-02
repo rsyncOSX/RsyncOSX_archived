@@ -171,7 +171,7 @@ final class Numbers {
         var bytesTotal: Double = 0
         var bytesSec: Double = 0
         var seconds: Double = 0
-        guard parts!.count > 9 else { return ["0", "0"]}
+        guard parts!.count > 9 else {return ["0", "0"]}
         guard Double(parts![1]) != nil && (Double(parts![5]) != nil) && (Double(parts![8]) != nil) else {
             return ["0", "0"]
         }

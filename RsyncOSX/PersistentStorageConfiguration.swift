@@ -59,18 +59,14 @@ final class PersistentStorageConfiguration: Readwritefiles {
     // NB : Function does NOT store Configurations to persistent store
     // Must call saveconfigToPersistentStore method
     func addConfigurationsToMemory (_ backup: NSMutableDictionary) {
-
         let localCatalog = backup.value(forKey: "localCatalog") as? String
         let offsiteCatalog = backup.value(forKey: "offsiteCatalog") as? String
         let singleFile = backup.value(forKey: "singleFile") as? Int
-
         // If localCatalog == offsiteCataog do NOT append
         if localCatalog != offsiteCatalog {
-
             var array = Array<NSDictionary>()
             // Get existing configurations from memory
             let configurations: [Configuration] = Configurations.shared.getConfigurations()
-
             // copy existing backups before adding
             for i in 0 ..< configurations.count {
                 array.append(self.dictionaryFromconfig(index: i))
@@ -95,7 +91,6 @@ final class PersistentStorageConfiguration: Readwritefiles {
 
     // Function for returning a NSMutabledictionary from a configuration record
     private func dictionaryFromconfig (index: Int) -> NSMutableDictionary {
-
         var config: Configuration = Configurations.shared.getConfigurations()[index]
         let dict: NSMutableDictionary = [
             "task": config.task,

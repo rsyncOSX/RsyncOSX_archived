@@ -26,11 +26,9 @@ final class PersistentStorageScheduling: Readwritefiles {
 
     // Saving Schedules from MEMORY to persistent store
     func savescheduleInMemoryToPersistentStore() {
-
         var array = Array<NSDictionary>()
         // Reading Schedules from memory
         let data = Schedules.shared.getSchedule()
-
         for i in 0 ..< data.count {
             let schedule = data[i]
             let dict: NSMutableDictionary = [
