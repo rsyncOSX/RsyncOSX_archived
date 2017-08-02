@@ -28,7 +28,6 @@ final class PersistentStorageUserconfiguration: Readwritefiles {
         var allowDoubleclick: Int?
         var rsyncerror: Int?
         var restorePath: String?
-
         if Configurations.shared.rsyncVer3 {
             version3Rsync = 1
         } else {
@@ -55,9 +54,7 @@ final class PersistentStorageUserconfiguration: Readwritefiles {
         } else {
             rsyncerror = 0
         }
-
         var array = Array<NSDictionary>()
-
         let dict: NSMutableDictionary = [
             "version3Rsync": version3Rsync! as Int,
             "detailedlogging": detailedlogging! as Int,
