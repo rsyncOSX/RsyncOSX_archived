@@ -3026,7 +3026,7 @@ DQ
                                 <constraints>
                                     <constraint firstAttribute="height" constant="17" id="wvL-f2-oAi"/>
                                 </constraints>
-                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Progress" id="IoG-CI-zhH">
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="Progress" id="IoG-CI-zhH">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
@@ -3104,6 +3104,7 @@ DQ
                     <connections>
                         <outlet property="closeButton" destination="kMM-ZX-vSQ" id="3RR-WQ-IyF"/>
                         <outlet property="closeinseconds" destination="w95-Na-zVc" id="XZ7-IU-hPc"/>
+                        <outlet property="executeButton" destination="fsl-j9-KAO" id="NBV-ES-whh"/>
                         <outlet property="label" destination="1lR-Vu-lR3" id="AbJ-fG-Cdu"/>
                         <outlet property="mainTableView" destination="0Yv-Sg-Gse" id="xfn-x5-hYZ"/>
                         <outlet property="rownumber" destination="UIu-W5-NZi" id="0QS-gg-dFa"/>
