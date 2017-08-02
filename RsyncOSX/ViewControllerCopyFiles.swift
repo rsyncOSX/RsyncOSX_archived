@@ -132,6 +132,7 @@ class ViewControllerCopyFiles: NSViewController {
         self.displayRemoteserver(index: nil)
         self.remoteCatalog.stringValue = ""
         self.selectButton.title = "Get source"
+        self.rsync = false
     }
 
     fileprivate func displayRemoteserver(index: Int?) {
@@ -202,7 +203,7 @@ class ViewControllerCopyFiles: NSViewController {
 
         let answer = Alerts.dialogOKCancel("Copy single files or directory", text: "Start copy?")
         if answer {
-
+            self.copyButton.title = "Execute"
             self.rsync = true
             self.workingRsync.startAnimation(nil)
             self.copyFiles!.executeRsync(remotefile: remoteCatalog!.stringValue, localCatalog: localCatalog!.stringValue, dryrun: false)
