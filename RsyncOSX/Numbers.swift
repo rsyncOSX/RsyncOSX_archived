@@ -37,20 +37,19 @@ final class Numbers {
     var transferNumSize: Double?
     var newfiles: Int?
     var deletefiles: Int?
-
     // Temporary numbers
-    var files: Array<String>?
     // ver 3.x - [Number of regular files transferred: 24]
     // ver 2.x - [Number of files transferred: 24]
-    var filesSize: Array<String>?
+    var files: Array<String>?
     // ver 3.x - [Total transferred file size: 278,642 bytes]
     // ver 2.x - [Total transferred file size: 278197 bytes]
-    var totfileSize: Array<String>?
+    var filesSize: Array<String>?
     // ver 3.x - [Total file size: 1,016,382,148 bytes]
     // ver 2.x - [Total file size: 1016381703 bytes]
-    var totfilesNum: Array<String>?
+    var totfileSize: Array<String>?
     // ver 3.x - [Number of files: 3,956 (reg: 3,197, dir: 758, link: 1)]
     // ver 2.x - [Number of files: 3956]
+    var totfilesNum: Array<String>?
     // New files
     var new: Array<String>?
     // Delete files
@@ -146,7 +145,7 @@ final class Numbers {
 
     // Collecting statistics about job
     func stats(numberOfFiles: String?, sizeOfFiles: String?) -> Array<String> {
-        var numberstring: String?
+        var numbers: String?
         var parts: Array<String>?
         guard self.resultRsync != nil else {
             if numberOfFiles == nil || sizeOfFiles == nil {
@@ -172,9 +171,7 @@ final class Numbers {
         var bytesTotal: Double = 0
         var bytesSec: Double = 0
         var seconds: Double = 0
-        guard parts!.count > 9 else {
-            return ["0", "0"]
-        }
+        guard parts!.count > 9 else { return ["0", "0"]}
         guard Double(parts![1]) != nil && (Double(parts![5]) != nil) && (Double(parts![8]) != nil) else {
             return ["0", "0"]
         }
@@ -184,7 +181,6 @@ final class Numbers {
         // Received
         resultreceived = parts![5] + " bytes in "
         bytesTotalreceived = Double(parts![5])!
-
         if bytesTotalsent > bytesTotalreceived {
             // backup task
             result = resultsent! + parts![8] + " b/sec"
@@ -198,20 +194,21 @@ final class Numbers {
             seconds = bytesTotalreceived/bytesSec
             bytesTotal = bytesTotalreceived
         }
+        numbers = self.formatresult(numberOfFiles: numberOfFiles, bytesTotal: bytesTotal, seconds: seconds)
+        return [numbers!, result ?? "hmmm...."]
+    }
+
+    private func formatresult(numberOfFiles: String?, bytesTotal: Double, seconds: Double) -> String {
         // Dont have numbers of file as input
         if numberOfFiles == nil {
-            numberstring = String(self.output!.count) + " files : " +
+            return String(self.output!.count) + " files : " +
                 String(format:"%.2f", (bytesTotal/1024)/1000) +
                 " MB in " + String(format:"%.2f", seconds) + " seconds"
         } else {
-            numberstring = numberOfFiles! + " files : " +
+            return numberOfFiles! + " files : " +
                 String(format:"%.2f", (bytesTotal/1024)/1000) +
                 " MB in " + String(format:"%.2f", seconds) + " seconds"
         }
-        if result == nil {
-            result = "hmmm...."
-        }
-        return [numberstring!, result!]
     }
 
     init (output: Array<String>) {

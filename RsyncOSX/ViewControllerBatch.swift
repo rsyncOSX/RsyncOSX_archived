@@ -37,7 +37,7 @@ class ViewControllerBatch: NSViewController {
     @IBOutlet weak var closeinseconds: NSTextField!
     @IBOutlet weak var rownumber: NSTextField!
     @IBOutlet weak var executeButton: NSButton!
-    
+
     // Delegeta to Dismisser
     weak var dismissDelegate: DismissViewController?
     // Delegate to Abort operations
