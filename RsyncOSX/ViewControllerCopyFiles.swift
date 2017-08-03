@@ -24,29 +24,25 @@ class ViewControllerCopyFiles: NSViewController {
     var copyFiles: CopyFiles?
     // Index of selected row
     var index: Int?
-    // Delegate for getting index from Execute view
-    weak var indexDelegate: GetSelecetedIndex?
-
-    // Info about server and remote catalogs
-    @IBOutlet weak var server: NSTextField!
-    @IBOutlet weak var rcatalog: NSTextField!
-
-    // rsync task
     var rsync: Bool = false
     var estimated: Bool = false
+    weak var indexDelegate: GetSelecetedIndex?
+
+    @IBOutlet weak var numberofrows: NSTextField!
+    @IBOutlet weak var server: NSTextField!
+    @IBOutlet weak var rcatalog: NSTextField!
 
     // Information about rsync output
     // self.presentViewControllerAsSheet(self.ViewControllerInformation)
     lazy var viewControllerInformation: NSViewController = {
-        return (self.storyboard!.instantiateController(withIdentifier: NSStoryboard.SceneIdentifier(rawValue: "StoryboardInformationCopyFilesID"))
-            as? NSViewController)!
+        return (self.storyboard!.instantiateController(withIdentifier: NSStoryboard.SceneIdentifier(rawValue: "StoryboardInformationCopyFilesID")) as? NSViewController)!
     }()
 
     // Source for CopyFiles
     // self.presentViewControllerAsSheet(self.ViewControllerAbout)
     lazy var viewControllerSource: NSViewController = {
-        return (self.storyboard!.instantiateController(withIdentifier: NSStoryboard.SceneIdentifier(rawValue: "CopyFilesID"))
-            as? NSViewController)!
+        return (self.storyboard!.instantiateController(withIdentifier: NSStoryboard.SceneIdentifier(rawValue:
+            "CopyFilesID")) as? NSViewController)!
     }()
 
      // Set localcatalog to filePath
@@ -132,6 +128,7 @@ class ViewControllerCopyFiles: NSViewController {
         self.displayRemoteserver(index: nil)
         self.remoteCatalog.stringValue = ""
         self.selectButton.title = "Get source"
+        self.rsync = false
     }
 
     fileprivate func displayRemoteserver(index: Int?) {
@@ -187,28 +184,23 @@ class ViewControllerCopyFiles: NSViewController {
     }
 
     @objc(tableViewDoubleClick:) func tableViewDoubleClick(sender: AnyObject) {
-
         guard self.index != nil else {
             return
         }
-
         guard self.remoteCatalog!.stringValue.isEmpty == false else {
             return
         }
-
         guard self.localCatalog!.stringValue.isEmpty == false else {
             return
         }
-
         let answer = Alerts.dialogOKCancel("Copy single files or directory", text: "Start copy?")
         if answer {
-
+            self.copyButton.title = "Execute"
             self.rsync = true
             self.workingRsync.startAnimation(nil)
             self.copyFiles!.executeRsync(remotefile: remoteCatalog!.stringValue, localCatalog: localCatalog!.stringValue, dryrun: false)
         }
     }
-
 }
 
 extension ViewControllerCopyFiles: NSSearchFieldDelegate {
@@ -241,8 +233,10 @@ extension ViewControllerCopyFiles: NSTableViewDataSource {
 
     func numberOfRows(in tableViewMaster: NSTableView) -> Int {
         guard self.filesArray != nil else {
+            self.numberofrows.stringValue = "Number of rows:"
             return 0
         }
+        self.numberofrows.stringValue = "Number of rows: " + String(self.filesArray!.count)
         return self.filesArray!.count
     }
 }
