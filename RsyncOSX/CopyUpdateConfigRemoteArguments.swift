@@ -11,8 +11,8 @@ import Foundation
 class CopyUpdateConfigRemoteArguments: RsyncArguments {
     init(config: Configuration) {
         let filename = Readwritefiles(task: .configuration)
-        let localCatalog = filename.getfilenameandpath()
-        let remoteFile = "/Rsync/" + Tools.shared.getMacSerialNumber() + "/configRsync.plist"
-        super.init(config: config, remoteFile: remoteFile, localCatalog: localCatalog, drynrun: false)
+        let localpath = filename.getpath()
+        let remotepath = "##.Rsync/" + Tools.shared.getMacSerialNumber() + "/"
+        super.init(config: config, remoteFile: remotepath, localCatalog: localpath, drynrun: true)
     }
 }
