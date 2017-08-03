@@ -10,7 +10,7 @@
 
 import Foundation
 
-final class RsyncArguments: ProcessArguments {
+class RsyncArguments: ProcessArguments {
 
     private var config: Configuration?
     private var args: Array<String>?

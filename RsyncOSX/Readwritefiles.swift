@@ -61,6 +61,10 @@ class Readwritefiles {
         return (docuDir + str!)
     }
 
+    func getfilenameandpath() -> String? {
+        return self.fileName
+    }
+
     // Function for reading data from persistent store
     func getDatafromfile () -> Array<NSDictionary>? {
         guard self.task != nil  else {

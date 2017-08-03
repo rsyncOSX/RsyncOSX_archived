@@ -41,7 +41,6 @@ final class NewSingleTask {
     // Delegate functions for kicking of various updates (informal) during
     // process task in main View
     weak var taskDelegate: SingleTask?
-
     // Reference to Process task
     var process: Process?
     // Index to selected row, index is set when row is selected
@@ -58,7 +57,6 @@ final class NewSingleTask {
     fileprivate var scheduledJobInProgress: Bool = false
     // Ready for execute again
     fileprivate var ready: Bool = true
-
     // Some max numbers
     private var transferredNumber: String?
     private var transferredNumberSizebytes: String?
@@ -153,6 +151,8 @@ final class NewSingleTask {
                 let sizeOfFiles = self.transferredNumberSizebytes
                 Schedules.shared.addresultmanuel(hiddenID,
                                      result: number.stats(numberOfFiles: numberOffFiles, sizeOfFiles: sizeOfFiles)[0])
+                // Silent copy rsyncOSX config file
+                let test = CopyUpdateConfigRemoteArguments(config: Configurations.shared.getConfigurations()[self.index!])
             case .abort:
                 self.taskDelegate?.singleTaskAbort(process: self.process)
                 self.workload = nil
