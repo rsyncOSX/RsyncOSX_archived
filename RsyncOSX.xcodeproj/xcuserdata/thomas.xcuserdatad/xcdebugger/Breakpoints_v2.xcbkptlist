@@ -42,11 +42,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "RsyncOSX/ViewControllerCopyFiles.swift"
-            timestampString = "523435031.622342"
+            timestampString = "523438145.525979"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "361"
-            endingLineNumber = "361"
+            startingLineNumber = "352"
+            endingLineNumber = "352"
             landmarkName = "processTermination()"
             landmarkType = "7">
          </BreakpointContent>

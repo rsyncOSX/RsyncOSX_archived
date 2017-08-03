@@ -168,10 +168,10 @@ extension ViewControllerLoggData : NSTableViewDataSource {
 
     func numberOfRows(in tableView: NSTableView) -> Int {
         if self.tabledata == nil {
-            self.numberOflogfiles.stringValue = "Number of logs: 0"
+            self.numberOflogfiles.stringValue = "Number of rows:"
             return 0
         } else {
-            self.numberOflogfiles.stringValue = "Number of logs: " + String(self.tabledata!.count)
+            self.numberOflogfiles.stringValue = "Number of rows: " + String(self.tabledata!.count)
             return (self.tabledata!.count)
         }
     }

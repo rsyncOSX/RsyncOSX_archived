@@ -176,7 +176,6 @@ class ViewControllerCopyFiles: NSViewController {
         } else {
             self.localCatalog.stringValue = ""
         }
-        self.updatenumberofrows(number: 0)
     }
 
     override func viewDidDisappear() {
@@ -200,14 +199,6 @@ class ViewControllerCopyFiles: NSViewController {
             self.rsync = true
             self.workingRsync.startAnimation(nil)
             self.copyFiles!.executeRsync(remotefile: remoteCatalog!.stringValue, localCatalog: localCatalog!.stringValue, dryrun: false)
-        }
-    }
-
-    private func updatenumberofrows(number: Int) {
-        if number == 0 {
-            self.numberofrows.stringValue = "Number of rows:"
-        } else {
-            self.numberofrows.stringValue = "Number of rows: " + String(number)
         }
     }
 }
@@ -242,10 +233,10 @@ extension ViewControllerCopyFiles: NSTableViewDataSource {
 
     func numberOfRows(in tableViewMaster: NSTableView) -> Int {
         guard self.filesArray != nil else {
-            self.updatenumberofrows(number: 0)
+            self.numberofrows.stringValue = "Number of rows:"
             return 0
         }
-        self.updatenumberofrows(number: self.filesArray!.count)
+        self.numberofrows.stringValue = "Number of rows: " + String(self.filesArray!.count)
         return self.filesArray!.count
     }
 }

@@ -176,7 +176,7 @@
                                     <button key="view" id="Ohp-7n-mGj">
                                         <rect key="frame" x="0.0" y="14" width="60" height="43"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                        <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="NSActionTemplate" imagePosition="only" alignment="center" borderStyle="border" imageScaling="proportionallyUpOrDown" inset="2" id="1Ck-YO-Ixq">
+                                        <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="NSActionTemplate" imagePosition="overlaps" alignment="center" borderStyle="border" imageScaling="proportionallyUpOrDown" inset="2" id="1Ck-YO-Ixq">
                                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                             <font key="font" metaFont="system"/>
                                         </buttonCell>
@@ -235,10 +235,10 @@
                                 </toolbarItem>
                                 <toolbarItem implicitItemIdentifier="0BC8B22B-DB33-4837-BCA8-FFC7E3BBBCE1" label="Abort" paletteLabel="Abort" image="NSStatusUnavailable" id="8uy-WP-uGC">
                                     <nil key="toolTip"/>
-                                    <size key="minSize" width="48" height="43"/>
+                                    <size key="minSize" width="28" height="34"/>
                                     <size key="maxSize" width="60" height="48"/>
                                     <button key="view" id="c5B-Q0-6t4">
-                                        <rect key="frame" x="0.0" y="14" width="60" height="43"/>
+                                        <rect key="frame" x="0.0" y="14" width="48" height="38"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                         <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="NSStatusUnavailable" imagePosition="only" alignment="center" borderStyle="border" imageScaling="proportionallyUpOrDown" inset="2" id="G8P-Eh-vgb">
                                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -251,10 +251,10 @@
                                 </toolbarItem>
                                 <toolbarItem implicitItemIdentifier="FF456882-6AAD-4991-89C5-417E4701ADE6" label="Execute" paletteLabel="Execute" image="NSSlideshowTemplate" id="quu-OS-Fs0">
                                     <nil key="toolTip"/>
-                                    <size key="minSize" width="48" height="43"/>
-                                    <size key="maxSize" width="60" height="48"/>
+                                    <size key="minSize" width="34" height="43"/>
+                                    <size key="maxSize" width="105" height="57"/>
                                     <button key="view" id="5sJ-qI-MY1">
-                                        <rect key="frame" x="0.0" y="14" width="60" height="43"/>
+                                        <rect key="frame" x="0.0" y="14" width="58" height="44"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                         <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="NSSlideshowTemplate" imagePosition="only" alignment="center" borderStyle="border" imageScaling="proportionallyUpOrDown" inset="2" id="Mx0-qb-70n">
                                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -269,9 +269,7 @@
                             <defaultToolbarItems>
                                 <toolbarItem reference="zs6-ub-LOa"/>
                                 <toolbarItem reference="jd9-Mf-S8W"/>
-                                <toolbarItem reference="wiK-ZO-ZDm"/>
                                 <toolbarItem reference="quu-OS-Fs0"/>
-                                <toolbarItem reference="wiK-ZO-ZDm"/>
                                 <toolbarItem reference="wiK-ZO-ZDm"/>
                                 <toolbarItem reference="8uy-WP-uGC"/>
                                 <toolbarItem reference="wiK-ZO-ZDm"/>
@@ -1899,11 +1897,9 @@
                                 </tableHeaderView>
                             </scrollView>
                             <searchField wantsLayer="YES" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="t6k-ja-pKU">
-                                <rect key="frame" x="209" y="365" width="508" height="22"/>
+                                <rect key="frame" x="209" y="355" width="508" height="22"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="22" id="05J-SW-OIZ"/>
-                                    <constraint firstAttribute="width" constant="508" id="UGa-Cw-zNg"/>
-                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="508" id="wUB-JC-qc9"/>
+                                    <constraint firstAttribute="width" constant="508" id="hRY-cM-5T1"/>
                                 </constraints>
                                 <searchFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" borderStyle="bezel" usesSingleLineMode="YES" bezelStyle="round" id="jtn-ZQ-AiS">
                                     <font key="font" metaFont="system"/>
@@ -1953,18 +1949,8 @@
                                     </subviews>
                                 </view>
                             </box>
-                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="3YU-9a-eyi">
-                                <rect key="frame" x="888" y="351" width="186" height="17"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="Number of logs:" id="aye-JD-U1q">
-                                    <font key="font" metaFont="system"/>
-                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                                </textFieldCell>
-                            </textField>
-                            <progressIndicator wantsLayer="YES" canDrawConcurrently="YES" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" maxValue="100" displayedWhenStopped="NO" bezeled="NO" indeterminate="YES" controlSize="small" style="spinning" translatesAutoresizingMaskIntoConstraints="NO" id="zsj-JB-ASD">
-                                <rect key="frame" x="725" y="368" width="16" height="16"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                            <progressIndicator wantsLayer="YES" canDrawConcurrently="YES" horizontalHuggingPriority="750" verticalHuggingPriority="750" maxValue="100" displayedWhenStopped="NO" bezeled="NO" indeterminate="YES" controlSize="small" style="spinning" translatesAutoresizingMaskIntoConstraints="NO" id="zsj-JB-ASD">
+                                <rect key="frame" x="725" y="358" width="16" height="16"/>
                             </progressIndicator>
                             <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="x5H-FN-Qpn">
                                 <rect key="frame" x="38" y="208" width="62" height="18"/>
@@ -1985,19 +1971,29 @@
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 </view>
                             </box>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="3YU-9a-eyi">
+                                <rect key="frame" x="207" y="381" width="105" height="17"/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="left" title="Number of rows:" id="aye-JD-U1q">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
                         </subviews>
                         <constraints>
+                            <constraint firstItem="t6k-ja-pKU" firstAttribute="centerY" secondItem="zsj-JB-ASD" secondAttribute="centerY" id="0yl-Xg-x8C"/>
                             <constraint firstAttribute="bottom" secondItem="nOG-Nc-xqW" secondAttribute="bottom" constant="20" id="5HT-Qj-qcF"/>
-                            <constraint firstAttribute="trailing" secondItem="t6k-ja-pKU" secondAttribute="trailing" constant="375" id="C4T-3I-uIN"/>
                             <constraint firstItem="hzT-EC-htd" firstAttribute="leading" secondItem="JhO-zm-vVD" secondAttribute="leading" constant="20" symbolic="YES" id="DXQ-CU-1fz"/>
-                            <constraint firstItem="t6k-ja-pKU" firstAttribute="top" secondItem="JhO-zm-vVD" secondAttribute="top" constant="20" id="P5b-5w-mXz"/>
-                            <constraint firstItem="t6k-ja-pKU" firstAttribute="leading" secondItem="nOG-Nc-xqW" secondAttribute="leading" id="Qa2-j5-Y34"/>
+                            <constraint firstItem="t6k-ja-pKU" firstAttribute="top" secondItem="3YU-9a-eyi" secondAttribute="bottom" constant="4" id="Dg6-2o-Tsy"/>
+                            <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="3YU-9a-eyi" secondAttribute="trailing" constant="20" symbolic="YES" id="EcU-gv-rfZ"/>
                             <constraint firstAttribute="bottom" secondItem="hzT-EC-htd" secondAttribute="bottom" constant="262" id="Sg4-cK-0nO"/>
                             <constraint firstItem="hzT-EC-htd" firstAttribute="top" secondItem="JhO-zm-vVD" secondAttribute="top" constant="45" id="UI7-kg-Mvc"/>
                             <constraint firstItem="nOG-Nc-xqW" firstAttribute="leading" secondItem="hzT-EC-htd" secondAttribute="trailing" constant="74" id="Unc-fi-e6Z"/>
                             <constraint firstAttribute="trailing" secondItem="nOG-Nc-xqW" secondAttribute="trailing" constant="20" id="Zdb-lv-qH0"/>
-                            <constraint firstItem="t6k-ja-pKU" firstAttribute="leading" secondItem="JhO-zm-vVD" secondAttribute="leading" constant="209" id="iRG-EW-dcU"/>
-                            <constraint firstItem="nOG-Nc-xqW" firstAttribute="top" secondItem="t6k-ja-pKU" secondAttribute="bottom" constant="15" id="tji-k7-emB"/>
+                            <constraint firstItem="zsj-JB-ASD" firstAttribute="leading" secondItem="t6k-ja-pKU" secondAttribute="trailing" constant="8" symbolic="YES" id="jsk-Dm-3nt"/>
+                            <constraint firstItem="nOG-Nc-xqW" firstAttribute="top" secondItem="t6k-ja-pKU" secondAttribute="bottom" constant="5" id="kMN-sT-89o"/>
+                            <constraint firstItem="t6k-ja-pKU" firstAttribute="leading" secondItem="nOG-Nc-xqW" secondAttribute="leading" id="mII-SF-QPk"/>
+                            <constraint firstItem="t6k-ja-pKU" firstAttribute="leading" secondItem="3YU-9a-eyi" secondAttribute="leading" id="sEB-mN-mGq"/>
                         </constraints>
                     </view>
                     <connections>
