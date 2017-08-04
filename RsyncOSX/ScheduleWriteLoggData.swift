@@ -66,7 +66,7 @@ class ScheduleWriteLoggData {
     func addresultmanuel(_ hiddenID: Int, result: String) {
         // Set the current date
         let currendate = Date()
-        let dateformatter = Tools.shared.setDateformat()
+        let dateformatter = Tools().setDateformat()
         let date = dateformatter.string(from: currendate)
 
         if Configurations.shared.detailedlogging {

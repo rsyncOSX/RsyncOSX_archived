@@ -6,7 +6,7 @@
 //  Created by Thomas Evensen on 23/09/2016.
 //  Copyright © 2016 Thomas Evensen. All rights reserved.
 //
-//  swiftlint:disable syntactic_sugar line_length
+//  swiftlint:disable syntactic_sugar
 
 import Foundation
 import Cocoa
@@ -53,9 +53,9 @@ class ViewControllerLoggData: NSViewController {
             return
         }
         Schedules.shared.deletelogrow(hiddenID: (self.row?.value(forKey: "hiddenID") as? Int)!,
-                                                           parent: (self.row?.value(forKey: "parent") as? String)!,
-                                                           resultExecuted: (self.row?.value(forKey: "resultExecuted") as? String)!,
-                                                           dateExecuted:(self.row?.value(forKey: "dateExecuted") as? String)!)
+                                               parent: (self.row?.value(forKey: "parent") as? String)!,
+                                               resultExecuted: (self.row?.value(forKey: "resultExecuted") as? String)!,
+                                               dateExecuted:(self.row?.value(forKey: "dateExecuted") as? String)!)
         self.deleteButton.state = .off
         self.deselectRow()
     }

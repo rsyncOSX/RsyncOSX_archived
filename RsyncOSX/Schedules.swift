@@ -114,7 +114,7 @@ class Schedules: ScheduleWriteLoggData {
     /// - parameter start: start date and time
     /// - parameter stop: stop date and time
     func addschedule (_ hiddenID: Int, schedule: String, start: Date, stop: Date) {
-        let dateformatter = Tools.shared.setDateformat()
+        let dateformatter = Tools().setDateformat()
         let dict = NSMutableDictionary()
         dict.setObject(hiddenID, forKey: "hiddenID" as NSCopying)
         dict.setObject(dateformatter.string(from: start), forKey: "dateStart" as NSCopying)
@@ -175,7 +175,7 @@ class Schedules: ScheduleWriteLoggData {
             }
             // Sorting schedule after dateStart, last startdate on top
             data.sort { (sched1, sched2) -> Bool in
-                let dateformatter = Tools.shared.setDateformat()
+                let dateformatter = Tools().setDateformat()
                 if dateformatter.date(from: (sched1.value(forKey: "dateStart") as? String)!)! >
                     dateformatter.date(from: (sched2.value(forKey: "dateStart") as? String)!)! {
                     return true

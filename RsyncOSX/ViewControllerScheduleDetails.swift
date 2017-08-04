@@ -36,6 +36,7 @@ class ViewControllerScheduleDetails: NSViewController {
     var data: [NSMutableDictionary]?
     // Notification center
     var observationCenter: NSObjectProtocol!
+    var tools: Tools?
 
     @IBOutlet weak var scheduletable: NSTableView!
 
@@ -56,6 +57,7 @@ class ViewControllerScheduleDetails: NSViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.tools = Tools()
         if let pvc = self.presenting as? ViewControllertabMain {
             self.refreshDelegate = pvc
         }
@@ -84,6 +86,7 @@ class ViewControllerScheduleDetails: NSViewController {
         self.localCatalog.stringValue = Configurations.shared.getResourceConfiguration(self.hiddendID!, resource: .localCatalog)
         self.remoteCatalog.stringValue = Configurations.shared.getResourceConfiguration(self.hiddendID!, resource: .remoteCatalog)
         self.offsiteServer.stringValue = Configurations.shared.getResourceConfiguration(self.hiddendID!, resource: .offsiteServer)
+        if self.tools == nil { self.tools = Tools()}
     }
 }
 
@@ -113,7 +116,7 @@ extension ViewControllerScheduleDetails : NSTableViewDelegate {
                 object.value(forKey: "schedule") as? String == "daily" ||
                 object.value(forKey: "schedule") as? String == "weekly" {
 
-                let dateformatter = Tools.shared.setDateformat()
+                let dateformatter = self.tools!.setDateformat()
                 let dateStop: Date = dateformatter.date(from: (object.value(forKey: "dateStop") as? String)!)!
                 if dateStop.timeIntervalSinceNow > 0 {
                     active = true

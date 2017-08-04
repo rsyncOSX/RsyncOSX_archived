@@ -48,6 +48,7 @@ class ViewControllertabMain: NSViewController {
     var singletask: NewSingleTask?
     // Reference to batch taskobject
     var batchtask: NewBatchTask?
+    var tools: Tools?
 
     // Protocol function used in Process().
     weak var processupdateDelegate: UpdateProgress?
@@ -252,7 +253,7 @@ class ViewControllertabMain: NSViewController {
         self.TCPButton.isEnabled = false
         self.loadProfileMenu = false
         self.displayProfile()
-        Tools.shared.testAllremoteserverConnections()
+        self.tools!.testAllremoteserverConnections()
     }
 
     // Presenting Information from Rsync
@@ -312,9 +313,9 @@ class ViewControllertabMain: NSViewController {
                 return
             }
             if self.displayDryRun.state == .on {
-                self.rsyncCommand.stringValue = Tools.shared.rsyncpathtodisplay(index: index, dryRun: true)
+                self.rsyncCommand.stringValue = self.tools!.rsyncpathtodisplay(index: index, dryRun: true)
             } else {
-                self.rsyncCommand.stringValue = Tools.shared.rsyncpathtodisplay(index: index, dryRun: false)
+                self.rsyncCommand.stringValue = self.tools!.rsyncpathtodisplay(index: index, dryRun: false)
             }
         } else {
             self.rsyncCommand.stringValue = ""
@@ -344,6 +345,7 @@ class ViewControllertabMain: NSViewController {
         self.mainTableView.doubleAction = #selector(ViewControllertabMain.tableViewDoubleClick(sender:))
         // Defaults to display dryrun command
         self.displayDryRun.state = .on
+        self.tools = Tools()
     }
 
     override func viewDidAppear() {
@@ -371,6 +373,7 @@ class ViewControllertabMain: NSViewController {
         }
         self.ready = true
         self.displayAllowDoubleclick()
+        if self.tools == nil { self.tools = Tools()}
 
     }
 
@@ -426,7 +429,7 @@ class ViewControllertabMain: NSViewController {
         }
 
         guard Configurations.shared.noRysync == false else {
-            Tools.shared.noRsync()
+            self.tools!.noRsync()
             return
         }
 
@@ -457,7 +460,7 @@ class ViewControllertabMain: NSViewController {
         }
 
         guard Configurations.shared.noRysync == false else {
-            Tools.shared.noRsync()
+            self.tools!.noRsync()
             return
         }
 
@@ -565,7 +568,6 @@ extension ViewControllertabMain : NSTableViewDelegate {
 
     // TableView delegates
     @objc(tableView:objectValueForTableColumn:row:) func tableView(_ tableView: NSTableView, objectValueFor tableColumn: NSTableColumn?, row: Int) -> Any? {
-
         if row > Configurations.shared.configurationsDataSourcecount() - 1 {
             return nil
         }
@@ -699,7 +701,6 @@ extension ViewControllertabMain: AddProfiles {
         // By setting self.schedules = nil start jobs are restaret in ViewDidAppear
         self.schedules = nil
         self.loadProfileMenu = false
-
         // Reset any queue of work
         // Reset numbers
         self.process = nil
@@ -708,7 +709,6 @@ extension ViewControllertabMain: AddProfiles {
         self.setRsyncCommandDisplay()
         self.setInfo(info: "Estimate", color: .blue)
         self.setNumbers(output: nil)
-
         guard new == false else {
             // A new and empty profile is created
             Schedules.shared.destroySchedule()
@@ -816,7 +816,7 @@ extension ViewControllertabMain: Connections {
         guard Configurations.shared.allowNotifyinMain == true else {
             return
         }
-        self.serverOff = Tools.shared.gettestAllremoteserverConnections()
+        self.serverOff = self.tools!.gettestAllremoteserverConnections()
         globalMainQueue.async(execute: { () -> Void in
             self.mainTableView.reloadData()
         })
