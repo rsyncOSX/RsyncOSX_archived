@@ -12,6 +12,8 @@ import Cocoa
 
 class ViewControllerNewConfigurations: NSViewController {
 
+    // Storage API
+    var storageapi: PersistentStorageAPI?
     // Table holding all new Configurations
     @IBOutlet weak var newTableView: NSTableView!
 
@@ -74,6 +76,7 @@ class ViewControllerNewConfigurations: NSViewController {
         self.localCatalog.toolTip = "By using Finder drag and drop filepaths."
         self.offsiteCatalog.toolTip = "By using Finder drag and drop filepaths."
         Configurations.shared.viewControllerNewConfigurations = self
+        self.storageapi = PersistentStorageAPI()
     }
 
     override func viewDidAppear() {
@@ -84,7 +87,7 @@ class ViewControllerNewConfigurations: NSViewController {
     override func viewWillDisappear() {
         super.viewWillDisappear()
         if self.newConfigs {
-            PersistentStorageAPI.shared.saveNewConfigurations()
+            self.storageapi!.saveNewConfigurations()
             self.newConfigs = false
         }
     }

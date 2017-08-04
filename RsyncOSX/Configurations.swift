@@ -51,6 +51,8 @@ class Configurations {
         self.dirtyData = dirty
     }
 
+    // Storage API
+    var storageapi: PersistentStorageAPI?
     // Delegate functions
     weak var refreshDelegate: RefreshtableView?
     // Download URL if new version is avaliable
@@ -115,7 +117,8 @@ class Configurations {
     /// configurations and computing new arguments.
     /// - parameter none: none
     func readAllConfigurationsAndArguments() {
-        let store: Array<Configuration> = PersistentStorageAPI.shared.getConfigurations()
+        if self.storageapi == nil {self.storageapi = PersistentStorageAPI()}
+        let store: Array<Configuration> = self.storageapi!.getConfigurations()
         self.destroyConfigurations()
         // We read all stored configurations into memory
         for i in 0 ..< store.count {
@@ -283,7 +286,7 @@ class Configurations {
         let dateformatter = Tools().setDateformat()
         self.configurations[index].dateRun = dateformatter.string(from: currendate)
         // Saving updated configuration in memory to persistent store
-        PersistentStorageAPI.shared.saveConfigFromMemory()
+        self.storageapi!.saveConfigFromMemory()
         // Reread Configuration and update datastructure for tableViews
         self.readAllConfigurationsAndArguments()
         // Call the view and do a refresh of tableView
@@ -305,7 +308,7 @@ class Configurations {
     /// - parameter index: index to Configuration to replace by config
     func updateConfigurations (_ config: Configuration, index: Int) {
         self.configurations[index] = config
-        PersistentStorageAPI.shared.saveConfigFromMemory()
+        self.storageapi!.saveConfigFromMemory()
     }
 
     /// Function deletes Configuration in memory at hiddenID and
@@ -315,7 +318,7 @@ class Configurations {
     func deleteConfigurationsByhiddenID (hiddenID: Int) {
         let index = self.getIndex(hiddenID)
         self.configurations.remove(at: index)
-        PersistentStorageAPI.shared.saveConfigFromMemory()
+        self.storageapi!.saveConfigFromMemory()
     }
 
     /// Function toggles Configurations for batch or no
@@ -329,7 +332,7 @@ class Configurations {
         } else {
             self.configurations[index].batch = "yes"
         }
-        PersistentStorageAPI.shared.saveConfigFromMemory()
+        self.storageapi!.saveConfigFromMemory()
         self.readAllConfigurationsAndArguments()
         if let pvc = self.viewControllertabMain as? ViewControllertabMain {
             self.refreshDelegate = pvc
@@ -392,7 +395,7 @@ class Configurations {
 
     // Function for appending new Configurations to memory
     func appendNewConfigurations () {
-        PersistentStorageAPI.shared.saveNewConfigurations()
+        self.storageapi!.saveNewConfigurations()
     }
 
     // Enum which resource to return
@@ -436,4 +439,5 @@ class Configurations {
     func gethiddenID (index: Int) -> Int {
         return self.configurations[index].hiddenID
     }
+
 }

@@ -10,14 +10,6 @@ import Foundation
 
 final class PersistentStorageAPI {
 
-    // Creates a singelton of this class
-    class var  shared: PersistentStorageAPI {
-        struct Singleton {
-            static let instance = PersistentStorageAPI()
-        }
-        return Singleton.instance
-    }
-
     // Delegate function for starting next scheduled operatin if any
     // Delegate function is triggered when Process.didTerminateNotification
     // is discovered (e.g previous job is done)
