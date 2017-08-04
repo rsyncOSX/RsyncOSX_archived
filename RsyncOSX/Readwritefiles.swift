@@ -37,12 +37,11 @@ class Readwritefiles {
     // task to do
     private var task: WhatToReadWrite?
     // Path for configuration files
-    private var path: String?
+    private var filepath: String?
     // Set which file to read
     private var filename: String?
 
     private func setnameandpath() {
-        let str: String?
         let paths = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true) as NSArray
         let docuDir = (paths.firstObject as? String)!
         let profilePath = Profiles()
@@ -52,18 +51,17 @@ class Readwritefiles {
             if let profile = self.profile {
                 let profilePath = Profiles()
                 profilePath.createDirectory()
-                self.path = "/Rsync/" + Tools.shared.getMacSerialNumber() + "/" + profile + "/"
-                str = "/Rsync/" + Tools.shared.getMacSerialNumber() + "/" + profile + self.name!
+                self.filepath = "/Rsync/" + Tools.shared.getMacSerialNumber() + "/" + profile + "/"
+                self.filename = docuDir + "/Rsync/" + Tools.shared.getMacSerialNumber() + "/" + profile + self.name!
             } else {
                 // If profile not set use no profile
-                str = "/Rsync/" + Tools.shared.getMacSerialNumber() + self.name!
+                self.filename = docuDir +  "/Rsync/" + Tools.shared.getMacSerialNumber() + self.name!
             }
         } else {
             // no profile
-            str = "/Rsync/" + Tools.shared.getMacSerialNumber() + self.name!
-            self.path = "/Rsync/" + Tools.shared.getMacSerialNumber() + "/"
+            self.filename = docuDir + "/Rsync/" + Tools.shared.getMacSerialNumber() + self.name!
+            self.filepath = "/Rsync/" + Tools.shared.getMacSerialNumber() + "/"
         }
-        self.filename = docuDir + str!
     }
 
     func getfilenameandpath() -> String? {
@@ -71,7 +69,7 @@ class Readwritefiles {
     }
 
     func getpath() -> String? {
-        return self.path
+        return self.filepath
     }
 
     // Function for reading data from persistent store
