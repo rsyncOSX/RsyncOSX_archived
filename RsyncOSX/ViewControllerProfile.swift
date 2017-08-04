@@ -18,6 +18,8 @@ protocol AddProfiles : class {
 
 class ViewControllerProfile: NSViewController {
 
+    // Storage API
+    var storageapi: PersistentStorageAPI?
     // Dismisser
     weak var dismissDelegate: DismissViewController?
     // new Profile
@@ -52,7 +54,7 @@ class ViewControllerProfile: NSViewController {
             // Destroy old configuration and save default configuration
             // New Configurations must be saved as empty Configurations
             Configurations.shared.destroyConfigurations()
-            PersistentStorageAPI.shared.saveConfigFromMemory()
+            self.storageapi!.saveConfigFromMemory()
             self.newProfileDelegate?.newProfile(new: true)
         }
         self.profile = nil
@@ -99,6 +101,7 @@ class ViewControllerProfile: NSViewController {
         self.profilesArray = self.profile!.getDirectorysStrings()
         self.profilesTable.target = self
         self.profilesTable.doubleAction = #selector(ViewControllerProfile.tableViewDoubleClick(sender:))
+        self.storageapi = PersistentStorageAPI()
     }
 
     override func viewDidAppear() {

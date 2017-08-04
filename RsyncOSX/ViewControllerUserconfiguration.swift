@@ -19,6 +19,8 @@ protocol RsyncChanged : class {
 
 class ViewControllerUserconfiguration: NSViewController {
 
+    // Storage API
+    var storageapi: PersistentStorageAPI?
     var dirty: Bool = false
     // Delegate to read configurations after toggeling between
     // test- and real mode
@@ -66,7 +68,7 @@ class ViewControllerUserconfiguration: NSViewController {
             self.setRsyncPath()
             self.verifyRsync()
             self.setRestorePath()
-            _ = PersistentStorageAPI.shared.saveUserconfiguration()
+            _ = self.storageapi!.saveUserconfiguration()
         }
         self.dismissDelegate?.dismiss_view(viewcontroller: self)
     }
@@ -153,6 +155,7 @@ class ViewControllerUserconfiguration: NSViewController {
         }
         self.rsyncPath.delegate = self
         self.restorePath.delegate = self
+        self.storageapi = PersistentStorageAPI()
     }
 
     override func viewDidAppear() {

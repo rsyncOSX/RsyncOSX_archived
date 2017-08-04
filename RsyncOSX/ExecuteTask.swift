@@ -20,6 +20,8 @@ import Foundation
 class ExecuteTask: Operation {
 
     override func main() {
+        // Storage API
+        var storageapi: PersistentStorageAPI?
         // Delegate function for start and completion of scheduled jobs
         weak var notifyDelegate: ScheduledJobInProgress?
         // Variables used for rsync parameters
@@ -30,7 +32,8 @@ class ExecuteTask: Operation {
         // Get the first job of the queue
         if let dict: NSDictionary = Schedules.shared.scheduledJob {
             if let hiddenID: Int = dict.value(forKey: "hiddenID") as? Int {
-                let store: [Configuration] = PersistentStorageAPI.shared.getConfigurations()
+                storageapi = PersistentStorageAPI()
+                let store: [Configuration] = storageapi!.getConfigurations()
                 let configArray = store.filter({return ($0.hiddenID == hiddenID)})
                 guard configArray.count > 0 else {
                     if let pvc = Configurations.shared.viewControllertabMain as? ViewControllertabMain {

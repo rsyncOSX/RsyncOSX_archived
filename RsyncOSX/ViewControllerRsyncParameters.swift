@@ -24,6 +24,8 @@ protocol GetSelecetedIndex : class {
 
 class ViewControllerRsyncParameters: NSViewController {
 
+    // Storage API
+    var storageapi: PersistentStorageAPI?
     // Object for calculating rsync parameters
     var parameters: RsyncParameters?
     // Delegate returning params updated or not
@@ -134,6 +136,7 @@ class ViewControllerRsyncParameters: NSViewController {
         if let pvc2 = self.presenting as? ViewControllertabMain {
             self.dismissDelegate = pvc2
         }
+        self.storageapi = PersistentStorageAPI()
     }
 
     override func viewDidAppear() {
@@ -184,7 +187,7 @@ class ViewControllerRsyncParameters: NSViewController {
 
     // Function for saving changed or new parameters for one configuration.
     @IBAction func update(_ sender: NSButton) {
-        var configurations: [Configuration] = PersistentStorageAPI.shared.getConfigurations()
+        var configurations: [Configuration] = self.storageapi!.getConfigurations()
         guard configurations.count > 0 else {
             return
         }

@@ -12,11 +12,14 @@ import Cocoa
 class AppDelegate: NSObject, NSApplicationDelegate {
 
     func applicationDidFinishLaunching(_ aNotification: Notification) {
+
+        weak var storage: PersistentStorageAPI?
         // Insert code here to initialize your application
         // Check for new version
         _ = Checkfornewversion(inMain: true)
         // Read user configuration
-        if let userConfiguration =  PersistentStorageAPI.shared.getUserconfiguration() {
+        storage = PersistentStorageAPI()
+        if let userConfiguration =  storage?.getUserconfiguration() {
             // userConfiguration is never nil if object is created
             _ = Userconfiguration(userconfigRsyncOSX: userConfiguration)
         }

@@ -12,6 +12,8 @@ import Cocoa
 
 class ScheduleWriteLoggData {
 
+    // Storage API
+    var storageapi: PersistentStorageAPI?
     // Array to store all scheduled jobs and history of executions
     // Will be kept in memory until destroyed
     var schedule = Array<ConfigurationSchedule>()
@@ -51,7 +53,7 @@ class ScheduleWriteLoggData {
                         self.refreshlogviewDelegate?.refresh()
                     }
                     // Save schedule including logs
-                    PersistentStorageAPI.shared.saveScheduleFromMemory()
+                    self.storageapi!.saveScheduleFromMemory()
                     break loop
                 }
             }
@@ -117,7 +119,7 @@ class ScheduleWriteLoggData {
                 }
             }
             if inserted {
-                PersistentStorageAPI.shared.saveScheduleFromMemory()
+                self.storageapi!.saveScheduleFromMemory()
                 if let pvc = Configurations.shared.viewControllertabMain as? ViewControllertabMain {
                     self.deselectrowDelegate = pvc
                     self.deselectrowDelegate?.deselectRow()
@@ -153,7 +155,7 @@ class ScheduleWriteLoggData {
                         let parent: String = self.computeKey(dictKey)
                         dict.setValue(parent, forKey: "parent")
                         self.schedule[i].logrecords.append(dict)
-                        PersistentStorageAPI.shared.saveScheduleFromMemory()
+                        self.storageapi!.saveScheduleFromMemory()
                         break loop
                     }
                 }
@@ -172,4 +174,7 @@ class ScheduleWriteLoggData {
         return key!
     }
 
+    init() {
+        self.storageapi = PersistentStorageAPI()
+    }
 }
