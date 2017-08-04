@@ -151,10 +151,6 @@ final class NewSingleTask {
                 let sizeOfFiles = self.transferredNumberSizebytes
                 Schedules.shared.addresultmanuel(hiddenID,
                                      result: number.stats(numberOfFiles: numberOffFiles, sizeOfFiles: sizeOfFiles)[0])
-                // Silent copy rsyncOSX config file
-                let arguments = CopyUpdateConfigRemoteArguments(config: Configurations.shared.getConfigurations()[self.index!])
-                let copy = UpdateConfigRemote(command: arguments.getCommand(), arguments: arguments.getArguments())
-                // copy.executeProcess(output: self.output!)
             case .abort:
                 self.taskDelegate?.singleTaskAbort(process: self.process)
                 self.workload = nil
