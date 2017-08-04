@@ -812,12 +812,10 @@ extension ViewControllertabMain: Connections {
     // about which remote servers are off/on line.
     // Remote servers offline are marked with red line in mainTableView
     func displayConnections() {
-
         // Only do a reload if we are in the main view
         guard Configurations.shared.allowNotifyinMain == true else {
             return
         }
-
         self.serverOff = Tools.shared.gettestAllremoteserverConnections()
         globalMainQueue.async(execute: { () -> Void in
             self.mainTableView.reloadData()
@@ -844,8 +842,10 @@ extension ViewControllertabMain: DismissViewController {
         // Reset radiobuttons
         self.edit.state = .off
         self.rsyncparams.state = .off
+        self.loadProfileMenu = true
         globalMainQueue.async(execute: { () -> Void in
             self.mainTableView.reloadData()
+            self.displayProfile()
         })
     }
 }
@@ -865,19 +865,14 @@ extension ViewControllertabMain: UpdateProgress {
             self.output = singletask.output
             self.process = singletask.process
             singletask.processTermination()
-
         } else {
-
             // Batch run
             if let pvc = self.presentedViewControllers as? [ViewControllerBatch] {
-
                 // If abort in batchview just bail out and terminate. The
                 // Process Termination is caused by terminate the Process task
-
                 guard pvc.count > 0 else {
                     return
                 }
-
                 self.batchObjectDelegate = pvc[0]
                 self.batchtask = self.batchObjectDelegate?.getTaskObject()
             }
