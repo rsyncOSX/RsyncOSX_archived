@@ -107,7 +107,6 @@ final class PersistentStorageConfiguration: Readwritefiles {
             "parameter5": config.parameter5,
             "parameter6": config.parameter6,
             "dryrun": config.dryrun,
-            "rsync": config.rsync,
             "dateRun": config.dateRun!,
             "hiddenID": config.hiddenID]
         // All parameters parameter8 - parameter14 are set
