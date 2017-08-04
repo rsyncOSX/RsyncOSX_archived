@@ -36,7 +36,6 @@ class ViewControllerScheduleDetails: NSViewController {
     var data: [NSMutableDictionary]?
     // Notification center
     var observationCenter: NSObjectProtocol!
-    // tools
     var tools: Tools?
 
     @IBOutlet weak var scheduletable: NSTableView!
@@ -87,6 +86,7 @@ class ViewControllerScheduleDetails: NSViewController {
         self.localCatalog.stringValue = Configurations.shared.getResourceConfiguration(self.hiddendID!, resource: .localCatalog)
         self.remoteCatalog.stringValue = Configurations.shared.getResourceConfiguration(self.hiddendID!, resource: .remoteCatalog)
         self.offsiteServer.stringValue = Configurations.shared.getResourceConfiguration(self.hiddendID!, resource: .offsiteServer)
+        if self.tools == nil { self.tools = Tools()}
     }
 }
 

@@ -48,7 +48,6 @@ class ViewControllertabMain: NSViewController {
     var singletask: NewSingleTask?
     // Reference to batch taskobject
     var batchtask: NewBatchTask?
-     // Tools object
     var tools: Tools?
 
     // Protocol function used in Process().
@@ -374,6 +373,7 @@ class ViewControllertabMain: NSViewController {
         }
         self.ready = true
         self.displayAllowDoubleclick()
+        if self.tools == nil { self.tools = Tools()}
 
     }
 
