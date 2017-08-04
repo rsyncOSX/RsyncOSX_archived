@@ -30,7 +30,7 @@ class Files {
         case .profileRoot:
             let paths = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true) as NSArray
             let docuDir = (paths.firstObject as? String)!
-            let profilePath = docuDir + "/Rsync/" + Tools.shared.getMacSerialNumber()
+            let profilePath = docuDir + "/Rsync/" + Tools().getMacSerialNumber()
             return profilePath
         // .ssh/
         case .sshRoot:

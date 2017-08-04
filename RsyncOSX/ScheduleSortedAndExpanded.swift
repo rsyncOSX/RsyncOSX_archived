@@ -96,7 +96,7 @@ class ScheduleSortedAndExpand {
 
     // Expanding and sorting Scheduledata
     private func sortAndExpandScheduleData() {
-        let dateformatter = Tools.shared.setDateformat()
+        let dateformatter = Tools().setDateformat()
         for i in 0 ..< self.schedulesNSDictionary!.count {
             let dict = self.schedulesNSDictionary![i]
             let dateStop: Date = dateformatter.date(from: (dict.value(forKey: "dateStop") as? String)!)!
@@ -178,7 +178,7 @@ class ScheduleSortedAndExpand {
     func startTimerseconds () -> Double {
         if let start = self.jobToExecute() {
             let dateStart: Date = (start.value(forKey: "start") as? Date)!
-            let seconds = Tools.shared.timeDoubleSeconds(dateStart, enddate: nil)
+            let seconds = Tools().timeDoubleSeconds(dateStart, enddate: nil)
 
             // 30 minutes every second
             if seconds > 0 && seconds <= 1800 {
@@ -254,7 +254,7 @@ class ScheduleSortedAndExpand {
             if (self.sortedschedules!.count) > 0 {
                 if let minutes1 = self.sortedschedules?[0] {
                     let date1: Date = (minutes1.value(forKey: "start") as? Date)!
-                    firstbackup = Tools.shared.timeString(date1, enddate: nil)
+                    firstbackup = Tools().timeString(date1, enddate: nil)
                 }
             } else {
                 firstbackup = " ... none ..."
@@ -263,7 +263,7 @@ class ScheduleSortedAndExpand {
             if (self.sortedschedules!.count) > 1 {
                 if let minutes2 = self.sortedschedules?[1] {
                     let date2: Date = (minutes2.value(forKey: "start") as? Date)!
-                    secondbackup = Tools.shared.timeString(date2, enddate: nil)
+                    secondbackup = Tools().timeString(date2, enddate: nil)
                 }
             } else {
                 secondbackup = " ... none ..."
@@ -291,7 +291,7 @@ class ScheduleSortedAndExpand {
         if (self.sortedschedules!.count) > 0 {
             if let minutes1 = self.sortedschedules?[0] {
                 let date1: Date = (minutes1.value(forKey: "start") as? Date)!
-                firstbackup = Tools.shared.timeDoubleMinutes(date1, enddate: nil)
+                firstbackup = Tools().timeDoubleMinutes(date1, enddate: nil)
             }
         } else {
             firstbackup = -1
@@ -300,7 +300,7 @@ class ScheduleSortedAndExpand {
         if (self.sortedschedules!.count) > 1 {
             if let minutes2 = self.sortedschedules?[1] {
                 let date2: Date = (minutes2.value(forKey: "start") as? Date)!
-                secondbackup = Tools.shared.timeDoubleMinutes(date2, enddate: nil)
+                secondbackup = Tools().timeDoubleMinutes(date2, enddate: nil)
             }
         } else {
             secondbackup = -1

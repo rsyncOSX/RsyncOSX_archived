@@ -63,14 +63,6 @@ final class Tools {
     // the MacSerialNumber
     private var macSerialNumber: String?
 
-    // Creates a singelton of this class
-    class var  shared: Tools {
-        struct Singleton {
-            static let instance = Tools()
-        }
-        return Singleton.instance
-    }
-
     // Test for TCP connection
     func testTCPconnection (_ addr: String, port: Int, timeout: Int) -> (Bool, String) {
         var connectionOK: Bool = false
@@ -125,7 +117,7 @@ final class Tools {
                         if let sshport: Int = record.config!.sshport {
                             port = sshport
                         }
-                        let (success, _) = Tools.shared.testTCPconnection(record.config!.offsiteServer,
+                        let (success, _) = self.testTCPconnection(record.config!.offsiteServer,
                                                                           port: port, timeout: 1)
                         if success {
                             self.indexBoolremoteserverOff!.append(false)
