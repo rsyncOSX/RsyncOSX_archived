@@ -28,9 +28,9 @@ class ViewControllerProfile: NSViewController {
     private var profile: Profiles?
     // Selecet profile to use
     fileprivate var useprofile: String?
+
     // New profile
     @IBOutlet weak var newprofile: NSTextField!
-
     // Table to show profiles
     @IBOutlet weak var profilesTable: NSTableView!
 
