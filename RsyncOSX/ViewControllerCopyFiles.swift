@@ -5,7 +5,7 @@
 //  Created by Thomas Evensen on 12/09/2016.
 //  Copyright © 2016 Thomas Evensen. All rights reserved.
 //
-//  swiftlint:disable syntactic_sugar file_length cyclomatic_complexity line_length
+//  swiftlint:disable syntactic_sugar line_length
 
 import Foundation
 import Cocoa
@@ -22,7 +22,6 @@ class ViewControllerCopyFiles: NSViewController {
 
     // Object to hold search data
     var copyFiles: CopyFiles?
-    // Index of selected row
     var index: Int?
     var rsync: Bool = false
     var estimated: Bool = false
@@ -217,7 +216,6 @@ extension ViewControllerCopyFiles: NSSearchFieldDelegate {
                 self.tableViewSelect.reloadData()
             })
         }
-
     }
 
     func searchFieldDidEndSearching(_ sender: NSSearchField) {
@@ -249,22 +247,18 @@ extension ViewControllerCopyFiles: NSTableViewDelegate {
         guard self.filesArray != nil else {
             return nil
         }
-
         var split = self.filesArray![row].components(separatedBy: "\t")
-
         if tableColumn == tableView.tableColumns[0] {
                 text = split[0]
 
             cellIdentifier = "sizeID"
         }
-
         if tableColumn == tableView.tableColumns[1] {
             if split.count > 1 {
                 text = split[1]
             } else {
                 text = split[0]
             }
-
             cellIdentifier = "fileID"
         }
         if let cell = tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: cellIdentifier), owner: self) as? NSTableCellView {
@@ -281,15 +275,12 @@ extension ViewControllerCopyFiles: NSTableViewDelegate {
             guard self.filesArray != nil else {
                 return
             }
-
             let split = self.filesArray![index].components(separatedBy: "\t")
 
             guard split.count > 1 else {
                 return
             }
-
             self.remoteCatalog.stringValue = split[1]
-
             if self.remoteCatalog.stringValue.isEmpty == false && self.localCatalog.stringValue.isEmpty == false {
                 self.commandString.stringValue = self.copyFiles!.getCommandDisplayinView(remotefile: self.remoteCatalog.stringValue, localCatalog: self.localCatalog.stringValue)
             } else {
@@ -318,7 +309,6 @@ extension ViewControllerCopyFiles: RefreshtableView {
 
     // Do a refresh of table
     func refresh() {
-
         guard self.copyFiles != nil else {
             return
         }
@@ -345,11 +335,9 @@ extension ViewControllerCopyFiles: StartStopProgressIndicator {
 
 extension ViewControllerCopyFiles: UpdateProgress {
 
-    // Messages from Process when job is done or in progress
-
     // When Process terminates
     func processTermination() {
-        if rsync == false {
+        if self.rsync == false {
             self.copyFiles!.setRemoteFileList()
             self.refresh()
             self.stop()
@@ -357,7 +345,6 @@ extension ViewControllerCopyFiles: UpdateProgress {
             self.workingRsync.stopAnimation(nil)
             self.presentViewControllerAsSheet(self.viewControllerInformation)
         }
-
     }
 
     // When Process outputs anything to filehandler

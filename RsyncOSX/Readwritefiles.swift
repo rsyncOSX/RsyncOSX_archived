@@ -36,10 +36,12 @@ class Readwritefiles {
     private var useProfile: Bool = false
     // task to do
     private var task: WhatToReadWrite?
-
+    // Path for configuration files
+    private var filepath: String?
     // Set which file to read
-    private var fileName: String? {
-        let str: String?
+    private var filename: String?
+
+    private func setnameandpath() {
         let paths = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true) as NSArray
         let docuDir = (paths.firstObject as? String)!
         let profilePath = Profiles()
@@ -49,16 +51,25 @@ class Readwritefiles {
             if let profile = self.profile {
                 let profilePath = Profiles()
                 profilePath.createDirectory()
-                str = "/Rsync/" + Tools.shared.getMacSerialNumber() + "/" + profile + self.name!
+                self.filepath = "/Rsync/" + Tools.shared.getMacSerialNumber() + "/" + profile + "/"
+                self.filename = docuDir + "/Rsync/" + Tools.shared.getMacSerialNumber() + "/" + profile + self.name!
             } else {
                 // If profile not set use no profile
-                str = "/Rsync/" + Tools.shared.getMacSerialNumber() + self.name!
+                self.filename = docuDir +  "/Rsync/" + Tools.shared.getMacSerialNumber() + self.name!
             }
         } else {
             // no profile
-            str = "/Rsync/" + Tools.shared.getMacSerialNumber() + self.name!
+            self.filename = docuDir + "/Rsync/" + Tools.shared.getMacSerialNumber() + self.name!
+            self.filepath = "/Rsync/" + Tools.shared.getMacSerialNumber() + "/"
         }
-        return (docuDir + str!)
+    }
+
+    func getfilenameandpath() -> String? {
+        return self.filename
+    }
+
+    func getpath() -> String? {
+        return self.filepath
     }
 
     // Function for reading data from persistent store
@@ -96,10 +107,10 @@ class Readwritefiles {
     // Read data from persistent storage
     private func readDatafromPersistentStorage() -> Array<NSDictionary>? {
         var list = Array<NSDictionary>()
-        guard self.fileName != nil && self.key != nil else {
+        guard self.filename != nil && self.key != nil else {
             return nil
         }
-        let dictionary = NSDictionary(contentsOfFile: self.fileName!)
+        let dictionary = NSDictionary(contentsOfFile: self.filename!)
         let items : Any? = dictionary?.object(forKey: self.key!)
         // If no items return nil
         guard items != nil else {
@@ -118,7 +129,7 @@ class Readwritefiles {
 
     // Function for write data to persistent store
     func writeDatatoPersistentStorage (_ array: Array<NSDictionary>, task: WhatToReadWrite) -> Bool {
-        self.setPreferences(task)
+        self.setpreferences(task)
         guard self.task != nil  else {
             return false
         }
@@ -132,14 +143,14 @@ class Readwritefiles {
             Configurations.shared.setDataDirty(dirty: false)
         }
         let dictionary = NSDictionary(object: array, forKey: self.key! as NSCopying)
-        guard self.fileName != nil else {
+        guard self.filename != nil else {
             return false
         }
-        return  dictionary.write(toFile: self.fileName!, atomically: true)
+        return  dictionary.write(toFile: self.filename!, atomically: true)
     }
 
     // Set preferences for which data to read or write
-    private func setPreferences (_ task: WhatToReadWrite) {
+    private func setpreferences (_ task: WhatToReadWrite) {
         self.useProfile = false
         self.task = task
         switch self.task! {
@@ -167,7 +178,8 @@ class Readwritefiles {
     }
 
     init(task: WhatToReadWrite) {
-        self.setPreferences(task)
+        self.setpreferences(task)
+        self.setnameandpath()
     }
 
 }

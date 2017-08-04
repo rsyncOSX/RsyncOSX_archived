@@ -5,7 +5,6 @@
 //  Created by Thomas Evensen on 24/08/2016.
 //  Copyright © 2016 Thomas Evensen. All rights reserved.
 //
-//  swiftlint:disable syntactic_sugar file_length cyclomatic_complexity line_length
 
 import Cocoa
 
@@ -25,7 +24,6 @@ class ViewControllerProgressProcess: NSViewController {
     var count: Double = 0
     var maxcount: Double = 0
     var calculatedNumberOfFiles: Int?
-
     // Delegate to count max number and updates during progress
     weak var countDelegate: Count?
     // Delegate to dismisser
@@ -42,9 +40,6 @@ class ViewControllerProgressProcess: NSViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do view setup here.
-        // Load protocol functions
-        // Dismisser is root controller
         if let pvc = self.presenting as? ViewControllertabMain {
             self.dismissDelegate = pvc
             self.abortDelegate = pvc
@@ -89,14 +84,12 @@ extension ViewControllerProgressProcess: UpdateProgress {
 
     // When processtermination is discovered in real task progressbar is stopped
     // and progressview is dismissed. Real run is completed.
-
     func processTermination() {
         self.stopProgressbar()
         self.dismissDelegate?.dismiss_view(viewcontroller: self)
     }
 
     // Update progressview during task
-
     func fileHandler() {
         guard self.countDelegate != nil else {
             return
