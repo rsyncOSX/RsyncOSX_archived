@@ -60,7 +60,6 @@ final class Tools {
     private var indexBoolremoteserverOff: [Bool]?
     weak var testconnectionsDelegate: Connections?
     weak var profilemenuDelegate: AddProfiles?
-    // the MacSerialNumber
     private var macSerialNumber: String?
 
     // Test for TCP connection
@@ -230,17 +229,18 @@ final class Tools {
         // Take the unretained value of the unmanaged-any-object
         // (so we're not responsible for releasing it)
         // and pass it back as a String or, if it fails, an empty string
-        return (serialNumberAsCFString!.takeUnretainedValue() as? String) ?? ""
+        // return (serialNumberAsCFString!.takeUnretainedValue() as? String) ?? ""
+        return (serialNumberAsCFString!.takeRetainedValue() as? String) ?? ""
     }
 
     /// Function for returning the MacSerialNumber
-    func getMacSerialNumber() -> String {
+    func getMacSerialNumber() -> String? {
         guard self.macSerialNumber != nil else {
             // Compute it, set it and return
             self.macSerialNumber = self.computemacSerialNumber()
             return self.macSerialNumber!
         }
-        return self.macSerialNumber!
+        return self.macSerialNumber
     }
 
     // Calculate seconds from now to startdate
