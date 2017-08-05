@@ -13,7 +13,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
     func applicationDidFinishLaunching(_ aNotification: Notification) {
 
-        weak var storage: PersistentStorageAPI?
+        var storage: PersistentStorageAPI?
         // Insert code here to initialize your application
         // Check for new version
         _ = Checkfornewversion(inMain: true)
