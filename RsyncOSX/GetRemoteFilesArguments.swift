@@ -43,6 +43,24 @@ final class GetRemoteFilesArguments: ProcessArguments {
         }
     }
 
+    private func arguments2() {
+        let tools = Tools()
+        self.command = tools.rsyncpath()
+        if let config = self.config {
+            if config.sshport != nil {
+                self.args!.append("-p")
+                self.args!.append(String(config.sshport!))
+            }
+            self.args!.append("-r")
+            self.args!.append("--list-only")
+            if config.offsiteServer.isEmpty == false {
+                self.args!.append(config.offsiteUsername + "@" + config.offsiteServer + ":" + config.offsiteCatalog)
+            } else {
+                self.args!.append(":" + config.offsiteCatalog)
+            }
+        }
+    }
+
     func getArguments() -> Array<String>? {
         guard self.args != nil else {
             return nil
