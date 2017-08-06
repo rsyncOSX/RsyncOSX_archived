@@ -10,11 +10,14 @@
 
 import Foundation
 
+protocol readupdatedconfigurations: class {
+    func readAllConfigurationsAndArguments()
+}
+
 final class PersistentStorageConfiguration: Readwritefiles {
 
     /// Variable computes max hiddenID used
-    /// MaxhiddenID is used when new configurations
-    /// are added.
+    /// MaxhiddenID is used when new configurations are added.
     private var maxhiddenID: Int {
         // Reading Configurations from memory
         let store: [Configuration] = Configurations.shared.getConfigurations()
@@ -213,8 +216,9 @@ final class PersistentStorageConfiguration: Readwritefiles {
     // Writing configuration to persistent store
     // Configuration is Array<NSDictionary>
     private func writeToStore (_ array: Array<NSDictionary>) {
-        // Getting the object just for the write method, no read from persistent store
-        _ = self.writeDatatoPersistentStorage(array, task: .configuration)
+        if (self.writeDatatoPersistentStorage(array, task: .configuration)) {
+            Configurations.shared.readAllConfigurationsAndArguments()
+        }
     }
 
     init () {

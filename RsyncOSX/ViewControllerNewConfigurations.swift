@@ -71,7 +71,6 @@ class ViewControllerNewConfigurations: NSViewController {
         // Set the delegates
         self.newTableView.delegate = self
         self.newTableView.dataSource = self
-        Configurations.shared.destroyNewConfigurations()
         // Tooltip
         self.localCatalog.toolTip = "By using Finder drag and drop filepaths."
         self.offsiteCatalog.toolTip = "By using Finder drag and drop filepaths."
@@ -87,7 +86,7 @@ class ViewControllerNewConfigurations: NSViewController {
     override func viewWillDisappear() {
         super.viewWillDisappear()
         if self.newConfigs {
-            self.storageapi!.saveNewConfigurations()
+            self.storageapi!.saveNewConfigurationsFromMemory()
             self.newConfigs = false
         }
     }

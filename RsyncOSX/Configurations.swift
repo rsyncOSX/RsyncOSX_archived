@@ -110,47 +110,6 @@ class Configurations {
     // Object for batchQueue data and operations
     private var batchdata: BatchTaskWorkQueu?
 
-    /// Function is reading all Configurations into memory from permanent store and
-    /// prepare all arguments for rsync. All configurations are stored in the private
-    /// variable within object.
-    /// Function is destroying any previous Configurations before loading new
-    /// configurations and computing new arguments.
-    /// - parameter none: none
-    func readAllConfigurationsAndArguments() {
-        if self.storageapi == nil {self.storageapi = PersistentStorageAPI()}
-        let store: Array<Configuration> = self.storageapi!.getConfigurations()
-        self.destroyConfigurations()
-        // We read all stored configurations into memory
-        for i in 0 ..< store.count {
-            self.configurations.append(store[i])
-            let rsyncArgumentsOneConfig = ArgumentsOneConfiguration(config: store[i])
-            self.argumentAllConfigurations.add(rsyncArgumentsOneConfig)
-        }
-        // Then prepare the datasource for use in tableviews as Dictionarys
-        var row =  NSMutableDictionary()
-        var data = Array<NSMutableDictionary>()
-        self.destroyConfigurationsDataSource()
-        var batch: Int = 0
-        for i in 0 ..< self.configurations.count {
-            if self.configurations[i].batch == "yes" {
-                batch = 1
-            } else {
-                batch = 0
-            }
-            row = [
-                "taskCellID": self.configurations[i].task,
-                "batchCellID": batch,
-                "localCatalogCellID": self.configurations[i].localCatalog,
-                "offsiteCatalogCellID": self.configurations[i].offsiteCatalog,
-                "offsiteServerCellID": self.configurations[i].offsiteServer,
-                "backupIDCellID": self.configurations[i].backupID,
-                "runDateCellID": self.configurations[i].dateRun!
-            ]
-            data.append(row)
-        }
-        self.configurationsDataSource = data
-    }
-
     /// Function for getting the profile
     func getProfile() -> String? {
         return self.profile
@@ -256,11 +215,6 @@ class Configurations {
         self.configurations.append(config)
     }
 
-    /// Function destroys records holding added configurations
-    func destroyNewConfigurations() {
-        self.newConfigurations = nil
-    }
-
     /// Function destroys records holding added configurations as datasource 
     /// for presenting Configurations in tableviews
     private func destroyConfigurationsDataSource() {
@@ -287,8 +241,6 @@ class Configurations {
         self.configurations[index].dateRun = dateformatter.string(from: currendate)
         // Saving updated configuration in memory to persistent store
         self.storageapi!.saveConfigFromMemory()
-        // Reread Configuration and update datastructure for tableViews
-        self.readAllConfigurationsAndArguments()
         // Call the view and do a refresh of tableView
         if let pvc = self.viewControllertabMain as? ViewControllertabMain {
             self.refreshDelegate = pvc
@@ -333,7 +285,6 @@ class Configurations {
             self.configurations[index].batch = "yes"
         }
         self.storageapi!.saveConfigFromMemory()
-        self.readAllConfigurationsAndArguments()
         if let pvc = self.viewControllertabMain as? ViewControllertabMain {
             self.refreshDelegate = pvc
             self.refreshDelegate?.refresh()
@@ -395,7 +346,7 @@ class Configurations {
 
     // Function for appending new Configurations to memory
     func appendNewConfigurations () {
-        self.storageapi!.saveNewConfigurations()
+        self.storageapi!.saveNewConfigurationsFromMemory()
     }
 
     // Enum which resource to return
@@ -438,6 +389,53 @@ class Configurations {
 
     func gethiddenID (index: Int) -> Int {
         return self.configurations[index].hiddenID
+    }
+
+}
+
+extension Configurations: readupdatedconfigurations {
+
+    /// Function is reading all Configurations into memory from permanent store and
+    /// prepare all arguments for rsync. All configurations are stored in the private
+    /// variable within object.
+    /// Function is destroying any previous Configurations before loading new
+    /// configurations and computing new arguments.
+    /// - parameter none: none
+    func readAllConfigurationsAndArguments() {
+        print("readAllConfigurationsAndArguments()")
+        if self.storageapi == nil {self.storageapi = PersistentStorageAPI()}
+        let store: Array<Configuration> = self.storageapi!.getConfigurations()
+        self.destroyConfigurations()
+        // We read all stored configurations into memory
+        for i in 0 ..< store.count {
+            self.configurations.append(store[i])
+            let rsyncArgumentsOneConfig = ArgumentsOneConfiguration(config: store[i])
+            self.argumentAllConfigurations.add(rsyncArgumentsOneConfig)
+        }
+        // Then prepare the datasource for use in tableviews as Dictionarys
+        var row =  NSMutableDictionary()
+        var data = Array<NSMutableDictionary>()
+        self.destroyConfigurationsDataSource()
+        var batch: Int = 0
+        for i in 0 ..< self.configurations.count {
+            if self.configurations[i].batch == "yes" {
+                batch = 1
+            } else {
+                batch = 0
+            }
+            row = [
+                "taskCellID": self.configurations[i].task,
+                "batchCellID": batch,
+                "localCatalogCellID": self.configurations[i].localCatalog,
+                "offsiteCatalogCellID": self.configurations[i].offsiteCatalog,
+                "offsiteServerCellID": self.configurations[i].offsiteServer,
+                "backupIDCellID": self.configurations[i].backupID,
+                "runDateCellID": self.configurations[i].dateRun!
+            ]
+            data.append(row)
+        }
+        self.configurationsDataSource = data
+        self.newConfigurations = nil
     }
 
 }

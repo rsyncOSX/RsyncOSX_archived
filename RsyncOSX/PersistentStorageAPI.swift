@@ -17,11 +17,6 @@ final class PersistentStorageAPI {
 
     // CONFIGURATIONS
 
-    // Reading and writing configurations.
-    // StoreAPI : API to class persistentStore.
-    // If data is dirty read new data from persisten store else
-    // return Configuration already in memory
-
     // Read configurations from persisten store
     func getConfigurations() -> [Configuration] {
         let read = PersistentStorageConfiguration()
@@ -47,7 +42,7 @@ final class PersistentStorageAPI {
     }
 
     // Saving added configuration from meory
-    func saveNewConfigurations() {
+    func saveNewConfigurationsFromMemory() {
         let save = PersistentStorageConfiguration()
         let newConfigurations = Configurations.shared.getnewConfigurations()
         if newConfigurations != nil {
@@ -56,10 +51,6 @@ final class PersistentStorageAPI {
                 }
             save.saveconfigInMemoryToPersistentStore()
         }
-        // Reset structure holding new configurations
-        Configurations.shared.destroyNewConfigurations()
-        // Read all Configurations again to get all arguments
-        Configurations.shared.readAllConfigurationsAndArguments()
     }
 
     // SCHEDULE
@@ -68,7 +59,6 @@ final class PersistentStorageAPI {
     func saveScheduleFromMemory() {
         let store = PersistentStorageScheduling()
         store.savescheduleInMemoryToPersistentStore()
-        Schedules.shared.readAllSchedules()
         // Kick off Scheduled job again
         // This is because saving schedule from memory might have
         // changed the schedule and this kicks off the changed

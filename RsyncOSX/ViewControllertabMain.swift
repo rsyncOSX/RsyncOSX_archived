@@ -228,7 +228,7 @@ class ViewControllertabMain: NSViewController {
                         Configurations.shared.deleteConfigurationsByhiddenID(hiddenID: self.hiddenID!)
                         Schedules.shared.deletechedule(hiddenID: self.hiddenID!)
                         // Reading main Configurations and Schedule to memory
-                        self.reReadConfigurationsAndSchedules()
+                        // self.reReadConfigurationsAndSchedules()
                         // And create a new Schedule object
                         // Just calling the protocol function
                         self.newSchedulesAdded()
@@ -539,6 +539,18 @@ class ViewControllertabMain: NSViewController {
         self.setInfo(info: "Estimate", color: .blue)
         self.setRsyncCommandDisplay()
     }
+
+    func readConfigurations() {
+        if Configurations.shared.configurationsDataSourcecount() > 0 {
+            globalMainQueue.async(execute: { () -> Void in
+                self.mainTableView.reloadData()
+            })
+        }
+        // Read schedule objects again
+        self.schedules = nil
+        self.schedules = ScheduleSortedAndExpand()
+        self.setRsyncCommandDisplay()
+    }
 }
 
 // Extensions
@@ -642,23 +654,6 @@ extension ViewControllertabMain: RefreshtableView {
         globalMainQueue.async(execute: { () -> Void in
             self.mainTableView.reloadData()
         })
-    }
-}
-
-// Configuration to task is changed, reread configurations again
-extension ViewControllertabMain: ReadConfigurationsAgain {
-
-    func readConfigurations() {
-        Configurations.shared.readAllConfigurationsAndArguments()
-        if Configurations.shared.configurationsDataSourcecount() > 0 {
-            globalMainQueue.async(execute: { () -> Void in
-                self.mainTableView.reloadData()
-            })
-        }
-        // Read schedule objects again
-        self.schedules = nil
-        self.schedules = ScheduleSortedAndExpand()
-        self.setRsyncCommandDisplay()
     }
 }
 
