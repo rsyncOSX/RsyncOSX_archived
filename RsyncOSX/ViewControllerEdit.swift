@@ -10,11 +10,6 @@
 import Foundation
 import Cocoa
 
-// Protocol for instruction RsyncOSX to read configurations data again
-protocol ReadConfigurationsAgain : class {
-    func readConfigurations()
-}
-
 class ViewControllerEdit: NSViewController {
 
     @IBOutlet weak var localCatalog: NSTextField!
@@ -29,8 +24,6 @@ class ViewControllerEdit: NSViewController {
     var index: Int?
     // Get index of selected row
     weak var getindexDelegate: GetSelecetedIndex?
-    // after update reread configuration
-    weak var readconfigurationsDelegate: ReadConfigurationsAgain?
     // Dismisser
     weak var dismissDelegate: DismissViewController?
     // Single file if last character is NOT "/"
@@ -43,9 +36,7 @@ class ViewControllerEdit: NSViewController {
 
     // Update configuration, save and dismiss view
     @IBAction func update(_ sender: NSButton) {
-
         var config: [Configuration] = Configurations.shared.getConfigurations()
-
         if self.localCatalog.stringValue.hasSuffix("/") == false && self.singleFile == false {
             self.localCatalog.stringValue += "/"
         }
@@ -67,7 +58,6 @@ class ViewControllerEdit: NSViewController {
         }
         config[self.index!].rsyncdaemon = self.rsyncdaemon.state.rawValue
         Configurations.shared.updateConfigurations(config[self.index!], index: self.index!)
-        self.readconfigurationsDelegate?.readConfigurations()
         self.dismissDelegate?.dismiss_view(viewcontroller: self)
     }
 
@@ -75,7 +65,6 @@ class ViewControllerEdit: NSViewController {
         super.viewDidLoad()
         // Dismisser is root controller
         if let pvc = self.presenting as? ViewControllertabMain {
-            self.readconfigurationsDelegate = pvc
             self.dismissDelegate = pvc
             self.getindexDelegate = pvc
         }

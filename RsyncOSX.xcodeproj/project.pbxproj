@@ -206,6 +206,7 @@
 		A04492BD1D658F7C00B3CE17 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				E9E8F1C01F37788400BDB993 /* Storage */,
 				E91A688E1EA7771B0056BCFC /* Logging */,
 				A0BAA5F31D70C349003BE69F /* Schedule */,
 				A0BAA5F21D70C33A003BE69F /* Configuration */,
@@ -350,7 +351,6 @@
 		A0BAA5F21D70C33A003BE69F /* Configuration */ = {
 			isa = PBXGroup;
 			children = (
-				A04492A31D658F2100B3CE17 /* PersistentStorageAPI.swift */,
 				A0EFB44F1DC080A9008C21A6 /* PersistentStorageUserconfiguration.swift */,
 				A04492A11D658F2100B3CE17 /* Configurations.swift */,
 				E9609EF41F229F5900F5BFAA /* PersistentStorageConfiguration.swift */,
@@ -402,6 +402,14 @@
 				A0CACFD31DA2738500C5997A /* RsyncParameters.swift */,
 			);
 			name = RsyncParameters;
+			sourceTree = "<group>";
+		};
+		E9E8F1C01F37788400BDB993 /* Storage */ = {
+			isa = PBXGroup;
+			children = (
+				A04492A31D658F2100B3CE17 /* PersistentStorageAPI.swift */,
+			);
+			name = Storage;
 			sourceTree = "<group>";
 		};
 		E9EC786F1EACE063001EED9B /* ssh */ = {

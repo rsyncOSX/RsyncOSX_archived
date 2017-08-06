@@ -69,45 +69,6 @@ class Schedules: ScheduleWriteLoggData {
         self.waitForTask = nil
     }
 
-    /// Function for reading all jobs for schedule and all history of past executions.
-    /// Schedules are stored in self.Schedule. Schedules are sorted after hiddenID.
-    /// If Schedule already in memory AND not dirty do not read them again. If Schedule is 
-    /// dirty, clean memory and read all Shedules into memory.
-    /// The Schedules stored in memory is only the plan for each task. E.g for
-    /// task 1 the plan is Scheduled backup every day from date until date at time
-    /// every day. The actual Schedules are computed (expanded and sorted) in 
-    /// another object based upon the plan for Schedules. It is only the plans
-    /// which are stored to permanent store.
-    /// The functions does NOT cancel waiting jobs or recalculate next scheduled job.
-    func readAllSchedules() {
-        var store: Array<ConfigurationSchedule>?
-        if self.storageapi == nil {self.storageapi = PersistentStorageAPI()}
-        store = self.storageapi!.getScheduleandhistory()
-        // If Schedule already in memory dont read them again
-        // Schedules are only read into memory if Dirty
-        if store != nil {
-            var data = Array<ConfigurationSchedule>()
-            // Deleting any existing Schedule
-            self.schedule.removeAll()
-            // Reading new schedule into memory
-            for i in 0 ..< store!.count {
-                data.append(store![i])
-            }
-            // Sorting schedule after hiddenID
-            data.sort { (schedule1, schedule2) -> Bool in
-                if schedule1.hiddenID > schedule2.hiddenID {
-                    return false
-                } else {
-                    return true
-                }
-            }
-            // Setting self.Schedule as data
-            self.schedule = data
-            // Reset reference to first schedule job
-            self.scheduledJob = nil
-        }
-    }
-
     /// Function adds new Shcedules (plans). Functions writes
     /// schedule plans to permanent store.
     /// - parameter hiddenID: hiddenID for task
@@ -328,4 +289,47 @@ class Schedules: ScheduleWriteLoggData {
             break loop
         }
     }
+}
+
+extension Schedules: readupdatedschedules {
+
+    /// Function for reading all jobs for schedule and all history of past executions.
+    /// Schedules are stored in self.Schedule. Schedules are sorted after hiddenID.
+    /// If Schedule already in memory AND not dirty do not read them again. If Schedule is
+    /// dirty, clean memory and read all Shedules into memory.
+    /// The Schedules stored in memory is only the plan for each task. E.g for
+    /// task 1 the plan is Scheduled backup every day from date until date at time
+    /// every day. The actual Schedules are computed (expanded and sorted) in
+    /// another object based upon the plan for Schedules. It is only the plans
+    /// which are stored to permanent store.
+    /// The functions does NOT cancel waiting jobs or recalculate next scheduled job.
+    func readAllSchedules() {
+        var store: Array<ConfigurationSchedule>?
+        if self.storageapi == nil {self.storageapi = PersistentStorageAPI()}
+        store = self.storageapi!.getScheduleandhistory()
+        // If Schedule already in memory dont read them again
+        // Schedules are only read into memory if Dirty
+        if store != nil {
+            var data = Array<ConfigurationSchedule>()
+            // Deleting any existing Schedule
+            self.schedule.removeAll()
+            // Reading new schedule into memory
+            for i in 0 ..< store!.count {
+                data.append(store![i])
+            }
+            // Sorting schedule after hiddenID
+            data.sort { (schedule1, schedule2) -> Bool in
+                if schedule1.hiddenID > schedule2.hiddenID {
+                    return false
+                } else {
+                    return true
+                }
+            }
+            // Setting self.Schedule as data
+            self.schedule = data
+            // Reset reference to first schedule job
+            self.scheduledJob = nil
+        }
+    }
+
 }

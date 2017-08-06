@@ -13,8 +13,13 @@
 
 import Foundation
 
+protocol readupdatedschedules: class {
+    func readAllSchedules()
+}
+
 final class PersistentStorageScheduling: Readwritefiles {
 
+    weak var readschedulesDelegate: readupdatedschedules?
     // Variables holds all scheduledata
     private var schedules: [NSDictionary]?
 
@@ -77,8 +82,9 @@ final class PersistentStorageScheduling: Readwritefiles {
     // Writing schedules to persistent store
     // Schedule is Array<NSDictionary>
     private func writeToStore (_ array: Array<NSDictionary>) {
-        // Getting the object just for the write method, no read from persistent store
-        _ = self.writeDatatoPersistentStorage(array, task: .schedule)
+        if (self.writeDatatoPersistentStorage(array, task: .schedule)) {
+            Schedules.shared.readAllSchedules()
+        }
     }
 
     init () {
