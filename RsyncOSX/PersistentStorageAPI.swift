@@ -59,7 +59,6 @@ final class PersistentStorageAPI {
     func saveScheduleFromMemory() {
         let store = PersistentStorageScheduling()
         store.savescheduleInMemoryToPersistentStore()
-        Schedules.shared.readAllSchedules()
         // Kick off Scheduled job again
         // This is because saving schedule from memory might have
         // changed the schedule and this kicks off the changed
