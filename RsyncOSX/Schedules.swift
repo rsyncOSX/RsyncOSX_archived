@@ -104,7 +104,10 @@ class Schedules: ScheduleWriteLoggData {
         if delete {
             self.storageapi!.saveScheduleFromMemory()
             // Send message about refresh tableView
-            self.doaRefreshTableviewMain()
+            if let pvc = Configurations.shared.viewControllertabMain as? ViewControllertabMain {
+                self.refreshDelegate = pvc
+                self.refreshDelegate?.refresh()
+            }
         }
     }
 
@@ -177,7 +180,10 @@ class Schedules: ScheduleWriteLoggData {
                 // Saving the resulting data file
                 self.storageapi!.saveScheduleFromMemory()
                 // Send message about refresh tableView
-                self.doaRefreshTableviewMain()
+                if let pvc = Configurations.shared.viewControllertabMain as? ViewControllertabMain {
+                    self.refreshDelegate = pvc
+                    self.refreshDelegate?.refresh()
+                }
             }
         }
     }
@@ -208,16 +214,6 @@ class Schedules: ScheduleWriteLoggData {
                 self.schedule[i].schedule = "stopped"
                 break
             }
-        }
-    }
-
-    // Protocol function
-    // Send message to main view do a refresh of table
-    private func doaRefreshTableviewMain() {
-        // Send message about refresh tableView
-        if let pvc = Configurations.shared.viewControllertabMain as? ViewControllertabMain {
-            self.refreshDelegate = pvc
-            self.refreshDelegate?.refresh()
         }
     }
 
@@ -304,7 +300,7 @@ extension Schedules: readupdatedschedules {
     /// which are stored to permanent store.
     /// The functions does NOT cancel waiting jobs or recalculate next scheduled job.
     func readAllSchedules() {
-        print("readAllSchedules()")
+        // print("readAllSchedules()")
         var store: Array<ConfigurationSchedule>?
         if self.storageapi == nil {self.storageapi = PersistentStorageAPI()}
         store = self.storageapi!.getScheduleandhistory()
