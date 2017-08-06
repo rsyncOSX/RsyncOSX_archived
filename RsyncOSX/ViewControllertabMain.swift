@@ -947,7 +947,6 @@ extension ViewControllertabMain: RsyncError {
                     process.terminate()
                     self.process = nil
                 }
-
                 // Either error in single task or batch task
                 if self.singletask != nil {
                     self.singletask!.error()

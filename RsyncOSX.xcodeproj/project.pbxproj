@@ -216,8 +216,8 @@
 		A04492BE1D658F8900B3CE17 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				E99D50781EE16241003621D3 /* Parameters */,
-				E9234FF91EB0680D00A4C550 /* Profiles */,
+				E99D50781EE16241003621D3 /* RsyncParameters */,
+				E9234FF91EB0680D00A4C550 /* UserProfiles */,
 				E9EC786F1EACE063001EED9B /* ssh */,
 				E9374D2A1E32992900CD3945 /* ScheduledOperations */,
 				A04492C41D65901400B3CE17 /* Utils */,
@@ -377,12 +377,12 @@
 			name = Logging;
 			sourceTree = "<group>";
 		};
-		E9234FF91EB0680D00A4C550 /* Profiles */ = {
+		E9234FF91EB0680D00A4C550 /* UserProfiles */ = {
 			isa = PBXGroup;
 			children = (
 				A0762A1E1DB4A8F000538CE9 /* Profiles.swift */,
 			);
-			name = Profiles;
+			name = UserProfiles;
 			sourceTree = "<group>";
 		};
 		E9374D2A1E32992900CD3945 /* ScheduledOperations */ = {
@@ -395,13 +395,13 @@
 			name = ScheduledOperations;
 			sourceTree = "<group>";
 		};
-		E99D50781EE16241003621D3 /* Parameters */ = {
+		E99D50781EE16241003621D3 /* RsyncParameters */ = {
 			isa = PBXGroup;
 			children = (
 				A044929E1D658F2100B3CE17 /* RsyncProcessArguments.swift */,
 				A0CACFD31DA2738500C5997A /* RsyncParameters.swift */,
 			);
-			name = Parameters;
+			name = RsyncParameters;
 			sourceTree = "<group>";
 		};
 		E9EC786F1EACE063001EED9B /* ssh */ = {
