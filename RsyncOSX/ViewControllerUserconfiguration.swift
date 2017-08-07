@@ -5,7 +5,6 @@
 //  Created by Thomas Evensen on 30/08/2016.
 //  Copyright © 2016 Thomas Evensen. All rights reserved.
 //
-//  swiftlint:disable syntactic_sugar file_length cyclomatic_complexity line_length
 
 import Foundation
 import Cocoa
@@ -41,6 +40,8 @@ class ViewControllerUserconfiguration: NSViewController {
             Configurations.shared.rsyncVer3 = true
             if self.rsyncPath.stringValue == "" {
                 Configurations.shared.rsyncPath = nil
+            } else {
+                self.setRsyncPath()
             }
         } else {
             Configurations.shared.rsyncVer3 = false
@@ -124,7 +125,6 @@ class ViewControllerUserconfiguration: NSViewController {
     private func verifyRsync() {
         var path: String?
         let fileManager = FileManager.default
-
         if self.version3rsync.state == .on {
             if let rsyncPath = Configurations.shared.rsyncPath {
                 path = rsyncPath + "rsync"
