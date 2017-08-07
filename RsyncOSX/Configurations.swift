@@ -396,7 +396,7 @@ extension Configurations: readupdatedconfigurations {
     /// configurations and computing new arguments.
     /// - parameter none: none
     func readAllConfigurationsAndArguments() {
-        print("readAllConfigurationsAndArguments()")
+        // print("readAllConfigurationsAndArguments()")
         if self.storageapi == nil {self.storageapi = PersistentStorageAPI()}
         let store: Array<Configuration> = self.storageapi!.getConfigurations()
         self.destroyConfigurations()
