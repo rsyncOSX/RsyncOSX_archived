@@ -301,6 +301,7 @@ extension Schedules: readupdatedschedules {
     /// The functions does NOT cancel waiting jobs or recalculate next scheduled job.
     func readAllSchedules() {
         // print("readAllSchedules()")
+        self.destroySchedule()
         var store: Array<ConfigurationSchedule>?
         if self.storageapi == nil {self.storageapi = PersistentStorageAPI()}
         store = self.storageapi!.getScheduleandhistory()
