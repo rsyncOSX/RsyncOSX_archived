@@ -334,7 +334,7 @@ class ViewControllertabMain: NSViewController {
         // Progress indicator
         self.working.usesThreadedAnimation = true
         self.scheduledJobworking.usesThreadedAnimation = true
-        self.reReadConfigurationsAndSchedules()
+        self.readConfigurationsAndSchedules()
         // Setting reference to self, used when calling delegate functions
         Configurations.shared.viewControllertabMain = self
         // Create a Schedules object
@@ -472,7 +472,7 @@ class ViewControllertabMain: NSViewController {
     }
 
     // Reread bot Configurations and Schedules from persistent store to memory
-    fileprivate func reReadConfigurationsAndSchedules() {
+    fileprivate func readConfigurationsAndSchedules() {
         // Reading main Configurations to memory
         Configurations.shared.setDataDirty(dirty: true)
         Configurations.shared.readAllConfigurationsAndArguments()
@@ -716,21 +716,13 @@ extension ViewControllertabMain: AddProfiles {
             self.refresh()
             return
         }
-
         // Reset in tabSchedule
         if let pvc = Configurations.shared.viewControllertabSchedule as? ViewControllertabSchedule {
             newProfileDelegate = pvc
             newProfileDelegate?.newProfile(new: false)
         }
-        // Must unload Schedule data before new Profile is loaded.
-        // This is due to a glitch in design in 
-        // Schedules.shared.getAllSchedules()
-        // If no new Schedules in profile exists old Schedules are 
-        // kept in memory. Force a clean of old Schedules before read 
-        // Schedules for new profile.
-        Schedules.shared.destroySchedule()
         // Read configurations and Scheduledata
-        self.reReadConfigurationsAndSchedules()
+        self.readConfigurationsAndSchedules()
         // Make sure loading profile
         self.loadProfileMenu = true
         self.displayProfile()

@@ -215,12 +215,6 @@ class Configurations {
         self.configurations.append(config)
     }
 
-    /// Function destroys records holding added configurations as datasource 
-    /// for presenting Configurations in tableviews
-    private func destroyConfigurationsDataSource() {
-        self.configurationsDataSource = nil
-    }
-
     /// Function destroys records holding data about all Configurations, all
     /// arguments for Configurations and configurations as datasource for
     /// presenting Configurations in tableviews.
@@ -402,7 +396,7 @@ extension Configurations: readupdatedconfigurations {
     /// configurations and computing new arguments.
     /// - parameter none: none
     func readAllConfigurationsAndArguments() {
-        // print("readAllConfigurationsAndArguments()")
+        print("readAllConfigurationsAndArguments()")
         if self.storageapi == nil {self.storageapi = PersistentStorageAPI()}
         let store: Array<Configuration> = self.storageapi!.getConfigurations()
         self.destroyConfigurations()
@@ -415,7 +409,7 @@ extension Configurations: readupdatedconfigurations {
         // Then prepare the datasource for use in tableviews as Dictionarys
         var row =  NSMutableDictionary()
         var data = Array<NSMutableDictionary>()
-        self.destroyConfigurationsDataSource()
+        self.configurationsDataSource = nil
         var batch: Int = 0
         for i in 0 ..< self.configurations.count {
             if self.configurations[i].batch == "yes" {
