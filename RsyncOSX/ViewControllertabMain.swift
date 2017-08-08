@@ -504,11 +504,11 @@ class ViewControllertabMain: NSViewController {
     // Function for setting allowDouble click
     internal func displayAllowDoubleclick() {
         if Configurations.shared.allowDoubleclick == true {
-            self.allowDoubleclick.stringValue = "Double click: YES"
+            self.allowDoubleclick.stringValue = "Double click on row to execute task"
             self.allowDoubleclick.textColor = .blue
         } else {
-            self.allowDoubleclick.stringValue = "Double click: NO"
-            self.allowDoubleclick.textColor = .black
+            self.allowDoubleclick.stringValue = "Double click: NO (enable in Configuration)"
+            self.allowDoubleclick.textColor = .red
         }
     }
 
