@@ -141,7 +141,7 @@ final class Tools {
     }
 
     func noRsync() {
-        if Configurations.shared.noRysync == true {
+        if Configurations.shared.norsync == true {
             if let rsync = Configurations.shared.rsyncPath {
                 Alerts.showInfo("ERROR: no rsync in " + rsync)
             } else {
@@ -166,9 +166,9 @@ final class Tools {
             path = "/usr/bin/" + "rsync"
         }
         if fileManager.fileExists(atPath: path!) == false {
-            Configurations.shared.noRysync = true
+            Configurations.shared.norsync = true
         } else {
-            Configurations.shared.noRysync = false
+            Configurations.shared.norsync = false
         }
     }
 
