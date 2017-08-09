@@ -249,22 +249,6 @@
                                         </connections>
                                     </button>
                                 </toolbarItem>
-                                <toolbarItem implicitItemIdentifier="FF456882-6AAD-4991-89C5-417E4701ADE6" label="Execute" paletteLabel="Execute" image="NSSlideshowTemplate" id="quu-OS-Fs0">
-                                    <nil key="toolTip"/>
-                                    <size key="minSize" width="34" height="43"/>
-                                    <size key="maxSize" width="105" height="57"/>
-                                    <button key="view" id="5sJ-qI-MY1">
-                                        <rect key="frame" x="0.0" y="14" width="58" height="44"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                        <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="NSSlideshowTemplate" imagePosition="overlaps" alignment="center" borderStyle="border" imageScaling="proportionallyUpOrDown" inset="2" id="Mx0-qb-70n">
-                                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                            <font key="font" metaFont="system"/>
-                                        </buttonCell>
-                                        <connections>
-                                            <action selector="executeTask:" target="Rv5-yv-lsc" id="ggA-IA-9bB"/>
-                                        </connections>
-                                    </button>
-                                </toolbarItem>
                             </allowedToolbarItems>
                             <defaultToolbarItems>
                                 <toolbarItem reference="zs6-ub-LOa"/>
@@ -5103,7 +5087,6 @@ DQ
         <image name="NSApplicationIcon" width="128" height="128"/>
         <image name="NSFolder" width="32" height="32"/>
         <image name="NSInfo" width="32" height="32"/>
-        <image name="NSSlideshowTemplate" width="17" height="14"/>
         <image name="NSStatusUnavailable" width="16" height="16"/>
     </resources>
 </document>

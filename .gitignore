@@ -5,3 +5,4 @@ xcuserdata/*
 RsyncOSX.xcodeproj/project.xcworkspace/xcuserdata/thomas.xcuserdatad/UserInterfaceState.xcuserstate
 *.xcuserstate
 *.xcuserstate
+.DS_Store

@@ -408,18 +408,6 @@ class ViewControllertabMain: NSViewController {
         }
     }
 
-    // Execute SINGLE TASKS only
-    // Start of executing SINGLE tasks
-    // After start the function ProcessTermination()
-    // which is triggered when a Process termination is
-    // discovered, completes the task.
-    @IBAction func executeTask(_ sender: NSButton) {
-        if self.ready {
-            self.executeSingleTask()
-        }
-        self.ready = false
-    }
-
     // Single task can be activated by double click from table
     private func executeSingleTask() {
 
