@@ -5,7 +5,7 @@
 //  Created by Thomas Evensen on 13/02/16.
 //  Copyright © 2016 Thomas Evensen. All rights reserved.
 //
-//  swiftlint:disable syntactic_sugar file_length cyclomatic_complexity line_length function_body_length
+//  swiftlint:disable syntactic_sugar function_body_length line_length
 
 import Foundation
 import Cocoa
@@ -71,7 +71,6 @@ class ViewControllerNewConfigurations: NSViewController {
         // Set the delegates
         self.newTableView.delegate = self
         self.newTableView.dataSource = self
-        // Tooltip
         self.localCatalog.toolTip = "By using Finder drag and drop filepaths."
         self.offsiteCatalog.toolTip = "By using Finder drag and drop filepaths."
         Configurations.shared.viewControllerNewConfigurations = self
@@ -124,14 +123,10 @@ class ViewControllerNewConfigurations: NSViewController {
             "parameter5": parameter5,
             "parameter6": parameter6,
             "dryrun": "--dry-run",
-            "rsync": "rsync",
             "dateRun": "",
             "singleFile": 0]
         dict.setValue("no", forKey: "batch")
-        if self.singleFile.state == .on {
-            dict.setValue(1, forKey: "singleFile")
-        }
-
+        if self.singleFile.state == .on { dict.setValue(1, forKey: "singleFile")}
         if !self.localCatalog.stringValue.hasSuffix("/") && self.singleFile.state == .off {
             self.localCatalog.stringValue += "/"
             dict.setValue(self.localCatalog.stringValue, forKey: "localCatalog")
@@ -146,21 +141,17 @@ class ViewControllerNewConfigurations: NSViewController {
                 dict.setObject(port, forKey: "sshport" as NSCopying)
             }
         }
-
         // If add button is selected without any values
-
         guard self.localCatalog.stringValue != "/" else {
             self.offsiteCatalog.stringValue = ""
             self.localCatalog.stringValue = ""
             return
         }
-
         guard self.offsiteCatalog.stringValue != "/" else {
             self.offsiteCatalog.stringValue = ""
             self.localCatalog.stringValue = ""
             return
         }
-
         Configurations.shared.addNewConfigurations(dict)
         self.tabledata = Configurations.shared.getnewConfigurations()
         globalMainQueue.async(execute: { () -> Void in
@@ -169,7 +160,6 @@ class ViewControllerNewConfigurations: NSViewController {
         self.newConfigs = true
         self.setFields()
     }
-
 }
 
 extension ViewControllerNewConfigurations : NSTableViewDataSource {
