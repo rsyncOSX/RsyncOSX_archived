@@ -5,7 +5,7 @@
 //  Created by Thomas Evensen on 24/08/2016.
 //  Copyright © 2016 Thomas Evensen. All rights reserved.
 //
-//  swiftlint:disable syntactic_sugar file_length cyclomatic_complexity line_length
+//  swiftlint:disable syntactic_sugar line_length
 
 import Foundation
 import Cocoa
@@ -36,7 +36,6 @@ class ViewControllerInformation: NSViewController {
         // Setting the source for delegate function
         if let pvc = self.presenting as? ViewControllertabMain {
             self.informationDelegate = pvc
-            // Dismisser is root controller
             self.dismissDelegate = pvc
         }
     }
@@ -70,12 +69,10 @@ extension ViewControllerInformation : NSTableViewDelegate {
     func tableView(_ tableView: NSTableView, viewFor tableColumn: NSTableColumn?, row: Int) -> NSView? {
         var text: String = ""
         var cellIdentifier: String = ""
-
         if tableColumn == tableView.tableColumns[0] {
             text = self.output![row]
             cellIdentifier = "outputID"
         }
-
         if let cell = tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: cellIdentifier), owner: nil) as? NSTableCellView {
             cell.textField?.stringValue = text
             return cell
