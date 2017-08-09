@@ -5,7 +5,7 @@
 //  Created by Thomas Evensen on 25/08/2016.
 //  Copyright © 2016 Thomas Evensen. All rights reserved.
 //
-//  swiftlint:disable syntactic_sugar file_length cyclomatic_complexity line_length
+//  swiftlint:disable line_length
 
 import Foundation
 import Cocoa
@@ -46,7 +46,6 @@ class ViewControllerBatch: NSViewController {
     // ACTIONS AND BUTTONS
 
     @IBAction func close(_ sender: NSButton) {
-
         if self.close! {
             self.batchTask = NewBatchTask()
             self.batchTask!.closeOperation()

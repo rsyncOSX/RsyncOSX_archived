@@ -5,7 +5,7 @@
 //  Created by Thomas Evensen on 19/08/2016.
 //  Copyright © 2016 Thomas Evensen. All rights reserved.
 //
-//  swiftlint:disable syntactic_sugar file_length cyclomatic_complexity line_length function_body_length
+//  swiftlint:disable line_length
 
 import Foundation
 import Cocoa
@@ -35,15 +35,11 @@ class ViewControllertabSchedule: NSViewController {
     fileprivate var hiddenID: Int?
     // Added schedules
     private var newSchedules: Bool?
-    // Timer to count down when next scheduled backup is due.
-    // The timer just updates stringvalue in ViewController.
-    // Another function is responsible to kick off the first
-    // scheduled operation.
+    // Timer to count down when next scheduled backup is due. The timer just updates stringvalue in ViewController.
+    // Another function is responsible to kick off the first scheduled operation.
     private var nextTask: Timer?
     // Scedules object
     fileprivate var schedules: ScheduleSortedAndExpand?
-
-    // Delegates
     // Delegate to inform new schedules added or schedules deleted
     weak var newSchedulesDelegate: NewSchedules?
     // Delegate function for starting next scheduled operatin if any
@@ -74,8 +70,6 @@ class ViewControllertabSchedule: NSViewController {
 
     @IBAction func chooseSchedule(_ sender: NSButton) {
 
-        // Date and time for start
-        // Pick choosed time
         let startdate: Date = Date()
         // Seconds from now to starttime
         let seconds: TimeInterval = self.stoptime.dateValue.timeIntervalSinceNow
@@ -117,28 +111,32 @@ class ViewControllertabSchedule: NSViewController {
                 self.details.state = .off
             }
             if details == false && range == true {
-                let answer = Alerts.dialogOKCancel("Add Schedule?", text: "Cancel or OK")
-                if answer {
-                    Schedules.shared.addschedule(self.hiddenID!, schedule: schedule!, start: startdate, stop: stopdate)
-                    self.newSchedules = true
-                    // Refresh table and recalculate the Schedules jobs
-                    self.refresh()
-                    // Start next job, if any, by delegate
-                    if let pvc = Configurations.shared.viewControllertabMain as? ViewControllertabMain {
-                        startnextjobDelegate = pvc
-                        startnextjobDelegate?.startProcess()
-                    }
-                    // Displaying next two scheduled tasks
-                    self.nextScheduledtask()
-                    // Call function to check if a scheduled backup is due for countdown
-                    self.startTimer()
-                }
+                self.addschedule(schedule: schedule!, startdate: startdate, stopdate: stopdate)
             }
             // Reset radiobuttons
             self.once.state = .off
             self.daily.state = .off
             self.weekly.state = .off
             self.details.state = .off
+        }
+    }
+
+    private func addschedule(schedule: String, startdate: Date, stopdate: Date) {
+        let answer = Alerts.dialogOKCancel("Add Schedule?", text: "Cancel or OK")
+        if answer {
+            Schedules.shared.addschedule(self.hiddenID!, schedule: schedule, start: startdate, stop: stopdate)
+            self.newSchedules = true
+            // Refresh table and recalculate the Schedules jobs
+            self.refresh()
+            // Start next job, if any, by delegate
+            if let pvc = Configurations.shared.viewControllertabMain as? ViewControllertabMain {
+                startnextjobDelegate = pvc
+                startnextjobDelegate?.startProcess()
+            }
+            // Displaying next two scheduled tasks
+            self.nextScheduledtask()
+            // Call function to check if a scheduled backup is due for countdown
+            self.startTimer()
         }
     }
 
@@ -227,7 +225,6 @@ class ViewControllertabSchedule: NSViewController {
 
     // Update display next scheduled jobs in time
     @objc func nextScheduledtask() {
-
         guard self.schedules != nil else {
             return
         }

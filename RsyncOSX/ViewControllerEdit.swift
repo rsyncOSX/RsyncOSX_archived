@@ -5,7 +5,7 @@
 //  Created by Thomas Evensen on 05/09/2016.
 //  Copyright © 2016 Thomas Evensen. All rights reserved.
 //
-//  swiftlint:disable syntactic_sugar file_length cyclomatic_complexity line_length
+//  swiftlint:disable  line_length
 
 import Foundation
 import Cocoa
@@ -20,13 +20,9 @@ class ViewControllerEdit: NSViewController {
     @IBOutlet weak var sshport: NSTextField!
     @IBOutlet weak var rsyncdaemon: NSButton!
 
-    // Index selectted row
     var index: Int?
-    // Get index of selected row
     weak var getindexDelegate: GetSelecetedIndex?
-    // Dismisser
     weak var dismissDelegate: DismissViewController?
-    // Single file if last character is NOT "/"
     var singleFile: Bool = false
 
     // Close and dismiss view
