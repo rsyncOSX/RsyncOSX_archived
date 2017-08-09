@@ -416,7 +416,7 @@ class ViewControllertabMain: NSViewController {
             return
         }
 
-        guard Configurations.shared.noRysync == false else {
+        guard Configurations.shared.norsync == false else {
             self.tools!.noRsync()
             return
         }
@@ -447,7 +447,7 @@ class ViewControllertabMain: NSViewController {
             return
         }
 
-        guard Configurations.shared.noRysync == false else {
+        guard Configurations.shared.norsync == false else {
             self.tools!.noRsync()
             return
         }

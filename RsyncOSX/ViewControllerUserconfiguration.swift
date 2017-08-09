@@ -136,10 +136,10 @@ class ViewControllerUserconfiguration: NSViewController {
         }
         if fileManager.fileExists(atPath: path!) {
             self.noRsync.isHidden = true
-            Configurations.shared.noRysync = false
+            Configurations.shared.norsync = false
         } else {
             self.noRsync.isHidden = false
-            Configurations.shared.noRysync = true
+            Configurations.shared.norsync = true
         }
     }
 

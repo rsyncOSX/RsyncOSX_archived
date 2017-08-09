@@ -62,7 +62,7 @@ class Configurations {
     // Optional path to rsync
     var rsyncPath: String?
     // No valid rsyncPath - true if no valid rsync is found
-    var noRysync: Bool = false
+    var norsync: Bool = false
     // Detailed logging
     var detailedlogging: Bool = true
     // Allow double click to activate single tasks
