@@ -5,7 +5,6 @@
 //  Created by Thomas Evensen on 17/10/2016.
 //  Copyright © 2016 Thomas Evensen. All rights reserved.
 //
-//  swiftlint:disable syntactic_sugar file_length cyclomatic_complexity line_length
 
 import Foundation
 import Cocoa
@@ -149,7 +148,8 @@ extension ViewControllerProfile : NSTableViewDelegate {
             text = data
             cellIdentifier = "profilesID"
         }
-        if let cell = tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: cellIdentifier), owner: self) as? NSTableCellView {
+        if let cell = tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: cellIdentifier),
+                         owner: self) as? NSTableCellView {
             cell.textField?.stringValue = text!
             return cell
         }
