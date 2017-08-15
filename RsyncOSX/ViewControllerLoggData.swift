@@ -160,6 +160,7 @@ extension ViewControllerLoggData : NSTableViewDelegate {
         let indexes = myTableViewFromNotification.selectedRowIndexes
         if let index = indexes.first {
             self.index = index
+            self.row = self.tabledata?[self.index!]
         }
     }
 
