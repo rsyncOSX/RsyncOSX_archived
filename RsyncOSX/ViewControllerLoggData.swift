@@ -129,12 +129,12 @@ class ViewControllerLoggData: NSViewController {
 extension ViewControllerLoggData : NSSearchFieldDelegate {
 
     override func controlTextDidChange(_ obj: Notification) {
-        let filterstring = self.search.stringValue
-        if self.server.state.rawValue == 0 &&
-            self.catalog.state.rawValue == 0 &&
-            self.date.state.rawValue == 0 {
-            self.catalog.state = .on
+        guard self.server.state.rawValue == 1 ||
+            self.catalog.state.rawValue == 1 ||
+            self.date.state.rawValue == 1 else {
+            return
         }
+        let filterstring = self.search.stringValue
         self.sorting.startAnimation(self)
         if filterstring.isEmpty {
             globalMainQueue.async(execute: { () -> Void in
