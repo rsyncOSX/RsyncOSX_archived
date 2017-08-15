@@ -20,8 +20,6 @@ enum Filterlogs {
 
 final class ScheduleLoggData {
 
-    // Reference to filtered data
-    private var data: Array<NSDictionary>?
     // Reference to all sorted loggdata
     // Loggdata is only sorted and read once
     private var loggdata: Array<NSDictionary>?
@@ -31,39 +29,28 @@ final class ScheduleLoggData {
         guard search != nil else {
             return self.loggdata
         }
-        if search!.isEmpty == false {
-            // Filter data
-            self.readfilteredData(filter: search!, filterwhat: what!)
-            return self.data!
-        } else {
-            return self.data
-        }
+        return self.readfilteredData(filter: search!, filterwhat: what!)
     }
 
     // Function for sorting and filtering loggdata
-    private func readfilteredData (filter: String, filterwhat: Filterlogs) {
-        var data = Array<NSDictionary>()
-        self.data = nil
+    private func readfilteredData (filter: String, filterwhat: Filterlogs) -> [NSDictionary]? {
         guard self.loggdata != nil else {
-            return
+            return nil
         }
-        for i in 0 ..< self.loggdata!.count {
-            switch filterwhat {
-            case .executeDate:
-                if (self.loggdata![i].value(forKey: "dateExecuted") as? String)!.contains(filter) {
-                    data.append(self.loggdata![i])
-                }
-            case .localCatalog:
-                if (self.loggdata![i].value(forKey: "localCatalog") as? String)!.contains(filter) {
-                    data.append(self.loggdata![i])
-                }
-            case .remoteServer:
-                if (self.loggdata![i].value(forKey: "offsiteServer") as? String)!.contains(filter) {
-                    data.append(self.loggdata![i])
-                }
-            }
+        switch filterwhat {
+        case .executeDate:
+            return self.loggdata?.filter({
+                return ($0.value(forKey: "dateExecuted") as? String)!.contains(filter)
+            })
+        case .localCatalog:
+            return self.loggdata?.filter({
+                return ($0.value(forKey: "localCatalog") as? String)!.contains(filter)
+            })
+        case .remoteServer:
+            return self.loggdata?.filter({
+                return ($0.value(forKey: "offsiteServer") as? String)!.contains(filter)
+            })
         }
-        self.data = data
     }
 
     // Function for sorting loggdata before any filtering.

@@ -1896,8 +1896,19 @@
                                     <rect key="frame" x="2" y="2" width="117" height="87"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
+                                        <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="r15-hK-EPv">
+                                            <rect key="frame" x="19" y="16" width="51" height="18"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                            <buttonCell key="cell" type="radio" title="Date" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="wXJ-OY-Dkh">
+                                                <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                                <font key="font" metaFont="system"/>
+                                            </buttonCell>
+                                            <connections>
+                                                <action selector="radiobuttons" target="AlG-Cw-Xi9" id="9G0-op-KJ5"/>
+                                            </connections>
+                                        </button>
                                         <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Mfl-Sx-Zuk">
-                                            <rect key="frame" x="19" y="57" width="62" height="18"/>
+                                            <rect key="frame" x="19" y="34" width="62" height="18"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             <buttonCell key="cell" type="radio" title="Server" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="hac-u3-tm1">
                                                 <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
@@ -1908,7 +1919,7 @@
                                             </connections>
                                         </button>
                                         <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="8XB-pb-Jsf">
-                                            <rect key="frame" x="19" y="35" width="69" height="18"/>
+                                            <rect key="frame" x="19" y="53" width="69" height="18"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             <buttonCell key="cell" type="radio" title="Catalog" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="lfl-dR-9aG">
                                                 <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
@@ -1916,17 +1927,6 @@
                                             </buttonCell>
                                             <connections>
                                                 <action selector="radiobuttons" target="AlG-Cw-Xi9" id="yOS-gh-xVR"/>
-                                            </connections>
-                                        </button>
-                                        <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="r15-hK-EPv">
-                                            <rect key="frame" x="19" y="13" width="51" height="18"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                            <buttonCell key="cell" type="radio" title="Date" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="wXJ-OY-Dkh">
-                                                <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                                                <font key="font" metaFont="system"/>
-                                            </buttonCell>
-                                            <connections>
-                                                <action selector="radiobuttons" target="AlG-Cw-Xi9" id="9G0-op-KJ5"/>
                                             </connections>
                                         </button>
                                     </subviews>

@@ -5,7 +5,6 @@
 //  Created by Thomas Evensen on 30/10/2016.
 //  Copyright © 2016 Thomas Evensen. All rights reserved.
 //
-// swiftlint:disable syntactic_sugar file_length cyclomatic_complexity line_length
 
 import Foundation
 import Cocoa
@@ -69,8 +68,10 @@ class ViewControllerScheduledBackupinWork: NSViewController {
         super.viewDidAppear()
         self.seconds = 10
         self.setInfo()
-        self.waitToClose = Timer.scheduledTimer(timeInterval: 10, target: self, selector: #selector(closeView), userInfo: nil, repeats: false)
-        self.closeIn = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(setSecondsView), userInfo: nil, repeats: true)
+        self.waitToClose = Timer.scheduledTimer(timeInterval: 10, target: self,
+                                selector: #selector(closeView), userInfo: nil, repeats: false)
+        self.closeIn = Timer.scheduledTimer(timeInterval: 1, target: self,
+                                selector: #selector(setSecondsView), userInfo: nil, repeats: true)
         self.closeinseconds.stringValue = "Close automatically in : 10 seconds"
     }
 
