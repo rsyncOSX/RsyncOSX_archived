@@ -102,30 +102,24 @@ class ViewControllerLoggData: NSViewController {
 
     // filter data
     fileprivate func filterLogg() {
-
         guard self.index != nil else {
             return
         }
-
         guard self.index! < self.tabledata!.count else {
             return
         }
-
         self.row = self.tabledata?[self.index!]
         if self.server.state == .on {
             if let server = self.row?.value(forKey: "offsiteServer") as? String {
                 self.search.stringValue = server
-                self.searchFieldDidStartSearching(self.search)
             }
         } else if self.catalog.state == .on {
             if let server = self.row?.value(forKey: "localCatalog") as? String {
                 self.search.stringValue = server
-                self.searchFieldDidStartSearching(self.search)
             }
         } else if self.date.state == .on {
             if let server = self.row?.value(forKey: "dateExecuted") as? String {
                 self.search.stringValue = server
-                self.searchFieldDidStartSearching(self.search)
             }
         }
 
@@ -134,9 +128,15 @@ class ViewControllerLoggData: NSViewController {
 
 extension ViewControllerLoggData : NSSearchFieldDelegate {
 
-    func searchFieldDidStartSearching(_ sender: NSSearchField) {
+    override func controlTextDidChange(_ obj: Notification) {
+        let filterstring = self.search.stringValue
+        if self.server.state.rawValue == 0 &&
+            self.catalog.state.rawValue == 0 &&
+            self.date.state.rawValue == 0 {
+            self.catalog.state = .on
+        }
         self.sorting.startAnimation(self)
-        if sender.stringValue.isEmpty {
+        if filterstring.isEmpty {
             globalMainQueue.async(execute: { () -> Void in
                 self.tabledata = ScheduleLoggData().filter(search: nil, what:nil)
                 self.scheduletable.reloadData()
@@ -144,7 +144,7 @@ extension ViewControllerLoggData : NSSearchFieldDelegate {
             })
         } else {
             globalMainQueue.async(execute: { () -> Void in
-                self.tabledata = ScheduleLoggData().filter(search: sender.stringValue, what:self.what)
+                self.tabledata = ScheduleLoggData().filter(search: filterstring, what:self.what)
                 self.scheduletable.reloadData()
                 self.sorting.stopAnimation(self)
             })

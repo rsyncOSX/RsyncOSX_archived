@@ -204,15 +204,16 @@ class ViewControllerCopyFiles: NSViewController {
 
 extension ViewControllerCopyFiles: NSSearchFieldDelegate {
 
-    func searchFieldDidStartSearching(_ sender: NSSearchField) {
-        if sender.stringValue.isEmpty {
+    override func controlTextDidChange(_ obj: Notification) {
+        let filterstring = self.search.stringValue
+        if filterstring.isEmpty {
             globalMainQueue.async(execute: { () -> Void in
                 self.filesArray = self.copyFiles?.filter(search: nil)
                 self.tableViewSelect.reloadData()
             })
         } else {
             globalMainQueue.async(execute: { () -> Void in
-                self.filesArray = self.copyFiles?.filter(search: sender.stringValue)
+                self.filesArray = self.copyFiles?.filter(search: filterstring)
                 self.tableViewSelect.reloadData()
             })
         }
