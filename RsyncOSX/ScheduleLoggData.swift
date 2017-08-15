@@ -42,28 +42,24 @@ final class ScheduleLoggData {
 
     // Function for sorting and filtering loggdata
     private func readfilteredData (filter: String, filterwhat: Filterlogs) {
-        var data = Array<NSDictionary>()
         self.data = nil
         guard self.loggdata != nil else {
             return
         }
-        for i in 0 ..< self.loggdata!.count {
-            switch filterwhat {
-            case .executeDate:
-                if (self.loggdata![i].value(forKey: "dateExecuted") as? String)!.contains(filter) {
-                    data.append(self.loggdata![i])
-                }
-            case .localCatalog:
-                if (self.loggdata![i].value(forKey: "localCatalog") as? String)!.contains(filter) {
-                    data.append(self.loggdata![i])
-                }
-            case .remoteServer:
-                if (self.loggdata![i].value(forKey: "offsiteServer") as? String)!.contains(filter) {
-                    data.append(self.loggdata![i])
-                }
-            }
+        switch filterwhat {
+        case .executeDate:
+            self.data = self.loggdata?.filter({
+                return ($0.value(forKey: "dateExecuted") as? String)!.contains(filter)
+            })
+        case .localCatalog:
+            self.data = self.loggdata?.filter({
+                return ($0.value(forKey: "localCatalog") as? String)!.contains(filter)
+            })
+        case .remoteServer:
+            self.data = self.loggdata?.filter({
+                return ($0.value(forKey: "offsiteServer") as? String)!.contains(filter)
+            })
         }
-        self.data = data
     }
 
     // Function for sorting loggdata before any filtering.
