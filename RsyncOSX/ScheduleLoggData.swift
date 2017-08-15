@@ -20,8 +20,6 @@ enum Filterlogs {
 
 final class ScheduleLoggData {
 
-    // Reference to filtered data
-    private var data: Array<NSDictionary>?
     // Reference to all sorted loggdata
     // Loggdata is only sorted and read once
     private var loggdata: Array<NSDictionary>?
@@ -31,32 +29,25 @@ final class ScheduleLoggData {
         guard search != nil else {
             return self.loggdata
         }
-        if search!.isEmpty == false {
-            // Filter data
-            self.readfilteredData(filter: search!, filterwhat: what!)
-            return self.data!
-        } else {
-            return self.data
-        }
+        return self.readfilteredData(filter: search!, filterwhat: what!)
     }
 
     // Function for sorting and filtering loggdata
-    private func readfilteredData (filter: String, filterwhat: Filterlogs) {
-        self.data = nil
+    private func readfilteredData (filter: String, filterwhat: Filterlogs) -> [NSDictionary]? {
         guard self.loggdata != nil else {
-            return
+            return nil
         }
         switch filterwhat {
         case .executeDate:
-            self.data = self.loggdata?.filter({
+            return self.loggdata?.filter({
                 return ($0.value(forKey: "dateExecuted") as? String)!.contains(filter)
             })
         case .localCatalog:
-            self.data = self.loggdata?.filter({
+            return self.loggdata?.filter({
                 return ($0.value(forKey: "localCatalog") as? String)!.contains(filter)
             })
         case .remoteServer:
-            self.data = self.loggdata?.filter({
+            return self.loggdata?.filter({
                 return ($0.value(forKey: "offsiteServer") as? String)!.contains(filter)
             })
         }

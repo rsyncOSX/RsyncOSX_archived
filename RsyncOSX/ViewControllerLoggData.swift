@@ -42,7 +42,6 @@ class ViewControllerLoggData: NSViewController {
         } else if self.date.state == .on {
             self.what = .executeDate
         }
-        self.filterLogg()
     }
 
     // Delete row
@@ -79,10 +78,8 @@ class ViewControllerLoggData: NSViewController {
             self.scheduletable.reloadData()
             self.sorting.stopAnimation(self)
         })
-        self.server.state = .off
-        self.catalog.state = .off
-        self.date.state = .off
-        self.what = .remoteServer
+        self.catalog.state = .on
+        self.what = .localCatalog
         self.deleteButton.state = .off
     }
 
@@ -98,31 +95,6 @@ class ViewControllerLoggData: NSViewController {
             return
         }
         self.scheduletable.deselectRow(self.index!)
-    }
-
-    // filter data
-    fileprivate func filterLogg() {
-        guard self.index != nil else {
-            return
-        }
-        guard self.index! < self.tabledata!.count else {
-            return
-        }
-        self.row = self.tabledata?[self.index!]
-        if self.server.state == .on {
-            if let server = self.row?.value(forKey: "offsiteServer") as? String {
-                self.search.stringValue = server
-            }
-        } else if self.catalog.state == .on {
-            if let server = self.row?.value(forKey: "localCatalog") as? String {
-                self.search.stringValue = server
-            }
-        } else if self.date.state == .on {
-            if let server = self.row?.value(forKey: "dateExecuted") as? String {
-                self.search.stringValue = server
-            }
-        }
-
     }
 }
 
@@ -157,9 +129,6 @@ extension ViewControllerLoggData : NSSearchFieldDelegate {
             self.tabledata = ScheduleLoggData().filter(search: nil, what:nil)
             self.scheduletable.reloadData()
         })
-        self.server.state = .off
-        self.catalog.state = .off
-        self.date.state = .off
     }
 
 }
@@ -185,14 +154,12 @@ extension ViewControllerLoggData : NSTableViewDelegate {
         return object[tableColumn!.identifier] as? String
     }
 
-    // when row is selected
     // setting which table row is selected
     func tableViewSelectionDidChange(_ notification: Notification) {
         let myTableViewFromNotification = (notification.object as? NSTableView)!
         let indexes = myTableViewFromNotification.selectedRowIndexes
         if let index = indexes.first {
             self.index = index
-            self.filterLogg()
         }
     }
 
