@@ -203,6 +203,7 @@ class ViewControllertabMain: NSViewController {
         self.setNumbers(output: nil)
         self.setInfo(info: "Estimate", color: .blue)
         self.process = nil
+        self.singletask = nil
 
         if self.index != nil {
             // rsync params
@@ -803,7 +804,6 @@ extension ViewControllertabMain: DismissViewController {
         self.edit.state = .off
         self.rsyncparams.state = .off
         self.loadProfileMenu = true
-        self.singletask = nil
         globalMainQueue.async(execute: { () -> Void in
             self.mainTableView.reloadData()
             self.displayProfile()
@@ -982,9 +982,9 @@ extension ViewControllertabMain:SingleTask {
         globalMainQueue.async(execute: { () -> Void in
             switch info {
             case .estimating:
-                self.processInfo.stringValue = "Estimate"
+                self.processInfo.stringValue = "Estimating"
             case .executing:
-                self.processInfo.stringValue = "Execute"
+                self.processInfo.stringValue = "Executing"
             case .setmaxNumber:
                 self.processInfo.stringValue = "Set max number"
             case .loggingrun:
