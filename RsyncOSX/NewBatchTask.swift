@@ -164,7 +164,7 @@ final class NewBatchTask {
                 Configurations.shared.setCurrentDateonConfiguration(index)
                 let numberOffFiles = self.transfernum
                 let sizeOfFiles = self.transferbytes
-                Schedules.shared.addlogmanuel(hiddenID,
+                Schedules.shared.addlogtaskmanuel(hiddenID,
                                      result: number.stats(numberOfFiles: numberOffFiles, sizeOfFiles: sizeOfFiles)[0])
                 self.executeBatch()
             default :

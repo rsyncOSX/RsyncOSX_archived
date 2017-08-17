@@ -65,7 +65,7 @@ class ScheduleWriteLoggData {
     /// - parameter hiddenID : hiddenID for task
     /// - parameter result : String representation of result
     /// - parameter date : String representation of date and time stamp
-    func addlogmanuel(_ hiddenID: Int, result: String) {
+    func addlogtaskmanuel(_ hiddenID: Int, result: String) {
         // Set the current date
         let currendate = Date()
         let dateformatter = Tools().setDateformat()
@@ -86,9 +86,8 @@ class ScheduleWriteLoggData {
 
     private func addloggtaskmanualexisting(_ hiddenID: Int, result: String, date: String) -> Bool {
         var loggadded: Bool = false
-        for i in 0 ..< self.schedule.count {
-            // Add record only to record with no enddate
-            if Configurations.shared.getResourceConfiguration(hiddenID, resource: .task) == "backup" {
+        for i in 0 ..< self.schedule.count where
+            Configurations.shared.getResourceConfiguration(hiddenID, resource: .task) == "backup" {
                 if self.schedule[i].hiddenID == hiddenID  &&
                     self.schedule[i].schedule == "manuel" &&
                     self.schedule[i].dateStop == nil {
@@ -105,7 +104,6 @@ class ScheduleWriteLoggData {
                     loggadded = true
                 }
             }
-        }
         return loggadded
     }
 
