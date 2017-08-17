@@ -150,7 +150,7 @@ final class NewSingleTask {
                 let hiddenID = Configurations.shared.gethiddenID(index: self.index!)
                 let numberOffFiles = self.transferredNumber
                 let sizeOfFiles = self.transferredNumberSizebytes
-                Schedules.shared.addresultmanuel(hiddenID,
+                Schedules.shared.addlogmanuel(hiddenID,
                                      result: number.stats(numberOfFiles: numberOffFiles, sizeOfFiles: sizeOfFiles)[0])
             case .abort:
                 self.taskDelegate?.singleTaskAbort(process: self.process)

@@ -180,7 +180,6 @@ final class PersistentStorageConfiguration: Readwritefiles {
             "parameter5": dict.value(forKey: "parameter5")!,
             "parameter6": dict.value(forKey: "parameter6")!,
             "dryrun": dict.value(forKey: "dryrun")!,
-            "rsync": dict.value(forKey: "rsync")!,
             "dateRun": "",
             "hiddenID": self.maxhiddenID + 2]
         if dict.value(forKey: "parameter8") != nil {

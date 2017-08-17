@@ -20,7 +20,6 @@ enum Filterlogs {
 
 final class ScheduleLoggData {
 
-    // Reference to all sorted loggdata
     // Loggdata is only sorted and read once
     private var loggdata: Array<NSDictionary>?
 
@@ -48,7 +47,6 @@ final class ScheduleLoggData {
         }
     }
 
-    // Function for sorting loggdata before any filtering.
     // Loggdata is only read and sorted once
     private func readAndSortAllLoggdata() {
         var data = Array<NSDictionary>()

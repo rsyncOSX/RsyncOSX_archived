@@ -410,23 +410,18 @@ class ViewControllertabMain: NSViewController {
 
     // Single task can be activated by double click from table
     private func executeSingleTask() {
-
         guard scheduledOperationInProgress() == false else {
             Alerts.showInfo("Scheduled operation in progress")
             return
         }
-
         guard Configurations.shared.norsync == false else {
             self.tools!.noRsync()
             return
         }
-
         guard self.index != nil else {
             return
         }
-
         self.batchtask = nil
-
         guard self.singletask != nil else {
             // Dry run
             self.singletask = NewSingleTask(index: self.index!)
@@ -441,17 +436,14 @@ class ViewControllertabMain: NSViewController {
 
     // Execute BATCH TASKS only
     @IBAction func executeBatch(_ sender: NSButton) {
-
         guard scheduledOperationInProgress() == false else {
             Alerts.showInfo("Scheduled operation in progress")
             return
         }
-
         guard Configurations.shared.norsync == false else {
             self.tools!.noRsync()
             return
         }
-
         self.singletask = nil
         self.setNumbers(output: nil)
         self.batchtask = NewBatchTask()
@@ -471,13 +463,11 @@ class ViewControllertabMain: NSViewController {
 
     // Function for setting profile
     fileprivate func displayProfile() {
-
         guard self.loadProfileMenu == true else {
             self.profilInfo.stringValue = "Profile: please wait..."
             self.profilInfo.textColor = .blue
             return
         }
-
         if let profile = Configurations.shared.getProfile() {
             self.profilInfo.stringValue = "Profile: " + profile
             self.profilInfo.textColor = .blue
@@ -523,7 +513,6 @@ class ViewControllertabMain: NSViewController {
         self.process = nil
         self.singletask = nil
         self.batchtask = nil
-
         self.setInfo(info: "Estimate", color: .blue)
         self.setRsyncCommandDisplay()
     }
@@ -553,8 +542,7 @@ extension ViewControllertabMain : NSTableViewDataSource {
 
 extension ViewControllertabMain : NSTableViewDelegate {
 
-    // Function to test for remote server available or not
-    // Used in tableview delegate
+    // Function to test for remote server available or not, used in tableview delegate
     private func testRow(_ row: Int) -> Bool {
         if let serverOff = self.serverOff {
             if row < serverOff.count {
@@ -677,11 +665,9 @@ extension ViewControllertabMain: StartNextScheduledTask {
 // New profile is loaded.
 extension ViewControllertabMain: AddProfiles {
 
-    // Function is called from profiles when new or
-    // default profiles is seleceted
+    // Function is called from profiles when new or default profiles is seleceted
     func newProfile(new: Bool) {
         weak var newProfileDelegate: AddProfiles?
-        // By setting self.schedules = nil start jobs are restaret in ViewDidAppear
         self.schedules = nil
         self.loadProfileMenu = false
         // Reset any queue of work
@@ -714,7 +700,6 @@ extension ViewControllertabMain: AddProfiles {
         // Make sure loading profile
         self.loadProfileMenu = true
         self.displayProfile()
-        // Do a refresh of tableView
         self.refresh()
         // We have to start any Scheduled process again - if any
         self.startProcess()
@@ -762,8 +747,8 @@ extension ViewControllertabMain: ScheduledJobInProgress {
 // New scheduled task entered. Delete old one and
 // calculated new object (queue)
 extension ViewControllertabMain: NewSchedules {
-    // Create new schedule object. Old object is
-    // released (deleted).
+
+    // Create new schedule object. Old object is released (deleted).
     func newSchedulesAdded() {
         self.schedules = nil
         self.schedules = ScheduleSortedAndExpand()
@@ -818,6 +803,7 @@ extension ViewControllertabMain: DismissViewController {
         self.edit.state = .off
         self.rsyncparams.state = .off
         self.loadProfileMenu = true
+        self.singletask = nil
         globalMainQueue.async(execute: { () -> Void in
             self.mainTableView.reloadData()
             self.displayProfile()
@@ -866,8 +852,7 @@ extension ViewControllertabMain: UpdateProgress {
             if let batchobject = Configurations.shared.getBatchdataObject() {
                 let work = batchobject.nextBatchCopy()
                 if work.1 == 1 {
-                    // Real work is done
-                    // Must set reference to Process object in case of Abort
+                    // Real work is done, must set reference to Process object in case of Abort
                     self.process = self.batchtask!.process
                     batchobject.updateInProcess(numberOfFiles: self.batchtask!.output!.getMaxcount())
                     // Refresh view in Batchwindow
@@ -882,9 +867,6 @@ extension ViewControllertabMain: UpdateProgress {
             guard self.singletask != nil else {
                 return
             }
-            // Refresh ProgressView single run
-            // Must get output from rsync and set reference 
-            // to Process object in case of Abort
             self.output = self.singletask!.output
             self.process = self.singletask!.process
             if let pvc2 = self.presentedViewControllers as? [ViewControllerProgressProcess] {
@@ -1000,9 +982,9 @@ extension ViewControllertabMain:SingleTask {
         globalMainQueue.async(execute: { () -> Void in
             switch info {
             case .estimating:
-                self.processInfo.stringValue = "Estimating"
+                self.processInfo.stringValue = "Estimate"
             case .executing:
-                self.processInfo.stringValue = "Executing"
+                self.processInfo.stringValue = "Execute"
             case .setmaxNumber:
                 self.processInfo.stringValue = "Set max number"
             case .loggingrun:

@@ -5,7 +5,7 @@
 //  Created by Thomas Evensen on 19.04.2017.
 //  Copyright © 2017 Thomas Evensen. All rights reserved.
 //
-//  swiftlint:disable syntactic_sugar line_length
+//  swiftlint:disable syntactic_sugar
 
 import Foundation
 import Cocoa
@@ -65,67 +65,69 @@ class ScheduleWriteLoggData {
     /// - parameter hiddenID : hiddenID for task
     /// - parameter result : String representation of result
     /// - parameter date : String representation of date and time stamp
-    func addresultmanuel(_ hiddenID: Int, result: String) {
+    func addlogmanuel(_ hiddenID: Int, result: String) {
         // Set the current date
         let currendate = Date()
         let dateformatter = Tools().setDateformat()
         let date = dateformatter.string(from: currendate)
-
-        if Configurations.shared.detailedlogging {
-            var inserted: Bool = false
-            for i in 0 ..< self.schedule.count {
-                // Add record only to record with no enddate
-                if Configurations.shared.getResourceConfiguration(hiddenID, resource: .task) == "backup" {
-                    if self.schedule[i].hiddenID == hiddenID  && self.schedule[i].schedule == "manuel" && self.schedule[i].dateStop == nil {
-                        let dict = NSMutableDictionary()
-                        dict.setObject(date, forKey: "dateExecuted" as NSCopying)
-                        dict.setObject(result, forKey: "resultExecuted" as NSCopying)
-                        let dictKey: NSDictionary = [
-                            // "dateStart":self.Schedule[i].dateStart,
-                            "dateStart": "01 Jan 1900 00:00",
-                            "schedule": self.schedule[i].schedule,
-                            "hiddenID": self.schedule[i].hiddenID]
-                        let parent: String = self.computeKey(dictKey)
-                        dict.setValue(parent, forKey: "parent")
-                        self.schedule[i].logrecords.append(dict)
-                        inserted = true
-                    }
-                }
+        var inserted: Bool = self.addloggtaskmanualexisting(hiddenID, result: result, date: date)
+        // Record does not exist, create new Schedule (not inserted)
+        if inserted == false {
+            inserted = self.addloggtaskmanulnew(hiddenID, result: result, date: date)
+        }
+        if inserted {
+            self.storageapi!.saveScheduleFromMemory()
+            if let pvc = Configurations.shared.viewControllertabMain as? ViewControllertabMain {
+                self.deselectrowDelegate = pvc
+                self.deselectrowDelegate?.deselectRow()
             }
-            // Record does not exist, create new Schedule (not inserted)
-            if inserted == false {
-                if (Configurations.shared.getResourceConfiguration(hiddenID, resource: .task) == "backup") {
-                    let masterdict = NSMutableDictionary()
-                    masterdict.setObject(hiddenID, forKey: "hiddenID" as NSCopying)
-                    // masterdict.setObject(date, forKey: "dateStart" as NSCopying)
-                    masterdict.setObject("01 Jan 1900 00:00", forKey: "dateStart" as NSCopying)
-                    masterdict.setObject("manuel", forKey: "schedule" as NSCopying)
+        }
+    }
 
+    private func addloggtaskmanualexisting(_ hiddenID: Int, result: String, date: String) -> Bool {
+        var loggadded: Bool = false
+        for i in 0 ..< self.schedule.count {
+            // Add record only to record with no enddate
+            if Configurations.shared.getResourceConfiguration(hiddenID, resource: .task) == "backup" {
+                if self.schedule[i].hiddenID == hiddenID  &&
+                    self.schedule[i].schedule == "manuel" &&
+                    self.schedule[i].dateStop == nil {
                     let dict = NSMutableDictionary()
                     dict.setObject(date, forKey: "dateExecuted" as NSCopying)
                     dict.setObject(result, forKey: "resultExecuted" as NSCopying)
-
-                    // Compute key to parent
-                    // Just to pass schedule in dictionary, no saved but used for computing key to parent
-                    let parent: String = self.computeKey(masterdict)
+                    let dictKey: NSDictionary = [
+                        "dateStart": "01 Jan 1900 00:00",
+                        "schedule": self.schedule[i].schedule,
+                        "hiddenID": self.schedule[i].hiddenID]
+                    let parent: String = self.computeKey(dictKey)
                     dict.setValue(parent, forKey: "parent")
-
-                    let executed = NSMutableArray()
-                    executed.add(dict)
-                    let newSchedule = ConfigurationSchedule(dictionary: masterdict, log: executed)
-                    self.schedule.append(newSchedule)
-                    // Set inseted true to force write of record
-                    inserted = true
-                }
-            }
-            if inserted {
-                self.storageapi!.saveScheduleFromMemory()
-                if let pvc = Configurations.shared.viewControllertabMain as? ViewControllertabMain {
-                    self.deselectrowDelegate = pvc
-                    self.deselectrowDelegate?.deselectRow()
+                    self.schedule[i].logrecords.append(dict)
+                    loggadded = true
                 }
             }
         }
+        return loggadded
+    }
+
+    private func addloggtaskmanulnew(_ hiddenID: Int, result: String, date: String) -> Bool {
+        var loggadded: Bool = false
+        if (Configurations.shared.getResourceConfiguration(hiddenID, resource: .task) == "backup") {
+            let masterdict = NSMutableDictionary()
+            masterdict.setObject(hiddenID, forKey: "hiddenID" as NSCopying)
+            masterdict.setObject("01 Jan 1900 00:00", forKey: "dateStart" as NSCopying)
+            masterdict.setObject("manuel", forKey: "schedule" as NSCopying)
+            let dict = NSMutableDictionary()
+            dict.setObject(date, forKey: "dateExecuted" as NSCopying)
+            dict.setObject(result, forKey: "resultExecuted" as NSCopying)
+            let parent: String = self.computeKey(masterdict)
+            dict.setValue(parent, forKey: "parent")
+            let executed = NSMutableArray()
+            executed.add(dict)
+            let newSchedule = ConfigurationSchedule(dictionary: masterdict, log: executed)
+            self.schedule.append(newSchedule)
+            loggadded = true
+        }
+        return loggadded
     }
 
     /// Function adds results of task to file (via memory). Memory are
