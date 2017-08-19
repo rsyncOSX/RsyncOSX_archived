@@ -515,6 +515,7 @@ class ViewControllertabMain: NSViewController {
         self.singletask = nil
         self.batchtask = nil
         self.setInfo(info: "Estimate", color: .blue)
+        self.showProcessInfo(info: .blank)
         self.setRsyncCommandDisplay()
     }
 
@@ -708,7 +709,6 @@ extension ViewControllertabMain: AddProfiles {
 
     func enableProfileMenu() {
         self.loadProfileMenu = true
-        self.showProcessInfo(info: .profilesenabled)
         globalMainQueue.async(execute: { () -> Void in
             self.displayProfile()
         })
@@ -808,6 +808,7 @@ extension ViewControllertabMain: DismissViewController {
             self.mainTableView.reloadData()
             self.displayProfile()
         })
+        self.showProcessInfo(info: .blank)
     }
 }
 
@@ -846,7 +847,6 @@ extension ViewControllertabMain: UpdateProgress {
     // Function is triggered when Process outputs data in filehandler
     // Process is either in singleRun or batchRun
     func fileHandler() {
-        self.showProcessInfo(info: .countfiles)
         if self.batchtask != nil {
             // Batch run
             if let batchobject = Configurations.shared.getBatchdataObject() {
@@ -985,16 +985,10 @@ extension ViewControllertabMain:SingleTask {
                 self.processInfo.stringValue = "Estimating"
             case .executing:
                 self.processInfo.stringValue = "Executing"
-            case .setmaxNumber:
-                self.processInfo.stringValue = "Set max number"
             case .loggingrun:
                 self.processInfo.stringValue = "Logging run"
-            case .countfiles:
-                self.processInfo.stringValue = "Count files"
             case .changeprofile:
                 self.processInfo.stringValue = "Change profile"
-            case .profilesenabled:
-                self.processInfo.stringValue = "Profiles enabled"
             case .abort:
                 self.processInfo.stringValue = "Abort"
             case .error:
@@ -1050,7 +1044,6 @@ extension ViewControllertabMain:SingleTask {
     func setNumbers(output: OutputProcess?) {
 
         globalMainQueue.async(execute: { () -> Void in
-            self.showProcessInfo(info: .setmaxNumber)
             guard output != nil else {
                 self.transferredNumber.stringValue = ""
                 self.transferredNumberSizebytes.stringValue = ""
