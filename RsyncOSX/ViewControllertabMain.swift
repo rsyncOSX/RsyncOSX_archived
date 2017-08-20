@@ -50,6 +50,7 @@ class ViewControllertabMain: NSViewController {
     var batchtask: NewBatchTask?
     var tools: Tools?
 
+    @IBOutlet weak var light: NSColorWell!
     // Protocol function used in Process().
     weak var processupdateDelegate: UpdateProgress?
     // Delegate function for doing a refresh of NSTableView in ViewControllerBatch
@@ -202,6 +203,7 @@ class ViewControllertabMain: NSViewController {
         // Clear numbers from dryrun
         self.setNumbers(output: nil)
         self.setInfo(info: "Estimate", color: .blue)
+        self.light.color = .systemYellow
         self.process = nil
         self.singletask = nil
 
@@ -356,6 +358,7 @@ class ViewControllertabMain: NSViewController {
         // Allow notify about Scheduled jobs
         Configurations.shared.allowNotifyinMain = true
         self.setInfo(info: "", color: .black)
+        self.light.color = .systemYellow
         // Setting reference to ViewController
         // Used to call delegate function from other class
         Configurations.shared.viewControllertabMain = self
@@ -375,7 +378,7 @@ class ViewControllertabMain: NSViewController {
         self.ready = true
         self.displayAllowDoubleclick()
         if self.tools == nil { self.tools = Tools()}
-
+        self.light.color = .systemYellow
     }
 
     override func viewDidDisappear() {
@@ -515,6 +518,7 @@ class ViewControllertabMain: NSViewController {
         self.singletask = nil
         self.batchtask = nil
         self.setInfo(info: "Estimate", color: .blue)
+        self.light.color = .systemYellow
         self.showProcessInfo(info: .blank)
         self.setRsyncCommandDisplay()
     }
@@ -602,6 +606,7 @@ extension ViewControllertabMain : NSTableViewDelegate {
         }
         self.singletask = nil
         self.setInfo(info: "Estimate", color: .blue)
+        self.light.color = .systemYellow
     }
 }
 
@@ -679,6 +684,7 @@ extension ViewControllertabMain: AddProfiles {
         self.outputbatch = nil
         self.setRsyncCommandDisplay()
         self.setInfo(info: "Estimate", color: .blue)
+        self.light.color = .systemYellow
         self.setNumbers(output: nil)
         guard new == false else {
             // A new and empty profile is created
@@ -897,6 +903,7 @@ extension ViewControllertabMain: RsyncError {
         if Configurations.shared.rsyncerror {
             globalMainQueue.async(execute: { () -> Void in
                 self.setInfo(info: "Error", color: .red)
+                self.light.color = .systemRed
                 self.showProcessInfo(info: .error)
                 self.setRsyncCommandDisplay()
                 // Abort any operations
@@ -921,6 +928,7 @@ extension ViewControllertabMain: ReportErrorInMain {
     func fileerror(errorstr: String) {
         globalMainQueue.async(execute: { () -> Void in
             self.setInfo(info: "Error", color: .red)
+            self.light.color = .systemRed
             self.showProcessInfo(info: .error)
             // Dump the errormessage in rsynccommand field
             self.rsyncCommand.stringValue = errorstr
@@ -943,6 +951,7 @@ extension ViewControllertabMain: AbortOperations {
             self.process = nil
             // Create workqueu and add abort
             self.setInfo(info: "Abort", color: .red)
+            self.light.color = .systemRed
             self.rsyncCommand.stringValue = ""
         } else {
             self.working.stopAnimation(nil)
@@ -958,6 +967,7 @@ extension ViewControllertabMain: AbortOperations {
             self.schedules = nil
             self.process = nil
             self.setInfo(info: "Abort", color: .red)
+            self.light.color = .systemRed
         }
     }
 
@@ -983,6 +993,7 @@ extension ViewControllertabMain:SingleTask {
             switch info {
             case .estimating:
                 self.processInfo.stringValue = "Estimating"
+                self.light.color = .systemGreen
             case .executing:
                 self.processInfo.stringValue = "Executing"
             case .loggingrun:
