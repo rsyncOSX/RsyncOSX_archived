@@ -34,11 +34,8 @@ var globalDefaultQueue: DispatchQueue {
 enum DisplayProcessInfo {
     case estimating
     case executing
-    case setmaxNumber
     case loggingrun
-    case countfiles
     case changeprofile
-    case profilesenabled
     case abort
     case blank
     case error

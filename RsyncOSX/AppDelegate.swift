@@ -20,7 +20,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         // Read user configuration
         storage = PersistentStorageAPI()
         if let userConfiguration =  storage?.getUserconfiguration() {
-            // userConfiguration is never nil if object is created
             _ = Userconfiguration(userconfigRsyncOSX: userConfiguration)
         }
     }
