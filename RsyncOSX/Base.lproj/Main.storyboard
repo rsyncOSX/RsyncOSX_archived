@@ -640,18 +640,28 @@
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="qkq-x4-Af5">
-                                            <rect key="frame" x="5" y="6" width="106" height="17"/>
+                                            <rect key="frame" x="5" y="6" width="71" height="17"/>
                                             <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" title="status" id="Dl6-i6-oA7">
                                                 <font key="font" metaFont="system"/>
                                                 <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                                 <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                             </textFieldCell>
                                         </textField>
+                                        <colorWell bordered="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Kkf-ns-DmF">
+                                            <rect key="frame" x="82" y="6" width="15" height="15"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="15" id="Phd-Al-QzW"/>
+                                                <constraint firstAttribute="width" constant="15" id="nnm-X8-gPn"/>
+                                            </constraints>
+                                            <color key="color" name="systemYellowColor" catalog="System" colorSpace="catalog"/>
+                                        </colorWell>
                                     </subviews>
                                     <constraints>
-                                        <constraint firstItem="qkq-x4-Af5" firstAttribute="top" secondItem="fU2-rA-tMU" secondAttribute="top" constant="1" id="mX0-Nr-App"/>
-                                        <constraint firstItem="qkq-x4-Af5" firstAttribute="leading" secondItem="fU2-rA-tMU" secondAttribute="leading" constant="7" id="ofa-hl-o2u"/>
-                                        <constraint firstItem="qkq-x4-Af5" firstAttribute="centerX" secondItem="fU2-rA-tMU" secondAttribute="centerX" id="ppP-kK-eBR"/>
+                                        <constraint firstItem="Kkf-ns-DmF" firstAttribute="leading" secondItem="qkq-x4-Af5" secondAttribute="trailing" constant="8" symbolic="YES" id="3bb-vP-N0n"/>
+                                        <constraint firstItem="Kkf-ns-DmF" firstAttribute="top" secondItem="fU2-rA-tMU" secondAttribute="top" constant="3" id="739-m7-2RA"/>
+                                        <constraint firstItem="qkq-x4-Af5" firstAttribute="leading" secondItem="fU2-rA-tMU" secondAttribute="leading" constant="7" id="TfS-oa-Xx3"/>
+                                        <constraint firstAttribute="trailing" secondItem="Kkf-ns-DmF" secondAttribute="trailing" constant="20" symbolic="YES" id="dnr-L5-Z97"/>
+                                        <constraint firstItem="qkq-x4-Af5" firstAttribute="top" secondItem="fU2-rA-tMU" secondAttribute="top" constant="1" id="jFr-rB-izS"/>
                                     </constraints>
                                 </view>
                             </box>
@@ -867,6 +877,7 @@
                         <outlet property="displayRealRun" destination="3DG-2b-5po" id="hO9-C5-Wbp"/>
                         <outlet property="dryRunOrRealRun" destination="qkq-x4-Af5" id="oQ9-nJ-wSt"/>
                         <outlet property="edit" destination="mUx-V8-Mvc" id="1RJ-DI-YOF"/>
+                        <outlet property="light" destination="Kkf-ns-DmF" id="mla-eE-Olb"/>
                         <outlet property="mainTableView" destination="gd0-mk-eEg" id="V0X-hS-6qu"/>
                         <outlet property="newfiles" destination="AyX-Ou-VvT" id="NmE-4m-2Rs"/>
                         <outlet property="processInfo" destination="KX4-b1-AYu" id="Knr-bH-exp"/>
