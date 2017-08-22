@@ -34,15 +34,15 @@ final class ScheduleLoggData {
         switch what! {
         case .executeDate:
             return self.loggdata?.filter({
-                return ($0.value(forKey: "dateExecuted") as? String)!.contains(search!)
+                 ($0.value(forKey: "dateExecuted") as? String)!.contains(search!)
             })
         case .localCatalog:
             return self.loggdata?.filter({
-                return ($0.value(forKey: "localCatalog") as? String)!.contains(search!)
+                ($0.value(forKey: "localCatalog") as? String)!.contains(search!)
             })
         case .remoteServer:
             return self.loggdata?.filter({
-                return ($0.value(forKey: "offsiteServer") as? String)!.contains(search!)
+                ($0.value(forKey: "offsiteServer") as? String)!.contains(search!)
             })
         }
     }
