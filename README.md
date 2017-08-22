@@ -4,7 +4,7 @@ Important : this version is not compliant with Xcode 8 and Swift 3. The source c
 
 ### Version 4.5.0 - Xcode 9, Swift 4 and macOS High Sierra
 
-This is the source code for the macOS application RsyncOSX. The application is implemented in **Swift 4** by using **Xcode version 9 beta5**. RsyncOSX is **not** depended upon any third party binary distributions. There is, however, one third party source code included to check for TCP connections. The check is for informal use only and can be removed. All other code is stock use of Swift 4 and libraries as part of Xcode version 9.
+This is the source code for the macOS application RsyncOSX. The application is implemented in **Swift 4** by using **Xcode version 9**. RsyncOSX is **not** depended upon any third party binary distributions. There is, however, one third party source code included to check for TCP connections. The check is for informal use only and can be removed. All other code is stock use of Swift 4 and libraries as part of Xcode version 9.
 
 This version will be released when Xcode 9 is released.
 
