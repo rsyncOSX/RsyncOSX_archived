@@ -12,39 +12,59 @@
 
 import Foundation
 
+protocol Readfiltereddata: class {
+    func readfiltereddata(data: Filtereddata)
+}
+
 enum Filterlogs {
     case localCatalog
     case remoteServer
     case executeDate
 }
 
+class Filtereddata {
+    var filtereddata: [NSDictionary]?
+}
+
 final class ScheduleLoggData {
 
     // Loggdata is only sorted and read once
     private var loggdata: Array<NSDictionary>?
+    weak var readfiltereddataDelegate: Readfiltereddata?
+
+    func getallloggdata() -> [NSDictionary]? {
+        return self.loggdata
+    }
 
     // Function for filter loggdata
-    func filter(search: String?, what: Filterlogs?) -> [NSDictionary]? {
+    func filter(search: String?, what: Filterlogs?) {
         guard search != nil else {
-            return self.loggdata
+            return
         }
         guard self.loggdata != nil else {
-            return nil
+            return
         }
-        switch what! {
-        case .executeDate:
-            return self.loggdata?.filter({
-                return ($0.value(forKey: "dateExecuted") as? String)!.contains(search!)
-            })
-        case .localCatalog:
-            return self.loggdata?.filter({
-                return ($0.value(forKey: "localCatalog") as? String)!.contains(search!)
-            })
-        case .remoteServer:
-            return self.loggdata?.filter({
-                return ($0.value(forKey: "offsiteServer") as? String)!.contains(search!)
-            })
+        if let pvc = Configurations.shared.viewControllerLoggData as? ViewControllerLoggData {
+            self.readfiltereddataDelegate = pvc
         }
+        globalDefaultQueue.async(execute: {() -> Void in
+            let filtereddata = Filtereddata()
+            switch what! {
+            case .executeDate:
+                filtereddata.filtereddata =  self.loggdata?.filter({
+                    ($0.value(forKey: "dateExecuted") as? String)!.contains(search!)
+                })
+            case .localCatalog:
+                filtereddata.filtereddata = self.loggdata?.filter({
+                    ($0.value(forKey: "localCatalog") as? String)!.contains(search!)
+                })
+            case .remoteServer:
+                filtereddata.filtereddata = self.loggdata?.filter({
+                    ($0.value(forKey: "offsiteServer") as? String)!.contains(search!)
+                })
+            }
+            self.readfiltereddataDelegate?.readfiltereddata(data: filtereddata)
+        })
     }
 
     // Loggdata is only read and sorted once
