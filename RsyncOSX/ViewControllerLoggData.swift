@@ -180,9 +180,9 @@ extension ViewControllerLoggData: RefreshtableView {
 }
 
 extension ViewControllerLoggData: Readfiltereddata {
-    func readfiltereddata(data: [NSDictionary]?) {
+    func readfiltereddata(data: Filtereddata) {
         globalMainQueue.async(execute: { () -> Void in
-            self.tabledata = data
+            self.tabledata = data.filtereddata
             self.scheduletable.reloadData()
             self.sorting.stopAnimation(self)
         })

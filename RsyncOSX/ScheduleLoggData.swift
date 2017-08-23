@@ -13,13 +13,17 @@
 import Foundation
 
 protocol Readfiltereddata: class {
-    func readfiltereddata(data: [NSDictionary]?)
+    func readfiltereddata(data: Filtereddata)
 }
 
 enum Filterlogs {
     case localCatalog
     case remoteServer
     case executeDate
+}
+
+class Filtereddata {
+    var filtereddata: [NSDictionary]?
 }
 
 final class ScheduleLoggData {
@@ -44,18 +48,18 @@ final class ScheduleLoggData {
             self.readfiltereddataDelegate = pvc
         }
         globalDefaultQueue.async(execute: {() -> Void in
-            var filtereddata: [NSDictionary]?
+            let filtereddata = Filtereddata()
             switch what! {
             case .executeDate:
-                filtereddata =  self.loggdata?.filter({
+                filtereddata.filtereddata =  self.loggdata?.filter({
                     ($0.value(forKey: "dateExecuted") as? String)!.contains(search!)
                 })
             case .localCatalog:
-                filtereddata = self.loggdata?.filter({
+                filtereddata.filtereddata = self.loggdata?.filter({
                     ($0.value(forKey: "localCatalog") as? String)!.contains(search!)
                 })
             case .remoteServer:
-                filtereddata = self.loggdata?.filter({
+                filtereddata.filtereddata = self.loggdata?.filter({
                     ($0.value(forKey: "offsiteServer") as? String)!.contains(search!)
                 })
             }
