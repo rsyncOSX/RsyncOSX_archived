@@ -78,7 +78,7 @@ class ViewControllerAbout: NSViewController {
 
 }
 
-extension ViewControllerAbout: newVersionDiscovered {
+extension ViewControllerAbout: NewVersionDiscovered {
     // Notifies if new version is discovered
     func notifyNewVersion() {
         globalMainQueue.async(execute: { () -> Void in

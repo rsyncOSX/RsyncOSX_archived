@@ -10,7 +10,7 @@
 
 import Foundation
 
-protocol readupdatedconfigurations: class {
+protocol Readupdatedconfigurations: class {
     func readAllConfigurationsAndArguments()
 }
 

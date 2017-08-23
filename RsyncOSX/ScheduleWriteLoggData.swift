@@ -20,7 +20,7 @@ class ScheduleWriteLoggData {
     // Delegate function for doing a refresh of NSTableView in ViewControllerScheduleDetailsAboutRuns
     weak var refreshlogviewDelegate: RefreshtableView?
     // Delegate function for deselect row in table main view after loggdata is saved
-    weak var deselectrowDelegate: deselectRowTable?
+    weak var deselectrowDelegate: DeselectRowTable?
 
     /// Function for deleting log row
     /// - parameter hiddenID : hiddenID

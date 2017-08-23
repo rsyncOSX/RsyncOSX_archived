@@ -287,7 +287,7 @@ class Schedules: ScheduleWriteLoggData {
     }
 }
 
-extension Schedules: readupdatedschedules {
+extension Schedules: Readupdatedschedules {
 
     /// Function for reading all jobs for schedule and all history of past executions.
     /// Schedules are stored in self.Schedule. Schedules are sorted after hiddenID.

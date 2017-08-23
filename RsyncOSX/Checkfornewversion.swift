@@ -8,7 +8,7 @@
 
 import Foundation
 
-protocol newVersionDiscovered : class {
+protocol NewVersionDiscovered : class {
     func notifyNewVersion()
 }
 
@@ -21,7 +21,7 @@ final class Checkfornewversion {
     // External resources
     private var resource: Resources?
 
-    weak var newversionDelegate: newVersionDiscovered?
+    weak var newversionDelegate: NewVersionDiscovered?
 
     //If new version set URL for download link and notify caller
     private func urlnewVersion (inMain: Bool) {

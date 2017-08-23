@@ -13,13 +13,13 @@
 
 import Foundation
 
-protocol readupdatedschedules: class {
+protocol Readupdatedschedules: class {
     func readAllSchedules()
 }
 
 final class PersistentStorageScheduling: Readwritefiles {
 
-    weak var readschedulesDelegate: readupdatedschedules?
+    weak var readschedulesDelegate: Readupdatedschedules?
     // Variables holds all scheduledata
     private var schedules: [NSDictionary]?
 

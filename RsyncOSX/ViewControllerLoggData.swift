@@ -13,23 +13,16 @@ import Cocoa
 
 class ViewControllerLoggData: NSViewController {
 
-    // Reference to variable holding tabledata
     var tabledata: [NSDictionary]?
-    // Reference to variable selected row as NSDictionary
     var row: NSDictionary?
-    // Search after
     var what: Filterlogs?
-    // Index selected row
     var index: Int?
 
     @IBOutlet weak var scheduletable: NSTableView!
-    // Search field
     @IBOutlet weak var search: NSSearchField!
-    // Buttons
     @IBOutlet weak var server: NSButton!
     @IBOutlet weak var catalog: NSButton!
     @IBOutlet weak var date: NSButton!
-    // Progressview loading loggdata
     @IBOutlet weak var sorting: NSProgressIndicator!
     @IBOutlet weak var numberOflogfiles: NSTextField!
 
@@ -116,10 +109,7 @@ extension ViewControllerLoggData : NSSearchFieldDelegate {
             })
         } else {
             globalMainQueue.async(execute: { () -> Void in
-                // self.tabledata = ScheduleLoggData().filter(search: filterstring, what:self.what)
                 ScheduleLoggData().filter(search: filterstring, what:self.what)
-                // self.scheduletable.reloadData()
-                // self.sorting.stopAnimation(self)
             })
         }
     }

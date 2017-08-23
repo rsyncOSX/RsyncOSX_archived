@@ -222,7 +222,7 @@ extension ViewControllerSsh: DismissViewController {
     }
 }
 
-extension ViewControllerSsh: getSource {
+extension ViewControllerSsh: GetSource {
 
     // Returning hiddenID as Index
     func getSource(index: Int) {
