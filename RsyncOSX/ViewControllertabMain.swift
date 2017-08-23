@@ -33,7 +33,7 @@ protocol UpdateProgress: class {
 }
 
 // Protocol for deselecting rowtable
-protocol deselectRowTable: class {
+protocol DeselectRowTable: class {
     func deselectRow()
 }
 
@@ -791,7 +791,7 @@ extension ViewControllertabMain: Connections {
 }
 
 // Uuups, new version is discovered
-extension ViewControllertabMain: newVersionDiscovered {
+extension ViewControllertabMain: NewVersionDiscovered {
     // Notifies if new version is discovered
     func notifyNewVersion() {
         globalMainQueue.async(execute: { () -> Void in
@@ -886,7 +886,7 @@ extension ViewControllertabMain: UpdateProgress {
 }
 
 // Deselect a row
-extension ViewControllertabMain: deselectRowTable {
+extension ViewControllertabMain: DeselectRowTable {
     // deselect a row after row is deleted
     func deselectRow() {
         guard self.index != nil else {

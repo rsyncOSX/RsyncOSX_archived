@@ -14,9 +14,6 @@ import Cocoa
 class Ssh: Files {
 
     var commandCopyPasteTermninal: String?
-
-    // Delegate for reporting file error if any to main view
-    // Comply to protocol
     weak var errorDelegate: ReportErrorInMain?
 
     // Local public rsa and dsa based keys
@@ -50,7 +47,6 @@ class Ssh: Files {
 
     // Create local rsa keys
     func createLocalKeysRsa() {
-        // Abort if key exists
         guard self.rsaPubKeyExist == false else {
             return
         }
@@ -63,7 +59,6 @@ class Ssh: Files {
 
     // Create local dsa keys
     func createLocalKeysDsa() {
-        // Abort if key exists
         guard self.dsaPubKeyExist == false else {
             return
         }
@@ -190,7 +185,7 @@ class Ssh: Files {
 }
 
 extension Ssh: ReportError {
-    // Propagating any file error to main view
+
     func reportError(errorstr: String) {
         if let pvc = Configurations.shared.viewControllertabMain {
             self.errorDelegate = pvc as? ViewControllertabMain

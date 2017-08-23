@@ -387,7 +387,7 @@ class Configurations {
 
 }
 
-extension Configurations: readupdatedconfigurations {
+extension Configurations: Readupdatedconfigurations {
 
     /// Function is reading all Configurations into memory from permanent store and
     /// prepare all arguments for rsync. All configurations are stored in the private

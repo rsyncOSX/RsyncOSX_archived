@@ -10,11 +10,11 @@
 import Foundation
 import Cocoa
 
-protocol setIndex: class {
+protocol SetIndex: class {
     func setIndex(index: Int)
 }
 
-protocol getSource: class {
+protocol GetSource: class {
     func getSource(index: Int)
 }
 
@@ -379,14 +379,14 @@ extension ViewControllerCopyFiles: GetPath {
     }
 }
 
-extension ViewControllerCopyFiles: setIndex {
+extension ViewControllerCopyFiles: SetIndex {
     func setIndex(index: Int) {
         self.index = index
         self.displayRemoteserver(index: index)
     }
 }
 
-extension ViewControllerCopyFiles: getSource {
+extension ViewControllerCopyFiles: GetSource {
     func getSource(index: Int) {
         self.index = index
         self.displayRemoteserver(index: index)
