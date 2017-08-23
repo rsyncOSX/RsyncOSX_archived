@@ -74,7 +74,7 @@ class ViewControllerLoggData: NSViewController {
         super.viewDidAppear()
         globalMainQueue.async(execute: { () -> Void in
             self.sorting.startAnimation(self)
-            self.tabledata = ScheduleLoggData().filter(search: nil, what:nil)
+            self.tabledata = ScheduleLoggData().getallloggdata()
             self.scheduletable.reloadData()
             self.sorting.stopAnimation(self)
         })
@@ -110,14 +110,14 @@ extension ViewControllerLoggData : NSSearchFieldDelegate {
         self.sorting.startAnimation(self)
         if filterstring.isEmpty {
             globalMainQueue.async(execute: { () -> Void in
-                self.tabledata = ScheduleLoggData().filter(search: nil, what:nil)
+                self.tabledata = ScheduleLoggData().getallloggdata()
                 self.scheduletable.reloadData()
                 self.sorting.stopAnimation(self)
             })
         } else {
             globalMainQueue.async(execute: { () -> Void in
                 // self.tabledata = ScheduleLoggData().filter(search: filterstring, what:self.what)
-                ScheduleLoggData().filter2(search: filterstring, what:self.what)
+                ScheduleLoggData().filter(search: filterstring, what:self.what)
                 // self.scheduletable.reloadData()
                 // self.sorting.stopAnimation(self)
             })
@@ -127,7 +127,7 @@ extension ViewControllerLoggData : NSSearchFieldDelegate {
     func searchFieldDidEndSearching(_ sender: NSSearchField) {
         self.index = nil
         globalMainQueue.async(execute: { () -> Void in
-            self.tabledata = ScheduleLoggData().filter(search: nil, what:nil)
+            self.tabledata = ScheduleLoggData().getallloggdata()
             self.scheduletable.reloadData()
         })
     }
@@ -172,7 +172,7 @@ extension ViewControllerLoggData: RefreshtableView {
     // Refresh tableView
     func refresh() {
         globalMainQueue.async(execute: { () -> Void in
-            self.tabledata = ScheduleLoggData().filter(search: nil, what:nil)
+            self.tabledata = ScheduleLoggData().getallloggdata()
             self.scheduletable.reloadData()
         })
         self.row = nil

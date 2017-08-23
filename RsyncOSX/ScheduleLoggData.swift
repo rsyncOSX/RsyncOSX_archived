@@ -28,32 +28,12 @@ final class ScheduleLoggData {
     private var loggdata: Array<NSDictionary>?
     weak var readfiltereddataDelegate: Readfiltereddata?
 
-    // Function for filter loggdata
-    func filter(search: String?, what: Filterlogs?) -> [NSDictionary]? {
-        guard search != nil else {
-            return self.loggdata
-        }
-        guard self.loggdata != nil else {
-            return nil
-        }
-        switch what! {
-        case .executeDate:
-            return self.loggdata?.filter({
-                 ($0.value(forKey: "dateExecuted") as? String)!.contains(search!)
-            })
-        case .localCatalog:
-            return self.loggdata?.filter({
-                ($0.value(forKey: "localCatalog") as? String)!.contains(search!)
-            })
-        case .remoteServer:
-            return self.loggdata?.filter({
-                ($0.value(forKey: "offsiteServer") as? String)!.contains(search!)
-            })
-        }
+    func getallloggdata() -> [NSDictionary]? {
+        return self.loggdata
     }
 
     // Function for filter loggdata
-    func filter2(search: String?, what: Filterlogs?) {
+    func filter(search: String?, what: Filterlogs?) {
         guard search != nil else {
             return
         }
@@ -70,18 +50,16 @@ final class ScheduleLoggData {
                 filtereddata =  self.loggdata?.filter({
                     ($0.value(forKey: "dateExecuted") as? String)!.contains(search!)
                 })
-                self.readfiltereddataDelegate?.readfiltereddata(data: filtereddata)
             case .localCatalog:
                 filtereddata = self.loggdata?.filter({
                     ($0.value(forKey: "localCatalog") as? String)!.contains(search!)
                 })
-                self.readfiltereddataDelegate?.readfiltereddata(data: filtereddata)
             case .remoteServer:
                 filtereddata = self.loggdata?.filter({
                     ($0.value(forKey: "offsiteServer") as? String)!.contains(search!)
                 })
-                self.readfiltereddataDelegate?.readfiltereddata(data: filtereddata)
             }
+            self.readfiltereddataDelegate?.readfiltereddata(data: filtereddata)
         })
     }
 
