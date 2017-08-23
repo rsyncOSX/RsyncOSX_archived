@@ -116,9 +116,10 @@ extension ViewControllerLoggData : NSSearchFieldDelegate {
             })
         } else {
             globalMainQueue.async(execute: { () -> Void in
-                self.tabledata = ScheduleLoggData().filter(search: filterstring, what:self.what)
-                self.scheduletable.reloadData()
-                self.sorting.stopAnimation(self)
+                // self.tabledata = ScheduleLoggData().filter(search: filterstring, what:self.what)
+                ScheduleLoggData().filter2(search: filterstring, what:self.what)
+                // self.scheduletable.reloadData()
+                // self.sorting.stopAnimation(self)
             })
         }
     }
@@ -175,5 +176,15 @@ extension ViewControllerLoggData: RefreshtableView {
             self.scheduletable.reloadData()
         })
         self.row = nil
+    }
+}
+
+extension ViewControllerLoggData: Readfiltereddata {
+    func readfiltereddata(data: [NSDictionary]?) {
+        globalMainQueue.async(execute: { () -> Void in
+            self.tabledata = data
+            self.scheduletable.reloadData()
+            self.sorting.stopAnimation(self)
+        })
     }
 }

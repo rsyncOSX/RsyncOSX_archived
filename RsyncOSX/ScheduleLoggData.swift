@@ -12,6 +12,10 @@
 
 import Foundation
 
+protocol Readfiltereddata: class {
+    func readfiltereddata(data: [NSDictionary]?)
+}
+
 enum Filterlogs {
     case localCatalog
     case remoteServer
@@ -22,6 +26,7 @@ final class ScheduleLoggData {
 
     // Loggdata is only sorted and read once
     private var loggdata: Array<NSDictionary>?
+    weak var readfiltereddataDelegate: Readfiltereddata?
 
     // Function for filter loggdata
     func filter(search: String?, what: Filterlogs?) -> [NSDictionary]? {
@@ -45,6 +50,39 @@ final class ScheduleLoggData {
                 ($0.value(forKey: "offsiteServer") as? String)!.contains(search!)
             })
         }
+    }
+
+    // Function for filter loggdata
+    func filter2(search: String?, what: Filterlogs?) {
+        guard search != nil else {
+            return
+        }
+        guard self.loggdata != nil else {
+            return
+        }
+        if let pvc = Configurations.shared.viewControllerLoggData as? ViewControllerLoggData {
+            self.readfiltereddataDelegate = pvc
+        }
+        globalDefaultQueue.async(execute: {() -> Void in
+            var filtereddata: [NSDictionary]?
+            switch what! {
+            case .executeDate:
+                filtereddata =  self.loggdata?.filter({
+                    ($0.value(forKey: "dateExecuted") as? String)!.contains(search!)
+                })
+                self.readfiltereddataDelegate?.readfiltereddata(data: filtereddata)
+            case .localCatalog:
+                filtereddata = self.loggdata?.filter({
+                    ($0.value(forKey: "localCatalog") as? String)!.contains(search!)
+                })
+                self.readfiltereddataDelegate?.readfiltereddata(data: filtereddata)
+            case .remoteServer:
+                filtereddata = self.loggdata?.filter({
+                    ($0.value(forKey: "offsiteServer") as? String)!.contains(search!)
+                })
+                self.readfiltereddataDelegate?.readfiltereddata(data: filtereddata)
+            }
+        })
     }
 
     // Loggdata is only read and sorted once
