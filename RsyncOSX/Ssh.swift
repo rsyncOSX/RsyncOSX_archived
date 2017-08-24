@@ -52,7 +52,7 @@ class Ssh: Files {
         }
         self.scpArguments = nil
         self.scpArguments = ScpArgumentsSsh(hiddenID: nil)
-        self.arguments = scpArguments!.getArguments(operation: .createKey, key: "rsa", path: self.rootfiles)
+        self.arguments = scpArguments!.getArguments(operation: .createKey, key: "rsa", path: self.rootpath)
         self.command = self.scpArguments!.getCommand()
         self.executeSshCommand()
     }
@@ -64,7 +64,7 @@ class Ssh: Files {
         }
         self.scpArguments = nil
         self.scpArguments = ScpArgumentsSsh(hiddenID: nil)
-        self.arguments = scpArguments!.getArguments(operation: .createKey, key: "dsa", path: self.rootfiles)
+        self.arguments = scpArguments!.getArguments(operation: .createKey, key: "dsa", path: self.rootpath)
         self.command = self.scpArguments!.getCommand()
         self.executeSshCommand()
     }
