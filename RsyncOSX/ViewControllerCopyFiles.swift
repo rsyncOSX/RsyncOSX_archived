@@ -20,12 +20,12 @@ protocol GetSource: class {
 
 class ViewControllerCopyFiles: NSViewController {
 
-    // Object to hold search data
     var copyFiles: CopyFiles?
     var index: Int?
     var rsync: Bool = false
     var estimated: Bool = false
     weak var indexDelegate: GetSelecetedIndex?
+    fileprivate var tabledata: [String]?
 
     @IBOutlet weak var numberofrows: NSTextField!
     @IBOutlet weak var server: NSTextField!
@@ -55,13 +55,11 @@ class ViewControllerCopyFiles: NSViewController {
         guard self.copyFiles != nil else {
             return
         }
+        self.copyButton.isEnabled = true
         self.copyFiles!.abort()
     }
 
     @IBOutlet weak var tableViewSelect: NSTableView!
-    // Array to display in tableview
-    fileprivate var filesArray: [String]?
-    // Present the commandstring
     @IBOutlet weak var commandString: NSTextField!
     @IBOutlet weak var remoteCatalog: NSTextField!
     @IBOutlet weak var localCatalog: NSTextField!
@@ -87,6 +85,7 @@ class ViewControllerCopyFiles: NSViewController {
                     self.copyButton.title = "Execute"
                     self.estimated = true
                 } else {
+                    self.copyButton.isEnabled = false
                     self.workingRsync.startAnimation(nil)
                     self.copyFiles!.executeRsync(remotefile: remoteCatalog!.stringValue, localCatalog: localCatalog!.stringValue, dryrun: false)
                     self.estimated = false
@@ -120,7 +119,7 @@ class ViewControllerCopyFiles: NSViewController {
     fileprivate func resetCopySource() {
         // Empty tabledata
         self.index = nil
-        self.filesArray = nil
+        self.tabledata = nil
         globalMainQueue.async(execute: { () -> Void in
             self.tableViewSelect.reloadData()
         })
@@ -128,6 +127,7 @@ class ViewControllerCopyFiles: NSViewController {
         self.remoteCatalog.stringValue = ""
         self.selectButton.title = "Get source"
         self.rsync = false
+        self.copyButton.isEnabled = true
     }
 
     fileprivate func displayRemoteserver(index: Int?) {
@@ -169,6 +169,7 @@ class ViewControllerCopyFiles: NSViewController {
                 self.displayRemoteserver(index: index)
             }
         }
+        self.copyButton.isEnabled = true
         self.copyButton.title = "Estimate"
         if let restorePath = Configurations.shared.restorePath {
             self.localCatalog.stringValue = restorePath
@@ -195,6 +196,7 @@ class ViewControllerCopyFiles: NSViewController {
         let answer = Alerts.dialogOKCancel("Copy single files or directory", text: "Start copy?")
         if answer {
             self.copyButton.title = "Execute"
+            self.copyButton.isEnabled = false
             self.rsync = true
             self.workingRsync.startAnimation(nil)
             self.copyFiles!.executeRsync(remotefile: remoteCatalog!.stringValue, localCatalog: localCatalog!.stringValue, dryrun: false)
@@ -208,12 +210,12 @@ extension ViewControllerCopyFiles: NSSearchFieldDelegate {
         let filterstring = self.search.stringValue
         if filterstring.isEmpty {
             globalMainQueue.async(execute: { () -> Void in
-                self.filesArray = self.copyFiles?.filter(search: nil)
+                self.tabledata = self.copyFiles?.filter(search: nil)
                 self.tableViewSelect.reloadData()
             })
         } else {
             globalMainQueue.async(execute: { () -> Void in
-                self.filesArray = self.copyFiles?.filter(search: filterstring)
+                self.tabledata = self.copyFiles?.filter(search: filterstring)
                 self.tableViewSelect.reloadData()
             })
         }
@@ -221,7 +223,7 @@ extension ViewControllerCopyFiles: NSSearchFieldDelegate {
 
     func searchFieldDidEndSearching(_ sender: NSSearchField) {
         globalMainQueue.async(execute: { () -> Void in
-            self.filesArray = self.copyFiles?.filter(search: nil)
+            self.tabledata = self.copyFiles?.filter(search: nil)
             self.tableViewSelect.reloadData()
         })
     }
@@ -231,12 +233,12 @@ extension ViewControllerCopyFiles: NSSearchFieldDelegate {
 extension ViewControllerCopyFiles: NSTableViewDataSource {
 
     func numberOfRows(in tableViewMaster: NSTableView) -> Int {
-        guard self.filesArray != nil else {
+        guard self.tabledata != nil else {
             self.numberofrows.stringValue = "Number of rows:"
             return 0
         }
-        self.numberofrows.stringValue = "Number of rows: " + String(self.filesArray!.count)
-        return self.filesArray!.count
+        self.numberofrows.stringValue = "Number of rows: " + String(self.tabledata!.count)
+        return self.tabledata!.count
     }
 }
 
@@ -245,10 +247,10 @@ extension ViewControllerCopyFiles: NSTableViewDelegate {
     func tableView(_ tableView: NSTableView, viewFor tableColumn: NSTableColumn?, row: Int) -> NSView? {
         var text: String?
         var cellIdentifier: String = ""
-        guard self.filesArray != nil else {
+        guard self.tabledata != nil else {
             return nil
         }
-        var split = self.filesArray![row].components(separatedBy: "\t")
+        var split = self.tabledata![row].components(separatedBy: "\t")
         if tableColumn == tableView.tableColumns[0] {
                 text = split[0]
 
@@ -273,11 +275,10 @@ extension ViewControllerCopyFiles: NSTableViewDelegate {
         let myTableViewFromNotification = (notification.object as? NSTableView)!
         let indexes = myTableViewFromNotification.selectedRowIndexes
         if let index = indexes.first {
-            guard self.filesArray != nil else {
+            guard self.tabledata != nil else {
                 return
             }
-            let split = self.filesArray![index].components(separatedBy: "\t")
-
+            let split = self.tabledata![index].components(separatedBy: "\t")
             guard split.count > 1 else {
                 return
             }
@@ -314,7 +315,7 @@ extension ViewControllerCopyFiles: RefreshtableView {
             return
         }
         globalMainQueue.async(execute: { () -> Void in
-            self.filesArray = self.copyFiles!.filter(search: nil)
+            self.tabledata = self.copyFiles!.filter(search: nil)
             self.tableViewSelect.reloadData()
         })
     }
