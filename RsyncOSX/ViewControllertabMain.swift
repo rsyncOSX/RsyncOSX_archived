@@ -593,6 +593,9 @@ extension ViewControllertabMain : NSTableViewDelegate {
                     attributedString.addAttribute(NSAttributedStringKey.foregroundColor, value: NSColor.red, range: range)
                     return attributedString
                 } else {
+                    if tableColumn!.identifier.rawValue == "offsiteServerCellID", ((object[tableColumn!.identifier] as? String)?.isEmpty)! {
+                        return "localhost"
+                    }
                     return object[tableColumn!.identifier] as? String
                 }
             }
