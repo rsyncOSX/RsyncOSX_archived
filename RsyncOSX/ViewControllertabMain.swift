@@ -679,9 +679,6 @@ extension ViewControllertabMain: AddProfiles {
     func newProfile(new: Bool) {
         weak var newProfileDelegate: AddProfiles?
         self.schedules = nil
-        self.loadProfileMenu = false
-        // Reset any queue of work
-        // Reset numbers
         self.process = nil
         self.output = nil
         self.outputbatch = nil
