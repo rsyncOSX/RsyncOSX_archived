@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="13178.6" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="abu-zT-Ht4">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="13189.4" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="abu-zT-Ht4">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="13178.6"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="13189.4"/>
         <capability name="Alignment constraints to the first baseline" minToolsVersion="6.0"/>
         <capability name="box content view" minToolsVersion="7.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -4197,6 +4197,17 @@ DQ
                                                 <action selector="suffix2:" target="K9c-yf-VMY" id="yoT-cV-HXl"/>
                                             </connections>
                                         </button>
+                                        <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="qDc-Ou-8uj">
+                                            <rect key="frame" x="172" y="15" width="133" height="18"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                            <buttonCell key="cell" type="check" title="Do not delete files" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="5Zv-SY-8nT">
+                                                <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                                <font key="font" metaFont="system"/>
+                                            </buttonCell>
+                                            <connections>
+                                                <action selector="donotdeletefiles:" target="K9c-yf-VMY" id="gQB-8I-SxL"/>
+                                            </connections>
+                                        </button>
                                     </subviews>
                                     <constraints>
                                         <constraint firstItem="856-oB-aMq" firstAttribute="top" secondItem="umc-Km-s0d" secondAttribute="top" constant="7" id="9bd-N9-qfH"/>
@@ -4338,6 +4349,7 @@ DQ
                     </view>
                     <connections>
                         <outlet property="backupbutton" destination="856-oB-aMq" id="Bbf-2g-jeE"/>
+                        <outlet property="donotdeletebutton" destination="qDc-Ou-8uj" id="PC6-7q-WDV"/>
                         <outlet property="parameter10" destination="xiz-1A-Kua" id="Mm3-Su-yTz"/>
                         <outlet property="parameter11" destination="G1S-Es-fdT" id="g2Z-7R-PNf"/>
                         <outlet property="parameter12" destination="028-As-PZF" id="Naa-2Q-cw5"/>

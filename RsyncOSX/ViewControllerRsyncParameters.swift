@@ -122,6 +122,20 @@ class ViewControllerRsyncParameters: NSViewController {
 
     }
 
+    @IBOutlet weak var donotdeletebutton: NSButton!
+    @IBAction func donotdeletefiles(_ sender: NSButton) {
+        switch self.donotdeletebutton.state {
+        case .on:
+            self.setValueComboBox(combobox: self.parameter11, index: (self.parameters!.indexandvaluersyncparameter(self.parameters!.getdonotdeletefilesString()[0]).0))
+            self.viewParameter11.stringValue = self.parameters!.indexandvaluersyncparameter(self.parameters!.getdonotdeletefilesString()[0]).1
+        case .off:
+            self.setValueComboBox(combobox: self.parameter11, index: (0))
+            self.viewParameter11.stringValue = ""
+        default:
+            break
+        }
+
+    }
     // Backup button - only for testing on state
     @IBOutlet weak var backupbutton: NSButton!
 
@@ -149,6 +163,7 @@ class ViewControllerRsyncParameters: NSViewController {
             self.backupbutton.state = .off
             self.suffixButton.state = .off
             self.suffixButton2.state = .off
+            self.donotdeletebutton.state = .off
             self.viewParameter1.stringValue = configurations[index].parameter1
             self.viewParameter2.stringValue = configurations[index].parameter2
             self.viewParameter3.stringValue = configurations[index].parameter3
