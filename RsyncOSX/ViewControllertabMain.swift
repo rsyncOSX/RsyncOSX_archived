@@ -349,11 +349,11 @@ class ViewControllertabMain: NSViewController {
         // Defaults to display dryrun command
         self.displayDryRun.state = .on
         self.tools = Tools()
+        self.loadProfileMenu = true
     }
 
     override func viewDidAppear() {
         super.viewDidAppear()
-        self.loadProfileMenu = false
         self.showProcessInfo(info: .blank)
         // Allow notify about Scheduled jobs
         Configurations.shared.allowNotifyinMain = true
@@ -370,7 +370,7 @@ class ViewControllertabMain: NSViewController {
         // Update rsync command in view i case changed
         self.rsyncchanged()
         // Show which profile
-        self.loadProfileMenu = true
+        // self.loadProfileMenu = true
         self.displayProfile()
         if self.schedules == nil {
             self.schedules = ScheduleSortedAndExpand()
@@ -679,9 +679,6 @@ extension ViewControllertabMain: AddProfiles {
     func newProfile(new: Bool) {
         weak var newProfileDelegate: AddProfiles?
         self.schedules = nil
-        self.loadProfileMenu = false
-        // Reset any queue of work
-        // Reset numbers
         self.process = nil
         self.output = nil
         self.outputbatch = nil
@@ -786,6 +783,7 @@ extension ViewControllertabMain: Connections {
         guard Configurations.shared.allowNotifyinMain == true else {
             return
         }
+        self.loadProfileMenu = true
         self.serverOff = self.tools!.gettestAllremoteserverConnections()
         globalMainQueue.async(execute: { () -> Void in
             self.mainTableView.reloadData()
