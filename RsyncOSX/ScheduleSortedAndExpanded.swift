@@ -179,7 +179,6 @@ class ScheduleSortedAndExpand {
         if let start = self.jobToExecute() {
             let dateStart: Date = (start.value(forKey: "start") as? Date)!
             let seconds = Tools().timeDoubleSeconds(dateStart, enddate: nil)
-
             // 30 minutes every second
             if seconds > 0 && seconds <= 1800 {
                 // Update every second
@@ -212,11 +211,7 @@ class ScheduleSortedAndExpand {
         var dict1: NSDictionary?
         var dict2: NSDictionary?
         var array = Array<String>()
-
-        guard self.sortedschedules != nil else {
-            return [""]
-        }
-
+        guard self.sortedschedules != nil else { return [""] }
         if (self.sortedschedules!.count) > 1 {
             dict1 = self.sortedschedules![0]
             dict2 = self.sortedschedules![1]
@@ -241,14 +236,11 @@ class ScheduleSortedAndExpand {
 
     // Info on first screen - two first scheduled backups.
     func whenIsNextTwoTasksString() -> Array<String> {
-
         var firstbackup: String?
         var secondbackup: String?
-
         guard self.sortedschedules != nil else {
             return [" ... none ...", " ... none ..."]
         }
-
         // We are calculating the first object
         if (self.sortedschedules!.count) > 0 {
             if (self.sortedschedules!.count) > 0 {
@@ -277,17 +269,11 @@ class ScheduleSortedAndExpand {
 
     // Returns when to next tasks ar due in seconds
     func whenIsNextTwoTasksDouble() -> Array<Double> {
-
         var firstbackup: Double?
         var secondbackup: Double?
         // We are calculating the first object
-
-        guard self.sortedschedules != nil else {
-            return [-1, -1]
-        }
-        guard self.sortedschedules!.count > 0 else {
-            return [-1, -1]
-        }
+        guard self.sortedschedules != nil else { return [-1, -1] }
+        guard self.sortedschedules!.count > 0 else { return [-1, -1] }
         if (self.sortedschedules!.count) > 0 {
             if let minutes1 = self.sortedschedules?[0] {
                 let date1: Date = (minutes1.value(forKey: "start") as? Date)!
