@@ -28,13 +28,11 @@ ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
 SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
 
-//  swiftlint:disable syntactic_sugar file_length disable cyclomatic_complexity line_length identifier_name
-
 import Foundation
 public class YSocket {
     var addr: String
     var port: Int
-    var fd: Int32?
+    var filed: Int32?
     init() {
         self.addr=""
         self.port=0

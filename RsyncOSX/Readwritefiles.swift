@@ -9,7 +9,7 @@
 //  let str = "/Rsync/" + serialNumber + profile? + "/configRsync.plist"
 //  let str = "/Rsync/" + serialNumber + "/config.plist"
 //  swiftlint OK - 17 July 2017
-//  swiftlint:disable syntactic_sugar line_length
+//  swiftlint:disable syntactic_sugar
 
 import Foundation
 
