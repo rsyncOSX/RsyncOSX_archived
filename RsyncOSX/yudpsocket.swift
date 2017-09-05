@@ -27,7 +27,7 @@ ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
 (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
 SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
-//  swiftlint:disable syntactic_sugar file_length disable cyclomatic_complexity line_length identifier_name large_tuple
+//  swiftlint:disable disable line_length identifier_name large_tuple
 
 import Foundation
 
@@ -62,7 +62,7 @@ public class UDPClient: YSocket {
     * return success or fail with message
     */
     public func send(data dat: [UInt8]) -> (Bool, String) {
-        if let fd: Int32=self.fd {
+        if let fd: Int32=self.filed {
             let sendsize: Int32=c_yudpsocket_sentto(fd: fd, buff: dat, len: Int32(dat.count), ip: self.addr, port: Int32(self.port))
             if Int(sendsize)==dat.count {
                 return (true, "send success")
@@ -78,7 +78,7 @@ public class UDPClient: YSocket {
     * return success or fail with message
     */
     public func send(str: String) -> (Bool, String) {
-        if let fd: Int32=self.fd {
+        if let fd: Int32=self.filed {
             let sendsize: Int32=c_yudpsocket_sentto(fd: fd, buff: str, len: Int32(strlen(str)), ip: self.addr, port: Int32(self.port))
             if sendsize==Int32(strlen(str)) {
                 return (true, "send success")
@@ -93,7 +93,7 @@ public class UDPClient: YSocket {
     * enableBroadcast
     */
     public func enableBroadcast() {
-        if let fd: Int32=self.fd {
+        if let fd: Int32=self.filed {
             c_enable_broadcast(fd: fd)
 
         }
@@ -103,7 +103,7 @@ public class UDPClient: YSocket {
     * send nsdata
     */
     public func send(data dat: NSData) -> (Bool, String) {
-        if let fd: Int32=self.fd {
+        if let fd: Int32=self.filed {
             var buff: [UInt8] = [UInt8](repeating:0x0, count:dat.length)
             dat.getBytes(&buff, length: dat.length)
             let sendsize: Int32=c_yudpsocket_sentto(fd: fd, buff: buff, len: Int32(dat.length), ip: self.addr, port: Int32(self.port))
@@ -117,9 +117,9 @@ public class UDPClient: YSocket {
         }
     }
     public func close() -> (Bool, String) {
-        if let fd: Int32=self.fd {
+        if let fd: Int32=self.filed {
             _ = c_yudpsocket_close(fd: fd)
-            self.fd=nil
+            self.filed=nil
             return (true, "close success")
         } else {
             return (false, "socket not open")
@@ -132,11 +132,11 @@ public class UDPServer: YSocket {
         super.init(addr: adr, port: por)
         let fd: Int32 = c_yudpsocket_server(host: self.addr, port: Int32(self.port))
         if fd>0 {
-            self.fd=fd
+            self.filed=fd
         }
     }
     public func recv(expectlen: Int) -> ([UInt8]?, String, Int) {
-        if let fd: Int32 = self.fd {
+        if let fd: Int32 = self.filed {
             var buff: [UInt8] = [UInt8](repeating:0x0, count:expectlen)
             var remoteipbuff: [Int8] = [Int8](repeating:0x0, count:16)
             var remoteport: Int32=0
@@ -159,9 +159,9 @@ public class UDPServer: YSocket {
         return (nil, "no ip", 0)
     }
     public func close() -> (Bool, String) {
-        if let fd: Int32=self.fd {
+        if let fd: Int32=self.filed {
             _ = c_yudpsocket_close(fd: fd)
-            self.fd=nil
+            self.filed=nil
             return (true, "close success")
         } else {
             return (false, "socket not open")

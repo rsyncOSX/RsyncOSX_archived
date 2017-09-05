@@ -4198,9 +4198,9 @@ DQ
                                             </connections>
                                         </button>
                                         <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="qDc-Ou-8uj">
-                                            <rect key="frame" x="172" y="15" width="133" height="18"/>
+                                            <rect key="frame" x="172" y="15" width="131" height="18"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                            <buttonCell key="cell" type="check" title="Do not delete files" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="5Zv-SY-8nT">
+                                            <buttonCell key="cell" type="check" title="do not delete files" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="5Zv-SY-8nT">
                                                 <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                                 <font key="font" metaFont="system"/>
                                             </buttonCell>

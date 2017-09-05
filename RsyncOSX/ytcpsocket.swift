@@ -27,7 +27,7 @@ ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
 (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
 SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
-//  swiftlint:disable syntactic_sugar file_length disable cyclomatic_complexity line_length identifier_name
+//  swiftlint:disable disable line_length identifier_name
 
 import Foundation
 
@@ -46,7 +46,7 @@ public class TCPClient: YSocket {
     public func connect(timeout time: Int) -> (Bool, String) {
         let rs: Int32=c_ytcpsocket_connect(host: self.addr, port: Int32(self.port), timeout: Int32(time))
         if rs>0 {
-            self.fd=rs
+            self.filed=rs
             return (true, "connect success")
         } else {
             switch rs {
@@ -66,9 +66,9 @@ public class TCPClient: YSocket {
     * return success or fail with message
     */
     public func close() -> (Bool, String) {
-        if let fd: Int32=self.fd {
+        if let fd: Int32=self.filed {
             _ = c_ytcpsocket_close(fd: fd)
-            self.fd=nil
+            self.filed=nil
             return (true, "close success")
         } else {
             return (false, "socket not open")
@@ -79,7 +79,7 @@ public class TCPClient: YSocket {
     * return success or fail with message
     */
     public func send(data dat: [UInt8]) -> (Bool, String) {
-        if let fd: Int32=self.fd {
+        if let fd: Int32=self.filed {
             let sendsize: Int32=c_ytcpsocket_send(fd: fd, buff: dat, len: Int32(dat.count))
             if Int(sendsize)==dat.count {
                return (true, "send success")
@@ -95,7 +95,7 @@ public class TCPClient: YSocket {
     * return success or fail with message
     */
     public func send(str: String) -> (Bool, String) {
-        if let fd: Int32=self.fd {
+        if let fd: Int32=self.filed {
             let sendsize: Int32=c_ytcpsocket_send(fd: fd, buff: str, len: Int32(strlen(str)))
             if sendsize==Int32(strlen(str)) {
                 return (true, "send success")
@@ -111,7 +111,7 @@ public class TCPClient: YSocket {
     * send nsdata
     */
     public func send(data dat: NSData) -> (Bool, String) {
-        if let fd: Int32=self.fd {
+        if let fd: Int32=self.filed {
             var buff: [UInt8] = [UInt8](repeating:0x0, count:dat.length)
             dat.getBytes(&buff, length: dat.length)
             let sendsize: Int32=c_ytcpsocket_send(fd: fd, buff: buff, len: Int32(dat.length))
@@ -129,7 +129,7 @@ public class TCPClient: YSocket {
     * return success or fail with message
     */
     public func read(expectlen: Int, timeout: Int = -1) -> [UInt8]? {
-        if let fd: Int32 = self.fd {
+        if let fd: Int32 = self.filed {
             var buff: [UInt8] = [UInt8](repeating:0x0, count:expectlen)
             let readLen: Int32=c_ytcpsocket_pull(fd: fd, buff: &buff, len: Int32(expectlen), timeout: Int32(timeout))
             if readLen<=0 {
@@ -149,14 +149,14 @@ public class TCPServer: YSocket {
 
         let fd: Int32=c_ytcpsocket_listen(addr: self.addr, port: Int32(self.port))
         if fd>0 {
-            self.fd=fd
+            self.filed=fd
             return (true, "listen success")
         } else {
             return (false, "listen fail")
         }
     }
     public func accept() -> TCPClient? {
-        if let serferfd=self.fd {
+        if let serferfd=self.filed {
             var buff: [Int8] = [Int8](repeating:0x0, count:16)
             var port: Int32=0
             let clientfd: Int32=c_ytcpsocket_accept(onsocketfd: serferfd, ip: &buff, port: &port)
@@ -164,7 +164,7 @@ public class TCPServer: YSocket {
                 return nil
             }
             let tcpClient: TCPClient=TCPClient()
-            tcpClient.fd=clientfd
+            tcpClient.filed=clientfd
             tcpClient.port=Int(port)
             /*
             if let addr=String(CString: buff, encoding: NSUTF8StringEncoding){
@@ -176,9 +176,9 @@ public class TCPServer: YSocket {
         return nil
     }
     public func close() -> (Bool, String) {
-        if let fd: Int32=self.fd {
+        if let fd: Int32=self.filed {
             _ = c_ytcpsocket_close(fd: fd)
-            self.fd=nil
+            self.filed=nil
             return (true, "close success")
         } else {
             return (false, "socket not open")
