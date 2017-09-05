@@ -314,7 +314,7 @@
         <!--Execute-->
         <scene sceneID="84s-6a-t0v">
             <objects>
-                <viewController title="Execute" id="egt-C3-u4G" customClass="ViewControllertabMain" customModule="RsyncOSX" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Execute" storyboardIdentifier="ViewControllertabMain" id="egt-C3-u4G" customClass="ViewControllertabMain" customModule="RsyncOSX" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="akQ-LR-eTv">
                         <rect key="frame" x="0.0" y="0.0" width="1092" height="407"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -1403,7 +1403,7 @@
         <!--Copy files-->
         <scene sceneID="eWC-14-5oE">
             <objects>
-                <viewController title="Copy files" id="GJH-xK-5LY" customClass="ViewControllerCopyFiles" customModule="RsyncOSX" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Copy files" storyboardIdentifier="ViewControllerCopyFiles" id="GJH-xK-5LY" customClass="ViewControllerCopyFiles" customModule="RsyncOSX" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="ofe-CE-Xu7">
                         <rect key="frame" x="0.0" y="0.0" width="1092" height="407"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -1799,7 +1799,7 @@
         <!--Logs-->
         <scene sceneID="7KW-R1-b2z">
             <objects>
-                <viewController title="Logs" id="AlG-Cw-Xi9" customClass="ViewControllerLoggData" customModule="RsyncOSX" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Logs" storyboardIdentifier="ViewControllerLoggData" id="AlG-Cw-Xi9" customClass="ViewControllerLoggData" customModule="RsyncOSX" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="JhO-zm-vVD">
                         <rect key="frame" x="0.0" y="0.0" width="1092" height="407"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -2008,7 +2008,7 @@
         <!--Schedule-->
         <scene sceneID="fFE-4s-MP5">
             <objects>
-                <viewController title="Schedule" id="rht-JI-asq" customClass="ViewControllertabSchedule" customModule="RsyncOSX" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Schedule" storyboardIdentifier="ViewControllertabSchedule" id="rht-JI-asq" customClass="ViewControllertabSchedule" customModule="RsyncOSX" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="X8A-2M-FtC">
                         <rect key="frame" x="0.0" y="0.0" width="1092" height="407"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -2364,7 +2364,7 @@
         <!--Add-->
         <scene sceneID="Djw-1M-Bvf">
             <objects>
-                <viewController title="Add" id="3xI-3C-guU" customClass="ViewControllerNewConfigurations" customModule="RsyncOSX" sceneMemberID="viewController">
+                <viewController title="Add" storyboardIdentifier="ViewControllerNewConfigurations" id="3xI-3C-guU" customClass="ViewControllerNewConfigurations" customModule="RsyncOSX" sceneMemberID="viewController">
                     <view key="view" id="fs3-Ij-mBm">
                         <rect key="frame" x="0.0" y="0.0" width="1092" height="407"/>
                         <autoresizingMask key="autoresizingMask"/>

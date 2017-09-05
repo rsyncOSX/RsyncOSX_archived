@@ -17,22 +17,14 @@ protocol AddProfiles : class {
 
 class ViewControllerProfile: NSViewController {
 
-    // Storage API
     var storageapi: PersistentStorageAPI?
-    // Dismisser
     weak var dismissDelegate: DismissViewController?
-    // new Profile
     weak var newProfileDelegate: AddProfiles?
-    // Array to display in tableview
     fileprivate var profilesArray: [String]?
-    // The profiles object
     private var profile: Profiles?
-    // Selecet profile to use
     fileprivate var useprofile: String?
 
-    // New profile
     @IBOutlet weak var newprofile: NSTextField!
-    // Table to show profiles
     @IBOutlet weak var profilesTable: NSTableView!
 
     // Setting default profile
@@ -93,9 +85,8 @@ class ViewControllerProfile: NSViewController {
         self.profilesTable.delegate = self
         self.profilesTable.dataSource = self
         // Dismisser is root controller
-        if let pvc = self.presenting as? ViewControllertabMain {
-            self.dismissDelegate = pvc
-        }
+        self.dismissDelegate = ViewControllerReference()
+            .getviewcontrollerreference(viewcontroller: .viewcontrollertabmain) as? ViewControllertabMain
         self.profile = Profiles()
         self.profilesArray = self.profile!.getDirectorysStrings()
         self.profilesTable.target = self
@@ -105,9 +96,8 @@ class ViewControllerProfile: NSViewController {
 
     override func viewDidAppear() {
         super.viewDidAppear()
-        if let pvc = self.presenting as? ViewControllertabMain {
-            self.newProfileDelegate = pvc
-        }
+        self.newProfileDelegate = ViewControllerReference()
+            .getviewcontrollerreference(viewcontroller: .viewcontrollertabmain) as? ViewControllertabMain
         globalMainQueue.async(execute: { () -> Void in
             self.profilesTable.reloadData()
         })
@@ -115,9 +105,8 @@ class ViewControllerProfile: NSViewController {
     }
 
     @objc(tableViewDoubleClick:) func tableViewDoubleClick(sender: AnyObject) {
-        if let pvc = self.presenting as? ViewControllertabMain {
-            self.newProfileDelegate = pvc
-        }
+        self.newProfileDelegate = ViewControllerReference()
+            .getviewcontrollerreference(viewcontroller: .viewcontrollertabmain) as? ViewControllertabMain
         if let useprofile = self.useprofile {
             Configurations.shared.setProfile(profile: useprofile)
             self.newProfileDelegate?.newProfile(new: false)

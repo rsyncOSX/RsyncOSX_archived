@@ -208,10 +208,10 @@
 		A04492BD1D658F7C00B3CE17 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				E957B1131F5F2A3A0099947A /* ViewControllerReference */,
 				E91A688E1EA7771B0056BCFC /* Loggdata */,
 				A0BAA5F31D70C349003BE69F /* Schedules */,
 				A0BAA5F21D70C33A003BE69F /* Configurations */,
-				E957B1111F5F17220099947A /* ViewControllerReference.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -404,6 +404,14 @@
 				E9374D2D1E329A5800CD3945 /* CompleteScheduledOperation.swift */,
 			);
 			name = ScheduledOperations;
+			sourceTree = "<group>";
+		};
+		E957B1131F5F2A3A0099947A /* ViewControllerReference */ = {
+			isa = PBXGroup;
+			children = (
+				E957B1111F5F17220099947A /* ViewControllerReference.swift */,
+			);
+			name = ViewControllerReference;
 			sourceTree = "<group>";
 		};
 		E99D50781EE16241003621D3 /* RsyncParameters */ = {
