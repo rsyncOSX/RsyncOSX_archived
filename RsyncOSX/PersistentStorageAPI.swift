@@ -63,10 +63,9 @@ final class PersistentStorageAPI {
         // This is because saving schedule from memory might have
         // changed the schedule and this kicks off the changed
         // schedule again.
-        if let pvc = Configurations.shared.viewControllertabMain as? ViewControllertabMain {
-            startnextjobDelegate = pvc
-            startnextjobDelegate?.startProcess()
-        }
+        startnextjobDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .viewcontrollertabmain)
+            as? ViewControllertabMain
+        startnextjobDelegate?.startProcess()
     }
 
     // Read schedules and history

@@ -48,7 +48,7 @@ class ViewControllerReference {
     // Reference to About
     private var viewControllerAbout: NSViewController?
 
-    func getviewcontrollerreference(viewcontroller: ViewController) -> NSViewController? {
+    func getvcref(viewcontroller: ViewController) -> NSViewController? {
         switch viewcontroller {
         case .viewcontrollertabmain:
             print("viewcontrollertabmain")
@@ -65,7 +65,7 @@ class ViewControllerReference {
         }
     }
 
-    func setviewcontrollerreference(viewcontroller: ViewController, nsviewcontroller: NSViewController) {
+    func setvcref(viewcontroller: ViewController, nsviewcontroller: NSViewController) {
         switch viewcontroller {
         case .viewcontrollertabmain:
             self.viewControllertabMain = nsviewcontroller

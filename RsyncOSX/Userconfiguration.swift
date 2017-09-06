@@ -63,11 +63,10 @@ final class Userconfiguration {
             self.readUserconfiguration(dict: userconfigRsyncOSX[0])
         }
         // If userconfiguration is read from disk update info in main view
-        if let pvc = Configurations.shared.viewControllertabMain as? ViewControllertabMain {
-            self.rsyncchangedDelegate = pvc
-            self.rsyncchangedDelegate?.rsyncchanged()
-            self.rsyncchangedDelegate?.displayAllowDoubleclick()
-        }
+        self.rsyncchangedDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .viewcontrollertabmain)
+            as? ViewControllertabMain
+        self.rsyncchangedDelegate?.rsyncchanged()
+        self.rsyncchangedDelegate?.displayAllowDoubleclick()
         // Check for rsync
         Tools().verifyrsyncpath()
     }

@@ -174,12 +174,11 @@ final class NewSingleTask {
 
     init(index: Int) {
         self.index = index
-        if let pvc = Configurations.shared.viewControllertabMain as? ViewControllertabMain {
-            self.indicatorDelegate = pvc
-            self.taskDelegate = pvc
-        }
+        self.indicatorDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .viewcontrollertabmain)
+            as? ViewControllertabMain
+        self.taskDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .viewcontrollertabmain)
+            as? ViewControllertabMain
     }
-
 }
 
 // Counting

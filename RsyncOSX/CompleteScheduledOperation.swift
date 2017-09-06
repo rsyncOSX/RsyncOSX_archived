@@ -47,14 +47,14 @@ final class CompleteScheduledOperation {
         // Writing timestamp to configuration
         _ = Configurations.shared.setCurrentDateonConfiguration(self.index!)
         // Start next job, if any, by delegate and notify completed, by delegate
-        if let pvc2 = Configurations.shared.viewControllertabMain as? ViewControllertabMain {
-            globalMainQueue.async(execute: { () -> Void in
-                self.startnextjobDelegate = pvc2
-                self.notifyDelegate = pvc2
-                self.startnextjobDelegate?.startProcess()
-                self.notifyDelegate?.completed()
-            })
-        }
+        globalMainQueue.async(execute: { () -> Void in
+            self.startnextjobDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .viewcontrollertabmain)
+                as? ViewControllertabMain
+            self.notifyDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .viewcontrollertabmain)
+                as? ViewControllertabMain
+            self.startnextjobDelegate?.startProcess()
+            self.notifyDelegate?.completed()
+        })
         if let pvc3 = Schedules.shared.viewObjectSchedule as? ViewControllertabSchedule {
             globalMainQueue.async(execute: { () -> Void in
                 self.startTimerDelegate = pvc3

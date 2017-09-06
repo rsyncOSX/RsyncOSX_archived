@@ -6,7 +6,7 @@
 //  Copyright © 2017 Thomas Evensen. All rights reserved.
 //
 //  SwiftLint: OK 31 July 2017
-//  swiftlint:disable syntactic_sugar
+//  swiftlint:disable syntactic_sugar line_length
 
 import Foundation
 
@@ -94,11 +94,10 @@ final class Tools {
         self.indexBoolremoteserverOff = Array<Bool>()
 
         guard Configurations.shared.configurationsDataSourcecount() > 0 else {
-            if let pvc = Configurations.shared.viewControllertabMain as? ViewControllertabMain {
-                self.profilemenuDelegate = pvc
-                // Tell main view profile menu might presented
-                self.profilemenuDelegate?.enableProfileMenu()
-            }
+            self.profilemenuDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .viewcontrollertabmain)
+                as? ViewControllertabMain
+            // Tell main view profile menu might presented
+            self.profilemenuDelegate?.enableProfileMenu()
             return
         }
         globalDefaultQueue.async(execute: { () -> Void in
@@ -123,14 +122,14 @@ final class Tools {
                     // Reload table when all remote servers are checked
                     if i == (Configurations.shared.configurationsDataSourcecount() - 1) {
                         // Send message to do a refresh
-                        if let pvc = Configurations.shared.viewControllertabMain as? ViewControllertabMain {
-                            self.testconnectionsDelegate = pvc
-                            self.profilemenuDelegate = pvc
+                        self.testconnectionsDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .viewcontrollertabmain)
+                            as? ViewControllertabMain
+                        self.profilemenuDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .viewcontrollertabmain)
+                            as? ViewControllertabMain
                             // Update table in main view
-                            self.testconnectionsDelegate?.displayConnections()
+                        self.testconnectionsDelegate?.displayConnections()
                             // Tell main view profile menu might presented
-                            self.profilemenuDelegate?.enableProfileMenu()
-                        }
+                        self.profilemenuDelegate?.enableProfileMenu()
                     }
                 }
             }

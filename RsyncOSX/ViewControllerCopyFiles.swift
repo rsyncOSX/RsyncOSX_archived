@@ -162,12 +162,10 @@ class ViewControllerCopyFiles: NSViewController {
 
     override func viewDidAppear() {
         super.viewDidAppear()
-        if let pvc = Configurations.shared.viewControllertabMain as? ViewControllertabMain {
-            self.indexDelegate = pvc
-            self.index = self.indexDelegate?.getindex()
-            if let index = self.index {
-                self.displayRemoteserver(index: index)
-            }
+        self.indexDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .viewcontrollertabmain) as? ViewControllertabMain
+        self.index = self.indexDelegate?.getindex()
+        if let index = self.index {
+            self.displayRemoteserver(index: index)
         }
         self.copyButton.isEnabled = true
         self.copyButton.title = "Estimate"

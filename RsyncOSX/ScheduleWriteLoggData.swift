@@ -5,7 +5,7 @@
 //  Created by Thomas Evensen on 19.04.2017.
 //  Copyright © 2017 Thomas Evensen. All rights reserved.
 //
-//  swiftlint:disable syntactic_sugar
+//  swiftlint:disable syntactic_sugar line_length
 
 import Foundation
 import Cocoa
@@ -48,8 +48,8 @@ class ScheduleWriteLoggData {
                     result[i].logrecords.remove(at: indexB!)
                     self.schedule[indexA!].logrecords = result[i].logrecords
                     // Do a refresh of table
-                    self.refreshlogviewDelegate = ViewControllerReference()
-                        .getviewcontrollerreference(viewcontroller: .viewcontrollerloggdata) as? ViewControllerLoggData
+                    self.refreshlogviewDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .viewcontrollerloggdata)
+                        as? ViewControllerLoggData
                     self.refreshlogviewDelegate?.refresh()
                     // Save schedule including logs
                     self.storageapi!.saveScheduleFromMemory()
@@ -76,8 +76,8 @@ class ScheduleWriteLoggData {
         }
         if inserted {
             self.storageapi!.saveScheduleFromMemory()
-            self.deselectrowDelegate = ViewControllerReference()
-                .getviewcontrollerreference(viewcontroller: .viewcontrollertabmain) as? ViewControllertabMain
+            self.deselectrowDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .viewcontrollertabmain)
+                as? ViewControllertabMain
             self.deselectrowDelegate?.deselectRow()
         }
     }

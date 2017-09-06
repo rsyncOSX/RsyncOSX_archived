@@ -5,6 +5,7 @@
 //  Created by Thomas Evensen on 02/09/2016.
 //  Copyright © 2016 Thomas Evensen. All rights reserved.
 //
+//  swiftlint:disable line_length
 
 import Foundation
 
@@ -37,11 +38,10 @@ final class Checkfornewversion {
                         // Setting reference to new vesrion if any
                         Configurations.shared.URLnewVersion = self.urlNewVersion
                         if inMain {
-                            if let pvc = Configurations.shared.viewControllertabMain as? ViewControllertabMain {
-                                self.newversionDelegate = pvc
-                                if Configurations.shared.allowNotifyinMain == true {
-                                    self.newversionDelegate?.notifyNewVersion()
-                                }
+                            self.newversionDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .viewcontrollertabmain)
+                                as? ViewControllertabMain
+                            if Configurations.shared.allowNotifyinMain == true {
+                                self.newversionDelegate?.notifyNewVersion()
                             }
                         } else {
                             if let pvc = Configurations.shared.viewControllerAbout as? ViewControllerAbout {

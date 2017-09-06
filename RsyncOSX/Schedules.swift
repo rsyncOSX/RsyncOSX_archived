@@ -104,8 +104,8 @@ class Schedules: ScheduleWriteLoggData {
         if delete {
             self.storageapi!.saveScheduleFromMemory()
             // Send message about refresh tableView
-            self.refreshDelegate = ViewControllerReference()
-                .getviewcontrollerreference(viewcontroller: .viewcontrollertabmain) as? ViewControllertabMain
+            self.refreshDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .viewcontrollertabmain)
+                as? ViewControllertabMain
             self.refreshDelegate?.refresh()
         }
     }
@@ -179,8 +179,8 @@ class Schedules: ScheduleWriteLoggData {
                 // Saving the resulting data file
                 self.storageapi!.saveScheduleFromMemory()
                 // Send message about refresh tableView
-                self.refreshDelegate = ViewControllerReference()
-                    .getviewcontrollerreference(viewcontroller: .viewcontrollertabmain) as? ViewControllertabMain
+                self.refreshDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .viewcontrollertabmain)
+                    as? ViewControllertabMain
                 self.refreshDelegate?.refresh()
             }
         }

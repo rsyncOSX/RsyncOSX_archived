@@ -36,23 +36,21 @@ class ExecuteTask: Operation {
                 let store: [Configuration] = storageapi!.getConfigurations()
                 let configArray = store.filter({return ($0.hiddenID == hiddenID)})
                 guard configArray.count > 0 else {
-                    if let pvc = Configurations.shared.viewControllertabMain as? ViewControllertabMain {
-                        notifyDelegate = pvc
-                        if Configurations.shared.allowNotifyinMain == true {
-                            notifyDelegate?.notifyScheduledJob(config: nil)
-                        }
+                    notifyDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .viewcontrollertabmain)
+                        as? ViewControllertabMain
+                    if Configurations.shared.allowNotifyinMain == true {
+                        notifyDelegate?.notifyScheduledJob(config: nil)
                     }
                     return
                 }
                 config = configArray[0]
                 // Notify that scheduled task is executing
-                if let pvc = Configurations.shared.viewControllertabMain as? ViewControllertabMain {
-                    notifyDelegate = pvc
-                    notifyDelegate?.start()
-                    // Trying to notify when not in main view will crash RSyncOSX
-                    if Configurations.shared.allowNotifyinMain == true {
-                        notifyDelegate?.notifyScheduledJob(config: config)
-                    }
+                notifyDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .viewcontrollertabmain)
+                    as? ViewControllertabMain
+                notifyDelegate?.start()
+                // Trying to notify when not in main view will crash RSyncOSX
+                if Configurations.shared.allowNotifyinMain == true {
+                    notifyDelegate?.notifyScheduledJob(config: config)
                 }
                 if hiddenID >= 0 && config != nil {
                     arguments = RsyncProcessArguments().argumentsRsync(config!, dryRun: false, forDisplay: false)

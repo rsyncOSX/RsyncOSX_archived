@@ -74,8 +74,6 @@ class Configurations {
     var process: Process?
     // Variabl if arguments to Rsync is changed and must be read into memory again
     private var readRsyncArguments: Bool = true
-    // Reference to manin View
-    var viewControllertabMain: NSViewController?
     // Reference to Copy files
     var viewControllerCopyFiles: NSViewController?
     // Reference to the  Schedule
@@ -83,8 +81,6 @@ class Configurations {
     // Reference to the Operation object
     // Reference is set in when Scheduled task is executed
     var operation: CompleteScheduledOperation?
-    // Which profile to use, if default nil
-    var viewControllerLoggData: NSViewController?
     // Reference to Ssh view
     var viewControllerSsh: NSViewController?
     // Reference to About
@@ -234,8 +230,8 @@ class Configurations {
         // Saving updated configuration in memory to persistent store
         self.storageapi!.saveConfigFromMemory()
         // Call the view and do a refresh of tableView
-        self.refreshDelegate = ViewControllerReference()
-            .getviewcontrollerreference(viewcontroller: .viewcontrollertabmain) as? ViewControllertabMain
+        self.refreshDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .viewcontrollertabmain)
+            as? ViewControllertabMain
         self.refreshDelegate?.refresh()
     }
 
@@ -276,8 +272,8 @@ class Configurations {
             self.configurations[index].batch = "yes"
         }
         self.storageapi!.saveConfigFromMemory()
-        self.refreshDelegate = ViewControllerReference()
-            .getviewcontrollerreference(viewcontroller: .viewcontrollertabmain) as? ViewControllertabMain
+        self.refreshDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .viewcontrollertabmain)
+            as? ViewControllertabMain
         self.refreshDelegate?.refresh()
     }
 
