@@ -44,6 +44,8 @@ protocol ReportErrorInMain: class {
 
 class ViewControllertabMain: NSViewController {
 
+    var viewcontrollerreferenc: ViewControllerReference?
+
     // Reference to the single taskobject
     var singletask: NewSingleTask?
     // Reference to batch taskobject
@@ -362,6 +364,8 @@ class ViewControllertabMain: NSViewController {
         // Setting reference to ViewController
         // Used to call delegate function from other class
         Configurations.shared.viewControllertabMain = self
+        ViewControllerReference.shared.setviewcontrollerreference(viewcontroller: .viewcontrollertabmain, nsviewcontroller: self)
+
         if Configurations.shared.configurationsDataSourcecount() > 0 {
             globalMainQueue.async(execute: { () -> Void in
                 self.mainTableView.reloadData()

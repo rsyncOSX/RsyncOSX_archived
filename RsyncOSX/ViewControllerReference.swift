@@ -20,21 +20,61 @@ enum ViewController {
     case viewcontrollertabschedule
 }
 
-struct ViewControllerReference {
+class ViewControllerReference {
+
+    // Creates a singelton of this class
+    class var  shared: ViewControllerReference {
+        struct Singleton {
+            static let instance = ViewControllerReference()
+        }
+        return Singleton.instance
+    }
+
+    // Reference to main View
+    private var viewControllertabMain: NSViewController?
+    // Reference to Copy files
+    private var viewControllerCopyFiles: NSViewController?
+    // Reference to the New tasks
+    private var viewControllerNewConfigurations: NSViewController?
+    // Reference to the  Schedule
+    private var viewControllertabSchedule: NSViewController?
+    // Reference to the Operation object
+    // Reference is set in when Scheduled task is executed
+    private var operation: CompleteScheduledOperation?
+    // Which profile to use, if default nil
+    private var viewControllerLoggData: NSViewController?
+    // Reference to Ssh view
+    private var viewControllerSsh: NSViewController?
+    // Reference to About
+    private var viewControllerAbout: NSViewController?
+
     func getviewcontrollerreference(viewcontroller: ViewController) -> NSViewController? {
         switch viewcontroller {
         case .viewcontrollertabmain:
             print("viewcontrollertabmain")
-            return Configurations.shared.viewControllertabMain
+            return self.viewControllertabMain
         case .viewcontrollerloggdata:
             print("viewcontrollerloggdata")
-            return Configurations.shared.viewControllerLoggData
+            return self.viewControllerLoggData
         case .viewcontrollernewconfigurations:
             print("viewcontrollernewconfigurations")
-            return Configurations.shared.viewControllerNewConfigurations
+            return self.viewControllerNewConfigurations
         case .viewcontrollertabschedule:
             print("viewcontrollertabschedule")
-            return Configurations.shared.viewControllertabSchedule
+            return self.viewControllertabSchedule
+        }
+    }
+
+    func setviewcontrollerreference(viewcontroller: ViewController, nsviewcontroller: NSViewController) {
+        switch viewcontroller {
+        case .viewcontrollertabmain:
+            self.viewControllertabMain = nsviewcontroller
+        case .viewcontrollerloggdata:
+            self.viewControllerLoggData = nsviewcontroller
+        case .viewcontrollernewconfigurations:
+            self.viewControllerNewConfigurations = nsviewcontroller
+        case .viewcontrollertabschedule:
+            self.viewControllertabSchedule = nsviewcontroller
         }
     }
 }

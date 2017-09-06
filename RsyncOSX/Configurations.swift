@@ -78,8 +78,6 @@ class Configurations {
     var viewControllertabMain: NSViewController?
     // Reference to Copy files
     var viewControllerCopyFiles: NSViewController?
-    // Reference to the New tasks
-    var viewControllerNewConfigurations: NSViewController?
     // Reference to the  Schedule
     var viewControllertabSchedule: NSViewController?
     // Reference to the Operation object

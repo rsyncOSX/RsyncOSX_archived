@@ -5,6 +5,7 @@
 //  Created by Thomas Evensen on 21/09/2016.
 //  Copyright © 2016 Thomas Evensen. All rights reserved.
 //
+// swiftlint:disable line_length
 
 import Foundation
 import Cocoa
@@ -33,6 +34,7 @@ final class FileDialog {
         myFiledialog.title = title
         myFiledialog.message = message
         let value = myFiledialog.runModal()
+        self.pathDelegate = ViewControllerReference.shared.getviewcontrollerreference(viewcontroller: .viewcontrollernewconfigurations) as? ViewControllerNewConfigurations
         switch value.rawValue {
         case 0: break
         case 1:
@@ -41,20 +43,11 @@ final class FileDialog {
             // We are sending over the path to the correct requestor
             switch requester {
             case .copyFilesTo:
-                if let pvc = Configurations.shared.viewControllerCopyFiles as? ViewControllerCopyFiles {
-                    self.pathDelegate = pvc
-                    self.pathDelegate?.pathSet(path: path, requester: .copyFilesTo)
-                }
+                self.pathDelegate?.pathSet(path: path, requester: .copyFilesTo)
             case .addLocalCatalog:
-                if let pvc = Configurations.shared.viewControllerNewConfigurations as? ViewControllerNewConfigurations {
-                    self.pathDelegate = pvc
-                    self.pathDelegate?.pathSet(path: path, requester: .addLocalCatalog)
-                }
+                self.pathDelegate?.pathSet(path: path, requester: .addLocalCatalog)
             case .addRemoteCatalog:
-                if let pvc = Configurations.shared.viewControllerNewConfigurations as? ViewControllerNewConfigurations {
-                    self.pathDelegate = pvc
-                    self.pathDelegate?.pathSet(path: path, requester: .addRemoteCatalog)
-                }
+                self.pathDelegate?.pathSet(path: path, requester: .addRemoteCatalog)
             }
             default:break
         }

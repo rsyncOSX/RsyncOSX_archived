@@ -5,6 +5,7 @@
 //  Created by Thomas Evensen on 17/10/2016.
 //  Copyright © 2016 Thomas Evensen. All rights reserved.
 //
+//  swiftlint:disable line_length
 
 import Foundation
 import Cocoa
@@ -85,8 +86,7 @@ class ViewControllerProfile: NSViewController {
         self.profilesTable.delegate = self
         self.profilesTable.dataSource = self
         // Dismisser is root controller
-        self.dismissDelegate = ViewControllerReference()
-            .getviewcontrollerreference(viewcontroller: .viewcontrollertabmain) as? ViewControllertabMain
+        self.dismissDelegate = ViewControllerReference.shared.getviewcontrollerreference(viewcontroller: .viewcontrollertabmain) as? ViewControllertabMain
         self.profile = Profiles()
         self.profilesArray = self.profile!.getDirectorysStrings()
         self.profilesTable.target = self
@@ -96,8 +96,7 @@ class ViewControllerProfile: NSViewController {
 
     override func viewDidAppear() {
         super.viewDidAppear()
-        self.newProfileDelegate = ViewControllerReference()
-            .getviewcontrollerreference(viewcontroller: .viewcontrollertabmain) as? ViewControllertabMain
+        self.newProfileDelegate = ViewControllerReference.shared.getviewcontrollerreference(viewcontroller: .viewcontrollertabmain) as? ViewControllertabMain
         globalMainQueue.async(execute: { () -> Void in
             self.profilesTable.reloadData()
         })
@@ -105,8 +104,7 @@ class ViewControllerProfile: NSViewController {
     }
 
     @objc(tableViewDoubleClick:) func tableViewDoubleClick(sender: AnyObject) {
-        self.newProfileDelegate = ViewControllerReference()
-            .getviewcontrollerreference(viewcontroller: .viewcontrollertabmain) as? ViewControllertabMain
+        self.newProfileDelegate = ViewControllerReference.shared.getviewcontrollerreference(viewcontroller: .viewcontrollertabmain) as? ViewControllertabMain
         if let useprofile = self.useprofile {
             Configurations.shared.setProfile(profile: useprofile)
             self.newProfileDelegate?.newProfile(new: false)

@@ -129,10 +129,8 @@ class ViewControllertabSchedule: NSViewController {
             // Refresh table and recalculate the Schedules jobs
             self.refresh()
             // Start next job, if any, by delegate
-            if let pvc = Configurations.shared.viewControllertabMain as? ViewControllertabMain {
-                startnextjobDelegate = pvc
-                startnextjobDelegate?.startProcess()
-            }
+            self.startnextjobDelegate = ViewControllerReference.shared.getviewcontrollerreference(viewcontroller: .viewcontrollertabmain) as? ViewControllertabMain
+            self.startnextjobDelegate?.startProcess()
             // Displaying next two scheduled tasks
             self.nextScheduledtask()
             // Call function to check if a scheduled backup is due for countdown
@@ -172,6 +170,7 @@ class ViewControllertabSchedule: NSViewController {
         self.schedules = ScheduleSortedAndExpand()
         // Setting reference to self.
         Configurations.shared.viewControllertabSchedule = self
+        ViewControllerReference.shared.setviewcontrollerreference(viewcontroller: .viewcontrollertabschedule, nsviewcontroller: self)
     }
 
     override func viewDidAppear() {
@@ -200,11 +199,9 @@ class ViewControllertabSchedule: NSViewController {
         super.viewDidDisappear()
         if self.newSchedules! {
             self.newSchedules = false
-            if let pvc = Configurations.shared.viewControllertabMain as? ViewControllertabMain {
-                self.newSchedulesDelegate = pvc
-                // Notify new schedules are added
-                self.newSchedulesDelegate?.newSchedulesAdded()
-            }
+            self.newSchedulesDelegate = ViewControllerReference.shared.getviewcontrollerreference(viewcontroller: .viewcontrollertabmain) as? ViewControllertabMain
+            // Notify new schedules are added
+            self.newSchedulesDelegate?.newSchedulesAdded()
         }
     }
 
