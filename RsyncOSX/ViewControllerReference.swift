@@ -24,12 +24,16 @@ struct ViewControllerReference {
     func getviewcontrollerreference(viewcontroller: ViewController) -> NSViewController? {
         switch viewcontroller {
         case .viewcontrollertabmain:
+            print("viewcontrollertabmain")
             return Configurations.shared.viewControllertabMain
         case .viewcontrollerloggdata:
+            print("viewcontrollerloggdata")
             return Configurations.shared.viewControllerLoggData
         case .viewcontrollernewconfigurations:
+            print("viewcontrollernewconfigurations")
             return Configurations.shared.viewControllerNewConfigurations
         case .viewcontrollertabschedule:
+            print("viewcontrollertabschedule")
             return Configurations.shared.viewControllertabSchedule
         }
     }

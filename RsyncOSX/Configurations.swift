@@ -236,10 +236,9 @@ class Configurations {
         // Saving updated configuration in memory to persistent store
         self.storageapi!.saveConfigFromMemory()
         // Call the view and do a refresh of tableView
-        if let pvc = self.viewControllertabMain as? ViewControllertabMain {
-            self.refreshDelegate = pvc
-            self.refreshDelegate?.refresh()
-        }
+        self.refreshDelegate = ViewControllerReference()
+            .getviewcontrollerreference(viewcontroller: .viewcontrollertabmain) as? ViewControllertabMain
+        self.refreshDelegate?.refresh()
     }
 
     /// Function destroys reference to object holding data and 
@@ -279,10 +278,9 @@ class Configurations {
             self.configurations[index].batch = "yes"
         }
         self.storageapi!.saveConfigFromMemory()
-        if let pvc = self.viewControllertabMain as? ViewControllertabMain {
-            self.refreshDelegate = pvc
-            self.refreshDelegate?.refresh()
-        }
+        self.refreshDelegate = ViewControllerReference()
+            .getviewcontrollerreference(viewcontroller: .viewcontrollertabmain) as? ViewControllertabMain
+        self.refreshDelegate?.refresh()
     }
 
     /// Function sets reference to object holding data and methods

@@ -48,10 +48,9 @@ class ScheduleWriteLoggData {
                     result[i].logrecords.remove(at: indexB!)
                     self.schedule[indexA!].logrecords = result[i].logrecords
                     // Do a refresh of table
-                    if let pvc = Configurations.shared.viewControllerLoggData as? ViewControllerLoggData {
-                        self.refreshlogviewDelegate = pvc
-                        self.refreshlogviewDelegate?.refresh()
-                    }
+                    self.refreshlogviewDelegate = ViewControllerReference()
+                        .getviewcontrollerreference(viewcontroller: .viewcontrollerloggdata) as? ViewControllerLoggData
+                    self.refreshlogviewDelegate?.refresh()
                     // Save schedule including logs
                     self.storageapi!.saveScheduleFromMemory()
                     break loop
@@ -77,10 +76,9 @@ class ScheduleWriteLoggData {
         }
         if inserted {
             self.storageapi!.saveScheduleFromMemory()
-            if let pvc = Configurations.shared.viewControllertabMain as? ViewControllertabMain {
-                self.deselectrowDelegate = pvc
-                self.deselectrowDelegate?.deselectRow()
-            }
+            self.deselectrowDelegate = ViewControllerReference()
+                .getviewcontrollerreference(viewcontroller: .viewcontrollertabmain) as? ViewControllertabMain
+            self.deselectrowDelegate?.deselectRow()
         }
     }
 
