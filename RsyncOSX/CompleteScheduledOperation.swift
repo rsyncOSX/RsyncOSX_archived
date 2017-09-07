@@ -56,7 +56,8 @@ final class CompleteScheduledOperation {
             self.notifyDelegate?.completed()
         })
         globalMainQueue.async(execute: { () -> Void in
-            self.startTimerDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabschedule) as? ViewControllertabSchedule
+            self.startTimerDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabschedule)
+                as? ViewControllertabSchedule
             self.startTimerDelegate?.startTimerNextJob()
         })
         // Reset reference til scheduled job
