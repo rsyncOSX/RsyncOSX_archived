@@ -187,7 +187,7 @@ class Ssh: Files {
 extension Ssh: ReportError {
 
     func reportError(errorstr: String) {
-        self.errorDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .viewcontrollertabmain)
+        self.errorDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain)
             as? ViewControllertabMain
         self.errorDelegate?.fileerror(errorstr: errorstr)
     }

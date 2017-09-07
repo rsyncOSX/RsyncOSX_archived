@@ -174,9 +174,9 @@ final class NewSingleTask {
 
     init(index: Int) {
         self.index = index
-        self.indicatorDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .viewcontrollertabmain)
+        self.indicatorDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain)
             as? ViewControllertabMain
-        self.taskDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .viewcontrollertabmain)
+        self.taskDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain)
             as? ViewControllertabMain
     }
 }

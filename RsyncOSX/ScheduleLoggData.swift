@@ -44,7 +44,7 @@ final class ScheduleLoggData {
         guard self.loggdata != nil else {
             return
         }
-        self.readfiltereddataDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .viewcontrollerloggdata)
+        self.readfiltereddataDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vcloggdata)
             as? ViewControllerLoggData
         globalDefaultQueue.async(execute: {() -> Void in
             let filtereddata = Filtereddata()

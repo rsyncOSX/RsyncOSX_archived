@@ -142,14 +142,10 @@ class ViewControllerRsyncParameters: NSViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Get index of seleceted row
-        if let pvc = self.presenting as? ViewControllertabMain {
-            self.userparamsupdatedDelegate = pvc
-            self.getindexDelegate = pvc
-        }
+        self.userparamsupdatedDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllertabMain
+        self.getindexDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllertabMain
         // Dismisser is root controller
-        if let pvc2 = self.presenting as? ViewControllertabMain {
-            self.dismissDelegate = pvc2
-        }
+        self.dismissDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllertabMain
         self.storageapi = PersistentStorageAPI()
     }
 

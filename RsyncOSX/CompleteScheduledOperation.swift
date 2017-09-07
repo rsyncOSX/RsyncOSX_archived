@@ -48,9 +48,9 @@ final class CompleteScheduledOperation {
         _ = Configurations.shared.setCurrentDateonConfiguration(self.index!)
         // Start next job, if any, by delegate and notify completed, by delegate
         globalMainQueue.async(execute: { () -> Void in
-            self.startnextjobDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .viewcontrollertabmain)
+            self.startnextjobDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain)
                 as? ViewControllertabMain
-            self.notifyDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .viewcontrollertabmain)
+            self.notifyDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain)
                 as? ViewControllertabMain
             self.startnextjobDelegate?.startProcess()
             self.notifyDelegate?.completed()

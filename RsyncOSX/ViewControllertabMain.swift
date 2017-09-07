@@ -339,7 +339,7 @@ class ViewControllertabMain: NSViewController {
         self.scheduledJobworking.usesThreadedAnimation = true
         self.readConfigurationsAndSchedules()
         // Setting reference to self, used when calling delegate functions
-        ViewControllerReference.shared.setvcref(viewcontroller: .viewcontrollertabmain, nsviewcontroller: self)
+        ViewControllerReference.shared.setvcref(viewcontroller: .vctabmain, nsviewcontroller: self)
         // Create a Schedules object
         // Start waiting for next Scheduled job (if any)
         self.schedules = ScheduleSortedAndExpand()
@@ -688,13 +688,13 @@ extension ViewControllertabMain: AddProfiles {
             Schedules.shared.destroySchedule()
             Configurations.shared.destroyConfigurations()
             // Reset in tabSchedule
-            newProfileDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .viewcontrollertabschedule) as? ViewControllertabSchedule
+            newProfileDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabschedule) as? ViewControllertabSchedule
             newProfileDelegate?.newProfile(new: true)
             self.refresh()
             return
         }
         // Reset in tabSchedule
-        newProfileDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .viewcontrollertabschedule) as? ViewControllertabSchedule
+        newProfileDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabschedule) as? ViewControllertabSchedule
         newProfileDelegate?.newProfile(new: false)
         // Read configurations and Scheduledata
         self.readConfigurationsAndSchedules()

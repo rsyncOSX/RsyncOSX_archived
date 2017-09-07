@@ -73,7 +73,7 @@ class ViewControllerNewConfigurations: NSViewController {
         self.newTableView.dataSource = self
         self.localCatalog.toolTip = "By using Finder drag and drop filepaths."
         self.offsiteCatalog.toolTip = "By using Finder drag and drop filepaths."
-        ViewControllerReference.shared.setvcref(viewcontroller: .viewcontrollernewconfigurations, nsviewcontroller: self)
+        ViewControllerReference.shared.setvcref(viewcontroller: .vcnewconfigurations, nsviewcontroller: self)
         self.storageapi = PersistentStorageAPI()
     }
 

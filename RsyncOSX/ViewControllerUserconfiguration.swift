@@ -46,10 +46,9 @@ class ViewControllerUserconfiguration: NSViewController {
         } else {
             Configurations.shared.rsyncVer3 = false
         }
-        if let pvc = self.presenting as? ViewControllertabMain {
-            self.rsyncchangedDelegate = pvc
-            self.rsyncchangedDelegate?.rsyncchanged()
-        }
+        self.rsyncchangedDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain)
+            as? ViewControllertabMain
+        self.rsyncchangedDelegate?.rsyncchanged()
         self.dirty = true
         self.verifyRsync()
     }
@@ -80,10 +79,9 @@ class ViewControllerUserconfiguration: NSViewController {
         } else {
             Configurations.shared.allowDoubleclick = false
         }
-        if let pvc = self.presenting as? ViewControllertabMain {
-            self.rsyncchangedDelegate = pvc
-            self.rsyncchangedDelegate?.displayAllowDoubleclick()
-        }
+        self.rsyncchangedDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain)
+            as? ViewControllertabMain
+        self.rsyncchangedDelegate?.displayAllowDoubleclick()
         self.dirty = true
 
     }

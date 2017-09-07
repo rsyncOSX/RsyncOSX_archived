@@ -148,7 +148,7 @@ class ViewControllerCopyFiles: NSViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Setting reference to ViewObject
-        ViewControllerReference.shared.setvcref(viewcontroller: .viewcontrollercopyfiles, nsviewcontroller: self)
+        ViewControllerReference.shared.setvcref(viewcontroller: .vccopyfiles, nsviewcontroller: self)
         self.tableViewSelect.delegate = self
         self.tableViewSelect.dataSource = self
         // Progress indicator
@@ -162,7 +162,7 @@ class ViewControllerCopyFiles: NSViewController {
 
     override func viewDidAppear() {
         super.viewDidAppear()
-        self.indexDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .viewcontrollertabmain) as? ViewControllertabMain
+        self.indexDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllertabMain
         self.index = self.indexDelegate?.getindex()
         if let index = self.index {
             self.displayRemoteserver(index: index)

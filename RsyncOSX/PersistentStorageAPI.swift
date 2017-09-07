@@ -63,7 +63,7 @@ final class PersistentStorageAPI {
         // This is because saving schedule from memory might have
         // changed the schedule and this kicks off the changed
         // schedule again.
-        startnextjobDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .viewcontrollertabmain)
+        startnextjobDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain)
             as? ViewControllertabMain
         startnextjobDelegate?.startProcess()
     }

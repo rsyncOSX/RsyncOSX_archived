@@ -59,7 +59,7 @@ class ViewControllerLoggData: NSViewController {
         self.search.delegate = self
         self.sorting.usesThreadedAnimation = true
         // Reference to LogViewController
-        ViewControllerReference.shared.setvcref(viewcontroller: .viewcontrollerloggdata, nsviewcontroller: self)
+        ViewControllerReference.shared.setvcref(viewcontroller: .vcloggdata, nsviewcontroller: self)
     }
 
     override func viewDidAppear() {

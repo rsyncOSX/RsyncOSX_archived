@@ -174,11 +174,11 @@ final class NewBatchTask {
     }
 
     init() {
-        self.indicatorDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .viewcontrollertabmain)
+        self.indicatorDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain)
             as? ViewControllertabMain
-        self.taskDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .viewcontrollertabmain)
+        self.taskDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain)
             as? ViewControllertabMain
-        self.batchViewDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .viewcontrollertabmain)
+        self.batchViewDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain)
             as? ViewControllertabMain
     }
 

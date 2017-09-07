@@ -36,7 +36,7 @@ class ExecuteTask: Operation {
                 let store: [Configuration] = storageapi!.getConfigurations()
                 let configArray = store.filter({return ($0.hiddenID == hiddenID)})
                 guard configArray.count > 0 else {
-                    notifyDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .viewcontrollertabmain)
+                    notifyDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain)
                         as? ViewControllertabMain
                     if Configurations.shared.allowNotifyinMain == true {
                         notifyDelegate?.notifyScheduledJob(config: nil)
@@ -45,7 +45,7 @@ class ExecuteTask: Operation {
                 }
                 config = configArray[0]
                 // Notify that scheduled task is executing
-                notifyDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .viewcontrollertabmain)
+                notifyDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain)
                     as? ViewControllertabMain
                 notifyDelegate?.start()
                 // Trying to notify when not in main view will crash RSyncOSX

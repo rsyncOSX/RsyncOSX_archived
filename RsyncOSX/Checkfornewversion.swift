@@ -38,16 +38,14 @@ final class Checkfornewversion {
                         // Setting reference to new vesrion if any
                         Configurations.shared.URLnewVersion = self.urlNewVersion
                         if inMain {
-                            self.newversionDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .viewcontrollertabmain)
+                            self.newversionDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain)
                                 as? ViewControllertabMain
                             if Configurations.shared.allowNotifyinMain == true {
                                 self.newversionDelegate?.notifyNewVersion()
                             }
                         } else {
-                            if let pvc = Configurations.shared.viewControllerAbout as? ViewControllerAbout {
-                                self.newversionDelegate = pvc
-                                self.newversionDelegate?.notifyNewVersion()
-                            }
+                            self.newversionDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vcabout) as? ViewControllerAbout
+                            self.newversionDelegate?.notifyNewVersion()
                         }
                     }
                 }

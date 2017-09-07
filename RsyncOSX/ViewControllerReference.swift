@@ -14,11 +14,13 @@ import Foundation
 import Cocoa
 
 enum ViewController {
-    case viewcontrollertabmain
-    case viewcontrollerloggdata
-    case viewcontrollernewconfigurations
-    case viewcontrollertabschedule
-    case viewcontrollercopyfiles
+    case vctabmain
+    case vcloggdata
+    case vcnewconfigurations
+    case vctabschedule
+    case vccopyfiles
+    case vcssh
+    case vcabout
 }
 
 class ViewControllerReference {
@@ -51,36 +53,46 @@ class ViewControllerReference {
 
     func getvcref(viewcontroller: ViewController) -> NSViewController? {
         switch viewcontroller {
-        case .viewcontrollertabmain:
+        case .vctabmain:
             print("viewcontrollertabmain")
             return self.viewControllertabMain
-        case .viewcontrollerloggdata:
+        case .vcloggdata:
             print("viewcontrollerloggdata")
             return self.viewControllerLoggData
-        case .viewcontrollernewconfigurations:
+        case .vcnewconfigurations:
             print("viewcontrollernewconfigurations")
             return self.viewControllerNewConfigurations
-        case .viewcontrollertabschedule:
+        case .vctabschedule:
             print("viewcontrollertabschedule")
             return self.viewControllertabSchedule
-        case .viewcontrollercopyfiles:
+        case .vccopyfiles:
             print("viewcontrollercopyfiles")
             return self.viewControllerCopyFiles
+        case .vcssh:
+            print("viewcontrollerssh")
+            return self.viewControllerSsh
+        case .vcabout:
+            print("viewcontrollerabout")
+            return self.viewControllerAbout
         }
     }
 
     func setvcref(viewcontroller: ViewController, nsviewcontroller: NSViewController) {
         switch viewcontroller {
-        case .viewcontrollertabmain:
+        case .vctabmain:
             self.viewControllertabMain = nsviewcontroller
-        case .viewcontrollerloggdata:
+        case .vcloggdata:
             self.viewControllerLoggData = nsviewcontroller
-        case .viewcontrollernewconfigurations:
+        case .vcnewconfigurations:
             self.viewControllerNewConfigurations = nsviewcontroller
-        case .viewcontrollertabschedule:
+        case .vctabschedule:
             self.viewControllertabSchedule = nsviewcontroller
-        case .viewcontrollercopyfiles:
+        case .vccopyfiles:
             self.viewControllerCopyFiles = nsviewcontroller
+        case .vcssh:
+            self.viewControllerSsh = nsviewcontroller
+        case .vcabout:
+            self.viewControllerAbout = nsviewcontroller
         }
     }
 }

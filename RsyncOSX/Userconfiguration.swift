@@ -63,7 +63,7 @@ final class Userconfiguration {
             self.readUserconfiguration(dict: userconfigRsyncOSX[0])
         }
         // If userconfiguration is read from disk update info in main view
-        self.rsyncchangedDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .viewcontrollertabmain)
+        self.rsyncchangedDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain)
             as? ViewControllertabMain
         self.rsyncchangedDelegate?.rsyncchanged()
         self.rsyncchangedDelegate?.displayAllowDoubleclick()

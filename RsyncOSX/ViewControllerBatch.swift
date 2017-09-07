@@ -90,10 +90,8 @@ class ViewControllerBatch: NSViewController {
             })
         }
          // Dismisser is root controller
-        if let pvc = self.presenting as? ViewControllertabMain {
-            self.dismissDelegate = pvc
-            self.abortDelegate = pvc
-        }
+        self.dismissDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllertabMain
+        self.abortDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllertabMain
     }
 
     override func viewDidAppear() {

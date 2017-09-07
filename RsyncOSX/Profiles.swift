@@ -59,7 +59,7 @@ class Profiles: Files {
 extension Profiles: ReportError {
     // Private func for propagating any file error to main view
     func reportError(errorstr: String) {
-        self.errorDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .viewcontrollertabmain)
+        self.errorDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain)
             as? ViewControllertabMain
         self.errorDelegate?.fileerror(errorstr: errorstr)
     }

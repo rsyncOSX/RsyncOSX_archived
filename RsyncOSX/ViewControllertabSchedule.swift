@@ -129,7 +129,7 @@ class ViewControllertabSchedule: NSViewController {
             // Refresh table and recalculate the Schedules jobs
             self.refresh()
             // Start next job, if any, by delegate
-            self.startnextjobDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .viewcontrollertabmain) as? ViewControllertabMain
+            self.startnextjobDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllertabMain
             self.startnextjobDelegate?.startProcess()
             // Displaying next two scheduled tasks
             self.nextScheduledtask()
@@ -169,7 +169,7 @@ class ViewControllertabSchedule: NSViewController {
         // Create a Schedules object
         self.schedules = ScheduleSortedAndExpand()
         // Setting reference to self.
-        ViewControllerReference.shared.setvcref(viewcontroller: .viewcontrollertabschedule, nsviewcontroller: self)
+        ViewControllerReference.shared.setvcref(viewcontroller: .vctabschedule, nsviewcontroller: self)
     }
 
     override func viewDidAppear() {
@@ -198,7 +198,7 @@ class ViewControllertabSchedule: NSViewController {
         super.viewDidDisappear()
         if self.newSchedules! {
             self.newSchedules = false
-            self.newSchedulesDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .viewcontrollertabmain) as? ViewControllertabMain
+            self.newSchedulesDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllertabMain
             // Notify new schedules are added
             self.newSchedulesDelegate?.newSchedulesAdded()
         }

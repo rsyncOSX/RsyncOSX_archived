@@ -58,21 +58,14 @@ class ViewControllerScheduleDetails: NSViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.tools = Tools()
-        if let pvc = self.presenting as? ViewControllertabMain {
-            self.refreshDelegate = pvc
-        }
         // Dismisser is root controller
-        if let pvc2 = self.presenting as? ViewControllertabSchedule {
-            self.dismissDelegate = pvc2
-            self.refreshDelegate2 = pvc2
-        }
+        self.dismissDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabschedule) as? ViewControllertabSchedule
+        self.refreshDelegate2 = ViewControllerReference.shared.getvcref(viewcontroller: .vctabschedule) as? ViewControllertabSchedule
         // Do view setup here.
         self.scheduletable.delegate = self
         self.scheduletable.dataSource = self
-        if let pvc3 = self.presenting as? ViewControllertabSchedule {
-            self.getHiddenIDDelegate = pvc3
-            self.hiddendID = self.getHiddenIDDelegate?.gethiddenID()
-        }
+        self.getHiddenIDDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabschedule) as? ViewControllertabSchedule
+        self.hiddendID = self.getHiddenIDDelegate?.gethiddenID()
     }
 
     override func viewDidAppear() {

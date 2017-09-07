@@ -60,9 +60,7 @@ class ViewControllerNewVersion: NSViewController {
         super.viewDidLoad()
         self.resource = Resources()
         // Dismisser is root controller
-        if let pvc2 = self.presenting as? ViewControllertabMain {
-            self.dismissDelegate = pvc2
-        }
+        self.dismissDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllertabMain
     }
 
     override func viewDidAppear() {

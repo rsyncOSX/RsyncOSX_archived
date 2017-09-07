@@ -94,7 +94,7 @@ final class Tools {
         self.indexBoolremoteserverOff = Array<Bool>()
 
         guard Configurations.shared.configurationsDataSourcecount() > 0 else {
-            self.profilemenuDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .viewcontrollertabmain)
+            self.profilemenuDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain)
                 as? ViewControllertabMain
             // Tell main view profile menu might presented
             self.profilemenuDelegate?.enableProfileMenu()
@@ -122,9 +122,9 @@ final class Tools {
                     // Reload table when all remote servers are checked
                     if i == (Configurations.shared.configurationsDataSourcecount() - 1) {
                         // Send message to do a refresh
-                        self.testconnectionsDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .viewcontrollertabmain)
+                        self.testconnectionsDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain)
                             as? ViewControllertabMain
-                        self.profilemenuDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .viewcontrollertabmain)
+                        self.profilemenuDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain)
                             as? ViewControllertabMain
                             // Update table in main view
                         self.testconnectionsDelegate?.displayConnections()

@@ -16,9 +16,7 @@ final class CommandSsh: ProcessCmd {
         super.init(command: command, arguments: arguments, aScheduledOperation: false)
         // Process is initated from Ssh
         // ProcessTermination()
-        if let pvc = Configurations.shared.viewControllerSsh as? ViewControllerSsh {
-            self.updateDelegate = pvc
-        }
+        self.updateDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vcssh) as? ViewControllerSsh
     }
 
 }

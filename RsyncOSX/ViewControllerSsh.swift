@@ -116,7 +116,7 @@ class ViewControllerSsh: NSViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        Configurations.shared.viewControllerSsh = self
+        ViewControllerReference.shared.setvcref(viewcontroller: .vcssh, nsviewcontroller: self)
         self.detailsTable.delegate = self
         self.detailsTable.dataSource = self
         self.output = nil

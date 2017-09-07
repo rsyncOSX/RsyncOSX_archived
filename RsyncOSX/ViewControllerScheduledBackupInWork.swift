@@ -58,10 +58,9 @@ class ViewControllerScheduledBackupinWork: NSViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Setting the source for delegate function
-        if let pvc = self.presenting as? ViewControllertabMain {
-            // Dismisser is root controller
-            self.dismissDelegate = pvc
-        }
+        // Dismisser is root controller
+        self.dismissDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain)
+            as? ViewControllertabMain
     }
 
     override func viewDidAppear() {

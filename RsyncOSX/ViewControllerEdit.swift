@@ -59,10 +59,10 @@ class ViewControllerEdit: NSViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Dismisser is root controller
-        if let pvc = self.presenting as? ViewControllertabMain {
-            self.dismissDelegate = pvc
-            self.getindexDelegate = pvc
-        }
+        self.dismissDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain)
+            as? ViewControllertabMain
+        self.getindexDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain)
+            as? ViewControllertabMain
     }
 
     override func viewDidAppear() {
