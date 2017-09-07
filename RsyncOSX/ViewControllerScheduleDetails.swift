@@ -58,6 +58,7 @@ class ViewControllerScheduleDetails: NSViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.tools = Tools()
+        self.refreshDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllertabMain
         // Dismisser is root controller
         self.dismissDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabschedule) as? ViewControllertabSchedule
         self.refreshDelegate2 = ViewControllerReference.shared.getvcref(viewcontroller: .vctabschedule) as? ViewControllertabSchedule

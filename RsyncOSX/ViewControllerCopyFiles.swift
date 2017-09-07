@@ -162,7 +162,8 @@ class ViewControllerCopyFiles: NSViewController {
 
     override func viewDidAppear() {
         super.viewDidAppear()
-        self.indexDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllertabMain
+        self.indexDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain)
+            as? ViewControllertabMain
         self.index = self.indexDelegate?.getindex()
         if let index = self.index {
             self.displayRemoteserver(index: index)

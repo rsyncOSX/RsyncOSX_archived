@@ -44,7 +44,8 @@ final class Checkfornewversion {
                                 self.newversionDelegate?.notifyNewVersion()
                             }
                         } else {
-                            self.newversionDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vcabout) as? ViewControllerAbout
+                            self.newversionDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vcabout)
+                                as? ViewControllerAbout
                             self.newversionDelegate?.notifyNewVersion()
                         }
                     }
