@@ -144,12 +144,12 @@ class ViewControllerUserconfiguration: NSViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Dismisser is root controller
-        if let pvc2 = self.presenting as? ViewControllertabMain {
-            self.dismissDelegate = pvc2
-        } else if let pvc2 = self.presenting as? ViewControllertabSchedule {
-            self.dismissDelegate = pvc2
-        } else if let pvc2 = self.presenting as? ViewControllerNewConfigurations {
-            self.dismissDelegate = pvc2
+        if let pvc = self.presenting as? ViewControllertabMain {
+            self.dismissDelegate = pvc
+        } else if let pvc = self.presenting as? ViewControllertabSchedule {
+            self.dismissDelegate = pvc
+        } else if let pvc = self.presenting as? ViewControllerNewConfigurations {
+            self.dismissDelegate = pvc
         }
         self.rsyncPath.delegate = self
         self.restorePath.delegate = self

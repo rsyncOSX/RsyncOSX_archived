@@ -26,9 +26,7 @@ class ViewControllerProgressProcess: NSViewController {
     var calculatedNumberOfFiles: Int?
     // Delegate to count max number and updates during progress
     weak var countDelegate: Count?
-    // Delegate to dismisser
     weak var dismissDelegate: DismissViewController?
-    // Delegate to Abort operations
     weak var abortDelegate: AbortOperations?
 
     @IBOutlet weak var progress: NSProgressIndicator!

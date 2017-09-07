@@ -69,25 +69,17 @@ class Configurations {
     var allowDoubleclick: Bool = true
     // Temporary path for restore
     var restorePath: String?
-
     // reference to Process, used for kill in executing task
     var process: Process?
     // Variabl if arguments to Rsync is changed and must be read into memory again
     private var readRsyncArguments: Bool = true
-    // Reference to the Operation object
-    // Reference is set in when Scheduled task is executed
-    var operation: CompleteScheduledOperation?
-    // Reference to About
-    // var viewControllerAbout: NSViewController?
     private var profile: String?
-    // Notify about scheduled process
-    // Only allowed to notity by modal window when in main view
+    // Notify about scheduled process, only allowed to notity by modal window when in main view
     var allowNotifyinMain: Bool = false
     // If rsync error reset workqueue
     var rsyncerror: Bool = true
     // Reference to singletask object
     var singleTask: NewSingleTask?
-
     // The main structure storing all Configurations for tasks
     private var configurations = Array<Configuration>()
     // Array to store argumenst for all tasks.

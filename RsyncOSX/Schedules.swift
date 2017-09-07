@@ -30,8 +30,6 @@ class Schedules: ScheduleWriteLoggData {
     // Reference to the first Scheduled job
     // Is set when SortedAndExpanded is calculated
     var scheduledJob: NSDictionary?
-    // Reference to NSViewObjects requiered for protocol functions for kikcking of scheduled jobs
-    var viewObjectSchedule: NSViewController?
     // Delegate functionsn for doing a refresh of NSTableView
     weak var refreshDelegate: RefreshtableView?
 

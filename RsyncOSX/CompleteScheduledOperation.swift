@@ -55,12 +55,10 @@ final class CompleteScheduledOperation {
             self.startnextjobDelegate?.startProcess()
             self.notifyDelegate?.completed()
         })
-        if let pvc3 = Schedules.shared.viewObjectSchedule as? ViewControllertabSchedule {
-            globalMainQueue.async(execute: { () -> Void in
-                self.startTimerDelegate = pvc3
-                self.startTimerDelegate?.startTimerNextJob()
-            })
-        }
+        globalMainQueue.async(execute: { () -> Void in
+            self.startTimerDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabschedule) as? ViewControllertabSchedule
+            self.startTimerDelegate?.startTimerNextJob()
+        })
         // Reset reference til scheduled job
         Schedules.shared.scheduledJob = nil
     }

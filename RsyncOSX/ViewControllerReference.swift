@@ -33,6 +33,10 @@ class ViewControllerReference {
         return Singleton.instance
     }
 
+    // Reference to the Operation object
+    // Reference is set in when Scheduled task is executed
+    var operation: CompleteScheduledOperation?
+
     // Reference to main View
     private var viewControllertabMain: NSViewController?
     // Reference to Copy files
@@ -41,9 +45,6 @@ class ViewControllerReference {
     private var viewControllerNewConfigurations: NSViewController?
     // Reference to the  Schedule
     private var viewControllertabSchedule: NSViewController?
-    // Reference to the Operation object
-    // Reference is set in when Scheduled task is executed
-    private var operation: CompleteScheduledOperation?
     // Which profile to use, if default nil
     private var viewControllerLoggData: NSViewController?
     // Reference to Ssh view
