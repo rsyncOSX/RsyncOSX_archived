@@ -75,9 +75,7 @@ class Configurations {
     // Variabl if arguments to Rsync is changed and must be read into memory again
     private var readRsyncArguments: Bool = true
     // Reference to Copy files
-    var viewControllerCopyFiles: NSViewController?
-    // Reference to the  Schedule
-    var viewControllertabSchedule: NSViewController?
+    // var viewControllerCopyFiles: NSViewController?
     // Reference to the Operation object
     // Reference is set in when Scheduled task is executed
     var operation: CompleteScheduledOperation?

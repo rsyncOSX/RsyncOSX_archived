@@ -148,7 +148,7 @@ class ViewControllerCopyFiles: NSViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Setting reference to ViewObject
-        Configurations.shared.viewControllerCopyFiles = self
+        ViewControllerReference.shared.setvcref(viewcontroller: .viewcontrollercopyfiles, nsviewcontroller: self)
         self.tableViewSelect.delegate = self
         self.tableViewSelect.dataSource = self
         // Progress indicator

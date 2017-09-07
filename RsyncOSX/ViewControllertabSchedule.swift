@@ -169,7 +169,6 @@ class ViewControllertabSchedule: NSViewController {
         // Create a Schedules object
         self.schedules = ScheduleSortedAndExpand()
         // Setting reference to self.
-        Configurations.shared.viewControllertabSchedule = self
         ViewControllerReference.shared.setvcref(viewcontroller: .viewcontrollertabschedule, nsviewcontroller: self)
     }
 

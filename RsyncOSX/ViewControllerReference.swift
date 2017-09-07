@@ -18,6 +18,7 @@ enum ViewController {
     case viewcontrollerloggdata
     case viewcontrollernewconfigurations
     case viewcontrollertabschedule
+    case viewcontrollercopyfiles
 }
 
 class ViewControllerReference {
@@ -62,6 +63,9 @@ class ViewControllerReference {
         case .viewcontrollertabschedule:
             print("viewcontrollertabschedule")
             return self.viewControllertabSchedule
+        case .viewcontrollercopyfiles:
+            print("viewcontrollercopyfiles")
+            return self.viewControllerCopyFiles
         }
     }
 
@@ -75,6 +79,8 @@ class ViewControllerReference {
             self.viewControllerNewConfigurations = nsviewcontroller
         case .viewcontrollertabschedule:
             self.viewControllertabSchedule = nsviewcontroller
+        case .viewcontrollercopyfiles:
+            self.viewControllerCopyFiles = nsviewcontroller
         }
     }
 }

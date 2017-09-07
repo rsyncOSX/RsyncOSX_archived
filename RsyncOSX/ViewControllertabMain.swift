@@ -688,18 +688,14 @@ extension ViewControllertabMain: AddProfiles {
             Schedules.shared.destroySchedule()
             Configurations.shared.destroyConfigurations()
             // Reset in tabSchedule
-            if let pvc = Configurations.shared.viewControllertabSchedule as? ViewControllertabSchedule {
-                newProfileDelegate = pvc
-                newProfileDelegate?.newProfile(new: true)
-            }
+            newProfileDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .viewcontrollertabschedule) as? ViewControllertabSchedule
+            newProfileDelegate?.newProfile(new: true)
             self.refresh()
             return
         }
         // Reset in tabSchedule
-        if let pvc = Configurations.shared.viewControllertabSchedule as? ViewControllertabSchedule {
-            newProfileDelegate = pvc
-            newProfileDelegate?.newProfile(new: false)
-        }
+        newProfileDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .viewcontrollertabschedule) as? ViewControllertabSchedule
+        newProfileDelegate?.newProfile(new: false)
         // Read configurations and Scheduledata
         self.readConfigurationsAndSchedules()
         // Make sure loading profile
