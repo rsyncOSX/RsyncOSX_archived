@@ -1172,8 +1172,10 @@ extension ViewControllertabMain: GetConfigurationsObject {
 
     func reloadconfigurations() {
         if let profile = self.configurationsNoS!.getProfile() {
+            self.configurationsNoS = nil
             self.configurationsNoS = Configurations(profile: profile)
         } else {
+            self.configurationsNoS = nil
             self.configurationsNoS = Configurations(profile: nil)
         }
         globalMainQueue.async(execute: { () -> Void in
