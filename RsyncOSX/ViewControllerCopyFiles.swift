@@ -306,7 +306,6 @@ extension ViewControllerCopyFiles: NSTableViewDelegate {
 // textDidEndEditing
 
 extension ViewControllerCopyFiles: NSTextFieldDelegate {
-
     override func controlTextDidEndEditing(_ obj: Notification) {
         if self.remoteCatalog.stringValue.isEmpty == false && self.localCatalog.stringValue.isEmpty == false {
             self.commandString.stringValue = (self.copyFiles!.getCommandDisplayinView(remotefile: self.remoteCatalog.stringValue, localCatalog: self.localCatalog.stringValue))
@@ -317,7 +316,6 @@ extension ViewControllerCopyFiles: NSTextFieldDelegate {
 }
 
 extension ViewControllerCopyFiles: RefreshtableView {
-
     // Do a refresh of table
     func refresh() {
         guard self.copyFiles != nil else {
@@ -331,7 +329,6 @@ extension ViewControllerCopyFiles: RefreshtableView {
 }
 
 extension ViewControllerCopyFiles: StartStopProgressIndicator {
-
     // Protocol StartStopProgressIndicatorViewBatch
     func stop() {
         self.working.stopAnimation(nil)
@@ -345,8 +342,6 @@ extension ViewControllerCopyFiles: StartStopProgressIndicator {
 }
 
 extension ViewControllerCopyFiles: UpdateProgress {
-
-    // When Process terminates
     func processTermination() {
         if self.rsync == false {
             self.copyFiles!.setRemoteFileList()
@@ -358,30 +353,24 @@ extension ViewControllerCopyFiles: UpdateProgress {
         }
     }
 
-    // When Process outputs anything to filehandler
     func fileHandler() {
         // nothing
     }
 }
 
 extension ViewControllerCopyFiles: Information {
-
-    // Protocol Information
     func getInformation() -> [String] {
         return self.copyFiles!.getOutput()
     }
 }
 
 extension ViewControllerCopyFiles: DismissViewController {
-
-    // Protocol DismissViewController
     func dismiss_view(viewcontroller: NSViewController) {
         self.dismissViewController(viewcontroller)
     }
 }
 
 extension ViewControllerCopyFiles: GetPath {
-
     func pathSet(path: String?, requester: WhichPath) {
         if let setpath = path {
             self.localCatalog.stringValue = setpath

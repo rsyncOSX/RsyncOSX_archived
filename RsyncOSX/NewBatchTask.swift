@@ -90,8 +90,8 @@ final class NewBatchTask {
             switch work.1 {
             case 0:
                 self.batchViewDelegate?.progressIndicatorViewBatch(operation: .start)
-                let arguments: Array<String> = self.configurationsNoS!.arguments4rsync(index: index, argtype: .argdryRun)
-                let process = Rsync(arguments: arguments)
+                let args: Array<String> = self.configurationsNoS!.arguments4rsync(index: index, argtype: .argdryRun)
+                let process = Rsync(arguments: args)
                 // Setting reference to process for Abort if requiered
                 process.executeProcess(output: self.output!)
                 self.process = process.getProcess()

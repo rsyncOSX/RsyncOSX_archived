@@ -353,7 +353,6 @@ class ViewControllertabMain: NSViewController {
         self.displayDryRun.state = .on
         self.tools = Tools()
         self.loadProfileMenu = true
-
         // configurationsNoS
         self.configurationsNoS = ConfigurationsNoS(profile: nil)
         // configurationsNoS
@@ -798,9 +797,11 @@ extension ViewControllertabMain: Connections {
 extension ViewControllertabMain: NewVersionDiscovered {
     // Notifies if new version is discovered
     func notifyNewVersion() {
-        globalMainQueue.async(execute: { () -> Void in
-            self.presentViewControllerAsSheet(self.newVersionViewController)
-        })
+        if self.configurationsNoS!.allowNotifyinMain {
+            globalMainQueue.async(execute: { () -> Void in
+                self.presentViewControllerAsSheet(self.newVersionViewController)
+            })
+        }
     }
 }
 
