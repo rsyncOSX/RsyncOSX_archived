@@ -12,7 +12,7 @@
 //  Copyright © 2016 Thomas Evensen. All rights reserved.
 //  swiftlint More work to fix - 17 July 2017
 //
-//  swiftlint:disable syntactic_sugar
+//  swiftlint:disable syntactic_sugar file_length
 
 import Foundation
 
@@ -22,6 +22,18 @@ protocol GetConfigurationsObject: class {
     func createconfigurationsobject(profile: String?) -> ConfigurationsNoS?
     func isdatadirty() -> Bool
     func setdatadirty(dirty: Bool)
+}
+
+// Used to select argument
+enum ArgumentsRsync {
+    case arg
+    case argdryRun
+}
+
+// Protocol for doing a refresh of updated tableView
+protocol RefreshtableView: class {
+    // Declare function for refresh tableView
+    func refresh()
 }
 
 class ConfigurationsNoS {
