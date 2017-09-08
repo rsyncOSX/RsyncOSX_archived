@@ -83,7 +83,7 @@ class Schedules: ScheduleWriteLoggData {
         let newSchedule = ConfigurationSchedule(dictionary: dict, log: nil)
         self.schedule.append(newSchedule)
         // Set data dirty
-        Configurations.shared.setDataDirty(dirty: true)
+        self.configurationsNoS!.setDataDirty(dirty: true)
         self.storageapi!.saveScheduleFromMemory()
     }
 
@@ -281,6 +281,7 @@ class Schedules: ScheduleWriteLoggData {
             break loop
         }
     }
+
 }
 
 extension Schedules: Readupdatedschedules {
@@ -300,7 +301,7 @@ extension Schedules: Readupdatedschedules {
         self.destroySchedule()
         var store: Array<ConfigurationSchedule>?
         self.storageapi = nil
-        if let profile = Configurations.shared.getProfile() {
+        if let profile = self.configurationsNoS!.getProfile() {
             self.storageapi = PersistentStorageAPI(profile : profile)
         } else {
             self.storageapi = PersistentStorageAPI(profile : nil)

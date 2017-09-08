@@ -20,6 +20,15 @@ import Foundation
 class ExecuteTask: Operation {
 
     override func main() {
+
+        // configurationsNoS
+        weak var configurationsDelegate: GetConfigurationsObject?
+        configurationsDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain)
+            as? ViewControllertabMain
+        var configurationsNoS: ConfigurationsNoS?
+        configurationsNoS = configurationsDelegate?.getconfigurationsobject()
+        // configurationsNoS
+
         // Storage API
         var storageapi: PersistentStorageAPI?
         // Delegate function for start and completion of scheduled jobs
@@ -32,7 +41,7 @@ class ExecuteTask: Operation {
         // Get the first job of the queue
         if let dict: NSDictionary = Schedules.shared.scheduledJob {
             if let hiddenID: Int = dict.value(forKey: "hiddenID") as? Int {
-                if let profile = Configurations.shared.getProfile() {
+                if let profile = configurationsNoS!.getProfile() {
                     storageapi = PersistentStorageAPI(profile : profile)
                 } else {
                     storageapi = PersistentStorageAPI(profile : nil)
@@ -42,7 +51,7 @@ class ExecuteTask: Operation {
                 guard configArray.count > 0 else {
                     notifyDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain)
                         as? ViewControllertabMain
-                    if Configurations.shared.allowNotifyinMain == true {
+                    if configurationsNoS!.allowNotifyinMain == true {
                         notifyDelegate?.notifyScheduledJob(config: nil)
                     }
                     return
@@ -53,7 +62,7 @@ class ExecuteTask: Operation {
                     as? ViewControllertabMain
                 notifyDelegate?.start()
                 // Trying to notify when not in main view will crash RSyncOSX
-                if Configurations.shared.allowNotifyinMain == true {
+                if configurationsNoS!.allowNotifyinMain == true {
                     notifyDelegate?.notifyScheduledJob(config: config)
                 }
                 if hiddenID >= 0 && config != nil {

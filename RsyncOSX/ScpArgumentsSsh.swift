@@ -21,6 +21,11 @@ enum SshOperations {
 
 final class ScpArgumentsSsh {
 
+    // configurationsNoS
+    weak var configurationsDelegate: GetConfigurationsObject?
+    var configurationsNoS: ConfigurationsNoS?
+    // configurationsNoS
+
     var commandCopyPasteTermninal: String?
 
     private var config: Configuration?
@@ -190,8 +195,13 @@ final class ScpArgumentsSsh {
 
     init(hiddenID: Int?) {
 
+        // configurationsNoS
+        self.configurationsDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain)
+            as? ViewControllertabMain
+        self.configurationsNoS = self.configurationsDelegate?.getconfigurationsobject()
+        // configurationsNoS
         if hiddenID != nil {
-            self.config = Configurations.shared.getConfigurations()[Configurations.shared.getIndex(hiddenID!)]
+            self.config = self.configurationsNoS!.getConfigurations()[self.configurationsNoS!.getIndex(hiddenID!)]
         } else {
             self.config = nil
         }

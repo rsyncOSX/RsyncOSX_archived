@@ -21,10 +21,8 @@ class ViewControllerUserconfiguration: NSViewController {
     // Storage API
     var storageapi: PersistentStorageAPI?
     var dirty: Bool = false
-    // Delegate to read configurations after toggeling between
-    // test- and real mode
+    // Delegate to read configurations after toggeling between test- and real mode
     weak var rsyncchangedDelegate: RsyncChanged?
-    // Dismisser
     weak var dismissDelegate: DismissViewController?
 
     @IBOutlet weak var rsyncPath: NSTextField!

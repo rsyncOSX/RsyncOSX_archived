@@ -21,6 +21,11 @@ protocol AbortOperations: class {
 
 class ViewControllerProgressProcess: NSViewController {
 
+    // configurationsNoS
+    weak var configurationsDelegate: GetConfigurationsObject?
+    var configurationsNoS: ConfigurationsNoS?
+    // configurationsNoS
+
     var count: Double = 0
     var maxcount: Double = 0
     var calculatedNumberOfFiles: Int?
@@ -42,11 +47,16 @@ class ViewControllerProgressProcess: NSViewController {
             as? ViewControllertabMain
         self.abortDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain)
             as? ViewControllertabMain
+        // configurationsNoS
+        self.configurationsDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain)
+            as? ViewControllertabMain
+        // configurationsNoS
     }
 
     override func viewDidAppear() {
         super.viewDidAppear()
-        if let pvc2 = Configurations.shared.singleTask {
+        self.configurationsNoS = self.configurationsDelegate?.getconfigurationsobject()
+        if let pvc2 = self.configurationsNoS!.singleTask {
             self.countDelegate = pvc2
         }
         self.calculatedNumberOfFiles = self.countDelegate?.maxCount()

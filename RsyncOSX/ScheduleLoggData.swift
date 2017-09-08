@@ -28,6 +28,11 @@ class Filtereddata {
 
 final class ScheduleLoggData {
 
+    // configurationsNoS
+    weak var configurationsDelegate: GetConfigurationsObject?
+    var configurationsNoS: ConfigurationsNoS?
+    // configurationsNoS
+
     // Loggdata is only sorted and read once
     private var loggdata: Array<NSDictionary>?
     weak var readfiltereddataDelegate: Readfiltereddata?
@@ -76,8 +81,8 @@ final class ScheduleLoggData {
                 for j in 0 ..< input[i].logrecords.count {
                     let dict = input[i].logrecords[j]
                     let logdetail: NSDictionary = [
-                        "localCatalog": Configurations.shared.getResourceConfiguration(hiddenID, resource: .localCatalog),
-                        "offsiteServer": Configurations.shared.getResourceConfiguration(hiddenID, resource: .offsiteServer),
+                        "localCatalog": self.configurationsNoS!.getResourceConfiguration(hiddenID, resource: .localCatalog),
+                        "offsiteServer": self.configurationsNoS!.getResourceConfiguration(hiddenID, resource: .offsiteServer),
                         "dateExecuted": (dict.value(forKey: "dateExecuted") as? String)!,
                         "resultExecuted": (dict.value(forKey: "resultExecuted") as? String)!,
                         "parent": (dict.value(forKey: "parent") as? String)!,
@@ -100,6 +105,11 @@ final class ScheduleLoggData {
     }
 
     init () {
+        // configurationsNoS
+        self.configurationsDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain)
+            as? ViewControllertabMain
+        self.configurationsNoS = self.configurationsDelegate?.getconfigurationsobject()
+        // configurationsNoS
         // Read and sort loggdata only once
         if self.loggdata == nil {
             self.readAndSortAllLoggdata()

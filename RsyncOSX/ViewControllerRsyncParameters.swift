@@ -24,6 +24,11 @@ protocol GetSelecetedIndex : class {
 
 class ViewControllerRsyncParameters: NSViewController {
 
+    // configurationsNoS
+    weak var configurationsDelegate: GetConfigurationsObject?
+    var configurationsNoS: ConfigurationsNoS?
+    // configurationsNoS
+
     // Storage API
     var storageapi: PersistentStorageAPI?
     // Object for calculating rsync parameters
@@ -72,8 +77,8 @@ class ViewControllerRsyncParameters: NSViewController {
         case .on:
             self.setValueComboBox(combobox: self.parameter12, index: (self.parameters!.indexandvaluersyncparameter(self.parameters!.getBackupString()[0]).0))
             self.viewParameter12.stringValue = self.parameters!.indexandvaluersyncparameter(self.parameters!.getBackupString()[0]).1
-            let hiddenID = Configurations.shared.gethiddenID(index: (self.getindexDelegate?.getindex())!)
-            let localcatalog = Configurations.shared.getResourceConfiguration(hiddenID, resource: .localCatalog)
+            let hiddenID = self.configurationsNoS!.gethiddenID(index: (self.getindexDelegate?.getindex())!)
+            let localcatalog = self.configurationsNoS!.getResourceConfiguration(hiddenID, resource: .localCatalog)
             let localcatalogParts = (localcatalog as AnyObject).components(separatedBy: "/")
             self.setValueComboBox(combobox: self.parameter13, index: (self.parameters!.indexandvaluersyncparameter(self.parameters!.getBackupString()[1]).0))
             self.viewParameter13.stringValue = "../backup" + "_" + localcatalogParts[localcatalogParts.count - 2]
@@ -142,11 +147,18 @@ class ViewControllerRsyncParameters: NSViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Get index of seleceted row
-        self.userparamsupdatedDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllertabMain
-        self.getindexDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllertabMain
+        self.userparamsupdatedDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain)
+as? ViewControllertabMain
+        self.getindexDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain)
+            as? ViewControllertabMain
         // Dismisser is root controller
-        self.dismissDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllertabMain
-        if let profile = Configurations.shared.getProfile() {
+        self.dismissDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain)
+            as? ViewControllertabMain
+        // configurationsNoS
+        self.configurationsDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain)
+            as? ViewControllertabMain
+        // configurationsNoS
+        if let profile = self.configurationsNoS!.getProfile() {
             self.storageapi = PersistentStorageAPI(profile : profile)
         } else {
             self.storageapi = PersistentStorageAPI(profile : nil)
@@ -155,7 +167,8 @@ class ViewControllerRsyncParameters: NSViewController {
 
     override func viewDidAppear() {
         super.viewDidAppear()
-        var configurations: [Configuration] = Configurations.shared.getConfigurations()
+        self.configurationsNoS = self.configurationsDelegate?.getconfigurationsobject()
+        var configurations: [Configuration] = self.configurationsNoS!.getConfigurations()
         if let index = self.getindexDelegate?.getindex() {
             // Create RsyncParameters object and load initial parameters
             self.parameters = RsyncParameters(config: configurations[index])
@@ -227,7 +240,7 @@ class ViewControllerRsyncParameters: NSViewController {
                 configurations[index].sshport = Int(port.stringValue)
             }
             // Update configuration in memory before saving
-            Configurations.shared.updateConfigurations(configurations[index], index: index)
+            self.configurationsNoS!.updateConfigurations(configurations[index], index: index)
             // notify an update
             self.userparamsupdatedDelegate?.rsyncuserparamsupdated()
         }

@@ -20,6 +20,11 @@ protocol GetSource: class {
 
 class ViewControllerCopyFiles: NSViewController {
 
+    // configurationsNoS
+    weak var configurationsDelegate: GetConfigurationsObject?
+    var configurationsNoS: ConfigurationsNoS?
+    // configurationsNoS
+
     var copyFiles: CopyFiles?
     var index: Int?
     var rsync: Bool = false
@@ -137,10 +142,10 @@ class ViewControllerCopyFiles: NSViewController {
             self.selectButton.title = "Get source"
             return
         }
-        let hiddenID = Configurations.shared.gethiddenID(index: index!)
+        let hiddenID = self.configurationsNoS!.gethiddenID(index: index!)
         globalMainQueue.async(execute: { () -> Void in
-            self.server.stringValue = Configurations.shared.getResourceConfiguration(hiddenID, resource: .offsiteServer)
-            self.rcatalog.stringValue = Configurations.shared.getResourceConfiguration(hiddenID, resource: .remoteCatalog)
+            self.server.stringValue = self.configurationsNoS!.getResourceConfiguration(hiddenID, resource: .offsiteServer)
+            self.rcatalog.stringValue = self.configurationsNoS!.getResourceConfiguration(hiddenID, resource: .remoteCatalog)
         })
         self.selectButton.title = "Get files"
     }
@@ -158,10 +163,15 @@ class ViewControllerCopyFiles: NSViewController {
         self.localCatalog.delegate = self
         // Double click on row to select
         self.tableViewSelect.doubleAction = #selector(self.tableViewDoubleClick(sender:))
+        // configurationsNoS
+        self.configurationsDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain)
+            as? ViewControllertabMain
+        // configurationsNoS
     }
 
     override func viewDidAppear() {
         super.viewDidAppear()
+        self.configurationsNoS = self.configurationsDelegate?.getconfigurationsobject()
         self.indexDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain)
             as? ViewControllertabMain
         self.index = self.indexDelegate?.getindex()
@@ -170,7 +180,7 @@ class ViewControllerCopyFiles: NSViewController {
         }
         self.copyButton.isEnabled = true
         self.copyButton.title = "Estimate"
-        if let restorePath = Configurations.shared.restorePath {
+        if let restorePath = self.configurationsNoS!.restorePath {
             self.localCatalog.stringValue = restorePath
         } else {
             self.localCatalog.stringValue = ""

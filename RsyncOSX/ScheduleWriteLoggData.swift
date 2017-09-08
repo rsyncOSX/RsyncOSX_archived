@@ -12,6 +12,11 @@ import Cocoa
 
 class ScheduleWriteLoggData {
 
+    // configurationsNoS
+    weak var configurationsDelegate: GetConfigurationsObject?
+    var configurationsNoS: ConfigurationsNoS?
+    // configurationsNoS
+
     // Storage API
     var storageapi: PersistentStorageAPI?
     // Array to store all scheduled jobs and history of executions
@@ -85,7 +90,7 @@ class ScheduleWriteLoggData {
     private func addloggtaskmanualexisting(_ hiddenID: Int, result: String, date: String) -> Bool {
         var loggadded: Bool = false
         for i in 0 ..< self.schedule.count where
-            Configurations.shared.getResourceConfiguration(hiddenID, resource: .task) == "backup" {
+            self.configurationsNoS!.getResourceConfiguration(hiddenID, resource: .task) == "backup" {
                 if self.schedule[i].hiddenID == hiddenID  &&
                     self.schedule[i].schedule == "manuel" &&
                     self.schedule[i].dateStop == nil {
@@ -107,7 +112,7 @@ class ScheduleWriteLoggData {
 
     private func addloggtaskmanulnew(_ hiddenID: Int, result: String, date: String) -> Bool {
         var loggadded: Bool = false
-        if (Configurations.shared.getResourceConfiguration(hiddenID, resource: .task) == "backup") {
+        if (self.configurationsNoS!.getResourceConfiguration(hiddenID, resource: .task) == "backup") {
             let masterdict = NSMutableDictionary()
             masterdict.setObject(hiddenID, forKey: "hiddenID" as NSCopying)
             masterdict.setObject("01 Jan 1900 00:00", forKey: "dateStart" as NSCopying)
@@ -134,12 +139,12 @@ class ScheduleWriteLoggData {
     /// - parameter date : String representation of date and time stamp for task executed
     /// - parameter schedule : schedule of task
     func addresultschedule(_ hiddenID: Int, dateStart: String, result: String, date: String, schedule: String) {
-        if Configurations.shared.detailedlogging {
+        if self.configurationsNoS!.detailedlogging {
             loop : for i in 0 ..< self.schedule.count {
                 if self.schedule[i].hiddenID == hiddenID  &&
                     self.schedule[i].schedule == schedule &&
                     self.schedule[i].dateStart == dateStart {
-                    if (Configurations.shared.getResourceConfiguration(hiddenID, resource: .task) == "backup") {
+                    if (self.configurationsNoS!.getResourceConfiguration(hiddenID, resource: .task) == "backup") {
                         let dict = NSMutableDictionary()
                         dict.setObject(date, forKey: "dateExecuted" as NSCopying)
                         dict.setObject(result, forKey: "resultExecuted" as NSCopying)
@@ -173,7 +178,12 @@ class ScheduleWriteLoggData {
     }
 
     init() {
-        if let profile = Configurations.shared.getProfile() {
+        // configurationsNoS
+        self.configurationsDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain)
+            as? ViewControllertabMain
+        self.configurationsNoS = self.configurationsDelegate?.getconfigurationsobject()
+        // configurationsNoS
+        if let profile = self.configurationsNoS!.getProfile() {
             self.storageapi = PersistentStorageAPI(profile : profile)
         } else {
             self.storageapi = PersistentStorageAPI(profile : nil)

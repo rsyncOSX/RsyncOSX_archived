@@ -13,6 +13,11 @@ import Foundation
 // waiter time.
 final class CompleteScheduledOperation {
 
+    // configurationsNoS
+    weak var configurationsDelegate: GetConfigurationsObject?
+    var configurationsNoS: ConfigurationsNoS?
+    // configurationsNoS
+
     // Delegate function for starting next scheduled operatin if any
     // Delegate function is triggered when NSTaskDidTerminationNotification
     // is discovered (e.g previous job is done)
@@ -45,7 +50,7 @@ final class CompleteScheduledOperation {
                                            result: numberstring[0],
                                            date: datestring, schedule: schedule!)
         // Writing timestamp to configuration
-        _ = Configurations.shared.setCurrentDateonConfiguration(self.index!)
+        _ = self.configurationsNoS!.setCurrentDateonConfiguration(self.index!)
         // Start next job, if any, by delegate and notify completed, by delegate
         globalMainQueue.async(execute: { () -> Void in
             self.startnextjobDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain)
@@ -70,6 +75,11 @@ final class CompleteScheduledOperation {
         self.dateformatter = Tools().setDateformat()
         self.hiddenID = (dict.value(forKey: "hiddenID") as? Int)!
         self.schedule = dict.value(forKey: "schedule") as? String
-        self.index = Configurations.shared.getIndex(hiddenID!)
+        self.index = self.configurationsNoS!.getIndex(hiddenID!)
+        // configurationsNoS
+        self.configurationsDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain)
+            as? ViewControllertabMain
+        self.configurationsNoS = self.configurationsDelegate?.getconfigurationsobject()
+        // configurationsNoS
     }
 }

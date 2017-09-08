@@ -22,6 +22,11 @@ protocol StartTimer : class {
 
 class ViewControllertabSchedule: NSViewController {
 
+    // configurationsNoS
+    weak var configurationsDelegate: GetConfigurationsObject?
+    var configurationsNoS: ConfigurationsNoS?
+    // configurationsNoS
+
     // Main tableview
     @IBOutlet weak var mainTableView: NSTableView!
     @IBOutlet weak var once: NSButton!
@@ -170,10 +175,15 @@ class ViewControllertabSchedule: NSViewController {
         self.schedules = ScheduleSortedAndExpand()
         // Setting reference to self.
         ViewControllerReference.shared.setvcref(viewcontroller: .vctabschedule, nsviewcontroller: self)
+        // configurationsNoS
+        self.configurationsDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain)
+            as? ViewControllertabMain
+        // configurationsNoS
     }
 
     override func viewDidAppear() {
         super.viewDidAppear()
+        self.configurationsNoS = self.configurationsDelegate?.getconfigurationsobject()
         // Set initial values of dates to now
         self.stopdate.dateValue = Date()
         self.stoptime.dateValue = Date()
@@ -181,7 +191,7 @@ class ViewControllertabSchedule: NSViewController {
             // Create a Schedules object
             self.schedules = ScheduleSortedAndExpand()
         }
-        if Configurations.shared.configurationsDataSourcecountBackupOnlyCount() > 0 {
+        if self.configurationsNoS!.configurationsDataSourcecountBackupOnlyCount() > 0 {
             globalMainQueue.async(execute: { () -> Void in
                 self.mainTableView.reloadData()
             })
@@ -252,7 +262,7 @@ class ViewControllertabSchedule: NSViewController {
         if let index = indexes.first {
             // Set index
             self.index = index
-            let dict = Configurations.shared.getConfigurationsDataSourcecountBackupOnly()![index]
+            let dict = self.configurationsNoS!.getConfigurationsDataSourcecountBackupOnly()![index]
             self.hiddenID = dict.value(forKey: "hiddenID") as? Int
         } else {
             self.index = nil
@@ -265,14 +275,14 @@ class ViewControllertabSchedule: NSViewController {
 extension ViewControllertabSchedule : NSTableViewDataSource {
 
     func numberOfRows(in tableView: NSTableView) -> Int {
-        return Configurations.shared.configurationsDataSourcecountBackupOnlyCount()
+        return self.configurationsNoS!.configurationsDataSourcecountBackupOnlyCount()
     }
 }
 
 extension ViewControllertabSchedule : NSTableViewDelegate {
 
     @objc(tableView:objectValueForTableColumn:row:) func tableView(_ tableView: NSTableView, objectValueFor tableColumn: NSTableColumn?, row: Int) -> Any? {
-        let object: NSDictionary = Configurations.shared.getConfigurationsDataSourcecountBackupOnly()![row]
+        let object: NSDictionary = self.configurationsNoS!.getConfigurationsDataSourcecountBackupOnly()![row]
         var text: String?
         var schedule: Bool = false
         var number: Int?
@@ -303,9 +313,9 @@ extension ViewControllertabSchedule : NSTableViewDelegate {
 
     // Toggling batch
     @objc(tableView:setObjectValue:forTableColumn:row:) func tableView(_ tableView: NSTableView, setObjectValue object: Any?, for tableColumn: NSTableColumn?, row: Int) {
-        if Configurations.shared.getConfigurations()[row].task == "backup" {
-            Configurations.shared.getConfigurationsDataSource()![row].setObject(object!, forKey: (tableColumn?.identifier)! as NSCopying)
-            Configurations.shared.setBatchYesNo(row)
+        if self.configurationsNoS!.getConfigurations()[row].task == "backup" {
+            self.configurationsNoS!.getConfigurationsDataSource()![row].setObject(object!, forKey: (tableColumn?.identifier)! as NSCopying)
+            self.configurationsNoS!.setBatchYesNo(row)
         }
     }
 
@@ -351,7 +361,7 @@ extension ViewControllertabSchedule: AddProfiles {
 extension ViewControllertabSchedule: RefreshtableView {
 
     func refresh() {
-        if Configurations.shared.configurationsDataSourcecountBackupOnlyCount() > 0 {
+        if self.configurationsNoS!.configurationsDataSourcecountBackupOnlyCount() > 0 {
             globalMainQueue.async(execute: { () -> Void in
                 self.mainTableView.reloadData()
             })

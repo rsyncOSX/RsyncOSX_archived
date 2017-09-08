@@ -40,9 +40,7 @@ final class Checkfornewversion {
                         if inMain {
                             self.newversionDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain)
                                 as? ViewControllertabMain
-                            if Configurations.shared.allowNotifyinMain == true {
-                                self.newversionDelegate?.notifyNewVersion()
-                            }
+                            self.newversionDelegate?.notifyNewVersion()
                         } else {
                             self.newversionDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vcabout)
                                 as? ViewControllerAbout

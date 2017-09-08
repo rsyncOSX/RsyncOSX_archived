@@ -12,6 +12,11 @@ import Cocoa
 
 class ViewControllerSsh: NSViewController {
 
+    // configurationsNoS
+    weak var configurationsDelegate: GetConfigurationsObject?
+    var configurationsNoS: ConfigurationsNoS?
+    // configurationsNoS
+
     // The object which checks for keys
     var sshcmd: Ssh?
     var hiddenID: Int?
@@ -120,10 +125,15 @@ class ViewControllerSsh: NSViewController {
         self.detailsTable.delegate = self
         self.detailsTable.dataSource = self
         self.output = nil
+        // configurationsNoS
+        self.configurationsDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain)
+            as? ViewControllertabMain
+        // configurationsNoS
     }
 
     override func viewDidAppear() {
         super.viewDidAppear()
+        self.configurationsNoS = self.configurationsDelegate?.getconfigurationsobject()
         self.scpDsaPubKeyButton.isEnabled = false
         self.scpRsaPubKeyButton.isEnabled = false
         self.checkDsaPubKeyButton.isEnabled = false
@@ -177,7 +187,7 @@ extension ViewControllerSsh: GetSource {
     func getSource(index: Int) {
         self.hiddenID = index
         // Make sure that there is a offiseserver, if not set self.index = nil
-        let config = Configurations.shared.getConfigurations()[Configurations.shared.getIndex(hiddenID!)]
+        let config = self.configurationsNoS!.getConfigurations()[self.configurationsNoS!.getIndex(hiddenID!)]
         if config.offsiteServer.isEmpty == true {
             self.execute = false
         } else {

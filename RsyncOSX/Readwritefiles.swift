@@ -25,6 +25,7 @@ class Readwritefiles {
 
     // configurationsNoS
     weak var configurationsDelegate: GetConfigurationsObject?
+    var configurationsNoS: ConfigurationsNoS?
     // configurationsNoS
 
     // Name set for schedule, configuration or config
@@ -181,6 +182,7 @@ class Readwritefiles {
         // configurationsNoS
         self.configurationsDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain)
             as? ViewControllertabMain
+        self.configurationsNoS = self.configurationsDelegate?.getconfigurationsobject()
         // configurationsNoS
         self.setpreferences(task)
         self.setnameandpath()

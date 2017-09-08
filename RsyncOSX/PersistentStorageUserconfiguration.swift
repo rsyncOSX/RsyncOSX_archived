@@ -28,28 +28,28 @@ final class PersistentStorageUserconfiguration: Readwritefiles {
         var allowDoubleclick: Int?
         var rsyncerror: Int?
         var restorePath: String?
-        if Configurations.shared.rsyncVer3 {
+        if self.configurationsNoS!.rsyncVer3 {
             version3Rsync = 1
         } else {
             version3Rsync = 0
         }
-        if Configurations.shared.detailedlogging {
+        if self.configurationsNoS!.detailedlogging {
             detailedlogging = 1
         } else {
             detailedlogging = 0
         }
-        if Configurations.shared.rsyncPath != nil {
-            rsyncPath = Configurations.shared.rsyncPath!
+        if self.configurationsNoS!.rsyncPath != nil {
+            rsyncPath = self.configurationsNoS!.rsyncPath!
         }
-        if Configurations.shared.restorePath != nil {
-            restorePath = Configurations.shared.restorePath!
+        if self.configurationsNoS!.restorePath != nil {
+            restorePath = self.configurationsNoS!.restorePath!
         }
-        if Configurations.shared.allowDoubleclick {
+        if self.configurationsNoS!.allowDoubleclick {
             allowDoubleclick = 1
         } else {
             allowDoubleclick = 0
         }
-        if Configurations.shared.rsyncerror {
+        if self.configurationsNoS!.rsyncerror {
             rsyncerror = 1
         } else {
             rsyncerror = 0
@@ -79,6 +79,7 @@ final class PersistentStorageUserconfiguration: Readwritefiles {
     }
 
     init () {
+
         // Create the readwritefiles object
         super.init(task: .userconfig, profile: nil)
         // Reading Configurations from memory or disk, if dirty read from disk

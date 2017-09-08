@@ -11,6 +11,12 @@
 import Foundation
 
 class ScheduleSortedAndExpand {
+
+    // configurationsNoS
+    weak var configurationsDelegate: GetConfigurationsObject?
+    var configurationsNoS: ConfigurationsNoS?
+    // configurationsNoS
+
     // DATA STRUCTURES
 
     // Array to store all scheduled jobs and history of executions
@@ -222,13 +228,13 @@ class ScheduleSortedAndExpand {
         }
         if dict1 != nil {
             let hiddenID1 = dict1!.value(forKey: "hiddenID") as? Int
-            array.append(Configurations.shared.getResourceConfiguration(hiddenID1!, resource: .offsiteServer))
-            array.append(Configurations.shared.getResourceConfiguration(hiddenID1!, resource: .localCatalog))
+            array.append(self.configurationsNoS!.getResourceConfiguration(hiddenID1!, resource: .offsiteServer))
+            array.append(self.configurationsNoS!.getResourceConfiguration(hiddenID1!, resource: .localCatalog))
         }
         if dict2 != nil {
             let hiddenID2 = dict2?.value(forKey: "hiddenID") as? Int
-            array.append(Configurations.shared.getResourceConfiguration(hiddenID2!, resource: .offsiteServer))
-            array.append(Configurations.shared.getResourceConfiguration(hiddenID2!, resource: .localCatalog))
+            array.append(self.configurationsNoS!.getResourceConfiguration(hiddenID2!, resource: .offsiteServer))
+            array.append(self.configurationsNoS!.getResourceConfiguration(hiddenID2!, resource: .localCatalog))
         }
         // Return either 0, 2 or 4 elements
         return array
@@ -295,6 +301,11 @@ class ScheduleSortedAndExpand {
     }
 
     init () {
+        // configurationsNoS
+        self.configurationsDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain)
+            as? ViewControllertabMain
+        self.configurationsNoS = self.configurationsDelegate?.getconfigurationsobject()
+        // configurationsNoS
         // Getting the Schedule and expanding all the jobs
         self.scheduleConfiguration = Schedules.shared.getSchedule()
         self.createScheduleAsNSDictionary()

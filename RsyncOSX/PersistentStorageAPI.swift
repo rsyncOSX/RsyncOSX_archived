@@ -10,11 +10,15 @@ import Foundation
 
 final class PersistentStorageAPI {
 
+    // configurationsNoS
+    weak var configurationsDelegate: GetConfigurationsObject?
+    var configurationsNoS: ConfigurationsNoS?
+    // configurationsNoS
+
     // Delegate function for starting next scheduled operatin if any
     // Delegate function is triggered when Process.didTerminateNotification
     // is discovered (e.g previous job is done)
     weak var startnextjobDelegate: StartNextScheduledTask?
-    // profile
     var profile: String?
 
     // CONFIGURATIONS
@@ -33,7 +37,7 @@ final class PersistentStorageAPI {
             return Configurations
         } else {
             // Return configuration from memory
-            return Configurations.shared.getConfigurations()
+            return self.configurationsNoS!.getConfigurations()
         }
     }
 
@@ -46,7 +50,7 @@ final class PersistentStorageAPI {
     // Saving added configuration from meory
     func saveNewConfigurationsFromMemory() {
         let save = PersistentStorageConfiguration(profile: self.profile)
-        let newConfigurations = Configurations.shared.getnewConfigurations()
+        let newConfigurations = self.configurationsNoS!.getnewConfigurations()
         if newConfigurations != nil {
             for i in 0 ..< newConfigurations!.count {
                     save.addConfigurationsToMemory(newConfigurations![i])
@@ -125,6 +129,11 @@ final class PersistentStorageAPI {
     }
 
     init(profile: String?) {
+        // configurationsNoS
+        self.configurationsDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain)
+            as? ViewControllertabMain
+        self.configurationsNoS = self.configurationsDelegate?.getconfigurationsobject()
+        // configurationsNoS
         self.profile = profile
     }
 }

@@ -12,6 +12,11 @@ import Cocoa
 
 class ViewControllerNewConfigurations: NSViewController {
 
+    // configurationsNoS
+    weak var configurationsDelegate: GetConfigurationsObject?
+    var configurationsNoS: ConfigurationsNoS?
+    // configurationsNoS
+
     // Storage API
     var storageapi: PersistentStorageAPI?
     // Table holding all new Configurations
@@ -74,15 +79,20 @@ class ViewControllerNewConfigurations: NSViewController {
         self.localCatalog.toolTip = "By using Finder drag and drop filepaths."
         self.offsiteCatalog.toolTip = "By using Finder drag and drop filepaths."
         ViewControllerReference.shared.setvcref(viewcontroller: .vcnewconfigurations, nsviewcontroller: self)
-        if let profile = Configurations.shared.getProfile() {
+        if let profile = self.configurationsNoS!.getProfile() {
             self.storageapi = PersistentStorageAPI(profile : profile)
         } else {
             self.storageapi = PersistentStorageAPI(profile : nil)
         }
+        // configurationsNoS
+        self.configurationsDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain)
+            as? ViewControllertabMain
+        // configurationsNoS
     }
 
     override func viewDidAppear() {
         super.viewDidAppear()
+        self.configurationsNoS = self.configurationsDelegate?.getconfigurationsobject()
         self.setFields()
     }
 
@@ -156,8 +166,8 @@ class ViewControllerNewConfigurations: NSViewController {
             self.localCatalog.stringValue = ""
             return
         }
-        Configurations.shared.addNewConfigurations(dict)
-        self.tabledata = Configurations.shared.getnewConfigurations()
+        self.configurationsNoS!.addNewConfigurations(dict)
+        self.tabledata = self.configurationsNoS!.getnewConfigurations()
         globalMainQueue.async(execute: { () -> Void in
             self.newTableView.reloadData()
         })
@@ -169,7 +179,7 @@ class ViewControllerNewConfigurations: NSViewController {
 extension ViewControllerNewConfigurations : NSTableViewDataSource {
 
     func numberOfRows(in tableView: NSTableView) -> Int {
-        return Configurations.shared.newConfigurationsCount()
+        return self.configurationsNoS!.newConfigurationsCount()
     }
 
 }
@@ -177,7 +187,7 @@ extension ViewControllerNewConfigurations : NSTableViewDataSource {
 extension ViewControllerNewConfigurations : NSTableViewDelegate {
 
     @objc(tableView:objectValueForTableColumn:row:) func tableView(_ tableView: NSTableView, objectValueFor tableColumn: NSTableColumn?, row: Int) -> Any? {
-        let object: NSMutableDictionary = Configurations.shared.getnewConfigurations()![row]
+        let object: NSMutableDictionary = self.configurationsNoS!.getnewConfigurations()![row]
         return object[tableColumn!.identifier] as? String
     }
 
