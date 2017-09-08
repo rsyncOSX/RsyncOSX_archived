@@ -353,6 +353,10 @@ class ViewControllertabMain: NSViewController {
         self.displayDryRun.state = .on
         self.tools = Tools()
         self.loadProfileMenu = true
+
+        // configurationsNoS
+        self.configurationsNoS = ConfigurationsNoS(profile: nil)
+        // configurationsNoS
     }
 
     override func viewDidAppear() {
@@ -1132,9 +1136,9 @@ extension ViewControllertabMain: GetConfigurationsObject {
         return self.configurationsNoS
     }
 
-    func createconfigurationsobject() -> ConfigurationsNoS? {
+    func createconfigurationsobject(profile: String?) -> ConfigurationsNoS? {
         self.configurationsNoS = nil
-        self.configurationsNoS = ConfigurationsNoS()
+        self.configurationsNoS = ConfigurationsNoS(profile: profile)
         return self.configurationsNoS
     }
 

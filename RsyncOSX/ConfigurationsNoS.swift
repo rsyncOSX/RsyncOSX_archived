@@ -19,7 +19,7 @@ import Foundation
 // Protocol for returning object configurations data
 protocol GetConfigurationsObject: class {
     func getconfigurationsobject() -> ConfigurationsNoS?
-    func createconfigurationsobject() -> ConfigurationsNoS?
+    func createconfigurationsobject(profile: String?) -> ConfigurationsNoS?
 }
 
 class ConfigurationsNoS {
@@ -79,11 +79,6 @@ class ConfigurationsNoS {
     /// Function for getting the profile
     func getProfile() -> String? {
         return self.profile
-    }
-
-    /// Function for setting the profile
-    func setProfile(profile: String?) {
-        self.profile = profile
     }
 
     /// Function for getting Configurations read into memory
@@ -354,6 +349,7 @@ class ConfigurationsNoS {
     /// - parameter none: none
     func readAllConfigurationsAndArguments() {
         self.configurations = Array<Configuration>()
+        self.argumentAllConfigurations = NSMutableArray()
         if self.storageapi == nil {self.storageapi = PersistentStorageAPI()}
         let store: Array<Configuration> = self.storageapi!.getConfigurations()
         // We read all stored configurations into memory
@@ -388,10 +384,11 @@ class ConfigurationsNoS {
         self.newConfigurations = nil
     }
 
-    init() {
+    init(profile: String?) {
         self.configurations = nil
         self.argumentAllConfigurations = nil
         self.configurationsDataSource = nil
+        self.profile = profile
         self.readAllConfigurationsAndArguments()
     }
 }
