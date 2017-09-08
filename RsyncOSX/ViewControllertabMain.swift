@@ -340,9 +340,11 @@ class ViewControllertabMain: NSViewController {
         // Progress indicator
         self.working.usesThreadedAnimation = true
         self.scheduledJobworking.usesThreadedAnimation = true
-        self.readConfigurationsAndSchedules()
         // Setting reference to self, used when calling delegate functions
         ViewControllerReference.shared.setvcref(viewcontroller: .vctabmain, nsviewcontroller: self)
+
+        self.readConfigurationsAndSchedules()
+        
         // Create a Schedules object
         // Start waiting for next Scheduled job (if any)
         self.schedules = ScheduleSortedAndExpand()
@@ -1140,6 +1142,20 @@ extension ViewControllertabMain: GetConfigurationsObject {
         self.configurationsNoS = nil
         self.configurationsNoS = ConfigurationsNoS(profile: profile)
         return self.configurationsNoS
+    }
+
+    func isdatadirty() -> Bool {
+        guard self.configurationsNoS != nil else {
+            return true
+        }
+        return self.configurationsNoS!.isDataDirty()
+    }
+
+    func setdatadirty(dirty: Bool) {
+        guard self.configurationsNoS != nil else {
+            return
+        }
+        self.configurationsNoS!.setDataDirty(dirty: dirty)
     }
 
 }

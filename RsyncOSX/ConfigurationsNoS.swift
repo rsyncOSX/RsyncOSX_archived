@@ -20,6 +20,8 @@ import Foundation
 protocol GetConfigurationsObject: class {
     func getconfigurationsobject() -> ConfigurationsNoS?
     func createconfigurationsobject(profile: String?) -> ConfigurationsNoS?
+    func isdatadirty() -> Bool
+    func setdatadirty(dirty: Bool)
 }
 
 class ConfigurationsNoS {
@@ -47,7 +49,6 @@ class ConfigurationsNoS {
     var allowDoubleclick: Bool = true
     // Temporary path for restore
     var restorePath: String?
-
     // reference to Process, used for kill in executing task
     var process: Process?
     // Variabl if arguments to Rsync is changed and must be read into memory again

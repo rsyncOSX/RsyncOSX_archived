@@ -18,10 +18,6 @@ protocol AddProfiles : class {
 
 class ViewControllerProfile: NSViewController {
 
-    // configurationsNoS
-    weak var configurationsDelegata: GetConfigurationsObject?
-    // configurationsNoS
-
     var storageapi: PersistentStorageAPI?
     weak var dismissDelegate: DismissViewController?
     weak var newProfileDelegate: AddProfiles?
@@ -96,10 +92,6 @@ class ViewControllerProfile: NSViewController {
         self.profilesArray = self.profile!.getDirectorysStrings()
         self.profilesTable.target = self
         self.profilesTable.doubleAction = #selector(ViewControllerProfile.tableViewDoubleClick(sender:))
-
-        // configurationsNoS
-        self.configurationsDelegata = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllertabMain
-        // configurationsNoS
     }
 
     override func viewDidAppear() {

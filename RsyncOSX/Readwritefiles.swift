@@ -12,6 +12,7 @@
 //  swiftlint:disable syntactic_sugar
 
 import Foundation
+import Cocoa
 
 enum WhatToReadWrite {
     case schedule
@@ -21,6 +22,10 @@ enum WhatToReadWrite {
 }
 
 class Readwritefiles {
+
+    // configurationsNoS
+    weak var configurationsDelegate: GetConfigurationsObject?
+    // configurationsNoS
 
     // Name set for schedule, configuration or config
     private var name: String?
@@ -79,16 +84,16 @@ class Readwritefiles {
         }
         switch self.task! {
         case .schedule:
-            if Configurations.shared.isDataDirty() {
+            if self.configurationsDelegate!.isdatadirty() {
                 self.readdisk = true
-                Configurations.shared.setDataDirty(dirty: false)
+                self.configurationsDelegate!.setdatadirty(dirty: false)
             } else {
                 self.readdisk = false
             }
         case .configuration:
-            if Configurations.shared.isDataDirty() {
+            if self.configurationsDelegate!.isdatadirty() {
                 self.readdisk = true
-                Configurations.shared.setDataDirty(dirty: false)
+                self.configurationsDelegate!.setdatadirty(dirty: false)
             } else {
                 self.readdisk = false
             }
@@ -135,12 +140,12 @@ class Readwritefiles {
         }
         switch self.task! {
         case .schedule:
-            Configurations.shared.setDataDirty(dirty: true)
+            self.configurationsDelegate!.setdatadirty(dirty: true)
         case .configuration:
-            Configurations.shared.setDataDirty(dirty: true)
+            self.configurationsDelegate!.setdatadirty(dirty: true)
         default:
             // Only set data dirty if either Configuration or Schedules are written to persistent store
-            Configurations.shared.setDataDirty(dirty: false)
+            self.configurationsDelegate!.setdatadirty(dirty: false)
         }
         let dictionary = NSDictionary(object: array, forKey: self.key! as NSCopying)
         guard self.filename != nil else {
@@ -173,6 +178,10 @@ class Readwritefiles {
             self.profile = profile
             self.useProfile = true
         }
+        // configurationsNoS
+        self.configurationsDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain)
+            as? ViewControllertabMain
+        // configurationsNoS
         self.setpreferences(task)
         self.setnameandpath()
     }
