@@ -31,11 +31,11 @@ class ViewControllerNewVersion: NSViewController {
     }
 
     @IBAction func download(_ sender: NSButton) {
-        guard Configurations.shared.URLnewVersion != nil else {
+        guard ViewControllerReference.shared.URLnewVersion != nil else {
             self.dismissDelegate?.dismiss_view(viewcontroller: self)
             return
         }
-        NSWorkspace.shared.open(URL(string: Configurations.shared.URLnewVersion!)!)
+        NSWorkspace.shared.open(URL(string: ViewControllerReference.shared.URLnewVersion!)!)
         self.dismissDelegate?.dismiss_view(viewcontroller: self)
     }
 

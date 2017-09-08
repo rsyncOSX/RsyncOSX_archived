@@ -37,14 +37,14 @@ class ViewControllerUserconfiguration: NSViewController {
 
     @IBAction func toggleversion3rsync(_ sender: NSButton) {
         if self.version3rsync.state == .on {
-            Configurations.shared.rsyncVer3 = true
+            ViewControllerReference.shared.rsyncVer3 = true
             if self.rsyncPath.stringValue == "" {
-                Configurations.shared.rsyncPath = nil
+                ViewControllerReference.shared.rsyncPath = nil
             } else {
                 self.setRsyncPath()
             }
         } else {
-            Configurations.shared.rsyncVer3 = false
+            ViewControllerReference.shared.rsyncVer3 = false
         }
         self.rsyncchangedDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain)
             as? ViewControllertabMain
@@ -55,9 +55,9 @@ class ViewControllerUserconfiguration: NSViewController {
 
     @IBAction func toggleDetailedlogging(_ sender: NSButton) {
         if self.detailedlogging.state == .on {
-            Configurations.shared.detailedlogging = true
+            ViewControllerReference.shared.detailedlogging = true
         } else {
-            Configurations.shared.detailedlogging = false
+            ViewControllerReference.shared.detailedlogging = false
         }
         self.dirty = true
     }
@@ -75,9 +75,9 @@ class ViewControllerUserconfiguration: NSViewController {
 
     @IBAction func toggleAllowDoubleclick(_ sender: NSButton) {
         if self.allowDoubleClick.state == .on {
-            Configurations.shared.allowDoubleclick = true
+            ViewControllerReference.shared.allowDoubleclick = true
         } else {
-            Configurations.shared.allowDoubleclick = false
+            ViewControllerReference.shared.allowDoubleclick = false
         }
         self.rsyncchangedDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain)
             as? ViewControllertabMain
@@ -88,9 +88,9 @@ class ViewControllerUserconfiguration: NSViewController {
 
     @IBAction func toggleError(_ sender: NSButton) {
         if self.rsyncerror.state == .on {
-            Configurations.shared.rsyncerror = true
+            ViewControllerReference.shared.rsyncerror = true
         } else {
-            Configurations.shared.rsyncerror = false
+            ViewControllerReference.shared.rsyncerror = false
         }
         self.dirty = true
     }
@@ -99,10 +99,10 @@ class ViewControllerUserconfiguration: NSViewController {
         if self.rsyncPath.stringValue.isEmpty == false {
             if rsyncPath.stringValue.hasSuffix("/") == false {
                 rsyncPath.stringValue += "/"
-                Configurations.shared.rsyncPath = rsyncPath.stringValue
+                ViewControllerReference.shared.rsyncPath = rsyncPath.stringValue
             }
         } else {
-            Configurations.shared.rsyncPath = nil
+            ViewControllerReference.shared.rsyncPath = nil
         }
         self.dirty = true
     }
@@ -111,10 +111,10 @@ class ViewControllerUserconfiguration: NSViewController {
         if self.restorePath.stringValue.isEmpty == false {
             if restorePath.stringValue.hasSuffix("/") == false {
                 restorePath.stringValue += "/"
-                Configurations.shared.restorePath = restorePath.stringValue
+                ViewControllerReference.shared.restorePath = restorePath.stringValue
             }
         } else {
-            Configurations.shared.restorePath = nil
+            ViewControllerReference.shared.restorePath = nil
         }
         self.dirty = true
     }
@@ -124,7 +124,7 @@ class ViewControllerUserconfiguration: NSViewController {
         var path: String?
         let fileManager = FileManager.default
         if self.version3rsync.state == .on {
-            if let rsyncPath = Configurations.shared.rsyncPath {
+            if let rsyncPath = ViewControllerReference.shared.rsyncPath {
                 path = rsyncPath + "rsync"
             } else {
                 path = "/usr/local/bin/" + "rsync"
@@ -134,10 +134,10 @@ class ViewControllerUserconfiguration: NSViewController {
         }
         if fileManager.fileExists(atPath: path!) {
             self.noRsync.isHidden = true
-            Configurations.shared.norsync = false
+            ViewControllerReference.shared.norsync = false
         } else {
             self.noRsync.isHidden = false
-            Configurations.shared.norsync = true
+            ViewControllerReference.shared.norsync = true
         }
     }
 
@@ -153,13 +153,7 @@ class ViewControllerUserconfiguration: NSViewController {
         }
         self.rsyncPath.delegate = self
         self.restorePath.delegate = self
-        if self.storageapi == nil {
-            if let profile = Configurations.shared.getProfile() {
-                self.storageapi = PersistentStorageAPI(profile : profile)
-            } else {
-                self.storageapi = PersistentStorageAPI(profile : nil)
-            }
-        }
+        self.storageapi = PersistentStorageAPI(profile : nil)
     }
 
     override func viewDidAppear() {
@@ -173,33 +167,33 @@ class ViewControllerUserconfiguration: NSViewController {
 
     // Function for check and set user configuration
     private func checkUserConfig() {
-        if Configurations.shared.rsyncVer3 {
+        if ViewControllerReference.shared.rsyncVer3 {
             self.version3rsync.state = .on
         } else {
             self.version3rsync.state = .off
         }
-        if Configurations.shared.detailedlogging {
+        if ViewControllerReference.shared.detailedlogging {
             self.detailedlogging.state = .on
         } else {
             self.detailedlogging.state = .off
         }
-        if Configurations.shared.rsyncPath != nil {
-            self.rsyncPath.stringValue = Configurations.shared.rsyncPath!
+        if ViewControllerReference.shared.rsyncPath != nil {
+            self.rsyncPath.stringValue = ViewControllerReference.shared.rsyncPath!
         } else {
             self.rsyncPath.stringValue = ""
         }
-        if Configurations.shared.allowDoubleclick {
+        if ViewControllerReference.shared.allowDoubleclick {
             self.allowDoubleClick.state = .on
         } else {
             self.allowDoubleClick.state = .off
         }
-        if Configurations.shared.rsyncerror {
+        if ViewControllerReference.shared.rsyncerror {
             self.rsyncerror.state = .on
         } else {
             self.rsyncerror.state = .off
         }
-        if Configurations.shared.restorePath != nil {
-            self.restorePath.stringValue = Configurations.shared.restorePath!
+        if ViewControllerReference.shared.restorePath != nil {
+            self.restorePath.stringValue = ViewControllerReference.shared.restorePath!
         } else {
             self.restorePath.stringValue = ""
         }

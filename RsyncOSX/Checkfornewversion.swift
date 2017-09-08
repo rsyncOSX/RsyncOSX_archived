@@ -36,7 +36,7 @@ final class Checkfornewversion {
                     if let url = contents?.object(forKey: self.runningVersion!) {
                         self.urlNewVersion = url as? String
                         // Setting reference to new vesrion if any
-                        Configurations.shared.URLnewVersion = self.urlNewVersion
+                        ViewControllerReference.shared.URLnewVersion = self.urlNewVersion
                         if inMain {
                             self.newversionDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain)
                                 as? ViewControllertabMain

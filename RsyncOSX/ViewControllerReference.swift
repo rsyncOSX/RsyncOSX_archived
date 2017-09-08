@@ -33,6 +33,23 @@ class ViewControllerReference {
         return Singleton.instance
     }
 
+    // Download URL if new version is avaliable
+    var URLnewVersion: String?
+    // True if version 3.2.1 of rsync in /usr/local/bin
+    var rsyncVer3: Bool = false
+    // Optional path to rsync
+    var rsyncPath: String?
+    // No valid rsyncPath - true if no valid rsync is found
+    var norsync: Bool = false
+    // Detailed logging
+    var detailedlogging: Bool = true
+    // Allow double click to activate single tasks
+    var allowDoubleclick: Bool = true
+    // Temporary path for restore
+    var restorePath: String?
+    // Allow rsync error
+    var rsyncerror: Bool = true
+
     // Reference to the Operation object
     // Reference is set in when Scheduled task is executed
     var operation: CompleteScheduledOperation?

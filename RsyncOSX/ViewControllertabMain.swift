@@ -231,7 +231,7 @@ class ViewControllertabMain: NSViewController {
                 if answer {
                     if self.hiddenID != nil {
                         // Delete Configurations and Schedules by hiddenID
-                        Configurations.shared.deleteConfigurationsByhiddenID(hiddenID: self.hiddenID!)
+                        self.configurationsNoS!.deleteConfigurationsByhiddenID(hiddenID: self.hiddenID!)
                         Schedules.shared.deletechedule(hiddenID: self.hiddenID!)
                         // Reading main Configurations and Schedule to memory
                         // self.reReadConfigurationsAndSchedules()
@@ -315,7 +315,7 @@ class ViewControllertabMain: NSViewController {
     // Display correct rsync command in view
     fileprivate func setRsyncCommandDisplay() {
         if let index = self.index {
-            guard index <= Configurations.shared.getConfigurations().count else {
+            guard index <= self.configurationsNoS!.getConfigurations().count else {
                 return
             }
             if self.displayDryRun.state == .on {
@@ -344,7 +344,7 @@ class ViewControllertabMain: NSViewController {
         ViewControllerReference.shared.setvcref(viewcontroller: .vctabmain, nsviewcontroller: self)
 
         self.readConfigurationsAndSchedules()
-        
+
         // Create a Schedules object
         // Start waiting for next Scheduled job (if any)
         self.schedules = ScheduleSortedAndExpand()
@@ -365,10 +365,10 @@ class ViewControllertabMain: NSViewController {
         super.viewDidAppear()
         self.showProcessInfo(info: .blank)
         // Allow notify about Scheduled jobs
-        Configurations.shared.allowNotifyinMain = true
+        self.configurationsNoS!.allowNotifyinMain = true
         self.setInfo(info: "", color: .black)
         self.light.color = .systemYellow
-        if Configurations.shared.configurationsDataSourcecount() > 0 {
+        if self.configurationsNoS!.configurationsDataSourcecount() > 0 {
             globalMainQueue.async(execute: { () -> Void in
                 self.mainTableView.reloadData()
             })
@@ -390,7 +390,7 @@ class ViewControllertabMain: NSViewController {
     override func viewDidDisappear() {
         super.viewDidDisappear()
         // Do not allow notify in Main
-        Configurations.shared.allowNotifyinMain = false
+        self.configurationsNoS!.allowNotifyinMain = false
     }
 
     // True if scheduled task in progress
@@ -410,7 +410,7 @@ class ViewControllertabMain: NSViewController {
 
     // Execute tasks by double click in table
     @objc(tableViewDoubleClick:) func tableViewDoubleClick(sender: AnyObject) {
-        if Configurations.shared.allowDoubleclick == true {
+        if self.configurationsNoS!.allowDoubleclick == true {
             if self.ready {
                 self.executeSingleTask()
             }
@@ -424,7 +424,7 @@ class ViewControllertabMain: NSViewController {
             Alerts.showInfo("Scheduled operation in progress")
             return
         }
-        guard Configurations.shared.norsync == false else {
+        guard self.configurationsNoS!.norsync == false else {
             self.tools!.noRsync()
             return
         }
@@ -437,7 +437,7 @@ class ViewControllertabMain: NSViewController {
             self.singletask = NewSingleTask(index: self.index!)
             self.singletask?.executeSingleTask()
             // Set reference to singleTask object
-            Configurations.shared.singleTask = self.singletask
+            self.configurationsNoS!.singleTask = self.singletask
             return
         }
         // Real run
@@ -450,7 +450,7 @@ class ViewControllertabMain: NSViewController {
             Alerts.showInfo("Scheduled operation in progress")
             return
         }
-        guard Configurations.shared.norsync == false else {
+        guard self.configurationsNoS!.norsync == false else {
             self.tools!.noRsync()
             return
         }
@@ -464,11 +464,11 @@ class ViewControllertabMain: NSViewController {
     // Reread bot Configurations and Schedules from persistent store to memory
     fileprivate func readConfigurationsAndSchedules() {
         // Reading main Configurations to memory
-        Configurations.shared.setDataDirty(dirty: true)
-        Configurations.shared.readAllConfigurationsAndArguments()
+        // self.configurationsNoS!.setDataDirty(dirty: true)
+        // self.configurationsNoS!.readAllConfigurationsAndArguments()
         // Read all Scheduled data again
-        Configurations.shared.setDataDirty(dirty: true)
-        Schedules.shared.readAllSchedules()
+        // self.configurationsNoS!.setDataDirty(dirty: true)
+        // Schedules.shared.readAllSchedules()
     }
 
     // Function for setting profile
@@ -478,7 +478,7 @@ class ViewControllertabMain: NSViewController {
             self.profilInfo.textColor = .blue
             return
         }
-        if let profile = Configurations.shared.getProfile() {
+        if let profile = self.configurationsNoS!.getProfile() {
             self.profilInfo.stringValue = "Profile: " + profile
             self.profilInfo.textColor = .blue
         } else {
@@ -491,7 +491,7 @@ class ViewControllertabMain: NSViewController {
 
     // Function for setting allowDouble click
     internal func displayAllowDoubleclick() {
-        if Configurations.shared.allowDoubleclick == true {
+        if self.configurationsNoS!.allowDoubleclick == true {
             self.allowDoubleclick.stringValue = "Double click on row to execute task"
             self.allowDoubleclick.textColor = .blue
         } else {
@@ -511,7 +511,7 @@ class ViewControllertabMain: NSViewController {
         let indexes = myTableViewFromNotification.selectedRowIndexes
         if let index = indexes.first {
             self.index = index
-            self.hiddenID = Configurations.shared.gethiddenID(index: index)
+            self.hiddenID = self.configurationsNoS!.gethiddenID(index: index)
             // Reset output
             self.output = nil
             self.outputbatch = nil
@@ -530,7 +530,7 @@ class ViewControllertabMain: NSViewController {
     }
 
     func readConfigurations() {
-        if Configurations.shared.configurationsDataSourcecount() > 0 {
+        if self.configurationsNoS!.configurationsDataSourcecount() > 0 {
             globalMainQueue.async(execute: { () -> Void in
                 self.mainTableView.reloadData()
             })
@@ -548,7 +548,10 @@ extension ViewControllertabMain : NSTableViewDataSource {
 
     // Delegate for size of table
     func numberOfRows(in tableView: NSTableView) -> Int {
-        return Configurations.shared.configurationsDataSourcecount()
+        guard self.configurationsNoS != nil else {
+            return 0
+        }
+        return self.configurationsNoS!.configurationsDataSourcecount()
     }
 }
 
@@ -568,13 +571,13 @@ extension ViewControllertabMain : NSTableViewDelegate {
 
     // TableView delegates
     @objc(tableView:objectValueForTableColumn:row:) func tableView(_ tableView: NSTableView, objectValueFor tableColumn: NSTableColumn?, row: Int) -> Any? {
-        if row > Configurations.shared.configurationsDataSourcecount() - 1 {
+        if row > self.configurationsNoS!.configurationsDataSourcecount() - 1 {
             return nil
         }
-        let object: NSDictionary = Configurations.shared.getConfigurationsDataSource()![row]
+        let object: NSDictionary = self.configurationsNoS!.getConfigurationsDataSource()![row]
         var text: String?
         var schedule: Bool = false
-        let hiddenID: Int = Configurations.shared.getConfigurations()[row].hiddenID
+        let hiddenID: Int = self.configurationsNoS!.getConfigurations()[row].hiddenID
         if Schedules.shared.hiddenIDinSchedule(hiddenID) {
             text = object[tableColumn!.identifier] as? String
             if text == "backup" || text == "restore" {
@@ -610,8 +613,8 @@ extension ViewControllertabMain : NSTableViewDelegate {
 
     // Toggling batch
     @objc(tableView:setObjectValue:forTableColumn:row:) func tableView(_ tableView: NSTableView, setObjectValue object: Any?, for tableColumn: NSTableColumn?, row: Int) {
-        if Configurations.shared.getConfigurations()[row].task == "backup" {
-            Configurations.shared.setBatchYesNo(row)
+        if self.configurationsNoS!.getConfigurations()[row].task == "backup" {
+            self.configurationsNoS!.setBatchYesNo(row)
         }
         self.singletask = nil
         self.setInfo(info: "Estimate", color: .blue)
@@ -695,7 +698,7 @@ extension ViewControllertabMain: AddProfiles {
         guard new == false else {
             // A new and empty profile is created
             Schedules.shared.destroySchedule()
-            Configurations.shared.destroyConfigurations()
+            self.configurationsNoS = self.createconfigurationsobject(profile: nil)
             // Reset in tabSchedule
             newProfileDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabschedule) as? ViewControllertabSchedule
             newProfileDelegate?.newProfile(new: true)
@@ -782,7 +785,7 @@ extension ViewControllertabMain: Connections {
     // Remote servers offline are marked with red line in mainTableView
     func displayConnections() {
         // Only do a reload if we are in the main view
-        guard Configurations.shared.allowNotifyinMain == true else {
+        guard self.configurationsNoS!.allowNotifyinMain == true else {
             return
         }
         self.loadProfileMenu = true
@@ -858,7 +861,7 @@ extension ViewControllertabMain: UpdateProgress {
     func fileHandler() {
         if self.batchtask != nil {
             // Batch run
-            if let batchobject = Configurations.shared.getBatchdataObject() {
+            if let batchobject = self.configurationsNoS!.getBatchdataObject() {
                 let work = batchobject.nextBatchCopy()
                 if work.1 == 1 {
                     // Real work is done, must set reference to Process object in case of Abort
@@ -903,7 +906,7 @@ extension ViewControllertabMain: DeselectRowTable {
 extension ViewControllertabMain: RsyncError {
     func rsyncerror() {
         // Set on or off in user configuration
-        if Configurations.shared.rsyncerror {
+        if self.configurationsNoS!.rsyncerror {
             globalMainQueue.async(execute: { () -> Void in
                 self.setInfo(info: "Error", color: .red)
                 self.light.color = .systemRed
@@ -962,11 +965,11 @@ extension ViewControllertabMain: AbortOperations {
             self.process = nil
             self.index = nil
         }
-        if let batchobject = Configurations.shared.getBatchdataObject() {
+        if let batchobject = self.configurationsNoS!.getBatchdataObject() {
             // Empty queue in batchobject
             batchobject.abortOperations()
             // Set reference to batchdata = nil
-            Configurations.shared.deleteBatchData()
+            self.configurationsNoS!.deleteBatchData()
             self.schedules = nil
             self.process = nil
             self.setInfo(info: "Abort", color: .red)
@@ -1135,6 +1138,13 @@ extension ViewControllertabMain: BatchTask {
 
 extension ViewControllertabMain: GetConfigurationsObject {
     func getconfigurationsobject() -> ConfigurationsNoS? {
+        self.configurationsNoS!.rsyncVer3 = ViewControllerReference.shared.rsyncVer3
+        self.configurationsNoS!.rsyncPath = ViewControllerReference.shared.rsyncPath
+        self.configurationsNoS!.norsync = ViewControllerReference.shared.norsync
+        self.configurationsNoS!.detailedlogging = ViewControllerReference.shared.detailedlogging
+        self.configurationsNoS!.allowDoubleclick = ViewControllerReference.shared.allowDoubleclick
+        self.configurationsNoS!.restorePath = ViewControllerReference.shared.restorePath
+        self.configurationsNoS!.rsyncerror = ViewControllerReference.shared.rsyncerror
         return self.configurationsNoS
     }
 

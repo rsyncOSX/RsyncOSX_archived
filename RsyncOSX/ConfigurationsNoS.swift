@@ -35,8 +35,6 @@ class ConfigurationsNoS {
     var storageapi: PersistentStorageAPI?
     // Delegate functions
     weak var refreshDelegate: RefreshtableView?
-    // Download URL if new version is avaliable
-    var URLnewVersion: String?
     // True if version 3.2.1 of rsync in /usr/local/bin
     var rsyncVer3: Bool = false
     // Optional path to rsync
@@ -56,8 +54,6 @@ class ConfigurationsNoS {
     // Reference to the Operation object
     // Reference is set in when Scheduled task is executed
     var operation: CompleteScheduledOperation?
-    // Reference to About
-    // var viewControllerAbout: NSViewController?
     private var profile: String?
     // Notify about scheduled process
     // Only allowed to notity by modal window when in main view
