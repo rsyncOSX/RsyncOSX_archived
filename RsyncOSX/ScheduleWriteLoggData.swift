@@ -183,10 +183,12 @@ class ScheduleWriteLoggData {
             as? ViewControllertabMain
         self.configurationsNoS = self.configurationsDelegate?.getconfigurationsobject()
         // configurationsNoS
+        /*
         if let profile = self.configurationsNoS!.getProfile() {
             self.storageapi = PersistentStorageAPI(profile : profile)
         } else {
             self.storageapi = PersistentStorageAPI(profile : nil)
         }
+         */
     }
 }

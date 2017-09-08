@@ -301,11 +301,14 @@ extension Schedules: Readupdatedschedules {
         self.destroySchedule()
         var store: Array<ConfigurationSchedule>?
         self.storageapi = nil
+        /*
         if let profile = self.configurationsNoS!.getProfile() {
             self.storageapi = PersistentStorageAPI(profile : profile)
         } else {
             self.storageapi = PersistentStorageAPI(profile : nil)
         }
+         */
+        self.storageapi = PersistentStorageAPI(profile : nil)
         store = self.storageapi!.getScheduleandhistory()
         // If Schedule already in memory dont read them again
         // Schedules are only read into memory if Dirty

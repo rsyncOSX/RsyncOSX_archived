@@ -79,11 +79,6 @@ class ViewControllerNewConfigurations: NSViewController {
         self.localCatalog.toolTip = "By using Finder drag and drop filepaths."
         self.offsiteCatalog.toolTip = "By using Finder drag and drop filepaths."
         ViewControllerReference.shared.setvcref(viewcontroller: .vcnewconfigurations, nsviewcontroller: self)
-        if let profile = self.configurationsNoS!.getProfile() {
-            self.storageapi = PersistentStorageAPI(profile : profile)
-        } else {
-            self.storageapi = PersistentStorageAPI(profile : nil)
-        }
         // configurationsNoS
         self.configurationsDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain)
             as? ViewControllertabMain
@@ -93,6 +88,11 @@ class ViewControllerNewConfigurations: NSViewController {
     override func viewDidAppear() {
         super.viewDidAppear()
         self.configurationsNoS = self.configurationsDelegate?.getconfigurationsobject()
+        if let profile = self.configurationsNoS!.getProfile() {
+            self.storageapi = PersistentStorageAPI(profile : profile)
+        } else {
+            self.storageapi = PersistentStorageAPI(profile : nil)
+        }
         self.setFields()
     }
 
@@ -179,6 +179,9 @@ class ViewControllerNewConfigurations: NSViewController {
 extension ViewControllerNewConfigurations : NSTableViewDataSource {
 
     func numberOfRows(in tableView: NSTableView) -> Int {
+        guard self.configurationsNoS != nil else {
+            return 0
+        }
         return self.configurationsNoS!.newConfigurationsCount()
     }
 

@@ -1136,6 +1136,9 @@ extension ViewControllertabMain: BatchTask {
 
 extension ViewControllertabMain: GetConfigurationsObject {
     func getconfigurationsobject() -> ConfigurationsNoS? {
+        guard self.configurationsNoS != nil else {
+            return nil
+        }
         // Update alle userconfigurations
         self.configurationsNoS!.rsyncVer3 = ViewControllerReference.shared.rsyncVer3
         self.configurationsNoS!.rsyncPath = ViewControllerReference.shared.rsyncPath

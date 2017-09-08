@@ -275,6 +275,9 @@ class ViewControllertabSchedule: NSViewController {
 extension ViewControllertabSchedule : NSTableViewDataSource {
 
     func numberOfRows(in tableView: NSTableView) -> Int {
+        guard self.configurationsNoS != nil else {
+            return 0
+        }
         return self.configurationsNoS!.configurationsDataSourcecountBackupOnlyCount()
     }
 }

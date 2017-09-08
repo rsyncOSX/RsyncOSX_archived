@@ -158,16 +158,16 @@ as? ViewControllertabMain
         self.configurationsDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain)
             as? ViewControllertabMain
         // configurationsNoS
-        if let profile = self.configurationsNoS!.getProfile() {
-            self.storageapi = PersistentStorageAPI(profile : profile)
-        } else {
-            self.storageapi = PersistentStorageAPI(profile : nil)
-        }
     }
 
     override func viewDidAppear() {
         super.viewDidAppear()
         self.configurationsNoS = self.configurationsDelegate?.getconfigurationsobject()
+        if let profile = self.configurationsNoS!.getProfile() {
+            self.storageapi = PersistentStorageAPI(profile : profile)
+        } else {
+            self.storageapi = PersistentStorageAPI(profile : nil)
+        }
         var configurations: [Configuration] = self.configurationsNoS!.getConfigurations()
         if let index = self.getindexDelegate?.getindex() {
             // Create RsyncParameters object and load initial parameters
