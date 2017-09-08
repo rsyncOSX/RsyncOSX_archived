@@ -348,7 +348,7 @@ class ConfigurationsNoS {
         self.configurations = Array<Configuration>()
         self.argumentAllConfigurations = NSMutableArray()
         self.storageapi = nil
-        self.storageapi = PersistentStorageAPI(profile : profile)
+        self.storageapi = PersistentStorageAPI(profile : self.profile)
         let store: Array<Configuration> = self.storageapi!.getConfigurations()
         // We read all stored configurations into memory
         for i in 0 ..< store.count {
