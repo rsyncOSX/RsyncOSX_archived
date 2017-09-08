@@ -87,9 +87,9 @@ final class PersistentStorageScheduling: Readwritefiles {
         }
     }
 
-    init () {
+    init (profile: String?) {
         // Create the readwritefiles object
-        super.init(task: .schedule)
+        super.init(task: .schedule, profile: profile)
         // Reading Configurations from memory or disk, if dirty read from disk
         // if not dirty set self.configurationFromStore to nil to tell
         // anyone to read Configurations from memory

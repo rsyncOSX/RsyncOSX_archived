@@ -146,7 +146,11 @@ class ViewControllerRsyncParameters: NSViewController {
         self.getindexDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllertabMain
         // Dismisser is root controller
         self.dismissDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllertabMain
-        self.storageapi = PersistentStorageAPI()
+        if let profile = Configurations.shared.getProfile() {
+            self.storageapi = PersistentStorageAPI(profile : profile)
+        } else {
+            self.storageapi = PersistentStorageAPI(profile : nil)
+        }
     }
 
     override func viewDidAppear() {

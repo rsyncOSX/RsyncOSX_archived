@@ -50,6 +50,7 @@ class ViewControllerProfile: NSViewController {
             // Destroy old configuration and save default configuration
             // New Configurations must be saved as empty Configurations
             Configurations.shared.destroyConfigurations()
+            self.storageapi = PersistentStorageAPI(profile : nil)
             self.storageapi!.saveConfigFromMemory()
             self.newProfileDelegate?.newProfile(new: true)
         }
@@ -95,7 +96,6 @@ class ViewControllerProfile: NSViewController {
         self.profilesArray = self.profile!.getDirectorysStrings()
         self.profilesTable.target = self
         self.profilesTable.doubleAction = #selector(ViewControllerProfile.tableViewDoubleClick(sender:))
-        self.storageapi = PersistentStorageAPI()
 
         // configurationsNoS
         self.configurationsDelegata = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllertabMain

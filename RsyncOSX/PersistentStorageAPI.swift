@@ -14,12 +14,14 @@ final class PersistentStorageAPI {
     // Delegate function is triggered when Process.didTerminateNotification
     // is discovered (e.g previous job is done)
     weak var startnextjobDelegate: StartNextScheduledTask?
+    // profile
+    var profile: String?
 
     // CONFIGURATIONS
 
     // Read configurations from persisten store
     func getConfigurations() -> [Configuration] {
-        let read = PersistentStorageConfiguration()
+        let read = PersistentStorageConfiguration(profile: self.profile)
         // Either read from persistent store or
         // return Configurations already in memory
         if read.readConfigurationsFromPermanentStore() != nil {
@@ -37,13 +39,13 @@ final class PersistentStorageAPI {
 
     // Saving configuration from memory to persistent store
     func saveConfigFromMemory() {
-        let save = PersistentStorageConfiguration()
+        let save = PersistentStorageConfiguration(profile: self.profile)
         save.saveconfigInMemoryToPersistentStore()
     }
 
     // Saving added configuration from meory
     func saveNewConfigurationsFromMemory() {
-        let save = PersistentStorageConfiguration()
+        let save = PersistentStorageConfiguration(profile: self.profile)
         let newConfigurations = Configurations.shared.getnewConfigurations()
         if newConfigurations != nil {
             for i in 0 ..< newConfigurations!.count {
@@ -57,7 +59,7 @@ final class PersistentStorageAPI {
 
     // Saving Schedules from memory to persistent store
     func saveScheduleFromMemory() {
-        let store = PersistentStorageScheduling()
+        let store = PersistentStorageScheduling(profile: self.profile)
         store.savescheduleInMemoryToPersistentStore()
         // Kick off Scheduled job again
         // This is because saving schedule from memory might have
@@ -71,7 +73,7 @@ final class PersistentStorageAPI {
     // Read schedules and history
     // If no Schedule from persistent store return nil
     func getScheduleandhistory () -> [ConfigurationSchedule]? {
-        let read = PersistentStorageScheduling()
+        let read = PersistentStorageScheduling(profile: self.profile)
         var schedule = [ConfigurationSchedule]()
         // Either read from persistent store or
         // return Schedule already in memory
@@ -96,7 +98,7 @@ final class PersistentStorageAPI {
     // Readig schedules only (not sorted and expanden)
     // Sorted and expanded are only stored in memory
     func getScheduleonly () -> [ConfigurationSchedule] {
-        let read = PersistentStorageScheduling()
+        let read = PersistentStorageScheduling(profile: self.profile)
         if read.readSchedulesFromPermanentStore() != nil {
             var schedule = [ConfigurationSchedule]()
             for dict in read.readSchedulesFromPermanentStore()! {
@@ -122,4 +124,7 @@ final class PersistentStorageAPI {
         return store.readUserconfigurationsFromPermanentStore()
     }
 
+    init(profile: String?) {
+        self.profile = profile
+    }
 }

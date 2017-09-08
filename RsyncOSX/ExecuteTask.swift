@@ -32,7 +32,11 @@ class ExecuteTask: Operation {
         // Get the first job of the queue
         if let dict: NSDictionary = Schedules.shared.scheduledJob {
             if let hiddenID: Int = dict.value(forKey: "hiddenID") as? Int {
-                storageapi = PersistentStorageAPI()
+                if let profile = Configurations.shared.getProfile() {
+                    storageapi = PersistentStorageAPI(profile : profile)
+                } else {
+                    storageapi = PersistentStorageAPI(profile : nil)
+                }
                 let store: [Configuration] = storageapi!.getConfigurations()
                 let configArray = store.filter({return ($0.hiddenID == hiddenID)})
                 guard configArray.count > 0 else {

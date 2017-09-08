@@ -173,6 +173,10 @@ class ScheduleWriteLoggData {
     }
 
     init() {
-        self.storageapi = PersistentStorageAPI()
+        if let profile = Configurations.shared.getProfile() {
+            self.storageapi = PersistentStorageAPI(profile : profile)
+        } else {
+            self.storageapi = PersistentStorageAPI(profile : nil)
+        }
     }
 }

@@ -80,7 +80,7 @@ final class PersistentStorageUserconfiguration: Readwritefiles {
 
     init () {
         // Create the readwritefiles object
-        super.init(task: .userconfig)
+        super.init(task: .userconfig, profile: nil)
         // Reading Configurations from memory or disk, if dirty read from disk
         // if not dirty set self.configurationFromStore to nil to tell
         // anyone to read Configurations from memory

@@ -220,9 +220,8 @@ final class PersistentStorageConfiguration: Readwritefiles {
         }
     }
 
-    init () {
-        // Create the readwritefiles object
-        super.init(task: .configuration)
+    init (profile: String?) {
+        super.init(task: .configuration, profile: profile)
         // Reading Configurations from memory or disk, if dirty read from disk
         // if not dirty set self.configurationFromStore to nil to tell
         // anyone to read Configurations from memory

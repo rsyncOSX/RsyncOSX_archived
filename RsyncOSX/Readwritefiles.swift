@@ -151,23 +151,14 @@ class Readwritefiles {
 
     // Set preferences for which data to read or write
     private func setpreferences (_ task: WhatToReadWrite) {
-        self.useProfile = false
         self.task = task
         switch self.task! {
         case .schedule:
             self.name = "/scheduleRsync.plist"
             self.key = "Schedule"
-            if let profile = Configurations.shared.getProfile() {
-                self.profile = profile
-                self.useProfile = true
-            }
         case .configuration:
             self.name = "/configRsync.plist"
             self.key = "Catalogs"
-            if let profile = Configurations.shared.getProfile() {
-                self.profile = profile
-                self.useProfile = true
-            }
         case .userconfig:
             self.name = "/config.plist"
             self.key = "config"
@@ -177,7 +168,11 @@ class Readwritefiles {
         }
     }
 
-    init(task: WhatToReadWrite) {
+    init(task: WhatToReadWrite, profile: String?) {
+        if profile != nil {
+            self.profile = profile
+            self.useProfile = true
+        }
         self.setpreferences(task)
         self.setnameandpath()
     }

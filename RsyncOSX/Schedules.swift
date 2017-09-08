@@ -299,7 +299,12 @@ extension Schedules: Readupdatedschedules {
         // print("readAllSchedules()")
         self.destroySchedule()
         var store: Array<ConfigurationSchedule>?
-        if self.storageapi == nil {self.storageapi = PersistentStorageAPI()}
+        self.storageapi = nil
+        if let profile = Configurations.shared.getProfile() {
+            self.storageapi = PersistentStorageAPI(profile : profile)
+        } else {
+            self.storageapi = PersistentStorageAPI(profile : nil)
+        }
         store = self.storageapi!.getScheduleandhistory()
         // If Schedule already in memory dont read them again
         // Schedules are only read into memory if Dirty

@@ -153,7 +153,13 @@ class ViewControllerUserconfiguration: NSViewController {
         }
         self.rsyncPath.delegate = self
         self.restorePath.delegate = self
-        self.storageapi = PersistentStorageAPI()
+        if self.storageapi == nil {
+            if let profile = Configurations.shared.getProfile() {
+                self.storageapi = PersistentStorageAPI(profile : profile)
+            } else {
+                self.storageapi = PersistentStorageAPI(profile : nil)
+            }
+        }
     }
 
     override func viewDidAppear() {

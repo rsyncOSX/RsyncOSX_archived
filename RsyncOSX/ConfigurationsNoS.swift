@@ -350,7 +350,12 @@ class ConfigurationsNoS {
     func readAllConfigurationsAndArguments() {
         self.configurations = Array<Configuration>()
         self.argumentAllConfigurations = NSMutableArray()
-        if self.storageapi == nil {self.storageapi = PersistentStorageAPI()}
+        self.storageapi = nil
+        if let profile = Configurations.shared.getProfile() {
+            self.storageapi = PersistentStorageAPI(profile : profile)
+        } else {
+            self.storageapi = PersistentStorageAPI(profile : nil)
+        }
         let store: Array<Configuration> = self.storageapi!.getConfigurations()
         // We read all stored configurations into memory
         for i in 0 ..< store.count {
