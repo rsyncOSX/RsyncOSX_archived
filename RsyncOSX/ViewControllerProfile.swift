@@ -12,7 +12,7 @@ import Cocoa
 
 // Protocol for adding new profiles
 protocol AddProfiles : class {
-    func newProfile(new: Bool)
+    func newProfile(new: Bool, profile: String?)
     func enableProfileMenu()
 }
 
@@ -30,8 +30,7 @@ class ViewControllerProfile: NSViewController {
 
     // Setting default profile
     @IBAction func defaultProfile(_ sender: NSButton) {
-        Configurations.shared.setProfile(profile: nil)
-        self.newProfileDelegate?.newProfile( new: false)
+        self.newProfileDelegate?.newProfile( new: false, profile: nil)
         self.useprofile = nil
         self.dismissDelegate?.dismiss_view(viewcontroller: self)
     }
@@ -42,13 +41,11 @@ class ViewControllerProfile: NSViewController {
         if newprofile.isEmpty == false {
             // Create new profile and use it
             self.profile?.createProfile(profileName: newprofile)
-            Configurations.shared.setProfile(profile: newprofile)
             // Destroy old configuration and save default configuration
             // New Configurations must be saved as empty Configurations
-            Configurations.shared.destroyConfigurations()
             self.storageapi = PersistentStorageAPI(profile : nil)
             self.storageapi!.saveConfigFromMemory()
-            self.newProfileDelegate?.newProfile(new: true)
+            self.newProfileDelegate?.newProfile(new: true, profile: newprofile)
         }
         self.profile = nil
         self.profile = Profiles()
@@ -61,8 +58,7 @@ class ViewControllerProfile: NSViewController {
     @IBAction func deleteProfile(_ sender: NSButton) {
         if let useprofile = self.useprofile {
             self.profile?.deleteProfile(profileName: useprofile)
-            Configurations.shared.setProfile(profile: nil)
-            self.newProfileDelegate?.newProfile(new: false)
+            self.newProfileDelegate?.newProfile(new: false, profile: nil)
         }
         self.profile = nil
         self.profile = Profiles()
@@ -74,8 +70,7 @@ class ViewControllerProfile: NSViewController {
     // Use profile or close
     @IBAction func close(_ sender: NSButton) {
         if let useprofile = self.useprofile {
-            Configurations.shared.setProfile(profile: useprofile)
-            self.newProfileDelegate?.newProfile(new: false)
+            self.newProfileDelegate?.newProfile(new: false, profile: useprofile)
         }
         self.useprofile = nil
         self.dismissDelegate?.dismiss_view(viewcontroller: self)
@@ -106,8 +101,7 @@ class ViewControllerProfile: NSViewController {
     @objc(tableViewDoubleClick:) func tableViewDoubleClick(sender: AnyObject) {
         self.newProfileDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllertabMain
         if let useprofile = self.useprofile {
-            Configurations.shared.setProfile(profile: useprofile)
-            self.newProfileDelegate?.newProfile(new: false)
+            self.newProfileDelegate?.newProfile(new: false, profile: useprofile)
         }
         self.useprofile = nil
         self.dismissDelegate?.dismiss_view(viewcontroller: self)

@@ -344,15 +344,11 @@ class ConfigurationsNoS {
     /// Function is destroying any previous Configurations before loading new
     /// configurations and computing new arguments.
     /// - parameter none: none
-    func readAllConfigurationsAndArguments() {
+    private func readAllConfigurationsAndArguments() {
         self.configurations = Array<Configuration>()
         self.argumentAllConfigurations = NSMutableArray()
         self.storageapi = nil
-        if let profile = Configurations.shared.getProfile() {
-            self.storageapi = PersistentStorageAPI(profile : profile)
-        } else {
-            self.storageapi = PersistentStorageAPI(profile : nil)
-        }
+        self.storageapi = PersistentStorageAPI(profile : profile)
         let store: Array<Configuration> = self.storageapi!.getConfigurations()
         // We read all stored configurations into memory
         for i in 0 ..< store.count {

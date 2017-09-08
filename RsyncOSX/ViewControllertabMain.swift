@@ -46,7 +46,6 @@ class ViewControllertabMain: NSViewController {
 
     // Configurations object
     var configurationsNoS: ConfigurationsNoS?
-
     // Reference to the single taskobject
     var singletask: NewSingleTask?
     // Reference to batch taskobject
@@ -112,7 +111,6 @@ class ViewControllertabMain: NSViewController {
     // Bool if one or more remote server is offline
     // Used in testing if remote server is on/off-line
     fileprivate var serverOff: Array<Bool>?
-
     // Schedules in progress
     fileprivate var scheduledJobInProgress: Bool = false
     // Ready for execute again
@@ -468,7 +466,7 @@ class ViewControllertabMain: NSViewController {
         // self.configurationsNoS!.readAllConfigurationsAndArguments()
         // Read all Scheduled data again
         // self.configurationsNoS!.setDataDirty(dirty: true)
-        // Schedules.shared.readAllSchedules()
+        Schedules.shared.readAllSchedules()
     }
 
     // Function for setting profile
@@ -685,7 +683,7 @@ extension ViewControllertabMain: StartNextScheduledTask {
 extension ViewControllertabMain: AddProfiles {
 
     // Function is called from profiles when new or default profiles is seleceted
-    func newProfile(new: Bool) {
+    func newProfile(new: Bool, profile: String?) {
         weak var newProfileDelegate: AddProfiles?
         self.schedules = nil
         self.process = nil
@@ -701,15 +699,15 @@ extension ViewControllertabMain: AddProfiles {
             self.configurationsNoS = self.createconfigurationsobject(profile: nil)
             // Reset in tabSchedule
             newProfileDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabschedule) as? ViewControllertabSchedule
-            newProfileDelegate?.newProfile(new: true)
+            newProfileDelegate?.newProfile(new: true, profile: profile)
             self.refresh()
             return
         }
         // Reset in tabSchedule
         newProfileDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabschedule) as? ViewControllertabSchedule
-        newProfileDelegate?.newProfile(new: false)
+        newProfileDelegate?.newProfile(new: false, profile: profile)
         // Read configurations and Scheduledata
-        self.readConfigurationsAndSchedules()
+        self.configurationsNoS = self.createconfigurationsobject(profile: profile)
         // Make sure loading profile
         self.loadProfileMenu = true
         self.displayProfile()
@@ -1138,6 +1136,7 @@ extension ViewControllertabMain: BatchTask {
 
 extension ViewControllertabMain: GetConfigurationsObject {
     func getconfigurationsobject() -> ConfigurationsNoS? {
+        // Update alle userconfigurations
         self.configurationsNoS!.rsyncVer3 = ViewControllerReference.shared.rsyncVer3
         self.configurationsNoS!.rsyncPath = ViewControllerReference.shared.rsyncPath
         self.configurationsNoS!.norsync = ViewControllerReference.shared.norsync
