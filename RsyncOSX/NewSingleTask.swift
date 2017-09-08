@@ -39,7 +39,7 @@ final class NewSingleTask {
 
     // configurationsNoS
     weak var configurationsDelegate: GetConfigurationsObject?
-    var configurationsNoS: ConfigurationsNoS?
+    var configurationsNoS: Configurations?
     // configurationsNoS
 
     // Delegate function for start/stop progress Indicator in BatchWindow

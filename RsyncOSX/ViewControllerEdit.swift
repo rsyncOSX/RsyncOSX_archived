@@ -13,7 +13,7 @@ class ViewControllerEdit: NSViewController {
 
     // configurationsNoS
     weak var configurationsDelegate: GetConfigurationsObject?
-    var configurationsNoS: ConfigurationsNoS?
+    var configurationsNoS: Configurations?
     // configurationsNoS
 
     @IBOutlet weak var localCatalog: NSTextField!

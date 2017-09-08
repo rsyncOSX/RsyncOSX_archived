@@ -18,8 +18,8 @@ import Foundation
 
 // Protocol for returning object configurations data
 protocol GetConfigurationsObject: class {
-    func getconfigurationsobject() -> ConfigurationsNoS?
-    func createconfigurationsobject(profile: String?) -> ConfigurationsNoS?
+    func getconfigurationsobject() -> Configurations?
+    func createconfigurationsobject(profile: String?) -> Configurations?
     func isdatadirty() -> Bool
     func setdatadirty(dirty: Bool)
 }
@@ -36,7 +36,7 @@ protocol RefreshtableView: class {
     func refresh()
 }
 
-class ConfigurationsNoS {
+class Configurations {
 
     // Variabl if Data is changed, saved to Store and must be read into memory again
     private var dirtyData: Bool = true

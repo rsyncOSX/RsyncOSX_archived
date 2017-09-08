@@ -14,7 +14,7 @@ class ViewControllerSsh: NSViewController {
 
     // configurationsNoS
     weak var configurationsDelegate: GetConfigurationsObject?
-    var configurationsNoS: ConfigurationsNoS?
+    var configurationsNoS: Configurations?
     // configurationsNoS
 
     // The object which checks for keys

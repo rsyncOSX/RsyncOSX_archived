@@ -23,7 +23,7 @@ class ViewControllerProgressProcess: NSViewController {
 
     // configurationsNoS
     weak var configurationsDelegate: GetConfigurationsObject?
-    var configurationsNoS: ConfigurationsNoS?
+    var configurationsNoS: Configurations?
     // configurationsNoS
 
     var count: Double = 0

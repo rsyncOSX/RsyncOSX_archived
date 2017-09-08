@@ -25,7 +25,7 @@ class ExecuteTask: Operation {
         weak var configurationsDelegate: GetConfigurationsObject?
         configurationsDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain)
             as? ViewControllertabMain
-        var configurationsNoS: ConfigurationsNoS?
+        var configurationsNoS: Configurations?
         configurationsNoS = configurationsDelegate?.getconfigurationsobject()
         // configurationsNoS
 

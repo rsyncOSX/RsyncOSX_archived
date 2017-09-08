@@ -26,7 +26,7 @@ final class Numbers {
 
     // configurationsNoS
     weak var configurationsDelegate: GetConfigurationsObject?
-    var configurationsNoS: ConfigurationsNoS?
+    var configurationsNoS: Configurations?
     // configurationsNoS
 
     // Second last String in Array rsync output of how much in what time

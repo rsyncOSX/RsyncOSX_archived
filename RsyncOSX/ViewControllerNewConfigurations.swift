@@ -14,7 +14,7 @@ class ViewControllerNewConfigurations: NSViewController {
 
     // configurationsNoS
     weak var configurationsDelegate: GetConfigurationsObject?
-    var configurationsNoS: ConfigurationsNoS?
+    var configurationsNoS: Configurations?
     // configurationsNoS
 
     // Storage API

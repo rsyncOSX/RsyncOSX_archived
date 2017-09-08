@@ -12,7 +12,7 @@ final class PersistentStorageAPI {
 
     // configurationsNoS
     weak var configurationsDelegate: GetConfigurationsObject?
-    var configurationsNoS: ConfigurationsNoS?
+    var configurationsNoS: Configurations?
     // configurationsNoS
 
     // Delegate function for starting next scheduled operatin if any

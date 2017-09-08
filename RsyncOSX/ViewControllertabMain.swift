@@ -45,7 +45,7 @@ protocol ReportErrorInMain: class {
 class ViewControllertabMain: NSViewController {
 
     // Configurations object
-    var configurationsNoS: ConfigurationsNoS?
+    var configurationsNoS: Configurations?
     // Reference to the single taskobject
     var singletask: NewSingleTask?
     // Reference to batch taskobject
@@ -354,7 +354,7 @@ class ViewControllertabMain: NSViewController {
         self.tools = Tools()
         self.loadProfileMenu = true
         // configurationsNoS
-        self.configurationsNoS = ConfigurationsNoS(profile: nil)
+        self.configurationsNoS = Configurations(profile: nil)
         // configurationsNoS
     }
 
@@ -1136,7 +1136,7 @@ extension ViewControllertabMain: BatchTask {
 }
 
 extension ViewControllertabMain: GetConfigurationsObject {
-    func getconfigurationsobject() -> ConfigurationsNoS? {
+    func getconfigurationsobject() -> Configurations? {
         guard self.configurationsNoS != nil else {
             return nil
         }
@@ -1151,9 +1151,9 @@ extension ViewControllertabMain: GetConfigurationsObject {
         return self.configurationsNoS
     }
 
-    func createconfigurationsobject(profile: String?) -> ConfigurationsNoS? {
+    func createconfigurationsobject(profile: String?) -> Configurations? {
         self.configurationsNoS = nil
-        self.configurationsNoS = ConfigurationsNoS(profile: profile)
+        self.configurationsNoS = Configurations(profile: profile)
         return self.configurationsNoS
     }
 

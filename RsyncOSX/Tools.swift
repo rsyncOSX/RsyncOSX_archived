@@ -50,7 +50,7 @@ final class Tools {
 
     // configurationsNoS
     weak var configurationsDelegate: GetConfigurationsObject?
-    var configurationsNoS: ConfigurationsNoS?
+    var configurationsNoS: Configurations?
     // configurationsNoS
 
     private var indexBoolremoteserverOff: [Bool]?
