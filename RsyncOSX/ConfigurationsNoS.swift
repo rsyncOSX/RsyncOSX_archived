@@ -15,7 +15,12 @@
 //  swiftlint:disable syntactic_sugar
 
 import Foundation
-import Cocoa
+
+// Protocol for returning object configurations data
+protocol GetConfigurationsObject: class {
+    func getconfigurationsobject() -> ConfigurationsNoS?
+    func createconfigurationsobject() -> ConfigurationsNoS?
+}
 
 class ConfigurationsNoS {
 
@@ -180,15 +185,6 @@ class ConfigurationsNoS {
     func addConfigurationtoMemory (dict: NSDictionary) {
         let config = Configuration(dictionary: dict)
         self.configurations!.append(config)
-    }
-
-    /// Function destroys records holding data about all Configurations, all
-    /// arguments for Configurations and configurations as datasource for
-    /// presenting Configurations in tableviews.
-    func destroyConfigurations() {
-        self.configurations = nil
-        self.argumentAllConfigurations = nil
-        self.configurationsDataSource = nil
     }
 
     /// Function sets currentDate on Configuration when executed on task
@@ -357,11 +353,9 @@ class ConfigurationsNoS {
     /// configurations and computing new arguments.
     /// - parameter none: none
     func readAllConfigurationsAndArguments() {
-        self.configurations = nil
         self.configurations = Array<Configuration>()
         if self.storageapi == nil {self.storageapi = PersistentStorageAPI()}
         let store: Array<Configuration> = self.storageapi!.getConfigurations()
-        self.destroyConfigurations()
         // We read all stored configurations into memory
         for i in 0 ..< store.count {
             self.configurations!.append(store[i])
@@ -395,6 +389,9 @@ class ConfigurationsNoS {
     }
 
     init() {
+        self.configurations = nil
+        self.argumentAllConfigurations = nil
+        self.configurationsDataSource = nil
         self.readAllConfigurationsAndArguments()
     }
 }

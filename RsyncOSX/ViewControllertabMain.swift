@@ -44,6 +44,9 @@ protocol ReportErrorInMain: class {
 
 class ViewControllertabMain: NSViewController {
 
+    // Configurations object
+    var configurationsNoS: ConfigurationsNoS?
+
     // Reference to the single taskobject
     var singletask: NewSingleTask?
     // Reference to batch taskobject
@@ -1122,4 +1125,17 @@ extension ViewControllertabMain: BatchTask {
     func setOutputBatch(outputbatch: OutputBatch?) {
         self.outputbatch = outputbatch
     }
+}
+
+extension ViewControllertabMain: GetConfigurationsObject {
+    func getconfigurationsobject() -> ConfigurationsNoS? {
+        return self.configurationsNoS
+    }
+
+    func createconfigurationsobject() -> ConfigurationsNoS? {
+        self.configurationsNoS = nil
+        self.configurationsNoS = ConfigurationsNoS()
+        return self.configurationsNoS
+    }
+
 }
