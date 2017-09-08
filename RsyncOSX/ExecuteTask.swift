@@ -56,7 +56,7 @@ class ExecuteTask: Operation {
                     arguments = RsyncProcessArguments().argumentsRsync(config!, dryRun: false, forDisplay: false)
                     // Setting reference to finalize the job
                     // Finalize job is done when rsynctask ends (in process termination)
-                    Configurations.shared.operation = CompleteScheduledOperation(dict: dict)
+                    ViewControllerReference.shared.operation = CompleteScheduledOperation(dict: dict)
                     // Start the rsync job
                     globalMainQueue.async(execute: {
                         if arguments != nil {

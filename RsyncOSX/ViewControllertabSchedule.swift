@@ -190,8 +190,6 @@ class ViewControllertabSchedule: NSViewController {
         self.nextScheduledtask()
         // Call function to check if a scheduled backup is due for countdown
         self.startTimer()
-        // Reference to self
-        Schedules.shared.viewObjectSchedule = self
     }
 
     override func viewDidDisappear() {
