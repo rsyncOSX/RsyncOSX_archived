@@ -22,6 +22,7 @@ protocol GetConfigurationsObject: class {
     func createconfigurationsobject(profile: String?) -> Configurations?
     func isdatadirty() -> Bool
     func setdatadirty(dirty: Bool)
+    func reloadconfigurations()
 }
 
 // Used to select argument

@@ -975,7 +975,6 @@ extension ViewControllertabMain: AbortOperations {
             self.light.color = .systemRed
         }
     }
-
 }
 
 // Extensions from here are used in either newSingleTask or newBatchTask
@@ -1169,6 +1168,17 @@ extension ViewControllertabMain: GetConfigurationsObject {
             return
         }
         self.configurationsNoS!.setDataDirty(dirty: dirty)
+    }
+
+    func reloadconfigurations() {
+        if let profile = self.configurationsNoS!.getProfile() {
+            self.configurationsNoS = Configurations(profile: profile)
+        } else {
+            self.configurationsNoS = Configurations(profile: nil)
+        }
+        globalMainQueue.async(execute: { () -> Void in
+            self.mainTableView.reloadData()
+        })
     }
 
 }
