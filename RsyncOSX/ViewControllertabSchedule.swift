@@ -131,7 +131,7 @@ class ViewControllertabSchedule: NSViewController {
     private func addschedule(schedule: String, startdate: Date, stopdate: Date) {
         let answer = Alerts.dialogOKCancel("Add Schedule?", text: "Cancel or OK")
         if answer {
-            Schedules.shared.addschedule(self.hiddenID!, schedule: schedule, start: startdate, stop: stopdate)
+            self.schedulesNoS!.addschedule(self.hiddenID!, schedule: schedule, start: startdate, stop: stopdate)
             self.newSchedules = true
             // Refresh table and recalculate the Schedules jobs
             self.refresh()
@@ -296,7 +296,7 @@ extension ViewControllertabSchedule : NSTableViewDelegate {
         var number: Int?
 
         let hiddenID: Int = (object.value(forKey: "hiddenID") as? Int)!
-        if Schedules.shared.hiddenIDinSchedule(hiddenID) {
+        if self.schedulesNoS!.hiddenIDinSchedule(hiddenID) {
             text = object[tableColumn!.identifier] as? String
             if text == "backup" || text == "restore" {
                 schedule = true

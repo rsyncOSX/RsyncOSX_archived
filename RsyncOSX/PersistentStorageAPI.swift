@@ -113,7 +113,7 @@ final class PersistentStorageAPI {
             }
             return schedule
         } else {
-            return Schedules.shared.getSchedule()
+            return self.schedulesNoS!.getSchedule()
         }
     }
 

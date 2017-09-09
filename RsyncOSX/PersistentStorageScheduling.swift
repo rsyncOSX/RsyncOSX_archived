@@ -18,7 +18,7 @@ protocol Readupdatedschedules: class {
 }
 
 final class PersistentStorageScheduling: Readwritefiles {
-    
+
     weak var schedulesDelegate: GetSchedulesObject?
     var schedulesNoS: SchedulesNoS?
 
@@ -36,7 +36,7 @@ final class PersistentStorageScheduling: Readwritefiles {
     func savescheduleInMemoryToPersistentStore() {
         var array = Array<NSDictionary>()
         // Reading Schedules from memory
-        let data = Schedules.shared.getSchedule()
+        let data = self.schedulesNoS!.getSchedule()
         for i in 0 ..< data.count {
             let schedule = data[i]
             let dict: NSMutableDictionary = [
@@ -63,7 +63,7 @@ final class PersistentStorageScheduling: Readwritefiles {
     // Deleted Schedule by hiddenID
     func savescheduleDeletedRecordsToFile (_ hiddenID: Int) {
         var array = Array<NSDictionary>()
-        let Schedule = Schedules.shared.getSchedule()
+        let Schedule = self.schedulesNoS!.getSchedule()
         for i in 0 ..< Schedule.count {
             let schedule = Schedule[i]
             if schedule.delete == nil && schedule.hiddenID != hiddenID {
@@ -86,7 +86,7 @@ final class PersistentStorageScheduling: Readwritefiles {
     // Schedule is Array<NSDictionary>
     private func writeToStore (_ array: Array<NSDictionary>) {
         if (self.writeDatatoPersistentStorage(array, task: .schedule)) {
-            Schedules.shared.readAllSchedules()
+            // self.schedulesNoS!.readAllSchedules()
         }
     }
 
@@ -96,7 +96,7 @@ final class PersistentStorageScheduling: Readwritefiles {
         self.schedulesDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain)
             as? ViewControllertabMain
         self.schedulesNoS = self.schedulesDelegate?.getschedulesobject()
-        
+
         // Reading Configurations from memory or disk, if dirty read from disk
         // if not dirty set self.configurationFromStore to nil to tell
         // anyone to read Configurations from memory

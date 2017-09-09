@@ -6,7 +6,7 @@
 //  Copyright © 2017 Thomas Evensen. All rights reserved.
 //
 //  SwiftLint: OK 31 July 2017
-//  swiftlint:disable syntactic_sugar
+//  swiftlint:disable syntactic_sugar function_body_length
 
 import Foundation
 
@@ -20,7 +20,6 @@ import Foundation
 class ExecuteTask: Operation {
 
     override func main() {
-
         // configurationsNoS
         weak var configurationsDelegate: GetConfigurationsObject?
         configurationsDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain)
@@ -31,7 +30,7 @@ class ExecuteTask: Operation {
         var schedulesNoS: SchedulesNoS?
         var configurationsNoS: Configurations?
         configurationsNoS = configurationsDelegate?.getconfigurationsobject()
-        schedulesNoS = self.schedulesDelegate?.getschedulesobject()
+        schedulesNoS = schedulesDelegate?.getschedulesobject()
         // configurationsNoS
 
         // Storage API
@@ -44,7 +43,7 @@ class ExecuteTask: Operation {
         var config: Configuration?
 
         // Get the first job of the queue
-        if let dict: NSDictionary = Schedules.shared.scheduledJob {
+        if let dict: NSDictionary = schedulesNoS!.scheduledJob {
             if let hiddenID: Int = dict.value(forKey: "hiddenID") as? Int {
                 if let profile = configurationsNoS!.getProfile() {
                     storageapi = PersistentStorageAPI(profile : profile)

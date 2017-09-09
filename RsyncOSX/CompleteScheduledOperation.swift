@@ -37,7 +37,7 @@ final class CompleteScheduledOperation {
     private var index: Int?
 
     // Function for finalizing the Scheduled job
-    // The Operation object sets reference to the completeScheduledOperation in Schedules.shared.operation
+    // The Operation object sets reference to the completeScheduledOperation in self.schedulesNoS!.operation
     // This function is executed when rsyn process terminates
     func finalizeScheduledJob(output: OutputProcess) {
 
@@ -47,7 +47,7 @@ final class CompleteScheduledOperation {
         let number = Numbers(output: output.getOutput())
         number.setNumbers()
         let numberstring = number.stats(numberOfFiles: nil, sizeOfFiles: nil)
-        Schedules.shared.addresultschedule(self.hiddenID!,
+        self.schedulesNoS!.addresultschedule(self.hiddenID!,
                                            dateStart: dateStartstring,
                                            result: numberstring[0],
                                            date: datestring, schedule: schedule!)
@@ -68,7 +68,7 @@ final class CompleteScheduledOperation {
             self.startTimerDelegate?.startTimerNextJob()
         })
         // Reset reference til scheduled job
-        Schedules.shared.scheduledJob = nil
+        self.schedulesNoS!.scheduledJob = nil
     }
 
     init (dict: NSDictionary) {

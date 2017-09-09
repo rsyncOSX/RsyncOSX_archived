@@ -139,7 +139,7 @@ class ScheduleSortedAndExpand {
                 }
             }
         // Set reference to the first scheduled job
-        Schedules.shared.scheduledJob = self.jobToExecute()
+        self.schedulesNoS!.scheduledJob = self.jobToExecute()
         }
     }
 
@@ -312,7 +312,7 @@ class ScheduleSortedAndExpand {
         self.schedulesNoS = self.schedulesDelegate?.getschedulesobject()
         // configurationsNoS
         // Getting the Schedule and expanding all the jobs
-        self.scheduleConfiguration = Schedules.shared.getSchedule()
+        self.scheduleConfiguration = self.schedulesNoS!.getSchedule()
         self.createScheduleAsNSDictionary()
         self.sortAndExpandScheduleData()
     }

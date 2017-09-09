@@ -109,7 +109,7 @@ class ViewControllertabMain: NSViewController {
     // HiddenID task, set when row is selected
     fileprivate var hiddenID: Int?
     // Reference to Schedules object
-    fileprivate var schedules: ScheduleSortedAndExpand?
+    fileprivate var schedulessorted: ScheduleSortedAndExpand?
     // Bool if one or more remote server is offline
     // Used in testing if remote server is on/off-line
     fileprivate var serverOff: Array<Bool>?
@@ -232,7 +232,7 @@ class ViewControllertabMain: NSViewController {
                     if self.hiddenID != nil {
                         // Delete Configurations and Schedules by hiddenID
                         self.configurationsNoS!.deleteConfigurationsByhiddenID(hiddenID: self.hiddenID!)
-                        Schedules.shared.deletechedule(hiddenID: self.hiddenID!)
+                        self.schedulesNoS!.deletechedule(hiddenID: self.hiddenID!)
                         // Reading main Configurations and Schedule to memory
                         // self.reReadConfigurationsAndSchedules()
                         // And create a new Schedule object
@@ -342,12 +342,8 @@ class ViewControllertabMain: NSViewController {
         self.scheduledJobworking.usesThreadedAnimation = true
         // Setting reference to self, used when calling delegate functions
         ViewControllerReference.shared.setvcref(viewcontroller: .vctabmain, nsviewcontroller: self)
-
-        self.readConfigurationsAndSchedules()
-
-        // Create a Schedules object
         // Start waiting for next Scheduled job (if any)
-        self.schedules = ScheduleSortedAndExpand()
+        self.schedulessorted = ScheduleSortedAndExpand()
         self.startProcess()
         self.mainTableView.target = self
         self.mainTableView.doubleAction = #selector(ViewControllertabMain.tableViewDoubleClick(sender:))
@@ -378,8 +374,8 @@ class ViewControllertabMain: NSViewController {
         // Show which profile
         // self.loadProfileMenu = true
         self.displayProfile()
-        if self.schedules == nil {
-            self.schedules = ScheduleSortedAndExpand()
+        if self.schedulessorted == nil {
+            self.schedulessorted = ScheduleSortedAndExpand()
         }
         self.ready = true
         self.displayAllowDoubleclick()
@@ -396,8 +392,8 @@ class ViewControllertabMain: NSViewController {
     // True if scheduled task in progress
     func scheduledOperationInProgress() -> Bool {
         var scheduleInProgress: Bool?
-        if self.schedules != nil {
-            scheduleInProgress = self.schedules!.getScheduledOperationInProgress()
+        if self.schedulessorted != nil {
+            scheduleInProgress = self.schedulessorted!.getScheduledOperationInProgress()
         } else {
             scheduleInProgress = false
         }
@@ -459,16 +455,6 @@ class ViewControllertabMain: NSViewController {
         self.batchtask = NewBatchTask()
         // Present batch view
         self.batchtask?.presentBatchView()
-    }
-
-    // Reread bot Configurations and Schedules from persistent store to memory
-    fileprivate func readConfigurationsAndSchedules() {
-        // Reading main Configurations to memory
-        // self.configurationsNoS!.setDataDirty(dirty: true)
-        // self.configurationsNoS!.readAllConfigurationsAndArguments()
-        // Read all Scheduled data again
-        // self.configurationsNoS!.setDataDirty(dirty: true)
-        Schedules.shared.readAllSchedules()
     }
 
     // Function for setting profile
@@ -536,8 +522,8 @@ class ViewControllertabMain: NSViewController {
             })
         }
         // Read schedule objects again
-        self.schedules = nil
-        self.schedules = ScheduleSortedAndExpand()
+        self.schedulessorted = nil
+        self.schedulessorted = ScheduleSortedAndExpand()
         self.setRsyncCommandDisplay()
     }
 }
@@ -578,7 +564,7 @@ extension ViewControllertabMain : NSTableViewDelegate {
         var text: String?
         var schedule: Bool = false
         let hiddenID: Int = self.configurationsNoS!.getConfigurations()[row].hiddenID
-        if Schedules.shared.hiddenIDinSchedule(hiddenID) {
+        if self.schedulesNoS!.hiddenIDinSchedule(hiddenID) {
             text = object[tableColumn!.identifier] as? String
             if text == "backup" || text == "restore" {
                 schedule = true
@@ -588,7 +574,7 @@ extension ViewControllertabMain : NSTableViewDelegate {
             return object[tableColumn!.identifier] as? Int!
         } else {
             var number: Int = 0
-            if let obj = self.schedules {
+            if let obj = self.schedulessorted {
                 number = obj.numberOfFutureSchedules(hiddenID)
             }
             if schedule && number > 0 {
@@ -644,8 +630,8 @@ extension ViewControllertabMain: RefreshtableView {
     func refresh() {
         // Create and read schedule objects again
         // Releasing previous allocation before creating new one
-        self.schedules = nil
-        self.schedules = ScheduleSortedAndExpand()
+        self.schedulessorted = nil
+        self.schedulessorted = ScheduleSortedAndExpand()
         globalMainQueue.async(execute: { () -> Void in
             self.mainTableView.reloadData()
         })
@@ -687,7 +673,7 @@ extension ViewControllertabMain: AddProfiles {
     // Function is called from profiles when new or default profiles is seleceted
     func newProfile(new: Bool, profile: String?) {
         weak var newProfileDelegate: AddProfiles?
-        self.schedules = nil
+        self.schedulessorted = nil
         self.process = nil
         self.output = nil
         self.outputbatch = nil
@@ -697,7 +683,7 @@ extension ViewControllertabMain: AddProfiles {
         self.setNumbers(output: nil)
         guard new == false else {
             // A new and empty profile is created
-            Schedules.shared.destroySchedule()
+            self.schedulesNoS!.destroySchedule()
             self.configurationsNoS = self.createconfigurationsobject(profile: nil)
             self.schedulesNoS = self.createschedulesobject(profile: nil)
             // Reset in tabSchedule
@@ -766,8 +752,8 @@ extension ViewControllertabMain: NewSchedules {
 
     // Create new schedule object. Old object is released (deleted).
     func newSchedulesAdded() {
-        self.schedules = nil
-        self.schedules = ScheduleSortedAndExpand()
+        self.schedulessorted = nil
+        self.schedulessorted = ScheduleSortedAndExpand()
     }
 }
 
@@ -959,7 +945,7 @@ extension ViewControllertabMain: AbortOperations {
             process.terminate()
             self.index = nil
             self.working.stopAnimation(nil)
-            self.schedules = nil
+            self.schedulessorted = nil
             self.process = nil
             // Create workqueu and add abort
             self.setInfo(info: "Abort", color: .red)
@@ -976,7 +962,7 @@ extension ViewControllertabMain: AbortOperations {
             batchobject.abortOperations()
             // Set reference to batchdata = nil
             self.configurationsNoS!.deleteBatchData()
-            self.schedules = nil
+            self.schedulessorted = nil
             self.process = nil
             self.setInfo(info: "Abort", color: .red)
             self.light.color = .systemRed

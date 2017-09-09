@@ -35,7 +35,7 @@ final class ScheduleOperation {
 
     weak var schedulesDelegate: GetSchedulesObject?
     var schedulesNoS: SchedulesNoS?
-    
+
     private var scheduledJobs: ScheduleSortedAndExpand?
     private var waitForTask: Timer?
     private var queue: OperationQueue?
@@ -59,7 +59,7 @@ final class ScheduleOperation {
             as? ViewControllertabMain
         self.schedulesNoS = self.schedulesDelegate?.getschedulesobject()
         // Cancel any current job waiting for execution
-        Schedules.shared.cancelJobWaiting()
+        self.schedulesNoS!.cancelJobWaiting()
         // Create a new Schedules object
         self.scheduledJobs = ScheduleSortedAndExpand()
         // Removes the job of the stack
@@ -75,7 +75,7 @@ final class ScheduleOperation {
                                                     userInfo: nil, repeats: false)
             // Set reference to Timer that kicks of the Scheduled job
             // Reference is set for cancel job if requiered
-            Schedules.shared.setJobWaiting(timer: self.waitForTask!)
+            self.schedulesNoS!.setJobWaiting(timer: self.waitForTask!)
         } else {
             // No jobs to execute, no need to keep reference to object
             self.scheduledJobs = nil

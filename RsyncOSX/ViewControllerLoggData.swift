@@ -11,7 +11,7 @@ import Foundation
 import Cocoa
 
 class ViewControllerLoggData: NSViewController {
-    
+
     weak var schedulesDelegate: GetSchedulesObject?
     var schedulesNoS: SchedulesNoS?
 
@@ -46,7 +46,7 @@ class ViewControllerLoggData: NSViewController {
             self.deleteButton.state = .off
             return
         }
-        Schedules.shared.deletelogrow(hiddenID: (self.row?.value(forKey: "hiddenID") as? Int)!,
+        self.schedulesNoS!.deletelogrow(hiddenID: (self.row?.value(forKey: "hiddenID") as? Int)!,
                                                parent: (self.row?.value(forKey: "parent") as? String)!,
                                                resultExecuted: (self.row?.value(forKey: "resultExecuted") as? String)!,
                                                dateExecuted:(self.row?.value(forKey: "dateExecuted") as? String)!)
