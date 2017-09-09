@@ -42,13 +42,6 @@ class Schedules: ScheduleWriteLoggData {
     // Will be kept in memory until destroyed
     // private var Schedule = Array<configurationSchedule>()
 
-    /// Function for resetting Schedule.
-    /// Only used when new profiles are loaded.
-    /// This is due to a glitch in design.
-    func destroySchedule() {
-        self.schedule.removeAll()
-    }
-
     // THE GETTERS
 
     // Return reference to Schedule data
@@ -296,7 +289,6 @@ class Schedules: ScheduleWriteLoggData {
     /// which are stored to permanent store.
     /// The functions does NOT cancel waiting jobs or recalculate next scheduled job.
     private func readAllSchedules() {
-        self.destroySchedule()
         var store: Array<ConfigurationSchedule>?
         self.storageapi = nil
         self.storageapi = PersistentStorageAPI(profile : self.profile)

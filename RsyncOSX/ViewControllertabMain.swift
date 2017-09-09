@@ -683,7 +683,6 @@ extension ViewControllertabMain: AddProfiles {
         self.setNumbers(output: nil)
         guard new == false else {
             // A new and empty profile is created
-            self.schedulesNoS!.destroySchedule()
             self.configurationsNoS = self.createconfigurationsobject(profile: nil)
             self.schedulesNoS = self.createschedulesobject(profile: nil)
             // Reset in tabSchedule
