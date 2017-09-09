@@ -14,6 +14,8 @@ class ViewControllerScheduledBackupinWork: NSViewController {
     // configurationsNoS
     weak var configurationsDelegate: GetConfigurationsObject?
     var configurationsNoS: Configurations?
+    weak var schedulesDelegate: GetSchedulesObject?
+    var schedulesNoS: SchedulesNoS?
     // configurationsNoS
 
     // Dismisser
@@ -69,12 +71,15 @@ class ViewControllerScheduledBackupinWork: NSViewController {
         // configurationsNoS
         self.configurationsDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain)
             as? ViewControllertabMain
+        self.schedulesDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain)
+            as? ViewControllertabMain
         // configurationsNoS
     }
 
     override func viewDidAppear() {
         super.viewDidAppear()
         self.configurationsNoS = self.configurationsDelegate?.getconfigurationsobject()
+        self.schedulesNoS = self.schedulesDelegate?.getschedulesobject()
         self.seconds = 10
         self.setInfo()
         self.waitToClose = Timer.scheduledTimer(timeInterval: 10, target: self,

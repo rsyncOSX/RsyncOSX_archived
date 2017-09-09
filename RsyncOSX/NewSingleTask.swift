@@ -40,6 +40,8 @@ final class NewSingleTask {
     // configurationsNoS
     weak var configurationsDelegate: GetConfigurationsObject?
     var configurationsNoS: Configurations?
+    weak var schedulesDelegate: GetSchedulesObject?
+    var schedulesNoS: SchedulesNoS?
     // configurationsNoS
 
     // Delegate function for start/stop progress Indicator in BatchWindow
@@ -189,6 +191,9 @@ final class NewSingleTask {
             as? ViewControllertabMain
         self.configurationsNoS = self.configurationsDelegate?.getconfigurationsobject()
         // configurationsNoS
+        self.schedulesDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain)
+            as? ViewControllertabMain
+        self.schedulesNoS = self.schedulesDelegate?.getschedulesobject()
     }
 }
 

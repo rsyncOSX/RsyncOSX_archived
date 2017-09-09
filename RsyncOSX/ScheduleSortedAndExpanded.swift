@@ -15,6 +15,8 @@ class ScheduleSortedAndExpand {
     // configurationsNoS
     weak var configurationsDelegate: GetConfigurationsObject?
     var configurationsNoS: Configurations?
+    weak var schedulesDelegate: GetSchedulesObject?
+    var schedulesNoS: SchedulesNoS?
     // configurationsNoS
 
     // DATA STRUCTURES
@@ -304,7 +306,10 @@ class ScheduleSortedAndExpand {
         // configurationsNoS
         self.configurationsDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain)
             as? ViewControllertabMain
+        self.schedulesDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain)
+            as? ViewControllertabMain
         self.configurationsNoS = self.configurationsDelegate?.getconfigurationsobject()
+        self.schedulesNoS = self.schedulesDelegate?.getschedulesobject()
         // configurationsNoS
         // Getting the Schedule and expanding all the jobs
         self.scheduleConfiguration = Schedules.shared.getSchedule()

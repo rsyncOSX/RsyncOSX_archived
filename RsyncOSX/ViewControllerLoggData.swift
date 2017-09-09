@@ -11,6 +11,9 @@ import Foundation
 import Cocoa
 
 class ViewControllerLoggData: NSViewController {
+    
+    weak var schedulesDelegate: GetSchedulesObject?
+    var schedulesNoS: SchedulesNoS?
 
     var tabledata: [NSDictionary]?
     var row: NSDictionary?
@@ -60,10 +63,13 @@ class ViewControllerLoggData: NSViewController {
         self.sorting.usesThreadedAnimation = true
         // Reference to LogViewController
         ViewControllerReference.shared.setvcref(viewcontroller: .vcloggdata, nsviewcontroller: self)
+        self.schedulesDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain)
+            as? ViewControllertabMain
     }
 
     override func viewDidAppear() {
         super.viewDidAppear()
+        self.schedulesNoS = self.schedulesDelegate?.getschedulesobject()
         globalMainQueue.async(execute: { () -> Void in
             self.sorting.startAnimation(self)
             self.tabledata = ScheduleLoggData().getallloggdata()

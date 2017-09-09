@@ -29,6 +29,8 @@ final class NewBatchTask {
     // configurationsNoS
     weak var configurationsDelegate: GetConfigurationsObject?
     var configurationsNoS: Configurations?
+    weak var schedulesDelegate: GetSchedulesObject?
+    var schedulesNoS: SchedulesNoS?
     // configurationsNoS
 
     // Protocol function used in Process().
@@ -189,6 +191,9 @@ final class NewBatchTask {
         self.configurationsDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain)
             as? ViewControllertabMain
         self.configurationsNoS = self.configurationsDelegate?.getconfigurationsobject()
+        self.schedulesDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain)
+            as? ViewControllertabMain
+        self.schedulesNoS = self.schedulesDelegate?.getschedulesobject()
         // configurationsNoS
     }
 

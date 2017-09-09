@@ -20,6 +20,8 @@ class ViewControllerScheduleDetails: NSViewController {
     // configurationsNoS
     weak var configurationsDelegate: GetConfigurationsObject?
     var configurationsNoS: Configurations?
+    weak var schedulesDelegate: GetSchedulesObject?
+    var schedulesNoS: SchedulesNoS?
     // configurationsNoS
 
     @IBOutlet weak var localCatalog: NSTextField!
@@ -79,12 +81,15 @@ class ViewControllerScheduleDetails: NSViewController {
         // configurationsNoS
         self.configurationsDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain)
             as? ViewControllertabMain
+        self.schedulesDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain)
+            as? ViewControllertabMain
         // configurationsNoS
     }
 
     override func viewDidAppear() {
         super.viewDidAppear()
         self.configurationsNoS = self.configurationsDelegate?.getconfigurationsobject()
+        self.schedulesNoS = self.schedulesDelegate?.getschedulesobject()
         self.hiddendID = self.getHiddenIDDelegate?.gethiddenID()
         self.data = Schedules.shared.readschedule(self.hiddendID!)
 

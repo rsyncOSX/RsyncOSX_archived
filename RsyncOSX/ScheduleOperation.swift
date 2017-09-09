@@ -33,6 +33,9 @@ protocol ScheduledJobInProgress : class {
 
 final class ScheduleOperation {
 
+    weak var schedulesDelegate: GetSchedulesObject?
+    var schedulesNoS: SchedulesNoS?
+    
     private var scheduledJobs: ScheduleSortedAndExpand?
     private var waitForTask: Timer?
     private var queue: OperationQueue?
@@ -52,6 +55,9 @@ final class ScheduleOperation {
     }
 
     init () {
+        self.schedulesDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain)
+            as? ViewControllertabMain
+        self.schedulesNoS = self.schedulesDelegate?.getschedulesobject()
         // Cancel any current job waiting for execution
         Schedules.shared.cancelJobWaiting()
         // Create a new Schedules object

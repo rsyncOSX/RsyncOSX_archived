@@ -25,8 +25,13 @@ class ExecuteTask: Operation {
         weak var configurationsDelegate: GetConfigurationsObject?
         configurationsDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain)
             as? ViewControllertabMain
+        weak var schedulesDelegate: GetSchedulesObject?
+        schedulesDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain)
+            as? ViewControllertabMain
+        var schedulesNoS: SchedulesNoS?
         var configurationsNoS: Configurations?
         configurationsNoS = configurationsDelegate?.getconfigurationsobject()
+        schedulesNoS = self.schedulesDelegate?.getschedulesobject()
         // configurationsNoS
 
         // Storage API

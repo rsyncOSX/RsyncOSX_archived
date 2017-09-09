@@ -18,6 +18,9 @@ protocol Readupdatedschedules: class {
 }
 
 final class PersistentStorageScheduling: Readwritefiles {
+    
+    weak var schedulesDelegate: GetSchedulesObject?
+    var schedulesNoS: SchedulesNoS?
 
     weak var readschedulesDelegate: Readupdatedschedules?
     // Variables holds all scheduledata
@@ -90,6 +93,10 @@ final class PersistentStorageScheduling: Readwritefiles {
     init (profile: String?) {
         // Create the readwritefiles object
         super.init(task: .schedule, profile: profile)
+        self.schedulesDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain)
+            as? ViewControllertabMain
+        self.schedulesNoS = self.schedulesDelegate?.getschedulesobject()
+        
         // Reading Configurations from memory or disk, if dirty read from disk
         // if not dirty set self.configurationFromStore to nil to tell
         // anyone to read Configurations from memory
