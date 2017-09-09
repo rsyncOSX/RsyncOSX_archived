@@ -91,18 +91,12 @@ final class PersistentStorageScheduling: Readwritefiles {
     }
 
     init (profile: String?) {
-        // Create the readwritefiles object
         super.init(task: .schedule, profile: profile)
         self.schedulesDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain)
             as? ViewControllertabMain
         self.schedules = self.schedulesDelegate?.getschedulesobject()
-        // Reading Configurations from memory or disk, if dirty read from disk
-        // if not dirty set self.configurationFromStore to nil to tell
-        // anyone to read Configurations from memory
-        if let schedulesFromPersistentstore = self.getDatafromfile() {
-            self.schedulesasDict = schedulesFromPersistentstore
-        } else {
-            self.schedulesasDict = nil
+        if self.schedules == nil {
+            self.schedulesasDict = self.getDatafromfile()
         }
     }
 }

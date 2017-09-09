@@ -18,6 +18,8 @@ final class PersistentStorageConfiguration: Readwritefiles {
 
     weak var configurationsDelegate: GetConfigurationsObject?
     var configurations: Configurations?
+    /// Variable holds all configuration data from persisten storage
+    private var configurationsAsNSDict: [NSDictionary]?
 
     /// Variable computes max hiddenID used
     /// MaxhiddenID is used when new configurations are added.
@@ -38,9 +40,6 @@ final class PersistentStorageConfiguration: Readwritefiles {
             return 0
         }
     }
-
-    /// Variable holds all configuration data
-    private var configurationsAsNSDict: [NSDictionary]?
 
     /// Function reads configurations from permanent store
     /// - returns : array of NSDictonarys, return might be nil if configuration is already in memory
@@ -228,14 +227,8 @@ final class PersistentStorageConfiguration: Readwritefiles {
         self.configurationsDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain)
             as? ViewControllertabMain
         self.configurations = self.configurationsDelegate?.getconfigurationsobject()
-
-        // Reading Configurations from memory or disk, if dirty read from disk
-        // if not dirty set self.configurationFromStore to nil to tell
-        // anyone to read Configurations from memory
-        if let configurationFromPersistentstore = self.getDatafromfile() {
-            self.configurationsAsNSDict = configurationFromPersistentstore
-        } else {
-            self.configurationsAsNSDict = nil
+        if self.configurations == nil {
+            self.configurationsAsNSDict = self.getDatafromfile()
         }
     }
 }

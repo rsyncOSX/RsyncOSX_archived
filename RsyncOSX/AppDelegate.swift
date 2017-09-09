@@ -19,7 +19,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         _ = Checkfornewversion(inMain: true)
         // Read user configuration
         storage = PersistentStorageAPI(profile: nil)
-        if let userConfiguration =  storage?.getUserconfiguration() {
+        if let userConfiguration =  storage?.getUserconfiguration(readfromstorage: true) {
             _ = Userconfiguration(userconfigRsyncOSX: userConfiguration)
         }
     }

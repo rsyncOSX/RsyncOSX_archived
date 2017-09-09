@@ -148,7 +148,7 @@ class ViewControllerRsyncParameters: NSViewController {
         super.viewDidLoad()
         // Get index of seleceted row
         self.userparamsupdatedDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain)
-as? ViewControllertabMain
+            as? ViewControllertabMain
         self.getindexDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain)
             as? ViewControllertabMain
         // Dismisser is root controller
@@ -215,7 +215,7 @@ as? ViewControllertabMain
 
     // Function for saving changed or new parameters for one configuration.
     @IBAction func update(_ sender: NSButton) {
-        var configurations: [Configuration] = self.storageapi!.getConfigurations()
+        var configurations: [Configuration] = self.configurations!.getConfigurations()
         guard configurations.count > 0 else {
             return
         }

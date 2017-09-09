@@ -75,7 +75,7 @@ class Readwritefiles {
 
     // Function for reading data from persistent store
     func getDatafromfile () -> Array<NSDictionary>? {
-        var list = Array<NSDictionary>()
+        var data = Array<NSDictionary>()
         guard self.filename != nil && self.key != nil else {
             return nil
         }
@@ -89,11 +89,12 @@ class Readwritefiles {
             for i in 0 ..< arrayitems.count {
                 if let item = arrayitems[i] as? NSDictionary {
                     _ = dictionary!.object(forKey: "ItemCode") as? String
-                    list.append(item)
+                    data.append(item)
                 }
             }
         }
-        return list
+        print("Read data")
+        return data
     }
 
     // Function for write data to persistent store
@@ -103,6 +104,7 @@ class Readwritefiles {
         guard self.filename != nil else {
             return false
         }
+        print("Write data")
         return  dictionary.write(toFile: self.filename!, atomically: true)
     }
 

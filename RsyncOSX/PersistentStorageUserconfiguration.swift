@@ -80,20 +80,13 @@ final class PersistentStorageUserconfiguration: Readwritefiles {
         _ = self.writeDatatoPersistentStorage(array, task: .userconfig)
     }
 
-    init () {
-
-        // Create the readwritefiles object
+    init (readfromstorage: Bool) {
         super.init(task: .userconfig, profile: nil)
         self.configurationsDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain)
             as? ViewControllertabMain
         self.configurations = self.configurationsDelegate?.getconfigurationsobject()
-        // Reading Configurations from memory or disk, if dirty read from disk
-        // if not dirty set self.configurationFromStore to nil to tell
-        // anyone to read Configurations from memory
-        if let userconfigurationFromstore = self.getDatafromfile() {
-            self.userconfiguration = userconfigurationFromstore
-        } else {
-            self.userconfiguration = nil
+        if readfromstorage {
+            self.userconfiguration = self.getDatafromfile()
         }
     }
 }

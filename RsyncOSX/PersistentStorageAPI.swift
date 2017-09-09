@@ -123,12 +123,12 @@ final class PersistentStorageAPI {
 
     // Saving user configuration
     func saveUserconfiguration() {
-        let store = PersistentStorageUserconfiguration()
+        let store = PersistentStorageUserconfiguration(readfromstorage: false)
         store.saveUserconfiguration()
     }
 
-    func getUserconfiguration () -> [NSDictionary]? {
-        let store = PersistentStorageUserconfiguration()
+    func getUserconfiguration (readfromstorage: Bool) -> [NSDictionary]? {
+        let store = PersistentStorageUserconfiguration(readfromstorage: readfromstorage)
         return store.readUserconfigurationsFromPermanentStore()
     }
 
