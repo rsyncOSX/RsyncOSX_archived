@@ -46,7 +46,7 @@ class ViewControllertabSchedule: NSViewController {
     // Another function is responsible to kick off the first scheduled operation.
     private var nextTask: Timer?
     // Scedules object
-    fileprivate var schedules: ScheduleSortedAndExpand?
+    fileprivate var schedulessorted: ScheduleSortedAndExpand?
     // Delegate to inform new schedules added or schedules deleted
     weak var newSchedulesDelegate: NewSchedules?
     // Delegate function for starting next scheduled operatin if any
@@ -174,7 +174,7 @@ class ViewControllertabSchedule: NSViewController {
         self.mainTableView.delegate = self
         self.mainTableView.dataSource = self
         // Create a Schedules object
-        self.schedules = ScheduleSortedAndExpand()
+        self.schedulessorted = ScheduleSortedAndExpand()
         // Setting reference to self.
         ViewControllerReference.shared.setvcref(viewcontroller: .vctabschedule, nsviewcontroller: self)
         // configurations
@@ -192,9 +192,9 @@ class ViewControllertabSchedule: NSViewController {
         // Set initial values of dates to now
         self.stopdate.dateValue = Date()
         self.stoptime.dateValue = Date()
-        if self.schedules == nil {
+        if self.schedulessorted == nil {
             // Create a Schedules object
-            self.schedules = ScheduleSortedAndExpand()
+            self.schedulessorted = ScheduleSortedAndExpand()
         }
         if self.configurations!.configurationsDataSourcecountBackupOnlyCount() > 0 {
             globalMainQueue.async(execute: { () -> Void in
@@ -220,8 +220,8 @@ class ViewControllertabSchedule: NSViewController {
     // Start timer
     func startTimer() {
         // Find out if count down and update display
-        if self.schedules != nil {
-            let timer: Double = self.schedules!.startTimerseconds()
+        if self.schedulessorted != nil {
+            let timer: Double = self.schedulessorted!.startTimerseconds()
             // timer == 0 do not start NSTimer, timer > 0 update frequens of NSTimer
             if timer > 0 {
                 self.nextTask?.invalidate()
@@ -234,25 +234,25 @@ class ViewControllertabSchedule: NSViewController {
 
     // Update display next scheduled jobs in time
     @objc func nextScheduledtask() {
-        guard self.schedules != nil else {
+        guard self.schedulessorted != nil else {
             return
         }
         // Displaying next two scheduled tasks
         self.firstLocalCatalog.textColor = .black
-        self.firstScheduledTask.stringValue = self.schedules!.whenIsNextTwoTasksString()[0]
-        self.secondScheduledTask.stringValue = self.schedules!.whenIsNextTwoTasksString()[1]
-        if self.schedules!.remoteServerAndPathNextTwoTasks().count > 0 {
-            if self.schedules!.remoteServerAndPathNextTwoTasks().count > 2 {
-                self.firstRemoteServer.stringValue = self.schedules!.remoteServerAndPathNextTwoTasks()[0]
-                self.firstLocalCatalog.stringValue = self.schedules!.remoteServerAndPathNextTwoTasks()[1]
-                self.secondRemoteServer.stringValue = self.schedules!.remoteServerAndPathNextTwoTasks()[2]
-                self.secondLocalCatalog.stringValue = self.schedules!.remoteServerAndPathNextTwoTasks()[3]
+        self.firstScheduledTask.stringValue = self.schedulessorted!.whenIsNextTwoTasksString()[0]
+        self.secondScheduledTask.stringValue = self.schedulessorted!.whenIsNextTwoTasksString()[1]
+        if self.schedulessorted!.remoteServerAndPathNextTwoTasks().count > 0 {
+            if self.schedulessorted!.remoteServerAndPathNextTwoTasks().count > 2 {
+                self.firstRemoteServer.stringValue = self.schedulessorted!.remoteServerAndPathNextTwoTasks()[0]
+                self.firstLocalCatalog.stringValue = self.schedulessorted!.remoteServerAndPathNextTwoTasks()[1]
+                self.secondRemoteServer.stringValue = self.schedulessorted!.remoteServerAndPathNextTwoTasks()[2]
+                self.secondLocalCatalog.stringValue = self.schedulessorted!.remoteServerAndPathNextTwoTasks()[3]
             } else {
-                guard self.schedules!.remoteServerAndPathNextTwoTasks().count == 2 else {
+                guard self.schedulessorted!.remoteServerAndPathNextTwoTasks().count == 2 else {
                     return
                 }
-                self.firstRemoteServer.stringValue = self.schedules!.remoteServerAndPathNextTwoTasks()[0]
-                self.firstLocalCatalog.stringValue = self.schedules!.remoteServerAndPathNextTwoTasks()[1]
+                self.firstRemoteServer.stringValue = self.schedulessorted!.remoteServerAndPathNextTwoTasks()[0]
+                self.firstLocalCatalog.stringValue = self.schedulessorted!.remoteServerAndPathNextTwoTasks()[1]
                 self.secondRemoteServer.stringValue = ""
                 self.secondLocalCatalog.stringValue = ""
             }
@@ -305,8 +305,8 @@ extension ViewControllertabSchedule : NSTableViewDelegate {
         if tableColumn!.identifier.rawValue == "batchCellID" {
             return object[tableColumn!.identifier] as? Int!
         } else {
-            if self.schedules != nil {
-                number = self.schedules!.numberOfFutureSchedules(hiddenID)
+            if self.schedulessorted != nil {
+                number = self.schedulessorted!.numberOfFutureSchedules(hiddenID)
             } else {
                 number = 0
             }
@@ -353,7 +353,7 @@ extension ViewControllertabSchedule: AddProfiles {
     func newProfile(new: Bool, profile: String?) {
         // Resetting the reference to ScheduleSortedAndExpand object.
         // New object is created when a new profile is loaded.
-        self.schedules = nil
+        self.schedulessorted = nil
         self.firstRemoteServer.stringValue = ""
         self.firstLocalCatalog.stringValue = ""
         self.secondRemoteServer.stringValue = ""
@@ -379,11 +379,11 @@ extension ViewControllertabSchedule: RefreshtableView {
         self.secondRemoteServer.stringValue = ""
         self.secondLocalCatalog.stringValue = ""
         // Create a New schedules object
-        self.schedules = nil
-        self.schedules = ScheduleSortedAndExpand()
+        self.schedulessorted = nil
+        self.schedulessorted = ScheduleSortedAndExpand()
         // Displaying next two scheduled tasks
-        self.firstScheduledTask.stringValue = self.schedules!.whenIsNextTwoTasksString()[0]
-        self.secondScheduledTask.stringValue = self.schedules!.whenIsNextTwoTasksString()[1]
+        self.firstScheduledTask.stringValue = self.schedulessorted!.whenIsNextTwoTasksString()[0]
+        self.secondScheduledTask.stringValue = self.schedulessorted!.whenIsNextTwoTasksString()[1]
     }
 
 }
@@ -392,7 +392,7 @@ extension ViewControllertabSchedule: StartTimer {
 
     // Called from Process
     func startTimerNextJob() {
-        self.schedules = ScheduleSortedAndExpand()
+        self.schedulessorted = ScheduleSortedAndExpand()
         self.firstRemoteServer.stringValue = ""
         self.firstLocalCatalog.stringValue = ""
         self.startTimer()

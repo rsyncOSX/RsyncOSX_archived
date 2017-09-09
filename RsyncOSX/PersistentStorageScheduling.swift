@@ -24,12 +24,12 @@ final class PersistentStorageScheduling: Readwritefiles {
 
     weak var readschedulesDelegate: Readupdatedschedules?
     // Variables holds all scheduledata
-    private var schedules: [NSDictionary]?
+    private var schedulesasDict: [NSDictionary]?
 
     /// Function reads schedules from permanent store
     /// - returns : array of NSDictonarys, return might be nil if schedule is already in memory
     func readSchedulesFromPermanentStore() -> [NSDictionary]? {
-        return self.schedules
+        return self.schedulesasDict
     }
 
     // Saving Schedules from MEMORY to persistent store
@@ -101,9 +101,9 @@ final class PersistentStorageScheduling: Readwritefiles {
         // if not dirty set self.configurationFromStore to nil to tell
         // anyone to read Configurations from memory
         if let schedulesFromPersistentstore = self.getDatafromfile() {
-            self.schedules = schedulesFromPersistentstore
+            self.schedulesasDict = schedulesFromPersistentstore
         } else {
-            self.schedules = nil
+            self.schedulesasDict = nil
         }
     }
 }
