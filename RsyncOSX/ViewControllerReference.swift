@@ -72,25 +72,18 @@ class ViewControllerReference {
     func getvcref(viewcontroller: ViewController) -> NSViewController? {
         switch viewcontroller {
         case .vctabmain:
-            print("viewcontrollertabmain")
             return self.viewControllertabMain
         case .vcloggdata:
-            print("viewcontrollerloggdata")
             return self.viewControllerLoggData
         case .vcnewconfigurations:
-            print("viewcontrollernewconfigurations")
             return self.viewControllerNewConfigurations
         case .vctabschedule:
-            print("viewcontrollertabschedule")
             return self.viewControllertabSchedule
         case .vccopyfiles:
-            print("viewcontrollercopyfiles")
             return self.viewControllerCopyFiles
         case .vcssh:
-            print("viewcontrollerssh")
             return self.viewControllerSsh
         case .vcabout:
-            print("viewcontrollerabout")
             return self.viewControllerAbout
         }
     }

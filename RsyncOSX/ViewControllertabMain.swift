@@ -46,6 +46,8 @@ class ViewControllertabMain: NSViewController {
 
     // Configurations object
     var configurationsNoS: Configurations?
+    var schedulesNoS: SchedulesNoS?
+
     // Reference to the single taskobject
     var singletask: NewSingleTask?
     // Reference to batch taskobject
@@ -355,6 +357,7 @@ class ViewControllertabMain: NSViewController {
         self.loadProfileMenu = true
         // configurationsNoS
         self.configurationsNoS = Configurations(profile: nil)
+        self.schedulesNoS = SchedulesNoS(profile: nil)
         // configurationsNoS
     }
 
@@ -696,6 +699,7 @@ extension ViewControllertabMain: AddProfiles {
             // A new and empty profile is created
             Schedules.shared.destroySchedule()
             self.configurationsNoS = self.createconfigurationsobject(profile: nil)
+            self.schedulesNoS = self.createschedulesobject(profile: nil)
             // Reset in tabSchedule
             newProfileDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabschedule) as? ViewControllertabSchedule
             newProfileDelegate?.newProfile(new: true, profile: profile)
@@ -707,6 +711,7 @@ extension ViewControllertabMain: AddProfiles {
         newProfileDelegate?.newProfile(new: false, profile: profile)
         // Read configurations and Scheduledata
         self.configurationsNoS = self.createconfigurationsobject(profile: profile)
+        self.schedulesNoS = self.createschedulesobject(profile: profile)
         // Make sure loading profile
         self.loadProfileMenu = true
         self.displayProfile()
@@ -1183,6 +1188,18 @@ extension ViewControllertabMain: GetConfigurationsObject {
         globalMainQueue.async(execute: { () -> Void in
             self.mainTableView.reloadData()
         })
+    }
+}
+
+extension ViewControllertabMain: GetSchedulesObject {
+    func getschedulesobject() -> SchedulesNoS? {
+        return self.schedulesNoS
+    }
+
+    func createschedulesobject(profile: String?) -> SchedulesNoS? {
+        self.schedulesNoS = nil
+        self.schedulesNoS = SchedulesNoS(profile: profile)
+        return self.schedulesNoS
     }
 
 }
