@@ -39,7 +39,8 @@ final class PersistentStorageAPI {
             return Configurations
         } else {
             // Return configuration from memory
-            return self.configurations!.getConfigurations()
+            // return self.configurations!.getConfigurations()
+            return []
         }
     }
 
@@ -113,7 +114,8 @@ final class PersistentStorageAPI {
             }
             return schedule
         } else {
-            return self.schedules!.getSchedule()
+            // return self.schedules!.getSchedule()
+            return []
         }
     }
 
@@ -131,14 +133,12 @@ final class PersistentStorageAPI {
     }
 
     init(profile: String?) {
-        // configurations
         self.configurationsDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain)
             as? ViewControllertabMain
         self.schedulesDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain)
             as? ViewControllertabMain
         self.configurations = self.configurationsDelegate?.getconfigurationsobject()
         self.schedules = self.schedulesDelegate?.getschedulesobject()
-        // configurations
         self.profile = profile
     }
 }
