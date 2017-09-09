@@ -45,7 +45,7 @@ protocol ReportErrorInMain: class {
 class ViewControllertabMain: NSViewController {
 
     // Configurations object
-    var configurationsNoS: Configurations?
+    var configurations: Configurations?
     var schedulesNoS: Schedules?
 
     // Reference to the single taskobject
@@ -231,7 +231,7 @@ class ViewControllertabMain: NSViewController {
                 if answer {
                     if self.hiddenID != nil {
                         // Delete Configurations and Schedules by hiddenID
-                        self.configurationsNoS!.deleteConfigurationsByhiddenID(hiddenID: self.hiddenID!)
+                        self.configurations!.deleteConfigurationsByhiddenID(hiddenID: self.hiddenID!)
                         self.schedulesNoS!.deletechedule(hiddenID: self.hiddenID!)
                         // Reading main Configurations and Schedule to memory
                         // self.reReadConfigurationsAndSchedules()
@@ -315,7 +315,7 @@ class ViewControllertabMain: NSViewController {
     // Display correct rsync command in view
     fileprivate func setRsyncCommandDisplay() {
         if let index = self.index {
-            guard index <= self.configurationsNoS!.getConfigurations().count else {
+            guard index <= self.configurations!.getConfigurations().count else {
                 return
             }
             if self.displayDryRun.state == .on {
@@ -351,20 +351,20 @@ class ViewControllertabMain: NSViewController {
         self.displayDryRun.state = .on
         self.tools = Tools()
         self.loadProfileMenu = true
-        // configurationsNoS
-        self.configurationsNoS = Configurations(profile: nil)
+        // configurations
+        self.configurations = Configurations(profile: nil)
         self.schedulesNoS = Schedules(profile: nil)
-        // configurationsNoS
+        // configurations
     }
 
     override func viewDidAppear() {
         super.viewDidAppear()
         self.showProcessInfo(info: .blank)
         // Allow notify about Scheduled jobs
-        self.configurationsNoS!.allowNotifyinMain = true
+        self.configurations!.allowNotifyinMain = true
         self.setInfo(info: "", color: .black)
         self.light.color = .systemYellow
-        if self.configurationsNoS!.configurationsDataSourcecount() > 0 {
+        if self.configurations!.configurationsDataSourcecount() > 0 {
             globalMainQueue.async(execute: { () -> Void in
                 self.mainTableView.reloadData()
             })
@@ -386,7 +386,7 @@ class ViewControllertabMain: NSViewController {
     override func viewDidDisappear() {
         super.viewDidDisappear()
         // Do not allow notify in Main
-        self.configurationsNoS!.allowNotifyinMain = false
+        self.configurations!.allowNotifyinMain = false
     }
 
     // True if scheduled task in progress
@@ -406,7 +406,7 @@ class ViewControllertabMain: NSViewController {
 
     // Execute tasks by double click in table
     @objc(tableViewDoubleClick:) func tableViewDoubleClick(sender: AnyObject) {
-        if self.configurationsNoS!.allowDoubleclick == true {
+        if self.configurations!.allowDoubleclick == true {
             if self.ready {
                 self.executeSingleTask()
             }
@@ -420,7 +420,7 @@ class ViewControllertabMain: NSViewController {
             Alerts.showInfo("Scheduled operation in progress")
             return
         }
-        guard self.configurationsNoS!.norsync == false else {
+        guard self.configurations!.norsync == false else {
             self.tools!.noRsync()
             return
         }
@@ -433,7 +433,7 @@ class ViewControllertabMain: NSViewController {
             self.singletask = NewSingleTask(index: self.index!)
             self.singletask?.executeSingleTask()
             // Set reference to singleTask object
-            self.configurationsNoS!.singleTask = self.singletask
+            self.configurations!.singleTask = self.singletask
             return
         }
         // Real run
@@ -446,7 +446,7 @@ class ViewControllertabMain: NSViewController {
             Alerts.showInfo("Scheduled operation in progress")
             return
         }
-        guard self.configurationsNoS!.norsync == false else {
+        guard self.configurations!.norsync == false else {
             self.tools!.noRsync()
             return
         }
@@ -464,7 +464,7 @@ class ViewControllertabMain: NSViewController {
             self.profilInfo.textColor = .blue
             return
         }
-        if let profile = self.configurationsNoS!.getProfile() {
+        if let profile = self.configurations!.getProfile() {
             self.profilInfo.stringValue = "Profile: " + profile
             self.profilInfo.textColor = .blue
         } else {
@@ -477,7 +477,7 @@ class ViewControllertabMain: NSViewController {
 
     // Function for setting allowDouble click
     internal func displayAllowDoubleclick() {
-        if self.configurationsNoS!.allowDoubleclick == true {
+        if self.configurations!.allowDoubleclick == true {
             self.allowDoubleclick.stringValue = "Double click on row to execute task"
             self.allowDoubleclick.textColor = .blue
         } else {
@@ -497,7 +497,7 @@ class ViewControllertabMain: NSViewController {
         let indexes = myTableViewFromNotification.selectedRowIndexes
         if let index = indexes.first {
             self.index = index
-            self.hiddenID = self.configurationsNoS!.gethiddenID(index: index)
+            self.hiddenID = self.configurations!.gethiddenID(index: index)
             // Reset output
             self.output = nil
             self.outputbatch = nil
@@ -516,7 +516,7 @@ class ViewControllertabMain: NSViewController {
     }
 
     func readConfigurations() {
-        if self.configurationsNoS!.configurationsDataSourcecount() > 0 {
+        if self.configurations!.configurationsDataSourcecount() > 0 {
             globalMainQueue.async(execute: { () -> Void in
                 self.mainTableView.reloadData()
             })
@@ -534,10 +534,10 @@ extension ViewControllertabMain : NSTableViewDataSource {
 
     // Delegate for size of table
     func numberOfRows(in tableView: NSTableView) -> Int {
-        guard self.configurationsNoS != nil else {
+        guard self.configurations != nil else {
             return 0
         }
-        return self.configurationsNoS!.configurationsDataSourcecount()
+        return self.configurations!.configurationsDataSourcecount()
     }
 }
 
@@ -557,13 +557,13 @@ extension ViewControllertabMain : NSTableViewDelegate {
 
     // TableView delegates
     @objc(tableView:objectValueForTableColumn:row:) func tableView(_ tableView: NSTableView, objectValueFor tableColumn: NSTableColumn?, row: Int) -> Any? {
-        if row > self.configurationsNoS!.configurationsDataSourcecount() - 1 {
+        if row > self.configurations!.configurationsDataSourcecount() - 1 {
             return nil
         }
-        let object: NSDictionary = self.configurationsNoS!.getConfigurationsDataSource()![row]
+        let object: NSDictionary = self.configurations!.getConfigurationsDataSource()![row]
         var text: String?
         var schedule: Bool = false
-        let hiddenID: Int = self.configurationsNoS!.getConfigurations()[row].hiddenID
+        let hiddenID: Int = self.configurations!.getConfigurations()[row].hiddenID
         if self.schedulesNoS!.hiddenIDinSchedule(hiddenID) {
             text = object[tableColumn!.identifier] as? String
             if text == "backup" || text == "restore" {
@@ -599,8 +599,8 @@ extension ViewControllertabMain : NSTableViewDelegate {
 
     // Toggling batch
     @objc(tableView:setObjectValue:forTableColumn:row:) func tableView(_ tableView: NSTableView, setObjectValue object: Any?, for tableColumn: NSTableColumn?, row: Int) {
-        if self.configurationsNoS!.getConfigurations()[row].task == "backup" {
-            self.configurationsNoS!.setBatchYesNo(row)
+        if self.configurations!.getConfigurations()[row].task == "backup" {
+            self.configurations!.setBatchYesNo(row)
         }
         self.singletask = nil
         self.setInfo(info: "Estimate", color: .blue)
@@ -683,7 +683,7 @@ extension ViewControllertabMain: AddProfiles {
         self.setNumbers(output: nil)
         guard new == false else {
             // A new and empty profile is created
-            self.configurationsNoS = self.createconfigurationsobject(profile: nil)
+            self.configurations = self.createconfigurationsobject(profile: nil)
             self.schedulesNoS = self.createschedulesobject(profile: nil)
             // Reset in tabSchedule
             newProfileDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabschedule) as? ViewControllertabSchedule
@@ -695,7 +695,7 @@ extension ViewControllertabMain: AddProfiles {
         newProfileDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabschedule) as? ViewControllertabSchedule
         newProfileDelegate?.newProfile(new: false, profile: profile)
         // Read configurations and Scheduledata
-        self.configurationsNoS = self.createconfigurationsobject(profile: profile)
+        self.configurations = self.createconfigurationsobject(profile: profile)
         self.schedulesNoS = self.createschedulesobject(profile: profile)
         // Make sure loading profile
         self.loadProfileMenu = true
@@ -731,7 +731,7 @@ extension ViewControllertabMain: ScheduledJobInProgress {
     }
 
     func notifyScheduledJob(config: Configuration?) {
-        if self.configurationsNoS!.allowNotifyinMain {
+        if self.configurations!.allowNotifyinMain {
             if config == nil {
                 globalMainQueue.async(execute: {() -> Void in
                     Alerts.showInfo("Scheduled backup DID not execute?")
@@ -774,7 +774,7 @@ extension ViewControllertabMain: Connections {
     // Remote servers offline are marked with red line in mainTableView
     func displayConnections() {
         // Only do a reload if we are in the main view
-        guard self.configurationsNoS!.allowNotifyinMain == true else {
+        guard self.configurations!.allowNotifyinMain == true else {
             return
         }
         self.loadProfileMenu = true
@@ -789,7 +789,7 @@ extension ViewControllertabMain: Connections {
 extension ViewControllertabMain: NewVersionDiscovered {
     // Notifies if new version is discovered
     func notifyNewVersion() {
-        if self.configurationsNoS!.allowNotifyinMain {
+        if self.configurations!.allowNotifyinMain {
             globalMainQueue.async(execute: { () -> Void in
                 self.presentViewControllerAsSheet(self.newVersionViewController)
             })
@@ -852,7 +852,7 @@ extension ViewControllertabMain: UpdateProgress {
     func fileHandler() {
         if self.batchtask != nil {
             // Batch run
-            if let batchobject = self.configurationsNoS!.getBatchdataObject() {
+            if let batchobject = self.configurations!.getBatchdataObject() {
                 let work = batchobject.nextBatchCopy()
                 if work.1 == 1 {
                     // Real work is done, must set reference to Process object in case of Abort
@@ -897,7 +897,7 @@ extension ViewControllertabMain: DeselectRowTable {
 extension ViewControllertabMain: RsyncError {
     func rsyncerror() {
         // Set on or off in user configuration
-        if self.configurationsNoS!.rsyncerror {
+        if self.configurations!.rsyncerror {
             globalMainQueue.async(execute: { () -> Void in
                 self.setInfo(info: "Error", color: .red)
                 self.light.color = .systemRed
@@ -956,11 +956,11 @@ extension ViewControllertabMain: AbortOperations {
             self.process = nil
             self.index = nil
         }
-        if let batchobject = self.configurationsNoS!.getBatchdataObject() {
+        if let batchobject = self.configurations!.getBatchdataObject() {
             // Empty queue in batchobject
             batchobject.abortOperations()
             // Set reference to batchdata = nil
-            self.configurationsNoS!.deleteBatchData()
+            self.configurations!.deleteBatchData()
             self.schedulessorted = nil
             self.process = nil
             self.setInfo(info: "Abort", color: .red)
@@ -1128,47 +1128,47 @@ extension ViewControllertabMain: BatchTask {
 
 extension ViewControllertabMain: GetConfigurationsObject {
     func getconfigurationsobject() -> Configurations? {
-        guard self.configurationsNoS != nil else {
+        guard self.configurations != nil else {
             return nil
         }
         // Update alle userconfigurations
-        self.configurationsNoS!.rsyncVer3 = ViewControllerReference.shared.rsyncVer3
-        self.configurationsNoS!.rsyncPath = ViewControllerReference.shared.rsyncPath
-        self.configurationsNoS!.norsync = ViewControllerReference.shared.norsync
-        self.configurationsNoS!.detailedlogging = ViewControllerReference.shared.detailedlogging
-        self.configurationsNoS!.allowDoubleclick = ViewControllerReference.shared.allowDoubleclick
-        self.configurationsNoS!.restorePath = ViewControllerReference.shared.restorePath
-        self.configurationsNoS!.rsyncerror = ViewControllerReference.shared.rsyncerror
-        return self.configurationsNoS
+        self.configurations!.rsyncVer3 = ViewControllerReference.shared.rsyncVer3
+        self.configurations!.rsyncPath = ViewControllerReference.shared.rsyncPath
+        self.configurations!.norsync = ViewControllerReference.shared.norsync
+        self.configurations!.detailedlogging = ViewControllerReference.shared.detailedlogging
+        self.configurations!.allowDoubleclick = ViewControllerReference.shared.allowDoubleclick
+        self.configurations!.restorePath = ViewControllerReference.shared.restorePath
+        self.configurations!.rsyncerror = ViewControllerReference.shared.rsyncerror
+        return self.configurations
     }
 
     func createconfigurationsobject(profile: String?) -> Configurations? {
-        self.configurationsNoS = nil
-        self.configurationsNoS = Configurations(profile: profile)
-        return self.configurationsNoS
+        self.configurations = nil
+        self.configurations = Configurations(profile: profile)
+        return self.configurations
     }
 
     func isdatadirty() -> Bool {
-        guard self.configurationsNoS != nil else {
+        guard self.configurations != nil else {
             return true
         }
-        return self.configurationsNoS!.isDataDirty()
+        return self.configurations!.isDataDirty()
     }
 
     func setdatadirty(dirty: Bool) {
-        guard self.configurationsNoS != nil else {
+        guard self.configurations != nil else {
             return
         }
-        self.configurationsNoS!.setDataDirty(dirty: dirty)
+        self.configurations!.setDataDirty(dirty: dirty)
     }
 
     func reloadconfigurations() {
-        if let profile = self.configurationsNoS!.getProfile() {
-            self.configurationsNoS = nil
-            self.configurationsNoS = Configurations(profile: profile)
+        if let profile = self.configurations!.getProfile() {
+            self.configurations = nil
+            self.configurations = Configurations(profile: profile)
         } else {
-            self.configurationsNoS = nil
-            self.configurationsNoS = Configurations(profile: nil)
+            self.configurations = nil
+            self.configurations = Configurations(profile: nil)
         }
         globalMainQueue.async(execute: { () -> Void in
             self.mainTableView.reloadData()

@@ -20,7 +20,7 @@ import Foundation
 class ExecuteTask: Operation {
 
     override func main() {
-        // configurationsNoS
+        // configurations
         weak var configurationsDelegate: GetConfigurationsObject?
         configurationsDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain)
             as? ViewControllertabMain
@@ -28,10 +28,10 @@ class ExecuteTask: Operation {
         schedulesDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain)
             as? ViewControllertabMain
         var schedulesNoS: Schedules?
-        var configurationsNoS: Configurations?
-        configurationsNoS = configurationsDelegate?.getconfigurationsobject()
+        var configurations: Configurations?
+        configurations = configurationsDelegate?.getconfigurationsobject()
         schedulesNoS = schedulesDelegate?.getschedulesobject()
-        // configurationsNoS
+        // configurations
 
         // Storage API
         var storageapi: PersistentStorageAPI?
@@ -45,7 +45,7 @@ class ExecuteTask: Operation {
         // Get the first job of the queue
         if let dict: NSDictionary = schedulesNoS!.scheduledJob {
             if let hiddenID: Int = dict.value(forKey: "hiddenID") as? Int {
-                if let profile = configurationsNoS!.getProfile() {
+                if let profile = configurations!.getProfile() {
                     storageapi = PersistentStorageAPI(profile : profile)
                 } else {
                     storageapi = PersistentStorageAPI(profile : nil)
@@ -55,7 +55,7 @@ class ExecuteTask: Operation {
                 guard configArray.count > 0 else {
                     notifyDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain)
                         as? ViewControllertabMain
-                    if configurationsNoS!.allowNotifyinMain == true {
+                    if configurations!.allowNotifyinMain == true {
                         notifyDelegate?.notifyScheduledJob(config: nil)
                     }
                     return

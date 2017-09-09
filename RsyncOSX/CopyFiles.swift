@@ -12,10 +12,10 @@ import Foundation
 
 final class CopyFiles {
 
-    // configurationsNoS
+    // configurations
     weak var configurationsDelegate: GetConfigurationsObject?
-    var configurationsNoS: Configurations?
-    // configurationsNoS
+    var configurations: Configurations?
+    // configurations
 
     // Index from View
     private var index: Int?
@@ -134,13 +134,13 @@ final class CopyFiles {
     init (index: Int) {
         // Setting index and configuration object
         self.index = index
-        self.config = self.configurationsNoS!.getConfigurations()[self.index!]
+        self.config = self.configurations!.getConfigurations()[self.index!]
         self.getRemoteFileList()
-        // configurationsNoS
+        // configurations
         self.configurationsDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain)
             as? ViewControllertabMain
-        self.configurationsNoS = self.configurationsDelegate?.getconfigurationsobject()
-        // configurationsNoS
+        self.configurations = self.configurationsDelegate?.getconfigurationsobject()
+        // configurations
     }
 
   }

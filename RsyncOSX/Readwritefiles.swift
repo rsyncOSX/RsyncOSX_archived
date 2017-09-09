@@ -23,10 +23,10 @@ enum WhatToReadWrite {
 
 class Readwritefiles {
 
-    // configurationsNoS
+    // configurations
     weak var configurationsDelegate: GetConfigurationsObject?
-    var configurationsNoS: Configurations?
-    // configurationsNoS
+    var configurations: Configurations?
+    // configurations
 
     // Name set for schedule, configuration or config
     private var name: String?
@@ -179,11 +179,11 @@ class Readwritefiles {
             self.profile = profile
             self.useProfile = true
         }
-        // configurationsNoS
+        // configurations
         self.configurationsDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain)
             as? ViewControllertabMain
-        self.configurationsNoS = self.configurationsDelegate?.getconfigurationsobject()
-        // configurationsNoS
+        self.configurations = self.configurationsDelegate?.getconfigurationsobject()
+        // configurations
         self.setpreferences(task)
         self.setnameandpath()
     }

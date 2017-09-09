@@ -28,12 +28,12 @@ class Filtereddata {
 
 final class ScheduleLoggData {
 
-    // configurationsNoS
+    // configurations
     weak var configurationsDelegate: GetConfigurationsObject?
-    var configurationsNoS: Configurations?
+    var configurations: Configurations?
     weak var schedulesDelegate: GetSchedulesObject?
     var schedulesNoS: Schedules?
-    // configurationsNoS
+    // configurations
 
     // Loggdata is only sorted and read once
     private var loggdata: Array<NSDictionary>?
@@ -83,8 +83,8 @@ final class ScheduleLoggData {
                 for j in 0 ..< input[i].logrecords.count {
                     let dict = input[i].logrecords[j]
                     let logdetail: NSDictionary = [
-                        "localCatalog": self.configurationsNoS!.getResourceConfiguration(hiddenID, resource: .localCatalog),
-                        "offsiteServer": self.configurationsNoS!.getResourceConfiguration(hiddenID, resource: .offsiteServer),
+                        "localCatalog": self.configurations!.getResourceConfiguration(hiddenID, resource: .localCatalog),
+                        "offsiteServer": self.configurations!.getResourceConfiguration(hiddenID, resource: .offsiteServer),
                         "dateExecuted": (dict.value(forKey: "dateExecuted") as? String)!,
                         "resultExecuted": (dict.value(forKey: "resultExecuted") as? String)!,
                         "parent": (dict.value(forKey: "parent") as? String)!,
@@ -107,14 +107,14 @@ final class ScheduleLoggData {
     }
 
     init () {
-        // configurationsNoS
+        // configurations
         self.configurationsDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain)
             as? ViewControllertabMain
         self.schedulesDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain)
             as? ViewControllertabMain
-        self.configurationsNoS = self.configurationsDelegate?.getconfigurationsobject()
+        self.configurations = self.configurationsDelegate?.getconfigurationsobject()
         self.schedulesNoS = self.schedulesDelegate?.getschedulesobject()
-        // configurationsNoS
+        // configurations
         // Read and sort loggdata only once
         if self.loggdata == nil {
             self.readAndSortAllLoggdata()

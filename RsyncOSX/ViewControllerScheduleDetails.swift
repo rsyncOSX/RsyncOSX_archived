@@ -17,12 +17,12 @@ protocol GetHiddenID : class {
 
 class ViewControllerScheduleDetails: NSViewController {
 
-    // configurationsNoS
+    // configurations
     weak var configurationsDelegate: GetConfigurationsObject?
-    var configurationsNoS: Configurations?
+    var configurations: Configurations?
     weak var schedulesDelegate: GetSchedulesObject?
     var schedulesNoS: Schedules?
-    // configurationsNoS
+    // configurations
 
     @IBOutlet weak var localCatalog: NSTextField!
     @IBOutlet weak var remoteCatalog: NSTextField!
@@ -78,17 +78,17 @@ class ViewControllerScheduleDetails: NSViewController {
         self.getHiddenIDDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabschedule)
             as? ViewControllertabSchedule
         self.hiddendID = self.getHiddenIDDelegate?.gethiddenID()
-        // configurationsNoS
+        // configurations
         self.configurationsDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain)
             as? ViewControllertabMain
         self.schedulesDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain)
             as? ViewControllertabMain
-        // configurationsNoS
+        // configurations
     }
 
     override func viewDidAppear() {
         super.viewDidAppear()
-        self.configurationsNoS = self.configurationsDelegate?.getconfigurationsobject()
+        self.configurations = self.configurationsDelegate?.getconfigurationsobject()
         self.schedulesNoS = self.schedulesDelegate?.getschedulesobject()
         self.hiddendID = self.getHiddenIDDelegate?.gethiddenID()
         self.data = self.schedulesNoS!.readschedule(self.hiddendID!)
@@ -96,9 +96,9 @@ class ViewControllerScheduleDetails: NSViewController {
         globalMainQueue.async(execute: { () -> Void in
             self.scheduletable.reloadData()
         })
-        self.localCatalog.stringValue = self.configurationsNoS!.getResourceConfiguration(self.hiddendID!, resource: .localCatalog)
-        self.remoteCatalog.stringValue = self.configurationsNoS!.getResourceConfiguration(self.hiddendID!, resource: .remoteCatalog)
-        self.offsiteServer.stringValue = self.configurationsNoS!.getResourceConfiguration(self.hiddendID!, resource: .offsiteServer)
+        self.localCatalog.stringValue = self.configurations!.getResourceConfiguration(self.hiddendID!, resource: .localCatalog)
+        self.remoteCatalog.stringValue = self.configurations!.getResourceConfiguration(self.hiddendID!, resource: .remoteCatalog)
+        self.offsiteServer.stringValue = self.configurations!.getResourceConfiguration(self.hiddendID!, resource: .offsiteServer)
         if self.tools == nil { self.tools = Tools()}
     }
 }

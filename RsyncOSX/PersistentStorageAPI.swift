@@ -10,12 +10,12 @@ import Foundation
 
 final class PersistentStorageAPI {
 
-    // configurationsNoS
+    // configurations
     weak var configurationsDelegate: GetConfigurationsObject?
-    var configurationsNoS: Configurations?
+    var configurations: Configurations?
     weak var schedulesDelegate: GetSchedulesObject?
     var schedulesNoS: Schedules?
-    // configurationsNoS
+    // configurations
 
     // Delegate function for starting next scheduled operatin if any
     // Delegate function is triggered when Process.didTerminateNotification
@@ -39,7 +39,7 @@ final class PersistentStorageAPI {
             return Configurations
         } else {
             // Return configuration from memory
-            return self.configurationsNoS!.getConfigurations()
+            return self.configurations!.getConfigurations()
         }
     }
 
@@ -52,7 +52,7 @@ final class PersistentStorageAPI {
     // Saving added configuration from meory
     func saveNewConfigurationsFromMemory() {
         let save = PersistentStorageConfiguration(profile: self.profile)
-        let newConfigurations = self.configurationsNoS!.getnewConfigurations()
+        let newConfigurations = self.configurations!.getnewConfigurations()
         if newConfigurations != nil {
             for i in 0 ..< newConfigurations!.count {
                     save.addConfigurationsToMemory(newConfigurations![i])
@@ -131,14 +131,14 @@ final class PersistentStorageAPI {
     }
 
     init(profile: String?) {
-        // configurationsNoS
+        // configurations
         self.configurationsDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain)
             as? ViewControllertabMain
         self.schedulesDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain)
             as? ViewControllertabMain
-        self.configurationsNoS = self.configurationsDelegate?.getconfigurationsobject()
+        self.configurations = self.configurationsDelegate?.getconfigurationsobject()
         self.schedulesNoS = self.schedulesDelegate?.getschedulesobject()
-        // configurationsNoS
+        // configurations
         self.profile = profile
     }
 }

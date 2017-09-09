@@ -11,10 +11,10 @@ import Cocoa
 
 class ViewControllerEdit: NSViewController {
 
-    // configurationsNoS
+    // configurations
     weak var configurationsDelegate: GetConfigurationsObject?
-    var configurationsNoS: Configurations?
-    // configurationsNoS
+    var configurations: Configurations?
+    // configurations
 
     @IBOutlet weak var localCatalog: NSTextField!
     @IBOutlet weak var offsiteCatalog: NSTextField!
@@ -36,7 +36,7 @@ class ViewControllerEdit: NSViewController {
 
     // Update configuration, save and dismiss view
     @IBAction func update(_ sender: NSButton) {
-        var config: [Configuration] = self.configurationsNoS!.getConfigurations()
+        var config: [Configuration] = self.configurations!.getConfigurations()
         if self.localCatalog.stringValue.hasSuffix("/") == false && self.singleFile == false {
             self.localCatalog.stringValue += "/"
         }
@@ -57,7 +57,7 @@ class ViewControllerEdit: NSViewController {
             config[self.index!].sshport = nil
         }
         config[self.index!].rsyncdaemon = self.rsyncdaemon.state.rawValue
-        self.configurationsNoS!.updateConfigurations(config[self.index!], index: self.index!)
+        self.configurations!.updateConfigurations(config[self.index!], index: self.index!)
         self.dismissDelegate?.dismiss_view(viewcontroller: self)
     }
 
@@ -68,15 +68,15 @@ class ViewControllerEdit: NSViewController {
             as? ViewControllertabMain
         self.getindexDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain)
             as? ViewControllertabMain
-        // configurationsNoS
+        // configurations
         self.configurationsDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain)
             as? ViewControllertabMain
-        // configurationsNoS
+        // configurations
     }
 
     override func viewDidAppear() {
         super.viewDidAppear()
-        self.configurationsNoS = self.configurationsDelegate?.getconfigurationsobject()
+        self.configurations = self.configurationsDelegate?.getconfigurationsobject()
         // Reset all values in view
         self.localCatalog.stringValue = ""
         self.offsiteCatalog.stringValue = ""
@@ -87,7 +87,7 @@ class ViewControllerEdit: NSViewController {
         self.rsyncdaemon.state = .off
         // Getting index of selected configuration
         self.index = self.getindexDelegate?.getindex()
-        let config: Configuration = self.configurationsNoS!.getConfigurations()[self.index!]
+        let config: Configuration = self.configurations!.getConfigurations()[self.index!]
         self.localCatalog.stringValue = config.localCatalog
         // Check for single file
         if self.localCatalog.stringValue.hasSuffix("/") == false {

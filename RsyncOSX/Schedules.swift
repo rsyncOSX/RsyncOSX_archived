@@ -79,7 +79,7 @@ class Schedules: ScheduleWriteLoggData {
         let newSchedule = ConfigurationSchedule(dictionary: dict, log: nil)
         self.schedule.append(newSchedule)
         // Set data dirty
-        self.configurationsNoS!.setDataDirty(dirty: true)
+        self.configurations!.setDataDirty(dirty: true)
         self.storageapi!.saveScheduleFromMemory()
     }
 

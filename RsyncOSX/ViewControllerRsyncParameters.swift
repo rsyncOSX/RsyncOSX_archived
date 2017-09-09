@@ -24,10 +24,10 @@ protocol GetSelecetedIndex : class {
 
 class ViewControllerRsyncParameters: NSViewController {
 
-    // configurationsNoS
+    // configurations
     weak var configurationsDelegate: GetConfigurationsObject?
-    var configurationsNoS: Configurations?
-    // configurationsNoS
+    var configurations: Configurations?
+    // configurations
 
     // Storage API
     var storageapi: PersistentStorageAPI?
@@ -77,8 +77,8 @@ class ViewControllerRsyncParameters: NSViewController {
         case .on:
             self.setValueComboBox(combobox: self.parameter12, index: (self.parameters!.indexandvaluersyncparameter(self.parameters!.getBackupString()[0]).0))
             self.viewParameter12.stringValue = self.parameters!.indexandvaluersyncparameter(self.parameters!.getBackupString()[0]).1
-            let hiddenID = self.configurationsNoS!.gethiddenID(index: (self.getindexDelegate?.getindex())!)
-            let localcatalog = self.configurationsNoS!.getResourceConfiguration(hiddenID, resource: .localCatalog)
+            let hiddenID = self.configurations!.gethiddenID(index: (self.getindexDelegate?.getindex())!)
+            let localcatalog = self.configurations!.getResourceConfiguration(hiddenID, resource: .localCatalog)
             let localcatalogParts = (localcatalog as AnyObject).components(separatedBy: "/")
             self.setValueComboBox(combobox: self.parameter13, index: (self.parameters!.indexandvaluersyncparameter(self.parameters!.getBackupString()[1]).0))
             self.viewParameter13.stringValue = "../backup" + "_" + localcatalogParts[localcatalogParts.count - 2]
@@ -154,21 +154,21 @@ as? ViewControllertabMain
         // Dismisser is root controller
         self.dismissDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain)
             as? ViewControllertabMain
-        // configurationsNoS
+        // configurations
         self.configurationsDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain)
             as? ViewControllertabMain
-        // configurationsNoS
+        // configurations
     }
 
     override func viewDidAppear() {
         super.viewDidAppear()
-        self.configurationsNoS = self.configurationsDelegate?.getconfigurationsobject()
-        if let profile = self.configurationsNoS!.getProfile() {
+        self.configurations = self.configurationsDelegate?.getconfigurationsobject()
+        if let profile = self.configurations!.getProfile() {
             self.storageapi = PersistentStorageAPI(profile : profile)
         } else {
             self.storageapi = PersistentStorageAPI(profile : nil)
         }
-        var configurations: [Configuration] = self.configurationsNoS!.getConfigurations()
+        var configurations: [Configuration] = self.configurations!.getConfigurations()
         if let index = self.getindexDelegate?.getindex() {
             // Create RsyncParameters object and load initial parameters
             self.parameters = RsyncParameters(config: configurations[index])
@@ -240,7 +240,7 @@ as? ViewControllertabMain
                 configurations[index].sshport = Int(port.stringValue)
             }
             // Update configuration in memory before saving
-            self.configurationsNoS!.updateConfigurations(configurations[index], index: index)
+            self.configurations!.updateConfigurations(configurations[index], index: index)
             // notify an update
             self.userparamsupdatedDelegate?.rsyncuserparamsupdated()
         }

@@ -11,12 +11,12 @@ import Cocoa
 
 class ViewControllerScheduledBackupinWork: NSViewController {
 
-    // configurationsNoS
+    // configurations
     weak var configurationsDelegate: GetConfigurationsObject?
-    var configurationsNoS: Configurations?
+    var configurations: Configurations?
     weak var schedulesDelegate: GetSchedulesObject?
     var schedulesNoS: Schedules?
-    // configurationsNoS
+    // configurations
 
     // Dismisser
     weak var dismissDelegate: DismissViewController?
@@ -49,8 +49,8 @@ class ViewControllerScheduledBackupinWork: NSViewController {
             self.startDate.stringValue = String(describing: (dict.value(forKey: "start") as? Date)!)
             self.schedule.stringValue = (dict.value(forKey: "schedule") as? String)!
             let hiddenID = (dict.value(forKey: "hiddenID") as? Int)!
-            let index = self.configurationsNoS!.getIndex(hiddenID)
-            let config: Configuration = self.configurationsNoS!.getConfigurations()[index]
+            let index = self.configurations!.getIndex(hiddenID)
+            let config: Configuration = self.configurations!.getConfigurations()[index]
             self.remoteServer.stringValue = config.offsiteServer
             self.remoteCatalog.stringValue = config.offsiteCatalog
             self.localCatalog.stringValue = config.localCatalog
@@ -68,17 +68,17 @@ class ViewControllerScheduledBackupinWork: NSViewController {
         // Dismisser is root controller
         self.dismissDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain)
             as? ViewControllertabMain
-        // configurationsNoS
+        // configurations
         self.configurationsDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain)
             as? ViewControllertabMain
         self.schedulesDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain)
             as? ViewControllertabMain
-        // configurationsNoS
+        // configurations
     }
 
     override func viewDidAppear() {
         super.viewDidAppear()
-        self.configurationsNoS = self.configurationsDelegate?.getconfigurationsobject()
+        self.configurations = self.configurationsDelegate?.getconfigurationsobject()
         self.schedulesNoS = self.schedulesDelegate?.getschedulesobject()
         self.seconds = 10
         self.setInfo()

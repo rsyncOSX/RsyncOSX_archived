@@ -12,10 +12,10 @@ import Cocoa
 
 class ViewControllerCopyFilesSource: NSViewController {
 
-    // configurationsNoS
+    // configurations
     weak var configurationsDelegate: GetConfigurationsObject?
-    var configurationsNoS: Configurations?
-    // configurationsNoS
+    var configurations: Configurations?
+    // configurations
 
     // Main tableview
     @IBOutlet weak var mainTableView: NSTableView!
@@ -65,10 +65,10 @@ class ViewControllerCopyFilesSource: NSViewController {
         }
         // Double click on row to select
         self.mainTableView.doubleAction = #selector(ViewControllerCopyFilesSource.tableViewDoubleClick(sender:))
-        // configurationsNoS
+        // configurations
         self.configurationsDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain)
             as? ViewControllertabMain
-        // configurationsNoS
+        // configurations
     }
 
     override func viewDidAppear() {
@@ -103,15 +103,15 @@ class ViewControllerCopyFilesSource: NSViewController {
         if let index = indexes.first {
             if let pvc = self.presenting as? ViewControllerCopyFiles {
                 self.setIndexDelegate = pvc
-                let object = self.configurationsNoS!.getConfigurationsDataSourcecountBackupOnly()![index]
+                let object = self.configurations!.getConfigurationsDataSourcecountBackupOnly()![index]
                 let hiddenID = object.value(forKey: "hiddenID") as? Int
                 guard hiddenID != nil else {
                     return
                 }
-                self.index = self.configurationsNoS!.getIndex(hiddenID!)
+                self.index = self.configurations!.getIndex(hiddenID!)
                 self.setIndexDelegate?.setIndex(index: self.index!)
             } else if self.presenting as? ViewControllerSsh != nil {
-                let object = self.configurationsNoS!.getConfigurationsDataSourcecountBackupOnly()![index]
+                let object = self.configurations!.getConfigurationsDataSourcecountBackupOnly()![index]
                 let hiddenID = object.value(forKey: "hiddenID") as? Int
                 guard hiddenID != nil else {
                     return
@@ -126,10 +126,10 @@ class ViewControllerCopyFilesSource: NSViewController {
 extension ViewControllerCopyFilesSource: NSTableViewDataSource {
     // Delegate for size of table
     func numberOfRows(in tableView: NSTableView) -> Int {
-        guard self.configurationsNoS!.getConfigurationsDataSourcecountBackupOnly() != nil else {
+        guard self.configurations!.getConfigurationsDataSourcecountBackupOnly() != nil else {
             return 0
         }
-        return self.configurationsNoS!.getConfigurationsDataSourcecountBackupOnly()!.count
+        return self.configurations!.getConfigurationsDataSourcecountBackupOnly()!.count
     }
 }
 
@@ -137,10 +137,10 @@ extension ViewControllerCopyFilesSource: NSTableViewDelegate {
 
     // TableView delegates
     @objc(tableView:objectValueForTableColumn:row:) func tableView(_ tableView: NSTableView, objectValueFor tableColumn: NSTableColumn?, row: Int) -> Any? {
-        guard self.configurationsNoS!.getConfigurationsDataSourcecountBackupOnly() != nil else {
+        guard self.configurations!.getConfigurationsDataSourcecountBackupOnly() != nil else {
             return nil
         }
-        let object: NSDictionary = self.configurationsNoS!.getConfigurationsDataSourcecountBackupOnly()![row]
+        let object: NSDictionary = self.configurations!.getConfigurationsDataSourcecountBackupOnly()![row]
         return object[tableColumn!.identifier] as? String
     }
 

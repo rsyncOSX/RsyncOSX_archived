@@ -28,28 +28,28 @@ final class PersistentStorageUserconfiguration: Readwritefiles {
         var allowDoubleclick: Int?
         var rsyncerror: Int?
         var restorePath: String?
-        if self.configurationsNoS!.rsyncVer3 {
+        if self.configurations!.rsyncVer3 {
             version3Rsync = 1
         } else {
             version3Rsync = 0
         }
-        if self.configurationsNoS!.detailedlogging {
+        if self.configurations!.detailedlogging {
             detailedlogging = 1
         } else {
             detailedlogging = 0
         }
-        if self.configurationsNoS!.rsyncPath != nil {
-            rsyncPath = self.configurationsNoS!.rsyncPath!
+        if self.configurations!.rsyncPath != nil {
+            rsyncPath = self.configurations!.rsyncPath!
         }
-        if self.configurationsNoS!.restorePath != nil {
-            restorePath = self.configurationsNoS!.restorePath!
+        if self.configurations!.restorePath != nil {
+            restorePath = self.configurations!.restorePath!
         }
-        if self.configurationsNoS!.allowDoubleclick {
+        if self.configurations!.allowDoubleclick {
             allowDoubleclick = 1
         } else {
             allowDoubleclick = 0
         }
-        if self.configurationsNoS!.rsyncerror {
+        if self.configurations!.rsyncerror {
             rsyncerror = 1
         } else {
             rsyncerror = 0

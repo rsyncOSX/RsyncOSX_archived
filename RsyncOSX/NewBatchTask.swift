@@ -26,12 +26,12 @@ enum BatchViewProgressIndicator {
 
 final class NewBatchTask {
 
-    // configurationsNoS
+    // configurations
     weak var configurationsDelegate: GetConfigurationsObject?
-    var configurationsNoS: Configurations?
+    var configurations: Configurations?
     weak var schedulesDelegate: GetSchedulesObject?
     var schedulesNoS: Schedules?
-    // configurationsNoS
+    // configurations
 
     // Protocol function used in Process().
     weak var processupdateDelegate: UpdateProgress?
@@ -68,22 +68,22 @@ final class NewBatchTask {
         self.outputbatch = nil
         // NB: self.setInfo(info: "Batchrun", color: .blue)
         // Get all Configs marked for batch
-        let configs = self.configurationsNoS!.getConfigurationsBatch()
+        let configs = self.configurations!.getConfigurationsBatch()
         let batchObject = BatchTaskWorkQueu(batchtasks: configs)
         // Set the reference to batchData object in SharingManagerConfiguration
-        self.configurationsNoS!.setbatchDataQueue(batchdata: batchObject)
+        self.configurations!.setbatchDataQueue(batchdata: batchObject)
         // Present batchView
         self.batchViewDelegate?.presentViewBatch()
     }
 
     // Functions are called from batchView.
     func executeBatch() {
-        if let batchobject = self.configurationsNoS!.getBatchdataObject() {
+        if let batchobject = self.configurations!.getBatchdataObject() {
             // Just copy the work object.
             // The work object will be removed in Process termination
             let work = batchobject.nextBatchCopy()
             // Get the index if given hiddenID (in work.0)
-            let index: Int = self.configurationsNoS!.getIndex(work.0)
+            let index: Int = self.configurations!.getIndex(work.0)
 
             // Create the output object for rsync
             self.output = nil
@@ -92,13 +92,13 @@ final class NewBatchTask {
             switch work.1 {
             case 0:
                 self.batchViewDelegate?.progressIndicatorViewBatch(operation: .start)
-                let args: Array<String> = self.configurationsNoS!.arguments4rsync(index: index, argtype: .argdryRun)
+                let args: Array<String> = self.configurations!.arguments4rsync(index: index, argtype: .argdryRun)
                 let process = Rsync(arguments: args)
                 // Setting reference to process for Abort if requiered
                 process.executeProcess(output: self.output!)
                 self.process = process.getProcess()
             case 1:
-                let arguments: Array<String> = self.configurationsNoS!.arguments4rsync(index: index, argtype: .arg)
+                let arguments: Array<String> = self.configurations!.arguments4rsync(index: index, argtype: .arg)
                 let process = Rsync(arguments: arguments)
                 // Setting reference to process for Abort if requiered
                 process.executeProcess(output: self.output!)
@@ -119,7 +119,7 @@ final class NewBatchTask {
     // Error and stop execution
     func error() {
         // Just pop off remaining work
-        if let batchobject = self.configurationsNoS!.getBatchdataObject() {
+        if let batchobject = self.configurations!.getBatchdataObject() {
             batchobject.abortOperations()
             self.executeBatch()
         }
@@ -128,7 +128,7 @@ final class NewBatchTask {
     // Called when ProcessTermination is called in main View.
     // Either dryn-run or realrun completed.
     func processTermination() {
-        if let batchobject = self.configurationsNoS!.getBatchdataObject() {
+        if let batchobject = self.configurations!.getBatchdataObject() {
             if self.outputbatch == nil {
                 self.outputbatch = OutputBatch()
             }
@@ -153,8 +153,8 @@ final class NewBatchTask {
                 batchobject.setCompleted()
                 self.batchViewDelegate?.progressIndicatorViewBatch(operation: .refresh)
                 // Set date on Configuration
-                let index = self.configurationsNoS!.getIndex(work.0)
-                let config = self.configurationsNoS!.getConfigurations()[index]
+                let index = self.configurations!.getIndex(work.0)
+                let config = self.configurations!.getConfigurations()[index]
                 // Get transferred numbers from view
                 self.transfernum = String(number.getTransferredNumbers(numbers: .transferredNumber))
                 self.transferbytes = String(number.getTransferredNumbers(numbers: .transferredNumberSizebytes))
@@ -167,8 +167,8 @@ final class NewBatchTask {
                     let result = config.localCatalog + " , " + config.offsiteServer + " , " + numbers
                     self.outputbatch!.addLine(str: result)
                 }
-                let hiddenID = self.configurationsNoS!.gethiddenID(index: index)
-                self.configurationsNoS!.setCurrentDateonConfiguration(index)
+                let hiddenID = self.configurations!.gethiddenID(index: index)
+                self.configurations!.setCurrentDateonConfiguration(index)
                 let numberOffFiles = self.transfernum
                 let sizeOfFiles = self.transferbytes
                 self.schedulesNoS!.addlogtaskmanuel(hiddenID,
@@ -187,14 +187,14 @@ final class NewBatchTask {
             as? ViewControllertabMain
         self.batchViewDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain)
             as? ViewControllertabMain
-        // configurationsNoS
+        // configurations
         self.configurationsDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain)
             as? ViewControllertabMain
-        self.configurationsNoS = self.configurationsDelegate?.getconfigurationsobject()
+        self.configurations = self.configurationsDelegate?.getconfigurationsobject()
         self.schedulesDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain)
             as? ViewControllertabMain
         self.schedulesNoS = self.schedulesDelegate?.getschedulesobject()
-        // configurationsNoS
+        // configurations
     }
 
 }

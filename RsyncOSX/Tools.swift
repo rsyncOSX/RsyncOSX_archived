@@ -48,10 +48,10 @@ protocol Connections : class {
 
 final class Tools {
 
-    // configurationsNoS
+    // configurations
     weak var configurationsDelegate: GetConfigurationsObject?
-    var configurationsNoS: Configurations?
-    // configurationsNoS
+    var configurations: Configurations?
+    // configurations
 
     private var indexBoolremoteserverOff: [Bool]?
     weak var testconnectionsDelegate: Connections?
@@ -95,8 +95,8 @@ final class Tools {
     func testAllremoteserverConnections () {
         self.indexBoolremoteserverOff = nil
         self.indexBoolremoteserverOff = Array<Bool>()
-        self.configurationsNoS = self.configurationsDelegate?.getconfigurationsobject()
-        guard self.configurationsNoS!.configurationsDataSourcecount() > 0 else {
+        self.configurations = self.configurationsDelegate?.getconfigurationsobject()
+        guard self.configurations!.configurationsDataSourcecount() > 0 else {
             self.profilemenuDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain)
                 as? ViewControllertabMain
             // Tell main view profile menu might presented
@@ -105,8 +105,8 @@ final class Tools {
         }
         globalDefaultQueue.async(execute: { () -> Void in
             var port: Int = 22
-            for i in 0 ..< self.configurationsNoS!.configurationsDataSourcecount() {
-                if let record = self.configurationsNoS!.getargumentAllConfigurations()[i] as? ArgumentsOneConfiguration {
+            for i in 0 ..< self.configurations!.configurationsDataSourcecount() {
+                if let record = self.configurations!.getargumentAllConfigurations()[i] as? ArgumentsOneConfiguration {
                     if record.config!.offsiteServer != "" {
                         if let sshport: Int = record.config!.sshport {
                             port = sshport
@@ -123,7 +123,7 @@ final class Tools {
                         self.indexBoolremoteserverOff!.append(false)
                     }
                     // Reload table when all remote servers are checked
-                    if i == (self.configurationsNoS!.configurationsDataSourcecount() - 1) {
+                    if i == (self.configurations!.configurationsDataSourcecount() - 1) {
                         // Send message to do a refresh
                         self.testconnectionsDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain)
                             as? ViewControllertabMain
@@ -140,9 +140,9 @@ final class Tools {
     }
 
     func noRsync() {
-        self.configurationsNoS = self.configurationsDelegate?.getconfigurationsobject()
-        if self.configurationsNoS!.norsync == true {
-            if let rsync = self.configurationsNoS!.rsyncPath {
+        self.configurations = self.configurationsDelegate?.getconfigurationsobject()
+        if self.configurations!.norsync == true {
+            if let rsync = self.configurations!.rsyncPath {
                 Alerts.showInfo("ERROR: no rsync in " + rsync)
             } else {
                 Alerts.showInfo("ERROR: no rsync in /usr/local/bin")
@@ -154,31 +154,31 @@ final class Tools {
 
     // Function to verify full rsyncpath
     func verifyrsyncpath() {
-        self.configurationsNoS = self.configurationsDelegate?.getconfigurationsobject()
+        self.configurations = self.configurationsDelegate?.getconfigurationsobject()
         let fileManager = FileManager.default
         let path: String?
         // If not in /usr/bin or /usr/local/bin
         // rsyncPath is set if none of the above
-        if let rsyncPath = self.configurationsNoS!.rsyncPath {
+        if let rsyncPath = self.configurations!.rsyncPath {
             path = rsyncPath + "rsync"
-        } else if self.configurationsNoS!.rsyncVer3 {
+        } else if self.configurations!.rsyncVer3 {
             path = "/usr/local/bin/" + "rsync"
         } else {
             path = "/usr/bin/" + "rsync"
         }
         if fileManager.fileExists(atPath: path!) == false {
-            self.configurationsNoS!.norsync = true
+            self.configurations!.norsync = true
         } else {
-            self.configurationsNoS!.norsync = false
+            self.configurations!.norsync = false
         }
     }
 
     // Display the correct command to execute
     // Used for displaying the commands only
     func rsyncpathtodisplay(index: Int, dryRun: Bool) -> String {
-        self.configurationsNoS = self.configurationsDelegate?.getconfigurationsobject()
+        self.configurations = self.configurationsDelegate?.getconfigurationsobject()
         var str: String?
-        let config = self.configurationsNoS!.getargumentAllConfigurations()[index] as? ArgumentsOneConfiguration
+        let config = self.configurations!.getargumentAllConfigurations()[index] as? ArgumentsOneConfiguration
         if dryRun {
             str = self.rsyncpath() + " "
             if let count = config?.argdryRunDisplay?.count {
@@ -202,12 +202,12 @@ final class Tools {
     /// default value.
     /// - returns : full path of rsync command
     func rsyncpath() -> String {
-        self.configurationsNoS = self.configurationsDelegate?.getconfigurationsobject()
-        if self.configurationsNoS!.rsyncVer3 {
-            if self.configurationsNoS!.rsyncPath == nil {
+        self.configurations = self.configurationsDelegate?.getconfigurationsobject()
+        if self.configurations!.rsyncVer3 {
+            if self.configurations!.rsyncPath == nil {
                 return "/usr/local/bin/rsync"
             } else {
-                return self.configurationsNoS!.rsyncPath! + "rsync"
+                return self.configurations!.rsyncPath! + "rsync"
             }
         } else {
             return "/usr/bin/rsync"
@@ -300,9 +300,9 @@ final class Tools {
     }
 
     init() {
-        // configurationsNoS
+        // configurations
         self.configurationsDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain)
             as? ViewControllertabMain
-        // configurationsNoS
+        // configurations
     }
 }

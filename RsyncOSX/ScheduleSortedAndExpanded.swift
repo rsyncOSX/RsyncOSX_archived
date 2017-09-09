@@ -12,12 +12,12 @@ import Foundation
 
 class ScheduleSortedAndExpand {
 
-    // configurationsNoS
+    // configurations
     weak var configurationsDelegate: GetConfigurationsObject?
-    var configurationsNoS: Configurations?
+    var configurations: Configurations?
     weak var schedulesDelegate: GetSchedulesObject?
     var schedulesNoS: Schedules?
-    // configurationsNoS
+    // configurations
 
     // DATA STRUCTURES
 
@@ -230,13 +230,13 @@ class ScheduleSortedAndExpand {
         }
         if dict1 != nil {
             let hiddenID1 = dict1!.value(forKey: "hiddenID") as? Int
-            array.append(self.configurationsNoS!.getResourceConfiguration(hiddenID1!, resource: .offsiteServer))
-            array.append(self.configurationsNoS!.getResourceConfiguration(hiddenID1!, resource: .localCatalog))
+            array.append(self.configurations!.getResourceConfiguration(hiddenID1!, resource: .offsiteServer))
+            array.append(self.configurations!.getResourceConfiguration(hiddenID1!, resource: .localCatalog))
         }
         if dict2 != nil {
             let hiddenID2 = dict2?.value(forKey: "hiddenID") as? Int
-            array.append(self.configurationsNoS!.getResourceConfiguration(hiddenID2!, resource: .offsiteServer))
-            array.append(self.configurationsNoS!.getResourceConfiguration(hiddenID2!, resource: .localCatalog))
+            array.append(self.configurations!.getResourceConfiguration(hiddenID2!, resource: .offsiteServer))
+            array.append(self.configurations!.getResourceConfiguration(hiddenID2!, resource: .localCatalog))
         }
         // Return either 0, 2 or 4 elements
         return array
@@ -303,14 +303,14 @@ class ScheduleSortedAndExpand {
     }
 
     init () {
-        // configurationsNoS
+        // configurations
         self.configurationsDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain)
             as? ViewControllertabMain
         self.schedulesDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain)
             as? ViewControllertabMain
-        self.configurationsNoS = self.configurationsDelegate?.getconfigurationsobject()
+        self.configurations = self.configurationsDelegate?.getconfigurationsobject()
         self.schedulesNoS = self.schedulesDelegate?.getschedulesobject()
-        // configurationsNoS
+        // configurations
         // Getting the Schedule and expanding all the jobs
         if self.schedulesNoS != nil {
             self.scheduleConfiguration = self.schedulesNoS!.getSchedule()

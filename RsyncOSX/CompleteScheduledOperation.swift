@@ -13,12 +13,12 @@ import Foundation
 // waiter time.
 final class CompleteScheduledOperation {
 
-    // configurationsNoS
+    // configurations
     weak var configurationsDelegate: GetConfigurationsObject?
-    var configurationsNoS: Configurations?
+    var configurations: Configurations?
     weak var schedulesDelegate: GetSchedulesObject?
     var schedulesNoS: Schedules?
-    // configurationsNoS
+    // configurations
 
     // Delegate function for starting next scheduled operatin if any
     // Delegate function is triggered when NSTaskDidTerminationNotification
@@ -52,7 +52,7 @@ final class CompleteScheduledOperation {
                                            result: numberstring[0],
                                            date: datestring, schedule: schedule!)
         // Writing timestamp to configuration
-        _ = self.configurationsNoS!.setCurrentDateonConfiguration(self.index!)
+        _ = self.configurations!.setCurrentDateonConfiguration(self.index!)
         // Start next job, if any, by delegate and notify completed, by delegate
         globalMainQueue.async(execute: { () -> Void in
             self.startnextjobDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain)
@@ -77,14 +77,14 @@ final class CompleteScheduledOperation {
         self.dateformatter = Tools().setDateformat()
         self.hiddenID = (dict.value(forKey: "hiddenID") as? Int)!
         self.schedule = dict.value(forKey: "schedule") as? String
-        self.index = self.configurationsNoS!.getIndex(hiddenID!)
-        // configurationsNoS
+        self.index = self.configurations!.getIndex(hiddenID!)
+        // configurations
         self.configurationsDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain)
             as? ViewControllertabMain
-        self.configurationsNoS = self.configurationsDelegate?.getconfigurationsobject()
+        self.configurations = self.configurationsDelegate?.getconfigurationsobject()
         self.schedulesDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain)
             as? ViewControllertabMain
         self.schedulesNoS = self.schedulesDelegate?.getschedulesobject()
-        // configurationsNoS
+        // configurations
     }
 }
