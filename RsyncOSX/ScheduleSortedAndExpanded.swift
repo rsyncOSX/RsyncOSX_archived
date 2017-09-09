@@ -312,8 +312,10 @@ class ScheduleSortedAndExpand {
         self.schedulesNoS = self.schedulesDelegate?.getschedulesobject()
         // configurationsNoS
         // Getting the Schedule and expanding all the jobs
-        self.scheduleConfiguration = self.schedulesNoS!.getSchedule()
-        self.createScheduleAsNSDictionary()
-        self.sortAndExpandScheduleData()
+        if self.schedulesNoS != nil {
+            self.scheduleConfiguration = self.schedulesNoS!.getSchedule()
+            self.createScheduleAsNSDictionary()
+            self.sortAndExpandScheduleData()
+        }
     }
 }
