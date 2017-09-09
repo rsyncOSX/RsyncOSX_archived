@@ -34,7 +34,7 @@ protocol ScheduledJobInProgress : class {
 final class ScheduleOperation {
 
     weak var schedulesDelegate: GetSchedulesObject?
-    var schedulesNoS: Schedules?
+    var schedules: Schedules?
 
     private var scheduledJobs: ScheduleSortedAndExpand?
     private var waitForTask: Timer?
@@ -57,10 +57,10 @@ final class ScheduleOperation {
     init () {
         self.schedulesDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain)
             as? ViewControllertabMain
-        self.schedulesNoS = self.schedulesDelegate?.getschedulesobject()
+        self.schedules = self.schedulesDelegate?.getschedulesobject()
         // Cancel any current job waiting for execution
-        if self.schedulesNoS != nil {
-            self.schedulesNoS!.cancelJobWaiting()
+        if self.schedules != nil {
+            self.schedules!.cancelJobWaiting()
             // Create a new Schedules object
             self.scheduledJobs = ScheduleSortedAndExpand()
             // Removes the job of the stack
@@ -76,7 +76,7 @@ final class ScheduleOperation {
                                                         userInfo: nil, repeats: false)
                 // Set reference to Timer that kicks of the Scheduled job
                 // Reference is set for cancel job if requiered
-                self.schedulesNoS!.setJobWaiting(timer: self.waitForTask!)
+                self.schedules!.setJobWaiting(timer: self.waitForTask!)
             } else {
                 // No jobs to execute, no need to keep reference to object
                 self.scheduledJobs = nil

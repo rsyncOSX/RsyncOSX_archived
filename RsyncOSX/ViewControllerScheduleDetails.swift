@@ -21,7 +21,7 @@ class ViewControllerScheduleDetails: NSViewController {
     weak var configurationsDelegate: GetConfigurationsObject?
     var configurations: Configurations?
     weak var schedulesDelegate: GetSchedulesObject?
-    var schedulesNoS: Schedules?
+    var schedules: Schedules?
     // configurations
 
     @IBOutlet weak var localCatalog: NSTextField!
@@ -54,7 +54,7 @@ class ViewControllerScheduleDetails: NSViewController {
 
     @IBAction func update(_ sender: NSButton) {
         if let data = self.data {
-            self.schedulesNoS!.deleteorstopschedule(data : data)
+            self.schedules!.deleteorstopschedule(data : data)
             // Do a refresh of tableViews in both ViewControllertabMain and ViewControllertabSchedule
             self.refreshDelegate?.refresh()
             self.refreshDelegate2?.refresh()
@@ -89,9 +89,9 @@ class ViewControllerScheduleDetails: NSViewController {
     override func viewDidAppear() {
         super.viewDidAppear()
         self.configurations = self.configurationsDelegate?.getconfigurationsobject()
-        self.schedulesNoS = self.schedulesDelegate?.getschedulesobject()
+        self.schedules = self.schedulesDelegate?.getschedulesobject()
         self.hiddendID = self.getHiddenIDDelegate?.gethiddenID()
-        self.data = self.schedulesNoS!.readschedule(self.hiddendID!)
+        self.data = self.schedules!.readschedule(self.hiddendID!)
 
         globalMainQueue.async(execute: { () -> Void in
             self.scheduletable.reloadData()

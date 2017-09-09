@@ -30,7 +30,7 @@ final class NewBatchTask {
     weak var configurationsDelegate: GetConfigurationsObject?
     var configurations: Configurations?
     weak var schedulesDelegate: GetSchedulesObject?
-    var schedulesNoS: Schedules?
+    var schedules: Schedules?
     // configurations
 
     // Protocol function used in Process().
@@ -171,7 +171,7 @@ final class NewBatchTask {
                 self.configurations!.setCurrentDateonConfiguration(index)
                 let numberOffFiles = self.transfernum
                 let sizeOfFiles = self.transferbytes
-                self.schedulesNoS!.addlogtaskmanuel(hiddenID,
+                self.schedules!.addlogtaskmanuel(hiddenID,
                                      result: number.stats(numberOfFiles: numberOffFiles, sizeOfFiles: sizeOfFiles)[0])
                 self.executeBatch()
             default :
@@ -193,7 +193,7 @@ final class NewBatchTask {
         self.configurations = self.configurationsDelegate?.getconfigurationsobject()
         self.schedulesDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain)
             as? ViewControllertabMain
-        self.schedulesNoS = self.schedulesDelegate?.getschedulesobject()
+        self.schedules = self.schedulesDelegate?.getschedulesobject()
         // configurations
     }
 

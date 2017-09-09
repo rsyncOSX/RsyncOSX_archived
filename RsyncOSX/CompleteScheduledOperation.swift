@@ -17,7 +17,7 @@ final class CompleteScheduledOperation {
     weak var configurationsDelegate: GetConfigurationsObject?
     var configurations: Configurations?
     weak var schedulesDelegate: GetSchedulesObject?
-    var schedulesNoS: Schedules?
+    var schedules: Schedules?
     // configurations
 
     // Delegate function for starting next scheduled operatin if any
@@ -37,7 +37,7 @@ final class CompleteScheduledOperation {
     private var index: Int?
 
     // Function for finalizing the Scheduled job
-    // The Operation object sets reference to the completeScheduledOperation in self.schedulesNoS!.operation
+    // The Operation object sets reference to the completeScheduledOperation in self.schedules!.operation
     // This function is executed when rsyn process terminates
     func finalizeScheduledJob(output: OutputProcess) {
 
@@ -47,7 +47,7 @@ final class CompleteScheduledOperation {
         let number = Numbers(output: output.getOutput())
         number.setNumbers()
         let numberstring = number.stats(numberOfFiles: nil, sizeOfFiles: nil)
-        self.schedulesNoS!.addresultschedule(self.hiddenID!,
+        self.schedules!.addresultschedule(self.hiddenID!,
                                            dateStart: dateStartstring,
                                            result: numberstring[0],
                                            date: datestring, schedule: schedule!)
@@ -68,7 +68,7 @@ final class CompleteScheduledOperation {
             self.startTimerDelegate?.startTimerNextJob()
         })
         // Reset reference til scheduled job
-        self.schedulesNoS!.scheduledJob = nil
+        self.schedules!.scheduledJob = nil
     }
 
     init (dict: NSDictionary) {
@@ -84,7 +84,7 @@ final class CompleteScheduledOperation {
         self.configurations = self.configurationsDelegate?.getconfigurationsobject()
         self.schedulesDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain)
             as? ViewControllertabMain
-        self.schedulesNoS = self.schedulesDelegate?.getschedulesobject()
+        self.schedules = self.schedulesDelegate?.getschedulesobject()
         // configurations
     }
 }

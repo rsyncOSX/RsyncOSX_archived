@@ -46,7 +46,7 @@ class ViewControllertabMain: NSViewController {
 
     // Configurations object
     var configurations: Configurations?
-    var schedulesNoS: Schedules?
+    var schedules: Schedules?
 
     // Reference to the single taskobject
     var singletask: NewSingleTask?
@@ -232,7 +232,7 @@ class ViewControllertabMain: NSViewController {
                     if self.hiddenID != nil {
                         // Delete Configurations and Schedules by hiddenID
                         self.configurations!.deleteConfigurationsByhiddenID(hiddenID: self.hiddenID!)
-                        self.schedulesNoS!.deletechedule(hiddenID: self.hiddenID!)
+                        self.schedules!.deletechedule(hiddenID: self.hiddenID!)
                         // Reading main Configurations and Schedule to memory
                         // self.reReadConfigurationsAndSchedules()
                         // And create a new Schedule object
@@ -353,7 +353,7 @@ class ViewControllertabMain: NSViewController {
         self.loadProfileMenu = true
         // configurations
         self.configurations = Configurations(profile: nil)
-        self.schedulesNoS = Schedules(profile: nil)
+        self.schedules = Schedules(profile: nil)
         // configurations
     }
 
@@ -564,7 +564,7 @@ extension ViewControllertabMain : NSTableViewDelegate {
         var text: String?
         var schedule: Bool = false
         let hiddenID: Int = self.configurations!.getConfigurations()[row].hiddenID
-        if self.schedulesNoS!.hiddenIDinSchedule(hiddenID) {
+        if self.schedules!.hiddenIDinSchedule(hiddenID) {
             text = object[tableColumn!.identifier] as? String
             if text == "backup" || text == "restore" {
                 schedule = true
@@ -684,7 +684,7 @@ extension ViewControllertabMain: AddProfiles {
         guard new == false else {
             // A new and empty profile is created
             self.configurations = self.createconfigurationsobject(profile: nil)
-            self.schedulesNoS = self.createschedulesobject(profile: nil)
+            self.schedules = self.createschedulesobject(profile: nil)
             // Reset in tabSchedule
             newProfileDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabschedule) as? ViewControllertabSchedule
             newProfileDelegate?.newProfile(new: true, profile: profile)
@@ -696,7 +696,7 @@ extension ViewControllertabMain: AddProfiles {
         newProfileDelegate?.newProfile(new: false, profile: profile)
         // Read configurations and Scheduledata
         self.configurations = self.createconfigurationsobject(profile: profile)
-        self.schedulesNoS = self.createschedulesobject(profile: profile)
+        self.schedules = self.createschedulesobject(profile: profile)
         // Make sure loading profile
         self.loadProfileMenu = true
         self.displayProfile()
@@ -1178,13 +1178,13 @@ extension ViewControllertabMain: GetConfigurationsObject {
 
 extension ViewControllertabMain: GetSchedulesObject {
     func getschedulesobject() -> Schedules? {
-        return self.schedulesNoS
+        return self.schedules
     }
 
     func createschedulesobject(profile: String?) -> Schedules? {
-        self.schedulesNoS = nil
-        self.schedulesNoS = Schedules(profile: profile)
-        return self.schedulesNoS
+        self.schedules = nil
+        self.schedules = Schedules(profile: profile)
+        return self.schedules
     }
 
 }

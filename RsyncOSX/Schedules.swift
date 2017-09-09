@@ -18,9 +18,6 @@ import Cocoa
 protocol GetSchedulesObject: class {
     func getschedulesobject() -> Schedules?
     func createschedulesobject(profile: String?) -> Schedules?
-    //func isdatadirty() -> Bool
-    //func setdatadirty(dirty: Bool)
-    //func reloadconfigurations()
 }
 
 class Schedules: ScheduleWriteLoggData {
@@ -31,18 +28,8 @@ class Schedules: ScheduleWriteLoggData {
     // Reference to the first Scheduled job
     // Is set when SortedAndExpanded is calculated
     var scheduledJob: NSDictionary?
-    // Delegate functionsn for doing a refresh of NSTableView
     weak var refreshDelegate: RefreshtableView?
-    // Profile
     var profile: String?
-
-    // DATA STRUCTURE
-
-    // Array to store all scheduled jobs and history of executions
-    // Will be kept in memory until destroyed
-    // private var Schedule = Array<configurationSchedule>()
-
-    // THE GETTERS
 
     // Return reference to Schedule data
     // self.Schedule is privat data

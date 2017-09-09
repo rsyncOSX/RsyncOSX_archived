@@ -23,11 +23,6 @@ enum WhatToReadWrite {
 
 class Readwritefiles {
 
-    // configurations
-    weak var configurationsDelegate: GetConfigurationsObject?
-    var configurations: Configurations?
-    // configurations
-
     // Name set for schedule, configuration or config
     private var name: String?
     // key in objectForKey, e.g key for reading what
@@ -80,38 +75,6 @@ class Readwritefiles {
 
     // Function for reading data from persistent store
     func getDatafromfile () -> Array<NSDictionary>? {
-        guard self.task != nil  else {
-            return nil
-        }
-        switch self.task! {
-        case .schedule:
-            if self.configurationsDelegate!.isdatadirty() {
-                self.readdisk = true
-                self.configurationsDelegate!.setdatadirty(dirty: false)
-            } else {
-                self.readdisk = false
-            }
-        case .configuration:
-            if self.configurationsDelegate!.isdatadirty() {
-                self.readdisk = true
-                self.configurationsDelegate!.setdatadirty(dirty: false)
-            } else {
-                self.readdisk = false
-            }
-        case .userconfig:
-            self.readdisk = true
-        case .none:
-            self.readdisk = false
-        }
-        if self.readdisk == true {
-            return self.readDatafromPersistentStorage()
-        } else {
-            return nil
-        }
-    }
-
-    // Read data from persistent storage
-    private func readDatafromPersistentStorage() -> Array<NSDictionary>? {
         var list = Array<NSDictionary>()
         guard self.filename != nil && self.key != nil else {
             return nil
@@ -136,18 +99,6 @@ class Readwritefiles {
     // Function for write data to persistent store
     func writeDatatoPersistentStorage (_ array: Array<NSDictionary>, task: WhatToReadWrite) -> Bool {
         self.setpreferences(task)
-        guard self.task != nil  else {
-            return false
-        }
-        switch self.task! {
-        case .schedule:
-            self.configurationsDelegate!.setdatadirty(dirty: true)
-        case .configuration:
-            self.configurationsDelegate!.setdatadirty(dirty: true)
-        default:
-            // Only set data dirty if either Configuration or Schedules are written to persistent store
-            self.configurationsDelegate!.setdatadirty(dirty: false)
-        }
         let dictionary = NSDictionary(object: array, forKey: self.key! as NSCopying)
         guard self.filename != nil else {
             return false
@@ -179,11 +130,6 @@ class Readwritefiles {
             self.profile = profile
             self.useProfile = true
         }
-        // configurations
-        self.configurationsDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain)
-            as? ViewControllertabMain
-        self.configurations = self.configurationsDelegate?.getconfigurationsobject()
-        // configurations
         self.setpreferences(task)
         self.setnameandpath()
     }

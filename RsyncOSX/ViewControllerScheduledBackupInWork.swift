@@ -15,7 +15,7 @@ class ViewControllerScheduledBackupinWork: NSViewController {
     weak var configurationsDelegate: GetConfigurationsObject?
     var configurations: Configurations?
     weak var schedulesDelegate: GetSchedulesObject?
-    var schedulesNoS: Schedules?
+    var schedules: Schedules?
     // configurations
 
     // Dismisser
@@ -45,7 +45,7 @@ class ViewControllerScheduledBackupinWork: NSViewController {
     }
 
     private func setInfo() {
-        if let dict: NSDictionary = self.schedulesNoS!.scheduledJob {
+        if let dict: NSDictionary = self.schedules!.scheduledJob {
             self.startDate.stringValue = String(describing: (dict.value(forKey: "start") as? Date)!)
             self.schedule.stringValue = (dict.value(forKey: "schedule") as? String)!
             let hiddenID = (dict.value(forKey: "hiddenID") as? Int)!
@@ -79,7 +79,7 @@ class ViewControllerScheduledBackupinWork: NSViewController {
     override func viewDidAppear() {
         super.viewDidAppear()
         self.configurations = self.configurationsDelegate?.getconfigurationsobject()
-        self.schedulesNoS = self.schedulesDelegate?.getschedulesobject()
+        self.schedules = self.schedulesDelegate?.getschedulesobject()
         self.seconds = 10
         self.setInfo()
         self.waitToClose = Timer.scheduledTimer(timeInterval: 10, target: self,

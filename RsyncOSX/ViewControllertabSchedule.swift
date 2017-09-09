@@ -26,7 +26,7 @@ class ViewControllertabSchedule: NSViewController {
     weak var configurationsDelegate: GetConfigurationsObject?
     var configurations: Configurations?
     weak var schedulesDelegate: GetSchedulesObject?
-    var schedulesNoS: Schedules?
+    var schedules: Schedules?
     // configurations
 
     // Main tableview
@@ -131,7 +131,7 @@ class ViewControllertabSchedule: NSViewController {
     private func addschedule(schedule: String, startdate: Date, stopdate: Date) {
         let answer = Alerts.dialogOKCancel("Add Schedule?", text: "Cancel or OK")
         if answer {
-            self.schedulesNoS!.addschedule(self.hiddenID!, schedule: schedule, start: startdate, stop: stopdate)
+            self.schedules!.addschedule(self.hiddenID!, schedule: schedule, start: startdate, stop: stopdate)
             self.newSchedules = true
             // Refresh table and recalculate the Schedules jobs
             self.refresh()
@@ -188,7 +188,7 @@ class ViewControllertabSchedule: NSViewController {
     override func viewDidAppear() {
         super.viewDidAppear()
         self.configurations = self.configurationsDelegate?.getconfigurationsobject()
-        self.schedulesNoS = self.schedulesDelegate?.getschedulesobject()
+        self.schedules = self.schedulesDelegate?.getschedulesobject()
         // Set initial values of dates to now
         self.stopdate.dateValue = Date()
         self.stoptime.dateValue = Date()
@@ -296,7 +296,7 @@ extension ViewControllertabSchedule : NSTableViewDelegate {
         var number: Int?
 
         let hiddenID: Int = (object.value(forKey: "hiddenID") as? Int)!
-        if self.schedulesNoS!.hiddenIDinSchedule(hiddenID) {
+        if self.schedules!.hiddenIDinSchedule(hiddenID) {
             text = object[tableColumn!.identifier] as? String
             if text == "backup" || text == "restore" {
                 schedule = true

@@ -32,7 +32,7 @@ final class ScheduleLoggData {
     weak var configurationsDelegate: GetConfigurationsObject?
     var configurations: Configurations?
     weak var schedulesDelegate: GetSchedulesObject?
-    var schedulesNoS: Schedules?
+    var schedules: Schedules?
     // configurations
 
     // Loggdata is only sorted and read once
@@ -76,9 +76,9 @@ final class ScheduleLoggData {
     // Loggdata is only read and sorted once
     private func readAndSortAllLoggdata() {
         var data = Array<NSDictionary>()
-        let input: [ConfigurationSchedule] = self.schedulesNoS!.getSchedule()
+        let input: [ConfigurationSchedule] = self.schedules!.getSchedule()
         for i in 0 ..< input.count {
-            let hiddenID = self.schedulesNoS!.getSchedule()[i].hiddenID
+            let hiddenID = self.schedules!.getSchedule()[i].hiddenID
             if input[i].logrecords.count > 0 {
                 for j in 0 ..< input[i].logrecords.count {
                     let dict = input[i].logrecords[j]
@@ -113,7 +113,7 @@ final class ScheduleLoggData {
         self.schedulesDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain)
             as? ViewControllertabMain
         self.configurations = self.configurationsDelegate?.getconfigurationsobject()
-        self.schedulesNoS = self.schedulesDelegate?.getschedulesobject()
+        self.schedules = self.schedulesDelegate?.getschedulesobject()
         // configurations
         // Read and sort loggdata only once
         if self.loggdata == nil {

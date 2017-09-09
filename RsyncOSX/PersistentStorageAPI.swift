@@ -14,7 +14,7 @@ final class PersistentStorageAPI {
     weak var configurationsDelegate: GetConfigurationsObject?
     var configurations: Configurations?
     weak var schedulesDelegate: GetSchedulesObject?
-    var schedulesNoS: Schedules?
+    var schedules: Schedules?
     // configurations
 
     // Delegate function for starting next scheduled operatin if any
@@ -113,7 +113,7 @@ final class PersistentStorageAPI {
             }
             return schedule
         } else {
-            return self.schedulesNoS!.getSchedule()
+            return self.schedules!.getSchedule()
         }
     }
 
@@ -137,7 +137,7 @@ final class PersistentStorageAPI {
         self.schedulesDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain)
             as? ViewControllertabMain
         self.configurations = self.configurationsDelegate?.getconfigurationsobject()
-        self.schedulesNoS = self.schedulesDelegate?.getschedulesobject()
+        self.schedules = self.schedulesDelegate?.getschedulesobject()
         // configurations
         self.profile = profile
     }

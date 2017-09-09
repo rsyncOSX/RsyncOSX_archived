@@ -16,6 +16,9 @@ protocol Readupdatedconfigurations: class {
 
 final class PersistentStorageConfiguration: Readwritefiles {
 
+    weak var configurationsDelegate: GetConfigurationsObject?
+    var configurations: Configurations?
+
     /// Variable computes max hiddenID used
     /// MaxhiddenID is used when new configurations are added.
     private var maxhiddenID: Int {
@@ -222,13 +225,17 @@ final class PersistentStorageConfiguration: Readwritefiles {
 
     init (profile: String?) {
         super.init(task: .configuration, profile: profile)
+        self.configurationsDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain)
+            as? ViewControllertabMain
+        self.configurations = self.configurationsDelegate?.getconfigurationsobject()
+
         // Reading Configurations from memory or disk, if dirty read from disk
         // if not dirty set self.configurationFromStore to nil to tell
         // anyone to read Configurations from memory
         if let configurationFromPersistentstore = self.getDatafromfile() {
             self.configurationsAsNSDict = configurationFromPersistentstore
         } else {
-            self.configurations = nil
+            self.configurationsAsNSDict = nil
         }
     }
 }

@@ -41,7 +41,7 @@ final class NewSingleTask {
     weak var configurationsDelegate: GetConfigurationsObject?
     var configurations: Configurations?
     weak var schedulesDelegate: GetSchedulesObject?
-    var schedulesNoS: Schedules?
+    var schedules: Schedules?
     // configurations
 
     // Delegate function for start/stop progress Indicator in BatchWindow
@@ -158,7 +158,7 @@ final class NewSingleTask {
                 let hiddenID = self.configurations!.gethiddenID(index: self.index!)
                 let numberOffFiles = self.transferredNumber
                 let sizeOfFiles = self.transferredNumberSizebytes
-                self.schedulesNoS!.addlogtaskmanuel(hiddenID,
+                self.schedules!.addlogtaskmanuel(hiddenID,
                                      result: number.stats(numberOfFiles: numberOffFiles, sizeOfFiles: sizeOfFiles)[0])
             case .abort:
                 self.taskDelegate?.singleTaskAbort(process: self.process)
@@ -193,7 +193,7 @@ final class NewSingleTask {
         // configurations
         self.schedulesDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain)
             as? ViewControllertabMain
-        self.schedulesNoS = self.schedulesDelegate?.getschedulesobject()
+        self.schedules = self.schedulesDelegate?.getschedulesobject()
     }
 }
 

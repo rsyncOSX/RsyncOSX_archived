@@ -13,8 +13,7 @@ import Cocoa
 class ViewControllerLoggData: NSViewController {
 
     weak var schedulesDelegate: GetSchedulesObject?
-    var schedulesNoS: Schedules?
-
+    var schedules: Schedules?
     var tabledata: [NSDictionary]?
     var row: NSDictionary?
     var what: Filterlogs?
@@ -46,7 +45,7 @@ class ViewControllerLoggData: NSViewController {
             self.deleteButton.state = .off
             return
         }
-        self.schedulesNoS!.deletelogrow(hiddenID: (self.row?.value(forKey: "hiddenID") as? Int)!,
+        self.schedules!.deletelogrow(hiddenID: (self.row?.value(forKey: "hiddenID") as? Int)!,
                                                parent: (self.row?.value(forKey: "parent") as? String)!,
                                                resultExecuted: (self.row?.value(forKey: "resultExecuted") as? String)!,
                                                dateExecuted:(self.row?.value(forKey: "dateExecuted") as? String)!)
@@ -69,7 +68,7 @@ class ViewControllerLoggData: NSViewController {
 
     override func viewDidAppear() {
         super.viewDidAppear()
-        self.schedulesNoS = self.schedulesDelegate?.getschedulesobject()
+        self.schedules = self.schedulesDelegate?.getschedulesobject()
         globalMainQueue.async(execute: { () -> Void in
             self.sorting.startAnimation(self)
             self.tabledata = ScheduleLoggData().getallloggdata()

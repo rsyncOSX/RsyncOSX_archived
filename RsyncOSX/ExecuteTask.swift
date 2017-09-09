@@ -27,10 +27,10 @@ class ExecuteTask: Operation {
         weak var schedulesDelegate: GetSchedulesObject?
         schedulesDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain)
             as? ViewControllertabMain
-        var schedulesNoS: Schedules?
+        var schedules: Schedules?
         var configurations: Configurations?
         configurations = configurationsDelegate?.getconfigurationsobject()
-        schedulesNoS = schedulesDelegate?.getschedulesobject()
+        schedules = schedulesDelegate?.getschedulesobject()
         // configurations
 
         // Storage API
@@ -43,7 +43,7 @@ class ExecuteTask: Operation {
         var config: Configuration?
 
         // Get the first job of the queue
-        if let dict: NSDictionary = schedulesNoS!.scheduledJob {
+        if let dict: NSDictionary = schedules!.scheduledJob {
             if let hiddenID: Int = dict.value(forKey: "hiddenID") as? Int {
                 if let profile = configurations!.getProfile() {
                     storageapi = PersistentStorageAPI(profile : profile)

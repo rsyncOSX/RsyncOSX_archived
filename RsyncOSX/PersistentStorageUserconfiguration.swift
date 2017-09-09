@@ -11,6 +11,8 @@ import Foundation
 
 final class PersistentStorageUserconfiguration: Readwritefiles {
 
+    weak var configurationsDelegate: GetConfigurationsObject?
+    var configurations: Configurations?
     /// Variable holds all configuration data
     private var userconfiguration: Array<NSDictionary>?
 
@@ -82,6 +84,9 @@ final class PersistentStorageUserconfiguration: Readwritefiles {
 
         // Create the readwritefiles object
         super.init(task: .userconfig, profile: nil)
+        self.configurationsDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain)
+            as? ViewControllertabMain
+        self.configurations = self.configurationsDelegate?.getconfigurationsobject()
         // Reading Configurations from memory or disk, if dirty read from disk
         // if not dirty set self.configurationFromStore to nil to tell
         // anyone to read Configurations from memory
