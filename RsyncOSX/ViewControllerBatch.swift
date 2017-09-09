@@ -89,11 +89,6 @@ class ViewControllerBatch: NSViewController {
         // Setting delegates and datasource
         self.mainTableView.delegate = self
         self.mainTableView.dataSource = self
-        if self.configurationsNoS!.batchDataQueuecount() > 0 {
-            globalMainQueue.async(execute: { () -> Void in
-                self.mainTableView.reloadData()
-            })
-        }
          // Dismisser is root controller
         self.dismissDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain)
             as? ViewControllertabMain
@@ -117,6 +112,11 @@ class ViewControllerBatch: NSViewController {
         self.closeButton.title = "Close"
         self.close = true
         self.batchTask = nil
+        if self.configurationsNoS!.batchDataQueuecount() > 0 {
+            globalMainQueue.async(execute: { () -> Void in
+                self.mainTableView.reloadData()
+            })
+        }
     }
 
     override func viewDidDisappear() {
@@ -129,6 +129,9 @@ class ViewControllerBatch: NSViewController {
 extension ViewControllerBatch : NSTableViewDataSource {
         // Delegate for size of table
         func numberOfRows(in tableView: NSTableView) -> Int {
+            guard self.configurationsNoS != nil else {
+                return 0
+            }
             return self.configurationsNoS!.batchDataQueuecount()
         }
 }
@@ -138,6 +141,9 @@ extension ViewControllerBatch : NSTableViewDelegate {
     // TableView delegates
     @objc(tableView:objectValueForTableColumn:row:) func tableView(_ tableView: NSTableView, objectValueFor tableColumn: NSTableColumn?, row: Int) -> Any? {
         guard self.configurationsNoS!.getbatchDataQueue() != nil else {
+            return nil
+        }
+        guard row < self.configurationsNoS!.batchDataQueuecount() else {
             return nil
         }
         let object: NSMutableDictionary = self.configurationsNoS!.getbatchDataQueue()![row]

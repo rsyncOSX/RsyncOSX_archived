@@ -741,14 +741,16 @@ extension ViewControllertabMain: ScheduledJobInProgress {
     }
 
     func notifyScheduledJob(config: Configuration?) {
-        if config == nil {
-            globalMainQueue.async(execute: {() -> Void in
-                Alerts.showInfo("Scheduled backup DID not execute?")
-            })
-        } else {
-            globalMainQueue.async(execute: {() -> Void in
-                self.presentViewControllerAsSheet(self.viewControllerScheduledBackupInWork)
-            })
+        if self.configurationsNoS!.allowNotifyinMain {
+            if config == nil {
+                globalMainQueue.async(execute: {() -> Void in
+                    Alerts.showInfo("Scheduled backup DID not execute?")
+                })
+            } else {
+                globalMainQueue.async(execute: {() -> Void in
+                    self.presentViewControllerAsSheet(self.viewControllerScheduledBackupInWork)
+                })
+            }
         }
     }
 }

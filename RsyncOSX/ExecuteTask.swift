@@ -61,10 +61,8 @@ class ExecuteTask: Operation {
                 notifyDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain)
                     as? ViewControllertabMain
                 notifyDelegate?.start()
-                // Trying to notify when not in main view will crash RSyncOSX
-                if configurationsNoS!.allowNotifyinMain == true {
-                    notifyDelegate?.notifyScheduledJob(config: config)
-                }
+                // Notify about scheduled job
+                notifyDelegate?.notifyScheduledJob(config: config)
                 if hiddenID >= 0 && config != nil {
                     arguments = RsyncProcessArguments().argumentsRsync(config!, dryRun: false, forDisplay: false)
                     // Setting reference to finalize the job
