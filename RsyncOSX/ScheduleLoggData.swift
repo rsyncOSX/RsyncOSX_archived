@@ -32,7 +32,7 @@ final class ScheduleLoggData {
     weak var configurationsDelegate: GetConfigurationsObject?
     var configurationsNoS: Configurations?
     weak var schedulesDelegate: GetSchedulesObject?
-    var schedulesNoS: SchedulesNoS?
+    var schedulesNoS: Schedules?
     // configurationsNoS
 
     // Loggdata is only sorted and read once

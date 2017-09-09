@@ -13,7 +13,7 @@ import Cocoa
 class ViewControllerLoggData: NSViewController {
 
     weak var schedulesDelegate: GetSchedulesObject?
-    var schedulesNoS: SchedulesNoS?
+    var schedulesNoS: Schedules?
 
     var tabledata: [NSDictionary]?
     var row: NSDictionary?

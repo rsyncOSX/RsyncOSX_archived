@@ -34,7 +34,7 @@ protocol ScheduledJobInProgress : class {
 final class ScheduleOperation {
 
     weak var schedulesDelegate: GetSchedulesObject?
-    var schedulesNoS: SchedulesNoS?
+    var schedulesNoS: Schedules?
 
     private var scheduledJobs: ScheduleSortedAndExpand?
     private var waitForTask: Timer?

@@ -30,7 +30,7 @@ final class NewBatchTask {
     weak var configurationsDelegate: GetConfigurationsObject?
     var configurationsNoS: Configurations?
     weak var schedulesDelegate: GetSchedulesObject?
-    var schedulesNoS: SchedulesNoS?
+    var schedulesNoS: Schedules?
     // configurationsNoS
 
     // Protocol function used in Process().

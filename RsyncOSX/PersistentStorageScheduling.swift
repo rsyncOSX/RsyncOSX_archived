@@ -20,7 +20,7 @@ protocol Readupdatedschedules: class {
 final class PersistentStorageScheduling: Readwritefiles {
 
     weak var schedulesDelegate: GetSchedulesObject?
-    var schedulesNoS: SchedulesNoS?
+    var schedulesNoS: Schedules?
 
     weak var readschedulesDelegate: Readupdatedschedules?
     // Variables holds all scheduledata

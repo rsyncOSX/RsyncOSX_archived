@@ -16,7 +16,7 @@ class ScheduleSortedAndExpand {
     weak var configurationsDelegate: GetConfigurationsObject?
     var configurationsNoS: Configurations?
     weak var schedulesDelegate: GetSchedulesObject?
-    var schedulesNoS: SchedulesNoS?
+    var schedulesNoS: Schedules?
     // configurationsNoS
 
     // DATA STRUCTURES

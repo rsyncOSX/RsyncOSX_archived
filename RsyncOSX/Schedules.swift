@@ -14,15 +14,16 @@
 import Foundation
 import Cocoa
 
-class Schedules: ScheduleWriteLoggData {
+// Protocol for returning object configurations data
+protocol GetSchedulesObject: class {
+    func getschedulesobject() -> Schedules?
+    func createschedulesobject(profile: String?) -> Schedules?
+    //func isdatadirty() -> Bool
+    //func setdatadirty(dirty: Bool)
+    //func reloadconfigurations()
+}
 
-    // Creates a singelton of this class
-    class var  shared: Schedules {
-        struct Singleton {
-            static let instance = Schedules()
-        }
-        return Singleton.instance
-    }
+class Schedules: ScheduleWriteLoggData {
 
     // Reference to Timer in scheduled operation
     // Used to terminate scheduled jobs
@@ -32,6 +33,8 @@ class Schedules: ScheduleWriteLoggData {
     var scheduledJob: NSDictionary?
     // Delegate functionsn for doing a refresh of NSTableView
     weak var refreshDelegate: RefreshtableView?
+    // Profile
+    var profile: String?
 
     // DATA STRUCTURE
 
@@ -203,13 +206,13 @@ class Schedules: ScheduleWriteLoggData {
     private func stop (dict: NSDictionary) {
         loop :  for i in 0 ..< self.schedule.count where
             dict.value(forKey: "hiddenID") as? Int == self.schedule[i].hiddenID {
-            if dict.value(forKey: "dateStop") as? String == self.schedule[i].dateStop ||
-                self.schedule[i].dateStop == nil &&
-                dict.value(forKey: "schedule") as? String == self.schedule[i].schedule &&
-                dict.value(forKey: "dateStart") as? String == self.schedule[i].dateStart {
-                self.schedule[i].schedule = "stopped"
-                break
-            }
+                if dict.value(forKey: "dateStop") as? String == self.schedule[i].dateStop ||
+                    self.schedule[i].dateStop == nil &&
+                    dict.value(forKey: "schedule") as? String == self.schedule[i].schedule &&
+                    dict.value(forKey: "dateStart") as? String == self.schedule[i].dateStart {
+                    self.schedule[i].schedule = "stopped"
+                    break
+                }
         }
     }
 
@@ -282,10 +285,6 @@ class Schedules: ScheduleWriteLoggData {
         }
     }
 
-}
-
-extension Schedules: Readupdatedschedules {
-
     /// Function for reading all jobs for schedule and all history of past executions.
     /// Schedules are stored in self.Schedule. Schedules are sorted after hiddenID.
     /// If Schedule already in memory AND not dirty do not read them again. If Schedule is
@@ -296,19 +295,11 @@ extension Schedules: Readupdatedschedules {
     /// another object based upon the plan for Schedules. It is only the plans
     /// which are stored to permanent store.
     /// The functions does NOT cancel waiting jobs or recalculate next scheduled job.
-    func readAllSchedules() {
-        // print("readAllSchedules()")
+    private func readAllSchedules() {
         self.destroySchedule()
         var store: Array<ConfigurationSchedule>?
         self.storageapi = nil
-        /*
-        if let profile = self.configurationsNoS!.getProfile() {
-            self.storageapi = PersistentStorageAPI(profile : profile)
-        } else {
-            self.storageapi = PersistentStorageAPI(profile : nil)
-        }
-         */
-        self.storageapi = PersistentStorageAPI(profile : nil)
+        self.storageapi = PersistentStorageAPI(profile : self.profile)
         store = self.storageapi!.getScheduleandhistory()
         // If Schedule already in memory dont read them again
         // Schedules are only read into memory if Dirty
@@ -335,4 +326,9 @@ extension Schedules: Readupdatedschedules {
         }
     }
 
+     init(profile: String?) {
+        super.init()
+        self.profile = profile
+        self.readAllSchedules()
+    }
 }

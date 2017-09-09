@@ -21,7 +21,7 @@ class ViewControllerScheduleDetails: NSViewController {
     weak var configurationsDelegate: GetConfigurationsObject?
     var configurationsNoS: Configurations?
     weak var schedulesDelegate: GetSchedulesObject?
-    var schedulesNoS: SchedulesNoS?
+    var schedulesNoS: Schedules?
     // configurationsNoS
 
     @IBOutlet weak var localCatalog: NSTextField!

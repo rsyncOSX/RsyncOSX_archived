@@ -27,7 +27,7 @@ class ExecuteTask: Operation {
         weak var schedulesDelegate: GetSchedulesObject?
         schedulesDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain)
             as? ViewControllertabMain
-        var schedulesNoS: SchedulesNoS?
+        var schedulesNoS: Schedules?
         var configurationsNoS: Configurations?
         configurationsNoS = configurationsDelegate?.getconfigurationsobject()
         schedulesNoS = schedulesDelegate?.getschedulesobject()

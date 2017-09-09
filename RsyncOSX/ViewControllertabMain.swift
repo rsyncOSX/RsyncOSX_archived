@@ -46,7 +46,7 @@ class ViewControllertabMain: NSViewController {
 
     // Configurations object
     var configurationsNoS: Configurations?
-    var schedulesNoS: SchedulesNoS?
+    var schedulesNoS: Schedules?
 
     // Reference to the single taskobject
     var singletask: NewSingleTask?
@@ -353,7 +353,7 @@ class ViewControllertabMain: NSViewController {
         self.loadProfileMenu = true
         // configurationsNoS
         self.configurationsNoS = Configurations(profile: nil)
-        self.schedulesNoS = SchedulesNoS(profile: nil)
+        self.schedulesNoS = Schedules(profile: nil)
         // configurationsNoS
     }
 
@@ -1178,13 +1178,13 @@ extension ViewControllertabMain: GetConfigurationsObject {
 }
 
 extension ViewControllertabMain: GetSchedulesObject {
-    func getschedulesobject() -> SchedulesNoS? {
+    func getschedulesobject() -> Schedules? {
         return self.schedulesNoS
     }
 
-    func createschedulesobject(profile: String?) -> SchedulesNoS? {
+    func createschedulesobject(profile: String?) -> Schedules? {
         self.schedulesNoS = nil
-        self.schedulesNoS = SchedulesNoS(profile: profile)
+        self.schedulesNoS = Schedules(profile: profile)
         return self.schedulesNoS
     }
 
