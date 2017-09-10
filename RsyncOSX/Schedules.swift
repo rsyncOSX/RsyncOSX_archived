@@ -284,9 +284,6 @@ class Schedules: ScheduleWriteLoggData {
             return
         }
         var data = Array<ConfigurationSchedule>()
-        // Deleting any existing Schedule
-        self.schedules.removeAll()
-        // Reading new schedule into memory
         for i in 0 ..< store!.count {
             data.append(store![i])
         }
