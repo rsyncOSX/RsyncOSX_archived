@@ -22,12 +22,10 @@ protocol StartTimer : class {
 
 class ViewControllertabSchedule: NSViewController {
 
-    // configurations
     weak var configurationsDelegate: GetConfigurationsObject?
     var configurations: Configurations?
     weak var schedulesDelegate: GetSchedulesObject?
     var schedules: Schedules?
-    // configurations
 
     // Main tableview
     @IBOutlet weak var mainTableView: NSTableView!
@@ -177,12 +175,11 @@ class ViewControllertabSchedule: NSViewController {
         self.schedulessorted = ScheduleSortedAndExpand()
         // Setting reference to self.
         ViewControllerReference.shared.setvcref(viewcontroller: .vctabschedule, nsviewcontroller: self)
-        // configurations
+
         self.configurationsDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain)
             as? ViewControllertabMain
         self.schedulesDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain)
             as? ViewControllertabMain
-        // configurations
     }
 
     override func viewDidAppear() {

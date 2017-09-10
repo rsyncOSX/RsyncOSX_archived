@@ -184,8 +184,7 @@ class Configurations {
         }
     }
 
-    /// Function is adding new Configurations to existing
-    /// configurations in memory.
+    /// Function is adding new Configurations to existing in memory.
     /// - parameter dict : new record configuration
     func addConfigurationtoMemory (dict: NSDictionary) {
         let config = Configuration(dictionary: dict)
@@ -354,8 +353,7 @@ class Configurations {
     /// Function is reading all Configurations into memory from permanent store and
     /// prepare all arguments for rsync. All configurations are stored in the private
     /// variable within object.
-    /// Function is destroying any previous Configurations before loading new
-    /// configurations and computing new arguments.
+    /// Function is destroying any previous Configurations before loading new and computing new arguments.
     /// - parameter none: none
     private func readconfigurations() {
         var store: Array<Configuration>?

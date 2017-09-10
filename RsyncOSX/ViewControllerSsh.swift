@@ -12,10 +12,8 @@ import Cocoa
 
 class ViewControllerSsh: NSViewController {
 
-    // configurations
     weak var configurationsDelegate: GetConfigurationsObject?
     var configurations: Configurations?
-    // configurations
 
     // The object which checks for keys
     var sshcmd: Ssh?
@@ -125,10 +123,8 @@ class ViewControllerSsh: NSViewController {
         self.detailsTable.delegate = self
         self.detailsTable.dataSource = self
         self.output = nil
-        // configurations
         self.configurationsDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain)
             as? ViewControllertabMain
-        // configurations
     }
 
     override func viewDidAppear() {

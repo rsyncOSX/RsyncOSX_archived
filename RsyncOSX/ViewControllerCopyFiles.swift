@@ -20,10 +20,8 @@ protocol GetSource: class {
 
 class ViewControllerCopyFiles: NSViewController {
 
-    // configurations
     weak var configurationsDelegate: GetConfigurationsObject?
     var configurations: Configurations?
-    // configurations
 
     var copyFiles: CopyFiles?
     var index: Int?
@@ -163,10 +161,8 @@ class ViewControllerCopyFiles: NSViewController {
         self.localCatalog.delegate = self
         // Double click on row to select
         self.tableViewSelect.doubleAction = #selector(self.tableViewDoubleClick(sender:))
-        // configurations
         self.configurationsDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain)
             as? ViewControllertabMain
-        // configurations
     }
 
     override func viewDidAppear() {

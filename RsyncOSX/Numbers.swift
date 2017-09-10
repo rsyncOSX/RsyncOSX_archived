@@ -24,10 +24,8 @@ enum EnumNumbers {
 
 final class Numbers {
 
-    // configurations
     weak var configurationsDelegate: GetConfigurationsObject?
     var configurations: Configurations?
-    // configurations
 
     // Second last String in Array rsync output of how much in what time
     private var resultRsync: String?
@@ -217,11 +215,9 @@ final class Numbers {
     }
 
     init (output: Array<String>) {
-        // configurations
         self.configurationsDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain)
             as? ViewControllertabMain
         self.configurations = self.configurationsDelegate?.getconfigurationsobject()
-        // configurations
         self.output = output
         // Getting the summarized output from output.
         if self.output!.count > 2 {

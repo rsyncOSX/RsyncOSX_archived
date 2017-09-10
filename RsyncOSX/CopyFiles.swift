@@ -12,10 +12,8 @@ import Foundation
 
 final class CopyFiles {
 
-    // configurations
     weak var configurationsDelegate: GetConfigurationsObject?
     var configurations: Configurations?
-    // configurations
 
     // Index from View
     private var index: Int?

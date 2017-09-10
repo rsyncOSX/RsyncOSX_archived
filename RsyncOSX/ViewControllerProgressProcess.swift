@@ -21,10 +21,8 @@ protocol AbortOperations: class {
 
 class ViewControllerProgressProcess: NSViewController {
 
-    // configurations
     weak var configurationsDelegate: GetConfigurationsObject?
     var configurations: Configurations?
-    // configurations
 
     var count: Double = 0
     var maxcount: Double = 0
@@ -47,10 +45,8 @@ class ViewControllerProgressProcess: NSViewController {
             as? ViewControllertabMain
         self.abortDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain)
             as? ViewControllertabMain
-        // configurations
         self.configurationsDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain)
             as? ViewControllertabMain
-        // configurations
     }
 
     override func viewDidAppear() {

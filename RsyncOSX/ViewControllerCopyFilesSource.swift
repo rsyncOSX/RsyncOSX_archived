@@ -12,10 +12,8 @@ import Cocoa
 
 class ViewControllerCopyFilesSource: NSViewController {
 
-    // configurations
     weak var configurationsDelegate: GetConfigurationsObject?
     var configurations: Configurations?
-    // configurations
 
     // Main tableview
     @IBOutlet weak var mainTableView: NSTableView!
@@ -65,10 +63,8 @@ class ViewControllerCopyFilesSource: NSViewController {
         }
         // Double click on row to select
         self.mainTableView.doubleAction = #selector(ViewControllerCopyFilesSource.tableViewDoubleClick(sender:))
-        // configurations
         self.configurationsDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain)
             as? ViewControllertabMain
-        // configurations
     }
 
     override func viewDidAppear() {

@@ -299,14 +299,12 @@ class ScheduleSortedAndExpand {
     }
 
     init () {
-        // configurations
         self.configurationsDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain)
             as? ViewControllertabMain
         self.schedulesDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain)
             as? ViewControllertabMain
         self.configurations = self.configurationsDelegate?.getconfigurationsobject()
         self.schedules = self.schedulesDelegate?.getschedulesobject()
-        // configurations
         // Getting the Schedule and expanding all the jobs
         if self.schedules != nil {
             self.scheduleConfiguration = self.schedules!.getSchedule()

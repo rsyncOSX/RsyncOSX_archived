@@ -12,12 +12,9 @@ import Cocoa
 
 class ViewControllerNewConfigurations: NSViewController {
 
-    // configurations
     weak var configurationsDelegate: GetConfigurationsObject?
     var configurations: Configurations?
-    // configurations
 
-    // Storage API
     var storageapi: PersistentStorageAPI?
     // Table holding all new Configurations
     @IBOutlet weak var newTableView: NSTableView!
@@ -79,10 +76,10 @@ class ViewControllerNewConfigurations: NSViewController {
         self.localCatalog.toolTip = "By using Finder drag and drop filepaths."
         self.offsiteCatalog.toolTip = "By using Finder drag and drop filepaths."
         ViewControllerReference.shared.setvcref(viewcontroller: .vcnewconfigurations, nsviewcontroller: self)
-        // configurations
+
         self.configurationsDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain)
             as? ViewControllertabMain
-        // configurations
+
     }
 
     override func viewDidAppear() {

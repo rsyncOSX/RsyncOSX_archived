@@ -11,14 +11,11 @@ import Cocoa
 
 class ViewControllerScheduledBackupinWork: NSViewController {
 
-    // configurations
     weak var configurationsDelegate: GetConfigurationsObject?
     var configurations: Configurations?
     weak var schedulesDelegate: GetSchedulesObject?
     var schedules: Schedules?
-    // configurations
 
-    // Dismisser
     weak var dismissDelegate: DismissViewController?
     var waitToClose: Timer?
     var closeIn: Timer?
@@ -68,12 +65,10 @@ class ViewControllerScheduledBackupinWork: NSViewController {
         // Dismisser is root controller
         self.dismissDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain)
             as? ViewControllertabMain
-        // configurations
         self.configurationsDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain)
             as? ViewControllertabMain
         self.schedulesDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain)
             as? ViewControllertabMain
-        // configurations
     }
 
     override func viewDidAppear() {

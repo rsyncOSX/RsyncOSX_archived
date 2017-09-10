@@ -25,13 +25,10 @@ enum BatchViewProgressIndicator {
 }
 
 final class NewBatchTask {
-
-    // configurations
     weak var configurationsDelegate: GetConfigurationsObject?
     var configurations: Configurations?
     weak var schedulesDelegate: GetSchedulesObject?
     var schedules: Schedules?
-    // configurations
 
     // Protocol function used in Process().
     weak var processupdateDelegate: UpdateProgress?
@@ -187,14 +184,12 @@ final class NewBatchTask {
             as? ViewControllertabMain
         self.batchViewDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain)
             as? ViewControllertabMain
-        // configurations
         self.configurationsDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain)
             as? ViewControllertabMain
         self.configurations = self.configurationsDelegate?.getconfigurationsobject()
         self.schedulesDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain)
             as? ViewControllertabMain
         self.schedules = self.schedulesDelegate?.getschedulesobject()
-        // configurations
     }
 
 }

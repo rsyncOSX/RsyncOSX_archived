@@ -20,7 +20,7 @@ import Foundation
 class ExecuteTask: Operation {
 
     override func main() {
-        // configurations
+
         weak var configurationsDelegate: GetConfigurationsObject?
         configurationsDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain)
             as? ViewControllertabMain
@@ -29,9 +29,9 @@ class ExecuteTask: Operation {
             as? ViewControllertabMain
         var schedules: Schedules?
         var configurations: Configurations?
+
         configurations = configurationsDelegate?.getconfigurationsobject()
         schedules = schedulesDelegate?.getschedulesobject()
-        // configurations
 
         // Storage API
         var storageapi: PersistentStorageAPI?

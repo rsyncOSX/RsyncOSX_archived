@@ -351,10 +351,8 @@ class ViewControllertabMain: NSViewController {
         self.displayDryRun.state = .on
         self.tools = Tools()
         self.loadProfileMenu = true
-        // configurations
         self.configurations = Configurations(profile: nil)
         self.schedules = Schedules(profile: nil)
-        // configurations
     }
 
     override func viewDidAppear() {

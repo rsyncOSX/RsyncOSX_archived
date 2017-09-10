@@ -17,10 +17,8 @@ protocol getNewBatchTask: class {
 
 class ViewControllerBatch: NSViewController {
 
-    // configurations
     weak var configurationsDelegate: GetConfigurationsObject?
     var configurations: Configurations?
-    // configurations
 
     // If close button or abort is pressed
     // After execute button is pressed, close is abort
@@ -94,10 +92,8 @@ class ViewControllerBatch: NSViewController {
             as? ViewControllertabMain
         self.abortDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain)
             as? ViewControllertabMain
-        // configurations
         self.configurationsDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain)
             as? ViewControllertabMain
-        // configurations
     }
 
     override func viewDidAppear() {

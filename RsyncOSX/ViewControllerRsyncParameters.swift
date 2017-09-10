@@ -24,10 +24,8 @@ protocol GetSelecetedIndex : class {
 
 class ViewControllerRsyncParameters: NSViewController {
 
-    // configurations
     weak var configurationsDelegate: GetConfigurationsObject?
     var configurations: Configurations?
-    // configurations
 
     // Storage API
     var storageapi: PersistentStorageAPI?
@@ -154,10 +152,8 @@ class ViewControllerRsyncParameters: NSViewController {
         // Dismisser is root controller
         self.dismissDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain)
             as? ViewControllertabMain
-        // configurations
         self.configurationsDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain)
             as? ViewControllertabMain
-        // configurations
     }
 
     override func viewDidAppear() {
