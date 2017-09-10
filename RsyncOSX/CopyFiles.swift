@@ -132,15 +132,12 @@ final class CopyFiles {
     }
 
     init (index: Int) {
-        // Setting index and configuration object
-        self.index = index
-        self.config = self.configurations!.getConfigurations()[self.index!]
-        self.getRemoteFileList()
-        // configurations
         self.configurationsDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain)
             as? ViewControllertabMain
         self.configurations = self.configurationsDelegate?.getconfigurationsobject()
-        // configurations
+        self.index = index
+        self.config = self.configurations!.getConfigurations()[self.index!]
+        self.getRemoteFileList()
     }
 
   }

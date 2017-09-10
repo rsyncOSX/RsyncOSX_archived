@@ -78,6 +78,7 @@ class ViewControllerCopyFilesSource: NSViewController {
         } else if let pvc = self.presenting as? ViewControllerSsh {
             self.dismissDelegate = pvc
         }
+        self.configurations = self.configurationsDelegate?.getconfigurationsobject()
     }
 
     @objc(tableViewDoubleClick:) func tableViewDoubleClick(sender: AnyObject) {
@@ -126,7 +127,7 @@ class ViewControllerCopyFilesSource: NSViewController {
 extension ViewControllerCopyFilesSource: NSTableViewDataSource {
     // Delegate for size of table
     func numberOfRows(in tableView: NSTableView) -> Int {
-        guard self.configurations!.getConfigurationsDataSourcecountBackupOnly() != nil else {
+        guard self.configurations != nil else {
             return 0
         }
         return self.configurations!.getConfigurationsDataSourcecountBackupOnly()!.count
