@@ -357,16 +357,19 @@ class Configurations {
     /// Function is destroying any previous Configurations before loading new
     /// configurations and computing new arguments.
     /// - parameter none: none
-    private func readAllConfigurationsAndArguments() {
+    private func readconfigurations() {
+        var store: Array<Configuration>?
         self.configurations = Array<Configuration>()
         self.argumentAllConfigurations = NSMutableArray()
         self.storageapi = nil
         self.storageapi = PersistentStorageAPI(profile : self.profile)
-        let store: Array<Configuration> = self.storageapi!.getConfigurations()
-        // We read all stored configurations into memory
-        for i in 0 ..< store.count {
-            self.configurations!.append(store[i])
-            let rsyncArgumentsOneConfig = ArgumentsOneConfiguration(config: store[i])
+        store = self.storageapi!.getConfigurations()
+        guard store != nil else {
+            return
+        }
+        for i in 0 ..< store!.count {
+            self.configurations!.append(store![i])
+            let rsyncArgumentsOneConfig = ArgumentsOneConfiguration(config: store![i])
             self.argumentAllConfigurations!.add(rsyncArgumentsOneConfig)
         }
         // Then prepare the datasource for use in tableviews as Dictionarys
@@ -400,6 +403,6 @@ class Configurations {
         self.argumentAllConfigurations = nil
         self.configurationsDataSource = nil
         self.profile = profile
-        self.readAllConfigurationsAndArguments()
+        self.readconfigurations()
     }
 }
