@@ -671,7 +671,7 @@ extension ViewControllertabMain: StartNextScheduledTask {
 extension ViewControllertabMain: AddProfiles {
 
     // Function is called from profiles when new or default profiles is seleceted
-    func newProfile(new: Bool, profile: String?) {
+    func newProfile(profile: String?) {
         weak var newProfileDelegate: AddProfiles?
         self.schedulessorted = nil
         self.process = nil
@@ -681,19 +681,9 @@ extension ViewControllertabMain: AddProfiles {
         self.setInfo(info: "Estimate", color: .blue)
         self.light.color = .systemYellow
         self.setNumbers(output: nil)
-        guard new == false else {
-            // A new and empty profile is created
-            self.configurations = self.createconfigurationsobject(profile: nil)
-            self.schedules = self.createschedulesobject(profile: nil)
-            // Reset in tabSchedule
-            newProfileDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabschedule) as? ViewControllertabSchedule
-            newProfileDelegate?.newProfile(new: true, profile: profile)
-            self.refresh()
-            return
-        }
         // Reset in tabSchedule
         newProfileDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabschedule) as? ViewControllertabSchedule
-        newProfileDelegate?.newProfile(new: false, profile: profile)
+        newProfileDelegate?.newProfile(profile: profile)
         // Read configurations and Scheduledata
         self.configurations = self.createconfigurationsobject(profile: profile)
         self.schedules = self.createschedulesobject(profile: profile)
@@ -1162,6 +1152,7 @@ extension ViewControllertabMain: GetConfigurationsObject {
         self.configurations!.setDataDirty(dirty: dirty)
     }
 
+    // After a write, a reload is forced.
     func reloadconfigurations() {
         if let profile = self.configurations!.getProfile() {
             self.configurations = nil

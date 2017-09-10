@@ -350,7 +350,7 @@ extension ViewControllertabSchedule: DismissViewController {
 extension ViewControllertabSchedule: AddProfiles {
 
     // Just reset the schedules
-    func newProfile(new: Bool, profile: String?) {
+    func newProfile(profile: String?) {
         // Resetting the reference to ScheduleSortedAndExpand object.
         // New object is created when a new profile is loaded.
         self.schedulessorted = nil

@@ -38,8 +38,6 @@ final class PersistentStorageAPI {
             }
             return Configurations
         } else {
-            // Return configuration from memory
-            // return self.configurations!.getConfigurations()
             return []
         }
     }
@@ -114,7 +112,6 @@ final class PersistentStorageAPI {
             }
             return schedule
         } else {
-            // return self.schedules!.getSchedule()
             return []
         }
     }
