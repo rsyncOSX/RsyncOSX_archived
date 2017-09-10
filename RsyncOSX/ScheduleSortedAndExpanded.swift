@@ -12,14 +12,10 @@ import Foundation
 
 class ScheduleSortedAndExpand {
 
-    // configurations
     weak var configurationsDelegate: GetConfigurationsObject?
     var configurations: Configurations?
     weak var schedulesDelegate: GetSchedulesObject?
     var schedules: Schedules?
-    // configurations
-
-    // DATA STRUCTURES
 
     // Array to store all scheduled jobs and history of executions
     // Will be kept in memory until destroyed

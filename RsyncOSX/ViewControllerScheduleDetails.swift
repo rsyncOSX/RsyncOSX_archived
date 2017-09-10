@@ -91,7 +91,7 @@ class ViewControllerScheduleDetails: NSViewController {
         self.configurations = self.configurationsDelegate?.getconfigurationsobject()
         self.schedules = self.schedulesDelegate?.getschedulesobject()
         self.hiddendID = self.getHiddenIDDelegate?.gethiddenID()
-        self.data = self.schedules!.readschedule(self.hiddendID!)
+        self.data = self.schedules!.readscheduleonetask(self.hiddendID!)
 
         globalMainQueue.async(execute: { () -> Void in
             self.scheduletable.reloadData()
