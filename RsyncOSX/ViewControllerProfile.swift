@@ -48,8 +48,6 @@ class ViewControllerProfile: NSViewController {
             self.dismissDelegate?.dismiss_view(viewcontroller: self)
             return
         }
-        // self.storageapi = PersistentStorageAPI(profile : newprofile)
-        // self.storageapi!.saveConfigFromMemory()
         self.newProfileDelegate?.newProfile(profile: newprofile)
         self.dismissDelegate?.dismiss_view(viewcontroller: self)
     }
