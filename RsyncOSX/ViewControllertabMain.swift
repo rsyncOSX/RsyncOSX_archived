@@ -1136,20 +1136,6 @@ extension ViewControllertabMain: GetConfigurationsObject {
         return self.configurations
     }
 
-    func isdatadirty() -> Bool {
-        guard self.configurations != nil else {
-            return true
-        }
-        return self.configurations!.isDataDirty()
-    }
-
-    func setdatadirty(dirty: Bool) {
-        guard self.configurations != nil else {
-            return
-        }
-        self.configurations!.setDataDirty(dirty: dirty)
-    }
-
     // After a write, a reload is forced.
     func reloadconfigurations() {
         // If batchtask do not keep configuration object

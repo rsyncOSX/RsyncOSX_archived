@@ -20,8 +20,6 @@ import Foundation
 protocol GetConfigurationsObject: class {
     func getconfigurationsobject() -> Configurations?
     func createconfigurationsobject(profile: String?) -> Configurations?
-    func isdatadirty() -> Bool
-    func setdatadirty(dirty: Bool)
     func reloadconfigurations()
 }
 

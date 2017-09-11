@@ -57,6 +57,8 @@ class ViewControllerBatch: NSViewController {
         }
         self.waitToClose?.invalidate()
         self.closeIn?.invalidate()
+        // Using reload delegate from rsync parameters
+        self.configurationsDelegate?.reloadconfigurations()
         self.dismissDelegate?.dismiss_view(viewcontroller: self)
     }
 
@@ -77,6 +79,8 @@ class ViewControllerBatch: NSViewController {
     @objc fileprivate func closeView() {
         self.waitToClose?.invalidate()
         self.closeIn?.invalidate()
+        // Using reload delegate from rsync parameters
+        self.configurationsDelegate?.reloadconfigurations()
         self.dismissDelegate?.dismiss_view(viewcontroller: self)
     }
 
