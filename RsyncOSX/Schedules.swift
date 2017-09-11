@@ -45,7 +45,7 @@ class Schedules: ScheduleWriteLoggData {
     }
 
     /// Function for canceling next job waiting for execution.
-    func cancelJobWaiting () {
+    func cancelJobWaiting() {
         self.waitForTask?.invalidate()
         self.waitForTask = nil
     }
@@ -134,7 +134,7 @@ class Schedules: ScheduleWriteLoggData {
 
     /// Function either deletes or stops Schedules.
     /// - parameter data : array of Schedules which some of them are either marked for stop or delete
-    func deleteorstopschedule (data: Array<NSMutableDictionary>) {
+    func deleteorstopschedule(data: Array<NSMutableDictionary>) {
         var update: Bool = false
         if (data.count) > 0 {
             let hiddenID = data[0].value(forKey: "hiddenID") as? Int
@@ -168,7 +168,7 @@ class Schedules: ScheduleWriteLoggData {
     }
 
     // Test if Schedule record in memory is set to delete or not
-    private func delete (dict: NSDictionary) {
+    private func delete(dict: NSDictionary) {
         loop :  for i in 0 ..< self.schedules.count {
             if dict.value(forKey: "hiddenID") as? Int == self.schedules[i].hiddenID {
                 if dict.value(forKey: "dateStop") as? String == self.schedules[i].dateStop ||
@@ -183,7 +183,7 @@ class Schedules: ScheduleWriteLoggData {
     }
 
     // Test if Schedule record in memory is set to stop er not
-    private func stop (dict: NSDictionary) {
+    private func stop(dict: NSDictionary) {
         loop :  for i in 0 ..< self.schedules.count where
             dict.value(forKey: "hiddenID") as? Int == self.schedules[i].hiddenID {
                 if dict.value(forKey: "dateStop") as? String == self.schedules[i].dateStop ||
@@ -197,7 +197,7 @@ class Schedules: ScheduleWriteLoggData {
     }
 
     // Check if hiddenID is in Scheduled tasks
-    func hiddenIDinSchedule (_ hiddenID: Int) -> Bool {
+    func hiddenIDinSchedule(_ hiddenID: Int) -> Bool {
         let result = self.schedules.filter({return ($0.hiddenID == hiddenID && $0.dateStop != nil)})
         if result.isEmpty {
             return false
@@ -206,7 +206,7 @@ class Schedules: ScheduleWriteLoggData {
         }
     }
 
-    func checkKey (_ dict1: NSDictionary, dict2: NSDictionary) -> Bool {
+    func checkKey(_ dict1: NSDictionary, dict2: NSDictionary) -> Bool {
         let keyexecute = dict1.value(forKey: "parent") as? String
         let keyparent = self.computeKey(dict2)
         if keyparent == keyexecute {
@@ -219,7 +219,7 @@ class Schedules: ScheduleWriteLoggData {
     // Returning the set of executed tasks for å schedule.
     // Used for recalcutlate the parent key when task change schedule
     // from active to "stopped"
-    private func getScheduleExecuted (_ hiddenID: Int) -> Array<NSMutableDictionary>? {
+    private func getScheduleExecuted(_ hiddenID: Int) -> Array<NSMutableDictionary>? {
         var result = self.schedules.filter({return ($0.hiddenID == hiddenID) && ($0.schedule == "stopped")})
         if result.count > 0 {
             let schedule = result.removeFirst()
@@ -231,7 +231,7 @@ class Schedules: ScheduleWriteLoggData {
 
     // Computing new parentkeys AFTER new schedule is updated.
     // Returning set updated keys
-    private func computeNewParentKeys (_ hiddenID: Int) -> Array<NSMutableDictionary>? {
+    private func computeNewParentKeys(_ hiddenID: Int) -> Array<NSMutableDictionary>? {
         var dict: NSMutableDictionary?
         var result = self.schedules.filter({return ($0.hiddenID == hiddenID) && ($0.schedule == "stopped")})
         var executed: Array<NSMutableDictionary>?
@@ -255,7 +255,7 @@ class Schedules: ScheduleWriteLoggData {
 
     // Setting updated executes to schedule.
     // Used when a group is set from active to "stopped"
-    private func updateExecutedNewKey (_ hiddenID: Int) {
+    private func updateExecutedNewKey(_ hiddenID: Int) {
         let executed: Array<NSMutableDictionary>? = self.computeNewParentKeys(hiddenID)
         loop : for i in 0 ..< self.schedules.count where self.schedules[i].hiddenID == hiddenID {
             if executed != nil {
