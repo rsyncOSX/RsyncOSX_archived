@@ -50,8 +50,11 @@ class ExecuteTask: Operation {
                 } else {
                     storageapi = PersistentStorageAPI(profile : nil)
                 }
-                let store: [Configuration] = storageapi!.getConfigurations()
-                let configArray = store.filter({return ($0.hiddenID == hiddenID)})
+                let store: [Configuration]? = storageapi!.getConfigurations()
+                guard store != nil else {
+                    return
+                }
+                let configArray = store!.filter({return ($0.hiddenID == hiddenID)})
                 guard configArray.count > 0 else {
                     notifyDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain)
                         as? ViewControllertabMain

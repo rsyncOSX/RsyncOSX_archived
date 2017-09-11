@@ -24,7 +24,7 @@ final class PersistentStorageAPI {
     // CONFIGURATIONS
 
     // Read configurations from persisten store
-    func getConfigurations() -> [Configuration] {
+    func getConfigurations() -> [Configuration]? {
         let read = PersistentStorageConfiguration(profile: self.profile)
         // Either read from persistent store or
         // return Configurations already in memory
@@ -36,7 +36,7 @@ final class PersistentStorageAPI {
             }
             return Configurations
         } else {
-            return []
+            return nil
         }
     }
 
