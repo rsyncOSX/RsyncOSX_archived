@@ -6,7 +6,7 @@
 //  Copyright © 2017 Thomas Evensen. All rights reserved.
 //
 //  SwiftLint: OK 31 July 2017
-//  swiftlint:disable syntactic_sugar function_body_length
+//  swiftlint:disable syntactic_sugar
 
 import Foundation
 
@@ -29,32 +29,20 @@ class ExecuteTask: Operation {
             as? ViewControllertabMain
         var schedules: Schedules?
         var configurations: Configurations?
-
         configurations = configurationsDelegate?.getconfigurationsobject()
         schedules = schedulesDelegate?.getschedulesobject()
-
-        // Storage API
-        var storageapi: PersistentStorageAPI?
         // Delegate function for start and completion of scheduled jobs
         weak var notifyDelegate: ScheduledJobInProgress?
         // Variables used for rsync parameters
         let output = OutputProcess()
         var arguments: Array<String>?
         var config: Configuration?
-
         // Get the first job of the queue
         if let dict: NSDictionary = schedules!.scheduledJob {
             if let hiddenID: Int = dict.value(forKey: "hiddenID") as? Int {
-                if let profile = configurations!.getProfile() {
-                    storageapi = PersistentStorageAPI(profile : profile)
-                } else {
-                    storageapi = PersistentStorageAPI(profile : nil)
-                }
-                let store: [Configuration]? = storageapi!.getConfigurations()
-                guard store != nil else {
-                    return
-                }
-                let configArray = store!.filter({return ($0.hiddenID == hiddenID)})
+                let getconfigurations: [Configuration]? = configurations?.getConfigurations()
+                guard getconfigurations != nil else { return }
+                let configArray = getconfigurations!.filter({return ($0.hiddenID == hiddenID)})
                 guard configArray.count > 0 else {
                     notifyDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain)
                         as? ViewControllertabMain
