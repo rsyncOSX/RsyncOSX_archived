@@ -359,8 +359,6 @@ class Configurations {
         var store: Array<Configuration>?
         self.configurations = Array<Configuration>()
         self.argumentAllConfigurations = NSMutableArray()
-        self.storageapi = nil
-        self.storageapi = PersistentStorageAPI(profile : self.profile)
         store = self.storageapi!.getConfigurations()
         guard store != nil else {
             return
@@ -397,10 +395,12 @@ class Configurations {
     }
 
     init(profile: String?) {
+        print(self)
         self.configurations = nil
         self.argumentAllConfigurations = nil
         self.configurationsDataSource = nil
         self.profile = profile
+        self.storageapi = PersistentStorageAPI(profile : self.profile)
         self.readconfigurations()
     }
 }

@@ -277,8 +277,6 @@ class Schedules: ScheduleWriteLoggData {
     /// The functions does NOT cancel waiting jobs or recalculate next scheduled job.
     private func readschedules() {
         var store: Array<ConfigurationSchedule>?
-        self.storageapi = nil
-        self.storageapi = PersistentStorageAPI(profile : self.profile)
         store = self.storageapi!.getScheduleandhistory()
         guard store != nil else {
             return
@@ -301,9 +299,11 @@ class Schedules: ScheduleWriteLoggData {
         self.scheduledJob = nil
     }
 
-     init(profile: String?) {
+    init(profile: String?) {
         super.init()
+        print(self)
         self.profile = profile
+        self.storageapi = PersistentStorageAPI(profile : self.profile)
         self.readschedules()
     }
 }

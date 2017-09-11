@@ -1152,6 +1152,10 @@ extension ViewControllertabMain: GetConfigurationsObject {
 
     // After a write, a reload is forced.
     func reloadconfigurations() {
+        // If batchtask do not keep configuration object
+        guard self.batchtask == nil else {
+            return
+        }
         if let profile = self.configurations!.getProfile() {
             self.configurations = nil
             self.configurations = Configurations(profile: profile)
