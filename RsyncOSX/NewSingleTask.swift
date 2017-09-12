@@ -36,6 +36,12 @@ enum ColorInfo {
 }
 
 final class NewSingleTask {
+
+    weak var configurationsDelegate: GetConfigurationsObject?
+    var configurations: Configurations?
+    weak var schedulesDelegate: GetSchedulesObject?
+    var schedules: Schedules?
+
     // Delegate function for start/stop progress Indicator in BatchWindow
     weak var indicatorDelegate: StartStopProgressIndicatorSingleTask?
     // Delegate functions for kicking of various updates (informal) during
@@ -78,7 +84,7 @@ final class NewSingleTask {
                 // Start animation and show process info
                 self.indicatorDelegate?.startIndicator()
                 self.taskDelegate?.showProcessInfo(info: .estimating)
-                arguments = Configurations.shared.arguments4rsync(index: index, argtype: .argdryRun)
+                arguments = self.configurations!.arguments4rsync(index: index, argtype: .argdryRun)
                 let process = Rsync(arguments: arguments)
                 self.output = OutputProcess()
                 process.executeProcess(output: self.output!)
@@ -90,7 +96,7 @@ final class NewSingleTask {
             if let index = self.index {
                 // Show progress view
                 self.taskDelegate?.presentViewProgress()
-                arguments = Configurations.shared.arguments4rsync(index: index, argtype: .arg)
+                arguments = self.configurations!.arguments4rsync(index: index, argtype: .arg)
                 self.output = OutputProcess()
                 let process = Rsync(arguments: arguments)
                 process.executeProcess(output: self.output!)
@@ -146,11 +152,11 @@ final class NewSingleTask {
                 // Get transferred numbers from view
                 self.transferredNumber = self.taskDelegate?.gettransferredNumber()
                 self.transferredNumberSizebytes = self.taskDelegate?.gettransferredNumberSizebytes()
-                Configurations.shared.setCurrentDateonConfiguration(self.index!)
-                let hiddenID = Configurations.shared.gethiddenID(index: self.index!)
+                self.configurations!.setCurrentDateonConfiguration(self.index!)
+                let hiddenID = self.configurations!.gethiddenID(index: self.index!)
                 let numberOffFiles = self.transferredNumber
                 let sizeOfFiles = self.transferredNumberSizebytes
-                Schedules.shared.addlogtaskmanuel(hiddenID,
+                self.schedules!.addlogtaskmanuel(hiddenID,
                                      result: number.stats(numberOfFiles: numberOffFiles, sizeOfFiles: sizeOfFiles)[0])
             case .abort:
                 self.taskDelegate?.singleTaskAbort(process: self.process)
@@ -174,12 +180,17 @@ final class NewSingleTask {
 
     init(index: Int) {
         self.index = index
-        if let pvc = Configurations.shared.viewControllertabMain as? ViewControllertabMain {
-            self.indicatorDelegate = pvc
-            self.taskDelegate = pvc
-        }
+        self.indicatorDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain)
+            as? ViewControllertabMain
+        self.taskDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain)
+            as? ViewControllertabMain
+        self.configurationsDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain)
+            as? ViewControllertabMain
+        self.configurations = self.configurationsDelegate?.getconfigurationsobject()
+        self.schedulesDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain)
+            as? ViewControllertabMain
+        self.schedules = self.schedulesDelegate?.getschedulesobject()
     }
-
 }
 
 // Counting

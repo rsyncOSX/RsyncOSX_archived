@@ -31,11 +31,11 @@ class ViewControllerNewVersion: NSViewController {
     }
 
     @IBAction func download(_ sender: NSButton) {
-        guard Configurations.shared.URLnewVersion != nil else {
+        guard ViewControllerReference.shared.URLnewVersion != nil else {
             self.dismissDelegate?.dismiss_view(viewcontroller: self)
             return
         }
-        NSWorkspace.shared.open(URL(string: Configurations.shared.URLnewVersion!)!)
+        NSWorkspace.shared.open(URL(string: ViewControllerReference.shared.URLnewVersion!)!)
         self.dismissDelegate?.dismiss_view(viewcontroller: self)
     }
 
@@ -60,9 +60,7 @@ class ViewControllerNewVersion: NSViewController {
         super.viewDidLoad()
         self.resource = Resources()
         // Dismisser is root controller
-        if let pvc2 = self.presenting as? ViewControllertabMain {
-            self.dismissDelegate = pvc2
-        }
+        self.dismissDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllertabMain
     }
 
     override func viewDidAppear() {

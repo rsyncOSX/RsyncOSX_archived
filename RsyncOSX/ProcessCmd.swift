@@ -83,11 +83,11 @@ class ProcessCmd {
             } else {
                 // We are in Scheduled operation and must finalize the job
                 // e.g logging date and stuff like that
-                if Configurations.shared.operation != nil {
-                    Configurations.shared.operation!.finalizeScheduledJob(output: output)
+                if ViewControllerReference.shared.operation != nil {
+                    ViewControllerReference.shared.operation!.finalizeScheduledJob(output: output)
                 }
                 // After logging is done set reference to object = nil
-                Configurations.shared.operation = nil
+                ViewControllerReference.shared.operation = nil
             }
             NotificationCenter.default.removeObserver(self.notifications as Any)
         }

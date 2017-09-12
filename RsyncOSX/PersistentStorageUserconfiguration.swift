@@ -11,6 +11,8 @@ import Foundation
 
 final class PersistentStorageUserconfiguration: Readwritefiles {
 
+    weak var configurationsDelegate: GetConfigurationsObject?
+    var configurations: Configurations?
     /// Variable holds all configuration data
     private var userconfiguration: Array<NSDictionary>?
 
@@ -28,28 +30,28 @@ final class PersistentStorageUserconfiguration: Readwritefiles {
         var allowDoubleclick: Int?
         var rsyncerror: Int?
         var restorePath: String?
-        if Configurations.shared.rsyncVer3 {
+        if self.configurations!.rsyncVer3 {
             version3Rsync = 1
         } else {
             version3Rsync = 0
         }
-        if Configurations.shared.detailedlogging {
+        if self.configurations!.detailedlogging {
             detailedlogging = 1
         } else {
             detailedlogging = 0
         }
-        if Configurations.shared.rsyncPath != nil {
-            rsyncPath = Configurations.shared.rsyncPath!
+        if self.configurations!.rsyncPath != nil {
+            rsyncPath = self.configurations!.rsyncPath!
         }
-        if Configurations.shared.restorePath != nil {
-            restorePath = Configurations.shared.restorePath!
+        if self.configurations!.restorePath != nil {
+            restorePath = self.configurations!.restorePath!
         }
-        if Configurations.shared.allowDoubleclick {
+        if self.configurations!.allowDoubleclick {
             allowDoubleclick = 1
         } else {
             allowDoubleclick = 0
         }
-        if Configurations.shared.rsyncerror {
+        if self.configurations!.rsyncerror {
             rsyncerror = 1
         } else {
             rsyncerror = 0
@@ -78,16 +80,13 @@ final class PersistentStorageUserconfiguration: Readwritefiles {
         _ = self.writeDatatoPersistentStorage(array, task: .userconfig)
     }
 
-    init () {
-        // Create the readwritefiles object
-        super.init(task: .userconfig)
-        // Reading Configurations from memory or disk, if dirty read from disk
-        // if not dirty set self.configurationFromStore to nil to tell
-        // anyone to read Configurations from memory
-        if let userconfigurationFromstore = self.getDatafromfile() {
-            self.userconfiguration = userconfigurationFromstore
-        } else {
-            self.userconfiguration = nil
+    init (readfromstorage: Bool) {
+        super.init(task: .userconfig, profile: nil)
+        self.configurationsDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain)
+            as? ViewControllertabMain
+        self.configurations = self.configurationsDelegate?.getconfigurationsobject()
+        if readfromstorage {
+            self.userconfiguration = self.getDatafromfile()
         }
     }
 }

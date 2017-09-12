@@ -22,6 +22,11 @@ protocol StartTimer : class {
 
 class ViewControllertabSchedule: NSViewController {
 
+    weak var configurationsDelegate: GetConfigurationsObject?
+    var configurations: Configurations?
+    weak var schedulesDelegate: GetSchedulesObject?
+    var schedules: Schedules?
+
     // Main tableview
     @IBOutlet weak var mainTableView: NSTableView!
     @IBOutlet weak var once: NSButton!
@@ -39,7 +44,7 @@ class ViewControllertabSchedule: NSViewController {
     // Another function is responsible to kick off the first scheduled operation.
     private var nextTask: Timer?
     // Scedules object
-    fileprivate var schedules: ScheduleSortedAndExpand?
+    fileprivate var schedulessorted: ScheduleSortedAndExpand?
     // Delegate to inform new schedules added or schedules deleted
     weak var newSchedulesDelegate: NewSchedules?
     // Delegate function for starting next scheduled operatin if any
@@ -124,15 +129,13 @@ class ViewControllertabSchedule: NSViewController {
     private func addschedule(schedule: String, startdate: Date, stopdate: Date) {
         let answer = Alerts.dialogOKCancel("Add Schedule?", text: "Cancel or OK")
         if answer {
-            Schedules.shared.addschedule(self.hiddenID!, schedule: schedule, start: startdate, stop: stopdate)
+            self.schedules!.addschedule(self.hiddenID!, schedule: schedule, start: startdate, stop: stopdate)
             self.newSchedules = true
             // Refresh table and recalculate the Schedules jobs
             self.refresh()
             // Start next job, if any, by delegate
-            if let pvc = Configurations.shared.viewControllertabMain as? ViewControllertabMain {
-                startnextjobDelegate = pvc
-                startnextjobDelegate?.startProcess()
-            }
+            self.startnextjobDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllertabMain
+            self.startnextjobDelegate?.startProcess()
             // Displaying next two scheduled tasks
             self.nextScheduledtask()
             // Call function to check if a scheduled backup is due for countdown
@@ -169,21 +172,28 @@ class ViewControllertabSchedule: NSViewController {
         self.mainTableView.delegate = self
         self.mainTableView.dataSource = self
         // Create a Schedules object
-        self.schedules = ScheduleSortedAndExpand()
+        self.schedulessorted = ScheduleSortedAndExpand()
         // Setting reference to self.
-        Configurations.shared.viewControllertabSchedule = self
+        ViewControllerReference.shared.setvcref(viewcontroller: .vctabschedule, nsviewcontroller: self)
+
+        self.configurationsDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain)
+            as? ViewControllertabMain
+        self.schedulesDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain)
+            as? ViewControllertabMain
     }
 
     override func viewDidAppear() {
         super.viewDidAppear()
+        self.configurations = self.configurationsDelegate?.getconfigurationsobject()
+        self.schedules = self.schedulesDelegate?.getschedulesobject()
         // Set initial values of dates to now
         self.stopdate.dateValue = Date()
         self.stoptime.dateValue = Date()
-        if self.schedules == nil {
+        if self.schedulessorted == nil {
             // Create a Schedules object
-            self.schedules = ScheduleSortedAndExpand()
+            self.schedulessorted = ScheduleSortedAndExpand()
         }
-        if Configurations.shared.configurationsDataSourcecountBackupOnlyCount() > 0 {
+        if self.configurations!.configurationsDataSourcecountBackupOnlyCount() > 0 {
             globalMainQueue.async(execute: { () -> Void in
                 self.mainTableView.reloadData()
             })
@@ -192,27 +202,23 @@ class ViewControllertabSchedule: NSViewController {
         self.nextScheduledtask()
         // Call function to check if a scheduled backup is due for countdown
         self.startTimer()
-        // Reference to self
-        Schedules.shared.viewObjectSchedule = self
     }
 
     override func viewDidDisappear() {
         super.viewDidDisappear()
         if self.newSchedules! {
             self.newSchedules = false
-            if let pvc = Configurations.shared.viewControllertabMain as? ViewControllertabMain {
-                self.newSchedulesDelegate = pvc
-                // Notify new schedules are added
-                self.newSchedulesDelegate?.newSchedulesAdded()
-            }
+            self.newSchedulesDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllertabMain
+            // Notify new schedules are added
+            self.newSchedulesDelegate?.newSchedulesAdded()
         }
     }
 
     // Start timer
     func startTimer() {
         // Find out if count down and update display
-        if self.schedules != nil {
-            let timer: Double = self.schedules!.startTimerseconds()
+        if self.schedulessorted != nil {
+            let timer: Double = self.schedulessorted!.startTimerseconds()
             // timer == 0 do not start NSTimer, timer > 0 update frequens of NSTimer
             if timer > 0 {
                 self.nextTask?.invalidate()
@@ -225,25 +231,25 @@ class ViewControllertabSchedule: NSViewController {
 
     // Update display next scheduled jobs in time
     @objc func nextScheduledtask() {
-        guard self.schedules != nil else {
+        guard self.schedulessorted != nil else {
             return
         }
         // Displaying next two scheduled tasks
         self.firstLocalCatalog.textColor = .black
-        self.firstScheduledTask.stringValue = self.schedules!.whenIsNextTwoTasksString()[0]
-        self.secondScheduledTask.stringValue = self.schedules!.whenIsNextTwoTasksString()[1]
-        if self.schedules!.remoteServerAndPathNextTwoTasks().count > 0 {
-            if self.schedules!.remoteServerAndPathNextTwoTasks().count > 2 {
-                self.firstRemoteServer.stringValue = self.schedules!.remoteServerAndPathNextTwoTasks()[0]
-                self.firstLocalCatalog.stringValue = self.schedules!.remoteServerAndPathNextTwoTasks()[1]
-                self.secondRemoteServer.stringValue = self.schedules!.remoteServerAndPathNextTwoTasks()[2]
-                self.secondLocalCatalog.stringValue = self.schedules!.remoteServerAndPathNextTwoTasks()[3]
+        self.firstScheduledTask.stringValue = self.schedulessorted!.whenIsNextTwoTasksString()[0]
+        self.secondScheduledTask.stringValue = self.schedulessorted!.whenIsNextTwoTasksString()[1]
+        if self.schedulessorted!.remoteServerAndPathNextTwoTasks().count > 0 {
+            if self.schedulessorted!.remoteServerAndPathNextTwoTasks().count > 2 {
+                self.firstRemoteServer.stringValue = self.schedulessorted!.remoteServerAndPathNextTwoTasks()[0]
+                self.firstLocalCatalog.stringValue = self.schedulessorted!.remoteServerAndPathNextTwoTasks()[1]
+                self.secondRemoteServer.stringValue = self.schedulessorted!.remoteServerAndPathNextTwoTasks()[2]
+                self.secondLocalCatalog.stringValue = self.schedulessorted!.remoteServerAndPathNextTwoTasks()[3]
             } else {
-                guard self.schedules!.remoteServerAndPathNextTwoTasks().count == 2 else {
+                guard self.schedulessorted!.remoteServerAndPathNextTwoTasks().count == 2 else {
                     return
                 }
-                self.firstRemoteServer.stringValue = self.schedules!.remoteServerAndPathNextTwoTasks()[0]
-                self.firstLocalCatalog.stringValue = self.schedules!.remoteServerAndPathNextTwoTasks()[1]
+                self.firstRemoteServer.stringValue = self.schedulessorted!.remoteServerAndPathNextTwoTasks()[0]
+                self.firstLocalCatalog.stringValue = self.schedulessorted!.remoteServerAndPathNextTwoTasks()[1]
                 self.secondRemoteServer.stringValue = ""
                 self.secondLocalCatalog.stringValue = ""
             }
@@ -258,7 +264,7 @@ class ViewControllertabSchedule: NSViewController {
         if let index = indexes.first {
             // Set index
             self.index = index
-            let dict = Configurations.shared.getConfigurationsDataSourcecountBackupOnly()![index]
+            let dict = self.configurations!.getConfigurationsDataSourcecountBackupOnly()![index]
             self.hiddenID = dict.value(forKey: "hiddenID") as? Int
         } else {
             self.index = nil
@@ -271,20 +277,23 @@ class ViewControllertabSchedule: NSViewController {
 extension ViewControllertabSchedule : NSTableViewDataSource {
 
     func numberOfRows(in tableView: NSTableView) -> Int {
-        return Configurations.shared.configurationsDataSourcecountBackupOnlyCount()
+        guard self.configurations != nil else {
+            return 0
+        }
+        return self.configurations!.configurationsDataSourcecountBackupOnlyCount()
     }
 }
 
 extension ViewControllertabSchedule : NSTableViewDelegate {
 
     @objc(tableView:objectValueForTableColumn:row:) func tableView(_ tableView: NSTableView, objectValueFor tableColumn: NSTableColumn?, row: Int) -> Any? {
-        let object: NSDictionary = Configurations.shared.getConfigurationsDataSourcecountBackupOnly()![row]
+        let object: NSDictionary = self.configurations!.getConfigurationsDataSourcecountBackupOnly()![row]
         var text: String?
         var schedule: Bool = false
         var number: Int?
 
         let hiddenID: Int = (object.value(forKey: "hiddenID") as? Int)!
-        if Schedules.shared.hiddenIDinSchedule(hiddenID) {
+        if self.schedules!.hiddenIDinSchedule(hiddenID) {
             text = object[tableColumn!.identifier] as? String
             if text == "backup" || text == "restore" {
                 schedule = true
@@ -293,8 +302,8 @@ extension ViewControllertabSchedule : NSTableViewDelegate {
         if tableColumn!.identifier.rawValue == "batchCellID" {
             return object[tableColumn!.identifier] as? Int!
         } else {
-            if self.schedules != nil {
-                number = self.schedules!.numberOfFutureSchedules(hiddenID)
+            if self.schedulessorted != nil {
+                number = self.schedulessorted!.numberOfFutureSchedules(hiddenID)
             } else {
                 number = 0
             }
@@ -309,9 +318,9 @@ extension ViewControllertabSchedule : NSTableViewDelegate {
 
     // Toggling batch
     @objc(tableView:setObjectValue:forTableColumn:row:) func tableView(_ tableView: NSTableView, setObjectValue object: Any?, for tableColumn: NSTableColumn?, row: Int) {
-        if Configurations.shared.getConfigurations()[row].task == "backup" {
-            Configurations.shared.getConfigurationsDataSource()![row].setObject(object!, forKey: (tableColumn?.identifier)! as NSCopying)
-            Configurations.shared.setBatchYesNo(row)
+        if self.configurations!.getConfigurations()[row].task == "backup" {
+            self.configurations!.getConfigurationsDataSource()![row].setObject(object!, forKey: (tableColumn?.identifier)! as NSCopying)
+            self.configurations!.setBatchYesNo(row)
         }
     }
 
@@ -338,10 +347,10 @@ extension ViewControllertabSchedule: DismissViewController {
 extension ViewControllertabSchedule: AddProfiles {
 
     // Just reset the schedules
-    func newProfile(new: Bool) {
+    func newProfile(profile: String?) {
         // Resetting the reference to ScheduleSortedAndExpand object.
         // New object is created when a new profile is loaded.
-        self.schedules = nil
+        self.schedulessorted = nil
         self.firstRemoteServer.stringValue = ""
         self.firstLocalCatalog.stringValue = ""
         self.secondRemoteServer.stringValue = ""
@@ -357,7 +366,7 @@ extension ViewControllertabSchedule: AddProfiles {
 extension ViewControllertabSchedule: RefreshtableView {
 
     func refresh() {
-        if Configurations.shared.configurationsDataSourcecountBackupOnlyCount() > 0 {
+        if self.configurations!.configurationsDataSourcecountBackupOnlyCount() > 0 {
             globalMainQueue.async(execute: { () -> Void in
                 self.mainTableView.reloadData()
             })
@@ -367,11 +376,11 @@ extension ViewControllertabSchedule: RefreshtableView {
         self.secondRemoteServer.stringValue = ""
         self.secondLocalCatalog.stringValue = ""
         // Create a New schedules object
-        self.schedules = nil
-        self.schedules = ScheduleSortedAndExpand()
+        self.schedulessorted = nil
+        self.schedulessorted = ScheduleSortedAndExpand()
         // Displaying next two scheduled tasks
-        self.firstScheduledTask.stringValue = self.schedules!.whenIsNextTwoTasksString()[0]
-        self.secondScheduledTask.stringValue = self.schedules!.whenIsNextTwoTasksString()[1]
+        self.firstScheduledTask.stringValue = self.schedulessorted!.whenIsNextTwoTasksString()[0]
+        self.secondScheduledTask.stringValue = self.schedulessorted!.whenIsNextTwoTasksString()[1]
     }
 
 }
@@ -380,7 +389,7 @@ extension ViewControllertabSchedule: StartTimer {
 
     // Called from Process
     func startTimerNextJob() {
-        self.schedules = ScheduleSortedAndExpand()
+        self.schedulessorted = ScheduleSortedAndExpand()
         self.firstRemoteServer.stringValue = ""
         self.firstLocalCatalog.stringValue = ""
         self.startTimer()

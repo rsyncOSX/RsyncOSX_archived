@@ -20,6 +20,9 @@ protocol GetSource: class {
 
 class ViewControllerCopyFiles: NSViewController {
 
+    weak var configurationsDelegate: GetConfigurationsObject?
+    var configurations: Configurations?
+
     var copyFiles: CopyFiles?
     var index: Int?
     var rsync: Bool = false
@@ -137,10 +140,10 @@ class ViewControllerCopyFiles: NSViewController {
             self.selectButton.title = "Get source"
             return
         }
-        let hiddenID = Configurations.shared.gethiddenID(index: index!)
+        let hiddenID = self.configurations!.gethiddenID(index: index!)
         globalMainQueue.async(execute: { () -> Void in
-            self.server.stringValue = Configurations.shared.getResourceConfiguration(hiddenID, resource: .offsiteServer)
-            self.rcatalog.stringValue = Configurations.shared.getResourceConfiguration(hiddenID, resource: .remoteCatalog)
+            self.server.stringValue = self.configurations!.getResourceConfiguration(hiddenID, resource: .offsiteServer)
+            self.rcatalog.stringValue = self.configurations!.getResourceConfiguration(hiddenID, resource: .remoteCatalog)
         })
         self.selectButton.title = "Get files"
     }
@@ -148,7 +151,7 @@ class ViewControllerCopyFiles: NSViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Setting reference to ViewObject
-        Configurations.shared.viewControllerCopyFiles = self
+        ViewControllerReference.shared.setvcref(viewcontroller: .vccopyfiles, nsviewcontroller: self)
         self.tableViewSelect.delegate = self
         self.tableViewSelect.dataSource = self
         // Progress indicator
@@ -158,20 +161,22 @@ class ViewControllerCopyFiles: NSViewController {
         self.localCatalog.delegate = self
         // Double click on row to select
         self.tableViewSelect.doubleAction = #selector(self.tableViewDoubleClick(sender:))
+        self.configurationsDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain)
+            as? ViewControllertabMain
     }
 
     override func viewDidAppear() {
         super.viewDidAppear()
-        if let pvc = Configurations.shared.viewControllertabMain as? ViewControllertabMain {
-            self.indexDelegate = pvc
-            self.index = self.indexDelegate?.getindex()
-            if let index = self.index {
-                self.displayRemoteserver(index: index)
-            }
+        self.configurations = self.configurationsDelegate?.getconfigurationsobject()
+        self.indexDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain)
+            as? ViewControllertabMain
+        self.index = self.indexDelegate?.getindex()
+        if let index = self.index {
+            self.displayRemoteserver(index: index)
         }
         self.copyButton.isEnabled = true
         self.copyButton.title = "Estimate"
-        if let restorePath = Configurations.shared.restorePath {
+        if let restorePath = self.configurations!.restorePath {
             self.localCatalog.stringValue = restorePath
         } else {
             self.localCatalog.stringValue = ""
@@ -297,7 +302,6 @@ extension ViewControllerCopyFiles: NSTableViewDelegate {
 // textDidEndEditing
 
 extension ViewControllerCopyFiles: NSTextFieldDelegate {
-
     override func controlTextDidEndEditing(_ obj: Notification) {
         if self.remoteCatalog.stringValue.isEmpty == false && self.localCatalog.stringValue.isEmpty == false {
             self.commandString.stringValue = (self.copyFiles!.getCommandDisplayinView(remotefile: self.remoteCatalog.stringValue, localCatalog: self.localCatalog.stringValue))
@@ -308,7 +312,6 @@ extension ViewControllerCopyFiles: NSTextFieldDelegate {
 }
 
 extension ViewControllerCopyFiles: RefreshtableView {
-
     // Do a refresh of table
     func refresh() {
         guard self.copyFiles != nil else {
@@ -322,7 +325,6 @@ extension ViewControllerCopyFiles: RefreshtableView {
 }
 
 extension ViewControllerCopyFiles: StartStopProgressIndicator {
-
     // Protocol StartStopProgressIndicatorViewBatch
     func stop() {
         self.working.stopAnimation(nil)
@@ -336,8 +338,6 @@ extension ViewControllerCopyFiles: StartStopProgressIndicator {
 }
 
 extension ViewControllerCopyFiles: UpdateProgress {
-
-    // When Process terminates
     func processTermination() {
         if self.rsync == false {
             self.copyFiles!.setRemoteFileList()
@@ -349,30 +349,24 @@ extension ViewControllerCopyFiles: UpdateProgress {
         }
     }
 
-    // When Process outputs anything to filehandler
     func fileHandler() {
         // nothing
     }
 }
 
 extension ViewControllerCopyFiles: Information {
-
-    // Protocol Information
     func getInformation() -> [String] {
         return self.copyFiles!.getOutput()
     }
 }
 
 extension ViewControllerCopyFiles: DismissViewController {
-
-    // Protocol DismissViewController
     func dismiss_view(viewcontroller: NSViewController) {
         self.dismissViewController(viewcontroller)
     }
 }
 
 extension ViewControllerCopyFiles: GetPath {
-
     func pathSet(path: String?, requester: WhichPath) {
         if let setpath = path {
             self.localCatalog.stringValue = setpath

@@ -61,10 +61,9 @@ final class OutputProcess {
         // There is an error in transferring files
         // We only informs in main view if error
         if error {
-            if let pvc = Configurations.shared.viewControllertabMain {
-                self.errorDelegate = pvc as? ViewControllertabMain
-                self.errorDelegate?.rsyncerror()
-            }
+            self.errorDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain)
+                as? ViewControllertabMain
+            self.errorDelegate?.rsyncerror()
         }
     }
 

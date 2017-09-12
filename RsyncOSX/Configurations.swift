@@ -1,8 +1,8 @@
 //
 //  Configurations.swift
 //
-//  This object stays in memory runtime and holds key data and operations on Configurations. 
-//  The obect is the model for the Configurations but also acts as Controller when 
+//  This object stays in memory runtime and holds key data and operations on Configurations.
+//  The obect is the model for the Configurations but also acts as Controller when
 //  the ViewControllers reads or updates data.
 //
 //  The object also holds various configurations for RsyncOSX and references to
@@ -15,7 +15,13 @@
 //  swiftlint:disable syntactic_sugar file_length
 
 import Foundation
-import Cocoa
+
+// Protocol for returning object configurations data
+protocol GetConfigurationsObject: class {
+    func getconfigurationsobject() -> Configurations?
+    func createconfigurationsobject(profile: String?) -> Configurations?
+    func reloadconfigurations()
+}
 
 // Used to select argument
 enum ArgumentsRsync {
@@ -31,32 +37,15 @@ protocol RefreshtableView: class {
 
 class Configurations {
 
-    // Creates a singelton of this class
-    class var  shared: Configurations {
-        struct Singleton {
-            static let instance = Configurations()
-        }
-        return Singleton.instance
-    }
-
-    // Variabl if Data is changed, saved to Store
-    // and must be read into memory again
+    // Variabl if Data is changed, saved to Store and must be read into memory again
     private var dirtyData: Bool = true
-    // Get value
-    func isDataDirty() -> Bool {
-        return self.dirtyData
-    }
-    // Set value
-    func setDataDirty(dirty: Bool) {
-        self.dirtyData = dirty
-    }
+    func isDataDirty() -> Bool { return self.dirtyData }
+    func setDataDirty(dirty: Bool) { self.dirtyData = dirty }
 
     // Storage API
     var storageapi: PersistentStorageAPI?
     // Delegate functions
     weak var refreshDelegate: RefreshtableView?
-    // Download URL if new version is avaliable
-    var URLnewVersion: String?
     // True if version 3.2.1 of rsync in /usr/local/bin
     var rsyncVer3: Bool = false
     // Optional path to rsync
@@ -69,28 +58,13 @@ class Configurations {
     var allowDoubleclick: Bool = true
     // Temporary path for restore
     var restorePath: String?
-
     // reference to Process, used for kill in executing task
     var process: Process?
     // Variabl if arguments to Rsync is changed and must be read into memory again
     private var readRsyncArguments: Bool = true
-    // Reference to manin View
-    var viewControllertabMain: NSViewController?
-    // Reference to Copy files
-    var viewControllerCopyFiles: NSViewController?
-    // Reference to the New tasks
-    var viewControllerNewConfigurations: NSViewController?
-    // Reference to the  Schedule
-    var viewControllertabSchedule: NSViewController?
     // Reference to the Operation object
     // Reference is set in when Scheduled task is executed
     var operation: CompleteScheduledOperation?
-    // Which profile to use, if default nil
-    var viewControllerLoggData: NSViewController?
-    // Reference to Ssh view
-    var viewControllerSsh: NSViewController?
-    // Reference to About
-    var viewControllerAbout: NSViewController?
     private var profile: String?
     // Notify about scheduled process
     // Only allowed to notity by modal window when in main view
@@ -101,10 +75,10 @@ class Configurations {
     var singleTask: NewSingleTask?
 
     // The main structure storing all Configurations for tasks
-    private var configurations = Array<Configuration>()
+    private var configurations: Array<Configuration>?
     // Array to store argumenst for all tasks.
     // Initialized during startup
-    private var argumentAllConfigurations =  NSMutableArray()
+    private var argumentAllConfigurations: NSMutableArray?
     // Datasource for NSTableViews
     private var configurationsDataSource: Array<NSMutableDictionary>?
     // Object for batchQueue data and operations
@@ -115,23 +89,24 @@ class Configurations {
         return self.profile
     }
 
-    /// Function for setting the profile
-    func setProfile(profile: String?) {
-        self.profile = profile
-    }
-
     /// Function for getting Configurations read into memory
     /// - parameter none: none
     /// - returns : Array of configurations
     func getConfigurations() -> Array<Configuration> {
-        return self.configurations
+        guard self.configurations != nil else {
+            return []
+        }
+        return self.configurations!
     }
 
     /// Function for getting arguments for all Configurations read into memory
     /// - parameter none: none
     /// - returns : Array of arguments
     func getargumentAllConfigurations() -> NSMutableArray {
-        return self.argumentAllConfigurations
+        guard self.argumentAllConfigurations != nil else {
+            return []
+        }
+        return self.argumentAllConfigurations!
     }
 
     /// Function for getting the number of configurations used in NSTableViews
@@ -157,7 +132,7 @@ class Configurations {
     /// - parameter none: none
     /// - returns : Array of NSDictionary
     func getConfigurationsDataSourcecountBackupOnly() -> [NSDictionary]? {
-        let configurations: [Configuration] = self.configurations.filter({return ($0.task == "backup")})
+        let configurations: [Configuration] = self.configurations!.filter({return ($0.task == "backup")})
         var row =  NSDictionary()
         var data = Array<NSDictionary>()
         for i in 0 ..< configurations.count {
@@ -172,13 +147,13 @@ class Configurations {
             ]
             data.append(row)
         }
-    return data
+        return data
     }
 
     /// Function returns all Configurations marked for backup.
     /// - returns : array of Configurations
     func getConfigurationsBatch() -> [Configuration] {
-        return self.configurations.filter({return ($0.task == "backup") && ($0.batch == "yes")})
+        return self.configurations!.filter({return ($0.task == "backup") && ($0.batch == "yes")})
     }
 
     /// Function for returning count of all Configurations marked as backup (not restore)
@@ -198,7 +173,7 @@ class Configurations {
     /// - parameter argtype : either .arg or .argdryRun (of enumtype argumentsRsync)
     /// - returns : array of Strings holding all computed arguments
     func arguments4rsync (index: Int, argtype: ArgumentsRsync) -> Array<String> {
-        let allarguments = (self.argumentAllConfigurations[index] as? ArgumentsOneConfiguration)!
+        let allarguments = (self.argumentAllConfigurations![index] as? ArgumentsOneConfiguration)!
         switch argtype {
         case .arg:
             return allarguments.arg!
@@ -207,24 +182,14 @@ class Configurations {
         }
     }
 
-    /// Function is adding new Configurations to existing
-    /// configurations in memory.
+    /// Function is adding new Configurations to existing in memory.
     /// - parameter dict : new record configuration
     func addConfigurationtoMemory (dict: NSDictionary) {
         let config = Configuration(dictionary: dict)
-        self.configurations.append(config)
+        self.configurations!.append(config)
     }
 
-    /// Function destroys records holding data about all Configurations, all
-    /// arguments for Configurations and configurations as datasource for
-    /// presenting Configurations in tableviews.
-    func destroyConfigurations() {
-        self.configurations.removeAll()
-        self.argumentAllConfigurations.removeAllObjects()
-        self.configurationsDataSource = nil
-    }
-
-    /// Function sets currentDate on Configuration when executed on task 
+    /// Function sets currentDate on Configuration when executed on task
     /// stored in memory and then saves updated configuration from memory to persistent store.
     /// Function also notifies Execute view to refresh data
     /// in tableView.
@@ -232,17 +197,16 @@ class Configurations {
     func setCurrentDateonConfiguration (_ index: Int) {
         let currendate = Date()
         let dateformatter = Tools().setDateformat()
-        self.configurations[index].dateRun = dateformatter.string(from: currendate)
+        self.configurations![index].dateRun = dateformatter.string(from: currendate)
         // Saving updated configuration in memory to persistent store
         self.storageapi!.saveConfigFromMemory()
         // Call the view and do a refresh of tableView
-        if let pvc = self.viewControllertabMain as? ViewControllertabMain {
-            self.refreshDelegate = pvc
-            self.refreshDelegate?.refresh()
-        }
+        self.refreshDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain)
+            as? ViewControllertabMain
+        self.refreshDelegate?.refresh()
     }
 
-    /// Function destroys reference to object holding data and 
+    /// Function destroys reference to object holding data and
     /// methods for executing batch work
     func deleteBatchData() {
         self.batchdata = nil
@@ -253,7 +217,7 @@ class Configurations {
     /// - parameter config: updated configuration
     /// - parameter index: index to Configuration to replace by config
     func updateConfigurations (_ config: Configuration, index: Int) {
-        self.configurations[index] = config
+        self.configurations![index] = config
         self.storageapi!.saveConfigFromMemory()
     }
 
@@ -263,26 +227,25 @@ class Configurations {
     /// - parameter hiddenID: hiddenID which is unique for every Configuration
     func deleteConfigurationsByhiddenID (hiddenID: Int) {
         let index = self.getIndex(hiddenID)
-        self.configurations.remove(at: index)
+        self.configurations!.remove(at: index)
         self.storageapi!.saveConfigFromMemory()
     }
 
     /// Function toggles Configurations for batch or no
     /// batch. Function updates Configuration in memory
-    /// and stores Configuration i memory to 
+    /// and stores Configuration i memory to
     /// persisten store
     /// - parameter index: index of Configuration to toogle batch on/off
     func setBatchYesNo (_ index: Int) {
-        if self.configurations[index].batch == "yes" {
-            self.configurations[index].batch = "no"
+        if self.configurations![index].batch == "yes" {
+            self.configurations![index].batch = "no"
         } else {
-            self.configurations[index].batch = "yes"
+            self.configurations![index].batch = "yes"
         }
         self.storageapi!.saveConfigFromMemory()
-        if let pvc = self.viewControllertabMain as? ViewControllertabMain {
-            self.refreshDelegate = pvc
-            self.refreshDelegate?.refresh()
-        }
+        self.refreshDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain)
+            as? ViewControllertabMain
+        self.refreshDelegate?.refresh()
     }
 
     /// Function sets reference to object holding data and methods
@@ -352,7 +315,7 @@ class Configurations {
     }
 
     func getResourceConfiguration(_ hiddenID: Int, resource: ResourceInConfiguration) -> String {
-        var result = self.configurations.filter({return ($0.hiddenID == hiddenID)})
+        var result = self.configurations!.filter({return ($0.hiddenID == hiddenID)})
         guard result.count > 0 else {
             return ""
         }
@@ -374,57 +337,54 @@ class Configurations {
 
     func getIndex(_ hiddenID: Int) -> Int {
         var index: Int = -1
-        loop: for i in 0 ..< self.configurations.count where self.configurations[i].hiddenID == hiddenID {
-                index = i
-                break loop
+        loop: for i in 0 ..< self.configurations!.count where self.configurations![i].hiddenID == hiddenID {
+            index = i
+            break loop
         }
         return index
     }
 
     func gethiddenID (index: Int) -> Int {
-        return self.configurations[index].hiddenID
+        return self.configurations![index].hiddenID
     }
-
-}
-
-extension Configurations: Readupdatedconfigurations {
 
     /// Function is reading all Configurations into memory from permanent store and
     /// prepare all arguments for rsync. All configurations are stored in the private
     /// variable within object.
-    /// Function is destroying any previous Configurations before loading new
-    /// configurations and computing new arguments.
+    /// Function is destroying any previous Configurations before loading new and computing new arguments.
     /// - parameter none: none
-    func readAllConfigurationsAndArguments() {
-        // print("readAllConfigurationsAndArguments()")
-        if self.storageapi == nil {self.storageapi = PersistentStorageAPI()}
-        let store: Array<Configuration> = self.storageapi!.getConfigurations()
-        self.destroyConfigurations()
-        // We read all stored configurations into memory
-        for i in 0 ..< store.count {
-            self.configurations.append(store[i])
-            let rsyncArgumentsOneConfig = ArgumentsOneConfiguration(config: store[i])
-            self.argumentAllConfigurations.add(rsyncArgumentsOneConfig)
+    private func readconfigurations() {
+        var store: Array<Configuration>?
+        self.configurations = Array<Configuration>()
+        self.argumentAllConfigurations = NSMutableArray()
+        store = self.storageapi!.getConfigurations()
+        guard store != nil else {
+            return
+        }
+        for i in 0 ..< store!.count {
+            self.configurations!.append(store![i])
+            let rsyncArgumentsOneConfig = ArgumentsOneConfiguration(config: store![i])
+            self.argumentAllConfigurations!.add(rsyncArgumentsOneConfig)
         }
         // Then prepare the datasource for use in tableviews as Dictionarys
         var row =  NSMutableDictionary()
         var data = Array<NSMutableDictionary>()
         self.configurationsDataSource = nil
         var batch: Int = 0
-        for i in 0 ..< self.configurations.count {
-            if self.configurations[i].batch == "yes" {
+        for i in 0 ..< self.configurations!.count {
+            if self.configurations![i].batch == "yes" {
                 batch = 1
             } else {
                 batch = 0
             }
             row = [
-                "taskCellID": self.configurations[i].task,
+                "taskCellID": self.configurations![i].task,
                 "batchCellID": batch,
-                "localCatalogCellID": self.configurations[i].localCatalog,
-                "offsiteCatalogCellID": self.configurations[i].offsiteCatalog,
-                "offsiteServerCellID": self.configurations[i].offsiteServer,
-                "backupIDCellID": self.configurations[i].backupID,
-                "runDateCellID": self.configurations[i].dateRun!
+                "localCatalogCellID": self.configurations![i].localCatalog,
+                "offsiteCatalogCellID": self.configurations![i].offsiteCatalog,
+                "offsiteServerCellID": self.configurations![i].offsiteServer,
+                "backupIDCellID": self.configurations![i].backupID,
+                "runDateCellID": self.configurations![i].dateRun!
             ]
             data.append(row)
         }
@@ -432,4 +392,13 @@ extension Configurations: Readupdatedconfigurations {
         self.newConfigurations = nil
     }
 
+    init(profile: String?) {
+        print(self)
+        self.configurations = nil
+        self.argumentAllConfigurations = nil
+        self.configurationsDataSource = nil
+        self.profile = profile
+        self.storageapi = PersistentStorageAPI(profile : self.profile)
+        self.readconfigurations()
+    }
 }

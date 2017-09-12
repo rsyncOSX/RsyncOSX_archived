@@ -17,6 +17,11 @@ protocol GetHiddenID : class {
 
 class ViewControllerScheduleDetails: NSViewController {
 
+    weak var configurationsDelegate: GetConfigurationsObject?
+    var configurations: Configurations?
+    weak var schedulesDelegate: GetSchedulesObject?
+    var schedules: Schedules?
+
     @IBOutlet weak var localCatalog: NSTextField!
     @IBOutlet weak var remoteCatalog: NSTextField!
     @IBOutlet weak var offsiteServer: NSTextField!
@@ -47,7 +52,7 @@ class ViewControllerScheduleDetails: NSViewController {
 
     @IBAction func update(_ sender: NSButton) {
         if let data = self.data {
-            Schedules.shared.deleteorstopschedule(data : data)
+            self.schedules!.deleteorstopschedule(data : data)
             // Do a refresh of tableViews in both ViewControllertabMain and ViewControllertabSchedule
             self.refreshDelegate?.refresh()
             self.refreshDelegate2?.refresh()
@@ -58,34 +63,38 @@ class ViewControllerScheduleDetails: NSViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.tools = Tools()
-        if let pvc = self.presenting as? ViewControllertabMain {
-            self.refreshDelegate = pvc
-        }
+        self.refreshDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain)
+            as? ViewControllertabMain
         // Dismisser is root controller
-        if let pvc2 = self.presenting as? ViewControllertabSchedule {
-            self.dismissDelegate = pvc2
-            self.refreshDelegate2 = pvc2
-        }
+        self.dismissDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabschedule)
+            as? ViewControllertabSchedule
+        self.refreshDelegate2 = ViewControllerReference.shared.getvcref(viewcontroller: .vctabschedule)
+            as? ViewControllertabSchedule
         // Do view setup here.
         self.scheduletable.delegate = self
         self.scheduletable.dataSource = self
-        if let pvc3 = self.presenting as? ViewControllertabSchedule {
-            self.getHiddenIDDelegate = pvc3
-            self.hiddendID = self.getHiddenIDDelegate?.gethiddenID()
-        }
+        self.getHiddenIDDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabschedule)
+            as? ViewControllertabSchedule
+        self.hiddendID = self.getHiddenIDDelegate?.gethiddenID()
+        self.configurationsDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain)
+            as? ViewControllertabMain
+        self.schedulesDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain)
+            as? ViewControllertabMain
     }
 
     override func viewDidAppear() {
         super.viewDidAppear()
+        self.configurations = self.configurationsDelegate?.getconfigurationsobject()
+        self.schedules = self.schedulesDelegate?.getschedulesobject()
         self.hiddendID = self.getHiddenIDDelegate?.gethiddenID()
-        self.data = Schedules.shared.readschedule(self.hiddendID!)
+        self.data = self.schedules!.readscheduleonetask(self.hiddendID!)
 
         globalMainQueue.async(execute: { () -> Void in
             self.scheduletable.reloadData()
         })
-        self.localCatalog.stringValue = Configurations.shared.getResourceConfiguration(self.hiddendID!, resource: .localCatalog)
-        self.remoteCatalog.stringValue = Configurations.shared.getResourceConfiguration(self.hiddendID!, resource: .remoteCatalog)
-        self.offsiteServer.stringValue = Configurations.shared.getResourceConfiguration(self.hiddendID!, resource: .offsiteServer)
+        self.localCatalog.stringValue = self.configurations!.getResourceConfiguration(self.hiddendID!, resource: .localCatalog)
+        self.remoteCatalog.stringValue = self.configurations!.getResourceConfiguration(self.hiddendID!, resource: .remoteCatalog)
+        self.offsiteServer.stringValue = self.configurations!.getResourceConfiguration(self.hiddendID!, resource: .offsiteServer)
         if self.tools == nil { self.tools = Tools()}
     }
 }

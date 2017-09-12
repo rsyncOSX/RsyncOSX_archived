@@ -12,6 +12,7 @@
 //  swiftlint:disable syntactic_sugar
 
 import Foundation
+import Cocoa
 
 enum WhatToReadWrite {
     case schedule
@@ -74,39 +75,7 @@ class Readwritefiles {
 
     // Function for reading data from persistent store
     func getDatafromfile () -> Array<NSDictionary>? {
-        guard self.task != nil  else {
-            return nil
-        }
-        switch self.task! {
-        case .schedule:
-            if Configurations.shared.isDataDirty() {
-                self.readdisk = true
-                Configurations.shared.setDataDirty(dirty: false)
-            } else {
-                self.readdisk = false
-            }
-        case .configuration:
-            if Configurations.shared.isDataDirty() {
-                self.readdisk = true
-                Configurations.shared.setDataDirty(dirty: false)
-            } else {
-                self.readdisk = false
-            }
-        case .userconfig:
-            self.readdisk = true
-        case .none:
-            self.readdisk = false
-        }
-        if self.readdisk == true {
-            return self.readDatafromPersistentStorage()
-        } else {
-            return nil
-        }
-    }
-
-    // Read data from persistent storage
-    private func readDatafromPersistentStorage() -> Array<NSDictionary>? {
-        var list = Array<NSDictionary>()
+        var data = Array<NSDictionary>()
         guard self.filename != nil && self.key != nil else {
             return nil
         }
@@ -120,54 +89,35 @@ class Readwritefiles {
             for i in 0 ..< arrayitems.count {
                 if let item = arrayitems[i] as? NSDictionary {
                     _ = dictionary!.object(forKey: "ItemCode") as? String
-                    list.append(item)
+                    data.append(item)
                 }
             }
         }
-        return list
+        print("Read data")
+        return data
     }
 
     // Function for write data to persistent store
     func writeDatatoPersistentStorage (_ array: Array<NSDictionary>, task: WhatToReadWrite) -> Bool {
         self.setpreferences(task)
-        guard self.task != nil  else {
-            return false
-        }
-        switch self.task! {
-        case .schedule:
-            Configurations.shared.setDataDirty(dirty: true)
-        case .configuration:
-            Configurations.shared.setDataDirty(dirty: true)
-        default:
-            // Only set data dirty if either Configuration or Schedules are written to persistent store
-            Configurations.shared.setDataDirty(dirty: false)
-        }
         let dictionary = NSDictionary(object: array, forKey: self.key! as NSCopying)
         guard self.filename != nil else {
             return false
         }
+        print("Write data")
         return  dictionary.write(toFile: self.filename!, atomically: true)
     }
 
     // Set preferences for which data to read or write
     private func setpreferences (_ task: WhatToReadWrite) {
-        self.useProfile = false
         self.task = task
         switch self.task! {
         case .schedule:
             self.name = "/scheduleRsync.plist"
             self.key = "Schedule"
-            if let profile = Configurations.shared.getProfile() {
-                self.profile = profile
-                self.useProfile = true
-            }
         case .configuration:
             self.name = "/configRsync.plist"
             self.key = "Catalogs"
-            if let profile = Configurations.shared.getProfile() {
-                self.profile = profile
-                self.useProfile = true
-            }
         case .userconfig:
             self.name = "/config.plist"
             self.key = "config"
@@ -177,7 +127,11 @@ class Readwritefiles {
         }
     }
 
-    init(task: WhatToReadWrite) {
+    init(task: WhatToReadWrite, profile: String?) {
+        if profile != nil {
+            self.profile = profile
+            self.useProfile = true
+        }
         self.setpreferences(task)
         self.setnameandpath()
     }

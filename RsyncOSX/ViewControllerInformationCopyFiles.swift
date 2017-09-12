@@ -22,13 +22,11 @@ class ViewControllerInformationCopyFiles: NSViewController {
         detailsTable.delegate = self
         detailsTable.dataSource = self
         // Setting the source for delegate function
-        if let pvc = self.presenting as? ViewControllerCopyFiles {
-            self.informationDelegate = pvc
-        }
+        self.informationDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vccopyfiles)
+            as? ViewControllerCopyFiles
         // Dismisser is root controller
-        if let pvc2 = self.presenting as? ViewControllerCopyFiles {
-            self.dismissDelegate = pvc2
-        }
+        self.dismissDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vccopyfiles)
+            as? ViewControllerCopyFiles
     }
 
     override func viewDidAppear() {

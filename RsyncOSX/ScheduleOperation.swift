@@ -33,6 +33,9 @@ protocol ScheduledJobInProgress : class {
 
 final class ScheduleOperation {
 
+    weak var schedulesDelegate: GetSchedulesObject?
+    var schedules: Schedules?
+
     private var scheduledJobs: ScheduleSortedAndExpand?
     private var waitForTask: Timer?
     private var queue: OperationQueue?
@@ -52,27 +55,32 @@ final class ScheduleOperation {
     }
 
     init () {
+        self.schedulesDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain)
+            as? ViewControllertabMain
+        self.schedules = self.schedulesDelegate?.getschedulesobject()
         // Cancel any current job waiting for execution
-        Schedules.shared.cancelJobWaiting()
-        // Create a new Schedules object
-        self.scheduledJobs = ScheduleSortedAndExpand()
-        // Removes the job of the stack
-        if let dict = self.scheduledJobs!.jobToExecute() {
-            let dateStart: Date = (dict.value(forKey: "start") as? Date)!
-            self.secondsToWait = Tools().timeDoubleSeconds(dateStart, enddate: nil)
-            guard self.secondsToWait != nil else {
-                return
+        if self.schedules != nil {
+            self.schedules!.cancelJobWaiting()
+            // Create a new Schedules object
+            self.scheduledJobs = ScheduleSortedAndExpand()
+            // Removes the job of the stack
+            if let dict = self.scheduledJobs!.jobToExecute() {
+                let dateStart: Date = (dict.value(forKey: "start") as? Date)!
+                self.secondsToWait = Tools().timeDoubleSeconds(dateStart, enddate: nil)
+                guard self.secondsToWait != nil else {
+                    return
+                }
+                self.waitForTask = Timer.scheduledTimer(timeInterval: self.secondsToWait!,
+                                                        target: self,
+                                                        selector: #selector(startJob),
+                                                        userInfo: nil, repeats: false)
+                // Set reference to Timer that kicks of the Scheduled job
+                // Reference is set for cancel job if requiered
+                self.schedules!.setJobWaiting(timer: self.waitForTask!)
+            } else {
+                // No jobs to execute, no need to keep reference to object
+                self.scheduledJobs = nil
             }
-            self.waitForTask = Timer.scheduledTimer(timeInterval: self.secondsToWait!,
-                                                    target: self,
-                                                    selector: #selector(startJob),
-                                                    userInfo: nil, repeats: false)
-            // Set reference to Timer that kicks of the Scheduled job
-            // Reference is set for cancel job if requiered
-            Schedules.shared.setJobWaiting(timer: self.waitForTask!)
-        } else {
-            // No jobs to execute, no need to keep reference to object
-            self.scheduledJobs = nil
         }
     }
 }

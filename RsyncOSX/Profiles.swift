@@ -14,7 +14,7 @@ class Profiles: Files {
     weak var errorDelegate: ReportErrorInMain?
 
     // Function for creating new profile directory
-    func createProfile(profileName: String) {
+    func createProfile(profileName: String) -> Bool {
         let fileManager = FileManager.default
         if let path = self.rootpath {
             let profileDirectory = path + "/" + profileName
@@ -23,12 +23,17 @@ class Profiles: Files {
                     try fileManager.createDirectory(atPath: profileDirectory,
                                                     withIntermediateDirectories: true,
                                                     attributes: nil)
+                    return true
                 } catch let e {
                     let error = e as NSError
                     self.reportError(errorstr: error.description)
+                    return false
                 }
+            } else {
+                return false
             }
         }
+        return false
     }
 
     // Function for deleting profile
@@ -59,10 +64,9 @@ class Profiles: Files {
 extension Profiles: ReportError {
     // Private func for propagating any file error to main view
     func reportError(errorstr: String) {
-        if let pvc = Configurations.shared.viewControllertabMain {
-            self.errorDelegate = pvc as? ViewControllertabMain
-            self.errorDelegate?.fileerror(errorstr: errorstr)
-        }
+        self.errorDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain)
+            as? ViewControllertabMain
+        self.errorDelegate?.fileerror(errorstr: errorstr)
     }
 
 }

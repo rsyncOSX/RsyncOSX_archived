@@ -25,6 +25,10 @@ enum BatchViewProgressIndicator {
 }
 
 final class NewBatchTask {
+    weak var configurationsDelegate: GetConfigurationsObject?
+    var configurations: Configurations?
+    weak var schedulesDelegate: GetSchedulesObject?
+    var schedules: Schedules?
 
     // Protocol function used in Process().
     weak var processupdateDelegate: UpdateProgress?
@@ -61,22 +65,22 @@ final class NewBatchTask {
         self.outputbatch = nil
         // NB: self.setInfo(info: "Batchrun", color: .blue)
         // Get all Configs marked for batch
-        let configs = Configurations.shared.getConfigurationsBatch()
+        let configs = self.configurations!.getConfigurationsBatch()
         let batchObject = BatchTaskWorkQueu(batchtasks: configs)
         // Set the reference to batchData object in SharingManagerConfiguration
-        Configurations.shared.setbatchDataQueue(batchdata: batchObject)
+        self.configurations!.setbatchDataQueue(batchdata: batchObject)
         // Present batchView
         self.batchViewDelegate?.presentViewBatch()
     }
 
     // Functions are called from batchView.
     func executeBatch() {
-        if let batchobject = Configurations.shared.getBatchdataObject() {
+        if let batchobject = self.configurations!.getBatchdataObject() {
             // Just copy the work object.
             // The work object will be removed in Process termination
             let work = batchobject.nextBatchCopy()
             // Get the index if given hiddenID (in work.0)
-            let index: Int = Configurations.shared.getIndex(work.0)
+            let index: Int = self.configurations!.getIndex(work.0)
 
             // Create the output object for rsync
             self.output = nil
@@ -85,13 +89,13 @@ final class NewBatchTask {
             switch work.1 {
             case 0:
                 self.batchViewDelegate?.progressIndicatorViewBatch(operation: .start)
-                let arguments: Array<String> = Configurations.shared.arguments4rsync(index: index, argtype: .argdryRun)
-                let process = Rsync(arguments: arguments)
+                let args: Array<String> = self.configurations!.arguments4rsync(index: index, argtype: .argdryRun)
+                let process = Rsync(arguments: args)
                 // Setting reference to process for Abort if requiered
                 process.executeProcess(output: self.output!)
                 self.process = process.getProcess()
             case 1:
-                let arguments: Array<String> = Configurations.shared.arguments4rsync(index: index, argtype: .arg)
+                let arguments: Array<String> = self.configurations!.arguments4rsync(index: index, argtype: .arg)
                 let process = Rsync(arguments: arguments)
                 // Setting reference to process for Abort if requiered
                 process.executeProcess(output: self.output!)
@@ -112,7 +116,7 @@ final class NewBatchTask {
     // Error and stop execution
     func error() {
         // Just pop off remaining work
-        if let batchobject = Configurations.shared.getBatchdataObject() {
+        if let batchobject = self.configurations!.getBatchdataObject() {
             batchobject.abortOperations()
             self.executeBatch()
         }
@@ -121,7 +125,7 @@ final class NewBatchTask {
     // Called when ProcessTermination is called in main View.
     // Either dryn-run or realrun completed.
     func processTermination() {
-        if let batchobject = Configurations.shared.getBatchdataObject() {
+        if let batchobject = self.configurations!.getBatchdataObject() {
             if self.outputbatch == nil {
                 self.outputbatch = OutputBatch()
             }
@@ -146,8 +150,8 @@ final class NewBatchTask {
                 batchobject.setCompleted()
                 self.batchViewDelegate?.progressIndicatorViewBatch(operation: .refresh)
                 // Set date on Configuration
-                let index = Configurations.shared.getIndex(work.0)
-                let config = Configurations.shared.getConfigurations()[index]
+                let index = self.configurations!.getIndex(work.0)
+                let config = self.configurations!.getConfigurations()[index]
                 // Get transferred numbers from view
                 self.transfernum = String(number.getTransferredNumbers(numbers: .transferredNumber))
                 self.transferbytes = String(number.getTransferredNumbers(numbers: .transferredNumberSizebytes))
@@ -160,11 +164,11 @@ final class NewBatchTask {
                     let result = config.localCatalog + " , " + config.offsiteServer + " , " + numbers
                     self.outputbatch!.addLine(str: result)
                 }
-                let hiddenID = Configurations.shared.gethiddenID(index: index)
-                Configurations.shared.setCurrentDateonConfiguration(index)
+                let hiddenID = self.configurations!.gethiddenID(index: index)
+                self.configurations!.setCurrentDateonConfiguration(index)
                 let numberOffFiles = self.transfernum
                 let sizeOfFiles = self.transferbytes
-                Schedules.shared.addlogtaskmanuel(hiddenID,
+                self.schedules!.addlogtaskmanuel(hiddenID,
                                      result: number.stats(numberOfFiles: numberOffFiles, sizeOfFiles: sizeOfFiles)[0])
                 self.executeBatch()
             default :
@@ -174,11 +178,18 @@ final class NewBatchTask {
     }
 
     init() {
-        if let pvc = Configurations.shared.viewControllertabMain as? ViewControllertabMain {
-            self.indicatorDelegate = pvc
-            self.taskDelegate = pvc
-            self.batchViewDelegate = pvc
-        }
+        self.indicatorDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain)
+            as? ViewControllertabMain
+        self.taskDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain)
+            as? ViewControllertabMain
+        self.batchViewDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain)
+            as? ViewControllertabMain
+        self.configurationsDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain)
+            as? ViewControllertabMain
+        self.configurations = self.configurationsDelegate?.getconfigurationsobject()
+        self.schedulesDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain)
+            as? ViewControllertabMain
+        self.schedules = self.schedulesDelegate?.getschedulesobject()
     }
 
 }

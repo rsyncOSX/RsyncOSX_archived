@@ -13,6 +13,11 @@ import Foundation
 // waiter time.
 final class CompleteScheduledOperation {
 
+    weak var configurationsDelegate: GetConfigurationsObject?
+    var configurations: Configurations?
+    weak var schedulesDelegate: GetSchedulesObject?
+    var schedules: Schedules?
+
     // Delegate function for starting next scheduled operatin if any
     // Delegate function is triggered when NSTaskDidTerminationNotification
     // is discovered (e.g previous job is done)
@@ -30,7 +35,7 @@ final class CompleteScheduledOperation {
     private var index: Int?
 
     // Function for finalizing the Scheduled job
-    // The Operation object sets reference to the completeScheduledOperation in Schedules.shared.operation
+    // The Operation object sets reference to the completeScheduledOperation in self.schedules!.operation
     // This function is executed when rsyn process terminates
     func finalizeScheduledJob(output: OutputProcess) {
 
@@ -40,29 +45,28 @@ final class CompleteScheduledOperation {
         let number = Numbers(output: output.getOutput())
         number.setNumbers()
         let numberstring = number.stats(numberOfFiles: nil, sizeOfFiles: nil)
-        Schedules.shared.addresultschedule(self.hiddenID!,
+        self.schedules!.addresultschedule(self.hiddenID!,
                                            dateStart: dateStartstring,
                                            result: numberstring[0],
                                            date: datestring, schedule: schedule!)
         // Writing timestamp to configuration
-        _ = Configurations.shared.setCurrentDateonConfiguration(self.index!)
+        _ = self.configurations!.setCurrentDateonConfiguration(self.index!)
         // Start next job, if any, by delegate and notify completed, by delegate
-        if let pvc2 = Configurations.shared.viewControllertabMain as? ViewControllertabMain {
-            globalMainQueue.async(execute: { () -> Void in
-                self.startnextjobDelegate = pvc2
-                self.notifyDelegate = pvc2
-                self.startnextjobDelegate?.startProcess()
-                self.notifyDelegate?.completed()
-            })
-        }
-        if let pvc3 = Schedules.shared.viewObjectSchedule as? ViewControllertabSchedule {
-            globalMainQueue.async(execute: { () -> Void in
-                self.startTimerDelegate = pvc3
-                self.startTimerDelegate?.startTimerNextJob()
-            })
-        }
+        globalMainQueue.async(execute: { () -> Void in
+            self.startnextjobDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain)
+                as? ViewControllertabMain
+            self.notifyDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain)
+                as? ViewControllertabMain
+            self.startnextjobDelegate?.startProcess()
+            self.notifyDelegate?.completed()
+        })
+        globalMainQueue.async(execute: { () -> Void in
+            self.startTimerDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabschedule)
+                as? ViewControllertabSchedule
+            self.startTimerDelegate?.startTimerNextJob()
+        })
         // Reset reference til scheduled job
-        Schedules.shared.scheduledJob = nil
+        self.schedules!.scheduledJob = nil
     }
 
     init (dict: NSDictionary) {
@@ -71,6 +75,12 @@ final class CompleteScheduledOperation {
         self.dateformatter = Tools().setDateformat()
         self.hiddenID = (dict.value(forKey: "hiddenID") as? Int)!
         self.schedule = dict.value(forKey: "schedule") as? String
-        self.index = Configurations.shared.getIndex(hiddenID!)
+        self.configurationsDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain)
+            as? ViewControllertabMain
+        self.configurations = self.configurationsDelegate?.getconfigurationsobject()
+        self.schedulesDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain)
+            as? ViewControllertabMain
+        self.schedules = self.schedulesDelegate?.getschedulesobject()
+         self.index = self.configurations!.getIndex(hiddenID!)
     }
 }

@@ -11,7 +11,11 @@ import Cocoa
 
 class ViewControllerScheduledBackupinWork: NSViewController {
 
-    // Dismisser
+    weak var configurationsDelegate: GetConfigurationsObject?
+    var configurations: Configurations?
+    weak var schedulesDelegate: GetSchedulesObject?
+    var schedules: Schedules?
+
     weak var dismissDelegate: DismissViewController?
     var waitToClose: Timer?
     var closeIn: Timer?
@@ -38,12 +42,12 @@ class ViewControllerScheduledBackupinWork: NSViewController {
     }
 
     private func setInfo() {
-        if let dict: NSDictionary = Schedules.shared.scheduledJob {
+        if let dict: NSDictionary = self.schedules!.scheduledJob {
             self.startDate.stringValue = String(describing: (dict.value(forKey: "start") as? Date)!)
             self.schedule.stringValue = (dict.value(forKey: "schedule") as? String)!
             let hiddenID = (dict.value(forKey: "hiddenID") as? Int)!
-            let index = Configurations.shared.getIndex(hiddenID)
-            let config: Configuration = Configurations.shared.getConfigurations()[index]
+            let index = self.configurations!.getIndex(hiddenID)
+            let config: Configuration = self.configurations!.getConfigurations()[index]
             self.remoteServer.stringValue = config.offsiteServer
             self.remoteCatalog.stringValue = config.offsiteCatalog
             self.localCatalog.stringValue = config.localCatalog
@@ -58,14 +62,19 @@ class ViewControllerScheduledBackupinWork: NSViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Setting the source for delegate function
-        if let pvc = self.presenting as? ViewControllertabMain {
-            // Dismisser is root controller
-            self.dismissDelegate = pvc
-        }
+        // Dismisser is root controller
+        self.dismissDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain)
+            as? ViewControllertabMain
+        self.configurationsDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain)
+            as? ViewControllertabMain
+        self.schedulesDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain)
+            as? ViewControllertabMain
     }
 
     override func viewDidAppear() {
         super.viewDidAppear()
+        self.configurations = self.configurationsDelegate?.getconfigurationsobject()
+        self.schedules = self.schedulesDelegate?.getschedulesobject()
         self.seconds = 10
         self.setInfo()
         self.waitToClose = Timer.scheduledTimer(timeInterval: 10, target: self,

@@ -17,6 +17,9 @@ protocol getNewBatchTask: class {
 
 class ViewControllerBatch: NSViewController {
 
+    weak var configurationsDelegate: GetConfigurationsObject?
+    var configurations: Configurations?
+
     // If close button or abort is pressed
     // After execute button is pressed, close is abort
     var close: Bool?
@@ -54,6 +57,8 @@ class ViewControllerBatch: NSViewController {
         }
         self.waitToClose?.invalidate()
         self.closeIn?.invalidate()
+        // Using reload delegate from rsync parameters
+        self.configurationsDelegate?.reloadconfigurations()
         self.dismissDelegate?.dismiss_view(viewcontroller: self)
     }
 
@@ -74,6 +79,8 @@ class ViewControllerBatch: NSViewController {
     @objc fileprivate func closeView() {
         self.waitToClose?.invalidate()
         self.closeIn?.invalidate()
+        // Using reload delegate from rsync parameters
+        self.configurationsDelegate?.reloadconfigurations()
         self.dismissDelegate?.dismiss_view(viewcontroller: self)
     }
 
@@ -84,20 +91,18 @@ class ViewControllerBatch: NSViewController {
         // Setting delegates and datasource
         self.mainTableView.delegate = self
         self.mainTableView.dataSource = self
-        if Configurations.shared.batchDataQueuecount() > 0 {
-            globalMainQueue.async(execute: { () -> Void in
-                self.mainTableView.reloadData()
-            })
-        }
          // Dismisser is root controller
-        if let pvc = self.presenting as? ViewControllertabMain {
-            self.dismissDelegate = pvc
-            self.abortDelegate = pvc
-        }
+        self.dismissDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain)
+            as? ViewControllertabMain
+        self.abortDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain)
+            as? ViewControllertabMain
+        self.configurationsDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain)
+            as? ViewControllertabMain
     }
 
     override func viewDidAppear() {
         super.viewDidAppear()
+        self.configurations = self.configurationsDelegate?.getconfigurationsobject()
         self.closeinseconds.isHidden = true
         self.executeButton.isEnabled = true
         self.working.stopAnimation(nil)
@@ -107,6 +112,11 @@ class ViewControllerBatch: NSViewController {
         self.closeButton.title = "Close"
         self.close = true
         self.batchTask = nil
+        if self.configurations!.batchDataQueuecount() > 0 {
+            globalMainQueue.async(execute: { () -> Void in
+                self.mainTableView.reloadData()
+            })
+        }
     }
 
     override func viewDidDisappear() {
@@ -119,7 +129,10 @@ class ViewControllerBatch: NSViewController {
 extension ViewControllerBatch : NSTableViewDataSource {
         // Delegate for size of table
         func numberOfRows(in tableView: NSTableView) -> Int {
-            return Configurations.shared.batchDataQueuecount()
+            guard self.configurations != nil else {
+                return 0
+            }
+            return self.configurations!.batchDataQueuecount()
         }
 }
 
@@ -127,14 +140,17 @@ extension ViewControllerBatch : NSTableViewDelegate {
 
     // TableView delegates
     @objc(tableView:objectValueForTableColumn:row:) func tableView(_ tableView: NSTableView, objectValueFor tableColumn: NSTableColumn?, row: Int) -> Any? {
-        guard Configurations.shared.getbatchDataQueue() != nil else {
+        guard self.configurations!.getbatchDataQueue() != nil else {
             return nil
         }
-        let object: NSMutableDictionary = Configurations.shared.getbatchDataQueue()![row]
+        guard row < self.configurations!.batchDataQueuecount() else {
+            return nil
+        }
+        let object: NSMutableDictionary = self.configurations!.getbatchDataQueue()![row]
         if tableColumn!.identifier.rawValue == "estimatedCellID" || tableColumn!.identifier.rawValue == "completedCellID" {
             return object[tableColumn!.identifier] as? Int!
         } else {
-            if row == Configurations.shared.getBatchdataObject()!.getRow() && tableColumn!.identifier.rawValue == "taskCellID" {
+            if row == self.configurations!.getBatchdataObject()!.getRow() && tableColumn!.identifier.rawValue == "taskCellID" {
                 return (object[tableColumn!.identifier] as? String)! + " *"
             } else {
                 return object[tableColumn!.identifier] as? String
@@ -146,7 +162,7 @@ extension ViewControllerBatch : NSTableViewDelegate {
 extension ViewControllerBatch: StartStopProgressIndicator {
 
     func stop() {
-        let row = Configurations.shared.getBatchdataObject()!.getRow() + 1
+        let row = self.configurations!.getBatchdataObject()!.getRow() + 1
         globalMainQueue.async(execute: { () -> Void in
             self.label.stringValue = "Executing task "
             self.rownumber.stringValue = String(row)
@@ -156,7 +172,7 @@ extension ViewControllerBatch: StartStopProgressIndicator {
 
     func start() {
         self.close = false
-        let row = Configurations.shared.getBatchdataObject()!.getRow() + 1
+        let row = self.configurations!.getBatchdataObject()!.getRow() + 1
         // Starts estimation progressbar when estimation starts
         globalMainQueue.async(execute: { () -> Void in
             self.working.startAnimation(nil)

@@ -42,21 +42,20 @@ class ViewControllerAbout: NSViewController {
     }
 
     @IBAction func download(_ sender: NSButton) {
-        guard Configurations.shared.URLnewVersion != nil else {
+        guard ViewControllerReference.shared.URLnewVersion != nil else {
             self.dismissDelegate?.dismiss_view(viewcontroller: self)
             return
         }
-        NSWorkspace.shared.open(URL(string: Configurations.shared.URLnewVersion!)!)
+        NSWorkspace.shared.open(URL(string: ViewControllerReference.shared.URLnewVersion!)!)
         self.dismissDelegate?.dismiss_view(viewcontroller: self)
     }
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        if let pvc = self.presenting as? ViewControllertabMain {
-            self.dismissDelegate = pvc
-        }
+        self.dismissDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain)
+            as? ViewControllertabMain
         // Reference to About
-        Configurations.shared.viewControllerAbout = self
+        ViewControllerReference.shared.setvcref(viewcontroller: .vcabout, nsviewcontroller: self)
         self.resource = Resources()
     }
 

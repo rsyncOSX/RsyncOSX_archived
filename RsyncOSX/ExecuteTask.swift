@@ -20,45 +20,49 @@ import Foundation
 class ExecuteTask: Operation {
 
     override func main() {
-        // Storage API
-        var storageapi: PersistentStorageAPI?
+
+        weak var configurationsDelegate: GetConfigurationsObject?
+        configurationsDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain)
+            as? ViewControllertabMain
+        weak var schedulesDelegate: GetSchedulesObject?
+        schedulesDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain)
+            as? ViewControllertabMain
+        var schedules: Schedules?
+        var configurations: Configurations?
+        configurations = configurationsDelegate?.getconfigurationsobject()
+        schedules = schedulesDelegate?.getschedulesobject()
         // Delegate function for start and completion of scheduled jobs
         weak var notifyDelegate: ScheduledJobInProgress?
         // Variables used for rsync parameters
         let output = OutputProcess()
         var arguments: Array<String>?
         var config: Configuration?
-
         // Get the first job of the queue
-        if let dict: NSDictionary = Schedules.shared.scheduledJob {
+        if let dict: NSDictionary = schedules!.scheduledJob {
             if let hiddenID: Int = dict.value(forKey: "hiddenID") as? Int {
-                storageapi = PersistentStorageAPI()
-                let store: [Configuration] = storageapi!.getConfigurations()
-                let configArray = store.filter({return ($0.hiddenID == hiddenID)})
+                let getconfigurations: [Configuration]? = configurations?.getConfigurations()
+                guard getconfigurations != nil else { return }
+                let configArray = getconfigurations!.filter({return ($0.hiddenID == hiddenID)})
                 guard configArray.count > 0 else {
-                    if let pvc = Configurations.shared.viewControllertabMain as? ViewControllertabMain {
-                        notifyDelegate = pvc
-                        if Configurations.shared.allowNotifyinMain == true {
-                            notifyDelegate?.notifyScheduledJob(config: nil)
-                        }
+                    notifyDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain)
+                        as? ViewControllertabMain
+                    if configurations!.allowNotifyinMain == true {
+                        notifyDelegate?.notifyScheduledJob(config: nil)
                     }
                     return
                 }
                 config = configArray[0]
                 // Notify that scheduled task is executing
-                if let pvc = Configurations.shared.viewControllertabMain as? ViewControllertabMain {
-                    notifyDelegate = pvc
-                    notifyDelegate?.start()
-                    // Trying to notify when not in main view will crash RSyncOSX
-                    if Configurations.shared.allowNotifyinMain == true {
-                        notifyDelegate?.notifyScheduledJob(config: config)
-                    }
-                }
+                notifyDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain)
+                    as? ViewControllertabMain
+                notifyDelegate?.start()
+                // Notify about scheduled job
+                notifyDelegate?.notifyScheduledJob(config: config)
                 if hiddenID >= 0 && config != nil {
                     arguments = RsyncProcessArguments().argumentsRsync(config!, dryRun: false, forDisplay: false)
                     // Setting reference to finalize the job
                     // Finalize job is done when rsynctask ends (in process termination)
-                    Configurations.shared.operation = CompleteScheduledOperation(dict: dict)
+                    ViewControllerReference.shared.operation = CompleteScheduledOperation(dict: dict)
                     // Start the rsync job
                     globalMainQueue.async(execute: {
                         if arguments != nil {

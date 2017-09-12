@@ -24,6 +24,9 @@ enum EnumNumbers {
 
 final class Numbers {
 
+    weak var configurationsDelegate: GetConfigurationsObject?
+    var configurations: Configurations?
+
     // Second last String in Array rsync output of how much in what time
     private var resultRsync: String?
     // calculated number of files
@@ -85,7 +88,7 @@ final class Numbers {
     // And it is a kind of UGLY...
     func setNumbers() {
         if files!.count == 1 && filesSize!.count == 1 && totfileSize!.count == 1 &&  totfilesNum!.count == 1 {
-            if Configurations.shared.rsyncVer3 {
+            if self.configurations!.rsyncVer3 {
                 self.resultrsyncver3()
             } else {
                 self.resultrsyncver2()
@@ -155,7 +158,7 @@ final class Numbers {
                 return [size, "0"]
             }
         }
-        if Configurations.shared.rsyncVer3 {
+        if self.configurations!.rsyncVer3 {
             // ["sent", "409687", "bytes", "", "received", "5331", "bytes", "", "830036.00", "bytes/sec"]
             let newmessage = self.resultRsync!.replacingOccurrences(of: ",", with: "")
             parts = newmessage.components(separatedBy: " ")
@@ -212,6 +215,9 @@ final class Numbers {
     }
 
     init (output: Array<String>) {
+        self.configurationsDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain)
+            as? ViewControllertabMain
+        self.configurations = self.configurationsDelegate?.getconfigurationsobject()
         self.output = output
         // Getting the summarized output from output.
         if self.output!.count > 2 {

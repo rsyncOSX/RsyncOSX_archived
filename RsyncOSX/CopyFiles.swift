@@ -12,6 +12,9 @@ import Foundation
 
 final class CopyFiles {
 
+    weak var configurationsDelegate: GetConfigurationsObject?
+    var configurations: Configurations?
+
     // Index from View
     private var index: Int?
     // Setting the configuration element according to index
@@ -127,9 +130,11 @@ final class CopyFiles {
     }
 
     init (index: Int) {
-        // Setting index and configuration object
+        self.configurationsDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain)
+            as? ViewControllertabMain
+        self.configurations = self.configurationsDelegate?.getconfigurationsobject()
         self.index = index
-        self.config = Configurations.shared.getConfigurations()[self.index!]
+        self.config = self.configurations!.getConfigurations()[self.index!]
         self.getRemoteFileList()
     }
 

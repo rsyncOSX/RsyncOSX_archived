@@ -28,6 +28,10 @@ class Filtereddata {
 
 final class ScheduleLoggData {
 
+    weak var configurationsDelegate: GetConfigurationsObject?
+    var configurations: Configurations?
+    weak var schedulesDelegate: GetSchedulesObject?
+    var schedules: Schedules?
     // Loggdata is only sorted and read once
     private var loggdata: Array<NSDictionary>?
     weak var readfiltereddataDelegate: Readfiltereddata?
@@ -44,9 +48,8 @@ final class ScheduleLoggData {
         guard self.loggdata != nil else {
             return
         }
-        if let pvc = Configurations.shared.viewControllerLoggData as? ViewControllerLoggData {
-            self.readfiltereddataDelegate = pvc
-        }
+        self.readfiltereddataDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vcloggdata)
+            as? ViewControllerLoggData
         globalDefaultQueue.async(execute: {() -> Void in
             let filtereddata = Filtereddata()
             switch what! {
@@ -70,15 +73,15 @@ final class ScheduleLoggData {
     // Loggdata is only read and sorted once
     private func readAndSortAllLoggdata() {
         var data = Array<NSDictionary>()
-        let input: [ConfigurationSchedule] = Schedules.shared.getSchedule()
+        let input: [ConfigurationSchedule] = self.schedules!.getSchedule()
         for i in 0 ..< input.count {
-            let hiddenID = Schedules.shared.getSchedule()[i].hiddenID
+            let hiddenID = self.schedules!.getSchedule()[i].hiddenID
             if input[i].logrecords.count > 0 {
                 for j in 0 ..< input[i].logrecords.count {
                     let dict = input[i].logrecords[j]
                     let logdetail: NSDictionary = [
-                        "localCatalog": Configurations.shared.getResourceConfiguration(hiddenID, resource: .localCatalog),
-                        "offsiteServer": Configurations.shared.getResourceConfiguration(hiddenID, resource: .offsiteServer),
+                        "localCatalog": self.configurations!.getResourceConfiguration(hiddenID, resource: .localCatalog),
+                        "offsiteServer": self.configurations!.getResourceConfiguration(hiddenID, resource: .offsiteServer),
                         "dateExecuted": (dict.value(forKey: "dateExecuted") as? String)!,
                         "resultExecuted": (dict.value(forKey: "resultExecuted") as? String)!,
                         "parent": (dict.value(forKey: "parent") as? String)!,
@@ -101,6 +104,12 @@ final class ScheduleLoggData {
     }
 
     init () {
+        self.configurationsDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain)
+            as? ViewControllertabMain
+        self.schedulesDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain)
+            as? ViewControllertabMain
+        self.configurations = self.configurationsDelegate?.getconfigurationsobject()
+        self.schedules = self.schedulesDelegate?.getschedulesobject()
         // Read and sort loggdata only once
         if self.loggdata == nil {
             self.readAndSortAllLoggdata()

@@ -6,7 +6,7 @@
 //  Copyright © 2017 Thomas Evensen. All rights reserved.
 //
 //  SwiftLint: OK 31 July 2017
-//  swiftlint:disable syntactic_sugar
+//  swiftlint:disable syntactic_sugar line_length
 
 import Foundation
 
@@ -46,9 +46,10 @@ protocol Connections : class {
     func displayConnections()
 }
 
-// Static shared class Utils
-
 final class Tools {
+
+    weak var configurationsDelegate: GetConfigurationsObject?
+    var configurations: Configurations?
 
     private var indexBoolremoteserverOff: [Bool]?
     weak var testconnectionsDelegate: Connections?
@@ -92,19 +93,18 @@ final class Tools {
     func testAllremoteserverConnections () {
         self.indexBoolremoteserverOff = nil
         self.indexBoolremoteserverOff = Array<Bool>()
-
-        guard Configurations.shared.configurationsDataSourcecount() > 0 else {
-            if let pvc = Configurations.shared.viewControllertabMain as? ViewControllertabMain {
-                self.profilemenuDelegate = pvc
-                // Tell main view profile menu might presented
-                self.profilemenuDelegate?.enableProfileMenu()
-            }
+        self.configurations = self.configurationsDelegate?.getconfigurationsobject()
+        guard self.configurations!.configurationsDataSourcecount() > 0 else {
+            self.profilemenuDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain)
+                as? ViewControllertabMain
+            // Tell main view profile menu might presented
+            self.profilemenuDelegate?.enableProfileMenu()
             return
         }
         globalDefaultQueue.async(execute: { () -> Void in
             var port: Int = 22
-            for i in 0 ..< Configurations.shared.configurationsDataSourcecount() {
-                if let record = Configurations.shared.getargumentAllConfigurations()[i] as? ArgumentsOneConfiguration {
+            for i in 0 ..< self.configurations!.configurationsDataSourcecount() {
+                if let record = self.configurations!.getargumentAllConfigurations()[i] as? ArgumentsOneConfiguration {
                     if record.config!.offsiteServer != "" {
                         if let sshport: Int = record.config!.sshport {
                             port = sshport
@@ -121,16 +121,16 @@ final class Tools {
                         self.indexBoolremoteserverOff!.append(false)
                     }
                     // Reload table when all remote servers are checked
-                    if i == (Configurations.shared.configurationsDataSourcecount() - 1) {
+                    if i == (self.configurations!.configurationsDataSourcecount() - 1) {
                         // Send message to do a refresh
-                        if let pvc = Configurations.shared.viewControllertabMain as? ViewControllertabMain {
-                            self.testconnectionsDelegate = pvc
-                            self.profilemenuDelegate = pvc
+                        self.testconnectionsDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain)
+                            as? ViewControllertabMain
+                        self.profilemenuDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain)
+                            as? ViewControllertabMain
                             // Update table in main view
-                            self.testconnectionsDelegate?.displayConnections()
+                        self.testconnectionsDelegate?.displayConnections()
                             // Tell main view profile menu might presented
-                            self.profilemenuDelegate?.enableProfileMenu()
-                        }
+                        self.profilemenuDelegate?.enableProfileMenu()
                     }
                 }
             }
@@ -138,8 +138,9 @@ final class Tools {
     }
 
     func noRsync() {
-        if Configurations.shared.norsync == true {
-            if let rsync = Configurations.shared.rsyncPath {
+        self.configurations = self.configurationsDelegate?.getconfigurationsobject()
+        if self.configurations!.norsync == true {
+            if let rsync = self.configurations!.rsyncPath {
                 Alerts.showInfo("ERROR: no rsync in " + rsync)
             } else {
                 Alerts.showInfo("ERROR: no rsync in /usr/local/bin")
@@ -151,29 +152,31 @@ final class Tools {
 
     // Function to verify full rsyncpath
     func verifyrsyncpath() {
+        self.configurations = self.configurationsDelegate?.getconfigurationsobject()
         let fileManager = FileManager.default
         let path: String?
         // If not in /usr/bin or /usr/local/bin
         // rsyncPath is set if none of the above
-        if let rsyncPath = Configurations.shared.rsyncPath {
+        if let rsyncPath = self.configurations!.rsyncPath {
             path = rsyncPath + "rsync"
-        } else if Configurations.shared.rsyncVer3 {
+        } else if self.configurations!.rsyncVer3 {
             path = "/usr/local/bin/" + "rsync"
         } else {
             path = "/usr/bin/" + "rsync"
         }
         if fileManager.fileExists(atPath: path!) == false {
-            Configurations.shared.norsync = true
+            self.configurations!.norsync = true
         } else {
-            Configurations.shared.norsync = false
+            self.configurations!.norsync = false
         }
     }
 
     // Display the correct command to execute
     // Used for displaying the commands only
     func rsyncpathtodisplay(index: Int, dryRun: Bool) -> String {
+        self.configurations = self.configurationsDelegate?.getconfigurationsobject()
         var str: String?
-        let config = Configurations.shared.getargumentAllConfigurations()[index] as? ArgumentsOneConfiguration
+        let config = self.configurations!.getargumentAllConfigurations()[index] as? ArgumentsOneConfiguration
         if dryRun {
             str = self.rsyncpath() + " "
             if let count = config?.argdryRunDisplay?.count {
@@ -197,11 +200,12 @@ final class Tools {
     /// default value.
     /// - returns : full path of rsync command
     func rsyncpath() -> String {
-        if Configurations.shared.rsyncVer3 {
-            if Configurations.shared.rsyncPath == nil {
+        self.configurations = self.configurationsDelegate?.getconfigurationsobject()
+        if self.configurations!.rsyncVer3 {
+            if self.configurations!.rsyncPath == nil {
                 return "/usr/local/bin/rsync"
             } else {
-                return Configurations.shared.rsyncPath! + "rsync"
+                return self.configurations!.rsyncPath! + "rsync"
             }
         } else {
             return "/usr/bin/rsync"
@@ -293,4 +297,8 @@ final class Tools {
         return result!
     }
 
+    init() {
+        self.configurationsDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain)
+            as? ViewControllertabMain
+    }
 }

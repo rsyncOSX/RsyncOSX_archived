@@ -34,10 +34,8 @@ class ViewControllerInformation: NSViewController {
         detailsTable.delegate = self
         detailsTable.dataSource = self
         // Setting the source for delegate function
-        if let pvc = self.presenting as? ViewControllertabMain {
-            self.informationDelegate = pvc
-            self.dismissDelegate = pvc
-        }
+        self.informationDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllertabMain
+        self.dismissDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllertabMain
     }
 
     override func viewDidAppear() {

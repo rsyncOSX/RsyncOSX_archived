@@ -10,16 +10,22 @@ import Foundation
 
 final class PersistentStorageAPI {
 
+    weak var configurationsDelegate: GetConfigurationsObject?
+    var configurations: Configurations?
+    weak var schedulesDelegate: GetSchedulesObject?
+    var schedules: Schedules?
+
     // Delegate function for starting next scheduled operatin if any
     // Delegate function is triggered when Process.didTerminateNotification
     // is discovered (e.g previous job is done)
     weak var startnextjobDelegate: StartNextScheduledTask?
+    var profile: String?
 
     // CONFIGURATIONS
 
     // Read configurations from persisten store
-    func getConfigurations() -> [Configuration] {
-        let read = PersistentStorageConfiguration()
+    func getConfigurations() -> [Configuration]? {
+        let read = PersistentStorageConfiguration(profile: self.profile)
         // Either read from persistent store or
         // return Configurations already in memory
         if read.readConfigurationsFromPermanentStore() != nil {
@@ -30,21 +36,20 @@ final class PersistentStorageAPI {
             }
             return Configurations
         } else {
-            // Return configuration from memory
-            return Configurations.shared.getConfigurations()
+            return nil
         }
     }
 
     // Saving configuration from memory to persistent store
     func saveConfigFromMemory() {
-        let save = PersistentStorageConfiguration()
+        let save = PersistentStorageConfiguration(profile: self.profile)
         save.saveconfigInMemoryToPersistentStore()
     }
 
     // Saving added configuration from meory
     func saveNewConfigurationsFromMemory() {
-        let save = PersistentStorageConfiguration()
-        let newConfigurations = Configurations.shared.getnewConfigurations()
+        let save = PersistentStorageConfiguration(profile: self.profile)
+        let newConfigurations = self.configurations!.getnewConfigurations()
         if newConfigurations != nil {
             for i in 0 ..< newConfigurations!.count {
                     save.addConfigurationsToMemory(newConfigurations![i])
@@ -57,22 +62,21 @@ final class PersistentStorageAPI {
 
     // Saving Schedules from memory to persistent store
     func saveScheduleFromMemory() {
-        let store = PersistentStorageScheduling()
+        let store = PersistentStorageScheduling(profile: self.profile)
         store.savescheduleInMemoryToPersistentStore()
         // Kick off Scheduled job again
         // This is because saving schedule from memory might have
         // changed the schedule and this kicks off the changed
         // schedule again.
-        if let pvc = Configurations.shared.viewControllertabMain as? ViewControllertabMain {
-            startnextjobDelegate = pvc
-            startnextjobDelegate?.startProcess()
-        }
+        startnextjobDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain)
+            as? ViewControllertabMain
+        startnextjobDelegate?.startProcess()
     }
 
     // Read schedules and history
     // If no Schedule from persistent store return nil
     func getScheduleandhistory () -> [ConfigurationSchedule]? {
-        let read = PersistentStorageScheduling()
+        let read = PersistentStorageScheduling(profile: self.profile)
         var schedule = [ConfigurationSchedule]()
         // Either read from persistent store or
         // return Schedule already in memory
@@ -97,7 +101,7 @@ final class PersistentStorageAPI {
     // Readig schedules only (not sorted and expanden)
     // Sorted and expanded are only stored in memory
     func getScheduleonly () -> [ConfigurationSchedule] {
-        let read = PersistentStorageScheduling()
+        let read = PersistentStorageScheduling(profile: self.profile)
         if read.readSchedulesFromPermanentStore() != nil {
             var schedule = [ConfigurationSchedule]()
             for dict in read.readSchedulesFromPermanentStore()! {
@@ -106,7 +110,7 @@ final class PersistentStorageAPI {
             }
             return schedule
         } else {
-            return Schedules.shared.getSchedule()
+            return []
         }
     }
 
@@ -114,13 +118,22 @@ final class PersistentStorageAPI {
 
     // Saving user configuration
     func saveUserconfiguration() {
-        let store = PersistentStorageUserconfiguration()
+        let store = PersistentStorageUserconfiguration(readfromstorage: false)
         store.saveUserconfiguration()
     }
 
-    func getUserconfiguration () -> [NSDictionary]? {
-        let store = PersistentStorageUserconfiguration()
+    func getUserconfiguration (readfromstorage: Bool) -> [NSDictionary]? {
+        let store = PersistentStorageUserconfiguration(readfromstorage: readfromstorage)
         return store.readUserconfigurationsFromPermanentStore()
     }
 
+    init(profile: String?) {
+        self.configurationsDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain)
+            as? ViewControllertabMain
+        self.schedulesDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain)
+            as? ViewControllertabMain
+        self.configurations = self.configurationsDelegate?.getconfigurationsobject()
+        self.schedules = self.schedulesDelegate?.getschedulesobject()
+        self.profile = profile
+    }
 }

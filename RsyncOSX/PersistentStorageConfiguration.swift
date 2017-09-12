@@ -16,11 +16,16 @@ protocol Readupdatedconfigurations: class {
 
 final class PersistentStorageConfiguration: Readwritefiles {
 
+    weak var configurationsDelegate: GetConfigurationsObject?
+    var configurations: Configurations?
+    /// Variable holds all configuration data from persisten storage
+    private var configurationsAsNSDict: [NSDictionary]?
+
     /// Variable computes max hiddenID used
     /// MaxhiddenID is used when new configurations are added.
     private var maxhiddenID: Int {
         // Reading Configurations from memory
-        let store: [Configuration] = Configurations.shared.getConfigurations()
+        let store: [Configuration] = self.configurations!.getConfigurations()
         if store.count > 0 {
             _ = store.sorted { (config1, config2) -> Bool in
                 if config1.hiddenID > config2.hiddenID {
@@ -36,13 +41,10 @@ final class PersistentStorageConfiguration: Readwritefiles {
         }
     }
 
-    /// Variable holds all configuration data
-    private var configurations: [NSDictionary]?
-
     /// Function reads configurations from permanent store
     /// - returns : array of NSDictonarys, return might be nil if configuration is already in memory
     func readConfigurationsFromPermanentStore() -> [NSDictionary]? {
-        return self.configurations
+        return self.configurationsAsNSDict
     }
 
     // Saving Configuration from MEMORY to persistent store
@@ -50,8 +52,8 @@ final class PersistentStorageConfiguration: Readwritefiles {
     func saveconfigInMemoryToPersistentStore() {
         var array = Array<NSDictionary>()
         // Reading Configurations from memory
-        let configurations: [Configuration] = Configurations.shared.getConfigurations()
-        for i in 0 ..< configurations.count {
+        let configs: [Configuration] = self.configurations!.getConfigurations()
+        for i in 0 ..< configs.count {
             array.append(self.dictionaryFromconfig(index: i))
         }
         // Write array to persistent store
@@ -69,9 +71,9 @@ final class PersistentStorageConfiguration: Readwritefiles {
         if localCatalog != offsiteCatalog {
             var array = Array<NSDictionary>()
             // Get existing configurations from memory
-            let configurations: [Configuration] = Configurations.shared.getConfigurations()
+            let configs: [Configuration] = self.configurations!.getConfigurations()
             // copy existing backups before adding
-            for i in 0 ..< configurations.count {
+            for i in 0 ..< configs.count {
                 array.append(self.dictionaryFromconfig(index: i))
             }
             // backup part
@@ -82,11 +84,11 @@ final class PersistentStorageConfiguration: Readwritefiles {
                 array.append(self.setRestorePart(dict: backup))
                 // Append the two records to Configuration i memory
                 // Important to save Configuration from memory after this method
-                Configurations.shared.addConfigurationtoMemory(dict: array[array.count - 2])
-                Configurations.shared.addConfigurationtoMemory(dict: array[array.count - 1])
+                self.configurations!.addConfigurationtoMemory(dict: array[array.count - 2])
+                self.configurations!.addConfigurationtoMemory(dict: array[array.count - 1])
             } else {
                 // Singlefile Configuration - only adds the copy part
-                Configurations.shared.addConfigurationtoMemory(dict: array[array.count - 1])
+                self.configurations!.addConfigurationtoMemory(dict: array[array.count - 1])
             }
             // Method is only used from Adding New Configurations
         }
@@ -94,7 +96,7 @@ final class PersistentStorageConfiguration: Readwritefiles {
 
     // Function for returning a NSMutabledictionary from a configuration record
     private func dictionaryFromconfig (index: Int) -> NSMutableDictionary {
-        var config: Configuration = Configurations.shared.getConfigurations()[index]
+        var config: Configuration = self.configurations!.getConfigurations()[index]
         let dict: NSMutableDictionary = [
             "task": config.task,
             "backupID": config.backupID,
@@ -216,20 +218,17 @@ final class PersistentStorageConfiguration: Readwritefiles {
     // Configuration is Array<NSDictionary>
     private func writeToStore (_ array: Array<NSDictionary>) {
         if (self.writeDatatoPersistentStorage(array, task: .configuration)) {
-            Configurations.shared.readAllConfigurationsAndArguments()
+            self.configurationsDelegate?.reloadconfigurations()
         }
     }
 
-    init () {
-        // Create the readwritefiles object
-        super.init(task: .configuration)
-        // Reading Configurations from memory or disk, if dirty read from disk
-        // if not dirty set self.configurationFromStore to nil to tell
-        // anyone to read Configurations from memory
-        if let configurationFromPersistentstore = self.getDatafromfile() {
-            self.configurations = configurationFromPersistentstore
-        } else {
-            self.configurations = nil
+    init (profile: String?) {
+        super.init(task: .configuration, profile: profile)
+        self.configurationsDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain)
+            as? ViewControllertabMain
+        self.configurations = self.configurationsDelegate?.getconfigurationsobject()
+        if self.configurations == nil {
+            self.configurationsAsNSDict = self.getDatafromfile()
         }
     }
 }
