@@ -1,12 +1,12 @@
 ## RsyncOSX
 
-Important : this version is not compliant with Xcode 8 and Swift 3. The source code for Xcode 8 (version 4.4.6) is available for download as part of the release.
+**Important** - this version is not compliant with Xcode 8 and Swift 3. The source code for Xcode 8 (version 4.4.6) is available for download as part of the release.
 
-This version is set as master in the RsyncOSX repository. The [4.5.1 branch](https://github.com/rsyncOSX/RsyncOSX/tree/version4.5.1) will be released before this version and will be compiled from the branch.  
+Version 4.6.0 is set as master in the RsyncOSX repository. The [4.5.1 branch](https://github.com/rsyncOSX/RsyncOSX/tree/version4.5.1) will be released before this version and will be compiled from the branch as soon as Xcode 9 is released.
 
 ### Version 4.6.0 - Xcode 9, Swift 4 and macOS High Sierra
 
-**Important** - this version still needs more testing. Use branch [4.5.1 branch](https://github.com/rsyncOSX/RsyncOSX/tree/version4.5.1) to compile a tested version.
+**Important** - this version still needs more testing. Use branch [4.5.1 branch](https://github.com/rsyncOSX/RsyncOSX/tree/version4.5.1) to compile the released version of RsyncOSX.
 
 This is the source code for the macOS application RsyncOSX. The application is implemented in **Swift 4** by using **Xcode version 9**. RsyncOSX is **not** depended upon any third party binary distributions. There is, however, one third party source code included to check for TCP connections. The check is for informal use only and can be removed. All other code is stock use of Swift 4 and libraries as part of Xcode version 9.
 
