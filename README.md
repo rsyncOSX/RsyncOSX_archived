@@ -4,7 +4,7 @@ Important : this version is not compliant with Xcode 8 and Swift 3. The source c
 
 This version is set as master in the RsyncOSX repository. The [4.5.1 branch](https://github.com/rsyncOSX/RsyncOSX/tree/version4.5.1) will be released before this version and will be compiled from the branch.  
 
-### Version 4.6.0
+### Version 4.6.0 - Xcode 9, Swift 4 and macOS High Sierra
 
 **Important** - this version still needs more testing. Use branch [4.5.1 branch](https://github.com/rsyncOSX/RsyncOSX/tree/version4.5.1) to compile a tested version.
 
