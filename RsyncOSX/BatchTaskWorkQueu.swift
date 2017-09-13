@@ -21,6 +21,12 @@ final class BatchTaskWorkQueu {
     private var index = Array<Int>()
     // Holding value for working on row
     private var row: Int?
+    // Completed or not
+    private var completed: Bool = false
+
+    func completedBatch() -> Bool {
+        return self.completed
+    }
 
     // Returning current row
     func getRow() -> Int {
@@ -73,6 +79,7 @@ final class BatchTaskWorkQueu {
     // (-1,-1) indicates end of Queue
     func nextBatchRemove() -> (Int, Int) {
         guard self.batchQueu.count > 0 else {
+            self.completed = true
             return (-1, -1)
         }
         return self.batchQueu.removeFirst()
@@ -82,6 +89,7 @@ final class BatchTaskWorkQueu {
     // (-1,-1) indicates end of Queue
     func nextBatchCopy() -> (Int, Int) {
         guard self.batchQueu.count > 0 else {
+            self.completed = true
             return (-1, -1)
         }
         return self.batchQueu[0]
