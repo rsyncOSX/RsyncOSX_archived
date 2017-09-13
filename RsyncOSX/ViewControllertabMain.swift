@@ -524,6 +524,19 @@ class ViewControllertabMain: NSViewController {
         self.schedulessorted = ScheduleSortedAndExpand()
         self.setRsyncCommandDisplay()
     }
+
+    func createandreloadconfigurations() {
+        if let profile = self.configurations!.getProfile() {
+            self.configurations = nil
+            self.configurations = Configurations(profile: profile)
+        } else {
+            self.configurations = nil
+            self.configurations = Configurations(profile: nil)
+        }
+        globalMainQueue.async(execute: { () -> Void in
+            self.mainTableView.reloadData()
+        })
+    }
 }
 
 // Extensions
@@ -1142,30 +1155,12 @@ extension ViewControllertabMain: GetConfigurationsObject {
         guard self.batchtask == nil else {
             // Batchtask, check if task is completed
             guard self.configurations!.getBatchdataObject()?.completedBatch() == false else {
-                if let profile = self.configurations!.getProfile() {
-                    self.configurations = nil
-                    self.configurations = Configurations(profile: profile)
-                } else {
-                    self.configurations = nil
-                    self.configurations = Configurations(profile: nil)
-                }
-                globalMainQueue.async(execute: { () -> Void in
-                    self.mainTableView.reloadData()
-                })
+                self.createandreloadconfigurations()
                 return
             }
             return
         }
-        if let profile = self.configurations!.getProfile() {
-            self.configurations = nil
-            self.configurations = Configurations(profile: profile)
-        } else {
-            self.configurations = nil
-            self.configurations = Configurations(profile: nil)
-        }
-        globalMainQueue.async(execute: { () -> Void in
-            self.mainTableView.reloadData()
-        })
+        self.createandreloadconfigurations()
     }
 }
 
