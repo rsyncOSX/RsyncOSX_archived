@@ -1140,6 +1140,20 @@ extension ViewControllertabMain: GetConfigurationsObject {
     func reloadconfigurations() {
         // If batchtask do not keep configuration object
         guard self.batchtask == nil else {
+            // Batchtask, check if task is completed
+            guard self.configurations!.getBatchdataObject()?.completedBatch() == false else {
+                if let profile = self.configurations!.getProfile() {
+                    self.configurations = nil
+                    self.configurations = Configurations(profile: profile)
+                } else {
+                    self.configurations = nil
+                    self.configurations = Configurations(profile: nil)
+                }
+                globalMainQueue.async(execute: { () -> Void in
+                    self.mainTableView.reloadData()
+                })
+                return
+            }
             return
         }
         if let profile = self.configurations!.getProfile() {
