@@ -32,8 +32,6 @@ final class NewBatchTask {
 
     // Protocol function used in Process().
     weak var processupdateDelegate: UpdateProgress?
-    // Delegate function for doing a refresh of NSTableView in ViewControllerBatch
-    weak var refreshDelegate: RefreshtableView?
     // Delegate for presenting batchView
     weak var batchViewDelegate: BatchTask?
     // Delegate function for start/stop progress Indicator in BatchWindow
@@ -103,6 +101,7 @@ final class NewBatchTask {
             case -1:
                 self.batchViewDelegate?.setOutputBatch(outputbatch: self.outputbatch)
                 self.batchViewDelegate?.progressIndicatorViewBatch(operation: .complete)
+                self.configurationsDelegate?.reloadconfigurations()
             default : break
             }
         }
