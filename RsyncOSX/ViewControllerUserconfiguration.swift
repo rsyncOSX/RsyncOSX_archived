@@ -28,7 +28,6 @@ class ViewControllerUserconfiguration: NSViewController {
     @IBOutlet weak var rsyncPath: NSTextField!
     @IBOutlet weak var version3rsync: NSButton!
     @IBOutlet weak var detailedlogging: NSButton!
-    @IBOutlet weak var allowDoubleClick: NSButton!
     @IBOutlet weak var noRsync: NSTextField!
     @IBOutlet weak var rsyncerror: NSButton!
     @IBOutlet weak var restorePath: NSTextField!
@@ -69,19 +68,6 @@ class ViewControllerUserconfiguration: NSViewController {
             _ = self.storageapi!.saveUserconfiguration()
         }
         self.dismissDelegate?.dismiss_view(viewcontroller: self)
-    }
-
-    @IBAction func toggleAllowDoubleclick(_ sender: NSButton) {
-        if self.allowDoubleClick.state == .on {
-            ViewControllerReference.shared.allowDoubleclick = true
-        } else {
-            ViewControllerReference.shared.allowDoubleclick = false
-        }
-        self.rsyncchangedDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain)
-            as? ViewControllertabMain
-        self.rsyncchangedDelegate?.displayAllowDoubleclick()
-        self.dirty = true
-
     }
 
     @IBAction func toggleError(_ sender: NSButton) {
@@ -179,11 +165,6 @@ class ViewControllerUserconfiguration: NSViewController {
             self.rsyncPath.stringValue = ViewControllerReference.shared.rsyncPath!
         } else {
             self.rsyncPath.stringValue = ""
-        }
-        if ViewControllerReference.shared.allowDoubleclick {
-            self.allowDoubleClick.state = .on
-        } else {
-            self.allowDoubleClick.state = .off
         }
         if ViewControllerReference.shared.rsyncerror {
             self.rsyncerror.state = .on

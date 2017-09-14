@@ -43,8 +43,6 @@ class ViewControllerReference {
     var norsync: Bool = false
     // Detailed logging
     var detailedlogging: Bool = true
-    // Allow double click to activate single tasks
-    var allowDoubleclick: Bool = true
     // Temporary path for restore
     var restorePath: String?
     // Allow rsync error
