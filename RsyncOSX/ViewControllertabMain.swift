@@ -115,7 +115,7 @@ class ViewControllertabMain: NSViewController {
     // Schedules in progress
     fileprivate var scheduledJobInProgress: Bool = false
     // Ready for execute again
-    fileprivate var ready: Bool = true
+    fileprivate var readyforexecution: Bool = true
     // Can load profiles
     // Load profiles only when testing for connections are done.
     // Application crash if not
@@ -374,7 +374,7 @@ class ViewControllertabMain: NSViewController {
         if self.schedulessorted == nil {
             self.schedulessorted = ScheduleSortedAndExpand()
         }
-        self.ready = true
+        self.readyforexecution = true
         if self.tools == nil { self.tools = Tools()}
         self.light.color = .systemYellow
     }
@@ -402,10 +402,10 @@ class ViewControllertabMain: NSViewController {
 
     // Execute tasks by double click in table
     @objc(tableViewDoubleClick:) func tableViewDoubleClick(sender: AnyObject) {
-        if self.ready {
+        if self.readyforexecution {
             self.executeSingleTask()
         }
-        self.ready = false
+        self.readyforexecution = false
     }
 
     // Single task can be activated by double click from table
@@ -472,10 +472,10 @@ class ViewControllertabMain: NSViewController {
     // when row is selected
     // setting which table row is selected
     func tableViewSelectionDidChange(_ notification: Notification) {
-        if self.ready == false {
+        if self.readyforexecution == false {
             self.abortOperations()
         }
-        self.ready = true
+        self.readyforexecution = true
         let myTableViewFromNotification = (notification.object as? NSTableView)!
         let indexes = myTableViewFromNotification.selectedRowIndexes
         if let index = indexes.first {
@@ -811,7 +811,7 @@ extension ViewControllertabMain: UpdateProgress {
     // Protocol UpdateProgress two functions, ProcessTermination() and FileHandler()
 
     func processTermination() {
-        self.ready = true
+        self.readyforexecution = true
         // NB: must check if single run or batch run
         if let singletask = self.singletask {
             self.output = singletask.output
