@@ -12,7 +12,7 @@
 //  Copyright © 2016 Thomas Evensen. All rights reserved.
 //  swiftlint More work to fix - 17 July 2017
 //
-//  swiftlint:disable syntactic_sugar file_length
+//  swiftlint:disable syntactic_sugar
 
 import Foundation
 
@@ -49,8 +49,6 @@ class Configurations {
     var norsync: Bool = false
     // Detailed logging
     var detailedlogging: Bool = true
-    // Allow double click to activate single tasks
-    var allowDoubleclick: Bool = true
     // Temporary path for restore
     var restorePath: String?
     // reference to Process, used for kill in executing task
