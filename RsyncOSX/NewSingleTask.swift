@@ -23,10 +23,10 @@ protocol SingleTask: class {
     func presentViewInformation(output: OutputProcess)
     func terminateProgressProcess()
     func setInfo(info: String, color: ColorInfo)
-    func singleTaskAbort(process: Process?)
     func setNumbers(output: OutputProcess?)
     func gettransferredNumber() -> String
     func gettransferredNumberSizebytes() -> String
+    func getProcessReference(process: Process)
 }
 
 enum ColorInfo {
@@ -89,6 +89,7 @@ final class NewSingleTask {
                 self.output = OutputProcess()
                 process.executeProcess(output: self.output!)
                 self.process = process.getProcess()
+                self.taskDelegate?.getProcessReference(process: self.process!)
                 self.taskDelegate?.setInfo(info: "Execute", color: .blue)
             }
         case .executesinglerun:
@@ -101,6 +102,7 @@ final class NewSingleTask {
                 let process = Rsync(arguments: arguments)
                 process.executeProcess(output: self.output!)
                 self.process = process.getProcess()
+                self.taskDelegate?.getProcessReference(process: self.process!)
                 self.taskDelegate?.setInfo(info: "", color: .black)
             }
         case .abort:
@@ -124,7 +126,6 @@ final class NewSingleTask {
 
             // Pop topmost element of work queue
             switch workload.pop() {
-
             case .estimatesinglerun:
                 // Stopping the working (estimation) progress indicator
                 self.indicatorDelegate?.stopIndicator()
@@ -158,9 +159,6 @@ final class NewSingleTask {
                 let sizeOfFiles = self.transferredNumberSizebytes
                 self.schedules!.addlogtaskmanuel(hiddenID,
                                      result: number.stats(numberOfFiles: numberOffFiles, sizeOfFiles: sizeOfFiles)[0])
-            case .abort:
-                self.taskDelegate?.singleTaskAbort(process: self.process)
-                self.workload = nil
             case .empty:
                 self.workload = nil
             default:

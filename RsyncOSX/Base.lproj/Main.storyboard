@@ -870,7 +870,6 @@
                     </view>
                     <connections>
                         <outlet property="TCPButton" destination="vZ8-RO-Huz" id="Rgc-t6-PQm"/>
-                        <outlet property="allowDoubleclick" destination="74N-MA-FWg" id="OWv-mw-hEC"/>
                         <outlet property="delete" destination="X1w-Np-lS3" id="eOe-LK-Bzr"/>
                         <outlet property="deletefiles" destination="uOY-XE-EU5" id="BTy-3T-PDG"/>
                         <outlet property="displayDryRun" destination="g7r-rp-4kz" id="f5g-Og-Anv"/>

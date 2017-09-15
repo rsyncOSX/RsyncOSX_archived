@@ -27,7 +27,6 @@ final class PersistentStorageUserconfiguration: Readwritefiles {
         var version3Rsync: Int?
         var detailedlogging: Int?
         var rsyncPath: String?
-        var allowDoubleclick: Int?
         var rsyncerror: Int?
         var restorePath: String?
         if self.configurations!.rsyncVer3 {
@@ -46,11 +45,6 @@ final class PersistentStorageUserconfiguration: Readwritefiles {
         if self.configurations!.restorePath != nil {
             restorePath = self.configurations!.restorePath!
         }
-        if self.configurations!.allowDoubleclick {
-            allowDoubleclick = 1
-        } else {
-            allowDoubleclick = 0
-        }
         if self.configurations!.rsyncerror {
             rsyncerror = 1
         } else {
@@ -60,7 +54,6 @@ final class PersistentStorageUserconfiguration: Readwritefiles {
         let dict: NSMutableDictionary = [
             "version3Rsync": version3Rsync! as Int,
             "detailedlogging": detailedlogging! as Int,
-            "allowDoubleclick": allowDoubleclick! as Int,
             "rsyncerror": rsyncerror! as Int]
 
         if rsyncPath != nil {

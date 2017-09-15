@@ -58,7 +58,6 @@ final class Userconfiguration {
         self.rsyncchangedDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain)
             as? ViewControllertabMain
         self.rsyncchangedDelegate?.rsyncchanged()
-        self.rsyncchangedDelegate?.displayAllowDoubleclick()
         // Check for rsync
         Tools().verifyrsyncpath()
     }

@@ -13,7 +13,6 @@ import Cocoa
 // or user enable or disable doubleclick to execte
 protocol RsyncChanged : class {
     func rsyncchanged()
-    func displayAllowDoubleclick()
 }
 
 class ViewControllerUserconfiguration: NSViewController {

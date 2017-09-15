@@ -88,7 +88,6 @@ class ViewControllertabMain: NSViewController {
     // Showing info about profile
     @IBOutlet weak var profilInfo: NSTextField!
     // Showing info about double clik or not
-    @IBOutlet weak var allowDoubleclick: NSTextField!
     // Just showing process info
     @IBOutlet weak var processInfo: NSTextField!
     // New files
@@ -376,7 +375,6 @@ class ViewControllertabMain: NSViewController {
             self.schedulessorted = ScheduleSortedAndExpand()
         }
         self.ready = true
-        self.displayAllowDoubleclick()
         if self.tools == nil { self.tools = Tools()}
         self.light.color = .systemYellow
     }
@@ -469,17 +467,6 @@ class ViewControllertabMain: NSViewController {
         }
         self.TCPButton.isEnabled = true
         self.setRsyncCommandDisplay()
-    }
-
-    // Function for setting allowDouble click
-    internal func displayAllowDoubleclick() {
-        if self.configurations!.allowDoubleclick == true {
-            self.allowDoubleclick.stringValue = "Double click on row to execute task"
-            self.allowDoubleclick.textColor = .blue
-        } else {
-            self.allowDoubleclick.stringValue = "Double click: NO (enable in Configuration)"
-            self.allowDoubleclick.textColor = .red
-        }
     }
 
     // when row is selected
@@ -757,6 +744,7 @@ extension ViewControllertabMain: NewSchedules {
 
 // Rsync path is changed, update displayed rsync command
 extension ViewControllertabMain: RsyncChanged {
+
     // If row is selected an update rsync command in view
     func rsyncchanged() {
         // Update rsync command in display
@@ -980,7 +968,11 @@ extension ViewControllertabMain: StartStopProgressIndicatorSingleTask {
     }
 }
 
-extension ViewControllertabMain:SingleTask {
+extension ViewControllertabMain: SingleTask {
+
+    func getProcessReference(process: Process) {
+        self.process = process
+    }
 
     // Just for updating process info
     func showProcessInfo(info: DisplayProcessInfo) {
@@ -1038,11 +1030,6 @@ extension ViewControllertabMain:SingleTask {
             self.dryRunOrRealRun.textColor = .blue
         }
         self.dryRunOrRealRun.stringValue = info
-    }
-
-    func singleTaskAbort(process: Process?) {
-        self.process = process
-        self.abortOperations()
     }
 
     // Function for getting numbers out of output object updated when
