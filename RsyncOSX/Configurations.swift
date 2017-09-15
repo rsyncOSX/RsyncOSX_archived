@@ -37,11 +37,6 @@ protocol RefreshtableView: class {
 
 class Configurations {
 
-    // Variabl if Data is changed, saved to Store and must be read into memory again
-    private var dirtyData: Bool = true
-    func isDataDirty() -> Bool { return self.dirtyData }
-    func setDataDirty(dirty: Bool) { self.dirtyData = dirty }
-
     // Storage API
     var storageapi: PersistentStorageAPI?
     // Delegate functions

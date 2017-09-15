@@ -65,8 +65,6 @@ class Schedules: ScheduleWriteLoggData {
         dict.setObject(schedule, forKey: "schedule" as NSCopying)
         let newSchedule = ConfigurationSchedule(dictionary: dict, log: nil)
         self.schedules.append(newSchedule)
-        // Set data dirty
-        self.configurations!.setDataDirty(dirty: true)
         self.storageapi!.saveScheduleFromMemory()
     }
 
