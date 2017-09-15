@@ -1,16 +1,14 @@
 ## RsyncOSX
 
-**Important** - this version is not compliant with Xcode 8 and Swift 3. The source code for Xcode 8 (version 4.4.6) is available for download as part of the release.
-
-Version 4.6.0 is set as master in the RsyncOSX repository. The [4.5.1 branch](https://github.com/rsyncOSX/RsyncOSX/tree/version4.5.1) will be released before this version and will be compiled from the branch as soon as Xcode 9 is released.
+**Important** - this version is not compliant with Xcode 8 and Swift 3.
 
 ### Version 4.6.0 - Xcode 9, Swift 4 and macOS High Sierra
 
-**Important** - this version still needs more testing. Use branch [4.5.1 branch](https://github.com/rsyncOSX/RsyncOSX/tree/version4.5.1) to compile the released version of RsyncOSX.
+**Important** - this version still needs more testing. Use code in [release 4.5.1](https://github.com/rsyncOSX/RsyncOSX/releases) to compile the released version of RsyncOSX.
 
 This is the source code for the macOS application RsyncOSX. The application is implemented in **Swift 4** by using **Xcode version 9**. RsyncOSX is **not** depended upon any third party binary distributions. There is, however, one third party source code included to check for TCP connections. The check is for informal use only and can be removed. All other code is stock use of Swift 4 and libraries as part of Xcode version 9.
 
-The major work for this release is to replace the singelton objects of RsyncOSX. Version 4.6.0 will be released after version 4.5.1, which is the Xcode 9 and Swift 4 first release. The replace of singelton objects is also a major refactor and therefore need some time to test this release.
+The major work for release [4.6.0](https://github.com/rsyncOSX/RsyncOSX/tree/version4.6.0) is to replace the singelton objects in RsyncOSX. Version 4.6.0 will be released some time after version [4.5.1](https://github.com/rsyncOSX/RsyncOSX/releases), which is the Xcode 9 and Swift 4 first release. The replace of singelton objects is also a major refactor and therefore need some time for testing.
 
 #### SwiftLint
 
@@ -34,11 +32,7 @@ There are some [documents](https://rsyncosx.github.io/Documentation/) about Rsyn
 
 ### Development
 
-What is my experience after about a year into my Swift project? Writing swift code is fun and addicting. But I experience from time to time some of the code I am writing is a kind of "brute force". I am reading blogs and other resources about coding in Swift. Some ideas I do pick up, some I don´t understand and others again are like this is how I should have done it. I'm not a professional or full-time programmer and it means I have to accept that the parts of the code in RsyncOSX could have been better and more efficient. The RsyncOSX project is for fun only.
-
-I will continue to refactor code whenever I have got some ideas reading other code. I will continue adding minor enhancements to RsyncOSX (at least for some time). And I use RsyncOSX every day myself.
-
-Details about how RsyncOSX is built [here](https://rsyncosx.github.io/Documentation/docs/source/source.html).
+Details about how RsyncOSX is built is [here](https://rsyncosx.github.io/Documentation/docs/source/source.html).
 
 ### Rsync
 
@@ -58,7 +52,6 @@ In RsyncOSX select [RsyncOSX configuration](https://github.com/rsyncOSX/Document
 RsyncOSX is also released on [MacUpdate](https://www.macupdate.com/app/mac/56516/rsyncosx) and linked for download on [Softpedia](http://mac.softpedia.com/get/Internet-Utilities/RsyncOSX.shtml) as well. The application is downloaded about 9300 times from MacUpdate and 2400 times from Softpedia (all versions, July 2017). RsyncOSX does also inform users about new releases and link to download new version.
 
 To be honest, I have **no idea** how many users of RsyncOSX there are. And I am very happy that some users find it useful.
-
 
 ### My NAS setup
 
