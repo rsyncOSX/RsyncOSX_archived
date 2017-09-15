@@ -404,12 +404,10 @@ class ViewControllertabMain: NSViewController {
 
     // Execute tasks by double click in table
     @objc(tableViewDoubleClick:) func tableViewDoubleClick(sender: AnyObject) {
-        if self.configurations!.allowDoubleclick == true {
-            if self.ready {
-                self.executeSingleTask()
-            }
-            self.ready = false
+        if self.ready {
+            self.executeSingleTask()
         }
+        self.ready = false
     }
 
     // Single task can be activated by double click from table
@@ -1137,8 +1135,6 @@ extension ViewControllertabMain: GetConfigurationsObject {
         self.configurations!.rsyncPath = ViewControllerReference.shared.rsyncPath
         self.configurations!.norsync = ViewControllerReference.shared.norsync
         self.configurations!.detailedlogging = ViewControllerReference.shared.detailedlogging
-        self.configurations!.allowDoubleclick = ViewControllerReference.shared.allowDoubleclick
-        self.configurations!.restorePath = ViewControllerReference.shared.restorePath
         self.configurations!.rsyncerror = ViewControllerReference.shared.rsyncerror
         return self.configurations
     }

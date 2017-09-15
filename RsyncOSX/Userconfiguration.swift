@@ -40,14 +40,6 @@ final class Userconfiguration {
         } else {
             ViewControllerReference.shared.restorePath = NSHomeDirectory() + "/tmp/"
         }
-        // Allow double click to execute single tasks
-        if let allowDoubleclick = dict.value(forKey: "allowDoubleclick") as? Int {
-            if allowDoubleclick == 1 {
-                ViewControllerReference.shared.allowDoubleclick = true
-            } else {
-                ViewControllerReference.shared.allowDoubleclick = false
-            }
-        }
         // Allow rsync errors to reset work Queueu
         if let errors = dict.value(forKey: "rsyncerror") as? Int {
             if errors == 1 {
