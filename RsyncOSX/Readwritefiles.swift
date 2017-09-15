@@ -93,7 +93,6 @@ class Readwritefiles {
                 }
             }
         }
-        print("Read data")
         return data
     }
 
@@ -104,7 +103,6 @@ class Readwritefiles {
         guard self.filename != nil else {
             return false
         }
-        print("Write data")
         return  dictionary.write(toFile: self.filename!, atomically: true)
     }
 

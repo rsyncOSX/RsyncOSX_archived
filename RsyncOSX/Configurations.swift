@@ -386,7 +386,6 @@ class Configurations {
     }
 
     init(profile: String?) {
-        print(self)
         self.configurations = nil
         self.argumentAllConfigurations = nil
         self.configurationsDataSource = nil
