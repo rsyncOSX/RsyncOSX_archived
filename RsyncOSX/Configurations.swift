@@ -80,6 +80,8 @@ class Configurations {
     private var configurationsDataSource: Array<NSMutableDictionary>?
     // Object for batchQueue data and operations
     private var batchdata: BatchTaskWorkQueu?
+    // Temporary structure to hold added Configurations before writing to permanent store
+    private var newConfigurations: Array<NSMutableDictionary>?
 
     /// Function for getting the profile
     func getProfile() -> String? {
@@ -181,7 +183,7 @@ class Configurations {
 
     /// Function is adding new Configurations to existing in memory.
     /// - parameter dict : new record configuration
-    func addConfigurationtoMemory (dict: NSDictionary) {
+    func appendconfigurationstomemory (dict: NSDictionary) {
         let config = Configuration(dictionary: dict)
         self.configurations!.append(config)
     }
@@ -273,9 +275,6 @@ class Configurations {
     func getbatchDataQueue() -> Array<NSMutableDictionary>? {
         return self.batchdata?.getupdatedBatchdata()
     }
-
-    // Temporary structure to hold added Configurations before writing to permanent store
-    private var newConfigurations: Array<NSMutableDictionary>?
 
     func addNewConfigurations(_ row: NSMutableDictionary) {
         guard self.newConfigurations != nil else {

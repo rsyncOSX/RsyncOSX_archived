@@ -84,11 +84,11 @@ final class PersistentStorageConfiguration: Readwritefiles {
                 array.append(self.setRestorePart(dict: backup))
                 // Append the two records to Configuration i memory
                 // Important to save Configuration from memory after this method
-                self.configurations!.addConfigurationtoMemory(dict: array[array.count - 2])
-                self.configurations!.addConfigurationtoMemory(dict: array[array.count - 1])
+                self.configurations!.appendconfigurationstomemory(dict: array[array.count - 2])
+                self.configurations!.appendconfigurationstomemory(dict: array[array.count - 1])
             } else {
                 // Singlefile Configuration - only adds the copy part
-                self.configurations!.addConfigurationtoMemory(dict: array[array.count - 1])
+                self.configurations!.appendconfigurationstomemory(dict: array[array.count - 1])
             }
             // Method is only used from Adding New Configurations
         }
