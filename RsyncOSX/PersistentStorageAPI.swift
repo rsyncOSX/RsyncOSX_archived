@@ -52,7 +52,7 @@ final class PersistentStorageAPI {
         let newConfigurations = self.configurations!.getnewConfigurations()
         if newConfigurations != nil {
             for i in 0 ..< newConfigurations!.count {
-                    save.addConfigurationsToMemory(newConfigurations![i])
+                    save.newConfigurations(newConfigurations![i])
                 }
             save.saveconfigInMemoryToPersistentStore()
         }
