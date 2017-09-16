@@ -63,7 +63,7 @@ final class PersistentStorageConfiguration: Readwritefiles {
     // Saving added configuration to memory store
     // NB : Function does NOT store Configurations to persistent store
     // Must call saveconfigToPersistentStore method
-    func addConfigurationsToMemory (_ backup: NSMutableDictionary) {
+    func newConfigurations (_ backup: NSMutableDictionary) {
         let localCatalog = backup.value(forKey: "localCatalog") as? String
         let offsiteCatalog = backup.value(forKey: "offsiteCatalog") as? String
         let singleFile = backup.value(forKey: "singleFile") as? Int

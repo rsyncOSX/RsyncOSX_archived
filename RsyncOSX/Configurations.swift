@@ -23,16 +23,24 @@ protocol GetConfigurationsObject: class {
     func reloadconfigurations()
 }
 
+// Protocol for doing a refresh of updated tableView
+protocol RefreshtableView: class {
+    // Declare function for refresh tableView
+    func refresh()
+}
+
 // Used to select argument
 enum ArgumentsRsync {
     case arg
     case argdryRun
 }
 
-// Protocol for doing a refresh of updated tableView
-protocol RefreshtableView: class {
-    // Declare function for refresh tableView
-    func refresh()
+// Enum which resource to return
+enum ResourceInConfiguration {
+    case remoteCatalog
+    case localCatalog
+    case offsiteServer
+    case task
 }
 
 class Configurations {
@@ -53,9 +61,6 @@ class Configurations {
     var restorePath: String?
     // reference to Process, used for kill in executing task
     var process: Process?
-    // Variabl if arguments to Rsync is changed and must be read into memory again
-    private var readRsyncArguments: Bool = true
-    // Reference to the Operation object
     // Reference is set in when Scheduled task is executed
     var operation: CompleteScheduledOperation?
     private var profile: String?
@@ -66,7 +71,6 @@ class Configurations {
     var rsyncerror: Bool = true
     // Reference to singletask object
     var singleTask: NewSingleTask?
-
     // The main structure storing all Configurations for tasks
     private var configurations: Array<Configuration>?
     // Array to store argumenst for all tasks.
@@ -297,14 +301,6 @@ class Configurations {
     // Function for appending new Configurations to memory
     func appendNewConfigurations () {
         self.storageapi!.saveNewConfigurationsFromMemory()
-    }
-
-    // Enum which resource to return
-    enum ResourceInConfiguration {
-        case remoteCatalog
-        case localCatalog
-        case offsiteServer
-        case task
     }
 
     func getResourceConfiguration(_ hiddenID: Int, resource: ResourceInConfiguration) -> String {
