@@ -63,10 +63,10 @@ final class PersistentStorageConfiguration: Readwritefiles {
     // Saving added configuration to memory store
     // NB : Function does NOT store Configurations to persistent store
     // Must call saveconfigToPersistentStore method
-    func newConfigurations (_ backup: NSMutableDictionary) {
-        let localCatalog = backup.value(forKey: "localCatalog") as? String
-        let offsiteCatalog = backup.value(forKey: "offsiteCatalog") as? String
-        let singleFile = backup.value(forKey: "singleFile") as? Int
+    func newConfigurations (_ dict: NSMutableDictionary) {
+        let localCatalog = dict.value(forKey: "localCatalog") as? String
+        let offsiteCatalog = dict.value(forKey: "offsiteCatalog") as? String
+        let singleFile = dict.value(forKey: "singleFile") as? Int
         // If localCatalog == offsiteCataog do NOT append
         if localCatalog != offsiteCatalog {
             var array = Array<NSDictionary>()
@@ -77,20 +77,18 @@ final class PersistentStorageConfiguration: Readwritefiles {
                 array.append(self.dictionaryFromconfig(index: i))
             }
             // backup part
-            backup.setObject(self.maxhiddenID + 1, forKey: "hiddenID" as NSCopying)
-            backup.removeObject(forKey: "singleFile")
-            array.append(backup)
+            dict.setObject(self.maxhiddenID + 1, forKey: "hiddenID" as NSCopying)
+            dict.removeObject(forKey: "singleFile")
+            array.append(dict)
             if singleFile == 0 {
-                array.append(self.setRestorePart(dict: backup))
+                array.append(self.setRestorePart(dict: dict))
                 // Append the two records to Configuration i memory
-                // Important to save Configuration from memory after this method
                 self.configurations!.appendconfigurationstomemory(dict: array[array.count - 2])
                 self.configurations!.appendconfigurationstomemory(dict: array[array.count - 1])
             } else {
                 // Singlefile Configuration - only adds the copy part
                 self.configurations!.appendconfigurationstomemory(dict: array[array.count - 1])
             }
-            // Method is only used from Adding New Configurations
         }
     }
 
@@ -155,13 +153,9 @@ final class PersistentStorageConfiguration: Readwritefiles {
 
     private func checkparameter (param: String?) -> String? {
         if let parameter = param {
-            guard parameter.isEmpty == false else {
-                return nil
-            }
+            guard parameter.isEmpty == false else { return nil }
             return parameter
-        } else {
-            return nil
-        }
+        } else { return nil }
     }
 
     // Function for setting the restore part of newly created added configuration

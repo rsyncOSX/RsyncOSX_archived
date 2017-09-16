@@ -276,11 +276,10 @@ class Configurations {
         return self.batchdata?.getupdatedBatchdata()
     }
 
-    func addNewConfigurations(_ row: NSMutableDictionary) {
-        self.newConfigurations = nil
-        self.newConfigurations = Array<NSMutableDictionary>()
-        self.newConfigurations!.append(row)
-        self.storageapi!.saveNewConfigurationsFromMemory()
+    func addNewConfigurations(_ dict: NSMutableDictionary) {
+        if self.newConfigurations == nil { self.newConfigurations = Array<NSMutableDictionary>() }
+        self.newConfigurations!.append(dict)
+        self.storageapi!.addandsaveNewConfigurations(dict: dict)
     }
 
     func newConfigurationsCount() -> Int {
