@@ -176,6 +176,9 @@ extension ViewControllerNewConfigurations : NSTableViewDataSource {
 extension ViewControllerNewConfigurations : NSTableViewDelegate {
 
     @objc(tableView:objectValueForTableColumn:row:) func tableView(_ tableView: NSTableView, objectValueFor tableColumn: NSTableColumn?, row: Int) -> Any? {
+        guard self.configurations?.getnewConfigurations() != nil else {
+            return nil
+        }
         let object: NSMutableDictionary = self.configurations!.getnewConfigurations()![row]
         return object[tableColumn!.identifier] as? String
     }
