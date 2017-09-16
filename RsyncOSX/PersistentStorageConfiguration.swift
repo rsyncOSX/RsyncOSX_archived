@@ -89,6 +89,7 @@ final class PersistentStorageConfiguration: Readwritefiles {
                 // Singlefile Configuration - only adds the copy part
                 self.configurations!.appendconfigurationstomemory(dict: array[array.count - 1])
             }
+         self.saveconfigInMemoryToPersistentStore()
         }
     }
 

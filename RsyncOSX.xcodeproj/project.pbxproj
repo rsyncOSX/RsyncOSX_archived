@@ -229,19 +229,19 @@
 				A04492C51D65904500B3CE17 /* Process */,
 				A04492C11D658FB900B3CE17 /* Schedule */,
 				A04492C01D658FA600B3CE17 /* Configuration */,
-				A04492BF1D658F9400B3CE17 /* PersistentStore */,
+				A04492BF1D658F9400B3CE17 /* ReadWriteFiles */,
 				E90E51051F47094800B71F0F /* PersistentStorage */,
 			);
 			name = Model;
 			sourceTree = "<group>";
 		};
-		A04492BF1D658F9400B3CE17 /* PersistentStore */ = {
+		A04492BF1D658F9400B3CE17 /* ReadWriteFiles */ = {
 			isa = PBXGroup;
 			children = (
 				E9234FFA1EB068AE00A4C550 /* Files.swift */,
 				E9F068F31F27BA0200DDF1A1 /* Readwritefiles.swift */,
 			);
-			name = PersistentStore;
+			name = ReadWriteFiles;
 			sourceTree = "<group>";
 		};
 		A04492C01D658FA600B3CE17 /* Configuration */ = {
