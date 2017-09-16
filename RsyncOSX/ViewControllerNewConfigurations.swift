@@ -29,8 +29,6 @@ class ViewControllerNewConfigurations: NSViewController {
     let parameter5: String = "-e"
     let parameter6: String = "ssh"
 
-    var newConfigs: Bool = false
-
     @IBOutlet weak var viewParameter1: NSTextField!
     @IBOutlet weak var viewParameter2: NSTextField!
     @IBOutlet weak var viewParameter3: NSTextField!
@@ -91,14 +89,6 @@ class ViewControllerNewConfigurations: NSViewController {
             self.storageapi = PersistentStorageAPI(profile : nil)
         }
         self.setFields()
-    }
-
-    override func viewWillDisappear() {
-        super.viewWillDisappear()
-        if self.newConfigs {
-            self.storageapi!.saveNewConfigurationsFromMemory()
-            self.newConfigs = false
-        }
     }
 
     // handler and getter for setting localcatalog
@@ -168,7 +158,6 @@ class ViewControllerNewConfigurations: NSViewController {
         globalMainQueue.async(execute: { () -> Void in
             self.newTableView.reloadData()
         })
-        self.newConfigs = true
         self.setFields()
     }
 }

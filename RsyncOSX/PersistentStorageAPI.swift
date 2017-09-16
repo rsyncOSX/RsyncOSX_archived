@@ -49,6 +49,7 @@ final class PersistentStorageAPI {
     // Saving added configuration from meory
     func saveNewConfigurationsFromMemory() {
         let save = PersistentStorageConfiguration(profile: self.profile)
+        self.configurations = self.configurationsDelegate?.getconfigurationsobject()
         let newConfigurations = self.configurations!.getnewConfigurations()
         if newConfigurations != nil {
             for i in 0 ..< newConfigurations!.count {

@@ -277,11 +277,10 @@ class Configurations {
     }
 
     func addNewConfigurations(_ row: NSMutableDictionary) {
-        guard self.newConfigurations != nil else {
-            self.newConfigurations = [row]
-            return
-        }
+        self.newConfigurations = nil
+        self.newConfigurations = Array<NSMutableDictionary>()
         self.newConfigurations!.append(row)
+        self.storageapi!.saveNewConfigurationsFromMemory()
     }
 
     func newConfigurationsCount() -> Int {
@@ -295,11 +294,6 @@ class Configurations {
     /// - returns : Array of Dictionary storing all new configurations
     func getnewConfigurations () -> [NSMutableDictionary]? {
         return self.newConfigurations
-    }
-
-    // Function for appending new Configurations to memory
-    func appendNewConfigurations () {
-        self.storageapi!.saveNewConfigurationsFromMemory()
     }
 
     func getResourceConfiguration(_ hiddenID: Int, resource: ResourceInConfiguration) -> String {
