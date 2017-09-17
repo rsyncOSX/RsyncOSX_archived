@@ -273,6 +273,7 @@ class Configurations {
         return self.batchdata?.getupdatedBatchdata()
     }
 
+    // Add new configurations
     func addNewConfigurations(_ dict: NSMutableDictionary) {
         self.storageapi!.addandsaveNewConfigurations(dict: dict)
     }

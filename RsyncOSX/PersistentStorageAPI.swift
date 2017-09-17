@@ -50,6 +50,7 @@ final class PersistentStorageAPI {
     func addandsaveNewConfigurations(dict: NSMutableDictionary) {
         let save = PersistentStorageConfiguration(profile: self.profile)
         save.newConfigurations(dict)
+        save.saveconfigInMemoryToPersistentStore()
     }
 
     // SCHEDULE
