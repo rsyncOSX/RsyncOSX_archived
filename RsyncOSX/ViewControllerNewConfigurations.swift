@@ -51,6 +51,13 @@ class ViewControllerNewConfigurations: NSViewController {
             as? NSViewController)!
     }()
 
+    @IBAction func cleartable(_ sender: NSButton) {
+        self.newconfigurations = nil
+        self.newconfigurations = NewConfigurations()
+        globalMainQueue.async(execute: { () -> Void in
+            self.newTableView.reloadData()
+        })
+    }
     @IBAction func copyLocalCatalog(_ sender: NSButton) {
         _ = FileDialog(requester: .addLocalCatalog)
     }
