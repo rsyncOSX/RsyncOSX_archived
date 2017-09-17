@@ -14,8 +14,9 @@ class ViewControllerNewConfigurations: NSViewController {
 
     weak var configurationsDelegate: GetConfigurationsObject?
     var configurations: Configurations?
-
     var storageapi: PersistentStorageAPI?
+    var newconfigurations: NewConfigurations?
+
     // Table holding all new Configurations
     @IBOutlet weak var newTableView: NSTableView!
 
@@ -74,9 +75,9 @@ class ViewControllerNewConfigurations: NSViewController {
         self.localCatalog.toolTip = "By using Finder drag and drop filepaths."
         self.offsiteCatalog.toolTip = "By using Finder drag and drop filepaths."
         ViewControllerReference.shared.setvcref(viewcontroller: .vcnewconfigurations, nsviewcontroller: self)
-
         self.configurationsDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain)
             as? ViewControllertabMain
+        self.newconfigurations = NewConfigurations()
 
     }
 
@@ -154,7 +155,8 @@ class ViewControllerNewConfigurations: NSViewController {
             return
         }
         self.configurations!.addNewConfigurations(dict)
-        self.tabledata = self.configurations!.getnewConfigurations()
+        self.newconfigurations?.appendnewConfigurations(dict: dict)
+        self.tabledata = self.newconfigurations!.getnewConfigurations()
         globalMainQueue.async(execute: { () -> Void in
             self.newTableView.reloadData()
         })
@@ -168,7 +170,7 @@ extension ViewControllerNewConfigurations : NSTableViewDataSource {
         guard self.configurations != nil else {
             return 0
         }
-        return self.configurations!.newConfigurationsCount()
+        return self.newconfigurations!.newConfigurationsCount()
     }
 
 }
@@ -176,10 +178,10 @@ extension ViewControllerNewConfigurations : NSTableViewDataSource {
 extension ViewControllerNewConfigurations : NSTableViewDelegate {
 
     @objc(tableView:objectValueForTableColumn:row:) func tableView(_ tableView: NSTableView, objectValueFor tableColumn: NSTableColumn?, row: Int) -> Any? {
-        guard self.configurations?.getnewConfigurations() != nil else {
+        guard self.newconfigurations?.getnewConfigurations() != nil else {
             return nil
         }
-        let object: NSMutableDictionary = self.configurations!.getnewConfigurations()![row]
+        let object: NSMutableDictionary = self.newconfigurations!.getnewConfigurations()![row]
         return object[tableColumn!.identifier] as? String
     }
 
