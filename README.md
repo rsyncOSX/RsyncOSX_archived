@@ -1,10 +1,12 @@
 ## RsyncOSX
 
-**Important** - this version is not compliant with Xcode 8 and Swift 3.
+**Important** - this version is **not** compliant with Xcode 8 and Swift 3.
+
+This is source for version 4.6.5 of RsyncOSX. RsyncOSX is compiled with support for macOS 10.11 - macOS 10.13 by using Xcode 9 and Swift 4.
 
 This version also require some more testing. Use code in [release 4.5.1](https://github.com/rsyncOSX/RsyncOSX/releases) to compile the released version of RsyncOSX.
 
-### Version 4.6.0 - Xcode 9, Swift 4 and macOS High Sierra
+### Version 4.6.5
 
 This is the source code for the macOS application RsyncOSX. The application is implemented in **Swift 4** by using **Xcode 9**. RsyncOSX is *not* depended upon any third party binary distributions. There is, however, one third party source code included to check for TCP connections. The check is for informal use only and can be removed.
 
@@ -40,7 +42,7 @@ In last updated release candidate image (RsyncOSX.dmg) there is a rsync-3.1.2.dm
 
 The default version of `rsync` in macOS is old (version 2.6.9, [protocol](https://rsync.samba.org/how-rsync-works.html) version 29). Version [2.6.9](https://download.samba.org/pub/rsync/src/rsync-2.6.9-NEWS) was released in nov 2006. The current release of rsync is version [3.1.2](https://download.samba.org/pub/rsync/src/rsync-3.1.2-NEWS) protocol 31 released 21 Dec 2015. There are at least three options to get and install the current version of rsync for use in RsyncOSX:
 
-- use the `rsync-3.1.2.dmg` within `RsyncOSX.dmg`to install the latest version of rsync 
+- use the `rsync-3.1.2.dmg` within `RsyncOSX.dmg`to install the latest version of rsync
 - install Xcode and download the rsync [source](https://rsync.samba.org/) from rsync.samba.org
 	- required tools are `gcc` and `make` which are part of Xcode command line tool (you might be able to install Xcode command line tool only by downloading the tools from [Apple Developer page](https://developer.apple.com/))
 	- untar the source archive and use `make` to compile and install, rsync compiles without any issues on macOS
