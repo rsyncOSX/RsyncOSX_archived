@@ -10,7 +10,6 @@
 //
 //  Created by Thomas Evensen on 08/02/16.
 //  Copyright © 2016 Thomas Evensen. All rights reserved.
-//  swiftlint More work to fix - 17 July 2017
 //
 //  swiftlint:disable syntactic_sugar
 
@@ -80,8 +79,6 @@ class Configurations {
     private var configurationsDataSource: Array<NSMutableDictionary>?
     // Object for batchQueue data and operations
     private var batchdata: BatchTaskWorkQueu?
-    // Temporary structure to hold added Configurations before writing to permanent store
-    private var newConfigurations: Array<NSMutableDictionary>?
 
     /// Function for getting the profile
     func getProfile() -> String? {
@@ -276,30 +273,9 @@ class Configurations {
         return self.batchdata?.getupdatedBatchdata()
     }
 
-    func addNewConfigurations(_ row: NSMutableDictionary) {
-        guard self.newConfigurations != nil else {
-            self.newConfigurations = [row]
-            return
-        }
-        self.newConfigurations!.append(row)
-    }
-
-    func newConfigurationsCount() -> Int {
-        guard self.newConfigurations != nil else {
-            return 0
-        }
-        return self.newConfigurations!.count
-    }
-
-    /// Function is getting all added (new) configurations
-    /// - returns : Array of Dictionary storing all new configurations
-    func getnewConfigurations () -> [NSMutableDictionary]? {
-        return self.newConfigurations
-    }
-
-    // Function for appending new Configurations to memory
-    func appendNewConfigurations () {
-        self.storageapi!.saveNewConfigurationsFromMemory()
+    // Add new configurations
+    func addNewConfigurations(_ dict: NSMutableDictionary) {
+        self.storageapi!.addandsaveNewConfigurations(dict: dict)
     }
 
     func getResourceConfiguration(_ hiddenID: Int, resource: ResourceInConfiguration) -> String {
@@ -377,7 +353,6 @@ class Configurations {
             data.append(row)
         }
         self.configurationsDataSource = data
-        self.newConfigurations = nil
     }
 
     init(profile: String?) {

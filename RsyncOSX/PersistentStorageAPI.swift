@@ -46,16 +46,11 @@ final class PersistentStorageAPI {
         save.saveconfigInMemoryToPersistentStore()
     }
 
-    // Saving added configuration from meory
-    func saveNewConfigurationsFromMemory() {
+    // Saving added configuration
+    func addandsaveNewConfigurations(dict: NSMutableDictionary) {
         let save = PersistentStorageConfiguration(profile: self.profile)
-        let newConfigurations = self.configurations!.getnewConfigurations()
-        if newConfigurations != nil {
-            for i in 0 ..< newConfigurations!.count {
-                    save.newConfigurations(newConfigurations![i])
-                }
-            save.saveconfigInMemoryToPersistentStore()
-        }
+        save.newConfigurations(dict)
+        save.saveconfigInMemoryToPersistentStore()
     }
 
     // SCHEDULE

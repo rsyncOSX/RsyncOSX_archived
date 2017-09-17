@@ -54,6 +54,7 @@
 		E905DC111EACF7550003BF37 /* ViewControllerSsh.swift in Sources */ = {isa = PBXBuildFile; fileRef = E905DC101EACF7550003BF37 /* ViewControllerSsh.swift */; };
 		E91A68901EA777690056BCFC /* ScheduleWriteLoggData.swift in Sources */ = {isa = PBXBuildFile; fileRef = E91A688F1EA777690056BCFC /* ScheduleWriteLoggData.swift */; };
 		E9230C0E1E6DDC57001D9954 /* RsyncArguments.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9230C0D1E6DDC57001D9954 /* RsyncArguments.swift */; };
+		E9231AFB1F6E3D270055000C /* NewConfigurations.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9231AFA1F6E3D260055000C /* NewConfigurations.swift */; };
 		E9234FFB1EB068AE00A4C550 /* Files.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9234FFA1EB068AE00A4C550 /* Files.swift */; };
 		E92E1B981E7438CF004876D8 /* Help.swift in Sources */ = {isa = PBXBuildFile; fileRef = E92E1B971E7438CF004876D8 /* Help.swift */; };
 		E9374D2C1E3299E800CD3945 /* ExecuteTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9374D2B1E3299E800CD3945 /* ExecuteTask.swift */; };
@@ -134,6 +135,7 @@
 		E905DC101EACF7550003BF37 /* ViewControllerSsh.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewControllerSsh.swift; sourceTree = "<group>"; };
 		E91A688F1EA777690056BCFC /* ScheduleWriteLoggData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScheduleWriteLoggData.swift; sourceTree = "<group>"; };
 		E9230C0D1E6DDC57001D9954 /* RsyncArguments.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RsyncArguments.swift; sourceTree = "<group>"; };
+		E9231AFA1F6E3D260055000C /* NewConfigurations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewConfigurations.swift; sourceTree = "<group>"; };
 		E9234FFA1EB068AE00A4C550 /* Files.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Files.swift; sourceTree = "<group>"; };
 		E92E1B971E7438CF004876D8 /* Help.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Help.swift; sourceTree = "<group>"; };
 		E9374D2B1E3299E800CD3945 /* ExecuteTask.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExecuteTask.swift; sourceTree = "<group>"; };
@@ -229,19 +231,19 @@
 				A04492C51D65904500B3CE17 /* Process */,
 				A04492C11D658FB900B3CE17 /* Schedule */,
 				A04492C01D658FA600B3CE17 /* Configuration */,
-				A04492BF1D658F9400B3CE17 /* PersistentStore */,
+				A04492BF1D658F9400B3CE17 /* ReadWriteFiles */,
 				E90E51051F47094800B71F0F /* PersistentStorage */,
 			);
 			name = Model;
 			sourceTree = "<group>";
 		};
-		A04492BF1D658F9400B3CE17 /* PersistentStore */ = {
+		A04492BF1D658F9400B3CE17 /* ReadWriteFiles */ = {
 			isa = PBXGroup;
 			children = (
 				E9234FFA1EB068AE00A4C550 /* Files.swift */,
 				E9F068F31F27BA0200DDF1A1 /* Readwritefiles.swift */,
 			);
-			name = PersistentStore;
+			name = ReadWriteFiles;
 			sourceTree = "<group>";
 		};
 		A04492C01D658FA600B3CE17 /* Configuration */ = {
@@ -355,6 +357,7 @@
 			isa = PBXGroup;
 			children = (
 				E97E3BA61F6256DB00411D0E /* Configurations.swift */,
+				E9231AFA1F6E3D260055000C /* NewConfigurations.swift */,
 			);
 			name = Configurations;
 			sourceTree = "<group>";
@@ -527,6 +530,7 @@
 				A04972511D6595B200086EFD /* OutputProcess.swift in Sources */,
 				A0AD15AE1D7DB78F0004600F /* ScheduleOperation.swift in Sources */,
 				A0B340B41D67079700C6DAC3 /* ViewControllertabSchedule.swift in Sources */,
+				E9231AFB1F6E3D270055000C /* NewConfigurations.swift in Sources */,
 				E9609EF51F229F5900F5BFAA /* PersistentStorageConfiguration.swift in Sources */,
 				A0041EEF1D7D4357002BF081 /* ScheduleSortedAndExpanded.swift in Sources */,
 				E9A8D81C1ED20AEB009648DE /* GetRemoteFilesArguments.swift in Sources */,
