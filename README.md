@@ -8,7 +8,7 @@ This is source for version 4.6.5 of RsyncOSX. RsyncOSX is compiled with support 
 
 This is the source code for the macOS application RsyncOSX. The application is implemented in **Swift 4** by using **Xcode 9**. RsyncOSX is *not* depended upon any third party binary distributions. There is, however, one third party source code included to check for TCP connections. The check is for informal use only and can be removed.
 
-The major work for release [4.6.5](https://github.com/rsyncOSX/RsyncOSX/tree/version4.6.5) is to replace the singelton objects in previous versions of RsyncOSX. Version 4.6.5 will be released some time after version [4.5.1](https://github.com/rsyncOSX/RsyncOSX/releases), which is the first release built by Xcode 9. The refactor is a major change in code and therefore need some time for testing.
+The major work for release [4.6.5](https://github.com/rsyncOSX/RsyncOSX/tree/v4.6.5) is to replace the singelton objects in previous versions of RsyncOSX. Version 4.6.5 will be released some time after version [4.5.1](https://github.com/rsyncOSX/RsyncOSX/releases), which is the first release built by Xcode 9. The refactor is a major change in code and therefore need some time for testing.
 
 #### SwiftLint
 
