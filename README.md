@@ -2,15 +2,13 @@
 
 **Important** - this version is **not** compliant with Xcode 8 and Swift 3.
 
-This is source for version 4.6.5 of RsyncOSX. RsyncOSX is compiled with support for macOS 10.11 - macOS 10.13 by using Xcode 9 and Swift 4.
-
-This version also require some more testing. Use code in [release 4.5.1](https://github.com/rsyncOSX/RsyncOSX/releases) to compile the released version of RsyncOSX.
+This is source for version 4.6.5 of RsyncOSX. RsyncOSX is compiled with support for macOS 10.11 - macOS 10.13 by using Xcode 9 and Swift 4. This version also require some more testing. Use code in [release 4.5.1](https://github.com/rsyncOSX/RsyncOSX/releases) to compile the released version of RsyncOSX.
 
 ### Version 4.6.5
 
 This is the source code for the macOS application RsyncOSX. The application is implemented in **Swift 4** by using **Xcode 9**. RsyncOSX is *not* depended upon any third party binary distributions. There is, however, one third party source code included to check for TCP connections. The check is for informal use only and can be removed.
 
-The major work for release [4.6.0](https://github.com/rsyncOSX/RsyncOSX/tree/version4.6.0) is to replace the singelton objects in previous versions of RsyncOSX. Version 4.6.0 will be released some time after version [4.5.1](https://github.com/rsyncOSX/RsyncOSX/releases), which is the first release built by Xcode 9. The refactor is also a major change in code and therefore need some time for testing.
+The major work for release [4.6.5](https://github.com/rsyncOSX/RsyncOSX/tree/version4.6.5) is to replace the singelton objects in previous versions of RsyncOSX. Version 4.6.5 will be released some time after version [4.5.1](https://github.com/rsyncOSX/RsyncOSX/releases), which is the first release built by Xcode 9. The refactor is a major change in code and therefore need some time for testing.
 
 #### SwiftLint
 
