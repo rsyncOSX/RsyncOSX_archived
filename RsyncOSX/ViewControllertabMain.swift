@@ -1115,7 +1115,7 @@ extension ViewControllertabMain: GetConfigurationsObject {
 
     // After a write, a reload is forced.
     func reloadconfigurations() {
-        // If batchtask do not keep configuration object
+        // If batchtask keep configuration object
         guard self.batchtask == nil else {
             // Batchtask, check if task is completed
             guard self.configurations!.getBatchdataObject()?.completedBatch() == false else {
@@ -1131,6 +1131,15 @@ extension ViewControllertabMain: GetConfigurationsObject {
 extension ViewControllertabMain: GetSchedulesObject {
 
     func reloadschedules() {
+        // If batchtask scedules object
+        guard self.batchtask == nil else {
+            // Batchtask, check if task is completed
+            guard self.configurations!.getBatchdataObject()?.completedBatch() == false else {
+                self.createandloadschedules()
+                return
+            }
+            return
+        }
         self.createandloadschedules()
     }
 
