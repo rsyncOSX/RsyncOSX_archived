@@ -350,8 +350,8 @@ class ViewControllertabMain: NSViewController {
         self.displayDryRun.state = .on
         self.tools = Tools()
         self.loadProfileMenu = true
-        self.configurations = Configurations(profile: nil)
-        self.schedules = Schedules(profile: nil)
+        self.configurations = Configurations(profile: nil, viewcontroller: self)
+        self.schedules = Schedules(profile: nil, viewcontroller: self)
     }
 
     override func viewDidAppear() {
@@ -513,10 +513,10 @@ class ViewControllertabMain: NSViewController {
     func createandreloadconfigurations() {
         if let profile = self.configurations!.getProfile() {
             self.configurations = nil
-            self.configurations = Configurations(profile: profile)
+            self.configurations = Configurations(profile: profile, viewcontroller: self)
         } else {
             self.configurations = nil
-            self.configurations = Configurations(profile: nil)
+            self.configurations = Configurations(profile: nil, viewcontroller: self)
         }
         globalMainQueue.async(execute: { () -> Void in
             self.mainTableView.reloadData()
@@ -1128,7 +1128,7 @@ extension ViewControllertabMain: GetConfigurationsObject {
 
     func createconfigurationsobject(profile: String?) -> Configurations? {
         self.configurations = nil
-        self.configurations = Configurations(profile: profile)
+        self.configurations = Configurations(profile: profile, viewcontroller: self)
         return self.configurations
     }
 
@@ -1154,7 +1154,7 @@ extension ViewControllertabMain: GetSchedulesObject {
 
     func createschedulesobject(profile: String?) -> Schedules? {
         self.schedules = nil
-        self.schedules = Schedules(profile: profile)
+        self.schedules = Schedules(profile: profile, viewcontroller: self)
         return self.schedules
     }
 

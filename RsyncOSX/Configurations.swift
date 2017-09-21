@@ -14,6 +14,7 @@
 //  swiftlint:disable syntactic_sugar
 
 import Foundation
+import Cocoa
 
 // Protocol for returning object configurations data
 protocol GetConfigurationsObject: class {
@@ -44,6 +45,9 @@ enum ResourceInConfiguration {
 
 class Configurations {
 
+    // Reference to calling viewController
+    // Reference to main View
+    private var vctabmain: NSViewController?
     // Storage API
     var storageapi: PersistentStorageAPI?
     // Delegate functions
@@ -197,8 +201,7 @@ class Configurations {
         // Saving updated configuration in memory to persistent store
         self.storageapi!.saveConfigFromMemory()
         // Call the view and do a refresh of tableView
-        self.refreshDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain)
-            as? ViewControllertabMain
+        self.refreshDelegate = self.vctabmain as? ViewControllertabMain
         self.refreshDelegate?.refresh()
     }
 
@@ -239,7 +242,7 @@ class Configurations {
             self.configurations![index].batch = "yes"
         }
         self.storageapi!.saveConfigFromMemory()
-        self.refreshDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain)
+        self.refreshDelegate = self.vctabmain
             as? ViewControllertabMain
         self.refreshDelegate?.refresh()
     }
@@ -355,11 +358,12 @@ class Configurations {
         self.configurationsDataSource = data
     }
 
-    init(profile: String?) {
+    init(profile: String?, viewcontroller: NSViewController) {
         self.configurations = nil
         self.argumentAllConfigurations = nil
         self.configurationsDataSource = nil
         self.profile = profile
+        self.vctabmain = viewcontroller
         self.storageapi = PersistentStorageAPI(profile : self.profile)
         self.readconfigurations()
     }
