@@ -128,7 +128,7 @@ class ViewControllertabSchedule: NSViewController {
             self.refresh()
             // Start next job, if any, by delegate
             self.startnextjobDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllertabMain
-            self.startnextjobDelegate?.startProcess()
+            self.startnextjobDelegate?.startanyscheduledtask()
             // Displaying next two scheduled tasks
             self.nextScheduledtask()
             // Call function to check if a scheduled backup is due for countdown

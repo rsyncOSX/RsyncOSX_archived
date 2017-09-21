@@ -346,7 +346,7 @@ class ViewControllertabMain: NSViewController {
         self.createandreloadconfigurations()
         self.createandloadschedules()
         // Start waiting for next Scheduled job (if any)
-        self.startProcess()
+        self.startanyscheduledtask()
     }
 
     override func viewDidAppear() {
@@ -650,7 +650,7 @@ extension ViewControllertabMain: GetSelecetedIndex {
 extension ViewControllertabMain: StartNextScheduledTask {
 
     // Start next job
-    func startProcess() {
+    func startanyscheduledtask() {
         // Start any Scheduled job
         _ = ScheduleOperation()
     }
@@ -662,7 +662,6 @@ extension ViewControllertabMain: AddProfiles {
     // Function is called from profiles when new or default profiles is seleceted
     func newProfile(profile: String?) {
         weak var newProfileDelegate: AddProfiles?
-        self.schedulessorted = nil
         self.process = nil
         self.output = nil
         self.outputbatch = nil
@@ -681,7 +680,7 @@ extension ViewControllertabMain: AddProfiles {
         self.displayProfile()
         self.refresh()
         // We have to start any Scheduled process again - if any
-        self.startProcess()
+        self.startanyscheduledtask()
     }
 
     func enableProfileMenu() {
@@ -1142,6 +1141,8 @@ extension ViewControllertabMain: GetSchedulesObject {
     func createschedulesobject(profile: String?) -> Schedules? {
         self.schedules = nil
         self.schedules = Schedules(profile: profile, viewcontroller: self)
+        self.schedulessorted = nil
+        self.schedulessorted = ScheduleSortedAndExpand()
         return self.schedules
     }
 

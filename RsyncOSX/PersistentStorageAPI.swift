@@ -65,7 +65,7 @@ final class PersistentStorageAPI {
         // schedule again.
         startnextjobDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain)
             as? ViewControllertabMain
-        startnextjobDelegate?.startProcess()
+        startnextjobDelegate?.startanyscheduledtask()
     }
 
     // Read schedules and history
