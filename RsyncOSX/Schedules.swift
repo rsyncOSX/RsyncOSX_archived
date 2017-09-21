@@ -18,10 +18,14 @@ import Cocoa
 protocol GetSchedulesObject: class {
     func getschedulesobject() -> Schedules?
     func createschedulesobject(profile: String?) -> Schedules?
+    func reloadschedules()
 }
 
 class Schedules: ScheduleWriteLoggData {
 
+    // Reference to calling viewController
+    // Reference to main View
+    private var vctabmain: NSViewController?
     // Reference to Timer in scheduled operation
     // Used to terminate scheduled jobs
     private var waitForTask: Timer?
@@ -83,8 +87,7 @@ class Schedules: ScheduleWriteLoggData {
         if delete {
             self.storageapi!.saveScheduleFromMemory()
             // Send message about refresh tableView
-            self.refreshDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain)
-                as? ViewControllertabMain
+            self.refreshDelegate = self.vctabmain as? ViewControllertabMain
             self.refreshDelegate?.refresh()
         }
     }
@@ -158,8 +161,7 @@ class Schedules: ScheduleWriteLoggData {
                 // Saving the resulting data file
                 self.storageapi!.saveScheduleFromMemory()
                 // Send message about refresh tableView
-                self.refreshDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain)
-                    as? ViewControllertabMain
+                self.refreshDelegate = self.vctabmain as? ViewControllertabMain
                 self.refreshDelegate?.refresh()
             }
         }
@@ -297,9 +299,10 @@ class Schedules: ScheduleWriteLoggData {
         self.scheduledJob = nil
     }
 
-    init(profile: String?) {
+     init(profile: String?, viewcontroller: NSViewController) {
         super.init()
         self.profile = profile
+        self.vctabmain = viewcontroller
         self.storageapi = PersistentStorageAPI(profile : self.profile)
         self.readschedules()
     }

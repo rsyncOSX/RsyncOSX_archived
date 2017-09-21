@@ -32,7 +32,7 @@ class Readwritefiles {
     // returns nil if data is NOT dirty
     private var readdisk: Bool = true
     // Which profile to read
-    private var profile: String?
+    var profile: String?
     // If to use profile, only configurations and schedules to read from profile
     private var useProfile: Bool = false
     // task to do

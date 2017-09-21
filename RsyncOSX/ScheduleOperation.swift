@@ -10,7 +10,7 @@ import Foundation
 
 // Protocol for starting next scheduled job
 protocol StartNextScheduledTask : class {
-    func startProcess()
+    func startanyscheduledtask()
 }
 
 // Protocol when a Scehduled job is starting and stopping

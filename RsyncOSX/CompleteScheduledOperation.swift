@@ -57,7 +57,7 @@ final class CompleteScheduledOperation {
                 as? ViewControllertabMain
             self.notifyDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain)
                 as? ViewControllertabMain
-            self.startnextjobDelegate?.startProcess()
+            self.startnextjobDelegate?.startanyscheduledtask()
             self.notifyDelegate?.completed()
         })
         globalMainQueue.async(execute: { () -> Void in
