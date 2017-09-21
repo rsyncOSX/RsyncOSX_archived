@@ -10,11 +10,6 @@
 import Foundation
 import Cocoa
 
-// Protocol for notifying added Schedules
-protocol  NewSchedules : class {
-    func newSchedulesAdded()
-}
-
 // Protocol for restarting timer
 protocol StartTimer : class {
     func startTimerNextJob()
@@ -45,8 +40,6 @@ class ViewControllertabSchedule: NSViewController {
     private var nextTask: Timer?
     // Scedules object
     fileprivate var schedulessorted: ScheduleSortedAndExpand?
-    // Delegate to inform new schedules added or schedules deleted
-    weak var newSchedulesDelegate: NewSchedules?
     // Delegate function for starting next scheduled operatin if any
     // Delegate function is triggered when NSTaskDidTerminationNotification
     // is discovered (e.g previous job is done)
@@ -175,7 +168,6 @@ class ViewControllertabSchedule: NSViewController {
         self.schedulessorted = ScheduleSortedAndExpand()
         // Setting reference to self.
         ViewControllerReference.shared.setvcref(viewcontroller: .vctabschedule, nsviewcontroller: self)
-
         self.configurationsDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain)
             as? ViewControllertabMain
         self.schedulesDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain)
@@ -202,16 +194,6 @@ class ViewControllertabSchedule: NSViewController {
         self.nextScheduledtask()
         // Call function to check if a scheduled backup is due for countdown
         self.startTimer()
-    }
-
-    override func viewDidDisappear() {
-        super.viewDidDisappear()
-        if self.newSchedules! {
-            self.newSchedules = false
-            self.newSchedulesDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllertabMain
-            // Notify new schedules are added
-            self.newSchedulesDelegate?.newSchedulesAdded()
-        }
     }
 
     // Start timer

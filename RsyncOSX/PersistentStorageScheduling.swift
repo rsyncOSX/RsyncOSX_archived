@@ -21,7 +21,6 @@ final class PersistentStorageScheduling: Readwritefiles {
 
     weak var schedulesDelegate: GetSchedulesObject?
     var schedules: Schedules?
-
     weak var readschedulesDelegate: Readupdatedschedules?
     // Variables holds all scheduledata
     private var schedulesasDict: [NSDictionary]?
@@ -85,8 +84,8 @@ final class PersistentStorageScheduling: Readwritefiles {
     // Writing schedules to persistent store
     // Schedule is Array<NSDictionary>
     private func writeToStore (_ array: Array<NSDictionary>) {
-        if (self.writeDatatoPersistentStorage(array, task: .schedule)) {
-            // self.schedules!.readAllSchedules()
+        if self.writeDatatoPersistentStorage(array, task: .schedule) {
+            self.schedulesDelegate?.reloadschedules()
         }
     }
 

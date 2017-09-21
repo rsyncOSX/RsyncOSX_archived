@@ -18,6 +18,7 @@ import Cocoa
 protocol GetSchedulesObject: class {
     func getschedulesobject() -> Schedules?
     func createschedulesobject(profile: String?) -> Schedules?
+    func reloadschedules()
 }
 
 class Schedules: ScheduleWriteLoggData {

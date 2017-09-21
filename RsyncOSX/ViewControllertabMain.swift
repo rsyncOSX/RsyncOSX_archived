@@ -232,11 +232,6 @@ class ViewControllertabMain: NSViewController {
                         // Delete Configurations and Schedules by hiddenID
                         self.configurations!.deleteConfigurationsByhiddenID(hiddenID: self.hiddenID!)
                         self.schedules!.deletescheduleonetask(hiddenID: self.hiddenID!)
-                        // Reading main Configurations and Schedule to memory
-                        // self.reReadConfigurationsAndSchedules()
-                        // And create a new Schedule object
-                        // Just calling the protocol function
-                        self.newSchedulesAdded()
                         self.deselectRow()
                         self.hiddenID = nil
                         self.index = nil
@@ -341,17 +336,17 @@ class ViewControllertabMain: NSViewController {
         self.scheduledJobworking.usesThreadedAnimation = true
         // Setting reference to self, used when calling delegate functions
         ViewControllerReference.shared.setvcref(viewcontroller: .vctabmain, nsviewcontroller: self)
-        // Start waiting for next Scheduled job (if any)
-        self.schedulessorted = ScheduleSortedAndExpand()
-        self.startProcess()
         self.mainTableView.target = self
         self.mainTableView.doubleAction = #selector(ViewControllertabMain.tableViewDoubleClick(sender:))
         // Defaults to display dryrun command
         self.displayDryRun.state = .on
         self.tools = Tools()
         self.loadProfileMenu = true
-        self.configurations = Configurations(profile: nil, viewcontroller: self)
-        self.schedules = Schedules(profile: nil, viewcontroller: self)
+        // configurations and schedules
+        self.createandreloadconfigurations()
+        self.createandloadschedules()
+        // Start waiting for next Scheduled job (if any)
+        self.startProcess()
     }
 
     override func viewDidAppear() {
@@ -368,12 +363,7 @@ class ViewControllertabMain: NSViewController {
         }
         // Update rsync command in view i case changed
         self.rsyncchanged()
-        // Show which profile
-        // self.loadProfileMenu = true
         self.displayProfile()
-        if self.schedulessorted == nil {
-            self.schedulessorted = ScheduleSortedAndExpand()
-        }
         self.readyforexecution = true
         if self.tools == nil { self.tools = Tools()}
         self.light.color = .systemYellow
@@ -498,19 +488,27 @@ class ViewControllertabMain: NSViewController {
         self.setRsyncCommandDisplay()
     }
 
-    func readConfigurations() {
-        if self.configurations!.configurationsDataSourcecount() > 0 {
-            globalMainQueue.async(execute: { () -> Void in
-                self.mainTableView.reloadData()
-            })
+    func createandloadschedules() {
+        guard self.configurations != nil else {
+            self.schedules = Schedules(profile: nil, viewcontroller: self)
+            return
         }
-        // Read schedule objects again
+        if let profile = self.configurations!.getProfile() {
+            self.schedules = nil
+            self.schedules = Schedules(profile: profile, viewcontroller: self)
+        } else {
+            self.schedules = nil
+            self.schedules = Schedules(profile: nil, viewcontroller: self)
+        }
         self.schedulessorted = nil
         self.schedulessorted = ScheduleSortedAndExpand()
-        self.setRsyncCommandDisplay()
     }
 
     func createandreloadconfigurations() {
+        guard self.configurations != nil else {
+            self.configurations = Configurations(profile: nil, viewcontroller: self)
+            return
+        }
         if let profile = self.configurations!.getProfile() {
             self.configurations = nil
             self.configurations = Configurations(profile: profile, viewcontroller: self)
@@ -624,10 +622,6 @@ extension ViewControllertabMain: RefreshtableView {
 
     // Refresh tableView in main
     func refresh() {
-        // Create and read schedule objects again
-        // Releasing previous allocation before creating new one
-        self.schedulessorted = nil
-        self.schedulessorted = ScheduleSortedAndExpand()
         globalMainQueue.async(execute: { () -> Void in
             self.mainTableView.reloadData()
         })
@@ -639,7 +633,6 @@ extension ViewControllertabMain: RsyncUserParams {
 
     // Do a reread of all Configurations
     func rsyncuserparamsupdated() {
-        self.readConfigurations()
         self.setRsyncCommandDisplay()
         self.rsyncparams.state = .off
     }
@@ -728,17 +721,6 @@ extension ViewControllertabMain: ScheduledJobInProgress {
                 })
             }
         }
-    }
-}
-
-// New scheduled task entered. Delete old one and
-// calculated new object (queue)
-extension ViewControllertabMain: NewSchedules {
-
-    // Create new schedule object. Old object is released (deleted).
-    func newSchedulesAdded() {
-        self.schedulessorted = nil
-        self.schedulessorted = ScheduleSortedAndExpand()
     }
 }
 
@@ -1148,6 +1130,11 @@ extension ViewControllertabMain: GetConfigurationsObject {
 }
 
 extension ViewControllertabMain: GetSchedulesObject {
+
+    func reloadschedules() {
+        self.createandloadschedules()
+    }
+
     func getschedulesobject() -> Schedules? {
         return self.schedules
     }
