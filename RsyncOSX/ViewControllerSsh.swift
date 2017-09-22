@@ -18,7 +18,8 @@ class ViewControllerSsh: NSViewController {
     // The object which checks for keys
     var sshcmd: Ssh?
     var hiddenID: Int?
-    var output: Array<String>?
+    var data: Array<String>?
+    var output: OutputProcess?
     // Execute or not
     var execute: Bool = false
 
@@ -59,6 +60,10 @@ class ViewControllerSsh: NSViewController {
     }
 
     @IBAction func createPublicPrivateKeyPair(_ sender: NSButton) {
+        self.sshcmd = nil
+        self.output = nil
+        self.output = OutputProcess()
+        self.sshcmd = Ssh(output: self.output)
         guard self.sshcmd != nil else { return }
         if self.createRsaKey.state == .on {
             self.sshcmd!.createLocalKeysRsa()
@@ -100,6 +105,10 @@ class ViewControllerSsh: NSViewController {
     }
 
     @IBAction func checkRsaPubKey(_ sender: NSButton) {
+        self.sshcmd = nil
+        self.output = nil
+        self.output = OutputProcess()
+        self.sshcmd = Ssh(output: self.output)
         guard self.execute else { return }
         guard self.hiddenID != nil else { return }
         guard self.sshcmd != nil else { return }
@@ -109,6 +118,10 @@ class ViewControllerSsh: NSViewController {
     }
 
     @IBAction func checkDsaPubKey(_ sender: NSButton) {
+        self.sshcmd = nil
+        self.output = nil
+        self.output = OutputProcess()
+        self.sshcmd = Ssh(output: self.output)
         guard self.execute else { return }
         guard self.hiddenID != nil else { return }
         guard self.sshcmd != nil else { return }
@@ -135,14 +148,13 @@ class ViewControllerSsh: NSViewController {
         self.checkDsaPubKeyButton.isEnabled = false
         self.checkRsaPubKeyButton.isEnabled = false
         self.sshCreatRemoteSshButton.isEnabled = false
-        self.sshcmd = Ssh()
         self.checkPrivatePublicKey()
 
     }
 
-    func checkPrivatePublicKey() {
+    private func checkPrivatePublicKey() {
         self.sshcmd = nil
-        self.sshcmd = Ssh()
+        self.sshcmd = Ssh(output: nil)
         self.sshcmd!.checkForLocalPubKeys()
         if self.sshcmd!.rsaPubKeyExist {
             self.rsaCheck.state = .on
@@ -195,8 +207,8 @@ extension ViewControllerSsh: GetSource {
 extension ViewControllerSsh : NSTableViewDataSource {
 
     func numberOfRows(in aTableView: NSTableView) -> Int {
-        if self.output != nil {
-            return self.output!.count
+        if self.data != nil {
+            return self.data!.count
         } else {
             return 0
         }
@@ -210,7 +222,7 @@ extension ViewControllerSsh : NSTableViewDelegate {
         var text: String = ""
         var cellIdentifier: String = ""
         if tableColumn == tableView.tableColumns[0] {
-            text = self.output![row]
+            text = self.data![row]
             cellIdentifier = "outputID"
         }
         if let cell = tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: cellIdentifier),
@@ -246,7 +258,7 @@ extension ViewControllerSsh: UpdateProgress {
     }
 
     func fileHandler() {
-        self.output = self.sshcmd!.getOutput()
+        self.data = self.output!.getOutput()
         globalMainQueue.async(execute: { () -> Void in
             self.detailsTable.reloadData()
         })
