@@ -47,7 +47,6 @@ class ViewControllertabMain: NSViewController {
     // Configurations object
     var configurations: Configurations?
     var schedules: Schedules?
-
     // Reference to the single taskobject
     var singletask: NewSingleTask?
     // Reference to batch taskobject
@@ -322,23 +321,17 @@ class ViewControllertabMain: NSViewController {
         }
     }
 
-    // Initial functions viewDidLoad and viewDidAppear
-    // Leaving view viewDidDisappear
-
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do view setup here.
         // Setting delegates and datasource
         self.mainTableView.delegate = self
         self.mainTableView.dataSource = self
-        // Progress indicator
         self.working.usesThreadedAnimation = true
         self.scheduledJobworking.usesThreadedAnimation = true
-        // Setting reference to self, used when calling delegate functions
         ViewControllerReference.shared.setvcref(viewcontroller: .vctabmain, nsviewcontroller: self)
         self.mainTableView.target = self
         self.mainTableView.doubleAction = #selector(ViewControllertabMain.tableViewDoubleClick(sender:))
-        // Defaults to display dryrun command
         self.displayDryRun.state = .on
         self.tools = Tools()
         self.loadProfileMenu = true
@@ -346,7 +339,7 @@ class ViewControllertabMain: NSViewController {
         self.createandreloadconfigurations()
         self.createandloadschedules()
         // Start waiting for next Scheduled job (if any)
-        self.startanyscheduledtask()
+        _ = ScheduleOperation()
     }
 
     override func viewDidAppear() {
@@ -361,7 +354,6 @@ class ViewControllertabMain: NSViewController {
                 self.mainTableView.reloadData()
             })
         }
-        // Update rsync command in view i case changed
         self.rsyncchanged()
         self.displayProfile()
         self.readyforexecution = true
@@ -471,10 +463,8 @@ class ViewControllertabMain: NSViewController {
         if let index = indexes.first {
             self.index = index
             self.hiddenID = self.configurations!.gethiddenID(index: index)
-            // Reset output
             self.output = nil
             self.outputbatch = nil
-            // Clear numbers from dryrun
             self.setNumbers(output: nil)
         } else {
             self.index = nil
@@ -680,7 +670,7 @@ extension ViewControllertabMain: AddProfiles {
         self.displayProfile()
         self.refresh()
         // We have to start any Scheduled process again - if any
-        self.startanyscheduledtask()
+        _ = ScheduleOperation()
     }
 
     func enableProfileMenu() {
@@ -1001,7 +991,6 @@ extension ViewControllertabMain: SingleTask {
     }
 
     func setInfo(info: String, color: ColorInfo) {
-
         switch color {
         case .red:
             self.dryRunOrRealRun.textColor = .red
@@ -1016,7 +1005,6 @@ extension ViewControllertabMain: SingleTask {
     // Function for getting numbers out of output object updated when
     // Process object executes the job.
     func setNumbers(output: OutputProcess?) {
-
         globalMainQueue.async(execute: { () -> Void in
             guard output != nil else {
                 self.transferredNumber.stringValue = ""
