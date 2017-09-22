@@ -69,12 +69,12 @@ class ViewControllerBatch: NSViewController {
         self.close = false
     }
 
-    @objc fileprivate func setSecondsView() {
+    @objc private func setSecondsView() {
         self.seconds = self.seconds! - 1
         self.closeinseconds.stringValue = "Close automatically in : " + String(self.seconds!) + " seconds"
     }
 
-    @objc fileprivate func closeView() {
+    @objc private func closeView() {
         self.waitToClose?.invalidate()
         self.closeIn?.invalidate()
         self.dismissDelegate?.dismiss_view(viewcontroller: self)
@@ -194,10 +194,10 @@ extension ViewControllerBatch: StartStopProgressIndicator {
 
 }
 
-extension ViewControllerBatch: RefreshtableView {
+extension ViewControllerBatch: Reloadandrefresh {
 
     // Updates tableview according to progress of batch
-    func refresh() {
+    func reload() {
         globalMainQueue.async(execute: { () -> Void in
             self.mainTableView.reloadData()
         })

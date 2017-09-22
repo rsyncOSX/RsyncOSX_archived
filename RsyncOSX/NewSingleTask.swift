@@ -54,15 +54,15 @@ final class NewSingleTask {
     // Getting output from rsync
     var output: OutputProcess?
     // Holding max count
-    fileprivate var maxcount: Int = 0
+    private var maxcount: Int = 0
     // HiddenID task, set when row is selected
     private var hiddenID: Int?
     // Single task work queu
     private var workload: SingleTaskWorkQueu?
     // Schedules in progress
-    fileprivate var scheduledJobInProgress: Bool = false
+    private var scheduledJobInProgress: Bool = false
     // Ready for execute again
-    fileprivate var ready: Bool = true
+    private var ready: Bool = true
     // Some max numbers
     private var transferredNumber: String?
     private var transferredNumberSizebytes: String?

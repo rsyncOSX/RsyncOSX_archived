@@ -30,9 +30,9 @@ class ViewControllerScheduleDetails: NSViewController {
     // Pick up hiddenID from row
     weak var getHiddenIDDelegate: GetHiddenID?
     // Protocolfunction for doing a refresh in ViewControllertabMain
-    weak var refreshDelegate: RefreshtableView?
+    weak var refreshDelegate: Reloadandrefresh?
     // Protocolfunction for doing a refresh in ViewControllertabSchedule
-    weak var refreshDelegate2: RefreshtableView?
+    weak var refreshDelegate2: Reloadandrefresh?
     // Protocolfunction for dismiss the ViewController
     weak var dismissDelegate: DismissViewController?
 
@@ -54,8 +54,8 @@ class ViewControllerScheduleDetails: NSViewController {
         if let data = self.data {
             self.schedules!.deleteorstopschedule(data : data)
             // Do a refresh of tableViews in both ViewControllertabMain and ViewControllertabSchedule
-            self.refreshDelegate?.refresh()
-            self.refreshDelegate2?.refresh()
+            self.refreshDelegate?.reload()
+            self.refreshDelegate2?.reload()
         }
         self.dismissDelegate?.dismiss_view(viewcontroller: self)
     }

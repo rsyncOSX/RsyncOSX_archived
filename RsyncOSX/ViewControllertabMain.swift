@@ -57,7 +57,7 @@ class ViewControllertabMain: NSViewController {
     // Protocol function used in Process().
     weak var processupdateDelegate: UpdateProgress?
     // Delegate function for doing a refresh of NSTableView in ViewControllerBatch
-    weak var refreshDelegate: RefreshtableView?
+    weak var refreshDelegate: Reloadandrefresh?
     // Delegate function for start/stop progress Indicator in BatchWindow
     weak var indicatorDelegate: StartStopProgressIndicator?
     // Delegate function getting batchTaskObject
@@ -97,28 +97,28 @@ class ViewControllertabMain: NSViewController {
     // REFERENCE VARIABLES
 
     // Reference to Process task
-    fileprivate var process: Process?
+    private var process: Process?
     // Index to selected row, index is set when row is selected
-    fileprivate var index: Int?
+    private var index: Int?
     // Getting output from rsync 
-    fileprivate var output: OutputProcess?
+    private var output: OutputProcess?
     // Getting output from batchrun
-    fileprivate var outputbatch: OutputBatch?
+    private var outputbatch: OutputBatch?
     // HiddenID task, set when row is selected
-    fileprivate var hiddenID: Int?
+    private var hiddenID: Int?
     // Reference to Schedules object
-    fileprivate var schedulessorted: ScheduleSortedAndExpand?
+    private var schedulessorted: ScheduleSortedAndExpand?
     // Bool if one or more remote server is offline
     // Used in testing if remote server is on/off-line
-    fileprivate var serverOff: Array<Bool>?
+    private var serverOff: Array<Bool>?
     // Schedules in progress
-    fileprivate var scheduledJobInProgress: Bool = false
+    private var scheduledJobInProgress: Bool = false
     // Ready for execute again
-    fileprivate var readyforexecution: Bool = true
+    private var readyforexecution: Bool = true
     // Can load profiles
     // Load profiles only when testing for connections are done.
     // Application crash if not
-    fileprivate var loadProfileMenu: Bool = false
+    private var loadProfileMenu: Bool = false
 
     // Information about rsync output
     // self.presentViewControllerAsSheet(self.ViewControllerInformation)
@@ -234,7 +234,7 @@ class ViewControllertabMain: NSViewController {
                         self.deselectRow()
                         self.hiddenID = nil
                         self.index = nil
-                        self.refresh()
+                        self.reload()
                     }
                 }
                 self.delete.state = .off
@@ -306,7 +306,7 @@ class ViewControllertabMain: NSViewController {
     }
 
     // Display correct rsync command in view
-    fileprivate func setRsyncCommandDisplay() {
+    private func setRsyncCommandDisplay() {
         if let index = self.index {
             guard index <= self.configurations!.getConfigurations().count else {
                 return
@@ -434,7 +434,7 @@ class ViewControllertabMain: NSViewController {
     }
 
     // Function for setting profile
-    fileprivate func displayProfile() {
+    private func displayProfile() {
         guard self.loadProfileMenu == true else {
             self.profilInfo.stringValue = "Profile: please wait..."
             self.profilInfo.textColor = .blue
@@ -608,10 +608,10 @@ extension ViewControllertabMain: Information {
 }
 
 // Scheduled task are changed, read schedule again og redraw table
-extension ViewControllertabMain: RefreshtableView {
+extension ViewControllertabMain: Reloadandrefresh {
 
     // Refresh tableView in main
-    func refresh() {
+    func reload() {
         globalMainQueue.async(execute: { () -> Void in
             self.mainTableView.reloadData()
         })
@@ -668,7 +668,7 @@ extension ViewControllertabMain: AddProfiles {
         // Make sure loading profile
         self.loadProfileMenu = true
         self.displayProfile()
-        self.refresh()
+        self.reload()
         // We have to start any Scheduled process again - if any
         _ = ScheduleOperation()
     }
@@ -819,7 +819,7 @@ extension ViewControllertabMain: UpdateProgress {
                     // Refresh view in Batchwindow
                     if let pvc = self.presentedViewControllers as? [ViewControllerBatch] {
                         self.refreshDelegate = pvc[0]
-                        self.refreshDelegate?.refresh()
+                        self.refreshDelegate?.reload()
                     }
                 }
             }
@@ -1056,7 +1056,7 @@ extension ViewControllertabMain: BatchTask {
                 self.indicatorDelegate = pvc[0]
                 self.refreshDelegate = pvc[0]
                 self.indicatorDelegate?.stop()
-                self.refreshDelegate?.refresh()
+                self.refreshDelegate?.reload()
             }
         case .start:
             if let pvc = self.presentedViewControllers as? [ViewControllerBatch] {
@@ -1071,7 +1071,7 @@ extension ViewControllertabMain: BatchTask {
         case .refresh:
             if let pvc = self.presentedViewControllers as? [ViewControllerBatch] {
                 self.refreshDelegate = pvc[0]
-                self.refreshDelegate?.refresh()
+                self.refreshDelegate?.reload()
             }
         }
     }

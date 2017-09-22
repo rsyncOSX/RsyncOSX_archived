@@ -12,7 +12,7 @@ import Cocoa
 
 class ViewControllerHelp: NSViewController {
 
-    fileprivate var showwhat: Helpdocs?
+    private var showwhat: Helpdocs?
 
     @IBOutlet weak var documents: NSButton!
     @IBOutlet weak var singletask: NSButton!

@@ -23,16 +23,14 @@ protocol GetSchedulesObject: class {
 
 class Schedules: ScheduleWriteLoggData {
 
-    // Reference to calling viewController
     // Reference to main View
     private var vctabmain: NSViewController?
     // Reference to Timer in scheduled operation
-    // Used to terminate scheduled jobs
     private var waitForTask: Timer?
     // Reference to the first Scheduled job
     // Is set when SortedAndExpanded is calculated
     var scheduledJob: NSDictionary?
-    weak var refreshDelegate: RefreshtableView?
+    weak var refreshDelegate: Reloadandrefresh?
     var profile: String?
 
     // Return reference to Schedule data
@@ -88,7 +86,7 @@ class Schedules: ScheduleWriteLoggData {
             self.storageapi!.saveScheduleFromMemory()
             // Send message about refresh tableView
             self.refreshDelegate = self.vctabmain as? ViewControllertabMain
-            self.refreshDelegate?.refresh()
+            self.refreshDelegate?.reload()
         }
     }
 
@@ -162,7 +160,7 @@ class Schedules: ScheduleWriteLoggData {
                 self.storageapi!.saveScheduleFromMemory()
                 // Send message about refresh tableView
                 self.refreshDelegate = self.vctabmain as? ViewControllertabMain
-                self.refreshDelegate?.refresh()
+                self.refreshDelegate?.reload()
             }
         }
     }

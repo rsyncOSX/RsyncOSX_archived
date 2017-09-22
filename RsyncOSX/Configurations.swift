@@ -24,9 +24,9 @@ protocol GetConfigurationsObject: class {
 }
 
 // Protocol for doing a refresh of updated tableView
-protocol RefreshtableView: class {
+protocol Reloadandrefresh: class {
     // Declare function for refresh tableView
-    func refresh()
+    func reload()
 }
 
 // Used to select argument
@@ -51,7 +51,7 @@ class Configurations {
     // Storage API
     var storageapi: PersistentStorageAPI?
     // Delegate functions
-    weak var refreshDelegate: RefreshtableView?
+    weak var refreshDelegate: Reloadandrefresh?
     // True if version 3.2.1 of rsync in /usr/local/bin
     var rsyncVer3: Bool = false
     // Optional path to rsync
@@ -202,7 +202,7 @@ class Configurations {
         self.storageapi!.saveConfigFromMemory()
         // Call the view and do a refresh of tableView
         self.refreshDelegate = self.vctabmain as? ViewControllertabMain
-        self.refreshDelegate?.refresh()
+        self.refreshDelegate?.reload()
     }
 
     /// Function destroys reference to object holding data and
@@ -244,7 +244,7 @@ class Configurations {
         self.storageapi!.saveConfigFromMemory()
         self.refreshDelegate = self.vctabmain
             as? ViewControllertabMain
-        self.refreshDelegate?.refresh()
+        self.refreshDelegate?.reload()
     }
 
     /// Function sets reference to object holding data and methods

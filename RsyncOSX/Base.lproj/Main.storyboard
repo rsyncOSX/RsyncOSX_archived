@@ -2672,7 +2672,7 @@
                                                 <font key="font" metaFont="system"/>
                                             </buttonCell>
                                             <connections>
-                                                <action selector="addConfig" target="3xI-3C-guU" id="ZvR-NG-Qds"/>
+                                                <action selector="addConfig:" target="3xI-3C-guU" id="xxb-cs-R2L"/>
                                             </connections>
                                         </button>
                                     </subviews>

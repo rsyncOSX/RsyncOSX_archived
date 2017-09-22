@@ -27,7 +27,7 @@ final class CopyFiles {
     // The arguments object
     var argumentsObject: CopyFileArguments?
     // Message to calling class do a refresh
-    weak var refreshtableDelegate: RefreshtableView?
+    weak var refreshtableDelegate: Reloadandrefresh?
     // Command real run - for the copy process (by rsync)
     private var argumentsRsync: Array<String>?
     // Command dry-run - for the copy process (by rsync)
