@@ -160,7 +160,6 @@ class Ssh: Files {
     // Execute command
     func executeSshCommand() {
         self.process = CommandSsh(command: self.command, arguments: self.arguments)
-        self.output = OutputProcess()
         self.process!.executeProcess(output: self.output!)
     }
 
@@ -174,8 +173,9 @@ class Ssh: Files {
         NSWorkspace.shared.open(URL(fileURLWithPath: "/Applications/Utilities/Terminal.app"))
     }
 
-    init() {
+    init(output: OutputProcess?) {
         super.init(root: .sshRoot)
+        self.output = output
         self.keyFileURLS = self.getFilesURLs()
         self.keyFileStrings = self.getFileStrings()
         self.checkForLocalPubKeys()
