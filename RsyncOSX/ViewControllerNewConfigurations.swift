@@ -84,12 +84,13 @@ class ViewControllerNewConfigurations: NSViewController {
         ViewControllerReference.shared.setvcref(viewcontroller: .vcnewconfigurations, nsviewcontroller: self)
         self.configurationsDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain)
             as? ViewControllertabMain
-        self.newconfigurations = NewConfigurations()
 
     }
 
     override func viewDidAppear() {
         super.viewDidAppear()
+        self.newconfigurations = nil
+        self.newconfigurations = NewConfigurations()
         self.configurations = self.configurationsDelegate?.getconfigurationsobject()
         if let profile = self.configurations!.getProfile() {
             self.storageapi = PersistentStorageAPI(profile : profile)
