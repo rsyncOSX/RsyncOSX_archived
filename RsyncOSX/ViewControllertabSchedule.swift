@@ -29,20 +29,11 @@ class ViewControllertabSchedule: NSViewController {
     @IBOutlet weak var weekly: NSButton!
     @IBOutlet weak var details: NSButton!
 
-    // Index selected
     private var index: Int?
-    // hiddenID
-    fileprivate var hiddenID: Int?
-    // Added schedules
+    private var hiddenID: Int?
     private var newSchedules: Bool?
-    // Timer to count down when next scheduled backup is due. The timer just updates stringvalue in ViewController.
-    // Another function is responsible to kick off the first scheduled operation.
     private var nextTask: Timer?
-    // Scedules object
-    fileprivate var schedulessorted: ScheduleSortedAndExpand?
-    // Delegate function for starting next scheduled operatin if any
-    // Delegate function is triggered when NSTaskDidTerminationNotification
-    // is discovered (e.g previous job is done)
+    private var schedulessorted: ScheduleSortedAndExpand?
     weak var startnextjobDelegate: StartNextScheduledTask?
 
     // Information Schedule details
@@ -125,7 +116,7 @@ class ViewControllertabSchedule: NSViewController {
             self.schedules!.addschedule(self.hiddenID!, schedule: schedule, start: startdate, stop: stopdate)
             self.newSchedules = true
             // Refresh table and recalculate the Schedules jobs
-            self.refresh()
+            self.reload()
             // Start next job, if any, by delegate
             self.startnextjobDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllertabMain
             self.startnextjobDelegate?.startanyscheduledtask()
@@ -148,9 +139,6 @@ class ViewControllertabSchedule: NSViewController {
         })
     }
 
-    // First execution starts TODAY at time
-    // Next execution starts after SCHEDULE 
-
     // Date for stopping services
     @IBOutlet weak var stopdate: NSDatePicker!
     // Time for stopping services
@@ -160,11 +148,8 @@ class ViewControllertabSchedule: NSViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.newSchedules = false
-        // Do view setup here.
-        // Setting delegates and datasource
         self.mainTableView.delegate = self
         self.mainTableView.dataSource = self
-        // Create a Schedules object
         self.schedulessorted = ScheduleSortedAndExpand()
         // Setting reference to self.
         ViewControllerReference.shared.setvcref(viewcontroller: .vctabschedule, nsviewcontroller: self)
@@ -178,11 +163,9 @@ class ViewControllertabSchedule: NSViewController {
         super.viewDidAppear()
         self.configurations = self.configurationsDelegate?.getconfigurationsobject()
         self.schedules = self.schedulesDelegate?.getschedulesobject()
-        // Set initial values of dates to now
         self.stopdate.dateValue = Date()
         self.stoptime.dateValue = Date()
         if self.schedulessorted == nil {
-            // Create a Schedules object
             self.schedulessorted = ScheduleSortedAndExpand()
         }
         if self.configurations!.configurationsDataSourcecountBackupOnlyCount() > 0 {
@@ -198,7 +181,6 @@ class ViewControllertabSchedule: NSViewController {
 
     // Start timer
     func startTimer() {
-        // Find out if count down and update display
         if self.schedulessorted != nil {
             let timer: Double = self.schedulessorted!.startTimerseconds()
             // timer == 0 do not start NSTimer, timer > 0 update frequens of NSTimer
@@ -238,7 +220,6 @@ class ViewControllertabSchedule: NSViewController {
         }
     }
 
-    // when row is selected
     // setting which table row is selected
     func tableViewSelectionDidChange(_ notification: Notification) {
         let myTableViewFromNotification = (notification.object as? NSTableView)!
@@ -318,9 +299,6 @@ extension  ViewControllertabSchedule: GetHiddenID {
 
 extension ViewControllertabSchedule: DismissViewController {
 
-    // Function for dismissing a presented view
-    // - parameter viewcontroller: the viewcontroller to be dismissed
-    // Telling the view to dismiss any presented Viewcontroller
     func dismiss_view(viewcontroller: NSViewController) {
         self.dismissViewController(viewcontroller)
     }
@@ -330,8 +308,6 @@ extension ViewControllertabSchedule: AddProfiles {
 
     // Just reset the schedules
     func newProfile(profile: String?) {
-        // Resetting the reference to ScheduleSortedAndExpand object.
-        // New object is created when a new profile is loaded.
         self.schedulessorted = nil
         self.firstRemoteServer.stringValue = ""
         self.firstLocalCatalog.stringValue = ""
@@ -345,9 +321,9 @@ extension ViewControllertabSchedule: AddProfiles {
 
 }
 
-extension ViewControllertabSchedule: RefreshtableView {
+extension ViewControllertabSchedule: Reloadandrefresh {
 
-    func refresh() {
+    func reload() {
         if self.configurations!.configurationsDataSourcecountBackupOnlyCount() > 0 {
             globalMainQueue.async(execute: { () -> Void in
                 self.mainTableView.reloadData()
@@ -371,6 +347,7 @@ extension ViewControllertabSchedule: StartTimer {
 
     // Called from Process
     func startTimerNextJob() {
+        self.schedulessorted = nil
         self.schedulessorted = ScheduleSortedAndExpand()
         self.firstRemoteServer.stringValue = ""
         self.firstLocalCatalog.stringValue = ""

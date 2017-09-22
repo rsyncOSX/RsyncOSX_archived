@@ -21,9 +21,9 @@ class ViewControllerProfile: NSViewController {
     var storageapi: PersistentStorageAPI?
     weak var dismissDelegate: DismissViewController?
     weak var newProfileDelegate: AddProfiles?
-    fileprivate var profilesArray: [String]?
+    private var profilesArray: [String]?
     private var profile: Profiles?
-    fileprivate var useprofile: String?
+    private var useprofile: String?
 
     @IBOutlet weak var newprofile: NSTextField!
     @IBOutlet weak var profilesTable: NSTableView!

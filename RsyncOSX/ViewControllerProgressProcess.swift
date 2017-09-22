@@ -64,7 +64,7 @@ class ViewControllerProgressProcess: NSViewController {
         self.stopProgressbar()
     }
 
-    fileprivate func stopProgressbar() {
+    private func stopProgressbar() {
         self.progress.stopAnimation(self)
     }
 
@@ -78,7 +78,7 @@ class ViewControllerProgressProcess: NSViewController {
         self.progress.startAnimation(self)
     }
 
-    fileprivate func updateProgressbar(_ value: Double) {
+    private func updateProgressbar(_ value: Double) {
         self.progress.doubleValue = value
     }
 

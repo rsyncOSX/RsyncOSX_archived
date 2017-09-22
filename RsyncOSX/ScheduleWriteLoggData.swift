@@ -21,7 +21,7 @@ class ScheduleWriteLoggData {
     // Will be kept in memory until destroyed
     var schedules = Array<ConfigurationSchedule>()
     // Delegate function for doing a refresh of NSTableView in ViewControllerScheduleDetailsAboutRuns
-    weak var refreshlogviewDelegate: RefreshtableView?
+    weak var refreshlogviewDelegate: Reloadandrefresh?
     // Delegate function for deselect row in table main view after loggdata is saved
     weak var deselectrowDelegate: DeselectRowTable?
 
@@ -53,7 +53,7 @@ class ScheduleWriteLoggData {
                     // Do a refresh of table
                     self.refreshlogviewDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vcloggdata)
                         as? ViewControllerLoggData
-                    self.refreshlogviewDelegate?.refresh()
+                    self.refreshlogviewDelegate?.reload()
                     // Save schedule including logs
                     self.storageapi!.saveScheduleFromMemory()
                     break loop

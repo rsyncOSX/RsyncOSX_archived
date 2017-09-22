@@ -28,7 +28,7 @@ class ViewControllerCopyFiles: NSViewController {
     var rsync: Bool = false
     var estimated: Bool = false
     weak var indexDelegate: GetSelecetedIndex?
-    fileprivate var tabledata: [String]?
+    private var tabledata: [String]?
 
     @IBOutlet weak var numberofrows: NSTextField!
     @IBOutlet weak var server: NSTextField!
@@ -119,7 +119,7 @@ class ViewControllerCopyFiles: NSViewController {
     }
 
     // Reset copy source
-    fileprivate func resetCopySource() {
+    private func resetCopySource() {
         // Empty tabledata
         self.index = nil
         self.tabledata = nil
@@ -133,7 +133,7 @@ class ViewControllerCopyFiles: NSViewController {
         self.copyButton.isEnabled = true
     }
 
-    fileprivate func displayRemoteserver(index: Int?) {
+    private func displayRemoteserver(index: Int?) {
         guard index != nil else {
             self.server.stringValue = ""
             self.rcatalog.stringValue = ""
@@ -311,9 +311,9 @@ extension ViewControllerCopyFiles: NSTextFieldDelegate {
     }
 }
 
-extension ViewControllerCopyFiles: RefreshtableView {
+extension ViewControllerCopyFiles: Reloadandrefresh {
     // Do a refresh of table
-    func refresh() {
+    func reload() {
         guard self.copyFiles != nil else {
             return
         }
@@ -341,7 +341,7 @@ extension ViewControllerCopyFiles: UpdateProgress {
     func processTermination() {
         if self.rsync == false {
             self.copyFiles!.setRemoteFileList()
-            self.refresh()
+            self.reload()
             self.stop()
         } else {
             self.workingRsync.stopAnimation(nil)
