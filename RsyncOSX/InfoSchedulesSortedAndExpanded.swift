@@ -165,5 +165,6 @@ class InfoScheduleSortedAndExpand {
         } else {
             self.configurationsDelegate = viewcontroller as? ViewControllertabMain
         }
+        self.configurations = self.configurationsDelegate?.getconfigurationsobject()
     }
 }

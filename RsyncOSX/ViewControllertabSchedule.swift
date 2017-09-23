@@ -304,6 +304,7 @@ extension ViewControllertabSchedule: DismissViewController {
 
     func dismiss_view(viewcontroller: NSViewController) {
         self.dismissViewController(viewcontroller)
+        self.nextScheduledtask()
     }
 }
 
