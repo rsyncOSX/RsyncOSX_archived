@@ -85,7 +85,6 @@ class Schedules: ScheduleWriteLoggData {
         if delete {
             self.storageapi!.saveScheduleFromMemory()
             // Send message about refresh tableView
-            self.refreshDelegate = self.vctabmain as? ViewControllertabMain
             self.refreshDelegate?.reload()
         }
     }
@@ -159,7 +158,6 @@ class Schedules: ScheduleWriteLoggData {
                 // Saving the resulting data file
                 self.storageapi!.saveScheduleFromMemory()
                 // Send message about refresh tableView
-                self.refreshDelegate = self.vctabmain as? ViewControllertabMain
                 self.refreshDelegate?.reload()
             }
         }
@@ -263,16 +261,8 @@ class Schedules: ScheduleWriteLoggData {
         }
     }
 
-    /// Function for reading all jobs for schedule and all history of past executions.
-    /// Schedules are stored in self.schedules. Schedules are sorted after hiddenID.
-    /// If Schedule already in memory AND not dirty do not read them again. If Schedule is
-    /// dirty, clean memory and read all Shedules into memory.
-    /// The Schedules stored in memory is only the plan for each task. E.g for
-    /// task 1 the plan is Scheduled backup every day from date until date at time
-    /// every day. The actual Schedules are computed (expanded and sorted) in
-    /// another object based upon the plan for Schedules. It is only the plans
-    /// which are stored to permanent store.
-    /// The functions does NOT cancel waiting jobs or recalculate next scheduled job.
+    // Function for reading all jobs for schedule and all history of past executions.
+    // Schedules are stored in self.schedules. Schedules are sorted after hiddenID.
     private func readschedules() {
         var store: Array<ConfigurationSchedule>?
         store = self.storageapi!.getScheduleandhistory()
@@ -301,6 +291,7 @@ class Schedules: ScheduleWriteLoggData {
         super.init(viewcontroller: viewcontroller)
         self.profile = profile
         self.vctabmain = viewcontroller
+        self.refreshDelegate = self.vctabmain as? ViewControllertabMain
         self.storageapi = PersistentStorageAPI(profile : self.profile)
         self.readschedules()
     }
