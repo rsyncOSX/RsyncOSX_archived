@@ -372,7 +372,7 @@ class ViewControllertabMain: NSViewController {
     func scheduledOperationInProgress() -> Bool {
         var scheduleInProgress: Bool?
         if self.schedulessorted != nil {
-            scheduleInProgress = self.schedulessorted!.getScheduledOperationInProgress()
+            scheduleInProgress = self.infoschedulessorted!.getScheduledOperationInProgress()
         } else {
             scheduleInProgress = false
         }

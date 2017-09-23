@@ -26,6 +26,16 @@ class InfoScheduleSortedAndExpand {
         return self.sortedschedules![0]
     }
 
+    // True if scheduled process is about to start
+    func getScheduledOperationInProgress() -> Bool {
+        // Calculate next schedule in progress
+        if self.whenIsNextTwoTasksDouble()[0] > 0 {
+        } else {
+            self.scheduleInProgress = false
+        }
+        return self.scheduleInProgress
+    }
+
     // Start timer or not in either main start window
     // Or in main execute window
     // seconds > 0 and <= 1800 every 1 second ( 0 - 30 minutes )
