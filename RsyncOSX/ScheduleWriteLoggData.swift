@@ -175,9 +175,8 @@ class ScheduleWriteLoggData {
         return key!
     }
 
-    init() {
-        self.configurationsDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain)
-            as? ViewControllertabMain
+    init(viewcontroller: NSViewController) {
+        self.configurationsDelegate = viewcontroller as? ViewControllertabMain
         self.configurations = self.configurationsDelegate?.getconfigurationsobject()
     }
 }

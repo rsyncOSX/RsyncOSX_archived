@@ -72,6 +72,7 @@
 		E9CF14141E729540008E8A15 /* RsyncScheduled.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9CF14131E729540008E8A15 /* RsyncScheduled.swift */; };
 		E9CF14161E729636008E8A15 /* CommandCopyFiles.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9CF14151E729636008E8A15 /* CommandCopyFiles.swift */; };
 		E9DCEA871E75F67200A69B4D /* OutputBatch.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9DCEA861E75F67200A69B4D /* OutputBatch.swift */; };
+		E9E1D8401F767B740040C813 /* InfoSchedulesSortedAndExpanded.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9E1D83F1F767B740040C813 /* InfoSchedulesSortedAndExpanded.swift */; };
 		E9E763711E6AEA5300B45E8D /* ViewControllerCopyFilesSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9E763701E6AEA5300B45E8D /* ViewControllerCopyFilesSource.swift */; };
 		E9E88FD01EB25A080028432F /* ScpArgumentsSsh.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9E88FCF1EB25A080028432F /* ScpArgumentsSsh.swift */; };
 		E9EC78711EACE082001EED9B /* Ssh.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9EC78701EACE082001EED9B /* Ssh.swift */; };
@@ -153,6 +154,7 @@
 		E9CF14131E729540008E8A15 /* RsyncScheduled.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RsyncScheduled.swift; sourceTree = "<group>"; };
 		E9CF14151E729636008E8A15 /* CommandCopyFiles.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommandCopyFiles.swift; sourceTree = "<group>"; };
 		E9DCEA861E75F67200A69B4D /* OutputBatch.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OutputBatch.swift; sourceTree = "<group>"; };
+		E9E1D83F1F767B740040C813 /* InfoSchedulesSortedAndExpanded.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoSchedulesSortedAndExpanded.swift; sourceTree = "<group>"; };
 		E9E763701E6AEA5300B45E8D /* ViewControllerCopyFilesSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewControllerCopyFilesSource.swift; sourceTree = "<group>"; };
 		E9E88FCF1EB25A080028432F /* ScpArgumentsSsh.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScpArgumentsSsh.swift; sourceTree = "<group>"; };
 		E9EC78701EACE082001EED9B /* Ssh.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Ssh.swift; sourceTree = "<group>"; };
@@ -367,6 +369,7 @@
 			children = (
 				A0041EEE1D7D4357002BF081 /* ScheduleSortedAndExpanded.swift */,
 				E9F413BA1F63AC2A00C0945E /* Schedules.swift */,
+				E9E1D83F1F767B740040C813 /* InfoSchedulesSortedAndExpanded.swift */,
 			);
 			name = Schedules;
 			sourceTree = "<group>";
@@ -595,6 +598,7 @@
 				A0CACFD41DA2738500C5997A /* RsyncParameters.swift in Sources */,
 				A04492AC1D658F2100B3CE17 /* Configuration.swift in Sources */,
 				A04492861D658EE800B3CE17 /* AppDelegate.swift in Sources */,
+				E9E1D8401F767B740040C813 /* InfoSchedulesSortedAndExpanded.swift in Sources */,
 				A04492BA1D658F2100B3CE17 /* ysocket.swift in Sources */,
 				E9F413BB1F63AC2A00C0945E /* Schedules.swift in Sources */,
 				A091C6581D86A0A800278E74 /* ViewControllerCopyFiles.swift in Sources */,
