@@ -34,6 +34,7 @@ class ViewControllertabSchedule: NSViewController {
     private var newSchedules: Bool?
     private var nextTask: Timer?
     private var schedulessorted: ScheduleSortedAndExpand?
+    private var infoschedulessorted: InfoScheduleSortedAndExpand?
     weak var startnextjobDelegate: StartNextScheduledTask?
 
     // Information Schedule details
@@ -151,6 +152,7 @@ class ViewControllertabSchedule: NSViewController {
         self.mainTableView.delegate = self
         self.mainTableView.dataSource = self
         self.schedulessorted = ScheduleSortedAndExpand(viewcontroller: nil)
+        self.infoschedulessorted = InfoScheduleSortedAndExpand(viewcontroller: nil, sortedschedules: self.schedulessorted!.getsortedAndExpandedScheduleData())
         // Setting reference to self.
         ViewControllerReference.shared.setvcref(viewcontroller: .vctabschedule, nsviewcontroller: self)
         self.configurationsDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain)
@@ -167,6 +169,7 @@ class ViewControllertabSchedule: NSViewController {
         self.stoptime.dateValue = Date()
         if self.schedulessorted == nil {
             self.schedulessorted = ScheduleSortedAndExpand(viewcontroller: nil)
+            self.infoschedulessorted = InfoScheduleSortedAndExpand(viewcontroller: nil, sortedschedules: self.schedulessorted!.getsortedAndExpandedScheduleData())
         }
         if self.configurations!.configurationsDataSourcecountBackupOnlyCount() > 0 {
             globalMainQueue.async(execute: { () -> Void in
@@ -336,6 +339,7 @@ extension ViewControllertabSchedule: Reloadandrefresh {
         // Create a New schedules object
         self.schedulessorted = nil
         self.schedulessorted = ScheduleSortedAndExpand(viewcontroller: nil)
+        self.infoschedulessorted = InfoScheduleSortedAndExpand(viewcontroller: nil, sortedschedules: self.schedulessorted!.getsortedAndExpandedScheduleData())
         // Displaying next two scheduled tasks
         self.firstScheduledTask.stringValue = self.schedulessorted!.whenIsNextTwoTasksString()[0]
         self.secondScheduledTask.stringValue = self.schedulessorted!.whenIsNextTwoTasksString()[1]
@@ -349,6 +353,7 @@ extension ViewControllertabSchedule: StartTimer {
     func startTimerNextJob() {
         self.schedulessorted = nil
         self.schedulessorted = ScheduleSortedAndExpand(viewcontroller: nil)
+        self.infoschedulessorted = InfoScheduleSortedAndExpand(viewcontroller: nil, sortedschedules: self.schedulessorted?.getsortedAndExpandedScheduleData())
         self.firstRemoteServer.stringValue = ""
         self.firstLocalCatalog.stringValue = ""
         self.startTimer()

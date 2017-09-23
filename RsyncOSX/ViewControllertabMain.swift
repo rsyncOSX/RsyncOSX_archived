@@ -108,6 +108,7 @@ class ViewControllertabMain: NSViewController {
     private var hiddenID: Int?
     // Reference to Schedules object
     private var schedulessorted: ScheduleSortedAndExpand?
+    private var infoschedulessorted: InfoScheduleSortedAndExpand?
     // Bool if one or more remote server is offline
     // Used in testing if remote server is on/off-line
     private var serverOff: Array<Bool>?
@@ -491,7 +492,9 @@ class ViewControllertabMain: NSViewController {
             self.schedules = Schedules(profile: nil, viewcontroller: self)
         }
         self.schedulessorted = nil
+        self.infoschedulessorted = nil
         self.schedulessorted = ScheduleSortedAndExpand(viewcontroller: self)
+        self.infoschedulessorted = InfoScheduleSortedAndExpand(viewcontroller: self, sortedschedules: self.schedulessorted!.getsortedAndExpandedScheduleData())
     }
 
     func createandreloadconfigurations() {
@@ -1139,7 +1142,9 @@ extension ViewControllertabMain: GetSchedulesObject {
         self.schedules = nil
         self.schedules = Schedules(profile: profile, viewcontroller: self)
         self.schedulessorted = nil
+        self.infoschedulessorted = nil
         self.schedulessorted = ScheduleSortedAndExpand(viewcontroller: self)
+        self.infoschedulessorted = InfoScheduleSortedAndExpand(viewcontroller: self, sortedschedules: self.schedulessorted!.getsortedAndExpandedScheduleData())
         return self.schedules
     }
 

@@ -35,8 +35,8 @@ final class ScheduleOperation {
 
     weak var schedulesDelegate: GetSchedulesObject?
     var schedules: Schedules?
-
     private var scheduledJobs: ScheduleSortedAndExpand?
+    private var infoschedulessorted: InfoScheduleSortedAndExpand?
     private var waitForTask: Timer?
     private var queue: OperationQueue?
     private var secondsToWait: Double?
@@ -63,6 +63,8 @@ final class ScheduleOperation {
             self.schedules!.cancelJobWaiting()
             // Create a new Schedules object
             self.scheduledJobs = ScheduleSortedAndExpand(viewcontroller: nil)
+            self.infoschedulessorted = InfoScheduleSortedAndExpand(viewcontroller: nil,
+                                       sortedschedules: scheduledJobs!.getsortedAndExpandedScheduleData())
             // Removes the job of the stack
             if let dict = self.scheduledJobs!.jobToExecute() {
                 let dateStart: Date = (dict.value(forKey: "start") as? Date)!
