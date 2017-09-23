@@ -13,23 +13,16 @@ import Cocoa
 
 class ScheduleSortedAndExpand {
 
-    // Reference to calling viewController
     // Reference to main View
     private var vctabmain: NSViewController?
     weak var configurationsDelegate: GetConfigurationsObject?
     var configurations: Configurations?
     weak var schedulesDelegate: GetSchedulesObject?
     var schedules: Schedules?
-
-    // Array to store all scheduled jobs and history of executions
-    // Will be kept in memory until destroyed
     private var schedulesNSDictionary: Array<NSDictionary>?
     private var scheduleConfiguration: Array<ConfigurationSchedule>?
-    // Unsorted expanded data
     private var expandedData = Array<NSDictionary>()
-    // Sorting and expanding Schedule data.
     private var sortedschedules: Array<NSDictionary>?
-    // Schedule in progress
     private var scheduleInProgress: Bool = false
 
     // First job to execute.Job is first element in 
