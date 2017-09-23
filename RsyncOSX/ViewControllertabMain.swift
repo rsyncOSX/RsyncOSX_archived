@@ -491,7 +491,7 @@ class ViewControllertabMain: NSViewController {
             self.schedules = Schedules(profile: nil, viewcontroller: self)
         }
         self.schedulessorted = nil
-        self.schedulessorted = ScheduleSortedAndExpand()
+        self.schedulessorted = ScheduleSortedAndExpand(viewcontroller: self)
     }
 
     func createandreloadconfigurations() {
@@ -1139,7 +1139,7 @@ extension ViewControllertabMain: GetSchedulesObject {
         self.schedules = nil
         self.schedules = Schedules(profile: profile, viewcontroller: self)
         self.schedulessorted = nil
-        self.schedulessorted = ScheduleSortedAndExpand()
+        self.schedulessorted = ScheduleSortedAndExpand(viewcontroller: self)
         return self.schedules
     }
 

@@ -150,7 +150,7 @@ class ViewControllertabSchedule: NSViewController {
         self.newSchedules = false
         self.mainTableView.delegate = self
         self.mainTableView.dataSource = self
-        self.schedulessorted = ScheduleSortedAndExpand()
+        self.schedulessorted = ScheduleSortedAndExpand(viewcontroller: nil)
         // Setting reference to self.
         ViewControllerReference.shared.setvcref(viewcontroller: .vctabschedule, nsviewcontroller: self)
         self.configurationsDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain)
@@ -166,7 +166,7 @@ class ViewControllertabSchedule: NSViewController {
         self.stopdate.dateValue = Date()
         self.stoptime.dateValue = Date()
         if self.schedulessorted == nil {
-            self.schedulessorted = ScheduleSortedAndExpand()
+            self.schedulessorted = ScheduleSortedAndExpand(viewcontroller: nil)
         }
         if self.configurations!.configurationsDataSourcecountBackupOnlyCount() > 0 {
             globalMainQueue.async(execute: { () -> Void in
@@ -335,7 +335,7 @@ extension ViewControllertabSchedule: Reloadandrefresh {
         self.secondLocalCatalog.stringValue = ""
         // Create a New schedules object
         self.schedulessorted = nil
-        self.schedulessorted = ScheduleSortedAndExpand()
+        self.schedulessorted = ScheduleSortedAndExpand(viewcontroller: nil)
         // Displaying next two scheduled tasks
         self.firstScheduledTask.stringValue = self.schedulessorted!.whenIsNextTwoTasksString()[0]
         self.secondScheduledTask.stringValue = self.schedulessorted!.whenIsNextTwoTasksString()[1]
@@ -348,7 +348,7 @@ extension ViewControllertabSchedule: StartTimer {
     // Called from Process
     func startTimerNextJob() {
         self.schedulessorted = nil
-        self.schedulessorted = ScheduleSortedAndExpand()
+        self.schedulessorted = ScheduleSortedAndExpand(viewcontroller: nil)
         self.firstRemoteServer.stringValue = ""
         self.firstLocalCatalog.stringValue = ""
         self.startTimer()

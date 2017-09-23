@@ -298,7 +298,7 @@ class Schedules: ScheduleWriteLoggData {
     }
 
      init(profile: String?, viewcontroller: NSViewController) {
-        super.init()
+        super.init(viewcontroller: viewcontroller)
         self.profile = profile
         self.vctabmain = viewcontroller
         self.storageapi = PersistentStorageAPI(profile : self.profile)

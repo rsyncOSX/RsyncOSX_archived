@@ -9,9 +9,13 @@
 //  swiftlint:disable syntactic_sugar
 
 import Foundation
+import Cocoa
 
 class ScheduleSortedAndExpand {
 
+    // Reference to calling viewController
+    // Reference to main View
+    private var vctabmain: NSViewController?
     weak var configurationsDelegate: GetConfigurationsObject?
     var configurations: Configurations?
     weak var schedulesDelegate: GetSchedulesObject?
@@ -202,11 +206,7 @@ class ScheduleSortedAndExpand {
                 return 0
             }
         } else {
-            if self.scheduleInProgress {
-                return 1
-            } else {
-                return 0
-            }
+            if self.scheduleInProgress { return 1 } else { return 0 }
         }
     }
 
@@ -298,11 +298,16 @@ class ScheduleSortedAndExpand {
         return [firstbackup!, secondbackup!]
     }
 
-    init () {
-        self.configurationsDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain)
-            as? ViewControllertabMain
-        self.schedulesDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain)
-            as? ViewControllertabMain
+    init (viewcontroller: NSViewController?) {
+        if viewcontroller == nil {
+            self.configurationsDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain)
+                as? ViewControllertabMain
+            self.schedulesDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain)
+                as? ViewControllertabMain
+        } else {
+            self.configurationsDelegate = viewcontroller as? ViewControllertabMain
+            self.schedulesDelegate = viewcontroller as? ViewControllertabMain
+        }
         self.configurations = self.configurationsDelegate?.getconfigurationsobject()
         self.schedules = self.schedulesDelegate?.getschedulesobject()
         // Getting the Schedule and expanding all the jobs
