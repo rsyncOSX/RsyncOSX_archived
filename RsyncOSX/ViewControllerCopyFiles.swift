@@ -22,7 +22,6 @@ class ViewControllerCopyFiles: NSViewController {
 
     weak var configurationsDelegate: GetConfigurationsObject?
     var configurations: Configurations?
-
     var copyFiles: CopyFiles?
     var index: Int?
     var rsync: Bool = false
@@ -257,8 +256,7 @@ extension ViewControllerCopyFiles: NSTableViewDelegate {
         }
         var split = self.tabledata![row].components(separatedBy: "\t")
         if tableColumn == tableView.tableColumns[0] {
-                text = split[0]
-
+            text = split[0]
             cellIdentifier = "sizeID"
         }
         if tableColumn == tableView.tableColumns[1] {

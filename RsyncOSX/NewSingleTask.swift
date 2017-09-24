@@ -87,7 +87,7 @@ final class NewSingleTask {
                 arguments = self.configurations!.arguments4rsync(index: index, argtype: .argdryRun)
                 let process = Rsync(arguments: arguments)
                 self.output = OutputProcess()
-                process.executeProcess(output: self.output!)
+                process.executeProcess(output: self.output)
                 self.process = process.getProcess()
                 self.taskDelegate?.getProcessReference(process: self.process!)
                 self.taskDelegate?.setInfo(info: "Execute", color: .blue)
@@ -100,7 +100,7 @@ final class NewSingleTask {
                 arguments = self.configurations!.arguments4rsync(index: index, argtype: .arg)
                 self.output = OutputProcess()
                 let process = Rsync(arguments: arguments)
-                process.executeProcess(output: self.output!)
+                process.executeProcess(output: self.output)
                 self.process = process.getProcess()
                 self.taskDelegate?.getProcessReference(process: self.process!)
                 self.taskDelegate?.setInfo(info: "", color: .black)
@@ -148,7 +148,7 @@ final class NewSingleTask {
                 // If showInfoDryrun is on present result of dryrun automatically
                 self.taskDelegate?.presentViewInformation(output: self.output!)
                 // Logg run
-                let number = Numbers(output: self.output!.getOutput())
+                let number = Numbers(output: self.output)
                 number.setNumbers()
                 // Get transferred numbers from view
                 self.transferredNumber = self.taskDelegate?.gettransferredNumber()

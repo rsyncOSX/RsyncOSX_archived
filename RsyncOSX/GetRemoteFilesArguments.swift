@@ -22,7 +22,6 @@ final class GetRemoteFilesArguments: ProcessArguments {
     private var command: String?
     private var file: String?
 
-    // Set arguments for remote create of files.txt
     private func arguments() {
         if let config = self.config {
             // ssh user@server.com "cd offsiteCatalog; du ."
@@ -76,12 +75,9 @@ final class GetRemoteFilesArguments: ProcessArguments {
     }
 
     init(config: Configuration) {
-
         self.config = config
-        // Initialize the argument array
         self.args = nil
         self.args = Array<String>()
         self.arguments()
-
     }
 }

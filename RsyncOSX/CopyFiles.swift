@@ -14,31 +14,18 @@ final class CopyFiles {
 
     weak var configurationsDelegate: GetConfigurationsObject?
     var configurations: Configurations?
-
-    // Index from View
     private var index: Int?
-    // Setting the configuration element according to index
     private var config: Configuration?
-    // when files.txt is copied from remote server get the records
     private var files: Array<String>?
-    // Arguments and command for Process object
     private var arguments: Array<String>?
     private var command: String?
-    // The arguments object
     var argumentsObject: CopyFileArguments?
-    // Message to calling class do a refresh
     weak var refreshtableDelegate: Reloadandrefresh?
-    // Command real run - for the copy process (by rsync)
     private var argumentsRsync: Array<String>?
-    // Command dry-run - for the copy process (by rsync)
     private var argymentsRsyncDrynRun: Array<String>?
-    // String to display in view
     private var commandDisplay: String?
-    // Start and stop progress view
     weak var progressDelegate: StartStopProgressIndicator?
-    // The Process object
     var process: CommandCopyFiles?
-    // rsync outPut object
     var output: OutputProcess?
 
     // Get output from Rsync
@@ -60,23 +47,19 @@ final class CopyFiles {
             return
         }
         if dryrun {
-            self.argumentsObject = CopyFileArguments(task: .rsyncCmd,
-                                                     config: self.config!,
-                                                     remoteFile: remotefile,
+            self.argumentsObject = CopyFileArguments(task: .rsyncCmd, config: self.config!, remoteFile: remotefile,
                                                      localCatalog: localCatalog, drynrun: true)
             self.arguments = self.argumentsObject!.getArguments()
         } else {
-            self.argumentsObject = CopyFileArguments(task: .rsyncCmd,
-                                                     config: self.config!,
-                                                     remoteFile: remotefile,
+            self.argumentsObject = CopyFileArguments(task: .rsyncCmd, config: self.config!, remoteFile: remotefile,
                                                      localCatalog: localCatalog, drynrun: nil)
             self.arguments = self.argumentsObject!.getArguments()
         }
         self.command = nil
         self.output = nil
-        self.process = CommandCopyFiles(command : nil, arguments: self.arguments)
         self.output = OutputProcess()
-        self.process!.executeProcess(output: self.output!)
+        self.process = CommandCopyFiles(command : nil, arguments: self.arguments)
+        self.process!.executeProcess(output: self.output)
     }
 
     // Get arguments for rsync to show
@@ -84,11 +67,8 @@ final class CopyFiles {
         guard self.config != nil else {
             return ""
         }
-        self.commandDisplay = CopyFileArguments(task: .rsyncCmd,
-                                                config: self.config!,
-                                                remoteFile: remotefile,
-                                                localCatalog: localCatalog,
-                                                drynrun: true).getcommandDisplay()
+        self.commandDisplay = CopyFileArguments(task: .rsyncCmd, config: self.config!, remoteFile: remotefile,
+                                                localCatalog: localCatalog, drynrun: true).getcommandDisplay()
         guard self.commandDisplay != nil else {
             return ""
         }
@@ -97,15 +77,13 @@ final class CopyFiles {
 
     private func getRemoteFileList() {
         self.output = nil
-        self.argumentsObject = CopyFileArguments(task: .duCmd,
-                                                 config: self.config!,
-                                                 remoteFile: nil,
+        self.output = OutputProcess()
+        self.argumentsObject = CopyFileArguments(task: .duCmd, config: self.config!, remoteFile: nil,
                                                  localCatalog: nil, drynrun: nil)
         self.arguments = self.argumentsObject!.getArguments()
         self.command = self.argumentsObject!.getCommand()
         self.process = CommandCopyFiles(command : self.command, arguments: self.arguments)
-        self.output = OutputProcess()
-        self.process!.executeProcess(output: self.output!)
+        self.process!.executeProcess(output: self.output)
     }
 
     func setRemoteFileList() {

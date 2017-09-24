@@ -29,7 +29,7 @@ class ProcessCmd {
     // Output from CopyFiles or not
     var copyfiles: Bool = false
 
-    func executeProcess (output: OutputProcess) {
+    func executeProcess (output: OutputProcess?) {
         // Process
         let task = Process()
         // Setting the correct path for rsync
@@ -58,11 +58,11 @@ class ProcessCmd {
                     // Add files to be copied, the output.addString takes care of
                     // splitting the output
                     if self.copyfiles {
-                        output.addLine2(str as String)
+                        output!.addLine2(str as String)
                     } else {
-                        output.addLine(str as String)
+                        output!.addLine(str as String)
                     }
-                    self.calculatedNumberOfFiles = output.getOutputCount()
+                    self.calculatedNumberOfFiles = output!.getOutputCount()
                     // Check if in a scheduled operation, if not use delegate to inform about progress
                     if self.aScheduledOperation! == false {
                         // Send message about files

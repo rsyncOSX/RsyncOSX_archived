@@ -1019,7 +1019,7 @@ extension ViewControllertabMain: SingleTask {
                 self.deletefiles.stringValue = ""
                 return
             }
-            let number = Numbers(output: output!.getOutput())
+            let number = Numbers(output: output)
             number.setNumbers()
             self.transferredNumber.stringValue = NumberFormatter.localizedString(from:NSNumber(value: number.getTransferredNumbers(numbers: .transferredNumber)), number: NumberFormatter.Style.decimal)
             self.transferredNumberSizebytes.stringValue = NumberFormatter.localizedString(from: NSNumber(value: number.getTransferredNumbers(numbers: .transferredNumberSizebytes)), number: NumberFormatter.Style.decimal)

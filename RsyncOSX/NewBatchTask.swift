@@ -90,13 +90,13 @@ final class NewBatchTask {
                 let args: Array<String> = self.configurations!.arguments4rsync(index: index, argtype: .argdryRun)
                 let process = Rsync(arguments: args)
                 // Setting reference to process for Abort if requiered
-                process.executeProcess(output: self.output!)
+                process.executeProcess(output: self.output)
                 self.process = process.getProcess()
             case 1:
                 let arguments: Array<String> = self.configurations!.arguments4rsync(index: index, argtype: .arg)
                 let process = Rsync(arguments: arguments)
                 // Setting reference to process for Abort if requiered
-                process.executeProcess(output: self.output!)
+                process.executeProcess(output: self.output)
                 self.process = process.getProcess()
             case -1:
                 self.batchViewDelegate?.setOutputBatch(outputbatch: self.outputbatch)
@@ -142,7 +142,7 @@ final class NewBatchTask {
                 self.executeBatch()
             case 1:
                 // Real run
-                let number = Numbers(output: self.output!.getOutput())
+                let number = Numbers(output: self.output)
                 number.setNumbers()
                 // Update files in work
                 batchobject.updateInProcess(numberOfFiles: self.output!.getMaxcount())

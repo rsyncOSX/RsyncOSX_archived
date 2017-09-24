@@ -37,12 +37,12 @@ final class CompleteScheduledOperation {
     // Function for finalizing the Scheduled job
     // The Operation object sets reference to the completeScheduledOperation in self.schedules!.operation
     // This function is executed when rsyn process terminates
-    func finalizeScheduledJob(output: OutputProcess) {
+    func finalizeScheduledJob(output: OutputProcess?) {
 
         // Write result to Schedule
         let datestring = self.dateformatter!.string(from: date!)
         let dateStartstring = self.dateformatter!.string(from: dateStart!)
-        let number = Numbers(output: output.getOutput())
+        let number = Numbers(output: output)
         number.setNumbers()
         let numberstring = number.stats(numberOfFiles: nil, sizeOfFiles: nil)
         self.schedules!.addresultschedule(self.hiddenID!,

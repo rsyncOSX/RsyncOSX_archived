@@ -214,11 +214,11 @@ final class Numbers {
         }
     }
 
-    init (output: Array<String>) {
+    init (output: OutputProcess?) {
         self.configurationsDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain)
             as? ViewControllertabMain
         self.configurations = self.configurationsDelegate?.getconfigurationsobject()
-        self.output = output
+        self.output = output!.getOutput()
         // Getting the summarized output from output.
         if self.output!.count > 2 {
             self.resultRsync = (self.output![self.output!.count-2])
