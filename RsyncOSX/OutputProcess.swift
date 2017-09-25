@@ -76,11 +76,14 @@ final class OutputProcess {
             self.startIndex = self.getOutputCount()+1
         }
         sentence.enumerateLines { (line, _) in
+            /*
             let substr = line.dropFirst(10).trimmingCharacters(in: .whitespacesAndNewlines)
             let str = substr.components(separatedBy: " ").dropFirst(3).joined()
             if str.isEmpty == false {
                 self.output!.append(str)
             }
+             */
+            self.output!.append(line)
         }
         self.endIndex = self.output!.count
         // Set maxnumber so far

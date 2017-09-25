@@ -11,7 +11,7 @@
 //  Created by Thomas Evensen on 08/02/16.
 //  Copyright © 2016 Thomas Evensen. All rights reserved.
 //
-//  swiftlint:disable syntactic_sugar
+//  swiftlint:disable syntactic_sugar line_length
 
 import Foundation
 import Cocoa
@@ -133,6 +133,25 @@ class Configurations {
     /// - returns : Array of NSDictionary
     func getConfigurationsDataSourcecountBackupOnly() -> [NSDictionary]? {
         let configurations: [Configuration] = self.configurations!.filter({return ($0.task == "backup")})
+        var row =  NSDictionary()
+        var data = Array<NSDictionary>()
+        for i in 0 ..< configurations.count {
+            row = [
+                "taskCellID": configurations[i].task,
+                "hiddenID": configurations[i].hiddenID,
+                "localCatalogCellID": configurations[i].localCatalog,
+                "offsiteCatalogCellID": configurations[i].offsiteCatalog,
+                "offsiteServerCellID": configurations[i].offsiteServer,
+                "backupIDCellID": configurations[i].backupID,
+                "runDateCellID": configurations[i].dateRun!
+            ]
+            data.append(row)
+        }
+        return data
+    }
+
+    func getConfigurationsDataSourcecountBackupOnlyRemote() -> [NSDictionary]? {
+        let configurations: [Configuration] = self.configurations!.filter({return ($0.task == "backup" && $0.offsiteServer.isEmpty == false)})
         var row =  NSDictionary()
         var data = Array<NSDictionary>()
         for i in 0 ..< configurations.count {

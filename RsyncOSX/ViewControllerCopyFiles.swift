@@ -40,7 +40,7 @@ class ViewControllerCopyFiles: NSViewController {
     }()
 
     // Source for CopyFiles
-    // self.presentViewControllerAsSheet(self.ViewControllerAbout)
+    // self.presentViewControllerAsSheet(self.viewControllerSource)
     lazy var viewControllerSource: NSViewController = {
         return (self.storyboard!.instantiateController(withIdentifier: NSStoryboard.SceneIdentifier(rawValue:
             "CopyFilesID")) as? NSViewController)!
@@ -65,13 +65,10 @@ class ViewControllerCopyFiles: NSViewController {
     @IBOutlet weak var commandString: NSTextField!
     @IBOutlet weak var remoteCatalog: NSTextField!
     @IBOutlet weak var localCatalog: NSTextField!
-    // Progress indicator
     @IBOutlet weak var working: NSProgressIndicator!
     @IBOutlet weak var workingRsync: NSProgressIndicator!
-    // Search field
     @IBOutlet weak var search: NSSearchField!
     @IBOutlet weak var copyButton: NSButton!
-    // Select source button
     @IBOutlet weak var selectButton: NSButton!
 
     // Do the work
@@ -254,8 +251,8 @@ extension ViewControllerCopyFiles: NSTableViewDelegate {
         guard self.tabledata != nil else {
             return nil
         }
-        text = self.tabledata![row]
-        /*
+        // text = self.tabledata![row]
+        // cellIdentifier = "fileID"
         var split = self.tabledata![row].components(separatedBy: "\t")
         if tableColumn == tableView.tableColumns[0] {
             text = split[0]
@@ -269,8 +266,6 @@ extension ViewControllerCopyFiles: NSTableViewDelegate {
             }
             cellIdentifier = "fileID"
         }
-         */
-        cellIdentifier = "fileID"
         if let cell = tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: cellIdentifier), owner: self) as? NSTableCellView {
             cell.textField?.stringValue = text!
             return cell

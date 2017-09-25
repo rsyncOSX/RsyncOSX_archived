@@ -14,19 +14,13 @@ class ViewControllerCopyFilesSource: NSViewController {
 
     weak var configurationsDelegate: GetConfigurationsObject?
     var configurations: Configurations?
-
-    // Main tableview
     @IBOutlet weak var mainTableView: NSTableView!
     @IBOutlet weak var closeButton: NSButton!
 
-    // Dismisser
     weak var dismissDelegate: DismissViewController?
-    // Set index
     weak var setIndexDelegate: ViewControllerCopyFiles?
-    // GetSource
     weak var getSourceDelegate: ViewControllerCopyFiles?
     weak var getSourceDelegate2: ViewControllerSsh?
-    // Index
     private var index: Int?
 
     // ACTIONS AND BUTTONS
@@ -100,7 +94,7 @@ class ViewControllerCopyFilesSource: NSViewController {
         if let index = indexes.first {
             if let pvc = self.presenting as? ViewControllerCopyFiles {
                 self.setIndexDelegate = pvc
-                let object = self.configurations!.getConfigurationsDataSourcecountBackupOnly()![index]
+                let object = self.configurations!.getConfigurationsDataSourcecountBackupOnlyRemote()![index]
                 let hiddenID = object.value(forKey: "hiddenID") as? Int
                 guard hiddenID != nil else {
                     return
@@ -108,7 +102,7 @@ class ViewControllerCopyFilesSource: NSViewController {
                 self.index = self.configurations!.getIndex(hiddenID!)
                 self.setIndexDelegate?.setIndex(index: self.index!)
             } else if self.presenting as? ViewControllerSsh != nil {
-                let object = self.configurations!.getConfigurationsDataSourcecountBackupOnly()![index]
+                let object = self.configurations!.getConfigurationsDataSourcecountBackupOnlyRemote()![index]
                 let hiddenID = object.value(forKey: "hiddenID") as? Int
                 guard hiddenID != nil else {
                     return
@@ -126,7 +120,7 @@ extension ViewControllerCopyFilesSource: NSTableViewDataSource {
         guard self.configurations != nil else {
             return 0
         }
-        return self.configurations!.getConfigurationsDataSourcecountBackupOnly()!.count
+        return self.configurations!.getConfigurationsDataSourcecountBackupOnlyRemote()!.count
     }
 }
 
@@ -134,10 +128,10 @@ extension ViewControllerCopyFilesSource: NSTableViewDelegate {
 
     // TableView delegates
     @objc(tableView:objectValueForTableColumn:row:) func tableView(_ tableView: NSTableView, objectValueFor tableColumn: NSTableColumn?, row: Int) -> Any? {
-        guard self.configurations!.getConfigurationsDataSourcecountBackupOnly() != nil else {
+        guard self.configurations!.getConfigurationsDataSourcecountBackupOnlyRemote() != nil else {
             return nil
         }
-        let object: NSDictionary = self.configurations!.getConfigurationsDataSourcecountBackupOnly()![row]
+        let object: NSDictionary = self.configurations!.getConfigurationsDataSourcecountBackupOnlyRemote()![row]
         return object[tableColumn!.identifier] as? String
     }
 
