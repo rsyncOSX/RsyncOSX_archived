@@ -247,25 +247,11 @@ extension ViewControllerCopyFiles: NSTableViewDelegate {
 
     func tableView(_ tableView: NSTableView, viewFor tableColumn: NSTableColumn?, row: Int) -> NSView? {
         var text: String?
-        var cellIdentifier: String = ""
         guard self.tabledata != nil else {
             return nil
         }
-        // text = self.tabledata![row]
-        // cellIdentifier = "fileID"
-        var split = self.tabledata![row].components(separatedBy: "\t")
-        if tableColumn == tableView.tableColumns[0] {
-            text = split[0]
-            cellIdentifier = "sizeID"
-        }
-        if tableColumn == tableView.tableColumns[1] {
-            if split.count > 1 {
-                text = split[1]
-            } else {
-                text = split[0]
-            }
-            cellIdentifier = "fileID"
-        }
+        let cellIdentifier: String = "fileID"
+        text = self.tabledata![row]
         if let cell = tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: cellIdentifier), owner: self) as? NSTableCellView {
             cell.textField?.stringValue = text!
             return cell
@@ -280,11 +266,7 @@ extension ViewControllerCopyFiles: NSTableViewDelegate {
             guard self.tabledata != nil else {
                 return
             }
-            let split = self.tabledata![index].components(separatedBy: "\t")
-            guard split.count > 1 else {
-                return
-            }
-            self.remoteCatalog.stringValue = split[1]
+            self.remoteCatalog.stringValue = self.tabledata![index]
             if self.remoteCatalog.stringValue.isEmpty == false && self.localCatalog.stringValue.isEmpty == false {
                 self.commandString.stringValue = self.copyFiles!.getCommandDisplayinView(remotefile: self.remoteCatalog.stringValue, localCatalog: self.localCatalog.stringValue)
             } else {
