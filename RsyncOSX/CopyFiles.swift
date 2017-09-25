@@ -28,12 +28,10 @@ final class CopyFiles {
     var process: CommandCopyFiles?
     var output: OutputProcess?
 
-    // Get output from Rsync
     func getOutput() -> Array<String> {
         return self.output!.getOutput()
     }
 
-    // Abort operation, terminate process
     func abort() {
         guard self.process != nil else {
             return
@@ -41,7 +39,6 @@ final class CopyFiles {
         self.process!.abortProcess()
     }
 
-    // Execute Process (either dryrun or realrun)
     func executeRsync(remotefile: String, localCatalog: String, dryrun: Bool) {
         guard self.config != nil else {
             return
@@ -62,7 +59,6 @@ final class CopyFiles {
         self.process!.executeProcess(output: self.output)
     }
 
-    // Get arguments for rsync to show
     func getCommandDisplayinView(remotefile: String, localCatalog: String) -> String {
         guard self.config != nil else {
             return ""
@@ -87,10 +83,19 @@ final class CopyFiles {
     }
 
     func setRemoteFileList() {
-        self.files = self.output!.getOutput()
+        var out = self.output?.getOutput()
+        var out2 = Array<String>()
+        for i in 0 ..< out!.count {
+            let substr = out![i].dropFirst(10).trimmingCharacters(in: .whitespacesAndNewlines)
+            let str = substr.components(separatedBy: " ").dropFirst(3).joined()
+            if str.isEmpty == false {
+                out2.append("./" + str)
+            }
+        }
+        // self.files = self.output!.getOutput()
+        self.files = out2
     }
 
-    // Filter function
     func filter(search: String?) -> Array<String> {
         guard search != nil else {
             if self.files != nil {
