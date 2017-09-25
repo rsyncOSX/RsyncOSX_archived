@@ -22,7 +22,7 @@ final class GetRemoteFilesArguments: ProcessArguments {
     private var command: String?
     private var file: String?
 
-    private func arguments() {
+    private func arguments2() {
         if let config = self.config {
             // ssh user@server.com "cd offsiteCatalog; du ."
             if config.sshport != nil {
@@ -42,7 +42,7 @@ final class GetRemoteFilesArguments: ProcessArguments {
         }
     }
 
-    private func arguments2() {
+    private func arguments() {
         let tools = Tools()
         self.command = tools.rsyncpath()
         if let config = self.config {

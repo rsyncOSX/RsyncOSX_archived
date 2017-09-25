@@ -254,6 +254,8 @@ extension ViewControllerCopyFiles: NSTableViewDelegate {
         guard self.tabledata != nil else {
             return nil
         }
+        text = self.tabledata![row]
+        /*
         var split = self.tabledata![row].components(separatedBy: "\t")
         if tableColumn == tableView.tableColumns[0] {
             text = split[0]
@@ -267,6 +269,8 @@ extension ViewControllerCopyFiles: NSTableViewDelegate {
             }
             cellIdentifier = "fileID"
         }
+         */
+        cellIdentifier = "fileID"
         if let cell = tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: cellIdentifier), owner: self) as? NSTableCellView {
             cell.textField?.stringValue = text!
             return cell
