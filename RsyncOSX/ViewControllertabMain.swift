@@ -1095,6 +1095,7 @@ extension ViewControllertabMain: GetConfigurationsObject {
         self.configurations!.norsync = ViewControllerReference.shared.norsync
         self.configurations!.detailedlogging = ViewControllerReference.shared.detailedlogging
         self.configurations!.rsyncerror = ViewControllerReference.shared.rsyncerror
+        self.configurations!.restorePath = ViewControllerReference.shared.restorePath
         return self.configurations
     }
 
