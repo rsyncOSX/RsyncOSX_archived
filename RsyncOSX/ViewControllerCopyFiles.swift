@@ -251,8 +251,6 @@ extension ViewControllerCopyFiles: NSTableViewDelegate {
         guard self.tabledata != nil else {
             return nil
         }
-        // text = self.tabledata![row]
-        // cellIdentifier = "fileID"
         var split = self.tabledata![row].components(separatedBy: "\t")
         if tableColumn == tableView.tableColumns[0] {
             text = split[0]
