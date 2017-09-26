@@ -49,9 +49,7 @@ final class OutputProcess {
             self.startIndex = self.getOutputCount()+1
         }
         sentence.enumerateLines { (line, _) in
-            if line.characters.last != "/" {
-                self.output!.append(line)
-            }
+            self.output!.append(line)
         }
         self.endIndex = self.output!.count
         // Set maxnumber so far
@@ -81,6 +79,32 @@ final class OutputProcess {
         self.endIndex = self.output!.count
         // Set maxnumber so far
         self.maxNumber = self.endIndex!
+    }
+
+    func trimoutput1() -> Array<String>? {
+        var out = Array<String>()
+        guard self.output != nil else {
+            return nil
+        }
+        for i in 0 ..< self.output!.count {
+            let substr = self.output![i].dropFirst(10).trimmingCharacters(in: .whitespacesAndNewlines)
+            let str = substr.components(separatedBy: " ").dropFirst(3).joined()
+            if str.isEmpty == false {
+                out.append("./" + str)
+            }
+        }
+        return out
+    }
+
+    func trimoutput2() -> Array<String>? {
+        var out = Array<String>()
+        guard self.output != nil else {
+            return nil
+        }
+        for i in 0 ..< self.output!.count where self.output![i].characters.last != "/" {
+            out.append(self.output![i])
+        }
+        return out
     }
 
     init () {
