@@ -603,7 +603,7 @@ extension ViewControllertabMain: Information {
         if self.outputbatch != nil {
             return self.outputbatch!.getOutput()
         } else if self.output != nil {
-            return self.output!.getOutput()
+            return self.output!.trimoutput2()!
         } else {
             return [""]
         }
