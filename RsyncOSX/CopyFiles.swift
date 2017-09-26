@@ -83,8 +83,12 @@ final class CopyFiles {
     }
 
     func setRemoteFileList() {
+        self.files = nil
         var out = self.output?.getOutput()
         var out2 = Array<String>()
+        guard out != nil else {
+            return
+        }
         for i in 0 ..< out!.count {
             let substr = out![i].dropFirst(10).trimmingCharacters(in: .whitespacesAndNewlines)
             let str = substr.components(separatedBy: " ").dropFirst(3).joined()
@@ -92,7 +96,6 @@ final class CopyFiles {
                 out2.append("./" + str)
             }
         }
-        // self.files = self.output!.getOutput()
         self.files = out2
     }
 
