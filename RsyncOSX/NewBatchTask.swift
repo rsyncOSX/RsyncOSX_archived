@@ -145,7 +145,7 @@ final class NewBatchTask {
                 let number = Numbers(output: self.output)
                 number.setNumbers()
                 // Update files in work
-                batchobject.updateInProcess(numberOfFiles: self.output!.getMaxcount())
+                batchobject.updateInProcess(numberOfFiles: self.output!.count())
                 batchobject.setCompleted()
                 self.batchViewDelegate?.progressIndicatorViewBatch(operation: .refresh)
                 // Set date on Configuration

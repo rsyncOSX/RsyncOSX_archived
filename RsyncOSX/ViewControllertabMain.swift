@@ -818,7 +818,7 @@ extension ViewControllertabMain: UpdateProgress {
                 if work.1 == 1 {
                     // Real work is done, must set reference to Process object in case of Abort
                     self.process = self.batchtask!.process
-                    batchobject.updateInProcess(numberOfFiles: self.batchtask!.output!.getMaxcount())
+                    batchobject.updateInProcess(numberOfFiles: self.batchtask!.output!.count())
                     // Refresh view in Batchwindow
                     if let pvc = self.presentedViewControllers as? [ViewControllerBatch] {
                         self.refreshDelegate = pvc[0]
