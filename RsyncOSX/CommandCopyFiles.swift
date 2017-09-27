@@ -17,7 +17,5 @@ final class CommandCopyFiles: ProcessCmd {
         // ProcessTermination()
         self.updateDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vccopyfiles)
             as? ViewControllerCopyFiles
-        // Just for using another appending output function
-        self.copyfiles = true
     }
 }
