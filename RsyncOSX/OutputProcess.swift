@@ -23,6 +23,7 @@ final class OutputProcess {
     weak var lastrecordDelegate: ViewControllertabMain?
 
     func getMaxcount() -> Int {
+        _ = self.trimoutput2()
         return self.maxNumber
     }
 
@@ -51,34 +52,6 @@ final class OutputProcess {
         sentence.enumerateLines { (line, _) in
             self.output!.append(line)
         }
-        self.endIndex = self.output!.count
-        // Set maxnumber so far
-        self.maxNumber = self.endIndex!
-        // rsync error
-        let error = sentence.contains("rsync error:")
-        // There is an error in transferring files
-        // We only informs in main view if error
-        if error {
-            self.errorDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain)
-                as? ViewControllertabMain
-            self.errorDelegate?.rsyncerror()
-        }
-    }
-
-    // Add line to output
-    func addLine2 (_ str: String) {
-        let sentence = str
-        if self.startIndex == nil {
-            self.startIndex = 0
-        } else {
-            self.startIndex = self.getOutputCount() + 1
-        }
-        sentence.enumerateLines { (line, _) in
-            self.output!.append(line)
-        }
-        self.endIndex = self.output!.count
-        // Set maxnumber so far
-        self.maxNumber = self.endIndex!
     }
 
     func trimoutput1() -> Array<String>? {
@@ -103,7 +76,15 @@ final class OutputProcess {
         }
         for i in 0 ..< self.output!.count where self.output![i].characters.last != "/" {
             out.append(self.output![i])
+            let error = self.output![i].contains("rsync error:")
+            if error {
+                self.errorDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain)
+                    as? ViewControllertabMain
+                self.errorDelegate?.rsyncerror()
+            }
         }
+        self.endIndex = out.count
+        self.maxNumber = self.endIndex!
         return out
     }
 

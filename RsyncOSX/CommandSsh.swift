@@ -18,7 +18,6 @@ final class CommandSsh: ProcessCmd {
         // ProcessTermination()
         self.updateDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vcssh)
             as? ViewControllerSsh
-        self.copyfiles = false
     }
 
 }

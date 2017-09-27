@@ -26,8 +26,6 @@ class ProcessCmd {
     var command: String?
     // Arguments to command
     var arguments: Array<String>?
-    // Output from CopyFiles or not
-    var copyfiles: Bool = false
 
     func executeProcess (output: OutputProcess?) {
         // Process
@@ -55,13 +53,8 @@ class ProcessCmd {
             let data = outHandle.availableData
             if data.count > 0 {
                 if let str = NSString(data: data, encoding: String.Encoding.utf8.rawValue) {
-                    // Add files to be copied, the output.addString takes care of
-                    // splitting the output
-                    if self.copyfiles {
-                        output!.addLine2(str as String)
-                    } else {
-                        output!.addLine(str as String)
-                    }
+                    // Add files to be copied, the output.addString takes care of splitting the output
+                    output!.addLine(str as String)
                     self.calculatedNumberOfFiles = output!.getOutputCount()
                     // Check if in a scheduled operation, if not use delegate to inform about progress
                     if self.aScheduledOperation! == false {
