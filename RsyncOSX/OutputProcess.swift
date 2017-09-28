@@ -31,10 +31,11 @@ final class OutputProcess {
     }
 
     func count() -> Int {
-        guard self.trimmedoutput != nil else {
-            return 0
+        if self.trimmedoutput == nil {
+            return self.output!.count
+        } else {
+            return trimmedoutput!.count
         }
-        return trimmedoutput!.count
     }
 
     func getOutputCount () -> Int {
