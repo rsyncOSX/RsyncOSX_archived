@@ -16,6 +16,7 @@ protocol RsyncError: class {
 final class OutputProcess {
 
     private var output: Array<String>?
+    private var trimmedoutput: Array<String>?
     private var startIndex: Int?
     private var endIndex: Int?
     private var maxNumber: Int = 0
@@ -23,8 +24,17 @@ final class OutputProcess {
     weak var lastrecordDelegate: ViewControllertabMain?
 
     func getMaxcount() -> Int {
-        _ = self.trimoutput2()
+        if self.trimmedoutput == nil {
+            _ = self.trimoutput2()
+        }
         return self.maxNumber
+    }
+
+    func count() -> Int {
+        guard self.trimmedoutput != nil else {
+            return 0
+        }
+        return trimmedoutput!.count
     }
 
     func getOutputCount () -> Int {
@@ -66,6 +76,7 @@ final class OutputProcess {
                 out.append("./" + str)
             }
         }
+        self.trimmedoutput = out
         return out
     }
 
@@ -85,6 +96,7 @@ final class OutputProcess {
         }
         self.endIndex = out.count
         self.maxNumber = self.endIndex!
+        self.trimmedoutput = out
         return out
     }
 
