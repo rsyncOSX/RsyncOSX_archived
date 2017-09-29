@@ -55,7 +55,7 @@ class ProcessCmd {
                 if let str = NSString(data: data, encoding: String.Encoding.utf8.rawValue) {
                     // Add files to be copied, the output.addString takes care of splitting the output
                     output!.addLine(str as String)
-                    self.calculatedNumberOfFiles = output!.getOutputCount()
+                    self.calculatedNumberOfFiles = output!.count()
                     // Check if in a scheduled operation, if not use delegate to inform about progress
                     if self.aScheduledOperation! == false {
                         // Send message about files

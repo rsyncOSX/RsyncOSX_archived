@@ -32,17 +32,13 @@ final class OutputProcess {
 
     func count() -> Int {
         if self.trimmedoutput == nil {
+            guard self.output != nil else {
+                return 0
+            }
             return self.output!.count
         } else {
             return trimmedoutput!.count
         }
-    }
-
-    func getOutputCount () -> Int {
-        guard self.output != nil else {
-            return 0
-        }
-        return self.output!.count
     }
 
     func getOutput () -> Array<String> {
@@ -58,7 +54,7 @@ final class OutputProcess {
         if self.startIndex == nil {
             self.startIndex = 0
         } else {
-            self.startIndex = self.getOutputCount()+1
+            self.startIndex = self.output!.count + 1
         }
         sentence.enumerateLines { (line, _) in
             self.output!.append(line)
