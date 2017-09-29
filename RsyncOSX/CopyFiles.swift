@@ -29,20 +29,16 @@ final class CopyFiles {
     var output: OutputProcess?
 
     func getOutput() -> Array<String> {
-        return self.output!.getOutput()
+        return self.output?.getOutput() ?? [""]
     }
 
     func abort() {
-        guard self.process != nil else {
-            return
-        }
+        guard self.process != nil else { return }
         self.process!.abortProcess()
     }
 
     func executeRsync(remotefile: String, localCatalog: String, dryrun: Bool) {
-        guard self.config != nil else {
-            return
-        }
+        guard self.config != nil else { return }
         if dryrun {
             self.argumentsObject = CopyFileArguments(task: .rsyncCmd, config: self.config!, remoteFile: remotefile,
                                                      localCatalog: localCatalog, drynrun: true)
@@ -65,9 +61,7 @@ final class CopyFiles {
         }
         self.commandDisplay = CopyFileArguments(task: .rsyncCmd, config: self.config!, remoteFile: remotefile,
                                                 localCatalog: localCatalog, drynrun: true).getcommandDisplay()
-        guard self.commandDisplay != nil else {
-            return ""
-        }
+        guard self.commandDisplay != nil else { return "" }
         return self.commandDisplay!
     }
 
@@ -83,7 +77,7 @@ final class CopyFiles {
     }
 
     func setRemoteFileList() {
-        self.files = self.output?.trimoutput1()
+        self.files = self.output?.trimoutput(trim: .one)
     }
 
     func filter(search: String?) -> Array<String> {
@@ -95,7 +89,6 @@ final class CopyFiles {
             }
         }
         if search!.isEmpty == false {
-            // Filter data
             return self.files!.filter({$0.contains(search!)})
         } else {
             return self.files!
