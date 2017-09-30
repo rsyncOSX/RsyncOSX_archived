@@ -46,16 +46,14 @@ class ProcessCmd {
         let outHandle = pipe.fileHandleForReading
         outHandle.waitForDataInBackgroundAndNotify()
 
-        // Observator for reading data from pipe
-        // Observer is removed when Process terminates
+        // Observator for reading data from pipe, observer is removed when Process terminates
         self.notifications = NotificationCenter.default.addObserver(forName: NSNotification.Name.NSFileHandleDataAvailable,
                                                             object: nil, queue: nil) { _ -> Void in
             let data = outHandle.availableData
             if data.count > 0 {
                 if let str = NSString(data: data, encoding: String.Encoding.utf8.rawValue) {
-                    // Add files to be copied, the output.addString takes care of splitting the output
-                    output!.addLine(str as String)
-                    self.calculatedNumberOfFiles = output!.getOutputCount()
+                    output!.addlinefromoutput(str as String)
+                    self.calculatedNumberOfFiles = output!.count()
                     // Check if in a scheduled operation, if not use delegate to inform about progress
                     if self.aScheduledOperation! == false {
                         // Send message about files
@@ -65,8 +63,7 @@ class ProcessCmd {
                 outHandle.waitForDataInBackgroundAndNotify()
             }
         }
-        // Observator Process termination
-        // Observer is removed when Process terminates
+        // Observator Process termination, observer is removed when Process terminates
         self.notifications = NotificationCenter.default.addObserver(forName: Process.didTerminateNotification,
                                                             object: task, queue: nil) { _ -> Void in
             // Check if in a scheduled operation, if not use delegate to inform about termination of Process()

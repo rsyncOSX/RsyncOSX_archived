@@ -205,7 +205,7 @@ extension NewSingleTask: Count {
         guard self.output != nil else {
             return 0
         }
-        return self.output!.getOutputCount()
+        return self.output!.count()
     }
 
 }

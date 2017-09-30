@@ -13,6 +13,11 @@ protocol RsyncError: class {
     func rsyncerror()
 }
 
+enum Trim {
+    case one
+    case two
+}
+
 final class OutputProcess {
 
     private var output: Array<String>?
@@ -25,78 +30,69 @@ final class OutputProcess {
 
     func getMaxcount() -> Int {
         if self.trimmedoutput == nil {
-            _ = self.trimoutput2()
+            _ = self.trimoutput(trim: .two)
         }
         return self.maxNumber
     }
 
     func count() -> Int {
         if self.trimmedoutput == nil {
+            guard self.output != nil else {
+                return 0
+            }
             return self.output!.count
         } else {
             return trimmedoutput!.count
         }
     }
 
-    func getOutputCount () -> Int {
-        guard self.output != nil else {
-            return 0
+    func getOutput() -> Array<String>? {
+        if self.trimmedoutput != nil {
+            return self.trimmedoutput
+        } else {
+            return self.output
         }
-        return self.output!.count
     }
 
-    func getOutput () -> Array<String> {
-        guard self.output != nil else {
-            return [""]
-        }
-        return self.output!
-    }
-
-    // Add line to output
-    func addLine (_ str: String) {
-        let sentence = str
+    // Add line from output
+    func addlinefromoutput (_ str: String) {
         if self.startIndex == nil {
             self.startIndex = 0
         } else {
-            self.startIndex = self.getOutputCount()+1
+            self.startIndex = self.output!.count + 1
         }
-        sentence.enumerateLines { (line, _) in
+        str.enumerateLines { (line, _) in
             self.output!.append(line)
         }
     }
 
-    func trimoutput1() -> Array<String>? {
+    func trimoutput(trim: Trim) -> Array<String>? {
         var out = Array<String>()
         guard self.output != nil else {
             return nil
         }
-        for i in 0 ..< self.output!.count {
-            let substr = self.output![i].dropFirst(10).trimmingCharacters(in: .whitespacesAndNewlines)
-            let str = substr.components(separatedBy: " ").dropFirst(3).joined()
-            if str.isEmpty == false {
-                out.append("./" + str)
+        switch trim {
+        case .one:
+            for i in 0 ..< self.output!.count {
+                let substr = self.output![i].dropFirst(10).trimmingCharacters(in: .whitespacesAndNewlines)
+                let str = substr.components(separatedBy: " ").dropFirst(3).joined()
+                if str.isEmpty == false {
+                    out.append("./" + str)
+                }
             }
-        }
-        self.trimmedoutput = out
-        return out
-    }
-
-    func trimoutput2() -> Array<String>? {
-        var out = Array<String>()
-        guard self.output != nil else {
-            return nil
-        }
-        for i in 0 ..< self.output!.count where self.output![i].characters.last != "/" {
-            out.append(self.output![i])
-            let error = self.output![i].contains("rsync error:")
-            if error {
-                self.errorDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain)
-                    as? ViewControllertabMain
-                self.errorDelegate?.rsyncerror()
+        case .two:
+            for i in 0 ..< self.output!.count where self.output![i].characters.last != "/" {
+                out.append(self.output![i])
+                let error = self.output![i].contains("rsync error:")
+                if error {
+                    self.errorDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain)
+                        as? ViewControllertabMain
+                    self.errorDelegate?.rsyncerror()
+                }
             }
+            self.endIndex = out.count
+            self.maxNumber = self.endIndex!
         }
-        self.endIndex = out.count
-        self.maxNumber = self.endIndex!
         self.trimmedoutput = out
         return out
     }
