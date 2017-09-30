@@ -36,14 +36,10 @@ final class OutputProcess {
     }
 
     func count() -> Int {
-        if self.trimmedoutput == nil {
-            guard self.output != nil else {
-                return 0
-            }
-            return self.output!.count
-        } else {
-            return trimmedoutput!.count
+        guard self.output != nil else {
+            return 0
         }
+        return self.output!.count
     }
 
     func getOutput() -> Array<String>? {
