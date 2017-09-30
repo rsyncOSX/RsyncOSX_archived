@@ -140,9 +140,14 @@ class ViewControllertabSchedule: NSViewController {
         })
     }
 
-    // Date for stopping services
+    // Logg records
+    @IBAction func loggrecords(_ sender: NSButton) {
+        globalMainQueue.async(execute: { () -> Void in
+            self.presentViewControllerAsSheet(self.viewControllerScheduleDetails)
+        })
+    }
+
     @IBOutlet weak var stopdate: NSDatePicker!
-    // Time for stopping services
     @IBOutlet weak var stoptime: NSDatePicker!
 
     // Initial functions viewDidLoad and viewDidAppear
@@ -328,6 +333,9 @@ extension ViewControllertabSchedule: AddProfiles {
 extension ViewControllertabSchedule: Reloadandrefresh {
 
     func reload() {
+        guard self.configurations != nil else {
+            return
+        }
         if self.configurations!.configurationsDataSourcecountBackupOnlyCount() > 0 {
             globalMainQueue.async(execute: { () -> Void in
                 self.mainTableView.reloadData()

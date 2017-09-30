@@ -26,13 +26,10 @@ class ViewControllerScheduleDetails: NSViewController {
     @IBOutlet weak var remoteCatalog: NSTextField!
     @IBOutlet weak var offsiteServer: NSTextField!
 
-    // Pick up hiddenID from row
     weak var getHiddenIDDelegate: GetHiddenID?
     // Protocolfunction for doing a refresh in ViewControllertabMain
     weak var refreshDelegate: Reloadandrefresh?
-    // Protocolfunction for doing a refresh in ViewControllertabSchedule
     weak var refreshDelegate2: Reloadandrefresh?
-    // Protocolfunction for dismiss the ViewController
     weak var dismissDelegate: DismissViewController?
 
     var hiddendID: Int?
@@ -59,29 +56,26 @@ class ViewControllerScheduleDetails: NSViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.tools = Tools()
-        self.refreshDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain)
-            as? ViewControllertabMain
-        // Dismisser is root controller
-        self.dismissDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabschedule)
-            as? ViewControllertabSchedule
-        self.refreshDelegate2 = ViewControllerReference.shared.getvcref(viewcontroller: .vctabschedule)
-            as? ViewControllertabSchedule
-        // Do view setup here.
+        self.refreshDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllertabMain
+        self.refreshDelegate2 = ViewControllerReference.shared.getvcref(viewcontroller: .vctabschedule) as? ViewControllertabSchedule
         self.scheduletable.delegate = self
         self.scheduletable.dataSource = self
-        self.getHiddenIDDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabschedule)
-            as? ViewControllertabSchedule
-        self.hiddendID = self.getHiddenIDDelegate?.gethiddenID()
-        self.configurationsDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain)
-            as? ViewControllertabMain
-        self.schedulesDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain)
-            as? ViewControllertabMain
+        self.configurationsDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllertabMain
+        self.schedulesDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllertabMain
     }
 
     override func viewDidAppear() {
         super.viewDidAppear()
         self.configurations = self.configurationsDelegate?.getconfigurationsobject()
         self.schedules = self.schedulesDelegate?.getschedulesobject()
+        // Decide which viewcontroller calling the view
+        if self.configurations!.allowNotifyinMain == true {
+            self.getHiddenIDDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllertabMain
+            self.dismissDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllertabMain
+        } else {
+            self.getHiddenIDDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabschedule) as? ViewControllertabSchedule
+            self.dismissDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabschedule) as? ViewControllertabSchedule
+        }
         self.hiddendID = self.getHiddenIDDelegate?.gethiddenID()
         self.data = self.schedules!.readscheduleonetask(self.hiddendID)
         globalMainQueue.async(execute: { () -> Void in
@@ -113,16 +107,13 @@ extension ViewControllerScheduleDetails : NSTableViewDelegate {
 
     // TableView delegates
     @objc(tableView:objectValueForTableColumn:row:) func tableView(_ tableView: NSTableView, objectValueFor tableColumn: NSTableColumn?, row: Int) -> Any? {
-
-        // If active schedule color row blue
+        // If active schedule color row red
         var active: Bool = false
-
         if row < self.data!.count {
             let object: NSMutableDictionary = self.data![row]
             if  object.value(forKey: "schedule") as? String == "once" ||
                 object.value(forKey: "schedule") as? String == "daily" ||
                 object.value(forKey: "schedule") as? String == "weekly" {
-
                 let dateformatter = self.tools!.setDateformat()
                 let dateStop: Date = dateformatter.date(from: (object.value(forKey: "dateStop") as? String)!)!
                 if dateStop.timeIntervalSinceNow > 0 {
@@ -131,7 +122,6 @@ extension ViewControllerScheduleDetails : NSTableViewDelegate {
                     active = false
                 }
             }
-
             if tableColumn!.identifier.rawValue == "stopCellID" || tableColumn!.identifier.rawValue == "deleteCellID" {
                    return object[tableColumn!.identifier] as? Int
 
