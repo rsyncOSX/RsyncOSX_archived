@@ -68,6 +68,12 @@
                                                 <action selector="profiles:" target="Ady-hI-5gd" id="JXZ-HN-Gby"/>
                                             </connections>
                                         </menuItem>
+                                        <menuItem isSeparatorItem="YES" id="w7S-mK-okW"/>
+                                        <menuItem title="Logs" keyEquivalent="l" id="qit-95-flM" userLabel="Logs">
+                                            <connections>
+                                                <action selector="loggrecords:" target="Ady-hI-5gd" id="80A-2l-5VP"/>
+                                            </connections>
+                                        </menuItem>
                                     </items>
                                 </menu>
                             </menuItem>

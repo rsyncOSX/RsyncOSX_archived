@@ -92,7 +92,10 @@ class Schedules: ScheduleWriteLoggData {
     /// Function reads all Schedule data for one task by hiddenID
     /// - parameter hiddenID : hiddenID for task
     /// - returns : array of Schedules sorted after startDate
-    func readscheduleonetask (_ hiddenID: Int) -> Array<NSMutableDictionary> {
+    func readscheduleonetask (_ hiddenID: Int?) -> Array<NSMutableDictionary>? {
+        guard hiddenID != nil else {
+            return nil
+        }
         var row: NSMutableDictionary
         var data = Array<NSMutableDictionary>()
         for i in 0 ..< self.schedules.count {

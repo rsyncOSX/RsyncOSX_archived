@@ -12,7 +12,7 @@ import Cocoa
 
 // Protocol for getting the hiddenID for a configuration
 protocol GetHiddenID : class {
-    func gethiddenID() -> Int
+    func gethiddenID() -> Int?
 }
 
 class ViewControllerScheduleDetails: NSViewController {
@@ -26,7 +26,6 @@ class ViewControllerScheduleDetails: NSViewController {
     @IBOutlet weak var remoteCatalog: NSTextField!
     @IBOutlet weak var offsiteServer: NSTextField!
 
-    // Delegate functions
     // Pick up hiddenID from row
     weak var getHiddenIDDelegate: GetHiddenID?
     // Protocolfunction for doing a refresh in ViewControllertabMain
@@ -37,10 +36,7 @@ class ViewControllerScheduleDetails: NSViewController {
     weak var dismissDelegate: DismissViewController?
 
     var hiddendID: Int?
-    // Data for tableView
     var data: [NSMutableDictionary]?
-    // Notification center
-    var observationCenter: NSObjectProtocol!
     var tools: Tools?
 
     @IBOutlet weak var scheduletable: NSTableView!
@@ -87,11 +83,13 @@ class ViewControllerScheduleDetails: NSViewController {
         self.configurations = self.configurationsDelegate?.getconfigurationsobject()
         self.schedules = self.schedulesDelegate?.getschedulesobject()
         self.hiddendID = self.getHiddenIDDelegate?.gethiddenID()
-        self.data = self.schedules!.readscheduleonetask(self.hiddendID!)
-
+        self.data = self.schedules!.readscheduleonetask(self.hiddendID)
         globalMainQueue.async(execute: { () -> Void in
             self.scheduletable.reloadData()
         })
+        guard self.hiddendID != nil else {
+            return
+        }
         self.localCatalog.stringValue = self.configurations!.getResourceConfiguration(self.hiddendID!, resource: .localCatalog)
         self.remoteCatalog.stringValue = self.configurations!.getResourceConfiguration(self.hiddendID!, resource: .remoteCatalog)
         self.offsiteServer.stringValue = self.configurations!.getResourceConfiguration(self.hiddendID!, resource: .offsiteServer)

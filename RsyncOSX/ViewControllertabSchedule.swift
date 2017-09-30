@@ -294,8 +294,8 @@ extension ViewControllertabSchedule : NSTableViewDelegate {
 
 extension  ViewControllertabSchedule: GetHiddenID {
 
-    func gethiddenID() -> Int {
-        return self.hiddenID!
+    func gethiddenID() -> Int? {
+        return self.hiddenID
     }
 
 }

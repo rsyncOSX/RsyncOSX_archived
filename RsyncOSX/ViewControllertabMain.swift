@@ -191,6 +191,13 @@ class ViewControllertabMain: NSViewController {
             as? NSViewController)!
     }()
 
+    // Information Schedule details
+    // self.presentViewControllerAsSheet(self.ViewControllerScheduleDetails)
+    lazy var viewControllerScheduleDetails: NSViewController = {
+        return (self.storyboard!.instantiateController(withIdentifier: NSStoryboard.SceneIdentifier(rawValue: "StoryboardScheduleID"))
+            as? NSViewController)!
+    }()
+
     // BUTTONS AND ACTIONS
 
     @IBOutlet weak var edit: NSButton!
@@ -291,6 +298,12 @@ class ViewControllertabMain: NSViewController {
             self.displayProfile()
         }
 
+    }
+
+    @IBAction func loggrecords(_ sender: NSButton) {
+        globalMainQueue.async(execute: { () -> Void in
+            self.presentViewControllerAsSheet(self.viewControllerScheduleDetails)
+        })
     }
 
     // Selecting About
