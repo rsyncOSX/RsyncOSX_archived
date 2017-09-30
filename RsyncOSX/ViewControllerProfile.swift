@@ -18,6 +18,9 @@ protocol AddProfiles : class {
 
 class ViewControllerProfile: NSViewController {
 
+    weak var configurationsDelegate: GetConfigurationsObject?
+    var configurations: Configurations?
+
     var storageapi: PersistentStorageAPI?
     weak var dismissDelegate: DismissViewController?
     weak var newProfileDelegate: AddProfiles?
@@ -42,7 +45,6 @@ class ViewControllerProfile: NSViewController {
             self.dismissDelegate?.dismiss_view(viewcontroller: self)
             return
         }
-        // Create new profile and use it
         let success = self.profile?.createProfile(profileName: newprofile)
         guard success == true else {
             self.dismissDelegate?.dismiss_view(viewcontroller: self)
@@ -76,20 +78,26 @@ class ViewControllerProfile: NSViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Table delegates
+        self.configurationsDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllertabMain
         self.profilesTable.delegate = self
         self.profilesTable.dataSource = self
-        // Dismisser is root controller
-        self.dismissDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllertabMain
         self.profilesTable.target = self
         self.profilesTable.doubleAction = #selector(ViewControllerProfile.tableViewDoubleClick(sender:))
     }
 
     override func viewDidAppear() {
         super.viewDidAppear()
+        self.configurations = self.configurationsDelegate?.getconfigurationsobject()
         self.profile = Profiles()
         self.profilesArray = self.profile!.getDirectorysStrings()
-        self.newProfileDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllertabMain
+        // Decide which viewcontroller calling the view
+        if self.configurations!.allowNotifyinMain == true {
+            self.newProfileDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllertabMain
+            self.dismissDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllertabMain
+        } else {
+            self.newProfileDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabschedule) as? ViewControllertabSchedule
+            self.dismissDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabschedule) as? ViewControllertabSchedule
+        }
         globalMainQueue.async(execute: { () -> Void in
             self.profilesTable.reloadData()
         })
@@ -97,7 +105,6 @@ class ViewControllerProfile: NSViewController {
     }
 
     @objc(tableViewDoubleClick:) func tableViewDoubleClick(sender: AnyObject) {
-        self.newProfileDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllertabMain
         if let useprofile = self.useprofile {
             self.newProfileDelegate?.newProfile(profile: useprofile)
         }

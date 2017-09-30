@@ -51,6 +51,13 @@ class ViewControllertabSchedule: NSViewController {
             as? NSViewController)!
     }()
 
+    // Profile
+    // self.presentViewControllerAsSheet(self.ViewControllerProfile)
+    lazy var viewControllerProfile: NSViewController = {
+        return (self.storyboard!.instantiateController(withIdentifier: NSStoryboard.SceneIdentifier(rawValue: "ProfileID"))
+            as? NSViewController)!
+    }()
+
     @IBOutlet weak var firstScheduledTask: NSTextField!
     @IBOutlet weak var secondScheduledTask: NSTextField!
     @IBOutlet weak var firstRemoteServer: NSTextField!
@@ -109,6 +116,13 @@ class ViewControllertabSchedule: NSViewController {
             self.weekly.state = .off
             self.details.state = .off
         }
+    }
+
+    // Selecting profiles
+    @IBAction func profiles(_ sender: NSButton) {
+        globalMainQueue.async(execute: { () -> Void in
+            self.presentViewControllerAsSheet(self.viewControllerProfile)
+        })
     }
 
     private func addschedule(schedule: String, startdate: Date, stopdate: Date) {
