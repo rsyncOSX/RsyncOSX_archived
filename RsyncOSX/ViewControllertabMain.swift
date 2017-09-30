@@ -297,9 +297,9 @@ class ViewControllertabMain: NSViewController {
         } else {
             self.displayProfile()
         }
-
     }
 
+    // Logg records
     @IBAction func loggrecords(_ sender: NSButton) {
         globalMainQueue.async(execute: { () -> Void in
             self.presentViewControllerAsSheet(self.viewControllerScheduleDetails)
@@ -1160,6 +1160,14 @@ extension ViewControllertabMain: GetSchedulesObject {
         self.schedulessorted = ScheduleSortedAndExpand(viewcontroller: self)
         self.infoschedulessorted = InfoScheduleSortedAndExpand(viewcontroller: self, sortedschedules: self.schedulessorted!.getsortedAndExpandedScheduleData())
         return self.schedules
+    }
+
+}
+
+extension  ViewControllertabMain: GetHiddenID {
+
+    func gethiddenID() -> Int? {
+        return self.hiddenID
     }
 
 }
