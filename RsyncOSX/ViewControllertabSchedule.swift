@@ -66,7 +66,6 @@ class ViewControllertabSchedule: NSViewController {
     @IBOutlet weak var secondLocalCatalog: NSTextField!
 
     @IBAction func chooseSchedule(_ sender: NSButton) {
-
         let startdate: Date = Date()
         // Seconds from now to starttime
         let seconds: TimeInterval = self.stoptime.dateValue.timeIntervalSinceNow
@@ -323,6 +322,10 @@ extension ViewControllertabSchedule: DismissViewController {
 
     func dismiss_view(viewcontroller: NSViewController) {
         self.dismissViewController(viewcontroller)
+        self.configurations = self.configurationsDelegate?.getconfigurationsobject()
+        globalMainQueue.async(execute: { () -> Void in
+            self.mainTableView.reloadData()
+        })
         self.nextScheduledtask()
     }
 }

@@ -11,9 +11,14 @@ import Foundation
 import Cocoa
 
 // Protocol for adding new profiles
-protocol AddProfiles : class {
+protocol AddProfiles: class {
     func newProfile(profile: String?)
     func enableProfileMenu()
+}
+
+// Protocol reload
+protocol Reload: class {
+    func newProfile(profile: String?)
 }
 
 class ViewControllerProfile: NSViewController {
@@ -24,6 +29,7 @@ class ViewControllerProfile: NSViewController {
     var storageapi: PersistentStorageAPI?
     weak var dismissDelegate: DismissViewController?
     weak var newProfileDelegate: AddProfiles?
+    weak var reloadDelegate: Reload?
     private var profilesArray: [String]?
     private var profile: Profiles?
     private var useprofile: String?
@@ -35,6 +41,7 @@ class ViewControllerProfile: NSViewController {
     @IBAction func defaultProfile(_ sender: NSButton) {
         self.newProfileDelegate?.newProfile(profile: nil)
         self.useprofile = nil
+        self.reloaddata()
         self.dismissDelegate?.dismiss_view(viewcontroller: self)
     }
 
@@ -50,6 +57,7 @@ class ViewControllerProfile: NSViewController {
             self.dismissDelegate?.dismiss_view(viewcontroller: self)
             return
         }
+        self.reloaddata()
         self.newProfileDelegate?.newProfile(profile: newprofile)
         self.dismissDelegate?.dismiss_view(viewcontroller: self)
     }
@@ -64,16 +72,25 @@ class ViewControllerProfile: NSViewController {
         self.profile = Profiles()
         self.profilesArray = self.profile!.getDirectorysStrings()
         self.useprofile = nil
+        self.reloaddata()
         self.dismissDelegate?.dismiss_view(viewcontroller: self)
     }
 
     // Use profile or close
     @IBAction func close(_ sender: NSButton) {
         if let useprofile = self.useprofile {
+            self.reloaddata()
             self.newProfileDelegate?.newProfile(profile: useprofile)
         }
         self.useprofile = nil
         self.dismissDelegate?.dismiss_view(viewcontroller: self)
+    }
+
+    private func reloaddata() {
+        // If in schedule reload data
+        if self.configurations!.allowNotifyinMain == false {
+            self.reloadDelegate?.newProfile(profile: self.useprofile)
+        }
     }
 
     override func viewDidLoad() {
@@ -97,6 +114,7 @@ class ViewControllerProfile: NSViewController {
         } else {
             self.newProfileDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabschedule) as? ViewControllertabSchedule
             self.dismissDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabschedule) as? ViewControllertabSchedule
+            self.reloadDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllertabMain
         }
         globalMainQueue.async(execute: { () -> Void in
             self.profilesTable.reloadData()
@@ -106,6 +124,7 @@ class ViewControllerProfile: NSViewController {
 
     @objc(tableViewDoubleClick:) func tableViewDoubleClick(sender: AnyObject) {
         if let useprofile = self.useprofile {
+            self.reloaddata()
             self.newProfileDelegate?.newProfile(profile: useprofile)
         }
         self.useprofile = nil

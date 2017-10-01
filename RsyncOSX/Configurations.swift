@@ -69,7 +69,7 @@ class Configurations {
     private var profile: String?
     // Notify about scheduled process
     // Only allowed to notity by modal window when in main view
-    var allowNotifyinMain: Bool = false
+    var allowNotifyinMain: Bool = true
     // If rsync error reset workqueue
     var rsyncerror: Bool = true
     // Reference to singletask object
