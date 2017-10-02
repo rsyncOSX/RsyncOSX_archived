@@ -292,7 +292,7 @@ extension ViewControllerCopyFiles: NSTextFieldDelegate {
 
 extension ViewControllerCopyFiles: Reloadandrefresh {
     // Do a refresh of table
-    func reload() {
+    func reloadtabledata() {
         guard self.copyFiles != nil else {
             return
         }
@@ -320,7 +320,7 @@ extension ViewControllerCopyFiles: UpdateProgress {
     func processTermination() {
         if self.rsync == false {
             self.copyFiles!.setRemoteFileList()
-            self.reload()
+            self.reloadtabledata()
             self.stop()
         } else {
             self.workingRsync.stopAnimation(nil)

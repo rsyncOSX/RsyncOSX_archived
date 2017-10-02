@@ -242,7 +242,7 @@ class ViewControllertabMain: NSViewController {
                         self.deselectRow()
                         self.hiddenID = nil
                         self.index = nil
-                        self.reload()
+                        self.reloadtabledata()
                     }
                 }
                 self.delete.state = .off
@@ -507,7 +507,7 @@ class ViewControllertabMain: NSViewController {
         self.schedulessorted = nil
         self.infoschedulessorted = nil
         self.schedulessorted = ScheduleSortedAndExpand(viewcontroller: self)
-        self.infoschedulessorted = InfoScheduleSortedAndExpand(viewcontroller: self, sortedschedules: self.schedulessorted!.getsortedAndExpandedScheduleData())
+        self.infoschedulessorted = InfoScheduleSortedAndExpand(viewcontroller: self, sortedandexpanded: self.schedulessorted)
     }
 
     func createandreloadconfigurations() {
@@ -627,7 +627,7 @@ extension ViewControllertabMain: Information {
 extension ViewControllertabMain: Reloadandrefresh {
 
     // Refresh tableView in main
-    func reload() {
+    func reloadtabledata() {
         globalMainQueue.async(execute: { () -> Void in
             self.mainTableView.reloadData()
         })
@@ -684,7 +684,7 @@ extension ViewControllertabMain: AddProfiles, Reload {
         // Make sure loading profile
         self.loadProfileMenu = true
         self.displayProfile()
-        self.reload()
+        self.reloadtabledata()
         // We have to start any Scheduled process again - if any
         _ = ScheduleOperation()
     }
@@ -835,7 +835,7 @@ extension ViewControllertabMain: UpdateProgress {
                     // Refresh view in Batchwindow
                     if let pvc = self.presentedViewControllers as? [ViewControllerBatch] {
                         self.refreshDelegate = pvc[0]
-                        self.refreshDelegate?.reload()
+                        self.refreshDelegate?.reloadtabledata()
                     }
                 }
             }
@@ -1072,7 +1072,7 @@ extension ViewControllertabMain: BatchTask {
                 self.indicatorDelegate = pvc[0]
                 self.refreshDelegate = pvc[0]
                 self.indicatorDelegate?.stop()
-                self.refreshDelegate?.reload()
+                self.refreshDelegate?.reloadtabledata()
             }
         case .start:
             if let pvc = self.presentedViewControllers as? [ViewControllerBatch] {
@@ -1087,7 +1087,7 @@ extension ViewControllertabMain: BatchTask {
         case .refresh:
             if let pvc = self.presentedViewControllers as? [ViewControllerBatch] {
                 self.refreshDelegate = pvc[0]
-                self.refreshDelegate?.reload()
+                self.refreshDelegate?.reloadtabledata()
             }
         }
     }
@@ -1158,7 +1158,7 @@ extension ViewControllertabMain: GetSchedulesObject {
         self.schedulessorted = nil
         self.infoschedulessorted = nil
         self.schedulessorted = ScheduleSortedAndExpand(viewcontroller: self)
-        self.infoschedulessorted = InfoScheduleSortedAndExpand(viewcontroller: self, sortedschedules: self.schedulessorted!.getsortedAndExpandedScheduleData())
+        self.infoschedulessorted = InfoScheduleSortedAndExpand(viewcontroller: self, sortedandexpanded: self.schedulessorted)
         return self.schedules
     }
 

@@ -64,7 +64,7 @@ final class ScheduleOperation {
             // Create a new Schedules object
             self.scheduledJobs = ScheduleSortedAndExpand(viewcontroller: nil)
             self.infoschedulessorted = InfoScheduleSortedAndExpand(viewcontroller: nil,
-                                       sortedschedules: scheduledJobs!.getsortedAndExpandedScheduleData())
+                                                                   sortedandexpanded: scheduledJobs)
             // Removes the job of the stack
             if let dict = self.scheduledJobs!.jobToExecute() {
                 let dateStart: Date = (dict.value(forKey: "start") as? Date)!

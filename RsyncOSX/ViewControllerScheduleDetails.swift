@@ -47,8 +47,8 @@ class ViewControllerScheduleDetails: NSViewController {
         if let data = self.data {
             self.schedules!.deleteorstopschedule(data : data)
             // Do a refresh of tableViews in both ViewControllertabMain and ViewControllertabSchedule
-            self.refreshDelegate?.reload()
-            self.refreshDelegate2?.reload()
+            self.refreshDelegate?.reloadtabledata()
+            self.refreshDelegate2?.reloadtabledata()
         }
         self.dismissDelegate?.dismiss_view(viewcontroller: self)
     }

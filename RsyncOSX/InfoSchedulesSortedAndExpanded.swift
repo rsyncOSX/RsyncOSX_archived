@@ -157,8 +157,11 @@ class InfoScheduleSortedAndExpand {
         return [firstbackup!, secondbackup!]
     }
 
-    init (viewcontroller: NSViewController?, sortedschedules: Array<NSDictionary>?) {
-        self.sortedschedules = sortedschedules
+    init (viewcontroller: NSViewController?, sortedandexpanded: ScheduleSortedAndExpand?) {
+        guard sortedandexpanded != nil else {
+            return
+        }
+        self.sortedschedules = sortedandexpanded!.getsortedAndExpandedScheduleData()
         if viewcontroller == nil {
             self.configurationsDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain)
                 as? ViewControllertabMain

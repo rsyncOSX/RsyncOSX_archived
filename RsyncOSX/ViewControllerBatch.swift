@@ -197,7 +197,7 @@ extension ViewControllerBatch: StartStopProgressIndicator {
 extension ViewControllerBatch: Reloadandrefresh {
 
     // Updates tableview according to progress of batch
-    func reload() {
+    func reloadtabledata() {
         globalMainQueue.async(execute: { () -> Void in
             self.mainTableView.reloadData()
         })
