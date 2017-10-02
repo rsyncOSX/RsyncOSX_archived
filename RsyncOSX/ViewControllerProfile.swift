@@ -11,7 +11,7 @@ import Foundation
 import Cocoa
 
 // Protocol for adding new profiles
-protocol AddProfiles: class {
+protocol NewProfile: class {
     func newProfile(profile: String?)
     func enableProfileMenu()
 }
@@ -23,7 +23,7 @@ class ViewControllerProfile: NSViewController {
 
     var storageapi: PersistentStorageAPI?
     weak var dismissDelegate: DismissViewController?
-    weak var newProfileDelegate: AddProfiles?
+    weak var newProfileDelegate: NewProfile?
     private var profilesArray: [String]?
     private var profile: Profiles?
     private var useprofile: String?

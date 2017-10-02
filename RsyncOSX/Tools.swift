@@ -53,7 +53,7 @@ final class Tools {
 
     private var indexBoolremoteserverOff: [Bool]?
     weak var testconnectionsDelegate: Connections?
-    weak var profilemenuDelegate: AddProfiles?
+    weak var newprofileDelegate: NewProfile?
     private var macSerialNumber: String?
 
     // Test for TCP connection
@@ -95,10 +95,10 @@ final class Tools {
         self.indexBoolremoteserverOff = Array<Bool>()
         self.configurations = self.configurationsDelegate?.getconfigurationsobject()
         guard self.configurations!.configurationsDataSourcecount() > 0 else {
-            self.profilemenuDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain)
+            self.newprofileDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain)
                 as? ViewControllertabMain
             // Tell main view profile menu might presented
-            self.profilemenuDelegate?.enableProfileMenu()
+            self.newprofileDelegate?.enableProfileMenu()
             return
         }
         globalDefaultQueue.async(execute: { () -> Void in
@@ -125,12 +125,12 @@ final class Tools {
                         // Send message to do a refresh
                         self.testconnectionsDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain)
                             as? ViewControllertabMain
-                        self.profilemenuDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain)
+                        self.newprofileDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain)
                             as? ViewControllertabMain
                             // Update table in main view
                         self.testconnectionsDelegate?.displayConnections()
                             // Tell main view profile menu might presented
-                        self.profilemenuDelegate?.enableProfileMenu()
+                        self.newprofileDelegate?.enableProfileMenu()
                     }
                 }
             }
