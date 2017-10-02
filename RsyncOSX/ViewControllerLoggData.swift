@@ -164,7 +164,7 @@ extension ViewControllerLoggData : NSTableViewDelegate {
 extension ViewControllerLoggData: Reloadandrefresh {
 
     // Refresh tableView
-    func reload() {
+    func reloadtabledata() {
         globalMainQueue.async(execute: { () -> Void in
             self.tabledata = ScheduleLoggData().getallloggdata()
             self.scheduletable.reloadData()

@@ -53,7 +53,7 @@ class ScheduleWriteLoggData {
                     // Do a refresh of table
                     self.refreshlogviewDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vcloggdata)
                         as? ViewControllerLoggData
-                    self.refreshlogviewDelegate?.reload()
+                    self.refreshlogviewDelegate?.reloadtabledata()
                     // Save schedule including logs
                     self.storageapi!.saveScheduleFromMemory()
                     break loop

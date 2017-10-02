@@ -130,7 +130,7 @@ class ViewControllertabSchedule: NSViewController {
             self.schedules!.addschedule(self.hiddenID!, schedule: schedule, start: startdate, stop: stopdate)
             self.newSchedules = true
             // Refresh table and recalculate the Schedules jobs
-            self.reload()
+            self.reloadtabledata()
             // Start next job, if any, by delegate
             self.startnextjobDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllertabMain
             self.startnextjobDelegate?.startanyscheduledtask()
@@ -170,7 +170,7 @@ class ViewControllertabSchedule: NSViewController {
         self.mainTableView.delegate = self
         self.mainTableView.dataSource = self
         self.schedulessorted = ScheduleSortedAndExpand(viewcontroller: nil)
-        self.infoschedulessorted = InfoScheduleSortedAndExpand(viewcontroller: nil, sortedschedules: self.schedulessorted!.getsortedAndExpandedScheduleData())
+        self.infoschedulessorted = InfoScheduleSortedAndExpand(viewcontroller: nil, sortedandexpanded: self.schedulessorted)
         // Setting reference to self.
         ViewControllerReference.shared.setvcref(viewcontroller: .vctabschedule, nsviewcontroller: self)
         self.configurationsDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain)
@@ -187,7 +187,7 @@ class ViewControllertabSchedule: NSViewController {
         self.stoptime.dateValue = Date()
         if self.schedulessorted == nil {
             self.schedulessorted = ScheduleSortedAndExpand(viewcontroller: nil)
-            self.infoschedulessorted = InfoScheduleSortedAndExpand(viewcontroller: nil, sortedschedules: self.schedulessorted!.getsortedAndExpandedScheduleData())
+            self.infoschedulessorted = InfoScheduleSortedAndExpand(viewcontroller: nil, sortedandexpanded: self.schedulessorted)
         }
         if self.configurations!.configurationsDataSourcecountBackupOnlyCount() > 0 {
             globalMainQueue.async(execute: { () -> Void in
@@ -349,7 +349,7 @@ extension ViewControllertabSchedule: AddProfiles {
 
 extension ViewControllertabSchedule: Reloadandrefresh {
 
-    func reload() {
+    func reloadtabledata() {
         guard self.configurations != nil else {
             return
         }
@@ -365,7 +365,7 @@ extension ViewControllertabSchedule: Reloadandrefresh {
         // Create a New schedules object
         self.schedulessorted = nil
         self.schedulessorted = ScheduleSortedAndExpand(viewcontroller: nil)
-        self.infoschedulessorted = InfoScheduleSortedAndExpand(viewcontroller: nil, sortedschedules: self.schedulessorted!.getsortedAndExpandedScheduleData())
+        self.infoschedulessorted = InfoScheduleSortedAndExpand(viewcontroller: nil, sortedandexpanded: self.schedulessorted)
         // Displaying next two scheduled tasks
         self.firstScheduledTask.stringValue = self.infoschedulessorted!.whenIsNextTwoTasksString()[0]
         self.secondScheduledTask.stringValue = self.infoschedulessorted!.whenIsNextTwoTasksString()[1]
@@ -379,7 +379,7 @@ extension ViewControllertabSchedule: StartTimer {
     func startTimerNextJob() {
         self.schedulessorted = nil
         self.schedulessorted = ScheduleSortedAndExpand(viewcontroller: nil)
-        self.infoschedulessorted = InfoScheduleSortedAndExpand(viewcontroller: nil, sortedschedules: self.schedulessorted?.getsortedAndExpandedScheduleData())
+        self.infoschedulessorted = InfoScheduleSortedAndExpand(viewcontroller: nil, sortedandexpanded: self.schedulessorted)
         self.firstRemoteServer.stringValue = ""
         self.firstLocalCatalog.stringValue = ""
         self.startTimer()

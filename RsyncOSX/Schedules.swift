@@ -85,7 +85,7 @@ class Schedules: ScheduleWriteLoggData {
         if delete {
             self.storageapi!.saveScheduleFromMemory()
             // Send message about refresh tableView
-            self.refreshDelegate?.reload()
+            self.refreshDelegate?.reloadtabledata()
         }
     }
 
@@ -161,7 +161,7 @@ class Schedules: ScheduleWriteLoggData {
                 // Saving the resulting data file
                 self.storageapi!.saveScheduleFromMemory()
                 // Send message about refresh tableView
-                self.refreshDelegate?.reload()
+                self.refreshDelegate?.reloadtabledata()
             }
         }
     }

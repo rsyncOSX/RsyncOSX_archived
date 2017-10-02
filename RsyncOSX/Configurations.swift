@@ -25,8 +25,7 @@ protocol GetConfigurationsObject: class {
 
 // Protocol for doing a refresh of updated tableView
 protocol Reloadandrefresh: class {
-    // Declare function for refresh tableView
-    func reload()
+    func reloadtabledata()
 }
 
 // Used to select argument
@@ -221,7 +220,7 @@ class Configurations {
         self.storageapi!.saveConfigFromMemory()
         // Call the view and do a refresh of tableView
         self.refreshDelegate = self.vctabmain as? ViewControllertabMain
-        self.refreshDelegate?.reload()
+        self.refreshDelegate?.reloadtabledata()
     }
 
     /// Function destroys reference to object holding data and
@@ -263,7 +262,7 @@ class Configurations {
         self.storageapi!.saveConfigFromMemory()
         self.refreshDelegate = self.vctabmain
             as? ViewControllertabMain
-        self.refreshDelegate?.reload()
+        self.refreshDelegate?.reloadtabledata()
     }
 
     /// Function sets reference to object holding data and methods
