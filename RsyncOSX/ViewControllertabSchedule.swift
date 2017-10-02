@@ -325,23 +325,6 @@ extension ViewControllertabSchedule: DismissViewController {
     }
 }
 
-extension ViewControllertabSchedule: AddProfiles {
-
-    // Just reset the schedules
-    func newProfile(profile: String?) {
-        self.schedulessorted = nil
-        self.firstRemoteServer.stringValue = ""
-        self.firstLocalCatalog.stringValue = ""
-        self.secondRemoteServer.stringValue = ""
-        self.secondLocalCatalog.stringValue = ""
-    }
-
-    func enableProfileMenu() {
-        // Nothing, just for complying to protocol
-    }
-
-}
-
 extension ViewControllertabSchedule: Reloadandrefresh {
 
     func reloadtabledata() {
