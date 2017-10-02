@@ -119,12 +119,10 @@ class ViewControllertabSchedule: NSViewController {
         if answer {
             self.schedules!.addschedule(self.hiddenID!, schedule: schedule, start: startdate, stop: stopdate)
             self.newSchedules = true
-            // Refresh table and recalculate the Schedules jobs
             self.reloadtabledata()
             // Start next job, if any, by delegate
             self.startnextjobDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllertabMain
             self.startnextjobDelegate?.startanyscheduledtask()
-            // Displaying next two scheduled tasks
             self.nextScheduledtask()
             // Call function to check if a scheduled backup is due for countdown
             self.startTimer()
@@ -160,8 +158,6 @@ class ViewControllertabSchedule: NSViewController {
         self.mainTableView.delegate = self
         self.mainTableView.dataSource = self
         self.mainTableView.doubleAction = #selector(ViewControllertabMain.tableViewDoubleClick(sender:))
-        self.schedulessorted = ScheduleSortedAndExpand(viewcontroller: nil)
-        self.infoschedulessorted = InfoScheduleSortedAndExpand(viewcontroller: nil, sortedandexpanded: self.schedulessorted)
         // Setting reference to self.
         ViewControllerReference.shared.setvcref(viewcontroller: .vctabschedule, nsviewcontroller: self)
         self.configurationsDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain)
@@ -269,6 +265,9 @@ extension ViewControllertabSchedule : NSTableViewDataSource {
 extension ViewControllertabSchedule : NSTableViewDelegate {
 
     @objc(tableView:objectValueForTableColumn:row:) func tableView(_ tableView: NSTableView, objectValueFor tableColumn: NSTableColumn?, row: Int) -> Any? {
+        guard row < self.configurations!.configurationsDataSourcecountBackupOnlyCount() else {
+            return nil
+        }
         let object: NSDictionary = self.configurations!.getConfigurationsDataSourcecountBackupOnly()![row]
         var text: String?
         var schedule: Bool = false
@@ -309,11 +308,9 @@ extension ViewControllertabSchedule : NSTableViewDelegate {
 }
 
 extension  ViewControllertabSchedule: GetHiddenID {
-
     func gethiddenID() -> Int? {
         return self.hiddenID
     }
-
 }
 
 extension ViewControllertabSchedule: DismissViewController {
@@ -328,7 +325,23 @@ extension ViewControllertabSchedule: DismissViewController {
     }
 }
 
-extension ViewControllertabSchedule: AddProfiles {
+extension ViewControllertabSchedule: AddProfiles, Reload {
+
+    func reload(profile: String?) {
+        self.configurations = self.configurationsDelegate?.getconfigurationsobject()
+        self.schedules = self.schedulesDelegate?.getschedulesobject()
+        if self.schedulessorted == nil {
+            self.schedulessorted = ScheduleSortedAndExpand(viewcontroller: nil)
+            self.infoschedulessorted = InfoScheduleSortedAndExpand(viewcontroller: nil, sortedandexpanded: self.schedulessorted)
+        }
+        if self.configurations!.configurationsDataSourcecountBackupOnlyCount() > 0 {
+            globalMainQueue.async(execute: { () -> Void in
+                self.mainTableView.reloadData()
+            })
+        }
+        self.nextScheduledtask()
+        self.startTimer()
+    }
 
     // Just reset the schedules
     func newProfile(profile: String?) {

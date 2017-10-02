@@ -664,6 +664,9 @@ extension ViewControllertabMain: StartNextScheduledTask {
 
 // New profile is loaded.
 extension ViewControllertabMain: AddProfiles, Reload {
+    func reload(profile: String?) {
+        self.newProfile(profile: profile)
+    }
 
     // Function is called from profiles when new or default profiles is seleceted
     func newProfile(profile: String?) {

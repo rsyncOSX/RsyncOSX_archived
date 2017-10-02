@@ -18,7 +18,7 @@ protocol AddProfiles: class {
 
 // Protocol reload
 protocol Reload: class {
-    func newProfile(profile: String?)
+    func reload(profile: String?)
 }
 
 class ViewControllerProfile: NSViewController {
@@ -30,6 +30,7 @@ class ViewControllerProfile: NSViewController {
     weak var dismissDelegate: DismissViewController?
     weak var newProfileDelegate: AddProfiles?
     weak var reloadDelegate: Reload?
+    weak var reloadDelegate2: Reload?
     private var profilesArray: [String]?
     private var profile: Profiles?
     private var useprofile: String?
@@ -89,7 +90,8 @@ class ViewControllerProfile: NSViewController {
     private func reloaddata() {
         // If in schedule reload data
         if self.configurations!.allowNotifyinMain == false {
-            self.reloadDelegate?.newProfile(profile: self.useprofile)
+            self.reloadDelegate?.reload(profile: self.useprofile)
+            self.reloadDelegate2?.reload(profile: self.useprofile)
         }
     }
 
@@ -115,6 +117,7 @@ class ViewControllerProfile: NSViewController {
             self.newProfileDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabschedule) as? ViewControllertabSchedule
             self.dismissDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabschedule) as? ViewControllertabSchedule
             self.reloadDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllertabMain
+            self.reloadDelegate2 = ViewControllerReference.shared.getvcref(viewcontroller: .vctabschedule) as? ViewControllertabSchedule
         }
         globalMainQueue.async(execute: { () -> Void in
             self.profilesTable.reloadData()
