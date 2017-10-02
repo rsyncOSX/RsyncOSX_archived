@@ -30,7 +30,6 @@ class ViewControllerProfile: NSViewController {
     weak var dismissDelegate: DismissViewController?
     weak var newProfileDelegate: AddProfiles?
     weak var reloadDelegate: Reload?
-    weak var reloadDelegate2: Reload?
     private var profilesArray: [String]?
     private var profile: Profiles?
     private var useprofile: String?
@@ -42,7 +41,6 @@ class ViewControllerProfile: NSViewController {
     @IBAction func defaultProfile(_ sender: NSButton) {
         self.newProfileDelegate?.newProfile(profile: nil)
         self.useprofile = nil
-        self.reloaddata()
         self.dismissDelegate?.dismiss_view(viewcontroller: self)
     }
 
@@ -58,7 +56,6 @@ class ViewControllerProfile: NSViewController {
             self.dismissDelegate?.dismiss_view(viewcontroller: self)
             return
         }
-        self.reloaddata()
         self.newProfileDelegate?.newProfile(profile: newprofile)
         self.dismissDelegate?.dismiss_view(viewcontroller: self)
     }
@@ -69,30 +66,13 @@ class ViewControllerProfile: NSViewController {
             self.profile?.deleteProfile(profileName: useprofile)
             self.newProfileDelegate?.newProfile(profile: nil)
         }
-        self.profile = nil
-        self.profile = Profiles()
-        self.profilesArray = self.profile!.getDirectorysStrings()
-        self.useprofile = nil
-        self.reloaddata()
         self.dismissDelegate?.dismiss_view(viewcontroller: self)
     }
 
     // Use profile or close
     @IBAction func close(_ sender: NSButton) {
-        if let useprofile = self.useprofile {
-            self.reloaddata()
-            self.newProfileDelegate?.newProfile(profile: useprofile)
-        }
-        self.useprofile = nil
+        self.newProfileDelegate?.newProfile(profile: self.useprofile)
         self.dismissDelegate?.dismiss_view(viewcontroller: self)
-    }
-
-    private func reloaddata() {
-        // If in schedule reload data
-        if self.configurations!.allowNotifyinMain == false {
-            self.reloadDelegate?.reload(profile: self.useprofile)
-            self.reloadDelegate2?.reload(profile: self.useprofile)
-        }
     }
 
     override func viewDidLoad() {
@@ -109,15 +89,12 @@ class ViewControllerProfile: NSViewController {
         self.configurations = self.configurationsDelegate?.getconfigurationsobject()
         self.profile = Profiles()
         self.profilesArray = self.profile!.getDirectorysStrings()
+        self.newProfileDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllertabMain
         // Decide which viewcontroller calling the view
         if self.configurations!.allowNotifyinMain == true {
-            self.newProfileDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllertabMain
             self.dismissDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllertabMain
         } else {
-            self.newProfileDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabschedule) as? ViewControllertabSchedule
             self.dismissDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabschedule) as? ViewControllertabSchedule
-            self.reloadDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllertabMain
-            self.reloadDelegate2 = ViewControllerReference.shared.getvcref(viewcontroller: .vctabschedule) as? ViewControllertabSchedule
         }
         globalMainQueue.async(execute: { () -> Void in
             self.profilesTable.reloadData()
@@ -126,11 +103,7 @@ class ViewControllerProfile: NSViewController {
     }
 
     @objc(tableViewDoubleClick:) func tableViewDoubleClick(sender: AnyObject) {
-        if let useprofile = self.useprofile {
-            self.reloaddata()
-            self.newProfileDelegate?.newProfile(profile: useprofile)
-        }
-        self.useprofile = nil
+        self.newProfileDelegate?.newProfile(profile: self.useprofile)
         self.dismissDelegate?.dismiss_view(viewcontroller: self)
     }
 }

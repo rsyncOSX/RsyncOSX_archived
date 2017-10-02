@@ -663,14 +663,12 @@ extension ViewControllertabMain: StartNextScheduledTask {
 }
 
 // New profile is loaded.
-extension ViewControllertabMain: AddProfiles, Reload {
-    func reload(profile: String?) {
-        self.newProfile(profile: profile)
-    }
+extension ViewControllertabMain: AddProfiles {
 
     // Function is called from profiles when new or default profiles is seleceted
     func newProfile(profile: String?) {
         weak var newProfileDelegate: AddProfiles?
+        weak var refreshDelegate: Reloadandrefresh?
         self.process = nil
         self.output = nil
         self.outputbatch = nil
@@ -678,9 +676,6 @@ extension ViewControllertabMain: AddProfiles, Reload {
         self.setInfo(info: "Estimate", color: .blue)
         self.light.color = .systemYellow
         self.setNumbers(output: nil)
-        // Reset in tabSchedule
-        newProfileDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabschedule) as? ViewControllertabSchedule
-        newProfileDelegate?.newProfile(profile: profile)
         // Read configurations and Scheduledata
         self.configurations = self.createconfigurationsobject(profile: profile)
         self.schedules = self.createschedulesobject(profile: profile)
@@ -688,6 +683,11 @@ extension ViewControllertabMain: AddProfiles, Reload {
         self.loadProfileMenu = true
         self.displayProfile()
         self.reloadtabledata()
+        // Reset in tabSchedule
+        newProfileDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabschedule) as? ViewControllertabSchedule
+        refreshDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabschedule) as? ViewControllertabSchedule
+        newProfileDelegate?.newProfile(profile: profile)
+        refreshDelegate?.reloadtabledata()
         // We have to start any Scheduled process again - if any
         _ = ScheduleOperation()
     }

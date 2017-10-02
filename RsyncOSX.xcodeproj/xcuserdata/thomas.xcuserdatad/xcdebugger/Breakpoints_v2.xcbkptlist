@@ -9,13 +9,29 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "RsyncOSX/ViewControllertabSchedule.swift"
-            timestampString = "528629239.272712"
+            filePath = "RsyncOSX/ViewControllertabMain.swift"
+            timestampString = "528634037.234037"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "335"
-            endingLineNumber = "335"
-            landmarkName = "reload(profile:)"
+            startingLineNumber = "670"
+            endingLineNumber = "670"
+            landmarkName = "newProfile(profile:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "RsyncOSX/ViewControllerProfile.swift"
+            timestampString = "528634037.234325"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "94"
+            endingLineNumber = "94"
+            landmarkName = "viewDidAppear()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
