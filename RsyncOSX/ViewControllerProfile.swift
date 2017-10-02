@@ -16,11 +16,6 @@ protocol AddProfiles: class {
     func enableProfileMenu()
 }
 
-// Protocol reload
-protocol Reload: class {
-    func reload(profile: String?)
-}
-
 class ViewControllerProfile: NSViewController {
 
     weak var configurationsDelegate: GetConfigurationsObject?
@@ -29,7 +24,6 @@ class ViewControllerProfile: NSViewController {
     var storageapi: PersistentStorageAPI?
     weak var dismissDelegate: DismissViewController?
     weak var newProfileDelegate: AddProfiles?
-    weak var reloadDelegate: Reload?
     private var profilesArray: [String]?
     private var profile: Profiles?
     private var useprofile: String?

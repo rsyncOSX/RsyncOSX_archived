@@ -325,23 +325,7 @@ extension ViewControllertabSchedule: DismissViewController {
     }
 }
 
-extension ViewControllertabSchedule: AddProfiles, Reload {
-
-    func reload(profile: String?) {
-        self.configurations = self.configurationsDelegate?.getconfigurationsobject()
-        self.schedules = self.schedulesDelegate?.getschedulesobject()
-        if self.schedulessorted == nil {
-            self.schedulessorted = ScheduleSortedAndExpand(viewcontroller: nil)
-            self.infoschedulessorted = InfoScheduleSortedAndExpand(viewcontroller: nil, sortedandexpanded: self.schedulessorted)
-        }
-        if self.configurations!.configurationsDataSourcecountBackupOnlyCount() > 0 {
-            globalMainQueue.async(execute: { () -> Void in
-                self.mainTableView.reloadData()
-            })
-        }
-        self.nextScheduledtask()
-        self.startTimer()
-    }
+extension ViewControllertabSchedule: AddProfiles {
 
     // Just reset the schedules
     func newProfile(profile: String?) {
@@ -364,11 +348,6 @@ extension ViewControllertabSchedule: Reloadandrefresh {
         guard self.configurations != nil else {
             return
         }
-        if self.configurations!.configurationsDataSourcecountBackupOnlyCount() > 0 {
-            globalMainQueue.async(execute: { () -> Void in
-                self.mainTableView.reloadData()
-            })
-        }
         self.firstRemoteServer.stringValue = ""
         self.firstLocalCatalog.stringValue = ""
         self.secondRemoteServer.stringValue = ""
@@ -380,6 +359,11 @@ extension ViewControllertabSchedule: Reloadandrefresh {
         // Displaying next two scheduled tasks
         self.firstScheduledTask.stringValue = self.infoschedulessorted!.whenIsNextTwoTasksString()[0]
         self.secondScheduledTask.stringValue = self.infoschedulessorted!.whenIsNextTwoTasksString()[1]
+        globalMainQueue.async(execute: { () -> Void in
+            self.mainTableView.reloadData()
+        })
+        // self.nextScheduledtask()
+        // self.startTimer()
     }
 
 }
