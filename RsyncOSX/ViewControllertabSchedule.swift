@@ -27,7 +27,6 @@ class ViewControllertabSchedule: NSViewController {
     @IBOutlet weak var once: NSButton!
     @IBOutlet weak var daily: NSButton!
     @IBOutlet weak var weekly: NSButton!
-    @IBOutlet weak var details: NSButton!
 
     private var index: Int?
     private var hiddenID: Int?
@@ -73,7 +72,6 @@ class ViewControllertabSchedule: NSViewController {
         let stopdate: Date = self.stopdate.dateValue.addingTimeInterval(seconds)
         let secondsstart: TimeInterval = self.stopdate.dateValue.timeIntervalSinceNow
         var schedule: String?
-        var details: Bool = false
         var range: Bool = false
 
         if self.index != nil {
@@ -98,22 +96,14 @@ class ViewControllertabSchedule: NSViewController {
                 } else {
                     self.info(str: "Startdate has to be more than 7 days ahead...")
                 }
-            } else if self.details.state  == .on {
-                // Details
-                details = true
-                globalMainQueue.async(execute: { () -> Void in
-                     self.presentViewControllerAsSheet(self.viewControllerScheduleDetails)
-                })
-                self.details.state = .off
             }
-            if details == false && range == true {
+            if range == true {
                 self.addschedule(schedule: schedule!, startdate: startdate, stopdate: stopdate)
             }
             // Reset radiobuttons
             self.once.state = .off
             self.daily.state = .off
             self.weekly.state = .off
-            self.details.state = .off
         }
     }
 
@@ -169,6 +159,7 @@ class ViewControllertabSchedule: NSViewController {
         self.newSchedules = false
         self.mainTableView.delegate = self
         self.mainTableView.dataSource = self
+        self.mainTableView.doubleAction = #selector(ViewControllertabMain.tableViewDoubleClick(sender:))
         self.schedulessorted = ScheduleSortedAndExpand(viewcontroller: nil)
         self.infoschedulessorted = InfoScheduleSortedAndExpand(viewcontroller: nil, sortedandexpanded: self.schedulessorted)
         // Setting reference to self.
@@ -254,6 +245,13 @@ class ViewControllertabSchedule: NSViewController {
             self.index = nil
             self.hiddenID = nil
         }
+    }
+
+    // Execute tasks by double click in table
+    @objc(tableViewDoubleClick:) func tableViewDoubleClick(sender: AnyObject) {
+        globalMainQueue.async(execute: { () -> Void in
+            self.presentViewControllerAsSheet(self.viewControllerScheduleDetails)
+        })
     }
 
 }
