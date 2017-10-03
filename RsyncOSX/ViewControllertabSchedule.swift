@@ -160,10 +160,8 @@ class ViewControllertabSchedule: NSViewController {
         self.mainTableView.doubleAction = #selector(ViewControllertabMain.tableViewDoubleClick(sender:))
         // Setting reference to self.
         ViewControllerReference.shared.setvcref(viewcontroller: .vctabschedule, nsviewcontroller: self)
-        self.configurationsDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain)
-            as? ViewControllertabMain
-        self.schedulesDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain)
-            as? ViewControllertabMain
+        self.configurationsDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllertabMain
+        self.schedulesDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllertabMain
     }
 
     override func viewDidAppear() {
@@ -181,9 +179,7 @@ class ViewControllertabSchedule: NSViewController {
                 self.mainTableView.reloadData()
             })
         }
-        // Displaying next two scheduled tasks
         self.nextScheduledtask()
-        // Call function to check if a scheduled backup is due for countdown
         self.startTimer()
     }
 
@@ -339,14 +335,11 @@ extension ViewControllertabSchedule: Reloadandrefresh {
         self.schedulessorted = nil
         self.schedulessorted = ScheduleSortedAndExpand(viewcontroller: nil)
         self.infoschedulessorted = InfoScheduleSortedAndExpand(viewcontroller: nil, sortedandexpanded: self.schedulessorted)
-        // Displaying next two scheduled tasks
         self.firstScheduledTask.stringValue = self.infoschedulessorted!.whenIsNextTwoTasksString()[0]
         self.secondScheduledTask.stringValue = self.infoschedulessorted!.whenIsNextTwoTasksString()[1]
         globalMainQueue.async(execute: { () -> Void in
             self.mainTableView.reloadData()
         })
-        // self.nextScheduledtask()
-        // self.startTimer()
     }
 
 }

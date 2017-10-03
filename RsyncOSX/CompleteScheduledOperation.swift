@@ -5,6 +5,7 @@
 //  Created by Thomas Evensen on 20/01/2017.
 //  Copyright © 2017 Thomas Evensen. All rights reserved.
 //
+// swiftlint:disable line_length
 
 import Foundation
 
@@ -45,24 +46,18 @@ final class CompleteScheduledOperation {
         let number = Numbers(output: output)
         number.setNumbers()
         let numberstring = number.stats(numberOfFiles: nil, sizeOfFiles: nil)
-        self.schedules!.addresultschedule(self.hiddenID!,
-                                           dateStart: dateStartstring,
-                                           result: numberstring[0],
-                                           date: datestring, schedule: schedule!)
+        self.schedules!.addresultschedule(self.hiddenID!, dateStart: dateStartstring, result: numberstring[0], date: datestring, schedule: schedule!)
         // Writing timestamp to configuration
         _ = self.configurations!.setCurrentDateonConfiguration(self.index!)
         // Start next job, if any, by delegate and notify completed, by delegate
         globalMainQueue.async(execute: { () -> Void in
-            self.startnextjobDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain)
-                as? ViewControllertabMain
-            self.notifyDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain)
-                as? ViewControllertabMain
+            self.startnextjobDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllertabMain
+            self.notifyDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllertabMain
             self.startnextjobDelegate?.startanyscheduledtask()
             self.notifyDelegate?.completed()
         })
         globalMainQueue.async(execute: { () -> Void in
-            self.startTimerDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabschedule)
-                as? ViewControllertabSchedule
+            self.startTimerDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabschedule) as? ViewControllertabSchedule
             self.startTimerDelegate?.startTimerNextJob()
         })
         // Reset reference til scheduled job
@@ -75,12 +70,10 @@ final class CompleteScheduledOperation {
         self.dateformatter = Tools().setDateformat()
         self.hiddenID = (dict.value(forKey: "hiddenID") as? Int)!
         self.schedule = dict.value(forKey: "schedule") as? String
-        self.configurationsDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain)
-            as? ViewControllertabMain
+        self.configurationsDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllertabMain
         self.configurations = self.configurationsDelegate?.getconfigurationsobject()
-        self.schedulesDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain)
-            as? ViewControllertabMain
+        self.schedulesDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllertabMain
         self.schedules = self.schedulesDelegate?.getschedulesobject()
-         self.index = self.configurations!.getIndex(hiddenID!)
+        self.index = self.configurations!.getIndex(hiddenID!)
     }
 }
