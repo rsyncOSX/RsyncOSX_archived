@@ -33,8 +33,8 @@ class ViewControllerProfile: NSViewController {
 
     // Setting default profile
     @IBAction func defaultProfile(_ sender: NSButton) {
-        self.newProfileDelegate?.newProfile(profile: nil)
         self.useprofile = nil
+        self.newProfileDelegate?.newProfile(profile: self.useprofile)
         self.dismissDelegate?.dismiss_view(viewcontroller: self)
     }
 
@@ -81,6 +81,7 @@ class ViewControllerProfile: NSViewController {
     override func viewDidAppear() {
         super.viewDidAppear()
         self.configurations = self.configurationsDelegate?.getconfigurationsobject()
+        self.profile = nil
         self.profile = Profiles()
         self.profilesArray = self.profile!.getDirectorysStrings()
         self.newProfileDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllertabMain

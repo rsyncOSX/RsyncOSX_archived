@@ -6,7 +6,7 @@
 //  Copyright © 2017 Thomas Evensen. All rights reserved.
 //
 //  SwiftLint: OK 31 July 2017
-//  swiftlint:disable syntactic_sugar
+//  swiftlint:disable syntactic_sugar line_length
 
 import Foundation
 
@@ -149,7 +149,6 @@ final class NewSingleTask {
                 self.taskDelegate?.presentViewInformation(output: self.output!)
                 // Logg run
                 let number = Numbers(output: self.output)
-                number.setNumbers()
                 // Get transferred numbers from view
                 self.transferredNumber = self.taskDelegate?.gettransferredNumber()
                 self.transferredNumberSizebytes = self.taskDelegate?.gettransferredNumberSizebytes()
@@ -157,8 +156,7 @@ final class NewSingleTask {
                 let hiddenID = self.configurations!.gethiddenID(index: self.index!)
                 let numberOffFiles = self.transferredNumber
                 let sizeOfFiles = self.transferredNumberSizebytes
-                self.schedules!.addlogtaskmanuel(hiddenID,
-                                     result: number.stats(numberOfFiles: numberOffFiles, sizeOfFiles: sizeOfFiles)[0])
+                self.schedules!.addlogtaskmanuel(hiddenID, result: number.stats(numberOfFiles: numberOffFiles, sizeOfFiles: sizeOfFiles)[0])
             case .empty:
                 self.workload = nil
             default:

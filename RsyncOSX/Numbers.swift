@@ -7,7 +7,7 @@
 //
 //  Class for crunching numbers from rsyn output.  Numbers are
 //  informal only, either used in main view or for logging purposes.
-//  swiftlint:disable syntactic_sugar
+//  swiftlint:disable syntactic_sugar line_length
 
 import Foundation
 
@@ -79,24 +79,6 @@ final class Numbers {
         case .delete:
             let num = self.deletefiles ?? 0
             return Int(num)
-        }
-    }
-
-    // Function for getting numbers out of output
-    // after Process termination is discovered. Function
-    // is executed from rsync Process after Process termination.
-    // And it is a kind of UGLY...
-    func setNumbers() {
-        if files!.count == 1 && filesSize!.count == 1 && totfileSize!.count == 1 &&  totfilesNum!.count == 1 {
-            if self.configurations!.rsyncVer3 {
-                self.resultrsyncver3()
-            } else {
-                self.resultrsyncver2()
-            }
-        } else {
-            // If it breaks set number of transferred files to
-            // size of output.
-            self.transferNum = self.outputprocess!.count
         }
     }
 
@@ -215,8 +197,7 @@ final class Numbers {
     }
 
     init (output: OutputProcess?) {
-        self.configurationsDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain)
-            as? ViewControllertabMain
+        self.configurationsDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllertabMain
         self.configurations = self.configurationsDelegate?.getconfigurationsobject()
         self.outputprocess = output!.trimoutput(trim: .two)
         // Getting the summarized output from output.
@@ -239,5 +220,25 @@ final class Numbers {
         self.new = self.outputprocess!.filter({(($0).contains("Number of created files:"))})
         // Delete files
         self.delete = self.outputprocess!.filter({(($0).contains("Number of deleted files:"))})
+        if files!.count == 1 && filesSize!.count == 1 && totfileSize!.count == 1 &&  totfilesNum!.count == 1 {
+            if self.configurations!.rsyncVer3 {
+                self.resultrsyncver3()
+            } else {
+                self.resultrsyncver2()
+            }
+        } else {
+            // If it breaks set number of transferred files to
+            // size of output.
+            self.transferNum = self.outputprocess!.count
+        }
+        /*
+        print(self.files)
+        print(self.filesSize)
+        print(self.totfileSize)
+        print(self.totfilesNum)
+        print(self.new)
+        print(self.delete)
+        print(output!.getOutput())
+         */
     }
 }
