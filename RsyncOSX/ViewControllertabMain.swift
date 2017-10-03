@@ -671,6 +671,8 @@ extension ViewControllertabMain: NewProfile {
         self.process = nil
         self.output = nil
         self.outputbatch = nil
+        self.singletask = nil
+        self.setNumbers(output: nil)
         self.setRsyncCommandDisplay()
         self.setInfo(info: "Estimate", color: .blue)
         self.light.color = .systemYellow
@@ -1033,7 +1035,6 @@ extension ViewControllertabMain: SingleTask {
                 return
             }
             let number = Numbers(output: output)
-            number.setNumbers()
             self.transferredNumber.stringValue = NumberFormatter.localizedString(from:NSNumber(value: number.getTransferredNumbers(numbers: .transferredNumber)), number: NumberFormatter.Style.decimal)
             self.transferredNumberSizebytes.stringValue = NumberFormatter.localizedString(from: NSNumber(value: number.getTransferredNumbers(numbers: .transferredNumberSizebytes)), number: NumberFormatter.Style.decimal)
             self.totalNumber.stringValue = NumberFormatter.localizedString(from: NSNumber(value: number.getTransferredNumbers(numbers: .totalNumber)), number: NumberFormatter.Style.decimal)

@@ -36,7 +36,6 @@ final class CompleteScheduledOperation {
         let datestring = self.dateformatter!.string(from: date!)
         let dateStartstring = self.dateformatter!.string(from: dateStart!)
         let number = Numbers(output: output)
-        number.setNumbers()
         let numberstring = number.stats(numberOfFiles: nil, sizeOfFiles: nil)
         self.schedules!.addresultschedule(self.hiddenID!, dateStart: dateStartstring, result: numberstring[0], date: datestring, schedule: schedule!)
         // Writing timestamp to configuration

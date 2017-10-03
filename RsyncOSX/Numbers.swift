@@ -82,24 +82,6 @@ final class Numbers {
         }
     }
 
-    // Function for getting numbers out of output
-    // after Process termination is discovered. Function
-    // is executed from rsync Process after Process termination.
-    // And it is a kind of UGLY...
-    func setNumbers() {
-        if files!.count == 1 && filesSize!.count == 1 && totfileSize!.count == 1 &&  totfilesNum!.count == 1 {
-            if self.configurations!.rsyncVer3 {
-                self.resultrsyncver3()
-            } else {
-                self.resultrsyncver2()
-            }
-        } else {
-            // If it breaks set number of transferred files to
-            // size of output.
-            self.transferNum = self.outputprocess!.count
-        }
-    }
-
     private func resultrsyncver3() {
         // Ver3 of rsync adds "," as 1000 mark, must replace it and then split numbers into components
         let filesPart = self.files![0].replacingOccurrences(of: ",", with: "").components(separatedBy: " ")
@@ -239,5 +221,23 @@ final class Numbers {
         self.new = self.outputprocess!.filter({(($0).contains("Number of created files:"))})
         // Delete files
         self.delete = self.outputprocess!.filter({(($0).contains("Number of deleted files:"))})
+        if files!.count == 1 && filesSize!.count == 1 && totfileSize!.count == 1 &&  totfilesNum!.count == 1 {
+            if self.configurations!.rsyncVer3 {
+                self.resultrsyncver3()
+            } else {
+                self.resultrsyncver2()
+            }
+        } else {
+            // If it breaks set number of transferred files to
+            // size of output.
+            self.transferNum = self.outputprocess!.count
+        }
+        print(self.files)
+        print(self.filesSize)
+        print(self.totfileSize)
+        print(self.totfilesNum)
+        print(self.new)
+        print(self.delete)
+        print(output!.getOutput())
     }
 }

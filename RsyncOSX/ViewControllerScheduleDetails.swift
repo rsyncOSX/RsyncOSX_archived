@@ -109,6 +109,9 @@ extension ViewControllerScheduleDetails : NSTableViewDelegate {
     @objc(tableView:objectValueForTableColumn:row:) func tableView(_ tableView: NSTableView, objectValueFor tableColumn: NSTableColumn?, row: Int) -> Any? {
         // If active schedule color row red
         var active: Bool = false
+        guard self.data != nil else {
+            return nil
+        }
         if row < self.data!.count {
             let object: NSMutableDictionary = self.data![row]
             if  object.value(forKey: "schedule") as? String == "once" ||

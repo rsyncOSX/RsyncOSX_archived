@@ -135,6 +135,8 @@ final class NewBatchTask {
             case 0:
                 // dry-run
                 // Setting maxcount of files in object
+                // Real run
+                let number = Numbers(output: self.output)
                 batchobject.setEstimated(numberOfFiles: self.output!.getMaxcount())
                 // Do a refresh of NSTableView in ViewControllerBatch
                 // Stack of ViewControllers
@@ -143,7 +145,6 @@ final class NewBatchTask {
             case 1:
                 // Real run
                 let number = Numbers(output: self.output)
-                number.setNumbers()
                 // Update files in work
                 batchobject.updateInProcess(numberOfFiles: self.output!.count())
                 batchobject.setCompleted()

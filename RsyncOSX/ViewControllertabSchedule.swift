@@ -264,6 +264,9 @@ extension ViewControllertabSchedule : NSTableViewDelegate {
         guard row < self.configurations!.configurationsDataSourcecountBackupOnlyCount() else {
             return nil
         }
+        guard self.schedules != nil else {
+            return nil
+        }
         let object: NSDictionary = self.configurations!.getConfigurationsDataSourcecountBackupOnly()![row]
         var text: String?
         var schedule: Bool = false
