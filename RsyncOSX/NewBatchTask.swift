@@ -134,19 +134,13 @@ final class NewBatchTask {
             switch work.1 {
             case 0:
                 // dry-run
-                // Setting maxcount of files in object
-                // Real run
-                // Getting and setting max file to transfer
                 self.taskDelegate?.setNumbers(output: self.output)
                 batchobject.setEstimated(numberOfFiles: self.output!.getMaxcount())
-                // Do a refresh of NSTableView in ViewControllerBatch
-                // Stack of ViewControllers
                 self.batchViewDelegate?.progressIndicatorViewBatch(operation: .stop)
                 self.executeBatch()
             case 1:
                 // Real run
                 let number = Numbers(output: self.output)
-                // Update files in work
                 batchobject.updateInProcess(numberOfFiles: self.output!.count())
                 batchobject.setCompleted()
                 self.batchViewDelegate?.progressIndicatorViewBatch(operation: .refresh)
