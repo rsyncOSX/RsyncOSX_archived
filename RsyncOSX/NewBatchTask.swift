@@ -6,7 +6,7 @@
 //  Copyright © 2017 Thomas Evensen. All rights reserved.
 //
 //  SwiftLint: OK 31 July 2017
-//  swiftlint:disable syntactic_sugar
+//  swiftlint:disable syntactic_sugar line_length
 
 import Foundation
 import Cocoa
@@ -136,7 +136,8 @@ final class NewBatchTask {
                 // dry-run
                 // Setting maxcount of files in object
                 // Real run
-                let number = Numbers(output: self.output)
+                // Getting and setting max file to transfer
+                self.taskDelegate?.setNumbers(output: self.output)
                 batchobject.setEstimated(numberOfFiles: self.output!.getMaxcount())
                 // Do a refresh of NSTableView in ViewControllerBatch
                 // Stack of ViewControllers
@@ -156,20 +157,19 @@ final class NewBatchTask {
                 self.transfernum = String(number.getTransferredNumbers(numbers: .transferredNumber))
                 self.transferbytes = String(number.getTransferredNumbers(numbers: .transferredNumberSizebytes))
                 if config.offsiteServer.isEmpty {
+                    let hiddenID = self.configurations!.gethiddenID(index: index)
                     let numbers = number.stats(numberOfFiles: self.transfernum, sizeOfFiles: self.transferbytes)[0]
                     let result = config.localCatalog + " , " + "localhost" + " , " + numbers
                     self.outputbatch!.addLine(str: result)
+                    self.schedules!.addlogtaskmanuel(hiddenID, result: numbers)
                 } else {
+                    let hiddenID = self.configurations!.gethiddenID(index: index)
                     let numbers = number.stats(numberOfFiles: self.transfernum, sizeOfFiles: self.transferbytes)[0]
                     let result = config.localCatalog + " , " + config.offsiteServer + " , " + numbers
                     self.outputbatch!.addLine(str: result)
+                    self.schedules!.addlogtaskmanuel(hiddenID, result: numbers)
                 }
-                let hiddenID = self.configurations!.gethiddenID(index: index)
                 self.configurations!.setCurrentDateonConfiguration(index)
-                let numberOffFiles = self.transfernum
-                let sizeOfFiles = self.transferbytes
-                self.schedules!.addlogtaskmanuel(hiddenID,
-                                     result: number.stats(numberOfFiles: numberOffFiles, sizeOfFiles: sizeOfFiles)[0])
                 self.executeBatch()
             default :
                 break
@@ -178,17 +178,12 @@ final class NewBatchTask {
     }
 
     init() {
-        self.indicatorDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain)
-            as? ViewControllertabMain
-        self.taskDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain)
-            as? ViewControllertabMain
-        self.batchViewDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain)
-            as? ViewControllertabMain
-        self.configurationsDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain)
-            as? ViewControllertabMain
+        self.indicatorDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllertabMain
+        self.taskDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllertabMain
+        self.batchViewDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllertabMain
+        self.configurationsDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllertabMain
         self.configurations = self.configurationsDelegate?.getconfigurationsobject()
-        self.schedulesDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain)
-            as? ViewControllertabMain
+        self.schedulesDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllertabMain
         self.schedules = self.schedulesDelegate?.getschedulesobject()
     }
 

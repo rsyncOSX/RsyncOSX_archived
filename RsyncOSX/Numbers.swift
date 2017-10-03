@@ -7,7 +7,7 @@
 //
 //  Class for crunching numbers from rsyn output.  Numbers are
 //  informal only, either used in main view or for logging purposes.
-//  swiftlint:disable syntactic_sugar
+//  swiftlint:disable syntactic_sugar line_length
 
 import Foundation
 
@@ -197,8 +197,7 @@ final class Numbers {
     }
 
     init (output: OutputProcess?) {
-        self.configurationsDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain)
-            as? ViewControllertabMain
+        self.configurationsDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllertabMain
         self.configurations = self.configurationsDelegate?.getconfigurationsobject()
         self.outputprocess = output!.trimoutput(trim: .two)
         // Getting the summarized output from output.
@@ -232,6 +231,7 @@ final class Numbers {
             // size of output.
             self.transferNum = self.outputprocess!.count
         }
+        /*
         print(self.files)
         print(self.filesSize)
         print(self.totfileSize)
@@ -239,5 +239,6 @@ final class Numbers {
         print(self.new)
         print(self.delete)
         print(output!.getOutput())
+         */
     }
 }
