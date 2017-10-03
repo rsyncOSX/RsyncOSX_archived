@@ -354,5 +354,9 @@ extension ViewControllertabSchedule: StartTimer {
         self.firstRemoteServer.stringValue = ""
         self.firstLocalCatalog.stringValue = ""
         self.startTimer()
+        globalMainQueue.async(execute: { () -> Void in
+            self.mainTableView.reloadData()
+        })
+        self.nextScheduledtask()
     }
 }

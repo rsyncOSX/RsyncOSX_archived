@@ -18,16 +18,9 @@ final class CompleteScheduledOperation {
     var configurations: Configurations?
     weak var schedulesDelegate: GetSchedulesObject?
     var schedules: Schedules?
-
-    // Delegate function for starting next scheduled operatin if any
-    // Delegate function is triggered when NSTaskDidTerminationNotification
-    // is discovered (e.g previous job is done)
     weak var startnextjobDelegate: StartNextScheduledTask?
-    // Delegate function for start and completion of scheduled jobs
     weak var notifyDelegate: ScheduledJobInProgress?
-    // Delegate to notify starttimer()
     weak var startTimerDelegate: StartTimer?
-    // Initialize variables
     private var date: Date?
     private var dateStart: Date?
     private var dateformatter: DateFormatter?
@@ -39,7 +32,6 @@ final class CompleteScheduledOperation {
     // The Operation object sets reference to the completeScheduledOperation in self.schedules!.operation
     // This function is executed when rsyn process terminates
     func finalizeScheduledJob(output: OutputProcess?) {
-
         // Write result to Schedule
         let datestring = self.dateformatter!.string(from: date!)
         let dateStartstring = self.dateformatter!.string(from: dateStart!)
@@ -50,16 +42,12 @@ final class CompleteScheduledOperation {
         // Writing timestamp to configuration
         _ = self.configurations!.setCurrentDateonConfiguration(self.index!)
         // Start next job, if any, by delegate and notify completed, by delegate
-        globalMainQueue.async(execute: { () -> Void in
-            self.startnextjobDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllertabMain
-            self.notifyDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllertabMain
-            self.startnextjobDelegate?.startanyscheduledtask()
-            self.notifyDelegate?.completed()
-        })
-        globalMainQueue.async(execute: { () -> Void in
-            self.startTimerDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabschedule) as? ViewControllertabSchedule
-            self.startTimerDelegate?.startTimerNextJob()
-        })
+        self.startnextjobDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllertabMain
+        self.notifyDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllertabMain
+        self.startnextjobDelegate?.startanyscheduledtask()
+        self.notifyDelegate?.completed()
+        self.startTimerDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabschedule) as? ViewControllertabSchedule
+        self.startTimerDelegate?.startTimerNextJob()
         // Reset reference til scheduled job
         self.schedules!.scheduledJob = nil
     }
