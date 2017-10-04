@@ -301,6 +301,7 @@ class ViewControllertabMain: NSViewController {
 
     // Logg records
     @IBAction func loggrecords(_ sender: NSButton) {
+        self.configurations!.allowNotifyinMain = true
         globalMainQueue.async(execute: { () -> Void in
             self.presentViewControllerAsSheet(self.viewControllerScheduleDetails)
         })
