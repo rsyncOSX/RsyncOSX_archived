@@ -91,9 +91,13 @@ class RsyncProcessArguments {
         if config.parameter14 != nil {
             self.appendParameter(parameter: config.parameter14!, forDisplay: forDisplay)
         }
-        // If drynrun append --stats parameter to collect info about run
+        // Append --stats parameter to collect info about run
         if dryRun {
             self.dryrunparameter(config, forDisplay: forDisplay)
+        } else {
+            if self.stats == false {
+                self.appendParameter(parameter: "--stats", forDisplay: forDisplay)
+            }
         }
     }
 

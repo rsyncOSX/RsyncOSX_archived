@@ -227,18 +227,8 @@ final class Numbers {
                 self.resultrsyncver2()
             }
         } else {
-            // If it breaks set number of transferred files to
-            // size of output.
+            // If it breaks set number of transferred files to size of output.
             self.transferNum = self.outputprocess!.count
         }
-        /*
-        print(self.files)
-        print(self.filesSize)
-        print(self.totfileSize)
-        print(self.totfilesNum)
-        print(self.new)
-        print(self.delete)
-        print(output!.getOutput())
-         */
     }
 }
