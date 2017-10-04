@@ -137,7 +137,9 @@ final class NewBatchTask {
                 self.taskDelegate?.setNumbers(output: self.output)
                 batchobject.setEstimated(numberOfFiles: self.output!.getMaxcount())
                 self.batchViewDelegate?.progressIndicatorViewBatch(operation: .stop)
-                self.executeBatch()
+                self.delayWithSeconds(1) {
+                    self.executeBatch()
+                }
             case 1:
                 // Real run
                 let number = Numbers(output: self.output)
@@ -168,6 +170,12 @@ final class NewBatchTask {
             default :
                 break
             }
+        }
+    }
+
+    func delayWithSeconds(_ seconds: Double, completion: @escaping () -> Void) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + seconds) {
+            completion()
         }
     }
 
