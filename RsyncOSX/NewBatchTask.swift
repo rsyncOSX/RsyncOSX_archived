@@ -137,7 +137,7 @@ final class NewBatchTask {
                 self.taskDelegate?.setNumbers(output: self.output)
                 batchobject.setEstimated(numberOfFiles: self.output!.getMaxcount())
                 self.batchViewDelegate?.progressIndicatorViewBatch(operation: .stop)
-                self.delayWithSeconds(1) {
+                self.delayWithSeconds(0.5) {
                     self.executeBatch()
                 }
             case 1:
@@ -166,7 +166,9 @@ final class NewBatchTask {
                     self.schedules!.addlogtaskmanuel(hiddenID, result: numbers)
                 }
                 self.configurations!.setCurrentDateonConfiguration(index)
-                self.executeBatch()
+                self.delayWithSeconds(0.5) {
+                    self.executeBatch()
+                }
             default :
                 break
             }

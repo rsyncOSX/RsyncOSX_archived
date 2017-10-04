@@ -67,7 +67,6 @@ class ProcessCmd {
         self.notifications = NotificationCenter.default.addObserver(forName: Process.didTerminateNotification,
                                                             object: task, queue: nil) { _ -> Void in
             // Check if in a scheduled operation, if not use delegate to inform about termination of Process()
-            print(output?.getOutput())
             if self.aScheduledOperation! == false {
                 // Send message about process termination
                 self.updateDelegate?.processTermination()
