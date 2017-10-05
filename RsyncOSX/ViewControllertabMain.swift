@@ -678,6 +678,7 @@ extension ViewControllertabMain: NewProfile {
         self.setInfo(info: "Estimate", color: .blue)
         self.light.color = .systemYellow
         self.setNumbers(output: nil)
+        self.deselectRow()
         // Read configurations and Scheduledata
         self.configurations = self.createconfigurationsobject(profile: profile)
         self.schedules = self.createschedulesobject(profile: profile)
