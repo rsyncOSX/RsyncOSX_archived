@@ -118,7 +118,7 @@ final class PersistentStorageConfiguration: Readwritefiles {
         }
         config.parameter9 = self.checkparameter(param: config.parameter9)
         if config.parameter9 != nil {
-            dict.setObject(config.parameter8!, forKey: "parameter9" as NSCopying)
+            dict.setObject(config.parameter9!, forKey: "parameter9" as NSCopying)
         }
         config.parameter10 = self.checkparameter(param: config.parameter10)
         if config.parameter10 != nil {
