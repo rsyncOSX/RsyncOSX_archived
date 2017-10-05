@@ -18,7 +18,6 @@ final class RsyncParameters {
     private let rsyncArguments: Array<Argument> = [
         ("user", 1),
         ("delete", 0),
-        ("--stats", 0),
         ("--backup", 0),
         ("--backup-dir", 1),
         ("--exclude-from", 1),
@@ -156,7 +155,7 @@ final class RsyncParameters {
             if self.indexofrsyncparameter(splitstr[0]) >= 0 {
                 returnvalue = "\"" + argument + "\" " + "no arguments"
             } else {
-                if argument != value {
+                if argument == value {
                     returnvalue = value
                 } else {
                     returnvalue = argument + "=" + value
