@@ -137,7 +137,7 @@ final class NewBatchTask {
             case 0:
                 // dry-run
                 self.taskDelegate?.setNumbers(output: self.output)
-                batchobject.setEstimated(numberOfFiles: self.output!.getMaxcount())
+                batchobject.setEstimated(numberOfFiles: self.output?.getMaxcount() ?? 0)
                 self.batchViewDelegate?.progressIndicatorViewBatch(operation: .stop)
                 self.delayWithSeconds(1) {
                     self.executeBatch()
