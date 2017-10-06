@@ -15,21 +15,20 @@ protocol getNewBatchTask: class {
     func getTaskObject() -> NewBatchTask
 }
 
+// Dismiss view when rsync error
+protocol closeViewError:  class {
+    func closeerror()
+}
+
 class ViewControllerBatch: NSViewController {
 
     weak var configurationsDelegate: GetConfigurationsObject?
     var configurations: Configurations?
-
-    // If close button or abort is pressed
-    // After execute button is pressed, close is abort
     var close: Bool?
-    // Automatic closing of view
     var waitToClose: Timer?
     var closeIn: Timer?
     var seconds: Int?
-    // Working on row
     var row: Int?
-    // Batchobject
     var batchTask: NewBatchTask?
 
     // Main tableview
@@ -41,9 +40,7 @@ class ViewControllerBatch: NSViewController {
     @IBOutlet weak var rownumber: NSTextField!
     @IBOutlet weak var executeButton: NSButton!
 
-    // Delegeta to Dismisser
     weak var dismissDelegate: DismissViewController?
-    // Delegate to Abort operations
     weak var abortDelegate: AbortOperations?
 
     // ACTIONS AND BUTTONS
@@ -87,13 +84,10 @@ class ViewControllerBatch: NSViewController {
         // Setting delegates and datasource
         self.mainTableView.delegate = self
         self.mainTableView.dataSource = self
-         // Dismisser is root controller
-        self.dismissDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain)
-            as? ViewControllertabMain
-        self.abortDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain)
-            as? ViewControllertabMain
-        self.configurationsDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain)
-            as? ViewControllertabMain
+        ViewControllerReference.shared.setvcref(viewcontroller: .vcbatch, nsviewcontroller: self)
+        self.dismissDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllertabMain
+        self.abortDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllertabMain
+        self.configurationsDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllertabMain
     }
 
     override func viewDidAppear() {
@@ -211,4 +205,13 @@ extension ViewControllerBatch: getNewBatchTask {
         return self.batchTask!
     }
 
+}
+
+extension ViewControllerBatch: closeViewError {
+    func closeerror() {
+        self.abortDelegate?.abortOperations()
+        self.waitToClose?.invalidate()
+        self.closeIn?.invalidate()
+        self.dismissDelegate?.dismiss_view(viewcontroller: self)
+    }
 }

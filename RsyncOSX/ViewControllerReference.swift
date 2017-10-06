@@ -21,6 +21,7 @@ enum ViewController {
     case vccopyfiles
     case vcssh
     case vcabout
+    case vcbatch
 }
 
 class ViewControllerReference {
@@ -66,6 +67,8 @@ class ViewControllerReference {
     private var viewControllerSsh: NSViewController?
     // Reference to About
     private var viewControllerAbout: NSViewController?
+    //  Refereence to batchview
+    private var viewControllerBatch: NSViewController?
 
     func getvcref(viewcontroller: ViewController) -> NSViewController? {
         switch viewcontroller {
@@ -83,6 +86,8 @@ class ViewControllerReference {
             return self.viewControllerSsh
         case .vcabout:
             return self.viewControllerAbout
+        case .vcbatch:
+            return self.viewControllerBatch
         }
     }
 
@@ -102,6 +107,8 @@ class ViewControllerReference {
             self.viewControllerSsh = nsviewcontroller
         case .vcabout:
             self.viewControllerAbout = nsviewcontroller
+        case .vcbatch:
+            self.viewControllerBatch = nsviewcontroller
         }
     }
 }
