@@ -881,6 +881,7 @@ extension ViewControllertabMain: RsyncError {
                 self.light.color = .systemRed
                 self.showProcessInfo(info: .error)
                 self.setRsyncCommandDisplay()
+                self.deselectRow()
                 // Abort any operations
                 if let process = self.process {
                     process.terminate()
