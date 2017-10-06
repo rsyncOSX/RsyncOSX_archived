@@ -29,6 +29,7 @@ final class NewBatchTask {
     var configurations: Configurations?
     weak var schedulesDelegate: GetSchedulesObject?
     var schedules: Schedules?
+    weak var closeviewerrorDelegate: closeViewError?
 
     // Protocol function used in Process().
     weak var processupdateDelegate: UpdateProgress?
@@ -117,7 +118,8 @@ final class NewBatchTask {
         // Just pop off remaining work
         if let batchobject = self.configurations!.getBatchdataObject() {
             batchobject.abortOperations()
-            self.executeBatch()
+            self.closeviewerrorDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vcbatch) as? ViewControllerBatch
+            self.closeviewerrorDelegate?.closeerror()
         }
     }
 
