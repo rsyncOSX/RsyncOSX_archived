@@ -5,7 +5,7 @@
 //  Copyright © 2016 Thomas Evensen. All rights reserved.
 //
 //  SwiftLint: OK 31 July 2017
-//  swiftlint:disable syntactic_sugar line_length
+//  swiftlint:disable syntactic_sugar
 
 import Foundation
 
@@ -27,18 +27,12 @@ final class OutputProcess {
     private var maxNumber: Int = 0
     weak var errorDelegate: ViewControllertabMain?
     weak var lastrecordDelegate: ViewControllertabMain?
-    // Configurations object
-    weak var configurationsDelegate: GetConfigurationsObject?
 
     func getMaxcount() -> Int {
         if self.trimmedoutput == nil {
             _ = self.trimoutput(trim: .two)
         }
-        if self.configurationsDelegate?.getconfigurationsobject()?.rsyncVer3 == true {
-            return self.maxNumber - 18
-        } else {
-            return self.maxNumber - 17
-        }
+        return self.maxNumber
     }
 
     func count() -> Int {
@@ -101,6 +95,5 @@ final class OutputProcess {
 
     init () {
         self.output = Array<String>()
-        self.configurationsDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllertabMain
     }
  }
