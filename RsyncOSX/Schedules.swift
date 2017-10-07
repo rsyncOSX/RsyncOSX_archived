@@ -295,7 +295,7 @@ class Schedules: ScheduleWriteLoggData {
         self.profile = profile
         self.vctabmain = viewcontroller
         self.refreshDelegate = self.vctabmain as? ViewControllertabMain
-        self.storageapi = PersistentStorageAPI(profile : self.profile)
+        self.storageapi = PersistentStorageAPI(profile: self.profile)
         self.readschedules()
     }
 }

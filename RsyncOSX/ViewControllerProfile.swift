@@ -103,7 +103,7 @@ class ViewControllerProfile: NSViewController {
     }
 }
 
-extension ViewControllerProfile : NSTableViewDataSource {
+extension ViewControllerProfile: NSTableViewDataSource {
 
     func numberOfRows(in tableViewMaster: NSTableView) -> Int {
         if self.profilesArray != nil {
@@ -114,7 +114,7 @@ extension ViewControllerProfile : NSTableViewDataSource {
     }
 }
 
-extension ViewControllerProfile : NSTableViewDelegate {
+extension ViewControllerProfile: NSTableViewDelegate {
 
     func tableView(_ tableView: NSTableView, viewFor tableColumn: NSTableColumn?, row: Int) -> NSView? {
         var text: String?

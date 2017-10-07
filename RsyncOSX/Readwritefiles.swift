@@ -80,7 +80,7 @@ class Readwritefiles {
             return nil
         }
         let dictionary = NSDictionary(contentsOfFile: self.filename!)
-        let items : Any? = dictionary?.object(forKey: self.key!)
+        let items: Any? = dictionary?.object(forKey: self.key!)
         // If no items return nil
         guard items != nil else {
             return nil

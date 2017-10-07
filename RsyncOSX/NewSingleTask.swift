@@ -114,7 +114,6 @@ final class NewSingleTask {
         default:
             self.workload = nil
             self.taskDelegate?.setInfo(info: "Estimate", color: .blue)
-            break
         }
     }
 
@@ -161,7 +160,6 @@ final class NewSingleTask {
                 self.workload = nil
             default:
                 self.workload = nil
-                break
             }
         }
     }

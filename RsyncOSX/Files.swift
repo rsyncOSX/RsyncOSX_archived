@@ -59,7 +59,7 @@ class Files {
         if let filePath = self.rootpath {
             let fileManager = FileManager.default
             var isDir: ObjCBool = false
-            if fileManager.fileExists(atPath: filePath, isDirectory:&isDir) {
+            if fileManager.fileExists(atPath: filePath, isDirectory: &isDir) {
                 guard isDir.boolValue else {
                     return nil
                 }
@@ -83,7 +83,7 @@ class Files {
         if let filePath = self.rootpath {
             let fileManager = FileManager.default
             var isDir: ObjCBool = false
-            if fileManager.fileExists(atPath: filePath, isDirectory:&isDir) {
+            if fileManager.fileExists(atPath: filePath, isDirectory: &isDir) {
                 guard isDir.boolValue else {
                     return nil
                 }

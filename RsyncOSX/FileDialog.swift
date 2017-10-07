@@ -49,11 +49,12 @@ final class FileDialog {
             case .addRemoteCatalog:
                 self.pathDelegate?.pathSet(path: path, requester: .addRemoteCatalog)
             }
-            default:break
+        default:
+            break
         }
     }
 
     init(requester: WhichPath) {
-        self.openfiledlg(title: "Catalogs", message: "Select catalog", requester : requester)
+        self.openfiledlg(title: "Catalogs", message: "Select catalog", requester: requester)
     }
 }

@@ -48,7 +48,7 @@ class ViewControllerLoggData: NSViewController {
         self.schedules!.deletelogrow(hiddenID: (self.row?.value(forKey: "hiddenID") as? Int)!,
                                                parent: (self.row?.value(forKey: "parent") as? String)!,
                                                resultExecuted: (self.row?.value(forKey: "resultExecuted") as? String)!,
-                                               dateExecuted:(self.row?.value(forKey: "dateExecuted") as? String)!)
+                                               dateExecuted: (self.row?.value(forKey: "dateExecuted") as? String)!)
         self.deleteButton.state = .off
         self.deselectRow()
     }
@@ -95,7 +95,7 @@ class ViewControllerLoggData: NSViewController {
     }
 }
 
-extension ViewControllerLoggData : NSSearchFieldDelegate {
+extension ViewControllerLoggData: NSSearchFieldDelegate {
 
     override func controlTextDidChange(_ obj: Notification) {
         guard self.server.state.rawValue == 1 ||
@@ -113,7 +113,7 @@ extension ViewControllerLoggData : NSSearchFieldDelegate {
             })
         } else {
             globalMainQueue.async(execute: { () -> Void in
-                ScheduleLoggData().filter(search: filterstring, what:self.what)
+                ScheduleLoggData().filter(search: filterstring, what: self.what)
             })
         }
     }
@@ -128,7 +128,7 @@ extension ViewControllerLoggData : NSSearchFieldDelegate {
 
 }
 
-extension ViewControllerLoggData : NSTableViewDataSource {
+extension ViewControllerLoggData: NSTableViewDataSource {
 
     func numberOfRows(in tableView: NSTableView) -> Int {
         if self.tabledata == nil {
@@ -142,7 +142,7 @@ extension ViewControllerLoggData : NSTableViewDataSource {
 
 }
 
-extension ViewControllerLoggData : NSTableViewDelegate {
+extension ViewControllerLoggData: NSTableViewDelegate {
 
     func tableView(_ tableView: NSTableView, objectValueFor tableColumn: NSTableColumn?, row: Int) -> Any? {
         let object: NSDictionary = self.tabledata![row]

@@ -116,7 +116,7 @@ class ViewControllerBatch: NSViewController {
 
 }
 
-extension ViewControllerBatch : NSTableViewDataSource {
+extension ViewControllerBatch: NSTableViewDataSource {
         // Delegate for size of table
         func numberOfRows(in tableView: NSTableView) -> Int {
             guard self.configurations != nil else {
@@ -126,7 +126,7 @@ extension ViewControllerBatch : NSTableViewDataSource {
         }
 }
 
-extension ViewControllerBatch : NSTableViewDelegate {
+extension ViewControllerBatch: NSTableViewDelegate {
 
     // TableView delegates
     @objc(tableView:objectValueForTableColumn:row:) func tableView(_ tableView: NSTableView, objectValueFor tableColumn: NSTableColumn?, row: Int) -> Any? {

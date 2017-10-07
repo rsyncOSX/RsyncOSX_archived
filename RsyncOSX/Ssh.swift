@@ -154,7 +154,7 @@ class Ssh: Files {
         self.scpArguments = ScpArgumentsSsh(hiddenID: hiddenID)
         self.arguments = scpArguments!.getArguments(operation: .chmod, key: key, path: nil)
         self.command = self.scpArguments!.getCommand()
-        self.chmod = ChmodPubKey(key:key)
+        self.chmod = ChmodPubKey(key: key)
     }
 
     // Execute command

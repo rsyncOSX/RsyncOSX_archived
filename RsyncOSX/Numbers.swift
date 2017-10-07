@@ -187,12 +187,12 @@ final class Numbers {
         // Dont have numbers of file as input
         if numberOfFiles == nil {
             return String(self.outputprocess!.count) + " files : " +
-                String(format:"%.2f", (bytesTotal/1024)/1000) +
-                " MB in " + String(format:"%.2f", seconds) + " seconds"
+                String(format: "%.2f", (bytesTotal/1024)/1000) +
+                " MB in " + String(format: "%.2f", seconds) + " seconds"
         } else {
             return numberOfFiles! + " files : " +
-                String(format:"%.2f", (bytesTotal/1024)/1000) +
-                " MB in " + String(format:"%.2f", seconds) + " seconds"
+                String(format: "%.2f", (bytesTotal/1024)/1000) +
+                " MB in " + String(format: "%.2f", seconds) + " seconds"
         }
     }
 

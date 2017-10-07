@@ -382,7 +382,7 @@ class Configurations {
         self.configurationsDataSource = nil
         self.profile = profile
         self.vctabmain = viewcontroller
-        self.storageapi = PersistentStorageAPI(profile : self.profile)
+        self.storageapi = PersistentStorageAPI(profile: self.profile)
         self.readconfigurations()
     }
 }

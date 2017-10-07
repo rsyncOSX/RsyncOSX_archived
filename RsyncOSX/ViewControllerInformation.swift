@@ -50,7 +50,7 @@ class ViewControllerInformation: NSViewController {
 
 }
 
-extension ViewControllerInformation : NSTableViewDataSource {
+extension ViewControllerInformation: NSTableViewDataSource {
 
     func numberOfRows(in aTableView: NSTableView) -> Int {
         if self.output != nil {
@@ -62,7 +62,7 @@ extension ViewControllerInformation : NSTableViewDataSource {
 
 }
 
-extension ViewControllerInformation : NSTableViewDelegate {
+extension ViewControllerInformation: NSTableViewDelegate {
 
     func tableView(_ tableView: NSTableView, viewFor tableColumn: NSTableColumn?, row: Int) -> NSView? {
         var text: String = ""

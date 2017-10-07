@@ -290,7 +290,7 @@ class ViewControllertabMain: NSViewController {
     // Selecting profiles
     @IBAction func profiles(_ sender: NSButton) {
         if self.loadProfileMenu == true {
-            self.showProcessInfo(info:.changeprofile)
+            self.showProcessInfo(info: .changeprofile)
             globalMainQueue.async(execute: { () -> Void in
                 self.presentViewControllerAsSheet(self.viewControllerProfile)
             })
@@ -531,7 +531,7 @@ class ViewControllertabMain: NSViewController {
 
 // Extensions
 
-extension ViewControllertabMain : NSTableViewDataSource {
+extension ViewControllertabMain: NSTableViewDataSource {
 
     // Delegate for size of table
     func numberOfRows(in tableView: NSTableView) -> Int {
@@ -542,7 +542,7 @@ extension ViewControllertabMain : NSTableViewDataSource {
     }
 }
 
-extension ViewControllertabMain : NSTableViewDelegate {
+extension ViewControllertabMain: NSTableViewDelegate {
 
     // Function to test for remote server available or not, used in tableview delegate
     private func testRow(_ row: Int) -> Bool {
@@ -584,7 +584,7 @@ extension ViewControllertabMain : NSTableViewDelegate {
             } else {
                 if self.testRow(row) {
                     text = object[tableColumn!.identifier] as? String
-                    let attributedString = NSMutableAttributedString(string:(text!))
+                    let attributedString = NSMutableAttributedString(string: (text!))
                     let range = (text! as NSString).range(of: text!)
                     attributedString.addAttribute(NSAttributedStringKey.foregroundColor, value: NSColor.red, range: range)
                     return attributedString
@@ -918,7 +918,7 @@ extension ViewControllertabMain: AbortOperations {
     // Abort any task, either single- or batch task
     func abortOperations() {
         // Terminates the running process
-        self.showProcessInfo(info:.abort)
+        self.showProcessInfo(info: .abort)
         if let process = self.process {
             process.terminate()
             self.index = nil
@@ -1038,7 +1038,7 @@ extension ViewControllertabMain: SingleTask {
                 return
             }
             let number = Numbers(output: output)
-            self.transferredNumber.stringValue = NumberFormatter.localizedString(from:NSNumber(value: number.getTransferredNumbers(numbers: .transferredNumber)), number: NumberFormatter.Style.decimal)
+            self.transferredNumber.stringValue = NumberFormatter.localizedString(from: NSNumber(value: number.getTransferredNumbers(numbers: .transferredNumber)), number: NumberFormatter.Style.decimal)
             self.transferredNumberSizebytes.stringValue = NumberFormatter.localizedString(from: NSNumber(value: number.getTransferredNumbers(numbers: .transferredNumberSizebytes)), number: NumberFormatter.Style.decimal)
             self.totalNumber.stringValue = NumberFormatter.localizedString(from: NSNumber(value: number.getTransferredNumbers(numbers: .totalNumber)), number: NumberFormatter.Style.decimal)
             self.totalNumberSizebytes.stringValue = NumberFormatter.localizedString(from: NSNumber(value: number.getTransferredNumbers(numbers: .totalNumberSizebytes)), number: NumberFormatter.Style.decimal)

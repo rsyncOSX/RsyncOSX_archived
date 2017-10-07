@@ -248,7 +248,7 @@ class ViewControllertabSchedule: NSViewController {
 
 }
 
-extension ViewControllertabSchedule : NSTableViewDataSource {
+extension ViewControllertabSchedule: NSTableViewDataSource {
 
     func numberOfRows(in tableView: NSTableView) -> Int {
         guard self.configurations != nil else {
@@ -258,7 +258,7 @@ extension ViewControllertabSchedule : NSTableViewDataSource {
     }
 }
 
-extension ViewControllertabSchedule : NSTableViewDelegate {
+extension ViewControllertabSchedule: NSTableViewDelegate {
 
     @objc(tableView:objectValueForTableColumn:row:) func tableView(_ tableView: NSTableView, objectValueFor tableColumn: NSTableColumn?, row: Int) -> Any? {
         guard row < self.configurations!.configurationsDataSourcecountBackupOnlyCount() else {

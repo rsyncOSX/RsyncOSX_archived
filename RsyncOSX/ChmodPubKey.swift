@@ -56,7 +56,6 @@ final class ChmodPubKey {
             self.work!.append(.chmodDsa)
         default:
             self.work = nil
-            break
         }
     }
 }

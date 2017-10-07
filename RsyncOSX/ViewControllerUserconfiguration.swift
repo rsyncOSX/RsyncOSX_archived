@@ -136,7 +136,7 @@ class ViewControllerUserconfiguration: NSViewController {
         }
         self.rsyncPath.delegate = self
         self.restorePath.delegate = self
-        self.storageapi = PersistentStorageAPI(profile : nil)
+        self.storageapi = PersistentStorageAPI(profile: nil)
     }
 
     override func viewDidAppear() {
@@ -179,7 +179,7 @@ class ViewControllerUserconfiguration: NSViewController {
 
 }
 
-extension ViewControllerUserconfiguration : NSTextFieldDelegate {
+extension ViewControllerUserconfiguration: NSTextFieldDelegate {
 
     override func controlTextDidChange(_ obj: Notification) {
         self.version3rsync.state = .on
