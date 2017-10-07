@@ -84,8 +84,10 @@ final class ScheduleLoggData {
                         "offsiteServer": self.configurations!.getResourceConfiguration(hiddenID, resource: .offsiteServer),
                         "dateExecuted": (dict.value(forKey: "dateExecuted") as? String)!,
                         "resultExecuted": (dict.value(forKey: "resultExecuted") as? String)!,
-                        "parent": (dict.value(forKey: "parent") as? String)!,
-                        "hiddenID": hiddenID]
+                        "hiddenID": hiddenID,
+                        "parent": i,
+                        "sibling": j]
+                    print(hiddenID, i, j)
                     data.append(logdetail)
                 }
             }
@@ -104,13 +106,11 @@ final class ScheduleLoggData {
     }
 
     init () {
-        self.configurationsDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain)
-            as? ViewControllertabMain
-        self.schedulesDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain)
-            as? ViewControllertabMain
+        self.configurationsDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllertabMain
+        self.schedulesDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllertabMain
         self.configurations = self.configurationsDelegate?.getconfigurationsobject()
         self.schedules = self.schedulesDelegate?.getschedulesobject()
-        // Read and sort loggdata only once
+        // Read and sort loggdata
         if self.loggdata == nil {
             self.readAndSortAllLoggdata()
         }

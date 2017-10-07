@@ -138,7 +138,6 @@ class Schedules: ScheduleWriteLoggData {
     func deleteorstopschedule(data: Array<NSMutableDictionary>) {
         var update: Bool = false
         if (data.count) > 0 {
-            let hiddenID = data[0].value(forKey: "hiddenID") as? Int
             let stop = data.filter({ return (($0.value(forKey: "stopCellID") as? Int) == 1)})
             let delete = data.filter({ return (($0.value(forKey: "deleteCellID") as? Int) == 1)})
             // Delete Schedules
@@ -154,8 +153,6 @@ class Schedules: ScheduleWriteLoggData {
                 for i in 0 ..< stop.count {
                     self.stop(dict: stop[i])
                 }
-                // Computing new parent key before saving to disk.
-                self.updateExecutedNewKey(hiddenID!)
             }
             if update {
                 // Saving the resulting data file
@@ -205,16 +202,6 @@ class Schedules: ScheduleWriteLoggData {
         }
     }
 
-    func checkKey(_ dict1: NSDictionary, dict2: NSDictionary) -> Bool {
-        let keyexecute = dict1.value(forKey: "parent") as? String
-        let keyparent = self.computeKey(dict2)
-        if keyparent == keyexecute {
-            return true
-        } else {
-            return false
-        }
-    }
-
     // Returning the set of executed tasks for å schedule.
     // Used for recalcutlate the parent key when task change schedule
     // from active to "stopped"
@@ -225,42 +212,6 @@ class Schedules: ScheduleWriteLoggData {
             return schedule.logrecords
         } else {
             return nil
-        }
-    }
-
-    // Computing new parentkeys AFTER new schedule is updated.
-    // Returning set updated keys
-    private func computeNewParentKeys(_ hiddenID: Int) -> Array<NSMutableDictionary>? {
-        var dict: NSMutableDictionary?
-        var result = self.schedules.filter({return ($0.hiddenID == hiddenID) && ($0.schedule == "stopped")})
-        var executed: Array<NSMutableDictionary>?
-        if result.count > 0 {
-            let scheduleConfig = result[0]
-            dict = [
-                "hiddenID": scheduleConfig.hiddenID,
-                "schedule": scheduleConfig.schedule,
-                "dateStart": scheduleConfig.dateStart
-            ]
-            if let dicts = self.getScheduleExecuted(hiddenID) {
-                for i in 0 ..< dicts.count {
-                    let key = self.computeKey(dict!)
-                    dicts[i].setValue(key, forKey: "parent")
-                }
-                executed = dicts
-            }
-        }
-        return executed
-    }
-
-    // Setting updated executes to schedule.
-    // Used when a group is set from active to "stopped"
-    private func updateExecutedNewKey(_ hiddenID: Int) {
-        let executed: Array<NSMutableDictionary>? = self.computeNewParentKeys(hiddenID)
-        loop : for i in 0 ..< self.schedules.count where self.schedules[i].hiddenID == hiddenID {
-            if executed != nil {
-                self.schedules[i].logrecords = executed!
-            }
-            break loop
         }
     }
 

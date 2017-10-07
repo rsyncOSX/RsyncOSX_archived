@@ -5,7 +5,7 @@
 //  Created by Thomas Evensen on 19.04.2017.
 //  Copyright © 2017 Thomas Evensen. All rights reserved.
 //
-//  swiftlint:disable syntactic_sugar
+//  swiftlint:disable syntactic_sugar line_length
 
 import Foundation
 import Cocoa
@@ -25,41 +25,11 @@ class ScheduleWriteLoggData {
     // Delegate function for deselect row in table main view after loggdata is saved
     weak var deselectrowDelegate: DeselectRowTable?
 
-    /// Function for deleting log row
-    /// - parameter hiddenID : hiddenID
-    /// - parameter parent : key to log row
-    /// - parameter resultExecuted : resultExecuted
-    /// - parameter dateExecuted : dateExecuted
-    func deletelogrow (hiddenID: Int, parent: String, resultExecuted: String, dateExecuted: String) {
-        var result = self.schedules.filter({return ($0.hiddenID == hiddenID)})
-        if result.count > 0 {
-            loop: for i in 0 ..< result.count {
-                let delete = result[i].logrecords.filter({return (($0.value(forKey: "parent") as? String) == parent &&
-                    ($0.value(forKey: "resultExecuted") as? String) == resultExecuted &&
-                    ($0.value(forKey: "dateExecuted") as? String) == dateExecuted)})
-                if delete.count == 1 {
-                    // Get index of record storing the logrecord
-                    let indexA = self.schedules.index(where: { $0.dateStart == result[i].dateStart &&
-                        $0.schedule == result[i].schedule &&
-                        $0.hiddenID == result[i].hiddenID})
-                    // Get the index of the logrecord itself and remove the the record
-                    let indexB = result[i].logrecords.index(of: delete[0])
-                    // Guard index not nil
-                    guard indexA != nil && indexB != nil else {
-                        return
-                    }
-                    result[i].logrecords.remove(at: indexB!)
-                    self.schedules[indexA!].logrecords = result[i].logrecords
-                    // Do a refresh of table
-                    self.refreshlogviewDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vcloggdata)
-                        as? ViewControllerLoggData
-                    self.refreshlogviewDelegate?.reloadtabledata()
-                    // Save schedule including logs
-                    self.storageapi!.saveScheduleFromMemory()
-                    break loop
-                }
-            }
-        }
+    func deletelogrow(hiddenID: Int, parent: Int, sibling: Int) {
+        self.schedules[parent].logrecords.remove(at: sibling)
+        self.storageapi!.saveScheduleFromMemory()
+        self.refreshlogviewDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vcloggdata) as? ViewControllerLoggData
+        self.refreshlogviewDelegate?.reloadtabledata()
     }
 
     /// Function adds results of task to file (via memory). Memory are
@@ -79,8 +49,7 @@ class ScheduleWriteLoggData {
         }
         if inserted {
             self.storageapi!.saveScheduleFromMemory()
-            self.deselectrowDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain)
-                as? ViewControllertabMain
+            self.deselectrowDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllertabMain
             self.deselectrowDelegate?.deselectRow()
         }
     }
@@ -95,12 +64,6 @@ class ScheduleWriteLoggData {
                     let dict = NSMutableDictionary()
                     dict.setObject(date, forKey: "dateExecuted" as NSCopying)
                     dict.setObject(result, forKey: "resultExecuted" as NSCopying)
-                    let dictKey: NSDictionary = [
-                        "dateStart": "01 Jan 1900 00:00",
-                        "schedule": self.schedules[i].schedule,
-                        "hiddenID": self.schedules[i].hiddenID]
-                    let parent: String = self.computeKey(dictKey)
-                    dict.setValue(parent, forKey: "parent")
                     self.schedules[i].logrecords.append(dict)
                     loggadded = true
                 }
@@ -118,8 +81,6 @@ class ScheduleWriteLoggData {
             let dict = NSMutableDictionary()
             dict.setObject(date, forKey: "dateExecuted" as NSCopying)
             dict.setObject(result, forKey: "resultExecuted" as NSCopying)
-            let parent: String = self.computeKey(masterdict)
-            dict.setValue(parent, forKey: "parent")
             let executed = NSMutableArray()
             executed.add(dict)
             let newSchedule = ConfigurationSchedule(dictionary: masterdict, log: executed)
@@ -146,15 +107,6 @@ class ScheduleWriteLoggData {
                         let dict = NSMutableDictionary()
                         dict.setObject(date, forKey: "dateExecuted" as NSCopying)
                         dict.setObject(result, forKey: "resultExecuted" as NSCopying)
-                        // Compute key to parent
-                        // Just to pass schedule in dictionary, no saved but used for computing key to parent
-                        let dictKey: NSDictionary = [
-                            "dateStart": self.schedules[i].dateStart,
-                            "schedule": self.schedules[i].schedule,
-                            "hiddenID": self.schedules[i].hiddenID
-                        ]
-                        let parent: String = self.computeKey(dictKey)
-                        dict.setValue(parent, forKey: "parent")
                         self.schedules[i].logrecords.append(dict)
                         self.storageapi!.saveScheduleFromMemory()
                         break loop
@@ -162,17 +114,6 @@ class ScheduleWriteLoggData {
                 }
             }
         }
-    }
-
-    // Computing key for checking of parent.
-    // Parent key is stored in executed dictionary
-    func computeKey (_ dict: NSDictionary) -> String {
-        var key: String?
-        let hiddenID: Int = (dict.value(forKey: "hiddenID") as? Int)!
-        let schedule: String = (dict.value(forKey: "schedule") as? String)!
-        let dateStart: String = (dict.value(forKey: "dateStart") as? String)!
-        key = String(hiddenID) + schedule + dateStart
-        return key!
     }
 
     init(viewcontroller: NSViewController) {

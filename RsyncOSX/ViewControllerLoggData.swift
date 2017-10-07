@@ -6,9 +6,14 @@
 //  Created by Thomas Evensen on 23/09/2016.
 //  Copyright © 2016 Thomas Evensen. All rights reserved.
 //
+// swiftlint:disable line_length
 
 import Foundation
 import Cocoa
+
+protocol ReadLoggdata: class {
+    func readloggdata()
+}
 
 class ViewControllerLoggData: NSViewController {
 
@@ -45,10 +50,9 @@ class ViewControllerLoggData: NSViewController {
             self.deleteButton.state = .off
             return
         }
-        self.schedules!.deletelogrow(hiddenID: (self.row?.value(forKey: "hiddenID") as? Int)!,
-                                               parent: (self.row?.value(forKey: "parent") as? String)!,
-                                               resultExecuted: (self.row?.value(forKey: "resultExecuted") as? String)!,
-                                               dateExecuted: (self.row?.value(forKey: "dateExecuted") as? String)!)
+        self.schedules!.deletelogrow(hiddenID: (self.row!.value(forKey: "hiddenID") as? Int)!,
+                                      parent: (self.row!.value(forKey: "parent") as? Int)!,
+                                      sibling: (self.row!.value(forKey: "sibling") as? Int)!)
         self.deleteButton.state = .off
         self.deselectRow()
     }
@@ -62,8 +66,7 @@ class ViewControllerLoggData: NSViewController {
         self.sorting.usesThreadedAnimation = true
         // Reference to LogViewController
         ViewControllerReference.shared.setvcref(viewcontroller: .vcloggdata, nsviewcontroller: self)
-        self.schedulesDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain)
-            as? ViewControllertabMain
+        self.schedulesDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllertabMain
     }
 
     override func viewDidAppear() {
@@ -88,9 +91,7 @@ class ViewControllerLoggData: NSViewController {
 
     // deselect a row after row is deleted
     private func deselectRow() {
-        guard self.index != nil else {
-            return
-        }
+        guard self.index != nil else { return }
         self.scheduletable.deselectRow(self.index!)
     }
 }
@@ -100,9 +101,7 @@ extension ViewControllerLoggData: NSSearchFieldDelegate {
     override func controlTextDidChange(_ obj: Notification) {
         guard self.server.state.rawValue == 1 ||
             self.catalog.state.rawValue == 1 ||
-            self.date.state.rawValue == 1 else {
-            return
-        }
+            self.date.state.rawValue == 1 else { return }
         let filterstring = self.search.stringValue
         self.sorting.startAnimation(self)
         if filterstring.isEmpty {
@@ -145,6 +144,9 @@ extension ViewControllerLoggData: NSTableViewDataSource {
 extension ViewControllerLoggData: NSTableViewDelegate {
 
     func tableView(_ tableView: NSTableView, objectValueFor tableColumn: NSTableColumn?, row: Int) -> Any? {
+        guard self.tabledata != nil else {
+            return nil
+        }
         let object: NSDictionary = self.tabledata![row]
         return object[tableColumn!.identifier] as? String
     }
@@ -180,5 +182,22 @@ extension ViewControllerLoggData: Readfiltereddata {
             self.scheduletable.reloadData()
             self.sorting.stopAnimation(self)
         })
+    }
+}
+
+extension ViewControllerLoggData: ReadLoggdata {
+    func readloggdata() {
+        self.schedules = nil
+        self.tabledata = nil
+        self.schedules = self.schedulesDelegate?.getschedulesobject()
+        globalMainQueue.async(execute: { () -> Void in
+            self.sorting.startAnimation(self)
+            self.tabledata = ScheduleLoggData().getallloggdata()
+            self.scheduletable.reloadData()
+            self.sorting.stopAnimation(self)
+        })
+        self.catalog.state = .on
+        self.what = .localCatalog
+        self.deleteButton.state = .off
     }
 }
