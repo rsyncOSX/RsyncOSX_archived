@@ -18,9 +18,9 @@ protocol StartTimer : class {
 class ViewControllertabSchedule: NSViewController {
 
     weak var configurationsDelegate: GetConfigurationsObject?
-    var configurations: Configurations?
+    weak var configurations: Configurations?
     weak var schedulesDelegate: GetSchedulesObject?
-    var schedules: Schedules?
+    weak var schedules: Schedules?
 
     // Main tableview
     @IBOutlet weak var mainTableView: NSTableView!
