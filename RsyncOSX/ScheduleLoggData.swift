@@ -87,7 +87,6 @@ final class ScheduleLoggData {
                         "hiddenID": hiddenID,
                         "parent": i,
                         "sibling": j]
-                    print(hiddenID, i, j)
                     data.append(logdetail)
                 }
             }

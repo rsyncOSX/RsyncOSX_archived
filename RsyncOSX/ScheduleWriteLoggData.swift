@@ -14,19 +14,19 @@ class ScheduleWriteLoggData {
 
     weak var configurationsDelegate: GetConfigurationsObject?
     var configurations: Configurations?
-
-    // Storage API
     var storageapi: PersistentStorageAPI?
-    // Array to store all scheduled jobs and history of executions
-    // Will be kept in memory until destroyed
-    var schedules = Array<ConfigurationSchedule>()
-    // Delegate function for doing a refresh of NSTableView in ViewControllerScheduleDetailsAboutRuns
+    var schedules: Array<ConfigurationSchedule>?
     weak var refreshlogviewDelegate: Reloadandrefresh?
-    // Delegate function for deselect row in table main view after loggdata is saved
     weak var deselectrowDelegate: DeselectRowTable?
 
     func deletelogrow(hiddenID: Int, parent: Int, sibling: Int) {
-        self.schedules[parent].logrecords.remove(at: sibling)
+        guard parent < self.schedules!.count else {
+            return
+        }
+        guard sibling <  self.schedules![parent].logrecords.count else {
+            return
+        }
+        self.schedules![parent].logrecords.remove(at: sibling)
         self.storageapi!.saveScheduleFromMemory()
         self.refreshlogviewDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vcloggdata) as? ViewControllerLoggData
         self.refreshlogviewDelegate?.reloadtabledata()
@@ -56,15 +56,15 @@ class ScheduleWriteLoggData {
 
     private func addloggtaskmanualexisting(_ hiddenID: Int, result: String, date: String) -> Bool {
         var loggadded: Bool = false
-        for i in 0 ..< self.schedules.count where
+        for i in 0 ..< self.schedules!.count where
             self.configurations!.getResourceConfiguration(hiddenID, resource: .task) == "backup" {
-                if self.schedules[i].hiddenID == hiddenID  &&
-                    self.schedules[i].schedule == "manuel" &&
-                    self.schedules[i].dateStop == nil {
+                if self.schedules![i].hiddenID == hiddenID  &&
+                    self.schedules![i].schedule == "manuel" &&
+                    self.schedules![i].dateStop == nil {
                     let dict = NSMutableDictionary()
                     dict.setObject(date, forKey: "dateExecuted" as NSCopying)
                     dict.setObject(result, forKey: "resultExecuted" as NSCopying)
-                    self.schedules[i].logrecords.append(dict)
+                    self.schedules![i].logrecords.append(dict)
                     loggadded = true
                 }
             }
@@ -84,7 +84,7 @@ class ScheduleWriteLoggData {
             let executed = NSMutableArray()
             executed.add(dict)
             let newSchedule = ConfigurationSchedule(dictionary: masterdict, log: executed)
-            self.schedules.append(newSchedule)
+            self.schedules!.append(newSchedule)
             loggadded = true
         }
         return loggadded
@@ -99,15 +99,15 @@ class ScheduleWriteLoggData {
     /// - parameter schedule : schedule of task
     func addresultschedule(_ hiddenID: Int, dateStart: String, result: String, date: String, schedule: String) {
         if self.configurations!.detailedlogging {
-            loop : for i in 0 ..< self.schedules.count {
-                if self.schedules[i].hiddenID == hiddenID  &&
-                    self.schedules[i].schedule == schedule &&
-                    self.schedules[i].dateStart == dateStart {
+            loop : for i in 0 ..< self.schedules!.count {
+                if self.schedules![i].hiddenID == hiddenID  &&
+                    self.schedules![i].schedule == schedule &&
+                    self.schedules![i].dateStart == dateStart {
                     if (self.configurations!.getResourceConfiguration(hiddenID, resource: .task) == "backup") {
                         let dict = NSMutableDictionary()
                         dict.setObject(date, forKey: "dateExecuted" as NSCopying)
                         dict.setObject(result, forKey: "resultExecuted" as NSCopying)
-                        self.schedules[i].logrecords.append(dict)
+                        self.schedules![i].logrecords.append(dict)
                         self.storageapi!.saveScheduleFromMemory()
                         break loop
                     }
@@ -119,5 +119,6 @@ class ScheduleWriteLoggData {
     init(viewcontroller: NSViewController) {
         self.configurationsDelegate = viewcontroller as? ViewControllertabMain
         self.configurations = self.configurationsDelegate?.getconfigurationsobject()
+        self.schedules = Array<ConfigurationSchedule>()
     }
 }

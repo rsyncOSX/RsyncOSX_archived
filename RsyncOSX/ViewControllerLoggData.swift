@@ -23,6 +23,7 @@ class ViewControllerLoggData: NSViewController {
     var row: NSDictionary?
     var what: Filterlogs?
     var index: Int?
+    var viewispresent: Bool = false
 
     @IBOutlet weak var scheduletable: NSTableView!
     @IBOutlet weak var search: NSSearchField!
@@ -71,22 +72,15 @@ class ViewControllerLoggData: NSViewController {
 
     override func viewDidAppear() {
         super.viewDidAppear()
-        self.schedules = self.schedulesDelegate?.getschedulesobject()
-        globalMainQueue.async(execute: { () -> Void in
-            self.sorting.startAnimation(self)
-            self.tabledata = ScheduleLoggData().getallloggdata()
-            self.scheduletable.reloadData()
-            self.sorting.stopAnimation(self)
-        })
-        self.catalog.state = .on
-        self.what = .localCatalog
-        self.deleteButton.state = .off
+        self.viewispresent = true
+        self.readloggdata()
     }
 
     override func viewDidDisappear() {
         super.viewDidDisappear()
         self.sorting.startAnimation(self)
         self.tabledata = nil
+        self.viewispresent = false
     }
 
     // deselect a row after row is deleted
@@ -187,17 +181,19 @@ extension ViewControllerLoggData: Readfiltereddata {
 
 extension ViewControllerLoggData: ReadLoggdata {
     func readloggdata() {
-        self.schedules = nil
-        self.tabledata = nil
-        self.schedules = self.schedulesDelegate?.getschedulesobject()
-        globalMainQueue.async(execute: { () -> Void in
-            self.sorting.startAnimation(self)
-            self.tabledata = ScheduleLoggData().getallloggdata()
-            self.scheduletable.reloadData()
-            self.sorting.stopAnimation(self)
-        })
-        self.catalog.state = .on
-        self.what = .localCatalog
-        self.deleteButton.state = .off
+        if viewispresent {
+            self.schedules = nil
+            self.tabledata = nil
+            self.schedules = self.schedulesDelegate?.getschedulesobject()
+            globalMainQueue.async(execute: { () -> Void in
+                self.sorting.startAnimation(self)
+                self.tabledata = ScheduleLoggData().getallloggdata()
+                self.scheduletable.reloadData()
+                self.sorting.stopAnimation(self)
+            })
+            self.catalog.state = .on
+            self.what = .localCatalog
+            self.deleteButton.state = .off
+        }
     }
 }
