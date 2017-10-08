@@ -70,6 +70,11 @@ class ViewControllerCopyFilesSource: NSViewController {
         }
         self.configurations = self.configurationsDelegate?.getconfigurationsobject()
     }
+    
+    override func viewDidDisappear() {
+        super.viewDidDisappear()
+        self.index = nil
+    }
 
     @objc(tableViewDoubleClick:) func tableViewDoubleClick(sender: AnyObject) {
         if let pvc = self.presenting as? ViewControllerCopyFiles {
