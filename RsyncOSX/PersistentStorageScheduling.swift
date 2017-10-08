@@ -20,7 +20,7 @@ protocol Readupdatedschedules: class {
 final class PersistentStorageScheduling: Readwritefiles {
 
     weak var schedulesDelegate: GetSchedulesObject?
-    weak var schedules: Schedules?
+    var schedules: Schedules?
     weak var readschedulesDelegate: Readupdatedschedules?
     weak var readloggdataDelegate: ReadLoggdata?
     private var schedulesasDict: [NSDictionary]?

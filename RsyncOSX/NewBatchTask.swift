@@ -26,9 +26,9 @@ enum BatchViewProgressIndicator {
 
 final class NewBatchTask {
     weak var configurationsDelegate: GetConfigurationsObject?
-    weak var configurations: Configurations?
+    var configurations: Configurations?
     weak var schedulesDelegate: GetSchedulesObject?
-    weak var schedules: Schedules?
+    var schedules: Schedules?
     weak var closeviewerrorDelegate: closeViewError?
 
     // Protocol function used in Process().

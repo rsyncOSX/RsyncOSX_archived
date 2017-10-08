@@ -18,7 +18,7 @@ protocol ReadLoggdata: class {
 class ViewControllerLoggData: NSViewController {
 
     weak var schedulesDelegate: GetSchedulesObject?
-    weak var schedules: Schedules?
+    var schedules: Schedules?
     var tabledata: [NSDictionary]?
     var row: NSDictionary?
     var what: Filterlogs?

@@ -25,8 +25,8 @@ class ExecuteTask: Operation {
         configurationsDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllertabMain
         weak var schedulesDelegate: GetSchedulesObject?
         schedulesDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllertabMain
-        weak var schedules: Schedules?
-        weak var configurations: Configurations?
+        var schedules: Schedules?
+        var configurations: Configurations?
         configurations = configurationsDelegate?.getconfigurationsobject()
         schedules = schedulesDelegate?.getschedulesobject()
         // Delegate function for start and completion of scheduled jobs

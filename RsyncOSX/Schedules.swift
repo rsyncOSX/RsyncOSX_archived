@@ -9,7 +9,7 @@
 //  Created by Thomas Evensen on 09/05/16.
 //  Copyright © 2016 Thomas Evensen. All rights reserved.
 //
-//  swiftlint:disable syntactic_sugar
+//  swiftlint:disable syntactic_sugar line_length
 
 import Foundation
 import Cocoa
@@ -27,8 +27,7 @@ class Schedules: ScheduleWriteLoggData {
     private var vctabmain: NSViewController?
     // Reference to Timer in scheduled operation
     private var waitForTask: Timer?
-    // Reference to the first Scheduled job
-    // Is set when SortedAndExpanded is calculated
+    // Reference to the first Scheduled job, is set when SortedAndExpanded is calculated
     var scheduledJob: NSDictionary?
     weak var refreshDelegate: Reloadandrefresh?
     var profile: String?
@@ -59,6 +58,7 @@ class Schedules: ScheduleWriteLoggData {
     /// - parameter start: start date and time
     /// - parameter stop: stop date and time
     func addschedule (_ hiddenID: Int, schedule: String, start: Date, stop: Date) {
+        weak var localrefreshDelegate: Reloadandrefresh?
         let dateformatter = Tools().setDateformat()
         let dict = NSMutableDictionary()
         dict.setObject(hiddenID, forKey: "hiddenID" as NSCopying)
@@ -68,6 +68,8 @@ class Schedules: ScheduleWriteLoggData {
         let newSchedule = ConfigurationSchedule(dictionary: dict, log: nil)
         self.schedules!.append(newSchedule)
         self.storageapi!.saveScheduleFromMemory()
+        localrefreshDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabschedule) as? ViewControllertabSchedule
+        localrefreshDelegate?.reloadtabledata()
     }
 
     /// Function deletes all Schedules by hiddenID. Invoked when Configurations are
