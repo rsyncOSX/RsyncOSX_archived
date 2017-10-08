@@ -206,10 +206,8 @@ class ViewControllertabMain: NSViewController {
 
     // Menus as Radiobuttons for Edit functions in tabMainView
     @IBAction func radiobuttons(_ sender: NSButton) {
-
-        // Reset output
+        weak var localrefreshDelegate: Reloadandrefresh?
         self.output = nil
-        // Clear numbers from dryrun
         self.setNumbers(output: nil)
         self.setInfo(info: "Estimate", color: .blue)
         self.light.color = .systemYellow
@@ -243,6 +241,9 @@ class ViewControllertabMain: NSViewController {
                         self.hiddenID = nil
                         self.index = nil
                         self.reloadtabledata()
+                        // Reset in tabSchedule
+                        localrefreshDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabschedule) as? ViewControllertabSchedule
+                        localrefreshDelegate?.reloadtabledata()
                     }
                 }
                 self.delete.state = .off
@@ -668,7 +669,7 @@ extension ViewControllertabMain: NewProfile {
 
     // Function is called from profiles when new or default profiles is seleceted
     func newProfile(profile: String?) {
-        weak var refreshDelegate: Reloadandrefresh?
+        weak var localrefreshDelegate: Reloadandrefresh?
         self.process = nil
         self.output = nil
         self.outputbatch = nil
@@ -687,8 +688,8 @@ extension ViewControllertabMain: NewProfile {
         self.displayProfile()
         self.reloadtabledata()
         // Reset in tabSchedule
-        refreshDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabschedule) as? ViewControllertabSchedule
-        refreshDelegate?.reloadtabledata()
+        localrefreshDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabschedule) as? ViewControllertabSchedule
+        localrefreshDelegate?.reloadtabledata()
         // We have to start any Scheduled process again - if any
         _ = ScheduleOperation()
     }
