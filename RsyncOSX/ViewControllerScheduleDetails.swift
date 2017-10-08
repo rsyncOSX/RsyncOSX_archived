@@ -94,6 +94,8 @@ class ViewControllerScheduleDetails: NSViewController {
 extension ViewControllerScheduleDetails: NSTableViewDataSource {
 
     func numberOfRows(in tableView: NSTableView) -> Int {
+        self.configurations = self.configurationsDelegate?.getconfigurationsobject()
+        self.schedules = self.schedulesDelegate?.getschedulesobject()
         if self.hiddendID != nil && self.data != nil {
             return (self.data!.count)
         } else {
@@ -106,7 +108,7 @@ extension ViewControllerScheduleDetails: NSTableViewDataSource {
 extension ViewControllerScheduleDetails: NSTableViewDelegate {
 
     // TableView delegates
-    @objc(tableView:objectValueForTableColumn:row:) func tableView(_ tableView: NSTableView, objectValueFor tableColumn: NSTableColumn?, row: Int) -> Any? {
+    func tableView(_ tableView: NSTableView, objectValueFor tableColumn: NSTableColumn?, row: Int) -> Any? {
         // If active schedule color row red
         var active: Bool = false
         guard self.data != nil else {
@@ -143,7 +145,7 @@ extension ViewControllerScheduleDetails: NSTableViewDelegate {
         return nil
     }
 
-    @objc(tableView:setObjectValue:forTableColumn:row:) func tableView(_ tableView: NSTableView, setObjectValue object: Any?, for tableColumn: NSTableColumn?, row: Int) {
+    func tableView(_ tableView: NSTableView, setObjectValue object: Any?, for tableColumn: NSTableColumn?, row: Int) {
         if tableColumn!.identifier.rawValue == "stopCellID" || tableColumn!.identifier.rawValue == "deleteCellID" {
             var stop: Int = (self.data![row].value(forKey: "stopCellID") as? Int)!
             var delete: Int = (self.data![row].value(forKey: "deleteCellID") as? Int)!

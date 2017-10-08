@@ -670,6 +670,7 @@ extension ViewControllertabMain: NewProfile {
     // Function is called from profiles when new or default profiles is seleceted
     func newProfile(profile: String?) {
         weak var localrefreshDelegate: Reloadandrefresh?
+        weak var localdeselectrowDelegate: DeselectRowTable?
         self.process = nil
         self.output = nil
         self.outputbatch = nil
@@ -690,6 +691,8 @@ extension ViewControllertabMain: NewProfile {
         // Reset in tabSchedule
         localrefreshDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabschedule) as? ViewControllertabSchedule
         localrefreshDelegate?.reloadtabledata()
+        localdeselectrowDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabschedule) as? ViewControllertabSchedule
+        localdeselectrowDelegate?.deselectRow()
         // We have to start any Scheduled process again - if any
         _ = ScheduleOperation()
     }
