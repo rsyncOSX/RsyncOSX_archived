@@ -20,7 +20,7 @@ class ViewControllertabSchedule: NSViewController {
     weak var configurationsDelegate: GetConfigurationsObject?
     weak var configurations: Configurations?
     weak var schedulesDelegate: GetSchedulesObject?
-    weak var schedules: Schedules?
+    var schedules: Schedules?
 
     // Main tableview
     @IBOutlet weak var mainTableView: NSTableView!
@@ -255,12 +255,8 @@ extension ViewControllertabSchedule: NSTableViewDataSource {
 extension ViewControllertabSchedule: NSTableViewDelegate {
 
     @objc(tableView:objectValueForTableColumn:row:) func tableView(_ tableView: NSTableView, objectValueFor tableColumn: NSTableColumn?, row: Int) -> Any? {
-        guard row < self.configurations!.configurationsDataSourcecountBackupOnlyCount() else {
-            return nil
-        }
-        guard self.schedules != nil else {
-            return nil
-        }
+        guard row < self.configurations!.configurationsDataSourcecountBackupOnlyCount() else { return nil }
+        guard self.schedules != nil else { return nil }
         let object: NSDictionary = self.configurations!.getConfigurationsDataSourcecountBackupOnly()![row]
         var text: String?
         var schedule: Bool = false
