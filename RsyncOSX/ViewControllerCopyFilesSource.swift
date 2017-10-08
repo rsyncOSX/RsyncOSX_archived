@@ -13,7 +13,7 @@ import Cocoa
 class ViewControllerCopyFilesSource: NSViewController {
 
     weak var configurationsDelegate: GetConfigurationsObject?
-    var configurations: Configurations?
+    weak var configurations: Configurations?
     @IBOutlet weak var mainTableView: NSTableView!
     @IBOutlet weak var closeButton: NSButton!
 
@@ -42,23 +42,15 @@ class ViewControllerCopyFilesSource: NSViewController {
     // Initial functions viewDidLoad and viewDidAppear
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do view setup here.
-        // Setting delegates and datasource
         self.mainTableView.delegate = self
         self.mainTableView.dataSource = self
-        globalMainQueue.async(execute: { () -> Void in
-            self.mainTableView.reloadData()
-        })
-        // Dismisser is root controller
         if let pvc = self.presenting as? ViewControllerCopyFiles {
             self.dismissDelegate = pvc
         } else if let pvc = self.presenting as? ViewControllerSsh {
             self.dismissDelegate = pvc
         }
-        // Double click on row to select
         self.mainTableView.doubleAction = #selector(ViewControllerCopyFilesSource.tableViewDoubleClick(sender:))
-        self.configurationsDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain)
-            as? ViewControllertabMain
+        self.configurationsDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllertabMain
     }
 
     override func viewDidAppear() {
@@ -69,6 +61,14 @@ class ViewControllerCopyFilesSource: NSViewController {
             self.dismissDelegate = pvc
         }
         self.configurations = self.configurationsDelegate?.getconfigurationsobject()
+        globalMainQueue.async(execute: { () -> Void in
+            self.mainTableView.reloadData()
+        })
+    }
+
+    override func viewDidDisappear() {
+        super.viewDidDisappear()
+        self.index = nil
     }
 
     @objc(tableViewDoubleClick:) func tableViewDoubleClick(sender: AnyObject) {
@@ -86,8 +86,7 @@ class ViewControllerCopyFilesSource: NSViewController {
         self.dismissDelegate?.dismiss_view(viewcontroller: self)
     }
 
-    // when row is selected
-    // setting which table row is selected
+    // when row is selected, setting which table row is selected
     func tableViewSelectionDidChange(_ notification: Notification) {
         let myTableViewFromNotification = (notification.object as? NSTableView)!
         let indexes = myTableViewFromNotification.selectedRowIndexes
@@ -117,23 +116,18 @@ class ViewControllerCopyFilesSource: NSViewController {
 extension ViewControllerCopyFilesSource: NSTableViewDataSource {
     // Delegate for size of table
     func numberOfRows(in tableView: NSTableView) -> Int {
+        self.configurations = self.configurationsDelegate?.getconfigurationsobject()
         guard self.configurations != nil else {
             return 0
         }
-        return self.configurations!.getConfigurationsDataSourcecountBackupOnlyRemote()!.count
+        return self.configurations!.getConfigurationsDataSourcecountBackupOnlyRemote()?.count ?? 0
     }
 }
 
 extension ViewControllerCopyFilesSource: NSTableViewDelegate {
 
     // TableView delegates
-    @objc(tableView:objectValueForTableColumn:row:) func tableView(_ tableView: NSTableView, objectValueFor tableColumn: NSTableColumn?, row: Int) -> Any? {
-        guard self.configurations?.getConfigurationsDataSourcecountBackupOnlyRemote() != nil else {
-            return nil
-        }
-        guard row < self.configurations!.getConfigurationsDataSourcecountBackupOnlyRemote()!.count  else {
-            return nil
-        }
+    func tableView(_ tableView: NSTableView, objectValueFor tableColumn: NSTableColumn?, row: Int) -> Any? {
         let object: NSDictionary = self.configurations!.getConfigurationsDataSourcecountBackupOnlyRemote()![row]
         return object[tableColumn!.identifier] as? String
     }

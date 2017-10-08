@@ -170,11 +170,9 @@ class ViewControllertabSchedule: NSViewController {
             self.schedulessorted = ScheduleSortedAndExpand(viewcontroller: nil)
             self.infoschedulessorted = InfoScheduleSortedAndExpand(viewcontroller: nil, sortedandexpanded: self.schedulessorted)
         }
-        if self.configurations!.configurationsDataSourcecountBackupOnlyCount() > 0 {
-            globalMainQueue.async(execute: { () -> Void in
-                self.mainTableView.reloadData()
-            })
-        }
+        globalMainQueue.async(execute: { () -> Void in
+            self.mainTableView.reloadData()
+        })
         self.nextScheduledtask()
         self.startTimer()
     }
@@ -245,23 +243,22 @@ class ViewControllertabSchedule: NSViewController {
 extension ViewControllertabSchedule: NSTableViewDataSource {
 
     func numberOfRows(in tableView: NSTableView) -> Int {
+        self.configurations = self.configurationsDelegate?.getconfigurationsobject()
+        self.schedules = self.schedulesDelegate?.getschedulesobject()
         guard self.configurations != nil else {
             return 0
         }
-        return self.configurations!.configurationsDataSourcecountBackupOnlyCount()
+        return self.configurations!.getConfigurationsDataSourcecountBackupOnly()?.count ?? 0
     }
 }
 
 extension ViewControllertabSchedule: NSTableViewDelegate {
 
-    @objc(tableView:objectValueForTableColumn:row:) func tableView(_ tableView: NSTableView, objectValueFor tableColumn: NSTableColumn?, row: Int) -> Any? {
-        guard row < self.configurations!.configurationsDataSourcecountBackupOnlyCount() else { return nil }
-        guard self.schedules != nil else { return nil }
+   func tableView(_ tableView: NSTableView, objectValueFor tableColumn: NSTableColumn?, row: Int) -> Any? {
         let object: NSDictionary = self.configurations!.getConfigurationsDataSourcecountBackupOnly()![row]
         var text: String?
         var schedule: Bool = false
         var number: Int?
-
         let hiddenID: Int = (object.value(forKey: "hiddenID") as? Int)!
         if self.schedules!.hiddenIDinSchedule(hiddenID) {
             text = object[tableColumn!.identifier] as? String
