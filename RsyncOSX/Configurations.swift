@@ -171,17 +171,6 @@ class Configurations {
         return self.configurations!.filter({return ($0.task == "backup") && ($0.batch == "yes")})
     }
 
-    /// Function for returning count of all Configurations marked as backup (not restore)
-    /// - parameter none: none
-    /// - returns : Int
-    func configurationsDataSourcecountBackupOnlyCount() -> Int {
-        if let number = self.getConfigurationsDataSourcecountBackupOnly() {
-            return number.count
-        } else {
-            return 0
-        }
-    }
-
     /// Function computes arguments for rsync, either arguments for
     /// real runn or arguments for --dry-run for Configuration at selected index
     /// - parameter index: index of Configuration
