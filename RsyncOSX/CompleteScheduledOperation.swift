@@ -15,9 +15,9 @@ import Foundation
 final class CompleteScheduledOperation {
 
     weak var configurationsDelegate: GetConfigurationsObject?
-    weak var configurations: Configurations?
+    var configurations: Configurations?
     weak var schedulesDelegate: GetSchedulesObject?
-    weak var schedules: Schedules?
+    var schedules: Schedules?
     weak var startnextjobDelegate: StartNextScheduledTask?
     weak var notifyDelegate: ScheduledJobInProgress?
     weak var startTimerDelegate: StartTimer?

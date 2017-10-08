@@ -30,7 +30,6 @@ class ViewControllertabSchedule: NSViewController {
 
     private var index: Int?
     private var hiddenID: Int?
-    private var newSchedules: Bool?
     private var nextTask: Timer?
     private var schedulessorted: ScheduleSortedAndExpand?
     private var infoschedulessorted: InfoScheduleSortedAndExpand?
@@ -118,8 +117,6 @@ class ViewControllertabSchedule: NSViewController {
         let answer = Alerts.dialogOKCancel("Add Schedule?", text: "Cancel or OK")
         if answer {
             self.schedules!.addschedule(self.hiddenID!, schedule: schedule, start: startdate, stop: stopdate)
-            self.newSchedules = true
-            self.reloadtabledata()
             // Start next job, if any, by delegate
             self.startnextjobDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllertabMain
             self.startnextjobDelegate?.startanyscheduledtask()
@@ -154,7 +151,6 @@ class ViewControllertabSchedule: NSViewController {
     // Initial functions viewDidLoad and viewDidAppear
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.newSchedules = false
         self.mainTableView.delegate = self
         self.mainTableView.dataSource = self
         self.mainTableView.doubleAction = #selector(ViewControllertabMain.tableViewDoubleClick(sender:))
@@ -199,9 +195,7 @@ class ViewControllertabSchedule: NSViewController {
 
     // Update display next scheduled jobs in time
     @objc func nextScheduledtask() {
-        guard self.schedulessorted != nil else {
-            return
-        }
+        guard self.schedulessorted != nil else { return }
         // Displaying next two scheduled tasks
         self.firstLocalCatalog.textColor = .black
         self.firstScheduledTask.stringValue = self.infoschedulessorted!.whenIsNextTwoTasksString()[0]

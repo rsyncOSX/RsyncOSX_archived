@@ -12,9 +12,9 @@ import Cocoa
 class ViewControllerScheduledBackupinWork: NSViewController {
 
     weak var configurationsDelegate: GetConfigurationsObject?
-    weak var configurations: Configurations?
+    var configurations: Configurations?
     weak var schedulesDelegate: GetSchedulesObject?
-    weak var schedules: Schedules?
+    var schedules: Schedules?
 
     weak var dismissDelegate: DismissViewController?
     var waitToClose: Timer?
@@ -63,12 +63,9 @@ class ViewControllerScheduledBackupinWork: NSViewController {
         super.viewDidLoad()
         // Setting the source for delegate function
         // Dismisser is root controller
-        self.dismissDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain)
-            as? ViewControllertabMain
-        self.configurationsDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain)
-            as? ViewControllertabMain
-        self.schedulesDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain)
-            as? ViewControllertabMain
+        self.dismissDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllertabMain
+        self.configurationsDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllertabMain
+        self.schedulesDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllertabMain
     }
 
     override func viewDidAppear() {
