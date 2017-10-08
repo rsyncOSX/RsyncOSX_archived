@@ -6,7 +6,7 @@
 //  Copyright © 2017 Thomas Evensen. All rights reserved.
 //
 //  SwiftLint: OK 31 July 2017
-//  swiftlint:disable syntactic_sugar
+//  swiftlint:disable syntactic_sugar line_length
 
 import Foundation
 
@@ -22,13 +22,11 @@ class ExecuteTask: Operation {
     override func main() {
 
         weak var configurationsDelegate: GetConfigurationsObject?
-        configurationsDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain)
-            as? ViewControllertabMain
+        configurationsDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllertabMain
         weak var schedulesDelegate: GetSchedulesObject?
-        schedulesDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain)
-            as? ViewControllertabMain
-        var schedules: Schedules?
-        var configurations: Configurations?
+        schedulesDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllertabMain
+        weak var schedules: Schedules?
+        weak var configurations: Configurations?
         configurations = configurationsDelegate?.getconfigurationsobject()
         schedules = schedulesDelegate?.getschedulesobject()
         // Delegate function for start and completion of scheduled jobs
