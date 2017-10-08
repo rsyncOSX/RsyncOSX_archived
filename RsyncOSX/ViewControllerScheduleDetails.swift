@@ -145,11 +145,15 @@ extension ViewControllerScheduleDetails: NSTableViewDelegate {
 
     @objc(tableView:setObjectValue:forTableColumn:row:) func tableView(_ tableView: NSTableView, setObjectValue object: Any?, for tableColumn: NSTableColumn?, row: Int) {
         if tableColumn!.identifier.rawValue == "stopCellID" || tableColumn!.identifier.rawValue == "deleteCellID" {
+            var stop: Int = (self.data![row].value(forKey: "stopCellID") as? Int)!
+            var delete: Int = (self.data![row].value(forKey: "stopCellID") as? Int)!
+            if stop == 0 { stop = 1 } else if stop == 1 { stop = 0 }
+            if delete == 0 { delete = 1 } else if delete == 1 { delete = 0 }
             switch tableColumn!.identifier.rawValue {
             case "stopCellID":
-                self.data![row].setValue(1, forKey: "stopCellID")
+                self.data![row].setValue(stop, forKey: "stopCellID")
             case "deleteCellID":
-                self.data![row].setValue(1, forKey: "deleteCellID")
+                self.data![row].setValue(delete, forKey: "deleteCellID")
             default:
                 break
             }
