@@ -245,10 +245,7 @@ extension ViewControllertabSchedule: NSTableViewDataSource {
     func numberOfRows(in tableView: NSTableView) -> Int {
         self.configurations = self.configurationsDelegate?.getconfigurationsobject()
         self.schedules = self.schedulesDelegate?.getschedulesobject()
-        guard self.configurations != nil else {
-            return 0
-        }
-        return self.configurations!.getConfigurationsDataSourcecountBackupOnly()?.count ?? 0
+        return self.configurations?.getConfigurationsDataSourcecountBackupOnly()?.count ?? 0
     }
 }
 
@@ -348,5 +345,16 @@ extension ViewControllertabSchedule: StartTimer {
             self.mainTableView.reloadData()
         })
         self.nextScheduledtask()
+    }
+}
+
+// Deselect a row
+extension ViewControllertabSchedule: DeselectRowTable {
+    // deselect a row after row is deleted
+    func deselectRow() {
+        guard self.index != nil else {
+            return
+        }
+        self.mainTableView.deselectRow(self.index!)
     }
 }
