@@ -51,7 +51,7 @@ final class CopyFiles {
         self.command = nil
         self.output = nil
         self.output = OutputProcess()
-        self.process = CommandCopyFiles(command : nil, arguments: self.arguments)
+        self.process = CommandCopyFiles(command: nil, arguments: self.arguments)
         self.process!.executeProcess(output: self.output)
     }
 
@@ -72,7 +72,7 @@ final class CopyFiles {
                                                  localCatalog: nil, drynrun: nil)
         self.arguments = self.argumentsObject!.getArguments()
         self.command = self.argumentsObject!.getCommand()
-        self.process = CommandCopyFiles(command : self.command, arguments: self.arguments)
+        self.process = CommandCopyFiles(command: self.command, arguments: self.arguments)
         self.process!.executeProcess(output: self.output)
     }
 

@@ -9,7 +9,7 @@
 //   presistent store. Class is a interface
 //   for Schedule.
 //
-//   swiftlint:disable syntactic_sugar
+//   swiftlint:disable syntactic_sugar line_length
 
 import Foundation
 
@@ -20,9 +20,9 @@ protocol Readupdatedschedules: class {
 final class PersistentStorageScheduling: Readwritefiles {
 
     weak var schedulesDelegate: GetSchedulesObject?
-    var schedules: Schedules?
+    weak var schedules: Schedules?
     weak var readschedulesDelegate: Readupdatedschedules?
-    // Variables holds all scheduledata
+    weak var readloggdataDelegate: ReadLoggdata?
     private var schedulesasDict: [NSDictionary]?
 
     /// Function reads schedules from permanent store
@@ -86,14 +86,15 @@ final class PersistentStorageScheduling: Readwritefiles {
     private func writeToStore (_ array: Array<NSDictionary>) {
         if self.writeDatatoPersistentStorage(array, task: .schedule) {
             self.schedulesDelegate?.reloadschedules()
+            self.readloggdataDelegate?.readloggdata()
         }
     }
 
     init (profile: String?) {
         super.init(task: .schedule, profile: profile)
-        self.schedulesDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain)
-            as? ViewControllertabMain
+        self.schedulesDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllertabMain
         self.schedules = self.schedulesDelegate?.getschedulesobject()
+        self.readloggdataDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vcloggdata) as? ViewControllerLoggData
         if self.schedules == nil {
             self.schedulesasDict = self.getDatafromfile()
         }

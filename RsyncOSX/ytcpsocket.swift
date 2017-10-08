@@ -112,7 +112,7 @@ public class TCPClient: YSocket {
     */
     public func send(data dat: NSData) -> (Bool, String) {
         if let fd: Int32=self.filed {
-            var buff: [UInt8] = [UInt8](repeating:0x0, count:dat.length)
+            var buff: [UInt8] = [UInt8](repeating: 0x0, count: dat.length)
             dat.getBytes(&buff, length: dat.length)
             let sendsize: Int32=c_ytcpsocket_send(fd: fd, buff: buff, len: Int32(dat.length))
             if sendsize==Int32(dat.length) {
@@ -130,7 +130,7 @@ public class TCPClient: YSocket {
     */
     public func read(expectlen: Int, timeout: Int = -1) -> [UInt8]? {
         if let fd: Int32 = self.filed {
-            var buff: [UInt8] = [UInt8](repeating:0x0, count:expectlen)
+            var buff: [UInt8] = [UInt8](repeating: 0x0, count: expectlen)
             let readLen: Int32=c_ytcpsocket_pull(fd: fd, buff: &buff, len: Int32(expectlen), timeout: Int32(timeout))
             if readLen<=0 {
                 return nil
@@ -157,7 +157,7 @@ public class TCPServer: YSocket {
     }
     public func accept() -> TCPClient? {
         if let serferfd=self.filed {
-            var buff: [Int8] = [Int8](repeating:0x0, count:16)
+            var buff: [Int8] = [Int8](repeating: 0x0, count: 16)
             var port: Int32=0
             let clientfd: Int32=c_ytcpsocket_accept(onsocketfd: serferfd, ip: &buff, port: &port)
             if clientfd<0 {

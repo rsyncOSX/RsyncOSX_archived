@@ -16,9 +16,9 @@ class ScheduleSortedAndExpand {
     // Reference to main View
     private var vctabmain: NSViewController?
     weak var configurationsDelegate: GetConfigurationsObject?
-    var configurations: Configurations?
+    weak var configurations: Configurations?
     weak var schedulesDelegate: GetSchedulesObject?
-    var schedules: Schedules?
+    weak var schedules: Schedules?
     private var schedulesNSDictionary: Array<NSDictionary>?
     private var scheduleConfiguration: Array<ConfigurationSchedule>?
     private var expandedData = Array<NSDictionary>()

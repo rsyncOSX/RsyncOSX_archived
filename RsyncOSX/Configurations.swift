@@ -92,10 +92,7 @@ class Configurations {
     /// - parameter none: none
     /// - returns : Array of configurations
     func getConfigurations() -> Array<Configuration> {
-        guard self.configurations != nil else {
-            return []
-        }
-        return self.configurations!
+        return self.configurations ?? []
     }
 
     /// Function for getting arguments for all Configurations read into memory
@@ -382,7 +379,7 @@ class Configurations {
         self.configurationsDataSource = nil
         self.profile = profile
         self.vctabmain = viewcontroller
-        self.storageapi = PersistentStorageAPI(profile : self.profile)
+        self.storageapi = PersistentStorageAPI(profile: self.profile)
         self.readconfigurations()
     }
 }

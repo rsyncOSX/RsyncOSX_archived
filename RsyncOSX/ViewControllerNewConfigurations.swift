@@ -93,9 +93,9 @@ class ViewControllerNewConfigurations: NSViewController {
         self.newconfigurations = NewConfigurations()
         self.configurations = self.configurationsDelegate?.getconfigurationsobject()
         if let profile = self.configurations!.getProfile() {
-            self.storageapi = PersistentStorageAPI(profile : profile)
+            self.storageapi = PersistentStorageAPI(profile: profile)
         } else {
-            self.storageapi = PersistentStorageAPI(profile : nil)
+            self.storageapi = PersistentStorageAPI(profile: nil)
         }
         self.setFields()
     }
@@ -172,7 +172,7 @@ class ViewControllerNewConfigurations: NSViewController {
     }
 }
 
-extension ViewControllerNewConfigurations : NSTableViewDataSource {
+extension ViewControllerNewConfigurations: NSTableViewDataSource {
 
     func numberOfRows(in tableView: NSTableView) -> Int {
         guard self.configurations != nil else {
@@ -183,7 +183,7 @@ extension ViewControllerNewConfigurations : NSTableViewDataSource {
 
 }
 
-extension ViewControllerNewConfigurations : NSTableViewDelegate {
+extension ViewControllerNewConfigurations: NSTableViewDelegate {
 
     @objc(tableView:objectValueForTableColumn:row:) func tableView(_ tableView: NSTableView, objectValueFor tableColumn: NSTableColumn?, row: Int) -> Any? {
         guard self.newconfigurations?.getnewConfigurations() != nil else {

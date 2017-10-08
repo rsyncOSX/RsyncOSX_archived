@@ -12,9 +12,9 @@ import Cocoa
 class ViewControllerScheduledBackupinWork: NSViewController {
 
     weak var configurationsDelegate: GetConfigurationsObject?
-    var configurations: Configurations?
+    weak var configurations: Configurations?
     weak var schedulesDelegate: GetSchedulesObject?
-    var schedules: Schedules?
+    weak var schedules: Schedules?
 
     weak var dismissDelegate: DismissViewController?
     var waitToClose: Timer?

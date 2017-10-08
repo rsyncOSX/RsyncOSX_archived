@@ -18,9 +18,9 @@ protocol GetHiddenID : class {
 class ViewControllerScheduleDetails: NSViewController {
 
     weak var configurationsDelegate: GetConfigurationsObject?
-    var configurations: Configurations?
+    weak var configurations: Configurations?
     weak var schedulesDelegate: GetSchedulesObject?
-    var schedules: Schedules?
+    weak var schedules: Schedules?
 
     @IBOutlet weak var localCatalog: NSTextField!
     @IBOutlet weak var remoteCatalog: NSTextField!
@@ -45,7 +45,7 @@ class ViewControllerScheduleDetails: NSViewController {
 
     @IBAction func update(_ sender: NSButton) {
         if let data = self.data {
-            self.schedules!.deleteorstopschedule(data : data)
+            self.schedules!.deleteorstopschedule(data: data)
             // Do a refresh of tableViews in both ViewControllertabMain and ViewControllertabSchedule
             self.refreshDelegate?.reloadtabledata()
             self.refreshDelegate2?.reloadtabledata()
@@ -91,7 +91,7 @@ class ViewControllerScheduleDetails: NSViewController {
     }
 }
 
-extension ViewControllerScheduleDetails : NSTableViewDataSource {
+extension ViewControllerScheduleDetails: NSTableViewDataSource {
 
     func numberOfRows(in tableView: NSTableView) -> Int {
         if self.hiddendID != nil && self.data != nil {
@@ -103,7 +103,7 @@ extension ViewControllerScheduleDetails : NSTableViewDataSource {
 
 }
 
-extension ViewControllerScheduleDetails : NSTableViewDelegate {
+extension ViewControllerScheduleDetails: NSTableViewDelegate {
 
     // TableView delegates
     @objc(tableView:objectValueForTableColumn:row:) func tableView(_ tableView: NSTableView, objectValueFor tableColumn: NSTableColumn?, row: Int) -> Any? {
@@ -131,7 +131,7 @@ extension ViewControllerScheduleDetails : NSTableViewDelegate {
             } else {
                 if active {
                     let text = object[tableColumn!.identifier] as? String
-                    let attributedString = NSMutableAttributedString(string:(text!))
+                    let attributedString = NSMutableAttributedString(string: (text!))
                     let range = (text! as NSString).range(of: text!)
                     attributedString.addAttribute(NSAttributedStringKey.foregroundColor, value: NSColor.red, range: range)
                     return attributedString

@@ -38,9 +38,9 @@ enum ColorInfo {
 final class NewSingleTask {
 
     weak var configurationsDelegate: GetConfigurationsObject?
-    var configurations: Configurations?
+    weak var configurations: Configurations?
     weak var schedulesDelegate: GetSchedulesObject?
-    var schedules: Schedules?
+    weak var schedules: Schedules?
 
     // Delegate function for start/stop progress Indicator in BatchWindow
     weak var indicatorDelegate: StartStopProgressIndicatorSingleTask?
@@ -114,7 +114,6 @@ final class NewSingleTask {
         default:
             self.workload = nil
             self.taskDelegate?.setInfo(info: "Estimate", color: .blue)
-            break
         }
     }
 
@@ -161,7 +160,6 @@ final class NewSingleTask {
                 self.workload = nil
             default:
                 self.workload = nil
-                break
             }
         }
     }

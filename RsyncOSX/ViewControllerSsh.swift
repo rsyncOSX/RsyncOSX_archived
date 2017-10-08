@@ -204,7 +204,7 @@ extension ViewControllerSsh: GetSource {
     }
 }
 
-extension ViewControllerSsh : NSTableViewDataSource {
+extension ViewControllerSsh: NSTableViewDataSource {
 
     func numberOfRows(in aTableView: NSTableView) -> Int {
         if self.data != nil {
@@ -216,7 +216,7 @@ extension ViewControllerSsh : NSTableViewDataSource {
 
 }
 
-extension ViewControllerSsh : NSTableViewDelegate {
+extension ViewControllerSsh: NSTableViewDelegate {
 
     func tableView(_ tableView: NSTableView, viewFor tableColumn: NSTableColumn?, row: Int) -> NSView? {
         var text: String = ""

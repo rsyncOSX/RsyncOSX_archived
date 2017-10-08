@@ -42,7 +42,7 @@ import Foundation
 public class UDPClient: YSocket {
     public override init(addr adr: String, port por: Int) {
         super.init()
-        let remoteipbuff: [Int8] = [Int8](repeating:0x0, count:16)
+        let remoteipbuff: [Int8] = [Int8](repeating: 0x0, count: 16)
         let ret=c_yudpsocket_get_server_ip(host: adr, ip: remoteipbuff)
         if ret==0 {
             /*
@@ -104,7 +104,7 @@ public class UDPClient: YSocket {
     */
     public func send(data dat: NSData) -> (Bool, String) {
         if let fd: Int32=self.filed {
-            var buff: [UInt8] = [UInt8](repeating:0x0, count:dat.length)
+            var buff: [UInt8] = [UInt8](repeating: 0x0, count: dat.length)
             dat.getBytes(&buff, length: dat.length)
             let sendsize: Int32=c_yudpsocket_sentto(fd: fd, buff: buff, len: Int32(dat.length), ip: self.addr, port: Int32(self.port))
             if sendsize==Int32(dat.length) {
@@ -137,8 +137,8 @@ public class UDPServer: YSocket {
     }
     public func recv(expectlen: Int) -> ([UInt8]?, String, Int) {
         if let fd: Int32 = self.filed {
-            var buff: [UInt8] = [UInt8](repeating:0x0, count:expectlen)
-            var remoteipbuff: [Int8] = [Int8](repeating:0x0, count:16)
+            var buff: [UInt8] = [UInt8](repeating: 0x0, count: expectlen)
+            var remoteipbuff: [Int8] = [Int8](repeating: 0x0, count: 16)
             var remoteport: Int32=0
             let readLen: Int32=c_yudpsocket_recive(fd: fd, buff: buff, len: Int32(expectlen), ip: &remoteipbuff, port: &remoteport)
             let port: Int=Int(remoteport)

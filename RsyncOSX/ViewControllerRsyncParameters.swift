@@ -160,9 +160,9 @@ class ViewControllerRsyncParameters: NSViewController {
         super.viewDidAppear()
         self.configurations = self.configurationsDelegate?.getconfigurationsobject()
         if let profile = self.configurations!.getProfile() {
-            self.storageapi = PersistentStorageAPI(profile : profile)
+            self.storageapi = PersistentStorageAPI(profile: profile)
         } else {
-            self.storageapi = PersistentStorageAPI(profile : nil)
+            self.storageapi = PersistentStorageAPI(profile: nil)
         }
         var configurations: [Configuration] = self.configurations!.getConfigurations()
         if let index = self.getindexDelegate?.getindex() {

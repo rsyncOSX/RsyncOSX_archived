@@ -29,9 +29,9 @@ class Filtereddata {
 final class ScheduleLoggData {
 
     weak var configurationsDelegate: GetConfigurationsObject?
-    var configurations: Configurations?
+    weak var configurations: Configurations?
     weak var schedulesDelegate: GetSchedulesObject?
-    var schedules: Schedules?
+    weak var schedules: Schedules?
     // Loggdata is only sorted and read once
     private var loggdata: Array<NSDictionary>?
     weak var readfiltereddataDelegate: Readfiltereddata?
@@ -84,8 +84,9 @@ final class ScheduleLoggData {
                         "offsiteServer": self.configurations!.getResourceConfiguration(hiddenID, resource: .offsiteServer),
                         "dateExecuted": (dict.value(forKey: "dateExecuted") as? String)!,
                         "resultExecuted": (dict.value(forKey: "resultExecuted") as? String)!,
-                        "parent": (dict.value(forKey: "parent") as? String)!,
-                        "hiddenID": hiddenID]
+                        "hiddenID": hiddenID,
+                        "parent": i,
+                        "sibling": j]
                     data.append(logdetail)
                 }
             }
@@ -104,13 +105,11 @@ final class ScheduleLoggData {
     }
 
     init () {
-        self.configurationsDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain)
-            as? ViewControllertabMain
-        self.schedulesDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain)
-            as? ViewControllertabMain
+        self.configurationsDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllertabMain
+        self.schedulesDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllertabMain
         self.configurations = self.configurationsDelegate?.getconfigurationsobject()
         self.schedules = self.schedulesDelegate?.getschedulesobject()
-        // Read and sort loggdata only once
+        // Read and sort loggdata
         if self.loggdata == nil {
             self.readAndSortAllLoggdata()
         }

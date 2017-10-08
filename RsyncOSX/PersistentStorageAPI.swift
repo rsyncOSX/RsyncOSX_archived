@@ -5,19 +5,18 @@
 //  Created by Thomas Evensen on 09/12/15.
 //  Copyright © 2015 Thomas Evensen. All rights reserved.
 //
+// swiftlint:disable line_length
 
 import Foundation
 
 final class PersistentStorageAPI {
 
     weak var configurationsDelegate: GetConfigurationsObject?
-    var configurations: Configurations?
+    weak var configurations: Configurations?
     weak var schedulesDelegate: GetSchedulesObject?
-    var schedules: Schedules?
-
+    weak var schedules: Schedules?
     // Delegate function for starting next scheduled operatin if any
-    // Delegate function is triggered when Process.didTerminateNotification
-    // is discovered (e.g previous job is done)
+    // Delegate function is triggered when Process.didTerminateNotification is discovered (e.g previous job is done)
     weak var startnextjobDelegate: StartNextScheduledTask?
     var profile: String?
 
@@ -63,8 +62,7 @@ final class PersistentStorageAPI {
         // This is because saving schedule from memory might have
         // changed the schedule and this kicks off the changed
         // schedule again.
-        startnextjobDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain)
-            as? ViewControllertabMain
+        startnextjobDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllertabMain
         startnextjobDelegate?.startanyscheduledtask()
     }
 
@@ -123,10 +121,8 @@ final class PersistentStorageAPI {
     }
 
     init(profile: String?) {
-        self.configurationsDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain)
-            as? ViewControllertabMain
-        self.schedulesDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain)
-            as? ViewControllertabMain
+        self.configurationsDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllertabMain
+        self.schedulesDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllertabMain
         self.configurations = self.configurationsDelegate?.getconfigurationsobject()
         self.schedules = self.schedulesDelegate?.getschedulesobject()
         self.profile = profile

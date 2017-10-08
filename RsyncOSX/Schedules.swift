@@ -36,7 +36,7 @@ class Schedules: ScheduleWriteLoggData {
     // Return reference to Schedule data
     // self.Schedule is privat data
     func getSchedule()-> Array<ConfigurationSchedule> {
-        return self.schedules
+        return self.schedules ?? []
     }
 
     /// Function for setting reference to waiting job e.g. to the timer.
@@ -66,7 +66,7 @@ class Schedules: ScheduleWriteLoggData {
         dict.setObject(dateformatter.string(from: stop), forKey: "dateStop" as NSCopying)
         dict.setObject(schedule, forKey: "schedule" as NSCopying)
         let newSchedule = ConfigurationSchedule(dictionary: dict, log: nil)
-        self.schedules.append(newSchedule)
+        self.schedules!.append(newSchedule)
         self.storageapi!.saveScheduleFromMemory()
     }
 
@@ -76,10 +76,10 @@ class Schedules: ScheduleWriteLoggData {
     /// - parameter hiddenID : hiddenID for task
     func deletescheduleonetask(hiddenID: Int) {
         var delete: Bool = false
-        for i in 0 ..< self.schedules.count where self.schedules[i].hiddenID == hiddenID {
+        for i in 0 ..< self.schedules!.count where self.schedules![i].hiddenID == hiddenID {
             // Mark Schedules for delete
             // Cannot delete in memory, index out of bound is result
-            self.schedules[i].delete = true
+            self.schedules![i].delete = true
             delete = true
         }
         if delete {
@@ -98,23 +98,23 @@ class Schedules: ScheduleWriteLoggData {
         }
         var row: NSMutableDictionary
         var data = Array<NSMutableDictionary>()
-        for i in 0 ..< self.schedules.count {
-            if self.schedules[i].hiddenID == hiddenID {
+        for i in 0 ..< self.schedules!.count {
+            if self.schedules![i].hiddenID == hiddenID {
                 row = [
-                    "dateStart": self.schedules[i].dateStart,
+                    "dateStart": self.schedules![i].dateStart,
                     "stopCellID": 0,
                     "deleteCellID": 0,
                     "dateStop": "",
-                    "schedule": self.schedules[i].schedule,
-                    "hiddenID": schedules[i].hiddenID,
-                    "numberoflogs": String(schedules[i].logrecords.count)
+                    "schedule": self.schedules![i].schedule,
+                    "hiddenID": schedules![i].hiddenID,
+                    "numberoflogs": String(schedules![i].logrecords.count)
                 ]
-                if self.schedules[i].dateStop == nil {
+                if self.schedules![i].dateStop == nil {
                     row.setValue("no stop date", forKey: "dateStop")
                 } else {
-                    row.setValue(self.schedules[i].dateStop, forKey: "dateStop")
+                    row.setValue(self.schedules![i].dateStop, forKey: "dateStop")
                 }
-                if self.schedules[i].schedule == "stopped" {
+                if self.schedules![i].schedule == "stopped" {
                     row.setValue(1, forKey: "stopCellID")
                 }
                 data.append(row)
@@ -138,7 +138,6 @@ class Schedules: ScheduleWriteLoggData {
     func deleteorstopschedule(data: Array<NSMutableDictionary>) {
         var update: Bool = false
         if (data.count) > 0 {
-            let hiddenID = data[0].value(forKey: "hiddenID") as? Int
             let stop = data.filter({ return (($0.value(forKey: "stopCellID") as? Int) == 1)})
             let delete = data.filter({ return (($0.value(forKey: "deleteCellID") as? Int) == 1)})
             // Delete Schedules
@@ -154,8 +153,6 @@ class Schedules: ScheduleWriteLoggData {
                 for i in 0 ..< stop.count {
                     self.stop(dict: stop[i])
                 }
-                // Computing new parent key before saving to disk.
-                self.updateExecutedNewKey(hiddenID!)
             }
             if update {
                 // Saving the resulting data file
@@ -168,13 +165,13 @@ class Schedules: ScheduleWriteLoggData {
 
     // Test if Schedule record in memory is set to delete or not
     private func delete(dict: NSDictionary) {
-        loop :  for i in 0 ..< self.schedules.count {
-            if dict.value(forKey: "hiddenID") as? Int == self.schedules[i].hiddenID {
-                if dict.value(forKey: "dateStop") as? String == self.schedules[i].dateStop ||
-                    self.schedules[i].dateStop == nil &&
-                    dict.value(forKey: "schedule") as? String == self.schedules[i].schedule &&
-                    dict.value(forKey: "dateStart") as? String == self.schedules[i].dateStart {
-                    self.schedules[i].delete = true
+        loop :  for i in 0 ..< self.schedules!.count {
+            if dict.value(forKey: "hiddenID") as? Int == self.schedules![i].hiddenID {
+                if dict.value(forKey: "dateStop") as? String == self.schedules![i].dateStop ||
+                    self.schedules![i].dateStop == nil &&
+                    dict.value(forKey: "schedule") as? String == self.schedules![i].schedule &&
+                    dict.value(forKey: "dateStart") as? String == self.schedules![i].dateStart {
+                    self.schedules![i].delete = true
                     break
                 }
             }
@@ -183,13 +180,13 @@ class Schedules: ScheduleWriteLoggData {
 
     // Test if Schedule record in memory is set to stop er not
     private func stop(dict: NSDictionary) {
-        loop :  for i in 0 ..< self.schedules.count where
-            dict.value(forKey: "hiddenID") as? Int == self.schedules[i].hiddenID {
-                if dict.value(forKey: "dateStop") as? String == self.schedules[i].dateStop ||
-                    self.schedules[i].dateStop == nil &&
-                    dict.value(forKey: "schedule") as? String == self.schedules[i].schedule &&
-                    dict.value(forKey: "dateStart") as? String == self.schedules[i].dateStart {
-                    self.schedules[i].schedule = "stopped"
+        loop :  for i in 0 ..< self.schedules!.count where
+            dict.value(forKey: "hiddenID") as? Int == self.schedules![i].hiddenID {
+                if dict.value(forKey: "dateStop") as? String == self.schedules![i].dateStop ||
+                    self.schedules![i].dateStop == nil &&
+                    dict.value(forKey: "schedule") as? String == self.schedules![i].schedule &&
+                    dict.value(forKey: "dateStart") as? String == self.schedules![i].dateStart {
+                    self.schedules![i].schedule = "stopped"
                     break
                 }
         }
@@ -197,7 +194,7 @@ class Schedules: ScheduleWriteLoggData {
 
     // Check if hiddenID is in Scheduled tasks
     func hiddenIDinSchedule(_ hiddenID: Int) -> Bool {
-        let result = self.schedules.filter({return ($0.hiddenID == hiddenID && $0.dateStop != nil)})
+        let result = self.schedules!.filter({return ($0.hiddenID == hiddenID && $0.dateStop != nil)})
         if result.isEmpty {
             return false
         } else {
@@ -205,62 +202,16 @@ class Schedules: ScheduleWriteLoggData {
         }
     }
 
-    func checkKey(_ dict1: NSDictionary, dict2: NSDictionary) -> Bool {
-        let keyexecute = dict1.value(forKey: "parent") as? String
-        let keyparent = self.computeKey(dict2)
-        if keyparent == keyexecute {
-            return true
-        } else {
-            return false
-        }
-    }
-
     // Returning the set of executed tasks for å schedule.
     // Used for recalcutlate the parent key when task change schedule
     // from active to "stopped"
     private func getScheduleExecuted(_ hiddenID: Int) -> Array<NSMutableDictionary>? {
-        var result = self.schedules.filter({return ($0.hiddenID == hiddenID) && ($0.schedule == "stopped")})
+        var result = self.schedules!.filter({return ($0.hiddenID == hiddenID) && ($0.schedule == "stopped")})
         if result.count > 0 {
             let schedule = result.removeFirst()
             return schedule.logrecords
         } else {
             return nil
-        }
-    }
-
-    // Computing new parentkeys AFTER new schedule is updated.
-    // Returning set updated keys
-    private func computeNewParentKeys(_ hiddenID: Int) -> Array<NSMutableDictionary>? {
-        var dict: NSMutableDictionary?
-        var result = self.schedules.filter({return ($0.hiddenID == hiddenID) && ($0.schedule == "stopped")})
-        var executed: Array<NSMutableDictionary>?
-        if result.count > 0 {
-            let scheduleConfig = result[0]
-            dict = [
-                "hiddenID": scheduleConfig.hiddenID,
-                "schedule": scheduleConfig.schedule,
-                "dateStart": scheduleConfig.dateStart
-            ]
-            if let dicts = self.getScheduleExecuted(hiddenID) {
-                for i in 0 ..< dicts.count {
-                    let key = self.computeKey(dict!)
-                    dicts[i].setValue(key, forKey: "parent")
-                }
-                executed = dicts
-            }
-        }
-        return executed
-    }
-
-    // Setting updated executes to schedule.
-    // Used when a group is set from active to "stopped"
-    private func updateExecutedNewKey(_ hiddenID: Int) {
-        let executed: Array<NSMutableDictionary>? = self.computeNewParentKeys(hiddenID)
-        loop : for i in 0 ..< self.schedules.count where self.schedules[i].hiddenID == hiddenID {
-            if executed != nil {
-                self.schedules[i].logrecords = executed!
-            }
-            break loop
         }
     }
 
@@ -295,7 +246,7 @@ class Schedules: ScheduleWriteLoggData {
         self.profile = profile
         self.vctabmain = viewcontroller
         self.refreshDelegate = self.vctabmain as? ViewControllertabMain
-        self.storageapi = PersistentStorageAPI(profile : self.profile)
+        self.storageapi = PersistentStorageAPI(profile: self.profile)
         self.readschedules()
     }
 }

@@ -41,7 +41,7 @@ class ViewControllerInformationCopyFiles: NSViewController {
 
 }
 
-extension ViewControllerInformationCopyFiles : NSTableViewDataSource {
+extension ViewControllerInformationCopyFiles: NSTableViewDataSource {
 
     func numberOfRows(in aTableView: NSTableView) -> Int {
         if self.output != nil {
@@ -53,7 +53,7 @@ extension ViewControllerInformationCopyFiles : NSTableViewDataSource {
 
 }
 
-extension ViewControllerInformationCopyFiles : NSTableViewDelegate {
+extension ViewControllerInformationCopyFiles: NSTableViewDelegate {
 
     func tableView(_ tableView: NSTableView, viewFor tableColumn: NSTableColumn?, row: Int) -> NSView? {
         var text: String = ""
