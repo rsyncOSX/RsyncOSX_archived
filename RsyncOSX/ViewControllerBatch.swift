@@ -102,11 +102,9 @@ class ViewControllerBatch: NSViewController {
         self.closeButton.title = "Close"
         self.close = true
         self.batchTask = nil
-        if self.configurations!.batchDataQueuecount() > 0 {
-            globalMainQueue.async(execute: { () -> Void in
-                self.mainTableView.reloadData()
-            })
-        }
+        globalMainQueue.async(execute: { () -> Void in
+            self.mainTableView.reloadData()
+        })
     }
 
     override func viewDidDisappear() {
@@ -119,23 +117,15 @@ class ViewControllerBatch: NSViewController {
 extension ViewControllerBatch: NSTableViewDataSource {
         // Delegate for size of table
         func numberOfRows(in tableView: NSTableView) -> Int {
-            guard self.configurations != nil else {
-                return 0
-            }
-            return self.configurations!.batchDataQueuecount()
-        }
+            self.configurations = self.configurationsDelegate?.getconfigurationsobject()
+            return self.configurations?.batchDataQueuecount() ?? 0
+    }
 }
 
 extension ViewControllerBatch: NSTableViewDelegate {
 
     // TableView delegates
-    @objc(tableView:objectValueForTableColumn:row:) func tableView(_ tableView: NSTableView, objectValueFor tableColumn: NSTableColumn?, row: Int) -> Any? {
-        guard self.configurations!.getbatchDataQueue() != nil else {
-            return nil
-        }
-        guard row < self.configurations!.batchDataQueuecount() else {
-            return nil
-        }
+    func tableView(_ tableView: NSTableView, objectValueFor tableColumn: NSTableColumn?, row: Int) -> Any? {
         let object: NSMutableDictionary = self.configurations!.getbatchDataQueue()![row]
         if tableColumn!.identifier.rawValue == "estimatedCellID" || tableColumn!.identifier.rawValue == "completedCellID" {
             return object[tableColumn!.identifier] as? Int!
