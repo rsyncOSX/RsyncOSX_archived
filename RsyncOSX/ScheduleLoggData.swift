@@ -29,9 +29,9 @@ class Filtereddata {
 final class ScheduleLoggData {
 
     weak var configurationsDelegate: GetConfigurationsObject?
-    weak var configurations: Configurations?
+    var configurations: Configurations?
     weak var schedulesDelegate: GetSchedulesObject?
-    weak var schedules: Schedules?
+    var schedules: Schedules?
     // Loggdata is only sorted and read once
     private var loggdata: Array<NSDictionary>?
     weak var readfiltereddataDelegate: Readfiltereddata?

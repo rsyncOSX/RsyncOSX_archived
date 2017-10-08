@@ -12,9 +12,9 @@ import Foundation
 final class PersistentStorageAPI {
 
     weak var configurationsDelegate: GetConfigurationsObject?
-    weak var configurations: Configurations?
+    var configurations: Configurations?
     weak var schedulesDelegate: GetSchedulesObject?
-    weak var schedules: Schedules?
+    var schedules: Schedules?
     // Delegate function for starting next scheduled operatin if any
     // Delegate function is triggered when Process.didTerminateNotification is discovered (e.g previous job is done)
     weak var startnextjobDelegate: StartNextScheduledTask?
