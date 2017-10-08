@@ -257,7 +257,7 @@ extension ViewControllertabSchedule: NSTableViewDelegate {
         var schedule: Bool = false
         var number: Int?
         let hiddenID: Int = (object.value(forKey: "hiddenID") as? Int)!
-        if self.schedules!.hiddenIDinSchedule(hiddenID) {
+        if self.schedules?.hiddenIDinSchedule(hiddenID) ?? false {
             text = object[tableColumn!.identifier] as? String
             if text == "backup" || text == "restore" {
                 schedule = true
