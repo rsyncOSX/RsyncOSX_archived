@@ -35,27 +35,28 @@ final class PersistentStorageScheduling: Readwritefiles {
     func savescheduleInMemoryToPersistentStore() {
         var array = Array<NSDictionary>()
         // Reading Schedules from memory
-        let data = self.schedules!.getSchedule()
-        for i in 0 ..< data.count {
-            let schedule = data[i]
-            let dict: NSMutableDictionary = [
-                "hiddenID": schedule.hiddenID,
-                "dateStart": schedule.dateStart,
-                "schedule": schedule.schedule,
-                "executed": schedule.logrecords]
-            if schedule.dateStop != nil {
-                dict.setValue(schedule.dateStop, forKey: "dateStop")
-            }
-            if let delete = schedule.delete {
-                if !delete {
+        if let schedules = self.schedulesDelegate?.getschedulesobject()?.getSchedule() {
+            for i in 0 ..< schedules.count {
+                let schedule = schedules[i]
+                let dict: NSMutableDictionary = [
+                    "hiddenID": schedule.hiddenID,
+                    "dateStart": schedule.dateStart,
+                    "schedule": schedule.schedule,
+                    "executed": schedule.logrecords]
+                if schedule.dateStop != nil {
+                    dict.setValue(schedule.dateStop, forKey: "dateStop")
+                }
+                if let delete = schedule.delete {
+                    if !delete {
+                        array.append(dict)
+                    }
+                } else {
                     array.append(dict)
                 }
-            } else {
-                array.append(dict)
             }
+            // Write array to persistent store
+            self.writeToStore(array)
         }
-        // Write array to persistent store
-        self.writeToStore(array)
     }
 
     // Saving not deleted schedule records to persistent store

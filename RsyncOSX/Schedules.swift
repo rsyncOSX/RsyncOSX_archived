@@ -23,11 +23,8 @@ protocol GetSchedulesObject: class {
 
 class Schedules: ScheduleWriteLoggData {
 
-    // Reference to main View
     private var vctabmain: NSViewController?
-    // Reference to Timer in scheduled operation
     private var waitForTask: Timer?
-    // Reference to the first Scheduled job, is set when SortedAndExpanded is calculated
     var scheduledJob: NSDictionary?
     weak var refreshDelegate: Reloadandrefresh?
     var profile: String?
@@ -95,9 +92,7 @@ class Schedules: ScheduleWriteLoggData {
     /// - parameter hiddenID : hiddenID for task
     /// - returns : array of Schedules sorted after startDate
     func readscheduleonetask (_ hiddenID: Int?) -> Array<NSMutableDictionary>? {
-        guard hiddenID != nil else {
-            return nil
-        }
+        guard hiddenID != nil else { return nil }
         var row: NSMutableDictionary
         var data = Array<NSMutableDictionary>()
         for i in 0 ..< self.schedules!.count {
