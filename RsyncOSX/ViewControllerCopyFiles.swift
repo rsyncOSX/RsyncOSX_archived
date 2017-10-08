@@ -21,7 +21,7 @@ protocol GetSource: class {
 class ViewControllerCopyFiles: NSViewController {
 
     weak var configurationsDelegate: GetConfigurationsObject?
-    var configurations: Configurations?
+    weak var configurations: Configurations?
     var copyFiles: CopyFiles?
     var index: Int?
     var rsync: Bool = false

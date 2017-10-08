@@ -128,7 +128,10 @@ extension ViewControllerCopyFilesSource: NSTableViewDelegate {
 
     // TableView delegates
     @objc(tableView:objectValueForTableColumn:row:) func tableView(_ tableView: NSTableView, objectValueFor tableColumn: NSTableColumn?, row: Int) -> Any? {
-        guard self.configurations!.getConfigurationsDataSourcecountBackupOnlyRemote() != nil else {
+        guard self.configurations?.getConfigurationsDataSourcecountBackupOnlyRemote() != nil else {
+            return nil
+        }
+        guard row < self.configurations!.getConfigurationsDataSourcecountBackupOnlyRemote()!.count  else {
             return nil
         }
         let object: NSDictionary = self.configurations!.getConfigurationsDataSourcecountBackupOnlyRemote()![row]
