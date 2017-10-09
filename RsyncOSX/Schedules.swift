@@ -217,9 +217,7 @@ class Schedules: ScheduleWriteLoggData {
     private func readschedules() {
         var store: Array<ConfigurationSchedule>?
         store = self.storageapi!.getScheduleandhistory()
-        guard store != nil else {
-            return
-        }
+        guard store != nil else { return }
         var data = Array<ConfigurationSchedule>()
         for i in 0 ..< store!.count {
             data.append(store![i])

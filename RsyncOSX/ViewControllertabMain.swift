@@ -536,10 +536,7 @@ extension ViewControllertabMain: NSTableViewDataSource {
 
     // Delegate for size of table
     func numberOfRows(in tableView: NSTableView) -> Int {
-        guard self.configurations != nil else {
-            return 0
-        }
-        return self.configurations!.configurationsDataSourcecount()
+        return self.configurations?.configurationsDataSourcecount() ?? 0
     }
 }
 

@@ -32,7 +32,6 @@ final class ScheduleLoggData {
     var configurations: Configurations?
     weak var schedulesDelegate: GetSchedulesObject?
     var schedules: Schedules?
-    // Loggdata is only sorted and read once
     private var loggdata: Array<NSDictionary>?
     weak var readfiltereddataDelegate: Readfiltereddata?
 
@@ -42,14 +41,8 @@ final class ScheduleLoggData {
 
     // Function for filter loggdata
     func filter(search: String?, what: Filterlogs?) {
-        guard search != nil else {
-            return
-        }
-        guard self.loggdata != nil else {
-            return
-        }
-        self.readfiltereddataDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vcloggdata)
-            as? ViewControllerLoggData
+        guard search != nil || self.loggdata != nil else { return }
+        self.readfiltereddataDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vcloggdata) as? ViewControllerLoggData
         globalDefaultQueue.async(execute: {() -> Void in
             let filtereddata = Filtereddata()
             switch what! {

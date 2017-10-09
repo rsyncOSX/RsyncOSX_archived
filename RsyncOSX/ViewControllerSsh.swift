@@ -207,11 +207,7 @@ extension ViewControllerSsh: GetSource {
 extension ViewControllerSsh: NSTableViewDataSource {
 
     func numberOfRows(in aTableView: NSTableView) -> Int {
-        if self.data != nil {
-            return self.data!.count
-        } else {
-            return 0
-        }
+        return self.data?.count ?? 0
     }
 
 }

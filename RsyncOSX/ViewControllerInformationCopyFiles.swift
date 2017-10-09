@@ -5,34 +5,31 @@
 //  Created by Thomas Evensen on 14/09/2016.
 //  Copyright © 2016 Thomas Evensen. All rights reserved.
 //
+// swiftlint:disable line_length
 
 import Cocoa
 
 class ViewControllerInformationCopyFiles: NSViewController {
 
-    // TableView
     @IBOutlet weak var detailsTable: NSTableView!
-    // output from Rsync
     var output: [String]?
     weak var informationDelegate: Information?
     weak var dismissDelegate: DismissViewController?
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        detailsTable.delegate = self
-        detailsTable.dataSource = self
-        // Setting the source for delegate function
-        self.informationDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vccopyfiles)
-            as? ViewControllerCopyFiles
-        // Dismisser is root controller
-        self.dismissDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vccopyfiles)
-            as? ViewControllerCopyFiles
+        self.detailsTable.delegate = self
+        self.detailsTable.dataSource = self
+        self.informationDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vccopyfiles) as? ViewControllerCopyFiles
+        self.dismissDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vccopyfiles) as? ViewControllerCopyFiles
     }
 
     override func viewDidAppear() {
         super.viewDidAppear()
         self.output = self.informationDelegate?.getInformation()
-        detailsTable.reloadData()
+        globalMainQueue.async(execute: { () -> Void in
+            self.detailsTable.reloadData()
+        })
     }
 
     @IBAction func close(_ sender: NSButton) {
@@ -44,11 +41,7 @@ class ViewControllerInformationCopyFiles: NSViewController {
 extension ViewControllerInformationCopyFiles: NSTableViewDataSource {
 
     func numberOfRows(in aTableView: NSTableView) -> Int {
-        if self.output != nil {
-            return self.output!.count
-        } else {
-            return 0
-        }
+        return self.output?.count ?? 0
     }
 
 }

@@ -175,10 +175,7 @@ class ViewControllerNewConfigurations: NSViewController {
 extension ViewControllerNewConfigurations: NSTableViewDataSource {
 
     func numberOfRows(in tableView: NSTableView) -> Int {
-        guard self.configurations != nil else {
-            return 0
-        }
-        return self.newconfigurations!.newConfigurationsCount()
+        return self.newconfigurations?.newConfigurationsCount() ?? 0
     }
 
 }
