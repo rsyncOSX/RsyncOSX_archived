@@ -2,13 +2,11 @@
 
 **Important** - this version is **not** compliant with Xcode 8 and Swift 3.
 
-This is source for version 4.6.5 of RsyncOSX. RsyncOSX is compiled with support for macOS 10.11 - macOS 10.13 by using Xcode 9 and Swift 4. This version also require some more testing. Use code in [release 4.5.1](https://github.com/rsyncOSX/RsyncOSX/releases) to compile the released version of RsyncOSX.
+This is source of RsyncOSX. RsyncOSX is compiled with support for macOS 10.11 - macOS 10.13. The application is implemented in **Swift 4** by using **Xcode 9**. RsyncOSX is *not* depended upon any third party binary distributions. There is, however, one third party source code included to check for TCP connections. The check is for informal use only and can be removed.
 
-### Version 4.6.5
+### Version 4.6.6
 
-This is the source code for the macOS application RsyncOSX. The application is implemented in **Swift 4** by using **Xcode 9**. RsyncOSX is *not* depended upon any third party binary distributions. There is, however, one third party source code included to check for TCP connections. The check is for informal use only and can be removed.
-
-The major work for this release is to remove (replace) the singelton objects in RsyncOSX. Version 4.6.5 will be released some time after version [4.5.1](https://github.com/rsyncOSX/RsyncOSX/releases), which is the first release built by Xcode 9. The refactor is a major change in code and therefore need some more time for testing.
+The major work for this release is to remove the singelton objects in previous versions of RsyncOSX. Version 4.6.6 will be released some time after version [4.5.1](https://github.com/rsyncOSX/RsyncOSX/releases), which is the first release built by Xcode 9. The refactor is a major change and therefore need some more time for testing. This version will be released later in Oct 2017.
 
 #### SwiftLint
 
@@ -16,7 +14,7 @@ As part of this version of RsyncOSX I am using [SwiftLint](https://github.com/re
 
 ### Compile
 
-To compile the code, install Xcode and open the RsyncOSX project file. Before compiling, open in Xcode, the `RsyncOSX/General` preference page (after opening the RsyncOSX project file) and replace your own credentials in `Signing`, or just disable Signing. Then compile your own version of RsyncOSX.
+To compile the code, install Xcode and open the RsyncOSX project file. Before compiling, open in Xcode, the `RsyncOSX/General` preference page (after opening the RsyncOSX project file) and replace your own credentials in `Signing`, or disable Signing. Then compile your own version of RsyncOSX.
 
 ### Application icon
 
