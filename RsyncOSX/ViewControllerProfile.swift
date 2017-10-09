@@ -106,11 +106,7 @@ class ViewControllerProfile: NSViewController {
 extension ViewControllerProfile: NSTableViewDataSource {
 
     func numberOfRows(in tableViewMaster: NSTableView) -> Int {
-        if self.profilesArray != nil {
-            return self.profilesArray!.count
-        } else {
-            return 0
-        }
+        return self.profilesArray?.count ?? 0
     }
 }
 

@@ -281,7 +281,7 @@ extension ViewControllertabSchedule: NSTableViewDelegate {
     }
 
     // Toggling batch
-    @objc(tableView:setObjectValue:forTableColumn:row:) func tableView(_ tableView: NSTableView, setObjectValue object: Any?, for tableColumn: NSTableColumn?, row: Int) {
+   func tableView(_ tableView: NSTableView, setObjectValue object: Any?, for tableColumn: NSTableColumn?, row: Int) {
         if self.configurations!.getConfigurations()[row].task == "backup" {
             self.configurations!.getConfigurationsDataSource()![row].setObject(object!, forKey: (tableColumn?.identifier)! as NSCopying)
             self.configurations!.setBatchYesNo(row)
