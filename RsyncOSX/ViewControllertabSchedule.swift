@@ -257,7 +257,7 @@ extension ViewControllertabSchedule: NSTableViewDelegate {
         var schedule: Bool = false
         var number: Int?
         let hiddenID: Int = (object.value(forKey: "hiddenID") as? Int)!
-        if self.schedules!.hiddenIDinSchedule(hiddenID) {
+        if self.schedules?.hiddenIDinSchedule(hiddenID) ?? false {
             text = object[tableColumn!.identifier] as? String
             if text == "backup" || text == "restore" {
                 schedule = true
@@ -281,7 +281,7 @@ extension ViewControllertabSchedule: NSTableViewDelegate {
     }
 
     // Toggling batch
-    @objc(tableView:setObjectValue:forTableColumn:row:) func tableView(_ tableView: NSTableView, setObjectValue object: Any?, for tableColumn: NSTableColumn?, row: Int) {
+   func tableView(_ tableView: NSTableView, setObjectValue object: Any?, for tableColumn: NSTableColumn?, row: Int) {
         if self.configurations!.getConfigurations()[row].task == "backup" {
             self.configurations!.getConfigurationsDataSource()![row].setObject(object!, forKey: (tableColumn?.identifier)! as NSCopying)
             self.configurations!.setBatchYesNo(row)

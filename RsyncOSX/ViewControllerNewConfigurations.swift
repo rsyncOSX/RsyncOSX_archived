@@ -185,7 +185,7 @@ extension ViewControllerNewConfigurations: NSTableViewDataSource {
 
 extension ViewControllerNewConfigurations: NSTableViewDelegate {
 
-    @objc(tableView:objectValueForTableColumn:row:) func tableView(_ tableView: NSTableView, objectValueFor tableColumn: NSTableColumn?, row: Int) -> Any? {
+    func tableView(_ tableView: NSTableView, objectValueFor tableColumn: NSTableColumn?, row: Int) -> Any? {
         guard self.newconfigurations?.getnewConfigurations() != nil else {
             return nil
         }
@@ -193,7 +193,7 @@ extension ViewControllerNewConfigurations: NSTableViewDelegate {
         return object[tableColumn!.identifier] as? String
     }
 
-    @objc(tableView:setObjectValue:forTableColumn:row:) func tableView(_ tableView: NSTableView, setObjectValue object: Any?, for tableColumn: NSTableColumn?, row: Int) {
+    func tableView(_ tableView: NSTableView, setObjectValue object: Any?, for tableColumn: NSTableColumn?, row: Int) {
         self.tabledata![row].setObject(object!, forKey: (tableColumn?.identifier)! as NSCopying)
     }
 }

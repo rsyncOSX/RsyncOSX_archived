@@ -558,7 +558,7 @@ extension ViewControllertabMain: NSTableViewDelegate {
     }
 
     // TableView delegates
-    @objc(tableView:objectValueForTableColumn:row:) func tableView(_ tableView: NSTableView, objectValueFor tableColumn: NSTableColumn?, row: Int) -> Any? {
+    func tableView(_ tableView: NSTableView, objectValueFor tableColumn: NSTableColumn?, row: Int) -> Any? {
         if row > self.configurations!.configurationsDataSourcecount() - 1 {
             return nil
         }
@@ -600,7 +600,7 @@ extension ViewControllertabMain: NSTableViewDelegate {
     }
 
     // Toggling batch
-    @objc(tableView:setObjectValue:forTableColumn:row:) func tableView(_ tableView: NSTableView, setObjectValue object: Any?, for tableColumn: NSTableColumn?, row: Int) {
+    func tableView(_ tableView: NSTableView, setObjectValue object: Any?, for tableColumn: NSTableColumn?, row: Int) {
         if self.configurations!.getConfigurations()[row].task == "backup" {
             self.configurations!.setBatchYesNo(row)
         }
