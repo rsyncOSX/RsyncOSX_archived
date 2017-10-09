@@ -19,7 +19,7 @@ class ScheduleWriteLoggData {
     weak var refreshlogviewDelegate: Reloadandrefresh?
     weak var deselectrowDelegate: DeselectRowTable?
 
-    func deletelogrow(hiddenID: Int, parent: Int, sibling: Int) {
+    func deletelogrow(parent: Int, sibling: Int) {
         guard parent < self.schedules!.count else {
             return
         }

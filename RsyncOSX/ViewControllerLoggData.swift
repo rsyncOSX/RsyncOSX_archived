@@ -51,9 +51,7 @@ class ViewControllerLoggData: NSViewController {
             self.deleteButton.state = .off
             return
         }
-        self.schedules!.deletelogrow(hiddenID: (self.row!.value(forKey: "hiddenID") as? Int)!,
-                                      parent: (self.row!.value(forKey: "parent") as? Int)!,
-                                      sibling: (self.row!.value(forKey: "sibling") as? Int)!)
+        self.schedules!.deletelogrow(parent: (self.row!.value(forKey: "parent") as? Int)!, sibling: (self.row!.value(forKey: "sibling") as? Int)!)
         self.deleteButton.state = .off
         self.deselectRow()
     }
@@ -65,7 +63,6 @@ class ViewControllerLoggData: NSViewController {
         self.scheduletable.dataSource = self
         self.search.delegate = self
         self.sorting.usesThreadedAnimation = true
-        // Reference to LogViewController
         ViewControllerReference.shared.setvcref(viewcontroller: .vcloggdata, nsviewcontroller: self)
         self.schedulesDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllertabMain
     }
@@ -83,7 +80,6 @@ class ViewControllerLoggData: NSViewController {
         self.viewispresent = false
     }
 
-    // deselect a row after row is deleted
     private func deselectRow() {
         guard self.index != nil else { return }
         self.scheduletable.deselectRow(self.index!)
@@ -159,7 +155,6 @@ extension ViewControllerLoggData: NSTableViewDelegate {
 
 extension ViewControllerLoggData: Reloadandrefresh {
 
-    // Refresh tableView
     func reloadtabledata() {
         globalMainQueue.async(execute: { () -> Void in
             self.tabledata = ScheduleLoggData().getallloggdata()

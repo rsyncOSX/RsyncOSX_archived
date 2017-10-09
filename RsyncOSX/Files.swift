@@ -60,12 +60,8 @@ class Files {
             let fileManager = FileManager.default
             var isDir: ObjCBool = false
             if fileManager.fileExists(atPath: filePath, isDirectory: &isDir) {
-                guard isDir.boolValue else {
-                    return nil
-                }
-            } else {
-                return nil
-            }
+                guard isDir.boolValue else { return nil }
+            } else { return nil }
             if let fileURLs = self.getfileURLs(path: filePath) {
                 array = Array<URL>()
                 for i in 0 ..< fileURLs.count where fileURLs[i].isFileURL {
@@ -84,12 +80,8 @@ class Files {
             let fileManager = FileManager.default
             var isDir: ObjCBool = false
             if fileManager.fileExists(atPath: filePath, isDirectory: &isDir) {
-                guard isDir.boolValue else {
-                    return nil
-                }
-            } else {
-                return nil
-            }
+                guard isDir.boolValue else { return nil }
+            } else { return nil }
             if let fileURLs = self.getfileURLs(path: filePath) {
                 array = Array<String>()
                 for i in 0 ..< fileURLs.count where fileURLs[i].isFileURL {

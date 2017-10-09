@@ -76,15 +76,10 @@ class Readwritefiles {
     // Function for reading data from persistent store
     func getDatafromfile () -> Array<NSDictionary>? {
         var data = Array<NSDictionary>()
-        guard self.filename != nil && self.key != nil else {
-            return nil
-        }
+        guard self.filename != nil && self.key != nil else { return nil }
         let dictionary = NSDictionary(contentsOfFile: self.filename!)
         let items: Any? = dictionary?.object(forKey: self.key!)
-        // If no items return nil
-        guard items != nil else {
-            return nil
-        }
+        guard items != nil else { return nil }
         if let arrayitems = items as? NSArray {
             for i in 0 ..< arrayitems.count {
                 if let item = arrayitems[i] as? NSDictionary {

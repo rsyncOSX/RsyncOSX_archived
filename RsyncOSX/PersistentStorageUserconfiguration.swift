@@ -5,7 +5,7 @@
 //  Created by Thomas Evensen on 26/10/2016.
 //  Copyright © 2016 Thomas Evensen. All rights reserved.
 //  
-//  swiftlint:disable syntactic_sugar
+//  swiftlint:disable syntactic_sugar line_length
 
 import Foundation
 
@@ -75,8 +75,7 @@ final class PersistentStorageUserconfiguration: Readwritefiles {
 
     init (readfromstorage: Bool) {
         super.init(task: .userconfig, profile: nil)
-        self.configurationsDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain)
-            as? ViewControllertabMain
+        self.configurationsDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllertabMain
         self.configurations = self.configurationsDelegate?.getconfigurationsobject()
         if readfromstorage {
             self.userconfiguration = self.getDatafromfile()
