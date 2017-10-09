@@ -981,9 +981,6 @@
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
-                                <connections>
-                                    <action selector="radioButtonsCreateKeyPair" target="B9V-8v-Aba" id="Lx9-Vz-HZX"/>
-                                </connections>
                             </button>
                             <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="oGK-Wc-GpX">
                                 <rect key="frame" x="23" y="244" width="112" height="32"/>
@@ -1037,18 +1034,7 @@
                                                 <font key="font" metaFont="system"/>
                                             </buttonCell>
                                             <connections>
-                                                <action selector="source" target="B9V-8v-Aba" id="rSJ-FT-pZ9"/>
-                                            </connections>
-                                        </button>
-                                        <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="EpF-GF-ffb">
-                                            <rect key="frame" x="14" y="83" width="121" height="32"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                            <buttonCell key="cell" type="push" title="Scp rsa" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="b7H-be-D9j">
-                                                <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                                <font key="font" metaFont="system"/>
-                                            </buttonCell>
-                                            <connections>
-                                                <action selector="scpRsaPubKey:" target="B9V-8v-Aba" id="yER-Vx-pDh"/>
+                                                <action selector="source:" target="B9V-8v-Aba" id="a2K-hX-MRz"/>
                                             </connections>
                                         </button>
                                         <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="HLU-Ok-6oP">
@@ -1071,17 +1057,6 @@
                                             </buttonCell>
                                             <connections>
                                                 <action selector="checkDsaPubKey:" target="B9V-8v-Aba" id="Iik-vI-cOp"/>
-                                            </connections>
-                                        </button>
-                                        <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="nJI-mA-e3R">
-                                            <rect key="frame" x="14" y="109" width="121" height="32"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                            <buttonCell key="cell" type="push" title="Ssh directory" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="8S9-zw-Aaz">
-                                                <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                                <font key="font" metaFont="system"/>
-                                            </buttonCell>
-                                            <connections>
-                                                <action selector="createRemoteSshDirectory:" target="B9V-8v-Aba" id="Xbc-3C-kdG"/>
                                             </connections>
                                         </button>
                                         <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="pVH-gf-Zfn">
@@ -1111,17 +1086,6 @@
                                                 <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                             </textFieldCell>
                                         </textField>
-                                        <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="XMA-t5-a6y">
-                                            <rect key="frame" x="14" y="55" width="121" height="32"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                            <buttonCell key="cell" type="push" title="Scp dsa" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="SY3-0j-XBA">
-                                                <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                                <font key="font" metaFont="system"/>
-                                            </buttonCell>
-                                            <connections>
-                                                <action selector="scpDsaPubKey:" target="B9V-8v-Aba" id="9Lg-Qc-Yin"/>
-                                            </connections>
-                                        </button>
                                         <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dhy-Nx-rAf">
                                             <rect key="frame" x="131" y="137" width="114" height="32"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
@@ -1130,9 +1094,36 @@
                                                 <font key="font" metaFont="system"/>
                                             </buttonCell>
                                             <connections>
-                                                <action selector="terminalApp" target="B9V-8v-Aba" id="Zof-Hl-KmT"/>
+                                                <action selector="terminalApp:" target="B9V-8v-Aba" id="L76-x0-YrA"/>
                                             </connections>
                                         </button>
+                                        <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Ats-Wh-w8a">
+                                            <rect key="frame" x="18" y="117" width="111" height="17"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                            <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="ssh directory:" id="kUC-cs-Fc2">
+                                                <font key="font" metaFont="system"/>
+                                                <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                                <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                            </textFieldCell>
+                                        </textField>
+                                        <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="OrV-F9-y3Z">
+                                            <rect key="frame" x="20" y="91" width="111" height="17"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                            <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="scp rsa pub key:" id="WW7-sg-7Xq">
+                                                <font key="font" metaFont="system"/>
+                                                <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                                <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                            </textFieldCell>
+                                        </textField>
+                                        <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="zpL-a8-XKR">
+                                            <rect key="frame" x="20" y="64" width="111" height="17"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                            <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="scp dsa pub key:" id="Tes-Z8-BIj">
+                                                <font key="font" metaFont="system"/>
+                                                <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                                <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                            </textFieldCell>
+                                        </textField>
                                     </subviews>
                                 </view>
                             </box>
@@ -1143,9 +1134,6 @@
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
-                                <connections>
-                                    <action selector="radioButtonsCreateKeyPair" target="B9V-8v-Aba" id="yuX-tZ-N4b"/>
-                                </connections>
                             </button>
                         </subviews>
                     </view>
@@ -1159,10 +1147,7 @@
                         <outlet property="dsaCheck" destination="gXP-YJ-JVy" id="VJo-ox-Ls0"/>
                         <outlet property="rsaCheck" destination="MQY-l7-2Lf" id="RH0-aw-hO1"/>
                         <outlet property="scpDsaCopyPasteCommand" destination="aG0-vz-8A7" id="DES-gM-UKl"/>
-                        <outlet property="scpDsaPubKeyButton" destination="XMA-t5-a6y" id="pi4-PN-H9x"/>
                         <outlet property="scpRsaCopyPasteCommand" destination="cC9-Ch-Fxx" id="BYF-dt-HuV"/>
-                        <outlet property="scpRsaPubKeyButton" destination="EpF-GF-ffb" id="klZ-KW-ED0"/>
-                        <outlet property="sshCreatRemoteSshButton" destination="nJI-mA-e3R" id="6Ua-tk-m9i"/>
                         <outlet property="sshCreateRemoteCatalog" destination="pVH-gf-Zfn" id="3zd-F3-eXf"/>
                     </connections>
                 </viewController>

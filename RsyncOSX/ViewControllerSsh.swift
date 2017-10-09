@@ -14,8 +14,6 @@ class ViewControllerSsh: NSViewController {
 
     weak var configurationsDelegate: GetConfigurationsObject?
     var configurations: Configurations?
-
-    // The object which checks for keys
     var sshcmd: Ssh?
     var hiddenID: Int?
     var data: Array<String>?
@@ -26,14 +24,11 @@ class ViewControllerSsh: NSViewController {
     @IBOutlet weak var dsaCheck: NSButton!
     @IBOutlet weak var rsaCheck: NSButton!
     @IBOutlet weak var detailsTable: NSTableView!
-    @IBOutlet weak var scpRsaPubKeyButton: NSButton!
-    @IBOutlet weak var scpDsaPubKeyButton: NSButton!
     @IBOutlet weak var checkRsaPubKeyButton: NSButton!
     @IBOutlet weak var checkDsaPubKeyButton: NSButton!
     @IBOutlet weak var createRsaKey: NSButton!
     @IBOutlet weak var createDsaKey: NSButton!
     @IBOutlet weak var createKeys: NSButton!
-    @IBOutlet weak var sshCreatRemoteSshButton: NSButton!
     @IBOutlet weak var scpRsaCopyPasteCommand: NSTextField!
     @IBOutlet weak var scpDsaCopyPasteCommand: NSTextField!
     @IBOutlet weak var sshCreateRemoteCatalog: NSTextField!
@@ -77,7 +72,7 @@ class ViewControllerSsh: NSViewController {
         self.presentViewControllerAsSheet(self.viewControllerSource)
     }
 
-    @IBAction func createRemoteSshDirectory(_ sender: NSButton) {
+    func createRemoteSshDirectory() {
         guard self.hiddenID != nil else { return }
         guard self.sshcmd != nil else { return }
         self.sshcmd!.createSshRemoteDirectory(hiddenID: self.hiddenID!)
@@ -88,7 +83,7 @@ class ViewControllerSsh: NSViewController {
         self.sshCreateRemoteCatalog.stringValue = sshcmd!.commandCopyPasteTermninal!
     }
 
-    @IBAction func scpRsaPubKey(_ sender: NSButton) {
+    func scpRsaPubKey() {
         guard self.hiddenID != nil else { return }
         guard self.sshcmd != nil else { return }
         self.sshcmd!.scpPubKey(key: "rsa", hiddenID: self.hiddenID!)
@@ -96,7 +91,7 @@ class ViewControllerSsh: NSViewController {
         self.scpRsaCopyPasteCommand.stringValue = sshcmd!.commandCopyPasteTermninal!
     }
 
-    @IBAction func scpDsaPubKey(_ sender: NSButton) {
+    func scpDsaPubKey() {
         guard self.hiddenID != nil else { return }
         guard self.sshcmd != nil else { return }
         self.sshcmd!.scpPubKey(key: "dsa", hiddenID: self.hiddenID!)
@@ -143,11 +138,8 @@ class ViewControllerSsh: NSViewController {
     override func viewDidAppear() {
         super.viewDidAppear()
         self.configurations = self.configurationsDelegate?.getconfigurationsobject()
-        self.scpDsaPubKeyButton.isEnabled = false
-        self.scpRsaPubKeyButton.isEnabled = false
         self.checkDsaPubKeyButton.isEnabled = false
         self.checkRsaPubKeyButton.isEnabled = false
-        self.sshCreatRemoteSshButton.isEnabled = false
         self.checkPrivatePublicKey()
 
     }
@@ -178,14 +170,11 @@ extension ViewControllerSsh: DismissViewController {
     // Protocol DismissViewController
     func dismiss_view(viewcontroller: NSViewController) {
         self.dismissViewController(viewcontroller)
-        guard self.hiddenID != nil else {
-            return
-        }
-        self.scpDsaPubKeyButton.isEnabled = true
-        self.scpRsaPubKeyButton.isEnabled = true
         self.checkDsaPubKeyButton.isEnabled = true
         self.checkRsaPubKeyButton.isEnabled = true
-        self.sshCreatRemoteSshButton.isEnabled = true
+        self.createRemoteSshDirectory()
+        self.scpRsaPubKey()
+        self.scpDsaPubKey()
     }
 }
 

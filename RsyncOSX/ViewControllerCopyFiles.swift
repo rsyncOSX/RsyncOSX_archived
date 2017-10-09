@@ -157,8 +157,7 @@ class ViewControllerCopyFiles: NSViewController {
         self.localCatalog.delegate = self
         // Double click on row to select
         self.tableViewSelect.doubleAction = #selector(self.tableViewDoubleClick(sender:))
-        self.configurationsDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain)
-            as? ViewControllertabMain
+        self.configurationsDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllertabMain
     }
 
     override func viewDidAppear() {
