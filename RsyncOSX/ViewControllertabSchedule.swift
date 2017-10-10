@@ -270,6 +270,8 @@ extension ViewControllertabSchedule: NSTableViewDelegate {
         }
         if tableColumn!.identifier.rawValue == "batchCellID" {
             return object[tableColumn!.identifier] as? Int!
+        } else if tableColumn!.identifier.rawValue == "offsiteServerCellID", ((object[tableColumn!.identifier] as? String)?.isEmpty)! {
+            return "localhost"
         } else {
             if self.schedulessorted != nil {
                 number = self.schedulessorted!.numberOfFutureSchedules(hiddenID)
