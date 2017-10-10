@@ -451,6 +451,8 @@ class ViewControllertabMain: NSViewController {
 
     // Function for setting profile
     private func displayProfile() {
+        weak var localprofileinfo: SetProfileinfo?
+        weak var localprofileinfo2: SetProfileinfo?
         guard self.loadProfileMenu == true else {
             self.profilInfo.stringValue = "Profile: please wait..."
             self.profilInfo.textColor = .blue
@@ -463,6 +465,10 @@ class ViewControllertabMain: NSViewController {
             self.profilInfo.stringValue = "Profile: default"
             self.profilInfo.textColor = .black
         }
+        localprofileinfo = ViewControllerReference.shared.getvcref(viewcontroller: .vctabschedule) as? ViewControllertabSchedule
+        localprofileinfo2 = ViewControllerReference.shared.getvcref(viewcontroller: .vcnewconfigurations ) as? ViewControllerNewConfigurations
+        localprofileinfo?.setprofile(profile: self.profilInfo.stringValue, color: self.profilInfo.textColor!)
+        localprofileinfo2?.setprofile(profile: self.profilInfo.stringValue, color: self.profilInfo.textColor!)
         self.TCPButton.isEnabled = true
         self.setRsyncCommandDisplay()
     }
