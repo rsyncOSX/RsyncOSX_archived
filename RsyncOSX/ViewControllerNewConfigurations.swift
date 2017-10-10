@@ -43,6 +43,7 @@ class ViewControllerNewConfigurations: NSViewController {
     @IBOutlet weak var sshport: NSTextField!
     @IBOutlet weak var rsyncdaemon: NSButton!
     @IBOutlet weak var singleFile: NSButton!
+    @IBOutlet weak var profilInfo: NSTextField!
 
     // Userconfiguration
     // self.presentViewControllerAsSheet(self.ViewControllerUserconfiguration)
@@ -56,6 +57,7 @@ class ViewControllerNewConfigurations: NSViewController {
         self.newconfigurations = NewConfigurations()
         globalMainQueue.async(execute: { () -> Void in
             self.newTableView.reloadData()
+            self.setFields()
         })
     }
     @IBAction func copyLocalCatalog(_ sender: NSButton) {
@@ -209,7 +211,6 @@ extension ViewControllerNewConfigurations: GetPath {
             }
         }
     }
-
 }
 
 extension ViewControllerNewConfigurations: DismissViewController {
@@ -218,5 +219,13 @@ extension ViewControllerNewConfigurations: DismissViewController {
     func dismiss_view(viewcontroller: NSViewController) {
         self.dismissViewController(viewcontroller)
     }
+}
 
+extension ViewControllerNewConfigurations: SetProfileinfo {
+    func setprofile(profile: String, color: NSColor) {
+        globalMainQueue.async(execute: { () -> Void in
+            self.profilInfo.stringValue = profile
+            self.profilInfo.textColor = color
+        })
+    }
 }

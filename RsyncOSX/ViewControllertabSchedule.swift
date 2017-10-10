@@ -11,8 +11,12 @@ import Foundation
 import Cocoa
 
 // Protocol for restarting timer
-protocol StartTimer : class {
+protocol StartTimer: class {
     func startTimerNextJob()
+}
+
+protocol SetProfileinfo: class {
+    func setprofile(profile: String, color: NSColor)
 }
 
 class ViewControllertabSchedule: NSViewController {
@@ -27,6 +31,7 @@ class ViewControllertabSchedule: NSViewController {
     @IBOutlet weak var once: NSButton!
     @IBOutlet weak var daily: NSButton!
     @IBOutlet weak var weekly: NSButton!
+    @IBOutlet weak var profilInfo: NSTextField!
 
     private var index: Int?
     private var hiddenID: Int?
@@ -356,5 +361,14 @@ extension ViewControllertabSchedule: DeselectRowTable {
             return
         }
         self.mainTableView.deselectRow(self.index!)
+    }
+}
+
+extension ViewControllertabSchedule: SetProfileinfo {
+    func setprofile(profile: String, color: NSColor) {
+        globalMainQueue.async(execute: { () -> Void in
+            self.profilInfo.stringValue = profile
+            self.profilInfo.textColor = color
+        })
     }
 }
