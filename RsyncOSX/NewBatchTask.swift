@@ -80,11 +80,9 @@ final class NewBatchTask {
             let work = batchobject.nextBatchCopy()
             // Get the index if given hiddenID (in work.0)
             let index: Int = self.configurations!.getIndex(work.0)
-
             // Create the output object for rsync
             self.output = nil
             self.output = OutputProcess()
-
             switch work.1 {
             case 0:
                 self.batchViewDelegate?.progressIndicatorViewBatch(operation: .start)
@@ -139,7 +137,7 @@ final class NewBatchTask {
                 self.taskDelegate?.setNumbers(output: self.output)
                 batchobject.setEstimated(numberOfFiles: self.output?.getMaxcount() ?? 0)
                 self.batchViewDelegate?.progressIndicatorViewBatch(operation: .stop)
-                DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                self.delayWithSeconds(1) {
                     self.executeBatch()
                 }
             case 1:
@@ -168,12 +166,18 @@ final class NewBatchTask {
                     self.schedules!.addlogtaskmanuel(hiddenID, result: numbers)
                 }
                 self.configurations!.setCurrentDateonConfiguration(index)
-                DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                self.delayWithSeconds(1) {
                     self.executeBatch()
                 }
             default :
                 break
             }
+        }
+    }
+
+    func delayWithSeconds(_ seconds: Double, completion: @escaping () -> Void) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + seconds) {
+            completion()
         }
     }
 
