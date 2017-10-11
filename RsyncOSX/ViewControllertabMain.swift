@@ -444,9 +444,9 @@ class ViewControllertabMain: NSViewController {
         }
         self.singletask = nil
         self.setNumbers(output: nil)
-        self.batchtask = NewBatchTask()
-        // Present batch view
-        self.batchtask?.presentBatchView()
+        globalMainQueue.async(execute: { () -> Void in
+            self.presentViewControllerAsSheet(self.viewControllerBatch)
+        })
     }
 
     // Function for setting profile
@@ -608,6 +608,7 @@ extension ViewControllertabMain: NSTableViewDelegate {
             self.configurations!.setBatchYesNo(row)
         }
         self.singletask = nil
+        self.batchtask = nil
         self.setInfo(info: "Estimate", color: .blue)
         self.light.color = .systemYellow
     }
@@ -797,6 +798,7 @@ extension ViewControllertabMain: DismissViewController {
             self.displayProfile()
         })
         self.showProcessInfo(info: .blank)
+        self.batchtask = nil
     }
 }
 
@@ -1069,12 +1071,6 @@ extension ViewControllertabMain: SingleTask {
 }
 
 extension ViewControllertabMain: BatchTask {
-
-    func presentViewBatch() {
-        globalMainQueue.async(execute: { () -> Void in
-            self.presentViewControllerAsSheet(self.viewControllerBatch)
-        })
-    }
 
     func progressIndicatorViewBatch(operation: BatchViewProgressIndicator) {
         switch operation {

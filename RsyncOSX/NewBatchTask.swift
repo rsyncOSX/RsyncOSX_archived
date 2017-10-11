@@ -12,7 +12,6 @@ import Foundation
 import Cocoa
 
 protocol BatchTask: class {
-    func presentViewBatch()
     func progressIndicatorViewBatch(operation: BatchViewProgressIndicator)
     func setOutputBatch(outputbatch: OutputBatch?)
 }
@@ -52,25 +51,6 @@ final class NewBatchTask {
     // Some max numbers
     private var transfernum: String?
     private var transferbytes: String?
-
-    // Present BATCH TASKS only
-    // Start of BATCH tasks.
-    // After start the function ProcessTermination()
-    // which is triggered when a Process termination is
-    // discovered, takes care of next task according to
-    // status and next work in batchOperations which
-    // also includes a queu of work.
-    func presentBatchView() {
-        self.outputbatch = nil
-        // NB: self.setInfo(info: "Batchrun", color: .blue)
-        // Get all Configs marked for batch
-        let configs = self.configurations!.getConfigurationsBatch()
-        let batchObject = BatchTaskWorkQueu(batchtasks: configs)
-        // Set the reference to batchData object in SharingManagerConfiguration
-        self.configurations!.setbatchDataQueue(batchdata: batchObject)
-        // Present batchView
-        self.batchViewDelegate?.presentViewBatch()
-    }
 
     // Functions are called from batchView.
     func executeBatch() {
@@ -182,6 +162,7 @@ final class NewBatchTask {
     }
 
     init() {
+        print("new batch")
         self.indicatorDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllertabMain
         self.taskDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllertabMain
         self.batchViewDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllertabMain
@@ -189,6 +170,13 @@ final class NewBatchTask {
         self.configurations = self.configurationsDelegate?.getconfigurationsobject()
         self.schedulesDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllertabMain
         self.schedules = self.schedulesDelegate?.getschedulesobject()
+        self.outputbatch = nil
+        // NB: self.setInfo(info: "Batchrun", color: .blue)
+        // Get all Configs marked for batch
+        let configs = self.configurations!.getConfigurationsBatch()
+        let batchObject = BatchTaskWorkQueu(batchtasks: configs)
+        // Set the reference to batchData object in SharingManagerConfiguration
+        self.configurations!.setbatchDataQueue(batchdata: batchObject)
     }
 
 }

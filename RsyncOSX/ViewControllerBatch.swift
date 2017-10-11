@@ -47,8 +47,8 @@ class ViewControllerBatch: NSViewController {
 
     @IBAction func close(_ sender: NSButton) {
         if self.close! {
-            self.batchTask = NewBatchTask()
-            self.batchTask!.closeOperation()
+            // self.batchTask = NewBatchTask()
+            // self.batchTask!.closeOperation()
         } else {
             self.abortDelegate?.abortOperations()
         }
@@ -102,6 +102,7 @@ class ViewControllerBatch: NSViewController {
         self.closeButton.title = "Close"
         self.close = true
         self.batchTask = nil
+        self.batchTask = NewBatchTask()
         globalMainQueue.async(execute: { () -> Void in
             self.mainTableView.reloadData()
         })

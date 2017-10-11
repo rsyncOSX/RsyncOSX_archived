@@ -30,10 +30,7 @@ final class BatchTaskWorkQueu {
 
     // Returning current row
     func getRow() -> Int {
-        guard self.row != nil else {
-            return 0
-        }
-        return self.row!
+        return self.row ?? 0
     }
 
     // Set estimated (0 or 1) for row at index
@@ -78,6 +75,7 @@ final class BatchTaskWorkQueu {
     // Get next batch from Queue, REMOVES the first element
     // (-1,-1) indicates end of Queue
     func nextBatchRemove() -> (Int, Int) {
+        print(self.batchQueu)
         guard self.batchQueu.count > 0 else {
             self.completed = true
             return (-1, -1)
