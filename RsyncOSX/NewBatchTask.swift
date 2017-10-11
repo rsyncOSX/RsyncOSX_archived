@@ -139,7 +139,7 @@ final class NewBatchTask {
                 self.taskDelegate?.setNumbers(output: self.output)
                 batchobject.setEstimated(numberOfFiles: self.output?.getMaxcount() ?? 0)
                 self.batchViewDelegate?.progressIndicatorViewBatch(operation: .stop)
-                self.delayWithSeconds(1) {
+                DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
                     self.executeBatch()
                 }
             case 1:
@@ -168,18 +168,12 @@ final class NewBatchTask {
                     self.schedules!.addlogtaskmanuel(hiddenID, result: numbers)
                 }
                 self.configurations!.setCurrentDateonConfiguration(index)
-                self.delayWithSeconds(1) {
+                DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
                     self.executeBatch()
                 }
             default :
                 break
             }
-        }
-    }
-
-    func delayWithSeconds(_ seconds: Double, completion: @escaping () -> Void) {
-        DispatchQueue.main.asyncAfter(deadline: .now() + seconds) {
-            completion()
         }
     }
 
