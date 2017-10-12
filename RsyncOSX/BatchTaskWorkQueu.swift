@@ -75,7 +75,6 @@ final class BatchTaskWorkQueu {
     // Get next batch from Queue, REMOVES the first element
     // (-1,-1) indicates end of Queue
     func nextBatchRemove() -> (Int, Int) {
-        print(self.batchQueu)
         guard self.batchQueu.count > 0 else {
             self.completed = true
             return (-1, -1)
@@ -99,7 +98,6 @@ final class BatchTaskWorkQueu {
     }
 
     init (configurations: Configurations?) {
-        print("create batchQueue")
         if let batchtasks = configurations?.getConfigurationsBatch() {
             for i in 0 ..< batchtasks.count {
                 let row: NSMutableDictionary = [

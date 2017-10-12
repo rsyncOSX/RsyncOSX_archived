@@ -86,6 +86,7 @@ class ViewControllerBatch: NSViewController {
         ViewControllerReference.shared.setvcref(viewcontroller: .vcbatch, nsviewcontroller: self)
         self.dismissDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllertabMain
         self.abortDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllertabMain
+        // Create new batctask
         self.batchTask = BatchTask()
         self.configurations = self.batchTask?.configurations
         self.configurations?.createbatchQueue()

@@ -50,7 +50,7 @@ class ViewControllertabMain: NSViewController {
     // Reference to the single taskobject
     var singletask: SingleTask?
     // Reference to batch taskobject
-    var batchtask: BatchTask?
+    var batchtaskObject: BatchTask?
     var tools: Tools?
 
     @IBOutlet weak var light: NSColorWell!
@@ -58,8 +58,6 @@ class ViewControllertabMain: NSViewController {
     weak var processupdateDelegate: UpdateProgress?
     // Delegate function for doing a refresh of NSTableView in ViewControllerBatch
     weak var refreshDelegate: Reloadandrefresh?
-    // Delegate function for start/stop progress Indicator in BatchWindow
-    weak var indicatorDelegate: StartStopProgressIndicator?
     // Delegate function getting batchTaskObject
     weak var batchObjectDelegate: getNewBatchTask?
 
@@ -419,7 +417,7 @@ class ViewControllertabMain: NSViewController {
         guard self.index != nil else {
             return
         }
-        self.batchtask = nil
+        self.batchtaskObject = nil
         guard self.singletask != nil else {
             // Dry run
             self.singletask = SingleTask(index: self.index!)
@@ -493,7 +491,7 @@ class ViewControllertabMain: NSViewController {
         }
         self.process = nil
         self.singletask = nil
-        self.batchtask = nil
+        self.batchtaskObject = nil
         self.setInfo(info: "Estimate", color: .blue)
         self.light.color = .systemYellow
         self.showProcessInfo(info: .blank)
@@ -608,7 +606,7 @@ extension ViewControllertabMain: NSTableViewDelegate {
             self.configurations!.setBatchYesNo(row)
         }
         self.singletask = nil
-        self.batchtask = nil
+        self.batchtaskObject = nil
         self.setInfo(info: "Estimate", color: .blue)
         self.light.color = .systemYellow
     }
@@ -818,44 +816,33 @@ extension ViewControllertabMain: UpdateProgress {
             singletask.processTermination()
         } else {
             // Batch run
-            if let pvc = self.presentedViewControllers as? [ViewControllerBatch] {
-                // If abort in batchview just bail out and terminate. The
-                // Process Termination is caused by terminate the Process task
-                guard pvc.count > 0 else {
-                    return
-                }
-                self.batchObjectDelegate = pvc[0]
-                self.batchtask = self.batchObjectDelegate?.getbatchtaskObject()
-            }
-            self.output = self.batchtask!.output
-            self.process = self.batchtask!.process
-            self.batchtask!.processTermination()
+            self.batchObjectDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vcbatch) as? ViewControllerBatch
+            self.batchtaskObject = self.batchObjectDelegate?.getbatchtaskObject()
+            self.output = self.batchtaskObject!.output
+            self.process = self.batchtaskObject!.process
+            self.batchtaskObject!.processTermination()
         }
     }
 
     // Function is triggered when Process outputs data in filehandler
     // Process is either in singleRun or batchRun
     func fileHandler() {
-        if self.batchtask != nil {
+        if self.batchtaskObject != nil {
             // Batch run
             if let batchobject = self.configurations!.getbatchQueue() {
                 let work = batchobject.nextBatchCopy()
                 if work.1 == 1 {
                     // Real work is done, must set reference to Process object in case of Abort
-                    self.process = self.batchtask!.process
-                    batchobject.updateInProcess(numberOfFiles: self.batchtask!.output!.count())
+                    self.process = self.batchtaskObject!.process
+                    batchobject.updateInProcess(numberOfFiles: self.batchtaskObject!.output!.count())
                     // Refresh view in Batchwindow
-                    if let pvc = self.presentedViewControllers as? [ViewControllerBatch] {
-                        self.refreshDelegate = pvc[0]
-                        self.refreshDelegate?.reloadtabledata()
-                    }
+                    self.refreshDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vcbatch) as? ViewControllerBatch
+                    self.refreshDelegate?.reloadtabledata()
                 }
             }
         } else {
         // Single task run
-            guard self.singletask != nil else {
-                return
-            }
+            guard self.singletask != nil else { return }
             self.output = self.singletask!.output
             self.process = self.singletask!.process
             if let pvc2 = self.presentedViewControllers as? [ViewControllerProgressProcess] {
@@ -899,8 +886,8 @@ extension ViewControllertabMain: RsyncError {
                 if self.singletask != nil {
                     self.singletask!.error()
                 }
-                if self.batchtask != nil {
-                    self.batchtask!.error()
+                if self.batchtaskObject != nil {
+                    self.batchtaskObject!.error()
                 }
             })
         }
@@ -1072,29 +1059,18 @@ extension ViewControllertabMain: SingleTaskProgress {
 extension ViewControllertabMain: BatchTaskProgress {
 
     func progressIndicatorViewBatch(operation: BatchViewProgressIndicator) {
+        let localindicatorDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vcbatch) as? ViewControllerBatch
+        let localrefreshDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vcbatch) as? ViewControllerBatch
         switch operation {
         case .stop:
-            if let pvc = self.presentedViewControllers as? [ViewControllerBatch] {
-                self.indicatorDelegate = pvc[0]
-                self.refreshDelegate = pvc[0]
-                self.indicatorDelegate?.stop()
-                self.refreshDelegate?.reloadtabledata()
-            }
+            localindicatorDelegate?.stop()
+            localrefreshDelegate?.reloadtabledata()
         case .start:
-            if let pvc = self.presentedViewControllers as? [ViewControllerBatch] {
-                self.indicatorDelegate = pvc[0]
-                self.indicatorDelegate?.start()
-            }
+            localindicatorDelegate?.start()
         case .complete:
-            if let pvc = self.presentedViewControllers as? [ViewControllerBatch] {
-                self.indicatorDelegate = pvc[0]
-                self.indicatorDelegate?.complete()
-            }
+            localindicatorDelegate?.complete()
         case .refresh:
-            if let pvc = self.presentedViewControllers as? [ViewControllerBatch] {
-                self.refreshDelegate = pvc[0]
-                self.refreshDelegate?.reloadtabledata()
-            }
+            localrefreshDelegate?.reloadtabledata()
         }
     }
 
@@ -1127,7 +1103,7 @@ extension ViewControllertabMain: GetConfigurationsObject {
     // After a write, a reload is forced.
     func reloadconfigurations() {
         // If batchtask keep configuration object
-        guard self.batchtask == nil else {
+        guard self.batchtaskObject == nil else {
             // Batchtask, check if task is completed
             guard self.configurations!.getbatchQueue()?.completedBatch() == false else {
                 self.createandreloadconfigurations()
@@ -1143,7 +1119,7 @@ extension ViewControllertabMain: GetSchedulesObject {
 
     func reloadschedules() {
         // If batchtask scedules object
-        guard self.batchtask == nil else {
+        guard self.batchtaskObject == nil else {
             // Batchtask, check if task is completed
             guard self.configurations!.getbatchQueue()?.completedBatch() == false else {
                 self.createandloadschedules()
