@@ -56,8 +56,6 @@ class ViewControllertabMain: NSViewController {
     @IBOutlet weak var light: NSColorWell!
     // Protocol function used in Process().
     weak var processupdateDelegate: UpdateProgress?
-    // Delegate function for doing a refresh of NSTableView in ViewControllerBatch
-    weak var refreshDelegate: Reloadandrefresh?
     // Delegate function getting batchTaskObject
     weak var batchObjectDelegate: getNewBatchTask?
 
@@ -827,6 +825,8 @@ extension ViewControllertabMain: UpdateProgress {
     // Function is triggered when Process outputs data in filehandler
     // Process is either in singleRun or batchRun
     func fileHandler() {
+        weak var localrefreshDelegate: Reloadandrefresh?
+        localrefreshDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vcbatch) as? ViewControllerBatch
         if self.batchtaskObject != nil {
             // Batch run
             if let batchobject = self.configurations!.getbatchQueue() {
@@ -836,8 +836,7 @@ extension ViewControllertabMain: UpdateProgress {
                     self.process = self.batchtaskObject!.process
                     batchobject.updateInProcess(numberOfFiles: self.batchtaskObject!.output!.count())
                     // Refresh view in Batchwindow
-                    self.refreshDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vcbatch) as? ViewControllerBatch
-                    self.refreshDelegate?.reloadtabledata()
+                    localrefreshDelegate?.reloadtabledata()
                 }
             }
         } else {
