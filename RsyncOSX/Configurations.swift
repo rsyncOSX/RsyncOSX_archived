@@ -250,10 +250,14 @@ class Configurations {
         self.refreshDelegate?.reloadtabledata()
     }
 
+    func createbatchQueue() {
+        self.batchQueue = BatchTaskWorkQueu(configurations: self)
+    }
+
     /// Function sets reference to object holding data and methods
     /// for batch execution of Configurations
     /// - parameter batchdata: object holding data and methods for executing Configurations in batch
-    func setbatchDataQueue (batchQueue: BatchTaskWorkQueu) {
+    func setbatchQueue (batchQueue: BatchTaskWorkQueu) {
         self.batchQueue = batchQueue
     }
 
@@ -266,13 +270,13 @@ class Configurations {
 
     /// Function is getting the number of rows batchDataQueue
     /// - returns : the number of rows
-    func batchDataQueuecount() -> Int {
+    func batchQueuecount() -> Int {
         return self.batchQueue?.getbatchDataQueuecount() ?? 0
     }
 
     /// Function is getting the updated batch data queue
     /// - returns : reference to the batch data queue
-    func getbatchDataQueue() -> Array<NSMutableDictionary>? {
+    func getupdatedbatchQueue() -> Array<NSMutableDictionary>? {
         return self.batchQueue?.getupdatedBatchdata()
     }
 

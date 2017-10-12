@@ -95,35 +95,30 @@ final class BatchTaskWorkQueu {
 
     // Func abort Queue
     func abortOperations() {
-        // Remove all objects in Queueu
         self.batchQueu.removeAll()
     }
 
     init (configurations: Configurations?) {
-        guard configurations != nil else {
-            return
-        }
-        let batchtasks = configurations!.getConfigurationsBatch()
-        for i in 0 ..< batchtasks.count {
-            let row: NSMutableDictionary = [
-                "taskCellID": String(i+1),
-                "localCatalogCellID": batchtasks[i].localCatalog,
-                "offsiteServerCellID": batchtasks[i].offsiteServer,
-                "estimatedCellID": 0,
-                "completedCellID": 0,
-                "numberOfFilesCellID": "0",
-                "maxnumberOfFilesCellID": "0"]
-            if (row.object(forKey: "offsiteServerCellID") as? String)!.isEmpty {
-                row.setValue("localhost", forKey: "offsiteServerCellID")
+        if let batchtasks = configurations?.getConfigurationsBatch() {
+            for i in 0 ..< batchtasks.count {
+                let row: NSMutableDictionary = [
+                    "taskCellID": String(i+1),
+                    "localCatalogCellID": batchtasks[i].localCatalog,
+                    "offsiteServerCellID": batchtasks[i].offsiteServer,
+                    "estimatedCellID": 0,
+                    "completedCellID": 0,
+                    "numberOfFilesCellID": "0",
+                    "maxnumberOfFilesCellID": "0"]
+                if (row.object(forKey: "offsiteServerCellID") as? String)!.isEmpty {
+                    row.setValue("localhost", forKey: "offsiteServerCellID")
+                }
+                self.data.append(row)
+                // Estimaterun queu = (hiddenID,0)
+                self.batchQueu.append((batchtasks[i].hiddenID, 0))
+                // Real run queu = (hiddenID,1)
+                self.batchQueu.append((batchtasks[i].hiddenID, 1))
+                self.index.append(i)
             }
-            self.data.append(row)
-            // Appending data for batchQueue
-            // Estimaterun queu = (hiddenID,0)
-            self.batchQueu.append((batchtasks[i].hiddenID, 0))
-            // Real run queu = (hiddenID,1)
-            self.batchQueu.append((batchtasks[i].hiddenID, 1))
-            // Appendig index
-            self.index.append(i)
         }
     }
 }

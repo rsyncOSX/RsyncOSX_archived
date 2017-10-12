@@ -43,8 +43,6 @@ class ViewControllerBatch: NSViewController {
     weak var dismissDelegate: DismissViewController?
     weak var abortDelegate: AbortOperations?
 
-    // ACTIONS AND BUTTONS
-
     @IBAction func close(_ sender: NSButton) {
         if self.close! {
             self.batchTask!.closeOperation()
@@ -82,14 +80,17 @@ class ViewControllerBatch: NSViewController {
         // Setting delegates and datasource
         self.mainTableView.delegate = self
         self.mainTableView.dataSource = self
-        ViewControllerReference.shared.setvcref(viewcontroller: .vcbatch, nsviewcontroller: self)
-        self.dismissDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllertabMain
-        self.abortDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllertabMain
-        self.configurationsDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllertabMain
     }
 
     override func viewDidAppear() {
         super.viewDidAppear()
+        ViewControllerReference.shared.setvcref(viewcontroller: .vcbatch, nsviewcontroller: self)
+        self.dismissDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllertabMain
+        self.abortDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllertabMain
+        self.configurationsDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllertabMain
+        self.batchTask = NewBatchTask()
+        self.configurations = self.configurationsDelegate?.getconfigurationsobject()
+        self.configurations?.createbatchQueue()
         self.closeinseconds.isHidden = true
         self.executeButton.isEnabled = true
         self.working.stopAnimation(nil)
@@ -98,9 +99,6 @@ class ViewControllerBatch: NSViewController {
         self.rownumber.stringValue = ""
         self.closeButton.title = "Close"
         self.close = true
-        self.batchTask = nil
-        self.batchTask = NewBatchTask()
-        self.configurations = self.configurationsDelegate?.getconfigurationsobject()
         globalMainQueue.async(execute: { () -> Void in
             self.mainTableView.reloadData()
         })
@@ -117,7 +115,7 @@ extension ViewControllerBatch: NSTableViewDataSource {
         // Delegate for size of table
         func numberOfRows(in tableView: NSTableView) -> Int {
             self.configurations = self.configurationsDelegate?.getconfigurationsobject()
-            return self.configurations?.batchDataQueuecount() ?? 0
+            return self.configurations?.batchQueuecount() ?? 0
     }
 }
 
@@ -125,7 +123,7 @@ extension ViewControllerBatch: NSTableViewDelegate {
 
     // TableView delegates
     func tableView(_ tableView: NSTableView, objectValueFor tableColumn: NSTableColumn?, row: Int) -> Any? {
-        let object: NSMutableDictionary = self.configurations!.getbatchDataQueue()![row]
+        let object: NSMutableDictionary = self.configurations!.getupdatedbatchQueue()![row]
         if tableColumn!.identifier.rawValue == "estimatedCellID" || tableColumn!.identifier.rawValue == "completedCellID" {
             return object[tableColumn!.identifier] as? Int!
         } else {
@@ -141,25 +139,22 @@ extension ViewControllerBatch: NSTableViewDelegate {
 extension ViewControllerBatch: StartStopProgressIndicator {
 
     func stop() {
-        let row = self.configurations!.getbatchQueue()!.getRow() + 1
+        let row = (self.configurationsDelegate?.getconfigurationsobject()!.getbatchQueue()!.getRow())! + 1
         globalMainQueue.async(execute: { () -> Void in
             self.label.stringValue = "Executing task "
             self.rownumber.stringValue = String(row)
         })
-
     }
 
     func start() {
-        self.configurations = self.configurationsDelegate?.getconfigurationsobject()
         self.close = false
-        let row = self.configurations!.getbatchQueue()!.getRow() + 1
+        let row = (self.configurationsDelegate?.getconfigurationsobject()!.getbatchQueue()!.getRow())! + 1
         // Starts estimation progressbar when estimation starts
         globalMainQueue.async(execute: { () -> Void in
             self.working.startAnimation(nil)
             self.label.stringValue = "Estimating task "
             self.rownumber.stringValue = String(row)
         })
-
     }
 
     func complete() {

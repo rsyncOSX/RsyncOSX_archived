@@ -171,8 +171,8 @@ final class NewBatchTask {
         self.schedulesDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllertabMain
         self.schedules = self.schedulesDelegate?.getschedulesobject()
         self.outputbatch = nil
-        let batchQueue = BatchTaskWorkQueu(configurations: self.configurations)
-        self.configurations!.setbatchDataQueue(batchQueue: batchQueue)
+        // let batchQueue = BatchTaskWorkQueu(configurations: self.configurations)
+        // self.configurations!.setbatchQueue(batchQueue: batchQueue)
     }
 
 }
