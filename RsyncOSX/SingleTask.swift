@@ -35,7 +35,7 @@ enum ColorInfo {
     case black
 }
 
-final class NewSingleTask {
+final class SingleTask {
 
     weak var configurationsDelegate: GetConfigurationsObject?
     var configurations: Configurations?
@@ -188,7 +188,7 @@ final class NewSingleTask {
 }
 
 // Counting
-extension NewSingleTask: Count {
+extension SingleTask: Count {
 
     // Maxnumber of files counted
     func maxCount() -> Int {

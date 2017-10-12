@@ -48,7 +48,7 @@ class ViewControllertabMain: NSViewController {
     var configurations: Configurations?
     var schedules: Schedules?
     // Reference to the single taskobject
-    var singletask: NewSingleTask?
+    var singletask: SingleTask?
     // Reference to batch taskobject
     var batchtask: BatchTask?
     var tools: Tools?
@@ -422,7 +422,7 @@ class ViewControllertabMain: NSViewController {
         self.batchtask = nil
         guard self.singletask != nil else {
             // Dry run
-            self.singletask = NewSingleTask(index: self.index!)
+            self.singletask = SingleTask(index: self.index!)
             self.singletask?.executeSingleTask()
             // Set reference to singleTask object
             self.configurations!.singleTask = self.singletask

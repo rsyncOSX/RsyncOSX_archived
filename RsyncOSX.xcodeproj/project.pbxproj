@@ -76,7 +76,7 @@
 		E9E763711E6AEA5300B45E8D /* ViewControllerCopyFilesSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9E763701E6AEA5300B45E8D /* ViewControllerCopyFilesSource.swift */; };
 		E9E88FD01EB25A080028432F /* ScpArgumentsSsh.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9E88FCF1EB25A080028432F /* ScpArgumentsSsh.swift */; };
 		E9EC78711EACE082001EED9B /* Ssh.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9EC78701EACE082001EED9B /* Ssh.swift */; };
-		E9F068EC1F27B7FB00DDF1A1 /* NewSingleTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9F068EB1F27B7FB00DDF1A1 /* NewSingleTask.swift */; };
+		E9F068EC1F27B7FB00DDF1A1 /* SingleTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9F068EB1F27B7FB00DDF1A1 /* SingleTask.swift */; };
 		E9F068F01F27B93E00DDF1A1 /* ConfigurationSchedule.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9F068EF1F27B93E00DDF1A1 /* ConfigurationSchedule.swift */; };
 		E9F068F21F27B9C100DDF1A1 /* ArgumentsOneConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9F068F11F27B9C100DDF1A1 /* ArgumentsOneConfiguration.swift */; };
 		E9F068F41F27BA0200DDF1A1 /* Readwritefiles.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9F068F31F27BA0200DDF1A1 /* Readwritefiles.swift */; };
@@ -158,7 +158,7 @@
 		E9E763701E6AEA5300B45E8D /* ViewControllerCopyFilesSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewControllerCopyFilesSource.swift; sourceTree = "<group>"; };
 		E9E88FCF1EB25A080028432F /* ScpArgumentsSsh.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScpArgumentsSsh.swift; sourceTree = "<group>"; };
 		E9EC78701EACE082001EED9B /* Ssh.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Ssh.swift; sourceTree = "<group>"; };
-		E9F068EB1F27B7FB00DDF1A1 /* NewSingleTask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewSingleTask.swift; sourceTree = "<group>"; };
+		E9F068EB1F27B7FB00DDF1A1 /* SingleTask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingleTask.swift; sourceTree = "<group>"; };
 		E9F068EF1F27B93E00DDF1A1 /* ConfigurationSchedule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigurationSchedule.swift; sourceTree = "<group>"; };
 		E9F068F11F27B9C100DDF1A1 /* ArgumentsOneConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArgumentsOneConfiguration.swift; sourceTree = "<group>"; };
 		E9F068F31F27BA0200DDF1A1 /* Readwritefiles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Readwritefiles.swift; sourceTree = "<group>"; };
@@ -339,7 +339,7 @@
 				A0430AD91DAFFD3C00BBC106 /* SingleTaskWorkQueu.swift */,
 				A05275D91D6F6E0000D8ECBE /* BatchTaskWorkQueu.swift */,
 				E97C09A61EFAFBC400E86999 /* BatchTask.swift */,
-				E9F068EB1F27B7FB00DDF1A1 /* NewSingleTask.swift */,
+				E9F068EB1F27B7FB00DDF1A1 /* SingleTask.swift */,
 			);
 			name = Execution;
 			sourceTree = "<group>";
@@ -571,7 +571,7 @@
 				E957B1121F5F17220099947A /* ViewControllerReference.swift in Sources */,
 				A0F3F9251DC65CE9001D305F /* ViewControllerScheduledBackupInWork.swift in Sources */,
 				A0AA33811D6F926A00DF4C77 /* ViewControllerBatch.swift in Sources */,
-				E9F068EC1F27B7FB00DDF1A1 /* NewSingleTask.swift in Sources */,
+				E9F068EC1F27B7FB00DDF1A1 /* SingleTask.swift in Sources */,
 				A054F1A91D6D773E00D27688 /* ViewControllerInformation.swift in Sources */,
 				A0430ADA1DAFFD3C00BBC106 /* SingleTaskWorkQueu.swift in Sources */,
 				A004D81A1D9586580016914F /* ViewControllerLoggData.swift in Sources */,

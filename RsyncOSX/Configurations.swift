@@ -72,7 +72,7 @@ class Configurations {
     // If rsync error reset workqueue
     var rsyncerror: Bool = true
     // Reference to singletask object
-    var singleTask: NewSingleTask?
+    var singleTask: SingleTask?
     // The main structure storing all Configurations for tasks
     private var configurations: Array<Configuration>?
     // Array to store argumenst for all tasks.
