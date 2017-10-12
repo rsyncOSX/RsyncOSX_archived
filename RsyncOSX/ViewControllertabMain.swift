@@ -52,12 +52,10 @@ class ViewControllertabMain: NSViewController {
     // Reference to batch taskobject
     var batchtaskObject: BatchTask?
     var tools: Tools?
-
-    @IBOutlet weak var light: NSColorWell!
-    // Protocol function used in Process().
-    weak var processupdateDelegate: UpdateProgress?
     // Delegate function getting batchTaskObject
     weak var batchObjectDelegate: getNewBatchTask?
+
+    @IBOutlet weak var light: NSColorWell!
 
     // Main tableview
     @IBOutlet weak var mainTableView: NSTableView!
@@ -89,8 +87,6 @@ class ViewControllertabMain: NSViewController {
     @IBOutlet weak var newfiles: NSTextField!
     // Delete files
     @IBOutlet weak var deletefiles: NSTextField!
-
-    // REFERENCE VARIABLES
 
     // Reference to Process task
     private var process: Process?
@@ -826,7 +822,9 @@ extension ViewControllertabMain: UpdateProgress {
     // Process is either in singleRun or batchRun
     func fileHandler() {
         weak var localrefreshDelegate: Reloadandrefresh?
+        weak var localprocessupdateDelegate: UpdateProgress?
         localrefreshDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vcbatch) as? ViewControllerBatch
+        localprocessupdateDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vcprogressview) as? ViewControllerProgressProcess
         if self.batchtaskObject != nil {
             // Batch run
             if let batchobject = self.configurations!.getbatchQueue() {
@@ -840,16 +838,11 @@ extension ViewControllertabMain: UpdateProgress {
                 }
             }
         } else {
-        // Single task run
+            // Single task run
             guard self.singletask != nil else { return }
             self.output = self.singletask!.output
             self.process = self.singletask!.process
-            if let pvc2 = self.presentedViewControllers as? [ViewControllerProgressProcess] {
-                if pvc2.count > 0 {
-                    self.processupdateDelegate = pvc2[0]
-                    self.processupdateDelegate?.fileHandler()
-                }
-            }
+            localprocessupdateDelegate?.fileHandler()
         }
     }
 }
@@ -997,12 +990,9 @@ extension ViewControllertabMain: SingleTaskProgress {
     }
 
     func terminateProgressProcess() {
-        if let pvc2 = self.presentedViewControllers as? [ViewControllerProgressProcess] {
-            if pvc2.count > 0 {
-                self.processupdateDelegate = pvc2[0]
-                self.processupdateDelegate?.processTermination()
-            }
-        }
+        weak var localprocessupdateDelegate: UpdateProgress?
+        localprocessupdateDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vcprogressview) as? ViewControllerProgressProcess
+        localprocessupdateDelegate?.processTermination()
     }
 
     func setInfo(info: String, color: ColorInfo) {

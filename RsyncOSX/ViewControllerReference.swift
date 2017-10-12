@@ -22,6 +22,7 @@ enum ViewController {
     case vcssh
     case vcabout
     case vcbatch
+    case vcprogressview
 }
 
 class ViewControllerReference {
@@ -69,6 +70,8 @@ class ViewControllerReference {
     private var viewControllerAbout: NSViewController?
     //  Refereence to batchview
     private var viewControllerBatch: NSViewController?
+    // ProgressView single task
+    private var viewControllerProgressView: NSViewController?
 
     func getvcref(viewcontroller: ViewController) -> NSViewController? {
         switch viewcontroller {
@@ -88,6 +91,8 @@ class ViewControllerReference {
             return self.viewControllerAbout
         case .vcbatch:
             return self.viewControllerBatch
+        case .vcprogressview:
+            return self.viewControllerProgressView
         }
     }
 
@@ -109,6 +114,8 @@ class ViewControllerReference {
             self.viewControllerAbout = nsviewcontroller
         case .vcbatch:
             self.viewControllerBatch = nsviewcontroller
+        case .vcprogressview:
+            self.viewControllerProgressView = nsviewcontroller
         }
     }
 }
