@@ -5,6 +5,7 @@
 //  Created by Thomas Evensen on 24/08/2016.
 //  Copyright © 2016 Thomas Evensen. All rights reserved.
 //
+// swiftlint:disable line_length
 
 import Cocoa
 
@@ -41,16 +42,14 @@ class ViewControllerProgressProcess: NSViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.dismissDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain)
-            as? ViewControllertabMain
-        self.abortDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain)
-            as? ViewControllertabMain
-        self.configurationsDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain)
-            as? ViewControllertabMain
+        self.dismissDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllertabMain
+        self.abortDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllertabMain
+        self.configurationsDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllertabMain
     }
 
     override func viewDidAppear() {
         super.viewDidAppear()
+        ViewControllerReference.shared.setvcref(viewcontroller: .vcprogressview, nsviewcontroller: self)
         self.configurations = self.configurationsDelegate?.getconfigurationsobject()
         if let pvc2 = self.configurations!.singleTask {
             self.countDelegate = pvc2
@@ -95,9 +94,7 @@ extension ViewControllerProgressProcess: UpdateProgress {
 
     // Update progressview during task
     func fileHandler() {
-        guard self.countDelegate != nil else {
-            return
-        }
+        guard self.countDelegate != nil else { return }
         self.updateProgressbar(Double(self.countDelegate!.inprogressCount()))
     }
 

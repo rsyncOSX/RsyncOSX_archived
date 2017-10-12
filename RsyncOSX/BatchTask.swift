@@ -11,8 +11,7 @@
 import Foundation
 import Cocoa
 
-protocol BatchTask: class {
-    func presentViewBatch()
+protocol BatchTaskProgress: class {
     func progressIndicatorViewBatch(operation: BatchViewProgressIndicator)
     func setOutputBatch(outputbatch: OutputBatch?)
 }
@@ -24,21 +23,21 @@ enum BatchViewProgressIndicator {
     case refresh
 }
 
-final class NewBatchTask {
+final class BatchTask {
     weak var configurationsDelegate: GetConfigurationsObject?
-    var configurations: Configurations?
+    weak var configurations: Configurations?
     weak var schedulesDelegate: GetSchedulesObject?
-    var schedules: Schedules?
+    weak var schedules: Schedules?
     weak var closeviewerrorDelegate: closeViewError?
 
     // Protocol function used in Process().
     weak var processupdateDelegate: UpdateProgress?
     // Delegate for presenting batchView
-    weak var batchViewDelegate: BatchTask?
+    weak var batchViewDelegate: BatchTaskProgress?
     // Delegate function for start/stop progress Indicator in BatchWindow
     weak var indicatorDelegate: StartStopProgressIndicatorSingleTask?
     // Delegate function for show process step and present View
-    weak var taskDelegate: SingleTask?
+    weak var taskDelegate: SingleTaskProgress?
     // Reference to Process task
     var process: Process?
     // Getting output from rsync
@@ -53,38 +52,17 @@ final class NewBatchTask {
     private var transfernum: String?
     private var transferbytes: String?
 
-    // Present BATCH TASKS only
-    // Start of BATCH tasks.
-    // After start the function ProcessTermination()
-    // which is triggered when a Process termination is
-    // discovered, takes care of next task according to
-    // status and next work in batchOperations which
-    // also includes a queu of work.
-    func presentBatchView() {
-        self.outputbatch = nil
-        // NB: self.setInfo(info: "Batchrun", color: .blue)
-        // Get all Configs marked for batch
-        let configs = self.configurations!.getConfigurationsBatch()
-        let batchObject = BatchTaskWorkQueu(batchtasks: configs)
-        // Set the reference to batchData object in SharingManagerConfiguration
-        self.configurations!.setbatchDataQueue(batchdata: batchObject)
-        // Present batchView
-        self.batchViewDelegate?.presentViewBatch()
-    }
-
     // Functions are called from batchView.
     func executeBatch() {
-        if let batchobject = self.configurations!.getBatchdataObject() {
+        if let batchobject = self.configurations!.getbatchQueue() {
             // Just copy the work object.
             // The work object will be removed in Process termination
             let work = batchobject.nextBatchCopy()
             // Get the index if given hiddenID (in work.0)
             let index: Int = self.configurations!.getIndex(work.0)
-
             // Create the output object for rsync
             self.output = nil
             self.output = OutputProcess()
-
             switch work.1 {
             case 0:
                 self.batchViewDelegate?.progressIndicatorViewBatch(operation: .start)
@@ -116,7 +94,7 @@ final class NewBatchTask {
     // Error and stop execution
     func error() {
         // Just pop off remaining work
-        if let batchobject = self.configurations!.getBatchdataObject() {
+        if let batchobject = self.configurations!.getbatchQueue() {
             batchobject.abortOperations()
             self.closeviewerrorDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vcbatch) as? ViewControllerBatch
             self.closeviewerrorDelegate?.closeerror()
@@ -126,7 +104,7 @@ final class NewBatchTask {
     // Called when ProcessTermination is called in main View.
     // Either dryn-run or realrun completed.
     func processTermination() {
-        if let batchobject = self.configurations!.getBatchdataObject() {
+        if let batchobject = self.configurations!.getbatchQueue() {
             if self.outputbatch == nil {
                 self.outputbatch = OutputBatch()
             }
@@ -191,6 +169,7 @@ final class NewBatchTask {
         self.configurations = self.configurationsDelegate?.getconfigurationsobject()
         self.schedulesDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllertabMain
         self.schedules = self.schedulesDelegate?.getschedulesobject()
+        self.outputbatch = nil
     }
 
 }

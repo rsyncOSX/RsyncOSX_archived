@@ -12,7 +12,7 @@ import Cocoa
 
 // Return the created batchobject
 protocol getNewBatchTask: class {
-    func getTaskObject() -> NewBatchTask
+    func getbatchtaskObject() -> BatchTask
 }
 
 // Dismiss view when rsync error
@@ -22,14 +22,13 @@ protocol closeViewError:  class {
 
 class ViewControllerBatch: NSViewController {
 
-    weak var configurationsDelegate: GetConfigurationsObject?
-    var configurations: Configurations?
+    weak var configurations: Configurations?
     var close: Bool?
     var waitToClose: Timer?
     var closeIn: Timer?
     var seconds: Int?
     var row: Int?
-    var batchTask: NewBatchTask?
+    var batchTask: BatchTask?
 
     // Main tableview
     @IBOutlet weak var mainTableView: NSTableView!
@@ -43,11 +42,8 @@ class ViewControllerBatch: NSViewController {
     weak var dismissDelegate: DismissViewController?
     weak var abortDelegate: AbortOperations?
 
-    // ACTIONS AND BUTTONS
-
     @IBAction func close(_ sender: NSButton) {
         if self.close! {
-            self.batchTask = NewBatchTask()
             self.batchTask!.closeOperation()
         } else {
             self.abortDelegate?.abortOperations()
@@ -59,7 +55,6 @@ class ViewControllerBatch: NSViewController {
 
     // Execute batch
     @IBAction func execute(_ sender: NSButton) {
-        self.batchTask = NewBatchTask()
         self.batchTask!.executeBatch()
         self.closeButton.title = "Abort"
         self.executeButton.isEnabled = false
@@ -84,15 +79,17 @@ class ViewControllerBatch: NSViewController {
         // Setting delegates and datasource
         self.mainTableView.delegate = self
         self.mainTableView.dataSource = self
-        ViewControllerReference.shared.setvcref(viewcontroller: .vcbatch, nsviewcontroller: self)
-        self.dismissDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllertabMain
-        self.abortDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllertabMain
-        self.configurationsDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllertabMain
     }
 
     override func viewDidAppear() {
         super.viewDidAppear()
-        self.configurations = self.configurationsDelegate?.getconfigurationsobject()
+        ViewControllerReference.shared.setvcref(viewcontroller: .vcbatch, nsviewcontroller: self)
+        self.dismissDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllertabMain
+        self.abortDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllertabMain
+        // Create new batctask
+        self.batchTask = BatchTask()
+        self.configurations = self.batchTask?.configurations
+        self.configurations?.createbatchQueue()
         self.closeinseconds.isHidden = true
         self.executeButton.isEnabled = true
         self.working.stopAnimation(nil)
@@ -101,7 +98,6 @@ class ViewControllerBatch: NSViewController {
         self.rownumber.stringValue = ""
         self.closeButton.title = "Close"
         self.close = true
-        self.batchTask = nil
         globalMainQueue.async(execute: { () -> Void in
             self.mainTableView.reloadData()
         })
@@ -117,8 +113,8 @@ class ViewControllerBatch: NSViewController {
 extension ViewControllerBatch: NSTableViewDataSource {
         // Delegate for size of table
         func numberOfRows(in tableView: NSTableView) -> Int {
-            self.configurations = self.configurationsDelegate?.getconfigurationsobject()
-            return self.configurations?.batchDataQueuecount() ?? 0
+            self.configurations = self.batchTask?.configurations
+            return self.configurations?.batchQueuecount() ?? 0
     }
 }
 
@@ -126,11 +122,12 @@ extension ViewControllerBatch: NSTableViewDelegate {
 
     // TableView delegates
     func tableView(_ tableView: NSTableView, objectValueFor tableColumn: NSTableColumn?, row: Int) -> Any? {
-        let object: NSMutableDictionary = self.configurations!.getbatchDataQueue()![row]
+        self.configurations = self.batchTask?.configurations
+        let object: NSMutableDictionary = self.configurations!.getupdatedbatchQueue()![row]
         if tableColumn!.identifier.rawValue == "estimatedCellID" || tableColumn!.identifier.rawValue == "completedCellID" {
             return object[tableColumn!.identifier] as? Int!
         } else {
-            if row == self.configurations!.getBatchdataObject()!.getRow() && tableColumn!.identifier.rawValue == "taskCellID" {
+            if row == self.configurations!.getbatchQueue()!.getRow() && tableColumn!.identifier.rawValue == "taskCellID" {
                 return (object[tableColumn!.identifier] as? String)! + " *"
             } else {
                 return object[tableColumn!.identifier] as? String
@@ -142,24 +139,22 @@ extension ViewControllerBatch: NSTableViewDelegate {
 extension ViewControllerBatch: StartStopProgressIndicator {
 
     func stop() {
-        let row = self.configurations!.getBatchdataObject()!.getRow() + 1
+        let row = self.configurations!.getbatchQueue()!.getRow() + 1
         globalMainQueue.async(execute: { () -> Void in
             self.label.stringValue = "Executing task "
             self.rownumber.stringValue = String(row)
         })
-
     }
 
     func start() {
         self.close = false
-        let row = self.configurations!.getBatchdataObject()!.getRow() + 1
+        let row = self.configurations!.getbatchQueue()!.getRow() + 1
         // Starts estimation progressbar when estimation starts
         globalMainQueue.async(execute: { () -> Void in
             self.working.startAnimation(nil)
             self.label.stringValue = "Estimating task "
             self.rownumber.stringValue = String(row)
         })
-
     }
 
     func complete() {
@@ -191,7 +186,7 @@ extension ViewControllerBatch: Reloadandrefresh {
 
 extension ViewControllerBatch: getNewBatchTask {
 
-    func getTaskObject() -> NewBatchTask {
+    func getbatchtaskObject() -> BatchTask {
         return self.batchTask!
     }
 
