@@ -99,6 +99,7 @@ final class BatchTaskWorkQueu {
     }
 
     init (configurations: Configurations?) {
+        print("create batchQueue")
         if let batchtasks = configurations?.getConfigurationsBatch() {
             for i in 0 ..< batchtasks.count {
                 let row: NSMutableDictionary = [

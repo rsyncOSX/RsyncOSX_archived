@@ -250,15 +250,9 @@ class Configurations {
         self.refreshDelegate?.reloadtabledata()
     }
 
+    // Create batchQueue
     func createbatchQueue() {
         self.batchQueue = BatchTaskWorkQueu(configurations: self)
-    }
-
-    /// Function sets reference to object holding data and methods
-    /// for batch execution of Configurations
-    /// - parameter batchdata: object holding data and methods for executing Configurations in batch
-    func setbatchQueue (batchQueue: BatchTaskWorkQueu) {
-        self.batchQueue = batchQueue
     }
 
     /// Function return the reference to object holding data and methods

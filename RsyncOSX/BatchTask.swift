@@ -11,7 +11,7 @@
 import Foundation
 import Cocoa
 
-protocol BatchTask: class {
+protocol BatchTaskProgress: class {
     func progressIndicatorViewBatch(operation: BatchViewProgressIndicator)
     func setOutputBatch(outputbatch: OutputBatch?)
 }
@@ -23,7 +23,7 @@ enum BatchViewProgressIndicator {
     case refresh
 }
 
-final class NewBatchTask {
+final class BatchTask {
     weak var configurationsDelegate: GetConfigurationsObject?
     weak var configurations: Configurations?
     weak var schedulesDelegate: GetSchedulesObject?
@@ -33,7 +33,7 @@ final class NewBatchTask {
     // Protocol function used in Process().
     weak var processupdateDelegate: UpdateProgress?
     // Delegate for presenting batchView
-    weak var batchViewDelegate: BatchTask?
+    weak var batchViewDelegate: BatchTaskProgress?
     // Delegate function for start/stop progress Indicator in BatchWindow
     weak var indicatorDelegate: StartStopProgressIndicatorSingleTask?
     // Delegate function for show process step and present View
@@ -171,8 +171,6 @@ final class NewBatchTask {
         self.schedulesDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllertabMain
         self.schedules = self.schedulesDelegate?.getschedulesobject()
         self.outputbatch = nil
-        // let batchQueue = BatchTaskWorkQueu(configurations: self.configurations)
-        // self.configurations!.setbatchQueue(batchQueue: batchQueue)
     }
 
 }

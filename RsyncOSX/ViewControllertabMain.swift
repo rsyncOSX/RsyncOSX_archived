@@ -50,7 +50,7 @@ class ViewControllertabMain: NSViewController {
     // Reference to the single taskobject
     var singletask: NewSingleTask?
     // Reference to batch taskobject
-    var batchtask: NewBatchTask?
+    var batchtask: BatchTask?
     var tools: Tools?
 
     @IBOutlet weak var light: NSColorWell!
@@ -798,7 +798,6 @@ extension ViewControllertabMain: DismissViewController {
             self.displayProfile()
         })
         self.showProcessInfo(info: .blank)
-        self.batchtask = nil
     }
 }
 
@@ -826,7 +825,7 @@ extension ViewControllertabMain: UpdateProgress {
                     return
                 }
                 self.batchObjectDelegate = pvc[0]
-                self.batchtask = self.batchObjectDelegate?.getTaskObject()
+                self.batchtask = self.batchObjectDelegate?.getbatchtaskObject()
             }
             self.output = self.batchtask!.output
             self.process = self.batchtask!.process
@@ -1070,7 +1069,7 @@ extension ViewControllertabMain: SingleTask {
 
 }
 
-extension ViewControllertabMain: BatchTask {
+extension ViewControllertabMain: BatchTaskProgress {
 
     func progressIndicatorViewBatch(operation: BatchViewProgressIndicator) {
         switch operation {
