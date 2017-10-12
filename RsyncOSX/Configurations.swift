@@ -81,7 +81,7 @@ class Configurations {
     // Datasource for NSTableViews
     private var configurationsDataSource: Array<NSMutableDictionary>?
     // Object for batchQueue data and operations
-    private var batchdataqueue: BatchTaskWorkQueu?
+    private var batchQueue: BatchTaskWorkQueu?
 
     /// Function for getting the profile
     func getProfile() -> String? {
@@ -212,7 +212,7 @@ class Configurations {
     /// Function destroys reference to object holding data and
     /// methods for executing batch work
     func deleteBatchData() {
-        self.batchdataqueue = nil
+        self.batchQueue = nil
     }
 
     /// Function is updating Configurations in memory (by record) and
@@ -253,30 +253,27 @@ class Configurations {
     /// Function sets reference to object holding data and methods
     /// for batch execution of Configurations
     /// - parameter batchdata: object holding data and methods for executing Configurations in batch
-    func setbatchDataQueue (batchdata: BatchTaskWorkQueu) {
-        self.batchdataqueue = batchdata
+    func setbatchDataQueue (batchQueue: BatchTaskWorkQueu) {
+        self.batchQueue = batchQueue
     }
 
     /// Function return the reference to object holding data and methods
     /// for batch execution of Configurations.
     /// - returns : reference to to object holding data and methods
-    func getBatchdataObject() -> BatchTaskWorkQueu? {
-        return self.batchdataqueue
+    func getbatchQueue() -> BatchTaskWorkQueu? {
+        return self.batchQueue
     }
 
     /// Function is getting the number of rows batchDataQueue
     /// - returns : the number of rows
     func batchDataQueuecount() -> Int {
-        guard self.batchdataqueue != nil else {
-            return 0
-        }
-        return self.batchdataqueue!.getbatchDataQueuecount()
+        return self.batchQueue?.getbatchDataQueuecount() ?? 0
     }
 
     /// Function is getting the updated batch data queue
     /// - returns : reference to the batch data queue
     func getbatchDataQueue() -> Array<NSMutableDictionary>? {
-        return self.batchdataqueue?.getupdatedBatchdata()
+        return self.batchQueue?.getupdatedBatchdata()
     }
 
     // Add new configurations

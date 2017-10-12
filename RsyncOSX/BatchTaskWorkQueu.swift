@@ -99,7 +99,11 @@ final class BatchTaskWorkQueu {
         self.batchQueu.removeAll()
     }
 
-    init (batchtasks: Array<Configuration>) {
+    init (configurations: Configurations?) {
+        guard configurations != nil else {
+            return
+        }
+        let batchtasks = configurations!.getConfigurationsBatch()
         for i in 0 ..< batchtasks.count {
             let row: NSMutableDictionary = [
                 "taskCellID": String(i+1),

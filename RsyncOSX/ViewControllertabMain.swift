@@ -839,7 +839,7 @@ extension ViewControllertabMain: UpdateProgress {
     func fileHandler() {
         if self.batchtask != nil {
             // Batch run
-            if let batchobject = self.configurations!.getBatchdataObject() {
+            if let batchobject = self.configurations!.getbatchQueue() {
                 let work = batchobject.nextBatchCopy()
                 if work.1 == 1 {
                     // Real work is done, must set reference to Process object in case of Abort
@@ -944,7 +944,7 @@ extension ViewControllertabMain: AbortOperations {
             self.process = nil
             self.index = nil
         }
-        if let batchobject = self.configurations!.getBatchdataObject() {
+        if let batchobject = self.configurations!.getbatchQueue() {
             // Empty queue in batchobject
             batchobject.abortOperations()
             // Set reference to batchdata = nil
@@ -1130,7 +1130,7 @@ extension ViewControllertabMain: GetConfigurationsObject {
         // If batchtask keep configuration object
         guard self.batchtask == nil else {
             // Batchtask, check if task is completed
-            guard self.configurations!.getBatchdataObject()?.completedBatch() == false else {
+            guard self.configurations!.getbatchQueue()?.completedBatch() == false else {
                 self.createandreloadconfigurations()
                 return
             }
@@ -1146,7 +1146,7 @@ extension ViewControllertabMain: GetSchedulesObject {
         // If batchtask scedules object
         guard self.batchtask == nil else {
             // Batchtask, check if task is completed
-            guard self.configurations!.getBatchdataObject()?.completedBatch() == false else {
+            guard self.configurations!.getbatchQueue()?.completedBatch() == false else {
                 self.createandloadschedules()
                 return
             }

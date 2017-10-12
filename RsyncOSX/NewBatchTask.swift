@@ -25,9 +25,9 @@ enum BatchViewProgressIndicator {
 
 final class NewBatchTask {
     weak var configurationsDelegate: GetConfigurationsObject?
-    var configurations: Configurations?
+    weak var configurations: Configurations?
     weak var schedulesDelegate: GetSchedulesObject?
-    var schedules: Schedules?
+    weak var schedules: Schedules?
     weak var closeviewerrorDelegate: closeViewError?
 
     // Protocol function used in Process().
@@ -54,7 +54,7 @@ final class NewBatchTask {
 
     // Functions are called from batchView.
     func executeBatch() {
-        if let batchobject = self.configurations!.getBatchdataObject() {
+        if let batchobject = self.configurations!.getbatchQueue() {
             // Just copy the work object.
             // The work object will be removed in Process termination
             let work = batchobject.nextBatchCopy()
@@ -94,7 +94,7 @@ final class NewBatchTask {
     // Error and stop execution
     func error() {
         // Just pop off remaining work
-        if let batchobject = self.configurations!.getBatchdataObject() {
+        if let batchobject = self.configurations!.getbatchQueue() {
             batchobject.abortOperations()
             self.closeviewerrorDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vcbatch) as? ViewControllerBatch
             self.closeviewerrorDelegate?.closeerror()
@@ -104,7 +104,7 @@ final class NewBatchTask {
     // Called when ProcessTermination is called in main View.
     // Either dryn-run or realrun completed.
     func processTermination() {
-        if let batchobject = self.configurations!.getBatchdataObject() {
+        if let batchobject = self.configurations!.getbatchQueue() {
             if self.outputbatch == nil {
                 self.outputbatch = OutputBatch()
             }
@@ -171,12 +171,8 @@ final class NewBatchTask {
         self.schedulesDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllertabMain
         self.schedules = self.schedulesDelegate?.getschedulesobject()
         self.outputbatch = nil
-        // NB: self.setInfo(info: "Batchrun", color: .blue)
-        // Get all Configs marked for batch
-        let configs = self.configurations!.getConfigurationsBatch()
-        let batchObject = BatchTaskWorkQueu(batchtasks: configs)
-        // Set the reference to batchData object in SharingManagerConfiguration
-        self.configurations!.setbatchDataQueue(batchdata: batchObject)
+        let batchQueue = BatchTaskWorkQueu(configurations: self.configurations)
+        self.configurations!.setbatchDataQueue(batchQueue: batchQueue)
     }
 
 }
