@@ -968,7 +968,7 @@ extension ViewControllertabMain: StartStopProgressIndicatorSingleTask {
     }
 }
 
-extension ViewControllertabMain: SingleTask {
+extension ViewControllertabMain: SingleTaskProgress {
 
     func getProcessReference(process: Process) {
         self.process = process

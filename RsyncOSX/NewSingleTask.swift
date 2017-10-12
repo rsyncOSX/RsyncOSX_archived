@@ -17,7 +17,7 @@ protocol StartStopProgressIndicatorSingleTask: class {
 }
 
 // Protocol functions implemented in main view
-protocol SingleTask: class {
+protocol SingleTaskProgress: class {
     func showProcessInfo(info: DisplayProcessInfo)
     func presentViewProgress()
     func presentViewInformation(output: OutputProcess)
@@ -46,7 +46,7 @@ final class NewSingleTask {
     weak var indicatorDelegate: StartStopProgressIndicatorSingleTask?
     // Delegate functions for kicking of various updates (informal) during
     // process task in main View
-    weak var taskDelegate: SingleTask?
+    weak var taskDelegate: SingleTaskProgress?
     // Reference to Process task
     var process: Process?
     // Index to selected row, index is set when row is selected

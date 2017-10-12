@@ -37,7 +37,7 @@ final class BatchTask {
     // Delegate function for start/stop progress Indicator in BatchWindow
     weak var indicatorDelegate: StartStopProgressIndicatorSingleTask?
     // Delegate function for show process step and present View
-    weak var taskDelegate: SingleTask?
+    weak var taskDelegate: SingleTaskProgress?
     // Reference to Process task
     var process: Process?
     // Getting output from rsync
