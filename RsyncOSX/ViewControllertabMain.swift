@@ -11,16 +11,14 @@
 import Foundation
 import Cocoa
 
-// Protocols for instruction start/stop progressviewindicator
+// Protocol for start,stop, complete progressviewindicator
 protocol StartStopProgressIndicator: class {
     func start()
     func stop()
     func complete()
 }
 
-// Protocol for dismiss a viewcontroller
-// It is the presenting viewcontroller which is
-// responsible to dismiss the viewcontroller
+// Protocol for dismissing a viewcontroller
 protocol DismissViewController: class {
     func dismiss_view(viewcontroller: NSViewController)
 }

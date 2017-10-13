@@ -95,17 +95,13 @@ class ViewControllerCopyFilesSource: NSViewController {
                 self.setIndexDelegate = pvc
                 let object = self.configurations!.getConfigurationsDataSourcecountBackupOnlyRemote()![index]
                 let hiddenID = object.value(forKey: "hiddenID") as? Int
-                guard hiddenID != nil else {
-                    return
-                }
+                guard hiddenID != nil else { return }
                 self.index = self.configurations!.getIndex(hiddenID!)
                 self.setIndexDelegate?.setIndex(index: self.index!)
             } else if self.presenting as? ViewControllerSsh != nil {
                 let object = self.configurations!.getConfigurationsDataSourcecountBackupOnlyRemote()![index]
                 let hiddenID = object.value(forKey: "hiddenID") as? Int
-                guard hiddenID != nil else {
-                    return
-                }
+                guard hiddenID != nil else { return }
                 self.index = hiddenID!
             }
         }

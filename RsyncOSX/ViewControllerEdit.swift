@@ -5,6 +5,7 @@
 //  Created by Thomas Evensen on 05/09/2016.
 //  Copyright © 2016 Thomas Evensen. All rights reserved.
 //
+// swiftlint:disable line_length
 
 import Foundation
 import Cocoa
@@ -62,18 +63,14 @@ class ViewControllerEdit: NSViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Dismisser is root controller
-        self.dismissDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain)
-            as? ViewControllertabMain
-        self.getindexDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain)
-            as? ViewControllertabMain
-        self.configurationsDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain)
-            as? ViewControllertabMain
+        self.dismissDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllertabMain
+        self.getindexDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllertabMain
+        self.configurationsDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllertabMain
     }
 
     override func viewDidAppear() {
         super.viewDidAppear()
         self.configurations = self.configurationsDelegate?.getconfigurationsobject()
-        // Reset all values in view
         self.localCatalog.stringValue = ""
         self.offsiteCatalog.stringValue = ""
         self.offsiteUsername.stringValue = ""
@@ -81,11 +78,9 @@ class ViewControllerEdit: NSViewController {
         self.backupID.stringValue = ""
         self.sshport.stringValue = ""
         self.rsyncdaemon.state = .off
-        // Getting index of selected configuration
         self.index = self.getindexDelegate?.getindex()
         let config: Configuration = self.configurations!.getConfigurations()[self.index!]
         self.localCatalog.stringValue = config.localCatalog
-        // Check for single file
         if self.localCatalog.stringValue.hasSuffix("/") == false {
             self.singleFile = true
         } else {

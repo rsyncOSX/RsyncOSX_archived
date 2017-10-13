@@ -28,7 +28,6 @@ class ViewControllerProgressProcess: NSViewController {
     var count: Double = 0
     var maxcount: Double = 0
     var calculatedNumberOfFiles: Int?
-    // Delegate to count max number and updates during progress
     weak var countDelegate: Count?
     weak var dismissDelegate: DismissViewController?
     weak var abortDelegate: AbortOperations?
@@ -85,14 +84,11 @@ class ViewControllerProgressProcess: NSViewController {
 
 extension ViewControllerProgressProcess: UpdateProgress {
 
-    // When processtermination is discovered in real task progressbar is stopped
-    // and progressview is dismissed. Real run is completed.
     func processTermination() {
         self.stopProgressbar()
         self.dismissDelegate?.dismiss_view(viewcontroller: self)
     }
 
-    // Update progressview during task
     func fileHandler() {
         guard self.countDelegate != nil else { return }
         self.updateProgressbar(Double(self.countDelegate!.inprogressCount()))

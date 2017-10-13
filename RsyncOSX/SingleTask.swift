@@ -174,15 +174,11 @@ final class SingleTask {
 
     init(index: Int) {
         self.index = index
-        self.indicatorDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain)
-            as? ViewControllertabMain
-        self.taskDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain)
-            as? ViewControllertabMain
-        self.configurationsDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain)
-            as? ViewControllertabMain
+        self.indicatorDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllertabMain
+        self.taskDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllertabMain
+        self.configurationsDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllertabMain
         self.configurations = self.configurationsDelegate?.getconfigurationsobject()
-        self.schedulesDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain)
-            as? ViewControllertabMain
+        self.schedulesDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllertabMain
         self.schedules = self.schedulesDelegate?.getschedulesobject()
     }
 }

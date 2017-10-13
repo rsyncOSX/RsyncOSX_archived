@@ -30,7 +30,6 @@ class ViewControllerBatch: NSViewController {
     var row: Int?
     var batchTask: BatchTask?
 
-    // Main tableview
     @IBOutlet weak var mainTableView: NSTableView!
     @IBOutlet weak var closeButton: NSButton!
     @IBOutlet weak var working: NSProgressIndicator!
@@ -170,7 +169,6 @@ extension ViewControllerBatch: StartStopProgressIndicator {
         self.waitToClose = Timer.scheduledTimer(timeInterval: 10, target: self, selector: #selector(closeView), userInfo: nil, repeats: false)
         self.closeIn = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(setSecondsView), userInfo: nil, repeats: true)
     }
-
 }
 
 extension ViewControllerBatch: Reloadandrefresh {
@@ -181,7 +179,6 @@ extension ViewControllerBatch: Reloadandrefresh {
             self.mainTableView.reloadData()
         })
     }
-
 }
 
 extension ViewControllerBatch: getNewBatchTask {
