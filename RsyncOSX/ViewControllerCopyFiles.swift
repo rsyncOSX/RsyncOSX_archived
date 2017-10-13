@@ -54,9 +54,7 @@ class ViewControllerCopyFiles: NSViewController {
     // Abort button
     @IBAction func abort(_ sender: NSButton) {
         self.working.stopAnimation(nil)
-        guard self.copyFiles != nil else {
-            return
-        }
+        guard self.copyFiles != nil else { return }
         self.copyButton.isEnabled = true
         self.copyFiles!.abort()
     }
@@ -146,11 +144,9 @@ class ViewControllerCopyFiles: NSViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Setting reference to ViewObject
         ViewControllerReference.shared.setvcref(viewcontroller: .vccopyfiles, nsviewcontroller: self)
         self.tableViewSelect.delegate = self
         self.tableViewSelect.dataSource = self
-        // Progress indicator
         self.working.usesThreadedAnimation = true
         self.workingRsync.usesThreadedAnimation = true
         self.search.delegate = self
@@ -184,15 +180,9 @@ class ViewControllerCopyFiles: NSViewController {
     }
 
     @objc(tableViewDoubleClick:) func tableViewDoubleClick(sender: AnyObject) {
-        guard self.index != nil else {
-            return
-        }
-        guard self.remoteCatalog!.stringValue.isEmpty == false else {
-            return
-        }
-        guard self.localCatalog!.stringValue.isEmpty == false else {
-            return
-        }
+        guard self.index != nil else { return }
+        guard self.remoteCatalog!.stringValue.isEmpty == false else { return }
+        guard self.localCatalog!.stringValue.isEmpty == false else { return }
         let answer = Alerts.dialogOKCancel("Copy single files or directory", text: "Start copy?")
         if answer {
             self.copyButton.title = "Execute"
@@ -246,9 +236,7 @@ extension ViewControllerCopyFiles: NSTableViewDelegate {
 
     func tableView(_ tableView: NSTableView, viewFor tableColumn: NSTableColumn?, row: Int) -> NSView? {
         var text: String?
-        guard self.tabledata != nil else {
-            return nil
-        }
+        guard self.tabledata != nil else { return nil }
         let cellIdentifier: String = "fileID"
         text = self.tabledata![row]
         if let cell = tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: cellIdentifier), owner: self) as? NSTableCellView {
@@ -262,9 +250,7 @@ extension ViewControllerCopyFiles: NSTableViewDelegate {
         let myTableViewFromNotification = (notification.object as? NSTableView)!
         let indexes = myTableViewFromNotification.selectedRowIndexes
         if let index = indexes.first {
-            guard self.tabledata != nil else {
-                return
-            }
+            guard self.tabledata != nil else { return }
             self.remoteCatalog.stringValue = self.tabledata![index]
             if self.remoteCatalog.stringValue.isEmpty == false && self.localCatalog.stringValue.isEmpty == false {
                 self.commandString.stringValue = self.copyFiles!.getCommandDisplayinView(remotefile: self.remoteCatalog.stringValue, localCatalog: self.localCatalog.stringValue)
@@ -292,9 +278,7 @@ extension ViewControllerCopyFiles: NSTextFieldDelegate {
 extension ViewControllerCopyFiles: Reloadandrefresh {
     // Do a refresh of table
     func reloadtabledata() {
-        guard self.copyFiles != nil else {
-            return
-        }
+        guard self.copyFiles != nil else { return }
         globalMainQueue.async(execute: { () -> Void in
             self.tabledata = self.copyFiles!.filter(search: nil)
             self.tableViewSelect.reloadData()

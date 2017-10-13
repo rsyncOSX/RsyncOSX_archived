@@ -27,7 +27,6 @@ class ViewControllerScheduleDetails: NSViewController {
     @IBOutlet weak var offsiteServer: NSTextField!
 
     weak var getHiddenIDDelegate: GetHiddenID?
-    // Protocolfunction for doing a refresh in ViewControllertabMain
     weak var refreshDelegate: Reloadandrefresh?
     weak var refreshDelegate2: Reloadandrefresh?
     weak var dismissDelegate: DismissViewController?
@@ -81,9 +80,7 @@ class ViewControllerScheduleDetails: NSViewController {
         globalMainQueue.async(execute: { () -> Void in
             self.scheduletable.reloadData()
         })
-        guard self.hiddendID != nil else {
-            return
-        }
+        guard self.hiddendID != nil else { return }
         self.localCatalog.stringValue = self.configurations!.getResourceConfiguration(self.hiddendID!, resource: .localCatalog)
         self.remoteCatalog.stringValue = self.configurations!.getResourceConfiguration(self.hiddendID!, resource: .remoteCatalog)
         self.offsiteServer.stringValue = self.configurations!.getResourceConfiguration(self.hiddendID!, resource: .offsiteServer)

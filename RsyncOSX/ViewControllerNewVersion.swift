@@ -12,11 +12,8 @@ import Cocoa
 
 class ViewControllerNewVersion: NSViewController {
 
-    // External resources
     private var resource: Resources?
-    // Dismiss delegate
     weak var dismissDelegate: DismissViewController?
-    // Timer function for automatic dismiss view
     var waitToClose: Timer?
     var closeIn: Timer?
     var seconds: Int?
@@ -59,7 +56,6 @@ class ViewControllerNewVersion: NSViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.resource = Resources()
-        // Dismisser is root controller
         self.dismissDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllertabMain
     }
 

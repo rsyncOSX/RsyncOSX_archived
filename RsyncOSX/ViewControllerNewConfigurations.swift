@@ -17,10 +17,8 @@ class ViewControllerNewConfigurations: NSViewController {
     var storageapi: PersistentStorageAPI?
     var newconfigurations: NewConfigurations?
 
-    // Table holding all new Configurations
     @IBOutlet weak var newTableView: NSTableView!
 
-    // NSMutableDictionary as datasource for tableview
     var tabledata: [NSMutableDictionary]?
     let parameterTest: String = "--dry-run"
     let parameter1: String = "--archive"
@@ -215,7 +213,6 @@ extension ViewControllerNewConfigurations: GetPath {
 
 extension ViewControllerNewConfigurations: DismissViewController {
 
-    // Telling the view to dismiss any presented Viewcontroller
     func dismiss_view(viewcontroller: NSViewController) {
         self.dismissViewController(viewcontroller)
     }

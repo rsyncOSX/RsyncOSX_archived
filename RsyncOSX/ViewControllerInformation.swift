@@ -22,10 +22,7 @@ class ViewControllerInformation: NSViewController {
 
     // output from Rsync
     var output: Array<String>?
-
-    // Delegate for getting the Information to present in table
     weak var informationDelegate: Information?
-    // Dismisser
     weak var dismissDelegate: DismissViewController?
 
     override func viewDidLoad() {

@@ -52,9 +52,7 @@ class ViewControllerAbout: NSViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.dismissDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain)
-            as? ViewControllertabMain
-        // Reference to About
+        self.dismissDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllertabMain
         ViewControllerReference.shared.setvcref(viewcontroller: .vcabout, nsviewcontroller: self)
         self.resource = Resources()
     }
