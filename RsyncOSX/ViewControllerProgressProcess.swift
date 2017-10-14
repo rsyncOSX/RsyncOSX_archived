@@ -20,16 +20,12 @@ protocol AbortOperations: class {
     func abortOperations()
 }
 
-class ViewControllerProgressProcess: NSViewController {
-
-    weak var configurationsDelegate: GetConfigurationsObject?
-    var configurations: Configurations?
+class ViewControllerProgressProcess: NSViewController, SetConfigurations, SetDismisser {
 
     var count: Double = 0
     var maxcount: Double = 0
     var calculatedNumberOfFiles: Int?
     weak var countDelegate: Count?
-    weak var dismissDelegate: DismissViewController?
     weak var abortDelegate: AbortOperations?
 
     @IBOutlet weak var progress: NSProgressIndicator!
@@ -41,15 +37,12 @@ class ViewControllerProgressProcess: NSViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.dismissDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllertabMain
         self.abortDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllertabMain
-        self.configurationsDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllertabMain
     }
 
     override func viewDidAppear() {
         super.viewDidAppear()
         ViewControllerReference.shared.setvcref(viewcontroller: .vcprogressview, nsviewcontroller: self)
-        self.configurations = self.configurationsDelegate?.getconfigurationsobject()
         if let pvc2 = self.configurations!.singleTask {
             self.countDelegate = pvc2
         }
@@ -86,7 +79,7 @@ extension ViewControllerProgressProcess: UpdateProgress {
 
     func processTermination() {
         self.stopProgressbar()
-        self.dismissDelegate?.dismiss_view(viewcontroller: self)
+        self.dismiss_view(viewcontroller: self)
     }
 
     func fileHandler() {

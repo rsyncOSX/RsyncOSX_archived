@@ -18,15 +18,12 @@ protocol GetSource: class {
     func getSource(index: Int)
 }
 
-class ViewControllerCopyFiles: NSViewController {
+class ViewControllerCopyFiles: NSViewController, SetConfigurations, GetIndex {
 
-    weak var configurationsDelegate: GetConfigurationsObject?
-    weak var configurations: Configurations?
     var copyFiles: CopyFiles?
     var index: Int?
     var rsync: Bool = false
     var estimated: Bool = false
-    weak var indexDelegate: GetSelecetedIndex?
     private var tabledata: [String]?
 
     @IBOutlet weak var numberofrows: NSTextField!
@@ -153,15 +150,11 @@ class ViewControllerCopyFiles: NSViewController {
         self.localCatalog.delegate = self
         // Double click on row to select
         self.tableViewSelect.doubleAction = #selector(self.tableViewDoubleClick(sender:))
-        self.configurationsDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllertabMain
     }
 
     override func viewDidAppear() {
         super.viewDidAppear()
-        self.configurations = self.configurationsDelegate?.getconfigurationsobject()
-        self.indexDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain)
-            as? ViewControllertabMain
-        self.index = self.indexDelegate?.getindex()
+        self.index = self.getindex()
         if let index = self.index {
             self.displayRemoteserver(index: index)
         }
