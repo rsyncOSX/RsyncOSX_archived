@@ -1090,6 +1090,7 @@ extension ViewControllertabMain: GetConfigurationsObject {
     // After a write, a reload is forced.
     func reloadconfigurations() {
         // If batchtask keep configuration object
+        self.batchtaskObject = self.batchObjectDelegate?.getbatchtaskObject()
         guard self.batchtaskObject == nil else {
             // Batchtask, check if task is completed
             guard self.configurations!.getbatchQueue()?.completedBatch() == false else {
