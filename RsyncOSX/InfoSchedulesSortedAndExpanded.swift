@@ -14,8 +14,6 @@ import Cocoa
 class InfoScheduleSortedAndExpand: SetConfigurations {
 
     // Reference to main View
-    // weak var configurationsDelegate: GetConfigurationsObject?
-    // var configurations: Configurations?
     private var sortedschedules: Array<NSDictionary>?
     private var scheduleInProgress: Bool = false
 
