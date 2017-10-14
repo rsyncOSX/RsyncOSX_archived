@@ -36,10 +36,7 @@ final class OutputProcess {
     }
 
     func count() -> Int {
-        guard self.output != nil else {
-            return 0
-        }
-        return self.output!.count
+        return self.output?.count ?? 0
     }
 
     func getOutput() -> Array<String>? {
@@ -64,9 +61,7 @@ final class OutputProcess {
 
     func trimoutput(trim: Trim) -> Array<String>? {
         var out = Array<String>()
-        guard self.output != nil else {
-            return nil
-        }
+        guard self.output != nil else { return nil }
         switch trim {
         case .one:
             for i in 0 ..< self.output!.count {
