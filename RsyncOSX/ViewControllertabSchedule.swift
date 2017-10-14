@@ -172,8 +172,8 @@ class ViewControllertabSchedule: NSViewController {
         self.stopdate.dateValue = Date()
         self.stoptime.dateValue = Date()
         if self.schedulessorted == nil {
-            self.schedulessorted = ScheduleSortedAndExpand(viewcontroller: nil)
-            self.infoschedulessorted = InfoScheduleSortedAndExpand(viewcontroller: nil, sortedandexpanded: self.schedulessorted)
+            self.schedulessorted = ScheduleSortedAndExpand()
+            self.infoschedulessorted = InfoScheduleSortedAndExpand(sortedandexpanded: self.schedulessorted)
         }
         globalMainQueue.async(execute: { () -> Void in
             self.mainTableView.reloadData()
@@ -327,8 +327,8 @@ extension ViewControllertabSchedule: Reloadandrefresh {
         self.secondLocalCatalog.stringValue = ""
         // Create a New schedules object
         self.schedulessorted = nil
-        self.schedulessorted = ScheduleSortedAndExpand(viewcontroller: nil)
-        self.infoschedulessorted = InfoScheduleSortedAndExpand(viewcontroller: nil, sortedandexpanded: self.schedulessorted)
+        self.schedulessorted = ScheduleSortedAndExpand()
+        self.infoschedulessorted = InfoScheduleSortedAndExpand(sortedandexpanded: self.schedulessorted)
         self.firstScheduledTask.stringValue = self.infoschedulessorted!.whenIsNextTwoTasksString()[0]
         self.secondScheduledTask.stringValue = self.infoschedulessorted!.whenIsNextTwoTasksString()[1]
         globalMainQueue.async(execute: { () -> Void in
@@ -343,8 +343,8 @@ extension ViewControllertabSchedule: StartTimer {
     // Called from Process
     func startTimerNextJob() {
         self.schedulessorted = nil
-        self.schedulessorted = ScheduleSortedAndExpand(viewcontroller: nil)
-        self.infoschedulessorted = InfoScheduleSortedAndExpand(viewcontroller: nil, sortedandexpanded: self.schedulessorted)
+        self.schedulessorted = ScheduleSortedAndExpand()
+        self.infoschedulessorted = InfoScheduleSortedAndExpand(sortedandexpanded: self.schedulessorted)
         self.firstRemoteServer.stringValue = ""
         self.firstLocalCatalog.stringValue = ""
         self.startTimer()

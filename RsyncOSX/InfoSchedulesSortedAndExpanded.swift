@@ -11,11 +11,11 @@
 import Foundation
 import Cocoa
 
-class InfoScheduleSortedAndExpand {
+class InfoScheduleSortedAndExpand: SetConfigurations {
 
     // Reference to main View
-    weak var configurationsDelegate: GetConfigurationsObject?
-    var configurations: Configurations?
+    // weak var configurationsDelegate: GetConfigurationsObject?
+    // var configurations: Configurations?
     private var sortedschedules: Array<NSDictionary>?
     private var scheduleInProgress: Bool = false
 
@@ -157,17 +157,8 @@ class InfoScheduleSortedAndExpand {
         return [firstbackup!, secondbackup!]
     }
 
-    init (viewcontroller: NSViewController?, sortedandexpanded: ScheduleSortedAndExpand?) {
-        guard sortedandexpanded != nil else {
-            return
-        }
+    init (sortedandexpanded: ScheduleSortedAndExpand?) {
+        guard sortedandexpanded != nil else { return }
         self.sortedschedules = sortedandexpanded!.getsortedAndExpandedScheduleData()
-        if viewcontroller == nil {
-            self.configurationsDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain)
-                as? ViewControllertabMain
-        } else {
-            self.configurationsDelegate = viewcontroller as? ViewControllertabMain
-        }
-        self.configurations = self.configurationsDelegate?.getconfigurationsobject()
     }
 }

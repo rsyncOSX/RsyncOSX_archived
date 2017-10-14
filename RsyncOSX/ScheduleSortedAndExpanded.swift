@@ -11,14 +11,14 @@
 import Foundation
 import Cocoa
 
-class ScheduleSortedAndExpand {
+class ScheduleSortedAndExpand: SetConfigurations, SetSchedules {
 
     // Reference to main View
     private var vctabmain: NSViewController?
-    weak var configurationsDelegate: GetConfigurationsObject?
-    var configurations: Configurations?
-    weak var schedulesDelegate: GetSchedulesObject?
-    var schedules: Schedules?
+    // weak var configurationsDelegate: GetConfigurationsObject?
+    // var configurations: Configurations?
+    // weak var schedulesDelegate: GetSchedulesObject?
+    // var schedules: Schedules?
     private var schedulesNSDictionary: Array<NSDictionary>?
     private var scheduleConfiguration: Array<ConfigurationSchedule>?
     private var expandedData = Array<NSDictionary>()
@@ -157,18 +157,7 @@ class ScheduleSortedAndExpand {
         self.schedulesNSDictionary = data
     }
 
-    init (viewcontroller: NSViewController?) {
-        if viewcontroller == nil {
-            self.configurationsDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain)
-                as? ViewControllertabMain
-            self.schedulesDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain)
-                as? ViewControllertabMain
-        } else {
-            self.configurationsDelegate = viewcontroller as? ViewControllertabMain
-            self.schedulesDelegate = viewcontroller as? ViewControllertabMain
-        }
-        self.configurations = self.configurationsDelegate?.getconfigurationsobject()
-        self.schedules = self.schedulesDelegate?.getschedulesobject()
+    init () {
         // Getting the Schedule and expanding all the jobs
         if self.schedules != nil {
             self.scheduleConfiguration = self.schedules!.getSchedule()

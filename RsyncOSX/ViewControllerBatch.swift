@@ -112,7 +112,7 @@ class ViewControllerBatch: NSViewController {
 extension ViewControllerBatch: NSTableViewDataSource {
         // Delegate for size of table
         func numberOfRows(in tableView: NSTableView) -> Int {
-            // self.configurations = self.batchTask?.configurations
+            self.configurations = self.batchTask?.configurations
             return self.configurations?.batchQueuecount() ?? 0
     }
 }

@@ -10,10 +10,8 @@
 
 import Foundation
 
-final class CopyFiles {
+final class CopyFiles: SetConfigurations {
 
-    weak var configurationsDelegate: GetConfigurationsObject?
-    var configurations: Configurations?
     private var index: Int?
     private var config: Configuration?
     private var files: Array<String>?
@@ -96,9 +94,6 @@ final class CopyFiles {
     }
 
     init (index: Int) {
-        self.configurationsDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain)
-            as? ViewControllertabMain
-        self.configurations = self.configurationsDelegate?.getconfigurationsobject()
         self.index = index
         self.config = self.configurations!.getConfigurations()[self.index!]
         self.getRemoteFileList()

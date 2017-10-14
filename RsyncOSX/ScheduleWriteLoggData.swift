@@ -10,10 +10,8 @@
 import Foundation
 import Cocoa
 
-class ScheduleWriteLoggData {
+class ScheduleWriteLoggData: SetConfigurations {
 
-    weak var configurationsDelegate: GetConfigurationsObject?
-    var configurations: Configurations?
     var storageapi: PersistentStorageAPI?
     var schedules: Array<ConfigurationSchedule>?
     weak var refreshlogviewDelegate: Reloadandrefresh?
@@ -117,8 +115,6 @@ class ScheduleWriteLoggData {
     }
 
     init(viewcontroller: NSViewController) {
-        self.configurationsDelegate = viewcontroller as? ViewControllertabMain
-        self.configurations = self.configurationsDelegate?.getconfigurationsobject()
         self.schedules = Array<ConfigurationSchedule>()
     }
 }

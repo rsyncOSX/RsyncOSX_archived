@@ -12,12 +12,8 @@ import Foundation
 // Class for completion of Operation objects when Process object termination.
 // The object does also kicks of next scheduled job by setting new
 // waiter time.
-final class CompleteScheduledOperation {
+final class CompleteScheduledOperation: SetConfigurations, SetSchedules {
 
-    weak var configurationsDelegate: GetConfigurationsObject?
-    var configurations: Configurations?
-    weak var schedulesDelegate: GetSchedulesObject?
-    var schedules: Schedules?
     weak var startnextjobDelegate: StartNextScheduledTask?
     weak var notifyDelegate: ScheduledJobInProgress?
     weak var startTimerDelegate: StartTimer?
@@ -57,10 +53,6 @@ final class CompleteScheduledOperation {
         self.dateformatter = Tools().setDateformat()
         self.hiddenID = (dict.value(forKey: "hiddenID") as? Int)!
         self.schedule = dict.value(forKey: "schedule") as? String
-        self.configurationsDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllertabMain
-        self.configurations = self.configurationsDelegate?.getconfigurationsobject()
-        self.schedulesDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllertabMain
-        self.schedules = self.schedulesDelegate?.getschedulesobject()
         self.index = self.configurations!.getIndex(hiddenID!)
     }
 }
