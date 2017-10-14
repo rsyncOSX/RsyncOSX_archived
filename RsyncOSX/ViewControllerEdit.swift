@@ -5,15 +5,11 @@
 //  Created by Thomas Evensen on 05/09/2016.
 //  Copyright © 2016 Thomas Evensen. All rights reserved.
 //
-// swiftlint:disable line_length
 
 import Foundation
 import Cocoa
 
-class ViewControllerEdit: NSViewController {
-
-    weak var configurationsDelegate: GetConfigurationsObject?
-    var configurations: Configurations?
+class ViewControllerEdit: NSViewController, SetConfigurations, SetDismisser, GetIndex {
 
     @IBOutlet weak var localCatalog: NSTextField!
     @IBOutlet weak var offsiteCatalog: NSTextField!
@@ -24,13 +20,11 @@ class ViewControllerEdit: NSViewController {
     @IBOutlet weak var rsyncdaemon: NSButton!
 
     var index: Int?
-    weak var getindexDelegate: GetSelecetedIndex?
-    weak var dismissDelegate: DismissViewController?
     var singleFile: Bool = false
 
     // Close and dismiss view
     @IBAction func close(_ sender: NSButton) {
-        self.dismissDelegate?.dismiss_view(viewcontroller: self)
+        self.dismiss_view(viewcontroller: self)
     }
 
     // Update configuration, save and dismiss view
@@ -57,20 +51,16 @@ class ViewControllerEdit: NSViewController {
         }
         config[self.index!].rsyncdaemon = self.rsyncdaemon.state.rawValue
         self.configurations!.updateConfigurations(config[self.index!], index: self.index!)
-        self.dismissDelegate?.dismiss_view(viewcontroller: self)
+        self.dismiss_view(viewcontroller: self)
     }
 
     override func viewDidLoad() {
         super.viewDidLoad()
         // Dismisser is root controller
-        self.dismissDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllertabMain
-        self.getindexDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllertabMain
-        self.configurationsDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllertabMain
     }
 
     override func viewDidAppear() {
         super.viewDidAppear()
-        self.configurations = self.configurationsDelegate?.getconfigurationsobject()
         self.localCatalog.stringValue = ""
         self.offsiteCatalog.stringValue = ""
         self.offsiteUsername.stringValue = ""

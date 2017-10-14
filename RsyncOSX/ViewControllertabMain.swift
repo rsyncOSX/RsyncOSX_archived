@@ -11,6 +11,21 @@
 import Foundation
 import Cocoa
 
+protocol SetDismisser {
+    weak var dismissDelegate: DismissViewController? {get}
+    func dismiss_view(viewcontroller: NSViewController)
+}
+
+extension SetDismisser {
+    weak var dismissDelegate: DismissViewController? {
+        return ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllertabMain
+    }
+
+    func dismiss_view(viewcontroller: NSViewController) {
+        self.dismissDelegate?.dismiss_view(viewcontroller: (self as? NSViewController)!)
+    }
+}
+
 // Protocol for start,stop, complete progressviewindicator
 protocol StartStopProgressIndicator: class {
     func start()

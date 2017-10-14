@@ -10,10 +10,8 @@
 import Foundation
 import Cocoa
 
-class ViewControllerSsh: NSViewController {
+class ViewControllerSsh: NSViewController, SetConfigurations {
 
-    weak var configurationsDelegate: GetConfigurationsObject?
-    var configurations: Configurations?
     var sshcmd: Ssh?
     var hiddenID: Int?
     var data: Array<String>?
@@ -32,9 +30,6 @@ class ViewControllerSsh: NSViewController {
     @IBOutlet weak var scpRsaCopyPasteCommand: NSTextField!
     @IBOutlet weak var scpDsaCopyPasteCommand: NSTextField!
     @IBOutlet weak var sshCreateRemoteCatalog: NSTextField!
-
-    // Delegate for getting index from Execute view
-    weak var indexDelegate: GetSelecetedIndex?
 
     // Source for CopyFiles and Ssh
     // self.presentViewControllerAsSheet(self.ViewControllerAbout)
@@ -131,13 +126,10 @@ class ViewControllerSsh: NSViewController {
         self.detailsTable.delegate = self
         self.detailsTable.dataSource = self
         self.output = nil
-        self.configurationsDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain)
-            as? ViewControllertabMain
     }
 
     override func viewDidAppear() {
         super.viewDidAppear()
-        self.configurations = self.configurationsDelegate?.getconfigurationsobject()
         self.checkDsaPubKeyButton.isEnabled = false
         self.checkRsaPubKeyButton.isEnabled = false
         self.checkPrivatePublicKey()

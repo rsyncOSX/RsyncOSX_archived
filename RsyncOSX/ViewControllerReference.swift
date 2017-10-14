@@ -4,11 +4,6 @@
 //
 //  Created by Thomas Evensen on 05.09.2017.
 //  Copyright © 2017 Thomas Evensen. All rights reserved.
-// let storyboard = NSStoryboard(name: NSStoryboard.Name(rawValue: "Main"), bundle: nil)
-//  let pvc = storyboard?.instantiateController(withIdentifier: NSStoryboard.SceneIdentifier
-// (rawValue: "ViewControllertabMain")) as? ViewControllertabMain
-// self.configurationsDelegate = pvc
-// self.configurations = self.configurationsDelegate?.readconfigurationdata()
 
 import Foundation
 import Cocoa
