@@ -15,10 +15,8 @@ protocol ReadLoggdata: class {
     func readloggdata()
 }
 
-class ViewControllerLoggData: NSViewController {
+class ViewControllerLoggData: NSViewController, SetSchedules {
 
-    weak var schedulesDelegate: GetSchedulesObject?
-    weak var schedules: Schedules?
     var tabledata: [NSDictionary]?
     var row: NSDictionary?
     var what: Filterlogs?
@@ -64,7 +62,6 @@ class ViewControllerLoggData: NSViewController {
         self.search.delegate = self
         self.sorting.usesThreadedAnimation = true
         ViewControllerReference.shared.setvcref(viewcontroller: .vcloggdata, nsviewcontroller: self)
-        self.schedulesDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllertabMain
     }
 
     override func viewDidAppear() {
@@ -177,9 +174,7 @@ extension ViewControllerLoggData: Readfiltereddata {
 extension ViewControllerLoggData: ReadLoggdata {
     func readloggdata() {
         if viewispresent {
-            self.schedules = nil
             self.tabledata = nil
-            self.schedules = self.schedulesDelegate?.getschedulesobject()
             globalMainQueue.async(execute: { () -> Void in
                 self.sorting.startAnimation(self)
                 self.tabledata = ScheduleLoggData().getallloggdata()
