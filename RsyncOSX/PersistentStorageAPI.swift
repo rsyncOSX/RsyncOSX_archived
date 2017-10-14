@@ -9,12 +9,8 @@
 
 import Foundation
 
-final class PersistentStorageAPI {
+final class PersistentStorageAPI: SetConfigurations, SetSchedules {
 
-    weak var configurationsDelegate: GetConfigurationsObject?
-    var configurations: Configurations?
-    weak var schedulesDelegate: GetSchedulesObject?
-    var schedules: Schedules?
     // Delegate function for starting next scheduled operatin if any
     // Delegate function is triggered when Process.didTerminateNotification is discovered (e.g previous job is done)
     weak var startnextjobDelegate: StartNextScheduledTask?
@@ -121,10 +117,6 @@ final class PersistentStorageAPI {
     }
 
     init(profile: String?) {
-        self.configurationsDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllertabMain
-        self.schedulesDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllertabMain
-        self.configurations = self.configurationsDelegate?.getconfigurationsobject()
-        self.schedules = self.schedulesDelegate?.getschedulesobject()
         self.profile = profile
     }
 }

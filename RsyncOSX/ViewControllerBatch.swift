@@ -12,7 +12,7 @@ import Cocoa
 
 // Return the created batchobject
 protocol getNewBatchTask: class {
-    func getbatchtaskObject() -> BatchTask
+    func getbatchtaskObject() -> BatchTask?
 }
 
 // Dismiss view when rsync error
@@ -121,7 +121,7 @@ extension ViewControllerBatch: NSTableViewDelegate {
 
     // TableView delegates
     func tableView(_ tableView: NSTableView, objectValueFor tableColumn: NSTableColumn?, row: Int) -> Any? {
-        self.configurations = self.batchTask?.configurations
+        // self.configurations = self.batchTask?.configurations
         let object: NSMutableDictionary = self.configurations!.getupdatedbatchQueue()![row]
         if tableColumn!.identifier.rawValue == "estimatedCellID" || tableColumn!.identifier.rawValue == "completedCellID" {
             return object[tableColumn!.identifier] as? Int!
@@ -183,8 +183,8 @@ extension ViewControllerBatch: Reloadandrefresh {
 
 extension ViewControllerBatch: getNewBatchTask {
 
-    func getbatchtaskObject() -> BatchTask {
-        return self.batchTask!
+    func getbatchtaskObject() -> BatchTask? {
+        return self.batchTask
     }
 
 }

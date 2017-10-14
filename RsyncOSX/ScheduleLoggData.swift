@@ -26,12 +26,8 @@ class Filtereddata {
     var filtereddata: [NSDictionary]?
 }
 
-final class ScheduleLoggData {
+final class ScheduleLoggData: SetConfigurations, SetSchedules {
 
-    weak var configurationsDelegate: GetConfigurationsObject?
-    var configurations: Configurations?
-    weak var schedulesDelegate: GetSchedulesObject?
-    var schedules: Schedules?
     private var loggdata: Array<NSDictionary>?
     weak var readfiltereddataDelegate: Readfiltereddata?
 
@@ -98,10 +94,6 @@ final class ScheduleLoggData {
     }
 
     init () {
-        self.configurationsDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllertabMain
-        self.schedulesDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllertabMain
-        self.configurations = self.configurationsDelegate?.getconfigurationsobject()
-        self.schedules = self.schedulesDelegate?.getschedulesobject()
         // Read and sort loggdata
         if self.loggdata == nil {
             self.readAndSortAllLoggdata()

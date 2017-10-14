@@ -6,7 +6,7 @@
 //  Copyright © 2015 Thomas Evensen. All rights reserved.
 //
 //  SwiftLint: OK 31 July 2017
-//  swiftlint:disable syntactic_sugar function_body_length line_length
+//  swiftlint:disable syntactic_sugar function_body_length 
 
 import Foundation
 
@@ -14,10 +14,8 @@ protocol Readupdatedconfigurations: class {
     func readAllConfigurationsAndArguments()
 }
 
-final class PersistentStorageConfiguration: Readwritefiles {
+final class PersistentStorageConfiguration: Readwritefiles, SetConfigurations {
 
-    weak var configurationsDelegate: GetConfigurationsObject?
-    var configurations: Configurations?
     /// Variable holds all configuration data from persisten storage
     private var configurationsAsNSDict: [NSDictionary]?
 
@@ -217,8 +215,6 @@ final class PersistentStorageConfiguration: Readwritefiles {
 
     init (profile: String?) {
         super.init(task: .configuration, profile: profile)
-        self.configurationsDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllertabMain
-        self.configurations = self.configurationsDelegate?.getconfigurationsobject()
         if self.configurations == nil {
             self.configurationsAsNSDict = self.getDatafromfile()
         }

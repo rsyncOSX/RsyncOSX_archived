@@ -15,17 +15,11 @@ final class OutputBatch {
     var output: Array<String>?
 
     func getOutputCount () -> Int {
-        guard self.output != nil else {
-            return 0
-        }
-        return self.output!.count
+        return self.output?.count ?? 0
     }
 
     func getOutput () -> Array<String> {
-        guard self.output != nil else {
-            return [""]
-        }
-        return self.output!
+        return self.output ?? [""]
     }
 
     // Add line to output

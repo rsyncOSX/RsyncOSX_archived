@@ -35,12 +35,7 @@ enum ColorInfo {
     case black
 }
 
-final class SingleTask {
-
-    weak var configurationsDelegate: GetConfigurationsObject?
-    var configurations: Configurations?
-    weak var schedulesDelegate: GetSchedulesObject?
-    var schedules: Schedules?
+final class SingleTask: SetSchedules, SetConfigurations {
 
     // Delegate function for start/stop progress Indicator in BatchWindow
     weak var indicatorDelegate: StartStopProgressIndicatorSingleTask?
@@ -176,10 +171,6 @@ final class SingleTask {
         self.index = index
         self.indicatorDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllertabMain
         self.taskDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllertabMain
-        self.configurationsDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllertabMain
-        self.configurations = self.configurationsDelegate?.getconfigurationsobject()
-        self.schedulesDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllertabMain
-        self.schedules = self.schedulesDelegate?.getschedulesobject()
     }
 }
 

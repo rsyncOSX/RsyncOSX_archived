@@ -16,6 +16,20 @@
 import Foundation
 import Cocoa
 
+protocol SetConfigurations {
+    weak var configurationsDelegate: GetConfigurationsObject? {get}
+    var configurations: Configurations? {get}
+}
+
+extension SetConfigurations {
+    weak var configurationsDelegate: GetConfigurationsObject? {
+       return ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllertabMain
+    }
+    var configurations: Configurations? {
+        return self.configurationsDelegate?.getconfigurationsobject()
+    }
+}
+
 // Protocol for returning object configurations data
 protocol GetConfigurationsObject: class {
     func getconfigurationsobject() -> Configurations?

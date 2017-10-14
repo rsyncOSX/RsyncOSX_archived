@@ -504,8 +504,8 @@ class ViewControllertabMain: NSViewController {
         }
         self.schedulessorted = nil
         self.infoschedulessorted = nil
-        self.schedulessorted = ScheduleSortedAndExpand(viewcontroller: self)
-        self.infoschedulessorted = InfoScheduleSortedAndExpand(viewcontroller: self, sortedandexpanded: self.schedulessorted)
+        self.schedulessorted = ScheduleSortedAndExpand()
+        self.infoschedulessorted = InfoScheduleSortedAndExpand(sortedandexpanded: self.schedulessorted)
     }
 
     func createandreloadconfigurations() {
@@ -1090,6 +1090,7 @@ extension ViewControllertabMain: GetConfigurationsObject {
     // After a write, a reload is forced.
     func reloadconfigurations() {
         // If batchtask keep configuration object
+        self.batchtaskObject = self.batchObjectDelegate?.getbatchtaskObject()
         guard self.batchtaskObject == nil else {
             // Batchtask, check if task is completed
             guard self.configurations!.getbatchQueue()?.completedBatch() == false else {
@@ -1126,8 +1127,8 @@ extension ViewControllertabMain: GetSchedulesObject {
         self.schedules = Schedules(profile: profile, viewcontroller: self)
         self.schedulessorted = nil
         self.infoschedulessorted = nil
-        self.schedulessorted = ScheduleSortedAndExpand(viewcontroller: self)
-        self.infoschedulessorted = InfoScheduleSortedAndExpand(viewcontroller: self, sortedandexpanded: self.schedulessorted)
+        self.schedulessorted = ScheduleSortedAndExpand()
+        self.infoschedulessorted = InfoScheduleSortedAndExpand(sortedandexpanded: self.schedulessorted)
         return self.schedules
     }
 

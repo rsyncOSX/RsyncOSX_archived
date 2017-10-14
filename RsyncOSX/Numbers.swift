@@ -7,7 +7,7 @@
 //
 //  Class for crunching numbers from rsyn output.  Numbers are
 //  informal only, either used in main view or for logging purposes.
-//  swiftlint:disable syntactic_sugar line_length
+//  swiftlint:disable syntactic_sugar
 
 import Foundation
 
@@ -22,10 +22,7 @@ enum EnumNumbers {
     case delete
 }
 
-final class Numbers {
-
-    weak var configurationsDelegate: GetConfigurationsObject?
-    var configurations: Configurations?
+final class Numbers: SetConfigurations {
 
     // Second last String in Array rsync output of how much in what time
     private var resultRsync: String?
@@ -197,8 +194,6 @@ final class Numbers {
     }
 
     init (output: OutputProcess?) {
-        self.configurationsDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllertabMain
-        self.configurations = self.configurationsDelegate?.getconfigurationsobject()
         self.outputprocess = output!.trimoutput(trim: .two)
         // Getting the summarized output from output.
         if self.outputprocess!.count > 2 {

@@ -46,10 +46,7 @@ protocol Connections : class {
     func displayConnections()
 }
 
-final class Tools {
-
-    weak var configurationsDelegate: GetConfigurationsObject?
-    var configurations: Configurations?
+final class Tools: SetConfigurations {
 
     private var indexBoolremoteserverOff: [Bool]?
     weak var testconnectionsDelegate: Connections?
@@ -93,7 +90,6 @@ final class Tools {
     func testAllremoteserverConnections () {
         self.indexBoolremoteserverOff = nil
         self.indexBoolremoteserverOff = Array<Bool>()
-        self.configurations = self.configurationsDelegate?.getconfigurationsobject()
         guard self.configurations!.configurationsDataSourcecount() > 0 else {
             self.newprofileDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain)
                 as? ViewControllertabMain
@@ -138,7 +134,6 @@ final class Tools {
     }
 
     func noRsync() {
-        self.configurations = self.configurationsDelegate?.getconfigurationsobject()
         if self.configurations!.norsync == true {
             if let rsync = self.configurations!.rsyncPath {
                 Alerts.showInfo("ERROR: no rsync in " + rsync)
@@ -152,7 +147,6 @@ final class Tools {
 
     // Function to verify full rsyncpath
     func verifyrsyncpath() {
-        self.configurations = self.configurationsDelegate?.getconfigurationsobject()
         let fileManager = FileManager.default
         let path: String?
         // If not in /usr/bin or /usr/local/bin
@@ -174,7 +168,6 @@ final class Tools {
     // Display the correct command to execute
     // Used for displaying the commands only
     func rsyncpathtodisplay(index: Int, dryRun: Bool) -> String {
-        self.configurations = self.configurationsDelegate?.getconfigurationsobject()
         var str: String?
         let config = self.configurations!.getargumentAllConfigurations()[index] as? ArgumentsOneConfiguration
         if dryRun {
@@ -200,7 +193,6 @@ final class Tools {
     /// default value.
     /// - returns : full path of rsync command
     func rsyncpath() -> String {
-        self.configurations = self.configurationsDelegate?.getconfigurationsobject()
         if self.configurations!.rsyncVer3 {
             if self.configurations!.rsyncPath == nil {
                 return "/usr/local/bin/rsync"
@@ -298,7 +290,5 @@ final class Tools {
     }
 
     init() {
-        self.configurationsDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain)
-            as? ViewControllertabMain
     }
 }

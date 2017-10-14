@@ -17,10 +17,8 @@ protocol Readupdatedschedules: class {
     func readAllSchedules()
 }
 
-final class PersistentStorageScheduling: Readwritefiles {
+final class PersistentStorageScheduling: Readwritefiles, SetSchedules {
 
-    weak var schedulesDelegate: GetSchedulesObject?
-    var schedules: Schedules?
     weak var readschedulesDelegate: Readupdatedschedules?
     weak var readloggdataDelegate: ReadLoggdata?
     private var schedulesasDict: [NSDictionary]?
@@ -93,8 +91,6 @@ final class PersistentStorageScheduling: Readwritefiles {
 
     init (profile: String?) {
         super.init(task: .schedule, profile: profile)
-        self.schedulesDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllertabMain
-        self.schedules = self.schedulesDelegate?.getschedulesobject()
         self.readloggdataDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vcloggdata) as? ViewControllerLoggData
         if self.schedules == nil {
             self.schedulesasDict = self.getDatafromfile()

@@ -31,10 +31,8 @@ protocol ScheduledJobInProgress : class {
 // time is due it create a Operation object and dump the object onto the 
 // OperationQueue for imidiate execution.
 
-final class ScheduleOperation {
+final class ScheduleOperation: SetSchedules {
 
-    weak var schedulesDelegate: GetSchedulesObject?
-    var schedules: Schedules?
     private var scheduledJobs: ScheduleSortedAndExpand?
     private var infoschedulessorted: InfoScheduleSortedAndExpand?
     private var waitForTask: Timer?
@@ -55,23 +53,17 @@ final class ScheduleOperation {
     }
 
     init () {
-        self.schedulesDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain)
-            as? ViewControllertabMain
-        self.schedules = self.schedulesDelegate?.getschedulesobject()
         // Cancel any current job waiting for execution
         if self.schedules != nil {
             self.schedules!.cancelJobWaiting()
             // Create a new Schedules object
-            self.scheduledJobs = ScheduleSortedAndExpand(viewcontroller: nil)
-            self.infoschedulessorted = InfoScheduleSortedAndExpand(viewcontroller: nil,
-                                                                   sortedandexpanded: scheduledJobs)
+            self.scheduledJobs = ScheduleSortedAndExpand()
+            self.infoschedulessorted = InfoScheduleSortedAndExpand(sortedandexpanded: scheduledJobs)
             // Removes the job of the stack
             if let dict = self.scheduledJobs!.jobToExecute() {
                 let dateStart: Date = (dict.value(forKey: "start") as? Date)!
                 self.secondsToWait = Tools().timeDoubleSeconds(dateStart, enddate: nil)
-                guard self.secondsToWait != nil else {
-                    return
-                }
+                guard self.secondsToWait != nil else { return }
                 self.waitForTask = Timer.scheduledTimer(timeInterval: self.secondsToWait!,
                                                         target: self,
                                                         selector: #selector(startJob),

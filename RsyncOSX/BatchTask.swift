@@ -23,13 +23,9 @@ enum BatchViewProgressIndicator {
     case refresh
 }
 
-final class BatchTask {
-    weak var configurationsDelegate: GetConfigurationsObject?
-    weak var configurations: Configurations?
-    weak var schedulesDelegate: GetSchedulesObject?
-    weak var schedules: Schedules?
-    weak var closeviewerrorDelegate: closeViewError?
+final class BatchTask: SetSchedules, SetConfigurations {
 
+    weak var closeviewerrorDelegate: closeViewError?
     // Protocol function used in Process().
     weak var processupdateDelegate: UpdateProgress?
     // Delegate for presenting batchView
@@ -165,10 +161,6 @@ final class BatchTask {
         self.indicatorDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllertabMain
         self.taskDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllertabMain
         self.batchViewDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllertabMain
-        self.configurationsDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllertabMain
-        self.configurations = self.configurationsDelegate?.getconfigurationsobject()
-        self.schedulesDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllertabMain
-        self.schedules = self.schedulesDelegate?.getschedulesobject()
         self.outputbatch = nil
     }
 
