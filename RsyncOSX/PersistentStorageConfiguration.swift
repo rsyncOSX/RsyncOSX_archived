@@ -14,10 +14,10 @@ protocol Readupdatedconfigurations: class {
     func readAllConfigurationsAndArguments()
 }
 
-final class PersistentStorageConfiguration: Readwritefiles {
+final class PersistentStorageConfiguration: Readwritefiles, SetConfigurations {
 
-    weak var configurationsDelegate: GetConfigurationsObject?
-    var configurations: Configurations?
+    // weak var configurationsDelegate: GetConfigurationsObject?
+    // var configurations: Configurations?
     /// Variable holds all configuration data from persisten storage
     private var configurationsAsNSDict: [NSDictionary]?
 
@@ -217,8 +217,8 @@ final class PersistentStorageConfiguration: Readwritefiles {
 
     init (profile: String?) {
         super.init(task: .configuration, profile: profile)
-        self.configurationsDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllertabMain
-        self.configurations = self.configurationsDelegate?.getconfigurationsobject()
+        // self.configurationsDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllertabMain
+        // self.configurations = self.configurationsDelegate?.getconfigurationsobject()
         if self.configurations == nil {
             self.configurationsAsNSDict = self.getDatafromfile()
         }
