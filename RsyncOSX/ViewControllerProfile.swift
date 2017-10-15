@@ -16,10 +16,7 @@ protocol NewProfile: class {
     func enableProfileMenu()
 }
 
-class ViewControllerProfile: NSViewController {
-
-    weak var configurationsDelegate: GetConfigurationsObject?
-    var configurations: Configurations?
+class ViewControllerProfile: NSViewController, SetConfigurations {
 
     var storageapi: PersistentStorageAPI?
     weak var dismissDelegate: DismissViewController?
@@ -71,7 +68,6 @@ class ViewControllerProfile: NSViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.configurationsDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllertabMain
         self.profilesTable.delegate = self
         self.profilesTable.dataSource = self
         self.profilesTable.target = self
@@ -80,7 +76,6 @@ class ViewControllerProfile: NSViewController {
 
     override func viewDidAppear() {
         super.viewDidAppear()
-        self.configurations = self.configurationsDelegate?.getconfigurationsobject()
         self.profile = nil
         self.profile = Profiles()
         self.profilesArray = self.profile!.getDirectorysStrings()

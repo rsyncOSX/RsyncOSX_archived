@@ -15,12 +15,7 @@ protocol GetHiddenID : class {
     func gethiddenID() -> Int?
 }
 
-class ViewControllerScheduleDetails: NSViewController {
-
-    weak var configurationsDelegate: GetConfigurationsObject?
-    var configurations: Configurations?
-    weak var schedulesDelegate: GetSchedulesObject?
-    var schedules: Schedules?
+class ViewControllerScheduleDetails: NSViewController, SetConfigurations, SetSchedules {
 
     @IBOutlet weak var localCatalog: NSTextField!
     @IBOutlet weak var remoteCatalog: NSTextField!
@@ -59,14 +54,10 @@ class ViewControllerScheduleDetails: NSViewController {
         self.refreshDelegate2 = ViewControllerReference.shared.getvcref(viewcontroller: .vctabschedule) as? ViewControllertabSchedule
         self.scheduletable.delegate = self
         self.scheduletable.dataSource = self
-        self.configurationsDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllertabMain
-        self.schedulesDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllertabMain
     }
 
     override func viewDidAppear() {
         super.viewDidAppear()
-        self.configurations = self.configurationsDelegate?.getconfigurationsobject()
-        self.schedules = self.schedulesDelegate?.getschedulesobject()
         // Decide which viewcontroller calling the view
         if self.configurations!.allowNotifyinMain == true {
             self.getHiddenIDDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllertabMain
@@ -91,8 +82,6 @@ class ViewControllerScheduleDetails: NSViewController {
 extension ViewControllerScheduleDetails: NSTableViewDataSource {
 
     func numberOfRows(in tableView: NSTableView) -> Int {
-        self.configurations = self.configurationsDelegate?.getconfigurationsobject()
-        self.schedules = self.schedulesDelegate?.getschedulesobject()
         if self.hiddendID != nil && self.data != nil {
             return (self.data!.count)
         } else {
