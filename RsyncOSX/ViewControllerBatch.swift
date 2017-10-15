@@ -46,7 +46,7 @@ class ViewControllerBatch: NSViewController, SetDismisser, AbortTask {
         }
         self.waitToClose?.invalidate()
         self.closeIn?.invalidate()
-        self.dismiss_view(viewcontroller: self)
+        self.dismiss_view(viewcontroller: self, vcontroller: .vctabmain)
     }
 
     // Execute batch
@@ -65,7 +65,7 @@ class ViewControllerBatch: NSViewController, SetDismisser, AbortTask {
     @objc private func closeView() {
         self.waitToClose?.invalidate()
         self.closeIn?.invalidate()
-        self.dismiss_view(viewcontroller: self)
+        self.dismiss_view(viewcontroller: self, vcontroller: .vctabmain)
     }
 
     // Initial functions viewDidLoad and viewDidAppear
@@ -188,6 +188,6 @@ extension ViewControllerBatch: closeViewError {
         self.abort()
         self.waitToClose?.invalidate()
         self.closeIn?.invalidate()
-        self.dismiss_view(viewcontroller: self)
+        self.dismiss_view(viewcontroller: self, vcontroller: .vctabmain)
     }
 }

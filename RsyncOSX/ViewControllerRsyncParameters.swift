@@ -74,7 +74,7 @@ class ViewControllerRsyncParameters: NSViewController, SetConfigurations, SetDis
     @IBOutlet weak var parameter14: NSComboBox!
 
     @IBAction func close(_ sender: NSButton) {
-        self.dismiss_view(viewcontroller: self)
+        self.dismiss_view(viewcontroller: self, vcontroller: .vctabmain)
     }
 
     // Function for enabling backup of changed files in a backup catalog.
@@ -239,7 +239,7 @@ class ViewControllerRsyncParameters: NSViewController, SetConfigurations, SetDis
             // notify an update
             self.userparamsupdatedDelegate?.rsyncuserparamsupdated()
         }
-        self.dismiss_view(viewcontroller: self)
+        self.dismiss_view(viewcontroller: self, vcontroller: .vctabmain)
     }
 
     // There are eight comboboxes
