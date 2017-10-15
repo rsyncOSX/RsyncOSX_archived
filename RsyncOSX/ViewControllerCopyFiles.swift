@@ -280,7 +280,6 @@ extension ViewControllerCopyFiles: Reloadandrefresh {
 }
 
 extension ViewControllerCopyFiles: StartStopProgressIndicator {
-    // Protocol StartStopProgressIndicatorViewBatch
     func stop() {
         self.working.stopAnimation(nil)
     }

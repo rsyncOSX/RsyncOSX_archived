@@ -12,17 +12,25 @@ import Foundation
 import Cocoa
 
 protocol SetDismisser {
-    weak var dismissDelegate: DismissViewController? {get}
-    func dismiss_view(viewcontroller: NSViewController)
+    weak var dismissDelegateMain: DismissViewController? {get}
+    weak var dismissDelegateSchedule: DismissViewController? {get}
+    func dismiss_view(viewcontroller: NSViewController, vcontroller: ViewController)
 }
 
 extension SetDismisser {
-    weak var dismissDelegate: DismissViewController? {
+    weak var dismissDelegateMain: DismissViewController? {
         return ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllertabMain
     }
+    weak var dismissDelegateSchedule: DismissViewController? {
+        return ViewControllerReference.shared.getvcref(viewcontroller: .vctabschedule) as? ViewControllertabSchedule
+    }
 
-    func dismiss_view(viewcontroller: NSViewController) {
-        self.dismissDelegate?.dismiss_view(viewcontroller: (self as? NSViewController)!)
+    func dismiss_view(viewcontroller: NSViewController, vcontroller: ViewController) {
+        if vcontroller == .vctabmain {
+            self.dismissDelegateMain?.dismiss_view(viewcontroller: (self as? NSViewController)!)
+        } else {
+            self.dismissDelegateSchedule?.dismiss_view(viewcontroller: (self as? NSViewController)!)
+        }
     }
 }
 

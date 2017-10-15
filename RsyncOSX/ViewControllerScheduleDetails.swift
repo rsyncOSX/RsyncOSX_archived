@@ -15,16 +15,14 @@ protocol GetHiddenID : class {
     func gethiddenID() -> Int?
 }
 
-class ViewControllerScheduleDetails: NSViewController, SetConfigurations, SetSchedules {
+class ViewControllerScheduleDetails: NSViewController, SetConfigurations, SetSchedules, SetDismisser {
 
     @IBOutlet weak var localCatalog: NSTextField!
     @IBOutlet weak var remoteCatalog: NSTextField!
     @IBOutlet weak var offsiteServer: NSTextField!
-
     weak var getHiddenIDDelegate: GetHiddenID?
-    weak var refreshDelegate: Reloadandrefresh?
-    weak var refreshDelegate2: Reloadandrefresh?
-    weak var dismissDelegate: DismissViewController?
+    weak var refreshDelegateMain: Reloadandrefresh?
+    weak var refreshDelegateSchedule: Reloadandrefresh?
 
     var hiddendID: Int?
     var data: [NSMutableDictionary]?
@@ -34,24 +32,31 @@ class ViewControllerScheduleDetails: NSViewController, SetConfigurations, SetSch
 
     // Close view and either stop or delete Schedules
     @IBAction func close(_ sender: NSButton) {
-        self.dismissDelegate?.dismiss_view(viewcontroller: self)
+        if self.configurations!.allowNotifyinMain == true {
+            self.dismiss_view(viewcontroller: self, vcontroller: .vctabmain)
+        } else {
+            self.dismiss_view(viewcontroller: self, vcontroller: .vctabschedule)
+        }
     }
 
     @IBAction func update(_ sender: NSButton) {
         if let data = self.data {
             self.schedules!.deleteorstopschedule(data: data)
-            // Do a refresh of tableViews in both ViewControllertabMain and ViewControllertabSchedule
-            self.refreshDelegate?.reloadtabledata()
-            self.refreshDelegate2?.reloadtabledata()
+            self.refreshDelegateMain?.reloadtabledata()
+            self.refreshDelegateSchedule?.reloadtabledata()
         }
-        self.dismissDelegate?.dismiss_view(viewcontroller: self)
+        if self.configurations!.allowNotifyinMain == true {
+            self.dismiss_view(viewcontroller: self, vcontroller: .vctabmain)
+        } else {
+            self.dismiss_view(viewcontroller: self, vcontroller: .vctabschedule)
+        }
     }
 
     override func viewDidLoad() {
         super.viewDidLoad()
         self.tools = Tools()
-        self.refreshDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllertabMain
-        self.refreshDelegate2 = ViewControllerReference.shared.getvcref(viewcontroller: .vctabschedule) as? ViewControllertabSchedule
+        self.refreshDelegateMain = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllertabMain
+        self.refreshDelegateSchedule = ViewControllerReference.shared.getvcref(viewcontroller: .vctabschedule) as? ViewControllertabSchedule
         self.scheduletable.delegate = self
         self.scheduletable.dataSource = self
     }
@@ -61,10 +66,8 @@ class ViewControllerScheduleDetails: NSViewController, SetConfigurations, SetSch
         // Decide which viewcontroller calling the view
         if self.configurations!.allowNotifyinMain == true {
             self.getHiddenIDDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllertabMain
-            self.dismissDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllertabMain
         } else {
             self.getHiddenIDDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabschedule) as? ViewControllertabSchedule
-            self.dismissDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabschedule) as? ViewControllertabSchedule
         }
         self.hiddendID = self.getHiddenIDDelegate?.gethiddenID()
         self.data = self.schedules!.readscheduleonetask(self.hiddendID)
@@ -97,9 +100,7 @@ extension ViewControllerScheduleDetails: NSTableViewDelegate {
     func tableView(_ tableView: NSTableView, objectValueFor tableColumn: NSTableColumn?, row: Int) -> Any? {
         // If active schedule color row red
         var active: Bool = false
-        guard self.data != nil else {
-            return nil
-        }
+        guard self.data != nil else { return nil }
         if row < self.data!.count {
             let object: NSMutableDictionary = self.data![row]
             if  object.value(forKey: "schedule") as? String == "once" ||
@@ -115,7 +116,6 @@ extension ViewControllerScheduleDetails: NSTableViewDelegate {
             }
             if tableColumn!.identifier.rawValue == "stopCellID" || tableColumn!.identifier.rawValue == "deleteCellID" {
                    return object[tableColumn!.identifier] as? Int
-
             } else {
                 if active {
                     let text = object[tableColumn!.identifier] as? String
