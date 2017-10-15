@@ -5,15 +5,12 @@
 //  Created by Thomas Evensen on 04.03.2017.
 //  Copyright © 2017 Thomas Evensen. All rights reserved.
 //
-//  swiftlint:disable line_length
 
 import Foundation
 import Cocoa
 
-class ViewControllerCopyFilesSource: NSViewController {
+class ViewControllerCopyFilesSource: NSViewController, SetConfigurations {
 
-    weak var configurationsDelegate: GetConfigurationsObject?
-    weak var configurations: Configurations?
     @IBOutlet weak var mainTableView: NSTableView!
     @IBOutlet weak var closeButton: NSButton!
 
@@ -50,7 +47,6 @@ class ViewControllerCopyFilesSource: NSViewController {
             self.dismissDelegate = pvc
         }
         self.mainTableView.doubleAction = #selector(ViewControllerCopyFilesSource.tableViewDoubleClick(sender:))
-        self.configurationsDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllertabMain
     }
 
     override func viewDidAppear() {
@@ -60,7 +56,6 @@ class ViewControllerCopyFilesSource: NSViewController {
         } else if let pvc = self.presenting as? ViewControllerSsh {
             self.dismissDelegate = pvc
         }
-        self.configurations = self.configurationsDelegate?.getconfigurationsobject()
         globalMainQueue.async(execute: { () -> Void in
             self.mainTableView.reloadData()
         })
@@ -112,7 +107,6 @@ class ViewControllerCopyFilesSource: NSViewController {
 extension ViewControllerCopyFilesSource: NSTableViewDataSource {
     // Delegate for size of table
     func numberOfRows(in tableView: NSTableView) -> Int {
-        self.configurations = self.configurationsDelegate?.getconfigurationsobject()
         guard self.configurations != nil else {
             return 0
         }
