@@ -10,9 +10,6 @@ import Foundation
 
 class Profiles: Files {
 
-    // Delegate for reporting file error if any to main view
-    weak var errorDelegate: ReportErrorInMain?
-
     // Function for creating new profile directory
     func createProfile(profileName: String) -> Bool {
         let fileManager = FileManager.default
@@ -26,7 +23,7 @@ class Profiles: Files {
                     return true
                 } catch let e {
                     let error = e as NSError
-                    self.reportError(errorstr: error.description)
+                    self.error(error: error.description)
                     return false
                 }
             } else {
@@ -49,7 +46,7 @@ class Profiles: Files {
                         try fileManager.removeItem(atPath: profileDirectory)
                     } catch let e {
                         let error = e as NSError
-                        self.reportError(errorstr: error.description)
+                        self.error(error: error.description)
                     }
                 }
             }
@@ -59,14 +56,4 @@ class Profiles: Files {
     init () {
         super.init(root: .profileRoot)
     }
-}
-
-extension Profiles: ReportError {
-    // Private func for propagating any file error to main view
-    func reportError(errorstr: String) {
-        self.errorDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain)
-            as? ViewControllertabMain
-        self.errorDelegate?.fileerror(errorstr: errorstr)
-    }
-
 }

@@ -825,6 +825,7 @@ extension ViewControllertabMain: UpdateProgress {
             // Batch run
             self.batchObjectDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vcbatch) as? ViewControllerBatch
             self.batchtaskObject = self.batchObjectDelegate?.getbatchtaskObject()
+            guard self.batchtaskObject != nil else { return }
             self.output = self.batchtaskObject!.output
             self.process = self.batchtaskObject!.process
             self.batchtaskObject!.processTermination()

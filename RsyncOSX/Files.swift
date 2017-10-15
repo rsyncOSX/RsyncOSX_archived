@@ -14,13 +14,23 @@ enum Root {
     case sshRoot
 }
 
-protocol ReportError: class {
-    func reportError(errorstr: String)
+protocol ReportError {
+    weak var errorDelegate: ReportErrorInMain? { get }
+    func error(error: String)
 }
 
-class Files {
+extension ReportError {
+    weak var errorDelegate: ReportErrorInMain? {
+        return ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllertabMain
+    }
 
-    weak var reportErrorDelegate: ReportError?
+    func error(error: String) {
+        self.errorDelegate?.fileerror(errorstr: error)
+    }
+}
+
+class Files: ReportError {
+
     var root: Root?
     var rootpath: String?
 
@@ -119,7 +129,7 @@ class Files {
                     try fileManager.createDirectory(atPath: path, withIntermediateDirectories: true, attributes: nil)
                 } catch let e {
                     let error = e as NSError
-                    self.reportErrorDelegate?.reportError(errorstr: error.description)
+                    self.error(error: error.description)
                 }
             }
         }
@@ -134,7 +144,7 @@ class Files {
                 return files
             } catch let e {
                 let error = e as NSError
-                self.reportErrorDelegate?.reportError(errorstr: error.description)
+                self.error(error: error.description)
                 return nil
             }
         } else {

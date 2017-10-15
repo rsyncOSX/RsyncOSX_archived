@@ -5,7 +5,6 @@
 //  Created by Thomas Evensen on 24/08/2016.
 //  Copyright © 2016 Thomas Evensen. All rights reserved.
 //
-// swiftlint:disable line_length
 
 import Cocoa
 
@@ -20,24 +19,37 @@ protocol AbortOperations: class {
     func abortOperations()
 }
 
-class ViewControllerProgressProcess: NSViewController, SetConfigurations, SetDismisser {
+protocol AbortTask {
+    weak var abortDelegate: AbortOperations? { get }
+    func abort()
+}
+
+extension AbortTask {
+    weak var abortDelegate: AbortOperations? {
+        return ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllertabMain
+    }
+
+    func abort() {
+        self.abortDelegate?.abortOperations()
+    }
+}
+
+class ViewControllerProgressProcess: NSViewController, SetConfigurations, SetDismisser, AbortTask {
 
     var count: Double = 0
     var maxcount: Double = 0
     var calculatedNumberOfFiles: Int?
     weak var countDelegate: Count?
-    weak var abortDelegate: AbortOperations?
 
     @IBOutlet weak var progress: NSProgressIndicator!
 
     @IBAction func abort(_ sender: NSButton) {
-        self.abortDelegate?.abortOperations()
+        self.abort()
         self.processTermination()
     }
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.abortDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllertabMain
     }
 
     override func viewDidAppear() {

@@ -20,7 +20,7 @@ protocol closeViewError:  class {
     func closeerror()
 }
 
-class ViewControllerBatch: NSViewController {
+class ViewControllerBatch: NSViewController, SetDismisser, AbortTask {
 
     weak var configurations: Configurations?
     var close: Bool?
@@ -38,18 +38,15 @@ class ViewControllerBatch: NSViewController {
     @IBOutlet weak var rownumber: NSTextField!
     @IBOutlet weak var executeButton: NSButton!
 
-    weak var dismissDelegate: DismissViewController?
-    weak var abortDelegate: AbortOperations?
-
     @IBAction func close(_ sender: NSButton) {
         if self.close! {
             self.batchTask!.closeOperation()
         } else {
-            self.abortDelegate?.abortOperations()
+            self.abort()
         }
         self.waitToClose?.invalidate()
         self.closeIn?.invalidate()
-        self.dismissDelegate?.dismiss_view(viewcontroller: self)
+        self.dismiss_view(viewcontroller: self)
     }
 
     // Execute batch
@@ -68,7 +65,7 @@ class ViewControllerBatch: NSViewController {
     @objc private func closeView() {
         self.waitToClose?.invalidate()
         self.closeIn?.invalidate()
-        self.dismissDelegate?.dismiss_view(viewcontroller: self)
+        self.dismiss_view(viewcontroller: self)
     }
 
     // Initial functions viewDidLoad and viewDidAppear
@@ -83,8 +80,6 @@ class ViewControllerBatch: NSViewController {
     override func viewDidAppear() {
         super.viewDidAppear()
         ViewControllerReference.shared.setvcref(viewcontroller: .vcbatch, nsviewcontroller: self)
-        self.dismissDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllertabMain
-        self.abortDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllertabMain
         // Create new batctask
         self.batchTask = BatchTask()
         self.configurations = self.batchTask?.configurations
@@ -190,9 +185,9 @@ extension ViewControllerBatch: getNewBatchTask {
 
 extension ViewControllerBatch: closeViewError {
     func closeerror() {
-        self.abortDelegate?.abortOperations()
+        self.abort()
         self.waitToClose?.invalidate()
         self.closeIn?.invalidate()
-        self.dismissDelegate?.dismiss_view(viewcontroller: self)
+        self.dismiss_view(viewcontroller: self)
     }
 }

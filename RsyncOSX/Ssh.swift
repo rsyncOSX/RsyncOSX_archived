@@ -14,7 +14,6 @@ import Cocoa
 class Ssh: Files {
 
     var commandCopyPasteTermninal: String?
-    weak var errorDelegate: ReportErrorInMain?
 
     // Local public rsa and dsa based keys
     let rsaPubKey: String = "id_rsa.pub"
@@ -180,16 +179,6 @@ class Ssh: Files {
         self.keyFileStrings = self.getFileStrings()
         self.checkForLocalPubKeys()
         self.createDirectory()
-    }
-
-}
-
-extension Ssh: ReportError {
-
-    func reportError(errorstr: String) {
-        self.errorDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain)
-            as? ViewControllertabMain
-        self.errorDelegate?.fileerror(errorstr: errorstr)
     }
 
 }

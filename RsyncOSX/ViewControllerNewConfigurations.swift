@@ -10,10 +10,8 @@
 import Foundation
 import Cocoa
 
-class ViewControllerNewConfigurations: NSViewController {
+class ViewControllerNewConfigurations: NSViewController, SetConfigurations {
 
-    weak var configurationsDelegate: GetConfigurationsObject?
-    var configurations: Configurations?
     var storageapi: PersistentStorageAPI?
     var newconfigurations: NewConfigurations?
 
@@ -82,16 +80,12 @@ class ViewControllerNewConfigurations: NSViewController {
         self.localCatalog.toolTip = "By using Finder drag and drop filepaths."
         self.offsiteCatalog.toolTip = "By using Finder drag and drop filepaths."
         ViewControllerReference.shared.setvcref(viewcontroller: .vcnewconfigurations, nsviewcontroller: self)
-        self.configurationsDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain)
-            as? ViewControllertabMain
-
     }
 
     override func viewDidAppear() {
         super.viewDidAppear()
         self.newconfigurations = nil
         self.newconfigurations = NewConfigurations()
-        self.configurations = self.configurationsDelegate?.getconfigurationsobject()
         if let profile = self.configurations!.getProfile() {
             self.storageapi = PersistentStorageAPI(profile: profile)
         } else {
