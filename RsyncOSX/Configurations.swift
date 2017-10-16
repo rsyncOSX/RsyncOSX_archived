@@ -16,6 +16,13 @@
 import Foundation
 import Cocoa
 
+// Protocol for returning object configurations data
+protocol GetConfigurationsObject: class {
+    func getconfigurationsobject() -> Configurations?
+    func createconfigurationsobject(profile: String?) -> Configurations?
+    func reloadconfigurations()
+}
+
 protocol SetConfigurations {
     weak var configurationsDelegate: GetConfigurationsObject? {get}
     var configurations: Configurations? {get}
@@ -30,16 +37,32 @@ extension SetConfigurations {
     }
 }
 
-// Protocol for returning object configurations data
-protocol GetConfigurationsObject: class {
-    func getconfigurationsobject() -> Configurations?
-    func createconfigurationsobject(profile: String?) -> Configurations?
-    func reloadconfigurations()
-}
-
-// Protocol for doing a refresh of updated tableView
+// Protocol for doing a refresh of tabledata
 protocol Reloadandrefresh: class {
     func reloadtabledata()
+}
+
+protocol ReloadTable {
+    weak var reloadDelegateMain: Reloadandrefresh? {get}
+    weak var realoadDelegateSchedule: Reloadandrefresh? {get}
+    func reloadtable(vcontroller: ViewController)
+}
+
+extension ReloadTable {
+    weak var reloadDelegateMain: Reloadandrefresh? {
+        return ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllertabMain
+    }
+    weak var realoadDelegateSchedule: Reloadandrefresh? {
+        return ViewControllerReference.shared.getvcref(viewcontroller: .vctabschedule) as? ViewControllertabSchedule
+    }
+
+    func reloadtable(vcontroller: ViewController) {
+        if vcontroller == .vctabmain {
+            self.reloadDelegateMain?.reloadtabledata()
+        } else {
+            self.realoadDelegateSchedule?.reloadtabledata()
+        }
+    }
 }
 
 // Used to select argument
@@ -56,15 +79,10 @@ enum ResourceInConfiguration {
     case task
 }
 
-class Configurations {
+class Configurations: ReloadTable {
 
-    // Reference to calling viewController
-    // Reference to main View
-    private var vctabmain: NSViewController?
     // Storage API
     var storageapi: PersistentStorageAPI?
-    // Delegate functions
-    weak var refreshDelegate: Reloadandrefresh?
     // True if version 3.2.1 of rsync in /usr/local/bin
     var rsyncVer3: Bool = false
     // Optional path to rsync
@@ -219,8 +237,7 @@ class Configurations {
         // Saving updated configuration in memory to persistent store
         self.storageapi!.saveConfigFromMemory()
         // Call the view and do a refresh of tableView
-        self.refreshDelegate = self.vctabmain as? ViewControllertabMain
-        self.refreshDelegate?.reloadtabledata()
+        self.reloadtable(vcontroller: .vctabmain)
     }
 
     /// Function destroys reference to object holding data and
@@ -260,8 +277,7 @@ class Configurations {
             self.configurations![index].batch = "yes"
         }
         self.storageapi!.saveConfigFromMemory()
-        self.refreshDelegate = self.vctabmain as? ViewControllertabMain
-        self.refreshDelegate?.reloadtabledata()
+        self.reloadtable(vcontroller: .vctabmain)
     }
 
     // Create batchQueue
@@ -375,7 +391,6 @@ class Configurations {
         self.argumentAllConfigurations = nil
         self.configurationsDataSource = nil
         self.profile = profile
-        self.vctabmain = viewcontroller
         self.storageapi = PersistentStorageAPI(profile: self.profile)
         self.readconfigurations()
     }
