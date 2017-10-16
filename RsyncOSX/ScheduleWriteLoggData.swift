@@ -5,16 +5,15 @@
 //  Created by Thomas Evensen on 19.04.2017.
 //  Copyright © 2017 Thomas Evensen. All rights reserved.
 //
-//  swiftlint:disable syntactic_sugar line_length
+//  swiftlint:disable syntactic_sugar
 
 import Foundation
 import Cocoa
 
-class ScheduleWriteLoggData: SetConfigurations, ReloadTable {
+class ScheduleWriteLoggData: SetConfigurations, ReloadTable, Deselect {
 
     var storageapi: PersistentStorageAPI?
     var schedules: Array<ConfigurationSchedule>?
-    weak var deselectrowDelegate: DeselectRowTable?
 
     func deletelogrow(parent: Int, sibling: Int) {
         guard parent < self.schedules!.count else {
@@ -45,8 +44,7 @@ class ScheduleWriteLoggData: SetConfigurations, ReloadTable {
         }
         if inserted {
             self.storageapi!.saveScheduleFromMemory()
-            self.deselectrowDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllertabMain
-            self.deselectrowDelegate?.deselectRow()
+            self.deselectrowtable(vcontroller: .vctabmain)
         }
     }
 

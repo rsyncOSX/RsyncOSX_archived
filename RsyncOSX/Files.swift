@@ -14,13 +14,18 @@ enum Root {
     case sshRoot
 }
 
+// Protocol for reporting file errors
+protocol ReportErrorMain: class {
+    func fileerror(errorstr: String)
+}
+
 protocol ReportError {
-    weak var errorDelegate: ReportErrorInMain? { get }
+    weak var errorDelegate: ReportErrorMain? { get }
     func error(error: String)
 }
 
 extension ReportError {
-    weak var errorDelegate: ReportErrorInMain? {
+    weak var errorDelegate: ReportErrorMain? {
         return ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllertabMain
     }
 
