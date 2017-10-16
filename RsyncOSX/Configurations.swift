@@ -46,6 +46,7 @@ protocol ReloadTable {
     weak var reloadDelegateMain: Reloadandrefresh? {get}
     weak var reloadDelegateSchedule: Reloadandrefresh? {get}
     weak var reloadDelegateBatch: Reloadandrefresh? {get}
+    weak var reloadDelegateLogData: Reloadandrefresh? {get}
     func reloadtable(vcontroller: ViewController)
 }
 
@@ -59,14 +60,19 @@ extension ReloadTable {
     weak var reloadDelegateBatch: Reloadandrefresh? {
         return ViewControllerReference.shared.getvcref(viewcontroller: .vcbatch) as? ViewControllerBatch
     }
+    weak var reloadDelegateLogData: Reloadandrefresh? {
+        return ViewControllerReference.shared.getvcref(viewcontroller: .vcloggdata) as? ViewControllerLoggData
+    }
 
     func reloadtable(vcontroller: ViewController) {
         if vcontroller == .vctabmain {
             self.reloadDelegateMain?.reloadtabledata()
         } else if vcontroller == .vctabschedule {
             self.reloadDelegateSchedule?.reloadtabledata()
-        } else {
+        } else if vcontroller == .vcbatch {
             self.reloadDelegateBatch?.reloadtabledata()
+        } else {
+            self.reloadDelegateLogData?.reloadtabledata()
         }
     }
 }

@@ -10,11 +10,10 @@
 import Foundation
 import Cocoa
 
-class ScheduleWriteLoggData: SetConfigurations {
+class ScheduleWriteLoggData: SetConfigurations, ReloadTable {
 
     var storageapi: PersistentStorageAPI?
     var schedules: Array<ConfigurationSchedule>?
-    weak var refreshlogviewDelegate: Reloadandrefresh?
     weak var deselectrowDelegate: DeselectRowTable?
 
     func deletelogrow(parent: Int, sibling: Int) {
@@ -26,8 +25,7 @@ class ScheduleWriteLoggData: SetConfigurations {
         }
         self.schedules![parent].logrecords.remove(at: sibling)
         self.storageapi!.saveScheduleFromMemory()
-        self.refreshlogviewDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vcloggdata) as? ViewControllerLoggData
-        self.refreshlogviewDelegate?.reloadtabledata()
+        self.reloadtable(vcontroller: .vcloggdata)
     }
 
     /// Function adds results of task to file (via memory). Memory are

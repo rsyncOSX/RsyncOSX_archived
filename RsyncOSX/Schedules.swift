@@ -35,7 +35,7 @@ protocol GetSchedulesObject: class {
     func reloadschedules()
 }
 
-class Schedules: ScheduleWriteLoggData, ReloadTable {
+class Schedules: ScheduleWriteLoggData {
 
     private var waitForTask: Timer?
     var scheduledJob: NSDictionary?
