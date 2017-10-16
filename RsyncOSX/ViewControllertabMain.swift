@@ -58,12 +58,31 @@ protocol DeselectRowTable: class {
     func deselectRow()
 }
 
-// Protocol for reporting file errors
-protocol ReportErrorInMain: class {
-    func fileerror(errorstr: String)
+protocol Deselect {
+    weak var deselectDelegateMain: DeselectRowTable? {get}
+    weak var deselectDelegateSchedule: DeselectRowTable? {get}
+    func deselectrowtable(vcontroller: ViewController)
 }
 
-class ViewControllertabMain: NSViewController, ReloadTable {
+extension Deselect {
+    weak var deselectDelegateMain: DeselectRowTable? {
+        return ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllertabMain
+    }
+    weak var deselectDelegateSchedule: DeselectRowTable? {
+        return ViewControllerReference.shared.getvcref(viewcontroller: .vctabschedule) as? ViewControllertabSchedule
+    }
+
+    func deselectrowtable(vcontroller: ViewController) {
+        if vcontroller == .vctabmain {
+            self.deselectDelegateMain?.deselectRow()
+        } else {
+            self.deselectDelegateSchedule?.deselectRow()
+        }
+    }
+
+}
+
+class ViewControllertabMain: NSViewController, ReloadTable, Deselect {
 
     // Configurations object
     var configurations: Configurations?
@@ -684,7 +703,6 @@ extension ViewControllertabMain: NewProfile {
 
     // Function is called from profiles when new or default profiles is seleceted
     func newProfile(profile: String?) {
-        weak var localdeselectrowDelegate: DeselectRowTable?
         self.process = nil
         self.output = nil
         self.outputbatch = nil
@@ -704,8 +722,7 @@ extension ViewControllertabMain: NewProfile {
         self.reloadtabledata()
         // Reset in tabSchedule
         self.reloadtable(vcontroller: .vctabschedule)
-        localdeselectrowDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabschedule) as? ViewControllertabSchedule
-        localdeselectrowDelegate?.deselectRow()
+        self.reloadtable(vcontroller: .vctabschedule)
         // We have to start any Scheduled process again - if any
         _ = ScheduleOperation()
     }
@@ -903,7 +920,7 @@ extension ViewControllertabMain: RsyncError {
 }
 
 // If, for any reason, handling files or directory throws an error
-extension ViewControllertabMain: ReportErrorInMain {
+extension ViewControllertabMain: ReportErrorMain {
     func fileerror(errorstr: String) {
         globalMainQueue.async(execute: { () -> Void in
             self.setInfo(info: "Error", color: .red)
