@@ -839,9 +839,7 @@ extension ViewControllertabMain: UpdateProgress {
     // Function is triggered when Process outputs data in filehandler
     // Process is either in singleRun or batchRun
     func fileHandler() {
-        weak var localrefreshDelegate: Reloadandrefresh?
         weak var localprocessupdateDelegate: UpdateProgress?
-        localrefreshDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vcbatch) as? ViewControllerBatch
         localprocessupdateDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vcprogressview) as? ViewControllerProgressProcess
         if self.batchtaskObject != nil {
             // Batch run
@@ -852,7 +850,7 @@ extension ViewControllertabMain: UpdateProgress {
                     self.process = self.batchtaskObject!.process
                     batchobject.updateInProcess(numberOfFiles: self.batchtaskObject!.output!.count())
                     // Refresh view in Batchwindow
-                    localrefreshDelegate?.reloadtabledata()
+                    self.reloadtable(vcontroller: .vcbatch)
                 }
             }
         } else {
@@ -1067,17 +1065,16 @@ extension ViewControllertabMain: BatchTaskProgress {
 
     func progressIndicatorViewBatch(operation: BatchViewProgressIndicator) {
         let localindicatorDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vcbatch) as? ViewControllerBatch
-        let localrefreshDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vcbatch) as? ViewControllerBatch
         switch operation {
         case .stop:
             localindicatorDelegate?.stop()
-            localrefreshDelegate?.reloadtabledata()
+            self.reloadtable(vcontroller: .vcbatch)
         case .start:
             localindicatorDelegate?.start()
         case .complete:
             localindicatorDelegate?.complete()
         case .refresh:
-            localrefreshDelegate?.reloadtabledata()
+            self.reloadtable(vcontroller: .vcbatch)
         }
     }
 
