@@ -114,7 +114,7 @@ class ScheduleWriteLoggData: SetConfigurations {
         }
     }
 
-    init(viewcontroller: NSViewController) {
+    init() {
         self.schedules = Array<ConfigurationSchedule>()
     }
 }

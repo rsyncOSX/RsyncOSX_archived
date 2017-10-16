@@ -515,15 +515,15 @@ class ViewControllertabMain: NSViewController {
 
     func createandloadschedules() {
         guard self.configurations != nil else {
-            self.schedules = Schedules(profile: nil, viewcontroller: self)
+            self.schedules = Schedules(profile: nil)
             return
         }
         if let profile = self.configurations!.getProfile() {
             self.schedules = nil
-            self.schedules = Schedules(profile: profile, viewcontroller: self)
+            self.schedules = Schedules(profile: profile)
         } else {
             self.schedules = nil
-            self.schedules = Schedules(profile: nil, viewcontroller: self)
+            self.schedules = Schedules(profile: nil)
         }
         self.schedulessorted = nil
         self.infoschedulessorted = nil
@@ -1148,7 +1148,7 @@ extension ViewControllertabMain: GetSchedulesObject {
 
     func createschedulesobject(profile: String?) -> Schedules? {
         self.schedules = nil
-        self.schedules = Schedules(profile: profile, viewcontroller: self)
+        self.schedules = Schedules(profile: profile)
         self.schedulessorted = nil
         self.infoschedulessorted = nil
         self.schedulessorted = ScheduleSortedAndExpand()
