@@ -15,14 +15,12 @@ protocol GetHiddenID : class {
     func gethiddenID() -> Int?
 }
 
-class ViewControllerScheduleDetails: NSViewController, SetConfigurations, SetSchedules, SetDismisser {
+class ViewControllerScheduleDetails: NSViewController, SetConfigurations, SetSchedules, SetDismisser, ReloadTable {
 
     @IBOutlet weak var localCatalog: NSTextField!
     @IBOutlet weak var remoteCatalog: NSTextField!
     @IBOutlet weak var offsiteServer: NSTextField!
     weak var getHiddenIDDelegate: GetHiddenID?
-    weak var refreshDelegateMain: Reloadandrefresh?
-    weak var refreshDelegateSchedule: Reloadandrefresh?
 
     var hiddendID: Int?
     var data: [NSMutableDictionary]?
@@ -42,8 +40,8 @@ class ViewControllerScheduleDetails: NSViewController, SetConfigurations, SetSch
     @IBAction func update(_ sender: NSButton) {
         if let data = self.data {
             self.schedules!.deleteorstopschedule(data: data)
-            self.refreshDelegateMain?.reloadtabledata()
-            self.refreshDelegateSchedule?.reloadtabledata()
+            self.reloadtable(vcontroller: .vctabmain)
+            self.reloadtable(vcontroller: .vctabschedule)
         }
         if self.configurations!.allowNotifyinMain == true {
             self.dismiss_view(viewcontroller: self, vcontroller: .vctabmain)
@@ -55,8 +53,6 @@ class ViewControllerScheduleDetails: NSViewController, SetConfigurations, SetSch
     override func viewDidLoad() {
         super.viewDidLoad()
         self.tools = Tools()
-        self.refreshDelegateMain = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllertabMain
-        self.refreshDelegateSchedule = ViewControllerReference.shared.getvcref(viewcontroller: .vctabschedule) as? ViewControllertabSchedule
         self.scheduletable.delegate = self
         self.scheduletable.dataSource = self
     }

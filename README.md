@@ -14,7 +14,7 @@ As part of this version of RsyncOSX I am using [SwiftLint](https://github.com/re
 
 ### Compile
 
-To compile the code, install Xcode and open the RsyncOSX project file. Before compiling, open in Xcode, the `RsyncOSX/General` preference page (after opening the RsyncOSX project file) and replace your own credentials in `Signing`, or disable Signing. Then compile your own version of RsyncOSX.
+To compile the code, install Xcode and open the RsyncOSX project file. Before compiling, open in Xcode the `RsyncOSX/General` preference page (after opening the RsyncOSX project file) and replace your own credentials in `Signing`, or disable Signing. Then compile your own version of RsyncOSX.
 
 ### Application icon
 

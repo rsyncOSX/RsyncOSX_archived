@@ -18,7 +18,6 @@ final class CopyFiles: SetConfigurations {
     private var arguments: Array<String>?
     private var command: String?
     var argumentsObject: CopyFileArguments?
-    weak var refreshtableDelegate: Reloadandrefresh?
     private var argumentsRsync: Array<String>?
     private var argymentsRsyncDrynRun: Array<String>?
     private var commandDisplay: String?

@@ -9,7 +9,7 @@
 //  Created by Thomas Evensen on 09/05/16.
 //  Copyright © 2016 Thomas Evensen. All rights reserved.
 //
-//  swiftlint:disable syntactic_sugar line_length
+//  swiftlint:disable syntactic_sugar
 
 import Foundation
 import Cocoa
@@ -37,10 +37,8 @@ protocol GetSchedulesObject: class {
 
 class Schedules: ScheduleWriteLoggData {
 
-    private var vctabmain: NSViewController?
     private var waitForTask: Timer?
     var scheduledJob: NSDictionary?
-    weak var refreshDelegate: Reloadandrefresh?
     var profile: String?
 
     // Return reference to Schedule data
@@ -69,7 +67,6 @@ class Schedules: ScheduleWriteLoggData {
     /// - parameter start: start date and time
     /// - parameter stop: stop date and time
     func addschedule (_ hiddenID: Int, schedule: String, start: Date, stop: Date) {
-        weak var localrefreshDelegate: Reloadandrefresh?
         let dateformatter = Tools().setDateformat()
         let dict = NSMutableDictionary()
         dict.setObject(hiddenID, forKey: "hiddenID" as NSCopying)
@@ -79,8 +76,7 @@ class Schedules: ScheduleWriteLoggData {
         let newSchedule = ConfigurationSchedule(dictionary: dict, log: nil)
         self.schedules!.append(newSchedule)
         self.storageapi!.saveScheduleFromMemory()
-        localrefreshDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabschedule) as? ViewControllertabSchedule
-        localrefreshDelegate?.reloadtabledata()
+        self.reloadtable(vcontroller: .vctabschedule)
     }
 
     /// Function deletes all Schedules by hiddenID. Invoked when Configurations are
@@ -98,7 +94,7 @@ class Schedules: ScheduleWriteLoggData {
         if delete {
             self.storageapi!.saveScheduleFromMemory()
             // Send message about refresh tableView
-            self.refreshDelegate?.reloadtabledata()
+            self.reloadtable(vcontroller: .vctabmain)
         }
     }
 
@@ -169,7 +165,7 @@ class Schedules: ScheduleWriteLoggData {
                 // Saving the resulting data file
                 self.storageapi!.saveScheduleFromMemory()
                 // Send message about refresh tableView
-                self.refreshDelegate?.reloadtabledata()
+                self.reloadtable(vcontroller: .vctabmain)
             }
         }
     }
@@ -250,11 +246,9 @@ class Schedules: ScheduleWriteLoggData {
         self.scheduledJob = nil
     }
 
-     init(profile: String?, viewcontroller: NSViewController) {
-        super.init(viewcontroller: viewcontroller)
+     init(profile: String?) {
+        super.init()
         self.profile = profile
-        self.vctabmain = viewcontroller
-        self.refreshDelegate = self.vctabmain as? ViewControllertabMain
         self.storageapi = PersistentStorageAPI(profile: self.profile)
         self.readschedules()
     }

@@ -63,7 +63,7 @@ protocol ReportErrorInMain: class {
     func fileerror(errorstr: String)
 }
 
-class ViewControllertabMain: NSViewController {
+class ViewControllertabMain: NSViewController, ReloadTable {
 
     // Configurations object
     var configurations: Configurations?
@@ -219,7 +219,6 @@ class ViewControllertabMain: NSViewController {
 
     // Menus as Radiobuttons for Edit functions in tabMainView
     @IBAction func radiobuttons(_ sender: NSButton) {
-        weak var localrefreshDelegate: Reloadandrefresh?
         self.output = nil
         self.setNumbers(output: nil)
         self.setInfo(info: "Estimate", color: .blue)
@@ -255,8 +254,7 @@ class ViewControllertabMain: NSViewController {
                         self.index = nil
                         self.reloadtabledata()
                         // Reset in tabSchedule
-                        localrefreshDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabschedule) as? ViewControllertabSchedule
-                        localrefreshDelegate?.reloadtabledata()
+                        self.reloadtable(vcontroller: .vctabschedule)
                     }
                 }
                 self.delete.state = .off
@@ -515,15 +513,15 @@ class ViewControllertabMain: NSViewController {
 
     func createandloadschedules() {
         guard self.configurations != nil else {
-            self.schedules = Schedules(profile: nil, viewcontroller: self)
+            self.schedules = Schedules(profile: nil)
             return
         }
         if let profile = self.configurations!.getProfile() {
             self.schedules = nil
-            self.schedules = Schedules(profile: profile, viewcontroller: self)
+            self.schedules = Schedules(profile: profile)
         } else {
             self.schedules = nil
-            self.schedules = Schedules(profile: nil, viewcontroller: self)
+            self.schedules = Schedules(profile: nil)
         }
         self.schedulessorted = nil
         self.infoschedulessorted = nil
@@ -686,7 +684,6 @@ extension ViewControllertabMain: NewProfile {
 
     // Function is called from profiles when new or default profiles is seleceted
     func newProfile(profile: String?) {
-        weak var localrefreshDelegate: Reloadandrefresh?
         weak var localdeselectrowDelegate: DeselectRowTable?
         self.process = nil
         self.output = nil
@@ -706,8 +703,7 @@ extension ViewControllertabMain: NewProfile {
         self.displayProfile()
         self.reloadtabledata()
         // Reset in tabSchedule
-        localrefreshDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabschedule) as? ViewControllertabSchedule
-        localrefreshDelegate?.reloadtabledata()
+        self.reloadtable(vcontroller: .vctabschedule)
         localdeselectrowDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabschedule) as? ViewControllertabSchedule
         localdeselectrowDelegate?.deselectRow()
         // We have to start any Scheduled process again - if any
@@ -843,9 +839,7 @@ extension ViewControllertabMain: UpdateProgress {
     // Function is triggered when Process outputs data in filehandler
     // Process is either in singleRun or batchRun
     func fileHandler() {
-        weak var localrefreshDelegate: Reloadandrefresh?
         weak var localprocessupdateDelegate: UpdateProgress?
-        localrefreshDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vcbatch) as? ViewControllerBatch
         localprocessupdateDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vcprogressview) as? ViewControllerProgressProcess
         if self.batchtaskObject != nil {
             // Batch run
@@ -856,7 +850,7 @@ extension ViewControllertabMain: UpdateProgress {
                     self.process = self.batchtaskObject!.process
                     batchobject.updateInProcess(numberOfFiles: self.batchtaskObject!.output!.count())
                     // Refresh view in Batchwindow
-                    localrefreshDelegate?.reloadtabledata()
+                    self.reloadtable(vcontroller: .vcbatch)
                 }
             }
         } else {
@@ -1071,17 +1065,16 @@ extension ViewControllertabMain: BatchTaskProgress {
 
     func progressIndicatorViewBatch(operation: BatchViewProgressIndicator) {
         let localindicatorDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vcbatch) as? ViewControllerBatch
-        let localrefreshDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vcbatch) as? ViewControllerBatch
         switch operation {
         case .stop:
             localindicatorDelegate?.stop()
-            localrefreshDelegate?.reloadtabledata()
+            self.reloadtable(vcontroller: .vcbatch)
         case .start:
             localindicatorDelegate?.start()
         case .complete:
             localindicatorDelegate?.complete()
         case .refresh:
-            localrefreshDelegate?.reloadtabledata()
+            self.reloadtable(vcontroller: .vcbatch)
         }
     }
 
@@ -1148,7 +1141,7 @@ extension ViewControllertabMain: GetSchedulesObject {
 
     func createschedulesobject(profile: String?) -> Schedules? {
         self.schedules = nil
-        self.schedules = Schedules(profile: profile, viewcontroller: self)
+        self.schedules = Schedules(profile: profile)
         self.schedulessorted = nil
         self.infoschedulessorted = nil
         self.schedulessorted = ScheduleSortedAndExpand()
