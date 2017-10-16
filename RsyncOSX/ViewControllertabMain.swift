@@ -63,7 +63,7 @@ protocol ReportErrorInMain: class {
     func fileerror(errorstr: String)
 }
 
-class ViewControllertabMain: NSViewController {
+class ViewControllertabMain: NSViewController, ReloadTable {
 
     // Configurations object
     var configurations: Configurations?
@@ -219,7 +219,6 @@ class ViewControllertabMain: NSViewController {
 
     // Menus as Radiobuttons for Edit functions in tabMainView
     @IBAction func radiobuttons(_ sender: NSButton) {
-        weak var localrefreshDelegate: Reloadandrefresh?
         self.output = nil
         self.setNumbers(output: nil)
         self.setInfo(info: "Estimate", color: .blue)
@@ -255,8 +254,7 @@ class ViewControllertabMain: NSViewController {
                         self.index = nil
                         self.reloadtabledata()
                         // Reset in tabSchedule
-                        localrefreshDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabschedule) as? ViewControllertabSchedule
-                        localrefreshDelegate?.reloadtabledata()
+                        self.reloadtable(vcontroller: .vctabschedule)
                     }
                 }
                 self.delete.state = .off
@@ -686,7 +684,6 @@ extension ViewControllertabMain: NewProfile {
 
     // Function is called from profiles when new or default profiles is seleceted
     func newProfile(profile: String?) {
-        weak var localrefreshDelegate: Reloadandrefresh?
         weak var localdeselectrowDelegate: DeselectRowTable?
         self.process = nil
         self.output = nil
@@ -706,8 +703,7 @@ extension ViewControllertabMain: NewProfile {
         self.displayProfile()
         self.reloadtabledata()
         // Reset in tabSchedule
-        localrefreshDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabschedule) as? ViewControllertabSchedule
-        localrefreshDelegate?.reloadtabledata()
+        self.reloadtable(vcontroller: .vctabschedule)
         localdeselectrowDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabschedule) as? ViewControllertabSchedule
         localdeselectrowDelegate?.deselectRow()
         // We have to start any Scheduled process again - if any

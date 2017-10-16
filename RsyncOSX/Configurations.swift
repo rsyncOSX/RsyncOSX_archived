@@ -11,7 +11,7 @@
 //  Created by Thomas Evensen on 08/02/16.
 //  Copyright © 2016 Thomas Evensen. All rights reserved.
 //
-//  swiftlint:disable syntactic_sugar line_length
+//  swiftlint:disable syntactic_sugar line_length file_length
 
 import Foundation
 import Cocoa
@@ -44,7 +44,8 @@ protocol Reloadandrefresh: class {
 
 protocol ReloadTable {
     weak var reloadDelegateMain: Reloadandrefresh? {get}
-    weak var realoadDelegateSchedule: Reloadandrefresh? {get}
+    weak var reloadDelegateSchedule: Reloadandrefresh? {get}
+    weak var reloadDelegateBatch: Reloadandrefresh? {get}
     func reloadtable(vcontroller: ViewController)
 }
 
@@ -52,15 +53,20 @@ extension ReloadTable {
     weak var reloadDelegateMain: Reloadandrefresh? {
         return ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllertabMain
     }
-    weak var realoadDelegateSchedule: Reloadandrefresh? {
+    weak var reloadDelegateSchedule: Reloadandrefresh? {
         return ViewControllerReference.shared.getvcref(viewcontroller: .vctabschedule) as? ViewControllertabSchedule
+    }
+    weak var reloadDelegateBatch: Reloadandrefresh? {
+        return ViewControllerReference.shared.getvcref(viewcontroller: .vcbatch) as? ViewControllerBatch
     }
 
     func reloadtable(vcontroller: ViewController) {
         if vcontroller == .vctabmain {
             self.reloadDelegateMain?.reloadtabledata()
+        } else if vcontroller == .vctabschedule {
+            self.reloadDelegateSchedule?.reloadtabledata()
         } else {
-            self.realoadDelegateSchedule?.reloadtabledata()
+            self.reloadDelegateBatch?.reloadtabledata()
         }
     }
 }
