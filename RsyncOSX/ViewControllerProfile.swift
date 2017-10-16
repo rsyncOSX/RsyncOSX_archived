@@ -16,10 +16,9 @@ protocol NewProfile: class {
     func enableProfileMenu()
 }
 
-class ViewControllerProfile: NSViewController, SetConfigurations {
+class ViewControllerProfile: NSViewController, SetConfigurations, SetDismisser {
 
     var storageapi: PersistentStorageAPI?
-    weak var dismissDelegate: DismissViewController?
     weak var newProfileDelegate: NewProfile?
     private var profilesArray: [String]?
     private var profile: Profiles?
@@ -32,23 +31,7 @@ class ViewControllerProfile: NSViewController, SetConfigurations {
     @IBAction func defaultProfile(_ sender: NSButton) {
         self.useprofile = nil
         self.newProfileDelegate?.newProfile(profile: self.useprofile)
-        self.dismissDelegate?.dismiss_view(viewcontroller: self)
-    }
-
-    // Add and load new profile
-    @IBAction func addProfile(_ sender: NSButton) {
-        let newprofile = self.newprofile.stringValue
-        guard newprofile.isEmpty == false else {
-            self.dismissDelegate?.dismiss_view(viewcontroller: self)
-            return
-        }
-        let success = self.profile?.createProfile(profileName: newprofile)
-        guard success == true else {
-            self.dismissDelegate?.dismiss_view(viewcontroller: self)
-            return
-        }
-        self.newProfileDelegate?.newProfile(profile: newprofile)
-        self.dismissDelegate?.dismiss_view(viewcontroller: self)
+        self.dismissView()
     }
 
     // Delete profile
@@ -57,13 +40,32 @@ class ViewControllerProfile: NSViewController, SetConfigurations {
             self.profile?.deleteProfile(profileName: useprofile)
             self.newProfileDelegate?.newProfile(profile: nil)
         }
-        self.dismissDelegate?.dismiss_view(viewcontroller: self)
+        self.dismissView()
     }
 
     // Use profile or close
     @IBAction func close(_ sender: NSButton) {
-        self.newProfileDelegate?.newProfile(profile: self.useprofile)
-        self.dismissDelegate?.dismiss_view(viewcontroller: self)
+        let newprofile = self.newprofile.stringValue
+        guard newprofile.isEmpty == false else {
+            self.dismissView()
+            return
+        }
+        let success = self.profile?.createProfile(profileName: newprofile)
+        guard success == true else {
+            self.dismissView()
+            return
+        }
+        self.newProfileDelegate?.newProfile(profile: newprofile)
+        self.dismissView()
+    }
+
+    private func dismissView() {
+        // Decide which viewcontroller calling the view
+        if self.configurations!.allowNotifyinMain == true {
+            self.dismiss_view(viewcontroller: self, vcontroller: .vctabmain)
+        } else {
+            self.dismiss_view(viewcontroller: self, vcontroller: .vctabschedule)
+        }
     }
 
     override func viewDidLoad() {
@@ -80,12 +82,6 @@ class ViewControllerProfile: NSViewController, SetConfigurations {
         self.profile = Profiles()
         self.profilesArray = self.profile!.getDirectorysStrings()
         self.newProfileDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllertabMain
-        // Decide which viewcontroller calling the view
-        if self.configurations!.allowNotifyinMain == true {
-            self.dismissDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllertabMain
-        } else {
-            self.dismissDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabschedule) as? ViewControllertabSchedule
-        }
         globalMainQueue.async(execute: { () -> Void in
             self.profilesTable.reloadData()
         })
@@ -94,7 +90,7 @@ class ViewControllerProfile: NSViewController, SetConfigurations {
 
     @objc(tableViewDoubleClick:) func tableViewDoubleClick(sender: AnyObject) {
         self.newProfileDelegate?.newProfile(profile: self.useprofile)
-        self.dismissDelegate?.dismiss_view(viewcontroller: self)
+        self.dismissView()
     }
 }
 

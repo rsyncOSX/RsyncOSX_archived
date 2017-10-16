@@ -19,12 +19,12 @@ protocol SetProfileinfo: class {
     func setprofile(profile: String, color: NSColor)
 }
 
-class ViewControllertabSchedule: NSViewController {
+class ViewControllertabSchedule: NSViewController, SetConfigurations, SetSchedules {
 
-    weak var configurationsDelegate: GetConfigurationsObject?
-    weak var configurations: Configurations?
-    weak var schedulesDelegate: GetSchedulesObject?
-    weak var schedules: Schedules?
+    // weak var configurationsDelegate: GetConfigurationsObject?
+    // weak var configurations: Configurations?
+    // weak var schedulesDelegate: GetSchedulesObject?
+    // weak var schedules: Schedules?
 
     // Main tableview
     @IBOutlet weak var mainTableView: NSTableView!
@@ -159,16 +159,15 @@ class ViewControllertabSchedule: NSViewController {
         self.mainTableView.delegate = self
         self.mainTableView.dataSource = self
         self.mainTableView.doubleAction = #selector(ViewControllertabMain.tableViewDoubleClick(sender:))
-        // Setting reference to self.
         ViewControllerReference.shared.setvcref(viewcontroller: .vctabschedule, nsviewcontroller: self)
-        self.configurationsDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllertabMain
-        self.schedulesDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllertabMain
+        // self.configurationsDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllertabMain
+        // self.schedulesDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllertabMain
     }
 
     override func viewDidAppear() {
         super.viewDidAppear()
-        self.configurations = self.configurationsDelegate?.getconfigurationsobject()
-        self.schedules = self.schedulesDelegate?.getschedulesobject()
+        // self.configurations = self.configurationsDelegate?.getconfigurationsobject()
+        // self.schedules = self.schedulesDelegate?.getschedulesobject()
         self.stopdate.dateValue = Date()
         self.stoptime.dateValue = Date()
         if self.schedulessorted == nil {
@@ -248,8 +247,6 @@ class ViewControllertabSchedule: NSViewController {
 extension ViewControllertabSchedule: NSTableViewDataSource {
 
     func numberOfRows(in tableView: NSTableView) -> Int {
-        self.configurations = self.configurationsDelegate?.getconfigurationsobject()
-        self.schedules = self.schedulesDelegate?.getschedulesobject()
         return self.configurations?.getConfigurationsDataSourcecountBackupOnly()?.count ?? 0
     }
 }
@@ -257,7 +254,10 @@ extension ViewControllertabSchedule: NSTableViewDataSource {
 extension ViewControllertabSchedule: NSTableViewDelegate {
 
    func tableView(_ tableView: NSTableView, objectValueFor tableColumn: NSTableColumn?, row: Int) -> Any? {
-        let object: NSDictionary = self.configurations!.getConfigurationsDataSourcecountBackupOnly()![row]
+    guard row < self.configurations!.getConfigurationsDataSourcecountBackupOnly()!.count  else {
+        return nil
+    }
+    let object: NSDictionary = self.configurations!.getConfigurationsDataSourcecountBackupOnly()![row]
         var text: String?
         var schedule: Bool = false
         var number: Int?
@@ -307,7 +307,6 @@ extension ViewControllertabSchedule: DismissViewController {
 
     func dismiss_view(viewcontroller: NSViewController) {
         self.dismissViewController(viewcontroller)
-        self.configurations = self.configurationsDelegate?.getconfigurationsobject()
         globalMainQueue.async(execute: { () -> Void in
             self.mainTableView.reloadData()
         })
@@ -318,9 +317,6 @@ extension ViewControllertabSchedule: DismissViewController {
 extension ViewControllertabSchedule: Reloadandrefresh {
 
     func reloadtabledata() {
-        guard self.configurations != nil else {
-            return
-        }
         self.firstRemoteServer.stringValue = ""
         self.firstLocalCatalog.stringValue = ""
         self.secondRemoteServer.stringValue = ""
@@ -359,9 +355,7 @@ extension ViewControllertabSchedule: StartTimer {
 extension ViewControllertabSchedule: DeselectRowTable {
     // deselect a row after row is deleted
     func deselectRow() {
-        guard self.index != nil else {
-            return
-        }
+        guard self.index != nil else { return }
         self.mainTableView.deselectRow(self.index!)
     }
 }

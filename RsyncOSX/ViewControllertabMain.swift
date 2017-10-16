@@ -722,7 +722,7 @@ extension ViewControllertabMain: NewProfile {
         self.reloadtabledata()
         // Reset in tabSchedule
         self.reloadtable(vcontroller: .vctabschedule)
-        self.reloadtable(vcontroller: .vctabschedule)
+        self.deselectrowtable(vcontroller: .vctabschedule)
         // We have to start any Scheduled process again - if any
         _ = ScheduleOperation()
     }
@@ -1102,9 +1102,7 @@ extension ViewControllertabMain: BatchTaskProgress {
 
 extension ViewControllertabMain: GetConfigurationsObject {
     func getconfigurationsobject() -> Configurations? {
-        guard self.configurations != nil else {
-            return nil
-        }
+        guard self.configurations != nil else { return nil }
         // Update alle userconfigurations
         self.configurations!.rsyncVer3 = ViewControllerReference.shared.rsyncVer3
         self.configurations!.rsyncPath = ViewControllerReference.shared.rsyncPath
