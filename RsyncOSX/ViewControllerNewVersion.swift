@@ -10,10 +10,9 @@
 import Foundation
 import Cocoa
 
-class ViewControllerNewVersion: NSViewController {
+class ViewControllerNewVersion: NSViewController, SetDismisser {
 
     private var resource: Resources?
-    weak var dismissDelegate: DismissViewController?
     var waitToClose: Timer?
     var closeIn: Timer?
     var seconds: Int?
@@ -29,11 +28,11 @@ class ViewControllerNewVersion: NSViewController {
 
     @IBAction func download(_ sender: NSButton) {
         guard ViewControllerReference.shared.URLnewVersion != nil else {
-            self.dismissDelegate?.dismiss_view(viewcontroller: self)
+            self.dismissview(viewcontroller: self, vcontroller: .vctabmain)
             return
         }
         NSWorkspace.shared.open(URL(string: ViewControllerReference.shared.URLnewVersion!)!)
-        self.dismissDelegate?.dismiss_view(viewcontroller: self)
+        self.dismissview(viewcontroller: self, vcontroller: .vctabmain)
     }
 
     @objc private func setSecondsView() {
@@ -44,25 +43,22 @@ class ViewControllerNewVersion: NSViewController {
     @objc private func closeView() {
         self.waitToClose?.invalidate()
         self.closeIn?.invalidate()
-        self.dismissDelegate?.dismiss_view(viewcontroller: self)
-    }
+        self.dismissview(viewcontroller: self, vcontroller: .vctabmain)    }
 
     @IBAction func dismiss(_ sender: NSButton) {
         self.waitToClose?.invalidate()
         self.closeIn?.invalidate()
-        self.dismissDelegate?.dismiss_view(viewcontroller: self)
+        self.dismissview(viewcontroller: self, vcontroller: .vctabmain)
     }
 
     override func viewDidLoad() {
         super.viewDidLoad()
         self.resource = Resources()
-        self.dismissDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllertabMain
     }
 
     override func viewDidAppear() {
-        // Seconds before autodismiss view
-        self.seconds = 10
         super.viewDidAppear()
+        self.seconds = 10
         self.waitToClose = Timer.scheduledTimer(timeInterval: 10, target: self, selector: #selector(closeView), userInfo: nil, repeats: false)
         self.closeIn = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(setSecondsView), userInfo: nil, repeats: true)
         self.closeinseconds.stringValue = "Close automatically in : 10 seconds"

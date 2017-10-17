@@ -68,7 +68,7 @@ class ViewControllerEdit: NSViewController, SetConfigurations, SetDismisser, Get
         self.backupID.stringValue = ""
         self.sshport.stringValue = ""
         self.rsyncdaemon.state = .off
-        self.index = self.getindex()
+        self.index = self.index()
         let config: Configuration = self.configurations!.getConfigurations()[self.index!]
         self.localCatalog.stringValue = config.localCatalog
         if self.localCatalog.stringValue.hasSuffix("/") == false {

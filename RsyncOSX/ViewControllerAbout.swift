@@ -5,16 +5,12 @@
 //  Created by Thomas Evensen on 18/11/2016.
 //  Copyright © 2016 Thomas Evensen. All rights reserved.
 //
-// swiftlint:disable line_length
 
 import Foundation
 import Cocoa
 
-class ViewControllerAbout: NSViewController {
+class ViewControllerAbout: NSViewController, SetDismisser {
 
-    // Dismisser
-    weak var dismissDelegate: DismissViewController?
-    // RsyncOSX version
     @IBOutlet weak var version: NSTextField!
     @IBOutlet weak var downloadbutton: NSButton!
     @IBOutlet weak var thereisanewversion: NSTextField!
@@ -25,35 +21,34 @@ class ViewControllerAbout: NSViewController {
     private var resource: Resources?
 
     @IBAction func dismiss(_ sender: NSButton) {
-        self.dismissDelegate?.dismiss_view(viewcontroller: self)
+        self.dismissview(viewcontroller: self, vcontroller: .vctabmain)
     }
 
     @IBAction func changelog(_ sender: NSButton) {
         if let resource = self.resource {
             NSWorkspace.shared.open(URL(string: resource.getResource(resource: .changelog))!)
         }
-        self.dismissDelegate?.dismiss_view(viewcontroller: self)
+        self.dismissview(viewcontroller: self, vcontroller: .vctabmain)
     }
 
     @IBAction func documentation(_ sender: NSButton) {
         if let resource = self.resource {
             NSWorkspace.shared.open(URL(string: resource.getResource(resource: .documents))!)
         }
-        self.dismissDelegate?.dismiss_view(viewcontroller: self)
+        self.dismissview(viewcontroller: self, vcontroller: .vctabmain)
     }
 
     @IBAction func download(_ sender: NSButton) {
         guard ViewControllerReference.shared.URLnewVersion != nil else {
-            self.dismissDelegate?.dismiss_view(viewcontroller: self)
+            self.dismissview(viewcontroller: self, vcontroller: .vctabmain)
             return
         }
         NSWorkspace.shared.open(URL(string: ViewControllerReference.shared.URLnewVersion!)!)
-        self.dismissDelegate?.dismiss_view(viewcontroller: self)
+        self.dismissview(viewcontroller: self, vcontroller: .vctabmain)
     }
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.dismissDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllertabMain
         ViewControllerReference.shared.setvcref(viewcontroller: .vcabout, nsviewcontroller: self)
         self.resource = Resources()
     }
@@ -61,7 +56,6 @@ class ViewControllerAbout: NSViewController {
     override func viewDidAppear() {
         super.viewDidAppear()
         self.downloadbutton.isEnabled = false
-        // Check for new version
         self.checkfornewversion = Checkfornewversion(inMain: false)
         if let version = self.checkfornewversion!.rsyncOSXversion() {
             self.version.stringValue = "RsyncOSX ver: " + version

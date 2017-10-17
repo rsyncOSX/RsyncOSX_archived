@@ -10,14 +10,8 @@
 import Foundation
 import Cocoa
 
-class ViewControllerScheduledBackupinWork: NSViewController {
+class ViewControllerScheduledBackupinWork: NSViewController, SetConfigurations, SetSchedules, SetDismisser {
 
-    weak var configurationsDelegate: GetConfigurationsObject?
-    var configurations: Configurations?
-    weak var schedulesDelegate: GetSchedulesObject?
-    var schedules: Schedules?
-
-    weak var dismissDelegate: DismissViewController?
     var waitToClose: Timer?
     var closeIn: Timer?
     var seconds: Int?
@@ -32,14 +26,13 @@ class ViewControllerScheduledBackupinWork: NSViewController {
     @objc private func closeView() {
         self.waitToClose?.invalidate()
         self.closeIn?.invalidate()
-        self.dismissDelegate?.dismiss_view(viewcontroller: self)
+        self.dismissview(viewcontroller: self, vcontroller: .vctabmain)
     }
 
     @IBAction func close(_ sender: NSButton) {
-        // Invalidate timer to close view
         self.waitToClose?.invalidate()
         self.closeIn?.invalidate()
-        self.dismissDelegate?.dismiss_view(viewcontroller: self)
+        self.dismissview(viewcontroller: self, vcontroller: .vctabmain)
     }
 
     private func setInfo() {
@@ -62,23 +55,14 @@ class ViewControllerScheduledBackupinWork: NSViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Setting the source for delegate function
-        // Dismisser is root controller
-        self.dismissDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllertabMain
-        self.configurationsDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllertabMain
-        self.schedulesDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllertabMain
     }
 
     override func viewDidAppear() {
         super.viewDidAppear()
-        self.configurations = self.configurationsDelegate?.getconfigurationsobject()
-        self.schedules = self.schedulesDelegate?.getschedulesobject()
         self.seconds = 10
         self.setInfo()
-        self.waitToClose = Timer.scheduledTimer(timeInterval: 10, target: self,
-                                selector: #selector(closeView), userInfo: nil, repeats: false)
-        self.closeIn = Timer.scheduledTimer(timeInterval: 1, target: self,
-                                selector: #selector(setSecondsView), userInfo: nil, repeats: true)
+        self.waitToClose = Timer.scheduledTimer(timeInterval: 10, target: self, selector: #selector(closeView), userInfo: nil, repeats: false)
+        self.closeIn = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(setSecondsView), userInfo: nil, repeats: true)
         self.closeinseconds.stringValue = "Close automatically in : 10 seconds"
     }
 

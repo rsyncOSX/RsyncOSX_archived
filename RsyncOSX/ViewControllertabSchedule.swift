@@ -21,11 +21,6 @@ protocol SetProfileinfo: class {
 
 class ViewControllertabSchedule: NSViewController, SetConfigurations, SetSchedules {
 
-    // weak var configurationsDelegate: GetConfigurationsObject?
-    // weak var configurations: Configurations?
-    // weak var schedulesDelegate: GetSchedulesObject?
-    // weak var schedules: Schedules?
-
     // Main tableview
     @IBOutlet weak var mainTableView: NSTableView!
     @IBOutlet weak var once: NSButton!
@@ -160,14 +155,10 @@ class ViewControllertabSchedule: NSViewController, SetConfigurations, SetSchedul
         self.mainTableView.dataSource = self
         self.mainTableView.doubleAction = #selector(ViewControllertabMain.tableViewDoubleClick(sender:))
         ViewControllerReference.shared.setvcref(viewcontroller: .vctabschedule, nsviewcontroller: self)
-        // self.configurationsDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllertabMain
-        // self.schedulesDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllertabMain
     }
 
     override func viewDidAppear() {
         super.viewDidAppear()
-        // self.configurations = self.configurationsDelegate?.getconfigurationsobject()
-        // self.schedules = self.schedulesDelegate?.getschedulesobject()
         self.stopdate.dateValue = Date()
         self.stoptime.dateValue = Date()
         if self.schedulessorted == nil {

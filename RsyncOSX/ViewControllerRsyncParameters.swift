@@ -26,7 +26,7 @@ protocol GetSelecetedIndex : class {
 // The protocol is implemented in ViewControllertabMain
 protocol GetIndex : class {
     weak var getindexDelegate: GetSelecetedIndex? { get }
-    func getindex() -> Int?
+    func index() -> Int?
 }
 
 extension GetIndex {
@@ -34,7 +34,7 @@ extension GetIndex {
         return ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllertabMain
     }
 
-    func getindex() -> Int? {
+    func index() -> Int? {
         return self.getindexDelegate?.getindex()
     }
 }
@@ -84,7 +84,7 @@ class ViewControllerRsyncParameters: NSViewController, SetConfigurations, SetDis
         case .on:
             self.setValueComboBox(combobox: self.parameter12, index: (self.parameters!.indexandvaluersyncparameter(self.parameters!.getBackupString()[0]).0))
             self.viewParameter12.stringValue = self.parameters!.indexandvaluersyncparameter(self.parameters!.getBackupString()[0]).1
-            let hiddenID = self.configurations!.gethiddenID(index: (self.getindex())!)
+            let hiddenID = self.configurations!.gethiddenID(index: (self.index())!)
             let localcatalog = self.configurations!.getResourceConfiguration(hiddenID, resource: .localCatalog)
             let localcatalogParts = (localcatalog as AnyObject).components(separatedBy: "/")
             self.setValueComboBox(combobox: self.parameter13, index: (self.parameters!.indexandvaluersyncparameter(self.parameters!.getBackupString()[1]).0))
@@ -164,7 +164,7 @@ class ViewControllerRsyncParameters: NSViewController, SetConfigurations, SetDis
             self.storageapi = PersistentStorageAPI(profile: nil)
         }
         var configurations: [Configuration] = self.configurations!.getConfigurations()
-        if let index = self.getindex() {
+        if let index = self.index() {
             // Create RsyncParameters object and load initial parameters
             self.parameters = RsyncParameters(config: configurations[index])
             self.comboBoxValues = parameters!.getComboBoxValues()
@@ -215,7 +215,7 @@ class ViewControllerRsyncParameters: NSViewController, SetConfigurations, SetDis
             return
         }
         // Get the index of selected configuration
-        if let index = self.getindex() {
+        if let index = self.index() {
             configurations[index].parameter8 = self.parameters!.getRsyncParameter(indexComboBox:
                 self.parameter8.indexOfSelectedItem, value: getValue(value: self.viewParameter8.stringValue))
             configurations[index].parameter9 = self.parameters!.getRsyncParameter(indexComboBox:

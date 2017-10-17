@@ -9,18 +9,16 @@
 import Foundation
 import Cocoa
 
-class ViewControllerCopyFilesSource: NSViewController, SetConfigurations {
+class ViewControllerCopyFilesSource: NSViewController, SetConfigurations, SetDismisser {
 
     @IBOutlet weak var mainTableView: NSTableView!
     @IBOutlet weak var closeButton: NSButton!
 
-    weak var dismissDelegate: DismissViewController?
     weak var setIndexDelegate: ViewControllerCopyFiles?
     weak var getSourceDelegate: ViewControllerCopyFiles?
     weak var getSourceDelegate2: ViewControllerSsh?
     private var index: Int?
 
-    // ACTIONS AND BUTTONS
     @IBAction func close(_ sender: NSButton) {
         if let pvc = self.presenting as? ViewControllerCopyFiles {
             self.getSourceDelegate = pvc
@@ -33,7 +31,11 @@ class ViewControllerCopyFilesSource: NSViewController, SetConfigurations {
                 self.getSourceDelegate2?.getSource(index: index)
             }
         }
-        self.dismissDelegate?.dismiss_view(viewcontroller: self)
+        if (self.presenting as? ViewControllerCopyFiles) != nil {
+            self.dismissview(viewcontroller: self, vcontroller: .vccopyfiles)
+        } else if (self.presenting as? ViewControllerSsh) != nil {
+            self.dismissview(viewcontroller: self, vcontroller: .vcssh)
+        }
     }
 
     // Initial functions viewDidLoad and viewDidAppear
@@ -41,21 +43,10 @@ class ViewControllerCopyFilesSource: NSViewController, SetConfigurations {
         super.viewDidLoad()
         self.mainTableView.delegate = self
         self.mainTableView.dataSource = self
-        if let pvc = self.presenting as? ViewControllerCopyFiles {
-            self.dismissDelegate = pvc
-        } else if let pvc = self.presenting as? ViewControllerSsh {
-            self.dismissDelegate = pvc
-        }
         self.mainTableView.doubleAction = #selector(ViewControllerCopyFilesSource.tableViewDoubleClick(sender:))
     }
 
     override func viewDidAppear() {
-        // Dismisser is root controller
-        if let pvc = self.presenting as? ViewControllerCopyFiles {
-            self.dismissDelegate = pvc
-        } else if let pvc = self.presenting as? ViewControllerSsh {
-            self.dismissDelegate = pvc
-        }
         globalMainQueue.async(execute: { () -> Void in
             self.mainTableView.reloadData()
         })
@@ -78,7 +69,11 @@ class ViewControllerCopyFilesSource: NSViewController, SetConfigurations {
                 self.getSourceDelegate2?.getSource(index: index)
             }
         }
-        self.dismissDelegate?.dismiss_view(viewcontroller: self)
+        if (self.presenting as? ViewControllerCopyFiles) != nil {
+            self.dismissview(viewcontroller: self, vcontroller: .vccopyfiles)
+        } else if (self.presenting as? ViewControllerSsh) != nil {
+            self.dismissview(viewcontroller: self, vcontroller: .vcssh)
+        }
     }
 
     // when row is selected, setting which table row is selected
