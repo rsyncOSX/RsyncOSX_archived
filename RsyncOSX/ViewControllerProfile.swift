@@ -62,9 +62,9 @@ class ViewControllerProfile: NSViewController, SetConfigurations, SetDismisser {
     private func dismissView() {
         // Decide which viewcontroller calling the view
         if self.configurations!.allowNotifyinMain == true {
-            self.dismiss_view(viewcontroller: self, vcontroller: .vctabmain)
+            self.dismissview(viewcontroller: self, vcontroller: .vctabmain)
         } else {
-            self.dismiss_view(viewcontroller: self, vcontroller: .vctabschedule)
+            self.dismissview(viewcontroller: self, vcontroller: .vctabschedule)
         }
     }
 

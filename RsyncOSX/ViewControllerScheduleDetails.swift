@@ -31,9 +31,9 @@ class ViewControllerScheduleDetails: NSViewController, SetConfigurations, SetSch
     // Close view and either stop or delete Schedules
     @IBAction func close(_ sender: NSButton) {
         if self.configurations!.allowNotifyinMain == true {
-            self.dismiss_view(viewcontroller: self, vcontroller: .vctabmain)
+            self.dismissview(viewcontroller: self, vcontroller: .vctabmain)
         } else {
-            self.dismiss_view(viewcontroller: self, vcontroller: .vctabschedule)
+            self.dismissview(viewcontroller: self, vcontroller: .vctabschedule)
         }
     }
 
@@ -44,9 +44,9 @@ class ViewControllerScheduleDetails: NSViewController, SetConfigurations, SetSch
             self.reloadtable(vcontroller: .vctabschedule)
         }
         if self.configurations!.allowNotifyinMain == true {
-            self.dismiss_view(viewcontroller: self, vcontroller: .vctabmain)
+            self.dismissview(viewcontroller: self, vcontroller: .vctabmain)
         } else {
-            self.dismiss_view(viewcontroller: self, vcontroller: .vctabschedule)
+            self.dismissview(viewcontroller: self, vcontroller: .vctabschedule)
         }
     }
 

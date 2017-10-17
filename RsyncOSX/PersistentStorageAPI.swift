@@ -11,8 +11,6 @@ import Foundation
 
 final class PersistentStorageAPI: SetConfigurations, SetSchedules {
 
-    // Delegate function for starting next scheduled operatin if any
-    // Delegate function is triggered when Process.didTerminateNotification is discovered (e.g previous job is done)
     weak var startnextjobDelegate: StartNextScheduledTask?
     var profile: String?
 

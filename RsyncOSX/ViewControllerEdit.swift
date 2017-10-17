@@ -24,7 +24,7 @@ class ViewControllerEdit: NSViewController, SetConfigurations, SetDismisser, Get
 
     // Close and dismiss view
     @IBAction func close(_ sender: NSButton) {
-        self.dismiss_view(viewcontroller: self, vcontroller: .vctabmain)
+        self.dismissview(viewcontroller: self, vcontroller: .vctabmain)
     }
 
     // Update configuration, save and dismiss view
@@ -51,7 +51,7 @@ class ViewControllerEdit: NSViewController, SetConfigurations, SetDismisser, Get
         }
         config[self.index!].rsyncdaemon = self.rsyncdaemon.state.rawValue
         self.configurations!.updateConfigurations(config[self.index!], index: self.index!)
-        self.dismiss_view(viewcontroller: self, vcontroller: .vctabmain)
+        self.dismissview(viewcontroller: self, vcontroller: .vctabmain)
     }
 
     override func viewDidLoad() {

@@ -11,11 +11,15 @@
 import Foundation
 import Cocoa
 
+// Protocol for dismissing a viewcontroller
+protocol DismissViewController: class {
+    func dismiss_view(viewcontroller: NSViewController)
+}
 protocol SetDismisser {
     weak var dismissDelegateMain: DismissViewController? {get}
     weak var dismissDelegateSchedule: DismissViewController? {get}
     weak var dismissDelegateCopyFiles: DismissViewController? {get}
-    func dismiss_view(viewcontroller: NSViewController, vcontroller: ViewController)
+    func dismissview(viewcontroller: NSViewController, vcontroller: ViewController)
 }
 
 extension SetDismisser {
@@ -29,7 +33,7 @@ extension SetDismisser {
         return ViewControllerReference.shared.getvcref(viewcontroller: .vccopyfiles) as? ViewControllerCopyFiles
     }
 
-    func dismiss_view(viewcontroller: NSViewController, vcontroller: ViewController) {
+    func dismissview(viewcontroller: NSViewController, vcontroller: ViewController) {
         if vcontroller == .vctabmain {
             self.dismissDelegateMain?.dismiss_view(viewcontroller: (self as? NSViewController)!)
         } else if vcontroller == .vctabschedule {
@@ -47,11 +51,6 @@ protocol StartStopProgressIndicator: class {
     func complete()
 }
 
-// Protocol for dismissing a viewcontroller
-protocol DismissViewController: class {
-    func dismiss_view(viewcontroller: NSViewController)
-}
-
 // Protocol for either completion of work or update progress when Process discovers a
 // process termination and when filehandler discover data
 protocol UpdateProgress: class {
@@ -61,7 +60,7 @@ protocol UpdateProgress: class {
 
 // Protocol for deselecting rowtable
 protocol DeselectRowTable: class {
-    func deselectRow()
+    func deselect()
 }
 
 protocol Deselect {
@@ -80,9 +79,9 @@ extension Deselect {
 
     func deselectrowtable(vcontroller: ViewController) {
         if vcontroller == .vctabmain {
-            self.deselectDelegateMain?.deselectRow()
+            self.deselectDelegateMain?.deselect()
         } else {
-            self.deselectDelegateSchedule?.deselectRow()
+            self.deselectDelegateSchedule?.deselect()
         }
     }
 
@@ -274,7 +273,7 @@ class ViewControllertabMain: NSViewController, ReloadTable, Deselect {
                         // Delete Configurations and Schedules by hiddenID
                         self.configurations!.deleteConfigurationsByhiddenID(hiddenID: self.hiddenID!)
                         self.schedules!.deletescheduleonetask(hiddenID: self.hiddenID!)
-                        self.deselectRow()
+                        self.deselect()
                         self.hiddenID = nil
                         self.index = nil
                         self.reloadtabledata()
@@ -718,7 +717,7 @@ extension ViewControllertabMain: NewProfile {
         self.setInfo(info: "Estimate", color: .blue)
         self.light.color = .systemYellow
         self.setNumbers(output: nil)
-        self.deselectRow()
+        self.deselect()
         // Read configurations and Scheduledata
         self.configurations = self.createconfigurationsobject(profile: profile)
         self.schedules = self.createschedulesobject(profile: profile)
@@ -889,7 +888,7 @@ extension ViewControllertabMain: UpdateProgress {
 // Deselect a row
 extension ViewControllertabMain: DeselectRowTable {
     // deselect a row after row is deleted
-    func deselectRow() {
+    func deselect() {
         guard self.index != nil else {
             return
         }
@@ -907,7 +906,7 @@ extension ViewControllertabMain: RsyncError {
                 self.light.color = .systemRed
                 self.showProcessInfo(info: .error)
                 self.setRsyncCommandDisplay()
-                self.deselectRow()
+                self.deselect()
                 // Abort any operations
                 if let process = self.process {
                     process.terminate()

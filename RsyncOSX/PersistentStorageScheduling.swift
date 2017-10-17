@@ -13,13 +13,8 @@
 
 import Foundation
 
-protocol Readupdatedschedules: class {
-    func readAllSchedules()
-}
-
 final class PersistentStorageScheduling: Readwritefiles, SetSchedules {
 
-    weak var readschedulesDelegate: Readupdatedschedules?
     weak var readloggdataDelegate: ReadLoggdata?
     private var schedulesasDict: [NSDictionary]?
 

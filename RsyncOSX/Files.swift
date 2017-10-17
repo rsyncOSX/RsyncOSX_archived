@@ -41,13 +41,11 @@ class Files: ReportError {
 
     private func setrootpath() {
         switch self.root! {
-        // Profiles
         case .profileRoot:
             let paths = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true) as NSArray
             let docuDir = (paths.firstObject as? String)!
             let profilePath = docuDir + "/Rsync/" + Tools().getMacSerialNumber()!
             self.rootpath = profilePath
-        // .ssh/
         case .sshRoot:
             self.rootpath = NSHomeDirectory() + "/.ssh/"
         }
