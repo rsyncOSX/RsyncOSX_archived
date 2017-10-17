@@ -154,7 +154,7 @@ class ViewControllerCopyFiles: NSViewController, SetConfigurations, GetIndex {
 
     override func viewDidAppear() {
         super.viewDidAppear()
-        self.index = self.getindex()
+        self.index = self.index()
         if let index = self.index {
             self.displayRemoteserver(index: index)
         }
