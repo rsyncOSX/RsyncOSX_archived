@@ -5,35 +5,30 @@
 //  Created by Thomas Evensen on 14/09/2016.
 //  Copyright © 2016 Thomas Evensen. All rights reserved.
 //
-// swiftlint:disable line_length
 
 import Cocoa
 
-class ViewControllerInformationCopyFiles: NSViewController {
+class ViewControllerInformationCopyFiles: NSViewController, SetDismisser, GetInformation {
 
     @IBOutlet weak var detailsTable: NSTableView!
     var output: [String]?
-    weak var informationDelegate: Information?
-    weak var dismissDelegate: DismissViewController?
 
     override func viewDidLoad() {
         super.viewDidLoad()
         self.detailsTable.delegate = self
         self.detailsTable.dataSource = self
-        self.informationDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vccopyfiles) as? ViewControllerCopyFiles
-        self.dismissDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vccopyfiles) as? ViewControllerCopyFiles
     }
 
     override func viewDidAppear() {
         super.viewDidAppear()
-        self.output = self.informationDelegate?.getInformation()
+        self.output = self.getinfo(viewcontroller: .vccopyfiles)
         globalMainQueue.async(execute: { () -> Void in
             self.detailsTable.reloadData()
         })
     }
 
     @IBAction func close(_ sender: NSButton) {
-        self.dismissDelegate?.dismiss_view(viewcontroller: self)
+        self.dismiss_view(viewcontroller: self, vcontroller: .vccopyfiles)
     }
 
 }
