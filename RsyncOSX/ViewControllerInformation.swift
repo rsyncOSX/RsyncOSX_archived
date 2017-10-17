@@ -10,39 +10,54 @@
 import Foundation
 import Cocoa
 
-// protocol for kill function
 protocol Information : class {
     func getInformation () -> [String]
 }
 
-class ViewControllerInformation: NSViewController {
+protocol GetInformation {
+    weak var informationDelegateMain: Information? {get}
+    weak var informationDelegateCopyFiles: Information? {get}
+}
 
-    // TableView
+extension GetInformation {
+    weak var informationDelegateMain: Information? {
+        return ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllertabMain
+    }
+    weak var informationDelegateCopyFiles: Information? {
+        return ViewControllerReference.shared.getvcref(viewcontroller: .vccopyfiles) as? ViewControllerCopyFiles
+    }
+
+    func getinfo(viewcontroller: ViewController) -> [String] {
+        if viewcontroller == .vctabmain {
+            return (self.informationDelegateMain?.getInformation())!
+        } else {
+            return (self.informationDelegateCopyFiles?.getInformation())!
+        }
+    }
+}
+
+class ViewControllerInformation: NSViewController, SetDismisser, GetInformation {
+
     @IBOutlet weak var detailsTable: NSTableView!
 
-    // output from Rsync
     var output: Array<String>?
-    weak var informationDelegate: Information?
-    weak var dismissDelegate: DismissViewController?
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do view setup here.
         detailsTable.delegate = self
         detailsTable.dataSource = self
-        // Setting the source for delegate function
-        self.informationDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllertabMain
-        self.dismissDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllertabMain
     }
 
     override func viewDidAppear() {
         super.viewDidAppear()
-        self.output = self.informationDelegate?.getInformation()
-        detailsTable.reloadData()
+        self.output = self.getinfo(viewcontroller: .vctabmain)
+        globalMainQueue.async(execute: { () -> Void in
+            self.detailsTable.reloadData()
+        })
     }
 
     @IBAction func close(_ sender: NSButton) {
-        self.dismissDelegate?.dismiss_view(viewcontroller: self)
+        self.dismiss_view(viewcontroller: self, vcontroller: .vctabmain)
     }
 
 }

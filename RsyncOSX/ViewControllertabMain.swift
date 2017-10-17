@@ -14,6 +14,7 @@ import Cocoa
 protocol SetDismisser {
     weak var dismissDelegateMain: DismissViewController? {get}
     weak var dismissDelegateSchedule: DismissViewController? {get}
+    weak var dismissDelegateCopyFiles: DismissViewController? {get}
     func dismiss_view(viewcontroller: NSViewController, vcontroller: ViewController)
 }
 
@@ -24,12 +25,17 @@ extension SetDismisser {
     weak var dismissDelegateSchedule: DismissViewController? {
         return ViewControllerReference.shared.getvcref(viewcontroller: .vctabschedule) as? ViewControllertabSchedule
     }
+    weak var dismissDelegateCopyFiles: DismissViewController? {
+        return ViewControllerReference.shared.getvcref(viewcontroller: .vccopyfiles) as? ViewControllerCopyFiles
+    }
 
     func dismiss_view(viewcontroller: NSViewController, vcontroller: ViewController) {
         if vcontroller == .vctabmain {
             self.dismissDelegateMain?.dismiss_view(viewcontroller: (self as? NSViewController)!)
-        } else {
+        } else if vcontroller == .vctabschedule {
             self.dismissDelegateSchedule?.dismiss_view(viewcontroller: (self as? NSViewController)!)
+        } else {
+            self.dismissDelegateCopyFiles?.dismiss_view(viewcontroller: (self as? NSViewController)!)
         }
     }
 }
