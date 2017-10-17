@@ -15,14 +15,25 @@ protocol RsyncChanged : class {
     func rsyncchanged()
 }
 
-class ViewControllerUserconfiguration: NSViewController {
+protocol NewRsync {
+    weak var newRsyncDelegate: RsyncChanged? {get}
+    func newrsync()
+}
 
-    // Storage API
+extension NewRsync {
+    weak var newRsyncDelegate: RsyncChanged? {
+        return ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllertabMain
+    }
+
+    func newrsync() {
+        self.newRsyncDelegate?.rsyncchanged()
+    }
+}
+
+class ViewControllerUserconfiguration: NSViewController, NewRsync, SetDismisser {
+
     var storageapi: PersistentStorageAPI?
     var dirty: Bool = false
-    // Delegate to read configurations after toggeling between test- and real mode
-    weak var rsyncchangedDelegate: RsyncChanged?
-    weak var dismissDelegate: DismissViewController?
 
     @IBOutlet weak var rsyncPath: NSTextField!
     @IBOutlet weak var version3rsync: NSButton!
@@ -42,9 +53,7 @@ class ViewControllerUserconfiguration: NSViewController {
         } else {
             ViewControllerReference.shared.rsyncVer3 = false
         }
-        self.rsyncchangedDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain)
-            as? ViewControllertabMain
-        self.rsyncchangedDelegate?.rsyncchanged()
+        self.newrsync()
         self.dirty = true
         self.verifyRsync()
     }
@@ -66,7 +75,13 @@ class ViewControllerUserconfiguration: NSViewController {
             self.setRestorePath()
             _ = self.storageapi!.saveUserconfiguration()
         }
-        self.dismissDelegate?.dismiss_view(viewcontroller: self)
+        if (self.presenting as? ViewControllertabMain) != nil {
+            self.dismissview(viewcontroller: self, vcontroller: .vctabmain)
+        } else if (self.presenting as? ViewControllertabSchedule) != nil {
+            self.dismissview(viewcontroller: self, vcontroller: .vctabmain)
+        } else if (self.presenting as? ViewControllerNewConfigurations) != nil {
+            self.dismissview(viewcontroller: self, vcontroller: .vctabmain)
+        }
     }
 
     @IBAction func toggleError(_ sender: NSButton) {
@@ -126,14 +141,6 @@ class ViewControllerUserconfiguration: NSViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Dismisser is root controller
-        if let pvc = self.presenting as? ViewControllertabMain {
-            self.dismissDelegate = pvc
-        } else if let pvc = self.presenting as? ViewControllertabSchedule {
-            self.dismissDelegate = pvc
-        } else if let pvc = self.presenting as? ViewControllerNewConfigurations {
-            self.dismissDelegate = pvc
-        }
         self.rsyncPath.delegate = self
         self.restorePath.delegate = self
         self.storageapi = PersistentStorageAPI(profile: nil)
@@ -142,9 +149,7 @@ class ViewControllerUserconfiguration: NSViewController {
     override func viewDidAppear() {
         super.viewDidAppear()
         self.dirty = false
-        // Set userconfig
         self.checkUserConfig()
-        // Check path for rsync
         self.verifyRsync()
     }
 
