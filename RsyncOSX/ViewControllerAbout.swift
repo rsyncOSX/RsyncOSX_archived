@@ -11,7 +11,6 @@ import Cocoa
 
 class ViewControllerAbout: NSViewController, SetDismisser {
 
-    // RsyncOSX version
     @IBOutlet weak var version: NSTextField!
     @IBOutlet weak var downloadbutton: NSButton!
     @IBOutlet weak var thereisanewversion: NSTextField!
@@ -57,7 +56,6 @@ class ViewControllerAbout: NSViewController, SetDismisser {
     override func viewDidAppear() {
         super.viewDidAppear()
         self.downloadbutton.isEnabled = false
-        // Check for new version
         self.checkfornewversion = Checkfornewversion(inMain: false)
         if let version = self.checkfornewversion!.rsyncOSXversion() {
             self.version.stringValue = "RsyncOSX ver: " + version

@@ -19,7 +19,6 @@ class ViewControllerCopyFilesSource: NSViewController, SetConfigurations, SetDis
     weak var getSourceDelegate2: ViewControllerSsh?
     private var index: Int?
 
-    // ACTIONS AND BUTTONS
     @IBAction func close(_ sender: NSButton) {
         if let pvc = self.presenting as? ViewControllerCopyFiles {
             self.getSourceDelegate = pvc

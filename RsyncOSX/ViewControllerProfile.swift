@@ -27,14 +27,12 @@ class ViewControllerProfile: NSViewController, SetConfigurations, SetDismisser {
     @IBOutlet weak var newprofile: NSTextField!
     @IBOutlet weak var profilesTable: NSTableView!
 
-    // Setting default profile
     @IBAction func defaultProfile(_ sender: NSButton) {
         self.useprofile = nil
         self.newProfileDelegate?.newProfile(profile: self.useprofile)
         self.dismissView()
     }
 
-    // Delete profile
     @IBAction func deleteProfile(_ sender: NSButton) {
         if let useprofile = self.useprofile {
             self.profile?.deleteProfile(profileName: useprofile)
@@ -60,7 +58,6 @@ class ViewControllerProfile: NSViewController, SetConfigurations, SetDismisser {
     }
 
     private func dismissView() {
-        // Decide which viewcontroller calling the view
         if self.configurations!.allowNotifyinMain == true {
             self.dismissview(viewcontroller: self, vcontroller: .vctabmain)
         } else {

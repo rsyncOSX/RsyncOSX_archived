@@ -5,6 +5,7 @@
 //  Created by Thomas Evensen on 30/10/2016.
 //  Copyright © 2016 Thomas Evensen. All rights reserved.
 //
+// swiftlint:disable line_length
 
 import Foundation
 import Cocoa
@@ -29,7 +30,6 @@ class ViewControllerScheduledBackupinWork: NSViewController, SetConfigurations, 
     }
 
     @IBAction func close(_ sender: NSButton) {
-        // Invalidate timer to close view
         self.waitToClose?.invalidate()
         self.closeIn?.invalidate()
         self.dismissview(viewcontroller: self, vcontroller: .vctabmain)
@@ -61,10 +61,8 @@ class ViewControllerScheduledBackupinWork: NSViewController, SetConfigurations, 
         super.viewDidAppear()
         self.seconds = 10
         self.setInfo()
-        self.waitToClose = Timer.scheduledTimer(timeInterval: 10, target: self,
-                                selector: #selector(closeView), userInfo: nil, repeats: false)
-        self.closeIn = Timer.scheduledTimer(timeInterval: 1, target: self,
-                                selector: #selector(setSecondsView), userInfo: nil, repeats: true)
+        self.waitToClose = Timer.scheduledTimer(timeInterval: 10, target: self, selector: #selector(closeView), userInfo: nil, repeats: false)
+        self.closeIn = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(setSecondsView), userInfo: nil, repeats: true)
         self.closeinseconds.stringValue = "Close automatically in : 10 seconds"
     }
 
