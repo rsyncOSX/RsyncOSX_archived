@@ -91,7 +91,7 @@ extension ViewControllerProgressProcess: UpdateProgress {
 
     func processTermination() {
         self.stopProgressbar()
-        self.dismiss_view(viewcontroller: self, vcontroller: .vctabmain)
+        self.dismissview(viewcontroller: self, vcontroller: .vctabmain)
     }
 
     func fileHandler() {

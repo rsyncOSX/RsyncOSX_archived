@@ -57,7 +57,7 @@ class ViewControllerInformation: NSViewController, SetDismisser, GetInformation 
     }
 
     @IBAction func close(_ sender: NSButton) {
-        self.dismiss_view(viewcontroller: self, vcontroller: .vctabmain)
+        self.dismissview(viewcontroller: self, vcontroller: .vctabmain)
     }
 
 }

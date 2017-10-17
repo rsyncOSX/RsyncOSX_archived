@@ -28,7 +28,7 @@ class ViewControllerInformationCopyFiles: NSViewController, SetDismisser, GetInf
     }
 
     @IBAction func close(_ sender: NSButton) {
-        self.dismiss_view(viewcontroller: self, vcontroller: .vccopyfiles)
+        self.dismissview(viewcontroller: self, vcontroller: .vccopyfiles)
     }
 
 }

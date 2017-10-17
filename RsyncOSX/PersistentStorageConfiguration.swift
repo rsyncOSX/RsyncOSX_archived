@@ -10,10 +10,6 @@
 
 import Foundation
 
-protocol Readupdatedconfigurations: class {
-    func readAllConfigurationsAndArguments()
-}
-
 final class PersistentStorageConfiguration: Readwritefiles, SetConfigurations {
 
     /// Variable holds all configuration data from persisten storage

@@ -354,7 +354,7 @@ extension ViewControllertabSchedule: StartTimer {
 // Deselect a row
 extension ViewControllertabSchedule: DeselectRowTable {
     // deselect a row after row is deleted
-    func deselectRow() {
+    func deselect() {
         guard self.index != nil else { return }
         self.mainTableView.deselectRow(self.index!)
     }
