@@ -767,7 +767,7 @@ extension ViewControllertabMain: ScheduledTaskWorking {
         })
     }
 
-    func notifyScheduledJob(config: Configuration?) {
+    func notifyScheduledTask(config: Configuration?) {
         if self.configurations!.allowNotifyinMain {
             if config == nil {
                 globalMainQueue.async(execute: {() -> Void in

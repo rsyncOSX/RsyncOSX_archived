@@ -34,7 +34,7 @@ extension NextTask {
 protocol ScheduledTaskWorking: class {
     func start()
     func completed()
-    func notifyScheduledJob(config: Configuration?)
+    func notifyScheduledTask(config: Configuration?)
 }
 
 protocol ScheduledTask {
@@ -48,7 +48,7 @@ extension ScheduledTask {
     }
 
     func notify(config: Configuration?) {
-        self.scheduleJob?.notifyScheduledJob(config: config)
+        self.scheduleJob?.notifyScheduledTask(config: config)
     }
 }
 
