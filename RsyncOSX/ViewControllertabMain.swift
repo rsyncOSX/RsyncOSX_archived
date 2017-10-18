@@ -552,6 +552,7 @@ class ViewControllertabMain: NSViewController, ReloadTable, Deselect {
             self.schedules = Schedules(profile: nil)
             return
         }
+        self.schedules?.cancelJobWaiting()
         if let profile = self.configurations!.getProfile() {
             self.schedules = nil
             self.schedules = Schedules(profile: profile)
@@ -706,11 +707,9 @@ extension ViewControllertabMain: GetSelecetedIndex {
 }
 
 // Next scheduled job is started, if any
-extension ViewControllertabMain: StartNextScheduledTask {
+extension ViewControllertabMain: StartNextTask {
 
-    // Start next job
     func startanyscheduledtask() {
-        // Start any Scheduled job
         _ = ScheduleOperation()
     }
 }
@@ -753,7 +752,7 @@ extension ViewControllertabMain: NewProfile {
 }
 
 // A scheduled task is executed
-extension ViewControllertabMain: ScheduledJobInProgress {
+extension ViewControllertabMain: ScheduledTaskWorking {
 
     func start() {
         globalMainQueue.async(execute: {() -> Void in
@@ -769,7 +768,7 @@ extension ViewControllertabMain: ScheduledJobInProgress {
         })
     }
 
-    func notifyScheduledJob(config: Configuration?) {
+    func notifyScheduledTask(config: Configuration?) {
         if self.configurations!.allowNotifyinMain {
             if config == nil {
                 globalMainQueue.async(execute: {() -> Void in
@@ -1172,6 +1171,7 @@ extension ViewControllertabMain: GetSchedulesObject {
     }
 
     func createschedulesobject(profile: String?) -> Schedules? {
+        self.schedules?.cancelJobWaiting()
         self.schedules = nil
         self.schedules = Schedules(profile: profile)
         self.schedulessorted = nil

@@ -17,21 +17,10 @@ import Foundation
 // is set in the static object. The finalize object is invoked
 // when the job discover (observs) the termination of the process.
 
-class ExecuteTask: Operation {
+class ExecuteTask: Operation, SetSchedules, SetConfigurations, ScheduledTask {
 
     override func main() {
 
-        weak var configurationsDelegate: GetConfigurationsObject?
-        configurationsDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllertabMain
-        weak var schedulesDelegate: GetSchedulesObject?
-        schedulesDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllertabMain
-        var schedules: Schedules?
-        var configurations: Configurations?
-        configurations = configurationsDelegate?.getconfigurationsobject()
-        schedules = schedulesDelegate?.getschedulesobject()
-        // Delegate function for start and completion of scheduled jobs
-        weak var notifyDelegate: ScheduledJobInProgress?
-        // Variables used for rsync parameters
         let output = OutputProcess()
         var arguments: Array<String>?
         var config: Configuration?
@@ -42,26 +31,18 @@ class ExecuteTask: Operation {
                 guard getconfigurations != nil else { return }
                 let configArray = getconfigurations!.filter({return ($0.hiddenID == hiddenID)})
                 guard configArray.count > 0 else {
-                    notifyDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain)
-                        as? ViewControllertabMain
-                    if configurations!.allowNotifyinMain == true {
-                        notifyDelegate?.notifyScheduledJob(config: nil)
-                    }
+                    self.notify(config: nil)
                     return
                 }
                 config = configArray[0]
                 // Notify that scheduled task is executing
-                notifyDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain)
-                    as? ViewControllertabMain
-                notifyDelegate?.start()
+                self.scheduleJob?.start()
                 // Notify about scheduled job
-                notifyDelegate?.notifyScheduledJob(config: config)
+                self.notify(config: config)
                 if hiddenID >= 0 && config != nil {
                     arguments = RsyncProcessArguments().argumentsRsync(config!, dryRun: false, forDisplay: false)
-                    // Setting reference to finalize the job
-                    // Finalize job is done when rsynctask ends (in process termination)
+                    // Setting reference to finalize the job, finalize job is done when rsynctask ends (in process termination)
                     ViewControllerReference.shared.operation = CompleteScheduledOperation(dict: dict)
-                    // Start the rsync job
                     globalMainQueue.async(execute: {
                         if arguments != nil {
                             let process = RsyncScheduled(arguments: arguments)

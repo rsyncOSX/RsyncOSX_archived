@@ -9,17 +9,47 @@
 import Foundation
 
 // Protocol for starting next scheduled job
-protocol StartNextScheduledTask : class {
+protocol StartNextTask: class {
     func startanyscheduledtask()
+}
+
+protocol NextTask {
+    weak var nexttaskDelegate: StartNextTask? { get }
+    func nexttask()
+}
+
+extension NextTask {
+    weak var nexttaskDelegate: StartNextTask? {
+        return ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllertabMain
+    }
+
+    func nexttask() {
+        self.nexttaskDelegate?.startanyscheduledtask()
+    }
 }
 
 // Protocol when a Scehduled job is starting and stopping
 // Used to informed the presenting viewcontroller about what
 // is going on
-protocol ScheduledJobInProgress : class {
+protocol ScheduledTaskWorking: class {
     func start()
     func completed()
-    func notifyScheduledJob(config: Configuration?)
+    func notifyScheduledTask(config: Configuration?)
+}
+
+protocol ScheduledTask {
+    weak var scheduleJob: ScheduledTaskWorking? { get }
+    func notify(config: Configuration?)
+}
+
+extension ScheduledTask {
+    weak var scheduleJob: ScheduledTaskWorking? {
+        return ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllertabMain
+    }
+
+    func notify(config: Configuration?) {
+        self.scheduleJob?.notifyScheduledTask(config: config)
+    }
 }
 
 // Class for creating and preparing the scheduled task

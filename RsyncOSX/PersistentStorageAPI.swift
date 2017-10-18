@@ -5,13 +5,11 @@
 //  Created by Thomas Evensen on 09/12/15.
 //  Copyright © 2015 Thomas Evensen. All rights reserved.
 //
-// swiftlint:disable line_length
 
 import Foundation
 
-final class PersistentStorageAPI: SetConfigurations, SetSchedules {
+final class PersistentStorageAPI: SetConfigurations, SetSchedules, NextTask {
 
-    weak var startnextjobDelegate: StartNextScheduledTask?
     var profile: String?
 
     // CONFIGURATIONS
@@ -52,12 +50,9 @@ final class PersistentStorageAPI: SetConfigurations, SetSchedules {
     func saveScheduleFromMemory() {
         let store = PersistentStorageScheduling(profile: self.profile)
         store.savescheduleInMemoryToPersistentStore()
-        // Kick off Scheduled job again
-        // This is because saving schedule from memory might have
-        // changed the schedule and this kicks off the changed
-        // schedule again.
-        startnextjobDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllertabMain
-        startnextjobDelegate?.startanyscheduledtask()
+        // Kick off Scheduled job again, this is because saving schedule from memory might have
+        // changed the schedule and this kicks off the changed schedule again.
+        self.nexttask()
     }
 
     // Read schedules and history

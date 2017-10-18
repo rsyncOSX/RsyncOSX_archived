@@ -19,7 +19,7 @@ protocol SetProfileinfo: class {
     func setprofile(profile: String, color: NSColor)
 }
 
-class ViewControllertabSchedule: NSViewController, SetConfigurations, SetSchedules {
+class ViewControllertabSchedule: NSViewController, SetConfigurations, SetSchedules, NextTask {
 
     // Main tableview
     @IBOutlet weak var mainTableView: NSTableView!
@@ -33,7 +33,6 @@ class ViewControllertabSchedule: NSViewController, SetConfigurations, SetSchedul
     private var nextTask: Timer?
     private var schedulessorted: ScheduleSortedAndExpand?
     private var infoschedulessorted: InfoScheduleSortedAndExpand?
-    weak var startnextjobDelegate: StartNextScheduledTask?
 
     // Information Schedule details
     // self.presentViewControllerAsSheet(self.ViewControllerScheduleDetails)
@@ -118,9 +117,8 @@ class ViewControllertabSchedule: NSViewController, SetConfigurations, SetSchedul
         if answer {
             self.schedules!.addschedule(self.hiddenID!, schedule: schedule, start: startdate, stop: stopdate)
             // Start next job, if any, by delegate
-            self.startnextjobDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllertabMain
-            self.startnextjobDelegate?.startanyscheduledtask()
-            self.nextScheduledtask()
+            self.nexttask()
+            self.infonexttask()
             // Call function to check if a scheduled backup is due for countdown
             self.startTimer()
         }
@@ -168,7 +166,7 @@ class ViewControllertabSchedule: NSViewController, SetConfigurations, SetSchedul
         globalMainQueue.async(execute: { () -> Void in
             self.mainTableView.reloadData()
         })
-        self.nextScheduledtask()
+        self.infonexttask()
         self.startTimer()
     }
 
@@ -181,13 +179,13 @@ class ViewControllertabSchedule: NSViewController, SetConfigurations, SetSchedul
                 self.nextTask?.invalidate()
                 self.nextTask = nil
                 // Update when next task is to be executed
-                self.nextTask = Timer.scheduledTimer(timeInterval: timer, target: self, selector: #selector(nextScheduledtask), userInfo: nil, repeats: true)
+                self.nextTask = Timer.scheduledTimer(timeInterval: timer, target: self, selector: #selector(infonexttask), userInfo: nil, repeats: true)
             }
         }
     }
 
     // Update display next scheduled jobs in time
-    @objc func nextScheduledtask() {
+    @objc func infonexttask() {
         guard self.schedulessorted != nil else { return }
         // Displaying next two scheduled tasks
         self.firstLocalCatalog.textColor = .black
@@ -301,7 +299,7 @@ extension ViewControllertabSchedule: DismissViewController {
         globalMainQueue.async(execute: { () -> Void in
             self.mainTableView.reloadData()
         })
-        self.nextScheduledtask()
+        self.infonexttask()
     }
 }
 
@@ -338,7 +336,7 @@ extension ViewControllertabSchedule: StartTimer {
         globalMainQueue.async(execute: { () -> Void in
             self.mainTableView.reloadData()
         })
-        self.nextScheduledtask()
+        self.infonexttask()
     }
 }
 

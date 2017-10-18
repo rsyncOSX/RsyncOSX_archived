@@ -242,8 +242,6 @@ class Schedules: ScheduleWriteLoggData {
         }
         // Setting self.Schedule as data
         self.schedules = data
-        // Reset reference to first schedule job
-        self.scheduledJob = nil
     }
 
      init(profile: String?) {
