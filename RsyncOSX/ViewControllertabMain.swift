@@ -706,11 +706,9 @@ extension ViewControllertabMain: GetSelecetedIndex {
 }
 
 // Next scheduled job is started, if any
-extension ViewControllertabMain: StartNextScheduledTask {
+extension ViewControllertabMain: StartNextTask {
 
-    // Start next job
     func startanyscheduledtask() {
-        // Start any Scheduled job
         _ = ScheduleOperation()
     }
 }
@@ -753,7 +751,7 @@ extension ViewControllertabMain: NewProfile {
 }
 
 // A scheduled task is executed
-extension ViewControllertabMain: ScheduledJobInProgress {
+extension ViewControllertabMain: ScheduledTaskWorking {
 
     func start() {
         globalMainQueue.async(execute: {() -> Void in
