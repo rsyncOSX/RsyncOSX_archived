@@ -552,6 +552,7 @@ class ViewControllertabMain: NSViewController, ReloadTable, Deselect {
             self.schedules = Schedules(profile: nil)
             return
         }
+        self.schedules?.cancelJobWaiting()
         if let profile = self.configurations!.getProfile() {
             self.schedules = nil
             self.schedules = Schedules(profile: profile)
@@ -1170,6 +1171,7 @@ extension ViewControllertabMain: GetSchedulesObject {
     }
 
     func createschedulesobject(profile: String?) -> Schedules? {
+        self.schedules?.cancelJobWaiting()
         self.schedules = nil
         self.schedules = Schedules(profile: profile)
         self.schedulessorted = nil
