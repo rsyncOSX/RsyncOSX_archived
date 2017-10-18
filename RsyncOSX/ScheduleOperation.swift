@@ -28,7 +28,6 @@ extension NextTask {
     }
 }
 
-
 // Protocol when a Scehduled job is starting and stopping
 // Used to informed the presenting viewcontroller about what
 // is going on
