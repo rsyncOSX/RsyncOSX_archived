@@ -46,6 +46,7 @@ class ViewControllerBatch: NSViewController, SetDismisser, AbortTask {
         }
         self.waitToClose?.invalidate()
         self.closeIn?.invalidate()
+        self.batchTask = nil
         self.dismissview(viewcontroller: self, vcontroller: .vctabmain)
     }
 
@@ -75,10 +76,6 @@ class ViewControllerBatch: NSViewController, SetDismisser, AbortTask {
         // Setting delegates and datasource
         self.mainTableView.delegate = self
         self.mainTableView.dataSource = self
-    }
-
-    override func viewDidAppear() {
-        super.viewDidAppear()
         ViewControllerReference.shared.setvcref(viewcontroller: .vcbatch, nsviewcontroller: self)
         // Create new batctask
         self.batchTask = BatchTask()
@@ -97,9 +94,26 @@ class ViewControllerBatch: NSViewController, SetDismisser, AbortTask {
         })
     }
 
-    override func viewDidDisappear() {
-        super.viewDidDisappear()
-        self.batchTask = nil
+    override func viewDidAppear() {
+        super.viewDidAppear()
+        self.configurations = self.batchTask?.configurations
+        if self.batchTask == nil {
+            ViewControllerReference.shared.setvcref(viewcontroller: .vcbatch, nsviewcontroller: self)
+            self.batchTask = BatchTask()
+            self.configurations = self.batchTask?.configurations
+            self.configurations?.createbatchQueue()
+            self.closeinseconds.isHidden = true
+            self.executeButton.isEnabled = true
+            self.working.stopAnimation(nil)
+            self.close = true
+            self.label.stringValue = "Progress "
+            self.rownumber.stringValue = ""
+            self.closeButton.title = "Close"
+            self.close = true
+        }
+        globalMainQueue.async(execute: { () -> Void in
+            self.mainTableView.reloadData()
+        })
     }
 
 }
