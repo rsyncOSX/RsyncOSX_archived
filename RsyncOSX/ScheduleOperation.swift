@@ -90,7 +90,7 @@ final class ScheduleOperation: SetSchedules {
             self.scheduledJobs = ScheduleSortedAndExpand()
             self.infoschedulessorted = InfoScheduleSortedAndExpand(sortedandexpanded: scheduledJobs)
             // Removes the job of the stack
-            if let dict = self.scheduledJobs!.jobToExecute() {
+            if let dict = self.scheduledJobs!.scheduledTaskToExecute() {
                 let dateStart: Date = (dict.value(forKey: "start") as? Date)!
                 self.secondsToWait = Tools().timeDoubleSeconds(dateStart, enddate: nil)
                 guard self.secondsToWait != nil else { return }

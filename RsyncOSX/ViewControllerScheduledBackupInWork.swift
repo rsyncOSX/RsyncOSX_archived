@@ -36,7 +36,7 @@ class ViewControllerScheduledBackupinWork: NSViewController, SetConfigurations, 
     }
 
     private func setInfo() {
-        if let dict: NSDictionary = self.schedules!.scheduledJob {
+        if let dict: NSDictionary = self.schedules!.scheduledTask {
             self.startDate.stringValue = String(describing: (dict.value(forKey: "start") as? Date)!)
             self.schedule.stringValue = (dict.value(forKey: "schedule") as? String)!
             let hiddenID = (dict.value(forKey: "hiddenID") as? Int)!

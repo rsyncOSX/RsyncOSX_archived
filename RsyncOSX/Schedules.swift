@@ -38,7 +38,7 @@ protocol GetSchedulesObject: class {
 class Schedules: ScheduleWriteLoggData {
 
     private var waitForTask: Timer?
-    var scheduledJob: NSDictionary?
+    var scheduledTask: NSDictionary?
     var profile: String?
 
     // Return reference to Schedule data
