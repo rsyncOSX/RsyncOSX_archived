@@ -25,7 +25,8 @@ class ExecuteTask: Operation, SetSchedules, SetConfigurations, ScheduledTask {
         var arguments: Array<String>?
         var config: Configuration?
         // Get the first job of the queue
-        if let dict: NSDictionary = schedules!.scheduledJob {
+        if let dict: NSDictionary = ViewControllerReference.shared.scheduledTask {
+        // if let dict: NSDictionary = schedules!.scheduledTask {
             if let hiddenID: Int = dict.value(forKey: "hiddenID") as? Int {
                 let getconfigurations: [Configuration]? = configurations?.getConfigurations()
                 guard getconfigurations != nil else { return }

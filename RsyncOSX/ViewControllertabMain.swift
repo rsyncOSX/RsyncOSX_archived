@@ -564,6 +564,8 @@ class ViewControllertabMain: NSViewController, ReloadTable, Deselect {
         self.infoschedulessorted = nil
         self.schedulessorted = ScheduleSortedAndExpand()
         self.infoschedulessorted = InfoScheduleSortedAndExpand(sortedandexpanded: self.schedulessorted)
+        self.schedules?.scheduledTask = self.schedulessorted?.scheduledTaskToExecute()
+        ViewControllerReference.shared.scheduledTask = self.schedulessorted?.scheduledTaskToExecute()
     }
 
     func createandreloadconfigurations() {
@@ -1178,6 +1180,8 @@ extension ViewControllertabMain: GetSchedulesObject {
         self.infoschedulessorted = nil
         self.schedulessorted = ScheduleSortedAndExpand()
         self.infoschedulessorted = InfoScheduleSortedAndExpand(sortedandexpanded: self.schedulessorted)
+        self.schedules?.scheduledTask = self.schedulessorted?.scheduledTaskToExecute()
+        ViewControllerReference.shared.scheduledTask = self.schedulessorted?.scheduledTaskToExecute()
         return self.schedules
     }
 

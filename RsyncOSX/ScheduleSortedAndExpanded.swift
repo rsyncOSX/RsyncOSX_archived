@@ -22,7 +22,7 @@ class ScheduleSortedAndExpand: SetConfigurations, SetSchedules {
     private var scheduleInProgress: Bool = false
 
     // First job to execute.Job is first element in 
-    func jobToExecute() -> NSDictionary? {
+    func scheduledTaskToExecute() -> NSDictionary? {
         guard self.sortedschedules != nil else { return nil}
         guard self.sortedschedules!.count > 0 else {return nil}
         return self.sortedschedules![0]
@@ -82,7 +82,7 @@ class ScheduleSortedAndExpand: SetConfigurations, SetSchedules {
     }
 
     // Expanding and sorting Scheduledata
-    private func sortAndExpandScheduleData() {
+    private func sortAndExpandScheduleTasks() {
         let dateformatter = Tools().setDateformat()
         for i in 0 ..< self.schedulesNSDictionary!.count {
             let dict = self.schedulesNSDictionary![i]
@@ -118,7 +118,7 @@ class ScheduleSortedAndExpand: SetConfigurations, SetSchedules {
                 }
             }
         // Set reference to the first scheduled job
-        self.schedules!.scheduledJob = self.jobToExecute()
+        // self.schedules!.scheduledTask = self.jobToExecute()
         }
     }
 
@@ -158,7 +158,7 @@ class ScheduleSortedAndExpand: SetConfigurations, SetSchedules {
         if self.schedules != nil {
             self.scheduleConfiguration = self.schedules!.getSchedule()
             self.createScheduleAsNSDictionary()
-            self.sortAndExpandScheduleData()
+            self.sortAndExpandScheduleTasks()
         }
     }
 }

@@ -30,6 +30,8 @@ class ViewControllerReference {
         return Singleton.instance
     }
 
+    var scheduledTask: NSDictionary?
+
     // Download URL if new version is avaliable
     var URLnewVersion: String?
     // True if version 3.2.1 of rsync in /usr/local/bin
