@@ -69,13 +69,7 @@ class ViewControllerBatch: NSViewController, SetDismisser, AbortTask {
         self.dismissview(viewcontroller: self, vcontroller: .vctabmain)
     }
 
-    // Initial functions viewDidLoad and viewDidAppear
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        // Do view setup here.
-        // Setting delegates and datasource
-        self.mainTableView.delegate = self
-        self.mainTableView.dataSource = self
+    private func loadtasks() {
         ViewControllerReference.shared.setvcref(viewcontroller: .vcbatch, nsviewcontroller: self)
         // Create new batctask
         self.batchTask = BatchTask()
@@ -94,26 +88,26 @@ class ViewControllerBatch: NSViewController, SetDismisser, AbortTask {
         })
     }
 
+    // Initial functions viewDidLoad and viewDidAppear
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        // Do view setup here.
+        // Setting delegates and datasource
+        self.mainTableView.delegate = self
+        self.mainTableView.dataSource = self
+        self.loadtasks()
+    }
+
     override func viewDidAppear() {
         super.viewDidAppear()
         self.configurations = self.batchTask?.configurations
         if self.batchTask == nil {
-            ViewControllerReference.shared.setvcref(viewcontroller: .vcbatch, nsviewcontroller: self)
-            self.batchTask = BatchTask()
-            self.configurations = self.batchTask?.configurations
-            self.configurations?.createbatchQueue()
-            self.closeinseconds.isHidden = true
-            self.executeButton.isEnabled = true
-            self.working.stopAnimation(nil)
-            self.close = true
-            self.label.stringValue = "Progress "
-            self.rownumber.stringValue = ""
-            self.closeButton.title = "Close"
-            self.close = true
+            self.loadtasks()
+        } else {
+            globalMainQueue.async(execute: { () -> Void in
+                self.mainTableView.reloadData()
+            })
         }
-        globalMainQueue.async(execute: { () -> Void in
-            self.mainTableView.reloadData()
-        })
     }
 
 }
