@@ -31,10 +31,7 @@ class NewConfigurations {
     }
 
     func newConfigurationsCount() -> Int {
-        guard self.newConfigurations != nil else {
-            return 0
-        }
-        return self.newConfigurations!.count
+        return self.newConfigurations?.count ?? 0
     }
 
     init() {

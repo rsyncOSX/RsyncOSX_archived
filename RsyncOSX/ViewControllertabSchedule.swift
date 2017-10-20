@@ -23,9 +23,6 @@ class ViewControllertabSchedule: NSViewController, SetConfigurations, SetSchedul
 
     // Main tableview
     @IBOutlet weak var mainTableView: NSTableView!
-    @IBOutlet weak var once: NSButton!
-    @IBOutlet weak var daily: NSButton!
-    @IBOutlet weak var weekly: NSButton!
     @IBOutlet weak var profilInfo: NSTextField!
 
     private var index: Int?
@@ -62,7 +59,28 @@ class ViewControllertabSchedule: NSViewController, SetConfigurations, SetSchedul
     @IBOutlet weak var firstLocalCatalog: NSTextField!
     @IBOutlet weak var secondLocalCatalog: NSTextField!
 
-    @IBAction func chooseSchedule(_ sender: NSButton) {
+    @IBAction func once(_ sender: NSButton) {
+        let startdate: Date = Date()
+        // Seconds from now to starttime
+        let seconds: TimeInterval = self.stoptime.dateValue.timeIntervalSinceNow
+        // Date and time for stop
+        let stopdate: Date = self.stopdate.dateValue.addingTimeInterval(seconds)
+        var schedule: String?
+        var range: Bool = false
+        if self.index != nil {
+            schedule = "once"
+            if seconds > -60 {
+                range = true
+            } else {
+                self.info(str: "Startdate has passed...")
+            }
+        }
+        if range == true {
+            self.addschedule(schedule: schedule!, startdate: startdate, stopdate: stopdate)
+        }
+    }
+
+    @IBAction func daily(_ sender: NSButton) {
         let startdate: Date = Date()
         // Seconds from now to starttime
         let seconds: TimeInterval = self.stoptime.dateValue.timeIntervalSinceNow
@@ -71,37 +89,38 @@ class ViewControllertabSchedule: NSViewController, SetConfigurations, SetSchedul
         let secondsstart: TimeInterval = self.stopdate.dateValue.timeIntervalSinceNow
         var schedule: String?
         var range: Bool = false
-
         if self.index != nil {
-            if self.once.state == .on {
-                schedule = "once"
-                if seconds > -60 {
-                    range = true
-                } else {
-                    self.info(str: "Startdate has passed...")
-                }
-            } else if self.daily.state  == .on {
-                schedule = "daily"
-                if secondsstart >= (60*60*24) {
-                    range = true
-                } else {
-                    self.info(str: "Startdate has to be more than 24 hours ahead...")
-                }
-            } else if self.weekly.state  == .on {
-                schedule = "weekly"
-                if secondsstart >= (60*60*24*7) {
-                    range = true
-                } else {
-                    self.info(str: "Startdate has to be more than 7 days ahead...")
-                }
+            schedule = "daily"
+            if secondsstart >= (60*60*24) {
+                range = true
+            } else {
+                self.info(str: "Startdate has to be more than 24 hours ahead...")
             }
-            if range == true {
-                self.addschedule(schedule: schedule!, startdate: startdate, stopdate: stopdate)
+        }
+        if range == true {
+            self.addschedule(schedule: schedule!, startdate: startdate, stopdate: stopdate)
+        }
+    }
+
+    @IBAction func weekly(_ sender: NSButton) {
+        let startdate: Date = Date()
+        // Seconds from now to starttime
+        let seconds: TimeInterval = self.stoptime.dateValue.timeIntervalSinceNow
+        // Date and time for stop
+        let stopdate: Date = self.stopdate.dateValue.addingTimeInterval(seconds)
+        let secondsstart: TimeInterval = self.stopdate.dateValue.timeIntervalSinceNow
+        var schedule: String?
+        var range: Bool = false
+        if self.index != nil {
+            schedule = "weekly"
+            if secondsstart >= (60*60*24*7) {
+                range = true
+            } else {
+                self.info(str: "Startdate has to be more than 7 days ahead...")
             }
-            // Reset radiobuttons
-            self.once.state = .off
-            self.daily.state = .off
-            self.weekly.state = .off
+        }
+        if range == true {
+            self.addschedule(schedule: schedule!, startdate: startdate, stopdate: stopdate)
         }
     }
 
