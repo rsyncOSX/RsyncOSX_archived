@@ -185,6 +185,7 @@ class ViewControllertabSchedule: NSViewController, SetConfigurations, SetSchedul
         })
         self.infonexttask()
         self.startTimer()
+        self.color()
     }
 
     // Start timer
@@ -358,6 +359,7 @@ extension ViewControllertabSchedule: Reloadandrefresh {
         self.infoschedulessorted = InfoScheduleSortedAndExpand(sortedandexpanded: self.schedulessorted)
         self.firstScheduledTask.stringValue = self.infoschedulessorted!.whenIsNextTwoTasksString()[0]
         self.secondScheduledTask.stringValue = self.infoschedulessorted!.whenIsNextTwoTasksString()[1]
+        self.color()
         globalMainQueue.async(execute: { () -> Void in
             self.mainTableView.reloadData()
         })
