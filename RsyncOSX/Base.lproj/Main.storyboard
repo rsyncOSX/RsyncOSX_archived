@@ -2065,8 +2065,9 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableHeaderView>
                             </scrollView>
-                            <datePicker verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="wEG-hh-qwG">
-                                <rect key="frame" x="21" y="217" width="139" height="148"/>
+                            <datePicker verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="wEG-hh-qwG">
+                                <rect key="frame" x="21" y="200" width="139" height="148"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <datePickerCell key="cell" borderStyle="bezel" alignment="left" datePickerStyle="clockAndCalendar" id="YII-OZ-bD1">
                                     <font key="font" metaFont="system"/>
                                     <date key="date" timeIntervalSinceReferenceDate="-595929600">
@@ -2141,21 +2142,6 @@
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
-                            <datePicker verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="6Ke-eK-ziR">
-                                <rect key="frame" x="167" y="342" width="72" height="27"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="69" id="NIA-YL-kde"/>
-                                </constraints>
-                                <datePickerCell key="cell" borderStyle="bezel" baseWritingDirection="rightToLeft" userInterfaceLayoutDirection="rightToLeft" alignment="left" id="sbQ-4l-G7U">
-                                    <font key="font" metaFont="system"/>
-                                    <date key="date" timeIntervalSinceReferenceDate="-595929600">
-                                        <!--1982-02-12 16:00:00 +0000-->
-                                    </date>
-                                    <color key="backgroundColor" name="gridColor" catalog="System" colorSpace="catalog"/>
-                                    <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
-                                    <datePickerElements key="datePickerElements" hour="YES" minute="YES"/>
-                                </datePickerCell>
-                            </datePicker>
                             <textField verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fQ7-at-veZ">
                                 <rect key="frame" x="647" y="42" width="347" height="22"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" bezelStyle="round" id="RM5-tl-wye">
@@ -2164,13 +2150,6 @@
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
-                            <box verticalHuggingPriority="249" title="Schedules stop date and time" translatesAutoresizingMaskIntoConstraints="NO" id="6ta-Jf-Hnb">
-                                <rect key="frame" x="8" y="204" width="237" height="183"/>
-                                <view key="contentView" id="icp-fs-sc9">
-                                    <rect key="frame" x="2" y="2" width="233" height="166"/>
-                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                </view>
-                            </box>
                             <box title="Two next scheduled jobs" translatesAutoresizingMaskIntoConstraints="NO" id="Qja-zM-H6m">
                                 <rect key="frame" x="320" y="24" width="682" height="95"/>
                                 <view key="contentView" id="Ecg-WF-Ye9">
@@ -2240,45 +2219,49 @@
                                     <action selector="weekly:" target="rht-JI-asq" id="OgL-71-AcT"/>
                                 </connections>
                             </button>
+                            <datePicker verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="6Ke-eK-ziR">
+                                <rect key="frame" x="176" y="326" width="69" height="22"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <datePickerCell key="cell" borderStyle="bezel" baseWritingDirection="rightToLeft" userInterfaceLayoutDirection="rightToLeft" alignment="left" datePickerStyle="textField" id="sbQ-4l-G7U">
+                                    <font key="font" metaFont="system"/>
+                                    <date key="date" timeIntervalSinceReferenceDate="-595929600">
+                                        <!--1982-02-12 16:00:00 +0000-->
+                                    </date>
+                                    <color key="backgroundColor" name="gridColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                    <datePickerElements key="datePickerElements" hour="YES" minute="YES"/>
+                                </datePickerCell>
+                            </datePicker>
                         </subviews>
                         <constraints>
                             <constraint firstItem="N1P-ZE-2Ih" firstAttribute="baseline" secondItem="fPT-QI-u33" secondAttribute="baseline" id="2p7-aO-ODB"/>
                             <constraint firstItem="PRZ-S5-rAa" firstAttribute="baseline" secondItem="vTj-Lr-BJD" secondAttribute="baseline" id="7kg-zE-MUz"/>
                             <constraint firstItem="8kQ-g8-6MT" firstAttribute="leading" secondItem="N1P-ZE-2Ih" secondAttribute="leading" id="82A-XZ-zde"/>
                             <constraint firstItem="8kQ-g8-6MT" firstAttribute="baseline" secondItem="d3J-Mb-bCu" secondAttribute="baseline" id="9yO-zY-PjE"/>
+                            <constraint firstItem="PkH-9i-AY6" firstAttribute="leading" secondItem="X8A-2M-FtC" secondAttribute="leading" constant="11" id="A0k-Tr-eWN"/>
                             <constraint firstItem="fPT-QI-u33" firstAttribute="baseline" secondItem="GFe-EE-0im" secondAttribute="baseline" id="BLj-5D-19i"/>
-                            <constraint firstItem="fA7-Ye-Zzs" firstAttribute="leading" secondItem="6Ke-eK-ziR" secondAttribute="trailing" constant="20" id="BnQ-7g-fV7"/>
                             <constraint firstItem="fPT-QI-u33" firstAttribute="leading" secondItem="N1P-ZE-2Ih" secondAttribute="trailing" constant="8" symbolic="YES" id="C8Q-bJ-Tqc"/>
-                            <constraint firstItem="6ta-Jf-Hnb" firstAttribute="top" secondItem="X8A-2M-FtC" secondAttribute="top" constant="20" id="Cbs-2u-R8Q"/>
                             <constraint firstItem="GFe-EE-0im" firstAttribute="baseline" secondItem="fQ7-at-veZ" secondAttribute="baseline" id="Ccp-0S-bYI"/>
                             <constraint firstAttribute="trailing" secondItem="Qja-zM-H6m" secondAttribute="trailing" constant="93" id="EWh-Cb-0Zq"/>
-                            <constraint firstItem="PkH-9i-AY6" firstAttribute="top" secondItem="6ta-Jf-Hnb" secondAttribute="bottom" constant="16" id="Gdx-DU-iKB"/>
                             <constraint firstItem="GFe-EE-0im" firstAttribute="leading" secondItem="fPT-QI-u33" secondAttribute="trailing" constant="8" symbolic="YES" id="IaY-Rc-m5t"/>
                             <constraint firstItem="fPT-QI-u33" firstAttribute="top" secondItem="d3J-Mb-bCu" secondAttribute="bottom" constant="9" id="Itm-Vz-dZS"/>
                             <constraint firstAttribute="trailing" secondItem="fA7-Ye-Zzs" secondAttribute="trailing" constant="20" symbolic="YES" id="JQ0-WO-Uh5"/>
-                            <constraint firstItem="wEG-hh-qwG" firstAttribute="top" secondItem="6Ke-eK-ziR" secondAttribute="top" id="KBF-6X-BIE"/>
                             <constraint firstItem="PRZ-S5-rAa" firstAttribute="leading" secondItem="GFe-EE-0im" secondAttribute="leading" id="KDc-Uy-CX1"/>
                             <constraint firstItem="d3J-Mb-bCu" firstAttribute="leading" secondItem="8kQ-g8-6MT" secondAttribute="trailing" constant="8" symbolic="YES" id="KRC-Rd-01t"/>
-                            <constraint firstItem="6Ke-eK-ziR" firstAttribute="leading" secondItem="wEG-hh-qwG" secondAttribute="trailing" constant="7" id="O0o-f2-R5g"/>
                             <constraint firstItem="d3J-Mb-bCu" firstAttribute="top" secondItem="fA7-Ye-Zzs" secondAttribute="bottom" constant="43" id="Pux-vZ-Nek"/>
-                            <constraint firstItem="wEG-hh-qwG" firstAttribute="leading" secondItem="X8A-2M-FtC" secondAttribute="leading" constant="21" id="QuV-C7-xwj"/>
-                            <constraint firstItem="wEG-hh-qwG" firstAttribute="top" secondItem="X8A-2M-FtC" secondAttribute="top" constant="42" id="S4k-Rb-iOq"/>
                             <constraint firstItem="vTj-Lr-BJD" firstAttribute="leading" secondItem="fQ7-at-veZ" secondAttribute="leading" id="SBp-2q-Jmm"/>
                             <constraint firstItem="PkH-9i-AY6" firstAttribute="bottom" secondItem="fA7-Ye-Zzs" secondAttribute="bottom" id="Spu-Vz-XWt"/>
                             <constraint firstItem="d3J-Mb-bCu" firstAttribute="leading" secondItem="fPT-QI-u33" secondAttribute="leading" id="V9u-RC-cmf"/>
-                            <constraint firstItem="fA7-Ye-Zzs" firstAttribute="leading" secondItem="6ta-Jf-Hnb" secondAttribute="trailing" constant="14" id="VtJ-KK-Mm3"/>
                             <constraint firstItem="vTj-Lr-BJD" firstAttribute="trailing" secondItem="fQ7-at-veZ" secondAttribute="trailing" id="Xqg-Oa-Zz7"/>
                             <constraint firstItem="vTj-Lr-BJD" firstAttribute="leading" secondItem="PRZ-S5-rAa" secondAttribute="trailing" constant="8" symbolic="YES" id="ccc-s3-Z0p"/>
                             <constraint firstItem="PRZ-S5-rAa" firstAttribute="leading" secondItem="d3J-Mb-bCu" secondAttribute="trailing" constant="8" symbolic="YES" id="dBs-zB-w1I"/>
                             <constraint firstItem="fA7-Ye-Zzs" firstAttribute="top" secondItem="X8A-2M-FtC" secondAttribute="top" constant="20" symbolic="YES" id="e6f-GF-uyz"/>
                             <constraint firstItem="d3J-Mb-bCu" firstAttribute="baseline" secondItem="PRZ-S5-rAa" secondAttribute="baseline" id="epW-BP-NXB"/>
-                            <constraint firstItem="6ta-Jf-Hnb" firstAttribute="leading" secondItem="X8A-2M-FtC" secondAttribute="leading" constant="11" id="fVM-CF-8bv"/>
                             <constraint firstItem="fQ7-at-veZ" firstAttribute="leading" secondItem="GFe-EE-0im" secondAttribute="trailing" constant="8" symbolic="YES" id="h7t-CN-skf"/>
-                            <constraint firstItem="PkH-9i-AY6" firstAttribute="trailing" secondItem="6ta-Jf-Hnb" secondAttribute="trailing" id="l4q-lF-5ah"/>
                             <constraint firstItem="PkH-9i-AY6" firstAttribute="top" secondItem="X8A-2M-FtC" secondAttribute="top" constant="215" id="pgf-lB-oZK"/>
                             <constraint firstAttribute="trailing" secondItem="vTj-Lr-BJD" secondAttribute="trailing" constant="98" id="rS8-gA-LLh"/>
                             <constraint firstAttribute="bottom" secondItem="Qja-zM-H6m" secondAttribute="bottom" constant="28" id="spR-8s-7jp"/>
-                            <constraint firstItem="PkH-9i-AY6" firstAttribute="leading" secondItem="6ta-Jf-Hnb" secondAttribute="leading" id="y3M-tm-3gg"/>
+                            <constraint firstItem="fA7-Ye-Zzs" firstAttribute="leading" secondItem="PkH-9i-AY6" secondAttribute="trailing" constant="14" id="tEm-mk-WLH"/>
                         </constraints>
                     </view>
                     <connections>

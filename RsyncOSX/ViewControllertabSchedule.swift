@@ -69,10 +69,12 @@ class ViewControllertabSchedule: NSViewController, SetConfigurations, SetSchedul
         if self.index != nil {
             schedule = "once"
             if seconds > -60 {
-                self.addschedule(schedule: schedule!, startdate: startdate, stopdate: stopdate)
+                self.addschedule(schedule: schedule!, startdate: startdate, stopdate: stopdate + 60)
             } else {
                 self.info(str: "Startdate has passed...")
             }
+        } else {
+            self.info(str: "Please select a task...")
         }
     }
 
@@ -91,6 +93,8 @@ class ViewControllertabSchedule: NSViewController, SetConfigurations, SetSchedul
             } else {
                 self.info(str: "Startdate has to be more than 24 hours ahead...")
             }
+        } else {
+            self.info(str: "Please select a task...")
         }
     }
 
@@ -109,6 +113,8 @@ class ViewControllertabSchedule: NSViewController, SetConfigurations, SetSchedul
             } else {
                 self.info(str: "Startdate has to be more than 7 days ahead...")
             }
+        } else {
+            self.info(str: "Please select a task...")
         }
     }
 
