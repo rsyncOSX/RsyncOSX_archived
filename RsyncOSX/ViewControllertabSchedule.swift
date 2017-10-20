@@ -61,66 +61,54 @@ class ViewControllertabSchedule: NSViewController, SetConfigurations, SetSchedul
 
     @IBAction func once(_ sender: NSButton) {
         let startdate: Date = Date()
-        // Seconds from now to starttime
+        // Seconds from now to start for "once"
         let seconds: TimeInterval = self.stoptime.dateValue.timeIntervalSinceNow
         // Date and time for stop
         let stopdate: Date = self.stopdate.dateValue.addingTimeInterval(seconds)
         var schedule: String?
-        var range: Bool = false
         if self.index != nil {
             schedule = "once"
             if seconds > -60 {
-                range = true
+                self.addschedule(schedule: schedule!, startdate: startdate, stopdate: stopdate)
             } else {
                 self.info(str: "Startdate has passed...")
             }
-        }
-        if range == true {
-            self.addschedule(schedule: schedule!, startdate: startdate, stopdate: stopdate)
         }
     }
 
     @IBAction func daily(_ sender: NSButton) {
         let startdate: Date = Date()
-        // Seconds from now to starttime
         let seconds: TimeInterval = self.stoptime.dateValue.timeIntervalSinceNow
         // Date and time for stop
         let stopdate: Date = self.stopdate.dateValue.addingTimeInterval(seconds)
+        // Seconds from now to start for "daily"
         let secondsstart: TimeInterval = self.stopdate.dateValue.timeIntervalSinceNow
         var schedule: String?
-        var range: Bool = false
         if self.index != nil {
             schedule = "daily"
             if secondsstart >= (60*60*24) {
-                range = true
+                 self.addschedule(schedule: schedule!, startdate: startdate, stopdate: stopdate)
             } else {
                 self.info(str: "Startdate has to be more than 24 hours ahead...")
             }
-        }
-        if range == true {
-            self.addschedule(schedule: schedule!, startdate: startdate, stopdate: stopdate)
         }
     }
 
     @IBAction func weekly(_ sender: NSButton) {
         let startdate: Date = Date()
-        // Seconds from now to starttime
         let seconds: TimeInterval = self.stoptime.dateValue.timeIntervalSinceNow
         // Date and time for stop
         let stopdate: Date = self.stopdate.dateValue.addingTimeInterval(seconds)
+        // Seconds from now to start for "weekly"
         let secondsstart: TimeInterval = self.stopdate.dateValue.timeIntervalSinceNow
         var schedule: String?
-        var range: Bool = false
         if self.index != nil {
             schedule = "weekly"
             if secondsstart >= (60*60*24*7) {
-                range = true
+                self.addschedule(schedule: schedule!, startdate: startdate, stopdate: stopdate)
             } else {
                 self.info(str: "Startdate has to be more than 7 days ahead...")
             }
-        }
-        if range == true {
-            self.addschedule(schedule: schedule!, startdate: startdate, stopdate: stopdate)
         }
     }
 
