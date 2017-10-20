@@ -169,6 +169,8 @@ class ViewControllertabMain: NSViewController, ReloadTable, Deselect {
     // Load profiles only when testing for connections are done.
     // Application crash if not
     private var loadProfileMenu: Bool = false
+    // Color row
+    private var colorindex: Int?
 
     // Information about rsync output
     // self.presentViewControllerAsSheet(self.ViewControllerInformation)
@@ -422,6 +424,7 @@ class ViewControllertabMain: NSViewController, ReloadTable, Deselect {
         self.readyforexecution = true
         if self.tools == nil { self.tools = Tools()}
         self.light.color = .systemYellow
+        self.color()
     }
 
     override func viewDidDisappear() {
@@ -566,6 +569,7 @@ class ViewControllertabMain: NSViewController, ReloadTable, Deselect {
         self.infoschedulessorted = InfoScheduleSortedAndExpand(sortedandexpanded: self.schedulessorted)
         self.schedules?.scheduledTask = self.schedulessorted?.allscheduledtasks()
         ViewControllerReference.shared.scheduledTask = self.schedulessorted?.allscheduledtasks()
+        self.color()
     }
 
     func createandreloadconfigurations() {
@@ -634,7 +638,14 @@ extension ViewControllertabMain: NSTableViewDelegate {
             }
             if schedule && number > 0 {
                 let returnstr = text! + " (" + String(number) + ")"
-                return returnstr
+                if let color = self.colorindex, color == row {
+                    let attributedString = NSMutableAttributedString(string: (returnstr))
+                    let range = (returnstr as NSString).range(of: returnstr)
+                    attributedString.addAttribute(NSAttributedStringKey.foregroundColor, value: NSColor.green, range: range)
+                    return attributedString
+                } else {
+                    return returnstr
+                }
             } else {
                 if self.testRow(row) {
                     text = object[tableColumn!.identifier] as? String
@@ -661,6 +672,16 @@ extension ViewControllertabMain: NSTableViewDelegate {
         self.batchtaskObject = nil
         self.setInfo(info: "Estimate", color: .blue)
         self.light.color = .systemYellow
+    }
+
+    private func color() {
+        if let dict: NSDictionary = ViewControllerReference.shared.scheduledTask {
+            if let hiddenID: Int = dict.value(forKey: "hiddenID") as? Int {
+                self.colorindex = self.configurations?.getIndex(hiddenID)
+            } else {
+                self.colorindex = nil
+            }
+        }
     }
 }
 
@@ -1182,6 +1203,7 @@ extension ViewControllertabMain: GetSchedulesObject {
         self.infoschedulessorted = InfoScheduleSortedAndExpand(sortedandexpanded: self.schedulessorted)
         self.schedules?.scheduledTask = self.schedulessorted?.allscheduledtasks()
         ViewControllerReference.shared.scheduledTask = self.schedulessorted?.allscheduledtasks()
+        self.color()
         return self.schedules
     }
 

@@ -5,7 +5,7 @@
 //  Created by Thomas Evensen on 19/08/2016.
 //  Copyright © 2016 Thomas Evensen. All rights reserved.
 //
-//  swiftlint:disable line_length
+//  swiftlint:disable line_length file_length
 
 import Foundation
 import Cocoa
@@ -31,6 +31,8 @@ class ViewControllertabSchedule: NSViewController, SetConfigurations, SetSchedul
     private var schedulessorted: ScheduleSortedAndExpand?
     private var infoschedulessorted: InfoScheduleSortedAndExpand?
     var tools: Tools?
+    // Color row
+    private var colorindex: Int?
 
     // Information Schedule details
     // self.presentViewControllerAsSheet(self.ViewControllerScheduleDetails)
@@ -291,7 +293,14 @@ extension ViewControllertabSchedule: NSTableViewDelegate {
             }
             if schedule && number ?? 0 > 0 {
                 let returnstr = text! + " (" + String(number!) + ")"
-                return returnstr
+                if let color = self.colorindex, color == hiddenID {
+                    let attributedString = NSMutableAttributedString(string: (returnstr))
+                    let range = (returnstr as NSString).range(of: returnstr)
+                    attributedString.addAttribute(NSAttributedStringKey.foregroundColor, value: NSColor.green, range: range)
+                    return attributedString
+                } else {
+                 return returnstr
+                }
             } else {
                 return object[tableColumn!.identifier] as? String
             }
@@ -304,6 +313,16 @@ extension ViewControllertabSchedule: NSTableViewDelegate {
         if self.configurations!.getConfigurations()[row].task == "backup" {
             self.configurations!.getConfigurationsDataSource()![row].setObject(object!, forKey: (tableColumn?.identifier)! as NSCopying)
             self.configurations!.setBatchYesNo(row)
+        }
+    }
+
+    private func color() {
+        if let dict: NSDictionary = ViewControllerReference.shared.scheduledTask {
+            if let hiddenID: Int = dict.value(forKey: "hiddenID") as? Int {
+                self.colorindex = hiddenID
+            } else {
+                self.colorindex = nil
+            }
         }
     }
 

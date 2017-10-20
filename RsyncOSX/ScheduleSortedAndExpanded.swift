@@ -25,7 +25,10 @@ class ScheduleSortedAndExpand: SetConfigurations, SetSchedules {
     // First job to execute.Job is first element in 
     func allscheduledtasks() -> NSDictionary? {
         guard self.sortedschedules != nil else { return nil}
-        guard self.sortedschedules!.count > 0 else {return nil}
+        guard self.sortedschedules!.count > 0 else {
+            ViewControllerReference.shared.scheduledTask = nil
+            return nil
+        }
         return self.sortedschedules![0]
     }
 
