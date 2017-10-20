@@ -564,8 +564,8 @@ class ViewControllertabMain: NSViewController, ReloadTable, Deselect {
         self.infoschedulessorted = nil
         self.schedulessorted = ScheduleSortedAndExpand()
         self.infoschedulessorted = InfoScheduleSortedAndExpand(sortedandexpanded: self.schedulessorted)
-        self.schedules?.scheduledTask = self.schedulessorted?.scheduledTaskToExecute()
-        ViewControllerReference.shared.scheduledTask = self.schedulessorted?.scheduledTaskToExecute()
+        self.schedules?.scheduledTask = self.schedulessorted?.allscheduledtasks()
+        ViewControllerReference.shared.scheduledTask = self.schedulessorted?.allscheduledtasks()
     }
 
     func createandreloadconfigurations() {
@@ -630,7 +630,7 @@ extension ViewControllertabMain: NSTableViewDelegate {
         } else {
             var number: Int = 0
             if let obj = self.schedulessorted {
-                number = obj.numberOfFutureSchedules(hiddenID)
+                number = obj.countallscheduledtasks(hiddenID)
             }
             if schedule && number > 0 {
                 let returnstr = text! + " (" + String(number) + ")"
@@ -1180,8 +1180,8 @@ extension ViewControllertabMain: GetSchedulesObject {
         self.infoschedulessorted = nil
         self.schedulessorted = ScheduleSortedAndExpand()
         self.infoschedulessorted = InfoScheduleSortedAndExpand(sortedandexpanded: self.schedulessorted)
-        self.schedules?.scheduledTask = self.schedulessorted?.scheduledTaskToExecute()
-        ViewControllerReference.shared.scheduledTask = self.schedulessorted?.scheduledTaskToExecute()
+        self.schedules?.scheduledTask = self.schedulessorted?.allscheduledtasks()
+        ViewControllerReference.shared.scheduledTask = self.schedulessorted?.allscheduledtasks()
         return self.schedules
     }
 

@@ -1979,7 +1979,7 @@
                                             <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                             <color key="gridColor" name="gridColor" catalog="System" colorSpace="catalog"/>
                                             <tableColumns>
-                                                <tableColumn identifier="taskCellID" width="80.703125" minWidth="40" maxWidth="1000" id="bPV-Wb-DGM">
+                                                <tableColumn identifier="taskCellID" width="75.703125" minWidth="40" maxWidth="1000" id="bPV-Wb-DGM">
                                                     <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" title="Task">
                                                         <font key="font" metaFont="smallSystem"/>
                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
@@ -1992,7 +1992,20 @@
                                                     </textFieldCell>
                                                     <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                 </tableColumn>
-                                                <tableColumn identifier="localCatalogCellID" width="258.97265625" minWidth="40" maxWidth="1000" id="tNA-hi-kYT">
+                                                <tableColumn identifier="inCellID" width="64.203125" minWidth="40" maxWidth="1000" id="rXA-1B-Zpu">
+                                                    <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" title="In">
+                                                        <font key="font" metaFont="smallSystem"/>
+                                                        <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
+                                                        <color key="backgroundColor" name="headerColor" catalog="System" colorSpace="catalog"/>
+                                                    </tableHeaderCell>
+                                                    <textFieldCell key="dataCell" lineBreakMode="truncatingTail" title="Text Cell" id="yCU-73-EqR">
+                                                        <font key="font" metaFont="system"/>
+                                                        <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                                        <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                                    </textFieldCell>
+                                                    <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
+                                                </tableColumn>
+                                                <tableColumn identifier="localCatalogCellID" width="226.47265625" minWidth="40" maxWidth="1000" id="tNA-hi-kYT">
                                                     <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" title="Local catalog">
                                                         <font key="font" metaFont="smallSystem"/>
                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
@@ -2005,7 +2018,7 @@
                                                     </textFieldCell>
                                                     <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                 </tableColumn>
-                                                <tableColumn identifier="offsiteCatalogCellID" width="259.98828125" minWidth="10" maxWidth="3.4028234663852886e+38" id="fnk-Kq-6LU">
+                                                <tableColumn identifier="offsiteCatalogCellID" width="240.48828125" minWidth="10" maxWidth="3.4028234663852886e+38" id="fnk-Kq-6LU">
                                                     <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left" title="Remote catalog">
                                                         <font key="font" metaFont="smallSystem"/>
                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
@@ -2031,7 +2044,7 @@
                                                     </textFieldCell>
                                                     <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                 </tableColumn>
-                                                <tableColumn identifier="backupIDCellID" width="110.9453125" minWidth="10" maxWidth="3.4028234663852886e+38" id="hsc-HX-kP6" userLabel="ID">
+                                                <tableColumn identifier="backupIDCellID" width="101" minWidth="10" maxWidth="3.4028234663852886e+38" id="hsc-HX-kP6" userLabel="ID">
                                                     <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left" title="ID">
                                                         <font key="font" metaFont="smallSystem"/>
                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
@@ -2053,7 +2066,7 @@
                                     <constraint firstAttribute="width" constant="816" id="qo0-Km-pFa"/>
                                 </constraints>
                                 <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="YES" id="3H9-jJ-F2k">
-                                    <rect key="frame" x="2" y="281" width="812" height="16"/>
+                                    <rect key="frame" x="2" y="231" width="812" height="16"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
                                 <scroller key="verticalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="NO" id="D37-Xm-Mpl">
@@ -2066,7 +2079,7 @@
                                 </tableHeaderView>
                             </scrollView>
                             <datePicker verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="wEG-hh-qwG">
-                                <rect key="frame" x="21" y="200" width="139" height="148"/>
+                                <rect key="frame" x="21" y="166" width="139" height="148"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <datePickerCell key="cell" borderStyle="bezel" alignment="left" datePickerStyle="clockAndCalendar" id="YII-OZ-bD1">
                                     <font key="font" metaFont="system"/>
@@ -2179,15 +2192,16 @@
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
-                            <box title="Select schedule" translatesAutoresizingMaskIntoConstraints="NO" id="PkH-9i-AY6">
-                                <rect key="frame" x="8" y="134" width="237" height="58"/>
+                            <box fixedFrame="YES" title="Select schedule" translatesAutoresizingMaskIntoConstraints="NO" id="PkH-9i-AY6">
+                                <rect key="frame" x="8" y="329" width="237" height="58"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <view key="contentView" id="rfk-IY-P9v">
                                     <rect key="frame" x="2" y="2" width="233" height="41"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 </view>
                             </box>
                             <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="kbd-42-Izb">
-                                <rect key="frame" x="20" y="141" width="73" height="32"/>
+                                <rect key="frame" x="20" y="336" width="73" height="32"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <buttonCell key="cell" type="push" title="Once" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="QCj-5P-T2N">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -2198,7 +2212,7 @@
                                 </connections>
                             </button>
                             <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="qPO-Ls-40R">
-                                <rect key="frame" x="87" y="141" width="70" height="32"/>
+                                <rect key="frame" x="87" y="336" width="70" height="32"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <buttonCell key="cell" type="push" title="Daily" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="iS6-br-dsn">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -2209,7 +2223,7 @@
                                 </connections>
                             </button>
                             <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2Qn-FN-xeN">
-                                <rect key="frame" x="149" y="141" width="84" height="32"/>
+                                <rect key="frame" x="149" y="336" width="84" height="32"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <buttonCell key="cell" type="push" title="Weekly" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="s3e-Xz-emD">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -2220,7 +2234,7 @@
                                 </connections>
                             </button>
                             <datePicker verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="6Ke-eK-ziR">
-                                <rect key="frame" x="176" y="326" width="69" height="22"/>
+                                <rect key="frame" x="176" y="292" width="69" height="22"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <datePickerCell key="cell" borderStyle="bezel" baseWritingDirection="rightToLeft" userInterfaceLayoutDirection="rightToLeft" alignment="left" datePickerStyle="textField" id="sbQ-4l-G7U">
                                     <font key="font" metaFont="system"/>
@@ -2238,7 +2252,6 @@
                             <constraint firstItem="PRZ-S5-rAa" firstAttribute="baseline" secondItem="vTj-Lr-BJD" secondAttribute="baseline" id="7kg-zE-MUz"/>
                             <constraint firstItem="8kQ-g8-6MT" firstAttribute="leading" secondItem="N1P-ZE-2Ih" secondAttribute="leading" id="82A-XZ-zde"/>
                             <constraint firstItem="8kQ-g8-6MT" firstAttribute="baseline" secondItem="d3J-Mb-bCu" secondAttribute="baseline" id="9yO-zY-PjE"/>
-                            <constraint firstItem="PkH-9i-AY6" firstAttribute="leading" secondItem="X8A-2M-FtC" secondAttribute="leading" constant="11" id="A0k-Tr-eWN"/>
                             <constraint firstItem="fPT-QI-u33" firstAttribute="baseline" secondItem="GFe-EE-0im" secondAttribute="baseline" id="BLj-5D-19i"/>
                             <constraint firstItem="fPT-QI-u33" firstAttribute="leading" secondItem="N1P-ZE-2Ih" secondAttribute="trailing" constant="8" symbolic="YES" id="C8Q-bJ-Tqc"/>
                             <constraint firstItem="GFe-EE-0im" firstAttribute="baseline" secondItem="fQ7-at-veZ" secondAttribute="baseline" id="Ccp-0S-bYI"/>
@@ -2250,7 +2263,6 @@
                             <constraint firstItem="d3J-Mb-bCu" firstAttribute="leading" secondItem="8kQ-g8-6MT" secondAttribute="trailing" constant="8" symbolic="YES" id="KRC-Rd-01t"/>
                             <constraint firstItem="d3J-Mb-bCu" firstAttribute="top" secondItem="fA7-Ye-Zzs" secondAttribute="bottom" constant="43" id="Pux-vZ-Nek"/>
                             <constraint firstItem="vTj-Lr-BJD" firstAttribute="leading" secondItem="fQ7-at-veZ" secondAttribute="leading" id="SBp-2q-Jmm"/>
-                            <constraint firstItem="PkH-9i-AY6" firstAttribute="bottom" secondItem="fA7-Ye-Zzs" secondAttribute="bottom" id="Spu-Vz-XWt"/>
                             <constraint firstItem="d3J-Mb-bCu" firstAttribute="leading" secondItem="fPT-QI-u33" secondAttribute="leading" id="V9u-RC-cmf"/>
                             <constraint firstItem="vTj-Lr-BJD" firstAttribute="trailing" secondItem="fQ7-at-veZ" secondAttribute="trailing" id="Xqg-Oa-Zz7"/>
                             <constraint firstItem="vTj-Lr-BJD" firstAttribute="leading" secondItem="PRZ-S5-rAa" secondAttribute="trailing" constant="8" symbolic="YES" id="ccc-s3-Z0p"/>
@@ -2258,10 +2270,8 @@
                             <constraint firstItem="fA7-Ye-Zzs" firstAttribute="top" secondItem="X8A-2M-FtC" secondAttribute="top" constant="20" symbolic="YES" id="e6f-GF-uyz"/>
                             <constraint firstItem="d3J-Mb-bCu" firstAttribute="baseline" secondItem="PRZ-S5-rAa" secondAttribute="baseline" id="epW-BP-NXB"/>
                             <constraint firstItem="fQ7-at-veZ" firstAttribute="leading" secondItem="GFe-EE-0im" secondAttribute="trailing" constant="8" symbolic="YES" id="h7t-CN-skf"/>
-                            <constraint firstItem="PkH-9i-AY6" firstAttribute="top" secondItem="X8A-2M-FtC" secondAttribute="top" constant="215" id="pgf-lB-oZK"/>
                             <constraint firstAttribute="trailing" secondItem="vTj-Lr-BJD" secondAttribute="trailing" constant="98" id="rS8-gA-LLh"/>
                             <constraint firstAttribute="bottom" secondItem="Qja-zM-H6m" secondAttribute="bottom" constant="28" id="spR-8s-7jp"/>
-                            <constraint firstItem="fA7-Ye-Zzs" firstAttribute="leading" secondItem="PkH-9i-AY6" secondAttribute="trailing" constant="14" id="tEm-mk-WLH"/>
                         </constraints>
                     </view>
                     <connections>
