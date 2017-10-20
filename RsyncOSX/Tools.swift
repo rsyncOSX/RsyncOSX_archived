@@ -275,11 +275,11 @@ final class Tools: SetConfigurations {
         let (min, secf) = modf (60 * minf)
         // hr, min, 60 * secf
         if hr == 0 && min == 0 {
-            result = String(format: "%.0f", 60 * secf) + " seconds"
+            result = String(format: "%.0f", 60 * secf) + " secs"
         } else if hr == 0 && min < 60 {
-            result = String(format: "%.0f", min) + " minutes " + String(format: "%.0f", 60 * secf) + " seconds"
+            result = String(format: "%.0f", min) + " mins " + String(format: "%.0f", 60 * secf) + " secs"
         } else if hr < 25 {
-            result = String(format: "%.0f", hr) + " hours " + String(format: "%.0f", min) + " minutes"
+            result = String(format: "%.0f", hr) + " hours " + String(format: "%.0f", min) + " mins"
         } else {
             result = String(format: "%.0f", hr/24) + " days"
         }

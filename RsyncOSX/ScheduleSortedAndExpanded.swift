@@ -22,7 +22,7 @@ class ScheduleSortedAndExpand: SetConfigurations, SetSchedules {
     private var scheduleInProgress: Bool = false
 
     // First job to execute.Job is first element in 
-    func scheduledTaskToExecute() -> NSDictionary? {
+    func allscheduledtasks() -> NSDictionary? {
         guard self.sortedschedules != nil else { return nil}
         guard self.sortedschedules!.count > 0 else {return nil}
         return self.sortedschedules![0]
@@ -61,7 +61,7 @@ class ScheduleSortedAndExpand: SetConfigurations, SetSchedules {
     private func weekly (days: Double, dateStart: Date, schedule: String, dict: NSDictionary) {
         var k = Int(days)
         if k < 370 {
-            if k > 30 {k = 30}
+            if k > 30 { k = 30 }
             for j in 0 ..< Int(k/7) {
                 var dateComponent = DateComponents()
                 dateComponent.day = ((j+1)*7)
@@ -123,7 +123,7 @@ class ScheduleSortedAndExpand: SetConfigurations, SetSchedules {
     }
 
     // Calculates number of future Schedules ID by hiddenID
-    func numberOfFutureSchedules (_ hiddenID: Int) -> Int {
+    func countallscheduledtasks (_ hiddenID: Int) -> Int {
         if let result = self.sortedschedules?.filter({return (($0.value(forKey: "hiddenID") as? Int)! == hiddenID
             && ($0.value(forKey: "start") as? Date)!.timeIntervalSinceNow > 0 )}) {
             return result.count
@@ -135,7 +135,7 @@ class ScheduleSortedAndExpand: SetConfigurations, SetSchedules {
     /// Function is reading Schedule plans and transform plans to
     /// array of NSDictionary.
     /// - returns : none
-    private func createScheduleAsNSDictionary () {
+    private func setallscheduledtasksNSDictionary () {
         guard self.scheduleConfiguration != nil else {
             return
         }
@@ -157,7 +157,7 @@ class ScheduleSortedAndExpand: SetConfigurations, SetSchedules {
         // Getting the Schedule and expanding all the jobs
         if self.schedules != nil {
             self.scheduleConfiguration = self.schedules!.getSchedule()
-            self.createScheduleAsNSDictionary()
+            self.setallscheduledtasksNSDictionary()
             self.sortAndExpandScheduleTasks()
         }
     }

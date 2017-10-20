@@ -276,7 +276,7 @@ extension ViewControllertabSchedule: NSTableViewDelegate {
             return "localhost"
         } else {
             if self.schedulessorted != nil {
-                number = self.schedulessorted!.numberOfFutureSchedules(hiddenID)
+                number = self.schedulessorted!.countallscheduledtasks(hiddenID)
             } else {
                 number = 0
             }
