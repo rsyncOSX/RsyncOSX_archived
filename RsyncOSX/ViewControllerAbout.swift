@@ -15,7 +15,6 @@ class ViewControllerAbout: NSViewController, SetDismisser {
     @IBOutlet weak var downloadbutton: NSButton!
     @IBOutlet weak var thereisanewversion: NSTextField!
 
-    // new version
     var checkfornewversion: Checkfornewversion?
     // External resources as documents, download
     private var resource: Resources?

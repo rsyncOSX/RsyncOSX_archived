@@ -30,6 +30,7 @@ class ViewControllerReference {
         return Singleton.instance
     }
 
+    // Temporary storage of the first scheduled task
     var scheduledTask: NSDictionary?
 
     // Download URL if new version is avaliable

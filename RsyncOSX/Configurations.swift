@@ -16,7 +16,7 @@
 import Foundation
 import Cocoa
 
-// Protocol for returning object configurations data
+// Protocol for returning object Configurations
 protocol GetConfigurationsObject: class {
     func getconfigurationsobject() -> Configurations?
     func createconfigurationsobject(profile: String?) -> Configurations?
@@ -24,8 +24,8 @@ protocol GetConfigurationsObject: class {
 }
 
 protocol SetConfigurations {
-    weak var configurationsDelegate: GetConfigurationsObject? {get}
-    var configurations: Configurations? {get}
+    weak var configurationsDelegate: GetConfigurationsObject? { get }
+    var configurations: Configurations? { get }
 }
 
 extension SetConfigurations {
@@ -43,10 +43,10 @@ protocol Reloadandrefresh: class {
 }
 
 protocol ReloadTable {
-    weak var reloadDelegateMain: Reloadandrefresh? {get}
-    weak var reloadDelegateSchedule: Reloadandrefresh? {get}
-    weak var reloadDelegateBatch: Reloadandrefresh? {get}
-    weak var reloadDelegateLogData: Reloadandrefresh? {get}
+    weak var reloadDelegateMain: Reloadandrefresh? { get }
+    weak var reloadDelegateSchedule: Reloadandrefresh? { get }
+    weak var reloadDelegateBatch: Reloadandrefresh? { get }
+    weak var reloadDelegateLogData: Reloadandrefresh? { get }
     func reloadtable(vcontroller: ViewController)
 }
 
@@ -323,9 +323,7 @@ class Configurations: ReloadTable {
 
     func getResourceConfiguration(_ hiddenID: Int, resource: ResourceInConfiguration) -> String {
         var result = self.configurations!.filter({return ($0.hiddenID == hiddenID)})
-        guard result.count > 0 else {
-            return ""
-        }
+        guard result.count > 0 else { return "" }
         switch resource {
         case .localCatalog:
             return result[0].localCatalog
