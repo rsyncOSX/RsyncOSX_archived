@@ -280,20 +280,23 @@ extension ViewControllertabSchedule: NSTableViewDelegate {
             return object[tableColumn!.identifier] as? Int!
         } else if tableColumn!.identifier.rawValue == "offsiteServerCellID", ((object[tableColumn!.identifier] as? String)?.isEmpty)! {
             return "localhost"
+        } else if tableColumn!.identifier.rawValue == "inCellID" {
+            if self.schedulessorted != nil {
+                number2 = self.schedulessorted!.sortandcountallscheduledtasks(hiddenID)
+                return number2 ?? ""
+            }
         } else {
             if self.schedulessorted != nil {
                 number = self.schedulessorted!.countallscheduledtasks(hiddenID)
-                number2 = self.schedulessorted!.sortandcountallscheduledtasks(hiddenID)
-            } else {
-                number = 0
             }
-            if schedule && number! > 0 {
-                let returnstr = text! + " (" + String(number!) + ") - in " + number2!
+            if schedule && number ?? 0 > 0 {
+                let returnstr = text! + " (" + String(number!) + ")"
                 return returnstr
             } else {
                 return object[tableColumn!.identifier] as? String
             }
         }
+     return nil
     }
 
     // Toggling batch
