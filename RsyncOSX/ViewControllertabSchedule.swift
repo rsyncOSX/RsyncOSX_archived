@@ -30,6 +30,7 @@ class ViewControllertabSchedule: NSViewController, SetConfigurations, SetSchedul
     private var nextTask: Timer?
     private var schedulessorted: ScheduleSortedAndExpand?
     private var infoschedulessorted: InfoScheduleSortedAndExpand?
+    var tools: Tools?
 
     // Information Schedule details
     // self.presentViewControllerAsSheet(self.ViewControllerScheduleDetails)
@@ -166,6 +167,7 @@ class ViewControllertabSchedule: NSViewController, SetConfigurations, SetSchedul
         self.mainTableView.dataSource = self
         self.mainTableView.doubleAction = #selector(ViewControllertabMain.tableViewDoubleClick(sender:))
         ViewControllerReference.shared.setvcref(viewcontroller: .vctabschedule, nsviewcontroller: self)
+        self.tools = Tools()
     }
 
     override func viewDidAppear() {
@@ -220,6 +222,9 @@ class ViewControllertabSchedule: NSViewController, SetConfigurations, SetSchedul
                 self.secondLocalCatalog.stringValue = ""
             }
         }
+        globalMainQueue.async(execute: { () -> Void in
+            self.mainTableView.reloadData()
+        })
     }
 
     // setting which table row is selected
@@ -263,6 +268,7 @@ extension ViewControllertabSchedule: NSTableViewDelegate {
         var text: String?
         var schedule: Bool = false
         var number: Int?
+        var number2: String?
         let hiddenID: Int = (object.value(forKey: "hiddenID") as? Int)!
         if self.schedules?.hiddenIDinSchedule(hiddenID) ?? false {
             text = object[tableColumn!.identifier] as? String
@@ -277,11 +283,12 @@ extension ViewControllertabSchedule: NSTableViewDelegate {
         } else {
             if self.schedulessorted != nil {
                 number = self.schedulessorted!.countallscheduledtasks(hiddenID)
+                number2 = self.schedulessorted!.sortandcountallscheduledtasks(hiddenID)
             } else {
                 number = 0
             }
             if schedule && number! > 0 {
-                let returnstr = text! + " (" + String(number!) + ")"
+                let returnstr = text! + " (" + String(number!) + ") - in " + number2!
                 return returnstr
             } else {
                 return object[tableColumn!.identifier] as? String

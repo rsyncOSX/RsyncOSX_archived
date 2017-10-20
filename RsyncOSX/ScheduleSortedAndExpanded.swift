@@ -20,6 +20,7 @@ class ScheduleSortedAndExpand: SetConfigurations, SetSchedules {
     private var expandedData = Array<NSDictionary>()
     private var sortedschedules: Array<NSDictionary>?
     private var scheduleInProgress: Bool = false
+    private var tools: Tools?
 
     // First job to execute.Job is first element in 
     func allscheduledtasks() -> NSDictionary? {
@@ -117,8 +118,6 @@ class ScheduleSortedAndExpand: SetConfigurations, SetSchedules {
                     return true
                 }
             }
-        // Set reference to the first scheduled job
-        // self.schedules!.scheduledTask = self.jobToExecute()
         }
     }
 
@@ -129,6 +128,27 @@ class ScheduleSortedAndExpand: SetConfigurations, SetSchedules {
             return result.count
         } else {
             return 0
+        }
+    }
+
+    func sortandcountallscheduledtasks (_ hiddenID: Int) -> String {
+        if let result = self.sortedschedules?.filter({return (($0.value(forKey: "hiddenID") as? Int)! == hiddenID
+            && ($0.value(forKey: "start") as? Date)!.timeIntervalSinceNow > 0 )}) {
+            let sorted = result.sorted {(di1, di2) -> Bool in
+                if (di1.value(forKey: "start") as? Date)!.timeIntervalSince((di2.value(forKey: "start") as? Date)!)>0 {
+                    return false
+                } else {
+                    return true
+                }
+            }
+            guard sorted.count > 0 else {
+                return "0"
+            }
+            let firsttask = (sorted[0].value(forKey: "start") as? Date)?.timeIntervalSinceNow
+            let tst = self.tools?.timeString(firsttask!)
+            return tst ?? ""
+        } else {
+            return ""
         }
     }
 
@@ -160,5 +180,6 @@ class ScheduleSortedAndExpand: SetConfigurations, SetSchedules {
             self.setallscheduledtasksNSDictionary()
             self.sortAndExpandScheduleTasks()
         }
+        self.tools = Tools()
     }
 }
