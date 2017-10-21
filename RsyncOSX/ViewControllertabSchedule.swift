@@ -153,10 +153,8 @@ class ViewControllertabSchedule: NSViewController, SetConfigurations, SetSchedul
         let answer = Alerts.dialogOKCancel("Add Schedule?", text: "Cancel or OK")
         if answer {
             self.schedules!.addschedule(self.hiddenID!, schedule: schedule, start: startdate, stop: stopdate)
-            // Start next job, if any, by delegate
             self.nexttask()
             self.infonexttask()
-            // Call function to check if a scheduled backup is due for countdown
             self.startTimer()
         }
     }

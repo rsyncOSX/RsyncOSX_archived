@@ -59,7 +59,7 @@ class ViewControllerAbout: NSViewController, SetDismisser {
         if let version = self.checkfornewversion!.rsyncOSXversion() {
             self.version.stringValue = "RsyncOSX ver: " + version
         }
-        self.thereisanewversion.stringValue = "Latest version is installed: "
+        self.thereisanewversion.stringValue = "No new version: "
     }
 
     override func viewDidDisappear() {

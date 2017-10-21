@@ -909,9 +909,7 @@ extension ViewControllertabMain: UpdateProgress {
 extension ViewControllertabMain: DeselectRowTable {
     // deselect a row after row is deleted
     func deselect() {
-        guard self.index != nil else {
-            return
-        }
+        guard self.index != nil else { return }
         self.mainTableView.deselectRow(self.index!)
     }
 }

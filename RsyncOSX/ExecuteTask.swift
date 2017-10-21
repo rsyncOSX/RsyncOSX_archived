@@ -35,9 +35,8 @@ class ExecuteTask: Operation, SetSchedules, SetConfigurations, ScheduledTask {
                     return
                 }
                 config = configArray[0]
-                // Notify that scheduled task is executing
+                // Inform and notify
                 self.scheduleJob?.start()
-                // Notify about scheduled job
                 self.notify(config: config)
                 if hiddenID >= 0 && config != nil {
                     arguments = RsyncProcessArguments().argumentsRsync(config!, dryRun: false, forDisplay: false)

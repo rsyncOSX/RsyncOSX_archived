@@ -15,7 +15,6 @@ protocol StartNextTask: class {
 
 protocol NextTask {
     weak var nexttaskDelegate: StartNextTask? { get }
-    func nexttask()
 }
 
 extension NextTask {
