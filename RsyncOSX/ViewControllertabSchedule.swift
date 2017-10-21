@@ -19,7 +19,30 @@ protocol SetProfileinfo: class {
     func setprofile(profile: String, color: NSColor)
 }
 
-class ViewControllertabSchedule: NSViewController, SetConfigurations, SetSchedules, NextTask {
+protocol Coloractivetask {
+    var colorindex: Int? { get }
+}
+
+extension Coloractivetask {
+
+    var colorindex: Int? {
+        return self.color()
+    }
+
+    func color() -> Int? {
+        if let dict: NSDictionary = ViewControllerReference.shared.scheduledTask {
+            if let hiddenID: Int = dict.value(forKey: "hiddenID") as? Int {
+                return hiddenID
+            } else {
+                return nil
+            }
+        } else {
+            return nil
+        }
+    }
+}
+
+class ViewControllertabSchedule: NSViewController, SetConfigurations, SetSchedules, NextTask, Coloractivetask {
 
     // Main tableview
     @IBOutlet weak var mainTableView: NSTableView!
@@ -31,8 +54,6 @@ class ViewControllertabSchedule: NSViewController, SetConfigurations, SetSchedul
     private var schedulessorted: ScheduleSortedAndExpand?
     private var infoschedulessorted: InfoScheduleSortedAndExpand?
     var tools: Tools?
-    // Color row
-    private var colorindex: Int?
 
     // Information Schedule details
     // self.presentViewControllerAsSheet(self.ViewControllerScheduleDetails)
@@ -185,7 +206,6 @@ class ViewControllertabSchedule: NSViewController, SetConfigurations, SetSchedul
         })
         self.infonexttask()
         self.startTimer()
-        self.color()
     }
 
     // Start timer
@@ -271,7 +291,7 @@ extension ViewControllertabSchedule: NSTableViewDelegate {
         var text: String?
         var schedule: Bool = false
         var number: Int?
-        var number2: String?
+        var taskintime: String?
         let hiddenID: Int = (object.value(forKey: "hiddenID") as? Int)!
         if self.schedules?.hiddenIDinSchedule(hiddenID) ?? false {
             text = object[tableColumn!.identifier] as? String
@@ -285,8 +305,8 @@ extension ViewControllertabSchedule: NSTableViewDelegate {
             return "localhost"
         } else if tableColumn!.identifier.rawValue == "inCellID" {
             if self.schedulessorted != nil {
-                number2 = self.schedulessorted!.sortandcountallscheduledtasks(hiddenID)
-                return number2 ?? ""
+                taskintime = self.schedulessorted!.sortandcountallscheduledtasks(hiddenID)
+                return taskintime ?? ""
             }
         } else {
             if self.schedulessorted != nil {
@@ -314,16 +334,6 @@ extension ViewControllertabSchedule: NSTableViewDelegate {
         if self.configurations!.getConfigurations()[row].task == "backup" {
             self.configurations!.getConfigurationsDataSource()![row].setObject(object!, forKey: (tableColumn?.identifier)! as NSCopying)
             self.configurations!.setBatchYesNo(row)
-        }
-    }
-
-    private func color() {
-        if let dict: NSDictionary = ViewControllerReference.shared.scheduledTask {
-            if let hiddenID: Int = dict.value(forKey: "hiddenID") as? Int {
-                self.colorindex = hiddenID
-            } else {
-                self.colorindex = nil
-            }
         }
     }
 
@@ -359,7 +369,6 @@ extension ViewControllertabSchedule: Reloadandrefresh {
         self.infoschedulessorted = InfoScheduleSortedAndExpand(sortedandexpanded: self.schedulessorted)
         self.firstScheduledTask.stringValue = self.infoschedulessorted!.whenIsNextTwoTasksString()[0]
         self.secondScheduledTask.stringValue = self.infoschedulessorted!.whenIsNextTwoTasksString()[1]
-        self.color()
         globalMainQueue.async(execute: { () -> Void in
             self.mainTableView.reloadData()
         })
