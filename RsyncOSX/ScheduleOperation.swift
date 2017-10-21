@@ -65,10 +65,10 @@ final class ScheduleOperation: SetSchedules {
     private var scheduledJobs: ScheduleSortedAndExpand?
     private var infoschedulessorted: InfoScheduleSortedAndExpand?
     private var waitForTask: Timer?
-    private var queue: OperationQueue?
+    // private var queue: OperationQueue?
     private var secondsToWait: Double?
 
-    @objc private func startJob() {
+    @objc private func executetask() {
         // Start the task in BackgroundQueue
         // The Process itself is executed in GlobalMainQueue
         globalBackgroundQueue.async(execute: {
@@ -95,7 +95,7 @@ final class ScheduleOperation: SetSchedules {
                 guard self.secondsToWait != nil else { return }
                 self.waitForTask = Timer.scheduledTimer(timeInterval: self.secondsToWait!,
                                                         target: self,
-                                                        selector: #selector(startJob),
+                                                        selector: #selector(executetask),
                                                         userInfo: nil, repeats: false)
                 // Set reference to Timer that kicks of the Scheduled job
                 // Reference is set for cancel job if requiered
