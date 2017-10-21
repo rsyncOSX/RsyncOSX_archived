@@ -19,7 +19,30 @@ protocol SetProfileinfo: class {
     func setprofile(profile: String, color: NSColor)
 }
 
-class ViewControllertabSchedule: NSViewController, SetConfigurations, SetSchedules, NextTask {
+protocol Coloractivetask {
+    var colorindex: Int? { get }
+}
+
+extension Coloractivetask {
+
+    var colorindex: Int? {
+        return self.color()
+    }
+
+    func color() -> Int? {
+        if let dict: NSDictionary = ViewControllerReference.shared.scheduledTask {
+            if let hiddenID: Int = dict.value(forKey: "hiddenID") as? Int {
+                return hiddenID
+            } else {
+                return nil
+            }
+        } else {
+            return nil
+        }
+    }
+}
+
+class ViewControllertabSchedule: NSViewController, SetConfigurations, SetSchedules, NextTask, Coloractivetask {
 
     // Main tableview
     @IBOutlet weak var mainTableView: NSTableView!
@@ -31,8 +54,6 @@ class ViewControllertabSchedule: NSViewController, SetConfigurations, SetSchedul
     private var schedulessorted: ScheduleSortedAndExpand?
     private var infoschedulessorted: InfoScheduleSortedAndExpand?
     var tools: Tools?
-    // Color row
-    private var colorindex: Int?
 
     // Information Schedule details
     // self.presentViewControllerAsSheet(self.ViewControllerScheduleDetails)
@@ -185,7 +206,6 @@ class ViewControllertabSchedule: NSViewController, SetConfigurations, SetSchedul
         })
         self.infonexttask()
         self.startTimer()
-        self.color()
     }
 
     // Start timer
@@ -317,16 +337,6 @@ extension ViewControllertabSchedule: NSTableViewDelegate {
         }
     }
 
-    private func color() {
-        if let dict: NSDictionary = ViewControllerReference.shared.scheduledTask {
-            if let hiddenID: Int = dict.value(forKey: "hiddenID") as? Int {
-                self.colorindex = hiddenID
-            } else {
-                self.colorindex = nil
-            }
-        }
-    }
-
 }
 
 extension  ViewControllertabSchedule: GetHiddenID {
@@ -359,7 +369,6 @@ extension ViewControllertabSchedule: Reloadandrefresh {
         self.infoschedulessorted = InfoScheduleSortedAndExpand(sortedandexpanded: self.schedulessorted)
         self.firstScheduledTask.stringValue = self.infoschedulessorted!.whenIsNextTwoTasksString()[0]
         self.secondScheduledTask.stringValue = self.infoschedulessorted!.whenIsNextTwoTasksString()[1]
-        self.color()
         globalMainQueue.async(execute: { () -> Void in
             self.mainTableView.reloadData()
         })
