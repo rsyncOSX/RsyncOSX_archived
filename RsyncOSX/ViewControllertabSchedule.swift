@@ -291,7 +291,7 @@ extension ViewControllertabSchedule: NSTableViewDelegate {
         var text: String?
         var schedule: Bool = false
         var number: Int?
-        var number2: String?
+        var taskintime: String?
         let hiddenID: Int = (object.value(forKey: "hiddenID") as? Int)!
         if self.schedules?.hiddenIDinSchedule(hiddenID) ?? false {
             text = object[tableColumn!.identifier] as? String
@@ -305,8 +305,8 @@ extension ViewControllertabSchedule: NSTableViewDelegate {
             return "localhost"
         } else if tableColumn!.identifier.rawValue == "inCellID" {
             if self.schedulessorted != nil {
-                number2 = self.schedulessorted!.sortandcountallscheduledtasks(hiddenID)
-                return number2 ?? ""
+                taskintime = self.schedulessorted!.sortandcountallscheduledtasks(hiddenID)
+                return taskintime ?? ""
             }
         } else {
             if self.schedulessorted != nil {

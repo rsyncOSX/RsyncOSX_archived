@@ -145,7 +145,7 @@ class ScheduleSortedAndExpand: SetConfigurations, SetSchedules {
                 }
             }
             guard sorted.count > 0 else {
-                return "0"
+                return ""
             }
             let firsttask = (sorted[0].value(forKey: "start") as? Date)?.timeIntervalSinceNow
             let tst = self.tools?.timeString(firsttask!)
