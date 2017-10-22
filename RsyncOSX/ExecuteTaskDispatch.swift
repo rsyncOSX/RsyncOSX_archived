@@ -23,7 +23,7 @@ class ExecuteTaskDispatch: SetSchedules, SetConfigurations, ScheduledTask {
     var arguments: Array<String>?
     var config: Configuration?
 
-    private func execute() {
+    private func executeTaskDispatch() {
         // Get the first job of the queue
         if let dict: NSDictionary = ViewControllerReference.shared.scheduledTask {
             if let hiddenID: Int = dict.value(forKey: "hiddenID") as? Int {
@@ -54,6 +54,6 @@ class ExecuteTaskDispatch: SetSchedules, SetConfigurations, ScheduledTask {
     }
 
     init () {
-       self.execute()
+       self.executeTaskDispatch()
     }
 }
