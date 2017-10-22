@@ -8,13 +8,19 @@
 
 import Foundation
 
-class ScheduleOperation2: SetSchedules {
+class OperationFactory {
 
-    // We keep track of the pending work item as a property
+    private var factory: Int?
+
+    init(factory: Int) {
+        self.factory = factory
+    }
+}
+
+class ScheduleOperation2: SetSchedules, SecondsBeforeStart {
+
     private var pendingRequestWorkItem: DispatchWorkItem?
-    private var scheduledJobs: ScheduleSortedAndExpand?
-    private var infoschedulessorted: InfoScheduleSortedAndExpand?
-    private var secondsToWait: Double?
+    private var timereTaskWaiting: Double?
 
     private func executetask() {
         globalBackgroundQueue.async(execute: {
@@ -31,31 +37,14 @@ class ScheduleOperation2: SetSchedules {
             self.executetask()
         }
         self.pendingRequestWorkItem = requestWorkItem
-        DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(seconds),
-                                      execute: self.pendingRequestWorkItem!)
+        DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(seconds), execute: self.pendingRequestWorkItem!)
     }
 
     init () {
-        // Cancel any current job waiting for execution
         if self.schedules != nil {
-            self.schedules!.cancelJobWaiting()
-            // Create a new Schedules object
-            self.scheduledJobs = ScheduleSortedAndExpand()
-            self.infoschedulessorted = InfoScheduleSortedAndExpand(sortedandexpanded: scheduledJobs)
-            // Removes the job of the stack
-            if let dict = self.scheduledJobs!.allscheduledtasks() {
-                let dateStart: Date = (dict.value(forKey: "start") as? Date)!
-                self.secondsToWait = Tools().timeDoubleSeconds(dateStart, enddate: nil)
-                guard self.secondsToWait != nil else { return }
-
-                self.initiate(Int(self.secondsToWait!))
-
-                // Reference is set for cancel job if requiered
-                // self.schedules!.setJobWaiting(timer: self.waitForTask!)
-            } else {
-                // No jobs to execute, no need to keep reference to object
-                self.scheduledJobs = nil
-            }
+            let seconds = self.secondsbeforestart()
+            guard seconds > 0 else { return }
+            self.initiate(Int(seconds))
         }
     }
 }

@@ -552,7 +552,7 @@ class ViewControllertabMain: NSViewController, ReloadTable, Deselect, Coloractiv
             self.schedules = Schedules(profile: nil)
             return
         }
-        self.schedules?.cancelJobWaiting()
+        self.schedules?.cancelTaskWaiting()
         if let profile = self.configurations!.getProfile() {
             self.schedules = nil
             self.schedules = Schedules(profile: profile)
@@ -564,7 +564,7 @@ class ViewControllertabMain: NSViewController, ReloadTable, Deselect, Coloractiv
         self.infoschedulessorted = nil
         self.schedulessorted = ScheduleSortedAndExpand()
         self.infoschedulessorted = InfoScheduleSortedAndExpand(sortedandexpanded: self.schedulessorted)
-        self.schedules?.scheduledTask = self.schedulessorted?.allscheduledtasks()
+        self.schedules?.scheduledTasks = self.schedulessorted?.allscheduledtasks()
         ViewControllerReference.shared.scheduledTask = self.schedulessorted?.allscheduledtasks()
     }
 
@@ -1178,14 +1178,14 @@ extension ViewControllertabMain: GetSchedulesObject {
     }
 
     func createschedulesobject(profile: String?) -> Schedules? {
-        self.schedules?.cancelJobWaiting()
+        self.schedules?.cancelTaskWaiting()
         self.schedules = nil
         self.schedules = Schedules(profile: profile)
         self.schedulessorted = nil
         self.infoschedulessorted = nil
         self.schedulessorted = ScheduleSortedAndExpand()
         self.infoschedulessorted = InfoScheduleSortedAndExpand(sortedandexpanded: self.schedulessorted)
-        self.schedules?.scheduledTask = self.schedulessorted?.allscheduledtasks()
+        self.schedules?.scheduledTasks = self.schedulessorted?.allscheduledtasks()
         ViewControllerReference.shared.scheduledTask = self.schedulessorted?.allscheduledtasks()
         return self.schedules
     }

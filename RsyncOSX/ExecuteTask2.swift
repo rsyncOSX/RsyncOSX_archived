@@ -22,7 +22,7 @@ class ExecuteTask2: SetSchedules, SetConfigurations, ScheduledTask {
     let output = OutputProcess()
     var arguments: Array<String>?
     var config: Configuration?
-    
+
     private func execute() {
         // Get the first job of the queue
         if let dict: NSDictionary = ViewControllerReference.shared.scheduledTask {

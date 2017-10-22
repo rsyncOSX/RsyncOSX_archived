@@ -5,6 +5,7 @@
 //  Created by Thomas Evensen on 07/05/16.
 //  Copyright © 2016 Thomas Evensen. All rights reserved.
 //
+// swiftlint:disable line_length
 
 import Foundation
 
@@ -38,7 +39,6 @@ protocol ScheduledTaskWorking: class {
 
 protocol ScheduledTask {
     weak var scheduleJob: ScheduledTaskWorking? { get }
-    func notify(config: Configuration?)
 }
 
 extension ScheduledTask {
@@ -51,6 +51,22 @@ extension ScheduledTask {
     }
 }
 
+protocol SecondsBeforeStart {
+    func secondsbeforestart() -> Double
+}
+
+extension SecondsBeforeStart {
+     func secondsbeforestart() -> Double {
+        var secondsToWait: Double?
+        let scheduledJobs = ScheduleSortedAndExpand()
+        if let dict = scheduledJobs.allscheduledtasks() {
+            let dateStart: Date = (dict.value(forKey: "start") as? Date)!
+            secondsToWait = Tools().timeDoubleSeconds(dateStart, enddate: nil)
+        }
+        return secondsToWait ?? 0
+    }
+}
+
 // Class for creating and preparing the scheduled task
 // The class set up a Timer for waiting for the first task to be
 // executed. The class creates a object holding all jobs in
@@ -60,13 +76,9 @@ extension ScheduledTask {
 // time is due it create a Operation object and dump the object onto the 
 // OperationQueue for imidiate execution.
 
-final class ScheduleOperation: SetSchedules {
+final class ScheduleOperation: SetSchedules, SecondsBeforeStart {
 
-    private var scheduledJobs: ScheduleSortedAndExpand?
-    private var infoschedulessorted: InfoScheduleSortedAndExpand?
-    private var waitForTask: Timer?
-    // private var queue: OperationQueue?
-    private var secondsToWait: Double?
+    private var timereTaskWaiting: Timer?
 
     @objc private func executetask() {
         // Start the task in BackgroundQueue
@@ -82,28 +94,14 @@ final class ScheduleOperation: SetSchedules {
     }
 
     init () {
-        // Cancel any current job waiting for execution
         if self.schedules != nil {
-            self.schedules!.cancelJobWaiting()
-            // Create a new Schedules object
-            self.scheduledJobs = ScheduleSortedAndExpand()
-            self.infoschedulessorted = InfoScheduleSortedAndExpand(sortedandexpanded: scheduledJobs)
-            // Removes the job of the stack
-            if let dict = self.scheduledJobs!.allscheduledtasks() {
-                let dateStart: Date = (dict.value(forKey: "start") as? Date)!
-                self.secondsToWait = Tools().timeDoubleSeconds(dateStart, enddate: nil)
-                guard self.secondsToWait != nil else { return }
-                self.waitForTask = Timer.scheduledTimer(timeInterval: self.secondsToWait!,
-                                                        target: self,
-                                                        selector: #selector(executetask),
-                                                        userInfo: nil, repeats: false)
-                // Set reference to Timer that kicks of the Scheduled job
-                // Reference is set for cancel job if requiered
-                self.schedules!.setJobWaiting(timer: self.waitForTask!)
-            } else {
-                // No jobs to execute, no need to keep reference to object
-                self.scheduledJobs = nil
-            }
+            // Cancel any current job waiting for execution
+            self.schedules!.cancelTaskWaiting()
+            let seconds = self.secondsbeforestart()
+            guard seconds > 0 else { return }
+            self.timereTaskWaiting = Timer.scheduledTimer(timeInterval: seconds, target: self, selector: #selector(executetask),
+                                                    userInfo: nil, repeats: false)
+            self.schedules!.setTimerTaskWaiting(timer: self.timereTaskWaiting!)
         }
     }
 }
