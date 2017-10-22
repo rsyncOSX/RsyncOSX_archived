@@ -5,6 +5,7 @@
 //  Created by Thomas Evensen on 24/08/2016.
 //  Copyright © 2016 Thomas Evensen. All rights reserved.
 //
+// swiftlint:disable cyclomatic_complexity
 
 import Foundation
 
@@ -46,6 +47,18 @@ final class Userconfiguration {
                 ViewControllerReference.shared.rsyncerror = true
             } else {
                 ViewControllerReference.shared.rsyncerror = false
+            }
+        }
+        // Operation object
+        // Default is dispatch
+        if let operation = dict.value(forKey: "operation") as? String {
+            switch operation {
+            case "dispatch":
+                ViewControllerReference.shared.operation = .dispatch
+            case "timer":
+                ViewControllerReference.shared.operation = .timer
+            default:
+                ViewControllerReference.shared.operation = .dispatch
             }
         }
     }

@@ -47,10 +47,11 @@ class ViewControllerReference {
     var restorePath: String?
     // Allow rsync error
     var rsyncerror: Bool = true
-
+    // Kind of Operation method. eiher Timer or DispatchWork
+    var operation: OperationObject = .dispatch
     // Reference to the Operation object
     // Reference is set in when Scheduled task is executed
-    var operation: CompleteScheduledOperation?
+    var completeoperation: CompleteScheduledOperation?
 
     // Reference to main View
     private var viewControllertabMain: NSViewController?
