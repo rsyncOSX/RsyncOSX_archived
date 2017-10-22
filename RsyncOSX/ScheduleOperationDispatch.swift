@@ -12,22 +12,13 @@ class ScheduleOperationDispatch: SetSchedules, SecondsBeforeStart {
 
     private var pendingRequestWorkItem: DispatchWorkItem?
 
-    private func executetask() {
-        globalBackgroundQueue.async(execute: {
-            _ = ExecuteTaskDispatch()
-        })
-    }
-
-    private func cancel() {
-        self.pendingRequestWorkItem?.cancel()
-    }
-
     private func dispatchtask(_ seconds: Int) {
-        let requestWorkItem = DispatchWorkItem {
-            self.executetask()
+
+        let scheduledtask = DispatchWorkItem { [weak self] in
+            _ = ExecuteTaskDispatch()
         }
-        self.pendingRequestWorkItem = requestWorkItem
-        DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(seconds), execute: self.pendingRequestWorkItem!)
+        self.pendingRequestWorkItem = scheduledtask
+        DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(seconds), execute: scheduledtask)
     }
 
    func initiate() {
