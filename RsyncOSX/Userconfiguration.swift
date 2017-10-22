@@ -5,6 +5,7 @@
 //  Created by Thomas Evensen on 24/08/2016.
 //  Copyright © 2016 Thomas Evensen. All rights reserved.
 //
+// swiftlint:disable cyclomatic_complexity line_length
 
 import Foundation
 
@@ -48,6 +49,18 @@ final class Userconfiguration {
                 ViewControllerReference.shared.rsyncerror = false
             }
         }
+        // Operation object
+        // Default is dispatch
+        if let operation = dict.value(forKey: "operation") as? String {
+            switch operation {
+            case "dispatch":
+                ViewControllerReference.shared.operation = .dispatch
+            case "timer":
+                ViewControllerReference.shared.operation = .timer
+            default:
+                ViewControllerReference.shared.operation = .dispatch
+            }
+        }
     }
 
     init (userconfigRsyncOSX: [NSDictionary]) {
@@ -55,8 +68,7 @@ final class Userconfiguration {
             self.readUserconfiguration(dict: userconfigRsyncOSX[0])
         }
         // If userconfiguration is read from disk update info in main view
-        self.rsyncchangedDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain)
-            as? ViewControllertabMain
+        self.rsyncchangedDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllertabMain
         self.rsyncchangedDelegate?.rsyncchanged()
         // Check for rsync
         Tools().verifyrsyncpath()

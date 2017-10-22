@@ -5,6 +5,7 @@
 //  Created by Thomas Evensen on 30/08/2016.
 //  Copyright © 2016 Thomas Evensen. All rights reserved.
 //
+// swiftlint:disable line_length
 
 import Foundation
 import Cocoa
@@ -17,7 +18,6 @@ protocol RsyncChanged : class {
 
 protocol NewRsync {
     weak var newRsyncDelegate: RsyncChanged? {get}
-    func newrsync()
 }
 
 extension NewRsync {
@@ -30,10 +30,14 @@ extension NewRsync {
     }
 }
 
+protocol OperationChanged: class {
+    func operationsmethod()
+}
 class ViewControllerUserconfiguration: NSViewController, NewRsync, SetDismisser {
 
     var storageapi: PersistentStorageAPI?
     var dirty: Bool = false
+    weak var operationchangeDelegate: OperationChanged?
 
     @IBOutlet weak var rsyncPath: NSTextField!
     @IBOutlet weak var version3rsync: NSButton!
@@ -41,6 +45,7 @@ class ViewControllerUserconfiguration: NSViewController, NewRsync, SetDismisser 
     @IBOutlet weak var noRsync: NSTextField!
     @IBOutlet weak var rsyncerror: NSButton!
     @IBOutlet weak var restorePath: NSTextField!
+    @IBOutlet weak var operation: NSButton!
 
     @IBAction func toggleversion3rsync(_ sender: NSButton) {
         if self.version3rsync.state == .on {
@@ -90,6 +95,17 @@ class ViewControllerUserconfiguration: NSViewController, NewRsync, SetDismisser 
         } else {
             ViewControllerReference.shared.rsyncerror = false
         }
+        self.dirty = true
+    }
+
+    @IBAction func toggleOperation(_ sender: NSButton) {
+        if self.operation.state == .on {
+            ViewControllerReference.shared.operation = .dispatch
+        } else {
+            ViewControllerReference.shared.operation = .timer
+        }
+        self.operationchangeDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabschedule) as? ViewControllertabSchedule
+        self.operationchangeDelegate?.operationsmethod()
         self.dirty = true
     }
 
@@ -179,6 +195,12 @@ class ViewControllerUserconfiguration: NSViewController, NewRsync, SetDismisser 
             self.restorePath.stringValue = ViewControllerReference.shared.restorePath!
         } else {
             self.restorePath.stringValue = ""
+        }
+        switch ViewControllerReference.shared.operation {
+        case .dispatch:
+            self.operation.state = .on
+        case .timer:
+            self.operation.state = .off
         }
     }
 

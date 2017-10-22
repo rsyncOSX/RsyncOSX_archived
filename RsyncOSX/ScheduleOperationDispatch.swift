@@ -44,11 +44,11 @@ class ScheduleOperationDispatch: SetSchedules, SecondsBeforeStart {
         })
     }
 
-    func cancel() {
+    private func cancel() {
         self.pendingRequestWorkItem?.cancel()
     }
 
-    func dispatchtask(_ seconds: Int) {
+    private func dispatchtask(_ seconds: Int) {
         let requestWorkItem = DispatchWorkItem {
             self.executetask()
         }

@@ -27,6 +27,7 @@ final class PersistentStorageUserconfiguration: Readwritefiles, SetConfiguration
         var rsyncPath: String?
         var rsyncerror: Int?
         var restorePath: String?
+
         if self.configurations!.rsyncVer3 {
             version3Rsync = 1
         } else {
@@ -48,6 +49,7 @@ final class PersistentStorageUserconfiguration: Readwritefiles, SetConfiguration
         } else {
             rsyncerror = 0
         }
+
         var array = Array<NSDictionary>()
         let dict: NSMutableDictionary = [
             "version3Rsync": version3Rsync! as Int,
@@ -59,6 +61,13 @@ final class PersistentStorageUserconfiguration: Readwritefiles, SetConfiguration
         }
         if restorePath != nil {
             dict.setObject(restorePath!, forKey: "restorePath" as NSCopying)
+        }
+
+        switch self.configurations!.operation {
+        case .dispatch:
+            dict.setObject("dispatch", forKey: "operation" as NSCopying)
+        case .timer:
+            dict.setObject("timer", forKey: "operation" as NSCopying)
         }
         array.append(dict)
         self.writeToStore(array)
