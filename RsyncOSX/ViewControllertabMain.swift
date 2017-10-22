@@ -401,8 +401,7 @@ class ViewControllertabMain: NSViewController, ReloadTable, Deselect, Coloractiv
         // configurations and schedules
         self.createandreloadconfigurations()
         self.createandloadschedules()
-        // Start waiting for next Scheduled job (if any)
-        _ = OperationFactory(factory: self.configurations!.operation).initiate()
+        self.startanyscheduledtask()
     }
 
     override func viewDidAppear() {
@@ -749,7 +748,7 @@ extension ViewControllertabMain: NewProfile {
         self.reloadtable(vcontroller: .vctabschedule)
         self.deselectrowtable(vcontroller: .vctabschedule)
         // We have to start any Scheduled process again - if any
-        _ = OperationFactory(factory: self.configurations!.operation).initiate()
+        self.startanyscheduledtask()
     }
 
     func enableProfileMenu() {

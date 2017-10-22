@@ -154,7 +154,6 @@ class ViewControllertabSchedule: NSViewController, SetConfigurations, SetSchedul
         let answer = Alerts.dialogOKCancel("Add Schedule?", text: "Cancel or OK")
         if answer {
             self.schedules!.addschedule(self.hiddenID!, schedule: schedule, start: startdate, stop: stopdate)
-            self.nexttask()
             self.infonexttask()
             self.startTimer()
         }
