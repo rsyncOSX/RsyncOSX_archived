@@ -37,7 +37,6 @@ class OperationFactory {
 class ScheduleOperationDispatch: SetSchedules, SecondsBeforeStart {
 
     private var pendingRequestWorkItem: DispatchWorkItem?
-    private var timereTaskWaiting: Double?
 
     private func executetask() {
         globalBackgroundQueue.async(execute: {
