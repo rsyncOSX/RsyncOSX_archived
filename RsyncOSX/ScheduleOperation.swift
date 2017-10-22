@@ -95,14 +95,14 @@ final class ScheduleOperation: SetSchedules, SecondsBeforeStart {
         })
     }
 
-    init () {
+    func initiate() {
         if self.schedules != nil {
             // Cancel any current job waiting for execution
             self.schedules!.cancelTaskWaiting()
             let seconds = self.secondsbeforestart()
             guard seconds > 0 else { return }
             self.timereTaskWaiting = Timer.scheduledTimer(timeInterval: seconds, target: self, selector: #selector(executetask),
-                                                    userInfo: nil, repeats: false)
+                                                          userInfo: nil, repeats: false)
             self.schedules!.setTimerTaskWaiting(timer: self.timereTaskWaiting!)
         }
     }
