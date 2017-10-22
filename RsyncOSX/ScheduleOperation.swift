@@ -78,7 +78,7 @@ extension SecondsBeforeStart {
 // time is due it create a Operation object and dump the object onto the 
 // OperationQueue for imidiate execution.
 
-final class ScheduleOperation: SetSchedules, SecondsBeforeStart {
+final class ScheduleOperationTimer: SetSchedules, SecondsBeforeStart {
 
     private var timereTaskWaiting: Timer?
 
