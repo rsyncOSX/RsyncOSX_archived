@@ -402,7 +402,7 @@ class ViewControllertabMain: NSViewController, ReloadTable, Deselect, Coloractiv
         self.createandreloadconfigurations()
         self.createandloadschedules()
         // Start waiting for next Scheduled job (if any)
-        _ = ScheduleOperation()
+        _ = OperationFactory(factory: .timer).initiate()
     }
 
     override func viewDidAppear() {
@@ -719,7 +719,7 @@ extension ViewControllertabMain: GetSelecetedIndex {
 extension ViewControllertabMain: StartNextTask {
 
     func startanyscheduledtask() {
-        _ = ScheduleOperation()
+        _ = OperationFactory(factory: .timer).initiate()
     }
 }
 
@@ -749,7 +749,7 @@ extension ViewControllertabMain: NewProfile {
         self.reloadtable(vcontroller: .vctabschedule)
         self.deselectrowtable(vcontroller: .vctabschedule)
         // We have to start any Scheduled process again - if any
-        _ = ScheduleOperation()
+        _ = OperationFactory(factory: .timer).initiate()
     }
 
     func enableProfileMenu() {
