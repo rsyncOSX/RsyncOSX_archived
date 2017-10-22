@@ -25,7 +25,7 @@ final class ScheduleOperationTimer: SetSchedules, SecondsBeforeStart {
     @objc private func executetask() {
         // Start the task in BackgroundQueue
         // The Process itself is executed in GlobalMainQueue
-        globalBackgroundQueue.async(execute: {
+        globalBackgroundQueue.async(execute: { [weak self] in
             let queue = OperationQueue()
             // Create the Operation object which executes the scheduled job
             let task = ExecuteTaskTimer()
