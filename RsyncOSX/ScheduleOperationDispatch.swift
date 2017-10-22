@@ -8,32 +8,6 @@
 
 import Foundation
 
-enum OperationObject {
-    case timer
-    case dispatch
-}
-class OperationFactory {
-
-    private var factory: OperationObject?
-    var operationTimer: ScheduleOperation?
-    var operationDispatch: ScheduleOperationDispatch?
-
-    func initiate() {
-        switch self.factory! {
-        case .timer:
-            self.operationTimer = ScheduleOperation()
-            self.operationTimer?.initiate()
-        case .dispatch:
-            self.operationDispatch = ScheduleOperationDispatch()
-            self.operationDispatch?.initiate()
-        }
-    }
-
-    init(factory: OperationObject) {
-        self.factory = factory
-    }
-}
-
 class ScheduleOperationDispatch: SetSchedules, SecondsBeforeStart {
 
     private var pendingRequestWorkItem: DispatchWorkItem?

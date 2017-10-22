@@ -17,7 +17,7 @@ import Foundation
 // is set in the static object. The finalize object is invoked
 // when the job discover (observs) the termination of the process.
 
-class ExecuteTask: Operation, SetSchedules, SetConfigurations, ScheduledTask {
+class ExecuteTaskTimer: Operation, SetSchedules, SetConfigurations, ScheduledTask {
 
     override func main() {
 
