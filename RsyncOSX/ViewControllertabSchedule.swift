@@ -82,6 +82,7 @@ class ViewControllertabSchedule: NSViewController, SetConfigurations, SetSchedul
     @IBOutlet weak var secondRemoteServer: NSTextField!
     @IBOutlet weak var firstLocalCatalog: NSTextField!
     @IBOutlet weak var secondLocalCatalog: NSTextField!
+    @IBOutlet weak var operation: NSTextField!
 
     @IBAction func once(_ sender: NSButton) {
         let startdate: Date = Date()
@@ -204,6 +205,16 @@ class ViewControllertabSchedule: NSViewController, SetConfigurations, SetSchedul
         })
         self.infonexttask()
         self.startTimer()
+        self.operationsmethod()
+    }
+
+    private func operationsmethod() {
+        switch self.configurations!.operation {
+        case .dispatch:
+            self.operation.stringValue = "Operation method: dispatch"
+        case .timer:
+            self.operation.stringValue = "Operation method: timer"
+        }
     }
 
     // Start timer
@@ -351,6 +362,7 @@ extension ViewControllertabSchedule: DismissViewController {
             self.mainTableView.reloadData()
         })
         self.infonexttask()
+        self.operationsmethod()
     }
 }
 
