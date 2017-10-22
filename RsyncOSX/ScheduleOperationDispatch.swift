@@ -58,9 +58,11 @@ class ScheduleOperationDispatch: SetSchedules, SecondsBeforeStart {
 
    func initiate() {
     if self.schedules != nil {
+        self.schedules!.cancelTaskWaiting()
         let seconds = self.secondsbeforestart()
         guard seconds > 0 else { return }
         self.dispatchtask(Int(seconds))
+        self.schedules!.setDispatchTaskWaiting(taskitem: self.pendingRequestWorkItem!)
         }
     }
 

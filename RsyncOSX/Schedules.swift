@@ -37,7 +37,8 @@ protocol GetSchedulesObject: class {
 
 class Schedules: ScheduleWriteLoggData {
 
-    private var timereTaskWaiting: Timer?
+    private var timerTaskWaiting: Timer?
+    private var dispatchTaskWaiting: DispatchWorkItem?
     var scheduledTasks: NSDictionary?
     var profile: String?
 
@@ -51,13 +52,19 @@ class Schedules: ScheduleWriteLoggData {
     /// Used to invalidate timer (cancel waiting job)
     /// - parameter timer: the NSTimer object
     func setTimerTaskWaiting (timer: Timer) {
-        self.timereTaskWaiting = timer
+        self.timerTaskWaiting = timer
+    }
+
+    func setDispatchTaskWaiting(taskitem: DispatchWorkItem) {
+        self.dispatchTaskWaiting = taskitem
     }
 
     /// Function for canceling next job waiting for execution.
     func cancelTaskWaiting() {
-        self.timereTaskWaiting?.invalidate()
-        self.timereTaskWaiting = nil
+        self.timerTaskWaiting?.invalidate()
+        self.timerTaskWaiting = nil
+        self.dispatchTaskWaiting?.cancel()
+        self.dispatchTaskWaiting = nil
     }
 
     /// Function adds new Shcedules (plans). Functions writes
