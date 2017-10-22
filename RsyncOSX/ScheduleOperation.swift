@@ -88,7 +88,7 @@ final class ScheduleOperationTimer: SetSchedules, SecondsBeforeStart {
         globalBackgroundQueue.async(execute: {
             let queue = OperationQueue()
             // Create the Operation object which executes the scheduled job
-            let task = ExecuteTask()
+            let task = ExecuteTaskTimer()
             // Add the Operation object to the queue for execution.
             // The queue executes the main() task whenever everything is ready for execution
             queue.addOperation(task)
