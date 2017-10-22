@@ -5,6 +5,7 @@
 //  Created by Thomas Evensen on 30/08/2016.
 //  Copyright © 2016 Thomas Evensen. All rights reserved.
 //
+// swiftlint:disable line_length
 
 import Foundation
 import Cocoa
@@ -29,10 +30,14 @@ extension NewRsync {
     }
 }
 
+protocol OperationChanged: class {
+    func operationsmethod()
+}
 class ViewControllerUserconfiguration: NSViewController, NewRsync, SetDismisser {
 
     var storageapi: PersistentStorageAPI?
     var dirty: Bool = false
+    weak var operationchangeDelegate: OperationChanged?
 
     @IBOutlet weak var rsyncPath: NSTextField!
     @IBOutlet weak var version3rsync: NSButton!
@@ -99,6 +104,8 @@ class ViewControllerUserconfiguration: NSViewController, NewRsync, SetDismisser 
         } else {
             ViewControllerReference.shared.operation = .timer
         }
+        self.operationchangeDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabschedule) as? ViewControllertabSchedule
+        self.operationchangeDelegate?.operationsmethod()
         self.dirty = true
     }
 

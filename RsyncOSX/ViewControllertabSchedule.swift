@@ -42,7 +42,7 @@ extension Coloractivetask {
     }
 }
 
-class ViewControllertabSchedule: NSViewController, SetConfigurations, SetSchedules, NextTask, Coloractivetask {
+class ViewControllertabSchedule: NSViewController, SetConfigurations, SetSchedules, NextTask, Coloractivetask, OperationChanged {
 
     // Main tableview
     @IBOutlet weak var mainTableView: NSTableView!
@@ -208,7 +208,7 @@ class ViewControllertabSchedule: NSViewController, SetConfigurations, SetSchedul
         self.operationsmethod()
     }
 
-    private func operationsmethod() {
+    internal func operationsmethod() {
         switch ViewControllerReference.shared.operation {
         case .dispatch:
             self.operation.stringValue = "Operation method: dispatch"
