@@ -17,13 +17,13 @@ import Foundation
 // is set in the static object. The finalize object is invoked
 // when the job discover (observs) the termination of the process.
 
-class ExecuteTask: Operation, SetSchedules, SetConfigurations, ScheduledTask {
+class ExecuteTaskDispatch: SetSchedules, SetConfigurations, ScheduledTask {
 
-    override func main() {
+    let output = OutputProcess()
+    var arguments: Array<String>?
+    var config: Configuration?
 
-        let output = OutputProcess()
-        var arguments: Array<String>?
-        var config: Configuration?
+    private func execute() {
         // Get the first job of the queue
         if let dict: NSDictionary = ViewControllerReference.shared.scheduledTask {
             if let hiddenID: Int = dict.value(forKey: "hiddenID") as? Int {
@@ -43,13 +43,17 @@ class ExecuteTask: Operation, SetSchedules, SetConfigurations, ScheduledTask {
                     // Setting reference to finalize the job, finalize job is done when rsynctask ends (in process termination)
                     ViewControllerReference.shared.operation = CompleteScheduledOperation(dict: dict)
                     globalMainQueue.async(execute: {
-                        if arguments != nil {
-                            let process = RsyncScheduled(arguments: arguments)
-                            process.executeProcess(output: output)
+                        if self.arguments != nil {
+                            let process = RsyncScheduled(arguments: self.arguments)
+                            process.executeProcess(output: self.output)
                         }
                     })
                 }
             }
         }
+    }
+
+    init () {
+       self.execute()
     }
 }

@@ -402,7 +402,7 @@ class ViewControllertabMain: NSViewController, ReloadTable, Deselect, Coloractiv
         self.createandreloadconfigurations()
         self.createandloadschedules()
         // Start waiting for next Scheduled job (if any)
-        _ = ScheduleOperation()
+        _ = OperationFactory(factory: .timer).initiate()
     }
 
     override func viewDidAppear() {
@@ -552,7 +552,7 @@ class ViewControllertabMain: NSViewController, ReloadTable, Deselect, Coloractiv
             self.schedules = Schedules(profile: nil)
             return
         }
-        self.schedules?.cancelJobWaiting()
+        self.schedules?.cancelTaskWaiting()
         if let profile = self.configurations!.getProfile() {
             self.schedules = nil
             self.schedules = Schedules(profile: profile)
@@ -564,7 +564,7 @@ class ViewControllertabMain: NSViewController, ReloadTable, Deselect, Coloractiv
         self.infoschedulessorted = nil
         self.schedulessorted = ScheduleSortedAndExpand()
         self.infoschedulessorted = InfoScheduleSortedAndExpand(sortedandexpanded: self.schedulessorted)
-        self.schedules?.scheduledTask = self.schedulessorted?.allscheduledtasks()
+        self.schedules?.scheduledTasks = self.schedulessorted?.allscheduledtasks()
         ViewControllerReference.shared.scheduledTask = self.schedulessorted?.allscheduledtasks()
     }
 
@@ -719,7 +719,7 @@ extension ViewControllertabMain: GetSelecetedIndex {
 extension ViewControllertabMain: StartNextTask {
 
     func startanyscheduledtask() {
-        _ = ScheduleOperation()
+        _ = OperationFactory(factory: .timer).initiate()
     }
 }
 
@@ -749,7 +749,7 @@ extension ViewControllertabMain: NewProfile {
         self.reloadtable(vcontroller: .vctabschedule)
         self.deselectrowtable(vcontroller: .vctabschedule)
         // We have to start any Scheduled process again - if any
-        _ = ScheduleOperation()
+        _ = OperationFactory(factory: .timer).initiate()
     }
 
     func enableProfileMenu() {
@@ -909,9 +909,7 @@ extension ViewControllertabMain: UpdateProgress {
 extension ViewControllertabMain: DeselectRowTable {
     // deselect a row after row is deleted
     func deselect() {
-        guard self.index != nil else {
-            return
-        }
+        guard self.index != nil else { return }
         self.mainTableView.deselectRow(self.index!)
     }
 }
@@ -1180,14 +1178,14 @@ extension ViewControllertabMain: GetSchedulesObject {
     }
 
     func createschedulesobject(profile: String?) -> Schedules? {
-        self.schedules?.cancelJobWaiting()
+        self.schedules?.cancelTaskWaiting()
         self.schedules = nil
         self.schedules = Schedules(profile: profile)
         self.schedulessorted = nil
         self.infoschedulessorted = nil
         self.schedulessorted = ScheduleSortedAndExpand()
         self.infoschedulessorted = InfoScheduleSortedAndExpand(sortedandexpanded: self.schedulessorted)
-        self.schedules?.scheduledTask = self.schedulessorted?.allscheduledtasks()
+        self.schedules?.scheduledTasks = self.schedulessorted?.allscheduledtasks()
         ViewControllerReference.shared.scheduledTask = self.schedulessorted?.allscheduledtasks()
         return self.schedules
     }
