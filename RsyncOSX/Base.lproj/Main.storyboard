@@ -3179,14 +3179,14 @@ DQ
                                 </connections>
                             </button>
                             <box fixedFrame="YES" title="Configurations saved to permanent store" translatesAutoresizingMaskIntoConstraints="NO" id="vgF-FF-cIJ">
-                                <rect key="frame" x="17" y="60" width="467" height="201"/>
+                                <rect key="frame" x="17" y="51" width="467" height="210"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <view key="contentView" id="dSE-x8-8Gm">
-                                    <rect key="frame" x="2" y="2" width="463" height="184"/>
+                                    <rect key="frame" x="2" y="2" width="463" height="193"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="pCc-fa-P8h">
-                                            <rect key="frame" x="36" y="148" width="407" height="18"/>
+                                            <rect key="frame" x="36" y="157" width="407" height="18"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             <buttonCell key="cell" type="check" title=" version 3.1.2 of rsync (set optional path if NOT in /usr/local/bin)" bezelStyle="regularSquare" imagePosition="left" alignment="left" state="on" inset="2" id="f6o-pt-x0z">
                                                 <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
@@ -3197,7 +3197,7 @@ DQ
                                             </connections>
                                         </button>
                                         <textField verticalHuggingPriority="750" fixedFrame="YES" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Raw-fd-DIw">
-                                            <rect key="frame" x="213" y="121" width="228" height="22"/>
+                                            <rect key="frame" x="213" y="130" width="228" height="22"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" alignment="left" bezelStyle="round" id="b2I-ky-1DA">
                                                 <font key="font" metaFont="system"/>
@@ -3206,7 +3206,7 @@ DQ
                                             </textFieldCell>
                                         </textField>
                                         <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dg1-Pc-D5r">
-                                            <rect key="frame" x="36" y="97" width="149" height="18"/>
+                                            <rect key="frame" x="36" y="106" width="149" height="18"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             <buttonCell key="cell" type="check" title=" detailed logging" bezelStyle="regularSquare" imagePosition="left" alignment="left" state="on" inset="2" id="dsn-9I-wI5">
                                                 <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
@@ -3217,7 +3217,7 @@ DQ
                                             </connections>
                                         </button>
                                         <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cK0-aL-8M2">
-                                            <rect key="frame" x="58" y="124" width="155" height="17"/>
+                                            <rect key="frame" x="58" y="133" width="155" height="17"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="left" title="optional path for rsync:" id="m7F-8t-VwR">
                                                 <font key="font" metaFont="system"/>
@@ -3226,7 +3226,7 @@ DQ
                                             </textFieldCell>
                                         </textField>
                                         <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="x5R-hx-ATZ">
-                                            <rect key="frame" x="213" y="37" width="228" height="22"/>
+                                            <rect key="frame" x="213" y="46" width="228" height="22"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" alignment="left" bezelStyle="round" id="bxr-Dx-Wja">
                                                 <font key="font" metaFont="system"/>
@@ -3235,7 +3235,7 @@ DQ
                                             </textFieldCell>
                                         </textField>
                                         <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="nHN-9u-RWb">
-                                            <rect key="frame" x="56" y="40" width="160" height="17"/>
+                                            <rect key="frame" x="56" y="49" width="160" height="17"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="left" title="Temporary path restore:" id="GKP-F2-XbX">
                                                 <font key="font" metaFont="system"/>
@@ -3243,6 +3243,17 @@ DQ
                                                 <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                             </textFieldCell>
                                         </textField>
+                                        <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="lfE-RV-MgW">
+                                            <rect key="frame" x="36" y="17" width="342" height="18"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                            <buttonCell key="cell" type="check" title=" Scheduled tasks (default/on : dispatch, if off: timer) " bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="oRd-hx-waI">
+                                                <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                                <font key="font" metaFont="system"/>
+                                            </buttonCell>
+                                            <connections>
+                                                <action selector="toggleOperation:" target="Psw-ga-cgO" id="gpP-Rx-BiM"/>
+                                            </connections>
+                                        </button>
                                     </subviews>
                                 </view>
                             </box>
@@ -3271,6 +3282,7 @@ DQ
                     <connections>
                         <outlet property="detailedlogging" destination="dg1-Pc-D5r" id="Z5n-3i-nJ1"/>
                         <outlet property="noRsync" destination="MU5-XI-9GS" id="apy-XI-W5g"/>
+                        <outlet property="operation" destination="lfE-RV-MgW" id="kwe-Bo-Rh6"/>
                         <outlet property="restorePath" destination="x5R-hx-ATZ" id="qoy-sV-5fh"/>
                         <outlet property="rsyncPath" destination="Raw-fd-DIw" id="9MU-5e-zvh"/>
                         <outlet property="rsyncerror" destination="1oq-7z-Ctu" id="E3s-SB-4qE"/>

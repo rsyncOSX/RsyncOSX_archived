@@ -209,7 +209,7 @@ class ViewControllertabSchedule: NSViewController, SetConfigurations, SetSchedul
     }
 
     private func operationsmethod() {
-        switch self.configurations!.operation {
+        switch ViewControllerReference.shared.operation {
         case .dispatch:
             self.operation.stringValue = "Operation method: dispatch"
         case .timer:

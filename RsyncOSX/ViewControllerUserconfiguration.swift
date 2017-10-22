@@ -17,7 +17,6 @@ protocol RsyncChanged : class {
 
 protocol NewRsync {
     weak var newRsyncDelegate: RsyncChanged? {get}
-    func newrsync()
 }
 
 extension NewRsync {
@@ -41,6 +40,7 @@ class ViewControllerUserconfiguration: NSViewController, NewRsync, SetDismisser 
     @IBOutlet weak var noRsync: NSTextField!
     @IBOutlet weak var rsyncerror: NSButton!
     @IBOutlet weak var restorePath: NSTextField!
+    @IBOutlet weak var operation: NSButton!
 
     @IBAction func toggleversion3rsync(_ sender: NSButton) {
         if self.version3rsync.state == .on {
@@ -89,6 +89,15 @@ class ViewControllerUserconfiguration: NSViewController, NewRsync, SetDismisser 
             ViewControllerReference.shared.rsyncerror = true
         } else {
             ViewControllerReference.shared.rsyncerror = false
+        }
+        self.dirty = true
+    }
+
+    @IBAction func toggleOperation(_ sender: NSButton) {
+        if self.operation.state == .on {
+            ViewControllerReference.shared.operation = .dispatch
+        } else {
+            ViewControllerReference.shared.operation = .timer
         }
         self.dirty = true
     }
@@ -179,6 +188,12 @@ class ViewControllerUserconfiguration: NSViewController, NewRsync, SetDismisser 
             self.restorePath.stringValue = ViewControllerReference.shared.restorePath!
         } else {
             self.restorePath.stringValue = ""
+        }
+        switch ViewControllerReference.shared.operation {
+        case .dispatch:
+            self.operation.state = .on
+        case .timer:
+            self.operation.state = .off
         }
     }
 
