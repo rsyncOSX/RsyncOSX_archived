@@ -1,5 +1,5 @@
 //
-//  ScheduleTaskOperation.swift
+//  ScheduleOperation.swift
 //  RsyncOSX
 //
 //  Created by Thomas Evensen on 07/05/16.
@@ -56,6 +56,7 @@ protocol SecondsBeforeStart {
 }
 
 extension SecondsBeforeStart {
+
      func secondsbeforestart() -> Double {
         var secondsToWait: Double?
         let scheduledJobs = ScheduleSortedAndExpand()
@@ -65,6 +66,7 @@ extension SecondsBeforeStart {
         }
         return secondsToWait ?? 0
     }
+
 }
 
 // Class for creating and preparing the scheduled task

@@ -24,7 +24,7 @@ class ScheduleOperation2: SetSchedules, SecondsBeforeStart {
 
     private func executetask() {
         globalBackgroundQueue.async(execute: {
-            _ = ExecuteTask2()
+            _ = ExecuteTaskDispatch()
         })
     }
 
