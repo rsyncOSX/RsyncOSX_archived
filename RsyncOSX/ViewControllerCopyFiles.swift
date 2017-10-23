@@ -10,6 +10,19 @@
 import Foundation
 import Cocoa
 
+protocol Delay {
+    func delayWithSeconds(_ seconds: Double, completion: @escaping () -> Void)
+}
+
+extension Delay {
+
+    func delayWithSeconds(_ seconds: Double, completion: @escaping () -> Void) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + seconds) {
+            completion()
+        }
+    }
+}
+
 protocol SetIndex: class {
     func setIndex(index: Int)
 }
@@ -18,7 +31,7 @@ protocol GetSource: class {
     func getSource(index: Int)
 }
 
-class ViewControllerCopyFiles: NSViewController, SetConfigurations, GetIndex {
+class ViewControllerCopyFiles: NSViewController, SetConfigurations, GetIndex, Delay {
 
     var copyFiles: CopyFiles?
     var index: Int?
@@ -185,22 +198,26 @@ class ViewControllerCopyFiles: NSViewController, SetConfigurations, GetIndex {
             self.copyFiles!.executeRsync(remotefile: remoteCatalog!.stringValue, localCatalog: localCatalog!.stringValue, dryrun: false)
         }
     }
+    
+    var test: DispatchWorkItem?
 }
 
 extension ViewControllerCopyFiles: NSSearchFieldDelegate {
 
     override func controlTextDidChange(_ obj: Notification) {
-        let filterstring = self.search.stringValue
-        if filterstring.isEmpty {
-            globalMainQueue.async(execute: { () -> Void in
-                self.tabledata = self.copyFiles?.filter(search: nil)
-                self.tableViewSelect.reloadData()
-            })
-        } else {
-            globalMainQueue.async(execute: { () -> Void in
-                self.tabledata = self.copyFiles?.filter(search: filterstring)
-                self.tableViewSelect.reloadData()
-            })
+        self.delayWithSeconds(0.25) {
+            let filterstring = self.search.stringValue
+            if filterstring.isEmpty {
+                globalMainQueue.async(execute: { () -> Void in
+                    self.tabledata = self.copyFiles?.filter(search: nil)
+                    self.tableViewSelect.reloadData()
+                })
+            } else {
+                globalMainQueue.async(execute: { () -> Void in
+                    self.tabledata = self.copyFiles?.filter(search: filterstring)
+                    self.tableViewSelect.reloadData()
+                })
+            }
         }
     }
 
