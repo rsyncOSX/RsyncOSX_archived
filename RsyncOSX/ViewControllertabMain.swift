@@ -551,7 +551,7 @@ class ViewControllertabMain: NSViewController, ReloadTable, Deselect, Coloractiv
             self.schedules = Schedules(profile: nil)
             return
         }
-        self.schedules?.cancelTaskWaiting()
+        // self.schedules?.cancelTaskWaiting()
         if let profile = self.configurations!.getProfile() {
             self.schedules = nil
             self.schedules = Schedules(profile: profile)
@@ -1178,7 +1178,6 @@ extension ViewControllertabMain: GetSchedulesObject {
     }
 
     func createschedulesobject(profile: String?) -> Schedules? {
-        self.schedules?.cancelTaskWaiting()
         self.schedules = nil
         self.schedules = Schedules(profile: profile)
         self.schedulessorted = nil

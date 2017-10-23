@@ -60,7 +60,7 @@ class Schedules: ScheduleWriteLoggData {
     }
 
     /// Function for canceling next job waiting for execution.
-    func cancelTaskWaiting() {
+    private func cancelTaskWaiting() {
         self.timerTaskWaiting?.invalidate()
         self.timerTaskWaiting = nil
         self.dispatchTaskWaiting?.cancel()
@@ -256,5 +256,10 @@ class Schedules: ScheduleWriteLoggData {
         self.profile = profile
         self.storageapi = PersistentStorageAPI(profile: self.profile)
         self.readschedules()
+    }
+
+    deinit {
+        self.timerTaskWaiting?.invalidate()
+        self.dispatchTaskWaiting?.cancel()
     }
 }
