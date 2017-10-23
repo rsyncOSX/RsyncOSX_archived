@@ -193,6 +193,7 @@ extension ViewControllerBatch: getNewBatchTask {
 
 extension ViewControllerBatch: closeViewError {
     func closeerror() {
+        self.batchTask = nil
         self.abort()
         self.waitToClose?.invalidate()
         self.closeIn?.invalidate()

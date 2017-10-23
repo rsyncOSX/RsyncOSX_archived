@@ -23,7 +23,7 @@ enum BatchViewProgressIndicator {
     case refresh
 }
 
-final class BatchTask: SetSchedules, SetConfigurations {
+final class BatchTask: SetSchedules, SetConfigurations, Delay {
 
     weak var closeviewerrorDelegate: closeViewError?
     // Protocol function used in Process().
@@ -148,12 +148,6 @@ final class BatchTask: SetSchedules, SetConfigurations {
             default :
                 break
             }
-        }
-    }
-
-    func delayWithSeconds(_ seconds: Double, completion: @escaping () -> Void) {
-        DispatchQueue.main.asyncAfter(deadline: .now() + seconds) {
-            completion()
         }
     }
 
