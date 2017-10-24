@@ -6,6 +6,8 @@ This repository is the source code for the macOS app RsyncOSX. RsyncOSX is compi
 
 RsyncOSX is released in version 4.7.5. The major work (refactor) for this version was to remove the singelton objects. And some minor enhancements and bug fixes as well.
 
+The [intro](https://rsyncosx.github.io/Documentation/docs/Intro.html) part (in Documentation) is updated and reflecting the coming version 4.8.0 of RsyncOSX.
+
 #### SwiftLint
 
 As part of this version of RsyncOSX I am using [SwiftLint](https://github.com/realm/SwiftLint) as tool for writing more readable code. Adapting RsyncOSX to SwiftLint rules will take some time. There are about 10,000 lines of code in RsyncOSX (too many?). Many changes in code has been applied, but there are still some more to do before RsyncOSX is more compliant to SwiftLint rules.
