@@ -28,6 +28,7 @@ enum Helpdocs {
     case passwordless
     case source
     case ssh
+    case intro
 }
 
 final class Help {
@@ -48,6 +49,7 @@ final class Help {
     private var passwordless: String = "https://rsyncosx.github.io/Documentation/docs/PasswordlessLogin.html"
     private var source: String = "https://github.com/rsyncOSX/RsyncOSX"
     private var ssh: String = "https://rsyncosx.github.io/Documentation/docs/ssh.html"
+    private var intro: String = "https://rsyncosx.github.io/Documentation/docs/Intro.html"
 
     private var htmltoshow: String?
 
@@ -91,6 +93,8 @@ final class Help {
             self.htmltoshow = self.source
         case .ssh:
             self.htmltoshow = self.ssh
+        case .intro:
+            self.htmltoshow = self.intro
         }
         self.show()
     }

@@ -30,6 +30,7 @@ class ViewControllerHelp: NSViewController {
     @IBOutlet weak var rsyncParameters: NSButton!
     @IBOutlet weak var source: NSButton!
     @IBOutlet weak var ssh: NSButton!
+    @IBOutlet weak var intro: NSButton!
 
     @IBAction func help(_ sender: NSButton) {
         if self.batchtask.state == .on {
@@ -80,6 +81,9 @@ class ViewControllerHelp: NSViewController {
         } else if self.ssh.state == .on {
             self.showwhat = .ssh
             self.ssh.state = .off
+        } else if self.intro.state == .on {
+            self.showwhat = .intro
+            self.intro.state = .off
         }
         self.show()
     }
