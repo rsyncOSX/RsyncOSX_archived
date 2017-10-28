@@ -111,9 +111,7 @@ class ViewControllertabMain: NSViewController, ReloadTable, Deselect, Coloractiv
     var tools: Tools?
     // Delegate function getting batchTaskObject
     weak var batchObjectDelegate: getNewBatchTask?
-
     @IBOutlet weak var light: NSColorWell!
-
     // Main tableview
     @IBOutlet weak var mainTableView: NSTableView!
     // Progressbar indicating work
@@ -249,58 +247,56 @@ class ViewControllertabMain: NSViewController, ReloadTable, Deselect, Coloractiv
 
     // BUTTONS AND ACTIONS
 
-    @IBOutlet weak var edit: NSButton!
-    @IBOutlet weak var rsyncparams: NSButton!
-    @IBOutlet weak var delete: NSButton!
+    @IBAction func edit(_ sender: NSButton) {
+        self.reset()
+        if self.index != nil {
+            globalMainQueue.async(execute: { () -> Void in
+                self.presentViewControllerAsSheet(self.editViewController)
+            })
+        } else {
+            self.rsyncCommand.stringValue = " ... Please select a task first ..."
+        }
+    }
+
+    @IBAction func rsyncparams(_ sender: NSButton) {
+        self.reset()
+        if self.index != nil {
+            globalMainQueue.async(execute: { () -> Void in
+                self.presentViewControllerAsSheet(self.viewControllerRsyncParams)
+            })
+        } else {
+            self.rsyncCommand.stringValue = " ... Please select a task first ..."
+        }
+    }
+
+    @IBAction func delete(_ sender: NSButton) {
+        self.reset()
+        let answer = Alerts.dialogOKCancel("Delete selected task?", text: "Cancel or OK")
+        if answer {
+            if self.hiddenID != nil {
+                // Delete Configurations and Schedules by hiddenID
+                self.configurations!.deleteConfigurationsByhiddenID(hiddenID: self.hiddenID!)
+                self.schedules!.deletescheduleonetask(hiddenID: self.hiddenID!)
+                self.deselect()
+                self.hiddenID = nil
+                self.index = nil
+                self.reloadtabledata()
+                // Reset in tabSchedule
+                self.reloadtable(vcontroller: .vctabschedule)
+            }
+        } else {
+            self.rsyncCommand.stringValue = " ... Please select a task first ..."
+        }
+    }
 
     // Menus as Radiobuttons for Edit functions in tabMainView
-    @IBAction func radiobuttons(_ sender: NSButton) {
+    private func reset() {
         self.output = nil
         self.setNumbers(output: nil)
         self.setInfo(info: "Estimate", color: .blue)
         self.light.color = .systemYellow
         self.process = nil
         self.singletask = nil
-
-        if self.index != nil {
-            // rsync params
-            if self.rsyncparams.state == .on {
-                if self.index != nil {
-                    globalMainQueue.async(execute: { () -> Void in
-                        self.presentViewControllerAsSheet(self.viewControllerRsyncParams)
-                    })
-                }
-            // Edit task
-            } else if self.edit.state == .on {
-                if self.index != nil {
-                    globalMainQueue.async(execute: { () -> Void in
-                        self.presentViewControllerAsSheet(self.editViewController)
-                    })
-                }
-            // Delete files
-            } else if self.delete.state == .on {
-                let answer = Alerts.dialogOKCancel("Delete selected task?", text: "Cancel or OK")
-                if answer {
-                    if self.hiddenID != nil {
-                        // Delete Configurations and Schedules by hiddenID
-                        self.configurations!.deleteConfigurationsByhiddenID(hiddenID: self.hiddenID!)
-                        self.schedules!.deletescheduleonetask(hiddenID: self.hiddenID!)
-                        self.deselect()
-                        self.hiddenID = nil
-                        self.index = nil
-                        self.reloadtabledata()
-                        // Reset in tabSchedule
-                        self.reloadtable(vcontroller: .vctabschedule)
-                    }
-                }
-                self.delete.state = .off
-            }
-        } else {
-            self.rsyncCommand.stringValue = " ... Please select a task first ..."
-            self.delete.state = .off
-            self.rsyncparams.state = .off
-            self.edit.state = .off
-        }
     }
 
     @IBOutlet weak var TCPButton: NSButton!
@@ -702,7 +698,6 @@ extension ViewControllertabMain: RsyncUserParams {
     // Do a reread of all Configurations
     func rsyncuserparamsupdated() {
         self.setRsyncCommandDisplay()
-        self.rsyncparams.state = .off
     }
 }
 
@@ -840,8 +835,6 @@ extension ViewControllertabMain: DismissViewController {
     func dismiss_view(viewcontroller: NSViewController) {
         self.dismissViewController(viewcontroller)
         // Reset radiobuttons
-        self.edit.state = .off
-        self.rsyncparams.state = .off
         self.loadProfileMenu = true
         globalMainQueue.async(execute: { () -> Void in
             self.mainTableView.reloadData()
