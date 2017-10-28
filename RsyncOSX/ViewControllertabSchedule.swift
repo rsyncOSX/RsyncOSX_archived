@@ -19,29 +19,6 @@ protocol SetProfileinfo: class {
     func setprofile(profile: String, color: NSColor)
 }
 
-protocol Coloractivetask {
-    var colorindex: Int? { get }
-}
-
-extension Coloractivetask {
-
-    var colorindex: Int? {
-        return self.color()
-    }
-
-    func color() -> Int? {
-        if let dict: NSDictionary = ViewControllerReference.shared.scheduledTask {
-            if let hiddenID: Int = dict.value(forKey: "hiddenID") as? Int {
-                return hiddenID
-            } else {
-                return nil
-            }
-        } else {
-            return nil
-        }
-    }
-}
-
 class ViewControllertabSchedule: NSViewController, SetConfigurations, SetSchedules, NextTask, Coloractivetask, OperationChanged, VcSchedule {
 
     // Main tableview

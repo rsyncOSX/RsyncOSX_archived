@@ -22,23 +22,6 @@ protocol GetSelecetedIndex : class {
     func getindex() -> Int?
 }
 
-// Protocol for sending selected index in tableView
-// The protocol is implemented in ViewControllertabMain
-protocol GetIndex : class {
-    weak var getindexDelegate: GetSelecetedIndex? { get }
-    func index() -> Int?
-}
-
-extension GetIndex {
-    weak var getindexDelegate: GetSelecetedIndex? {
-        return ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllertabMain
-    }
-
-    func index() -> Int? {
-        return self.getindexDelegate?.getindex()
-    }
-}
-
 class ViewControllerRsyncParameters: NSViewController, SetConfigurations, SetDismisser, GetIndex {
 
     var storageapi: PersistentStorageAPI?

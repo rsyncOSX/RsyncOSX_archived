@@ -214,3 +214,76 @@ extension Deselect {
         }
     }
 }
+
+// Protocol for sending selected index in tableView
+// The protocol is implemented in ViewControllertabMain
+protocol GetIndex : class {
+    weak var getindexDelegate: GetSelecetedIndex? { get }
+    func index() -> Int?
+}
+
+extension GetIndex {
+    weak var getindexDelegate: GetSelecetedIndex? {
+        return ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllertabMain
+    }
+
+    func index() -> Int? {
+        return self.getindexDelegate?.getindex()
+    }
+}
+
+protocol Coloractivetask {
+    var colorindex: Int? { get }
+}
+
+extension Coloractivetask {
+
+    var colorindex: Int? {
+        return self.color()
+    }
+
+    func color() -> Int? {
+        if let dict: NSDictionary = ViewControllerReference.shared.scheduledTask {
+            if let hiddenID: Int = dict.value(forKey: "hiddenID") as? Int {
+                return hiddenID
+            } else {
+                return nil
+            }
+        } else {
+            return nil
+        }
+    }
+}
+
+protocol Delay {
+    func delayWithSeconds(_ seconds: Double, completion: @escaping () -> Void)
+}
+
+extension Delay {
+
+    func delayWithSeconds(_ seconds: Double, completion: @escaping () -> Void) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + seconds) {
+            completion()
+        }
+    }
+}
+
+// Protocol for aborting task
+protocol AbortOperations: class {
+    func abortOperations()
+}
+
+protocol AbortTask {
+    weak var abortDelegate: AbortOperations? { get }
+    func abort()
+}
+
+extension AbortTask {
+    weak var abortDelegate: AbortOperations? {
+        return ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllertabMain
+    }
+
+    func abort() {
+        self.abortDelegate?.abortOperations()
+    }
+}
