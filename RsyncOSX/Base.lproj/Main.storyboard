@@ -799,6 +799,14 @@
                                     <action selector="TCP:" target="egt-C3-u4G" id="Xqo-AU-gd2"/>
                                 </connections>
                             </button>
+                            <box fixedFrame="YES" title="Edit configurations" translatesAutoresizingMaskIntoConstraints="NO" id="0B4-M8-m3v">
+                                <rect key="frame" x="3" y="274" width="130" height="131"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <view key="contentView" id="0DJ-h3-zoP">
+                                    <rect key="frame" x="2" y="2" width="126" height="114"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                </view>
+                            </box>
                         </subviews>
                         <constraints>
                             <constraint firstItem="wSD-Dl-gPc" firstAttribute="baseline" secondItem="a5P-Xw-HGm" secondAttribute="baseline" id="2TE-P1-vk0"/>
