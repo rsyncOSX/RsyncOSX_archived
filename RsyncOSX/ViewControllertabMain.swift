@@ -94,8 +94,6 @@ class ViewControllertabMain: NSViewController, ReloadTable, Deselect, Coloractiv
     // Application crash if not
     private var loadProfileMenu: Bool = false
 
-    // BUTTONS AND ACTIONS
-
     @IBAction func edit(_ sender: NSButton) {
         self.reset()
         if self.index != nil {
@@ -430,10 +428,7 @@ class ViewControllertabMain: NSViewController, ReloadTable, Deselect, Coloractiv
     }
 }
 
-// Extensions
-
 extension ViewControllertabMain: NSTableViewDataSource {
-
     // Delegate for size of table
     func numberOfRows(in tableView: NSTableView) -> Int {
         return self.configurations?.configurationsDataSourcecount() ?? 0
@@ -441,7 +436,6 @@ extension ViewControllertabMain: NSTableViewDataSource {
 }
 
 extension ViewControllertabMain: NSTableViewDelegate {
-
     // Function to test for remote server available or not, used in tableview delegate
     private func testRow(_ row: Int) -> Bool {
         if let serverOff = self.serverOff {
@@ -517,7 +511,6 @@ extension ViewControllertabMain: NSTableViewDelegate {
 
 // Get output from rsync command
 extension ViewControllertabMain: Information {
-
     // Get information from rsync output.
     func getInformation() -> Array<String> {
         if self.outputbatch != nil {
@@ -532,7 +525,6 @@ extension ViewControllertabMain: Information {
 
 // Scheduled task are changed, read schedule again og redraw table
 extension ViewControllertabMain: Reloadandrefresh {
-
     // Refresh tableView in main
     func reloadtabledata() {
         globalMainQueue.async(execute: { () -> Void in
@@ -543,7 +535,6 @@ extension ViewControllertabMain: Reloadandrefresh {
 
 // Parameters to rsync is changed
 extension ViewControllertabMain: RsyncUserParams {
-
     // Do a reread of all Configurations
     func rsyncuserparamsupdated() {
         self.setRsyncCommandDisplay()
@@ -552,7 +543,6 @@ extension ViewControllertabMain: RsyncUserParams {
 
 // Get index of selected row
 extension ViewControllertabMain: GetSelecetedIndex {
-
     func getindex() -> Int? {
         return self.index
     }
@@ -560,7 +550,6 @@ extension ViewControllertabMain: GetSelecetedIndex {
 
 // Next scheduled job is started, if any
 extension ViewControllertabMain: StartNextTask {
-
     func startanyscheduledtask() {
         _ = OperationFactory(factory: self.configurations!.operation).initiate()
     }
@@ -568,7 +557,6 @@ extension ViewControllertabMain: StartNextTask {
 
 // New profile is loaded.
 extension ViewControllertabMain: NewProfile {
-
     // Function is called from profiles when new or default profiles is seleceted
     func newProfile(profile: String?) {
         self.process = nil
@@ -605,7 +593,6 @@ extension ViewControllertabMain: NewProfile {
 
 // A scheduled task is executed
 extension ViewControllertabMain: ScheduledTaskWorking {
-
     func start() {
         globalMainQueue.async(execute: {() -> Void in
             self.scheduledJobInProgress = true
@@ -637,7 +624,6 @@ extension ViewControllertabMain: ScheduledTaskWorking {
 
 // Rsync path is changed, update displayed rsync command
 extension ViewControllertabMain: RsyncChanged {
-
     // If row is selected an update rsync command in view
     func rsyncchanged() {
         // Update rsync command in display
@@ -645,12 +631,8 @@ extension ViewControllertabMain: RsyncChanged {
     }
 }
 
-// Check for remote connections, reload table
-// when completed.
+// Check for remote connections, reload table when completed.
 extension ViewControllertabMain: Connections {
-    // Function is called when testing of remote connections are compledet.
-    // Function is just redrawing the mainTableView after getting info
-    // about which remote servers are off/on line.
     // Remote servers offline are marked with red line in mainTableView
     func displayConnections() {
         // Only do a reload if we are in the main view
@@ -680,7 +662,6 @@ extension ViewControllertabMain: NewVersionDiscovered {
 // Dismisser for sheets
 extension ViewControllertabMain: DismissViewController {
     // Function for dismissing a presented view
-    // - parameter viewcontroller: the viewcontroller to be dismissed
     func dismiss_view(viewcontroller: NSViewController) {
         self.dismissViewController(viewcontroller)
         // Reset radiobuttons
@@ -697,10 +678,8 @@ extension ViewControllertabMain: DismissViewController {
 // discovered or data is availiable in the filehandler
 // See file rsyncProcess.swift.
 extension ViewControllertabMain: UpdateProgress {
-
     // Delegate functions called from the Process object
     // Protocol UpdateProgress two functions, ProcessTermination() and FileHandler()
-
     func processTermination() {
         self.readyforexecution = true
         // NB: must check if single run or batch run
@@ -798,7 +777,6 @@ extension ViewControllertabMain: ReportErrorMain {
 
 // Abort task from progressview
 extension ViewControllertabMain: AbortOperations {
-
     // Abort any task, either single- or batch task
     func abortOperations() {
         // Terminates the running process
@@ -845,7 +823,6 @@ extension ViewControllertabMain: StartStopProgressIndicatorSingleTask {
 }
 
 extension ViewControllertabMain: SingleTaskProgress {
-
     func getProcessReference(process: Process) {
         self.process = process
     }
@@ -943,7 +920,6 @@ extension ViewControllertabMain: SingleTaskProgress {
 }
 
 extension ViewControllertabMain: BatchTaskProgress {
-
     func progressIndicatorViewBatch(operation: BatchViewProgressIndicator) {
         let localindicatorDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vcbatch) as? ViewControllerBatch
         switch operation {
@@ -1001,7 +977,6 @@ extension ViewControllertabMain: GetConfigurationsObject {
 }
 
 extension ViewControllertabMain: GetSchedulesObject {
-
     func reloadschedules() {
         // If batchtask scedules object
         guard self.batchtaskObject == nil else {
@@ -1030,13 +1005,10 @@ extension ViewControllertabMain: GetSchedulesObject {
         ViewControllerReference.shared.scheduledTask = self.schedulessorted?.allscheduledtasks()
         return self.schedules
     }
-
 }
 
 extension  ViewControllertabMain: GetHiddenID {
-
     func gethiddenID() -> Int? {
         return self.hiddenID
     }
-
 }
