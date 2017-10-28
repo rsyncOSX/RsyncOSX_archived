@@ -5,7 +5,7 @@
 //  Created by Thomas Evensen on 19/08/2016.
 //  Copyright © 2016 Thomas Evensen. All rights reserved.
 //
-//  swiftlint:disable line_length file_length
+//  swiftlint:disable line_length
 
 import Foundation
 import Cocoa
@@ -42,7 +42,7 @@ extension Coloractivetask {
     }
 }
 
-class ViewControllertabSchedule: NSViewController, SetConfigurations, SetSchedules, NextTask, Coloractivetask, OperationChanged {
+class ViewControllertabSchedule: NSViewController, SetConfigurations, SetSchedules, NextTask, Coloractivetask, OperationChanged, VcSchedule {
 
     // Main tableview
     @IBOutlet weak var mainTableView: NSTableView!
@@ -54,27 +54,6 @@ class ViewControllertabSchedule: NSViewController, SetConfigurations, SetSchedul
     private var schedulessorted: ScheduleSortedAndExpand?
     private var infoschedulessorted: InfoScheduleSortedAndExpand?
     var tools: Tools?
-
-    // Information Schedule details
-    // self.presentViewControllerAsSheet(self.ViewControllerScheduleDetails)
-    lazy var viewControllerScheduleDetails: NSViewController = {
-        return (self.storyboard!.instantiateController(withIdentifier: NSStoryboard.SceneIdentifier(rawValue: "StoryboardScheduleID"))
-            as? NSViewController)!
-    }()
-
-    // Userconfiguration
-    // self.presentViewControllerAsSheet(self.ViewControllerUserconfiguration)
-    lazy var viewControllerUserconfiguration: NSViewController = {
-        return (self.storyboard!.instantiateController(withIdentifier: NSStoryboard.SceneIdentifier(rawValue: "StoryboardUserconfigID"))
-            as? NSViewController)!
-    }()
-
-    // Profile
-    // self.presentViewControllerAsSheet(self.ViewControllerProfile)
-    lazy var viewControllerProfile: NSViewController = {
-        return (self.storyboard!.instantiateController(withIdentifier: NSStoryboard.SceneIdentifier(rawValue: "ProfileID"))
-            as? NSViewController)!
-    }()
 
     @IBOutlet weak var firstScheduledTask: NSTextField!
     @IBOutlet weak var secondScheduledTask: NSTextField!
@@ -146,7 +125,7 @@ class ViewControllertabSchedule: NSViewController, SetConfigurations, SetSchedul
     // Selecting profiles
     @IBAction func profiles(_ sender: NSButton) {
         globalMainQueue.async(execute: { () -> Void in
-            self.presentViewControllerAsSheet(self.viewControllerProfile)
+            self.presentViewControllerAsSheet(self.viewControllerProfile!)
         })
     }
 
@@ -167,14 +146,14 @@ class ViewControllertabSchedule: NSViewController, SetConfigurations, SetSchedul
     // Userconfiguration button
     @IBAction func userconfiguration(_ sender: NSButton) {
         globalMainQueue.async(execute: { () -> Void in
-            self.presentViewControllerAsSheet(self.viewControllerUserconfiguration)
+            self.presentViewControllerAsSheet(self.viewControllerUserconfiguration!)
         })
     }
 
     // Logg records
     @IBAction func loggrecords(_ sender: NSButton) {
         globalMainQueue.async(execute: { () -> Void in
-            self.presentViewControllerAsSheet(self.viewControllerScheduleDetails)
+            self.presentViewControllerAsSheet(self.viewControllerScheduleDetails!)
         })
     }
 
@@ -276,7 +255,7 @@ class ViewControllertabSchedule: NSViewController, SetConfigurations, SetSchedul
     // Execute tasks by double click in table
     @objc(tableViewDoubleClick:) func tableViewDoubleClick(sender: AnyObject) {
         globalMainQueue.async(execute: { () -> Void in
-            self.presentViewControllerAsSheet(self.viewControllerScheduleDetails)
+            self.presentViewControllerAsSheet(self.viewControllerScheduleDetails!)
         })
     }
 

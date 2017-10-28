@@ -11,51 +11,6 @@
 import Foundation
 import Cocoa
 
-// Protocol for dismissing a viewcontroller
-protocol DismissViewController: class {
-    func dismiss_view(viewcontroller: NSViewController)
-}
-protocol SetDismisser {
-    weak var dismissDelegateMain: DismissViewController? {get}
-    weak var dismissDelegateSchedule: DismissViewController? {get}
-    weak var dismissDelegateCopyFiles: DismissViewController? {get}
-    weak var dismissDelegateNewConfigurations: DismissViewController? {get}
-    weak var dismissDelegateSsh: DismissViewController? {get}
-    func dismissview(viewcontroller: NSViewController, vcontroller: ViewController)
-}
-
-extension SetDismisser {
-    weak var dismissDelegateMain: DismissViewController? {
-        return ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllertabMain
-    }
-    weak var dismissDelegateSchedule: DismissViewController? {
-        return ViewControllerReference.shared.getvcref(viewcontroller: .vctabschedule) as? ViewControllertabSchedule
-    }
-    weak var dismissDelegateCopyFiles: DismissViewController? {
-        return ViewControllerReference.shared.getvcref(viewcontroller: .vccopyfiles) as? ViewControllerCopyFiles
-    }
-    weak var dismissDelegateNewConfigurations: DismissViewController? {
-        return ViewControllerReference.shared.getvcref(viewcontroller: .vcnewconfigurations) as? ViewControllerNewConfigurations
-    }
-    weak var dismissDelegateSsh: DismissViewController? {
-        return ViewControllerReference.shared.getvcref(viewcontroller: .vcssh) as? ViewControllerSsh
-    }
-
-    func dismissview(viewcontroller: NSViewController, vcontroller: ViewController) {
-        if vcontroller == .vctabmain {
-            self.dismissDelegateMain?.dismiss_view(viewcontroller: (self as? NSViewController)!)
-        } else if vcontroller == .vctabschedule {
-            self.dismissDelegateSchedule?.dismiss_view(viewcontroller: (self as? NSViewController)!)
-        } else if vcontroller == .vccopyfiles {
-            self.dismissDelegateCopyFiles?.dismiss_view(viewcontroller: (self as? NSViewController)!)
-        } else if vcontroller == .vcnewconfigurations {
-            self.dismissDelegateNewConfigurations?.dismiss_view(viewcontroller: (self as? NSViewController)!)
-        } else {
-            self.dismissDelegateSsh?.dismiss_view(viewcontroller: (self as? NSViewController)!)
-        }
-    }
-}
-
 // Protocol for start,stop, complete progressviewindicator
 protocol StartStopProgressIndicator: class {
     func start()
@@ -70,36 +25,7 @@ protocol UpdateProgress: class {
     func fileHandler()
 }
 
-// Protocol for deselecting rowtable
-protocol DeselectRowTable: class {
-    func deselect()
-}
-
-protocol Deselect {
-    weak var deselectDelegateMain: DeselectRowTable? {get}
-    weak var deselectDelegateSchedule: DeselectRowTable? {get}
-    func deselectrowtable(vcontroller: ViewController)
-}
-
-extension Deselect {
-    weak var deselectDelegateMain: DeselectRowTable? {
-        return ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllertabMain
-    }
-    weak var deselectDelegateSchedule: DeselectRowTable? {
-        return ViewControllerReference.shared.getvcref(viewcontroller: .vctabschedule) as? ViewControllertabSchedule
-    }
-
-    func deselectrowtable(vcontroller: ViewController) {
-        if vcontroller == .vctabmain {
-            self.deselectDelegateMain?.deselect()
-        } else {
-            self.deselectDelegateSchedule?.deselect()
-        }
-    }
-
-}
-
-class ViewControllertabMain: NSViewController, ReloadTable, Deselect, Coloractivetask {
+class ViewControllertabMain: NSViewController, ReloadTable, Deselect, Coloractivetask, VcMain {
 
     // Configurations object
     var configurations: Configurations?
@@ -168,90 +94,13 @@ class ViewControllertabMain: NSViewController, ReloadTable, Deselect, Coloractiv
     // Application crash if not
     private var loadProfileMenu: Bool = false
 
-    // Information about rsync output
-    // self.presentViewControllerAsSheet(self.ViewControllerInformation)
-    lazy var viewControllerInformation: NSViewController = {
-        return (self.storyboard!.instantiateController(withIdentifier: NSStoryboard.SceneIdentifier(rawValue: "StoryboardInformationID"))
-        as? NSViewController)!
-    }()
-
-    // Progressbar process 
-    // self.presentViewControllerAsSheet(self.ViewControllerProgress)
-    lazy var viewControllerProgress: NSViewController = {
-        return (self.storyboard!.instantiateController(withIdentifier: NSStoryboard.SceneIdentifier(rawValue: "StoryboardProgressID"))
-            as? NSViewController)!
-    }()
-
-    // Batch process
-    // self.presentViewControllerAsSheet(self.ViewControllerBatch)
-    lazy var viewControllerBatch: NSViewController = {
-        return (self.storyboard!.instantiateController(withIdentifier: NSStoryboard.SceneIdentifier(rawValue: "StoryboardBatchID"))
-            as? NSViewController)!
-    }()
-
-    // Userconfiguration
-    // self.presentViewControllerAsSheet(self.ViewControllerUserconfiguration)
-    lazy var viewControllerUserconfiguration: NSViewController = {
-        return (self.storyboard!.instantiateController(withIdentifier: NSStoryboard.SceneIdentifier(rawValue: "StoryboardUserconfigID"))
-            as? NSViewController)!
-    }()
-
-    // Rsync userparams
-    // self.presentViewControllerAsSheet(self.ViewControllerRsyncParams)
-    lazy var viewControllerRsyncParams: NSViewController = {
-        return (self.storyboard!.instantiateController(withIdentifier: NSStoryboard.SceneIdentifier(rawValue: "StoryboardRsyncParamsID"))
-            as? NSViewController)!
-    }()
-
-    // New version window
-    // self.presentViewControllerAsSheet(self.newVersionViewController)
-    lazy var newVersionViewController: NSViewController = {
-        return (self.storyboard!.instantiateController(withIdentifier: NSStoryboard.SceneIdentifier(rawValue: "StoryboardnewVersionID"))
-            as? NSViewController)!
-    }()
-
-    // Edit
-    // self.presentViewControllerAsSheet(self.editViewController)
-    lazy var editViewController: NSViewController = {
-        return (self.storyboard!.instantiateController(withIdentifier: NSStoryboard.SceneIdentifier(rawValue: "StoryboardEditID"))
-            as? NSViewController)!
-    }()
-
-    // Profile
-    // self.presentViewControllerAsSheet(self.ViewControllerProfile)
-    lazy var viewControllerProfile: NSViewController = {
-        return (self.storyboard!.instantiateController(withIdentifier: NSStoryboard.SceneIdentifier(rawValue: "ProfileID"))
-            as? NSViewController)!
-    }()
-
-    // ScheduledBackupInWorkID
-    // self.presentViewControllerAsSheet(self.ViewControllerScheduledBackupInWork)
-    lazy var viewControllerScheduledBackupInWork: NSViewController = {
-        return (self.storyboard!.instantiateController(withIdentifier: NSStoryboard.SceneIdentifier(rawValue: "ScheduledBackupInWorkID"))
-            as? NSViewController)!
-    }()
-
-    // About
-    // self.presentViewControllerAsSheet(self.ViewControllerAbout)
-    lazy var viewControllerAbout: NSViewController = {
-        return (self.storyboard!.instantiateController(withIdentifier: NSStoryboard.SceneIdentifier(rawValue: "AboutID"))
-            as? NSViewController)!
-    }()
-
-    // Information Schedule details
-    // self.presentViewControllerAsSheet(self.ViewControllerScheduleDetails)
-    lazy var viewControllerScheduleDetails: NSViewController = {
-        return (self.storyboard!.instantiateController(withIdentifier: NSStoryboard.SceneIdentifier(rawValue: "StoryboardScheduleID"))
-            as? NSViewController)!
-    }()
-
     // BUTTONS AND ACTIONS
 
     @IBAction func edit(_ sender: NSButton) {
         self.reset()
         if self.index != nil {
             globalMainQueue.async(execute: { () -> Void in
-                self.presentViewControllerAsSheet(self.editViewController)
+                self.presentViewControllerAsSheet(self.editViewController!)
             })
         } else {
             self.rsyncCommand.stringValue = " ... Please select a task first ..."
@@ -262,7 +111,7 @@ class ViewControllertabMain: NSViewController, ReloadTable, Deselect, Coloractiv
         self.reset()
         if self.index != nil {
             globalMainQueue.async(execute: { () -> Void in
-                self.presentViewControllerAsSheet(self.viewControllerRsyncParams)
+                self.presentViewControllerAsSheet(self.viewControllerRsyncParams!)
             })
         } else {
             self.rsyncCommand.stringValue = " ... Please select a task first ..."
@@ -310,7 +159,7 @@ class ViewControllertabMain: NSViewController, ReloadTable, Deselect, Coloractiv
     // Presenting Information from Rsync
     @IBAction func information(_ sender: NSButton) {
         globalMainQueue.async(execute: { () -> Void in
-            self.presentViewControllerAsSheet(self.viewControllerInformation)
+            self.presentViewControllerAsSheet(self.viewControllerInformation!)
         })
     }
 
@@ -327,7 +176,7 @@ class ViewControllertabMain: NSViewController, ReloadTable, Deselect, Coloractiv
     // Userconfiguration button
     @IBAction func userconfiguration(_ sender: NSButton) {
         globalMainQueue.async(execute: { () -> Void in
-            self.presentViewControllerAsSheet(self.viewControllerUserconfiguration)
+            self.presentViewControllerAsSheet(self.viewControllerUserconfiguration!)
         })
     }
 
@@ -336,7 +185,7 @@ class ViewControllertabMain: NSViewController, ReloadTable, Deselect, Coloractiv
         if self.loadProfileMenu == true {
             self.showProcessInfo(info: .changeprofile)
             globalMainQueue.async(execute: { () -> Void in
-                self.presentViewControllerAsSheet(self.viewControllerProfile)
+                self.presentViewControllerAsSheet(self.viewControllerProfile!)
             })
         } else {
             self.displayProfile()
@@ -347,13 +196,13 @@ class ViewControllertabMain: NSViewController, ReloadTable, Deselect, Coloractiv
     @IBAction func loggrecords(_ sender: NSButton) {
         self.configurations!.allowNotifyinMain = true
         globalMainQueue.async(execute: { () -> Void in
-            self.presentViewControllerAsSheet(self.viewControllerScheduleDetails)
+            self.presentViewControllerAsSheet(self.viewControllerScheduleDetails!)
         })
     }
 
     // Selecting About
     @IBAction func about (_ sender: NSButton) {
-        self.presentViewControllerAsModalWindow(self.viewControllerAbout)
+        self.presentViewControllerAsModalWindow(self.viewControllerAbout!)
     }
 
     // Function for display rsync command
@@ -487,7 +336,7 @@ class ViewControllertabMain: NSViewController, ReloadTable, Deselect, Coloractiv
         self.singletask = nil
         self.setNumbers(output: nil)
         globalMainQueue.async(execute: { () -> Void in
-            self.presentViewControllerAsSheet(self.viewControllerBatch)
+            self.presentViewControllerAsSheet(self.viewControllerBatch!)
         })
     }
 
@@ -779,7 +628,7 @@ extension ViewControllertabMain: ScheduledTaskWorking {
                 })
             } else {
                 globalMainQueue.async(execute: {() -> Void in
-                    self.presentViewControllerAsSheet(self.viewControllerScheduledBackupInWork)
+                    self.presentViewControllerAsSheet(self.viewControllerScheduledBackupInWork!)
                 })
             }
         }
@@ -822,7 +671,7 @@ extension ViewControllertabMain: NewVersionDiscovered {
     func notifyNewVersion() {
         if self.configurations!.allowNotifyinMain {
             globalMainQueue.async(execute: { () -> Void in
-                self.presentViewControllerAsSheet(self.newVersionViewController)
+                self.presentViewControllerAsSheet(self.newVersionViewController!)
             })
         }
     }
@@ -1026,14 +875,14 @@ extension ViewControllertabMain: SingleTaskProgress {
 
     func presentViewProgress() {
         globalMainQueue.async(execute: { () -> Void in
-            self.presentViewControllerAsSheet(self.viewControllerProgress)
+            self.presentViewControllerAsSheet(self.viewControllerProgress!)
         })
     }
 
     func presentViewInformation(output: OutputProcess) {
         self.output = output
         globalMainQueue.async(execute: { () -> Void in
-            self.presentViewControllerAsSheet(self.viewControllerInformation)
+            self.presentViewControllerAsSheet(self.viewControllerInformation!)
         })
     }
 
