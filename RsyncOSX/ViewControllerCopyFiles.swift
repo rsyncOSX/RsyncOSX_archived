@@ -56,24 +56,22 @@ class ViewControllerCopyFiles: NSViewController, SetConfigurations, GetIndex, De
 
     // Do the work
     @IBAction func copy(_ sender: NSButton) {
-        if self.remoteCatalog.stringValue.isEmpty || self.localCatalog.stringValue.isEmpty {
-            Alerts.showInfo("From: or To: cannot be empty!")
-        } else {
-            if self.copyFiles != nil {
-                self.rsync = true
-                self.workingRsync.startAnimation(nil)
-                if self.estimated == false {
-                    self.copyFiles!.executeRsync(remotefile: remoteCatalog!.stringValue, localCatalog: localCatalog!.stringValue, dryrun: true)
-                    self.copyButton.title = "Execute"
-                    self.estimated = true
-                } else {
-                    self.copyButton.isEnabled = false
-                    self.workingRsync.startAnimation(nil)
-                    self.copyFiles!.executeRsync(remotefile: remoteCatalog!.stringValue, localCatalog: localCatalog!.stringValue, dryrun: false)
-                    self.estimated = false
-                }
+        guard self.remoteCatalog.stringValue.isEmpty || self.localCatalog.stringValue.isEmpty else {
+            self.error.isHidden = false
+            return
+        }
+        if self.copyFiles != nil {
+            self.rsync = true
+            self.workingRsync.startAnimation(nil)
+            if self.estimated == false {
+                self.copyFiles!.executeRsync(remotefile: remoteCatalog!.stringValue, localCatalog: localCatalog!.stringValue, dryrun: true)
+                self.copyButton.title = "Execute"
+                self.estimated = true
             } else {
-                Alerts.showInfo("Please select a ROW in Execute window!")
+                self.copyButton.isEnabled = false
+                self.workingRsync.startAnimation(nil)
+                self.copyFiles!.executeRsync(remotefile: remoteCatalog!.stringValue, localCatalog: localCatalog!.stringValue, dryrun: false)
+                self.estimated = false
             }
         }
     }
@@ -219,6 +217,7 @@ extension ViewControllerCopyFiles: NSTableViewDelegate {
 
     func tableView(_ tableView: NSTableView, viewFor tableColumn: NSTableColumn?, row: Int) -> NSView? {
         var text: String?
+        self.error.isHidden = true
         guard self.tabledata != nil else { return nil }
         let cellIdentifier: String = "fileID"
         text = self.tabledata![row]
@@ -235,11 +234,11 @@ extension ViewControllerCopyFiles: NSTableViewDelegate {
         if let index = indexes.first {
             guard self.tabledata != nil else { return }
             self.remoteCatalog.stringValue = self.tabledata![index]
-            if self.remoteCatalog.stringValue.isEmpty == false && self.localCatalog.stringValue.isEmpty == false {
-                self.commandString.stringValue = self.copyFiles!.getCommandDisplayinView(remotefile: self.remoteCatalog.stringValue, localCatalog: self.localCatalog.stringValue)
-            } else {
-                self.commandString.stringValue = "Please select both \"Restore to:\" and \"Restore:\" to show rsync command"
+            guard self.remoteCatalog.stringValue.isEmpty || self.localCatalog.stringValue.isEmpty else {
+                self.error.isHidden = false
+                return
             }
+            self.commandString.stringValue = self.copyFiles!.getCommandDisplayinView(remotefile: self.remoteCatalog.stringValue, localCatalog: self.localCatalog.stringValue)
             self.estimated = false
             self.copyButton.title = "Estimate"
         }
@@ -247,16 +246,17 @@ extension ViewControllerCopyFiles: NSTableViewDelegate {
 }
 
 // textDidEndEditing
-
+/*
 extension ViewControllerCopyFiles: NSTextFieldDelegate {
     override func controlTextDidEndEditing(_ obj: Notification) {
-        if self.remoteCatalog.stringValue.isEmpty == false && self.localCatalog.stringValue.isEmpty == false {
-            self.commandString.stringValue = (self.copyFiles!.getCommandDisplayinView(remotefile: self.remoteCatalog.stringValue, localCatalog: self.localCatalog.stringValue))
-        } else {
-            self.commandString.stringValue = "Please select both \"Restore to:\" and \"Restore:\" to show rsync command"
+        guard self.remoteCatalog.stringValue.isEmpty || self.localCatalog.stringValue.isEmpty else {
+            self.error.isHidden = false
+            return
         }
+        self.commandString.stringValue = (self.copyFiles!.getCommandDisplayinView(remotefile: self.remoteCatalog.stringValue, localCatalog: self.localCatalog.stringValue))
     }
 }
+*/
 
 extension ViewControllerCopyFiles: Reloadandrefresh {
     // Do a refresh of table

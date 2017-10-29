@@ -1450,7 +1450,7 @@
                                             <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                             <color key="gridColor" name="gridColor" catalog="System" colorSpace="catalog"/>
                                             <tableColumns>
-                                                <tableColumn identifier="fileID" width="569" minWidth="40" maxWidth="1000" id="cKa-xb-U4B">
+                                                <tableColumn identifier="fileID" width="575.5" minWidth="40" maxWidth="1000" id="cKa-xb-U4B">
                                                     <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" title="Select file or catalog to restore (and double click to copy in one go)">
                                                         <font key="font" metaFont="smallSystem"/>
                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
@@ -1464,11 +1464,11 @@
                                                     <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                     <prototypeCellViews>
                                                         <tableCellView id="xMt-uD-KDs">
-                                                            <rect key="frame" x="1" y="1" width="569" height="20"/>
+                                                            <rect key="frame" x="1" y="1" width="576" height="20"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
                                                                 <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2Bl-ow-0Ch">
-                                                                    <rect key="frame" x="1" y="3" width="548" height="17"/>
+                                                                    <rect key="frame" x="1" y="3" width="555" height="17"/>
                                                                     <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" alignment="left" title="Table View Cell" id="HPi-4q-XQ1">
                                                                         <font key="font" metaFont="system"/>
                                                                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
@@ -1684,8 +1684,9 @@
                                     <action selector="reset" target="GJH-xK-5LY" id="eHJ-Tv-aVt"/>
                                 </connections>
                             </button>
-                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="tv7-CS-oe6">
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="tv7-CS-oe6">
                                 <rect key="frame" x="20" y="377" width="108" height="17"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Number of rows: " id="SBO-UN-kMy">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -1693,9 +1694,9 @@
                                 </textFieldCell>
                             </textField>
                             <textField hidden="YES" horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="vCI-NE-yd4">
-                                <rect key="frame" x="622" y="133" width="452" height="17"/>
+                                <rect key="frame" x="622" y="131" width="452" height="17"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" enabled="NO" sendsActionOnEndEditing="YES" alignment="center" title="Local and remote catalog cannot be empty..." id="ORX-XZ-hDp">
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" enabled="NO" sendsActionOnEndEditing="YES" alignment="center" title="Local or remote catalog cannot be empty..." id="ORX-XZ-hDp">
                                     <font key="font" metaFont="cellTitle"/>
                                     <color key="textColor" red="1" green="0.14913141730000001" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
@@ -1712,9 +1713,7 @@
                         </subviews>
                         <constraints>
                             <constraint firstItem="Wal-d1-JMo" firstAttribute="top" secondItem="ofe-CE-Xu7" secondAttribute="top" constant="47" id="4Xg-8e-AM5"/>
-                            <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="tv7-CS-oe6" secondAttribute="trailing" constant="20" symbolic="YES" id="5Xi-8y-eIl"/>
                             <constraint firstItem="AWX-m0-CSr" firstAttribute="top" secondItem="ofe-CE-Xu7" secondAttribute="top" constant="163" id="I2r-Jd-Bgf"/>
-                            <constraint firstItem="tv7-CS-oe6" firstAttribute="leading" secondItem="ofe-CE-Xu7" secondAttribute="leading" constant="22" id="oVr-pu-dfz"/>
                         </constraints>
                     </view>
                     <connections>
