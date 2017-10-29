@@ -42,7 +42,7 @@ final class CopyFiles: SetConfigurations {
             self.arguments = self.argumentsObject!.getArguments()
         } else {
             self.argumentsObject = CopyFileArguments(task: .rsyncCmd, config: self.config!, remoteFile: remotefile,
-                                                     localCatalog: localCatalog, drynrun: nil)
+                                                     localCatalog: localCatalog, drynrun: false)
             self.arguments = self.argumentsObject!.getArguments()
         }
         self.command = nil

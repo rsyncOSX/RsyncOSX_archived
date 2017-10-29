@@ -172,8 +172,6 @@ class ViewControllerCopyFiles: NSViewController, SetConfigurations, GetIndex, De
             self.copyFiles!.executeRsync(remotefile: remoteCatalog!.stringValue, localCatalog: localCatalog!.stringValue, dryrun: false)
         }
     }
-
-    var test: DispatchWorkItem?
 }
 
 extension ViewControllerCopyFiles: NSSearchFieldDelegate {

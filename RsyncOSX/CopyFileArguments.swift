@@ -48,6 +48,7 @@ final class CopyFileArguments: ProcessArguments {
                                            localCatalog: localCatalog, drynrun: drynrun)
             self.arguments = arguments.getArguments()
             self.command = arguments.getCommand()
+            self.argDisplay = arguments.getArgumentsDisplay()
         case .duCmd:
             let arguments = GetRemoteFilesArguments(config: config)
             self.arguments = arguments.getArguments()
