@@ -1686,11 +1686,20 @@
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
+                            <textField hidden="YES" horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="8xj-c3-Rka">
+                                <rect key="frame" x="614" y="246" width="460" height="17"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" enabled="NO" sendsActionOnEndEditing="YES" alignment="center" title="Got configuration from main view, press Reset to select another config..." id="1Tk-jV-tUD">
+                                    <font key="font" metaFont="cellTitle"/>
+                                    <color key="textColor" name="knobColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
                             <box fixedFrame="YES" title="Source for restore file or catalog" translatesAutoresizingMaskIntoConstraints="NO" id="irb-Gi-c2A">
-                                <rect key="frame" x="613" y="248" width="462" height="109"/>
+                                <rect key="frame" x="613" y="239" width="462" height="120"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <view key="contentView" id="EuN-T6-l82">
-                                    <rect key="frame" x="2" y="2" width="458" height="92"/>
+                                    <rect key="frame" x="2" y="2" width="458" height="103"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 </view>
                             </box>
@@ -1698,6 +1707,7 @@
                     </view>
                     <connections>
                         <outlet property="commandString" destination="XwF-K5-R4q" id="wSn-jP-VtU"/>
+                        <outlet property="configfrommain" destination="8xj-c3-Rka" id="IM0-kw-Kiv"/>
                         <outlet property="copyButton" destination="HvM-lg-JjX" id="RIx-1n-Z4j"/>
                         <outlet property="error" destination="vCI-NE-yd4" id="AIc-MO-aqU"/>
                         <outlet property="localCatalog" destination="L6A-JJ-Mvd" id="Nkp-wQ-iEO"/>

@@ -53,6 +53,7 @@ class ViewControllerCopyFiles: NSViewController, SetConfigurations, GetIndex, De
     @IBOutlet weak var copyButton: NSButton!
     @IBOutlet weak var selectButton: NSButton!
     @IBOutlet weak var error: NSTextField!
+    @IBOutlet weak var configfrommain: NSTextField!
 
     // Do the work
     @IBAction func copy(_ sender: NSButton) {
@@ -100,6 +101,7 @@ class ViewControllerCopyFiles: NSViewController, SetConfigurations, GetIndex, De
         // Empty tabledata
         self.index = nil
         self.tabledata = nil
+        self.configfrommain.isHidden = true
         globalMainQueue.async(execute: { () -> Void in
             self.tableViewSelect.reloadData()
         })
@@ -142,6 +144,7 @@ class ViewControllerCopyFiles: NSViewController, SetConfigurations, GetIndex, De
         self.index = self.index()
         if let index = self.index {
             self.displayRemoteserver(index: index)
+            self.configfrommain.isHidden = false
         }
         self.copyButton.isEnabled = true
         self.copyButton.title = "Estimate"
