@@ -197,7 +197,6 @@ extension ViewControllerCopyFiles: NSSearchFieldDelegate {
             self.tableViewSelect.reloadData()
         })
     }
-
 }
 
 extension ViewControllerCopyFiles: NSTableViewDataSource {
@@ -245,7 +244,6 @@ extension ViewControllerCopyFiles: NSTableViewDelegate {
 }
 
 extension ViewControllerCopyFiles: Reloadandrefresh {
-    // Do a refresh of table
     func reloadtabledata() {
         guard self.copyFiles != nil else { return }
         globalMainQueue.async(execute: { () -> Void in
@@ -259,9 +257,11 @@ extension ViewControllerCopyFiles: StartStopProgressIndicator {
     func stop() {
         self.working.stopAnimation(nil)
     }
+    
     func start() {
         self.working.startAnimation(nil)
     }
+    
     func complete() {
         // nothing
     }
