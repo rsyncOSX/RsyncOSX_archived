@@ -52,6 +52,7 @@ class ViewControllerCopyFiles: NSViewController, SetConfigurations, GetIndex, De
     @IBOutlet weak var search: NSSearchField!
     @IBOutlet weak var copyButton: NSButton!
     @IBOutlet weak var selectButton: NSButton!
+    @IBOutlet weak var error: NSTextField!
 
     // Do the work
     @IBAction func copy(_ sender: NSButton) {
