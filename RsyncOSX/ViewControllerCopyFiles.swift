@@ -257,11 +257,11 @@ extension ViewControllerCopyFiles: StartStopProgressIndicator {
     func stop() {
         self.working.stopAnimation(nil)
     }
-    
+
     func start() {
         self.working.startAnimation(nil)
     }
-    
+
     func complete() {
         // nothing
     }
