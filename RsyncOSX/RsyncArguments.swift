@@ -66,16 +66,14 @@ class RsyncArguments: ProcessArguments {
     }
 
     func getArguments() -> Array<String>? {
-        guard self.args != nil else {
-            return nil
-        }
         return self.args
     }
 
+    func getArgumentsDisplay() -> String? {
+        return self.argDisplay
+    }
+
     func getCommand() -> String? {
-        guard self.command != nil else {
-            return nil
-        }
         return self.command
     }
 

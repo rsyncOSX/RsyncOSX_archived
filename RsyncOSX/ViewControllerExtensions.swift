@@ -142,6 +142,30 @@ extension VcMain {
     }
 }
 
+protocol VcCopyFiles {
+    var storyboard: NSStoryboard? { get }
+    var viewControllerInformation: NSViewController? { get }
+    var viewControllerSource: NSViewController? { get }
+}
+
+extension VcCopyFiles {
+    var storyboard: NSStoryboard? {
+        return NSStoryboard(name: NSStoryboard.Name(rawValue: "Main"), bundle: nil)
+    }
+
+    // Information about rsync output
+    // self.presentViewControllerAsSheet(self.ViewControllerInformation)
+    var viewControllerInformation: NSViewController? {
+        return (self.storyboard!.instantiateController(withIdentifier: NSStoryboard.SceneIdentifier(rawValue: "StoryboardInformationCopyFilesID")) as? NSViewController)!
+    }
+
+    // Source for CopyFiles
+    // self.presentViewControllerAsSheet(self.viewControllerSource)
+    var viewControllerSource: NSViewController? {
+        return (self.storyboard!.instantiateController(withIdentifier: NSStoryboard.SceneIdentifier(rawValue: "CopyFilesID")) as? NSViewController)!
+    }
+}
+
 // Protocol for dismissing a viewcontroller
 protocol DismissViewController: class {
     func dismiss_view(viewcontroller: NSViewController)
