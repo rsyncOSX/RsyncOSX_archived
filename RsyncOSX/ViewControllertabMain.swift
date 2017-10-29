@@ -68,6 +68,7 @@ class ViewControllertabMain: NSViewController, ReloadTable, Deselect, Coloractiv
     @IBOutlet weak var newfiles: NSTextField!
     // Delete files
     @IBOutlet weak var deletefiles: NSTextField!
+    @IBOutlet weak var selecttask: NSTextField!
 
     // Reference to Process task
     private var process: Process?
@@ -101,7 +102,7 @@ class ViewControllertabMain: NSViewController, ReloadTable, Deselect, Coloractiv
                 self.presentViewControllerAsSheet(self.editViewController!)
             })
         } else {
-            self.rsyncCommand.stringValue = " ... Please select a task first ..."
+            self.selecttask.isHidden = false
         }
     }
 
@@ -112,7 +113,7 @@ class ViewControllertabMain: NSViewController, ReloadTable, Deselect, Coloractiv
                 self.presentViewControllerAsSheet(self.viewControllerRsyncParams!)
             })
         } else {
-            self.rsyncCommand.stringValue = " ... Please select a task first ..."
+            self.selecttask.isHidden = false
         }
     }
 
@@ -132,7 +133,7 @@ class ViewControllertabMain: NSViewController, ReloadTable, Deselect, Coloractiv
                 self.reloadtable(vcontroller: .vctabschedule)
             }
         } else {
-            self.rsyncCommand.stringValue = " ... Please select a task first ..."
+            self.selecttask.isHidden = false
         }
     }
 
@@ -369,6 +370,7 @@ class ViewControllertabMain: NSViewController, ReloadTable, Deselect, Coloractiv
             self.abortOperations()
         }
         self.readyforexecution = true
+        self.selecttask.isHidden = true
         let myTableViewFromNotification = (notification.object as? NSTableView)!
         let indexes = myTableViewFromNotification.selectedRowIndexes
         if let index = indexes.first {

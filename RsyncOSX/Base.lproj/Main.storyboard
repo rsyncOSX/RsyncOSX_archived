@@ -800,13 +800,22 @@
                                 </connections>
                             </button>
                             <box fixedFrame="YES" title="Edit configurations" translatesAutoresizingMaskIntoConstraints="NO" id="0B4-M8-m3v">
-                                <rect key="frame" x="3" y="274" width="130" height="131"/>
+                                <rect key="frame" x="3" y="266" width="130" height="139"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <view key="contentView" id="0DJ-h3-zoP">
-                                    <rect key="frame" x="2" y="2" width="126" height="114"/>
+                                    <rect key="frame" x="2" y="2" width="126" height="122"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 </view>
                             </box>
+                            <textField hidden="YES" horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fbQ-G3-TsB">
+                                <rect key="frame" x="4" y="272" width="128" height="17"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" enabled="NO" sendsActionOnEndEditing="YES" alignment="center" title="Select a task...." id="KFn-bJ-a0G">
+                                    <font key="font" metaFont="system" size="12"/>
+                                    <color key="textColor" red="1" green="0.14913141730000001" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
                         </subviews>
                         <constraints>
                             <constraint firstItem="wSD-Dl-gPc" firstAttribute="baseline" secondItem="a5P-Xw-HGm" secondAttribute="baseline" id="2TE-P1-vk0"/>
@@ -906,6 +915,7 @@
                         <outlet property="profilInfo" destination="Gg2-se-FkF" id="XIe-l3-YkS"/>
                         <outlet property="rsyncCommand" destination="7n8-es-jH6" id="bH0-3W-ECU"/>
                         <outlet property="scheduledJobworking" destination="hnd-F8-jzy" id="BaA-Rt-95e"/>
+                        <outlet property="selecttask" destination="fbQ-G3-TsB" id="YIV-Ar-eVy"/>
                         <outlet property="totalDirs" destination="ZMP-pU-PWi" id="BWy-QK-Edy"/>
                         <outlet property="totalNumber" destination="IFg-Xf-ODx" id="PEU-mH-vGF"/>
                         <outlet property="totalNumberSizebytes" destination="ajb-fx-OK1" id="05f-QP-HmX"/>
