@@ -2657,23 +2657,14 @@
                                 </view>
                             </box>
                             <box fixedFrame="YES" title="Catalog parameters" translatesAutoresizingMaskIntoConstraints="NO" id="EH0-Ty-cyz">
-                                <rect key="frame" x="364" y="291" width="565" height="96"/>
+                                <rect key="frame" x="364" y="290" width="565" height="97"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <view key="contentView" id="uKr-oj-PV3">
-                                    <rect key="frame" x="2" y="2" width="561" height="79"/>
+                                    <rect key="frame" x="2" y="2" width="561" height="80"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
-                                        <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Ows-Sq-dAk">
-                                            <rect key="frame" x="268" y="-11" width="165" height="17"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                            <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Requiered if remote server" id="64p-ez-EiO">
-                                                <font key="font" metaFont="cellTitle"/>
-                                                <color key="textColor" name="knobColor" catalog="System" colorSpace="catalog"/>
-                                                <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                                            </textFieldCell>
-                                        </textField>
                                         <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Dyf-3c-3H2">
-                                            <rect key="frame" x="268" y="-40" width="165" height="17"/>
+                                            <rect key="frame" x="268" y="-39" width="165" height="17"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Requiered if remote server" id="znZ-ht-M5x">
                                                 <font key="font" metaFont="cellTitle"/>
@@ -2682,7 +2673,7 @@
                                             </textFieldCell>
                                         </textField>
                                         <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="d4N-Fm-wmV">
-                                            <rect key="frame" x="268" y="-71" width="165" height="17"/>
+                                            <rect key="frame" x="268" y="-70" width="165" height="17"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Optional" id="WVf-5Q-8C4">
                                                 <font key="font" metaFont="cellTitle"/>
@@ -2691,7 +2682,7 @@
                                             </textFieldCell>
                                         </textField>
                                         <textField hidden="YES" horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="XA5-51-CaU">
-                                            <rect key="frame" x="-2" y="4" width="565" height="17"/>
+                                            <rect key="frame" x="-2" y="5" width="565" height="17"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" enabled="NO" sendsActionOnEndEditing="YES" alignment="center" title="Local and remote catalog cannot be equal..." id="UKw-nH-iBh">
                                                 <font key="font" metaFont="cellTitle"/>
