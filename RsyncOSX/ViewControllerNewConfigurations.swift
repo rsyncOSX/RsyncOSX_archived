@@ -87,9 +87,6 @@ class ViewControllerNewConfigurations: NSViewController, SetConfigurations, VcSc
         self.setFields()
     }
 
-    // handler and getter for setting localcatalog
-    // for å hente lokal katalog
-
     private func setFields() {
         self.viewParameter1.stringValue = parameter1
         self.viewParameter2.stringValue = parameter2
