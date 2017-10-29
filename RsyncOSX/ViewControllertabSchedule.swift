@@ -73,7 +73,7 @@ class ViewControllertabSchedule: NSViewController, SetConfigurations, SetSchedul
             if secondsstart >= (60*60*24) {
                  self.addschedule(schedule: schedule!, startdate: startdate, stopdate: stopdate)
             } else {
-                self.info(str: "Start is not 24h ahead...")
+                self.info(str: "Start must be 24 hours from now...")
             }
         } else {
             self.info(str: "Select a task...")
@@ -93,7 +93,7 @@ class ViewControllertabSchedule: NSViewController, SetConfigurations, SetSchedul
             if secondsstart >= (60*60*24*7) {
                 self.addschedule(schedule: schedule!, startdate: startdate, stopdate: stopdate)
             } else {
-                self.info(str: "Start is not 7d ahead...")
+                self.info(str: "Start must be 7 days from now....")
             }
         } else {
             self.info(str: "Select a task...")
