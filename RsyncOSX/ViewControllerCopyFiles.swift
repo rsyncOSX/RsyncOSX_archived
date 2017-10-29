@@ -18,7 +18,7 @@ protocol GetSource: class {
     func getSource(index: Int)
 }
 
-class ViewControllerCopyFiles: NSViewController, SetConfigurations, GetIndex, Delay {
+class ViewControllerCopyFiles: NSViewController, SetConfigurations, GetIndex, Delay, VcCopyFiles {
 
     var copyFiles: CopyFiles?
     var index: Int?
@@ -29,19 +29,6 @@ class ViewControllerCopyFiles: NSViewController, SetConfigurations, GetIndex, De
     @IBOutlet weak var numberofrows: NSTextField!
     @IBOutlet weak var server: NSTextField!
     @IBOutlet weak var rcatalog: NSTextField!
-
-    // Information about rsync output
-    // self.presentViewControllerAsSheet(self.ViewControllerInformation)
-    lazy var viewControllerInformation: NSViewController = {
-        return (self.storyboard!.instantiateController(withIdentifier: NSStoryboard.SceneIdentifier(rawValue: "StoryboardInformationCopyFilesID")) as? NSViewController)!
-    }()
-
-    // Source for CopyFiles
-    // self.presentViewControllerAsSheet(self.viewControllerSource)
-    lazy var viewControllerSource: NSViewController = {
-        return (self.storyboard!.instantiateController(withIdentifier: NSStoryboard.SceneIdentifier(rawValue:
-            "CopyFilesID")) as? NSViewController)!
-    }()
 
      // Set localcatalog to filePath
     @IBAction func copyToIcon(_ sender: NSButton) {
@@ -101,7 +88,7 @@ class ViewControllerCopyFiles: NSViewController, SetConfigurations, GetIndex, De
             // Reset search data
             self.resetCopySource()
             // Get Copy Source
-            self.presentViewControllerAsSheet(self.viewControllerSource)
+            self.presentViewControllerAsSheet(self.viewControllerSource!)
         }
     }
 
@@ -303,7 +290,7 @@ extension ViewControllerCopyFiles: UpdateProgress {
             self.stop()
         } else {
             self.workingRsync.stopAnimation(nil)
-            self.presentViewControllerAsSheet(self.viewControllerInformation)
+            self.presentViewControllerAsSheet(self.viewControllerInformation!)
         }
     }
 
