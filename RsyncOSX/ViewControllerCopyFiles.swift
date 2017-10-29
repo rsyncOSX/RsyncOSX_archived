@@ -56,7 +56,7 @@ class ViewControllerCopyFiles: NSViewController, SetConfigurations, GetIndex, De
 
     // Do the work
     @IBAction func copy(_ sender: NSButton) {
-        guard self.remoteCatalog.stringValue.isEmpty || self.localCatalog.stringValue.isEmpty else {
+        guard self.remoteCatalog.stringValue.isEmpty == false && self.localCatalog.stringValue.isEmpty == false else {
             self.error.isHidden = false
             return
         }
@@ -108,6 +108,7 @@ class ViewControllerCopyFiles: NSViewController, SetConfigurations, GetIndex, De
         self.selectButton.title = "Get source"
         self.rsync = false
         self.copyButton.isEnabled = true
+        self.error.isHidden = true
     }
 
     private func displayRemoteserver(index: Int?) {
@@ -133,8 +134,6 @@ class ViewControllerCopyFiles: NSViewController, SetConfigurations, GetIndex, De
         self.working.usesThreadedAnimation = true
         self.workingRsync.usesThreadedAnimation = true
         self.search.delegate = self
-        self.localCatalog.delegate = self
-        // Double click on row to select
         self.tableViewSelect.doubleAction = #selector(self.tableViewDoubleClick(sender:))
     }
 
@@ -217,7 +216,6 @@ extension ViewControllerCopyFiles: NSTableViewDelegate {
 
     func tableView(_ tableView: NSTableView, viewFor tableColumn: NSTableColumn?, row: Int) -> NSView? {
         var text: String?
-        self.error.isHidden = true
         guard self.tabledata != nil else { return nil }
         let cellIdentifier: String = "fileID"
         text = self.tabledata![row]
@@ -229,12 +227,13 @@ extension ViewControllerCopyFiles: NSTableViewDelegate {
     }
 
     func tableViewSelectionDidChange(_ notification: Notification) {
+        self.error.isHidden = true
         let myTableViewFromNotification = (notification.object as? NSTableView)!
         let indexes = myTableViewFromNotification.selectedRowIndexes
         if let index = indexes.first {
             guard self.tabledata != nil else { return }
             self.remoteCatalog.stringValue = self.tabledata![index]
-            guard self.remoteCatalog.stringValue.isEmpty || self.localCatalog.stringValue.isEmpty else {
+            guard self.remoteCatalog.stringValue.isEmpty == false && self.localCatalog.stringValue.isEmpty == false else {
                 self.error.isHidden = false
                 return
             }
@@ -244,19 +243,6 @@ extension ViewControllerCopyFiles: NSTableViewDelegate {
         }
     }
 }
-
-// textDidEndEditing
-/*
-extension ViewControllerCopyFiles: NSTextFieldDelegate {
-    override func controlTextDidEndEditing(_ obj: Notification) {
-        guard self.remoteCatalog.stringValue.isEmpty || self.localCatalog.stringValue.isEmpty else {
-            self.error.isHidden = false
-            return
-        }
-        self.commandString.stringValue = (self.copyFiles!.getCommandDisplayinView(remotefile: self.remoteCatalog.stringValue, localCatalog: self.localCatalog.stringValue))
-    }
-}
-*/
 
 extension ViewControllerCopyFiles: Reloadandrefresh {
     // Do a refresh of table
