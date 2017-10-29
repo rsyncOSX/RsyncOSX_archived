@@ -53,10 +53,10 @@ class ViewControllertabSchedule: NSViewController, SetConfigurations, SetSchedul
             if seconds > -60 {
                 self.addschedule(schedule: schedule!, startdate: startdate, stopdate: stopdate + 60)
             } else {
-                self.info(str: "Startdate has passed...")
+                self.info(str: "Start is passed...")
             }
         } else {
-            self.selecttask.isHidden = false
+            self.info(str: "Select a task...")
         }
     }
 
@@ -73,10 +73,10 @@ class ViewControllertabSchedule: NSViewController, SetConfigurations, SetSchedul
             if secondsstart >= (60*60*24) {
                  self.addschedule(schedule: schedule!, startdate: startdate, stopdate: stopdate)
             } else {
-                self.info(str: "Startdate has to be more than 24 hours ahead...")
+                self.info(str: "Start is not 24h ahead...")
             }
         } else {
-            self.selecttask.isHidden = false
+            self.info(str: "Select a task...")
         }
     }
 
@@ -93,10 +93,10 @@ class ViewControllertabSchedule: NSViewController, SetConfigurations, SetSchedul
             if secondsstart >= (60*60*24*7) {
                 self.addschedule(schedule: schedule!, startdate: startdate, stopdate: stopdate)
             } else {
-                self.info(str: "Startdate has to be more than 7 days ahead...")
+                self.info(str: "Start is not 7d ahead...")
             }
         } else {
-            self.selecttask.isHidden = false
+            self.info(str: "Select a task...")
         }
     }
 
@@ -117,8 +117,8 @@ class ViewControllertabSchedule: NSViewController, SetConfigurations, SetSchedul
     }
 
     private func info(str: String) {
-        self.firstLocalCatalog.textColor = .red
-        self.firstLocalCatalog.stringValue = str
+        self.selecttask.stringValue = str
+        self.selecttask.isHidden = false
     }
 
     // Userconfiguration button
