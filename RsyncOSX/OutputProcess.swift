@@ -5,7 +5,7 @@
 //  Copyright © 2016 Thomas Evensen. All rights reserved.
 //
 //  SwiftLint: OK 31 July 2017
-//  swiftlint:disable syntactic_sugar
+//  swiftlint:disable syntactic_sugar line_length
 
 import Foundation
 
@@ -66,7 +66,8 @@ final class OutputProcess {
         case .one:
             for i in 0 ..< self.output!.count {
                 let substr = self.output![i].dropFirst(10).trimmingCharacters(in: .whitespacesAndNewlines)
-                let str = substr.components(separatedBy: " ").dropFirst(3).joined()
+                // let str = substr.components(separatedBy: " ").dropFirst(3).joined()
+                let str = substr.components(separatedBy: " ").dropFirst(3).joined(separator: " ")
                 if str.isEmpty == false {
                     out.append("./" + str)
                 }
@@ -76,8 +77,7 @@ final class OutputProcess {
                 out.append(self.output![i])
                 let error = self.output![i].contains("rsync error:")
                 if error {
-                    self.errorDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain)
-                        as? ViewControllertabMain
+                    self.errorDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllertabMain
                     self.errorDelegate?.rsyncerror()
                 }
             }
