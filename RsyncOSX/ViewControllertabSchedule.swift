@@ -39,6 +39,7 @@ class ViewControllertabSchedule: NSViewController, SetConfigurations, SetSchedul
     @IBOutlet weak var firstLocalCatalog: NSTextField!
     @IBOutlet weak var secondLocalCatalog: NSTextField!
     @IBOutlet weak var operation: NSTextField!
+    @IBOutlet weak var selecttask: NSTextField!
 
     @IBAction func once(_ sender: NSButton) {
         let startdate: Date = Date()
@@ -55,7 +56,7 @@ class ViewControllertabSchedule: NSViewController, SetConfigurations, SetSchedul
                 self.info(str: "Startdate has passed...")
             }
         } else {
-            self.info(str: "Please select a task...")
+            self.selecttask.isHidden = false
         }
     }
 
@@ -75,7 +76,7 @@ class ViewControllertabSchedule: NSViewController, SetConfigurations, SetSchedul
                 self.info(str: "Startdate has to be more than 24 hours ahead...")
             }
         } else {
-            self.info(str: "Please select a task...")
+            self.selecttask.isHidden = false
         }
     }
 
@@ -95,7 +96,7 @@ class ViewControllertabSchedule: NSViewController, SetConfigurations, SetSchedul
                 self.info(str: "Startdate has to be more than 7 days ahead...")
             }
         } else {
-            self.info(str: "Please select a task...")
+            self.selecttask.isHidden = false
         }
     }
 
@@ -216,6 +217,7 @@ class ViewControllertabSchedule: NSViewController, SetConfigurations, SetSchedul
 
     // setting which table row is selected
     func tableViewSelectionDidChange(_ notification: Notification) {
+        self.selecttask.isHidden = true
         let myTableViewFromNotification = (notification.object as? NSTableView)!
         let indexes = myTableViewFromNotification.selectedRowIndexes
         if let index = indexes.first {

@@ -811,7 +811,7 @@
                                 <rect key="frame" x="4" y="272" width="128" height="17"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" enabled="NO" sendsActionOnEndEditing="YES" alignment="center" title="Select a task...." id="KFn-bJ-a0G">
-                                    <font key="font" metaFont="system" size="12"/>
+                                    <font key="font" metaFont="cellTitle"/>
                                     <color key="textColor" red="1" green="0.14913141730000001" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
@@ -2231,14 +2231,14 @@
                                 </textFieldCell>
                             </textField>
                             <box fixedFrame="YES" title="Select schedule" translatesAutoresizingMaskIntoConstraints="NO" id="PkH-9i-AY6">
-                                <rect key="frame" x="8" y="329" width="227" height="58"/>
+                                <rect key="frame" x="8" y="318" width="227" height="69"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <view key="contentView" id="rfk-IY-P9v">
-                                    <rect key="frame" x="2" y="2" width="223" height="41"/>
+                                    <rect key="frame" x="2" y="2" width="223" height="52"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2Qn-FN-xeN">
-                                            <rect key="frame" x="3" y="3" width="84" height="32"/>
+                                            <rect key="frame" x="3" y="14" width="84" height="32"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             <buttonCell key="cell" type="push" title="Weekly" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="s3e-Xz-emD">
                                                 <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -2249,7 +2249,7 @@
                                             </connections>
                                         </button>
                                         <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="kbd-42-Izb">
-                                            <rect key="frame" x="146" y="3" width="73" height="32"/>
+                                            <rect key="frame" x="146" y="14" width="73" height="32"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             <buttonCell key="cell" type="push" title="Once" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="QCj-5P-T2N">
                                                 <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -2259,6 +2259,15 @@
                                                 <action selector="once:" target="rht-JI-asq" id="cU1-W3-b5I"/>
                                             </connections>
                                         </button>
+                                        <textField hidden="YES" horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="VND-va-3iY">
+                                            <rect key="frame" x="-2" y="6" width="227" height="16"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                            <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" enabled="NO" sendsActionOnEndEditing="YES" alignment="center" title="Select a task...." id="pM4-LH-qwg">
+                                                <font key="font" metaFont="cellTitle"/>
+                                                <color key="textColor" red="1" green="0.14913141730000001" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                            </textFieldCell>
+                                        </textField>
                                     </subviews>
                                 </view>
                             </box>
@@ -2333,6 +2342,7 @@
                         <outlet property="secondLocalCatalog" destination="fQ7-at-veZ" id="HFv-hY-UYw"/>
                         <outlet property="secondRemoteServer" destination="GFe-EE-0im" id="BmG-cX-PDH"/>
                         <outlet property="secondScheduledTask" destination="fPT-QI-u33" id="hCA-Aj-XO9"/>
+                        <outlet property="selecttask" destination="VND-va-3iY" id="U1O-9L-yVw"/>
                         <outlet property="stopdate" destination="wEG-hh-qwG" id="ySQ-9m-CrI"/>
                         <outlet property="stoptime" destination="6Ke-eK-ziR" id="9rV-tn-s3f"/>
                     </connections>
