@@ -14,26 +14,6 @@ protocol Count: class {
     func inprogressCount() -> Int
 }
 
-// Protocol for aborting task
-protocol AbortOperations: class {
-    func abortOperations()
-}
-
-protocol AbortTask {
-    weak var abortDelegate: AbortOperations? { get }
-    func abort()
-}
-
-extension AbortTask {
-    weak var abortDelegate: AbortOperations? {
-        return ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllertabMain
-    }
-
-    func abort() {
-        self.abortDelegate?.abortOperations()
-    }
-}
-
 class ViewControllerProgressProcess: NSViewController, SetConfigurations, SetDismisser, AbortTask {
 
     var count: Double = 0

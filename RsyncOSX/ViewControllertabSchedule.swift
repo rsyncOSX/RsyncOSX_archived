@@ -5,7 +5,7 @@
 //  Created by Thomas Evensen on 19/08/2016.
 //  Copyright © 2016 Thomas Evensen. All rights reserved.
 //
-//  swiftlint:disable line_length file_length
+//  swiftlint:disable line_length
 
 import Foundation
 import Cocoa
@@ -19,30 +19,7 @@ protocol SetProfileinfo: class {
     func setprofile(profile: String, color: NSColor)
 }
 
-protocol Coloractivetask {
-    var colorindex: Int? { get }
-}
-
-extension Coloractivetask {
-
-    var colorindex: Int? {
-        return self.color()
-    }
-
-    func color() -> Int? {
-        if let dict: NSDictionary = ViewControllerReference.shared.scheduledTask {
-            if let hiddenID: Int = dict.value(forKey: "hiddenID") as? Int {
-                return hiddenID
-            } else {
-                return nil
-            }
-        } else {
-            return nil
-        }
-    }
-}
-
-class ViewControllertabSchedule: NSViewController, SetConfigurations, SetSchedules, NextTask, Coloractivetask, OperationChanged {
+class ViewControllertabSchedule: NSViewController, SetConfigurations, SetSchedules, NextTask, Coloractivetask, OperationChanged, VcSchedule {
 
     // Main tableview
     @IBOutlet weak var mainTableView: NSTableView!
@@ -55,27 +32,6 @@ class ViewControllertabSchedule: NSViewController, SetConfigurations, SetSchedul
     private var infoschedulessorted: InfoScheduleSortedAndExpand?
     var tools: Tools?
 
-    // Information Schedule details
-    // self.presentViewControllerAsSheet(self.ViewControllerScheduleDetails)
-    lazy var viewControllerScheduleDetails: NSViewController = {
-        return (self.storyboard!.instantiateController(withIdentifier: NSStoryboard.SceneIdentifier(rawValue: "StoryboardScheduleID"))
-            as? NSViewController)!
-    }()
-
-    // Userconfiguration
-    // self.presentViewControllerAsSheet(self.ViewControllerUserconfiguration)
-    lazy var viewControllerUserconfiguration: NSViewController = {
-        return (self.storyboard!.instantiateController(withIdentifier: NSStoryboard.SceneIdentifier(rawValue: "StoryboardUserconfigID"))
-            as? NSViewController)!
-    }()
-
-    // Profile
-    // self.presentViewControllerAsSheet(self.ViewControllerProfile)
-    lazy var viewControllerProfile: NSViewController = {
-        return (self.storyboard!.instantiateController(withIdentifier: NSStoryboard.SceneIdentifier(rawValue: "ProfileID"))
-            as? NSViewController)!
-    }()
-
     @IBOutlet weak var firstScheduledTask: NSTextField!
     @IBOutlet weak var secondScheduledTask: NSTextField!
     @IBOutlet weak var firstRemoteServer: NSTextField!
@@ -83,6 +39,7 @@ class ViewControllertabSchedule: NSViewController, SetConfigurations, SetSchedul
     @IBOutlet weak var firstLocalCatalog: NSTextField!
     @IBOutlet weak var secondLocalCatalog: NSTextField!
     @IBOutlet weak var operation: NSTextField!
+    @IBOutlet weak var selecttask: NSTextField!
 
     @IBAction func once(_ sender: NSButton) {
         let startdate: Date = Date()
@@ -96,10 +53,10 @@ class ViewControllertabSchedule: NSViewController, SetConfigurations, SetSchedul
             if seconds > -60 {
                 self.addschedule(schedule: schedule!, startdate: startdate, stopdate: stopdate + 60)
             } else {
-                self.info(str: "Startdate has passed...")
+                self.info(str: "Start is passed...")
             }
         } else {
-            self.info(str: "Please select a task...")
+            self.info(str: "Select a task...")
         }
     }
 
@@ -116,10 +73,10 @@ class ViewControllertabSchedule: NSViewController, SetConfigurations, SetSchedul
             if secondsstart >= (60*60*24) {
                  self.addschedule(schedule: schedule!, startdate: startdate, stopdate: stopdate)
             } else {
-                self.info(str: "Startdate has to be more than 24 hours ahead...")
+                self.info(str: "Start is not 24h ahead...")
             }
         } else {
-            self.info(str: "Please select a task...")
+            self.info(str: "Select a task...")
         }
     }
 
@@ -136,17 +93,17 @@ class ViewControllertabSchedule: NSViewController, SetConfigurations, SetSchedul
             if secondsstart >= (60*60*24*7) {
                 self.addschedule(schedule: schedule!, startdate: startdate, stopdate: stopdate)
             } else {
-                self.info(str: "Startdate has to be more than 7 days ahead...")
+                self.info(str: "Start is not 7d ahead...")
             }
         } else {
-            self.info(str: "Please select a task...")
+            self.info(str: "Select a task...")
         }
     }
 
     // Selecting profiles
     @IBAction func profiles(_ sender: NSButton) {
         globalMainQueue.async(execute: { () -> Void in
-            self.presentViewControllerAsSheet(self.viewControllerProfile)
+            self.presentViewControllerAsSheet(self.viewControllerProfile!)
         })
     }
 
@@ -160,21 +117,21 @@ class ViewControllertabSchedule: NSViewController, SetConfigurations, SetSchedul
     }
 
     private func info(str: String) {
-        self.firstLocalCatalog.textColor = .red
-        self.firstLocalCatalog.stringValue = str
+        self.selecttask.stringValue = str
+        self.selecttask.isHidden = false
     }
 
     // Userconfiguration button
     @IBAction func userconfiguration(_ sender: NSButton) {
         globalMainQueue.async(execute: { () -> Void in
-            self.presentViewControllerAsSheet(self.viewControllerUserconfiguration)
+            self.presentViewControllerAsSheet(self.viewControllerUserconfiguration!)
         })
     }
 
     // Logg records
     @IBAction func loggrecords(_ sender: NSButton) {
         globalMainQueue.async(execute: { () -> Void in
-            self.presentViewControllerAsSheet(self.viewControllerScheduleDetails)
+            self.presentViewControllerAsSheet(self.viewControllerScheduleDetails!)
         })
     }
 
@@ -260,6 +217,7 @@ class ViewControllertabSchedule: NSViewController, SetConfigurations, SetSchedul
 
     // setting which table row is selected
     func tableViewSelectionDidChange(_ notification: Notification) {
+        self.selecttask.isHidden = true
         let myTableViewFromNotification = (notification.object as? NSTableView)!
         let indexes = myTableViewFromNotification.selectedRowIndexes
         if let index = indexes.first {
@@ -276,7 +234,7 @@ class ViewControllertabSchedule: NSViewController, SetConfigurations, SetSchedul
     // Execute tasks by double click in table
     @objc(tableViewDoubleClick:) func tableViewDoubleClick(sender: AnyObject) {
         globalMainQueue.async(execute: { () -> Void in
-            self.presentViewControllerAsSheet(self.viewControllerScheduleDetails)
+            self.presentViewControllerAsSheet(self.viewControllerScheduleDetails!)
         })
     }
 

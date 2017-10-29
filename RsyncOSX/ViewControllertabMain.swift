@@ -11,51 +11,6 @@
 import Foundation
 import Cocoa
 
-// Protocol for dismissing a viewcontroller
-protocol DismissViewController: class {
-    func dismiss_view(viewcontroller: NSViewController)
-}
-protocol SetDismisser {
-    weak var dismissDelegateMain: DismissViewController? {get}
-    weak var dismissDelegateSchedule: DismissViewController? {get}
-    weak var dismissDelegateCopyFiles: DismissViewController? {get}
-    weak var dismissDelegateNewConfigurations: DismissViewController? {get}
-    weak var dismissDelegateSsh: DismissViewController? {get}
-    func dismissview(viewcontroller: NSViewController, vcontroller: ViewController)
-}
-
-extension SetDismisser {
-    weak var dismissDelegateMain: DismissViewController? {
-        return ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllertabMain
-    }
-    weak var dismissDelegateSchedule: DismissViewController? {
-        return ViewControllerReference.shared.getvcref(viewcontroller: .vctabschedule) as? ViewControllertabSchedule
-    }
-    weak var dismissDelegateCopyFiles: DismissViewController? {
-        return ViewControllerReference.shared.getvcref(viewcontroller: .vccopyfiles) as? ViewControllerCopyFiles
-    }
-    weak var dismissDelegateNewConfigurations: DismissViewController? {
-        return ViewControllerReference.shared.getvcref(viewcontroller: .vcnewconfigurations) as? ViewControllerNewConfigurations
-    }
-    weak var dismissDelegateSsh: DismissViewController? {
-        return ViewControllerReference.shared.getvcref(viewcontroller: .vcssh) as? ViewControllerSsh
-    }
-
-    func dismissview(viewcontroller: NSViewController, vcontroller: ViewController) {
-        if vcontroller == .vctabmain {
-            self.dismissDelegateMain?.dismiss_view(viewcontroller: (self as? NSViewController)!)
-        } else if vcontroller == .vctabschedule {
-            self.dismissDelegateSchedule?.dismiss_view(viewcontroller: (self as? NSViewController)!)
-        } else if vcontroller == .vccopyfiles {
-            self.dismissDelegateCopyFiles?.dismiss_view(viewcontroller: (self as? NSViewController)!)
-        } else if vcontroller == .vcnewconfigurations {
-            self.dismissDelegateNewConfigurations?.dismiss_view(viewcontroller: (self as? NSViewController)!)
-        } else {
-            self.dismissDelegateSsh?.dismiss_view(viewcontroller: (self as? NSViewController)!)
-        }
-    }
-}
-
 // Protocol for start,stop, complete progressviewindicator
 protocol StartStopProgressIndicator: class {
     func start()
@@ -70,36 +25,7 @@ protocol UpdateProgress: class {
     func fileHandler()
 }
 
-// Protocol for deselecting rowtable
-protocol DeselectRowTable: class {
-    func deselect()
-}
-
-protocol Deselect {
-    weak var deselectDelegateMain: DeselectRowTable? {get}
-    weak var deselectDelegateSchedule: DeselectRowTable? {get}
-    func deselectrowtable(vcontroller: ViewController)
-}
-
-extension Deselect {
-    weak var deselectDelegateMain: DeselectRowTable? {
-        return ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllertabMain
-    }
-    weak var deselectDelegateSchedule: DeselectRowTable? {
-        return ViewControllerReference.shared.getvcref(viewcontroller: .vctabschedule) as? ViewControllertabSchedule
-    }
-
-    func deselectrowtable(vcontroller: ViewController) {
-        if vcontroller == .vctabmain {
-            self.deselectDelegateMain?.deselect()
-        } else {
-            self.deselectDelegateSchedule?.deselect()
-        }
-    }
-
-}
-
-class ViewControllertabMain: NSViewController, ReloadTable, Deselect, Coloractivetask {
+class ViewControllertabMain: NSViewController, ReloadTable, Deselect, Coloractivetask, VcMain {
 
     // Configurations object
     var configurations: Configurations?
@@ -111,9 +37,7 @@ class ViewControllertabMain: NSViewController, ReloadTable, Deselect, Coloractiv
     var tools: Tools?
     // Delegate function getting batchTaskObject
     weak var batchObjectDelegate: getNewBatchTask?
-
     @IBOutlet weak var light: NSColorWell!
-
     // Main tableview
     @IBOutlet weak var mainTableView: NSTableView!
     // Progressbar indicating work
@@ -144,6 +68,7 @@ class ViewControllertabMain: NSViewController, ReloadTable, Deselect, Coloractiv
     @IBOutlet weak var newfiles: NSTextField!
     // Delete files
     @IBOutlet weak var deletefiles: NSTextField!
+    @IBOutlet weak var selecttask: NSTextField!
 
     // Reference to Process task
     private var process: Process?
@@ -170,137 +95,58 @@ class ViewControllertabMain: NSViewController, ReloadTable, Deselect, Coloractiv
     // Application crash if not
     private var loadProfileMenu: Bool = false
 
-    // Information about rsync output
-    // self.presentViewControllerAsSheet(self.ViewControllerInformation)
-    lazy var viewControllerInformation: NSViewController = {
-        return (self.storyboard!.instantiateController(withIdentifier: NSStoryboard.SceneIdentifier(rawValue: "StoryboardInformationID"))
-        as? NSViewController)!
-    }()
+    @IBAction func edit(_ sender: NSButton) {
+        self.reset()
+        if self.index != nil {
+            globalMainQueue.async(execute: { () -> Void in
+                self.presentViewControllerAsSheet(self.editViewController!)
+            })
+        } else {
+            self.selecttask.isHidden = false
+        }
+    }
 
-    // Progressbar process 
-    // self.presentViewControllerAsSheet(self.ViewControllerProgress)
-    lazy var viewControllerProgress: NSViewController = {
-        return (self.storyboard!.instantiateController(withIdentifier: NSStoryboard.SceneIdentifier(rawValue: "StoryboardProgressID"))
-            as? NSViewController)!
-    }()
+    @IBAction func rsyncparams(_ sender: NSButton) {
+        self.reset()
+        if self.index != nil {
+            globalMainQueue.async(execute: { () -> Void in
+                self.presentViewControllerAsSheet(self.viewControllerRsyncParams!)
+            })
+        } else {
+            self.selecttask.isHidden = false
+        }
+    }
 
-    // Batch process
-    // self.presentViewControllerAsSheet(self.ViewControllerBatch)
-    lazy var viewControllerBatch: NSViewController = {
-        return (self.storyboard!.instantiateController(withIdentifier: NSStoryboard.SceneIdentifier(rawValue: "StoryboardBatchID"))
-            as? NSViewController)!
-    }()
-
-    // Userconfiguration
-    // self.presentViewControllerAsSheet(self.ViewControllerUserconfiguration)
-    lazy var viewControllerUserconfiguration: NSViewController = {
-        return (self.storyboard!.instantiateController(withIdentifier: NSStoryboard.SceneIdentifier(rawValue: "StoryboardUserconfigID"))
-            as? NSViewController)!
-    }()
-
-    // Rsync userparams
-    // self.presentViewControllerAsSheet(self.ViewControllerRsyncParams)
-    lazy var viewControllerRsyncParams: NSViewController = {
-        return (self.storyboard!.instantiateController(withIdentifier: NSStoryboard.SceneIdentifier(rawValue: "StoryboardRsyncParamsID"))
-            as? NSViewController)!
-    }()
-
-    // New version window
-    // self.presentViewControllerAsSheet(self.newVersionViewController)
-    lazy var newVersionViewController: NSViewController = {
-        return (self.storyboard!.instantiateController(withIdentifier: NSStoryboard.SceneIdentifier(rawValue: "StoryboardnewVersionID"))
-            as? NSViewController)!
-    }()
-
-    // Edit
-    // self.presentViewControllerAsSheet(self.editViewController)
-    lazy var editViewController: NSViewController = {
-        return (self.storyboard!.instantiateController(withIdentifier: NSStoryboard.SceneIdentifier(rawValue: "StoryboardEditID"))
-            as? NSViewController)!
-    }()
-
-    // Profile
-    // self.presentViewControllerAsSheet(self.ViewControllerProfile)
-    lazy var viewControllerProfile: NSViewController = {
-        return (self.storyboard!.instantiateController(withIdentifier: NSStoryboard.SceneIdentifier(rawValue: "ProfileID"))
-            as? NSViewController)!
-    }()
-
-    // ScheduledBackupInWorkID
-    // self.presentViewControllerAsSheet(self.ViewControllerScheduledBackupInWork)
-    lazy var viewControllerScheduledBackupInWork: NSViewController = {
-        return (self.storyboard!.instantiateController(withIdentifier: NSStoryboard.SceneIdentifier(rawValue: "ScheduledBackupInWorkID"))
-            as? NSViewController)!
-    }()
-
-    // About
-    // self.presentViewControllerAsSheet(self.ViewControllerAbout)
-    lazy var viewControllerAbout: NSViewController = {
-        return (self.storyboard!.instantiateController(withIdentifier: NSStoryboard.SceneIdentifier(rawValue: "AboutID"))
-            as? NSViewController)!
-    }()
-
-    // Information Schedule details
-    // self.presentViewControllerAsSheet(self.ViewControllerScheduleDetails)
-    lazy var viewControllerScheduleDetails: NSViewController = {
-        return (self.storyboard!.instantiateController(withIdentifier: NSStoryboard.SceneIdentifier(rawValue: "StoryboardScheduleID"))
-            as? NSViewController)!
-    }()
-
-    // BUTTONS AND ACTIONS
-
-    @IBOutlet weak var edit: NSButton!
-    @IBOutlet weak var rsyncparams: NSButton!
-    @IBOutlet weak var delete: NSButton!
+    @IBAction func delete(_ sender: NSButton) {
+        self.reset()
+        guard self.hiddenID != nil else {
+            self.selecttask.isHidden = false
+            return
+        }
+        let answer = Alerts.dialogOKCancel("Delete selected task?", text: "Cancel or OK")
+        if answer {
+            if self.hiddenID != nil {
+                // Delete Configurations and Schedules by hiddenID
+                self.configurations!.deleteConfigurationsByhiddenID(hiddenID: self.hiddenID!)
+                self.schedules!.deletescheduleonetask(hiddenID: self.hiddenID!)
+                self.deselect()
+                self.hiddenID = nil
+                self.index = nil
+                self.reloadtabledata()
+                // Reset in tabSchedule
+                self.reloadtable(vcontroller: .vctabschedule)
+            }
+        }
+    }
 
     // Menus as Radiobuttons for Edit functions in tabMainView
-    @IBAction func radiobuttons(_ sender: NSButton) {
+    private func reset() {
         self.output = nil
         self.setNumbers(output: nil)
         self.setInfo(info: "Estimate", color: .blue)
         self.light.color = .systemYellow
         self.process = nil
         self.singletask = nil
-
-        if self.index != nil {
-            // rsync params
-            if self.rsyncparams.state == .on {
-                if self.index != nil {
-                    globalMainQueue.async(execute: { () -> Void in
-                        self.presentViewControllerAsSheet(self.viewControllerRsyncParams)
-                    })
-                }
-            // Edit task
-            } else if self.edit.state == .on {
-                if self.index != nil {
-                    globalMainQueue.async(execute: { () -> Void in
-                        self.presentViewControllerAsSheet(self.editViewController)
-                    })
-                }
-            // Delete files
-            } else if self.delete.state == .on {
-                let answer = Alerts.dialogOKCancel("Delete selected task?", text: "Cancel or OK")
-                if answer {
-                    if self.hiddenID != nil {
-                        // Delete Configurations and Schedules by hiddenID
-                        self.configurations!.deleteConfigurationsByhiddenID(hiddenID: self.hiddenID!)
-                        self.schedules!.deletescheduleonetask(hiddenID: self.hiddenID!)
-                        self.deselect()
-                        self.hiddenID = nil
-                        self.index = nil
-                        self.reloadtabledata()
-                        // Reset in tabSchedule
-                        self.reloadtable(vcontroller: .vctabschedule)
-                    }
-                }
-                self.delete.state = .off
-            }
-        } else {
-            self.rsyncCommand.stringValue = " ... Please select a task first ..."
-            self.delete.state = .off
-            self.rsyncparams.state = .off
-            self.edit.state = .off
-        }
     }
 
     @IBOutlet weak var TCPButton: NSButton!
@@ -314,7 +160,7 @@ class ViewControllertabMain: NSViewController, ReloadTable, Deselect, Coloractiv
     // Presenting Information from Rsync
     @IBAction func information(_ sender: NSButton) {
         globalMainQueue.async(execute: { () -> Void in
-            self.presentViewControllerAsSheet(self.viewControllerInformation)
+            self.presentViewControllerAsSheet(self.viewControllerInformation!)
         })
     }
 
@@ -331,7 +177,7 @@ class ViewControllertabMain: NSViewController, ReloadTable, Deselect, Coloractiv
     // Userconfiguration button
     @IBAction func userconfiguration(_ sender: NSButton) {
         globalMainQueue.async(execute: { () -> Void in
-            self.presentViewControllerAsSheet(self.viewControllerUserconfiguration)
+            self.presentViewControllerAsSheet(self.viewControllerUserconfiguration!)
         })
     }
 
@@ -340,7 +186,7 @@ class ViewControllertabMain: NSViewController, ReloadTable, Deselect, Coloractiv
         if self.loadProfileMenu == true {
             self.showProcessInfo(info: .changeprofile)
             globalMainQueue.async(execute: { () -> Void in
-                self.presentViewControllerAsSheet(self.viewControllerProfile)
+                self.presentViewControllerAsSheet(self.viewControllerProfile!)
             })
         } else {
             self.displayProfile()
@@ -351,13 +197,13 @@ class ViewControllertabMain: NSViewController, ReloadTable, Deselect, Coloractiv
     @IBAction func loggrecords(_ sender: NSButton) {
         self.configurations!.allowNotifyinMain = true
         globalMainQueue.async(execute: { () -> Void in
-            self.presentViewControllerAsSheet(self.viewControllerScheduleDetails)
+            self.presentViewControllerAsSheet(self.viewControllerScheduleDetails!)
         })
     }
 
     // Selecting About
     @IBAction func about (_ sender: NSButton) {
-        self.presentViewControllerAsModalWindow(self.viewControllerAbout)
+        self.presentViewControllerAsModalWindow(self.viewControllerAbout!)
     }
 
     // Function for display rsync command
@@ -491,7 +337,7 @@ class ViewControllertabMain: NSViewController, ReloadTable, Deselect, Coloractiv
         self.singletask = nil
         self.setNumbers(output: nil)
         globalMainQueue.async(execute: { () -> Void in
-            self.presentViewControllerAsSheet(self.viewControllerBatch)
+            self.presentViewControllerAsSheet(self.viewControllerBatch!)
         })
     }
 
@@ -526,6 +372,7 @@ class ViewControllertabMain: NSViewController, ReloadTable, Deselect, Coloractiv
             self.abortOperations()
         }
         self.readyforexecution = true
+        self.selecttask.isHidden = true
         let myTableViewFromNotification = (notification.object as? NSTableView)!
         let indexes = myTableViewFromNotification.selectedRowIndexes
         if let index = indexes.first {
@@ -585,10 +432,7 @@ class ViewControllertabMain: NSViewController, ReloadTable, Deselect, Coloractiv
     }
 }
 
-// Extensions
-
 extension ViewControllertabMain: NSTableViewDataSource {
-
     // Delegate for size of table
     func numberOfRows(in tableView: NSTableView) -> Int {
         return self.configurations?.configurationsDataSourcecount() ?? 0
@@ -596,7 +440,6 @@ extension ViewControllertabMain: NSTableViewDataSource {
 }
 
 extension ViewControllertabMain: NSTableViewDelegate {
-
     // Function to test for remote server available or not, used in tableview delegate
     private func testRow(_ row: Int) -> Bool {
         if let serverOff = self.serverOff {
@@ -672,7 +515,6 @@ extension ViewControllertabMain: NSTableViewDelegate {
 
 // Get output from rsync command
 extension ViewControllertabMain: Information {
-
     // Get information from rsync output.
     func getInformation() -> Array<String> {
         if self.outputbatch != nil {
@@ -687,7 +529,6 @@ extension ViewControllertabMain: Information {
 
 // Scheduled task are changed, read schedule again og redraw table
 extension ViewControllertabMain: Reloadandrefresh {
-
     // Refresh tableView in main
     func reloadtabledata() {
         globalMainQueue.async(execute: { () -> Void in
@@ -698,17 +539,14 @@ extension ViewControllertabMain: Reloadandrefresh {
 
 // Parameters to rsync is changed
 extension ViewControllertabMain: RsyncUserParams {
-
     // Do a reread of all Configurations
     func rsyncuserparamsupdated() {
         self.setRsyncCommandDisplay()
-        self.rsyncparams.state = .off
     }
 }
 
 // Get index of selected row
 extension ViewControllertabMain: GetSelecetedIndex {
-
     func getindex() -> Int? {
         return self.index
     }
@@ -716,7 +554,6 @@ extension ViewControllertabMain: GetSelecetedIndex {
 
 // Next scheduled job is started, if any
 extension ViewControllertabMain: StartNextTask {
-
     func startanyscheduledtask() {
         _ = OperationFactory(factory: self.configurations!.operation).initiate()
     }
@@ -724,7 +561,6 @@ extension ViewControllertabMain: StartNextTask {
 
 // New profile is loaded.
 extension ViewControllertabMain: NewProfile {
-
     // Function is called from profiles when new or default profiles is seleceted
     func newProfile(profile: String?) {
         self.process = nil
@@ -761,7 +597,6 @@ extension ViewControllertabMain: NewProfile {
 
 // A scheduled task is executed
 extension ViewControllertabMain: ScheduledTaskWorking {
-
     func start() {
         globalMainQueue.async(execute: {() -> Void in
             self.scheduledJobInProgress = true
@@ -784,7 +619,7 @@ extension ViewControllertabMain: ScheduledTaskWorking {
                 })
             } else {
                 globalMainQueue.async(execute: {() -> Void in
-                    self.presentViewControllerAsSheet(self.viewControllerScheduledBackupInWork)
+                    self.presentViewControllerAsSheet(self.viewControllerScheduledBackupInWork!)
                 })
             }
         }
@@ -793,7 +628,6 @@ extension ViewControllertabMain: ScheduledTaskWorking {
 
 // Rsync path is changed, update displayed rsync command
 extension ViewControllertabMain: RsyncChanged {
-
     // If row is selected an update rsync command in view
     func rsyncchanged() {
         // Update rsync command in display
@@ -801,12 +635,8 @@ extension ViewControllertabMain: RsyncChanged {
     }
 }
 
-// Check for remote connections, reload table
-// when completed.
+// Check for remote connections, reload table when completed.
 extension ViewControllertabMain: Connections {
-    // Function is called when testing of remote connections are compledet.
-    // Function is just redrawing the mainTableView after getting info
-    // about which remote servers are off/on line.
     // Remote servers offline are marked with red line in mainTableView
     func displayConnections() {
         // Only do a reload if we are in the main view
@@ -827,7 +657,7 @@ extension ViewControllertabMain: NewVersionDiscovered {
     func notifyNewVersion() {
         if self.configurations!.allowNotifyinMain {
             globalMainQueue.async(execute: { () -> Void in
-                self.presentViewControllerAsSheet(self.newVersionViewController)
+                self.presentViewControllerAsSheet(self.newVersionViewController!)
             })
         }
     }
@@ -836,12 +666,9 @@ extension ViewControllertabMain: NewVersionDiscovered {
 // Dismisser for sheets
 extension ViewControllertabMain: DismissViewController {
     // Function for dismissing a presented view
-    // - parameter viewcontroller: the viewcontroller to be dismissed
     func dismiss_view(viewcontroller: NSViewController) {
         self.dismissViewController(viewcontroller)
         // Reset radiobuttons
-        self.edit.state = .off
-        self.rsyncparams.state = .off
         self.loadProfileMenu = true
         globalMainQueue.async(execute: { () -> Void in
             self.mainTableView.reloadData()
@@ -855,10 +682,8 @@ extension ViewControllertabMain: DismissViewController {
 // discovered or data is availiable in the filehandler
 // See file rsyncProcess.swift.
 extension ViewControllertabMain: UpdateProgress {
-
     // Delegate functions called from the Process object
     // Protocol UpdateProgress two functions, ProcessTermination() and FileHandler()
-
     func processTermination() {
         self.readyforexecution = true
         // NB: must check if single run or batch run
@@ -956,7 +781,6 @@ extension ViewControllertabMain: ReportErrorMain {
 
 // Abort task from progressview
 extension ViewControllertabMain: AbortOperations {
-
     // Abort any task, either single- or batch task
     func abortOperations() {
         // Terminates the running process
@@ -1003,7 +827,6 @@ extension ViewControllertabMain: StartStopProgressIndicatorSingleTask {
 }
 
 extension ViewControllertabMain: SingleTaskProgress {
-
     func getProcessReference(process: Process) {
         self.process = process
     }
@@ -1033,14 +856,14 @@ extension ViewControllertabMain: SingleTaskProgress {
 
     func presentViewProgress() {
         globalMainQueue.async(execute: { () -> Void in
-            self.presentViewControllerAsSheet(self.viewControllerProgress)
+            self.presentViewControllerAsSheet(self.viewControllerProgress!)
         })
     }
 
     func presentViewInformation(output: OutputProcess) {
         self.output = output
         globalMainQueue.async(execute: { () -> Void in
-            self.presentViewControllerAsSheet(self.viewControllerInformation)
+            self.presentViewControllerAsSheet(self.viewControllerInformation!)
         })
     }
 
@@ -1101,7 +924,6 @@ extension ViewControllertabMain: SingleTaskProgress {
 }
 
 extension ViewControllertabMain: BatchTaskProgress {
-
     func progressIndicatorViewBatch(operation: BatchViewProgressIndicator) {
         let localindicatorDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vcbatch) as? ViewControllerBatch
         switch operation {
@@ -1159,7 +981,6 @@ extension ViewControllertabMain: GetConfigurationsObject {
 }
 
 extension ViewControllertabMain: GetSchedulesObject {
-
     func reloadschedules() {
         // If batchtask scedules object
         guard self.batchtaskObject == nil else {
@@ -1188,13 +1009,10 @@ extension ViewControllertabMain: GetSchedulesObject {
         ViewControllerReference.shared.scheduledTask = self.schedulessorted?.allscheduledtasks()
         return self.schedules
     }
-
 }
 
 extension  ViewControllertabMain: GetHiddenID {
-
     func gethiddenID() -> Int? {
         return self.hiddenID
     }
-
 }

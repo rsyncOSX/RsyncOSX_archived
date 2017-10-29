@@ -5,12 +5,12 @@
 //  Created by Thomas Evensen on 13/02/16.
 //  Copyright © 2016 Thomas Evensen. All rights reserved.
 //
-//  swiftlint:disable function_body_length line_length
+//  swiftlint:disable function_body_length
 
 import Foundation
 import Cocoa
 
-class ViewControllerNewConfigurations: NSViewController, SetConfigurations {
+class ViewControllerNewConfigurations: NSViewController, SetConfigurations, VcSchedule {
 
     var storageapi: PersistentStorageAPI?
     var newconfigurations: NewConfigurations?
@@ -40,13 +40,7 @@ class ViewControllerNewConfigurations: NSViewController, SetConfigurations {
     @IBOutlet weak var rsyncdaemon: NSButton!
     @IBOutlet weak var singleFile: NSButton!
     @IBOutlet weak var profilInfo: NSTextField!
-
-    // Userconfiguration
-    // self.presentViewControllerAsSheet(self.ViewControllerUserconfiguration)
-    lazy var viewControllerUserconfiguration: NSViewController = {
-        return (self.storyboard!.instantiateController(withIdentifier: NSStoryboard.SceneIdentifier(rawValue: "StoryboardUserconfigID"))
-            as? NSViewController)!
-    }()
+    @IBOutlet weak var equal: NSTextField!
 
     @IBAction func cleartable(_ sender: NSButton) {
         self.newconfigurations = nil
@@ -67,7 +61,7 @@ class ViewControllerNewConfigurations: NSViewController, SetConfigurations {
     // Userconfiguration button
     @IBAction func userconfiguration(_ sender: NSButton) {
         globalMainQueue.async(execute: { () -> Void in
-            self.presentViewControllerAsSheet(self.viewControllerUserconfiguration)
+            self.presentViewControllerAsSheet(self.viewControllerUserconfiguration!)
         })
     }
 
@@ -94,9 +88,6 @@ class ViewControllerNewConfigurations: NSViewController, SetConfigurations {
         self.setFields()
     }
 
-    // handler and getter for setting localcatalog
-    // for å hente lokal katalog
-
     private func setFields() {
         self.viewParameter1.stringValue = parameter1
         self.viewParameter2.stringValue = parameter2
@@ -110,6 +101,7 @@ class ViewControllerNewConfigurations: NSViewController, SetConfigurations {
         self.backupID.stringValue = ""
         self.rsyncdaemon.state = .off
         self.singleFile.state = .off
+        self.equal.isHidden = true
     }
 
     @IBAction func addConfig(_ sender: NSButton) {
@@ -154,6 +146,10 @@ class ViewControllerNewConfigurations: NSViewController, SetConfigurations {
         guard self.offsiteCatalog.stringValue != "/" else {
             self.offsiteCatalog.stringValue = ""
             self.localCatalog.stringValue = ""
+            return
+        }
+        guard self.offsiteCatalog.stringValue != self.localCatalog.stringValue else {
+            self.equal.isHidden = false
             return
         }
         self.configurations!.addNewConfigurations(dict)

@@ -10,19 +10,6 @@
 import Foundation
 import Cocoa
 
-protocol Delay {
-    func delayWithSeconds(_ seconds: Double, completion: @escaping () -> Void)
-}
-
-extension Delay {
-
-    func delayWithSeconds(_ seconds: Double, completion: @escaping () -> Void) {
-        DispatchQueue.main.asyncAfter(deadline: .now() + seconds) {
-            completion()
-        }
-    }
-}
-
 protocol SetIndex: class {
     func setIndex(index: Int)
 }
