@@ -40,6 +40,7 @@ class ViewControllerNewConfigurations: NSViewController, SetConfigurations, VcSc
     @IBOutlet weak var rsyncdaemon: NSButton!
     @IBOutlet weak var singleFile: NSButton!
     @IBOutlet weak var profilInfo: NSTextField!
+    @IBOutlet weak var equal: NSTextField!
 
     @IBAction func cleartable(_ sender: NSButton) {
         self.newconfigurations = nil
@@ -100,6 +101,7 @@ class ViewControllerNewConfigurations: NSViewController, SetConfigurations, VcSc
         self.backupID.stringValue = ""
         self.rsyncdaemon.state = .off
         self.singleFile.state = .off
+        self.equal.isHidden = true
     }
 
     @IBAction func addConfig(_ sender: NSButton) {
@@ -144,6 +146,10 @@ class ViewControllerNewConfigurations: NSViewController, SetConfigurations, VcSc
         guard self.offsiteCatalog.stringValue != "/" else {
             self.offsiteCatalog.stringValue = ""
             self.localCatalog.stringValue = ""
+            return
+        }
+        guard self.offsiteCatalog.stringValue != self.localCatalog.stringValue else {
+            self.equal.isHidden = false
             return
         }
         self.configurations!.addNewConfigurations(dict)

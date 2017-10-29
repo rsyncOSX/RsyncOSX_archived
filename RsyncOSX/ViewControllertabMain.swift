@@ -119,6 +119,10 @@ class ViewControllertabMain: NSViewController, ReloadTable, Deselect, Coloractiv
 
     @IBAction func delete(_ sender: NSButton) {
         self.reset()
+        guard self.hiddenID != nil else {
+            self.selecttask.isHidden = false
+            return
+        }
         let answer = Alerts.dialogOKCancel("Delete selected task?", text: "Cancel or OK")
         if answer {
             if self.hiddenID != nil {
@@ -132,8 +136,6 @@ class ViewControllertabMain: NSViewController, ReloadTable, Deselect, Coloractiv
                 // Reset in tabSchedule
                 self.reloadtable(vcontroller: .vctabschedule)
             }
-        } else {
-            self.selecttask.isHidden = false
         }
     }
 
