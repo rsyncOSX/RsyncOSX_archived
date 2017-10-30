@@ -15,13 +15,13 @@ class ViewControllerNewConfigurations: NSViewController, SetConfigurations, VcSc
     var storageapi: PersistentStorageAPI?
     var newconfigurations: NewConfigurations?
     var tabledata: [NSMutableDictionary]?
-    let parameterTest: String = "--dry-run"
-    let parameter1: String = "--archive"
-    let parameter2: String = "--verbose"
-    let parameter3: String = "--compress"
-    let parameter4: String = "--delete"
-    let parameter5: String = "-e"
-    let parameter6: String = "ssh"
+    let archive: String = "--archive"
+    let verbose: String = "--verbose"
+    let compress: String = "--compress"
+    let delete: String = "--delete"
+    let eparam: String = "-e"
+    let ssh: String = "ssh"
+    let dryrun: String = "--dry-run"
 
     @IBOutlet weak var newTableView: NSTableView!
     @IBOutlet weak var viewParameter1: NSTextField!
@@ -87,11 +87,11 @@ class ViewControllerNewConfigurations: NSViewController, SetConfigurations, VcSc
     }
 
     private func setFields() {
-        self.viewParameter1.stringValue = parameter1
-        self.viewParameter2.stringValue = parameter2
-        self.viewParameter3.stringValue = parameter3
-        self.viewParameter4.stringValue = parameter4
-        self.viewParameter5.stringValue = parameter5 + " " + parameter6
+        self.viewParameter1.stringValue = archive
+        self.viewParameter2.stringValue = verbose
+        self.viewParameter3.stringValue = compress
+        self.viewParameter4.stringValue = delete
+        self.viewParameter5.stringValue = eparam + " " + ssh
         self.localCatalog.stringValue = ""
         self.offsiteCatalog.stringValue = ""
         self.offsiteUsername.stringValue = ""
@@ -110,13 +110,13 @@ class ViewControllerNewConfigurations: NSViewController, SetConfigurations, VcSc
             "offsiteCatalog": offsiteCatalog.stringValue,
             "offsiteServer": offsiteServer.stringValue,
             "offsiteUsername": offsiteUsername.stringValue,
-            "parameter1": parameter1,
-            "parameter2": parameter2,
-            "parameter3": parameter3,
-            "parameter4": parameter4,
-            "parameter5": parameter5,
-            "parameter6": parameter6,
-            "dryrun": "--dry-run",
+            "parameter1": self.archive,
+            "parameter2": self.verbose,
+            "parameter3": self.compress,
+            "parameter4": self.delete,
+            "parameter5": self.eparam,
+            "parameter6": self.ssh,
+            "dryrun": self.dryrun,
             "dateRun": "",
             "singleFile": 0]
         dict.setValue("no", forKey: "batch")
