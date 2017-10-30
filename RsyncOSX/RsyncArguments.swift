@@ -12,6 +12,15 @@ import Foundation
 
 class RsyncArguments: ProcessArguments {
 
+    let archive: String = "--archive"
+    let verbose: String = "--verbose"
+    let compress: String = "--compress"
+    let delete: String = "--delete"
+    let eparam: String = "-e"
+    let ssh: String = "ssh"
+    let sshp: String = "ssh -p"
+    let dryrun: String = "--dry-run"
+
     private var config: Configuration?
     private var args: Array<String>?
     private var command: String?
@@ -29,22 +38,22 @@ class RsyncArguments: ProcessArguments {
             let remote = remote_with_whitespace.replacingOccurrences(of: " ", with: whitespace)
             let local: String = localCatalog!
             if config.sshport != nil {
-                self.args!.append("-e")
-                self.args!.append("ssh -p " + String(config.sshport!))
+                self.args!.append(self.eparam)
+                self.args!.append(self.sshp + String(config.sshport!))
             } else {
-                self.args!.append("-e")
-                self.args!.append("ssh")
+                self.args!.append(self.eparam)
+                self.args!.append(self.ssh)
             }
-            self.args!.append("--archive")
-            self.args!.append("--verbose")
+            self.args!.append(self.archive)
+            self.args!.append(self.verbose)
             // If copy over network compress files
             if config.offsiteServer.isEmpty {
-                self.args!.append("--compress")
+                self.args!.append(self.compress)
             }
             // Set dryrun or not
             if drynrun != nil {
                 if drynrun == true {
-                    self.args!.append("--dry-run")
+                    self.args!.append(self.dryrun)
                 }
             }
             if config.offsiteServer.isEmpty {
