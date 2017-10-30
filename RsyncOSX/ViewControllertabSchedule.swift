@@ -21,10 +21,6 @@ protocol SetProfileinfo: class {
 
 class ViewControllertabSchedule: NSViewController, SetConfigurations, SetSchedules, NextTask, Coloractivetask, OperationChanged, VcSchedule {
 
-    // Main tableview
-    @IBOutlet weak var mainTableView: NSTableView!
-    @IBOutlet weak var profilInfo: NSTextField!
-
     private var index: Int?
     private var hiddenID: Int?
     private var nextTask: Timer?
@@ -32,6 +28,9 @@ class ViewControllertabSchedule: NSViewController, SetConfigurations, SetSchedul
     private var infoschedulessorted: InfoScheduleSortedAndExpand?
     var tools: Tools?
 
+    // Main tableview
+    @IBOutlet weak var mainTableView: NSTableView!
+    @IBOutlet weak var profilInfo: NSTextField!
     @IBOutlet weak var firstScheduledTask: NSTextField!
     @IBOutlet weak var secondScheduledTask: NSTextField!
     @IBOutlet weak var firstRemoteServer: NSTextField!

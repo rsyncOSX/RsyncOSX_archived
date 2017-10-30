@@ -10,32 +10,6 @@
 import Foundation
 import Cocoa
 
-protocol Information : class {
-    func getInformation () -> [String]
-}
-
-protocol GetInformation {
-    weak var informationDelegateMain: Information? {get}
-    weak var informationDelegateCopyFiles: Information? {get}
-}
-
-extension GetInformation {
-    weak var informationDelegateMain: Information? {
-        return ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllertabMain
-    }
-    weak var informationDelegateCopyFiles: Information? {
-        return ViewControllerReference.shared.getvcref(viewcontroller: .vccopyfiles) as? ViewControllerCopyFiles
-    }
-
-    func getinfo(viewcontroller: ViewController) -> [String] {
-        if viewcontroller == .vctabmain {
-            return (self.informationDelegateMain?.getInformation())!
-        } else {
-            return (self.informationDelegateCopyFiles?.getInformation())!
-        }
-    }
-}
-
 class ViewControllerInformation: NSViewController, SetDismisser, GetInformation {
 
     @IBOutlet weak var detailsTable: NSTableView!

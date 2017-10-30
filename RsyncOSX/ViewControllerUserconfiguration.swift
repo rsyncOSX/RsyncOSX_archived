@@ -10,26 +10,6 @@
 import Foundation
 import Cocoa
 
-// Protocol for doing updates when optional path for rsync is changed
-// or user enable or disable doubleclick to execte
-protocol RsyncChanged : class {
-    func rsyncchanged()
-}
-
-protocol NewRsync {
-    weak var newRsyncDelegate: RsyncChanged? {get}
-}
-
-extension NewRsync {
-    weak var newRsyncDelegate: RsyncChanged? {
-        return ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllertabMain
-    }
-
-    func newrsync() {
-        self.newRsyncDelegate?.rsyncchanged()
-    }
-}
-
 protocol OperationChanged: class {
     func operationsmethod()
 }

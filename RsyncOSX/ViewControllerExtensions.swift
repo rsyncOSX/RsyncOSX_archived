@@ -311,3 +311,48 @@ extension AbortTask {
         self.abortDelegate?.abortOperations()
     }
 }
+
+protocol Information : class {
+    func getInformation () -> [String]
+}
+
+protocol GetInformation {
+    weak var informationDelegateMain: Information? {get}
+    weak var informationDelegateCopyFiles: Information? {get}
+}
+
+extension GetInformation {
+    weak var informationDelegateMain: Information? {
+        return ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllertabMain
+    }
+    weak var informationDelegateCopyFiles: Information? {
+        return ViewControllerReference.shared.getvcref(viewcontroller: .vccopyfiles) as? ViewControllerCopyFiles
+    }
+
+    func getinfo(viewcontroller: ViewController) -> [String] {
+        if viewcontroller == .vctabmain {
+            return (self.informationDelegateMain?.getInformation())!
+        } else {
+            return (self.informationDelegateCopyFiles?.getInformation())!
+        }
+    }
+}
+// Protocol for doing updates when optional path for rsync is changed
+// or user enable or disable doubleclick to execte
+protocol RsyncChanged : class {
+    func rsyncchanged()
+}
+
+protocol NewRsync {
+    weak var newRsyncDelegate: RsyncChanged? {get}
+}
+
+extension NewRsync {
+    weak var newRsyncDelegate: RsyncChanged? {
+        return ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllertabMain
+    }
+
+    func newrsync() {
+        self.newRsyncDelegate?.rsyncchanged()
+    }
+}
