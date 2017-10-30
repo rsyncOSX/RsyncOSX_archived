@@ -14,9 +14,6 @@ class ViewControllerNewConfigurations: NSViewController, SetConfigurations, VcSc
 
     var storageapi: PersistentStorageAPI?
     var newconfigurations: NewConfigurations?
-
-    @IBOutlet weak var newTableView: NSTableView!
-
     var tabledata: [NSMutableDictionary]?
     let parameterTest: String = "--dry-run"
     let parameter1: String = "--archive"
@@ -26,6 +23,7 @@ class ViewControllerNewConfigurations: NSViewController, SetConfigurations, VcSc
     let parameter5: String = "-e"
     let parameter6: String = "ssh"
 
+    @IBOutlet weak var newTableView: NSTableView!
     @IBOutlet weak var viewParameter1: NSTextField!
     @IBOutlet weak var viewParameter2: NSTextField!
     @IBOutlet weak var viewParameter3: NSTextField!

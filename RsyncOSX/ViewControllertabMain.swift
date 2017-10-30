@@ -912,7 +912,6 @@ extension ViewControllertabMain: SingleTaskProgress {
 
     // Returns number set from dryrun to use in logging run 
     // after a real run. Logging is in newSingleTask object.
-
     func gettransferredNumber() -> String {
         return self.transferredNumber.stringValue
     }
