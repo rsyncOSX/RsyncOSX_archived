@@ -73,7 +73,7 @@ final class OutputProcess {
                 }
             }
         case .two:
-            for i in 0 ..< self.output!.count where self.output![i].characters.last != "/" {
+            for i in 0 ..< self.output!.count where self.output![i].last != "/" {
                 out.append(self.output![i])
                 let error = self.output![i].contains("rsync error:")
                 if error {
