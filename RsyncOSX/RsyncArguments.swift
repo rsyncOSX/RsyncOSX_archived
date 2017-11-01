@@ -32,7 +32,7 @@ class RsyncArguments: ProcessArguments {
 
         if let config = self.config {
             // Drop the two first characeters ("./") as result from the find . -name
-            let remote_with_whitespace: String = String(remoteFile!.characters.dropFirst(2))
+            let remote_with_whitespace: String = String(remoteFile!.dropFirst(2))
             // Replace remote for white spaces
             let whitespace: String = "\\ "
             let remote = remote_with_whitespace.replacingOccurrences(of: " ", with: whitespace)
