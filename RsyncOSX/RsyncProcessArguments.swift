@@ -116,7 +116,7 @@ class RsyncProcessArguments {
     // on screen.
 
     private func appendParameter (parameter: String, forDisplay: Bool) {
-        if parameter.characters.count > 1 {
+        if parameter.count > 1 {
             if parameter == "--stats" {
                 self.stats = true
             }
