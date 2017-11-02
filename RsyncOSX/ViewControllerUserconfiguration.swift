@@ -40,7 +40,7 @@ class ViewControllerUserconfiguration: NSViewController, NewRsync, SetDismisser,
         }
         self.newrsync()
         self.dirty = true
-        self.verifyRsync()
+        self.verifyrsync()
     }
 
     @IBAction func toggleDetailedlogging(_ sender: NSButton) {
@@ -56,7 +56,7 @@ class ViewControllerUserconfiguration: NSViewController, NewRsync, SetDismisser,
         if self.dirty {
             // Before closing save changed configuration
             self.setRsyncPath()
-            self.verifyRsync()
+            // self.verifyRsync()
             self.setRestorePath()
             _ = self.storageapi!.saveUserconfiguration()
         }
@@ -113,29 +113,7 @@ class ViewControllerUserconfiguration: NSViewController, NewRsync, SetDismisser,
         self.dirty = true
     }
 
-    // Function verifying rsync in path
-    private func verifyRsync() {
-        var path: String?
-        let fileManager = FileManager.default
-        if self.version3rsync.state == .on {
-            if let rsyncPath = ViewControllerReference.shared.rsyncPath {
-                path = rsyncPath + "rsync"
-            } else {
-                path = "/usr/local/bin/" + "rsync"
-            }
-        } else {
-            path = "/usr/bin/" + "rsync"
-        }
-        if fileManager.fileExists(atPath: path!) {
-            self.noRsync.isHidden = true
-            ViewControllerReference.shared.norsync = false
-        } else {
-            self.noRsync.isHidden = false
-            ViewControllerReference.shared.norsync = true
-        }
-    }
-
-    private func testforrsync() {
+    private func verifyrsync() {
         let rsyncpath: String?
         let fileManager = FileManager.default
         if self.rsyncPath.stringValue.isEmpty == false {
@@ -149,12 +127,15 @@ class ViewControllerUserconfiguration: NSViewController, NewRsync, SetDismisser,
         }
         guard rsyncpath != nil else {
             self.noRsync.isHidden = true
+            ViewControllerReference.shared.norsync = false
             return
         }
         if fileManager.fileExists(atPath: rsyncpath!) {
             self.noRsync.isHidden = true
+            ViewControllerReference.shared.norsync = false
         } else {
             self.noRsync.isHidden = false
+            ViewControllerReference.shared.norsync = true
         }
     }
 
@@ -169,7 +150,6 @@ class ViewControllerUserconfiguration: NSViewController, NewRsync, SetDismisser,
         super.viewDidAppear()
         self.dirty = false
         self.checkUserConfig()
-        self.verifyRsync()
     }
 
     // Function for check and set user configuration
@@ -215,7 +195,7 @@ extension ViewControllerUserconfiguration: NSTextFieldDelegate {
         self.version3rsync.state = .on
         self.dirty = true
         delayWithSeconds(0.5) {
-            self.testforrsync()
+            self.verifyrsync()
         }
     }
 
