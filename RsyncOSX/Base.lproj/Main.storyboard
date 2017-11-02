@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="13196" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="abu-zT-Ht4">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="13529" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="abu-zT-Ht4">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="13196"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="13529"/>
         <capability name="Alignment constraints to the first baseline" minToolsVersion="6.0"/>
         <capability name="box content view" minToolsVersion="7.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -703,7 +703,7 @@
                                     <constraint firstAttribute="height" constant="90" id="jVJ-Md-kY3"/>
                                 </constraints>
                             </box>
-                            <box title="Next task" translatesAutoresizingMaskIntoConstraints="NO" id="cWf-pc-KAt">
+                            <box title="What next?" translatesAutoresizingMaskIntoConstraints="NO" id="cWf-pc-KAt">
                                 <rect key="frame" x="8" y="220" width="130" height="42"/>
                                 <view key="contentView" id="fU2-rA-tMU">
                                     <rect key="frame" x="2" y="2" width="126" height="25"/>

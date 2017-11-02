@@ -13,7 +13,7 @@ import Cocoa
 protocol OperationChanged: class {
     func operationsmethod()
 }
-class ViewControllerUserconfiguration: NSViewController, NewRsync, SetDismisser {
+class ViewControllerUserconfiguration: NSViewController, NewRsync, SetDismisser, Delay {
 
     var storageapi: PersistentStorageAPI?
     var dirty: Bool = false
@@ -135,6 +135,29 @@ class ViewControllerUserconfiguration: NSViewController, NewRsync, SetDismisser 
         }
     }
 
+    private func testforrsync() {
+        let rsyncpath: String?
+        let fileManager = FileManager.default
+        if self.rsyncPath.stringValue.isEmpty == false {
+            if self.rsyncPath.stringValue.hasSuffix("/") == false {
+                rsyncpath = self.rsyncPath.stringValue + "/" + "rsync"
+            } else {
+                rsyncpath = self.rsyncPath.stringValue + "rsync"
+            }
+        } else {
+            rsyncpath = nil
+        }
+        guard rsyncpath != nil else {
+            self.noRsync.isHidden = true
+            return
+        }
+        if fileManager.fileExists(atPath: rsyncpath!) {
+            self.noRsync.isHidden = true
+        } else {
+            self.noRsync.isHidden = false
+        }
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
         self.rsyncPath.delegate = self
@@ -191,6 +214,9 @@ extension ViewControllerUserconfiguration: NSTextFieldDelegate {
     override func controlTextDidChange(_ obj: Notification) {
         self.version3rsync.state = .on
         self.dirty = true
+        delayWithSeconds(0.5) {
+            self.testforrsync()
+        }
     }
 
 }
