@@ -9,7 +9,7 @@
 
 import Foundation
 
-protocol NewVersionDiscovered : class {
+protocol NewVersionDiscovered: class {
     func notifyNewVersion()
 }
 
@@ -38,12 +38,10 @@ final class Checkfornewversion {
                         // Setting reference to new vesrion if any
                         ViewControllerReference.shared.URLnewVersion = self.urlNewVersion
                         if inMain {
-                            self.newversionDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain)
-                                as? ViewControllertabMain
+                            self.newversionDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllertabMain
                             self.newversionDelegate?.notifyNewVersion()
                         } else {
-                            self.newversionDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vcabout)
-                                as? ViewControllerAbout
+                            self.newversionDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vcabout) as? ViewControllerAbout
                             self.newversionDelegate?.notifyNewVersion()
                         }
                     }

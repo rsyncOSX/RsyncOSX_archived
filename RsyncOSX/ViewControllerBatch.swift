@@ -16,7 +16,7 @@ protocol getNewBatchTask: class {
 }
 
 // Dismiss view when rsync error
-protocol closeViewError:  class {
+protocol closeViewError: class {
     func closeerror()
 }
 

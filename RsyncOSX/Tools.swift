@@ -42,8 +42,12 @@ enum DisplayProcessInfo {
 }
 
 // Protocol for doing a refresh in main view after testing for connectivity
-protocol Connections : class {
+protocol Connections: class {
     func displayConnections()
+}
+
+protocol Verifyrsync: class {
+    func verifyrsync()
 }
 
 final class Tools: SetConfigurations {
@@ -52,6 +56,7 @@ final class Tools: SetConfigurations {
     weak var testconnectionsDelegate: Connections?
     weak var newprofileDelegate: NewProfile?
     private var macSerialNumber: String?
+    weak var verifyrsyncDelegate: Verifyrsync?
 
     // Test for TCP connection
     func testTCPconnection (_ addr: String, port: Int, timeout: Int) -> (Bool, String) {
@@ -91,8 +96,6 @@ final class Tools: SetConfigurations {
         self.indexBoolremoteserverOff = nil
         self.indexBoolremoteserverOff = Array<Bool>()
         guard self.configurations!.configurationsDataSourcecount() > 0 else {
-            self.newprofileDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain)
-                as? ViewControllertabMain
             // Tell main view profile menu might presented
             self.newprofileDelegate?.enableProfileMenu()
             return
@@ -102,11 +105,8 @@ final class Tools: SetConfigurations {
             for i in 0 ..< self.configurations!.configurationsDataSourcecount() {
                 if let record = self.configurations!.getargumentAllConfigurations()[i] as? ArgumentsOneConfiguration {
                     if record.config!.offsiteServer != "" {
-                        if let sshport: Int = record.config!.sshport {
-                            port = sshport
-                        }
-                        let (success, _) = self.testTCPconnection(record.config!.offsiteServer,
-                                                                          port: port, timeout: 1)
+                        if let sshport: Int = record.config!.sshport { port = sshport }
+                        let (success, _) = self.testTCPconnection(record.config!.offsiteServer, port: port, timeout: 1)
                         if success {
                             self.indexBoolremoteserverOff!.append(false)
                         } else {
@@ -119,10 +119,6 @@ final class Tools: SetConfigurations {
                     // Reload table when all remote servers are checked
                     if i == (self.configurations!.configurationsDataSourcecount() - 1) {
                         // Send message to do a refresh
-                        self.testconnectionsDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain)
-                            as? ViewControllertabMain
-                        self.newprofileDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain)
-                            as? ViewControllertabMain
                             // Update table in main view
                         self.testconnectionsDelegate?.displayConnections()
                             // Tell main view profile menu might presented
@@ -158,11 +154,17 @@ final class Tools: SetConfigurations {
         } else {
             path = "/usr/bin/" + "rsync"
         }
+        guard ViewControllerReference.shared.rsyncVer3 == true else {
+            self.configurations!.norsync = false
+            self.verifyrsyncDelegate?.verifyrsync()
+            return
+        }
         if fileManager.fileExists(atPath: path!) == false {
             self.configurations!.norsync = true
         } else {
             self.configurations!.norsync = false
         }
+        self.verifyrsyncDelegate?.verifyrsync()
     }
 
     // Display the correct command to execute
@@ -309,5 +311,8 @@ final class Tools: SetConfigurations {
     }
 
     init() {
+        self.verifyrsyncDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllertabMain
+        self.testconnectionsDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllertabMain
+        self.newprofileDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllertabMain
     }
 }

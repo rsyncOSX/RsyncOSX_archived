@@ -9,7 +9,7 @@
 import Foundation
 import Cocoa
 
-protocol GetPath : class {
+protocol GetPath: class {
     func pathSet(path: String?, requester: WhichPath)
 }
 

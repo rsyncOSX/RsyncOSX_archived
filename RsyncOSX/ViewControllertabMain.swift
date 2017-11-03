@@ -243,7 +243,6 @@ class ViewControllertabMain: NSViewController, ReloadTable, Deselect, Coloractiv
         self.mainTableView.target = self
         self.mainTableView.doubleAction = #selector(ViewControllertabMain.tableViewDoubleClick(sender:))
         self.displayDryRun.state = .on
-        self.tools = Tools()
         self.loadProfileMenu = true
         // configurations and schedules
         self.createandreloadconfigurations()
@@ -266,9 +265,8 @@ class ViewControllertabMain: NSViewController, ReloadTable, Deselect, Coloractiv
         self.rsyncchanged()
         self.displayProfile()
         self.readyforexecution = true
-        if self.tools == nil { self.tools = Tools()}
         self.light.color = .systemYellow
-        self.verifyrsync()
+        if self.tools == nil { self.tools = Tools()}
     }
 
     override func viewDidDisappear() {
@@ -431,14 +429,6 @@ class ViewControllertabMain: NSViewController, ReloadTable, Deselect, Coloractiv
         globalMainQueue.async(execute: { () -> Void in
             self.mainTableView.reloadData()
         })
-    }
-
-    private func verifyrsync() {
-        if self.configurations!.norsync == true {
-            self.norsync.isHidden = false
-        } else {
-            self.norsync.isHidden = true
-        }
     }
 }
 
@@ -1025,5 +1015,15 @@ extension ViewControllertabMain: GetSchedulesObject {
 extension  ViewControllertabMain: GetHiddenID {
     func gethiddenID() -> Int? {
         return self.hiddenID
+    }
+}
+
+extension ViewControllertabMain: Verifyrsync {
+    internal func verifyrsync() {
+        if ViewControllerReference.shared.norsync == true {
+            self.norsync.isHidden = false
+        } else {
+            self.norsync.isHidden = true
+        }
     }
 }

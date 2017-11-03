@@ -11,7 +11,7 @@ import Foundation
 import Cocoa
 
 // Protocol for getting the hiddenID for a configuration
-protocol GetHiddenID : class {
+protocol GetHiddenID: class {
     func gethiddenID() -> Int?
 }
 
