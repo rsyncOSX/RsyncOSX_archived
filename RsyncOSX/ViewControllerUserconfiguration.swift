@@ -150,6 +150,7 @@ class ViewControllerUserconfiguration: NSViewController, NewRsync, SetDismisser,
         super.viewDidAppear()
         self.dirty = false
         self.checkUserConfig()
+        self.verifyrsync()
     }
 
     // Function for check and set user configuration

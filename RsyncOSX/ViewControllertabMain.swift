@@ -69,6 +69,7 @@ class ViewControllertabMain: NSViewController, ReloadTable, Deselect, Coloractiv
     // Delete files
     @IBOutlet weak var deletefiles: NSTextField!
     @IBOutlet weak var selecttask: NSTextField!
+    @IBOutlet weak var norsync: NSTextField!
 
     // Reference to Process task
     private var process: Process?
@@ -267,6 +268,7 @@ class ViewControllertabMain: NSViewController, ReloadTable, Deselect, Coloractiv
         self.readyforexecution = true
         if self.tools == nil { self.tools = Tools()}
         self.light.color = .systemYellow
+        self.verifyrsync()
     }
 
     override func viewDidDisappear() {
@@ -429,6 +431,14 @@ class ViewControllertabMain: NSViewController, ReloadTable, Deselect, Coloractiv
         globalMainQueue.async(execute: { () -> Void in
             self.mainTableView.reloadData()
         })
+    }
+
+    private func verifyrsync() {
+        if self.configurations!.norsync == true {
+            self.norsync.isHidden = false
+        } else {
+            self.norsync.isHidden = true
+        }
     }
 }
 
@@ -632,6 +642,7 @@ extension ViewControllertabMain: RsyncChanged {
     func rsyncchanged() {
         // Update rsync command in display
         self.setRsyncCommandDisplay()
+        self.verifyrsync()
     }
 }
 
@@ -675,6 +686,7 @@ extension ViewControllertabMain: DismissViewController {
             self.displayProfile()
         })
         self.showProcessInfo(info: .blank)
+        self.verifyrsync()
     }
 }
 
