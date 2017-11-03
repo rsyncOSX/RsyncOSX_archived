@@ -779,7 +779,7 @@ extension ViewControllertabMain: RsyncError {
 }
 
 // If, for any reason, handling files or directory throws an error
-extension ViewControllertabMain: ReportErrorMain {
+extension ViewControllertabMain: Fileerror {
     func fileerror(errorstr: String) {
         globalMainQueue.async(execute: { () -> Void in
             self.setInfo(info: "Error", color: .red)
