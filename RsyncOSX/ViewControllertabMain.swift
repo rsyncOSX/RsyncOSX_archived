@@ -275,21 +275,6 @@ class ViewControllertabMain: NSViewController, ReloadTable, Deselect, Coloractiv
         self.configurations!.allowNotifyinMain = false
     }
 
-    // True if scheduled task in progress
-    func scheduledOperationInProgress() -> Bool {
-        var scheduleInProgress: Bool?
-        if self.schedulessorted != nil {
-            scheduleInProgress = self.infoschedulessorted!.getScheduledOperationInProgress()
-        } else {
-            scheduleInProgress = false
-        }
-        if scheduleInProgress == false && self.scheduledJobInProgress == false {
-            return false
-        } else {
-            return true
-        }
-    }
-
     // Execute tasks by double click in table
     @objc(tableViewDoubleClick:) func tableViewDoubleClick(sender: AnyObject) {
         if self.readyforexecution {
@@ -300,10 +285,6 @@ class ViewControllertabMain: NSViewController, ReloadTable, Deselect, Coloractiv
 
     // Single task can be activated by double click from table
     private func executeSingleTask() {
-        guard scheduledOperationInProgress() == false else {
-            Alerts.showInfo("Scheduled operation in progress")
-            return
-        }
         guard self.configurations!.norsync == false else {
             self.tools!.noRsync()
             return
@@ -326,10 +307,6 @@ class ViewControllertabMain: NSViewController, ReloadTable, Deselect, Coloractiv
 
     // Execute BATCH TASKS only
     @IBAction func executeBatch(_ sender: NSButton) {
-        guard scheduledOperationInProgress() == false else {
-            Alerts.showInfo("Scheduled operation in progress")
-            return
-        }
         guard self.configurations!.norsync == false else {
             self.tools!.noRsync()
             return
