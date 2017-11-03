@@ -396,6 +396,14 @@ class Configurations: ReloadTable {
         self.configurationsDataSource = data
     }
 
+    func noRsync() {
+        if let rsync = self.rsyncPath {
+            Alerts.showInfo("ERROR: no rsync in " + rsync)
+        } else {
+            Alerts.showInfo("ERROR: no rsync in /usr/local/bin")
+        }
+    }
+
     init(profile: String?, viewcontroller: NSViewController) {
         self.configurations = nil
         self.argumentAllConfigurations = nil

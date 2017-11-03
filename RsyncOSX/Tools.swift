@@ -129,18 +129,6 @@ final class Tools: SetConfigurations {
         })
     }
 
-    func noRsync() {
-        if self.configurations!.norsync == true {
-            if let rsync = self.configurations!.rsyncPath {
-                Alerts.showInfo("ERROR: no rsync in " + rsync)
-            } else {
-                Alerts.showInfo("ERROR: no rsync in /usr/local/bin")
-            }
-        } else {
-            Alerts.showInfo("Scheduled operation in progress")
-        }
-    }
-
     // Function to verify full rsyncpath
     func verifyrsyncpath() {
         let fileManager = FileManager.default

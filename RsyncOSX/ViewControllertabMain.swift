@@ -286,7 +286,7 @@ class ViewControllertabMain: NSViewController, ReloadTable, Deselect, Coloractiv
     // Single task can be activated by double click from table
     private func executeSingleTask() {
         guard self.configurations!.norsync == false else {
-            self.tools!.noRsync()
+            self.configurations!.noRsync()
             return
         }
         guard self.index != nil else {
@@ -308,7 +308,7 @@ class ViewControllertabMain: NSViewController, ReloadTable, Deselect, Coloractiv
     // Execute BATCH TASKS only
     @IBAction func executeBatch(_ sender: NSButton) {
         guard self.configurations!.norsync == false else {
-            self.tools!.noRsync()
+            self.configurations!.noRsync()
             return
         }
         self.singletask = nil
