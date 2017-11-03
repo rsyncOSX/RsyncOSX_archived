@@ -432,14 +432,6 @@ class ViewControllertabMain: NSViewController, ReloadTable, Deselect, Coloractiv
             self.mainTableView.reloadData()
         })
     }
-
-    private func verifyrsync() {
-        if self.configurations!.norsync == true {
-            self.norsync.isHidden = false
-        } else {
-            self.norsync.isHidden = true
-        }
-    }
 }
 
 extension ViewControllertabMain: NSTableViewDataSource {
@@ -1025,5 +1017,15 @@ extension ViewControllertabMain: GetSchedulesObject {
 extension  ViewControllertabMain: GetHiddenID {
     func gethiddenID() -> Int? {
         return self.hiddenID
+    }
+}
+
+extension ViewControllertabMain: Verifyrsync {
+    internal func verifyrsync() {
+        if self.configurations!.norsync == true {
+            self.norsync.isHidden = false
+        } else {
+            self.norsync.isHidden = true
+        }
     }
 }

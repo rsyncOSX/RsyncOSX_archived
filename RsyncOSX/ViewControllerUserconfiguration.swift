@@ -125,6 +125,13 @@ class ViewControllerUserconfiguration: NSViewController, NewRsync, SetDismisser,
         } else {
             rsyncpath = nil
         }
+
+        guard self.version3rsync.state == .on else {
+            self.noRsync.isHidden = true
+            ViewControllerReference.shared.norsync = false
+            return
+        }
+
         guard rsyncpath != nil else {
             self.noRsync.isHidden = true
             ViewControllerReference.shared.norsync = false
@@ -197,6 +204,7 @@ extension ViewControllerUserconfiguration: NSTextFieldDelegate {
         self.dirty = true
         delayWithSeconds(0.5) {
             self.verifyrsync()
+            self.newrsync()
         }
     }
 
