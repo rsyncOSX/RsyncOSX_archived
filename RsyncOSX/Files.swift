@@ -15,17 +15,16 @@ enum Root {
 }
 
 // Protocol for reporting file errors
-protocol ReportErrorMain: class {
+protocol Fileerror: class {
     func fileerror(errorstr: String)
 }
 
-protocol ReportError {
-    weak var errorDelegate: ReportErrorMain? { get }
-    func error(error: String)
+protocol Reportfileerror {
+    weak var errorDelegate: Fileerror? { get }
 }
 
-extension ReportError {
-    weak var errorDelegate: ReportErrorMain? {
+extension Reportfileerror {
+    weak var errorDelegate: Fileerror? {
         return ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllertabMain
     }
 
@@ -34,7 +33,7 @@ extension ReportError {
     }
 }
 
-class Files: ReportError {
+class Files: Reportfileerror {
 
     var root: Root?
     var rootpath: String?
