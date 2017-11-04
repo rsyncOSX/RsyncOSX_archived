@@ -23,7 +23,6 @@ class ViewControllerUserconfiguration: NSViewController, NewRsync, SetDismisser,
     @IBOutlet weak var version3rsync: NSButton!
     @IBOutlet weak var detailedlogging: NSButton!
     @IBOutlet weak var noRsync: NSTextField!
-    @IBOutlet weak var rsyncerror: NSButton!
     @IBOutlet weak var restorePath: NSTextField!
     @IBOutlet weak var operation: NSButton!
 
@@ -67,15 +66,6 @@ class ViewControllerUserconfiguration: NSViewController, NewRsync, SetDismisser,
         } else if (self.presenting as? ViewControllerNewConfigurations) != nil {
             self.dismissview(viewcontroller: self, vcontroller: .vctabmain)
         }
-    }
-
-    @IBAction func toggleError(_ sender: NSButton) {
-        if self.rsyncerror.state == .on {
-            ViewControllerReference.shared.rsyncerror = true
-        } else {
-            ViewControllerReference.shared.rsyncerror = false
-        }
-        self.dirty = true
     }
 
     @IBAction func toggleOperation(_ sender: NSButton) {
@@ -176,11 +166,6 @@ class ViewControllerUserconfiguration: NSViewController, NewRsync, SetDismisser,
             self.rsyncPath.stringValue = ViewControllerReference.shared.rsyncPath!
         } else {
             self.rsyncPath.stringValue = ""
-        }
-        if ViewControllerReference.shared.rsyncerror {
-            self.rsyncerror.state = .on
-        } else {
-            self.rsyncerror.state = .off
         }
         if ViewControllerReference.shared.restorePath != nil {
             self.restorePath.stringValue = ViewControllerReference.shared.restorePath!

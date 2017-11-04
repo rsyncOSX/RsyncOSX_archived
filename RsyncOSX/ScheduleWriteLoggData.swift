@@ -92,7 +92,7 @@ class ScheduleWriteLoggData: SetConfigurations, ReloadTable, Deselect {
     /// - parameter date : String representation of date and time stamp for task executed
     /// - parameter schedule : schedule of task
     func addresultschedule(_ hiddenID: Int, dateStart: String, result: String, date: String, schedule: String) {
-        if self.configurations!.detailedlogging {
+        if ViewControllerReference.shared.detailedlogging {
             loop : for i in 0 ..< self.schedules!.count {
                 if self.schedules![i].hiddenID == hiddenID  &&
                     self.schedules![i].schedule == schedule &&

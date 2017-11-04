@@ -32,7 +32,6 @@ class ViewControllerReference {
 
     // Temporary storage of the first scheduled task
     var scheduledTask: NSDictionary?
-
     // Download URL if new version is avaliable
     var URLnewVersion: String?
     // True if version 3.2.1 of rsync in /usr/local/bin
@@ -45,8 +44,6 @@ class ViewControllerReference {
     var detailedlogging: Bool = true
     // Temporary path for restore
     var restorePath: String?
-    // Allow rsync error
-    var rsyncerror: Bool = true
     // Kind of Operation method. eiher Timer or DispatchWork
     var operation: OperationObject = .dispatch
     // Reference to the Operation object
