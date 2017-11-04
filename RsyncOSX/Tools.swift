@@ -136,11 +136,11 @@ final class Tools: SetConfigurations {
         // If not in /usr/bin or /usr/local/bin
         // rsyncPath is set if none of the above
         if let rsyncPath = ViewControllerReference.shared.rsyncPath {
-            path = rsyncPath + "rsync"
+            path = rsyncPath + ViewControllerReference.shared.rsync
         } else if ViewControllerReference.shared.rsyncVer3 {
-            path = "/usr/local/bin/" + "rsync"
+            path = "/usr/local/bin/" + ViewControllerReference.shared.rsync
         } else {
-            path = "/usr/bin/" + "rsync"
+            path = "/usr/bin/" + ViewControllerReference.shared.rsync
         }
         guard ViewControllerReference.shared.rsyncVer3 == true else {
             ViewControllerReference.shared.norsync = false
@@ -185,12 +185,12 @@ final class Tools: SetConfigurations {
     func rsyncpath() -> String {
         if ViewControllerReference.shared.rsyncVer3 {
             if ViewControllerReference.shared.rsyncPath == nil {
-                return "/usr/local/bin/rsync"
+                return ViewControllerReference.shared.usrlocalbinrsync
             } else {
-                return ViewControllerReference.shared.rsyncPath! + "rsync"
+                return ViewControllerReference.shared.rsyncPath! + ViewControllerReference.shared.rsync
             }
         } else {
-            return "/usr/bin/rsync"
+            return ViewControllerReference.shared.usrbinrsync
         }
     }
 

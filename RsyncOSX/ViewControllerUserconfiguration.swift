@@ -108,9 +108,9 @@ class ViewControllerUserconfiguration: NSViewController, NewRsync, SetDismisser,
         let fileManager = FileManager.default
         if self.rsyncPath.stringValue.isEmpty == false {
             if self.rsyncPath.stringValue.hasSuffix("/") == false {
-                rsyncpath = self.rsyncPath.stringValue + "/" + "rsync"
+                rsyncpath = self.rsyncPath.stringValue + "/" + ViewControllerReference.shared.rsync
             } else {
-                rsyncpath = self.rsyncPath.stringValue + "rsync"
+                rsyncpath = self.rsyncPath.stringValue + ViewControllerReference.shared.rsync
             }
         } else {
             rsyncpath = nil
