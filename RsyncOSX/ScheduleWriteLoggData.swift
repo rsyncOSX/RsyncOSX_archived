@@ -33,18 +33,20 @@ class ScheduleWriteLoggData: SetConfigurations, ReloadTable, Deselect {
     /// - parameter result : String representation of result
     /// - parameter date : String representation of date and time stamp
     func addlogtaskmanuel(_ hiddenID: Int, result: String) {
-        // Set the current date
-        let currendate = Date()
-        let dateformatter = Tools().setDateformat()
-        let date = dateformatter.string(from: currendate)
-        var inserted: Bool = self.addloggtaskmanualexisting(hiddenID, result: result, date: date)
-        // Record does not exist, create new Schedule (not inserted)
-        if inserted == false {
-            inserted = self.addloggtaskmanulnew(hiddenID, result: result, date: date)
-        }
-        if inserted {
-            self.storageapi!.saveScheduleFromMemory()
-            self.deselectrowtable(vcontroller: .vctabmain)
+        if ViewControllerReference.shared.detailedlogging {
+            // Set the current date
+            let currendate = Date()
+            let dateformatter = Tools().setDateformat()
+            let date = dateformatter.string(from: currendate)
+            var inserted: Bool = self.addloggtaskmanualexisting(hiddenID, result: result, date: date)
+            // Record does not exist, create new Schedule (not inserted)
+            if inserted == false {
+                inserted = self.addloggtaskmanulnew(hiddenID, result: result, date: date)
+            }
+            if inserted {
+                self.storageapi!.saveScheduleFromMemory()
+                self.deselectrowtable(vcontroller: .vctabmain)
+            }
         }
     }
 
