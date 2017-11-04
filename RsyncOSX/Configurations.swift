@@ -11,7 +11,7 @@
 //  Created by Thomas Evensen on 08/02/16.
 //  Copyright © 2016 Thomas Evensen. All rights reserved.
 //
-//  swiftlint:disable syntactic_sugar line_length file_length
+//  swiftlint:disable syntactic_sugar line_length
 
 import Foundation
 import Cocoa
@@ -95,16 +95,6 @@ class Configurations: ReloadTable {
 
     // Storage API
     var storageapi: PersistentStorageAPI?
-    // True if version 3.2.1 of rsync in /usr/local/bin
-    var rsyncVer3: Bool = false
-    // Optional path to rsync
-    var rsyncPath: String?
-    // No valid rsyncPath - true if no valid rsync is found
-    var norsync: Bool = false
-    // Detailed logging
-    var detailedlogging: Bool = true
-    // Temporary path for restore
-    var restorePath: String?
     // reference to Process, used for kill in executing task
     var process: Process?
     // Kind of Operation method. eiher Timer or DispatchWork
@@ -113,8 +103,6 @@ class Configurations: ReloadTable {
     // Notify about scheduled process
     // Only allowed to notity by modal window when in main view
     var allowNotifyinMain: Bool = false
-    // If rsync error reset workqueue
-    var rsyncerror: Bool = true
     // Reference to singletask object
     var singleTask: SingleTask?
     // The main structure storing all Configurations for tasks

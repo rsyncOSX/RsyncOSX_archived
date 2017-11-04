@@ -129,40 +129,28 @@ final class Tools: SetConfigurations {
         })
     }
 
-    func noRsync() {
-        if self.configurations!.norsync == true {
-            if let rsync = self.configurations!.rsyncPath {
-                Alerts.showInfo("ERROR: no rsync in " + rsync)
-            } else {
-                Alerts.showInfo("ERROR: no rsync in /usr/local/bin")
-            }
-        } else {
-            Alerts.showInfo("Scheduled operation in progress")
-        }
-    }
-
     // Function to verify full rsyncpath
     func verifyrsyncpath() {
         let fileManager = FileManager.default
         let path: String?
         // If not in /usr/bin or /usr/local/bin
         // rsyncPath is set if none of the above
-        if let rsyncPath = self.configurations!.rsyncPath {
+        if let rsyncPath = ViewControllerReference.shared.rsyncPath {
             path = rsyncPath + "rsync"
-        } else if self.configurations!.rsyncVer3 {
+        } else if ViewControllerReference.shared.rsyncVer3 {
             path = "/usr/local/bin/" + "rsync"
         } else {
             path = "/usr/bin/" + "rsync"
         }
         guard ViewControllerReference.shared.rsyncVer3 == true else {
-            self.configurations!.norsync = false
+            ViewControllerReference.shared.norsync = false
             self.verifyrsyncDelegate?.verifyrsync()
             return
         }
         if fileManager.fileExists(atPath: path!) == false {
-            self.configurations!.norsync = true
+            ViewControllerReference.shared.norsync = true
         } else {
-            self.configurations!.norsync = false
+            ViewControllerReference.shared.norsync = false
         }
         self.verifyrsyncDelegate?.verifyrsync()
     }
@@ -195,14 +183,22 @@ final class Tools: SetConfigurations {
     /// default value.
     /// - returns : full path of rsync command
     func rsyncpath() -> String {
-        if self.configurations!.rsyncVer3 {
-            if self.configurations!.rsyncPath == nil {
+        if ViewControllerReference.shared.rsyncVer3 {
+            if ViewControllerReference.shared.rsyncPath == nil {
                 return "/usr/local/bin/rsync"
             } else {
-                return self.configurations!.rsyncPath! + "rsync"
+                return ViewControllerReference.shared.rsyncPath! + "rsync"
             }
         } else {
             return "/usr/bin/rsync"
+        }
+    }
+
+    func noRsync() {
+        if let rsync = ViewControllerReference.shared.rsyncPath {
+            Alerts.showInfo("ERROR: no rsync in " + rsync)
+        } else {
+            Alerts.showInfo("ERROR: no rsync in /usr/local/bin")
         }
     }
 

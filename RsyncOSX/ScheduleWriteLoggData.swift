@@ -33,18 +33,20 @@ class ScheduleWriteLoggData: SetConfigurations, ReloadTable, Deselect {
     /// - parameter result : String representation of result
     /// - parameter date : String representation of date and time stamp
     func addlogtaskmanuel(_ hiddenID: Int, result: String) {
-        // Set the current date
-        let currendate = Date()
-        let dateformatter = Tools().setDateformat()
-        let date = dateformatter.string(from: currendate)
-        var inserted: Bool = self.addloggtaskmanualexisting(hiddenID, result: result, date: date)
-        // Record does not exist, create new Schedule (not inserted)
-        if inserted == false {
-            inserted = self.addloggtaskmanulnew(hiddenID, result: result, date: date)
-        }
-        if inserted {
-            self.storageapi!.saveScheduleFromMemory()
-            self.deselectrowtable(vcontroller: .vctabmain)
+        if ViewControllerReference.shared.detailedlogging {
+            // Set the current date
+            let currendate = Date()
+            let dateformatter = Tools().setDateformat()
+            let date = dateformatter.string(from: currendate)
+            var inserted: Bool = self.addloggtaskmanualexisting(hiddenID, result: result, date: date)
+            // Record does not exist, create new Schedule (not inserted)
+            if inserted == false {
+                inserted = self.addloggtaskmanulnew(hiddenID, result: result, date: date)
+            }
+            if inserted {
+                self.storageapi!.saveScheduleFromMemory()
+                self.deselectrowtable(vcontroller: .vctabmain)
+            }
         }
     }
 
@@ -92,7 +94,7 @@ class ScheduleWriteLoggData: SetConfigurations, ReloadTable, Deselect {
     /// - parameter date : String representation of date and time stamp for task executed
     /// - parameter schedule : schedule of task
     func addresultschedule(_ hiddenID: Int, dateStart: String, result: String, date: String, schedule: String) {
-        if self.configurations!.detailedlogging {
+        if ViewControllerReference.shared.detailedlogging {
             loop : for i in 0 ..< self.schedules!.count {
                 if self.schedules![i].hiddenID == hiddenID  &&
                     self.schedules![i].schedule == schedule &&

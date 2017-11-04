@@ -5,7 +5,7 @@
 //  Created by Thomas Evensen on 24/08/2016.
 //  Copyright © 2016 Thomas Evensen. All rights reserved.
 //
-// swiftlint:disable cyclomatic_complexity line_length
+// swiftlint:disable line_length
 
 import Foundation
 
@@ -40,14 +40,6 @@ final class Userconfiguration {
             ViewControllerReference.shared.restorePath = restorePath
         } else {
             ViewControllerReference.shared.restorePath = NSHomeDirectory() + "/tmp/"
-        }
-        // Allow rsync errors to reset work Queueu
-        if let errors = dict.value(forKey: "rsyncerror") as? Int {
-            if errors == 1 {
-                ViewControllerReference.shared.rsyncerror = true
-            } else {
-                ViewControllerReference.shared.rsyncerror = false
-            }
         }
         // Operation object
         // Default is dispatch

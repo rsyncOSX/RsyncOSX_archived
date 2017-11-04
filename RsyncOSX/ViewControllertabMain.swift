@@ -285,7 +285,7 @@ class ViewControllertabMain: NSViewController, ReloadTable, Deselect, Coloractiv
 
     // Single task can be activated by double click from table
     private func executeSingleTask() {
-        guard self.configurations!.norsync == false else {
+        guard ViewControllerReference.shared.norsync == false else {
             self.tools!.noRsync()
             return
         }
@@ -307,7 +307,7 @@ class ViewControllertabMain: NSViewController, ReloadTable, Deselect, Coloractiv
 
     // Execute BATCH TASKS only
     @IBAction func executeBatch(_ sender: NSButton) {
-        guard self.configurations!.norsync == false else {
+        guard ViewControllerReference.shared.norsync == false else {
             self.tools!.noRsync()
             return
         }
@@ -721,27 +721,25 @@ extension ViewControllertabMain: DeselectRowTable {
 extension ViewControllertabMain: RsyncError {
     func rsyncerror() {
         // Set on or off in user configuration
-        if self.configurations!.rsyncerror {
-            globalMainQueue.async(execute: { () -> Void in
-                self.setInfo(info: "Error", color: .red)
-                self.light.color = .systemRed
-                self.showProcessInfo(info: .error)
-                self.setRsyncCommandDisplay()
-                self.deselect()
-                // Abort any operations
-                if let process = self.process {
-                    process.terminate()
-                    self.process = nil
-                }
-                // Either error in single task or batch task
-                if self.singletask != nil {
-                    self.singletask!.error()
-                }
-                if self.batchtaskObject != nil {
-                    self.batchtaskObject!.error()
-                }
-            })
-        }
+        globalMainQueue.async(execute: { () -> Void in
+            self.setInfo(info: "Error", color: .red)
+            self.light.color = .systemRed
+            self.showProcessInfo(info: .error)
+            self.setRsyncCommandDisplay()
+            self.deselect()
+            // Abort any operations
+            if let process = self.process {
+                process.terminate()
+                self.process = nil
+            }
+            // Either error in single task or batch task
+            if self.singletask != nil {
+                self.singletask!.error()
+            }
+            if self.batchtaskObject != nil {
+                self.batchtaskObject!.error()
+            }
+        })
     }
 }
 
@@ -926,12 +924,6 @@ extension ViewControllertabMain: GetConfigurationsObject {
     func getconfigurationsobject() -> Configurations? {
         guard self.configurations != nil else { return nil }
         // Update alle userconfigurations
-        self.configurations!.rsyncVer3 = ViewControllerReference.shared.rsyncVer3
-        self.configurations!.rsyncPath = ViewControllerReference.shared.rsyncPath
-        self.configurations!.norsync = ViewControllerReference.shared.norsync
-        self.configurations!.detailedlogging = ViewControllerReference.shared.detailedlogging
-        self.configurations!.rsyncerror = ViewControllerReference.shared.rsyncerror
-        self.configurations!.restorePath = ViewControllerReference.shared.restorePath
         self.configurations!.operation = ViewControllerReference.shared.operation
         return self.configurations
     }
