@@ -20,7 +20,7 @@ import Foundation
 
 final class ScheduleOperationTimer: SetSchedules, SecondsBeforeStart {
 
-    private var timereTaskWaiting: Timer?
+    private var timerTaskWaiting: Timer?
 
     @objc private func executetask() {
         // Start the task in BackgroundQueue
@@ -40,9 +40,9 @@ final class ScheduleOperationTimer: SetSchedules, SecondsBeforeStart {
             // Cancel any current job waiting for execution
             let seconds = self.secondsbeforestart()
             guard seconds > 0 else { return }
-            self.timereTaskWaiting = Timer.scheduledTimer(timeInterval: seconds, target: self, selector: #selector(executetask),
+            self.timerTaskWaiting = Timer.scheduledTimer(timeInterval: seconds, target: self, selector: #selector(executetask),
                                                           userInfo: nil, repeats: false)
-            self.schedules!.setTimerTaskWaiting(timer: self.timereTaskWaiting!)
+            self.schedules!.setTimerTaskWaiting(timer: self.timerTaskWaiting!)
         }
     }
 }

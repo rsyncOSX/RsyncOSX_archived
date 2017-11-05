@@ -5,11 +5,11 @@
 //  Created by Thomas Evensen on 25/10/2016.
 //  Copyright © 2016 Thomas Evensen. All rights reserved.
 //
-//  let str = "/Rsync/" + serialNumber + profile? + "/scheduleRsync.plist"
-//  let str = "/Rsync/" + serialNumber + profile? + "/configRsync.plist"
-//  let str = "/Rsync/" + serialNumber + "/config.plist"
+//  let str = "/Rsync" + serialNumber + profile? + "/scheduleRsync.plist"
+//  let str = "/Rsync" + serialNumber + profile? + "/configRsync.plist"
+//  let str = "/Rsync" + serialNumber + "/config.plist"
 //  swiftlint OK - 17 July 2017
-//  swiftlint:disable syntactic_sugar
+//  swiftlint:disable syntactic_sugar line_length
 
 import Foundation
 import Cocoa
@@ -52,16 +52,16 @@ class Readwritefiles {
             if let profile = self.profile {
                 let profilePath = Profiles()
                 profilePath.createDirectory()
-                self.filepath = "/Rsync/" + Tools().getMacSerialNumber()! + "/" + profile + "/"
-                self.filename = docuDir + "/Rsync/" + Tools().getMacSerialNumber()! + "/" + profile + self.name!
+                self.filepath = ViewControllerReference.shared.configpath + Tools().getMacSerialNumber()! + "/" + profile + "/"
+                self.filename = docuDir + ViewControllerReference.shared.configpath + Tools().getMacSerialNumber()! + "/" + profile + self.name!
             } else {
                 // If profile not set use no profile
-                self.filename = docuDir +  "/Rsync/" + Tools().getMacSerialNumber()! + self.name!
+                self.filename = docuDir +  ViewControllerReference.shared.configpath + Tools().getMacSerialNumber()! + self.name!
             }
         } else {
             // no profile
-            self.filename = docuDir + "/Rsync/" + Tools().getMacSerialNumber()! + self.name!
-            self.filepath = "/Rsync/" + Tools().getMacSerialNumber()! + "/"
+            self.filename = docuDir + ViewControllerReference.shared.configpath + Tools().getMacSerialNumber()! + self.name!
+            self.filepath = ViewControllerReference.shared.configpath + Tools().getMacSerialNumber()! + "/"
         }
     }
 
@@ -80,10 +80,9 @@ class Readwritefiles {
         let dictionary = NSDictionary(contentsOfFile: self.filename!)
         let items: Any? = dictionary?.object(forKey: self.key!)
         guard items != nil else { return nil }
-        if let arrayitems = items as? NSArray {
-            for i in 0 ..< arrayitems.count {
-                if let item = arrayitems[i] as? NSDictionary {
-                    _ = dictionary!.object(forKey: "ItemCode") as? String
+        if let arrayofitems = items as? NSArray {
+            for i in 0 ..< arrayofitems.count {
+                if let item = arrayofitems[i] as? NSDictionary {
                     data.append(item)
                 }
             }
@@ -95,9 +94,7 @@ class Readwritefiles {
     func writeDatatoPersistentStorage (_ array: Array<NSDictionary>, task: WhatToReadWrite) -> Bool {
         self.setpreferences(task)
         let dictionary = NSDictionary(object: array, forKey: self.key! as NSCopying)
-        guard self.filename != nil else {
-            return false
-        }
+        guard self.filename != nil else { return false }
         return  dictionary.write(toFile: self.filename!, atomically: true)
     }
 

@@ -43,7 +43,7 @@ class Files: Reportfileerror {
         case .profileRoot:
             let paths = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true) as NSArray
             let docuDir = (paths.firstObject as? String)!
-            let profilePath = docuDir + "/Rsync/" + Tools().getMacSerialNumber()!
+            let profilePath = docuDir + ViewControllerReference.shared.configpath + Tools().getMacSerialNumber()!
             self.rootpath = profilePath
         case .sshRoot:
             self.rootpath = NSHomeDirectory() + "/.ssh/"
