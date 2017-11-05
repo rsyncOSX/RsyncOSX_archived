@@ -29,6 +29,7 @@ class ViewControllerCopyFiles: NSViewController, SetConfigurations, GetIndex, De
     @IBOutlet weak var numberofrows: NSTextField!
     @IBOutlet weak var server: NSTextField!
     @IBOutlet weak var rcatalog: NSTextField!
+    @IBOutlet weak var nolocalcatalog: NSTextField!
 
      // Set localcatalog to filePath
     @IBAction func copyToIcon(_ sender: NSButton) {
@@ -136,6 +137,7 @@ class ViewControllerCopyFiles: NSViewController, SetConfigurations, GetIndex, De
         self.working.usesThreadedAnimation = true
         self.workingRsync.usesThreadedAnimation = true
         self.search.delegate = self
+        self.localCatalog.delegate = self
         self.tableViewSelect.doubleAction = #selector(self.tableViewDoubleClick(sender:))
     }
 
@@ -148,11 +150,16 @@ class ViewControllerCopyFiles: NSViewController, SetConfigurations, GetIndex, De
         }
         self.copyButton.isEnabled = true
         self.copyButton.title = "Estimate"
+        guard self.localCatalog.stringValue.isEmpty == true else {
+            self.verifylocalCatalog()
+            return
+        }
         if let restorePath = ViewControllerReference.shared.restorePath {
             self.localCatalog.stringValue = restorePath
         } else {
             self.localCatalog.stringValue = ""
         }
+        self.verifylocalCatalog()
     }
 
     override func viewDidDisappear() {
@@ -171,6 +178,15 @@ class ViewControllerCopyFiles: NSViewController, SetConfigurations, GetIndex, De
             self.rsync = true
             self.workingRsync.startAnimation(nil)
             self.copyFiles!.executeRsync(remotefile: remoteCatalog!.stringValue, localCatalog: localCatalog!.stringValue, dryrun: false)
+        }
+    }
+
+    private func verifylocalCatalog() {
+        let fileManager = FileManager.default
+        if fileManager.fileExists(atPath: self.localCatalog.stringValue) {
+            self.nolocalcatalog.isHidden = true
+        } else {
+            self.nolocalcatalog.isHidden = false
         }
     }
 }
@@ -192,6 +208,7 @@ extension ViewControllerCopyFiles: NSSearchFieldDelegate {
                 })
             }
         }
+        self.verifylocalCatalog()
     }
 
     func searchFieldDidEndSearching(_ sender: NSSearchField) {
