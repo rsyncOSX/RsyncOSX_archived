@@ -5,9 +5,9 @@
 //  Created by Thomas Evensen on 25/10/2016.
 //  Copyright © 2016 Thomas Evensen. All rights reserved.
 //
-//  let str = "/Rsync/" + serialNumber + profile? + "/scheduleRsync.plist"
-//  let str = "/Rsync/" + serialNumber + profile? + "/configRsync.plist"
-//  let str = "/Rsync/" + serialNumber + "/config.plist"
+//  let str = ViewControllerReference.shared.configpath + serialNumber + profile? + "/scheduleRsync.plist"
+//  let str = ViewControllerReference.shared.configpath + serialNumber + profile? + "/configRsync.plist"
+//  let str = ViewControllerReference.shared.configpath + serialNumber + "/config.plist"
 //  swiftlint OK - 17 July 2017
 //  swiftlint:disable syntactic_sugar
 
@@ -52,16 +52,16 @@ class Readwritefiles {
             if let profile = self.profile {
                 let profilePath = Profiles()
                 profilePath.createDirectory()
-                self.filepath = "/Rsync/" + Tools().getMacSerialNumber()! + "/" + profile + "/"
-                self.filename = docuDir + "/Rsync/" + Tools().getMacSerialNumber()! + "/" + profile + self.name!
+                self.filepath = ViewControllerReference.shared.configpath + Tools().getMacSerialNumber()! + "/" + profile + "/"
+                self.filename = docuDir + ViewControllerReference.shared.configpath + Tools().getMacSerialNumber()! + "/" + profile + self.name!
             } else {
                 // If profile not set use no profile
-                self.filename = docuDir +  "/Rsync/" + Tools().getMacSerialNumber()! + self.name!
+                self.filename = docuDir +  ViewControllerReference.shared.configpath + Tools().getMacSerialNumber()! + self.name!
             }
         } else {
             // no profile
-            self.filename = docuDir + "/Rsync/" + Tools().getMacSerialNumber()! + self.name!
-            self.filepath = "/Rsync/" + Tools().getMacSerialNumber()! + "/"
+            self.filename = docuDir + ViewControllerReference.shared.configpath + Tools().getMacSerialNumber()! + self.name!
+            self.filepath = ViewControllerReference.shared.configpath + Tools().getMacSerialNumber()! + "/"
         }
     }
 
