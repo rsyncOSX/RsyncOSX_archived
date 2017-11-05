@@ -1477,8 +1477,9 @@
                                                             <rect key="frame" x="1" y="1" width="575" height="20"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
-                                                                <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2Bl-ow-0Ch">
-                                                                    <rect key="frame" x="1" y="3" width="554" height="17"/>
+                                                                <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2Bl-ow-0Ch">
+                                                                    <rect key="frame" x="1" y="3" width="573" height="17"/>
+                                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                                                     <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" alignment="left" title="Table View Cell" id="HPi-4q-XQ1">
                                                                         <font key="font" metaFont="system"/>
                                                                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
@@ -1486,11 +1487,6 @@
                                                                     </textFieldCell>
                                                                 </textField>
                                                             </subviews>
-                                                            <constraints>
-                                                                <constraint firstAttribute="trailing" secondItem="2Bl-ow-0Ch" secondAttribute="trailing" constant="22" id="4A2-0U-cgr"/>
-                                                                <constraint firstAttribute="bottom" secondItem="2Bl-ow-0Ch" secondAttribute="bottom" constant="3" id="4mX-qy-V1L"/>
-                                                                <constraint firstItem="2Bl-ow-0Ch" firstAttribute="leading" secondItem="xMt-uD-KDs" secondAttribute="leading" constant="3" id="JsC-RY-PVC"/>
-                                                            </constraints>
                                                             <connections>
                                                                 <outlet property="textField" destination="2Bl-ow-0Ch" id="izd-7T-qSs"/>
                                                             </connections>
@@ -1514,7 +1510,7 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableHeaderView>
                             </scrollView>
-                            <textField verticalHuggingPriority="750" fixedFrame="YES" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1ES-5z-SmE">
+                            <textField identifier="remote" verticalHuggingPriority="750" fixedFrame="YES" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1ES-5z-SmE">
                                 <rect key="frame" x="732" y="148" width="330" height="22"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" bezelStyle="round" id="eSi-jg-7RW">
@@ -1523,7 +1519,7 @@
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
-                            <textField verticalHuggingPriority="750" fixedFrame="YES" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="L6A-JJ-Mvd">
+                            <textField identifier="local" verticalHuggingPriority="750" fixedFrame="YES" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="L6A-JJ-Mvd">
                                 <rect key="frame" x="732" y="173" width="299" height="22"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" bezelStyle="round" id="Rf6-OG-EhG">
@@ -1631,7 +1627,7 @@
                                     <action selector="copy:" target="GJH-xK-5LY" id="gbR-Fq-rOj"/>
                                 </connections>
                             </button>
-                            <searchField wantsLayer="YES" verticalHuggingPriority="750" fixedFrame="YES" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="D7K-Le-RDk">
+                            <searchField identifier="search" wantsLayer="YES" verticalHuggingPriority="750" fixedFrame="YES" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="D7K-Le-RDk">
                                 <rect key="frame" x="20" y="350" width="587" height="22"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <searchFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" borderStyle="bezel" usesSingleLineMode="YES" bezelStyle="round" id="V5i-oA-Bwt">
@@ -1657,6 +1653,17 @@
                                 <view key="contentView" id="PXY-Lz-PCz">
                                     <rect key="frame" x="2" y="2" width="458" height="102"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                    <subviews>
+                                        <textField hidden="YES" horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5Iy-M6-mmF">
+                                            <rect key="frame" x="263" y="70" width="153" height="17"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                            <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" title="No such local catalog..." id="1E1-Z8-BXV">
+                                                <font key="font" metaFont="cellTitle"/>
+                                                <color key="textColor" name="systemRedColor" catalog="System" colorSpace="catalog"/>
+                                                <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                            </textFieldCell>
+                                        </textField>
+                                    </subviews>
                                 </view>
                             </box>
                             <box verticalHuggingPriority="249" fixedFrame="YES" title="Rsync command (--dry-run)" translatesAutoresizingMaskIntoConstraints="NO" id="3LC-v7-7Pz">
@@ -1688,7 +1695,7 @@
                                 </textFieldCell>
                             </textField>
                             <textField hidden="YES" horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="vCI-NE-yd4">
-                                <rect key="frame" x="614" y="131" width="460" height="17"/>
+                                <rect key="frame" x="731" y="131" width="343" height="17"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" enabled="NO" sendsActionOnEndEditing="YES" alignment="center" title="Local or remote catalog cannot be empty..." id="ORX-XZ-hDp">
                                     <font key="font" metaFont="cellTitle"/>
@@ -1721,6 +1728,7 @@
                         <outlet property="copyButton" destination="HvM-lg-JjX" id="RIx-1n-Z4j"/>
                         <outlet property="error" destination="vCI-NE-yd4" id="AIc-MO-aqU"/>
                         <outlet property="localCatalog" destination="L6A-JJ-Mvd" id="Nkp-wQ-iEO"/>
+                        <outlet property="nolocalcatalog" destination="5Iy-M6-mmF" id="QsW-O6-mlm"/>
                         <outlet property="numberofrows" destination="tv7-CS-oe6" id="k9b-R6-3QJ"/>
                         <outlet property="rcatalog" destination="zPh-wH-B2h" id="Bhx-Mo-gre"/>
                         <outlet property="remoteCatalog" destination="1ES-5z-SmE" id="WZe-oK-FUr"/>
@@ -2298,7 +2306,7 @@
                 </viewController>
                 <customObject id="4bt-29-abw" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1180" y="1241.5"/>
+            <point key="canvasLocation" x="1243" y="1242"/>
         </scene>
         <!--Add-->
         <scene sceneID="Djw-1M-Bvf">
