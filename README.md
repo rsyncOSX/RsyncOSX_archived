@@ -8,7 +8,9 @@ RsyncOSX is released in version 4.8.0. The major work for this version was to re
 
 #### RcloneOSX
 
-A [project](https://rsyncosx.github.io/rcloneosx/) to adapt RsyncOSX to utilize [rclone](https://rclone.org). 
+## RcloneOSX
+
+I have commenced a new project, the new project [RcloneOSX](https://rsyncosx.github.io/rcloneosx/) is adapting RsyncOSX to utilize [rclone](https://rclone.org). See the [Changelog](https://rsyncosx.github.io/Documentation/docs/RcloneOSX/Changelog.html) for the new project. 
 
 #### SwiftLint
 
