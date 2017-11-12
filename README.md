@@ -24,7 +24,7 @@ The application icon is created by [Forrest Walter](http://www.forrestwalter.com
 
 ### Changelog
 
-The [Changelog](https://github.com/rsyncOSX/Documentation/blob/master/docs/Changelog.md).
+The [Changelog](https://rsyncosx.github.io/Documentation/docs/Changelog.html).
 
 ### How to use RsyncOSX
 
