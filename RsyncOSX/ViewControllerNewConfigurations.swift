@@ -65,8 +65,7 @@ class ViewControllerNewConfigurations: NSViewController, SetConfigurations, VcSc
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do view setup here.
-        // Set the delegates
+        self.newconfigurations = NewConfigurations()
         self.newTableView.delegate = self
         self.newTableView.dataSource = self
         self.localCatalog.toolTip = "By using Finder drag and drop filepaths."
@@ -76,8 +75,6 @@ class ViewControllerNewConfigurations: NSViewController, SetConfigurations, VcSc
 
     override func viewDidAppear() {
         super.viewDidAppear()
-        self.newconfigurations = nil
-        self.newconfigurations = NewConfigurations()
         if let profile = self.configurations!.getProfile() {
             self.storageapi = PersistentStorageAPI(profile: profile)
         } else {
