@@ -126,15 +126,15 @@ final class Numbers: SetConfigurations {
     }
 
     // Collecting statistics about job
-    func stats(numberOfFiles: String?, sizeOfFiles: String?) -> Array<String> {
+    func stats(numberOfFiles: String?, sizeOfFiles: String?) -> String {
         var numbers: String?
         var parts: Array<String>?
         guard self.resultRsync != nil else {
             if numberOfFiles == nil || sizeOfFiles == nil {
-                return ["0", "0"]
+                return "0"
             } else {
                 let size = numberOfFiles! + " files :" + sizeOfFiles! + " KB" + " in just a few seconds"
-                return [size, "0"]
+                return size
             }
         }
         if ViewControllerReference.shared.rsyncVer3 {
@@ -147,15 +147,14 @@ final class Numbers: SetConfigurations {
         }
         var resultsent: String?
         var resultreceived: String?
-        var result: String?
         var bytesTotalsent: Double = 0
         var bytesTotalreceived: Double = 0
         var bytesTotal: Double = 0
         var bytesSec: Double = 0
         var seconds: Double = 0
-        guard parts!.count > 9 else {return ["0", "0"]}
+        guard parts!.count > 9 else {return "0"}
         guard Double(parts![1]) != nil && (Double(parts![5]) != nil) && (Double(parts![8]) != nil) else {
-            return ["0", "0"]
+            return "0"
         }
         // Sent
         resultsent = parts![1] + " bytes in "
@@ -165,19 +164,19 @@ final class Numbers: SetConfigurations {
         bytesTotalreceived = Double(parts![5])!
         if bytesTotalsent > bytesTotalreceived {
             // backup task
-            result = resultsent! + parts![8] + " b/sec"
+            // let result = resultsent! + parts![8] + " b/sec"
             bytesSec = Double(parts![8])!
             seconds = bytesTotalsent/bytesSec
             bytesTotal = bytesTotalsent
         } else {
             // restore task
-            result = resultreceived! + parts![8] + " b/sec"
+            // let result = resultreceived! + parts![8] + " b/sec"
             bytesSec = Double(parts![8])!
             seconds = bytesTotalreceived/bytesSec
             bytesTotal = bytesTotalreceived
         }
         numbers = self.formatresult(numberOfFiles: numberOfFiles, bytesTotal: bytesTotal, seconds: seconds)
-        return [numbers!, result ?? "hmmm...."]
+        return numbers ?? ""
     }
 
     private func formatresult(numberOfFiles: String?, bytesTotal: Double, seconds: Double) -> String {

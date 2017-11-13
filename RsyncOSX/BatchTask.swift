@@ -130,13 +130,13 @@ final class BatchTask: SetSchedules, SetConfigurations, Delay {
                 self.transferbytes = String(number.getTransferredNumbers(numbers: .transferredNumberSizebytes))
                 if config.offsiteServer.isEmpty {
                     let hiddenID = self.configurations!.gethiddenID(index: index)
-                    let numbers = number.stats(numberOfFiles: self.transfernum, sizeOfFiles: self.transferbytes)[0]
+                    let numbers = number.stats(numberOfFiles: self.transfernum, sizeOfFiles: self.transferbytes)
                     let result = config.localCatalog + " , " + "localhost" + " , " + numbers
                     self.outputbatch!.addLine(str: result)
                     self.schedules!.addlogtaskmanuel(hiddenID, result: numbers)
                 } else {
                     let hiddenID = self.configurations!.gethiddenID(index: index)
-                    let numbers = number.stats(numberOfFiles: self.transfernum, sizeOfFiles: self.transferbytes)[0]
+                    let numbers = number.stats(numberOfFiles: self.transfernum, sizeOfFiles: self.transferbytes)
                     let result = config.localCatalog + " , " + config.offsiteServer + " , " + numbers
                     self.outputbatch!.addLine(str: result)
                     self.schedules!.addlogtaskmanuel(hiddenID, result: numbers)
