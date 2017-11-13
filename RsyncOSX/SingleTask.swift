@@ -150,7 +150,7 @@ final class SingleTask: SetSchedules, SetConfigurations {
                 let hiddenID = self.configurations!.gethiddenID(index: self.index!)
                 let numberOffFiles = self.transferredNumber
                 let sizeOfFiles = self.transferredNumberSizebytes
-                self.schedules!.addlogtaskmanuel(hiddenID, result: number.stats(numberOfFiles: numberOffFiles, sizeOfFiles: sizeOfFiles)[0])
+                self.schedules!.addlogtaskmanuel(hiddenID, result: number.stats(numberOfFiles: numberOffFiles, sizeOfFiles: sizeOfFiles))
             case .empty:
                 self.workload = nil
             default:
