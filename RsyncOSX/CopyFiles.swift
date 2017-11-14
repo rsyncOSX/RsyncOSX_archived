@@ -23,10 +23,10 @@ final class CopyFiles: SetConfigurations {
     private var commandDisplay: String?
     weak var progressDelegate: StartStopProgressIndicator?
     var process: CommandCopyFiles?
-    var output: OutputProcess?
+    var outputprocess: OutputProcess?
 
     func getOutput() -> Array<String> {
-        return self.output?.getOutput() ?? [""]
+        return self.outputprocess?.getOutput() ?? [""]
     }
 
     func abort() {
@@ -46,10 +46,10 @@ final class CopyFiles: SetConfigurations {
             self.arguments = self.argumentsObject!.getArguments()
         }
         self.command = nil
-        self.output = nil
-        self.output = OutputProcess()
+        self.outputprocess = nil
+        self.outputprocess = OutputProcess()
         self.process = CommandCopyFiles(command: nil, arguments: self.arguments)
-        self.process!.executeProcess(output: self.output)
+        self.process!.executeProcess(output: self.outputprocess)
     }
 
     func getCommandDisplayinView(remotefile: String, localCatalog: String) -> String {
@@ -63,18 +63,18 @@ final class CopyFiles: SetConfigurations {
     }
 
     private func getRemoteFileList() {
-        self.output = nil
-        self.output = OutputProcess()
+        self.outputprocess = nil
+        self.outputprocess = OutputProcess()
         self.argumentsObject = CopyFileArguments(task: .duCmd, config: self.config!, remoteFile: nil,
                                                  localCatalog: nil, drynrun: nil)
         self.arguments = self.argumentsObject!.getArguments()
         self.command = self.argumentsObject!.getCommand()
         self.process = CommandCopyFiles(command: self.command, arguments: self.arguments)
-        self.process!.executeProcess(output: self.output)
+        self.process!.executeProcess(output: self.outputprocess)
     }
 
     func setRemoteFileList() {
-        self.files = self.output?.trimoutput(trim: .one)
+        self.files = self.outputprocess?.trimoutput(trim: .one)
     }
 
     func filter(search: String?) -> Array<String> {

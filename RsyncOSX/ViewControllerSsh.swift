@@ -15,7 +15,7 @@ class ViewControllerSsh: NSViewController, SetConfigurations {
     var sshcmd: Ssh?
     var hiddenID: Int?
     var data: Array<String>?
-    var output: OutputProcess?
+    var outputprocess: OutputProcess?
     // Execute or not
     var execute: Bool = false
 
@@ -51,9 +51,9 @@ class ViewControllerSsh: NSViewController, SetConfigurations {
 
     @IBAction func createPublicPrivateKeyPair(_ sender: NSButton) {
         self.sshcmd = nil
-        self.output = nil
-        self.output = OutputProcess()
-        self.sshcmd = Ssh(output: self.output)
+        self.outputprocess = nil
+        self.outputprocess = OutputProcess()
+        self.sshcmd = Ssh(output: self.outputprocess)
         guard self.sshcmd != nil else { return }
         if self.createRsaKey.state == .on {
             self.sshcmd!.createLocalKeysRsa()
@@ -96,9 +96,9 @@ class ViewControllerSsh: NSViewController, SetConfigurations {
 
     @IBAction func checkRsaPubKey(_ sender: NSButton) {
         self.sshcmd = nil
-        self.output = nil
-        self.output = OutputProcess()
-        self.sshcmd = Ssh(output: self.output)
+        self.outputprocess = nil
+        self.outputprocess = OutputProcess()
+        self.sshcmd = Ssh(output: self.outputprocess)
         guard self.execute else { return }
         guard self.hiddenID != nil else { return }
         guard self.sshcmd != nil else { return }
@@ -109,9 +109,9 @@ class ViewControllerSsh: NSViewController, SetConfigurations {
 
     @IBAction func checkDsaPubKey(_ sender: NSButton) {
         self.sshcmd = nil
-        self.output = nil
-        self.output = OutputProcess()
-        self.sshcmd = Ssh(output: self.output)
+        self.outputprocess = nil
+        self.outputprocess = OutputProcess()
+        self.sshcmd = Ssh(output: self.outputprocess)
         guard self.execute else { return }
         guard self.hiddenID != nil else { return }
         guard self.sshcmd != nil else { return }
@@ -125,7 +125,7 @@ class ViewControllerSsh: NSViewController, SetConfigurations {
         ViewControllerReference.shared.setvcref(viewcontroller: .vcssh, nsviewcontroller: self)
         self.detailsTable.delegate = self
         self.detailsTable.dataSource = self
-        self.output = nil
+        self.outputprocess = nil
     }
 
     override func viewDidAppear() {
@@ -235,7 +235,7 @@ extension ViewControllerSsh: UpdateProgress {
     }
 
     func fileHandler() {
-        self.data = self.output!.getOutput()
+        self.data = self.outputprocess!.getOutput()
         globalMainQueue.async(execute: { () -> Void in
             self.detailsTable.reloadData()
         })
