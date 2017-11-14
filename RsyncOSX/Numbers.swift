@@ -145,23 +145,15 @@ final class Numbers: SetConfigurations {
             // ["sent", "262826", "bytes", "", "received", "2248", "bytes", "", "58905.33", "bytes/sec"]
             parts = self.resultRsync!.components(separatedBy: " ")
         }
-        var resultsent: String?
-        var resultreceived: String?
         var bytesTotalsent: Double = 0
         var bytesTotalreceived: Double = 0
         var bytesTotal: Double = 0
         var bytesSec: Double = 0
         var seconds: Double = 0
         guard parts!.count > 9 else {return "0"}
-        guard Double(parts![1]) != nil && (Double(parts![5]) != nil) && (Double(parts![8]) != nil) else {
-            return "0"
-        }
-        // Sent
-        resultsent = parts![1] + " bytes in "
-        bytesTotalsent = Double(parts![1])!
-        // Received
-        resultreceived = parts![5] + " bytes in "
-        bytesTotalreceived = Double(parts![5])!
+        // Sent and received
+        bytesTotalsent = Double(parts?[1] ?? "0")!
+        bytesTotalreceived = Double(parts?[5] ?? "0")!
         if bytesTotalsent > bytesTotalreceived {
             // backup task
             // let result = resultsent! + parts![8] + " b/sec"

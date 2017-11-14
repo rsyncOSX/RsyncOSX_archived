@@ -128,19 +128,16 @@ final class BatchTask: SetSchedules, SetConfigurations, Delay {
                 // Get transferred numbers from view
                 self.transfernum = String(number.getTransferredNumbers(numbers: .transferredNumber))
                 self.transferbytes = String(number.getTransferredNumbers(numbers: .transferredNumberSizebytes))
+                let hiddenID = self.configurations!.gethiddenID(index: index)
+                let numbers = number.stats(numberOfFiles: self.transfernum, sizeOfFiles: self.transferbytes)
+                var result: String?
                 if config.offsiteServer.isEmpty {
-                    let hiddenID = self.configurations!.gethiddenID(index: index)
-                    let numbers = number.stats(numberOfFiles: self.transfernum, sizeOfFiles: self.transferbytes)
-                    let result = config.localCatalog + " , " + "localhost" + " , " + numbers
-                    self.outputbatch!.addLine(str: result)
-                    self.schedules!.addlogtaskmanuel(hiddenID, result: numbers)
+                    result = config.localCatalog + " , " + "localhost" + " , " + numbers
                 } else {
-                    let hiddenID = self.configurations!.gethiddenID(index: index)
-                    let numbers = number.stats(numberOfFiles: self.transfernum, sizeOfFiles: self.transferbytes)
-                    let result = config.localCatalog + " , " + config.offsiteServer + " , " + numbers
-                    self.outputbatch!.addLine(str: result)
-                    self.schedules!.addlogtaskmanuel(hiddenID, result: numbers)
+                    result = config.localCatalog + " , " + config.offsiteServer + " , " + numbers
                 }
+                self.outputbatch!.addLine(str: result!)
+                self.schedules!.addlogtaskmanuel(hiddenID, result: numbers)
                 self.configurations!.setCurrentDateonConfiguration(index)
                 self.delayWithSeconds(1) {
                     self.executeBatch()
