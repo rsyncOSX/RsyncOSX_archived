@@ -28,7 +28,7 @@ final class CompleteScheduledOperation: SetConfigurations, SetSchedules, Schedul
         // Write result to Schedule
         let datestring = self.dateformatter!.string(from: date!)
         let dateStartstring = self.dateformatter!.string(from: dateStart!)
-        let number = Numbers(output: output)
+        let number = Numbers(outputprocess: output)
         let numberstring = number.stats(numberOfFiles: nil, sizeOfFiles: nil)
         self.schedules!.addresultschedule(self.hiddenID!, dateStart: dateStartstring, result: numberstring, date: datestring, schedule: schedule!)
         // Writing timestamp to configuration

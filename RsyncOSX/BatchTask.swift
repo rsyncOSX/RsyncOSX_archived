@@ -37,7 +37,7 @@ final class BatchTask: SetSchedules, SetConfigurations, Delay {
     // Reference to Process task
     var process: Process?
     // Getting output from rsync
-    var output: OutputProcess?
+    var outputprocess: OutputProcess?
     // Getting output from batchrun
     private var outputbatch: OutputBatch?
     // HiddenID task, set when row is selected
@@ -57,21 +57,21 @@ final class BatchTask: SetSchedules, SetConfigurations, Delay {
             // Get the index if given hiddenID (in work.0)
             let index: Int = self.configurations!.getIndex(work.0)
             // Create the output object for rsync
-            self.output = nil
-            self.output = OutputProcess()
+            self.outputprocess = nil
+            self.outputprocess = OutputProcess()
             switch work.1 {
             case 0:
                 self.batchViewDelegate?.progressIndicatorViewBatch(operation: .start)
                 let args: Array<String> = self.configurations!.arguments4rsync(index: index, argtype: .argdryRun)
                 let process = Rsync(arguments: args)
                 // Setting reference to process for Abort if requiered
-                process.executeProcess(output: self.output)
+                process.executeProcess(output: self.outputprocess)
                 self.process = process.getProcess()
             case 1:
                 let arguments: Array<String> = self.configurations!.arguments4rsync(index: index, argtype: .arg)
                 let process = Rsync(arguments: arguments)
                 // Setting reference to process for Abort if requiered
-                process.executeProcess(output: self.output)
+                process.executeProcess(output: self.outputprocess)
                 self.process = process.getProcess()
             case -1:
                 self.batchViewDelegate?.setOutputBatch(outputbatch: self.outputbatch)
@@ -110,16 +110,16 @@ final class BatchTask: SetSchedules, SetConfigurations, Delay {
             switch work.1 {
             case 0:
                 // dry-run
-                self.taskDelegate?.setNumbers(output: self.output)
-                batchobject.setEstimated(numberOfFiles: self.output?.getMaxcount() ?? 0)
+                self.taskDelegate?.setNumbers(output: self.outputprocess)
+                batchobject.setEstimated(numberOfFiles: self.outputprocess?.getMaxcount() ?? 0)
                 self.batchViewDelegate?.progressIndicatorViewBatch(operation: .stop)
                 self.delayWithSeconds(1) {
                     self.executeBatch()
                 }
             case 1:
                 // Real run
-                let number = Numbers(output: self.output)
-                batchobject.updateInProcess(numberOfFiles: self.output!.count())
+                let number = Numbers(outputprocess: self.outputprocess)
+                batchobject.updateInProcess(numberOfFiles: self.outputprocess!.count())
                 batchobject.setCompleted()
                 self.batchViewDelegate?.progressIndicatorViewBatch(operation: .refresh)
                 // Set date on Configuration
@@ -128,19 +128,16 @@ final class BatchTask: SetSchedules, SetConfigurations, Delay {
                 // Get transferred numbers from view
                 self.transfernum = String(number.getTransferredNumbers(numbers: .transferredNumber))
                 self.transferbytes = String(number.getTransferredNumbers(numbers: .transferredNumberSizebytes))
+                let hiddenID = self.configurations!.gethiddenID(index: index)
+                let numbers = number.stats(numberOfFiles: self.transfernum, sizeOfFiles: self.transferbytes)
+                var result: String?
                 if config.offsiteServer.isEmpty {
-                    let hiddenID = self.configurations!.gethiddenID(index: index)
-                    let numbers = number.stats(numberOfFiles: self.transfernum, sizeOfFiles: self.transferbytes)
-                    let result = config.localCatalog + " , " + "localhost" + " , " + numbers
-                    self.outputbatch!.addLine(str: result)
-                    self.schedules!.addlogtaskmanuel(hiddenID, result: numbers)
+                    result = config.localCatalog + " , " + "localhost" + " , " + numbers
                 } else {
-                    let hiddenID = self.configurations!.gethiddenID(index: index)
-                    let numbers = number.stats(numberOfFiles: self.transfernum, sizeOfFiles: self.transferbytes)
-                    let result = config.localCatalog + " , " + config.offsiteServer + " , " + numbers
-                    self.outputbatch!.addLine(str: result)
-                    self.schedules!.addlogtaskmanuel(hiddenID, result: numbers)
+                    result = config.localCatalog + " , " + config.offsiteServer + " , " + numbers
                 }
+                self.outputbatch!.addLine(str: result!)
+                self.schedules!.addlogtaskmanuel(hiddenID, result: numbers)
                 self.configurations!.setCurrentDateonConfiguration(index)
                 self.delayWithSeconds(1) {
                     self.executeBatch()

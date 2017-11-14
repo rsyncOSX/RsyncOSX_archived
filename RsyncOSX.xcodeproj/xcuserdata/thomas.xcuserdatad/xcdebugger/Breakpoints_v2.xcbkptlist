@@ -9,28 +9,28 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "RsyncOSX/ViewControllerCopyFiles.swift"
-            timestampString = "532199299.362757"
+            filePath = "RsyncOSX/Numbers.swift"
+            timestampString = "532367270.193681"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "198"
-            endingLineNumber = "198"
-            landmarkName = "controlTextDidChange(_:)"
+            startingLineNumber = "190"
+            endingLineNumber = "190"
+            landmarkName = "init(outputprocess:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "No"
+            shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "RsyncOSX/Numbers.swift"
-            timestampString = "532291197.656348"
+            timestampString = "532367270.194049"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "178"
-            endingLineNumber = "178"
+            startingLineNumber = "132"
+            endingLineNumber = "132"
             landmarkName = "stats(numberOfFiles:sizeOfFiles:)"
             landmarkType = "7">
          </BreakpointContent>

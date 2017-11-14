@@ -47,7 +47,7 @@ final class SingleTask: SetSchedules, SetConfigurations {
     // Index to selected row, index is set when row is selected
     private var index: Int?
     // Getting output from rsync
-    var output: OutputProcess?
+    var outputprocess: OutputProcess?
     // Holding max count
     private var maxcount: Int = 0
     // HiddenID task, set when row is selected
@@ -71,7 +71,7 @@ final class SingleTask: SetSchedules, SetConfigurations {
 
         let arguments: Array<String>?
         self.process = nil
-        self.output = nil
+        self.outputprocess = nil
 
         switch self.workload!.peek() {
         case .estimatesinglerun:
@@ -81,8 +81,8 @@ final class SingleTask: SetSchedules, SetConfigurations {
                 self.taskDelegate?.showProcessInfo(info: .estimating)
                 arguments = self.configurations!.arguments4rsync(index: index, argtype: .argdryRun)
                 let process = Rsync(arguments: arguments)
-                self.output = OutputProcess()
-                process.executeProcess(output: self.output)
+                self.outputprocess = OutputProcess()
+                process.executeProcess(output: self.outputprocess)
                 self.process = process.getProcess()
                 self.taskDelegate?.getProcessReference(process: self.process!)
                 self.taskDelegate?.setInfo(info: "Execute", color: .blue)
@@ -93,9 +93,9 @@ final class SingleTask: SetSchedules, SetConfigurations {
                 // Show progress view
                 self.taskDelegate?.presentViewProgress()
                 arguments = self.configurations!.arguments4rsync(index: index, argtype: .arg)
-                self.output = OutputProcess()
+                self.outputprocess = OutputProcess()
                 let process = Rsync(arguments: arguments)
-                process.executeProcess(output: self.output)
+                process.executeProcess(output: self.outputprocess)
                 self.process = process.getProcess()
                 self.taskDelegate?.getProcessReference(process: self.process!)
                 self.taskDelegate?.setInfo(info: "", color: .black)
@@ -124,15 +124,15 @@ final class SingleTask: SetSchedules, SetConfigurations {
                 // Stopping the working (estimation) progress indicator
                 self.indicatorDelegate?.stopIndicator()
                 // Getting and setting max file to transfer
-                self.taskDelegate?.setNumbers(output: self.output)
-                self.maxcount = self.output!.getMaxcount()
+                self.taskDelegate?.setNumbers(output: self.outputprocess)
+                self.maxcount = self.outputprocess!.getMaxcount()
                 // If showInfoDryrun is on present result of dryrun automatically
-                self.taskDelegate?.presentViewInformation(output: self.output!)
+                self.taskDelegate?.presentViewInformation(output: self.outputprocess!)
             case .error:
                 // Stopping the working (estimation) progress indicator
                 self.indicatorDelegate?.stopIndicator()
                 // If showInfoDryrun is on present result of dryrun automatically
-                self.taskDelegate?.presentViewInformation(output: self.output!)
+                self.taskDelegate?.presentViewInformation(output: self.outputprocess!)
                 self.workload = nil
             case .executesinglerun:
                 //NB: self.showProcessInfo(info: .Logging_run)
@@ -140,9 +140,9 @@ final class SingleTask: SetSchedules, SetConfigurations {
                 // Process termination and close progress view
                 self.taskDelegate?.terminateProgressProcess()
                 // If showInfoDryrun is on present result of dryrun automatically
-                self.taskDelegate?.presentViewInformation(output: self.output!)
+                self.taskDelegate?.presentViewInformation(output: self.outputprocess!)
                 // Logg run
-                let number = Numbers(output: self.output)
+                let number = Numbers(outputprocess: self.outputprocess)
                 // Get transferred numbers from view
                 self.transferredNumber = self.taskDelegate?.gettransferredNumber()
                 self.transferredNumberSizebytes = self.taskDelegate?.gettransferredNumberSizebytes()
@@ -185,10 +185,10 @@ extension SingleTask: Count {
     // Counting number of files
     // Function is called when Process discover FileHandler notification
     func inprogressCount() -> Int {
-        guard self.output != nil else {
+        guard self.outputprocess != nil else {
             return 0
         }
-        return self.output!.count()
+        return self.outputprocess!.count()
     }
 
 }
