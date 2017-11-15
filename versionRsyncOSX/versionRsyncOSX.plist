@@ -38,5 +38,7 @@
 	<string>https://github.com/rsyncOSX/RsyncOSX/releases/download/v4.8.2/RsyncOSX.dmg</string>
 	<key>4.8.0</key>
 	<string>https://github.com/rsyncOSX/RsyncOSX/releases/download/v4.8.2/RsyncOSX.dmg</string>
+	<key>4.8.1</key>
+	<string>https://github.com/rsyncOSX/RsyncOSX/releases/download/v4.8.2/RsyncOSX.dmg</string>
 </dict>
 </plist>
