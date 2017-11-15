@@ -54,7 +54,7 @@ final class BatchTaskWorkQueu {
         let numberOfFiles = self.data[index].value(forKey: "maxnumberOfFilesCellID")
         self.data[index].setValue(numberOfFiles, forKey: "numberOfFilesCellID")
         self.data[index].setValue(1, forKey: "completedCellID")
-        self.row = index
+        self.row = index + 1
     }
 
     // Pops of the first element of index Queue
