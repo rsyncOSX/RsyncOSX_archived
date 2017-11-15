@@ -132,7 +132,11 @@ extension ViewControllerBatch: NSTableViewDelegate {
             return object[tableColumn!.identifier] as? Int!
         } else {
             if row == self.configurations!.getbatchQueue()!.getRow() && tableColumn!.identifier.rawValue == "taskCellID" {
-                return (object[tableColumn!.identifier] as? String)! + " *"
+                let text = (object[tableColumn!.identifier] as? String)! + "  <--"
+                let attributedString = NSMutableAttributedString(string: (text))
+                let range = (text as NSString).range(of: text)
+                attributedString.addAttribute(NSAttributedStringKey.foregroundColor, value: NSColor.systemBlue, range: range)
+                return attributedString
             } else {
                 return object[tableColumn!.identifier] as? String
             }
