@@ -10,7 +10,7 @@
 
 import Foundation
 
-class ProcessCmd {
+class ProcessCmd: Delay {
 
     // Number of calculated files to be copied
     var calculatedNumberOfFiles: Int = 0
@@ -69,7 +69,9 @@ class ProcessCmd {
             // Check if in a scheduled operation, if not use delegate to inform about termination of Process()
             if self.aScheduledOperation! == false {
                 // Send message about process termination
-                self.updateDelegate?.processTermination()
+                self.delayWithSeconds(0.5) {
+                    self.updateDelegate?.processTermination()
+                }
             } else {
                 // We are in Scheduled operation and must finalize the job
                 // e.g logging date and stuff like that
