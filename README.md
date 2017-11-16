@@ -8,6 +8,12 @@ This repository is the source code for the macOS app RsyncOSX. RsyncOSX is compi
 
 RsyncOSX is released in version 4.8.2. The major work for this version was to remove the singelton objects. And some minor enhancements and bug fixes as well. The [intro](https://github.com/rsyncOSX/Documentation/blob/master/docs/Intro.md) part (in Documentation) is updated and reflecting version 4.8.0 of RsyncOSX.
 
+## Issue in logging (solved)
+
+Sometimes there is an issue in logging. The logging part is initiated when the process object, which executes the `rsync` command with appropriate set of arguments, terminates. The process object is during execution listening for output from the `rsync` command and appends all output in a new object. Sometimes a process termination is discovered *before* the last output is received and the logging part is failing reporting only 0. The solution is holding back the action which is fired 1/2 second when a process termination is discovered (an async escaping closure on the main thread). This secures any remaining output to be collected before logging.
+
+The fix will be released in next version.
+
 #### RcloneOSX
 
 I have commenced a new project, the new project [RcloneOSX](https://rsyncosx.github.io/rcloneosx/) is adapting RsyncOSX to utilize [rclone](https://rclone.org). See the [Changelog](https://rsyncosx.github.io/Documentation/docs/RcloneOSX/Changelog.html) for the new project.
