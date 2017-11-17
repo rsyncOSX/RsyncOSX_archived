@@ -70,6 +70,7 @@ class ViewControllertabMain: NSViewController, ReloadTable, Deselect, Coloractiv
     @IBOutlet weak var deletefiles: NSTextField!
     @IBOutlet weak var selecttask: NSTextField!
     @IBOutlet weak var norsync: NSTextField!
+    @IBOutlet weak var possibleerroroutput: NSTextField!
 
     // Reference to Process task
     private var process: Process?
@@ -267,6 +268,7 @@ class ViewControllertabMain: NSViewController, ReloadTable, Deselect, Coloractiv
         self.readyforexecution = true
         self.light.color = .systemYellow
         if self.tools == nil { self.tools = Tools()}
+        self.possibleerroroutput.isHidden = true
     }
 
     override func viewDidDisappear() {
@@ -1006,5 +1008,11 @@ extension ViewControllertabMain: Verifyrsync {
         } else {
             self.norsync.isHidden = true
         }
+    }
+}
+
+extension ViewControllertabMain: ErrorOutput {
+    func erroroutput() {
+        self.possibleerroroutput.isHidden = false
     }
 }

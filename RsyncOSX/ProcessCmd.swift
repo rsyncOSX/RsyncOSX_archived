@@ -10,6 +10,10 @@
 
 import Foundation
 
+protocol ErrorOutput: class {
+    func erroroutput()
+}
+
 class ProcessCmd: Delay {
 
     // Number of calculated files to be copied
@@ -26,6 +30,10 @@ class ProcessCmd: Delay {
     var command: String?
     // Arguments to command
     var arguments: Array<String>?
+    // true if processtermination
+    var termination: Bool = false
+    // possible error ouput
+    weak var possibleerrorDelegate: ErrorOutput?
 
     func executeProcess (output: OutputProcess?) {
         // Process
@@ -58,6 +66,9 @@ class ProcessCmd: Delay {
                     if self.aScheduledOperation! == false {
                         // Send message about files
                         self.updateDelegate?.fileHandler()
+                        if self.termination {
+                            self.possibleerrorDelegate?.erroroutput()
+                        }
                     }
                 }
                 outHandle.waitForDataInBackgroundAndNotify()
@@ -70,6 +81,7 @@ class ProcessCmd: Delay {
             if self.aScheduledOperation! == false {
                 // Send message about process termination
                 self.delayWithSeconds(0.5) {
+                    self.termination = true
                     self.updateDelegate?.processTermination()
                 }
             } else {
@@ -102,6 +114,7 @@ class ProcessCmd: Delay {
         self.command = command
         self.arguments = arguments
         self.aScheduledOperation = aScheduledOperation
+        self.possibleerrorDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllertabMain
     }
 
 }
