@@ -12,7 +12,7 @@ RsyncOSX is released in version 4.8.2. The major work for this version was to re
 
 Sometimes there is an issue in logging. The logging part is initiated when the process object, which executes the `rsync` command with appropriate set of arguments, terminates. The process object is during execution listening for output from the `rsync` command and appends all output in a new object. Sometimes a process termination is discovered *before* the last output is received and the logging part is failing reporting only 0. The solution is holding back the action which is fired 1/2 second when a process termination is discovered (an async escaping closure on the main thread). This secures any remaining output to be collected before logging.
 
-A rc is released fixing the issue.
+A [rc](https://github.com/rsyncOSX/RsyncOSX/releases) is released fixing the issue.
 
 #### RcloneOSX
 
