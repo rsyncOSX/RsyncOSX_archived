@@ -96,6 +96,8 @@ class ViewControllerUserconfiguration: NSViewController, NewRsync, SetDismisser,
             if restorePath.stringValue.hasSuffix("/") == false {
                 restorePath.stringValue += "/"
                 ViewControllerReference.shared.restorePath = restorePath.stringValue
+            } else {
+                ViewControllerReference.shared.restorePath = restorePath.stringValue
             }
         } else {
             ViewControllerReference.shared.restorePath = nil
