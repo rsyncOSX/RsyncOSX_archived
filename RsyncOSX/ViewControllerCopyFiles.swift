@@ -150,10 +150,6 @@ class ViewControllerCopyFiles: NSViewController, SetConfigurations, GetIndex, De
         }
         self.copyButton.isEnabled = true
         self.copyButton.title = "Estimate"
-        guard self.localCatalog.stringValue.isEmpty == true else {
-            self.verifylocalCatalog()
-            return
-        }
         if let restorePath = ViewControllerReference.shared.restorePath {
             self.localCatalog.stringValue = restorePath
         } else {
