@@ -99,6 +99,9 @@ class ViewControllerCopyFiles: NSViewController, SetConfigurations, GetIndex, De
 
     // Reset copy source
     private func resetCopySource() {
+        if self.copyFiles != nil {
+            self.copyFiles!.abort()
+        }
         // Empty tabledata
         self.index = nil
         self.tabledata = nil
