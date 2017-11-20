@@ -2,11 +2,7 @@
 
 ![](icon/rsyncosx.png)
 
-**Important** - this version is **not** compliant with Xcode 8 and Swift 3.
-
 This repository is the source code for the macOS app RsyncOSX. RsyncOSX is compiled with support for macOS version 10.11 - 10.13. The application is implemented in **Swift 4** by using **Xcode 9**. RsyncOSX is *not* depended upon any third party binary distributions. There is, however, one third party source code included to check for TCP connections. The check is for informal use only and can be removed.
-
-RsyncOSX is released in version 4.8.2. The major work for this version was to remove the singelton objects. And some minor enhancements and bug fixes as well. The [intro](https://github.com/rsyncOSX/Documentation/blob/master/docs/Intro.md) part (in Documentation) is updated and reflecting version 4.8.0 of RsyncOSX.
 
 ## Issue in logging (solved)
 
