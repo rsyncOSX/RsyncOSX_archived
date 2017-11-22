@@ -5,6 +5,7 @@
 //  Created by Thomas Evensen on 08/02/16.
 //  Copyright © 2016 Thomas Evensen. All rights reserved.
 //
+// swiftlint:disable cyclomatic_complexity
 
 import Foundation
 
@@ -35,6 +36,17 @@ struct Configuration {
     var parameter14: String?
     var rsyncdaemon: Int?
     var sshport: Int?
+    var dayssincelastbackup: String?
+
+    private func calculatedays(date: String) -> Double? {
+        guard date != "" else {
+            return nil
+        }
+        let dateformatter = Tools().setDateformat()
+        let lastbackup = dateformatter.date(from: date)
+        let seconds: TimeInterval = lastbackup!.timeIntervalSinceNow
+        return seconds * (-1)
+    }
 
     init(dictionary: NSDictionary) {
         // Parameters 1 - 6 is mandatory, set by RsyncOSX.
@@ -56,8 +68,11 @@ struct Configuration {
         // Last run of task
         if let dateRun = dictionary.object(forKey: "dateRun") {
             self.dateRun = dateRun as? String
+            if let secondssince = self.calculatedays(date: self.dateRun!) {
+                self.dayssincelastbackup = String(format: "%.2f", secondssince/(60*60*24))
+            }
         } else {
-            self.dateRun = " "
+            self.dateRun = ""
         }
         // Parameters 8 - 14 is user selected, as well as ssh port.
         if let parameter8 = dictionary.object(forKey: "parameter8") {
