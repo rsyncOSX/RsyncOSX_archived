@@ -23,7 +23,7 @@ class Profiles: Files {
                     return true
                 } catch let e {
                     let error = e as NSError
-                    self.error(error: error.description)
+                    self.error(error: error.description, errortype: .profilecreatedirectory)
                     return false
                 }
             } else {
@@ -46,7 +46,7 @@ class Profiles: Files {
                         try fileManager.removeItem(atPath: profileDirectory)
                     } catch let e {
                         let error = e as NSError
-                        self.error(error: error.description)
+                        self.error(error: error.description, errortype: .profiledeletedirectory)
                     }
                 }
             }

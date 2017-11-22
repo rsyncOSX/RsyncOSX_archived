@@ -54,6 +54,11 @@ class ViewControllerReference {
     var usrbinrsync: String = "/usr/bin/rsync"
     var usrlocalbinrsync: String = "/usr/local/bin/rsync"
     var configpath: String = "/Rsync/"
+    // Loggfile
+    var minimumlogging: Bool = false
+    var fulllogging: Bool = false
+    var logname: String = "rsynclog"
+    var fileURL: URL?
 
     // Reference to main View
     private var viewControllertabMain: NSViewController?
