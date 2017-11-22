@@ -151,6 +151,7 @@ final class SingleTask: SetSchedules, SetConfigurations {
                 let numberOffFiles = self.transferredNumber
                 let sizeOfFiles = self.transferredNumberSizebytes
                 self.schedules!.addlogtaskmanuel(hiddenID, result: number.stats(numberOfFiles: numberOffFiles, sizeOfFiles: sizeOfFiles))
+                _ = Logging(outputprocess: self.outputprocess)
             case .empty:
                 self.workload = nil
             default:

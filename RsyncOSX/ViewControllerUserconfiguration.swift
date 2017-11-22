@@ -25,6 +25,9 @@ class ViewControllerUserconfiguration: NSViewController, NewRsync, SetDismisser,
     @IBOutlet weak var noRsync: NSTextField!
     @IBOutlet weak var restorePath: NSTextField!
     @IBOutlet weak var operation: NSButton!
+    @IBOutlet weak var fulllogging: NSButton!
+    @IBOutlet weak var minimumlogging: NSButton!
+    @IBOutlet weak var nologging: NSButton!
 
     @IBAction func toggleversion3rsync(_ sender: NSButton) {
         if self.version3rsync.state == .on {
@@ -77,6 +80,19 @@ class ViewControllerUserconfiguration: NSViewController, NewRsync, SetDismisser,
         self.operationchangeDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabschedule) as? ViewControllertabSchedule
         self.operationchangeDelegate?.operationsmethod()
         self.dirty = true
+    }
+
+    @IBAction func logging(_ sender: NSButton) {
+        if self.fulllogging.state == .on {
+            ViewControllerReference.shared.fulllogging = true
+            ViewControllerReference.shared.minimumlogging = false
+        } else if self.minimumlogging.state == .on {
+            ViewControllerReference.shared.fulllogging = false
+            ViewControllerReference.shared.minimumlogging = true
+        } else if self.nologging.state == .on {
+            ViewControllerReference.shared.fulllogging = false
+            ViewControllerReference.shared.minimumlogging = false
+        }
     }
 
     private func setRsyncPath() {
@@ -143,6 +159,7 @@ class ViewControllerUserconfiguration: NSViewController, NewRsync, SetDismisser,
         self.rsyncPath.delegate = self
         self.restorePath.delegate = self
         self.storageapi = PersistentStorageAPI(profile: nil)
+        self.nologging.state = .on
     }
 
     override func viewDidAppear() {

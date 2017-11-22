@@ -118,6 +118,7 @@ final class BatchTask: SetSchedules, SetConfigurations, Delay {
                 }
             case 1:
                 // Real run
+                 _ = Logging(outputprocess: self.outputprocess)
                 let number = Numbers(outputprocess: self.outputprocess)
                 batchobject.updateInProcess(numberOfFiles: self.outputprocess!.count())
                 batchobject.setCompleted()
