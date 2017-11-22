@@ -14,25 +14,6 @@ enum Root {
     case sshRoot
 }
 
-// Protocol for reporting file errors
-protocol Fileerror: class {
-    func fileerror(errorstr: String)
-}
-
-protocol Reportfileerror {
-    weak var errorDelegate: Fileerror? { get }
-}
-
-extension Reportfileerror {
-    weak var errorDelegate: Fileerror? {
-        return ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllertabMain
-    }
-
-    func error(error: String) {
-        self.errorDelegate?.fileerror(errorstr: error)
-    }
-}
-
 class Files: Reportfileerror {
 
     var root: Root?
@@ -131,7 +112,7 @@ class Files: Reportfileerror {
                     try fileManager.createDirectory(atPath: path, withIntermediateDirectories: true, attributes: nil)
                 } catch let e {
                     let error = e as NSError
-                    self.error(error: error.description)
+                    self.error(error: error.description, errortype: .profilecreatedirectory)
                 }
             }
         }
@@ -146,7 +127,7 @@ class Files: Reportfileerror {
                 return files
             } catch let e {
                 let error = e as NSError
-                self.error(error: error.description)
+                self.error(error: error.description, errortype: .profilecreatedirectory)
                 return nil
             }
         } else {
