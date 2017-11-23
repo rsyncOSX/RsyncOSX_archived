@@ -4,12 +4,6 @@
 
 This repository is the source code for the macOS app RsyncOSX. RsyncOSX is compiled with support for macOS version 10.11 - 10.13. The application is implemented in **Swift 4** by using **Xcode 9**. RsyncOSX is *not* depended upon any third party binary distributions. There is, however, one third party source code included to check for TCP connections. The check is for informal use only and can be removed.
 
-## Issue in logging (solved)
-
-Sometimes there is an issue in logging. The logging part is initiated when the process object, which executes the `rsync` command with appropriate set of arguments, terminates. The process object is during execution listening for output from the `rsync` command and appends all output in a new object. Sometimes a process termination is discovered *before* the last output is received and the logging part is failing reporting only 0. The solution is holding back the action which is fired 1/2 second when a process termination is discovered (an async escaping closure on the main thread). This secures any remaining output to be collected before logging.
-
-A [rc](https://github.com/rsyncOSX/RsyncOSX/releases) is released fixing the issue.
-
 #### RcloneOSX
 
 I have commenced a new project, the new project [RcloneOSX](https://rsyncosx.github.io/rcloneosx/) is adapting RsyncOSX to utilize [rclone](https://rclone.org). See the [Changelog](https://rsyncosx.github.io/Documentation/docs/RcloneOSX/Changelog.html) for the new project.
