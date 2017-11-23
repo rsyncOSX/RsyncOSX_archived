@@ -59,6 +59,8 @@ class ViewControllerReference {
     var fulllogging: Bool = false
     var logname: String = "rsynclog"
     var fileURL: URL?
+    // Mark number of days since last backup
+    var marknumberofdayssince: Double = 5
 
     // Reference to main View
     private var viewControllertabMain: NSViewController?
