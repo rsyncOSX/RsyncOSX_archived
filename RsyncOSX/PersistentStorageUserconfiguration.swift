@@ -26,6 +26,7 @@ final class PersistentStorageUserconfiguration: Readwritefiles, SetConfiguration
         var detailedlogging: Int?
         var rsyncPath: String?
         var restorePath: String?
+        var marknumberofdayssince: String?
 
         if ViewControllerReference.shared.rsyncVer3 {
             version3Rsync = 1
@@ -45,17 +46,17 @@ final class PersistentStorageUserconfiguration: Readwritefiles, SetConfiguration
         }
 
         var array = Array<NSDictionary>()
+        marknumberofdayssince = String(ViewControllerReference.shared.marknumberofdayssince)
         let dict: NSMutableDictionary = [
             "version3Rsync": version3Rsync! as Int,
-            "detailedlogging": detailedlogging! as Int]
-
+            "detailedlogging": detailedlogging! as Int,
+            "marknumberofdayssince": marknumberofdayssince ?? "5.0"]
         if rsyncPath != nil {
             dict.setObject(rsyncPath!, forKey: "rsyncPath" as NSCopying)
         }
         if restorePath != nil {
             dict.setObject(restorePath!, forKey: "restorePath" as NSCopying)
         }
-
         switch self.configurations!.operation {
         case .dispatch:
             dict.setObject("dispatch", forKey: "operation" as NSCopying)

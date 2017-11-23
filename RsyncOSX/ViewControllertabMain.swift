@@ -404,6 +404,7 @@ class ViewControllertabMain: NSViewController, ReloadTable, Deselect, Coloractiv
     }
 
     func createandreloadconfigurations() {
+        print("createandreloadconfigurations()")
         guard self.configurations != nil else {
             self.configurations = Configurations(profile: nil, viewcontroller: self)
             return
@@ -1026,4 +1027,8 @@ extension ViewControllertabMain: ErrorOutput {
     func erroroutput() {
         self.possibleerroroutput.isHidden = false
     }
+}
+
+extension ViewControllertabMain: Createandreloadconfigurations {
+    // func reateandreloadconfigurations()
 }

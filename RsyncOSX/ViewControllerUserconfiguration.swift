@@ -18,6 +18,9 @@ class ViewControllerUserconfiguration: NSViewController, NewRsync, SetDismisser,
     var storageapi: PersistentStorageAPI?
     var dirty: Bool = false
     weak var operationchangeDelegate: OperationChanged?
+    weak var reloadconfigurationsDelegate: Createandreloadconfigurations?
+    var oldmarknumberofdayssince: Double?
+    var reload: Bool = false
 
     @IBOutlet weak var rsyncPath: NSTextField!
     @IBOutlet weak var version3rsync: NSButton!
@@ -28,6 +31,7 @@ class ViewControllerUserconfiguration: NSViewController, NewRsync, SetDismisser,
     @IBOutlet weak var fulllogging: NSButton!
     @IBOutlet weak var minimumlogging: NSButton!
     @IBOutlet weak var nologging: NSButton!
+    @IBOutlet weak var marknumberofdayssince: NSTextField!
 
     @IBAction func toggleversion3rsync(_ sender: NSButton) {
         if self.version3rsync.state == .on {
@@ -60,7 +64,11 @@ class ViewControllerUserconfiguration: NSViewController, NewRsync, SetDismisser,
             self.setRsyncPath()
             // self.verifyRsync()
             self.setRestorePath()
+            self.setmarknumberofdayssince()
             _ = self.storageapi!.saveUserconfiguration()
+            if self.reload {
+                self.reloadconfigurationsDelegate?.createandreloadconfigurations()
+            }
         }
         if (self.presenting as? ViewControllertabMain) != nil {
             self.dismissview(viewcontroller: self, vcontroller: .vctabmain)
@@ -92,6 +100,16 @@ class ViewControllerUserconfiguration: NSViewController, NewRsync, SetDismisser,
         } else if self.nologging.state == .on {
             ViewControllerReference.shared.fulllogging = false
             ViewControllerReference.shared.minimumlogging = false
+        }
+    }
+
+    private func setmarknumberofdayssince() {
+        if let marknumberofdayssince = Double(self.marknumberofdayssince.stringValue) {
+            self.oldmarknumberofdayssince = ViewControllerReference.shared.marknumberofdayssince
+            ViewControllerReference.shared.marknumberofdayssince = marknumberofdayssince
+            if self.oldmarknumberofdayssince != marknumberofdayssince {
+                self.reload = true
+            }
         }
     }
 
@@ -133,13 +151,11 @@ class ViewControllerUserconfiguration: NSViewController, NewRsync, SetDismisser,
         } else {
             rsyncpath = nil
         }
-
         guard self.version3rsync.state == .on else {
             self.noRsync.isHidden = true
             ViewControllerReference.shared.norsync = false
             return
         }
-
         guard rsyncpath != nil else {
             self.noRsync.isHidden = true
             ViewControllerReference.shared.norsync = false
@@ -158,8 +174,10 @@ class ViewControllerUserconfiguration: NSViewController, NewRsync, SetDismisser,
         super.viewDidLoad()
         self.rsyncPath.delegate = self
         self.restorePath.delegate = self
+        self.marknumberofdayssince.delegate = self
         self.storageapi = PersistentStorageAPI(profile: nil)
         self.nologging.state = .on
+        self.reloadconfigurationsDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllertabMain
     }
 
     override func viewDidAppear() {
@@ -167,6 +185,8 @@ class ViewControllerUserconfiguration: NSViewController, NewRsync, SetDismisser,
         self.dirty = false
         self.checkUserConfig()
         self.verifyrsync()
+        self.marknumberofdayssince.stringValue = String(ViewControllerReference.shared.marknumberofdayssince)
+        self.reload = false
     }
 
     // Function for check and set user configuration
