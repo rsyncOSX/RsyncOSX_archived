@@ -19,6 +19,8 @@ class ViewControllerUserconfiguration: NSViewController, NewRsync, SetDismisser,
     var dirty: Bool = false
     weak var operationchangeDelegate: OperationChanged?
     weak var reloadconfigurationsDelegate: Createandreloadconfigurations?
+    var oldmarknumberofdayssince: Double?
+    var reload: Bool = false
 
     @IBOutlet weak var rsyncPath: NSTextField!
     @IBOutlet weak var version3rsync: NSButton!
@@ -64,7 +66,9 @@ class ViewControllerUserconfiguration: NSViewController, NewRsync, SetDismisser,
             self.setRestorePath()
             self.setmarknumberofdayssince()
             _ = self.storageapi!.saveUserconfiguration()
-            self.reloadconfigurationsDelegate?.createandreloadconfigurations()
+            if self.reload {
+                self.reloadconfigurationsDelegate?.createandreloadconfigurations()
+            }
         }
         if (self.presenting as? ViewControllertabMain) != nil {
             self.dismissview(viewcontroller: self, vcontroller: .vctabmain)
@@ -101,7 +105,11 @@ class ViewControllerUserconfiguration: NSViewController, NewRsync, SetDismisser,
 
     private func setmarknumberofdayssince() {
         if let marknumberofdayssince = Double(self.marknumberofdayssince.stringValue) {
+            self.oldmarknumberofdayssince = ViewControllerReference.shared.marknumberofdayssince
             ViewControllerReference.shared.marknumberofdayssince = marknumberofdayssince
+            if self.oldmarknumberofdayssince != marknumberofdayssince {
+                self.reload = true
+            }
         }
     }
 
@@ -178,6 +186,7 @@ class ViewControllerUserconfiguration: NSViewController, NewRsync, SetDismisser,
         self.checkUserConfig()
         self.verifyrsync()
         self.marknumberofdayssince.stringValue = String(ViewControllerReference.shared.marknumberofdayssince)
+        self.reload = false
     }
 
     // Function for check and set user configuration
