@@ -356,3 +356,7 @@ extension NewRsync {
         self.newRsyncDelegate?.rsyncchanged()
     }
 }
+
+protocol Createandreloadconfigurations: class {
+    func createandreloadconfigurations()
+}
