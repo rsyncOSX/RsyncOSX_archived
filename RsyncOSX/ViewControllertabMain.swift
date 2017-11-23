@@ -461,10 +461,7 @@ extension ViewControllertabMain: NSTableViewDelegate {
             return object[tableColumn!.identifier] as? Int!
         } else if markdays == true && tableColumn!.identifier.rawValue == "daysID" {
             text = object[tableColumn!.identifier] as? String
-            let attributedString = NSMutableAttributedString(string: (text!))
-            let range = (text! as NSString).range(of: text!)
-            attributedString.addAttribute(NSAttributedStringKey.foregroundColor, value: NSColor.red, range: range)
-            return attributedString
+            return self.attributtedstring(str: text!, color: NSColor.red, alignright: true)
         } else {
             var number: Int = 0
             if let obj = self.schedulessorted {
@@ -473,20 +470,14 @@ extension ViewControllertabMain: NSTableViewDelegate {
             if schedule && number > 0 {
                 let returnstr = text! + " (" + String(number) + ")"
                 if let color = self.colorindex, color == hiddenID {
-                    let attributedString = NSMutableAttributedString(string: (returnstr))
-                    let range = (returnstr as NSString).range(of: returnstr)
-                    attributedString.addAttribute(NSAttributedStringKey.foregroundColor, value: NSColor.green, range: range)
-                    return attributedString
+                    return self.attributtedstring(str: returnstr, color: NSColor.green, alignright: false)
                 } else {
                     return returnstr
                 }
             } else {
                 if self.testRow(row) {
                     text = object[tableColumn!.identifier] as? String
-                    let attributedString = NSMutableAttributedString(string: (text!))
-                    let range = (text! as NSString).range(of: text!)
-                    attributedString.addAttribute(NSAttributedStringKey.foregroundColor, value: NSColor.red, range: range)
-                    return attributedString
+                    return self.attributtedstring(str: text!, color: NSColor.red, alignright: false)
                 } else {
                     if tableColumn!.identifier.rawValue == "offsiteServerCellID", ((object[tableColumn!.identifier] as? String)?.isEmpty)! {
                         return "localhost"
@@ -495,6 +486,16 @@ extension ViewControllertabMain: NSTableViewDelegate {
                 }
             }
         }
+    }
+
+    private func attributtedstring(str: String, color: NSColor, alignright: Bool) -> NSMutableAttributedString {
+        let attributedString = NSMutableAttributedString(string: str)
+        let range = (str as NSString).range(of: str)
+        attributedString.addAttribute(NSAttributedStringKey.foregroundColor, value: color, range: range)
+        if alignright {
+            attributedString.setAlignment(.right, range: range)
+        }
+        return attributedString
     }
 
     // Toggling batch
