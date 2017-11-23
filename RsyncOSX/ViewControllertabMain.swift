@@ -450,6 +450,7 @@ extension ViewControllertabMain: NSTableViewDelegate {
         var text: String?
         var schedule: Bool = false
         let hiddenID: Int = self.configurations!.getConfigurations()[row].hiddenID
+        let markdays: Bool = self.configurations!.getConfigurations()[row].markdays
         if self.schedules!.hiddenIDinSchedule(hiddenID) {
             text = object[tableColumn!.identifier] as? String
             if text == "backup" || text == "restore" {
@@ -458,6 +459,12 @@ extension ViewControllertabMain: NSTableViewDelegate {
         }
         if tableColumn!.identifier.rawValue == "batchCellID" {
             return object[tableColumn!.identifier] as? Int!
+        } else if markdays == true && tableColumn!.identifier.rawValue == "daysID" {
+            text = object[tableColumn!.identifier] as? String
+            let attributedString = NSMutableAttributedString(string: (text!))
+            let range = (text! as NSString).range(of: text!)
+            attributedString.addAttribute(NSAttributedStringKey.foregroundColor, value: NSColor.red, range: range)
+            return attributedString
         } else {
             var number: Int = 0
             if let obj = self.schedulessorted {

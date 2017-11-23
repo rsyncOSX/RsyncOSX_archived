@@ -37,6 +37,7 @@ struct Configuration {
     var rsyncdaemon: Int?
     var sshport: Int?
     var dayssincelastbackup: String?
+    var markdays: Bool = false
 
     private func calculatedays(date: String) -> Double? {
         guard date != "" else {
@@ -70,6 +71,9 @@ struct Configuration {
             self.dateRun = dateRun as? String
             if let secondssince = self.calculatedays(date: self.dateRun!) {
                 self.dayssincelastbackup = String(format: "%.2f", secondssince/(60*60*24))
+                if secondssince/(60*60*24) > ViewControllerReference.shared.marknumberofdayssince {
+                    self.markdays = true
+                }
             }
         } else {
             self.dateRun = ""
