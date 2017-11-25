@@ -240,9 +240,10 @@
                             <defaultToolbarItems>
                                 <toolbarItem reference="wiK-ZO-ZDm"/>
                                 <toolbarItem reference="ANc-bU-Btf"/>
+                                <toolbarItem reference="WKh-5s-iDH"/>
+                                <toolbarItem reference="wiK-ZO-ZDm"/>
                                 <toolbarItem reference="aEp-hB-CPn"/>
                                 <toolbarItem reference="zs6-ub-LOa"/>
-                                <toolbarItem reference="WKh-5s-iDH"/>
                                 <toolbarItem reference="fqh-SJ-7gy"/>
                                 <toolbarItem reference="wiK-ZO-ZDm"/>
                             </defaultToolbarItems>
@@ -5147,7 +5148,7 @@ DQ
     <resources>
         <image name="NSFolder" width="32" height="32"/>
         <image name="abort" width="256" height="256"/>
-        <image name="batch" width="500" height="500"/>
+        <image name="batch" width="256" height="256"/>
         <image name="config" width="256" height="256"/>
         <image name="info" width="256" height="256"/>
     </resources>
