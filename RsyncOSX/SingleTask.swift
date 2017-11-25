@@ -20,7 +20,7 @@ protocol StartStopProgressIndicatorSingleTask: class {
 protocol SingleTaskProgress: class {
     func showProcessInfo(info: DisplayProcessInfo)
     func presentViewProgress()
-    func presentViewInformation(output: OutputProcess)
+    func presentViewInformation(outputprocess: OutputProcess)
     func terminateProgressProcess()
     func setInfo(info: String, color: ColorInfo)
     func setNumbers(output: OutputProcess?)
@@ -127,12 +127,12 @@ final class SingleTask: SetSchedules, SetConfigurations {
                 self.taskDelegate?.setNumbers(output: self.outputprocess)
                 self.maxcount = self.outputprocess!.getMaxcount()
                 // If showInfoDryrun is on present result of dryrun automatically
-                self.taskDelegate?.presentViewInformation(output: self.outputprocess!)
+                self.taskDelegate?.presentViewInformation(outputprocess: self.outputprocess!)
             case .error:
                 // Stopping the working (estimation) progress indicator
                 self.indicatorDelegate?.stopIndicator()
                 // If showInfoDryrun is on present result of dryrun automatically
-                self.taskDelegate?.presentViewInformation(output: self.outputprocess!)
+                self.taskDelegate?.presentViewInformation(outputprocess: self.outputprocess!)
                 self.workload = nil
             case .executesinglerun:
                 //NB: self.showProcessInfo(info: .Logging_run)
@@ -140,7 +140,7 @@ final class SingleTask: SetSchedules, SetConfigurations {
                 // Process termination and close progress view
                 self.taskDelegate?.terminateProgressProcess()
                 // If showInfoDryrun is on present result of dryrun automatically
-                self.taskDelegate?.presentViewInformation(output: self.outputprocess!)
+                self.taskDelegate?.presentViewInformation(outputprocess: self.outputprocess!)
                 // Logg run
                 let number = Numbers(outputprocess: self.outputprocess)
                 // Get transferred numbers from view
