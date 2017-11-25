@@ -20,7 +20,7 @@ class ViewControllerProgressProcess: NSViewController, SetConfigurations, SetDis
     var maxcount: Double = 0
     var calculatedNumberOfFiles: Int?
     weak var countDelegate: Count?
-
+    @IBOutlet weak var abort: NSButton!
     @IBOutlet weak var progress: NSProgressIndicator!
 
     @IBAction func abort(_ sender: NSButton) {
@@ -40,6 +40,7 @@ class ViewControllerProgressProcess: NSViewController, SetConfigurations, SetDis
         }
         self.calculatedNumberOfFiles = self.countDelegate?.maxCount()
         self.initiateProgressbar()
+        self.abort.image = #imageLiteral(resourceName: "abort")
     }
 
     override func viewWillDisappear() {
