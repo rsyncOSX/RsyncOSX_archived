@@ -869,9 +869,6 @@ extension ViewControllertabMain: SingleTaskProgress {
     }
 
     func presentViewInformation(outputprocess: OutputProcess) {
-        guard  self.configurations!.allowNotifyinMain == true else {
-            return
-        }
         self.outputprocess = outputprocess
         globalMainQueue.async(execute: { () -> Void in
             self.presentViewControllerAsSheet(self.viewControllerInformation!)

@@ -25,7 +25,6 @@ class ViewControllerProgressProcess: NSViewController, SetConfigurations, SetDis
 
     @IBAction func abort(_ sender: NSButton) {
         self.abort()
-        self.processTermination()
     }
 
     override func viewDidLoad() {
