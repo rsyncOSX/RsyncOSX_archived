@@ -636,8 +636,8 @@
                                 </textFieldCell>
                             </textField>
                             <button translatesAutoresizingMaskIntoConstraints="NO" id="g7r-rp-4kz">
-                                <rect key="frame" x="594" y="88" width="67" height="18"/>
-                                <buttonCell key="cell" type="radio" title="Dry ryn" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="2tH-gF-ycx">
+                                <rect key="frame" x="600" y="88" width="65" height="18"/>
+                                <buttonCell key="cell" type="radio" title="dry ryn" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="2tH-gF-ycx">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
@@ -646,8 +646,8 @@
                                 </connections>
                             </button>
                             <button translatesAutoresizingMaskIntoConstraints="NO" id="3DG-2b-5po">
-                                <rect key="frame" x="681" y="88" width="72" height="18"/>
-                                <buttonCell key="cell" type="radio" title="Real run" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="dzR-DR-VEo">
+                                <rect key="frame" x="685" y="88" width="68" height="18"/>
+                                <buttonCell key="cell" type="radio" title="real run" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="dzR-DR-VEo">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
