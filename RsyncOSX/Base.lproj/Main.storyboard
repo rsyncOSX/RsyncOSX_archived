@@ -172,33 +172,77 @@
                             <allowedToolbarItems>
                                 <toolbarItem implicitItemIdentifier="NSToolbarSpaceItem" id="wiK-ZO-ZDm"/>
                                 <toolbarItem implicitItemIdentifier="NSToolbarFlexibleSpaceItem" id="zs6-ub-LOa"/>
-                                <toolbarItem implicitItemIdentifier="ABEE033B-0756-4B1D-90F2-9446A8182CDB" label="batch" paletteLabel="batch" tag="-1" image="batch" id="7rn-v3-xce">
-                                    <connections>
-                                        <action selector="executeBatch:" target="Rv5-yv-lsc" id="UeK-Tx-gqj"/>
-                                    </connections>
+                                <toolbarItem implicitItemIdentifier="B5E3574F-49FC-4B87-AB6C-E16A6A0B55CC" label="abort" paletteLabel="abort" image="abort" id="7w4-6r-ai5">
+                                    <nil key="toolTip"/>
+                                    <size key="minSize" width="40" height="22"/>
+                                    <size key="maxSize" width="40" height="28"/>
+                                    <button key="view" verticalHuggingPriority="750" id="E8b-f3-qjc">
+                                        <rect key="frame" x="0.0" y="14" width="40" height="28"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                        <buttonCell key="cell" type="roundTextured" bezelStyle="texturedRounded" image="abort" imagePosition="overlaps" alignment="center" lineBreakMode="truncatingTail" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="cJf-tX-r2H">
+                                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                            <font key="font" metaFont="system"/>
+                                        </buttonCell>
+                                        <connections>
+                                            <action selector="abort:" target="Rv5-yv-lsc" id="96z-70-PlR"/>
+                                        </connections>
+                                    </button>
                                 </toolbarItem>
-                                <toolbarItem implicitItemIdentifier="105D9F0B-FCB8-4889-B41E-481F099D85A8" label="abort" paletteLabel="abort" tag="-1" image="abort" id="ZnO-G7-EVT">
-                                    <connections>
-                                        <action selector="abort:" target="Rv5-yv-lsc" id="2Vf-Li-3Ye"/>
-                                    </connections>
+                                <toolbarItem implicitItemIdentifier="F434BB7C-3A58-4AC1-A72A-16FBB57E8A71" label="batch" paletteLabel="batch" image="batch" id="OrH-Ty-gyv">
+                                    <nil key="toolTip"/>
+                                    <size key="minSize" width="40" height="25"/>
+                                    <size key="maxSize" width="40" height="28"/>
+                                    <button key="view" verticalHuggingPriority="750" id="WXA-Ge-ie7">
+                                        <rect key="frame" x="0.0" y="14" width="40" height="28"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                        <buttonCell key="cell" type="roundTextured" bezelStyle="texturedRounded" image="batch" imagePosition="overlaps" alignment="center" lineBreakMode="truncatingTail" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="2uR-Ky-UIF">
+                                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                            <font key="font" metaFont="system"/>
+                                        </buttonCell>
+                                        <connections>
+                                            <action selector="executeBatch:" target="Rv5-yv-lsc" id="rTL-zJ-pEb"/>
+                                        </connections>
+                                    </button>
                                 </toolbarItem>
-                                <toolbarItem implicitItemIdentifier="18FC1815-83C7-4D1A-B835-5F1887D0C459" label="config" paletteLabel="config" tag="-1" image="config" id="DJl-Ny-Yyr">
-                                    <connections>
-                                        <action selector="userconfiguration:" target="Rv5-yv-lsc" id="FxI-1l-OVl"/>
-                                    </connections>
+                                <toolbarItem implicitItemIdentifier="AA95E30D-4DE8-4A4E-B394-8CEA8799709F" label="config" paletteLabel="config" image="config" id="VYu-Xf-XJc">
+                                    <nil key="toolTip"/>
+                                    <size key="minSize" width="40" height="25"/>
+                                    <size key="maxSize" width="40" height="28"/>
+                                    <button key="view" verticalHuggingPriority="750" id="XFU-nn-1H7">
+                                        <rect key="frame" x="0.0" y="14" width="40" height="28"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                        <buttonCell key="cell" type="roundTextured" bezelStyle="texturedRounded" image="config" imagePosition="overlaps" alignment="center" lineBreakMode="truncatingTail" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="dSB-ET-I4k">
+                                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                            <font key="font" metaFont="system"/>
+                                        </buttonCell>
+                                        <connections>
+                                            <action selector="userconfiguration:" target="Rv5-yv-lsc" id="iJC-oh-sFc"/>
+                                        </connections>
+                                    </button>
                                 </toolbarItem>
-                                <toolbarItem implicitItemIdentifier="6050BE74-1D9A-40C5-9A89-38D68B630963" label="info" paletteLabel="info" tag="-1" image="info" id="hb3-m0-6rO">
-                                    <connections>
-                                        <action selector="information:" target="Rv5-yv-lsc" id="ZPh-0L-Epv"/>
-                                    </connections>
+                                <toolbarItem implicitItemIdentifier="4E86EA40-63DF-4CA1-9A20-6164DF561B48" label="info" paletteLabel="info" image="info" id="GYz-8J-WDp">
+                                    <nil key="toolTip"/>
+                                    <size key="minSize" width="40" height="25"/>
+                                    <size key="maxSize" width="40" height="28"/>
+                                    <button key="view" verticalHuggingPriority="750" id="c2j-aQ-Boa">
+                                        <rect key="frame" x="0.0" y="14" width="40" height="28"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                        <buttonCell key="cell" type="roundTextured" bezelStyle="texturedRounded" image="info" imagePosition="overlaps" alignment="center" lineBreakMode="truncatingTail" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="VcU-qL-nui">
+                                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                            <font key="font" metaFont="system"/>
+                                        </buttonCell>
+                                        <connections>
+                                            <action selector="information:" target="Rv5-yv-lsc" id="JP7-BG-FaV"/>
+                                        </connections>
+                                    </button>
                                 </toolbarItem>
                             </allowedToolbarItems>
                             <defaultToolbarItems>
                                 <toolbarItem reference="zs6-ub-LOa"/>
-                                <toolbarItem reference="7rn-v3-xce"/>
-                                <toolbarItem reference="ZnO-G7-EVT"/>
-                                <toolbarItem reference="hb3-m0-6rO"/>
-                                <toolbarItem reference="DJl-Ny-Yyr"/>
+                                <toolbarItem reference="OrH-Ty-gyv"/>
+                                <toolbarItem reference="7w4-6r-ai5"/>
+                                <toolbarItem reference="GYz-8J-WDp"/>
+                                <toolbarItem reference="VYu-Xf-XJc"/>
                                 <toolbarItem reference="wiK-ZO-ZDm"/>
                             </defaultToolbarItems>
                         </toolbar>
