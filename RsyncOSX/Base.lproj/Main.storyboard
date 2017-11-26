@@ -172,79 +172,33 @@
                             <allowedToolbarItems>
                                 <toolbarItem implicitItemIdentifier="NSToolbarSpaceItem" id="wiK-ZO-ZDm"/>
                                 <toolbarItem implicitItemIdentifier="NSToolbarFlexibleSpaceItem" id="zs6-ub-LOa"/>
-                                <toolbarItem implicitItemIdentifier="263D8695-93C3-4DEA-AA66-B34219F9CB1F" label="Batch" paletteLabel="Batch" image="batch" id="ANc-bU-Btf">
-                                    <nil key="toolTip"/>
-                                    <size key="minSize" width="48" height="48"/>
-                                    <size key="maxSize" width="48" height="48"/>
-                                    <button key="view" id="CfI-wM-Rbt">
-                                        <rect key="frame" x="0.0" y="14" width="48" height="48"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                        <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="batch" imagePosition="only" alignment="center" imageScaling="proportionallyUpOrDown" inset="2" id="biG-hS-TuY">
-                                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                            <font key="font" metaFont="system"/>
-                                        </buttonCell>
-                                        <connections>
-                                            <action selector="executeBatch:" target="Rv5-yv-lsc" id="yjJ-Ep-kU8"/>
-                                        </connections>
-                                    </button>
+                                <toolbarItem implicitItemIdentifier="ABEE033B-0756-4B1D-90F2-9446A8182CDB" label="batch" paletteLabel="batch" tag="-1" image="batch" id="7rn-v3-xce">
+                                    <connections>
+                                        <action selector="executeBatch:" target="Rv5-yv-lsc" id="UeK-Tx-gqj"/>
+                                    </connections>
                                 </toolbarItem>
-                                <toolbarItem implicitItemIdentifier="20D97C8D-404A-4B59-8411-7FFC490B3AF6" label="Abort" paletteLabel="Abort" image="abort" id="aEp-hB-CPn">
-                                    <nil key="toolTip"/>
-                                    <size key="minSize" width="48" height="48"/>
-                                    <size key="maxSize" width="48" height="48"/>
-                                    <button key="view" id="3mr-Ck-IqP">
-                                        <rect key="frame" x="0.0" y="14" width="48" height="48"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                        <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="abort" imagePosition="only" alignment="center" imageScaling="proportionallyUpOrDown" inset="2" id="w7q-jm-swn">
-                                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                            <font key="font" metaFont="system"/>
-                                        </buttonCell>
-                                        <connections>
-                                            <action selector="abort:" target="Rv5-yv-lsc" id="tz3-9h-7Od"/>
-                                        </connections>
-                                    </button>
+                                <toolbarItem implicitItemIdentifier="105D9F0B-FCB8-4889-B41E-481F099D85A8" label="abort" paletteLabel="abort" tag="-1" image="abort" id="ZnO-G7-EVT">
+                                    <connections>
+                                        <action selector="abort:" target="Rv5-yv-lsc" id="2Vf-Li-3Ye"/>
+                                    </connections>
                                 </toolbarItem>
-                                <toolbarItem implicitItemIdentifier="47F7B1BE-F98D-476A-82B4-A57FBB7DBE0A" label="Info" paletteLabel="Info" image="info" id="WKh-5s-iDH">
-                                    <nil key="toolTip"/>
-                                    <size key="minSize" width="48" height="48"/>
-                                    <size key="maxSize" width="48" height="48"/>
-                                    <button key="view" id="PjG-Eo-KfS">
-                                        <rect key="frame" x="0.0" y="14" width="48" height="48"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                        <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="info" imagePosition="only" alignment="center" imageScaling="proportionallyUpOrDown" inset="2" id="OGg-LE-96Y">
-                                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                            <font key="font" metaFont="system"/>
-                                        </buttonCell>
-                                        <connections>
-                                            <action selector="information:" target="Rv5-yv-lsc" id="QOz-U1-2Dx"/>
-                                        </connections>
-                                    </button>
+                                <toolbarItem implicitItemIdentifier="18FC1815-83C7-4D1A-B835-5F1887D0C459" label="config" paletteLabel="config" tag="-1" image="config" id="DJl-Ny-Yyr">
+                                    <connections>
+                                        <action selector="userconfiguration:" target="Rv5-yv-lsc" id="FxI-1l-OVl"/>
+                                    </connections>
                                 </toolbarItem>
-                                <toolbarItem implicitItemIdentifier="DF5B9BD9-F7FB-401E-9178-8AA5820ADB56" label="Config" paletteLabel="Config" image="config" id="fqh-SJ-7gy">
-                                    <nil key="toolTip"/>
-                                    <size key="minSize" width="48" height="48"/>
-                                    <size key="maxSize" width="48" height="48"/>
-                                    <button key="view" id="4Om-pq-e5n">
-                                        <rect key="frame" x="0.0" y="14" width="48" height="48"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                        <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="config" imagePosition="only" alignment="center" imageScaling="proportionallyUpOrDown" inset="2" id="Vrv-af-xny">
-                                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                            <font key="font" metaFont="system"/>
-                                        </buttonCell>
-                                        <connections>
-                                            <action selector="userconfiguration:" target="Rv5-yv-lsc" id="MFU-R1-udG"/>
-                                        </connections>
-                                    </button>
+                                <toolbarItem implicitItemIdentifier="6050BE74-1D9A-40C5-9A89-38D68B630963" label="info" paletteLabel="info" tag="-1" image="info" id="hb3-m0-6rO">
+                                    <connections>
+                                        <action selector="information:" target="Rv5-yv-lsc" id="ZPh-0L-Epv"/>
+                                    </connections>
                                 </toolbarItem>
                             </allowedToolbarItems>
                             <defaultToolbarItems>
-                                <toolbarItem reference="wiK-ZO-ZDm"/>
-                                <toolbarItem reference="ANc-bU-Btf"/>
-                                <toolbarItem reference="WKh-5s-iDH"/>
-                                <toolbarItem reference="wiK-ZO-ZDm"/>
-                                <toolbarItem reference="aEp-hB-CPn"/>
                                 <toolbarItem reference="zs6-ub-LOa"/>
-                                <toolbarItem reference="fqh-SJ-7gy"/>
+                                <toolbarItem reference="7rn-v3-xce"/>
+                                <toolbarItem reference="ZnO-G7-EVT"/>
+                                <toolbarItem reference="hb3-m0-6rO"/>
+                                <toolbarItem reference="DJl-Ny-Yyr"/>
                                 <toolbarItem reference="wiK-ZO-ZDm"/>
                             </defaultToolbarItems>
                         </toolbar>
@@ -5142,9 +5096,9 @@ DQ
     </scenes>
     <resources>
         <image name="NSFolder" width="32" height="32"/>
-        <image name="abort" width="256" height="256"/>
-        <image name="batch" width="256" height="256"/>
-        <image name="config" width="256" height="256"/>
-        <image name="info" width="256" height="256"/>
+        <image name="abort" width="48" height="48"/>
+        <image name="batch" width="48" height="48"/>
+        <image name="config" width="48" height="48"/>
+        <image name="info" width="48" height="48"/>
     </resources>
 </document>
