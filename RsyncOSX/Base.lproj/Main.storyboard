@@ -703,29 +703,24 @@
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="qkq-x4-Af5">
-                                            <rect key="frame" x="9" y="2" width="66" height="21"/>
+                                            <rect key="frame" x="9" y="2" width="42" height="21"/>
                                             <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="status" id="Dl6-i6-oA7">
                                                 <font key="font" metaFont="system"/>
                                                 <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                                 <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                             </textFieldCell>
                                         </textField>
-                                        <colorWell bordered="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Kkf-ns-DmF">
-                                            <rect key="frame" x="79" y="7" width="13" height="13"/>
-                                            <constraints>
-                                                <constraint firstAttribute="width" constant="13" id="sLb-dB-XxU"/>
-                                            </constraints>
-                                            <color key="color" name="systemYellowColor" catalog="System" colorSpace="catalog"/>
-                                        </colorWell>
+                                        <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fqK-dL-pfU">
+                                            <rect key="frame" x="96" y="6" width="15" height="14"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                            <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" id="TtP-fX-EvF"/>
+                                        </imageView>
                                     </subviews>
                                     <constraints>
-                                        <constraint firstItem="Kkf-ns-DmF" firstAttribute="leading" secondItem="qkq-x4-Af5" secondAttribute="trailing" constant="6" id="2tC-lb-OWH"/>
                                         <constraint firstItem="qkq-x4-Af5" firstAttribute="top" secondItem="fU2-rA-tMU" secondAttribute="top" constant="2" id="5yt-XC-Ckz"/>
+                                        <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="qkq-x4-Af5" secondAttribute="trailing" constant="20" symbolic="YES" id="E79-uT-Ga0"/>
                                         <constraint firstItem="qkq-x4-Af5" firstAttribute="centerY" secondItem="fU2-rA-tMU" secondAttribute="centerY" id="EIS-h5-hqP"/>
-                                        <constraint firstAttribute="bottom" secondItem="Kkf-ns-DmF" secondAttribute="bottom" constant="7" id="I9I-qN-Q2k"/>
-                                        <constraint firstAttribute="trailing" secondItem="Kkf-ns-DmF" secondAttribute="trailing" constant="34" id="Ymf-Da-byV"/>
                                         <constraint firstItem="qkq-x4-Af5" firstAttribute="leading" secondItem="fU2-rA-tMU" secondAttribute="leading" constant="11" id="vN5-GU-vH0"/>
-                                        <constraint firstItem="Kkf-ns-DmF" firstAttribute="top" secondItem="fU2-rA-tMU" secondAttribute="top" constant="5" id="yQj-4e-zRf"/>
                                     </constraints>
                                 </view>
                             </box>
@@ -919,7 +914,6 @@
                         <outlet property="displayDryRun" destination="g7r-rp-4kz" id="f5g-Og-Anv"/>
                         <outlet property="displayRealRun" destination="3DG-2b-5po" id="hO9-C5-Wbp"/>
                         <outlet property="dryRunOrRealRun" destination="qkq-x4-Af5" id="oQ9-nJ-wSt"/>
-                        <outlet property="light" destination="Kkf-ns-DmF" id="mla-eE-Olb"/>
                         <outlet property="mainTableView" destination="gd0-mk-eEg" id="V0X-hS-6qu"/>
                         <outlet property="newfiles" destination="AyX-Ou-VvT" id="NmE-4m-2Rs"/>
                         <outlet property="norsync" destination="jzt-dl-wGw" id="az8-Gg-Zvo"/>
@@ -929,6 +923,7 @@
                         <outlet property="rsyncCommand" destination="7n8-es-jH6" id="bH0-3W-ECU"/>
                         <outlet property="scheduledJobworking" destination="hnd-F8-jzy" id="BaA-Rt-95e"/>
                         <outlet property="selecttask" destination="fbQ-G3-TsB" id="YIV-Ar-eVy"/>
+                        <outlet property="statuslight" destination="fqK-dL-pfU" id="B1a-I9-dk9"/>
                         <outlet property="totalDirs" destination="ZMP-pU-PWi" id="BWy-QK-Edy"/>
                         <outlet property="totalNumber" destination="IFg-Xf-ODx" id="PEU-mH-vGF"/>
                         <outlet property="totalNumberSizebytes" destination="ajb-fx-OK1" id="05f-QP-HmX"/>
