@@ -3017,11 +3017,11 @@ DQ
                                     </subviews>
                                 </clipView>
                                 <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="YES" id="qkI-EN-Wea">
-                                    <rect key="frame" x="2" y="223" width="734" height="16"/>
+                                    <rect key="frame" x="2" y="9" width="0.0" height="16"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
                                 <scroller key="verticalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="NO" id="he6-ev-0dn">
-                                    <rect key="frame" x="-14" y="2" width="16" height="0.0"/>
+                                    <rect key="frame" x="-14" y="25" width="16" height="0.0"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
                                 <tableHeaderView key="headerView" id="DFU-pX-V8O">
@@ -3129,15 +3129,15 @@ DQ
                             <progressIndicator wantsLayer="YES" maxValue="100" style="bar" translatesAutoresizingMaskIntoConstraints="NO" id="3g2-YF-Pez">
                                 <rect key="frame" x="20" y="11" width="329" height="20"/>
                             </progressIndicator>
-                            <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="eui-J3-1Cx">
-                                <rect key="frame" x="326" y="33" width="23" height="25"/>
+                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="D42-iL-1CH">
+                                <rect key="frame" x="318" y="34" width="31" height="25"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" imagePosition="only" alignment="center" imageScaling="proportionallyUpOrDown" inset="2" id="b4Q-8g-DfY">
+                                <buttonCell key="cell" type="roundTextured" bezelStyle="texturedRounded" image="abort" imagePosition="only" alignment="center" lineBreakMode="truncatingTail" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="Y8Q-vu-QYS">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
                                 <connections>
-                                    <action selector="abort:" target="sDH-LN-0H4" id="NXZ-Kj-7DO"/>
+                                    <action selector="abort:" target="sDH-LN-0H4" id="fLU-iW-ZTD"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -3150,7 +3150,7 @@ DQ
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="abort" destination="eui-J3-1Cx" id="Wsi-o3-Ss5"/>
+                        <outlet property="abort" destination="D42-iL-1CH" id="uRx-GQ-P2B"/>
                         <outlet property="progress" destination="3g2-YF-Pez" id="OW5-c6-tqa"/>
                     </connections>
                 </viewController>

@@ -39,7 +39,7 @@ class ViewControllerProgressProcess: NSViewController, SetConfigurations, SetDis
         }
         self.calculatedNumberOfFiles = self.countDelegate?.maxCount()
         self.initiateProgressbar()
-        self.abort.image = #imageLiteral(resourceName: "abort")
+        self.abort.isEnabled = true
     }
 
     override func viewWillDisappear() {
