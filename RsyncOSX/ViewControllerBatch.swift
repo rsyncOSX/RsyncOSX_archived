@@ -23,7 +23,6 @@ protocol closeViewError: class {
 class ViewControllerBatch: NSViewController, SetDismisser, AbortTask {
 
     weak var configurations: Configurations?
-    var close: Bool?
     var waitToClose: Timer?
     var closeIn: Timer?
     var seconds: Int?
@@ -37,13 +36,18 @@ class ViewControllerBatch: NSViewController, SetDismisser, AbortTask {
     @IBOutlet weak var closeinseconds: NSTextField!
     @IBOutlet weak var rownumber: NSTextField!
     @IBOutlet weak var executeButton: NSButton!
+    @IBOutlet weak var abortbutton: NSButton!
+
+    @IBAction func abort(_ sender: NSButton) {
+        self.abort()
+        self.waitToClose?.invalidate()
+        self.closeIn?.invalidate()
+        self.batchTask = nil
+        self.dismissview(viewcontroller: self, vcontroller: .vctabmain)
+    }
 
     @IBAction func close(_ sender: NSButton) {
-        if self.close! {
-            self.batchTask!.closeOperation()
-        } else {
-            self.abort()
-        }
+        self.batchTask!.closeOperation()
         self.waitToClose?.invalidate()
         self.closeIn?.invalidate()
         self.batchTask = nil
@@ -53,9 +57,9 @@ class ViewControllerBatch: NSViewController, SetDismisser, AbortTask {
     // Execute batch
     @IBAction func execute(_ sender: NSButton) {
         self.batchTask!.executeBatch()
-        self.closeButton.title = "Abort"
         self.executeButton.isEnabled = false
-        self.close = false
+        self.abortbutton.isHidden = false
+        self.closeButton.isHidden = true
     }
 
     @objc private func setSecondsView() {
@@ -78,11 +82,9 @@ class ViewControllerBatch: NSViewController, SetDismisser, AbortTask {
         self.closeinseconds.isHidden = true
         self.executeButton.isEnabled = true
         self.working.stopAnimation(nil)
-        self.close = true
         self.label.stringValue = "Progress "
         self.rownumber.stringValue = ""
         self.closeButton.title = "Close"
-        self.close = true
         globalMainQueue.async(execute: { () -> Void in
             self.mainTableView.reloadData()
         })
@@ -100,6 +102,9 @@ class ViewControllerBatch: NSViewController, SetDismisser, AbortTask {
 
     override func viewDidAppear() {
         super.viewDidAppear()
+        self.closeButton.isHidden = false
+        self.abortbutton.isHidden = true
+        self.executeButton.isEnabled = true
         self.configurations = self.batchTask?.configurations
         if self.batchTask == nil {
             self.loadtasks()
@@ -155,7 +160,6 @@ extension ViewControllerBatch: StartStopProgressIndicator {
     }
 
     func start() {
-        self.close = false
         let row = self.configurations!.getbatchQueue()!.getRow() + 1
         // Starts estimation progressbar when estimation starts
         globalMainQueue.async(execute: { () -> Void in
@@ -171,7 +175,8 @@ extension ViewControllerBatch: StartStopProgressIndicator {
             self.working.stopAnimation(nil)
             self.label.stringValue = "Completed all task(s)"
             self.closeButton.title = "Close"
-            self.close = true
+            self.closeButton.isHidden = false
+            self.abortbutton.isHidden = true
         })
         self.closeinseconds.isHidden = false
         self.seconds = 10

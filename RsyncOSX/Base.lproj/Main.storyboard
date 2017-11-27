@@ -172,79 +172,77 @@
                             <allowedToolbarItems>
                                 <toolbarItem implicitItemIdentifier="NSToolbarSpaceItem" id="wiK-ZO-ZDm"/>
                                 <toolbarItem implicitItemIdentifier="NSToolbarFlexibleSpaceItem" id="zs6-ub-LOa"/>
-                                <toolbarItem implicitItemIdentifier="263D8695-93C3-4DEA-AA66-B34219F9CB1F" label="Batch" paletteLabel="Batch" image="batch" id="ANc-bU-Btf">
+                                <toolbarItem implicitItemIdentifier="B5E3574F-49FC-4B87-AB6C-E16A6A0B55CC" label="abort" paletteLabel="abort" image="abort" id="7w4-6r-ai5">
                                     <nil key="toolTip"/>
-                                    <size key="minSize" width="48" height="48"/>
-                                    <size key="maxSize" width="48" height="48"/>
-                                    <button key="view" id="CfI-wM-Rbt">
-                                        <rect key="frame" x="0.0" y="14" width="48" height="48"/>
+                                    <size key="minSize" width="40" height="22"/>
+                                    <size key="maxSize" width="40" height="28"/>
+                                    <button key="view" verticalHuggingPriority="750" id="E8b-f3-qjc">
+                                        <rect key="frame" x="0.0" y="14" width="40" height="28"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                        <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="batch" imagePosition="only" alignment="center" imageScaling="proportionallyUpOrDown" inset="2" id="biG-hS-TuY">
+                                        <buttonCell key="cell" type="roundTextured" bezelStyle="texturedRounded" image="abort" imagePosition="overlaps" alignment="center" lineBreakMode="truncatingTail" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="cJf-tX-r2H">
                                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                             <font key="font" metaFont="system"/>
                                         </buttonCell>
                                         <connections>
-                                            <action selector="executeBatch:" target="Rv5-yv-lsc" id="yjJ-Ep-kU8"/>
+                                            <action selector="abort:" target="Rv5-yv-lsc" id="96z-70-PlR"/>
                                         </connections>
                                     </button>
                                 </toolbarItem>
-                                <toolbarItem implicitItemIdentifier="20D97C8D-404A-4B59-8411-7FFC490B3AF6" label="Abort" paletteLabel="Abort" image="abort" id="aEp-hB-CPn">
+                                <toolbarItem implicitItemIdentifier="F434BB7C-3A58-4AC1-A72A-16FBB57E8A71" label="batch" paletteLabel="batch" image="batch" id="OrH-Ty-gyv">
                                     <nil key="toolTip"/>
-                                    <size key="minSize" width="48" height="48"/>
-                                    <size key="maxSize" width="48" height="48"/>
-                                    <button key="view" id="3mr-Ck-IqP">
-                                        <rect key="frame" x="0.0" y="14" width="48" height="48"/>
+                                    <size key="minSize" width="40" height="25"/>
+                                    <size key="maxSize" width="40" height="28"/>
+                                    <button key="view" verticalHuggingPriority="750" id="WXA-Ge-ie7">
+                                        <rect key="frame" x="0.0" y="14" width="40" height="28"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                        <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="abort" imagePosition="only" alignment="center" imageScaling="proportionallyUpOrDown" inset="2" id="w7q-jm-swn">
+                                        <buttonCell key="cell" type="roundTextured" bezelStyle="texturedRounded" image="batch" imagePosition="overlaps" alignment="center" lineBreakMode="truncatingTail" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="2uR-Ky-UIF">
                                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                             <font key="font" metaFont="system"/>
                                         </buttonCell>
                                         <connections>
-                                            <action selector="abort:" target="Rv5-yv-lsc" id="tz3-9h-7Od"/>
+                                            <action selector="executeBatch:" target="Rv5-yv-lsc" id="rTL-zJ-pEb"/>
                                         </connections>
                                     </button>
                                 </toolbarItem>
-                                <toolbarItem implicitItemIdentifier="47F7B1BE-F98D-476A-82B4-A57FBB7DBE0A" label="Info" paletteLabel="Info" image="info" id="WKh-5s-iDH">
+                                <toolbarItem implicitItemIdentifier="AA95E30D-4DE8-4A4E-B394-8CEA8799709F" label="config" paletteLabel="config" image="config" id="VYu-Xf-XJc">
                                     <nil key="toolTip"/>
-                                    <size key="minSize" width="48" height="48"/>
-                                    <size key="maxSize" width="48" height="48"/>
-                                    <button key="view" id="PjG-Eo-KfS">
-                                        <rect key="frame" x="0.0" y="14" width="48" height="48"/>
+                                    <size key="minSize" width="40" height="25"/>
+                                    <size key="maxSize" width="40" height="28"/>
+                                    <button key="view" verticalHuggingPriority="750" id="XFU-nn-1H7">
+                                        <rect key="frame" x="0.0" y="14" width="40" height="28"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                        <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="info" imagePosition="only" alignment="center" imageScaling="proportionallyUpOrDown" inset="2" id="OGg-LE-96Y">
+                                        <buttonCell key="cell" type="roundTextured" bezelStyle="texturedRounded" image="config" imagePosition="overlaps" alignment="center" lineBreakMode="truncatingTail" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="dSB-ET-I4k">
                                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                             <font key="font" metaFont="system"/>
                                         </buttonCell>
                                         <connections>
-                                            <action selector="information:" target="Rv5-yv-lsc" id="QOz-U1-2Dx"/>
+                                            <action selector="userconfiguration:" target="Rv5-yv-lsc" id="iJC-oh-sFc"/>
                                         </connections>
                                     </button>
                                 </toolbarItem>
-                                <toolbarItem implicitItemIdentifier="DF5B9BD9-F7FB-401E-9178-8AA5820ADB56" label="Config" paletteLabel="Config" image="config" id="fqh-SJ-7gy">
+                                <toolbarItem implicitItemIdentifier="4E86EA40-63DF-4CA1-9A20-6164DF561B48" label="info" paletteLabel="info" image="info" id="GYz-8J-WDp">
                                     <nil key="toolTip"/>
-                                    <size key="minSize" width="48" height="48"/>
-                                    <size key="maxSize" width="48" height="48"/>
-                                    <button key="view" id="4Om-pq-e5n">
-                                        <rect key="frame" x="0.0" y="14" width="48" height="48"/>
+                                    <size key="minSize" width="40" height="25"/>
+                                    <size key="maxSize" width="40" height="28"/>
+                                    <button key="view" verticalHuggingPriority="750" id="c2j-aQ-Boa">
+                                        <rect key="frame" x="0.0" y="14" width="40" height="28"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                        <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="config" imagePosition="only" alignment="center" imageScaling="proportionallyUpOrDown" inset="2" id="Vrv-af-xny">
+                                        <buttonCell key="cell" type="roundTextured" bezelStyle="texturedRounded" image="info" imagePosition="overlaps" alignment="center" lineBreakMode="truncatingTail" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="VcU-qL-nui">
                                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                             <font key="font" metaFont="system"/>
                                         </buttonCell>
                                         <connections>
-                                            <action selector="userconfiguration:" target="Rv5-yv-lsc" id="MFU-R1-udG"/>
+                                            <action selector="information:" target="Rv5-yv-lsc" id="JP7-BG-FaV"/>
                                         </connections>
                                     </button>
                                 </toolbarItem>
                             </allowedToolbarItems>
                             <defaultToolbarItems>
-                                <toolbarItem reference="wiK-ZO-ZDm"/>
-                                <toolbarItem reference="ANc-bU-Btf"/>
-                                <toolbarItem reference="WKh-5s-iDH"/>
-                                <toolbarItem reference="wiK-ZO-ZDm"/>
-                                <toolbarItem reference="aEp-hB-CPn"/>
                                 <toolbarItem reference="zs6-ub-LOa"/>
-                                <toolbarItem reference="fqh-SJ-7gy"/>
+                                <toolbarItem reference="OrH-Ty-gyv"/>
+                                <toolbarItem reference="7w4-6r-ai5"/>
+                                <toolbarItem reference="GYz-8J-WDp"/>
+                                <toolbarItem reference="VYu-Xf-XJc"/>
                                 <toolbarItem reference="wiK-ZO-ZDm"/>
                             </defaultToolbarItems>
                         </toolbar>
@@ -2911,9 +2909,10 @@ DQ
                         <rect key="frame" x="0.0" y="0.0" width="778" height="322"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
-                            <scrollView borderType="groove" autohidesScrollers="YES" horizontalLineScroll="19" horizontalPageScroll="10" verticalLineScroll="19" verticalPageScroll="10" usesPredominantAxisScrolling="NO" scrollerKnobStyle="dark" translatesAutoresizingMaskIntoConstraints="NO" id="vBF-eb-i5Z">
+                            <scrollView fixedFrame="YES" borderType="groove" autohidesScrollers="YES" horizontalLineScroll="19" horizontalPageScroll="10" verticalLineScroll="19" verticalPageScroll="10" usesPredominantAxisScrolling="NO" scrollerKnobStyle="dark" translatesAutoresizingMaskIntoConstraints="NO" id="vBF-eb-i5Z">
                                 <rect key="frame" x="20" y="61" width="738" height="241"/>
-                                <clipView key="contentView" id="tW1-XA-c0L">
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <clipView key="contentView" ambiguous="YES" id="tW1-XA-c0L">
                                     <rect key="frame" x="2" y="2" width="734" height="237"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
@@ -3018,11 +3017,11 @@ DQ
                                     </subviews>
                                 </clipView>
                                 <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="YES" id="qkI-EN-Wea">
-                                    <rect key="frame" x="2" y="223" width="734" height="16"/>
+                                    <rect key="frame" x="2" y="9" width="0.0" height="16"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
                                 <scroller key="verticalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="NO" id="he6-ev-0dn">
-                                    <rect key="frame" x="-14" y="2" width="16" height="0.0"/>
+                                    <rect key="frame" x="-14" y="25" width="16" height="0.0"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
                                 <tableHeaderView key="headerView" id="DFU-pX-V8O">
@@ -3030,22 +3029,22 @@ DQ
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableHeaderView>
                             </scrollView>
-                            <textField horizontalHuggingPriority="249" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1lR-Vu-lR3">
-                                <rect key="frame" x="20" y="23" width="298" height="17"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="17" id="wvL-f2-oAi"/>
-                                </constraints>
+                            <textField horizontalHuggingPriority="249" verticalHuggingPriority="750" fixedFrame="YES" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1lR-Vu-lR3">
+                                <rect key="frame" x="219" y="23" width="58" height="17"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="Progress" id="IoG-CI-zhH">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
-                            <progressIndicator wantsLayer="YES" horizontalHuggingPriority="750" verticalHuggingPriority="750" maxValue="100" displayedWhenStopped="NO" bezeled="NO" indeterminate="YES" controlSize="small" style="spinning" translatesAutoresizingMaskIntoConstraints="NO" id="Q6y-Q5-7Ed">
-                                <rect key="frame" x="357" y="24" width="16" height="16"/>
+                            <progressIndicator wantsLayer="YES" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" maxValue="100" displayedWhenStopped="NO" bezeled="NO" indeterminate="YES" controlSize="small" style="spinning" translatesAutoresizingMaskIntoConstraints="NO" id="Q6y-Q5-7Ed">
+                                <rect key="frame" x="316" y="24" width="16" height="16"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                             </progressIndicator>
-                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="kMM-ZX-vSQ">
-                                <rect key="frame" x="689" y="13" width="75" height="32"/>
+                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="kMM-ZX-vSQ">
+                                <rect key="frame" x="703" y="14" width="61" height="32"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <buttonCell key="cell" type="push" title="Close" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="y8g-pg-AoT">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
@@ -3054,11 +3053,38 @@ DQ
                                     <action selector="close" target="auW-64-IFG" id="ctB-cr-lPa"/>
                                 </connections>
                             </button>
-                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="fsl-j9-KAO">
-                                <rect key="frame" x="600" y="13" width="89" height="32"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="21" id="u44-Rb-zgE"/>
-                                </constraints>
+                            <textField hidden="YES" horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="w95-Na-zVc">
+                                <rect key="frame" x="338" y="24" width="221" height="17"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" title="Close automatically in : 10 seconds" id="37P-mP-IVK">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="UIu-W5-NZi">
+                                <rect key="frame" x="283" y="20" width="24" height="22"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" alignment="center" drawsBackground="YES" id="gEY-Sa-2FC">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ouC-eN-4w6">
+                                <rect key="frame" x="718" y="18" width="31" height="25"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <buttonCell key="cell" type="roundTextured" bezelStyle="texturedRounded" image="abort" imagePosition="only" alignment="center" lineBreakMode="truncatingTail" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="QHC-0i-DOO">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="abort:" target="auW-64-IFG" id="f7H-rw-hev"/>
+                                </connections>
+                            </button>
+                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fsl-j9-KAO">
+                                <rect key="frame" x="626" y="14" width="77" height="32"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <buttonCell key="cell" type="push" title="Execute" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="btT-iq-RA3">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
@@ -3067,50 +3093,10 @@ DQ
                                     <action selector="execute" target="auW-64-IFG" id="qMI-ai-j8k"/>
                                 </connections>
                             </button>
-                            <textField hidden="YES" horizontalHuggingPriority="251" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="w95-Na-zVc">
-                                <rect key="frame" x="379" y="24" width="221" height="17"/>
-                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" title="Close automatically in : 10 seconds" id="37P-mP-IVK">
-                                    <font key="font" metaFont="system"/>
-                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                                </textFieldCell>
-                            </textField>
-                            <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="UIu-W5-NZi">
-                                <rect key="frame" x="324" y="20" width="24" height="22"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="24" id="9Rk-e5-UJ1"/>
-                                    <constraint firstAttribute="height" constant="22" id="dSf-Uw-OY5"/>
-                                </constraints>
-                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" alignment="center" drawsBackground="YES" id="gEY-Sa-2FC">
-                                    <font key="font" metaFont="system"/>
-                                    <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
-                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                </textFieldCell>
-                            </textField>
                         </subviews>
-                        <constraints>
-                            <constraint firstItem="1lR-Vu-lR3" firstAttribute="leading" secondItem="sw8-Xs-KCf" secondAttribute="leading" constant="22" id="1vO-U8-7xC"/>
-                            <constraint firstItem="fsl-j9-KAO" firstAttribute="baseline" secondItem="UIu-W5-NZi" secondAttribute="baseline" id="3Fl-CP-A4F"/>
-                            <constraint firstItem="kMM-ZX-vSQ" firstAttribute="leading" secondItem="fsl-j9-KAO" secondAttribute="trailing" constant="12" symbolic="YES" id="53s-rs-Oqk"/>
-                            <constraint firstItem="w95-Na-zVc" firstAttribute="leading" secondItem="Q6y-Q5-7Ed" secondAttribute="trailing" constant="8" id="7Fp-Ag-9ym"/>
-                            <constraint firstItem="UIu-W5-NZi" firstAttribute="top" secondItem="vBF-eb-i5Z" secondAttribute="bottom" constant="19" id="8Gb-zb-Ioc"/>
-                            <constraint firstItem="vBF-eb-i5Z" firstAttribute="leading" secondItem="sw8-Xs-KCf" secondAttribute="leading" constant="20" symbolic="YES" id="ALa-Aj-HU8"/>
-                            <constraint firstAttribute="bottom" secondItem="1lR-Vu-lR3" secondAttribute="bottom" constant="23" id="Cdp-ND-eRt"/>
-                            <constraint firstItem="fsl-j9-KAO" firstAttribute="leading" secondItem="w95-Na-zVc" secondAttribute="trailing" constant="8" id="DS7-JG-I57"/>
-                            <constraint firstItem="1lR-Vu-lR3" firstAttribute="top" secondItem="vBF-eb-i5Z" secondAttribute="bottom" constant="21" id="MoT-NW-kie"/>
-                            <constraint firstItem="UIu-W5-NZi" firstAttribute="leading" secondItem="1lR-Vu-lR3" secondAttribute="trailing" constant="8" id="PlO-uj-IWJ"/>
-                            <constraint firstItem="Q6y-Q5-7Ed" firstAttribute="top" secondItem="1lR-Vu-lR3" secondAttribute="top" id="Zgj-MK-Kti"/>
-                            <constraint firstItem="Q6y-Q5-7Ed" firstAttribute="leading" secondItem="UIu-W5-NZi" secondAttribute="trailing" constant="9" id="aiT-HW-6HP"/>
-                            <constraint firstItem="w95-Na-zVc" firstAttribute="top" secondItem="vBF-eb-i5Z" secondAttribute="bottom" constant="20" id="cAV-T4-nfA"/>
-                            <constraint firstItem="vBF-eb-i5Z" firstAttribute="trailing" secondItem="kMM-ZX-vSQ" secondAttribute="trailing" id="d22-IC-2CH"/>
-                            <constraint firstAttribute="trailing" secondItem="fsl-j9-KAO" secondAttribute="trailing" constant="95" id="hUb-5y-FEh"/>
-                            <constraint firstAttribute="bottom" secondItem="UIu-W5-NZi" secondAttribute="bottom" constant="20" id="lKi-qY-vJn"/>
-                            <constraint firstItem="vBF-eb-i5Z" firstAttribute="top" secondItem="sw8-Xs-KCf" secondAttribute="top" constant="20" symbolic="YES" id="twj-BB-txm"/>
-                            <constraint firstAttribute="bottom" secondItem="w95-Na-zVc" secondAttribute="bottom" constant="24" id="uMy-d3-CPy"/>
-                            <constraint firstItem="fsl-j9-KAO" firstAttribute="baseline" secondItem="kMM-ZX-vSQ" secondAttribute="baseline" id="wHp-4w-tAI"/>
-                        </constraints>
                     </view>
                     <connections>
+                        <outlet property="abortbutton" destination="ouC-eN-4w6" id="YKB-8P-C1z"/>
                         <outlet property="closeButton" destination="kMM-ZX-vSQ" id="3RR-WQ-IyF"/>
                         <outlet property="closeinseconds" destination="w95-Na-zVc" id="XZ7-IU-hPc"/>
                         <outlet property="executeButton" destination="fsl-j9-KAO" id="NBV-ES-whh"/>
@@ -3143,15 +3129,15 @@ DQ
                             <progressIndicator wantsLayer="YES" maxValue="100" style="bar" translatesAutoresizingMaskIntoConstraints="NO" id="3g2-YF-Pez">
                                 <rect key="frame" x="20" y="11" width="329" height="20"/>
                             </progressIndicator>
-                            <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="eui-J3-1Cx">
-                                <rect key="frame" x="326" y="33" width="23" height="25"/>
+                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="D42-iL-1CH">
+                                <rect key="frame" x="318" y="33" width="31" height="25"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" imagePosition="only" alignment="center" imageScaling="proportionallyUpOrDown" inset="2" id="b4Q-8g-DfY">
+                                <buttonCell key="cell" type="roundTextured" bezelStyle="texturedRounded" image="abort" imagePosition="only" alignment="center" lineBreakMode="truncatingTail" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="Y8Q-vu-QYS">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
                                 <connections>
-                                    <action selector="abort:" target="sDH-LN-0H4" id="NXZ-Kj-7DO"/>
+                                    <action selector="abort:" target="sDH-LN-0H4" id="fLU-iW-ZTD"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -3164,7 +3150,7 @@ DQ
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="abort" destination="eui-J3-1Cx" id="Wsi-o3-Ss5"/>
+                        <outlet property="abort" destination="D42-iL-1CH" id="uRx-GQ-P2B"/>
                         <outlet property="progress" destination="3g2-YF-Pez" id="OW5-c6-tqa"/>
                     </connections>
                 </viewController>
@@ -5142,9 +5128,9 @@ DQ
     </scenes>
     <resources>
         <image name="NSFolder" width="32" height="32"/>
-        <image name="abort" width="256" height="256"/>
-        <image name="batch" width="256" height="256"/>
-        <image name="config" width="256" height="256"/>
-        <image name="info" width="256" height="256"/>
+        <image name="abort" width="48" height="48"/>
+        <image name="batch" width="48" height="48"/>
+        <image name="config" width="48" height="48"/>
+        <image name="info" width="48" height="48"/>
     </resources>
 </document>
