@@ -191,7 +191,6 @@ extension ViewControllerBatch: getNewBatchTask {
     func getbatchtaskObject() -> BatchTask? {
         return self.batchTask
     }
-
 }
 
 extension ViewControllerBatch: closeViewError {
