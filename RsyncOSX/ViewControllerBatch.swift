@@ -28,9 +28,9 @@ class ViewControllerBatch: NSViewController, SetDismisser, AbortTask {
     var seconds: Int?
     var row: Int?
     var batchTask: BatchTask?
+    var batchisrunning: Bool?
 
     @IBOutlet weak var mainTableView: NSTableView!
-    @IBOutlet weak var closeButton: NSButton!
     @IBOutlet weak var working: NSProgressIndicator!
     @IBOutlet weak var label: NSTextField!
     @IBOutlet weak var closeinseconds: NSTextField!
@@ -38,16 +38,12 @@ class ViewControllerBatch: NSViewController, SetDismisser, AbortTask {
     @IBOutlet weak var executeButton: NSButton!
     @IBOutlet weak var abortbutton: NSButton!
 
+    // Either abort or close
     @IBAction func abort(_ sender: NSButton) {
-        self.abort()
-        self.waitToClose?.invalidate()
-        self.closeIn?.invalidate()
-        self.batchTask = nil
-        self.dismissview(viewcontroller: self, vcontroller: .vctabmain)
-    }
-
-    @IBAction func close(_ sender: NSButton) {
-        self.batchTask!.closeOperation()
+        if self.batchisrunning! == true {
+            self.abort()
+            self.batchTask!.closeOperation()
+        }
         self.waitToClose?.invalidate()
         self.closeIn?.invalidate()
         self.batchTask = nil
@@ -56,10 +52,9 @@ class ViewControllerBatch: NSViewController, SetDismisser, AbortTask {
 
     // Execute batch
     @IBAction func execute(_ sender: NSButton) {
+        self.batchisrunning = true
         self.batchTask!.executeBatch()
         self.executeButton.isEnabled = false
-        self.abortbutton.isHidden = false
-        self.closeButton.isHidden = true
     }
 
     @objc private func setSecondsView() {
@@ -77,6 +72,7 @@ class ViewControllerBatch: NSViewController, SetDismisser, AbortTask {
         ViewControllerReference.shared.setvcref(viewcontroller: .vcbatch, nsviewcontroller: self)
         // Create new batctask
         self.batchTask = BatchTask()
+        self.batchisrunning = false
         self.configurations = self.batchTask?.configurations
         self.configurations?.createbatchQueue()
         self.closeinseconds.isHidden = true
@@ -84,7 +80,6 @@ class ViewControllerBatch: NSViewController, SetDismisser, AbortTask {
         self.working.stopAnimation(nil)
         self.label.stringValue = "Progress "
         self.rownumber.stringValue = ""
-        self.closeButton.title = "Close"
         globalMainQueue.async(execute: { () -> Void in
             self.mainTableView.reloadData()
         })
@@ -102,8 +97,6 @@ class ViewControllerBatch: NSViewController, SetDismisser, AbortTask {
 
     override func viewDidAppear() {
         super.viewDidAppear()
-        self.closeButton.isHidden = false
-        self.abortbutton.isHidden = true
         self.executeButton.isEnabled = true
         self.configurations = self.batchTask?.configurations
         if self.batchTask == nil {
@@ -174,10 +167,8 @@ extension ViewControllerBatch: StartStopProgressIndicator {
         globalMainQueue.async(execute: { () -> Void in
             self.working.stopAnimation(nil)
             self.label.stringValue = "Completed all task(s)"
-            self.closeButton.title = "Close"
-            self.closeButton.isHidden = false
-            self.abortbutton.isHidden = true
         })
+        self.batchisrunning = false
         self.closeinseconds.isHidden = false
         self.seconds = 10
         self.waitToClose = Timer.scheduledTimer(timeInterval: 10, target: self, selector: #selector(closeView), userInfo: nil, repeats: false)
