@@ -29,6 +29,7 @@ class ViewControllerBatch: NSViewController, SetDismisser, AbortTask {
     var row: Int?
     var batchTask: BatchTask?
     var batchisrunning: Bool?
+    var batchtablecount: Int?
 
     @IBOutlet weak var mainTableView: NSTableView!
     @IBOutlet weak var working: NSProgressIndicator!
@@ -97,6 +98,7 @@ class ViewControllerBatch: NSViewController, SetDismisser, AbortTask {
 
     override func viewDidAppear() {
         super.viewDidAppear()
+        self.batchtablecount = self.configurations?.batchQueuecount()
         self.executeButton.isEnabled = true
         self.configurations = self.batchTask?.configurations
         if self.batchTask == nil {
@@ -113,8 +115,9 @@ class ViewControllerBatch: NSViewController, SetDismisser, AbortTask {
 extension ViewControllerBatch: NSTableViewDataSource {
         // Delegate for size of table
         func numberOfRows(in tableView: NSTableView) -> Int {
-            self.configurations = self.batchTask?.configurations
-            return self.configurations?.batchQueuecount() ?? 0
+            // self.configurations = self.batchTask?.configurations
+            // return self.configurations?.batchQueuecount() ?? 0
+            return self.batchtablecount ?? 0
     }
 }
 
