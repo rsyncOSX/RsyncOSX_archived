@@ -29,7 +29,6 @@ class ViewControllerBatch: NSViewController, SetDismisser, AbortTask {
     var row: Int?
     var batchTask: BatchTask?
     var batchisrunning: Bool?
-    var batchtablecount: Int?
 
     @IBOutlet weak var mainTableView: NSTableView!
     @IBOutlet weak var working: NSProgressIndicator!
@@ -98,7 +97,6 @@ class ViewControllerBatch: NSViewController, SetDismisser, AbortTask {
 
     override func viewDidAppear() {
         super.viewDidAppear()
-        self.batchtablecount = self.configurations?.batchQueuecount()
         self.executeButton.isEnabled = true
         self.configurations = self.batchTask?.configurations
         if self.batchTask == nil {
@@ -115,9 +113,8 @@ class ViewControllerBatch: NSViewController, SetDismisser, AbortTask {
 extension ViewControllerBatch: NSTableViewDataSource {
         // Delegate for size of table
         func numberOfRows(in tableView: NSTableView) -> Int {
-            // self.configurations = self.batchTask?.configurations
-            // return self.configurations?.batchQueuecount() ?? 0
-            return self.batchtablecount ?? 0
+            self.configurations = self.batchTask?.configurations
+            return self.configurations?.batchQueuecount() ?? 0
     }
 }
 
@@ -125,9 +122,9 @@ extension ViewControllerBatch: NSTableViewDelegate {
 
     // TableView delegates
     func tableView(_ tableView: NSTableView, objectValueFor tableColumn: NSTableColumn?, row: Int) -> Any? {
-        guard  self.configurations?.getupdatedbatchQueue() != nil else {
-            return nil
-        }
+        // guard  self.configurations?.getupdatedbatchQueue() != nil else {
+        //     return nil
+        // }
         let object: NSMutableDictionary = self.configurations!.getupdatedbatchQueue()![row]
         if tableColumn!.identifier.rawValue == "estimatedCellID" || tableColumn!.identifier.rawValue == "completedCellID" {
             return object[tableColumn!.identifier] as? Int!
