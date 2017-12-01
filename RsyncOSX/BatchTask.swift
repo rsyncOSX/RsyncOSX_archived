@@ -25,7 +25,7 @@ enum BatchViewProgressIndicator {
 
 final class BatchTask: SetSchedules, SetConfigurations, Delay {
 
-    weak var closeviewerrorDelegate: closeViewError?
+    weak var closeviewerrorDelegate: CloseViewError?
     // Protocol function used in Process().
     weak var processupdateDelegate: UpdateProgress?
     // Delegate for presenting batchView

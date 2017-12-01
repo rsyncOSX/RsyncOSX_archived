@@ -36,7 +36,7 @@ class ViewControllertabMain: NSViewController, ReloadTable, Deselect, Coloractiv
     var batchtaskObject: BatchTask?
     var tools: Tools?
     // Delegate function getting batchTaskObject
-    weak var batchObjectDelegate: getNewBatchTask?
+    weak var batchObjectDelegate: GetNewBatchTask?
     @IBOutlet weak var statuslight: NSImageView!
     // Main tableview
     @IBOutlet weak var mainTableView: NSTableView!
@@ -1035,4 +1035,10 @@ extension ViewControllertabMain: ErrorOutput {
 
 extension ViewControllertabMain: Createandreloadconfigurations {
     // func reateandreloadconfigurations()
+}
+
+extension ViewControllertabMain: Errorinbatch {
+    func errorinbatch() {
+        self.rsyncCommand.stringValue = "Possible error in batch..."
+    }
 }

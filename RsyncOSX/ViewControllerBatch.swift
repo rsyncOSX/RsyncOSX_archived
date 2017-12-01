@@ -11,13 +11,17 @@ import Foundation
 import Cocoa
 
 // Return the created batchobject
-protocol getNewBatchTask: class {
+protocol GetNewBatchTask: class {
     func getbatchtaskObject() -> BatchTask?
 }
 
 // Dismiss view when rsync error
-protocol closeViewError: class {
+protocol CloseViewError: class {
     func closeerror()
+}
+
+protocol Errorinbatch: class {
+    func errorinbatch()
 }
 
 class ViewControllerBatch: NSViewController, SetDismisser, AbortTask {
@@ -29,6 +33,7 @@ class ViewControllerBatch: NSViewController, SetDismisser, AbortTask {
     var row: Int?
     var batchTask: BatchTask?
     var batchisrunning: Bool?
+    weak var errorinbatchDelegate: Errorinbatch?
 
     @IBOutlet weak var mainTableView: NSTableView!
     @IBOutlet weak var working: NSProgressIndicator!
@@ -114,6 +119,11 @@ extension ViewControllerBatch: NSTableViewDataSource {
         // Delegate for size of table
         func numberOfRows(in tableView: NSTableView) -> Int {
             self.configurations = self.batchTask?.configurations
+            guard self.configurations?.batchQueuecount() != 0 else {
+                self.errorinbatchDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllertabMain
+                self.errorinbatchDelegate?.errorinbatch()
+                return 0
+            }
             return self.configurations?.batchQueuecount() ?? 0
     }
 }
@@ -186,14 +196,14 @@ extension ViewControllerBatch: Reloadandrefresh {
     }
 }
 
-extension ViewControllerBatch: getNewBatchTask {
+extension ViewControllerBatch: GetNewBatchTask {
 
     func getbatchtaskObject() -> BatchTask? {
         return self.batchTask
     }
 }
 
-extension ViewControllerBatch: closeViewError {
+extension ViewControllerBatch: CloseViewError {
     func closeerror() {
         self.batchTask = nil
         self.abort()
