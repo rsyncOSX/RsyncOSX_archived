@@ -20,10 +20,6 @@ protocol CloseViewError: class {
     func closeerror()
 }
 
-protocol Errorinbatch: class {
-    func errorinbatch()
-}
-
 class ViewControllerBatch: NSViewController, SetDismisser, AbortTask {
 
     var waitToClose: Timer?
@@ -32,7 +28,6 @@ class ViewControllerBatch: NSViewController, SetDismisser, AbortTask {
     var row: Int?
     var batchTask: BatchTask?
     var batchisrunning: Bool?
-    weak var errorinbatchDelegate: Errorinbatch?
 
     @IBOutlet weak var mainTableView: NSTableView!
     @IBOutlet weak var working: NSProgressIndicator!

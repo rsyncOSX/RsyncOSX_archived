@@ -1038,4 +1038,3 @@ extension ViewControllertabMain: ErrorOutput {
 extension ViewControllertabMain: Createandreloadconfigurations {
     // func reateandreloadconfigurations()
 }
-
