@@ -6,16 +6,16 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "No"
+            shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "RsyncOSX/ViewControllerBatch.swift"
-            timestampString = "533811859.332196"
+            filePath = "RsyncOSX/ViewControllertabMain.swift"
+            timestampString = "533844941.635391"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "121"
-            endingLineNumber = "121"
-            landmarkName = "numberOfRows(in:)"
+            startingLineNumber = "794"
+            endingLineNumber = "794"
+            landmarkName = "abortOperations()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -25,13 +25,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "RsyncOSX/ViewControllerBatch.swift"
-            timestampString = "533811859.332822"
+            filePath = "RsyncOSX/ViewControllertabMain.swift"
+            timestampString = "533844941.636032"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "125"
-            endingLineNumber = "125"
-            landmarkName = "numberOfRows(in:)"
+            startingLineNumber = "360"
+            endingLineNumber = "360"
+            landmarkName = "tableViewSelectionDidChange(_:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
