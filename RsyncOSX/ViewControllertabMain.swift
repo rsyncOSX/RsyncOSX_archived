@@ -36,7 +36,7 @@ class ViewControllertabMain: NSViewController, ReloadTable, Deselect, Coloractiv
     var batchtaskObject: BatchTask?
     var tools: Tools?
     // Delegate function getting batchTaskObject
-    weak var batchObjectDelegate: getNewBatchTask?
+    weak var batchObjectDelegate: GetNewBatchTask?
     @IBOutlet weak var statuslight: NSImageView!
     // Main tableview
     @IBOutlet weak var mainTableView: NSTableView!
@@ -324,6 +324,7 @@ class ViewControllertabMain: NSViewController, ReloadTable, Deselect, Coloractiv
         }
         self.singletask = nil
         self.setNumbers(output: nil)
+        self.deselect()
         globalMainQueue.async(execute: { () -> Void in
             self.presentViewControllerAsSheet(self.viewControllerBatch!)
         })
@@ -354,11 +355,13 @@ class ViewControllertabMain: NSViewController, ReloadTable, Deselect, Coloractiv
     }
 
     // when row is selected
-    // setting which table row is selected
+    // setting which table row is selected, force new estimation
     func tableViewSelectionDidChange(_ notification: Notification) {
+        // If change row during estimation
         if self.process != nil {
             self.abortOperations()
         }
+        // If change row after estimation, force new estimation
         if self.readyforexecution == false {
             self.abortOperations()
         }
@@ -377,7 +380,7 @@ class ViewControllertabMain: NSViewController, ReloadTable, Deselect, Coloractiv
         }
         self.process = nil
         self.singletask = nil
-        self.batchtaskObject = nil
+        // self.batchtaskObject = nil
         self.setInfo(info: "Estimate", color: .blue)
         self.statuslight.image = #imageLiteral(resourceName: "yellow")
         self.showProcessInfo(info: .blank)
@@ -701,7 +704,6 @@ extension ViewControllertabMain: UpdateProgress {
             // Batch run
             self.batchObjectDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vcbatch) as? ViewControllerBatch
             self.batchtaskObject = self.batchObjectDelegate?.getbatchtaskObject()
-            guard self.batchtaskObject != nil else { return }
             self.outputprocess = self.batchtaskObject!.outputprocess
             self.process = self.batchtaskObject!.process
             self.batchtaskObject!.processTermination()

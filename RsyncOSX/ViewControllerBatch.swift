@@ -11,18 +11,17 @@ import Foundation
 import Cocoa
 
 // Return the created batchobject
-protocol getNewBatchTask: class {
+protocol GetNewBatchTask: class {
     func getbatchtaskObject() -> BatchTask?
 }
 
 // Dismiss view when rsync error
-protocol closeViewError: class {
+protocol CloseViewError: class {
     func closeerror()
 }
 
 class ViewControllerBatch: NSViewController, SetDismisser, AbortTask {
 
-    weak var configurations: Configurations?
     var waitToClose: Timer?
     var closeIn: Timer?
     var seconds: Int?
@@ -69,25 +68,21 @@ class ViewControllerBatch: NSViewController, SetDismisser, AbortTask {
     }
 
     private func loadtasks() {
-        ViewControllerReference.shared.setvcref(viewcontroller: .vcbatch, nsviewcontroller: self)
         // Create new batctask
         self.batchTask = BatchTask()
         self.batchisrunning = false
-        self.configurations = self.batchTask?.configurations
-        self.configurations?.createbatchQueue()
+        self.batchTask?.configurations?.createbatchQueue()
         self.closeinseconds.isHidden = true
         self.executeButton.isEnabled = true
         self.working.stopAnimation(nil)
         self.label.stringValue = "Progress "
         self.rownumber.stringValue = ""
-        globalMainQueue.async(execute: { () -> Void in
-            self.mainTableView.reloadData()
-        })
     }
 
     // Initial functions viewDidLoad and viewDidAppear
     override func viewDidLoad() {
         super.viewDidLoad()
+        ViewControllerReference.shared.setvcref(viewcontroller: .vcbatch, nsviewcontroller: self)
         // Do view setup here.
         // Setting delegates and datasource
         self.mainTableView.delegate = self
@@ -98,14 +93,9 @@ class ViewControllerBatch: NSViewController, SetDismisser, AbortTask {
     override func viewDidAppear() {
         super.viewDidAppear()
         self.executeButton.isEnabled = true
-        self.configurations = self.batchTask?.configurations
-        if self.batchTask == nil {
-            self.loadtasks()
-        } else {
-            globalMainQueue.async(execute: { () -> Void in
-                self.mainTableView.reloadData()
-            })
-        }
+        globalMainQueue.async(execute: { () -> Void in
+            self.mainTableView.reloadData()
+        })
     }
 
 }
@@ -113,8 +103,7 @@ class ViewControllerBatch: NSViewController, SetDismisser, AbortTask {
 extension ViewControllerBatch: NSTableViewDataSource {
         // Delegate for size of table
         func numberOfRows(in tableView: NSTableView) -> Int {
-            self.configurations = self.batchTask?.configurations
-            return self.configurations?.batchQueuecount() ?? 0
+            return self.batchTask?.configurations?.batchQueuecount() ?? 0
     }
 }
 
@@ -122,14 +111,14 @@ extension ViewControllerBatch: NSTableViewDelegate {
 
     // TableView delegates
     func tableView(_ tableView: NSTableView, objectValueFor tableColumn: NSTableColumn?, row: Int) -> Any? {
-        guard  self.configurations?.getupdatedbatchQueue() != nil else {
-            return nil
+        guard  self.batchTask?.configurations?.getupdatedbatchQueue() != nil else {
+             return nil
         }
-        let object: NSMutableDictionary = self.configurations!.getupdatedbatchQueue()![row]
+        let object: NSMutableDictionary = (self.batchTask?.configurations!.getupdatedbatchQueue()![row])!
         if tableColumn!.identifier.rawValue == "estimatedCellID" || tableColumn!.identifier.rawValue == "completedCellID" {
             return object[tableColumn!.identifier] as? Int!
         } else {
-            if row == self.configurations!.getbatchQueue()!.getRow() && tableColumn!.identifier.rawValue == "taskCellID" {
+            if row == self.batchTask?.configurations!.getbatchQueue()!.getRow() && tableColumn!.identifier.rawValue == "taskCellID" {
                 let text = (object[tableColumn!.identifier] as? String)! + "  <--"
                 let attributedString = NSMutableAttributedString(string: (text))
                 let range = (text as NSString).range(of: text)
@@ -145,7 +134,7 @@ extension ViewControllerBatch: NSTableViewDelegate {
 extension ViewControllerBatch: StartStopProgressIndicator {
 
     func stop() {
-        let row = self.configurations!.getbatchQueue()!.getRow() + 1
+        let row = (self.batchTask?.configurations!.getbatchQueue()!.getRow())! + 1
         globalMainQueue.async(execute: { () -> Void in
             self.label.stringValue = "Executing task "
             self.rownumber.stringValue = String(row)
@@ -153,7 +142,7 @@ extension ViewControllerBatch: StartStopProgressIndicator {
     }
 
     func start() {
-        let row = self.configurations!.getbatchQueue()!.getRow() + 1
+        let row = (self.batchTask?.configurations!.getbatchQueue()!.getRow())! + 1
         // Starts estimation progressbar when estimation starts
         globalMainQueue.async(execute: { () -> Void in
             self.working.startAnimation(nil)
@@ -186,14 +175,14 @@ extension ViewControllerBatch: Reloadandrefresh {
     }
 }
 
-extension ViewControllerBatch: getNewBatchTask {
+extension ViewControllerBatch: GetNewBatchTask {
 
     func getbatchtaskObject() -> BatchTask? {
         return self.batchTask
     }
 }
 
-extension ViewControllerBatch: closeViewError {
+extension ViewControllerBatch: CloseViewError {
     func closeerror() {
         self.batchTask = nil
         self.abort()
