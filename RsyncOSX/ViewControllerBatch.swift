@@ -119,11 +119,18 @@ extension ViewControllerBatch: NSTableViewDelegate {
             return object[tableColumn!.identifier] as? Int!
         } else {
             if row == self.batchTask?.configurations!.getbatchQueue()!.getRow() && tableColumn!.identifier.rawValue == "taskCellID" {
-                let text = (object[tableColumn!.identifier] as? String)! + "  <--"
+                let text = (object[tableColumn!.identifier] as? String)!
                 let attributedString = NSMutableAttributedString(string: (text))
                 let range = (text as NSString).range(of: text)
-                attributedString.addAttribute(NSAttributedStringKey.foregroundColor, value: NSColor.systemBlue, range: range)
+                attributedString.addAttribute(NSAttributedStringKey.foregroundColor, value: NSColor.systemGreen, range: range)
+                attributedString.setAlignment(.center, range: range)
                 return attributedString
+            } else if tableColumn!.identifier.rawValue == "completeCellID" {
+                if row < self.batchTask!.configurations!.getbatchQueue()!.getRow() {
+                    return #imageLiteral(resourceName: "complete")
+                } else {
+                    return nil
+                }
             } else {
                 return object[tableColumn!.identifier] as? String
             }
