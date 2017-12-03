@@ -6,7 +6,7 @@
 //  Created by Thomas Evensen on 19/08/2016.
 //  Copyright © 2016 Thomas Evensen. All rights reserved.
 //
-//  swiftlint:disable syntactic_sugar file_length line_length type_body_length
+//  swiftlint:disable syntactic_sugar file_length line_length type_body_length cyclomatic_complexity function_body_length
 
 import Foundation
 import Cocoa
@@ -454,10 +454,10 @@ extension ViewControllertabMain: NSTableViewDelegate {
         }
         if tableColumn!.identifier.rawValue == "statCellID" {
             if row == self.index {
-                if self.processInfo.stringValue == "Execute" {
-                    return #imageLiteral(resourceName: "green")
-                } else {
+                if self.singletask == nil {
                     return #imageLiteral(resourceName: "yellow")
+                } else {
+                    return #imageLiteral(resourceName: "green")
                 }
             } else {
                 return nil
