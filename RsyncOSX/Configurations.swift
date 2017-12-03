@@ -102,7 +102,7 @@ class Configurations: ReloadTable {
     private var profile: String?
     // Notify about scheduled process
     // Only allowed to notity by modal window when in main view
-    var allowNotifyinMain: Bool = false
+    var allowNotifyinMain: Bool = true
     // Reference to singletask object
     var singleTask: SingleTask?
     // The main structure storing all Configurations for tasks

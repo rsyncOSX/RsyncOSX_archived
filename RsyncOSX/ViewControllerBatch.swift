@@ -136,6 +136,16 @@ extension ViewControllerBatch: NSTableViewDelegate {
             }
         }
     }
+    
+    private func attributtedstring(str: String, color: NSColor, alignright: Bool) -> NSMutableAttributedString {
+        let attributedString = NSMutableAttributedString(string: str)
+        let range = (str as NSString).range(of: str)
+        attributedString.addAttribute(NSAttributedStringKey.foregroundColor, value: color, range: range)
+        if alignright {
+            attributedString.setAlignment(.right, range: range)
+        }
+        return attributedString
+    }
 }
 
 extension ViewControllerBatch: StartStopProgressIndicator {
