@@ -20,6 +20,20 @@ protocol CloseViewError: class {
     func closeerror()
 }
 
+protocol Attributtedestring: class {
+    func attributtedstring(str: String, color: NSColor, align: NSTextAlignment) -> NSMutableAttributedString
+}
+
+extension Attributtedestring {
+    func attributtedstring(str: String, color: NSColor, align: NSTextAlignment) -> NSMutableAttributedString {
+        let attributedString = NSMutableAttributedString(string: str)
+        let range = (str as NSString).range(of: str)
+        attributedString.addAttribute(NSAttributedStringKey.foregroundColor, value: color, range: range)
+        attributedString.setAlignment(align, range: range)
+        return attributedString
+    }
+}
+
 class ViewControllerBatch: NSViewController, SetDismisser, AbortTask {
 
     var waitToClose: Timer?
@@ -107,8 +121,7 @@ extension ViewControllerBatch: NSTableViewDataSource {
     }
 }
 
-extension ViewControllerBatch: NSTableViewDelegate {
-
+extension ViewControllerBatch: NSTableViewDelegate, Attributtedestring {
     // TableView delegates
     func tableView(_ tableView: NSTableView, objectValueFor tableColumn: NSTableColumn?, row: Int) -> Any? {
         guard  self.batchTask?.configurations?.getupdatedbatchQueue() != nil else {
@@ -120,11 +133,7 @@ extension ViewControllerBatch: NSTableViewDelegate {
         } else {
             if row == self.batchTask?.configurations!.getbatchQueue()!.getRow() && tableColumn!.identifier.rawValue == "taskCellID" {
                 let text = (object[tableColumn!.identifier] as? String)!
-                let attributedString = NSMutableAttributedString(string: (text))
-                let range = (text as NSString).range(of: text)
-                attributedString.addAttribute(NSAttributedStringKey.foregroundColor, value: NSColor.systemGreen, range: range)
-                attributedString.setAlignment(.center, range: range)
-                return attributedString
+                return self.attributtedstring(str: text, color: NSColor.green, align: .center)
             } else if tableColumn!.identifier.rawValue == "completeCellID" {
                 if row < self.batchTask!.configurations!.getbatchQueue()!.getRow() {
                     return #imageLiteral(resourceName: "complete")
@@ -135,16 +144,6 @@ extension ViewControllerBatch: NSTableViewDelegate {
                 return object[tableColumn!.identifier] as? String
             }
         }
-    }
-    
-    private func attributtedstring(str: String, color: NSColor, alignright: Bool) -> NSMutableAttributedString {
-        let attributedString = NSMutableAttributedString(string: str)
-        let range = (str as NSString).range(of: str)
-        attributedString.addAttribute(NSAttributedStringKey.foregroundColor, value: color, range: range)
-        if alignright {
-            attributedString.setAlignment(.right, range: range)
-        }
-        return attributedString
     }
 }
 
