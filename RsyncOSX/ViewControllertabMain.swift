@@ -434,7 +434,7 @@ extension ViewControllertabMain: NSTableViewDataSource {
     }
 }
 
-extension ViewControllertabMain: NSTableViewDelegate {
+extension ViewControllertabMain: NSTableViewDelegate, Attributtedestring {
     // Function to test for remote server available or not, used in tableview delegate
     private func testRow(_ row: Int) -> Bool {
         if let serverOff = self.serverOff {
@@ -503,14 +503,6 @@ extension ViewControllertabMain: NSTableViewDelegate {
                 }
             }
         }
-    }
-
-    private func attributtedstring(str: String, color: NSColor, align: NSTextAlignment) -> NSMutableAttributedString {
-        let attributedString = NSMutableAttributedString(string: str)
-        let range = (str as NSString).range(of: str)
-        attributedString.addAttribute(NSAttributedStringKey.foregroundColor, value: color, range: range)
-        attributedString.setAlignment(.right, range: range)
-        return attributedString
     }
 
     // Toggling batch

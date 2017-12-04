@@ -246,7 +246,7 @@ extension ViewControllertabSchedule: NSTableViewDataSource {
     }
 }
 
-extension ViewControllertabSchedule: NSTableViewDelegate {
+extension ViewControllertabSchedule: NSTableViewDelegate, Attributtedestring {
 
    func tableView(_ tableView: NSTableView, objectValueFor tableColumn: NSTableColumn?, row: Int) -> Any? {
     guard row < self.configurations!.getConfigurationsDataSourcecountBackupOnly()!.count  else {
@@ -280,10 +280,7 @@ extension ViewControllertabSchedule: NSTableViewDelegate {
             if schedule && number ?? 0 > 0 {
                 let returnstr = text! + " (" + String(number!) + ")"
                 if let color = self.colorindex, color == hiddenID {
-                    let attributedString = NSMutableAttributedString(string: (returnstr))
-                    let range = (returnstr as NSString).range(of: returnstr)
-                    attributedString.addAttribute(NSAttributedStringKey.foregroundColor, value: NSColor.green, range: range)
-                    return attributedString
+                    return self.attributtedstring(str: returnstr, color: NSColor.green, align: .left)
                 } else {
                  return returnstr
                 }

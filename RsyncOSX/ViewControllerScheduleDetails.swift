@@ -90,7 +90,7 @@ extension ViewControllerScheduleDetails: NSTableViewDataSource {
 
 }
 
-extension ViewControllerScheduleDetails: NSTableViewDelegate {
+extension ViewControllerScheduleDetails: NSTableViewDelegate, Attributtedestring {
 
     // TableView delegates
     func tableView(_ tableView: NSTableView, objectValueFor tableColumn: NSTableColumn?, row: Int) -> Any? {
@@ -115,10 +115,7 @@ extension ViewControllerScheduleDetails: NSTableViewDelegate {
             } else {
                 if active {
                     let text = object[tableColumn!.identifier] as? String
-                    let attributedString = NSMutableAttributedString(string: (text!))
-                    let range = (text! as NSString).range(of: text!)
-                    attributedString.addAttribute(NSAttributedStringKey.foregroundColor, value: NSColor.green, range: range)
-                    return attributedString
+                    return self.attributtedstring(str: text!, color: NSColor.green, align: .left)
                 } else {
                     return object[tableColumn!.identifier] as? String
                 }
