@@ -478,7 +478,7 @@ extension ViewControllertabMain: NSTableViewDelegate {
             return object[tableColumn!.identifier] as? Int!
         } else if markdays == true && tableColumn!.identifier.rawValue == "daysID" {
             text = object[tableColumn!.identifier] as? String
-            return self.attributtedstring(str: text!, color: NSColor.red, alignright: true)
+            return self.attributtedstring(str: text!, color: NSColor.red, align: .right)
         } else {
             var number: Int = 0
             if let obj = self.schedulessorted {
@@ -487,14 +487,14 @@ extension ViewControllertabMain: NSTableViewDelegate {
             if schedule && number > 0 {
                 let returnstr = text! + " (" + String(number) + ")"
                 if let color = self.colorindex, color == hiddenID {
-                    return self.attributtedstring(str: returnstr, color: NSColor.green, alignright: false)
+                    return self.attributtedstring(str: returnstr, color: NSColor.green, align: .left)
                 } else {
                     return returnstr
                 }
             } else {
                 if self.testRow(row) {
                     text = object[tableColumn!.identifier] as? String
-                    return self.attributtedstring(str: text!, color: NSColor.red, alignright: false)
+                    return self.attributtedstring(str: text!, color: NSColor.red, align: .left)
                 } else {
                     if tableColumn!.identifier.rawValue == "offsiteServerCellID", ((object[tableColumn!.identifier] as? String)?.isEmpty)! {
                         return "localhost"
@@ -505,13 +505,11 @@ extension ViewControllertabMain: NSTableViewDelegate {
         }
     }
 
-    private func attributtedstring(str: String, color: NSColor, alignright: Bool) -> NSMutableAttributedString {
+    private func attributtedstring(str: String, color: NSColor, align: NSTextAlignment) -> NSMutableAttributedString {
         let attributedString = NSMutableAttributedString(string: str)
         let range = (str as NSString).range(of: str)
         attributedString.addAttribute(NSAttributedStringKey.foregroundColor, value: color, range: range)
-        if alignright {
-            attributedString.setAlignment(.right, range: range)
-        }
+        attributedString.setAlignment(.right, range: range)
         return attributedString
     }
 
