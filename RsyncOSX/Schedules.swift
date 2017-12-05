@@ -59,14 +59,6 @@ class Schedules: ScheduleWriteLoggData {
         self.dispatchTaskWaiting = taskitem
     }
 
-    /// Function for canceling next job waiting for execution.
-    private func cancelTaskWaiting() {
-        self.timerTaskWaiting?.invalidate()
-        self.timerTaskWaiting = nil
-        self.dispatchTaskWaiting?.cancel()
-        self.dispatchTaskWaiting = nil
-    }
-
     /// Function adds new Shcedules (plans). Functions writes
     /// schedule plans to permanent store.
     /// - parameter hiddenID: hiddenID for task

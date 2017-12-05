@@ -37,7 +37,6 @@ final class ScheduleOperationTimer: SetSchedules, SecondsBeforeStart {
 
     func initiate() {
         if self.schedules != nil {
-            // Cancel any current job waiting for execution
             let seconds = self.secondsbeforestart()
             guard seconds > 0 else { return }
             self.timerTaskWaiting = Timer.scheduledTimer(timeInterval: seconds, target: self, selector: #selector(executetask),
