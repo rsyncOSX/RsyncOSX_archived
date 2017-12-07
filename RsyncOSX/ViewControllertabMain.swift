@@ -208,7 +208,7 @@ class ViewControllertabMain: NSViewController, ReloadTable, Deselect, Coloractiv
         self.presentViewControllerAsModalWindow(self.viewControllerAbout!)
     }
 
-    @IBAction func excutetasknow(_ sender: NSButton) {
+    @IBAction func executetasknow(_ sender: NSButton) {
         guard self.hiddenID != nil else {
             return
         }

@@ -93,7 +93,7 @@
                                         <menuItem isSeparatorItem="YES" id="Il2-Y3-lKm"/>
                                         <menuItem title="Run now" keyEquivalent="r" id="wrk-73-4cu" userLabel="Run now">
                                             <connections>
-                                                <action selector="excutetasknow:" target="Ady-hI-5gd" id="Zcd-sE-Paz"/>
+                                                <action selector="executetasknow:" target="Ady-hI-5gd" id="iNN-Ju-Agc"/>
                                             </connections>
                                         </menuItem>
                                     </items>
