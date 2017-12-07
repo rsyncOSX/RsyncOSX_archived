@@ -212,6 +212,9 @@ class ViewControllertabMain: NSViewController, ReloadTable, Deselect, Coloractiv
         guard self.hiddenID != nil else {
             return
         }
+        guard self.index != nil else {
+            return
+        }
         guard self.configurations!.getConfigurations()[self.index!].task == "backup" else {
             return
         }
