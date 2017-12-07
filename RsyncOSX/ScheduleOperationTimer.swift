@@ -35,13 +35,19 @@ final class ScheduleOperationTimer: SetSchedules, SecondsBeforeStart {
         })
     }
 
-    func initiate() {
+    init() {
         if self.schedules != nil {
             let seconds = self.secondsbeforestart()
             guard seconds > 0 else { return }
             self.timerTaskWaiting = Timer.scheduledTimer(timeInterval: seconds, target: self, selector: #selector(executetask),
-                                                          userInfo: nil, repeats: false)
+                                                         userInfo: nil, repeats: false)
             self.schedules!.setTimerTaskWaiting(timer: self.timerTaskWaiting!)
         }
+    }
+
+    init(seconds: Int) {
+        self.timerTaskWaiting = Timer.scheduledTimer(timeInterval: Double(seconds), target: self, selector: #selector(executetask),
+                                                     userInfo: nil, repeats: false)
+        self.schedules!.setTimerTaskWaiting(timer: self.timerTaskWaiting!)
     }
 }
