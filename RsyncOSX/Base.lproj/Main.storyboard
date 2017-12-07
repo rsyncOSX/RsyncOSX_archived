@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="13529" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="abu-zT-Ht4">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="abu-zT-Ht4">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="13529"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="13771"/>
         <capability name="Alignment constraints to the first baseline" minToolsVersion="6.0"/>
         <capability name="box content view" minToolsVersion="7.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -74,6 +74,28 @@
                                                 <action selector="loggrecords:" target="Ady-hI-5gd" id="80A-2l-5VP"/>
                                             </connections>
                                         </menuItem>
+                                        <menuItem isSeparatorItem="YES" id="AJ7-HA-XHf"/>
+                                        <menuItem title="Edit" keyEquivalent="e" id="x4K-TO-hhc">
+                                            <connections>
+                                                <action selector="edit:" target="Ady-hI-5gd" id="pYa-aM-iIM"/>
+                                            </connections>
+                                        </menuItem>
+                                        <menuItem title="Parameters" keyEquivalent="o" id="p9L-16-Icv" userLabel="Parameters">
+                                            <connections>
+                                                <action selector="rsyncparams:" target="Ady-hI-5gd" id="dzH-cn-eBc"/>
+                                            </connections>
+                                        </menuItem>
+                                        <menuItem title="Delete" keyEquivalent="d" id="Ad7-9e-Q7b" userLabel="Delete">
+                                            <connections>
+                                                <action selector="delete:" target="Ady-hI-5gd" id="UB7-59-JLd"/>
+                                            </connections>
+                                        </menuItem>
+                                        <menuItem isSeparatorItem="YES" id="Il2-Y3-lKm"/>
+                                        <menuItem title="Run now" keyEquivalent="r" id="wrk-73-4cu" userLabel="Run now">
+                                            <connections>
+                                                <action selector="executetasknow:" target="Ady-hI-5gd" id="iNN-Ju-Agc"/>
+                                            </connections>
+                                        </menuItem>
                                     </items>
                                 </menu>
                             </menuItem>
@@ -100,12 +122,6 @@
                                         <menuItem title="Paste" keyEquivalent="v" id="SJF-H0-E3i">
                                             <connections>
                                                 <action selector="paste:" target="Ady-hI-5gd" id="MiY-FB-Zyw"/>
-                                            </connections>
-                                        </menuItem>
-                                        <menuItem title="Delete" id="KWa-a3-Ylk">
-                                            <modifierMask key="keyEquivalentModifierMask"/>
-                                            <connections>
-                                                <action selector="delete:" target="Ady-hI-5gd" id="0ur-VC-MbI"/>
                                             </connections>
                                         </menuItem>
                                     </items>
