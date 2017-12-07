@@ -216,10 +216,11 @@ class ViewControllertabMain: NSViewController, ReloadTable, Deselect, Coloractiv
             return
         }
         let now: Date = Date()
+        let dateformatter = Tools().setDateformat()
         let task: NSDictionary = [
             "start": now,
             "hiddenID": self.hiddenID!,
-            "dateStart": now,
+            "dateStart": dateformatter.date(from: "01 Jan 1900 00:00") as Date!,
             "schedule": "manuel"]
         ViewControllerReference.shared.scheduledTask = task
         _ = OperationFactory()
