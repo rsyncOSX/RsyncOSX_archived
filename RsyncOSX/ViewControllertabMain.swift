@@ -477,6 +477,9 @@ extension ViewControllertabMain: NSTableViewDelegate, Attributtedestring {
         }
         if tableColumn!.identifier.rawValue == "statCellID" {
             if row == self.index {
+                if self.scheduledJobInProgress == true {
+                    return #imageLiteral(resourceName: "green")
+                }
                 if self.singletask == nil {
                     return #imageLiteral(resourceName: "yellow")
                 } else {
