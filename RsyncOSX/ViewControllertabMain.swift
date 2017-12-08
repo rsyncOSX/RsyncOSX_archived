@@ -210,9 +210,11 @@ class ViewControllertabMain: NSViewController, ReloadTable, Deselect, Coloractiv
 
     @IBAction func executetasknow(_ sender: NSButton) {
         guard self.hiddenID != nil else {
+            self.selecttask.isHidden = false
             return
         }
         guard self.index != nil else {
+            self.selecttask.isHidden = false
             return
         }
         guard self.configurations!.getConfigurations()[self.index!].task == "backup" else {
