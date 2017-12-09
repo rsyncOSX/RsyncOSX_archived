@@ -175,8 +175,8 @@ extension ViewControllerBatch: StartStopProgressIndicator {
         })
         self.batchisrunning = false
         self.closeinseconds.isHidden = false
-        self.seconds = 10
-        self.waitToClose = Timer.scheduledTimer(timeInterval: 10, target: self, selector: #selector(closeView), userInfo: nil, repeats: false)
+        self.seconds = 5
+        self.waitToClose = Timer.scheduledTimer(timeInterval: 5, target: self, selector: #selector(closeView), userInfo: nil, repeats: false)
         self.closeIn = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(setSecondsView), userInfo: nil, repeats: true)
     }
 }
