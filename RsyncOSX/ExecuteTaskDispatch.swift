@@ -44,8 +44,11 @@ class ExecuteTaskDispatch: SetSchedules, SetConfigurations, ScheduledTask {
                     ViewControllerReference.shared.completeoperation = CompleteScheduledOperation(dict: dict)
                     globalMainQueue.async(execute: {
                         if self.arguments != nil {
+                            weak var sendprocess: Sendprocessreference?
+                            sendprocess = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllertabMain
                             let process = RsyncScheduled(arguments: self.arguments)
                             process.executeProcess(output: self.output)
+                            sendprocess?.sendprocessreference(process: process.getProcess())
                         }
                     })
                 }
