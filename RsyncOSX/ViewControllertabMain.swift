@@ -1067,3 +1067,9 @@ extension ViewControllertabMain: ErrorOutput {
 extension ViewControllertabMain: Createandreloadconfigurations {
     // func reateandreloadconfigurations()
 }
+
+extension ViewControllertabMain: Sendprocessreference {
+    func sendprocessreference(process: Process?) {
+        self.process = process
+    }
+}

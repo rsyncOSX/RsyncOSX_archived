@@ -73,6 +73,10 @@ enum OperationObject {
     case dispatch
 }
 
+protocol Sendprocessreference: class {
+    func sendprocessreference(process: Process?)
+}
+
 class OperationFactory {
 
     private var factory: OperationObject?
@@ -91,7 +95,7 @@ class OperationFactory {
     init(factory: OperationObject) {
         self.factory = factory
     }
-    
+
     init() {
         self.operationDispatch = ScheduleOperationDispatch(seconds: 0)
     }
