@@ -33,6 +33,7 @@ final class CompleteScheduledOperation: SetConfigurations, SetSchedules, Schedul
         self.schedules!.addresultschedule(self.hiddenID!, dateStart: dateStartstring, result: numberstring, date: datestring, schedule: schedule!)
         // Writing timestamp to configuration
         _ = self.configurations!.setCurrentDateonConfiguration(self.index!)
+         _ = Logging(outputprocess: output)
         // Start next job, if any, by delegate and notify completed, by delegate
         self.nexttask()
         self.scheduleJob?.completed()
