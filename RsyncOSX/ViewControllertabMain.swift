@@ -475,19 +475,26 @@ extension ViewControllertabMain: NSTableViewDelegate, Attributtedestring {
         if row > self.configurations!.configurationsDataSourcecount() - 1 { return nil }
         let object: NSDictionary = self.configurations!.getConfigurationsDataSource()![row]
         var text: String?
-        var schedule: Bool = false
         let hiddenID: Int = self.configurations!.getConfigurations()[row].hiddenID
         let markdays: Bool = self.configurations!.getConfigurations()[row].markdays
-        if self.schedules!.hiddenIDinSchedule(hiddenID) {
-            text = object[tableColumn!.identifier] as? String
-            if text == "backup" { schedule = true }
-        }
         if tableColumn!.identifier.rawValue == "batchCellID" {
             return object[tableColumn!.identifier] as? Int!
         }
         if markdays == true && tableColumn!.identifier.rawValue == "daysID" {
             text = object[tableColumn!.identifier] as? String
             return self.attributtedstring(str: text!, color: NSColor.red, align: .right)
+        }
+        if self.testTCP(row) {
+            text = object[tableColumn!.identifier] as? String
+            guard text != nil else {return nil}
+            return self.attributtedstring(str: text!, color: NSColor.red, align: .left)
+        }
+        if tableColumn!.identifier.rawValue == "schedCellID" {
+            if let obj = self.schedulessorted {
+                if obj.countallscheduledtasks(hiddenID) > 0 {
+                    return #imageLiteral(resourceName: "green")
+                }
+            }
         }
         if tableColumn!.identifier.rawValue == "statCellID" {
             if row == self.index {
@@ -500,24 +507,6 @@ extension ViewControllertabMain: NSTableViewDelegate, Attributtedestring {
                     return #imageLiteral(resourceName: "green")
                 }
             }
-        }
-        if schedule {
-            if let obj = self.schedulessorted {
-                let number = obj.countallscheduledtasks(hiddenID)
-                if number > 0 {
-                    let returnstr = text! + " (" + String(number) + ")"
-                    if let color = self.colorindex, color == hiddenID {
-                        return self.attributtedstring(str: returnstr, color: NSColor.green, align: .left)
-                    } else {
-                        return returnstr
-                    }
-                }
-            }
-        }
-        if self.testTCP(row) {
-            text = object[tableColumn!.identifier] as? String
-            guard text != nil else {return nil}
-            return self.attributtedstring(str: text!, color: NSColor.red, align: .left)
         }
         if tableColumn!.identifier.rawValue == "offsiteServerCellID", ((object[tableColumn!.identifier] as? String)?.isEmpty)! {
             return "localhost"
