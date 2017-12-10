@@ -79,21 +79,16 @@ protocol Sendprocessreference: class {
 
 class OperationFactory {
 
-    private var factory: OperationObject?
     var operationTimer: ScheduleOperationTimer?
     var operationDispatch: ScheduleOperationDispatch?
 
-    func initiate() {
-        switch self.factory! {
+    init(factory: OperationObject) {
+        switch factory {
         case .timer:
             self.operationTimer = ScheduleOperationTimer()
         case .dispatch:
             self.operationDispatch = ScheduleOperationDispatch()
         }
-    }
-
-    init(factory: OperationObject) {
-        self.factory = factory
     }
 
     init() {
