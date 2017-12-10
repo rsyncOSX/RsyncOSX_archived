@@ -24,14 +24,14 @@ class ScheduleOperationDispatch: SetSchedules, SecondsBeforeStart {
         if self.schedules != nil {
             let seconds = self.secondsbeforestart()
             guard seconds > 0 else { return }
+            print(seconds)
             self.dispatchtask(Int(seconds))
-            self.schedules!.setDispatchTaskWaiting(taskitem: self.pendingRequestWorkItem!)
+            // self.schedules!.setDispatchTaskWaiting(taskitem: self.pendingRequestWorkItem!)
         }
     }
 
     init(seconds: Int) {
         self.dispatchtask(seconds)
-        self.schedules!.setDispatchTaskWaiting(taskitem: self.pendingRequestWorkItem!)
     }
 
 }
