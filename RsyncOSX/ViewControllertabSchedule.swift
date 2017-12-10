@@ -19,7 +19,7 @@ protocol SetProfileinfo: class {
     func setprofile(profile: String, color: NSColor)
 }
 
-class ViewControllertabSchedule: NSViewController, SetConfigurations, SetSchedules, NextTask, Coloractivetask, OperationChanged, VcSchedule {
+class ViewControllertabSchedule: NSViewController, SetConfigurations, SetSchedules, Coloractivetask, OperationChanged, VcSchedule {
 
     private var index: Int?
     private var hiddenID: Int?

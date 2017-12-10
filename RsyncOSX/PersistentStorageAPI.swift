@@ -8,7 +8,7 @@
 
 import Foundation
 
-final class PersistentStorageAPI: SetConfigurations, SetSchedules, NextTask {
+final class PersistentStorageAPI: SetConfigurations, SetSchedules {
 
     var profile: String?
 
@@ -50,9 +50,6 @@ final class PersistentStorageAPI: SetConfigurations, SetSchedules, NextTask {
     func saveScheduleFromMemory() {
         let store = PersistentStorageScheduling(profile: self.profile)
         store.savescheduleInMemoryToPersistentStore()
-        // Kick off Scheduled job again, this is because saving schedule from memory might have
-        // changed the schedule and this kicks off the changed schedule again.
-        self.nexttask()
     }
 
     // Read schedules and history

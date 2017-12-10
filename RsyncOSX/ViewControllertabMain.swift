@@ -6,7 +6,7 @@
 //  Created by Thomas Evensen on 19/08/2016.
 //  Copyright © 2016 Thomas Evensen. All rights reserved.
 //
-//  swiftlint:disable syntactic_sugar file_length type_body_length cyclomatic_complexity function_body_length line_length
+//  swiftlint:disable syntactic_sugar file_length type_body_length cyclomatic_complexity line_length
 
 import Foundation
 import Cocoa
@@ -459,7 +459,7 @@ extension ViewControllertabMain: NSTableViewDataSource {
 
 extension ViewControllertabMain: NSTableViewDelegate, Attributtedestring {
     // Function to test for remote server available or not, used in tableview delegate
-    private func testRow(_ row: Int) -> Bool {
+    private func testTCP(_ row: Int) -> Bool {
         if let serverOff = self.serverOff {
             if row < serverOff.count {
                 return serverOff[row]
@@ -472,8 +472,29 @@ extension ViewControllertabMain: NSTableViewDelegate, Attributtedestring {
 
     // TableView delegates
     func tableView(_ tableView: NSTableView, objectValueFor tableColumn: NSTableColumn?, row: Int) -> Any? {
-        if row > self.configurations!.configurationsDataSourcecount() - 1 {
-            return nil
+        if row > self.configurations!.configurationsDataSourcecount() - 1 { return nil }
+        let object: NSDictionary = self.configurations!.getConfigurationsDataSource()![row]
+        var text: String?
+        let hiddenID: Int = self.configurations!.getConfigurations()[row].hiddenID
+        let markdays: Bool = self.configurations!.getConfigurations()[row].markdays
+        if tableColumn!.identifier.rawValue == "batchCellID" {
+            return object[tableColumn!.identifier] as? Int!
+        }
+        if markdays == true && tableColumn!.identifier.rawValue == "daysID" {
+            text = object[tableColumn!.identifier] as? String
+            return self.attributtedstring(str: text!, color: NSColor.red, align: .right)
+        }
+        if self.testTCP(row) {
+            text = object[tableColumn!.identifier] as? String
+            guard text != nil else {return nil}
+            return self.attributtedstring(str: text!, color: NSColor.red, align: .left)
+        }
+        if tableColumn!.identifier.rawValue == "schedCellID" {
+            if let obj = self.schedulessorted {
+                if obj.countallscheduledtasks(hiddenID) > 0 {
+                    return #imageLiteral(resourceName: "green")
+                }
+            }
         }
         if tableColumn!.identifier.rawValue == "statCellID" {
             if row == self.index {
@@ -485,49 +506,12 @@ extension ViewControllertabMain: NSTableViewDelegate, Attributtedestring {
                 } else {
                     return #imageLiteral(resourceName: "green")
                 }
-            } else {
-                return nil
             }
         }
-        let object: NSDictionary = self.configurations!.getConfigurationsDataSource()![row]
-        var text: String?
-        var schedule: Bool = false
-        let hiddenID: Int = self.configurations!.getConfigurations()[row].hiddenID
-        let markdays: Bool = self.configurations!.getConfigurations()[row].markdays
-        if self.schedules!.hiddenIDinSchedule(hiddenID) {
-            text = object[tableColumn!.identifier] as? String
-            if text == "backup" || text == "restore" {
-                schedule = true
-            }
-        }
-        if tableColumn!.identifier.rawValue == "batchCellID" {
-            return object[tableColumn!.identifier] as? Int!
-        } else if markdays == true && tableColumn!.identifier.rawValue == "daysID" {
-            text = object[tableColumn!.identifier] as? String
-            return self.attributtedstring(str: text!, color: NSColor.red, align: .right)
+        if tableColumn!.identifier.rawValue == "offsiteServerCellID", ((object[tableColumn!.identifier] as? String)?.isEmpty)! {
+            return "localhost"
         } else {
-            var number: Int = 0
-            if let obj = self.schedulessorted {
-                number = obj.countallscheduledtasks(hiddenID)
-            }
-            if schedule && number > 0 {
-                let returnstr = text! + " (" + String(number) + ")"
-                if let color = self.colorindex, color == hiddenID {
-                    return self.attributtedstring(str: returnstr, color: NSColor.green, align: .left)
-                } else {
-                    return returnstr
-                }
-            } else {
-                if self.testRow(row) {
-                    text = object[tableColumn!.identifier] as? String
-                    return self.attributtedstring(str: text!, color: NSColor.red, align: .left)
-                } else {
-                    if tableColumn!.identifier.rawValue == "offsiteServerCellID", ((object[tableColumn!.identifier] as? String)?.isEmpty)! {
-                        return "localhost"
-                    }
-                    return object[tableColumn!.identifier] as? String
-                }
-            }
+            return object[tableColumn!.identifier] as? String
         }
     }
 
@@ -588,7 +572,7 @@ extension ViewControllertabMain: GetSelecetedIndex {
 // Next scheduled job is started, if any
 extension ViewControllertabMain: StartNextTask {
     func startanyscheduledtask() {
-        _ = OperationFactory(factory: self.configurations!.operation).initiate()
+        _ = OperationFactory(factory: self.configurations!.operation)
     }
 }
 
