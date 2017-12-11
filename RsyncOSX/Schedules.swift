@@ -32,7 +32,7 @@ extension SetSchedules {
 protocol GetSchedulesObject: class {
     func getschedulesobject() -> Schedules?
     func createschedulesobject(profile: String?) -> Schedules?
-    func reloadschedules()
+    func reloadschedulesobject()
 }
 
 class Schedules: ScheduleWriteLoggData {

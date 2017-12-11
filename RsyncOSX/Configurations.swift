@@ -20,7 +20,7 @@ import Cocoa
 protocol GetConfigurationsObject: class {
     func getconfigurationsobject() -> Configurations?
     func createconfigurationsobject(profile: String?) -> Configurations?
-    func reloadconfigurations()
+    func reloadconfigurationsobject()
 }
 
 protocol SetConfigurations {

@@ -39,7 +39,7 @@ final class CompleteScheduledOperation: SetConfigurations, SetSchedules, SetSche
         self.startTimerDelegate?.startTimerNextJob()
         // Reset reference til scheduled job
         self.schedules!.scheduledTasks = nil
-        self.schedulesDelegate?.reloadschedules()
+        self.schedulesDelegate?.reloadschedulesobject()
     }
 
     init (dict: NSDictionary) {

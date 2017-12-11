@@ -76,7 +76,7 @@ final class BatchTask: SetSchedules, SetConfigurations, Delay {
             case -1:
                 self.batchViewDelegate?.setOutputBatch(outputbatch: self.outputbatch)
                 self.batchViewDelegate?.progressIndicatorViewBatch(operation: .complete)
-                self.configurationsDelegate?.reloadconfigurations()
+                self.configurationsDelegate?.reloadconfigurationsobject()
             default : break
             }
         }
