@@ -269,7 +269,7 @@ class ViewControllertabMain: NSViewController, ReloadTable, Deselect, Coloractiv
         self.loadProfileMenu = true
         // configurations and schedules
         self.createandreloadconfigurations()
-        self.createandloadschedules()
+        self.createandreloadschedules()
         // self.startanyscheduledtask()
     }
 
@@ -409,7 +409,7 @@ class ViewControllertabMain: NSViewController, ReloadTable, Deselect, Coloractiv
         self.reloadtabledata()
     }
 
-    func createandloadschedules() {
+    func createandreloadschedules() {
         self.process = nil
         guard self.configurations != nil else {
             self.schedules = Schedules(profile: nil)
@@ -969,7 +969,7 @@ extension ViewControllertabMain: GetConfigurationsObject {
     }
 
     // After a write, a reload is forced.
-    func reloadconfigurations() {
+    func reloadconfigurationsobject() {
         // If batchtask keep configuration object
         self.batchtaskObject = self.batchObjectDelegate?.getbatchtaskObject()
         guard self.batchtaskObject == nil else {
@@ -985,17 +985,17 @@ extension ViewControllertabMain: GetConfigurationsObject {
 }
 
 extension ViewControllertabMain: GetSchedulesObject {
-    func reloadschedules() {
+    func reloadschedulesobject() {
         // If batchtask scedules object
         guard self.batchtaskObject == nil else {
             // Batchtask, check if task is completed
             guard self.configurations!.getbatchQueue()?.completedBatch() == false else {
-                self.createandloadschedules()
+                self.createandreloadschedules()
                 return
             }
             return
         }
-        self.createandloadschedules()
+        self.createandreloadschedules()
     }
 
     func getschedulesobject() -> Schedules? {
