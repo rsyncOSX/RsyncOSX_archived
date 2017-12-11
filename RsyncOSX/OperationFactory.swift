@@ -8,25 +8,6 @@
 
 import Foundation
 
-// Protocol for starting next scheduled job
-protocol StartNextTask: class {
-    func startanyscheduledtask()
-}
-
-protocol NextTask {
-    weak var nexttaskDelegate: StartNextTask? { get }
-}
-
-extension NextTask {
-    weak var nexttaskDelegate: StartNextTask? {
-        return ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllertabMain
-    }
-
-    func nexttask() {
-        self.nexttaskDelegate?.startanyscheduledtask()
-    }
-}
-
 // Protocol when a Scehduled job is starting and stopping
 // Used to informed the presenting viewcontroller about what
 // is going on
@@ -36,11 +17,11 @@ protocol ScheduledTaskWorking: class {
     func notifyScheduledTask(config: Configuration?)
 }
 
-protocol ScheduledTask {
+protocol SetScheduledTask {
     weak var scheduleJob: ScheduledTaskWorking? { get }
 }
 
-extension ScheduledTask {
+extension SetScheduledTask {
     weak var scheduleJob: ScheduledTaskWorking? {
         return ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllertabMain
     }
