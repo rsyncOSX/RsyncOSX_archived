@@ -402,7 +402,6 @@ class ViewControllertabMain: NSViewController, ReloadTable, Deselect, Coloractiv
         }
         self.process = nil
         self.singletask = nil
-        // self.batchtaskObject = nil
         self.setInfo(info: "Estimate", color: .blue)
         self.statuslight.image = #imageLiteral(resourceName: "yellow")
         self.showProcessInfo(info: .blank)
@@ -411,11 +410,11 @@ class ViewControllertabMain: NSViewController, ReloadTable, Deselect, Coloractiv
     }
 
     func createandloadschedules() {
+        self.process = nil
         guard self.configurations != nil else {
             self.schedules = Schedules(profile: nil)
             return
         }
-        // self.schedules?.cancelTaskWaiting()
         if let profile = self.configurations!.getProfile() {
             self.schedules = nil
             self.schedules = Schedules(profile: profile)
