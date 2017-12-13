@@ -478,25 +478,20 @@ extension ViewControllertabMain: NSTableViewDelegate, Attributtedestring {
         celltext = object[tableColumn!.identifier] as? String
         if tableColumn!.identifier.rawValue == "batchCellID" {
             return object[tableColumn!.identifier] as? Int!
-        }
-        if markdays == true && tableColumn!.identifier.rawValue == "daysID" {
+        } else if markdays == true && tableColumn!.identifier.rawValue == "daysID" {
             return self.attributtedstring(str: celltext!, color: NSColor.red, align: .right)
-        }
-        if self.testTCP(row) {
+        } else if self.testTCP(row) {
             guard celltext != nil else {return nil}
             return self.attributtedstring(str: celltext!, color: NSColor.red, align: .left)
-        }
-        if tableColumn!.identifier.rawValue == "offsiteServerCellID", ((object[tableColumn!.identifier] as? String)?.isEmpty)! {
+        } else if tableColumn!.identifier.rawValue == "offsiteServerCellID", ((object[tableColumn!.identifier] as? String)?.isEmpty)! {
             return "localhost"
-        }
-        if tableColumn!.identifier.rawValue == "schedCellID" {
+        } else if tableColumn!.identifier.rawValue == "schedCellID" {
             if let obj = self.schedulessorted {
                 if obj.countallscheduledtasks(hiddenID) > 0 {
                     return #imageLiteral(resourceName: "green")
                 }
             }
-        }
-        if tableColumn!.identifier.rawValue == "statCellID" {
+        } else if tableColumn!.identifier.rawValue == "statCellID" {
             if row == self.index {
                 if self.scheduledJobInProgress == true {
                     return #imageLiteral(resourceName: "green")
@@ -507,8 +502,10 @@ extension ViewControllertabMain: NSTableViewDelegate, Attributtedestring {
                     return #imageLiteral(resourceName: "green")
                 }
             }
+        } else {
+            return object[tableColumn!.identifier] as? String
         }
-        return object[tableColumn!.identifier] as? String
+        return nil
     }
 
     // Toggling batch

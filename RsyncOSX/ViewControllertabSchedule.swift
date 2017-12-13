@@ -27,7 +27,6 @@ class ViewControllertabSchedule: NSViewController, SetConfigurations, SetSchedul
     private var schedulessorted: ScheduleSortedAndExpand?
     private var infoschedulessorted: InfoScheduleSortedAndExpand?
     var tools: Tools?
-    @IBOutlet weak var firstbackupinseconds: NSTextField!
 
     // Main tableview
     @IBOutlet weak var mainTableView: NSTableView!
@@ -189,10 +188,7 @@ class ViewControllertabSchedule: NSViewController, SetConfigurations, SetSchedul
 
     // Update display next scheduled jobs in time
     @objc func infonexttask() {
-        guard self.schedulessorted != nil else {
-            self.firstbackupinseconds.stringValue = "counting"
-            return
-        }
+        guard self.schedulessorted != nil else { return }
         // Displaying next two scheduled tasks
         self.firstLocalCatalog.textColor = .black
         self.firstScheduledTask.stringValue = self.infoschedulessorted!.whenIsNextTwoTasksString()[0]
@@ -258,7 +254,8 @@ extension ViewControllertabSchedule: NSTableViewDelegate, Attributtedestring {
         var number: Int?
         var taskintime: String?
         let hiddenID: Int = (object.value(forKey: "hiddenID") as? Int)!
-        if tableColumn!.identifier.rawValue == "numberCellID" {
+        switch tableColumn!.identifier.rawValue {
+        case "numberCellID" :
             if self.schedulessorted != nil {
                 number = self.schedulessorted!.countallscheduledtasks(hiddenID)
             }
@@ -270,20 +267,23 @@ extension ViewControllertabSchedule: NSTableViewDelegate, Attributtedestring {
                     return returnstr
                 }
             }
-        }
-        if tableColumn!.identifier.rawValue == "batchCellID" {
+        case "batchCellID" :
             return object[tableColumn!.identifier] as? Int!
-        }
-        if tableColumn!.identifier.rawValue == "offsiteServerCellID", ((object[tableColumn!.identifier] as? String)?.isEmpty)! {
-            return "localhost"
-        }
-        if tableColumn!.identifier.rawValue == "inCellID" {
+        case "offsiteServerCellID":
+            if (object[tableColumn!.identifier] as? String)!.isEmpty {
+                return "localhost"
+            } else {
+                return object[tableColumn!.identifier] as? String
+            }
+        case "inCellID":
             if self.schedulessorted != nil {
                 taskintime = self.schedulessorted!.sortandcountallscheduledtasks(hiddenID)
                 return taskintime ?? ""
             }
+        default:
+            return object[tableColumn!.identifier] as? String
         }
-        return object[tableColumn!.identifier] as? String
+    return nil
     }
 
     // Toggling batch
