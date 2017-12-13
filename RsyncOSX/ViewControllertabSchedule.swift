@@ -189,7 +189,10 @@ class ViewControllertabSchedule: NSViewController, SetConfigurations, SetSchedul
 
     // Update display next scheduled jobs in time
     @objc func infonexttask() {
-        guard self.schedulessorted != nil else { return }
+        guard self.schedulessorted != nil else {
+            self.firstbackupinseconds.stringValue = "counting"
+            return
+        }
         // Displaying next two scheduled tasks
         self.firstLocalCatalog.textColor = .black
         self.firstScheduledTask.stringValue = self.infoschedulessorted!.whenIsNextTwoTasksString()[0]
@@ -252,23 +255,19 @@ extension ViewControllertabSchedule: NSTableViewDelegate, Attributtedestring {
    func tableView(_ tableView: NSTableView, objectValueFor tableColumn: NSTableColumn?, row: Int) -> Any? {
         guard row < self.configurations!.getConfigurationsDataSourcecountBackupOnly()!.count  else { return nil }
         let object: NSDictionary = self.configurations!.getConfigurationsDataSourcecountBackupOnly()![row]
-        var celltext: String?
         var number: Int?
         var taskintime: String?
         let hiddenID: Int = (object.value(forKey: "hiddenID") as? Int)!
-        celltext = object[tableColumn!.identifier] as? String
-        if self.schedules?.hiddenIDinSchedule(hiddenID) ?? false {
-            if celltext == "backup" {
-                if self.schedulessorted != nil {
-                    number = self.schedulessorted!.countallscheduledtasks(hiddenID)
-                }
-                if number ?? 0 > 0 {
-                    let returnstr = celltext! + " (" + String(number!) + ")"
-                    if let color = self.colorindex, color == hiddenID {
-                        return self.attributtedstring(str: returnstr, color: NSColor.green, align: .left)
-                    } else {
-                        return returnstr
-                    }
+        if tableColumn!.identifier.rawValue == "numberCellID" {
+            if self.schedulessorted != nil {
+                number = self.schedulessorted!.countallscheduledtasks(hiddenID)
+            }
+            if number ?? 0 > 0 {
+                let returnstr = String(number!)
+                if let color = self.colorindex, color == hiddenID {
+                    return self.attributtedstring(str: returnstr, color: NSColor.green, align: .center)
+                } else {
+                    return returnstr
                 }
             }
         }
