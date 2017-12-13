@@ -249,46 +249,41 @@ extension ViewControllertabSchedule: NSTableViewDataSource {
 extension ViewControllertabSchedule: NSTableViewDelegate, Attributtedestring {
 
    func tableView(_ tableView: NSTableView, objectValueFor tableColumn: NSTableColumn?, row: Int) -> Any? {
-    guard row < self.configurations!.getConfigurationsDataSourcecountBackupOnly()!.count  else {
-        return nil
-    }
-    let object: NSDictionary = self.configurations!.getConfigurationsDataSourcecountBackupOnly()![row]
-        var text: String?
-        var schedule: Bool = false
+        guard row < self.configurations!.getConfigurationsDataSourcecountBackupOnly()!.count  else { return nil }
+        let object: NSDictionary = self.configurations!.getConfigurationsDataSourcecountBackupOnly()![row]
         var number: Int?
         var taskintime: String?
         let hiddenID: Int = (object.value(forKey: "hiddenID") as? Int)!
-        if self.schedules?.hiddenIDinSchedule(hiddenID) ?? false {
-            text = object[tableColumn!.identifier] as? String
-            if text == "backup" || text == "restore" {
-                schedule = true
+        switch tableColumn!.identifier.rawValue {
+        case "numberCellID" :
+            if self.schedulessorted != nil {
+                number = self.schedulessorted!.countallscheduledtasks(hiddenID)
             }
-        }
-        if tableColumn!.identifier.rawValue == "batchCellID" {
+            if number ?? 0 > 0 {
+                let returnstr = String(number!)
+                if let color = self.colorindex, color == hiddenID {
+                    return self.attributtedstring(str: returnstr, color: NSColor.green, align: .center)
+                } else {
+                    return returnstr
+                }
+            }
+        case "batchCellID" :
             return object[tableColumn!.identifier] as? Int!
-        } else if tableColumn!.identifier.rawValue == "offsiteServerCellID", ((object[tableColumn!.identifier] as? String)?.isEmpty)! {
-            return "localhost"
-        } else if tableColumn!.identifier.rawValue == "inCellID" {
+        case "offsiteServerCellID":
+            if (object[tableColumn!.identifier] as? String)!.isEmpty {
+                return "localhost"
+            } else {
+                return object[tableColumn!.identifier] as? String
+            }
+        case "inCellID":
             if self.schedulessorted != nil {
                 taskintime = self.schedulessorted!.sortandcountallscheduledtasks(hiddenID)
                 return taskintime ?? ""
             }
-        } else {
-            if self.schedulessorted != nil {
-                number = self.schedulessorted!.countallscheduledtasks(hiddenID)
-            }
-            if schedule && number ?? 0 > 0 {
-                let returnstr = text! + " (" + String(number!) + ")"
-                if let color = self.colorindex, color == hiddenID {
-                    return self.attributtedstring(str: returnstr, color: NSColor.green, align: .left)
-                } else {
-                 return returnstr
-                }
-            } else {
-                return object[tableColumn!.identifier] as? String
-            }
+        default:
+            return object[tableColumn!.identifier] as? String
         }
-     return nil
+    return nil
     }
 
     // Toggling batch
