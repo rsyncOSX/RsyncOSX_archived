@@ -27,6 +27,7 @@ class ViewControllertabSchedule: NSViewController, SetConfigurations, SetSchedul
     private var schedulessorted: ScheduleSortedAndExpand?
     private var infoschedulessorted: InfoScheduleSortedAndExpand?
     var tools: Tools?
+    @IBOutlet weak var firstbackupinseconds: NSTextField!
 
     // Main tableview
     @IBOutlet weak var mainTableView: NSTableView!
@@ -249,46 +250,41 @@ extension ViewControllertabSchedule: NSTableViewDataSource {
 extension ViewControllertabSchedule: NSTableViewDelegate, Attributtedestring {
 
    func tableView(_ tableView: NSTableView, objectValueFor tableColumn: NSTableColumn?, row: Int) -> Any? {
-    guard row < self.configurations!.getConfigurationsDataSourcecountBackupOnly()!.count  else {
-        return nil
-    }
-    let object: NSDictionary = self.configurations!.getConfigurationsDataSourcecountBackupOnly()![row]
-        var text: String?
-        var schedule: Bool = false
+        guard row < self.configurations!.getConfigurationsDataSourcecountBackupOnly()!.count  else { return nil }
+        let object: NSDictionary = self.configurations!.getConfigurationsDataSourcecountBackupOnly()![row]
+        var celltext: String?
         var number: Int?
         var taskintime: String?
         let hiddenID: Int = (object.value(forKey: "hiddenID") as? Int)!
+        celltext = object[tableColumn!.identifier] as? String
         if self.schedules?.hiddenIDinSchedule(hiddenID) ?? false {
-            text = object[tableColumn!.identifier] as? String
-            if text == "backup" || text == "restore" {
-                schedule = true
+            if celltext == "backup" {
+                if self.schedulessorted != nil {
+                    number = self.schedulessorted!.countallscheduledtasks(hiddenID)
+                }
+                if number ?? 0 > 0 {
+                    let returnstr = celltext! + " (" + String(number!) + ")"
+                    if let color = self.colorindex, color == hiddenID {
+                        return self.attributtedstring(str: returnstr, color: NSColor.green, align: .left)
+                    } else {
+                        return returnstr
+                    }
+                }
             }
         }
         if tableColumn!.identifier.rawValue == "batchCellID" {
             return object[tableColumn!.identifier] as? Int!
-        } else if tableColumn!.identifier.rawValue == "offsiteServerCellID", ((object[tableColumn!.identifier] as? String)?.isEmpty)! {
+        }
+        if tableColumn!.identifier.rawValue == "offsiteServerCellID", ((object[tableColumn!.identifier] as? String)?.isEmpty)! {
             return "localhost"
-        } else if tableColumn!.identifier.rawValue == "inCellID" {
+        }
+        if tableColumn!.identifier.rawValue == "inCellID" {
             if self.schedulessorted != nil {
                 taskintime = self.schedulessorted!.sortandcountallscheduledtasks(hiddenID)
                 return taskintime ?? ""
             }
-        } else {
-            if self.schedulessorted != nil {
-                number = self.schedulessorted!.countallscheduledtasks(hiddenID)
-            }
-            if schedule && number ?? 0 > 0 {
-                let returnstr = text! + " (" + String(number!) + ")"
-                if let color = self.colorindex, color == hiddenID {
-                    return self.attributtedstring(str: returnstr, color: NSColor.green, align: .left)
-                } else {
-                 return returnstr
-                }
-            } else {
-                return object[tableColumn!.identifier] as? String
-            }
         }
-     return nil
+        return object[tableColumn!.identifier] as? String
     }
 
     // Toggling batch

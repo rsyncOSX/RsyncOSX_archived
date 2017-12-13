@@ -487,7 +487,7 @@ extension ViewControllertabMain: NSTableViewDelegate, Attributtedestring {
             return self.attributtedstring(str: celltext!, color: NSColor.red, align: .left)
         }
         if tableColumn!.identifier.rawValue == "offsiteServerCellID", ((object[tableColumn!.identifier] as? String)?.isEmpty)! {
-            celltext =  "localhost"
+            return "localhost"
         }
         if tableColumn!.identifier.rawValue == "schedCellID" {
             if let obj = self.schedulessorted {
