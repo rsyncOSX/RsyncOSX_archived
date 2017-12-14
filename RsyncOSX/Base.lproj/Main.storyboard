@@ -2127,6 +2127,9 @@
                                     <color key="backgroundColor" name="gridColor" catalog="System" colorSpace="catalog"/>
                                     <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                 </datePickerCell>
+                                <connections>
+                                    <action selector="selectdate:" target="rht-JI-asq" id="LK4-dC-VV3"/>
+                                </connections>
                             </datePicker>
                             <textField verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="d3J-Mb-bCu">
                                 <rect key="frame" x="384" y="73" width="149" height="22"/>
@@ -2230,7 +2233,7 @@
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
-                            <box fixedFrame="YES" title="Select schedule" translatesAutoresizingMaskIntoConstraints="NO" id="PkH-9i-AY6">
+                            <box fixedFrame="YES" title="Select a schedule and stop date " translatesAutoresizingMaskIntoConstraints="NO" id="PkH-9i-AY6">
                                 <rect key="frame" x="8" y="318" width="227" height="69"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <view key="contentView" id="rfk-IY-P9v">
@@ -2245,7 +2248,7 @@
                                                 <font key="font" metaFont="system"/>
                                             </buttonCell>
                                             <connections>
-                                                <action selector="weekly:" target="rht-JI-asq" id="OgL-71-AcT"/>
+                                                <action selector="weekly:" target="rht-JI-asq" id="kxG-ZG-O7r"/>
                                             </connections>
                                         </button>
                                         <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="kbd-42-Izb">
@@ -2256,7 +2259,7 @@
                                                 <font key="font" metaFont="system"/>
                                             </buttonCell>
                                             <connections>
-                                                <action selector="once:" target="rht-JI-asq" id="cU1-W3-b5I"/>
+                                                <action selector="once:" target="rht-JI-asq" id="Zdh-pz-Aa9"/>
                                             </connections>
                                         </button>
                                         <textField hidden="YES" horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="VND-va-3iY">
@@ -2279,7 +2282,7 @@
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
                                 <connections>
-                                    <action selector="daily:" target="rht-JI-asq" id="K4q-5P-Ygu"/>
+                                    <action selector="daily:" target="rht-JI-asq" id="z1Q-mw-t8S"/>
                                 </connections>
                             </button>
                             <datePicker verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="6Ke-eK-ziR">
@@ -2294,6 +2297,9 @@
                                     <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                     <datePickerElements key="datePickerElements" hour="YES" minute="YES"/>
                                 </datePickerCell>
+                                <connections>
+                                    <action selector="selecttime:" target="rht-JI-asq" id="Klm-3L-ccE"/>
+                                </connections>
                             </datePicker>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="uzq-lY-HE6">
                                 <rect key="frame" x="21" y="138" width="213" height="17"/>
@@ -2333,10 +2339,12 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="dailybutton" destination="qPO-Ls-40R" id="WeW-mQ-QQw"/>
                         <outlet property="firstLocalCatalog" destination="vTj-Lr-BJD" id="ySc-ti-gVq"/>
                         <outlet property="firstRemoteServer" destination="PRZ-S5-rAa" id="z0Y-3L-2Ca"/>
                         <outlet property="firstScheduledTask" destination="d3J-Mb-bCu" id="gkU-WD-8xB"/>
                         <outlet property="mainTableView" destination="x4E-eq-B7o" id="aCY-ch-Nd2"/>
+                        <outlet property="oncebutton" destination="kbd-42-Izb" id="CTh-o9-Rae"/>
                         <outlet property="operation" destination="uzq-lY-HE6" id="UUo-lT-we1"/>
                         <outlet property="profilInfo" destination="uIq-wW-zUf" id="Voj-sH-KS7"/>
                         <outlet property="secondLocalCatalog" destination="fQ7-at-veZ" id="HFv-hY-UYw"/>
@@ -2345,6 +2353,7 @@
                         <outlet property="selecttask" destination="VND-va-3iY" id="U1O-9L-yVw"/>
                         <outlet property="stopdate" destination="wEG-hh-qwG" id="ySQ-9m-CrI"/>
                         <outlet property="stoptime" destination="6Ke-eK-ziR" id="9rV-tn-s3f"/>
+                        <outlet property="weeklybutton" destination="2Qn-FN-xeN" id="T3w-LB-bMg"/>
                     </connections>
                 </viewController>
                 <customObject id="4bt-29-abw" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>

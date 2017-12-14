@@ -36,12 +36,17 @@ class Logging: Reportfileerror {
     }
 
     private func logg() {
+        let currendate = Date()
+        let dateformatter = Tools().setDateformat()
+        let date = dateformatter.string(from: currendate)
         if ViewControllerReference.shared.fulllogging {
             self.read()
+            let tmplogg: String = "\n" + "-------------------------------------------\n" + date + "\n"
+                + "-------------------------------------------\n"
             if self.log == nil {
-                self.log = self.outputprocess!.getOutput()!.joined(separator: "\n")
+                self.log = tmplogg + self.outputprocess!.getOutput()!.joined(separator: "\n")
             } else {
-                self.log = self.log! + self.outputprocess!.getOutput()!.joined(separator: "\n")
+                self.log = self.log! + tmplogg  + self.outputprocess!.getOutput()!.joined(separator: "\n")
             }
             self.write()
         } else if ViewControllerReference.shared.minimumlogging {
@@ -49,6 +54,11 @@ class Logging: Reportfileerror {
             var tmplogg = Array<String>()
             var startindex = self.outputprocess!.getOutput()!.count - 8
             if startindex < 0 { startindex = 0 }
+            tmplogg.append("\n")
+            tmplogg.append("-------------------------------------------")
+            tmplogg.append(date)
+            tmplogg.append("-------------------------------------------")
+            tmplogg.append("\n")
             for i in startindex ..< self.outputprocess!.getOutput()!.count {
                 tmplogg.append(self.outputprocess!.getOutput()![i])
             }

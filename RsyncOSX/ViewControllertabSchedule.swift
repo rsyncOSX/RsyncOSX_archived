@@ -5,7 +5,7 @@
 //  Created by Thomas Evensen on 19/08/2016.
 //  Copyright © 2016 Thomas Evensen. All rights reserved.
 //
-//  swiftlint:disable line_length
+//  swiftlint:disable line_length cyclomatic_complexity
 
 import Foundation
 import Cocoa
@@ -39,6 +39,9 @@ class ViewControllertabSchedule: NSViewController, SetConfigurations, SetSchedul
     @IBOutlet weak var secondLocalCatalog: NSTextField!
     @IBOutlet weak var operation: NSTextField!
     @IBOutlet weak var selecttask: NSTextField!
+    @IBOutlet weak var weeklybutton: NSButton!
+    @IBOutlet weak var dailybutton: NSButton!
+    @IBOutlet weak var oncebutton: NSButton!
 
     @IBAction func once(_ sender: NSButton) {
         let startdate: Date = Date()
@@ -99,6 +102,42 @@ class ViewControllertabSchedule: NSViewController, SetConfigurations, SetSchedul
         }
     }
 
+    @IBAction func selectdate(_ sender: NSDatePicker) {
+       self.schedulesonoff()
+    }
+
+    @IBAction func selecttime(_ sender: NSDatePicker) {
+       self.schedulesonoff()
+    }
+
+    private func schedulesonoff() {
+        let seconds: TimeInterval = self.stoptime.dateValue.timeIntervalSinceNow
+        // Date and time for stop
+        let stopdate: Date = self.stopdate.dateValue.addingTimeInterval(seconds)
+        // Seconds from now to start for "weekly"
+        let secondstostop = stopdate.timeIntervalSinceNow
+        if secondstostop < 60 {
+            self.weeklybutton.isEnabled = false
+            self.dailybutton.isEnabled = false
+            self.oncebutton.isEnabled = false
+        }
+        if secondstostop > 60 {
+            self.weeklybutton.isEnabled = false
+            self.dailybutton.isEnabled = false
+            self.oncebutton.isEnabled = true
+        }
+        if secondstostop > 60*60*24 {
+            self.weeklybutton.isEnabled = false
+            self.dailybutton.isEnabled = true
+            self.oncebutton.isEnabled = true
+        }
+        if secondstostop > 60*60*24*7 {
+            self.weeklybutton.isEnabled = true
+            self.dailybutton.isEnabled = true
+            self.oncebutton.isEnabled = true
+        }
+    }
+
     // Selecting profiles
     @IBAction func profiles(_ sender: NSButton) {
         globalMainQueue.async(execute: { () -> Void in
@@ -149,6 +188,9 @@ class ViewControllertabSchedule: NSViewController, SetConfigurations, SetSchedul
 
     override func viewDidAppear() {
         super.viewDidAppear()
+        self.weeklybutton.isEnabled = false
+        self.dailybutton.isEnabled = false
+        self.oncebutton.isEnabled = false
         self.stopdate.dateValue = Date()
         self.stoptime.dateValue = Date()
         if self.schedulessorted == nil {
