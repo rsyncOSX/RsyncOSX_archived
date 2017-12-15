@@ -41,6 +41,7 @@ final class ScheduleOperationTimer: SetSchedules, SecondsBeforeStart {
             guard seconds > 0 else { return }
             self.timerTaskWaiting = Timer.scheduledTimer(timeInterval: seconds, target: self, selector: #selector(executetask),
                                                          userInfo: nil, repeats: false)
+            // Set reference to schedule for later cancel if any
             // self.schedules!.setTimerTaskWaiting(timer: self.timerTaskWaiting!)
         }
     }

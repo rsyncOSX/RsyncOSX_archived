@@ -1043,3 +1043,11 @@ extension ViewControllertabMain: Sendprocessreference {
         self.process = process
     }
 }
+
+extension ViewControllertabMain: StartNextTask {
+    func startfirstcheduledtask() {
+        // Cancel any schedeuled tasks first
+        // _ = OperationFactory(factory: self.configurations!.operation)
+        print("self.startnexttask()")
+    }
+}
