@@ -42,7 +42,7 @@ final class ScheduleOperationTimer: SetSchedules, SecondsBeforeStart {
             self.timerTaskWaiting = Timer.scheduledTimer(timeInterval: seconds, target: self, selector: #selector(executetask),
                                                          userInfo: nil, repeats: false)
             // Set reference to schedule for later cancel if any
-            // self.schedules!.setTimerTaskWaiting(timer: self.timerTaskWaiting!)
+            ViewControllerReference.shared.timerTaskWaiting = self.timerTaskWaiting
         }
     }
 

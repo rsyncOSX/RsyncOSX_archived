@@ -1047,7 +1047,9 @@ extension ViewControllertabMain: Sendprocessreference {
 extension ViewControllertabMain: StartNextTask {
     func startfirstcheduledtask() {
         // Cancel any schedeuled tasks first
-        // _ = OperationFactory(factory: self.configurations!.operation)
+        ViewControllerReference.shared.timerTaskWaiting?.invalidate()
+        ViewControllerReference.shared.dispatchTaskWaiting?.cancel()
+        _ = OperationFactory(factory: self.configurations!.operation)
         print("self.startnexttask()")
     }
 }
