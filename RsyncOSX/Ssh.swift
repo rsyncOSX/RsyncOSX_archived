@@ -159,7 +159,7 @@ class Ssh: Files {
     // Execute command
     func executeSshCommand() {
         self.process = CommandSsh(command: self.command, arguments: self.arguments)
-        self.process!.executeProcess(output: self.output!)
+        self.process!.executeProcess(outputprocess: self.output!)
     }
 
     // get output
