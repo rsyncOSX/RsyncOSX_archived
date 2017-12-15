@@ -29,7 +29,9 @@ class ViewControllerReference {
         }
         return Singleton.instance
     }
-
+    
+    var timerTaskWaiting: Timer?
+    var dispatchTaskWaiting: DispatchWorkItem?
     // Temporary storage of the first scheduled task
     var scheduledTask: NSDictionary?
     // Download URL if new version is avaliable
