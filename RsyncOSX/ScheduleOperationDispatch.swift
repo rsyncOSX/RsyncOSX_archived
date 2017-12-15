@@ -26,6 +26,7 @@ class ScheduleOperationDispatch: SetSchedules, SecondsBeforeStart {
             guard seconds > 0 else { return }
             print(seconds)
             self.dispatchtask(Int(seconds))
+            // Set reference to schedule for later cancel if any
             // self.schedules!.setDispatchTaskWaiting(taskitem: self.pendingRequestWorkItem!)
         }
     }
