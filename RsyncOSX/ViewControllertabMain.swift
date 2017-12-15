@@ -487,7 +487,7 @@ extension ViewControllertabMain: NSTableViewDelegate, Attributtedestring {
             return "localhost"
         } else if tableColumn!.identifier.rawValue == "schedCellID" {
             if let obj = self.schedulessorted {
-                if obj.countallscheduledtasks(hiddenID) > 0 {
+                if obj.countscheduledtasks(hiddenID) > 0 {
                     return #imageLiteral(resourceName: "green")
                 }
             }

@@ -19,7 +19,7 @@ import Foundation
 
 class ExecuteTaskDispatch: SetSchedules, SetConfigurations, SetScheduledTask {
 
-    let output = OutputProcess()
+    let outputprocess = OutputProcess()
     var arguments: Array<String>?
     var config: Configuration?
 
@@ -47,7 +47,7 @@ class ExecuteTaskDispatch: SetSchedules, SetConfigurations, SetScheduledTask {
                             weak var sendprocess: Sendprocessreference?
                             sendprocess = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllertabMain
                             let process = RsyncScheduled(arguments: self.arguments)
-                            process.executeProcess(output: self.output)
+                            process.executeProcess(outputprocess: self.outputprocess)
                             sendprocess?.sendprocessreference(process: process.getProcess())
                         }
                     })

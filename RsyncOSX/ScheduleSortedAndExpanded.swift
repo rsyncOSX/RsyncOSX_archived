@@ -40,22 +40,20 @@ class ScheduleSortedAndExpand: SetConfigurations, SetSchedules {
     // Calculate daily schedules
     private func daily (days: Double, dateStart: Date, schedule: String, dict: NSDictionary) {
         var k = Int(days)
-        if k < 370 {
-            if k > 30 { k = 30 }
-            for j in 0 ..< k {
-                var dateComponent = DateComponents()
-                dateComponent.day = j+1
-                let cal = Calendar.current
-                if let start: Date = cal.date(byAdding: dateComponent, to: dateStart) {
-                    if start.timeIntervalSinceNow > 0 {
-                        let hiddenID = (dict.value(forKey: "hiddenID") as? Int)!
-                        let dictSchedule: NSDictionary = [
-                            "start": start,
-                            "hiddenID": hiddenID,
-                            "dateStart": dateStart,
-                            "schedule": schedule]
-                        self.expandedData.append(dictSchedule)
-                    }
+        if k > 30 { k = 30 }
+        for j in 0 ..< k {
+            var dateComponent = DateComponents()
+            dateComponent.day = j+1
+            let cal = Calendar.current
+            if let start: Date = cal.date(byAdding: dateComponent, to: dateStart) {
+                if start.timeIntervalSinceNow > 0 {
+                    let hiddenID = (dict.value(forKey: "hiddenID") as? Int)!
+                    let dictSchedule: NSDictionary = [
+                        "start": start,
+                        "hiddenID": hiddenID,
+                        "dateStart": dateStart,
+                        "schedule": schedule]
+                    self.expandedData.append(dictSchedule)
                 }
             }
         }
@@ -64,22 +62,20 @@ class ScheduleSortedAndExpand: SetConfigurations, SetSchedules {
     // Calculate weekly schedules
     private func weekly (days: Double, dateStart: Date, schedule: String, dict: NSDictionary) {
         var k = Int(days)
-        if k < 370 {
-            if k > 30 { k = 30 }
-            for j in 0 ..< Int(k/7) {
-                var dateComponent = DateComponents()
-                dateComponent.day = ((j+1)*7)
-                let cal = Calendar.current
-                if let start: Date = cal.date(byAdding: dateComponent, to: dateStart) {
-                    if start.timeIntervalSinceNow > 0 {
-                        let hiddenID = (dict.value(forKey: "hiddenID") as? Int)!
-                        let dictSchedule: NSDictionary = [
-                            "start": start,
-                            "hiddenID": hiddenID,
-                            "dateStart": dateStart,
-                            "schedule": schedule]
-                        self.expandedData.append(dictSchedule)
-                    }
+        if k > 30 { k = 30 }
+        for j in 0 ..< Int(k/7) {
+            var dateComponent = DateComponents()
+            dateComponent.day = ((j+1)*7)
+            let cal = Calendar.current
+            if let start: Date = cal.date(byAdding: dateComponent, to: dateStart) {
+                if start.timeIntervalSinceNow > 0 {
+                    let hiddenID = (dict.value(forKey: "hiddenID") as? Int)!
+                    let dictSchedule: NSDictionary = [
+                        "start": start,
+                        "hiddenID": hiddenID,
+                        "dateStart": dateStart,
+                        "schedule": schedule]
+                    self.expandedData.append(dictSchedule)
                 }
             }
         }
@@ -125,7 +121,7 @@ class ScheduleSortedAndExpand: SetConfigurations, SetSchedules {
     }
 
     // Calculates number of future Schedules ID by hiddenID
-    func countallscheduledtasks (_ hiddenID: Int) -> Int {
+    func countscheduledtasks (_ hiddenID: Int) -> Int {
         if let result = self.sortedschedules?.filter({return (($0.value(forKey: "hiddenID") as? Int)! == hiddenID
             && ($0.value(forKey: "start") as? Date)!.timeIntervalSinceNow > 0 )}) {
             return result.count
@@ -134,7 +130,7 @@ class ScheduleSortedAndExpand: SetConfigurations, SetSchedules {
         }
     }
 
-    func sortandcountallscheduledtasks (_ hiddenID: Int) -> String {
+    func sortandcountscheduledtasks (_ hiddenID: Int) -> String {
         if let result = self.sortedschedules?.filter({return (($0.value(forKey: "hiddenID") as? Int)! == hiddenID
             && ($0.value(forKey: "start") as? Date)!.timeIntervalSinceNow > 0 )}) {
             let sorted = result.sorted {(di1, di2) -> Bool in

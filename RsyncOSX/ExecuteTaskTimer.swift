@@ -21,7 +21,7 @@ class ExecuteTaskTimer: Operation, SetSchedules, SetConfigurations, SetScheduled
 
     override func main() {
 
-        let output = OutputProcess()
+        let outputprocess = OutputProcess()
         var arguments: Array<String>?
         var config: Configuration?
         // Get the first job of the queue
@@ -47,7 +47,7 @@ class ExecuteTaskTimer: Operation, SetSchedules, SetConfigurations, SetScheduled
                             weak var sendprocess: Sendprocessreference?
                             sendprocess = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllertabMain
                             let process = RsyncScheduled(arguments: arguments)
-                            process.executeProcess(output: output)
+                            process.executeProcess(outputprocess: outputprocess)
                             sendprocess?.sendprocessreference(process: process.getProcess())
                         }
                     })

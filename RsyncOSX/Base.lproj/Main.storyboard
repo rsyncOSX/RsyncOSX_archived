@@ -2233,7 +2233,7 @@
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
-                            <box fixedFrame="YES" title="Select a schedule and stop date " translatesAutoresizingMaskIntoConstraints="NO" id="PkH-9i-AY6">
+                            <box fixedFrame="YES" title="Select a stop date and then a schedule " translatesAutoresizingMaskIntoConstraints="NO" id="PkH-9i-AY6">
                                 <rect key="frame" x="8" y="318" width="227" height="69"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <view key="contentView" id="rfk-IY-P9v">
