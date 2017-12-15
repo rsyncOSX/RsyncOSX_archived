@@ -5,7 +5,7 @@
 //  Created by Thomas Evensen on 19/08/2016.
 //  Copyright © 2016 Thomas Evensen. All rights reserved.
 //
-//  swiftlint:disable line_length cyclomatic_complexity
+//  swiftlint:disable line_length cyclomatic_complexity file_length
 
 import Foundation
 import Cocoa
@@ -299,7 +299,7 @@ extension ViewControllertabSchedule: NSTableViewDelegate, Attributtedestring {
         switch tableColumn!.identifier.rawValue {
         case "numberCellID" :
             if self.schedulessorted != nil {
-                number = self.schedulessorted!.countallscheduledtasks(hiddenID)
+                number = self.schedulessorted!.countscheduledtasks(hiddenID)
             }
             if number ?? 0 > 0 {
                 let returnstr = String(number!)
@@ -319,7 +319,7 @@ extension ViewControllertabSchedule: NSTableViewDelegate, Attributtedestring {
             }
         case "inCellID":
             if self.schedulessorted != nil {
-                taskintime = self.schedulessorted!.sortandcountallscheduledtasks(hiddenID)
+                taskintime = self.schedulessorted!.sortandcountscheduledtasks(hiddenID)
                 return taskintime ?? ""
             }
         default:
