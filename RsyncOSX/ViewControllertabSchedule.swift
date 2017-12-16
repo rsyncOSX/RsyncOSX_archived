@@ -364,7 +364,6 @@ extension ViewControllertabSchedule: Reloadandrefresh {
         self.secondRemoteServer.stringValue = ""
         self.secondLocalCatalog.stringValue = ""
         // Create a New schedules object
-        self.schedulessorted = nil
         self.schedulessorted = ScheduleSortedAndExpand()
         self.infoschedulessorted = InfoScheduleSortedAndExpand(sortedandexpanded: self.schedulessorted)
         self.firstScheduledTask.stringValue = self.infoschedulessorted!.whenIsNextTwoTasksString()[0]
@@ -380,7 +379,6 @@ extension ViewControllertabSchedule: StartTimer {
 
     // Called from Process
     func startTimerNextJob() {
-        self.schedulessorted = nil
         self.schedulessorted = ScheduleSortedAndExpand()
         self.infoschedulessorted = InfoScheduleSortedAndExpand(sortedandexpanded: self.schedulessorted)
         self.firstRemoteServer.stringValue = ""

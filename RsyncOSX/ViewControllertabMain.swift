@@ -422,8 +422,6 @@ class ViewControllertabMain: NSViewController, ReloadTable, Deselect, Coloractiv
             self.schedules = nil
             self.schedules = Schedules(profile: nil)
         }
-        self.schedulessorted = nil
-        self.infoschedulessorted = nil
         self.schedulessorted = ScheduleSortedAndExpand()
         self.infoschedulessorted = InfoScheduleSortedAndExpand(sortedandexpanded: self.schedulessorted)
         self.schedules?.scheduledTasks = self.schedulessorted?.allscheduledtasks()
@@ -797,7 +795,6 @@ extension ViewControllertabMain: AbortOperations {
             process.terminate()
             self.index = nil
             self.working.stopAnimation(nil)
-            self.schedulessorted = nil
             self.process = nil
             // Create workqueu and add abort
             self.setInfo(info: "Abort", color: .red)
@@ -814,7 +811,6 @@ extension ViewControllertabMain: AbortOperations {
             batchobject.abortOperations()
             // Set reference to batchdata = nil
             self.configurations!.deleteBatchData()
-            self.schedulessorted = nil
             self.process = nil
             self.setInfo(info: "Abort", color: .red)
             self.statuslight.image = #imageLiteral(resourceName: "red")
@@ -1002,8 +998,6 @@ extension ViewControllertabMain: GetSchedulesObject {
     func createschedulesobject(profile: String?) -> Schedules? {
         self.schedules = nil
         self.schedules = Schedules(profile: profile)
-        self.schedulessorted = nil
-        self.infoschedulessorted = nil
         self.schedulessorted = ScheduleSortedAndExpand()
         self.infoschedulessorted = InfoScheduleSortedAndExpand(sortedandexpanded: self.schedulessorted)
         self.schedules?.scheduledTasks = self.schedulessorted?.allscheduledtasks()

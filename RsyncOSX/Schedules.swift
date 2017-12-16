@@ -236,16 +236,4 @@ class Schedules: ScheduleWriteLoggData {
         self.storageapi = PersistentStorageAPI(profile: self.profile)
         self.readschedules()
     }
-
-    /*
-    deinit {
-        print("deinit")
-        // self.timerTaskWaiting?.invalidate()
-        // self.dispatchTaskWaiting?.cancel()
-    }
-     func startanyscheduledtask() {
-     _ = OperationFactory(factory: self.configurations!.operation)
-     }
-     
-    */
 }
