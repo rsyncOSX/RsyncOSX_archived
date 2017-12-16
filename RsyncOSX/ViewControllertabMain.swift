@@ -1050,6 +1050,5 @@ extension ViewControllertabMain: StartNextTask {
         ViewControllerReference.shared.timerTaskWaiting?.invalidate()
         ViewControllerReference.shared.dispatchTaskWaiting?.cancel()
         _ = OperationFactory(factory: self.configurations!.operation)
-        print("self.startnexttask()")
     }
 }
