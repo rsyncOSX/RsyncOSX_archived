@@ -275,6 +275,10 @@ class ViewControllertabMain: NSViewController, ReloadTable, Deselect, Coloractiv
 
     override func viewDidAppear() {
         super.viewDidAppear()
+        guard self.scheduledJobInProgress == false else {
+            self.scheduledJobworking.startAnimation(nil)
+            return
+        }
         self.showProcessInfo(info: .blank)
         // Allow notify about Scheduled jobs
         self.configurations!.allowNotifyinMain = true
@@ -315,11 +319,6 @@ class ViewControllertabMain: NSViewController, ReloadTable, Deselect, Coloractiv
         guard self.index != nil else {
             return
         }
-        guard self.scheduledJobInProgress == false else {
-            self.selecttask.stringValue = "Scheduled task..."
-            self.selecttask.isHidden = false
-            return
-        }
         self.batchtaskObject = nil
         guard self.singletask != nil else {
             // Dry run
@@ -337,11 +336,6 @@ class ViewControllertabMain: NSViewController, ReloadTable, Deselect, Coloractiv
     @IBAction func executeBatch(_ sender: NSButton) {
         guard ViewControllerReference.shared.norsync == false else {
             self.tools!.noRsync()
-            return
-        }
-        guard self.scheduledJobInProgress == false else {
-            self.selecttask.stringValue = "Scheduled task..."
-            self.selecttask.isHidden = false
             return
         }
         self.singletask = nil
@@ -602,6 +596,7 @@ extension ViewControllertabMain: ScheduledTaskWorking {
         globalMainQueue.async(execute: {() -> Void in
             self.scheduledJobInProgress = true
             self.scheduledJobworking.startAnimation(nil)
+            self.mainTableView.isEnabled = false
         })
     }
 
@@ -611,6 +606,7 @@ extension ViewControllertabMain: ScheduledTaskWorking {
             self.selecttask.stringValue = "Select a task...."
             self.selecttask.isHidden = true
             self.scheduledJobworking.stopAnimation(nil)
+            self.mainTableView.isEnabled = true
         })
     }
 
