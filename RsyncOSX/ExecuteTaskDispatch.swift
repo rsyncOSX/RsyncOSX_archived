@@ -1,11 +1,7 @@
 //
-//  executeTask.swift
-//  RsyncOSX
-//
 //  Created by Thomas Evensen on 20/01/2017.
 //  Copyright © 2017 Thomas Evensen. All rights reserved.
 //
-//  SwiftLint: OK 31 July 2017
 //  swiftlint:disable syntactic_sugar line_length
 
 import Foundation
