@@ -1,7 +1,4 @@
 //
-//  SharingManagerSchedule.swift
-//  RsyncOSX
-//
 //  This object stays in memory runtime and holds key data and operations on Schedules.
 //  The obect is the model for the Schedules but also acts as Controller when
 //  the ViewControllers reads or updates data.

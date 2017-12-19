@@ -1,7 +1,4 @@
 //
-//  configuration.swift
-//  Rsync
-//
 //  Created by Thomas Evensen on 08/02/16.
 //  Copyright © 2016 Thomas Evensen. All rights reserved.
 //
@@ -40,9 +37,7 @@ struct Configuration {
     var markdays: Bool = false
 
     private func calculatedays(date: String) -> Double? {
-        guard date != "" else {
-            return nil
-        }
+        guard date != "" else { return nil }
         let dateformatter = Tools().setDateformat()
         let lastbackup = dateformatter.date(from: date)
         let seconds: TimeInterval = lastbackup!.timeIntervalSinceNow
@@ -100,7 +95,6 @@ struct Configuration {
         if let parameter14 = dictionary.object(forKey: "parameter14") {
             self.parameter14 = parameter14 as? String
         }
-
         if let rsyncdaemon = dictionary.object(forKey: "rsyncdaemon") {
             self.rsyncdaemon = rsyncdaemon as? Int
         }
