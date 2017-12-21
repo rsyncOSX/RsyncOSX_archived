@@ -95,11 +95,13 @@ class ScheduleWriteLoggData: SetConfigurations, ReloadTable, Deselect {
     /// - parameter schedule : schedule of task
     func addresultschedule(_ hiddenID: Int, dateStart: String, result: String, date: String, schedule: String) {
         if ViewControllerReference.shared.detailedlogging {
+            var logged: Bool = false
             loop : for i in 0 ..< self.schedules!.count {
                 if self.schedules![i].hiddenID == hiddenID  &&
                     self.schedules![i].schedule == schedule &&
                     self.schedules![i].dateStart == dateStart {
                     if (self.configurations!.getResourceConfiguration(hiddenID, resource: .task) == "backup") {
+                        logged = true
                         let dict = NSMutableDictionary()
                         dict.setObject(date, forKey: "dateExecuted" as NSCopying)
                         dict.setObject(result, forKey: "resultExecuted" as NSCopying)
@@ -108,6 +110,10 @@ class ScheduleWriteLoggData: SetConfigurations, ReloadTable, Deselect {
                         break loop
                     }
                 }
+            }
+            // This might happen if a task is executed by schedule and there are no previous logged run
+            if logged == false {
+                self.addlogtaskmanuel(hiddenID, result: result)
             }
         }
     }

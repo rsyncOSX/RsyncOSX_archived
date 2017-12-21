@@ -88,10 +88,12 @@ class ProcessCmd: Delay {
                 // We are in Scheduled operation and must finalize the job
                 // e.g logging date and stuff like that
                 if ViewControllerReference.shared.completeoperation != nil {
-                    ViewControllerReference.shared.completeoperation!.finalizeScheduledJob(output: outputprocess)
+                    self.delayWithSeconds(0.5) {
+                        ViewControllerReference.shared.completeoperation!.finalizeScheduledJob(output: outputprocess)
+                        // After logging is done set reference to object = nil
+                        ViewControllerReference.shared.completeoperation = nil
+                    }
                 }
-                // After logging is done set reference to object = nil
-                ViewControllerReference.shared.completeoperation = nil
             }
             NotificationCenter.default.removeObserver(self.notifications as Any)
         }
