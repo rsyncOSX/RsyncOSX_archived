@@ -347,13 +347,10 @@ class Configurations: ReloadTable {
     /// Function is destroying any previous Configurations before loading new and computing new arguments.
     /// - parameter none: none
     private func readconfigurations() {
-        var store: Array<Configuration>?
         self.configurations = Array<Configuration>()
         self.argumentAllConfigurations = NSMutableArray()
-        store = self.storageapi!.getConfigurations()
-        guard store != nil else {
-            return
-        }
+        var store: Array<Configuration>? = self.storageapi!.getConfigurations()
+        guard store != nil else { return }
         for i in 0 ..< store!.count {
             self.configurations!.append(store![i])
             let rsyncArgumentsOneConfig = ArgumentsOneConfiguration(config: store![i])
