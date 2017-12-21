@@ -89,7 +89,7 @@ class ProcessCmd: Delay {
                 // e.g logging date and stuff like that
                 if ViewControllerReference.shared.completeoperation != nil {
                     self.delayWithSeconds(0.5) {
-                        ViewControllerReference.shared.completeoperation!.finalizeScheduledJob(output: outputprocess)
+                        ViewControllerReference.shared.completeoperation!.finalizeScheduledJob(outputprocess: outputprocess)
                         // After logging is done set reference to object = nil
                         ViewControllerReference.shared.completeoperation = nil
                     }

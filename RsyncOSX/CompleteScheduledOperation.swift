@@ -24,16 +24,16 @@ final class CompleteScheduledOperation: SetConfigurations, SetSchedules, SetSche
     // Function for finalizing the Scheduled job
     // The Operation object sets reference to the completeScheduledOperation in self.schedules!.operation
     // This function is executed when rsyn process terminates
-    func finalizeScheduledJob(output: OutputProcess?) {
+    func finalizeScheduledJob(outputprocess: OutputProcess?) {
         // Write result to Schedule
         let datestring = self.dateformatter!.string(from: date!)
         let dateStartstring = self.dateformatter!.string(from: dateStart!)
-        let number = Numbers(outputprocess: output)
+        let number = Numbers(outputprocess: outputprocess)
         let numberstring = number.stats(numberOfFiles: nil, sizeOfFiles: nil)
         self.schedules!.addresultschedule(self.hiddenID!, dateStart: dateStartstring, result: numberstring, date: datestring, schedule: schedule!)
         // Writing timestamp to configuration
         _ = self.configurations!.setCurrentDateonConfiguration(self.index!)
-         _ = Logging(outputprocess: output)
+         _ = Logging(outputprocess: outputprocess)
         self.scheduleJob?.completed()
         self.startTimerDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabschedule) as? ViewControllertabSchedule
         self.startTimerDelegate?.startTimerNextJob()
