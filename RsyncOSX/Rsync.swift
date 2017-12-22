@@ -13,7 +13,7 @@ import Foundation
 final class Rsync: ProcessCmd {
 
     init (arguments: Array<String>?) {
-        super.init(command: nil, arguments: arguments, aScheduledOperation: false)
+        super.init(command: nil, arguments: arguments)
         self.updateDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllertabMain
     }
 }

@@ -45,6 +45,7 @@ class ExecuteTaskTimer: Operation, SetSchedules, SetConfigurations, SetScheduled
                             let process = RsyncScheduled(arguments: arguments)
                             process.executeProcess(outputprocess: outputprocess)
                             sendprocess?.sendprocessreference(process: process.getProcess())
+                            sendprocess?.sendoutputprocessreference(outputprocess: outputprocess)
                         }
                     })
                 }

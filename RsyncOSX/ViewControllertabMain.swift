@@ -746,24 +746,29 @@ extension ViewControllertabMain: UpdateProgress {
     func fileHandler() {
         weak var localprocessupdateDelegate: UpdateProgress?
         localprocessupdateDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vcprogressview) as? ViewControllerProgressProcess
-        if self.batchtaskObject != nil {
-            // Batch run
-            if let batchobject = self.configurations!.getbatchQueue() {
-                let work = batchobject.nextBatchCopy()
-                if work.1 == 1 {
-                    // Real work is done, must set reference to Process object in case of Abort
-                    self.process = self.batchtaskObject!.process
-                    batchobject.updateInProcess(numberOfFiles: self.batchtaskObject!.outputprocess!.count())
-                    // Refresh view in Batchwindow
-                    self.reloadtable(vcontroller: .vcbatch)
-                }
-            }
-        } else {
-            // Single task run
+        switch self.processtermination! {
+        case .singletask:
             guard self.singletask != nil else { return }
             self.outputprocess = self.singletask!.outputprocess
             self.process = self.singletask!.process
             localprocessupdateDelegate?.fileHandler()
+        case .batchtask:
+            if self.batchtaskObject != nil {
+                if let batchobject = self.configurations!.getbatchQueue() {
+                    let work = batchobject.nextBatchCopy()
+                    if work.1 == 1 {
+                        // Real work is done, must set reference to Process object in case of Abort
+                        self.process = self.batchtaskObject!.process
+                        batchobject.updateInProcess(numberOfFiles: self.batchtaskObject!.outputprocess!.count())
+                        // Refresh view in Batchwindow
+                        self.reloadtable(vcontroller: .vcbatch)
+                    }
+                }
+            }
+        case .quicktask:
+            return
+        case .singlequicktask:
+            return
         }
     }
 }
@@ -1067,6 +1072,10 @@ extension ViewControllertabMain: Createandreloadconfigurations {
 }
 
 extension ViewControllertabMain: Sendprocessreference {
+    func sendoutputprocessreference(outputprocess: OutputProcess?) {
+        self.outputprocess = outputprocess
+    }
+
     func sendprocessreference(process: Process?) {
         self.process = process
     }

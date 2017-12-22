@@ -11,8 +11,8 @@
 import Foundation
 
 final class CommandCopyFiles: ProcessCmd {
-     init (command: String?, arguments: Array<String>?) {
-        super.init(command: command, arguments: arguments, aScheduledOperation: false)
+    override init (command: String?, arguments: Array<String>?) {
+        super.init(command: command, arguments: arguments)
         self.updateDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vccopyfiles) as? ViewControllerCopyFiles
     }
 }

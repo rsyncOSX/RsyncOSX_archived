@@ -76,6 +76,7 @@ enum OperationObject {
 
 protocol Sendprocessreference: class {
     func sendprocessreference(process: Process?)
+    func sendoutputprocessreference(outputprocess: OutputProcess?)
 }
 
 class OperationFactory {

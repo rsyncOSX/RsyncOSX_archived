@@ -45,6 +45,7 @@ class ExecuteTaskDispatch: SetSchedules, SetConfigurations, SetScheduledTask {
                             let process = RsyncScheduled(arguments: self.arguments)
                             process.executeProcess(outputprocess: self.outputprocess)
                             sendprocess?.sendprocessreference(process: process.getProcess())
+                            sendprocess?.sendoutputprocessreference(outputprocess: self.outputprocess)
                         }
                     })
                 }
