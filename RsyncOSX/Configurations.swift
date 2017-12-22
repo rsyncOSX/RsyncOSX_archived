@@ -171,7 +171,8 @@ class Configurations: ReloadTable {
                 "offsiteCatalogCellID": configurations[i].offsiteCatalog,
                 "offsiteServerCellID": configurations[i].offsiteServer,
                 "backupIDCellID": configurations[i].backupID,
-                "runDateCellID": configurations[i].dateRun!
+                "runDateCellID": configurations[i].dateRun!,
+                "daysID": configurations[i].dayssincelastbackup ?? ""
             ]
             data.append(row)
         }
@@ -190,7 +191,8 @@ class Configurations: ReloadTable {
                 "offsiteCatalogCellID": configurations[i].offsiteCatalog,
                 "offsiteServerCellID": configurations[i].offsiteServer,
                 "backupIDCellID": configurations[i].backupID,
-                "runDateCellID": configurations[i].dateRun!
+                "runDateCellID": configurations[i].dateRun!,
+                "daysID": configurations[i].dayssincelastbackup ?? ""
             ]
             data.append(row)
         }
