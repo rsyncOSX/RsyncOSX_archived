@@ -60,6 +60,7 @@ protocol VcMain {
 }
 
 extension VcMain {
+
     var storyboard: NSStoryboard? {
         return NSStoryboard(name: NSStoryboard.Name(rawValue: "Main"), bundle: nil)
     }
@@ -114,30 +115,37 @@ extension VcMain {
     }
 
     // Profile
-    // self.presentViewControllerAsSheet(self.ViewControllerProfile)
+    // self.presentViewControllerAsSheet(self.viewControllerProfile)
     var viewControllerProfile: NSViewController? {
         return (self.storyboard!.instantiateController(withIdentifier: NSStoryboard.SceneIdentifier(rawValue: "ProfileID"))
             as? NSViewController)!
     }
 
     // ScheduledBackupInWorkID
-    // self.presentViewControllerAsSheet(self.ViewControllerScheduledBackupInWork)
+    // self.presentViewControllerAsSheet(self.viewControllerScheduledBackupInWork)
     var viewControllerScheduledBackupInWork: NSViewController? {
         return (self.storyboard!.instantiateController(withIdentifier: NSStoryboard.SceneIdentifier(rawValue: "ScheduledBackupInWorkID"))
             as? NSViewController)!
     }
 
     // About
-    // self.presentViewControllerAsSheet(self.ViewControllerAbout)
+    // self.presentViewControllerAsSheet(self.viewControllerAbout)
     var viewControllerAbout: NSViewController? {
         return (self.storyboard!.instantiateController(withIdentifier: NSStoryboard.SceneIdentifier(rawValue: "AboutID"))
             as? NSViewController)!
     }
 
     // Information Schedule details
-    // self.presentViewControllerAsSheet(self.ViewControllerScheduleDetails)
+    // self.presentViewControllerAsSheet(self.viewControllerScheduleDetails)
     var viewControllerScheduleDetails: NSViewController? {
         return (self.storyboard!.instantiateController(withIdentifier: NSStoryboard.SceneIdentifier(rawValue: "StoryboardScheduleID"))
+            as? NSViewController)!
+    }
+
+    // Quick backup process
+    // self.presentViewControllerAsSheet(self.viewControllerQuickBackup)
+    var viewControllerQuickBackup: NSViewController? {
+        return (self.storyboard!.instantiateController(withIdentifier: NSStoryboard.SceneIdentifier(rawValue: "StoryboardQuickBackupID"))
             as? NSViewController)!
     }
 }

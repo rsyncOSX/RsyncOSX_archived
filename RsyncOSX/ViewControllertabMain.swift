@@ -97,6 +97,12 @@ class ViewControllertabMain: NSViewController, ReloadTable, Deselect, Coloractiv
     // Application crash if not
     private var loadProfileMenu: Bool = false
 
+    @IBAction func quickbackup(_ sender: NSButton) {
+        globalMainQueue.async(execute: { () -> Void in
+            self.presentViewControllerAsSheet(self.viewControllerQuickBackup!)
+        })
+    }
+
     @IBAction func edit(_ sender: NSButton) {
         self.reset()
         if self.index != nil {

@@ -18,10 +18,12 @@ enum Sort {
 
 class QuickBackup: SetConfigurations {
     var backuplist: [NSDictionary]?
+    var sortedlist: [NSDictionary]?
 
-    func sortbydays() -> [NSDictionary]? {
+    func sortbydays() {
         guard self.backuplist != nil else {
-            return nil
+            self.sortedlist = nil
+            return
         }
         let sorted = self.backuplist!.sorted {(di1, di2) -> Bool in
             let di1 = (di1.value(forKey: "daysID") as? NSString)!.doubleValue
@@ -32,16 +34,14 @@ class QuickBackup: SetConfigurations {
                 return true
             }
         }
-        guard sorted.count > 0 else {
-            return nil
-        }
-        return sorted
+        self.sortedlist = sorted
     }
 
-    func sortbystrings(sort: Sort) -> [NSDictionary]? {
+    func sortbystrings(sort: Sort) {
         var sortby: String?
         guard self.backuplist != nil else {
-            return nil
+            self.sortedlist = nil
+            return
         }
         switch sort {
         case .localCatalog:
@@ -54,13 +54,11 @@ class QuickBackup: SetConfigurations {
             sortby = "offsiteServerCellID"
         }
         let sorted = self.backuplist!.sorted {($0.value(forKey: sortby!) as? String)!.localizedStandardCompare(($1.value(forKey: sortby!) as? String)!) == .orderedAscending}
-        guard sorted.count > 0 else {
-            return nil
-        }
-        return sorted
+        self.sortedlist = sorted
     }
 
     init() {
         self.backuplist = self.configurations!.getConfigurationsDataSourcecountBackupOnly()
+        self.sortbydays()
     }
 }
