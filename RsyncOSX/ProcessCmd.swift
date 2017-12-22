@@ -58,7 +58,6 @@ class ProcessCmd: Delay {
         task.standardError = pipe
         let outHandle = pipe.fileHandleForReading
         outHandle.waitForDataInBackgroundAndNotify()
-
         // Observator for reading data from pipe, observer is removed when Process terminates
         self.notifications = NotificationCenter.default.addObserver(forName: NSNotification.Name.NSFileHandleDataAvailable,
                             object: nil, queue: nil) { _ -> Void in
@@ -105,5 +104,4 @@ class ProcessCmd: Delay {
         self.arguments = arguments
         self.possibleerrorDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllertabMain
     }
-
 }
