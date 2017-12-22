@@ -96,8 +96,11 @@ class ViewControllertabMain: NSViewController, ReloadTable, Deselect, Coloractiv
     // Load profiles only when testing for connections are done.
     // Application crash if not
     private var loadProfileMenu: Bool = false
+    // Which kind of task
+    private var processtermination: ProcessTermination?
 
     @IBAction func quickbackup(_ sender: NSButton) {
+        self.processtermination = .quicktask
         globalMainQueue.async(execute: { () -> Void in
             self.presentViewControllerAsSheet(self.viewControllerQuickBackup!)
         })
@@ -214,6 +217,7 @@ class ViewControllertabMain: NSViewController, ReloadTable, Deselect, Coloractiv
     }
 
     @IBAction func executetasknow(_ sender: NSButton) {
+        self.processtermination = .singlequicktask
         guard self.scheduledJobInProgress == false else {
             self.selecttask.stringValue = "⌘A to abort or wait..."
             self.selecttask.isHidden = false
@@ -323,6 +327,7 @@ class ViewControllertabMain: NSViewController, ReloadTable, Deselect, Coloractiv
 
     // Single task can be activated by double click from table
     private func executeSingleTask() {
+        self.processtermination = .singletask
         guard self.scheduledJobInProgress == false else {
             self.selecttask.stringValue = "⌘A to abort or wait..."
             self.selecttask.isHidden = false
@@ -350,6 +355,7 @@ class ViewControllertabMain: NSViewController, ReloadTable, Deselect, Coloractiv
 
     // Execute BATCH TASKS only
     @IBAction func executeBatch(_ sender: NSButton) {
+        self.processtermination = .batchtask
         guard self.scheduledJobInProgress == false else {
             self.selecttask.stringValue = "⌘A to abort or wait..."
             self.selecttask.isHidden = false
@@ -617,6 +623,7 @@ extension ViewControllertabMain: NewProfile {
 // A scheduled task is executed
 extension ViewControllertabMain: ScheduledTaskWorking {
     func start() {
+        self.processtermination = .singlequicktask
         globalMainQueue.async(execute: {() -> Void in
             self.scheduledJobInProgress = true
             self.scheduledJobworking.startAnimation(nil)
@@ -710,11 +717,14 @@ extension ViewControllertabMain: UpdateProgress {
     func processTermination() {
         self.readyforexecution = true
         // NB: must check if single run or batch run
-        if let singletask = self.singletask {
-            self.outputprocess = singletask.outputprocess
-            self.process = singletask.process
-            singletask.processTermination()
-        } else {
+        switch self.processtermination! {
+        case .singletask:
+            if let singletask = self.singletask {
+                self.outputprocess = singletask.outputprocess
+                self.process = singletask.process
+                singletask.processTermination()
+            }
+        case .batchtask:
             // Batch run
             self.batchObjectDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vcbatch) as? ViewControllerBatch
             self.batchtaskObject = self.batchObjectDelegate?.getbatchtaskObject()
@@ -722,6 +732,12 @@ extension ViewControllertabMain: UpdateProgress {
             self.outputprocess = self.batchtaskObject!.outputprocess
             self.process = self.batchtaskObject!.process
             self.batchtaskObject!.processTermination()
+        case .quicktask:
+            return
+        case .singlequicktask:
+            ViewControllerReference.shared.completeoperation!.finalizeScheduledJob(outputprocess: self.outputprocess)
+            // After logging is done set reference to object = nil
+            ViewControllerReference.shared.completeoperation = nil
         }
     }
 
