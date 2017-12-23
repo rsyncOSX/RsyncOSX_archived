@@ -88,6 +88,12 @@ extension ViewControllerQuickBackup: NSTableViewDelegate, Attributtedestring {
             return nil
         }
         let object: NSDictionary = (self.quickbackluplist?.sortedlist![row])!
+        if tableColumn!.identifier.rawValue == "daysID" {
+            if object.value(forKey: "markdays") as? Bool == true {
+                let celltext = object[tableColumn!.identifier] as? String
+                return self.attributtedstring(str: celltext!, color: NSColor.red, align: .right)
+            }
+        }
         return object[tableColumn!.identifier] as? String
     }
 }
