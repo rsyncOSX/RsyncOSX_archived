@@ -176,6 +176,9 @@ class Configurations: ReloadTable {
                 "markdays": configurations[i].markdays,
                 "selectCellID": 0
             ]
+            if (row.value(forKey: "offsiteServerCellID") as? String)?.isEmpty == true {
+                row.setValue("localhost", forKey: "offsiteServerCellID")
+            }
             data.append(row)
         }
         return data

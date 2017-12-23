@@ -72,6 +72,20 @@ class ViewControllerQuickBackup: NSViewController, SetDismisser, AbortTask {
         })
     }
 
+    func tableViewSelectionDidChange(_ notification: Notification) {
+        let myTableViewFromNotification = (notification.object as? NSTableView)!
+        let column = myTableViewFromNotification.selectedColumn
+        if column == 3 {
+            self.quickbackluplist?.sortbystrings(sort: .localCatalog)
+        } else if column == 4 {
+            self.quickbackluplist?.sortbystrings(sort: .offsiteCatalog)
+        } else if column == 5 {
+            self.quickbackluplist?.sortbystrings(sort: .offsiteServer)
+        } else if column == 6 {
+            self.quickbackluplist?.sortbydays()
+        }
+    }
+
 }
 
 extension ViewControllerQuickBackup: NSTableViewDataSource {
