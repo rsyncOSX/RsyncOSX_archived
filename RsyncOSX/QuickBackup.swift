@@ -53,8 +53,9 @@ class QuickBackup: SetConfigurations {
         case .offsiteServer:
             sortby = "offsiteServerCellID"
         }
-        let sorted = self.backuplist!.sorted {($0.value(forKey: sortby!) as? String)!.localizedStandardCompare(($1.value(forKey: sortby!) as? String)!) == .orderedAscending}
+        let sorted = self.backuplist!.sorted {return ($0.value(forKey: sortby!) as? String)!.localizedStandardCompare(($1.value(forKey: sortby!) as? String)!) == .orderedAscending}
         self.sortedlist = sorted
+        // let sortedTransactions = transactions.sorted { return ($0["Sequence"]! as! Int) < ($1["Sequence"]! as! Int)}
     }
 
     init() {

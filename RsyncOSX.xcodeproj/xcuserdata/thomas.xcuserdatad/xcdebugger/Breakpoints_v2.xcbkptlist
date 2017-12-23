@@ -9,14 +9,46 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "RsyncOSX/ViewControllerQuickBackup.swift"
-            timestampString = "535732375.646497"
+            filePath = "RsyncOSX/QuickBackup.swift"
+            timestampString = "535745247.31075"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "77"
-            endingLineNumber = "77"
-            landmarkName = "tableViewSelectionDidChange(_:)"
+            startingLineNumber = "56"
+            endingLineNumber = "56"
+            landmarkName = "sortbystrings(sort:)"
             landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "RsyncOSX.QuickBackup.sortbystrings(sort: RsyncOSX.Sort) -&gt; ()"
+                  moduleName = "RsyncOSX"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Volumes/Home/thomas/GitHub/RsyncOSX/Source/RsyncOSX/QuickBackup.swift"
+                  timestampString = "535745057.072507"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "56"
+                  endingLineNumber = "56"
+                  offsetFromSymbolStart = "520">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (__ObjC.NSDictionary, __ObjC.NSDictionary) -&gt; Swift.Bool in RsyncOSX.QuickBackup.sortbystrings(sort: RsyncOSX.Sort) -&gt; ()"
+                  moduleName = "RsyncOSX"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Volumes/Home/thomas/GitHub/RsyncOSX/Source/RsyncOSX/QuickBackup.swift"
+                  timestampString = "535745057.075413"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "56"
+                  endingLineNumber = "56"
+                  offsetFromSymbolStart = "25">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

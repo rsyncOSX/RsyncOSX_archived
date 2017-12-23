@@ -84,6 +84,7 @@ class ViewControllerQuickBackup: NSViewController, SetDismisser, AbortTask {
         } else if column == 6 {
             self.quickbackluplist?.sortbydays()
         }
+        self.reloadtabledata()
     }
 
 }
