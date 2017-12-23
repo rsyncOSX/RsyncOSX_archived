@@ -84,9 +84,7 @@ extension ViewControllerQuickBackup: NSTableViewDataSource {
 extension ViewControllerQuickBackup: NSTableViewDelegate, Attributtedestring {
     // TableView delegates
     func tableView(_ tableView: NSTableView, objectValueFor tableColumn: NSTableColumn?, row: Int) -> Any? {
-        guard  self.quickbackluplist?.sortedlist != nil else {
-            return nil
-        }
+        guard  self.quickbackluplist?.sortedlist != nil else { return nil }
         let object: NSDictionary = (self.quickbackluplist?.sortedlist![row])!
         if tableColumn!.identifier.rawValue == "daysID" {
             if object.value(forKey: "markdays") as? Bool == true {
@@ -94,7 +92,20 @@ extension ViewControllerQuickBackup: NSTableViewDelegate, Attributtedestring {
                 return self.attributtedstring(str: celltext!, color: NSColor.red, align: .right)
             }
         }
+        if tableColumn!.identifier.rawValue == "selectCellID" {
+            return object[tableColumn!.identifier] as? Int
+        }
         return object[tableColumn!.identifier] as? String
+    }
+
+    // Toggling selection
+    func tableView(_ tableView: NSTableView, setObjectValue object: Any?, for tableColumn: NSTableColumn?, row: Int) {
+        guard  self.quickbackluplist?.sortedlist != nil else { return }
+        if tableColumn!.identifier.rawValue == "selectCellID" {
+            var select: Int = (self.quickbackluplist?.sortedlist![row].value(forKey: "selectCellID") as? Int)!
+            if select == 0 { select = 1 } else if select == 1 { select = 0 }
+            self.quickbackluplist?.sortedlist![row].setValue(select, forKey: "selectCellID")
+        }
     }
 }
 
