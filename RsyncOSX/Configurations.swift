@@ -11,7 +11,7 @@
 //  Created by Thomas Evensen on 08/02/16.
 //  Copyright © 2016 Thomas Evensen. All rights reserved.
 //
-//  swiftlint:disable syntactic_sugar line_length
+//  swiftlint:disable syntactic_sugar line_length file_length
 
 import Foundation
 import Cocoa
@@ -159,10 +159,10 @@ class Configurations: ReloadTable {
     /// Function for getting all Configurations marked as backup (not restore)
     /// - parameter none: none
     /// - returns : Array of NSDictionary
-    func getConfigurationsDataSourcecountBackupOnly() -> [NSDictionary]? {
+    func getConfigurationsDataSourcecountBackupOnly() -> [NSMutableDictionary]? {
         let configurations: [Configuration] = self.configurations!.filter({return ($0.task == "backup")})
-        var row =  NSDictionary()
-        var data = Array<NSDictionary>()
+        var row =  NSMutableDictionary()
+        var data = Array<NSMutableDictionary>()
         for i in 0 ..< configurations.count {
             row = [
                 "taskCellID": configurations[i].task,
@@ -171,8 +171,14 @@ class Configurations: ReloadTable {
                 "offsiteCatalogCellID": configurations[i].offsiteCatalog,
                 "offsiteServerCellID": configurations[i].offsiteServer,
                 "backupIDCellID": configurations[i].backupID,
-                "runDateCellID": configurations[i].dateRun!
+                "runDateCellID": configurations[i].dateRun!,
+                "daysID": configurations[i].dayssincelastbackup ?? "",
+                "markdays": configurations[i].markdays,
+                "selectCellID": 0
             ]
+            if (row.value(forKey: "offsiteServerCellID") as? String)?.isEmpty == true {
+                row.setValue("localhost", forKey: "offsiteServerCellID")
+            }
             data.append(row)
         }
         return data
@@ -190,7 +196,10 @@ class Configurations: ReloadTable {
                 "offsiteCatalogCellID": configurations[i].offsiteCatalog,
                 "offsiteServerCellID": configurations[i].offsiteServer,
                 "backupIDCellID": configurations[i].backupID,
-                "runDateCellID": configurations[i].dateRun!
+                "runDateCellID": configurations[i].dateRun!,
+                "daysID": configurations[i].dayssincelastbackup ?? "",
+                "markdays": configurations[i].markdays,
+                "selectCellID": 0
             ]
             data.append(row)
         }
