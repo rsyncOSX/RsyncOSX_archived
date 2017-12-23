@@ -96,11 +96,6 @@
                                                 <action selector="executetasknow:" target="Ady-hI-5gd" id="iNN-Ju-Agc"/>
                                             </connections>
                                         </menuItem>
-                                        <menuItem title="Quick batch" keyEquivalent="b" id="2un-Ik-KBi" userLabel="Quick batch">
-                                            <connections>
-                                                <action selector="quickbackup:" target="Ady-hI-5gd" id="S7N-m3-uiZ"/>
-                                            </connections>
-                                        </menuItem>
                                         <menuItem isSeparatorItem="YES" id="p7w-an-4lO"/>
                                         <menuItem title="Abort" keyEquivalent="a" id="k2Y-Hy-jMj" userLabel="Abort">
                                             <connections>
@@ -231,6 +226,22 @@
                                         </connections>
                                     </button>
                                 </toolbarItem>
+                                <toolbarItem implicitItemIdentifier="8B66843A-F5C9-4F8B-82C4-CB9C5E766CD3" label="fastforward" paletteLabel="fastforward" image="fastforward" id="uoc-zJ-5pZ" userLabel="fastforward">
+                                    <nil key="toolTip"/>
+                                    <size key="minSize" width="40" height="25"/>
+                                    <size key="maxSize" width="40" height="28"/>
+                                    <button key="view" verticalHuggingPriority="750" id="sQO-Do-KTW">
+                                        <rect key="frame" x="14" y="14" width="40" height="28"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                        <buttonCell key="cell" type="roundTextured" bezelStyle="texturedRounded" image="fastforward" imagePosition="overlaps" alignment="center" lineBreakMode="truncatingTail" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="Ylc-GF-mzQ">
+                                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                            <font key="font" metaFont="system"/>
+                                        </buttonCell>
+                                        <connections>
+                                            <action selector="quickbackup:" target="Rv5-yv-lsc" id="YjF-xc-bN7"/>
+                                        </connections>
+                                    </button>
+                                </toolbarItem>
                                 <toolbarItem implicitItemIdentifier="AA95E30D-4DE8-4A4E-B394-8CEA8799709F" label="config" paletteLabel="config" image="config" id="VYu-Xf-XJc">
                                     <nil key="toolTip"/>
                                     <size key="minSize" width="40" height="25"/>
@@ -266,6 +277,7 @@
                             </allowedToolbarItems>
                             <defaultToolbarItems>
                                 <toolbarItem reference="zs6-ub-LOa"/>
+                                <toolbarItem reference="uoc-zJ-5pZ"/>
                                 <toolbarItem reference="OrH-Ty-gyv"/>
                                 <toolbarItem reference="7w4-6r-ai5"/>
                                 <toolbarItem reference="GYz-8J-WDp"/>
@@ -5367,6 +5379,7 @@ DQ
         <image name="batch" width="48" height="48"/>
         <image name="complete" width="48" height="48"/>
         <image name="config" width="48" height="48"/>
+        <image name="fastforward" width="48" height="48"/>
         <image name="info" width="48" height="48"/>
     </resources>
 </document>
