@@ -86,6 +86,7 @@ class QuickBackup: SetConfigurations {
             }
             let hiddenID = self.stackoftasktobeexecuted![0].0
             self.stackoftasktobeexecuted?.remove(at: 0)
+            if self.stackoftasktobeexecuted?.count == 0 { self.stackoftasktobeexecuted = nil }
             self.executetasknow(hiddenID: hiddenID)
         }
     }
@@ -95,15 +96,14 @@ class QuickBackup: SetConfigurations {
             return
         }
         // Last record
-        if self.stackoftasktobeexecuted!.count == 1 {
-            let hiddenID = self.stackoftasktobeexecuted![0].0
+        guard self.stackoftasktobeexecuted!.count > 0 else {
             self.stackoftasktobeexecuted = nil
-            self.executetasknow(hiddenID: hiddenID)
-        } else {
-            let hiddenID = self.stackoftasktobeexecuted![0].0
-            self.stackoftasktobeexecuted?.remove(at: 0)
-            self.executetasknow(hiddenID: hiddenID)
+            return
         }
+        let hiddenID = self.stackoftasktobeexecuted![0].0
+        self.stackoftasktobeexecuted?.remove(at: 0)
+        if self.stackoftasktobeexecuted?.count == 0 { self.stackoftasktobeexecuted = nil }
+        self.executetasknow(hiddenID: hiddenID)
     }
 
     init() {
