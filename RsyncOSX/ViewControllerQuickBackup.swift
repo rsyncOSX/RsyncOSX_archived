@@ -33,6 +33,7 @@ class ViewControllerQuickBackup: NSViewController, SetDismisser, AbortTask {
     // Execute batch
     @IBAction func execute(_ sender: NSButton) {
         self.executeButton.isEnabled = false
+        self.quickbackluplist?.prepareexecutetasks()
     }
 
     @objc private func setSecondsView() {
@@ -140,5 +141,15 @@ extension ViewControllerQuickBackup: CloseViewError {
         self.waitToClose?.invalidate()
         self.closeIn?.invalidate()
         self.dismissview(viewcontroller: self, vcontroller: .vctabmain)
+    }
+}
+
+extension ViewControllerQuickBackup: UpdateProgress {
+    func processTermination() {
+        // get next task
+    }
+    
+    func fileHandler() {
+        // nothing
     }
 }

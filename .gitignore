@@ -68,3 +68,5 @@ fastlane/screenshots
 fastlane/test_output
 
 *.xcuserstate
+
+*.xcbkptlist

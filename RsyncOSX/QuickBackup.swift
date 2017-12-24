@@ -19,6 +19,8 @@ enum Sort {
 class QuickBackup: SetConfigurations {
     var backuplist: [NSDictionary]?
     var sortedlist: [NSDictionary]?
+    typealias Row = (Int, Int)
+    var stackoftasktobeexecuted: [Row]?
 
     func sortbydays() {
         guard self.backuplist != nil else {
@@ -56,6 +58,30 @@ class QuickBackup: SetConfigurations {
         let sorted = self.backuplist!.sorted {return ($0.value(forKey: sortby!) as? String)!.localizedStandardCompare(($1.value(forKey: sortby!) as? String)!) == .orderedAscending}
         self.sortedlist = sorted
         // let sortedTransactions = transactions.sorted { return ($0["Sequence"]! as! Int) < ($1["Sequence"]! as! Int)}
+    }
+
+    private func executetasknow(hiddenID: Int) {
+        let now: Date = Date()
+        let dateformatter = Tools().setDateformat()
+        let task: NSDictionary = [
+            "start": now,
+            "hiddenID": hiddenID,
+            "dateStart": dateformatter.date(from: "01 Jan 1900 00:00") as Date!,
+            "schedule": "manuel"]
+        ViewControllerReference.shared.scheduledTask = task
+        _ = OperationFactory()
+    }
+
+    func prepareexecutetasks() {
+        if let list = self.sortedlist {
+            self.stackoftasktobeexecuted = nil
+            self.stackoftasktobeexecuted = [Row]()
+            for i in 0 ..< list.count {
+                if list[i].value(forKey: "selectCellID") as? Int == 1 {
+                    self.stackoftasktobeexecuted?.append(((list[i].value(forKey: "hiddenID") as? Int)!, i))
+                }
+            }
+        }
     }
 
     init() {
