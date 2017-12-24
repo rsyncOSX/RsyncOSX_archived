@@ -19,7 +19,7 @@ class ViewControllerLoggData: NSViewController, SetSchedules {
 
     var tabledata: [NSDictionary]?
     var row: NSDictionary?
-    var what: Filterlogs?
+    var filterby: Filterlogs?
     var index: Int?
     var viewispresent: Bool = false
 
@@ -34,11 +34,11 @@ class ViewControllerLoggData: NSViewController, SetSchedules {
     // Selecting what to filter
     @IBAction func radiobuttons(_ sender: NSButton) {
         if self.server.state == .on {
-            self.what = .remoteServer
+            self.filterby = .remoteServer
         } else if self.catalog.state == .on {
-            self.what = .localCatalog
+            self.filterby = .localCatalog
         } else if self.date.state == .on {
-            self.what = .executeDate
+            self.filterby = .executeDate
         }
     }
 
@@ -99,7 +99,7 @@ extension ViewControllerLoggData: NSSearchFieldDelegate {
             })
         } else {
             globalMainQueue.async(execute: { () -> Void in
-                ScheduleLoggData().filter(search: filterstring, what: self.what)
+                ScheduleLoggData().filter(search: filterstring, what: self.filterby)
             })
         }
     }
@@ -146,6 +146,14 @@ extension ViewControllerLoggData: NSTableViewDelegate {
             self.index = index
             self.row = self.tabledata?[self.index!]
         }
+        let column = myTableViewFromNotification.selectedColumn
+        if column == 0 {
+            self.filterby = .localCatalog
+        } else if column == 1 {
+            self.filterby = .remoteServer
+        } else if column == 2 {
+            self.filterby = .executeDate
+        }
     }
 
 }
@@ -182,7 +190,7 @@ extension ViewControllerLoggData: ReadLoggdata {
                 self.sorting.stopAnimation(self)
             })
             self.catalog.state = .on
-            self.what = .localCatalog
+            self.filterby = .localCatalog
             self.deleteButton.state = .off
         }
     }
