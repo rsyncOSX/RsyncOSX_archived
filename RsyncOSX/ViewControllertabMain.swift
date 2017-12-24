@@ -624,7 +624,6 @@ extension ViewControllertabMain: NewProfile {
 // A scheduled task is executed
 extension ViewControllertabMain: ScheduledTaskWorking {
     func start() {
-        self.processtermination = .singlequicktask
         globalMainQueue.async(execute: {() -> Void in
             self.scheduledJobInProgress = true
             self.scheduledJobworking.startAnimation(nil)
@@ -737,6 +736,9 @@ extension ViewControllertabMain: UpdateProgress {
             self.process = self.batchtaskObject!.process
             self.batchtaskObject!.processTermination()
         case .quicktask:
+            ViewControllerReference.shared.completeoperation!.finalizeScheduledJob(outputprocess: self.outputprocess)
+            // After logging is done set reference to object = nil
+            ViewControllerReference.shared.completeoperation = nil
             weak var processterminationDelegate: UpdateProgress?
             processterminationDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vcquickbatch) as? ViewControllerQuickBackup
             processterminationDelegate?.processTermination()
@@ -744,6 +746,8 @@ extension ViewControllertabMain: UpdateProgress {
             ViewControllerReference.shared.completeoperation!.finalizeScheduledJob(outputprocess: self.outputprocess)
             // After logging is done set reference to object = nil
             ViewControllerReference.shared.completeoperation = nil
+            // Kick off next task
+            self.startfirstcheduledtask()
         }
     }
 

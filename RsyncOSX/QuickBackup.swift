@@ -72,7 +72,7 @@ class QuickBackup: SetConfigurations {
         _ = OperationFactory()
     }
 
-    func prepareexecutetasks() {
+    func prepareandstartexecutetasks() {
         if let list = self.sortedlist {
             self.stackoftasktobeexecuted = nil
             self.stackoftasktobeexecuted = [Row]()
@@ -81,6 +81,28 @@ class QuickBackup: SetConfigurations {
                     self.stackoftasktobeexecuted?.append(((list[i].value(forKey: "hiddenID") as? Int)!, i))
                 }
             }
+            guard self.stackoftasktobeexecuted!.count > 0 else {
+                return
+            }
+            let hiddenID = self.stackoftasktobeexecuted![0].0
+            self.stackoftasktobeexecuted?.remove(at: 0)
+            self.executetasknow(hiddenID: hiddenID)
+        }
+    }
+
+    func processTermination() {
+        guard self.stackoftasktobeexecuted != nil else {
+            return
+        }
+        // Last record
+        if self.stackoftasktobeexecuted!.count == 1 {
+            let hiddenID = self.stackoftasktobeexecuted![0].0
+            self.stackoftasktobeexecuted = nil
+            self.executetasknow(hiddenID: hiddenID)
+        } else {
+            let hiddenID = self.stackoftasktobeexecuted![0].0
+            self.stackoftasktobeexecuted?.remove(at: 0)
+            self.executetasknow(hiddenID: hiddenID)
         }
     }
 
