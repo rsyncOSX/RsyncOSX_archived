@@ -11,8 +11,6 @@ import Cocoa
 
 class ViewControllerQuickBackup: NSViewController, SetDismisser, AbortTask {
 
-    var waitToClose: Timer?
-    var closeIn: Timer?
     var seconds: Int?
     var row: Int?
     var quickbackuplist: QuickBackup?
@@ -24,8 +22,8 @@ class ViewControllerQuickBackup: NSViewController, SetDismisser, AbortTask {
 
     // Either abort or close
     @IBAction func abort(_ sender: NSButton) {
-        self.waitToClose?.invalidate()
-        self.closeIn?.invalidate()
+        self.quickbackuplist = nil
+        self.abort()
         self.dismissview(viewcontroller: self, vcontroller: .vctabmain)
     }
 
@@ -130,9 +128,8 @@ extension ViewControllerQuickBackup: Reloadandrefresh {
 
 extension ViewControllerQuickBackup: CloseViewError {
     func closeerror() {
+        self.quickbackuplist = nil
         self.abort()
-        self.waitToClose?.invalidate()
-        self.closeIn?.invalidate()
         self.dismissview(viewcontroller: self, vcontroller: .vctabmain)
     }
 }
