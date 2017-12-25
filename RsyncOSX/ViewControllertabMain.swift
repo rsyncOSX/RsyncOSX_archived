@@ -646,9 +646,11 @@ extension ViewControllertabMain: ScheduledTaskWorking {
                     Alerts.showInfo("Scheduled backup DID not execute?")
                 })
             } else {
-                globalMainQueue.async(execute: {() -> Void in
-                    self.presentViewControllerAsSheet(self.viewControllerScheduledBackupInWork!)
-                })
+                if self.processtermination! != .quicktask {
+                    globalMainQueue.async(execute: {() -> Void in
+                        self.presentViewControllerAsSheet(self.viewControllerScheduledBackupInWork!)
+                    })
+                }
             }
         }
     }
