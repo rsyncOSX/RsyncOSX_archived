@@ -5332,19 +5332,6 @@ DQ
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableHeaderView>
                             </scrollView>
-                            <progressIndicator wantsLayer="YES" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" maxValue="100" displayedWhenStopped="NO" bezeled="NO" indeterminate="YES" controlSize="small" style="spinning" translatesAutoresizingMaskIntoConstraints="NO" id="Uew-SU-4a7">
-                                <rect key="frame" x="316" y="24" width="16" height="16"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                            </progressIndicator>
-                            <textField hidden="YES" horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="gyo-yg-cbD">
-                                <rect key="frame" x="338" y="24" width="221" height="17"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" title="Close automatically in : 5 seconds" id="muO-Wn-Hoq">
-                                    <font key="font" metaFont="system"/>
-                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                                </textFieldCell>
-                            </textField>
                             <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Yur-Pz-vhJ">
                                 <rect key="frame" x="749" y="18" width="40" height="25"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
@@ -5367,11 +5354,14 @@ DQ
                                     <action selector="execute:" target="dc0-Rq-hhI" id="Ovn-fL-gGm"/>
                                 </connections>
                             </button>
+                            <progressIndicator wantsLayer="YES" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" maxValue="100" displayedWhenStopped="NO" bezeled="NO" indeterminate="YES" controlSize="small" style="spinning" translatesAutoresizingMaskIntoConstraints="NO" id="Uew-SU-4a7">
+                                <rect key="frame" x="677" y="23" width="16" height="16"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                            </progressIndicator>
                         </subviews>
                     </view>
                     <connections>
                         <outlet property="abortbutton" destination="Yur-Pz-vhJ" id="GzU-HU-HIU"/>
-                        <outlet property="closeinseconds" destination="gyo-yg-cbD" id="osb-Iw-H6z"/>
                         <outlet property="executeButton" destination="WGW-dP-42t" id="PtI-QM-QZr"/>
                         <outlet property="mainTableView" destination="EFc-mk-M0n" id="uT1-sg-C9z"/>
                         <outlet property="working" destination="Uew-SU-4a7" id="3bk-5z-4IQ"/>

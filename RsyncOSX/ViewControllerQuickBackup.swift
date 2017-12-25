@@ -19,7 +19,6 @@ class ViewControllerQuickBackup: NSViewController, SetDismisser, AbortTask {
 
     @IBOutlet weak var mainTableView: NSTableView!
     @IBOutlet weak var working: NSProgressIndicator!
-    @IBOutlet weak var closeinseconds: NSTextField!
     @IBOutlet weak var executeButton: NSButton!
     @IBOutlet weak var abortbutton: NSButton!
 
@@ -37,20 +36,8 @@ class ViewControllerQuickBackup: NSViewController, SetDismisser, AbortTask {
         self.quickbackuplist?.prepareandstartexecutetasks()
     }
 
-    @objc private func setSecondsView() {
-        self.seconds = self.seconds! - 1
-        self.closeinseconds.stringValue = "Close automatically in: " + String(self.seconds!) + " seconds"
-    }
-
-    @objc private func closeView() {
-        self.waitToClose?.invalidate()
-        self.closeIn?.invalidate()
-        self.dismissview(viewcontroller: self, vcontroller: .vctabmain)
-    }
-
     private func loadtasks() {
         self.quickbackuplist = QuickBackup()
-        self.closeinseconds.isHidden = true
         self.executeButton.isEnabled = true
         self.working.stopAnimation(nil)
     }

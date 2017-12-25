@@ -83,7 +83,7 @@ class QuickBackup: SetConfigurations {
                 }
             }
             guard self.stackoftasktobeexecuted!.count > 0 else { return }
-            // Kick off first
+            // Kick off first task
             let hiddenID = self.stackoftasktobeexecuted![0].0
             self.index = self.stackoftasktobeexecuted![0].1
             self.stackoftasktobeexecuted?.remove(at: 0)
