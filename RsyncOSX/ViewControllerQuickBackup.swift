@@ -112,6 +112,11 @@ extension ViewControllerQuickBackup: NSTableViewDelegate, Attributtedestring {
         if tableColumn!.identifier.rawValue == "selectCellID" {
             return object[tableColumn!.identifier] as? Int
         }
+        if tableColumn!.identifier.rawValue == "completeCellID" {
+            if object.value(forKey: "completeCellID") as? Bool == true {
+                return #imageLiteral(resourceName: "complete")
+            }
+        }
         return object[tableColumn!.identifier] as? String
     }
 
@@ -151,6 +156,7 @@ extension ViewControllerQuickBackup: UpdateProgress {
             self.working.stopAnimation(nil)
             return
         }
+        self.reloadtabledata()
         self.quickbackuplist?.processTermination()
     }
 
