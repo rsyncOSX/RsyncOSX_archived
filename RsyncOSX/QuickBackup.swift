@@ -21,6 +21,7 @@ class QuickBackup: SetConfigurations {
     var sortedlist: [NSMutableDictionary]?
     typealias Row = (Int, Int)
     var stackoftasktobeexecuted: [Row]?
+    var index: Int?
 
     func sortbydays() {
         guard self.backuplist != nil else {
@@ -82,25 +83,29 @@ class QuickBackup: SetConfigurations {
                 }
             }
             guard self.stackoftasktobeexecuted!.count > 0 else { return }
+            // Kick off first
             let hiddenID = self.stackoftasktobeexecuted![0].0
+            self.index = self.stackoftasktobeexecuted![0].1
+            self.stackoftasktobeexecuted?.remove(at: 0)
             self.executetasknow(hiddenID: hiddenID)
         }
     }
 
-    func processTermination() {
-        guard self.stackoftasktobeexecuted != nil else { return }
-        let hiddenID = self.stackoftasktobeexecuted![0].0
-        self.stackoftasktobeexecuted?.remove(at: 0)
-        if self.stackoftasktobeexecuted?.count == 0 { self.stackoftasktobeexecuted = nil }
-        self.executetasknow(hiddenID: hiddenID)
-    }
-
     // Called before processTerminatiom
     func setcompleted() {
+        self.sortedlist![self.index!].setValue(true, forKey: "completeCellID")
+    }
+
+    func processTermination() {
         guard self.stackoftasktobeexecuted != nil else { return }
-        let index = self.stackoftasktobeexecuted![0].1
-        self.sortedlist![index].setValue(true, forKey: "completeCellID")
-        if self.stackoftasktobeexecuted?.count == 0 { self.stackoftasktobeexecuted = nil }
+        guard self.stackoftasktobeexecuted!.count > 0  else {
+            self.stackoftasktobeexecuted = nil
+            return
+        }
+        let hiddenID = self.stackoftasktobeexecuted![0].0
+        self.index = self.stackoftasktobeexecuted![0].1
+        self.stackoftasktobeexecuted?.remove(at: 0)
+        self.executetasknow(hiddenID: hiddenID)
     }
 
     init() {
