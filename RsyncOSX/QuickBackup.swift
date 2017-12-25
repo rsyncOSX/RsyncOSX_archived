@@ -17,8 +17,10 @@ enum Sort {
 }
 
 class QuickBackup: SetConfigurations {
-    var backuplist: [NSDictionary]?
-    var sortedlist: [NSDictionary]?
+    var backuplist: [NSMutableDictionary]?
+    var sortedlist: [NSMutableDictionary]?
+    typealias Row = (Int, Int)
+    var stackoftasktobeexecuted: [Row]?
 
     func sortbydays() {
         guard self.backuplist != nil else {
@@ -55,7 +57,48 @@ class QuickBackup: SetConfigurations {
         }
         let sorted = self.backuplist!.sorted {return ($0.value(forKey: sortby!) as? String)!.localizedStandardCompare(($1.value(forKey: sortby!) as? String)!) == .orderedAscending}
         self.sortedlist = sorted
-        // let sortedTransactions = transactions.sorted { return ($0["Sequence"]! as! Int) < ($1["Sequence"]! as! Int)}
+    }
+
+    private func executetasknow(hiddenID: Int) {
+        let now: Date = Date()
+        let dateformatter = Tools().setDateformat()
+        let task: NSDictionary = [
+            "start": now,
+            "hiddenID": hiddenID,
+            "dateStart": dateformatter.date(from: "01 Jan 1900 00:00") as Date!,
+            "schedule": "manuel"]
+        ViewControllerReference.shared.scheduledTask = task
+        _ = OperationFactory()
+    }
+
+    func prepareandstartexecutetasks() {
+        if let list = self.sortedlist {
+            self.stackoftasktobeexecuted = nil
+            self.stackoftasktobeexecuted = [Row]()
+            for i in 0 ..< list.count {
+                list[i].setObject(false, forKey: "completeCellID" as NSCopying)
+                if list[i].value(forKey: "selectCellID") as? Int == 1 {
+                    self.stackoftasktobeexecuted?.append(((list[i].value(forKey: "hiddenID") as? Int)!, i))
+                }
+            }
+            guard self.stackoftasktobeexecuted!.count > 0 else { return }
+            let hiddenID = self.stackoftasktobeexecuted![0].0
+            let index = self.stackoftasktobeexecuted![0].1
+            self.sortedlist![index].setValue(true, forKey: "completeCellID")
+            self.stackoftasktobeexecuted?.remove(at: 0)
+            if self.stackoftasktobeexecuted?.count == 0 { self.stackoftasktobeexecuted = nil }
+            self.executetasknow(hiddenID: hiddenID)
+        }
+    }
+
+    func processTermination() {
+        guard self.stackoftasktobeexecuted != nil else { return }
+        let hiddenID = self.stackoftasktobeexecuted![0].0
+        let index = self.stackoftasktobeexecuted![0].1
+        self.sortedlist![index].setValue(true, forKey: "completeCellID")
+        self.stackoftasktobeexecuted?.remove(at: 0)
+        if self.stackoftasktobeexecuted?.count == 0 { self.stackoftasktobeexecuted = nil }
+        self.executetasknow(hiddenID: hiddenID)
     }
 
     init() {

@@ -15,7 +15,7 @@ class ViewControllerQuickBackup: NSViewController, SetDismisser, AbortTask {
     var closeIn: Timer?
     var seconds: Int?
     var row: Int?
-    var quickbackluplist: QuickBackup?
+    var quickbackuplist: QuickBackup?
 
     @IBOutlet weak var mainTableView: NSTableView!
     @IBOutlet weak var working: NSProgressIndicator!
@@ -32,7 +32,9 @@ class ViewControllerQuickBackup: NSViewController, SetDismisser, AbortTask {
 
     // Execute batch
     @IBAction func execute(_ sender: NSButton) {
+        self.working.startAnimation(nil)
         self.executeButton.isEnabled = false
+        self.quickbackuplist?.prepareandstartexecutetasks()
     }
 
     @objc private func setSecondsView() {
@@ -47,7 +49,7 @@ class ViewControllerQuickBackup: NSViewController, SetDismisser, AbortTask {
     }
 
     private func loadtasks() {
-        self.quickbackluplist = QuickBackup()
+        self.quickbackuplist = QuickBackup()
         self.closeinseconds.isHidden = true
         self.executeButton.isEnabled = true
         self.working.stopAnimation(nil)
@@ -56,7 +58,6 @@ class ViewControllerQuickBackup: NSViewController, SetDismisser, AbortTask {
     // Initial functions viewDidLoad and viewDidAppear
     override func viewDidLoad() {
         super.viewDidLoad()
-        ViewControllerReference.shared.setvcref(viewcontroller: .vcquickbatch, nsviewcontroller: self)
         // Do view setup here.
         // Setting delegates and datasource
         self.mainTableView.delegate = self
@@ -66,6 +67,7 @@ class ViewControllerQuickBackup: NSViewController, SetDismisser, AbortTask {
 
     override func viewDidAppear() {
         super.viewDidAppear()
+        ViewControllerReference.shared.setvcref(viewcontroller: .vcquickbatch, nsviewcontroller: self)
         self.executeButton.isEnabled = true
         globalMainQueue.async(execute: { () -> Void in
             self.mainTableView.reloadData()
@@ -76,13 +78,13 @@ class ViewControllerQuickBackup: NSViewController, SetDismisser, AbortTask {
         let myTableViewFromNotification = (notification.object as? NSTableView)!
         let column = myTableViewFromNotification.selectedColumn
         if column == 3 {
-            self.quickbackluplist?.sortbystrings(sort: .localCatalog)
+            self.quickbackuplist?.sortbystrings(sort: .localCatalog)
         } else if column == 4 {
-            self.quickbackluplist?.sortbystrings(sort: .offsiteCatalog)
+            self.quickbackuplist?.sortbystrings(sort: .offsiteCatalog)
         } else if column == 5 {
-            self.quickbackluplist?.sortbystrings(sort: .offsiteServer)
+            self.quickbackuplist?.sortbystrings(sort: .offsiteServer)
         } else if column == 6 {
-            self.quickbackluplist?.sortbydays()
+            self.quickbackuplist?.sortbydays()
         }
         self.reloadtabledata()
     }
@@ -92,15 +94,15 @@ class ViewControllerQuickBackup: NSViewController, SetDismisser, AbortTask {
 extension ViewControllerQuickBackup: NSTableViewDataSource {
     // Delegate for size of table
     func numberOfRows(in tableView: NSTableView) -> Int {
-        return self.quickbackluplist?.sortedlist?.count ?? 0
+        return self.quickbackuplist?.sortedlist?.count ?? 0
     }
 }
 
 extension ViewControllerQuickBackup: NSTableViewDelegate, Attributtedestring {
     // TableView delegates
     func tableView(_ tableView: NSTableView, objectValueFor tableColumn: NSTableColumn?, row: Int) -> Any? {
-        guard  self.quickbackluplist?.sortedlist != nil else { return nil }
-        let object: NSDictionary = (self.quickbackluplist?.sortedlist![row])!
+        guard  self.quickbackuplist?.sortedlist != nil else { return nil }
+        let object: NSDictionary = (self.quickbackuplist?.sortedlist![row])!
         if tableColumn!.identifier.rawValue == "daysID" {
             if object.value(forKey: "markdays") as? Bool == true {
                 let celltext = object[tableColumn!.identifier] as? String
@@ -110,16 +112,21 @@ extension ViewControllerQuickBackup: NSTableViewDelegate, Attributtedestring {
         if tableColumn!.identifier.rawValue == "selectCellID" {
             return object[tableColumn!.identifier] as? Int
         }
+        if tableColumn!.identifier.rawValue == "completeCellID" {
+            if object.value(forKey: "completeCellID") as? Bool == true {
+                return #imageLiteral(resourceName: "complete")
+            }
+        }
         return object[tableColumn!.identifier] as? String
     }
 
     // Toggling selection
     func tableView(_ tableView: NSTableView, setObjectValue object: Any?, for tableColumn: NSTableColumn?, row: Int) {
-        guard  self.quickbackluplist?.sortedlist != nil else { return }
+        guard  self.quickbackuplist?.sortedlist != nil else { return }
         if tableColumn!.identifier.rawValue == "selectCellID" {
-            var select: Int = (self.quickbackluplist?.sortedlist![row].value(forKey: "selectCellID") as? Int)!
+            var select: Int = (self.quickbackuplist?.sortedlist![row].value(forKey: "selectCellID") as? Int)!
             if select == 0 { select = 1 } else if select == 1 { select = 0 }
-            self.quickbackluplist?.sortedlist![row].setValue(select, forKey: "selectCellID")
+            self.quickbackuplist?.sortedlist![row].setValue(select, forKey: "selectCellID")
         }
     }
 }
@@ -140,5 +147,20 @@ extension ViewControllerQuickBackup: CloseViewError {
         self.waitToClose?.invalidate()
         self.closeIn?.invalidate()
         self.dismissview(viewcontroller: self, vcontroller: .vctabmain)
+    }
+}
+
+extension ViewControllerQuickBackup: UpdateProgress {
+    func processTermination() {
+        guard self.quickbackuplist?.stackoftasktobeexecuted != nil else {
+            self.working.stopAnimation(nil)
+            return
+        }
+        self.reloadtabledata()
+        self.quickbackuplist?.processTermination()
+    }
+
+    func fileHandler() {
+        // nothing
     }
 }

@@ -11,7 +11,7 @@ import Foundation
 
 // Class for completion of Operation objects when Process object termination.
 // The object does also kicks of next scheduled job by setting new waiter time.
-final class CompleteScheduledOperation: SetConfigurations, SetSchedules, SetScheduledTask, NextTask {
+final class CompleteScheduledOperation: SetConfigurations, SetSchedules, SetScheduledTask {
 
     weak var startTimerDelegate: StartTimer?
     private var date: Date?
@@ -40,8 +40,6 @@ final class CompleteScheduledOperation: SetConfigurations, SetSchedules, SetSche
         // Reset reference til scheduled job
         self.schedules!.scheduledTasks = nil
         self.schedulesDelegate?.reloadschedulesobject()
-        // Kick off next task
-        self.startnexttask()
     }
 
     init (dict: NSDictionary) {
