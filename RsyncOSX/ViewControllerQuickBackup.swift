@@ -152,11 +152,11 @@ extension ViewControllerQuickBackup: CloseViewError {
 
 extension ViewControllerQuickBackup: UpdateProgress {
     func processTermination() {
+        self.reloadtabledata()
         guard self.quickbackuplist?.stackoftasktobeexecuted != nil else {
             self.working.stopAnimation(nil)
             return
         }
-        self.reloadtabledata()
         self.quickbackuplist?.processTermination()
     }
 
