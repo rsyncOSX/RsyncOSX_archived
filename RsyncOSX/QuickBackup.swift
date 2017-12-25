@@ -83,10 +83,6 @@ class QuickBackup: SetConfigurations {
             }
             guard self.stackoftasktobeexecuted!.count > 0 else { return }
             let hiddenID = self.stackoftasktobeexecuted![0].0
-            let index = self.stackoftasktobeexecuted![0].1
-            self.sortedlist![index].setValue(true, forKey: "completeCellID")
-            self.stackoftasktobeexecuted?.remove(at: 0)
-            if self.stackoftasktobeexecuted?.count == 0 { self.stackoftasktobeexecuted = nil }
             self.executetasknow(hiddenID: hiddenID)
         }
     }
@@ -94,11 +90,17 @@ class QuickBackup: SetConfigurations {
     func processTermination() {
         guard self.stackoftasktobeexecuted != nil else { return }
         let hiddenID = self.stackoftasktobeexecuted![0].0
-        let index = self.stackoftasktobeexecuted![0].1
-        self.sortedlist![index].setValue(true, forKey: "completeCellID")
         self.stackoftasktobeexecuted?.remove(at: 0)
         if self.stackoftasktobeexecuted?.count == 0 { self.stackoftasktobeexecuted = nil }
         self.executetasknow(hiddenID: hiddenID)
+    }
+
+    // Called before processTerminatiom
+    func setcompleted() {
+        guard self.stackoftasktobeexecuted != nil else { return }
+        let index = self.stackoftasktobeexecuted![0].1
+        self.sortedlist![index].setValue(true, forKey: "completeCellID")
+        if self.stackoftasktobeexecuted?.count == 0 { self.stackoftasktobeexecuted = nil }
     }
 
     init() {
