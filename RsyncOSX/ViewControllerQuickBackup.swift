@@ -141,14 +141,24 @@ extension ViewControllerQuickBackup: UpdateProgress {
     func processTermination() {
         self.quickbackuplist?.setcompleted()
         self.reloadtabledata()
-        guard self.quickbackuplist?.stackoftasktobeexecuted != nil else {
-            self.working.stopAnimation(nil)
-            return
-        }
         self.quickbackuplist?.processTermination()
     }
 
     func fileHandler() {
+        // nothing
+    }
+}
+
+extension ViewControllerQuickBackup: StartStopProgressIndicator {
+    func start() {
+        // nothing
+    }
+
+    func stop() {
+        self.working.stopAnimation(nil)
+    }
+
+    func complete() {
         // nothing
     }
 }
