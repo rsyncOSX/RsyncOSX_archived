@@ -11,23 +11,11 @@ import Foundation
 final class RsyncVersion: ProcessCmd {
 
     var outputprocess: OutputProcess?
-    var versionstring: String?
 
-    init () {
+    init (outputprocess: OutputProcess?) {
         super.init(command: nil, arguments: ["--version"])
-        self.updateDelegate = self
-        self.outputprocess = OutputProcess()
-        self.executeProcess(outputprocess: self.outputprocess)
+        self.updateDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vcabout) as? ViewControllerAbout
+        self.outputprocess = outputprocess
+        self.executeProcess(outputprocess: outputprocess)
     }
-}
-
-extension RsyncVersion: UpdateProgress {
-    func processTermination() {
-        print(self.outputprocess!.getOutput()!.joined(separator: "\n"))
-    }
-
-    func fileHandler() {
-        //
-    }
-
 }
