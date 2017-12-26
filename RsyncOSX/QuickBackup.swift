@@ -16,6 +16,10 @@ enum Sort {
     case backupId
 }
 
+struct Filtereddata2 {
+    var filtereddata: [NSMutableDictionary]?
+}
+
 class QuickBackup: SetConfigurations {
     var backuplist: [NSMutableDictionary]?
     var sortedlist: [NSMutableDictionary]?
@@ -109,6 +113,35 @@ class QuickBackup: SetConfigurations {
         self.index = self.stackoftasktobeexecuted![0].1
         self.stackoftasktobeexecuted?.remove(at: 0)
         self.executetasknow(hiddenID: hiddenID)
+    }
+
+    // Function for filter
+    func filter(search: String?, what: Filterlogs?) {
+        guard search != nil || self.sortedlist != nil else { return }
+        globalDefaultQueue.async(execute: {() -> Void in
+            var filtereddata = Filtereddata2()
+            switch what! {
+            case .executeDate:
+                return
+            case .localCatalog:
+                filtereddata.filtereddata = self.sortedlist?.filter({
+                    ($0.value(forKey: "localCatalogCellID") as? String)!.contains(search!)
+                })
+            case .remoteServer:
+                filtereddata.filtereddata = self.sortedlist?.filter({
+                    ($0.value(forKey: "offsiteServerCellID") as? String)!.contains(search!)
+                })
+            case .numberofdays:
+                filtereddata.filtereddata = self.sortedlist?.filter({
+                    ($0.value(forKey: "daysID") as? String)!.contains(search!)
+                })
+            case .remoteCatalog:
+                filtereddata.filtereddata = self.sortedlist?.filter({
+                    ($0.value(forKey: "offsiteCatalogCellID") as? String)!.contains(search!)
+                })
+            }
+            self.sortedlist = filtereddata.filtereddata
+        })
     }
 
     init() {

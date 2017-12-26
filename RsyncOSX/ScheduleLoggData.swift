@@ -20,9 +20,11 @@ enum Filterlogs {
     case localCatalog
     case remoteServer
     case executeDate
+    case numberofdays
+    case remoteCatalog
 }
 
-class Filtereddata {
+struct Filtereddata {
     var filtereddata: [NSDictionary]?
 }
 
@@ -40,7 +42,7 @@ final class ScheduleLoggData: SetConfigurations, SetSchedules {
         guard search != nil || self.loggdata != nil else { return }
         self.readfiltereddataDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vcloggdata) as? ViewControllerLoggData
         globalDefaultQueue.async(execute: {() -> Void in
-            let filtereddata = Filtereddata()
+            var filtereddata = Filtereddata()
             switch what! {
             case .executeDate:
                 filtereddata.filtereddata =  self.loggdata?.filter({
@@ -54,6 +56,10 @@ final class ScheduleLoggData: SetConfigurations, SetSchedules {
                 filtereddata.filtereddata = self.loggdata?.filter({
                     ($0.value(forKey: "offsiteServer") as? String)!.contains(search!)
                 })
+            case .numberofdays:
+                return
+            case .remoteCatalog:
+                return
             }
             self.readfiltereddataDelegate?.readfiltereddata(data: filtereddata)
         })

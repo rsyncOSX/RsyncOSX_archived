@@ -9,16 +9,19 @@
 import Foundation
 import Cocoa
 
-class ViewControllerQuickBackup: NSViewController, SetDismisser, AbortTask {
+class ViewControllerQuickBackup: NSViewController, SetDismisser, AbortTask, Delay {
 
     var seconds: Int?
     var row: Int?
+    var column: Int?
+    var filterby: Filterlogs?
     var quickbackuplist: QuickBackup?
 
     @IBOutlet weak var mainTableView: NSTableView!
     @IBOutlet weak var working: NSProgressIndicator!
     @IBOutlet weak var executeButton: NSButton!
     @IBOutlet weak var abortbutton: NSButton!
+    @IBOutlet weak var search: NSSearchField!
 
     // Either abort or close
     @IBAction func abort(_ sender: NSButton) {
@@ -47,6 +50,7 @@ class ViewControllerQuickBackup: NSViewController, SetDismisser, AbortTask {
         // Setting delegates and datasource
         self.mainTableView.delegate = self
         self.mainTableView.dataSource = self
+        self.search.delegate = self
         self.loadtasks()
     }
 
@@ -63,13 +67,23 @@ class ViewControllerQuickBackup: NSViewController, SetDismisser, AbortTask {
         let myTableViewFromNotification = (notification.object as? NSTableView)!
         let column = myTableViewFromNotification.selectedColumn
         if column == 3 {
+            self.column = 3
+            self.filterby = .localCatalog
             self.quickbackuplist?.sortbystrings(sort: .localCatalog)
         } else if column == 4 {
+            self.column = 4
+            self.filterby = .remoteCatalog
             self.quickbackuplist?.sortbystrings(sort: .offsiteCatalog)
         } else if column == 5 {
+            self.column = 5
+            self.filterby = .remoteServer
             self.quickbackuplist?.sortbystrings(sort: .offsiteServer)
         } else if column == 6 {
+            self.column = 6
+            self.filterby = .numberofdays
             self.quickbackuplist?.sortbydays()
+        } else {
+            self.column = nil
         }
         self.reloadtabledata()
     }
@@ -86,7 +100,8 @@ extension ViewControllerQuickBackup: NSTableViewDataSource {
 extension ViewControllerQuickBackup: NSTableViewDelegate, Attributtedestring {
     // TableView delegates
     func tableView(_ tableView: NSTableView, objectValueFor tableColumn: NSTableColumn?, row: Int) -> Any? {
-        guard  self.quickbackuplist?.sortedlist != nil else { return nil }
+        guard self.quickbackuplist?.sortedlist != nil else { return nil }
+        guard row < self.quickbackuplist!.sortedlist!.count else { return nil }
         let object: NSDictionary = (self.quickbackuplist?.sortedlist![row])!
         if tableColumn!.identifier.rawValue == "daysID" {
             if object.value(forKey: "markdays") as? Bool == true {
@@ -158,4 +173,34 @@ extension ViewControllerQuickBackup: StartStopProgressIndicator {
     func complete() {
         // nothing
     }
+}
+
+extension ViewControllerQuickBackup: NSSearchFieldDelegate {
+
+    override func controlTextDidChange(_ obj: Notification) {
+        self.delayWithSeconds(0.25) {
+            guard self.column != nil else {
+                return
+            }
+            let filterstring = self.search.stringValue
+            if filterstring.isEmpty {
+                globalMainQueue.async(execute: { () -> Void in
+                    self.quickbackuplist?.sortbydays()
+                    self.reloadtabledata()
+                })
+            } else {
+                globalMainQueue.async(execute: { () -> Void in
+                    self.quickbackuplist?.filter(search: filterstring, what: self.filterby)
+                    self.reloadtabledata()
+                })
+            }
+        }
+    }
+
+    func searchFieldDidEndSearching(_ sender: NSSearchField) {
+        globalMainQueue.async(execute: { () -> Void in
+            self.loadtasks()
+        })
+    }
+
 }
