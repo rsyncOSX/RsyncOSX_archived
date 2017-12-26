@@ -15,7 +15,7 @@ protocol ReadLoggdata: class {
     func readloggdata()
 }
 
-class ViewControllerLoggData: NSViewController, SetSchedules {
+class ViewControllerLoggData: NSViewController, SetSchedules, Delay {
 
     var tabledata: [NSDictionary]?
     var row: NSDictionary?
@@ -86,21 +86,23 @@ class ViewControllerLoggData: NSViewController, SetSchedules {
 extension ViewControllerLoggData: NSSearchFieldDelegate {
 
     override func controlTextDidChange(_ obj: Notification) {
-        guard self.server.state.rawValue == 1 ||
-            self.catalog.state.rawValue == 1 ||
-            self.date.state.rawValue == 1 else { return }
-        let filterstring = self.search.stringValue
-        self.sorting.startAnimation(self)
-        if filterstring.isEmpty {
-            globalMainQueue.async(execute: { () -> Void in
-                self.tabledata = ScheduleLoggData().getallloggdata()
-                self.scheduletable.reloadData()
-                self.sorting.stopAnimation(self)
-            })
-        } else {
-            globalMainQueue.async(execute: { () -> Void in
-                ScheduleLoggData().filter(search: filterstring, what: self.filterby)
-            })
+        self.delayWithSeconds(0.25) {
+            guard self.server.state.rawValue == 1 ||
+                self.catalog.state.rawValue == 1 ||
+                self.date.state.rawValue == 1 else { return }
+            let filterstring = self.search.stringValue
+            self.sorting.startAnimation(self)
+            if filterstring.isEmpty {
+                globalMainQueue.async(execute: { () -> Void in
+                    self.tabledata = ScheduleLoggData().getallloggdata()
+                    self.scheduletable.reloadData()
+                    self.sorting.stopAnimation(self)
+                })
+            } else {
+                globalMainQueue.async(execute: { () -> Void in
+                    ScheduleLoggData().filter(search: filterstring, what: self.filterby)
+                })
+            }
         }
     }
 
