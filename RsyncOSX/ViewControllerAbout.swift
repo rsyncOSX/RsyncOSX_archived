@@ -9,12 +9,17 @@
 import Foundation
 import Cocoa
 
+protocol RsyncVersionString: class {
+    func rsyncversionstring(rsyncversionstring: String)
+}
+
 class ViewControllerAbout: NSViewController, SetDismisser {
 
     @IBOutlet weak var version: NSTextField!
     @IBOutlet weak var downloadbutton: NSButton!
     @IBOutlet weak var thereisanewversion: NSTextField!
-
+    @IBOutlet weak var rsyncversionstring: NSTextField!
+    
     var checkfornewversion: Checkfornewversion?
     // External resources as documents, download
     private var resource: Resources?
@@ -48,18 +53,19 @@ class ViewControllerAbout: NSViewController, SetDismisser {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        ViewControllerReference.shared.setvcref(viewcontroller: .vcabout, nsviewcontroller: self)
         self.resource = Resources()
     }
 
     override func viewDidAppear() {
         super.viewDidAppear()
+        ViewControllerReference.shared.setvcref(viewcontroller: .vcabout, nsviewcontroller: self)
         self.downloadbutton.isEnabled = false
         self.checkfornewversion = Checkfornewversion(inMain: false)
         if let version = self.checkfornewversion!.rsyncOSXversion() {
             self.version.stringValue = "RsyncOSX ver: " + version
         }
         self.thereisanewversion.stringValue = "No new version: "
+        _ = RsyncVersion()
     }
 
     override func viewDidDisappear() {
@@ -75,6 +81,14 @@ extension ViewControllerAbout: NewVersionDiscovered {
         globalMainQueue.async(execute: { () -> Void in
             self.downloadbutton.isEnabled = true
             self.thereisanewversion.stringValue = "New version available: "
+        })
+    }
+}
+
+extension ViewControllerAbout: RsyncVersionString {
+    func rsyncversionstring(rsyncversionstring: String) {
+        globalMainQueue.async(execute: { () -> Void in
+            self.rsyncversionstring.stringValue = rsyncversionstring
         })
     }
 }
