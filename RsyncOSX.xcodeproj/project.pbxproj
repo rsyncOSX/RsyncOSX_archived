@@ -68,7 +68,6 @@
 		E9609EF51F229F5900F5BFAA /* PersistentStorageConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9609EF41F229F5900F5BFAA /* PersistentStorageConfiguration.swift */; };
 		E9612CB31F9BCBD4003A3CAE /* ExecuteTaskDispatch.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9612CB21F9BCBD4003A3CAE /* ExecuteTaskDispatch.swift */; };
 		E9614AD61F231AFC00CAE21A /* Tools.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9614AD51F231AFC00CAE21A /* Tools.swift */; };
-		E9636A931FF2AD2500529A69 /* RsyncVersion.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9636A921FF2AD2500529A69 /* RsyncVersion.swift */; };
 		E96CA1FE1E094C3000CD1D03 /* Resources.swift in Sources */ = {isa = PBXBuildFile; fileRef = E96CA1FD1E094C3000CD1D03 /* Resources.swift */; };
 		E97C09A71EFAFBC400E86999 /* BatchTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = E97C09A61EFAFBC400E86999 /* BatchTask.swift */; };
 		E97E3BA71F6256DB00411D0E /* Configurations.swift in Sources */ = {isa = PBXBuildFile; fileRef = E97E3BA61F6256DB00411D0E /* Configurations.swift */; };
@@ -80,6 +79,7 @@
 		E9D0A0121F9CBDFE0050A868 /* OperationFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9D0A0111F9CBDFE0050A868 /* OperationFactory.swift */; };
 		E9DCEA871E75F67200A69B4D /* OutputBatch.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9DCEA861E75F67200A69B4D /* OutputBatch.swift */; };
 		E9E1D8401F767B740040C813 /* InfoSchedulesSortedAndExpanded.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9E1D83F1F767B740040C813 /* InfoSchedulesSortedAndExpanded.swift */; };
+		E9E70A3C1FF3BCB30099554D /* RsyncVersionString.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9E70A3B1FF3BCB30099554D /* RsyncVersionString.swift */; };
 		E9E763711E6AEA5300B45E8D /* ViewControllerCopyFilesSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9E763701E6AEA5300B45E8D /* ViewControllerCopyFilesSource.swift */; };
 		E9E88FD01EB25A080028432F /* ScpArgumentsSsh.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9E88FCF1EB25A080028432F /* ScpArgumentsSsh.swift */; };
 		E9EC78711EACE082001EED9B /* Ssh.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9EC78701EACE082001EED9B /* Ssh.swift */; };
@@ -159,7 +159,6 @@
 		E9609EF41F229F5900F5BFAA /* PersistentStorageConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistentStorageConfiguration.swift; sourceTree = "<group>"; };
 		E9612CB21F9BCBD4003A3CAE /* ExecuteTaskDispatch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExecuteTaskDispatch.swift; sourceTree = "<group>"; };
 		E9614AD51F231AFC00CAE21A /* Tools.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tools.swift; sourceTree = "<group>"; };
-		E9636A921FF2AD2500529A69 /* RsyncVersion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RsyncVersion.swift; sourceTree = "<group>"; };
 		E96CA1FD1E094C3000CD1D03 /* Resources.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Resources.swift; sourceTree = "<group>"; };
 		E97C09A61EFAFBC400E86999 /* BatchTask.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BatchTask.swift; sourceTree = "<group>"; };
 		E97E3BA61F6256DB00411D0E /* Configurations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Configurations.swift; sourceTree = "<group>"; };
@@ -171,6 +170,7 @@
 		E9D0A0111F9CBDFE0050A868 /* OperationFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OperationFactory.swift; sourceTree = "<group>"; };
 		E9DCEA861E75F67200A69B4D /* OutputBatch.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OutputBatch.swift; sourceTree = "<group>"; };
 		E9E1D83F1F767B740040C813 /* InfoSchedulesSortedAndExpanded.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoSchedulesSortedAndExpanded.swift; sourceTree = "<group>"; };
+		E9E70A3B1FF3BCB30099554D /* RsyncVersionString.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RsyncVersionString.swift; sourceTree = "<group>"; };
 		E9E763701E6AEA5300B45E8D /* ViewControllerCopyFilesSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewControllerCopyFilesSource.swift; sourceTree = "<group>"; };
 		E9E88FCF1EB25A080028432F /* ScpArgumentsSsh.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScpArgumentsSsh.swift; sourceTree = "<group>"; };
 		E9EC78701EACE082001EED9B /* Ssh.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Ssh.swift; sourceTree = "<group>"; };
@@ -346,7 +346,6 @@
 		A04492C51D65904500B3CE17 /* Process */ = {
 			isa = PBXGroup;
 			children = (
-				E9636A921FF2AD2500529A69 /* RsyncVersion.swift */,
 				A049724F1D6595B200086EFD /* OutputProcess.swift */,
 				E9DCEA861E75F67200A69B4D /* OutputBatch.swift */,
 				E9FFA02C1E7287E100B7AB2B /* ProcessCmd.swift */,
@@ -354,6 +353,7 @@
 				E9CF14131E729540008E8A15 /* RsyncScheduled.swift */,
 				E9CF14151E729636008E8A15 /* CommandCopyFiles.swift */,
 				E9C6EA891ED2AE2F00680D4D /* Numbers.swift */,
+				E9E70A3B1FF3BCB30099554D /* RsyncVersionString.swift */,
 			);
 			name = Process;
 			sourceTree = "<group>";
@@ -605,6 +605,7 @@
 				E9612CB31F9BCBD4003A3CAE /* ExecuteTaskDispatch.swift in Sources */,
 				E9F068F41F27BA0200DDF1A1 /* Readwritefiles.swift in Sources */,
 				E989CE961EF948D0000CB7C2 /* ChmodPubKey.swift in Sources */,
+				E9E70A3C1FF3BCB30099554D /* RsyncVersionString.swift in Sources */,
 				E9E88FD01EB25A080028432F /* ScpArgumentsSsh.swift in Sources */,
 				A03876E11DB4FD9D00C14AEA /* ViewControllerProfile.swift in Sources */,
 				A0400C871D794FF8008A3949 /* Checkfornewversion.swift in Sources */,
@@ -623,7 +624,6 @@
 				E9FFA02F1E728C6E00B7AB2B /* Rsync.swift in Sources */,
 				E9234FFB1EB068AE00A4C550 /* Files.swift in Sources */,
 				E9E763711E6AEA5300B45E8D /* ViewControllerCopyFilesSource.swift in Sources */,
-				E9636A931FF2AD2500529A69 /* RsyncVersion.swift in Sources */,
 				E94DC7D81F9B6FE4009CA835 /* ScheduleOperationDispatch.swift in Sources */,
 				A0FC45641D9545CC005208EF /* ScheduleLoggData.swift in Sources */,
 				A04492A91D658F2100B3CE17 /* ytcpsocket.c in Sources */,

@@ -202,14 +202,6 @@ final class Tools: SetConfigurations, Delay {
         }
     }
 
-    func rsyncversionstring() {
-        var outputprocess = OutputProcess()
-        _ = RsyncVersion(outputprocess: outputprocess)
-        self.delayWithSeconds(0.25) {
-            ViewControllerReference.shared.rsyncversionstring = outputprocess.getOutput()!.joined(separator: "\n")
-        }
-    }
-
     /// Function for computing MacSerialNumber
     func computemacSerialNumber() -> String {
         // Get the platform expert

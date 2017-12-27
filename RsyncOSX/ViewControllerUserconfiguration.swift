@@ -76,7 +76,7 @@ class ViewControllerUserconfiguration: NSViewController, NewRsync, SetDismisser,
         } else if (self.presenting as? ViewControllerNewConfigurations) != nil {
             self.dismissview(viewcontroller: self, vcontroller: .vctabmain)
         }
-        _ = Tools().rsyncversionstring()
+        _ = RsyncVersionString()
     }
 
     @IBAction func toggleOperation(_ sender: NSButton) {
@@ -164,7 +164,6 @@ class ViewControllerUserconfiguration: NSViewController, NewRsync, SetDismisser,
         if fileManager.fileExists(atPath: rsyncpath!) {
             self.noRsync.isHidden = true
             ViewControllerReference.shared.norsync = false
-            _ = Tools().rsyncversionstring()
         } else {
             self.noRsync.isHidden = false
             ViewControllerReference.shared.norsync = true
