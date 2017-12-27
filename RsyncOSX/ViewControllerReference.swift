@@ -64,6 +64,8 @@ class ViewControllerReference {
     var fileURL: URL?
     // Mark number of days since last backup
     var marknumberofdayssince: Double = 5
+    // rsync version string
+    var rsyncversionstring: String?
 
     // Reference to main View
     private var viewControllertabMain: NSViewController?

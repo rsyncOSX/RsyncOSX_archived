@@ -62,8 +62,7 @@ class ViewControllerAbout: NSViewController, SetDismisser, Delay {
             self.version.stringValue = "RsyncOSX ver: " + version
         }
         self.thereisanewversion.stringValue = "No new version: "
-        self.outputprocess = OutputProcess()
-        _ = RsyncVersion(outputprocess: self.outputprocess)
+        self.rsyncversionstring.stringValue = ViewControllerReference.shared.rsyncversionstring ?? ""
     }
 
     override func viewDidDisappear() {
@@ -81,15 +80,4 @@ extension ViewControllerAbout: NewVersionDiscovered {
             self.thereisanewversion.stringValue = "New version available: "
         })
     }
-}
-
-extension ViewControllerAbout: UpdateProgress {
-    func processTermination() {
-        print(self.outputprocess!.getOutput()!.joined(separator: "\n"))
-    }
-
-    func fileHandler() {
-        //
-    }
-
 }

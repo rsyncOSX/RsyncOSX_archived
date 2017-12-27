@@ -310,6 +310,7 @@ class ViewControllertabMain: NSViewController, ReloadTable, Deselect, Coloractiv
         self.readyforexecution = true
         if self.tools == nil { self.tools = Tools()}
         self.possibleerroroutput.isHidden = true
+        self.tools?.rsyncversionstring()
     }
 
     override func viewDidDisappear() {

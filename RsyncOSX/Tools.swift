@@ -50,7 +50,7 @@ protocol Verifyrsync: class {
     func verifyrsync()
 }
 
-final class Tools: SetConfigurations {
+final class Tools: SetConfigurations, Delay {
 
     private var indexBoolremoteserverOff: [Bool]?
     weak var testconnectionsDelegate: Connections?
@@ -199,6 +199,14 @@ final class Tools: SetConfigurations {
             Alerts.showInfo("ERROR: no rsync in " + rsync)
         } else {
             Alerts.showInfo("ERROR: no rsync in /usr/local/bin")
+        }
+    }
+
+    func rsyncversionstring() {
+        var outputprocess = OutputProcess()
+        _ = RsyncVersion(outputprocess: outputprocess)
+        self.delayWithSeconds(0.25) {
+            ViewControllerReference.shared.rsyncversionstring = outputprocess.getOutput()!.joined(separator: "\n")
         }
     }
 
