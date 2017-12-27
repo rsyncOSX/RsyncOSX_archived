@@ -14,8 +14,10 @@ final class RsyncVersion: ProcessCmd {
 
     init (outputprocess: OutputProcess?) {
         super.init(command: nil, arguments: ["--version"])
-        self.updateDelegate = nil
-        self.outputprocess = outputprocess
-        self.executeProcess(outputprocess: outputprocess)
+        if ViewControllerReference.shared.norsync == false {
+            self.updateDelegate = nil
+            self.outputprocess = outputprocess
+            self.executeProcess(outputprocess: outputprocess)
+        }
     }
 }
