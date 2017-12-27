@@ -62,7 +62,6 @@ class ViewControllerUserconfiguration: NSViewController, NewRsync, SetDismisser,
         if self.dirty {
             // Before closing save changed configuration
             self.setRsyncPath()
-            // self.verifyRsync()
             self.setRestorePath()
             self.setmarknumberofdayssince()
             _ = self.storageapi!.saveUserconfiguration()
@@ -77,6 +76,7 @@ class ViewControllerUserconfiguration: NSViewController, NewRsync, SetDismisser,
         } else if (self.presenting as? ViewControllerNewConfigurations) != nil {
             self.dismissview(viewcontroller: self, vcontroller: .vctabmain)
         }
+        _ = RsyncVersionString()
     }
 
     @IBAction func toggleOperation(_ sender: NSButton) {

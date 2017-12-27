@@ -9,15 +9,17 @@
 import Foundation
 import Cocoa
 
-class ViewControllerAbout: NSViewController, SetDismisser {
+class ViewControllerAbout: NSViewController, SetDismisser, Delay {
 
     @IBOutlet weak var version: NSTextField!
     @IBOutlet weak var downloadbutton: NSButton!
     @IBOutlet weak var thereisanewversion: NSTextField!
+    @IBOutlet weak var rsyncversionstring: NSTextField!
 
     var checkfornewversion: Checkfornewversion?
     // External resources as documents, download
     private var resource: Resources?
+    var outputprocess: OutputProcess?
 
     @IBAction func dismiss(_ sender: NSButton) {
         self.dismissview(viewcontroller: self, vcontroller: .vctabmain)
@@ -60,6 +62,7 @@ class ViewControllerAbout: NSViewController, SetDismisser {
             self.version.stringValue = "RsyncOSX ver: " + version
         }
         self.thereisanewversion.stringValue = "No new version: "
+        self.rsyncversionstring.stringValue = ViewControllerReference.shared.rsyncversionstring ?? ""
     }
 
     override func viewDidDisappear() {

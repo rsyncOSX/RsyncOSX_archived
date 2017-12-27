@@ -50,7 +50,7 @@ protocol Verifyrsync: class {
     func verifyrsync()
 }
 
-final class Tools: SetConfigurations {
+final class Tools: SetConfigurations, Delay {
 
     private var indexBoolremoteserverOff: [Bool]?
     weak var testconnectionsDelegate: Connections?
