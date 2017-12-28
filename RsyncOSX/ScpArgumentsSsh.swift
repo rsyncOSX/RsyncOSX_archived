@@ -21,7 +21,7 @@ enum SshOperations {
 
 final class ScpArgumentsSsh: SetConfigurations {
 
-    var commandCopyPasteTermninal: String?
+    var commandCopyPasteTerminal: String?
     private var config: Configuration?
     private var args: Array<String>?
     private var command: String?
@@ -33,6 +33,7 @@ final class ScpArgumentsSsh: SetConfigurations {
 
     // Set parameters for SCP for copy public ssh key to server
     // scp ~/.ssh/id_rsa.pub user@server.com:.ssh/authorized_keys
+    // scp -P port ~/.ssh/id_rsa.pub user@server.com:.ssh/authorized_keys
     private func argumentsScpPubKey(path: String, key: String) {
         var remotearg: String?
         guard self.config != nil else { return }
@@ -50,16 +51,17 @@ final class ScpArgumentsSsh: SetConfigurations {
         }
         self.args!.append(remotearg!)
         self.command = "/usr/bin/scp"
-        self.commandCopyPasteTermninal = nil
-        self.commandCopyPasteTermninal = self.command! + " " + self.args![0]
+        self.commandCopyPasteTerminal = nil
+        self.commandCopyPasteTerminal = self.command! + " " + self.args![0]
         for i in 1 ..< self.args!.count {
-            self.commandCopyPasteTermninal = self.commandCopyPasteTermninal! + " " + self.args![i]
+            self.commandCopyPasteTerminal = self.commandCopyPasteTerminal! + " " + self.args![i]
         }
     }
 
     //  Check if pub key exists on remote server
     //  ssh thomas@10.0.0.58 "ls -al ~/.ssh/authorized_keys"
-    private func argumentsScheckRemotePubKey(key: String) {
+    //  ssh "-p port" thomas@10.0.0.58 "ls -al ~/.ssh/authorized_keys"
+    private func argumentsCheckRemotePubKey(key: String) {
         var remotearg: String?
         guard self.config != nil else { return }
         guard self.config!.offsiteServer.isEmpty == false else { return }
@@ -98,6 +100,7 @@ final class ScpArgumentsSsh: SetConfigurations {
     }
 
     // Chmod .ssh catalog
+    // either ssh or ssh "-p port"
     private func argumentsChmod(key: String) {
         var remotearg: String?
         guard self.config != nil else { return }
@@ -118,6 +121,7 @@ final class ScpArgumentsSsh: SetConfigurations {
     }
 
     //  Create remote catalog
+    // either ssh or ssh "-p port"
     private func argumentsCreateRemoteSshCatalog() {
         var remotearg: String?
         guard self.config != nil else { return }
@@ -133,12 +137,12 @@ final class ScpArgumentsSsh: SetConfigurations {
          self.args!.append("\"")
         self.args!.append("mkdir ~/.ssh")
         self.command = "/usr/bin/ssh"
-        self.commandCopyPasteTermninal = nil
-        self.commandCopyPasteTermninal = self.command! + " " + self.args![0]
+        self.commandCopyPasteTerminal = nil
+        self.commandCopyPasteTerminal = self.command! + " " + self.args![0]
         for i in 1 ..< self.args!.count {
-            self.commandCopyPasteTermninal = self.commandCopyPasteTermninal! + " " + self.args![i]
+            self.commandCopyPasteTerminal = self.commandCopyPasteTerminal! + " " + self.args![i]
         }
-        self.commandCopyPasteTermninal = self.commandCopyPasteTermninal! + "\""
+        self.commandCopyPasteTerminal = self.commandCopyPasteTerminal! + "\""
     }
 
     private func scpport() {
@@ -155,7 +159,7 @@ final class ScpArgumentsSsh: SetConfigurations {
     func getArguments(operation: SshOperations, key: String?, path: String?) -> Array<String>? {
         switch operation {
         case .checkKey:
-            self.argumentsScheckRemotePubKey(key: key!)
+            self.argumentsCheckRemotePubKey(key: key!)
         case .createKey:
             self.argumentsCreateKeys(path: path!, key: key!)
         case .scpKey:
