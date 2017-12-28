@@ -133,7 +133,13 @@ class ViewControllerSsh: NSViewController, SetConfigurations {
         self.checkDsaPubKeyButton.isEnabled = false
         self.checkRsaPubKeyButton.isEnabled = false
         self.checkPrivatePublicKey()
-
+    }
+    
+    override func viewDidDisappear() {
+        super.viewDidDisappear()
+        self.scpDsaCopyPasteCommand.stringValue = ""
+        self.scpRsaCopyPasteCommand.stringValue = ""
+        self.sshCreateRemoteCatalog.stringValue = ""
     }
 
     private func checkPrivatePublicKey() {
