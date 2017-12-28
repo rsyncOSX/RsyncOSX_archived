@@ -17,7 +17,17 @@ final class RsyncVersionString: ProcessCmd {
             self.updateDelegate = nil
             self.executeProcess(outputprocess: outputprocess)
             self.delayWithSeconds(0.25) {
+                guard outputprocess.getOutput() != nil else {
+                    return
+                }
+                guard outputprocess.getOutput()!.count > 0 else {
+                    return
+                }
+                ViewControllerReference.shared.rsyncversionshort = outputprocess.getOutput()![0]
                 ViewControllerReference.shared.rsyncversionstring = outputprocess.getOutput()!.joined(separator: "\n")
+                weak var shortstringDelegate: RsyncChanged?
+                shortstringDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllertabMain
+                shortstringDelegate?.rsyncchanged()
             }
         }
     }
