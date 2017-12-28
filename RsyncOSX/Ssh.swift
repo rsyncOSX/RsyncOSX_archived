@@ -114,7 +114,7 @@ class Ssh: Files {
             break
         }
         self.command = self.scpArguments!.getCommand()
-        self.commandCopyPasteTermninal = self.scpArguments!.commandCopyPasteTermninal
+        self.commandCopyPasteTermninal = self.scpArguments!.commandCopyPasteTerminal
     }
 
     // Check for remote pub keys
@@ -144,7 +144,7 @@ class Ssh: Files {
         self.scpArguments = ScpArgumentsSsh(hiddenID: hiddenID)
         self.arguments = scpArguments!.getArguments(operation: .createRemoteSshCatalog, key: nil, path: nil)
         self.command = self.scpArguments!.getCommand()
-        self.commandCopyPasteTermninal = self.scpArguments!.commandCopyPasteTermninal
+        self.commandCopyPasteTermninal = self.scpArguments!.commandCopyPasteTerminal
     }
 
     // Chmod remote .ssh directory
