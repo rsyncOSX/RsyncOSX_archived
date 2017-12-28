@@ -66,6 +66,8 @@ class ViewControllerReference {
     var marknumberofdayssince: Double = 5
     // rsync version string
     var rsyncversionstring: String?
+    // rsync short version
+    var rsyncversionshort: String?
 
     // Reference to main View
     private var viewControllertabMain: NSViewController?

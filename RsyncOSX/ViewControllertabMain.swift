@@ -71,7 +71,8 @@ class ViewControllertabMain: NSViewController, ReloadTable, Deselect, Coloractiv
     @IBOutlet weak var selecttask: NSTextField!
     @IBOutlet weak var norsync: NSTextField!
     @IBOutlet weak var possibleerroroutput: NSTextField!
-
+    @IBOutlet weak var rsyncversionshort: NSTextField!
+    
     // Reference to Process task
     private var process: Process?
     // Index to selected row, index is set when row is selected
@@ -663,6 +664,8 @@ extension ViewControllertabMain: RsyncChanged {
         // Update rsync command in display
         self.setRsyncCommandDisplay()
         self.verifyrsync()
+        // Setting shortstring
+        self.rsyncversionshort.stringValue = ViewControllerReference.shared.rsyncversionshort ?? ""
     }
 }
 
