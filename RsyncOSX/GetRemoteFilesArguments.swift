@@ -47,8 +47,10 @@ final class GetRemoteFilesArguments: ProcessArguments {
         self.command = tools.rsyncpath()
         if let config = self.config {
             if config.sshport != nil {
-                self.args!.append("-p")
-                self.args!.append(String(config.sshport!))
+                let eparam: String = "-e"
+                let sshp: String = "ssh -p"
+                self.args!.append(eparam)
+                self.args!.append(sshp + String(config.sshport!))
             }
             self.args!.append("-r")
             self.args!.append("--list-only")
