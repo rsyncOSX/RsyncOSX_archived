@@ -48,6 +48,7 @@ class ViewControllerNewConfigurations: NSViewController, SetConfigurations, VcSc
             self.setFields()
         })
     }
+/*
     @IBAction func copyLocalCatalog(_ sender: NSButton) {
         _ = FileDialog(requester: .addLocalCatalog)
     }
@@ -55,7 +56,7 @@ class ViewControllerNewConfigurations: NSViewController, SetConfigurations, VcSc
     @IBAction func copyRemoteCatalog(_ sender: NSButton) {
         _ = FileDialog(requester: .addRemoteCatalog)
     }
-
+*/
     // Userconfiguration button
     @IBAction func userconfiguration(_ sender: NSButton) {
         globalMainQueue.async(execute: { () -> Void in
@@ -168,9 +169,7 @@ extension ViewControllerNewConfigurations: NSTableViewDataSource {
 extension ViewControllerNewConfigurations: NSTableViewDelegate {
 
     func tableView(_ tableView: NSTableView, objectValueFor tableColumn: NSTableColumn?, row: Int) -> Any? {
-        guard self.newconfigurations?.getnewConfigurations() != nil else {
-            return nil
-        }
+        guard self.newconfigurations?.getnewConfigurations() != nil else { return nil }
         let object: NSMutableDictionary = self.newconfigurations!.getnewConfigurations()![row]
         return object[tableColumn!.identifier] as? String
     }
