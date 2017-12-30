@@ -6,13 +6,13 @@
 //  Copyright © 2016 Thomas Evensen. All rights reserved.
 //
 //  SwiftLint: OK 31 July 2017
-//  swiftlint:disable syntactic_sugar
+//  swiftlint:disable syntactic_sugar line_length
 
 import Foundation
 
 enum Enumscopyfiles {
     case rsyncCmd
-    case duCmd
+    case rsyncCmdFileListings
 }
 
 final class CopyFileArguments: ProcessArguments {
@@ -32,9 +32,7 @@ final class CopyFileArguments: ProcessArguments {
     }
 
     func getcommandDisplay() -> String {
-        guard self.argDisplay != nil else {
-            return ""
-        }
+        guard self.argDisplay != nil else { return "" }
         return self.argDisplay!
     }
 
@@ -44,13 +42,12 @@ final class CopyFileArguments: ProcessArguments {
         self.config = config
         switch task {
         case .rsyncCmd:
-            let arguments = RsyncArguments(config: config, remoteFile: remoteFile,
-                                           localCatalog: localCatalog, drynrun: drynrun)
+            let arguments = RsyncArguments(config: config, remoteFile: remoteFile, localCatalog: localCatalog, drynrun: drynrun)
             self.arguments = arguments.getArguments()
             self.command = arguments.getCommand()
             self.argDisplay = arguments.getArgumentsDisplay()
-        case .duCmd:
-            let arguments = GetRemoteFilesArguments(config: config)
+        case .rsyncCmdFileListings:
+            let arguments = GetRemoteFileListingsArguments(config: config)
             self.arguments = arguments.getArguments()
             self.command = arguments.getCommand()
         }

@@ -15,32 +15,12 @@ protocol ProcessArguments {
     func getCommand() -> String?
 }
 
-final class GetRemoteFilesArguments: ProcessArguments {
+final class GetRemoteFileListingsArguments: ProcessArguments {
 
     private var config: Configuration?
     private var args: Array<String>?
     private var command: String?
     private var file: String?
-
-    private func arguments2() {
-        if let config = self.config {
-            // ssh user@server.com "cd offsiteCatalog; du ."
-            if config.sshport != nil {
-                self.args!.append("-p")
-                self.args!.append(String(config.sshport!))
-            }
-            if config.offsiteServer.isEmpty == false {
-                self.args!.append(config.offsiteUsername + "@" + config.offsiteServer)
-                self.command = "/usr/bin/ssh"
-            } else {
-                self.args!.append("-c")
-                self.command = "/bin/bash"
-            }
-            let str: String = "cd " + config.offsiteCatalog + ";du -a -h"
-            // let str:String = "cd " + config.offsiteCatalog + ";find . -print"
-            self.args!.append(str)
-        }
-    }
 
     private func arguments() {
         let tools = Tools()
@@ -63,9 +43,7 @@ final class GetRemoteFilesArguments: ProcessArguments {
     }
 
     func getArguments() -> Array<String>? {
-        guard self.args != nil else {
-            return nil
-        }
+        guard self.args != nil else { return nil }
         return self.args
     }
 
