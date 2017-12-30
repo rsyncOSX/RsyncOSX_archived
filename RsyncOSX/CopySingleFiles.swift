@@ -10,7 +10,7 @@
 
 import Foundation
 
-final class CopyFiles: SetConfigurations {
+final class CopySingleFiles: SetConfigurations {
 
     private var index: Int?
     private var config: Configuration?
@@ -45,8 +45,6 @@ final class CopyFiles: SetConfigurations {
                                                      localCatalog: localCatalog, drynrun: false)
             self.arguments = self.argumentsObject!.getArguments()
         }
-        self.command = nil
-        self.outputprocess = nil
         self.outputprocess = OutputProcess()
         self.process = CommandCopyFiles(command: nil, arguments: self.arguments)
         self.process!.executeProcess(outputprocess: self.outputprocess)
@@ -65,7 +63,7 @@ final class CopyFiles: SetConfigurations {
     private func getRemoteFileList() {
         self.outputprocess = nil
         self.outputprocess = OutputProcess()
-        self.argumentsObject = CopyFileArguments(task: .duCmd, config: self.config!, remoteFile: nil,
+        self.argumentsObject = CopyFileArguments(task: .rsyncCmdFileListings, config: self.config!, remoteFile: nil,
                                                  localCatalog: nil, drynrun: nil)
         self.arguments = self.argumentsObject!.getArguments()
         self.command = self.argumentsObject!.getCommand()

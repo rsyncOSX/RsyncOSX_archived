@@ -20,7 +20,7 @@ protocol GetSource: class {
 
 class ViewControllerCopyFiles: NSViewController, SetConfigurations, GetIndex, Delay, VcCopyFiles {
 
-    var copyFiles: CopyFiles?
+    var copyFiles: CopySingleFiles?
     var index: Int?
     var rsync: Bool = false
     var estimated: Bool = false
@@ -82,7 +82,7 @@ class ViewControllerCopyFiles: NSViewController, SetConfigurations, GetIndex, De
     @IBAction func getIndex(_ sender: NSButton) {
         self.copyFiles = nil
         if let index = self.index {
-            self.copyFiles = CopyFiles(index: index)
+            self.copyFiles = CopySingleFiles(index: index)
             self.working.startAnimation(nil)
             self.displayRemoteserver(index: index)
         } else {
@@ -335,7 +335,7 @@ extension ViewControllerCopyFiles: GetSource {
         self.index = index
         self.displayRemoteserver(index: index)
         if let index = self.index {
-            self.copyFiles = CopyFiles(index: index)
+            self.copyFiles = CopySingleFiles(index: index)
             self.working.startAnimation(nil)
             self.displayRemoteserver(index: index)
         }
