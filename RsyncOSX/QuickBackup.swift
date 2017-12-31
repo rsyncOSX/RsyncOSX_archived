@@ -23,6 +23,7 @@ struct Filtereddata2 {
 class QuickBackup: SetConfigurations {
     var backuplist: [NSMutableDictionary]?
     var sortedlist: [NSMutableDictionary]?
+    // (hiddenID, index)
     typealias Row = (Int, Int)
     var stackoftasktobeexecuted: [Row]?
     var index: Int?

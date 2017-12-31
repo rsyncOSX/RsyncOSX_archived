@@ -9,10 +9,10 @@
 import Foundation
 
 class EstimateRemoteInformationTask: SetConfigurations {
-    
+
     init(index: Int, outputprocess: OutputProcess?) {
-            let arguments = self.configurations!.arguments4rsync(index: index, argtype: .argdryRun)
-            let process = Rsync(arguments: arguments)
-            process.executeProcess(outputprocess: outputprocess)
+        let arguments = self.configurations!.arguments4rsync(index: index, argtype: .argdryRun)
+        let process = Rsync(arguments: arguments)
+        process.executeProcess(outputprocess: outputprocess)
     }
 }

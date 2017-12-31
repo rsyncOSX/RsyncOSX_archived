@@ -274,9 +274,26 @@
                                         </connections>
                                     </button>
                                 </toolbarItem>
+                                <toolbarItem implicitItemIdentifier="9984F48F-97C0-4D13-9BA2-715406048804" label="totinfo" paletteLabel="totinfo" image="info" id="v12-7x-cig">
+                                    <nil key="toolTip"/>
+                                    <size key="minSize" width="40" height="25"/>
+                                    <size key="maxSize" width="40" height="28"/>
+                                    <button key="view" verticalHuggingPriority="750" id="dsJ-ms-wHD">
+                                        <rect key="frame" x="1" y="14" width="40" height="28"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                        <buttonCell key="cell" type="roundTextured" bezelStyle="texturedRounded" image="info" imagePosition="overlaps" alignment="center" lineBreakMode="truncatingTail" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="En8-0i-Aoy">
+                                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                            <font key="font" metaFont="system"/>
+                                        </buttonCell>
+                                        <connections>
+                                            <action selector="totinfo:" target="Rv5-yv-lsc" id="fLv-X2-VHR"/>
+                                        </connections>
+                                    </button>
+                                </toolbarItem>
                             </allowedToolbarItems>
                             <defaultToolbarItems>
                                 <toolbarItem reference="zs6-ub-LOa"/>
+                                <toolbarItem reference="v12-7x-cig"/>
                                 <toolbarItem reference="uoc-zJ-5pZ"/>
                                 <toolbarItem reference="OrH-Ty-gyv"/>
                                 <toolbarItem reference="7w4-6r-ai5"/>

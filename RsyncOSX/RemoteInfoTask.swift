@@ -19,6 +19,20 @@ class RemoteInfoTask {
     var newfiles: String?
     var deletefiles: String?
 
+    func info() -> NSMutableDictionary {
+        let dict: NSMutableDictionary = [
+            "transferredNumber": self.transferredNumber ?? "",
+            "transferredNumberSizebytes": self.transferredNumberSizebytes ?? "",
+            "totalNumber": self.totalNumber ?? "",
+            "totalNumberSizebytes": self.totalNumberSizebytes ?? "",
+            "totalDirs": self.totalDirs ?? "",
+            "newfiles": self.newfiles ?? ""
+            // "deletefiles": self.deletefiles ?? ""
+        ]
+        dict.setValue(self.deletefiles ?? "", forKey: "deletefiles")
+        return dict
+    }
+
     init(outputprocess: OutputProcess?) {
         let number = Numbers(outputprocess: outputprocess)
         self.transferredNumber = NumberFormatter.localizedString(from: NSNumber(value: number.getTransferredNumbers(numbers: .transferredNumber)), number: NumberFormatter.Style.decimal)

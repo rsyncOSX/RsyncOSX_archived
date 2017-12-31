@@ -99,6 +99,13 @@ class ViewControllertabMain: NSViewController, ReloadTable, Deselect, Coloractiv
     private var loadProfileMenu: Bool = false
     // Which kind of task
     private var processtermination: ProcessTermination?
+    // remote info tasks
+    private var remoteinfotask: RemoteInfoTaskWorkQueue?
+
+    @IBAction func totinfo(_ sender: NSButton) {
+        self.processtermination = .remoteinfotask
+        self.remoteinfotask = RemoteInfoTaskWorkQueue()
+    }
 
     @IBAction func quickbackup(_ sender: NSButton) {
         self.processtermination = .quicktask
@@ -754,7 +761,10 @@ extension ViewControllertabMain: UpdateProgress {
             // Kick off next task
             self.startfirstcheduledtask()
         case .remoteinfotask:
-            return
+            guard self.remoteinfotask != nil else {
+                return
+            }
+            self.remoteinfotask?.processTermination()
         }
     }
 

@@ -9,25 +9,46 @@
 import Foundation
 
 class RemoteInfoTaskWorkQueue: SetConfigurations {
-    // (index, hiddenID)
+    // (hiddenID, index)
     typealias Row = (Int, Int)
     var stackoftasktobeestimated: [Row]?
-    
+    var outputprocess: OutputProcess?
+
     private func prepareandstartexecutetasks() {
         self.stackoftasktobeestimated = nil
         self.stackoftasktobeestimated = [Row]()
         for i in 0 ..< self.configurations!.getConfigurations().count {
             if self.configurations!.getConfigurations()[i].task == "backup" {
-                self.stackoftasktobeestimated?.append((i, self.configurations!.getConfigurations()[i].hiddenID))
+                self.stackoftasktobeestimated?.append((self.configurations!.getConfigurations()[i].hiddenID, i))
             }
         }
     }
 
-    func processTermination() {
-        
+    private func start() {
+        self.outputprocess = OutputProcess()
+        let index = self.stackoftasktobeestimated?.remove(at: 0).1
+        if self.stackoftasktobeestimated?.count == 0 {
+            self.stackoftasktobeestimated = nil
+        }
+        _ = EstimateRemoteInformationTask(index: index!, outputprocess: self.outputprocess)
     }
-    
+
+    func processTermination() {
+        let info = RemoteInfoTask(outputprocess: self.outputprocess)
+        print(info.info())
+        guard self.stackoftasktobeestimated != nil else { return }
+        self.outputprocess = nil
+        self.outputprocess = OutputProcess()
+        let index = self.stackoftasktobeestimated?.remove(at: 0).1
+        if self.stackoftasktobeestimated?.count == 0 {
+            self.stackoftasktobeestimated = nil
+        }
+        _ = EstimateRemoteInformationTask(index: index!, outputprocess: self.outputprocess)
+
+    }
+
     init() {
         self.prepareandstartexecutetasks()
+        self.start()
     }
 }
