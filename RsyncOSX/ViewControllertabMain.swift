@@ -72,7 +72,7 @@ class ViewControllertabMain: NSViewController, ReloadTable, Deselect, Coloractiv
     @IBOutlet weak var norsync: NSTextField!
     @IBOutlet weak var possibleerroroutput: NSTextField!
     @IBOutlet weak var rsyncversionshort: NSTextField!
-    
+
     // Reference to Process task
     private var process: Process?
     // Index to selected row, index is set when row is selected
@@ -154,7 +154,7 @@ class ViewControllertabMain: NSViewController, ReloadTable, Deselect, Coloractiv
 
     private func reset() {
         self.outputprocess = nil
-        self.setNumbers(output: nil)
+        self.setNumbers(outputprocess: nil)
         self.setInfo(info: "Estimate", color: .blue)
         self.statuslight.image = #imageLiteral(resourceName: "yellow")
         self.process = nil
@@ -368,7 +368,7 @@ class ViewControllertabMain: NSViewController, ReloadTable, Deselect, Coloractiv
             return
         }
         self.singletask = nil
-        self.setNumbers(output: nil)
+        self.setNumbers(outputprocess: nil)
         self.deselect()
         globalMainQueue.async(execute: { () -> Void in
             self.presentViewControllerAsSheet(self.viewControllerBatch!)
@@ -422,7 +422,7 @@ class ViewControllertabMain: NSViewController, ReloadTable, Deselect, Coloractiv
             self.hiddenID = self.configurations!.gethiddenID(index: index)
             self.outputprocess = nil
             self.outputbatch = nil
-            self.setNumbers(output: nil)
+            self.setNumbers(outputprocess: nil)
         } else {
             self.index = nil
         }
@@ -594,11 +594,11 @@ extension ViewControllertabMain: NewProfile {
         self.outputprocess = nil
         self.outputbatch = nil
         self.singletask = nil
-        self.setNumbers(output: nil)
+        self.setNumbers(outputprocess: nil)
         self.setRsyncCommandDisplay()
         self.setInfo(info: "Estimate", color: .blue)
         self.statuslight.image = #imageLiteral(resourceName: "yellow")
-        self.setNumbers(output: nil)
+        self.setNumbers(outputprocess: nil)
         self.deselect()
         // Read configurations and Scheduledata
         self.configurations = self.createconfigurationsobject(profile: profile)
@@ -945,9 +945,9 @@ extension ViewControllertabMain: SingleTaskProgress {
 
     // Function for getting numbers out of output object updated when
     // Process object executes the job.
-    func setNumbers(output: OutputProcess?) {
+    func setNumbers(outputprocess: OutputProcess?) {
         globalMainQueue.async(execute: { () -> Void in
-            guard output != nil else {
+            guard outputprocess != nil else {
                 self.transferredNumber.stringValue = ""
                 self.transferredNumberSizebytes.stringValue = ""
                 self.totalNumber.stringValue = ""
@@ -957,14 +957,14 @@ extension ViewControllertabMain: SingleTaskProgress {
                 self.deletefiles.stringValue = ""
                 return
             }
-            let number = Numbers(outputprocess: output)
-            self.transferredNumber.stringValue = NumberFormatter.localizedString(from: NSNumber(value: number.getTransferredNumbers(numbers: .transferredNumber)), number: NumberFormatter.Style.decimal)
-            self.transferredNumberSizebytes.stringValue = NumberFormatter.localizedString(from: NSNumber(value: number.getTransferredNumbers(numbers: .transferredNumberSizebytes)), number: NumberFormatter.Style.decimal)
-            self.totalNumber.stringValue = NumberFormatter.localizedString(from: NSNumber(value: number.getTransferredNumbers(numbers: .totalNumber)), number: NumberFormatter.Style.decimal)
-            self.totalNumberSizebytes.stringValue = NumberFormatter.localizedString(from: NSNumber(value: number.getTransferredNumbers(numbers: .totalNumberSizebytes)), number: NumberFormatter.Style.decimal)
-            self.totalDirs.stringValue = NumberFormatter.localizedString(from: NSNumber(value: number.getTransferredNumbers(numbers: .totalDirs)), number: NumberFormatter.Style.decimal)
-            self.newfiles.stringValue = NumberFormatter.localizedString(from: NSNumber(value: number.getTransferredNumbers(numbers: .new)), number: NumberFormatter.Style.decimal)
-            self.deletefiles.stringValue = NumberFormatter.localizedString(from: NSNumber(value: number.getTransferredNumbers(numbers: .delete)), number: NumberFormatter.Style.decimal)
+            let remoteinfotask = RemoteInfoTask(outputprocess: outputprocess)
+            self.transferredNumber.stringValue = remoteinfotask.transferredNumber!
+            self.transferredNumberSizebytes.stringValue = remoteinfotask.transferredNumberSizebytes!
+            self.totalNumber.stringValue = remoteinfotask.totalNumber!
+            self.totalNumberSizebytes.stringValue = remoteinfotask.totalNumberSizebytes!
+            self.totalDirs.stringValue = remoteinfotask.totalDirs!
+            self.newfiles.stringValue = remoteinfotask.newfiles!
+            self.deletefiles.stringValue = remoteinfotask.deletefiles!
         })
     }
 
