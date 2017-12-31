@@ -753,6 +753,8 @@ extension ViewControllertabMain: UpdateProgress {
             ViewControllerReference.shared.completeoperation = nil
             // Kick off next task
             self.startfirstcheduledtask()
+        case .remoteinfotask:
+            return
         }
     }
 
@@ -783,6 +785,8 @@ extension ViewControllertabMain: UpdateProgress {
         case .quicktask:
             return
         case .singlequicktask:
+            return
+        case .remoteinfotask:
             return
         }
     }

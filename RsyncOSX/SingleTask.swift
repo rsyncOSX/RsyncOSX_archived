@@ -162,9 +162,7 @@ final class SingleTask: SetSchedules, SetConfigurations {
 
     // Put error token ontop of workload
     func error() {
-        guard self.workload != nil else {
-            return
-        }
+        guard self.workload != nil else { return }
         self.workload!.error()
     }
 
@@ -186,9 +184,7 @@ extension SingleTask: Count {
     // Counting number of files
     // Function is called when Process discover FileHandler notification
     func inprogressCount() -> Int {
-        guard self.outputprocess != nil else {
-            return 0
-        }
+        guard self.outputprocess != nil else { return 0 }
         return self.outputprocess!.count()
     }
 

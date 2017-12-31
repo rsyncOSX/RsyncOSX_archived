@@ -63,6 +63,8 @@
 		E93D82141E79C69500B20965 /* ViewControllerHelp.swift in Sources */ = {isa = PBXBuildFile; fileRef = E93D82131E79C69500B20965 /* ViewControllerHelp.swift */; };
 		E942FF291FED41D0004191B5 /* ViewControllerQuickBackup.swift in Sources */ = {isa = PBXBuildFile; fileRef = E942FF281FED41D0004191B5 /* ViewControllerQuickBackup.swift */; };
 		E943DC661FF90A6600E6B8B7 /* RemoteInfoTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = E943DC651FF90A6600E6B8B7 /* RemoteInfoTask.swift */; };
+		E943DC681FF9115200E6B8B7 /* EstimateRemoteInformationTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = E943DC671FF9115200E6B8B7 /* EstimateRemoteInformationTask.swift */; };
+		E943DC6A1FF9141D00E6B8B7 /* RemoteInfoTaskWorkQueue.swift in Sources */ = {isa = PBXBuildFile; fileRef = E943DC691FF9141D00E6B8B7 /* RemoteInfoTaskWorkQueue.swift */; };
 		E94DC7D81F9B6FE4009CA835 /* ScheduleOperationDispatch.swift in Sources */ = {isa = PBXBuildFile; fileRef = E94DC7D71F9B6FE4009CA835 /* ScheduleOperationDispatch.swift */; };
 		E957B1121F5F17220099947A /* ViewControllerReference.swift in Sources */ = {isa = PBXBuildFile; fileRef = E957B1111F5F17220099947A /* ViewControllerReference.swift */; };
 		E958CDDF1FA4CEBD00EA37A5 /* ViewControllerExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E958CDDE1FA4CEBD00EA37A5 /* ViewControllerExtensions.swift */; };
@@ -155,6 +157,8 @@
 		E93D82131E79C69500B20965 /* ViewControllerHelp.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewControllerHelp.swift; sourceTree = "<group>"; };
 		E942FF281FED41D0004191B5 /* ViewControllerQuickBackup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerQuickBackup.swift; sourceTree = "<group>"; };
 		E943DC651FF90A6600E6B8B7 /* RemoteInfoTask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteInfoTask.swift; sourceTree = "<group>"; };
+		E943DC671FF9115200E6B8B7 /* EstimateRemoteInformationTask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EstimateRemoteInformationTask.swift; sourceTree = "<group>"; };
+		E943DC691FF9141D00E6B8B7 /* RemoteInfoTaskWorkQueue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteInfoTaskWorkQueue.swift; sourceTree = "<group>"; };
 		E94DC7D71F9B6FE4009CA835 /* ScheduleOperationDispatch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleOperationDispatch.swift; sourceTree = "<group>"; };
 		E957B1111F5F17220099947A /* ViewControllerReference.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerReference.swift; sourceTree = "<group>"; };
 		E958CDDE1FA4CEBD00EA37A5 /* ViewControllerExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerExtensions.swift; sourceTree = "<group>"; };
@@ -468,6 +472,8 @@
 			isa = PBXGroup;
 			children = (
 				E943DC651FF90A6600E6B8B7 /* RemoteInfoTask.swift */,
+				E943DC671FF9115200E6B8B7 /* EstimateRemoteInformationTask.swift */,
+				E943DC691FF9141D00E6B8B7 /* RemoteInfoTaskWorkQueue.swift */,
 			);
 			name = RemoteInformation;
 			sourceTree = "<group>";
@@ -609,6 +615,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A04972511D6595B200086EFD /* OutputProcess.swift in Sources */,
+				E943DC6A1FF9141D00E6B8B7 /* RemoteInfoTaskWorkQueue.swift in Sources */,
 				A0AD15AE1D7DB78F0004600F /* ScheduleOperationTimer.swift in Sources */,
 				E942FF291FED41D0004191B5 /* ViewControllerQuickBackup.swift in Sources */,
 				A0B340B41D67079700C6DAC3 /* ViewControllertabSchedule.swift in Sources */,
@@ -687,6 +694,7 @@
 				A04492AC1D658F2100B3CE17 /* Configuration.swift in Sources */,
 				A04492861D658EE800B3CE17 /* AppDelegate.swift in Sources */,
 				E9E1D8401F767B740040C813 /* InfoSchedulesSortedAndExpanded.swift in Sources */,
+				E943DC681FF9115200E6B8B7 /* EstimateRemoteInformationTask.swift in Sources */,
 				A04492BA1D658F2100B3CE17 /* ysocket.swift in Sources */,
 				E9F413BB1F63AC2A00C0945E /* Schedules.swift in Sources */,
 				A091C6581D86A0A800278E74 /* ViewControllerCopyFiles.swift in Sources */,
