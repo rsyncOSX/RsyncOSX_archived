@@ -44,7 +44,7 @@ class ViewControllerRemoteInfo: NSViewController, SetDismisser {
             self.mainTableView.reloadData()
         })
     }
-    
+
     override func viewDidDisappear() {
         super.viewDidDisappear()
         self.working.stopAnimation(nil)
