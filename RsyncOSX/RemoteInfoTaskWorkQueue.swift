@@ -20,6 +20,7 @@ class RemoteInfoTaskWorkQueue: SetConfigurations {
     var outputprocess: OutputProcess?
     var records: [NSMutableDictionary]?
     weak var reloadtableDelegate: UpdateProgress?
+    var index: Int?
 
     private func prepareandstartexecutetasks() {
         self.stackoftasktobeestimated = nil
@@ -33,26 +34,28 @@ class RemoteInfoTaskWorkQueue: SetConfigurations {
 
     private func start() {
         self.outputprocess = OutputProcess()
-        let index = self.stackoftasktobeestimated?.remove(at: 0).1
+        self.index = self.stackoftasktobeestimated?.remove(at: 0).1
         if self.stackoftasktobeestimated?.count == 0 {
             self.stackoftasktobeestimated = nil
         }
-        _ = EstimateRemoteInformationTask(index: index!, outputprocess: self.outputprocess)
+        _ = EstimateRemoteInformationTask(index: self.index!, outputprocess: self.outputprocess)
     }
 
     func processTermination() {
-        let record = RemoteInfoTask(outputprocess: self.outputprocess)
-        self.records?.append(record.record())
+        let record = RemoteInfoTask(outputprocess: self.outputprocess).record()
+        record.setValue(self.configurations?.getConfigurations()[self.index!].localCatalog, forKey: "localCatalog")
+        record.setValue(self.configurations?.getConfigurations()[self.index!].offsiteCatalog, forKey: "offsiteCatalog")
+        self.records?.append(record)
         self.reloadtableDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vcremoteinfo) as? ViewControllerRemoteInfo
         self.reloadtableDelegate?.processTermination()
         guard self.stackoftasktobeestimated != nil else { return }
         self.outputprocess = nil
         self.outputprocess = OutputProcess()
-        let index = self.stackoftasktobeestimated?.remove(at: 0).1
+        self.index = self.stackoftasktobeestimated?.remove(at: 0).1
         if self.stackoftasktobeestimated?.count == 0 {
             self.stackoftasktobeestimated = nil
         }
-        _ = EstimateRemoteInformationTask(index: index!, outputprocess: self.outputprocess)
+        _ = EstimateRemoteInformationTask(index: self.index!, outputprocess: self.outputprocess)
     }
 
     init() {
