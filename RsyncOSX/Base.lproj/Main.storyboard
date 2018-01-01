@@ -5542,10 +5542,20 @@ DQ
                                 <rect key="frame" x="859" y="23" width="16" height="16"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                             </progressIndicator>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="8bs-cE-2aO">
+                                <rect key="frame" x="20" y="22" width="202" height="17"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Count" id="78a-Cw-Mjk">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
                         </subviews>
                     </view>
                     <connections>
                         <outlet property="abortbutton" destination="Wwa-AM-h7f" id="klH-9g-51D"/>
+                        <outlet property="count" destination="8bs-cE-2aO" id="xPP-PG-SIw"/>
                         <outlet property="mainTableView" destination="cdd-YP-oPa" id="gDp-Qw-J6d"/>
                         <outlet property="working" destination="Q9W-RQ-hBv" id="LwE-iu-2ri"/>
                     </connections>

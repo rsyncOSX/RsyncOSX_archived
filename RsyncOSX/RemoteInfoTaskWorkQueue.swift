@@ -21,6 +21,8 @@ class RemoteInfoTaskWorkQueue: SetConfigurations {
     var records: [NSMutableDictionary]?
     weak var reloadtableDelegate: UpdateProgress?
     var index: Int?
+    var maxnumber: Int?
+    var count: Int?
 
     private func prepareandstartexecutetasks() {
         self.stackoftasktobeestimated = nil
@@ -30,6 +32,7 @@ class RemoteInfoTaskWorkQueue: SetConfigurations {
                 self.stackoftasktobeestimated?.append((self.configurations!.getConfigurations()[i].hiddenID, i))
             }
         }
+        self.maxnumber = self.stackoftasktobeestimated?.count
     }
 
     private func start() {
@@ -42,6 +45,7 @@ class RemoteInfoTaskWorkQueue: SetConfigurations {
     }
 
     func processTermination() {
+        self.count = self.stackoftasktobeestimated?.count
         let record = RemoteInfoTask(outputprocess: self.outputprocess).record()
         record.setValue(self.configurations?.getConfigurations()[self.index!].localCatalog, forKey: "localCatalog")
         record.setValue(self.configurations?.getConfigurations()[self.index!].offsiteCatalog, forKey: "offsiteCatalog")

@@ -18,7 +18,8 @@ class ViewControllerRemoteInfo: NSViewController, SetDismisser {
     // remote info tasks
     private var remoteinfotask: RemoteInfoTaskWorkQueue?
     weak var remoteinfotaskDelegate: SetRemoteInfo?
-
+    @IBOutlet weak var count: NSTextField!
+    
     // Either abort or close
     @IBAction func abort(_ sender: NSButton) {
         self.dismissview(viewcontroller: self, vcontroller: .vctabmain)
@@ -43,6 +44,7 @@ class ViewControllerRemoteInfo: NSViewController, SetDismisser {
         globalMainQueue.async(execute: { () -> Void in
             self.mainTableView.reloadData()
         })
+        self.count.stringValue = String(describing: self.remoteinfotask?.count ?? 0) + " of " + String(describing: self.remoteinfotask?.maxnumber ?? 0)
     }
 
     override func viewDidDisappear() {
@@ -74,6 +76,7 @@ extension ViewControllerRemoteInfo: Reloadandrefresh {
 
     // Updates tableview according to progress of batch
     func reloadtabledata() {
+        self.count.stringValue = String(describing: self.remoteinfotask?.count ?? 0) + " of " + String(describing: self.remoteinfotask?.maxnumber ?? 0)
         globalMainQueue.async(execute: { () -> Void in
             self.mainTableView.reloadData()
         })
