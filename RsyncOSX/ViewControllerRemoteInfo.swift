@@ -15,8 +15,6 @@ class ViewControllerRemoteInfo: NSViewController, SetDismisser {
     @IBOutlet weak var mainTableView: NSTableView!
     @IBOutlet weak var working: NSProgressIndicator!
     @IBOutlet weak var abortbutton: NSButton!
-
-    var tabledata: [NSMutableDictionary]?
     // remote info tasks
     private var remoteinfotask: RemoteInfoTaskWorkQueue?
     weak var remoteinfotaskDelegate: SetRemoteInfo?
@@ -36,7 +34,6 @@ class ViewControllerRemoteInfo: NSViewController, SetDismisser {
         self.remoteinfotaskDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllertabMain
         self.remoteinfotask = RemoteInfoTaskWorkQueue()
         self.remoteinfotaskDelegate?.setremoteinfo(remoteinfotask: self.remoteinfotask)
-        self.tabledata = self.remoteinfotask?.records
     }
 
     override func viewDidAppear() {
@@ -52,16 +49,16 @@ class ViewControllerRemoteInfo: NSViewController, SetDismisser {
 extension ViewControllerRemoteInfo: NSTableViewDataSource {
     // Delegate for size of table
     func numberOfRows(in tableView: NSTableView) -> Int {
-        return self.tabledata?.count ?? 0
+        return self.remoteinfotask?.records?.count ?? 0
     }
 }
 
 extension ViewControllerRemoteInfo: NSTableViewDelegate, Attributtedestring {
     // TableView delegates
     func tableView(_ tableView: NSTableView, objectValueFor tableColumn: NSTableColumn?, row: Int) -> Any? {
-        guard self.tabledata != nil else { return nil }
-        guard row < self.tabledata!.count else { return nil }
-        let object: NSDictionary = (self.tabledata?[row])!
+        guard self.remoteinfotask?.records != nil else { return nil }
+        guard row < (self.remoteinfotask!.records?.count)! else { return nil }
+        let object: NSDictionary = (self.remoteinfotask?.records?[row])!
         return object[tableColumn!.identifier] as? String
     }
 }
