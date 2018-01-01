@@ -104,7 +104,10 @@ class ViewControllertabMain: NSViewController, ReloadTable, Deselect, Coloractiv
 
     @IBAction func totinfo(_ sender: NSButton) {
         self.processtermination = .remoteinfotask
-        self.remoteinfotask = RemoteInfoTaskWorkQueue()
+        globalMainQueue.async(execute: { () -> Void in
+            self.presentViewControllerAsSheet(self.viewControllerRemoteInfo!)
+        })
+        // self.remoteinfotask = RemoteInfoTaskWorkQueue()
     }
 
     @IBAction func quickbackup(_ sender: NSButton) {

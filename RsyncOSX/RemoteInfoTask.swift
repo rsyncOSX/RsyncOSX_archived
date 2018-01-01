@@ -19,7 +19,7 @@ class RemoteInfoTask {
     var newfiles: String?
     var deletefiles: String?
 
-    func info() -> NSMutableDictionary {
+    func record() -> NSMutableDictionary {
         let dict: NSMutableDictionary = [
             "transferredNumber": self.transferredNumber ?? "",
             "transferredNumberSizebytes": self.transferredNumberSizebytes ?? "",

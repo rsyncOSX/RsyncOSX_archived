@@ -13,6 +13,7 @@ class RemoteInfoTaskWorkQueue: SetConfigurations {
     typealias Row = (Int, Int)
     var stackoftasktobeestimated: [Row]?
     var outputprocess: OutputProcess?
+    var records: [NSMutableDictionary]?
 
     private func prepareandstartexecutetasks() {
         self.stackoftasktobeestimated = nil
@@ -34,8 +35,8 @@ class RemoteInfoTaskWorkQueue: SetConfigurations {
     }
 
     func processTermination() {
-        let info = RemoteInfoTask(outputprocess: self.outputprocess)
-        print(info.info())
+        let record = RemoteInfoTask(outputprocess: self.outputprocess)
+        self.records?.append(record.record())
         guard self.stackoftasktobeestimated != nil else { return }
         self.outputprocess = nil
         self.outputprocess = OutputProcess()
@@ -44,11 +45,11 @@ class RemoteInfoTaskWorkQueue: SetConfigurations {
             self.stackoftasktobeestimated = nil
         }
         _ = EstimateRemoteInformationTask(index: index!, outputprocess: self.outputprocess)
-
     }
 
     init() {
         self.prepareandstartexecutetasks()
+        self.records = [NSMutableDictionary]()
         self.start()
     }
 }

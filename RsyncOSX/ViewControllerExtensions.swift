@@ -148,6 +148,13 @@ extension VcMain {
         return (self.storyboard!.instantiateController(withIdentifier: NSStoryboard.SceneIdentifier(rawValue: "StoryboardQuickBackupID"))
             as? NSViewController)!
     }
+
+    // Remote Info
+    // self.presentViewControllerAsSheet(self.viewControllerQuickBackup)
+    var viewControllerRemoteInfo: NSViewController? {
+        return (self.storyboard!.instantiateController(withIdentifier: NSStoryboard.SceneIdentifier(rawValue: "StoryboardRemoteInfoID"))
+            as? NSViewController)!
+    }
 }
 
 protocol VcCopyFiles {
