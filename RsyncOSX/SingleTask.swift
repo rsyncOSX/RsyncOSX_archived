@@ -23,7 +23,7 @@ protocol SingleTaskProgress: class {
     func presentViewInformation(outputprocess: OutputProcess)
     func terminateProgressProcess()
     func setInfo(info: String, color: ColorInfo)
-    func setNumbers(output: OutputProcess?)
+    func setNumbers(outputprocess: OutputProcess?)
     func gettransferredNumber() -> String
     func gettransferredNumberSizebytes() -> String
     func getProcessReference(process: Process)
@@ -124,7 +124,7 @@ final class SingleTask: SetSchedules, SetConfigurations {
                 // Stopping the working (estimation) progress indicator
                 self.indicatorDelegate?.stopIndicator()
                 // Getting and setting max file to transfer
-                self.taskDelegate?.setNumbers(output: self.outputprocess)
+                self.taskDelegate?.setNumbers(outputprocess: self.outputprocess)
                 self.maxcount = self.outputprocess!.getMaxcount()
                 // If showInfoDryrun is on present result of dryrun automatically
                 self.taskDelegate?.presentViewInformation(outputprocess: self.outputprocess!)
@@ -162,9 +162,7 @@ final class SingleTask: SetSchedules, SetConfigurations {
 
     // Put error token ontop of workload
     func error() {
-        guard self.workload != nil else {
-            return
-        }
+        guard self.workload != nil else { return }
         self.workload!.error()
     }
 
@@ -186,9 +184,7 @@ extension SingleTask: Count {
     // Counting number of files
     // Function is called when Process discover FileHandler notification
     func inprogressCount() -> Int {
-        guard self.outputprocess != nil else {
-            return 0
-        }
+        guard self.outputprocess != nil else { return 0 }
         return self.outputprocess!.count()
     }
 

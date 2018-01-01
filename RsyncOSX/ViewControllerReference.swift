@@ -4,6 +4,8 @@
 //
 //  Created by Thomas Evensen on 05.09.2017.
 //  Copyright © 2017 Thomas Evensen. All rights reserved.
+//
+// swiftlint:disable cyclomatic_complexity
 
 import Foundation
 import Cocoa
@@ -19,6 +21,7 @@ enum ViewController {
     case vcbatch
     case vcprogressview
     case vcquickbatch
+    case vcremoteinfo
 }
 
 class ViewControllerReference {
@@ -89,6 +92,8 @@ class ViewControllerReference {
     private var viewControllerProgressView: NSViewController?
     // Quick batch
     private var viewControllerQuickBatch: NSViewController?
+    // Remote info
+    private var viewControllerRemoteInfo: NSViewController?
 
     func getvcref(viewcontroller: ViewController) -> NSViewController? {
         switch viewcontroller {
@@ -112,6 +117,8 @@ class ViewControllerReference {
             return self.viewControllerProgressView
         case .vcquickbatch:
             return self.viewControllerQuickBatch
+        case .vcremoteinfo:
+            return self.viewControllerRemoteInfo
         }
     }
 
@@ -137,6 +144,8 @@ class ViewControllerReference {
             self.viewControllerProgressView = nsviewcontroller
         case .vcquickbatch:
             self.viewControllerQuickBatch = nsviewcontroller
+        case .vcremoteinfo:
+            self.viewControllerRemoteInfo = nsviewcontroller
         }
     }
 }

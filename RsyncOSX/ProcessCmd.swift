@@ -19,6 +19,7 @@ enum ProcessTermination {
     case batchtask
     case quicktask
     case singlequicktask
+    case remoteinfotask
 }
 
 class ProcessCmd: Delay {

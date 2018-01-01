@@ -51,9 +51,7 @@ final class CopySingleFiles: SetConfigurations {
     }
 
     func getCommandDisplayinView(remotefile: String, localCatalog: String) -> String {
-        guard self.config != nil else {
-            return ""
-        }
+        guard self.config != nil else { return "" }
         self.commandDisplay = CopyFileArguments(task: .rsyncCmd, config: self.config!, remoteFile: remotefile,
                                                 localCatalog: localCatalog, drynrun: true).getcommandDisplay()
         guard self.commandDisplay != nil else { return "" }
@@ -79,9 +77,7 @@ final class CopySingleFiles: SetConfigurations {
         guard search != nil else {
             if self.files != nil {
                 return self.files!
-            } else {
-              return [""]
-            }
+            } else { return [""] }
         }
         if search!.isEmpty == false {
             return self.files!.filter({$0.contains(search!)})
@@ -95,5 +91,4 @@ final class CopySingleFiles: SetConfigurations {
         self.config = self.configurations!.getConfigurations()[self.index!]
         self.getRemoteFileList()
     }
-
   }

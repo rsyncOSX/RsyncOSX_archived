@@ -110,7 +110,7 @@ final class BatchTask: SetSchedules, SetConfigurations, Delay {
             switch work.1 {
             case 0:
                 // dry-run
-                self.taskDelegate?.setNumbers(output: self.outputprocess)
+                self.taskDelegate?.setNumbers(outputprocess: self.outputprocess)
                 batchobject.setEstimated(numberOfFiles: self.outputprocess?.getMaxcount() ?? 0)
                 self.batchViewDelegate?.progressIndicatorViewBatch(operation: .stop)
                 self.delayWithSeconds(1) {
