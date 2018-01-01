@@ -45,7 +45,11 @@ class RemoteInfoTaskWorkQueue: SetConfigurations {
         let record = RemoteInfoTask(outputprocess: self.outputprocess).record()
         record.setValue(self.configurations?.getConfigurations()[self.index!].localCatalog, forKey: "localCatalog")
         record.setValue(self.configurations?.getConfigurations()[self.index!].offsiteCatalog, forKey: "offsiteCatalog")
-        record.setValue(self.configurations?.getConfigurations()[self.index!].offsiteServer, forKey: "offsiteServer")
+        if self.configurations?.getConfigurations()[self.index!].offsiteServer.isEmpty == true {
+            record.setValue("localhost", forKey: "offsiteServer")
+        } else {
+            record.setValue(self.configurations?.getConfigurations()[self.index!].offsiteServer, forKey: "offsiteServer")
+        }
         self.records?.append(record)
         self.reloadtableDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vcremoteinfo) as? ViewControllerRemoteInfo
         self.reloadtableDelegate?.processTermination()
