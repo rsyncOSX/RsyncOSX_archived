@@ -107,7 +107,6 @@ class ViewControllertabMain: NSViewController, ReloadTable, Deselect, Coloractiv
         globalMainQueue.async(execute: { () -> Void in
             self.presentViewControllerAsSheet(self.viewControllerRemoteInfo!)
         })
-        // self.remoteinfotask = RemoteInfoTaskWorkQueue()
     }
 
     @IBAction func quickbackup(_ sender: NSButton) {
@@ -1120,4 +1119,11 @@ extension ViewControllertabMain: StartNextTask {
         ViewControllerReference.shared.dispatchTaskWaiting?.cancel()
         _ = OperationFactory(factory: self.configurations!.operation)
     }
+}
+
+extension ViewControllertabMain: SetRemoteInfo {
+    func setremoteinfo(remoteinfotask: RemoteInfoTaskWorkQueue?) {
+        self.remoteinfotask = remoteinfotask
+    }
+
 }

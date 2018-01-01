@@ -5,6 +5,7 @@
 //  Created by Thomas Evensen on 22.12.2017.
 //  Copyright © 2017 Thomas Evensen. All rights reserved.
 //
+// swiftlint:disable line_length
 
 import Foundation
 import Cocoa
@@ -16,6 +17,9 @@ class ViewControllerRemoteInfo: NSViewController, SetDismisser {
     @IBOutlet weak var abortbutton: NSButton!
 
     var tabledata: [NSMutableDictionary]?
+    // remote info tasks
+    private var remoteinfotask: RemoteInfoTaskWorkQueue?
+    weak var remoteinfotaskDelegate: SetRemoteInfo?
 
     // Either abort or close
     @IBAction func abort(_ sender: NSButton) {
@@ -29,6 +33,10 @@ class ViewControllerRemoteInfo: NSViewController, SetDismisser {
         // Setting delegates and datasource
         self.mainTableView.delegate = self
         self.mainTableView.dataSource = self
+        self.remoteinfotaskDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllertabMain
+        self.remoteinfotask = RemoteInfoTaskWorkQueue()
+        self.remoteinfotaskDelegate?.setremoteinfo(remoteinfotask: self.remoteinfotask)
+        self.tabledata = self.remoteinfotask?.records
     }
 
     override func viewDidAppear() {

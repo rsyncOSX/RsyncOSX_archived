@@ -5,8 +5,13 @@
 //  Created by Thomas Evensen on 31.12.2017.
 //  Copyright © 2017 Thomas Evensen. All rights reserved.
 //
+// swiftlint:disable line_length
 
 import Foundation
+
+protocol SetRemoteInfo: class {
+    func setremoteinfo(remoteinfotask: RemoteInfoTaskWorkQueue?)
+}
 
 class RemoteInfoTaskWorkQueue: SetConfigurations {
     // (hiddenID, index)
@@ -14,6 +19,7 @@ class RemoteInfoTaskWorkQueue: SetConfigurations {
     var stackoftasktobeestimated: [Row]?
     var outputprocess: OutputProcess?
     var records: [NSMutableDictionary]?
+    weak var reloadtableDelegate: UpdateProgress?
 
     private func prepareandstartexecutetasks() {
         self.stackoftasktobeestimated = nil
@@ -37,6 +43,8 @@ class RemoteInfoTaskWorkQueue: SetConfigurations {
     func processTermination() {
         let record = RemoteInfoTask(outputprocess: self.outputprocess)
         self.records?.append(record.record())
+        self.reloadtableDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vcremoteinfo) as? ViewControllerRemoteInfo
+        self.reloadtableDelegate?.processTermination()
         guard self.stackoftasktobeestimated != nil else { return }
         self.outputprocess = nil
         self.outputprocess = OutputProcess()

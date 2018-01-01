@@ -5370,7 +5370,7 @@ DQ
                                 <rect key="frame" x="20" y="61" width="769" height="235"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <clipView key="contentView" ambiguous="YES" id="Tdb-C5-z3M">
-                                    <rect key="frame" x="2" y="25" width="765" height="208"/>
+                                    <rect key="frame" x="2" y="2" width="765" height="231"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnSelection="YES" multipleSelection="NO" autosaveColumns="NO" headerView="wAF-BP-eeN" id="cdd-YP-oPa">
@@ -5432,8 +5432,8 @@ DQ
                                                     </textFieldCell>
                                                     <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                 </tableColumn>
-                                                <tableColumn identifier="daysID" width="58.08203125" minWidth="10" maxWidth="3.4028234663852886e+38" id="Can-2K-epd" userLabel="Days">
-                                                    <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="right" title="Days">
+                                                <tableColumn identifier="totalNumber" width="58.08203125" minWidth="10" maxWidth="3.4028234663852886e+38" id="Can-2K-epd" userLabel="Days">
+                                                    <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="right" title="Total">
                                                         <font key="font" metaFont="smallSystem"/>
                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
