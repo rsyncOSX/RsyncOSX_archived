@@ -39,9 +39,16 @@ class ViewControllerRemoteInfo: NSViewController, SetDismisser {
     override func viewDidAppear() {
         super.viewDidAppear()
         ViewControllerReference.shared.setvcref(viewcontroller: .vcremoteinfo, nsviewcontroller: self)
+        self.working.startAnimation(nil)
         globalMainQueue.async(execute: { () -> Void in
             self.mainTableView.reloadData()
         })
+    }
+    
+    override func viewDidDisappear() {
+        super.viewDidDisappear()
+        self.working.stopAnimation(nil)
+        self.remoteinfotask = nil
     }
 
 }
@@ -76,6 +83,9 @@ extension ViewControllerRemoteInfo: Reloadandrefresh {
 extension ViewControllerRemoteInfo: UpdateProgress {
     func processTermination() {
         self.reloadtabledata()
+        if self.remoteinfotask?.stackoftasktobeestimated == nil {
+            self.working.stopAnimation(nil)
+        }
     }
 
     func fileHandler() {
