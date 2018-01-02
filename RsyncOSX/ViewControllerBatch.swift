@@ -20,12 +20,12 @@ protocol CloseViewError: class {
     func closeerror()
 }
 
-protocol Attributtedestring: class {
-    func attributtedstring(str: String, color: NSColor, align: NSTextAlignment) -> NSMutableAttributedString
+protocol Attributedestring: class {
+    func attributedstring(str: String, color: NSColor, align: NSTextAlignment) -> NSMutableAttributedString
 }
 
-extension Attributtedestring {
-    func attributtedstring(str: String, color: NSColor, align: NSTextAlignment) -> NSMutableAttributedString {
+extension Attributedestring {
+    func attributedstring(str: String, color: NSColor, align: NSTextAlignment) -> NSMutableAttributedString {
         let attributedString = NSMutableAttributedString(string: str)
         let range = (str as NSString).range(of: str)
         attributedString.addAttribute(NSAttributedStringKey.foregroundColor, value: color, range: range)
@@ -121,7 +121,7 @@ extension ViewControllerBatch: NSTableViewDataSource {
     }
 }
 
-extension ViewControllerBatch: NSTableViewDelegate, Attributtedestring {
+extension ViewControllerBatch: NSTableViewDelegate, Attributedestring {
     // TableView delegates
     func tableView(_ tableView: NSTableView, objectValueFor tableColumn: NSTableColumn?, row: Int) -> Any? {
         guard  self.batchTask?.configurations?.getupdatedbatchQueue() != nil else {
@@ -133,7 +133,7 @@ extension ViewControllerBatch: NSTableViewDelegate, Attributtedestring {
         } else {
             if row == self.batchTask?.configurations!.getbatchQueue()!.getRow() && tableColumn!.identifier.rawValue == "taskCellID" {
                 let text = (object[tableColumn!.identifier] as? String)!
-                return self.attributtedstring(str: text, color: NSColor.green, align: .center)
+                return self.attributedstring(str: text, color: NSColor.green, align: .center)
             } else if tableColumn!.identifier.rawValue == "completeCellID" {
                 if row < self.batchTask!.configurations!.getbatchQueue()!.getRow() {
                     return #imageLiteral(resourceName: "complete")

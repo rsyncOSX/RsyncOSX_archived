@@ -488,7 +488,7 @@ extension ViewControllertabMain: NSTableViewDataSource {
     }
 }
 
-extension ViewControllertabMain: NSTableViewDelegate, Attributtedestring {
+extension ViewControllertabMain: NSTableViewDelegate, Attributedestring {
     // Function to test for remote server available or not, used in tableview delegate
     private func testTCP(_ row: Int) -> Bool {
         if let serverOff = self.serverOff {
@@ -512,10 +512,10 @@ extension ViewControllertabMain: NSTableViewDelegate, Attributtedestring {
         if tableColumn!.identifier.rawValue == "batchCellID" {
             return object[tableColumn!.identifier] as? Int!
         } else if markdays == true && tableColumn!.identifier.rawValue == "daysID" {
-            return self.attributtedstring(str: celltext!, color: NSColor.red, align: .right)
+            return self.attributedstring(str: celltext!, color: NSColor.red, align: .right)
         } else if self.testTCP(row) {
             guard celltext != nil else {return nil}
-            return self.attributtedstring(str: celltext!, color: NSColor.red, align: .left)
+            return self.attributedstring(str: celltext!, color: NSColor.red, align: .left)
         } else if tableColumn!.identifier.rawValue == "offsiteServerCellID", ((object[tableColumn!.identifier] as? String)?.isEmpty)! {
             return "localhost"
         } else if tableColumn!.identifier.rawValue == "schedCellID" {
