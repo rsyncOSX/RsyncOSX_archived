@@ -47,13 +47,20 @@ class ViewControllerRemoteInfo: NSViewController, SetDismisser, AbortTask {
         globalMainQueue.async(execute: { () -> Void in
             self.mainTableView.reloadData()
         })
-        self.count.stringValue = String(describing: self.remoteinfotask?.count ?? 0) + " of " + String(describing: self.remoteinfotask?.maxnumber ?? 0)
+        self.count.stringValue = self.number()
     }
 
     override func viewDidDisappear() {
         super.viewDidDisappear()
         self.working.stopAnimation(nil)
         self.remoteinfotask = nil
+    }
+
+    private func number() -> String {
+        let max = self.remoteinfotask?.maxnumber ?? 0
+        let rest = self.remoteinfotask?.count ?? 0
+        let num = String(describing: max - rest) + " of " + String(describing: max)
+        return "Estimating " + num
     }
 
 }
@@ -94,7 +101,7 @@ extension ViewControllerRemoteInfo: Reloadandrefresh {
 
     // Updates tableview according to progress of batch
     func reloadtabledata() {
-        self.count.stringValue = String(describing: self.remoteinfotask?.count ?? 0) + " of " + String(describing: self.remoteinfotask?.maxnumber ?? 0)
+        self.count.stringValue = self.number()
         globalMainQueue.async(execute: { () -> Void in
             self.mainTableView.reloadData()
         })
