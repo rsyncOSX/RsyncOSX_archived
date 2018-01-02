@@ -19,7 +19,7 @@ class ViewControllerRemoteInfo: NSViewController, SetDismisser, AbortTask {
     private var remoteinfotask: RemoteInfoTaskWorkQueue?
     weak var remoteinfotaskDelegate: SetRemoteInfo?
     @IBOutlet weak var count: NSTextField!
-    
+
     // Either abort or close
     @IBAction func abort(_ sender: NSButton) {
         self.abort()
@@ -63,13 +63,28 @@ extension ViewControllerRemoteInfo: NSTableViewDataSource {
     }
 }
 
-extension ViewControllerRemoteInfo: NSTableViewDelegate, Attributtedestring {
+extension ViewControllerRemoteInfo: NSTableViewDelegate, Attributedestring {
     // TableView delegates
     func tableView(_ tableView: NSTableView, objectValueFor tableColumn: NSTableColumn?, row: Int) -> Any? {
         guard self.remoteinfotask?.records != nil else { return nil }
         guard row < (self.remoteinfotask!.records?.count)! else { return nil }
         let object: NSDictionary = (self.remoteinfotask?.records?[row])!
-        return object[tableColumn!.identifier] as? String
+        switch tableColumn!.identifier.rawValue {
+        case "transferredNumber":
+            let celltext = object[tableColumn!.identifier] as? String
+            return self.attributedstring(str: celltext!, color: NSColor.red, align: .right)
+        case "transferredNumberSizebytes":
+            let celltext = object[tableColumn!.identifier] as? String
+            return self.attributedstring(str: celltext!, color: NSColor.red, align: .right)
+        case "newfiles":
+            let celltext = object[tableColumn!.identifier] as? String
+            return self.attributedstring(str: celltext!, color: NSColor.red, align: .right)
+        case "deletefiles":
+            let celltext = object[tableColumn!.identifier] as? String
+            return self.attributedstring(str: celltext!, color: NSColor.red, align: .right)
+        default:
+            return object[tableColumn!.identifier] as? String
+        }
     }
 }
 

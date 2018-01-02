@@ -97,7 +97,7 @@ extension ViewControllerQuickBackup: NSTableViewDataSource {
     }
 }
 
-extension ViewControllerQuickBackup: NSTableViewDelegate, Attributtedestring {
+extension ViewControllerQuickBackup: NSTableViewDelegate, Attributedestring {
     // TableView delegates
     func tableView(_ tableView: NSTableView, objectValueFor tableColumn: NSTableColumn?, row: Int) -> Any? {
         guard self.quickbackuplist?.sortedlist != nil else { return nil }
@@ -106,7 +106,7 @@ extension ViewControllerQuickBackup: NSTableViewDelegate, Attributtedestring {
         if tableColumn!.identifier.rawValue == "daysID" {
             if object.value(forKey: "markdays") as? Bool == true {
                 let celltext = object[tableColumn!.identifier] as? String
-                return self.attributtedstring(str: celltext!, color: NSColor.red, align: .right)
+                return self.attributedstring(str: celltext!, color: NSColor.red, align: .right)
             }
         }
         if tableColumn!.identifier.rawValue == "selectCellID" {
