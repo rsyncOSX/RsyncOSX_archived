@@ -10,7 +10,7 @@
 import Foundation
 import Cocoa
 
-class ViewControllerRemoteInfo: NSViewController, SetDismisser {
+class ViewControllerRemoteInfo: NSViewController, SetDismisser, AbortTask {
 
     @IBOutlet weak var mainTableView: NSTableView!
     @IBOutlet weak var working: NSProgressIndicator!
@@ -22,6 +22,7 @@ class ViewControllerRemoteInfo: NSViewController, SetDismisser {
     
     // Either abort or close
     @IBAction func abort(_ sender: NSButton) {
+        self.abort()
         self.dismissview(viewcontroller: self, vcontroller: .vctabmain)
     }
 
