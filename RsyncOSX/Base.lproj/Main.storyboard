@@ -5458,8 +5458,8 @@ DQ
                                                     </textFieldCell>
                                                     <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                 </tableColumn>
-                                                <tableColumn identifier="transferredNumberSizebytes" width="55" minWidth="10" maxWidth="3.4028234663852886e+38" id="SWF-DA-TlU" userLabel="transferredNumberSizebytes">
-                                                    <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="right" title="Size">
+                                                <tableColumn identifier="transferredNumberSizebytes" width="69" minWidth="10" maxWidth="3.4028234663852886e+38" id="SWF-DA-TlU" userLabel="transferredNumberSizebytes">
+                                                    <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="right" title="Size (kB)">
                                                         <font key="font" metaFont="smallSystem"/>
                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -5484,8 +5484,8 @@ DQ
                                                     </textFieldCell>
                                                     <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                 </tableColumn>
-                                                <tableColumn identifier="totalNumberSizebytes" width="89" minWidth="10" maxWidth="3.4028234663852886e+38" id="zoV-D2-sU8" userLabel="totalNumberSizebytes">
-                                                    <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="right" title="Total size">
+                                                <tableColumn identifier="totalNumberSizebytes" width="96" minWidth="10" maxWidth="3.4028234663852886e+38" id="zoV-D2-sU8" userLabel="totalNumberSizebytes">
+                                                    <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="right" title="Total size (kB)">
                                                         <font key="font" metaFont="smallSystem"/>
                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -5497,7 +5497,7 @@ DQ
                                                     </textFieldCell>
                                                     <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                 </tableColumn>
-                                                <tableColumn identifier="totalDirs" width="65.08203125" minWidth="10" maxWidth="3.4028234663852886e+38" id="Can-2K-epd" userLabel="totalDirs">
+                                                <tableColumn identifier="totalDirs" width="60.08203125" minWidth="10" maxWidth="3.4028234663852886e+38" id="Can-2K-epd" userLabel="totalDirs">
                                                     <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="right" title="Total dir">
                                                         <font key="font" metaFont="smallSystem"/>
                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
@@ -5515,7 +5515,7 @@ DQ
                                     </subviews>
                                 </clipView>
                                 <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="YES" id="tUz-4f-HKr">
-                                    <rect key="frame" x="2" y="9" width="0.0" height="16"/>
+                                    <rect key="frame" x="2" y="217" width="899" height="16"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
                                 <scroller key="verticalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="NO" id="Wq8-8Y-9Sb">
