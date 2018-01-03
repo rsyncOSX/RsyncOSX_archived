@@ -10,6 +10,10 @@
 import Foundation
 import Cocoa
 
+protocol OpenQuickBackup: class {
+    func openquickbackup()
+}
+
 class ViewControllerRemoteInfo: NSViewController, SetDismisser, AbortTask {
 
     @IBOutlet weak var mainTableView: NSTableView!
@@ -24,6 +28,11 @@ class ViewControllerRemoteInfo: NSViewController, SetDismisser, AbortTask {
     @IBAction func abort(_ sender: NSButton) {
         if self.remoteinfotask?.stackoftasktobeestimated != nil {
             self.abort()
+        }
+        if self.dobackups() == true {
+            let openDelegate: OpenQuickBackup?
+            openDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllertabMain
+            openDelegate?.openquickbackup()
         }
         self.dismissview(viewcontroller: self, vcontroller: .vctabmain)
     }
@@ -61,6 +70,15 @@ class ViewControllerRemoteInfo: NSViewController, SetDismisser, AbortTask {
         let rest = self.remoteinfotask?.count ?? 0
         let num = String(describing: max - rest) + " of " + String(describing: max)
         return "Estimating " + num
+    }
+
+    private func dobackups() -> Bool {
+        let backup = self.remoteinfotask?.records?.filter({$0.value(forKey: "backup") as? Int == 1})
+        if backup!.count > 0 {
+            return true
+        } else {
+            return false
+        }
     }
 
 }
