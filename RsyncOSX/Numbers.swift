@@ -152,8 +152,8 @@ final class Numbers: SetConfigurations {
         var seconds: Double = 0
         guard parts!.count > 9 else {return "0"}
         // Sent and received
-        bytesTotalsent = Double(parts?[1] ?? "0")!
-        bytesTotalreceived = Double(parts?[5] ?? "0")!
+        bytesTotalsent = Double(parts?[1] ?? "0") ?? 0
+        bytesTotalreceived = Double(parts?[5] ?? "0") ?? 0
         if bytesTotalsent > bytesTotalreceived {
             // backup task
             // let result = resultsent! + parts![8] + " b/sec"
@@ -163,7 +163,7 @@ final class Numbers: SetConfigurations {
         } else {
             // restore task
             // let result = resultreceived! + parts![8] + " b/sec"
-            bytesSec = Double(parts![8])!
+            bytesSec = Double(parts![8]) ?? 1
             seconds = bytesTotalreceived/bytesSec
             bytesTotal = bytesTotalreceived
         }
