@@ -179,7 +179,7 @@
                 <customObject id="Voe-Tx-rLC" customClass="AppDelegate" customModule="RsyncOSX" customModuleProvider="target"/>
                 <customObject id="Ady-hI-5gd" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-294" y="-105"/>
+            <point key="canvasLocation" x="-399" y="-81"/>
         </scene>
         <!--Window Controller-->
         <scene sceneID="GeT-NB-lhy">
@@ -312,7 +312,7 @@
                 </windowController>
                 <customObject id="Rv5-yv-lsc" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-628" y="224"/>
+            <point key="canvasLocation" x="-957" y="144"/>
         </scene>
         <!--Tab View Controller-->
         <scene sceneID="Hwe-jL-WAZ">
@@ -349,7 +349,7 @@
                 </tabViewController>
                 <customObject id="am9-td-Qjg" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-279" y="582"/>
+            <point key="canvasLocation" x="-337" y="144"/>
         </scene>
         <!--Execute-->
         <scene sceneID="84s-6a-t0v">
@@ -1266,7 +1266,7 @@
                 </viewController>
                 <customObject id="rmz-oH-xzJ" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="437" y="-330.5"/>
+            <point key="canvasLocation" x="538" y="-318"/>
         </scene>
         <!--Help-->
         <scene sceneID="hhx-zY-crQ">
@@ -3178,7 +3178,7 @@ DQ
                 </viewController>
                 <customObject id="qOZ-8D-wb3" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1243" y="2975"/>
+            <point key="canvasLocation" x="-1229" y="3500"/>
         </scene>
         <!--Progress-->
         <scene sceneID="u6v-Zu-TpF">
@@ -3226,7 +3226,7 @@ DQ
                 </viewController>
                 <customObject id="DlE-oK-27I" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1332.5" y="1981.5"/>
+            <point key="canvasLocation" x="-1432" y="1592"/>
         </scene>
         <!--View Controller Configuration-->
         <scene sceneID="8qp-aA-J4K">
@@ -3634,7 +3634,7 @@ DQ
                 </viewController>
                 <customObject id="cus-9G-xLk" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-391" y="2075"/>
+            <point key="canvasLocation" x="-1384" y="2319"/>
         </scene>
         <!--About-->
         <scene sceneID="qtg-l1-11e">
@@ -3765,7 +3765,7 @@ DQ
                 </viewController>
                 <customObject id="r6G-dy-dyg" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-59" y="2508"/>
+            <point key="canvasLocation" x="-222" y="2405"/>
         </scene>
         <!--View Controller Scheduled Backupin Work-->
         <scene sceneID="3Y6-Og-ELt">
@@ -3910,7 +3910,7 @@ DQ
                 </viewController>
                 <customObject id="bz2-BJ-CFW" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-640.5" y="2522"/>
+            <point key="canvasLocation" x="-798" y="2302"/>
         </scene>
         <!--RsyncOSX parameters-->
         <scene sceneID="lYn-Uy-8Sa">
@@ -4547,7 +4547,7 @@ DQ
                 </viewController>
                 <customObject id="tTk-AH-S9E" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-913.5" y="2020"/>
+            <point key="canvasLocation" x="-956" y="1630"/>
         </scene>
         <!--View Controller Schedule Details-->
         <scene sceneID="pXw-P1-pTU">
@@ -4802,7 +4802,7 @@ DQ
                 </viewController>
                 <customObject id="YGp-CI-DSF" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1246" y="2319"/>
+            <point key="canvasLocation" x="-1346" y="1955"/>
         </scene>
         <!--View Controller Profile-->
         <scene sceneID="Ifs-65-j1l">
@@ -4939,7 +4939,7 @@ DQ
                 </viewController>
                 <customObject id="RTu-uV-wPA" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1344" y="2644"/>
+            <point key="canvasLocation" x="-877" y="1892"/>
         </scene>
         <!--View Controller Copy Files Source-->
         <scene sceneID="54O-4C-Jot">
@@ -5067,7 +5067,7 @@ DQ
                 </viewController>
                 <customObject id="mDL-yc-AmA" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1271" y="2975"/>
+            <point key="canvasLocation" x="-1369" y="2692"/>
         </scene>
         <!--Details about files-->
         <scene sceneID="YH7-XV-N0K">
@@ -5356,7 +5356,7 @@ DQ
                 </viewController>
                 <customObject id="tYc-nC-URw" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-582.5" y="2975.5"/>
+            <point key="canvasLocation" x="-1212" y="3097"/>
         </scene>
         <!--View Controller Remote Info-->
         <scene sceneID="UZZ-3R-We2">
@@ -5380,7 +5380,7 @@ DQ
                                             <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                             <color key="gridColor" name="gridColor" catalog="System" colorSpace="catalog"/>
                                             <tableColumns>
-                                                <tableColumn identifier="localCatalog" width="171.47265625" minWidth="40" maxWidth="1000" id="tBD-wX-XO5">
+                                                <tableColumn identifier="localCatalog" width="160.47265625" minWidth="40" maxWidth="1000" id="tBD-wX-XO5">
                                                     <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left" title="Local catalog">
                                                         <font key="font" metaFont="smallSystem"/>
                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
@@ -5393,7 +5393,19 @@ DQ
                                                     </textFieldCell>
                                                     <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                 </tableColumn>
-                                                <tableColumn identifier="offsiteCatalog" width="163.98828125" minWidth="10" maxWidth="3.4028234663852886e+38" id="V8a-eh-20b">
+                                                <tableColumn identifier="backup" editable="NO" width="42" minWidth="10" maxWidth="3.4028234663852886e+38" id="zv2-BP-T5J" userLabel="Select">
+                                                    <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="center" title="Select">
+                                                        <font key="font" metaFont="smallSystem"/>
+                                                        <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
+                                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                    </tableHeaderCell>
+                                                    <buttonCell key="dataCell" type="check" bezelStyle="regularSquare" imagePosition="only" inset="2" id="rBJ-Il-k1n">
+                                                        <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                                        <font key="font" metaFont="system"/>
+                                                    </buttonCell>
+                                                    <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
+                                                </tableColumn>
+                                                <tableColumn identifier="offsiteCatalog" width="150.98828125" minWidth="10" maxWidth="3.4028234663852886e+38" id="V8a-eh-20b">
                                                     <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left" title="Remote catalog">
                                                         <font key="font" metaFont="smallSystem"/>
                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
@@ -5406,7 +5418,7 @@ DQ
                                                     </textFieldCell>
                                                     <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                 </tableColumn>
-                                                <tableColumn identifier="offsiteServer" width="102.98828125" minWidth="10" maxWidth="3.4028234663852886e+38" id="Fry-AD-Rmf" userLabel="Remote server">
+                                                <tableColumn identifier="offsiteServer" width="79.98828125" minWidth="10" maxWidth="3.4028234663852886e+38" id="Fry-AD-Rmf" userLabel="Remote server">
                                                     <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="center" title="Server">
                                                         <font key="font" metaFont="smallSystem"/>
                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
@@ -5562,7 +5574,7 @@ DQ
                 </viewController>
                 <customObject id="EeF-i6-w3M" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="337.5" y="2975"/>
+            <point key="canvasLocation" x="-288" y="3096"/>
         </scene>
     </scenes>
     <resources>

@@ -30,6 +30,7 @@ class RemoteInfoTask {
             // "deletefiles": self.deletefiles ?? ""
         ]
         dict.setValue(self.deletefiles ?? "", forKey: "deletefiles")
+        dict.setValue(0, forKey: "backup")
         return dict
     }
 
