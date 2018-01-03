@@ -89,6 +89,9 @@ class ViewControllerQuickBackup: NSViewController, SetDismisser, AbortTask, Dela
 
     private func enableexecutebutton() {
         let backup = self.quickbackuplist?.sortedlist!.filter({$0.value(forKey: "selectCellID") as? Int == 1})
+        guard backup != nil else {
+            return
+        }
         if backup!.count > 0 {
             self.executeButton.isEnabled = true
         } else {
