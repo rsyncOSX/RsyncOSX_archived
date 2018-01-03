@@ -38,7 +38,6 @@ class ViewControllerQuickBackup: NSViewController, SetDismisser, AbortTask, Dela
 
     private func loadtasks() {
         self.quickbackuplist = QuickBackup()
-        self.executeButton.isEnabled = false
         self.working.stopAnimation(nil)
     }
 
@@ -60,6 +59,7 @@ class ViewControllerQuickBackup: NSViewController, SetDismisser, AbortTask, Dela
         globalMainQueue.async(execute: { () -> Void in
             self.mainTableView.reloadData()
         })
+        self.enableexecutebutton()
     }
 
     func tableViewSelectionDidChange(_ notification: Notification) {
@@ -85,6 +85,15 @@ class ViewControllerQuickBackup: NSViewController, SetDismisser, AbortTask, Dela
             self.column = nil
         }
         self.reloadtabledata()
+    }
+
+    private func enableexecutebutton() {
+        let backup = self.quickbackuplist?.sortedlist!.filter({$0.value(forKey: "selectCellID") as? Int == 1})
+        if backup!.count > 0 {
+            self.executeButton.isEnabled = true
+        } else {
+            self.executeButton.isEnabled = false
+        }
     }
 
 }
@@ -129,15 +138,6 @@ extension ViewControllerQuickBackup: NSTableViewDelegate, Attributedestring {
         }
         self.enableexecutebutton()
     }
-
-    private func enableexecutebutton() {
-        let backup = self.quickbackuplist?.sortedlist!.filter({$0.value(forKey: "selectCellID") as? Int == 1})
-        if backup!.count > 0 {
-            self.executeButton.isEnabled = true
-        } else {
-            self.executeButton.isEnabled = false
-        }
-    }
 }
 
 extension ViewControllerQuickBackup: Reloadandrefresh {
@@ -178,6 +178,7 @@ extension ViewControllerQuickBackup: StartStopProgressIndicator {
 
     func stop() {
         self.working.stopAnimation(nil)
+        self.executeButton.isEnabled = false
     }
 
     func complete() {

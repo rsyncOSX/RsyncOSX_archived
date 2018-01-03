@@ -29,10 +29,13 @@ class ViewControllerRemoteInfo: NSViewController, SetDismisser, AbortTask {
         if self.remoteinfotask?.stackoftasktobeestimated != nil {
             self.abort()
         }
-        if self.dobackups() == true {
-            let openDelegate: OpenQuickBackup?
-            openDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllertabMain
-            openDelegate?.openquickbackup()
+        if let backup = self.dobackups() {
+            if backup.count > 0 {
+                self.remoteinfotask?.setbackuplist(list: backup)
+                let openDelegate: OpenQuickBackup?
+                openDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllertabMain
+                openDelegate?.openquickbackup()
+            }
         }
         self.dismissview(viewcontroller: self, vcontroller: .vctabmain)
     }
@@ -72,13 +75,9 @@ class ViewControllerRemoteInfo: NSViewController, SetDismisser, AbortTask {
         return "Estimating " + num
     }
 
-    private func dobackups() -> Bool {
+    private func dobackups() -> [NSMutableDictionary]? {
         let backup = self.remoteinfotask?.records?.filter({$0.value(forKey: "backup") as? Int == 1})
-        if backup!.count > 0 {
-            return true
-        } else {
-            return false
-        }
+        return backup
     }
 
 }

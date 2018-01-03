@@ -68,6 +68,13 @@ class RemoteInfoTaskWorkQueue: SetConfigurations {
         _ = EstimateRemoteInformationTask(index: self.index!, outputprocess: self.outputprocess)
     }
 
+    func setbackuplist(list: [NSMutableDictionary]) {
+        self.configurations?.quickbackuplist = [Int]()
+        for i in 0 ..< list.count {
+            self.configurations?.quickbackuplist!.append((list[i].value(forKey: "hiddenID") as? Int)!)
+        }
+    }
+
     init() {
         self.prepareandstartexecutetasks()
         self.records = [NSMutableDictionary]()
