@@ -91,8 +91,20 @@ extension ViewControllerRemoteInfo: NSTableViewDelegate, Attributedestring {
         case "deletefiles":
             let celltext = object[tableColumn!.identifier] as? String
             return self.attributedstring(str: celltext!, color: NSColor.red, align: .right)
+        case "backup":
+            return object[tableColumn!.identifier] as? Int
         default:
             return object[tableColumn!.identifier] as? String
+        }
+    }
+
+    // Toggling selection
+    func tableView(_ tableView: NSTableView, setObjectValue object: Any?, for tableColumn: NSTableColumn?, row: Int) {
+        guard  self.remoteinfotask?.records != nil else { return }
+        if tableColumn!.identifier.rawValue == "backup" {
+            var select: Int = (self.remoteinfotask?.records![row].value(forKey: "backup") as? Int)!
+            if select == 0 { select = 1 } else if select == 1 { select = 0 }
+            self.remoteinfotask?.records![row].setValue(select, forKey: "backup")
         }
     }
 }
