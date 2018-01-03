@@ -110,11 +110,7 @@ class ViewControllertabMain: NSViewController, ReloadTable, Deselect, Coloractiv
     }
 
     @IBAction func quickbackup(_ sender: NSButton) {
-        self.processtermination = .quicktask
-        self.configurations!.allowNotifyinMain = false
-        globalMainQueue.async(execute: { () -> Void in
-            self.presentViewControllerAsSheet(self.viewControllerQuickBackup!)
-        })
+        self.openquickbackup()
     }
 
     @IBAction func edit(_ sender: NSButton) {
@@ -1127,4 +1123,14 @@ extension ViewControllertabMain: SetRemoteInfo {
         self.remoteinfotask = remoteinfotask
     }
 
+}
+
+extension ViewControllertabMain: OpenQuickBackup {
+    func openquickbackup() {
+        self.processtermination = .quicktask
+        self.configurations!.allowNotifyinMain = false
+        globalMainQueue.async(execute: { () -> Void in
+            self.presentViewControllerAsSheet(self.viewControllerQuickBackup!)
+        })
+    }
 }
