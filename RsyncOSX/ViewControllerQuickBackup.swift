@@ -16,6 +16,7 @@ class ViewControllerQuickBackup: NSViewController, SetDismisser, AbortTask, Dela
     var column: Int?
     var filterby: Filterlogs?
     var quickbackuplist: QuickBackup?
+    var executing: Bool = false
 
     @IBOutlet weak var mainTableView: NSTableView!
     @IBOutlet weak var working: NSProgressIndicator!
@@ -32,6 +33,8 @@ class ViewControllerQuickBackup: NSViewController, SetDismisser, AbortTask, Dela
 
     // Execute batch
     @IBAction func execute(_ sender: NSButton) {
+        self.executing = true
+        self.executeButton.isEnabled = false
         self.working.startAnimation(nil)
         self.quickbackuplist?.prepareandstartexecutetasks()
     }
@@ -90,6 +93,9 @@ class ViewControllerQuickBackup: NSViewController, SetDismisser, AbortTask, Dela
     private func enableexecutebutton() {
         let backup = self.quickbackuplist?.sortedlist!.filter({$0.value(forKey: "selectCellID") as? Int == 1})
         guard backup != nil else {
+            return
+        }
+        guard self.executing == false else {
             return
         }
         if backup!.count > 0 {
