@@ -104,7 +104,7 @@ final class Tools: SetConfigurations, Delay {
             var port: Int = 22
             for i in 0 ..< self.configurations!.configurationsDataSourcecount() {
                 if let record = self.configurations!.getargumentAllConfigurations()[i] as? ArgumentsOneConfiguration {
-                    if record.config!.offsiteServer != "" {
+                    if record.config!.offsiteServer.isEmpty == false {
                         if let sshport: Int = record.config!.sshport { port = sshport }
                         let (success, _) = self.testTCPconnection(record.config!.offsiteServer, port: port, timeout: 1)
                         if success {
