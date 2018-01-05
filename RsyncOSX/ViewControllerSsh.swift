@@ -53,7 +53,7 @@ class ViewControllerSsh: NSViewController, SetConfigurations {
         self.sshcmd = nil
         self.outputprocess = nil
         self.outputprocess = OutputProcess()
-        self.sshcmd = Ssh(output: self.outputprocess)
+        self.sshcmd = Ssh(outputprocess: self.outputprocess)
         guard self.sshcmd != nil else { return }
         if self.createRsaKey.state == .on {
             self.sshcmd!.createLocalKeysRsa()
@@ -98,7 +98,7 @@ class ViewControllerSsh: NSViewController, SetConfigurations {
         self.sshcmd = nil
         self.outputprocess = nil
         self.outputprocess = OutputProcess()
-        self.sshcmd = Ssh(output: self.outputprocess)
+        self.sshcmd = Ssh(outputprocess: self.outputprocess)
         guard self.execute else { return }
         guard self.hiddenID != nil else { return }
         guard self.sshcmd != nil else { return }
@@ -111,7 +111,7 @@ class ViewControllerSsh: NSViewController, SetConfigurations {
         self.sshcmd = nil
         self.outputprocess = nil
         self.outputprocess = OutputProcess()
-        self.sshcmd = Ssh(output: self.outputprocess)
+        self.sshcmd = Ssh(outputprocess: self.outputprocess)
         guard self.execute else { return }
         guard self.hiddenID != nil else { return }
         guard self.sshcmd != nil else { return }
@@ -144,7 +144,7 @@ class ViewControllerSsh: NSViewController, SetConfigurations {
 
     private func checkPrivatePublicKey() {
         self.sshcmd = nil
-        self.sshcmd = Ssh(output: nil)
+        self.sshcmd = Ssh(outputprocess: nil)
         self.sshcmd!.checkForLocalPubKeys()
         if self.sshcmd!.rsaPubKeyExist {
             self.rsaCheck.state = .on

@@ -55,7 +55,9 @@ class ViewControllerRemoteInfo: NSViewController, SetDismisser, AbortTask {
     override func viewDidAppear() {
         super.viewDidAppear()
         ViewControllerReference.shared.setvcref(viewcontroller: .vcremoteinfo, nsviewcontroller: self)
-        self.working.startAnimation(nil)
+        if self.remoteinfotask!.records!.count > 0 {
+             self.working.startAnimation(nil)
+        }
         globalMainQueue.async(execute: { () -> Void in
             self.mainTableView.reloadData()
         })

@@ -39,7 +39,7 @@ class Ssh: Files {
 
     // Process
     var process: CommandSsh?
-    var output: OutputProcess?
+    var outputprocess: OutputProcess?
 
     // Chmod
     var chmod: ChmodPubKey?
@@ -159,12 +159,12 @@ class Ssh: Files {
     // Execute command
     func executeSshCommand() {
         self.process = CommandSsh(command: self.command, arguments: self.arguments)
-        self.process!.executeProcess(outputprocess: self.output!)
+        self.process!.executeProcess(outputprocess: self.outputprocess!)
     }
 
     // get output
     func getOutput() -> Array<String>? {
-        return self.output?.getOutput()
+        return self.outputprocess?.getOutput()
     }
 
     // Open Terminal.app
@@ -172,9 +172,9 @@ class Ssh: Files {
         NSWorkspace.shared.open(URL(fileURLWithPath: "/Applications/Utilities/Terminal.app"))
     }
 
-    init(output: OutputProcess?) {
+    init(outputprocess: OutputProcess?) {
         super.init(root: .sshRoot)
-        self.output = output
+        self.outputprocess = outputprocess
         self.keyFileURLS = self.getFilesURLs()
         self.keyFileStrings = self.getFileStrings()
         self.checkForLocalPubKeys()

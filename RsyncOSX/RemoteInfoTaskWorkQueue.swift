@@ -36,6 +36,9 @@ class RemoteInfoTaskWorkQueue: SetConfigurations {
     }
 
     private func start() {
+        guard self.stackoftasktobeestimated!.count > 0 else {
+            return
+        }
         self.outputprocess = OutputProcess()
         self.index = self.stackoftasktobeestimated?.remove(at: 0).1
         if self.stackoftasktobeestimated?.count == 0 {
