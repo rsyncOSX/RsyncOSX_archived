@@ -35,8 +35,10 @@ class RsyncProcessArguments {
         if offsiteServer.isEmpty {
             // nothing
         } else {
-            self.arguments!.append(parameter3)
-            if forDisplay {self.arguments!.append(" ")}
+            if parameter3.isEmpty == false {
+                self.arguments!.append(parameter3)
+                if forDisplay {self.arguments!.append(" ")}
+            }
         }
         self.arguments!.append(parameter4)
         if forDisplay {self.arguments!.append(" ")}
