@@ -74,6 +74,7 @@ class ViewControllerRsyncParameters: NSViewController, SetConfigurations, SetDis
             self.viewParameter3.stringValue = self.configurations!.getConfigurations()[index].parameter3
         }
     }
+
     // Function for enabling backup of changed files in a backup catalog.
     // Parameters are appended to last two parameters (12 and 13).
     @IBAction func backup(_ sender: NSButton) {
