@@ -358,6 +358,16 @@ class Configurations: ReloadTable {
         return self.configurations![index].hiddenID
     }
 
+    func removecompressparameter(index: Int, delete: Bool) {
+        guard self.configurations != nil else { return }
+        guard index < self.configurations!.count  else { return }
+        if delete {
+            self.configurations![index].parameter3 = ""
+        } else {
+            self.configurations![index].parameter3 = "--compress"
+        }
+    }
+
     /// Function is reading all Configurations into memory from permanent store and
     /// prepare all arguments for rsync. All configurations are stored in the private
     /// variable within object.
