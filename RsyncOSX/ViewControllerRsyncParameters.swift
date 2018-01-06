@@ -6,7 +6,7 @@
 //  Created by Thomas Evensen on 13/02/16.
 //  Copyright © 2016 Thomas Evensen. All rights reserved.
 //
-//  swiftlint:disable syntactic_sugar line_length
+//  swiftlint:disable syntactic_sugar line_length function_body_length
 
 import Foundation
 import Cocoa
@@ -47,6 +47,7 @@ class ViewControllerRsyncParameters: NSViewController, SetConfigurations, SetDis
     @IBOutlet weak var viewParameter14: NSTextField!
     @IBOutlet weak var rsyncdaemon: NSButton!
     @IBOutlet weak var sshport: NSTextField!
+    @IBOutlet weak var compressparameter: NSButton!
     // Comboboxes
     @IBOutlet weak var parameter8: NSComboBox!
     @IBOutlet weak var parameter9: NSComboBox!
@@ -60,6 +61,19 @@ class ViewControllerRsyncParameters: NSViewController, SetConfigurations, SetDis
         self.dismissview(viewcontroller: self, vcontroller: .vctabmain)
     }
 
+    @IBAction func removecompressparameter(_ sender: NSButton) {
+        if let index = self.index() {
+            switch self.compressparameter.state {
+            case .on:
+                self.configurations!.removecompressparameter(index: index, delete: true)
+            case .off:
+                self.configurations!.removecompressparameter(index: index, delete: false)
+            default:
+                break
+            }
+            self.viewParameter3.stringValue = self.configurations!.getConfigurations()[index].parameter3
+        }
+    }
     // Function for enabling backup of changed files in a backup catalog.
     // Parameters are appended to last two parameters (12 and 13).
     @IBAction func backup(_ sender: NSButton) {
@@ -148,7 +162,6 @@ class ViewControllerRsyncParameters: NSViewController, SetConfigurations, SetDis
         }
         var configurations: [Configuration] = self.configurations!.getConfigurations()
         if let index = self.index() {
-            // Create RsyncParameters object and load initial parameters
             self.parameters = RsyncParameters(config: configurations[index])
             self.comboBoxValues = parameters!.getComboBoxValues()
             self.backupbutton.state = .off
@@ -160,7 +173,11 @@ class ViewControllerRsyncParameters: NSViewController, SetConfigurations, SetDis
             self.viewParameter3.stringValue = configurations[index].parameter3
             self.viewParameter4.stringValue = configurations[index].parameter4
             self.viewParameter5.stringValue = configurations[index].parameter5 + " " + configurations[index].parameter6
-            // There are seven user seleected rsync parameters
+            if configurations[index].parameter3.isEmpty == true {
+                self.compressparameter.state = .on
+            } else {
+                self.compressparameter.state = .off
+            }
             self.setValueComboBox(combobox: self.parameter8, index: self.parameters!.getParameter(rsyncparameternumber: 8).0)
             self.viewParameter8.stringValue = self.parameters!.getParameter(rsyncparameternumber: 8).1
             self.setValueComboBox(combobox: self.parameter9, index: self.parameters!.getParameter(rsyncparameternumber: 9).0)
@@ -225,9 +242,7 @@ class ViewControllerRsyncParameters: NSViewController, SetConfigurations, SetDis
         self.dismissview(viewcontroller: self, vcontroller: .vctabmain)
     }
 
-    // There are eight comboboxes
-    // All eight are initalized during ViewDidLoad and
-    // the correct index is set.
+    // There are eight comboboxes, all eight are initalized during ViewDidLoad and the correct index is set.
     private func setValueComboBox (combobox: NSComboBox, index: Int) {
         combobox.removeAllItems()
         combobox.addItems(withObjectValues: self.comboBoxValues as [String]!)
@@ -242,5 +257,4 @@ class ViewControllerRsyncParameters: NSViewController, SetConfigurations, SetDis
             return value
         }
     }
-
 }

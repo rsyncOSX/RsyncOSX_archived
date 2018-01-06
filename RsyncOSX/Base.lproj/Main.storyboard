@@ -4228,14 +4228,32 @@ DQ
                                     <action selector="update:" target="K9c-yf-VMY" id="vTx-wU-CV7"/>
                                 </connections>
                             </button>
+                            <textField verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="RPh-7l-0uy">
+                                <rect key="frame" x="56" y="177" width="57" height="22"/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" alignment="right" bezelStyle="round" id="HRq-0c-PVM">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="wZx-B9-Pf2">
+                                <rect key="frame" x="694" y="13" width="75" height="32"/>
+                                <buttonCell key="cell" type="push" title="Close" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="huo-sU-wpe">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="close:" target="K9c-yf-VMY" id="k3k-ky-rk7"/>
+                                </connections>
+                            </button>
                             <box title="Add or delete parameters to rsync" translatesAutoresizingMaskIntoConstraints="NO" id="lGN-As-q21">
-                                <rect key="frame" x="17" y="16" width="364" height="104"/>
+                                <rect key="frame" x="17" y="16" width="555" height="104"/>
                                 <view key="contentView" id="umc-Km-s0d">
-                                    <rect key="frame" x="2" y="2" width="360" height="87"/>
+                                    <rect key="frame" x="2" y="2" width="551" height="87"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <button translatesAutoresizingMaskIntoConstraints="NO" id="856-oB-aMq">
-                                            <rect key="frame" x="18" y="64" width="317" height="18"/>
+                                            <rect key="frame" x="18" y="64" width="508" height="18"/>
                                             <buttonCell key="cell" type="check" title="backup (uses two last user selected parameters)" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="VBk-Qe-g0o">
                                                 <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                                 <font key="font" metaFont="system"/>
@@ -4291,6 +4309,17 @@ DQ
                                                 <action selector="donotdeletefiles:" target="K9c-yf-VMY" id="gQB-8I-SxL"/>
                                             </connections>
                                         </button>
+                                        <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="S6M-mZ-vGU">
+                                            <rect key="frame" x="324" y="15" width="219" height="18"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                            <buttonCell key="cell" type="check" title="Remove --compress parameter" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="zF8-9O-ajg">
+                                                <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                                <font key="font" metaFont="system"/>
+                                            </buttonCell>
+                                            <connections>
+                                                <action selector="removecompressparameter:" target="K9c-yf-VMY" id="DJO-A6-xe7"/>
+                                            </connections>
+                                        </button>
                                     </subviews>
                                     <constraints>
                                         <constraint firstItem="856-oB-aMq" firstAttribute="top" secondItem="umc-Km-s0d" secondAttribute="top" constant="7" id="9bd-N9-qfH"/>
@@ -4308,27 +4337,9 @@ DQ
                                 </view>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="100" id="WZn-2n-kUB"/>
-                                    <constraint firstAttribute="width" constant="358" id="YoW-jc-pMa"/>
+                                    <constraint firstAttribute="width" constant="549" id="YoW-jc-pMa"/>
                                 </constraints>
                             </box>
-                            <textField verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="RPh-7l-0uy">
-                                <rect key="frame" x="56" y="177" width="57" height="22"/>
-                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" alignment="right" bezelStyle="round" id="HRq-0c-PVM">
-                                    <font key="font" metaFont="system"/>
-                                    <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
-                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                </textFieldCell>
-                            </textField>
-                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="wZx-B9-Pf2">
-                                <rect key="frame" x="694" y="13" width="75" height="32"/>
-                                <buttonCell key="cell" type="push" title="Close" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="huo-sU-wpe">
-                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                    <font key="font" metaFont="system"/>
-                                </buttonCell>
-                                <connections>
-                                    <action selector="close:" target="K9c-yf-VMY" id="k3k-ky-rk7"/>
-                                </connections>
-                            </button>
                         </subviews>
                         <constraints>
                             <constraint firstItem="fwv-Pg-ERn" firstAttribute="baseline" secondItem="Rp5-WA-cza" secondAttribute="baseline" id="0ro-yv-85p"/>
@@ -4432,6 +4443,7 @@ DQ
                     </view>
                     <connections>
                         <outlet property="backupbutton" destination="856-oB-aMq" id="Bbf-2g-jeE"/>
+                        <outlet property="compressparameter" destination="S6M-mZ-vGU" id="L3P-jl-fP0"/>
                         <outlet property="donotdeletebutton" destination="qDc-Ou-8uj" id="PC6-7q-WDV"/>
                         <outlet property="parameter10" destination="xiz-1A-Kua" id="Mm3-Su-yTz"/>
                         <outlet property="parameter11" destination="G1S-Es-fdT" id="g2Z-7R-PNf"/>
