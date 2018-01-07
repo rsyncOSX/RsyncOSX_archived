@@ -2742,14 +2742,14 @@
                                 </view>
                             </box>
                             <box fixedFrame="YES" title="Catalog parameters (use Finder to drag and drop paths)" translatesAutoresizingMaskIntoConstraints="NO" id="EH0-Ty-cyz">
-                                <rect key="frame" x="364" y="290" width="565" height="97"/>
+                                <rect key="frame" x="364" y="299" width="565" height="88"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <view key="contentView" id="uKr-oj-PV3">
-                                    <rect key="frame" x="2" y="2" width="561" height="80"/>
+                                    <rect key="frame" x="2" y="2" width="561" height="71"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Dyf-3c-3H2">
-                                            <rect key="frame" x="268" y="-39" width="165" height="17"/>
+                                            <rect key="frame" x="268" y="-48" width="165" height="17"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Required if remote server" id="znZ-ht-M5x">
                                                 <font key="font" metaFont="cellTitle"/>
@@ -2758,7 +2758,7 @@
                                             </textFieldCell>
                                         </textField>
                                         <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="d4N-Fm-wmV">
-                                            <rect key="frame" x="268" y="-70" width="165" height="17"/>
+                                            <rect key="frame" x="268" y="-79" width="165" height="17"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Optional" id="WVf-5Q-8C4">
                                                 <font key="font" metaFont="cellTitle"/>
@@ -2766,17 +2766,8 @@
                                                 <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                             </textFieldCell>
                                         </textField>
-                                        <textField hidden="YES" horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="XA5-51-CaU">
-                                            <rect key="frame" x="-2" y="4" width="565" height="17"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                            <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" enabled="NO" sendsActionOnEndEditing="YES" alignment="center" title="Local and remote catalog cannot be equal..." id="UKw-nH-iBh">
-                                                <font key="font" metaFont="cellTitle"/>
-                                                <color key="textColor" red="1" green="0.14913141730000001" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                                            </textFieldCell>
-                                        </textField>
                                         <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="wDv-OH-gxr">
-                                            <rect key="frame" x="414" y="48" width="58" height="17"/>
+                                            <rect key="frame" x="414" y="39" width="58" height="17"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Required" id="w6i-hq-pcc">
                                                 <font key="font" metaFont="cellTitle"/>
@@ -2785,7 +2776,7 @@
                                             </textFieldCell>
                                         </textField>
                                         <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="aD1-mi-5XJ">
-                                            <rect key="frame" x="414" y="26" width="58" height="17"/>
+                                            <rect key="frame" x="414" y="17" width="58" height="17"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Required" id="2sX-ek-QE0">
                                                 <font key="font" metaFont="cellTitle"/>
@@ -2794,7 +2785,7 @@
                                             </textFieldCell>
                                         </textField>
                                         <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cif-N9-3mk">
-                                            <rect key="frame" x="474" y="48" width="82" height="18"/>
+                                            <rect key="frame" x="474" y="39" width="82" height="18"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             <buttonCell key="cell" type="check" title="Single file" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="neV-Qa-xOq">
                                                 <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
@@ -2825,7 +2816,7 @@
                                 </connections>
                             </button>
                             <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="XWf-df-fJ6">
-                                <rect key="frame" x="928" y="223" width="93" height="32"/>
+                                <rect key="frame" x="928" y="231" width="93" height="32"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <buttonCell key="cell" type="push" title="Clear" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="BGM-Kg-KGO">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -2844,7 +2835,6 @@
                     </view>
                     <connections>
                         <outlet property="backupID" destination="9T4-S6-awV" id="9jO-LC-qeB"/>
-                        <outlet property="equal" destination="XA5-51-CaU" id="QJ3-RM-uxU"/>
                         <outlet property="localCatalog" destination="0F6-hc-3TR" id="up8-NP-Gtr"/>
                         <outlet property="newTableView" destination="ytY-cn-Iq7" id="SRE-zL-BlG"/>
                         <outlet property="offsiteCatalog" destination="PLj-9a-6li" id="TJS-U0-E82"/>
