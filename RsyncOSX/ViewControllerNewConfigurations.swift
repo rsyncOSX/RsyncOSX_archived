@@ -144,10 +144,6 @@ class ViewControllerNewConfigurations: NSViewController, SetConfigurations, VcSc
             self.localCatalog.stringValue = ""
             return
         }
-        guard self.offsiteCatalog.stringValue != self.localCatalog.stringValue else {
-            self.equal.isHidden = false
-            return
-        }
         self.configurations!.addNewConfigurations(dict)
         self.newconfigurations?.appendnewConfigurations(dict: dict)
         self.tabledata = self.newconfigurations!.getnewConfigurations()
