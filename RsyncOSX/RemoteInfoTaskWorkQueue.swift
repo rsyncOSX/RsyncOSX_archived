@@ -44,7 +44,7 @@ class RemoteInfoTaskWorkQueue: SetConfigurations {
         if self.stackoftasktobeestimated?.count == 0 {
             self.stackoftasktobeestimated = nil
         }
-        let startstopProgressIndicatorDelegate: StartStopProgressIndicator?
+        weak var startstopProgressIndicatorDelegate: StartStopProgressIndicator?
         startstopProgressIndicatorDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vcremoteinfo) as? ViewControllerRemoteInfo
         startstopProgressIndicatorDelegate?.start()
         _ = EstimateRemoteInformationTask(index: self.index!, outputprocess: self.outputprocess)
