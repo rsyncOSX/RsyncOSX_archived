@@ -106,8 +106,9 @@ class ViewControllerRsyncParameters: NSViewController, SetConfigurations, SetDis
         self.suffixButton2.state = .off
         switch self.suffixButton.state {
         case .on:
-            self.setValueComboBox(combobox: self.parameter14, index: (self.parameters!.indexandvaluersyncparameter(self.parameters!.getSuffixString()[0]).0))
-            self.viewParameter14.stringValue = self.parameters!.indexandvaluersyncparameter(self.parameters!.getSuffixString()[0]).1
+            let suffix = self.parameters!.getSuffixString()[0]
+            self.setValueComboBox(combobox: self.parameter14, index: (self.parameters!.indexandvaluersyncparameter(suffix).0))
+            self.viewParameter14.stringValue = self.parameters!.indexandvaluersyncparameter(suffix).1
         case .off:
             self.setValueComboBox(combobox: self.parameter14, index: (0))
             self.viewParameter14.stringValue = ""
@@ -121,8 +122,9 @@ class ViewControllerRsyncParameters: NSViewController, SetConfigurations, SetDis
         self.suffixButton.state = .off
         switch self.suffixButton2.state {
         case .on:
-            self.setValueComboBox(combobox: self.parameter14, index: (self.parameters!.indexandvaluersyncparameter(self.parameters!.getSuffixString2()[0]).0))
-            self.viewParameter14.stringValue = self.parameters!.indexandvaluersyncparameter(self.parameters!.getSuffixString2()[0]).1
+            let suffix = self.parameters!.getSuffixString2()[0]
+            self.setValueComboBox(combobox: self.parameter14, index: (self.parameters!.indexandvaluersyncparameter(suffix).0))
+            self.viewParameter14.stringValue = self.parameters!.indexandvaluersyncparameter(suffix).1
         case .off:
             self.setValueComboBox(combobox: self.parameter14, index: (0))
             self.viewParameter14.stringValue = ""
@@ -136,8 +138,9 @@ class ViewControllerRsyncParameters: NSViewController, SetConfigurations, SetDis
     @IBAction func donotdeletefiles(_ sender: NSButton) {
         switch self.donotdeletebutton.state {
         case .on:
-            self.setValueComboBox(combobox: self.parameter11, index: (self.parameters!.indexandvaluersyncparameter(self.parameters!.getdonotdeletefilesString()[0]).0))
-            self.viewParameter11.stringValue = self.parameters!.indexandvaluersyncparameter(self.parameters!.getdonotdeletefilesString()[0]).1
+            let suffix = self.parameters!.getdonotdeletefilesString()[0]
+            self.setValueComboBox(combobox: self.parameter11, index: (self.parameters!.indexandvaluersyncparameter(suffix).0))
+            self.viewParameter11.stringValue = self.parameters!.indexandvaluersyncparameter(suffix).1
         case .off:
             self.setValueComboBox(combobox: self.parameter11, index: (0))
             self.viewParameter11.stringValue = ""
