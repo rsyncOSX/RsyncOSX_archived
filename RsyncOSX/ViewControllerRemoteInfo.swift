@@ -47,6 +47,7 @@ class ViewControllerRemoteInfo: NSViewController, SetDismisser, AbortTask {
         // Setting delegates and datasource
         self.mainTableView.delegate = self
         self.mainTableView.dataSource = self
+        ViewControllerReference.shared.setvcref(viewcontroller: .vcremoteinfo, nsviewcontroller: self)
         self.remoteinfotaskDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllertabMain
         self.remoteinfotask = RemoteInfoTaskWorkQueue()
         self.remoteinfotaskDelegate?.setremoteinfo(remoteinfotask: self.remoteinfotask)
@@ -54,10 +55,6 @@ class ViewControllerRemoteInfo: NSViewController, SetDismisser, AbortTask {
 
     override func viewDidAppear() {
         super.viewDidAppear()
-        ViewControllerReference.shared.setvcref(viewcontroller: .vcremoteinfo, nsviewcontroller: self)
-        if self.remoteinfotask!.records!.count > 0 {
-             self.working.startAnimation(nil)
-        }
         globalMainQueue.async(execute: { () -> Void in
             self.mainTableView.reloadData()
         })
@@ -154,7 +151,7 @@ extension ViewControllerRemoteInfo: UpdateProgress {
 
 extension ViewControllerRemoteInfo: StartStopProgressIndicator {
     func start() {
-        // nothing
+        self.working.startAnimation(nil)
     }
 
     func stop() {
