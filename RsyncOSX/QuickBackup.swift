@@ -27,6 +27,7 @@ class QuickBackup: SetConfigurations {
     typealias Row = (Int, Int)
     var stackoftasktobeexecuted: [Row]?
     var index: Int?
+    var hiddenID: Int?
 
     func sortbydays() {
         guard self.backuplist != nil else {
@@ -89,15 +90,22 @@ class QuickBackup: SetConfigurations {
             }
             guard self.stackoftasktobeexecuted!.count > 0 else { return }
             // Kick off first task
-            let hiddenID = self.stackoftasktobeexecuted![0].0
+            self.hiddenID = self.stackoftasktobeexecuted![0].0
             self.index = self.stackoftasktobeexecuted![0].1
             self.stackoftasktobeexecuted?.remove(at: 0)
-            self.executetasknow(hiddenID: hiddenID)
+            self.executetasknow(hiddenID: self.hiddenID!)
         }
     }
 
     // Called before processTerminatiom
     func setcompleted() {
+        // If list is sorted during execution we have to find new index
+        let dict = self.sortedlist!.filter({($0.value(forKey: "hiddenID") as? Int) == self.hiddenID!})
+        guard dict.count == 1 else {
+            self.sortedlist![self.index!].setValue(true, forKey: "completeCellID")
+            return
+        }
+        self.index = self.sortedlist!.index(of: dict[0])
         self.sortedlist![self.index!].setValue(true, forKey: "completeCellID")
     }
 
@@ -110,10 +118,10 @@ class QuickBackup: SetConfigurations {
             self.stackoftasktobeexecuted = nil
             return
         }
-        let hiddenID = self.stackoftasktobeexecuted![0].0
+        self.hiddenID = self.stackoftasktobeexecuted![0].0
         self.index = self.stackoftasktobeexecuted![0].1
         self.stackoftasktobeexecuted?.remove(at: 0)
-        self.executetasknow(hiddenID: hiddenID)
+        self.executetasknow(hiddenID: self.hiddenID!)
     }
 
     // Function for filter
@@ -148,5 +156,6 @@ class QuickBackup: SetConfigurations {
     init() {
         self.backuplist = self.configurations!.getConfigurationsDataSourcecountBackupOnly()
         self.sortbydays()
+        self.hiddenID = nil
     }
 }
