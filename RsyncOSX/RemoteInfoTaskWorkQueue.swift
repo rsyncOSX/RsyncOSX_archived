@@ -36,9 +36,7 @@ class RemoteInfoTaskWorkQueue: SetConfigurations {
     }
 
     private func start() {
-        guard self.stackoftasktobeestimated!.count > 0 else {
-            return
-        }
+        guard self.stackoftasktobeestimated!.count > 0 else { return }
         self.outputprocess = OutputProcess()
         self.index = self.stackoftasktobeestimated?.remove(at: 0).1
         if self.stackoftasktobeestimated?.count == 0 {
@@ -79,6 +77,23 @@ class RemoteInfoTaskWorkQueue: SetConfigurations {
         for i in 0 ..< list.count {
             self.configurations?.quickbackuplist!.append((list[i].value(forKey: "hiddenID") as? Int)!)
         }
+    }
+
+    func sortbystrings(sort: Sort) {
+        var sortby: String?
+        guard self.records != nil else { return }
+        switch sort {
+        case .localCatalog:
+            sortby = "localCatalog"
+        case .backupId:
+            sortby = "backupIDCellID"
+        case .offsiteCatalog:
+            sortby = "offsiteCatalog"
+        case .offsiteServer:
+            sortby = "offsiteServer"
+        }
+        let sorted = self.records!.sorted {return ($0.value(forKey: sortby!) as? String)!.localizedStandardCompare(($1.value(forKey: sortby!) as? String)!) == .orderedAscending}
+        self.records = sorted
     }
 
     init() {
