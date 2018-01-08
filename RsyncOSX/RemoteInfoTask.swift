@@ -26,9 +26,7 @@ class RemoteInfoTask {
             "totalNumber": self.totalNumber ?? "",
             "totalNumberSizebytes": self.totalNumberSizebytes ?? "",
             "totalDirs": self.totalDirs ?? "",
-            "newfiles": self.newfiles ?? ""
-            // "deletefiles": self.deletefiles ?? ""
-        ]
+            "newfiles": self.newfiles ?? ""]
         dict.setValue(self.deletefiles ?? "", forKey: "deletefiles")
         dict.setValue(0, forKey: "backup")
         return dict

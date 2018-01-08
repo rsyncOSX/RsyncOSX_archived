@@ -23,8 +23,6 @@ class ViewControllerRemoteInfo: NSViewController, SetDismisser, AbortTask {
     // remote info tasks
     private var remoteinfotask: RemoteInfoTaskWorkQueue?
     weak var remoteinfotaskDelegate: SetRemoteInfo?
-    var filterby: Filterlogs?
-    var column: Int?
 
     // Either abort or close
     @IBAction func abort(_ sender: NSButton) {
@@ -86,19 +84,13 @@ class ViewControllerRemoteInfo: NSViewController, SetDismisser, AbortTask {
         let myTableViewFromNotification = (notification.object as? NSTableView)!
         let column = myTableViewFromNotification.selectedColumn
         if column == 0 {
-            self.column = 0
-            self.filterby = .localCatalog
-            // self.quickbackuplist?.sortbystrings(sort: .localCatalog)
+            self.remoteinfotask?.sortbystrings(sort: .localCatalog)
         } else if column == 2 {
-            self.column = 2
-            self.filterby = .remoteCatalog
-            // self.quickbackuplist?.sortbystrings(sort: .offsiteCatalog)
+            self.remoteinfotask?.sortbystrings(sort: .offsiteCatalog)
         } else if column == 3 {
-            self.column = 3
-            self.filterby = .remoteServer
-            // self.quickbackuplist?.sortbystrings(sort: .offsiteServer)
+            self.remoteinfotask?.sortbystrings(sort: .offsiteServer)
         } else {
-            self.column = nil
+            return
         }
         self.reloadtabledata()
     }
