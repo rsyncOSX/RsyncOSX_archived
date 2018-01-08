@@ -47,8 +47,6 @@ class ViewControllerQuickBackup: NSViewController, SetDismisser, AbortTask, Dela
     // Initial functions viewDidLoad and viewDidAppear
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do view setup here.
-        // Setting delegates and datasource
         self.mainTableView.delegate = self
         self.mainTableView.dataSource = self
         self.search.delegate = self

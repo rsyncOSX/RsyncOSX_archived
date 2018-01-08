@@ -19,10 +19,12 @@ class ViewControllerRemoteInfo: NSViewController, SetDismisser, AbortTask {
     @IBOutlet weak var mainTableView: NSTableView!
     @IBOutlet weak var working: NSProgressIndicator!
     @IBOutlet weak var abortbutton: NSButton!
+    @IBOutlet weak var count: NSTextField!
     // remote info tasks
     private var remoteinfotask: RemoteInfoTaskWorkQueue?
     weak var remoteinfotaskDelegate: SetRemoteInfo?
-    @IBOutlet weak var count: NSTextField!
+    var filterby: Filterlogs?
+    var column: Int?
 
     // Either abort or close
     @IBAction func abort(_ sender: NSButton) {
@@ -77,6 +79,28 @@ class ViewControllerRemoteInfo: NSViewController, SetDismisser, AbortTask {
     private func dobackups() -> [NSMutableDictionary]? {
         let backup = self.remoteinfotask?.records?.filter({$0.value(forKey: "backup") as? Int == 1})
         return backup
+    }
+
+    func tableViewSelectionDidChange(_ notification: Notification) {
+        // guard self.remoteinfotask?.maxnumber ?? 0 == self.remoteinfotask?.count ?? 0 else { return }
+        let myTableViewFromNotification = (notification.object as? NSTableView)!
+        let column = myTableViewFromNotification.selectedColumn
+        if column == 0 {
+            self.column = 0
+            self.filterby = .localCatalog
+            // self.quickbackuplist?.sortbystrings(sort: .localCatalog)
+        } else if column == 2 {
+            self.column = 2
+            self.filterby = .remoteCatalog
+            // self.quickbackuplist?.sortbystrings(sort: .offsiteCatalog)
+        } else if column == 3 {
+            self.column = 3
+            self.filterby = .remoteServer
+            // self.quickbackuplist?.sortbystrings(sort: .offsiteServer)
+        } else {
+            self.column = nil
+        }
+        self.reloadtabledata()
     }
 
 }
