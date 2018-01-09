@@ -258,14 +258,14 @@
                                         </connections>
                                     </button>
                                 </toolbarItem>
-                                <toolbarItem implicitItemIdentifier="4E86EA40-63DF-4CA1-9A20-6164DF561B48" label="info" paletteLabel="info" image="info" id="GYz-8J-WDp">
+                                <toolbarItem implicitItemIdentifier="4E86EA40-63DF-4CA1-9A20-6164DF561B48" label="info" paletteLabel="info" image="report" id="GYz-8J-WDp">
                                     <nil key="toolTip"/>
                                     <size key="minSize" width="40" height="25"/>
                                     <size key="maxSize" width="40" height="28"/>
                                     <button key="view" verticalHuggingPriority="750" id="c2j-aQ-Boa">
                                         <rect key="frame" x="0.0" y="14" width="40" height="28"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                        <buttonCell key="cell" type="roundTextured" bezelStyle="texturedRounded" image="info" imagePosition="overlaps" alignment="center" lineBreakMode="truncatingTail" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="VcU-qL-nui">
+                                        <buttonCell key="cell" type="roundTextured" bezelStyle="texturedRounded" image="report" imagePosition="overlaps" alignment="center" lineBreakMode="truncatingTail" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="VcU-qL-nui">
                                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                             <font key="font" metaFont="system"/>
                                         </buttonCell>
@@ -5453,5 +5453,6 @@ DQ
         <image name="config" width="48" height="48"/>
         <image name="fastforward" width="48" height="48"/>
         <image name="info" width="48" height="48"/>
+        <image name="report" width="48" height="48"/>
     </resources>
 </document>
