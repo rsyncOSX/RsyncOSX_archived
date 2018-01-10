@@ -733,11 +733,10 @@ extension ViewControllertabMain: UpdateProgress {
         // NB: must check if single run or batch run
         switch self.processtermination! {
         case .singletask:
-            if let singletask = self.singletask {
-                self.outputprocess = singletask.outputprocess
-                self.process = singletask.process
-                singletask.processTermination()
-            }
+            guard self.singletask != nil else { return }
+            self.outputprocess = self.singletask!.outputprocess
+            self.process = self.singletask!.process
+            self.singletask!.processTermination()
         case .batchtask:
             // Batch run
             self.batchObjectDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vcbatch) as? ViewControllerBatch
@@ -760,9 +759,7 @@ extension ViewControllertabMain: UpdateProgress {
             // Kick off next task
             self.startfirstcheduledtask()
         case .remoteinfotask:
-            guard self.remoteinfotask != nil else {
-                return
-            }
+            guard self.remoteinfotask != nil else { return }
             self.remoteinfotask?.processTermination()
         }
     }
@@ -779,16 +776,15 @@ extension ViewControllertabMain: UpdateProgress {
             self.process = self.singletask!.process
             localprocessupdateDelegate?.fileHandler()
         case .batchtask:
-            if self.batchtaskObject != nil {
-                if let batchobject = self.configurations!.getbatchQueue() {
-                    let work = batchobject.nextBatchCopy()
-                    if work.1 == 1 {
-                        // Real work is done, must set reference to Process object in case of Abort
-                        self.process = self.batchtaskObject!.process
-                        batchobject.updateInProcess(numberOfFiles: self.batchtaskObject!.outputprocess!.count())
-                        // Refresh view in Batchwindow
-                        self.reloadtable(vcontroller: .vcbatch)
-                    }
+            guard self.batchtaskObject != nil else { return }
+            if let batchobject = self.configurations!.getbatchQueue() {
+                let work = batchobject.nextBatchCopy()
+                if work.1 == 1 {
+                    // Real work is done, must set reference to Process object in case of Abort
+                    self.process = self.batchtaskObject!.process
+                    batchobject.updateInProcess(numberOfFiles: self.batchtaskObject!.outputprocess!.count())
+                    // Refresh view in Batchwindow
+                    self.reloadtable(vcontroller: .vcbatch)
                 }
             }
         case .quicktask:
