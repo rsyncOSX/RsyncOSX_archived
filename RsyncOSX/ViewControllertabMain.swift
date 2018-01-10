@@ -767,11 +767,11 @@ extension ViewControllertabMain: UpdateProgress {
     // Function is triggered when Process outputs data in filehandler
     // Process is either in singleRun or batchRun
     func fileHandler() {
-        weak var localprocessupdateDelegate: UpdateProgress?
-        localprocessupdateDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vcprogressview) as? ViewControllerProgressProcess
         switch self.processtermination! {
         case .singletask:
             guard self.singletask != nil else { return }
+            weak var localprocessupdateDelegate: UpdateProgress?
+            localprocessupdateDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vcprogressview) as? ViewControllerProgressProcess
             self.outputprocess = self.singletask!.outputprocess
             self.process = self.singletask!.process
             localprocessupdateDelegate?.fileHandler()
@@ -788,7 +788,9 @@ extension ViewControllertabMain: UpdateProgress {
                 }
             }
         case .quicktask:
-            return
+            weak var localprocessupdateDelegate: UpdateProgress?
+            localprocessupdateDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vcquickbatch) as? ViewControllerQuickBackup
+            localprocessupdateDelegate?.fileHandler()
         case .singlequicktask:
             return
         case .remoteinfotask:

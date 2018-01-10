@@ -165,7 +165,7 @@ extension ViewControllerQuickBackup: UpdateProgress {
     }
 
     func fileHandler() {
-        // nothing
+        self.quickbackuplist?.fileHandler()
     }
 }
 

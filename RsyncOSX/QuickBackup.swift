@@ -23,6 +23,7 @@ struct Filtereddata2 {
 class QuickBackup: SetConfigurations {
     var backuplist: [NSMutableDictionary]?
     var sortedlist: [NSMutableDictionary]?
+    var estimatedlist: [NSMutableDictionary]?
     // (hiddenID, index)
     typealias Row = (Int, Int)
     var stackoftasktobeexecuted: [Row]?
@@ -109,6 +110,15 @@ class QuickBackup: SetConfigurations {
         self.sortedlist![self.index!].setValue(true, forKey: "completeCellID")
     }
 
+    func fileHandler() {
+        // If list is sorted during execution we have to find new index
+        let dict = self.sortedlist!.filter({($0.value(forKey: "hiddenID") as? Int) == self.hiddenID!})
+        let index = self.sortedlist!.index(of: dict[0])
+        guard self.estimatedlist != nil else { return }
+        let estimated = self.estimatedlist!.filter({($0.value(forKey: "hiddenID") as? Int) == self.hiddenID!})
+        guard estimated.count == 1 else { return }
+        // print("got it")
+    }
     func processTermination() {
         guard self.stackoftasktobeexecuted != nil else { return }
         guard self.stackoftasktobeexecuted!.count > 0  else {
@@ -154,7 +164,8 @@ class QuickBackup: SetConfigurations {
     }
 
     init() {
-        self.backuplist = self.configurations!.getConfigurationsDataSourcecountBackupOnly()
+        self.backuplist = self.configurations?.getConfigurationsDataSourcecountBackupOnly()
+        self.estimatedlist = self.configurations?.estimatedlist
         self.sortbydays()
         self.hiddenID = nil
     }
