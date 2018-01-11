@@ -143,7 +143,7 @@ extension ViewControllerQuickBackup: NSTableViewDelegate, Attributedestring {
             if select == 0 { select = 1 } else if select == 1 { select = 0 }
             self.quickbackuplist?.sortedlist![row].setValue(select, forKey: "selectCellID")
         }
-        self.enableexecutebutton()
+        _ = self.enableexecutebutton()
     }
 }
 
@@ -151,7 +151,7 @@ extension ViewControllerQuickBackup: Reloadandrefresh {
 
     // Updates tableview according to progress of batch
     func reloadtabledata() {
-        self.enableexecutebutton()
+        _ = self.enableexecutebutton()
         globalMainQueue.async(execute: { () -> Void in
             self.mainTableView.reloadData()
         })
