@@ -60,6 +60,7 @@ class RemoteInfoTaskWorkQueue: SetConfigurations {
             record.setValue(self.configurations?.getConfigurations()[self.index!].offsiteServer, forKey: "offsiteServer")
         }
         self.records?.append(record)
+        self.configurations?.estimatedlist?.append(record)
         self.reloadtableDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vcremoteinfo) as? ViewControllerRemoteInfo
         self.reloadtableDelegate?.processTermination()
         guard self.stackoftasktobeestimated != nil else { return }
@@ -99,6 +100,7 @@ class RemoteInfoTaskWorkQueue: SetConfigurations {
     init() {
         self.prepareandstartexecutetasks()
         self.records = [NSMutableDictionary]()
+        self.configurations!.estimatedlist = [NSMutableDictionary]()
         self.start()
     }
 }

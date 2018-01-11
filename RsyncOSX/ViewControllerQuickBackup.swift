@@ -59,7 +59,14 @@ class ViewControllerQuickBackup: NSViewController, SetDismisser, AbortTask, Dela
         globalMainQueue.async(execute: { () -> Void in
             self.mainTableView.reloadData()
         })
-        self.enableexecutebutton()
+        if let execute = self.enableexecutebutton() {
+            if execute {
+                self.executing = true
+                self.executeButton.isEnabled = false
+                self.working.startAnimation(nil)
+                self.quickbackuplist?.prepareandstartexecutetasks()
+            }
+        }
     }
 
     func tableViewSelectionDidChange(_ notification: Notification) {
@@ -83,14 +90,16 @@ class ViewControllerQuickBackup: NSViewController, SetDismisser, AbortTask, Dela
         self.reloadtabledata()
     }
 
-    private func enableexecutebutton() {
+    private func enableexecutebutton() -> Bool? {
         let backup = self.quickbackuplist?.sortedlist!.filter({$0.value(forKey: "selectCellID") as? Int == 1})
-        guard backup != nil else { return }
-        guard self.executing == false else { return }
+        guard backup != nil else { return nil }
+        guard self.executing == false else { return nil }
         if backup!.count > 0 {
             self.executeButton.isEnabled = true
+            return true
         } else {
             self.executeButton.isEnabled = false
+            return false
         }
     }
 
@@ -134,7 +143,7 @@ extension ViewControllerQuickBackup: NSTableViewDelegate, Attributedestring {
             if select == 0 { select = 1 } else if select == 1 { select = 0 }
             self.quickbackuplist?.sortedlist![row].setValue(select, forKey: "selectCellID")
         }
-        self.enableexecutebutton()
+        _ = self.enableexecutebutton()
     }
 }
 
@@ -142,7 +151,7 @@ extension ViewControllerQuickBackup: Reloadandrefresh {
 
     // Updates tableview according to progress of batch
     func reloadtabledata() {
-        self.enableexecutebutton()
+        _ = self.enableexecutebutton()
         globalMainQueue.async(execute: { () -> Void in
             self.mainTableView.reloadData()
         })
@@ -158,14 +167,16 @@ extension ViewControllerQuickBackup: CloseViewError {
 }
 
 extension ViewControllerQuickBackup: UpdateProgress {
+
     func processTermination() {
         self.quickbackuplist?.setcompleted()
         self.reloadtabledata()
         self.quickbackuplist?.processTermination()
     }
 
-    func fileHandler() {
-        // nothing
+    func fileHandler(outputprocess: OutputProcess?) {
+        self.quickbackuplist?.fileHandler(outputprocess: outputprocess)
+        self.reloadtabledata()
     }
 }
 

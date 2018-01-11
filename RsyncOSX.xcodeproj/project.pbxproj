@@ -356,6 +356,7 @@
 		A04492C51D65904500B3CE17 /* Process */ = {
 			isa = PBXGroup;
 			children = (
+				E943DC671FF9115200E6B8B7 /* EstimateRemoteInformationTask.swift */,
 				A049724F1D6595B200086EFD /* OutputProcess.swift */,
 				E9DCEA861E75F67200A69B4D /* OutputBatch.swift */,
 				E9FFA02C1E7287E100B7AB2B /* ProcessCmd.swift */,
@@ -475,7 +476,6 @@
 			isa = PBXGroup;
 			children = (
 				E943DC651FF90A6600E6B8B7 /* RemoteInfoTask.swift */,
-				E943DC671FF9115200E6B8B7 /* EstimateRemoteInformationTask.swift */,
 				E943DC691FF9141D00E6B8B7 /* RemoteInfoTaskWorkQueue.swift */,
 			);
 			name = RemoteInformation;

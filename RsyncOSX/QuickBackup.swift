@@ -23,11 +23,13 @@ struct Filtereddata2 {
 class QuickBackup: SetConfigurations {
     var backuplist: [NSMutableDictionary]?
     var sortedlist: [NSMutableDictionary]?
+    var estimatedlist: [NSMutableDictionary]?
     // (hiddenID, index)
     typealias Row = (Int, Int)
     var stackoftasktobeexecuted: [Row]?
     var index: Int?
     var hiddenID: Int?
+    var maxcount: Int?
 
     func sortbydays() {
         guard self.backuplist != nil else {
@@ -84,6 +86,7 @@ class QuickBackup: SetConfigurations {
             self.stackoftasktobeexecuted = [Row]()
             for i in 0 ..< list.count {
                 list[i].setObject(false, forKey: "completeCellID" as NSCopying)
+                list[i].setObject("", forKey: "progressCellID" as NSCopying)
                 if list[i].value(forKey: "selectCellID") as? Int == 1 {
                     self.stackoftasktobeexecuted?.append(((list[i].value(forKey: "hiddenID") as? Int)!, i))
                 }
@@ -107,6 +110,23 @@ class QuickBackup: SetConfigurations {
         }
         self.index = self.sortedlist!.index(of: dict[0])
         self.sortedlist![self.index!].setValue(true, forKey: "completeCellID")
+        self.sortedlist![self.index!].setValue("100", forKey: "progressCellID")
+    }
+
+    func fileHandler(outputprocess: OutputProcess?) {
+        guard outputprocess != nil else { return }
+        // If list is sorted during execution we have to find new index
+        let dict = self.sortedlist!.filter({($0.value(forKey: "hiddenID") as? Int) == self.hiddenID!})
+        let index = self.sortedlist!.index(of: dict[0])
+        guard self.estimatedlist != nil else { return }
+        let estimated = self.estimatedlist!.filter({($0.value(forKey: "hiddenID") as? Int) == self.hiddenID!})
+        guard estimated.count == 1 else { return }
+        if self.maxcount == nil {
+            self.maxcount = Int((estimated[0].value(forKey: "transferredNumber") as? String) ?? "1")
+        }
+        let number = Int(outputprocess!.count())
+        let progress = round(Double((number/self.maxcount!) * 100))
+        self.sortedlist![index!].setValue(String(progress), forKey: "progressCellID")
     }
 
     func processTermination() {
@@ -154,7 +174,8 @@ class QuickBackup: SetConfigurations {
     }
 
     init() {
-        self.backuplist = self.configurations!.getConfigurationsDataSourcecountBackupOnly()
+        self.backuplist = self.configurations?.getConfigurationsDataSourcecountBackupOnly()
+        self.estimatedlist = self.configurations?.estimatedlist
         self.sortbydays()
         self.hiddenID = nil
     }

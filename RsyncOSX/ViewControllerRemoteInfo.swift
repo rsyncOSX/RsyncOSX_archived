@@ -18,17 +18,14 @@ class ViewControllerRemoteInfo: NSViewController, SetDismisser, AbortTask {
 
     @IBOutlet weak var mainTableView: NSTableView!
     @IBOutlet weak var working: NSProgressIndicator!
+    @IBOutlet weak var executebutton: NSButton!
     @IBOutlet weak var abortbutton: NSButton!
     @IBOutlet weak var count: NSTextField!
     // remote info tasks
     private var remoteinfotask: RemoteInfoTaskWorkQueue?
     weak var remoteinfotaskDelegate: SetRemoteInfo?
 
-    // Either abort or close
-    @IBAction func abort(_ sender: NSButton) {
-        if self.remoteinfotask?.stackoftasktobeestimated != nil {
-            self.abort()
-        }
+    @IBAction func execute(_ sender: NSButton) {
         if let backup = self.dobackups() {
             if backup.count > 0 {
                 self.remoteinfotask?.setbackuplist(list: backup)
@@ -36,6 +33,14 @@ class ViewControllerRemoteInfo: NSViewController, SetDismisser, AbortTask {
                 openDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllertabMain
                 openDelegate?.openquickbackup()
             }
+        }
+        self.dismissview(viewcontroller: self, vcontroller: .vctabmain)
+    }
+
+    // Either abort or close
+    @IBAction func abort(_ sender: NSButton) {
+        if self.remoteinfotask?.stackoftasktobeestimated != nil {
+            self.abort()
         }
         self.dismissview(viewcontroller: self, vcontroller: .vctabmain)
     }
@@ -59,6 +64,7 @@ class ViewControllerRemoteInfo: NSViewController, SetDismisser, AbortTask {
             self.mainTableView.reloadData()
         })
         self.count.stringValue = self.number()
+        self.enableexecutebutton()
     }
 
     override func viewDidDisappear() {
@@ -77,6 +83,18 @@ class ViewControllerRemoteInfo: NSViewController, SetDismisser, AbortTask {
     private func dobackups() -> [NSMutableDictionary]? {
         let backup = self.remoteinfotask?.records?.filter({$0.value(forKey: "backup") as? Int == 1})
         return backup
+    }
+
+    private func enableexecutebutton() {
+        if let backupe = self.dobackups() {
+            if backupe.count > 0 {
+                self.executebutton.isEnabled = true
+            } else {
+                self.executebutton.isEnabled = false
+            }
+        } else {
+            self.executebutton.isEnabled = false
+        }
     }
 
     func tableViewSelectionDidChange(_ notification: Notification) {
@@ -138,6 +156,7 @@ extension ViewControllerRemoteInfo: NSTableViewDelegate, Attributedestring {
             if select == 0 { select = 1 } else if select == 1 { select = 0 }
             self.remoteinfotask?.records![row].setValue(select, forKey: "backup")
         }
+        self.enableexecutebutton()
     }
 }
 
@@ -160,7 +179,7 @@ extension ViewControllerRemoteInfo: UpdateProgress {
         }
     }
 
-    func fileHandler() {
+    func fileHandler(outputprocess: OutputProcess?) {
         // nothing
     }
 }
