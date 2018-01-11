@@ -109,6 +109,7 @@ class QuickBackup: SetConfigurations {
         }
         self.index = self.sortedlist!.index(of: dict[0])
         self.sortedlist![self.index!].setValue(true, forKey: "completeCellID")
+        self.sortedlist![self.index!].setValue("100", forKey: "progressCellID")
     }
 
     func fileHandler(outputprocess: OutputProcess?) {
@@ -118,10 +119,10 @@ class QuickBackup: SetConfigurations {
         guard self.estimatedlist != nil else { return }
         let estimated = self.estimatedlist!.filter({($0.value(forKey: "hiddenID") as? Int) == self.hiddenID!})
         guard estimated.count == 1 else { return }
-        let max = estimated[0].value(forKey: "transferredNumber")
-        self.sortedlist![index!].setValue(max!, forKey: "progressCellID")
         guard outputprocess != nil else { return }
-        print(outputprocess!.count())
+        let max = Double((estimated[0].value(forKey: "transferredNumber") as? Double) ?? 1)
+        let number = Double(outputprocess!.count())
+        self.sortedlist![index!].setValue(String(format: "%.2f", (max/number)*100), forKey: "progressCellID")
     }
 
     func processTermination() {

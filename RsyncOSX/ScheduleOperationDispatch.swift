@@ -24,7 +24,6 @@ class ScheduleOperationDispatch: SetSchedules, SecondsBeforeStart {
         if self.schedules != nil {
             let seconds = self.secondsbeforestart()
             guard seconds > 0 else { return }
-            print(seconds)
             self.dispatchtask(Int(seconds))
             // Set reference to schedule for later cancel if any
             ViewControllerReference.shared.dispatchTaskWaiting = self.pendingRequestWorkItem
