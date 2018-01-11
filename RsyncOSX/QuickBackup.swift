@@ -122,7 +122,7 @@ class QuickBackup: SetConfigurations {
         guard outputprocess != nil else { return }
         let max = Double((estimated[0].value(forKey: "transferredNumber") as? Double) ?? 1)
         let number = Double(outputprocess!.count())
-        self.sortedlist![index!].setValue(String(format: "%.2f", (number/max)*100), forKey: "progressCellID")
+        self.sortedlist![index!].setValue(String(format: "%.0f", (number/max)*100), forKey: "progressCellID")
     }
 
     func processTermination() {
