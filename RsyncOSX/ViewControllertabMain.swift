@@ -22,7 +22,7 @@ protocol StartStopProgressIndicator: class {
 // process termination and when filehandler discover data
 protocol UpdateProgress: class {
     func processTermination()
-    func fileHandler()
+    func fileHandler(outputprocess: OutputProcess?)
 }
 
 class ViewControllertabMain: NSViewController, ReloadTable, Deselect, Coloractivetask, VcMain {
@@ -726,6 +726,7 @@ extension ViewControllertabMain: DismissViewController {
 // discovered or data is availiable in the filehandler
 // See file rsyncProcess.swift.
 extension ViewControllertabMain: UpdateProgress {
+
     // Delegate functions called from the Process object
     // Protocol UpdateProgress two functions, ProcessTermination() and FileHandler()
     func processTermination() {
@@ -766,7 +767,7 @@ extension ViewControllertabMain: UpdateProgress {
 
     // Function is triggered when Process outputs data in filehandler
     // Process is either in singleRun or batchRun
-    func fileHandler() {
+    func fileHandler(outputprocess: OutputProcess?) {
         switch self.processtermination! {
         case .singletask:
             guard self.singletask != nil else { return }
@@ -774,7 +775,7 @@ extension ViewControllertabMain: UpdateProgress {
             localprocessupdateDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vcprogressview) as? ViewControllerProgressProcess
             self.outputprocess = self.singletask!.outputprocess
             self.process = self.singletask!.process
-            localprocessupdateDelegate?.fileHandler()
+            localprocessupdateDelegate?.fileHandler(outputprocess: nil)
         case .batchtask:
             guard self.batchtaskObject != nil else { return }
             if let batchobject = self.configurations!.getbatchQueue() {
@@ -790,7 +791,7 @@ extension ViewControllertabMain: UpdateProgress {
         case .quicktask:
             weak var localprocessupdateDelegate: UpdateProgress?
             localprocessupdateDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vcquickbatch) as? ViewControllerQuickBackup
-            localprocessupdateDelegate?.fileHandler()
+            localprocessupdateDelegate?.fileHandler(outputprocess: self.outputprocess)
         case .singlequicktask:
             return
         case .remoteinfotask:

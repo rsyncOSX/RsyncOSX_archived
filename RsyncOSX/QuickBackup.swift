@@ -111,7 +111,7 @@ class QuickBackup: SetConfigurations {
         self.sortedlist![self.index!].setValue(true, forKey: "completeCellID")
     }
 
-    func fileHandler() {
+    func fileHandler(outputprocess: OutputProcess?) {
         // If list is sorted during execution we have to find new index
         let dict = self.sortedlist!.filter({($0.value(forKey: "hiddenID") as? Int) == self.hiddenID!})
         let index = self.sortedlist!.index(of: dict[0])
@@ -120,7 +120,10 @@ class QuickBackup: SetConfigurations {
         guard estimated.count == 1 else { return }
         let max = estimated[0].value(forKey: "transferredNumber")
         self.sortedlist![index!].setValue(max!, forKey: "progressCellID")
+        guard outputprocess != nil else { return }
+        print(outputprocess!.count())
     }
+
     func processTermination() {
         guard self.stackoftasktobeexecuted != nil else { return }
         guard self.stackoftasktobeexecuted!.count > 0  else {

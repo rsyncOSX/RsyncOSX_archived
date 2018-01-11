@@ -68,7 +68,7 @@ class ProcessCmd: Delay {
                     outputprocess!.addlinefromoutput(str as String)
                     self.calculatedNumberOfFiles = outputprocess!.count()
                     // Send message about files
-                    self.updateDelegate?.fileHandler()
+                    self.updateDelegate?.fileHandler(outputprocess: nil)
                     if self.termination {
                         self.possibleerrorDelegate?.erroroutput()
                     }

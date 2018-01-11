@@ -158,14 +158,15 @@ extension ViewControllerQuickBackup: CloseViewError {
 }
 
 extension ViewControllerQuickBackup: UpdateProgress {
+
     func processTermination() {
         self.quickbackuplist?.setcompleted()
         self.reloadtabledata()
         self.quickbackuplist?.processTermination()
     }
 
-    func fileHandler() {
-        self.quickbackuplist?.fileHandler()
+    func fileHandler(outputprocess: OutputProcess?) {
+        self.quickbackuplist?.fileHandler(outputprocess: outputprocess)
         self.reloadtabledata()
     }
 }
