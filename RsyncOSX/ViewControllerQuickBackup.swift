@@ -59,7 +59,14 @@ class ViewControllerQuickBackup: NSViewController, SetDismisser, AbortTask, Dela
         globalMainQueue.async(execute: { () -> Void in
             self.mainTableView.reloadData()
         })
-        self.enableexecutebutton()
+        if let execute = self.enableexecutebutton() {
+            if execute {
+                self.executing = true
+                self.executeButton.isEnabled = false
+                self.working.startAnimation(nil)
+                self.quickbackuplist?.prepareandstartexecutetasks()
+            }
+        }
     }
 
     func tableViewSelectionDidChange(_ notification: Notification) {
@@ -83,14 +90,16 @@ class ViewControllerQuickBackup: NSViewController, SetDismisser, AbortTask, Dela
         self.reloadtabledata()
     }
 
-    private func enableexecutebutton() {
+    private func enableexecutebutton() -> Bool? {
         let backup = self.quickbackuplist?.sortedlist!.filter({$0.value(forKey: "selectCellID") as? Int == 1})
-        guard backup != nil else { return }
-        guard self.executing == false else { return }
+        guard backup != nil else { return nil }
+        guard self.executing == false else { return nil }
         if backup!.count > 0 {
             self.executeButton.isEnabled = true
+            return true
         } else {
             self.executeButton.isEnabled = false
+            return false
         }
     }
 

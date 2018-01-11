@@ -29,6 +29,7 @@ class QuickBackup: SetConfigurations {
     var stackoftasktobeexecuted: [Row]?
     var index: Int?
     var hiddenID: Int?
+    var maxcount: Int?
 
     func sortbydays() {
         guard self.backuplist != nil else {
@@ -113,16 +114,19 @@ class QuickBackup: SetConfigurations {
     }
 
     func fileHandler(outputprocess: OutputProcess?) {
+        guard outputprocess != nil else { return }
         // If list is sorted during execution we have to find new index
         let dict = self.sortedlist!.filter({($0.value(forKey: "hiddenID") as? Int) == self.hiddenID!})
         let index = self.sortedlist!.index(of: dict[0])
         guard self.estimatedlist != nil else { return }
         let estimated = self.estimatedlist!.filter({($0.value(forKey: "hiddenID") as? Int) == self.hiddenID!})
         guard estimated.count == 1 else { return }
-        guard outputprocess != nil else { return }
-        let max = Double((estimated[0].value(forKey: "transferredNumber") as? Double) ?? 1)
-        let number = Double(outputprocess!.count())
-        self.sortedlist![index!].setValue(String(format: "%.0f", (number/max)*100), forKey: "progressCellID")
+        if self.maxcount == nil {
+            self.maxcount = Int((estimated[0].value(forKey: "transferredNumber") as? String) ?? "1")
+        }
+        let number = Int(outputprocess!.count())
+        let progress = round(Double((number/self.maxcount!) * 100))
+        self.sortedlist![index!].setValue(String(progress), forKey: "progressCellID")
     }
 
     func processTermination() {
