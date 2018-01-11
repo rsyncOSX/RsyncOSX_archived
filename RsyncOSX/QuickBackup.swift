@@ -85,6 +85,7 @@ class QuickBackup: SetConfigurations {
             self.stackoftasktobeexecuted = [Row]()
             for i in 0 ..< list.count {
                 list[i].setObject(false, forKey: "completeCellID" as NSCopying)
+                list[i].setObject("", forKey: "progressCellID" as NSCopying)
                 if list[i].value(forKey: "selectCellID") as? Int == 1 {
                     self.stackoftasktobeexecuted?.append(((list[i].value(forKey: "hiddenID") as? Int)!, i))
                 }
@@ -117,7 +118,8 @@ class QuickBackup: SetConfigurations {
         guard self.estimatedlist != nil else { return }
         let estimated = self.estimatedlist!.filter({($0.value(forKey: "hiddenID") as? Int) == self.hiddenID!})
         guard estimated.count == 1 else { return }
-        // print("got it")
+        let max = estimated[0].value(forKey: "transferredNumber")
+        self.sortedlist![index!].setValue(max!, forKey: "progressCellID")
     }
     func processTermination() {
         guard self.stackoftasktobeexecuted != nil else { return }

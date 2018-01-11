@@ -166,6 +166,7 @@ extension ViewControllerQuickBackup: UpdateProgress {
 
     func fileHandler() {
         self.quickbackuplist?.fileHandler()
+        self.reloadtabledata()
     }
 }
 
