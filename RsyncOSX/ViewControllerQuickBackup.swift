@@ -24,6 +24,7 @@ class ViewControllerQuickBackup: NSViewController, SetDismisser, AbortTask, Dela
     @IBOutlet weak var abortbutton: NSButton!
     @IBOutlet weak var search: NSSearchField!
     @IBOutlet weak var progress: NSProgressIndicator!
+    @IBOutlet weak var noestimates: NSTextField!
 
     // Either abort or close
     @IBAction func abort(_ sender: NSButton) {
@@ -37,7 +38,9 @@ class ViewControllerQuickBackup: NSViewController, SetDismisser, AbortTask, Dela
         self.executing = true
         self.executeButton.isEnabled = false
         self.quickbackuplist?.prepareandstartexecutetasks()
-        self.initiateProgressbar()
+        if self.checkforestimates() == true {
+            self.initiateProgressbar()
+        }
     }
 
     private func loadtasks() {
@@ -66,9 +69,12 @@ class ViewControllerQuickBackup: NSViewController, SetDismisser, AbortTask, Dela
                 self.executing = true
                 self.executeButton.isEnabled = false
                 self.quickbackuplist?.prepareandstartexecutetasks()
-                self.initiateProgressbar()
+                if self.checkforestimates() == true {
+                    self.initiateProgressbar()
+                }
             }
         }
+        
     }
 
     func tableViewSelectionDidChange(_ notification: Notification) {
@@ -120,9 +126,16 @@ class ViewControllerQuickBackup: NSViewController, SetDismisser, AbortTask, Dela
         self.progress.doubleValue = value
     }
 
-    private func stopProgressbar() {
-        self.progress.stopAnimation(self)
+    private func checkforestimates() -> Bool {
+        if self.quickbackuplist?.maxcount != nil {
+            self.noestimates.isHidden = true
+            return true
+        } else {
+            self.noestimates.isHidden = false
+            return false
+        }
     }
+
 }
 
 extension ViewControllerQuickBackup: NSTableViewDataSource {
@@ -193,7 +206,10 @@ extension ViewControllerQuickBackup: UpdateProgress {
         self.quickbackuplist?.setcompleted()
         self.reloadtabledata()
         self.quickbackuplist?.processTermination()
-        self.initiateProgressbar()
+        self.progress.stopAnimation(self)
+        if self.checkforestimates() == true {
+            self.initiateProgressbar()
+        }
     }
 
     func fileHandler() {

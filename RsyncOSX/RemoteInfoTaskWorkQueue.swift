@@ -100,6 +100,7 @@ class RemoteInfoTaskWorkQueue: SetConfigurations {
     init() {
         self.prepareandstartexecutetasks()
         self.records = [NSMutableDictionary]()
+        self.configurations!.estimatedlist = nil
         self.configurations!.estimatedlist = [NSMutableDictionary]()
         self.start()
     }
