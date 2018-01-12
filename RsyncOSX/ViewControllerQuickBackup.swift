@@ -16,12 +16,14 @@ class ViewControllerQuickBackup: NSViewController, SetDismisser, AbortTask, Dela
     var filterby: Filterlogs?
     var quickbackuplist: QuickBackup?
     var executing: Bool = false
+    var calculatedNumberOfFiles: Int?
 
     @IBOutlet weak var mainTableView: NSTableView!
     @IBOutlet weak var working: NSProgressIndicator!
     @IBOutlet weak var executeButton: NSButton!
     @IBOutlet weak var abortbutton: NSButton!
     @IBOutlet weak var search: NSSearchField!
+    @IBOutlet weak var progress: NSProgressIndicator!
 
     // Either abort or close
     @IBAction func abort(_ sender: NSButton) {
@@ -103,6 +105,23 @@ class ViewControllerQuickBackup: NSViewController, SetDismisser, AbortTask, Dela
         }
     }
 
+    // Progress bars
+    private func initiateProgressbar() {
+        if let calculatedNumberOfFiles = self.calculatedNumberOfFiles {
+            self.progress.maxValue = Double(calculatedNumberOfFiles)
+        }
+        self.progress.minValue = 0
+        self.progress.doubleValue = 0
+        self.progress.startAnimation(self)
+    }
+
+    private func updateProgressbar(_ value: Double) {
+        self.progress.doubleValue = value
+    }
+
+    private func stopProgressbar() {
+        self.progress.stopAnimation(self)
+    }
 }
 
 extension ViewControllerQuickBackup: NSTableViewDataSource {

@@ -5060,19 +5060,6 @@ DQ
                                                     </textFieldCell>
                                                     <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                 </tableColumn>
-                                                <tableColumn identifier="progressCellID" width="51" minWidth="40" maxWidth="1000" id="eMq-Gb-DgX">
-                                                    <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="center" title="%">
-                                                        <font key="font" metaFont="smallSystem"/>
-                                                        <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
-                                                        <color key="backgroundColor" name="headerColor" catalog="System" colorSpace="catalog"/>
-                                                    </tableHeaderCell>
-                                                    <textFieldCell key="dataCell" lineBreakMode="truncatingTail" alignment="center" title="Text Cell" id="zYL-Ar-pc3">
-                                                        <font key="font" metaFont="system"/>
-                                                        <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
-                                                        <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                                    </textFieldCell>
-                                                    <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
-                                                </tableColumn>
                                                 <tableColumn identifier="selectCellID" editable="NO" width="42" minWidth="10" maxWidth="3.4028234663852886e+38" id="SVW-4J-V8a" userLabel="Select">
                                                     <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="center" title="Select">
                                                         <font key="font" metaFont="smallSystem"/>
@@ -5094,7 +5081,7 @@ DQ
                                                     <imageCell key="dataCell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="complete" id="5MH-Pu-5ZG"/>
                                                     <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                 </tableColumn>
-                                                <tableColumn identifier="localCatalogCellID" width="211.47265625" minWidth="40" maxWidth="1000" id="27J-nn-5gh">
+                                                <tableColumn identifier="localCatalogCellID" width="234.47265625" minWidth="40" maxWidth="1000" id="27J-nn-5gh">
                                                     <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" title="Local catalog">
                                                         <font key="font" metaFont="smallSystem"/>
                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
@@ -5107,7 +5094,7 @@ DQ
                                                     </textFieldCell>
                                                     <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                 </tableColumn>
-                                                <tableColumn identifier="offsiteCatalogCellID" width="177.98828125" minWidth="10" maxWidth="3.4028234663852886e+38" id="B39-H6-802">
+                                                <tableColumn identifier="offsiteCatalogCellID" width="209.98828125" minWidth="10" maxWidth="3.4028234663852886e+38" id="B39-H6-802">
                                                     <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left" title="Remote catalog">
                                                         <font key="font" metaFont="smallSystem"/>
                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
@@ -5151,7 +5138,7 @@ DQ
                                     </subviews>
                                 </clipView>
                                 <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="YES" id="e0w-78-6ai">
-                                    <rect key="frame" x="2" y="198" width="765" height="16"/>
+                                    <rect key="frame" x="2" y="9" width="0.0" height="16"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
                                 <scroller key="verticalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="NO" id="eod-Mr-2tx">
@@ -5203,8 +5190,12 @@ DQ
                                     <action selector="execute:" target="dc0-Rq-hhI" id="Ovn-fL-gGm"/>
                                 </connections>
                             </button>
+                            <progressIndicator wantsLayer="YES" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" maxValue="100" bezeled="NO" controlSize="small" style="spinning" translatesAutoresizingMaskIntoConstraints="NO" id="b86-eb-KUO">
+                                <rect key="frame" x="669" y="23" width="16" height="16"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                            </progressIndicator>
                             <progressIndicator wantsLayer="YES" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" maxValue="100" displayedWhenStopped="NO" bezeled="NO" indeterminate="YES" controlSize="small" style="spinning" translatesAutoresizingMaskIntoConstraints="NO" id="Uew-SU-4a7">
-                                <rect key="frame" x="677" y="23" width="16" height="16"/>
+                                <rect key="frame" x="566" y="23" width="16" height="16"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                             </progressIndicator>
                         </subviews>
@@ -5213,6 +5204,7 @@ DQ
                         <outlet property="abortbutton" destination="Yur-Pz-vhJ" id="GzU-HU-HIU"/>
                         <outlet property="executeButton" destination="WGW-dP-42t" id="PtI-QM-QZr"/>
                         <outlet property="mainTableView" destination="EFc-mk-M0n" id="uT1-sg-C9z"/>
+                        <outlet property="progress" destination="b86-eb-KUO" id="Wht-6y-cC3"/>
                         <outlet property="search" destination="Xou-X4-W0v" id="LTv-ge-c9v"/>
                         <outlet property="working" destination="Uew-SU-4a7" id="3bk-5z-4IQ"/>
                     </connections>
