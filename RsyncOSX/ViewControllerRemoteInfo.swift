@@ -86,8 +86,8 @@ class ViewControllerRemoteInfo: NSViewController, SetDismisser, AbortTask {
     }
 
     private func enableexecutebutton() {
-        if let backupe = self.dobackups() {
-            if backupe.count > 0 {
+        if let backup = self.dobackups() {
+            if backup.count > 0 {
                 self.executebutton.isEnabled = true
             } else {
                 self.executebutton.isEnabled = false
@@ -98,7 +98,6 @@ class ViewControllerRemoteInfo: NSViewController, SetDismisser, AbortTask {
     }
 
     func tableViewSelectionDidChange(_ notification: Notification) {
-        // guard self.remoteinfotask?.maxnumber ?? 0 == self.remoteinfotask?.count ?? 0 else { return }
         let myTableViewFromNotification = (notification.object as? NSTableView)!
         let column = myTableViewFromNotification.selectedColumn
         if column == 0 {
@@ -179,7 +178,7 @@ extension ViewControllerRemoteInfo: UpdateProgress {
         }
     }
 
-    func fileHandler(outputprocess: OutputProcess?) {
+    func fileHandler() {
         // nothing
     }
 }

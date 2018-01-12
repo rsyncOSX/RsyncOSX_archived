@@ -29,7 +29,6 @@ class QuickBackup: SetConfigurations {
     var stackoftasktobeexecuted: [Row]?
     var index: Int?
     var hiddenID: Int?
-    var maxcount: Int?
 
     func sortbydays() {
         guard self.backuplist != nil else {
@@ -90,6 +89,14 @@ class QuickBackup: SetConfigurations {
                 if list[i].value(forKey: "selectCellID") as? Int == 1 {
                     self.stackoftasktobeexecuted?.append(((list[i].value(forKey: "hiddenID") as? Int)!, i))
                 }
+                let hiddenID = list[i].value(forKey: "hiddenID") as? Int
+                if self.estimatedlist != nil {
+                    let estimated = self.estimatedlist!.filter({($0.value(forKey: "hiddenID") as? Int) == hiddenID!})
+                    if estimated.count > 0 {
+                        let transferredNumber = estimated[0].value(forKey: "transferredNumber") as? String ?? ""
+                        list[i].setObject(transferredNumber, forKey: "transferredNumber" as NSCopying)
+                    }
+                }
             }
             guard self.stackoftasktobeexecuted!.count > 0 else { return }
             // Kick off first task
@@ -110,23 +117,6 @@ class QuickBackup: SetConfigurations {
         }
         self.index = self.sortedlist!.index(of: dict[0])
         self.sortedlist![self.index!].setValue(true, forKey: "completeCellID")
-        self.sortedlist![self.index!].setValue("100", forKey: "progressCellID")
-    }
-
-    func fileHandler(outputprocess: OutputProcess?) {
-        guard outputprocess != nil else { return }
-        // If list is sorted during execution we have to find new index
-        let dict = self.sortedlist!.filter({($0.value(forKey: "hiddenID") as? Int) == self.hiddenID!})
-        let index = self.sortedlist!.index(of: dict[0])
-        guard self.estimatedlist != nil else { return }
-        let estimated = self.estimatedlist!.filter({($0.value(forKey: "hiddenID") as? Int) == self.hiddenID!})
-        guard estimated.count == 1 else { return }
-        if self.maxcount == nil {
-            self.maxcount = Int((estimated[0].value(forKey: "transferredNumber") as? String) ?? "1")
-        }
-        let number = Int(outputprocess!.count())
-        let progress = round(Double((number/self.maxcount!) * 100))
-        self.sortedlist![index!].setValue(String(progress), forKey: "progressCellID")
     }
 
     func processTermination() {
