@@ -178,7 +178,7 @@ extension ViewControllerRemoteInfo: UpdateProgress {
         }
     }
 
-    func fileHandler(outputprocess: OutputProcess?) {
+    func fileHandler() {
         // nothing
     }
 }

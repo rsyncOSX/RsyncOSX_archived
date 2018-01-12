@@ -240,7 +240,7 @@ extension ViewControllerSsh: UpdateProgress {
         }
     }
 
-    func fileHandler(outputprocess: OutputProcess?) {
+    func fileHandler() {
         self.data = self.outputprocess!.getOutput()
         globalMainQueue.async(execute: { () -> Void in
             self.detailsTable.reloadData()

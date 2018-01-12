@@ -74,7 +74,7 @@ extension ViewControllerProgressProcess: UpdateProgress {
         self.dismissview(viewcontroller: self, vcontroller: .vctabmain)
     }
 
-    func fileHandler(outputprocess: OutputProcess?) {
+    func fileHandler() {
         guard self.countDelegate != nil else { return }
         self.updateProgressbar(Double(self.countDelegate!.inprogressCount()))
     }

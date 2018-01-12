@@ -137,6 +137,7 @@ extension ViewControllerQuickBackup: NSTableViewDelegate, Attributedestring {
         guard self.quickbackuplist?.sortedlist != nil else { return nil }
         guard row < self.quickbackuplist!.sortedlist!.count else { return nil }
         let object: NSDictionary = (self.quickbackuplist?.sortedlist![row])!
+        // print(object.value(forKey: "transferredNumber"))
         if tableColumn!.identifier.rawValue == "daysID" {
             if object.value(forKey: "markdays") as? Bool == true {
                 let celltext = object[tableColumn!.identifier] as? String
@@ -193,8 +194,7 @@ extension ViewControllerQuickBackup: UpdateProgress {
         self.quickbackuplist?.processTermination()
     }
 
-    func fileHandler(outputprocess: OutputProcess?) {
-        self.quickbackuplist?.fileHandler(outputprocess: outputprocess)
+    func fileHandler() {
         self.reloadtabledata()
     }
 }

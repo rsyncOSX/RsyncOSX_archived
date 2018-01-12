@@ -298,7 +298,7 @@ extension ViewControllerCopyFiles: UpdateProgress {
         }
     }
 
-    func fileHandler(outputprocess: OutputProcess?) {
+    func fileHandler() {
         // nothing
     }
 }

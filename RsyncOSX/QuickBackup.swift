@@ -93,7 +93,7 @@ class QuickBackup: SetConfigurations {
                 if self.estimatedlist != nil {
                     let estimated = self.estimatedlist!.filter({($0.value(forKey: "hiddenID") as? Int) == hiddenID!})
                     if estimated.count > 0 {
-                        let transferredNumber = estimated[0].value(forKey: "transferredNumber") as? Int ?? 0
+                        let transferredNumber = estimated[0].value(forKey: "transferredNumber") as? String ?? ""
                         list[i].setObject(transferredNumber, forKey: "transferredNumber" as NSCopying)
                     }
                 }
@@ -117,15 +117,6 @@ class QuickBackup: SetConfigurations {
         }
         self.index = self.sortedlist!.index(of: dict[0])
         self.sortedlist![self.index!].setValue(true, forKey: "completeCellID")
-    }
-
-    func fileHandler(outputprocess: OutputProcess?) {
-        guard outputprocess != nil else { return }
-        // If list is sorted during execution we have to find new index
-        let dict = self.sortedlist!.filter({($0.value(forKey: "hiddenID") as? Int) == self.hiddenID!})
-        let index = self.sortedlist!.index(of: dict[0])
-        let number = Int(outputprocess!.count())
-        self.sortedlist![index!].setValue(String(number), forKey: "progressCellID")
     }
 
     func processTermination() {

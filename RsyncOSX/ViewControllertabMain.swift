@@ -22,7 +22,7 @@ protocol StartStopProgressIndicator: class {
 // process termination and when filehandler discover data
 protocol UpdateProgress: class {
     func processTermination()
-    func fileHandler(outputprocess: OutputProcess?)
+    func fileHandler()
 }
 
 class ViewControllertabMain: NSViewController, ReloadTable, Deselect, Coloractivetask, VcMain {
@@ -767,7 +767,7 @@ extension ViewControllertabMain: UpdateProgress {
 
     // Function is triggered when Process outputs data in filehandler
     // Process is either in singleRun or batchRun
-    func fileHandler(outputprocess: OutputProcess?) {
+    func fileHandler() {
         switch self.processtermination! {
         case .singletask:
             guard self.singletask != nil else { return }
@@ -775,7 +775,7 @@ extension ViewControllertabMain: UpdateProgress {
             localprocessupdateDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vcprogressview) as? ViewControllerProgressProcess
             self.outputprocess = self.singletask!.outputprocess
             self.process = self.singletask!.process
-            localprocessupdateDelegate?.fileHandler(outputprocess: nil)
+            localprocessupdateDelegate?.fileHandler()
         case .batchtask:
             guard self.batchtaskObject != nil else { return }
             if let batchobject = self.configurations!.getbatchQueue() {
@@ -791,7 +791,7 @@ extension ViewControllertabMain: UpdateProgress {
         case .quicktask:
             weak var localprocessupdateDelegate: UpdateProgress?
             localprocessupdateDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vcquickbatch) as? ViewControllerQuickBackup
-            localprocessupdateDelegate?.fileHandler(outputprocess: self.outputprocess)
+            localprocessupdateDelegate?.fileHandler()
         case .singlequicktask:
             return
         case .remoteinfotask:
