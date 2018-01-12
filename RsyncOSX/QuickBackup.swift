@@ -29,6 +29,7 @@ class QuickBackup: SetConfigurations {
     var stackoftasktobeexecuted: [Row]?
     var index: Int?
     var hiddenID: Int?
+    var maxcount: Int?
 
     func sortbydays() {
         guard self.backuplist != nil else {
@@ -102,6 +103,7 @@ class QuickBackup: SetConfigurations {
             // Kick off first task
             self.hiddenID = self.stackoftasktobeexecuted![0].0
             self.index = self.stackoftasktobeexecuted![0].1
+            self.maxcount = Int(self.sortedlist![self.index!].value(forKey: "transferredNumber") as? String ?? "0")
             self.stackoftasktobeexecuted?.remove(at: 0)
             self.executetasknow(hiddenID: self.hiddenID!)
         }
@@ -122,15 +124,13 @@ class QuickBackup: SetConfigurations {
     func processTermination() {
         guard self.stackoftasktobeexecuted != nil else { return }
         guard self.stackoftasktobeexecuted!.count > 0  else {
-            let localProgressIndicatorDelegate: StartStopProgressIndicator?
-            localProgressIndicatorDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vcquickbatch) as? ViewControllerQuickBackup
-            localProgressIndicatorDelegate?.stop()
             self.stackoftasktobeexecuted = nil
             return
         }
         self.hiddenID = self.stackoftasktobeexecuted![0].0
         self.index = self.stackoftasktobeexecuted![0].1
         self.stackoftasktobeexecuted?.remove(at: 0)
+        self.maxcount = Int(self.sortedlist![self.index!].value(forKey: "transferredNumber") as? String ?? "0")
         self.executetasknow(hiddenID: self.hiddenID!)
     }
 

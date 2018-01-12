@@ -5,6 +5,7 @@
 //  Created by Thomas Evensen on 22.12.2017.
 //  Copyright © 2017 Thomas Evensen. All rights reserved.
 //
+// swiftlint:disable line_length
 
 import Foundation
 import Cocoa
@@ -16,10 +17,9 @@ class ViewControllerQuickBackup: NSViewController, SetDismisser, AbortTask, Dela
     var filterby: Filterlogs?
     var quickbackuplist: QuickBackup?
     var executing: Bool = false
-    var calculatedNumberOfFiles: Int?
+    weak var inprogresscountDelegate: Count?
 
     @IBOutlet weak var mainTableView: NSTableView!
-    @IBOutlet weak var working: NSProgressIndicator!
     @IBOutlet weak var executeButton: NSButton!
     @IBOutlet weak var abortbutton: NSButton!
     @IBOutlet weak var search: NSSearchField!
@@ -36,13 +36,12 @@ class ViewControllerQuickBackup: NSViewController, SetDismisser, AbortTask, Dela
     @IBAction func execute(_ sender: NSButton) {
         self.executing = true
         self.executeButton.isEnabled = false
-        self.working.startAnimation(nil)
         self.quickbackuplist?.prepareandstartexecutetasks()
+        self.initiateProgressbar()
     }
 
     private func loadtasks() {
         self.quickbackuplist = QuickBackup()
-        self.working.stopAnimation(nil)
     }
 
     // Initial functions viewDidLoad and viewDidAppear
@@ -51,6 +50,7 @@ class ViewControllerQuickBackup: NSViewController, SetDismisser, AbortTask, Dela
         self.mainTableView.delegate = self
         self.mainTableView.dataSource = self
         self.search.delegate = self
+        self.inprogresscountDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllertabMain
         self.loadtasks()
     }
 
@@ -65,8 +65,8 @@ class ViewControllerQuickBackup: NSViewController, SetDismisser, AbortTask, Dela
             if execute {
                 self.executing = true
                 self.executeButton.isEnabled = false
-                self.working.startAnimation(nil)
                 self.quickbackuplist?.prepareandstartexecutetasks()
+                self.initiateProgressbar()
             }
         }
     }
@@ -107,7 +107,7 @@ class ViewControllerQuickBackup: NSViewController, SetDismisser, AbortTask, Dela
 
     // Progress bars
     private func initiateProgressbar() {
-        if let calculatedNumberOfFiles = self.calculatedNumberOfFiles {
+        if let calculatedNumberOfFiles = self.quickbackuplist?.maxcount {
             self.progress.maxValue = Double(calculatedNumberOfFiles)
         }
         self.progress.minValue = 0
@@ -115,7 +115,8 @@ class ViewControllerQuickBackup: NSViewController, SetDismisser, AbortTask, Dela
         self.progress.startAnimation(self)
     }
 
-    private func updateProgressbar(_ value: Double) {
+    private func updateProgressbar() {
+        let value = Double((self.inprogresscountDelegate?.inprogressCount())!)
         self.progress.doubleValue = value
     }
 
@@ -192,25 +193,11 @@ extension ViewControllerQuickBackup: UpdateProgress {
         self.quickbackuplist?.setcompleted()
         self.reloadtabledata()
         self.quickbackuplist?.processTermination()
+        self.initiateProgressbar()
     }
 
     func fileHandler() {
-        self.reloadtabledata()
-    }
-}
-
-extension ViewControllerQuickBackup: StartStopProgressIndicator {
-    func start() {
-        // nothing
-    }
-
-    func stop() {
-        self.working.stopAnimation(nil)
-        self.executeButton.isEnabled = false
-    }
-
-    func complete() {
-        // nothing
+        self.updateProgressbar()
     }
 }
 
