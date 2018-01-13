@@ -74,7 +74,7 @@ class ViewControllerQuickBackup: NSViewController, SetDismisser, AbortTask, Dela
                 }
             }
         }
-        
+
     }
 
     func tableViewSelectionDidChange(_ notification: Notification) {
@@ -151,7 +151,6 @@ extension ViewControllerQuickBackup: NSTableViewDelegate, Attributedestring {
         guard self.quickbackuplist?.sortedlist != nil else { return nil }
         guard row < self.quickbackuplist!.sortedlist!.count else { return nil }
         let object: NSDictionary = (self.quickbackuplist?.sortedlist![row])!
-        // print(object.value(forKey: "transferredNumber"))
         if tableColumn!.identifier.rawValue == "daysID" {
             if object.value(forKey: "markdays") as? Bool == true {
                 let celltext = object[tableColumn!.identifier] as? String
@@ -164,6 +163,8 @@ extension ViewControllerQuickBackup: NSTableViewDelegate, Attributedestring {
         if tableColumn!.identifier.rawValue == "completeCellID" {
             if object.value(forKey: "completeCellID") as? Bool == true {
                 return #imageLiteral(resourceName: "complete")
+            } else if row == self.quickbackuplist!.index {
+                return #imageLiteral(resourceName: "leftarrow")
             }
         }
         return object[tableColumn!.identifier] as? String
