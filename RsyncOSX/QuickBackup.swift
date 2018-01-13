@@ -126,6 +126,7 @@ class QuickBackup: SetConfigurations {
         self.hiddenID = self.stackoftasktobeexecuted![0].0
         self.index = self.stackoftasktobeexecuted![0].1
         self.stackoftasktobeexecuted?.remove(at: 0)
+        self.sortedlist![self.index!].setValue(true, forKey: "inprogressCellID")
         self.maxcount = Int(self.sortedlist![self.index!].value(forKey: "transferredNumber") as? String ?? "0")
         self.executetasknow(hiddenID: self.hiddenID!)
         self.reloadtableDelegate?.reloadtabledata()
