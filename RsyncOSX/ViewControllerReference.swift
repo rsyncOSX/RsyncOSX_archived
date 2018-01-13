@@ -20,7 +20,7 @@ enum ViewController {
     case vcabout
     case vcbatch
     case vcprogressview
-    case vcquickbatch
+    case vcquickbackup
     case vcremoteinfo
 }
 
@@ -115,7 +115,7 @@ class ViewControllerReference {
             return self.viewControllerBatch
         case .vcprogressview:
             return self.viewControllerProgressView
-        case .vcquickbatch:
+        case .vcquickbackup:
             return self.viewControllerQuickBatch
         case .vcremoteinfo:
             return self.viewControllerRemoteInfo
@@ -142,7 +142,7 @@ class ViewControllerReference {
             self.viewControllerBatch = nsviewcontroller
         case .vcprogressview:
             self.viewControllerProgressView = nsviewcontroller
-        case .vcquickbatch:
+        case .vcquickbackup:
             self.viewControllerQuickBatch = nsviewcontroller
         case .vcremoteinfo:
             self.viewControllerRemoteInfo = nsviewcontroller
