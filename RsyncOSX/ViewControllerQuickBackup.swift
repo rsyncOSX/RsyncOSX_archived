@@ -55,12 +55,12 @@ class ViewControllerQuickBackup: NSViewController, SetDismisser, AbortTask, Dela
         self.mainTableView.dataSource = self
         self.search.delegate = self
         self.inprogresscountDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllertabMain
+        ViewControllerReference.shared.setvcref(viewcontroller: .vcquickbackup, nsviewcontroller: self)
         self.loadtasks()
     }
 
     override func viewDidAppear() {
         super.viewDidAppear()
-        ViewControllerReference.shared.setvcref(viewcontroller: .vcquickbackup, nsviewcontroller: self)
         self.executeButton.isEnabled = false
         if let execute = self.enableexecutebutton() {
             if execute {

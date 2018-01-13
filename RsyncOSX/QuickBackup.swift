@@ -141,7 +141,7 @@ class QuickBackup: SetConfigurations {
         self.stackoftasktobeexecuted?.remove(at: 0)
         self.maxcount = Int(self.sortedlist![self.index!].value(forKey: "transferredNumber") as? String ?? "0")
         self.executetasknow(hiddenID: self.hiddenID!)
-        self.reloadtableDelegate?.reloadtabledata()
+        // self.reloadtableDelegate?.reloadtabledata()
     }
 
     // Function for filter
