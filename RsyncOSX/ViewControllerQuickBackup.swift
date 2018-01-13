@@ -41,6 +41,7 @@ class ViewControllerQuickBackup: NSViewController, SetDismisser, AbortTask, Dela
         if self.checkforestimates() == true {
             self.initiateProgressbar()
         }
+        self.reloadtabledata()
     }
 
     private func loadtasks() {
@@ -72,6 +73,7 @@ class ViewControllerQuickBackup: NSViewController, SetDismisser, AbortTask, Dela
                 if self.checkforestimates() == true {
                     self.initiateProgressbar()
                 }
+                self.reloadtabledata()
             }
         }
 
