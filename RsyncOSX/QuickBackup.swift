@@ -127,13 +127,13 @@ class QuickBackup: SetConfigurations {
         }
         self.index = self.sortedlist!.index(of: dict[0])
         self.sortedlist![self.index!].setValue(true, forKey: "completeCellID")
-        self.reloadtableDelegate?.reloadtabledata()
     }
 
     func processTermination() {
         guard self.stackoftasktobeexecuted != nil else { return }
         guard self.stackoftasktobeexecuted!.count > 0  else {
             self.stackoftasktobeexecuted = nil
+            self.reloadtableDelegate?.reloadtabledata()
             return
         }
         self.hiddenID = self.stackoftasktobeexecuted![0].0
@@ -141,7 +141,7 @@ class QuickBackup: SetConfigurations {
         self.stackoftasktobeexecuted?.remove(at: 0)
         self.maxcount = Int(self.sortedlist![self.index!].value(forKey: "transferredNumber") as? String ?? "0")
         self.executetasknow(hiddenID: self.hiddenID!)
-        // self.reloadtableDelegate?.reloadtabledata()
+        self.reloadtableDelegate?.reloadtabledata()
     }
 
     // Function for filter
