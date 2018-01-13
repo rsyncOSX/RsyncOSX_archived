@@ -159,10 +159,11 @@ extension ViewControllerQuickBackup: NSTableViewDelegate, Attributedestring {
             return object[tableColumn!.identifier] as? Int
         }
         if tableColumn!.identifier.rawValue == "completeCellID" {
+            if object.value(forKey: "inprogressCellID") as? Bool == true {
+                return #imageLiteral(resourceName: "leftarrow")
+            }
             if object.value(forKey: "completeCellID") as? Bool == true {
                 return #imageLiteral(resourceName: "complete")
-            } else if row == self.quickbackuplist!.index {
-                return #imageLiteral(resourceName: "leftarrow")
             }
         }
         return object[tableColumn!.identifier] as? String
