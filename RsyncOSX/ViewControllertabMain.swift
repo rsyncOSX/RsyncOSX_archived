@@ -716,7 +716,7 @@ extension ViewControllertabMain: DismissViewController {
         })
         self.showProcessInfo(info: .blank)
         self.verifyrsync()
-        if viewcontroller == ViewControllerReference.shared.getvcref(viewcontroller: .vcquickbatch) {
+        if viewcontroller == ViewControllerReference.shared.getvcref(viewcontroller: .vcquickbackup) {
             self.configurations!.allowNotifyinMain = true
         }
     }
@@ -751,7 +751,7 @@ extension ViewControllertabMain: UpdateProgress {
             // After logging is done set reference to object = nil
             ViewControllerReference.shared.completeoperation = nil
             weak var processterminationDelegate: UpdateProgress?
-            processterminationDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vcquickbatch) as? ViewControllerQuickBackup
+            processterminationDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vcquickbackup) as? ViewControllerQuickBackup
             processterminationDelegate?.processTermination()
         case .singlequicktask:
             ViewControllerReference.shared.completeoperation!.finalizeScheduledJob(outputprocess: self.outputprocess)
@@ -790,7 +790,7 @@ extension ViewControllertabMain: UpdateProgress {
             }
         case .quicktask:
             weak var localprocessupdateDelegate: UpdateProgress?
-            localprocessupdateDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vcquickbatch) as? ViewControllerQuickBackup
+            localprocessupdateDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vcquickbackup) as? ViewControllerQuickBackup
             localprocessupdateDelegate?.fileHandler()
         case .singlequicktask:
             return

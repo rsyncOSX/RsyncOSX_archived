@@ -60,11 +60,8 @@ class ViewControllerQuickBackup: NSViewController, SetDismisser, AbortTask, Dela
 
     override func viewDidAppear() {
         super.viewDidAppear()
-        ViewControllerReference.shared.setvcref(viewcontroller: .vcquickbatch, nsviewcontroller: self)
+        ViewControllerReference.shared.setvcref(viewcontroller: .vcquickbackup, nsviewcontroller: self)
         self.executeButton.isEnabled = false
-        globalMainQueue.async(execute: { () -> Void in
-            self.mainTableView.reloadData()
-        })
         if let execute = self.enableexecutebutton() {
             if execute {
                 self.executing = true
@@ -76,7 +73,7 @@ class ViewControllerQuickBackup: NSViewController, SetDismisser, AbortTask, Dela
                 self.reloadtabledata()
             }
         }
-
+        self.reloadtabledata()
     }
 
     func tableViewSelectionDidChange(_ notification: Notification) {
@@ -97,7 +94,6 @@ class ViewControllerQuickBackup: NSViewController, SetDismisser, AbortTask, Dela
         } else {
             return
         }
-        self.reloadtabledata()
     }
 
     private func enableexecutebutton() -> Bool? {
@@ -207,7 +203,6 @@ extension ViewControllerQuickBackup: UpdateProgress {
 
     func processTermination() {
         self.quickbackuplist?.setcompleted()
-        self.reloadtabledata()
         self.quickbackuplist?.processTermination()
         self.progress.stopAnimation(self)
         if self.checkforestimates() == true {
@@ -228,12 +223,10 @@ extension ViewControllerQuickBackup: NSSearchFieldDelegate {
             if filterstring.isEmpty {
                 globalMainQueue.async(execute: { () -> Void in
                     self.quickbackuplist?.sortbydays()
-                    self.reloadtabledata()
                 })
             } else {
                 globalMainQueue.async(execute: { () -> Void in
                     self.quickbackuplist?.filter(search: filterstring, what: self.filterby)
-                    self.reloadtabledata()
                 })
             }
         }
