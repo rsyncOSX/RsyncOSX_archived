@@ -74,10 +74,11 @@ class ViewControllerQuickBackup: NSViewController, SetDismisser, AbortTask, Dela
             }
         }
         self.reloadtabledata()
-        self.checkforestimates()
+        _ = self.checkforestimates()
     }
 
     func tableViewSelectionDidChange(_ notification: Notification) {
+        guard self.executing == false else { return }
         let myTableViewFromNotification = (notification.object as? NSTableView)!
         let column = myTableViewFromNotification.selectedColumn
         if column == 3 {
@@ -221,6 +222,7 @@ extension ViewControllerQuickBackup: UpdateProgress {
 extension ViewControllerQuickBackup: NSSearchFieldDelegate {
 
     override func controlTextDidChange(_ obj: Notification) {
+        guard self.executing == false else { return }
         self.delayWithSeconds(0.25) {
             let filterstring = self.search.stringValue
             if filterstring.isEmpty {
@@ -236,6 +238,7 @@ extension ViewControllerQuickBackup: NSSearchFieldDelegate {
     }
 
     func searchFieldDidEndSearching(_ sender: NSSearchField) {
+        guard self.executing == false else { return }
         globalMainQueue.async(execute: { () -> Void in
             self.loadtasks()
         })
