@@ -25,12 +25,12 @@ enum Filterlogs {
 }
 
 struct Filtereddata {
-    var filtereddata: [NSDictionary]?
+    var filtereddata: [NSMutableDictionary]?
 }
 
 final class ScheduleLoggData: SetConfigurations, SetSchedules {
 
-    private var loggdata: Array<NSDictionary>?
+    private var loggdata: Array<NSMutableDictionary>?
     weak var readfiltereddataDelegate: Readfiltereddata?
 
     func getallloggdata() -> [NSDictionary]? {
@@ -67,14 +67,14 @@ final class ScheduleLoggData: SetConfigurations, SetSchedules {
 
     // Loggdata is only read and sorted once
     private func readAndSortAllLoggdata() {
-        var data = Array<NSDictionary>()
+        var data = Array<NSMutableDictionary>()
         let input: [ConfigurationSchedule] = self.schedules!.getSchedule()
         for i in 0 ..< input.count {
             let hiddenID = self.schedules!.getSchedule()[i].hiddenID
             if input[i].logrecords.count > 0 {
                 for j in 0 ..< input[i].logrecords.count {
                     let dict = input[i].logrecords[j]
-                    let logdetail: NSDictionary = [
+                    let logdetail: NSMutableDictionary = [
                         "localCatalog": self.configurations!.getResourceConfiguration(hiddenID, resource: .localCatalog),
                         "offsiteServer": self.configurations!.getResourceConfiguration(hiddenID, resource: .offsiteServer),
                         "dateExecuted": (dict.value(forKey: "dateExecuted") as? String)!,
