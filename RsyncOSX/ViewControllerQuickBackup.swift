@@ -62,6 +62,7 @@ class ViewControllerQuickBackup: NSViewController, SetDismisser, AbortTask, Dela
     override func viewDidAppear() {
         super.viewDidAppear()
         self.executeButton.isEnabled = false
+        self.progress.isHidden = true
         if let execute = self.enableexecutebutton() {
             if execute {
                 self.executing = true
@@ -70,10 +71,10 @@ class ViewControllerQuickBackup: NSViewController, SetDismisser, AbortTask, Dela
                 if self.checkforestimates() == true {
                     self.initiateProgressbar()
                 }
-                self.reloadtabledata()
             }
         }
         self.reloadtabledata()
+        self.checkforestimates()
     }
 
     func tableViewSelectionDidChange(_ notification: Notification) {
@@ -111,6 +112,7 @@ class ViewControllerQuickBackup: NSViewController, SetDismisser, AbortTask, Dela
 
     // Progress bars
     private func initiateProgressbar() {
+        self.progress.isHidden = false
         if let calculatedNumberOfFiles = self.quickbackuplist?.maxcount {
             self.progress.maxValue = Double(calculatedNumberOfFiles)
         }
@@ -125,7 +127,7 @@ class ViewControllerQuickBackup: NSViewController, SetDismisser, AbortTask, Dela
     }
 
     private func checkforestimates() -> Bool {
-        if self.quickbackuplist?.maxcount != nil {
+        if self.quickbackuplist?.maxcount != nil && self.quickbackuplist?.maxcount ?? 0  != 0 {
             self.noestimates.isHidden = true
             return true
         } else {
