@@ -5195,7 +5195,7 @@ DQ
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                             </progressIndicator>
                             <textField hidden="YES" horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="FCo-lF-oip">
-                                <rect key="frame" x="18" y="22" width="639" height="17"/>
+                                <rect key="frame" x="152" y="22" width="505" height="17"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" title="No estimates avaliable..." id="Fsf-Ux-Pms">
                                     <font key="font" metaFont="system"/>
