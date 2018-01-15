@@ -208,8 +208,12 @@ extension ViewControllerQuickBackup: UpdateProgress {
     func processTermination() {
         self.quickbackuplist?.setcompleted()
         self.quickbackuplist?.processTermination()
-        self.progress.stopAnimation(self)
+        guard self.quickbackuplist?.stackoftasktobeexecuted != nil else {
+            self.progress.isHidden = true
+            return
+        }
         if self.checkforestimates() == true {
+            self.progress.stopAnimation(self)
             self.initiateProgressbar()
         }
     }
