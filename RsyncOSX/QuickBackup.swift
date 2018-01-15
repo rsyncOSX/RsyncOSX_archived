@@ -159,8 +159,12 @@ class QuickBackup: SetConfigurations {
     }
 
     init() {
-        self.sortedlist = self.configurations?.getConfigurationsDataSourcecountBackupOnly()
         self.estimatedlist = self.configurations?.estimatedlist
+        if self.estimatedlist != nil {
+            self.sortedlist = self.configurations?.getConfigurationsDataSourcecountBackupOnly()?.filter({($0.value(forKey: "selectCellID") as? Int) == 1})
+        } else {
+            self.sortedlist = self.configurations?.getConfigurationsDataSourcecountBackupOnly()
+        }
         self.sortbydays()
         self.hiddenID = nil
         self.reloadtableDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vcquickbackup) as? ViewControllerQuickBackup
