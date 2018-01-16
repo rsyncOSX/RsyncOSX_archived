@@ -238,9 +238,7 @@ class ViewControllertabMain: NSViewController, ReloadTable, Deselect, Coloractiv
             self.selecttask.isHidden = false
             return
         }
-        guard self.configurations!.getConfigurations()[self.index!].task == "backup" else {
-            return
-        }
+        guard self.configurations!.getConfigurations()[self.index!].task == "backup" else { return }
         let now: Date = Date()
         let dateformatter = Tools().setDateformat()
         let task: NSDictionary = [
@@ -334,6 +332,7 @@ class ViewControllertabMain: NSViewController, ReloadTable, Deselect, Coloractiv
 
     // Single task can be activated by double click from table
     private func executeSingleTask() {
+        guard self.configurations!.getConfigurations()[self.index!].task == "backup" else { return }
         self.processtermination = .singletask
         guard self.scheduledJobInProgress == false else {
             self.selecttask.stringValue = "⌘A to abort or wait..."
