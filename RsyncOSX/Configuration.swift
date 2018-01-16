@@ -23,6 +23,7 @@ struct Configuration {
     var offsiteServer: String
     var backupID: String
     var dateRun: String?
+    var snapshotnum: Int?
     // parameters choosed by user
     var parameter8: String?
     var parameter9: String?
@@ -61,6 +62,9 @@ struct Configuration {
         self.parameter6 = (dictionary.object(forKey: "parameter6") as? String)!
         self.offsiteServer = (dictionary.object(forKey: "offsiteServer") as? String)!
         self.backupID = (dictionary.object(forKey: "backupID") as? String)!
+        if let snapshotnum = dictionary.object(forKey: "snapshotnum") as? Int {
+            self.snapshotnum = snapshotnum
+        }
         // Last run of task
         if let dateRun = dictionary.object(forKey: "dateRun") {
             self.dateRun = dateRun as? String

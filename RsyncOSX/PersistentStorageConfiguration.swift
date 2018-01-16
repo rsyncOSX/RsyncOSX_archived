@@ -138,6 +138,9 @@ final class PersistentStorageConfiguration: Readwritefiles, SetConfigurations {
         if config.sshport != nil {
             dict.setObject(config.sshport!, forKey: "sshport" as NSCopying)
         }
+        if config.snapshotnum != nil {
+            dict.setObject(config.snapshotnum!, forKey: "snapshotnum" as NSCopying)
+        }
         return dict
     }
 
@@ -145,7 +148,9 @@ final class PersistentStorageConfiguration: Readwritefiles, SetConfigurations {
         if let parameter = param {
             guard parameter.isEmpty == false else { return nil }
             return parameter
-        } else { return nil }
+        } else {
+            return nil
+        }
     }
 
     // Function for setting the restore part of newly created added configuration

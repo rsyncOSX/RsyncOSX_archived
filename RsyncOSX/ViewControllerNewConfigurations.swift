@@ -39,7 +39,7 @@ class ViewControllerNewConfigurations: NSViewController, SetConfigurations, VcSc
     @IBOutlet weak var singleFile: NSButton!
     @IBOutlet weak var profilInfo: NSTextField!
     @IBOutlet weak var snapshots: NSButton!
-    
+
     @IBAction func cleartable(_ sender: NSButton) {
         self.newconfigurations = nil
         self.newconfigurations = NewConfigurations()
@@ -118,7 +118,10 @@ class ViewControllerNewConfigurations: NSViewController, SetConfigurations, VcSc
             "dateRun": "",
             "singleFile": 0]
         dict.setValue("no", forKey: "batch")
-        if self.snapshots.state == .on {dict.setValue("snapshot", forKey: "task")}
+        if self.snapshots.state == .on {
+            dict.setValue("snapshot", forKey: "task")
+            dict.setValue(1, forKey: "snapshotnum")
+        }
         if self.singleFile.state == .on {dict.setValue(1, forKey: "singleFile")}
         if !self.localCatalog.stringValue.hasSuffix("/") && self.singleFile.state == .off {
             self.localCatalog.stringValue += "/"

@@ -22,7 +22,6 @@ final class RsyncParametersProcess {
     var linkdestparam: String?
     // if snapshot
     // --link-dest=~/catalog/current /Volumes/Home/thomas/catalog/ user@host:~/catalog/01
-    private var snapshotnum: String = "NN"
     private var current: String = "current"
 
     // Set initial parameter1 .. paramater6, parameters are computed by RsyncOSX
@@ -180,9 +179,9 @@ final class RsyncParametersProcess {
     private func remoteargssnapshot(_ config: Configuration) {
         self.linkdestparam =  "--link-dest=" + config.offsiteCatalog + self.current
         if self.remoteargs != nil {
-            self.remoteargs! += self.snapshotnum
+            self.remoteargs! += String(config.snapshotnum ?? 1)
         }
-        self.offsiteCatalog! += self.snapshotnum
+        self.offsiteCatalog! += String(config.snapshotnum ?? 1)
     }
 
     private func argumentsforbackup(dryRun: Bool, forDisplay: Bool) {
@@ -228,10 +227,5 @@ final class RsyncParametersProcess {
 
     init () {
         self.arguments = Array<String>()
-    }
-
-    init(snapshotnum: String) {
-        self.arguments = Array<String>()
-        self.snapshotnum = snapshotnum
     }
 }

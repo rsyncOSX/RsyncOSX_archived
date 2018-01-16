@@ -370,6 +370,12 @@ class Configurations: ReloadTable {
         }
     }
 
+    func increasesnapshotnum(index: Int) {
+        guard self.configurations != nil else { return }
+        let num = self.configurations![index].snapshotnum ?? 0
+        self.configurations![index].snapshotnum  = num + 1
+    }
+
     /// Function is reading all Configurations into memory from permanent store and
     /// prepare all arguments for rsync. All configurations are stored in the private
     /// variable within object.
