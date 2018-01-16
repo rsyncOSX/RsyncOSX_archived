@@ -35,7 +35,7 @@ class ExecuteTaskDispatch: SetSchedules, SetConfigurations, SetScheduledTask {
                 self.scheduleJob?.start()
                 self.notify(config: config)
                 if hiddenID >= 0 && config != nil {
-                    arguments = RsyncProcessArguments().argumentsRsync(config!, dryRun: false, forDisplay: false)
+                    arguments = RsyncParametersProcess().argumentsRsync(config!, dryRun: false, forDisplay: false)
                     // Setting reference to finalize the job, finalize job is done when rsynctask ends (in process termination)
                     ViewControllerReference.shared.completeoperation = CompleteScheduledOperation(dict: dict)
                     globalMainQueue.async(execute: {

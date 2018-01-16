@@ -10,7 +10,7 @@
 
 import Foundation
 
-final class RsyncParameters {
+final class RsyncParametersVC {
 
     // Tuple for rsync argument and value
     typealias Argument = (String, Int)
