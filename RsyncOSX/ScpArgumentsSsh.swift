@@ -134,7 +134,7 @@ final class ScpArgumentsSsh: SetConfigurations {
         }
         remotearg = self.config!.offsiteUsername + "@" + self.config!.offsiteServer
         self.args!.append(remotearg!)
-         self.args!.append("\"")
+        self.args!.append("\"")
         self.args!.append("mkdir ~/.ssh")
         self.command = "/usr/bin/ssh"
         self.commandCopyPasteTerminal = nil

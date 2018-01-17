@@ -375,7 +375,7 @@
                                             <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                             <color key="gridColor" name="gridColor" catalog="System" colorSpace="catalog"/>
                                             <tableColumns>
-                                                <tableColumn identifier="taskCellID" width="49.703125" minWidth="40" maxWidth="1000" id="AkJ-MA-346">
+                                                <tableColumn identifier="taskCellID" width="65.703125" minWidth="40" maxWidth="1000" id="AkJ-MA-346">
                                                     <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" title="Task">
                                                         <font key="font" metaFont="smallSystem"/>
                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
@@ -431,7 +431,7 @@
                                                     </textFieldCell>
                                                     <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                 </tableColumn>
-                                                <tableColumn identifier="offsiteCatalogCellID" width="215.98828125" minWidth="10" maxWidth="3.4028234663852886e+38" id="zzK-ZO-wvj">
+                                                <tableColumn identifier="offsiteCatalogCellID" width="199.98828125" minWidth="10" maxWidth="3.4028234663852886e+38" id="zzK-ZO-wvj">
                                                     <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left" title="Remote catalog">
                                                         <font key="font" metaFont="smallSystem"/>
                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
@@ -483,7 +483,7 @@
                                                     </textFieldCell>
                                                     <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                 </tableColumn>
-                                                <tableColumn identifier="runDateCellID" width="126.08203125" minWidth="10" maxWidth="3.4028234663852886e+38" id="qvy-yX-V6C">
+                                                <tableColumn identifier="runDateCellID" width="120.08203125" minWidth="10" maxWidth="3.4028234663852886e+38" id="qvy-yX-V6C">
                                                     <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left" title="Last run">
                                                         <font key="font" metaFont="smallSystem"/>
                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
@@ -2697,10 +2697,10 @@
                                 </textFieldCell>
                             </textField>
                             <box fixedFrame="YES" title="Remote server parameters" translatesAutoresizingMaskIntoConstraints="NO" id="wD5-vA-j0P">
-                                <rect key="frame" x="364" y="164" width="565" height="131"/>
+                                <rect key="frame" x="364" y="164" width="483" height="131"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <view key="contentView" id="Bfr-Wb-wbo">
-                                    <rect key="frame" x="2" y="2" width="561" height="114"/>
+                                    <rect key="frame" x="2" y="2" width="479" height="114"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="4p1-dC-GBT">
@@ -2742,10 +2742,10 @@
                                 </view>
                             </box>
                             <box fixedFrame="YES" title="Catalog parameters (use Finder to drag and drop paths)" translatesAutoresizingMaskIntoConstraints="NO" id="EH0-Ty-cyz">
-                                <rect key="frame" x="364" y="299" width="565" height="88"/>
+                                <rect key="frame" x="364" y="299" width="483" height="88"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <view key="contentView" id="uKr-oj-PV3">
-                                    <rect key="frame" x="2" y="2" width="561" height="71"/>
+                                    <rect key="frame" x="2" y="2" width="479" height="71"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Dyf-3c-3H2">
@@ -2784,14 +2784,6 @@
                                                 <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                             </textFieldCell>
                                         </textField>
-                                        <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cif-N9-3mk">
-                                            <rect key="frame" x="474" y="39" width="82" height="18"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                            <buttonCell key="cell" type="check" title="Single file" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="neV-Qa-xOq">
-                                                <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                                                <font key="font" metaFont="system"/>
-                                            </buttonCell>
-                                        </button>
                                     </subviews>
                                 </view>
                             </box>
@@ -2805,7 +2797,7 @@
                                 </textFieldCell>
                             </textField>
                             <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="vgz-68-zbF">
-                                <rect key="frame" x="928" y="256" width="93" height="32"/>
+                                <rect key="frame" x="884" y="224" width="93" height="32"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <buttonCell key="cell" type="push" title="Add new" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="sE6-n6-Lin">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -2816,7 +2808,7 @@
                                 </connections>
                             </button>
                             <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="XWf-df-fJ6">
-                                <rect key="frame" x="928" y="231" width="93" height="32"/>
+                                <rect key="frame" x="884" y="195" width="93" height="32"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <buttonCell key="cell" type="push" title="Clear" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="BGM-Kg-KGO">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -2826,6 +2818,32 @@
                                     <action selector="cleartable:" target="3xI-3C-guU" id="EJG-mS-Xbv"/>
                                 </connections>
                             </button>
+                            <box fixedFrame="YES" title="Optional parameters" translatesAutoresizingMaskIntoConstraints="NO" id="fSS-pQ-oeG">
+                                <rect key="frame" x="849" y="299" width="156" height="88"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <view key="contentView" id="Q21-Ge-OoU">
+                                    <rect key="frame" x="2" y="2" width="152" height="71"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                    <subviews>
+                                        <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cif-N9-3mk">
+                                            <rect key="frame" x="18" y="18" width="80" height="18"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                            <buttonCell key="cell" type="check" title="single file" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="neV-Qa-xOq">
+                                                <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                                <font key="font" metaFont="system"/>
+                                            </buttonCell>
+                                        </button>
+                                        <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1qH-2H-Jxi">
+                                            <rect key="frame" x="18" y="38" width="85" height="18"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                            <buttonCell key="cell" type="check" title="snapshots" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="3d3-Fe-IfC">
+                                                <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                                <font key="font" metaFont="system"/>
+                                            </buttonCell>
+                                        </button>
+                                    </subviews>
+                                </view>
+                            </box>
                         </subviews>
                         <constraints>
                             <constraint firstAttribute="bottom" secondItem="mjK-dC-9dz" secondAttribute="bottom" constant="20" id="0ga-AQ-2Ky"/>
@@ -2843,6 +2861,7 @@
                         <outlet property="profilInfo" destination="NDH-vD-wXh" id="x1r-3x-xGE"/>
                         <outlet property="rsyncdaemon" destination="3QZ-SK-L8Z" id="UfE-FI-vh8"/>
                         <outlet property="singleFile" destination="cif-N9-3mk" id="M7t-D2-h2K"/>
+                        <outlet property="snapshots" destination="1qH-2H-Jxi" id="tqj-xv-nPd"/>
                         <outlet property="sshport" destination="mc9-Gh-Wa4" id="UCC-RU-a23"/>
                         <outlet property="viewParameter1" destination="UAM-7e-uQ9" id="GBv-Cl-bn7"/>
                         <outlet property="viewParameter2" destination="804-O7-xTM" id="O9x-cn-kJY"/>

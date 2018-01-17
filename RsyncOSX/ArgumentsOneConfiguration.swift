@@ -26,9 +26,9 @@ struct ArgumentsOneConfiguration {
         self.config = config
         // All arguments for rsync is computed, two sets. One for dry-run and one for real run.
         // the parameter forDisplay = true computes arguments to display in view.
-        self.arg = RsyncProcessArguments().argumentsRsync(config, dryRun: false, forDisplay: false)
-        self.argDisplay = RsyncProcessArguments().argumentsRsync(config, dryRun: false, forDisplay: true)
-        self.argdryRun = RsyncProcessArguments().argumentsRsync(config, dryRun: true, forDisplay: false)
-        self.argdryRunDisplay = RsyncProcessArguments().argumentsRsync(config, dryRun: true, forDisplay: true)
+        self.arg = RsyncParametersProcess().argumentsRsync(config, dryRun: false, forDisplay: false)
+        self.argDisplay = RsyncParametersProcess().argumentsRsync(config, dryRun: false, forDisplay: true)
+        self.argdryRun = RsyncParametersProcess().argumentsRsync(config, dryRun: true, forDisplay: false)
+        self.argdryRunDisplay = RsyncParametersProcess().argumentsRsync(config, dryRun: true, forDisplay: true)
     }
 }

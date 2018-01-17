@@ -31,6 +31,9 @@ final class CompleteScheduledOperation: SetConfigurations, SetSchedules, SetSche
         let number = Numbers(outputprocess: outputprocess)
         let numberstring = number.stats(numberOfFiles: nil, sizeOfFiles: nil)
         self.schedules!.addresultschedule(self.hiddenID!, dateStart: dateStartstring, result: numberstring, date: datestring, schedule: schedule!)
+        if self.configurations!.getConfigurations()[self.index!].task == "snapshot" {
+            self.configurations!.increasesnapshotnum(index: self.index!, outputprocess: outputprocess)
+        }
         // Writing timestamp to configuration
         _ = self.configurations!.setCurrentDateonConfiguration(self.index!)
          _ = Logging(outputprocess: outputprocess)

@@ -58,6 +58,7 @@ final class PersistentStorageConfiguration: Readwritefiles, SetConfigurations {
     // NB : Function does NOT store Configurations to persistent store
     func newConfigurations (_ dict: NSMutableDictionary) {
         let singleFile = dict.value(forKey: "singleFile") as? Int
+        let snapshot = dict.value(forKey: "task") as? String
         var array = Array<NSDictionary>()
         // Get existing configurations from memory
         let configs: [Configuration] = self.configurations!.getConfigurations()
@@ -69,13 +70,14 @@ final class PersistentStorageConfiguration: Readwritefiles, SetConfigurations {
         dict.setObject(self.maxhiddenID + 1, forKey: "hiddenID" as NSCopying)
         dict.removeObject(forKey: "singleFile")
         array.append(dict)
-        if singleFile == 0 {
+        if singleFile == 0 && snapshot == "backup" {
             array.append(self.setRestorePart(dict: dict))
             // Append the two records to Configuration i memory
             self.configurations!.appendconfigurationstomemory(dict: array[array.count - 2])
             self.configurations!.appendconfigurationstomemory(dict: array[array.count - 1])
         } else {
-            // Singlefile Configuration - only adds the copy part
+            // singlefile Configuration - only adds the copy part
+            // snapshot Configuration - only adds the copy part
             self.configurations!.appendconfigurationstomemory(dict: array[array.count - 1])
         }
     }
@@ -136,6 +138,9 @@ final class PersistentStorageConfiguration: Readwritefiles, SetConfigurations {
         if config.sshport != nil {
             dict.setObject(config.sshport!, forKey: "sshport" as NSCopying)
         }
+        if config.snapshotnum != nil {
+            dict.setObject(config.snapshotnum!, forKey: "snapshotnum" as NSCopying)
+        }
         return dict
     }
 
@@ -143,7 +148,9 @@ final class PersistentStorageConfiguration: Readwritefiles, SetConfigurations {
         if let parameter = param {
             guard parameter.isEmpty == false else { return nil }
             return parameter
-        } else { return nil }
+        } else {
+            return nil
+        }
     }
 
     // Function for setting the restore part of newly created added configuration

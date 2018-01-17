@@ -238,9 +238,8 @@ class ViewControllertabMain: NSViewController, ReloadTable, Deselect, Coloractiv
             self.selecttask.isHidden = false
             return
         }
-        guard self.configurations!.getConfigurations()[self.index!].task == "backup" else {
-            return
-        }
+        guard self.configurations!.getConfigurations()[self.index!].task == "backup" ||
+            self.configurations!.getConfigurations()[self.index!].task == "snapshot" else { return }
         let now: Date = Date()
         let dateformatter = Tools().setDateformat()
         let task: NSDictionary = [
@@ -754,6 +753,7 @@ extension ViewControllertabMain: UpdateProgress {
             processterminationDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vcquickbackup) as? ViewControllerQuickBackup
             processterminationDelegate?.processTermination()
         case .singlequicktask:
+            guard ViewControllerReference.shared.completeoperation != nil else { return }
             ViewControllerReference.shared.completeoperation!.finalizeScheduledJob(outputprocess: self.outputprocess)
             // After logging is done set reference to object = nil
             ViewControllerReference.shared.completeoperation = nil

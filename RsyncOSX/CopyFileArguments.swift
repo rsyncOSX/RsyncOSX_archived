@@ -37,12 +37,11 @@ final class CopyFileArguments: ProcessArguments {
     }
 
     init (task: Enumscopyfiles, config: Configuration, remoteFile: String?, localCatalog: String?, drynrun: Bool?) {
-        self.arguments = nil
         self.arguments = Array<String>()
         self.config = config
         switch task {
         case .rsyncCmd:
-            let arguments = RsyncArguments(config: config, remoteFile: remoteFile, localCatalog: localCatalog, drynrun: drynrun)
+            let arguments = RsyncParametersSingleFiles(config: config, remoteFile: remoteFile, localCatalog: localCatalog, drynrun: drynrun)
             self.arguments = arguments.getArguments()
             self.command = arguments.getCommand()
             self.argDisplay = arguments.getArgumentsDisplay()

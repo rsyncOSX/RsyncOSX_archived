@@ -38,6 +38,7 @@ class ViewControllerNewConfigurations: NSViewController, SetConfigurations, VcSc
     @IBOutlet weak var rsyncdaemon: NSButton!
     @IBOutlet weak var singleFile: NSButton!
     @IBOutlet weak var profilInfo: NSTextField!
+    @IBOutlet weak var snapshots: NSButton!
 
     @IBAction func cleartable(_ sender: NSButton) {
         self.newconfigurations = nil
@@ -96,6 +97,7 @@ class ViewControllerNewConfigurations: NSViewController, SetConfigurations, VcSc
         self.backupID.stringValue = ""
         self.rsyncdaemon.state = .off
         self.singleFile.state = .off
+        self.snapshots.state = .off
     }
 
     @IBAction func addConfig(_ sender: NSButton) {
@@ -116,7 +118,11 @@ class ViewControllerNewConfigurations: NSViewController, SetConfigurations, VcSc
             "dateRun": "",
             "singleFile": 0]
         dict.setValue("no", forKey: "batch")
-        if self.singleFile.state == .on { dict.setValue(1, forKey: "singleFile")}
+        if self.snapshots.state == .on {
+            dict.setValue("snapshot", forKey: "task")
+            dict.setValue(1, forKey: "snapshotnum")
+        }
+        if self.singleFile.state == .on {dict.setValue(1, forKey: "singleFile")}
         if !self.localCatalog.stringValue.hasSuffix("/") && self.singleFile.state == .off {
             self.localCatalog.stringValue += "/"
             dict.setValue(self.localCatalog.stringValue, forKey: "localCatalog")

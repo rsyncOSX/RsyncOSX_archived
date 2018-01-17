@@ -9,7 +9,6 @@
 import Foundation
 
 class EstimateRemoteInformationTask: SetConfigurations {
-
     init(index: Int, outputprocess: OutputProcess?) {
         let taskDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllertabMain
         let arguments = self.configurations!.arguments4rsync(index: index, argtype: .argdryRun)

@@ -26,7 +26,7 @@ class ViewControllerRsyncParameters: NSViewController, SetConfigurations, SetDis
 
     var storageapi: PersistentStorageAPI?
     // Object for calculating rsync parameters
-    var parameters: RsyncParameters?
+    var parameters: RsyncParametersVC?
     // Delegate returning params updated or not
     weak var userparamsupdatedDelegate: RsyncUserParams?
     // Reference to rsync parameters to use in combox
@@ -166,7 +166,7 @@ class ViewControllerRsyncParameters: NSViewController, SetConfigurations, SetDis
         }
         var configurations: [Configuration] = self.configurations!.getConfigurations()
         if let index = self.index() {
-            self.parameters = RsyncParameters(config: configurations[index])
+            self.parameters = RsyncParametersVC(config: configurations[index])
             self.comboBoxValues = parameters!.getComboBoxValues()
             self.backupbutton.state = .off
             self.suffixButton.state = .off

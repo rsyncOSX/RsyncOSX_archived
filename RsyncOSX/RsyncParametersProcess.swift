@@ -10,7 +10,7 @@
 
 import Foundation
 
-class RsyncProcessArguments {
+final class RsyncParametersProcess {
 
     private var stats: Bool?
     private var arguments: Array<String>?
@@ -19,6 +19,10 @@ class RsyncProcessArguments {
     var offsiteUsername: String?
     var offsiteServer: String?
     var remoteargs: String?
+    var linkdestparam: String?
+    // if snapshot
+    // --link-dest=~/catalog/current /Volumes/Home/thomas/catalog/ user@host:~/catalog/01
+    private var current: String = "current"
 
     // Set initial parameter1 .. paramater6, parameters are computed by RsyncOSX
 
@@ -32,9 +36,7 @@ class RsyncProcessArguments {
         if forDisplay {self.arguments!.append(" ")}
         self.arguments!.append(parameter2)
         if forDisplay {self.arguments!.append(" ")}
-        if offsiteServer.isEmpty {
-            // nothing
-        } else {
+        if offsiteServer.isEmpty  == false {
             if parameter3.isEmpty == false {
                 self.arguments!.append(parameter3)
                 if forDisplay {self.arguments!.append(" ")}
@@ -139,6 +141,24 @@ class RsyncProcessArguments {
     /// - returns: Array of Strings
     func argumentsRsync (_ config: Configuration, dryRun: Bool, forDisplay: Bool) -> Array<String> {
         self.localCatalog = config.localCatalog
+        self.remoteargs(config)
+        self.setParameters1To6(config, dryRun: dryRun, forDisplay: forDisplay)
+        self.setParameters8To14(config, dryRun: dryRun, forDisplay: forDisplay)
+        switch config.task {
+        case "backup":
+            self.argumentsforbackup(dryRun: dryRun, forDisplay: forDisplay)
+        case "snapshot":
+            self.remoteargssnapshot(config)
+            self.argumentsforsnapshot(dryRun: dryRun, forDisplay: forDisplay)
+        case "restore":
+            self.argumentsforrestore(dryRun: dryRun, forDisplay: forDisplay)
+        default:
+            break
+        }
+        return self.arguments!
+    }
+
+    private func remoteargs(_ config: Configuration) {
         self.offsiteCatalog = config.offsiteCatalog
         self.offsiteUsername = config.offsiteUsername
         self.offsiteServer = config.offsiteServer
@@ -153,21 +173,34 @@ class RsyncProcessArguments {
                 self.remoteargs = self.offsiteUsername! + "@" + self.offsiteServer! + ":" + self.offsiteCatalog!
             }
         }
-        self.setParameters1To6(config, dryRun: dryRun, forDisplay: forDisplay)
-        self.setParameters8To14(config, dryRun: dryRun, forDisplay: forDisplay)
-        switch config.task {
-        case "backup":
-            self.argumentsforbackup(dryRun: dryRun, forDisplay: forDisplay)
-        case "restore":
-            self.argumentsforrestore(dryRun: dryRun, forDisplay: forDisplay)
-        default:
-            break
+    }
+
+    // Additional parameters if snapshot
+    private func remoteargssnapshot(_ config: Configuration) {
+        self.linkdestparam =  "--link-dest=" + config.offsiteCatalog + self.current
+        if self.remoteargs != nil {
+            self.remoteargs! += String(config.snapshotnum ?? 1)
         }
-        return self.arguments!
+        self.offsiteCatalog! += String(config.snapshotnum ?? 1)
     }
 
     private func argumentsforbackup(dryRun: Bool, forDisplay: Bool) {
         // Backup
+        self.arguments!.append(self.localCatalog!)
+        if self.offsiteServer!.isEmpty {
+            if forDisplay {self.arguments!.append(" ")}
+            self.arguments!.append(self.offsiteCatalog!)
+            if forDisplay {self.arguments!.append(" ")}
+        } else {
+            if forDisplay {self.arguments!.append(" ")}
+            self.arguments!.append(remoteargs!)
+            if forDisplay {self.arguments!.append(" ")}
+        }
+    }
+
+    private func argumentsforsnapshot(dryRun: Bool, forDisplay: Bool) {
+        self.arguments!.append(self.linkdestparam!)
+        if forDisplay {self.arguments!.append(" ")}
         self.arguments!.append(self.localCatalog!)
         if self.offsiteServer!.isEmpty {
             if forDisplay {self.arguments!.append(" ")}
@@ -193,7 +226,6 @@ class RsyncProcessArguments {
     }
 
     init () {
-        self.arguments = nil
         self.arguments = Array<String>()
     }
 }
