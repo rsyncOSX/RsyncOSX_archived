@@ -378,9 +378,9 @@ class Configurations: ReloadTable {
     }
 
     private func updatelinkcurrent(index: Int, outputprocess: OutputProcess?) {
-        let tst = SnapshotCurrentArguments(config: self.configurations![index])
-        let tst2 = SnapshotCurrent(command: tst.getCommand(), arguments: tst.getArguments())
-        tst2.executeProcess(outputprocess: outputprocess)
+        let args = SnapshotCurrentArguments(config: self.configurations![index])
+        let updatecurrent = SnapshotCurrent(command: args.getCommand(), arguments: args.getArguments())
+        updatecurrent.executeProcess(outputprocess: outputprocess)
     }
 
     /// Function is reading all Configurations into memory from permanent store and
