@@ -195,7 +195,7 @@ class Configurations: ReloadTable {
     }
 
     func getConfigurationsDataSourcecountBackupOnlyRemote() -> [NSDictionary]? {
-        let configurations: [Configuration] = self.configurations!.filter({return ($0.task == "backup" && $0.offsiteServer.isEmpty == false)})
+        let configurations: [Configuration] = self.configurations!.filter({return ($0.task == "backup" || $0.task == "snapshot" && $0.offsiteServer.isEmpty == false)})
         var row =  NSDictionary()
         var data = Array<NSDictionary>()
         for i in 0 ..< configurations.count {
@@ -370,10 +370,17 @@ class Configurations: ReloadTable {
         }
     }
 
-    func increasesnapshotnum(index: Int) {
+    func increasesnapshotnum(index: Int, outputprocess: OutputProcess?) {
         guard self.configurations != nil else { return }
         let num = self.configurations![index].snapshotnum ?? 0
         self.configurations![index].snapshotnum  = num + 1
+        self.updatelinkcurrent(index: index, outputprocess: outputprocess)
+    }
+
+    private func updatelinkcurrent(index: Int, outputprocess: OutputProcess?) {
+        let tst = SnapshotCurrentArguments(config: self.configurations![index])
+        let tst2 = SnapshotCurrent(command: tst.getCommand(), arguments: tst.getArguments())
+        tst2.executeProcess(outputprocess: outputprocess)
     }
 
     /// Function is reading all Configurations into memory from permanent store and

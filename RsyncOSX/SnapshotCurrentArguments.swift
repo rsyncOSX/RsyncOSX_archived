@@ -30,14 +30,14 @@ final class SnapshotCurrentArguments: ProcessArguments {
         guard self.config != nil else { return }
         guard self.config!.offsiteServer.isEmpty == false else { return }
         if self.config!.sshport != nil {
-            let sshport: String = "\"" + "-p " + String(self.config!.sshport!) + "\""
-            self.args!.append(sshport)
+            self.args!.append("-p")
+            self.args!.append(String(self.config!.sshport!))
         }
         remotearg = self.config!.offsiteUsername + "@" + self.config!.offsiteServer
         self.args!.append(remotearg!)
         let remotecatalog = config?.offsiteCatalog
-        let snapshotnum = String(describing: config?.snapshotnum ?? 0)
-        let remotecommand = "\"cd" + remotecatalog!+";" + "rm current;" + "ln -s current " + snapshotnum + "\""
+        let snapshotnum = String(describing: config?.snapshotnum ?? 1 - 1)
+        let remotecommand = "cd " + remotecatalog!+"; " + "rm current;  " + "ln -s current " + snapshotnum
         self.args!.append(remotecommand)
         self.command = "/usr/bin/ssh"
     }

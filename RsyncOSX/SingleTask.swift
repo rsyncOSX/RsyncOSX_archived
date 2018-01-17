@@ -147,7 +147,7 @@ final class SingleTask: SetSchedules, SetConfigurations {
                 self.transferredNumber = self.taskDelegate?.gettransferredNumber()
                 self.transferredNumberSizebytes = self.taskDelegate?.gettransferredNumberSizebytes()
                 if self.configurations!.getConfigurations()[self.index!].task == "snapshot" {
-                    self.configurations!.increasesnapshotnum(index: self.index!)
+                    self.configurations!.increasesnapshotnum(index: self.index!, outputprocess: self.outputprocess)
                 }
                 self.configurations!.setCurrentDateonConfiguration(self.index!)
                 let hiddenID = self.configurations!.gethiddenID(index: self.index!)
