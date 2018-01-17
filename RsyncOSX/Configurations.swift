@@ -164,7 +164,7 @@ class Configurations: ReloadTable {
     /// - parameter none: none
     /// - returns : Array of NSDictionary
     func getConfigurationsDataSourcecountBackupOnly() -> [NSMutableDictionary]? {
-        let configurations: [Configuration] = self.configurations!.filter({return ($0.task == "backup")})
+        let configurations: [Configuration] = self.configurations!.filter({return ($0.task == "backup" || $0.task == "snapshot")})
         var row =  NSMutableDictionary()
         var data = Array<NSMutableDictionary>()
         for i in 0 ..< configurations.count {
