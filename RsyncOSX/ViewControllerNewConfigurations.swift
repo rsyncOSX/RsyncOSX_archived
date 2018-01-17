@@ -10,7 +10,7 @@
 import Foundation
 import Cocoa
 
-class ViewControllerNewConfigurations: NSViewController, SetConfigurations, VcSchedule {
+class ViewControllerNewConfigurations: NSViewController, SetConfigurations, VcSchedule, Delay {
 
     var storageapi: PersistentStorageAPI?
     var newconfigurations: NewConfigurations?
@@ -48,15 +48,7 @@ class ViewControllerNewConfigurations: NSViewController, SetConfigurations, VcSc
             self.setFields()
         })
     }
-/*
-    @IBAction func copyLocalCatalog(_ sender: NSButton) {
-        _ = FileDialog(requester: .addLocalCatalog)
-    }
 
-    @IBAction func copyRemoteCatalog(_ sender: NSButton) {
-        _ = FileDialog(requester: .addRemoteCatalog)
-    }
-*/
     // Userconfiguration button
     @IBAction func userconfiguration(_ sender: NSButton) {
         globalMainQueue.async(execute: { () -> Void in
@@ -69,6 +61,7 @@ class ViewControllerNewConfigurations: NSViewController, SetConfigurations, VcSc
         self.newconfigurations = NewConfigurations()
         self.newTableView.delegate = self
         self.newTableView.dataSource = self
+        self.offsiteServer.delegate = self
         self.localCatalog.toolTip = "By using Finder drag and drop filepaths."
         self.offsiteCatalog.toolTip = "By using Finder drag and drop filepaths."
         ViewControllerReference.shared.setvcref(viewcontroller: .vcnewconfigurations, nsviewcontroller: self)
@@ -98,6 +91,7 @@ class ViewControllerNewConfigurations: NSViewController, SetConfigurations, VcSc
         self.rsyncdaemon.state = .off
         self.singleFile.state = .off
         self.snapshots.state = .off
+        self.snapshots.isEnabled = false
     }
 
     @IBAction func addConfig(_ sender: NSButton) {
@@ -179,22 +173,6 @@ extension ViewControllerNewConfigurations: NSTableViewDelegate {
     }
 }
 
-extension ViewControllerNewConfigurations: GetPath {
-
-    func pathSet(path: String?, requester: WhichPath) {
-        if let setpath = path {
-            switch requester {
-            case .addLocalCatalog:
-                self.localCatalog.stringValue = setpath
-            case .addRemoteCatalog:
-                self.offsiteCatalog.stringValue = setpath
-            default:
-                break
-            }
-        }
-    }
-}
-
 extension ViewControllerNewConfigurations: DismissViewController {
 
     func dismiss_view(viewcontroller: NSViewController) {
@@ -210,3 +188,43 @@ extension ViewControllerNewConfigurations: SetProfileinfo {
         })
     }
 }
+
+extension ViewControllerNewConfigurations: NSTextFieldDelegate {
+
+    override func controlTextDidChange(_ obj: Notification) {
+        self.delayWithSeconds(0.25) {
+            if self.offsiteServer.stringValue.isEmpty == false {
+                self.snapshots.isEnabled = true
+            } else {
+                self.snapshots.isEnabled = false
+                self.snapshots.state = .off
+            }
+        }
+    }
+}
+
+/*
+ extension ViewControllerNewConfigurations: GetPath {
+    
+    @IBAction func copyLocalCatalog(_ sender: NSButton) {
+        _ = FileDialog(requester: .addLocalCatalog)
+    }
+    
+    @IBAction func copyRemoteCatalog(_ sender: NSButton) {
+        _ = FileDialog(requester: .addRemoteCatalog)
+    }
+    
+    func pathSet(path: String?, requester: WhichPath) {
+        if let setpath = path {
+            switch requester {
+            case .addLocalCatalog:
+                self.localCatalog.stringValue = setpath
+            case .addRemoteCatalog:
+                self.offsiteCatalog.stringValue = setpath
+            default:
+                break
+            }
+        }
+    }
+ }
+*/
