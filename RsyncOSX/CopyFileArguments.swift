@@ -37,7 +37,6 @@ final class CopyFileArguments: ProcessArguments {
     }
 
     init (task: Enumscopyfiles, config: Configuration, remoteFile: String?, localCatalog: String?, drynrun: Bool?) {
-        self.arguments = nil
         self.arguments = Array<String>()
         self.config = config
         switch task {
