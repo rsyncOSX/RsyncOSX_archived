@@ -1,18 +1,15 @@
 //
-//  SnapshotCurrentArguments.swift
+//  SnapShotCreateInitialCatalog.swift
 //  RsyncOSX
 //
-//  Created by Thomas Evensen on 16.01.2018.
+//  Created by Thomas Evensen on 17.01.2018.
 //  Copyright © 2018 Thomas Evensen. All rights reserved.
-//
-// 1. ssh -p port user@host "mkdir ~/catalog"
-// 2. ssh -p port user@host "cd ~/catalog; rm current; ln -s NN current"
 //
 // swiftlint:disable syntactic_sugar
 
 import Foundation
 
-final class SnapshotCurrentArguments: ProcessArguments {
+final class SnapshotCreateInitialCatalog: ProcessArguments {
 
     private var config: Configuration?
     private var args: Array<String>?
@@ -30,8 +27,7 @@ final class SnapshotCurrentArguments: ProcessArguments {
             self.args!.append(remotearg!)
         }
         let remotecatalog = config?.offsiteCatalog
-        let snapshotnum = (config?.snapshotnum)! - 1
-        let remotecommand = "cd " + remotecatalog!+"; " + "rm current;  " + "ln -s " + String(snapshotnum) + " current"
+        let remotecommand = "mkdir " + remotecatalog!
         self.args!.append(remotecommand)
     }
 
@@ -49,5 +45,4 @@ final class SnapshotCurrentArguments: ProcessArguments {
         self.remotearguments()
         self.command = "/usr/bin/ssh"
     }
-
 }

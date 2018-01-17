@@ -76,6 +76,7 @@
 		E97C09A71EFAFBC400E86999 /* BatchTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = E97C09A61EFAFBC400E86999 /* BatchTask.swift */; };
 		E97E3BA71F6256DB00411D0E /* Configurations.swift in Sources */ = {isa = PBXBuildFile; fileRef = E97E3BA61F6256DB00411D0E /* Configurations.swift */; };
 		E989CE961EF948D0000CB7C2 /* ChmodPubKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = E989CE951EF948D0000CB7C2 /* ChmodPubKey.swift */; };
+		E99FC81D200FD88D00477B1A /* SnapshotCreateInitialCatalog.swift in Sources */ = {isa = PBXBuildFile; fileRef = E99FC81C200FD88D00477B1A /* SnapshotCreateInitialCatalog.swift */; };
 		E9A8D81C1ED20AEB009648DE /* GetRemoteFileListingsArguments.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9A8D81B1ED20AEB009648DE /* GetRemoteFileListingsArguments.swift */; };
 		E9C6EA8A1ED2AE2F00680D4D /* Numbers.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9C6EA891ED2AE2F00680D4D /* Numbers.swift */; };
 		E9CF14141E729540008E8A15 /* RsyncScheduled.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9CF14131E729540008E8A15 /* RsyncScheduled.swift */; };
@@ -173,6 +174,7 @@
 		E97C09A61EFAFBC400E86999 /* BatchTask.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BatchTask.swift; sourceTree = "<group>"; };
 		E97E3BA61F6256DB00411D0E /* Configurations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Configurations.swift; sourceTree = "<group>"; };
 		E989CE951EF948D0000CB7C2 /* ChmodPubKey.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChmodPubKey.swift; sourceTree = "<group>"; };
+		E99FC81C200FD88D00477B1A /* SnapshotCreateInitialCatalog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnapshotCreateInitialCatalog.swift; sourceTree = "<group>"; };
 		E9A8D81B1ED20AEB009648DE /* GetRemoteFileListingsArguments.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GetRemoteFileListingsArguments.swift; sourceTree = "<group>"; };
 		E9C6EA891ED2AE2F00680D4D /* Numbers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Numbers.swift; sourceTree = "<group>"; };
 		E9CF14131E729540008E8A15 /* RsyncScheduled.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RsyncScheduled.swift; sourceTree = "<group>"; };
@@ -253,18 +255,20 @@
 		A04492BE1D658F8900B3CE17 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				E99FC81E200FDDBC00477B1A /* ProcessArguments */,
 				E98BD0991FF8BF8400A00782 /* RemoteInformation */,
 				E99AEC701FF8BBA40004992B /* Userconfiguration */,
 				E905EDB21FED057F0044234E /* QuickBackup */,
 				E9F941611FC5FCAE005F2439 /* Logging */,
 				E99D50781EE16241003621D3 /* RsyncParameters */,
+				E99FC81F200FDE2A00477B1A /* Output */,
 				E9234FF91EB0680D00A4C550 /* UserProfiles */,
 				E9EC786F1EACE063001EED9B /* ssh */,
 				E9D0A0101F9CBD8A0050A868 /* ScheduleOperation */,
 				E988FCBC1F9BCF0A00F21FB9 /* ScheduleOperationDispatch */,
 				E9374D2A1E32992900CD3945 /* ScheduledOperationsTimer */,
 				A04492C41D65901400B3CE17 /* Utils */,
-				A091C6591D86A1F400278E74 /* CopySingleFiles */,
+				A091C6591D86A1F400278E74 /* CopyFiles */,
 				A05275DB1D6F6E2C00D8ECBE /* Execution */,
 				A04492C51D65904500B3CE17 /* Process */,
 				A04492C11D658FB900B3CE17 /* Schedule */,
@@ -346,8 +350,8 @@
 		A04492C41D65901400B3CE17 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
-				E9C6EA891ED2AE2F00680D4D /* Numbers.swift */,
 				A04492C21D658FC300B3CE17 /* yudpsocket */,
+				E9C6EA891ED2AE2F00680D4D /* Numbers.swift */,
 				A00FE1A91D6A1AAB00012089 /* Alerts.swift */,
 				A0400C861D794FF8008A3949 /* Checkfornewversion.swift */,
 				A0DD27071D92DDF400D56899 /* FileDialog.swift */,
@@ -362,8 +366,6 @@
 			isa = PBXGroup;
 			children = (
 				E943DC671FF9115200E6B8B7 /* EstimateRemoteInformationTask.swift */,
-				A049724F1D6595B200086EFD /* OutputProcess.swift */,
-				E9DCEA861E75F67200A69B4D /* OutputBatch.swift */,
 				E9FFA02C1E7287E100B7AB2B /* ProcessCmd.swift */,
 				E9FFA02E1E728C6E00B7AB2B /* Rsync.swift */,
 				E9CF14131E729540008E8A15 /* RsyncScheduled.swift */,
@@ -385,16 +387,12 @@
 			name = Execution;
 			sourceTree = "<group>";
 		};
-		A091C6591D86A1F400278E74 /* CopySingleFiles */ = {
+		A091C6591D86A1F400278E74 /* CopyFiles */ = {
 			isa = PBXGroup;
 			children = (
 				A091C65A1D86A59500278E74 /* CopySingleFiles.swift */,
-				A04492A01D658F2100B3CE17 /* CopyFileArguments.swift */,
-				E9230C0D1E6DDC57001D9954 /* RsyncParametersSingleFiles.swift */,
-				E9A8D81B1ED20AEB009648DE /* GetRemoteFileListingsArguments.swift */,
-				E9E63E43200EA6C300CBD1A0 /* SnapshotCurrentArguments.swift */,
 			);
-			name = CopySingleFiles;
+			name = CopyFiles;
 			sourceTree = "<group>";
 		};
 		A0BAA5F21D70C33A003BE69F /* Configurations */ = {
@@ -502,6 +500,27 @@
 				A0CACFD31DA2738500C5997A /* RsyncParametersVC.swift */,
 			);
 			name = RsyncParameters;
+			sourceTree = "<group>";
+		};
+		E99FC81E200FDDBC00477B1A /* ProcessArguments */ = {
+			isa = PBXGroup;
+			children = (
+				E99FC81C200FD88D00477B1A /* SnapshotCreateInitialCatalog.swift */,
+				E9E63E43200EA6C300CBD1A0 /* SnapshotCurrentArguments.swift */,
+				E9A8D81B1ED20AEB009648DE /* GetRemoteFileListingsArguments.swift */,
+				A04492A01D658F2100B3CE17 /* CopyFileArguments.swift */,
+				E9230C0D1E6DDC57001D9954 /* RsyncParametersSingleFiles.swift */,
+			);
+			name = ProcessArguments;
+			sourceTree = "<group>";
+		};
+		E99FC81F200FDE2A00477B1A /* Output */ = {
+			isa = PBXGroup;
+			children = (
+				E9DCEA861E75F67200A69B4D /* OutputBatch.swift */,
+				A049724F1D6595B200086EFD /* OutputProcess.swift */,
+			);
+			name = Output;
 			sourceTree = "<group>";
 		};
 		E9D0A0101F9CBD8A0050A868 /* ScheduleOperation */ = {
@@ -656,6 +675,7 @@
 				E9C6EA8A1ED2AE2F00680D4D /* Numbers.swift in Sources */,
 				A0F2E20C1D6D91AA0091E8BF /* Userconfiguration.swift in Sources */,
 				A0762A1F1DB4A8F000538CE9 /* Profiles.swift in Sources */,
+				E99FC81D200FD88D00477B1A /* SnapshotCreateInitialCatalog.swift in Sources */,
 				E9FFA02F1E728C6E00B7AB2B /* Rsync.swift in Sources */,
 				E9234FFB1EB068AE00A4C550 /* Files.swift in Sources */,
 				E9E763711E6AEA5300B45E8D /* ViewControllerCopyFilesSource.swift in Sources */,

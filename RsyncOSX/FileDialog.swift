@@ -33,8 +33,7 @@ final class FileDialog {
         myFiledialog.title = title
         myFiledialog.message = message
         let value = myFiledialog.runModal()
-        self.pathDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vcnewconfigurations)
-            as? ViewControllerNewConfigurations
+        // self.pathDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vcnewconfigurations) as? ViewControllerNewConfigurations
         switch value.rawValue {
         case 0: break
         case 1:
