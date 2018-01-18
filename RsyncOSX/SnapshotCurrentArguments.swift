@@ -33,6 +33,20 @@ final class SnapshotCurrentArguments: ProcessArguments {
         let snapshotnum = (config?.snapshotnum)! - 1
         let remotecommand = "cd " + remotecatalog!+"; " + "rm current;  " + "ln -s " + String(snapshotnum) + " current"
         self.args!.append(remotecommand)
+        self.command = "/usr/bin/ssh"
+    }
+
+    private func localarguments() {
+        guard self.config != nil else { return }
+        let remotecatalog = config?.offsiteCatalog
+        let snapshotnum = (config?.snapshotnum)! - 1
+        let arg1 = "/usr/bin/cd " + remotecatalog!
+        let arg2 = "/bin/rm current;  "
+        let arg3 = "/bin/ln -s " + String(snapshotnum) + " current"
+        self.args!.append(arg1)
+        self.args!.append(arg2)
+        self.args!.append(arg3)
+        self.command = "/usr/bin/env"
     }
 
     func getArguments() -> Array<String>? {
@@ -43,11 +57,14 @@ final class SnapshotCurrentArguments: ProcessArguments {
         return self.command
     }
 
-    init (config: Configuration) {
+    init (config: Configuration, remote: Bool) {
         self.args = Array<String>()
         self.config = config
-        self.remotearguments()
-        self.command = "/usr/bin/ssh"
+        if remote {
+            self.remotearguments()
+        } else {
+            self.localarguments()
+        }
     }
 
 }
