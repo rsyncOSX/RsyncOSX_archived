@@ -97,13 +97,9 @@ class ViewControllerNewConfigurations: NSViewController, SetConfigurations, VcSc
 
     private func snapshotcreatecatalog (dict: NSDictionary, outputprocess: OutputProcess?) {
         let config: Configuration = Configuration(dictionary: dict)
-        var args: SnapshotCreateCatalogArguments?
-        if config.offsiteServer.isEmpty == false {
-            args = SnapshotCreateCatalogArguments(config: config, remote: true)
-        } else {
-            args = SnapshotCreateCatalogArguments(config: config, remote: false)
-        }
-        let updatecurrent = SnapshotCreateCatalog(command: args!.getCommand(), arguments: args!.getArguments())
+        guard config.offsiteServer.isEmpty == false else { return }
+        let args = SnapshotCreateCatalogArguments(config: config)
+        let updatecurrent = SnapshotCreateCatalog(command: args.getCommand(), arguments: args.getArguments())
         updatecurrent.executeProcess(outputprocess: outputprocess)
     }
 
