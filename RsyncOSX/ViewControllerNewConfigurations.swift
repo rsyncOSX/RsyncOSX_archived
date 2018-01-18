@@ -22,6 +22,7 @@ class ViewControllerNewConfigurations: NSViewController, SetConfigurations, VcSc
     let eparam: String = "-e"
     let ssh: String = "ssh"
     let dryrun: String = "--dry-run"
+    var outputprocess: OutputProcess?
 
     @IBOutlet weak var newTableView: NSTableView!
     @IBOutlet weak var viewParameter1: NSTextField!
@@ -122,6 +123,8 @@ class ViewControllerNewConfigurations: NSViewController, SetConfigurations, VcSc
         if self.snapshots.state == .on {
             dict.setValue("snapshot", forKey: "task")
             dict.setValue(1, forKey: "snapshotnum")
+            self.outputprocess = OutputProcess()
+            self.snapshotcreatecatalog(dict: dict, outputprocess: self.outputprocess)
         }
         if self.singleFile.state == .on {dict.setValue(1, forKey: "singleFile")}
         if !self.localCatalog.stringValue.hasSuffix("/") && self.singleFile.state == .off {
