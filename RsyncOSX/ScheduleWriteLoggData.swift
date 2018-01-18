@@ -69,7 +69,8 @@ class ScheduleWriteLoggData: SetConfigurations, ReloadTable, Deselect {
 
     private func addloggtaskmanulnew(_ hiddenID: Int, result: String, date: String) -> Bool {
         var loggadded: Bool = false
-        if (self.configurations!.getResourceConfiguration(hiddenID, resource: .task) == "backup") {
+        if (self.configurations!.getResourceConfiguration(hiddenID, resource: .task) == "backup" ||
+            self.configurations!.getResourceConfiguration(hiddenID, resource: .task) == "snapshot") {
             let masterdict = NSMutableDictionary()
             masterdict.setObject(hiddenID, forKey: "hiddenID" as NSCopying)
             masterdict.setObject("01 Jan 1900 00:00", forKey: "dateStart" as NSCopying)
