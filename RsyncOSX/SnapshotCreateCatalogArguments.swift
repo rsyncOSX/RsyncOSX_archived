@@ -27,7 +27,7 @@ final class SnapshotCreateCatalogArguments: ProcessArguments {
             self.args!.append(remotearg!)
         }
         let remotecatalog = config?.offsiteCatalog
-        let remotecommand = "mkdir " + remotecatalog!
+        let remotecommand = "mkdir -p " + remotecatalog!
         self.args!.append(remotecommand)
     }
 
