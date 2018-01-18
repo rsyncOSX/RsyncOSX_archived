@@ -378,8 +378,14 @@ class Configurations: ReloadTable {
     }
 
     private func updatelinkcurrent(index: Int, outputprocess: OutputProcess?) {
-        let args = SnapshotCurrentArguments(config: self.configurations![index])
-        let updatecurrent = SnapshotCurrent(command: args.getCommand(), arguments: args.getArguments())
+        let config = self.configurations![index]
+        var args: SnapshotCurrentArguments?
+        if config.offsiteServer.isEmpty == false {
+            args = SnapshotCurrentArguments(config: config, remote: true)
+        } else {
+            args = SnapshotCurrentArguments(config: config, remote: false)
+        }
+        let updatecurrent = SnapshotCurrent(command: args!.getCommand(), arguments: args!.getArguments())
         updatecurrent.executeProcess(outputprocess: outputprocess)
     }
 

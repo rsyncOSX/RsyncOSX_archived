@@ -41,7 +41,7 @@ class ViewControllerNewConfigurations: NSViewController, SetConfigurations, VcSc
     @IBOutlet weak var profilInfo: NSTextField!
     @IBOutlet weak var snapshots: NSButton!
     @IBOutlet weak var snapshotmessage: NSTextField!
-    
+
     @IBAction func cleartable(_ sender: NSButton) {
         self.newconfigurations = nil
         self.newconfigurations = NewConfigurations()
@@ -63,7 +63,6 @@ class ViewControllerNewConfigurations: NSViewController, SetConfigurations, VcSc
         self.newconfigurations = NewConfigurations()
         self.newTableView.delegate = self
         self.newTableView.dataSource = self
-        self.offsiteServer.delegate = self
         self.localCatalog.toolTip = "By using Finder drag and drop filepaths."
         self.offsiteCatalog.toolTip = "By using Finder drag and drop filepaths."
         ViewControllerReference.shared.setvcref(viewcontroller: .vcnewconfigurations, nsviewcontroller: self)
@@ -93,14 +92,18 @@ class ViewControllerNewConfigurations: NSViewController, SetConfigurations, VcSc
         self.rsyncdaemon.state = .off
         self.singleFile.state = .off
         self.snapshots.state = .off
-        self.snapshots.isEnabled = false
         self.snapshotmessage.isHidden = true
     }
 
     private func snapshotcreatecatalog (dict: NSDictionary, outputprocess: OutputProcess?) {
         let config: Configuration = Configuration(dictionary: dict)
-        let args = SnapshotCreateCatalogArguments(config: config)
-        let updatecurrent = SnapshotCreateCatalog(command: args.getCommand(), arguments: args.getArguments())
+        var args: SnapshotCreateCatalogArguments?
+        if config.offsiteServer.isEmpty == false {
+            args = SnapshotCreateCatalogArguments(config: config, remote: true)
+        } else {
+            args = SnapshotCreateCatalogArguments(config: config, remote: false)
+        }
+        let updatecurrent = SnapshotCreateCatalog(command: args!.getCommand(), arguments: args!.getArguments())
         updatecurrent.executeProcess(outputprocess: outputprocess)
     }
 
@@ -198,20 +201,6 @@ extension ViewControllerNewConfigurations: SetProfileinfo {
             self.profilInfo.stringValue = profile
             self.profilInfo.textColor = color
         })
-    }
-}
-
-extension ViewControllerNewConfigurations: NSTextFieldDelegate {
-
-    override func controlTextDidChange(_ obj: Notification) {
-        self.delayWithSeconds(0.25) {
-            if self.offsiteServer.stringValue.isEmpty == false {
-                self.snapshots.isEnabled = true
-            } else {
-                self.snapshots.isEnabled = false
-                self.snapshots.state = .off
-            }
-        }
     }
 }
 

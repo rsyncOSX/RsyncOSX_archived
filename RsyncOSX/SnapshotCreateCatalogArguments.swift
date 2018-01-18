@@ -29,6 +29,15 @@ final class SnapshotCreateCatalogArguments: ProcessArguments {
         let remotecatalog = config?.offsiteCatalog
         let remotecommand = "mkdir -p " + remotecatalog!
         self.args!.append(remotecommand)
+        self.command = "/usr/bin/ssh"
+    }
+
+    private func localarguments() {
+        guard self.config != nil else { return }
+        let remotecatalog = config?.offsiteCatalog
+        let remotecommand = "/bin/mkdir -p " + remotecatalog!
+        self.args!.append(remotecommand)
+        self.command = "/usr/bin/env"
     }
 
     func getArguments() -> Array<String>? {
@@ -39,10 +48,13 @@ final class SnapshotCreateCatalogArguments: ProcessArguments {
         return self.command
     }
 
-    init (config: Configuration) {
+    init (config: Configuration, remote: Bool) {
         self.args = Array<String>()
         self.config = config
-        self.remotearguments()
-        self.command = "/usr/bin/ssh"
+        if remote {
+            self.remotearguments()
+        } else {
+            self.localarguments()
+        }
     }
 }
