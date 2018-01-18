@@ -93,6 +93,13 @@ class ViewControllerNewConfigurations: NSViewController, SetConfigurations, VcSc
         self.snapshots.state = .off
         self.snapshots.isEnabled = false
     }
+    
+    private func snapshotcreatecatalog (dict: NSDictionary, outputprocess: OutputProcess?) {
+        let config: Configuration = Configuration(dictionary: dict)
+        let args = SnapshotCreateCatalogArguments(config: config)
+        let updatecurrent = SnapshotCreateCatalog(command: args.getCommand(), arguments: args.getArguments())
+        updatecurrent.executeProcess(outputprocess: outputprocess)
+    }
 
     @IBAction func addConfig(_ sender: NSButton) {
         let dict: NSMutableDictionary = [
@@ -200,6 +207,16 @@ extension ViewControllerNewConfigurations: NSTextFieldDelegate {
                 self.snapshots.state = .off
             }
         }
+    }
+}
+
+extension ViewControllerNewConfigurations: UpdateProgress {
+    func processTermination() {
+        //
+    }
+
+    func fileHandler() {
+        //
     }
 }
 

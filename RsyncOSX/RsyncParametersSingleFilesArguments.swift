@@ -10,7 +10,7 @@
 
 import Foundation
 
-final class RsyncParametersSingleFiles: ProcessArguments {
+final class RsyncParametersSingleFilesArguments: ProcessArguments {
 
     let archive: String = "--archive"
     let verbose: String = "--verbose"

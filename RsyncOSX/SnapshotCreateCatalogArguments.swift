@@ -9,7 +9,7 @@
 
 import Foundation
 
-final class SnapshotCreateInitialCatalog: ProcessArguments {
+final class SnapshotCreateCatalogArguments: ProcessArguments {
 
     private var config: Configuration?
     private var args: Array<String>?
