@@ -30,6 +30,7 @@ final class SnapshotCreateCatalogArguments: ProcessArguments {
         let remotecommand = "mkdir -p " + remotecatalog!
         self.args!.append(remotecommand)
     }
+
     func getArguments() -> Array<String>? {
         return self.args
     }
@@ -41,6 +42,7 @@ final class SnapshotCreateCatalogArguments: ProcessArguments {
     init (config: Configuration) {
         self.args = Array<String>()
         self.config = config
+        self.remotearguments()
         self.command = "/usr/bin/ssh"
     }
 }
