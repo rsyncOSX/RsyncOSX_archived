@@ -40,7 +40,8 @@ class ViewControllerNewConfigurations: NSViewController, SetConfigurations, VcSc
     @IBOutlet weak var singleFile: NSButton!
     @IBOutlet weak var profilInfo: NSTextField!
     @IBOutlet weak var snapshots: NSButton!
-
+    @IBOutlet weak var snapshotmessage: NSTextField!
+    
     @IBAction func cleartable(_ sender: NSButton) {
         self.newconfigurations = nil
         self.newconfigurations = NewConfigurations()
@@ -93,8 +94,9 @@ class ViewControllerNewConfigurations: NSViewController, SetConfigurations, VcSc
         self.singleFile.state = .off
         self.snapshots.state = .off
         self.snapshots.isEnabled = false
+        self.snapshotmessage.isHidden = true
     }
-    
+
     private func snapshotcreatecatalog (dict: NSDictionary, outputprocess: OutputProcess?) {
         let config: Configuration = Configuration(dictionary: dict)
         let args = SnapshotCreateCatalogArguments(config: config)
@@ -215,7 +217,13 @@ extension ViewControllerNewConfigurations: NSTextFieldDelegate {
 
 extension ViewControllerNewConfigurations: UpdateProgress {
     func processTermination() {
-        //
+        self.delayWithSeconds(0.25) {
+            let text = self.outputprocess?.getOutput()
+            if text?.count ?? 0 > 0 {
+                self.snapshotmessage.isHidden = false
+                self.snapshotmessage.stringValue = text![0]
+            }
+        }
     }
 
     func fileHandler() {
