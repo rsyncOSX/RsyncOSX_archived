@@ -22,6 +22,7 @@ class ViewControllerNewConfigurations: NSViewController, SetConfigurations, VcSc
     let eparam: String = "-e"
     let ssh: String = "ssh"
     let dryrun: String = "--dry-run"
+    var outputprocess: OutputProcess?
 
     @IBOutlet weak var newTableView: NSTableView!
     @IBOutlet weak var viewParameter1: NSTextField!
@@ -39,7 +40,8 @@ class ViewControllerNewConfigurations: NSViewController, SetConfigurations, VcSc
     @IBOutlet weak var singleFile: NSButton!
     @IBOutlet weak var profilInfo: NSTextField!
     @IBOutlet weak var snapshots: NSButton!
-
+    @IBOutlet weak var snapshotmessage: NSTextField!
+    
     @IBAction func cleartable(_ sender: NSButton) {
         self.newconfigurations = nil
         self.newconfigurations = NewConfigurations()
@@ -92,6 +94,14 @@ class ViewControllerNewConfigurations: NSViewController, SetConfigurations, VcSc
         self.singleFile.state = .off
         self.snapshots.state = .off
         self.snapshots.isEnabled = false
+        self.snapshotmessage.isHidden = true
+    }
+
+    private func snapshotcreatecatalog (dict: NSDictionary, outputprocess: OutputProcess?) {
+        let config: Configuration = Configuration(dictionary: dict)
+        let args = SnapshotCreateCatalogArguments(config: config)
+        let updatecurrent = SnapshotCreateCatalog(command: args.getCommand(), arguments: args.getArguments())
+        updatecurrent.executeProcess(outputprocess: outputprocess)
     }
 
     @IBAction func addConfig(_ sender: NSButton) {
@@ -115,6 +125,8 @@ class ViewControllerNewConfigurations: NSViewController, SetConfigurations, VcSc
         if self.snapshots.state == .on {
             dict.setValue("snapshot", forKey: "task")
             dict.setValue(1, forKey: "snapshotnum")
+            self.outputprocess = OutputProcess()
+            self.snapshotcreatecatalog(dict: dict, outputprocess: self.outputprocess)
         }
         if self.singleFile.state == .on {dict.setValue(1, forKey: "singleFile")}
         if !self.localCatalog.stringValue.hasSuffix("/") && self.singleFile.state == .off {
@@ -200,6 +212,22 @@ extension ViewControllerNewConfigurations: NSTextFieldDelegate {
                 self.snapshots.state = .off
             }
         }
+    }
+}
+
+extension ViewControllerNewConfigurations: UpdateProgress {
+    func processTermination() {
+        self.delayWithSeconds(0.25) {
+            let text = self.outputprocess?.getOutput()
+            if text?.count ?? 0 > 0 {
+                self.snapshotmessage.isHidden = false
+                self.snapshotmessage.stringValue = text![0]
+            }
+        }
+    }
+
+    func fileHandler() {
+        //
     }
 }
 

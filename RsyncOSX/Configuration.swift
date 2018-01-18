@@ -47,7 +47,7 @@ struct Configuration {
 
     init(dictionary: NSDictionary) {
         // Parameters 1 - 6 is mandatory, set by RsyncOSX.
-        self.hiddenID = (dictionary.object(forKey: "hiddenID") as? Int)!
+        self.hiddenID = (dictionary.object(forKey: "hiddenID") as? Int) ?? 0
         self.task = (dictionary.object(forKey: "task") as? String)!
         self.localCatalog = (dictionary.object(forKey: "localCatalog") as? String)!
         self.offsiteCatalog = (dictionary.object(forKey: "offsiteCatalog") as? String)!
