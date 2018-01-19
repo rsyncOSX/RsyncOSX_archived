@@ -177,11 +177,12 @@ final class RsyncParametersProcess {
 
     // Additional parameters if snapshot
     private func remoteargssnapshot(_ config: Configuration) {
-        self.linkdestparam =  "--link-dest=" + config.offsiteCatalog + self.current
+        let snapshotnum = config.snapshotnum ?? 1
+        self.linkdestparam =  "--link-dest=" + config.offsiteCatalog + String(snapshotnum - 1)
         if self.remoteargs != nil {
-            self.remoteargs! += String(config.snapshotnum ?? 1)
+            self.remoteargs! += String(snapshotnum)
         }
-        self.offsiteCatalog! += String(config.snapshotnum ?? 1)
+        self.offsiteCatalog! += String(snapshotnum)
     }
 
     private func argumentsforbackup(dryRun: Bool, forDisplay: Bool) {
