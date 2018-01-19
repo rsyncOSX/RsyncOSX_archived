@@ -374,7 +374,7 @@ class Configurations: ReloadTable {
         guard self.configurations != nil else { return }
         let num = self.configurations![index].snapshotnum ?? 0
         self.configurations![index].snapshotnum  = num + 1
-        self.updatelinkcurrent(index: index, outputprocess: outputprocess)
+        // self.updatelinkcurrent(index: index, outputprocess: outputprocess)
     }
 
     private func updatelinkcurrent(index: Int, outputprocess: OutputProcess?) {
