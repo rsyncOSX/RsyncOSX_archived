@@ -541,7 +541,8 @@ extension ViewControllertabMain: NSTableViewDelegate, Attributedestring {
         if self.process != nil {
             self.abortOperations()
         }
-        if self.configurations!.getConfigurations()[row].task == "backup" {
+        if self.configurations!.getConfigurations()[row].task == "backup" ||
+           self.configurations!.getConfigurations()[row].task == "snapshot" {
             self.configurations!.setBatchYesNo(row)
         }
         self.singletask = nil

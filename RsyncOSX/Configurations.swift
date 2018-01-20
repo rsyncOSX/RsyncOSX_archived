@@ -219,7 +219,7 @@ class Configurations: ReloadTable {
     /// Function returns all Configurations marked for backup.
     /// - returns : array of Configurations
     func getConfigurationsBatch() -> [Configuration] {
-        return self.configurations!.filter({return ($0.task == "backup") && ($0.batch == "yes")})
+        return self.configurations!.filter({return ($0.task == "backup" || $0.task == "snapshot" ) && ($0.batch == "yes")})
     }
 
     /// Function computes arguments for rsync, either arguments for
