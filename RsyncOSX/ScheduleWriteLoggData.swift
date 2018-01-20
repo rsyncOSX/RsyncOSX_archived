@@ -109,9 +109,10 @@ class ScheduleWriteLoggData: SetConfigurations, ReloadTable, Deselect {
                         logged = true
                         let dict = NSMutableDictionary()
                         var resultannotaded: String?
-                        if dict.value(forKey: "task") as? String == "snapshot" {
-                            let snapshotnum = dict.value(forKey: "snapshotnum") as? Int
-                            resultannotaded = "(" +  String(describing: snapshotnum) + ") " + result
+                        let config = self.getconfig(hiddenID: hiddenID)
+                        if config.task == "snapshot" {
+                            let snapshotnum = String(config.snapshotnum!)
+                            resultannotaded = "(" +  snapshotnum + ") " + result
                         } else {
                             resultannotaded = result
                         }
