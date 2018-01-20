@@ -37,7 +37,8 @@ class ScheduleWriteLoggData: SetConfigurations, ReloadTable, Deselect {
             let config = self.getconfig(hiddenID: hiddenID)
             var resultannotaded: String?
             if config.task == "snapshot" {
-                resultannotaded = "(" +  String(config.snapshotnum ?? 0) + ") " + result
+                let snapshotnum = config.snapshotnum ?? 0 - 1
+                resultannotaded = "(" +  String(snapshotnum) + ") " + result
             } else {
                 resultannotaded = result
             }
