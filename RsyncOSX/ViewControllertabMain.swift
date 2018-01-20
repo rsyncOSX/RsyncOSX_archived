@@ -652,6 +652,9 @@ extension ViewControllertabMain: ScheduledTaskWorking {
                     Alerts.showInfo("Scheduled backup DID not execute?")
                 })
             } else {
+                if self.processtermination == nil {
+                    self.processtermination = .singlequicktask
+                }
                 if self.processtermination! != .quicktask {
                     globalMainQueue.async(execute: {() -> Void in
                         self.presentViewControllerAsSheet(self.viewControllerScheduledBackupInWork!)
@@ -1106,7 +1109,6 @@ extension ViewControllertabMain: Sendprocessreference {
     }
 
     func sendprocessreference(process: Process?) {
-        self.processtermination = .singlequicktask
         self.process = process
     }
 }
