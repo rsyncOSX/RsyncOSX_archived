@@ -35,16 +35,16 @@ class ScheduleWriteLoggData: SetConfigurations, ReloadTable, Deselect {
             let dateformatter = Tools().setDateformat()
             let date = dateformatter.string(from: currendate)
             let config = self.getconfig(hiddenID: hiddenID)
-            var resultannotade: String?
+            var resultannotaded: String?
             if config.task == "snapshot" {
-                resultannotade = "(" +  String(config.snapshotnum ?? 0) + ") " + result
+                resultannotaded = "(" +  String(config.snapshotnum ?? 0) + ") " + result
             } else {
-                resultannotade = result
+                resultannotaded = result
             }
-            var inserted: Bool = self.addloggtaskmanualexisting(hiddenID, result: resultannotade ?? "", date: date)
+            var inserted: Bool = self.addloggtaskmanualexisting(hiddenID, result: resultannotaded ?? "", date: date)
             // Record does not exist, create new Schedule (not inserted)
             if inserted == false {
-                inserted = self.addloggtaskmanulnew(hiddenID, result: resultannotade ?? "", date: date)
+                inserted = self.addloggtaskmanulnew(hiddenID, result: resultannotaded ?? "", date: date)
             }
             if inserted {
                 self.storageapi!.saveScheduleFromMemory()
@@ -104,11 +104,19 @@ class ScheduleWriteLoggData: SetConfigurations, ReloadTable, Deselect {
                 if self.schedules![i].hiddenID == hiddenID  &&
                     self.schedules![i].schedule == schedule &&
                     self.schedules![i].dateStart == dateStart {
-                    if (self.configurations!.getResourceConfiguration(hiddenID, resource: .task) == "backup") {
+                    if (self.configurations!.getResourceConfiguration(hiddenID, resource: .task) == "backup" ||
+                        self.configurations!.getResourceConfiguration(hiddenID, resource: .task) == "snapshot" ) {
                         logged = true
                         let dict = NSMutableDictionary()
+                        var resultannotaded: String?
+                        if dict.value(forKey: "task") as? String == "snapshot" {
+                            let snapshotnum = dict.value(forKey: "snapshotnum") as? Int
+                            resultannotaded = "(" +  String(describing: snapshotnum) + ") " + result
+                        } else {
+                            resultannotaded = result
+                        }
                         dict.setObject(date, forKey: "dateExecuted" as NSCopying)
-                        dict.setObject(result, forKey: "resultExecuted" as NSCopying)
+                        dict.setObject(resultannotaded ?? "", forKey: "resultExecuted" as NSCopying)
                         self.schedules![i].logrecords.append(dict)
                         self.storageapi!.saveScheduleFromMemory()
                         break loop
@@ -121,7 +129,7 @@ class ScheduleWriteLoggData: SetConfigurations, ReloadTable, Deselect {
             }
         }
     }
-    
+
     private func getconfig(hiddenID: Int) -> Configuration {
         let index = self.configurations?.getIndex(hiddenID) ?? 0
         return self.configurations!.getConfigurations()[index]
