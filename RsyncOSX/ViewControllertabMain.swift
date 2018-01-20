@@ -1106,6 +1106,7 @@ extension ViewControllertabMain: Sendprocessreference {
     }
 
     func sendprocessreference(process: Process?) {
+        self.processtermination = .singlequicktask
         self.process = process
     }
 }
