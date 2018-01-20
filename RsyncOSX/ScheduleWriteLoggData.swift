@@ -16,12 +16,8 @@ class ScheduleWriteLoggData: SetConfigurations, ReloadTable, Deselect {
     var schedules: Array<ConfigurationSchedule>?
 
     func deletelogrow(parent: Int, sibling: Int) {
-        guard parent < self.schedules!.count else {
-            return
-        }
-        guard sibling <  self.schedules![parent].logrecords.count else {
-            return
-        }
+        guard parent < self.schedules!.count else { return }
+        guard sibling <  self.schedules![parent].logrecords.count else { return }
         self.schedules![parent].logrecords.remove(at: sibling)
         self.storageapi!.saveScheduleFromMemory()
         self.reloadtable(vcontroller: .vcloggdata)
@@ -38,10 +34,17 @@ class ScheduleWriteLoggData: SetConfigurations, ReloadTable, Deselect {
             let currendate = Date()
             let dateformatter = Tools().setDateformat()
             let date = dateformatter.string(from: currendate)
-            var inserted: Bool = self.addloggtaskmanualexisting(hiddenID, result: result, date: date)
+            let config = self.getconfig(hiddenID: hiddenID)
+            var resultannotade: String?
+            if config.task == "snapshot" {
+                resultannotade = "(" +  String(config.snapshotnum ?? 0) + ") " + result
+            } else {
+                resultannotade = result
+            }
+            var inserted: Bool = self.addloggtaskmanualexisting(hiddenID, result: resultannotade ?? "", date: date)
             // Record does not exist, create new Schedule (not inserted)
             if inserted == false {
-                inserted = self.addloggtaskmanulnew(hiddenID, result: result, date: date)
+                inserted = self.addloggtaskmanulnew(hiddenID, result: resultannotade ?? "", date: date)
             }
             if inserted {
                 self.storageapi!.saveScheduleFromMemory()
@@ -117,6 +120,11 @@ class ScheduleWriteLoggData: SetConfigurations, ReloadTable, Deselect {
                 self.addlogtaskmanuel(hiddenID, result: result)
             }
         }
+    }
+    
+    private func getconfig(hiddenID: Int) -> Configuration {
+        let index = self.configurations?.getIndex(hiddenID) ?? 0
+        return self.configurations!.getConfigurations()[index]
     }
 
     init() {
