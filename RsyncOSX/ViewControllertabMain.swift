@@ -734,7 +734,9 @@ extension ViewControllertabMain: UpdateProgress {
     // Protocol UpdateProgress two functions, ProcessTermination() and FileHandler()
     func processTermination() {
         self.readyforexecution = true
-        // NB: must check if single run or batch run
+        if self.processtermination == nil {
+            self.processtermination = .singlequicktask
+        }
         switch self.processtermination! {
         case .singletask:
             guard self.singletask != nil else { return }
@@ -773,6 +775,9 @@ extension ViewControllertabMain: UpdateProgress {
     // Function is triggered when Process outputs data in filehandler
     // Process is either in singleRun or batchRun
     func fileHandler() {
+        if self.processtermination == nil {
+            self.processtermination = .singlequicktask
+        }
         switch self.processtermination! {
         case .singletask:
             guard self.singletask != nil else { return }

@@ -161,11 +161,6 @@ class ViewControllerCopyFiles: NSViewController, SetConfigurations, GetIndex, De
         self.verifylocalCatalog()
     }
 
-    override func viewDidDisappear() {
-        super.viewDidDisappear()
-        self.resetCopySource()
-    }
-
     @objc(tableViewDoubleClick:) func tableViewDoubleClick(sender: AnyObject) {
         guard self.index != nil else { return }
         guard self.remoteCatalog!.stringValue.isEmpty == false else { return }
