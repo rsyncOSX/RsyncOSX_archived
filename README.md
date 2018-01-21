@@ -11,6 +11,10 @@ This repository is the source code for the macOS app RsyncOSX. RsyncOSX is compi
 
 As part of this version of RsyncOSX I am using [SwiftLint](https://github.com/realm/SwiftLint) as tool for writing more readable code. Adapting RsyncOSX to SwiftLint rules will take some time. There are about 10,000 lines of code in RsyncOSX (too many?). Many changes in code has been applied, but there are still some more to do before RsyncOSX is more compliant to SwiftLint rules.
 
+### New version of rsync
+
+There is work on a [version 3.1.3](https://download.samba.org/pub/rsync/src-previews/rsync-3.1.3pre1-NEWS) of rsync. I have compiled the v 3.1.3 pre version for test.
+
 ### Compile
 
 To compile the code, install Xcode and open the RsyncOSX project file. Before compiling, open in Xcode the `RsyncOSX/General` preference page (after opening the RsyncOSX project file) and replace your own credentials in `Signing`, or disable Signing. Then compile your own version of RsyncOSX.
