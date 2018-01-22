@@ -7,3 +7,16 @@
 //
 
 import Foundation
+import Cocoa
+
+class ViewControllerSnapshots: NSViewController {
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        ViewControllerReference.shared.setvcref(viewcontroller: .vcsnapshot, nsviewcontroller: self)
+    }
+
+    override func viewDidAppear() {
+        super.viewDidAppear()
+    }
+}

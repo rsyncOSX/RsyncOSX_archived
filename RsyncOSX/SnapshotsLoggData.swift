@@ -29,4 +29,3 @@ class SnapshotsLoggData {
         self.get()
     }
 }
-

@@ -22,6 +22,7 @@ enum ViewController {
     case vcprogressview
     case vcquickbackup
     case vcremoteinfo
+    case vcsnapshot
 }
 
 class ViewControllerReference {
@@ -94,6 +95,8 @@ class ViewControllerReference {
     private var viewControllerQuickBatch: NSViewController?
     // Remote info
     private var viewControllerRemoteInfo: NSViewController?
+    // Snapshot
+    private var viewControllerSnapshot: NSViewController?
 
     func getvcref(viewcontroller: ViewController) -> NSViewController? {
         switch viewcontroller {
@@ -119,6 +122,8 @@ class ViewControllerReference {
             return self.viewControllerQuickBatch
         case .vcremoteinfo:
             return self.viewControllerRemoteInfo
+        case .vcsnapshot:
+            return self.viewControllerSnapshot
         }
     }
 
@@ -146,6 +151,8 @@ class ViewControllerReference {
             self.viewControllerQuickBatch = nsviewcontroller
         case .vcremoteinfo:
             self.viewControllerRemoteInfo = nsviewcontroller
+        case .vcsnapshot:
+            self.viewControllerSnapshot = nsviewcontroller
         }
     }
 }
