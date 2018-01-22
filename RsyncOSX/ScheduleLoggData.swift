@@ -30,10 +30,10 @@ struct Filtereddata {
 
 final class ScheduleLoggData: SetConfigurations, SetSchedules {
 
-    private var loggdata: Array<NSMutableDictionary>?
+    private var loggdata: [NSMutableDictionary]?
     weak var readfiltereddataDelegate: Readfiltereddata?
 
-    func getallloggdata() -> [NSDictionary]? {
+    func getallloggdata() -> [NSMutableDictionary]? {
         return self.loggdata
     }
 
