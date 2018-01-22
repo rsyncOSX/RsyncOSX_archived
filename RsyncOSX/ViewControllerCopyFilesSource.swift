@@ -17,6 +17,7 @@ class ViewControllerCopyFilesSource: NSViewController, SetConfigurations, SetDis
     weak var setIndexDelegate: ViewControllerCopyFiles?
     weak var getSourceDelegate: ViewControllerCopyFiles?
     weak var getSourceDelegate2: ViewControllerSsh?
+    weak var getSourceDelegate3: ViewControllerSnapshots?
     private var index: Int?
 
     @IBAction func close(_ sender: NSButton) {
@@ -30,11 +31,18 @@ class ViewControllerCopyFilesSource: NSViewController, SetConfigurations, SetDis
             if let index = self.index {
                 self.getSourceDelegate2?.getSource(index: index)
             }
+        } else if let pvc = self.presenting as? ViewControllerSnapshots {
+            self.getSourceDelegate3 = pvc
+            if let index = self.index {
+                self.getSourceDelegate3?.getSource(index: index)
+            }
         }
         if (self.presenting as? ViewControllerCopyFiles) != nil {
             self.dismissview(viewcontroller: self, vcontroller: .vccopyfiles)
         } else if (self.presenting as? ViewControllerSsh) != nil {
             self.dismissview(viewcontroller: self, vcontroller: .vcssh)
+        } else if (self.presenting as? ViewControllerSnapshots) != nil {
+            self.dismissview(viewcontroller: self, vcontroller: .vcsnapshot)
         }
     }
 
@@ -68,11 +76,18 @@ class ViewControllerCopyFilesSource: NSViewController, SetConfigurations, SetDis
             if let index = self.index {
                 self.getSourceDelegate2?.getSource(index: index)
             }
+        } else if let pvc = self.presenting as? ViewControllerSnapshots {
+            self.getSourceDelegate3 = pvc
+            if let index = self.index {
+                self.getSourceDelegate3?.getSource(index: index)
+            }
         }
         if (self.presenting as? ViewControllerCopyFiles) != nil {
             self.dismissview(viewcontroller: self, vcontroller: .vccopyfiles)
         } else if (self.presenting as? ViewControllerSsh) != nil {
             self.dismissview(viewcontroller: self, vcontroller: .vcssh)
+        } else if (self.presenting as? ViewControllerSnapshots) != nil {
+            self.dismissview(viewcontroller: self, vcontroller: .vcsnapshot)
         }
     }
 
@@ -93,6 +108,11 @@ class ViewControllerCopyFilesSource: NSViewController, SetConfigurations, SetDis
                 let hiddenID = object.value(forKey: "hiddenID") as? Int
                 guard hiddenID != nil else { return }
                 self.index = hiddenID!
+            } else if self.presenting as? ViewControllerSnapshots != nil {
+                let object = self.configurations!.getConfigurationsDataSourcecountBackupOnlyRemote()![index]
+                let hiddenID = object.value(forKey: "hiddenID") as? Int
+                guard hiddenID != nil else { return }
+                self.index = hiddenID!
             }
         }
     }
@@ -102,9 +122,7 @@ class ViewControllerCopyFilesSource: NSViewController, SetConfigurations, SetDis
 extension ViewControllerCopyFilesSource: NSTableViewDataSource {
     // Delegate for size of table
     func numberOfRows(in tableView: NSTableView) -> Int {
-        guard self.configurations != nil else {
-            return 0
-        }
+        guard self.configurations != nil else { return 0 }
         return self.configurations!.getConfigurationsDataSourcecountBackupOnlyRemote()?.count ?? 0
     }
 }

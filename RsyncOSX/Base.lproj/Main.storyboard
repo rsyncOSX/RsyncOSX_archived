@@ -1277,6 +1277,19 @@
                     <view key="view" id="6p3-eh-GKT">
                         <rect key="frame" x="0.0" y="0.0" width="1092" height="381"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <subviews>
+                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="YlN-uD-xRM">
+                                <rect key="frame" x="233" y="230" width="83" height="32"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <buttonCell key="cell" type="push" title="Source" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="Kkq-Wy-CBU">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="getindex:" target="fiO-Ux-xlw" id="eQV-7j-xWn"/>
+                                </connections>
+                            </button>
+                        </subviews>
                     </view>
                 </viewController>
                 <customObject id="Ryh-dP-c0c" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
