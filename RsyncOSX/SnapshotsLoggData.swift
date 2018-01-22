@@ -22,10 +22,10 @@ class SnapshotsLoggData {
         object.executeProcess(outputprocess: self.outputprocess)
     }
 
-    init(config: Configuration) {
+    init(config: Configuration, outputprocess: OutputProcess?) {
         self.loggdata = ScheduleLoggData().getallloggdata()
         self.config = config
-        self.outputprocess = OutputProcess()
+        self.outputprocess = outputprocess
         self.get()
     }
 }

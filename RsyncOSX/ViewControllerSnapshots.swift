@@ -14,6 +14,7 @@ class ViewControllerSnapshots: NSViewController, SetDismisser, SetConfigurations
 
     var hiddenID: Int?
     var config: Configuration?
+    var outputprocess: OutputProcess?
 
     // Source for CopyFiles and Ssh
     // self.presentViewControllerAsSheet(self.ViewControllerAbout)
@@ -50,5 +51,17 @@ extension ViewControllerSnapshots: GetSource {
     func getSource(index: Int) {
         self.hiddenID = index
         self.config = self.configurations!.getConfigurations()[self.configurations!.getIndex(hiddenID!)]
+        self.outputprocess = OutputProcess()
+        _ = SnapshotsLoggData(config: self.config!, outputprocess: self.outputprocess)
+    }
+}
+
+extension ViewControllerSnapshots: UpdateProgress {
+    func processTermination() {
+        print(self.outputprocess?.getOutput())
+    }
+
+    func fileHandler() {
+        //
     }
 }

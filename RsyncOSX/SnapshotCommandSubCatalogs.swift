@@ -11,6 +11,6 @@ import Foundation
 final class SnapshotCommandSubCatalogs: ProcessCmd {
     override init (command: String?, arguments: [String]?) {
         super.init(command: command, arguments: arguments)
-        self.updateDelegate = nil
+        self.updateDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vcsnapshot) as? ViewControllerSnapshots
     }
 }
