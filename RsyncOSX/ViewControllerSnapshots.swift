@@ -75,21 +75,15 @@ extension ViewControllerSnapshots: UpdateProgress {
 extension ViewControllerSnapshots: NSTableViewDataSource {
 
     func numberOfRows(in tableView: NSTableView) -> Int {
-        if self.snapshotsloggdata?.snapshotsloggdata == nil {
-            // self.numberOflogfiles.stringValue = "Number of rows:"
-            return 0
-        } else {
-            // self.numberOflogfiles.stringValue = "Number of rows: " + String(self.tabledata!.count)
-            return (self.snapshotsloggdata?.snapshotsloggdata!.count ?? 0)
-        }
+        guard self.snapshotsloggdata?.snapshotsloggdata != nil else { return 0 }
+        return (self.snapshotsloggdata?.snapshotsloggdata!.count ?? 0)
     }
-
 }
 
 extension ViewControllerSnapshots: NSTableViewDelegate {
 
     func tableView(_ tableView: NSTableView, objectValueFor tableColumn: NSTableColumn?, row: Int) -> Any? {
-        guard self.snapshotsloggdata?.snapshotsloggdata != nil else { return nil }
+        guard row < self.snapshotsloggdata?.snapshotsloggdata!.count ?? 0 else { return nil }
         let object: NSDictionary = self.snapshotsloggdata!.snapshotsloggdata![row]
         return object[tableColumn!.identifier] as? String
     }
