@@ -31,15 +31,14 @@ final class SnapshotsLoggData {
         guard self.catalogs != nil else { return }
         for i in 0 ..< self.catalogs!.count {
             let snapshotnum = "(" + self.catalogs![i].dropFirst(2) + ")"
-            var filter = self.loggdata?.filter({($0.value(forKey: "resultExecuted") as? String)!.contains(snapshotnum)})
+            var filter = self.loggdata?.filter({($0.value(forKey: "resultExecuted") as? String ?? "").contains(snapshotnum)})
             if filter!.count == 1 {
                 filter![0].setObject(self.catalogs![i], forKey: "snapshotCatalog" as NSCopying)
             } else {
-                let dict:NSMutableDictionary = [ "snapshotCatalog": self.catalogs![i]]
+                let dict: NSMutableDictionary = ["snapshotCatalog": self.catalogs![i]]
                 self.loggdata!.append(dict)
             }
         }
-        print(self.loggdata)
     }
 
     init(config: Configuration) {

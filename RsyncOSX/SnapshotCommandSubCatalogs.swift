@@ -5,6 +5,7 @@
 //  Created by Thomas Evensen on 22.01.2018.
 //  Copyright © 2018 Thomas Evensen. All rights reserved.
 //
+// swiftline:disbale line_length
 
 import Foundation
 
