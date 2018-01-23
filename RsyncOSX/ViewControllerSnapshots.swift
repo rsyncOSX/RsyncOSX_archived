@@ -16,6 +16,8 @@ class ViewControllerSnapshots: NSViewController, SetDismisser, SetConfigurations
     private var config: Configuration?
     private var snapshotsloggdata: SnapshotsLoggData?
 
+    @IBOutlet weak var snapshotstable: NSTableView!
+
     // Source for CopyFiles and Ssh
     // self.presentViewControllerAsSheet(self.ViewControllerAbout)
     lazy var viewControllerSource: NSViewController = {
@@ -29,6 +31,8 @@ class ViewControllerSnapshots: NSViewController, SetDismisser, SetConfigurations
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.snapshotstable.delegate = self
+        self.snapshotstable.dataSource = self
         ViewControllerReference.shared.setvcref(viewcontroller: .vcsnapshot, nsviewcontroller: self)
     }
 
@@ -58,9 +62,35 @@ extension ViewControllerSnapshots: GetSource {
 extension ViewControllerSnapshots: UpdateProgress {
     func processTermination() {
         self.snapshotsloggdata?.processTermination()
+        globalMainQueue.async(execute: { () -> Void in
+            self.snapshotstable.reloadData()
+        })
     }
 
     func fileHandler() {
         //
+    }
+}
+
+extension ViewControllerSnapshots: NSTableViewDataSource {
+
+    func numberOfRows(in tableView: NSTableView) -> Int {
+        if self.snapshotsloggdata?.snapshotsloggdata == nil {
+            // self.numberOflogfiles.stringValue = "Number of rows:"
+            return 0
+        } else {
+            // self.numberOflogfiles.stringValue = "Number of rows: " + String(self.tabledata!.count)
+            return (self.snapshotsloggdata?.snapshotsloggdata!.count ?? 0)
+        }
+    }
+
+}
+
+extension ViewControllerSnapshots: NSTableViewDelegate {
+
+    func tableView(_ tableView: NSTableView, objectValueFor tableColumn: NSTableColumn?, row: Int) -> Any? {
+        guard self.snapshotsloggdata?.snapshotsloggdata != nil else { return nil }
+        let object: NSDictionary = self.snapshotsloggdata!.snapshotsloggdata![row]
+        return object[tableColumn!.identifier] as? String
     }
 }
