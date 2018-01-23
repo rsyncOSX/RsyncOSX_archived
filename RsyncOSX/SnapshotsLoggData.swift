@@ -12,7 +12,6 @@ import Foundation
 final class SnapshotsLoggData {
 
     var loggdata: [NSMutableDictionary]?
-    var snapshotsubcatalogs: [String]?
     var config: Configuration?
     var outputprocess: OutputProcess?
     private var catalogs: [String]?
@@ -25,7 +24,22 @@ final class SnapshotsLoggData {
     }
 
     private func getloggdata() {
-        self.loggdata = ScheduleLoggData().getallloggdata()
+        self.loggdata = ScheduleLoggData().getallloggdata()?.filter({($0.value(forKey: "hiddenID") as? Int)! == config?.hiddenID})
+    }
+
+    private func mergedata() {
+        guard self.catalogs != nil else { return }
+        for i in 0 ..< self.catalogs!.count {
+            let snapshotnum = "(" + self.catalogs![i].dropFirst(2) + ")"
+            var filter = self.loggdata?.filter({($0.value(forKey: "resultExecuted") as? String)!.contains(snapshotnum)})
+            if filter!.count == 1 {
+                filter![0].setObject(self.catalogs![i], forKey: "snapshotCatalog" as NSCopying)
+            } else {
+                let dict:NSMutableDictionary = [ "snapshotCatalog": self.catalogs![i]]
+                self.loggdata!.append(dict)
+            }
+        }
+        print(self.loggdata)
     }
 
     init(config: Configuration) {
@@ -39,6 +53,7 @@ extension SnapshotsLoggData: UpdateProgress {
     func processTermination() {
         self.catalogs = self.outputprocess?.trimoutput(trim: .one)
         self.getloggdata()
+        self.mergedata()
     }
 
     func fileHandler() {
