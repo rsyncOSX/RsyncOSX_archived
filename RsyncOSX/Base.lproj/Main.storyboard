@@ -1279,7 +1279,7 @@
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="YlN-uD-xRM">
-                                <rect key="frame" x="14" y="333" width="83" height="32"/>
+                                <rect key="frame" x="487" y="333" width="83" height="32"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <buttonCell key="cell" type="push" title="Source" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="Kkq-Wy-CBU">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -1493,11 +1493,21 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableHeaderView>
                             </scrollView>
+                            <textField hidden="YES" horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Qkx-0f-0p2">
+                                <rect key="frame" x="727" y="340" width="251" height="17"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Not a snapshot task" id="Lkj-bt-D9g">
+                                    <font key="font" metaFont="system" size="11"/>
+                                    <color key="textColor" name="systemRedColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
                         </subviews>
                     </view>
                     <connections>
                         <outlet property="backupID" destination="h8d-af-XwT" id="FYE-S2-ylC"/>
                         <outlet property="localCatalog" destination="iBP-PV-dKW" id="4J3-by-Zzd"/>
+                        <outlet property="notsnapshottask" destination="Qkx-0f-0p2" id="lW0-0e-Fcz"/>
                         <outlet property="offsiteCatalog" destination="1Mh-bv-XRt" id="pTc-Fd-JTu"/>
                         <outlet property="offsiteServer" destination="Uhz-6V-DLY" id="lJd-Ep-R5l"/>
                         <outlet property="offsiteUsername" destination="Rd4-NT-WkH" id="OTc-Ld-ZgC"/>
