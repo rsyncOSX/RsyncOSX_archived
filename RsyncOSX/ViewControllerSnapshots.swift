@@ -38,6 +38,14 @@ class ViewControllerSnapshots: NSViewController, SetDismisser, SetConfigurations
 
     override func viewDidAppear() {
         super.viewDidAppear()
+        globalMainQueue.async(execute: { () -> Void in
+            self.snapshotstable.reloadData()
+        })
+    }
+
+    override func viewDidDisappear() {
+        super.viewDidDisappear()
+        self.snapshotsloggdata = nil
     }
 }
 
