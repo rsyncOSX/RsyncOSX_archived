@@ -133,9 +133,7 @@ extension ViewControllerLoggData: NSTableViewDataSource {
 extension ViewControllerLoggData: NSTableViewDelegate {
 
     func tableView(_ tableView: NSTableView, objectValueFor tableColumn: NSTableColumn?, row: Int) -> Any? {
-        guard self.tabledata != nil else {
-            return nil
-        }
+        guard self.tabledata != nil else { return nil }
         let object: NSDictionary = self.tabledata![row]
         return object[tableColumn!.identifier] as? String
     }

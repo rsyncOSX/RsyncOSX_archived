@@ -163,7 +163,7 @@ class Configurations: ReloadTable {
     /// Function for getting all Configurations marked as backup (not restore)
     /// - parameter none: none
     /// - returns : Array of NSDictionary
-    func getConfigurationsDataSourcecountBackupOnly() -> [NSMutableDictionary]? {
+    func getConfigurationsDataSourcecountBackup() -> [NSMutableDictionary]? {
         let configurations: [Configuration] = self.configurations!.filter({return ($0.task == "backup" || $0.task == "snapshot")})
         var row =  NSMutableDictionary()
         var data = Array<NSMutableDictionary>()
@@ -194,8 +194,8 @@ class Configurations: ReloadTable {
         return data
     }
 
-    func getConfigurationsDataSourcecountBackupOnlyRemote() -> [NSDictionary]? {
-        let configurations: [Configuration] = self.configurations!.filter({return ($0.task == "backup" || $0.task == "snapshot" && $0.offsiteServer.isEmpty == false)})
+    func getConfigurationsDataSourcecountBackupSnapshot() -> [NSDictionary]? {
+        let configurations: [Configuration] = self.configurations!.filter({return ($0.task == "backup" || $0.task == "snapshot" )})
         var row =  NSDictionary()
         var data = Array<NSDictionary>()
         for i in 0 ..< configurations.count {

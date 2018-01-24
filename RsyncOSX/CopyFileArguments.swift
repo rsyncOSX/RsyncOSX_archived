@@ -13,6 +13,7 @@ import Foundation
 enum Enumscopyfiles {
     case rsyncCmd
     case rsyncCmdFileListings
+    case snapshotcatalogs
 }
 
 final class CopyFileArguments: ProcessArguments {
@@ -46,7 +47,11 @@ final class CopyFileArguments: ProcessArguments {
             self.command = arguments.getCommand()
             self.argDisplay = arguments.getArgumentsDisplay()
         case .rsyncCmdFileListings:
-            let arguments = GetRemoteFileListingsArguments(config: config)
+            let arguments = GetRemoteFileListingsArguments(config: config, recursive: true)
+            self.arguments = arguments.getArguments()
+            self.command = arguments.getCommand()
+        case .snapshotcatalogs:
+            let arguments = GetRemoteFileListingsArguments(config: config, recursive: false)
             self.arguments = arguments.getArguments()
             self.command = arguments.getCommand()
         }

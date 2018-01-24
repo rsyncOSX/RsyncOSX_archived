@@ -161,9 +161,9 @@ class QuickBackup: SetConfigurations {
     init() {
         self.estimatedlist = self.configurations?.estimatedlist
         if self.estimatedlist != nil {
-            self.sortedlist = self.configurations?.getConfigurationsDataSourcecountBackupOnly()?.filter({($0.value(forKey: "selectCellID") as? Int) == 1})
+            self.sortedlist = self.configurations?.getConfigurationsDataSourcecountBackup()?.filter({($0.value(forKey: "selectCellID") as? Int) == 1})
         } else {
-            self.sortedlist = self.configurations?.getConfigurationsDataSourcecountBackupOnly()
+            self.sortedlist = self.configurations?.getConfigurationsDataSourcecountBackup()
         }
         self.sortbydays()
         self.hiddenID = nil

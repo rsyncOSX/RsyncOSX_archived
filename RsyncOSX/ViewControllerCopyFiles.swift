@@ -114,6 +114,7 @@ class ViewControllerCopyFiles: NSViewController, SetConfigurations, GetIndex, De
         self.selectButton.title = "Get source"
         self.rsync = false
         self.copyButton.isEnabled = true
+        self.selectButton.isEnabled = true
         self.error.isHidden = true
     }
 
@@ -328,6 +329,11 @@ extension ViewControllerCopyFiles: SetIndex {
 extension ViewControllerCopyFiles: GetSource {
     func getSource(index: Int) {
         self.index = index
+        guard self.configurations!.getConfigurations()[self.index!].offsiteServer.isEmpty == false else {
+            self.copyButton.isEnabled = false
+            self.selectButton.isEnabled = false
+            return
+        }
         self.displayRemoteserver(index: index)
         if let index = self.index {
             self.copyFiles = CopySingleFiles(index: index)

@@ -10,7 +10,6 @@
 import Foundation
 
 final class SnapshotCurrent: ProcessCmd {
-
     override init (command: String?, arguments: Array<String>?) {
         super.init(command: command, arguments: arguments)
         self.updateDelegate = nil
