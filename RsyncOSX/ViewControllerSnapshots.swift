@@ -23,6 +23,7 @@ class ViewControllerSnapshots: NSViewController, SetDismisser, SetConfigurations
     @IBOutlet weak var offsiteServer: NSTextField!
     @IBOutlet weak var backupID: NSTextField!
     @IBOutlet weak var sshport: NSTextField!
+    @IBOutlet weak var notsnapshottask: NSTextField!
 
     // Source for CopyFiles and Ssh
     // self.presentViewControllerAsSheet(self.ViewControllerAbout)
@@ -70,13 +71,18 @@ extension ViewControllerSnapshots: GetSource {
         self.hiddenID = index
         self.config = self.configurations!.getConfigurations()[self.configurations!.getIndex(hiddenID!)]
         self.snapshotsloggdata = SnapshotsLoggData(config: self.config!)
-        self.localCatalog.stringValue = config!.localCatalog
-        self.offsiteCatalog.stringValue = config!.offsiteCatalog
-        self.offsiteUsername.stringValue = config!.offsiteUsername
-        self.offsiteServer.stringValue = config!.offsiteServer
-        self.backupID.stringValue = config!.backupID
+        self.localCatalog.stringValue = self.config!.localCatalog
+        self.offsiteCatalog.stringValue = self.config!.offsiteCatalog
+        self.offsiteUsername.stringValue = self.config!.offsiteUsername
+        self.offsiteServer.stringValue = self.config!.offsiteServer
+        self.backupID.stringValue = self.config!.backupID
         if config!.sshport != nil {
-            self.sshport.stringValue = String(describing: config!.sshport!)
+            self.sshport.stringValue = String(describing: self.config!.sshport!)
+        }
+        if self.config!.task == "snapshot" {
+            self.notsnapshottask.isHidden = true
+        } else {
+            self.notsnapshottask.isHidden = false
         }
     }
 }
