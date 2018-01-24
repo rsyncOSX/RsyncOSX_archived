@@ -36,7 +36,8 @@ final class SnapshotsLoggData {
                 filter![0].setObject(self.catalogs![i], forKey: "snapshotCatalog" as NSCopying)
             } else {
                 if self.catalogs![i] != "./." {
-                    let dict: NSMutableDictionary = ["snapshotCatalog": self.catalogs![i]]
+                    let dict: NSMutableDictionary = ["snapshotCatalog": self.catalogs![i],
+                                                     "dateExecuted": "no logg"]
                     self.snapshotsloggdata!.append(dict)
                 }
             }
@@ -46,6 +47,7 @@ final class SnapshotsLoggData {
     init(config: Configuration) {
         self.snapshotsloggdata = ScheduleLoggData().getallloggdata()
         self.config = config
+        guard config.task == "snapshot" else { return }
         self.getcataloginfo()
     }
 }

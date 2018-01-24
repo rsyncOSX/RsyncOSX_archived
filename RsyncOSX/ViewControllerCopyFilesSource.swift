@@ -98,18 +98,18 @@ class ViewControllerCopyFilesSource: NSViewController, SetConfigurations, SetDis
         if let index = indexes.first {
             if let pvc = self.presenting as? ViewControllerCopyFiles {
                 self.setIndexDelegate = pvc
-                let object = self.configurations!.getConfigurationsDataSourcecountBackupOnlyRemote()![index]
+                let object = self.configurations!.getConfigurationsDataSourcecountBackupSnapshot()![index]
                 let hiddenID = object.value(forKey: "hiddenID") as? Int
                 guard hiddenID != nil else { return }
                 self.index = self.configurations!.getIndex(hiddenID!)
                 self.setIndexDelegate?.setIndex(index: self.index!)
             } else if self.presenting as? ViewControllerSsh != nil {
-                let object = self.configurations!.getConfigurationsDataSourcecountBackupOnlyRemote()![index]
+                let object = self.configurations!.getConfigurationsDataSourcecountBackupSnapshot()![index]
                 let hiddenID = object.value(forKey: "hiddenID") as? Int
                 guard hiddenID != nil else { return }
                 self.index = hiddenID!
             } else if self.presenting as? ViewControllerSnapshots != nil {
-                let object = self.configurations!.getConfigurationsDataSourcecountBackupOnlyRemote()![index]
+                let object = self.configurations!.getConfigurationsDataSourcecountBackupSnapshot()![index]
                 let hiddenID = object.value(forKey: "hiddenID") as? Int
                 guard hiddenID != nil else { return }
                 self.index = hiddenID!
@@ -123,7 +123,7 @@ extension ViewControllerCopyFilesSource: NSTableViewDataSource {
     // Delegate for size of table
     func numberOfRows(in tableView: NSTableView) -> Int {
         guard self.configurations != nil else { return 0 }
-        return self.configurations!.getConfigurationsDataSourcecountBackupOnlyRemote()?.count ?? 0
+        return self.configurations!.getConfigurationsDataSourcecountBackupSnapshot()?.count ?? 0
     }
 }
 
@@ -131,7 +131,7 @@ extension ViewControllerCopyFilesSource: NSTableViewDelegate {
 
     // TableView delegates
     func tableView(_ tableView: NSTableView, objectValueFor tableColumn: NSTableColumn?, row: Int) -> Any? {
-        let object: NSDictionary = self.configurations!.getConfigurationsDataSourcecountBackupOnlyRemote()![row]
+        let object: NSDictionary = self.configurations!.getConfigurationsDataSourcecountBackupSnapshot()![row]
         return object[tableColumn!.identifier] as? String
     }
 

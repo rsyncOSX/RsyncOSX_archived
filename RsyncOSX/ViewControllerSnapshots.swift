@@ -17,6 +17,12 @@ class ViewControllerSnapshots: NSViewController, SetDismisser, SetConfigurations
     private var snapshotsloggdata: SnapshotsLoggData?
 
     @IBOutlet weak var snapshotstable: NSTableView!
+    @IBOutlet weak var localCatalog: NSTextField!
+    @IBOutlet weak var offsiteCatalog: NSTextField!
+    @IBOutlet weak var offsiteUsername: NSTextField!
+    @IBOutlet weak var offsiteServer: NSTextField!
+    @IBOutlet weak var backupID: NSTextField!
+    @IBOutlet weak var sshport: NSTextField!
 
     // Source for CopyFiles and Ssh
     // self.presentViewControllerAsSheet(self.ViewControllerAbout)
@@ -64,6 +70,14 @@ extension ViewControllerSnapshots: GetSource {
         self.hiddenID = index
         self.config = self.configurations!.getConfigurations()[self.configurations!.getIndex(hiddenID!)]
         self.snapshotsloggdata = SnapshotsLoggData(config: self.config!)
+        self.localCatalog.stringValue = config!.localCatalog
+        self.offsiteCatalog.stringValue = config!.offsiteCatalog
+        self.offsiteUsername.stringValue = config!.offsiteUsername
+        self.offsiteServer.stringValue = config!.offsiteServer
+        self.backupID.stringValue = config!.backupID
+        if config!.sshport != nil {
+            self.sshport.stringValue = String(describing: config!.sshport!)
+        }
     }
 }
 
