@@ -55,7 +55,8 @@ class ViewControllerCopyFiles: NSViewController, SetConfigurations, GetIndex, De
     @IBOutlet weak var selectButton: NSButton!
     @IBOutlet weak var error: NSTextField!
     @IBOutlet weak var configfrommain: NSTextField!
-
+    @IBOutlet weak var notremotetask: NSTextField!
+    
     // Do the work
     @IBAction func copy(_ sender: NSButton) {
         guard self.remoteCatalog.stringValue.isEmpty == false && self.localCatalog.stringValue.isEmpty == false else {
@@ -116,6 +117,7 @@ class ViewControllerCopyFiles: NSViewController, SetConfigurations, GetIndex, De
         self.copyButton.isEnabled = true
         self.selectButton.isEnabled = true
         self.error.isHidden = true
+        self.notremotetask.isHidden = true
     }
 
     private func displayRemoteserver(index: Int?) {
@@ -332,6 +334,7 @@ extension ViewControllerCopyFiles: GetSource {
         guard self.configurations!.getConfigurations()[self.index!].offsiteServer.isEmpty == false else {
             self.copyButton.isEnabled = false
             self.selectButton.isEnabled = false
+            self.notremotetask.isHidden = false
             return
         }
         self.displayRemoteserver(index: index)

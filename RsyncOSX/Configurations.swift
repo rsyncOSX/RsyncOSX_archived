@@ -195,11 +195,13 @@ class Configurations: ReloadTable {
     }
 
     func getConfigurationsDataSourcecountBackupSnapshot() -> [NSDictionary]? {
-        let configurations: [Configuration] = self.configurations!.filter({return ($0.task == "backup" || $0.task == "snapshot" )})
-        var row =  NSDictionary()
+        var configurations: [Configuration] = self.configurations!.filter({return ($0.task == "backup" || $0.task == "snapshot" )})
         var data = Array<NSDictionary>()
         for i in 0 ..< configurations.count {
-            row = [
+            if configurations[i].offsiteServer.isEmpty == true {
+                configurations[i].offsiteServer = "localhost"
+            }
+            let row: NSDictionary = [
                 "taskCellID": configurations[i].task,
                 "hiddenID": configurations[i].hiddenID,
                 "localCatalogCellID": configurations[i].localCatalog,
