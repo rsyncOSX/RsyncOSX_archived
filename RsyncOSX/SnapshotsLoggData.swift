@@ -35,8 +35,10 @@ final class SnapshotsLoggData {
             if filter!.count == 1 {
                 filter![0].setObject(self.catalogs![i], forKey: "snapshotCatalog" as NSCopying)
             } else {
-                let dict: NSMutableDictionary = ["snapshotCatalog": self.catalogs![i]]
-                self.snapshotsloggdata!.append(dict)
+                if self.catalogs![i] != "./." {
+                    let dict: NSMutableDictionary = ["snapshotCatalog": self.catalogs![i]]
+                    self.snapshotsloggdata!.append(dict)
+                }
             }
         }
     }
