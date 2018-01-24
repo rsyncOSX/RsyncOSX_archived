@@ -56,7 +56,7 @@ class ViewControllerCopyFiles: NSViewController, SetConfigurations, GetIndex, De
     @IBOutlet weak var error: NSTextField!
     @IBOutlet weak var configfrommain: NSTextField!
     @IBOutlet weak var notremotetask: NSTextField!
-    
+
     // Do the work
     @IBAction func copy(_ sender: NSButton) {
         guard self.remoteCatalog.stringValue.isEmpty == false && self.localCatalog.stringValue.isEmpty == false else {
