@@ -23,7 +23,7 @@ class ViewControllerSnapshots: NSViewController, SetDismisser, SetConfigurations
     @IBOutlet weak var offsiteServer: NSTextField!
     @IBOutlet weak var backupID: NSTextField!
     @IBOutlet weak var sshport: NSTextField!
-    @IBOutlet weak var notsnapshottask: NSTextField!
+    @IBOutlet weak var info: NSTextField!
 
     // Source for CopyFiles and Ssh
     // self.presentViewControllerAsSheet(self.ViewControllerAbout)
@@ -31,6 +31,15 @@ class ViewControllerSnapshots: NSViewController, SetDismisser, SetConfigurations
         return (self.storyboard!.instantiateController(withIdentifier: NSStoryboard.SceneIdentifier(rawValue: "CopyFilesID"))
             as? NSViewController)!
     }()
+
+    private func info (num: Int) {
+        switch num {
+        case 1:
+            self.info.stringValue = "Not a snapshot task..."
+        default:
+            self.info.stringValue = ""
+        }
+    }
 
     @IBAction func getindex(_ sender: NSButton) {
         self.presentViewControllerAsSheet(self.viewControllerSource)
@@ -80,9 +89,9 @@ extension ViewControllerSnapshots: GetSource {
             self.sshport.stringValue = String(describing: self.config!.sshport!)
         }
         if self.config!.task == "snapshot" {
-            self.notsnapshottask.isHidden = true
+            self.info(num: 0)
         } else {
-            self.notsnapshottask.isHidden = false
+            self.info(num: 1)
         }
     }
 }
