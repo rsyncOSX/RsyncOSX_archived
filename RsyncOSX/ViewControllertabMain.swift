@@ -68,9 +68,6 @@ class ViewControllertabMain: NSViewController, ReloadTable, Deselect, Coloractiv
     @IBOutlet weak var newfiles: NSTextField!
     // Delete files
     @IBOutlet weak var deletefiles: NSTextField!
-    @IBOutlet weak var selecttask: NSTextField!
-    @IBOutlet weak var norsync: NSTextField!
-    @IBOutlet weak var possibleerroroutput: NSTextField!
     @IBOutlet weak var rsyncversionshort: NSTextField!
 
     // Reference to Process task
@@ -101,6 +98,22 @@ class ViewControllertabMain: NSViewController, ReloadTable, Deselect, Coloractiv
     private var processtermination: ProcessTermination?
     // remote info tasks
     private var remoteinfotask: RemoteInfoTaskWorkQueue?
+    @IBOutlet weak var info: NSTextField!
+
+    private func info (num: Int) {
+        switch num {
+        case 1:
+            self.info.stringValue = "Select a task...."
+        case 2:
+            self.info.stringValue = "Possible error logging..."
+        case 3:
+            self.info.stringValue = "No rsync in path..."
+        case 4:
+            self.info.stringValue = "⌘A to abort or wait..."
+        default:
+            self.info.stringValue = ""
+        }
+    }
 
     @IBAction func totinfo(_ sender: NSButton) {
         self.processtermination = .remoteinfotask
@@ -120,7 +133,7 @@ class ViewControllertabMain: NSViewController, ReloadTable, Deselect, Coloractiv
                 self.presentViewControllerAsSheet(self.editViewController!)
             })
         } else {
-            self.selecttask.isHidden = false
+            self.info(num: 1)
         }
     }
 
@@ -131,14 +144,14 @@ class ViewControllertabMain: NSViewController, ReloadTable, Deselect, Coloractiv
                 self.presentViewControllerAsSheet(self.viewControllerRsyncParams!)
             })
         } else {
-            self.selecttask.isHidden = false
+            self.info(num: 1)
         }
     }
 
     @IBAction func delete(_ sender: NSButton) {
         self.reset()
         guard self.hiddenID != nil else {
-            self.selecttask.isHidden = false
+            self.info(num: 1)
             return
         }
         let answer = Alerts.dialogOKCancel("Delete selected task?", text: "Cancel or OK")
@@ -226,16 +239,15 @@ class ViewControllertabMain: NSViewController, ReloadTable, Deselect, Coloractiv
     @IBAction func executetasknow(_ sender: NSButton) {
         self.processtermination = .singlequicktask
         guard self.scheduledJobInProgress == false else {
-            self.selecttask.stringValue = "⌘A to abort or wait..."
-            self.selecttask.isHidden = false
+            self.info(num: 4)
             return
         }
         guard self.hiddenID != nil else {
-            self.selecttask.isHidden = false
+            self.info(num: 1)
             return
         }
         guard self.index != nil else {
-            self.selecttask.isHidden = false
+            self.info(num: 1)
             return
         }
         guard self.configurations!.getConfigurations()[self.index!].task == "backup" ||
@@ -314,7 +326,7 @@ class ViewControllertabMain: NSViewController, ReloadTable, Deselect, Coloractiv
         self.displayProfile()
         self.readyforexecution = true
         if self.tools == nil { self.tools = Tools()}
-        self.possibleerroroutput.isHidden = true
+        self.info(num: 0)
     }
 
     override func viewDidDisappear() {
@@ -335,8 +347,7 @@ class ViewControllertabMain: NSViewController, ReloadTable, Deselect, Coloractiv
     private func executeSingleTask() {
         self.processtermination = .singletask
         guard self.scheduledJobInProgress == false else {
-            self.selecttask.stringValue = "⌘A to abort or wait..."
-            self.selecttask.isHidden = false
+            self.info(num: 4)
             return
         }
         guard ViewControllerReference.shared.norsync == false else {
@@ -363,8 +374,7 @@ class ViewControllertabMain: NSViewController, ReloadTable, Deselect, Coloractiv
     @IBAction func executeBatch(_ sender: NSButton) {
         self.processtermination = .batchtask
         guard self.scheduledJobInProgress == false else {
-            self.selecttask.stringValue = "⌘A to abort or wait..."
-            self.selecttask.isHidden = false
+            self.info(num: 4)
             return
         }
         guard ViewControllerReference.shared.norsync == false else {
@@ -418,7 +428,7 @@ class ViewControllertabMain: NSViewController, ReloadTable, Deselect, Coloractiv
             self.abortOperations()
         }
         self.readyforexecution = true
-        self.selecttask.isHidden = true
+        self.info(num: 0)
         let myTableViewFromNotification = (notification.object as? NSTableView)!
         let indexes = myTableViewFromNotification.selectedRowIndexes
         if let index = indexes.first {
@@ -639,8 +649,7 @@ extension ViewControllertabMain: ScheduledTaskWorking {
     func completed() {
         globalMainQueue.async(execute: {() -> Void in
             self.scheduledJobInProgress = false
-            self.selecttask.stringValue = "Select a task...."
-            self.selecttask.isHidden = true
+            self.info(num: 1)
             self.scheduledJobworking.stopAnimation(nil)
         })
     }
@@ -1091,16 +1100,16 @@ extension  ViewControllertabMain: GetHiddenID {
 extension ViewControllertabMain: Verifyrsync {
     internal func verifyrsync() {
         if ViewControllerReference.shared.norsync == true {
-            self.norsync.isHidden = false
+            self.info(num: 3)
         } else {
-            self.norsync.isHidden = true
+            self.info(num: 0)
         }
     }
 }
 
 extension ViewControllertabMain: ErrorOutput {
     func erroroutput() {
-        self.possibleerroroutput.isHidden = false
+        self.info(num: 2)
     }
 }
 
