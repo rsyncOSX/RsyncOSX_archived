@@ -29,7 +29,20 @@ class ViewControllerCopyFiles: NSViewController, SetConfigurations, GetIndex, De
     @IBOutlet weak var numberofrows: NSTextField!
     @IBOutlet weak var server: NSTextField!
     @IBOutlet weak var rcatalog: NSTextField!
-    @IBOutlet weak var nolocalcatalog: NSTextField!
+    @IBOutlet weak var info: NSTextField!
+
+    private func info (num: Int) {
+        switch num {
+        case 1:
+            self.info.stringValue = "No such local catalog..."
+        case 2:
+            self.info.stringValue = "Not a remote task, use Finder to copy files..."
+        case 3:
+            self.info.stringValue = "Local or remote catalog cannot be empty..."
+        default:
+            self.info.stringValue = ""
+        }
+    }
 
      // Set localcatalog to filePath
     @IBAction func copyToIcon(_ sender: NSButton) {
@@ -53,14 +66,12 @@ class ViewControllerCopyFiles: NSViewController, SetConfigurations, GetIndex, De
     @IBOutlet weak var search: NSSearchField!
     @IBOutlet weak var copyButton: NSButton!
     @IBOutlet weak var selectButton: NSButton!
-    @IBOutlet weak var error: NSTextField!
     @IBOutlet weak var configfrommain: NSTextField!
-    @IBOutlet weak var notremotetask: NSTextField!
 
     // Do the work
     @IBAction func copy(_ sender: NSButton) {
         guard self.remoteCatalog.stringValue.isEmpty == false && self.localCatalog.stringValue.isEmpty == false else {
-            self.error.isHidden = false
+            self.info(num: 3)
             return
         }
         if self.copyFiles != nil {
@@ -116,8 +127,7 @@ class ViewControllerCopyFiles: NSViewController, SetConfigurations, GetIndex, De
         self.rsync = false
         self.copyButton.isEnabled = true
         self.selectButton.isEnabled = true
-        self.error.isHidden = true
-        self.notremotetask.isHidden = true
+        self.info(num: 0)
     }
 
     private func displayRemoteserver(index: Int?) {
@@ -181,9 +191,9 @@ class ViewControllerCopyFiles: NSViewController, SetConfigurations, GetIndex, De
     private func verifylocalCatalog() {
         let fileManager = FileManager.default
         if fileManager.fileExists(atPath: self.localCatalog.stringValue) {
-            self.nolocalcatalog.isHidden = true
+            self.info(num: 0)
         } else {
-            self.nolocalcatalog.isHidden = false
+            self.info(num: 1)
         }
     }
 }
@@ -243,14 +253,14 @@ extension ViewControllerCopyFiles: NSTableViewDelegate {
     }
 
     func tableViewSelectionDidChange(_ notification: Notification) {
-        self.error.isHidden = true
+        self.info(num: 0)
         let myTableViewFromNotification = (notification.object as? NSTableView)!
         let indexes = myTableViewFromNotification.selectedRowIndexes
         if let index = indexes.first {
             guard self.tabledata != nil else { return }
             self.remoteCatalog.stringValue = self.tabledata![index]
             guard self.remoteCatalog.stringValue.isEmpty == false && self.localCatalog.stringValue.isEmpty == false else {
-                self.error.isHidden = false
+                self.info(num: 3)
                 return
             }
             self.commandString.stringValue = self.copyFiles!.getCommandDisplayinView(remotefile: self.remoteCatalog.stringValue, localCatalog: self.localCatalog.stringValue)
@@ -334,7 +344,7 @@ extension ViewControllerCopyFiles: GetSource {
         guard self.configurations!.getConfigurations()[self.index!].offsiteServer.isEmpty == false else {
             self.copyButton.isEnabled = false
             self.selectButton.isEnabled = false
-            self.notremotetask.isHidden = false
+            self.info(num: 2)
             return
         }
         self.displayRemoteserver(index: index)
