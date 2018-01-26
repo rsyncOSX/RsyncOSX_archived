@@ -15,6 +15,7 @@ class ViewControllerSnapshots: NSViewController, SetDismisser, SetConfigurations
     private var hiddenID: Int?
     private var config: Configuration?
     private var snapshotsloggdata: SnapshotsLoggData?
+    private var delete: Bool = false
 
     @IBOutlet weak var snapshotstable: NSTableView!
     @IBOutlet weak var localCatalog: NSTextField!
@@ -28,7 +29,7 @@ class ViewControllerSnapshots: NSViewController, SetDismisser, SetConfigurations
     @IBOutlet weak var deletenum: NSTextField!
     @IBOutlet weak var numberOflogfiles: NSTextField!
     @IBOutlet weak var progressdelete: NSProgressIndicator!
-    
+
     // Source for CopyFiles and Ssh
     // self.presentViewControllerAsSheet(self.ViewControllerAbout)
     lazy var viewControllerSource: NSViewController = {
@@ -46,6 +47,15 @@ class ViewControllerSnapshots: NSViewController, SetDismisser, SetConfigurations
     }
 
     @IBAction func delete(_ sender: NSButton) {
+        if let delete = Int(self.deletenum.stringValue) {
+            guard delete < self.snapshotsloggdata?.expandedcatalogs?.count ?? 0 else { return }
+            self.deletebutton.isEnabled = false
+            self.initiateProgressbar()
+            self.deletesnapshotcatalogs()
+        } else {
+            return
+        }
+        self.delete = true
     }
 
     @IBAction func getindex(_ sender: NSButton) {
@@ -62,11 +72,31 @@ class ViewControllerSnapshots: NSViewController, SetDismisser, SetConfigurations
     override func viewDidAppear() {
         super.viewDidAppear()
         self.deletebutton.isEnabled = false
+        self.delete = false
         globalMainQueue.async(execute: { () -> Void in
             self.snapshotstable.reloadData()
         })
     }
 
+    private func deletesnapshotcatalogs() {
+
+    }
+
+    // Progress bar
+    private func initiateProgressbar() {
+        if let deletenum = Double(self.deletenum.stringValue) {
+            self.progressdelete.maxValue = deletenum
+        } else {
+            return
+        }
+        self.progressdelete.minValue = 0
+        self.progressdelete.doubleValue = 0
+        self.progressdelete.startAnimation(self)
+    }
+
+    private func updateProgressbar(_ value: Double) {
+        self.progressdelete.doubleValue = value
+    }
 }
 
 extension ViewControllerSnapshots: DismissViewController {
@@ -102,11 +132,15 @@ extension ViewControllerSnapshots: GetSource {
 
 extension ViewControllerSnapshots: UpdateProgress {
     func processTermination() {
-        self.deletebutton.isEnabled = true
-        self.snapshotsloggdata?.processTermination()
-        globalMainQueue.async(execute: { () -> Void in
-            self.snapshotstable.reloadData()
-        })
+        if delete {
+            self.deletesnapshotcatalogs()
+        } else {
+            self.deletebutton.isEnabled = true
+            self.snapshotsloggdata?.processTermination()
+            globalMainQueue.async(execute: { () -> Void in
+                self.snapshotstable.reloadData()
+            })
+        }
     }
 
     func fileHandler() {
