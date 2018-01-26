@@ -46,7 +46,8 @@ protocol ReloadTable {
     weak var reloadDelegateMain: Reloadandrefresh? { get }
     weak var reloadDelegateSchedule: Reloadandrefresh? { get }
     weak var reloadDelegateBatch: Reloadandrefresh? { get }
-    weak var reloadDelegateLogData: Reloadandrefresh? { get }
+    weak var reloadDelegateLoggData: Reloadandrefresh? { get }
+    weak var reloadDelegateSnapshot: Reloadandrefresh? { get }
     func reloadtable(vcontroller: ViewController)
 }
 
@@ -60,8 +61,11 @@ extension ReloadTable {
     weak var reloadDelegateBatch: Reloadandrefresh? {
         return ViewControllerReference.shared.getvcref(viewcontroller: .vcbatch) as? ViewControllerBatch
     }
-    weak var reloadDelegateLogData: Reloadandrefresh? {
+    weak var reloadDelegateLoggData: Reloadandrefresh? {
         return ViewControllerReference.shared.getvcref(viewcontroller: .vcloggdata) as? ViewControllerLoggData
+    }
+    weak var reloadDelegateSnapshot: Reloadandrefresh? {
+        return ViewControllerReference.shared.getvcref(viewcontroller: .vcsnapshot) as? ViewControllerSnapshots
     }
 
     func reloadtable(vcontroller: ViewController) {
@@ -71,8 +75,10 @@ extension ReloadTable {
             self.reloadDelegateSchedule?.reloadtabledata()
         } else if vcontroller == .vcbatch {
             self.reloadDelegateBatch?.reloadtabledata()
-        } else {
-            self.reloadDelegateLogData?.reloadtabledata()
+        } else if vcontroller == .vcloggdata {
+            self.reloadDelegateLoggData?.reloadtabledata()
+        } else if vcontroller == .vcsnapshot {
+            self.reloadDelegateSnapshot?.reloadtabledata()
         }
     }
 }
