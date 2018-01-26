@@ -38,10 +38,25 @@ class ViewControllertabSchedule: NSViewController, SetConfigurations, SetSchedul
     @IBOutlet weak var firstLocalCatalog: NSTextField!
     @IBOutlet weak var secondLocalCatalog: NSTextField!
     @IBOutlet weak var operation: NSTextField!
-    @IBOutlet weak var selecttask: NSTextField!
     @IBOutlet weak var weeklybutton: NSButton!
     @IBOutlet weak var dailybutton: NSButton!
     @IBOutlet weak var oncebutton: NSButton!
+    @IBOutlet weak var info: NSTextField!
+
+    private func info (num: Int) {
+        switch num {
+        case 1:
+            self.info.stringValue = "Select a task..."
+        case 2:
+            self.info.stringValue = "Start is passed..."
+        case 3:
+            self.info.stringValue = "Start must be 24 hours from now..."
+        case 4:
+            self.info.stringValue = "Start must be 7 days from now...."
+        default:
+            self.info.stringValue = ""
+        }
+    }
 
     @IBAction func once(_ sender: NSButton) {
         let startdate: Date = Date()
@@ -55,10 +70,10 @@ class ViewControllertabSchedule: NSViewController, SetConfigurations, SetSchedul
             if seconds > -60 {
                 self.addschedule(schedule: schedule!, startdate: startdate, stopdate: stopdate + 60)
             } else {
-                self.info(str: "Start is passed...")
+                self.info(num: 2)
             }
         } else {
-            self.info(str: "Select a task...")
+           self.info(num: 1)
         }
     }
 
@@ -75,10 +90,10 @@ class ViewControllertabSchedule: NSViewController, SetConfigurations, SetSchedul
             if secondsstart >= (60*60*24) {
                  self.addschedule(schedule: schedule!, startdate: startdate, stopdate: stopdate)
             } else {
-                self.info(str: "Start must be 24 hours from now...")
+                self.info(num: 3)
             }
         } else {
-            self.info(str: "Select a task...")
+            self.info(num: 1)
         }
     }
 
@@ -95,10 +110,10 @@ class ViewControllertabSchedule: NSViewController, SetConfigurations, SetSchedul
             if secondsstart >= (60*60*24*7) {
                 self.addschedule(schedule: schedule!, startdate: startdate, stopdate: stopdate)
             } else {
-                self.info(str: "Start must be 7 days from now....")
+                self.info(num: 4)
             }
         } else {
-            self.info(str: "Select a task...")
+            self.info(num: 1)
         }
     }
 
@@ -152,11 +167,6 @@ class ViewControllertabSchedule: NSViewController, SetConfigurations, SetSchedul
             self.infonexttask()
             self.startTimer()
         }
-    }
-
-    private func info(str: String) {
-        self.selecttask.stringValue = str
-        self.selecttask.isHidden = false
     }
 
     // Userconfiguration button
@@ -258,7 +268,7 @@ class ViewControllertabSchedule: NSViewController, SetConfigurations, SetSchedul
 
     // setting which table row is selected
     func tableViewSelectionDidChange(_ notification: Notification) {
-        self.selecttask.isHidden = true
+        self.info(num: 0)
         let myTableViewFromNotification = (notification.object as? NSTableView)!
         let indexes = myTableViewFromNotification.selectedRowIndexes
         if let index = indexes.first {
