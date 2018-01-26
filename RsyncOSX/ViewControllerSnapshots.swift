@@ -59,10 +59,6 @@ class ViewControllerSnapshots: NSViewController, SetDismisser, SetConfigurations
         })
     }
 
-    override func viewDidDisappear() {
-        super.viewDidDisappear()
-        self.snapshotsloggdata = nil
-    }
 }
 
 extension ViewControllerSnapshots: DismissViewController {
@@ -123,5 +119,20 @@ extension ViewControllerSnapshots: NSTableViewDelegate {
         guard row < self.snapshotsloggdata?.snapshotsloggdata!.count ?? 0 else { return nil }
         let object: NSDictionary = self.snapshotsloggdata!.snapshotsloggdata![row]
         return object[tableColumn!.identifier] as? String
+    }
+}
+
+extension ViewControllerSnapshots: Reloadandrefresh {
+    func reloadtabledata() {
+        globalMainQueue.async(execute: { () -> Void in
+            self.snapshotsloggdata = nil
+            self.localCatalog.stringValue = ""
+            self.offsiteCatalog.stringValue = ""
+            self.offsiteUsername.stringValue = ""
+            self.offsiteServer.stringValue = ""
+            self.backupID.stringValue = ""
+            self.sshport.stringValue = ""
+            self.snapshotstable.reloadData()
+        })
     }
 }

@@ -166,6 +166,7 @@ class ViewControllertabMain: NSViewController, ReloadTable, Deselect, Coloractiv
                 self.reloadtabledata()
                 // Reset in tabSchedule
                 self.reloadtable(vcontroller: .vctabschedule)
+                self.reloadtable(vcontroller: .vcsnapshot)
             }
         }
     }
@@ -625,6 +626,7 @@ extension ViewControllertabMain: NewProfile {
         // Reset in tabSchedule
         self.reloadtable(vcontroller: .vctabschedule)
         self.deselectrowtable(vcontroller: .vctabschedule)
+        self.reloadtable(vcontroller: .vcsnapshot)
         // We have to start any Scheduled process again - if any
         self.startfirstcheduledtask()
     }
