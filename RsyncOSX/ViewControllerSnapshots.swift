@@ -26,6 +26,7 @@ class ViewControllerSnapshots: NSViewController, SetDismisser, SetConfigurations
     @IBOutlet weak var info: NSTextField!
     @IBOutlet weak var deletebutton: NSButton!
     @IBOutlet weak var deletenum: NSTextField!
+    @IBOutlet weak var numberOflogfiles: NSTextField!
 
     // Source for CopyFiles and Ssh
     // self.presentViewControllerAsSheet(self.ViewControllerAbout)
@@ -42,10 +43,9 @@ class ViewControllerSnapshots: NSViewController, SetDismisser, SetConfigurations
             self.info.stringValue = ""
         }
     }
-    
+
     @IBAction func delete(_ sender: NSButton) {
     }
-    
 
     @IBAction func getindex(_ sender: NSButton) {
         self.presentViewControllerAsSheet(self.viewControllerSource)
@@ -116,7 +116,11 @@ extension ViewControllerSnapshots: UpdateProgress {
 extension ViewControllerSnapshots: NSTableViewDataSource {
 
     func numberOfRows(in tableView: NSTableView) -> Int {
-        guard self.snapshotsloggdata?.snapshotsloggdata != nil else { return 0 }
+        guard self.snapshotsloggdata?.snapshotsloggdata != nil else {
+            self.numberOflogfiles.stringValue = "Number of rows:"
+            return 0
+        }
+        self.numberOflogfiles.stringValue = "Number of rows: " + String(self.snapshotsloggdata?.snapshotsloggdata!.count ?? 0)
         return (self.snapshotsloggdata?.snapshotsloggdata!.count ?? 0)
     }
 }
