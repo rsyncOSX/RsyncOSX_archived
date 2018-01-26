@@ -30,29 +30,31 @@ final class SnapshotsLoggData {
 
     private func mergedata() {
         guard self.catalogs != nil else { return }
-        var sorted = self.catalogs?.sorted { (di1, di2) -> Bool in
-            let num1 = Int(di1.dropFirst(2)) ?? 0
-            let num2 = Int(di2.dropFirst(2)) ?? 0
-            if num1 <= num2 {
-                return true
-            } else {
-                return false
-            }
-        }
-        // Remove the top ./ catalog
-        if sorted!.count > 1 { sorted?.remove(at: 0) }
-        self.catalogs = sorted
         for i in 0 ..< self.catalogs!.count {
             let snapshotnum = "(" + self.catalogs![i].dropFirst(2) + ")"
             var filter = self.snapshotsloggdata?.filter({($0.value(forKey: "resultExecuted") as? String ?? "").contains(snapshotnum)})
             if filter!.count == 1 {
                 filter![0].setObject(self.catalogs![i], forKey: "snapshotCatalog" as NSCopying)
             } else {
-                let dict: NSMutableDictionary = ["snapshotCatalog": self.catalogs![i],
-                                                 "dateExecuted": "no logg"]
-                self.snapshotsloggdata!.append(dict)
+                if self.catalogs![i] != "./." {
+                    let dict: NSMutableDictionary = ["snapshotCatalog": self.catalogs![i],
+                                                     "dateExecuted": "no logg"]
+                    self.snapshotsloggdata!.append(dict)
+                }
             }
         }
+        let sorted = self.snapshotsloggdata!.sorted { (di1, di2) -> Bool in
+            let str1 = di1.value(forKey: "snapshotCatalog") as? String
+            let str2 = di2.value(forKey: "snapshotCatalog") as? String
+            let num1 = Int(str1!.dropFirst(2)) ?? 0
+            let num2 = Int(str2!.dropFirst(2)) ?? 0
+            if num1 <= num2 {
+                return true
+            } else {
+                return false
+            }
+        }
+        self.snapshotsloggdata = sorted
     }
 
     private func sortedandexpandedcatalog() {
