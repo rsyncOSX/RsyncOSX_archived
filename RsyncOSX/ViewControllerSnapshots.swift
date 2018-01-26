@@ -27,7 +27,8 @@ class ViewControllerSnapshots: NSViewController, SetDismisser, SetConfigurations
     @IBOutlet weak var deletebutton: NSButton!
     @IBOutlet weak var deletenum: NSTextField!
     @IBOutlet weak var numberOflogfiles: NSTextField!
-
+    @IBOutlet weak var progressdelete: NSProgressIndicator!
+    
     // Source for CopyFiles and Ssh
     // self.presentViewControllerAsSheet(self.ViewControllerAbout)
     lazy var viewControllerSource: NSViewController = {
