@@ -15,6 +15,7 @@ final class SnapshotsLoggData {
     var config: Configuration?
     var outputprocess: OutputProcess?
     private var catalogs: [String]?
+    var expandedcatalogs: [String]?
 
     private func getcataloginfo() {
         self.outputprocess = OutputProcess()
@@ -44,6 +45,26 @@ final class SnapshotsLoggData {
         }
     }
 
+    private func sortedandexpandedcatalog() {
+        guard self.expandedcatalogs != nil else { return }
+        var sorted = self.expandedcatalogs?.sorted { (di1, di2) -> Bool in
+            let num1 = Int(di1) ?? -1
+            let num2 = Int(di2) ?? -1
+            if num1 <= num2 {
+                return true
+            } else {
+                return false
+            }
+        }
+        // Remove the top ./ catalog
+        if sorted!.count > 1 { sorted?.remove(at: 0) }
+        self.expandedcatalogs = sorted
+        for i in 0 ..< self.expandedcatalogs!.count {
+            let expanded = self.config!.localCatalog + self.expandedcatalogs![i]
+            self.expandedcatalogs![i] = expanded
+        }
+    }
+
     init(config: Configuration) {
         self.snapshotsloggdata = ScheduleLoggData().getallloggdata()
         self.config = config
@@ -55,8 +76,10 @@ final class SnapshotsLoggData {
 extension SnapshotsLoggData: UpdateProgress {
     func processTermination() {
         self.catalogs = self.outputprocess?.trimoutput(trim: .one)
+        self.expandedcatalogs = self.outputprocess?.trimoutput(trim: .three)
         self.getloggdata()
         self.mergedata()
+        self.sortedandexpandedcatalog()
     }
 
     func fileHandler() {
