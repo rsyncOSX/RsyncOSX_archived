@@ -16,6 +16,7 @@ protocol RsyncError: class {
 enum Trim {
     case one
     case two
+    case three
 }
 
 final class OutputProcess {
@@ -83,6 +84,14 @@ final class OutputProcess {
             }
             self.endIndex = out.count
             self.maxNumber = self.endIndex!
+        case .three:
+            for i in 0 ..< self.output!.count {
+                let substr = self.output![i].dropFirst(10).trimmingCharacters(in: .whitespacesAndNewlines)
+                let str = substr.components(separatedBy: " ").dropFirst(3).joined(separator: " ")
+                if str.isEmpty == false {
+                    out.append(str)
+                }
+            }
         }
         self.trimmedoutput = out
         return out

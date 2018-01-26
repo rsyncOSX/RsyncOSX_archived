@@ -24,6 +24,8 @@ class ViewControllerSnapshots: NSViewController, SetDismisser, SetConfigurations
     @IBOutlet weak var backupID: NSTextField!
     @IBOutlet weak var sshport: NSTextField!
     @IBOutlet weak var info: NSTextField!
+    @IBOutlet weak var deletebutton: NSButton!
+    @IBOutlet weak var deletenum: NSTextField!
 
     // Source for CopyFiles and Ssh
     // self.presentViewControllerAsSheet(self.ViewControllerAbout)
@@ -40,6 +42,10 @@ class ViewControllerSnapshots: NSViewController, SetDismisser, SetConfigurations
             self.info.stringValue = ""
         }
     }
+    
+    @IBAction func delete(_ sender: NSButton) {
+    }
+    
 
     @IBAction func getindex(_ sender: NSButton) {
         self.presentViewControllerAsSheet(self.viewControllerSource)
@@ -54,6 +60,7 @@ class ViewControllerSnapshots: NSViewController, SetDismisser, SetConfigurations
 
     override func viewDidAppear() {
         super.viewDidAppear()
+        self.deletebutton.isEnabled = false
         globalMainQueue.async(execute: { () -> Void in
             self.snapshotstable.reloadData()
         })
@@ -94,6 +101,7 @@ extension ViewControllerSnapshots: GetSource {
 
 extension ViewControllerSnapshots: UpdateProgress {
     func processTermination() {
+        self.deletebutton.isEnabled = true
         self.snapshotsloggdata?.processTermination()
         globalMainQueue.async(execute: { () -> Void in
             self.snapshotstable.reloadData()
@@ -124,8 +132,9 @@ extension ViewControllerSnapshots: NSTableViewDelegate {
 
 extension ViewControllerSnapshots: Reloadandrefresh {
     func reloadtabledata() {
+        self.snapshotsloggdata = nil
+        self.deletebutton.isEnabled = false
         globalMainQueue.async(execute: { () -> Void in
-            self.snapshotsloggdata = nil
             self.localCatalog.stringValue = ""
             self.offsiteCatalog.stringValue = ""
             self.offsiteUsername.stringValue = ""
