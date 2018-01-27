@@ -258,6 +258,9 @@ class Configurations: ReloadTable {
     /// in tableView.
     /// - parameter index: index of Configuration to update
     func setCurrentDateonConfiguration (_ index: Int) {
+        if self.configurations![index].task == "snapshot" {
+            self.increasesnapshotnum(index: index)
+        }
         let currendate = Date()
         let dateformatter = Tools().setDateformat()
         self.configurations![index].dateRun = dateformatter.string(from: currendate)
@@ -378,11 +381,10 @@ class Configurations: ReloadTable {
         }
     }
 
-    func increasesnapshotnum(index: Int, outputprocess: OutputProcess?) {
+    private func increasesnapshotnum(index: Int) {
         guard self.configurations != nil else { return }
         let num = self.configurations![index].snapshotnum ?? 0
         self.configurations![index].snapshotnum  = num + 1
-        // self.updatelinkcurrent(index: index, outputprocess: outputprocess)
     }
 
     private func updatelinkcurrent(index: Int, outputprocess: OutputProcess?) {

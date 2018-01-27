@@ -29,6 +29,7 @@ class ViewControllerSnapshots: NSViewController, SetDismisser, SetConfigurations
     @IBOutlet weak var deletenum: NSTextField!
     @IBOutlet weak var numberOflogfiles: NSTextField!
     @IBOutlet weak var progressdelete: NSProgressIndicator!
+    @IBOutlet weak var confirmdelete: NSButton!
 
     // Source for CopyFiles and Ssh
     // self.presentViewControllerAsSheet(self.ViewControllerAbout)
@@ -43,6 +44,12 @@ class ViewControllerSnapshots: NSViewController, SetDismisser, SetConfigurations
             self.info.stringValue = "Not a snapshot task..."
         case 2:
             self.info.stringValue = "Cannot delete all snapshot catalogs..."
+        case 3:
+            self.info.stringValue = "Please confirm delete..."
+        case 4:
+            self.info.stringValue = "Max 5 catalogs to delete..."
+        case 5:
+            self.info.stringValue = "There are not so many..."
         default:
             self.info.stringValue = ""
         }
@@ -50,8 +57,20 @@ class ViewControllerSnapshots: NSViewController, SetDismisser, SetConfigurations
 
     @IBAction func delete(_ sender: NSButton) {
         if let delete = Int(self.deletenum.stringValue) {
-            guard delete < self.snapshotsloggdata?.expandedcatalogs?.count ?? 0 else {
+            guard delete > self.snapshotsloggdata?.catalogstodelete?.count ?? 0 else {
                 self.info(num: 2)
+                return
+            }
+            guard delete <= 5 else {
+                self.info(num: 4)
+                return
+            }
+            guard delete > self.snapshotsloggdata?.catalogstodelete?.count ?? 0 else {
+                self.info(num: 5)
+                return
+            }
+            guard self.confirmdelete.state == .on else {
+                self.info(num: 3)
                 return
             }
             self.snapshotsloggdata!.preparecatalogstodelete(num: delete)
@@ -82,6 +101,8 @@ class ViewControllerSnapshots: NSViewController, SetDismisser, SetConfigurations
         self.delete = false
         self.snapshotsloggdata = nil
         self.progressdelete.isHidden = true
+        self.confirmdelete.state = .off
+        self.info(num: 0)
         globalMainQueue.async(execute: { () -> Void in
             self.snapshotstable.reloadData()
         })
@@ -215,6 +236,7 @@ extension ViewControllerSnapshots: Reloadandrefresh {
         self.offsiteServer.stringValue = ""
         self.backupID.stringValue = ""
         self.sshport.stringValue = ""
+        self.confirmdelete.state = .off
         globalMainQueue.async(execute: { () -> Void in
             self.snapshotstable.reloadData()
         })
