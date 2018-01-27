@@ -70,7 +70,11 @@ final class SnapshotsLoggData {
             }
         }
         // Remove the top ./ catalog
-        if sorted!.count > 1 { sorted?.remove(at: 0) }
+        if sorted?.count ?? 0 > 1 {
+            if sorted![0] == "." {
+                sorted?.remove(at: 0)
+            }
+        }
         self.expandedcatalogs = sorted
         for i in 0 ..< self.expandedcatalogs!.count {
             let expanded = self.config!.offsiteCatalog + self.expandedcatalogs![i]
@@ -97,6 +101,11 @@ final class SnapshotsLoggData {
 extension SnapshotsLoggData: UpdateProgress {
     func processTermination() {
         self.catalogs = self.outputprocess?.trimoutput(trim: .one)
+        if self.catalogs?.count ?? 0 > 1 {
+            if self.catalogs![0] == "./." {
+                self.catalogs?.remove(at: 0)
+            }
+        }
         self.expandedcatalogs = self.outputprocess?.trimoutput(trim: .three)
         self.getloggdata()
         self.mergedata()

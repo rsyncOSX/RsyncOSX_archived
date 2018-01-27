@@ -49,7 +49,9 @@ class ViewControllerSnapshots: NSViewController, SetDismisser, SetConfigurations
         case 4:
             self.info.stringValue = "Max 5 catalogs to delete..."
         case 5:
-            self.info.stringValue = "There are not so many..."
+            self.info.stringValue = "Enter a proper number..."
+        case 6:
+            self.info.stringValue = "Select Source button to update..."
         default:
             self.info.stringValue = ""
         }
@@ -57,7 +59,7 @@ class ViewControllerSnapshots: NSViewController, SetDismisser, SetConfigurations
 
     @IBAction func delete(_ sender: NSButton) {
         if let delete = Int(self.deletenum.stringValue) {
-            guard delete > self.snapshotsloggdata?.catalogstodelete?.count ?? 0 else {
+            guard delete < self.snapshotsloggdata?.expandedcatalogs?.count ?? 0 else {
                 self.info(num: 2)
                 return
             }
@@ -65,19 +67,18 @@ class ViewControllerSnapshots: NSViewController, SetDismisser, SetConfigurations
                 self.info(num: 4)
                 return
             }
-            guard delete > self.snapshotsloggdata?.catalogstodelete?.count ?? 0 else {
-                self.info(num: 5)
-                return
-            }
             guard self.confirmdelete.state == .on else {
                 self.info(num: 3)
                 return
             }
             self.snapshotsloggdata!.preparecatalogstodelete(num: delete)
+            self.info(num: 0)
             self.deletebutton.isEnabled = false
+            self.deletenum.isEnabled = false
             self.initiateProgressbar()
             self.deletesnapshotcatalogs()
         } else {
+            self.info(num: 5)
             return
         }
         self.delete = true
@@ -115,7 +116,10 @@ class ViewControllerSnapshots: NSViewController, SetDismisser, SetConfigurations
     private func deletesnapshotcatalogs() {
         var arguments: SnapshotDeleteCatalogsArguments?
         var deletecommand: SnapshotCommandDeleteCatalogs?
-        guard self.snapshotsloggdata?.catalogstodelete != nil else { return }
+        guard self.snapshotsloggdata?.catalogstodelete != nil else {
+            self.info(num: 6)
+            return
+        }
         guard self.snapshotsloggdata!.catalogstodelete!.count > 0 else { return }
         let remotecatalog = self.snapshotsloggdata!.catalogstodelete![0]
         self.snapshotsloggdata!.catalogstodelete!.remove(at: 0)
@@ -180,11 +184,11 @@ extension ViewControllerSnapshots: GetSource {
 extension ViewControllerSnapshots: UpdateProgress {
     func processTermination() {
         if delete {
-            if let delete = Int(self.deletenum.stringValue) {
+            if let deletenum = Int(self.deletenum.stringValue) {
                 if self.snapshotsloggdata!.catalogstodelete == nil {
-                    self.updateProgressbar(Double(delete))
+                    self.updateProgressbar(Double(deletenum))
                 } else {
-                    let progress = delete - self.snapshotsloggdata!.catalogstodelete!.count
+                    let progress = deletenum - self.snapshotsloggdata!.catalogstodelete!.count
                     self.updateProgressbar(Double(progress))
                 }
             }
@@ -228,6 +232,7 @@ extension ViewControllerSnapshots: Reloadandrefresh {
     func reloadtabledata() {
         self.snapshotsloggdata = nil
         self.deletebutton.isEnabled = false
+        self.deletenum.isEnabled = true
         self.deletenum.stringValue = ""
         self.progressdelete.isHidden = true
         self.localCatalog.stringValue = ""
