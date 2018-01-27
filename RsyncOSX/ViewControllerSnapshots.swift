@@ -49,6 +49,7 @@ class ViewControllerSnapshots: NSViewController, SetDismisser, SetConfigurations
     @IBAction func delete(_ sender: NSButton) {
         if let delete = Int(self.deletenum.stringValue) {
             guard delete < self.snapshotsloggdata?.expandedcatalogs?.count ?? 0 else { return }
+            self.snapshotsloggdata!.preparecatalogstodelete(num: delete)
             self.deletebutton.isEnabled = false
             self.initiateProgressbar()
             self.deletesnapshotcatalogs()

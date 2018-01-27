@@ -16,6 +16,7 @@ final class SnapshotsLoggData {
     var outputprocess: OutputProcess?
     private var catalogs: [String]?
     var expandedcatalogs: [String]?
+    var catalogstodelete: [String]?
 
     private func getcataloginfo() {
         self.outputprocess = OutputProcess()
@@ -74,6 +75,15 @@ final class SnapshotsLoggData {
         for i in 0 ..< self.expandedcatalogs!.count {
             let expanded = self.config!.offsiteCatalog + self.expandedcatalogs![i]
             self.expandedcatalogs![i] = expanded
+        }
+    }
+
+    func preparecatalogstodelete(num: Int) {
+        guard num < self.expandedcatalogs?.count ?? 0 else { return }
+        let j = self.expandedcatalogs!.count - num
+        self.catalogstodelete = []
+        for i in j ..< self.expandedcatalogs!.count {
+            self.catalogstodelete!.append(self.expandedcatalogs![i])
         }
     }
 
