@@ -31,6 +31,11 @@ final class GetRemoteFileListingsArguments: ProcessArguments {
                 let sshp: String = "ssh -p"
                 self.args!.append(eparam)
                 self.args!.append(sshp + String(config.sshport!))
+            } else {
+                let eparam: String = "-e"
+                let ssh: String = "ssh"
+                self.args!.append(eparam)
+                self.args!.append(ssh)
             }
             if recursive {
                 self.args!.append("-r")

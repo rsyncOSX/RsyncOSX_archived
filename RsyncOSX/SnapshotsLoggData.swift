@@ -16,6 +16,7 @@ final class SnapshotsLoggData {
     var outputprocess: OutputProcess?
     private var catalogs: [String]?
     var expandedcatalogs: [String]?
+    var catalogstodelete: [String]?
 
     private func getcataloginfo() {
         self.outputprocess = OutputProcess()
@@ -46,8 +47,8 @@ final class SnapshotsLoggData {
         let sorted = self.snapshotsloggdata!.sorted { (di1, di2) -> Bool in
             let str1 = di1.value(forKey: "snapshotCatalog") as? String
             let str2 = di2.value(forKey: "snapshotCatalog") as? String
-            let num1 = Int(str1!.dropFirst(2)) ?? 0
-            let num2 = Int(str2!.dropFirst(2)) ?? 0
+            let num1 = Int(str1?.dropFirst(2) ?? "") ?? 0
+            let num2 = Int(str2?.dropFirst(2) ?? "") ?? 0
             if num1 <= num2 {
                 return true
             } else {
@@ -74,6 +75,14 @@ final class SnapshotsLoggData {
         for i in 0 ..< self.expandedcatalogs!.count {
             let expanded = self.config!.offsiteCatalog + self.expandedcatalogs![i]
             self.expandedcatalogs![i] = expanded
+        }
+    }
+
+    func preparecatalogstodelete(num: Int) {
+        guard num < self.expandedcatalogs?.count ?? 0 else { return }
+        self.catalogstodelete = []
+        for i in 0 ..< num {
+            self.catalogstodelete!.append(self.expandedcatalogs![i])
         }
     }
 

@@ -65,12 +65,14 @@ class ProcessCmd: Delay {
             let data = outHandle.availableData
             if data.count > 0 {
                 if let str = NSString(data: data, encoding: String.Encoding.utf8.rawValue) {
-                    outputprocess!.addlinefromoutput(str as String)
-                    self.calculatedNumberOfFiles = outputprocess!.count()
-                    // Send message about files
-                    self.updateDelegate?.fileHandler()
-                    if self.termination {
-                        self.possibleerrorDelegate?.erroroutput()
+                    if outputprocess != nil {
+                        outputprocess!.addlinefromoutput(str as String)
+                        self.calculatedNumberOfFiles = outputprocess!.count()
+                        // Send message about files
+                        self.updateDelegate?.fileHandler()
+                        if self.termination {
+                            self.possibleerrorDelegate?.erroroutput()
+                        }
                     }
                 }
                 outHandle.waitForDataInBackgroundAndNotify()
