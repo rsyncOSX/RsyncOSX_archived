@@ -69,7 +69,7 @@ final class OutputProcess {
                 let substr = self.output![i].dropFirst(10).trimmingCharacters(in: .whitespacesAndNewlines)
                 // let str = substr.components(separatedBy: " ").dropFirst(3).joined()
                 let str = substr.components(separatedBy: " ").dropFirst(3).joined(separator: " ")
-                if str.isEmpty == false {
+                if str.isEmpty == false && str.contains(".DS_Store") == false {
                     out.append("./" + str)
                 }
             }
