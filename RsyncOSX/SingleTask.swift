@@ -150,9 +150,6 @@ final class SingleTask: SetSchedules, SetConfigurations {
                 let numberOffFiles = self.transferredNumber
                 let sizeOfFiles = self.transferredNumberSizebytes
                 self.schedules!.addlogtaskmanuel(hiddenID, result: number.stats(numberOfFiles: numberOffFiles, sizeOfFiles: sizeOfFiles))
-                if self.configurations!.getConfigurations()[self.index!].task == "snapshot" {
-                    self.configurations!.increasesnapshotnum(index: self.index!, outputprocess: self.outputprocess)
-                }
                 self.configurations!.setCurrentDateonConfiguration(self.index!)
                 _ = Logging(outputprocess: self.outputprocess)
             case .empty:
