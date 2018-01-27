@@ -32,12 +32,12 @@ final class SnapshotsLoggData {
     private func mergedata() {
         guard self.catalogs != nil else { return }
         for i in 0 ..< self.catalogs!.count {
-            let snapshotnum = "(" + self.catalogs![i].dropFirst(2) + ")"
-            var filter = self.snapshotsloggdata?.filter({($0.value(forKey: "resultExecuted") as? String ?? "").contains(snapshotnum)})
-            if filter!.count == 1 {
-                filter![0].setObject(self.catalogs![i], forKey: "snapshotCatalog" as NSCopying)
-            } else {
-                if self.catalogs![i] != "./." {
+            if self.catalogs![i].contains(".DS_Store") == false {
+                let snapshotnum = "(" + self.catalogs![i].dropFirst(2) + ")"
+                var filter = self.snapshotsloggdata?.filter({($0.value(forKey: "resultExecuted") as? String ?? "").contains(snapshotnum)})
+                if filter!.count == 1 {
+                    filter![0].setObject(self.catalogs![i], forKey: "snapshotCatalog" as NSCopying)
+                } else {
                     let dict: NSMutableDictionary = ["snapshotCatalog": self.catalogs![i],
                                                      "dateExecuted": "no logg"]
                     self.snapshotsloggdata!.append(dict)
