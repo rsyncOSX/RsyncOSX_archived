@@ -28,8 +28,14 @@ final class SnapshotDeleteCatalogsArguments: ProcessArguments {
             remotearg = self.config!.offsiteUsername + "@" + self.config!.offsiteServer
             self.args!.append(remotearg!)
         }
-        let remotecommand = "ls -al " + self.remotecatalog!
+        let remotecommand = "ls " + self.remotecatalog!
         self.args!.append(remotecommand)
+    }
+
+    private func localarguments() {
+        guard self.config != nil else { return }
+        let remotecatalog = self.remotecatalog!
+        self.args!.append(remotecatalog)
     }
 
     func getArguments() -> Array<String>? {
@@ -47,6 +53,9 @@ final class SnapshotDeleteCatalogsArguments: ProcessArguments {
         if config.offsiteServer.isEmpty == false {
             self.remotearguments()
             self.command = "/usr/bin/ssh"
+        } else {
+            self.localarguments()
+            self.command = "/bin/ls"
         }
     }
 }

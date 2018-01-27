@@ -65,6 +65,7 @@ class ViewControllerSnapshots: NSViewController, SetDismisser, SetConfigurations
     }
 
     @IBAction func getindex(_ sender: NSButton) {
+        self.reloadtabledata()
         self.presentViewControllerAsSheet(self.viewControllerSource)
     }
 
@@ -79,15 +80,15 @@ class ViewControllerSnapshots: NSViewController, SetDismisser, SetConfigurations
         super.viewDidAppear()
         self.deletebutton.isEnabled = false
         self.delete = false
+        self.snapshotsloggdata = nil
+        self.progressdelete.isHidden = true
         globalMainQueue.async(execute: { () -> Void in
             self.snapshotstable.reloadData()
         })
     }
 
     override func viewDidDisappear() {
-        if self.delete == true {
-            self.reloadtabledata()
-        }
+        self.reloadtabledata()
     }
 
     private func deletesnapshotcatalogs() {
@@ -208,13 +209,13 @@ extension ViewControllerSnapshots: Reloadandrefresh {
         self.deletebutton.isEnabled = false
         self.deletenum.stringValue = ""
         self.progressdelete.isHidden = true
+        self.localCatalog.stringValue = ""
+        self.offsiteCatalog.stringValue = ""
+        self.offsiteUsername.stringValue = ""
+        self.offsiteServer.stringValue = ""
+        self.backupID.stringValue = ""
+        self.sshport.stringValue = ""
         globalMainQueue.async(execute: { () -> Void in
-            self.localCatalog.stringValue = ""
-            self.offsiteCatalog.stringValue = ""
-            self.offsiteUsername.stringValue = ""
-            self.offsiteServer.stringValue = ""
-            self.backupID.stringValue = ""
-            self.sshport.stringValue = ""
             self.snapshotstable.reloadData()
         })
     }
