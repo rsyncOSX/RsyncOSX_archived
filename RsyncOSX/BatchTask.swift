@@ -139,6 +139,7 @@ final class BatchTask: SetSchedules, SetConfigurations, Delay {
                 }
                 self.outputbatch!.addLine(str: result!)
                 self.schedules!.addlogtaskmanuel(hiddenID, result: numbers)
+                self.configurations?.increasesnapshotnum(index: index, outputprocess: self.outputprocess)
                 self.configurations!.setCurrentDateonConfiguration(index)
                 self.delayWithSeconds(1) {
                     self.executeBatch()
