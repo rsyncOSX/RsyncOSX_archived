@@ -47,8 +47,8 @@ final class SnapshotsLoggData {
         let sorted = self.snapshotsloggdata!.sorted { (di1, di2) -> Bool in
             let str1 = di1.value(forKey: "snapshotCatalog") as? String
             let str2 = di2.value(forKey: "snapshotCatalog") as? String
-            let num1 = Int(str1!.dropFirst(2)) ?? 0
-            let num2 = Int(str2!.dropFirst(2)) ?? 0
+            let num1 = Int(str1?.dropFirst(2) ?? "") ?? 0
+            let num2 = Int(str2?.dropFirst(2) ?? "") ?? 0
             if num1 <= num2 {
                 return true
             } else {
@@ -80,9 +80,8 @@ final class SnapshotsLoggData {
 
     func preparecatalogstodelete(num: Int) {
         guard num < self.expandedcatalogs?.count ?? 0 else { return }
-        let j = self.expandedcatalogs!.count - num
         self.catalogstodelete = []
-        for i in j ..< self.expandedcatalogs!.count {
+        for i in 0 ..< num {
             self.catalogstodelete!.append(self.expandedcatalogs![i])
         }
     }

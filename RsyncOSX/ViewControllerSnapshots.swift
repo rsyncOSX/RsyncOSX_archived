@@ -41,6 +41,8 @@ class ViewControllerSnapshots: NSViewController, SetDismisser, SetConfigurations
         switch num {
         case 1:
             self.info.stringValue = "Not a snapshot task..."
+        case 2:
+            self.info.stringValue = "Cannot delete all snapshot catalogs..."
         default:
             self.info.stringValue = ""
         }
@@ -48,7 +50,10 @@ class ViewControllerSnapshots: NSViewController, SetDismisser, SetConfigurations
 
     @IBAction func delete(_ sender: NSButton) {
         if let delete = Int(self.deletenum.stringValue) {
-            guard delete < self.snapshotsloggdata?.expandedcatalogs?.count ?? 0 else { return }
+            guard delete < self.snapshotsloggdata?.expandedcatalogs?.count ?? 0 else {
+                self.info(num: 2)
+                return
+            }
             self.snapshotsloggdata!.preparecatalogstodelete(num: delete)
             self.deletebutton.isEnabled = false
             self.initiateProgressbar()
@@ -79,12 +84,30 @@ class ViewControllerSnapshots: NSViewController, SetDismisser, SetConfigurations
         })
     }
 
-    private func deletesnapshotcatalogs() {
+    override func viewDidDisappear() {
+        if self.delete == true {
+            self.reloadtabledata()
+        }
+    }
 
+    private func deletesnapshotcatalogs() {
+        var arguments: SnapshotDeleteCatalogsArguments?
+        var deletecommand: SnapshotCommandDeleteCatalogs?
+        guard self.snapshotsloggdata?.catalogstodelete != nil else { return }
+        guard self.snapshotsloggdata!.catalogstodelete!.count > 0 else { return }
+        let remotecatalog = self.snapshotsloggdata!.catalogstodelete![0]
+        self.snapshotsloggdata!.catalogstodelete!.remove(at: 0)
+        if self.snapshotsloggdata!.catalogstodelete!.count == 0 {
+            self.snapshotsloggdata!.catalogstodelete = nil
+        }
+        arguments = SnapshotDeleteCatalogsArguments(config: self.config!, remotecatalog: remotecatalog)
+        deletecommand = SnapshotCommandDeleteCatalogs(command: arguments?.getCommand(), arguments: arguments?.getArguments())
+        deletecommand?.executeProcess(outputprocess: nil)
     }
 
     // Progress bar
     private func initiateProgressbar() {
+        self.progressdelete.isHidden = false
         if let deletenum = Double(self.deletenum.stringValue) {
             self.progressdelete.maxValue = deletenum
         } else {
@@ -98,6 +121,7 @@ class ViewControllerSnapshots: NSViewController, SetDismisser, SetConfigurations
     private func updateProgressbar(_ value: Double) {
         self.progressdelete.doubleValue = value
     }
+
 }
 
 extension ViewControllerSnapshots: DismissViewController {
@@ -134,6 +158,14 @@ extension ViewControllerSnapshots: GetSource {
 extension ViewControllerSnapshots: UpdateProgress {
     func processTermination() {
         if delete {
+            if let delete = Int(self.deletenum.stringValue) {
+                if self.snapshotsloggdata!.catalogstodelete == nil {
+                    self.updateProgressbar(Double(delete))
+                } else {
+                    let progress = delete - self.snapshotsloggdata!.catalogstodelete!.count
+                    self.updateProgressbar(Double(progress))
+                }
+            }
             self.deletesnapshotcatalogs()
         } else {
             self.deletebutton.isEnabled = true
@@ -174,6 +206,8 @@ extension ViewControllerSnapshots: Reloadandrefresh {
     func reloadtabledata() {
         self.snapshotsloggdata = nil
         self.deletebutton.isEnabled = false
+        self.deletenum.stringValue = ""
+        self.progressdelete.isHidden = true
         globalMainQueue.async(execute: { () -> Void in
             self.localCatalog.stringValue = ""
             self.offsiteCatalog.stringValue = ""
