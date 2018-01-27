@@ -55,14 +55,10 @@ class ViewControllerCopyFilesSource: NSViewController, SetConfigurations, SetDis
     }
 
     override func viewDidAppear() {
+        self.deselectRow()
         globalMainQueue.async(execute: { () -> Void in
             self.mainTableView.reloadData()
         })
-    }
-
-    override func viewDidDisappear() {
-        super.viewDidDisappear()
-        self.index = nil
     }
 
     @objc(tableViewDoubleClick:) func tableViewDoubleClick(sender: AnyObject) {
@@ -117,6 +113,10 @@ class ViewControllerCopyFilesSource: NSViewController, SetConfigurations, SetDis
         }
     }
 
+    private func deselectRow() {
+        guard self.index != nil else { return }
+        self.mainTableView.deselectRow(self.index! - 1)
+    }
 }
 
 extension ViewControllerCopyFilesSource: NSTableViewDataSource {
