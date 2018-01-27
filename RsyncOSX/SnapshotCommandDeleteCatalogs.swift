@@ -16,4 +16,3 @@ final class SnapshotCommandDeleteCatalogs: ProcessCmd {
         self.updateDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vcsnapshot) as? ViewControllerSnapshots
     }
 }
-
