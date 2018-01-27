@@ -49,9 +49,7 @@ class ViewControllerSnapshots: NSViewController, SetDismisser, SetConfigurations
         case 4:
             self.info.stringValue = "Max 5 catalogs to delete..."
         case 5:
-            self.info.stringValue = "Enter a proper number..."
-        case 6:
-            self.info.stringValue = "Select Source button to update..."
+            self.info.stringValue = "Enter a real number..."
         default:
             self.info.stringValue = ""
         }
@@ -69,6 +67,10 @@ class ViewControllerSnapshots: NSViewController, SetDismisser, SetConfigurations
             }
             guard self.confirmdelete.state == .on else {
                 self.info(num: 3)
+                return
+            }
+            guard delete > 0 else {
+                self.info(num: 5)
                 return
             }
             self.snapshotsloggdata!.preparecatalogstodelete(num: delete)
@@ -117,7 +119,6 @@ class ViewControllerSnapshots: NSViewController, SetDismisser, SetConfigurations
         var arguments: SnapshotDeleteCatalogsArguments?
         var deletecommand: SnapshotCommandDeleteCatalogs?
         guard self.snapshotsloggdata?.catalogstodelete != nil else {
-            self.info(num: 6)
             return
         }
         guard self.snapshotsloggdata!.catalogstodelete!.count > 0 else { return }
@@ -187,6 +188,9 @@ extension ViewControllerSnapshots: UpdateProgress {
             if let deletenum = Int(self.deletenum.stringValue) {
                 if self.snapshotsloggdata!.catalogstodelete == nil {
                     self.updateProgressbar(Double(deletenum))
+                    self.delete = false
+                    self.deletenum.stringValue = ""
+                    self.snapshotsloggdata = SnapshotsLoggData(config: self.config!)
                 } else {
                     let progress = deletenum - self.snapshotsloggdata!.catalogstodelete!.count
                     self.updateProgressbar(Double(progress))
