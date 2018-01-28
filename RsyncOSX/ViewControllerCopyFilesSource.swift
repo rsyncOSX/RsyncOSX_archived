@@ -12,7 +12,7 @@ import Cocoa
 class ViewControllerCopyFilesSource: NSViewController, SetConfigurations, SetDismisser {
 
     @IBOutlet weak var mainTableView: NSTableView!
-    @IBOutlet weak var closeButton: NSButton!
+    @IBOutlet weak var selectButton: NSButton!
 
     weak var setIndexDelegate: ViewControllerCopyFiles?
     weak var getSourceDelegate: ViewControllerCopyFiles?
@@ -21,6 +21,16 @@ class ViewControllerCopyFilesSource: NSViewController, SetConfigurations, SetDis
     private var index: Int?
 
     @IBAction func close(_ sender: NSButton) {
+        if (self.presenting as? ViewControllerCopyFiles) != nil {
+            self.dismissview(viewcontroller: self, vcontroller: .vccopyfiles)
+        } else if (self.presenting as? ViewControllerSsh) != nil {
+            self.dismissview(viewcontroller: self, vcontroller: .vcssh)
+        } else if (self.presenting as? ViewControllerSnapshots) != nil {
+            self.dismissview(viewcontroller: self, vcontroller: .vcsnapshot)
+        }
+    }
+
+    @IBAction func select(_ sender: NSButton) {
         if let pvc = self.presenting as? ViewControllerCopyFiles {
             self.getSourceDelegate = pvc
             if let index = self.index {
@@ -55,7 +65,7 @@ class ViewControllerCopyFilesSource: NSViewController, SetConfigurations, SetDis
     }
 
     override func viewDidAppear() {
-        self.deselectRow()
+        self.selectButton.isEnabled = false
         globalMainQueue.async(execute: { () -> Void in
             self.mainTableView.reloadData()
         })
@@ -91,6 +101,7 @@ class ViewControllerCopyFilesSource: NSViewController, SetConfigurations, SetDis
     func tableViewSelectionDidChange(_ notification: Notification) {
         let myTableViewFromNotification = (notification.object as? NSTableView)!
         let indexes = myTableViewFromNotification.selectedRowIndexes
+        self.selectButton.isEnabled = true
         if let index = indexes.first {
             if let pvc = self.presenting as? ViewControllerCopyFiles {
                 self.setIndexDelegate = pvc
@@ -111,11 +122,6 @@ class ViewControllerCopyFilesSource: NSViewController, SetConfigurations, SetDis
                 self.index = hiddenID!
             }
         }
-    }
-
-    private func deselectRow() {
-        guard self.index != nil else { return }
-        self.mainTableView.deselectRow(self.index! - 1)
     }
 }
 
