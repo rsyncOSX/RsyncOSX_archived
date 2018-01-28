@@ -176,6 +176,4 @@ extension QuickBackup: UpdateProgress {
     func fileHandler() {
         // nothing
     }
-    
-    
 }
