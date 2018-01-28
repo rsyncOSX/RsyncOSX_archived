@@ -11,40 +11,40 @@ import Foundation
 
 final class SnapshotsLoggData {
 
-    var snapshotsloggdata: [NSMutableDictionary]?
+    var snapshotslogs: [NSMutableDictionary]?
     var config: Configuration?
     var outputprocess: OutputProcess?
     private var catalogs: [String]?
-    var expandedcatalogs: [String]?
-    var catalogstodelete: [String]?
+    var expandedremotecatalogs: [String]?
+    var remotecatalogstodelete: [String]?
 
-    private func getcataloginfo() {
+    private func getremotecataloginfo() {
         self.outputprocess = OutputProcess()
         let arguments = CopyFileArguments(task: .snapshotcatalogs, config: self.config!, remoteFile: nil, localCatalog: nil, drynrun: nil)
         let object = SnapshotCommandSubCatalogs(command: arguments.getCommand(), arguments: arguments.getArguments())
         object.executeProcess(outputprocess: self.outputprocess)
     }
 
-    private func getloggdata() {
-        self.snapshotsloggdata = ScheduleLoggData().getallloggdata()?.filter({($0.value(forKey: "hiddenID") as? Int)! == config?.hiddenID})
+    private func getsnapshotlogs() {
+        self.snapshotslogs = ScheduleLoggData().getallloggdata()?.filter({($0.value(forKey: "hiddenID") as? Int)! == config?.hiddenID})
     }
 
-    private func mergedata() {
+    private func mergeremotecatalogsandlogs() {
         guard self.catalogs != nil else { return }
         for i in 0 ..< self.catalogs!.count {
             if self.catalogs![i].contains(".DS_Store") == false {
                 let snapshotnum = "(" + self.catalogs![i].dropFirst(2) + ")"
-                var filter = self.snapshotsloggdata?.filter({($0.value(forKey: "resultExecuted") as? String ?? "").contains(snapshotnum)})
+                var filter = self.snapshotslogs?.filter({($0.value(forKey: "resultExecuted") as? String ?? "").contains(snapshotnum)})
                 if filter!.count == 1 {
                     filter![0].setObject(self.catalogs![i], forKey: "snapshotCatalog" as NSCopying)
                 } else {
                     let dict: NSMutableDictionary = ["snapshotCatalog": self.catalogs![i],
                                                      "dateExecuted": "no logg"]
-                    self.snapshotsloggdata!.append(dict)
+                    self.snapshotslogs!.append(dict)
                 }
             }
         }
-        let sorted = self.snapshotsloggdata!.sorted { (di1, di2) -> Bool in
+        let sorted = self.snapshotslogs!.sorted { (di1, di2) -> Bool in
             let str1 = di1.value(forKey: "snapshotCatalog") as? String
             let str2 = di2.value(forKey: "snapshotCatalog") as? String
             let num1 = Int(str1?.dropFirst(2) ?? "") ?? 0
@@ -55,12 +55,12 @@ final class SnapshotsLoggData {
                 return false
             }
         }
-        self.snapshotsloggdata = sorted
+        self.snapshotslogs = sorted
     }
 
-    private func sortedandexpandedcatalog() {
-        guard self.expandedcatalogs != nil else { return }
-        var sorted = self.expandedcatalogs?.sorted { (di1, di2) -> Bool in
+    private func sortedandexpandremotecatalogs() {
+        guard self.expandedremotecatalogs != nil else { return }
+        var sorted = self.expandedremotecatalogs?.sorted { (di1, di2) -> Bool in
             let num1 = Int(di1) ?? 0
             let num2 = Int(di2) ?? 0
             if num1 <= num2 {
@@ -75,26 +75,26 @@ final class SnapshotsLoggData {
                 sorted?.remove(at: 0)
             }
         }
-        self.expandedcatalogs = sorted
-        for i in 0 ..< self.expandedcatalogs!.count {
-            let expanded = self.config!.offsiteCatalog + self.expandedcatalogs![i]
-            self.expandedcatalogs![i] = expanded
+        self.expandedremotecatalogs = sorted
+        for i in 0 ..< self.expandedremotecatalogs!.count {
+            let expanded = self.config!.offsiteCatalog + self.expandedremotecatalogs![i]
+            self.expandedremotecatalogs![i] = expanded
         }
     }
 
     func preparecatalogstodelete(num: Int) {
-        guard num < self.expandedcatalogs?.count ?? 0 else { return }
-        self.catalogstodelete = []
+        guard num < self.expandedremotecatalogs?.count ?? 0 else { return }
+        self.remotecatalogstodelete = []
         for i in 0 ..< num {
-            self.catalogstodelete!.append(self.expandedcatalogs![i])
+            self.remotecatalogstodelete!.append(self.expandedremotecatalogs![i])
         }
     }
 
     init(config: Configuration) {
-        self.snapshotsloggdata = ScheduleLoggData().getallloggdata()
+        self.snapshotslogs = ScheduleLoggData().getallloggdata()
         self.config = config
         guard config.task == "snapshot" else { return }
-        self.getcataloginfo()
+        self.getremotecataloginfo()
     }
 }
 
@@ -106,10 +106,10 @@ extension SnapshotsLoggData: UpdateProgress {
                 self.catalogs?.remove(at: 0)
             }
         }
-        self.expandedcatalogs = self.outputprocess?.trimoutput(trim: .three)
-        self.getloggdata()
-        self.mergedata()
-        self.sortedandexpandedcatalog()
+        self.expandedremotecatalogs = self.outputprocess?.trimoutput(trim: .three)
+        self.getsnapshotlogs()
+        self.mergeremotecatalogsandlogs()
+        self.sortedandexpandremotecatalogs()
     }
 
     func fileHandler() {
