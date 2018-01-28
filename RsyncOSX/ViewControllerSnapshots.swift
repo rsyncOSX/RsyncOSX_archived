@@ -57,7 +57,7 @@ class ViewControllerSnapshots: NSViewController, SetDismisser, SetConfigurations
 
     @IBAction func delete(_ sender: NSButton) {
         if let delete = Int(self.deletenum.stringValue) {
-            guard delete < self.snapshotsloggdata?.expandedcatalogs?.count ?? 0 else {
+            guard delete < self.snapshotsloggdata?.expandedremotecatalogs?.count ?? 0 else {
                 self.info(num: 2)
                 return
             }
@@ -118,14 +118,14 @@ class ViewControllerSnapshots: NSViewController, SetDismisser, SetConfigurations
     private func deletesnapshotcatalogs() {
         var arguments: SnapshotDeleteCatalogsArguments?
         var deletecommand: SnapshotCommandDeleteCatalogs?
-        guard self.snapshotsloggdata?.catalogstodelete != nil else {
+        guard self.snapshotsloggdata?.remotecatalogstodelete != nil else {
             return
         }
-        guard self.snapshotsloggdata!.catalogstodelete!.count > 0 else { return }
-        let remotecatalog = self.snapshotsloggdata!.catalogstodelete![0]
-        self.snapshotsloggdata!.catalogstodelete!.remove(at: 0)
-        if self.snapshotsloggdata!.catalogstodelete!.count == 0 {
-            self.snapshotsloggdata!.catalogstodelete = nil
+        guard self.snapshotsloggdata!.remotecatalogstodelete!.count > 0 else { return }
+        let remotecatalog = self.snapshotsloggdata!.remotecatalogstodelete![0]
+        self.snapshotsloggdata!.remotecatalogstodelete!.remove(at: 0)
+        if self.snapshotsloggdata!.remotecatalogstodelete!.count == 0 {
+            self.snapshotsloggdata!.remotecatalogstodelete = nil
         }
         arguments = SnapshotDeleteCatalogsArguments(config: self.config!, remotecatalog: remotecatalog)
         deletecommand = SnapshotCommandDeleteCatalogs(command: arguments?.getCommand(), arguments: arguments?.getArguments())
@@ -186,13 +186,13 @@ extension ViewControllerSnapshots: UpdateProgress {
     func processTermination() {
         if delete {
             if let deletenum = Int(self.deletenum.stringValue) {
-                if self.snapshotsloggdata!.catalogstodelete == nil {
+                if self.snapshotsloggdata!.remotecatalogstodelete == nil {
                     self.updateProgressbar(Double(deletenum))
                     self.delete = false
                     self.deletenum.stringValue = ""
                     self.snapshotsloggdata = SnapshotsLoggData(config: self.config!)
                 } else {
-                    let progress = deletenum - self.snapshotsloggdata!.catalogstodelete!.count
+                    let progress = deletenum - self.snapshotsloggdata!.remotecatalogstodelete!.count
                     self.updateProgressbar(Double(progress))
                 }
             }
@@ -214,20 +214,20 @@ extension ViewControllerSnapshots: UpdateProgress {
 extension ViewControllerSnapshots: NSTableViewDataSource {
 
     func numberOfRows(in tableView: NSTableView) -> Int {
-        guard self.snapshotsloggdata?.snapshotsloggdata != nil else {
+        guard self.snapshotsloggdata?.snapshotslogs != nil else {
             self.numberOflogfiles.stringValue = "Number of rows:"
             return 0
         }
-        self.numberOflogfiles.stringValue = "Number of rows: " + String(self.snapshotsloggdata?.snapshotsloggdata!.count ?? 0)
-        return (self.snapshotsloggdata?.snapshotsloggdata!.count ?? 0)
+        self.numberOflogfiles.stringValue = "Number of rows: " + String(self.snapshotsloggdata?.snapshotslogs!.count ?? 0)
+        return (self.snapshotsloggdata?.snapshotslogs!.count ?? 0)
     }
 }
 
 extension ViewControllerSnapshots: NSTableViewDelegate {
 
     func tableView(_ tableView: NSTableView, objectValueFor tableColumn: NSTableColumn?, row: Int) -> Any? {
-        guard row < self.snapshotsloggdata?.snapshotsloggdata!.count ?? 0 else { return nil }
-        let object: NSDictionary = self.snapshotsloggdata!.snapshotsloggdata![row]
+        guard row < self.snapshotsloggdata?.snapshotslogs!.count ?? 0 else { return nil }
+        let object: NSDictionary = self.snapshotsloggdata!.snapshotslogs![row]
         return object[tableColumn!.identifier] as? String
     }
 }
