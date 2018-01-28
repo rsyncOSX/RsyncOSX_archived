@@ -55,7 +55,7 @@ final class SnapshotsLoggData {
                 return false
             }
         }
-        self.snapshotslogs = sorted
+        self.snapshotslogs = sorted.filter({($0.value(forKey: "snapshotCatalog") as? String)?.isEmpty == false})
     }
 
     private func sortedandexpandremotecatalogs() {

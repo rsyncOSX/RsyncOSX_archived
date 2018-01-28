@@ -52,6 +52,8 @@ class ViewControllerSnapshots: NSViewController, SetDismisser, SetConfigurations
             self.info.stringValue = "Enter a real number..."
         case 6:
             self.info.stringValue = "Aborting delete operation..."
+        case 7:
+            self.info.stringValue = "Delete operation completed..."
         default:
             self.info.stringValue = ""
         }
@@ -196,6 +198,8 @@ extension ViewControllerSnapshots: UpdateProgress {
                     self.updateProgressbar(Double(deletenum))
                     self.delete = false
                     self.deletenum.stringValue = ""
+                    self.progressdelete.isHidden = true
+                    self.info(num: 7)
                     self.snapshotsloggdata = SnapshotsLoggData(config: self.config!)
                 } else {
                     let progress = deletenum - self.snapshotsloggdata!.remotecatalogstodelete!.count
