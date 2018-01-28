@@ -50,9 +50,17 @@ class ViewControllerSnapshots: NSViewController, SetDismisser, SetConfigurations
             self.info.stringValue = "Max 5 catalogs to delete..."
         case 5:
             self.info.stringValue = "Enter a real number..."
+        case 6:
+            self.info.stringValue = "Aborting delete operation..."
         default:
             self.info.stringValue = ""
         }
+    }
+
+    // Abort button
+    @IBAction func abort(_ sender: NSButton) {
+        self.info(num: 6)
+        self.snapshotsloggdata?.remotecatalogstodelete = nil
     }
 
     @IBAction func delete(_ sender: NSButton) {
@@ -73,8 +81,8 @@ class ViewControllerSnapshots: NSViewController, SetDismisser, SetConfigurations
                 self.info(num: 5)
                 return
             }
-            self.snapshotsloggdata!.preparecatalogstodelete(num: delete)
             self.info(num: 0)
+            self.snapshotsloggdata!.preparecatalogstodelete(num: delete)
             self.deletebutton.isEnabled = false
             self.deletenum.isEnabled = false
             self.initiateProgressbar()
@@ -118,9 +126,7 @@ class ViewControllerSnapshots: NSViewController, SetDismisser, SetConfigurations
     private func deletesnapshotcatalogs() {
         var arguments: SnapshotDeleteCatalogsArguments?
         var deletecommand: SnapshotCommandDeleteCatalogs?
-        guard self.snapshotsloggdata?.remotecatalogstodelete != nil else {
-            return
-        }
+        guard self.snapshotsloggdata?.remotecatalogstodelete != nil else { return }
         guard self.snapshotsloggdata!.remotecatalogstodelete!.count > 0 else { return }
         let remotecatalog = self.snapshotsloggdata!.remotecatalogstodelete![0]
         self.snapshotsloggdata!.remotecatalogstodelete!.remove(at: 0)
