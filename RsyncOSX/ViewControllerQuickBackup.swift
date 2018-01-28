@@ -128,7 +128,7 @@ class ViewControllerQuickBackup: NSViewController, SetDismisser, AbortTask, Dela
     }
 
     private func checkforestimates() -> Bool {
-        if self.quickbackuplist?.maxcount != nil && self.quickbackuplist?.maxcount ?? 0  != 0 {
+        if self.quickbackuplist?.maxcount != nil && self.quickbackuplist?.maxcount ?? 0  > 0 {
             self.noestimates.isHidden = true
             return true
         } else {
