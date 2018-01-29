@@ -11,10 +11,6 @@ This repository is the source code for the macOS app RsyncOSX. RsyncOSX is compi
 
 As part of this version of RsyncOSX I am using [SwiftLint](https://github.com/realm/SwiftLint) as tool for writing more readable code. Adapting RsyncOSX to SwiftLint rules will take some time. There are about 10,000 lines of code in RsyncOSX (too many?). Many changes in code has been applied, but there are still some more to do before RsyncOSX is more compliant to SwiftLint rules.
 
-### New version of rsync
-
-There is work on a [version 3.1.3](https://download.samba.org/pub/rsync/src-previews/rsync-3.1.3pre1-NEWS) of rsync. I have compiled the v 3.1.3 pre version for test.
-
 ### Compile
 
 To compile the code, install Xcode and open the RsyncOSX project file. Before compiling, open in Xcode the `RsyncOSX/General` preference page (after opening the RsyncOSX project file) and replace your own credentials in `Signing`, or disable Signing. Then compile your own version of RsyncOSX.
@@ -29,6 +25,8 @@ The [Changelog](https://github.com/rsyncOSX/Documentation/blob/master/docs/Chang
 
 ### How to use RsyncOSX
 
+The YouTube video is an old version, but it demonstrates the basic ideas about RsyncOSX.
+
 There are some [documents](https://rsyncosx.github.io/Documentation/) about RsyncOSX and a short [YouTube demo](https://www.youtube.com/watch?v=ty1r7yvgExo) (about 5 minutes long) : "Downloading RsyncOSX, installing, first time configuration and using RsyncOSX for the first time. Backup (as demo) of about 120 MB of data and 4000 files to a VirtualBox FreeBSD machine."
 
 ### Development
@@ -37,11 +35,11 @@ Details about how RsyncOSX is built is [here](https://github.com/rsyncOSX/Docume
 
 ### Rsync
 
-In last release image (RsyncOSX.dmg) there is a `rsync-3.1.2.dmg` which includes a built version of latest version of rsync. To install this version of rsync please make a catalog on your mac (e.g. `/usr/local/bin`) and make RsyncOSX aware of using the new rsync in [userconfig](https://github.com/rsyncOSX/Documentation/blob/master/docs/UserConfiguration.md). A compiled version of rsync will be included in every coming release of RsyncOSX.
+In last release image (RsyncOSX.zip) there is a `rsync-3.1.3.dmg` which includes a built version of latest version of rsync. See the `readme.txt` and make RsyncOSX aware of using the new rsync in [userconfig](https://github.com/rsyncOSX/Documentation/blob/master/docs/UserConfiguration.md).
 
 The default version of `rsync` in macOS is old (version 2.6.9, [protocol](https://rsync.samba.org/how-rsync-works.html) version 29). Version [2.6.9](https://download.samba.org/pub/rsync/src/rsync-2.6.9-NEWS) was released in nov 2006. The current release of rsync is version [3.1.3](https://download.samba.org/pub/rsync/src/rsync-3.1.3-NEWS) protocol 31 released 28 January 2018. There are at least three options to get and install the current version of rsync for use in RsyncOSX:
 
-- use the `rsync-3.1.3.dmg` within `RsyncOSX.dmg`to install the latest version of rsync (from version 4.9.9 of RsyncOSX)
+- use the `rsync-3.1.3.dmg` within `RsyncOSX.zip`to install the latest version of rsync (from version 5.0.0 of RsyncOSX)
 - install Xcode and download the rsync [source](https://rsync.samba.org/) from rsync.samba.org
 	- required tools are `gcc` and `make` which are part of Xcode command line tool (you might be able to install Xcode command line tool only by downloading the tools from [Apple Developer page](https://developer.apple.com/))
 	- untar the source archive and use `make` to compile and install, rsync compiles without any issues on macOS
