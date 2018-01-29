@@ -22,9 +22,7 @@ final class GetRemoteFileListingsArguments: ProcessArguments {
     private var command: String?
     private var file: String?
 
-    private func arguments(recursive: Bool) {
-        let tools = Tools()
-        self.command = tools.rsyncpath()
+    private func remotearguments(recursive: Bool) {
         if let config = self.config {
             if config.sshport != nil {
                 let eparam: String = "-e"
@@ -49,6 +47,14 @@ final class GetRemoteFileListingsArguments: ProcessArguments {
         }
     }
 
+    private func localarguments(recursive: Bool) {
+        if recursive {
+            self.args!.append("-r")
+        }
+        self.args!.append("--list-only")
+        self.args!.append(config!.offsiteCatalog)
+    }
+
     func getArguments() -> Array<String>? {
         guard self.args != nil else { return nil }
         return self.args
@@ -63,8 +69,13 @@ final class GetRemoteFileListingsArguments: ProcessArguments {
 
     init(config: Configuration, recursive: Bool) {
         self.config = config
-        self.args = nil
+        let tools = Tools()
+        self.command = tools.rsyncpath()
         self.args = Array<String>()
-        self.arguments(recursive: recursive)
+        if config.offsiteServer.isEmpty == false {
+            self.remotearguments(recursive: recursive)
+        } else {
+            self.localarguments(recursive: recursive)
+        }
     }
 }

@@ -35,6 +35,7 @@ final class SnapshotDeleteCatalogsArguments: ProcessArguments {
     private func localarguments() {
         guard self.config != nil else { return }
         let remotecatalog = self.remotecatalog!
+        self.args!.append("-rf")
         self.args!.append(remotecatalog)
     }
 
@@ -55,7 +56,7 @@ final class SnapshotDeleteCatalogsArguments: ProcessArguments {
             self.command = "/usr/bin/ssh"
         } else {
             self.localarguments()
-            self.command = "/bin/ls"
+            self.command = "/bin/rm"
         }
     }
 }
