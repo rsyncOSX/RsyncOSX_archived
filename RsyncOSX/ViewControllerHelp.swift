@@ -31,6 +31,8 @@ class ViewControllerHelp: NSViewController {
     @IBOutlet weak var source: NSButton!
     @IBOutlet weak var ssh: NSButton!
     @IBOutlet weak var intro: NSButton!
+    @IBOutlet weak var quickbackup: NSButton!
+    @IBOutlet weak var snapshots: NSButton!
 
     @IBAction func help(_ sender: NSButton) {
         if self.batchtask.state == .on {
@@ -84,6 +86,12 @@ class ViewControllerHelp: NSViewController {
         } else if self.intro.state == .on {
             self.showwhat = .intro
             self.intro.state = .off
+        } else if self.quickbackup.state == .on {
+            self.showwhat = .quickbackup
+            self.quickbackup.state = .off
+        } else if self.snapshots.state == .on {
+            self.showwhat = .snapshot
+            self.snapshots.state = .off
         }
         self.show()
     }
