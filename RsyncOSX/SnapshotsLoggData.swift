@@ -39,7 +39,7 @@ final class SnapshotsLoggData {
                     filter![0].setObject(self.catalogs![i], forKey: "snapshotCatalog" as NSCopying)
                 } else {
                     let dict: NSMutableDictionary = ["snapshotCatalog": self.catalogs![i],
-                                                     "dateExecuted": "no logg"]
+                                                     "dateExecuted": "no log"]
                     self.snapshotslogs!.append(dict)
                 }
             }
