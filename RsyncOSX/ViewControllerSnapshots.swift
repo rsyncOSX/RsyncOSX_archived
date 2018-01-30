@@ -10,12 +10,13 @@
 import Foundation
 import Cocoa
 
-class ViewControllerSnapshots: NSViewController, SetDismisser, SetConfigurations {
+class ViewControllerSnapshots: NSViewController, SetDismisser, SetConfigurations, Delay, Attributedestring {
 
     private var hiddenID: Int?
     private var config: Configuration?
     private var snapshotsloggdata: SnapshotsLoggData?
     private var delete: Bool = false
+    private var num: Int?
 
     @IBOutlet weak var snapshotstable: NSTableView!
     @IBOutlet weak var localCatalog: NSTextField!
@@ -59,6 +60,22 @@ class ViewControllerSnapshots: NSViewController, SetDismisser, SetConfigurations
         }
     }
 
+    @IBAction func whichrowstodelete(_ sender: NSButton) {
+        guard self.confirmdelete.state == .on else {
+            self.num = nil
+            globalMainQueue.async(execute: { () -> Void in
+                self.snapshotstable.reloadData()
+            })
+            return
+        }
+        if let delete = Int(self.deletenum.stringValue) {
+            self.num = delete
+            globalMainQueue.async(execute: { () -> Void in
+                self.snapshotstable.reloadData()
+            })
+        }
+    }
+
     // Abort button
     @IBAction func abort(_ sender: NSButton) {
         self.info(num: 6)
@@ -84,6 +101,7 @@ class ViewControllerSnapshots: NSViewController, SetDismisser, SetConfigurations
                 return
             }
             self.info(num: 0)
+            self.num = nil
             self.snapshotsloggdata!.preparecatalogstodelete(num: delete)
             self.deletebutton.isEnabled = false
             self.deletenum.isEnabled = false
@@ -105,6 +123,7 @@ class ViewControllerSnapshots: NSViewController, SetDismisser, SetConfigurations
         super.viewDidLoad()
         self.snapshotstable.delegate = self
         self.snapshotstable.dataSource = self
+        self.deletenum.delegate = self
         ViewControllerReference.shared.setvcref(viewcontroller: .vcsnapshot, nsviewcontroller: self)
     }
 
@@ -115,6 +134,7 @@ class ViewControllerSnapshots: NSViewController, SetDismisser, SetConfigurations
         self.snapshotsloggdata = nil
         self.progressdelete.isHidden = true
         self.confirmdelete.state = .off
+        self.confirmdelete.isEnabled = false
         self.info(num: 0)
         globalMainQueue.async(execute: { () -> Void in
             self.snapshotstable.reloadData()
@@ -238,6 +258,11 @@ extension ViewControllerSnapshots: NSTableViewDelegate {
     func tableView(_ tableView: NSTableView, objectValueFor tableColumn: NSTableColumn?, row: Int) -> Any? {
         guard row < self.snapshotsloggdata?.snapshotslogs!.count ?? 0 else { return nil }
         let object: NSDictionary = self.snapshotsloggdata!.snapshotslogs![row]
+        if self.num != nil {
+            if row < self.num! {
+                return self.attributedstring(str: object[tableColumn!.identifier] as? String ?? "", color: NSColor.red, align: .left)
+            }
+        }
         return object[tableColumn!.identifier] as? String
     }
 }
@@ -259,5 +284,22 @@ extension ViewControllerSnapshots: Reloadandrefresh {
         globalMainQueue.async(execute: { () -> Void in
             self.snapshotstable.reloadData()
         })
+    }
+}
+
+extension ViewControllerSnapshots: NSSearchFieldDelegate {
+
+    override func controlTextDidChange(_ obj: Notification) {
+        self.delayWithSeconds(0.25) {
+            self.confirmdelete.isEnabled = true
+            if self.deletenum.stringValue.isEmpty == true {
+                self.confirmdelete.state = .off
+                self.confirmdelete.isEnabled = false
+                self.num = nil
+                globalMainQueue.async(execute: { () -> Void in
+                    self.snapshotstable.reloadData()
+                })
+            }
+        }
     }
 }
