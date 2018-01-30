@@ -23,7 +23,6 @@ class ViewControllertabSchedule: NSViewController, SetConfigurations, SetSchedul
 
     private var index: Int?
     private var hiddenID: Int?
-    private var nextTask: Timer?
     private var schedulessorted: ScheduleSortedAndExpand?
     private var infoschedulessorted: InfoScheduleSortedAndExpand?
     var tools: Tools?
