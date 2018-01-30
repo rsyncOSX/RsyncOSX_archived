@@ -101,6 +101,7 @@ class ViewControllerSnapshots: NSViewController, SetDismisser, SetConfigurations
                 return
             }
             self.info(num: 0)
+            self.num = nil
             self.snapshotsloggdata!.preparecatalogstodelete(num: delete)
             self.deletebutton.isEnabled = false
             self.deletenum.isEnabled = false
