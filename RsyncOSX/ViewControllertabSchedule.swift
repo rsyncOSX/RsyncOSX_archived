@@ -261,7 +261,7 @@ extension ViewControllertabSchedule: NSTableViewDelegate, Attributedestring {
             if number ?? 0 > 0 {
                 let returnstr = String(number!)
                 if let color = self.colorindex, color == hiddenID {
-                    return self.attributedstring(str: returnstr, color: NSColor.green, align: .center)
+                    return self.attributedstring(str: returnstr, color: NSColor.red, align: .center)
                 } else {
                     return returnstr
                 }
@@ -276,7 +276,7 @@ extension ViewControllertabSchedule: NSTableViewDelegate, Attributedestring {
             }
         case "inCellID":
             if self.schedulessorted != nil {
-                taskintime = self.schedulessorted!.sortandcountscheduledtasks(hiddenID)
+                taskintime = self.schedulessorted!.sortandcountscheduledonetask(hiddenID)
                 return taskintime ?? ""
             }
         default:
