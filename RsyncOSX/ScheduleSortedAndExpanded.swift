@@ -126,14 +126,14 @@ class ScheduleSortedAndExpand: SetConfigurations, SetSchedules {
         }
     }
 
+    typealias Futureschedules = (Int, Double)
+
     // Calculates number of future Schedules ID by hiddenID
-    func countscheduledtasks (_ hiddenID: Int) -> Int {
-        if let result = self.sortedschedules?.filter({return (($0.value(forKey: "hiddenID") as? Int)! == hiddenID
-            && ($0.value(forKey: "start") as? Date)!.timeIntervalSinceNow > 0 )}) {
-            return result.count
-        } else {
-            return 0
-        }
+    func countscheduledtasks (_ hiddenID: Int) -> Futureschedules {
+        let result = self.sortedschedules?.filter({return (($0.value(forKey: "hiddenID") as? Int)! == hiddenID)})
+        guard result?.count ?? 0 > 0 else { return (0, 0)}
+        let timetostart = result![0].value(forKey: "timetostart" ) as? Double ?? 0
+        return (result!.count, timetostart)
     }
 
     func sortandcountscheduledonetask (_ hiddenID: Int) -> String {

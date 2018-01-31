@@ -256,7 +256,7 @@ extension ViewControllertabSchedule: NSTableViewDelegate, Attributedestring {
         switch tableColumn!.identifier.rawValue {
         case "numberCellID" :
             if self.schedulessorted != nil {
-                number = self.schedulessorted!.countscheduledtasks(hiddenID)
+                number = self.schedulessorted!.countscheduledtasks(hiddenID).0
             }
             if number ?? 0 > 0 {
                 let returnstr = String(number!)
