@@ -35,6 +35,7 @@ class ViewControllertabSchedule: NSViewController, SetConfigurations, SetSchedul
     @IBOutlet weak var dailybutton: NSButton!
     @IBOutlet weak var oncebutton: NSButton!
     @IBOutlet weak var info: NSTextField!
+    @IBOutlet weak var numberofffutureschedules: NSTextField!
 
     private func info (num: Int) {
         switch num {
@@ -198,6 +199,11 @@ class ViewControllertabSchedule: NSViewController, SetConfigurations, SetSchedul
             self.schedulessorted = ScheduleSortedAndExpand()
             self.infoschedulessorted = InfoScheduleSortedAndExpand(sortedandexpanded: self.schedulessorted)
         }
+        if let num = self.schedulessorted?.getsortedAndExpandedScheduleData()?.count {
+            self.numberofffutureschedules.stringValue = "Number of future schedules: " + String(num)
+        } else {
+            self.numberofffutureschedules.stringValue = "Number of future schedules: 0"
+        }
         globalMainQueue.async(execute: { () -> Void in
             self.mainTableView.reloadData()
         })
@@ -321,6 +327,11 @@ extension ViewControllertabSchedule: Reloadandrefresh {
         globalMainQueue.async(execute: { () -> Void in
             self.mainTableView.reloadData()
         })
+        if let num = self.schedulessorted?.getsortedAndExpandedScheduleData()?.count {
+            self.numberofffutureschedules.stringValue = "Number of future schedules: " + String(num)
+        } else {
+            self.numberofffutureschedules.stringValue = "Number of future schedules: 0"
+        }
     }
 
 }
@@ -352,5 +363,10 @@ extension ViewControllertabSchedule: SetProfileinfo {
             self.profilInfo.stringValue = profile
             self.profilInfo.textColor = color
         })
+        if let num = self.schedulessorted?.getsortedAndExpandedScheduleData()?.count {
+            self.numberofffutureschedules.stringValue = "Number of future schedules: " + String(num)
+        } else {
+            self.numberofffutureschedules.stringValue = "Number of future schedules: 0"
+        }
     }
 }

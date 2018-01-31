@@ -2573,12 +2573,22 @@
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="aQo-ey-Ycu">
+                                <rect key="frame" x="256" y="20" width="253" height="17"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Number of future schedules: " id="RCX-Qs-OBj">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
                         </subviews>
                     </view>
                     <connections>
                         <outlet property="dailybutton" destination="qPO-Ls-40R" id="WeW-mQ-QQw"/>
                         <outlet property="info" destination="oKa-6S-QCX" id="PjV-du-t6F"/>
                         <outlet property="mainTableView" destination="x4E-eq-B7o" id="aCY-ch-Nd2"/>
+                        <outlet property="numberofffutureschedules" destination="aQo-ey-Ycu" id="byS-6a-JdW"/>
                         <outlet property="oncebutton" destination="kbd-42-Izb" id="CTh-o9-Rae"/>
                         <outlet property="operation" destination="uzq-lY-HE6" id="UUo-lT-we1"/>
                         <outlet property="profilInfo" destination="uIq-wW-zUf" id="Voj-sH-KS7"/>
@@ -4713,11 +4723,11 @@ DQ
                                     </subviews>
                                 </clipView>
                                 <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="YES" id="05w-gp-kz1">
-                                    <rect key="frame" x="2" y="130" width="499" height="16"/>
+                                    <rect key="frame" x="2" y="9" width="0.0" height="16"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
                                 <scroller key="verticalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="NO" id="D7y-94-pit">
-                                    <rect key="frame" x="224" y="17" width="15" height="102"/>
+                                    <rect key="frame" x="-14" y="25" width="16" height="0.0"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
                                 <tableHeaderView key="headerView" id="1C1-Ve-sdW">
@@ -4826,7 +4836,7 @@ DQ
                                 <rect key="frame" x="430" y="235" width="189" height="17"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="Most recent schedule on top..." id="sVQ-MX-XJE">
-                                    <font key="font" metaFont="system" size="11"/>
+                                    <font key="font" metaFont="smallSystem"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
