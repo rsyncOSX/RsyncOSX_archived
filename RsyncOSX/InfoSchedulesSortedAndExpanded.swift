@@ -84,7 +84,7 @@ class InfoScheduleSortedAndExpand: SetConfigurations {
         // Return either 0, 2 or 4 elements
         return array
     }
-
+/*
     // Info on first screen - two first scheduled backups.
     func whenIsNextTwoTasksString() {
         var firstbackup: String?
@@ -127,7 +127,7 @@ class InfoScheduleSortedAndExpand: SetConfigurations {
             }
         }
     }
-
+*/
     init (sortedandexpanded: ScheduleSortedAndExpand?) {
         guard sortedandexpanded != nil else { return }
         self.sortedschedules = sortedandexpanded!.getsortedAndExpandedScheduleData()
