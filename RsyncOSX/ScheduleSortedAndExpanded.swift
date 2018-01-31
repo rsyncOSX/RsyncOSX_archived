@@ -48,11 +48,13 @@ class ScheduleSortedAndExpand: SetConfigurations, SetSchedules {
             if let start: Date = cal.date(byAdding: dateComponent, to: dateStart) {
                 if start.timeIntervalSinceNow > 0 {
                     let hiddenID = (dict.value(forKey: "hiddenID") as? Int)!
+                    let time = start.timeIntervalSinceNow
                     let dictSchedule: NSDictionary = [
                         "start": start,
                         "hiddenID": hiddenID,
                         "dateStart": dateStart,
-                        "schedule": schedule]
+                        "schedule": schedule,
+                        "timetostart": time]
                     self.expandedData.append(dictSchedule)
                 }
             }
@@ -70,11 +72,13 @@ class ScheduleSortedAndExpand: SetConfigurations, SetSchedules {
             if let start: Date = cal.date(byAdding: dateComponent, to: dateStart) {
                 if start.timeIntervalSinceNow > 0 {
                     let hiddenID = (dict.value(forKey: "hiddenID") as? Int)!
+                    let time = start.timeIntervalSinceNow
                     let dictSchedule: NSDictionary = [
                         "start": start,
                         "hiddenID": hiddenID,
                         "dateStart": dateStart,
-                        "schedule": schedule]
+                        "schedule": schedule,
+                        "timetostart": time]
                     self.expandedData.append(dictSchedule)
                 }
             }
@@ -96,11 +100,13 @@ class ScheduleSortedAndExpand: SetConfigurations, SetSchedules {
                 switch schedule {
                 case "once" :
                     let hiddenID = (dict.value(forKey: "hiddenID") as? Int)!
+                    let time = seconds
                     let dict: NSDictionary = [
                         "start": dateStop,
                         "hiddenID": hiddenID,
                         "dateStart": dateStart,
-                        "schedule": schedule]
+                        "schedule": schedule,
+                        "timetostart": time]
                     self.expandedData.append(dict)
                 case "daily":
                     self.daily(days: days, dateStart: dateStart, schedule: schedule, dict: dict)
@@ -120,17 +126,17 @@ class ScheduleSortedAndExpand: SetConfigurations, SetSchedules {
         }
     }
 
+    typealias Futureschedules = (Int, Double)
+
     // Calculates number of future Schedules ID by hiddenID
-    func countscheduledtasks (_ hiddenID: Int) -> Int {
-        if let result = self.sortedschedules?.filter({return (($0.value(forKey: "hiddenID") as? Int)! == hiddenID
-            && ($0.value(forKey: "start") as? Date)!.timeIntervalSinceNow > 0 )}) {
-            return result.count
-        } else {
-            return 0
-        }
+    func countscheduledtasks (_ hiddenID: Int) -> Futureschedules {
+        let result = self.sortedschedules?.filter({return (($0.value(forKey: "hiddenID") as? Int)! == hiddenID)})
+        guard result?.count ?? 0 > 0 else { return (0, 0)}
+        let timetostart = result![0].value(forKey: "timetostart" ) as? Double ?? 0
+        return (result!.count, timetostart)
     }
 
-    func sortandcountscheduledtasks (_ hiddenID: Int) -> String {
+    func sortandcountscheduledonetask (_ hiddenID: Int) -> String {
         if let result = self.sortedschedules?.filter({return (($0.value(forKey: "hiddenID") as? Int)! == hiddenID
             && ($0.value(forKey: "start") as? Date)!.timeIntervalSinceNow > 0 )}) {
             let sorted = result.sorted {(di1, di2) -> Bool in
@@ -140,12 +146,9 @@ class ScheduleSortedAndExpand: SetConfigurations, SetSchedules {
                     return true
                 }
             }
-            guard sorted.count > 0 else {
-                return ""
-            }
+            guard sorted.count > 0 else { return "" }
             let firsttask = (sorted[0].value(forKey: "start") as? Date)?.timeIntervalSinceNow
-            let tst = self.tools?.timeString(firsttask!)
-            return tst ?? ""
+            return self.tools?.timeString(firsttask!) ?? ""
         } else {
             return ""
         }

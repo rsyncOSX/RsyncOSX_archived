@@ -5,7 +5,7 @@
 //  Created by Thomas Evensen on 19/08/2016.
 //  Copyright © 2016 Thomas Evensen. All rights reserved.
 //
-//  swiftlint:disable line_length cyclomatic_complexity file_length
+//  swiftlint:disable line_length cyclomatic_complexity
 
 import Foundation
 import Cocoa
@@ -23,7 +23,6 @@ class ViewControllertabSchedule: NSViewController, SetConfigurations, SetSchedul
 
     private var index: Int?
     private var hiddenID: Int?
-    private var nextTask: Timer?
     private var schedulessorted: ScheduleSortedAndExpand?
     private var infoschedulessorted: InfoScheduleSortedAndExpand?
     var tools: Tools?
@@ -31,17 +30,12 @@ class ViewControllertabSchedule: NSViewController, SetConfigurations, SetSchedul
     // Main tableview
     @IBOutlet weak var mainTableView: NSTableView!
     @IBOutlet weak var profilInfo: NSTextField!
-    @IBOutlet weak var firstScheduledTask: NSTextField!
-    @IBOutlet weak var secondScheduledTask: NSTextField!
-    @IBOutlet weak var firstRemoteServer: NSTextField!
-    @IBOutlet weak var secondRemoteServer: NSTextField!
-    @IBOutlet weak var firstLocalCatalog: NSTextField!
-    @IBOutlet weak var secondLocalCatalog: NSTextField!
     @IBOutlet weak var operation: NSTextField!
     @IBOutlet weak var weeklybutton: NSButton!
     @IBOutlet weak var dailybutton: NSButton!
     @IBOutlet weak var oncebutton: NSButton!
     @IBOutlet weak var info: NSTextField!
+    @IBOutlet weak var numberofffutureschedules: NSTextField!
 
     private func info (num: Int) {
         switch num {
@@ -164,8 +158,6 @@ class ViewControllertabSchedule: NSViewController, SetConfigurations, SetSchedul
         let answer = Alerts.dialogOKCancel("Add Schedule?", text: "Cancel or OK")
         if answer {
             self.schedules!.addschedule(self.hiddenID!, schedule: schedule, start: startdate, stop: stopdate)
-            self.infonexttask()
-            self.startTimer()
         }
     }
 
@@ -207,11 +199,14 @@ class ViewControllertabSchedule: NSViewController, SetConfigurations, SetSchedul
             self.schedulessorted = ScheduleSortedAndExpand()
             self.infoschedulessorted = InfoScheduleSortedAndExpand(sortedandexpanded: self.schedulessorted)
         }
+        if let num = self.schedulessorted?.getsortedAndExpandedScheduleData()?.count {
+            self.numberofffutureschedules.stringValue = "Number of future schedules: " + String(num)
+        } else {
+            self.numberofffutureschedules.stringValue = "Number of future schedules: 0"
+        }
         globalMainQueue.async(execute: { () -> Void in
             self.mainTableView.reloadData()
         })
-        self.infonexttask()
-        self.startTimer()
         self.operationsmethod()
     }
 
@@ -222,48 +217,6 @@ class ViewControllertabSchedule: NSViewController, SetConfigurations, SetSchedul
         case .timer:
             self.operation.stringValue = "Operation method: timer"
         }
-    }
-
-    // Start timer
-    func startTimer() {
-        if self.schedulessorted != nil {
-            let timer: Double = self.infoschedulessorted!.startTimerseconds()
-            // timer == 0 do not start NSTimer, timer > 0 update frequens of NSTimer
-            if timer > 0 {
-                self.nextTask?.invalidate()
-                self.nextTask = nil
-                // Update when next task is to be executed
-                self.nextTask = Timer.scheduledTimer(timeInterval: timer, target: self, selector: #selector(infonexttask), userInfo: nil, repeats: true)
-            }
-        }
-    }
-
-    // Update display next scheduled jobs in time
-    @objc func infonexttask() {
-        guard self.schedulessorted != nil else { return }
-        // Displaying next two scheduled tasks
-        self.firstLocalCatalog.textColor = .black
-        self.firstScheduledTask.stringValue = self.infoschedulessorted!.whenIsNextTwoTasksString()[0]
-        self.secondScheduledTask.stringValue = self.infoschedulessorted!.whenIsNextTwoTasksString()[1]
-        if self.infoschedulessorted!.remoteServerAndPathNextTwoTasks().count > 0 {
-            if self.infoschedulessorted!.remoteServerAndPathNextTwoTasks().count > 2 {
-                self.firstRemoteServer.stringValue = self.infoschedulessorted!.remoteServerAndPathNextTwoTasks()[0]
-                self.firstLocalCatalog.stringValue = self.infoschedulessorted!.remoteServerAndPathNextTwoTasks()[1]
-                self.secondRemoteServer.stringValue = self.infoschedulessorted!.remoteServerAndPathNextTwoTasks()[2]
-                self.secondLocalCatalog.stringValue = self.infoschedulessorted!.remoteServerAndPathNextTwoTasks()[3]
-            } else {
-                guard self.infoschedulessorted!.remoteServerAndPathNextTwoTasks().count == 2 else {
-                    return
-                }
-                self.firstRemoteServer.stringValue = self.infoschedulessorted!.remoteServerAndPathNextTwoTasks()[0]
-                self.firstLocalCatalog.stringValue = self.infoschedulessorted!.remoteServerAndPathNextTwoTasks()[1]
-                self.secondRemoteServer.stringValue = ""
-                self.secondLocalCatalog.stringValue = ""
-            }
-        }
-        globalMainQueue.async(execute: { () -> Void in
-            self.mainTableView.reloadData()
-        })
     }
 
     // setting which table row is selected
@@ -309,12 +262,12 @@ extension ViewControllertabSchedule: NSTableViewDelegate, Attributedestring {
         switch tableColumn!.identifier.rawValue {
         case "numberCellID" :
             if self.schedulessorted != nil {
-                number = self.schedulessorted!.countscheduledtasks(hiddenID)
+                number = self.schedulessorted!.countscheduledtasks(hiddenID).0
             }
             if number ?? 0 > 0 {
                 let returnstr = String(number!)
                 if let color = self.colorindex, color == hiddenID {
-                    return self.attributedstring(str: returnstr, color: NSColor.green, align: .center)
+                    return self.attributedstring(str: returnstr, color: NSColor.red, align: .center)
                 } else {
                     return returnstr
                 }
@@ -329,7 +282,7 @@ extension ViewControllertabSchedule: NSTableViewDelegate, Attributedestring {
             }
         case "inCellID":
             if self.schedulessorted != nil {
-                taskintime = self.schedulessorted!.sortandcountscheduledtasks(hiddenID)
+                taskintime = self.schedulessorted!.sortandcountscheduledonetask(hiddenID)
                 return taskintime ?? ""
             }
         default:
@@ -361,7 +314,6 @@ extension ViewControllertabSchedule: DismissViewController {
         globalMainQueue.async(execute: { () -> Void in
             self.mainTableView.reloadData()
         })
-        self.infonexttask()
         self.operationsmethod()
     }
 }
@@ -369,18 +321,17 @@ extension ViewControllertabSchedule: DismissViewController {
 extension ViewControllertabSchedule: Reloadandrefresh {
 
     func reloadtabledata() {
-        self.firstRemoteServer.stringValue = ""
-        self.firstLocalCatalog.stringValue = ""
-        self.secondRemoteServer.stringValue = ""
-        self.secondLocalCatalog.stringValue = ""
         // Create a New schedules object
         self.schedulessorted = ScheduleSortedAndExpand()
         self.infoschedulessorted = InfoScheduleSortedAndExpand(sortedandexpanded: self.schedulessorted)
-        self.firstScheduledTask.stringValue = self.infoschedulessorted!.whenIsNextTwoTasksString()[0]
-        self.secondScheduledTask.stringValue = self.infoschedulessorted!.whenIsNextTwoTasksString()[1]
         globalMainQueue.async(execute: { () -> Void in
             self.mainTableView.reloadData()
         })
+        if let num = self.schedulessorted?.getsortedAndExpandedScheduleData()?.count {
+            self.numberofffutureschedules.stringValue = "Number of future schedules: " + String(num)
+        } else {
+            self.numberofffutureschedules.stringValue = "Number of future schedules: 0"
+        }
     }
 
 }
@@ -391,13 +342,9 @@ extension ViewControllertabSchedule: StartTimer {
     func startTimerNextJob() {
         self.schedulessorted = ScheduleSortedAndExpand()
         self.infoschedulessorted = InfoScheduleSortedAndExpand(sortedandexpanded: self.schedulessorted)
-        self.firstRemoteServer.stringValue = ""
-        self.firstLocalCatalog.stringValue = ""
-        self.startTimer()
         globalMainQueue.async(execute: { () -> Void in
             self.mainTableView.reloadData()
         })
-        self.infonexttask()
     }
 }
 
@@ -416,5 +363,10 @@ extension ViewControllertabSchedule: SetProfileinfo {
             self.profilInfo.stringValue = profile
             self.profilInfo.textColor = color
         })
+        if let num = self.schedulessorted?.getsortedAndExpandedScheduleData()?.count {
+            self.numberofffutureschedules.stringValue = "Number of future schedules: " + String(num)
+        } else {
+            self.numberofffutureschedules.stringValue = "Number of future schedules: 0"
+        }
     }
 }

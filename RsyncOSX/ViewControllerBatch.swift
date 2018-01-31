@@ -133,7 +133,7 @@ extension ViewControllerBatch: NSTableViewDelegate, Attributedestring {
         } else {
             if row == self.batchTask?.configurations!.getbatchQueue()!.getRow() && tableColumn!.identifier.rawValue == "taskCellID" {
                 let text = (object[tableColumn!.identifier] as? String)!
-                return self.attributedstring(str: text, color: NSColor.green, align: .center)
+                return self.attributedstring(str: text, color: NSColor.red, align: .center)
             } else if tableColumn!.identifier.rawValue == "completeCellID" {
                 if row < self.batchTask!.configurations!.getbatchQueue()!.getRow() {
                     return #imageLiteral(resourceName: "complete")

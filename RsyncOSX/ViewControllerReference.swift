@@ -35,6 +35,7 @@ class ViewControllerReference {
         return Singleton.instance
     }
 
+    // Reference to waiting tasks, required for cancel task
     var timerTaskWaiting: Timer?
     var dispatchTaskWaiting: DispatchWorkItem?
     // Temporary storage of the first scheduled task

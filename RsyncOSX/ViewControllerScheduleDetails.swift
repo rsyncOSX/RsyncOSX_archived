@@ -115,7 +115,7 @@ extension ViewControllerScheduleDetails: NSTableViewDelegate, Attributedestring 
             } else {
                 if active {
                     let text = object[tableColumn!.identifier] as? String
-                    return self.attributedstring(str: text!, color: NSColor.green, align: .left)
+                    return self.attributedstring(str: text!, color: NSColor.red, align: .left)
                 } else {
                     return object[tableColumn!.identifier] as? String
                 }

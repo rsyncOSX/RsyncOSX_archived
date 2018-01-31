@@ -86,12 +86,10 @@ class InfoScheduleSortedAndExpand: SetConfigurations {
     }
 
     // Info on first screen - two first scheduled backups.
-    func whenIsNextTwoTasksString() -> Array<String> {
+    func whenIsNextTwoTasksString() {
         var firstbackup: String?
         var secondbackup: String?
-        guard self.sortedschedules != nil else {
-            return [" ... none ...", " ... none ..."]
-        }
+        guard self.sortedschedules != nil else { return }
         // We are calculating the first object
         if (self.sortedschedules!.count) > 0 {
             if (self.sortedschedules!.count) > 0 {
@@ -99,50 +97,35 @@ class InfoScheduleSortedAndExpand: SetConfigurations {
                     let date1: Date = (minutes1.value(forKey: "start") as? Date)!
                     firstbackup = Tools().timeString(date1, enddate: nil)
                 }
-            } else {
-                firstbackup = " ... none ..."
-                secondbackup = " ... none ..."
             }
             if (self.sortedschedules!.count) > 1 {
                 if let minutes2 = self.sortedschedules?[1] {
                     let date2: Date = (minutes2.value(forKey: "start") as? Date)!
                     secondbackup = Tools().timeString(date2, enddate: nil)
                 }
-            } else {
-                secondbackup = " ... none ..."
             }
-        } else {
-            firstbackup = " ... none ..."
-            secondbackup = " ... none ..."
         }
-        return [firstbackup!, secondbackup!]
     }
 
     // Returns when to next tasks ar due in seconds
-    func whenIsNextTwoTasksDouble() -> Array<Double> {
-        var firstbackup: Double?
-        var secondbackup: Double?
+    func whenIsNextTwoTasksDouble() {
+        var firstbackup: Double = -1
+        var secondbackup: Double = -1
         // We are calculating the first object
-        guard self.sortedschedules != nil else { return [-1, -1] }
-        guard self.sortedschedules!.count > 0 else { return [-1, -1] }
+        guard self.sortedschedules != nil else { return }
+        guard self.sortedschedules!.count > 0 else { return }
         if (self.sortedschedules!.count) > 0 {
             if let minutes1 = self.sortedschedules?[0] {
                 let date1: Date = (minutes1.value(forKey: "start") as? Date)!
                 firstbackup = Tools().timeDoubleMinutes(date1, enddate: nil)
             }
-        } else {
-            firstbackup = -1
-            secondbackup = -1
         }
         if (self.sortedschedules!.count) > 1 {
             if let minutes2 = self.sortedschedules?[1] {
                 let date2: Date = (minutes2.value(forKey: "start") as? Date)!
                 secondbackup = Tools().timeDoubleMinutes(date2, enddate: nil)
             }
-        } else {
-            secondbackup = -1
         }
-        return [firstbackup!, secondbackup!]
     }
 
     init (sortedandexpanded: ScheduleSortedAndExpand?) {
