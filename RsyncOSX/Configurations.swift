@@ -257,7 +257,7 @@ class Configurations: ReloadTable, SetSchedules {
     /// Function also notifies Execute view to refresh data
     /// in tableView.
     /// - parameter index: index of Configuration to update
-    func setCurrentDateonConfiguration (_ index: Int) {
+    func setCurrentDateonConfigurationQuickbackup (_ index: Int, outputprocess: OutputProcess?) {
         if self.configurations![index].task == "snapshot" {
             self.increasesnapshotnum(index: index)
         }
@@ -268,9 +268,10 @@ class Configurations: ReloadTable, SetSchedules {
         self.storageapi!.saveConfigFromMemory()
         // Call the view and do a refresh of tableView
         self.reloadtable(vcontroller: .vctabmain)
+        _ = Logging(outputprocess: outputprocess)
     }
 
-    func setCurrentDateonConfigurationRevised(index: Int, outputprocess: OutputProcess?) {
+    func setCurrentDateonConfigurationSingletask(index: Int, outputprocess: OutputProcess?) {
         weak var taskDelegate: SingleTaskProgress?
         taskDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllertabMain
         // Logg run and get numbers from view

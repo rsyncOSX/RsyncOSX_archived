@@ -122,7 +122,7 @@ final class BatchTask: SetSchedules, SetConfigurations, Delay {
                 // Set date on Configuration
                 let index = self.configurations!.getIndex(work.0)
                 let config = self.configurations!.getConfigurations()[index]
-                self.configurations!.setCurrentDateonConfigurationRevised(index: index, outputprocess: self.outputprocess)
+                self.configurations!.setCurrentDateonConfigurationSingletask(index: index, outputprocess: self.outputprocess)
                 let numbers = "test"
                 var result: String?
                 if config.offsiteServer.isEmpty {

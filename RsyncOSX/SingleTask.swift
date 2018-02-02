@@ -137,7 +137,7 @@ final class SingleTask: SetSchedules, SetConfigurations {
                 self.taskDelegate?.terminateProgressProcess()
                 // If showInfoDryrun is on present result of dryrun automatically
                 self.taskDelegate?.presentViewInformation(outputprocess: self.outputprocess!)
-                self.configurations!.setCurrentDateonConfigurationRevised(index: self.index!, outputprocess: self.outputprocess)
+                self.configurations!.setCurrentDateonConfigurationSingletask(index: self.index!, outputprocess: self.outputprocess)
             case .empty:
                 self.workload = nil
             default:
