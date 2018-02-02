@@ -117,7 +117,6 @@ final class SingleTask: SetSchedules, SetConfigurations {
         self.ready = true
         // Making sure no nil pointer execption
         if let workload = self.workload {
-
             // Pop topmost element of work queue
             switch workload.pop() {
             case .estimatesinglerun:
@@ -141,15 +140,13 @@ final class SingleTask: SetSchedules, SetConfigurations {
                 self.taskDelegate?.terminateProgressProcess()
                 // If showInfoDryrun is on present result of dryrun automatically
                 self.taskDelegate?.presentViewInformation(outputprocess: self.outputprocess!)
-                // Logg run
+                // Logg run and get numbers from view
                 let number = Numbers(outputprocess: self.outputprocess)
-                // Get transferred numbers from view
                 self.transferredNumber = self.taskDelegate?.gettransferredNumber()
                 self.transferredNumberSizebytes = self.taskDelegate?.gettransferredNumberSizebytes()
                 let hiddenID = self.configurations!.gethiddenID(index: self.index!)
-                let numberOffFiles = self.transferredNumber
-                let sizeOfFiles = self.transferredNumberSizebytes
-                self.schedules!.addlogtaskmanuel(hiddenID, result: number.stats(numberOfFiles: numberOffFiles, sizeOfFiles: sizeOfFiles))
+                let numbers = number.stats(numberOfFiles: self.transferredNumber, sizeOfFiles: self.transferredNumberSizebytes)
+                self.schedules!.addlogtaskmanuel(hiddenID, result: numbers)
                 self.configurations!.setCurrentDateonConfiguration(self.index!)
                 _ = Logging(outputprocess: self.outputprocess)
             case .empty:

@@ -101,10 +101,10 @@ class ScheduleWriteLoggData: SetConfigurations, ReloadTable, Deselect {
     func addresultschedule(_ hiddenID: Int, dateStart: String, result: String, date: String, schedule: String) {
         if ViewControllerReference.shared.detailedlogging {
             var logged: Bool = false
-            loop : for i in 0 ..< self.schedules!.count {
-                if self.schedules![i].hiddenID == hiddenID  &&
-                    self.schedules![i].schedule == schedule &&
-                    self.schedules![i].dateStart == dateStart {
+            for i in 0 ..< self.schedules!.count where
+                self.schedules![i].hiddenID == hiddenID  &&
+                self.schedules![i].schedule == schedule &&
+                self.schedules![i].dateStart == dateStart {
                     if (self.configurations!.getResourceConfiguration(hiddenID, resource: .task) == "backup" ||
                         self.configurations!.getResourceConfiguration(hiddenID, resource: .task) == "snapshot" ) {
                         logged = true
@@ -121,9 +121,7 @@ class ScheduleWriteLoggData: SetConfigurations, ReloadTable, Deselect {
                         dict.setObject(resultannotaded ?? "", forKey: "resultExecuted" as NSCopying)
                         self.schedules![i].logrecords.append(dict)
                         self.storageapi!.saveScheduleFromMemory()
-                        break loop
                     }
-                }
             }
             // This might happen if a task is executed by schedule and there are no previous logged run
             if logged == false {
