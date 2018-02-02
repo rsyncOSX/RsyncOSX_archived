@@ -97,7 +97,7 @@ enum ResourceInConfiguration {
     case task
 }
 
-class Configurations: ReloadTable {
+class Configurations: ReloadTable, SetSchedules {
 
     // Storage API
     var storageapi: PersistentStorageAPI?
@@ -268,6 +268,29 @@ class Configurations: ReloadTable {
         self.storageapi!.saveConfigFromMemory()
         // Call the view and do a refresh of tableView
         self.reloadtable(vcontroller: .vctabmain)
+    }
+
+    func setCurrentDateonConfigurationRevised(index: Int, outputprocess: OutputProcess?) {
+        weak var taskDelegate: SingleTaskProgress?
+        taskDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllertabMain
+        // Logg run and get numbers from view
+        let number = Numbers(outputprocess: outputprocess)
+        let transferredNumber = taskDelegate?.gettransferredNumber()
+        let transferredNumberSizebytes = taskDelegate?.gettransferredNumberSizebytes()
+        let hiddenID = self.gethiddenID(index: index)
+        let numbers = number.stats(numberOfFiles: transferredNumber, sizeOfFiles: transferredNumberSizebytes)
+        self.schedules!.addlogtaskmanuel(hiddenID, result: numbers)
+        if self.configurations![index].task == "snapshot" {
+            self.increasesnapshotnum(index: index)
+        }
+        let currendate = Date()
+        let dateformatter = Tools().setDateformat()
+        self.configurations![index].dateRun = dateformatter.string(from: currendate)
+        // Saving updated configuration in memory to persistent store
+        self.storageapi!.saveConfigFromMemory()
+        // Call the view and do a refresh of tableView
+        self.reloadtable(vcontroller: .vctabmain)
+        _ = Logging(outputprocess: outputprocess)
     }
 
     /// Function destroys reference to object holding data and

@@ -45,8 +45,6 @@ final class BatchTask: SetSchedules, SetConfigurations, Delay {
     // Schedules in progress
     private var scheduledJobInProgress: Bool = false
     // Some max numbers
-    private var transferredNumber: String?
-    private var transferredNumberSizebytes: String?
 
     // Functions are called from batchView.
     func executeBatch() {
@@ -124,15 +122,8 @@ final class BatchTask: SetSchedules, SetConfigurations, Delay {
                 // Set date on Configuration
                 let index = self.configurations!.getIndex(work.0)
                 let config = self.configurations!.getConfigurations()[index]
-                // Logg run and get numbers from view
-                let number = Numbers(outputprocess: self.outputprocess)
-                self.transferredNumber = String(number.getTransferredNumbers(numbers: .transferredNumber))
-                self.transferredNumberSizebytes = String(number.getTransferredNumbers(numbers: .transferredNumberSizebytes))
-                let hiddenID = self.configurations!.gethiddenID(index: index)
-                let numbers = number.stats(numberOfFiles: self.transferredNumber, sizeOfFiles: self.transferredNumberSizebytes)
-                self.schedules!.addlogtaskmanuel(hiddenID, result: numbers)
-                self.configurations!.setCurrentDateonConfiguration(index)
-                 _ = Logging(outputprocess: self.outputprocess)
+                self.configurations!.setCurrentDateonConfigurationRevised(index: index, outputprocess: self.outputprocess)
+                let numbers = "test"
                 var result: String?
                 if config.offsiteServer.isEmpty {
                     result = config.localCatalog + " , " + "localhost" + " , " + numbers
