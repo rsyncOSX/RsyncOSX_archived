@@ -131,12 +131,11 @@ extension ViewControllerBatch: NSTableViewDelegate, Attributedestring {
         if tableColumn!.identifier.rawValue == "estimatedCellID" || tableColumn!.identifier.rawValue == "completedCellID" {
             return object[tableColumn!.identifier] as? Int!
         } else {
-            if row == self.batchTask?.configurations!.getbatchQueue()!.getRow() && tableColumn!.identifier.rawValue == "taskCellID" {
-                let text = (object[tableColumn!.identifier] as? String)!
-                return self.attributedstring(str: text, color: NSColor.red, align: .center)
-            } else if tableColumn!.identifier.rawValue == "completeCellID" {
+            if tableColumn!.identifier.rawValue == "completeCellID" {
                 if row < self.batchTask!.configurations!.getbatchQueue()!.getRow() {
                     return #imageLiteral(resourceName: "complete")
+                } else if row == self.batchTask?.configurations!.getbatchQueue()!.getRow() {
+                    return #imageLiteral(resourceName: "leftarrow")
                 } else {
                     return nil
                 }
