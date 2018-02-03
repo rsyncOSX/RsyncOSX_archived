@@ -5,15 +5,13 @@
 //  Created by Thomas Evensen on 08/02/16.
 //  Copyright © 2016 Thomas Evensen. All rights reserved.
 //
-//  SwiftLint: OK 31 July 2017
-//  swiftlint:disable syntactic_sugar
 
 import Foundation
 
 final class RsyncParametersProcess {
 
     private var stats: Bool?
-    private var arguments: Array<String>?
+    private var arguments: [String]?
     var localCatalog: String?
     var offsiteCatalog: String?
     var offsiteUsername: String?
@@ -139,7 +137,7 @@ final class RsyncParametersProcess {
     /// - parameter dryRun: true if compute dryrun arguments, false if compute arguments for real run
     /// - paramater forDisplay: true if for display, false if not
     /// - returns: Array of Strings
-    func argumentsRsync (_ config: Configuration, dryRun: Bool, forDisplay: Bool) -> Array<String> {
+    func argumentsRsync (_ config: Configuration, dryRun: Bool, forDisplay: Bool) -> [String] {
         self.localCatalog = config.localCatalog
         self.remoteargs(config)
         self.setParameters1To6(config, dryRun: dryRun, forDisplay: forDisplay)
@@ -227,6 +225,6 @@ final class RsyncParametersProcess {
     }
 
     init () {
-        self.arguments = Array<String>()
+        self.arguments = [String]()
     }
 }

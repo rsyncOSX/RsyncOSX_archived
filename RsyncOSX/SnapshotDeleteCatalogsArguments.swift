@@ -6,14 +6,12 @@
 //  Copyright © 2018 Thomas Evensen. All rights reserved.
 //
 
-// swiftlint:disable syntactic_sugar
-
 import Foundation
 
 final class SnapshotDeleteCatalogsArguments: ProcessArguments {
 
     private var config: Configuration?
-    private var args: Array<String>?
+    private var args: [String]?
     private var command: String?
     private var remotecatalog: String?
 
@@ -39,7 +37,7 @@ final class SnapshotDeleteCatalogsArguments: ProcessArguments {
         self.args!.append(remotecatalog)
     }
 
-    func getArguments() -> Array<String>? {
+    func getArguments() -> [String]? {
         return self.args
     }
 
@@ -48,7 +46,7 @@ final class SnapshotDeleteCatalogsArguments: ProcessArguments {
     }
 
     init (config: Configuration, remotecatalog: String) {
-        self.args = Array<String>()
+        self.args = [String]()
         self.config = config
         self.remotecatalog = remotecatalog
         if config.offsiteServer.isEmpty == false {

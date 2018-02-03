@@ -5,8 +5,6 @@
 //  Created by Thomas Evensen on 03/10/2016.
 //  Copyright © 2016 Thomas Evensen. All rights reserved.
 //
-//  SwiftLint: OK 31 July 2017
-//  swiftlint:disable syntactic_sugar
 
 import Foundation
 
@@ -15,7 +13,7 @@ final class RsyncParametersVC {
     // Tuple for rsync argument and value
     typealias Argument = (String, Int)
     // Static initial arguments, DO NOT change order
-    private let rsyncArguments: Array<Argument> = [
+    private let rsyncArguments: [Argument] = [
         ("user", 1),
         ("delete", 0),
         ("--backup", 0),
@@ -28,7 +26,7 @@ final class RsyncParametersVC {
         ("--max-delete", 1)]
 
     // Array storing combobox values
-    private var comboBoxValues: Array<String>?
+    private var comboBoxValues: [String]?
 
     // Preselected parameters for storing a backup of deleted or changed files before
     // rsync synchronises the directories
@@ -43,32 +41,32 @@ final class RsyncParametersVC {
     /// Function for getting string for backup parameters
     /// - parameter none: none
     /// - return : array of String
-    func getBackupString() -> Array<String> {
+    func getBackupString() -> [String] {
         return self.backupString
     }
 
     /// Function for getting string for suffix parameter
     /// - parameter none: none
     /// - return : array of String
-    func getSuffixString() -> Array<String> {
+    func getSuffixString() -> [String] {
         return self.suffixString
     }
 
     /// Function for getting string for alternative suffix parameter
     /// - parameter none: none
     /// - return : array of String
-    func getSuffixString2() -> Array<String> {
+    func getSuffixString2() -> [String] {
         return self.suffixString2
     }
 
-    func getdonotdeletefilesString() -> Array<String> {
+    func getdonotdeletefilesString() -> [String] {
         return self.donotdeletefiles
     }
 
     /// Function for getting for rsync arguments to use in ComboBoxes in ViewControllerRsyncParameters
     /// - parameter none: none
     /// - return : array of String
-    func getComboBoxValues() -> Array<String> {
+    func getComboBoxValues() -> [String] {
         guard self.comboBoxValues != nil else {
             return [""]
         }
@@ -120,7 +118,7 @@ final class RsyncParametersVC {
     }
 
     // Split an Rsync argument into argument and value
-    private func split (_ str: String) -> Array<String> {
+    private func split (_ str: String) -> [String] {
         let argument: String?
         let value: String?
         var split = str.components(separatedBy: "=")
@@ -139,7 +137,7 @@ final class RsyncParametersVC {
         guard parameter != nil else {
             return (0, "")
         }
-        let splitstr: Array<String> = self.split(parameter!)
+        let splitstr: [String] = self.split(parameter!)
         guard splitstr.count > 1 else {
             return (0, "")
         }
@@ -208,7 +206,7 @@ final class RsyncParametersVC {
         self.config = config
         // Set string array for Comboboxes
         self.comboBoxValues = nil
-        self.comboBoxValues = Array<String>()
+        self.comboBoxValues = [String]()
         for i in 0 ..< self.rsyncArguments.count {
             self.comboBoxValues!.append(self.rsyncArguments[i].0)
         }

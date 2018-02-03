@@ -5,7 +5,7 @@
 //  Created by Thomas Evensen on 24/08/2016.
 //  Copyright © 2016 Thomas Evensen. All rights reserved.
 //
-//  swiftlint:disable syntactic_sugar line_length
+//  swiftlint:disable line_length
 
 import Foundation
 import Cocoa
@@ -14,7 +14,7 @@ class ViewControllerInformation: NSViewController, SetDismisser, GetInformation 
 
     @IBOutlet weak var detailsTable: NSTableView!
 
-    var output: Array<String>?
+    var output: [String]?
 
     override func viewDidLoad() {
         super.viewDidLoad()

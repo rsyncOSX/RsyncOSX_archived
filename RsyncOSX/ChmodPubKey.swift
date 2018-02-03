@@ -5,8 +5,6 @@
 //  Created by Thomas Evensen on 17.06.2017.
 //  Copyright © 2017 Thomas Evensen. All rights reserved.
 //
-//  SwiftLint: OK 31 July 2017
-//  swiftlint:disable syntactic_sugar
 
 import Foundation
 
@@ -19,7 +17,7 @@ enum ChmodTask {
 final class ChmodPubKey {
 
     // Work Queue
-    private var work: Array<ChmodTask>?
+    private var work: [ChmodTask]?
 
     // Returns the top most element.
     // Top element is read only
@@ -48,7 +46,7 @@ final class ChmodPubKey {
     // Single run
     init(key: String) {
         self.work = nil
-        self.work = Array<ChmodTask>()
+        self.work = [ChmodTask]()
         switch key {
         case "rsa":
             self.work!.append(.chmodRsa)

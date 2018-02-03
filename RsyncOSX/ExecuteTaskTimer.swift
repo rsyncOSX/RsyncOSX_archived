@@ -2,7 +2,7 @@
 //  Created by Thomas Evensen on 20/01/2017.
 //  Copyright © 2017 Thomas Evensen. All rights reserved.
 //
-//  swiftlint:disable syntactic_sugar line_length
+//  swiftlint:disable line_length
 
 import Foundation
 
@@ -18,7 +18,7 @@ class ExecuteTaskTimer: Operation, SetSchedules, SetConfigurations, SetScheduled
     override func main() {
 
         let outputprocess = OutputProcess()
-        var arguments: Array<String>?
+        var arguments: [String]?
         var config: Configuration?
         // Get the first job of the queue
         if let dict: NSDictionary = ViewControllerReference.shared.scheduledTask {

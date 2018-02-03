@@ -4,8 +4,8 @@
 //
 //  Created by Thomas Evensen on 26.04.2017.
 //  Copyright © 2017 Thomas Evensen. All rights reserved.
-//  swiftlint OK - 17 July 2017
-//  swiftlint:disable syntactic_sugar line_length
+//
+// swiftlint:disable line_length
 
 import Foundation
 
@@ -32,11 +32,11 @@ class Files: Reportfileerror {
     }
 
     // Function for returning directorys in path as array of URLs
-    func getDirectorysURLs() -> Array<URL>? {
-        var array: Array<URL>?
+    func getDirectorysURLs() -> [URL]? {
+        var array: [URL]?
         if let filePath = self.rootpath {
             if let fileURLs = self.getfileURLs(path: filePath) {
-                array = Array<URL>()
+                array = [URL]()
                 for i in 0 ..< fileURLs.count where fileURLs[i].hasDirectoryPath {
                     array!.append(fileURLs[i])
                 }
@@ -47,8 +47,8 @@ class Files: Reportfileerror {
     }
 
     // Function for returning files in path as array of URLs
-    func getFilesURLs() -> Array<URL>? {
-        var array: Array<URL>?
+    func getFilesURLs() -> [URL]? {
+        var array: [URL]?
         if let filePath = self.rootpath {
             let fileManager = FileManager.default
             var isDir: ObjCBool = false
@@ -56,7 +56,7 @@ class Files: Reportfileerror {
                 guard isDir.boolValue else { return nil }
             } else { return nil }
             if let fileURLs = self.getfileURLs(path: filePath) {
-                array = Array<URL>()
+                array = [URL]()
                 for i in 0 ..< fileURLs.count where fileURLs[i].isFileURL {
                     array!.append(fileURLs[i])
                 }
@@ -67,8 +67,8 @@ class Files: Reportfileerror {
     }
 
     // Function for returning files in path as array of Strings
-    func getFileStrings() -> Array<String>? {
-        var array: Array<String>?
+    func getFileStrings() -> [String]? {
+        var array: [String]?
         if let filePath = self.rootpath {
             let fileManager = FileManager.default
             var isDir: ObjCBool = false
@@ -76,7 +76,7 @@ class Files: Reportfileerror {
                 guard isDir.boolValue else { return nil }
             } else { return nil }
             if let fileURLs = self.getfileURLs(path: filePath) {
-                array = Array<String>()
+                array = [String]()
                 for i in 0 ..< fileURLs.count where fileURLs[i].isFileURL {
                     array!.append(fileURLs[i].path)
                 }
@@ -87,8 +87,8 @@ class Files: Reportfileerror {
     }
 
     // Function for returning profiles as array of Strings
-    func getDirectorysStrings()-> Array<String> {
-        var array: Array<String> = Array<String>()
+    func getDirectorysStrings() -> [String] {
+        var array = [String]()
         if let filePath = self.rootpath {
             if let fileURLs = self.getfileURLs(path: filePath) {
                 for i in 0 ..< fileURLs.count where fileURLs[i].hasDirectoryPath {
@@ -119,7 +119,7 @@ class Files: Reportfileerror {
     }
 
     // Function for getting fileURLs for a given path
-    func getfileURLs (path: String) -> Array<URL>? {
+    func getfileURLs (path: String) -> [URL]? {
         let fileManager = FileManager.default
         if let filepath = URL.init(string: path) {
             do {

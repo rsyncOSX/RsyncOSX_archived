@@ -8,14 +8,14 @@
 // 1. ssh -p port user@host "mkdir ~/catalog"
 // 2. ssh -p port user@host "cd ~/catalog; rm current; ln -s NN current"
 //
-// swiftlint:disable syntactic_sugar
+// swiftlint:disable
 
 import Foundation
 
 final class SnapshotCurrentArguments: ProcessArguments {
 
     private var config: Configuration?
-    private var args: Array<String>?
+    private var args: [String]?
     private var command: String?
 
     private func remotearguments() {
@@ -49,7 +49,7 @@ final class SnapshotCurrentArguments: ProcessArguments {
         self.command = "/usr/bin/env"
     }
 
-    func getArguments() -> Array<String>? {
+    func getArguments() -> [String]? {
         return self.args
     }
 
@@ -58,7 +58,7 @@ final class SnapshotCurrentArguments: ProcessArguments {
     }
 
     init (config: Configuration, remote: Bool) {
-        self.args = Array<String>()
+        self.args = [String]()
         self.config = config
         if remote {
             self.remotearguments()

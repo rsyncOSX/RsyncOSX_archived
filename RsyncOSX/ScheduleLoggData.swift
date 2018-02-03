@@ -8,7 +8,7 @@
 //  Object for sorting and holding logg data about all tasks.
 //  Detailed logging must be set on if logging data.
 //
-//  swiftlint:disable syntactic_sugar line_length
+//  swiftlint:disable line_length
 
 import Foundation
 
@@ -67,7 +67,7 @@ final class ScheduleLoggData: SetConfigurations, SetSchedules {
 
     // Loggdata is only read and sorted once
     private func readAndSortAllLoggdata() {
-        var data = Array<NSMutableDictionary>()
+        var data = [NSMutableDictionary]()
         let input: [ConfigurationSchedule] = self.schedules!.getSchedule()
         for i in 0 ..< input.count {
             let hiddenID = self.schedules!.getSchedule()[i].hiddenID

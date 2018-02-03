@@ -9,7 +9,7 @@
 //   presistent store. Class is a interface
 //   for Schedule.
 //
-//   swiftlint:disable syntactic_sugar line_length
+//   swiftlint:disable line_length
 
 import Foundation
 
@@ -26,7 +26,7 @@ final class PersistentStorageScheduling: Readwritefiles, SetSchedules {
 
     // Saving Schedules from MEMORY to persistent store
     func savescheduleInMemoryToPersistentStore() {
-        var array = Array<NSDictionary>()
+        var array = [NSDictionary]()
         // Reading Schedules from memory
         if let schedules = self.schedulesDelegate?.getschedulesobject()?.getSchedule() {
             for i in 0 ..< schedules.count {
@@ -55,7 +55,7 @@ final class PersistentStorageScheduling: Readwritefiles, SetSchedules {
     // Saving not deleted schedule records to persistent store
     // Deleted Schedule by hiddenID
     func savescheduleDeletedRecordsToFile (_ hiddenID: Int) {
-        var array = Array<NSDictionary>()
+        var array = [NSDictionary]()
         let Schedule = self.schedules!.getSchedule()
         for i in 0 ..< Schedule.count {
             let schedule = Schedule[i]
@@ -76,8 +76,8 @@ final class PersistentStorageScheduling: Readwritefiles, SetSchedules {
     }
 
     // Writing schedules to persistent store
-    // Schedule is Array<NSDictionary>
-    private func writeToStore (_ array: Array<NSDictionary>) {
+    // Schedule is [NSDictionary]
+    private func writeToStore (_ array: [NSDictionary]) {
         if self.writeDatatoPersistentStorage(array, task: .schedule) {
             self.schedulesDelegate?.reloadschedulesobject()
             self.readloggdataDelegate?.readloggdata()

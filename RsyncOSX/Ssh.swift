@@ -5,8 +5,6 @@
 //  Created by Thomas Evensen on 23.04.2017.
 //  Copyright © 2017 Thomas Evensen. All rights reserved.
 //
-//  SwiftLint: OK 31 July 2017
-//  swiftlint:disable syntactic_sugar
 
 import Foundation
 import Cocoa
@@ -30,12 +28,12 @@ class Ssh: Files {
     var dsaStringPath: String?
 
     // Arrays listing all key files
-    var keyFileURLS: Array<URL>?
-    var keyFileStrings: Array<String>?
+    var keyFileURLS: [URL]?
+    var keyFileStrings: [String]?
 
     var scpArguments: ScpArgumentsSsh?
     var command: String?
-    var arguments: Array<String>?
+    var arguments: [String]?
 
     // Process
     var process: CommandSsh?
@@ -163,7 +161,7 @@ class Ssh: Files {
     }
 
     // get output
-    func getOutput() -> Array<String>? {
+    func getOutput() -> [String]? {
         return self.outputprocess?.getOutput()
     }
 
