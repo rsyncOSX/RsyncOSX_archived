@@ -4,8 +4,7 @@
 //  Created by Thomas Evensen on 11/01/16.
 //  Copyright © 2016 Thomas Evensen. All rights reserved.
 //
-//  SwiftLint: OK 31 July 2017
-//  swiftlint:disable syntactic_sugar line_length cyclomatic_complexity
+//  swiftlint:disable line_length cyclomatic_complexity
 
 import Foundation
 
@@ -21,8 +20,8 @@ enum Trim {
 
 final class OutputProcess {
 
-    private var output: Array<String>?
-    private var trimmedoutput: Array<String>?
+    private var output: [String]?
+    private var trimmedoutput: [String]?
     private var startIndex: Int?
     private var endIndex: Int?
     private var maxNumber: Int = 0
@@ -40,7 +39,7 @@ final class OutputProcess {
         return self.output?.count ?? 0
     }
 
-    func getOutput() -> Array<String>? {
+    func getOutput() -> [String]? {
         if self.trimmedoutput != nil {
             return self.trimmedoutput
         } else {
@@ -60,8 +59,8 @@ final class OutputProcess {
         }
     }
 
-    func trimoutput(trim: Trim) -> Array<String>? {
-        var out = Array<String>()
+    func trimoutput(trim: Trim) -> [String]? {
+        var out = [String]()
         guard self.output != nil else { return nil }
         switch trim {
         case .one:
@@ -100,6 +99,6 @@ final class OutputProcess {
     }
 
     init () {
-        self.output = Array<String>()
+        self.output = [String]()
     }
  }

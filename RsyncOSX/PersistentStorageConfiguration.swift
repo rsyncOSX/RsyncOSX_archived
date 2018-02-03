@@ -5,8 +5,7 @@
 //  Created by Thomas Evensen on 09/12/15.
 //  Copyright © 2015 Thomas Evensen. All rights reserved.
 //
-//  SwiftLint: OK 31 July 2017
-//  swiftlint:disable syntactic_sugar function_body_length 
+//  swiftlint:disable function_body_length 
 
 import Foundation
 
@@ -44,7 +43,7 @@ final class PersistentStorageConfiguration: Readwritefiles, SetConfigurations {
     // Saving Configuration from MEMORY to persistent store
     // Reads Configurations from MEMORY and saves to persistent Store
     func saveconfigInMemoryToPersistentStore() {
-        var array = Array<NSDictionary>()
+        var array = [NSDictionary]()
         // Reading Configurations from memory
         let configs: [Configuration] = self.configurations!.getConfigurations()
         for i in 0 ..< configs.count {
@@ -59,7 +58,7 @@ final class PersistentStorageConfiguration: Readwritefiles, SetConfigurations {
     func newConfigurations (_ dict: NSMutableDictionary) {
         let singleFile = dict.value(forKey: "singleFile") as? Int
         let snapshot = dict.value(forKey: "task") as? String
-        var array = Array<NSDictionary>()
+        var array = [NSDictionary]()
         // Get existing configurations from memory
         let configs: [Configuration] = self.configurations!.getConfigurations()
         // copy existing backups before adding
@@ -204,8 +203,8 @@ final class PersistentStorageConfiguration: Readwritefiles, SetConfigurations {
     }
 
     // Writing configuration to persistent store
-    // Configuration is Array<NSDictionary>
-    private func writeToStore (_ array: Array<NSDictionary>) {
+    // Configuration is [NSDictionary]
+    private func writeToStore (_ array: [NSDictionary]) {
         if (self.writeDatatoPersistentStorage(array, task: .configuration)) {
             self.configurationsDelegate?.reloadconfigurationsobject()
         }

@@ -5,7 +5,7 @@
 //  Created by Thomas Evensen on 20.11.2017.
 //  Copyright © 2017 Thomas Evensen. All rights reserved.
 //
-// swiftlint:disable syntactic_sugar line_length
+// swiftlint:disable line_length
 
 import Foundation
 
@@ -51,7 +51,7 @@ class Logging: Reportfileerror {
             self.write()
         } else if ViewControllerReference.shared.minimumlogging {
             self.read()
-            var tmplogg = Array<String>()
+            var tmplogg = [String]()
             var startindex = self.outputprocess!.getOutput()!.count - 8
             if startindex < 0 { startindex = 0 }
             tmplogg.append("\n")

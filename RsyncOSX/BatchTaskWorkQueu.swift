@@ -5,20 +5,18 @@
 //  Created by Thomas Evensen on 25/08/2016.
 //  Copyright © 2016 Thomas Evensen. All rights reserved.
 //
-//  SwiftLint: OK 31 July 2017
-//  swiftlint:disable syntactic_sugar
 
 import Foundation
 
 final class BatchTaskWorkQueu {
 
     // Structure holding updated data for batchrun
-    private var data = Array<NSMutableDictionary>()
+    private var data = [NSMutableDictionary]()
     // BatchQueue
     // First = hiddenID, second 0 estimate or 1 real run
     private var batchQueu = [(Int, Int)]()
     // Just holding the indexes
-    private var index = Array<Int>()
+    private var index = [Int]()
     // Holding value for working on row
     private var row: Int?
     // Completed or not
@@ -63,7 +61,7 @@ final class BatchTaskWorkQueu {
     }
 
     // Return data
-    func getupdatedBatchdata() -> Array<NSMutableDictionary> {
+    func getupdatedBatchdata() -> [NSMutableDictionary] {
         return self.data
     }
 

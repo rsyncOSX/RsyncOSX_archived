@@ -6,7 +6,6 @@
 //  Created by Thomas Evensen on 09/05/16.
 //  Copyright © 2016 Thomas Evensen. All rights reserved.
 //
-//  swiftlint:disable syntactic_sugar
 
 import Foundation
 import Cocoa
@@ -39,7 +38,7 @@ class Schedules: ScheduleWriteLoggData {
 
     // Return reference to Schedule data
     // self.Schedule is privat data
-    func getSchedule()-> Array<ConfigurationSchedule> {
+    func getSchedule() -> [ConfigurationSchedule] {
         return self.schedules ?? []
     }
 
@@ -84,10 +83,10 @@ class Schedules: ScheduleWriteLoggData {
     /// Function reads all Schedule data for one task by hiddenID
     /// - parameter hiddenID : hiddenID for task
     /// - returns : array of Schedules sorted after startDate
-    func readscheduleonetask (_ hiddenID: Int?) -> Array<NSMutableDictionary>? {
+    func readscheduleonetask (_ hiddenID: Int?) -> [NSMutableDictionary]? {
         guard hiddenID != nil else { return nil }
         var row: NSMutableDictionary
-        var data = Array<NSMutableDictionary>()
+        var data = [NSMutableDictionary]()
         for i in 0 ..< self.schedules!.count {
             if self.schedules![i].hiddenID == hiddenID {
                 row = [
@@ -125,7 +124,7 @@ class Schedules: ScheduleWriteLoggData {
 
     /// Function either deletes or stops Schedules.
     /// - parameter data : array of Schedules which some of them are either marked for stop or delete
-    func deleteorstopschedule(data: Array<NSMutableDictionary>) {
+    func deleteorstopschedule(data: [NSMutableDictionary]) {
         var update: Bool = false
         if (data.count) > 0 {
             let stop = data.filter({ return (($0.value(forKey: "stopCellID") as? Int) == 1)})
@@ -195,7 +194,7 @@ class Schedules: ScheduleWriteLoggData {
     // Returning the set of executed tasks for å schedule.
     // Used for recalcutlate the parent key when task change schedule
     // from active to "stopped"
-    private func getScheduleExecuted(_ hiddenID: Int) -> Array<NSMutableDictionary>? {
+    private func getScheduleExecuted(_ hiddenID: Int) -> [NSMutableDictionary]? {
         var result = self.schedules!.filter({return ($0.hiddenID == hiddenID) && ($0.schedule == "stopped")})
         if result.count > 0 {
             let schedule = result.removeFirst()
@@ -208,9 +207,9 @@ class Schedules: ScheduleWriteLoggData {
     // Function for reading all jobs for schedule and all history of past executions.
     // Schedules are stored in self.schedules. Schedules are sorted after hiddenID.
     private func readschedules() {
-        var store: Array<ConfigurationSchedule>? = self.storageapi!.getScheduleandhistory()
+        var store: [ConfigurationSchedule]? = self.storageapi!.getScheduleandhistory()
         guard store != nil else { return }
-        var data = Array<ConfigurationSchedule>()
+        var data = [ConfigurationSchedule]()
         for i in 0 ..< store!.count {
             data.append(store![i])
         }

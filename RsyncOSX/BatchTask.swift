@@ -5,8 +5,7 @@
 //  Created by Thomas Evensen on 21.06.2017.
 //  Copyright © 2017 Thomas Evensen. All rights reserved.
 //
-//  SwiftLint: OK 31 July 2017
-//  swiftlint:disable syntactic_sugar line_length
+//  swiftlint:disable line_length
 
 import Foundation
 import Cocoa
@@ -60,13 +59,13 @@ final class BatchTask: SetSchedules, SetConfigurations, Delay {
             switch work.1 {
             case 0:
                 self.batchViewDelegate?.progressIndicatorViewBatch(operation: .start)
-                let args: Array<String> = self.configurations!.arguments4rsync(index: index, argtype: .argdryRun)
+                let args: [String] = self.configurations!.arguments4rsync(index: index, argtype: .argdryRun)
                 let process = Rsync(arguments: args)
                 // Setting reference to process for Abort if requiered
                 process.executeProcess(outputprocess: self.outputprocess)
                 self.process = process.getProcess()
             case 1:
-                let arguments: Array<String> = self.configurations!.arguments4rsync(index: index, argtype: .arg)
+                let arguments: [String] = self.configurations!.arguments4rsync(index: index, argtype: .arg)
                 let process = Rsync(arguments: arguments)
                 // Setting reference to process for Abort if requiered
                 process.executeProcess(outputprocess: self.outputprocess)

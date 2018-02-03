@@ -11,7 +11,7 @@
 //  Created by Thomas Evensen on 08/02/16.
 //  Copyright © 2016 Thomas Evensen. All rights reserved.
 //
-//  swiftlint:disable syntactic_sugar line_length file_length type_body_length
+//  swiftlint:disable line_length file_length type_body_length
 
 import Foundation
 import Cocoa
@@ -112,18 +112,18 @@ class Configurations: ReloadTable, SetSchedules {
     // Reference to singletask object
     var singleTask: SingleTask?
     // The main structure storing all Configurations for tasks
-    private var configurations: Array<Configuration>?
+    private var configurations: [Configuration]?
     // Array to store argumenst for all tasks.
     // Initialized during startup
     private var argumentAllConfigurations: NSMutableArray?
     // Datasource for NSTableViews
-    private var configurationsDataSource: Array<NSMutableDictionary>?
+    private var configurationsDataSource: [NSMutableDictionary]?
     // Object for batchQueue data and operations
     private var batchQueue: BatchTaskWorkQueu?
     // backup list from remote info view
-    var quickbackuplist: Array<Int>?
+    var quickbackuplist: [Int]?
     // Estimated backup list, all backups
-    var estimatedlist: Array<NSMutableDictionary>?
+    var estimatedlist: [NSMutableDictionary]?
 
     /// Function for getting the profile
     func getProfile() -> String? {
@@ -133,7 +133,7 @@ class Configurations: ReloadTable, SetSchedules {
     /// Function for getting Configurations read into memory
     /// - parameter none: none
     /// - returns : Array of configurations
-    func getConfigurations() -> Array<Configuration> {
+    func getConfigurations() -> [Configuration] {
         return self.configurations ?? []
     }
 
@@ -172,7 +172,7 @@ class Configurations: ReloadTable, SetSchedules {
     func getConfigurationsDataSourcecountBackup() -> [NSMutableDictionary]? {
         let configurations: [Configuration] = self.configurations!.filter({return ($0.task == "backup" || $0.task == "snapshot")})
         var row =  NSMutableDictionary()
-        var data = Array<NSMutableDictionary>()
+        var data = [NSMutableDictionary]()
         for i in 0 ..< configurations.count {
             row = [
                 "taskCellID": configurations[i].task,
@@ -202,7 +202,7 @@ class Configurations: ReloadTable, SetSchedules {
 
     func getConfigurationsDataSourcecountBackupSnapshot() -> [NSDictionary]? {
         var configurations: [Configuration] = self.configurations!.filter({return ($0.task == "backup" || $0.task == "snapshot" )})
-        var data = Array<NSDictionary>()
+        var data = [NSDictionary]()
         for i in 0 ..< configurations.count {
             if configurations[i].offsiteServer.isEmpty == true {
                 configurations[i].offsiteServer = "localhost"
@@ -235,7 +235,7 @@ class Configurations: ReloadTable, SetSchedules {
     /// - parameter index: index of Configuration
     /// - parameter argtype : either .arg or .argdryRun (of enumtype argumentsRsync)
     /// - returns : array of Strings holding all computed arguments
-    func arguments4rsync (index: Int, argtype: ArgumentsRsync) -> Array<String> {
+    func arguments4rsync (index: Int, argtype: ArgumentsRsync) -> [String] {
         let allarguments = (self.argumentAllConfigurations![index] as? ArgumentsOneConfiguration)!
         switch argtype {
         case .arg:
@@ -354,7 +354,7 @@ class Configurations: ReloadTable, SetSchedules {
 
     /// Function is getting the updated batch data queue
     /// - returns : reference to the batch data queue
-    func getupdatedbatchQueue() -> Array<NSMutableDictionary>? {
+    func getupdatedbatchQueue() -> [NSMutableDictionary]? {
         return self.batchQueue?.getupdatedBatchdata()
     }
 
@@ -429,9 +429,9 @@ class Configurations: ReloadTable, SetSchedules {
     /// Function is destroying any previous Configurations before loading new and computing new arguments.
     /// - parameter none: none
     private func readconfigurations() {
-        self.configurations = Array<Configuration>()
+        self.configurations = [Configuration]()
         self.argumentAllConfigurations = NSMutableArray()
-        var store: Array<Configuration>? = self.storageapi!.getConfigurations()
+        var store: [Configuration]? = self.storageapi!.getConfigurations()
         guard store != nil else { return }
         for i in 0 ..< store!.count {
             self.configurations!.append(store![i])
@@ -439,8 +439,8 @@ class Configurations: ReloadTable, SetSchedules {
             self.argumentAllConfigurations!.add(rsyncArgumentsOneConfig)
         }
         // Then prepare the datasource for use in tableviews as Dictionarys
-        var row =  NSMutableDictionary()
-        var data = Array<NSMutableDictionary>()
+        //var row =  NSMutableDictionary()
+        var data = [NSMutableDictionary]()
         self.configurationsDataSource = nil
         var batch: Int = 0
         for i in 0 ..< self.configurations!.count {
@@ -449,7 +449,7 @@ class Configurations: ReloadTable, SetSchedules {
             } else {
                 batch = 0
             }
-            row = [
+            let row: NSMutableDictionary = [
                 "taskCellID": self.configurations![i].task,
                 "batchCellID": batch,
                 "localCatalogCellID": self.configurations![i].localCatalog,

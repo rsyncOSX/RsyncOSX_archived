@@ -5,8 +5,7 @@
 //  Created by Thomas Evensen on 10.03.2017.
 //  Copyright © 2017 Thomas Evensen. All rights reserved.
 //
-//  SwiftLint: OK 31 July 2017
-//  swiftlint:disable syntactic_sugar line_length
+//  swiftlint:disable line_length
 
 import Foundation
 
@@ -35,7 +34,7 @@ class ProcessCmd: Delay {
     // Command to be executed, normally rsync
     var command: String?
     // Arguments to command
-    var arguments: Array<String>?
+    var arguments: [String]?
     // true if processtermination
     var termination: Bool = false
     // possible error ouput
@@ -102,7 +101,7 @@ class ProcessCmd: Delay {
         self.processReference!.terminate()
     }
 
-    init(command: String?, arguments: Array<String>?) {
+    init(command: String?, arguments: [String]?) {
         self.command = command
         self.arguments = arguments
         self.possibleerrorDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllertabMain

@@ -5,8 +5,7 @@
 //  Created by Thomas Evensen on 27/06/16.
 //  Copyright © 2016 Thomas Evensen. All rights reserved.
 //
-//  SwiftLint: OK 31 July 2017
-//  swiftlint:disable syntactic_sugar line_length
+//  swiftlint:disable line_length
 
 import Foundation
 
@@ -19,12 +18,12 @@ enum Enumscopyfiles {
 final class CopyFileArguments: ProcessArguments {
 
     private var file: String?
-    private var arguments: Array<String>?
+    private var arguments: [String]?
     private var argDisplay: String?
     private var command: String?
     private var config: Configuration?
 
-    func getArguments() -> Array<String>? {
+    func getArguments() -> [String]? {
         return self.arguments
     }
 
@@ -38,7 +37,7 @@ final class CopyFileArguments: ProcessArguments {
     }
 
     init (task: Enumscopyfiles, config: Configuration, remoteFile: String?, localCatalog: String?, drynrun: Bool?) {
-        self.arguments = Array<String>()
+        self.arguments = [String]()
         self.config = config
         switch task {
         case .rsyncCmd:

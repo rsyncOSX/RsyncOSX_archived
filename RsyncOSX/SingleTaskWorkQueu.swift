@@ -5,8 +5,6 @@
 //  Created by Thomas Evensen on 13/10/2016.
 //  Copyright © 2016 Thomas Evensen. All rights reserved.
 //
-//  SwiftLint: OK 31 July 2017
-//  swiftlint:disable syntactic_sugar
 
 import Foundation
 
@@ -22,7 +20,7 @@ enum SingleTaskWork {
 final class SingleTaskWorkQueu {
 
     // Work Queue
-    private var work: Array<SingleTaskWork>?
+    private var work: [SingleTaskWork]?
 
     // Returns the top most element.
     // Top element is read only
@@ -60,7 +58,7 @@ final class SingleTaskWorkQueu {
     // Single run
     init() {
         self.work = nil
-        self.work = Array<SingleTaskWork>()
+        self.work = [SingleTaskWork]()
         self.work!.append(.estimatesinglerun)
         self.work!.append(.executesinglerun)
         self.work!.append(.done)
@@ -69,7 +67,7 @@ final class SingleTaskWorkQueu {
     // Either Abort or Batchrun
     init (task: SingleTaskWork) {
         self.work = nil
-        self.work = Array<SingleTaskWork>()
+        self.work = [SingleTaskWork]()
         self.work!.append(task)
     }
 }

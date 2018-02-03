@@ -5,8 +5,6 @@
 //  Created by Thomas Evensen on 27.04.2017.
 //  Copyright © 2017 Thomas Evensen. All rights reserved.
 //
-//  SwiftLint: OK 31 July 2017
-//  swiftlint:disable syntactic_sugar
 
 import Foundation
 
@@ -23,10 +21,10 @@ final class ScpArgumentsSsh: SetConfigurations {
 
     var commandCopyPasteTerminal: String?
     private var config: Configuration?
-    private var args: Array<String>?
+    private var args: [String]?
     private var command: String?
     private var file: String?
-    private var stringArray: Array<String>?
+    private var stringArray: [String]?
 
     private var remoteRsaPubkeyString: String = ".ssh/authorized_keys"
     private var remoteDsaPubkeyString: String = ".ssh/authorized_keys2"
@@ -39,7 +37,7 @@ final class ScpArgumentsSsh: SetConfigurations {
         guard self.config != nil else { return }
         guard self.config!.offsiteServer.isEmpty == false else { return }
         self.args = nil
-        self.args = Array<String>()
+        self.args = [String]()
         if self.config!.sshport != nil {
             self.scpport()
         }
@@ -66,7 +64,7 @@ final class ScpArgumentsSsh: SetConfigurations {
         guard self.config != nil else { return }
         guard self.config!.offsiteServer.isEmpty == false else { return }
         self.args = nil
-        self.args = Array<String>()
+        self.args = [String]()
         if self.config!.sshport != nil {
             self.sshport()
         }
@@ -84,7 +82,7 @@ final class ScpArgumentsSsh: SetConfigurations {
     // Create local key with ssh-keygen
     private func argumentsCreateKeys(path: String, key: String) {
         self.args = nil
-        self.args = Array<String>()
+        self.args = [String]()
         self.args!.append("-f")
         if key == "rsa" {
              self.args!.append(path + "id_rsa")
@@ -106,7 +104,7 @@ final class ScpArgumentsSsh: SetConfigurations {
         guard self.config != nil else { return }
         guard self.config!.offsiteServer.isEmpty == false else { return }
         self.args = nil
-        self.args = Array<String>()
+        self.args = [String]()
         if self.config!.sshport != nil {
             self.sshport()
         }
@@ -127,7 +125,7 @@ final class ScpArgumentsSsh: SetConfigurations {
         guard self.config != nil else { return }
         guard self.config!.offsiteServer.isEmpty == false else { return }
         self.args = nil
-        self.args = Array<String>()
+        self.args = [String]()
         if self.config!.sshport != nil {
             let sshport: String = "\"" + "-p " + String(self.config!.sshport!) + "\""
             self.args!.append(sshport)
@@ -156,7 +154,7 @@ final class ScpArgumentsSsh: SetConfigurations {
     }
 
     // Set the correct arguments
-    func getArguments(operation: SshOperations, key: String?, path: String?) -> Array<String>? {
+    func getArguments(operation: SshOperations, key: String?, path: String?) -> [String]? {
         switch operation {
         case .checkKey:
             self.argumentsCheckRemotePubKey(key: key!)

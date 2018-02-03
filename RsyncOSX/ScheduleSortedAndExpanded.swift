@@ -4,9 +4,7 @@
 //
 //  Created by Thomas Evensen on 05/09/2016.
 //  Copyright © 2016 Thomas Evensen. All rights reserved.
-//  swiftlint More work to fix - 17 July 2017
 //
-//  swiftlint:disable syntactic_sugar
 
 import Foundation
 import Cocoa
@@ -15,10 +13,10 @@ class ScheduleSortedAndExpand: SetConfigurations, SetSchedules {
 
     // Reference to main View
     private var vctabmain: NSViewController?
-    private var schedulesNSDictionary: Array<NSDictionary>?
-    private var scheduleConfiguration: Array<ConfigurationSchedule>?
-    private var expandedData = Array<NSDictionary>()
-    private var sortedschedules: Array<NSDictionary>?
+    private var schedulesNSDictionary: [NSDictionary]?
+    private var scheduleConfiguration: [ConfigurationSchedule]?
+    private var expandedData = [NSDictionary]()
+    private var sortedschedules: [NSDictionary]?
     private var scheduleInProgress: Bool = false
     private var tools: Tools?
 
@@ -33,7 +31,7 @@ class ScheduleSortedAndExpand: SetConfigurations, SetSchedules {
     }
 
     // Returns reference to all sorted and expanded schedules
-    func getsortedAndExpandedScheduleData() -> Array<NSDictionary>? {
+    func getsortedAndExpandedScheduleData() -> [NSDictionary]? {
         return self.sortedschedules
     }
 
@@ -161,7 +159,7 @@ class ScheduleSortedAndExpand: SetConfigurations, SetSchedules {
         guard self.scheduleConfiguration != nil else {
             return
         }
-        var data = Array<NSDictionary>()
+        var data = [NSDictionary]()
         for i in 0 ..< self.scheduleConfiguration!.count where
             self.scheduleConfiguration![i].dateStop != nil && self.scheduleConfiguration![i].schedule != "stopped" {
                 let dict: NSDictionary = [

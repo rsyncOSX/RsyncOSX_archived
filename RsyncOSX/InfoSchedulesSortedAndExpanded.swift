@@ -4,9 +4,7 @@
 //
 //  Created by Thomas Evensen on 22/09/2017.
 //  Copyright © 2016 Thomas Evensen. All rights reserved.
-//  swiftlint More work to fix - 17 July 2017
 //
-//  swiftlint:disable syntactic_sugar
 
 import Foundation
 import Cocoa
@@ -14,7 +12,7 @@ import Cocoa
 class InfoScheduleSortedAndExpand: SetConfigurations {
 
     // Reference to main View
-    private var sortedschedules: Array<NSDictionary>?
+    private var sortedschedules: [NSDictionary]?
     private var scheduleInProgress: Bool = false
 
     // First job to execute.Job is first element in
@@ -58,10 +56,10 @@ class InfoScheduleSortedAndExpand: SetConfigurations {
     }
 
     // Info about next remote servers and paths for scheduled backup.
-    func remoteServerAndPathNextTwoTasks() -> Array<String> {
+    func remoteServerAndPathNextTwoTasks() -> [String] {
         var dict1: NSDictionary?
         var dict2: NSDictionary?
-        var array = Array<String>()
+        var array = [String]()
         guard self.sortedschedules != nil else { return [""] }
         if (self.sortedschedules!.count) > 1 {
             dict1 = self.sortedschedules![0]

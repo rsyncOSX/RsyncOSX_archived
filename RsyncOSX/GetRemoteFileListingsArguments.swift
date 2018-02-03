@@ -5,20 +5,18 @@
 //  Created by Thomas Evensen on 21.05.2017.
 //  Copyright © 2017 Thomas Evensen. All rights reserved.
 //
-//  SwiftLint: OK 31 July 2017
-//  swiftlint:disable syntactic_sugar
 
 import Foundation
 
 protocol ProcessArguments {
-    func getArguments() -> Array<String>?
+    func getArguments() -> [String]?
     func getCommand() -> String?
 }
 
 final class GetRemoteFileListingsArguments: ProcessArguments {
 
     private var config: Configuration?
-    private var args: Array<String>?
+    private var args: [String]?
     private var command: String?
     private var file: String?
 
@@ -55,7 +53,7 @@ final class GetRemoteFileListingsArguments: ProcessArguments {
         self.args!.append(config!.offsiteCatalog)
     }
 
-    func getArguments() -> Array<String>? {
+    func getArguments() -> [String]? {
         guard self.args != nil else { return nil }
         return self.args
     }
@@ -71,7 +69,7 @@ final class GetRemoteFileListingsArguments: ProcessArguments {
         self.config = config
         let tools = Tools()
         self.command = tools.rsyncpath()
-        self.args = Array<String>()
+        self.args = [String]()
         if config.offsiteServer.isEmpty == false {
             self.remotearguments(recursive: recursive)
         } else {

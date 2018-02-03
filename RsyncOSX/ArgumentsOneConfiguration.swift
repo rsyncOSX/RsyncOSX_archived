@@ -4,8 +4,6 @@
 //  Created by Thomas Evensen on 09/02/16.
 //  Copyright © 2016 Thomas Evensen. All rights reserved.
 //
-//  swiftlint OK - 17 July 2017
-//  swiftlint:disable syntactic_sugar disable
 
 import Foundation
 
@@ -16,10 +14,10 @@ import Foundation
 struct ArgumentsOneConfiguration {
 
     var config: Configuration?
-    var arg: Array<String>?
-    var argdryRun: Array<String>?
-    var argDisplay: Array<String>?
-    var argdryRunDisplay: Array<String>?
+    var arg: [String]?
+    var argdryRun: [String]?
+    var argDisplay: [String]?
+    var argdryRunDisplay: [String]?
 
     init(config: Configuration) {
         // The configuration

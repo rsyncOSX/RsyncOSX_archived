@@ -9,7 +9,7 @@
 //  let str = "/Rsync/" + serialNumber + profile? + "/configRsync.plist"
 //  let str = "/Rsync/" + serialNumber + "/config.plist"
 //
-//  swiftlint:disable syntactic_sugar line_length
+//  swiftlint:disable line_length
 
 import Foundation
 import Cocoa
@@ -74,8 +74,8 @@ class Readwritefiles {
     }
 
     // Function for reading data from persistent store
-    func getDatafromfile () -> Array<NSDictionary>? {
-        var data = Array<NSDictionary>()
+    func getDatafromfile () -> [NSDictionary]? {
+        var data = [NSDictionary]()
         guard self.filename != nil && self.key != nil else { return nil }
         let dictionary = NSDictionary(contentsOfFile: self.filename!)
         let items: Any? = dictionary?.object(forKey: self.key!)
@@ -91,7 +91,7 @@ class Readwritefiles {
     }
 
     // Function for write data to persistent store
-    func writeDatatoPersistentStorage (_ array: Array<NSDictionary>, task: WhatToReadWrite) -> Bool {
+    func writeDatatoPersistentStorage (_ array: [NSDictionary], task: WhatToReadWrite) -> Bool {
         self.setpreferences(task)
         let dictionary = NSDictionary(object: array, forKey: self.key! as NSCopying)
         guard self.filename != nil else { return false }

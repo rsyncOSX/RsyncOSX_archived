@@ -5,7 +5,6 @@
 //  Created by Thomas Evensen on 02/05/16.
 //  Copyright © 2016 Thomas Evensen. All rights reserved.
 //
-//  swiftlint:disable syntactic_sugar
 
 import Foundation
 
@@ -14,7 +13,7 @@ struct ConfigurationSchedule {
     var dateStart: String
     var dateStop: String?
     var schedule: String
-    var logrecords = Array<NSMutableDictionary>()
+    var logrecords = [NSMutableDictionary]()
     var delete: Bool?
 
     init(dictionary: NSDictionary, log: NSArray?) {

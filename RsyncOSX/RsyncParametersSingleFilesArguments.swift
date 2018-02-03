@@ -5,8 +5,6 @@
 //  Created by Thomas Evensen on 06.03.2017.
 //  Copyright © 2017 Thomas Evensen. All rights reserved.
 //
-//  SwiftLint: OK 31 July 2017
-//  swiftlint:disable syntactic_sugar
 
 import Foundation
 
@@ -22,7 +20,7 @@ final class RsyncParametersSingleFilesArguments: ProcessArguments {
     let dryrun: String = "--dry-run"
 
     private var config: Configuration?
-    private var args: Array<String>?
+    private var args: [String]?
     private var command: String?
     private var file: String?
     private var argDisplay: String?
@@ -72,7 +70,7 @@ final class RsyncParametersSingleFilesArguments: ProcessArguments {
         }
     }
 
-    func getArguments() -> Array<String>? {
+    func getArguments() -> [String]? {
         return self.args
     }
 
@@ -86,7 +84,7 @@ final class RsyncParametersSingleFilesArguments: ProcessArguments {
 
     init(config: Configuration, remoteFile: String?, localCatalog: String?, drynrun: Bool?) {
         self.config = config
-        self.args = Array<String>()
+        self.args = [String]()
         self.arguments(remoteFile: remoteFile, localCatalog: localCatalog, drynrun: drynrun)
     }
 }

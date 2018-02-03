@@ -5,8 +5,7 @@
 //  Created by Thomas Evensen on 20.06.2017.
 //  Copyright © 2017 Thomas Evensen. All rights reserved.
 //
-//  SwiftLint: OK 31 July 2017
-//  swiftlint:disable syntactic_sugar line_length
+//  swiftlint:disable line_length
 
 import Foundation
 
@@ -66,7 +65,7 @@ final class SingleTask: SetSchedules, SetConfigurations {
             self.workload = SingleTaskWorkQueu()
         }
 
-        let arguments: Array<String>?
+        let arguments: [String]?
         self.process = nil
         self.outputprocess = nil
 

@@ -6,7 +6,7 @@
 //  Created by Thomas Evensen on 19/08/2016.
 //  Copyright © 2016 Thomas Evensen. All rights reserved.
 //
-//  swiftlint:disable syntactic_sugar file_length type_body_length cyclomatic_complexity line_length
+//  swiftlint:disable file_length type_body_length cyclomatic_complexity line_length
 
 import Foundation
 import Cocoa
@@ -85,7 +85,7 @@ class ViewControllertabMain: NSViewController, ReloadTable, Deselect, Coloractiv
     private var infoschedulessorted: InfoScheduleSortedAndExpand?
     // Bool if one or more remote server is offline
     // Used in testing if remote server is on/off-line
-    private var serverOff: Array<Bool>?
+    private var serverOff: [Bool]?
     // Schedules in progress
     private var scheduledJobInProgress: Bool = false
     // Ready for execute again
@@ -570,7 +570,7 @@ extension ViewControllertabMain: NSTableViewDelegate, Attributedestring {
 // Get output from rsync command
 extension ViewControllertabMain: Information {
     // Get information from rsync output.
-    func getInformation() -> Array<String> {
+    func getInformation() -> [String] {
         if self.outputbatch != nil {
             return self.outputbatch!.getOutput()
         } else if self.outputprocess != nil {

@@ -5,8 +5,7 @@
 //  Created by Thomas Evensen on 22.07.2017.
 //  Copyright © 2017 Thomas Evensen. All rights reserved.
 //
-//  SwiftLint: OK 31 July 2017
-//  swiftlint:disable syntactic_sugar line_length
+//  swiftlint:disable line_length
 
 import Foundation
 
@@ -94,7 +93,7 @@ final class Tools: SetConfigurations, Delay {
     // Do the check in background que, reload table in global main queue
     func testAllremoteserverConnections () {
         self.indexBoolremoteserverOff = nil
-        self.indexBoolremoteserverOff = Array<Bool>()
+        self.indexBoolremoteserverOff = [Bool]()
         guard self.configurations!.configurationsDataSourcecount() > 0 else {
             // Tell main view profile menu might presented
             self.newprofileDelegate?.enableProfileMenu()

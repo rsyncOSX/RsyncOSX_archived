@@ -7,7 +7,6 @@
 //
 //  Class for crunching numbers from rsyn output.  Numbers are
 //  informal only, either used in main view or for logging purposes.
-//  swiftlint:disable syntactic_sugar
 
 import Foundation
 
@@ -28,7 +27,7 @@ final class Numbers: SetConfigurations {
     private var resultRsync: String?
     // calculated number of files
     // output Array to keep output from rsync in
-    private var output: Array<String>?
+    private var output: [String]?
     // numbers after dryrun and stats
     var totNum: Int?
     var totDir: Int?
@@ -40,20 +39,20 @@ final class Numbers: SetConfigurations {
     // Temporary numbers
     // ver 3.x - [Number of regular files transferred: 24]
     // ver 2.x - [Number of files transferred: 24]
-    var files: Array<String>?
+    var files: [String]?
     // ver 3.x - [Total transferred file size: 278,642 bytes]
     // ver 2.x - [Total transferred file size: 278197 bytes]
-    var filesSize: Array<String>?
+    var filesSize: [String]?
     // ver 3.x - [Total file size: 1,016,382,148 bytes]
     // ver 2.x - [Total file size: 1016381703 bytes]
-    var totfileSize: Array<String>?
+    var totfileSize: [String]?
     // ver 3.x - [Number of files: 3,956 (reg: 3,197, dir: 758, link: 1)]
     // ver 2.x - [Number of files: 3956]
-    var totfilesNum: Array<String>?
+    var totfilesNum: [String]?
     // New files
-    var new: Array<String>?
+    var new: [String]?
     // Delete files
-    var delete: Array<String>?
+    var delete: [String]?
 
     // Get numbers from rsync (dry run)
     func getTransferredNumbers (numbers: EnumNumbers) -> Int {
@@ -128,7 +127,7 @@ final class Numbers: SetConfigurations {
     // Collecting statistics about job
     func stats(numberOfFiles: String?, sizeOfFiles: String?) -> String {
         var numbers: String?
-        var parts: Array<String>?
+        var parts: [String]?
         guard self.resultRsync != nil else {
             if numberOfFiles == nil || sizeOfFiles == nil {
                 return "0"

@@ -5,14 +5,13 @@
 //  Created by Thomas Evensen on 17.01.2018.
 //  Copyright © 2018 Thomas Evensen. All rights reserved.
 //
-// swiftlint:disable syntactic_sugar
 
 import Foundation
 
 final class SnapshotCreateCatalogArguments: ProcessArguments {
 
     private var config: Configuration?
-    private var args: Array<String>?
+    private var args: [String]?
     private var command: String?
 
     private func remotearguments() {
@@ -31,7 +30,7 @@ final class SnapshotCreateCatalogArguments: ProcessArguments {
         self.args!.append(remotecommand)
     }
 
-    func getArguments() -> Array<String>? {
+    func getArguments() -> [String]? {
         return self.args
     }
 
@@ -40,7 +39,7 @@ final class SnapshotCreateCatalogArguments: ProcessArguments {
     }
 
     init (config: Configuration) {
-        self.args = Array<String>()
+        self.args = [String]()
         self.config = config
         self.remotearguments()
         self.command = "/usr/bin/ssh"

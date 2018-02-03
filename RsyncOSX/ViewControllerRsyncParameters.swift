@@ -6,7 +6,7 @@
 //  Created by Thomas Evensen on 13/02/16.
 //  Copyright © 2016 Thomas Evensen. All rights reserved.
 //
-//  swiftlint:disable syntactic_sugar line_length function_body_length
+//  swiftlint:disable line_length function_body_length
 
 import Foundation
 import Cocoa
@@ -30,7 +30,7 @@ class ViewControllerRsyncParameters: NSViewController, SetConfigurations, SetDis
     // Delegate returning params updated or not
     weak var userparamsupdatedDelegate: RsyncUserParams?
     // Reference to rsync parameters to use in combox
-    var comboBoxValues = Array<String>()
+    var comboBoxValues = [String]()
 
     @IBOutlet weak var param1: NSTextField!
     @IBOutlet weak var param2: NSTextField!
