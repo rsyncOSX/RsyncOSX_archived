@@ -45,8 +45,6 @@ final class BatchTask: SetSchedules, SetConfigurations, Delay {
     // Schedules in progress
     private var scheduledJobInProgress: Bool = false
     // Some max numbers
-    private var transfernum: String?
-    private var transferbytes: String?
 
     // Functions are called from batchView.
     func executeBatch() {
@@ -118,19 +116,14 @@ final class BatchTask: SetSchedules, SetConfigurations, Delay {
                 }
             case 1:
                 // Real run
-                 _ = Logging(outputprocess: self.outputprocess)
-                let number = Numbers(outputprocess: self.outputprocess)
                 batchobject.updateInProcess(numberOfFiles: self.outputprocess!.count())
                 batchobject.setCompleted()
                 self.batchViewDelegate?.progressIndicatorViewBatch(operation: .refresh)
                 // Set date on Configuration
                 let index = self.configurations!.getIndex(work.0)
                 let config = self.configurations!.getConfigurations()[index]
-                // Get transferred numbers from view
-                self.transfernum = String(number.getTransferredNumbers(numbers: .transferredNumber))
-                self.transferbytes = String(number.getTransferredNumbers(numbers: .transferredNumberSizebytes))
-                let hiddenID = self.configurations!.gethiddenID(index: index)
-                let numbers = number.stats(numberOfFiles: self.transfernum, sizeOfFiles: self.transferbytes)
+                self.configurations!.setCurrentDateonConfigurationSingletask(index: index, outputprocess: self.outputprocess)
+                let numbers = "test"
                 var result: String?
                 if config.offsiteServer.isEmpty {
                     result = config.localCatalog + " , " + "localhost" + " , " + numbers
@@ -138,8 +131,6 @@ final class BatchTask: SetSchedules, SetConfigurations, Delay {
                     result = config.localCatalog + " , " + config.offsiteServer + " , " + numbers
                 }
                 self.outputbatch!.addLine(str: result!)
-                self.schedules!.addlogtaskmanuel(hiddenID, result: numbers)
-                self.configurations!.setCurrentDateonConfiguration(index)
                 self.delayWithSeconds(1) {
                     self.executeBatch()
                 }

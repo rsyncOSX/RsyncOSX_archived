@@ -11,7 +11,7 @@
 //  Created by Thomas Evensen on 08/02/16.
 //  Copyright © 2016 Thomas Evensen. All rights reserved.
 //
-//  swiftlint:disable syntactic_sugar line_length file_length
+//  swiftlint:disable syntactic_sugar line_length file_length type_body_length
 
 import Foundation
 import Cocoa
@@ -97,7 +97,7 @@ enum ResourceInConfiguration {
     case task
 }
 
-class Configurations: ReloadTable {
+class Configurations: ReloadTable, SetSchedules {
 
     // Storage API
     var storageapi: PersistentStorageAPI?
@@ -257,7 +257,7 @@ class Configurations: ReloadTable {
     /// Function also notifies Execute view to refresh data
     /// in tableView.
     /// - parameter index: index of Configuration to update
-    func setCurrentDateonConfiguration (_ index: Int) {
+    func setCurrentDateonConfigurationQuickbackup (_ index: Int, outputprocess: OutputProcess?) {
         if self.configurations![index].task == "snapshot" {
             self.increasesnapshotnum(index: index)
         }
@@ -268,6 +268,30 @@ class Configurations: ReloadTable {
         self.storageapi!.saveConfigFromMemory()
         // Call the view and do a refresh of tableView
         self.reloadtable(vcontroller: .vctabmain)
+        _ = Logging(outputprocess: outputprocess)
+    }
+
+    func setCurrentDateonConfigurationSingletask(index: Int, outputprocess: OutputProcess?) {
+        weak var taskDelegate: SingleTaskProgress?
+        taskDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllertabMain
+        // Logg run and get numbers from view
+        let number = Numbers(outputprocess: outputprocess)
+        let transferredNumber = taskDelegate?.gettransferredNumber()
+        let transferredNumberSizebytes = taskDelegate?.gettransferredNumberSizebytes()
+        let hiddenID = self.gethiddenID(index: index)
+        let numbers = number.stats(numberOfFiles: transferredNumber, sizeOfFiles: transferredNumberSizebytes)
+        self.schedules!.addlogtaskmanuel(hiddenID, result: numbers)
+        if self.configurations![index].task == "snapshot" {
+            self.increasesnapshotnum(index: index)
+        }
+        let currendate = Date()
+        let dateformatter = Tools().setDateformat()
+        self.configurations![index].dateRun = dateformatter.string(from: currendate)
+        // Saving updated configuration in memory to persistent store
+        self.storageapi!.saveConfigFromMemory()
+        // Call the view and do a refresh of tableView
+        self.reloadtable(vcontroller: .vctabmain)
+        _ = Logging(outputprocess: outputprocess)
     }
 
     /// Function destroys reference to object holding data and

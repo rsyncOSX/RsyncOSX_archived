@@ -58,9 +58,6 @@ final class SingleTask: SetSchedules, SetConfigurations {
     private var scheduledJobInProgress: Bool = false
     // Ready for execute again
     private var ready: Bool = true
-    // Some max numbers
-    private var transferredNumber: String?
-    private var transferredNumberSizebytes: String?
 
     // Single task can be activated by double click from table
     func executeSingleTask() {
@@ -117,7 +114,6 @@ final class SingleTask: SetSchedules, SetConfigurations {
         self.ready = true
         // Making sure no nil pointer execption
         if let workload = self.workload {
-
             // Pop topmost element of work queue
             switch workload.pop() {
             case .estimatesinglerun:
@@ -141,17 +137,7 @@ final class SingleTask: SetSchedules, SetConfigurations {
                 self.taskDelegate?.terminateProgressProcess()
                 // If showInfoDryrun is on present result of dryrun automatically
                 self.taskDelegate?.presentViewInformation(outputprocess: self.outputprocess!)
-                // Logg run
-                let number = Numbers(outputprocess: self.outputprocess)
-                // Get transferred numbers from view
-                self.transferredNumber = self.taskDelegate?.gettransferredNumber()
-                self.transferredNumberSizebytes = self.taskDelegate?.gettransferredNumberSizebytes()
-                let hiddenID = self.configurations!.gethiddenID(index: self.index!)
-                let numberOffFiles = self.transferredNumber
-                let sizeOfFiles = self.transferredNumberSizebytes
-                self.schedules!.addlogtaskmanuel(hiddenID, result: number.stats(numberOfFiles: numberOffFiles, sizeOfFiles: sizeOfFiles))
-                self.configurations!.setCurrentDateonConfiguration(self.index!)
-                _ = Logging(outputprocess: self.outputprocess)
+                self.configurations!.setCurrentDateonConfigurationSingletask(index: self.index!, outputprocess: self.outputprocess)
             case .empty:
                 self.workload = nil
             default:

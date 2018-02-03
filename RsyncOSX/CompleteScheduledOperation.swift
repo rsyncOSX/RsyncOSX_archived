@@ -32,8 +32,7 @@ final class CompleteScheduledOperation: SetConfigurations, SetSchedules, SetSche
         let numberstring = number.stats(numberOfFiles: nil, sizeOfFiles: nil)
         self.schedules!.addresultschedule(self.hiddenID!, dateStart: dateStartstring, result: numberstring, date: datestring, schedule: schedule!)
         // Writing timestamp to configuration
-        _ = self.configurations!.setCurrentDateonConfiguration(self.index!)
-         _ = Logging(outputprocess: outputprocess)
+        self.configurations!.setCurrentDateonConfigurationQuickbackup(self.index!, outputprocess: outputprocess)
         self.scheduleJob?.completed()
         self.startTimerDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabschedule) as? ViewControllertabSchedule
         self.startTimerDelegate?.startTimerNextJob()
