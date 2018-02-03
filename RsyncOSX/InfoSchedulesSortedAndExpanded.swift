@@ -4,7 +4,6 @@
 //
 //  Created by Thomas Evensen on 22/09/2017.
 //  Copyright © 2016 Thomas Evensen. All rights reserved.
-//  swiftlint More work to fix - 17 July 2017
 //
 
 import Foundation
