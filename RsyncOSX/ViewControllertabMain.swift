@@ -465,8 +465,8 @@ class ViewControllertabMain: NSViewController, ReloadTable, Deselect, Coloractiv
         }
         self.schedulessorted = ScheduleSortedAndExpand()
         self.infoschedulessorted = InfoScheduleSortedAndExpand(sortedandexpanded: self.schedulessorted)
-        self.schedules?.scheduledTasks = self.schedulessorted?.allscheduledtasks()
-        ViewControllerReference.shared.scheduledTask = self.schedulessorted?.allscheduledtasks()
+        self.schedules?.scheduledTasks = self.schedulessorted?.firstscheduledtask()
+        ViewControllerReference.shared.scheduledTask = self.schedulessorted?.firstscheduledtask()
     }
 
     func createandreloadconfigurations() {
@@ -1091,8 +1091,8 @@ extension ViewControllertabMain: GetSchedulesObject {
         self.schedules = Schedules(profile: profile)
         self.schedulessorted = ScheduleSortedAndExpand()
         self.infoschedulessorted = InfoScheduleSortedAndExpand(sortedandexpanded: self.schedulessorted)
-        self.schedules?.scheduledTasks = self.schedulessorted?.allscheduledtasks()
-        ViewControllerReference.shared.scheduledTask = self.schedulessorted?.allscheduledtasks()
+        self.schedules?.scheduledTasks = self.schedulessorted?.firstscheduledtask()
+        ViewControllerReference.shared.scheduledTask = self.schedulessorted?.firstscheduledtask()
         return self.schedules
     }
 }

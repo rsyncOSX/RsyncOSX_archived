@@ -20,8 +20,8 @@ class ScheduleSortedAndExpand: SetConfigurations, SetSchedules {
     private var scheduleInProgress: Bool = false
     private var tools: Tools?
 
-    // First job to execute.Job is first element in 
-    func allscheduledtasks() -> NSDictionary? {
+    // First job to execute. Job is first element in
+    func firstscheduledtask() -> NSDictionary? {
         guard self.sortedschedules != nil else { return nil}
         guard self.sortedschedules!.count > 0 else {
             ViewControllerReference.shared.scheduledTask = nil
