@@ -60,7 +60,7 @@ extension SecondsBeforeStart {
     func secondsbeforestart() -> Double {
         var secondsToWait: Double?
         let scheduledJobs = ScheduleSortedAndExpand()
-        if let dict = scheduledJobs.allscheduledtasks() {
+        if let dict = scheduledJobs.firstscheduledtask() {
             let dateStart: Date = (dict.value(forKey: "start") as? Date)!
             secondsToWait = Tools().timeDoubleSeconds(dateStart, enddate: nil)
         }
