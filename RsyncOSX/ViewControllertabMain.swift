@@ -104,7 +104,7 @@ class ViewControllertabMain: NSViewController, ReloadTable, Deselect, Coloractiv
     @IBAction func rsyncosxsched(_ sender: NSButton) {
         let pathtorsyncosxschedapp: String = ViewControllerReference.shared.pathrsyncosxsched! + "/" + ViewControllerReference.shared.namersyncosssched
         NSWorkspace.shared.open(URL(fileURLWithPath: pathtorsyncosxschedapp))
-        NSApp.terminate(nil)
+        // NSApp.terminate(nil)
     }
 
     private func info (num: Int) {
@@ -347,17 +347,25 @@ class ViewControllertabMain: NSViewController, ReloadTable, Deselect, Coloractiv
         self.readyforexecution = true
         if self.tools == nil { self.tools = Tools()}
         self.info(num: 0)
-        if ViewControllerReference.shared.pathrsyncosxsched != nil {
-            self.pathtorsyncosxschedbutton.isEnabled = true
-        } else {
-            self.pathtorsyncosxschedbutton.isEnabled = false
-        }
+        self.checkforrunning()
     }
 
     override func viewDidDisappear() {
         super.viewDidDisappear()
         // Do not allow notify in Main
         self.configurations!.allowNotifyinMain = false
+    }
+
+    private func checkforrunning() {
+        guard Running().rsyncOSXschedisrunning == false else {
+            self.pathtorsyncosxschedbutton.isEnabled = false
+            return
+        }
+        if ViewControllerReference.shared.pathrsyncosxsched != nil {
+            self.pathtorsyncosxschedbutton.isEnabled = true
+        } else {
+            self.pathtorsyncosxschedbutton.isEnabled = false
+        }
     }
 
     // Execute tasks by double click in table
