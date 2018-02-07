@@ -65,6 +65,13 @@ final class Userconfiguration {
                 }
             }
         }
+        // Paths rsyncOSX and RsyncOSXsched
+        if let pathrsyncosx = dict.value(forKey: "pathrsyncosx") as? String {
+            ViewControllerReference.shared.pathrsyncosx = pathrsyncosx
+        }
+        if let pathrsyncosxsched = dict.value(forKey: "pathrsyncosxsched") as? String {
+            ViewControllerReference.shared.pathrsyncosxsched = pathrsyncosxsched
+        }
     }
 
     init (userconfigRsyncOSX: [NSDictionary]) {

@@ -99,6 +99,12 @@ class ViewControllertabMain: NSViewController, ReloadTable, Deselect, Coloractiv
     // remote info tasks
     private var remoteinfotask: RemoteInfoTaskWorkQueue?
     @IBOutlet weak var info: NSTextField!
+    @IBOutlet weak var pathtorsyncosxschedbutton: NSButton!
+
+    @IBAction func rsyncosxsched(_ sender: NSButton) {
+        let pathtorsyncosxschedapp: String = ViewControllerReference.shared.pathrsyncosxsched! + "/" + ViewControllerReference.shared.namersyncosssched
+        NSWorkspace.shared.open(URL(fileURLWithPath: pathtorsyncosxschedapp))
+    }
 
     private func info (num: Int) {
         switch num {
@@ -340,6 +346,11 @@ class ViewControllertabMain: NSViewController, ReloadTable, Deselect, Coloractiv
         self.readyforexecution = true
         if self.tools == nil { self.tools = Tools()}
         self.info(num: 0)
+        if ViewControllerReference.shared.pathrsyncosxsched != nil {
+            self.pathtorsyncosxschedbutton.isEnabled = true
+        } else {
+            self.pathtorsyncosxschedbutton.isEnabled = false
+        }
     }
 
     override func viewDidDisappear() {

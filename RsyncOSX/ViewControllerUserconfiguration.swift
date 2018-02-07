@@ -225,7 +225,7 @@ class ViewControllerUserconfiguration: NSViewController, NewRsync, SetDismisser,
             self.operation.state = .off
         }
     }
-    
+
     private func checkpathrsyncosx() {
         if self.pathRsyncOSXsched.stringValue.isEmpty == true {
             ViewControllerReference.shared.pathrsyncosxsched = nil
