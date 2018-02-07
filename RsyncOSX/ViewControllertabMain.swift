@@ -25,7 +25,7 @@ protocol UpdateProgress: class {
     func fileHandler()
 }
 
-class ViewControllertabMain: NSViewController, ReloadTable, Deselect, Coloractivetask, VcMain {
+class ViewControllertabMain: NSViewController, ReloadTable, Deselect, Coloractivetask, VcMain, Delay {
 
     // Configurations object
     var configurations: Configurations?
@@ -348,7 +348,9 @@ class ViewControllertabMain: NSViewController, ReloadTable, Deselect, Coloractiv
         self.readyforexecution = true
         if self.tools == nil { self.tools = Tools()}
         self.info(num: 0)
-        self.checkforrunning()
+        self.delayWithSeconds(0.5) {
+            self.checkforrunning()
+        }
     }
 
     override func viewDidDisappear() {
