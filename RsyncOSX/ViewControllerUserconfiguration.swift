@@ -32,6 +32,8 @@ class ViewControllerUserconfiguration: NSViewController, NewRsync, SetDismisser,
     @IBOutlet weak var minimumlogging: NSButton!
     @IBOutlet weak var nologging: NSButton!
     @IBOutlet weak var marknumberofdayssince: NSTextField!
+    @IBOutlet weak var pathRsyncOSX: NSTextField!
+    @IBOutlet weak var pathRsyncOSXsched: NSTextField!
 
     @IBAction func toggleversion3rsync(_ sender: NSButton) {
         if self.version3rsync.state == .on {
