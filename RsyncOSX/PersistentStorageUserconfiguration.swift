@@ -62,6 +62,12 @@ final class PersistentStorageUserconfiguration: Readwritefiles, SetConfiguration
         case .timer:
             dict.setObject("timer", forKey: "operation" as NSCopying)
         }
+        if ViewControllerReference.shared.pathrsyncosx != nil {
+            dict.setObject(ViewControllerReference.shared.pathrsyncosx!, forKey: "pathrsyncosx" as NSCopying)
+        }
+        if ViewControllerReference.shared.pathrsyncosxsched != nil {
+            dict.setObject(ViewControllerReference.shared.pathrsyncosxsched!, forKey: "pathrsyncosxsched" as NSCopying)
+        }
         array.append(dict)
         self.writeToStore(array)
     }
