@@ -73,6 +73,11 @@ class ViewControllerReference {
     var rsyncversionstring: String?
     // rsync short version
     var rsyncversionshort: String?
+    // Paths
+    var rsyncosxpath: String?
+    var rsyncosxschedpath: String?
+    var rsyncosxname = "RsyncOSX.app"
+    var rsyncossschedname = "RsyncOSXsched.app"
 
     // Reference to main View
     private var viewControllertabMain: NSViewController?
