@@ -66,6 +66,7 @@ class ViewControllerUserconfiguration: NSViewController, NewRsync, SetDismisser,
             self.setRsyncPath()
             self.setRestorePath()
             self.setmarknumberofdayssince()
+            self.checkpathrsyncosx()
             _ = self.storageapi!.saveUserconfiguration()
             if self.reload {
                 self.reloadconfigurationsDelegate?.createandreloadconfigurations()
@@ -177,6 +178,8 @@ class ViewControllerUserconfiguration: NSViewController, NewRsync, SetDismisser,
         self.rsyncPath.delegate = self
         self.restorePath.delegate = self
         self.marknumberofdayssince.delegate = self
+        self.pathRsyncOSX.delegate = self
+        self.pathRsyncOSXsched.delegate = self
         self.storageapi = PersistentStorageAPI(profile: nil)
         self.nologging.state = .on
         self.reloadconfigurationsDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllertabMain
@@ -189,6 +192,8 @@ class ViewControllerUserconfiguration: NSViewController, NewRsync, SetDismisser,
         self.verifyrsync()
         self.marknumberofdayssince.stringValue = String(ViewControllerReference.shared.marknumberofdayssince)
         self.reload = false
+        self.pathRsyncOSXsched.stringValue = ViewControllerReference.shared.pathrsyncosxsched ?? ""
+        self.pathRsyncOSX.stringValue = ViewControllerReference.shared.pathrsyncosx ?? ""
     }
 
     // Function for check and set user configuration
@@ -218,6 +223,19 @@ class ViewControllerUserconfiguration: NSViewController, NewRsync, SetDismisser,
             self.operation.state = .on
         case .timer:
             self.operation.state = .off
+        }
+    }
+    
+    private func checkpathrsyncosx() {
+        if self.pathRsyncOSXsched.stringValue.isEmpty == true {
+            ViewControllerReference.shared.pathrsyncosxsched = nil
+        } else {
+            ViewControllerReference.shared.pathrsyncosxsched = self.pathRsyncOSXsched.stringValue
+        }
+        if self.pathRsyncOSX.stringValue.isEmpty == true {
+            ViewControllerReference.shared.pathrsyncosx = nil
+        } else {
+            ViewControllerReference.shared.pathrsyncosx = self.pathRsyncOSX.stringValue
         }
     }
 
