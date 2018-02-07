@@ -239,6 +239,10 @@ class ViewControllertabMain: NSViewController, ReloadTable, Deselect, Coloractiv
 
     @IBAction func executetasknow(_ sender: NSButton) {
         self.processtermination = .singlequicktask
+        guard ViewControllerReference.shared.norsync == false else {
+            self.tools!.noRsync()
+            return
+        }
         guard self.scheduledJobInProgress == false else {
             self.info(num: 4)
             return
