@@ -856,10 +856,10 @@
                                 </connections>
                             </button>
                             <box fixedFrame="YES" title="Edit configurations" translatesAutoresizingMaskIntoConstraints="NO" id="0B4-M8-m3v">
-                                <rect key="frame" x="8" y="286" width="125" height="119"/>
+                                <rect key="frame" x="8" y="262" width="125" height="143"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <view key="contentView" id="0DJ-h3-zoP">
-                                    <rect key="frame" x="2" y="2" width="121" height="102"/>
+                                    <rect key="frame" x="2" y="2" width="121" height="126"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 </view>
                             </box>
@@ -882,9 +882,9 @@
                                 </textFieldCell>
                             </textField>
                             <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="yKW-3i-q53">
-                                <rect key="frame" x="29" y="256" width="89" height="32"/>
+                                <rect key="frame" x="31" y="265" width="85" height="32"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <buttonCell key="cell" type="push" title="Menu app" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="heW-FW-Nyb">
+                                <buttonCell key="cell" type="push" title="Menuapp" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="heW-FW-Nyb">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
