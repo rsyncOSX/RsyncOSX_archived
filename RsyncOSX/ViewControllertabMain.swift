@@ -105,7 +105,7 @@ class ViewControllertabMain: NSViewController, ReloadTable, Deselect, Coloractiv
         let pathtorsyncosxschedapp: String = ViewControllerReference.shared.pathrsyncosxsched! + "/" + ViewControllerReference.shared.namersyncosssched
         NSWorkspace.shared.open(URL(fileURLWithPath: pathtorsyncosxschedapp))
         self.pathtorsyncosxschedbutton.isEnabled = false
-        // NSApp.terminate(self)
+        NSApp.terminate(self)
     }
 
     private func info (num: Int) {
