@@ -41,7 +41,7 @@ class ScheduleSortedAndExpand: SetConfigurations, SetSchedules {
         if k > 30 { k = 30 }
         for j in 0 ..< k {
             var dateComponent = DateComponents()
-            dateComponent.day = j+1
+            dateComponent.day = j
             let cal = Calendar.current
             if let start: Date = cal.date(byAdding: dateComponent, to: dateStart) {
                 if start.timeIntervalSinceNow > 0 {
@@ -65,7 +65,7 @@ class ScheduleSortedAndExpand: SetConfigurations, SetSchedules {
         if k > 30 { k = 30 }
         for j in 0 ..< Int(k/7) {
             var dateComponent = DateComponents()
-            dateComponent.day = ((j+1)*7)
+            dateComponent.day = (j*7)
             let cal = Calendar.current
             if let start: Date = cal.date(byAdding: dateComponent, to: dateStart) {
                 if start.timeIntervalSinceNow > 0 {
