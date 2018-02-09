@@ -2488,7 +2488,7 @@
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
-                            <box fixedFrame="YES" title="Select a stop date and then a schedule " translatesAutoresizingMaskIntoConstraints="NO" id="PkH-9i-AY6">
+                            <box fixedFrame="YES" title="Select a start date and then a schedule " translatesAutoresizingMaskIntoConstraints="NO" id="PkH-9i-AY6">
                                 <rect key="frame" x="8" y="327" width="227" height="60"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <view key="contentView" id="rfk-IY-P9v">
@@ -2584,8 +2584,8 @@
                         <outlet property="oncebutton" destination="kbd-42-Izb" id="CTh-o9-Rae"/>
                         <outlet property="operation" destination="uzq-lY-HE6" id="UUo-lT-we1"/>
                         <outlet property="profilInfo" destination="uIq-wW-zUf" id="Voj-sH-KS7"/>
-                        <outlet property="stopdate" destination="wEG-hh-qwG" id="ySQ-9m-CrI"/>
-                        <outlet property="stoptime" destination="6Ke-eK-ziR" id="9rV-tn-s3f"/>
+                        <outlet property="startdate" destination="wEG-hh-qwG" id="ySQ-9m-CrI"/>
+                        <outlet property="starttime" destination="6Ke-eK-ziR" id="9rV-tn-s3f"/>
                         <outlet property="weeklybutton" destination="2Qn-FN-xeN" id="T3w-LB-bMg"/>
                     </connections>
                 </viewController>
@@ -4681,7 +4681,7 @@ DQ
                                             <color key="gridColor" name="gridColor" catalog="System" colorSpace="catalog"/>
                                             <tableColumns>
                                                 <tableColumn identifier="dateStart" width="135.6640625" minWidth="40" maxWidth="1000" id="b8u-6y-RSC">
-                                                    <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" title="Create date schedule">
+                                                    <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" title="Start date schedule">
                                                         <font key="font" metaFont="smallSystem"/>
                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="backgroundColor" name="headerColor" catalog="System" colorSpace="catalog"/>
@@ -4718,7 +4718,7 @@ DQ
                                                     <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                 </tableColumn>
                                                 <tableColumn identifier="dateStop" width="141.546875" minWidth="40" maxWidth="1000" id="2UK-3T-i4b">
-                                                    <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left" title="Stop date (start for once)">
+                                                    <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left" title="Stop date schedule">
                                                         <font key="font" metaFont="smallSystem"/>
                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="backgroundColor" name="headerColor" catalog="System" colorSpace="catalog"/>
