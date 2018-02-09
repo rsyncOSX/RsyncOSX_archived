@@ -100,7 +100,7 @@ class ScheduleSortedAndExpand: SetConfigurations, SetSchedules {
                     let hiddenID = (dict.value(forKey: "hiddenID") as? Int)!
                     let time = seconds
                     let dict: NSDictionary = [
-                        "start": dateStop,
+                        "start": dateStart,
                         "hiddenID": hiddenID,
                         "dateStart": dateStart,
                         "schedule": schedule,

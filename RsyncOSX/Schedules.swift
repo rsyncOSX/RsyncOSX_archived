@@ -49,12 +49,17 @@ class Schedules: ScheduleWriteLoggData {
     /// - parameter start: start date and time
     /// - parameter stop: stop date and time
     func addschedule (_ hiddenID: Int, schedule: String, start: Date) {
+        var stop: Date?
         let dateformatter = Tools().setDateformat()
-        let stop: Date = dateformatter.date(from: "01 Jan 2100 00:00") as Date!
+        if schedule == "once" {
+            stop = start
+        } else {
+            stop = dateformatter.date(from: "01 Jan 2100 00:00") as Date!
+        }
         let dict = NSMutableDictionary()
         dict.setObject(hiddenID, forKey: "hiddenID" as NSCopying)
         dict.setObject(dateformatter.string(from: start), forKey: "dateStart" as NSCopying)
-        dict.setObject(dateformatter.string(from: stop), forKey: "dateStop" as NSCopying)
+        dict.setObject(dateformatter.string(from: stop!), forKey: "dateStop" as NSCopying)
         dict.setObject(schedule, forKey: "schedule" as NSCopying)
         let newSchedule = ConfigurationSchedule(dictionary: dict, log: nil)
         self.schedules!.append(newSchedule)
