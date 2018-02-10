@@ -321,8 +321,8 @@
                     <tabViewItems>
                         <tabViewItem identifier="" id="Hmf-Kp-gkK"/>
                         <tabViewItem id="O9R-ol-hl4"/>
-                        <tabViewItem id="UDl-Ex-hgb"/>
                         <tabViewItem identifier="" id="Oau-Kd-gbS"/>
+                        <tabViewItem id="UDl-Ex-hgb"/>
                         <tabViewItem id="gOf-XL-ZbX"/>
                         <tabViewItem id="aXU-PU-6Yq"/>
                         <tabViewItem id="Ty6-To-jtK"/>
@@ -341,8 +341,8 @@
                         <outlet property="tabView" destination="oAg-LW-cIr" id="ehG-1w-Wkk"/>
                         <segue destination="egt-C3-u4G" kind="relationship" relationship="tabItems" id="aeQ-Av-AbY"/>
                         <segue destination="3xI-3C-guU" kind="relationship" relationship="tabItems" id="178-o0-nkH"/>
-                        <segue destination="fiO-Ux-xlw" kind="relationship" relationship="tabItems" id="48O-tK-ddQ"/>
                         <segue destination="rht-JI-asq" kind="relationship" relationship="tabItems" id="U2e-si-zob"/>
+                        <segue destination="fiO-Ux-xlw" kind="relationship" relationship="tabItems" id="48O-tK-ddQ"/>
                         <segue destination="GJH-xK-5LY" kind="relationship" relationship="tabItems" id="iJj-kL-Tje"/>
                         <segue destination="AlG-Cw-Xi9" kind="relationship" relationship="tabItems" id="AMX-9u-aUB"/>
                         <segue destination="B9V-8v-Aba" kind="relationship" relationship="tabItems" id="hpt-AH-P81"/>
@@ -1912,7 +1912,7 @@
                                 </textFieldCell>
                             </textField>
                             <textField identifier="local" verticalHuggingPriority="750" fixedFrame="YES" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="L6A-JJ-Mvd">
-                                <rect key="frame" x="732" y="173" width="299" height="22"/>
+                                <rect key="frame" x="732" y="173" width="328" height="22"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" bezelStyle="round" id="Rf6-OG-EhG">
                                     <font key="font" metaFont="system"/>
@@ -2028,17 +2028,6 @@
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </searchFieldCell>
                             </searchField>
-                            <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="y50-Uc-cB3">
-                                <rect key="frame" x="1039" y="174" width="23" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="NSFolder" imagePosition="only" alignment="center" imageScaling="proportionallyUpOrDown" inset="2" id="3Rp-q0-GZR">
-                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                    <font key="font" metaFont="system"/>
-                                </buttonCell>
-                                <connections>
-                                    <action selector="copyToIcon:" target="GJH-xK-5LY" id="Oj6-OF-6GK"/>
-                                </connections>
-                            </button>
                             <box verticalHuggingPriority="249" fixedFrame="YES" title="File or catalog to restore" translatesAutoresizingMaskIntoConstraints="NO" id="PIK-cY-cmQ">
                                 <rect key="frame" x="613" y="124" width="462" height="119"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
@@ -2122,7 +2111,7 @@
                 </viewController>
                 <customObject id="Mqu-Zr-4NJ" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="553" y="724"/>
+            <point key="canvasLocation" x="553" y="723.5"/>
         </scene>
         <!--Logs-->
         <scene sceneID="7KW-R1-b2z">
@@ -5711,7 +5700,6 @@ DQ
         </scene>
     </scenes>
     <resources>
-        <image name="NSFolder" width="32" height="32"/>
         <image name="abort" width="48" height="48"/>
         <image name="batch" width="48" height="48"/>
         <image name="complete" width="48" height="48"/>

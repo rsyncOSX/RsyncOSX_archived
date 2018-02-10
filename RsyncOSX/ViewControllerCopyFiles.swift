@@ -44,11 +44,6 @@ class ViewControllerCopyFiles: NSViewController, SetConfigurations, GetIndex, De
         }
     }
 
-     // Set localcatalog to filePath
-    @IBAction func copyToIcon(_ sender: NSButton) {
-        _ = FileDialog(requester: .copyFilesTo)
-    }
-
     // Abort button
     @IBAction func abort(_ sender: NSButton) {
         self.working.stopAnimation(nil)

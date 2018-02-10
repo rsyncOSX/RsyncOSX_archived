@@ -26,6 +26,7 @@ class ViewControllertabSchedule: NSViewController, SetConfigurations, SetSchedul
     private var schedulessorted: ScheduleSortedAndExpand?
     private var infoschedulessorted: InfoScheduleSortedAndExpand?
     var tools: Tools?
+    var schedule: Scheduletype?
 
     // Main tableview
     @IBOutlet weak var mainTableView: NSTableView!
@@ -41,69 +42,46 @@ class ViewControllertabSchedule: NSViewController, SetConfigurations, SetSchedul
         switch num {
         case 1:
             self.info.stringValue = "Select a task..."
-        case 2:
-            self.info.stringValue = "Start is passed..."
         default:
             self.info.stringValue = ""
         }
     }
 
     @IBAction func once(_ sender: NSButton) {
-        // Seconds from now to start for "once"
-        let seconds: TimeInterval = self.starttime.dateValue.timeIntervalSinceNow
-        // Date and time for start
-        let startdate: Date = self.startdate.dateValue.addingTimeInterval(seconds)
-        if self.index != nil {
-            if seconds > 0 {
-                self.addschedule(schedule: "once", startdate: startdate + 60)
-            } else {
-                self.info(num: 2)
-            }
-        } else {
-           self.info(num: 1)
-        }
+        self.schedule = .once
+        self.addschedule()
     }
 
     @IBAction func daily(_ sender: NSButton) {
-        let seconds: TimeInterval = self.starttime.dateValue.timeIntervalSinceNow
-        // Date and time for start
-        let startdate: Date = self.startdate.dateValue.addingTimeInterval(seconds)
-        if self.index != nil {
-            if seconds > 0 {
-                self.addschedule(schedule: "daily", startdate: startdate + 60)
-            } else {
-                self.info(num: 2)
-            }
-        } else {
-            self.info(num: 1)
-        }
+        self.schedule = .daily
+        self.addschedule()
     }
 
     @IBAction func weekly(_ sender: NSButton) {
-        let seconds: TimeInterval = self.starttime.dateValue.timeIntervalSinceNow
-        // Date and time for stop
-        let startdate: Date = self.startdate.dateValue.addingTimeInterval(seconds)
-        // Seconds from now to start for "weekly"
-        if self.index != nil {
-            if seconds > 0 {
-                self.addschedule(schedule: "weekly", startdate: startdate + 60)
-            } else {
-                self.info(num: 2)
-            }
-        } else {
-            self.info(num: 1)
-        }
+        self.schedule = .weekly
+        self.addschedule()
     }
 
     @IBAction func selectdate(_ sender: NSDatePicker) {
-       self.schedulesonoff()
+       self.schedulebuttonsonoff()
     }
 
     @IBAction func selecttime(_ sender: NSDatePicker) {
-       self.schedulesonoff()
+       self.schedulebuttonsonoff()
     }
 
-    private func schedulesonoff() {
+    private func addschedule() {
+        let answer = Alerts.dialogOKCancel("Add Schedule?", text: "Cancel or OK")
+        if answer {
+            let seconds: TimeInterval = self.starttime.dateValue.timeIntervalSinceNow
+            let startdate: Date = self.startdate.dateValue.addingTimeInterval(seconds)
+            if self.index != nil {
+                self.schedules!.addschedule(self.hiddenID!, schedule: self.schedule ?? .once, start: startdate + 60)
+            }
+        }
+    }
+
+    private func schedulebuttonsonoff() {
         let seconds: TimeInterval = self.starttime.dateValue.timeIntervalSinceNow
         // Date and time for stop
         let startime: Date = self.startdate.dateValue.addingTimeInterval(seconds)
@@ -125,13 +103,6 @@ class ViewControllertabSchedule: NSViewController, SetConfigurations, SetSchedul
         globalMainQueue.async(execute: { () -> Void in
             self.presentViewControllerAsSheet(self.viewControllerProfile!)
         })
-    }
-
-    private func addschedule(schedule: String, startdate: Date) {
-        let answer = Alerts.dialogOKCancel("Add Schedule?", text: "Cancel or OK")
-        if answer {
-            self.schedules!.addschedule(self.hiddenID!, schedule: schedule, start: startdate)
-        }
     }
 
     // Userconfiguration button
