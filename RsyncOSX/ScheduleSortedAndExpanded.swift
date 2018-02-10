@@ -36,9 +36,8 @@ class ScheduleSortedAndExpand: SetConfigurations, SetSchedules {
     }
 
     // Calculate daily schedules
-    private func daily (days: Double, dateStart: Date, schedule: String, dict: NSDictionary) {
-        var k = Int(days)
-        if k > 30 { k = 30 }
+    private func daily (dateStart: Date, schedule: String, dict: NSDictionary) {
+        let k = 30
         for j in 0 ..< k {
             var dateComponent = DateComponents()
             dateComponent.day = j
@@ -60,9 +59,8 @@ class ScheduleSortedAndExpand: SetConfigurations, SetSchedules {
     }
 
     // Calculate weekly schedules
-    private func weekly (days: Double, dateStart: Date, schedule: String, dict: NSDictionary) {
-        var k = Int(days)
-        if k > 30 { k = 30 }
+    private func weekly (dateStart: Date, schedule: String, dict: NSDictionary) {
+        let k = 30
         for j in 0 ..< Int(k/7) {
             var dateComponent = DateComponents()
             dateComponent.day = (j*7)
@@ -90,7 +88,6 @@ class ScheduleSortedAndExpand: SetConfigurations, SetSchedules {
             let dict = self.schedulesNSDictionary![i]
             let dateStop: Date = dateformatter.date(from: (dict.value(forKey: "dateStop") as? String)!)!
             let dateStart: Date = dateformatter.date(from: (dict.value(forKey: "dateStart") as? String)!)!
-            let days: Double = dateStop.timeIntervalSinceNow/(60*60*24)
             let schedule: String = (dict.value(forKey: "schedule") as? String)!
             let seconds: Double = dateStop.timeIntervalSinceNow
             // Get all jobs which are not executed
@@ -107,9 +104,9 @@ class ScheduleSortedAndExpand: SetConfigurations, SetSchedules {
                         "timetostart": time]
                     self.expandedData.append(dict)
                 case "daily":
-                    self.daily(days: days, dateStart: dateStart, schedule: schedule, dict: dict)
+                    self.daily(dateStart: dateStart, schedule: schedule, dict: dict)
                 case "weekly":
-                    self.weekly(days: days, dateStart: dateStart, schedule: schedule, dict: dict)
+                    self.weekly(dateStart: dateStart, schedule: schedule, dict: dict)
                 default:
                     break
                 }
@@ -127,14 +124,14 @@ class ScheduleSortedAndExpand: SetConfigurations, SetSchedules {
     typealias Futureschedules = (Int, Double)
 
     // Calculates number of future Schedules ID by hiddenID
-    func countscheduledtasks (_ hiddenID: Int) -> Futureschedules {
+    func numberoftasks (_ hiddenID: Int) -> Futureschedules {
         let result = self.sortedschedules?.filter({return (($0.value(forKey: "hiddenID") as? Int)! == hiddenID)})
         guard result?.count ?? 0 > 0 else { return (0, 0)}
         let timetostart = result![0].value(forKey: "timetostart" ) as? Double ?? 0
         return (result!.count, timetostart)
     }
 
-    func sortandcountscheduledonetask (_ hiddenID: Int) -> String {
+    func sortandcountscheduledonetask (_ hiddenID: Int, number: Bool) -> String {
         if let result = self.sortedschedules?.filter({return (($0.value(forKey: "hiddenID") as? Int)! == hiddenID
             && ($0.value(forKey: "start") as? Date)!.timeIntervalSinceNow > 0 )}) {
             let sorted = result.sorted {(di1, di2) -> Bool in
@@ -145,8 +142,13 @@ class ScheduleSortedAndExpand: SetConfigurations, SetSchedules {
                 }
             }
             guard sorted.count > 0 else { return "" }
-            let firsttask = (sorted[0].value(forKey: "start") as? Date)?.timeIntervalSinceNow
-            return self.tools?.timeString(firsttask!) ?? ""
+            if number {
+                let firsttask = (sorted[0].value(forKey: "start") as? Date)?.timeIntervalSinceNow
+                return self.tools?.timeString(firsttask!) ?? ""
+            } else {
+                let type = sorted[0].value(forKey: "schedule") as? String
+                return type ?? ""
+            }
         } else {
             return ""
         }

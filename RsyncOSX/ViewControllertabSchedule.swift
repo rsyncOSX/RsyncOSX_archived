@@ -5,7 +5,7 @@
 //  Created by Thomas Evensen on 19/08/2016.
 //  Copyright © 2016 Thomas Evensen. All rights reserved.
 //
-//  swiftlint:disable line_length cyclomatic_complexity
+//  swiftlint:disable line_length
 
 import Foundation
 import Cocoa
@@ -36,7 +36,6 @@ class ViewControllertabSchedule: NSViewController, SetConfigurations, SetSchedul
     @IBOutlet weak var dailybutton: NSButton!
     @IBOutlet weak var oncebutton: NSButton!
     @IBOutlet weak var info: NSTextField!
-    @IBOutlet weak var numberofffutureschedules: NSTextField!
 
     private func info (num: Int) {
         switch num {
@@ -143,11 +142,6 @@ class ViewControllertabSchedule: NSViewController, SetConfigurations, SetSchedul
             self.schedulessorted = ScheduleSortedAndExpand()
             self.infoschedulessorted = InfoScheduleSortedAndExpand(sortedandexpanded: self.schedulessorted)
         }
-        if let num = self.schedulessorted?.getsortedAndExpandedScheduleData()?.count {
-            self.numberofffutureschedules.stringValue = "Number of future schedules: " + String(num)
-        } else {
-            self.numberofffutureschedules.stringValue = "Number of future schedules: 0"
-        }
         globalMainQueue.async(execute: { () -> Void in
             self.mainTableView.reloadData()
         })
@@ -200,21 +194,12 @@ extension ViewControllertabSchedule: NSTableViewDelegate, Attributedestring {
    func tableView(_ tableView: NSTableView, objectValueFor tableColumn: NSTableColumn?, row: Int) -> Any? {
         guard row < self.configurations!.getConfigurationsDataSourcecountBackup()!.count  else { return nil }
         let object: NSDictionary = self.configurations!.getConfigurationsDataSourcecountBackup()![row]
-        var number: Int?
-        var taskintime: String?
         let hiddenID: Int = (object.value(forKey: "hiddenID") as? Int)!
         switch tableColumn!.identifier.rawValue {
-        case "numberCellID" :
+        case "scheduleID" :
             if self.schedulessorted != nil {
-                number = self.schedulessorted!.countscheduledtasks(hiddenID).0
-            }
-            if number ?? 0 > 0 {
-                let returnstr = String(number!)
-                if let color = self.colorindex, color == hiddenID {
-                    return self.attributedstring(str: returnstr, color: NSColor.red, align: .center)
-                } else {
-                    return returnstr
-                }
+                let schedule: String? = self.schedulessorted!.sortandcountscheduledonetask(hiddenID, number: false)
+                return schedule ?? ""
             }
         case "batchCellID" :
             return object[tableColumn!.identifier] as? Int!
@@ -226,7 +211,7 @@ extension ViewControllertabSchedule: NSTableViewDelegate, Attributedestring {
             }
         case "inCellID":
             if self.schedulessorted != nil {
-                taskintime = self.schedulessorted!.sortandcountscheduledonetask(hiddenID)
+                let taskintime: String? = self.schedulessorted!.sortandcountscheduledonetask(hiddenID, number: true)
                 return taskintime ?? ""
             }
         default:
@@ -271,11 +256,6 @@ extension ViewControllertabSchedule: Reloadandrefresh {
         globalMainQueue.async(execute: { () -> Void in
             self.mainTableView.reloadData()
         })
-        if let num = self.schedulessorted?.getsortedAndExpandedScheduleData()?.count {
-            self.numberofffutureschedules.stringValue = "Number of future schedules: " + String(num)
-        } else {
-            self.numberofffutureschedules.stringValue = "Number of future schedules: 0"
-        }
     }
 
 }
@@ -307,10 +287,5 @@ extension ViewControllertabSchedule: SetProfileinfo {
             self.profilInfo.stringValue = profile
             self.profilInfo.textColor = color
         })
-        if let num = self.schedulessorted?.getsortedAndExpandedScheduleData()?.count {
-            self.numberofffutureschedules.stringValue = "Number of future schedules: " + String(num)
-        } else {
-            self.numberofffutureschedules.stringValue = "Number of future schedules: 0"
-        }
     }
 }
