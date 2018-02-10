@@ -31,6 +31,12 @@ protocol GetSchedulesObject: class {
     func reloadschedulesobject()
 }
 
+enum Scheduletype {
+    case once
+    case daily
+    case weekly
+}
+
 class Schedules: ScheduleWriteLoggData {
 
     var scheduledTasks: NSDictionary?
@@ -48,10 +54,10 @@ class Schedules: ScheduleWriteLoggData {
     /// - parameter schedule: schedule
     /// - parameter start: start date and time
     /// - parameter stop: stop date and time
-    func addschedule (_ hiddenID: Int, schedule: String, start: Date) {
+    func addschedule (_ hiddenID: Int, schedule: Scheduletype, start: Date) {
         var stop: Date?
         let dateformatter = Tools().setDateformat()
-        if schedule == "once" {
+        if schedule == .once {
             stop = start
         } else {
             stop = dateformatter.date(from: "01 Jan 2100 00:00") as Date!
@@ -60,7 +66,14 @@ class Schedules: ScheduleWriteLoggData {
         dict.setObject(hiddenID, forKey: "hiddenID" as NSCopying)
         dict.setObject(dateformatter.string(from: start), forKey: "dateStart" as NSCopying)
         dict.setObject(dateformatter.string(from: stop!), forKey: "dateStop" as NSCopying)
-        dict.setObject(schedule, forKey: "schedule" as NSCopying)
+        switch schedule {
+        case .once:
+            dict.setObject("once", forKey: "schedule" as NSCopying)
+        case .daily:
+            dict.setObject("daily", forKey: "schedule" as NSCopying)
+        case .weekly:
+            dict.setObject("weekly", forKey: "schedule" as NSCopying)
+        }
         let newSchedule = ConfigurationSchedule(dictionary: dict, log: nil)
         self.schedules!.append(newSchedule)
         self.storageapi!.saveScheduleFromMemory()
