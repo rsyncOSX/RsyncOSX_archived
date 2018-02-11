@@ -37,6 +37,8 @@ class ScheduleOperationDispatch: SetSchedules, SecondsBeforeStart {
             guard seconds > 0 else { return }
             guard ViewControllerReference.shared.scheduledappsinmenuapp == false else {
                 self.dispatchtaskreloadtable(Int(seconds))
+                // Set reference to schedule for later cancel if any
+                ViewControllerReference.shared.dispatchTaskWaiting = self.pendingRequestWorkItem
                 return
             }
             self.dispatchtask(Int(seconds))

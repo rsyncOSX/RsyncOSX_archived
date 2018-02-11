@@ -1209,6 +1209,7 @@ extension ViewControllertabMain: Count {
 extension ViewControllertabMain: Reloadsortedandrefresh {
     func reloadsortedandrefreshtabledata() {
         self.schedulessorted = ScheduleSortedAndExpand()
+        self.startfirstcheduledtask()
         globalMainQueue.async(execute: { () -> Void in
             self.mainTableView.reloadData()
         })
