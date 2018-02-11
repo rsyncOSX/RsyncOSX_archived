@@ -34,6 +34,7 @@ class ViewControllerUserconfiguration: NSViewController, NewRsync, SetDismisser,
     @IBOutlet weak var marknumberofdayssince: NSTextField!
     @IBOutlet weak var pathRsyncOSX: NSTextField!
     @IBOutlet weak var pathRsyncOSXsched: NSTextField!
+    @IBOutlet weak var executescheduledappsinmenuapp: NSButton!
 
     @IBAction func toggleversion3rsync(_ sender: NSButton) {
         if self.version3rsync.state == .on {
@@ -86,11 +87,13 @@ class ViewControllerUserconfiguration: NSViewController, NewRsync, SetDismisser,
         if self.operation.state == .on {
             ViewControllerReference.shared.operation = .dispatch
         } else {
-            ViewControllerReference.shared.operation = .timer
+            // ViewControllerReference.shared.operation = .timer
+            ViewControllerReference.shared.operation = .dispatch
         }
         self.operationchangeDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabschedule) as? ViewControllertabSchedule
         self.operationchangeDelegate?.operationsmethod()
-        self.dirty = true
+        // self.dirty = true
+        self.dirty = false
     }
 
     @IBAction func logging(_ sender: NSButton) {

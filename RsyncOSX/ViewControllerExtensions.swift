@@ -381,3 +381,8 @@ extension NewRsync {
 protocol Createandreloadconfigurations: class {
     func createandreloadconfigurations()
 }
+
+// Protocol for doing a refresh of tabledata
+protocol Reloadsortedandrefresh: class {
+    func reloadsortedandrefreshtabledata()
+}

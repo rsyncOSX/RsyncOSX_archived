@@ -34,6 +34,7 @@ final class ScheduleOperationTimer: SetSchedules, SecondsBeforeStart {
     }
 
     init() {
+         guard ViewControllerReference.shared.scheduledappsinmenuapp == false else { return }
         if self.schedules != nil {
             let seconds = self.secondsbeforestart()
             guard seconds > 0 else { return }
@@ -42,10 +43,5 @@ final class ScheduleOperationTimer: SetSchedules, SecondsBeforeStart {
             // Set reference to schedule for later cancel if any
             ViewControllerReference.shared.timerTaskWaiting = self.timerTaskWaiting
         }
-    }
-
-    init(seconds: Int) {
-        self.timerTaskWaiting = Timer.scheduledTimer(timeInterval: Double(seconds), target: self, selector: #selector(executetask),
-                                                     userInfo: nil, repeats: false)
     }
 }

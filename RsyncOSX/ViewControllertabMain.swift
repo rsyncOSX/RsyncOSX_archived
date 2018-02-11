@@ -1204,5 +1204,13 @@ extension ViewControllertabMain: Count {
         guard self.outputprocess != nil else { return 0 }
         return self.outputprocess!.count()
     }
+}
 
+extension ViewControllertabMain: Reloadsortedandrefresh {
+    func reloadsortedandrefreshtabledata() {
+        self.schedulessorted = ScheduleSortedAndExpand()
+        globalMainQueue.async(execute: { () -> Void in
+            self.mainTableView.reloadData()
+        })
+    }
 }

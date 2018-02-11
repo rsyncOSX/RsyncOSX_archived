@@ -75,7 +75,7 @@ class ViewControllertabSchedule: NSViewController, SetConfigurations, SetSchedul
             let seconds: TimeInterval = self.starttime.dateValue.timeIntervalSinceNow
             let startdate: Date = self.startdate.dateValue.addingTimeInterval(seconds)
             if self.index != nil {
-                self.schedules!.addschedule(self.hiddenID!, schedule: self.schedule ?? .once, start: startdate + 60)
+                self.schedules!.addschedule(self.hiddenID!, schedule: self.schedule ?? .once, start: startdate)
             }
         }
     }
