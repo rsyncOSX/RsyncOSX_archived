@@ -109,6 +109,18 @@ class ViewControllerUserconfiguration: NSViewController, NewRsync, SetDismisser,
         }
     }
 
+    @IBAction func toggleexecutescheduledappsinmenuapp(_ sender: NSButton) {
+        switch self.executescheduledappsinmenuapp.state {
+        case .on:
+            ViewControllerReference.shared.executescheduledappsinmenuapp = true
+        case.off:
+            ViewControllerReference.shared.executescheduledappsinmenuapp = false
+        default:
+             ViewControllerReference.shared.executescheduledappsinmenuapp = true
+        }
+        self.dirty = true
+    }
+
     private func setmarknumberofdayssince() {
         if let marknumberofdayssince = Double(self.marknumberofdayssince.stringValue) {
             self.oldmarknumberofdayssince = ViewControllerReference.shared.marknumberofdayssince
@@ -197,6 +209,11 @@ class ViewControllerUserconfiguration: NSViewController, NewRsync, SetDismisser,
         self.reload = false
         self.pathRsyncOSXsched.stringValue = ViewControllerReference.shared.pathrsyncosxsched ?? ""
         self.pathRsyncOSX.stringValue = ViewControllerReference.shared.pathrsyncosx ?? ""
+        if ViewControllerReference.shared.executescheduledappsinmenuapp {
+            self.executescheduledappsinmenuapp.state = .on
+        } else {
+            self.executescheduledappsinmenuapp.state = .off
+        }
     }
 
     // Function for check and set user configuration

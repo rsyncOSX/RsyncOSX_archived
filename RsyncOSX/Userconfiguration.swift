@@ -41,6 +41,13 @@ final class Userconfiguration {
         } else {
             ViewControllerReference.shared.restorePath = NSHomeDirectory() + "/tmp/"
         }
+        if let executeinmenuapp = dict.value(forKey: "executeinmenuapp") as? Int {
+            if executeinmenuapp == 1 {
+                ViewControllerReference.shared.executescheduledappsinmenuapp = true
+            } else {
+                ViewControllerReference.shared.executescheduledappsinmenuapp = false
+            }
+        }
         // Operation object
         // Default is dispatch
         if let operation = dict.value(forKey: "operation") as? String {
