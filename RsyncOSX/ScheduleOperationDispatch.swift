@@ -13,7 +13,7 @@ class ScheduleOperationDispatch: SetSchedules, SecondsBeforeStart {
 
     private var pendingRequestWorkItem: DispatchWorkItem?
 
-    private func dispatchtaskreloadtable(_ seconds: Int) {
+    private func dispatchtaskmocup(_ seconds: Int) {
         let scheduledtask = DispatchWorkItem { [weak self] in
             weak var reloadDelegate: Reloadsortedandrefresh?
             reloadDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllertabMain
@@ -36,7 +36,7 @@ class ScheduleOperationDispatch: SetSchedules, SecondsBeforeStart {
             let seconds = self.secondsbeforestart()
             guard seconds > 0 else { return }
             guard ViewControllerReference.shared.executescheduledappsinmenuapp == false else {
-                self.dispatchtaskreloadtable(Int(seconds))
+                self.dispatchtaskmocup(Int(seconds))
                 // Set reference to schedule for later cancel if any
                 ViewControllerReference.shared.dispatchTaskWaiting = self.pendingRequestWorkItem
                 return
