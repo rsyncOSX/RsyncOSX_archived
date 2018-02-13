@@ -34,7 +34,7 @@ final class ScheduleOperationTimer: SetSchedules, SecondsBeforeStart {
     }
 
     init() {
-         guard ViewControllerReference.shared.executescheduledappsinmenuapp == false else { return }
+        guard ViewControllerReference.shared.executescheduledappsinmenuapp == false else { return }
         if self.schedules != nil {
             let seconds = self.secondsbeforestart()
             guard seconds > 0 else { return }

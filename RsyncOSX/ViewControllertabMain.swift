@@ -81,7 +81,7 @@ class ViewControllertabMain: NSViewController, ReloadTable, Deselect, Coloractiv
     // HiddenID task, set when row is selected
     private var hiddenID: Int?
     // Reference to Schedules object
-    private var schedulessorted: ScheduleSortedAndExpand?
+    private var schedulesortedandexpanded: ScheduleSortedAndExpand?
     private var infoschedulessorted: InfoScheduleSortedAndExpand?
     // Bool if one or more remote server is offline
     // Used in testing if remote server is on/off-line
@@ -498,10 +498,10 @@ class ViewControllertabMain: NSViewController, ReloadTable, Deselect, Coloractiv
             self.schedules = nil
             self.schedules = Schedules(profile: nil)
         }
-        self.schedulessorted = ScheduleSortedAndExpand()
-        self.infoschedulessorted = InfoScheduleSortedAndExpand(sortedandexpanded: self.schedulessorted)
-        self.schedules?.scheduledTasks = self.schedulessorted?.firstscheduledtask()
-        ViewControllerReference.shared.scheduledTask = self.schedulessorted?.firstscheduledtask()
+        self.schedulesortedandexpanded = ScheduleSortedAndExpand()
+        self.infoschedulessorted = InfoScheduleSortedAndExpand(sortedandexpanded: self.schedulesortedandexpanded)
+        self.schedules?.scheduledTasks = self.schedulesortedandexpanded?.firstscheduledtask()
+        ViewControllerReference.shared.scheduledTask = self.schedulesortedandexpanded?.firstscheduledtask()
     }
 
     func createandreloadconfigurations() {
@@ -560,7 +560,7 @@ extension ViewControllertabMain: NSTableViewDelegate, Attributedestring {
         } else if tableColumn!.identifier.rawValue == "offsiteServerCellID", ((object[tableColumn!.identifier] as? String)?.isEmpty)! {
             return "localhost"
         } else if tableColumn!.identifier.rawValue == "schedCellID" {
-            if let obj = self.schedulessorted {
+            if let obj = self.schedulesortedandexpanded {
                 if obj.numberoftasks(hiddenID).0 > 0 {
                     if obj.numberoftasks(hiddenID).1 > 3600 {
                         return #imageLiteral(resourceName: "yellow")
@@ -1124,10 +1124,10 @@ extension ViewControllertabMain: GetSchedulesObject {
     func createschedulesobject(profile: String?) -> Schedules? {
         self.schedules = nil
         self.schedules = Schedules(profile: profile)
-        self.schedulessorted = ScheduleSortedAndExpand()
-        self.infoschedulessorted = InfoScheduleSortedAndExpand(sortedandexpanded: self.schedulessorted)
-        self.schedules?.scheduledTasks = self.schedulessorted?.firstscheduledtask()
-        ViewControllerReference.shared.scheduledTask = self.schedulessorted?.firstscheduledtask()
+        self.schedulesortedandexpanded = ScheduleSortedAndExpand()
+        self.infoschedulessorted = InfoScheduleSortedAndExpand(sortedandexpanded: self.schedulesortedandexpanded)
+        self.schedules?.scheduledTasks = self.schedulesortedandexpanded?.firstscheduledtask()
+        ViewControllerReference.shared.scheduledTask = self.schedulesortedandexpanded?.firstscheduledtask()
         return self.schedules
     }
 }
@@ -1208,7 +1208,7 @@ extension ViewControllertabMain: Count {
 
 extension ViewControllertabMain: Reloadsortedandrefresh {
     func reloadsortedandrefreshtabledata() {
-        self.schedulessorted = ScheduleSortedAndExpand()
+        self.schedulesortedandexpanded = ScheduleSortedAndExpand()
         self.startfirstcheduledtask()
         globalMainQueue.async(execute: { () -> Void in
             self.mainTableView.reloadData()
