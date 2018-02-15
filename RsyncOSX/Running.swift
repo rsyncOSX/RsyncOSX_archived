@@ -13,11 +13,11 @@ class Running {
 
     let rsyncOSX = "no.blogspot.RsyncOSX"
     let rsyncOSXsched = "no.blogspot.RsyncOSXsched"
-    var rsyncOSXisrunning: Bool = false
-    var rsyncOSXschedisrunning: Bool = false
+    private var rsyncOSXisrunning: Bool = false
+    private var rsyncOSXschedisrunning: Bool = false
 
-    func checkforrunningapps() {
-        // Get all running applications
+    private func checkforrunningapps() {
+         // Get all running applications
         let workspace = NSWorkspace.shared
         let applications = workspace.runningApplications
         let rsyncosx = applications.filter({return ($0.bundleIdentifier == self.rsyncOSX)})
@@ -33,6 +33,15 @@ class Running {
             self.rsyncOSXschedisrunning = false
         }
     }
+
+    func enablemenuappbutton() -> Bool {
+        // Check the flags
+        guard ViewControllerReference.shared.pathrsyncosxsched != nil else { return false }
+        guard  ViewControllerReference.shared.executescheduledappsinmenuapp == true else { return false }
+        guard self.rsyncOSXschedisrunning == false else { return true }
+        return true
+    }
+
     init() {
         self.checkforrunningapps()
     }

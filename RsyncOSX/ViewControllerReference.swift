@@ -102,8 +102,8 @@ class ViewControllerReference {
     private var viewControllerRemoteInfo: NSViewController?
     // Snapshot
     private var viewControllerSnapshot: NSViewController?
-    // Execute scheduled apps in menu app
-    var executescheduledappsinmenuapp: Bool = true
+    // Execute scheduled apps in menu app, default off
+    var executescheduledappsinmenuapp: Bool = false
 
     func getvcref(viewcontroller: ViewController) -> NSViewController? {
         switch viewcontroller {

@@ -118,6 +118,8 @@ class ViewControllertabMain: NSViewController, ReloadTable, Deselect, Coloractiv
             self.info.stringValue = "No rsync in path..."
         case 4:
             self.info.stringValue = "⌘A to abort or wait..."
+        case 5:
+             self.info.stringValue = "Menu app is either running or not enabled..."
         default:
             self.info.stringValue = ""
         }
@@ -349,7 +351,7 @@ class ViewControllertabMain: NSViewController, ReloadTable, Deselect, Coloractiv
         if self.tools == nil { self.tools = Tools()}
         self.info(num: 0)
         self.delayWithSeconds(0.5) {
-            self.checkforrunning()
+            self.enablemenuappbutton()
         }
     }
 
@@ -359,16 +361,15 @@ class ViewControllertabMain: NSViewController, ReloadTable, Deselect, Coloractiv
         self.configurations!.allowNotifyinMain = false
     }
 
-    private func checkforrunning() {
-        guard Running().rsyncOSXschedisrunning == false else {
-            self.pathtorsyncosxschedbutton.isEnabled = false
-            return
-        }
-        if ViewControllerReference.shared.pathrsyncosxsched != nil {
+    private func enablemenuappbutton() {
+        globalMainQueue.async(execute: { () -> Void in
+            guard Running().enablemenuappbutton() == false else {
+                self.pathtorsyncosxschedbutton.isEnabled = false
+                self.info(num: 5)
+                return
+            }
             self.pathtorsyncosxschedbutton.isEnabled = true
-        } else {
-            self.pathtorsyncosxschedbutton.isEnabled = false
-        }
+        })
     }
 
     // Execute tasks by double click in table
@@ -452,9 +453,7 @@ class ViewControllertabMain: NSViewController, ReloadTable, Deselect, Coloractiv
     // when row is selected
     // setting which table row is selected, force new estimation
     func tableViewSelectionDidChange(_ notification: Notification) {
-        guard self.scheduledJobInProgress == false else {
-            return
-        }
+        guard self.scheduledJobInProgress == false else { return }
         // If change row during estimation
         if self.process != nil {
             self.abortOperations()
@@ -483,6 +482,7 @@ class ViewControllertabMain: NSViewController, ReloadTable, Deselect, Coloractiv
         self.showProcessInfo(info: .blank)
         self.setRsyncCommandDisplay()
         self.reloadtabledata()
+        self.configurations!.allowNotifyinMain = true
     }
 
     func createandreloadschedules() {
