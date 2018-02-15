@@ -453,9 +453,7 @@ class ViewControllertabMain: NSViewController, ReloadTable, Deselect, Coloractiv
     // when row is selected
     // setting which table row is selected, force new estimation
     func tableViewSelectionDidChange(_ notification: Notification) {
-        guard self.scheduledJobInProgress == false else {
-            return
-        }
+        guard self.scheduledJobInProgress == false else { return }
         // If change row during estimation
         if self.process != nil {
             self.abortOperations()
@@ -484,6 +482,7 @@ class ViewControllertabMain: NSViewController, ReloadTable, Deselect, Coloractiv
         self.showProcessInfo(info: .blank)
         self.setRsyncCommandDisplay()
         self.reloadtabledata()
+        self.configurations!.allowNotifyinMain = true
     }
 
     func createandreloadschedules() {
