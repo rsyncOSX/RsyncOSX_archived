@@ -118,6 +118,8 @@ class ViewControllertabMain: NSViewController, ReloadTable, Deselect, Coloractiv
             self.info.stringValue = "No rsync in path..."
         case 4:
             self.info.stringValue = "⌘A to abort or wait..."
+        case 5:
+             self.info.stringValue = "Menu app is running..."
         default:
             self.info.stringValue = ""
         }
@@ -360,15 +362,18 @@ class ViewControllertabMain: NSViewController, ReloadTable, Deselect, Coloractiv
     }
 
     private func checkforrunning() {
-        guard Running().rsyncOSXschedisrunning == false else {
-            self.pathtorsyncosxschedbutton.isEnabled = false
-            return
-        }
-        if ViewControllerReference.shared.pathrsyncosxsched != nil {
-            self.pathtorsyncosxschedbutton.isEnabled = true
-        } else {
-            self.pathtorsyncosxschedbutton.isEnabled = false
-        }
+        globalMainQueue.async(execute: { () -> Void in
+            guard Running().rsyncOSXschedisrunning == false else {
+                self.pathtorsyncosxschedbutton.isEnabled = false
+                self.info(num: 5)
+                return
+            }
+            if ViewControllerReference.shared.pathrsyncosxsched != nil {
+                self.pathtorsyncosxschedbutton.isEnabled = true
+            } else {
+                self.pathtorsyncosxschedbutton.isEnabled = false
+            }
+        })
     }
 
     // Execute tasks by double click in table
