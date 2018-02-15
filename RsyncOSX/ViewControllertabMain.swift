@@ -119,7 +119,7 @@ class ViewControllertabMain: NSViewController, ReloadTable, Deselect, Coloractiv
         case 4:
             self.info.stringValue = "⌘A to abort or wait..."
         case 5:
-             self.info.stringValue = "Menu app is running..."
+             self.info.stringValue = "Menu app is either running or not enabled..."
         default:
             self.info.stringValue = ""
         }
@@ -351,7 +351,7 @@ class ViewControllertabMain: NSViewController, ReloadTable, Deselect, Coloractiv
         if self.tools == nil { self.tools = Tools()}
         self.info(num: 0)
         self.delayWithSeconds(0.5) {
-            self.checkforrunning()
+            self.enablemenuappbutton()
         }
     }
 
@@ -361,18 +361,14 @@ class ViewControllertabMain: NSViewController, ReloadTable, Deselect, Coloractiv
         self.configurations!.allowNotifyinMain = false
     }
 
-    private func checkforrunning() {
+    private func enablemenuappbutton() {
         globalMainQueue.async(execute: { () -> Void in
-            guard Running().rsyncOSXschedisrunning == false else {
+            guard Running().enablemenuappbutton() == false else {
                 self.pathtorsyncosxschedbutton.isEnabled = false
                 self.info(num: 5)
                 return
             }
-            if ViewControllerReference.shared.pathrsyncosxsched != nil {
-                self.pathtorsyncosxschedbutton.isEnabled = true
-            } else {
-                self.pathtorsyncosxschedbutton.isEnabled = false
-            }
+            self.pathtorsyncosxschedbutton.isEnabled = true
         })
     }
 
