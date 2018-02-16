@@ -38,8 +38,11 @@ class Running {
         // Check the flags
         guard ViewControllerReference.shared.pathrsyncosxsched != nil else { return false }
         guard  ViewControllerReference.shared.executescheduledappsinmenuapp == true else { return false }
-        guard self.rsyncOSXschedisrunning == false else { return true }
-        return true
+        if self.rsyncOSXschedisrunning == true {
+            return false
+        } else {
+            return true
+        }
     }
 
     init() {
