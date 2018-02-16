@@ -363,7 +363,7 @@ class ViewControllertabMain: NSViewController, ReloadTable, Deselect, Coloractiv
 
     private func enablemenuappbutton() {
         globalMainQueue.async(execute: { () -> Void in
-            guard Running().enablemenuappbutton() == false else {
+            guard Running().enablemenuappbutton() == true else {
                 self.pathtorsyncosxschedbutton.isEnabled = false
                 self.info(num: 5)
                 return
