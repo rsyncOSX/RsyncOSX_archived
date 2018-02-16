@@ -36,7 +36,8 @@ class ViewControllertabSchedule: NSViewController, SetConfigurations, SetSchedul
     @IBOutlet weak var dailybutton: NSButton!
     @IBOutlet weak var oncebutton: NSButton!
     @IBOutlet weak var info: NSTextField!
-
+    @IBOutlet weak var executescheduledtaskinmenuapp: NSTextField!
+    
     private func info (num: Int) {
         switch num {
         case 1:
@@ -146,6 +147,7 @@ class ViewControllertabSchedule: NSViewController, SetConfigurations, SetSchedul
             self.mainTableView.reloadData()
         })
         self.operationsmethod()
+        self.executescheduledtaskinmenuapp.isHidden = !ViewControllerReference.shared.executescheduledappsinmenuapp
     }
 
     internal func operationsmethod() {
