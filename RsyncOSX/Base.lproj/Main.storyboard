@@ -2563,6 +2563,17 @@
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
+                            <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="aUx-Fl-eYa">
+                                <rect key="frame" x="343" y="15" width="26" height="27"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="menuapp" imagePosition="only" alignment="center" imageScaling="proportionallyUpOrDown" inset="2" id="BZR-Lj-ieW">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="rsyncosxsched:" target="rht-JI-asq" id="JS8-kl-Ucg"/>
+                                </connections>
+                            </button>
                         </subviews>
                     </view>
                     <connections>
@@ -2573,6 +2584,7 @@
                         <outlet property="oncebutton" destination="kbd-42-Izb" id="CTh-o9-Rae"/>
                         <outlet property="operation" destination="uzq-lY-HE6" id="UUo-lT-we1"/>
                         <outlet property="profilInfo" destination="uIq-wW-zUf" id="Voj-sH-KS7"/>
+                        <outlet property="rsyncosxschedbutton" destination="aUx-Fl-eYa" id="kVi-ZS-X33"/>
                         <outlet property="startdate" destination="wEG-hh-qwG" id="ySQ-9m-CrI"/>
                         <outlet property="starttime" destination="6Ke-eK-ziR" id="9rV-tn-s3f"/>
                         <outlet property="weeklybutton" destination="2Qn-FN-xeN" id="T3w-LB-bMg"/>

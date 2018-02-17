@@ -19,7 +19,7 @@ protocol SetProfileinfo: class {
     func setprofile(profile: String, color: NSColor)
 }
 
-class ViewControllertabSchedule: NSViewController, SetConfigurations, SetSchedules, Coloractivetask, OperationChanged, VcSchedule {
+class ViewControllertabSchedule: NSViewController, SetConfigurations, SetSchedules, Coloractivetask, OperationChanged, VcSchedule, Delay {
 
     private var index: Int?
     private var hiddenID: Int?
@@ -37,7 +37,16 @@ class ViewControllertabSchedule: NSViewController, SetConfigurations, SetSchedul
     @IBOutlet weak var oncebutton: NSButton!
     @IBOutlet weak var info: NSTextField!
     @IBOutlet weak var executescheduledtaskinmenuapp: NSTextField!
-    
+
+    @IBOutlet weak var rsyncosxschedbutton: NSButton!
+
+    @IBAction func rsyncosxsched(_ sender: NSButton) {
+        let pathtorsyncosxschedapp: String = ViewControllerReference.shared.pathrsyncosxsched! + "/" + ViewControllerReference.shared.namersyncosssched
+        NSWorkspace.shared.open(URL(fileURLWithPath: pathtorsyncosxschedapp))
+        self.rsyncosxschedbutton.isEnabled = false
+        NSApp.terminate(self)
+    }
+
     private func info (num: Int) {
         switch num {
         case 1:
@@ -148,6 +157,9 @@ class ViewControllertabSchedule: NSViewController, SetConfigurations, SetSchedul
         })
         self.operationsmethod()
         self.executescheduledtaskinmenuapp.isHidden = !ViewControllerReference.shared.executescheduledappsinmenuapp
+        self.delayWithSeconds(0.5) {
+            self.enablemenuappbutton()
+        }
     }
 
     internal func operationsmethod() {
@@ -179,6 +191,17 @@ class ViewControllertabSchedule: NSViewController, SetConfigurations, SetSchedul
     @objc(tableViewDoubleClick:) func tableViewDoubleClick(sender: AnyObject) {
         globalMainQueue.async(execute: { () -> Void in
             self.presentViewControllerAsSheet(self.viewControllerScheduleDetails!)
+        })
+    }
+
+    private func enablemenuappbutton() {
+        globalMainQueue.async(execute: { () -> Void in
+            guard Running().enablemenuappbutton() == true else {
+                self.rsyncosxschedbutton.isEnabled = false
+                self.info(num: 5)
+                return
+            }
+            self.rsyncosxschedbutton.isEnabled = true
         })
     }
 
