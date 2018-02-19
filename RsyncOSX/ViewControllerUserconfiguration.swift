@@ -157,7 +157,6 @@ class ViewControllerUserconfiguration: NSViewController, NewRsync, SetDismisser,
 
     private func verifyrsync() {
         var rsyncpath: String?
-        let fileManager = FileManager.default
         if self.rsyncPath.stringValue.isEmpty == false {
             if self.rsyncPath.stringValue.hasSuffix("/") == false {
                 rsyncpath = self.rsyncPath.stringValue + "/" + ViewControllerReference.shared.rsync
@@ -177,7 +176,7 @@ class ViewControllerUserconfiguration: NSViewController, NewRsync, SetDismisser,
             ViewControllerReference.shared.norsync = false
             return
         }
-        if fileManager.fileExists(atPath: rsyncpath!) {
+        if verifypatexists(pathorfilename: rsyncpath!) {
             self.noRsync.isHidden = true
             ViewControllerReference.shared.norsync = false
         } else {
@@ -188,7 +187,6 @@ class ViewControllerUserconfiguration: NSViewController, NewRsync, SetDismisser,
 
     private func verifypathtorsyncosx() {
         var pathtorsyncosx: String?
-        let fileManager = FileManager.default
         self.statuslightpathrsyncosx.isHidden = false
         guard self.pathRsyncOSX.stringValue.isEmpty == false else {
             self.nopathtorsyncosx()
@@ -199,7 +197,7 @@ class ViewControllerUserconfiguration: NSViewController, NewRsync, SetDismisser,
         } else {
             pathtorsyncosx = self.pathRsyncOSX.stringValue
         }
-        if fileManager.fileExists(atPath: pathtorsyncosx! + "RsyncOSX.app") {
+        if verifypatexists(pathorfilename: pathtorsyncosx! + ViewControllerReference.shared.namersyncosx) {
             ViewControllerReference.shared.executescheduledappsinmenuapp = true
             ViewControllerReference.shared.pathrsyncosx = self.pathRsyncOSX.stringValue
             self.statuslightpathrsyncosx.image = #imageLiteral(resourceName: "green")
@@ -211,7 +209,6 @@ class ViewControllerUserconfiguration: NSViewController, NewRsync, SetDismisser,
 
     private func verifypathtorsyncsched() {
         var pathtorsyncosxsched: String?
-        let fileManager = FileManager.default
         self.statuslightpathrsyncosxsched.isHidden = false
         guard self.pathRsyncOSXsched.stringValue.isEmpty == false else {
             self.nopathtorsyncossched()
@@ -222,7 +219,7 @@ class ViewControllerUserconfiguration: NSViewController, NewRsync, SetDismisser,
         } else {
             pathtorsyncosxsched = self.pathRsyncOSXsched.stringValue
         }
-        if fileManager.fileExists(atPath: pathtorsyncosxsched! + "RsyncOSXsched.app") {
+        if verifypatexists(pathorfilename: pathtorsyncosxsched! + ViewControllerReference.shared.namersyncosssched) {
             ViewControllerReference.shared.executescheduledappsinmenuapp = true
             ViewControllerReference.shared.pathrsyncosxsched = self.pathRsyncOSXsched.stringValue
             self.statuslightpathrsyncosxsched.image = #imageLiteral(resourceName: "green")
@@ -244,6 +241,12 @@ class ViewControllerUserconfiguration: NSViewController, NewRsync, SetDismisser,
         ViewControllerReference.shared.pathrsyncosx = nil
         self.statuslightpathrsyncosx.image = #imageLiteral(resourceName: "red")
         self.executescheduledappsinmenuapp.state = .off
+    }
+    
+    private func verifypatexists(pathorfilename: String) -> Bool {
+        let fileManager = FileManager.default
+        guard fileManager.fileExists(atPath: pathorfilename) else { return false }
+        return true
     }
 
     override func viewDidLoad() {
