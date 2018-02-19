@@ -199,7 +199,7 @@ class ViewControllerUserconfiguration: NSViewController, NewRsync, SetDismisser,
         }
         if verifypatexists(pathorfilename: pathtorsyncosx! + ViewControllerReference.shared.namersyncosx) {
             ViewControllerReference.shared.executescheduledappsinmenuapp = true
-            ViewControllerReference.shared.pathrsyncosx = self.pathRsyncOSX.stringValue
+            ViewControllerReference.shared.pathrsyncosx = pathtorsyncosx
             self.statuslightpathrsyncosx.image = #imageLiteral(resourceName: "green")
             self.executescheduledappsinmenuapp.state = .on
         } else {
@@ -221,7 +221,7 @@ class ViewControllerUserconfiguration: NSViewController, NewRsync, SetDismisser,
         }
         if verifypatexists(pathorfilename: pathtorsyncosxsched! + ViewControllerReference.shared.namersyncosssched) {
             ViewControllerReference.shared.executescheduledappsinmenuapp = true
-            ViewControllerReference.shared.pathrsyncosxsched = self.pathRsyncOSXsched.stringValue
+            ViewControllerReference.shared.pathrsyncosxsched = pathtorsyncosxsched
             self.statuslightpathrsyncosxsched.image = #imageLiteral(resourceName: "green")
             self.executescheduledappsinmenuapp.state = .on
         } else {
