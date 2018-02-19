@@ -5,7 +5,7 @@
 //  Created by Thomas Evensen on 30/08/2016.
 //  Copyright © 2016 Thomas Evensen. All rights reserved.
 //
-// swiftlint:disable line_length
+// swiftlint:disable line_length type_body_length
 
 import Foundation
 import Cocoa
@@ -13,12 +13,17 @@ import Cocoa
 protocol OperationChanged: class {
     func operationsmethod()
 }
+
+protocol MenuappChanged: class {
+    func menuappchanged()
+}
 class ViewControllerUserconfiguration: NSViewController, NewRsync, SetDismisser, Delay {
 
     var storageapi: PersistentStorageAPI?
     var dirty: Bool = false
     weak var operationchangeDelegate: OperationChanged?
     weak var reloadconfigurationsDelegate: Createandreloadconfigurations?
+    weak var menuappDelegate: MenuappChanged?
     var oldmarknumberofdayssince: Double?
     var reload: Bool = false
 
@@ -35,6 +40,10 @@ class ViewControllerUserconfiguration: NSViewController, NewRsync, SetDismisser,
     @IBOutlet weak var pathRsyncOSX: NSTextField!
     @IBOutlet weak var pathRsyncOSXsched: NSTextField!
     @IBOutlet weak var executescheduledappsinmenuapp: NSButton!
+    @IBOutlet weak var statuslightpathrsync: NSImageView!
+    @IBOutlet weak var statuslighttemppath: NSImageView!
+    @IBOutlet weak var statuslightpathrsyncosx: NSImageView!
+    @IBOutlet weak var statuslightpathrsyncosxsched: NSImageView!
 
     @IBAction func toggleversion3rsync(_ sender: NSButton) {
         if self.version3rsync.state == .on {
@@ -67,7 +76,6 @@ class ViewControllerUserconfiguration: NSViewController, NewRsync, SetDismisser,
             self.setRsyncPath()
             self.setRestorePath()
             self.setmarknumberofdayssince()
-            self.checkpathrsyncosx()
             _ = self.storageapi!.saveUserconfiguration()
             if self.reload {
                 self.reloadconfigurationsDelegate?.createandreloadconfigurations()
@@ -81,6 +89,8 @@ class ViewControllerUserconfiguration: NSViewController, NewRsync, SetDismisser,
             self.dismissview(viewcontroller: self, vcontroller: .vctabmain)
         }
         _ = RsyncVersionString()
+        self.menuappDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllertabMain
+        self.menuappDelegate?.menuappchanged()
     }
 
     @IBAction func toggleOperation(_ sender: NSButton) {
@@ -107,18 +117,6 @@ class ViewControllerUserconfiguration: NSViewController, NewRsync, SetDismisser,
             ViewControllerReference.shared.fulllogging = false
             ViewControllerReference.shared.minimumlogging = false
         }
-    }
-
-    @IBAction func toggleexecutescheduledappsinmenuapp(_ sender: NSButton) {
-        switch self.executescheduledappsinmenuapp.state {
-        case .on:
-            ViewControllerReference.shared.executescheduledappsinmenuapp = true
-        case.off:
-            ViewControllerReference.shared.executescheduledappsinmenuapp = false
-        default:
-             ViewControllerReference.shared.executescheduledappsinmenuapp = true
-        }
-        self.dirty = true
     }
 
     private func setmarknumberofdayssince() {
@@ -158,7 +156,7 @@ class ViewControllerUserconfiguration: NSViewController, NewRsync, SetDismisser,
     }
 
     private func verifyrsync() {
-        let rsyncpath: String?
+        var rsyncpath: String?
         let fileManager = FileManager.default
         if self.rsyncPath.stringValue.isEmpty == false {
             if self.rsyncPath.stringValue.hasSuffix("/") == false {
@@ -188,6 +186,66 @@ class ViewControllerUserconfiguration: NSViewController, NewRsync, SetDismisser,
         }
     }
 
+    private func verifypathtorsyncosx() {
+        var pathtorsyncosx: String?
+        let fileManager = FileManager.default
+        self.statuslightpathrsyncosx.isHidden = false
+        guard self.pathRsyncOSX.stringValue.isEmpty == false else {
+            self.nopathtorsyncosx()
+            return
+        }
+        if self.pathRsyncOSX.stringValue.hasSuffix("/") == false {
+            pathtorsyncosx = self.pathRsyncOSX.stringValue + "/"
+        } else {
+            pathtorsyncosx = self.pathRsyncOSX.stringValue
+        }
+        if fileManager.fileExists(atPath: pathtorsyncosx! + "RsyncOSX.app") {
+            ViewControllerReference.shared.executescheduledappsinmenuapp = true
+            ViewControllerReference.shared.pathrsyncosx = self.pathRsyncOSX.stringValue
+            self.statuslightpathrsyncosx.image = #imageLiteral(resourceName: "green")
+            self.executescheduledappsinmenuapp.state = .on
+        } else {
+            self.nopathtorsyncosx()
+        }
+    }
+
+    private func verifypathtorsyncsched() {
+        var pathtorsyncosxsched: String?
+        let fileManager = FileManager.default
+        self.statuslightpathrsyncosxsched.isHidden = false
+        guard self.pathRsyncOSXsched.stringValue.isEmpty == false else {
+            self.nopathtorsyncossched()
+            return
+        }
+        if self.pathRsyncOSXsched.stringValue.hasSuffix("/") == false {
+            pathtorsyncosxsched = self.pathRsyncOSXsched.stringValue + "/"
+        } else {
+            pathtorsyncosxsched = self.pathRsyncOSXsched.stringValue
+        }
+        if fileManager.fileExists(atPath: pathtorsyncosxsched! + "RsyncOSXsched.app") {
+            ViewControllerReference.shared.executescheduledappsinmenuapp = true
+            ViewControllerReference.shared.pathrsyncosxsched = self.pathRsyncOSXsched.stringValue
+            self.statuslightpathrsyncosxsched.image = #imageLiteral(resourceName: "green")
+            self.executescheduledappsinmenuapp.state = .on
+        } else {
+            self.nopathtorsyncossched()
+        }
+    }
+
+    private func nopathtorsyncossched() {
+        ViewControllerReference.shared.executescheduledappsinmenuapp = false
+        ViewControllerReference.shared.pathrsyncosxsched = nil
+        self.statuslightpathrsyncosxsched.image = #imageLiteral(resourceName: "red")
+        self.executescheduledappsinmenuapp.state = .off
+    }
+
+    private func nopathtorsyncosx() {
+        ViewControllerReference.shared.executescheduledappsinmenuapp = false
+        ViewControllerReference.shared.pathrsyncosx = nil
+        self.statuslightpathrsyncosx.image = #imageLiteral(resourceName: "red")
+        self.executescheduledappsinmenuapp.state = .off
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
         self.rsyncPath.delegate = self
@@ -214,6 +272,10 @@ class ViewControllerUserconfiguration: NSViewController, NewRsync, SetDismisser,
         } else {
             self.executescheduledappsinmenuapp.state = .off
         }
+        self.statuslighttemppath.isHidden = true
+        self.statuslightpathrsync.isHidden = true
+        self.statuslightpathrsyncosx.isHidden = true
+        self.statuslightpathrsyncosxsched.isHidden = true
     }
 
     // Function for check and set user configuration
@@ -246,19 +308,6 @@ class ViewControllerUserconfiguration: NSViewController, NewRsync, SetDismisser,
         }
     }
 
-    private func checkpathrsyncosx() {
-        if self.pathRsyncOSXsched.stringValue.isEmpty == true {
-            ViewControllerReference.shared.pathrsyncosxsched = nil
-        } else {
-            ViewControllerReference.shared.pathrsyncosxsched = self.pathRsyncOSXsched.stringValue
-        }
-        if self.pathRsyncOSX.stringValue.isEmpty == true {
-            ViewControllerReference.shared.pathrsyncosx = nil
-        } else {
-            ViewControllerReference.shared.pathrsyncosx = self.pathRsyncOSX.stringValue
-        }
-    }
-
 }
 
 extension ViewControllerUserconfiguration: NSTextFieldDelegate {
@@ -269,6 +318,8 @@ extension ViewControllerUserconfiguration: NSTextFieldDelegate {
         delayWithSeconds(0.5) {
             self.verifyrsync()
             self.newrsync()
+            self.verifypathtorsyncosx()
+            self.verifypathtorsyncsched()
         }
     }
 

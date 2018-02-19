@@ -102,7 +102,7 @@ class ViewControllertabMain: NSViewController, ReloadTable, Deselect, Coloractiv
     @IBOutlet weak var pathtorsyncosxschedbutton: NSButton!
 
     @IBAction func rsyncosxsched(_ sender: NSButton) {
-        let pathtorsyncosxschedapp: String = ViewControllerReference.shared.pathrsyncosxsched! + "/" + ViewControllerReference.shared.namersyncosssched
+        let pathtorsyncosxschedapp: String = ViewControllerReference.shared.pathrsyncosxsched! + ViewControllerReference.shared.namersyncosssched
         NSWorkspace.shared.open(URL(fileURLWithPath: pathtorsyncosxschedapp))
         self.pathtorsyncosxschedbutton.isEnabled = false
         NSApp.terminate(self)
@@ -1213,5 +1213,11 @@ extension ViewControllertabMain: Reloadsortedandrefresh {
         globalMainQueue.async(execute: { () -> Void in
             self.mainTableView.reloadData()
         })
+    }
+}
+
+extension ViewControllertabMain: MenuappChanged {
+    func menuappchanged() {
+        self.enablemenuappbutton()
     }
 }
