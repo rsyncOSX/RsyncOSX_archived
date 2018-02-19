@@ -41,7 +41,7 @@ class ViewControllertabSchedule: NSViewController, SetConfigurations, SetSchedul
     @IBOutlet weak var rsyncosxschedbutton: NSButton!
 
     @IBAction func rsyncosxsched(_ sender: NSButton) {
-        let pathtorsyncosxschedapp: String = ViewControllerReference.shared.pathrsyncosxsched! + "/" + ViewControllerReference.shared.namersyncosssched
+        let pathtorsyncosxschedapp: String = ViewControllerReference.shared.pathrsyncosxsched! + ViewControllerReference.shared.namersyncosssched
         NSWorkspace.shared.open(URL(fileURLWithPath: pathtorsyncosxschedapp))
         self.rsyncosxschedbutton.isEnabled = false
         NSApp.terminate(self)

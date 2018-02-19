@@ -3468,7 +3468,7 @@ DQ
                                             </connections>
                                         </button>
                                         <textField verticalHuggingPriority="750" fixedFrame="YES" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Raw-fd-DIw">
-                                            <rect key="frame" x="206" y="92" width="246" height="22"/>
+                                            <rect key="frame" x="206" y="92" width="227" height="22"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" alignment="left" bezelStyle="round" id="b2I-ky-1DA">
                                                 <font key="font" metaFont="system"/>
@@ -3494,15 +3494,6 @@ DQ
                                                 <font key="font" metaFont="system"/>
                                                 <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                                 <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                                            </textFieldCell>
-                                        </textField>
-                                        <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="x5R-hx-ATZ">
-                                            <rect key="frame" x="206" y="43" width="246" height="22"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                            <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" alignment="left" bezelStyle="round" id="bxr-Dx-Wja">
-                                                <font key="font" metaFont="system"/>
-                                                <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
-                                                <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                             </textFieldCell>
                                         </textField>
                                         <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="nHN-9u-RWb">
@@ -3534,6 +3525,25 @@ DQ
                                                 <action selector="toggleOperation:" target="Psw-ga-cgO" id="gpP-Rx-BiM"/>
                                             </connections>
                                         </button>
+                                        <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="x5R-hx-ATZ">
+                                            <rect key="frame" x="206" y="43" width="227" height="22"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                            <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" alignment="left" bezelStyle="round" id="bxr-Dx-Wja">
+                                                <font key="font" metaFont="system"/>
+                                                <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                                                <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                            </textFieldCell>
+                                        </textField>
+                                        <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="71I-bU-rKZ">
+                                            <rect key="frame" x="438" y="95" width="15" height="14"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                            <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="red" id="Gld-Qu-VaY"/>
+                                        </imageView>
+                                        <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="FFf-rE-SFk">
+                                            <rect key="frame" x="438" y="47" width="15" height="14"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                            <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="red" id="k12-2S-HZs"/>
+                                        </imageView>
                                     </subviews>
                                 </view>
                             </box>
@@ -3616,19 +3626,26 @@ DQ
                                         <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="tyj-K6-PJj">
                                             <rect key="frame" x="148" y="53" width="250" height="18"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                            <buttonCell key="cell" type="check" title="Execute scheduled tasks in menu app" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="Fzz-BB-PJC">
+                                            <buttonCell key="cell" type="check" title="Execute scheduled tasks in menu app" bezelStyle="regularSquare" imagePosition="left" enabled="NO" state="on" inset="2" id="Fzz-BB-PJC">
                                                 <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                                 <font key="font" metaFont="system"/>
                                             </buttonCell>
-                                            <connections>
-                                                <action selector="toggleexecutescheduledappsinmenuapp:" target="Psw-ga-cgO" id="GcW-Ev-O51"/>
-                                            </connections>
                                         </button>
+                                        <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="D0h-7V-MQS">
+                                            <rect key="frame" x="433" y="33" width="15" height="14"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                            <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="red" id="ptB-QL-Ebb"/>
+                                        </imageView>
+                                        <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="nT3-sG-Fe1">
+                                            <rect key="frame" x="433" y="13" width="15" height="14"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                            <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="red" id="QCj-nZ-ysI"/>
+                                        </imageView>
                                     </subviews>
                                 </view>
                             </box>
                             <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="XTm-P8-lHR">
-                                <rect key="frame" x="171" y="89" width="298" height="22"/>
+                                <rect key="frame" x="171" y="89" width="277" height="22"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" bezelStyle="round" id="MOn-XE-F97">
                                     <font key="font" metaFont="system"/>
@@ -3637,7 +3654,7 @@ DQ
                                 </textFieldCell>
                             </textField>
                             <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="aVo-6x-XDy">
-                                <rect key="frame" x="171" y="66" width="298" height="22"/>
+                                <rect key="frame" x="171" y="66" width="277" height="22"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" bezelStyle="round" id="drx-G7-DBw">
                                     <font key="font" metaFont="system"/>
@@ -3692,6 +3709,10 @@ DQ
                         <outlet property="pathRsyncOSXsched" destination="aVo-6x-XDy" id="qon-Hb-TQy"/>
                         <outlet property="restorePath" destination="x5R-hx-ATZ" id="qoy-sV-5fh"/>
                         <outlet property="rsyncPath" destination="Raw-fd-DIw" id="9MU-5e-zvh"/>
+                        <outlet property="statuslightpathrsync" destination="71I-bU-rKZ" id="JMy-HB-X1t"/>
+                        <outlet property="statuslightpathrsyncosx" destination="D0h-7V-MQS" id="KX4-kL-uDU"/>
+                        <outlet property="statuslightpathrsyncosxsched" destination="nT3-sG-Fe1" id="naC-Yv-DKw"/>
+                        <outlet property="statuslighttemppath" destination="FFf-rE-SFk" id="aF1-mh-YhA"/>
                         <outlet property="version3rsync" destination="pCc-fa-P8h" id="SEd-Qb-5fr"/>
                     </connections>
                 </viewController>
@@ -5733,6 +5754,7 @@ DQ
         <image name="fastforward" width="48" height="48"/>
         <image name="info" width="48" height="48"/>
         <image name="menuapp" width="25.600000381469727" height="25.600000381469727"/>
+        <image name="red" width="256" height="256"/>
         <image name="report" width="48" height="48"/>
     </resources>
 </document>
