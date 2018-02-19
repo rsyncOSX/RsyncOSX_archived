@@ -80,6 +80,8 @@ class ViewControllerUserconfiguration: NSViewController, NewRsync, SetDismisser,
             if self.reload {
                 self.reloadconfigurationsDelegate?.createandreloadconfigurations()
             }
+            self.menuappDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllertabMain
+            self.menuappDelegate?.menuappchanged()
         }
         if (self.presenting as? ViewControllertabMain) != nil {
             self.dismissview(viewcontroller: self, vcontroller: .vctabmain)
@@ -89,8 +91,6 @@ class ViewControllerUserconfiguration: NSViewController, NewRsync, SetDismisser,
             self.dismissview(viewcontroller: self, vcontroller: .vctabmain)
         }
         _ = RsyncVersionString()
-        self.menuappDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllertabMain
-        self.menuappDelegate?.menuappchanged()
     }
 
     @IBAction func toggleOperation(_ sender: NSButton) {
@@ -157,6 +157,7 @@ class ViewControllerUserconfiguration: NSViewController, NewRsync, SetDismisser,
 
     private func verifyrsync() {
         var rsyncpath: String?
+        self.statuslightpathrsync.isHidden = false
         if self.rsyncPath.stringValue.isEmpty == false {
             if self.rsyncPath.stringValue.hasSuffix("/") == false {
                 rsyncpath = self.rsyncPath.stringValue + "/" + ViewControllerReference.shared.rsync
@@ -169,19 +170,23 @@ class ViewControllerUserconfiguration: NSViewController, NewRsync, SetDismisser,
         guard self.version3rsync.state == .on else {
             self.noRsync.isHidden = true
             ViewControllerReference.shared.norsync = false
+            self.statuslightpathrsync.image = #imageLiteral(resourceName: "green")
             return
         }
         guard rsyncpath != nil else {
             self.noRsync.isHidden = true
             ViewControllerReference.shared.norsync = false
+            self.statuslightpathrsync.image = #imageLiteral(resourceName: "green")
             return
         }
         if verifypatexists(pathorfilename: rsyncpath!) {
             self.noRsync.isHidden = true
             ViewControllerReference.shared.norsync = false
+            self.statuslightpathrsync.image = #imageLiteral(resourceName: "green")
         } else {
             self.noRsync.isHidden = false
             ViewControllerReference.shared.norsync = true
+            self.statuslightpathrsync.image = #imageLiteral(resourceName: "red")
         }
     }
 
@@ -242,7 +247,7 @@ class ViewControllerUserconfiguration: NSViewController, NewRsync, SetDismisser,
         self.statuslightpathrsyncosx.image = #imageLiteral(resourceName: "red")
         self.executescheduledappsinmenuapp.state = .off
     }
-    
+
     private func verifypatexists(pathorfilename: String) -> Bool {
         let fileManager = FileManager.default
         guard fileManager.fileExists(atPath: pathorfilename) else { return false }
