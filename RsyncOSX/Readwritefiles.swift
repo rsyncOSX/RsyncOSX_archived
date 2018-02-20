@@ -43,8 +43,8 @@ class Readwritefiles {
     private var filename: String?
 
     private func setnameandpath() {
-        let paths = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true) as NSArray
-        let docuDir = (paths.firstObject as? String)!
+        let docupath = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true) as NSArray
+        let docuDir = docupath.firstObject as? String ?? ""
         let profilePath = Profiles()
         profilePath.createDirectory()
         if self.useProfile {
