@@ -37,7 +37,7 @@ class Running {
     func enablemenuappbutton() -> Bool {
         // Check the flags
         guard ViewControllerReference.shared.pathrsyncosxsched != nil else { return false }
-        guard  ViewControllerReference.shared.executescheduledappsinmenuapp == true else { return false }
+        guard  ViewControllerReference.shared.executescheduledtasksmenuapp == true else { return false }
         if self.rsyncOSXschedisrunning == true {
             return false
         } else {

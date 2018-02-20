@@ -43,9 +43,9 @@ final class Userconfiguration {
         }
         if let executeinmenuapp = dict.value(forKey: "executeinmenuapp") as? Int {
             if executeinmenuapp == 1 {
-                ViewControllerReference.shared.executescheduledappsinmenuapp = true
+                ViewControllerReference.shared.executescheduledtasksmenuapp = true
             } else {
-                ViewControllerReference.shared.executescheduledappsinmenuapp = false
+                ViewControllerReference.shared.executescheduledtasksmenuapp = false
             }
         }
         // Operation object

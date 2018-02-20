@@ -45,7 +45,7 @@ final class PersistentStorageUserconfiguration: Readwritefiles, SetConfiguration
         if ViewControllerReference.shared.restorePath != nil {
             restorePath = ViewControllerReference.shared.restorePath!
         }
-        if ViewControllerReference.shared.executescheduledappsinmenuapp == true {
+        if ViewControllerReference.shared.executescheduledtasksmenuapp == true {
             executeinmenuapp = 1
         } else {
             executeinmenuapp = 0

@@ -156,7 +156,7 @@ class ViewControllertabSchedule: NSViewController, SetConfigurations, SetSchedul
             self.mainTableView.reloadData()
         })
         self.operationsmethod()
-        self.executescheduledtaskinmenuapp.isHidden = !ViewControllerReference.shared.executescheduledappsinmenuapp
+        self.executescheduledtaskinmenuapp.isHidden = !ViewControllerReference.shared.executescheduledtasksmenuapp
         self.delayWithSeconds(0.5) {
             self.enablemenuappbutton()
         }
