@@ -41,10 +41,10 @@ class ScheduleWriteLoggData: SetConfigurations, ReloadTable, Deselect {
             } else {
                 resultannotaded = result
             }
-            var inserted: Bool = self.addloggtaskmanualexisting(hiddenID, result: resultannotaded ?? "", date: date)
+            var inserted: Bool = self.addloggtaskmanuelexisting(hiddenID, result: resultannotaded ?? "", date: date)
             // Record does not exist, create new Schedule (not inserted)
             if inserted == false {
-                inserted = self.addloggtaskmanulnew(hiddenID, result: resultannotaded ?? "", date: date)
+                inserted = self.addloggtaskmanuelnew(hiddenID, result: resultannotaded ?? "", date: date)
             }
             if inserted {
                 self.storageapi!.saveScheduleFromMemory()
@@ -53,7 +53,7 @@ class ScheduleWriteLoggData: SetConfigurations, ReloadTable, Deselect {
         }
     }
 
-    private func addloggtaskmanualexisting(_ hiddenID: Int, result: String, date: String) -> Bool {
+    private func addloggtaskmanuelexisting(_ hiddenID: Int, result: String, date: String) -> Bool {
         var loggadded: Bool = false
         for i in 0 ..< self.schedules!.count where
             self.configurations!.getResourceConfiguration(hiddenID, resource: .task) == "backup" {
@@ -70,7 +70,7 @@ class ScheduleWriteLoggData: SetConfigurations, ReloadTable, Deselect {
         return loggadded
     }
 
-    private func addloggtaskmanulnew(_ hiddenID: Int, result: String, date: String) -> Bool {
+    private func addloggtaskmanuelnew(_ hiddenID: Int, result: String, date: String) -> Bool {
         var loggadded: Bool = false
         if (self.configurations!.getResourceConfiguration(hiddenID, resource: .task) == "backup" ||
             self.configurations!.getResourceConfiguration(hiddenID, resource: .task) == "snapshot") {

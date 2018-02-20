@@ -74,8 +74,6 @@ struct Configuration {
                     self.markdays = true
                 }
             }
-        } else {
-            self.dateRun = ""
         }
         // Parameters 8 - 14 is user selected, as well as ssh port.
         if let parameter8 = dictionary.object(forKey: "parameter8") {
