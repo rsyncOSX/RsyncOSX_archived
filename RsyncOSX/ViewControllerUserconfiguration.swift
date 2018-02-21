@@ -203,10 +203,9 @@ class ViewControllerUserconfiguration: NSViewController, NewRsync, SetDismisser,
             pathtorsyncosx = self.pathRsyncOSX.stringValue
         }
         if verifypatexists(pathorfilename: pathtorsyncosx! + ViewControllerReference.shared.namersyncosx) {
-            ViewControllerReference.shared.executescheduledtasksmenuapp = true
             ViewControllerReference.shared.pathrsyncosx = pathtorsyncosx
             self.statuslightpathrsyncosx.image = #imageLiteral(resourceName: "green")
-            self.executescheduledappsinmenuapp.state = .on
+            self.enablestateexecutescheduledappsinmenuapp()
         } else {
             self.nopathtorsyncosx()
         }
@@ -225,10 +224,9 @@ class ViewControllerUserconfiguration: NSViewController, NewRsync, SetDismisser,
             pathtorsyncosxsched = self.pathRsyncOSXsched.stringValue
         }
         if verifypatexists(pathorfilename: pathtorsyncosxsched! + ViewControllerReference.shared.namersyncosssched) {
-            ViewControllerReference.shared.executescheduledtasksmenuapp = true
             ViewControllerReference.shared.pathrsyncosxsched = pathtorsyncosxsched
             self.statuslightpathrsyncosxsched.image = #imageLiteral(resourceName: "green")
-            self.executescheduledappsinmenuapp.state = .on
+            self.enablestateexecutescheduledappsinmenuapp()
         } else {
             self.nopathtorsyncossched()
         }
@@ -246,6 +244,12 @@ class ViewControllerUserconfiguration: NSViewController, NewRsync, SetDismisser,
         ViewControllerReference.shared.pathrsyncosx = nil
         self.statuslightpathrsyncosx.image = #imageLiteral(resourceName: "red")
         self.executescheduledappsinmenuapp.state = .off
+    }
+
+    private func enablestateexecutescheduledappsinmenuapp() {
+        guard ViewControllerReference.shared.pathrsyncosxsched != nil && ViewControllerReference.shared.pathrsyncosx != nil  else { return }
+        ViewControllerReference.shared.executescheduledtasksmenuapp = true
+        self.executescheduledappsinmenuapp.state = .on
     }
 
     private func verifypatexists(pathorfilename: String) -> Bool {
