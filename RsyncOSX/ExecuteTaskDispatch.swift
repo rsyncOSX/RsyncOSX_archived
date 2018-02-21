@@ -49,7 +49,11 @@ class ExecuteTaskDispatch: SetSchedules, SetConfigurations, SetScheduledTask {
                         }
                     })
                 }
+            } else {
+                _ = Notifications().showNotification(message: "Scheduled backup did not execute")
             }
+        } else {
+            _ = Notifications().showNotification(message: "Scheduled backup did not execute")
         }
     }
 
