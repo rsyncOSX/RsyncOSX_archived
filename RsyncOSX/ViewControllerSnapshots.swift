@@ -17,6 +17,7 @@ class ViewControllerSnapshots: NSViewController, SetDismisser, SetConfigurations
     private var snapshotsloggdata: SnapshotsLoggData?
     private var delete: Bool = false
     private var num: Int?
+    private var index: Int?
 
     @IBOutlet weak var snapshotstable: NSTableView!
     @IBOutlet weak var localCatalog: NSTextField!
@@ -184,6 +185,7 @@ class ViewControllerSnapshots: NSViewController, SetDismisser, SetConfigurations
         if let index = indexes.first {
             let dict = self.snapshotsloggdata!.snapshotslogs![index]
             self.hiddenID = dict.value(forKey: "hiddenID") as? Int
+            self.index = self.configurations?.getIndex(hiddenID!)
         }
     }
 
@@ -298,7 +300,6 @@ extension ViewControllerSnapshots: Reloadandrefresh {
 }
 
 extension ViewControllerSnapshots: NSSearchFieldDelegate {
-
     override func controlTextDidChange(_ obj: Notification) {
         self.delayWithSeconds(0.25) {
             self.confirmdelete.isEnabled = true
@@ -311,5 +312,11 @@ extension ViewControllerSnapshots: NSSearchFieldDelegate {
                 })
             }
         }
+    }
+}
+
+extension ViewControllerSnapshots: GetSelecetedIndex {
+    func getindex() -> Int? {
+        return self.index
     }
 }

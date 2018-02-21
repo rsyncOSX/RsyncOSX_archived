@@ -263,17 +263,22 @@ extension Deselect {
 // Protocol for sending selected index in tableView
 // The protocol is implemented in ViewControllertabMain
 protocol GetIndex: class {
-    weak var getindexDelegate: GetSelecetedIndex? { get }
+    weak var getindexDelegateMain: GetSelecetedIndex? { get }
+    weak var getindexDelegateSnapshot: GetSelecetedIndex? { get }
     func index() -> Int?
 }
 
 extension GetIndex {
-    weak var getindexDelegate: GetSelecetedIndex? {
+    weak var getindexDelegateMain: GetSelecetedIndex? {
         return ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllertabMain
     }
 
+    weak var getindexDelegateSnapshot: GetSelecetedIndex? {
+        return ViewControllerReference.shared.getvcref(viewcontroller: .vcsnapshot) as? ViewControllerSnapshots
+    }
+
     func index() -> Int? {
-        return self.getindexDelegate?.getindex()
+        return self.getindexDelegateMain?.getindex()
     }
 }
 
