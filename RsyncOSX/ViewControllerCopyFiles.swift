@@ -31,7 +31,7 @@ class ViewControllerCopyFiles: NSViewController, SetConfigurations, GetIndex, De
     @IBOutlet weak var rcatalog: NSTextField!
     @IBOutlet weak var info: NSTextField!
 
-    private func info (num: Int) {
+    private func info(num: Int) {
         switch num {
         case 1:
             self.info.stringValue = "No such local catalog..."
@@ -39,6 +39,8 @@ class ViewControllerCopyFiles: NSViewController, SetConfigurations, GetIndex, De
             self.info.stringValue = "Not a remote task, use Finder to copy files..."
         case 3:
             self.info.stringValue = "Local or remote catalog cannot be empty..."
+        case 4:
+            self.info.stringValue = "Got index from main or snapshot, press Reset to select another index..."
         default:
             self.info.stringValue = ""
         }
@@ -61,7 +63,6 @@ class ViewControllerCopyFiles: NSViewController, SetConfigurations, GetIndex, De
     @IBOutlet weak var search: NSSearchField!
     @IBOutlet weak var copyButton: NSButton!
     @IBOutlet weak var selectButton: NSButton!
-    @IBOutlet weak var configfrommain: NSTextField!
 
     // Do the work
     @IBAction func copy(_ sender: NSButton) {
@@ -112,7 +113,7 @@ class ViewControllerCopyFiles: NSViewController, SetConfigurations, GetIndex, De
         // Empty tabledata
         self.index = nil
         self.tabledata = nil
-        self.configfrommain.isHidden = true
+        self.info(num: 0)
         globalMainQueue.async(execute: { () -> Void in
             self.tableViewSelect.reloadData()
         })
@@ -122,7 +123,6 @@ class ViewControllerCopyFiles: NSViewController, SetConfigurations, GetIndex, De
         self.rsync = false
         self.copyButton.isEnabled = true
         self.selectButton.isEnabled = true
-        self.info(num: 0)
     }
 
     private func displayRemoteserver(index: Int?) {
@@ -154,10 +154,13 @@ class ViewControllerCopyFiles: NSViewController, SetConfigurations, GetIndex, De
 
     override func viewDidAppear() {
         super.viewDidAppear()
-        self.index = self.index()
+        self.index = self.index(viewcontroller: .vcsnapshot)
+        if self.index == nil {
+            self.index = self.index(viewcontroller: .vctabmain)
+        }
         if let index = self.index {
             self.displayRemoteserver(index: index)
-            self.configfrommain.isHidden = false
+            self.info(num: 4)
         }
         self.copyButton.isEnabled = true
         self.copyButton.title = "Estimate"
@@ -185,9 +188,7 @@ class ViewControllerCopyFiles: NSViewController, SetConfigurations, GetIndex, De
 
     private func verifylocalCatalog() {
         let fileManager = FileManager.default
-        if fileManager.fileExists(atPath: self.localCatalog.stringValue) {
-            self.info(num: 0)
-        } else {
+        if fileManager.fileExists(atPath: self.localCatalog.stringValue) == false {
             self.info(num: 1)
         }
     }
