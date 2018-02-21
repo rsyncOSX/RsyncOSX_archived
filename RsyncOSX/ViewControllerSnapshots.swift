@@ -177,6 +177,16 @@ class ViewControllerSnapshots: NSViewController, SetDismisser, SetConfigurations
         self.progressdelete.doubleValue = value
     }
 
+    // setting which table row is selected
+    func tableViewSelectionDidChange(_ notification: Notification) {
+        let myTableViewFromNotification = (notification.object as? NSTableView)!
+        let indexes = myTableViewFromNotification.selectedRowIndexes
+        if let index = indexes.first {
+            let dict = self.snapshotsloggdata!.snapshotslogs![index]
+            self.hiddenID = dict.value(forKey: "hiddenID") as? Int
+        }
+    }
+
 }
 
 extension ViewControllerSnapshots: DismissViewController {
