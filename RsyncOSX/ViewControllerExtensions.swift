@@ -265,7 +265,6 @@ extension Deselect {
 protocol GetIndex: class {
     weak var getindexDelegateMain: GetSelecetedIndex? { get }
     weak var getindexDelegateSnapshot: GetSelecetedIndex? { get }
-    func index() -> Int?
 }
 
 extension GetIndex {
@@ -277,8 +276,15 @@ extension GetIndex {
         return ViewControllerReference.shared.getvcref(viewcontroller: .vcsnapshot) as? ViewControllerSnapshots
     }
 
-    func index() -> Int? {
-        return self.getindexDelegateMain?.getindex()
+    func index(viewcontroller: ViewController) -> Int? {
+        switch viewcontroller {
+        case .vctabmain:
+            return self.getindexDelegateMain?.getindex()
+        case .vcsnapshot:
+            return self.getindexDelegateSnapshot?.getindex()
+        default:
+            return self.getindexDelegateMain?.getindex()
+        }
     }
 }
 
