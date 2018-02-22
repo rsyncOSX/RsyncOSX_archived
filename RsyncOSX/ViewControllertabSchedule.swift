@@ -36,8 +36,6 @@ class ViewControllertabSchedule: NSViewController, SetConfigurations, SetSchedul
     @IBOutlet weak var dailybutton: NSButton!
     @IBOutlet weak var oncebutton: NSButton!
     @IBOutlet weak var info: NSTextField!
-    @IBOutlet weak var executescheduledtaskinmenuapp: NSTextField!
-
     @IBOutlet weak var rsyncosxschedbutton: NSButton!
 
     @IBAction func rsyncosxsched(_ sender: NSButton) {
@@ -51,6 +49,8 @@ class ViewControllertabSchedule: NSViewController, SetConfigurations, SetSchedul
         switch num {
         case 1:
             self.info.stringValue = "Select a task..."
+        case 2:
+            self.info.stringValue = "Scheduled tasks in menu app"
         default:
             self.info.stringValue = ""
         }
@@ -156,7 +156,11 @@ class ViewControllertabSchedule: NSViewController, SetConfigurations, SetSchedul
             self.mainTableView.reloadData()
         })
         self.operationsmethod()
-        self.executescheduledtaskinmenuapp.isHidden = !ViewControllerReference.shared.executescheduledtasksmenuapp
+        if ViewControllerReference.shared.executescheduledtasksmenuapp == true {
+            self.info(num: 2)
+        } else {
+            self.info(num: 0)
+        }
         self.delayWithSeconds(0.5) {
             self.enablemenuappbutton()
         }

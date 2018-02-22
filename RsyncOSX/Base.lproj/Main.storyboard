@@ -2313,14 +2313,14 @@
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <scrollView fixedFrame="YES" borderType="groove" autohidesScrollers="YES" horizontalLineScroll="19" horizontalPageScroll="10" verticalLineScroll="19" verticalPageScroll="10" usesPredominantAxisScrolling="NO" scrollerKnobStyle="dark" translatesAutoresizingMaskIntoConstraints="NO" id="fA7-Ye-Zzs">
-                                <rect key="frame" x="256" y="57" width="816" height="318"/>
+                                <rect key="frame" x="256" y="26" width="816" height="349"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <clipView key="contentView" ambiguous="YES" id="lYl-Sy-QAZ">
-                                    <rect key="frame" x="2" y="2" width="812" height="314"/>
+                                    <rect key="frame" x="2" y="2" width="812" height="345"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnSelection="YES" multipleSelection="NO" autosaveColumns="NO" headerView="aiK-lX-NZu" id="x4E-eq-B7o">
-                                            <rect key="frame" x="0.0" y="0.0" width="821" height="291"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="820" height="322"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <size key="intercellSpacing" width="3" height="2"/>
                                             <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -2422,7 +2422,7 @@
                                     </subviews>
                                 </clipView>
                                 <scroller key="horizontalScroller" verticalHuggingPriority="750" horizontal="YES" id="3H9-jJ-F2k">
-                                    <rect key="frame" x="2" y="300" width="812" height="16"/>
+                                    <rect key="frame" x="2" y="331" width="812" height="16"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
                                 <scroller key="verticalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="NO" id="D37-Xm-Mpl">
@@ -2430,7 +2430,7 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
                                 <tableHeaderView key="headerView" id="aiK-lX-NZu">
-                                    <rect key="frame" x="0.0" y="0.0" width="821" height="23"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="820" height="23"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableHeaderView>
                             </scrollView>
@@ -2535,15 +2535,6 @@
                                     <color key="backgroundColor" name="gridColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
-                            <textField hidden="YES" horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="sZ8-kz-rHO">
-                                <rect key="frame" x="18" y="20" width="311" height="17"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Scheduled tasks is set to be executed in menu app" id="6kf-Og-w6L">
-                                    <font key="font" metaFont="system"/>
-                                    <color key="textColor" name="systemPinkColor" catalog="System" colorSpace="catalog"/>
-                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                                </textFieldCell>
-                            </textField>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="uzq-lY-HE6">
                                 <rect key="frame" x="18" y="125" width="213" height="17"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
@@ -2554,7 +2545,7 @@
                                 </textFieldCell>
                             </textField>
                             <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="aUx-Fl-eYa">
-                                <rect key="frame" x="343" y="15" width="26" height="27"/>
+                                <rect key="frame" x="184" y="233" width="26" height="27"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="menuapp" imagePosition="only" alignment="center" imageScaling="proportionallyUpOrDown" inset="2" id="BZR-Lj-ieW">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -2568,7 +2559,6 @@
                     </view>
                     <connections>
                         <outlet property="dailybutton" destination="qPO-Ls-40R" id="WeW-mQ-QQw"/>
-                        <outlet property="executescheduledtaskinmenuapp" destination="sZ8-kz-rHO" id="jtc-rn-s64"/>
                         <outlet property="info" destination="oKa-6S-QCX" id="PjV-du-t6F"/>
                         <outlet property="mainTableView" destination="x4E-eq-B7o" id="aCY-ch-Nd2"/>
                         <outlet property="oncebutton" destination="kbd-42-Izb" id="CTh-o9-Rae"/>
