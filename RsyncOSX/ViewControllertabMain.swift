@@ -37,7 +37,6 @@ class ViewControllertabMain: NSViewController, ReloadTable, Deselect, Coloractiv
     var tools: Tools?
     // Delegate function getting batchTaskObject
     weak var batchObjectDelegate: GetNewBatchTask?
-    @IBOutlet weak var statuslight: NSImageView!
     // Main tableview
     @IBOutlet weak var mainTableView: NSTableView!
     // Progressbar indicating work
@@ -193,7 +192,6 @@ class ViewControllertabMain: NSViewController, ReloadTable, Deselect, Coloractiv
         self.outputprocess = nil
         self.setNumbers(outputprocess: nil)
         self.setInfo(info: "Estimate", color: .blue)
-        self.statuslight.image = #imageLiteral(resourceName: "yellow")
         self.process = nil
         self.singletask = nil
     }
@@ -339,7 +337,6 @@ class ViewControllertabMain: NSViewController, ReloadTable, Deselect, Coloractiv
         // Allow notify about Scheduled jobs
         self.configurations!.allowNotifyinMain = true
         self.setInfo(info: "", color: .black)
-        self.statuslight.image = #imageLiteral(resourceName: "yellow")
         if self.configurations!.configurationsDataSourcecount() > 0 {
             globalMainQueue.async(execute: { () -> Void in
                 self.mainTableView.reloadData()
@@ -478,7 +475,6 @@ class ViewControllertabMain: NSViewController, ReloadTable, Deselect, Coloractiv
         self.process = nil
         self.singletask = nil
         self.setInfo(info: "Estimate", color: .blue)
-        self.statuslight.image = #imageLiteral(resourceName: "yellow")
         self.showProcessInfo(info: .blank)
         self.setRsyncCommandDisplay()
         self.reloadtabledata()
@@ -598,7 +594,6 @@ extension ViewControllertabMain: NSTableViewDelegate, Attributedestring {
         self.singletask = nil
         self.batchtaskObject = nil
         self.setInfo(info: "Estimate", color: .blue)
-        self.statuslight.image = #imageLiteral(resourceName: "yellow")
     }
 }
 
@@ -652,7 +647,6 @@ extension ViewControllertabMain: NewProfile {
         self.setNumbers(outputprocess: nil)
         self.setRsyncCommandDisplay()
         self.setInfo(info: "Estimate", color: .blue)
-        self.statuslight.image = #imageLiteral(resourceName: "yellow")
         self.setNumbers(outputprocess: nil)
         self.deselect()
         // Read configurations and Scheduledata
@@ -875,7 +869,6 @@ extension ViewControllertabMain: RsyncError {
         // Set on or off in user configuration
         globalMainQueue.async(execute: { () -> Void in
             self.setInfo(info: "Error", color: .red)
-            self.statuslight.image = #imageLiteral(resourceName: "red")
             self.showProcessInfo(info: .error)
             self.setRsyncCommandDisplay()
             self.deselect()
@@ -903,7 +896,6 @@ extension ViewControllertabMain: Fileerror {
                 self.rsyncCommand.stringValue = Filerrors(errortype: errortype).errordescription()
             } else {
                 self.setInfo(info: "Error", color: .red)
-                self.statuslight.image = #imageLiteral(resourceName: "red")
                 self.showProcessInfo(info: .error)
                 self.rsyncCommand.stringValue = Filerrors(errortype: errortype).errordescription() + "\n" + errorstr
             }
@@ -924,7 +916,6 @@ extension ViewControllertabMain: AbortOperations {
             self.process = nil
             // Create workqueu and add abort
             self.setInfo(info: "Abort", color: .red)
-            self.statuslight.image = #imageLiteral(resourceName: "red")
             self.rsyncCommand.stringValue = ""
         } else {
             self.working.stopAnimation(nil)
@@ -939,7 +930,6 @@ extension ViewControllertabMain: AbortOperations {
             self.configurations!.deleteBatchData()
             self.process = nil
             self.setInfo(info: "Abort", color: .red)
-            self.statuslight.image = #imageLiteral(resourceName: "red")
         }
     }
 }
@@ -967,7 +957,6 @@ extension ViewControllertabMain: SingleTaskProgress {
             switch info {
             case .estimating:
                 self.processInfo.stringValue = "Estimating"
-                self.statuslight.image = #imageLiteral(resourceName: "green")
             case .executing:
                 self.processInfo.stringValue = "Executing"
             case .loggingrun:
