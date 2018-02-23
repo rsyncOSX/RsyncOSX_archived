@@ -4,8 +4,8 @@
 
 This repository is the source code for the macOS app RsyncOSX. RsyncOSX is compiled with support for macOS version 10.11 - 10.13. The application is implemented in **Swift 4** by using **Xcode 9**. RsyncOSX is *not* depended upon any third party binary distributions. There is, however, one third party source code included to check for TCP connections. The check is for informal use only and can be removed.
 
-- a short [intro](https://rsyncosx.github.io/Documentation/docs/Intro.html) to RsyncOSX
-- a more detailed [document](https://rsyncosx.github.io/Documentation/) about RsyncOSX
+- a short [intro](https://github.com/rsyncOSX/Documentation/blob/master/docs/Intro.md) to RsyncOSX
+- a more detailed [document](https://github.com/rsyncOSX/Documentation) about RsyncOSX
 
 #### SwiftLint
 
@@ -27,7 +27,7 @@ The [Changelog](https://github.com/rsyncOSX/Documentation/blob/master/docs/Chang
 
 The YouTube video is an old version, but it demonstrates the basic ideas about RsyncOSX.
 
-There are some [documents](https://rsyncosx.github.io/Documentation/) about RsyncOSX and a short [YouTube demo](https://www.youtube.com/watch?v=ty1r7yvgExo) (about 5 minutes long) : "Downloading RsyncOSX, installing, first time configuration and using RsyncOSX for the first time. Backup (as demo) of about 120 MB of data and 4000 files to a VirtualBox FreeBSD machine."
+There are some [documents](https://github.com/rsyncOSX/Documentation) about RsyncOSX and a short [YouTube demo](https://www.youtube.com/watch?v=ty1r7yvgExo) (about 5 minutes long) : "Downloading RsyncOSX, installing, first time configuration and using RsyncOSX for the first time. Backup (as demo) of about 120 MB of data and 4000 files to a VirtualBox FreeBSD machine."
 
 ### Development
 
