@@ -185,6 +185,7 @@ class ViewControllerSnapshots: NSViewController, SetDismisser, SetConfigurations
         if let index = indexes.first {
             let dict = self.snapshotsloggdata!.snapshotslogs![index]
             self.hiddenID = dict.value(forKey: "hiddenID") as? Int
+            guard self.hiddenID != nil else { return }
             self.index = self.configurations?.getIndex(hiddenID!)
         }
     }
