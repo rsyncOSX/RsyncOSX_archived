@@ -50,9 +50,28 @@ class ViewControllerScheduleDetails: NSViewController, SetConfigurations, SetSch
         }
     }
 
+    @IBAction func stoppall(_ sender: NSButton) {
+        guard self.data != nil else { return }
+        for i in 0 ..< self.data!.count {
+            self.data![i].setValue(1, forKey: "stopCellID")
+        }
+        globalMainQueue.async(execute: { () -> Void in
+            self.scheduletable.reloadData()
+        })
+    }
+
+    @IBAction func deleteall(_ sender: NSButton) {
+        guard self.data != nil else { return }
+        for i in 0 ..< self.data!.count {
+            self.data![i].setValue(1, forKey: "deleteCellID")
+        }
+        globalMainQueue.async(execute: { () -> Void in
+            self.scheduletable.reloadData()
+        })
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.tools = Tools()
         self.scheduletable.delegate = self
         self.scheduletable.dataSource = self
     }
