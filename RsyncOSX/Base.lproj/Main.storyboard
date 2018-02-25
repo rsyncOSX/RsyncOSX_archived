@@ -754,7 +754,7 @@
                                             <rect key="frame" x="90" y="30" width="16" height="16"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                         </progressIndicator>
-                                        <textField horizontalHuggingPriority="251" verticalHuggingPriority="752" fixedFrame="YES" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="lb5-Xb-uyK">
+                                        <textField hidden="YES" horizontalHuggingPriority="251" verticalHuggingPriority="752" fixedFrame="YES" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="lb5-Xb-uyK">
                                             <rect key="frame" x="16" y="29" width="72" height="17"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="left" title="estimating" id="RX2-fV-dtX">
@@ -763,7 +763,7 @@
                                                 <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                             </textFieldCell>
                                         </textField>
-                                        <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="yxt-uy-I5b">
+                                        <textField hidden="YES" horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="yxt-uy-I5b">
                                             <rect key="frame" x="16" y="10" width="67" height="17"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="left" title="executing" id="w0F-tz-CbR">
@@ -899,6 +899,7 @@
                         <outlet property="profilInfo" destination="Gg2-se-FkF" id="XIe-l3-YkS"/>
                         <outlet property="rsyncCommand" destination="7n8-es-jH6" id="bH0-3W-ECU"/>
                         <outlet property="rsyncversionshort" destination="n3L-Il-K5w" id="5oc-tn-kTn"/>
+                        <outlet property="scheduleJobworkinglabel" destination="yxt-uy-I5b" id="dpd-D1-WAV"/>
                         <outlet property="scheduledJobworking" destination="hnd-F8-jzy" id="BaA-Rt-95e"/>
                         <outlet property="totalDirs" destination="ZMP-pU-PWi" id="BWy-QK-Edy"/>
                         <outlet property="totalNumber" destination="IFg-Xf-ODx" id="PEU-mH-vGF"/>
@@ -906,6 +907,7 @@
                         <outlet property="transferredNumber" destination="H9R-yL-P6I" id="IYh-2M-DWM"/>
                         <outlet property="transferredNumberSizebytes" destination="SiX-5v-JHf" id="Zae-lS-kgi"/>
                         <outlet property="working" destination="ZhK-mF-Dgw" id="7N0-Wz-LAk"/>
+                        <outlet property="workinglabel" destination="lb5-Xb-uyK" id="XuI-eO-DDQ"/>
                     </connections>
                 </viewController>
                 <customObject id="aBq-uD-wbZ" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
