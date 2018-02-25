@@ -741,7 +741,7 @@
                                 </view>
                             </box>
                             <box title="Process info" translatesAutoresizingMaskIntoConstraints="NO" id="QdJ-n1-Mtr">
-                                <rect key="frame" x="8" y="133" width="130" height="68"/>
+                                <rect key="frame" x="8" y="110" width="130" height="68"/>
                                 <view key="contentView" id="6AE-Vn-TDr">
                                     <rect key="frame" x="2" y="2" width="126" height="51"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -876,7 +876,7 @@
                             <constraint firstAttribute="trailing" secondItem="KX4-b1-AYu" secondAttribute="trailing" constant="21" id="L1t-ac-hRD"/>
                             <constraint firstItem="n3L-Il-K5w" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="akQ-LR-eTv" secondAttribute="leading" constant="20" symbolic="YES" id="ZkV-6w-s5P"/>
                             <constraint firstItem="ihR-vZ-M7c" firstAttribute="top" secondItem="KX4-b1-AYu" secondAttribute="bottom" constant="1" id="aqD-A2-eKa"/>
-                            <constraint firstItem="QdJ-n1-Mtr" firstAttribute="bottom" secondItem="ihR-vZ-M7c" secondAttribute="bottom" constant="-23" id="bOl-XW-unf"/>
+                            <constraint firstItem="QdJ-n1-Mtr" firstAttribute="bottom" secondItem="ihR-vZ-M7c" secondAttribute="bottom" id="bOl-XW-unf"/>
                             <constraint firstAttribute="trailing" secondItem="RQt-Hs-8vg" secondAttribute="trailing" constant="21" id="gWi-PT-egm"/>
                             <constraint firstItem="QdJ-n1-Mtr" firstAttribute="leading" secondItem="akQ-LR-eTv" secondAttribute="leading" constant="11" id="nds-bF-gxb"/>
                             <constraint firstItem="ihR-vZ-M7c" firstAttribute="leading" secondItem="QdJ-n1-Mtr" secondAttribute="trailing" constant="8" id="rma-Od-MTW"/>
