@@ -157,8 +157,8 @@ class ViewControllerUserconfiguration: NSViewController, NewRsync, SetDismisser,
 
     private func verifyrsync() {
         var rsyncpath: String?
-        self.statuslightpathrsync.isHidden = false
         if self.rsyncPath.stringValue.isEmpty == false {
+            self.statuslightpathrsync.isHidden = false
             if self.rsyncPath.stringValue.hasSuffix("/") == false {
                 rsyncpath = self.rsyncPath.stringValue + "/" + ViewControllerReference.shared.rsync
             } else {
@@ -167,12 +167,12 @@ class ViewControllerUserconfiguration: NSViewController, NewRsync, SetDismisser,
         } else {
             rsyncpath = nil
         }
+        // use stock rsync
         guard self.version3rsync.state == .on else {
-            self.noRsync.isHidden = true
             ViewControllerReference.shared.norsync = false
-            self.statuslightpathrsync.image = #imageLiteral(resourceName: "green")
             return
         }
+        self.statuslightpathrsync.isHidden = false
         guard rsyncpath != nil else {
             self.noRsync.isHidden = true
             ViewControllerReference.shared.norsync = false
@@ -325,13 +325,15 @@ class ViewControllerUserconfiguration: NSViewController, NewRsync, SetDismisser,
 extension ViewControllerUserconfiguration: NSTextFieldDelegate {
 
     override func controlTextDidChange(_ obj: Notification) {
-        self.version3rsync.state = .on
+        if self.rsyncPath.stringValue.isEmpty == false {
+            self.version3rsync.state = .on
+        }
         self.dirty = true
         delayWithSeconds(0.5) {
             self.verifyrsync()
             self.newrsync()
-            self.verifypathtorsyncosx()
             self.verifypathtorsyncsched()
+            self.verifypathtorsyncosx()
         }
     }
 
