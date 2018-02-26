@@ -176,6 +176,7 @@ class ViewControllerUserconfiguration: NSViewController, NewRsync, SetDismisser,
         guard rsyncpath != nil else {
             self.noRsync.isHidden = true
             ViewControllerReference.shared.norsync = false
+            self.version3rsync.state = .off
             self.statuslightpathrsync.image = #imageLiteral(resourceName: "green")
             return
         }
