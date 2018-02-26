@@ -173,14 +173,7 @@ class ViewControllerUserconfiguration: NSViewController, NewRsync, SetDismisser,
             return
         }
         self.statuslightpathrsync.isHidden = false
-        guard rsyncpath != nil else {
-            self.noRsync.isHidden = true
-            ViewControllerReference.shared.norsync = false
-            self.version3rsync.state = .off
-            self.statuslightpathrsync.image = #imageLiteral(resourceName: "green")
-            return
-        }
-        if verifypatexists(pathorfilename: rsyncpath!) {
+        if verifypatexists(pathorfilename: rsyncpath) {
             self.noRsync.isHidden = true
             ViewControllerReference.shared.norsync = false
             self.statuslightpathrsync.image = #imageLiteral(resourceName: "green")
@@ -253,9 +246,15 @@ class ViewControllerUserconfiguration: NSViewController, NewRsync, SetDismisser,
         self.executescheduledappsinmenuapp.state = .on
     }
 
-    private func verifypatexists(pathorfilename: String) -> Bool {
+    private func verifypatexists(pathorfilename: String?) -> Bool {
         let fileManager = FileManager.default
-        guard fileManager.fileExists(atPath: pathorfilename) else { return false }
+        var path: String?
+        if pathorfilename == nil {
+            path = ViewControllerReference.shared.usrlocalbinrsync
+        } else {
+            path = pathorfilename
+        }
+        guard fileManager.fileExists(atPath: path ?? "") else { return false }
         return true
     }
 
