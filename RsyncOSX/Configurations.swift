@@ -171,10 +171,9 @@ class Configurations: ReloadTable, SetSchedules {
     /// - returns : Array of NSDictionary
     func getConfigurationsDataSourcecountBackup() -> [NSMutableDictionary]? {
         let configurations: [Configuration] = self.configurations!.filter({return ($0.task == "backup" || $0.task == "snapshot")})
-        var row =  NSMutableDictionary()
         var data = [NSMutableDictionary]()
         for i in 0 ..< configurations.count {
-            row = [
+            let row: NSMutableDictionary = [
                 "taskCellID": configurations[i].task,
                 "hiddenID": configurations[i].hiddenID,
                 "localCatalogCellID": configurations[i].localCatalog,
