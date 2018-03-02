@@ -17,7 +17,7 @@ protocol OpenQuickBackup: class {
 class ViewControllerRemoteInfo: NSViewController, SetDismisser, AbortTask {
 
     @IBOutlet weak var mainTableView: NSTableView!
-    @IBOutlet weak var working: NSProgressIndicator!
+    @IBOutlet weak var progress: NSProgressIndicator!
     @IBOutlet weak var executebutton: NSButton!
     @IBOutlet weak var abortbutton: NSButton!
     @IBOutlet weak var count: NSTextField!
@@ -65,19 +65,19 @@ class ViewControllerRemoteInfo: NSViewController, SetDismisser, AbortTask {
         })
         self.count.stringValue = self.number()
         self.enableexecutebutton()
+        self.initiateProgressbar()
     }
 
     override func viewDidDisappear() {
         super.viewDidDisappear()
-        self.working.stopAnimation(nil)
         self.remoteinfotask = nil
     }
 
     private func number() -> String {
         let max = self.remoteinfotask?.maxnumber ?? 0
-        let rest = self.remoteinfotask?.count ?? 0
-        let num = String(describing: max - rest) + " of " + String(describing: max)
-        return "Estimating " + num
+        // let rest = self.remoteinfotask?.count ?? 0
+        // let num = String(describing: max - rest) + " of " + String(describing: max)
+        return String(describing: max)
     }
 
     private func dobackups() -> [NSMutableDictionary]? {
@@ -112,6 +112,21 @@ class ViewControllerRemoteInfo: NSViewController, SetDismisser, AbortTask {
         self.reloadtabledata()
     }
 
+    // Progress bars
+    private func initiateProgressbar() {
+        if let calculatedNumberOfFiles = self.remoteinfotask?.maxnumber {
+            self.progress.maxValue = Double(calculatedNumberOfFiles)
+        }
+        self.progress.minValue = 0
+        self.progress.doubleValue = 0
+        self.progress.startAnimation(self)
+    }
+
+    private func updateProgressbar() {
+        let rest = self.remoteinfotask?.count ?? 0
+        let max = self.remoteinfotask?.maxnumber ?? 0
+        self.progress.doubleValue = Double(max - rest)
+    }
 }
 
 extension ViewControllerRemoteInfo: NSTableViewDataSource {
@@ -163,7 +178,6 @@ extension ViewControllerRemoteInfo: Reloadandrefresh {
 
     // Updates tableview according to progress of batch
     func reloadtabledata() {
-        self.count.stringValue = self.number()
         globalMainQueue.async(execute: { () -> Void in
             self.mainTableView.reloadData()
         })
@@ -173,8 +187,9 @@ extension ViewControllerRemoteInfo: Reloadandrefresh {
 extension ViewControllerRemoteInfo: UpdateProgress {
     func processTermination() {
         self.reloadtabledata()
+        self.updateProgressbar()
         if self.remoteinfotask?.stackoftasktobeestimated == nil {
-            self.working.stopAnimation(nil)
+            self.progress.stopAnimation(nil)
         }
     }
 
@@ -185,11 +200,11 @@ extension ViewControllerRemoteInfo: UpdateProgress {
 
 extension ViewControllerRemoteInfo: StartStopProgressIndicator {
     func start() {
-        self.working.startAnimation(nil)
+        // self.initiateProgressbar()
     }
 
     func stop() {
-        self.working.stopAnimation(nil)
+        self.progress.stopAnimation(nil)
     }
 
     func complete() {
