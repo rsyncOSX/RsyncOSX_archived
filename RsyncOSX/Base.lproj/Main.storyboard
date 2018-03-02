@@ -5616,19 +5616,6 @@ DQ
                                     <action selector="abort:" target="X0A-DI-J7J" id="GHY-7K-l6e"/>
                                 </connections>
                             </button>
-                            <progressIndicator wantsLayer="YES" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" maxValue="100" displayedWhenStopped="NO" bezeled="NO" indeterminate="YES" controlSize="small" style="spinning" translatesAutoresizingMaskIntoConstraints="NO" id="Q9W-RQ-hBv">
-                                <rect key="frame" x="813" y="23" width="16" height="16"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                            </progressIndicator>
-                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="8bs-cE-2aO">
-                                <rect key="frame" x="20" y="23" width="202" height="17"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Count" id="78a-Cw-Mjk">
-                                    <font key="font" metaFont="system"/>
-                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                                </textFieldCell>
-                            </textField>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="wpf-Hg-PWZ">
                                 <rect key="frame" x="20" y="297" width="695" height="17"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
@@ -5658,6 +5645,19 @@ DQ
                                     <action selector="execute:" target="X0A-DI-J7J" id="GTD-Xg-qRv"/>
                                 </connections>
                             </button>
+                            <progressIndicator wantsLayer="YES" fixedFrame="YES" maxValue="100" style="bar" translatesAutoresizingMaskIntoConstraints="NO" id="ASF-Jd-Tpg">
+                                <rect key="frame" x="20" y="17" width="251" height="20"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                            </progressIndicator>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="8bs-cE-2aO">
+                                <rect key="frame" x="281" y="19" width="41" height="17"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Count" id="78a-Cw-Mjk">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
                         </subviews>
                     </view>
                     <connections>
@@ -5665,7 +5665,7 @@ DQ
                         <outlet property="count" destination="8bs-cE-2aO" id="xPP-PG-SIw"/>
                         <outlet property="executebutton" destination="DqZ-XV-BIT" id="IpA-BP-FiJ"/>
                         <outlet property="mainTableView" destination="cdd-YP-oPa" id="gDp-Qw-J6d"/>
-                        <outlet property="working" destination="Q9W-RQ-hBv" id="LwE-iu-2ri"/>
+                        <outlet property="progress" destination="ASF-Jd-Tpg" id="g7M-Xj-VEr"/>
                     </connections>
                 </viewController>
                 <customObject id="EeF-i6-w3M" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
