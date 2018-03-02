@@ -126,6 +126,18 @@ class ViewControllertabMain: NSViewController, ReloadTable, Deselect, Coloractiv
         }
     }
 
+    @IBAction func infoonetask(_ sender: NSButton) {
+        guard ViewControllerReference.shared.norsync == false else {
+            self.tools!.noRsync()
+            return
+        }
+        if let index = self.index {
+            self.processtermination = .infosingletask
+            self.outputprocess = OutputProcess()
+            _ = EstimateRemoteInformationTask(index: index, outputprocess: self.outputprocess)
+        }
+    }
+
     @IBAction func totinfo(_ sender: NSButton) {
         guard ViewControllerReference.shared.norsync == false else {
             self.tools!.noRsync()
@@ -818,6 +830,8 @@ extension ViewControllertabMain: UpdateProgress {
         case .remoteinfotask:
             guard self.remoteinfotask != nil else { return }
             self.remoteinfotask?.processTermination()
+        case .infosingletask:
+            print("got it")
         }
     }
 
@@ -854,6 +868,8 @@ extension ViewControllertabMain: UpdateProgress {
         case .singlequicktask:
             return
         case .remoteinfotask:
+            return
+        case .infosingletask:
             return
         }
     }

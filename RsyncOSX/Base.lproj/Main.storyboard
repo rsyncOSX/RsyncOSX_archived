@@ -96,6 +96,12 @@
                                             </connections>
                                         </menuItem>
                                         <menuItem isSeparatorItem="YES" id="p7w-an-4lO"/>
+                                        <menuItem title="Info" keyEquivalent="i" id="p56-o9-HcO" userLabel="Info">
+                                            <connections>
+                                                <action selector="infoonetask:" target="Ady-hI-5gd" id="xje-X3-0nC"/>
+                                            </connections>
+                                        </menuItem>
+                                        <menuItem isSeparatorItem="YES" id="doz-B8-buN"/>
                                         <menuItem title="Abort" keyEquivalent="a" id="k2Y-Hy-jMj" userLabel="Abort">
                                             <connections>
                                                 <action selector="abort:" target="Ady-hI-5gd" id="07y-93-KHs"/>
