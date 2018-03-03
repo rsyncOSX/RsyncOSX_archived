@@ -75,9 +75,7 @@ class ViewControllerRemoteInfo: NSViewController, SetDismisser, AbortTask {
 
     private func number() -> String {
         let max = self.remoteinfotask?.maxnumber ?? 0
-        // let rest = self.remoteinfotask?.count ?? 0
-        // let num = String(describing: max - rest) + " of " + String(describing: max)
-        return String(describing: max)
+        return "Number of tasks to estimate: " + String(describing: max)
     }
 
     private func dobackups() -> [NSMutableDictionary]? {
@@ -190,6 +188,7 @@ extension ViewControllerRemoteInfo: UpdateProgress {
         self.updateProgressbar()
         if self.remoteinfotask?.stackoftasktobeestimated == nil {
             self.progress.stopAnimation(nil)
+            self.count.stringValue = "Completed"
         }
     }
 

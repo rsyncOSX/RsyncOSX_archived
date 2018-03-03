@@ -96,6 +96,12 @@
                                             </connections>
                                         </menuItem>
                                         <menuItem isSeparatorItem="YES" id="p7w-an-4lO"/>
+                                        <menuItem title="Info" keyEquivalent="i" id="p56-o9-HcO" userLabel="Info">
+                                            <connections>
+                                                <action selector="infoonetask:" target="Ady-hI-5gd" id="xje-X3-0nC"/>
+                                            </connections>
+                                        </menuItem>
+                                        <menuItem isSeparatorItem="YES" id="doz-B8-buN"/>
                                         <menuItem title="Abort" keyEquivalent="a" id="k2Y-Hy-jMj" userLabel="Abort">
                                             <connections>
                                                 <action selector="abort:" target="Ady-hI-5gd" id="07y-93-KHs"/>
@@ -5650,7 +5656,7 @@ DQ
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                             </progressIndicator>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="8bs-cE-2aO">
-                                <rect key="frame" x="281" y="19" width="41" height="17"/>
+                                <rect key="frame" x="281" y="19" width="306" height="17"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Count" id="78a-Cw-Mjk">
                                     <font key="font" metaFont="system"/>

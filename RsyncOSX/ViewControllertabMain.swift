@@ -109,7 +109,7 @@ class ViewControllertabMain: NSViewController, ReloadTable, Deselect, Coloractiv
         NSApp.terminate(self)
     }
 
-    private func info (num: Int) {
+    private func info(num: Int) {
         switch num {
         case 1:
             self.info.stringValue = "Select a task...."
@@ -123,6 +123,20 @@ class ViewControllertabMain: NSViewController, ReloadTable, Deselect, Coloractiv
              self.info.stringValue = "Menu app is either running or not enabled..."
         default:
             self.info.stringValue = ""
+        }
+    }
+
+    @IBAction func infoonetask(_ sender: NSButton) {
+        guard ViewControllerReference.shared.norsync == false else {
+            self.tools!.noRsync()
+            return
+        }
+        if let index = self.index {
+            self.working.startAnimation(nil)
+            self.workinglabel.isHidden = false
+            self.processtermination = .infosingletask
+            self.outputprocess = OutputProcess()
+            _ = EstimateRemoteInformationTask(index: index, outputprocess: self.outputprocess)
         }
     }
 
@@ -818,6 +832,10 @@ extension ViewControllertabMain: UpdateProgress {
         case .remoteinfotask:
             guard self.remoteinfotask != nil else { return }
             self.remoteinfotask?.processTermination()
+        case .infosingletask:
+            self.setNumbers(outputprocess: self.outputprocess)
+            self.workinglabel.isHidden = true
+            self.working.stopAnimation(nil)
         }
     }
 
@@ -854,6 +872,8 @@ extension ViewControllertabMain: UpdateProgress {
         case .singlequicktask:
             return
         case .remoteinfotask:
+            return
+        case .infosingletask:
             return
         }
     }
