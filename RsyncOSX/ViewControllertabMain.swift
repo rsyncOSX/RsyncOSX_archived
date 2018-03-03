@@ -109,7 +109,7 @@ class ViewControllertabMain: NSViewController, ReloadTable, Deselect, Coloractiv
         NSApp.terminate(self)
     }
 
-    private func info (num: Int) {
+    private func info(num: Int) {
         switch num {
         case 1:
             self.info.stringValue = "Select a task...."
@@ -132,6 +132,8 @@ class ViewControllertabMain: NSViewController, ReloadTable, Deselect, Coloractiv
             return
         }
         if let index = self.index {
+            self.working.startAnimation(nil)
+            self.workinglabel.isHidden = false
             self.processtermination = .infosingletask
             self.outputprocess = OutputProcess()
             _ = EstimateRemoteInformationTask(index: index, outputprocess: self.outputprocess)
@@ -831,7 +833,9 @@ extension ViewControllertabMain: UpdateProgress {
             guard self.remoteinfotask != nil else { return }
             self.remoteinfotask?.processTermination()
         case .infosingletask:
-            print("got it")
+            self.setNumbers(outputprocess: self.outputprocess)
+            self.workinglabel.isHidden = true
+            self.working.stopAnimation(nil)
         }
     }
 
