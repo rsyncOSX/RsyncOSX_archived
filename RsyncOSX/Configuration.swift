@@ -36,6 +36,7 @@ struct Configuration {
     var sshport: Int?
     var dayssincelastbackup: String?
     var markdays: Bool = false
+    var profile: String?
 
     private func calculatedays(date: String) -> Double? {
         guard date != "" else { return nil }

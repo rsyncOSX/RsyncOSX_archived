@@ -11,17 +11,23 @@ import Foundation
 final class PersistentStorageAPI: SetConfigurations, SetSchedules, NextTask {
 
     var profile: String?
+    var forceread: Bool = false
 
     // CONFIGURATIONS
 
     // Read configurations from persisten store
     func getConfigurations() -> [Configuration]? {
-        let read = PersistentStorageConfiguration(profile: self.profile)
+        var read: PersistentStorageConfiguration?
+        if self.forceread {
+            read = PersistentStorageConfiguration(profile: self.profile, forceread: true)
+        } else {
+            read = PersistentStorageConfiguration(profile: self.profile)
+        }
         // Either read from persistent store or
         // return Configurations already in memory
-        if read.readConfigurationsFromPermanentStore() != nil {
+        if read!.readConfigurationsFromPermanentStore() != nil {
             var Configurations = [Configuration]()
-            for dict in read.readConfigurationsFromPermanentStore()! {
+            for dict in read!.readConfigurationsFromPermanentStore()! {
                 let conf = Configuration(dictionary: dict)
                 Configurations.append(conf)
             }
@@ -110,5 +116,10 @@ final class PersistentStorageAPI: SetConfigurations, SetSchedules, NextTask {
 
     init(profile: String?) {
         self.profile = profile
+    }
+
+    init(profile: String?, forceread: Bool) {
+        self.profile = profile
+        self.forceread = forceread
     }
 }

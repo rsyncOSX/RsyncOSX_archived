@@ -78,6 +78,7 @@
 		E9612CB31F9BCBD4003A3CAE /* ExecuteTaskDispatch.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9612CB21F9BCBD4003A3CAE /* ExecuteTaskDispatch.swift */; };
 		E9614AD61F231AFC00CAE21A /* Tools.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9614AD51F231AFC00CAE21A /* Tools.swift */; };
 		E96CA1FE1E094C3000CD1D03 /* Resources.swift in Sources */ = {isa = PBXBuildFile; fileRef = E96CA1FD1E094C3000CD1D03 /* Resources.swift */; };
+		E9764F60204BEE970018C0D7 /* AllProfiles.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9764F5F204BEE970018C0D7 /* AllProfiles.swift */; };
 		E97C09A71EFAFBC400E86999 /* BatchTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = E97C09A61EFAFBC400E86999 /* BatchTask.swift */; };
 		E97E3BA71F6256DB00411D0E /* Configurations.swift in Sources */ = {isa = PBXBuildFile; fileRef = E97E3BA61F6256DB00411D0E /* Configurations.swift */; };
 		E989CE961EF948D0000CB7C2 /* ChmodPubKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = E989CE951EF948D0000CB7C2 /* ChmodPubKey.swift */; };
@@ -184,6 +185,7 @@
 		E9612CB21F9BCBD4003A3CAE /* ExecuteTaskDispatch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExecuteTaskDispatch.swift; sourceTree = "<group>"; };
 		E9614AD51F231AFC00CAE21A /* Tools.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tools.swift; sourceTree = "<group>"; };
 		E96CA1FD1E094C3000CD1D03 /* Resources.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Resources.swift; sourceTree = "<group>"; };
+		E9764F5F204BEE970018C0D7 /* AllProfiles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllProfiles.swift; sourceTree = "<group>"; };
 		E97C09A61EFAFBC400E86999 /* BatchTask.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BatchTask.swift; sourceTree = "<group>"; };
 		E97E3BA61F6256DB00411D0E /* Configurations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Configurations.swift; sourceTree = "<group>"; };
 		E989CE951EF948D0000CB7C2 /* ChmodPubKey.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChmodPubKey.swift; sourceTree = "<group>"; };
@@ -271,6 +273,7 @@
 		A04492BE1D658F8900B3CE17 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				E9764F5E204BEE710018C0D7 /* AllProfiles */,
 				E99FC81E200FDDBC00477B1A /* ProcessArguments */,
 				E98BD0991FF8BF8400A00782 /* RemoteInformation */,
 				E99AEC701FF8BBA40004992B /* Userconfiguration */,
@@ -279,7 +282,7 @@
 				E99D50781EE16241003621D3 /* RsyncParameters */,
 				E99FC81F200FDE2A00477B1A /* Output */,
 				E9234FF91EB0680D00A4C550 /* UserProfiles */,
-				E9EC786F1EACE063001EED9B /* ssh */,
+				E9EC786F1EACE063001EED9B /* Ssh */,
 				E9D0A0101F9CBD8A0050A868 /* ScheduleOperation */,
 				E988FCBC1F9BCF0A00F21FB9 /* ScheduleOperationDispatch */,
 				E9374D2A1E32992900CD3945 /* ScheduledOperationsTimer */,
@@ -491,6 +494,14 @@
 			name = ViewControllerReference;
 			sourceTree = "<group>";
 		};
+		E9764F5E204BEE710018C0D7 /* AllProfiles */ = {
+			isa = PBXGroup;
+			children = (
+				E9764F5F204BEE970018C0D7 /* AllProfiles.swift */,
+			);
+			name = AllProfiles;
+			sourceTree = "<group>";
+		};
 		E988FCBC1F9BCF0A00F21FB9 /* ScheduleOperationDispatch */ = {
 			isa = PBXGroup;
 			children = (
@@ -558,13 +569,13 @@
 			name = ScheduleOperation;
 			sourceTree = "<group>";
 		};
-		E9EC786F1EACE063001EED9B /* ssh */ = {
+		E9EC786F1EACE063001EED9B /* Ssh */ = {
 			isa = PBXGroup;
 			children = (
 				E9EC78701EACE082001EED9B /* Ssh.swift */,
 				E989CE951EF948D0000CB7C2 /* ChmodPubKey.swift */,
 			);
-			name = ssh;
+			name = Ssh;
 			sourceTree = "<group>";
 		};
 		E9F941611FC5FCAE005F2439 /* Logging */ = {
@@ -679,6 +690,7 @@
 				E9F941651FC5FCC3005F2439 /* Logging.swift in Sources */,
 				E9614AD61F231AFC00CAE21A /* Tools.swift in Sources */,
 				E97E3BA71F6256DB00411D0E /* Configurations.swift in Sources */,
+				E9764F60204BEE970018C0D7 /* AllProfiles.swift in Sources */,
 				A0EE98991D8948310034F1A4 /* ViewControllerInformationCopyFiles.swift in Sources */,
 				A04492B71D658F2100B3CE17 /* PersistentStorageAPI.swift in Sources */,
 				E9612CB31F9BCBD4003A3CAE /* ExecuteTaskDispatch.swift in Sources */,
