@@ -24,7 +24,6 @@ class ViewControllertabSchedule: NSViewController, SetConfigurations, SetSchedul
     private var index: Int?
     private var hiddenID: Int?
     private var schedulessorted: ScheduleSortedAndExpand?
-    private var infoschedulessorted: InfoScheduleSortedAndExpand?
     var tools: Tools?
     var schedule: Scheduletype?
 
@@ -150,7 +149,6 @@ class ViewControllertabSchedule: NSViewController, SetConfigurations, SetSchedul
         self.starttime.dateValue = Date()
         if self.schedulessorted == nil {
             self.schedulessorted = ScheduleSortedAndExpand()
-            self.infoschedulessorted = InfoScheduleSortedAndExpand(sortedandexpanded: self.schedulessorted)
         }
         globalMainQueue.async(execute: { () -> Void in
             self.mainTableView.reloadData()
@@ -281,7 +279,6 @@ extension ViewControllertabSchedule: Reloadandrefresh {
     func reloadtabledata() {
         // Create a New schedules object
         self.schedulessorted = ScheduleSortedAndExpand()
-        self.infoschedulessorted = InfoScheduleSortedAndExpand(sortedandexpanded: self.schedulessorted)
         globalMainQueue.async(execute: { () -> Void in
             self.mainTableView.reloadData()
         })
@@ -294,7 +291,6 @@ extension ViewControllertabSchedule: StartTimer {
     // Called from Process
     func startTimerNextJob() {
         self.schedulessorted = ScheduleSortedAndExpand()
-        self.infoschedulessorted = InfoScheduleSortedAndExpand(sortedandexpanded: self.schedulessorted)
         globalMainQueue.async(execute: { () -> Void in
             self.mainTableView.reloadData()
         })
