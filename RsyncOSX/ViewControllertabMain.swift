@@ -663,7 +663,6 @@ extension ViewControllertabMain: NewProfile {
         self.setNumbers(outputprocess: nil)
         self.setRsyncCommandDisplay()
         self.setInfo(info: "Estimate", color: .blue)
-        self.setNumbers(outputprocess: nil)
         self.deselect()
         // Read configurations and Scheduledata
         self.configurations = self.createconfigurationsobject(profile: profile)
