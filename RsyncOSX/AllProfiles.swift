@@ -9,6 +9,13 @@
 
 import Foundation
 
+enum Sortstring {
+    case remotecatalog
+    case localcatalog
+    case profile
+    case remoteserver
+}
+
 class AllProfiles {
     // Configurations object
     var allconfigurations: [Configuration]?
@@ -67,6 +74,42 @@ class AllProfiles {
             data.append(row)
         }
         self.allconfigurationsasdictionary = data
+    }
+
+    private func sortrundate() {
+        let dateformatter = Tools().setDateformat()
+        guard self.allconfigurationsasdictionary != nil else { return }
+        let sorted = self.allconfigurationsasdictionary!.sorted { (dict1, dict2) -> Bool in
+            if (dateformatter.date(from: (dict1.value(forKey: "runDateCellID") as? String) ?? ""))!.timeIntervalSince(dateformatter.date(from: (dict2.value(forKey: "runDateCellID") as? String) ?? "")!) > 0 {
+                return true
+            } else {
+                return false
+            }
+        }
+        self.allconfigurationsasdictionary = sorted
+    }
+
+    private func sortstring(sortby: Sortstring) {
+        guard self.allconfigurationsasdictionary != nil else { return }
+        var sortstring: String?
+        switch sortby {
+        case .localcatalog:
+            sortstring = "localCatalogCellID"
+        case .profile:
+            sortstring = "profile"
+        case .remotecatalog:
+            sortstring = "offsiteCatalogCellID"
+        case .remoteserver:
+            sortstring = "offsiteServerCellID"
+        }
+        let sorted = self.allconfigurationsasdictionary!.sorted { (dict1, dict2) -> Bool in
+            if (dict1.value(forKey: sortstring!) as? String) ?? "" > (dict2.value(forKey: sortstring!) as? String) ?? "" {
+                return true
+            } else {
+                return false
+            }
+        }
+        self.allconfigurationsasdictionary = sorted
     }
 
     init() {
