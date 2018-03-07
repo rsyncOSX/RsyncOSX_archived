@@ -18,9 +18,9 @@ enum Sortstring {
 
 class AllProfiles {
     // Configurations object
-    var allconfigurations: [Configuration]?
+    private var allconfigurations: [Configuration]?
     var allconfigurationsasdictionary: [NSDictionary]?
-    var allprofiles: [String]?
+    private var allprofiles: [String]?
 
     private func getprofiles() {
         let profile = Files(root: .profileRoot)
