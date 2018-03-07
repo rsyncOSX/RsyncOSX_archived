@@ -76,7 +76,7 @@ class AllProfiles {
         self.allconfigurationsasdictionary = data
     }
 
-    private func sortrundate() {
+    func sortrundate() {
         let dateformatter = Tools().setDateformat()
         guard self.allconfigurationsasdictionary != nil else { return }
         let sorted = self.allconfigurationsasdictionary!.sorted { (dict1, dict2) -> Bool in
@@ -89,7 +89,7 @@ class AllProfiles {
         self.allconfigurationsasdictionary = sorted
     }
 
-    private func sortstring(sortby: Sortstring) {
+    func sortstring(sortby: Sortstring) {
         guard self.allconfigurationsasdictionary != nil else { return }
         var sortstring: String?
         switch sortby {
