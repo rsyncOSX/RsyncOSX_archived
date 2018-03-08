@@ -21,6 +21,7 @@ class AllProfiles {
     private var allconfigurations: [Configuration]?
     var allconfigurationsasdictionary: [NSDictionary]?
     private var allprofiles: [String]?
+    var sortedascendigdesending: Bool = false
 
     private func getprofiles() {
         let profile = Files(root: .profileRoot)
@@ -77,13 +78,18 @@ class AllProfiles {
     }
 
     func sortrundate() {
+        if self.sortedascendigdesending == true {
+            self.sortedascendigdesending = false
+        } else {
+            self.sortedascendigdesending = true
+        }
         let dateformatter = Tools().setDateformat()
         guard self.allconfigurationsasdictionary != nil else { return }
         let sorted = self.allconfigurationsasdictionary!.sorted { (dict1, dict2) -> Bool in
             if (dateformatter.date(from: (dict1.value(forKey: "runDateCellID") as? String) ?? ""))!.timeIntervalSince(dateformatter.date(from: (dict2.value(forKey: "runDateCellID") as? String) ?? "")!) > 0 {
-                return true
+                return self.sortedascendigdesending
             } else {
-                return false
+                return !self.sortedascendigdesending
             }
         }
         self.allconfigurationsasdictionary = sorted
@@ -110,6 +116,21 @@ class AllProfiles {
             }
         }
         self.allconfigurationsasdictionary = sorted
+    }
+    
+    // Function for filter
+    func filter(search: String?, column: Int) {
+        guard search != nil || self.allconfigurationsasdictionary != nil else { return }
+        globalDefaultQueue.async(execute: {() -> Void in
+            switch column {
+            case 0:
+                let filtereddata = self.allconfigurationsasdictionary?.filter({
+                    ($0.value(forKey: "localCatalogCellID") as? String)!.contains(search!)
+                })
+            default:
+                return
+            }
+        })
     }
 
     init() {
