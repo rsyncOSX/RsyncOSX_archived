@@ -76,7 +76,7 @@ extension ViewControllerAllProfiles: NSTableViewDelegate, Attributedestring {
             return
         case 6:
              // Days
-            return
+            self.allprofiles!.sortrundate()
         case 7:
             // Last run
             self.allprofiles!.sortrundate()

@@ -117,12 +117,17 @@ class AllProfiles {
         }
         self.allconfigurationsasdictionary = sorted
     }
-    
+
     // Function for filter
     func filter(search: String?, column: Int) {
         guard search != nil || self.allconfigurationsasdictionary != nil else { return }
         globalDefaultQueue.async(execute: {() -> Void in
             switch column {
+            case 6:
+                let filtereddata = self.allconfigurationsasdictionary?.filter({
+                    ($0.value(forKey: "daysID") as? String)!.contains(search!)
+                })
+                self.allconfigurationsasdictionary = filtereddata
             case 7:
                 let filtereddata = self.allconfigurationsasdictionary?.filter({
                     ($0.value(forKey: "runDateCellID") as? String)!.contains(search!)
