@@ -123,10 +123,11 @@ class AllProfiles {
         guard search != nil || self.allconfigurationsasdictionary != nil else { return }
         globalDefaultQueue.async(execute: {() -> Void in
             switch column {
-            case 0:
+            case 7:
                 let filtereddata = self.allconfigurationsasdictionary?.filter({
-                    ($0.value(forKey: "localCatalogCellID") as? String)!.contains(search!)
+                    ($0.value(forKey: "runDateCellID") as? String)!.contains(search!)
                 })
+                self.allconfigurationsasdictionary = filtereddata
             default:
                 return
             }

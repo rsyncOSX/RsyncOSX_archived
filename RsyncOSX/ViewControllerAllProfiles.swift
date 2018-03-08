@@ -46,7 +46,7 @@ extension ViewControllerAllProfiles: NSTableViewDelegate, Attributedestring {
 
     // TableView delegates
     func tableView(_ tableView: NSTableView, objectValueFor tableColumn: NSTableColumn?, row: Int) -> Any? {
-        if row > self.allprofiles?.allconfigurationsasdictionary?.count ?? 0 - 1 { return nil }
+        if row > self.allprofiles!.allconfigurationsasdictionary!.count - 1 { return nil }
         let object: NSDictionary = self.allprofiles!.allconfigurationsasdictionary![row]
         return object[tableColumn!.identifier] as? String
     }
@@ -93,16 +93,17 @@ extension ViewControllerAllProfiles: NSSearchFieldDelegate {
 
     override func controlTextDidChange(_ obj: Notification) {
         self.delayWithSeconds(0.25) {
+            guard self.column != nil else { return }
             let filterstring = self.search.stringValue
             if filterstring.isEmpty {
                 globalMainQueue.async(execute: { () -> Void in
-                    // self.tabledata = self.copyFiles?.filter(search: nil)
-                    // self.tableViewSelect.reloadData()
+                    self.allprofiles = AllProfiles()
+                    self.mainTableView.reloadData()
                 })
             } else {
                 globalMainQueue.async(execute: { () -> Void in
-                    // self.tabledata = self.copyFiles?.filter(search: filterstring)
-                    //self.tableViewSelect.reloadData()
+                    self.allprofiles?.filter(search: filterstring, column: self.column!)
+                    self.mainTableView.reloadData()
                 })
             }
         }
@@ -110,8 +111,8 @@ extension ViewControllerAllProfiles: NSSearchFieldDelegate {
 
     func searchFieldDidEndSearching(_ sender: NSSearchField) {
         globalMainQueue.async(execute: { () -> Void in
-            // self.tabledata = self.copyFiles?.filter(search: nil)
-            // self.tableViewSelect.reloadData()
+            self.allprofiles = AllProfiles()
+            self.mainTableView.reloadData()
         })
     }
 }
