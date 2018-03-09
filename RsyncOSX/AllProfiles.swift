@@ -14,6 +14,8 @@ enum Sortstring {
     case localcatalog
     case profile
     case remoteserver
+    case task
+    case backupid
 }
 
 class AllProfiles {
@@ -77,7 +79,8 @@ class AllProfiles {
         self.allconfigurationsasdictionary = data
     }
 
-    func sortrundate() {
+    func sortbyrundate() {
+        guard self.allconfigurationsasdictionary != nil else { return }
         if self.sortedascendigdesending == true {
             self.sortedascendigdesending = false
         } else {
@@ -95,8 +98,13 @@ class AllProfiles {
         self.allconfigurationsasdictionary = sorted
     }
 
-    func sortstring(sortby: Sortstring) {
+    func sortbystring(sortby: Sortstring) {
         guard self.allconfigurationsasdictionary != nil else { return }
+        if self.sortedascendigdesending == true {
+            self.sortedascendigdesending = false
+        } else {
+            self.sortedascendigdesending = true
+        }
         var sortstring: String?
         switch sortby {
         case .localcatalog:
@@ -107,22 +115,50 @@ class AllProfiles {
             sortstring = "offsiteCatalogCellID"
         case .remoteserver:
             sortstring = "offsiteServerCellID"
+        case .task:
+            sortstring = "taskCellID"
+        case .backupid:
+            sortstring = "backupIDCellID"
         }
         let sorted = self.allconfigurationsasdictionary!.sorted { (dict1, dict2) -> Bool in
             if (dict1.value(forKey: sortstring!) as? String) ?? "" > (dict2.value(forKey: sortstring!) as? String) ?? "" {
-                return true
+                return self.sortedascendigdesending
             } else {
-                return false
+                return !self.sortedascendigdesending
             }
         }
         self.allconfigurationsasdictionary = sorted
     }
 
+    private func filterbystring(filterby: Sortstring) -> String {
+        switch filterby {
+        case .localcatalog:
+            return "localCatalogCellID"
+        case .profile:
+            return "profile"
+        case .remotecatalog:
+            return "offsiteCatalogCellID"
+        case .remoteserver:
+            return "offsiteServerCellID"
+        case .task:
+            return "taskCellID"
+        case .backupid:
+            return "backupIDCellID"
+        }
+    }
+
     // Function for filter
-    func filter(search: String?, column: Int) {
+    func filter(search: String?, column: Int, filterby: Sortstring?) {
         guard search != nil || self.allconfigurationsasdictionary != nil else { return }
         globalDefaultQueue.async(execute: {() -> Void in
             switch column {
+            case 0, 1, 2, 3, 4, 5:
+                guard filterby != nil else { return }
+                let valueforkey = self.filterbystring(filterby: filterby!)
+                let filtereddata = self.allconfigurationsasdictionary?.filter({
+                    ($0.value(forKey: valueforkey) as? String)!.contains(search!)
+                })
+                self.allconfigurationsasdictionary = filtereddata
             case 6:
                 let filtereddata = self.allconfigurationsasdictionary?.filter({
                     ($0.value(forKey: "daysID") as? String)!.contains(search!)

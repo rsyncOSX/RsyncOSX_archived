@@ -17,6 +17,7 @@ class ViewControllerAllProfiles: NSViewController, Delay {
 
     private var allprofiles: AllProfiles?
     private var column: Int?
+    private var filterby: Sortstring?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -57,29 +58,27 @@ extension ViewControllerAllProfiles: NSTableViewDelegate, Attributedestring {
         self.column = column
         switch column {
         case 0:
-            // Profile
-            return
+            self.filterby = .profile
+            self.allprofiles!.sortbystring(sortby: self.filterby!)
         case 1:
-            // Task
-            return
+            self.filterby = .task
+            self.allprofiles!.sortbystring(sortby: self.filterby!)
         case 2:
-            // local catalog
-            return
+            self.filterby = .localcatalog
+            self.allprofiles!.sortbystring(sortby: self.filterby!)
         case 3:
-            // remote catalog
-            return
+            self.filterby = .remotecatalog
+            self.allprofiles!.sortbystring(sortby: self.filterby!)
         case 4:
-            // remote server
-            return
+            self.filterby = .remoteserver
+            self.allprofiles!.sortbystring(sortby: self.filterby!)
         case 5:
-            // ID
-            return
+            self.filterby = .backupid
+            self.allprofiles!.sortbystring(sortby: self.filterby!)
         case 6:
-             // Days
-            self.allprofiles!.sortrundate()
+            self.allprofiles!.sortbyrundate()
         case 7:
-            // Last run
-            self.allprofiles!.sortrundate()
+            self.allprofiles!.sortbyrundate()
         default:
             return
         }
@@ -102,7 +101,7 @@ extension ViewControllerAllProfiles: NSSearchFieldDelegate {
                 })
             } else {
                 globalMainQueue.async(execute: { () -> Void in
-                    self.allprofiles?.filter(search: filterstring, column: self.column!)
+                    self.allprofiles?.filter(search: filterstring, column: self.column!, filterby: self.filterby)
                     self.mainTableView.reloadData()
                 })
             }
