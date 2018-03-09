@@ -16,12 +16,12 @@ import Foundation
 final class PersistentStorageScheduling: Readwritefiles, SetSchedules {
 
     weak var readloggdataDelegate: ReadLoggdata?
-    private var schedulesasDict: [NSDictionary]?
+    private var schedulesasdictionary: [NSDictionary]?
 
     /// Function reads schedules from permanent store
     /// - returns : array of NSDictonarys, return might be nil if schedule is already in memory
     func readSchedulesFromPermanentStore() -> [NSDictionary]? {
-        return self.schedulesasDict
+        return self.schedulesasdictionary
     }
 
     // Saving Schedules from MEMORY to persistent store
@@ -88,7 +88,7 @@ final class PersistentStorageScheduling: Readwritefiles, SetSchedules {
         super.init(task: .schedule, profile: profile)
         self.readloggdataDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vcloggdata) as? ViewControllerLoggData
         if self.schedules == nil {
-            self.schedulesasDict = self.getDatafromfile()
+            self.schedulesasdictionary = self.getDatafromfile()
         }
     }
 }

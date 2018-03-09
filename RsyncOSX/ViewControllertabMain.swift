@@ -83,7 +83,7 @@ class ViewControllertabMain: NSViewController, ReloadTable, Deselect, Coloractiv
     private var hiddenID: Int?
     // Reference to Schedules object
     private var schedulesortedandexpanded: ScheduleSortedAndExpand?
-    private var infoschedulessorted: InfoScheduleSortedAndExpand?
+    // private var infoschedulessorted: InfoScheduleSortedAndExpand?
     // Bool if one or more remote server is offline
     // Used in testing if remote server is on/off-line
     private var serverOff: [Bool]?
@@ -512,7 +512,6 @@ class ViewControllertabMain: NSViewController, ReloadTable, Deselect, Coloractiv
             self.schedules = Schedules(profile: nil)
         }
         self.schedulesortedandexpanded = ScheduleSortedAndExpand()
-        self.infoschedulessorted = InfoScheduleSortedAndExpand(sortedandexpanded: self.schedulesortedandexpanded)
         self.schedules?.scheduledTasks = self.schedulesortedandexpanded?.firstscheduledtask()
         ViewControllerReference.shared.scheduledTask = self.schedulesortedandexpanded?.firstscheduledtask()
     }
@@ -664,7 +663,6 @@ extension ViewControllertabMain: NewProfile {
         self.setNumbers(outputprocess: nil)
         self.setRsyncCommandDisplay()
         self.setInfo(info: "Estimate", color: .blue)
-        self.setNumbers(outputprocess: nil)
         self.deselect()
         // Read configurations and Scheduledata
         self.configurations = self.createconfigurationsobject(profile: profile)
@@ -1143,7 +1141,6 @@ extension ViewControllertabMain: GetSchedulesObject {
         self.schedules = nil
         self.schedules = Schedules(profile: profile)
         self.schedulesortedandexpanded = ScheduleSortedAndExpand()
-        self.infoschedulessorted = InfoScheduleSortedAndExpand(sortedandexpanded: self.schedulesortedandexpanded)
         self.schedules?.scheduledTasks = self.schedulesortedandexpanded?.firstscheduledtask()
         ViewControllerReference.shared.scheduledTask = self.schedulesortedandexpanded?.firstscheduledtask()
         return self.schedules

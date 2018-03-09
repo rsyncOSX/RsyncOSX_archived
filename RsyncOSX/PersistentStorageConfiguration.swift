@@ -12,7 +12,7 @@ import Foundation
 final class PersistentStorageConfiguration: Readwritefiles, SetConfigurations {
 
     /// Variable holds all configuration data from persisten storage
-    private var configurationsAsNSDict: [NSDictionary]?
+    private var configurationsasdictionary: [NSDictionary]?
 
     /// Variable computes max hiddenID used
     /// MaxhiddenID is used when new configurations are added.
@@ -37,7 +37,7 @@ final class PersistentStorageConfiguration: Readwritefiles, SetConfigurations {
     /// Function reads configurations from permanent store
     /// - returns : array of NSDictonarys, return might be nil if configuration is already in memory
     func readConfigurationsFromPermanentStore() -> [NSDictionary]? {
-        return self.configurationsAsNSDict
+        return self.configurationsasdictionary
     }
 
     // Saving Configuration from MEMORY to persistent store
@@ -213,7 +213,12 @@ final class PersistentStorageConfiguration: Readwritefiles, SetConfigurations {
     init (profile: String?) {
         super.init(task: .configuration, profile: profile)
         if self.configurations == nil {
-            self.configurationsAsNSDict = self.getDatafromfile()
+            self.configurationsasdictionary = self.getDatafromfile()
         }
+    }
+
+    init(profile: String?, forceread: Bool) {
+        super.init(task: .configuration, profile: profile)
+        self.configurationsasdictionary = self.getDatafromfile()
     }
 }
