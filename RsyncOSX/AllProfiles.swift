@@ -89,7 +89,7 @@ class AllProfiles {
         let dateformatter = Tools().setDateformat()
         guard self.allconfigurationsasdictionary != nil else { return }
         let sorted = self.allconfigurationsasdictionary!.sorted { (dict1, dict2) -> Bool in
-            if (dateformatter.date(from: (dict1.value(forKey: "runDateCellID") as? String) ?? ""))!.timeIntervalSince(dateformatter.date(from: (dict2.value(forKey: "runDateCellID") as? String) ?? "")!) > 0 {
+            if (dateformatter.date(from: (dict1.value(forKey: "runDateCellID") as? String) ?? "") ?? dateformatter.date(from: "01 Jan 1900 00:00")!).timeIntervalSince(dateformatter.date(from: (dict2.value(forKey: "runDateCellID") as? String) ?? "") ?? dateformatter.date(from: "01 Jan 1900 00:00")!) > 0 {
                 return self.sortedascendigdesending
             } else {
                 return !self.sortedascendigdesending
