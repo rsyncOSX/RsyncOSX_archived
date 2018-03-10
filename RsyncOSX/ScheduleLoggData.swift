@@ -31,6 +31,7 @@ struct Filtereddata {
 final class ScheduleLoggData: SetConfigurations, SetSchedules {
 
     private var loggdata: [NSMutableDictionary]?
+    private var sortedascendigdesending: Bool = false
     weak var readfiltereddataDelegate: Readfiltereddata?
 
     func getallloggdata() -> [NSMutableDictionary]? {
@@ -77,6 +78,7 @@ final class ScheduleLoggData: SetConfigurations, SetSchedules {
                     let logdetail: NSMutableDictionary = [
                         "localCatalog": self.configurations!.getResourceConfiguration(hiddenID, resource: .localCatalog),
                         "offsiteServer": self.configurations!.getResourceConfiguration(hiddenID, resource: .offsiteServer),
+                        "task": self.configurations!.getResourceConfiguration(hiddenID, resource: .task),
                         "dateExecuted": (dict.value(forKey: "dateExecuted") as? String)!,
                         "resultExecuted": (dict.value(forKey: "resultExecuted") as? String)!,
                         "hiddenID": hiddenID,
@@ -97,6 +99,57 @@ final class ScheduleLoggData: SetConfigurations, SetSchedules {
                 return false
             }
         }
+    }
+
+    func sortbyrundate() {
+        guard self.loggdata != nil else { return }
+        if self.sortedascendigdesending == true {
+            self.sortedascendigdesending = false
+        } else {
+            self.sortedascendigdesending = true
+        }
+        let dateformatter = Tools().setDateformat()
+        guard self.loggdata != nil else { return }
+        let sorted = self.loggdata!.sorted { (dict1, dict2) -> Bool in
+            if (dateformatter.date(from: (dict1.value(forKey: "dateExecuted") as? String) ?? "") ?? dateformatter.date(from: "01 Jan 1900 00:00")!).timeIntervalSince(dateformatter.date(from: (dict2.value(forKey: "dateExecuted") as? String) ?? "") ?? dateformatter.date(from: "01 Jan 1900 00:00")!) > 0 {
+                return self.sortedascendigdesending
+            } else {
+                return !self.sortedascendigdesending
+            }
+        }
+        self.loggdata = sorted
+    }
+
+    func sortbystring(sortby: Sortstring) {
+        guard self.loggdata != nil else { return }
+        if self.sortedascendigdesending == true {
+            self.sortedascendigdesending = false
+        } else {
+            self.sortedascendigdesending = true
+        }
+        var sortstring: String?
+        switch sortby {
+        case .localcatalog:
+            sortstring = "localCatalog"
+        case .remotecatalog:
+            sortstring = "offsiteCatalogCellID"
+        case .remoteserver:
+            sortstring = "offsiteServer"
+        case .task:
+            sortstring = "taskCellID"
+        case .backupid:
+            sortstring = "backupIDCellID"
+        default:
+            return
+        }
+        let sorted = self.loggdata!.sorted { (dict1, dict2) -> Bool in
+            if (dict1.value(forKey: sortstring!) as? String) ?? "" > (dict2.value(forKey: sortstring!) as? String) ?? "" {
+                return self.sortedascendigdesending
+            } else {
+                return !self.sortedascendigdesending
+            }
+        }
+        self.loggdata = sorted
     }
 
     init () {
