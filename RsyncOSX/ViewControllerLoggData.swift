@@ -148,12 +148,18 @@ extension ViewControllerLoggData: NSTableViewDelegate {
         }
         let column = myTableViewFromNotification.selectedColumn
         if column == 0 {
-            self.filterby = .localCatalog
+            self.filterby = .task
         } else if column == 1 {
-            self.filterby = .remoteServer
+            self.filterby = .localCatalog
+            self.tabledata = ScheduleLoggData().sortbystring(sortby: .localcatalog)
         } else if column == 2 {
+            self.filterby = .remoteServer
+        } else if column == 3 {
             self.filterby = .executeDate
         }
+        globalMainQueue.async(execute: { () -> Void in
+            self.scheduletable.reloadData()
+        })
     }
 
 }

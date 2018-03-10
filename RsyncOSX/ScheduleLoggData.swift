@@ -22,6 +22,7 @@ enum Filterlogs {
     case executeDate
     case numberofdays
     case remoteCatalog
+    case task
 }
 
 struct Filtereddata {
@@ -60,6 +61,8 @@ final class ScheduleLoggData: SetConfigurations, SetSchedules {
             case .numberofdays:
                 return
             case .remoteCatalog:
+                return
+            default:
                 return
             }
             self.readfiltereddataDelegate?.readfiltereddata(data: filtereddata)
@@ -120,8 +123,8 @@ final class ScheduleLoggData: SetConfigurations, SetSchedules {
         self.loggdata = sorted
     }
 
-    func sortbystring(sortby: Sortstring) {
-        guard self.loggdata != nil else { return }
+    func sortbystring(sortby: Sortstring) -> [NSDictionary]? {
+        guard self.loggdata != nil else { return nil}
         if self.sortedascendigdesending == true {
             self.sortedascendigdesending = false
         } else {
@@ -131,16 +134,12 @@ final class ScheduleLoggData: SetConfigurations, SetSchedules {
         switch sortby {
         case .localcatalog:
             sortstring = "localCatalog"
-        case .remotecatalog:
-            sortstring = "offsiteCatalogCellID"
         case .remoteserver:
             sortstring = "offsiteServer"
         case .task:
             sortstring = "taskCellID"
-        case .backupid:
-            sortstring = "backupIDCellID"
         default:
-            return
+            sortstring = "localCatalog"
         }
         let sorted = self.loggdata!.sorted { (dict1, dict2) -> Bool in
             if (dict1.value(forKey: sortstring!) as? String) ?? "" > (dict2.value(forKey: sortstring!) as? String) ?? "" {
@@ -149,7 +148,7 @@ final class ScheduleLoggData: SetConfigurations, SetSchedules {
                 return !self.sortedascendigdesending
             }
         }
-        self.loggdata = sorted
+        return sorted
     }
 
     init () {
