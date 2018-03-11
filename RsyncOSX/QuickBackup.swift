@@ -138,6 +138,8 @@ class QuickBackup: SetConfigurations {
                 })
             case .task:
                 return
+            case .backupid:
+                return
             }
             self.sortedlist = filtereddata.filtereddata
             self.reloadtableDelegate?.reloadtabledata()

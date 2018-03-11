@@ -23,6 +23,7 @@ enum Filterlogs {
     case numberofdays
     case remoteCatalog
     case task
+    case backupid
 }
 
 struct Filtereddata {
@@ -31,12 +32,8 @@ struct Filtereddata {
 
 final class ScheduleLoggData: SetConfigurations, SetSchedules {
 
-    private var loggdata: [NSMutableDictionary]?
+    var loggdata: [NSMutableDictionary]?
     private var sortedascendigdesending: Bool = false
-
-    func getallloggdata() -> [NSMutableDictionary]? {
-        return self.loggdata
-    }
 
     // Function for filter loggdata
     func filter(search: String?, what: Filterlogs?) {

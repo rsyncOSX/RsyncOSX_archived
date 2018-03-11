@@ -2045,14 +2045,14 @@
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <scrollView fixedFrame="YES" borderType="groove" autohidesScrollers="YES" horizontalLineScroll="19" horizontalPageScroll="10" verticalLineScroll="19" verticalPageScroll="10" usesPredominantAxisScrolling="NO" scrollerKnobStyle="dark" translatesAutoresizingMaskIntoConstraints="NO" id="nOG-Nc-xqW">
-                                <rect key="frame" x="209" y="20" width="863" height="330"/>
+                                <rect key="frame" x="162" y="20" width="910" height="330"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <clipView key="contentView" ambiguous="YES" id="eWH-le-nvC">
-                                    <rect key="frame" x="2" y="2" width="859" height="326"/>
+                                    <rect key="frame" x="2" y="2" width="906" height="326"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnSelection="YES" multipleSelection="NO" autosaveColumns="NO" headerView="Fqx-LM-aMt" id="VmR-YZ-iuN">
-                                            <rect key="frame" x="0.0" y="0.0" width="859" height="303"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="906" height="303"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <size key="intercellSpacing" width="3" height="2"/>
                                             <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -2084,7 +2084,7 @@
                                                     </textFieldCell>
                                                     <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                 </tableColumn>
-                                                <tableColumn identifier="localCatalog" width="188.5" minWidth="10" maxWidth="3.4028234663852886e+38" id="RDZ-vd-MTb" userLabel="localCataloc">
+                                                <tableColumn identifier="localCatalog" width="220.5" minWidth="10" maxWidth="3.4028234663852886e+38" id="RDZ-vd-MTb" userLabel="localCataloc">
                                                     <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left" title="Local catalog">
                                                         <font key="font" metaFont="smallSystem"/>
                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
@@ -2123,7 +2123,7 @@
                                                     </textFieldCell>
                                                     <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                 </tableColumn>
-                                                <tableColumn identifier="resultExecuted" width="230.33203125" minWidth="10" maxWidth="3.4028234663852886e+38" id="Lur-Sd-kBP">
+                                                <tableColumn identifier="resultExecuted" width="246.33203125" minWidth="10" maxWidth="3.4028234663852886e+38" id="Lur-Sd-kBP">
                                                     <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left" title="Result">
                                                         <font key="font" metaFont="smallSystem"/>
                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
@@ -2141,7 +2141,7 @@
                                     </subviews>
                                 </clipView>
                                 <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="YES" id="keS-k2-fw7">
-                                    <rect key="frame" x="2" y="312" width="859" height="16"/>
+                                    <rect key="frame" x="2" y="9" width="0.0" height="16"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
                                 <scroller key="verticalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="NO" id="8n3-Ry-ktR">
@@ -2149,12 +2149,12 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
                                 <tableHeaderView key="headerView" id="Fqx-LM-aMt">
-                                    <rect key="frame" x="0.0" y="0.0" width="859" height="23"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="906" height="23"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableHeaderView>
                             </scrollView>
                             <searchField wantsLayer="YES" verticalHuggingPriority="750" fixedFrame="YES" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="t6k-ja-pKU">
-                                <rect key="frame" x="209" y="355" width="508" height="22"/>
+                                <rect key="frame" x="162" y="355" width="508" height="22"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <searchFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" borderStyle="bezel" usesSingleLineMode="YES" bezelStyle="round" id="jtn-ZQ-AiS">
                                     <font key="font" metaFont="system"/>
@@ -2162,55 +2162,12 @@
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </searchFieldCell>
                             </searchField>
-                            <box fixedFrame="YES" title="Filter search" translatesAutoresizingMaskIntoConstraints="NO" id="hzT-EC-htd">
-                                <rect key="frame" x="17" y="258" width="121" height="104"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <view key="contentView" id="QDU-p3-oEL">
-                                    <rect key="frame" x="2" y="2" width="117" height="87"/>
-                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                    <subviews>
-                                        <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="r15-hK-EPv">
-                                            <rect key="frame" x="19" y="16" width="51" height="18"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                            <buttonCell key="cell" type="radio" title="Date" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="wXJ-OY-Dkh">
-                                                <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                                                <font key="font" metaFont="system"/>
-                                            </buttonCell>
-                                            <connections>
-                                                <action selector="radiobuttons" target="AlG-Cw-Xi9" id="9G0-op-KJ5"/>
-                                            </connections>
-                                        </button>
-                                        <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Mfl-Sx-Zuk">
-                                            <rect key="frame" x="19" y="34" width="62" height="18"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                            <buttonCell key="cell" type="radio" title="Server" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="hac-u3-tm1">
-                                                <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                                                <font key="font" metaFont="system"/>
-                                            </buttonCell>
-                                            <connections>
-                                                <action selector="radiobuttons" target="AlG-Cw-Xi9" id="HX7-OF-6Ht"/>
-                                            </connections>
-                                        </button>
-                                        <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="8XB-pb-Jsf">
-                                            <rect key="frame" x="19" y="53" width="69" height="18"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                            <buttonCell key="cell" type="radio" title="Catalog" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="lfl-dR-9aG">
-                                                <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                                                <font key="font" metaFont="system"/>
-                                            </buttonCell>
-                                            <connections>
-                                                <action selector="radiobuttons" target="AlG-Cw-Xi9" id="yOS-gh-xVR"/>
-                                            </connections>
-                                        </button>
-                                    </subviews>
-                                </view>
-                            </box>
                             <progressIndicator wantsLayer="YES" canDrawConcurrently="YES" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" maxValue="100" displayedWhenStopped="NO" bezeled="NO" indeterminate="YES" controlSize="small" style="spinning" translatesAutoresizingMaskIntoConstraints="NO" id="zsj-JB-ASD">
-                                <rect key="frame" x="725" y="358" width="16" height="16"/>
+                                <rect key="frame" x="678" y="358" width="16" height="16"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                             </progressIndicator>
                             <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="x5H-FN-Qpn">
-                                <rect key="frame" x="38" y="208" width="62" height="18"/>
+                                <rect key="frame" x="38" y="316" width="62" height="18"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <buttonCell key="cell" type="radio" title="Delete" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="Aon-m3-V7O">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
@@ -2221,7 +2178,7 @@
                                 </connections>
                             </button>
                             <box fixedFrame="YES" title="Delete log row" translatesAutoresizingMaskIntoConstraints="NO" id="Oxt-Qf-RTY">
-                                <rect key="frame" x="17" y="189" width="121" height="65"/>
+                                <rect key="frame" x="17" y="297" width="121" height="65"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <view key="contentView" id="HeR-X5-k6m">
                                     <rect key="frame" x="2" y="2" width="117" height="48"/>
@@ -2229,7 +2186,7 @@
                                 </view>
                             </box>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="3YU-9a-eyi">
-                                <rect key="frame" x="207" y="381" width="184" height="17"/>
+                                <rect key="frame" x="160" y="381" width="184" height="17"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="left" title="Number of rows:" id="aye-JD-U1q">
                                     <font key="font" metaFont="system"/>
@@ -2249,13 +2206,10 @@
                         </subviews>
                     </view>
                     <connections>
-                        <outlet property="catalog" destination="8XB-pb-Jsf" id="XBq-Io-VM8"/>
-                        <outlet property="date" destination="r15-hK-EPv" id="rHs-9d-ay7"/>
                         <outlet property="deleteButton" destination="x5H-FN-Qpn" id="vdL-YV-k0Y"/>
                         <outlet property="numberOflogfiles" destination="3YU-9a-eyi" id="8ub-fK-Vzn"/>
                         <outlet property="scheduletable" destination="VmR-YZ-iuN" id="Q8s-Bw-QnZ"/>
                         <outlet property="search" destination="t6k-ja-pKU" id="lHP-Fs-hLu"/>
-                        <outlet property="server" destination="Mfl-Sx-Zuk" id="5sP-Zg-0tn"/>
                         <outlet property="sorting" destination="zsj-JB-ASD" id="5BR-Az-HOt"/>
                     </connections>
                 </viewController>

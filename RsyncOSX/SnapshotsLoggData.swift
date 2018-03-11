@@ -26,7 +26,7 @@ final class SnapshotsLoggData {
     }
 
     private func getsnapshotlogs() {
-        self.snapshotslogs = ScheduleLoggData().getallloggdata()?.filter({($0.value(forKey: "hiddenID") as? Int)! == config?.hiddenID})
+        self.snapshotslogs = ScheduleLoggData().loggdata?.filter({($0.value(forKey: "hiddenID") as? Int)! == config?.hiddenID})
     }
 
     private func mergeremotecatalogsandlogs() {
@@ -91,7 +91,7 @@ final class SnapshotsLoggData {
     }
 
     init(config: Configuration) {
-        self.snapshotslogs = ScheduleLoggData().getallloggdata()
+        self.snapshotslogs = ScheduleLoggData().loggdata
         self.config = config
         guard config.task == "snapshot" else { return }
         self.getremotecataloginfo()
