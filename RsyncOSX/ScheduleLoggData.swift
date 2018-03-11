@@ -53,9 +53,9 @@ final class ScheduleLoggData: SetConfigurations, SetSchedules {
                 filtereddata.filtereddata = self.loggdata?.filter({
                     ($0.value(forKey: "offsiteServer") as? String)!.contains(search!)
                 })
-            case .numberofdays:
+            case .task:
                 return
-            case .remoteCatalog:
+            case .backupid:
                 return
             default:
                 return
