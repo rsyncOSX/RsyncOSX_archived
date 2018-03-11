@@ -33,7 +33,6 @@ final class ScheduleLoggData: SetConfigurations, SetSchedules {
 
     private var loggdata: [NSMutableDictionary]?
     private var sortedascendigdesending: Bool = false
-    weak var readfiltereddataDelegate: Readfiltereddata?
 
     func getallloggdata() -> [NSMutableDictionary]? {
         return self.loggdata
@@ -42,7 +41,6 @@ final class ScheduleLoggData: SetConfigurations, SetSchedules {
     // Function for filter loggdata
     func filter(search: String?, what: Filterlogs?) {
         guard search != nil || self.loggdata != nil else { return }
-        self.readfiltereddataDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vcloggdata) as? ViewControllerLoggData
         globalDefaultQueue.async(execute: {() -> Void in
             var filtereddata = Filtereddata()
             switch what! {
@@ -65,7 +63,7 @@ final class ScheduleLoggData: SetConfigurations, SetSchedules {
             default:
                 return
             }
-            self.readfiltereddataDelegate?.readfiltereddata(data: filtereddata)
+            self.loggdata = filtereddata.filtereddata
         })
     }
 
@@ -123,8 +121,8 @@ final class ScheduleLoggData: SetConfigurations, SetSchedules {
         self.loggdata = sorted
     }
 
-    func sortbystring(sortby: Sortstring) -> [NSDictionary]? {
-        guard self.loggdata != nil else { return nil}
+    func sortbystring(sortby: Sortstring) {
+        guard self.loggdata != nil else { return }
         if self.sortedascendigdesending == true {
             self.sortedascendigdesending = false
         } else {
@@ -148,7 +146,7 @@ final class ScheduleLoggData: SetConfigurations, SetSchedules {
                 return !self.sortedascendigdesending
             }
         }
-        return sorted
+        self.loggdata = sorted
     }
 
     init () {

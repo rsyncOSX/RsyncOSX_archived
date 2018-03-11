@@ -17,7 +17,7 @@ protocol ReadLoggdata: class {
 
 class ViewControllerLoggData: NSViewController, SetSchedules, Delay {
 
-    var tabledata: [NSDictionary]?
+    var scheduleloggdata: ScheduleLoggData?
     var row: NSDictionary?
     var filterby: Filterlogs?
     var index: Int?
@@ -67,13 +67,17 @@ class ViewControllerLoggData: NSViewController, SetSchedules, Delay {
     override func viewDidAppear() {
         super.viewDidAppear()
         self.viewispresent = true
-        self.readloggdata()
+        self.scheduleloggdata = ScheduleLoggData()
+        globalMainQueue.async(execute: { () -> Void in
+            self.scheduletable.reloadData()
+        })
+        self.row = nil
     }
 
     override func viewDidDisappear() {
         super.viewDidDisappear()
         self.sorting.startAnimation(self)
-        self.tabledata = nil
+        self.scheduleloggdata = nil
         self.viewispresent = false
     }
 
@@ -94,13 +98,15 @@ extension ViewControllerLoggData: NSSearchFieldDelegate {
             self.sorting.startAnimation(self)
             if filterstring.isEmpty {
                 globalMainQueue.async(execute: { () -> Void in
-                    self.tabledata = ScheduleLoggData().getallloggdata()
+                    self.scheduleloggdata = ScheduleLoggData()
                     self.scheduletable.reloadData()
                     self.sorting.stopAnimation(self)
                 })
             } else {
                 globalMainQueue.async(execute: { () -> Void in
-                    ScheduleLoggData().filter(search: filterstring, what: self.filterby)
+                    self.scheduleloggdata!.filter(search: filterstring, what: self.filterby)
+                    self.scheduletable.reloadData()
+                    self.sorting.stopAnimation(self)
                 })
             }
         }
@@ -109,7 +115,7 @@ extension ViewControllerLoggData: NSSearchFieldDelegate {
     func searchFieldDidEndSearching(_ sender: NSSearchField) {
         self.index = nil
         globalMainQueue.async(execute: { () -> Void in
-            self.tabledata = ScheduleLoggData().getallloggdata()
+            // self.scheduleloggdata = ScheduleLoggData().getallloggdata()
             self.scheduletable.reloadData()
         })
     }
@@ -119,12 +125,12 @@ extension ViewControllerLoggData: NSSearchFieldDelegate {
 extension ViewControllerLoggData: NSTableViewDataSource {
 
     func numberOfRows(in tableView: NSTableView) -> Int {
-        if self.tabledata == nil {
+        if self.scheduleloggdata == nil {
             self.numberOflogfiles.stringValue = "Number of rows:"
             return 0
         } else {
-            self.numberOflogfiles.stringValue = "Number of rows: " + String(self.tabledata!.count)
-            return (self.tabledata!.count)
+            self.numberOflogfiles.stringValue = "Number of rows: " + String(self.scheduleloggdata!.getallloggdata()!.count)
+            return self.scheduleloggdata!.getallloggdata()!.count
         }
     }
 
@@ -133,8 +139,8 @@ extension ViewControllerLoggData: NSTableViewDataSource {
 extension ViewControllerLoggData: NSTableViewDelegate {
 
     func tableView(_ tableView: NSTableView, objectValueFor tableColumn: NSTableColumn?, row: Int) -> Any? {
-        guard self.tabledata != nil else { return nil }
-        let object: NSDictionary = self.tabledata![row]
+        guard self.scheduleloggdata != nil else { return nil }
+        let object: NSDictionary = self.scheduleloggdata!.getallloggdata()![row]
         return object[tableColumn!.identifier] as? String
     }
 
@@ -144,14 +150,14 @@ extension ViewControllerLoggData: NSTableViewDelegate {
         let indexes = myTableViewFromNotification.selectedRowIndexes
         if let index = indexes.first {
             self.index = index
-            self.row = self.tabledata?[self.index!]
+            self.row = self.scheduleloggdata?.getallloggdata()![self.index!]
         }
         let column = myTableViewFromNotification.selectedColumn
         if column == 0 {
             self.filterby = .task
         } else if column == 1 {
             self.filterby = .localCatalog
-            self.tabledata = ScheduleLoggData().sortbystring(sortby: .localcatalog)
+            self.scheduleloggdata!.sortbystring(sortby: .localcatalog)
         } else if column == 2 {
             self.filterby = .remoteServer
         } else if column == 3 {
@@ -168,30 +174,19 @@ extension ViewControllerLoggData: Reloadandrefresh {
 
     func reloadtabledata() {
         globalMainQueue.async(execute: { () -> Void in
-            self.tabledata = ScheduleLoggData().getallloggdata()
             self.scheduletable.reloadData()
         })
         self.row = nil
     }
 }
 
-extension ViewControllerLoggData: Readfiltereddata {
-    func readfiltereddata(data: Filtereddata) {
-        globalMainQueue.async(execute: { () -> Void in
-            self.tabledata = data.filtereddata
-            self.scheduletable.reloadData()
-            self.sorting.stopAnimation(self)
-        })
-    }
-}
-
 extension ViewControllerLoggData: ReadLoggdata {
     func readloggdata() {
         if viewispresent {
-            self.tabledata = nil
+            self.scheduleloggdata = nil
             globalMainQueue.async(execute: { () -> Void in
                 self.sorting.startAnimation(self)
-                self.tabledata = ScheduleLoggData().getallloggdata()
+                self.scheduleloggdata = ScheduleLoggData()
                 self.scheduletable.reloadData()
                 self.sorting.stopAnimation(self)
             })
