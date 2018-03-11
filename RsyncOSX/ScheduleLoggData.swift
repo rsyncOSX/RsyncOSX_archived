@@ -22,6 +22,7 @@ enum Filterlogs {
     case executeDate
     case numberofdays
     case remoteCatalog
+    case task
 }
 
 struct Filtereddata {
@@ -31,7 +32,7 @@ struct Filtereddata {
 final class ScheduleLoggData: SetConfigurations, SetSchedules {
 
     private var loggdata: [NSMutableDictionary]?
-    weak var readfiltereddataDelegate: Readfiltereddata?
+    private var sortedascendigdesending: Bool = false
 
     func getallloggdata() -> [NSMutableDictionary]? {
         return self.loggdata
@@ -40,7 +41,6 @@ final class ScheduleLoggData: SetConfigurations, SetSchedules {
     // Function for filter loggdata
     func filter(search: String?, what: Filterlogs?) {
         guard search != nil || self.loggdata != nil else { return }
-        self.readfiltereddataDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vcloggdata) as? ViewControllerLoggData
         globalDefaultQueue.async(execute: {() -> Void in
             var filtereddata = Filtereddata()
             switch what! {
@@ -60,8 +60,10 @@ final class ScheduleLoggData: SetConfigurations, SetSchedules {
                 return
             case .remoteCatalog:
                 return
+            default:
+                return
             }
-            self.readfiltereddataDelegate?.readfiltereddata(data: filtereddata)
+            self.loggdata = filtereddata.filtereddata
         })
     }
 
@@ -77,6 +79,7 @@ final class ScheduleLoggData: SetConfigurations, SetSchedules {
                     let logdetail: NSMutableDictionary = [
                         "localCatalog": self.configurations!.getResourceConfiguration(hiddenID, resource: .localCatalog),
                         "offsiteServer": self.configurations!.getResourceConfiguration(hiddenID, resource: .offsiteServer),
+                        "task": self.configurations!.getResourceConfiguration(hiddenID, resource: .task),
                         "dateExecuted": (dict.value(forKey: "dateExecuted") as? String)!,
                         "resultExecuted": (dict.value(forKey: "resultExecuted") as? String)!,
                         "hiddenID": hiddenID,
@@ -97,6 +100,53 @@ final class ScheduleLoggData: SetConfigurations, SetSchedules {
                 return false
             }
         }
+    }
+
+    func sortbyrundate() {
+        guard self.loggdata != nil else { return }
+        if self.sortedascendigdesending == true {
+            self.sortedascendigdesending = false
+        } else {
+            self.sortedascendigdesending = true
+        }
+        let dateformatter = Tools().setDateformat()
+        guard self.loggdata != nil else { return }
+        let sorted = self.loggdata!.sorted { (dict1, dict2) -> Bool in
+            if (dateformatter.date(from: (dict1.value(forKey: "dateExecuted") as? String) ?? "") ?? dateformatter.date(from: "01 Jan 1900 00:00")!).timeIntervalSince(dateformatter.date(from: (dict2.value(forKey: "dateExecuted") as? String) ?? "") ?? dateformatter.date(from: "01 Jan 1900 00:00")!) > 0 {
+                return self.sortedascendigdesending
+            } else {
+                return !self.sortedascendigdesending
+            }
+        }
+        self.loggdata = sorted
+    }
+
+    func sortbystring(sortby: Sortstring) {
+        guard self.loggdata != nil else { return }
+        if self.sortedascendigdesending == true {
+            self.sortedascendigdesending = false
+        } else {
+            self.sortedascendigdesending = true
+        }
+        var sortstring: String?
+        switch sortby {
+        case .localcatalog:
+            sortstring = "localCatalog"
+        case .remoteserver:
+            sortstring = "offsiteServer"
+        case .task:
+            sortstring = "taskCellID"
+        default:
+            sortstring = "localCatalog"
+        }
+        let sorted = self.loggdata!.sorted { (dict1, dict2) -> Bool in
+            if (dict1.value(forKey: sortstring!) as? String) ?? "" > (dict2.value(forKey: sortstring!) as? String) ?? "" {
+                return self.sortedascendigdesending
+            } else {
+                return !self.sortedascendigdesending
+            }
+        }
+        self.loggdata = sorted
     }
 
     init () {

@@ -136,6 +136,8 @@ class QuickBackup: SetConfigurations {
                 filtereddata.filtereddata = self.sortedlist?.filter({
                     ($0.value(forKey: "offsiteCatalogCellID") as? String)!.contains(search!)
                 })
+            case .task:
+                return
             }
             self.sortedlist = filtereddata.filtereddata
             self.reloadtableDelegate?.reloadtabledata()
