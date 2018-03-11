@@ -160,8 +160,10 @@ extension ViewControllerLoggData: NSTableViewDelegate {
             self.scheduleloggdata!.sortbystring(sortby: .localcatalog)
         } else if column == 2 {
             self.filterby = .remoteServer
+            self.scheduleloggdata!.sortbystring(sortby: .remoteserver)
         } else if column == 3 {
             self.filterby = .executeDate
+            self.scheduleloggdata!.sortbyrundate()
         }
         globalMainQueue.async(execute: { () -> Void in
             self.scheduletable.reloadData()
