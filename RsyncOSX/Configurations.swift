@@ -95,6 +95,7 @@ enum ResourceInConfiguration {
     case localCatalog
     case offsiteServer
     case task
+    case backupid
 }
 
 class Configurations: ReloadTable, SetSchedules {
@@ -378,6 +379,8 @@ class Configurations: ReloadTable, SetSchedules {
             }
         case .task:
             return result[0].task
+        case .backupid:
+            return result[0].backupID
         }
     }
 

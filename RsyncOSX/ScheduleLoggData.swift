@@ -80,6 +80,7 @@ final class ScheduleLoggData: SetConfigurations, SetSchedules {
                         "localCatalog": self.configurations!.getResourceConfiguration(hiddenID, resource: .localCatalog),
                         "offsiteServer": self.configurations!.getResourceConfiguration(hiddenID, resource: .offsiteServer),
                         "task": self.configurations!.getResourceConfiguration(hiddenID, resource: .task),
+                        "backupid": self.configurations!.getResourceConfiguration(hiddenID, resource: .backupid),
                         "dateExecuted": (dict.value(forKey: "dateExecuted") as? String)!,
                         "resultExecuted": (dict.value(forKey: "resultExecuted") as? String)!,
                         "hiddenID": hiddenID,
@@ -136,6 +137,8 @@ final class ScheduleLoggData: SetConfigurations, SetSchedules {
             sortstring = "offsiteServer"
         case .task:
             sortstring = "taskCellID"
+        case .backupid:
+            sortstring = "backupid"
         default:
             sortstring = "localCatalog"
         }

@@ -76,7 +76,6 @@ class ViewControllerLoggData: NSViewController, SetSchedules, Delay {
 
     override func viewDidDisappear() {
         super.viewDidDisappear()
-        self.sorting.startAnimation(self)
         self.scheduleloggdata = nil
         self.viewispresent = false
     }
@@ -115,7 +114,6 @@ extension ViewControllerLoggData: NSSearchFieldDelegate {
     func searchFieldDidEndSearching(_ sender: NSSearchField) {
         self.index = nil
         globalMainQueue.async(execute: { () -> Void in
-            // self.scheduleloggdata = ScheduleLoggData().getallloggdata()
             self.scheduletable.reloadData()
         })
     }
