@@ -2195,7 +2195,7 @@
                                 </textFieldCell>
                             </textField>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="YO5-V1-5ER">
-                                <rect key="frame" x="760" y="357" width="314" height="17"/>
+                                <rect key="frame" x="847" y="357" width="227" height="17"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Select column to sort and filter search..." id="g6t-fj-QHb">
                                     <font key="font" metaFont="smallSystem"/>
@@ -2203,6 +2203,14 @@
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
+                            <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="aCc-3C-rgD">
+                                <rect key="frame" x="785" y="361" width="23" height="22"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="up" imagePosition="only" alignment="center" imageScaling="proportionallyUpOrDown" inset="2" id="3UH-n1-nUH">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                            </button>
                         </subviews>
                     </view>
                     <connections>
@@ -2210,6 +2218,7 @@
                         <outlet property="numberOflogfiles" destination="3YU-9a-eyi" id="8ub-fK-Vzn"/>
                         <outlet property="scheduletable" destination="VmR-YZ-iuN" id="Q8s-Bw-QnZ"/>
                         <outlet property="search" destination="t6k-ja-pKU" id="lHP-Fs-hLu"/>
+                        <outlet property="sortdirection" destination="aCc-3C-rgD" id="GvL-qU-4lB"/>
                         <outlet property="sorting" destination="zsj-JB-ASD" id="5BR-Az-HOt"/>
                     </connections>
                 </viewController>
@@ -4652,11 +4661,20 @@ DQ
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </searchFieldCell>
                             </searchField>
+                            <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bmI-Sk-Sce">
+                                <rect key="frame" x="789" y="367" width="23" height="22"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="up" imagePosition="only" alignment="center" imageScaling="proportionallyUpOrDown" inset="2" id="5Vd-ge-irT">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                            </button>
                         </subviews>
                     </view>
                     <connections>
                         <outlet property="mainTableView" destination="6oZ-QC-ZpY" id="0mx-6V-e6s"/>
                         <outlet property="search" destination="GGh-Xj-BBF" id="iBC-TM-aC1"/>
+                        <outlet property="sortdirection" destination="bmI-Sk-Sce" id="Cdu-rp-w5w"/>
                     </connections>
                 </viewController>
                 <customObject id="WYi-qW-oH6" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
@@ -5834,5 +5852,6 @@ DQ
         <image name="menuapp" width="25.600000381469727" height="25.600000381469727"/>
         <image name="red" width="256" height="256"/>
         <image name="report" width="48" height="48"/>
+        <image name="up" width="256" height="256"/>
     </resources>
 </document>

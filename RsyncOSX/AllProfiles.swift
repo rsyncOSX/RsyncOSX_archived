@@ -24,6 +24,7 @@ class AllProfiles {
     var allconfigurationsasdictionary: [NSDictionary]?
     private var allprofiles: [String]?
     var sortedascendigdesending: Bool = false
+    weak var sortdirection: Sortdirection?
 
     private func getprofiles() {
         let profile = Files(root: .profileRoot)
@@ -83,8 +84,10 @@ class AllProfiles {
         guard self.allconfigurationsasdictionary != nil else { return }
         if self.sortedascendigdesending == true {
             self.sortedascendigdesending = false
+            self.sortdirection?.sortdirection(directionup: false)
         } else {
             self.sortedascendigdesending = true
+            self.sortdirection?.sortdirection(directionup: true)
         }
         let dateformatter = Tools().setDateformat()
         guard self.allconfigurationsasdictionary != nil else { return }
@@ -102,8 +105,10 @@ class AllProfiles {
         guard self.allconfigurationsasdictionary != nil else { return }
         if self.sortedascendigdesending == true {
             self.sortedascendigdesending = false
+            self.sortdirection?.sortdirection(directionup: false)
         } else {
             self.sortedascendigdesending = true
+            self.sortdirection?.sortdirection(directionup: true)
         }
         var sortstring: String?
         switch sortby {
@@ -176,6 +181,7 @@ class AllProfiles {
     }
 
     init() {
+        self.sortdirection = ViewControllerReference.shared.getvcref(viewcontroller: .vcallprofiles) as? ViewControllerAllProfiles
         self.getprofiles()
         self.getallconfigurations()
         self.setConfigurationsDataSourcecountBackupSnapshot()
