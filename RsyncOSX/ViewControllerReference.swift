@@ -23,6 +23,7 @@ enum ViewController {
     case vcquickbackup
     case vcremoteinfo
     case vcsnapshot
+    case vcallprofiles
 }
 
 class ViewControllerReference {
@@ -102,6 +103,8 @@ class ViewControllerReference {
     private var viewControllerRemoteInfo: NSViewController?
     // Snapshot
     private var viewControllerSnapshot: NSViewController?
+    // All profiles
+    private var viewControllerAllProfiles: NSViewController?
     // Execute scheduled tasks in menu app, default off
     var executescheduledtasksmenuapp: Bool = false
 
@@ -131,6 +134,8 @@ class ViewControllerReference {
             return self.viewControllerRemoteInfo
         case .vcsnapshot:
             return self.viewControllerSnapshot
+        case .vcallprofiles:
+            return self.viewControllerAllProfiles
         }
     }
 
@@ -160,6 +165,8 @@ class ViewControllerReference {
             self.viewControllerRemoteInfo = nsviewcontroller
         case .vcsnapshot:
             self.viewControllerSnapshot = nsviewcontroller
+        case .vcallprofiles:
+            self.viewControllerAllProfiles = nsviewcontroller
         }
     }
 }

@@ -14,6 +14,7 @@ class ViewControllerAllProfiles: NSViewController, Delay {
     // Main tableview
     @IBOutlet weak var mainTableView: NSTableView!
     @IBOutlet weak var search: NSSearchField!
+    @IBOutlet weak var sortdirection: NSButton!
 
     private var allprofiles: AllProfiles?
     private var column: Int?
@@ -25,11 +26,13 @@ class ViewControllerAllProfiles: NSViewController, Delay {
         self.mainTableView.delegate = self
         self.mainTableView.dataSource = self
         self.search.delegate = self
+        ViewControllerReference.shared.setvcref(viewcontroller: .vcallprofiles, nsviewcontroller: self)
     }
 
     override func viewDidAppear() {
         super.viewDidAppear()
         self.allprofiles = AllProfiles()
+        self.sortdirection.image = #imageLiteral(resourceName: "up")
         globalMainQueue.async(execute: { () -> Void in
             self.mainTableView.reloadData()
         })
@@ -113,5 +116,15 @@ extension ViewControllerAllProfiles: NSSearchFieldDelegate {
             self.allprofiles = AllProfiles()
             self.mainTableView.reloadData()
         })
+    }
+}
+
+extension ViewControllerAllProfiles: Sortdirection {
+    func sortdirection(directionup: Bool) {
+        if directionup {
+            self.sortdirection.image = #imageLiteral(resourceName: "up")
+        } else {
+            self.sortdirection.image = #imageLiteral(resourceName: "down")
+        }
     }
 }

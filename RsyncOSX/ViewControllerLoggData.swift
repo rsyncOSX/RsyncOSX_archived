@@ -15,6 +15,10 @@ protocol ReadLoggdata: class {
     func readloggdata()
 }
 
+protocol Sortdirection: class {
+    func sortdirection(directionup: Bool)
+}
+
 class ViewControllerLoggData: NSViewController, SetSchedules, Delay {
 
     var scheduleloggdata: ScheduleLoggData?
@@ -27,6 +31,7 @@ class ViewControllerLoggData: NSViewController, SetSchedules, Delay {
     @IBOutlet weak var search: NSSearchField!
     @IBOutlet weak var sorting: NSProgressIndicator!
     @IBOutlet weak var numberOflogfiles: NSTextField!
+    @IBOutlet weak var sortdirection: NSButton!
 
     // Delete row
     @IBOutlet weak var deleteButton: NSButton!
@@ -36,6 +41,7 @@ class ViewControllerLoggData: NSViewController, SetSchedules, Delay {
             return
         }
         self.schedules!.deletelogrow(parent: (self.row!.value(forKey: "parent") as? Int)!, sibling: (self.row!.value(forKey: "sibling") as? Int)!)
+        self.sorting.startAnimation(self)
         self.deleteButton.state = .off
         self.deselectRow()
     }
@@ -58,6 +64,7 @@ class ViewControllerLoggData: NSViewController, SetSchedules, Delay {
             self.scheduletable.reloadData()
         })
         self.row = nil
+        self.sortdirection.image = #imageLiteral(resourceName: "up")
     }
 
     override func viewDidDisappear() {
@@ -175,12 +182,21 @@ extension ViewControllerLoggData: ReadLoggdata {
         if viewispresent {
             self.scheduleloggdata = nil
             globalMainQueue.async(execute: { () -> Void in
-                self.sorting.startAnimation(self)
                 self.scheduleloggdata = ScheduleLoggData()
                 self.scheduletable.reloadData()
                 self.sorting.stopAnimation(self)
             })
             self.deleteButton.state = .off
+        }
+    }
+}
+
+extension ViewControllerLoggData: Sortdirection {
+    func sortdirection(directionup: Bool) {
+        if directionup {
+            self.sortdirection.image = #imageLiteral(resourceName: "up")
+        } else {
+            self.sortdirection.image = #imageLiteral(resourceName: "down")
         }
     }
 }

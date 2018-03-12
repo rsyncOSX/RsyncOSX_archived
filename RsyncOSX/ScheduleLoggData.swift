@@ -34,6 +34,7 @@ final class ScheduleLoggData: SetConfigurations, SetSchedules {
 
     var loggdata: [NSMutableDictionary]?
     private var sortedascendigdesending: Bool = false
+    weak var sortdirection: Sortdirection?
 
     // Function for filter loggdata
     func filter(search: String?, what: Filterlogs?) {
@@ -102,8 +103,10 @@ final class ScheduleLoggData: SetConfigurations, SetSchedules {
         guard self.loggdata != nil else { return }
         if self.sortedascendigdesending == true {
             self.sortedascendigdesending = false
+            self.sortdirection?.sortdirection(directionup: false)
         } else {
             self.sortedascendigdesending = true
+            self.sortdirection?.sortdirection(directionup: true)
         }
         let dateformatter = Tools().setDateformat()
         guard self.loggdata != nil else { return }
@@ -121,8 +124,10 @@ final class ScheduleLoggData: SetConfigurations, SetSchedules {
         guard self.loggdata != nil else { return }
         if self.sortedascendigdesending == true {
             self.sortedascendigdesending = false
+            self.sortdirection?.sortdirection(directionup: false)
         } else {
             self.sortedascendigdesending = true
+            self.sortdirection?.sortdirection(directionup: true)
         }
         var sortstring: String?
         switch sortby {
@@ -152,5 +157,6 @@ final class ScheduleLoggData: SetConfigurations, SetSchedules {
         if self.loggdata == nil {
             self.readAndSortAllLoggdata()
         }
+        self.sortdirection = ViewControllerReference.shared.getvcref(viewcontroller: .vcloggdata) as? ViewControllerLoggData
     }
 }
