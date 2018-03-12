@@ -36,6 +36,7 @@ class ViewControllerLoggData: NSViewController, SetSchedules, Delay {
             return
         }
         self.schedules!.deletelogrow(parent: (self.row!.value(forKey: "parent") as? Int)!, sibling: (self.row!.value(forKey: "sibling") as? Int)!)
+        self.sorting.startAnimation(self)
         self.deleteButton.state = .off
         self.deselectRow()
     }
@@ -175,7 +176,6 @@ extension ViewControllerLoggData: ReadLoggdata {
         if viewispresent {
             self.scheduleloggdata = nil
             globalMainQueue.async(execute: { () -> Void in
-                self.sorting.startAnimation(self)
                 self.scheduleloggdata = ScheduleLoggData()
                 self.scheduletable.reloadData()
                 self.sorting.stopAnimation(self)
