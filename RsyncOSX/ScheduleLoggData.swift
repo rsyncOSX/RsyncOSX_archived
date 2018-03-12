@@ -23,6 +23,7 @@ enum Filterlogs {
     case numberofdays
     case remoteCatalog
     case task
+    case backupid
 }
 
 struct Filtereddata {
@@ -31,38 +32,32 @@ struct Filtereddata {
 
 final class ScheduleLoggData: SetConfigurations, SetSchedules {
 
-    private var loggdata: [NSMutableDictionary]?
+    var loggdata: [NSMutableDictionary]?
     private var sortedascendigdesending: Bool = false
-
-    func getallloggdata() -> [NSMutableDictionary]? {
-        return self.loggdata
-    }
 
     // Function for filter loggdata
     func filter(search: String?, what: Filterlogs?) {
         guard search != nil || self.loggdata != nil else { return }
+        var valueforkeystring: String?
         globalDefaultQueue.async(execute: {() -> Void in
             var filtereddata = Filtereddata()
             switch what! {
             case .executeDate:
-                filtereddata.filtereddata =  self.loggdata?.filter({
-                    ($0.value(forKey: "dateExecuted") as? String)!.contains(search!)
-                })
+                valueforkeystring = "dateExecuted"
             case .localCatalog:
-                filtereddata.filtereddata = self.loggdata?.filter({
-                    ($0.value(forKey: "localCatalog") as? String)!.contains(search!)
-                })
+                 valueforkeystring = "localCatalog"
             case .remoteServer:
-                filtereddata.filtereddata = self.loggdata?.filter({
-                    ($0.value(forKey: "offsiteServer") as? String)!.contains(search!)
-                })
-            case .numberofdays:
-                return
-            case .remoteCatalog:
-                return
+                 valueforkeystring = "offsiteServer"
+            case .task:
+                 valueforkeystring = "task"
+            case .backupid:
+                 valueforkeystring = "backupid"
             default:
                 return
             }
+            filtereddata.filtereddata = self.loggdata?.filter({
+                ($0.value(forKey: valueforkeystring!) as? String)!.contains(search!)
+            })
             self.loggdata = filtereddata.filtereddata
         })
     }
@@ -80,6 +75,7 @@ final class ScheduleLoggData: SetConfigurations, SetSchedules {
                         "localCatalog": self.configurations!.getResourceConfiguration(hiddenID, resource: .localCatalog),
                         "offsiteServer": self.configurations!.getResourceConfiguration(hiddenID, resource: .offsiteServer),
                         "task": self.configurations!.getResourceConfiguration(hiddenID, resource: .task),
+                        "backupid": self.configurations!.getResourceConfiguration(hiddenID, resource: .backupid),
                         "dateExecuted": (dict.value(forKey: "dateExecuted") as? String)!,
                         "resultExecuted": (dict.value(forKey: "resultExecuted") as? String)!,
                         "hiddenID": hiddenID,
@@ -135,7 +131,9 @@ final class ScheduleLoggData: SetConfigurations, SetSchedules {
         case .remoteserver:
             sortstring = "offsiteServer"
         case .task:
-            sortstring = "taskCellID"
+            sortstring = "task"
+        case .backupid:
+            sortstring = "backupid"
         default:
             sortstring = "localCatalog"
         }
