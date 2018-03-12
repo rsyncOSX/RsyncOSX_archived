@@ -38,28 +38,26 @@ final class ScheduleLoggData: SetConfigurations, SetSchedules {
     // Function for filter loggdata
     func filter(search: String?, what: Filterlogs?) {
         guard search != nil || self.loggdata != nil else { return }
+        var valueforkeystring: String?
         globalDefaultQueue.async(execute: {() -> Void in
             var filtereddata = Filtereddata()
             switch what! {
             case .executeDate:
-                filtereddata.filtereddata =  self.loggdata?.filter({
-                    ($0.value(forKey: "dateExecuted") as? String)!.contains(search!)
-                })
+                valueforkeystring = "dateExecuted"
             case .localCatalog:
-                filtereddata.filtereddata = self.loggdata?.filter({
-                    ($0.value(forKey: "localCatalog") as? String)!.contains(search!)
-                })
+                 valueforkeystring = "localCatalog"
             case .remoteServer:
-                filtereddata.filtereddata = self.loggdata?.filter({
-                    ($0.value(forKey: "offsiteServer") as? String)!.contains(search!)
-                })
+                 valueforkeystring = "offsiteServer"
             case .task:
-                return
+                 valueforkeystring = "task"
             case .backupid:
-                return
+                 valueforkeystring = "backupid"
             default:
                 return
             }
+            filtereddata.filtereddata = self.loggdata?.filter({
+                ($0.value(forKey: valueforkeystring!) as? String)!.contains(search!)
+            })
             self.loggdata = filtereddata.filtereddata
         })
     }
@@ -133,7 +131,7 @@ final class ScheduleLoggData: SetConfigurations, SetSchedules {
         case .remoteserver:
             sortstring = "offsiteServer"
         case .task:
-            sortstring = "taskCellID"
+            sortstring = "task"
         case .backupid:
             sortstring = "backupid"
         default:

@@ -171,6 +171,7 @@ extension ViewControllerLoggData: Reloadandrefresh {
 
 extension ViewControllerLoggData: ReadLoggdata {
     func readloggdata() {
+        // Triggered after a delete of log row
         if viewispresent {
             self.scheduleloggdata = nil
             globalMainQueue.async(execute: { () -> Void in
