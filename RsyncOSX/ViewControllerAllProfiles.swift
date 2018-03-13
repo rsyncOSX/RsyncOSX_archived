@@ -15,6 +15,7 @@ class ViewControllerAllProfiles: NSViewController, Delay {
     @IBOutlet weak var mainTableView: NSTableView!
     @IBOutlet weak var search: NSSearchField!
     @IBOutlet weak var sortdirection: NSButton!
+    @IBOutlet weak var numberOfprofiles: NSTextField!
 
     private var allprofiles: AllProfiles?
     private var column: Int?
@@ -42,7 +43,13 @@ class ViewControllerAllProfiles: NSViewController, Delay {
 extension ViewControllerAllProfiles: NSTableViewDataSource {
     // Delegate for size of table
     func numberOfRows(in tableView: NSTableView) -> Int {
-        return self.allprofiles?.allconfigurationsasdictionary?.count ?? 0
+        if self.allprofiles?.allconfigurationsasdictionary == nil {
+            self.numberOfprofiles.stringValue = "Number of rows:"
+            return 0
+        } else {
+            self.numberOfprofiles.stringValue = "Number of rows: " + String(self.allprofiles!.allconfigurationsasdictionary!.count)
+            return self.allprofiles!.allconfigurationsasdictionary!.count
+        }
     }
 }
 
