@@ -19,7 +19,7 @@ protocol SetProfileinfo: class {
     func setprofile(profile: String, color: NSColor)
 }
 
-class ViewControllertabSchedule: NSViewController, SetConfigurations, SetSchedules, Coloractivetask, OperationChanged, VcSchedule, Delay {
+class ViewControllertabSchedule: NSViewController, SetConfigurations, SetSchedules, Coloractivetask, OperationChanged, VcSchedule, Delay, GetIndex {
 
     private var index: Int?
     private var hiddenID: Int?
@@ -142,6 +142,10 @@ class ViewControllertabSchedule: NSViewController, SetConfigurations, SetSchedul
 
     override func viewDidAppear() {
         super.viewDidAppear()
+        self.index = self.index(viewcontroller: .vctabmain)
+        if self.index != nil {
+            self.hiddenID = self.configurations!.gethiddenID(index: self.index!)
+        }
         self.weeklybutton.isEnabled = false
         self.dailybutton.isEnabled = false
         self.oncebutton.isEnabled = false
