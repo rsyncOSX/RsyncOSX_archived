@@ -16,14 +16,15 @@ protocol Readfiltereddata: class {
     func readfiltereddata(data: Filtereddata)
 }
 
-enum Filterlogs {
-    case localCatalog
-    case remoteServer
-    case executeDate
-    case numberofdays
-    case remoteCatalog
+enum Sortandfilter {
+    case remotecatalog
+    case localcatalog
+    case profile
+    case remoteserver
     case task
     case backupid
+    case numberofdays
+    case executedate
 }
 
 struct Filtereddata {
@@ -37,17 +38,17 @@ final class ScheduleLoggData: SetConfigurations, SetSchedules {
     weak var sortdirection: Sortdirection?
 
     // Function for filter loggdata
-    func filter(search: String?, what: Filterlogs?) {
+    func filter(search: String?, what: Sortandfilter?) {
         guard search != nil || self.loggdata != nil else { return }
         var valueforkeystring: String?
         globalDefaultQueue.async(execute: {() -> Void in
             var filtereddata = Filtereddata()
             switch what! {
-            case .executeDate:
+            case .executedate:
                 valueforkeystring = "dateExecuted"
-            case .localCatalog:
+            case .localcatalog:
                  valueforkeystring = "localCatalog"
-            case .remoteServer:
+            case .remoteserver:
                  valueforkeystring = "offsiteServer"
             case .task:
                  valueforkeystring = "task"
@@ -111,7 +112,9 @@ final class ScheduleLoggData: SetConfigurations, SetSchedules {
         let dateformatter = Tools().setDateformat()
         guard self.loggdata != nil else { return }
         let sorted = self.loggdata!.sorted { (dict1, dict2) -> Bool in
-            if (dateformatter.date(from: (dict1.value(forKey: "dateExecuted") as? String) ?? "") ?? dateformatter.date(from: "01 Jan 1900 00:00")!).timeIntervalSince(dateformatter.date(from: (dict2.value(forKey: "dateExecuted") as? String) ?? "") ?? dateformatter.date(from: "01 Jan 1900 00:00")!) > 0 {
+            let date1 = (dateformatter.date(from: (dict1.value(forKey: "dateExecuted") as? String) ?? "") ?? dateformatter.date(from: "01 Jan 1900 00:00")!)
+            let date2 = (dateformatter.date(from: (dict2.value(forKey: "dateExecuted") as? String) ?? "") ?? dateformatter.date(from: "01 Jan 1900 00:00")!)
+            if date1.timeIntervalSince(date2) > 0 {
                 return self.sortedascendigdesending
             } else {
                 return !self.sortedascendigdesending
@@ -120,7 +123,7 @@ final class ScheduleLoggData: SetConfigurations, SetSchedules {
         self.loggdata = sorted
     }
 
-    func sortbystring(sortby: Sortstring) {
+    func sortbystring(sortby: Sortandfilter) {
         guard self.loggdata != nil else { return }
         if self.sortedascendigdesending == true {
             self.sortedascendigdesending = false

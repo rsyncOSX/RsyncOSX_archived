@@ -113,18 +113,18 @@ class QuickBackup: SetConfigurations {
     }
 
     // Function for filter
-    func filter(search: String?, what: Filterlogs?) {
+    func filter(search: String?, what: Sortandfilter?) {
         guard search != nil || self.sortedlist != nil else { return }
         globalDefaultQueue.async(execute: {() -> Void in
             var filtereddata = Filtereddata()
             switch what! {
-            case .executeDate:
+            case .executedate:
                 return
-            case .localCatalog:
+            case .localcatalog:
                 filtereddata.filtereddata = self.sortedlist?.filter({
                     ($0.value(forKey: "localCatalogCellID") as? String)!.contains(search!)
                 })
-            case .remoteServer:
+            case .remoteserver:
                 filtereddata.filtereddata = self.sortedlist?.filter({
                     ($0.value(forKey: "offsiteServerCellID") as? String)!.contains(search!)
                 })
@@ -132,13 +132,15 @@ class QuickBackup: SetConfigurations {
                 filtereddata.filtereddata = self.sortedlist?.filter({
                     ($0.value(forKey: "daysID") as? String)!.contains(search!)
                 })
-            case .remoteCatalog:
+            case .remotecatalog:
                 filtereddata.filtereddata = self.sortedlist?.filter({
                     ($0.value(forKey: "offsiteCatalogCellID") as? String)!.contains(search!)
                 })
             case .task:
                 return
             case .backupid:
+                return
+            case .profile:
                 return
             }
             self.sortedlist = filtereddata.filtereddata

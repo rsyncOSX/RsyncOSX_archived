@@ -23,7 +23,7 @@ class ViewControllerLoggData: NSViewController, SetSchedules, Delay {
 
     var scheduleloggdata: ScheduleLoggData?
     var row: NSDictionary?
-    var filterby: Filterlogs?
+    var filterby: Sortandfilter?
     var index: Int?
     var viewispresent: Bool = false
 
@@ -149,13 +149,13 @@ extension ViewControllerLoggData: NSTableViewDelegate {
             self.filterby = .backupid
             self.scheduleloggdata!.sortbystring(sortby: .backupid)
         } else if column == 2 {
-            self.filterby = .localCatalog
+            self.filterby = .localcatalog
             self.scheduleloggdata!.sortbystring(sortby: .localcatalog)
         } else if column == 3 {
-            self.filterby = .remoteServer
+            self.filterby = .remoteserver
             self.scheduleloggdata!.sortbystring(sortby: .remoteserver)
         } else if column == 4 {
-            self.filterby = .executeDate
+            self.filterby = .executedate
             self.scheduleloggdata!.sortbyrundate()
         }
         globalMainQueue.async(execute: { () -> Void in
