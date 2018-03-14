@@ -9,15 +9,6 @@
 
 import Foundation
 
-enum Sortstring {
-    case remotecatalog
-    case localcatalog
-    case profile
-    case remoteserver
-    case task
-    case backupid
-}
-
 class AllProfiles {
     // Configurations object
     private var allconfigurations: [Configuration]?
@@ -92,7 +83,9 @@ class AllProfiles {
         let dateformatter = Tools().setDateformat()
         guard self.allconfigurationsasdictionary != nil else { return }
         let sorted = self.allconfigurationsasdictionary!.sorted { (dict1, dict2) -> Bool in
-            if (dateformatter.date(from: (dict1.value(forKey: "runDateCellID") as? String) ?? "") ?? dateformatter.date(from: "01 Jan 1900 00:00")!).timeIntervalSince(dateformatter.date(from: (dict2.value(forKey: "runDateCellID") as? String) ?? "") ?? dateformatter.date(from: "01 Jan 1900 00:00")!) > 0 {
+            let date1 = (dateformatter.date(from: (dict1.value(forKey: "runDateCellID") as? String) ?? "") ?? dateformatter.date(from: "01 Jan 1900 00:00")!)
+            let date2 = (dateformatter.date(from: (dict2.value(forKey: "runDateCellID") as? String) ?? "") ?? dateformatter.date(from: "01 Jan 1900 00:00")!)
+            if date1.timeIntervalSince(date2) > 0 {
                 return self.sortedascendigdesending
             } else {
                 return !self.sortedascendigdesending
@@ -101,41 +94,7 @@ class AllProfiles {
         self.allconfigurationsasdictionary = sorted
     }
 
-    func sortbystring(sortby: Sortstring) {
-        guard self.allconfigurationsasdictionary != nil else { return }
-        if self.sortedascendigdesending == true {
-            self.sortedascendigdesending = false
-            self.sortdirection?.sortdirection(directionup: false)
-        } else {
-            self.sortedascendigdesending = true
-            self.sortdirection?.sortdirection(directionup: true)
-        }
-        var sortstring: String?
-        switch sortby {
-        case .localcatalog:
-            sortstring = "localCatalogCellID"
-        case .profile:
-            sortstring = "profile"
-        case .remotecatalog:
-            sortstring = "offsiteCatalogCellID"
-        case .remoteserver:
-            sortstring = "offsiteServerCellID"
-        case .task:
-            sortstring = "taskCellID"
-        case .backupid:
-            sortstring = "backupIDCellID"
-        }
-        let sorted = self.allconfigurationsasdictionary!.sorted { (dict1, dict2) -> Bool in
-            if (dict1.value(forKey: sortstring!) as? String) ?? "" > (dict2.value(forKey: sortstring!) as? String) ?? "" {
-                return self.sortedascendigdesending
-            } else {
-                return !self.sortedascendigdesending
-            }
-        }
-        self.allconfigurationsasdictionary = sorted
-    }
-
-    private func filterbystring(filterby: Sortstring) -> String {
+    private func filterbystring(filterby: Sortandfilter) -> String {
         switch filterby {
         case .localcatalog:
             return "localCatalogCellID"
@@ -149,11 +108,35 @@ class AllProfiles {
             return "taskCellID"
         case .backupid:
             return "backupIDCellID"
+        case .numberofdays:
+            return ""
+        case .executedate:
+            return ""
         }
     }
 
+    func sortbystring(sortby: Sortandfilter) {
+        guard self.allconfigurationsasdictionary != nil else { return }
+        if self.sortedascendigdesending == true {
+            self.sortedascendigdesending = false
+            self.sortdirection?.sortdirection(directionup: false)
+        } else {
+            self.sortedascendigdesending = true
+            self.sortdirection?.sortdirection(directionup: true)
+        }
+        let sortstring = self.filterbystring(filterby: sortby)
+        let sorted = self.allconfigurationsasdictionary!.sorted { (dict1, dict2) -> Bool in
+            if (dict1.value(forKey: sortstring) as? String) ?? "" > (dict2.value(forKey: sortstring) as? String) ?? "" {
+                return self.sortedascendigdesending
+            } else {
+                return !self.sortedascendigdesending
+            }
+        }
+        self.allconfigurationsasdictionary = sorted
+    }
+
     // Function for filter
-    func filter(search: String?, column: Int, filterby: Sortstring?) {
+    func filter(search: String?, column: Int, filterby: Sortandfilter?) {
         guard search != nil || self.allconfigurationsasdictionary != nil else { return }
         globalDefaultQueue.async(execute: {() -> Void in
             switch column {

@@ -19,7 +19,7 @@ class ViewControllerAllProfiles: NSViewController, Delay {
 
     private var allprofiles: AllProfiles?
     private var column: Int?
-    private var filterby: Sortstring?
+    private var filterby: Sortandfilter?
 
     override func viewDidLoad() {
         super.viewDidLoad()
