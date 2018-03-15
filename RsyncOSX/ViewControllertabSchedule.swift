@@ -5,7 +5,7 @@
 //  Created by Thomas Evensen on 19/08/2016.
 //  Copyright © 2016 Thomas Evensen. All rights reserved.
 //
-//  swiftlint:disable line_length
+//  swiftlint:disable line_length cyclomatic_complexity
 
 import Foundation
 import Cocoa
@@ -26,6 +26,7 @@ class ViewControllertabSchedule: NSViewController, SetConfigurations, SetSchedul
     private var schedulessorted: ScheduleSortedAndExpand?
     var tools: Tools?
     var schedule: Scheduletype?
+    private var preselectrow: Bool = false
 
     // Main tableview
     @IBOutlet weak var mainTableView: NSTableView!
@@ -49,7 +50,9 @@ class ViewControllertabSchedule: NSViewController, SetConfigurations, SetSchedul
         case 1:
             self.info.stringValue = "Select a task..."
         case 2:
-            self.info.stringValue = "Scheduled tasks in menu app"
+            self.info.stringValue = "Scheduled tasks in menu app..."
+        case 3:
+            self.info.stringValue = "Preselected row from main view..."
         default:
             self.info.stringValue = ""
         }
@@ -81,6 +84,9 @@ class ViewControllertabSchedule: NSViewController, SetConfigurations, SetSchedul
     private func addschedule() {
         let answer = Alerts.dialogOKCancel("Add Schedule?", text: "Cancel or OK")
         if answer {
+            if ViewControllerReference.shared.executescheduledtasksmenuapp == true {
+                self.info(num: 2)
+            }
             let seconds: TimeInterval = self.starttime.dateValue.timeIntervalSinceNow
             let startdate: Date = self.startdate.dateValue.addingTimeInterval(seconds)
             if self.index != nil {
@@ -145,6 +151,11 @@ class ViewControllertabSchedule: NSViewController, SetConfigurations, SetSchedul
         self.index = self.index(viewcontroller: .vctabmain)
         if self.index != nil {
             self.hiddenID = self.configurations!.gethiddenID(index: self.index!)
+            self.info(num: 3)
+            self.preselectrow = true
+        } else {
+             self.preselectrow = false
+            self.info(num: 0)
         }
         self.weeklybutton.isEnabled = false
         self.dailybutton.isEnabled = false
@@ -158,11 +169,6 @@ class ViewControllertabSchedule: NSViewController, SetConfigurations, SetSchedul
             self.mainTableView.reloadData()
         })
         self.operationsmethod()
-        if ViewControllerReference.shared.executescheduledtasksmenuapp == true {
-            self.info(num: 2)
-        } else {
-            self.info(num: 0)
-        }
         self.delayWithSeconds(0.5) {
             self.enablemenuappbutton()
         }
@@ -180,6 +186,7 @@ class ViewControllertabSchedule: NSViewController, SetConfigurations, SetSchedul
     // setting which table row is selected
     func tableViewSelectionDidChange(_ notification: Notification) {
         self.info(num: 0)
+        self.preselectrow = false
         let myTableViewFromNotification = (notification.object as? NSTableView)!
         let indexes = myTableViewFromNotification.selectedRowIndexes
         if let index = indexes.first {
@@ -195,6 +202,7 @@ class ViewControllertabSchedule: NSViewController, SetConfigurations, SetSchedul
 
     // Execute tasks by double click in table
     @objc(tableViewDoubleClick:) func tableViewDoubleClick(sender: AnyObject) {
+        self.preselectrow = false
         globalMainQueue.async(execute: { () -> Void in
             self.presentViewControllerAsSheet(self.viewControllerScheduleDetails!)
         })
@@ -210,7 +218,6 @@ class ViewControllertabSchedule: NSViewController, SetConfigurations, SetSchedul
             self.rsyncosxschedbutton.isEnabled = true
         })
     }
-
 }
 
 extension ViewControllertabSchedule: NSTableViewDataSource {
@@ -225,20 +232,27 @@ extension ViewControllertabSchedule: NSTableViewDelegate, Attributedestring {
    func tableView(_ tableView: NSTableView, objectValueFor tableColumn: NSTableColumn?, row: Int) -> Any? {
         guard row < self.configurations!.getConfigurationsDataSourcecountBackup()!.count  else { return nil }
         let object: NSDictionary = self.configurations!.getConfigurationsDataSourcecountBackup()![row]
-        let hiddenID: Int = (object.value(forKey: "hiddenID") as? Int)!
+        let hiddenID: Int = object.value(forKey: "hiddenID") as? Int ?? -1
         switch tableColumn!.identifier.rawValue {
         case "scheduleID" :
             if self.schedulessorted != nil {
                 let schedule: String? = self.schedulessorted!.sortandcountscheduledonetask(hiddenID, number: false)
                 return schedule ?? ""
             }
-        case "batchCellID" :
-            return object[tableColumn!.identifier] as? Int!
         case "offsiteServerCellID":
             if (object[tableColumn!.identifier] as? String)!.isEmpty {
-                return "localhost"
+                if self.preselectrow == true && hiddenID == self.hiddenID ?? -1 {
+                    return self.attributedstring(str: "localhost", color: NSColor.red, align: .left)
+                } else {
+                    return "localhost"
+                }
             } else {
-                return object[tableColumn!.identifier] as? String
+                if self.preselectrow == true && hiddenID == self.hiddenID ?? -1 {
+                    let text = object[tableColumn!.identifier] as? String
+                    return self.attributedstring(str: text!, color: NSColor.red, align: .left)
+                } else {
+                    return object[tableColumn!.identifier] as? String
+                }
             }
         case "inCellID":
             if self.schedulessorted != nil {
@@ -246,17 +260,14 @@ extension ViewControllertabSchedule: NSTableViewDelegate, Attributedestring {
                 return taskintime ?? ""
             }
         default:
-            return object[tableColumn!.identifier] as? String
+            if self.preselectrow == true && hiddenID == self.hiddenID ?? -1 {
+                let text = object[tableColumn!.identifier] as? String
+                return self.attributedstring(str: text!, color: NSColor.red, align: .left)
+            } else {
+                return object[tableColumn!.identifier] as? String
+            }
         }
     return nil
-    }
-
-    // Toggling batch
-   func tableView(_ tableView: NSTableView, setObjectValue object: Any?, for tableColumn: NSTableColumn?, row: Int) {
-        if self.configurations!.getConfigurations()[row].task == "backup" {
-            self.configurations!.getConfigurationsDataSource()![row].setObject(object!, forKey: (tableColumn?.identifier)! as NSCopying)
-            self.configurations!.setBatchYesNo(row)
-        }
     }
 
 }
