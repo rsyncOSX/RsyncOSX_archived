@@ -17,7 +17,7 @@ To compile the code, install Xcode and open the RsyncOSX project file. Before co
 
 ### Application icon
 
-The application icon is created by [Forrest Walter](http://www.forrestwalter.com/). All rights reserved to Forrest Walter.
+The application icon is created by [Zsolt Sándor](https://github.com/graphis). All rights reserved to Zsolt Sándor.
 
 ### Changelog
 
