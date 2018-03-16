@@ -19,7 +19,9 @@ class RemoteInfoTaskWorkQueue: SetConfigurations {
     var stackoftasktobeestimated: [Row]?
     var outputprocess: OutputProcess?
     var records: [NSMutableDictionary]?
-    weak var reloadtableDelegate: UpdateProgress?
+    weak var updateprogressDelegate: UpdateProgress?
+    weak var reloadtableDelegate: Reloadandrefresh?
+    weak var enablebackupbuttonDelegate: EnableQuicbackupButton?
     var index: Int?
     var maxnumber: Int?
     var count: Int?
@@ -62,8 +64,8 @@ class RemoteInfoTaskWorkQueue: SetConfigurations {
         }
         self.records?.append(record)
         self.configurations?.estimatedlist?.append(record)
-        self.reloadtableDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vcremoteinfo) as? ViewControllerRemoteInfo
-        self.reloadtableDelegate?.processTermination()
+        self.updateprogressDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vcremoteinfo) as? ViewControllerRemoteInfo
+        self.updateprogressDelegate?.processTermination()
         guard self.stackoftasktobeestimated != nil else { return }
         self.outputprocess = nil
         self.outputprocess = OutputProcess()
@@ -96,6 +98,20 @@ class RemoteInfoTaskWorkQueue: SetConfigurations {
         }
         let sorted = self.records!.sorted {return ($0.value(forKey: sortby!) as? String)!.localizedStandardCompare(($1.value(forKey: sortby!) as? String)!) == .orderedAscending}
         self.records = sorted
+    }
+
+    func selectalltaskswithfilestobackup() {
+        guard self.records != nil else { return }
+        for i in 0 ..< self.records!.count {
+            let number = (self.records![i].value(forKey: "transferredNumber") as? String) ?? "0"
+            if Int(number)! > 0 {
+                self.records![i].setValue(1, forKey: "backup")
+            }
+        }
+        self.reloadtableDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vcremoteinfo) as? ViewControllerRemoteInfo
+        self.enablebackupbuttonDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vcremoteinfo) as? ViewControllerRemoteInfo
+        self.reloadtableDelegate?.reloadtabledata()
+        self.enablebackupbuttonDelegate?.enablequickbackupbutton()
     }
 
     init() {

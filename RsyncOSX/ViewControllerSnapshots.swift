@@ -187,6 +187,8 @@ class ViewControllerSnapshots: NSViewController, SetDismisser, SetConfigurations
             self.hiddenID = dict.value(forKey: "hiddenID") as? Int
             guard self.hiddenID != nil else { return }
             self.index = self.configurations?.getIndex(hiddenID!)
+        } else {
+            self.index = nil
         }
     }
 

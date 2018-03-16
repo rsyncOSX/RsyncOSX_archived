@@ -3912,7 +3912,7 @@ DQ
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="WiU-GQ-9Gh">
                                 <rect key="frame" x="-2" y="348" width="534" height="14"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" title="Icon by : Forrest Walter" id="Vnu-mV-aob">
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" title="Icon by : Zsolt Sándor" id="Vnu-mV-aob">
                                     <font key="font" metaFont="smallSystem"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
@@ -5834,11 +5834,22 @@ DQ
                                 </connections>
                             </button>
                             <progressIndicator wantsLayer="YES" fixedFrame="YES" maxValue="100" style="bar" translatesAutoresizingMaskIntoConstraints="NO" id="ASF-Jd-Tpg">
-                                <rect key="frame" x="20" y="17" width="251" height="20"/>
+                                <rect key="frame" x="20" y="17" width="141" height="20"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                             </progressIndicator>
+                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="NV3-uG-tc2">
+                                <rect key="frame" x="168" y="10" width="68" height="32"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <buttonCell key="cell" type="push" title="Select" bezelStyle="rounded" alignment="center" enabled="NO" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="HXz-ee-7v0">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="selectalltaskswithfilestobackup:" target="X0A-DI-J7J" id="fkT-rz-zSJ"/>
+                                </connections>
+                            </button>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="8bs-cE-2aO">
-                                <rect key="frame" x="281" y="19" width="306" height="17"/>
+                                <rect key="frame" x="237" y="19" width="260" height="17"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Count" id="78a-Cw-Mjk">
                                     <font key="font" metaFont="system"/>
@@ -5854,6 +5865,7 @@ DQ
                         <outlet property="executebutton" destination="DqZ-XV-BIT" id="IpA-BP-FiJ"/>
                         <outlet property="mainTableView" destination="cdd-YP-oPa" id="gDp-Qw-J6d"/>
                         <outlet property="progress" destination="ASF-Jd-Tpg" id="g7M-Xj-VEr"/>
+                        <outlet property="selectalltaskswithfilestobackupbutton" destination="NV3-uG-tc2" id="62Y-k9-8Sv"/>
                     </connections>
                 </viewController>
                 <customObject id="EeF-i6-w3M" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
