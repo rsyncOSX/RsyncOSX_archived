@@ -21,6 +21,8 @@ class ViewControllerRemoteInfo: NSViewController, SetDismisser, AbortTask {
     @IBOutlet weak var executebutton: NSButton!
     @IBOutlet weak var abortbutton: NSButton!
     @IBOutlet weak var count: NSTextField!
+    @IBOutlet weak var selectalltaskswithfilestobackupbutton: NSButton!
+
     // remote info tasks
     private var remoteinfotask: RemoteInfoTaskWorkQueue?
     weak var remoteinfotaskDelegate: SetRemoteInfo?
@@ -45,6 +47,10 @@ class ViewControllerRemoteInfo: NSViewController, SetDismisser, AbortTask {
         self.dismissview(viewcontroller: self, vcontroller: .vctabmain)
     }
 
+    @IBAction func selectalltaskswithfilestobackup(_ sender: NSButton) {
+        self.remoteinfotask?.selectalltaskswithfilestobackup()
+    }
+
     // Initial functions viewDidLoad and viewDidAppear
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -66,6 +72,7 @@ class ViewControllerRemoteInfo: NSViewController, SetDismisser, AbortTask {
         self.count.stringValue = self.number()
         self.enableexecutebutton()
         self.initiateProgressbar()
+        self.selectalltaskswithfilestobackupbutton.isEnabled = false
     }
 
     override func viewDidDisappear() {
@@ -189,6 +196,7 @@ extension ViewControllerRemoteInfo: UpdateProgress {
         if self.remoteinfotask?.stackoftasktobeestimated == nil {
             self.progress.stopAnimation(nil)
             self.count.stringValue = "Completed"
+            self.selectalltaskswithfilestobackupbutton.isEnabled = true
         }
     }
 

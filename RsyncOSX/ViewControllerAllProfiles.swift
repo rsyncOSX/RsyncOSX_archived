@@ -47,7 +47,8 @@ extension ViewControllerAllProfiles: NSTableViewDataSource {
             self.numberOfprofiles.stringValue = "Number of rows:"
             return 0
         } else {
-            self.numberOfprofiles.stringValue = "Number of rows: " + String(self.allprofiles!.allconfigurationsasdictionary!.count)
+            self.numberOfprofiles.stringValue = "Number of rows: " +
+                String(self.allprofiles!.allconfigurationsasdictionary!.count)
             return self.allprofiles!.allconfigurationsasdictionary!.count
         }
     }
