@@ -14,6 +14,10 @@ protocol OpenQuickBackup: class {
     func openquickbackup()
 }
 
+protocol EnableQuicbackupButton: class {
+    func enablequickbackupbutton()
+}
+
 class ViewControllerRemoteInfo: NSViewController, SetDismisser, AbortTask {
 
     @IBOutlet weak var mainTableView: NSTableView!
@@ -216,5 +220,11 @@ extension ViewControllerRemoteInfo: StartStopProgressIndicator {
 
     func complete() {
         // nothing
+    }
+}
+
+extension ViewControllerRemoteInfo: EnableQuicbackupButton {
+    func enablequickbackupbutton() {
+        self.enableexecutebutton()
     }
 }

@@ -21,6 +21,7 @@ class RemoteInfoTaskWorkQueue: SetConfigurations {
     var records: [NSMutableDictionary]?
     weak var updateprogressDelegate: UpdateProgress?
     weak var reloadtableDelegate: Reloadandrefresh?
+    weak var enablebackupbuttonDelegate: EnableQuicbackupButton?
     var index: Int?
     var maxnumber: Int?
     var count: Int?
@@ -108,7 +109,9 @@ class RemoteInfoTaskWorkQueue: SetConfigurations {
             }
         }
         self.reloadtableDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vcremoteinfo) as? ViewControllerRemoteInfo
+        self.enablebackupbuttonDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vcremoteinfo) as? ViewControllerRemoteInfo
         self.reloadtableDelegate?.reloadtabledata()
+        self.enablebackupbuttonDelegate?.enablequickbackupbutton()
     }
 
     init() {
