@@ -161,6 +161,12 @@ class ViewControllerCopyFiles: NSViewController, SetConfigurations, GetIndex, De
         if let index = self.index {
             self.displayRemoteserver(index: index)
             self.info(num: 4)
+            self.tabledata = nil
+            globalMainQueue.async(execute: { () -> Void in
+                self.tableViewSelect.reloadData()
+            })
+        } else {
+            self.resetCopySource()
         }
         self.copyButton.isEnabled = true
         self.copyButton.title = "Estimate"
