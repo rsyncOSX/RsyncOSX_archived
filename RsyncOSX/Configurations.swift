@@ -96,6 +96,7 @@ enum ResourceInConfiguration {
     case offsiteServer
     case task
     case backupid
+    case offsiteusername
 }
 
 class Configurations: ReloadTable, SetSchedules {
@@ -381,6 +382,8 @@ class Configurations: ReloadTable, SetSchedules {
             return result[0].task
         case .backupid:
             return result[0].backupID
+        case .offsiteusername:
+            return result[0].offsiteUsername
         }
     }
 

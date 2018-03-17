@@ -5,12 +5,12 @@
 //  Created by Thomas Evensen on 13/02/16.
 //  Copyright © 2016 Thomas Evensen. All rights reserved.
 //
-//  swiftlint:disable function_body_length
+//  swiftlint:disable function_body_length line_length
 
 import Foundation
 import Cocoa
 
-class ViewControllerNewConfigurations: NSViewController, SetConfigurations, VcSchedule, Delay {
+class ViewControllerNewConfigurations: NSViewController, SetConfigurations, VcSchedule, Delay, GetIndex {
 
     var storageapi: PersistentStorageAPI?
     var newconfigurations: NewConfigurations?
@@ -23,6 +23,7 @@ class ViewControllerNewConfigurations: NSViewController, SetConfigurations, VcSc
     let ssh: String = "ssh"
     let dryrun: String = "--dry-run"
     var outputprocess: OutputProcess?
+    var index: Int?
 
     @IBOutlet weak var newTableView: NSTableView!
     @IBOutlet weak var viewParameter1: NSTextField!
@@ -41,6 +42,21 @@ class ViewControllerNewConfigurations: NSViewController, SetConfigurations, VcSc
     @IBOutlet weak var profilInfo: NSTextField!
     @IBOutlet weak var snapshots: NSButton!
     @IBOutlet weak var snapshotmessage: NSTextField!
+    @IBOutlet weak var copyconfigbutton: NSButton!
+
+    @IBAction func copyconfiguration(_ sender: NSButton) {
+        guard self.index != nil else { return }
+        let hiddenID = self.configurations!.gethiddenID(index: self.index!)
+        self.localCatalog.stringValue = self.configurations!.getResourceConfiguration(hiddenID, resource: .localCatalog)
+        self.offsiteCatalog.stringValue = self.configurations!.getResourceConfiguration(hiddenID, resource: .remoteCatalog)
+        self.offsiteUsername.stringValue = self.configurations!.getResourceConfiguration(hiddenID, resource: .offsiteusername)
+        self.backupID.stringValue = "copy of " + self.configurations!.getResourceConfiguration(hiddenID, resource: .backupid)
+        if self.configurations!.getResourceConfiguration(hiddenID, resource: .offsiteServer) != "localhost" {
+            self.offsiteServer.stringValue = self.configurations!.getResourceConfiguration(hiddenID, resource: .offsiteServer)
+        } else {
+            self.offsiteServer.stringValue = ""
+        }
+    }
 
     @IBAction func cleartable(_ sender: NSButton) {
         self.newconfigurations = nil
@@ -70,6 +86,12 @@ class ViewControllerNewConfigurations: NSViewController, SetConfigurations, VcSc
 
     override func viewDidAppear() {
         super.viewDidAppear()
+        self.index = self.index(viewcontroller: .vctabmain)
+        if self.index != nil {
+            self.copyconfigbutton.isEnabled = true
+        } else {
+            self.copyconfigbutton.isEnabled = false
+        }
         if let profile = self.configurations!.getProfile() {
             self.storageapi = PersistentStorageAPI(profile: profile)
         } else {
@@ -215,29 +237,3 @@ extension ViewControllerNewConfigurations: UpdateProgress {
         //
     }
 }
-
-/*
- extension ViewControllerNewConfigurations: GetPath {
-    
-    @IBAction func copyLocalCatalog(_ sender: NSButton) {
-        _ = FileDialog(requester: .addLocalCatalog)
-    }
-    
-    @IBAction func copyRemoteCatalog(_ sender: NSButton) {
-        _ = FileDialog(requester: .addRemoteCatalog)
-    }
-    
-    func pathSet(path: String?, requester: WhichPath) {
-        if let setpath = path {
-            switch requester {
-            case .addLocalCatalog:
-                self.localCatalog.stringValue = setpath
-            case .addRemoteCatalog:
-                self.offsiteCatalog.stringValue = setpath
-            default:
-                break
-            }
-        }
-    }
- }
-*/
