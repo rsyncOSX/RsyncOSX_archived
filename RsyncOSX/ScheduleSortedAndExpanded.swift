@@ -38,7 +38,7 @@ class ScheduleSortedAndExpand: SetConfigurations, SetSchedules {
     // Calculate daily schedules
     private func daily(dateStart: Date, schedule: String, dict: NSDictionary) {
         var i = 0
-        while self.nextdayorweekindex(dateStart: dateStart, day: i, schedule: schedule) < 0 { i += 1 }
+        while self.nextdayorweekindex(dateStart: dateStart, day: i, schedule: schedule) < 0 && i < 1000 { i += 1 }
         var dateComponent = DateComponents()
         dateComponent.day = i
         let cal = Calendar.current
@@ -60,7 +60,7 @@ class ScheduleSortedAndExpand: SetConfigurations, SetSchedules {
     // Calculate weekly schedules
     private func weekly(dateStart: Date, schedule: String, dict: NSDictionary) {
         var i = 0
-        while self.nextdayorweekindex(dateStart: dateStart, day: i, schedule: schedule) < 0 { i += 1 }
+        while self.nextdayorweekindex(dateStart: dateStart, day: i, schedule: schedule) < 0  && i < 1000 { i += 1 }
         var dateComponent = DateComponents()
         dateComponent.day = (i * 7)
         let cal = Calendar.current
