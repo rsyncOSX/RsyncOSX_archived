@@ -9,6 +9,10 @@
 
 import Foundation
 
+protocol Sortdirection: class {
+    func sortdirection(directionup: Bool)
+}
+
 class AllProfiles {
     // Configurations object
     private var allconfigurations: [Configuration]?

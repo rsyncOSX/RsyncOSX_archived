@@ -15,10 +15,6 @@ protocol ReadLoggdata: class {
     func readloggdata()
 }
 
-protocol Sortdirection: class {
-    func sortdirection(directionup: Bool)
-}
-
 class ViewControllerLoggData: NSViewController, SetSchedules, Delay {
 
     var scheduleloggdata: ScheduleLoggData?
@@ -26,6 +22,7 @@ class ViewControllerLoggData: NSViewController, SetSchedules, Delay {
     var filterby: Sortandfilter?
     var index: Int?
     var viewispresent: Bool = false
+    private var sortedascendigdesending: Bool = false
 
     @IBOutlet weak var scheduletable: NSTableView!
     @IBOutlet weak var search: NSSearchField!
@@ -46,6 +43,15 @@ class ViewControllerLoggData: NSViewController, SetSchedules, Delay {
         self.deselectRow()
     }
 
+    @IBAction func sortdirection(_ sender: NSButton) {
+        if self.sortedascendigdesending == true {
+            self.sortedascendigdesending = false
+            self.sortdirection.image = #imageLiteral(resourceName: "down")
+        } else {
+            self.sortedascendigdesending = true
+            self.sortdirection.image = #imageLiteral(resourceName: "up")
+        }
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do view setup here.
@@ -144,19 +150,19 @@ extension ViewControllerLoggData: NSTableViewDelegate {
         let column = myTableViewFromNotification.selectedColumn
         if column == 0 {
             self.filterby = .task
-            self.scheduleloggdata?.loggdata = self.scheduleloggdata!.sortbystring(notsorted: self.scheduleloggdata?.loggdata, sortby: .task)
+            self.scheduleloggdata?.loggdata = self.scheduleloggdata!.sortbystring(notsorted: self.scheduleloggdata?.loggdata, sortby: .task, sortdirection: self.sortedascendigdesending)
         } else if column == 1 {
             self.filterby = .backupid
-            self.scheduleloggdata?.loggdata = self.scheduleloggdata!.sortbystring(notsorted: self.scheduleloggdata?.loggdata, sortby: .backupid)
+            self.scheduleloggdata?.loggdata = self.scheduleloggdata!.sortbystring(notsorted: self.scheduleloggdata?.loggdata, sortby: .backupid, sortdirection: self.sortedascendigdesending)
         } else if column == 2 {
             self.filterby = .localcatalog
-            self.scheduleloggdata?.loggdata = self.scheduleloggdata!.sortbystring(notsorted: self.scheduleloggdata?.loggdata, sortby: .localcatalog)
+            self.scheduleloggdata?.loggdata = self.scheduleloggdata!.sortbystring(notsorted: self.scheduleloggdata?.loggdata, sortby: .localcatalog, sortdirection: self.sortedascendigdesending)
         } else if column == 3 {
             self.filterby = .remoteserver
-            self.scheduleloggdata?.loggdata = self.scheduleloggdata!.sortbystring(notsorted: self.scheduleloggdata?.loggdata, sortby: .remoteserver)
+            self.scheduleloggdata?.loggdata = self.scheduleloggdata!.sortbystring(notsorted: self.scheduleloggdata?.loggdata, sortby: .remoteserver, sortdirection: self.sortedascendigdesending)
         } else if column == 4 {
             self.filterby = .executedate
-            self.scheduleloggdata?.loggdata = self.scheduleloggdata!.sortbyrundate(notsorted: self.scheduleloggdata?.loggdata)
+            self.scheduleloggdata?.loggdata = self.scheduleloggdata!.sortbyrundate(notsorted: self.scheduleloggdata?.loggdata, sortdirection: self.sortedascendigdesending)
         }
         globalMainQueue.async(execute: { () -> Void in
             self.scheduletable.reloadData()
@@ -187,16 +193,6 @@ extension ViewControllerLoggData: ReadLoggdata {
                 self.sorting.stopAnimation(self)
             })
             self.deleteButton.state = .off
-        }
-    }
-}
-
-extension ViewControllerLoggData: Sortdirection {
-    func sortdirection(directionup: Bool) {
-        if directionup {
-            self.sortdirection.image = #imageLiteral(resourceName: "up")
-        } else {
-            self.sortdirection.image = #imageLiteral(resourceName: "down")
         }
     }
 }

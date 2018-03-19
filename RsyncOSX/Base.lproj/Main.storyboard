@@ -2210,6 +2210,9 @@
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
+                                <connections>
+                                    <action selector="sortdirection:" target="AlG-Cw-Xi9" id="MrY-mG-jWu"/>
+                                </connections>
                             </button>
                         </subviews>
                     </view>
