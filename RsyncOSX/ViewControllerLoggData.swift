@@ -144,19 +144,19 @@ extension ViewControllerLoggData: NSTableViewDelegate {
         let column = myTableViewFromNotification.selectedColumn
         if column == 0 {
             self.filterby = .task
-            self.scheduleloggdata!.sortbystring(sortby: .task)
+            self.scheduleloggdata?.loggdata = self.scheduleloggdata!.sortbystring(notsorted: self.scheduleloggdata?.loggdata, sortby: .task)
         } else if column == 1 {
             self.filterby = .backupid
-            self.scheduleloggdata!.sortbystring(sortby: .backupid)
+            self.scheduleloggdata?.loggdata = self.scheduleloggdata!.sortbystring(notsorted: self.scheduleloggdata?.loggdata, sortby: .backupid)
         } else if column == 2 {
             self.filterby = .localcatalog
-            self.scheduleloggdata!.sortbystring(sortby: .localcatalog)
+            self.scheduleloggdata?.loggdata = self.scheduleloggdata!.sortbystring(notsorted: self.scheduleloggdata?.loggdata, sortby: .localcatalog)
         } else if column == 3 {
             self.filterby = .remoteserver
-            self.scheduleloggdata!.sortbystring(sortby: .remoteserver)
+            self.scheduleloggdata?.loggdata = self.scheduleloggdata!.sortbystring(notsorted: self.scheduleloggdata?.loggdata, sortby: .remoteserver)
         } else if column == 4 {
             self.filterby = .executedate
-            self.scheduleloggdata!.sortbyrundate()
+            self.scheduleloggdata?.loggdata = self.scheduleloggdata!.sortbyrundate(notsorted: self.scheduleloggdata?.loggdata)
         }
         globalMainQueue.async(execute: { () -> Void in
             self.scheduletable.reloadData()

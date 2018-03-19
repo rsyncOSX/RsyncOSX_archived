@@ -17,7 +17,7 @@ class ViewControllerAbout: NSViewController, SetDismisser, Delay {
     @IBOutlet weak var rsyncversionstring: NSTextField!
     @IBOutlet weak var copyright: NSTextField!
     @IBOutlet weak var iconby: NSTextField!
-    
+
     var copyrigthstring: String = "Copyright © 2018 Thomas Evensen"
     var iconbystring: String = "Icon by: Zsolt Sándor"
 
