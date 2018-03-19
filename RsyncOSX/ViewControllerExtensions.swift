@@ -5,7 +5,7 @@
 //  Created by Thomas Evensen on 28.10.2017.
 //  Copyright © 2017 Thomas Evensen. All rights reserved.
 //
-// swiftlint:disable line_length
+// swiftlint:disable line_length file_length
 
 import Foundation
 import Cocoa
@@ -433,8 +433,10 @@ extension Sorting {
             sortstring = "task"
         case .backupid:
             sortstring = "backupID"
+        case .profile:
+            sortstring = "profile"
         default:
-            sortstring = "localCatalog"
+            sortstring = ""
         }
         let sorted = notsorted!.sorted { (dict1, dict2) -> Bool in
             if (dict1.value(forKey: sortstring!) as? String) ?? "" > (dict2.value(forKey: sortstring!) as? String) ?? "" {

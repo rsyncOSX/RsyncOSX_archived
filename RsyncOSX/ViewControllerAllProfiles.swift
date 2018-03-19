@@ -5,6 +5,7 @@
 //  Created by Thomas Evensen on 07.03.2018.
 //  Copyright © 2018 Thomas Evensen. All rights reserved.
 //
+// swiftlint:disable line_length
 
 import Foundation
 import Cocoa
@@ -20,6 +21,17 @@ class ViewControllerAllProfiles: NSViewController, Delay {
     private var allprofiles: AllProfiles?
     private var column: Int?
     private var filterby: Sortandfilter?
+    private var sortedascendigdesending: Bool = false
+
+    @IBAction func sortdirection(_ sender: NSButton) {
+        if self.sortedascendigdesending == true {
+            self.sortedascendigdesending = false
+            self.sortdirection.image = #imageLiteral(resourceName: "up")
+        } else {
+            self.sortedascendigdesending = true
+            self.sortdirection.image = #imageLiteral(resourceName: "down")
+        }
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -48,8 +60,8 @@ extension ViewControllerAllProfiles: NSTableViewDataSource {
             return 0
         } else {
             self.numberOfprofiles.stringValue = "Number of rows: " +
-                String(self.allprofiles!.allconfigurationsasdictionary!.count)
-            return self.allprofiles!.allconfigurationsasdictionary!.count
+                String(self.allprofiles!.allconfigurationsasdictionary?.count ?? 0)
+            return self.allprofiles!.allconfigurationsasdictionary?.count ?? 0
         }
     }
 }
@@ -66,32 +78,31 @@ extension ViewControllerAllProfiles: NSTableViewDelegate, Attributedestring {
     func tableViewSelectionDidChange(_ notification: Notification) {
         let myTableViewFromNotification = (notification.object as? NSTableView)!
         let column = myTableViewFromNotification.selectedColumn
+        var bystring = true
         self.column = column
         switch column {
         case 0:
             self.filterby = .profile
-            self.allprofiles!.sortbystring(sortby: self.filterby!)
         case 1:
             self.filterby = .task
-            self.allprofiles!.sortbystring(sortby: self.filterby!)
         case 2:
             self.filterby = .localcatalog
-            self.allprofiles!.sortbystring(sortby: self.filterby!)
         case 3:
             self.filterby = .remotecatalog
-            self.allprofiles!.sortbystring(sortby: self.filterby!)
         case 4:
             self.filterby = .remoteserver
-            self.allprofiles!.sortbystring(sortby: self.filterby!)
         case 5:
             self.filterby = .backupid
-            self.allprofiles!.sortbystring(sortby: self.filterby!)
-        case 6:
-            self.allprofiles!.sortbyrundate()
-        case 7:
-            self.allprofiles!.sortbyrundate()
+        case 6, 7:
+            bystring = false
+            self.filterby = .executedate
         default:
             return
+        }
+        if bystring {
+            self.allprofiles?.allconfigurationsasdictionary = self.allprofiles!.sortbystring(notsorted: self.allprofiles?.allconfigurationsasdictionary, sortby: self.filterby!, sortdirection: self.sortedascendigdesending)
+        } else {
+            self.allprofiles?.allconfigurationsasdictionary = self.allprofiles!.sortbyrundate(notsorted: self.allprofiles?.allconfigurationsasdictionary, sortdirection: self.sortedascendigdesending)
         }
         globalMainQueue.async(execute: { () -> Void in
             self.mainTableView.reloadData()
@@ -124,15 +135,5 @@ extension ViewControllerAllProfiles: NSSearchFieldDelegate {
             self.allprofiles = AllProfiles()
             self.mainTableView.reloadData()
         })
-    }
-}
-
-extension ViewControllerAllProfiles: Sortdirection {
-    func sortdirection(directionup: Bool) {
-        if directionup {
-            self.sortdirection.image = #imageLiteral(resourceName: "up")
-        } else {
-            self.sortdirection.image = #imageLiteral(resourceName: "down")
-        }
     }
 }
