@@ -117,8 +117,8 @@ extension ViewControllerLoggData: NSTableViewDataSource {
             self.numberOflogfiles.stringValue = "Number of rows:"
             return 0
         } else {
-            self.numberOflogfiles.stringValue = "Number of rows: " + String(self.scheduleloggdata!.loggdata!.count)
-            return self.scheduleloggdata!.loggdata!.count
+            self.numberOflogfiles.stringValue = "Number of rows: " + String(self.scheduleloggdata!.loggdata?.count ?? 0)
+            return self.scheduleloggdata!.loggdata?.count ?? 0
         }
     }
 
