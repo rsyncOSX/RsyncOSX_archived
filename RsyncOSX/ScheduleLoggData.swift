@@ -77,7 +77,7 @@ final class ScheduleLoggData: SetConfigurations, SetSchedules {
                         "localCatalog": self.configurations!.getResourceConfiguration(hiddenID, resource: .localCatalog),
                         "offsiteServer": self.configurations!.getResourceConfiguration(hiddenID, resource: .offsiteServer),
                         "task": self.configurations!.getResourceConfiguration(hiddenID, resource: .task),
-                        "backupid": self.configurations!.getResourceConfiguration(hiddenID, resource: .backupid),
+                        "backupID": self.configurations!.getResourceConfiguration(hiddenID, resource: .backupid),
                         "dateExecuted": (dict.value(forKey: "dateExecuted") as? String)!,
                         "resultExecuted": (dict.value(forKey: "resultExecuted") as? String)!,
                         "hiddenID": hiddenID,
@@ -100,8 +100,8 @@ final class ScheduleLoggData: SetConfigurations, SetSchedules {
         }
     }
 
-    func sortbyrundate() {
-        guard self.loggdata != nil else { return }
+    func sortbyrundate(notsorted: [NSMutableDictionary]?) -> [NSMutableDictionary]? {
+        guard notsorted != nil else { return nil }
         if self.sortedascendigdesending == true {
             self.sortedascendigdesending = false
             self.sortdirection?.sortdirection(directionup: false)
@@ -110,8 +110,7 @@ final class ScheduleLoggData: SetConfigurations, SetSchedules {
             self.sortdirection?.sortdirection(directionup: true)
         }
         let dateformatter = Tools().setDateformat()
-        guard self.loggdata != nil else { return }
-        let sorted = self.loggdata!.sorted { (dict1, dict2) -> Bool in
+        let sorted = notsorted!.sorted { (dict1, dict2) -> Bool in
             let date1 = (dateformatter.date(from: (dict1.value(forKey: "dateExecuted") as? String) ?? "") ?? dateformatter.date(from: "01 Jan 1900 00:00")!)
             let date2 = (dateformatter.date(from: (dict2.value(forKey: "dateExecuted") as? String) ?? "") ?? dateformatter.date(from: "01 Jan 1900 00:00")!)
             if date1.timeIntervalSince(date2) > 0 {
@@ -120,11 +119,11 @@ final class ScheduleLoggData: SetConfigurations, SetSchedules {
                 return !self.sortedascendigdesending
             }
         }
-        self.loggdata = sorted
+        return sorted
     }
 
-    func sortbystring(sortby: Sortandfilter) {
-        guard self.loggdata != nil else { return }
+    func sortbystring(notsorted: [NSMutableDictionary]?, sortby: Sortandfilter) -> [NSMutableDictionary]? {
+         guard notsorted != nil else { return nil }
         if self.sortedascendigdesending == true {
             self.sortedascendigdesending = false
             self.sortdirection?.sortdirection(directionup: false)
@@ -141,18 +140,18 @@ final class ScheduleLoggData: SetConfigurations, SetSchedules {
         case .task:
             sortstring = "task"
         case .backupid:
-            sortstring = "backupid"
+            sortstring = "backupID"
         default:
             sortstring = "localCatalog"
         }
-        let sorted = self.loggdata!.sorted { (dict1, dict2) -> Bool in
+        let sorted = notsorted!.sorted { (dict1, dict2) -> Bool in
             if (dict1.value(forKey: sortstring!) as? String) ?? "" > (dict2.value(forKey: sortstring!) as? String) ?? "" {
                 return self.sortedascendigdesending
             } else {
                 return !self.sortedascendigdesending
             }
         }
-        self.loggdata = sorted
+        return sorted
     }
 
     init () {

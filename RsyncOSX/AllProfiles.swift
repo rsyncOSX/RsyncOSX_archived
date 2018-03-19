@@ -55,14 +55,14 @@ class AllProfiles {
             }
             let row: NSDictionary = [
                 "profile": configurations[i].profile ?? "",
-                "taskCellID": configurations[i].task,
+                "task": configurations[i].task,
                 "hiddenID": configurations[i].hiddenID,
-                "localCatalogCellID": configurations[i].localCatalog,
-                "offsiteCatalogCellID": configurations[i].offsiteCatalog,
-                "offsiteServerCellID": configurations[i].offsiteServer,
-                "backupIDCellID": configurations[i].backupID,
-                "runDateCellID": configurations[i].dateRun!,
-                "daysID": configurations[i].dayssincelastbackup ?? "",
+                "localCatalog": configurations[i].localCatalog,
+                "offsiteCatalog": configurations[i].offsiteCatalog,
+                "offsiteServer": configurations[i].offsiteServer,
+                "backupID": configurations[i].backupID,
+                "runDate": configurations[i].dateRun!,
+                "days": configurations[i].dayssincelastbackup ?? "",
                 "markdays": configurations[i].markdays,
                 "selectCellID": 0
             ]
@@ -83,8 +83,8 @@ class AllProfiles {
         let dateformatter = Tools().setDateformat()
         guard self.allconfigurationsasdictionary != nil else { return }
         let sorted = self.allconfigurationsasdictionary!.sorted { (dict1, dict2) -> Bool in
-            let date1 = (dateformatter.date(from: (dict1.value(forKey: "runDateCellID") as? String) ?? "") ?? dateformatter.date(from: "01 Jan 1900 00:00")!)
-            let date2 = (dateformatter.date(from: (dict2.value(forKey: "runDateCellID") as? String) ?? "") ?? dateformatter.date(from: "01 Jan 1900 00:00")!)
+            let date1 = (dateformatter.date(from: (dict1.value(forKey: "runDate") as? String) ?? "") ?? dateformatter.date(from: "01 Jan 1900 00:00")!)
+            let date2 = (dateformatter.date(from: (dict2.value(forKey: "runDate") as? String) ?? "") ?? dateformatter.date(from: "01 Jan 1900 00:00")!)
             if date1.timeIntervalSince(date2) > 0 {
                 return self.sortedascendigdesending
             } else {
@@ -97,17 +97,17 @@ class AllProfiles {
     private func filterbystring(filterby: Sortandfilter) -> String {
         switch filterby {
         case .localcatalog:
-            return "localCatalogCellID"
+            return "localCatalog"
         case .profile:
             return "profile"
         case .remotecatalog:
-            return "offsiteCatalogCellID"
+            return "offsiteCatalog"
         case .remoteserver:
-            return "offsiteServerCellID"
+            return "offsiteServer"
         case .task:
-            return "taskCellID"
+            return "task"
         case .backupid:
-            return "backupIDCellID"
+            return "backupID"
         case .numberofdays:
             return ""
         case .executedate:
