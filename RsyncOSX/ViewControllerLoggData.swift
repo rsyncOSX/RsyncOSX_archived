@@ -17,11 +17,11 @@ protocol ReadLoggdata: class {
 
 class ViewControllerLoggData: NSViewController, SetSchedules, Delay {
 
-    var scheduleloggdata: ScheduleLoggData?
-    var row: NSDictionary?
-    var filterby: Sortandfilter?
-    var index: Int?
-    var viewispresent: Bool = false
+    private var scheduleloggdata: ScheduleLoggData?
+    private var row: NSDictionary?
+    private var filterby: Sortandfilter?
+    private var index: Int?
+    private var viewispresent: Bool = false
     private var sortedascendigdesending: Bool = true
 
     @IBOutlet weak var scheduletable: NSTableView!
