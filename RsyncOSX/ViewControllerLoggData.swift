@@ -46,10 +46,10 @@ class ViewControllerLoggData: NSViewController, SetSchedules, Delay {
     @IBAction func sortdirection(_ sender: NSButton) {
         if self.sortedascendigdesending == true {
             self.sortedascendigdesending = false
-            self.sortdirection.image = #imageLiteral(resourceName: "down")
+             self.sortdirection.image = #imageLiteral(resourceName: "up")
         } else {
             self.sortedascendigdesending = true
-            self.sortdirection.image = #imageLiteral(resourceName: "up")
+            self.sortdirection.image = #imageLiteral(resourceName: "down")
         }
     }
     override func viewDidLoad() {
