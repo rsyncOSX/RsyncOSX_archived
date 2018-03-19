@@ -52,6 +52,7 @@ class ViewControllerLoggData: NSViewController, SetSchedules, Delay {
             self.sortdirection.image = #imageLiteral(resourceName: "down")
         }
     }
+
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do view setup here.
@@ -148,20 +149,22 @@ extension ViewControllerLoggData: NSTableViewDelegate {
             self.row = self.scheduleloggdata?.loggdata![self.index!]
         }
         let column = myTableViewFromNotification.selectedColumn
+        var bystring = true
         if column == 0 {
             self.filterby = .task
-            self.scheduleloggdata?.loggdata = self.scheduleloggdata!.sortbystring(notsorted: self.scheduleloggdata?.loggdata, sortby: .task, sortdirection: self.sortedascendigdesending)
         } else if column == 1 {
             self.filterby = .backupid
-            self.scheduleloggdata?.loggdata = self.scheduleloggdata!.sortbystring(notsorted: self.scheduleloggdata?.loggdata, sortby: .backupid, sortdirection: self.sortedascendigdesending)
         } else if column == 2 {
             self.filterby = .localcatalog
-            self.scheduleloggdata?.loggdata = self.scheduleloggdata!.sortbystring(notsorted: self.scheduleloggdata?.loggdata, sortby: .localcatalog, sortdirection: self.sortedascendigdesending)
         } else if column == 3 {
             self.filterby = .remoteserver
-            self.scheduleloggdata?.loggdata = self.scheduleloggdata!.sortbystring(notsorted: self.scheduleloggdata?.loggdata, sortby: .remoteserver, sortdirection: self.sortedascendigdesending)
         } else if column == 4 {
+            bystring = false
             self.filterby = .executedate
+        }
+        if bystring {
+            self.scheduleloggdata?.loggdata = self.scheduleloggdata!.sortbystring(notsorted: self.scheduleloggdata?.loggdata, sortby: self.filterby!, sortdirection: self.sortedascendigdesending)
+        } else {
             self.scheduleloggdata?.loggdata = self.scheduleloggdata!.sortbyrundate(notsorted: self.scheduleloggdata?.loggdata, sortdirection: self.sortedascendigdesending)
         }
         globalMainQueue.async(execute: { () -> Void in

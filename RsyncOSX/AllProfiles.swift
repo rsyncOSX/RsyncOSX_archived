@@ -9,17 +9,12 @@
 
 import Foundation
 
-protocol Sortdirection: class {
-    func sortdirection(directionup: Bool)
-}
-
-class AllProfiles {
+class AllProfiles: Sorting {
     // Configurations object
     private var allconfigurations: [Configuration]?
-    var allconfigurationsasdictionary: [NSDictionary]?
+    var allconfigurationsasdictionary: [NSMutableDictionary]?
     private var allprofiles: [String]?
     var sortedascendigdesending: Bool = false
-    weak var sortdirection: Sortdirection?
 
     private func getprofiles() {
         let profile = Files(root: .profileRoot)
@@ -52,12 +47,12 @@ class AllProfiles {
     private func setConfigurationsDataSourcecountBackupSnapshot() {
         guard self.allconfigurations != nil else { return }
         var configurations: [Configuration] = self.allconfigurations!.filter({return ($0.task == "backup" || $0.task == "snapshot" )})
-        var data = [NSDictionary]()
+        var data = [NSMutableDictionary]()
         for i in 0 ..< configurations.count {
             if configurations[i].offsiteServer.isEmpty == true {
                 configurations[i].offsiteServer = "localhost"
             }
-            let row: NSDictionary = [
+            let row: NSMutableDictionary = [
                 "profile": configurations[i].profile ?? "",
                 "task": configurations[i].task,
                 "hiddenID": configurations[i].hiddenID,
@@ -65,7 +60,7 @@ class AllProfiles {
                 "offsiteCatalog": configurations[i].offsiteCatalog,
                 "offsiteServer": configurations[i].offsiteServer,
                 "backupID": configurations[i].backupID,
-                "runDate": configurations[i].dateRun!,
+                "dateExecuted": configurations[i].dateRun!,
                 "days": configurations[i].dayssincelastbackup ?? "",
                 "markdays": configurations[i].markdays,
                 "selectCellID": 0
@@ -73,29 +68,6 @@ class AllProfiles {
             data.append(row)
         }
         self.allconfigurationsasdictionary = data
-    }
-
-    func sortbyrundate() {
-        guard self.allconfigurationsasdictionary != nil else { return }
-        if self.sortedascendigdesending == true {
-            self.sortedascendigdesending = false
-            self.sortdirection?.sortdirection(directionup: false)
-        } else {
-            self.sortedascendigdesending = true
-            self.sortdirection?.sortdirection(directionup: true)
-        }
-        let dateformatter = Tools().setDateformat()
-        guard self.allconfigurationsasdictionary != nil else { return }
-        let sorted = self.allconfigurationsasdictionary!.sorted { (dict1, dict2) -> Bool in
-            let date1 = (dateformatter.date(from: (dict1.value(forKey: "runDate") as? String) ?? "") ?? dateformatter.date(from: "01 Jan 1900 00:00")!)
-            let date2 = (dateformatter.date(from: (dict2.value(forKey: "runDate") as? String) ?? "") ?? dateformatter.date(from: "01 Jan 1900 00:00")!)
-            if date1.timeIntervalSince(date2) > 0 {
-                return self.sortedascendigdesending
-            } else {
-                return !self.sortedascendigdesending
-            }
-        }
-        self.allconfigurationsasdictionary = sorted
     }
 
     private func filterbystring(filterby: Sortandfilter) -> String {
@@ -117,26 +89,6 @@ class AllProfiles {
         case .executedate:
             return ""
         }
-    }
-
-    func sortbystring(sortby: Sortandfilter) {
-        guard self.allconfigurationsasdictionary != nil else { return }
-        if self.sortedascendigdesending == true {
-            self.sortedascendigdesending = false
-            self.sortdirection?.sortdirection(directionup: false)
-        } else {
-            self.sortedascendigdesending = true
-            self.sortdirection?.sortdirection(directionup: true)
-        }
-        let sortstring = self.filterbystring(filterby: sortby)
-        let sorted = self.allconfigurationsasdictionary!.sorted { (dict1, dict2) -> Bool in
-            if (dict1.value(forKey: sortstring) as? String) ?? "" > (dict2.value(forKey: sortstring) as? String) ?? "" {
-                return self.sortedascendigdesending
-            } else {
-                return !self.sortedascendigdesending
-            }
-        }
-        self.allconfigurationsasdictionary = sorted
     }
 
     // Function for filter
@@ -168,7 +120,6 @@ class AllProfiles {
     }
 
     init() {
-        self.sortdirection = ViewControllerReference.shared.getvcref(viewcontroller: .vcallprofiles) as? ViewControllerAllProfiles
         self.getprofiles()
         self.getallconfigurations()
         self.setConfigurationsDataSourcecountBackupSnapshot()
