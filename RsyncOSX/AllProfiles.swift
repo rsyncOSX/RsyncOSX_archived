@@ -14,7 +14,6 @@ class AllProfiles: Sorting {
     private var allconfigurations: [Configuration]?
     var allconfigurationsasdictionary: [NSMutableDictionary]?
     private var allprofiles: [String]?
-    var sortedascendigdesending: Bool = false
 
     private func getprofiles() {
         let profile = Files(root: .profileRoot)

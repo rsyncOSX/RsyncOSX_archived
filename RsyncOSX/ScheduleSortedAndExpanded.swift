@@ -36,49 +36,68 @@ class ScheduleSortedAndExpand: SetConfigurations, SetSchedules {
     }
 
     // Calculate daily schedules
-    private func daily (dateStart: Date, schedule: String, dict: NSDictionary) {
-        let k = 30
-        for j in 0 ..< k {
-            var dateComponent = DateComponents()
-            dateComponent.day = j
-            let cal = Calendar.current
-            if let start: Date = cal.date(byAdding: dateComponent, to: dateStart) {
-                if start.timeIntervalSinceNow > 0 {
-                    let hiddenID = (dict.value(forKey: "hiddenID") as? Int)!
-                    let time = start.timeIntervalSinceNow
-                    let dictSchedule: NSDictionary = [
-                        "start": start,
-                        "hiddenID": hiddenID,
-                        "dateStart": dateStart,
-                        "schedule": schedule,
-                        "timetostart": time]
-                    self.expandedData.append(dictSchedule)
-                }
+    private func daily(dateStart: Date, schedule: String, dict: NSDictionary) {
+        var i = 0
+        while self.nextdayorweekindex(dateStart: dateStart, day: i, schedule: schedule) < 0 { i += 1 }
+        var dateComponent = DateComponents()
+        dateComponent.day = i
+        let cal = Calendar.current
+        if let start: Date = cal.date(byAdding: dateComponent, to: dateStart) {
+            if start.timeIntervalSinceNow > 0 {
+                let hiddenID = (dict.value(forKey: "hiddenID") as? Int)!
+                let time = start.timeIntervalSinceNow
+                let dictSchedule: NSDictionary = [
+                    "start": start,
+                    "hiddenID": hiddenID,
+                    "dateStart": dateStart,
+                    "schedule": schedule,
+                    "timetostart": time]
+                self.expandedData.append(dictSchedule)
             }
         }
     }
 
     // Calculate weekly schedules
-    private func weekly (dateStart: Date, schedule: String, dict: NSDictionary) {
-        let k = 30
-        for j in 0 ..< Int(k/7) {
-            var dateComponent = DateComponents()
-            dateComponent.day = (j*7)
-            let cal = Calendar.current
-            if let start: Date = cal.date(byAdding: dateComponent, to: dateStart) {
-                if start.timeIntervalSinceNow > 0 {
-                    let hiddenID = (dict.value(forKey: "hiddenID") as? Int)!
-                    let time = start.timeIntervalSinceNow
-                    let dictSchedule: NSDictionary = [
-                        "start": start,
-                        "hiddenID": hiddenID,
-                        "dateStart": dateStart,
-                        "schedule": schedule,
-                        "timetostart": time]
-                    self.expandedData.append(dictSchedule)
-                }
+    private func weekly(dateStart: Date, schedule: String, dict: NSDictionary) {
+        var i = 0
+        while self.nextdayorweekindex(dateStart: dateStart, day: i, schedule: schedule) < 0 { i += 1 }
+        var dateComponent = DateComponents()
+        dateComponent.day = (i * 7)
+        let cal = Calendar.current
+        if let start: Date = cal.date(byAdding: dateComponent, to: dateStart) {
+            if start.timeIntervalSinceNow > 0 {
+                let hiddenID = (dict.value(forKey: "hiddenID") as? Int)!
+                let time = start.timeIntervalSinceNow
+                let dictSchedule: NSDictionary = [
+                    "start": start,
+                    "hiddenID": hiddenID,
+                    "dateStart": dateStart,
+                    "schedule": schedule,
+                    "timetostart": time]
+                self.expandedData.append(dictSchedule)
             }
         }
+    }
+
+    private func nextdayorweekindex(dateStart: Date, day: Int, schedule: String) -> Int {
+        var dateComponent = DateComponents()
+        switch schedule {
+        case "daily":
+            dateComponent.day = day
+        case "weekly":
+            dateComponent.day = (day * 7)
+        default:
+            dateComponent.day = (day * 7)
+        }
+        let cal = Calendar.current
+        if let start: Date = cal.date(byAdding: dateComponent, to: dateStart) {
+            if start.timeIntervalSinceNow > 0 {
+                return day
+            } else {
+                return -1
+            }
+        }
+        return -1
     }
 
     // Expanding and sorting Scheduledata
