@@ -21,15 +21,15 @@ class ViewControllerAllProfiles: NSViewController, Delay {
     private var allprofiles: AllProfiles?
     private var column: Int?
     private var filterby: Sortandfilter?
-    private var sortedascendigdesending: Bool = false
+    private var sortedascendigdesending: Bool = true
 
     @IBAction func sortdirection(_ sender: NSButton) {
         if self.sortedascendigdesending == true {
             self.sortedascendigdesending = false
-            self.sortdirection.image = #imageLiteral(resourceName: "up")
+            self.sortdirection.image = #imageLiteral(resourceName: "down")
         } else {
             self.sortedascendigdesending = true
-            self.sortdirection.image = #imageLiteral(resourceName: "down")
+            self.sortdirection.image = #imageLiteral(resourceName: "up")
         }
     }
 
@@ -46,6 +46,7 @@ class ViewControllerAllProfiles: NSViewController, Delay {
         super.viewDidAppear()
         self.allprofiles = AllProfiles()
         self.sortdirection.image = #imageLiteral(resourceName: "up")
+        self.sortedascendigdesending = true
         globalMainQueue.async(execute: { () -> Void in
             self.mainTableView.reloadData()
         })

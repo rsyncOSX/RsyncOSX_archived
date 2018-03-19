@@ -22,7 +22,7 @@ class ViewControllerLoggData: NSViewController, SetSchedules, Delay {
     var filterby: Sortandfilter?
     var index: Int?
     var viewispresent: Bool = false
-    private var sortedascendigdesending: Bool = false
+    private var sortedascendigdesending: Bool = true
 
     @IBOutlet weak var scheduletable: NSTableView!
     @IBOutlet weak var search: NSSearchField!
@@ -46,10 +46,10 @@ class ViewControllerLoggData: NSViewController, SetSchedules, Delay {
     @IBAction func sortdirection(_ sender: NSButton) {
         if self.sortedascendigdesending == true {
             self.sortedascendigdesending = false
-             self.sortdirection.image = #imageLiteral(resourceName: "up")
+            self.sortdirection.image = #imageLiteral(resourceName: "down")
         } else {
             self.sortedascendigdesending = true
-            self.sortdirection.image = #imageLiteral(resourceName: "down")
+            self.sortdirection.image = #imageLiteral(resourceName: "up")
         }
     }
 
@@ -72,6 +72,7 @@ class ViewControllerLoggData: NSViewController, SetSchedules, Delay {
         })
         self.row = nil
         self.sortdirection.image = #imageLiteral(resourceName: "up")
+        self.sortedascendigdesending = true
     }
 
     override func viewDidDisappear() {
