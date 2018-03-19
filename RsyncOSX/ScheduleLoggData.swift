@@ -34,8 +34,6 @@ struct Filtereddata {
 final class ScheduleLoggData: SetConfigurations, SetSchedules {
 
     var loggdata: [NSMutableDictionary]?
-    private var sortedascendigdesending: Bool = false
-    weak var sortdirection: Sortdirection?
 
     // Function for filter loggdata
     func filter(search: String?, what: Sortandfilter?) {
@@ -87,40 +85,26 @@ final class ScheduleLoggData: SetConfigurations, SetSchedules {
                 }
             }
         }
-        self.loggdata = self.sortbyrundate(notsorted: data)
+        self.loggdata = self.sortbyrundate(notsorted: data, sortdirection: true)
     }
 
-    func sortbyrundate(notsorted: [NSMutableDictionary]?) -> [NSMutableDictionary]? {
+    func sortbyrundate(notsorted: [NSMutableDictionary]?, sortdirection: Bool) -> [NSMutableDictionary]? {
         guard notsorted != nil else { return nil }
-        if self.sortedascendigdesending == true {
-            self.sortedascendigdesending = false
-            self.sortdirection?.sortdirection(directionup: false)
-        } else {
-            self.sortedascendigdesending = true
-            self.sortdirection?.sortdirection(directionup: true)
-        }
         let dateformatter = Tools().setDateformat()
         let sorted = notsorted!.sorted { (dict1, dict2) -> Bool in
             let date1 = (dateformatter.date(from: (dict1.value(forKey: "dateExecuted") as? String) ?? "") ?? dateformatter.date(from: "01 Jan 1900 00:00")!)
             let date2 = (dateformatter.date(from: (dict2.value(forKey: "dateExecuted") as? String) ?? "") ?? dateformatter.date(from: "01 Jan 1900 00:00")!)
             if date1.timeIntervalSince(date2) > 0 {
-                return self.sortedascendigdesending
+                return sortdirection
             } else {
-                return !self.sortedascendigdesending
+                return !sortdirection
             }
         }
         return sorted
     }
 
-    func sortbystring(notsorted: [NSMutableDictionary]?, sortby: Sortandfilter) -> [NSMutableDictionary]? {
-         guard notsorted != nil else { return nil }
-        if self.sortedascendigdesending == true {
-            self.sortedascendigdesending = false
-            self.sortdirection?.sortdirection(directionup: false)
-        } else {
-            self.sortedascendigdesending = true
-            self.sortdirection?.sortdirection(directionup: true)
-        }
+    func sortbystring(notsorted: [NSMutableDictionary]?, sortby: Sortandfilter, sortdirection: Bool) -> [NSMutableDictionary]? {
+        guard notsorted != nil else { return nil }
         var sortstring: String?
         switch sortby {
         case .localcatalog:
@@ -136,9 +120,9 @@ final class ScheduleLoggData: SetConfigurations, SetSchedules {
         }
         let sorted = notsorted!.sorted { (dict1, dict2) -> Bool in
             if (dict1.value(forKey: sortstring!) as? String) ?? "" > (dict2.value(forKey: sortstring!) as? String) ?? "" {
-                return self.sortedascendigdesending
+                return sortdirection
             } else {
-                return !self.sortedascendigdesending
+                return !sortdirection
             }
         }
         return sorted
@@ -149,6 +133,5 @@ final class ScheduleLoggData: SetConfigurations, SetSchedules {
         if self.loggdata == nil {
             self.readAndSortAllLoggdata()
         }
-        self.sortdirection = ViewControllerReference.shared.getvcref(viewcontroller: .vcloggdata) as? ViewControllerLoggData
     }
 }
