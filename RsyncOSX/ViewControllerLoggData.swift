@@ -150,20 +150,23 @@ extension ViewControllerLoggData: NSTableViewDelegate {
             self.row = self.scheduleloggdata?.loggdata![self.index!]
         }
         let column = myTableViewFromNotification.selectedColumn
-        var bystring = true
-        if column == 0 {
-            self.filterby = .task
-        } else if column == 1 {
+        var sortbystring = true
+        switch column {
+        case 0:
+             self.filterby = .task
+        case 1:
             self.filterby = .backupid
-        } else if column == 2 {
+        case 2:
             self.filterby = .localcatalog
-        } else if column == 3 {
+        case 3:
             self.filterby = .remoteserver
-        } else if column == 4 {
-            bystring = false
+        case 4:
+            sortbystring = false
             self.filterby = .executedate
+        default:
+            return
         }
-        if bystring {
+        if sortbystring {
             self.scheduleloggdata?.loggdata = self.scheduleloggdata!.sortbystring(notsorted: self.scheduleloggdata?.loggdata, sortby: self.filterby!, sortdirection: self.sortedascendigdesending)
         } else {
             self.scheduleloggdata?.loggdata = self.scheduleloggdata!.sortbyrundate(notsorted: self.scheduleloggdata?.loggdata, sortdirection: self.sortedascendigdesending)

@@ -79,7 +79,7 @@ extension ViewControllerAllProfiles: NSTableViewDelegate, Attributedestring {
     func tableViewSelectionDidChange(_ notification: Notification) {
         let myTableViewFromNotification = (notification.object as? NSTableView)!
         let column = myTableViewFromNotification.selectedColumn
-        var bystring = true
+        var sortbystring = true
         self.column = column
         switch column {
         case 0:
@@ -95,12 +95,12 @@ extension ViewControllerAllProfiles: NSTableViewDelegate, Attributedestring {
         case 5:
             self.filterby = .backupid
         case 6, 7:
-            bystring = false
+            sortbystring = false
             self.filterby = .executedate
         default:
             return
         }
-        if bystring {
+        if sortbystring {
             self.allprofiles?.allconfigurationsasdictionary = self.allprofiles!.sortbystring(notsorted: self.allprofiles?.allconfigurationsasdictionary, sortby: self.filterby!, sortdirection: self.sortedascendigdesending)
         } else {
             self.allprofiles?.allconfigurationsasdictionary = self.allprofiles!.sortbyrundate(notsorted: self.allprofiles?.allconfigurationsasdictionary, sortdirection: self.sortedascendigdesending)
