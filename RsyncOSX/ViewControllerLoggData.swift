@@ -101,7 +101,7 @@ extension ViewControllerLoggData: NSSearchFieldDelegate {
                 })
             } else {
                 globalMainQueue.async(execute: { () -> Void in
-                    self.scheduleloggdata!.filter(search: filterstring, what: self.filterby)
+                    self.scheduleloggdata!.filter(search: filterstring, filterby: self.filterby)
                     self.scheduletable.reloadData()
                     self.sorting.stopAnimation(self)
                 })

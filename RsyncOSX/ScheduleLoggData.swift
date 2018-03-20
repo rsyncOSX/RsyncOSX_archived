@@ -36,27 +36,13 @@ final class ScheduleLoggData: SetConfigurations, SetSchedules, Sorting {
     var loggdata: [NSMutableDictionary]?
 
     // Function for filter loggdata
-    func filter(search: String?, what: Sortandfilter?) {
+    func filter(search: String?, filterby: Sortandfilter?) {
         guard search != nil || self.loggdata != nil else { return }
-        var valueforkeystring: String?
         globalDefaultQueue.async(execute: {() -> Void in
             var filtereddata = Filtereddata()
-            switch what! {
-            case .executedate:
-                valueforkeystring = "dateExecuted"
-            case .localcatalog:
-                 valueforkeystring = "localCatalog"
-            case .remoteserver:
-                 valueforkeystring = "offsiteServer"
-            case .task:
-                 valueforkeystring = "task"
-            case .backupid:
-                 valueforkeystring = "backupid"
-            default:
-                return
-            }
+            let valueforkey = self.filterbystring(filterby: filterby!)
             filtereddata.filtereddata = self.loggdata?.filter({
-                ($0.value(forKey: valueforkeystring!) as? String)!.contains(search!)
+                ($0.value(forKey: valueforkey) as? String)!.contains(search!)
             })
             self.loggdata = filtereddata.filtereddata
         })

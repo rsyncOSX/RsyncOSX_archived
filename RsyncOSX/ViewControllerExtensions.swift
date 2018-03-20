@@ -403,6 +403,7 @@ protocol Reloadsortedandrefresh: class {
 protocol Sorting {
     func sortbyrundate(notsorted: [NSMutableDictionary]?, sortdirection: Bool) -> [NSMutableDictionary]?
     func sortbystring(notsorted: [NSMutableDictionary]?, sortby: Sortandfilter, sortdirection: Bool) -> [NSMutableDictionary]?
+    func filterbystring(filterby: Sortandfilter) -> String
 }
 
 extension Sorting {
@@ -446,5 +447,26 @@ extension Sorting {
             }
         }
         return sorted
+    }
+
+    func filterbystring(filterby: Sortandfilter) -> String {
+        switch filterby {
+        case .localcatalog:
+            return "localCatalog"
+        case .profile:
+            return "profile"
+        case .remotecatalog:
+            return "offsiteCatalog"
+        case .remoteserver:
+            return "offsiteServer"
+        case .task:
+            return "task"
+        case .backupid:
+            return "backupID"
+        case .numberofdays:
+            return ""
+        case .executedate:
+            return ""
+        }
     }
 }
