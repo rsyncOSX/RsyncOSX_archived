@@ -69,27 +69,6 @@ class AllProfiles: Sorting {
         self.allconfigurationsasdictionary = data
     }
 
-    private func filterbystring(filterby: Sortandfilter) -> String {
-        switch filterby {
-        case .localcatalog:
-            return "localCatalog"
-        case .profile:
-            return "profile"
-        case .remotecatalog:
-            return "offsiteCatalog"
-        case .remoteserver:
-            return "offsiteServer"
-        case .task:
-            return "task"
-        case .backupid:
-            return "backupID"
-        case .numberofdays:
-            return ""
-        case .executedate:
-            return ""
-        }
-    }
-
     // Function for filter
     func filter(search: String?, column: Int, filterby: Sortandfilter?) {
         guard search != nil || self.allconfigurationsasdictionary != nil else { return }
