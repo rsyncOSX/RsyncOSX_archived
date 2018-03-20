@@ -12,10 +12,6 @@
 
 import Foundation
 
-protocol Readfiltereddata: class {
-    func readfiltereddata(data: Filtereddata)
-}
-
 enum Sortandfilter {
     case remotecatalog
     case localcatalog
@@ -27,10 +23,6 @@ enum Sortandfilter {
     case executedate
 }
 
-struct Filtereddata {
-    var filtereddata: [NSMutableDictionary]?
-}
-
 final class ScheduleLoggData: SetConfigurations, SetSchedules, Sorting {
 
     var loggdata: [NSMutableDictionary]?
@@ -39,12 +31,10 @@ final class ScheduleLoggData: SetConfigurations, SetSchedules, Sorting {
     func filter(search: String?, filterby: Sortandfilter?) {
         guard search != nil || self.loggdata != nil else { return }
         globalDefaultQueue.async(execute: {() -> Void in
-            var filtereddata = Filtereddata()
             let valueforkey = self.filterbystring(filterby: filterby!)
-            filtereddata.filtereddata = self.loggdata?.filter({
+            self.loggdata = self.loggdata?.filter({
                 ($0.value(forKey: valueforkey) as? String)!.contains(search!)
             })
-            self.loggdata = filtereddata.filtereddata
         })
     }
 
