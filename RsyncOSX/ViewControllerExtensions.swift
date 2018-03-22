@@ -466,7 +466,7 @@ extension Sorting {
         case .numberofdays:
             return ""
         case .executedate:
-            return ""
+            return "dateExecuted"
         }
     }
 }
