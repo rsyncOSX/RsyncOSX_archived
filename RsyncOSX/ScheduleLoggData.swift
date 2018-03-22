@@ -29,7 +29,7 @@ final class ScheduleLoggData: SetConfigurations, SetSchedules, Sorting {
 
     // Function for filter loggdata
     func filter(search: String?, filterby: Sortandfilter?) {
-        guard search != nil || self.loggdata != nil else { return }
+        guard search != nil && self.loggdata != nil && filterby != nil else { return }
         globalDefaultQueue.async(execute: {() -> Void in
             let valueforkey = self.filterbystring(filterby: filterby!)
             self.loggdata = self.loggdata?.filter({

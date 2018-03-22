@@ -235,7 +235,7 @@ extension ViewControllerQuickBackup: NSSearchFieldDelegate {
                 })
             } else {
                 globalMainQueue.async(execute: { () -> Void in
-                    self.quickbackuplist?.filter(search: filterstring, what: self.filterby)
+                    self.quickbackuplist?.filter(search: filterstring, filterby: self.filterby)
                 })
             }
         }
