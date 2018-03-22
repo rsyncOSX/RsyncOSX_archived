@@ -113,10 +113,10 @@ class QuickBackup: SetConfigurations {
     }
 
     // Function for filter
-    func filter(search: String?, what: Sortandfilter?) {
-        guard search != nil && self.sortedlist != nil else { return }
+    func filter(search: String?, filterby: Sortandfilter?) {
+        guard search != nil && self.sortedlist != nil && filterby != nil else { return }
         globalDefaultQueue.async(execute: {() -> Void in
-            switch what! {
+            switch filterby! {
             case .executedate:
                 return
             case .localcatalog:
