@@ -71,7 +71,7 @@ class AllProfiles: Sorting {
 
     // Function for filter
     func filter(search: String?, column: Int, filterby: Sortandfilter?) {
-        guard search != nil || self.allconfigurationsasdictionary != nil else { return }
+        guard search != nil && self.allconfigurationsasdictionary != nil && filterby != nil else { return }
         globalDefaultQueue.async(execute: {() -> Void in
             switch column {
             case 0, 1, 2, 3, 4, 5:

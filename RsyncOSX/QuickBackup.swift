@@ -114,7 +114,7 @@ class QuickBackup: SetConfigurations {
 
     // Function for filter
     func filter(search: String?, what: Sortandfilter?) {
-        guard search != nil || self.sortedlist != nil else { return }
+        guard search != nil && self.sortedlist != nil else { return }
         globalDefaultQueue.async(execute: {() -> Void in
             switch what! {
             case .executedate:
