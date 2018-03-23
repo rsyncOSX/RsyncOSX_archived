@@ -13,10 +13,6 @@ class RcloneReadwritefiles {
     private var name: String?
     // key in objectForKey, e.g key for reading what
     private var key: String?
-    // Default reading from disk
-    // The class either reads data from persistent store or
-    // returns nil if data is NOT dirty
-    private var readdisk: Bool = true
     // Which profile to read
     var profile: String?
     // If to use profile, only configurations and schedules to read from profile
@@ -51,14 +47,6 @@ class RcloneReadwritefiles {
         }
     }
 
-    func getfilenameandpath() -> String? {
-        return self.filename
-    }
-
-    func getpath() -> String? {
-        return self.filepath
-    }
-
     // Function for reading data from persistent store
     func getDatafromfile () -> [NSDictionary]? {
         var data = [NSDictionary]()
@@ -76,14 +64,6 @@ class RcloneReadwritefiles {
         return data
     }
 
-    // Function for write data to persistent store
-    func writeDatatoPersistentStorage (_ array: [NSDictionary], task: WhatToReadWrite) -> Bool {
-        self.setpreferences(task)
-        let dictionary = NSDictionary(object: array, forKey: self.key! as NSCopying)
-        guard self.filename != nil else { return false }
-        return  dictionary.write(toFile: self.filename!, atomically: true)
-    }
-
     // Set preferences for which data to read or write
     private func setpreferences (_ task: WhatToReadWrite) {
         self.task = task
@@ -99,7 +79,6 @@ class RcloneReadwritefiles {
             self.key = "config"
         case .none:
             self.name = nil
-            self.readdisk = false
         }
     }
 
