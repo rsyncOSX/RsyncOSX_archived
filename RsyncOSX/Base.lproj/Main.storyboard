@@ -317,7 +317,7 @@
                 </windowController>
                 <customObject id="Rv5-yv-lsc" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-957" y="144"/>
+            <point key="canvasLocation" x="-1213" y="56"/>
         </scene>
         <!--Tab View Controller-->
         <scene sceneID="Hwe-jL-WAZ">
@@ -333,6 +333,7 @@
                         <tabViewItem id="lVX-sM-22u"/>
                         <tabViewItem id="Ty6-To-jtK"/>
                         <tabViewItem id="stw-KU-gw0"/>
+                        <tabViewItem id="34v-03-RXL"/>
                     </tabViewItems>
                     <tabView key="tabView" type="noTabsNoBorder" id="oAg-LW-cIr">
                         <rect key="frame" x="0.0" y="-58" width="653" height="123"/>
@@ -354,6 +355,7 @@
                         <segue destination="ngh-0r-Hwj" kind="relationship" relationship="tabItems" id="s2g-MX-J8G"/>
                         <segue destination="B9V-8v-Aba" kind="relationship" relationship="tabItems" id="hpt-AH-P81"/>
                         <segue destination="JOY-OC-nIv" kind="relationship" relationship="tabItems" id="YaN-OP-DOy"/>
+                        <segue destination="Mlk-V8-rVE" kind="relationship" relationship="tabItems" id="t2T-bN-jkL"/>
                     </connections>
                 </tabViewController>
                 <customObject id="am9-td-Qjg" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
@@ -1735,17 +1737,6 @@
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 </view>
                             </box>
-                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="lbd-eJ-5Je">
-                                <rect key="frame" x="834" y="278" width="82" height="32"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <buttonCell key="cell" type="push" title="Rclone" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="6zJ-4U-zRh">
-                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                    <font key="font" metaFont="system"/>
-                                </buttonCell>
-                                <connections>
-                                    <action selector="rclone:" target="JOY-OC-nIv" id="7Qg-l0-l6S"/>
-                                </connections>
-                            </button>
                         </subviews>
                     </view>
                     <connections>
@@ -5928,6 +5919,32 @@ DQ
                 <customObject id="EeF-i6-w3M" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-288.5" y="3096"/>
+        </scene>
+        <!--Encrypt-->
+        <scene sceneID="xZb-yt-jzx">
+            <objects>
+                <viewController title="Encrypt" id="Mlk-V8-rVE" customClass="ViewControllerEncrypt" customModule="RsyncOSX" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" id="evk-uz-Kjl">
+                        <rect key="frame" x="0.0" y="0.0" width="1092" height="407"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <subviews>
+                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="coa-Tf-DUB">
+                                <rect key="frame" x="389" y="233" width="82" height="32"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <buttonCell key="cell" type="push" title="Rclone" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="gjS-B3-vgv">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="rclone:" target="Mlk-V8-rVE" id="pqs-nD-OY7"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                    </view>
+                </viewController>
+                <customObject id="zBX-Zs-NkY" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="823" y="-352"/>
         </scene>
     </scenes>
     <resources>
