@@ -10,12 +10,9 @@ import Foundation
 
 class RcloneTools {
 
-    // Function to verify full rsyncpath
     func verifyrsyncpath() {
         let fileManager = FileManager.default
         let path: String?
-        // If not in /usr/bin or /usr/local/bin
-        // rsyncPath is set if none of the above
         if let rsyncPath = RcloneReference.shared.rsyncPath {
             path = rsyncPath + RcloneReference.shared.rsync
         } else if RcloneReference.shared.rsyncVer3 {
@@ -25,7 +22,6 @@ class RcloneTools {
         }
         guard RcloneReference.shared.rsyncVer3 == true else {
             RcloneReference.shared.norsync = false
-            // self.verifyrsyncDelegate?.verifyrsync()
             return
         }
         if fileManager.fileExists(atPath: path!) == false {
@@ -33,13 +29,8 @@ class RcloneTools {
         } else {
             RcloneReference.shared.norsync = false
         }
-        // self.verifyrsyncDelegate?.verifyrsync()
     }
 
-    /// Function returns the correct path for rsync
-    /// according to configuration set by user or
-    /// default value.
-    /// - returns : full path of rsync command
     func rsyncpath() -> String {
         if RcloneReference.shared.rsyncVer3 {
             if RcloneReference.shared.rsyncPath == nil {

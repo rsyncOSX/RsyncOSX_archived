@@ -75,14 +75,6 @@ class RcloneRsyncProcessArguments {
         }
     }
 
-    /// Function for initialize arguments array. RsyncOSX computes four argumentstrings
-    /// two arguments for dryrun, one for rsync and one for display
-    /// two arguments for realrun, one for rsync and one for display
-    /// which argument to compute is set in parameter to function
-    /// - parameter config: structure (configuration) holding configuration for one task
-    /// - parameter dryRun: true if compute dryrun arguments, false if compute arguments for real run
-    /// - paramater forDisplay: true if for display, false if not
-    /// - returns: Array of Strings
     func argumentsRsync(_ config: ConfigurationRclone) -> [String] {
         self.localCatalog = config.localCatalog
         self.offsiteCatalog = config.offsiteCatalog
