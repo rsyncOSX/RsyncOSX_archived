@@ -9,7 +9,7 @@
 import Foundation
 
 class RcloneTools {
-    
+
     // Function to verify full rsyncpath
     func verifyrsyncpath() {
         let fileManager = FileManager.default
