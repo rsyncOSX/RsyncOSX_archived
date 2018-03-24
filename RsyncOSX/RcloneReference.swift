@@ -15,6 +15,12 @@ class RcloneReference {
         }
         return Singleton.instance
     }
+
+    var norsync: Bool = false
+    // True if version 3.2.1 of rsync in /usr/local/bin
+    var rsyncVer3: Bool = true
+    // Optional path to rsync
+    var rsyncPath: String?
     // rclone command
     var rsync: String = "rclone"
     var usrbinrsync: String = "/usr/bin/rclone"
