@@ -19,7 +19,7 @@ final class RclonePersistentStorageUserconfiguration: RcloneReadwritefiles {
         return self.userconfiguration
     }
 
-    init () {
+    init() {
         super.init(task: .userconfig, profile: nil)
         self.userconfiguration = self.getDatafromfile()
     }

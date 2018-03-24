@@ -18,7 +18,7 @@ final class RclonePersistentStorageConfiguration: RcloneReadwritefiles {
         return self.configurationsasdictionary
     }
 
-    init (profile: String?) {
+    init(profile: String?) {
         super.init(task: .configuration, profile: profile)
         self.configurationsasdictionary = self.getDatafromfile()
     }

@@ -104,4 +104,8 @@ class ViewControllerHelp: NSViewController {
         help.help(what: self.showwhat!)
     }
 
+    @IBAction func rclone(_ sender: NSButton) {
+
+    }
+
 }
