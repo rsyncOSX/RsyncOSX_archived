@@ -11,9 +11,11 @@ struct RcloneArgumentsOneConfiguration {
 
     var config: ConfigurationRclone?
     var arg: [String]?
+    var argdryRun: [String]?
 
     init(config: ConfigurationRclone) {
         self.config = config
-        self.arg = RcloneRsyncProcessArguments().argumentsRsync(config)
+        self.arg = RcloneRsyncProcessArguments().argumentsRsync(config, dryRun: false)
+        self.argdryRun = RcloneRsyncProcessArguments().argumentsRsync(config, dryRun: true)
     }
 }
