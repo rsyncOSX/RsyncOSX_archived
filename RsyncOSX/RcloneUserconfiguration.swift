@@ -10,8 +10,6 @@ import Foundation
 // Reading userconfiguration from file into RsyncOSX
 final class RcloneUserconfiguration {
 
-    weak var rsyncchangedDelegate: RsyncChanged?
-
     private func readUserconfiguration(dict: NSDictionary) {
         // Optional path for rsync
         if let rsyncPath = dict.value(forKey: "rsyncPath") as? String {

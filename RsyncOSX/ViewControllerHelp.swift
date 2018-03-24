@@ -105,6 +105,7 @@ class ViewControllerHelp: NSViewController {
     }
 
     @IBAction func rclone(_ sender: NSButton) {
+        _ = TestRclone()
 
     }
 
