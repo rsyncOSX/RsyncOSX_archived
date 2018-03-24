@@ -63,10 +63,9 @@ class RcloneRsyncProcessArguments {
         }
     }
 
-    private func dryrunparameter(_ config: ConfigurationRclone, forDisplay: Bool) {
+    private func dryrunparameter(_ config: ConfigurationRclone) {
         let dryrun: String = config.dryrun
         self.arguments!.append(dryrun)
-        if forDisplay {self.arguments!.append(" ")}
     }
 
     private func appendParameter (parameter: String) {
@@ -75,7 +74,7 @@ class RcloneRsyncProcessArguments {
         }
     }
 
-    func argumentsRsync(_ config: ConfigurationRclone) -> [String] {
+    func argumentsRsync(_ config: ConfigurationRclone, dryRun: Bool) -> [String] {
         self.localCatalog = config.localCatalog
         self.offsiteCatalog = config.offsiteCatalog
         self.offsiteServer = config.offsiteServer
@@ -89,12 +88,14 @@ class RcloneRsyncProcessArguments {
         } else {
             self.arguments!.append(remoteargs!)
         }
+        if dryRun {
+            self.dryrunparameter(config)
+        }
         self.setParameters2To14(config)
         return self.arguments!
     }
 
     init () {
-        self.arguments = nil
         self.arguments = [String]()
     }
 }

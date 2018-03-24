@@ -14,10 +14,28 @@ class ConfigurationsRclone {
     private var profile: String?
     private var configurations: [ConfigurationRclone]?
     private var argumentAllConfigurations: NSMutableArray?
+    private var configurationsDataSource: [NSMutableDictionary]?
 
-    func arguments4rclone (index: Int) -> [String] {
+    func configurationsDataSourcecount() -> Int {
+        if self.configurationsDataSource == nil {
+            return 0
+        } else {
+            return self.configurationsDataSource!.count
+        }
+    }
+
+    func getConfigurationsDataSource() -> [NSMutableDictionary]? {
+        return self.configurationsDataSource
+    }
+
+    func arguments4rclone (index: Int, argtype: ArgumentsRsync) -> [String] {
         let allarguments = (self.argumentAllConfigurations![index] as? RcloneArgumentsOneConfiguration)!
-        return allarguments.arg!
+        switch argtype {
+        case .arg:
+            return allarguments.arg!
+        case .argdryRun:
+            return allarguments.argdryRun!
+        }
     }
 
     func getConfigurations() -> [ConfigurationRclone] {
@@ -34,6 +52,28 @@ class ConfigurationsRclone {
             let rsyncArgumentsOneConfig = RcloneArgumentsOneConfiguration(config: store![i])
             self.argumentAllConfigurations!.add(rsyncArgumentsOneConfig)
         }
+        var data = [NSMutableDictionary]()
+        self.configurationsDataSource = nil
+        var batch: Int = 0
+        for i in 0 ..< self.configurations!.count {
+            if self.configurations![i].batch == "yes" {
+                batch = 1
+            } else {
+                batch = 0
+            }
+            let row: NSMutableDictionary = [
+                "taskCellID": self.configurations![i].task,
+                "batchCellID": batch,
+                "localCatalogCellID": self.configurations![i].localCatalog,
+                "offsiteCatalogCellID": self.configurations![i].offsiteCatalog,
+                "offsiteServerCellID": self.configurations![i].offsiteServer,
+                "backupIDCellID": self.configurations![i].backupID,
+                "runDateCellID": self.configurations![i].dateRun!,
+                "daysID": self.configurations![i].dayssincelastbackup ?? ""
+            ]
+            data.append(row)
+        }
+        self.configurationsDataSource = data
     }
 
     init(profile: String?) {
