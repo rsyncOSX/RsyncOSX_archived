@@ -13,38 +13,38 @@ class RcloneTools {
     func verifyrsyncpath() {
         let fileManager = FileManager.default
         let path: String?
-        if let rsyncPath = RcloneReference.shared.rsyncPath {
-            path = rsyncPath + RcloneReference.shared.rsync
-        } else if RcloneReference.shared.rsyncVer3 {
-            path = "/usr/local/bin/" + RcloneReference.shared.rsync
+        if let rsyncPath = RcloneReference.shared.rclonePath {
+            path = rsyncPath + RcloneReference.shared.rclone
+        } else if RcloneReference.shared.rcloneopt {
+            path = "/usr/local/bin/" + RcloneReference.shared.rclone
         } else {
-            path = "/usr/bin/" + RcloneReference.shared.rsync
+            path = "/usr/bin/" + RcloneReference.shared.rclone
         }
-        guard RcloneReference.shared.rsyncVer3 == true else {
-            RcloneReference.shared.norsync = false
+        guard RcloneReference.shared.rcloneopt == true else {
+            RcloneReference.shared.norclone = false
             return
         }
         if fileManager.fileExists(atPath: path!) == false {
-            RcloneReference.shared.norsync = true
+            RcloneReference.shared.norclone = true
         } else {
-            RcloneReference.shared.norsync = false
+            RcloneReference.shared.norclone = false
         }
     }
 
     func rsyncpath() -> String {
-        if RcloneReference.shared.rsyncVer3 {
-            if RcloneReference.shared.rsyncPath == nil {
-                return RcloneReference.shared.usrlocalbinrsync
+        if RcloneReference.shared.rcloneopt {
+            if RcloneReference.shared.rclonePath == nil {
+                return RcloneReference.shared.usrlocalbinrclone
             } else {
-                return RcloneReference.shared.rsyncPath! + RcloneReference.shared.rsync
+                return RcloneReference.shared.rclonePath! + RcloneReference.shared.rclone
             }
         } else {
-            return RcloneReference.shared.usrbinrsync
+            return RcloneReference.shared.usrbinrclone
         }
     }
 
     func noRsync() {
-        if let rsync = RcloneReference.shared.rsyncPath {
+        if let rsync = RcloneReference.shared.rclonePath {
             Alerts.showInfo("ERROR: no rclone in " + rsync)
         } else {
             Alerts.showInfo("ERROR: no rclone in /usr/local/bin")

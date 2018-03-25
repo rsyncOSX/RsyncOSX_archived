@@ -16,14 +16,14 @@ class RcloneReference {
         return Singleton.instance
     }
 
-    var norsync: Bool = false
+    var norclone: Bool = false
     // True if version 3.2.1 of rsync in /usr/local/bin
-    var rsyncVer3: Bool = true
+    var rcloneopt: Bool = true
     // Optional path to rsync
-    var rsyncPath: String?
+    var rclonePath: String?
     // rclone command
-    var rsync: String = "rclone"
-    var usrbinrsync: String = "/usr/bin/rclone"
-    var usrlocalbinrsync: String = "/usr/local/bin/rclone"
+    var rclone: String = "rclone"
+    var usrbinrclone: String = "/usr/bin/rclone"
+    var usrlocalbinrclone: String = "/usr/local/bin/rclone"
     var configpath: String = "/Rclone/"
 }
