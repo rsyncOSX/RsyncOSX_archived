@@ -16,6 +16,10 @@ class ConfigurationsRclone {
     private var argumentAllConfigurations: NSMutableArray?
     private var configurationsDataSource: [NSMutableDictionary]?
 
+    func gethiddenID (index: Int) -> Int {
+        return self.configurations![index].hiddenID
+    }
+
     func configurationsDataSourcecount() -> Int {
         if self.configurationsDataSource == nil {
             return 0
