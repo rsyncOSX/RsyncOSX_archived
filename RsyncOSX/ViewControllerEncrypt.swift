@@ -13,11 +13,24 @@ import Cocoa
 
 class ViewControllerEncrypt: NSViewController {
 
-    private var profilesArray: [String]?
     private var profile: RcloneProfiles?
-    private var useprofile: String?
+    private var profilename: String?
+    private var profilenamearray: [String]?
     var configurationsrclone: ConfigurationsRclone?
+    var index: Int?
+    var hiddenID: Int?
     @IBOutlet weak var mainTableView: NSTableView!
+    @IBOutlet weak var profilescombobox: NSComboBox!
+
+    @IBAction func selectprofile(_ sender: NSComboBox) {
+        guard self.profilescombobox.indexOfSelectedItem > -1 else { return}
+        self.profilename = self.profilenamearray?[self.profilescombobox.indexOfSelectedItem]
+        if self.profilename == "Default" { self.profilename = nil }
+        self.configurationsrclone = ConfigurationsRclone(profile: self.profilename)
+        globalMainQueue.async(execute: { () -> Void in
+            self.mainTableView.reloadData()
+        })
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,17 +41,36 @@ class ViewControllerEncrypt: NSViewController {
         if let userConfiguration =  storage?.getUserconfiguration() {
             _ = RcloneUserconfiguration(userconfigRsyncOSX: userConfiguration)
         }
-        self.configurationsrclone = ConfigurationsRclone(profile: nil)
+        self.configurationsrclone = ConfigurationsRclone(profile: self.profilename)
     }
 
     override func viewDidAppear() {
         super.viewDidAppear()
-        self.profile = nil
-        self.profile = RcloneProfiles()
-        self.profilesArray = self.profile!.getDirectorysStrings()
+        self.loadprofiles()
         globalMainQueue.async(execute: { () -> Void in
             self.mainTableView.reloadData()
         })
+    }
+
+    private func loadprofiles() {
+        self.profile = nil
+        self.profile = RcloneProfiles()
+        self.profilescombobox.removeAllItems()
+        self.profilescombobox.addItems(withObjectValues: self.profile!.getDirectorysStrings())
+        self.profilenamearray = self.profile!.getDirectorysStrings()
+    }
+
+    // when row is selected
+    // setting which table row is selected
+    func tableViewSelectionDidChange(_ notification: Notification) {
+        let myTableViewFromNotification = (notification.object as? NSTableView)!
+        let indexes = myTableViewFromNotification.selectedRowIndexes
+        if let index = indexes.first {
+            self.index = index
+            self.hiddenID = self.configurationsrclone!.gethiddenID(index: index)
+        } else {
+            self.index = nil
+        }
     }
 }
 
