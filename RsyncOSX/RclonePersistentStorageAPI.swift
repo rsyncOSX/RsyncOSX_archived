@@ -16,8 +16,6 @@ final class RclonePersistentStorageAPI {
     func getConfigurations() -> [ConfigurationRclone]? {
         var read: RclonePersistentStorageConfiguration?
         read = RclonePersistentStorageConfiguration(profile: self.profile)
-        // Either read from persistent store or
-        // return Configurations already in memory
         if read!.readConfigurationsFromPermanentStore() != nil {
             var Configurations = [ConfigurationRclone]()
             for dict in read!.readConfigurationsFromPermanentStore()! {

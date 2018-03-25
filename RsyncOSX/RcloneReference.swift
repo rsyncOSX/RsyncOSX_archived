@@ -17,7 +17,6 @@ class RcloneReference {
     }
 
     var norclone: Bool = false
-    // True if version 3.2.1 of rsync in /usr/local/bin
     var rcloneopt: Bool = true
     // Optional path to rsync
     var rclonePath: String?

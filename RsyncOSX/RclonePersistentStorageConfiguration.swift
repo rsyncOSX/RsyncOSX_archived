@@ -10,10 +10,8 @@ import Foundation
 
 final class RclonePersistentStorageConfiguration: RcloneReadwritefiles {
 
-    // Variable holds all configuration data from persisten storage
     private var configurationsasdictionary: [NSDictionary]?
 
-    // Function reads configurations from permanent store
     func readConfigurationsFromPermanentStore() -> [NSDictionary]? {
         return self.configurationsasdictionary
     }
