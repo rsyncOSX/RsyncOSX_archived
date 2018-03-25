@@ -13,7 +13,7 @@ class ConfigurationsRclone {
     var storageapi: RclonePersistentStorageAPI?
     private var profile: String?
     private var configurations: [ConfigurationRclone]?
-    private var argumentAllConfigurations: NSMutableArray?
+    private var argumentAllConfigurations: [RcloneArgumentsOneConfiguration]?
     private var configurationsDataSource: [NSMutableDictionary]?
 
     func gethiddenID (index: Int) -> Int {
@@ -33,7 +33,7 @@ class ConfigurationsRclone {
     }
 
     func arguments4rclone (index: Int, argtype: ArgumentsRsync) -> [String] {
-        let allarguments = (self.argumentAllConfigurations![index] as? RcloneArgumentsOneConfiguration)!
+        let allarguments = self.argumentAllConfigurations![index]
         switch argtype {
         case .arg:
             return allarguments.arg!
@@ -48,13 +48,13 @@ class ConfigurationsRclone {
 
     private func readconfigurations() {
         self.configurations = [ConfigurationRclone]()
-        self.argumentAllConfigurations = NSMutableArray()
+        self.argumentAllConfigurations = [RcloneArgumentsOneConfiguration]()
         var store: [ConfigurationRclone]? = self.storageapi!.getConfigurations()
         guard store != nil else { return }
         for i in 0 ..< store!.count {
             self.configurations!.append(store![i])
             let rsyncArgumentsOneConfig = RcloneArgumentsOneConfiguration(config: store![i])
-            self.argumentAllConfigurations!.add(rsyncArgumentsOneConfig)
+            self.argumentAllConfigurations!.append(rsyncArgumentsOneConfig)
         }
         var data = [NSMutableDictionary]()
         self.configurationsDataSource = nil
