@@ -6061,6 +6061,14 @@ DQ
                                     <action selector="connect:" target="Mlk-V8-rVE" id="coF-eu-eRJ"/>
                                 </connections>
                             </button>
+                            <box fixedFrame="YES" title="Local config" translatesAutoresizingMaskIntoConstraints="NO" id="SUC-MM-CCI">
+                                <rect key="frame" x="17" y="41" width="477" height="157"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <view key="contentView" id="oO9-gu-0li">
+                                    <rect key="frame" x="2" y="2" width="473" height="140"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                </view>
+                            </box>
                             <scrollView fixedFrame="YES" borderType="groove" autohidesScrollers="YES" horizontalLineScroll="19" horizontalPageScroll="10" verticalLineScroll="19" verticalPageScroll="10" usesPredominantAxisScrolling="NO" scrollerKnobStyle="dark" translatesAutoresizingMaskIntoConstraints="NO" id="UiW-pJ-qYQ">
                                 <rect key="frame" x="20" y="206" width="805" height="147"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
