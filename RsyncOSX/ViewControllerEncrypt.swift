@@ -11,16 +11,28 @@ import Foundation
 
 import Cocoa
 
-class ViewControllerEncrypt: NSViewController {
+class ViewControllerEncrypt: NSViewController, GetIndex, SetConfigurations {
 
     private var profile: RcloneProfiles?
     private var profilename: String?
     private var profilenamearray: [String]?
     var configurationsrclone: ConfigurationsRclone?
+    var rcloneindex: Int?
     var index: Int?
     var hiddenID: Int?
+
     @IBOutlet weak var mainTableView: NSTableView!
     @IBOutlet weak var profilescombobox: NSComboBox!
+    @IBOutlet weak var localCatalog: NSTextField!
+    @IBOutlet weak var offsiteCatalog: NSTextField!
+    @IBOutlet weak var offsiteUsername: NSTextField!
+    @IBOutlet weak var offsiteServer: NSTextField!
+    @IBOutlet weak var backupID: NSTextField!
+    @IBOutlet weak var connectbutton: NSButton!
+
+    @IBAction func connect(_ sender: NSButton) {
+        
+    }
 
     @IBAction func selectprofile(_ sender: NSComboBox) {
         guard self.profilescombobox.indexOfSelectedItem > -1 else { return}
@@ -47,6 +59,8 @@ class ViewControllerEncrypt: NSViewController {
     override func viewDidAppear() {
         super.viewDidAppear()
         self.loadprofiles()
+        self.index = self.index(viewcontroller: .vctabmain)
+        self.getconfig()
         globalMainQueue.async(execute: { () -> Void in
             self.mainTableView.reloadData()
         })
@@ -59,6 +73,16 @@ class ViewControllerEncrypt: NSViewController {
         self.profilescombobox.addItems(withObjectValues: self.profile!.getDirectorysStrings())
         self.profilenamearray = self.profile!.getDirectorysStrings()
     }
+    
+    private func getconfig() {
+        guard self.index != nil else { return }
+        let config: Configuration = self.configurations!.getConfigurations()[self.index!]
+        self.localCatalog.stringValue = config.localCatalog
+        self.offsiteCatalog.stringValue = config.offsiteCatalog
+        self.offsiteUsername.stringValue = config.offsiteUsername
+        self.offsiteServer.stringValue = config.offsiteServer
+        self.backupID.stringValue = config.backupID
+    }
 
     // when row is selected
     // setting which table row is selected
@@ -66,10 +90,10 @@ class ViewControllerEncrypt: NSViewController {
         let myTableViewFromNotification = (notification.object as? NSTableView)!
         let indexes = myTableViewFromNotification.selectedRowIndexes
         if let index = indexes.first {
-            self.index = index
+            self.rcloneindex = index
             self.hiddenID = self.configurationsrclone!.gethiddenID(index: index)
         } else {
-            self.index = nil
+            self.rcloneindex = nil
         }
     }
 }
