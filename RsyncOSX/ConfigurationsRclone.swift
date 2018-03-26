@@ -15,6 +15,29 @@ class ConfigurationsRclone {
     private var configurations: [ConfigurationRclone]?
     private var argumentAllConfigurations: [RcloneArgumentsOneConfiguration]?
     private var configurationsDataSource: [NSMutableDictionary]?
+    
+    func getResourceConfiguration(_ hiddenID: Int, resource: ResourceInConfiguration) -> String {
+        var result = self.configurations!.filter({return ($0.hiddenID == hiddenID)})
+        guard result.count > 0 else { return "" }
+        switch resource {
+        case .localCatalog:
+            return result[0].localCatalog
+        case .remoteCatalog:
+            return result[0].offsiteCatalog
+        case .offsiteServer:
+            if result[0].offsiteServer.isEmpty {
+                return "localhost"
+            } else {
+                return result[0].offsiteServer
+            }
+        case .task:
+            return result[0].task
+        case .backupid:
+            return result[0].backupID
+        case .offsiteusername:
+            return result[0].offsiteUsername
+        }
+    }
 
     func gethiddenID (index: Int) -> Int {
         return self.configurations![index].hiddenID

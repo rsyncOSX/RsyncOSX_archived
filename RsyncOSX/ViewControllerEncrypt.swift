@@ -31,7 +31,6 @@ class ViewControllerEncrypt: NSViewController, GetIndex, SetConfigurations {
     @IBOutlet weak var connectbutton: NSButton!
 
     @IBAction func connect(_ sender: NSButton) {
-        
     }
 
     @IBAction func selectprofile(_ sender: NSComboBox) {
@@ -72,8 +71,9 @@ class ViewControllerEncrypt: NSViewController, GetIndex, SetConfigurations {
         self.profilescombobox.removeAllItems()
         self.profilescombobox.addItems(withObjectValues: self.profile!.getDirectorysStrings())
         self.profilenamearray = self.profile!.getDirectorysStrings()
+        self.connectbutton.isEnabled = false
     }
-    
+
     private func getconfig() {
         guard self.index != nil else { return }
         let config: Configuration = self.configurations!.getConfigurations()[self.index!]
@@ -82,6 +82,21 @@ class ViewControllerEncrypt: NSViewController, GetIndex, SetConfigurations {
         self.offsiteUsername.stringValue = config.offsiteUsername
         self.offsiteServer.stringValue = config.offsiteServer
         self.backupID.stringValue = config.backupID
+    }
+
+    private func checkconnection() {
+        guard self.index != nil && self.rcloneindex != nil else {
+            self.connectbutton.isEnabled = false
+            return
+        }
+        let rclonehiddenID = self.configurationsrclone!.gethiddenID(index: self.rcloneindex!)
+        let rcloneremotecatalog = self.configurationsrclone!.getResourceConfiguration(rclonehiddenID, resource: .remoteCatalog) + "/"
+        let rsynclocalcatalog = self.localCatalog.stringValue
+        if rcloneremotecatalog == rsynclocalcatalog {
+            self.connectbutton.isEnabled = true
+        } else {
+            self.connectbutton.isEnabled = false
+        }
     }
 
     // when row is selected
@@ -95,6 +110,7 @@ class ViewControllerEncrypt: NSViewController, GetIndex, SetConfigurations {
         } else {
             self.rcloneindex = nil
         }
+        self.checkconnection()
     }
 }
 
