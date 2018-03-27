@@ -102,7 +102,7 @@ final class Tools: SetConfigurations, Delay {
         globalDefaultQueue.async(execute: { () -> Void in
             var port: Int = 22
             for i in 0 ..< self.configurations!.configurationsDataSourcecount() {
-                if let record = self.configurations!.getargumentAllConfigurations()[i] as? ArgumentsOneConfiguration {
+                if let record = self.configurations?.getargumentAllConfigurations()[i] {
                     if record.config!.offsiteServer.isEmpty == false {
                         if let sshport: Int = record.config!.sshport { port = sshport }
                         let (success, _) = self.testTCPconnection(record.config!.offsiteServer, port: port, timeout: 1)
@@ -158,19 +158,19 @@ final class Tools: SetConfigurations, Delay {
     // Used for displaying the commands only
     func rsyncpathtodisplay(index: Int, dryRun: Bool) -> String {
         var str: String?
-        let config = self.configurations!.getargumentAllConfigurations()[index] as? ArgumentsOneConfiguration
+        let config = self.configurations!.getargumentAllConfigurations()[index]
         if dryRun {
             str = self.rsyncpath() + " "
-            if let count = config?.argdryRunDisplay?.count {
+            if let count = config.argdryRunDisplay?.count {
                 for i in 0 ..< count {
-                    str = str! + (config?.argdryRunDisplay![i])!
+                    str = str! + config.argdryRunDisplay![i]
                 }
             }
         } else {
             str = self.rsyncpath() + " "
-            if let count = config?.argDisplay?.count {
+            if let count = config.argDisplay?.count {
                 for i in 0 ..< count {
-                    str = str! + (config?.argDisplay![i])!
+                    str = str! + config.argDisplay![i]
                 }
             }
         }
