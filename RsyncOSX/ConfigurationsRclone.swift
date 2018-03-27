@@ -15,7 +15,7 @@ class ConfigurationsRclone {
     private var configurations: [ConfigurationRclone]?
     private var argumentAllConfigurations: [RcloneArgumentsOneConfiguration]?
     private var configurationsDataSource: [NSMutableDictionary]?
-    
+
     func getResourceConfiguration(_ hiddenID: Int, resource: ResourceInConfiguration) -> String {
         var result = self.configurations!.filter({return ($0.hiddenID == hiddenID)})
         guard result.count > 0 else { return "" }
