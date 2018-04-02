@@ -126,7 +126,7 @@ extension ViewControllerEncrypt: NSTableViewDelegate {
         if row > self.configurationsrclone!.configurationsDataSourcecount() - 1 { return nil }
         let object: NSDictionary = self.configurationsrclone!.getConfigurationsDataSource()![row]
         if tableColumn!.identifier.rawValue == "batchCellID" {
-            return object[tableColumn!.identifier] as? Int!
+            return object[tableColumn!.identifier]
         } else if tableColumn!.identifier.rawValue == "offsiteServerCellID", ((object[tableColumn!.identifier] as? String)?.isEmpty)! {
             return "localhost"
         } else {

@@ -294,7 +294,7 @@ class ViewControllertabMain: NSViewController, ReloadTable, Deselect, Coloractiv
         let task: NSDictionary = [
             "start": now,
             "hiddenID": self.hiddenID!,
-            "dateStart": dateformatter.date(from: "01 Jan 1900 00:00") as Date!,
+            "dateStart": dateformatter.date(from: "01 Jan 1900 00:00")!,
             "schedule": "manuel"]
         ViewControllerReference.shared.scheduledTask = task
         _ = OperationFactory()
@@ -563,7 +563,7 @@ extension ViewControllertabMain: NSTableViewDelegate, Attributedestring {
         let markdays: Bool = self.configurations!.getConfigurations()[row].markdays
         celltext = object[tableColumn!.identifier] as? String
         if tableColumn!.identifier.rawValue == "batchCellID" {
-            return object[tableColumn!.identifier] as? Int!
+            return object[tableColumn!.identifier]
         } else if markdays == true && tableColumn!.identifier.rawValue == "daysID" {
             return self.attributedstring(str: celltext!, color: NSColor.red, align: .right)
         } else if self.testTCP(row) {

@@ -11,7 +11,7 @@ import Foundation
 import Cocoa
 
 protocol SetSchedules {
-    weak var schedulesDelegate: GetSchedulesObject? {get}
+    var schedulesDelegate: GetSchedulesObject? {get}
     var schedules: Schedules? {get}
 }
 
@@ -60,7 +60,7 @@ class Schedules: ScheduleWriteLoggData {
         if schedule == .once {
             stop = start
         } else {
-            stop = dateformatter.date(from: "01 Jan 2100 00:00") as Date!
+            stop = dateformatter.date(from: "01 Jan 2100 00:00")
         }
         let dict = NSMutableDictionary()
         dict.setObject(hiddenID, forKey: "hiddenID" as NSCopying)
