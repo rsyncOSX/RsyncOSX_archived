@@ -37,6 +37,9 @@ struct Configuration {
     var dayssincelastbackup: String?
     var markdays: Bool = false
     var profile: String?
+    // If connected to rclone for encrypted backups
+    var rclonehiddenID: Int?
+    var rcloneprofile: String?
 
     private func calculatedays(date: String) -> Double? {
         guard date != "" else { return nil }
@@ -103,6 +106,12 @@ struct Configuration {
         }
         if let sshport = dictionary.object(forKey: "sshport") {
             self.sshport = sshport as? Int
+        }
+        if let rclonehiddenID = dictionary.object(forKey: "rclonehiddenID") {
+            self.rclonehiddenID = rclonehiddenID as? Int
+        }
+        if let rcloneprofile = dictionary.object(forKey: "rcloneprofile") {
+            self.rcloneprofile = rcloneprofile as? String
         }
     }
 }

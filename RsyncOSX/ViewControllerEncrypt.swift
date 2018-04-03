@@ -47,9 +47,8 @@ class ViewControllerEncrypt: NSViewController, GetIndex, SetConfigurations {
         super.viewDidLoad()
         self.mainTableView.delegate = self
         self.mainTableView.dataSource = self
-        var storage: RclonePersistentStorageAPI?
-        storage = RclonePersistentStorageAPI(profile: nil)
-        if let userConfiguration =  storage?.getUserconfiguration() {
+        let storage = RclonePersistentStorageAPI(profile: nil)
+        if let userConfiguration = storage.getUserconfiguration() {
             _ = RcloneUserconfiguration(userconfigRsyncOSX: userConfiguration)
         }
         self.configurationsrclone = ConfigurationsRclone(profile: self.profilename)
