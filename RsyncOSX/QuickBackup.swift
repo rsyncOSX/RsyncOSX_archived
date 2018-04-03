@@ -66,7 +66,7 @@ class QuickBackup: SetConfigurations {
         let task: NSDictionary = [
             "start": now,
             "hiddenID": hiddenID,
-            "dateStart": dateformatter.date(from: "01 Jan 1900 00:00") as Date!,
+            "dateStart": dateformatter.date(from: "01 Jan 1900 00:00")!,
             "schedule": "manuel"]
         ViewControllerReference.shared.scheduledTask = task
         _ = OperationFactory()

@@ -124,12 +124,10 @@ extension ViewControllerBatch: NSTableViewDataSource {
 extension ViewControllerBatch: NSTableViewDelegate, Attributedestring {
     // TableView delegates
     func tableView(_ tableView: NSTableView, objectValueFor tableColumn: NSTableColumn?, row: Int) -> Any? {
-        guard  self.batchTask?.configurations?.getupdatedbatchQueue() != nil else {
-             return nil
-        }
+        guard  self.batchTask?.configurations?.getupdatedbatchQueue() != nil else { return nil }
         let object: NSMutableDictionary = (self.batchTask?.configurations!.getupdatedbatchQueue()![row])!
         if tableColumn!.identifier.rawValue == "estimatedCellID" || tableColumn!.identifier.rawValue == "completedCellID" {
-            return object[tableColumn!.identifier] as? Int!
+            return object[tableColumn!.identifier]
         } else {
             if tableColumn!.identifier.rawValue == "completeCellID" {
                 if row < self.batchTask!.configurations!.getbatchQueue()!.getRow() {

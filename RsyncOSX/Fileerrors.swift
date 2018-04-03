@@ -22,7 +22,7 @@ protocol Fileerror: class {
 }
 
 protocol Reportfileerror {
-    weak var errorDelegate: Fileerror? { get }
+    var errorDelegate: Fileerror? { get }
 }
 
 extension Reportfileerror {

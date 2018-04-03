@@ -15,7 +15,7 @@ protocol StartNextTask: class {
 }
 
 protocol NextTask {
-    weak var nexttaskDelegate: StartNextTask? { get }
+    var nexttaskDelegate: StartNextTask? { get }
 }
 
 extension NextTask {
@@ -38,7 +38,7 @@ protocol ScheduledTaskWorking: class {
 }
 
 protocol SetScheduledTask {
-    weak var scheduleJob: ScheduledTaskWorking? { get }
+    var scheduleJob: ScheduledTaskWorking? { get }
 }
 
 extension SetScheduledTask {
