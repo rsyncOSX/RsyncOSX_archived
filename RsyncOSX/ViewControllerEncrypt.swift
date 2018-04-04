@@ -29,14 +29,20 @@ class ViewControllerEncrypt: NSViewController, GetIndex, SetConfigurations {
     @IBOutlet weak var offsiteServer: NSTextField!
     @IBOutlet weak var backupID: NSTextField!
     @IBOutlet weak var connectbutton: NSButton!
-
+    @IBOutlet weak var deletebutton: NSButton!
+    
     @IBAction func connect(_ sender: NSButton) {
         guard self.index != nil else { return }
         if let rclonehiddenID = self.configurationsrclone?.gethiddenID(index: self.rcloneindex!) {
             self.configurations!.setrcloneconnection(index: self.index!, rclonehiddenID: rclonehiddenID, rcloneprofile: rcloneprofilename)
         }
     }
-
+    
+    @IBAction func delete(_ sender: NSButton) {
+        guard self.index != nil else { return }
+        self.configurations!.deletercloneconnection(index: self.index!)
+    }
+    
     @IBAction func selectprofile(_ sender: NSComboBox) {
         guard self.profilescombobox.indexOfSelectedItem > -1 else { return}
         self.rcloneprofilename = self.profilenamearray?[self.profilescombobox.indexOfSelectedItem]
@@ -87,18 +93,24 @@ class ViewControllerEncrypt: NSViewController, GetIndex, SetConfigurations {
         self.backupID.stringValue = config.backupID
     }
 
-    private func checkconnection() {
-        guard self.index != nil && self.rcloneindex != nil else {
-            self.connectbutton.isEnabled = false
-            return
-        }
+    private func enableconnectionbutton() -> Bool {
+        guard self.index != nil && self.rcloneindex != nil else { return false }
         let rclonehiddenID = self.configurationsrclone!.gethiddenID(index: self.rcloneindex!)
         let rcloneremotecatalog = self.configurationsrclone!.getResourceConfiguration(rclonehiddenID, resource: .remoteCatalog) + "/"
         let rsynclocalcatalog = self.localCatalog.stringValue
         if rcloneremotecatalog == rsynclocalcatalog {
-            self.connectbutton.isEnabled = true
+            return true
         } else {
-            self.connectbutton.isEnabled = false
+            return false
+        }
+    }
+    
+    private func enabledeletebutton() -> Bool {
+        guard self.index != nil && self.rcloneindex != nil else { return false }
+        if self.configurationsrclone!.getConfigurations()[self.rcloneindex!].hiddenID == self.configurations?.getConfigurations() [self.index!].rclonehiddenID && self.rcloneprofilename == self.configurations?.getConfigurations() [self.index!].rcloneprofile {
+                return true
+        } else {
+            return false
         }
     }
 
@@ -113,7 +125,11 @@ class ViewControllerEncrypt: NSViewController, GetIndex, SetConfigurations {
         } else {
             self.rcloneindex = nil
         }
-        self.checkconnection()
+        self.connectbutton.isEnabled = self.enableconnectionbutton()
+        self.deletebutton.isEnabled = self.enabledeletebutton()
+        globalMainQueue.async(execute: { () -> Void in
+            self.mainTableView.reloadData()
+        })
     }
 }
 
@@ -123,17 +139,17 @@ extension ViewControllerEncrypt: NSTableViewDataSource {
     }
 }
 
-extension ViewControllerEncrypt: NSTableViewDelegate {
+extension ViewControllerEncrypt: NSTableViewDelegate, Attributedestring {
     // TableView delegates
     func tableView(_ tableView: NSTableView, objectValueFor tableColumn: NSTableColumn?, row: Int) -> Any? {
         if row > self.configurationsrclone!.configurationsDataSourcecount() - 1 { return nil }
         let object: NSDictionary = self.configurationsrclone!.getConfigurationsDataSource()![row]
-        if tableColumn!.identifier.rawValue == "batchCellID" {
-            return object[tableColumn!.identifier]
-        } else if tableColumn!.identifier.rawValue == "offsiteServerCellID", ((object[tableColumn!.identifier] as? String)?.isEmpty)! {
-            return "localhost"
-        } else {
-            return object[tableColumn!.identifier] as? String
+        let text = object[tableColumn!.identifier] as? String
+        if self.index != nil {
+            if self.configurationsrclone!.getConfigurations()[row].hiddenID == self.configurations?.getConfigurations() [self.index!].rclonehiddenID && self.rcloneprofilename == self.configurations?.getConfigurations() [self.index!].rcloneprofile {
+                return self.attributedstring(str: text!, color: NSColor.red, align: .left)
+            }
         }
+        return text
     }
 }

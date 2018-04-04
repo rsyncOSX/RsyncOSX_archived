@@ -408,8 +408,17 @@ class Configurations: ReloadTable, SetSchedules {
     }
     
     func setrcloneconnection(index: Int, rclonehiddenID:Int, rcloneprofile: String?){
+        guard self.configurations![index].task == "backup" else { return }
         self.configurations![index].rclonehiddenID = rclonehiddenID
         self.configurations![index].rcloneprofile = rcloneprofile
+        self.configurations![index].task = "combined"
+        self.storageapi!.saveConfigFromMemory()
+    }
+    
+    func deletercloneconnection(index: Int){
+        self.configurations![index].rclonehiddenID = nil
+        self.configurations![index].rcloneprofile = nil
+        self.configurations![index].task = "backup"
         self.storageapi!.saveConfigFromMemory()
     }
 
