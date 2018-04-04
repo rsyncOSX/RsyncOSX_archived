@@ -13,8 +13,8 @@ import Cocoa
 
 class ViewControllerEncrypt: NSViewController, GetIndex, SetConfigurations {
 
-    private var profile: RcloneProfiles?
-    private var profilename: String?
+    private var rcloneprofile: RcloneProfiles?
+    private var rcloneprofilename: String?
     private var profilenamearray: [String]?
     var configurationsrclone: ConfigurationsRclone?
     var rcloneindex: Int?
@@ -31,13 +31,17 @@ class ViewControllerEncrypt: NSViewController, GetIndex, SetConfigurations {
     @IBOutlet weak var connectbutton: NSButton!
 
     @IBAction func connect(_ sender: NSButton) {
+        guard self.index != nil else { return }
+        if let rclonehiddenID = self.configurationsrclone?.gethiddenID(index: self.rcloneindex!) {
+            self.configurations!.setrcloneconnection(index: self.index!, rclonehiddenID: rclonehiddenID, rcloneprofile: rcloneprofilename)
+        }
     }
 
     @IBAction func selectprofile(_ sender: NSComboBox) {
         guard self.profilescombobox.indexOfSelectedItem > -1 else { return}
-        self.profilename = self.profilenamearray?[self.profilescombobox.indexOfSelectedItem]
-        if self.profilename == "Default" { self.profilename = nil }
-        self.configurationsrclone = ConfigurationsRclone(profile: self.profilename)
+        self.rcloneprofilename = self.profilenamearray?[self.profilescombobox.indexOfSelectedItem]
+        if self.rcloneprofilename == "Default" { self.rcloneprofilename = nil }
+        self.configurationsrclone = ConfigurationsRclone(profile: self.rcloneprofilename)
         globalMainQueue.async(execute: { () -> Void in
             self.mainTableView.reloadData()
         })
@@ -51,7 +55,7 @@ class ViewControllerEncrypt: NSViewController, GetIndex, SetConfigurations {
         if let userConfiguration = storage.getUserconfiguration() {
             _ = RcloneUserconfiguration(userconfigRsyncOSX: userConfiguration)
         }
-        self.configurationsrclone = ConfigurationsRclone(profile: self.profilename)
+        self.configurationsrclone = ConfigurationsRclone(profile: self.rcloneprofilename)
     }
 
     override func viewDidAppear() {
@@ -65,11 +69,11 @@ class ViewControllerEncrypt: NSViewController, GetIndex, SetConfigurations {
     }
 
     private func loadprofiles() {
-        self.profile = nil
-        self.profile = RcloneProfiles()
+        self.rcloneprofile = nil
+        self.rcloneprofile = RcloneProfiles()
         self.profilescombobox.removeAllItems()
-        self.profilescombobox.addItems(withObjectValues: self.profile!.getDirectorysStrings())
-        self.profilenamearray = self.profile!.getDirectorysStrings()
+        self.profilescombobox.addItems(withObjectValues: self.rcloneprofile!.getDirectorysStrings())
+        self.profilenamearray = self.rcloneprofile!.getDirectorysStrings()
         self.connectbutton.isEnabled = false
     }
 

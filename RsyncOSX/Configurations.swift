@@ -406,6 +406,12 @@ class Configurations: ReloadTable, SetSchedules {
             self.configurations![index].parameter3 = "--compress"
         }
     }
+    
+    func setrcloneconnection(index: Int, rclonehiddenID:Int, rcloneprofile: String?){
+        self.configurations![index].rclonehiddenID = rclonehiddenID
+        self.configurations![index].rcloneprofile = rcloneprofile
+        self.storageapi!.saveConfigFromMemory()
+    }
 
     private func increasesnapshotnum(index: Int) {
         guard self.configurations != nil else { return }
