@@ -48,6 +48,8 @@ class ViewControllerEncrypt: NSViewController, GetIndex, SetConfigurations {
         self.rcloneprofilename = self.profilenamearray?[self.profilescombobox.indexOfSelectedItem]
         if self.rcloneprofilename == "Default" { self.rcloneprofilename = nil }
         self.configurationsrclone = ConfigurationsRclone(profile: self.rcloneprofilename)
+        self.connectbutton.isEnabled = false
+        self.deletebutton.isEnabled = false
         globalMainQueue.async(execute: { () -> Void in
             self.mainTableView.reloadData()
         })
@@ -125,8 +127,10 @@ class ViewControllerEncrypt: NSViewController, GetIndex, SetConfigurations {
         } else {
             self.rcloneindex = nil
         }
-        self.connectbutton.isEnabled = self.enableconnectionbutton()
-        self.deletebutton.isEnabled = self.enabledeletebutton()
+        if self.rcloneindex != nil {
+            self.connectbutton.isEnabled = self.enableconnectionbutton()
+            self.deletebutton.isEnabled = self.enabledeletebutton()
+        }
         globalMainQueue.async(execute: { () -> Void in
             self.mainTableView.reloadData()
         })
