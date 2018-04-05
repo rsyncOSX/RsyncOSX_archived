@@ -37,12 +37,16 @@ class ViewControllerEncrypt: NSViewController, GetIndex, SetConfigurations {
         guard self.index != nil else { return }
         if let rclonehiddenID = self.configurationsrclone?.gethiddenID(index: self.rcloneindex!) {
             self.configurations!.setrcloneconnection(index: self.index!, rclonehiddenID: rclonehiddenID, rcloneprofile: rcloneprofilename)
+            self.updateview()
         }
     }
     
     @IBAction func delete(_ sender: NSButton) {
         guard self.index != nil else { return }
         self.configurations!.deletercloneconnection(index: self.index!)
+        self.updateview()
+        self.connectbutton.isEnabled = self.enableconnectionbutton()
+        self.deletebutton.isEnabled = self.enabledeletebutton()
     }
     
     @IBAction func selectprofile(_ sender: NSComboBox) {
@@ -52,9 +56,7 @@ class ViewControllerEncrypt: NSViewController, GetIndex, SetConfigurations {
         self.configurationsrclone = ConfigurationsRclone(profile: self.rcloneprofilename)
         self.connectbutton.isEnabled = false
         self.deletebutton.isEnabled = false
-        globalMainQueue.async(execute: { () -> Void in
-            self.mainTableView.reloadData()
-        })
+        self.updateview()
     }
 
     override func viewDidLoad() {
@@ -65,13 +67,16 @@ class ViewControllerEncrypt: NSViewController, GetIndex, SetConfigurations {
         if let userConfiguration = storage.getUserconfiguration() {
             _ = RcloneUserconfiguration(userconfigRsyncOSX: userConfiguration)
         }
-        self.configurationsrclone = ConfigurationsRclone(profile: self.rcloneprofilename)
     }
 
     override func viewDidAppear() {
         super.viewDidAppear()
         self.loadprofiles()
         self.index = self.index(viewcontroller: .vctabmain)
+        self.getconfig()
+    }
+
+    private func updateview() {
         self.getconfig()
         globalMainQueue.async(execute: { () -> Void in
             self.mainTableView.reloadData()
@@ -96,6 +101,11 @@ class ViewControllerEncrypt: NSViewController, GetIndex, SetConfigurations {
         self.offsiteServer.stringValue = config.offsiteServer
         self.backupID.stringValue = config.backupID
         guard config.rclonehiddenID != nil else {
+            self.rcloneID.stringValue = ""
+            self.rcloneremotecatalog.stringValue = ""
+            return
+        }
+        guard self.rcloneprofilename ?? "" == config.rcloneprofile else {
             self.rcloneID.stringValue = ""
             self.rcloneremotecatalog.stringValue = ""
             return
