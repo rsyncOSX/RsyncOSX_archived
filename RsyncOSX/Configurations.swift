@@ -408,7 +408,7 @@ class Configurations: ReloadTable, SetSchedules {
     }
     
     func setrcloneconnection(index: Int, rclonehiddenID:Int, rcloneprofile: String?){
-        guard self.configurations![index].task == "backup" else { return }
+        guard self.configurations![index].task == "backup" ||  self.configurations![index].task == "combined" else { return }
         self.configurations![index].rclonehiddenID = rclonehiddenID
         self.configurations![index].rcloneprofile = rcloneprofile
         self.configurations![index].task = "combined"

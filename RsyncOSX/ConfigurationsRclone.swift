@@ -38,6 +38,15 @@ class ConfigurationsRclone {
             return result[0].offsiteUsername
         }
     }
+    
+    func getIndex(_ hiddenID: Int) -> Int {
+        var index: Int = -1
+        loop: for i in 0 ..< self.configurations!.count where self.configurations![i].hiddenID == hiddenID {
+            index = i
+            break loop
+        }
+        return index
+    }
 
     func gethiddenID (index: Int) -> Int {
         return self.configurations![index].hiddenID

@@ -30,6 +30,8 @@ class ViewControllerEncrypt: NSViewController, GetIndex, SetConfigurations {
     @IBOutlet weak var backupID: NSTextField!
     @IBOutlet weak var connectbutton: NSButton!
     @IBOutlet weak var deletebutton: NSButton!
+    @IBOutlet weak var rcloneID: NSTextField!
+    @IBOutlet weak var rcloneremotecatalog: NSTextField!
     
     @IBAction func connect(_ sender: NSButton) {
         guard self.index != nil else { return }
@@ -93,6 +95,14 @@ class ViewControllerEncrypt: NSViewController, GetIndex, SetConfigurations {
         self.offsiteUsername.stringValue = config.offsiteUsername
         self.offsiteServer.stringValue = config.offsiteServer
         self.backupID.stringValue = config.backupID
+        guard config.rclonehiddenID != nil else {
+            self.rcloneID.stringValue = ""
+            self.rcloneremotecatalog.stringValue = ""
+            return
+        }
+        let rcloneindex = self.configurationsrclone!.getIndex(config.rclonehiddenID!)
+        self.rcloneID.stringValue = self.configurationsrclone!.getConfigurations()[rcloneindex].backupID
+        self.rcloneremotecatalog.stringValue = self.configurationsrclone!.getConfigurations()[rcloneindex].offsiteCatalog
     }
 
     private func enableconnectionbutton() -> Bool {
@@ -109,7 +119,8 @@ class ViewControllerEncrypt: NSViewController, GetIndex, SetConfigurations {
     
     private func enabledeletebutton() -> Bool {
         guard self.index != nil && self.rcloneindex != nil else { return false }
-        if self.configurationsrclone!.getConfigurations()[self.rcloneindex!].hiddenID == self.configurations?.getConfigurations() [self.index!].rclonehiddenID && self.rcloneprofilename == self.configurations?.getConfigurations() [self.index!].rcloneprofile {
+        if self.configurationsrclone!.getConfigurations()[self.rcloneindex!].hiddenID == self.configurations?.getConfigurations() [self.index!].rclonehiddenID
+            && self.rcloneprofilename == self.configurations?.getConfigurations() [self.index!].rcloneprofile {
                 return true
         } else {
             return false
