@@ -359,7 +359,7 @@
                 </tabViewController>
                 <customObject id="am9-td-Qjg" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-287.5" y="43.5"/>
+            <point key="canvasLocation" x="-318" y="25"/>
         </scene>
         <!--Execute-->
         <scene sceneID="84s-6a-t0v">
@@ -1762,7 +1762,7 @@
                 </viewController>
                 <customObject id="jyt-m5-Pvu" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="823" y="155"/>
+            <point key="canvasLocation" x="685" y="145"/>
         </scene>
         <!--Copy files-->
         <scene sceneID="eWC-14-5oE">
@@ -6246,7 +6246,7 @@ DQ
                                 </textFieldCell>
                             </textField>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dQV-Kd-Cqs">
-                                <rect key="frame" x="610" y="252" width="357" height="17"/>
+                                <rect key="frame" x="610" y="258" width="357" height="17"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Rclone config: Remote catalog" id="wiS-xc-UNg">
                                     <font key="font" metaFont="system"/>

@@ -74,6 +74,7 @@ class ViewControllerEncrypt: NSViewController, GetIndex, SetConfigurations {
         self.loadprofiles()
         self.index = self.index(viewcontroller: .vctabmain)
         self.getconfig()
+        self.deselect()
     }
 
     private func updateview() {
@@ -137,6 +138,11 @@ class ViewControllerEncrypt: NSViewController, GetIndex, SetConfigurations {
         }
     }
 
+    private func deselect() {
+        guard self.rcloneindex != nil else { return }
+        self.mainTableView.deselectRow(self.rcloneindex!)
+    }
+
     // when row is selected
     // setting which table row is selected
     func tableViewSelectionDidChange(_ notification: Notification) {
@@ -181,3 +187,4 @@ extension ViewControllerEncrypt: NSTableViewDelegate, Attributedestring {
         return text
     }
 }
+
