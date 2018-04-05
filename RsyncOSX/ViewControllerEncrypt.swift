@@ -151,6 +151,9 @@ class ViewControllerEncrypt: NSViewController, GetIndex, SetConfigurations {
         if self.rcloneindex != nil {
             self.connectbutton.isEnabled = self.enableconnectionbutton()
             self.deletebutton.isEnabled = self.enabledeletebutton()
+        } else {
+            self.connectbutton.isEnabled = false
+            self.deletebutton.isEnabled = false
         }
         globalMainQueue.async(execute: { () -> Void in
             self.mainTableView.reloadData()
