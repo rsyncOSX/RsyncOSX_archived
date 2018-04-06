@@ -121,6 +121,10 @@ class ViewControllertabMain: NSViewController, ReloadTable, Deselect, Coloractiv
             self.info.stringValue = "⌘A to abort or wait..."
         case 5:
              self.info.stringValue = "Menu app is either running or not enabled..."
+        case 6:
+            self.info.stringValue = "This is a combined task, execute by ⌘R..."
+        case 7:
+            self.info.stringValue = "Only valid for backup and snapshot tasks..."
         default:
             self.info.stringValue = ""
         }
@@ -130,6 +134,11 @@ class ViewControllertabMain: NSViewController, ReloadTable, Deselect, Coloractiv
         guard ViewControllerReference.shared.norsync == false else {
             self.tools!.noRsync()
             return
+        }
+        guard self.configurations!.getConfigurations()[self.index!].task == "backup" ||
+            self.configurations!.getConfigurations()[self.index!].task == "snapshot" else {
+                self.info(num: 7)
+                return
         }
         if let index = self.index {
             self.working.startAnimation(nil)
@@ -288,7 +297,13 @@ class ViewControllertabMain: NSViewController, ReloadTable, Deselect, Coloractiv
             return
         }
         guard self.configurations!.getConfigurations()[self.index!].task == "backup" ||
-            self.configurations!.getConfigurations()[self.index!].task == "snapshot" else { return }
+            self.configurations!.getConfigurations()[self.index!].task == "snapshot" ||
+        self.configurations!.getConfigurations()[self.index!].task == "combined" else {
+                return
+        }
+        if self.configurations!.getConfigurations()[self.index!].task == "combined" {
+            self.processtermination = .combinedtask
+        }
         let now: Date = Date()
         let dateformatter = Tools().setDateformat()
         let task: NSDictionary = [
@@ -407,6 +422,12 @@ class ViewControllertabMain: NSViewController, ReloadTable, Deselect, Coloractiv
         }
         guard self.index != nil else {
             return
+        }
+        guard self.configurations!.getConfigurations()[self.index!].task == "backup" ||
+            self.configurations!.getConfigurations()[self.index!].task == "snapshot" ||
+            self.configurations!.getConfigurations()[self.index!].task == "restore" else {
+                self.info(num: 6)
+                return
         }
         self.batchtaskObject = nil
         guard self.singletask != nil else {
@@ -834,6 +855,8 @@ extension ViewControllertabMain: UpdateProgress {
             self.setNumbers(outputprocess: self.outputprocess)
             self.workinglabel.isHidden = true
             self.working.stopAnimation(nil)
+        case .combinedtask:
+            return
         }
     }
 
@@ -872,6 +895,8 @@ extension ViewControllertabMain: UpdateProgress {
         case .remoteinfotask:
             return
         case .infosingletask:
+            return
+        case .combinedtask:
             return
         }
     }
