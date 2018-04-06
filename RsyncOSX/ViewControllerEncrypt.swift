@@ -106,14 +106,15 @@ class ViewControllerEncrypt: NSViewController, GetIndex, SetConfigurations {
             self.rcloneremotecatalog.stringValue = ""
             return
         }
-        guard self.rcloneprofilename ?? "" == config.rcloneprofile else {
+        guard self.rcloneprofilename ?? "" == config.rcloneprofile ?? "" && config.rclonehiddenID != nil else {
             self.rcloneID.stringValue = ""
             self.rcloneremotecatalog.stringValue = ""
             return
         }
-        let rcloneindex = self.configurationsrclone!.getIndex(config.rclonehiddenID!)
-        self.rcloneID.stringValue = self.configurationsrclone!.getConfigurations()[rcloneindex].backupID
-        self.rcloneremotecatalog.stringValue = self.configurationsrclone!.getConfigurations()[rcloneindex].offsiteCatalog
+        if let rcloneindex = self.configurationsrclone?.getIndex(config.rclonehiddenID!) {
+            self.rcloneID.stringValue = self.configurationsrclone!.getConfigurations()[rcloneindex].backupID
+            self.rcloneremotecatalog.stringValue = self.configurationsrclone!.getConfigurations()[rcloneindex].offsiteCatalog
+        }
     }
 
     private func enableconnectionbutton() -> Bool {
