@@ -75,6 +75,9 @@ class ViewControllerEncrypt: NSViewController, GetIndex, SetConfigurations {
         self.index = self.index(viewcontroller: .vctabmain)
         self.getconfig()
         self.deselect()
+        globalMainQueue.async(execute: { () -> Void in
+            self.mainTableView.reloadData()
+        })
     }
 
     private func updateview() {
