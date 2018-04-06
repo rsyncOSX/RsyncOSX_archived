@@ -317,6 +317,19 @@ class ViewControllertabMain: NSViewController, ReloadTable, Deselect, Coloractiv
         ViewControllerReference.shared.scheduledTask = task
         _ = OperationFactory()
     }
+    
+    private func executetasknow() {
+        self.processtermination = .singlequicktask
+        let now: Date = Date()
+        let dateformatter = Tools().setDateformat()
+        let task: NSDictionary = [
+            "start": now,
+            "hiddenID": self.hiddenID!,
+            "dateStart": dateformatter.date(from: "01 Jan 1900 00:00")!,
+            "schedule": "manuel"]
+        ViewControllerReference.shared.scheduledTask = task
+        _ = OperationFactory()
+    }
 
     // Function for display rsync command
     // Either --dry-run or real run
@@ -859,7 +872,6 @@ extension ViewControllertabMain: UpdateProgress {
             self.workinglabel.isHidden = true
             self.working.stopAnimation(nil)
         case .combinedtask:
-             self.working.stopAnimation(nil)
             return
         }
     }
