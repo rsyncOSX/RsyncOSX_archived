@@ -305,17 +305,9 @@ class ViewControllertabMain: NSViewController, ReloadTable, Deselect, Coloractiv
             self.processtermination = .combinedtask
             self.working.startAnimation(nil)
             _ = Combined(profile: self.configurations!.getConfigurations()[self.index!].rcloneprofile, index: self.index!)
-            return
+        } else {
+            self.executetasknow()
         }
-        let now: Date = Date()
-        let dateformatter = Tools().setDateformat()
-        let task: NSDictionary = [
-            "start": now,
-            "hiddenID": self.hiddenID!,
-            "dateStart": dateformatter.date(from: "01 Jan 1900 00:00")!,
-            "schedule": "manuel"]
-        ViewControllerReference.shared.scheduledTask = task
-        _ = OperationFactory()
     }
     
     private func executetasknow() {
@@ -872,7 +864,8 @@ extension ViewControllertabMain: UpdateProgress {
             self.workinglabel.isHidden = true
             self.working.stopAnimation(nil)
         case .combinedtask:
-            return
+            self.working.stopAnimation(nil)
+            self.executetasknow()
         }
     }
 
