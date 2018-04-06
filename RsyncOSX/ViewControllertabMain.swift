@@ -303,6 +303,7 @@ class ViewControllertabMain: NSViewController, ReloadTable, Deselect, Coloractiv
         }
         if self.configurations!.getConfigurations()[self.index!].task == "combined" {
             self.processtermination = .combinedtask
+            self.working.startAnimation(nil)
             _ = Combined(profile: self.configurations!.getConfigurations()[self.index!].rcloneprofile, index: self.index!)
             return
         }
@@ -858,6 +859,7 @@ extension ViewControllertabMain: UpdateProgress {
             self.workinglabel.isHidden = true
             self.working.stopAnimation(nil)
         case .combinedtask:
+             self.working.stopAnimation(nil)
             return
         }
     }

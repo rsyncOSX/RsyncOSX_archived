@@ -13,13 +13,22 @@ class Combined: SetConfigurations {
     var configurationsrclone: ConfigurationsRclone?
     var arguments: [String]?
     var command: String?
+    var execute: Bool = false
     
     init(profile: String?, index: Int) {
         self.configurationsrclone = ConfigurationsRclone(profile: profile)
         if let rclonehiddenID = self.configurations?.getConfigurations()[index].rclonehiddenID {
-            let rcloneindex = self.configurationsrclone?.getIndex(rclonehiddenID)
-            self.arguments = self.configurationsrclone?.arguments4rclone(index: rcloneindex!, argtype: .arg)
-            self.command = RcloneTools().rclonepath()
+            if let rcloneindex = self.configurationsrclone?.getIndex(rclonehiddenID) {
+                if rcloneindex >= 0 {
+                    self.arguments = self.configurationsrclone?.arguments4rclone(index: rcloneindex, argtype: .arg)
+                    self.command = RcloneTools().rclonepath()
+                    self.execute = true
+                }
+            }
+        }
+        if execute {
+            let executerclone = Rclone(command: self.command, arguments: self.arguments)
+            executerclone.executeProcess(outputprocess: nil)
         }
     }
 }
