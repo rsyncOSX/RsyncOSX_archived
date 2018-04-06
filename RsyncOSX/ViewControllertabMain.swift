@@ -303,6 +303,8 @@ class ViewControllertabMain: NSViewController, ReloadTable, Deselect, Coloractiv
         }
         if self.configurations!.getConfigurations()[self.index!].task == "combined" {
             self.processtermination = .combinedtask
+            _ = Combined(profile: self.configurations!.getConfigurations()[self.index!].rcloneprofile, index: self.index!)
+            return
         }
         let now: Date = Date()
         let dateformatter = Tools().setDateformat()

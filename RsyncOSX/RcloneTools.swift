@@ -10,7 +10,7 @@ import Foundation
 
 class RcloneTools {
 
-    func verifyrsyncpath() {
+    func verifyrclonepath() {
         let fileManager = FileManager.default
         let path: String?
         if let rsyncPath = RcloneReference.shared.rclonePath {
@@ -31,7 +31,7 @@ class RcloneTools {
         }
     }
 
-    func rsyncpath() -> String {
+    func rclonepath() -> String {
         if RcloneReference.shared.rcloneopt {
             if RcloneReference.shared.rclonePath == nil {
                 return RcloneReference.shared.usrlocalbinrclone
@@ -43,7 +43,7 @@ class RcloneTools {
         }
     }
 
-    func noRsync() {
+    func norclone() {
         if let rsync = RcloneReference.shared.rclonePath {
             Alerts.showInfo("ERROR: no rclone in " + rsync)
         } else {

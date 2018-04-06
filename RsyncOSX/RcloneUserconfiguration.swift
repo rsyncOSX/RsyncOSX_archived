@@ -21,6 +21,6 @@ final class RcloneUserconfiguration {
         if userconfigRsyncOSX.count > 0 {
             self.readUserconfiguration(dict: userconfigRsyncOSX[0])
         }
-        RcloneTools().verifyrsyncpath()
+        RcloneTools().verifyrclonepath()
     }
 }
