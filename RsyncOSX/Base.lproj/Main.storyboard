@@ -6064,6 +6064,19 @@ DQ
                                 <view key="contentView" id="oO9-gu-0li">
                                     <rect key="frame" x="2" y="2" width="473" height="154"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                    <subviews>
+                                        <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="DUJ-1L-3nM">
+                                            <rect key="frame" x="386" y="21" width="73" height="32"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                            <buttonCell key="cell" type="push" title="Get" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="6gW-Hd-gYj">
+                                                <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                                <font key="font" metaFont="system"/>
+                                            </buttonCell>
+                                            <connections>
+                                                <action selector="getconfig:" target="Mlk-V8-rVE" id="1wR-Sa-h8T"/>
+                                            </connections>
+                                        </button>
+                                    </subviews>
                                 </view>
                             </box>
                             <scrollView fixedFrame="YES" borderType="groove" autohidesScrollers="YES" horizontalLineScroll="19" horizontalPageScroll="10" verticalLineScroll="19" verticalPageScroll="10" usesPredominantAxisScrolling="NO" scrollerKnobStyle="dark" translatesAutoresizingMaskIntoConstraints="NO" id="UiW-pJ-qYQ">

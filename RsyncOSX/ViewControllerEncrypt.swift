@@ -11,7 +11,7 @@ import Foundation
 
 import Cocoa
 
-class ViewControllerEncrypt: NSViewController, GetIndex, SetConfigurations {
+class ViewControllerEncrypt: NSViewController, GetIndex, SetConfigurations, VcCopyFiles {
 
     private var rcloneprofile: RcloneProfiles?
     private var rcloneprofilename: String?
@@ -33,6 +33,10 @@ class ViewControllerEncrypt: NSViewController, GetIndex, SetConfigurations {
     @IBOutlet weak var rcloneID: NSTextField!
     @IBOutlet weak var rcloneremotecatalog: NSTextField!
     
+    @IBAction func getconfig(_ sender: NSButton) {
+         self.presentViewControllerAsSheet(self.viewControllerSource!)
+    }
+
     @IBAction func connect(_ sender: NSButton) {
         guard self.index != nil else { return }
         if let rclonehiddenID = self.configurationsrclone?.gethiddenID(index: self.rcloneindex!) {
@@ -61,6 +65,7 @@ class ViewControllerEncrypt: NSViewController, GetIndex, SetConfigurations {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        ViewControllerReference.shared.setvcref(viewcontroller: .vcencrypt, nsviewcontroller: self)
         self.mainTableView.delegate = self
         self.mainTableView.dataSource = self
         let storage = RclonePersistentStorageAPI(profile: nil)
@@ -193,3 +198,16 @@ extension ViewControllerEncrypt: NSTableViewDelegate, Attributedestring {
     }
 }
 
+extension ViewControllerEncrypt: DismissViewController {
+    // Protocol DismissViewController
+    func dismiss_view(viewcontroller: NSViewController) {
+        self.dismissViewController(viewcontroller)
+    }
+}
+
+extension ViewControllerEncrypt: GetSource {
+    func getSource(index: Int) {
+        self.index = index
+        self.getconfig()
+    }
+}

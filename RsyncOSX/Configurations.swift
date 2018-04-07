@@ -222,6 +222,30 @@ class Configurations: ReloadTable, SetSchedules {
         return data
     }
 
+    func getConfigurationsDataSourcecountBackupCombined() -> [NSDictionary]? {
+        var configurations: [Configuration] = self.configurations!.filter({return ($0.task == "backup" || $0.task == "combined" )})
+        var data = [NSDictionary]()
+        for i in 0 ..< configurations.count {
+            if configurations[i].offsiteServer.isEmpty == true {
+                configurations[i].offsiteServer = "localhost"
+            }
+            let row: NSDictionary = [
+                "taskCellID": configurations[i].task,
+                "hiddenID": configurations[i].hiddenID,
+                "localCatalogCellID": configurations[i].localCatalog,
+                "offsiteCatalogCellID": configurations[i].offsiteCatalog,
+                "offsiteServerCellID": configurations[i].offsiteServer,
+                "backupIDCellID": configurations[i].backupID,
+                "runDateCellID": configurations[i].dateRun!,
+                "daysID": configurations[i].dayssincelastbackup ?? "",
+                "markdays": configurations[i].markdays,
+                "selectCellID": 0
+            ]
+            data.append(row)
+        }
+        return data
+    }
+
     /// Function returns all Configurations marked for backup.
     /// - returns : array of Configurations
     func getConfigurationsBatch() -> [Configuration] {
