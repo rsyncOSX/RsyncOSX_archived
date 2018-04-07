@@ -99,6 +99,7 @@ class ViewControllerEncrypt: NSViewController, GetIndex, SetConfigurations {
     private func getconfig() {
         guard self.index != nil else { return }
         let config: Configuration = self.configurations!.getConfigurations()[self.index!]
+        guard config.task == "backup" || config.task == "combined" else { return }
         self.localCatalog.stringValue = config.localCatalog
         self.offsiteCatalog.stringValue = config.offsiteCatalog
         self.offsiteUsername.stringValue = config.offsiteUsername
@@ -178,12 +179,12 @@ extension ViewControllerEncrypt: NSTableViewDataSource {
 }
 
 extension ViewControllerEncrypt: NSTableViewDelegate, Attributedestring {
-    // TableView delegates
     func tableView(_ tableView: NSTableView, objectValueFor tableColumn: NSTableColumn?, row: Int) -> Any? {
         if row > self.configurationsrclone!.configurationsDataSourcecount() - 1 { return nil }
         let object: NSDictionary = self.configurationsrclone!.getConfigurationsDataSource()![row]
         let text = object[tableColumn!.identifier] as? String
         if self.index != nil {
+            guard self.index! < self.configurations!.getConfigurations().count else { return nil }
             if self.configurationsrclone!.getConfigurations()[row].hiddenID == self.configurations?.getConfigurations() [self.index!].rclonehiddenID && self.rcloneprofilename == self.configurations?.getConfigurations() [self.index!].rcloneprofile {
                 return self.attributedstring(str: text!, color: NSColor.red, align: .left)
             }

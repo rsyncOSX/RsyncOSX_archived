@@ -6202,7 +6202,7 @@ DQ
                                 </view>
                             </box>
                             <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="FJk-9x-I6T">
-                                <rect key="frame" x="656" y="340" width="130" height="22"/>
+                                <rect key="frame" x="656" y="340" width="309" height="22"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" drawsBackground="YES" id="fQl-9X-axo">
                                     <font key="font" metaFont="system"/>
@@ -6211,7 +6211,7 @@ DQ
                                 </textFieldCell>
                             </textField>
                             <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2qy-gg-Be2">
-                                <rect key="frame" x="656" y="316" width="309" height="22"/>
+                                <rect key="frame" x="656" y="317" width="309" height="22"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" drawsBackground="YES" id="Y9o-Qf-UdG">
                                     <font key="font" metaFont="system"/>
@@ -6220,7 +6220,7 @@ DQ
                                 </textFieldCell>
                             </textField>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Z21-w1-1Bm">
-                                <rect key="frame" x="508" y="321" width="148" height="17"/>
+                                <rect key="frame" x="508" y="322" width="148" height="17"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="Rclone remote catalog: " id="0xC-AA-0nh">
                                     <font key="font" metaFont="system"/>
@@ -6228,11 +6228,11 @@ DQ
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
-                            <box fixedFrame="YES" title="Rclone connection information (if connected)" translatesAutoresizingMaskIntoConstraints="NO" id="Nar-BR-J2v">
-                                <rect key="frame" x="496" y="303" width="489" height="84"/>
+                            <box fixedFrame="YES" title="Rclone connection information in local config (if connected)" translatesAutoresizingMaskIntoConstraints="NO" id="Nar-BR-J2v">
+                                <rect key="frame" x="496" y="296" width="489" height="91"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <view key="contentView" id="Vlr-7K-ftP">
-                                    <rect key="frame" x="2" y="2" width="485" height="67"/>
+                                    <rect key="frame" x="2" y="2" width="485" height="74"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 </view>
                             </box>
@@ -6248,7 +6248,7 @@ DQ
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dQV-Kd-Cqs">
                                 <rect key="frame" x="610" y="258" width="357" height="17"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Rclone config: Remote catalog" id="wiS-xc-UNg">
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="rclone config: Remote catalog" id="wiS-xc-UNg">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
