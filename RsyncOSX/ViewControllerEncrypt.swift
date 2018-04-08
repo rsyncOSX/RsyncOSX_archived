@@ -121,6 +121,7 @@ class ViewControllerEncrypt: NSViewController, GetIndex, SetConfigurations, VcCo
             return
         }
         if let rcloneindex = self.configurationsrclone?.getIndex(config.rclonehiddenID!) {
+            guard rcloneindex >= 0 else { return }
             self.rcloneID.stringValue = self.configurationsrclone!.getConfigurations()[rcloneindex].backupID
             self.rcloneremotecatalog.stringValue = self.configurationsrclone!.getConfigurations()[rcloneindex].offsiteCatalog
         }
