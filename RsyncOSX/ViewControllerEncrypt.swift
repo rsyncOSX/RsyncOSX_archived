@@ -32,11 +32,17 @@ class ViewControllerEncrypt: NSViewController, GetIndex, SetConfigurations, VcCo
     @IBOutlet weak var deletebutton: NSButton!
     @IBOutlet weak var rcloneID: NSTextField!
     @IBOutlet weak var rcloneremotecatalog: NSTextField!
+    @IBOutlet weak var matchbutton: NSButton!
     
     @IBAction func getconfig(_ sender: NSButton) {
          self.presentViewControllerAsSheet(self.viewControllerSource!)
     }
-
+    @IBAction func match(_ sender: NSButton) {
+        globalMainQueue.async(execute: { () -> Void in
+            self.mainTableView.reloadData()
+        })
+    }
+    
     @IBAction func connect(_ sender: NSButton) {
         guard self.index != nil else { return }
         if let rclonehiddenID = self.configurationsrclone?.gethiddenID(index: self.rcloneindex!) {
@@ -80,6 +86,7 @@ class ViewControllerEncrypt: NSViewController, GetIndex, SetConfigurations, VcCo
         self.index = self.index(viewcontroller: .vctabmain)
         self.getconfig()
         self.deselect()
+        self.matchbutton.state = .off
         globalMainQueue.async(execute: { () -> Void in
             self.mainTableView.reloadData()
         })
