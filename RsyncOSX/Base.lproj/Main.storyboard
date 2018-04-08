@@ -6267,17 +6267,6 @@ DQ
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
-                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="caf-73-eoG">
-                                <rect key="frame" x="196" y="181" width="208" height="18"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <buttonCell key="cell" type="check" title="Match" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="oHl-zl-IIi">
-                                    <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                                    <font key="font" metaFont="system"/>
-                                </buttonCell>
-                                <connections>
-                                    <action selector="match:" target="Mlk-V8-rVE" id="v2d-8q-c8P"/>
-                                </connections>
-                            </button>
                         </subviews>
                     </view>
                     <connections>
@@ -6286,7 +6275,6 @@ DQ
                         <outlet property="deletebutton" destination="9f4-Pr-NEt" id="tKU-mW-iWM"/>
                         <outlet property="localCatalog" destination="DRR-F1-iKM" id="7zE-eR-5od"/>
                         <outlet property="mainTableView" destination="RUl-eQ-A2I" id="PAx-LJ-hHB"/>
-                        <outlet property="matchbutton" destination="caf-73-eoG" id="Ju1-PM-lxC"/>
                         <outlet property="offsiteCatalog" destination="wES-SP-MCG" id="l8r-cV-aGd"/>
                         <outlet property="offsiteServer" destination="Y3i-dl-xas" id="Oqg-xC-M9f"/>
                         <outlet property="offsiteUsername" destination="2M3-sp-qIQ" id="lpE-dZ-r9P"/>
