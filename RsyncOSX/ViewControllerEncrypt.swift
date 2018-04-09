@@ -32,11 +32,11 @@ class ViewControllerEncrypt: NSViewController, GetIndex, SetConfigurations, VcCo
     @IBOutlet weak var deletebutton: NSButton!
     @IBOutlet weak var rcloneID: NSTextField!
     @IBOutlet weak var rcloneremotecatalog: NSTextField!
-    
+
     @IBAction func getconfig(_ sender: NSButton) {
          self.presentViewControllerAsSheet(self.viewControllerSource!)
     }
-    
+
     @IBAction func connect(_ sender: NSButton) {
         guard self.index != nil else { return }
         if let rclonehiddenID = self.configurationsrclone?.gethiddenID(index: self.rcloneindex!) {
@@ -44,7 +44,7 @@ class ViewControllerEncrypt: NSViewController, GetIndex, SetConfigurations, VcCo
             self.updateview()
         }
     }
-    
+
     @IBAction func delete(_ sender: NSButton) {
         guard self.index != nil else { return }
         self.configurations!.deletercloneconnection(index: self.index!)
@@ -52,7 +52,7 @@ class ViewControllerEncrypt: NSViewController, GetIndex, SetConfigurations, VcCo
         self.connectbutton.isEnabled = self.enableconnectionbutton()
         self.deletebutton.isEnabled = self.enabledeletebutton()
     }
-    
+
     @IBAction func selectprofile(_ sender: NSComboBox) {
         guard self.profilescombobox.indexOfSelectedItem > -1 else { return}
         self.rcloneprofilename = self.profilenamearray?[self.profilescombobox.indexOfSelectedItem]
@@ -138,7 +138,7 @@ class ViewControllerEncrypt: NSViewController, GetIndex, SetConfigurations, VcCo
             return false
         }
     }
-    
+
     private func enabledeletebutton() -> Bool {
         guard self.index != nil && self.rcloneindex != nil else { return false }
         if self.configurationsrclone!.getConfigurations()[self.rcloneindex!].hiddenID == self.configurations?.getConfigurations() [self.index!].rclonehiddenID
