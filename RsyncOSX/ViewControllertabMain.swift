@@ -125,6 +125,8 @@ class ViewControllertabMain: NSViewController, ReloadTable, Deselect, Coloractiv
             self.info.stringValue = "This is a combined task, execute by ⌘R..."
         case 7:
             self.info.stringValue = "Only valid for backup and snapshot tasks..."
+        case 8:
+            self.info.stringValue = "No rclone config found..."
         default:
             self.info.stringValue = ""
         }
@@ -1268,5 +1270,12 @@ extension ViewControllertabMain: Reloadsortedandrefresh {
 extension ViewControllertabMain: MenuappChanged {
     func menuappchanged() {
         self.enablemenuappbutton()
+    }
+}
+
+extension ViewControllertabMain: Norcloneconfig {
+    func norcloneconfig() {
+        self.working.stopAnimation(nil)
+        self.info(num: 8)
     }
 }

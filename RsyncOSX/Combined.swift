@@ -8,6 +8,10 @@
 
 import Foundation
 
+protocol Norcloneconfig: class {
+    func norcloneconfig()
+}
+
 class Combined: SetConfigurations {
     
     var configurationsrclone: ConfigurationsRclone?
@@ -29,6 +33,10 @@ class Combined: SetConfigurations {
         if execute {
             let executerclone = Rclone(command: self.command, arguments: self.arguments)
             executerclone.executeProcess(outputprocess: nil)
+        } else {
+            weak var norcloneconfigDelegate: Norcloneconfig?
+            norcloneconfigDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllertabMain
+            norcloneconfigDelegate?.norcloneconfig()
         }
     }
 }
