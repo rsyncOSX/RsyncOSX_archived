@@ -311,7 +311,7 @@ class ViewControllertabMain: NSViewController, ReloadTable, Deselect, Coloractiv
             self.executetasknow()
         }
     }
-    
+
     private func executetasknow() {
         self.processtermination = .singlequicktask
         let now: Date = Date()

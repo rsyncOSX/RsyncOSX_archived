@@ -5,7 +5,7 @@
 //  Created by Thomas Evensen on 09/12/15.
 //  Copyright © 2015 Thomas Evensen. All rights reserved.
 //
-//  swiftlint:disable function_body_length 
+//  swiftlint:disable function_body_length cyclomatic_complexity
 
 import Foundation
 

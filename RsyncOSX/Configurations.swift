@@ -430,16 +430,16 @@ class Configurations: ReloadTable, SetSchedules {
             self.configurations![index].parameter3 = "--compress"
         }
     }
-    
-    func setrcloneconnection(index: Int, rclonehiddenID:Int, rcloneprofile: String?){
+
+    func setrcloneconnection(index: Int, rclonehiddenID: Int, rcloneprofile: String?) {
         guard self.configurations![index].task == "backup" ||  self.configurations![index].task == "combined" else { return }
         self.configurations![index].rclonehiddenID = rclonehiddenID
         self.configurations![index].rcloneprofile = rcloneprofile
         self.configurations![index].task = "combined"
         self.storageapi!.saveConfigFromMemory()
     }
-    
-    func deletercloneconnection(index: Int){
+
+    func deletercloneconnection(index: Int) {
         self.configurations![index].rclonehiddenID = nil
         self.configurations![index].rcloneprofile = nil
         self.configurations![index].task = "backup"

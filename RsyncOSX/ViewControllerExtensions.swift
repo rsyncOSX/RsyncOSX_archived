@@ -219,7 +219,7 @@ extension SetDismisser {
     weak var dismissDelegateEncrypt: DismissViewController? {
         return ViewControllerReference.shared.getvcref(viewcontroller: .vcencrypt) as? ViewControllerEncrypt
     }
-    
+
     func dismissview(viewcontroller: NSViewController, vcontroller: ViewController) {
         if vcontroller == .vctabmain {
             self.dismissDelegateMain?.dismiss_view(viewcontroller: (self as? NSViewController)!)
