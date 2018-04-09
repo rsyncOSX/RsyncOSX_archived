@@ -249,7 +249,7 @@ class ViewControllerRsyncParameters: NSViewController, SetConfigurations, SetDis
     // There are eight comboboxes, all eight are initalized during ViewDidLoad and the correct index is set.
     private func initcombox (combobox: NSComboBox, index: Int) {
         combobox.removeAllItems()
-        combobox.addItems(withObjectValues: self.comboBoxValues as [String]!)
+        combobox.addItems(withObjectValues: self.comboBoxValues)
         combobox.selectItem(at: index)
     }
 

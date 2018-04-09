@@ -15,45 +15,55 @@ class ViewControllerCopyFilesSource: NSViewController, SetConfigurations, SetDis
     @IBOutlet weak var selectButton: NSButton!
 
     weak var setIndexDelegate: ViewControllerCopyFiles?
-    weak var getSourceDelegate: ViewControllerCopyFiles?
-    weak var getSourceDelegate2: ViewControllerSsh?
-    weak var getSourceDelegate3: ViewControllerSnapshots?
+    weak var getSourceDelegateCopyFiles: ViewControllerCopyFiles?
+    weak var getSourceDelegateSsh: ViewControllerSsh?
+    weak var getSourceDelegateSnapshots: ViewControllerSnapshots?
+    weak var getSourceDelegateEncrypt: ViewControllerEncrypt?
     private var index: Int?
 
-    @IBAction func close(_ sender: NSButton) {
+    private func dismissview() {
         if (self.presenting as? ViewControllerCopyFiles) != nil {
             self.dismissview(viewcontroller: self, vcontroller: .vccopyfiles)
         } else if (self.presenting as? ViewControllerSsh) != nil {
             self.dismissview(viewcontroller: self, vcontroller: .vcssh)
         } else if (self.presenting as? ViewControllerSnapshots) != nil {
             self.dismissview(viewcontroller: self, vcontroller: .vcsnapshot)
+        } else if (self.presenting as? ViewControllerEncrypt) != nil {
+            self.dismissview(viewcontroller: self, vcontroller: .vcencrypt)
         }
     }
 
-    @IBAction func select(_ sender: NSButton) {
+    private func select() {
         if let pvc = self.presenting as? ViewControllerCopyFiles {
-            self.getSourceDelegate = pvc
+            self.getSourceDelegateCopyFiles = pvc
             if let index = self.index {
-                self.getSourceDelegate?.getSource(index: index)
+                self.getSourceDelegateCopyFiles?.getSource(index: index)
             }
         } else if let pvc = self.presenting as? ViewControllerSsh {
-            self.getSourceDelegate2 = pvc
+            self.getSourceDelegateSsh = pvc
             if let index = self.index {
-                self.getSourceDelegate2?.getSource(index: index)
+                self.getSourceDelegateSsh?.getSource(index: index)
             }
         } else if let pvc = self.presenting as? ViewControllerSnapshots {
-            self.getSourceDelegate3 = pvc
+            self.getSourceDelegateSnapshots = pvc
             if let index = self.index {
-                self.getSourceDelegate3?.getSource(index: index)
+                self.getSourceDelegateSnapshots?.getSource(index: index)
+            }
+        } else if let pvc = self.presenting as? ViewControllerEncrypt {
+            self.getSourceDelegateEncrypt = pvc
+            if let index = self.index {
+                self.getSourceDelegateEncrypt?.getSource(index: index)
             }
         }
-        if (self.presenting as? ViewControllerCopyFiles) != nil {
-            self.dismissview(viewcontroller: self, vcontroller: .vccopyfiles)
-        } else if (self.presenting as? ViewControllerSsh) != nil {
-            self.dismissview(viewcontroller: self, vcontroller: .vcssh)
-        } else if (self.presenting as? ViewControllerSnapshots) != nil {
-            self.dismissview(viewcontroller: self, vcontroller: .vcsnapshot)
-        }
+    }
+
+    @IBAction func close(_ sender: NSButton) {
+        self.dismissview()
+    }
+
+    @IBAction func select(_ sender: NSButton) {
+        self.select()
+        self.dismissview()
     }
 
     // Initial functions viewDidLoad and viewDidAppear
@@ -72,29 +82,8 @@ class ViewControllerCopyFilesSource: NSViewController, SetConfigurations, SetDis
     }
 
     @objc(tableViewDoubleClick:) func tableViewDoubleClick(sender: AnyObject) {
-        if let pvc = self.presenting as? ViewControllerCopyFiles {
-            self.getSourceDelegate = pvc
-            if let index = self.index {
-                self.getSourceDelegate?.getSource(index: index)
-            }
-        } else if let pvc = self.presenting as? ViewControllerSsh {
-            self.getSourceDelegate2 = pvc
-            if let index = self.index {
-                self.getSourceDelegate2?.getSource(index: index)
-            }
-        } else if let pvc = self.presenting as? ViewControllerSnapshots {
-            self.getSourceDelegate3 = pvc
-            if let index = self.index {
-                self.getSourceDelegate3?.getSource(index: index)
-            }
-        }
-        if (self.presenting as? ViewControllerCopyFiles) != nil {
-            self.dismissview(viewcontroller: self, vcontroller: .vccopyfiles)
-        } else if (self.presenting as? ViewControllerSsh) != nil {
-            self.dismissview(viewcontroller: self, vcontroller: .vcssh)
-        } else if (self.presenting as? ViewControllerSnapshots) != nil {
-            self.dismissview(viewcontroller: self, vcontroller: .vcsnapshot)
-        }
+        self.select()
+        self.dismissview()
     }
 
     // when row is selected, setting which table row is selected
@@ -120,25 +109,36 @@ class ViewControllerCopyFilesSource: NSViewController, SetConfigurations, SetDis
                 let hiddenID = object.value(forKey: "hiddenID") as? Int
                 guard hiddenID != nil else { return }
                 self.index = hiddenID!
+            } else if self.presenting as? ViewControllerEncrypt != nil {
+                let object = self.configurations!.getConfigurationsDataSourcecountBackupCombined()![index]
+                let hiddenID = object.value(forKey: "hiddenID") as? Int
+                guard hiddenID != nil else { return }
+                self.index = self.configurations!.getIndex(hiddenID!)
             }
         }
     }
 }
 
 extension ViewControllerCopyFilesSource: NSTableViewDataSource {
-    // Delegate for size of table
     func numberOfRows(in tableView: NSTableView) -> Int {
         guard self.configurations != nil else { return 0 }
-        return self.configurations!.getConfigurationsDataSourcecountBackupSnapshot()?.count ?? 0
+        if self.presenting as? ViewControllerEncrypt != nil {
+            return self.configurations!.getConfigurationsDataSourcecountBackupCombined()?.count ?? 0
+        } else {
+             return self.configurations!.getConfigurationsDataSourcecountBackupSnapshot()?.count ?? 0
+        }
     }
 }
 
 extension ViewControllerCopyFilesSource: NSTableViewDelegate {
-
-    // TableView delegates
     func tableView(_ tableView: NSTableView, objectValueFor tableColumn: NSTableColumn?, row: Int) -> Any? {
-        let object: NSDictionary = self.configurations!.getConfigurationsDataSourcecountBackupSnapshot()![row]
-        return object[tableColumn!.identifier] as? String
+        if self.presenting as? ViewControllerEncrypt != nil {
+            let object: NSDictionary = self.configurations!.getConfigurationsDataSourcecountBackupCombined()![row]
+            return object[tableColumn!.identifier] as? String
+        } else {
+            let object: NSDictionary = self.configurations!.getConfigurationsDataSourcecountBackupSnapshot()![row]
+            return object[tableColumn!.identifier] as? String
+        }
     }
 
 }

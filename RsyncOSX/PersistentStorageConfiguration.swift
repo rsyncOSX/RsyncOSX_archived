@@ -130,7 +130,6 @@ final class PersistentStorageConfiguration: Readwritefiles, SetConfigurations {
         if config.parameter14 != nil {
             dict.setObject(config.parameter14!, forKey: "parameter14" as NSCopying)
         }
-        // All Ints are set
         if config.rsyncdaemon != nil {
             dict.setObject(config.rsyncdaemon!, forKey: "rsyncdaemon" as NSCopying)
         }
@@ -139,6 +138,12 @@ final class PersistentStorageConfiguration: Readwritefiles, SetConfigurations {
         }
         if config.snapshotnum != nil {
             dict.setObject(config.snapshotnum!, forKey: "snapshotnum" as NSCopying)
+        }
+        if config.rclonehiddenID != nil {
+            dict.setObject(config.rclonehiddenID!, forKey: "rclonehiddenID" as NSCopying)
+        }
+        if config.rcloneprofile != nil {
+            dict.setObject(config.rcloneprofile!, forKey: "rcloneprofile" as NSCopying)
         }
         return dict
     }

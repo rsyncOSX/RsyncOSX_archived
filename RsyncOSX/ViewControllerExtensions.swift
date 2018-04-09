@@ -187,12 +187,13 @@ protocol DismissViewController: class {
     func dismiss_view(viewcontroller: NSViewController)
 }
 protocol SetDismisser {
-    weak var dismissDelegateMain: DismissViewController? {get}
-    weak var dismissDelegateSchedule: DismissViewController? {get}
-    weak var dismissDelegateCopyFiles: DismissViewController? {get}
-    weak var dismissDelegateNewConfigurations: DismissViewController? {get}
-    weak var dismissDelegateSsh: DismissViewController? {get}
-    weak var dimisssDelegateSnapshot: DismissViewController? {get}
+    var dismissDelegateMain: DismissViewController? {get}
+    var dismissDelegateSchedule: DismissViewController? {get}
+    var dismissDelegateCopyFiles: DismissViewController? {get}
+    var dismissDelegateNewConfigurations: DismissViewController? {get}
+    var dismissDelegateSsh: DismissViewController? {get}
+    var dimissDelegateSnapshot: DismissViewController? {get}
+    var dismissDelegateEncrypt: DismissViewController? {get}
     func dismissview(viewcontroller: NSViewController, vcontroller: ViewController)
 }
 
@@ -212,10 +213,13 @@ extension SetDismisser {
     weak var dismissDelegateSsh: DismissViewController? {
         return ViewControllerReference.shared.getvcref(viewcontroller: .vcssh) as? ViewControllerSsh
     }
-    weak var dimisssDelegateSnapshot: DismissViewController? {
+    weak var dimissDelegateSnapshot: DismissViewController? {
         return ViewControllerReference.shared.getvcref(viewcontroller: .vcsnapshot) as? ViewControllerSnapshots
     }
-
+    weak var dismissDelegateEncrypt: DismissViewController? {
+        return ViewControllerReference.shared.getvcref(viewcontroller: .vcencrypt) as? ViewControllerEncrypt
+    }
+    
     func dismissview(viewcontroller: NSViewController, vcontroller: ViewController) {
         if vcontroller == .vctabmain {
             self.dismissDelegateMain?.dismiss_view(viewcontroller: (self as? NSViewController)!)
@@ -228,7 +232,9 @@ extension SetDismisser {
         } else if vcontroller == .vcssh {
             self.dismissDelegateSsh?.dismiss_view(viewcontroller: (self as? NSViewController)!)
         } else if vcontroller == .vcsnapshot {
-            self.dimisssDelegateSnapshot?.dismiss_view(viewcontroller: (self as? NSViewController)!)
+            self.dimissDelegateSnapshot?.dismiss_view(viewcontroller: (self as? NSViewController)!)
+        } else if vcontroller == .vcencrypt {
+            self.dismissDelegateEncrypt?.dismiss_view(viewcontroller: (self as? NSViewController)!)
         }
     }
 }
@@ -239,8 +245,8 @@ protocol DeselectRowTable: class {
 }
 
 protocol Deselect {
-    weak var deselectDelegateMain: DeselectRowTable? {get}
-    weak var deselectDelegateSchedule: DeselectRowTable? {get}
+    var deselectDelegateMain: DeselectRowTable? {get}
+    var deselectDelegateSchedule: DeselectRowTable? {get}
     func deselectrowtable(vcontroller: ViewController)
 }
 
@@ -264,8 +270,8 @@ extension Deselect {
 // Protocol for sending selected index in tableView
 // The protocol is implemented in ViewControllertabMain
 protocol GetIndex: class {
-    weak var getindexDelegateMain: GetSelecetedIndex? { get }
-    weak var getindexDelegateSnapshot: GetSelecetedIndex? { get }
+    var getindexDelegateMain: GetSelecetedIndex? { get }
+    var getindexDelegateSnapshot: GetSelecetedIndex? { get }
 }
 
 extension GetIndex {
@@ -331,7 +337,7 @@ protocol AbortOperations: class {
 }
 
 protocol AbortTask {
-    weak var abortDelegate: AbortOperations? { get }
+    var abortDelegate: AbortOperations? { get }
     func abort()
 }
 
@@ -350,8 +356,8 @@ protocol Information: class {
 }
 
 protocol GetInformation {
-    weak var informationDelegateMain: Information? {get}
-    weak var informationDelegateCopyFiles: Information? {get}
+    var informationDelegateMain: Information? {get}
+    var informationDelegateCopyFiles: Information? {get}
 }
 
 extension GetInformation {
@@ -377,7 +383,7 @@ protocol RsyncChanged: class {
 }
 
 protocol NewRsync {
-    weak var newRsyncDelegate: RsyncChanged? {get}
+    var newRsyncDelegate: RsyncChanged? {get}
 }
 
 extension NewRsync {

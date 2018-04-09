@@ -24,7 +24,7 @@ protocol GetConfigurationsObject: class {
 }
 
 protocol SetConfigurations {
-    weak var configurationsDelegate: GetConfigurationsObject? { get }
+    var configurationsDelegate: GetConfigurationsObject? { get }
     var configurations: Configurations? { get }
 }
 
@@ -43,11 +43,11 @@ protocol Reloadandrefresh: class {
 }
 
 protocol ReloadTable {
-    weak var reloadDelegateMain: Reloadandrefresh? { get }
-    weak var reloadDelegateSchedule: Reloadandrefresh? { get }
-    weak var reloadDelegateBatch: Reloadandrefresh? { get }
-    weak var reloadDelegateLoggData: Reloadandrefresh? { get }
-    weak var reloadDelegateSnapshot: Reloadandrefresh? { get }
+    var reloadDelegateMain: Reloadandrefresh? { get }
+    var reloadDelegateSchedule: Reloadandrefresh? { get }
+    var reloadDelegateBatch: Reloadandrefresh? { get }
+    var reloadDelegateLoggData: Reloadandrefresh? { get }
+    var reloadDelegateSnapshot: Reloadandrefresh? { get }
     func reloadtable(vcontroller: ViewController)
 }
 
@@ -200,6 +200,30 @@ class Configurations: ReloadTable, SetSchedules {
 
     func getConfigurationsDataSourcecountBackupSnapshot() -> [NSDictionary]? {
         var configurations: [Configuration] = self.configurations!.filter({return ($0.task == "backup" || $0.task == "snapshot" )})
+        var data = [NSDictionary]()
+        for i in 0 ..< configurations.count {
+            if configurations[i].offsiteServer.isEmpty == true {
+                configurations[i].offsiteServer = "localhost"
+            }
+            let row: NSDictionary = [
+                "taskCellID": configurations[i].task,
+                "hiddenID": configurations[i].hiddenID,
+                "localCatalogCellID": configurations[i].localCatalog,
+                "offsiteCatalogCellID": configurations[i].offsiteCatalog,
+                "offsiteServerCellID": configurations[i].offsiteServer,
+                "backupIDCellID": configurations[i].backupID,
+                "runDateCellID": configurations[i].dateRun!,
+                "daysID": configurations[i].dayssincelastbackup ?? "",
+                "markdays": configurations[i].markdays,
+                "selectCellID": 0
+            ]
+            data.append(row)
+        }
+        return data
+    }
+
+    func getConfigurationsDataSourcecountBackupCombined() -> [NSDictionary]? {
+        var configurations: [Configuration] = self.configurations!.filter({return ($0.task == "backup" || $0.task == "combined" )})
         var data = [NSDictionary]()
         for i in 0 ..< configurations.count {
             if configurations[i].offsiteServer.isEmpty == true {
@@ -405,6 +429,21 @@ class Configurations: ReloadTable, SetSchedules {
         } else {
             self.configurations![index].parameter3 = "--compress"
         }
+    }
+    
+    func setrcloneconnection(index: Int, rclonehiddenID:Int, rcloneprofile: String?){
+        guard self.configurations![index].task == "backup" ||  self.configurations![index].task == "combined" else { return }
+        self.configurations![index].rclonehiddenID = rclonehiddenID
+        self.configurations![index].rcloneprofile = rcloneprofile
+        self.configurations![index].task = "combined"
+        self.storageapi!.saveConfigFromMemory()
+    }
+    
+    func deletercloneconnection(index: Int){
+        self.configurations![index].rclonehiddenID = nil
+        self.configurations![index].rcloneprofile = nil
+        self.configurations![index].task = "backup"
+        self.storageapi!.saveConfigFromMemory()
     }
 
     private func increasesnapshotnum(index: Int) {

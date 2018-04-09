@@ -143,7 +143,7 @@ final class RsyncParametersProcess {
         self.setParameters1To6(config, dryRun: dryRun, forDisplay: forDisplay)
         self.setParameters8To14(config, dryRun: dryRun, forDisplay: forDisplay)
         switch config.task {
-        case "backup":
+        case "backup", "combined":
             self.argumentsforbackup(dryRun: dryRun, forDisplay: forDisplay)
         case "snapshot":
             self.remoteargssnapshot(config)
