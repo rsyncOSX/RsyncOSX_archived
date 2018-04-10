@@ -9,11 +9,11 @@
 import Foundation
 struct RcloneArgumentsOneConfiguration {
 
-    var config: ConfigurationRclone?
+    var config: RcloneConfiguration?
     var arg: [String]?
     var argdryRun: [String]?
 
-    init(config: ConfigurationRclone) {
+    init(config: RcloneConfiguration) {
         self.config = config
         self.arg = RcloneRsyncProcessArguments().argumentsRsync(config, dryRun: false)
         self.argdryRun = RcloneRsyncProcessArguments().argumentsRsync(config, dryRun: true)

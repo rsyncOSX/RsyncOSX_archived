@@ -8,11 +8,11 @@
 
 import Foundation
 
-class ConfigurationsRclone {
+class RcloneConfigurations {
 
     var storageapi: RclonePersistentStorageAPI?
     private var profile: String?
-    private var configurations: [ConfigurationRclone]?
+    private var configurations: [RcloneConfiguration]?
     private var argumentAllConfigurations: [RcloneArgumentsOneConfiguration]?
     private var configurationsDataSource: [NSMutableDictionary]?
 
@@ -74,14 +74,14 @@ class ConfigurationsRclone {
         }
     }
 
-    func getConfigurations() -> [ConfigurationRclone] {
+    func getConfigurations() -> [RcloneConfiguration] {
         return self.configurations ?? []
     }
 
     private func readconfigurations() {
-        self.configurations = [ConfigurationRclone]()
+        self.configurations = [RcloneConfiguration]()
         self.argumentAllConfigurations = [RcloneArgumentsOneConfiguration]()
-        var store: [ConfigurationRclone]? = self.storageapi!.getConfigurations()
+        var store: [RcloneConfiguration]? = self.storageapi!.getConfigurations()
         guard store != nil else { return }
         for i in 0 ..< store!.count {
             self.configurations!.append(store![i])
