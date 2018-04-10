@@ -5941,7 +5941,7 @@ DQ
                                     </objectValues>
                                 </comboBoxCell>
                                 <connections>
-                                    <action selector="selectprofile:" target="Mlk-V8-rVE" id="jjP-3a-ueH"/>
+                                    <action selector="selectprofile:" target="Mlk-V8-rVE" id="Tqa-Ta-dI0"/>
                                 </connections>
                             </comboBox>
                             <textField verticalHuggingPriority="750" fixedFrame="YES" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="DRR-F1-iKM">
@@ -6073,7 +6073,7 @@ DQ
                                                 <font key="font" metaFont="system"/>
                                             </buttonCell>
                                             <connections>
-                                                <action selector="getconfig:" target="Mlk-V8-rVE" id="1wR-Sa-h8T"/>
+                                                <action selector="getconfig:" target="Mlk-V8-rVE" id="qo9-3t-MnG"/>
                                             </connections>
                                         </button>
                                     </subviews>
@@ -6192,18 +6192,18 @@ DQ
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
                                 <connections>
-                                    <action selector="connect:" target="Mlk-V8-rVE" id="coF-eu-eRJ"/>
+                                    <action selector="connect:" target="Mlk-V8-rVE" id="LIE-KR-ajo"/>
                                 </connections>
                             </button>
                             <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="9f4-Pr-NEt">
-                                <rect key="frame" x="507" y="225" width="80" height="32"/>
+                                <rect key="frame" x="510" y="225" width="75" height="32"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <buttonCell key="cell" type="push" title="Delete" bezelStyle="rounded" alignment="center" enabled="NO" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="C79-QW-Wwe">
+                                <buttonCell key="cell" type="push" title="Reset" bezelStyle="rounded" alignment="center" enabled="NO" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="C79-QW-Wwe">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
                                 <connections>
-                                    <action selector="delete:" target="Mlk-V8-rVE" id="hfe-Va-I4W"/>
+                                    <action selector="reset:" target="Mlk-V8-rVE" id="hfe-Va-I4W"/>
                                 </connections>
                             </button>
                             <box fixedFrame="YES" title="Actions" translatesAutoresizingMaskIntoConstraints="NO" id="cKd-C9-yCK">
@@ -6267,12 +6267,23 @@ DQ
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
+                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="YSB-CT-jat">
+                                <rect key="frame" x="610" y="230" width="218" height="18"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <buttonCell key="cell" type="check" title="Force reset" bezelStyle="regularSquare" imagePosition="left" inset="2" id="oeQ-dU-mHB">
+                                    <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="forcereset:" target="Mlk-V8-rVE" id="M1C-dL-iF7"/>
+                                </connections>
+                            </button>
                         </subviews>
                     </view>
                     <connections>
                         <outlet property="backupID" destination="gYQ-RJ-rfT" id="EIo-p9-eO0"/>
                         <outlet property="connectbutton" destination="gF4-Qw-h7z" id="0gX-Ru-C2L"/>
-                        <outlet property="deletebutton" destination="9f4-Pr-NEt" id="tKU-mW-iWM"/>
+                        <outlet property="forceresetbutton" destination="YSB-CT-jat" id="iF2-PM-hI9"/>
                         <outlet property="localCatalog" destination="DRR-F1-iKM" id="7zE-eR-5od"/>
                         <outlet property="mainTableView" destination="RUl-eQ-A2I" id="PAx-LJ-hHB"/>
                         <outlet property="offsiteCatalog" destination="wES-SP-MCG" id="l8r-cV-aGd"/>
@@ -6281,6 +6292,7 @@ DQ
                         <outlet property="profilescombobox" destination="rln-uj-KsQ" id="Uzd-xf-lGm"/>
                         <outlet property="rcloneID" destination="FJk-9x-I6T" id="AgS-7X-ban"/>
                         <outlet property="rcloneremotecatalog" destination="2qy-gg-Be2" id="kOP-gf-f3e"/>
+                        <outlet property="resetbutton" destination="9f4-Pr-NEt" id="tKU-mW-iWM"/>
                     </connections>
                 </viewController>
                 <customObject id="zBX-Zs-NkY" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
