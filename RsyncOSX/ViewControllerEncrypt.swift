@@ -113,7 +113,14 @@ class ViewControllerEncrypt: NSViewController, GetIndex, SetConfigurations, VcCo
     }
 
     private func getconfig() {
-        guard self.index != nil else { return }
+        guard self.index != nil else {
+            self.localCatalog.stringValue = ""
+            self.offsiteCatalog.stringValue = ""
+            self.offsiteUsername.stringValue = ""
+            self.offsiteServer.stringValue = ""
+            self.backupID.stringValue = ""
+            return
+        }
         let config: Configuration = self.configurations!.getConfigurations()[self.index!]
         guard config.task == "backup" || config.task == "combined" else { return }
         self.localCatalog.stringValue = config.localCatalog
