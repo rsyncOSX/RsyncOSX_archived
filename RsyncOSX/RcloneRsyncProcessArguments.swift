@@ -18,13 +18,13 @@ class RcloneRsyncProcessArguments {
     var remoteargs: String?
 
     // Brute force, check every parameter, not special elegant, but it works
-    private func rclonecommand(_ config: ConfigurationRclone) {
+    private func rclonecommand(_ config: RcloneConfiguration) {
         if config.parameter1 != nil {
             self.appendParameter(parameter: config.parameter1!)
         }
     }
 
-    private func setParameters2To14(_ config: ConfigurationRclone) {
+    private func setParameters2To14(_ config: RcloneConfiguration) {
         if config.parameter2 != nil {
             self.appendParameter(parameter: config.parameter2!)
         }
@@ -63,7 +63,7 @@ class RcloneRsyncProcessArguments {
         }
     }
 
-    private func dryrunparameter(_ config: ConfigurationRclone) {
+    private func dryrunparameter(_ config: RcloneConfiguration) {
         let dryrun: String = config.dryrun
         self.arguments!.append(dryrun)
     }
@@ -74,7 +74,7 @@ class RcloneRsyncProcessArguments {
         }
     }
 
-    func argumentsRsync(_ config: ConfigurationRclone, dryRun: Bool) -> [String] {
+    func argumentsRsync(_ config: RcloneConfiguration, dryRun: Bool) -> [String] {
         self.localCatalog = config.localCatalog
         self.offsiteCatalog = config.offsiteCatalog
         self.offsiteServer = config.offsiteServer

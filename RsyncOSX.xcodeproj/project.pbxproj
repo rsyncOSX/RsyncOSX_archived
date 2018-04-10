@@ -90,8 +90,8 @@
 		E97C09A71EFAFBC400E86999 /* BatchTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = E97C09A61EFAFBC400E86999 /* BatchTask.swift */; };
 		E97E3BA71F6256DB00411D0E /* Configurations.swift in Sources */ = {isa = PBXBuildFile; fileRef = E97E3BA61F6256DB00411D0E /* Configurations.swift */; };
 		E989CE961EF948D0000CB7C2 /* ChmodPubKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = E989CE951EF948D0000CB7C2 /* ChmodPubKey.swift */; };
-		E98FA897206544F9007F3ED1 /* ConfigurationsRclone.swift in Sources */ = {isa = PBXBuildFile; fileRef = E98FA896206544F9007F3ED1 /* ConfigurationsRclone.swift */; };
-		E98FA8992065464B007F3ED1 /* ConfigurationRclone.swift in Sources */ = {isa = PBXBuildFile; fileRef = E98FA8982065464B007F3ED1 /* ConfigurationRclone.swift */; };
+		E98FA897206544F9007F3ED1 /* RcloneConfigurations.swift in Sources */ = {isa = PBXBuildFile; fileRef = E98FA896206544F9007F3ED1 /* RcloneConfigurations.swift */; };
+		E98FA8992065464B007F3ED1 /* RcloneConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = E98FA8982065464B007F3ED1 /* RcloneConfiguration.swift */; };
 		E98FA89E20654D02007F3ED1 /* RclonePersistentStorageAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = E98FA89A20654D01007F3ED1 /* RclonePersistentStorageAPI.swift */; };
 		E98FA8A020654D02007F3ED1 /* RclonePersistentStorageUserconfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = E98FA89C20654D02007F3ED1 /* RclonePersistentStorageUserconfiguration.swift */; };
 		E98FA8A120654D02007F3ED1 /* RclonePersistentStorageConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = E98FA89D20654D02007F3ED1 /* RclonePersistentStorageConfiguration.swift */; };
@@ -213,8 +213,8 @@
 		E97C09A61EFAFBC400E86999 /* BatchTask.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BatchTask.swift; sourceTree = "<group>"; };
 		E97E3BA61F6256DB00411D0E /* Configurations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Configurations.swift; sourceTree = "<group>"; };
 		E989CE951EF948D0000CB7C2 /* ChmodPubKey.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChmodPubKey.swift; sourceTree = "<group>"; };
-		E98FA896206544F9007F3ED1 /* ConfigurationsRclone.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigurationsRclone.swift; sourceTree = "<group>"; };
-		E98FA8982065464B007F3ED1 /* ConfigurationRclone.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigurationRclone.swift; sourceTree = "<group>"; };
+		E98FA896206544F9007F3ED1 /* RcloneConfigurations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RcloneConfigurations.swift; sourceTree = "<group>"; };
+		E98FA8982065464B007F3ED1 /* RcloneConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RcloneConfiguration.swift; sourceTree = "<group>"; };
 		E98FA89A20654D01007F3ED1 /* RclonePersistentStorageAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RclonePersistentStorageAPI.swift; sourceTree = "<group>"; };
 		E98FA89C20654D02007F3ED1 /* RclonePersistentStorageUserconfiguration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RclonePersistentStorageUserconfiguration.swift; sourceTree = "<group>"; };
 		E98FA89D20654D02007F3ED1 /* RclonePersistentStorageConfiguration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RclonePersistentStorageConfiguration.swift; sourceTree = "<group>"; };
@@ -555,8 +555,8 @@
 				E98FA89A20654D01007F3ED1 /* RclonePersistentStorageAPI.swift */,
 				E98FA89D20654D02007F3ED1 /* RclonePersistentStorageConfiguration.swift */,
 				E98FA89C20654D02007F3ED1 /* RclonePersistentStorageUserconfiguration.swift */,
-				E98FA896206544F9007F3ED1 /* ConfigurationsRclone.swift */,
-				E98FA8982065464B007F3ED1 /* ConfigurationRclone.swift */,
+				E98FA896206544F9007F3ED1 /* RcloneConfigurations.swift */,
+				E98FA8982065464B007F3ED1 /* RcloneConfiguration.swift */,
 				E965E3062065658200EC4747 /* RcloneReference.swift */,
 				E965E3082065670B00EC4747 /* RcloneArgumentsOneConfiguration.swift */,
 				E965E30A206567AC00EC4747 /* RcloneRsyncProcessArguments.swift */,
@@ -750,7 +750,7 @@
 				E9E70A3C1FF3BCB30099554D /* RsyncVersionString.swift in Sources */,
 				E98FA8A320654ECF007F3ED1 /* RcloneReadwritefiles.swift in Sources */,
 				E9E88FD01EB25A080028432F /* ScpArgumentsSsh.swift in Sources */,
-				E98FA897206544F9007F3ED1 /* ConfigurationsRclone.swift in Sources */,
+				E98FA897206544F9007F3ED1 /* RcloneConfigurations.swift in Sources */,
 				A03876E11DB4FD9D00C14AEA /* ViewControllerProfile.swift in Sources */,
 				E932B2D52077B1E80057B8AE /* Combined.swift in Sources */,
 				A0400C871D794FF8008A3949 /* Checkfornewversion.swift in Sources */,
@@ -813,7 +813,7 @@
 				A0B3D9741D758E20001E190E /* ViewControllerUserconfiguration.swift in Sources */,
 				E9CF14161E729636008E8A15 /* CommandCopyFiles.swift in Sources */,
 				A0FAF5CF1DDF2E5F0009FE7A /* ViewControllerAbout.swift in Sources */,
-				E98FA8992065464B007F3ED1 /* ConfigurationRclone.swift in Sources */,
+				E98FA8992065464B007F3ED1 /* RcloneConfiguration.swift in Sources */,
 				E905EDB41FED05B10044234E /* QuickBackup.swift in Sources */,
 				A017E2A01D7D3242003016F5 /* ViewControllerEdit.swift in Sources */,
 				E9E63E44200EA6C300CBD1A0 /* SnapshotCurrentArguments.swift in Sources */,

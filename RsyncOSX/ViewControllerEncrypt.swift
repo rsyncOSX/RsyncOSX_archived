@@ -16,7 +16,7 @@ class ViewControllerEncrypt: NSViewController, GetIndex, SetConfigurations, VcCo
     private var rcloneprofile: RcloneProfiles?
     private var rcloneprofilename: String?
     private var profilenamearray: [String]?
-    var configurationsrclone: ConfigurationsRclone?
+    var configurationsrclone: RcloneConfigurations?
     var rcloneindex: Int?
     var index: Int?
     var hiddenID: Int?
@@ -57,7 +57,7 @@ class ViewControllerEncrypt: NSViewController, GetIndex, SetConfigurations, VcCo
         guard self.profilescombobox.indexOfSelectedItem > -1 else { return}
         self.rcloneprofilename = self.profilenamearray?[self.profilescombobox.indexOfSelectedItem]
         if self.rcloneprofilename == "Default" { self.rcloneprofilename = nil }
-        self.configurationsrclone = ConfigurationsRclone(profile: self.rcloneprofilename)
+        self.configurationsrclone = RcloneConfigurations(profile: self.rcloneprofilename)
         self.connectbutton.isEnabled = false
         self.deletebutton.isEnabled = false
         self.updateview()
@@ -203,6 +203,9 @@ extension ViewControllerEncrypt: DismissViewController {
     // Protocol DismissViewController
     func dismiss_view(viewcontroller: NSViewController) {
         self.dismissViewController(viewcontroller)
+        globalMainQueue.async(execute: { () -> Void in
+            self.mainTableView.reloadData()
+        })
     }
 }
 

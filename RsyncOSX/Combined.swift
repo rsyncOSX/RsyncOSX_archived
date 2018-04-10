@@ -15,13 +15,13 @@ protocol Norcloneconfig: class {
 
 class Combined: SetConfigurations {
 
-    var configurationsrclone: ConfigurationsRclone?
+    var configurationsrclone: RcloneConfigurations?
     var arguments: [String]?
     var command: String?
     var execute: Bool = false
 
     init(profile: String?, index: Int) {
-        self.configurationsrclone = ConfigurationsRclone(profile: profile)
+        self.configurationsrclone = RcloneConfigurations(profile: profile)
         if let rclonehiddenID = self.configurations?.getConfigurations()[index].rclonehiddenID {
             if let rcloneindex = self.configurationsrclone?.getIndex(rclonehiddenID) {
                 if rcloneindex >= 0 {

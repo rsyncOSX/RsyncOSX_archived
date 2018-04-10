@@ -9,7 +9,7 @@
 
 import Foundation
 
-struct ConfigurationRclone {
+struct RcloneConfiguration {
     var hiddenID: Int
     var task: String
     var localCatalog: String
