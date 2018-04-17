@@ -25,7 +25,7 @@ protocol UpdateProgress: class {
     func fileHandler()
 }
 
-class ViewControllertabMain: NSViewController, ReloadTable, Deselect, Coloractivetask, VcMain, Delay {
+class ViewControllertabMain: NSViewController, ReloadTable, Deselect, Coloractivetask, VcMain, Delay, Fileerrormessage {
 
     // Configurations object
     var configurations: Configurations?
@@ -949,14 +949,14 @@ extension ViewControllertabMain: RsyncError {
 
 // If, for any reason, handling files or directory throws an error
 extension ViewControllertabMain: Fileerror {
-    func fileerror(errorstr: String, errortype: Fileerrortype ) {
+    func errormessage(errorstr: String, errortype: Fileerrortype ) {
         globalMainQueue.async(execute: { () -> Void in
             if errortype == .openlogfile {
-                self.rsyncCommand.stringValue = Filerrors(errortype: errortype).errordescription()
+                self.rsyncCommand.stringValue = self.errordescription(errortype: errortype)
             } else {
                 self.setInfo(info: "Error", color: .red)
                 self.showProcessInfo(info: .error)
-                self.rsyncCommand.stringValue = Filerrors(errortype: errortype).errordescription() + "\n" + errorstr
+                self.rsyncCommand.stringValue = self.errordescription(errortype: errortype) + "\n" + errorstr
             }
         })
     }
