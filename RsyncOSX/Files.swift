@@ -14,6 +14,54 @@ enum Root {
     case sshRoot
 }
 
+enum Fileerrortype {
+    case openlogfile
+    case writelogfile
+    case profilecreatedirectory
+    case profiledeletedirectory
+}
+
+// Protocol for reporting file errors
+protocol Fileerror: class {
+    func errormessage(errorstr: String, errortype: Fileerrortype)
+}
+
+protocol Reportfileerror {
+    var errorDelegate: Fileerror? { get }
+}
+
+extension Reportfileerror {
+    weak var errorDelegate: Fileerror? {
+        return ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllertabMain
+    }
+
+    func error(error: String, errortype: Fileerrortype) {
+        self.errorDelegate?.errormessage(errorstr: error, errortype: errortype)
+    }
+}
+
+protocol Fileerrormessage {
+    func errordescription(errortype: Fileerrortype) -> String
+}
+
+extension Fileerrormessage {
+    func errordescription(errortype: Fileerrortype) -> String {
+        switch errortype {
+        case .openlogfile:
+            guard ViewControllerReference.shared.fileURL != nil else {
+                return "No existing logfile, creating a new one"
+            }
+            return "No existing logfile, creating a new one: " + String(describing: ViewControllerReference.shared.fileURL!)
+        case .writelogfile:
+            return "Could not write to logfile"
+        case .profilecreatedirectory:
+            return "Could not create profile directory"
+        case .profiledeletedirectory:
+            return "Could not delete profile directory"
+        }
+    }
+}
+
 class Files: Reportfileerror {
 
     var root: Root?
@@ -149,5 +197,4 @@ class Files: Reportfileerror {
         self.root = root
         self.setrootpath()
     }
-
 }
