@@ -141,8 +141,11 @@ extension ViewControllerScheduleDetails: NSTableViewDelegate, Attributedestring 
                    return object[tableColumn!.identifier] as? Int
             } else {
                 if active {
-                    let text = object[tableColumn!.identifier] as? String
-                    return self.attributedstring(str: text!, color: NSColor.red, align: .left)
+                    if tableColumn!.identifier.rawValue == "active" {
+                        return #imageLiteral(resourceName: "complete")
+                    } else {
+                        return object[tableColumn!.identifier] as? String
+                    }
                 } else {
                     return object[tableColumn!.identifier] as? String
                 }
