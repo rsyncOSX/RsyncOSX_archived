@@ -5,7 +5,7 @@
 //  Created by Thomas Evensen on 06/09/2016.
 //  Copyright © 2016 Thomas Evensen. All rights reserved.
 //
-//  swiftlint:disable line_length
+//  swiftlint:disable line_length cyclomatic_complexity
 
 import Foundation
 import Cocoa
@@ -141,10 +141,27 @@ extension ViewControllerScheduleDetails: NSTableViewDelegate, Attributedestring 
                    return object[tableColumn!.identifier] as? Int
             } else {
                 if active {
-                    let text = object[tableColumn!.identifier] as? String
-                    return self.attributedstring(str: text!, color: NSColor.red, align: .left)
+                    if tableColumn!.identifier.rawValue == "active" {
+                        return #imageLiteral(resourceName: "complete")
+                    } else {
+                        return object[tableColumn!.identifier] as? String
+                    }
                 } else {
-                    return object[tableColumn!.identifier] as? String
+                    if tableColumn!.identifier.rawValue == "dateStart" {
+                        if object[tableColumn!.identifier] as? String == "01 Jan 1900 00:00" {
+                            return "no startdate"
+                        } else {
+                            return object[tableColumn!.identifier] as? String
+                        }
+                    } else if tableColumn!.identifier.rawValue == "dateStop" {
+                        if object[tableColumn!.identifier] as? String == "01 Jan 2100 00:00" {
+                            return "no stopdate"
+                        } else {
+                            return object[tableColumn!.identifier] as? String
+                        }
+                    } else {
+                        return object[tableColumn!.identifier] as? String
+                    }
                 }
             }
         }

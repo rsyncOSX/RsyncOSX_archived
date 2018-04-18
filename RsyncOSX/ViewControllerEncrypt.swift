@@ -203,7 +203,7 @@ extension ViewControllerEncrypt: NSTableViewDataSource {
     }
 }
 
-extension ViewControllerEncrypt: NSTableViewDelegate, Attributedestring {
+extension ViewControllerEncrypt: NSTableViewDelegate {
     func tableView(_ tableView: NSTableView, objectValueFor tableColumn: NSTableColumn?, row: Int) -> Any? {
         if row > self.configurationsrclone!.configurationsDataSourcecount() - 1 { return nil }
         let object: NSDictionary = self.configurationsrclone!.getConfigurationsDataSource()![row]
@@ -211,7 +211,9 @@ extension ViewControllerEncrypt: NSTableViewDelegate, Attributedestring {
         if self.index != nil {
             guard self.index! < self.configurations!.getConfigurations().count else { return nil }
             if self.configurationsrclone!.getConfigurations()[row].hiddenID == self.configurations?.getConfigurations() [self.index!].rclonehiddenID && self.rcloneprofilename == self.configurations?.getConfigurations() [self.index!].rcloneprofile {
-                return self.attributedstring(str: text!, color: NSColor.red, align: .left)
+                if tableColumn!.identifier.rawValue == "connected" {
+                     return #imageLiteral(resourceName: "complete")
+                }
             }
         }
         return text

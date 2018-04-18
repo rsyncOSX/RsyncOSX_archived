@@ -45,9 +45,7 @@ class ProcessCmd: Delay {
     func executeProcess (outputprocess: OutputProcess?) {
         // Process
         let task = Process()
-        // Setting the correct path for rsync
-        // If self.command != nil other command than rsync to be executed
-        // Other commands are either ssh or scp (from CopyFiles)
+        // If self.command != nil either alternativ path for rsync or other command than rsync to be executed
         if let command = self.command {
             task.launchPath = command
         } else {
