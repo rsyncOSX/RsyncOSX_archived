@@ -324,7 +324,7 @@ class ViewControllertabMain: NSViewController, ReloadTable, Deselect, Coloractiv
         ViewControllerReference.shared.scheduledTask = task
         _ = OperationFactory()
     }
-    
+
     private func automaticbackup() {
         self.processtermination = .automaticbackup
         self.remoteinfotask = RemoteInfoTaskWorkQueue()
@@ -875,7 +875,14 @@ extension ViewControllertabMain: UpdateProgress {
             self.executetasknow()
         case .automaticbackup:
             guard self.remoteinfotask != nil else { return }
-            self.remoteinfotask?.processTermination()
+            // compute alle estimates
+            if self.remoteinfotask!.stackoftasktobeestimated != nil {
+                self.remoteinfotask?.processTermination()
+            } else {
+                self.remoteinfotask?.processTermination()
+                self.remoteinfotask?.selectalltaskswithnumbers(automatic: true)
+                self.openquickbackup()
+            }
         }
     }
 

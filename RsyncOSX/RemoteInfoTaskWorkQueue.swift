@@ -100,7 +100,7 @@ class RemoteInfoTaskWorkQueue: SetConfigurations {
         self.records = sorted
     }
 
-    func selectalltaskswithfilestobackup() {
+    func selectalltaskswithnumbers(automatic: Bool) {
         guard self.records != nil else { return }
         for i in 0 ..< self.records!.count {
             let number = (self.records![i].value(forKey: "transferredNumber") as? String) ?? "0"
@@ -108,6 +108,14 @@ class RemoteInfoTaskWorkQueue: SetConfigurations {
                 self.records![i].setValue(1, forKey: "backup")
             }
         }
+        if automatic {
+            guard self.records != nil else { return }
+            self.setbackuplist(list: self.records!)
+        }
+    }
+
+    func selectalltaskswithfilestobackup() {
+        self.selectalltaskswithnumbers(automatic: false)
         self.reloadtableDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vcremoteinfo) as? ViewControllerRemoteInfo
         self.enablebackupbuttonDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vcremoteinfo) as? ViewControllerRemoteInfo
         self.reloadtableDelegate?.reloadtabledata()
