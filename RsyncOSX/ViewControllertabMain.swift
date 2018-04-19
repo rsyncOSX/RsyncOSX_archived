@@ -6,7 +6,7 @@
 //  Created by Thomas Evensen on 19/08/2016.
 //  Copyright © 2016 Thomas Evensen. All rights reserved.
 //
-//  swiftlint:disable file_length type_body_length cyclomatic_complexity line_length
+//  swiftlint:disable file_length type_body_length cyclomatic_complexity line_length function_body_length
 
 import Foundation
 import Cocoa
@@ -323,6 +323,11 @@ class ViewControllertabMain: NSViewController, ReloadTable, Deselect, Coloractiv
             "schedule": "manuel"]
         ViewControllerReference.shared.scheduledTask = task
         _ = OperationFactory()
+    }
+    
+    private func automaticbackup() {
+        self.processtermination = .automaticbackup
+        self.remoteinfotask = RemoteInfoTaskWorkQueue()
     }
 
     // Function for display rsync command
@@ -868,6 +873,9 @@ extension ViewControllertabMain: UpdateProgress {
         case .combinedtask:
             self.working.stopAnimation(nil)
             self.executetasknow()
+        case .automaticbackup:
+            guard self.remoteinfotask != nil else { return }
+            self.remoteinfotask?.processTermination()
         }
     }
 
@@ -908,6 +916,8 @@ extension ViewControllertabMain: UpdateProgress {
         case .infosingletask:
             return
         case .combinedtask:
+            return
+        case .automaticbackup:
             return
         }
     }
