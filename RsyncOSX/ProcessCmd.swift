@@ -21,6 +21,7 @@ enum ProcessTermination {
     case remoteinfotask
     case infosingletask
     case combinedtask
+    case automaticbackup
 }
 
 class ProcessCmd: Delay {
