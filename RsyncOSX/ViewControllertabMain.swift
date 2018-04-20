@@ -880,7 +880,8 @@ extension ViewControllertabMain: UpdateProgress {
                 self.remoteinfotask?.processTermination()
             } else {
                 self.remoteinfotask?.processTermination()
-                self.remoteinfotask?.selectalltaskswithnumbers(automatic: true)
+                self.remoteinfotask?.selectalltaskswithnumbers()
+                self.remoteinfotask?.setbackuplist()
                 self.openquickbackup()
             }
         }
