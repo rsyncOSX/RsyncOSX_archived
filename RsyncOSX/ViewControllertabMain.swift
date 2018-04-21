@@ -1007,6 +1007,10 @@ extension ViewControllertabMain: AbortOperations {
     func abortOperations() {
         // Terminates the running process
         self.showProcessInfo(info: .abort)
+        if self.remoteinfotaskworkqueue != nil {
+            self.estimateupdateDelegate?.dismissview()
+            self.remoteinfotaskworkqueue = nil
+        }
         if let process = self.process {
             process.terminate()
             self.index = nil
