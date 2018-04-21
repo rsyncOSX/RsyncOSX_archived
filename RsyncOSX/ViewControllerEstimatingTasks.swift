@@ -1,20 +1,15 @@
 //
-//  ViewControllerProgressProcess.swift
-//  RsyncOSXver30
+//  ViewControllerEstimatingTasks.swift
+//  RsyncOSX
 //
-//  Created by Thomas Evensen on 24/08/2016.
-//  Copyright © 2016 Thomas Evensen. All rights reserved.
+//  Created by Thomas Evensen on 21.04.2018.
+//  Copyright © 2018 Thomas Evensen. All rights reserved.
 //
 
+import Foundation
 import Cocoa
 
-// Protocol for progress indicator
-protocol Count: class {
-    func maxCount() -> Int
-    func inprogressCount() -> Int
-}
-
-class ViewControllerProgressProcess: NSViewController, SetConfigurations, SetDismisser, AbortTask {
+class ViewControllerEstimatingTasks: NSViewController, SetConfigurations, SetDismisser, AbortTask {
 
     var count: Double = 0
     var maxcount: Double = 0
@@ -33,8 +28,9 @@ class ViewControllerProgressProcess: NSViewController, SetConfigurations, SetDis
 
     override func viewDidAppear() {
         super.viewDidAppear()
-        ViewControllerReference.shared.setvcref(viewcontroller: .vcprogressview, nsviewcontroller: self)
-        if let pvc = self.configurations!.singleTask {
+        ViewControllerReference.shared.setvcref(viewcontroller: .vcestimatingtasks, nsviewcontroller: self)
+        let vc = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllertabMain
+        if let pvc = vc!.remoteinfotaskworkqueue {
             self.countDelegate = pvc
         }
         self.calculatedNumberOfFiles = self.countDelegate?.maxCount()
@@ -63,20 +59,6 @@ class ViewControllerProgressProcess: NSViewController, SetConfigurations, SetDis
 
     private func updateProgressbar(_ value: Double) {
         self.progress.doubleValue = value
-    }
-
-}
-
-extension ViewControllerProgressProcess: UpdateProgress {
-
-    func processTermination() {
-        self.stopProgressbar()
-        self.dismissview(viewcontroller: self, vcontroller: .vctabmain)
-    }
-
-    func fileHandler() {
-        guard self.countDelegate != nil else { return }
-        self.updateProgressbar(Double(self.countDelegate!.inprogressCount()))
     }
 
 }

@@ -3365,7 +3365,7 @@ DQ
                 </viewController>
                 <customObject id="DlE-oK-27I" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1432" y="1592"/>
+            <point key="canvasLocation" x="-1433" y="1569"/>
         </scene>
         <!--View Controller Configuration-->
         <scene sceneID="8qp-aA-J4K">
@@ -4946,7 +4946,7 @@ DQ
                                     </subviews>
                                 </clipView>
                                 <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="YES" id="05w-gp-kz1">
-                                    <rect key="frame" x="2" y="153" width="625" height="16"/>
+                                    <rect key="frame" x="2" y="9" width="0.0" height="16"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
                                 <scroller key="verticalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="NO" id="D7y-94-pit">
@@ -6071,7 +6071,7 @@ DQ
                                             <rect key="frame" x="-2" y="5" width="477" height="17"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" title="Local config: Local catalog = rclone config: Remote catalog for connect" id="t36-2M-4OP">
-                                                <font key="font" metaFont="system" size="11"/>
+                                                <font key="font" metaFont="smallSystem"/>
                                                 <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                                 <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                             </textFieldCell>
@@ -6291,6 +6291,54 @@ DQ
                 <customObject id="zBX-Zs-NkY" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="685" y="-360.5"/>
+        </scene>
+        <!--Estimating progress-->
+        <scene sceneID="X1y-0Z-sdi">
+            <objects>
+                <viewController title="Estimating progress" storyboardIdentifier="StoryboardProgressID" id="Ml3-CP-4eZ" customClass="ViewControllerEstimatingTasks" customModule="RsyncOSX" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" id="yLQ-8T-D0v">
+                        <rect key="frame" x="0.0" y="0.0" width="369" height="67"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <subviews>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="zG8-Uf-fQC">
+                                <rect key="frame" x="90" y="38" width="190" height="17"/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Estimating tasks, please wait..." id="xXy-oY-7zq">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <progressIndicator wantsLayer="YES" maxValue="100" style="bar" translatesAutoresizingMaskIntoConstraints="NO" id="eMf-J4-Wbw">
+                                <rect key="frame" x="20" y="11" width="329" height="20"/>
+                            </progressIndicator>
+                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="N0i-hJ-qlv">
+                                <rect key="frame" x="318" y="33" width="31" height="25"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <buttonCell key="cell" type="roundTextured" bezelStyle="texturedRounded" image="abort" imagePosition="only" alignment="center" lineBreakMode="truncatingTail" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="xPl-Ob-O18">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="abort:" target="Ml3-CP-4eZ" id="fvD-Ee-e7w"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <constraints>
+                            <constraint firstItem="eMf-J4-Wbw" firstAttribute="leading" secondItem="yLQ-8T-D0v" secondAttribute="leading" constant="20" symbolic="YES" id="3N8-CS-tiZ"/>
+                            <constraint firstAttribute="bottom" secondItem="eMf-J4-Wbw" secondAttribute="bottom" constant="12" id="jt9-f7-AU6"/>
+                            <constraint firstItem="eMf-J4-Wbw" firstAttribute="centerX" secondItem="zG8-Uf-fQC" secondAttribute="centerX" id="rCz-NS-6mz"/>
+                            <constraint firstAttribute="trailing" secondItem="eMf-J4-Wbw" secondAttribute="trailing" constant="20" symbolic="YES" id="rrU-WS-bLP"/>
+                            <constraint firstItem="eMf-J4-Wbw" firstAttribute="top" secondItem="zG8-Uf-fQC" secondAttribute="bottom" constant="8" symbolic="YES" id="zcp-k5-GF2"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="abort" destination="N0i-hJ-qlv" id="KOs-XB-2cy"/>
+                        <outlet property="progress" destination="eMf-J4-Wbw" id="TvD-7Y-yHK"/>
+                    </connections>
+                </viewController>
+                <customObject id="dgD-Px-NZ3" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1433" y="1698"/>
         </scene>
     </scenes>
     <resources>

@@ -98,7 +98,7 @@ class ViewControllertabMain: NSViewController, ReloadTable, Deselect, Coloractiv
     // Which kind of task
     private var processtermination: ProcessTermination?
     // remote info tasks
-    private var remoteinfotask: RemoteInfoTaskWorkQueue?
+    var remoteinfotaskworkqueue: RemoteInfoTaskWorkQueue?
     @IBOutlet weak var info: NSTextField!
     @IBOutlet weak var pathtorsyncosxschedbutton: NSButton!
 
@@ -327,7 +327,7 @@ class ViewControllertabMain: NSViewController, ReloadTable, Deselect, Coloractiv
 
     private func automaticbackup() {
         self.processtermination = .automaticbackup
-        self.remoteinfotask = RemoteInfoTaskWorkQueue()
+        self.remoteinfotaskworkqueue = RemoteInfoTaskWorkQueue()
     }
 
     // Function for display rsync command
@@ -809,7 +809,7 @@ extension ViewControllertabMain: DismissViewController {
         self.dismissViewController(viewcontroller)
         // Reset radiobuttons
         self.loadProfileMenu = true
-        self.remoteinfotask = nil
+        self.remoteinfotaskworkqueue = nil
         globalMainQueue.async(execute: { () -> Void in
             self.mainTableView.reloadData()
             self.displayProfile()
@@ -864,8 +864,8 @@ extension ViewControllertabMain: UpdateProgress {
             // Kick off next task
             self.startfirstcheduledtask()
         case .remoteinfotask:
-            guard self.remoteinfotask != nil else { return }
-            self.remoteinfotask?.processTermination()
+            guard self.remoteinfotaskworkqueue != nil else { return }
+            self.remoteinfotaskworkqueue?.processTermination()
         case .infosingletask:
             self.setNumbers(outputprocess: self.outputprocess)
             self.workinglabel.isHidden = true
@@ -874,14 +874,14 @@ extension ViewControllertabMain: UpdateProgress {
             self.working.stopAnimation(nil)
             self.executetasknow()
         case .automaticbackup:
-            guard self.remoteinfotask != nil else { return }
+            guard self.remoteinfotaskworkqueue != nil else { return }
             // compute alle estimates
-            if self.remoteinfotask!.stackoftasktobeestimated != nil {
-                self.remoteinfotask?.processTermination()
+            if self.remoteinfotaskworkqueue!.stackoftasktobeestimated != nil {
+                self.remoteinfotaskworkqueue?.processTermination()
             } else {
-                self.remoteinfotask?.processTermination()
-                self.remoteinfotask?.selectalltaskswithnumbers()
-                self.remoteinfotask?.setbackuplist()
+                self.remoteinfotaskworkqueue?.processTermination()
+                self.remoteinfotaskworkqueue?.selectalltaskswithnumbers()
+                self.remoteinfotaskworkqueue?.setbackuplist()
                 self.openquickbackup()
             }
         }
@@ -1248,7 +1248,7 @@ extension ViewControllertabMain: StartNextTask {
 
 extension ViewControllertabMain: SetRemoteInfo {
     func setremoteinfo(remoteinfotask: RemoteInfoTaskWorkQueue?) {
-        self.remoteinfotask = remoteinfotask
+        self.remoteinfotaskworkqueue = remoteinfotask
     }
 
 }
