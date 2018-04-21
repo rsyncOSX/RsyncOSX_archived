@@ -99,6 +99,8 @@ class ViewControllertabMain: NSViewController, ReloadTable, Deselect, Coloractiv
     private var processtermination: ProcessTermination?
     // remote info tasks
     var remoteinfotaskworkqueue: RemoteInfoTaskWorkQueue?
+    // Update view estimating
+    weak var estimateupdateDelegate: Updateestimating?
     @IBOutlet weak var info: NSTextField!
     @IBOutlet weak var pathtorsyncosxschedbutton: NSButton!
 
@@ -277,7 +279,8 @@ class ViewControllertabMain: NSViewController, ReloadTable, Deselect, Coloractiv
 
     // Selecting About
     @IBAction func about (_ sender: NSButton) {
-        self.presentViewControllerAsModalWindow(self.viewControllerAbout!)
+        // self.presentViewControllerAsModalWindow(self.viewControllerAbout!)
+        self.automaticbackup()
     }
 
     @IBAction func executetasknow(_ sender: NSButton) {
@@ -328,6 +331,8 @@ class ViewControllertabMain: NSViewController, ReloadTable, Deselect, Coloractiv
     private func automaticbackup() {
         self.processtermination = .automaticbackup
         self.remoteinfotaskworkqueue = RemoteInfoTaskWorkQueue()
+        self.presentViewControllerAsSheet(self.viewControllerEstimating!)
+        self.estimateupdateDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vcestimatingtasks) as? ViewControllerEstimatingTasks
     }
 
     // Function for display rsync command
@@ -878,8 +883,11 @@ extension ViewControllertabMain: UpdateProgress {
             // compute alle estimates
             if self.remoteinfotaskworkqueue!.stackoftasktobeestimated != nil {
                 self.remoteinfotaskworkqueue?.processTermination()
+                self.estimateupdateDelegate?.updateProgressbar()
             } else {
                 self.remoteinfotaskworkqueue?.processTermination()
+                self.estimateupdateDelegate?.updateProgressbar()
+                self.estimateupdateDelegate?.dismissview()
                 self.remoteinfotaskworkqueue?.selectalltaskswithnumbers()
                 self.remoteinfotaskworkqueue?.setbackuplist()
                 self.openquickbackup()

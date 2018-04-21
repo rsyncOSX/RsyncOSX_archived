@@ -9,12 +9,24 @@
 import Foundation
 import Cocoa
 
+// Protocol for progress indicator
+protocol CountEstimating: class {
+    func maxCount() -> Int
+    func inprogressCount() -> Int
+}
+
+protocol Updateestimating: class {
+    func updateProgressbar()
+    func dismissview()
+}
+
 class ViewControllerEstimatingTasks: NSViewController, SetConfigurations, SetDismisser, AbortTask {
 
     var count: Double = 0
     var maxcount: Double = 0
     var calculatedNumberOfFiles: Int?
-    weak var countDelegate: Count?
+    var vc: ViewControllertabMain?
+    weak var countDelegate: CountEstimating?
     @IBOutlet weak var abort: NSButton!
     @IBOutlet weak var progress: NSProgressIndicator!
 
@@ -29,8 +41,8 @@ class ViewControllerEstimatingTasks: NSViewController, SetConfigurations, SetDis
     override func viewDidAppear() {
         super.viewDidAppear()
         ViewControllerReference.shared.setvcref(viewcontroller: .vcestimatingtasks, nsviewcontroller: self)
-        let vc = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllertabMain
-        if let pvc = vc!.remoteinfotaskworkqueue {
+        self.vc = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllertabMain
+        if let pvc = self.vc?.remoteinfotaskworkqueue {
             self.countDelegate = pvc
         }
         self.calculatedNumberOfFiles = self.countDelegate?.maxCount()
@@ -56,9 +68,15 @@ class ViewControllerEstimatingTasks: NSViewController, SetConfigurations, SetDis
         self.progress.doubleValue = 0
         self.progress.startAnimation(self)
     }
+}
 
-    private func updateProgressbar(_ value: Double) {
-        self.progress.doubleValue = value
+extension ViewControllerEstimatingTasks: Updateestimating {
+    func dismissview() {
+        self.stopProgressbar()
+        self.dismissview(viewcontroller: self, vcontroller: .vctabmain)
     }
-
+    
+    func updateProgressbar() {
+        self.progress.doubleValue = Double(self.countDelegate!.inprogressCount())
+    }
 }

@@ -6295,7 +6295,7 @@ DQ
         <!--Estimating progress-->
         <scene sceneID="X1y-0Z-sdi">
             <objects>
-                <viewController title="Estimating progress" storyboardIdentifier="StoryboardProgressID" id="Ml3-CP-4eZ" customClass="ViewControllerEstimatingTasks" customModule="RsyncOSX" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Estimating progress" storyboardIdentifier="StoryboardEstimatingID" id="Ml3-CP-4eZ" customClass="ViewControllerEstimatingTasks" customModule="RsyncOSX" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="yLQ-8T-D0v">
                         <rect key="frame" x="0.0" y="0.0" width="369" height="67"/>
                         <autoresizingMask key="autoresizingMask"/>

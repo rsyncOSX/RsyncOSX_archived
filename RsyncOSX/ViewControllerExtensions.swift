@@ -156,6 +156,14 @@ extension VcMain {
         return (self.storyboard!.instantiateController(withIdentifier: NSStoryboard.SceneIdentifier(rawValue: "StoryboardRemoteInfoID"))
             as? NSViewController)!
     }
+
+    // Estimating
+    // self.presentViewControllerAsSheet(self.viewControllerEstimating)
+    var viewControllerEstimating: NSViewController? {
+        return (self.storyboard!.instantiateController(withIdentifier: NSStoryboard.SceneIdentifier(rawValue: "StoryboardEstimatingID"))
+            as? NSViewController)!
+    }
+
 }
 
 protocol VcCopyFiles {

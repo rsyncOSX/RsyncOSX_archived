@@ -137,12 +137,12 @@ class RemoteInfoTaskWorkQueue: SetConfigurations {
     }
 }
 
-extension RemoteInfoTaskWorkQueue: Count {
+extension RemoteInfoTaskWorkQueue: CountEstimating {
     func maxCount() -> Int {
-        return 0
+        return self.maxnumber ?? 0
     }
 
     func inprogressCount() -> Int {
-        return 0
+        return self.stackoftasktobeestimated?.count ?? 0
     }
 }
