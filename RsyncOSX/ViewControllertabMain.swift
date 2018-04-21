@@ -1003,14 +1003,10 @@ extension ViewControllertabMain: Fileerror {
 
 // Abort task from progressview
 extension ViewControllertabMain: AbortOperations {
-    // Abort any task, either single- or batch task
+    // Abort any task
     func abortOperations() {
         // Terminates the running process
         self.showProcessInfo(info: .abort)
-        if self.remoteinfotaskworkqueue != nil {
-            self.estimateupdateDelegate?.dismissview()
-            self.remoteinfotaskworkqueue = nil
-        }
         if let process = self.process {
             process.terminate()
             self.index = nil
@@ -1020,6 +1016,10 @@ extension ViewControllertabMain: AbortOperations {
             // Create workqueu and add abort
             self.setInfo(info: "Abort", color: .red)
             self.rsyncCommand.stringValue = ""
+            if self.remoteinfotaskworkqueue != nil {
+                self.estimateupdateDelegate?.dismissview()
+                self.remoteinfotaskworkqueue = nil
+            }
         } else {
             self.working.stopAnimation(nil)
             self.workinglabel.isHidden = true
