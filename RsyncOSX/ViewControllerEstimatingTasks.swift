@@ -5,6 +5,7 @@
 //  Created by Thomas Evensen on 21.04.2018.
 //  Copyright © 2018 Thomas Evensen. All rights reserved.
 //
+// swiftlint:disable line_length
 
 import Foundation
 import Cocoa
@@ -32,7 +33,7 @@ class ViewControllerEstimatingTasks: NSViewController, AbortTask {
     var vc: ViewControllertabMain?
     weak var countDelegate: CountEstimating?
     weak var dismissDelegate: DismissViewEstimating?
-    
+
     @IBOutlet weak var abort: NSButton!
     @IBOutlet weak var progress: NSProgressIndicator!
 
@@ -84,6 +85,6 @@ extension ViewControllerEstimatingTasks: Updateestimating {
     }
 
     func updateProgressbar() {
-        self.progress.doubleValue = Double(self.countDelegate!.inprogressCount())
+        self.progress.doubleValue = Double(self.calculatedNumberOfFiles! - self.countDelegate!.inprogressCount())
     }
 }

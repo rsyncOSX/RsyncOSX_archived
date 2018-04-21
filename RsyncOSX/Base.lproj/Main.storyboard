@@ -90,9 +90,14 @@
                                             </connections>
                                         </menuItem>
                                         <menuItem isSeparatorItem="YES" id="Il2-Y3-lKm"/>
-                                        <menuItem title="Run now" keyEquivalent="r" id="wrk-73-4cu" userLabel="Run now">
+                                        <menuItem title="Backup now" keyEquivalent="r" id="wrk-73-4cu">
                                             <connections>
                                                 <action selector="executetasknow:" target="Ady-hI-5gd" id="iNN-Ju-Agc"/>
+                                            </connections>
+                                        </menuItem>
+                                        <menuItem title="Backup all now" keyEquivalent="b" id="bCH-Oe-dEC" userLabel="Backup all now">
+                                            <connections>
+                                                <action selector="automaticbackup:" target="Ady-hI-5gd" id="5xL-uk-hhv"/>
                                             </connections>
                                         </menuItem>
                                         <menuItem isSeparatorItem="YES" id="p7w-an-4lO"/>
@@ -184,7 +189,7 @@
                 <customObject id="Voe-Tx-rLC" customClass="AppDelegate" customModule="RsyncOSX" customModuleProvider="target"/>
                 <customObject id="Ady-hI-5gd" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-413" y="-159"/>
+            <point key="canvasLocation" x="-398" y="-222"/>
         </scene>
         <!--Window Controller-->
         <scene sceneID="GeT-NB-lhy">
@@ -359,7 +364,7 @@
                 </tabViewController>
                 <customObject id="am9-td-Qjg" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-318" y="25"/>
+            <point key="canvasLocation" x="-361" y="89"/>
         </scene>
         <!--Execute-->
         <scene sceneID="84s-6a-t0v">
@@ -6301,8 +6306,8 @@ DQ
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="zG8-Uf-fQC">
-                                <rect key="frame" x="90" y="38" width="190" height="17"/>
-                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Estimating tasks, please wait..." id="xXy-oY-7zq">
+                                <rect key="frame" x="65" y="38" width="239" height="17"/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Finding tasks for backup, please wait..." id="xXy-oY-7zq">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>

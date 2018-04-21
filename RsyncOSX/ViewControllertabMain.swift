@@ -135,6 +135,10 @@ class ViewControllertabMain: NSViewController, ReloadTable, Deselect, Coloractiv
     }
 
     @IBAction func infoonetask(_ sender: NSButton) {
+        guard self.index != nil else {
+            self.info(num: 1)
+            return
+        }
         guard ViewControllerReference.shared.norsync == false else {
             self.tools!.noRsync()
             return
@@ -279,7 +283,11 @@ class ViewControllertabMain: NSViewController, ReloadTable, Deselect, Coloractiv
 
     // Selecting About
     @IBAction func about (_ sender: NSButton) {
-        // self.presentViewControllerAsModalWindow(self.viewControllerAbout!)
+        self.presentViewControllerAsModalWindow(self.viewControllerAbout!)
+    }
+
+    // Selecting automatic backup
+    @IBAction func automaticbackup (_ sender: NSButton) {
         self.automaticbackup()
     }
 
