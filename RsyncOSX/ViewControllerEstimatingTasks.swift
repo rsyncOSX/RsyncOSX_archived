@@ -20,13 +20,19 @@ protocol Updateestimating: class {
     func dismissview()
 }
 
-class ViewControllerEstimatingTasks: NSViewController, SetConfigurations, SetDismisser, AbortTask {
+protocol DismissViewEstimating: class {
+    func dismissestimating(viewcontroller: NSViewController)
+}
+
+class ViewControllerEstimatingTasks: NSViewController, AbortTask {
 
     var count: Double = 0
     var maxcount: Double = 0
     var calculatedNumberOfFiles: Int?
     var vc: ViewControllertabMain?
     weak var countDelegate: CountEstimating?
+    weak var dismissDelegate: DismissViewEstimating?
+    
     @IBOutlet weak var abort: NSButton!
     @IBOutlet weak var progress: NSProgressIndicator!
 
@@ -42,6 +48,7 @@ class ViewControllerEstimatingTasks: NSViewController, SetConfigurations, SetDis
         super.viewDidAppear()
         ViewControllerReference.shared.setvcref(viewcontroller: .vcestimatingtasks, nsviewcontroller: self)
         self.vc = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllertabMain
+        self.dismissDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllertabMain
         if let pvc = self.vc?.remoteinfotaskworkqueue {
             self.countDelegate = pvc
         }
@@ -73,9 +80,9 @@ class ViewControllerEstimatingTasks: NSViewController, SetConfigurations, SetDis
 extension ViewControllerEstimatingTasks: Updateestimating {
     func dismissview() {
         self.stopProgressbar()
-        self.dismissview(viewcontroller: self, vcontroller: .vctabmain)
+        self.dismissDelegate?.dismissestimating(viewcontroller: self)
     }
-    
+
     func updateProgressbar() {
         self.progress.doubleValue = Double(self.countDelegate!.inprogressCount())
     }

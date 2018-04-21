@@ -827,6 +827,12 @@ extension ViewControllertabMain: DismissViewController {
     }
 }
 
+extension ViewControllertabMain: DismissViewEstimating {
+    func dismissestimating(viewcontroller: NSViewController) {
+        self.dismissViewController(viewcontroller)
+    }
+}
+
 // Called when either a terminatopn of Process is
 // discovered or data is availiable in the filehandler
 // See file rsyncProcess.swift.
@@ -885,9 +891,8 @@ extension ViewControllertabMain: UpdateProgress {
                 self.remoteinfotaskworkqueue?.processTermination()
                 self.estimateupdateDelegate?.updateProgressbar()
             } else {
-                self.remoteinfotaskworkqueue?.processTermination()
-                self.estimateupdateDelegate?.updateProgressbar()
                 self.estimateupdateDelegate?.dismissview()
+                self.remoteinfotaskworkqueue?.processTermination()
                 self.remoteinfotaskworkqueue?.selectalltaskswithnumbers()
                 self.remoteinfotaskworkqueue?.setbackuplist()
                 self.openquickbackup()
