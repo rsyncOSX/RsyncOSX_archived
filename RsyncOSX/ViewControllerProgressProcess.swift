@@ -34,8 +34,8 @@ class ViewControllerProgressProcess: NSViewController, SetConfigurations, SetDis
     override func viewDidAppear() {
         super.viewDidAppear()
         ViewControllerReference.shared.setvcref(viewcontroller: .vcprogressview, nsviewcontroller: self)
-        if let pvc2 = self.configurations!.singleTask {
-            self.countDelegate = pvc2
+        if let pvc = self.configurations!.singleTask {
+            self.countDelegate = pvc
         }
         self.calculatedNumberOfFiles = self.countDelegate?.maxCount()
         self.initiateProgressbar()
