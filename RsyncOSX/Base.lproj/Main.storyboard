@@ -6302,22 +6302,22 @@ DQ
             <objects>
                 <viewController title="Estimating progress" storyboardIdentifier="StoryboardEstimatingID" id="Ml3-CP-4eZ" customClass="ViewControllerEstimatingTasks" customModule="RsyncOSX" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="yLQ-8T-D0v">
-                        <rect key="frame" x="0.0" y="0.0" width="369" height="67"/>
+                        <rect key="frame" x="0.0" y="0.0" width="408" height="67"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="zG8-Uf-fQC">
-                                <rect key="frame" x="65" y="38" width="239" height="17"/>
-                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Finding tasks for backup, please wait..." id="xXy-oY-7zq">
+                                <rect key="frame" x="53" y="38" width="303" height="17"/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Finding tasks for automatic backup, please wait..." id="xXy-oY-7zq">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
                             <progressIndicator wantsLayer="YES" maxValue="100" style="bar" translatesAutoresizingMaskIntoConstraints="NO" id="eMf-J4-Wbw">
-                                <rect key="frame" x="20" y="11" width="329" height="20"/>
+                                <rect key="frame" x="20" y="11" width="368" height="20"/>
                             </progressIndicator>
                             <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="N0i-hJ-qlv">
-                                <rect key="frame" x="318" y="33" width="31" height="25"/>
+                                <rect key="frame" x="369" y="34" width="31" height="25"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <buttonCell key="cell" type="roundTextured" bezelStyle="texturedRounded" image="abort" imagePosition="only" alignment="center" lineBreakMode="truncatingTail" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="xPl-Ob-O18">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -6343,7 +6343,7 @@ DQ
                 </viewController>
                 <customObject id="dgD-Px-NZ3" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1433" y="1698"/>
+            <point key="canvasLocation" x="-1414" y="1697.5"/>
         </scene>
     </scenes>
     <resources>
