@@ -104,7 +104,8 @@ class RemoteInfoTaskWorkQueue: SetConfigurations {
         guard self.records != nil else { return }
         for i in 0 ..< self.records!.count {
             let number = (self.records![i].value(forKey: "transferredNumber") as? String) ?? "0"
-            if Int(number)! > 0 {
+            let delete = (self.records![i].value(forKey: "deletefiles") as? String) ?? "0"
+            if Int(number)! > 0 || Int(delete)! > 0 {
                 self.records![i].setValue(1, forKey: "backup")
             }
         }
