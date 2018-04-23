@@ -1016,7 +1016,7 @@ extension ViewControllertabMain: AbortOperations {
             // Create workqueu and add abort
             self.setInfo(info: "Abort", color: .red)
             self.rsyncCommand.stringValue = ""
-            if self.remoteinfotaskworkqueue != nil && self.configurations?.quickbackuplist?.count ?? 0 > 0 {
+            if self.remoteinfotaskworkqueue != nil && self.configurations?.estimatedlist != nil {
                 self.estimateupdateDelegate?.dismissview()
                 self.remoteinfotaskworkqueue = nil
             }
