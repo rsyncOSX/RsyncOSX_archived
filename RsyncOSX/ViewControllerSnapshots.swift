@@ -149,8 +149,22 @@ class ViewControllerSnapshots: NSViewController, SetDismisser, SetConfigurations
     private func deletesnapshotcatalogs() {
         var arguments: SnapshotDeleteCatalogsArguments?
         var deletecommand: SnapshotCommandDeleteCatalogs?
-        guard self.snapshotsloggdata?.remotecatalogstodelete != nil else { return }
-        guard self.snapshotsloggdata!.remotecatalogstodelete!.count > 0 else { return }
+        guard self.snapshotsloggdata?.remotecatalogstodelete != nil else {
+            self.progressdelete.isHidden = true
+            self.confirmdelete.state = .off
+            self.confirmdelete.isEnabled = false
+            self.deletenum.isEnabled = true
+            self.info(num: 0)
+            return
+        }
+        guard self.snapshotsloggdata!.remotecatalogstodelete!.count > 0 else {
+            self.progressdelete.isHidden = true
+            self.confirmdelete.state = .off
+            self.confirmdelete.isEnabled = false
+            self.deletenum.isEnabled = true
+            self.info(num: 0)
+            return
+        }
         let remotecatalog = self.snapshotsloggdata!.remotecatalogstodelete![0]
         self.snapshotsloggdata!.remotecatalogstodelete!.remove(at: 0)
         if self.snapshotsloggdata!.remotecatalogstodelete!.count == 0 {
