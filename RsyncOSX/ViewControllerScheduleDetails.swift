@@ -117,11 +117,10 @@ extension ViewControllerScheduleDetails: NSTableViewDataSource {
 
 }
 
-extension ViewControllerScheduleDetails: NSTableViewDelegate, Attributedestring {
+extension ViewControllerScheduleDetails: NSTableViewDelegate {
 
     // TableView delegates
     func tableView(_ tableView: NSTableView, objectValueFor tableColumn: NSTableColumn?, row: Int) -> Any? {
-        // If active schedule color row red
         var active: Bool = false
         guard self.data != nil else { return nil }
         if row < self.data!.count {
@@ -184,5 +183,4 @@ extension ViewControllerScheduleDetails: NSTableViewDelegate, Attributedestring 
             }
         }
     }
-
 }
