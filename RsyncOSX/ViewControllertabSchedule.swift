@@ -154,7 +154,7 @@ class ViewControllertabSchedule: NSViewController, SetConfigurations, SetSchedul
             self.info(num: 3)
             self.preselectrow = true
         } else {
-             self.preselectrow = false
+            self.preselectrow = false
             self.info(num: 0)
         }
         self.weeklybutton.isEnabled = false
