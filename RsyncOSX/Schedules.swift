@@ -39,7 +39,6 @@ enum Scheduletype {
 
 class Schedules: ScheduleWriteLoggData {
 
-    var scheduledTasks: NSDictionary?
     var profile: String?
 
     // Return reference to Schedule data
