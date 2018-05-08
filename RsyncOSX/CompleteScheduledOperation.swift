@@ -36,8 +36,6 @@ final class CompleteScheduledOperation: SetConfigurations, SetSchedules, SetSche
         self.scheduleJob?.completed()
         self.startTimerDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabschedule) as? ViewControllertabSchedule
         self.startTimerDelegate?.startTimerNextJob()
-        // Reset reference til scheduled job
-        self.schedules!.scheduledTasks = nil
         self.schedulesDelegate?.reloadschedulesobject()
     }
 

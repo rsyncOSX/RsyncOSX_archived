@@ -15,7 +15,7 @@ class AllProfiles: Sorting {
     var allconfigurationsasdictionary: [NSMutableDictionary]?
     private var allprofiles: [String]?
 
-    private func getprofiles() {
+    private func getprofilenames() {
         let profile = Files(root: .profileRoot)
         self.allprofiles = profile.getDirectorysStrings()
         guard self.allprofiles != nil else { return }
@@ -98,7 +98,7 @@ class AllProfiles: Sorting {
     }
 
     init() {
-        self.getprofiles()
+        self.getprofilenames()
         self.getallconfigurations()
         self.setConfigurationsDataSourcecountBackupSnapshot()
     }
