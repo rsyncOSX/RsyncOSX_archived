@@ -877,6 +877,14 @@
                                     <action selector="rsyncosxsched:" target="egt-C3-u4G" id="pBI-tK-PYA"/>
                                 </connections>
                             </button>
+                            <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="KXa-DA-hNS">
+                                <rect key="frame" x="33" y="364" width="14" height="13"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="red" imagePosition="only" alignment="center" imageScaling="proportionallyUpOrDown" inset="2" id="HxN-48-tto">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                            </button>
                         </subviews>
                         <constraints>
                             <constraint firstItem="n3L-Il-K5w" firstAttribute="trailing" secondItem="ihR-vZ-M7c" secondAttribute="trailing" id="6LC-M9-fbC"/>
@@ -905,6 +913,7 @@
                         <outlet property="dryRunOrRealRun" destination="qkq-x4-Af5" id="oQ9-nJ-wSt"/>
                         <outlet property="info" destination="RQt-Hs-8vg" id="ALk-ui-Bwg"/>
                         <outlet property="mainTableView" destination="gd0-mk-eEg" id="V0X-hS-6qu"/>
+                        <outlet property="menuapprunning" destination="KXa-DA-hNS" id="aCd-nb-zzG"/>
                         <outlet property="newfiles" destination="AyX-Ou-VvT" id="NmE-4m-2Rs"/>
                         <outlet property="pathtorsyncosxschedbutton" destination="Tk3-A0-aHr" id="vMw-5e-wEk"/>
                         <outlet property="processInfo" destination="KX4-b1-AYu" id="Knr-bH-exp"/>
