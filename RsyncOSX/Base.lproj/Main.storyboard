@@ -653,7 +653,7 @@
                                 <rect key="frame" x="141" y="386" width="153" height="17"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="left" title="Profile :" id="60W-M7-Vqr">
-                                    <font key="font" metaFont="system" size="11"/>
+                                    <font key="font" metaFont="smallSystem"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
@@ -913,7 +913,7 @@
                         <outlet property="dryRunOrRealRun" destination="qkq-x4-Af5" id="oQ9-nJ-wSt"/>
                         <outlet property="info" destination="RQt-Hs-8vg" id="ALk-ui-Bwg"/>
                         <outlet property="mainTableView" destination="gd0-mk-eEg" id="V0X-hS-6qu"/>
-                        <outlet property="menuapprunning" destination="KXa-DA-hNS" id="aCd-nb-zzG"/>
+                        <outlet property="menuappisrunning" destination="KXa-DA-hNS" id="aCd-nb-zzG"/>
                         <outlet property="newfiles" destination="AyX-Ou-VvT" id="NmE-4m-2Rs"/>
                         <outlet property="pathtorsyncosxschedbutton" destination="Tk3-A0-aHr" id="vMw-5e-wEk"/>
                         <outlet property="processInfo" destination="KX4-b1-AYu" id="Knr-bH-exp"/>
@@ -932,6 +932,7 @@
                     </connections>
                 </viewController>
                 <customObject id="aBq-uD-wbZ" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+                <userDefaultsController representsSharedInstance="YES" id="dxj-3R-kkV"/>
             </objects>
             <point key="canvasLocation" x="-1070" y="1241.5"/>
         </scene>
@@ -2231,12 +2232,21 @@
                                     <color key="backgroundColor" name="gridColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
+                            <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="EoR-Gd-F4B">
+                                <rect key="frame" x="143" y="355" width="14" height="13"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="red" imagePosition="only" alignment="center" imageScaling="proportionallyUpOrDown" inset="2" id="QKU-Jd-fz9">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                            </button>
                         </subviews>
                     </view>
                     <connections>
                         <outlet property="dailybutton" destination="qPO-Ls-40R" id="WeW-mQ-QQw"/>
                         <outlet property="info" destination="oKa-6S-QCX" id="PjV-du-t6F"/>
                         <outlet property="mainTableView" destination="x4E-eq-B7o" id="aCY-ch-Nd2"/>
+                        <outlet property="menuappisrunning" destination="EoR-Gd-F4B" id="0A2-d2-Ohh"/>
                         <outlet property="oncebutton" destination="kbd-42-Izb" id="CTh-o9-Rae"/>
                         <outlet property="operation" destination="uzq-lY-HE6" id="UUo-lT-we1"/>
                         <outlet property="profilInfo" destination="uIq-wW-zUf" id="Voj-sH-KS7"/>
