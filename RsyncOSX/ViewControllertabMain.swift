@@ -103,8 +103,8 @@ class ViewControllertabMain: NSViewController, ReloadTable, Deselect, Coloractiv
     weak var estimateupdateDelegate: Updateestimating?
     @IBOutlet weak var info: NSTextField!
     @IBOutlet weak var pathtorsyncosxschedbutton: NSButton!
-    @IBOutlet weak var menuapprunning: NSButton!
-    
+    @IBOutlet weak var menuappisrunning: NSButton!
+
     @IBAction func rsyncosxsched(_ sender: NSButton) {
         let pathtorsyncosxschedapp: String = ViewControllerReference.shared.pathrsyncosxsched! + ViewControllerReference.shared.namersyncosssched
         NSWorkspace.shared.open(URL(fileURLWithPath: pathtorsyncosxschedapp))
@@ -421,12 +421,12 @@ class ViewControllertabMain: NSViewController, ReloadTable, Deselect, Coloractiv
         globalMainQueue.async(execute: { () -> Void in
             guard Running().enablemenuappbutton() == true else {
                 self.pathtorsyncosxschedbutton.isEnabled = false
-                self.menuapprunning.image = #imageLiteral(resourceName: "green")
+                self.menuappisrunning.image = #imageLiteral(resourceName: "green")
                 self.info(num: 5)
                 return
             }
             self.pathtorsyncosxschedbutton.isEnabled = true
-            self.menuapprunning.image = #imageLiteral(resourceName: "red")
+            self.menuappisrunning.image = #imageLiteral(resourceName: "red")
         })
     }
 

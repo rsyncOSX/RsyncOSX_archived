@@ -37,7 +37,8 @@ class ViewControllertabSchedule: NSViewController, SetConfigurations, SetSchedul
     @IBOutlet weak var oncebutton: NSButton!
     @IBOutlet weak var info: NSTextField!
     @IBOutlet weak var rsyncosxschedbutton: NSButton!
-
+    @IBOutlet weak var menuappisrunning: NSButton!
+    
     @IBAction func rsyncosxsched(_ sender: NSButton) {
         let pathtorsyncosxschedapp: String = ViewControllerReference.shared.pathrsyncosxsched! + ViewControllerReference.shared.namersyncosssched
         NSWorkspace.shared.open(URL(fileURLWithPath: pathtorsyncosxschedapp))
@@ -212,10 +213,12 @@ class ViewControllertabSchedule: NSViewController, SetConfigurations, SetSchedul
         globalMainQueue.async(execute: { () -> Void in
             guard Running().enablemenuappbutton() == true else {
                 self.rsyncosxschedbutton.isEnabled = false
+                self.menuappisrunning.image = #imageLiteral(resourceName: "green")
                 self.info(num: 5)
                 return
             }
             self.rsyncosxschedbutton.isEnabled = true
+            self.menuappisrunning.image = #imageLiteral(resourceName: "red")
         })
     }
 }
