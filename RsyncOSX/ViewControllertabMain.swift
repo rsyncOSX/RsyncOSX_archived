@@ -901,7 +901,7 @@ extension ViewControllertabMain: UpdateProgress {
             } else {
                 self.estimateupdateDelegate?.dismissview()
                 self.remoteinfotaskworkqueue?.processTermination()
-                self.remoteinfotaskworkqueue?.selectalltaskswithnumbers()
+                self.remoteinfotaskworkqueue?.selectalltaskswithnumbers(deselect: false)
                 self.remoteinfotaskworkqueue?.setbackuplist()
                 self.openquickbackup()
             }
