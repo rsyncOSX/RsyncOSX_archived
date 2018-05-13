@@ -30,6 +30,7 @@ class ViewControllerRemoteInfo: NSViewController, SetDismisser, AbortTask {
     // remote info tasks
     private var remoteinfotask: RemoteInfoTaskWorkQueue?
     weak var remoteinfotaskDelegate: SetRemoteInfo?
+    var selected: Bool = false
 
     @IBAction func execute(_ sender: NSButton) {
         if let backup = self.dobackups() {
@@ -52,7 +53,12 @@ class ViewControllerRemoteInfo: NSViewController, SetDismisser, AbortTask {
     }
 
     @IBAction func selectalltaskswithfilestobackup(_ sender: NSButton) {
-        self.remoteinfotask?.selectalltaskswithfilestobackup()
+        self.remoteinfotask?.selectalltaskswithfilestobackup(deselect: self.selected)
+        if self.selected == true {
+            self.selected = false
+        } else {
+            self.selected = true
+        }
     }
 
     // Initial functions viewDidLoad and viewDidAppear
