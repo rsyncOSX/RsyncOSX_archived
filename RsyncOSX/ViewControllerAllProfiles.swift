@@ -19,7 +19,8 @@ class ViewControllerAllProfiles: NSViewController, Delay {
     @IBOutlet weak var numberOfprofiles: NSTextField!
 
     private var allprofiles: AllProfiles?
-    private var allschedulessortedandexpanded: AllScheduleSortedAndExpand?
+    private var allschedules: Allschedules?
+    private var allschedulessortedandexpanded: ScheduleSortedAndExpand?
     private var column: Int?
     private var filterby: Sortandfilter?
     private var sortedascendigdesending: Bool = true
@@ -46,7 +47,8 @@ class ViewControllerAllProfiles: NSViewController, Delay {
     override func viewDidAppear() {
         super.viewDidAppear()
         self.allprofiles = AllProfiles()
-        self.allschedulessortedandexpanded = AllScheduleSortedAndExpand()
+        self.allschedules = Allschedules()
+        self.allschedulessortedandexpanded = ScheduleSortedAndExpand(allschedules: self.allschedules)
         self.sortdirection.image = #imageLiteral(resourceName: "up")
         self.sortedascendigdesending = true
         globalMainQueue.async(execute: { () -> Void in
@@ -57,6 +59,7 @@ class ViewControllerAllProfiles: NSViewController, Delay {
     override func viewDidDisappear() {
         super.viewDidDisappear()
         self.allprofiles = nil
+        self.allschedules = nil
         self.allschedulessortedandexpanded = nil
     }
 }

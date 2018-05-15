@@ -209,4 +209,12 @@ class ScheduleSortedAndExpand: SetConfigurations, SetSchedules {
         }
         self.tools = Tools()
     }
+
+    init (allschedules: Allschedules?) {
+        guard allschedules != nil else { return }
+        self.scheduleConfiguration = allschedules!.getallschedules()
+        self.setallscheduledtasksNSDictionary()
+        self.sortAndExpandScheduleTasks()
+        self.tools = Tools()
+    }
 }
