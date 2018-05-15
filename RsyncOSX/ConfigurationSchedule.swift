@@ -15,6 +15,7 @@ struct ConfigurationSchedule {
     var schedule: String
     var logrecords = [NSMutableDictionary]()
     var delete: Bool?
+    var profilename: String?
 
     init(dictionary: NSDictionary, log: NSArray?) {
         self.hiddenID = (dictionary.object(forKey: "hiddenID") as? Int)!
