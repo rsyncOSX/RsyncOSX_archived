@@ -239,7 +239,7 @@ extension ViewControllertabSchedule: NSTableViewDelegate, Attributedestring {
         switch tableColumn!.identifier.rawValue {
         case "scheduleID" :
             if self.schedulessorted != nil {
-                let schedule: String? = self.schedulessorted!.sortandcountscheduledonetask(hiddenID, number: false)
+                let schedule: String? = self.schedulessorted!.sortandcountscheduledonetask(hiddenID, profilename: nil, number: false)
                 return schedule ?? ""
             }
         case "offsiteServerCellID":
@@ -259,7 +259,7 @@ extension ViewControllertabSchedule: NSTableViewDelegate, Attributedestring {
             }
         case "inCellID":
             if self.schedulessorted != nil {
-                let taskintime: String? = self.schedulessorted!.sortandcountscheduledonetask(hiddenID, number: true)
+                let taskintime: String? = self.schedulessorted!.sortandcountscheduledonetask(hiddenID, profilename: nil, number: true)
                 return taskintime ?? ""
             }
         default:

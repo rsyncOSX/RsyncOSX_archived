@@ -19,6 +19,8 @@ class ViewControllerAllProfiles: NSViewController, Delay {
     @IBOutlet weak var numberOfprofiles: NSTextField!
 
     private var allprofiles: AllProfiles?
+    private var allschedules: Allschedules?
+    private var allschedulessortedandexpanded: ScheduleSortedAndExpand?
     private var column: Int?
     private var filterby: Sortandfilter?
     private var sortedascendigdesending: Bool = true
@@ -45,11 +47,20 @@ class ViewControllerAllProfiles: NSViewController, Delay {
     override func viewDidAppear() {
         super.viewDidAppear()
         self.allprofiles = AllProfiles()
+        self.allschedules = Allschedules()
+        self.allschedulessortedandexpanded = ScheduleSortedAndExpand(allschedules: self.allschedules)
         self.sortdirection.image = #imageLiteral(resourceName: "up")
         self.sortedascendigdesending = true
         globalMainQueue.async(execute: { () -> Void in
             self.mainTableView.reloadData()
         })
+    }
+
+    override func viewDidDisappear() {
+        super.viewDidDisappear()
+        self.allprofiles = nil
+        self.allschedules = nil
+        self.allschedulessortedandexpanded = nil
     }
 }
 
@@ -73,7 +84,17 @@ extension ViewControllerAllProfiles: NSTableViewDelegate, Attributedestring {
     func tableView(_ tableView: NSTableView, objectValueFor tableColumn: NSTableColumn?, row: Int) -> Any? {
         if row > self.allprofiles!.allconfigurationsasdictionary!.count - 1 { return nil }
         let object: NSDictionary = self.allprofiles!.allconfigurationsasdictionary![row]
-        return object[tableColumn!.identifier] as? String
+        let hiddenID = object.value(forKey: "hiddenID") as? Int ?? -1
+        let profilename = object.value(forKey: "profile") as? String ?? "Default profile"
+        if tableColumn!.identifier.rawValue == "intime" {
+            let taskintime: String? = self.allschedulessortedandexpanded!.sortandcountscheduledonetask(hiddenID, profilename: profilename, number: true)
+            return taskintime ?? ""
+        } else if tableColumn!.identifier.rawValue == "schedule" {
+            let schedule: String? = self.allschedulessortedandexpanded!.sortandcountscheduledonetask(hiddenID, profilename: profilename, number: false)
+            return schedule
+        } else {
+            return object[tableColumn!.identifier] as? String
+        }
     }
     // setting which table row is selected
     func tableViewSelectionDidChange(_ notification: Notification) {
@@ -84,17 +105,17 @@ extension ViewControllerAllProfiles: NSTableViewDelegate, Attributedestring {
         switch column {
         case 0:
             self.filterby = .profile
-        case 1:
-            self.filterby = .task
-        case 2:
-            self.filterby = .localcatalog
         case 3:
-            self.filterby = .remotecatalog
+            self.filterby = .task
         case 4:
-            self.filterby = .remoteserver
+            self.filterby = .localcatalog
         case 5:
+            self.filterby = .remotecatalog
+        case 6:
+            self.filterby = .remoteserver
+        case 7:
             self.filterby = .backupid
-        case 6, 7:
+        case 8, 9:
             sortbystring = false
             self.filterby = .executedate
         default:

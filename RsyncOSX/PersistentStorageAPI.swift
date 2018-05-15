@@ -23,8 +23,7 @@ final class PersistentStorageAPI: SetConfigurations, SetSchedules, NextTask {
         } else {
             read = PersistentStorageConfiguration(profile: self.profile)
         }
-        // Either read from persistent store or
-        // return Configurations already in memory
+        // Either read from persistent store or return Configurations already in memory
         if read!.readConfigurationsFromPermanentStore() != nil {
             var Configurations = [Configuration]()
             for dict in read!.readConfigurationsFromPermanentStore()! {
@@ -62,18 +61,22 @@ final class PersistentStorageAPI: SetConfigurations, SetSchedules, NextTask {
 
     // Read schedules and history
     // If no Schedule from persistent store return nil
-    func getScheduleandhistory () -> [ConfigurationSchedule]? {
-        let read = PersistentStorageScheduling(profile: self.profile)
+    func getScheduleandhistory(nolog: Bool) -> [ConfigurationSchedule]? {
+        var read: PersistentStorageScheduling?
+        if self.forceread {
+            read = PersistentStorageScheduling(profile: self.profile, forceread: true)
+        } else {
+            read = PersistentStorageScheduling(profile: self.profile)
+        }
         var schedule = [ConfigurationSchedule]()
-        // Either read from persistent store or
-        // return Schedule already in memory
-        if read.readSchedulesFromPermanentStore() != nil {
-            for dict in read.readSchedulesFromPermanentStore()! {
+        // Either read from persistent store or return Schedule already in memory
+        if read!.readSchedulesFromPermanentStore() != nil {
+            for dict in read!.readSchedulesFromPermanentStore()! {
                 if let log = dict.value(forKey: "executed") {
-                    let conf = ConfigurationSchedule(dictionary: dict, log: log as? NSArray)
+                    let conf = ConfigurationSchedule(dictionary: dict, log: log as? NSArray, nolog: nolog)
                     schedule.append(conf)
                 } else {
-                    let conf = ConfigurationSchedule(dictionary: dict, log: nil)
+                    let conf = ConfigurationSchedule(dictionary: dict, log: nil, nolog: nolog)
                     schedule.append(conf)
                 }
             }
@@ -92,7 +95,7 @@ final class PersistentStorageAPI: SetConfigurations, SetSchedules, NextTask {
         if read.readSchedulesFromPermanentStore() != nil {
             var schedule = [ConfigurationSchedule]()
             for dict in read.readSchedulesFromPermanentStore()! {
-                let conf = ConfigurationSchedule(dictionary: dict, log: nil)
+                let conf = ConfigurationSchedule(dictionary: dict, log: nil, nolog: false)
                 schedule.append(conf)
             }
             return schedule
