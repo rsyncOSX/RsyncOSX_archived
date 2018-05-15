@@ -84,12 +84,14 @@ extension ViewControllerAllProfiles: NSTableViewDelegate, Attributedestring {
     func tableView(_ tableView: NSTableView, objectValueFor tableColumn: NSTableColumn?, row: Int) -> Any? {
         if row > self.allprofiles!.allconfigurationsasdictionary!.count - 1 { return nil }
         let object: NSDictionary = self.allprofiles!.allconfigurationsasdictionary![row]
+        let hiddenID = object.value(forKey: "hiddenID") as? Int ?? -1
+        let profilename = object.value(forKey: "profile") as? String ?? "Default profile"
         if tableColumn!.identifier.rawValue == "intime" {
-            let hiddenID = object.value(forKey: "hiddenID") as? Int ?? -1
-            let profilename = object.value(forKey: "profile") as? String ?? "Default profile"
-            let dateStart = object.value(forKey: "dateStart") as? Date
-            let taskintime: String? = self.allschedulessortedandexpanded!.sortandcountscheduledonetask(hiddenID, profilename: profilename, dateStart: dateStart, number: true)
+            let taskintime: String? = self.allschedulessortedandexpanded!.sortandcountscheduledonetask(hiddenID, profilename: profilename, number: true)
             return taskintime ?? ""
+        } else if tableColumn!.identifier.rawValue == "schedule" {
+            let schedule: String? = self.allschedulessortedandexpanded!.sortandcountscheduledonetask(hiddenID, profilename: profilename, number: false)
+            return schedule
         } else {
             return object[tableColumn!.identifier] as? String
         }
