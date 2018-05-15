@@ -19,6 +19,7 @@ class ViewControllerAllProfiles: NSViewController, Delay {
     @IBOutlet weak var numberOfprofiles: NSTextField!
 
     private var allprofiles: AllProfiles?
+    private var allschedulessortedandexpanded: AllScheduleSortedAndExpand?
     private var column: Int?
     private var filterby: Sortandfilter?
     private var sortedascendigdesending: Bool = true
@@ -45,11 +46,18 @@ class ViewControllerAllProfiles: NSViewController, Delay {
     override func viewDidAppear() {
         super.viewDidAppear()
         self.allprofiles = AllProfiles()
+        self.allschedulessortedandexpanded = AllScheduleSortedAndExpand()
         self.sortdirection.image = #imageLiteral(resourceName: "up")
         self.sortedascendigdesending = true
         globalMainQueue.async(execute: { () -> Void in
             self.mainTableView.reloadData()
         })
+    }
+
+    override func viewDidDisappear() {
+        super.viewDidDisappear()
+        self.allprofiles = nil
+        self.allschedulessortedandexpanded = nil
     }
 }
 
