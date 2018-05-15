@@ -103,17 +103,17 @@ extension ViewControllerAllProfiles: NSTableViewDelegate, Attributedestring {
         switch column {
         case 0:
             self.filterby = .profile
-        case 1:
-            self.filterby = .task
-        case 2:
-            self.filterby = .localcatalog
         case 3:
-            self.filterby = .remotecatalog
+            self.filterby = .task
         case 4:
-            self.filterby = .remoteserver
+            self.filterby = .localcatalog
         case 5:
+            self.filterby = .remotecatalog
+        case 6:
+            self.filterby = .remoteserver
+        case 7:
             self.filterby = .backupid
-        case 6, 7:
+        case 8, 9:
             sortbystring = false
             self.filterby = .executedate
         default:

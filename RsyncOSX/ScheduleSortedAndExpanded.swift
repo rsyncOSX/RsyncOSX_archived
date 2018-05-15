@@ -179,26 +179,28 @@ class ScheduleSortedAndExpand: SetConfigurations, SetSchedules {
         }
     }
 
+    // && ($0.value(forKey: "dateStart") as? Date)! == dateStart})
     func sortandcountscheduledonetask(_ hiddenID: Int, profilename: String, dateStart: Date?, number: Bool) -> String {
-        var result: [NSDictionary]?
-        result = self.sortedschedules?.filter({return (($0.value(forKey: "hiddenID") as? Int)! == hiddenID
+        if let result = self.sortedschedules?.filter({return (($0.value(forKey: "hiddenID") as? Int)! == hiddenID
             && ($0.value(forKey: "start") as? Date)!.timeIntervalSinceNow > 0 )
-            && ($0.value(forKey: "profilename") as? String)! == profilename
-            && ($0.value(forKey: "dateStart") as? Date)! == dateStart})
-        let sorted = result!.sorted {(di1, di2) -> Bool in
-            if (di1.value(forKey: "start") as? Date)!.timeIntervalSince((di2.value(forKey: "start") as? Date)!)>0 {
-                return false
-            } else {
-                return true
+            && ($0.value(forKey: "profilename") as? String)! == profilename }) {
+            let sorted = result.sorted {(di1, di2) -> Bool in
+                if (di1.value(forKey: "start") as? Date)!.timeIntervalSince((di2.value(forKey: "start") as? Date)!)>0 {
+                    return false
+                } else {
+                    return true
+                }
             }
-        }
-        guard sorted.count > 0 else { return "" }
-        if number {
-            let firsttask = (sorted[0].value(forKey: "start") as? Date)?.timeIntervalSinceNow
-            return self.tools?.timeString(firsttask!) ?? ""
+            guard sorted.count > 0 else { return "" }
+            if number {
+                let firsttask = (sorted[0].value(forKey: "start") as? Date)?.timeIntervalSinceNow
+                return self.tools?.timeString(firsttask!) ?? ""
+            } else {
+                let type = sorted[0].value(forKey: "schedule") as? String
+                return type ?? ""
+            }
         } else {
-            let type = sorted[0].value(forKey: "schedule") as? String
-            return type ?? ""
+            return ""
         }
     }
 
@@ -206,9 +208,7 @@ class ScheduleSortedAndExpand: SetConfigurations, SetSchedules {
     /// array of NSDictionary.
     /// - returns : none
     private func setallscheduledtasksNSDictionary () {
-        guard self.scheduleConfiguration != nil else {
-            return
-        }
+        guard self.scheduleConfiguration != nil else { return }
         var data = [NSDictionary]()
         for i in 0 ..< self.scheduleConfiguration!.count where
             self.scheduleConfiguration![i].dateStop != nil && self.scheduleConfiguration![i].schedule != "stopped" {
@@ -216,8 +216,8 @@ class ScheduleSortedAndExpand: SetConfigurations, SetSchedules {
                     "dateStart": self.scheduleConfiguration![i].dateStart,
                     "dateStop": self.scheduleConfiguration![i].dateStop!,
                     "hiddenID": self.scheduleConfiguration![i].hiddenID,
-                    "schedule": self.scheduleConfiguration![i].schedule
-                ]
+                    "schedule": self.scheduleConfiguration![i].schedule,
+                    "profilename": self.self.scheduleConfiguration![i].profilename ?? "Default profile"]
                 data.append(dict as NSDictionary)
             }
         self.schedulesNSDictionary = data
