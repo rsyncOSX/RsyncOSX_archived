@@ -24,9 +24,9 @@ class Allschedules {
                 self.allschedules = []
             }
             if profilename == "Default profile" {
-                configurationschedule = PersistentStorageAPI(profile: nil, forceread: true).getScheduleandhistory()
+                configurationschedule = PersistentStorageAPI(profile: nil, forceread: true).getScheduleandhistory(nolog: true)
             } else {
-                configurationschedule = PersistentStorageAPI(profile: profilename, forceread: true).getScheduleandhistory()
+                configurationschedule = PersistentStorageAPI(profile: profilename, forceread: true).getScheduleandhistory(nolog: true)
             }
             guard configurationschedule != nil else { return }
             for j in 0 ..< configurationschedule!.count {

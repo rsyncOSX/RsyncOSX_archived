@@ -73,7 +73,7 @@ class Schedules: ScheduleWriteLoggData {
         case .weekly:
             dict.setObject("weekly", forKey: "schedule" as NSCopying)
         }
-        let newSchedule = ConfigurationSchedule(dictionary: dict, log: nil)
+        let newSchedule = ConfigurationSchedule(dictionary: dict, log: nil, nolog: true)
         self.schedules!.append(newSchedule)
         self.storageapi!.saveScheduleFromMemory()
         self.reloadtable(vcontroller: .vctabschedule)
@@ -225,7 +225,7 @@ class Schedules: ScheduleWriteLoggData {
     // Function for reading all jobs for schedule and all history of past executions.
     // Schedules are stored in self.schedules. Schedules are sorted after hiddenID.
     private func readschedules() {
-        var store: [ConfigurationSchedule]? = self.storageapi!.getScheduleandhistory()
+        var store: [ConfigurationSchedule]? = self.storageapi!.getScheduleandhistory(nolog: false)
         guard store != nil else { return }
         var data = [ConfigurationSchedule]()
         for i in 0 ..< store!.count {

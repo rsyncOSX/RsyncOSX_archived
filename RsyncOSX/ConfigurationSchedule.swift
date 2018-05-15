@@ -17,14 +17,14 @@ struct ConfigurationSchedule {
     var delete: Bool?
     var profilename: String?
 
-    init(dictionary: NSDictionary, log: NSArray?) {
+    init(dictionary: NSDictionary, log: NSArray?, nolog: Bool) {
         self.hiddenID = (dictionary.object(forKey: "hiddenID") as? Int)!
         self.dateStart = (dictionary.object(forKey: "dateStart") as? String)!
         self.schedule = (dictionary.object(forKey: "schedule") as? String)!
         if let date = dictionary.object(forKey: "dateStop") as? String {
             self.dateStop = date
         }
-        if log != nil {
+        if log != nil && nolog == false {
             for i in 0 ..< log!.count {
                 self.logrecords.append((log![i] as? NSMutableDictionary)!)
             }
