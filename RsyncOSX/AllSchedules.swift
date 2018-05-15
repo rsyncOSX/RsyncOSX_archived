@@ -10,18 +10,18 @@ import Foundation
 import Cocoa
 
 class Allschedules {
-    
+
     // Configurations object
     private var allschedules: [ConfigurationSchedule]?
     private var allprofiles: [String]?
-    
+
     private func getprofilenames() {
         let profile = Files(root: .profileRoot)
         self.allprofiles = profile.getDirectorysStrings()
         guard self.allprofiles != nil else { return }
         self.allprofiles!.append("Default profile")
     }
-    
+
     private func readallschedules() {
         guard self.allprofiles != nil else { return }
         var configurationschedule: [ConfigurationSchedule]?
@@ -42,11 +42,11 @@ class Allschedules {
             }
         }
     }
-    
+
     func getallschedules() -> [ConfigurationSchedule]? {
         return self.allschedules
     }
-    
+
     init() {
         self.getprofilenames()
         self.readallschedules()
