@@ -9,7 +9,7 @@
 import Foundation
 import Cocoa
 
-class AllScheduleSortedAndExpand: SetConfigurations {
+class AllScheduleSortedAndExpand {
 
     // Reference to main View
     private var vctabmain: NSViewController?
@@ -19,11 +19,6 @@ class AllScheduleSortedAndExpand: SetConfigurations {
     private var sortedschedules: [NSDictionary]?
     private var scheduleInProgress: Bool = false
     private var tools: Tools?
-
-    // Returns reference to all sorted and expanded schedules
-    func getsortedAndExpandedScheduleData() -> [NSDictionary]? {
-        return self.sortedschedules
-    }
 
     // Calculate daily schedules
     private func daily(dateStart: Date, schedule: String, dict: NSDictionary) {

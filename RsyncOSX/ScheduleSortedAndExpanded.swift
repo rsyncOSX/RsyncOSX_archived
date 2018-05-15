@@ -45,13 +45,15 @@ class ScheduleSortedAndExpand: SetConfigurations, SetSchedules {
         if let start: Date = cal.date(byAdding: dateComponent, to: dateStart) {
             if start.timeIntervalSinceNow > 0 {
                 let hiddenID = (dict.value(forKey: "hiddenID") as? Int)!
+                let profilename = dict.value(forKey: "profilename") ?? "Default profile"
                 let time = start.timeIntervalSinceNow
                 let dictSchedule: NSDictionary = [
                     "start": start,
                     "hiddenID": hiddenID,
                     "dateStart": dateStart,
                     "schedule": schedule,
-                    "timetostart": time]
+                    "timetostart": time,
+                    "profilename": profilename]
                 self.expandedData.append(dictSchedule)
             }
         }
@@ -60,20 +62,22 @@ class ScheduleSortedAndExpand: SetConfigurations, SetSchedules {
     // Calculate weekly schedules
     private func weekly(dateStart: Date, schedule: String, dict: NSDictionary) {
         var i = 0
-        while self.nextdayorweekindex(dateStart: dateStart, day: i, schedule: schedule) < 0  && i < 1000 { i += 1 }
+        while self.nextdayorweekindex(dateStart: dateStart, day: i, schedule: schedule) < 0 && i < 1000 { i += 1 }
         var dateComponent = DateComponents()
         dateComponent.day = (i * 7)
         let cal = Calendar.current
         if let start: Date = cal.date(byAdding: dateComponent, to: dateStart) {
             if start.timeIntervalSinceNow > 0 {
                 let hiddenID = (dict.value(forKey: "hiddenID") as? Int)!
+                let profilename = dict.value(forKey: "profilename") ?? "Default profile"
                 let time = start.timeIntervalSinceNow
                 let dictSchedule: NSDictionary = [
                     "start": start,
                     "hiddenID": hiddenID,
                     "dateStart": dateStart,
                     "schedule": schedule,
-                    "timetostart": time]
+                    "timetostart": time,
+                    "profilename": profilename]
                 self.expandedData.append(dictSchedule)
             }
         }
@@ -114,13 +118,15 @@ class ScheduleSortedAndExpand: SetConfigurations, SetSchedules {
                 switch schedule {
                 case "once" :
                     let hiddenID = (dict.value(forKey: "hiddenID") as? Int)!
+                    let profilename = dict.value(forKey: "profilename") ?? "Default profile"
                     let time = seconds
                     let dict: NSDictionary = [
                         "start": dateStart,
                         "hiddenID": hiddenID,
                         "dateStart": dateStart,
                         "schedule": schedule,
-                        "timetostart": time]
+                        "timetostart": time,
+                        "profilename": profilename]
                     self.expandedData.append(dict)
                 case "daily":
                     self.daily(dateStart: dateStart, schedule: schedule, dict: dict)

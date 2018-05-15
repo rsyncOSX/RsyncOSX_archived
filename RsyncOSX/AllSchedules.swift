@@ -15,13 +15,6 @@ class Allschedules {
     private var allschedules: [ConfigurationSchedule]?
     private var allprofiles: [String]?
 
-    private func getprofilenames() {
-        let profile = Files(root: .profileRoot)
-        self.allprofiles = profile.getDirectorysStrings()
-        guard self.allprofiles != nil else { return }
-        self.allprofiles!.append("Default profile")
-    }
-
     private func readallschedules() {
         guard self.allprofiles != nil else { return }
         var configurationschedule: [ConfigurationSchedule]?
@@ -48,7 +41,7 @@ class Allschedules {
     }
 
     init() {
-        self.getprofilenames()
+        self.allprofiles = AllProfilenames().allprofiles
         self.readallschedules()
     }
 }

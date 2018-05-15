@@ -91,7 +91,7 @@ final class PersistentStorageScheduling: Readwritefiles, SetSchedules {
             self.schedulesasdictionary = self.getDatafromfile()
         }
     }
-    
+
     init(profile: String?, forceread: Bool) {
         super.init(task: .schedule, profile: profile)
         self.schedulesasdictionary = self.getDatafromfile()
