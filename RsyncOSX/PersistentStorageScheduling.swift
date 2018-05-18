@@ -85,7 +85,7 @@ final class PersistentStorageScheduling: Readwritefiles, SetSchedules {
     }
 
     init (profile: String?) {
-        super.init(task: .schedule, profile: profile)
+        super.init(task: .schedule, profile: profile, configpath: ViewControllerReference.shared.configpath)
         self.readloggdataDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vcloggdata) as? ViewControllerLoggData
         if self.schedules == nil {
             self.schedulesasdictionary = self.getDatafromfile()
@@ -93,7 +93,7 @@ final class PersistentStorageScheduling: Readwritefiles, SetSchedules {
     }
 
     init(profile: String?, forceread: Bool) {
-        super.init(task: .schedule, profile: profile)
+        super.init(task: .schedule, profile: profile, configpath: ViewControllerReference.shared.configpath)
         self.schedulesasdictionary = self.getDatafromfile()
     }
 }

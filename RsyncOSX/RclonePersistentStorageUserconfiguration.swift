@@ -8,7 +8,7 @@
 
 import Foundation
 
-final class RclonePersistentStorageUserconfiguration: RcloneReadwritefiles {
+final class RclonePersistentStorageUserconfiguration: Readwritefiles {
 
     private var userconfiguration: [NSDictionary]?
 
@@ -17,7 +17,7 @@ final class RclonePersistentStorageUserconfiguration: RcloneReadwritefiles {
     }
 
     init() {
-        super.init(task: .userconfig, profile: nil)
+        super.init(task: .userconfig, profile: nil, configpath: RcloneReference.shared.configpath)
         self.userconfiguration = self.getDatafromfile()
     }
 }

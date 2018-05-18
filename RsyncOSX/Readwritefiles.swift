@@ -9,7 +9,6 @@
 //  let str = "/Rsync/" + serialNumber + profile? + "/configRsync.plist"
 //  let str = "/Rsync/" + serialNumber + "/config.plist"
 //
-//  swiftlint:disable line_length
 
 import Foundation
 import Cocoa
@@ -41,6 +40,9 @@ class Readwritefiles {
     private var filepath: String?
     // Set which file to read
     private var filename: String?
+    // config path either
+    // self.configpath or RcloneReference.shared.configpath
+    private var configpath: String?
 
     private func setnameandpath() {
         let docupath = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true) as NSArray
@@ -52,16 +54,16 @@ class Readwritefiles {
             if let profile = self.profile {
                 let profilePath = Profiles()
                 profilePath.createDirectory()
-                self.filepath = ViewControllerReference.shared.configpath + Tools().getMacSerialNumber()! + "/" + profile + "/"
-                self.filename = docuDir + ViewControllerReference.shared.configpath + Tools().getMacSerialNumber()! + "/" + profile + self.name!
+                self.filepath = self.configpath! + Tools().getMacSerialNumber()! + "/" + profile + "/"
+                self.filename = docuDir + self.configpath! + Tools().getMacSerialNumber()! + "/" + profile + self.name!
             } else {
                 // If profile not set use no profile
-                self.filename = docuDir +  ViewControllerReference.shared.configpath + Tools().getMacSerialNumber()! + self.name!
+                self.filename = docuDir +  self.configpath! + Tools().getMacSerialNumber()! + self.name!
             }
         } else {
             // no profile
-            self.filename = docuDir + ViewControllerReference.shared.configpath + Tools().getMacSerialNumber()! + self.name!
-            self.filepath = ViewControllerReference.shared.configpath + Tools().getMacSerialNumber()! + "/"
+            self.filename = docuDir + self.configpath! + Tools().getMacSerialNumber()! + self.name!
+            self.filepath = self.configpath! + Tools().getMacSerialNumber()! + "/"
         }
     }
 
@@ -117,7 +119,8 @@ class Readwritefiles {
         }
     }
 
-    init(task: WhatToReadWrite, profile: String?) {
+    init(task: WhatToReadWrite, profile: String?, configpath: String) {
+        self.configpath = configpath
         if profile != nil {
             self.profile = profile
             self.useProfile = true

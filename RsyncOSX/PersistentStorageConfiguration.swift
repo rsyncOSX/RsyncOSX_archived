@@ -216,14 +216,14 @@ final class PersistentStorageConfiguration: Readwritefiles, SetConfigurations {
     }
 
     init (profile: String?) {
-        super.init(task: .configuration, profile: profile)
+        super.init(task: .configuration, profile: profile, configpath: ViewControllerReference.shared.configpath)
         if self.configurations == nil {
             self.configurationsasdictionary = self.getDatafromfile()
         }
     }
 
     init(profile: String?, forceread: Bool) {
-        super.init(task: .configuration, profile: profile)
+        super.init(task: .configuration, profile: profile, configpath: ViewControllerReference.shared.configpath)
         self.configurationsasdictionary = self.getDatafromfile()
     }
 }
