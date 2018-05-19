@@ -66,13 +66,16 @@ class Files: Reportfileerror {
 
     var root: Root?
     var rootpath: String?
+    // config path either
+    // ViewControllerReference.shared.configpath or RcloneReference.shared.configpath
+    private var configpath: String?
 
     private func setrootpath() {
         switch self.root! {
         case .profileRoot:
             let paths = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true) as NSArray
             let docuDir = (paths.firstObject as? String)!
-            let profilePath = docuDir + ViewControllerReference.shared.configpath + Tools().getMacSerialNumber()!
+            let profilePath = docuDir + self.configpath! + Tools().getMacSerialNumber()!
             self.rootpath = profilePath
         case .sshRoot:
             self.rootpath = NSHomeDirectory() + "/.ssh/"
@@ -193,7 +196,8 @@ class Files: Reportfileerror {
         }
     }
 
-    init (root: Root) {
+    init (root: Root, configpath: String) {
+        self.configpath = configpath
         self.root = root
         self.setrootpath()
     }

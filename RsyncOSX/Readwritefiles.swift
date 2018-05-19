@@ -41,7 +41,7 @@ class Readwritefiles {
     // Set which file to read
     private var filename: String?
     // config path either
-    // self.configpath or RcloneReference.shared.configpath
+    // ViewControllerReference.shared.configpath or RcloneReference.shared.configpath
     private var configpath: String?
 
     private func setnameandpath() {
