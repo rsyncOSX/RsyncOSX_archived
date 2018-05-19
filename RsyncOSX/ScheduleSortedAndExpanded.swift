@@ -166,6 +166,7 @@ class ScheduleSortedAndExpand: SetConfigurations, SetSchedules {
             result = self.sortedschedules?.filter({return (($0.value(forKey: "hiddenID") as? Int)! == hiddenID
                 && ($0.value(forKey: "start") as? Date)!.timeIntervalSinceNow > 0 )})
         }
+        guard result != nil else { return ""}
         let sorted = result!.sorted {(di1, di2) -> Bool in
             if (di1.value(forKey: "start") as? Date)!.timeIntervalSince((di2.value(forKey: "start") as? Date)!)>0 {
                 return false

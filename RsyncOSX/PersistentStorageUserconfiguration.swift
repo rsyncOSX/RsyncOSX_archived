@@ -92,7 +92,7 @@ final class PersistentStorageUserconfiguration: Readwritefiles, SetConfiguration
     }
 
     init (readfromstorage: Bool) {
-        super.init(task: .userconfig, profile: nil)
+        super.init(task: .userconfig, profile: nil, configpath: ViewControllerReference.shared.configpath)
         if readfromstorage {
             self.userconfiguration = self.getDatafromfile()
         }
