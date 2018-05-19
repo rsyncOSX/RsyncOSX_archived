@@ -8,9 +8,9 @@
 
 import Foundation
 
-class RcloneProfiles: RcloneFiles {
+class RcloneProfiles: Files {
 
     init () {
-        super.init(root: .profileRoot)
+        super.init(root: .profileRoot, configpath: RcloneReference.shared.configpath)
     }
 }

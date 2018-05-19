@@ -54,6 +54,6 @@ class Profiles: Files {
     }
 
     init () {
-        super.init(root: .profileRoot)
+        super.init(root: .profileRoot, configpath: ViewControllerReference.shared.configpath)
     }
 }

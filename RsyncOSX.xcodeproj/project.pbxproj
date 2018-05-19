@@ -98,7 +98,6 @@
 		E9A63064202B425D00F1FFF1 /* Running.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9A63063202B425D00F1FFF1 /* Running.swift */; };
 		E9A8D81C1ED20AEB009648DE /* GetRemoteFileListingsArguments.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9A8D81B1ED20AEB009648DE /* GetRemoteFileListingsArguments.swift */; };
 		E9ACD3982066B9CB0080E09C /* ViewControllerEncrypt.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9ACD3972066B9CB0080E09C /* ViewControllerEncrypt.swift */; };
-		E9ACD39A2066BD360080E09C /* RcloneFiles.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9ACD3992066BD360080E09C /* RcloneFiles.swift */; };
 		E9ACD39C2066BE1A0080E09C /* RcloneProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9ACD39B2066BE1A0080E09C /* RcloneProfile.swift */; };
 		E9C30B4B201623B00079C63D /* SnapshotsLoggData.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9C30B4A201623B00079C63D /* SnapshotsLoggData.swift */; };
 		E9C30B4D201625500079C63D /* SnapshotCommandSubCatalogs.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9C30B4C201625500079C63D /* SnapshotCommandSubCatalogs.swift */; };
@@ -220,7 +219,6 @@
 		E9A63063202B425D00F1FFF1 /* Running.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Running.swift; sourceTree = "<group>"; };
 		E9A8D81B1ED20AEB009648DE /* GetRemoteFileListingsArguments.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GetRemoteFileListingsArguments.swift; sourceTree = "<group>"; };
 		E9ACD3972066B9CB0080E09C /* ViewControllerEncrypt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerEncrypt.swift; sourceTree = "<group>"; };
-		E9ACD3992066BD360080E09C /* RcloneFiles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RcloneFiles.swift; sourceTree = "<group>"; };
 		E9ACD39B2066BE1A0080E09C /* RcloneProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RcloneProfile.swift; sourceTree = "<group>"; };
 		E9C30B4A201623B00079C63D /* SnapshotsLoggData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnapshotsLoggData.swift; sourceTree = "<group>"; };
 		E9C30B4C201625500079C63D /* SnapshotCommandSubCatalogs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnapshotCommandSubCatalogs.swift; sourceTree = "<group>"; };
@@ -560,7 +558,6 @@
 				E965E30A206567AC00EC4747 /* RcloneRsyncProcessArguments.swift */,
 				E96B3E7720661C3900B730DB /* RcloneUserconfiguration.swift */,
 				E96B3E7920661F2A00B730DB /* RcloneTools.swift */,
-				E9ACD3992066BD360080E09C /* RcloneFiles.swift */,
 				E9ACD39B2066BE1A0080E09C /* RcloneProfile.swift */,
 			);
 			name = Encrypted;
@@ -724,7 +721,6 @@
 			files = (
 				E96B3E7A20661F2A00B730DB /* RcloneTools.swift in Sources */,
 				A04972511D6595B200086EFD /* OutputProcess.swift in Sources */,
-				E9ACD39A2066BD360080E09C /* RcloneFiles.swift in Sources */,
 				E943DC6A1FF9141D00E6B8B7 /* RemoteInfoTaskWorkQueue.swift in Sources */,
 				A0AD15AE1D7DB78F0004600F /* ScheduleOperationTimer.swift in Sources */,
 				E942FF291FED41D0004191B5 /* ViewControllerQuickBackup.swift in Sources */,
