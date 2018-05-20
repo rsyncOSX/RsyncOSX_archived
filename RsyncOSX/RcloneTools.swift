@@ -13,8 +13,8 @@ class RcloneTools {
     func verifyrclonepath() {
         let fileManager = FileManager.default
         let path: String?
-        if let rsyncPath = RcloneReference.shared.rclonePath {
-            path = rsyncPath + RcloneReference.shared.rclone
+        if let rclonepath = RcloneReference.shared.rclonePath {
+            path = rclonepath + RcloneReference.shared.rclone
         } else if RcloneReference.shared.rcloneopt {
             path = "/usr/local/bin/" + RcloneReference.shared.rclone
         } else {
@@ -44,8 +44,8 @@ class RcloneTools {
     }
 
     func norclone() {
-        if let rsync = RcloneReference.shared.rclonePath {
-            Alerts.showInfo("ERROR: no rclone in " + rsync)
+        if let rclone = RcloneReference.shared.rclonePath {
+            Alerts.showInfo("ERROR: no rclone in " + rclone)
         } else {
             Alerts.showInfo("ERROR: no rclone in /usr/local/bin")
         }
