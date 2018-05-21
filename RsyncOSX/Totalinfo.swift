@@ -9,5 +9,15 @@
 import Foundation
 
 class Totalinfo {
+    private var allconfigurations: [Configuration]?
+    private var allschedules: [ConfigurationSchedule]?
+    private var allschedulesobj: Allschedules?
+    private var allloggs: [NSMutableDictionary]?
 
+    init() {
+        self.allconfigurations = AllConfigurations().getallconfigurations()
+        self.allschedulesobj = Allschedules(nolog: false)
+        self.allschedules = Allschedules(nolog: false).getallschedules()
+        self.allloggs = ScheduleLoggData(allschedules: self.allschedulesobj).loggdata
+    }
 }

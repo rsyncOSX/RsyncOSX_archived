@@ -18,7 +18,7 @@ class ViewControllerAllProfiles: NSViewController, Delay {
     @IBOutlet weak var sortdirection: NSButton!
     @IBOutlet weak var numberOfprofiles: NSTextField!
 
-    private var allprofiles: AllProfiles?
+    private var allprofiles: AllConfigurations?
     private var allschedules: Allschedules?
     private var allschedulessortedandexpanded: ScheduleSortedAndExpand?
     private var column: Int?
@@ -46,7 +46,7 @@ class ViewControllerAllProfiles: NSViewController, Delay {
 
     override func viewDidAppear() {
         super.viewDidAppear()
-        self.allprofiles = AllProfiles()
+        self.allprofiles = AllConfigurations()
         self.allschedules = Allschedules(nolog: true)
         self.allschedulessortedandexpanded = ScheduleSortedAndExpand(allschedules: self.allschedules)
         self.sortdirection.image = #imageLiteral(resourceName: "up")
@@ -140,7 +140,7 @@ extension ViewControllerAllProfiles: NSSearchFieldDelegate {
             let filterstring = self.search.stringValue
             if filterstring.isEmpty {
                 globalMainQueue.async(execute: { () -> Void in
-                    self.allprofiles = AllProfiles()
+                    self.allprofiles = AllConfigurations()
                     self.mainTableView.reloadData()
                 })
             } else {
@@ -154,7 +154,7 @@ extension ViewControllerAllProfiles: NSSearchFieldDelegate {
 
     func searchFieldDidEndSearching(_ sender: NSSearchField) {
         globalMainQueue.async(execute: { () -> Void in
-            self.allprofiles = AllProfiles()
+            self.allprofiles = AllConfigurations()
             self.mainTableView.reloadData()
         })
     }
