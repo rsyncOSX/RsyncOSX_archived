@@ -88,6 +88,7 @@
 		E9764F60204BEE970018C0D7 /* AllProfiles.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9764F5F204BEE970018C0D7 /* AllProfiles.swift */; };
 		E97C09A71EFAFBC400E86999 /* BatchTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = E97C09A61EFAFBC400E86999 /* BatchTask.swift */; };
 		E97E3BA71F6256DB00411D0E /* Configurations.swift in Sources */ = {isa = PBXBuildFile; fileRef = E97E3BA61F6256DB00411D0E /* Configurations.swift */; };
+		E9848D4320B30F75000A8AA8 /* Totalinfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9848D4220B30F75000A8AA8 /* Totalinfo.swift */; };
 		E989CE961EF948D0000CB7C2 /* ChmodPubKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = E989CE951EF948D0000CB7C2 /* ChmodPubKey.swift */; };
 		E98FA897206544F9007F3ED1 /* RcloneConfigurations.swift in Sources */ = {isa = PBXBuildFile; fileRef = E98FA896206544F9007F3ED1 /* RcloneConfigurations.swift */; };
 		E98FA8992065464B007F3ED1 /* RcloneConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = E98FA8982065464B007F3ED1 /* RcloneConfiguration.swift */; };
@@ -209,6 +210,7 @@
 		E9764F5F204BEE970018C0D7 /* AllProfiles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllProfiles.swift; sourceTree = "<group>"; };
 		E97C09A61EFAFBC400E86999 /* BatchTask.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BatchTask.swift; sourceTree = "<group>"; };
 		E97E3BA61F6256DB00411D0E /* Configurations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Configurations.swift; sourceTree = "<group>"; };
+		E9848D4220B30F75000A8AA8 /* Totalinfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Totalinfo.swift; sourceTree = "<group>"; };
 		E989CE951EF948D0000CB7C2 /* ChmodPubKey.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChmodPubKey.swift; sourceTree = "<group>"; };
 		E98FA896206544F9007F3ED1 /* RcloneConfigurations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RcloneConfigurations.swift; sourceTree = "<group>"; };
 		E98FA8982065464B007F3ED1 /* RcloneConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RcloneConfiguration.swift; sourceTree = "<group>"; };
@@ -301,6 +303,7 @@
 		A04492BE1D658F8900B3CE17 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				E9848D4120B30F4A000A8AA8 /* Totalinfo */,
 				E98FA89520654464007F3ED1 /* Encrypted */,
 				E9764F5E204BEE710018C0D7 /* AllProfiles */,
 				E99FC81E200FDDBC00477B1A /* ProcessArguments */,
@@ -525,6 +528,14 @@
 				E9C6D24020AAB96800B9D212 /* AllProfilenames.swift */,
 			);
 			name = AllProfiles;
+			sourceTree = "<group>";
+		};
+		E9848D4120B30F4A000A8AA8 /* Totalinfo */ = {
+			isa = PBXGroup;
+			children = (
+				E9848D4220B30F75000A8AA8 /* Totalinfo.swift */,
+			);
+			name = Totalinfo;
 			sourceTree = "<group>";
 		};
 		E988FCBC1F9BCF0A00F21FB9 /* ScheduleOperationDispatch */ = {
@@ -820,6 +831,7 @@
 				A02A4AD91D7EFD3D0059CECD /* ViewControllerScheduleDetails.swift in Sources */,
 				A04492BC1D658F2100B3CE17 /* yudpsocket.swift in Sources */,
 				A0CACFD41DA2738500C5997A /* RsyncParametersVC.swift in Sources */,
+				E9848D4320B30F75000A8AA8 /* Totalinfo.swift in Sources */,
 				A04492AC1D658F2100B3CE17 /* Configuration.swift in Sources */,
 				A04492861D658EE800B3CE17 /* AppDelegate.swift in Sources */,
 				E943DC681FF9115200E6B8B7 /* EstimateRemoteInformationTask.swift in Sources */,

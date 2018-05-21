@@ -16,7 +16,7 @@ class Allschedules {
     private var allschedules: [ConfigurationSchedule]?
     private var allprofiles: [String]?
 
-    private func readallschedules() {
+    private func readallschedules(nolog: Bool) {
         guard self.allprofiles != nil else { return }
         var configurationschedule: [ConfigurationSchedule]?
         for i in 0 ..< self.allprofiles!.count {
@@ -25,9 +25,9 @@ class Allschedules {
                 self.allschedules = []
             }
             if profilename == "Default profile" {
-                configurationschedule = PersistentStorageAPI(profile: nil, forceread: true).getScheduleandhistory(nolog: true)
+                configurationschedule = PersistentStorageAPI(profile: nil, forceread: true).getScheduleandhistory(nolog: nolog)
             } else {
-                configurationschedule = PersistentStorageAPI(profile: profilename, forceread: true).getScheduleandhistory(nolog: true)
+                configurationschedule = PersistentStorageAPI(profile: profilename, forceread: true).getScheduleandhistory(nolog: nolog)
             }
             guard configurationschedule != nil else { return }
             for j in 0 ..< configurationschedule!.count {
@@ -41,8 +41,8 @@ class Allschedules {
         return self.allschedules
     }
 
-    init() {
+    init(nolog: Bool) {
         self.allprofiles = AllProfilenames().allprofiles
-        self.readallschedules()
+        self.readallschedules(nolog: nolog)
     }
 }

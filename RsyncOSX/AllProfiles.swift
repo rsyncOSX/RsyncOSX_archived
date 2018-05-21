@@ -15,7 +15,11 @@ class AllProfiles: Sorting {
     var allconfigurationsasdictionary: [NSMutableDictionary]?
     private var allprofiles: [String]?
 
-    private func getallconfigurations() {
+    func getallconfigurations() -> [Configuration]? {
+        return self.allconfigurations
+    }
+
+    private func readallconfigurations() {
         guard self.allprofiles != nil else { return }
         var configurations: [Configuration]?
         for i in 0 ..< self.allprofiles!.count {
@@ -92,7 +96,7 @@ class AllProfiles: Sorting {
 
     init() {
         self.allprofiles = AllProfilenames().allprofiles
-        self.getallconfigurations()
+        self.readallconfigurations()
         self.setConfigurationsDataSourcecountBackupSnapshot()
     }
 

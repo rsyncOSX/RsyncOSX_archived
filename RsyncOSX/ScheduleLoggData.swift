@@ -26,6 +26,7 @@ enum Sortandfilter {
 final class ScheduleLoggData: SetConfigurations, SetSchedules, Sorting {
 
     var loggdata: [NSMutableDictionary]?
+    private var scheduleConfiguration: [ConfigurationSchedule]?
 
     // Function for filter loggdata
     func filter(search: String?, filterby: Sortandfilter?) {
@@ -69,5 +70,10 @@ final class ScheduleLoggData: SetConfigurations, SetSchedules, Sorting {
         if self.loggdata == nil {
             self.readAndSortAllLoggdata()
         }
+    }
+
+    init (allschedules: Allschedules?) {
+        guard allschedules != nil else { return }
+        self.scheduleConfiguration = allschedules!.getallschedules()
     }
 }

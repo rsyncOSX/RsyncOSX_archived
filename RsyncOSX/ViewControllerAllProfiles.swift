@@ -47,7 +47,7 @@ class ViewControllerAllProfiles: NSViewController, Delay {
     override func viewDidAppear() {
         super.viewDidAppear()
         self.allprofiles = AllProfiles()
-        self.allschedules = Allschedules()
+        self.allschedules = Allschedules(nolog: true)
         self.allschedulessortedandexpanded = ScheduleSortedAndExpand(allschedules: self.allschedules)
         self.sortdirection.image = #imageLiteral(resourceName: "up")
         self.sortedascendigdesending = true
