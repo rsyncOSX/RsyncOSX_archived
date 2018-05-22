@@ -33,7 +33,8 @@ class ViewControllerEncrypt: NSViewController, GetIndex, SetConfigurations, VcCo
     @IBOutlet weak var rcloneID: NSTextField!
     @IBOutlet weak var rcloneremotecatalog: NSTextField!
     @IBOutlet weak var forceresetbutton: NSButton!
-
+    @IBOutlet weak var connectionlight: NSButton!
+    
     @IBAction func forcereset(_ sender: NSButton) {
         guard self.index != nil else { return }
         if self.forceresetbutton.state == .on {
@@ -115,6 +116,7 @@ class ViewControllerEncrypt: NSViewController, GetIndex, SetConfigurations, VcCo
     }
 
     private func getconfig() {
+        self.connectionlight.image = #imageLiteral(resourceName: "red")
         guard self.index != nil else {
             self.localCatalog.stringValue = ""
             self.offsiteCatalog.stringValue = ""
@@ -144,6 +146,7 @@ class ViewControllerEncrypt: NSViewController, GetIndex, SetConfigurations, VcCo
             guard rcloneindex >= 0 else { return }
             self.rcloneID.stringValue = self.configurationsrclone!.getConfigurations()[rcloneindex].backupID
             self.rcloneremotecatalog.stringValue = self.configurationsrclone!.getConfigurations()[rcloneindex].offsiteCatalog
+            self.connectionlight.image = #imageLiteral(resourceName: "green")
         }
     }
 
@@ -164,7 +167,7 @@ class ViewControllerEncrypt: NSViewController, GetIndex, SetConfigurations, VcCo
         guard self.index != nil && self.rcloneindex != nil else { return false }
         if self.configurationsrclone!.getConfigurations()[self.rcloneindex!].hiddenID == self.configurations?.getConfigurations() [self.index!].rclonehiddenID
             && self.rcloneprofilename == self.configurations?.getConfigurations() [self.index!].rcloneprofile {
-                return true
+            return true
         } else {
             return false
         }
@@ -214,7 +217,7 @@ extension ViewControllerEncrypt: NSTableViewDelegate {
             guard self.index! < self.configurations!.getConfigurations().count else { return nil }
             if self.configurationsrclone!.getConfigurations()[row].hiddenID == self.configurations?.getConfigurations() [self.index!].rclonehiddenID && self.rcloneprofilename == self.configurations?.getConfigurations() [self.index!].rcloneprofile {
                 if tableColumn!.identifier.rawValue == "connected" {
-                     return #imageLiteral(resourceName: "complete")
+                    return #imageLiteral(resourceName: "complete")
                 }
             }
         }
