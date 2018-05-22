@@ -26,6 +26,7 @@ enum Sortandfilter {
 final class ScheduleLoggData: SetConfigurations, SetSchedules, Sorting {
 
     var loggdata: [NSMutableDictionary]?
+    private var scheduleConfiguration: [ConfigurationSchedule]?
 
     // Function for filter loggdata
     func filter(search: String?, filterby: Sortandfilter?) {
@@ -52,8 +53,8 @@ final class ScheduleLoggData: SetConfigurations, SetSchedules, Sorting {
                         "offsiteServer": self.configurations!.getResourceConfiguration(hiddenID, resource: .offsiteServer),
                         "task": self.configurations!.getResourceConfiguration(hiddenID, resource: .task),
                         "backupID": self.configurations!.getResourceConfiguration(hiddenID, resource: .backupid),
-                        "dateExecuted": (dict.value(forKey: "dateExecuted") as? String)!,
-                        "resultExecuted": (dict.value(forKey: "resultExecuted") as? String)!,
+                        "dateExecuted": dict.value(forKey: "dateExecuted") as? String ?? "",
+                        "resultExecuted": dict.value(forKey: "resultExecuted") as? String ?? "",
                         "hiddenID": hiddenID,
                         "parent": i,
                         "sibling": j]
@@ -64,10 +65,31 @@ final class ScheduleLoggData: SetConfigurations, SetSchedules, Sorting {
         self.loggdata = self.sortbyrundate(notsorted: data, sortdirection: true)
     }
 
+    private func allreadAndSortAllLoggdata() {
+        var data = [NSMutableDictionary]()
+        let input: [ConfigurationSchedule]? = self.scheduleConfiguration
+        guard input != nil else { return }
+        for i in 0 ..< input!.count where input![i].logrecords.count > 0 {
+            let profilename = input![i].profilename
+            for j in 0 ..< input![i].logrecords.count {
+                let dict = input![i].logrecords[j]
+                dict.setValue(profilename, forKey: "profilename")
+                data.append(dict)
+            }
+        }
+        self.loggdata = self.sortbyrundate(notsorted: data, sortdirection: true)
+    }
+
     init () {
         // Read and sort loggdata
         if self.loggdata == nil {
             self.readAndSortAllLoggdata()
         }
+    }
+
+    init (allschedules: Allschedules?) {
+        guard allschedules != nil else { return }
+        self.scheduleConfiguration = allschedules!.getallschedules()
+        self.allreadAndSortAllLoggdata()
     }
 }

@@ -4434,7 +4434,7 @@ DQ
                                                     </textFieldCell>
                                                     <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                 </tableColumn>
-                                                <tableColumn identifier="dateExecuted" width="145.08203125" minWidth="10" maxWidth="3.4028234663852886e+38" id="STf-VO-dOL">
+                                                <tableColumn identifier="dateExecuted" width="145.58203125" minWidth="10" maxWidth="3.4028234663852886e+38" id="STf-VO-dOL">
                                                     <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left" title="Last run">
                                                         <font key="font" metaFont="smallSystem"/>
                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
@@ -5785,7 +5785,7 @@ DQ
                                 </textFieldCell>
                             </textField>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="URv-fd-jZi">
-                                <rect key="frame" x="627" y="343" width="118" height="17"/>
+                                <rect key="frame" x="638" y="318" width="118" height="17"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="Rclone ID:" id="Y7l-nn-O7g">
                                     <font key="font" metaFont="system"/>
@@ -5827,10 +5827,10 @@ DQ
                                 </textFieldCell>
                             </textField>
                             <box fixedFrame="YES" title="Local config (select row in Execute view or use Get button)" translatesAutoresizingMaskIntoConstraints="NO" id="SUC-MM-CCI">
-                                <rect key="frame" x="107" y="216" width="477" height="171"/>
+                                <rect key="frame" x="107" y="216" width="470" height="171"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <view key="contentView" id="oO9-gu-0li">
-                                    <rect key="frame" x="2" y="2" width="473" height="154"/>
+                                    <rect key="frame" x="2" y="2" width="466" height="154"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="DUJ-1L-3nM">
@@ -6014,7 +6014,7 @@ DQ
                                 </view>
                             </box>
                             <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="FJk-9x-I6T">
-                                <rect key="frame" x="746" y="340" width="309" height="22"/>
+                                <rect key="frame" x="757" y="315" width="309" height="22"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" drawsBackground="YES" id="fQl-9X-axo">
                                     <font key="font" metaFont="system"/>
@@ -6023,7 +6023,7 @@ DQ
                                 </textFieldCell>
                             </textField>
                             <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2qy-gg-Be2">
-                                <rect key="frame" x="746" y="317" width="309" height="22"/>
+                                <rect key="frame" x="757" y="338" width="309" height="22"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" drawsBackground="YES" id="Y9o-Qf-UdG">
                                     <font key="font" metaFont="system"/>
@@ -6032,7 +6032,7 @@ DQ
                                 </textFieldCell>
                             </textField>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Z21-w1-1Bm">
-                                <rect key="frame" x="598" y="322" width="148" height="17"/>
+                                <rect key="frame" x="609" y="343" width="148" height="17"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="Rclone remote catalog: " id="0xC-AA-0nh">
                                     <font key="font" metaFont="system"/>
@@ -6041,18 +6041,27 @@ DQ
                                 </textFieldCell>
                             </textField>
                             <box fixedFrame="YES" title="Rclone connection information in local config (if connected)" translatesAutoresizingMaskIntoConstraints="NO" id="Nar-BR-J2v">
-                                <rect key="frame" x="586" y="296" width="489" height="91"/>
+                                <rect key="frame" x="603" y="305" width="472" height="82"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <view key="contentView" id="Vlr-7K-ftP">
-                                    <rect key="frame" x="2" y="2" width="485" height="74"/>
+                                    <rect key="frame" x="2" y="2" width="468" height="65"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 </view>
                             </box>
+                            <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="zdg-TW-Apb">
+                                <rect key="frame" x="584" y="343" width="14" height="13"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="red" imagePosition="only" alignment="center" imageScaling="proportionallyUpOrDown" inset="2" id="7Qy-V8-3jD">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                            </button>
                         </subviews>
                     </view>
                     <connections>
                         <outlet property="backupID" destination="gYQ-RJ-rfT" id="EIo-p9-eO0"/>
                         <outlet property="connectbutton" destination="gF4-Qw-h7z" id="0gX-Ru-C2L"/>
+                        <outlet property="connectionlight" destination="zdg-TW-Apb" id="HGC-VE-GYu"/>
                         <outlet property="forceresetbutton" destination="YSB-CT-jat" id="iF2-PM-hI9"/>
                         <outlet property="localCatalog" destination="DRR-F1-iKM" id="7zE-eR-5od"/>
                         <outlet property="mainTableView" destination="RUl-eQ-A2I" id="PAx-LJ-hHB"/>
