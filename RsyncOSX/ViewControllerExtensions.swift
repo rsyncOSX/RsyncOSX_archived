@@ -58,6 +58,7 @@ protocol VcMain {
     var viewControllerScheduledBackupInWork: NSViewController? { get }
     var viewControllerAbout: NSViewController? { get }
     var viewControllerScheduleDetails: NSViewController? { get }
+    var viewControllerInformationLocalRemote: NSViewController? { get }
 }
 
 extension VcMain {
@@ -161,6 +162,13 @@ extension VcMain {
     // self.presentViewControllerAsSheet(self.viewControllerEstimating)
     var viewControllerEstimating: NSViewController? {
         return (self.storyboard!.instantiateController(withIdentifier: NSStoryboard.SceneIdentifier(rawValue: "StoryboardEstimatingID"))
+            as? NSViewController)!
+    }
+
+    // local and remote info
+    // self.presentViewControllerAsSheet(self.viewControllerInformationLocalRemote)
+    var viewControllerInformationLocalRemote: NSViewController? {
+        return (self.storyboard!.instantiateController(withIdentifier: NSStoryboard.SceneIdentifier(rawValue: "StoryboardLocalRemoteID"))
             as? NSViewController)!
     }
 

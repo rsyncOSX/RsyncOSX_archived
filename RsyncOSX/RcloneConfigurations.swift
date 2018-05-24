@@ -68,9 +68,11 @@ class RcloneConfigurations {
         let allarguments = self.argumentAllConfigurations![index]
         switch argtype {
         case .arg:
-            return allarguments.arg!
+            return allarguments.arg ?? []
         case .argdryRun:
-            return allarguments.argdryRun!
+            return allarguments.argdryRun ?? []
+        default:
+            return []
         }
     }
 

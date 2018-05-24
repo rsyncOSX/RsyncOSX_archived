@@ -48,7 +48,7 @@ class RemoteInfoTaskWorkQueue: SetConfigurations {
         weak var startstopProgressIndicatorDelegate: StartStopProgressIndicator?
         startstopProgressIndicatorDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vcremoteinfo) as? ViewControllerRemoteInfo
         startstopProgressIndicatorDelegate?.start()
-        _ = EstimateRemoteInformationTask(index: self.index!, outputprocess: self.outputprocess)
+        _ = EstimateRemoteInformationTask(index: self.index!, outputprocess: self.outputprocess, local: false)
     }
 
     func processTermination() {
@@ -73,7 +73,7 @@ class RemoteInfoTaskWorkQueue: SetConfigurations {
         if self.stackoftasktobeestimated?.count == 0 {
             self.stackoftasktobeestimated = nil
         }
-        _ = EstimateRemoteInformationTask(index: self.index!, outputprocess: self.outputprocess)
+        _ = EstimateRemoteInformationTask(index: self.index!, outputprocess: self.outputprocess, local: false)
     }
 
     func setbackuplist(list: [NSMutableDictionary]) {

@@ -34,7 +34,7 @@ class ViewControllerEncrypt: NSViewController, GetIndex, SetConfigurations, VcCo
     @IBOutlet weak var rcloneremotecatalog: NSTextField!
     @IBOutlet weak var forceresetbutton: NSButton!
     @IBOutlet weak var connectionlight: NSButton!
-    
+
     @IBAction func forcereset(_ sender: NSButton) {
         guard self.index != nil else { return }
         if self.forceresetbutton.state == .on {
