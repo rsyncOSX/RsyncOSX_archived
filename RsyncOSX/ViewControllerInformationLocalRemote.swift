@@ -25,6 +25,7 @@ class ViewControllerInformationLocalRemote: NSViewController, SetDismisser, GetI
     @IBOutlet weak var localtotalDirs: NSTextField!
     @IBOutlet weak var localtotalNumberSizebytes: NSTextField!
     @IBOutlet weak var working: NSProgressIndicator!
+    @IBOutlet weak var gotit: NSTextField!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -65,6 +66,7 @@ class ViewControllerInformationLocalRemote: NSViewController, SetDismisser, GetI
                 self.newfiles.stringValue = infotask.newfiles!
                 self.deletefiles.stringValue = infotask.deletefiles!
                 self.working.stopAnimation(nil)
+                self.gotit.stringValue = "Got it..."
             }
         })
     }
