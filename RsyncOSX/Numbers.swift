@@ -78,6 +78,13 @@ final class Numbers: SetConfigurations {
         }
     }
 
+    private func checandadjustknumbers() {
+        if self.transferNum! > 0 {
+            self.totNum! = self.totNum! - self.transferNum!
+            self.totNumSize! = self.totNumSize! - self.transferNumSize!
+        }
+    }
+
     private func resultrsyncver3() {
         // Ver3 of rsync adds "," as 1000 mark, must replace it and then split numbers into components
         let filesPart = self.files![0].replacingOccurrences(of: ",", with: "").components(separatedBy: " ")
@@ -208,8 +215,10 @@ final class Numbers: SetConfigurations {
         if files!.count == 1 && filesSize!.count == 1 && totfileSize!.count == 1 &&  totfilesNum!.count == 1 {
             if ViewControllerReference.shared.rsyncVer3 {
                 self.resultrsyncver3()
+                self.checandadjustknumbers()
             } else {
                 self.resultrsyncver2()
+                self.checandadjustknumbers()
             }
         } else {
             // If it breaks set number of transferred files to size of output.
