@@ -9,7 +9,7 @@
 import Foundation
 import Cocoa
 
-class ViewControllerInformationLocalRemote: NSViewController, SetDismisser, GetIndex {
+class ViewControllerInformationLocalRemote: NSViewController, SetDismisser, GetIndex, SetConfigurations {
 
     private var index: Int?
     private var outputprocess: OutputProcess?
@@ -26,6 +26,8 @@ class ViewControllerInformationLocalRemote: NSViewController, SetDismisser, GetI
     @IBOutlet weak var localtotalNumberSizebytes: NSTextField!
     @IBOutlet weak var working: NSProgressIndicator!
     @IBOutlet weak var gotit: NSTextField!
+    @IBOutlet weak var datelastbackup: NSTextField!
+    @IBOutlet weak var dayslastbackup: NSTextField!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -38,6 +40,10 @@ class ViewControllerInformationLocalRemote: NSViewController, SetDismisser, GetI
         self.complete = false
         self.index = self.index(viewcontroller: .vctabmain)
          if let index = self.index {
+            let datelastbackup = self.configurations?.getConfigurations()[index].dateRun ?? "none"
+            let numberlastbackup = self.configurations?.getConfigurations()[index].dayssincelastbackup ?? "none"
+            self.datelastbackup.stringValue = "Date last backup: " + datelastbackup
+            self.dayslastbackup.stringValue = "Days since last backup: " + numberlastbackup
             self.outputprocess = OutputProcess()
             _ = EstimateRemoteInformationTask(index: index, outputprocess: self.outputprocess, local: true)
          }

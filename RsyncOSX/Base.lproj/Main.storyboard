@@ -5216,7 +5216,7 @@ DQ
                                 </textFieldCell>
                             </textField>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="oBg-8d-smC">
-                                <rect key="frame" x="20" y="163" width="201" height="17"/>
+                                <rect key="frame" x="20" y="215" width="201" height="17"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Getting information, please wait:" id="IMJ-3e-rYJ">
                                     <font key="font" metaFont="system"/>
@@ -5225,12 +5225,32 @@ DQ
                                 </textFieldCell>
                             </textField>
                             <progressIndicator wantsLayer="YES" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" maxValue="100" displayedWhenStopped="NO" bezeled="NO" indeterminate="YES" controlSize="small" style="spinning" translatesAutoresizingMaskIntoConstraints="NO" id="TnF-kS-8Rm">
-                                <rect key="frame" x="227" y="163" width="16" height="16"/>
+                                <rect key="frame" x="227" y="215" width="16" height="16"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                             </progressIndicator>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Oib-gL-vGL">
+                                <rect key="frame" x="22" y="196" width="271" height="17"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Date last backup:" id="lvl-UW-J6U">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="T8y-rE-WVV">
+                                <rect key="frame" x="22" y="177" width="271" height="17"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Days since last backup:" id="qat-Dj-4j6">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
                         </subviews>
                     </view>
                     <connections>
+                        <outlet property="datelastbackup" destination="Oib-gL-vGL" id="OXe-BX-c3O"/>
+                        <outlet property="dayslastbackup" destination="T8y-rE-WVV" id="ahY-dL-IRr"/>
                         <outlet property="deletefiles" destination="jV4-Hb-vYN" id="Nki-sn-L3W"/>
                         <outlet property="gotit" destination="oBg-8d-smC" id="XRr-7m-qNV"/>
                         <outlet property="localtotalDirs" destination="8bR-7p-hJG" id="IE5-gh-Dz1"/>
