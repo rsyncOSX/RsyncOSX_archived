@@ -5216,7 +5216,7 @@ DQ
                                 </textFieldCell>
                             </textField>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="oBg-8d-smC">
-                                <rect key="frame" x="20" y="207" width="201" height="17"/>
+                                <rect key="frame" x="20" y="163" width="201" height="17"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Getting information, please wait:" id="IMJ-3e-rYJ">
                                     <font key="font" metaFont="system"/>
@@ -5225,13 +5225,14 @@ DQ
                                 </textFieldCell>
                             </textField>
                             <progressIndicator wantsLayer="YES" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" maxValue="100" displayedWhenStopped="NO" bezeled="NO" indeterminate="YES" controlSize="small" style="spinning" translatesAutoresizingMaskIntoConstraints="NO" id="TnF-kS-8Rm">
-                                <rect key="frame" x="227" y="207" width="16" height="16"/>
+                                <rect key="frame" x="227" y="163" width="16" height="16"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                             </progressIndicator>
                         </subviews>
                     </view>
                     <connections>
                         <outlet property="deletefiles" destination="jV4-Hb-vYN" id="Nki-sn-L3W"/>
+                        <outlet property="gotit" destination="oBg-8d-smC" id="XRr-7m-qNV"/>
                         <outlet property="localtotalDirs" destination="8bR-7p-hJG" id="IE5-gh-Dz1"/>
                         <outlet property="localtotalNumber" destination="nsk-EN-eeO" id="drg-04-Dix"/>
                         <outlet property="localtotalNumberSizebytes" destination="yus-SD-kNi" id="V1a-2l-EGq"/>
