@@ -4,6 +4,7 @@
 //  Created by Thomas Evensen on 09/02/16.
 //  Copyright © 2016 Thomas Evensen. All rights reserved.
 //
+// swiftlint:disable line_length
 
 import Foundation
 
@@ -18,6 +19,7 @@ struct ArgumentsOneConfiguration {
     var argdryRun: [String]?
     var argDisplay: [String]?
     var argdryRunDisplay: [String]?
+    var argdryRunLocalcatalogInfo: [String]?
 
     init(config: Configuration) {
         // The configuration
@@ -28,5 +30,6 @@ struct ArgumentsOneConfiguration {
         self.argDisplay = RsyncParametersProcess().argumentsRsync(config, dryRun: false, forDisplay: true)
         self.argdryRun = RsyncParametersProcess().argumentsRsync(config, dryRun: true, forDisplay: false)
         self.argdryRunDisplay = RsyncParametersProcess().argumentsRsync(config, dryRun: true, forDisplay: true)
+        self.argdryRunLocalcatalogInfo = RsyncParametersProcess().argumentsRsyncLocalcatalalogInfo(config, dryRun: true, forDisplay: false)
     }
 }

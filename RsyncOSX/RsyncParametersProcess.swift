@@ -156,6 +156,21 @@ final class RsyncParametersProcess {
         return self.arguments!
     }
 
+    func argumentsRsyncLocalcatalalogInfo(_ config: Configuration, dryRun: Bool, forDisplay: Bool) -> [String] {
+        self.localCatalog = config.localCatalog
+        self.setParameters1To6(config, dryRun: dryRun, forDisplay: forDisplay)
+        self.setParameters8To14(config, dryRun: dryRun, forDisplay: forDisplay)
+        switch config.task {
+        case "backup", "combined":
+            self.argumentsforbackup(dryRun: dryRun, forDisplay: forDisplay)
+        case "snapshot":
+            self.argumentsforsnapshot(dryRun: dryRun, forDisplay: forDisplay)
+        default:
+            break
+        }
+        return self.arguments!
+    }
+
     private func remoteargs(_ config: Configuration) {
         self.offsiteCatalog = config.offsiteCatalog
         self.offsiteUsername = config.offsiteUsername
@@ -186,6 +201,7 @@ final class RsyncParametersProcess {
     private func argumentsforbackup(dryRun: Bool, forDisplay: Bool) {
         // Backup
         self.arguments!.append(self.localCatalog!)
+        guard self.offsiteCatalog != nil else { return }
         if self.offsiteServer!.isEmpty {
             if forDisplay {self.arguments!.append(" ")}
             self.arguments!.append(self.offsiteCatalog!)

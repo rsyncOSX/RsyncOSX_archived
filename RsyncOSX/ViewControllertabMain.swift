@@ -149,13 +149,8 @@ class ViewControllertabMain: NSViewController, ReloadTable, Deselect, Coloractiv
                 self.info(num: 7)
                 return
         }
-        if let index = self.index {
-            self.working.startAnimation(nil)
-            self.workinglabel.isHidden = false
-            self.processtermination = .infosingletask
-            self.outputprocess = OutputProcess()
-            _ = EstimateRemoteInformationTask(index: index, outputprocess: self.outputprocess)
-        }
+        self.processtermination = .infosingletask
+        self.presentViewControllerAsSheet(self.viewControllerInformationLocalRemote!)
     }
 
     @IBAction func totinfo(_ sender: NSButton) {
@@ -886,9 +881,9 @@ extension ViewControllertabMain: UpdateProgress {
             guard self.remoteinfotaskworkqueue != nil else { return }
             self.remoteinfotaskworkqueue?.processTermination()
         case .infosingletask:
-            self.setNumbers(outputprocess: self.outputprocess)
-            self.workinglabel.isHidden = true
-            self.working.stopAnimation(nil)
+            weak var processterminationDelegate: UpdateProgress?
+            processterminationDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vcinfolocalremote) as? ViewControllerInformationLocalRemote
+            processterminationDelegate?.processTermination()
         case .combinedtask:
             self.working.stopAnimation(nil)
             self.executetasknow()

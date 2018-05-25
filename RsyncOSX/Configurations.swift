@@ -87,6 +87,7 @@ extension ReloadTable {
 enum ArgumentsRsync {
     case arg
     case argdryRun
+    case argdryRunlocalcataloginfo
 }
 
 // Enum which resource to return
@@ -261,9 +262,11 @@ class Configurations: ReloadTable, SetSchedules {
         let allarguments = self.argumentAllConfigurations![index]
         switch argtype {
         case .arg:
-            return allarguments.arg!
+            return allarguments.arg ?? []
         case .argdryRun:
-            return allarguments.argdryRun!
+            return allarguments.argdryRun ?? []
+        case .argdryRunlocalcataloginfo:
+            return allarguments.argdryRunLocalcatalogInfo ?? []
         }
     }
 
