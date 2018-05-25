@@ -5215,6 +5215,19 @@ DQ
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="oBg-8d-smC">
+                                <rect key="frame" x="20" y="207" width="201" height="17"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Getting information, please wait:" id="IMJ-3e-rYJ">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <progressIndicator wantsLayer="YES" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" maxValue="100" displayedWhenStopped="NO" bezeled="NO" indeterminate="YES" controlSize="small" style="spinning" translatesAutoresizingMaskIntoConstraints="NO" id="TnF-kS-8Rm">
+                                <rect key="frame" x="227" y="207" width="16" height="16"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                            </progressIndicator>
                         </subviews>
                     </view>
                     <connections>
@@ -5228,6 +5241,7 @@ DQ
                         <outlet property="totalNumberSizebytes" destination="avx-hU-AG7" id="H5b-dD-sae"/>
                         <outlet property="transferredNumber" destination="eWb-WG-3ab" id="vl3-la-Qhq"/>
                         <outlet property="transferredNumberSizebytes" destination="xno-YZ-qG8" id="SAq-R3-Sqf"/>
+                        <outlet property="working" destination="TnF-kS-8Rm" id="5Im-T6-2E2"/>
                     </connections>
                 </viewController>
                 <customObject id="Ev4-fO-37e" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>

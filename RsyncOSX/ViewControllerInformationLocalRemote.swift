@@ -24,6 +24,7 @@ class ViewControllerInformationLocalRemote: NSViewController, SetDismisser, GetI
     @IBOutlet weak var localtotalNumber: NSTextField!
     @IBOutlet weak var localtotalDirs: NSTextField!
     @IBOutlet weak var localtotalNumberSizebytes: NSTextField!
+    @IBOutlet weak var working: NSProgressIndicator!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,6 +33,7 @@ class ViewControllerInformationLocalRemote: NSViewController, SetDismisser, GetI
 
     override func viewDidAppear() {
         super.viewDidAppear()
+        self.working.startAnimation(nil)
         self.complete = false
         self.index = self.index(viewcontroller: .vctabmain)
          if let index = self.index {
@@ -49,18 +51,6 @@ class ViewControllerInformationLocalRemote: NSViewController, SetDismisser, GetI
     // Process object executes the job.
     private func setNumbers(outputprocess: OutputProcess?, local: Bool) {
         globalMainQueue.async(execute: { () -> Void in
-            guard outputprocess != nil else {
-                /*
-                self.transferredNumber.stringValue = ""
-                self.transferredNumberSizebytes.stringValue = ""
-                self.totalNumber.stringValue = ""
-                self.totalNumberSizebytes.stringValue = ""
-                self.totalDirs.stringValue = ""
-                self.newfiles.stringValue = ""
-                self.deletefiles.stringValue = ""
-                */
-                return
-            }
             let infotask = RemoteInfoTask(outputprocess: outputprocess)
             if local {
                 self.localtotalNumber.stringValue = infotask.totalNumber!
@@ -74,6 +64,7 @@ class ViewControllerInformationLocalRemote: NSViewController, SetDismisser, GetI
                 self.totalDirs.stringValue = infotask.totalDirs!
                 self.newfiles.stringValue = infotask.newfiles!
                 self.deletefiles.stringValue = infotask.deletefiles!
+                self.working.stopAnimation(nil)
             }
         })
     }
