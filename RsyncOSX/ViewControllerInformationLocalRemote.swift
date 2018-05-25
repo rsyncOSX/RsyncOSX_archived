@@ -14,6 +14,16 @@ class ViewControllerInformationLocalRemote: NSViewController, SetDismisser, GetI
     private var index: Int?
     private var outputprocess: OutputProcess?
     private var complete: Bool = false
+    @IBOutlet weak var transferredNumber: NSTextField!
+    @IBOutlet weak var transferredNumberSizebytes: NSTextField!
+    @IBOutlet weak var newfiles: NSTextField!
+    @IBOutlet weak var deletefiles: NSTextField!
+    @IBOutlet weak var totalNumber: NSTextField!
+    @IBOutlet weak var totalDirs: NSTextField!
+    @IBOutlet weak var totalNumberSizebytes: NSTextField!
+    @IBOutlet weak var localtotalNumber: NSTextField!
+    @IBOutlet weak var localtotalDirs: NSTextField!
+    @IBOutlet weak var localtotalNumberSizebytes: NSTextField!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -37,7 +47,7 @@ class ViewControllerInformationLocalRemote: NSViewController, SetDismisser, GetI
 
     // Function for getting numbers out of output object updated when
     // Process object executes the job.
-    private func setNumbers(outputprocess: OutputProcess?) {
+    private func setNumbers(outputprocess: OutputProcess?, local: Bool) {
         globalMainQueue.async(execute: { () -> Void in
             guard outputprocess != nil else {
                 /*
@@ -52,22 +62,30 @@ class ViewControllerInformationLocalRemote: NSViewController, SetDismisser, GetI
                 return
             }
             let infotask = RemoteInfoTask(outputprocess: outputprocess)
-            /*
-            self.transferredNumber.stringValue = remoteinfotask.transferredNumber!
-            self.transferredNumberSizebytes.stringValue = remoteinfotask.transferredNumberSizebytes!
-            self.totalNumber.stringValue = remoteinfotask.totalNumber!
-            self.totalNumberSizebytes.stringValue = remoteinfotask.totalNumberSizebytes!
-            self.totalDirs.stringValue = remoteinfotask.totalDirs!
-            self.newfiles.stringValue = remoteinfotask.newfiles!
-            self.deletefiles.stringValue = remoteinfotask.deletefiles!
-            */
+            if local {
+                self.localtotalNumber.stringValue = infotask.totalNumber!
+                self.localtotalNumberSizebytes.stringValue = infotask.totalNumberSizebytes!
+                self.localtotalDirs.stringValue = infotask.totalDirs!
+            } else {
+                self.transferredNumber.stringValue = infotask.transferredNumber!
+                self.transferredNumberSizebytes.stringValue = infotask.transferredNumberSizebytes!
+                self.totalNumber.stringValue = infotask.totalNumber!
+                self.totalNumberSizebytes.stringValue = infotask.totalNumberSizebytes!
+                self.totalDirs.stringValue = infotask.totalDirs!
+                self.newfiles.stringValue = infotask.newfiles!
+                self.deletefiles.stringValue = infotask.deletefiles!
+            }
         })
     }
 }
 
 extension ViewControllerInformationLocalRemote: UpdateProgress {
     func processTermination() {
-        self.setNumbers(outputprocess: self.outputprocess)
+        if self.complete == false {
+            self.setNumbers(outputprocess: self.outputprocess, local: true)
+        } else {
+            self.setNumbers(outputprocess: self.outputprocess, local: false)
+        }
         if let index = self.index {
             if self.complete == false {
                 self.complete = true
