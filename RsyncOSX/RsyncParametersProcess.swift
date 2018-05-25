@@ -214,6 +214,10 @@ final class RsyncParametersProcess {
     }
 
     private func argumentsforsnapshot(dryRun: Bool, forDisplay: Bool) {
+        guard self.linkdestparam != nil else {
+            self.arguments!.append(self.localCatalog!)
+            return
+        }
         self.arguments!.append(self.linkdestparam!)
         if forDisplay {self.arguments!.append(" ")}
         self.arguments!.append(self.localCatalog!)
