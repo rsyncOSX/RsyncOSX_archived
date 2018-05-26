@@ -51,6 +51,7 @@ class ViewControllerAllProfiles: NSViewController, Delay {
         self.allschedulessortedandexpanded = ScheduleSortedAndExpand(allschedules: self.allschedules)
         self.sortdirection.image = #imageLiteral(resourceName: "up")
         self.sortedascendigdesending = true
+        self.allprofiles?.allconfigurationsasdictionary = self.allprofiles!.sortbyrundate(notsorted: self.allprofiles?.allconfigurationsasdictionary, sortdirection: self.sortedascendigdesending)
         globalMainQueue.async(execute: { () -> Void in
             self.mainTableView.reloadData()
         })
