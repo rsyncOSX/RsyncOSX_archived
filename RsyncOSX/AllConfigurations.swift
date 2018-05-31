@@ -99,5 +99,4 @@ class AllConfigurations: Sorting {
         self.readallconfigurations()
         self.setConfigurationsDataSourcecountBackupSnapshot()
     }
-
 }
