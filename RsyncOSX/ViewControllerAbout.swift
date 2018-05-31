@@ -18,11 +18,10 @@ class ViewControllerAbout: NSViewController, SetDismisser, Delay {
     @IBOutlet weak var copyright: NSTextField!
     @IBOutlet weak var iconby: NSTextField!
 
-    var copyrigthstring: String = "Copyright © 2018 Thomas Evensen"
+    var copyrigthstring: String = "Copyright ©2018 Thomas Evensen"
     var iconbystring: String = "Icon by: Zsolt Sándor"
 
     var checkfornewversion: Checkfornewversion?
-    // External resources as documents, download
     private var resource: Resources?
     var outputprocess: OutputProcess?
 
@@ -68,7 +67,7 @@ class ViewControllerAbout: NSViewController, SetDismisser, Delay {
         if let version = self.checkfornewversion!.rsyncOSXversion() {
             self.version.stringValue = "RsyncOSX ver: " + version
         }
-        self.thereisanewversion.stringValue = "No new version: "
+        self.thereisanewversion.stringValue = "You have the latest ..."
         self.rsyncversionstring.stringValue = ViewControllerReference.shared.rsyncversionstring ?? ""
     }
 

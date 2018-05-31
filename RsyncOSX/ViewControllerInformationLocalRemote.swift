@@ -39,7 +39,7 @@ class ViewControllerInformationLocalRemote: NSViewController, SetDismisser, GetI
         self.working.startAnimation(nil)
         self.complete = false
         self.index = self.index(viewcontroller: .vctabmain)
-         if let index = self.index {
+        if let index = self.index {
             let datelastbackup = self.configurations?.getConfigurations()[index].dateRun ?? "none"
             let numberlastbackup = self.configurations?.getConfigurations()[index].dayssincelastbackup ?? "none"
             self.datelastbackup.stringValue = "Date last backup: " + datelastbackup
@@ -47,7 +47,6 @@ class ViewControllerInformationLocalRemote: NSViewController, SetDismisser, GetI
             self.outputprocess = OutputProcess()
             _ = EstimateRemoteInformationTask(index: index, outputprocess: self.outputprocess, local: true)
          }
-
     }
 
     @IBAction func close(_ sender: NSButton) {
