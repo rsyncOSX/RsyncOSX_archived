@@ -319,7 +319,6 @@ class ViewControllerUserconfiguration: NSViewController, NewRsync, SetDismisser,
             self.operation.state = .off
         }
     }
-
 }
 
 extension ViewControllerUserconfiguration: NSTextFieldDelegate {

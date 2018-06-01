@@ -30,7 +30,6 @@ class ViewControllerInformationCopyFiles: NSViewController, SetDismisser, GetInf
     @IBAction func close(_ sender: NSButton) {
         self.dismissview(viewcontroller: self, vcontroller: .vccopyfiles)
     }
-
 }
 
 extension ViewControllerInformationCopyFiles: NSTableViewDataSource {
@@ -57,5 +56,4 @@ extension ViewControllerInformationCopyFiles: NSTableViewDelegate {
         }
         return nil
     }
-
 }

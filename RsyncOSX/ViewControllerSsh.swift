@@ -196,7 +196,6 @@ extension ViewControllerSsh: NSTableViewDataSource {
     func numberOfRows(in aTableView: NSTableView) -> Int {
         return self.data?.count ?? 0
     }
-
 }
 
 extension ViewControllerSsh: NSTableViewDelegate {
@@ -246,5 +245,4 @@ extension ViewControllerSsh: UpdateProgress {
             self.detailsTable.reloadData()
         })
     }
-
 }

@@ -114,7 +114,6 @@ extension ViewControllerScheduleDetails: NSTableViewDataSource {
             return 0
         }
     }
-
 }
 
 extension ViewControllerScheduleDetails: NSTableViewDelegate {

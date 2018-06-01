@@ -124,5 +124,4 @@ extension ViewControllerProfile: NSTableViewDelegate {
             self.useprofile = self.profilesArray![index]
         }
     }
-
 }

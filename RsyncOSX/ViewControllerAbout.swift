@@ -75,7 +75,6 @@ class ViewControllerAbout: NSViewController, SetDismisser, Delay {
         super.viewDidDisappear()
         self.downloadbutton.isEnabled = false
     }
-
 }
 
 extension ViewControllerAbout: NewVersionDiscovered {

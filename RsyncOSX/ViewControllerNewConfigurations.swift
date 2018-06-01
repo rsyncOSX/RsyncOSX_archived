@@ -190,7 +190,6 @@ extension ViewControllerNewConfigurations: NSTableViewDataSource {
     func numberOfRows(in tableView: NSTableView) -> Int {
         return self.newconfigurations?.newConfigurationsCount() ?? 0
     }
-
 }
 
 extension ViewControllerNewConfigurations: NSTableViewDelegate {

@@ -140,5 +140,4 @@ extension ViewControllerCopyFilesSource: NSTableViewDelegate {
             return object[tableColumn!.identifier] as? String
         }
     }
-
 }
