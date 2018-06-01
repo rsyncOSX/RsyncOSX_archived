@@ -87,5 +87,4 @@ class ViewControllerEdit: NSViewController, SetConfigurations, SetDismisser, Get
             self.rsyncdaemon.state = NSControl.StateValue(rawValue: rsyncdaemon)
         }
     }
-
 }

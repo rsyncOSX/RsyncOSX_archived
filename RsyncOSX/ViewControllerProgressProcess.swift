@@ -78,5 +78,4 @@ extension ViewControllerProgressProcess: UpdateProgress {
         guard self.countDelegate != nil else { return }
         self.updateProgressbar(Double(self.countDelegate!.inprogressCount()))
     }
-
 }

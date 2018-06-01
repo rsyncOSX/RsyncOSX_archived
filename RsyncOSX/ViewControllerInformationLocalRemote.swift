@@ -96,5 +96,4 @@ extension ViewControllerInformationLocalRemote: UpdateProgress {
     func fileHandler() {
         //
     }
-
 }

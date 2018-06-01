@@ -247,5 +247,4 @@ extension ViewControllerQuickBackup: NSSearchFieldDelegate {
             self.loadtasks()
         })
     }
-
 }
