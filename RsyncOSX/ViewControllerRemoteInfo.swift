@@ -70,8 +70,12 @@ class ViewControllerRemoteInfo: NSViewController, SetDismisser, AbortTask {
         self.mainTableView.dataSource = self
         ViewControllerReference.shared.setvcref(viewcontroller: .vcremoteinfo, nsviewcontroller: self)
         self.remoteinfotaskDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllertabMain
-        self.remoteinfotask = RemoteInfoTaskWorkQueue()
-        self.remoteinfotaskDelegate?.setremoteinfo(remoteinfotask: self.remoteinfotask)
+        if let remoteinfotask = self.remoteinfotaskDelegate?.getremoteinfo() {
+            self.remoteinfotask = remoteinfotask
+        } else {
+            self.remoteinfotask = RemoteInfoTaskWorkQueue()
+            self.remoteinfotaskDelegate?.setremoteinfo(remoteinfotask: self.remoteinfotask)
+        }
     }
 
     override func viewDidAppear() {
