@@ -11,6 +11,7 @@ import Foundation
 
 protocol SetRemoteInfo: class {
     func setremoteinfo(remoteinfotask: RemoteInfoTaskWorkQueue?)
+    func getremoteinfo() -> RemoteInfoTaskWorkQueue?
 }
 
 class RemoteInfoTaskWorkQueue: SetConfigurations {

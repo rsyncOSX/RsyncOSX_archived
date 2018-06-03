@@ -136,6 +136,7 @@ extension ViewControllertabMain: NewProfile {
         self.outputprocess = nil
         self.outputbatch = nil
         self.singletask = nil
+        self.remoteinfotaskworkqueue = nil
         self.setNumbers(outputprocess: nil)
         self.setRsyncCommandDisplay()
         self.setInfo(info: "Estimate", color: .blue)
@@ -249,7 +250,6 @@ extension ViewControllertabMain: DismissViewController {
         self.dismissViewController(viewcontroller)
         // Reset radiobuttons
         self.loadProfileMenu = true
-        self.remoteinfotaskworkqueue = nil
         globalMainQueue.async(execute: { () -> Void in
             self.mainTableView.reloadData()
             self.displayProfile()
@@ -620,6 +620,7 @@ extension ViewControllertabMain: GetConfigurationsObject {
             }
             return
         }
+        self.remoteinfotaskworkqueue = nil
         self.createandreloadconfigurations()
     }
 }
@@ -697,6 +698,10 @@ extension ViewControllertabMain: StartNextTask {
 }
 
 extension ViewControllertabMain: SetRemoteInfo {
+    func getremoteinfo() -> RemoteInfoTaskWorkQueue? {
+        return self.remoteinfotaskworkqueue
+    }
+
     func setremoteinfo(remoteinfotask: RemoteInfoTaskWorkQueue?) {
         self.remoteinfotaskworkqueue = remoteinfotask
     }
