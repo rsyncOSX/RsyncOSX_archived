@@ -250,7 +250,6 @@ extension ViewControllertabMain: DismissViewController {
         self.dismissViewController(viewcontroller)
         // Reset radiobuttons
         self.loadProfileMenu = true
-        // self.remoteinfotaskworkqueue = nil
         globalMainQueue.async(execute: { () -> Void in
             self.mainTableView.reloadData()
             self.displayProfile()
