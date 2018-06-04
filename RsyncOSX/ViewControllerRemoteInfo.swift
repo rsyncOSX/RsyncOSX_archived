@@ -88,10 +88,10 @@ class ViewControllerRemoteInfo: NSViewController, SetDismisser, AbortTask {
         })
         self.count.stringValue = self.number()
         self.enableexecutebutton()
-        self.initiateProgressbar()
         if self.loaded {
             self.selectalltaskswithfilestobackupbutton.isEnabled = true
         } else {
+            self.initiateProgressbar()
             self.selectalltaskswithfilestobackupbutton.isEnabled = false
         }
     }
