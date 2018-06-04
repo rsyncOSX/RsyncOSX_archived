@@ -113,7 +113,7 @@ class ViewControllerInformationLocalRemote: NSViewController, SetDismisser, GetI
         self.totalDirs.stringValue = (dict.value(forKey: "totalDirs") as? String) ?? ""
         self.newfiles.stringValue = (dict.value(forKey: "newfiles") as? String) ?? ""
         self.deletefiles.stringValue = (dict.value(forKey: "deletefiles") as? String) ?? ""
-        self.gotit.stringValue = "Got cached data..."
+        self.gotit.stringValue = "Loaded cached data..."
     }
 }
 
