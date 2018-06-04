@@ -5,15 +5,23 @@
 //  Created by Thomas Evensen on 24.05.2018.
 //  Copyright © 2018 Thomas Evensen. All rights reserved.
 //
+// swiftlint:disable line_length
 
 import Foundation
 import Cocoa
+
+protocol SetLocalRemoteInfo: class {
+    func setlocalremoteinfo(info: NSMutableDictionary?)
+    func getlocalremoteinfo(index: Int) -> NSMutableDictionary?
+}
 
 class ViewControllerInformationLocalRemote: NSViewController, SetDismisser, GetIndex, SetConfigurations {
 
     private var index: Int?
     private var outputprocess: OutputProcess?
     private var complete: Bool = false
+    private var numbers: NSMutableDictionary?
+    weak var localremoteinfoDelegate: SetLocalRemoteInfo?
     @IBOutlet weak var transferredNumber: NSTextField!
     @IBOutlet weak var transferredNumberSizebytes: NSTextField!
     @IBOutlet weak var newfiles: NSTextField!
@@ -32,20 +40,25 @@ class ViewControllerInformationLocalRemote: NSViewController, SetDismisser, GetI
     override func viewDidLoad() {
         super.viewDidLoad()
         ViewControllerReference.shared.setvcref(viewcontroller: .vcinfolocalremote, nsviewcontroller: self)
+        self.localremoteinfoDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllertabMain
     }
 
     override func viewDidAppear() {
         super.viewDidAppear()
-        self.working.startAnimation(nil)
         self.complete = false
         self.index = self.index(viewcontroller: .vctabmain)
         if let index = self.index {
-            let datelastbackup = self.configurations?.getConfigurations()[index].dateRun ?? "none"
-            let numberlastbackup = self.configurations?.getConfigurations()[index].dayssincelastbackup ?? "none"
-            self.datelastbackup.stringValue = "Date last backup: " + datelastbackup
-            self.dayslastbackup.stringValue = "Days since last backup: " + numberlastbackup
-            self.outputprocess = OutputProcess()
-            _ = EstimateRemoteInformationTask(index: index, outputprocess: self.outputprocess, local: true)
+            if let info = self.localremoteinfoDelegate?.getlocalremoteinfo(index: index) {
+                self.setcachedNumbers(dict: info)
+            } else {
+                self.working.startAnimation(nil)
+                let datelastbackup = self.configurations?.getConfigurations()[index].dateRun ?? "none"
+                let numberlastbackup = self.configurations?.getConfigurations()[index].dayssincelastbackup ?? "none"
+                self.datelastbackup.stringValue = "Date last backup: " + datelastbackup
+                self.dayslastbackup.stringValue = "Days since last backup: " + numberlastbackup
+                self.outputprocess = OutputProcess()
+                _ = EstimateRemoteInformationTask(index: index, outputprocess: self.outputprocess, local: true)
+            }
          }
     }
 
@@ -59,9 +72,14 @@ class ViewControllerInformationLocalRemote: NSViewController, SetDismisser, GetI
         globalMainQueue.async(execute: { () -> Void in
             let infotask = RemoteInfoTask(outputprocess: outputprocess)
             if local {
+                self.numbers = NSMutableDictionary()
                 self.localtotalNumber.stringValue = infotask.totalNumber!
                 self.localtotalNumberSizebytes.stringValue = infotask.totalNumberSizebytes!
                 self.localtotalDirs.stringValue = infotask.totalDirs!
+                self.numbers?.setValue(self.index!, forKey: "index")
+                self.numbers?.setValue(infotask.totalNumber!, forKey: "localtotalNumber")
+                self.numbers?.setValue(infotask.totalNumberSizebytes!, forKey: "localtotalNumberSizebytes")
+                self.numbers?.setValue(infotask.totalDirs!, forKey: "localtotalDirs")
             } else {
                 self.transferredNumber.stringValue = infotask.transferredNumber!
                 self.transferredNumberSizebytes.stringValue = infotask.transferredNumberSizebytes!
@@ -70,10 +88,32 @@ class ViewControllerInformationLocalRemote: NSViewController, SetDismisser, GetI
                 self.totalDirs.stringValue = infotask.totalDirs!
                 self.newfiles.stringValue = infotask.newfiles!
                 self.deletefiles.stringValue = infotask.deletefiles!
+                self.numbers?.setValue(infotask.transferredNumber!, forKey: "transferredNumber")
+                self.numbers?.setValue(infotask.transferredNumberSizebytes!, forKey: "transferredNumberSizebytes")
+                self.numbers?.setValue(infotask.totalNumber!, forKey: "totalNumber")
+                self.numbers?.setValue(infotask.totalNumberSizebytes!, forKey: "totalNumberSizebytes")
+                self.numbers?.setValue(infotask.totalDirs!, forKey: "totalDirs")
+                self.numbers?.setValue(infotask.newfiles!, forKey: "newfiles")
+                self.numbers?.setValue(infotask.deletefiles!, forKey: "deletefiles")
+                self.localremoteinfoDelegate!.setlocalremoteinfo(info: self.numbers)
                 self.working.stopAnimation(nil)
                 self.gotit.stringValue = "Got it..."
             }
         })
+    }
+
+    private func setcachedNumbers(dict: NSMutableDictionary) {
+        self.localtotalNumber.stringValue = (dict.value(forKey: "localtotalNumber") as? String) ?? ""
+        self.localtotalNumberSizebytes.stringValue = (dict.value(forKey: "localtotalNumberSizebytes") as? String) ?? ""
+        self.localtotalDirs.stringValue = (dict.value(forKey: "localtotalDirs") as? String) ?? ""
+        self.transferredNumber.stringValue = (dict.value(forKey: "transferredNumber") as? String) ?? ""
+        self.transferredNumberSizebytes.stringValue = (dict.value(forKey: "transferredNumberSizebytes") as? String) ?? ""
+        self.totalNumber.stringValue = (dict.value(forKey: "totalNumber") as? String) ?? ""
+        self.totalNumberSizebytes.stringValue = (dict.value(forKey: "totalNumberSizebytes") as? String) ?? ""
+        self.totalDirs.stringValue = (dict.value(forKey: "totalDirs") as? String) ?? ""
+        self.newfiles.stringValue = (dict.value(forKey: "newfiles") as? String) ?? ""
+        self.deletefiles.stringValue = (dict.value(forKey: "deletefiles") as? String) ?? ""
+        self.gotit.stringValue = "Got cached data..."
     }
 }
 

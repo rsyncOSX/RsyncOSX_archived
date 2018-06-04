@@ -127,6 +127,8 @@ class Configurations: ReloadTable, SetSchedules {
     var quickbackuplist: [Int]?
     // Estimated backup list, all backups
     var estimatedlist: [NSMutableDictionary]?
+    // remote and local info
+    var localremote: [NSMutableDictionary]?
 
     /// Function for getting the profile
     func getProfile() -> String? {
