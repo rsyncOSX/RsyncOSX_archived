@@ -129,6 +129,8 @@ class Configurations: ReloadTable, SetSchedules {
     var estimatedlist: [NSMutableDictionary]?
     // remote and local info
     var localremote: [NSMutableDictionary]?
+    // remote info tasks
+    var remoteinfotaskworkqueue: RemoteInfoTaskWorkQueue?
 
     /// Function for getting the profile
     func getProfile() -> String? {

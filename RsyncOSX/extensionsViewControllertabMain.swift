@@ -136,7 +136,6 @@ extension ViewControllertabMain: NewProfile {
         self.outputprocess = nil
         self.outputbatch = nil
         self.singletask = nil
-        self.remoteinfotaskworkqueue = nil
         self.setNumbers(outputprocess: nil)
         self.setRsyncCommandDisplay()
         self.setInfo(info: "Estimate", color: .blue)
@@ -310,8 +309,8 @@ extension ViewControllertabMain: UpdateProgress {
             // Kick off next task
             self.startfirstcheduledtask()
         case .remoteinfotask:
-            guard self.remoteinfotaskworkqueue != nil else { return }
-            self.remoteinfotaskworkqueue?.processTermination()
+            guard self.configurations!.remoteinfotaskworkqueue != nil else { return }
+            self.configurations!.remoteinfotaskworkqueue?.processTermination()
         case .infosingletask:
             weak var processterminationDelegate: UpdateProgress?
             processterminationDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vcinfolocalremote) as? ViewControllerInformationLocalRemote
@@ -320,16 +319,16 @@ extension ViewControllertabMain: UpdateProgress {
             self.working.stopAnimation(nil)
             self.executetasknow()
         case .automaticbackup:
-            guard self.remoteinfotaskworkqueue != nil else { return }
+            guard self.configurations!.remoteinfotaskworkqueue != nil else { return }
             // compute alle estimates
-            if self.remoteinfotaskworkqueue!.stackoftasktobeestimated != nil {
-                self.remoteinfotaskworkqueue?.processTermination()
+            if self.configurations!.remoteinfotaskworkqueue!.stackoftasktobeestimated != nil {
+                self.configurations!.remoteinfotaskworkqueue?.processTermination()
                 self.estimateupdateDelegate?.updateProgressbar()
             } else {
                 self.estimateupdateDelegate?.dismissview()
-                self.remoteinfotaskworkqueue?.processTermination()
-                self.remoteinfotaskworkqueue?.selectalltaskswithnumbers(deselect: false)
-                self.remoteinfotaskworkqueue?.setbackuplist()
+                self.configurations!.remoteinfotaskworkqueue?.processTermination()
+                self.configurations!.remoteinfotaskworkqueue?.selectalltaskswithnumbers(deselect: false)
+                self.configurations!.remoteinfotaskworkqueue?.setbackuplist()
                 self.openquickbackup()
             }
         }
@@ -443,9 +442,9 @@ extension ViewControllertabMain: AbortOperations {
             // Create workqueu and add abort
             self.setInfo(info: "Abort", color: .red)
             self.rsyncCommand.stringValue = ""
-            if self.remoteinfotaskworkqueue != nil && self.configurations?.estimatedlist != nil {
+            if self.configurations!.remoteinfotaskworkqueue != nil && self.configurations?.estimatedlist != nil {
                 self.estimateupdateDelegate?.dismissview()
-                self.remoteinfotaskworkqueue = nil
+                self.configurations!.remoteinfotaskworkqueue = nil
             }
         } else {
             self.working.stopAnimation(nil)
@@ -620,7 +619,6 @@ extension ViewControllertabMain: GetConfigurationsObject {
             }
             return
         }
-        self.remoteinfotaskworkqueue = nil
         self.createandreloadconfigurations()
     }
 }
@@ -699,11 +697,11 @@ extension ViewControllertabMain: StartNextTask {
 
 extension ViewControllertabMain: SetRemoteInfo {
     func getremoteinfo() -> RemoteInfoTaskWorkQueue? {
-        return self.remoteinfotaskworkqueue
+        return self.configurations!.remoteinfotaskworkqueue
     }
 
     func setremoteinfo(remoteinfotask: RemoteInfoTaskWorkQueue?) {
-        self.remoteinfotaskworkqueue = remoteinfotask
+        self.configurations!.remoteinfotaskworkqueue = remoteinfotask
     }
 }
 

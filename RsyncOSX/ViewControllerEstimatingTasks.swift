@@ -50,7 +50,7 @@ class ViewControllerEstimatingTasks: NSViewController, AbortTask {
         ViewControllerReference.shared.setvcref(viewcontroller: .vcestimatingtasks, nsviewcontroller: self)
         self.vc = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllertabMain
         self.dismissDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllertabMain
-        if let pvc = self.vc?.remoteinfotaskworkqueue {
+        if let pvc = self.vc?.configurations!.remoteinfotaskworkqueue {
             self.countDelegate = pvc
         }
         self.calculatedNumberOfFiles = self.countDelegate?.maxCount()
