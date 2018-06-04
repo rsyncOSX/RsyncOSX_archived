@@ -55,6 +55,7 @@ final class ScheduleLoggData: SetConfigurations, SetSchedules, Sorting {
                         "backupID": self.configurations!.getResourceConfiguration(hiddenID, resource: .backupid),
                         "dateExecuted": dict.value(forKey: "dateExecuted") as? String ?? "",
                         "resultExecuted": dict.value(forKey: "resultExecuted") as? String ?? "",
+                        "deleteCellID": dict.value(forKey: "deleteCellID") as? Int ?? 0,
                         "hiddenID": hiddenID,
                         "parent": i,
                         "sibling": j]

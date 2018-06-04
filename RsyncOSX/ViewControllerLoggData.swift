@@ -176,6 +176,18 @@ extension ViewControllerLoggData: NSTableViewDelegate {
         })
     }
 
+    func tableView(_ tableView: NSTableView, setObjectValue object: Any?, for tableColumn: NSTableColumn?, row: Int) {
+        if tableColumn!.identifier.rawValue == "deleteCellID" {
+            var delete: Int = (self.scheduleloggdata?.loggdata![row].value(forKey: "deleteCellID") as? Int)!
+            if delete == 0 { delete = 1 } else if delete == 1 { delete = 0 }
+            switch tableColumn!.identifier.rawValue {
+            case "deleteCellID":
+                self.scheduleloggdata?.loggdata![row].setValue(delete, forKey: "deleteCellID")
+            default:
+                break
+            }
+        }
+    }
 }
 
 extension ViewControllerLoggData: Reloadandrefresh {
