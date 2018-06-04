@@ -751,3 +751,22 @@ extension ViewControllertabMain: Norcloneconfig {
         self.info(num: 8)
     }
 }
+
+extension ViewControllertabMain: SetLocalRemoteInfo {
+    func getlocalremoteinfo(index: Int) -> NSMutableDictionary? {
+        guard self.configurations?.localremote != nil else { return nil }
+        let info = self.configurations?.localremote?.filter({($0.value(forKey: "index") as? Int)! == index})
+        guard info?.count ?? -1 == 1 else { return nil }
+        return info![0]
+    }
+
+    func setlocalremoteinfo(info: NSMutableDictionary?) {
+        guard info != nil else { return }
+        if self.configurations?.localremote == nil {
+            self.configurations?.localremote = [NSMutableDictionary]()
+            self.configurations?.localremote!.append(info!)
+        } else {
+            self.configurations?.localremote!.append(info!)
+        }
+    }
+}
