@@ -138,7 +138,11 @@ extension ViewControllerLoggData: NSTableViewDelegate {
         guard self.scheduleloggdata != nil else { return nil }
         guard row < self.scheduleloggdata!.loggdata!.count else { return nil }
         let object: NSDictionary = self.scheduleloggdata!.loggdata![row]
-        return object[tableColumn!.identifier] as? String
+        if tableColumn!.identifier.rawValue == "deleteCellID" {
+            return object[tableColumn!.identifier] as? Int
+        } else {
+            return object[tableColumn!.identifier] as? String
+        }
     }
 
     // setting which table row is selected
@@ -154,13 +158,13 @@ extension ViewControllerLoggData: NSTableViewDelegate {
         switch column {
         case 0:
              self.filterby = .task
-        case 1:
-            self.filterby = .backupid
         case 2:
-            self.filterby = .localcatalog
+            self.filterby = .backupid
         case 3:
-            self.filterby = .remoteserver
+            self.filterby = .localcatalog
         case 4:
+            self.filterby = .remoteserver
+        case 5:
             sortbystring = false
             self.filterby = .executedate
         default:
@@ -176,6 +180,18 @@ extension ViewControllerLoggData: NSTableViewDelegate {
         })
     }
 
+    func tableView(_ tableView: NSTableView, setObjectValue object: Any?, for tableColumn: NSTableColumn?, row: Int) {
+        if tableColumn!.identifier.rawValue == "deleteCellID" {
+            var delete: Int = (self.scheduleloggdata?.loggdata![row].value(forKey: "deleteCellID") as? Int)!
+            if delete == 0 { delete = 1 } else if delete == 1 { delete = 0 }
+            switch tableColumn!.identifier.rawValue {
+            case "deleteCellID":
+                self.scheduleloggdata?.loggdata![row].setValue(delete, forKey: "deleteCellID")
+            default:
+                break
+            }
+        }
+    }
 }
 
 extension ViewControllerLoggData: Reloadandrefresh {
