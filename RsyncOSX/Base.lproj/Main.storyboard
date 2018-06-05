@@ -1814,8 +1814,8 @@
                                                     </textFieldCell>
                                                     <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                 </tableColumn>
-                                                <tableColumn identifier="deleteCellID" width="96" minWidth="10" maxWidth="3.4028234663852886e+38" id="ExZ-72-tbq">
-                                                    <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="center" title="Delete schedule">
+                                                <tableColumn identifier="deleteCellID" width="66" minWidth="10" maxWidth="3.4028234663852886e+38" id="ExZ-72-tbq">
+                                                    <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="center" title="Delete log">
                                                         <font key="font" metaFont="smallSystem"/>
                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -1878,7 +1878,7 @@
                                                     </textFieldCell>
                                                     <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                 </tableColumn>
-                                                <tableColumn identifier="resultExecuted" width="289.33203125" minWidth="10" maxWidth="3.4028234663852886e+38" id="Lur-Sd-kBP">
+                                                <tableColumn identifier="resultExecuted" width="317.33203125" minWidth="10" maxWidth="3.4028234663852886e+38" id="Lur-Sd-kBP">
                                                     <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left" title="Result">
                                                         <font key="font" metaFont="smallSystem"/>
                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
@@ -1896,7 +1896,7 @@
                                     </subviews>
                                 </clipView>
                                 <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="YES" id="keS-k2-fw7">
-                                    <rect key="frame" x="2" y="312" width="911" height="16"/>
+                                    <rect key="frame" x="2" y="9" width="0.0" height="16"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
                                 <scroller key="verticalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="NO" id="8n3-Ry-ktR">
@@ -1909,7 +1909,7 @@
                                 </tableHeaderView>
                             </scrollView>
                             <searchField wantsLayer="YES" verticalHuggingPriority="750" fixedFrame="YES" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="t6k-ja-pKU">
-                                <rect key="frame" x="162" y="355" width="367" height="22"/>
+                                <rect key="frame" x="20" y="358" width="367" height="22"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <searchFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" borderStyle="bezel" usesSingleLineMode="YES" bezelStyle="round" id="jtn-ZQ-AiS">
                                     <font key="font" metaFont="system"/>
@@ -1918,11 +1918,11 @@
                                 </searchFieldCell>
                             </searchField>
                             <progressIndicator wantsLayer="YES" canDrawConcurrently="YES" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" maxValue="100" displayedWhenStopped="NO" bezeled="NO" indeterminate="YES" controlSize="small" style="spinning" translatesAutoresizingMaskIntoConstraints="NO" id="zsj-JB-ASD">
-                                <rect key="frame" x="538" y="356" width="16" height="16"/>
+                                <rect key="frame" x="396" y="359" width="16" height="16"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                             </progressIndicator>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="3YU-9a-eyi">
-                                <rect key="frame" x="160" y="381" width="184" height="17"/>
+                                <rect key="frame" x="18" y="384" width="184" height="17"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="left" title="Number of rows:" id="aye-JD-U1q">
                                     <font key="font" metaFont="system"/>
@@ -1960,7 +1960,7 @@
                                 </textFieldCell>
                             </textField>
                             <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="x5H-FN-Qpn">
-                                <rect key="frame" x="611" y="363" width="62" height="18"/>
+                                <rect key="frame" x="432" y="360" width="62" height="18"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <buttonCell key="cell" type="radio" title="Delete" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="Aon-m3-V7O">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
