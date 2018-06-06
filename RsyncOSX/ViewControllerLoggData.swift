@@ -32,19 +32,6 @@ class ViewControllerLoggData: NSViewController, SetSchedules, Delay {
     @IBOutlet weak var numberOflogfiles: NSTextField!
     @IBOutlet weak var sortdirection: NSButton!
 
-    // Delete row
-    @IBOutlet weak var deleteButton: NSButton!
-    @IBAction func deleteRow(_ sender: NSButton) {
-        guard self.row != nil else {
-            self.deleteButton.state = .off
-            return
-        }
-        self.schedules!.deletelogrow(parent: (self.row!.value(forKey: "parent") as? Int)!, sibling: (self.row!.value(forKey: "sibling") as? Int)!)
-        self.sorting.startAnimation(self)
-        self.deleteButton.state = .off
-        self.deselectRow()
-    }
-
     @IBAction func sortdirection(_ sender: NSButton) {
         if self.sortedascendigdesending == true {
             self.sortedascendigdesending = false
@@ -70,26 +57,11 @@ class ViewControllerLoggData: NSViewController, SetSchedules, Delay {
     }
 
     @IBAction func deletealllogs(_ sender: NSButton) {
-        guard self.scheduleloggdata!.loggdata != nil else { return }
-        self.deletes = [Row]()
-        let selectdeletes = self.scheduleloggdata!.loggdata!.filter({($0.value(forKey: "deleteCellID") as? Int)! == 1}).sorted { (dict1, dict2) -> Bool in
-            if (dict1.value(forKey: "parent") as? Int) ?? 0 > (dict2.value(forKey: "parent") as? Int) ?? 0 {
-                return true
-            } else {
-                return false
-            }
+        let answer = Alerts.dialogOKCancel("Delete selected logrecords?", text: "Cancel or OK")
+        if answer {
+            self.deselectRow()
+            self.schedules?.deleteselectedrows(scheduleloggdata: self.scheduleloggdata)
         }
-        for i in 0 ..< selectdeletes.count {
-            let parent = selectdeletes[i].value(forKey: "parent") as? Int ?? 0
-            let sibling = selectdeletes[i].value(forKey: "sibling") as? Int ?? 0
-            self.deletes?.append((parent, sibling))
-        }
-        self.deletes?.sort(by: {(obj1, obj2) -> Bool in
-            if obj1.0 == obj2.0 && obj1.1 < obj2.1 {
-                return obj1 < obj2
-            }
-            return obj1 < obj2
-        })
     }
 
     override func viewDidLoad() {
@@ -246,7 +218,7 @@ extension ViewControllerLoggData: Reloadandrefresh {
 
 extension ViewControllerLoggData: ReadLoggdata {
     func readloggdata() {
-        // Triggered after a delete of log row
+        // Triggered after a delete of log rows
         if viewispresent {
             self.scheduleloggdata = nil
             globalMainQueue.async(execute: { () -> Void in
@@ -254,7 +226,6 @@ extension ViewControllerLoggData: ReadLoggdata {
                 self.scheduletable.reloadData()
                 self.sorting.stopAnimation(self)
             })
-            self.deleteButton.state = .off
         }
     }
 }
