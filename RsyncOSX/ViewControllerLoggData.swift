@@ -84,6 +84,12 @@ class ViewControllerLoggData: NSViewController, SetSchedules, Delay {
             let sibling = selectdeletes[i].value(forKey: "sibling") as? Int ?? 0
             self.deletes?.append((parent, sibling))
         }
+        self.deletes?.sort(by: {(obj1, obj2) -> Bool in
+            if obj1.0 == obj2.0 && obj1.1 < obj2.1 {
+                return obj1 < obj2
+            }
+            return obj1 < obj2
+        })
     }
 
     override func viewDidLoad() {
