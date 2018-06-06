@@ -23,6 +23,8 @@ class ViewControllerLoggData: NSViewController, SetSchedules, Delay {
     private var index: Int?
     private var viewispresent: Bool = false
     private var sortedascendigdesending: Bool = true
+    typealias Row = (Int, Int)
+    private var deletes: [Row]?
 
     @IBOutlet weak var scheduletable: NSTableView!
     @IBOutlet weak var search: NSSearchField!
@@ -65,6 +67,23 @@ class ViewControllerLoggData: NSViewController, SetSchedules, Delay {
         globalMainQueue.async(execute: { () -> Void in
             self.scheduletable.reloadData()
         })
+    }
+
+    @IBAction func deletealllogs(_ sender: NSButton) {
+        guard self.scheduleloggdata!.loggdata != nil else { return }
+        self.deletes = [Row]()
+        let selectdeletes = self.scheduleloggdata!.loggdata!.filter({($0.value(forKey: "deleteCellID") as? Int)! == 1}).sorted { (dict1, dict2) -> Bool in
+            if (dict1.value(forKey: "parent") as? Int) ?? 0 > (dict2.value(forKey: "parent") as? Int) ?? 0 {
+                return true
+            } else {
+                return false
+            }
+        }
+        for i in 0 ..< selectdeletes.count {
+            let parent = selectdeletes[i].value(forKey: "parent") as? Int ?? 0
+            let sibling = selectdeletes[i].value(forKey: "sibling") as? Int ?? 0
+            self.deletes?.append((parent, sibling))
+        }
     }
 
     override func viewDidLoad() {
