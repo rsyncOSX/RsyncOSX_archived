@@ -1960,7 +1960,7 @@
                                 </textFieldCell>
                             </textField>
                             <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="x5H-FN-Qpn">
-                                <rect key="frame" x="432" y="360" width="62" height="18"/>
+                                <rect key="frame" x="726" y="360" width="62" height="18"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <buttonCell key="cell" type="radio" title="Delete" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="Aon-m3-V7O">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
@@ -1968,6 +1968,17 @@
                                 </buttonCell>
                                 <connections>
                                     <action selector="deleteRow:" target="AlG-Cw-Xi9" id="MWY-WE-l3d"/>
+                                </connections>
+                            </button>
+                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="CKl-vM-yBc">
+                                <rect key="frame" x="418" y="352" width="86" height="32"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <buttonCell key="cell" type="push" title="Select all" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="K1B-JA-vs6">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="selectalllogs:" target="AlG-Cw-Xi9" id="owr-vQ-KqE"/>
                                 </connections>
                             </button>
                         </subviews>

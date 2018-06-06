@@ -53,6 +53,20 @@ class ViewControllerLoggData: NSViewController, SetSchedules, Delay {
         }
     }
 
+    @IBAction func selectalllogs(_ sender: NSButton) {
+        guard self.scheduleloggdata!.loggdata != nil else { return }
+        for i in 0 ..< self.scheduleloggdata!.loggdata!.count {
+            if self.scheduleloggdata!.loggdata![i].value(forKey: "deleteCellID") as? Int == 1 {
+                self.scheduleloggdata!.loggdata![i].setValue(0, forKey: "deleteCellID")
+            } else {
+                self.scheduleloggdata!.loggdata![i].setValue(1, forKey: "deleteCellID")
+            }
+        }
+        globalMainQueue.async(execute: { () -> Void in
+            self.scheduletable.reloadData()
+        })
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do view setup here.
