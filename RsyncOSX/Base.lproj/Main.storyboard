@@ -1917,12 +1917,8 @@
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </searchFieldCell>
                             </searchField>
-                            <progressIndicator wantsLayer="YES" canDrawConcurrently="YES" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" maxValue="100" displayedWhenStopped="NO" bezeled="NO" indeterminate="YES" controlSize="small" style="spinning" translatesAutoresizingMaskIntoConstraints="NO" id="zsj-JB-ASD">
-                                <rect key="frame" x="396" y="359" width="16" height="16"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                            </progressIndicator>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="3YU-9a-eyi">
-                                <rect key="frame" x="18" y="384" width="184" height="17"/>
+                                <rect key="frame" x="18" y="384" width="153" height="17"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="left" title="Number of rows:" id="aye-JD-U1q">
                                     <font key="font" metaFont="system"/>
@@ -1960,7 +1956,7 @@
                                 </textFieldCell>
                             </textField>
                             <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="CKl-vM-yBc">
-                                <rect key="frame" x="418" y="351" width="67" height="32"/>
+                                <rect key="frame" x="389" y="351" width="67" height="32"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <buttonCell key="cell" type="push" title="Select" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="K1B-JA-vs6">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -1971,7 +1967,7 @@
                                 </connections>
                             </button>
                             <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="iZ8-To-veM">
-                                <rect key="frame" x="485" y="351" width="66" height="32"/>
+                                <rect key="frame" x="607" y="351" width="66" height="32"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <buttonCell key="cell" type="push" title="Delete" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="CkB-lg-RfP">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -1981,14 +1977,23 @@
                                     <action selector="deletealllogs:" target="AlG-Cw-Xi9" id="qH0-vD-Nxh"/>
                                 </connections>
                             </button>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="XeS-qc-qta">
+                                <rect key="frame" x="456" y="360" width="139" height="17"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Selected rows: 0" id="EiP-tC-Ve8">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
                         </subviews>
                     </view>
                     <connections>
                         <outlet property="numberOflogfiles" destination="3YU-9a-eyi" id="8ub-fK-Vzn"/>
                         <outlet property="scheduletable" destination="VmR-YZ-iuN" id="Q8s-Bw-QnZ"/>
                         <outlet property="search" destination="t6k-ja-pKU" id="lHP-Fs-hLu"/>
+                        <outlet property="selectedrows" destination="XeS-qc-qta" id="HFe-lE-Vfi"/>
                         <outlet property="sortdirection" destination="aCc-3C-rgD" id="GvL-qU-4lB"/>
-                        <outlet property="sorting" destination="zsj-JB-ASD" id="5BR-Az-HOt"/>
                     </connections>
                 </viewController>
                 <customObject id="tDc-Qe-jSm" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
