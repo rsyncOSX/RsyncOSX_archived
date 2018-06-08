@@ -15,14 +15,6 @@ class ScheduleWriteLoggData: SetConfigurations, ReloadTable, Deselect {
     var storageapi: PersistentStorageAPI?
     var schedules: [ConfigurationSchedule]?
 
-    func deletelogrow(parent: Int, sibling: Int) {
-        guard parent < self.schedules!.count else { return }
-        guard sibling <  self.schedules![parent].logrecords.count else { return }
-        self.schedules![parent].logrecords.remove(at: sibling)
-        self.storageapi!.saveScheduleFromMemory()
-        self.reloadtable(vcontroller: .vcloggdata)
-    }
-
     typealias Row = (Int, Int)
     func deleteselectedrows(scheduleloggdata: ScheduleLoggData?) {
         guard scheduleloggdata?.loggdata != nil else { return }
