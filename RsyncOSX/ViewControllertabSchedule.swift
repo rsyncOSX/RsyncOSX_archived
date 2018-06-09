@@ -211,10 +211,13 @@ class ViewControllertabSchedule: NSViewController, SetConfigurations, SetSchedul
 
     private func enablemenuappbutton() {
         globalMainQueue.async(execute: { () -> Void in
-            guard Running().enablemenuappbutton() == true else {
+            let running = Running()
+            guard running.enablemenuappbutton() == true else {
                 self.rsyncosxschedbutton.isEnabled = false
-                self.menuappisrunning.image = #imageLiteral(resourceName: "green")
-                self.info(num: 5)
+                if running.menuappnoconfig == false {
+                    self.menuappisrunning.image = #imageLiteral(resourceName: "green")
+                    self.info(num: 5)
+                }
                 return
             }
             self.rsyncosxschedbutton.isEnabled = true
