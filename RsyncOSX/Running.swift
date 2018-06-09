@@ -15,6 +15,7 @@ class Running {
     let rsyncOSXsched = "no.blogspot.RsyncOSXsched"
     private var rsyncOSXisrunning: Bool = false
     private var rsyncOSXschedisrunning: Bool = false
+    var menuappnoconfig: Bool = true
 
     private func checkforrunningapps() {
          // Get all running applications
@@ -36,7 +37,11 @@ class Running {
 
     func enablemenuappbutton() -> Bool {
         // Check the flags
-        guard ViewControllerReference.shared.pathrsyncosxsched != nil else { return false }
+        guard ViewControllerReference.shared.pathrsyncosxsched != nil else {
+            self.menuappnoconfig = true
+            return false
+        }
+        self.menuappnoconfig = false
         guard  ViewControllerReference.shared.executescheduledtasksmenuapp == true else { return false }
         if self.rsyncOSXschedisrunning == true {
             return false
