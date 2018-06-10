@@ -675,28 +675,6 @@
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
-                            <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="g7r-rp-4kz">
-                                <rect key="frame" x="430" y="88" width="66" height="18"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <buttonCell key="cell" type="radio" title="dry run" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="2tH-gF-ycx">
-                                    <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                                    <font key="font" metaFont="system"/>
-                                </buttonCell>
-                                <connections>
-                                    <action selector="displayRsyncCommand:" target="egt-C3-u4G" id="UNZ-wQ-EDn"/>
-                                </connections>
-                            </button>
-                            <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="3DG-2b-5po">
-                                <rect key="frame" x="501" y="88" width="68" height="18"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <buttonCell key="cell" type="radio" title="real run" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="dzR-DR-VEo">
-                                    <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                                    <font key="font" metaFont="system"/>
-                                </buttonCell>
-                                <connections>
-                                    <action selector="displayRsyncCommand:" target="egt-C3-u4G" id="Zlb-BH-82B"/>
-                                </connections>
-                            </button>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="qkq-x4-Af5">
                                 <rect key="frame" x="12" y="339" width="120" height="17"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
@@ -855,10 +833,10 @@
                                 </textFieldCell>
                             </textField>
                             <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="RQt-Hs-8vg">
-                                <rect key="frame" x="765" y="86" width="306" height="22"/>
+                                <rect key="frame" x="738" y="86" width="333" height="22"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="22" id="hCW-rc-6j5"/>
-                                    <constraint firstAttribute="width" constant="306" id="tRU-c1-nvv"/>
+                                    <constraint firstAttribute="width" constant="333" id="tRU-c1-nvv"/>
                                 </constraints>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" alignment="center" bezelStyle="round" id="1IX-LA-PS2">
                                     <font key="font" metaFont="smallSystem"/>
@@ -886,9 +864,9 @@
                                 </buttonCell>
                             </button>
                             <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="nqR-tu-PxX">
-                                <rect key="frame" x="594" y="88" width="89" height="18"/>
+                                <rect key="frame" x="667" y="88" width="65" height="18"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <buttonCell key="cell" type="radio" title="restore dry" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="mkb-9F-CQR">
+                                <buttonCell key="cell" type="radio" title="restore" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="mkb-9F-CQR">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
@@ -896,15 +874,15 @@
                                     <action selector="displayRsyncCommand:" target="egt-C3-u4G" id="z8u-TU-GfA"/>
                                 </connections>
                             </button>
-                            <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Sqj-fW-9O2">
-                                <rect key="frame" x="688" y="88" width="65" height="18"/>
+                            <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="g7r-rp-4kz">
+                                <rect key="frame" x="594" y="88" width="67" height="18"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <buttonCell key="cell" type="radio" title="restore" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="Bxt-IC-Oi1">
+                                <buttonCell key="cell" type="radio" title="backup" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="2tH-gF-ycx">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
                                 <connections>
-                                    <action selector="displayRsyncCommand:" target="egt-C3-u4G" id="B8F-5y-sAD"/>
+                                    <action selector="displayRsyncCommand:" target="egt-C3-u4G" id="UNZ-wQ-EDn"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -930,7 +908,6 @@
                     <connections>
                         <outlet property="TCPButton" destination="vZ8-RO-Huz" id="Rgc-t6-PQm"/>
                         <outlet property="backupdryrun" destination="g7r-rp-4kz" id="NBb-LR-CBT"/>
-                        <outlet property="backuprealrun" destination="3DG-2b-5po" id="1pj-Ml-fVt"/>
                         <outlet property="deletefiles" destination="uOY-XE-EU5" id="BTy-3T-PDG"/>
                         <outlet property="dryRunOrRealRun" destination="qkq-x4-Af5" id="oQ9-nJ-wSt"/>
                         <outlet property="info" destination="RQt-Hs-8vg" id="ALk-ui-Bwg"/>
@@ -941,7 +918,6 @@
                         <outlet property="processInfo" destination="KX4-b1-AYu" id="Knr-bH-exp"/>
                         <outlet property="profilInfo" destination="Gg2-se-FkF" id="XIe-l3-YkS"/>
                         <outlet property="restoredryrun" destination="nqR-tu-PxX" id="gdh-SN-KpO"/>
-                        <outlet property="restorerealrun" destination="Sqj-fW-9O2" id="xN2-w2-3dT"/>
                         <outlet property="rsyncCommand" destination="7n8-es-jH6" id="bH0-3W-ECU"/>
                         <outlet property="rsyncversionshort" destination="n3L-Il-K5w" id="5oc-tn-kTn"/>
                         <outlet property="scheduleJobworkinglabel" destination="yxt-uy-I5b" id="dpd-D1-WAV"/>
