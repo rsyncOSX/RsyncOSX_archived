@@ -103,6 +103,18 @@ final class RsyncParametersProcess {
         }
     }
 
+    private func setParameters8To14restore(_ config: Configuration, dryRun: Bool, forDisplay: Bool) {
+        self.stats = false
+        // Append --stats parameter to collect info about run
+        if dryRun {
+            self.dryrunparameter(config, forDisplay: forDisplay)
+        } else {
+            if self.stats == false {
+                self.appendParameter(parameter: "--stats", forDisplay: forDisplay)
+            }
+        }
+    }
+
     private func dryrunparameter(_ config: Configuration, forDisplay: Bool) {
         let dryrun: String = config.dryrun
         self.arguments!.append(dryrun)
@@ -138,6 +150,7 @@ final class RsyncParametersProcess {
     /// - paramater forDisplay: true if for display, false if not
     /// - returns: Array of Strings
     func argumentsRsync (_ config: Configuration, dryRun: Bool, forDisplay: Bool) -> [String] {
+        guard config.task != "restore" else { return [] }
         self.localCatalog = config.localCatalog
         self.remoteargs(config)
         self.setParameters1To6(config, dryRun: dryRun, forDisplay: forDisplay)
@@ -148,8 +161,6 @@ final class RsyncParametersProcess {
         case "snapshot":
             self.linkdestparameter(config)
             self.argumentsforsnapshot(dryRun: dryRun, forDisplay: forDisplay)
-        case "restore":
-            self.argumentsforrestore(dryRun: dryRun, forDisplay: forDisplay)
         default:
             break
         }
@@ -165,7 +176,7 @@ final class RsyncParametersProcess {
             self.remoteargs(config)
         }
         self.setParameters1To6(config, dryRun: dryRun, forDisplay: forDisplay)
-        self.setParameters8To14(config, dryRun: dryRun, forDisplay: forDisplay)
+        self.setParameters8To14restore(config, dryRun: dryRun, forDisplay: forDisplay)
         self.argumentsforrestore(dryRun: dryRun, forDisplay: forDisplay)
         return self.arguments!
     }
