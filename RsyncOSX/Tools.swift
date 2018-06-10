@@ -177,6 +177,29 @@ final class Tools: SetConfigurations, Delay {
         return str!
     }
 
+    // Display the correct command to execute
+    // Used for displaying the commands only
+    func rsyncrestorepathtodisplay(index: Int, dryRun: Bool) -> String {
+        var str: String?
+        let config = self.configurations!.getargumentAllConfigurations()[index]
+        if dryRun {
+            str = self.rsyncpath() + " "
+            if let count = config.restoredryRunDisplay?.count {
+                for i in 0 ..< count {
+                    str = str! + config.restoredryRunDisplay![i]
+                }
+            }
+        } else {
+            str = self.rsyncpath() + " "
+            if let count = config.restoreDisplay?.count {
+                for i in 0 ..< count {
+                    str = str! + config.restoreDisplay![i]
+                }
+            }
+        }
+        return str!
+    }
+
     /// Function returns the correct path for rsync
     /// according to configuration set by user or
     /// default value.
