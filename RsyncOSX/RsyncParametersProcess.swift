@@ -102,7 +102,7 @@ final class RsyncParametersProcess {
             }
         }
     }
-    
+
     private func setParameters8To14restore(_ config: Configuration, dryRun: Bool, forDisplay: Bool) {
         self.stats = false
         // Append --stats parameter to collect info about run
@@ -114,7 +114,6 @@ final class RsyncParametersProcess {
             }
         }
     }
-    
 
     private func dryrunparameter(_ config: Configuration, forDisplay: Bool) {
         let dryrun: String = config.dryrun
