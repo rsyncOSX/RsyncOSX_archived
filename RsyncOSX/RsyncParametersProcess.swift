@@ -146,7 +146,7 @@ final class RsyncParametersProcess {
         case "backup", "combined":
             self.argumentsforbackup(dryRun: dryRun, forDisplay: forDisplay)
         case "snapshot":
-            self.remoteargssnapshot(config)
+            self.linkdestparameter(config)
             self.argumentsforsnapshot(dryRun: dryRun, forDisplay: forDisplay)
         case "restore":
             self.argumentsforrestore(dryRun: dryRun, forDisplay: forDisplay)
@@ -159,7 +159,11 @@ final class RsyncParametersProcess {
     func argumentsRestore (_ config: Configuration, dryRun: Bool, forDisplay: Bool) -> [String] {
         guard config.task != "restore" else { return [] }
         self.localCatalog = config.localCatalog
-        self.remoteargs(config)
+        if config.snapshotnum != nil {
+            self.remoteargssnapshot(config)
+        } else {
+            self.remoteargs(config)
+        }
         self.setParameters1To6(config, dryRun: dryRun, forDisplay: forDisplay)
         self.setParameters8To14(config, dryRun: dryRun, forDisplay: forDisplay)
         self.argumentsforrestore(dryRun: dryRun, forDisplay: forDisplay)
@@ -198,8 +202,26 @@ final class RsyncParametersProcess {
         }
     }
 
-    // Additional parameters if snapshot
     private func remoteargssnapshot(_ config: Configuration) {
+        let snapshotnum = config.snapshotnum ?? 1
+        self.offsiteCatalog = config.offsiteCatalog + String(snapshotnum - 1) + "/"
+        self.offsiteUsername = config.offsiteUsername
+        self.offsiteServer = config.offsiteServer
+        if self.offsiteServer!.isEmpty == false {
+            if config.rsyncdaemon != nil {
+                if config.rsyncdaemon == 1 {
+                    self.remoteargs = self.offsiteUsername! + "@" + self.offsiteServer! + "::" + self.offsiteCatalog!
+                } else {
+                    self.remoteargs = self.offsiteUsername! + "@" + self.offsiteServer! + ":" + self.offsiteCatalog!
+                }
+            } else {
+                self.remoteargs = self.offsiteUsername! + "@" + self.offsiteServer! + ":" + self.offsiteCatalog!
+            }
+        }
+    }
+
+    // Additional parameters if snapshot
+    private func linkdestparameter(_ config: Configuration) {
         let snapshotnum = config.snapshotnum ?? 1
         self.linkdestparam =  "--link-dest=" + config.offsiteCatalog + String(snapshotnum - 1)
         if self.remoteargs != nil {
