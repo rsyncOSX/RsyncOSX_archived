@@ -70,6 +70,10 @@ class ViewControllertabMain: NSViewController, ReloadTable, Deselect, Coloractiv
     // Delete files
     @IBOutlet weak var deletefiles: NSTextField!
     @IBOutlet weak var rsyncversionshort: NSTextField!
+    @IBOutlet weak var backupdryrun: NSButton!
+    @IBOutlet weak var backuprealrun: NSButton!
+    @IBOutlet weak var restoredryrun: NSButton!
+    @IBOutlet weak var restorerealrun: NSButton!
 
     // Reference to Process task
     var process: Process?
@@ -335,9 +339,6 @@ class ViewControllertabMain: NSViewController, ReloadTable, Deselect, Coloractiv
     }
 
     // Function for display rsync command
-    // Either --dry-run or real run
-    @IBOutlet weak var displayDryRun: NSButton!
-    @IBOutlet weak var displayRealRun: NSButton!
     @IBAction func displayRsyncCommand(_ sender: NSButton) {
         self.setRsyncCommandDisplay()
     }
@@ -345,13 +346,15 @@ class ViewControllertabMain: NSViewController, ReloadTable, Deselect, Coloractiv
     // Display correct rsync command in view
     func setRsyncCommandDisplay() {
         if let index = self.index {
-            guard index <= self.configurations!.getConfigurations().count else {
-                return
-            }
-            if self.displayDryRun.state == .on {
+            guard index <= self.configurations!.getConfigurations().count else { return }
+            if self.backupdryrun.state == .on {
                 self.rsyncCommand.stringValue = self.tools!.rsyncpathtodisplay(index: index, dryRun: true)
-            } else {
+            } else if self.backuprealrun.state == .on {
                 self.rsyncCommand.stringValue = self.tools!.rsyncpathtodisplay(index: index, dryRun: false)
+            } else if self.restoredryrun.state == .on {
+                self.rsyncCommand.stringValue = self.tools!.rsyncrestorepathtodisplay(index: index, dryRun: true)
+            } else {
+               self.rsyncCommand.stringValue = self.tools!.rsyncrestorepathtodisplay(index: index, dryRun: false)
             }
         } else {
             self.rsyncCommand.stringValue = ""
@@ -369,7 +372,7 @@ class ViewControllertabMain: NSViewController, ReloadTable, Deselect, Coloractiv
         ViewControllerReference.shared.setvcref(viewcontroller: .vctabmain, nsviewcontroller: self)
         self.mainTableView.target = self
         self.mainTableView.doubleAction = #selector(ViewControllertabMain.tableViewDoubleClick(sender:))
-        self.displayDryRun.state = .on
+        self.backupdryrun.state = .on
         self.loadProfileMenu = true
         // configurations and schedules
         self.createandreloadconfigurations()
@@ -522,6 +525,7 @@ class ViewControllertabMain: NSViewController, ReloadTable, Deselect, Coloractiv
             self.abortOperations()
         }
         self.readyforexecution = true
+        self.backupdryrun.state = .on
         self.info(num: 0)
         let myTableViewFromNotification = (notification.object as? NSTableView)!
         let indexes = myTableViewFromNotification.selectedRowIndexes

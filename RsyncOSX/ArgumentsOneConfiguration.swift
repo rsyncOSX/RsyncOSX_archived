@@ -20,6 +20,11 @@ struct ArgumentsOneConfiguration {
     var argDisplay: [String]?
     var argdryRunDisplay: [String]?
     var argdryRunLocalcatalogInfo: [String]?
+    // Restore
+    var restore: [String]?
+    var restoredryRun: [String]?
+    var restoreDisplay: [String]?
+    var restoredryRunDisplay: [String]?
 
     init(config: Configuration) {
         // The configuration
@@ -31,5 +36,9 @@ struct ArgumentsOneConfiguration {
         self.argdryRun = RsyncParametersProcess().argumentsRsync(config, dryRun: true, forDisplay: false)
         self.argdryRunDisplay = RsyncParametersProcess().argumentsRsync(config, dryRun: true, forDisplay: true)
         self.argdryRunLocalcatalogInfo = RsyncParametersProcess().argumentsRsyncLocalcatalalogInfo(config, dryRun: true, forDisplay: false)
+        self.restore = RsyncParametersProcess().argumentsRestore(config, dryRun: false, forDisplay: false)
+        self.restoredryRun = RsyncParametersProcess().argumentsRestore(config, dryRun: true, forDisplay: false)
+        self.restoreDisplay = RsyncParametersProcess().argumentsRestore(config, dryRun: false, forDisplay: true)
+        self.restoredryRunDisplay = RsyncParametersProcess().argumentsRestore(config, dryRun: true, forDisplay: true)
     }
 }

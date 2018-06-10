@@ -156,6 +156,16 @@ final class RsyncParametersProcess {
         return self.arguments!
     }
 
+    func argumentsRestore (_ config: Configuration, dryRun: Bool, forDisplay: Bool) -> [String] {
+        guard config.task != "restore" else { return [] }
+        self.localCatalog = config.localCatalog
+        self.remoteargs(config)
+        self.setParameters1To6(config, dryRun: dryRun, forDisplay: forDisplay)
+        self.setParameters8To14(config, dryRun: dryRun, forDisplay: forDisplay)
+        self.argumentsforrestore(dryRun: dryRun, forDisplay: forDisplay)
+        return self.arguments!
+    }
+
     func argumentsRsyncLocalcatalalogInfo(_ config: Configuration, dryRun: Bool, forDisplay: Bool) -> [String] {
         self.localCatalog = config.localCatalog
         self.setParameters1To6(config, dryRun: dryRun, forDisplay: forDisplay)
