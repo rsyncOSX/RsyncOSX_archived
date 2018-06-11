@@ -17,10 +17,10 @@ class ViewControllerRestore: NSViewController, SetConfigurations, SetDismisser, 
     @IBOutlet weak var offsiteServer: NSTextField!
     @IBOutlet weak var backupID: NSTextField!
     @IBOutlet weak var sshport: NSTextField!
-    @IBOutlet weak var rsyncdaemon: NSButton!
+    @IBOutlet weak var working: NSProgressIndicator!
 
-    var index: Int?
-    var singleFile: Bool = false
+    var outputprocess: OutputProcess?
+    private var numbers: NSMutableDictionary?
 
     // Close and dismiss view
     @IBAction func close(_ sender: NSButton) {
@@ -40,31 +40,42 @@ class ViewControllerRestore: NSViewController, SetConfigurations, SetDismisser, 
         self.offsiteServer.stringValue = ""
         self.backupID.stringValue = ""
         self.sshport.stringValue = ""
-        self.rsyncdaemon.state = .off
-        self.index = self.index(viewcontroller: .vctabmain)
-        let config: Configuration = self.configurations!.getConfigurations()[self.index!]
-        self.localCatalog.stringValue = config.localCatalog
-        if self.localCatalog.stringValue.hasSuffix("/") == false {
-            self.singleFile = true
-        } else {
-            self.singleFile = false
+        if let index = self.index(viewcontroller: .vctabmain) {
+            let config: Configuration = self.configurations!.getConfigurations()[index]
+            self.localCatalog.stringValue = config.localCatalog
+            self.offsiteCatalog.stringValue = config.offsiteCatalog
+            self.offsiteUsername.stringValue = config.offsiteUsername
+            self.offsiteServer.stringValue = config.offsiteServer
+            self.backupID.stringValue = config.backupID
+            if let port = config.sshport {
+                self.sshport.stringValue = String(port)
+            }
+            self.working.startAnimation(nil)
+            self.outputprocess = OutputProcess()
+            _ = RestoreTask(index: index, outputprocess: self.outputprocess, dryrun: true)
         }
-        self.offsiteCatalog.stringValue = config.offsiteCatalog
-        self.offsiteUsername.stringValue = config.offsiteUsername
-        self.offsiteServer.stringValue = config.offsiteServer
-        self.backupID.stringValue = config.backupID
-        if let port = config.sshport {
-            self.sshport.stringValue = String(port)
-        }
-        if let rsyncdaemon = config.rsyncdaemon {
-            self.rsyncdaemon.state = NSControl.StateValue(rawValue: rsyncdaemon)
-        }
+    }
+
+    private func setNumbers(outputprocess: OutputProcess?) {
+        globalMainQueue.async(execute: { () -> Void in
+            let infotask = RemoteInfoTask(outputprocess: outputprocess)
+            self.numbers = NSMutableDictionary()
+            self.numbers?.setValue(infotask.transferredNumber!, forKey: "transferredNumber")
+            self.numbers?.setValue(infotask.transferredNumberSizebytes!, forKey: "transferredNumberSizebytes")
+            self.numbers?.setValue(infotask.totalNumber!, forKey: "totalNumber")
+            self.numbers?.setValue(infotask.totalNumberSizebytes!, forKey: "totalNumberSizebytes")
+            self.numbers?.setValue(infotask.totalDirs!, forKey: "totalDirs")
+            self.numbers?.setValue(infotask.newfiles!, forKey: "newfiles")
+            self.numbers?.setValue(infotask.deletefiles!, forKey: "deletefiles")
+            self.working.stopAnimation(nil)
+            // self.gotit.stringValue = "Got it..."
+        })
     }
 }
 
 extension ViewControllerRestore: UpdateProgress {
     func processTermination() {
-        //
+        self.setNumbers(outputprocess: self.outputprocess)
     }
 
     func fileHandler() {

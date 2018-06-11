@@ -6542,23 +6542,6 @@ DQ
                                     <outlet property="nextKeyView" destination="Tc6-gA-BZV" id="fkb-Sq-bBt"/>
                                 </connections>
                             </textField>
-                            <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="RwK-RX-zM6">
-                                <rect key="frame" x="305" y="61" width="22" height="18"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <buttonCell key="cell" type="check" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="p3B-dg-OnB">
-                                    <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                                    <font key="font" metaFont="system"/>
-                                </buttonCell>
-                            </button>
-                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="t89-Rm-TIf">
-                                <rect key="frame" x="207" y="62" width="94" height="17"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="rsync daemon:" id="oZB-kU-xLL">
-                                    <font key="font" metaFont="system"/>
-                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                                </textFieldCell>
-                            </textField>
                             <textField verticalHuggingPriority="750" fixedFrame="YES" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="BeP-xg-VNp">
                                 <rect key="frame" x="136" y="130" width="131" height="22"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
@@ -6579,9 +6562,6 @@ DQ
                                     <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
-                                <connections>
-                                    <outlet property="nextKeyView" destination="RwK-RX-zM6" id="5OJ-sw-8FI"/>
-                                </connections>
                             </textField>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="0aB-N9-mm1">
                                 <rect key="frame" x="18" y="156" width="118" height="17"/>
@@ -6603,6 +6583,10 @@ DQ
                                     <action selector="close:" target="LPL-36-14W" id="ktp-sK-LXY"/>
                                 </connections>
                             </button>
+                            <progressIndicator wantsLayer="YES" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" maxValue="100" displayedWhenStopped="NO" bezeled="NO" indeterminate="YES" controlSize="small" style="spinning" translatesAutoresizingMaskIntoConstraints="NO" id="Sc4-De-H6h">
+                                <rect key="frame" x="484" y="178" width="16" height="16"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                            </progressIndicator>
                         </subviews>
                     </view>
                     <connections>
@@ -6611,8 +6595,8 @@ DQ
                         <outlet property="offsiteCatalog" destination="qci-tC-idR" id="yA0-50-aUP"/>
                         <outlet property="offsiteServer" destination="9gI-Gf-59l" id="T8X-Qn-9dO"/>
                         <outlet property="offsiteUsername" destination="BeP-xg-VNp" id="1al-jP-076"/>
-                        <outlet property="rsyncdaemon" destination="RwK-RX-zM6" id="Ck9-4B-SKA"/>
                         <outlet property="sshport" destination="Tc6-gA-BZV" id="CiD-YQ-qdk"/>
+                        <outlet property="working" destination="Sc4-De-H6h" id="I30-04-6ff"/>
                     </connections>
                 </viewController>
                 <customObject id="gxo-zs-Tkh" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
