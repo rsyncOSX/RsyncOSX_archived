@@ -31,6 +31,7 @@ class ViewControllerRestore: NSViewController, SetConfigurations, SetDismisser, 
     @IBOutlet weak var restorebutton: NSButton!
 
     var outputprocess: OutputProcess?
+    weak var countDelegate: Count?
 
     // Close and dismiss view
     @IBAction func close(_ sender: NSButton) {
@@ -42,6 +43,8 @@ class ViewControllerRestore: NSViewController, SetConfigurations, SetDismisser, 
         if answer {
             if let index = self.index(viewcontroller: .vctabmain) {
                 self.outputprocess = OutputProcess()
+                self.initiateProgressbar()
+                self.countDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllertabMain
                 _ = RestoreTask(index: index, outputprocess: self.outputprocess, dryrun: false)
             }
         }
@@ -92,6 +95,21 @@ class ViewControllerRestore: NSViewController, SetConfigurations, SetDismisser, 
             self.gotit.stringValue = "Got it..."
         })
     }
+
+    // Progressbar restore
+    private func initiateProgressbar() {
+        if let calculatedNumberOfFiles = self.outputprocess?.getMaxcount() {
+            self.restoreprogress.maxValue = Double(calculatedNumberOfFiles)
+        }
+        self.restoreprogress.minValue = 0
+        self.restoreprogress.doubleValue = 0
+        self.restoreprogress.startAnimation(self)
+    }
+    
+    private func updateProgressbar(_ value: Double) {
+        self.restoreprogress.doubleValue = value
+    }
+
 }
 
 extension ViewControllerRestore: UpdateProgress {
@@ -100,6 +118,7 @@ extension ViewControllerRestore: UpdateProgress {
     }
 
     func fileHandler() {
-        //
+        guard self.countDelegate != nil else { return }
+        self.updateProgressbar(Double(self.countDelegate!.inprogressCount()))
     }
 }
