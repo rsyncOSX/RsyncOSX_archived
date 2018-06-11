@@ -15,7 +15,7 @@ class RestoreTask: SetConfigurations {
         if dryrun {
             self.arguments = self.configurations!.arguments4restore(index: index, argtype: .argdryRun)
         } else {
-            // self.arguments = self.configurations!.arguments4restore(index: index, argtype: .arg)
+            self.arguments = self.configurations!.arguments4restore(index: index, argtype: .arg)
         }
         guard arguments != nil else { return }
         let process = Rsync(arguments: self.arguments)
