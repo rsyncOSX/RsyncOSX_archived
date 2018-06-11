@@ -29,7 +29,7 @@ class ViewControllerRestore: NSViewController, SetConfigurations, SetDismisser, 
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Dismisser is root controller
+        ViewControllerReference.shared.setvcref(viewcontroller: .vcrestore, nsviewcontroller: self)
     }
 
     override func viewDidAppear() {
@@ -59,5 +59,15 @@ class ViewControllerRestore: NSViewController, SetConfigurations, SetDismisser, 
         if let rsyncdaemon = config.rsyncdaemon {
             self.rsyncdaemon.state = NSControl.StateValue(rawValue: rsyncdaemon)
         }
+    }
+}
+
+extension ViewControllerRestore: UpdateProgress {
+    func processTermination() {
+        //
+    }
+
+    func fileHandler() {
+        //
     }
 }

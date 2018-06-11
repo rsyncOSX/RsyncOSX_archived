@@ -332,7 +332,9 @@ extension ViewControllertabMain: UpdateProgress {
                 self.openquickbackup()
             }
         case .restore:
-            return
+            weak var processterminationDelegate: UpdateProgress?
+            processterminationDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vcrestore) as? ViewControllerRestore
+            processterminationDelegate?.processTermination()
         }
     }
 
