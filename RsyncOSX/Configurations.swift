@@ -262,7 +262,7 @@ class Configurations: ReloadTable, SetSchedules {
     /// - parameter index: index of Configuration
     /// - parameter argtype : either .arg or .argdryRun (of enumtype argumentsRsync)
     /// - returns : array of Strings holding all computed arguments
-    func arguments4rsync (index: Int, argtype: ArgumentsRsync) -> [String] {
+    func arguments4rsync(index: Int, argtype: ArgumentsRsync) -> [String] {
         let allarguments = self.argumentAllConfigurations![index]
         switch argtype {
         case .arg:
@@ -271,6 +271,23 @@ class Configurations: ReloadTable, SetSchedules {
             return allarguments.argdryRun ?? []
         case .argdryRunlocalcataloginfo:
             return allarguments.argdryRunLocalcatalogInfo ?? []
+        }
+    }
+
+    /// Function computes arguments for rsync, either arguments for
+    /// real runn or arguments for --dry-run for Configuration at selected index
+    /// - parameter index: index of Configuration
+    /// - parameter argtype : either .arg or .argdryRun (of enumtype argumentsRsync)
+    /// - returns : array of Strings holding all computed arguments
+    func arguments4restore(index: Int, argtype: ArgumentsRsync) -> [String] {
+        let allarguments = self.argumentAllConfigurations![index]
+        switch argtype {
+        case .arg:
+            return allarguments.restore ?? []
+        case .argdryRun:
+            return allarguments.restoredryRun ?? []
+        default:
+            return []
         }
     }
 

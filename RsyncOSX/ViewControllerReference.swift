@@ -27,6 +27,7 @@ enum ViewController {
     case vcencrypt
     case vcestimatingtasks
     case vcinfolocalremote
+    case vcrestore
 }
 
 class ViewControllerReference {
@@ -114,6 +115,8 @@ class ViewControllerReference {
     private var viewControllerEstimatingTasks: NSViewController?
     // Local and remote info
     private var viewControllerInfoLocalRemote: NSViewController?
+    // Restore
+    private var viewControllerRestore: NSViewController?
     // Execute scheduled tasks in menu app, default off
     var executescheduledtasksmenuapp: Bool = false
 
@@ -151,6 +154,8 @@ class ViewControllerReference {
             return self.viewControllerEstimatingTasks
         case .vcinfolocalremote:
             return self.viewControllerInfoLocalRemote
+        case .vcrestore:
+            return self.viewControllerRestore
         }
     }
 
@@ -188,6 +193,8 @@ class ViewControllerReference {
             self.viewControllerEstimatingTasks = nsviewcontroller
         case .vcinfolocalremote:
             self.viewControllerInfoLocalRemote = nsviewcontroller
+        case .vcrestore:
+            self.viewControllerRestore = nsviewcontroller
         }
     }
 }

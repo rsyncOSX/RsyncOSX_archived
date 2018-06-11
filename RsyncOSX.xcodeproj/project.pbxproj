@@ -87,9 +87,11 @@
 		E96B3E7820661C3900B730DB /* RcloneUserconfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = E96B3E7720661C3900B730DB /* RcloneUserconfiguration.swift */; };
 		E96B3E7A20661F2A00B730DB /* RcloneTools.swift in Sources */ = {isa = PBXBuildFile; fileRef = E96B3E7920661F2A00B730DB /* RcloneTools.swift */; };
 		E96CA1FE1E094C3000CD1D03 /* Resources.swift in Sources */ = {isa = PBXBuildFile; fileRef = E96CA1FD1E094C3000CD1D03 /* Resources.swift */; };
+		E975284520CEAADC0029B027 /* ViewControllerRestore.swift in Sources */ = {isa = PBXBuildFile; fileRef = E975284420CEAADB0029B027 /* ViewControllerRestore.swift */; };
 		E9764F60204BEE970018C0D7 /* AllConfigurations.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9764F5F204BEE970018C0D7 /* AllConfigurations.swift */; };
 		E97C09A71EFAFBC400E86999 /* BatchTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = E97C09A61EFAFBC400E86999 /* BatchTask.swift */; };
 		E97E3BA71F6256DB00411D0E /* Configurations.swift in Sources */ = {isa = PBXBuildFile; fileRef = E97E3BA61F6256DB00411D0E /* Configurations.swift */; };
+		E982BA2820CEB59F00E71918 /* RestoreTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = E982BA2720CEB59F00E71918 /* RestoreTask.swift */; };
 		E9848D4320B30F75000A8AA8 /* Totalinfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9848D4220B30F75000A8AA8 /* Totalinfo.swift */; };
 		E989CE961EF948D0000CB7C2 /* ChmodPubKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = E989CE951EF948D0000CB7C2 /* ChmodPubKey.swift */; };
 		E98FA897206544F9007F3ED1 /* RcloneConfigurations.swift in Sources */ = {isa = PBXBuildFile; fileRef = E98FA896206544F9007F3ED1 /* RcloneConfigurations.swift */; };
@@ -211,9 +213,11 @@
 		E96B3E7720661C3900B730DB /* RcloneUserconfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RcloneUserconfiguration.swift; sourceTree = "<group>"; };
 		E96B3E7920661F2A00B730DB /* RcloneTools.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RcloneTools.swift; sourceTree = "<group>"; };
 		E96CA1FD1E094C3000CD1D03 /* Resources.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Resources.swift; sourceTree = "<group>"; };
+		E975284420CEAADB0029B027 /* ViewControllerRestore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewControllerRestore.swift; sourceTree = "<group>"; };
 		E9764F5F204BEE970018C0D7 /* AllConfigurations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllConfigurations.swift; sourceTree = "<group>"; };
 		E97C09A61EFAFBC400E86999 /* BatchTask.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BatchTask.swift; sourceTree = "<group>"; };
 		E97E3BA61F6256DB00411D0E /* Configurations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Configurations.swift; sourceTree = "<group>"; };
+		E982BA2720CEB59F00E71918 /* RestoreTask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestoreTask.swift; sourceTree = "<group>"; };
 		E9848D4220B30F75000A8AA8 /* Totalinfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Totalinfo.swift; sourceTree = "<group>"; };
 		E989CE951EF948D0000CB7C2 /* ChmodPubKey.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChmodPubKey.swift; sourceTree = "<group>"; };
 		E98FA896206544F9007F3ED1 /* RcloneConfigurations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RcloneConfigurations.swift; sourceTree = "<group>"; };
@@ -374,6 +378,7 @@
 		A04492C31D658FF900B3CE17 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				E975284420CEAADB0029B027 /* ViewControllerRestore.swift */,
 				A0A403501D76BD2E00A30017 /* ViewControllerRsyncParameters.swift */,
 				A004D8191D9586580016914F /* ViewControllerLoggData.swift */,
 				A0B340B11D67077A00C6DAC3 /* ViewControllertabMain.swift */,
@@ -437,6 +442,7 @@
 				E9C30B4C201625500079C63D /* SnapshotCommandSubCatalogs.swift */,
 				E9573548201BB83E00316257 /* SnapshotCommandDeleteCatalogs.swift */,
 				E932B2D62077B3650057B8AE /* Rclone.swift */,
+				E982BA2720CEB59F00E71918 /* RestoreTask.swift */,
 			);
 			name = Process;
 			sourceTree = "<group>";
@@ -780,6 +786,7 @@
 				A0F2E20C1D6D91AA0091E8BF /* Userconfiguration.swift in Sources */,
 				A0762A1F1DB4A8F000538CE9 /* Profiles.swift in Sources */,
 				E98FA8A020654D02007F3ED1 /* RclonePersistentStorageUserconfiguration.swift in Sources */,
+				E982BA2820CEB59F00E71918 /* RestoreTask.swift in Sources */,
 				E965E3092065670B00EC4747 /* RcloneArgumentsOneConfiguration.swift in Sources */,
 				E99FC81D200FD88D00477B1A /* SnapshotCreateCatalogArguments.swift in Sources */,
 				E945D61420B736E9000E787B /* ViewControllerInformationLocalRemote.swift in Sources */,
@@ -847,6 +854,7 @@
 				A04492BA1D658F2100B3CE17 /* ysocket.swift in Sources */,
 				E9F413BB1F63AC2A00C0945E /* Schedules.swift in Sources */,
 				E9407BB9208AFB7C00A6780E /* ViewControllerEstimatingTasks.swift in Sources */,
+				E975284520CEAADC0029B027 /* ViewControllerRestore.swift in Sources */,
 				A091C6581D86A0A800278E74 /* ViewControllerCopyFiles.swift in Sources */,
 				E9235E7A201BC27F0060E3B2 /* SnapshotDeleteCatalogsArguments.swift in Sources */,
 				A08110671D6DA7D8009444D3 /* ViewControllerProgressProcess.swift in Sources */,

@@ -331,6 +331,10 @@ extension ViewControllertabMain: UpdateProgress {
                 self.configurations!.remoteinfotaskworkqueue?.setbackuplist()
                 self.openquickbackup()
             }
+        case .restore:
+            weak var processterminationDelegate: UpdateProgress?
+            processterminationDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vcrestore) as? ViewControllerRestore
+            processterminationDelegate?.processTermination()
         }
     }
 
@@ -374,6 +378,10 @@ extension ViewControllertabMain: UpdateProgress {
             return
         case .automaticbackup:
             return
+        case .restore:
+            weak var localprocessupdateDelegate: UpdateProgress?
+            localprocessupdateDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vcrestore) as? ViewControllerRestore
+            localprocessupdateDelegate?.fileHandler()
         }
     }
 }

@@ -176,7 +176,7 @@ final class RsyncParametersProcess {
             self.remoteargs(config)
         }
         self.setParameters1To6(config, dryRun: dryRun, forDisplay: forDisplay)
-        self.setParameters8To14restore(config, dryRun: dryRun, forDisplay: forDisplay)
+        self.setParameters8To14(config, dryRun: dryRun, forDisplay: forDisplay)
         self.argumentsforrestore(dryRun: dryRun, forDisplay: forDisplay)
         return self.arguments!
     }
