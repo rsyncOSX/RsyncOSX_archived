@@ -116,6 +116,13 @@ extension VcMain {
             as? NSViewController)!
     }
 
+    // Restore
+    // self.presentViewControllerAsSheet(self.restoreViewController)
+    var restoreViewController: NSViewController? {
+        return (self.storyboard!.instantiateController(withIdentifier: NSStoryboard.SceneIdentifier(rawValue: "StoryboardRestoreID"))
+            as? NSViewController)!
+    }
+
     // Profile
     // self.presentViewControllerAsSheet(self.viewControllerProfile)
     var viewControllerProfile: NSViewController? {

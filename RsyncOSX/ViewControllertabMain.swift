@@ -111,6 +111,24 @@ class ViewControllertabMain: NSViewController, ReloadTable, Deselect, Coloractiv
         NSApp.terminate(self)
     }
 
+    @IBAction func restore(_ sender: NSButton) {
+        guard self.index != nil else {
+            self.info(num: 1)
+            return
+        }
+        guard ViewControllerReference.shared.norsync == false else {
+            self.tools!.noRsync()
+            return
+        }
+        guard self.configurations!.getConfigurations()[self.index!].task == "backup" ||
+            self.configurations!.getConfigurations()[self.index!].task == "snapshot" else {
+                self.info(num: 7)
+                return
+        }
+        self.processtermination = .restore
+        self.presentViewControllerAsSheet(self.restoreViewController!)
+    }
+
     func info(num: Int) {
         switch num {
         case 1:

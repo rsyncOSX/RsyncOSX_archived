@@ -331,6 +331,8 @@ extension ViewControllertabMain: UpdateProgress {
                 self.configurations!.remoteinfotaskworkqueue?.setbackuplist()
                 self.openquickbackup()
             }
+        case .restore:
+            return
         }
     }
 
@@ -373,6 +375,8 @@ extension ViewControllertabMain: UpdateProgress {
         case .combinedtask:
             return
         case .automaticbackup:
+            return
+        case .restore:
             return
         }
     }
