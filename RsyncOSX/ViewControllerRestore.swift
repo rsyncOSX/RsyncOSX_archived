@@ -31,7 +31,7 @@ class ViewControllerRestore: NSViewController, SetConfigurations, SetDismisser, 
     @IBOutlet weak var restorebutton: NSButton!
 
     var outputprocess: OutputProcess?
-    weak var countDelegate: Count?
+    var estimation: Bool?
 
     // Close and dismiss view
     @IBAction func close(_ sender: NSButton) {
@@ -42,9 +42,8 @@ class ViewControllerRestore: NSViewController, SetConfigurations, SetDismisser, 
         let answer = Alerts.dialogOKCancel("Do you REALY want to start a RESTORE ?", text: "Cancel or OK")
         if answer {
             if let index = self.index(viewcontroller: .vctabmain) {
-                self.outputprocess = OutputProcess()
                 self.initiateProgressbar()
-                self.countDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllertabMain
+                self.outputprocess = OutputProcess()
                 _ = RestoreTask(index: index, outputprocess: self.outputprocess, dryrun: false)
             }
         }
@@ -57,6 +56,7 @@ class ViewControllerRestore: NSViewController, SetConfigurations, SetDismisser, 
 
     override func viewDidAppear() {
         super.viewDidAppear()
+        self.estimation = true
         self.restorebutton.isEnabled = false
         self.localCatalog.stringValue = ""
         self.offsiteCatalog.stringValue = ""
@@ -105,7 +105,7 @@ class ViewControllerRestore: NSViewController, SetConfigurations, SetDismisser, 
         self.restoreprogress.doubleValue = 0
         self.restoreprogress.startAnimation(self)
     }
-    
+
     private func updateProgressbar(_ value: Double) {
         self.restoreprogress.doubleValue = value
     }
@@ -114,11 +114,17 @@ class ViewControllerRestore: NSViewController, SetConfigurations, SetDismisser, 
 
 extension ViewControllerRestore: UpdateProgress {
     func processTermination() {
-        self.setNumbers(outputprocess: self.outputprocess)
+        if estimation == true {
+            self.estimation = false
+            self.setNumbers(outputprocess: self.outputprocess)
+        } else {
+            self.restorebutton.isEnabled = false
+        }
     }
 
     func fileHandler() {
-        guard self.countDelegate != nil else { return }
-        self.updateProgressbar(Double(self.countDelegate!.inprogressCount()))
+        if self.estimation == false {
+            self.updateProgressbar(Double(self.outputprocess!.count()))
+        }
     }
 }

@@ -379,7 +379,9 @@ extension ViewControllertabMain: UpdateProgress {
         case .automaticbackup:
             return
         case .restore:
-            return
+            weak var localprocessupdateDelegate: UpdateProgress?
+            localprocessupdateDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vcrestore) as? ViewControllerRestore
+            localprocessupdateDelegate?.fileHandler()
         }
     }
 }
