@@ -17,6 +17,7 @@ class RestoreTask: SetConfigurations {
         } else {
             // self.arguments = self.configurations!.arguments4restore(index: index, argtype: .arg)
         }
+        guard arguments != nil else { return }
         let process = Rsync(arguments: self.arguments)
         process.executeProcess(outputprocess: outputprocess)
         taskDelegate?.getProcessReference(process: process.getProcess()!)

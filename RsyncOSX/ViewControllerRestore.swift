@@ -18,13 +18,33 @@ class ViewControllerRestore: NSViewController, SetConfigurations, SetDismisser, 
     @IBOutlet weak var backupID: NSTextField!
     @IBOutlet weak var sshport: NSTextField!
     @IBOutlet weak var working: NSProgressIndicator!
+    @IBOutlet weak var gotit: NSTextField!
+
+    @IBOutlet weak var transferredNumber: NSTextField!
+    @IBOutlet weak var transferredNumberSizebytes: NSTextField!
+    @IBOutlet weak var newfiles: NSTextField!
+    @IBOutlet weak var deletefiles: NSTextField!
+    @IBOutlet weak var totalNumber: NSTextField!
+    @IBOutlet weak var totalDirs: NSTextField!
+    @IBOutlet weak var totalNumberSizebytes: NSTextField!
+    @IBOutlet weak var restoreprogress: NSProgressIndicator!
+    @IBOutlet weak var restorebutton: NSButton!
 
     var outputprocess: OutputProcess?
-    private var numbers: NSMutableDictionary?
 
     // Close and dismiss view
     @IBAction func close(_ sender: NSButton) {
         self.dismissview(viewcontroller: self, vcontroller: .vctabmain)
+    }
+
+    @IBAction func restore(_ sender: NSButton) {
+        let answer = Alerts.dialogOKCancel("Do you REALY want to start a RESTORE ?", text: "Cancel or OK")
+        if answer {
+            if let index = self.index(viewcontroller: .vctabmain) {
+                self.outputprocess = OutputProcess()
+                _ = RestoreTask(index: index, outputprocess: self.outputprocess, dryrun: false)
+            }
+        }
     }
 
     override func viewDidLoad() {
@@ -34,6 +54,7 @@ class ViewControllerRestore: NSViewController, SetConfigurations, SetDismisser, 
 
     override func viewDidAppear() {
         super.viewDidAppear()
+        self.restorebutton.isEnabled = false
         self.localCatalog.stringValue = ""
         self.offsiteCatalog.stringValue = ""
         self.offsiteUsername.stringValue = ""
@@ -59,16 +80,16 @@ class ViewControllerRestore: NSViewController, SetConfigurations, SetDismisser, 
     private func setNumbers(outputprocess: OutputProcess?) {
         globalMainQueue.async(execute: { () -> Void in
             let infotask = RemoteInfoTask(outputprocess: outputprocess)
-            self.numbers = NSMutableDictionary()
-            self.numbers?.setValue(infotask.transferredNumber!, forKey: "transferredNumber")
-            self.numbers?.setValue(infotask.transferredNumberSizebytes!, forKey: "transferredNumberSizebytes")
-            self.numbers?.setValue(infotask.totalNumber!, forKey: "totalNumber")
-            self.numbers?.setValue(infotask.totalNumberSizebytes!, forKey: "totalNumberSizebytes")
-            self.numbers?.setValue(infotask.totalDirs!, forKey: "totalDirs")
-            self.numbers?.setValue(infotask.newfiles!, forKey: "newfiles")
-            self.numbers?.setValue(infotask.deletefiles!, forKey: "deletefiles")
+            self.transferredNumber.stringValue = infotask.transferredNumber!
+            self.transferredNumberSizebytes.stringValue = infotask.transferredNumberSizebytes!
+            self.totalNumber.stringValue = infotask.totalNumber!
+            self.totalNumberSizebytes.stringValue = infotask.totalNumberSizebytes!
+            self.totalDirs.stringValue = infotask.totalDirs!
+            self.newfiles.stringValue = infotask.newfiles!
+            self.deletefiles.stringValue = infotask.deletefiles!
             self.working.stopAnimation(nil)
-            // self.gotit.stringValue = "Got it..."
+            self.restorebutton.isEnabled = true
+            self.gotit.stringValue = "Got it..."
         })
     }
 }
