@@ -9,7 +9,7 @@
 import Foundation
 import Cocoa
 
-class ViewControllerRestore: NSViewController, SetConfigurations, SetDismisser, GetIndex {
+class ViewControllerRestore: NSViewController, SetConfigurations, SetDismisser, GetIndex, AbortTask {
 
     @IBOutlet weak var localCatalog: NSTextField!
     @IBOutlet weak var offsiteCatalog: NSTextField!
@@ -32,14 +32,18 @@ class ViewControllerRestore: NSViewController, SetConfigurations, SetDismisser, 
 
     var outputprocess: OutputProcess?
     var estimation: Bool?
+    var completed: Bool?
 
     // Close and dismiss view
     @IBAction func close(_ sender: NSButton) {
+        if self.completed == false {
+            self.abort()
+        }
         self.dismissview(viewcontroller: self, vcontroller: .vctabmain)
     }
 
     @IBAction func restore(_ sender: NSButton) {
-        let answer = Alerts.dialogOKCancel("Do you REALY want to start a RESTORE ?", text: "Cancel or OK")
+        let answer = Alerts.dialogOKCancel("Do you REALLY want to start a RESTORE ?", text: "Cancel or OK")
         if answer {
             if let index = self.index(viewcontroller: .vctabmain) {
                 self.initiateProgressbar()
@@ -57,6 +61,7 @@ class ViewControllerRestore: NSViewController, SetConfigurations, SetDismisser, 
     override func viewDidAppear() {
         super.viewDidAppear()
         self.estimation = true
+        self.completed = false
         self.restorebutton.isEnabled = false
         self.localCatalog.stringValue = ""
         self.offsiteCatalog.stringValue = ""
@@ -120,6 +125,7 @@ extension ViewControllerRestore: UpdateProgress {
         } else {
             self.restorebutton.isEnabled = false
         }
+        self.completed = true
     }
 
     func fileHandler() {
