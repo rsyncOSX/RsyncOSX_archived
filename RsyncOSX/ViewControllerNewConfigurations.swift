@@ -56,6 +56,7 @@ class ViewControllerNewConfigurations: NSViewController, SetConfigurations, VcSc
         } else {
             self.offsiteServer.stringValue = ""
         }
+        self.sshport.stringValue = self.configurations!.getResourceConfiguration(hiddenID, resource: .sshport)
     }
 
     @IBAction func cleartable(_ sender: NSButton) {

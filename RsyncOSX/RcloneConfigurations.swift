@@ -36,6 +36,8 @@ class RcloneConfigurations {
             return result[0].backupID
         case .offsiteusername:
             return result[0].offsiteUsername
+        default:
+            return ""
         }
     }
 

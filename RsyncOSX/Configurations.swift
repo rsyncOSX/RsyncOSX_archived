@@ -98,6 +98,7 @@ enum ResourceInConfiguration {
     case task
     case backupid
     case offsiteusername
+    case sshport
 }
 
 class Configurations: ReloadTable, SetSchedules {
@@ -429,6 +430,12 @@ class Configurations: ReloadTable, SetSchedules {
             return result[0].backupID
         case .offsiteusername:
             return result[0].offsiteUsername
+        case .sshport:
+            if result[0].sshport != nil {
+                return String(result[0].sshport!)
+            } else {
+                return ""
+            }
         }
     }
 
