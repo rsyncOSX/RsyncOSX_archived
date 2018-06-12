@@ -46,6 +46,7 @@ class ViewControllerRestore: NSViewController, SetConfigurations, SetDismisser, 
         let answer = Alerts.dialogOKCancel("Do you REALLY want to start a RESTORE ?", text: "Cancel or OK")
         if answer {
             if let index = self.index(viewcontroller: .vctabmain) {
+                self.restorebutton.isEnabled = false
                 self.initiateProgressbar()
                 self.outputprocess = OutputProcess()
                 _ = RestoreTask(index: index, outputprocess: self.outputprocess, dryrun: false)
@@ -123,7 +124,7 @@ extension ViewControllerRestore: UpdateProgress {
             self.estimation = false
             self.setNumbers(outputprocess: self.outputprocess)
         } else {
-            self.restorebutton.isEnabled = false
+            self.gotit.stringValue = "Restore is completed..."
         }
         self.completed = true
     }
