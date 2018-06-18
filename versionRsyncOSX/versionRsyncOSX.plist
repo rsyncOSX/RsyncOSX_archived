@@ -3,20 +3,22 @@
 <plist version="1.0">
 <dict>
 	<key>5.0.0</key>
-	<string>https://github.com/rsyncOSX/RsyncOSX/releases/download/v5.3.5/RsyncOSX.dmg</string>
+	<string>https://github.com/rsyncOSX/RsyncOSX/releases/download/v5.3.7/RsyncOSX.dmg</string>
 	<key>5.1.0</key>
-	<string>https://github.com/rsyncOSX/RsyncOSX/releases/download/v5.3.5/RsyncOSX.dmg</string>
+	<string>https://github.com/rsyncOSX/RsyncOSX/releases/download/v5.3.7/RsyncOSX.dmg</string>
 	<key>5.1.1</key>
-	<string>https://github.com/rsyncOSX/RsyncOSX/releases/download/v5.3.5/RsyncOSX.dmg</string>
+	<string>https://github.com/rsyncOSX/RsyncOSX/releases/download/v5.3.7/RsyncOSX.dmg</string>
 	<key>5.2.0</key>
-	<string>https://github.com/rsyncOSX/RsyncOSX/releases/download/v5.3.5/RsyncOSX.dmg</string>
+	<string>https://github.com/rsyncOSX/RsyncOSX/releases/download/v5.3.7/RsyncOSX.dmg</string>
 	<key>5.2.1</key>
-	<string>https://github.com/rsyncOSX/RsyncOSX/releases/download/v5.3.5/RsyncOSX.dmg</string>
+	<string>https://github.com/rsyncOSX/RsyncOSX/releases/download/v5.3.7/RsyncOSX.dmg</string>
 	<key>5.3.0</key>
-	<string>https://github.com/rsyncOSX/RsyncOSX/releases/download/v5.3.5/RsyncOSX.dmg</string>
+	<string>https://github.com/rsyncOSX/RsyncOSX/releases/download/v5.3.7/RsyncOSX.dmg</string>
 	<key>5.3.1</key>
-	<string>https://github.com/rsyncOSX/RsyncOSX/releases/download/v5.3.5/RsyncOSX.dmg</string>
+	<string>https://github.com/rsyncOSX/RsyncOSX/releases/download/v5.3.7/RsyncOSX.dmg</string>
 	<key>5.3.4</key>
-	<string>https://github.com/rsyncOSX/RsyncOSX/releases/download/v5.3.5/RsyncOSX.dmg</string>
+	<string>https://github.com/rsyncOSX/RsyncOSX/releases/download/v5.3.7/RsyncOSX.dmg</string>
+	<key>5.3.5</key>
+	<string>https://github.com/rsyncOSX/RsyncOSX/releases/download/v5.3.7/RsyncOSX.dmg</string>
 </dict>
 </plist>
