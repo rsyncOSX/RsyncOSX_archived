@@ -18,6 +18,7 @@ class ViewControllerQuickBackup: NSViewController, SetDismisser, AbortTask, Dela
     var quickbackuplist: QuickBackup?
     var executing: Bool = false
     weak var inprogresscountDelegate: Count?
+    var max: Double?
 
     @IBOutlet weak var mainTableView: NSTableView!
     @IBOutlet weak var executeButton: NSButton!
@@ -116,6 +117,7 @@ class ViewControllerQuickBackup: NSViewController, SetDismisser, AbortTask, Dela
         self.progress.isHidden = false
         if let calculatedNumberOfFiles = self.quickbackuplist?.maxcount {
             self.progress.maxValue = Double(calculatedNumberOfFiles)
+            self.max = Double(calculatedNumberOfFiles)
         }
         self.progress.minValue = 0
         self.progress.doubleValue = 0
@@ -133,10 +135,20 @@ class ViewControllerQuickBackup: NSViewController, SetDismisser, AbortTask, Dela
             return true
         } else {
             self.noestimates.isHidden = false
+            self.max = nil
             return false
         }
     }
 
+    private func progressintable() -> String {
+        let value = Double((self.inprogresscountDelegate?.inprogressCount())!)
+        guard self.max != nil else { return "100"}
+        if ((value/self.max!) * 100) > 100 {
+            return "100"
+        } else {
+            return String(format: "%.0f", ((value/self.max!) * 100))
+        }
+    }
 }
 
 extension ViewControllerQuickBackup: NSTableViewDataSource {
@@ -168,6 +180,9 @@ extension ViewControllerQuickBackup: NSTableViewDelegate, Attributedestring {
             if object.value(forKey: "completeCellID") as? Bool == true {
                 return #imageLiteral(resourceName: "complete")
             }
+        }
+        if tableColumn!.identifier.rawValue == "percentCellID" {
+            return self.progressintable()
         }
         return object[tableColumn!.identifier] as? String
     }
@@ -220,6 +235,9 @@ extension ViewControllerQuickBackup: UpdateProgress {
 
     func fileHandler() {
         self.updateProgressbar()
+        globalMainQueue.async(execute: { () -> Void in
+            self.mainTableView.reloadData()
+        })
     }
 }
 
