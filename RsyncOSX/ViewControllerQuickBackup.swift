@@ -142,7 +142,7 @@ class ViewControllerQuickBackup: NSViewController, SetDismisser, AbortTask, Dela
 
     private func progressintable() -> String {
         let value = Double((self.inprogresscountDelegate?.inprogressCount())!)
-        guard self.max != nil else { return "100"}
+        guard self.max != nil else { return ""}
         if ((value/self.max!) * 100) > 100 {
             return "100"
         } else {
@@ -164,6 +164,7 @@ extension ViewControllerQuickBackup: NSTableViewDelegate, Attributedestring {
         guard self.quickbackuplist?.sortedlist != nil else { return nil }
         guard row < self.quickbackuplist!.sortedlist!.count else { return nil }
         let object: NSDictionary = (self.quickbackuplist?.sortedlist![row])!
+        let hiddenID = object.value(forKey: "hiddenID") as? Int
         if tableColumn!.identifier.rawValue == "daysID" {
             if object.value(forKey: "markdays") as? Bool == true {
                 let celltext = object[tableColumn!.identifier] as? String
@@ -182,7 +183,9 @@ extension ViewControllerQuickBackup: NSTableViewDelegate, Attributedestring {
             }
         }
         if tableColumn!.identifier.rawValue == "percentCellID" {
-            return self.progressintable()
+            if hiddenID == self.quickbackuplist?.hiddenID {
+                return self.progressintable()
+            }
         }
         return object[tableColumn!.identifier] as? String
     }
