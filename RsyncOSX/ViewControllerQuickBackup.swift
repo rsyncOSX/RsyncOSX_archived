@@ -15,7 +15,7 @@ class ViewControllerQuickBackup: NSViewController, SetDismisser, AbortTask, Dela
     var seconds: Int?
     var row: Int?
     var filterby: Sortandfilter?
-    var quickbackuplist: QuickBackup?
+    var quickbackup: QuickBackup?
     var executing: Bool = false
     weak var inprogresscountDelegate: Count?
     var max: Double?
@@ -29,7 +29,7 @@ class ViewControllerQuickBackup: NSViewController, SetDismisser, AbortTask, Dela
 
     // Either abort or close
     @IBAction func abort(_ sender: NSButton) {
-        self.quickbackuplist = nil
+        self.quickbackup = nil
         self.abort()
         self.dismissview(viewcontroller: self, vcontroller: .vctabmain)
     }
@@ -38,7 +38,7 @@ class ViewControllerQuickBackup: NSViewController, SetDismisser, AbortTask, Dela
     @IBAction func execute(_ sender: NSButton) {
         self.executing = true
         self.executeButton.isEnabled = false
-        self.quickbackuplist?.prepareandstartexecutetasks()
+        self.quickbackup?.prepareandstartexecutetasks()
         if self.checkforestimates() == true {
             self.initiateProgressbar()
         }
@@ -46,7 +46,7 @@ class ViewControllerQuickBackup: NSViewController, SetDismisser, AbortTask, Dela
     }
 
     private func loadtasks() {
-        self.quickbackuplist = QuickBackup()
+        self.quickbackup = QuickBackup()
     }
 
     // Initial functions viewDidLoad and viewDidAppear
@@ -68,7 +68,7 @@ class ViewControllerQuickBackup: NSViewController, SetDismisser, AbortTask, Dela
             if execute {
                 self.executing = true
                 self.executeButton.isEnabled = false
-                self.quickbackuplist?.prepareandstartexecutetasks()
+                self.quickbackup?.prepareandstartexecutetasks()
                 if self.checkforestimates() == true {
                     self.initiateProgressbar()
                 }
@@ -84,23 +84,23 @@ class ViewControllerQuickBackup: NSViewController, SetDismisser, AbortTask, Dela
         let column = myTableViewFromNotification.selectedColumn
         if column == 3 {
             self.filterby = .localcatalog
-            self.quickbackuplist?.sortbystrings(sort: .localCatalog)
+            self.quickbackup?.sortbystrings(sort: .localCatalog)
         } else if column == 4 {
             self.filterby = .remotecatalog
-            self.quickbackuplist?.sortbystrings(sort: .offsiteCatalog)
+            self.quickbackup?.sortbystrings(sort: .offsiteCatalog)
         } else if column == 5 {
             self.filterby = .remoteserver
-            self.quickbackuplist?.sortbystrings(sort: .offsiteServer)
+            self.quickbackup?.sortbystrings(sort: .offsiteServer)
         } else if column == 6 {
             self.filterby = .numberofdays
-            self.quickbackuplist?.sortbydays()
+            self.quickbackup?.sortbydays()
         } else {
             return
         }
     }
 
     private func enableexecutebutton() -> Bool? {
-        let backup = self.quickbackuplist?.sortedlist!.filter({$0.value(forKey: "selectCellID") as? Int == 1})
+        let backup = self.quickbackup?.sortedlist!.filter({$0.value(forKey: "selectCellID") as? Int == 1})
         guard backup != nil else { return nil }
         guard self.executing == false else { return nil }
         if backup!.count > 0 {
@@ -115,7 +115,7 @@ class ViewControllerQuickBackup: NSViewController, SetDismisser, AbortTask, Dela
     // Progress bars
     private func initiateProgressbar() {
         self.progress.isHidden = false
-        if let calculatedNumberOfFiles = self.quickbackuplist?.maxcount {
+        if let calculatedNumberOfFiles = self.quickbackup?.maxcount {
             self.progress.maxValue = Double(calculatedNumberOfFiles)
             self.max = Double(calculatedNumberOfFiles)
         }
@@ -130,7 +130,7 @@ class ViewControllerQuickBackup: NSViewController, SetDismisser, AbortTask, Dela
     }
 
     private func checkforestimates() -> Bool {
-        if self.quickbackuplist?.maxcount != nil && self.quickbackuplist?.maxcount ?? 0  > 0 {
+        if self.quickbackup?.maxcount != nil && self.quickbackup?.maxcount ?? 0  > 0 {
             self.noestimates.isHidden = true
             return true
         } else {
@@ -154,16 +154,16 @@ class ViewControllerQuickBackup: NSViewController, SetDismisser, AbortTask, Dela
 extension ViewControllerQuickBackup: NSTableViewDataSource {
     // Delegate for size of table
     func numberOfRows(in tableView: NSTableView) -> Int {
-        return self.quickbackuplist?.sortedlist?.count ?? 0
+        return self.quickbackup?.sortedlist?.count ?? 0
     }
 }
 
 extension ViewControllerQuickBackup: NSTableViewDelegate, Attributedestring {
     // TableView delegates
     func tableView(_ tableView: NSTableView, objectValueFor tableColumn: NSTableColumn?, row: Int) -> Any? {
-        guard self.quickbackuplist?.sortedlist != nil else { return nil }
-        guard row < self.quickbackuplist!.sortedlist!.count else { return nil }
-        let object: NSDictionary = (self.quickbackuplist?.sortedlist![row])!
+        guard self.quickbackup?.sortedlist != nil else { return nil }
+        guard row < self.quickbackup!.sortedlist!.count else { return nil }
+        let object: NSDictionary = (self.quickbackup?.sortedlist![row])!
         let hiddenID = object.value(forKey: "hiddenID") as? Int
         if tableColumn!.identifier.rawValue == "daysID" {
             if object.value(forKey: "markdays") as? Bool == true {
@@ -183,8 +183,10 @@ extension ViewControllerQuickBackup: NSTableViewDelegate, Attributedestring {
             }
         }
         if tableColumn!.identifier.rawValue == "percentCellID" {
-            if hiddenID == self.quickbackuplist?.hiddenID {
+            if hiddenID == self.quickbackup?.hiddenID {
                 return self.progressintable()
+            } else {
+                return ""
             }
         }
         return object[tableColumn!.identifier] as? String
@@ -192,11 +194,11 @@ extension ViewControllerQuickBackup: NSTableViewDelegate, Attributedestring {
 
     // Toggling selection
     func tableView(_ tableView: NSTableView, setObjectValue object: Any?, for tableColumn: NSTableColumn?, row: Int) {
-        guard  self.quickbackuplist?.sortedlist != nil else { return }
+        guard  self.quickbackup?.sortedlist != nil else { return }
         if tableColumn!.identifier.rawValue == "selectCellID" {
-            var select: Int = (self.quickbackuplist?.sortedlist![row].value(forKey: "selectCellID") as? Int)!
+            var select: Int = (self.quickbackup?.sortedlist![row].value(forKey: "selectCellID") as? Int)!
             if select == 0 { select = 1 } else if select == 1 { select = 0 }
-            self.quickbackuplist?.sortedlist![row].setValue(select, forKey: "selectCellID")
+            self.quickbackup?.sortedlist![row].setValue(select, forKey: "selectCellID")
         }
         _ = self.enableexecutebutton()
     }
@@ -215,7 +217,7 @@ extension ViewControllerQuickBackup: Reloadandrefresh {
 
 extension ViewControllerQuickBackup: CloseViewError {
     func closeerror() {
-        self.quickbackuplist = nil
+        self.quickbackup = nil
         self.abort()
         self.dismissview(viewcontroller: self, vcontroller: .vctabmain)
     }
@@ -224,9 +226,9 @@ extension ViewControllerQuickBackup: CloseViewError {
 extension ViewControllerQuickBackup: UpdateProgress {
 
     func processTermination() {
-        self.quickbackuplist?.setcompleted()
-        self.quickbackuplist?.processTermination()
-        guard self.quickbackuplist?.stackoftasktobeexecuted != nil else {
+        self.quickbackup?.setcompleted()
+        self.quickbackup?.processTermination()
+        guard self.quickbackup?.stackoftasktobeexecuted != nil else {
             self.progress.isHidden = true
             return
         }
@@ -252,11 +254,11 @@ extension ViewControllerQuickBackup: NSSearchFieldDelegate {
             let filterstring = self.search.stringValue
             if filterstring.isEmpty {
                 globalMainQueue.async(execute: { () -> Void in
-                    self.quickbackuplist?.sortbydays()
+                    self.quickbackup?.sortbydays()
                 })
             } else {
                 globalMainQueue.async(execute: { () -> Void in
-                    self.quickbackuplist?.filter(search: filterstring, filterby: self.filterby)
+                    self.quickbackup?.filter(search: filterstring, filterby: self.filterby)
                 })
             }
         }

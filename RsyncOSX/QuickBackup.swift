@@ -168,6 +168,7 @@ extension QuickBackup: UpdateProgress {
         guard self.stackoftasktobeexecuted != nil else { return }
         guard self.stackoftasktobeexecuted!.count > 0  else {
             self.stackoftasktobeexecuted = nil
+            self.hiddenID = nil
             self.reloadtableDelegate?.reloadtabledata()
             return
         }
