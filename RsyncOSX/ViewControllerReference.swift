@@ -83,6 +83,8 @@ class ViewControllerReference {
     var pathrsyncosxsched: String?
     var namersyncosx = "RsyncOSX.app"
     var namersyncosssched = "RsyncOSXsched.app"
+    // Mac serialnumer
+    var macserialnumber: String?
     // Reference to main View
     private var viewControllertabMain: NSViewController?
     // Reference to Copy files
