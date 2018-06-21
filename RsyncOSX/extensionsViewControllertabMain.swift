@@ -208,7 +208,7 @@ extension ViewControllertabMain: RsyncChanged {
     func rsyncchanged() {
         // Update rsync command in display
         self.setRsyncCommandDisplay()
-        self.verifyrsync()
+        self.setinfoaboutrsync()
         // Setting shortstring
         self.rsyncversionshort.stringValue = ViewControllerReference.shared.rsyncversionshort ?? ""
     }
@@ -254,7 +254,7 @@ extension ViewControllertabMain: DismissViewController {
             self.displayProfile()
         })
         self.showProcessInfo(info: .blank)
-        self.verifyrsync()
+        self.setinfoaboutrsync()
         if viewcontroller == ViewControllerReference.shared.getvcref(viewcontroller: .vcquickbackup) {
             self.configurations!.allowNotifyinMain = true
         }
@@ -663,8 +663,8 @@ extension  ViewControllertabMain: GetHiddenID {
     }
 }
 
-extension ViewControllertabMain: Verifyrsync {
-    internal func verifyrsync() {
+extension ViewControllertabMain: Setinfoaboutrsync {
+    internal func setinfoaboutrsync() {
         if ViewControllerReference.shared.norsync == true {
             self.info(num: 3)
         } else {
