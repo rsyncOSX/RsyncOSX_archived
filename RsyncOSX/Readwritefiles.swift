@@ -47,23 +47,28 @@ class Readwritefiles {
     private func setnameandpath() {
         let docupath = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true) as NSArray
         let docuDir = docupath.firstObject as? String ?? ""
+        if ViewControllerReference.shared.macserialnumber == nil {
+            ViewControllerReference.shared.macserialnumber = Tools().getMacSerialNumber() ?? ""
+        }
+        let macserialnumber = ViewControllerReference.shared.macserialnumber
         let profilePath = Profiles()
         profilePath.createDirectory()
         if self.useProfile {
             // Use profile
             if let profile = self.profile {
+                guard profile.isEmpty == false else { return }
                 let profilePath = Profiles()
                 profilePath.createDirectory()
-                self.filepath = self.configpath! + Tools().getMacSerialNumber()! + "/" + profile + "/"
-                self.filename = docuDir + self.configpath! + Tools().getMacSerialNumber()! + "/" + profile + self.name!
+                self.filepath = self.configpath! + macserialnumber! + "/" + profile + "/"
+                self.filename = docuDir + self.configpath! + macserialnumber! + "/" + profile + self.name!
             } else {
                 // If profile not set use no profile
-                self.filename = docuDir +  self.configpath! + Tools().getMacSerialNumber()! + self.name!
+                self.filename = docuDir +  self.configpath! + macserialnumber! + self.name!
             }
         } else {
             // no profile
-            self.filename = docuDir + self.configpath! + Tools().getMacSerialNumber()! + self.name!
-            self.filepath = self.configpath! + Tools().getMacSerialNumber()! + "/"
+            self.filename = docuDir + self.configpath! + macserialnumber! + self.name!
+            self.filepath = self.configpath! + macserialnumber! + "/"
         }
     }
 
