@@ -45,8 +45,8 @@ protocol Connections: class {
     func displayConnections()
 }
 
-protocol Verifyrsync: class {
-    func verifyrsync()
+protocol Setinfoaboutrsync: class {
+    func setinfoaboutrsync()
 }
 
 final class Tools: SetConfigurations, Delay {
@@ -55,7 +55,7 @@ final class Tools: SetConfigurations, Delay {
     weak var testconnectionsDelegate: Connections?
     weak var newprofileDelegate: NewProfile?
     private var macSerialNumber: String?
-    weak var verifyrsyncDelegate: Verifyrsync?
+    weak var setinfoaboutsyncDelegate: Setinfoaboutrsync?
 
     // Test for TCP connection
     func testTCPconnection (_ addr: String, port: Int, timeout: Int) -> (Bool, String) {
@@ -143,7 +143,7 @@ final class Tools: SetConfigurations, Delay {
         }
         guard ViewControllerReference.shared.rsyncVer3 == true else {
             ViewControllerReference.shared.norsync = false
-            self.verifyrsyncDelegate?.verifyrsync()
+            self.setinfoaboutsyncDelegate?.setinfoaboutrsync()
             return
         }
         if fileManager.fileExists(atPath: path!) == false {
@@ -151,7 +151,7 @@ final class Tools: SetConfigurations, Delay {
         } else {
             ViewControllerReference.shared.norsync = false
         }
-        self.verifyrsyncDelegate?.verifyrsync()
+        self.setinfoaboutsyncDelegate?.setinfoaboutrsync()
     }
 
     // Display the correct command to execute
@@ -329,7 +329,7 @@ final class Tools: SetConfigurations, Delay {
     }
 
     init() {
-        self.verifyrsyncDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllertabMain
+        self.setinfoaboutsyncDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllertabMain
         self.testconnectionsDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllertabMain
         self.newprofileDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllertabMain
     }
