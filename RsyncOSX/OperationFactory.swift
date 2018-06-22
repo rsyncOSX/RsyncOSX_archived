@@ -5,6 +5,7 @@
 //  Created by Thomas Evensen on 22.10.2017.
 //  Copyright © 2017 Thomas Evensen. All rights reserved.
 //
+// swiftlint:disable line_length
 
 import Foundation
 
@@ -55,12 +56,18 @@ protocol SecondsBeforeStart {
     func secondsbeforestart() -> Double
 }
 
+protocol GetsortedanexpandedObject: class {
+    func getsortedanexpandedObject() -> ScheduleSortedAndExpand?
+}
+
 extension SecondsBeforeStart {
 
     func secondsbeforestart() -> Double {
         var secondsToWait: Double?
-        let scheduledJobs = ScheduleSortedAndExpand()
-        if let dict = scheduledJobs.firstscheduledtask() {
+        weak var schedulesDelegate: GetsortedanexpandedObject?
+        schedulesDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllertabMain
+        let scheduledJobs = schedulesDelegate?.getsortedanexpandedObject()
+        if let dict = scheduledJobs?.firstscheduledtask() {
             let dateStart: Date = (dict.value(forKey: "start") as? Date)!
             secondsToWait = Tools().timeDoubleSeconds(dateStart, enddate: nil)
         }
