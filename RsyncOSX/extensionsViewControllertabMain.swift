@@ -775,3 +775,9 @@ extension ViewControllertabMain: SetLocalRemoteInfo {
         }
     }
 }
+
+extension ViewControllertabMain: GetsortedanexpandedObject {
+    func getsortedanexpandedObject() -> ScheduleSortedAndExpand? {
+        return self.schedulesortedandexpanded
+    }
+}
