@@ -35,7 +35,8 @@ final class PersistentStorageScheduling: Readwritefiles, SetSchedules {
                     "hiddenID": schedule.hiddenID,
                     "dateStart": schedule.dateStart,
                     "schedule": schedule.schedule,
-                    "executed": schedule.logrecords]
+                    "executed": schedule.logrecords,
+                    "offsiteserver": schedule.offsiteserver ?? "localhost"]
                 if schedule.dateStop != nil {
                     dict.setValue(schedule.dateStop, forKey: "dateStop")
                 }
