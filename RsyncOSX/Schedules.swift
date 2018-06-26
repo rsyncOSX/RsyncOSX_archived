@@ -62,9 +62,11 @@ class Schedules: ScheduleWriteLoggData {
             stop = dateformatter.date(from: "01 Jan 2100 00:00")
         }
         let dict = NSMutableDictionary()
+        let offsiteserver = self.configurations?.getResourceConfiguration(hiddenID, resource: .offsiteServer)
         dict.setObject(hiddenID, forKey: "hiddenID" as NSCopying)
         dict.setObject(dateformatter.string(from: start), forKey: "dateStart" as NSCopying)
         dict.setObject(dateformatter.string(from: stop!), forKey: "dateStop" as NSCopying)
+        dict.setObject(offsiteserver as Any, forKey: "offsiteserver" as NSCopying)
         switch schedule {
         case .once:
             dict.setObject("once", forKey: "schedule" as NSCopying)
