@@ -291,6 +291,19 @@ class Configurations: ReloadTable, SetSchedules {
             return []
         }
     }
+    
+    func arguments4tmprestore(index: Int, argtype: ArgumentsRsync) -> [String] {
+        let allarguments = self.argumentAllConfigurations![index]
+        switch argtype {
+        case .arg:
+            return allarguments.tmprestore ?? []
+        case .argdryRun:
+            return allarguments.tmprestoredryRun ?? []
+        default:
+            return []
+        }
+    }
+    
 
     /// Function is adding new Configurations to existing in memory.
     /// - parameter dict : new record configuration

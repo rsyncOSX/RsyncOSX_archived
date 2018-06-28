@@ -29,6 +29,8 @@ class ViewControllerRestore: NSViewController, SetConfigurations, SetDismisser, 
     @IBOutlet weak var totalNumberSizebytes: NSTextField!
     @IBOutlet weak var restoreprogress: NSProgressIndicator!
     @IBOutlet weak var restorebutton: NSButton!
+    @IBOutlet weak var tmprestore: NSTextField!
+    @IBOutlet weak var selecttmptorestore: NSButton!
 
     var outputprocess: OutputProcess?
     var estimation: Bool?
@@ -42,6 +44,25 @@ class ViewControllerRestore: NSViewController, SetConfigurations, SetDismisser, 
         self.dismissview(viewcontroller: self, vcontroller: .vctabmain)
     }
 
+    @IBAction func dotmprestore(_ sender: NSButton) {
+        if let index = self.index(viewcontroller: .vctabmain) {
+            self.selecttmptorestore.isEnabled = false
+            self.estimation = true
+            self.gotit.stringValue = "Getting remote info..."
+            self.working.startAnimation(nil)
+            switch self.selecttmptorestore.state {
+            case .on:
+                self.outputprocess = OutputProcess()
+                _ = RestoreTask(index: index, outputprocess: self.outputprocess, dryrun: true, tmprestore: true)
+            case .off:
+                self.outputprocess = OutputProcess()
+                _ = RestoreTask(index: index, outputprocess: self.outputprocess, dryrun: true, tmprestore: false)
+            default:
+                return
+            }
+        }
+    }
+
     @IBAction func restore(_ sender: NSButton) {
         let answer = Alerts.dialogOKCancel("Do you REALLY want to start a RESTORE ?", text: "Cancel or OK")
         if answer {
@@ -49,7 +70,7 @@ class ViewControllerRestore: NSViewController, SetConfigurations, SetDismisser, 
                 self.restorebutton.isEnabled = false
                 self.initiateProgressbar()
                 self.outputprocess = OutputProcess()
-                _ = RestoreTask(index: index, outputprocess: self.outputprocess, dryrun: false)
+                _ = RestoreTask(index: index, outputprocess: self.outputprocess, dryrun: false, tmprestore: false)
             }
         }
     }
@@ -80,9 +101,11 @@ class ViewControllerRestore: NSViewController, SetConfigurations, SetDismisser, 
             if let port = config.sshport {
                 self.sshport.stringValue = String(port)
             }
+            self.tmprestore.stringValue = ViewControllerReference.shared.restorePath ?? " ... not set ..."
             self.working.startAnimation(nil)
             self.outputprocess = OutputProcess()
-            _ = RestoreTask(index: index, outputprocess: self.outputprocess, dryrun: true)
+            self.selecttmptorestore.state = .off
+            _ = RestoreTask(index: index, outputprocess: self.outputprocess, dryrun: true, tmprestore: false)
         }
     }
 
@@ -123,6 +146,7 @@ extension ViewControllerRestore: UpdateProgress {
         if estimation == true {
             self.estimation = false
             self.setNumbers(outputprocess: self.outputprocess)
+            self.selecttmptorestore.isEnabled = true
         } else {
             self.gotit.stringValue = "Restore is completed..."
         }
