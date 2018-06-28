@@ -15,12 +15,16 @@ class RestoreTask: SetConfigurations {
         if dryrun {
             if tmprestore {
                 self.arguments = self.configurations!.arguments4tmprestore(index: index, argtype: .argdryRun)
+                let lastindex = self.arguments!.count - 1
+                self.arguments![lastindex] = ViewControllerReference.shared.restorePath ?? ""
             } else {
                 self.arguments = self.configurations!.arguments4restore(index: index, argtype: .argdryRun)
             }
         } else {
             if tmprestore {
                 self.arguments = self.configurations!.arguments4tmprestore(index: index, argtype: .arg)
+                let lastindex = self.arguments!.count - 1
+                self.arguments![lastindex] = ViewControllerReference.shared.restorePath ?? ""
             } else {
                 self.arguments = self.configurations!.arguments4restore(index: index, argtype: .arg)
             }

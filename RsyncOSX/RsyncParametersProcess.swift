@@ -289,7 +289,7 @@ final class RsyncParametersProcess {
             if forDisplay {self.arguments!.append(" ")}
         }
         if tmprestore {
-            let restorepath = ViewControllerReference.shared.restorePath ?? "/Volumes/Home/thomas/tmp"
+            let restorepath = ""
             self.arguments!.append(restorepath)
         } else {
             self.arguments!.append(self.localCatalog!)

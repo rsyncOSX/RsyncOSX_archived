@@ -28,8 +28,6 @@ struct ArgumentsOneConfiguration {
     // Temporary restore
     var tmprestore: [String]?
     var tmprestoredryRun: [String]?
-    var tmprestoreDisplay: [String]?
-    var tmprestoredryRunDisplay: [String]?
 
     init(config: Configuration) {
         // The configuration
@@ -49,7 +47,5 @@ struct ArgumentsOneConfiguration {
         // Temporary restore path
         self.tmprestore = RsyncParametersProcess().argumentsRestore(config, dryRun: false, forDisplay: false, tmprestore: true)
         self.tmprestoredryRun = RsyncParametersProcess().argumentsRestore(config, dryRun: true, forDisplay: false, tmprestore: true)
-        self.tmprestoreDisplay = RsyncParametersProcess().argumentsRestore(config, dryRun: false, forDisplay: true, tmprestore: true)
-        self.tmprestoredryRunDisplay = RsyncParametersProcess().argumentsRestore(config, dryRun: true, forDisplay: true, tmprestore: true)
     }
 }
