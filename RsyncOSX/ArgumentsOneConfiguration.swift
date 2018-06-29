@@ -25,6 +25,9 @@ struct ArgumentsOneConfiguration {
     var restoredryRun: [String]?
     var restoreDisplay: [String]?
     var restoredryRunDisplay: [String]?
+    // Temporary restore
+    var tmprestore: [String]?
+    var tmprestoredryRun: [String]?
 
     init(config: Configuration) {
         // The configuration
@@ -36,9 +39,13 @@ struct ArgumentsOneConfiguration {
         self.argdryRun = RsyncParametersProcess().argumentsRsync(config, dryRun: true, forDisplay: false)
         self.argdryRunDisplay = RsyncParametersProcess().argumentsRsync(config, dryRun: true, forDisplay: true)
         self.argdryRunLocalcatalogInfo = RsyncParametersProcess().argumentsRsyncLocalcatalalogInfo(config, dryRun: true, forDisplay: false)
-        self.restore = RsyncParametersProcess().argumentsRestore(config, dryRun: false, forDisplay: false)
-        self.restoredryRun = RsyncParametersProcess().argumentsRestore(config, dryRun: true, forDisplay: false)
-        self.restoreDisplay = RsyncParametersProcess().argumentsRestore(config, dryRun: false, forDisplay: true)
-        self.restoredryRunDisplay = RsyncParametersProcess().argumentsRestore(config, dryRun: true, forDisplay: true)
+        // Restore path
+        self.restore = RsyncParametersProcess().argumentsRestore(config, dryRun: false, forDisplay: false, tmprestore: false)
+        self.restoredryRun = RsyncParametersProcess().argumentsRestore(config, dryRun: true, forDisplay: false, tmprestore: false)
+        self.restoreDisplay = RsyncParametersProcess().argumentsRestore(config, dryRun: false, forDisplay: true, tmprestore: false)
+        self.restoredryRunDisplay = RsyncParametersProcess().argumentsRestore(config, dryRun: true, forDisplay: true, tmprestore: false)
+        // Temporary restore path
+        self.tmprestore = RsyncParametersProcess().argumentsRestore(config, dryRun: false, forDisplay: false, tmprestore: true)
+        self.tmprestoredryRun = RsyncParametersProcess().argumentsRestore(config, dryRun: true, forDisplay: false, tmprestore: true)
     }
 }

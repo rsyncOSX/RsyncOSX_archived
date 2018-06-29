@@ -5666,7 +5666,7 @@ DQ
                                     </subviews>
                                 </clipView>
                                 <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="YES" id="e0w-78-6ai">
-                                    <rect key="frame" x="2" y="198" width="765" height="16"/>
+                                    <rect key="frame" x="2" y="9" width="0.0" height="16"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
                                 <scroller key="verticalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="NO" id="eod-Mr-2tx">
@@ -6713,6 +6713,17 @@ DQ
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
+                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="aOa-FJ-MMf">
+                                <rect key="frame" x="36" y="79" width="108" height="18"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <buttonCell key="cell" type="check" title="restore to tmp" bezelStyle="regularSquare" imagePosition="right" state="on" inset="2" id="dEW-Mo-F8C">
+                                    <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="dotmprestore:" target="LPL-36-14W" id="ToN-Q5-prY"/>
+                                </connections>
+                            </button>
                             <box fixedFrame="YES" title="Remote info" translatesAutoresizingMaskIntoConstraints="NO" id="SHi-wp-O4D">
                                 <rect key="frame" x="445" y="54" width="278" height="209"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
@@ -6730,9 +6741,9 @@ DQ
                                 </view>
                             </box>
                             <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="sRg-L0-I4h">
-                                <rect key="frame" x="14" y="13" width="74" height="32"/>
+                                <rect key="frame" x="14" y="13" width="57" height="32"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <buttonCell key="cell" type="push" title="Restore" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="YPN-3P-BXs">
+                                <buttonCell key="cell" type="push" title="Start" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="YPN-3P-BXs">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
@@ -6757,6 +6768,15 @@ DQ
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
+                            <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="xdR-rb-UpF">
+                                <rect key="frame" x="152" y="77" width="271" height="22"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" bezelStyle="round" id="6qR-QB-Mst">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
                         </subviews>
                     </view>
                     <connections>
@@ -6770,7 +6790,9 @@ DQ
                         <outlet property="offsiteUsername" destination="BeP-xg-VNp" id="1al-jP-076"/>
                         <outlet property="restorebutton" destination="sRg-L0-I4h" id="V56-aY-bKF"/>
                         <outlet property="restoreprogress" destination="b46-Hh-7E1" id="lq8-J4-qCY"/>
+                        <outlet property="selecttmptorestore" destination="aOa-FJ-MMf" id="EcO-99-Cy0"/>
                         <outlet property="sshport" destination="Tc6-gA-BZV" id="CiD-YQ-qdk"/>
+                        <outlet property="tmprestore" destination="xdR-rb-UpF" id="xaX-qI-aYv"/>
                         <outlet property="totalDirs" destination="5m9-kr-Nln" id="WfR-KS-eNe"/>
                         <outlet property="totalNumber" destination="ALq-yj-YRS" id="k4c-Z5-Vo7"/>
                         <outlet property="totalNumberSizebytes" destination="d8r-Wu-zr2" id="JpQ-wI-hk6"/>

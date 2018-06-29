@@ -167,7 +167,7 @@ final class RsyncParametersProcess {
         return self.arguments!
     }
 
-    func argumentsRestore (_ config: Configuration, dryRun: Bool, forDisplay: Bool) -> [String] {
+    func argumentsRestore (_ config: Configuration, dryRun: Bool, forDisplay: Bool, tmprestore: Bool) -> [String] {
         guard config.task != "restore" else { return [] }
         self.localCatalog = config.localCatalog
         if config.snapshotnum != nil {
@@ -177,7 +177,11 @@ final class RsyncParametersProcess {
         }
         self.setParameters1To6(config, dryRun: dryRun, forDisplay: forDisplay)
         self.setParameters8To14(config, dryRun: dryRun, forDisplay: forDisplay)
-        self.argumentsforrestore(dryRun: dryRun, forDisplay: forDisplay)
+        if tmprestore {
+            self.argumentsforrestore(dryRun: dryRun, forDisplay: forDisplay, tmprestore: tmprestore)
+        } else {
+            self.argumentsforrestore(dryRun: dryRun, forDisplay: forDisplay, tmprestore: tmprestore)
+        }
         return self.arguments!
     }
 
@@ -275,7 +279,7 @@ final class RsyncParametersProcess {
         }
     }
 
-    private func argumentsforrestore(dryRun: Bool, forDisplay: Bool) {
+    private func argumentsforrestore(dryRun: Bool, forDisplay: Bool, tmprestore: Bool) {
         if self.offsiteServer!.isEmpty {
             self.arguments!.append(self.offsiteCatalog!)
             if forDisplay {self.arguments!.append(" ")}
@@ -284,7 +288,12 @@ final class RsyncParametersProcess {
             self.arguments!.append(remoteargs!)
             if forDisplay {self.arguments!.append(" ")}
         }
-        self.arguments!.append(self.localCatalog!)
+        if tmprestore {
+            let restorepath = ""
+            self.arguments!.append(restorepath)
+        } else {
+            self.arguments!.append(self.localCatalog!)
+        }
     }
 
     init () {
