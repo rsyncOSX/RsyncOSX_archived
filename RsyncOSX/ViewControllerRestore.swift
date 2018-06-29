@@ -45,6 +45,7 @@ class ViewControllerRestore: NSViewController, SetConfigurations, SetDismisser, 
     }
 
     @IBAction func dotmprestore(_ sender: NSButton) {
+        guard self.tmprestore.stringValue.isEmpty == false else { return }
         if let index = self.index(viewcontroller: .vctabmain) {
             self.selecttmptorestore.isEnabled = false
             self.estimation = true
@@ -70,7 +71,14 @@ class ViewControllerRestore: NSViewController, SetConfigurations, SetDismisser, 
                 self.restorebutton.isEnabled = false
                 self.initiateProgressbar()
                 self.outputprocess = OutputProcess()
-                _ = RestoreTask(index: index, outputprocess: self.outputprocess, dryrun: false, tmprestore: false)
+                switch self.selecttmptorestore.state {
+                case .on:
+                    _ = RestoreTask(index: index, outputprocess: self.outputprocess, dryrun: false, tmprestore: true)
+                case .off:
+                    _ = RestoreTask(index: index, outputprocess: self.outputprocess, dryrun: false, tmprestore: false)
+                default:
+                    return
+                }
             }
         }
     }
