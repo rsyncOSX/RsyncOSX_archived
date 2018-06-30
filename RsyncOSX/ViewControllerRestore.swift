@@ -5,6 +5,7 @@
 //  Created by Thomas Evensen on 05/09/2016.
 //  Copyright © 2016 Thomas Evensen. All rights reserved.
 //
+// swiftlint:disable line_length
 
 import Foundation
 import Cocoa
@@ -109,7 +110,10 @@ class ViewControllerRestore: NSViewController, SetConfigurations, SetDismisser, 
             if let port = config.sshport {
                 self.sshport.stringValue = String(port)
             }
-            self.tmprestore.stringValue = ViewControllerReference.shared.restorePath ?? " ... not set ..."
+            self.tmprestore.stringValue = ViewControllerReference.shared.restorePath ?? " ... set in User configuration ..."
+            if ViewControllerReference.shared.restorePath == nil {
+                self.selecttmptorestore.isEnabled = false
+            }
             self.working.startAnimation(nil)
             self.outputprocess = OutputProcess()
             self.selecttmptorestore.state = .off
@@ -154,6 +158,7 @@ extension ViewControllerRestore: UpdateProgress {
         if estimation == true {
             self.estimation = false
             self.setNumbers(outputprocess: self.outputprocess)
+            guard ViewControllerReference.shared.restorePath != nil else { return }
             self.selecttmptorestore.isEnabled = true
         } else {
             self.gotit.stringValue = "Restore is completed..."
