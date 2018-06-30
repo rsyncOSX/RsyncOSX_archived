@@ -63,6 +63,8 @@ final class PersistentStorageUserconfiguration: Readwritefiles, SetConfiguration
         }
         if restorePath != nil {
             dict.setObject(restorePath!, forKey: "restorePath" as NSCopying)
+        } else {
+            dict.setObject("", forKey: "restorePath" as NSCopying)
         }
         switch self.configurations!.operation {
         case .dispatch:

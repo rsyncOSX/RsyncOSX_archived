@@ -109,7 +109,10 @@ class ViewControllerRestore: NSViewController, SetConfigurations, SetDismisser, 
             if let port = config.sshport {
                 self.sshport.stringValue = String(port)
             }
-            self.tmprestore.stringValue = ViewControllerReference.shared.restorePath ?? " ... not set ..."
+            self.tmprestore.stringValue = ViewControllerReference.shared.restorePath ?? " ... set in User configuration ..."
+            if ViewControllerReference.shared.restorePath == nil {
+                self.selecttmptorestore.isEnabled = false
+            }
             self.working.startAnimation(nil)
             self.outputprocess = OutputProcess()
             self.selecttmptorestore.state = .off
@@ -154,6 +157,7 @@ extension ViewControllerRestore: UpdateProgress {
         if estimation == true {
             self.estimation = false
             self.setNumbers(outputprocess: self.outputprocess)
+            guard ViewControllerReference.shared.restorePath != nil else { return }
             self.selecttmptorestore.isEnabled = true
         } else {
             self.gotit.stringValue = "Restore is completed..."
