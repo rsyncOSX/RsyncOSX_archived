@@ -28,13 +28,11 @@ class ViewControllerSnapshots: NSViewController, SetDismisser, SetConfigurations
     @IBOutlet weak var sshport: NSTextField!
     @IBOutlet weak var info: NSTextField!
     @IBOutlet weak var deletebutton: NSButton!
-    @IBOutlet weak var deletenum: NSTextField!
     @IBOutlet weak var numberOflogfiles: NSTextField!
     @IBOutlet weak var progressdelete: NSProgressIndicator!
-    @IBOutlet weak var confirmdelete: NSButton!
+    @IBOutlet weak var deletesnapshots: NSSlider!
+    @IBOutlet weak var deletesnapshotsnum: NSTextField!
 
-    // Source for CopyFiles and Ssh
-    // self.presentViewControllerAsSheet(self.ViewControllerAbout)
     lazy var viewControllerSource: NSViewController = {
         return (self.storyboard!.instantiateController(withIdentifier: NSStoryboard.SceneIdentifier(rawValue: "CopyFilesID"))
             as? NSViewController)!
@@ -45,74 +43,47 @@ class ViewControllerSnapshots: NSViewController, SetDismisser, SetConfigurations
         case 1:
             self.info.stringValue = "Not a snapshot task..."
         case 2:
-            self.info.stringValue = "Cannot delete all snapshot catalogs..."
-        case 3:
-            self.info.stringValue = "Please confirm delete..."
-        case 4:
-            self.info.stringValue = "Max 5 catalogs to delete..."
-        case 5:
-            self.info.stringValue = "Enter a real number..."
-        case 6:
             self.info.stringValue = "Aborting delete operation..."
-        case 7:
+        case 3:
             self.info.stringValue = "Delete operation completed..."
         default:
             self.info.stringValue = ""
         }
     }
 
-    @IBAction func whichrowstodelete(_ sender: NSButton) {
-        guard self.confirmdelete.state == .on else {
-            self.num = nil
-            globalMainQueue.async(execute: { () -> Void in
-                self.snapshotstable.reloadData()
-            })
-            return
-        }
-        if let delete = Int(self.deletenum.stringValue) {
-            self.num = delete
-            globalMainQueue.async(execute: { () -> Void in
-                self.snapshotstable.reloadData()
-            })
-        }
+    private func initdeletesnapshots() {
+        self.deletesnapshots.altIncrementValue = 1.0
+        self.deletesnapshots.maxValue = Double(self.snapshotsloggdata?.snapshotslogs?.count ?? 0) - 1.0
+        self.deletesnapshots.minValue = 0.0
+    }
+
+    @IBAction func updatedeletesnapshotsnum(_ sender: NSSlider) {
+        self.deletesnapshotsnum.stringValue = String(self.deletesnapshots.intValue)
+        self.num = Int(self.deletesnapshots.intValue)
+        globalMainQueue.async(execute: { () -> Void in
+            self.snapshotstable.reloadData()
+        })
     }
 
     // Abort button
     @IBAction func abort(_ sender: NSButton) {
-        self.info(num: 6)
+        self.info(num: 2)
         self.snapshotsloggdata?.remotecatalogstodelete = nil
     }
 
     @IBAction func delete(_ sender: NSButton) {
-        if let delete = Int(self.deletenum.stringValue) {
-            guard delete < self.snapshotsloggdata?.expandedremotecatalogs?.count ?? 0 else {
-                self.info(num: 2)
-                return
-            }
-            guard delete <= 5 else {
-                self.info(num: 4)
-                return
-            }
-            guard self.confirmdelete.state == .on else {
-                self.info(num: 3)
-                return
-            }
-            guard delete > 0 else {
-                self.info(num: 5)
-                return
-            }
+        let delete = Int(self.deletesnapshots.intValue)
+        let answer = Alerts.dialogOKCancel("Do you REALLY want to DELETE " + String(delete) + " snapshots?", text: "Cancel or OK")
+        if answer {
             self.info(num: 0)
             self.num = nil
             self.snapshotsloggdata!.preparecatalogstodelete(num: delete)
             self.deletebutton.isEnabled = false
-            self.deletenum.isEnabled = false
+            self.deletesnapshots.isEnabled = false
             self.initiateProgressbar()
             self.deletesnapshotcatalogs()
-        } else {
-            self.info(num: 5)
-            return
+            self.delete = true
         }
-        self.delete = true
     }
 
     @IBAction func getindex(_ sender: NSButton) {
@@ -124,7 +95,6 @@ class ViewControllerSnapshots: NSViewController, SetDismisser, SetConfigurations
         super.viewDidLoad()
         self.snapshotstable.delegate = self
         self.snapshotstable.dataSource = self
-        self.deletenum.delegate = self
         ViewControllerReference.shared.setvcref(viewcontroller: .vcsnapshot, nsviewcontroller: self)
     }
 
@@ -134,9 +104,8 @@ class ViewControllerSnapshots: NSViewController, SetDismisser, SetConfigurations
         self.delete = false
         self.snapshotsloggdata = nil
         self.progressdelete.isHidden = true
-        self.confirmdelete.state = .off
-        self.confirmdelete.isEnabled = false
         self.info(num: 0)
+        self.initdeletesnapshots()
         globalMainQueue.async(execute: { () -> Void in
             self.snapshotstable.reloadData()
         })
@@ -151,17 +120,15 @@ class ViewControllerSnapshots: NSViewController, SetDismisser, SetConfigurations
         var deletecommand: SnapshotCommandDeleteCatalogs?
         guard self.snapshotsloggdata?.remotecatalogstodelete != nil else {
             self.progressdelete.isHidden = true
-            self.confirmdelete.state = .off
-            self.confirmdelete.isEnabled = false
-            self.deletenum.isEnabled = true
+            self.deletebutton.isEnabled = true
+            self.deletesnapshots.isEnabled = true
             self.info(num: 0)
             return
         }
         guard self.snapshotsloggdata!.remotecatalogstodelete!.count > 0 else {
             self.progressdelete.isHidden = true
-            self.confirmdelete.state = .off
-            self.confirmdelete.isEnabled = false
-            self.deletenum.isEnabled = true
+            self.deletebutton.isEnabled = true
+            self.deletesnapshots.isEnabled = true
             self.info(num: 0)
             return
         }
@@ -178,11 +145,7 @@ class ViewControllerSnapshots: NSViewController, SetDismisser, SetConfigurations
     // Progress bar
     private func initiateProgressbar() {
         self.progressdelete.isHidden = false
-        if let deletenum = Double(self.deletenum.stringValue) {
-            self.progressdelete.maxValue = deletenum
-        } else {
-            return
-        }
+        self.progressdelete.maxValue = Double(self.deletesnapshots.intValue)
         self.progressdelete.minValue = 0
         self.progressdelete.doubleValue = 0
         self.progressdelete.startAnimation(self)
@@ -242,23 +205,24 @@ extension ViewControllerSnapshots: GetSource {
 extension ViewControllerSnapshots: UpdateProgress {
     func processTermination() {
         if delete {
-            if let deletenum = Int(self.deletenum.stringValue) {
-                if self.snapshotsloggdata!.remotecatalogstodelete == nil {
-                    self.updateProgressbar(Double(deletenum))
-                    self.delete = false
-                    self.deletenum.stringValue = ""
-                    self.progressdelete.isHidden = true
-                    self.info(num: 7)
-                    self.snapshotsloggdata = SnapshotsLoggData(config: self.config!)
-                } else {
-                    let progress = deletenum - self.snapshotsloggdata!.remotecatalogstodelete!.count
-                    self.updateProgressbar(Double(progress))
-                }
+            let deletenum = Int(self.deletesnapshots.intValue)
+            if self.snapshotsloggdata!.remotecatalogstodelete == nil {
+                self.updateProgressbar(Double(deletenum))
+                self.delete = false
+                self.progressdelete.isHidden = true
+                self.deletebutton.isEnabled = true
+                self.deletesnapshots.isEnabled = true
+                self.info(num: 3)
+                self.snapshotsloggdata = SnapshotsLoggData(config: self.config!)
+            } else {
+                let progress = deletenum - self.snapshotsloggdata!.remotecatalogstodelete!.count
+                self.updateProgressbar(Double(progress))
             }
             self.deletesnapshotcatalogs()
         } else {
             self.deletebutton.isEnabled = true
             self.snapshotsloggdata?.processTermination()
+            self.initdeletesnapshots()
             globalMainQueue.async(execute: { () -> Void in
                 self.snapshotstable.reloadData()
             })
@@ -300,8 +264,6 @@ extension ViewControllerSnapshots: Reloadandrefresh {
     func reloadtabledata() {
         self.snapshotsloggdata = nil
         self.deletebutton.isEnabled = false
-        self.deletenum.isEnabled = true
-        self.deletenum.stringValue = ""
         self.progressdelete.isHidden = true
         self.localCatalog.stringValue = ""
         self.offsiteCatalog.stringValue = ""
@@ -309,26 +271,9 @@ extension ViewControllerSnapshots: Reloadandrefresh {
         self.offsiteServer.stringValue = ""
         self.backupID.stringValue = ""
         self.sshport.stringValue = ""
-        self.confirmdelete.state = .off
         globalMainQueue.async(execute: { () -> Void in
             self.snapshotstable.reloadData()
         })
-    }
-}
-
-extension ViewControllerSnapshots: NSSearchFieldDelegate {
-    override func controlTextDidChange(_ obj: Notification) {
-        self.delayWithSeconds(0.25) {
-            self.confirmdelete.isEnabled = true
-            if self.deletenum.stringValue.isEmpty == true {
-                self.confirmdelete.state = .off
-                self.confirmdelete.isEnabled = false
-                self.num = nil
-                globalMainQueue.async(execute: { () -> Void in
-                    self.snapshotstable.reloadData()
-                })
-            }
-        }
     }
 }
 
