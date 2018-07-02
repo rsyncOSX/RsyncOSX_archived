@@ -10,7 +10,7 @@
 import Foundation
 import Cocoa
 
-class ViewControllerSnapshots: NSViewController, SetDismisser, SetConfigurations, Delay, Attributedestring {
+class ViewControllerSnapshots: NSViewController, SetDismisser, SetConfigurations, Delay, Attributedestring, GetIndex {
 
     private var hiddenID: Int?
     private var config: Configuration?
@@ -32,6 +32,7 @@ class ViewControllerSnapshots: NSViewController, SetDismisser, SetConfigurations
     @IBOutlet weak var progressdelete: NSProgressIndicator!
     @IBOutlet weak var deletesnapshots: NSSlider!
     @IBOutlet weak var deletesnapshotsnum: NSTextField!
+    @IBOutlet weak var gettinglogs: NSProgressIndicator!
 
     lazy var viewControllerSource: NSViewController = {
         return (self.storyboard!.instantiateController(withIdentifier: NSStoryboard.SceneIdentifier(rawValue: "CopyFilesID"))
@@ -96,6 +97,8 @@ class ViewControllerSnapshots: NSViewController, SetDismisser, SetConfigurations
         super.viewDidLoad()
         self.snapshotstable.delegate = self
         self.snapshotstable.dataSource = self
+        self.gettinglogs.usesThreadedAnimation = true
+        self.progressdelete.usesThreadedAnimation = true
         ViewControllerReference.shared.setvcref(viewcontroller: .vcsnapshot, nsviewcontroller: self)
     }
 
@@ -107,9 +110,16 @@ class ViewControllerSnapshots: NSViewController, SetDismisser, SetConfigurations
         self.progressdelete.isHidden = true
         self.info(num: 0)
         self.initdeletesnapshots()
-        globalMainQueue.async(execute: { () -> Void in
-            self.snapshotstable.reloadData()
-        })
+        if let index = self.index(viewcontroller: .vctabmain) {
+            let hiddenID = self.configurations?.gethiddenID(index: index)
+            if self.configurations?.getConfigurations()[index].task == "snapshot" {
+                self.getSource(index: hiddenID!)
+            }
+        } else {
+            globalMainQueue.async(execute: { () -> Void in
+                self.snapshotstable.reloadData()
+            })
+        }
     }
 
     override func viewDidDisappear() {
@@ -197,6 +207,7 @@ extension ViewControllerSnapshots: GetSource {
         }
         if self.config!.task == "snapshot" {
             self.info(num: 0)
+            self.gettinglogs.startAnimation(nil)
         } else {
             self.info(num: 1)
         }
@@ -224,6 +235,7 @@ extension ViewControllerSnapshots: UpdateProgress {
             self.deletebutton.isEnabled = true
             self.snapshotsloggdata?.processTermination()
             self.initdeletesnapshots()
+            self.gettinglogs.stopAnimation(nil)
             globalMainQueue.async(execute: { () -> Void in
                 self.snapshotstable.reloadData()
             })
