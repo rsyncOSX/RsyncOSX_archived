@@ -55,6 +55,7 @@ class ViewControllerSnapshots: NSViewController, SetDismisser, SetConfigurations
         self.deletesnapshots.altIncrementValue = 1.0
         self.deletesnapshots.maxValue = Double(self.snapshotsloggdata?.snapshotslogs?.count ?? 0) - 1.0
         self.deletesnapshots.minValue = 0.0
+        self.deletesnapshotsnum.stringValue = ""
     }
 
     @IBAction func updatedeletesnapshotsnum(_ sender: NSSlider) {
