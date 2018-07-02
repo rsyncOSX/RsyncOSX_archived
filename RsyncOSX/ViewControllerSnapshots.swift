@@ -33,7 +33,7 @@ class ViewControllerSnapshots: NSViewController, SetDismisser, SetConfigurations
     @IBOutlet weak var deletesnapshots: NSSlider!
     @IBOutlet weak var deletesnapshotsnum: NSTextField!
     @IBOutlet weak var gettinglogs: NSProgressIndicator!
-    
+
     lazy var viewControllerSource: NSViewController = {
         return (self.storyboard!.instantiateController(withIdentifier: NSStoryboard.SceneIdentifier(rawValue: "CopyFilesID"))
             as? NSViewController)!
@@ -99,7 +99,6 @@ class ViewControllerSnapshots: NSViewController, SetDismisser, SetConfigurations
         self.snapshotstable.dataSource = self
         self.gettinglogs.usesThreadedAnimation = true
         self.progressdelete.usesThreadedAnimation = true
-        
         ViewControllerReference.shared.setvcref(viewcontroller: .vcsnapshot, nsviewcontroller: self)
     }
 
