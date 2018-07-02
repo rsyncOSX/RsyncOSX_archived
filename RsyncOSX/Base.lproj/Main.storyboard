@@ -1468,7 +1468,7 @@
                                 </connections>
                             </slider>
                             <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="XPM-CX-EDa">
-                                <rect key="frame" x="715" y="150" width="41" height="22"/>
+                                <rect key="frame" x="709" y="150" width="41" height="22"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" alignment="right" bezelStyle="round" id="5Ve-ra-V9b">
                                     <font key="font" metaFont="system"/>
@@ -1477,10 +1477,10 @@
                                 </textFieldCell>
                             </textField>
                             <box fixedFrame="YES" title="Select number to delete" translatesAutoresizingMaskIntoConstraints="NO" id="zGR-lC-3fH">
-                                <rect key="frame" x="576" y="140" width="203" height="51"/>
+                                <rect key="frame" x="576" y="140" width="196" height="51"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <view key="contentView" id="xEQ-RE-oqQ">
-                                    <rect key="frame" x="2" y="2" width="199" height="34"/>
+                                    <rect key="frame" x="2" y="2" width="192" height="34"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 </view>
                             </box>
