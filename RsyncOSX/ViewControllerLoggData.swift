@@ -218,6 +218,7 @@ extension ViewControllerLoggData: Reloadandrefresh {
             self.scheduletable.reloadData()
         })
         self.row = nil
+        self.selectedrows.stringValue = "Selected rows:"
     }
 }
 
