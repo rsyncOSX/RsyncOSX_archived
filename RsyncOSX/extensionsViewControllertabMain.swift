@@ -94,7 +94,7 @@ extension ViewControllertabMain: Information {
     // Get information from rsync output.
     func getInformation() -> [String] {
         if self.outputbatch != nil {
-            return self.outputbatch!.getOutput()
+            return self.outputbatch?.getOutput() ?? [""]
         } else if self.outputprocess != nil {
             return self.outputprocess!.trimoutput(trim: .two)!
         } else {
@@ -785,12 +785,12 @@ extension ViewControllertabMain: GetsortedanexpandedObject {
 
 extension ViewControllertabMain: Allerrors {
     func allerrors(outputprocess: OutputProcess?) {
-        if self.allerrors == nil {
-            self.allerrors = [String]()
+        if self.outputerrors == nil {
+            self.outputerrors = OutputErrors()
         }
         guard outputprocess?.getOutput() != nil else { return }
         for i in 0 ..< outputprocess!.getOutput()!.count {
-            self.allerrors!.append(outputprocess!.getOutput()![i])
+            self.outputerrors!.addLine(str: outputprocess!.getOutput()![i])
         }
     }
 }
