@@ -782,3 +782,15 @@ extension ViewControllertabMain: GetsortedanexpandedObject {
         return self.schedulesortedandexpanded
     }
 }
+
+extension ViewControllertabMain: Allerrors {
+    func allerrors(outputprocess: OutputProcess?) {
+        if self.allerrors == nil {
+            self.allerrors = [String]()
+        }
+        guard outputprocess?.getOutput() != nil else { return }
+        for i in 0 ..< outputprocess!.getOutput()!.count {
+            self.allerrors!.append(outputprocess!.getOutput()![i])
+        }
+    }
+}
