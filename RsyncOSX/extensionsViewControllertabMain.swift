@@ -793,4 +793,8 @@ extension ViewControllertabMain: Allerrors {
             self.outputerrors!.addLine(str: outputprocess!.getOutput()![i])
         }
     }
+
+    func getoutputerrors() -> OutputErrors? {
+        return self.outputerrors
+    }
 }
