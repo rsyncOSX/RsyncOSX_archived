@@ -8,7 +8,7 @@
 
 import Foundation
 
-final class OutputBatch {
+class OutputBatch {
 
     var output: [String]?
 
@@ -16,8 +16,8 @@ final class OutputBatch {
         return self.output?.count ?? 0
     }
 
-    func getOutput () -> [String] {
-        return self.output ?? [""]
+    func getOutput () -> [String]? {
+        return self.output
     }
 
     // Add line to output
@@ -30,8 +30,6 @@ final class OutputBatch {
     }
 
     init() {
-        self.output = nil
         self.output = [String]()
     }
-
 }

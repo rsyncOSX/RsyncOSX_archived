@@ -2896,10 +2896,35 @@ DQ
                                     <action selector="close:" target="ceM-Kt-SJU" id="txF-Tu-LUI"/>
                                 </connections>
                             </button>
+                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="YjO-ci-EeW">
+                                <rect key="frame" x="291" y="9" width="114" height="18"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <buttonCell key="cell" type="radio" title="Error messages..." bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="39A-da-zAW">
+                                    <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                    <font key="font" metaFont="system" size="11"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="showerrormessages:" target="ceM-Kt-SJU" id="CIo-1h-xkW"/>
+                                </connections>
+                            </button>
+                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ww5-PB-Gpn">
+                                <rect key="frame" x="291" y="28" width="108" height="18"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <buttonCell key="cell" type="radio" title="Normal output..." bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="wO3-zi-uVI">
+                                    <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                    <font key="font" metaFont="system" size="11"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="showerrormessages:" target="ceM-Kt-SJU" id="Qqn-VY-52H"/>
+                                </connections>
+                            </button>
                         </subviews>
                     </view>
                     <connections>
                         <outlet property="detailsTable" destination="Iah-yC-nuy" id="dP6-Bq-99w"/>
+                        <outlet property="errormessagesbutton" destination="YjO-ci-EeW" id="sOj-41-ZgB"/>
+                        <outlet property="outputbutton" destination="ww5-PB-Gpn" id="IEP-NO-KuC"/>
+                        <outlet property="showerrormessagesbutton" destination="YjO-ci-EeW" id="m4e-TY-yRy"/>
                     </connections>
                 </viewController>
                 <customObject id="pTw-WO-ehj" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
@@ -5545,7 +5570,7 @@ DQ
                 </viewController>
                 <customObject id="uNp-Tp-xff" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1118" y="-340"/>
+            <point key="canvasLocation" x="-1114" y="-425"/>
         </scene>
         <!--View Controller Quick Backup-->
         <scene sceneID="K43-I3-zAI">

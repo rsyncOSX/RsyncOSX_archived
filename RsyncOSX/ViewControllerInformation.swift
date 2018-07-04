@@ -15,6 +15,21 @@ class ViewControllerInformation: NSViewController, SetDismisser, GetInformation 
     @IBOutlet weak var detailsTable: NSTableView!
 
     var output: [String]?
+    @IBOutlet weak var errormessagesbutton: NSButton!
+    @IBOutlet weak var outputbutton: NSButton!
+    weak var geterrormessagesDelegate: Allerrors?
+
+    @IBAction func showerrormessages(_ sender: NSButton) {
+        if errormessagesbutton.state == .on {
+            self.geterrormessagesDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllertabMain
+            self.output = self.geterrormessagesDelegate?.getoutputerrors()?.getOutput()
+        } else {
+            self.output = self.getinfo(viewcontroller: .vctabmain)
+        }
+        globalMainQueue.async(execute: { () -> Void in
+            self.detailsTable.reloadData()
+        })
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()

@@ -99,7 +99,7 @@ class ViewControllertabMain: NSViewController, ReloadTable, Deselect, Coloractiv
     // Which kind of task
     var processtermination: ProcessTermination?
     // Keep track of all errors
-    var allerrors: [String]?
+    var outputerrors: OutputErrors?
     // Update view estimating
     weak var estimateupdateDelegate: Updateestimating?
     @IBOutlet weak var info: NSTextField!

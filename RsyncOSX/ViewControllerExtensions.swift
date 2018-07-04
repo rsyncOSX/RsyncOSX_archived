@@ -502,4 +502,5 @@ extension Sorting {
 
 protocol Allerrors: class {
     func allerrors(outputprocess: OutputProcess?)
+    func getoutputerrors() -> OutputErrors?
 }
