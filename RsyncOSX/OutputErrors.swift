@@ -9,7 +9,7 @@
 import Foundation
 
 final class OutputErrors: OutputBatch {
-    
+
     override func addLine(str: String) {
         let currendate = Date()
         let dateformatter = Tools().setDateformat()
