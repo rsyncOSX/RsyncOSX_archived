@@ -62,6 +62,8 @@ class ViewControllerRestore: NSViewController, SetConfigurations, SetDismisser, 
             default:
                 return
             }
+        } else {
+            self.gotit.stringValue = "Probably some rsync error..."
         }
     }
 
