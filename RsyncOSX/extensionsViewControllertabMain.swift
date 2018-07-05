@@ -785,6 +785,10 @@ extension ViewControllertabMain: GetsortedanexpandedObject {
 
 extension ViewControllertabMain: Allerrors {
     func allerrors(outputprocess: OutputProcess?) {
+        globalMainQueue.async(execute: { () -> Void in
+            self.setInfo(info: "Error", color: .red)
+            self.showProcessInfo(info: .error)
+        })
         self.outputprocess = nil
         if self.outputerrors == nil {
             self.outputerrors = OutputErrors()
