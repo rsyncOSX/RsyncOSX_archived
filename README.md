@@ -24,9 +24,13 @@ The [Changelog](https://rsyncosx.github.io/Changelog).
 
 ### How to use RsyncOSX
 
-The YouTube video is an old version, but it demonstrates the basic ideas about RsyncOSX.
+There are four short Youtube videos of RsyncOSX:
 
-There is a short [YouTube demo](https://www.youtube.com/watch?v=ty1r7yvgExo) (about 5 minutes long) : "Downloading RsyncOSX, installing, first time configuration and using RsyncOSX for the first time. Backup (as demo) of about 120 MB of data and 4000 files to a VirtualBox FreeBSD machine."
+- [getting](https://youtu.be/j5Dibe6jl4c) RsyncOSX and installing it
+  - the video also shows how to create the two local ssh certificates for password less logins to remote server
+- adding and executing the [first backup](https://youtu.be/BJEQ-ll0Htw)
+- doing a full [restore](https://youtu.be/-R6n_8fl6Ls) to a temporary local restore catalogs
+- how to change [version of rsync](https://youtu.be/mVFL25-lo6Y) utilized by RsyncOSX
 
 ### Development
 
