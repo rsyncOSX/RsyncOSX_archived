@@ -16,11 +16,10 @@ class ViewControllerInformation: NSViewController, SetDismisser, GetInformation 
 
     var output: [String]?
     @IBOutlet weak var errormessagesbutton: NSButton!
-    @IBOutlet weak var outputbutton: NSButton!
     weak var geterrormessagesDelegate: Allerrors?
 
     @IBAction func showerrormessages(_ sender: NSButton) {
-        if errormessagesbutton.state == .on {
+        if self.errormessagesbutton.state == .on {
             self.geterrormessagesDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllertabMain
             self.output = self.geterrormessagesDelegate?.getoutputerrors()?.getOutput()
         } else {
