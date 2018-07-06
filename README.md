@@ -24,11 +24,11 @@ The [Changelog](https://rsyncosx.github.io/Changelog).
 
 ### How to use RsyncOSX
 
-There are four short Youtube videos of RsyncOSX:
+There are four short YouTube videos of RsyncOSX:
 
-- [getting](https://youtu.be/j5Dibe6jl4c) RsyncOSX and installing it
+- [getting](https://youtu.be/MrT8NzdF9dE) RsyncOSX and installing it
   - the video also shows how to create the two local ssh certificates for password less logins to remote server
-- adding and executing the [first backup](https://youtu.be/BJEQ-ll0Htw)
+- adding and executing the [first backup](https://youtu.be/8oe1lKgiDx8)
 - doing a full [restore](https://youtu.be/-R6n_8fl6Ls) to a temporary local restore catalogs
 - how to change [version of rsync](https://youtu.be/mVFL25-lo6Y) utilized by RsyncOSX
 
