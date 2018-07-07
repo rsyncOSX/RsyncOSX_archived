@@ -41,6 +41,10 @@ class Running {
             self.menuappnoconfig = true
             return false
         }
+        guard ViewControllerReference.shared.pathrsyncosxsched!.isEmpty == false else {
+            self.menuappnoconfig = true
+            return false
+        }
         self.menuappnoconfig = false
         guard  ViewControllerReference.shared.executescheduledtasksmenuapp == true else { return false }
         if self.rsyncOSXschedisrunning == true {
