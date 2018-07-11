@@ -377,6 +377,7 @@ class ViewControllertabMain: NSViewController, ReloadTable, Deselect, Coloractiv
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.sleepandwakenotifications()
         // Do view setup here.
         // Setting delegates and datasource
         self.mainTableView.delegate = self
@@ -593,5 +594,25 @@ class ViewControllertabMain: NSViewController, ReloadTable, Deselect, Coloractiv
         globalMainQueue.async(execute: { () -> Void in
             self.mainTableView.reloadData()
         })
+    }
+    
+    @objc func onWakeNote(note: NSNotification) {
+        self.schedulesortedandexpanded = ScheduleSortedAndExpand()
+        ViewControllerReference.shared.scheduledTask = self.schedulesortedandexpanded?.firstscheduledtask()
+        self.startfirstcheduledtask()
+        
+    }
+    
+    @objc func onSleepNote(note: NSNotification) {
+        ViewControllerReference.shared.dispatchTaskWaiting?.cancel()
+        ViewControllerReference.shared.timerTaskWaiting?.invalidate()
+    }
+    
+    private func sleepandwakenotifications() {
+        NSWorkspace.shared.notificationCenter.addObserver( self, selector: #selector(onWakeNote(note:)),
+                                                           name: NSWorkspace.didWakeNotification, object: nil)
+        
+        NSWorkspace.shared.notificationCenter.addObserver( self, selector: #selector(onSleepNote(note:)),
+                                                           name: NSWorkspace.willSleepNotification, object: nil)
     }
 }
