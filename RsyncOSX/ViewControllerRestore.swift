@@ -164,6 +164,7 @@ extension ViewControllerRestore: UpdateProgress {
             self.selecttmptorestore.isEnabled = true
         } else {
             self.gotit.stringValue = "Restore is completed..."
+            self.restoreprogress.isHidden = true
         }
         self.completed = true
     }
