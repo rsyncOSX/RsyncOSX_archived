@@ -2,17 +2,9 @@
 
 ![](icon/rsyncosx.png)
 
-This repository is the source code for the macOS app RsyncOSX. RsyncOSX is compiled with support for macOS version 10.11 - 10.13. The application is implemented in **Swift 4** by using **Xcode 9**. RsyncOSX is *not* depended upon any third party binary distributions. There is, however, one third party source code included to check for TCP connections. The check is for informal use only and can be removed.
+This repository is the source code for the macOS app RsyncOSX. RsyncOSX is compiled with support for macOS version 10.11 - 10.13. The application is implemented in Swift 4 by using Xcode 9. RsyncOSX is not depended upon any third party binary distributions. There is, however, one third party source code included to check for TCP connections. The check is for informal use only and can be removed.
 
 A short [intro to RsyncOSX](https://rsyncosx.github.io/Intro) and full [documentation of RsyncOSX](https://rsyncosx.github.io/AboutRsyncOSX).
-
-#### SwiftLint
-
-As part of this version of RsyncOSX I am using [SwiftLint](https://github.com/realm/SwiftLint) as tool for writing more readable code. Adapting RsyncOSX to SwiftLint rules will take some time. There are about 10,000 lines of code in RsyncOSX (too many?). Many changes in code has been applied, but there are still some more to do before RsyncOSX is more compliant to SwiftLint rules.
-
-### Compile
-
-To compile the code, install Xcode and open the RsyncOSX project file. Before compiling, open in Xcode the `RsyncOSX/General` preference page (after opening the RsyncOSX project file) and replace your own credentials in `Signing`, or disable Signing. Then compile your own version of RsyncOSX.
 
 ### Application icon
 
@@ -22,7 +14,7 @@ The application icon is created by [Zsolt Sándor](https://github.com/graphis). 
 
 The [Changelog](https://rsyncosx.github.io/Changelog).
 
-### How to use RsyncOSX
+### How to use RsyncOSX - YouTube videos
 
 There are four short YouTube videos of RsyncOSX:
 
@@ -31,10 +23,6 @@ There are four short YouTube videos of RsyncOSX:
 - adding and executing the [first backup](https://youtu.be/8oe1lKgiDx8)
 - doing a full [restore](https://youtu.be/-R6n_8fl6Ls) to a temporary local restore catalogs
 - how to change [version of rsync](https://youtu.be/mVFL25-lo6Y) utilized by RsyncOSX
-
-### Development
-
-Details about how RsyncOSX is built is [here](https://rsyncosx.github.io/Source).
 
 ### Rsync
 
@@ -50,11 +38,21 @@ The default version of `rsync` in macOS is old (version 2.6.9, [protocol](https:
 
 In RsyncOSX select [RsyncOSX configuration](https://rsyncosx.github.io/UserConfiguration) and set path for optional version of rsync.
 
+#### SwiftLint
+
+As part of this version of RsyncOSX I am using [SwiftLint](https://github.com/realm/SwiftLint) as tool for writing more readable code. Adapting RsyncOSX to SwiftLint rules will take some time. There are about 10,000 lines of code in RsyncOSX (too many?). Many changes in code has been applied, but there are still some more to do before RsyncOSX is more compliant to SwiftLint rules.
+
+### Compile
+
+To compile the code, install Xcode and open the RsyncOSX project file. Before compiling, open in Xcode the `RsyncOSX/General` preference page (after opening the RsyncOSX project file) and replace your own credentials in `Signing`, or disable Signing. Then compile your own version of RsyncOSX.
+
+### Development
+
+Details about how RsyncOSX is built is [here](https://rsyncosx.github.io/Source).
+
 ### MacUpdate and Softpedia
 
-RsyncOSX is also released on [MacUpdate](https://www.macupdate.com/app/mac/56516/rsyncosx) and linked for download on [Softpedia](http://mac.softpedia.com/get/Internet-Utilities/RsyncOSX.shtml) as well. The application is downloaded about 10,000 times from MacUpdate and 2650 times from Softpedia (all versions, Oct 2017).
-
-To be honest, I have **no idea** how many users of RsyncOSX there are. And I am very happy that some users find it useful.
+RsyncOSX is also released on [MacUpdate](https://www.macupdate.com/app/mac/56516/rsyncosx) and linked for download on [Softpedia](http://mac.softpedia.com/get/Internet-Utilities/RsyncOSX.shtml) as well.
 
 ### My NAS setup
 
