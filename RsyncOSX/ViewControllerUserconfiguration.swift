@@ -97,13 +97,11 @@ class ViewControllerUserconfiguration: NSViewController, NewRsync, SetDismisser,
         if self.operation.state == .on {
             ViewControllerReference.shared.operation = .dispatch
         } else {
-            // ViewControllerReference.shared.operation = .timer
-            ViewControllerReference.shared.operation = .dispatch
+            ViewControllerReference.shared.operation = .timer
         }
         self.operationchangeDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabschedule) as? ViewControllertabSchedule
         self.operationchangeDelegate?.operationsmethod()
-        // self.dirty = true
-        self.dirty = false
+        self.dirty = true
     }
 
     @IBAction func logging(_ sender: NSButton) {
