@@ -1,6 +1,5 @@
 //
-//  rsyncProcessArguments.swift
-//  Rsync
+//  RsyncParametersProcess.swift
 //
 //  Created by Thomas Evensen on 08/02/16.
 //  Copyright © 2016 Thomas Evensen. All rights reserved.
@@ -18,11 +17,6 @@ final class RsyncParametersProcess {
     var offsiteServer: String?
     var remoteargs: String?
     var linkdestparam: String?
-    // if snapshot
-    // --link-dest=~/catalog/current /Volumes/Home/thomas/catalog/ user@host:~/catalog/01
-    private var current: String = "current"
-
-    // Set initial parameter1 .. paramater6, parameters are computed by RsyncOSX
 
     private func setParameters1To6(_ config: Configuration, dryRun: Bool, forDisplay: Bool) {
         let parameter1: String = config.parameter1
@@ -125,8 +119,7 @@ final class RsyncParametersProcess {
         }
     }
 
-    // Check userselected parameter and append it
-    // to arguments array passed to rsync or displayed
+    // Check userselected parameter and append it to arguments array passed to rsync or displayed
     // on screen.
 
     private func appendParameter (parameter: String, forDisplay: Bool) {
@@ -157,10 +150,10 @@ final class RsyncParametersProcess {
         self.setParameters8To14(config, dryRun: dryRun, forDisplay: forDisplay)
         switch config.task {
         case "backup", "combined":
-            self.argumentsforbackup(dryRun: dryRun, forDisplay: forDisplay)
+            self.argumentsforsynchronize(dryRun: dryRun, forDisplay: forDisplay)
         case "snapshot":
             self.linkdestparameter(config)
-            self.argumentsforsnapshot(dryRun: dryRun, forDisplay: forDisplay)
+            self.argumentsforsynchronizesnapshot(dryRun: dryRun, forDisplay: forDisplay)
         default:
             break
         }
@@ -185,15 +178,15 @@ final class RsyncParametersProcess {
         return self.arguments!
     }
 
-    func argumentsRsyncLocalcatalalogInfo(_ config: Configuration, dryRun: Bool, forDisplay: Bool) -> [String] {
+    func argumentsRsyncLocalcatalogInfo(_ config: Configuration, dryRun: Bool, forDisplay: Bool) -> [String] {
         self.localCatalog = config.localCatalog
         self.setParameters1To6(config, dryRun: dryRun, forDisplay: forDisplay)
         self.setParameters8To14(config, dryRun: dryRun, forDisplay: forDisplay)
         switch config.task {
         case "backup", "combined":
-            self.argumentsforbackup(dryRun: dryRun, forDisplay: forDisplay)
+            self.argumentsforsynchronize(dryRun: dryRun, forDisplay: forDisplay)
         case "snapshot":
-            self.argumentsforsnapshot(dryRun: dryRun, forDisplay: forDisplay)
+            self.argumentsforsynchronizesnapshot(dryRun: dryRun, forDisplay: forDisplay)
         default:
             break
         }
@@ -245,8 +238,7 @@ final class RsyncParametersProcess {
         self.offsiteCatalog! += String(snapshotnum)
     }
 
-    private func argumentsforbackup(dryRun: Bool, forDisplay: Bool) {
-        // Backup
+    private func argumentsforsynchronize(dryRun: Bool, forDisplay: Bool) {
         self.arguments!.append(self.localCatalog!)
         guard self.offsiteCatalog != nil else { return }
         if self.offsiteServer!.isEmpty {
@@ -260,7 +252,7 @@ final class RsyncParametersProcess {
         }
     }
 
-    private func argumentsforsnapshot(dryRun: Bool, forDisplay: Bool) {
+    private func argumentsforsynchronizesnapshot(dryRun: Bool, forDisplay: Bool) {
         guard self.linkdestparam != nil else {
             self.arguments!.append(self.localCatalog!)
             return
