@@ -38,7 +38,7 @@ struct ArgumentsOneConfiguration {
         self.argDisplay = RsyncParametersProcess().argumentsRsync(config, dryRun: false, forDisplay: true)
         self.argdryRun = RsyncParametersProcess().argumentsRsync(config, dryRun: true, forDisplay: false)
         self.argdryRunDisplay = RsyncParametersProcess().argumentsRsync(config, dryRun: true, forDisplay: true)
-        self.argdryRunLocalcatalogInfo = RsyncParametersProcess().argumentsRsyncLocalcatalalogInfo(config, dryRun: true, forDisplay: false)
+        self.argdryRunLocalcatalogInfo = RsyncParametersProcess().argumentsRsyncLocalcatalogInfo(config, dryRun: true, forDisplay: false)
         // Restore path
         self.restore = RsyncParametersProcess().argumentsRestore(config, dryRun: false, forDisplay: false, tmprestore: false)
         self.restoredryRun = RsyncParametersProcess().argumentsRestore(config, dryRun: true, forDisplay: false, tmprestore: false)
