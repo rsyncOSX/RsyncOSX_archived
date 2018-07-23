@@ -32,6 +32,7 @@ final class RsyncParametersProcess {
         let offsiteServer: String = config.offsiteServer
         self.arguments!.append(parameter1 ?? "")
         if verify {
+            if forDisplay {self.arguments!.append(" ")}
             self.arguments!.append("--recursive")
         }
         if forDisplay {self.arguments!.append(" ")}
@@ -187,18 +188,18 @@ final class RsyncParametersProcess {
         return self.arguments!
     }
 
-    func argumentsVerify(_ config: Configuration) -> [String] {
+    func argumentsVerify(_ config: Configuration, forDisplay: Bool) -> [String] {
         guard config.task != "restore" else { return [] }
         self.localCatalog = config.localCatalog
         self.remoteargs(config)
-        self.setParameters1To6(config, dryRun: true, forDisplay: false, verify: true)
-        self.setParameters8To14(config, dryRun: true, forDisplay: false)
+        self.setParameters1To6(config, dryRun: true, forDisplay: forDisplay, verify: true)
+        self.setParameters8To14(config, dryRun: true, forDisplay: forDisplay)
         switch config.task {
         case "backup", "combined":
-            self.argumentsforsynchronize(dryRun: true, forDisplay: false)
+            self.argumentsforsynchronize(dryRun: true, forDisplay: forDisplay)
         case "snapshot":
             self.linkdestparameter(config)
-            self.argumentsforsynchronizesnapshot(dryRun: true, forDisplay: false)
+            self.argumentsforsynchronizesnapshot(dryRun: true, forDisplay: forDisplay)
         default:
             break
         }

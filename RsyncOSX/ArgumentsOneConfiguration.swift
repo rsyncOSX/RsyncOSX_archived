@@ -30,6 +30,7 @@ struct ArgumentsOneConfiguration {
     var tmprestoredryRun: [String]?
     // Verify backup
     var verify: [String]?
+    var verifyDisplay: [String]?
 
     init(config: Configuration) {
         // The configuration
@@ -50,6 +51,7 @@ struct ArgumentsOneConfiguration {
         self.tmprestore = RsyncParametersProcess().argumentsRestore(config, dryRun: false, forDisplay: false, tmprestore: true)
         self.tmprestoredryRun = RsyncParametersProcess().argumentsRestore(config, dryRun: true, forDisplay: false, tmprestore: true)
         // Verify
-        self.verify = RsyncParametersProcess().argumentsVerify(config)
+        self.verify = RsyncParametersProcess().argumentsVerify(config, forDisplay: false)
+        self.verifyDisplay = RsyncParametersProcess().argumentsVerify(config, forDisplay: true)
     }
 }

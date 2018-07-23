@@ -72,6 +72,7 @@ class ViewControllertabMain: NSViewController, ReloadTable, Deselect, Coloractiv
     @IBOutlet weak var rsyncversionshort: NSTextField!
     @IBOutlet weak var backupdryrun: NSButton!
     @IBOutlet weak var restoredryrun: NSButton!
+    @IBOutlet weak var verifydryrun: NSButton!
 
     // Reference to Process task
     var process: Process?
@@ -367,8 +368,10 @@ class ViewControllertabMain: NSViewController, ReloadTable, Deselect, Coloractiv
             guard index <= self.configurations!.getConfigurations().count else { return }
             if self.backupdryrun.state == .on {
                 self.rsyncCommand.stringValue = self.tools!.rsyncpathtodisplay(index: index, dryRun: true)
-            } else {
+            } else if self.restoredryrun.state == .on {
                 self.rsyncCommand.stringValue = self.tools!.rsyncrestorepathtodisplay(index: index, dryRun: true)
+            } else {
+                self.rsyncCommand.stringValue = self.tools!.rsyncverifytodisplay(index: index, dryRun: true)
             }
         } else {
             self.rsyncCommand.stringValue = ""
