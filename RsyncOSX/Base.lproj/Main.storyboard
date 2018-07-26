@@ -331,6 +331,7 @@
                     <tabViewItems>
                         <tabViewItem identifier="" id="Hmf-Kp-gkK"/>
                         <tabViewItem id="O9R-ol-hl4"/>
+                        <tabViewItem id="ngs-wJ-fdo"/>
                         <tabViewItem identifier="" id="Oau-Kd-gbS"/>
                         <tabViewItem id="UDl-Ex-hgb"/>
                         <tabViewItem id="gOf-XL-ZbX"/>
@@ -351,6 +352,7 @@
                         <outlet property="tabView" destination="oAg-LW-cIr" id="ehG-1w-Wkk"/>
                         <segue destination="egt-C3-u4G" kind="relationship" relationship="tabItems" id="aeQ-Av-AbY"/>
                         <segue destination="3xI-3C-guU" kind="relationship" relationship="tabItems" id="178-o0-nkH"/>
+                        <segue destination="Bb6-iv-DYc" kind="relationship" relationship="tabItems" id="ZA1-ug-AZj"/>
                         <segue destination="rht-JI-asq" kind="relationship" relationship="tabItems" id="U2e-si-zob"/>
                         <segue destination="fiO-Ux-xlw" kind="relationship" relationship="tabItems" id="48O-tK-ddQ"/>
                         <segue destination="GJH-xK-5LY" kind="relationship" relationship="tabItems" id="iJj-kL-Tje"/>
@@ -362,7 +364,7 @@
                 </tabViewController>
                 <customObject id="am9-td-Qjg" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-361" y="89"/>
+            <point key="canvasLocation" x="-454" y="-12"/>
         </scene>
         <!--Execute-->
         <scene sceneID="84s-6a-t0v">
@@ -4589,6 +4591,19 @@ DQ
                 <customObject id="WYi-qW-oH6" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-2264" y="669.5"/>
+        </scene>
+        <!--Verify-->
+        <scene sceneID="tGg-Vb-fhZ">
+            <objects>
+                <viewController title="Verify" id="Bb6-iv-DYc" customClass="ViewControllerVerify" customModule="RsyncOSX" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" id="7id-JI-YeO">
+                        <rect key="frame" x="0.0" y="0.0" width="1092" height="407"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </view>
+                </viewController>
+                <customObject id="jll-RI-cmH" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-2264" y="1182"/>
         </scene>
         <!--New version-->
         <scene sceneID="F2C-eN-Zcw">
