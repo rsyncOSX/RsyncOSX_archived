@@ -160,34 +160,6 @@ final class Tools: SetConfigurations, Delay {
         self.setinfoaboutsyncDelegate?.setinfoaboutrsync()
     }
 
-    // Display the correct command to execute
-    // Used for displaying the commands only
-    func rsyncpathtodisplay(index: Int) -> String {
-        var str: String?
-        let config = self.configurations!.getargumentAllConfigurations()[index]
-        str = self.rsyncpath() + " "
-        if let count = config.argdryRunDisplay?.count {
-            for i in 0 ..< count {
-                str = str! + config.argdryRunDisplay![i]
-            }
-        }
-        return str!
-    }
-
-    // Display the correct command to execute
-    // Used for displaying the commands only
-    func rsyncrestorepathtodisplay(index: Int) -> String {
-        var str: String?
-        let config = self.configurations!.getargumentAllConfigurations()[index]
-        str = self.rsyncpath() + " "
-        if let count = config.restoredryRunDisplay?.count {
-            for i in 0 ..< count {
-                str = str! + config.restoredryRunDisplay![i]
-            }
-        }
-        return str!
-    }
-    
     func displayrsynccommand(index: Int, display: RsynccommandDisplay) -> String {
         var str: String?
         let config = self.configurations!.getargumentAllConfigurations()[index]
@@ -213,20 +185,6 @@ final class Tools: SetConfigurations, Delay {
             }
         }
         return str ?? ""
-    }
-
-    // Display the correct command to execute
-    // Used for displaying the commands only
-    func rsyncverifytodisplay(index: Int) -> String {
-        var str: String?
-        let config = self.configurations!.getargumentAllConfigurations()[index]
-        str = self.rsyncpath() + " "
-        if let count = config.verifyDisplay?.count {
-            for i in 0 ..< count {
-                str = str! + config.verifyDisplay![i]
-            }
-        }
-        return str!
     }
 
     /// Function returns the correct path for rsync
