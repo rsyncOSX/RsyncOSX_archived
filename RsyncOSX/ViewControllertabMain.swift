@@ -367,11 +367,11 @@ class ViewControllertabMain: NSViewController, ReloadTable, Deselect, Coloractiv
         if let index = self.index {
             guard index <= self.configurations!.getConfigurations().count else { return }
             if self.backupdryrun.state == .on {
-                self.rsyncCommand.stringValue = self.tools!.rsyncpathtodisplay(index: index, dryRun: true)
+                self.rsyncCommand.stringValue = self.tools!.rsyncpathtodisplay(index: index)
             } else if self.restoredryrun.state == .on {
-                self.rsyncCommand.stringValue = self.tools!.rsyncrestorepathtodisplay(index: index, dryRun: true)
+                self.rsyncCommand.stringValue = self.tools!.rsyncrestorepathtodisplay(index: index)
             } else {
-                self.rsyncCommand.stringValue = self.tools!.rsyncverifytodisplay(index: index, dryRun: true)
+                self.rsyncCommand.stringValue = self.tools!.rsyncverifytodisplay(index: index)
             }
         } else {
             self.rsyncCommand.stringValue = ""

@@ -49,6 +49,12 @@ protocol Setinfoaboutrsync: class {
     func setinfoaboutrsync()
 }
 
+enum RsynccommandDisplay {
+    case synchronize
+    case restore
+    case verify
+}
+
 final class Tools: SetConfigurations, Delay {
 
     private var indexBoolremoteserverOff: [Bool]?
@@ -156,68 +162,68 @@ final class Tools: SetConfigurations, Delay {
 
     // Display the correct command to execute
     // Used for displaying the commands only
-    func rsyncpathtodisplay(index: Int, dryRun: Bool) -> String {
+    func rsyncpathtodisplay(index: Int) -> String {
         var str: String?
         let config = self.configurations!.getargumentAllConfigurations()[index]
-        if dryRun {
-            str = self.rsyncpath() + " "
+        str = self.rsyncpath() + " "
+        if let count = config.argdryRunDisplay?.count {
+            for i in 0 ..< count {
+                str = str! + config.argdryRunDisplay![i]
+            }
+        }
+        return str!
+    }
+
+    // Display the correct command to execute
+    // Used for displaying the commands only
+    func rsyncrestorepathtodisplay(index: Int) -> String {
+        var str: String?
+        let config = self.configurations!.getargumentAllConfigurations()[index]
+        str = self.rsyncpath() + " "
+        if let count = config.restoredryRunDisplay?.count {
+            for i in 0 ..< count {
+                str = str! + config.restoredryRunDisplay![i]
+            }
+        }
+        return str!
+    }
+    
+    func displayrsynccommand(index: Int, display: RsynccommandDisplay) -> String {
+        var str: String?
+        let config = self.configurations!.getargumentAllConfigurations()[index]
+        str = self.rsyncpath() + " "
+        switch display {
+        case .synchronize:
             if let count = config.argdryRunDisplay?.count {
                 for i in 0 ..< count {
                     str = str! + config.argdryRunDisplay![i]
                 }
             }
-        } else {
-            str = self.rsyncpath() + " "
-            if let count = config.argDisplay?.count {
-                for i in 0 ..< count {
-                    str = str! + config.argDisplay![i]
-                }
-            }
-        }
-        return str!
-    }
-
-    // Display the correct command to execute
-    // Used for displaying the commands only
-    func rsyncrestorepathtodisplay(index: Int, dryRun: Bool) -> String {
-        var str: String?
-        let config = self.configurations!.getargumentAllConfigurations()[index]
-        if dryRun {
-            str = self.rsyncpath() + " "
+        case .restore:
             if let count = config.restoredryRunDisplay?.count {
                 for i in 0 ..< count {
                     str = str! + config.restoredryRunDisplay![i]
                 }
             }
-        } else {
-            str = self.rsyncpath() + " "
-            if let count = config.restoreDisplay?.count {
+        case .verify:
+            if let count = config.verifyDisplay?.count {
                 for i in 0 ..< count {
-                    str = str! + config.restoreDisplay![i]
+                    str = str! + config.verifyDisplay![i]
                 }
             }
         }
-        return str!
+        return str ?? ""
     }
 
     // Display the correct command to execute
     // Used for displaying the commands only
-    func rsyncverifytodisplay(index: Int, dryRun: Bool) -> String {
+    func rsyncverifytodisplay(index: Int) -> String {
         var str: String?
         let config = self.configurations!.getargumentAllConfigurations()[index]
-        if dryRun {
-            str = self.rsyncpath() + " "
-            if let count = config.verifyDisplay?.count {
-                for i in 0 ..< count {
-                    str = str! + config.verifyDisplay![i]
-                }
-            }
-        } else {
-            str = self.rsyncpath() + " "
-            if let count = config.verifyDisplay?.count {
-                for i in 0 ..< count {
-                    str = str! + config.verifyDisplay![i]
-                }
+        str = self.rsyncpath() + " "
+        if let count = config.verifyDisplay?.count {
+            for i in 0 ..< count {
+                str = str! + config.verifyDisplay![i]
             }
         }
         return str!
