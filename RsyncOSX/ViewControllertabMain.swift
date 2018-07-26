@@ -72,6 +72,7 @@ class ViewControllertabMain: NSViewController, ReloadTable, Deselect, Coloractiv
     @IBOutlet weak var rsyncversionshort: NSTextField!
     @IBOutlet weak var backupdryrun: NSButton!
     @IBOutlet weak var restoredryrun: NSButton!
+    @IBOutlet weak var verifydryrun: NSButton!
 
     // Reference to Process task
     var process: Process?
@@ -366,9 +367,11 @@ class ViewControllertabMain: NSViewController, ReloadTable, Deselect, Coloractiv
         if let index = self.index {
             guard index <= self.configurations!.getConfigurations().count else { return }
             if self.backupdryrun.state == .on {
-                self.rsyncCommand.stringValue = self.tools!.rsyncpathtodisplay(index: index, dryRun: true)
+                self.rsyncCommand.stringValue = self.tools!.displayrsynccommand(index: index, display: .synchronize)
+            } else if self.restoredryrun.state == .on {
+                self.rsyncCommand.stringValue = self.tools!.displayrsynccommand(index: index, display: .restore)
             } else {
-                self.rsyncCommand.stringValue = self.tools!.rsyncrestorepathtodisplay(index: index, dryRun: true)
+                self.rsyncCommand.stringValue = self.tools!.displayrsynccommand(index: index, display: .verify)
             }
         } else {
             self.rsyncCommand.stringValue = ""
@@ -595,23 +598,21 @@ class ViewControllertabMain: NSViewController, ReloadTable, Deselect, Coloractiv
             self.mainTableView.reloadData()
         })
     }
-    
+
     @objc func onWakeNote(note: NSNotification) {
         self.schedulesortedandexpanded = ScheduleSortedAndExpand()
         ViewControllerReference.shared.scheduledTask = self.schedulesortedandexpanded?.firstscheduledtask()
         self.startfirstcheduledtask()
-        
     }
-    
+
     @objc func onSleepNote(note: NSNotification) {
         ViewControllerReference.shared.dispatchTaskWaiting?.cancel()
         ViewControllerReference.shared.timerTaskWaiting?.invalidate()
     }
-    
+
     private func sleepandwakenotifications() {
         NSWorkspace.shared.notificationCenter.addObserver( self, selector: #selector(onWakeNote(note:)),
                                                            name: NSWorkspace.didWakeNotification, object: nil)
-        
         NSWorkspace.shared.notificationCenter.addObserver( self, selector: #selector(onSleepNote(note:)),
                                                            name: NSWorkspace.willSleepNotification, object: nil)
     }

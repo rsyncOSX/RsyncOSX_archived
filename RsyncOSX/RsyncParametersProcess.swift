@@ -4,6 +4,7 @@
 //  Created by Thomas Evensen on 08/02/16.
 //  Copyright © 2016 Thomas Evensen. All rights reserved.
 //
+// swiftlint:disable type_body_length
 
 import Foundation
 
@@ -18,13 +19,22 @@ final class RsyncParametersProcess {
     var remoteargs: String?
     var linkdestparam: String?
 
-    private func setParameters1To6(_ config: Configuration, dryRun: Bool, forDisplay: Bool) {
-        let parameter1: String = config.parameter1
+    private func setParameters1To6(_ config: Configuration, dryRun: Bool, forDisplay: Bool, verify: Bool) {
+        var parameter1: String?
+        if verify {
+            parameter1 = "--checksum"
+        } else {
+            parameter1 = config.parameter1
+        }
         let parameter2: String = config.parameter2
         let parameter3: String = config.parameter3
         let parameter4: String = config.parameter4
         let offsiteServer: String = config.offsiteServer
-        self.arguments!.append(parameter1)
+        self.arguments!.append(parameter1 ?? "")
+        if verify {
+            if forDisplay {self.arguments!.append(" ")}
+            self.arguments!.append("--recursive")
+        }
         if forDisplay {self.arguments!.append(" ")}
         self.arguments!.append(parameter2)
         if forDisplay {self.arguments!.append(" ")}
@@ -142,11 +152,11 @@ final class RsyncParametersProcess {
     /// - parameter dryRun: true if compute dryrun arguments, false if compute arguments for real run
     /// - paramater forDisplay: true if for display, false if not
     /// - returns: Array of Strings
-    func argumentsRsync (_ config: Configuration, dryRun: Bool, forDisplay: Bool) -> [String] {
+    func argumentsRsync(_ config: Configuration, dryRun: Bool, forDisplay: Bool) -> [String] {
         guard config.task != "restore" else { return [] }
         self.localCatalog = config.localCatalog
         self.remoteargs(config)
-        self.setParameters1To6(config, dryRun: dryRun, forDisplay: forDisplay)
+        self.setParameters1To6(config, dryRun: dryRun, forDisplay: forDisplay, verify: false)
         self.setParameters8To14(config, dryRun: dryRun, forDisplay: forDisplay)
         switch config.task {
         case "backup", "combined":
@@ -160,7 +170,7 @@ final class RsyncParametersProcess {
         return self.arguments!
     }
 
-    func argumentsRestore (_ config: Configuration, dryRun: Bool, forDisplay: Bool, tmprestore: Bool) -> [String] {
+    func argumentsRestore(_ config: Configuration, dryRun: Bool, forDisplay: Bool, tmprestore: Bool) -> [String] {
         guard config.task != "restore" else { return [] }
         self.localCatalog = config.localCatalog
         if config.snapshotnum != nil {
@@ -168,7 +178,7 @@ final class RsyncParametersProcess {
         } else {
             self.remoteargs(config)
         }
-        self.setParameters1To6(config, dryRun: dryRun, forDisplay: forDisplay)
+        self.setParameters1To6(config, dryRun: dryRun, forDisplay: forDisplay, verify: false)
         self.setParameters8To14(config, dryRun: dryRun, forDisplay: forDisplay)
         if tmprestore {
             self.argumentsforrestore(dryRun: dryRun, forDisplay: forDisplay, tmprestore: tmprestore)
@@ -178,9 +188,27 @@ final class RsyncParametersProcess {
         return self.arguments!
     }
 
+    func argumentsVerify(_ config: Configuration, forDisplay: Bool) -> [String] {
+        guard config.task != "restore" else { return [] }
+        self.localCatalog = config.localCatalog
+        self.remoteargs(config)
+        self.setParameters1To6(config, dryRun: true, forDisplay: forDisplay, verify: true)
+        self.setParameters8To14(config, dryRun: true, forDisplay: forDisplay)
+        switch config.task {
+        case "backup", "combined":
+            self.argumentsforsynchronize(dryRun: true, forDisplay: forDisplay)
+        case "snapshot":
+            self.linkdestparameter(config)
+            self.argumentsforsynchronizesnapshot(dryRun: true, forDisplay: forDisplay)
+        default:
+            break
+        }
+        return self.arguments!
+    }
+
     func argumentsRsyncLocalcatalogInfo(_ config: Configuration, dryRun: Bool, forDisplay: Bool) -> [String] {
         self.localCatalog = config.localCatalog
-        self.setParameters1To6(config, dryRun: dryRun, forDisplay: forDisplay)
+        self.setParameters1To6(config, dryRun: dryRun, forDisplay: forDisplay, verify: false)
         self.setParameters8To14(config, dryRun: dryRun, forDisplay: forDisplay)
         switch config.task {
         case "backup", "combined":

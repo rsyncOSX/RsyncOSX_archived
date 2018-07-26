@@ -841,10 +841,10 @@
                                 </textFieldCell>
                             </textField>
                             <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="RQt-Hs-8vg">
-                                <rect key="frame" x="738" y="86" width="333" height="22"/>
+                                <rect key="frame" x="804" y="86" width="267" height="22"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="22" id="hCW-rc-6j5"/>
-                                    <constraint firstAttribute="width" constant="333" id="tRU-c1-nvv"/>
+                                    <constraint firstAttribute="width" constant="267" id="tRU-c1-nvv"/>
                                 </constraints>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" alignment="center" bezelStyle="round" id="1IX-LA-PS2">
                                     <font key="font" metaFont="smallSystem"/>
@@ -914,6 +914,17 @@
                                     </subviews>
                                 </view>
                             </box>
+                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5QD-8z-BUH">
+                                <rect key="frame" x="737" y="88" width="56" height="18"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <buttonCell key="cell" type="radio" title="verify" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="b5N-g5-vv6">
+                                    <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="displayRsyncCommand:" target="egt-C3-u4G" id="1qs-7O-Tkn"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <constraints>
                             <constraint firstItem="n3L-Il-K5w" firstAttribute="trailing" secondItem="ihR-vZ-M7c" secondAttribute="trailing" id="6LC-M9-fbC"/>
@@ -956,6 +967,7 @@
                         <outlet property="totalNumberSizebytes" destination="ajb-fx-OK1" id="05f-QP-HmX"/>
                         <outlet property="transferredNumber" destination="H9R-yL-P6I" id="IYh-2M-DWM"/>
                         <outlet property="transferredNumberSizebytes" destination="SiX-5v-JHf" id="Zae-lS-kgi"/>
+                        <outlet property="verifydryrun" destination="5QD-8z-BUH" id="QJP-Tx-giI"/>
                         <outlet property="working" destination="ZhK-mF-Dgw" id="7N0-Wz-LAk"/>
                         <outlet property="workinglabel" destination="lb5-Xb-uyK" id="XuI-eO-DDQ"/>
                     </connections>
