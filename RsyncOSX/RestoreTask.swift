@@ -8,7 +8,7 @@
 
 import Foundation
 
-class RestoreTask: SetConfigurations {
+final class RestoreTask: SetConfigurations {
     var arguments: [String]?
     init(index: Int, outputprocess: OutputProcess?, dryrun: Bool, tmprestore: Bool) {
         let taskDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllertabMain

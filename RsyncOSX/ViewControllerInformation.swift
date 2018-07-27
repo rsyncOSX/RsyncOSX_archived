@@ -32,8 +32,8 @@ class ViewControllerInformation: NSViewController, SetDismisser, GetInformation 
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        detailsTable.delegate = self
-        detailsTable.dataSource = self
+        self.detailsTable.delegate = self
+        self.detailsTable.dataSource = self
     }
 
     override func viewDidAppear() {
@@ -51,15 +51,12 @@ class ViewControllerInformation: NSViewController, SetDismisser, GetInformation 
 }
 
 extension ViewControllerInformation: NSTableViewDataSource {
-
     func numberOfRows(in aTableView: NSTableView) -> Int {
         return self.output?.count ?? 0
     }
-
 }
 
 extension ViewControllerInformation: NSTableViewDelegate {
-
     func tableView(_ tableView: NSTableView, viewFor tableColumn: NSTableColumn?, row: Int) -> NSView? {
         var text: String = ""
         var cellIdentifier: String = ""
