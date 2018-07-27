@@ -43,6 +43,13 @@ class ViewControllerAbout: NSViewController, SetDismisser, Delay {
         self.dismissview(viewcontroller: self, vcontroller: .vctabmain)
     }
 
+    @IBAction func introduction(_ sender: NSButton) {
+        if let resource = self.resource {
+            NSWorkspace.shared.open(URL(string: resource.getResource(resource: .introduction))!)
+        }
+        self.dismissview(viewcontroller: self, vcontroller: .vctabmain)
+    }
+
     @IBAction func download(_ sender: NSButton) {
         guard ViewControllerReference.shared.URLnewVersion != nil else {
             self.dismissview(viewcontroller: self, vcontroller: .vctabmain)
