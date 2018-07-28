@@ -15,6 +15,7 @@ class ViewControllerVerify: NSViewController, SetConfigurations, GetIndex {
     @IBOutlet weak var outputtable: NSTableView!
     var outputprocess: OutputProcess?
     var index: Int?
+    var estimatedindex : Int?
     var gotremoteinfo: Bool = false
     private var numbers: NSMutableDictionary?
     private var complete: Bool = false
@@ -43,10 +44,12 @@ class ViewControllerVerify: NSViewController, SetConfigurations, GetIndex {
 
     @IBAction func verify(_ sender: NSButton) {
         if self.index != nil {
+            self.gotit.stringValue = "Verifying, please wait..."
             self.enabledisablebuttons(enable: false)
             self.working.startAnimation(nil)
             let arguments = self.configurations?.arguments4verify(index: self.index!)
             self.outputprocess = OutputProcess()
+            self.outputprocess?.addlinefromoutput("*** Verify ***")
             let verifytask = VerifyTask(arguments: arguments)
             verifytask.executeProcess(outputprocess: self.outputprocess)
             self.processRefererence = verifytask
@@ -55,10 +58,12 @@ class ViewControllerVerify: NSViewController, SetConfigurations, GetIndex {
 
     @IBAction func deleted(_ sender: NSButton) {
         if self.index != nil {
+            self.gotit.stringValue = "Computing deleted, please wait..."
             self.enabledisablebuttons(enable: false)
             self.working.startAnimation(nil)
             let arguments = self.configurations?.arguments4restore(index: self.index!, argtype: .argdryRun)
             self.outputprocess = OutputProcess()
+            self.outputprocess?.addlinefromoutput("*** Deleted ***")
             let verifytask = VerifyTask(arguments: arguments)
             verifytask.executeProcess(outputprocess: self.outputprocess)
             self.processRefererence = verifytask
@@ -93,10 +98,13 @@ class ViewControllerVerify: NSViewController, SetConfigurations, GetIndex {
     override func viewDidAppear() {
         super.viewDidAppear()
         self.index = self.index(viewcontroller: .vctabmain)
-        self.enabledisablebuttons(enable: false)
         if let index = self.index {
+            guard self.estimatedindex ?? -1 != index else { return }
+            self.enabledisablebuttons(enable: false)
+            self.estimatedindex = index
             self.gotit.stringValue = "Getting information, please wait ..."
             self.gotremoteinfo = false
+            self.complete = false
             let datelastbackup = self.configurations?.getConfigurations()[index].dateRun ?? "none"
             let numberlastbackup = self.configurations?.getConfigurations()[index].dayssincelastbackup ?? "none"
             self.datelastbackup.stringValue = "Date last backup: " + datelastbackup
@@ -113,7 +121,7 @@ class ViewControllerVerify: NSViewController, SetConfigurations, GetIndex {
 
     override func viewDidDisappear() {
         super.viewDidDisappear()
-        self.resetinfo()
+        // self.resetinfo()
         guard self.processRefererence != nil else { return }
         self.processRefererence!.abortProcess()
     }
@@ -128,6 +136,9 @@ class ViewControllerVerify: NSViewController, SetConfigurations, GetIndex {
         self.working.startAnimation(nil)
         self.outputprocess = OutputProcess()
         if local {
+            globalMainQueue.async(execute: { () -> Void in
+                self.outputtable.reloadData()
+            })
             arguments = self.configurations!.arguments4rsync(index: index, argtype: .argdryRunlocalcataloginfo)
         } else {
             arguments = self.configurations!.arguments4rsync(index: index, argtype: .argdryRun)
@@ -232,7 +243,7 @@ extension ViewControllerVerify: UpdateProgress {
             }
         } else {
             self.working.stopAnimation(nil)
-            self.enabledisablebuttons(enable: true)
+            self.gotit.stringValue = "Completed ..."
         }
     }
 
