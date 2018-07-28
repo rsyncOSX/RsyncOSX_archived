@@ -18,6 +18,7 @@ class ViewControllerVerify: NSViewController, SetConfigurations, GetIndex {
     var gotremoteinfo: Bool = false
     private var numbers: NSMutableDictionary?
     private var complete: Bool = false
+    private var processRefererence: ProcessCmd?
 
     @IBOutlet weak var working: NSProgressIndicator!
     @IBOutlet weak var verifybutton: NSButton!
@@ -45,6 +46,7 @@ class ViewControllerVerify: NSViewController, SetConfigurations, GetIndex {
             self.outputprocess = OutputProcess()
             let verifytask = VerifyTask(arguments: arguments)
             verifytask.executeProcess(outputprocess: self.outputprocess)
+            self.processRefererence = verifytask
         }
     }
 
@@ -56,6 +58,7 @@ class ViewControllerVerify: NSViewController, SetConfigurations, GetIndex {
             self.outputprocess = OutputProcess()
             let verifytask = VerifyTask(arguments: arguments)
             verifytask.executeProcess(outputprocess: self.outputprocess)
+            self.processRefererence = verifytask
         }
     }
 
@@ -84,6 +87,11 @@ class ViewControllerVerify: NSViewController, SetConfigurations, GetIndex {
             })
         }
     }
+    
+    override func viewDidDisappear() {
+        super.viewDidDisappear()
+        self.processRefererence!.abortProcess()
+    }
 
     private func enabledisablebuttons(enable: Bool) {
         self.verifybutton.isEnabled = enable
@@ -101,6 +109,7 @@ class ViewControllerVerify: NSViewController, SetConfigurations, GetIndex {
         }
         let verifytask = VerifyTask(arguments: arguments)
         verifytask.executeProcess(outputprocess: self.outputprocess)
+        self.processRefererence = verifytask
     }
 
     private func setNumbers(outputprocess: OutputProcess?, local: Bool) {
