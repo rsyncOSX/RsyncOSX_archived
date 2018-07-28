@@ -15,6 +15,7 @@ enum ResourceType {
     case documents
     case urlPlist
     case introduction
+    case verify
 }
 
 struct Resources {
@@ -23,6 +24,7 @@ struct Resources {
     private var documents: String = "https://rsyncosx.github.io/AboutRsyncOSX"
     private var urlPlist: String = "https://raw.githubusercontent.com/rsyncOSX/RsyncOSX/master/versionRsyncOSX/versionRsyncOSX.plist"
     private var introduction: String = "https://rsyncosx.github.io/Intro"
+    private var verify: String = "https://rsyncosx.github.io/Verify"
     // Get the resource.
     func getResource (resource: ResourceType) -> String {
         switch resource {
@@ -34,6 +36,8 @@ struct Resources {
             return self.urlPlist
         case .introduction:
             return self.introduction
+        case .verify:
+            return self.verify
         }
     }
 }

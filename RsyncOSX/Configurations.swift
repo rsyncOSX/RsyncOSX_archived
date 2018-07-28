@@ -304,6 +304,11 @@ class Configurations: ReloadTable, SetSchedules {
         }
     }
 
+    func arguments4verify(index: Int) -> [String] {
+        let allarguments = self.argumentAllConfigurations![index]
+        return allarguments.verify ?? []
+    }
+
     /// Function is adding new Configurations to existing in memory.
     /// - parameter dict : new record configuration
     func appendconfigurationstomemory (dict: NSDictionary) {
