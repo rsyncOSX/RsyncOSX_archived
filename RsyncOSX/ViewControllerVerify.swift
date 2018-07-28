@@ -18,7 +18,7 @@ class ViewControllerVerify: NSViewController, SetConfigurations, GetIndex {
     var gotremoteinfo: Bool = false
     private var numbers: NSMutableDictionary?
     private var complete: Bool = false
-    
+
     @IBOutlet weak var working: NSProgressIndicator!
     @IBOutlet weak var verifybutton: NSButton!
     @IBOutlet weak var deletedbutton: NSButton!
@@ -71,6 +71,7 @@ class ViewControllerVerify: NSViewController, SetConfigurations, GetIndex {
         super.viewDidAppear()
         self.index = self.index(viewcontroller: .vctabmain)
         if let index = self.index {
+            self.gotremoteinfo = false
             let datelastbackup = self.configurations?.getConfigurations()[index].dateRun ?? "none"
             let numberlastbackup = self.configurations?.getConfigurations()[index].dayssincelastbackup ?? "none"
             self.datelastbackup.stringValue = "Date last backup: " + datelastbackup
@@ -155,27 +156,31 @@ extension ViewControllerVerify: NSTableViewDelegate {
 
 extension ViewControllerVerify: UpdateProgress {
     func processTermination() {
-        // self.working.stopAnimation(nil)
-        // self.enabledisablebuttons(enable: true)
-        if self.complete == false {
-            self.setNumbers(outputprocess: self.outputprocess, local: true)
-        } else {
-            self.setNumbers(outputprocess: self.outputprocess, local: false)
-        }
-        if let index = self.index {
+        if self.gotremoteinfo == false {
             if self.complete == false {
-                self.complete = true
-                self.outputprocess = OutputProcess()
-                self.estimateremoteinfo(index: index, local: false)
+                self.setNumbers(outputprocess: self.outputprocess, local: true)
+            } else {
+                self.gotremoteinfo = true
+                self.setNumbers(outputprocess: self.outputprocess, local: false)
             }
+            if let index = self.index {
+                if self.complete == false {
+                    self.complete = true
+                    self.outputprocess = OutputProcess()
+                    self.estimateremoteinfo(index: index, local: false)
+                }
+            }
+        } else {
+            self.working.stopAnimation(nil)
+            self.enabledisablebuttons(enable: true)
         }
     }
 
     func fileHandler() {
-        /*
-        globalMainQueue.async(execute: { () -> Void in
-            self.outputtable.reloadData()
-        })
-        */
+        if self.gotremoteinfo == true {
+            globalMainQueue.async(execute: { () -> Void in
+                self.outputtable.reloadData()
+            })
+        }
     }
 }
