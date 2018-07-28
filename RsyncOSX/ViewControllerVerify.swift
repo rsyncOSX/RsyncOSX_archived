@@ -15,7 +15,7 @@ class ViewControllerVerify: NSViewController, SetConfigurations, GetIndex {
     @IBOutlet weak var outputtable: NSTableView!
     var outputprocess: OutputProcess?
     var index: Int?
-    var estimatedindex : Int?
+    var estimatedindex :Int?
     var gotremoteinfo: Bool = false
     private var numbers: NSMutableDictionary?
     private var complete: Bool = false
