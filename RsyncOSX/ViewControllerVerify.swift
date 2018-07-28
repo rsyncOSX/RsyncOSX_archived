@@ -62,6 +62,11 @@ class ViewControllerVerify: NSViewController, SetConfigurations, GetIndex {
         }
     }
 
+    @IBAction func info(_ sender: NSButton) {
+        let resources = Resources()
+        NSWorkspace.shared.open(URL(string: resources.getResource(resource: .verify))!)
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
         ViewControllerReference.shared.setvcref(viewcontroller: .vcverify, nsviewcontroller: self)
@@ -73,7 +78,9 @@ class ViewControllerVerify: NSViewController, SetConfigurations, GetIndex {
     override func viewDidAppear() {
         super.viewDidAppear()
         self.index = self.index(viewcontroller: .vctabmain)
+        self.enabledisablebuttons(enable: false)
         if let index = self.index {
+            self.gotit.stringValue = "Getting information, please wait ..."
             self.gotremoteinfo = false
             let datelastbackup = self.configurations?.getConfigurations()[index].dateRun ?? "none"
             let numberlastbackup = self.configurations?.getConfigurations()[index].dayssincelastbackup ?? "none"
@@ -81,15 +88,17 @@ class ViewControllerVerify: NSViewController, SetConfigurations, GetIndex {
             self.dayslastbackup.stringValue = "Days since last backup: " + numberlastbackup
             self.estimateremoteinfo(index: index, local: true)
         } else {
+            self.gotit.stringValue = "Please select a task in main view ..."
             self.outputprocess = nil
             globalMainQueue.async(execute: { () -> Void in
                 self.outputtable.reloadData()
             })
         }
     }
-    
+
     override func viewDidDisappear() {
         super.viewDidDisappear()
+        guard self.processRefererence != nil else { return }
         self.processRefererence!.abortProcess()
     }
 
@@ -176,6 +185,7 @@ extension ViewControllerVerify: UpdateProgress {
             } else {
                 self.gotremoteinfo = true
                 self.setNumbers(outputprocess: self.outputprocess, local: false)
+                self.enabledisablebuttons(enable: true)
             }
             if let index = self.index {
                 if self.complete == false {
