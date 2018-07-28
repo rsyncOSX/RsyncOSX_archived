@@ -77,6 +77,11 @@ class ViewControllerVerify: NSViewController, SetConfigurations, GetIndex {
             self.datelastbackup.stringValue = "Date last backup: " + datelastbackup
             self.dayslastbackup.stringValue = "Days since last backup: " + numberlastbackup
             self.estimateremoteinfo(index: index, local: true)
+        } else {
+            self.outputprocess = nil
+            globalMainQueue.async(execute: { () -> Void in
+                self.outputtable.reloadData()
+            })
         }
     }
 
@@ -126,7 +131,7 @@ class ViewControllerVerify: NSViewController, SetConfigurations, GetIndex {
                 self.numbers?.setValue(infotask.newfiles!, forKey: "newfiles")
                 self.numbers?.setValue(infotask.deletefiles!, forKey: "deletefiles")
                 self.working.stopAnimation(nil)
-                self.gotit.stringValue = "Got it..."
+                self.gotit.stringValue = "Verify or Deleted..."
             }
         })
     }
