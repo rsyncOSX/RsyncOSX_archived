@@ -37,6 +37,9 @@ class ViewControllerVerify: NSViewController, SetConfigurations, GetIndex {
     @IBOutlet weak var gotit: NSTextField!
     @IBOutlet weak var datelastbackup: NSTextField!
     @IBOutlet weak var dayslastbackup: NSTextField!
+    @IBOutlet weak var rsynccommanddisplay: NSTextField!
+    @IBOutlet weak var verifyradiobutton: NSButton!
+    @IBOutlet weak var deletedradiobutton: NSButton!
 
     @IBAction func verify(_ sender: NSButton) {
         if self.index != nil {
@@ -65,6 +68,18 @@ class ViewControllerVerify: NSViewController, SetConfigurations, GetIndex {
     @IBAction func info(_ sender: NSButton) {
         let resources = Resources()
         NSWorkspace.shared.open(URL(string: resources.getResource(resource: .verify))!)
+    }
+
+    @IBAction func displayrsynccommand(_ sender: NSButton) {
+        guard self.index != nil else {
+            self.rsynccommanddisplay.stringValue = ""
+            return
+        }
+        if self.verifyradiobutton.state == .on {
+            self.rsynccommanddisplay.stringValue = Tools().displayrsynccommand(index: self.index!, display: .verify)
+        } else {
+            self.rsynccommanddisplay.stringValue = Tools().displayrsynccommand(index: self.index!, display: .restore)
+        }
     }
 
     override func viewDidLoad() {
@@ -98,6 +113,7 @@ class ViewControllerVerify: NSViewController, SetConfigurations, GetIndex {
 
     override func viewDidDisappear() {
         super.viewDidDisappear()
+        self.resetinfo()
         guard self.processRefererence != nil else { return }
         self.processRefererence!.abortProcess()
     }
@@ -149,9 +165,29 @@ class ViewControllerVerify: NSViewController, SetConfigurations, GetIndex {
                 self.numbers?.setValue(infotask.newfiles!, forKey: "newfiles")
                 self.numbers?.setValue(infotask.deletefiles!, forKey: "deletefiles")
                 self.working.stopAnimation(nil)
-                self.gotit.stringValue = "Verify or Deleted..."
+                self.gotit.stringValue = ""
             }
         })
+    }
+
+    private func resetinfo() {
+        self.localtotalNumber.stringValue = ""
+        self.localtotalNumberSizebytes.stringValue = ""
+        self.localtotalDirs.stringValue = ""
+        self.transferredNumber.stringValue = ""
+        self.transferredNumberSizebytes.stringValue = ""
+        self.totalNumber.stringValue = ""
+        self.totalNumberSizebytes.stringValue = ""
+        self.totalDirs.stringValue = ""
+        self.newfiles.stringValue = ""
+        self.deletefiles.stringValue = ""
+        self.datelastbackup.stringValue = "Date last backup:"
+        self.dayslastbackup.stringValue = "Days since last backup:"
+        self.rsynccommanddisplay.stringValue = ""
+        self.verifyradiobutton.state = .off
+        self.deletedradiobutton.state = .off
+        self.complete = false
+        self.gotremoteinfo = false
     }
 }
 
