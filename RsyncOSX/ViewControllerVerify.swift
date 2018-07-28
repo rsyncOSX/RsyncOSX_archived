@@ -17,11 +17,25 @@ class ViewControllerVerify: NSViewController, SetConfigurations, GetIndex {
     var index: Int?
     var hiddenID: Int?
     @IBOutlet weak var working: NSProgressIndicator!
+    @IBOutlet weak var verifybutton: NSButton!
+    @IBOutlet weak var deletedbutton: NSButton!
 
     @IBAction func verify(_ sender: NSButton) {
         if self.index != nil {
+            self.enabledisablebuttons(enable: false)
             self.working.startAnimation(nil)
             let arguments = self.configurations?.arguments4verify(index: self.index!)
+            self.outputprocess = OutputProcess()
+            let verifytask = VerifyTask(arguments: arguments)
+            verifytask.executeProcess(outputprocess: self.outputprocess)
+        }
+    }
+
+    @IBAction func deleted(_ sender: NSButton) {
+        if self.index != nil {
+            self.enabledisablebuttons(enable: false)
+            self.working.startAnimation(nil)
+            let arguments = self.configurations?.arguments4restore(index: self.index!, argtype: .argdryRun)
             self.outputprocess = OutputProcess()
             let verifytask = VerifyTask(arguments: arguments)
             verifytask.executeProcess(outputprocess: self.outputprocess)
@@ -39,6 +53,11 @@ class ViewControllerVerify: NSViewController, SetConfigurations, GetIndex {
     override func viewDidAppear() {
         super.viewDidAppear()
         self.index = self.index(viewcontroller: .vctabmain)
+    }
+
+    private func enabledisablebuttons(enable: Bool) {
+        self.verifybutton.isEnabled = enable
+        self.deletedbutton.isEnabled = enable
     }
 }
 
@@ -67,6 +86,7 @@ extension ViewControllerVerify: NSTableViewDelegate {
 extension ViewControllerVerify: UpdateProgress {
     func processTermination() {
         self.working.stopAnimation(nil)
+        self.enabledisablebuttons(enable: true)
     }
 
     func fileHandler() {
