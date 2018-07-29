@@ -123,7 +123,8 @@ class ViewControllerVerify: NSViewController, SetConfigurations, GetIndex {
             self.dayslastbackup.stringValue = "Days since last backup: " + numberlastbackup
             self.estimateremoteinfo(index: index, local: true)
         } else {
-            self.gotit.stringValue = "Please select a task in main view ..."
+            self.gotit.textColor = .red
+            self.gotit.stringValue = "Please select a task in Execute ..."
             self.outputprocess = nil
             globalMainQueue.async(execute: { () -> Void in
                 self.outputtable.reloadData()
@@ -133,6 +134,7 @@ class ViewControllerVerify: NSViewController, SetConfigurations, GetIndex {
 
     override func viewDidDisappear() {
         super.viewDidDisappear()
+        self.gotit.textColor = .black
         guard self.processRefererence != nil else { return }
         self.processRefererence!.abortProcess()
     }
