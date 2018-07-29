@@ -41,11 +41,10 @@ class ViewControllerVerify: NSViewController, SetConfigurations, GetIndex {
     @IBOutlet weak var rsynccommanddisplay: NSTextField!
     @IBOutlet weak var verifyradiobutton: NSButton!
     @IBOutlet weak var deletedradiobutton: NSButton!
-    
+
     @IBOutlet weak var localcatalog: NSTextField!
     @IBOutlet weak var remotecatalog: NSTextField!
     @IBOutlet weak var remoteserver: NSTextField!
-    
 
     @IBAction func verify(_ sender: NSButton) {
         if self.index != nil {
