@@ -5039,6 +5039,14 @@ DQ
                                     <action selector="displayrsynccommand:" target="Bb6-iv-DYc" id="u1Y-bi-GBJ"/>
                                 </connections>
                             </button>
+                            <box fixedFrame="YES" title="Configuration info" translatesAutoresizingMaskIntoConstraints="NO" id="wIa-4f-wP2">
+                                <rect key="frame" x="17" y="319" width="576" height="82"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <view key="contentView" id="bE1-50-HNi">
+                                    <rect key="frame" x="2" y="2" width="572" height="65"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                </view>
+                            </box>
                         </subviews>
                     </view>
                     <connections>
