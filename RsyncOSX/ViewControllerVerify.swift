@@ -41,6 +41,11 @@ class ViewControllerVerify: NSViewController, SetConfigurations, GetIndex {
     @IBOutlet weak var rsynccommanddisplay: NSTextField!
     @IBOutlet weak var verifyradiobutton: NSButton!
     @IBOutlet weak var deletedradiobutton: NSButton!
+    
+    @IBOutlet weak var localcatalog: NSTextField!
+    @IBOutlet weak var remotecatalog: NSTextField!
+    @IBOutlet weak var remoteserver: NSTextField!
+    
 
     @IBAction func verify(_ sender: NSButton) {
         if self.index != nil {
@@ -107,6 +112,7 @@ class ViewControllerVerify: NSViewController, SetConfigurations, GetIndex {
         if let index = self.index {
             guard self.estimatedindex ?? -1 != index else { return }
             self.resetinfo()
+            self.setinfo()
             self.enabledisablebuttons(enable: false)
             self.estimatedindex = index
             self.gotit.stringValue = "Getting information, please wait ..."
@@ -187,6 +193,13 @@ class ViewControllerVerify: NSViewController, SetConfigurations, GetIndex {
         })
     }
 
+    private func setinfo() {
+        let hiddenID = self.configurations?.gethiddenID(index: self.index!) ?? 0
+        self.localcatalog.stringValue = self.configurations!.getResourceConfiguration(hiddenID, resource: .localCatalog)
+        self.remoteserver.stringValue = self.configurations!.getResourceConfiguration(hiddenID, resource: .offsiteServer)
+        self.remotecatalog.stringValue = self.configurations!.getResourceConfiguration(hiddenID, resource: .remoteCatalog)
+    }
+
     private func resetinfo() {
         self.localtotalNumber.stringValue = ""
         self.localtotalNumberSizebytes.stringValue = ""
@@ -204,6 +217,9 @@ class ViewControllerVerify: NSViewController, SetConfigurations, GetIndex {
         self.verifyradiobutton.state = .off
         self.deletedradiobutton.state = .off
         self.rsynccommanddisplay.stringValue = ""
+        self.localcatalog.stringValue = ""
+        self.remoteserver.stringValue = ""
+        self.remotecatalog.stringValue = ""
     }
 }
 
