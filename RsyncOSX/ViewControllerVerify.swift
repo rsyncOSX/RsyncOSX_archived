@@ -266,6 +266,11 @@ extension ViewControllerVerify: UpdateProgress {
         } else {
             self.working.stopAnimation(nil)
             self.gotit.stringValue = "Completed ..."
+            if self.verifyradiobutton.state == .off {
+                self.verifybutton.isEnabled = true
+            } else {
+                self.deletedbutton.isEnabled = true
+            }
         }
     }
 
