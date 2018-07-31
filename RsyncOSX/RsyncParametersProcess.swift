@@ -162,7 +162,7 @@ final class RsyncParametersProcess {
         case "backup", "combined":
             self.argumentsforsynchronize(dryRun: dryRun, forDisplay: forDisplay)
         case "snapshot":
-            self.linkdestparameter(config)
+            self.linkdestparameter(config, verify: false)
             self.argumentsforsynchronizesnapshot(dryRun: dryRun, forDisplay: forDisplay)
         default:
             break
@@ -198,7 +198,7 @@ final class RsyncParametersProcess {
         case "backup", "combined":
             self.argumentsforsynchronize(dryRun: true, forDisplay: forDisplay)
         case "snapshot":
-            self.linkdestparameter(config)
+            self.linkdestparameter(config, verify: true)
             self.argumentsforsynchronizesnapshot(dryRun: true, forDisplay: forDisplay)
         default:
             break
@@ -257,13 +257,21 @@ final class RsyncParametersProcess {
     }
 
     // Additional parameters if snapshot
-    private func linkdestparameter(_ config: Configuration) {
+    private func linkdestparameter(_ config: Configuration, verify: Bool) {
         let snapshotnum = config.snapshotnum ?? 1
         self.linkdestparam =  "--link-dest=" + config.offsiteCatalog + String(snapshotnum - 1)
         if self.remoteargs != nil {
-            self.remoteargs! += String(snapshotnum)
+            if verify {
+                 self.remoteargs! += String(snapshotnum - 1)
+            } else {
+                self.remoteargs! += String(snapshotnum)
+            }
         }
-        self.offsiteCatalog! += String(snapshotnum)
+        if verify {
+             self.offsiteCatalog! += String(snapshotnum - 1)
+        } else {
+            self.offsiteCatalog! += String(snapshotnum)
+        }
     }
 
     private func argumentsforsynchronize(dryRun: Bool, forDisplay: Bool) {
