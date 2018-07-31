@@ -246,7 +246,15 @@ extension ViewControllerLoggData: ReadLoggdata {
         if viewispresent {
             self.scheduleloggdata = nil
             globalMainQueue.async(execute: { () -> Void in
-                self.scheduleloggdata = ScheduleLoggData(sortdirection: self.sortedascendigdesending)
+                self.index = self.index(viewcontroller: .vctabmain)
+                if let index = self.index {
+                    let hiddenID = self.configurations?.gethiddenID(index: index) ?? -1
+                    self.scheduleloggdata = ScheduleLoggData(hiddenID: hiddenID, sortdirection: self.sortedascendigdesending)
+                    self.info(num: 1)
+                } else {
+                    self.info(num: 0)
+                    self.scheduleloggdata = ScheduleLoggData(sortdirection: self.sortedascendigdesending)
+                }
                 self.scheduletable.reloadData()
             })
         }
