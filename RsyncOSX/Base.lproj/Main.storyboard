@@ -4676,25 +4676,25 @@ DQ
                                 </tableHeaderView>
                             </scrollView>
                             <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="65g-Ch-J7b">
-                                <rect key="frame" x="86" y="117" width="76" height="32"/>
+                                <rect key="frame" x="87" y="117" width="76" height="32"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <buttonCell key="cell" type="push" title="Verify" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="zHz-9r-Cpj">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
                                 <connections>
-                                    <action selector="verify:" target="Bb6-iv-DYc" id="F9W-ik-SO0"/>
+                                    <action selector="verify:" target="Bb6-iv-DYc" id="emU-rN-l1a"/>
                                 </connections>
                             </button>
                             <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="S4s-xc-Xhr">
-                                <rect key="frame" x="162" y="117" width="76" height="32"/>
+                                <rect key="frame" x="154" y="117" width="81" height="32"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <buttonCell key="cell" type="push" title="Deleted" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="Vbd-tp-W9Q">
+                                <buttonCell key="cell" type="push" title="Changed" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="Vbd-tp-W9Q">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
                                 <connections>
-                                    <action selector="deleted:" target="Bb6-iv-DYc" id="nDY-ji-wa2"/>
+                                    <action selector="changed:" target="Bb6-iv-DYc" id="nDY-ji-wa2"/>
                                 </connections>
                             </button>
                             <box fixedFrame="YES" title="Local info" translatesAutoresizingMaskIntoConstraints="NO" id="RVB-9H-LQM">
@@ -4938,7 +4938,7 @@ DQ
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
                                 <connections>
-                                    <action selector="info:" target="Bb6-iv-DYc" id="bdp-fV-a4H"/>
+                                    <action selector="info:" target="Bb6-iv-DYc" id="kQU-Lj-ivK"/>
                                 </connections>
                             </button>
                             <textField verticalHuggingPriority="750" fixedFrame="YES" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ikW-LV-12S">
@@ -5025,18 +5025,18 @@ DQ
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
                                 <connections>
-                                    <action selector="displayrsynccommand:" target="Bb6-iv-DYc" id="HHg-sx-1jp"/>
+                                    <action selector="displayrsynccommand:" target="Bb6-iv-DYc" id="zCO-Nt-yqu"/>
                                 </connections>
                             </button>
                             <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="nVK-nN-IxY">
-                                <rect key="frame" x="324" y="86" width="68" height="18"/>
+                                <rect key="frame" x="324" y="86" width="75" height="18"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <buttonCell key="cell" type="radio" title="deleted" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="zXX-tD-Lcg">
+                                <buttonCell key="cell" type="radio" title="changed" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="zXX-tD-Lcg">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
                                 <connections>
-                                    <action selector="displayrsynccommand:" target="Bb6-iv-DYc" id="u1Y-bi-GBJ"/>
+                                    <action selector="displayrsynccommand:" target="Bb6-iv-DYc" id="wYe-J4-FS9"/>
                                 </connections>
                             </button>
                             <box fixedFrame="YES" title="Configuration info" translatesAutoresizingMaskIntoConstraints="NO" id="wIa-4f-wP2">
@@ -5050,10 +5050,10 @@ DQ
                         </subviews>
                     </view>
                     <connections>
+                        <outlet property="changedbutton" destination="S4s-xc-Xhr" id="t3P-wS-9iH"/>
+                        <outlet property="changedradiobutton" destination="nVK-nN-IxY" id="20u-qP-1Qf"/>
                         <outlet property="datelastbackup" destination="gZM-a1-7q9" id="VQo-Hz-j1w"/>
                         <outlet property="dayslastbackup" destination="Iay-fm-j0D" id="Sr8-Tq-4mP"/>
-                        <outlet property="deletedbutton" destination="S4s-xc-Xhr" id="t3P-wS-9iH"/>
-                        <outlet property="deletedradiobutton" destination="nVK-nN-IxY" id="20u-qP-1Qf"/>
                         <outlet property="deletefiles" destination="OGM-nk-fWw" id="tot-1c-hTj"/>
                         <outlet property="gotit" destination="iKc-kh-tpq" id="CnN-yh-B7Y"/>
                         <outlet property="localcatalog" destination="Yuf-ya-4Dk" id="gl1-mH-dZb"/>

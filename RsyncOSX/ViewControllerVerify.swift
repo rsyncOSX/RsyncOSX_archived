@@ -23,7 +23,7 @@ class ViewControllerVerify: NSViewController, SetConfigurations, GetIndex {
 
     @IBOutlet weak var working: NSProgressIndicator!
     @IBOutlet weak var verifybutton: NSButton!
-    @IBOutlet weak var deletedbutton: NSButton!
+    @IBOutlet weak var changedbutton: NSButton!
 
     @IBOutlet weak var transferredNumber: NSTextField!
     @IBOutlet weak var transferredNumberSizebytes: NSTextField!
@@ -40,7 +40,7 @@ class ViewControllerVerify: NSViewController, SetConfigurations, GetIndex {
     @IBOutlet weak var dayslastbackup: NSTextField!
     @IBOutlet weak var rsynccommanddisplay: NSTextField!
     @IBOutlet weak var verifyradiobutton: NSButton!
-    @IBOutlet weak var deletedradiobutton: NSButton!
+    @IBOutlet weak var changedradiobutton: NSButton!
 
     @IBOutlet weak var localcatalog: NSTextField!
     @IBOutlet weak var remotecatalog: NSTextField!
@@ -50,7 +50,7 @@ class ViewControllerVerify: NSViewController, SetConfigurations, GetIndex {
         if self.index != nil {
             self.rsynccommanddisplay.stringValue = Tools().displayrsynccommand(index: self.index!, display: .verify)
             self.verifyradiobutton.state = .on
-            self.deletedradiobutton.state = .off
+            self.changedradiobutton.state = .off
             self.gotit.stringValue = "Verifying, please wait..."
             self.enabledisablebuttons(enable: false)
             self.working.startAnimation(nil)
@@ -63,17 +63,17 @@ class ViewControllerVerify: NSViewController, SetConfigurations, GetIndex {
         }
     }
 
-    @IBAction func deleted(_ sender: NSButton) {
+    @IBAction func changed(_ sender: NSButton) {
         if self.index != nil {
             self.rsynccommanddisplay.stringValue = Tools().displayrsynccommand(index: self.index!, display: .restore)
-            self.deletedradiobutton.state = .on
+            self.changedradiobutton.state = .on
             self.verifyradiobutton.state = .off
-            self.gotit.stringValue = "Computing deleted, please wait..."
+            self.gotit.stringValue = "Computing changed, please wait..."
             self.enabledisablebuttons(enable: false)
             self.working.startAnimation(nil)
             let arguments = self.configurations?.arguments4restore(index: self.index!, argtype: .argdryRun)
             self.outputprocess = OutputProcess()
-            self.outputprocess?.addlinefromoutput("*** Deleted ***")
+            self.outputprocess?.addlinefromoutput("*** Changed ***")
             let verifytask = VerifyTask(arguments: arguments)
             verifytask.executeProcess(outputprocess: self.outputprocess)
             self.processRefererence = verifytask
@@ -141,7 +141,7 @@ class ViewControllerVerify: NSViewController, SetConfigurations, GetIndex {
 
     private func enabledisablebuttons(enable: Bool) {
         self.verifybutton.isEnabled = enable
-        self.deletedbutton.isEnabled = enable
+        self.changedbutton.isEnabled = enable
     }
 
     private func estimateremoteinfo(index: Int, local: Bool) {
@@ -216,7 +216,7 @@ class ViewControllerVerify: NSViewController, SetConfigurations, GetIndex {
         self.dayslastbackup.stringValue = "Days since last backup:"
         self.rsynccommanddisplay.stringValue = ""
         self.verifyradiobutton.state = .off
-        self.deletedradiobutton.state = .off
+        self.changedradiobutton.state = .off
         self.rsynccommanddisplay.stringValue = ""
         self.localcatalog.stringValue = ""
         self.remoteserver.stringValue = ""
@@ -269,7 +269,7 @@ extension ViewControllerVerify: UpdateProgress {
             if self.verifyradiobutton.state == .off {
                 self.verifybutton.isEnabled = true
             } else {
-                self.deletedbutton.isEnabled = true
+                self.changedbutton.isEnabled = true
             }
         }
     }
