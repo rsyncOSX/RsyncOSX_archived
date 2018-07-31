@@ -15,7 +15,7 @@ protocol ReadLoggdata: class {
     func readloggdata()
 }
 
-class ViewControllerLoggData: NSViewController, SetSchedules, Delay {
+class ViewControllerLoggData: NSViewController, SetConfigurations, SetSchedules, Delay, GetIndex {
 
     private var scheduleloggdata: ScheduleLoggData?
     private var row: NSDictionary?
@@ -31,6 +31,16 @@ class ViewControllerLoggData: NSViewController, SetSchedules, Delay {
     @IBOutlet weak var numberOflogfiles: NSTextField!
     @IBOutlet weak var sortdirection: NSButton!
     @IBOutlet weak var selectedrows: NSTextField!
+    @IBOutlet weak var info: NSTextField!
+
+    private func info(num: Int) {
+        switch num {
+        case 1:
+            self.info.stringValue = "Got index from Execute and lists logs for one configuration..."
+        default:
+            self.info.stringValue = ""
+        }
+    }
 
     @IBAction func sortdirection(_ sender: NSButton) {
         if self.sortedascendigdesending == true {
@@ -81,8 +91,16 @@ class ViewControllerLoggData: NSViewController, SetSchedules, Delay {
 
     override func viewDidAppear() {
         super.viewDidAppear()
+        self.index = self.index(viewcontroller: .vctabmain)
+        if let index = self.index {
+            let hiddenID = self.configurations?.gethiddenID(index: index) ?? -1
+            self.scheduleloggdata = ScheduleLoggData(hiddenID: hiddenID)
+            self.info(num: 1)
+        } else {
+            self.info(num: 0)
+            self.scheduleloggdata = ScheduleLoggData()
+        }
         self.viewispresent = true
-        self.scheduleloggdata = ScheduleLoggData()
         globalMainQueue.async(execute: { () -> Void in
             self.scheduletable.reloadData()
         })
