@@ -36,7 +36,7 @@ class ViewControllerLoggData: NSViewController, SetConfigurations, SetSchedules,
     private func info(num: Int) {
         switch num {
         case 1:
-            self.info.stringValue = "Got index from Execute and lists logs for one configuration..."
+            self.info.stringValue = "Got index from Execute and listing logs for one configuration..."
         default:
             self.info.stringValue = ""
         }
@@ -87,6 +87,8 @@ class ViewControllerLoggData: NSViewController, SetConfigurations, SetSchedules,
         self.scheduletable.dataSource = self
         self.search.delegate = self
         ViewControllerReference.shared.setvcref(viewcontroller: .vcloggdata, nsviewcontroller: self)
+        self.sortdirection.image = #imageLiteral(resourceName: "up")
+        self.sortedascendigdesending = true
     }
 
     override func viewDidAppear() {
@@ -94,19 +96,17 @@ class ViewControllerLoggData: NSViewController, SetConfigurations, SetSchedules,
         self.index = self.index(viewcontroller: .vctabmain)
         if let index = self.index {
             let hiddenID = self.configurations?.gethiddenID(index: index) ?? -1
-            self.scheduleloggdata = ScheduleLoggData(hiddenID: hiddenID)
+            self.scheduleloggdata = ScheduleLoggData(hiddenID: hiddenID, sortdirection: self.sortedascendigdesending)
             self.info(num: 1)
         } else {
             self.info(num: 0)
-            self.scheduleloggdata = ScheduleLoggData()
+            self.scheduleloggdata = ScheduleLoggData(sortdirection: self.sortedascendigdesending)
         }
         self.viewispresent = true
         globalMainQueue.async(execute: { () -> Void in
             self.scheduletable.reloadData()
         })
         self.row = nil
-        self.sortdirection.image = #imageLiteral(resourceName: "up")
-        self.sortedascendigdesending = true
     }
 
     override func viewDidDisappear() {
@@ -128,7 +128,7 @@ extension ViewControllerLoggData: NSSearchFieldDelegate {
             let filterstring = self.search.stringValue
             if filterstring.isEmpty {
                 globalMainQueue.async(execute: { () -> Void in
-                    self.scheduleloggdata = ScheduleLoggData()
+                    self.scheduleloggdata = ScheduleLoggData(sortdirection: self.sortedascendigdesending)
                     self.scheduletable.reloadData()
                 })
             } else {
@@ -231,7 +231,7 @@ extension ViewControllerLoggData: NSTableViewDelegate {
 extension ViewControllerLoggData: Reloadandrefresh {
 
     func reloadtabledata() {
-        self.scheduleloggdata = ScheduleLoggData()
+        self.scheduleloggdata = ScheduleLoggData(sortdirection: self.sortedascendigdesending)
         globalMainQueue.async(execute: { () -> Void in
             self.scheduletable.reloadData()
         })
@@ -246,7 +246,7 @@ extension ViewControllerLoggData: ReadLoggdata {
         if viewispresent {
             self.scheduleloggdata = nil
             globalMainQueue.async(execute: { () -> Void in
-                self.scheduleloggdata = ScheduleLoggData()
+                self.scheduleloggdata = ScheduleLoggData(sortdirection: self.sortedascendigdesending)
                 self.scheduletable.reloadData()
             })
         }
