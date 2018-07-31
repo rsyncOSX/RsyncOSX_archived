@@ -39,7 +39,7 @@ final class ScheduleLoggData: SetConfigurations, SetSchedules, Sorting {
     }
 
     // Loggdata is only read and sorted once
-    private func readAndSortAllLoggdata() {
+    private func readAndSortAllLoggdata(sortdirection: Bool) {
         var data = [NSMutableDictionary]()
         let input: [ConfigurationSchedule] = self.schedules!.getSchedule()
         for i in 0 ..< input.count {
@@ -60,11 +60,11 @@ final class ScheduleLoggData: SetConfigurations, SetSchedules, Sorting {
                 data.append(logdetail)
             }
         }
-        self.loggdata = self.sortbyrundate(notsorted: data, sortdirection: true)
+        self.loggdata = self.sortbyrundate(notsorted: data, sortdirection: sortdirection)
     }
 
     // Loggdata is only read and sorted once
-    private func readAndSortAllLoggdata(hiddenID: Int) {
+    private func readAndSortAllLoggdata(hiddenID: Int, sortdirection: Bool) {
         var data = [NSMutableDictionary]()
         let input: [ConfigurationSchedule] = self.schedules!.getSchedule()
         for i in 0 ..< input.count {
@@ -84,7 +84,7 @@ final class ScheduleLoggData: SetConfigurations, SetSchedules, Sorting {
                 data.append(logdetail)
             }
         }
-        self.loggdata = self.sortbyrundate(notsorted: data, sortdirection: true)
+        self.loggdata = self.sortbyrundate(notsorted: data, sortdirection: sortdirection)
     }
 
     private func allreadAndSortAllLoggdata() {
@@ -102,10 +102,10 @@ final class ScheduleLoggData: SetConfigurations, SetSchedules, Sorting {
         self.loggdata = self.sortbyrundate(notsorted: data, sortdirection: true)
     }
 
-    init () {
+    init (sortdirection: Bool) {
         // Read and sort loggdata
         if self.loggdata == nil {
-            self.readAndSortAllLoggdata()
+            self.readAndSortAllLoggdata(sortdirection: sortdirection)
         }
     }
 
@@ -115,10 +115,10 @@ final class ScheduleLoggData: SetConfigurations, SetSchedules, Sorting {
         self.allreadAndSortAllLoggdata()
     }
 
-    init (hiddenID: Int) {
+    init (hiddenID: Int, sortdirection: Bool) {
         // Read and sort loggdata
         if self.loggdata == nil {
-            self.readAndSortAllLoggdata(hiddenID: hiddenID)
+            self.readAndSortAllLoggdata(hiddenID: hiddenID, sortdirection: sortdirection)
         }
     }
 }
