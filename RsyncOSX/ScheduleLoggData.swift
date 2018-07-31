@@ -45,22 +45,44 @@ final class ScheduleLoggData: SetConfigurations, SetSchedules, Sorting {
         let input: [ConfigurationSchedule] = self.schedules!.getSchedule()
         for i in 0 ..< input.count {
             let hiddenID = self.schedules!.getSchedule()[i].hiddenID
-            if input[i].logrecords.count > 0 {
-                for j in 0 ..< input[i].logrecords.count {
-                    let dict = input[i].logrecords[j]
-                    let logdetail: NSMutableDictionary = [
-                        "localCatalog": self.configurations!.getResourceConfiguration(hiddenID, resource: .localCatalog),
-                        "offsiteServer": self.configurations!.getResourceConfiguration(hiddenID, resource: .offsiteServer),
-                        "task": self.configurations!.getResourceConfiguration(hiddenID, resource: .task),
-                        "backupID": self.configurations!.getResourceConfiguration(hiddenID, resource: .backupid),
-                        "dateExecuted": dict.value(forKey: "dateExecuted") as? String ?? "",
-                        "resultExecuted": dict.value(forKey: "resultExecuted") as? String ?? "",
-                        "deleteCellID": dict.value(forKey: "deleteCellID") as? Int ?? 0,
-                        "hiddenID": hiddenID,
-                        "parent": i,
-                        "sibling": j]
-                    data.append(logdetail)
-                }
+            for j in 0 ..< input[i].logrecords.count {
+                let dict = input[i].logrecords[j]
+                let logdetail: NSMutableDictionary = [
+                    "localCatalog": self.configurations!.getResourceConfiguration(hiddenID, resource: .localCatalog),
+                    "offsiteServer": self.configurations!.getResourceConfiguration(hiddenID, resource: .offsiteServer),
+                    "task": self.configurations!.getResourceConfiguration(hiddenID, resource: .task),
+                    "backupID": self.configurations!.getResourceConfiguration(hiddenID, resource: .backupid),
+                    "dateExecuted": dict.value(forKey: "dateExecuted") as? String ?? "",
+                    "resultExecuted": dict.value(forKey: "resultExecuted") as? String ?? "",
+                    "deleteCellID": dict.value(forKey: "deleteCellID") as? Int ?? 0,
+                    "hiddenID": hiddenID,
+                    "parent": i,
+                    "sibling": j]
+                data.append(logdetail)
+            }
+        }
+        self.loggdata = self.sortbyrundate(notsorted: data, sortdirection: true)
+    }
+
+    // Loggdata is only read and sorted once
+    private func readAndSortAllLoggdata(hiddenID: Int) {
+        var data = [NSMutableDictionary]()
+        let input: [ConfigurationSchedule] = self.schedules!.getSchedule()
+        for i in 0 ..< input.count {
+            for j in 0 ..< input[i].logrecords.count where self.schedules!.getSchedule()[i].hiddenID == hiddenID {
+                let dict = input[i].logrecords[j]
+                let logdetail: NSMutableDictionary = [
+                    "localCatalog": self.configurations!.getResourceConfiguration(hiddenID, resource: .localCatalog),
+                    "offsiteServer": self.configurations!.getResourceConfiguration(hiddenID, resource: .offsiteServer),
+                    "task": self.configurations!.getResourceConfiguration(hiddenID, resource: .task),
+                    "backupID": self.configurations!.getResourceConfiguration(hiddenID, resource: .backupid),
+                    "dateExecuted": dict.value(forKey: "dateExecuted") as? String ?? "",
+                    "resultExecuted": dict.value(forKey: "resultExecuted") as? String ?? "",
+                    "deleteCellID": dict.value(forKey: "deleteCellID") as? Int ?? 0,
+                    "hiddenID": hiddenID,
+                    "parent": i,
+                    "sibling": j]
+                data.append(logdetail)
             }
         }
         self.loggdata = self.sortbyrundate(notsorted: data, sortdirection: true)
@@ -92,5 +114,12 @@ final class ScheduleLoggData: SetConfigurations, SetSchedules, Sorting {
         guard allschedules != nil else { return }
         self.scheduleConfiguration = allschedules!.getallschedules()
         self.allreadAndSortAllLoggdata()
+    }
+
+    init (hiddenID: Int) {
+        // Read and sort loggdata
+        if self.loggdata == nil {
+            self.readAndSortAllLoggdata(hiddenID: hiddenID)
+        }
     }
 }
