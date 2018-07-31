@@ -40,7 +40,7 @@ class ViewControllerCopyFiles: NSViewController, SetConfigurations, GetIndex, De
         case 3:
             self.info.stringValue = "Local or remote catalog cannot be empty..."
         case 4:
-            self.info.stringValue = "Got index from Execute or Snapshots, press Reset to select another index..."
+            self.info.stringValue = "Got index from Execute or Snapshots, selcet Reset for another index..."
         default:
             self.info.stringValue = ""
         }
