@@ -47,6 +47,11 @@ class ViewControllerSnapshots: NSViewController, SetDismisser, SetConfigurations
             self.info.stringValue = "Aborting delete operation..."
         case 3:
             self.info.stringValue = "Delete operation completed..."
+        case 4:
+            self.info.stringValue = "Seriously, enter a real number..."
+        case 5:
+            let num = String((self.snapshotsloggdata?.snapshotslogs?.count ?? 1 - 1) - 1)
+            self.info.stringValue = "You cannot delete that many, max is " + num + "..."
         default:
             self.info.stringValue = ""
         }
@@ -301,8 +306,10 @@ extension ViewControllerSnapshots: NSTextFieldDelegate {
     override func controlTextDidChange(_ obj: Notification) {
         if self.deletesnapshotsnum.stringValue.isEmpty == false {
             if let num = Int(self.deletesnapshotsnum.stringValue) {
+                self.info(num: 0)
                 if num > self.snapshotsloggdata?.snapshotslogs?.count ?? 0 {
                     self.deletesnapshots.intValue = Int32((self.snapshotsloggdata?.snapshotslogs?.count)! - 1)
+                    self.info(num: 5)
                 } else {
                     self.deletesnapshots.intValue = Int32(num)
                 }
@@ -310,6 +317,8 @@ extension ViewControllerSnapshots: NSTextFieldDelegate {
                 globalMainQueue.async(execute: { () -> Void in
                     self.snapshotstable.reloadData()
                 })
+            } else {
+                self.info(num: 4)
             }
         }
     }
