@@ -99,6 +99,7 @@ class ViewControllerSnapshots: NSViewController, SetDismisser, SetConfigurations
         self.snapshotstable.dataSource = self
         self.gettinglogs.usesThreadedAnimation = true
         self.progressdelete.usesThreadedAnimation = true
+        self.deletesnapshotsnum.delegate = self
         ViewControllerReference.shared.setvcref(viewcontroller: .vcsnapshot, nsviewcontroller: self)
     }
 
@@ -293,5 +294,23 @@ extension ViewControllerSnapshots: Reloadandrefresh {
 extension ViewControllerSnapshots: GetSelecetedIndex {
     func getindex() -> Int? {
         return self.index
+    }
+}
+
+extension ViewControllerSnapshots: NSTextFieldDelegate {
+    override func controlTextDidChange(_ obj: Notification) {
+        if self.deletesnapshotsnum.stringValue.isEmpty == false {
+            if let num = Int(self.deletesnapshotsnum.stringValue) {
+                if num > self.snapshotsloggdata?.snapshotslogs?.count ?? 0 {
+                    self.deletesnapshots.intValue = Int32((self.snapshotsloggdata?.snapshotslogs?.count)! - 1)
+                } else {
+                    self.deletesnapshots.intValue = Int32(num)
+                }
+                self.num = Int(self.deletesnapshots.intValue)
+                globalMainQueue.async(execute: { () -> Void in
+                    self.snapshotstable.reloadData()
+                })
+            }
+        }
     }
 }
