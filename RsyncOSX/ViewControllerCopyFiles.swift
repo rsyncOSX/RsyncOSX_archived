@@ -41,7 +41,9 @@ class ViewControllerCopyFiles: NSViewController, SetConfigurations, GetIndex, De
         case 3:
             self.info.stringValue = "Local or remote catalog cannot be empty..."
         case 4:
-            self.info.stringValue = "Got index from Execute or Snapshots, select Reset for another index..."
+            self.info.stringValue = "Got index from Execute or Snapshots, select Source for another index..."
+        case 5:
+            self.info.stringValue = "Please select a source..."
         default:
             self.info.stringValue = ""
         }
@@ -63,7 +65,7 @@ class ViewControllerCopyFiles: NSViewController, SetConfigurations, GetIndex, De
     @IBOutlet weak var workingRsync: NSProgressIndicator!
     @IBOutlet weak var search: NSSearchField!
     @IBOutlet weak var copyButton: NSButton!
-    @IBOutlet weak var selectButton: NSButton!
+    @IBOutlet weak var sourceButton: NSButton!
 
     // Do the work
     @IBAction func copy(_ sender: NSButton) {
@@ -95,15 +97,13 @@ class ViewControllerCopyFiles: NSViewController, SetConfigurations, GetIndex, De
             self.working.startAnimation(nil)
             self.displayRemoteserver(index: index)
         } else {
-            // Reset search data
-            self.resetCopySource()
-            // Get Copy Source
-            self.presentViewControllerAsSheet(self.viewControllerSource!)
+            self.info(num: 5)
         }
     }
 
     @IBAction func reset(_ sender: NSButton) {
         self.resetCopySource()
+        self.presentViewControllerAsSheet(self.viewControllerSource!)
     }
 
     // Reset copy source
@@ -111,7 +111,6 @@ class ViewControllerCopyFiles: NSViewController, SetConfigurations, GetIndex, De
         if self.copyFiles != nil {
             self.copyFiles!.abort()
         }
-        // Empty tabledata
         self.index = nil
         self.tabledata = nil
         self.copyFiles = nil
@@ -121,17 +120,16 @@ class ViewControllerCopyFiles: NSViewController, SetConfigurations, GetIndex, De
         })
         self.displayRemoteserver(index: nil)
         self.remoteCatalog.stringValue = ""
-        self.selectButton.title = "Get source"
+        self.commandString.stringValue = ""
         self.rsync = false
         self.copyButton.isEnabled = true
-        self.selectButton.isEnabled = true
+        self.sourceButton.isEnabled = true
     }
 
     private func displayRemoteserver(index: Int?) {
         guard index != nil else {
             self.server.stringValue = ""
             self.rcatalog.stringValue = ""
-            self.selectButton.title = "Get source"
             return
         }
         let hiddenID = self.configurations!.gethiddenID(index: index!)
@@ -139,7 +137,6 @@ class ViewControllerCopyFiles: NSViewController, SetConfigurations, GetIndex, De
             self.server.stringValue = self.configurations!.getResourceConfiguration(hiddenID, resource: .offsiteServer)
             self.rcatalog.stringValue = self.configurations!.getResourceConfiguration(hiddenID, resource: .remoteCatalog)
         })
-        self.selectButton.title = "Get files"
     }
 
     override func viewDidLoad() {
@@ -166,18 +163,10 @@ class ViewControllerCopyFiles: NSViewController, SetConfigurations, GetIndex, De
             self.info(num: 4)
             if self.indexselected != nil {
                 if self.indexselected != self.index {
-                    self.tabledata = nil
-                    self.copyFiles = nil
-                    globalMainQueue.async(execute: { () -> Void in
-                        self.tableViewSelect.reloadData()
-                    })
+                    self.resetdata()
                 }
             } else {
-                self.tabledata = nil
-                self.copyFiles = nil
-                globalMainQueue.async(execute: { () -> Void in
-                    self.tableViewSelect.reloadData()
-                })
+                self.resetdata()
             }
         } else {
             self.resetCopySource()
@@ -192,10 +181,22 @@ class ViewControllerCopyFiles: NSViewController, SetConfigurations, GetIndex, De
         self.verifylocalCatalog()
     }
 
+    private func resetdata() {
+        self.tabledata = nil
+        self.copyFiles = nil
+        self.remoteCatalog.stringValue = ""
+        self.localCatalog.stringValue = ""
+        self.commandString.stringValue = ""
+        self.estimated = false
+        self.rsync = false
+        globalMainQueue.async(execute: { () -> Void in
+            self.tableViewSelect.reloadData()
+        })
+    }
     @objc(tableViewDoubleClick:) func tableViewDoubleClick(sender: AnyObject) {
         guard self.index != nil else { return }
-        guard self.remoteCatalog!.stringValue.isEmpty == false else { return }
-        guard self.localCatalog!.stringValue.isEmpty == false else { return }
+        guard self.remoteCatalog.stringValue.isEmpty == false else { return }
+        guard self.localCatalog.stringValue.isEmpty == false else { return }
         let answer = Alerts.dialogOKCancel("Copy single files or directory", text: "Start copy?")
         if answer {
             self.copyButton.title = "Execute"
@@ -246,10 +247,10 @@ extension ViewControllerCopyFiles: NSTableViewDataSource {
 
     func numberOfRows(in tableViewMaster: NSTableView) -> Int {
         guard self.tabledata != nil else {
-            self.numberofrows.stringValue = "Number of rows:"
+            self.numberofrows.stringValue = "Number of remote files:"
             return 0
         }
-        self.numberofrows.stringValue = "Number of rows: " + String(self.tabledata!.count)
+        self.numberofrows.stringValue = "Number of remote files: " + String(self.tabledata!.count)
         return self.tabledata!.count
     }
 }
@@ -359,7 +360,7 @@ extension ViewControllerCopyFiles: GetSource {
         self.index = index
         guard self.configurations!.getConfigurations()[self.index!].offsiteServer.isEmpty == false else {
             self.copyButton.isEnabled = false
-            self.selectButton.isEnabled = false
+            self.sourceButton.isEnabled = false
             self.info(num: 2)
             return
         }
