@@ -22,6 +22,7 @@ class ViewControllerCopyFiles: NSViewController, SetConfigurations, GetIndex, De
 
     var copyFiles: CopySingleFiles?
     var index: Int?
+    var indexselected: Int?
     var rsync: Bool = false
     var estimated: Bool = false
     private var tabledata: [String]?
@@ -40,7 +41,7 @@ class ViewControllerCopyFiles: NSViewController, SetConfigurations, GetIndex, De
         case 3:
             self.info.stringValue = "Local or remote catalog cannot be empty..."
         case 4:
-            self.info.stringValue = "Got index from Execute or Snapshots, selcet Reset for another index..."
+            self.info.stringValue = "Got index from Execute or Snapshots, select Reset for another index..."
         default:
             self.info.stringValue = ""
         }
@@ -113,6 +114,7 @@ class ViewControllerCopyFiles: NSViewController, SetConfigurations, GetIndex, De
         // Empty tabledata
         self.index = nil
         self.tabledata = nil
+        self.copyFiles = nil
         self.info(num: 0)
         globalMainQueue.async(execute: { () -> Void in
             self.tableViewSelect.reloadData()
@@ -154,6 +156,7 @@ class ViewControllerCopyFiles: NSViewController, SetConfigurations, GetIndex, De
 
     override func viewDidAppear() {
         super.viewDidAppear()
+        self.indexselected = self.index
         self.index = self.index(viewcontroller: .vcsnapshot)
         if self.index == nil {
             self.index = self.index(viewcontroller: .vctabmain)
@@ -161,10 +164,21 @@ class ViewControllerCopyFiles: NSViewController, SetConfigurations, GetIndex, De
         if let index = self.index {
             self.displayRemoteserver(index: index)
             self.info(num: 4)
-            self.tabledata = nil
-            globalMainQueue.async(execute: { () -> Void in
-                self.tableViewSelect.reloadData()
-            })
+            if self.indexselected != nil {
+                if self.indexselected != self.index {
+                    self.tabledata = nil
+                    self.copyFiles = nil
+                    globalMainQueue.async(execute: { () -> Void in
+                        self.tableViewSelect.reloadData()
+                    })
+                }
+            } else {
+                self.tabledata = nil
+                self.copyFiles = nil
+                globalMainQueue.async(execute: { () -> Void in
+                    self.tableViewSelect.reloadData()
+                })
+            }
         } else {
             self.resetCopySource()
         }
