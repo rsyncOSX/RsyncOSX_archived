@@ -12,7 +12,7 @@ final class CopySingleFiles: SetConfigurations {
 
     private var index: Int?
     private var config: Configuration?
-    private var files: [String]?
+    private var remotefilelist: [String]?
     private var arguments: [String]?
     private var command: String?
     var argumentsObject: CopyFileArguments?
@@ -66,19 +66,19 @@ final class CopySingleFiles: SetConfigurations {
     }
 
     func setRemoteFileList() {
-        self.files = self.outputprocess?.trimoutput(trim: .one)
+        self.remotefilelist = self.outputprocess?.trimoutput(trim: .one)
     }
 
     func filter(search: String?) -> [String] {
         guard search != nil else {
-            if self.files != nil {
-                return self.files!
+            if self.remotefilelist != nil {
+                return self.remotefilelist!
             } else { return [""] }
         }
         if search!.isEmpty == false {
-            return self.files!.filter({$0.contains(search!)})
+            return self.remotefilelist!.filter({$0.contains(search!)})
         } else {
-            return self.files!
+            return self.remotefilelist!
         }
     }
 

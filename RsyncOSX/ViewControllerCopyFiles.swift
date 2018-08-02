@@ -167,12 +167,14 @@ class ViewControllerCopyFiles: NSViewController, SetConfigurations, GetIndex, De
             if self.indexselected != nil {
                 if self.indexselected != self.index {
                     self.tabledata = nil
+                    self.copyFiles = nil
                     globalMainQueue.async(execute: { () -> Void in
                         self.tableViewSelect.reloadData()
                     })
                 }
             } else {
                 self.tabledata = nil
+                self.copyFiles = nil
                 globalMainQueue.async(execute: { () -> Void in
                     self.tableViewSelect.reloadData()
                 })
