@@ -52,6 +52,10 @@ class ViewControllerSnapshots: NSViewController, SetDismisser, SetConfigurations
         case 5:
             let num = String((self.snapshotsloggdata?.snapshotslogs?.count ?? 1 - 1) - 1)
             self.info.stringValue = "You cannot delete that many, max is " + num + "..."
+        case 6:
+            self.info.stringValue = "Got index from Execute..."
+        case 7:
+            self.info.stringValue = "Got index from Execute, but not a snapshot task..."
         default:
             self.info.stringValue = ""
         }
@@ -120,6 +124,9 @@ class ViewControllerSnapshots: NSViewController, SetDismisser, SetConfigurations
             let hiddenID = self.configurations?.gethiddenID(index: index)
             if self.configurations?.getConfigurations()[index].task == "snapshot" {
                 self.getSource(index: hiddenID!)
+                self.info(num: 6)
+            } else {
+                self.info(num: 7)
             }
         } else {
             globalMainQueue.async(execute: { () -> Void in
