@@ -264,10 +264,10 @@ extension ViewControllerSnapshots: NSTableViewDataSource {
 
     func numberOfRows(in tableView: NSTableView) -> Int {
         guard self.snapshotsloggdata?.snapshotslogs != nil else {
-            self.numberOflogfiles.stringValue = "Number of rows:"
+            self.numberOflogfiles.stringValue = "Number of snapshots:"
             return 0
         }
-        self.numberOflogfiles.stringValue = "Number of rows: " + String(self.snapshotsloggdata?.snapshotslogs!.count ?? 0)
+        self.numberOflogfiles.stringValue = "Number of snapshots: " + String(self.snapshotsloggdata?.snapshotslogs!.count ?? 0)
         return (self.snapshotsloggdata?.snapshotslogs!.count ?? 0)
     }
 }
