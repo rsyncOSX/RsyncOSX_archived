@@ -53,7 +53,7 @@ class ViewControllertabSchedule: NSViewController, SetConfigurations, SetSchedul
         case 2:
             self.info.stringValue = "Scheduled tasks in menu app..."
         case 3:
-            self.info.stringValue = "Preselected row from main view..."
+            self.info.stringValue = "Got index from Execute..."
         default:
             self.info.stringValue = ""
         }
