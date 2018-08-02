@@ -120,7 +120,7 @@ class ViewControllerCopyFiles: NSViewController, SetConfigurations, GetIndex, De
         })
         self.displayRemoteserver(index: nil)
         self.remoteCatalog.stringValue = ""
-        // self.sourceButton.title = "Get source"
+        self.commandString.stringValue = ""
         self.rsync = false
         self.copyButton.isEnabled = true
         self.sourceButton.isEnabled = true
@@ -130,7 +130,6 @@ class ViewControllerCopyFiles: NSViewController, SetConfigurations, GetIndex, De
         guard index != nil else {
             self.server.stringValue = ""
             self.rcatalog.stringValue = ""
-            // self.sourceButton.title = "Get source"
             return
         }
         let hiddenID = self.configurations!.gethiddenID(index: index!)
@@ -138,7 +137,6 @@ class ViewControllerCopyFiles: NSViewController, SetConfigurations, GetIndex, De
             self.server.stringValue = self.configurations!.getResourceConfiguration(hiddenID, resource: .offsiteServer)
             self.rcatalog.stringValue = self.configurations!.getResourceConfiguration(hiddenID, resource: .remoteCatalog)
         })
-        // self.selectButton.title = "Get files"
     }
 
     override func viewDidLoad() {
@@ -190,6 +188,7 @@ class ViewControllerCopyFiles: NSViewController, SetConfigurations, GetIndex, De
         self.localCatalog.stringValue = ""
         self.commandString.stringValue = ""
         self.estimated = false
+        self.rsync = false
         globalMainQueue.async(execute: { () -> Void in
             self.tableViewSelect.reloadData()
         })
