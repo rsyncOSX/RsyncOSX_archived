@@ -56,6 +56,8 @@ class ViewControllerSnapshots: NSViewController, SetDismisser, SetConfigurations
             self.info.stringValue = "Got index from Execute..."
         case 7:
             self.info.stringValue = "Got index from Execute, but not a snapshot task..."
+        case 8:
+            self.info.stringValue = "Either select Source or a task in Execute ..."
         default:
             self.info.stringValue = ""
         }
@@ -129,6 +131,7 @@ class ViewControllerSnapshots: NSViewController, SetDismisser, SetConfigurations
                 self.info(num: 7)
             }
         } else {
+            self.info(num: 8)
             globalMainQueue.async(execute: { () -> Void in
                 self.snapshotstable.reloadData()
             })
