@@ -1,4 +1,4 @@
-all: Release
+all: release
 debug:
 	xcodebuild -derivedDataPath $(PWD) -configuration Debug -scheme RsyncOSX
 release:
