@@ -174,8 +174,7 @@ class ViewControllerNewConfigurations: NSViewController, SetConfigurations, VcSc
             "dateRun": "",
             "singleFile": 0]
         dict.setValue("no", forKey: "batch")
-        
-        
+
         if self.backuptypeselected == .snapshots {
             dict.setValue("snapshot", forKey: "task")
             dict.setValue(1, forKey: "snapshotnum")
@@ -184,7 +183,7 @@ class ViewControllerNewConfigurations: NSViewController, SetConfigurations, VcSc
         } else if self.backuptypeselected == .singlefile {
             dict.setValue(1, forKey: "singleFile")
         }
-        
+
         if !self.localCatalog.stringValue.hasSuffix("/") && self.backuptypeselected != .singlefile {
             self.localCatalog.stringValue += "/"
             dict.setValue(self.localCatalog.stringValue, forKey: "localCatalog")
