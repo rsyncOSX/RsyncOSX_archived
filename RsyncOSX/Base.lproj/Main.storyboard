@@ -2752,22 +2752,23 @@
                                     <rect key="frame" x="2" y="2" width="152" height="71"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
-                                        <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cif-N9-3mk">
-                                            <rect key="frame" x="18" y="18" width="80" height="18"/>
+                                        <comboBox verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="kWg-fw-1d2">
+                                            <rect key="frame" x="12" y="22" width="123" height="26"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                            <buttonCell key="cell" type="check" title="single file" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="neV-Qa-xOq">
-                                                <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                            <comboBoxCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" userInterfaceLayoutDirection="rightToLeft" drawsBackground="YES" completes="NO" numberOfVisibleItems="5" id="Hsc-x7-zxk">
                                                 <font key="font" metaFont="system"/>
-                                            </buttonCell>
-                                        </button>
-                                        <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1qH-2H-Jxi">
-                                            <rect key="frame" x="18" y="38" width="85" height="18"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                            <buttonCell key="cell" type="check" title="snapshots" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="3d3-Fe-IfC">
-                                                <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                                                <font key="font" metaFont="system"/>
-                                            </buttonCell>
-                                        </button>
+                                                <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                                <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                                <objectValues>
+                                                    <string>Item 1</string>
+                                                    <string>Item 2</string>
+                                                    <string>Item 3</string>
+                                                </objectValues>
+                                            </comboBoxCell>
+                                            <connections>
+                                                <action selector="setbackuptype:" target="3xI-3C-guU" id="rrc-Um-vRJ"/>
+                                            </connections>
+                                        </comboBox>
                                     </subviews>
                                 </view>
                             </box>
@@ -2811,6 +2812,7 @@
                     </view>
                     <connections>
                         <outlet property="backupID" destination="9T4-S6-awV" id="9jO-LC-qeB"/>
+                        <outlet property="backuptype" destination="kWg-fw-1d2" id="HB9-v3-Uar"/>
                         <outlet property="copyconfigbutton" destination="jGa-fY-odM" id="BF6-cB-LfR"/>
                         <outlet property="localCatalog" destination="0F6-hc-3TR" id="up8-NP-Gtr"/>
                         <outlet property="newTableView" destination="ytY-cn-Iq7" id="SRE-zL-BlG"/>
@@ -2819,9 +2821,7 @@
                         <outlet property="offsiteUsername" destination="SU3-FM-dip" id="iHh-g7-hch"/>
                         <outlet property="profilInfo" destination="NDH-vD-wXh" id="x1r-3x-xGE"/>
                         <outlet property="rsyncdaemon" destination="3QZ-SK-L8Z" id="UfE-FI-vh8"/>
-                        <outlet property="singleFile" destination="cif-N9-3mk" id="M7t-D2-h2K"/>
                         <outlet property="snapshotmessage" destination="9cD-ab-CVW" id="6Ti-A8-Wma"/>
-                        <outlet property="snapshots" destination="1qH-2H-Jxi" id="tqj-xv-nPd"/>
                         <outlet property="sshport" destination="mc9-Gh-Wa4" id="UCC-RU-a23"/>
                         <outlet property="viewParameter1" destination="UAM-7e-uQ9" id="GBv-Cl-bn7"/>
                         <outlet property="viewParameter2" destination="804-O7-xTM" id="O9x-cn-kJY"/>
