@@ -2724,9 +2724,9 @@
                                 </textFieldCell>
                             </textField>
                             <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="vgz-68-zbF">
-                                <rect key="frame" x="884" y="246" width="85" height="32"/>
+                                <rect key="frame" x="884" y="243" width="85" height="32"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <buttonCell key="cell" type="push" title="Add new" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="sE6-n6-Lin">
+                                <buttonCell key="cell" type="push" title="Add" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="sE6-n6-Lin">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
@@ -2745,15 +2745,15 @@
                                     <action selector="cleartable:" target="3xI-3C-guU" id="EJG-mS-Xbv"/>
                                 </connections>
                             </button>
-                            <box fixedFrame="YES" title="Optional parameters" translatesAutoresizingMaskIntoConstraints="NO" id="fSS-pQ-oeG">
-                                <rect key="frame" x="849" y="299" width="156" height="88"/>
+                            <box fixedFrame="YES" title="Type" translatesAutoresizingMaskIntoConstraints="NO" id="fSS-pQ-oeG">
+                                <rect key="frame" x="849" y="325" width="156" height="62"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <view key="contentView" id="Q21-Ge-OoU">
-                                    <rect key="frame" x="2" y="2" width="152" height="71"/>
+                                    <rect key="frame" x="2" y="2" width="152" height="45"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <comboBox verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="kWg-fw-1d2">
-                                            <rect key="frame" x="12" y="22" width="123" height="26"/>
+                                            <rect key="frame" x="12" y="8" width="123" height="26"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             <comboBoxCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" userInterfaceLayoutDirection="rightToLeft" drawsBackground="YES" completes="NO" numberOfVisibleItems="5" id="Hsc-x7-zxk">
                                                 <font key="font" metaFont="system"/>
@@ -2792,7 +2792,7 @@
                                     <action selector="copyconfiguration:" target="3xI-3C-guU" id="Xat-AH-VA4"/>
                                 </connections>
                             </button>
-                            <box fixedFrame="YES" title="Add new task" translatesAutoresizingMaskIntoConstraints="NO" id="8FZ-Xz-Lmb">
+                            <box fixedFrame="YES" title="Add task" translatesAutoresizingMaskIntoConstraints="NO" id="8FZ-Xz-Lmb">
                                 <rect key="frame" x="849" y="236" width="156" height="59"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <view key="contentView" id="CeE-S1-gYx">
@@ -2800,7 +2800,7 @@
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 </view>
                             </box>
-                            <box fixedFrame="YES" title="Copy row and clear" translatesAutoresizingMaskIntoConstraints="NO" id="QDP-Fq-Aj3">
+                            <box fixedFrame="YES" title="Copy row" translatesAutoresizingMaskIntoConstraints="NO" id="QDP-Fq-Aj3">
                                 <rect key="frame" x="849" y="164" width="156" height="79"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <view key="contentView" id="nXd-P2-6hJ">
