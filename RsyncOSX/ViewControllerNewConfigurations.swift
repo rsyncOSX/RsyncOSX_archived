@@ -10,6 +10,12 @@
 import Foundation
 import Cocoa
 
+enum Typebackup {
+    case synchronize
+    case snapshots
+    case singlefile
+}
+
 class ViewControllerNewConfigurations: NSViewController, SetConfigurations, VcSchedule, Delay, GetIndex {
 
     var storageapi: PersistentStorageAPI?
@@ -24,6 +30,9 @@ class ViewControllerNewConfigurations: NSViewController, SetConfigurations, VcSc
     let dryrun: String = "--dry-run"
     var outputprocess: OutputProcess?
     var index: Int?
+    // Reference to rsync parameters to use in combox
+    var comboBoxValues = ["synchronize", "snapshots", "single file"]
+    var backuptypeselected: Typebackup = .synchronize
 
     @IBOutlet weak var newTableView: NSTableView!
     @IBOutlet weak var viewParameter1: NSTextField!
@@ -38,11 +47,12 @@ class ViewControllerNewConfigurations: NSViewController, SetConfigurations, VcSc
     @IBOutlet weak var backupID: NSTextField!
     @IBOutlet weak var sshport: NSTextField!
     @IBOutlet weak var rsyncdaemon: NSButton!
-    @IBOutlet weak var singleFile: NSButton!
+    // @IBOutlet weak var singleFile: NSButton!
     @IBOutlet weak var profilInfo: NSTextField!
-    @IBOutlet weak var snapshots: NSButton!
+    // @IBOutlet weak var snapshots: NSButton!
     @IBOutlet weak var snapshotmessage: NSTextField!
     @IBOutlet weak var copyconfigbutton: NSButton!
+    @IBOutlet weak var backuptype: NSComboBox!
 
     @IBAction func copyconfiguration(_ sender: NSButton) {
         guard self.index != nil else { return }
@@ -75,6 +85,19 @@ class ViewControllerNewConfigurations: NSViewController, SetConfigurations, VcSc
         })
     }
 
+    @IBAction func setbackuptype(_ sender: NSComboBox) {
+        switch self.backuptype.indexOfSelectedItem {
+        case 0:
+            self.backuptypeselected = .synchronize
+        case 1:
+            self.backuptypeselected = .snapshots
+        case 2:
+            self.backuptypeselected = .singlefile
+        default:
+            self.backuptypeselected = .synchronize
+        }
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
         self.newconfigurations = NewConfigurations()
@@ -83,10 +106,13 @@ class ViewControllerNewConfigurations: NSViewController, SetConfigurations, VcSc
         self.localCatalog.toolTip = "By using Finder drag and drop filepaths."
         self.offsiteCatalog.toolTip = "By using Finder drag and drop filepaths."
         ViewControllerReference.shared.setvcref(viewcontroller: .vcnewconfigurations, nsviewcontroller: self)
+        self.initcombox(combobox: self.backuptype, index: 0)
     }
 
     override func viewDidAppear() {
         super.viewDidAppear()
+        self.backuptypeselected = .synchronize
+        self.backuptype.selectItem(at: 0)
         self.index = self.index(viewcontroller: .vctabmain)
         if self.index != nil {
             self.copyconfigbutton.isEnabled = true
@@ -101,6 +127,12 @@ class ViewControllerNewConfigurations: NSViewController, SetConfigurations, VcSc
         self.setFields()
     }
 
+    private func initcombox(combobox: NSComboBox, index: Int) {
+        combobox.removeAllItems()
+        combobox.addItems(withObjectValues: self.comboBoxValues)
+        combobox.selectItem(at: index)
+    }
+
     private func setFields() {
         self.viewParameter1.stringValue = archive
         self.viewParameter2.stringValue = verbose
@@ -113,8 +145,6 @@ class ViewControllerNewConfigurations: NSViewController, SetConfigurations, VcSc
         self.offsiteServer.stringValue = ""
         self.backupID.stringValue = ""
         self.rsyncdaemon.state = .off
-        self.singleFile.state = .off
-        self.snapshots.state = .off
         self.snapshotmessage.isHidden = true
     }
 
@@ -144,14 +174,18 @@ class ViewControllerNewConfigurations: NSViewController, SetConfigurations, VcSc
             "dateRun": "",
             "singleFile": 0]
         dict.setValue("no", forKey: "batch")
-        if self.snapshots.state == .on {
+        
+        
+        if self.backuptypeselected == .snapshots {
             dict.setValue("snapshot", forKey: "task")
             dict.setValue(1, forKey: "snapshotnum")
             self.outputprocess = OutputProcess()
             self.snapshotcreatecatalog(dict: dict, outputprocess: self.outputprocess)
+        } else if self.backuptypeselected == .singlefile {
+            dict.setValue(1, forKey: "singleFile")
         }
-        if self.singleFile.state == .on {dict.setValue(1, forKey: "singleFile")}
-        if !self.localCatalog.stringValue.hasSuffix("/") && self.singleFile.state == .off {
+        
+        if !self.localCatalog.stringValue.hasSuffix("/") && self.backuptypeselected != .singlefile {
             self.localCatalog.stringValue += "/"
             dict.setValue(self.localCatalog.stringValue, forKey: "localCatalog")
         }
