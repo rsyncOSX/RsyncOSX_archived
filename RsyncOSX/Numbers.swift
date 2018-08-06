@@ -80,8 +80,8 @@ final class Numbers: SetConfigurations {
 
     private func checandadjustknumbers() {
         if self.transferNum! > 0 {
-            self.totNum = self.totNum ?? 1 - self.transferNum!
-            self.totNumSize = self.totNumSize ?? 0 - self.transferNumSize!
+            self.totNum = (self.totNum ?? 0) - (self.transferNum ?? 0)
+            self.totNumSize = (self.totNumSize ?? 0) - (self.transferNumSize ?? 0)
         }
     }
 
