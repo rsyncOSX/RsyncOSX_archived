@@ -7,3 +7,4 @@ clean:
 	rm -Rf Build
 	rm -Rf ModuleCache.noindex
 	rm -Rf info.plist
+	rm -Rf Logs
