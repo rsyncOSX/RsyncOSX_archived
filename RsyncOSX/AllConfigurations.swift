@@ -1,5 +1,5 @@
 //
-//  AllProfiles.swift
+//  AllConfigurations.swift
 //  RsyncOSX
 //
 //  Created by Thomas Evensen on 04.03.2018.
