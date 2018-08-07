@@ -62,7 +62,7 @@ class ViewControllerLoggData: NSViewController, SetConfigurations, SetSchedules,
             }
         }
         globalMainQueue.async(execute: { () -> Void in
-            self.selectedrows.stringValue = "Selected rows: " + self.selectednumber()
+            self.selectedrows.stringValue = "Selected logs: " + self.selectednumber()
             self.scheduletable.reloadData()
         })
     }
@@ -154,9 +154,11 @@ extension ViewControllerLoggData: NSTableViewDataSource {
     func numberOfRows(in tableView: NSTableView) -> Int {
         if self.scheduleloggdata == nil {
             self.numberOflogfiles.stringValue = "Number of logs:"
+            self.selectedrows.stringValue = "Selected logs: 0"
             return 0
         } else {
             self.numberOflogfiles.stringValue = "Number of logs: " + String(self.scheduleloggdata!.loggdata?.count ?? 0)
+            self.selectedrows.stringValue = "Selected logs: " + self.selectednumber()
             return self.scheduleloggdata!.loggdata?.count ?? 0
         }
     }
