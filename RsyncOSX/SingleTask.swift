@@ -81,7 +81,7 @@ final class SingleTask: SetSchedules, SetConfigurations {
                 process.executeProcess(outputprocess: self.outputprocess)
                 self.process = process.getProcess()
                 self.taskDelegate?.getProcessReference(process: self.process!)
-                self.taskDelegate?.setInfo(info: "Execute", color: .blue)
+                
             }
         case .executesinglerun:
             self.taskDelegate?.showProcessInfo(info: .executing)
@@ -116,6 +116,7 @@ final class SingleTask: SetSchedules, SetConfigurations {
             // Pop topmost element of work queue
             switch workload.pop() {
             case .estimatesinglerun:
+                self.taskDelegate?.setInfo(info: "Execute", color: .blue)
                 // Stopping the working (estimation) progress indicator
                 self.indicatorDelegate?.stopIndicator()
                 // Getting and setting max file to transfer
