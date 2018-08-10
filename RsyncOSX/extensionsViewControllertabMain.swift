@@ -805,35 +805,28 @@ extension ViewControllertabMain: Allerrors {
 }
 
 extension ViewControllertabMain: StoreAllOutput {
-    func clearoutput() {
-        self.outputeverything = nil
-    }
 
     func enableallinfobutton() {
         self.allinfobutton.isEnabled = true
-        self.appendeverything = false
+        self.dynamicappend = false
     }
 
     func disableallinfobutton() {
         self.allinfobutton.isEnabled = false
-        self.appendeverything = true
+        self.dynamicappend = true
     }
 
     func getalloutput() -> [String] {
-        return self.outputeverything?.output ?? []
+        return self.outputprocess?.getrawOutput() ?? []
     }
 
-    func addline(line: String) {
-        if self.outputeverything == nil {
-             self.outputeverything = OutputEverything()
-        }
-        self.outputeverything?.addLine(str: line)
+    func kickoff() {
         weak var localreloadDelegate: Reloadandrefresh?
         localreloadDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vcalloutput) as? ViewControllerAllOutput
         localreloadDelegate?.reloadtabledata()
     }
 
-    func appendall() -> Bool {
-        return self.appendeverything
+    func appendnow() -> Bool {
+        return self.dynamicappend
     }
 }

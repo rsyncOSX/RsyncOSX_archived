@@ -26,12 +26,11 @@ protocol UpdateProgress: class {
 }
 
 protocol StoreAllOutput: class {
-    func addline(line: String)
-    func appendall() -> Bool
+    func kickoff()
+    func appendnow() -> Bool
     func getalloutput() -> [String]
     func disableallinfobutton()
     func enableallinfobutton()
-    func clearoutput()
 }
 
 class ViewControllertabMain: NSViewController, ReloadTable, Deselect, Coloractivetask, VcMain, Delay, Fileerrormessage {
@@ -91,10 +90,9 @@ class ViewControllertabMain: NSViewController, ReloadTable, Deselect, Coloractiv
     var outputprocess: OutputProcess?
     // Getting output from batchrun
     var outputbatch: OutputBatch?
-    // Collecting everything
-    var outputeverything: OutputEverything?
-    var appendeverything: Bool = false
-    weak var reloadalloutputDelegate: Reloadandrefresh?
+    // Dynamic view of output
+    var dynamicappend: Bool = false
+    weak var dynamicreloadoutputDelegate: Reloadandrefresh?
     // HiddenID task, set when row is selected
     var hiddenID: Int?
     // Reference to Schedules object
@@ -442,7 +440,7 @@ class ViewControllertabMain: NSViewController, ReloadTable, Deselect, Coloractiv
         super.viewDidDisappear()
         // Do not allow notify in Main
         self.configurations!.allowNotifyinMain = false
-        self.appendeverything = false
+        self.dynamicappend = false
     }
 
     func enablemenuappbutton() {
