@@ -803,3 +803,33 @@ extension ViewControllertabMain: Allerrors {
         return self.outputerrors
     }
 }
+
+extension ViewControllertabMain: StoreAllOutput {
+    func enableallinfobutton() {
+        self.allinfobutton.isEnabled = true
+        self.appendeverything = false
+    }
+
+    func disableallinfobutton() {
+        self.allinfobutton.isEnabled = false
+        self.appendeverything = true
+    }
+
+    func getalloutput() -> [String] {
+        return self.outputeverything?.output ?? []
+    }
+
+    func addline(line: String) {
+        if self.outputeverything == nil {
+             self.outputeverything = OutputEverything()
+        }
+        self.outputeverything?.addLine(str: line)
+        weak var localreloadDelegate: Reloadandrefresh?
+        localreloadDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vcalloutput) as? ViewControllerAllOutput
+        localreloadDelegate?.reloadtabledata()
+    }
+
+    func appendall() -> Bool {
+        return self.appendeverything
+    }
+}

@@ -25,6 +25,14 @@ protocol UpdateProgress: class {
     func fileHandler()
 }
 
+protocol StoreAllOutput: class {
+    func addline(line: String)
+    func appendall() -> Bool
+    func getalloutput() -> [String]
+    func disableallinfobutton()
+    func enableallinfobutton()
+}
+
 class ViewControllertabMain: NSViewController, ReloadTable, Deselect, Coloractivetask, VcMain, Delay, Fileerrormessage {
 
     // Configurations object
@@ -82,6 +90,10 @@ class ViewControllertabMain: NSViewController, ReloadTable, Deselect, Coloractiv
     var outputprocess: OutputProcess?
     // Getting output from batchrun
     var outputbatch: OutputBatch?
+    // Collecting everything
+    var outputeverything: OutputEverything?
+    var appendeverything: Bool = false
+    weak var reloadalloutputDelegate: Reloadandrefresh?
     // HiddenID task, set when row is selected
     var hiddenID: Int?
     // Reference to Schedules object
@@ -106,6 +118,7 @@ class ViewControllertabMain: NSViewController, ReloadTable, Deselect, Coloractiv
     @IBOutlet weak var info: NSTextField!
     @IBOutlet weak var pathtorsyncosxschedbutton: NSButton!
     @IBOutlet weak var menuappisrunning: NSButton!
+    @IBOutlet weak var allinfobutton: NSButton!
 
     @IBAction func rsyncosxsched(_ sender: NSButton) {
         let pathtorsyncosxschedapp: String = ViewControllerReference.shared.pathrsyncosxsched! + ViewControllerReference.shared.namersyncosssched
@@ -428,6 +441,7 @@ class ViewControllertabMain: NSViewController, ReloadTable, Deselect, Coloractiv
         super.viewDidDisappear()
         // Do not allow notify in Main
         self.configurations!.allowNotifyinMain = false
+        self.appendeverything = false
     }
 
     func enablemenuappbutton() {

@@ -29,6 +29,7 @@ enum ViewController {
     case vcinfolocalremote
     case vcrestore
     case vcverify
+    case vcalloutput
 }
 
 class ViewControllerReference {
@@ -122,6 +123,8 @@ class ViewControllerReference {
     private var viewControllerRestore: NSViewController?
     // Verify
     private var viewControllerVerify: NSViewController?
+    // Alloutput
+    private var viewControllerAlloutput: NSViewController?
     // Execute scheduled tasks in menu app, default off
     var executescheduledtasksmenuapp: Bool = false
 
@@ -163,6 +166,8 @@ class ViewControllerReference {
             return self.viewControllerRestore
         case .vcverify:
             return self.viewControllerVerify
+        case .vcalloutput:
+            return self.viewControllerAlloutput
         }
     }
 
@@ -204,6 +209,8 @@ class ViewControllerReference {
             self.viewControllerRestore = nsviewcontroller
         case .vcverify:
             self.viewControllerVerify = nsviewcontroller
+        case .vcalloutput:
+            self.viewControllerAlloutput = nsviewcontroller
         }
     }
 }

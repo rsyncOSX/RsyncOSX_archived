@@ -27,6 +27,7 @@ final class OutputProcess {
     private var maxNumber: Int = 0
     weak var errorDelegate: RsyncError?
     weak var allerrorsDelegate: Allerrors?
+    weak var outputeverythingDelegate: StoreAllOutput?
 
     func getMaxcount() -> Int {
         if self.trimmedoutput == nil {
@@ -56,6 +57,9 @@ final class OutputProcess {
         }
         str.enumerateLines { (line, _) in
             self.output!.append(line)
+            if self.outputeverythingDelegate?.appendall() ?? false {
+                self.outputeverythingDelegate?.addline(line: line)
+            }
         }
     }
 
@@ -66,7 +70,6 @@ final class OutputProcess {
         case .one:
             for i in 0 ..< self.output!.count {
                 let substr = self.output![i].dropFirst(10).trimmingCharacters(in: .whitespacesAndNewlines)
-                // let str = substr.components(separatedBy: " ").dropFirst(3).joined()
                 let str = substr.components(separatedBy: " ").dropFirst(3).joined(separator: " ")
                 if str.isEmpty == false && str.contains(".DS_Store") == false {
                     out.append("./" + str)
@@ -102,5 +105,6 @@ final class OutputProcess {
 
     init () {
         self.output = [String]()
+        self.outputeverythingDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllertabMain
     }
  }
