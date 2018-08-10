@@ -13,12 +13,13 @@ import Cocoa
 class ViewControllerAllOutput: NSViewController {
 
     @IBOutlet weak var detailsTable: NSTableView!
-    var output: [String]?
+    // var output: [String]?
 
     weak var getoutputDelegate: StoreAllOutput?
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        ViewControllerReference.shared.setvcref(viewcontroller: .vcalloutput, nsviewcontroller: self)
         self.getoutputDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllertabMain
         self.detailsTable.delegate = self
         self.detailsTable.dataSource = self
@@ -26,7 +27,6 @@ class ViewControllerAllOutput: NSViewController {
 
     override func viewDidAppear() {
         super.viewDidAppear()
-        self.output = self.getoutputDelegate?.getalloutput()
         globalMainQueue.async(execute: { () -> Void in
             self.detailsTable.reloadData()
         })
@@ -36,7 +36,7 @@ class ViewControllerAllOutput: NSViewController {
 
 extension ViewControllerAllOutput: NSTableViewDataSource {
     func numberOfRows(in aTableView: NSTableView) -> Int {
-        return self.output?.count ?? 0
+        return self.getoutputDelegate?.getalloutput().count ?? 0
     }
 }
 
@@ -45,7 +45,7 @@ extension ViewControllerAllOutput: NSTableViewDelegate {
         var text: String = ""
         var cellIdentifier: String = ""
         if tableColumn == tableView.tableColumns[0] {
-            text = self.output![row]
+            text = self.getoutputDelegate?.getalloutput()[row] ?? ""
             cellIdentifier = "outputID"
         }
         if let cell = tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: cellIdentifier), owner: nil) as? NSTableCellView {
@@ -53,5 +53,13 @@ extension ViewControllerAllOutput: NSTableViewDelegate {
             return cell
         }
         return nil
+    }
+}
+
+extension ViewControllerAllOutput: Reloadandrefresh {
+    func reloadtabledata() {
+        globalMainQueue.async(execute: { () -> Void in
+            self.detailsTable.reloadData()
+        })
     }
 }

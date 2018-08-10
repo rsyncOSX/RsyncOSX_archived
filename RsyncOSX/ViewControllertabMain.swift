@@ -91,6 +91,7 @@ class ViewControllertabMain: NSViewController, ReloadTable, Deselect, Coloractiv
     // Collecting everything
     var outputeverything: OutputEverything?
     var appendeverything: Bool = true
+    weak var reloadalloutputDelegate: Reloadandrefresh?
     // HiddenID task, set when row is selected
     var hiddenID: Int?
     // Reference to Schedules object

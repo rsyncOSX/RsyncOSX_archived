@@ -813,7 +813,10 @@ extension ViewControllertabMain: StoreAllOutput {
         if self.outputeverything == nil {
              self.outputeverything = OutputEverything()
         }
-       self.outputeverything?.addLine(str: line)
+        self.outputeverything?.addLine(str: line)
+        weak var localreloadDelegate: Reloadandrefresh?
+        localreloadDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vcalloutput) as? ViewControllerAllOutput
+        localreloadDelegate?.reloadtabledata()
     }
 
     func appendall() -> Bool {
