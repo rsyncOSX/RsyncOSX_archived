@@ -81,7 +81,6 @@ final class SingleTask: SetSchedules, SetConfigurations {
                 process.executeProcess(outputprocess: self.outputprocess)
                 self.process = process.getProcess()
                 self.taskDelegate?.getProcessReference(process: self.process!)
-                
             }
         case .executesinglerun:
             self.taskDelegate?.showProcessInfo(info: .executing)

@@ -803,3 +803,16 @@ extension ViewControllertabMain: Allerrors {
         return self.outputerrors
     }
 }
+
+extension ViewControllertabMain: StoreAllOutput {
+    func addline(line: String) {
+        if self.outputeverything == nil {
+             self.outputeverything = OutputEverything()
+        }
+       self.outputeverything?.addLine(str: line)
+    }
+
+    func appendall() -> Bool {
+        return self.appendeverything
+    }
+}

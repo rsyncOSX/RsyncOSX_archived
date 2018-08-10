@@ -25,6 +25,11 @@ protocol UpdateProgress: class {
     func fileHandler()
 }
 
+protocol StoreAllOutput: class {
+    func addline(line: String)
+    func appendall() -> Bool
+}
+
 class ViewControllertabMain: NSViewController, ReloadTable, Deselect, Coloractivetask, VcMain, Delay, Fileerrormessage {
 
     // Configurations object
@@ -82,6 +87,9 @@ class ViewControllertabMain: NSViewController, ReloadTable, Deselect, Coloractiv
     var outputprocess: OutputProcess?
     // Getting output from batchrun
     var outputbatch: OutputBatch?
+    // Collecting everything
+    var outputeverything: OutputEverything?
+    var appendeverything: Bool = true
     // HiddenID task, set when row is selected
     var hiddenID: Int?
     // Reference to Schedules object
@@ -400,6 +408,7 @@ class ViewControllertabMain: NSViewController, ReloadTable, Deselect, Coloractiv
 
     override func viewDidAppear() {
         super.viewDidAppear()
+        self.appendeverything = true
         guard self.scheduledJobInProgress == false else {
             self.scheduledJobworking.startAnimation(nil)
             self.scheduleJobworkinglabel.isHidden = false
@@ -428,6 +437,7 @@ class ViewControllertabMain: NSViewController, ReloadTable, Deselect, Coloractiv
         super.viewDidDisappear()
         // Do not allow notify in Main
         self.configurations!.allowNotifyinMain = false
+        self.appendeverything = false
     }
 
     func enablemenuappbutton() {
