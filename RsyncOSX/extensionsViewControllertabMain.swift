@@ -805,6 +805,10 @@ extension ViewControllertabMain: Allerrors {
 }
 
 extension ViewControllertabMain: StoreAllOutput {
+    func clearoutput() {
+        self.outputeverything = nil
+    }
+
     func enableallinfobutton() {
         self.allinfobutton.isEnabled = true
         self.appendeverything = false

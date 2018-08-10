@@ -31,6 +31,7 @@ protocol StoreAllOutput: class {
     func getalloutput() -> [String]
     func disableallinfobutton()
     func enableallinfobutton()
+    func clearoutput()
 }
 
 class ViewControllertabMain: NSViewController, ReloadTable, Deselect, Coloractivetask, VcMain, Delay, Fileerrormessage {
