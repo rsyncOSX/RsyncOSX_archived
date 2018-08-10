@@ -17,6 +17,13 @@ class ViewControllerAllOutput: NSViewController {
 
     weak var getoutputDelegate: StoreAllOutput?
 
+    @IBAction func clearoutput(_ sender: NSButton) {
+        self.getoutputDelegate?.clearoutput()
+        globalMainQueue.async(execute: { () -> Void in
+            self.detailsTable.reloadData()
+        })
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
         ViewControllerReference.shared.setvcref(viewcontroller: .vcalloutput, nsviewcontroller: self)
