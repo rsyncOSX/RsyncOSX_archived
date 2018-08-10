@@ -29,6 +29,8 @@ protocol StoreAllOutput: class {
     func addline(line: String)
     func appendall() -> Bool
     func getalloutput() -> [String]
+    func disableallinfobutton()
+    func enableallinfobutton()
 }
 
 class ViewControllertabMain: NSViewController, ReloadTable, Deselect, Coloractivetask, VcMain, Delay, Fileerrormessage {
@@ -90,7 +92,7 @@ class ViewControllertabMain: NSViewController, ReloadTable, Deselect, Coloractiv
     var outputbatch: OutputBatch?
     // Collecting everything
     var outputeverything: OutputEverything?
-    var appendeverything: Bool = true
+    var appendeverything: Bool = false
     weak var reloadalloutputDelegate: Reloadandrefresh?
     // HiddenID task, set when row is selected
     var hiddenID: Int?
@@ -116,6 +118,7 @@ class ViewControllertabMain: NSViewController, ReloadTable, Deselect, Coloractiv
     @IBOutlet weak var info: NSTextField!
     @IBOutlet weak var pathtorsyncosxschedbutton: NSButton!
     @IBOutlet weak var menuappisrunning: NSButton!
+    @IBOutlet weak var allinfobutton: NSButton!
 
     @IBAction func rsyncosxsched(_ sender: NSButton) {
         let pathtorsyncosxschedapp: String = ViewControllerReference.shared.pathrsyncosxsched! + ViewControllerReference.shared.namersyncosssched
@@ -410,7 +413,6 @@ class ViewControllertabMain: NSViewController, ReloadTable, Deselect, Coloractiv
 
     override func viewDidAppear() {
         super.viewDidAppear()
-        self.appendeverything = true
         guard self.scheduledJobInProgress == false else {
             self.scheduledJobworking.startAnimation(nil)
             self.scheduleJobworkinglabel.isHidden = false

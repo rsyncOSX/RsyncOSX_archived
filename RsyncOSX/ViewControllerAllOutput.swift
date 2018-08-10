@@ -27,9 +27,15 @@ class ViewControllerAllOutput: NSViewController {
 
     override func viewDidAppear() {
         super.viewDidAppear()
+        self.getoutputDelegate?.disableallinfobutton()
         globalMainQueue.async(execute: { () -> Void in
             self.detailsTable.reloadData()
         })
+    }
+
+    override func viewDidDisappear() {
+        super.viewDidDisappear()
+        self.getoutputDelegate?.enableallinfobutton()
     }
 
 }
