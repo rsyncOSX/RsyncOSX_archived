@@ -28,6 +28,7 @@ protocol UpdateProgress: class {
 protocol StoreAllOutput: class {
     func addline(line: String)
     func appendall() -> Bool
+    func getalloutput() -> [String]
 }
 
 class ViewControllertabMain: NSViewController, ReloadTable, Deselect, Coloractivetask, VcMain, Delay, Fileerrormessage {

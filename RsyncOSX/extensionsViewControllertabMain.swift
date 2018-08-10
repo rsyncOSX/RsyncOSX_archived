@@ -805,6 +805,10 @@ extension ViewControllertabMain: Allerrors {
 }
 
 extension ViewControllertabMain: StoreAllOutput {
+    func getalloutput() -> [String] {
+        return self.outputeverything?.output ?? []
+    }
+
     func addline(line: String) {
         if self.outputeverything == nil {
              self.outputeverything = OutputEverything()
