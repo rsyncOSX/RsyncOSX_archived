@@ -353,6 +353,12 @@ extension ViewControllertabMain: UpdateProgress {
             self.outputprocess = self.singletask!.outputprocess
             self.process = self.singletask!.process
             localprocessupdateDelegate?.fileHandler()
+
+            weak var outputeverythingDelegate: ViewOutputDetails?
+            outputeverythingDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllertabMain
+            if outputeverythingDelegate?.appendnow() ?? false {
+                outputeverythingDelegate?.reloadtable()
+            }
         case .batchtask:
             guard self.batchtaskObject != nil else { return }
             if let batchobject = self.configurations!.getbatchQueue() {
@@ -804,36 +810,29 @@ extension ViewControllertabMain: Allerrors {
     }
 }
 
-extension ViewControllertabMain: StoreAllOutput {
-    func clearoutput() {
-        self.outputeverything = nil
-    }
+extension ViewControllertabMain: ViewOutputDetails {
 
     func enableallinfobutton() {
         self.allinfobutton.isEnabled = true
-        self.appendeverything = false
+        self.dynamicappend = false
     }
 
     func disableallinfobutton() {
         self.allinfobutton.isEnabled = false
-        self.appendeverything = true
+        self.dynamicappend = true
     }
 
     func getalloutput() -> [String] {
-        return self.outputeverything?.output ?? []
+        return self.outputprocess?.getrawOutput() ?? []
     }
 
-    func addline(line: String) {
-        if self.outputeverything == nil {
-             self.outputeverything = OutputEverything()
-        }
-        self.outputeverything?.addLine(str: line)
+    func reloadtable() {
         weak var localreloadDelegate: Reloadandrefresh?
         localreloadDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vcalloutput) as? ViewControllerAllOutput
         localreloadDelegate?.reloadtabledata()
     }
 
-    func appendall() -> Bool {
-        return self.appendeverything
+    func appendnow() -> Bool {
+        return self.dynamicappend
     }
 }
