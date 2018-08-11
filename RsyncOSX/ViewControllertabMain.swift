@@ -25,7 +25,7 @@ protocol UpdateProgress: class {
     func fileHandler()
 }
 
-protocol StoreAllOutput: class {
+protocol ViewOutputDetails: class {
     func reloadtable()
     func appendnow() -> Bool
     func getalloutput() -> [String]

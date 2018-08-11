@@ -13,7 +13,7 @@ import Cocoa
 class ViewControllerAllOutput: NSViewController, Delay {
 
     @IBOutlet weak var detailsTable: NSTableView!
-    weak var getoutputDelegate: StoreAllOutput?
+    weak var getoutputDelegate: ViewOutputDetails?
 
     override func viewDidLoad() {
         super.viewDidLoad()
