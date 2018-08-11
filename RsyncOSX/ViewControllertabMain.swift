@@ -26,7 +26,7 @@ protocol UpdateProgress: class {
 }
 
 protocol StoreAllOutput: class {
-    func kickoff()
+    func reloadtable()
     func appendnow() -> Bool
     func getalloutput() -> [String]
     func disableallinfobutton()

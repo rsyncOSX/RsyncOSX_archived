@@ -14,13 +14,6 @@ class ViewControllerAllOutput: NSViewController, Delay {
 
     @IBOutlet weak var detailsTable: NSTableView!
     weak var getoutputDelegate: StoreAllOutput?
-    var lastindex: Int = 0
-
-    @IBAction func clearoutput(_ sender: NSButton) {
-        globalMainQueue.async(execute: { () -> Void in
-            self.detailsTable.reloadData()
-        })
-    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,7 +25,6 @@ class ViewControllerAllOutput: NSViewController, Delay {
 
     override func viewDidAppear() {
         super.viewDidAppear()
-        self.lastindex = 0
         self.getoutputDelegate?.disableallinfobutton()
         globalMainQueue.async(execute: { () -> Void in
             self.detailsTable.reloadData()
@@ -70,24 +62,6 @@ extension ViewControllerAllOutput: NSTableViewDelegate {
 
 extension ViewControllerAllOutput: Reloadandrefresh {
     func reloadtabledata() {
-        globalMainQueue.async(execute: { () -> Void in
-            self.detailsTable.reloadData()
-        })
-        self.lastindex = -1000
-        var outputcount = self.getoutputDelegate?.getalloutput().count ?? 0
-        while self.lastindex < outputcount {
-            self.lastindex = self.getoutputDelegate?.getalloutput().count ?? 0
-            self.delayWithSeconds(1) {
-                outputcount = self.getoutputDelegate?.getalloutput().count ?? 0
-                if outputcount == self.lastindex {
-                    self.lastindex = +1000
-                }
-                globalMainQueue.async(execute: { () -> Void in
-                    self.detailsTable.reloadData()
-                })
-            }
-        }
-        print("completed")
         globalMainQueue.async(execute: { () -> Void in
             self.detailsTable.reloadData()
         })

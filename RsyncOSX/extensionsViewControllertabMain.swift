@@ -353,6 +353,12 @@ extension ViewControllertabMain: UpdateProgress {
             self.outputprocess = self.singletask!.outputprocess
             self.process = self.singletask!.process
             localprocessupdateDelegate?.fileHandler()
+
+            weak var outputeverythingDelegate: StoreAllOutput?
+            outputeverythingDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllertabMain
+            if outputeverythingDelegate?.appendnow() ?? false {
+                outputeverythingDelegate?.reloadtable()
+            }
         case .batchtask:
             guard self.batchtaskObject != nil else { return }
             if let batchobject = self.configurations!.getbatchQueue() {
@@ -820,7 +826,7 @@ extension ViewControllertabMain: StoreAllOutput {
         return self.outputprocess?.getrawOutput() ?? []
     }
 
-    func kickoff() {
+    func reloadtable() {
         weak var localreloadDelegate: Reloadandrefresh?
         localreloadDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vcalloutput) as? ViewControllerAllOutput
         localreloadDelegate?.reloadtabledata()
