@@ -779,7 +779,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "${SOURCE_ROOT}/Scripts/create-dmg.sh";
+			shellScript = "${SOURCE_ROOT}/RsyncOSX/Scripts/create-dmg.sh";
 		};
 		E9DF3E6D1F1B5F180055DB66 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
