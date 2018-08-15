@@ -36,6 +36,7 @@ class ViewControllerRestore: NSViewController, SetConfigurations, SetDismisser, 
     var outputprocess: OutputProcess?
     var estimation: Bool?
     var completed: Bool?
+    weak var sendprocess: Sendprocessreference?
 
     // Close and dismiss view
     @IBAction func close(_ sender: NSButton) {
@@ -50,18 +51,19 @@ class ViewControllerRestore: NSViewController, SetConfigurations, SetDismisser, 
         if let index = self.index(viewcontroller: .vctabmain) {
             self.selecttmptorestore.isEnabled = false
             self.estimation = true
-            self.gotit.stringValue = "Getting remote info..."
+            self.gotit.stringValue = "Getting info, please wait..."
             self.working.startAnimation(nil)
+            self.outputprocess = OutputProcess()
+            self.sendprocess?.sendoutputprocessreference(outputprocess: self.outputprocess)
             switch self.selecttmptorestore.state {
             case .on:
-                self.outputprocess = OutputProcess()
                 _ = RestoreTask(index: index, outputprocess: self.outputprocess, dryrun: true, tmprestore: true)
             case .off:
-                self.outputprocess = OutputProcess()
                 _ = RestoreTask(index: index, outputprocess: self.outputprocess, dryrun: true, tmprestore: false)
             default:
                 return
             }
+        
         } else {
             self.gotit.stringValue = "Probably some rsync error..."
         }
@@ -74,6 +76,7 @@ class ViewControllerRestore: NSViewController, SetConfigurations, SetDismisser, 
                 self.restorebutton.isEnabled = false
                 self.initiateProgressbar()
                 self.outputprocess = OutputProcess()
+                self.sendprocess?.sendoutputprocessreference(outputprocess: self.outputprocess)
                 switch self.selecttmptorestore.state {
                 case .on:
                     _ = RestoreTask(index: index, outputprocess: self.outputprocess, dryrun: false, tmprestore: true)
@@ -89,6 +92,7 @@ class ViewControllerRestore: NSViewController, SetConfigurations, SetDismisser, 
     override func viewDidLoad() {
         super.viewDidLoad()
         ViewControllerReference.shared.setvcref(viewcontroller: .vcrestore, nsviewcontroller: self)
+        self.sendprocess = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllertabMain
     }
 
     override func viewDidAppear() {
@@ -118,6 +122,7 @@ class ViewControllerRestore: NSViewController, SetConfigurations, SetDismisser, 
             }
             self.working.startAnimation(nil)
             self.outputprocess = OutputProcess()
+            self.sendprocess?.sendoutputprocessreference(outputprocess: self.outputprocess)
             self.selecttmptorestore.state = .off
             _ = RestoreTask(index: index, outputprocess: self.outputprocess, dryrun: true, tmprestore: false)
         }

@@ -94,9 +94,9 @@ class ScheduleWriteLoggData: SetConfigurations, ReloadTable, Deselect {
 
     private func addloggtaskmanuelnew(_ hiddenID: Int, result: String, date: String) -> Bool {
         var loggadded: Bool = false
-        if (self.configurations!.getResourceConfiguration(hiddenID, resource: .task) == "backup" ||
+        if self.configurations!.getResourceConfiguration(hiddenID, resource: .task) == "backup" ||
             self.configurations!.getResourceConfiguration(hiddenID, resource: .task) == "snapshot" ||
-            self.configurations!.getResourceConfiguration(hiddenID, resource: .task) == "combined" ) {
+            self.configurations!.getResourceConfiguration(hiddenID, resource: .task) == "combined" {
             let masterdict = NSMutableDictionary()
             masterdict.setObject(hiddenID, forKey: "hiddenID" as NSCopying)
             masterdict.setObject("01 Jan 1900 00:00", forKey: "dateStart" as NSCopying)
@@ -127,9 +127,9 @@ class ScheduleWriteLoggData: SetConfigurations, ReloadTable, Deselect {
                 self.schedules![i].hiddenID == hiddenID  &&
                 self.schedules![i].schedule == schedule &&
                 self.schedules![i].dateStart == dateStart {
-                    if (self.configurations!.getResourceConfiguration(hiddenID, resource: .task) == "backup" ||
+                    if self.configurations!.getResourceConfiguration(hiddenID, resource: .task) == "backup" ||
                         self.configurations!.getResourceConfiguration(hiddenID, resource: .task) == "snapshot" ||
-                        self.configurations!.getResourceConfiguration(hiddenID, resource: .task) == "combined" ) {
+                        self.configurations!.getResourceConfiguration(hiddenID, resource: .task) == "combined" {
                         logged = true
                         let dict = NSMutableDictionary()
                         var resultannotaded: String?
