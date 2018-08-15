@@ -391,6 +391,10 @@ extension ViewControllertabMain: UpdateProgress {
             weak var localprocessupdateDelegate: UpdateProgress?
             localprocessupdateDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vcrestore) as? ViewControllerRestore
             localprocessupdateDelegate?.fileHandler()
+            outputeverythingDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllertabMain
+            if outputeverythingDelegate?.appendnow() ?? false {
+                outputeverythingDelegate?.reloadtable()
+            }
         }
     }
 }
