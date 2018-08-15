@@ -31,10 +31,10 @@ else
 		echo "-- Codesign with ${RSYNCOSX_APP_CODE_SIGN_IDENTITY}"
 		SELECTED_IDENTITY="${RSYNCOSX_APP_CODE_SIGN_IDENTITY}"
 	elif [[ ! -z "${DEFAULT_IDENTITY}" ]]; then
-		echo "-- Using first valid identity (variable SYNCTHING_APP_CODE_SIGN_IDENTITY unset)"
+		echo "-- Using first valid identity (variable RSYNCOSX_APP_CODE_SIGN_IDENTITY unset)"
 		SELECTED_IDENTITY="${DEFAULT_IDENTITY}"
 	else
-		echo "-- Skip codesign (variable SYNCTHING_APP_CODE_SIGN_IDENTITY unset and no Developer ID identity found)"
+		echo "-- Skip codesign (variable RSYNCOSX_APP_CODE_SIGN_IDENTITY unset and no Developer ID identity found)"
 		SELECTED_IDENTITY=""
 	fi
 
@@ -44,7 +44,7 @@ else
 
 	${CREATE_DMG} \
 		--volname "Syncthing" \
-		--volicon "${RSYNCOSX_APP_RESOURCES}/syncthing.icns" \
+		--volicon "${RSYNCOSX_APP_RESOURCES}/AppIcon.icns" \
 		--background "${DMG_TEMPLATE_DIR}/background.png" \
 		--window-pos -1 -1 \
 		--window-size 480 540 \
