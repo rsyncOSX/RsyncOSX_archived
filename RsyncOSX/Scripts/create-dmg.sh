@@ -43,13 +43,13 @@ else
 	fi
 
 	${CREATE_DMG} \
-		--volname "Syncthing" \
+		--volname "RsyncOSX" \
 		--volicon "${RSYNCOSX_APP_RESOURCES}/AppIcon.icns" \
 		--background "${DMG_TEMPLATE_DIR}/background.png" \
 		--window-pos -1 -1 \
 		--window-size 480 540 \
-		--icon "Syncthing.app" 240 130 \
-		--hide-extension Syncthing.app \
+		--icon "RsyncOSX.app" 240 130 \
+		--hide-extension RsyncOSX.app \
 		--app-drop-link 240 380 \
 		${RSYNCOSX_DMG} \
 		${STAGING_DIR}
