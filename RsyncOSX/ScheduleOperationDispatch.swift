@@ -18,6 +18,7 @@ class ScheduleOperationDispatch: SetSchedules, SecondsBeforeStart {
             weak var reloadDelegate: Reloadsortedandrefresh?
             reloadDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllertabMain
             reloadDelegate?.reloadsortedandrefreshtabledata()
+            _ = Alerts.showInfo("Dispatch - scheduled task is executed, reload configuration...")
         }
         self.pendingRequestWorkItem = scheduledtask
         DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(seconds), execute: scheduledtask)
