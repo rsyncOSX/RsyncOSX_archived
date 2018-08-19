@@ -400,6 +400,7 @@ class ViewControllertabMain: NSViewController, ReloadTable, Deselect, Coloractiv
         self.working.usesThreadedAnimation = true
         self.scheduledJobworking.usesThreadedAnimation = true
         ViewControllerReference.shared.setvcref(viewcontroller: .vctabmain, nsviewcontroller: self)
+        _ = RsyncVersionString()
         self.mainTableView.target = self
         self.mainTableView.doubleAction = #selector(ViewControllertabMain.tableViewDoubleClick(sender:))
         self.backupdryrun.state = .on
