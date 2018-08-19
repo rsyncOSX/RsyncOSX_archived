@@ -87,7 +87,7 @@ final class Userconfiguration {
         }
         // If userconfiguration is read from disk update info in main view
         self.rsyncchangedDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllertabMain
-        self.rsyncchangedDelegate?.rsyncchanged()
+        self.rsyncchangedDelegate?.rsyncischanged()
         // Check for rsync and set rsync version string in main view
         Tools().verifyrsyncpath()
         _ = RsyncVersionString()

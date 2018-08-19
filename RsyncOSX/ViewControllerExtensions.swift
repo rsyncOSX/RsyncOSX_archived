@@ -402,7 +402,7 @@ extension GetInformation {
 // Protocol for doing updates when optional path for rsync is changed
 // or user enable or disable doubleclick to execte
 protocol RsyncChanged: class {
-    func rsyncchanged()
+    func rsyncischanged()
 }
 
 protocol NewRsync {
@@ -415,7 +415,7 @@ extension NewRsync {
     }
 
     func newrsync() {
-        self.newRsyncDelegate?.rsyncchanged()
+        self.newRsyncDelegate?.rsyncischanged()
     }
 }
 
