@@ -85,7 +85,7 @@ extension ViewControllertabMain: NSTableViewDelegate, Attributedestring {
         }
         self.singletask = nil
         self.batchtaskObject = nil
-        self.setInfo(info: "Estimate", color: .blue)
+        self.setInfo(info: "Estimate", color: .green)
     }
 }
 
@@ -139,7 +139,7 @@ extension ViewControllertabMain: NewProfile {
         self.serverOff = nil
         self.setNumbers(outputprocess: nil)
         self.showrsynccommandmainview()
-        self.setInfo(info: "Estimate", color: .blue)
+        self.setInfo(info: "Estimate", color: .green)
         self.deselect()
         // Read configurations and Scheduledata
         self.configurations = self.createconfigurationsobject(profile: profile)
@@ -550,8 +550,8 @@ extension ViewControllertabMain: SingleTaskProgress {
             self.dryRunOrRealRun.textColor = .red
         case .black:
             self.dryRunOrRealRun.textColor = .black
-        case .blue:
-            self.dryRunOrRealRun.textColor = .blue
+        case .green:
+            self.dryRunOrRealRun.textColor = .green
         }
         self.dryRunOrRealRun.stringValue = info
     }
