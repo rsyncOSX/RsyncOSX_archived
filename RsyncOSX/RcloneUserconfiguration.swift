@@ -12,8 +12,8 @@ final class RcloneUserconfiguration {
 
     private func readUserconfiguration(dict: NSDictionary) {
         // Optional path for rsync
-        if let rsyncPath = dict.value(forKey: "rsyncPath") as? String {
-            RcloneReference.shared.rclonePath = rsyncPath
+        if let rclonePath = dict.value(forKey: "rclonePath") as? String {
+            RcloneReference.shared.rclonePath = rclonePath
         }
     }
 
