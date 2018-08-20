@@ -117,7 +117,7 @@ extension ViewControllertabMain: Reloadandrefresh {
 extension ViewControllertabMain: RsyncUserParams {
     // Do a reread of all Configurations
     func rsyncuserparamsupdated() {
-        self.presentrsynccommandtindisplay()
+        self.showrsynccommandmainview()
     }
 }
 
@@ -138,7 +138,7 @@ extension ViewControllertabMain: NewProfile {
         self.singletask = nil
         self.serverOff = nil
         self.setNumbers(outputprocess: nil)
-        self.presentrsynccommandtindisplay()
+        self.showrsynccommandmainview()
         self.setInfo(info: "Estimate", color: .blue)
         self.deselect()
         // Read configurations and Scheduledata
@@ -208,7 +208,7 @@ extension ViewControllertabMain: RsyncChanged {
     // If row is selected an update rsync command in view
     func rsyncischanged() {
         // Update rsync command in display
-        self.presentrsynccommandtindisplay()
+        self.showrsynccommandmainview()
         self.setinfoaboutrsync()
         // Setting shortstring
         self.rsyncversionshort.stringValue = ViewControllerReference.shared.rsyncversionshort ?? ""
@@ -415,7 +415,7 @@ extension ViewControllertabMain: RsyncError {
         globalMainQueue.async(execute: { () -> Void in
             self.setInfo(info: "Error", color: .red)
             self.showProcessInfo(info: .error)
-            self.presentrsynccommandtindisplay()
+            self.showrsynccommandmainview()
             self.deselect()
             // Abort any operations
             if let process = self.process {
