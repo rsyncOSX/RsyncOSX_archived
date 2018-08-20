@@ -370,12 +370,12 @@ class ViewControllertabMain: NSViewController, ReloadTable, Deselect, Coloractiv
     }
 
     // Function for display rsync command
-    @IBAction func displayRsyncCommand(_ sender: NSButton) {
-        self.presentrsynccommandtindisplay()
+    @IBAction func showrsynccommand(_ sender: NSButton) {
+        self.showrsynccommandmainview()
     }
 
     // Display correct rsync command in view
-    func presentrsynccommandtindisplay() {
+    func showrsynccommandmainview() {
         if let index = self.index {
             guard index <= self.configurations!.getConfigurations().count else { return }
             if self.backupdryrun.state == .on {
@@ -541,7 +541,7 @@ class ViewControllertabMain: NSViewController, ReloadTable, Deselect, Coloractiv
         localprofileinfo?.setprofile(profile: self.profilInfo.stringValue, color: self.profilInfo.textColor!)
         localprofileinfo2?.setprofile(profile: self.profilInfo.stringValue, color: self.profilInfo.textColor!)
         self.TCPButton.isEnabled = true
-        self.presentrsynccommandtindisplay()
+        self.showrsynccommandmainview()
     }
 
     // when row is selected
@@ -574,7 +574,7 @@ class ViewControllertabMain: NSViewController, ReloadTable, Deselect, Coloractiv
         self.singletask = nil
         self.setInfo(info: "Estimate", color: .blue)
         self.showProcessInfo(info: .blank)
-        self.presentrsynccommandtindisplay()
+        self.showrsynccommandmainview()
         self.reloadtabledata()
         self.configurations!.allowNotifyinMain = true
     }
