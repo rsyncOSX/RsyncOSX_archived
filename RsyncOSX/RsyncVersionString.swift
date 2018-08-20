@@ -24,7 +24,7 @@ final class RsyncVersionString: ProcessCmd {
                 ViewControllerReference.shared.rsyncversionstring = outputprocess.getOutput()!.joined(separator: "\n")
                 weak var shortstringDelegate: RsyncChanged?
                 shortstringDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllertabMain
-                shortstringDelegate?.rsyncchanged()
+                shortstringDelegate?.rsyncischanged()
             }
         }
     }

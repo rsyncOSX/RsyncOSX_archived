@@ -32,6 +32,12 @@ class RcloneTools {
     }
 
     func rclonepath() -> String {
+        // Read user configuration
+        var storage: RclonePersistentStorageAPI?
+        storage = RclonePersistentStorageAPI(profile: nil)
+        if let userConfiguration =  storage?.getUserconfiguration() {
+            _ = RcloneUserconfiguration(userconfigRsyncOSX: userConfiguration)
+        }
         if RcloneReference.shared.rcloneopt {
             if RcloneReference.shared.rclonePath == nil {
                 return RcloneReference.shared.usrlocalbinrclone

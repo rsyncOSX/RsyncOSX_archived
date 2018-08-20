@@ -3,7 +3,6 @@
 //  Created by Thomas Evensen on 07/05/16.
 //  Copyright © 2016 Thomas Evensen. All rights reserved.
 //
-// swiftlint:disable line_length
 
 import Foundation
 
@@ -20,6 +19,19 @@ final class ScheduleOperationTimer: SetSchedules, SecondsBeforeStart {
 
     private var timerTaskWaiting: Timer?
 
+    @objc private func executetaskmocup() {
+        // Start the task in BackgroundQueue
+        // The Process itself is executed in GlobalMainQueue
+        globalBackgroundQueue.async(execute: { [weak self] in
+            let queue = OperationQueue()
+            // Create the Operation object which executes the scheduled job
+            let task = ExecuteTaskTimerMocup()
+            // Add the Operation object to the queue for execution.
+            // The queue executes the main() task whenever everything is ready for execution
+            queue.addOperation(task)
+        })
+    }
+
     @objc private func executetask() {
         // Start the task in BackgroundQueue
         // The Process itself is executed in GlobalMainQueue
@@ -34,12 +46,16 @@ final class ScheduleOperationTimer: SetSchedules, SecondsBeforeStart {
     }
 
     init() {
-        guard ViewControllerReference.shared.executescheduledtasksmenuapp == false else { return }
         if self.schedules != nil {
             let seconds = self.secondsbeforestart()
             guard seconds > 0 else { return }
-            self.timerTaskWaiting = Timer.scheduledTimer(timeInterval: seconds, target: self, selector: #selector(executetask),
-                                                         userInfo: nil, repeats: false)
+            if ViewControllerReference.shared.executescheduledtasksmenuapp == false {
+                self.timerTaskWaiting = Timer.scheduledTimer(timeInterval: seconds, target: self,
+                        selector: #selector(executetask), userInfo: nil, repeats: false)
+            } else {
+                self.timerTaskWaiting = Timer.scheduledTimer(timeInterval: seconds, target: self,
+                        selector: #selector(executetaskmocup), userInfo: nil, repeats: false)
+            }
             // Set reference to schedule for later cancel if any
             ViewControllerReference.shared.timerTaskWaiting = self.timerTaskWaiting
         }
