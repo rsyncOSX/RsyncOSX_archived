@@ -728,7 +728,7 @@
 				TargetAttributes = {
 					A04492811D658EE800B3CE17 = {
 						CreatedOnToolsVersion = 8.0;
-						DevelopmentTeam = L6H6YNBUBK;
+						DevelopmentTeam = 93M47F4H9T;
 						LastSwiftMigration = 0900;
 						ProvisioningStyle = Automatic;
 					};
@@ -1069,7 +1069,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
-				DEVELOPMENT_TEAM = L6H6YNBUBK;
+				DEVELOPMENT_TEAM = 93M47F4H9T;
 				INFOPLIST_FILE = RsyncOSX/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.11;
@@ -1091,7 +1091,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
-				DEVELOPMENT_TEAM = L6H6YNBUBK;
+				DEVELOPMENT_TEAM = 93M47F4H9T;
 				INFOPLIST_FILE = RsyncOSX/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.11;
