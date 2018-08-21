@@ -81,7 +81,7 @@ final class BatchTask: SetSchedules, SetConfigurations, Delay {
 
     func closeOperation() {
         self.process = nil
-        self.taskDelegate?.setInfo(info: "", color: .black)
+        self.taskDelegate?.setinfonextaction(info: "", color: .black)
     }
 
     // Error and stop execution
