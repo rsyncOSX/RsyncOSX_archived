@@ -136,7 +136,8 @@ class ViewControllertabMain: NSViewController, ReloadTable, Deselect, Coloractiv
             return
         }
         guard self.configurations!.getConfigurations()[self.index!].task == "backup" ||
-            self.configurations!.getConfigurations()[self.index!].task == "snapshot" else {
+            self.configurations!.getConfigurations()[self.index!].task == "snapshot" ||
+            self.configurations!.getConfigurations()[self.index!].task == "combined" else {
                 self.info(num: 7)
                 return
         }
@@ -159,7 +160,7 @@ class ViewControllertabMain: NSViewController, ReloadTable, Deselect, Coloractiv
         case 6:
             self.info.stringValue = "This is a combined task, execute by ⌘R..."
         case 7:
-            self.info.stringValue = "Only valid for backup and snapshot tasks..."
+            self.info.stringValue = "Only valid for backup, snapshot and combined tasks..."
         case 8:
             self.info.stringValue = "No rclone config found..."
         default:
@@ -177,7 +178,8 @@ class ViewControllertabMain: NSViewController, ReloadTable, Deselect, Coloractiv
             return
         }
         guard self.configurations!.getConfigurations()[self.index!].task == "backup" ||
-            self.configurations!.getConfigurations()[self.index!].task == "snapshot" else {
+            self.configurations!.getConfigurations()[self.index!].task == "snapshot" ||
+            self.configurations!.getConfigurations()[self.index!].task == "combined" else {
                 self.info(num: 7)
                 return
         }
