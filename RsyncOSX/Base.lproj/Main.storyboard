@@ -300,8 +300,17 @@
                                         </connections>
                                     </button>
                                 </toolbarItem>
+                                <toolbarItem implicitItemIdentifier="500E4D8F-2081-4117-9A69-081139D31165" label="Details" paletteLabel="Details" image="info" id="Xdh-Q4-hGW">
+                                    <size key="minSize" width="40" height="25"/>
+                                    <size key="maxSize" width="40" height="25"/>
+                                    <connections>
+                                        <segue destination="mal-sc-mlY" kind="show" id="9Jv-Jb-qJU"/>
+                                    </connections>
+                                </toolbarItem>
                             </allowedToolbarItems>
                             <defaultToolbarItems>
+                                <toolbarItem reference="wiK-ZO-ZDm"/>
+                                <toolbarItem reference="Xdh-Q4-hGW"/>
                                 <toolbarItem reference="zs6-ub-LOa"/>
                                 <toolbarItem reference="v12-7x-cig"/>
                                 <toolbarItem reference="uoc-zJ-5pZ"/>
@@ -910,22 +919,10 @@
                                     <action selector="showrsynccommand:" target="egt-C3-u4G" id="1qs-7O-Tkn"/>
                                 </connections>
                             </button>
-                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Jtd-3O-fQI">
-                                <rect key="frame" x="48" y="348" width="50" height="32"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <buttonCell key="cell" type="push" title="Info" bezelStyle="rounded" alignment="center" borderStyle="border" inset="2" id="KpV-gP-jIs">
-                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                    <font key="font" metaFont="smallSystem"/>
-                                </buttonCell>
-                                <connections>
-                                    <segue destination="mal-sc-mlY" kind="show" id="7o9-w1-u5T"/>
-                                </connections>
-                            </button>
                         </subviews>
                     </view>
                     <connections>
                         <outlet property="TCPButton" destination="vZ8-RO-Huz" id="Rgc-t6-PQm"/>
-                        <outlet property="allinfobutton" destination="Jtd-3O-fQI" id="gWq-tE-8fY"/>
                         <outlet property="backupdryrun" destination="g7r-rp-4kz" id="NBb-LR-CBT"/>
                         <outlet property="deletefiles" destination="uOY-XE-EU5" id="BTy-3T-PDG"/>
                         <outlet property="dryRunOrRealRun" destination="qkq-x4-Af5" id="oQ9-nJ-wSt"/>

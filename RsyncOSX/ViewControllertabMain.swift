@@ -29,8 +29,8 @@ protocol ViewOutputDetails: class {
     func reloadtable()
     func appendnow() -> Bool
     func getalloutput() -> [String]
-    func disableallinfobutton()
-    func enableallinfobutton()
+    func enableappend()
+    func disableappend()
 }
 
 class ViewControllertabMain: NSViewController, ReloadTable, Deselect, Coloractivetask, VcMain, Delay, Fileerrormessage {
@@ -117,7 +117,6 @@ class ViewControllertabMain: NSViewController, ReloadTable, Deselect, Coloractiv
     @IBOutlet weak var info: NSTextField!
     @IBOutlet weak var pathtorsyncosxschedbutton: NSButton!
     @IBOutlet weak var menuappisrunning: NSButton!
-    @IBOutlet weak var allinfobutton: NSButton!
 
     @IBAction func rsyncosxsched(_ sender: NSButton) {
         let pathtorsyncosxschedapp: String = ViewControllerReference.shared.pathrsyncosxsched! + ViewControllerReference.shared.namersyncosssched
@@ -453,14 +452,12 @@ class ViewControllertabMain: NSViewController, ReloadTable, Deselect, Coloractiv
                 self.pathtorsyncosxschedbutton.isEnabled = false
                 if running.menuappnoconfig == false {
                     self.menuappisrunning.image = #imageLiteral(resourceName: "green")
-                    // self.pathtorsyncosxschedbutton.image = #imageLiteral(resourceName: "menuapp-green")
                     self.info(num: 5)
                 }
                 return
             }
             self.pathtorsyncosxschedbutton.isEnabled = true
             self.menuappisrunning.image = #imageLiteral(resourceName: "red")
-            // self.pathtorsyncosxschedbutton.image = #imageLiteral(resourceName: "menuapp-red")
         })
     }
 
