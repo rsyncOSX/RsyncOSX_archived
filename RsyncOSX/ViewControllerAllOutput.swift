@@ -25,7 +25,7 @@ class ViewControllerAllOutput: NSViewController, Delay {
 
     override func viewDidAppear() {
         super.viewDidAppear()
-        self.getoutputDelegate?.disableallinfobutton()
+        self.getoutputDelegate?.enableappend()
         globalMainQueue.async(execute: { () -> Void in
             self.detailsTable.reloadData()
         })
@@ -33,7 +33,7 @@ class ViewControllerAllOutput: NSViewController, Delay {
 
     override func viewDidDisappear() {
         super.viewDidDisappear()
-        self.getoutputDelegate?.enableallinfobutton()
+        self.getoutputDelegate?.disableappend()
     }
 
 }

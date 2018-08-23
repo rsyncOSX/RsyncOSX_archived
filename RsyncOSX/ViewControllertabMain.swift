@@ -29,8 +29,8 @@ protocol ViewOutputDetails: class {
     func reloadtable()
     func appendnow() -> Bool
     func getalloutput() -> [String]
-    func disableallinfobutton()
-    func enableallinfobutton()
+    func enableappend()
+    func disableappend()
 }
 
 class ViewControllertabMain: NSViewController, ReloadTable, Deselect, Coloractivetask, VcMain, Delay, Fileerrormessage {
@@ -117,7 +117,6 @@ class ViewControllertabMain: NSViewController, ReloadTable, Deselect, Coloractiv
     @IBOutlet weak var info: NSTextField!
     @IBOutlet weak var pathtorsyncosxschedbutton: NSButton!
     @IBOutlet weak var menuappisrunning: NSButton!
-    @IBOutlet weak var allinfobutton: NSButton!
 
     @IBAction func rsyncosxsched(_ sender: NSButton) {
         let pathtorsyncosxschedapp: String = ViewControllerReference.shared.pathrsyncosxsched! + ViewControllerReference.shared.namersyncosssched
@@ -136,7 +135,8 @@ class ViewControllertabMain: NSViewController, ReloadTable, Deselect, Coloractiv
             return
         }
         guard self.configurations!.getConfigurations()[self.index!].task == "backup" ||
-            self.configurations!.getConfigurations()[self.index!].task == "snapshot" else {
+            self.configurations!.getConfigurations()[self.index!].task == "snapshot" ||
+            self.configurations!.getConfigurations()[self.index!].task == "combined" else {
                 self.info(num: 7)
                 return
         }
@@ -159,7 +159,7 @@ class ViewControllertabMain: NSViewController, ReloadTable, Deselect, Coloractiv
         case 6:
             self.info.stringValue = "This is a combined task, execute by ⌘R..."
         case 7:
-            self.info.stringValue = "Only valid for backup and snapshot tasks..."
+            self.info.stringValue = "Only valid for backup, snapshot and combined tasks..."
         case 8:
             self.info.stringValue = "No rclone config found..."
         default:
@@ -177,7 +177,8 @@ class ViewControllertabMain: NSViewController, ReloadTable, Deselect, Coloractiv
             return
         }
         guard self.configurations!.getConfigurations()[self.index!].task == "backup" ||
-            self.configurations!.getConfigurations()[self.index!].task == "snapshot" else {
+            self.configurations!.getConfigurations()[self.index!].task == "snapshot" ||
+            self.configurations!.getConfigurations()[self.index!].task == "combined" else {
                 self.info(num: 7)
                 return
         }
