@@ -221,25 +221,6 @@
                                         </connections>
                                     </button>
                                 </toolbarItem>
-                                <toolbarItem implicitItemIdentifier="34763B06-C017-430E-B04B-A6F0804FB316" label="Details" paletteLabel="details" id="PsB-Er-k7Q">
-                                    <nil key="toolTip"/>
-                                    <size key="minSize" width="40" height="22"/>
-                                    <size key="maxSize" width="40" height="28"/>
-                                    <button key="view" verticalHuggingPriority="750" id="16u-iS-nHz">
-                                        <rect key="frame" x="1" y="14" width="40" height="28"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                        <buttonCell key="cell" type="roundTextured" bezelStyle="texturedRounded" imagePosition="overlaps" alignment="center" lineBreakMode="truncatingTail" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="5wC-gQ-sUV">
-                                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                            <font key="font" metaFont="system"/>
-                                        </buttonCell>
-                                        <connections>
-                                            <action selector="abort:" target="Rv5-yv-lsc" id="a8H-2d-d3F"/>
-                                        </connections>
-                                    </button>
-                                    <connections>
-                                        <segue destination="mal-sc-mlY" kind="show" id="wtN-rA-lAL"/>
-                                    </connections>
-                                </toolbarItem>
                                 <toolbarItem implicitItemIdentifier="F434BB7C-3A58-4AC1-A72A-16FBB57E8A71" label="batch" paletteLabel="batch" image="batch" id="OrH-Ty-gyv">
                                     <nil key="toolTip"/>
                                     <size key="minSize" width="40" height="25"/>
@@ -304,6 +285,22 @@
                                         </connections>
                                     </button>
                                 </toolbarItem>
+                                <toolbarItem implicitItemIdentifier="765F24D4-7178-430E-BB1A-13B11A820F48" label="info" paletteLabel="info" image="NSTouchBarBookmarksTemplate" id="g1a-zY-Mpq">
+                                    <nil key="toolTip"/>
+                                    <size key="minSize" width="40" height="25"/>
+                                    <size key="maxSize" width="40" height="28"/>
+                                    <button key="view" verticalHuggingPriority="750" id="m61-s7-JMA">
+                                        <rect key="frame" x="0.0" y="14" width="40" height="28"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                        <buttonCell key="cell" type="roundTextured" bezelStyle="texturedRounded" image="NSTouchBarBookmarksTemplate" imagePosition="overlaps" alignment="center" lineBreakMode="truncatingTail" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="e2y-69-ZFN">
+                                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                            <font key="font" metaFont="system"/>
+                                        </buttonCell>
+                                    </button>
+                                    <connections>
+                                        <segue destination="mal-sc-mlY" kind="show" id="rJ6-3R-szv"/>
+                                    </connections>
+                                </toolbarItem>
                                 <toolbarItem implicitItemIdentifier="9984F48F-97C0-4D13-9BA2-715406048804" label="totinfo" paletteLabel="totinfo" image="info" id="v12-7x-cig">
                                     <nil key="toolTip"/>
                                     <size key="minSize" width="40" height="25"/>
@@ -323,7 +320,7 @@
                             </allowedToolbarItems>
                             <defaultToolbarItems>
                                 <toolbarItem reference="wiK-ZO-ZDm"/>
-                                <toolbarItem reference="PsB-Er-k7Q"/>
+                                <toolbarItem reference="g1a-zY-Mpq"/>
                                 <toolbarItem reference="zs6-ub-LOa"/>
                                 <toolbarItem reference="v12-7x-cig"/>
                                 <toolbarItem reference="uoc-zJ-5pZ"/>
@@ -7527,6 +7524,7 @@ DQ
         </scene>
     </scenes>
     <resources>
+        <image name="NSTouchBarBookmarksTemplate" width="22" height="30"/>
         <image name="abort" width="48" height="48"/>
         <image name="batch" width="48" height="48"/>
         <image name="complete" width="48" height="48"/>
