@@ -465,6 +465,7 @@ extension ViewControllertabMain: AbortOperations {
             self.rsyncCommand.stringValue = ""
             if self.configurations!.remoteinfotaskworkqueue != nil && self.configurations?.estimatedlist != nil {
                 self.estimateupdateDelegate?.dismissview()
+                self.configurations!.remoteinfotaskworkqueue = nil
             }
         } else {
             self.working.stopAnimation(nil)
