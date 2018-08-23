@@ -237,12 +237,12 @@
                                         </connections>
                                     </button>
                                 </toolbarItem>
-                                <toolbarItem implicitItemIdentifier="8B66843A-F5C9-4F8B-82C4-CB9C5E766CD3" label="fastforward" paletteLabel="fastforward" image="fastforward" id="uoc-zJ-5pZ" userLabel="fastforward">
+                                <toolbarItem implicitItemIdentifier="8B66843A-F5C9-4F8B-82C4-CB9C5E766CD3" label="quickbackup" paletteLabel="quickbackup" image="fastforward" id="uoc-zJ-5pZ" userLabel="fastforward">
                                     <nil key="toolTip"/>
                                     <size key="minSize" width="40" height="25"/>
                                     <size key="maxSize" width="40" height="28"/>
                                     <button key="view" verticalHuggingPriority="750" id="sQO-Do-KTW">
-                                        <rect key="frame" x="14" y="14" width="40" height="28"/>
+                                        <rect key="frame" x="17" y="14" width="40" height="28"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                         <buttonCell key="cell" type="roundTextured" bezelStyle="texturedRounded" image="fastforward" imagePosition="overlaps" alignment="center" lineBreakMode="truncatingTail" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="Ylc-GF-mzQ">
                                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -250,6 +250,22 @@
                                         </buttonCell>
                                         <connections>
                                             <action selector="quickbackup:" target="Rv5-yv-lsc" id="YjF-xc-bN7"/>
+                                        </connections>
+                                    </button>
+                                </toolbarItem>
+                                <toolbarItem implicitItemIdentifier="8293EEA6-BE28-4C69-BA67-799461C73A1B" label="backupnow" paletteLabel="backupnow" image="NSTouchBarTextBoldTemplate" id="QmL-ZM-Xc4" userLabel="fastforward">
+                                    <nil key="toolTip"/>
+                                    <size key="minSize" width="40" height="25"/>
+                                    <size key="maxSize" width="40" height="28"/>
+                                    <button key="view" verticalHuggingPriority="750" id="RLS-j6-39I">
+                                        <rect key="frame" x="14" y="14" width="40" height="28"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                        <buttonCell key="cell" type="roundTextured" bezelStyle="texturedRounded" image="NSTouchBarTextBoldTemplate" imagePosition="overlaps" alignment="center" lineBreakMode="truncatingTail" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="FO7-1O-swm">
+                                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                            <font key="font" metaFont="system"/>
+                                        </buttonCell>
+                                        <connections>
+                                            <action selector="automaticbackup:" target="Rv5-yv-lsc" id="Wek-xe-vPf"/>
                                         </connections>
                                     </button>
                                 </toolbarItem>
@@ -322,6 +338,7 @@
                                 <toolbarItem reference="wiK-ZO-ZDm"/>
                                 <toolbarItem reference="g1a-zY-Mpq"/>
                                 <toolbarItem reference="zs6-ub-LOa"/>
+                                <toolbarItem reference="QmL-ZM-Xc4"/>
                                 <toolbarItem reference="v12-7x-cig"/>
                                 <toolbarItem reference="uoc-zJ-5pZ"/>
                                 <toolbarItem reference="OrH-Ty-gyv"/>
@@ -7525,6 +7542,7 @@ DQ
     </scenes>
     <resources>
         <image name="NSTouchBarBookmarksTemplate" width="22" height="30"/>
+        <image name="NSTouchBarTextBoldTemplate" width="12" height="30"/>
         <image name="abort" width="48" height="48"/>
         <image name="batch" width="48" height="48"/>
         <image name="complete" width="48" height="48"/>
