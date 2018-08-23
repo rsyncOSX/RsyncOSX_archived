@@ -453,12 +453,14 @@ class ViewControllertabMain: NSViewController, ReloadTable, Deselect, Coloractiv
                 self.pathtorsyncosxschedbutton.isEnabled = false
                 if running.menuappnoconfig == false {
                     self.menuappisrunning.image = #imageLiteral(resourceName: "green")
+                    // self.pathtorsyncosxschedbutton.image = #imageLiteral(resourceName: "menuapp-green")
                     self.info(num: 5)
                 }
                 return
             }
             self.pathtorsyncosxschedbutton.isEnabled = true
             self.menuappisrunning.image = #imageLiteral(resourceName: "red")
+            // self.pathtorsyncosxschedbutton.image = #imageLiteral(resourceName: "menuapp-red")
         })
     }
 
