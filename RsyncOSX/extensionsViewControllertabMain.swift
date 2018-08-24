@@ -10,6 +10,17 @@
 import Foundation
 import Cocoa
 
+// Used in mainTab to present info about process
+enum DisplayProcessInfo {
+    case estimating
+    case executing
+    case loggingrun
+    case changeprofile
+    case abort
+    case blank
+    case error
+}
+
 extension ViewControllertabMain: NSTableViewDataSource {
     // Delegate for size of table
     func numberOfRows(in tableView: NSTableView) -> Int {

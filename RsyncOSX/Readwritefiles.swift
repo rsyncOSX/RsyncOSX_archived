@@ -48,7 +48,7 @@ class Readwritefiles {
         let docupath = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true) as NSArray
         let docuDir = docupath.firstObject as? String ?? ""
         if ViewControllerReference.shared.macserialnumber == nil {
-            ViewControllerReference.shared.macserialnumber = Verifyrsyncpath().getMacSerialNumber() ?? ""
+            ViewControllerReference.shared.macserialnumber = Macserialnumber().getMacSerialNumber() ?? ""
         }
         let macserialnumber = ViewControllerReference.shared.macserialnumber
         let profilePath = Profiles()
