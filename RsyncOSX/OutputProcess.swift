@@ -51,7 +51,6 @@ final class OutputProcess {
         }
     }
 
-    // Add line from output
     func addlinefromoutput (_ str: String) {
         if self.startIndex == nil {
             self.startIndex = 0

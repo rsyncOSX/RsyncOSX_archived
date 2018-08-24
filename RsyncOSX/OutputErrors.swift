@@ -14,7 +14,6 @@ final class OutputErrors: OutputBatch {
         let currendate = Date()
         let dateformatter = Dateandtime().setDateformat()
         let date = dateformatter.string(from: currendate)
-        // Create array if == nil
         if self.output == nil {
             self.output = [String]()
         }

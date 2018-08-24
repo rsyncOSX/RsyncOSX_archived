@@ -57,10 +57,10 @@ final class SnapshotCurrentArguments: ProcessArguments {
         return self.command
     }
 
-    init (config: Configuration, remote: Bool) {
+    init (config: Configuration) {
         self.args = [String]()
         self.config = config
-        if remote {
+        if config.offsiteServer.isEmpty == false {
             self.remotearguments()
         } else {
             self.localarguments()

@@ -204,8 +204,6 @@ final class RsyncParametersVC {
 
     init(config: Configuration) {
         self.config = config
-        // Set string array for Comboboxes
-        self.comboBoxValues = nil
         self.comboBoxValues = [String]()
         for i in 0 ..< self.rsyncArguments.count {
             self.comboBoxValues!.append(self.rsyncArguments[i].0)
