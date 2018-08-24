@@ -42,7 +42,7 @@ class ViewControllertabMain: NSViewController, ReloadTable, Deselect, Coloractiv
     var singletask: SingleTask?
     // Reference to batch taskobject
     var batchtaskObject: BatchTask?
-    var tools: Verifyrsyncpath?
+    var verifyrsyncpath: Verifyrsyncpath?
     var tcpconnections: TCPconnections?
     // Delegate function getting batchTaskObject
     weak var batchObjectDelegate: GetNewBatchTask?
@@ -132,7 +132,7 @@ class ViewControllertabMain: NSViewController, ReloadTable, Deselect, Coloractiv
             return
         }
         guard ViewControllerReference.shared.norsync == false else {
-            self.tools!.noRsync()
+            self.verifyrsyncpath!.noRsync()
             return
         }
         guard self.configurations!.getConfigurations()[self.index!].task == "backup" ||
@@ -174,7 +174,7 @@ class ViewControllertabMain: NSViewController, ReloadTable, Deselect, Coloractiv
             return
         }
         guard ViewControllerReference.shared.norsync == false else {
-            self.tools!.noRsync()
+            self.verifyrsyncpath!.noRsync()
             return
         }
         guard self.configurations!.getConfigurations()[self.index!].task == "backup" ||
@@ -189,7 +189,7 @@ class ViewControllertabMain: NSViewController, ReloadTable, Deselect, Coloractiv
 
     @IBAction func totinfo(_ sender: NSButton) {
         guard ViewControllerReference.shared.norsync == false else {
-            self.tools!.noRsync()
+            self.verifyrsyncpath!.noRsync()
             return
         }
         self.processtermination = .remoteinfotask
@@ -200,7 +200,7 @@ class ViewControllertabMain: NSViewController, ReloadTable, Deselect, Coloractiv
 
     @IBAction func quickbackup(_ sender: NSButton) {
         guard ViewControllerReference.shared.norsync == false else {
-            self.tools!.noRsync()
+            self.verifyrsyncpath!.noRsync()
             return
         }
         self.openquickbackup()
@@ -322,7 +322,7 @@ class ViewControllertabMain: NSViewController, ReloadTable, Deselect, Coloractiv
     @IBAction func executetasknow(_ sender: NSButton) {
         self.processtermination = .singlequicktask
         guard ViewControllerReference.shared.norsync == false else {
-            self.tools!.noRsync()
+            self.verifyrsyncpath!.noRsync()
             return
         }
         guard self.scheduledJobInProgress == false else {
@@ -381,11 +381,11 @@ class ViewControllertabMain: NSViewController, ReloadTable, Deselect, Coloractiv
         if let index = self.index {
             guard index <= self.configurations!.getConfigurations().count else { return }
             if self.backupdryrun.state == .on {
-                self.rsyncCommand.stringValue = self.tools!.displayrsynccommand(index: index, display: .synchronize)
+                self.rsyncCommand.stringValue = self.verifyrsyncpath!.displayrsynccommand(index: index, display: .synchronize)
             } else if self.restoredryrun.state == .on {
-                self.rsyncCommand.stringValue = self.tools!.displayrsynccommand(index: index, display: .restore)
+                self.rsyncCommand.stringValue = self.verifyrsyncpath!.displayrsynccommand(index: index, display: .restore)
             } else {
-                self.rsyncCommand.stringValue = self.tools!.displayrsynccommand(index: index, display: .verify)
+                self.rsyncCommand.stringValue = self.verifyrsyncpath!.displayrsynccommand(index: index, display: .verify)
             }
         } else {
             self.rsyncCommand.stringValue = ""
@@ -430,7 +430,7 @@ class ViewControllertabMain: NSViewController, ReloadTable, Deselect, Coloractiv
         self.rsyncischanged()
         self.displayProfile()
         self.readyforexecution = true
-        if self.tools == nil { self.tools = Verifyrsyncpath()}
+        if self.verifyrsyncpath == nil { self.verifyrsyncpath = Verifyrsyncpath()}
         if self.tcpconnections == nil { self.tcpconnections = TCPconnections()}
         self.info(num: 0)
         self.delayWithSeconds(0.5) {
@@ -477,7 +477,7 @@ class ViewControllertabMain: NSViewController, ReloadTable, Deselect, Coloractiv
             return
         }
         guard ViewControllerReference.shared.norsync == false else {
-            self.tools!.noRsync()
+            self.verifyrsyncpath!.noRsync()
             return
         }
         guard self.index != nil else { return }
@@ -508,7 +508,7 @@ class ViewControllertabMain: NSViewController, ReloadTable, Deselect, Coloractiv
             return
         }
         guard ViewControllerReference.shared.norsync == false else {
-            self.tools!.noRsync()
+            self.verifyrsyncpath!.noRsync()
             return
         }
         self.singletask = nil

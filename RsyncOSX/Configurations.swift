@@ -503,11 +503,7 @@ class Configurations: ReloadTable, SetSchedules {
     private func updatelinkcurrent(index: Int, outputprocess: OutputProcess?) {
         let config = self.configurations![index]
         var args: SnapshotCurrentArguments?
-        if config.offsiteServer.isEmpty == false {
-            args = SnapshotCurrentArguments(config: config, remote: true)
-        } else {
-            args = SnapshotCurrentArguments(config: config, remote: false)
-        }
+        args = SnapshotCurrentArguments(config: config)
         let updatecurrent = SnapshotCurrent(command: args!.getCommand(), arguments: args!.getArguments())
         updatecurrent.executeProcess(outputprocess: outputprocess)
     }
