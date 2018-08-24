@@ -22,7 +22,6 @@ class OutputBatch {
 
     // Add line to output
     func addLine (str: String) {
-        // Create array if == nil
         if self.output == nil {
             self.output = [String]()
         }
