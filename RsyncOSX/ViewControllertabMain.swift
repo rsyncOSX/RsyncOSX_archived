@@ -394,8 +394,6 @@ class ViewControllertabMain: NSViewController, ReloadTable, Deselect, Coloractiv
     override func viewDidLoad() {
         super.viewDidLoad()
         self.sleepandwakenotifications()
-        // Do view setup here.
-        // Setting delegates and datasource
         self.mainTableView.delegate = self
         self.mainTableView.dataSource = self
         self.working.usesThreadedAnimation = true
@@ -480,9 +478,7 @@ class ViewControllertabMain: NSViewController, ReloadTable, Deselect, Coloractiv
             self.tools!.noRsync()
             return
         }
-        guard self.index != nil else {
-            return
-        }
+        guard self.index != nil else { return }
         guard self.configurations!.getConfigurations()[self.index!].task == "backup" ||
             self.configurations!.getConfigurations()[self.index!].task == "snapshot" ||
             self.configurations!.getConfigurations()[self.index!].task == "restore" else {
@@ -550,13 +546,9 @@ class ViewControllertabMain: NSViewController, ReloadTable, Deselect, Coloractiv
     func tableViewSelectionDidChange(_ notification: Notification) {
         guard self.scheduledJobInProgress == false else { return }
         // If change row during estimation
-        if self.process != nil {
-            self.abortOperations()
-        }
+        if self.process != nil { self.abortOperations() }
         // If change row after estimation, force new estimation
-        if self.readyforexecution == false {
-            self.abortOperations()
-        }
+        if self.readyforexecution == false { self.abortOperations() }
         self.readyforexecution = true
         self.backupdryrun.state = .on
         self.info(num: 0)
