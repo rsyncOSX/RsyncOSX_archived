@@ -99,6 +99,7 @@
 		E9609EF51F229F5900F5BFAA /* PersistentStorageConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9609EF41F229F5900F5BFAA /* PersistentStorageConfiguration.swift */; };
 		E9612CB31F9BCBD4003A3CAE /* ExecuteTaskDispatch.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9612CB21F9BCBD4003A3CAE /* ExecuteTaskDispatch.swift */; };
 		E9614AD61F231AFC00CAE21A /* Tools.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9614AD51F231AFC00CAE21A /* Tools.swift */; };
+		E96291B1213049D7005119A7 /* TCPconnections.swift in Sources */ = {isa = PBXBuildFile; fileRef = E96291B0213049D7005119A7 /* TCPconnections.swift */; };
 		E965E3072065658200EC4747 /* RcloneReference.swift in Sources */ = {isa = PBXBuildFile; fileRef = E965E3062065658200EC4747 /* RcloneReference.swift */; };
 		E965E3092065670B00EC4747 /* RcloneArgumentsOneConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = E965E3082065670B00EC4747 /* RcloneArgumentsOneConfiguration.swift */; };
 		E965E30B206567AC00EC4747 /* RcloneRsyncProcessArguments.swift in Sources */ = {isa = PBXBuildFile; fileRef = E965E30A206567AC00EC4747 /* RcloneRsyncProcessArguments.swift */; };
@@ -241,6 +242,7 @@
 		E9609EF41F229F5900F5BFAA /* PersistentStorageConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistentStorageConfiguration.swift; sourceTree = "<group>"; };
 		E9612CB21F9BCBD4003A3CAE /* ExecuteTaskDispatch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExecuteTaskDispatch.swift; sourceTree = "<group>"; };
 		E9614AD51F231AFC00CAE21A /* Tools.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tools.swift; sourceTree = "<group>"; };
+		E96291B0213049D7005119A7 /* TCPconnections.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TCPconnections.swift; sourceTree = "<group>"; };
 		E965E3062065658200EC4747 /* RcloneReference.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RcloneReference.swift; sourceTree = "<group>"; };
 		E965E3082065670B00EC4747 /* RcloneArgumentsOneConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RcloneArgumentsOneConfiguration.swift; sourceTree = "<group>"; };
 		E965E30A206567AC00EC4747 /* RcloneRsyncProcessArguments.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RcloneRsyncProcessArguments.swift; sourceTree = "<group>"; };
@@ -462,6 +464,7 @@
 				E9614AD51F231AFC00CAE21A /* Tools.swift */,
 				E9A63063202B425D00F1FFF1 /* Running.swift */,
 				E92A623A203D7B1C000B9300 /* Notifications.swift */,
+				E96291B0213049D7005119A7 /* TCPconnections.swift */,
 			);
 			name = Utils;
 			sourceTree = "<group>";
@@ -871,6 +874,7 @@
 				A0400C851D794EF1008A3949 /* ViewControllerNewVersion.swift in Sources */,
 				E98FA89E20654D02007F3ED1 /* RclonePersistentStorageAPI.swift in Sources */,
 				E957B1121F5F17220099947A /* ViewControllerReference.swift in Sources */,
+				E96291B1213049D7005119A7 /* TCPconnections.swift in Sources */,
 				A0F3F9251DC65CE9001D305F /* ViewControllerScheduledBackupInWork.swift in Sources */,
 				A0AA33811D6F926A00DF4C77 /* ViewControllerBatch.swift in Sources */,
 				E9F068EC1F27B7FB00DDF1A1 /* SingleTask.swift in Sources */,

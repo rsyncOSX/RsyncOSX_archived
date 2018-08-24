@@ -40,11 +40,6 @@ enum DisplayProcessInfo {
     case error
 }
 
-// Protocol for doing a refresh in main view after testing for connectivity
-protocol Connections: class {
-    func displayConnections()
-}
-
 protocol Setinfoaboutrsync: class {
     func setinfoaboutrsync()
 }
