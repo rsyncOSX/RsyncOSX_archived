@@ -37,7 +37,7 @@ class ViewControllerScheduledBackupinWork: NSViewController, SetConfigurations, 
 
     private func setInfo() {
         if let dict: NSDictionary = ViewControllerReference.shared.scheduledTask {
-            let dateformatter = Tools().setDateformat()
+            let dateformatter = Dateandtime().setDateformat()
             self.startDate.stringValue = dateformatter.string(from: (dict.value(forKey: "start") as? Date)!)
             self.schedule.stringValue = (dict.value(forKey: "schedule") as? String)!
             let hiddenID = (dict.value(forKey: "hiddenID") as? Int)!

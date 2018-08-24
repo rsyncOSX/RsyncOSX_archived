@@ -24,7 +24,7 @@ class ViewControllertabSchedule: NSViewController, SetConfigurations, SetSchedul
     private var index: Int?
     private var hiddenID: Int?
     private var schedulessorted: ScheduleSortedAndExpand?
-    var tools: Tools?
+    var tools: Verifyrsyncpath?
     var schedule: Scheduletype?
     private var preselectrow: Bool = false
 
@@ -144,7 +144,7 @@ class ViewControllertabSchedule: NSViewController, SetConfigurations, SetSchedul
         self.mainTableView.dataSource = self
         self.mainTableView.doubleAction = #selector(ViewControllertabMain.tableViewDoubleClick(sender:))
         ViewControllerReference.shared.setvcref(viewcontroller: .vctabschedule, nsviewcontroller: self)
-        self.tools = Tools()
+        self.tools = Verifyrsyncpath()
     }
 
     override func viewDidAppear() {

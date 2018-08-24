@@ -24,7 +24,7 @@ class ViewControllerScheduleDetails: NSViewController, SetConfigurations, SetSch
 
     var hiddendID: Int?
     var data: [NSMutableDictionary]?
-    var tools: Tools?
+    var dateandtime: Dateandtime?
 
     @IBOutlet weak var scheduletable: NSTableView!
 
@@ -101,7 +101,7 @@ class ViewControllerScheduleDetails: NSViewController, SetConfigurations, SetSch
         self.localCatalog.stringValue = self.configurations!.getResourceConfiguration(self.hiddendID!, resource: .localCatalog)
         self.remoteCatalog.stringValue = self.configurations!.getResourceConfiguration(self.hiddendID!, resource: .remoteCatalog)
         self.offsiteServer.stringValue = self.configurations!.getResourceConfiguration(self.hiddendID!, resource: .offsiteServer)
-        if self.tools == nil { self.tools = Tools()}
+        if self.dateandtime == nil { self.dateandtime = Dateandtime()}
     }
 }
 
@@ -127,7 +127,7 @@ extension ViewControllerScheduleDetails: NSTableViewDelegate {
             if  object.value(forKey: "schedule") as? String == "once" ||
                 object.value(forKey: "schedule") as? String == "daily" ||
                 object.value(forKey: "schedule") as? String == "weekly" {
-                let dateformatter = self.tools!.setDateformat()
+                let dateformatter = self.dateandtime!.setDateformat()
                 let dateStop: Date = dateformatter.date(from: (object.value(forKey: "dateStop") as? String)!)!
                 if dateStop.timeIntervalSinceNow > 0 {
                     active = true

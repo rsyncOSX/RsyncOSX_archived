@@ -75,6 +75,9 @@
 		E9231AFB1F6E3D270055000C /* NewConfigurations.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9231AFA1F6E3D260055000C /* NewConfigurations.swift */; };
 		E9234FFB1EB068AE00A4C550 /* Files.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9234FFA1EB068AE00A4C550 /* Files.swift */; };
 		E9235E7A201BC27F0060E3B2 /* SnapshotDeleteCatalogsArguments.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9235E79201BC27F0060E3B2 /* SnapshotDeleteCatalogsArguments.swift */; };
+		E92755A221304F0000B1F781 /* Macserialnumber.swift in Sources */ = {isa = PBXBuildFile; fileRef = E92755A121304F0000B1F781 /* Macserialnumber.swift */; };
+		E92755A42130506000B1F781 /* Dateandtime.swift in Sources */ = {isa = PBXBuildFile; fileRef = E92755A32130506000B1F781 /* Dateandtime.swift */; };
+		E92755A62130539400B1F781 /* Dispatchqueues.swift in Sources */ = {isa = PBXBuildFile; fileRef = E92755A52130539400B1F781 /* Dispatchqueues.swift */; };
 		E92A623B203D7B1C000B9300 /* Notifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = E92A623A203D7B1C000B9300 /* Notifications.swift */; };
 		E92D03192010CB2D00A92813 /* SnapshotCreateCatalog.swift in Sources */ = {isa = PBXBuildFile; fileRef = E92D03182010CB2D00A92813 /* SnapshotCreateCatalog.swift */; };
 		E932B2D52077B1E80057B8AE /* Combined.swift in Sources */ = {isa = PBXBuildFile; fileRef = E932B2D42077B1E80057B8AE /* Combined.swift */; };
@@ -98,7 +101,8 @@
 		E96059AA2109B63D00DFA08E /* ViewControllerVerify.swift in Sources */ = {isa = PBXBuildFile; fileRef = E96059A92109B63D00DFA08E /* ViewControllerVerify.swift */; };
 		E9609EF51F229F5900F5BFAA /* PersistentStorageConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9609EF41F229F5900F5BFAA /* PersistentStorageConfiguration.swift */; };
 		E9612CB31F9BCBD4003A3CAE /* ExecuteTaskDispatch.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9612CB21F9BCBD4003A3CAE /* ExecuteTaskDispatch.swift */; };
-		E9614AD61F231AFC00CAE21A /* Tools.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9614AD51F231AFC00CAE21A /* Tools.swift */; };
+		E9614AD61F231AFC00CAE21A /* Verifyrsyncpath.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9614AD51F231AFC00CAE21A /* Verifyrsyncpath.swift */; };
+		E96291B1213049D7005119A7 /* TCPconnections.swift in Sources */ = {isa = PBXBuildFile; fileRef = E96291B0213049D7005119A7 /* TCPconnections.swift */; };
 		E965E3072065658200EC4747 /* RcloneReference.swift in Sources */ = {isa = PBXBuildFile; fileRef = E965E3062065658200EC4747 /* RcloneReference.swift */; };
 		E965E3092065670B00EC4747 /* RcloneArgumentsOneConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = E965E3082065670B00EC4747 /* RcloneArgumentsOneConfiguration.swift */; };
 		E965E30B206567AC00EC4747 /* RcloneRsyncProcessArguments.swift in Sources */ = {isa = PBXBuildFile; fileRef = E965E30A206567AC00EC4747 /* RcloneRsyncProcessArguments.swift */; };
@@ -217,6 +221,9 @@
 		E9231AFA1F6E3D260055000C /* NewConfigurations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewConfigurations.swift; sourceTree = "<group>"; };
 		E9234FFA1EB068AE00A4C550 /* Files.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Files.swift; sourceTree = "<group>"; };
 		E9235E79201BC27F0060E3B2 /* SnapshotDeleteCatalogsArguments.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnapshotDeleteCatalogsArguments.swift; sourceTree = "<group>"; };
+		E92755A121304F0000B1F781 /* Macserialnumber.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Macserialnumber.swift; sourceTree = "<group>"; };
+		E92755A32130506000B1F781 /* Dateandtime.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dateandtime.swift; sourceTree = "<group>"; };
+		E92755A52130539400B1F781 /* Dispatchqueues.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dispatchqueues.swift; sourceTree = "<group>"; };
 		E92A623A203D7B1C000B9300 /* Notifications.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Notifications.swift; sourceTree = "<group>"; };
 		E92D03182010CB2D00A92813 /* SnapshotCreateCatalog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnapshotCreateCatalog.swift; sourceTree = "<group>"; };
 		E932B2D42077B1E80057B8AE /* Combined.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Combined.swift; sourceTree = "<group>"; };
@@ -240,7 +247,8 @@
 		E96059A92109B63D00DFA08E /* ViewControllerVerify.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerVerify.swift; sourceTree = "<group>"; };
 		E9609EF41F229F5900F5BFAA /* PersistentStorageConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistentStorageConfiguration.swift; sourceTree = "<group>"; };
 		E9612CB21F9BCBD4003A3CAE /* ExecuteTaskDispatch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExecuteTaskDispatch.swift; sourceTree = "<group>"; };
-		E9614AD51F231AFC00CAE21A /* Tools.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tools.swift; sourceTree = "<group>"; };
+		E9614AD51F231AFC00CAE21A /* Verifyrsyncpath.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Verifyrsyncpath.swift; sourceTree = "<group>"; };
+		E96291B0213049D7005119A7 /* TCPconnections.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TCPconnections.swift; sourceTree = "<group>"; };
 		E965E3062065658200EC4747 /* RcloneReference.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RcloneReference.swift; sourceTree = "<group>"; };
 		E965E3082065670B00EC4747 /* RcloneArgumentsOneConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RcloneArgumentsOneConfiguration.swift; sourceTree = "<group>"; };
 		E965E30A206567AC00EC4747 /* RcloneRsyncProcessArguments.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RcloneRsyncProcessArguments.swift; sourceTree = "<group>"; };
@@ -459,9 +467,13 @@
 				A0400C861D794FF8008A3949 /* Checkfornewversion.swift */,
 				A0DD27071D92DDF400D56899 /* FileDialog.swift */,
 				E96CA1FD1E094C3000CD1D03 /* Resources.swift */,
-				E9614AD51F231AFC00CAE21A /* Tools.swift */,
+				E9614AD51F231AFC00CAE21A /* Verifyrsyncpath.swift */,
 				E9A63063202B425D00F1FFF1 /* Running.swift */,
 				E92A623A203D7B1C000B9300 /* Notifications.swift */,
+				E96291B0213049D7005119A7 /* TCPconnections.swift */,
+				E92755A121304F0000B1F781 /* Macserialnumber.swift */,
+				E92755A32130506000B1F781 /* Dateandtime.swift */,
+				E92755A52130539400B1F781 /* Dispatchqueues.swift */,
 			);
 			name = Utils;
 			sourceTree = "<group>";
@@ -819,9 +831,10 @@
 				E9A8D81C1ED20AEB009648DE /* GetRemoteFileListingsArguments.swift in Sources */,
 				E9A63064202B425D00F1FFF1 /* Running.swift in Sources */,
 				E9F941651FC5FCC3005F2439 /* Logging.swift in Sources */,
-				E9614AD61F231AFC00CAE21A /* Tools.swift in Sources */,
+				E9614AD61F231AFC00CAE21A /* Verifyrsyncpath.swift in Sources */,
 				E97E3BA71F6256DB00411D0E /* Configurations.swift in Sources */,
 				E9764F60204BEE970018C0D7 /* AllConfigurations.swift in Sources */,
+				E92755A62130539400B1F781 /* Dispatchqueues.swift in Sources */,
 				A0EE98991D8948310034F1A4 /* ViewControllerInformationCopyFiles.swift in Sources */,
 				A04492B71D658F2100B3CE17 /* PersistentStorageAPI.swift in Sources */,
 				E9612CB31F9BCBD4003A3CAE /* ExecuteTaskDispatch.swift in Sources */,
@@ -871,6 +884,7 @@
 				A0400C851D794EF1008A3949 /* ViewControllerNewVersion.swift in Sources */,
 				E98FA89E20654D02007F3ED1 /* RclonePersistentStorageAPI.swift in Sources */,
 				E957B1121F5F17220099947A /* ViewControllerReference.swift in Sources */,
+				E96291B1213049D7005119A7 /* TCPconnections.swift in Sources */,
 				A0F3F9251DC65CE9001D305F /* ViewControllerScheduledBackupInWork.swift in Sources */,
 				A0AA33811D6F926A00DF4C77 /* ViewControllerBatch.swift in Sources */,
 				E9F068EC1F27B7FB00DDF1A1 /* SingleTask.swift in Sources */,
@@ -879,6 +893,7 @@
 				A0430ADA1DAFFD3C00BBC106 /* SingleTaskWorkQueu.swift in Sources */,
 				E9D0A0121F9CBDFE0050A868 /* OperationFactory.swift in Sources */,
 				E92A623B203D7B1C000B9300 /* Notifications.swift in Sources */,
+				E92755A42130506000B1F781 /* Dateandtime.swift in Sources */,
 				A004D81A1D9586580016914F /* ViewControllerLoggData.swift in Sources */,
 				E9F4EBB81EB4C32D006EEEF1 /* CommandSsh.swift in Sources */,
 				A04492BB1D658F2100B3CE17 /* ytcpsocket.swift in Sources */,
@@ -899,6 +914,7 @@
 				E96059AA2109B63D00DFA08E /* ViewControllerVerify.swift in Sources */,
 				E9CF14161E729636008E8A15 /* CommandCopyFiles.swift in Sources */,
 				A0FAF5CF1DDF2E5F0009FE7A /* ViewControllerAbout.swift in Sources */,
+				E92755A221304F0000B1F781 /* Macserialnumber.swift in Sources */,
 				E98FA8992065464B007F3ED1 /* RcloneConfiguration.swift in Sources */,
 				E905EDB41FED05B10044234E /* QuickBackup.swift in Sources */,
 				A017E2A01D7D3242003016F5 /* ViewControllerEdit.swift in Sources */,

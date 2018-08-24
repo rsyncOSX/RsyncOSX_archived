@@ -42,7 +42,8 @@ class ViewControllertabMain: NSViewController, ReloadTable, Deselect, Coloractiv
     var singletask: SingleTask?
     // Reference to batch taskobject
     var batchtaskObject: BatchTask?
-    var tools: Tools?
+    var tools: Verifyrsyncpath?
+    var tcpconnections: TCPconnections?
     // Delegate function getting batchTaskObject
     weak var batchObjectDelegate: GetNewBatchTask?
     // Main tableview
@@ -263,7 +264,7 @@ class ViewControllertabMain: NSViewController, ReloadTable, Deselect, Coloractiv
         self.TCPButton.isEnabled = false
         self.loadProfileMenu = false
         self.displayProfile()
-        self.tools!.testAllremoteserverConnections()
+        _ = TCPconnections().testAllremoteserverConnections()
     }
 
     // Presenting Information from Rsync
@@ -353,7 +354,7 @@ class ViewControllertabMain: NSViewController, ReloadTable, Deselect, Coloractiv
     func executetasknow() {
         self.processtermination = .singlequicktask
         let now: Date = Date()
-        let dateformatter = Tools().setDateformat()
+        let dateformatter = Dateandtime().setDateformat()
         let task: NSDictionary = [
             "start": now,
             "hiddenID": self.hiddenID!,
@@ -394,8 +395,6 @@ class ViewControllertabMain: NSViewController, ReloadTable, Deselect, Coloractiv
     override func viewDidLoad() {
         super.viewDidLoad()
         self.sleepandwakenotifications()
-        // Do view setup here.
-        // Setting delegates and datasource
         self.mainTableView.delegate = self
         self.mainTableView.dataSource = self
         self.working.usesThreadedAnimation = true
@@ -431,7 +430,8 @@ class ViewControllertabMain: NSViewController, ReloadTable, Deselect, Coloractiv
         self.rsyncischanged()
         self.displayProfile()
         self.readyforexecution = true
-        if self.tools == nil { self.tools = Tools()}
+        if self.tools == nil { self.tools = Verifyrsyncpath()}
+        if self.tcpconnections == nil { self.tcpconnections = TCPconnections()}
         self.info(num: 0)
         self.delayWithSeconds(0.5) {
             self.enablemenuappbutton()
@@ -480,9 +480,7 @@ class ViewControllertabMain: NSViewController, ReloadTable, Deselect, Coloractiv
             self.tools!.noRsync()
             return
         }
-        guard self.index != nil else {
-            return
-        }
+        guard self.index != nil else { return }
         guard self.configurations!.getConfigurations()[self.index!].task == "backup" ||
             self.configurations!.getConfigurations()[self.index!].task == "snapshot" ||
             self.configurations!.getConfigurations()[self.index!].task == "restore" else {
@@ -550,13 +548,9 @@ class ViewControllertabMain: NSViewController, ReloadTable, Deselect, Coloractiv
     func tableViewSelectionDidChange(_ notification: Notification) {
         guard self.scheduledJobInProgress == false else { return }
         // If change row during estimation
-        if self.process != nil {
-            self.abortOperations()
-        }
+        if self.process != nil { self.abortOperations() }
         // If change row after estimation, force new estimation
-        if self.readyforexecution == false {
-            self.abortOperations()
-        }
+        if self.readyforexecution == false { self.abortOperations() }
         self.readyforexecution = true
         self.backupdryrun.state = .on
         self.info(num: 0)

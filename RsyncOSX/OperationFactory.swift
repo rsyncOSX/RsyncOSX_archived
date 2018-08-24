@@ -69,7 +69,7 @@ extension SecondsBeforeStart {
         let scheduledJobs = schedulesDelegate?.getsortedanexpandedObject()
         if let dict = scheduledJobs?.firstscheduledtask() {
             let dateStart: Date = (dict.value(forKey: "start") as? Date)!
-            secondsToWait = Tools().timeDoubleSeconds(dateStart, enddate: nil)
+            secondsToWait = Dateandtime().timeDoubleSeconds(dateStart, enddate: nil)
         }
         return secondsToWait ?? 0
     }
