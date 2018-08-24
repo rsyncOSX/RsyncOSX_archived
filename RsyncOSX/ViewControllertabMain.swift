@@ -354,7 +354,7 @@ class ViewControllertabMain: NSViewController, ReloadTable, Deselect, Coloractiv
     func executetasknow() {
         self.processtermination = .singlequicktask
         let now: Date = Date()
-        let dateformatter = Verifyrsyncpath().setDateformat()
+        let dateformatter = Dateandtime().setDateformat()
         let task: NSDictionary = [
             "start": now,
             "hiddenID": self.hiddenID!,

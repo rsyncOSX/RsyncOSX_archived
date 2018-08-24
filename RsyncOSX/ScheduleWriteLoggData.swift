@@ -53,7 +53,7 @@ class ScheduleWriteLoggData: SetConfigurations, ReloadTable, Deselect {
         if ViewControllerReference.shared.detailedlogging {
             // Set the current date
             let currendate = Date()
-            let dateformatter = Verifyrsyncpath().setDateformat()
+            let dateformatter = Dateandtime().setDateformat()
             let date = dateformatter.string(from: currendate)
             let config = self.getconfig(hiddenID: hiddenID)
             var resultannotaded: String?

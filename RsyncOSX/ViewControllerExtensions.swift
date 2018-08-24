@@ -438,7 +438,7 @@ protocol Sorting {
 extension Sorting {
     func sortbyrundate(notsorted: [NSMutableDictionary]?, sortdirection: Bool) -> [NSMutableDictionary]? {
         guard notsorted != nil else { return nil }
-        let dateformatter = Verifyrsyncpath().setDateformat()
+        let dateformatter = Dateandtime().setDateformat()
         let sorted = notsorted!.sorted { (dict1, dict2) -> Bool in
             let date1 = (dateformatter.date(from: (dict1.value(forKey: "dateExecuted") as? String) ?? "") ?? dateformatter.date(from: "01 Jan 1900 00:00")!)
             let date2 = (dateformatter.date(from: (dict2.value(forKey: "dateExecuted") as? String) ?? "") ?? dateformatter.date(from: "01 Jan 1900 00:00")!)

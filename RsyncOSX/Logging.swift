@@ -37,7 +37,7 @@ class Logging: Reportfileerror {
 
     private func logg() {
         let currendate = Date()
-        let dateformatter = Verifyrsyncpath().setDateformat()
+        let dateformatter = Dateandtime().setDateformat()
         let date = dateformatter.string(from: currendate)
         if ViewControllerReference.shared.fulllogging {
             self.read()

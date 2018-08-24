@@ -55,7 +55,7 @@ class Schedules: ScheduleWriteLoggData {
     /// - parameter stop: stop date and time
     func addschedule (_ hiddenID: Int, schedule: Scheduletype, start: Date) {
         var stop: Date?
-        let dateformatter = Verifyrsyncpath().setDateformat()
+        let dateformatter = Dateandtime().setDateformat()
         if schedule == .once {
             stop = start
         } else {
@@ -130,7 +130,7 @@ class Schedules: ScheduleWriteLoggData {
             }
             // Sorting schedule after dateStart, last startdate on top
             data.sort { (sched1, sched2) -> Bool in
-                let dateformatter = Verifyrsyncpath().setDateformat()
+                let dateformatter = Dateandtime().setDateformat()
                 if dateformatter.date(from: (sched1.value(forKey: "dateStart") as? String)!)! >
                     dateformatter.date(from: (sched2.value(forKey: "dateStart") as? String)!)! {
                     return true

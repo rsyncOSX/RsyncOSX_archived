@@ -12,7 +12,7 @@ final class OutputErrors: OutputBatch {
 
     override func addLine(str: String) {
         let currendate = Date()
-        let dateformatter = Verifyrsyncpath().setDateformat()
+        let dateformatter = Dateandtime().setDateformat()
         let date = dateformatter.string(from: currendate)
         // Create array if == nil
         if self.output == nil {
