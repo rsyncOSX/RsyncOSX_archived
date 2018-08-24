@@ -48,7 +48,7 @@ class ViewControllerVerify: NSViewController, SetConfigurations, GetIndex {
 
     @IBAction func verify(_ sender: NSButton) {
         if self.index != nil {
-            self.rsynccommanddisplay.stringValue = Tools().displayrsynccommand(index: self.index!, display: .verify)
+            self.rsynccommanddisplay.stringValue = Verifyrsyncpath().displayrsynccommand(index: self.index!, display: .verify)
             self.verifyradiobutton.state = .on
             self.changedradiobutton.state = .off
             self.gotit.stringValue = "Verifying, please wait..."
@@ -65,7 +65,7 @@ class ViewControllerVerify: NSViewController, SetConfigurations, GetIndex {
 
     @IBAction func changed(_ sender: NSButton) {
         if self.index != nil {
-            self.rsynccommanddisplay.stringValue = Tools().displayrsynccommand(index: self.index!, display: .restore)
+            self.rsynccommanddisplay.stringValue = Verifyrsyncpath().displayrsynccommand(index: self.index!, display: .restore)
             self.changedradiobutton.state = .on
             self.verifyradiobutton.state = .off
             self.gotit.stringValue = "Computing changed, please wait..."
@@ -91,9 +91,9 @@ class ViewControllerVerify: NSViewController, SetConfigurations, GetIndex {
             return
         }
         if self.verifyradiobutton.state == .on {
-            self.rsynccommanddisplay.stringValue = Tools().displayrsynccommand(index: self.index!, display: .verify)
+            self.rsynccommanddisplay.stringValue = Verifyrsyncpath().displayrsynccommand(index: self.index!, display: .verify)
         } else {
-            self.rsynccommanddisplay.stringValue = Tools().displayrsynccommand(index: self.index!, display: .restore)
+            self.rsynccommanddisplay.stringValue = Verifyrsyncpath().displayrsynccommand(index: self.index!, display: .restore)
         }
     }
 

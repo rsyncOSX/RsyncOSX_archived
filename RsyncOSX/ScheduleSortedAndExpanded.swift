@@ -18,7 +18,7 @@ class ScheduleSortedAndExpand: SetConfigurations, SetSchedules {
     private var expandedData = [NSDictionary]()
     private var sortedschedules: [NSDictionary]?
     private var scheduleInProgress: Bool = false
-    private var tools: Tools?
+    private var tools: Verifyrsyncpath?
 
     // First job to execute. Job is first element in
     func firstscheduledtask() -> NSDictionary? {
@@ -106,7 +106,7 @@ class ScheduleSortedAndExpand: SetConfigurations, SetSchedules {
 
     // Expanding and sorting Scheduledata
     private func sortAndExpandScheduleTasks() {
-        let dateformatter = Tools().setDateformat()
+        let dateformatter = Verifyrsyncpath().setDateformat()
         for i in 0 ..< self.schedulesNSDictionary!.count {
             let dict = self.schedulesNSDictionary![i]
             let dateStop: Date = dateformatter.date(from: (dict.value(forKey: "dateStop") as? String)!)!
@@ -210,7 +210,7 @@ class ScheduleSortedAndExpand: SetConfigurations, SetSchedules {
             self.setallscheduledtasksNSDictionary()
             self.sortAndExpandScheduleTasks()
         }
-        self.tools = Tools()
+        self.tools = Verifyrsyncpath()
     }
 
     init (allschedules: Allschedules?) {
@@ -218,6 +218,6 @@ class ScheduleSortedAndExpand: SetConfigurations, SetSchedules {
         self.scheduleConfiguration = allschedules!.getallschedules()
         self.setallscheduledtasksNSDictionary()
         self.sortAndExpandScheduleTasks()
-        self.tools = Tools()
+        self.tools = Verifyrsyncpath()
     }
 }

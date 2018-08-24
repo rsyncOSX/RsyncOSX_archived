@@ -62,7 +62,7 @@ class QuickBackup: SetConfigurations {
 
     private func executetasknow(hiddenID: Int) {
         let now: Date = Date()
-        let dateformatter = Tools().setDateformat()
+        let dateformatter = Verifyrsyncpath().setDateformat()
         let task: NSDictionary = [
             "start": now,
             "hiddenID": hiddenID,

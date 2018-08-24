@@ -224,7 +224,7 @@ extension ViewControllertabMain: Connections {
             return
         }
         self.loadProfileMenu = true
-        self.serverOff = self.tools!.gettestAllremoteserverConnections()
+        self.serverOff = self.tcpconnections!.gettestAllremoteserverConnections()
         globalMainQueue.async(execute: { () -> Void in
             self.mainTableView.reloadData()
         })

@@ -24,7 +24,7 @@ class ViewControllerScheduleDetails: NSViewController, SetConfigurations, SetSch
 
     var hiddendID: Int?
     var data: [NSMutableDictionary]?
-    var tools: Tools?
+    var tools: Verifyrsyncpath?
 
     @IBOutlet weak var scheduletable: NSTableView!
 
@@ -101,7 +101,7 @@ class ViewControllerScheduleDetails: NSViewController, SetConfigurations, SetSch
         self.localCatalog.stringValue = self.configurations!.getResourceConfiguration(self.hiddendID!, resource: .localCatalog)
         self.remoteCatalog.stringValue = self.configurations!.getResourceConfiguration(self.hiddendID!, resource: .remoteCatalog)
         self.offsiteServer.stringValue = self.configurations!.getResourceConfiguration(self.hiddendID!, resource: .offsiteServer)
-        if self.tools == nil { self.tools = Tools()}
+        if self.tools == nil { self.tools = Verifyrsyncpath()}
     }
 }
 

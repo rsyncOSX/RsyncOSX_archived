@@ -42,7 +42,8 @@ class ViewControllertabMain: NSViewController, ReloadTable, Deselect, Coloractiv
     var singletask: SingleTask?
     // Reference to batch taskobject
     var batchtaskObject: BatchTask?
-    var tools: Tools?
+    var tools: Verifyrsyncpath?
+    var tcpconnections: TCPconnections?
     // Delegate function getting batchTaskObject
     weak var batchObjectDelegate: GetNewBatchTask?
     // Main tableview
@@ -263,7 +264,7 @@ class ViewControllertabMain: NSViewController, ReloadTable, Deselect, Coloractiv
         self.TCPButton.isEnabled = false
         self.loadProfileMenu = false
         self.displayProfile()
-        self.tools!.testAllremoteserverConnections()
+        _ = TCPconnections().testAllremoteserverConnections()
     }
 
     // Presenting Information from Rsync
@@ -353,7 +354,7 @@ class ViewControllertabMain: NSViewController, ReloadTable, Deselect, Coloractiv
     func executetasknow() {
         self.processtermination = .singlequicktask
         let now: Date = Date()
-        let dateformatter = Tools().setDateformat()
+        let dateformatter = Verifyrsyncpath().setDateformat()
         let task: NSDictionary = [
             "start": now,
             "hiddenID": self.hiddenID!,
@@ -429,7 +430,8 @@ class ViewControllertabMain: NSViewController, ReloadTable, Deselect, Coloractiv
         self.rsyncischanged()
         self.displayProfile()
         self.readyforexecution = true
-        if self.tools == nil { self.tools = Tools()}
+        if self.tools == nil { self.tools = Verifyrsyncpath()}
+        if self.tcpconnections == nil { self.tcpconnections = TCPconnections()}
         self.info(num: 0)
         self.delayWithSeconds(0.5) {
             self.enablemenuappbutton()

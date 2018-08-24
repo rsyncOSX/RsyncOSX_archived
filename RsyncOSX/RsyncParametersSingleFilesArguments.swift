@@ -61,7 +61,7 @@ final class RsyncParametersSingleFilesArguments: ProcessArguments {
             }
             self.args!.append(local)
             // Set command to Process /usr/bin/rysnc or /usr/local/bin/rsync or other set by userconfiguration
-            self.command = Tools().rsyncpath()
+            self.command = Verifyrsyncpath().rsyncpath()
             // Prepare the display version of arguments
             self.argDisplay = self.command! + " "
             for i in 0 ..< self.args!.count {

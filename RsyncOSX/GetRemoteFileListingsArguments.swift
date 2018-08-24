@@ -67,7 +67,7 @@ final class GetRemoteFileListingsArguments: ProcessArguments {
 
     init(config: Configuration, recursive: Bool) {
         self.config = config
-        let tools = Tools()
+        let tools = Verifyrsyncpath()
         self.command = tools.rsyncpath()
         self.args = [String]()
         if config.offsiteServer.isEmpty == false {
