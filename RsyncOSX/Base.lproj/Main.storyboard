@@ -205,8 +205,7 @@
                             <allowedToolbarItems>
                                 <toolbarItem implicitItemIdentifier="NSToolbarSpaceItem" id="wiK-ZO-ZDm"/>
                                 <toolbarItem implicitItemIdentifier="NSToolbarFlexibleSpaceItem" id="zs6-ub-LOa"/>
-                                <toolbarItem implicitItemIdentifier="B5E3574F-49FC-4B87-AB6C-E16A6A0B55CC" label="abort" paletteLabel="abort" image="abort" id="7w4-6r-ai5">
-                                    <nil key="toolTip"/>
+                                <toolbarItem implicitItemIdentifier="B5E3574F-49FC-4B87-AB6C-E16A6A0B55CC" label="abort" paletteLabel="abort" toolTip="Abort task..." image="abort" id="7w4-6r-ai5">
                                     <size key="minSize" width="40" height="22"/>
                                     <size key="maxSize" width="40" height="28"/>
                                     <button key="view" verticalHuggingPriority="750" id="E8b-f3-qjc">
@@ -221,8 +220,7 @@
                                         </connections>
                                     </button>
                                 </toolbarItem>
-                                <toolbarItem implicitItemIdentifier="F434BB7C-3A58-4AC1-A72A-16FBB57E8A71" label="batch" paletteLabel="batch" image="batch" id="OrH-Ty-gyv">
-                                    <nil key="toolTip"/>
+                                <toolbarItem implicitItemIdentifier="F434BB7C-3A58-4AC1-A72A-16FBB57E8A71" label="batch" paletteLabel="batch" toolTip="Execute tasks marked for batch..." image="batch" id="OrH-Ty-gyv">
                                     <size key="minSize" width="40" height="25"/>
                                     <size key="maxSize" width="40" height="28"/>
                                     <button key="view" verticalHuggingPriority="750" id="WXA-Ge-ie7">
@@ -237,8 +235,7 @@
                                         </connections>
                                     </button>
                                 </toolbarItem>
-                                <toolbarItem implicitItemIdentifier="8B66843A-F5C9-4F8B-82C4-CB9C5E766CD3" label="quickbackup" paletteLabel="quickbackup" image="fastforward" id="uoc-zJ-5pZ" userLabel="fastforward">
-                                    <nil key="toolTip"/>
+                                <toolbarItem implicitItemIdentifier="8B66843A-F5C9-4F8B-82C4-CB9C5E766CD3" label="quickbackup" paletteLabel="quickbackup" toolTip="Execute quickbackup for all tasks..." image="fastforward" id="uoc-zJ-5pZ" userLabel="fastforward">
                                     <size key="minSize" width="40" height="25"/>
                                     <size key="maxSize" width="40" height="28"/>
                                     <button key="view" verticalHuggingPriority="750" id="sQO-Do-KTW">
@@ -253,8 +250,7 @@
                                         </connections>
                                     </button>
                                 </toolbarItem>
-                                <toolbarItem implicitItemIdentifier="8293EEA6-BE28-4C69-BA67-799461C73A1B" label="backupnow" paletteLabel="backupnow" id="QmL-ZM-Xc4" userLabel="fastforward">
-                                    <nil key="toolTip"/>
+                                <toolbarItem implicitItemIdentifier="8293EEA6-BE28-4C69-BA67-799461C73A1B" label="backupnow" paletteLabel="backupnow" toolTip="Execute all tasks now..." id="QmL-ZM-Xc4" userLabel="fastforward">
                                     <size key="minSize" width="40" height="25"/>
                                     <size key="maxSize" width="40" height="28"/>
                                     <button key="view" verticalHuggingPriority="750" id="RLS-j6-39I">
@@ -269,8 +265,7 @@
                                         </connections>
                                     </button>
                                 </toolbarItem>
-                                <toolbarItem implicitItemIdentifier="AA95E30D-4DE8-4A4E-B394-8CEA8799709F" label="config" paletteLabel="config" image="config" id="VYu-Xf-XJc">
-                                    <nil key="toolTip"/>
+                                <toolbarItem implicitItemIdentifier="AA95E30D-4DE8-4A4E-B394-8CEA8799709F" label="config" paletteLabel="config" toolTip="Display userconfiguration" image="config" id="VYu-Xf-XJc">
                                     <size key="minSize" width="40" height="25"/>
                                     <size key="maxSize" width="40" height="28"/>
                                     <button key="view" verticalHuggingPriority="750" id="XFU-nn-1H7">
@@ -285,8 +280,7 @@
                                         </connections>
                                     </button>
                                 </toolbarItem>
-                                <toolbarItem implicitItemIdentifier="4E86EA40-63DF-4CA1-9A20-6164DF561B48" label="info" paletteLabel="info" image="report" id="GYz-8J-WDp">
-                                    <nil key="toolTip"/>
+                                <toolbarItem implicitItemIdentifier="4E86EA40-63DF-4CA1-9A20-6164DF561B48" label="info" paletteLabel="info" toolTip="Display output from rsync..." image="report" id="GYz-8J-WDp">
                                     <size key="minSize" width="40" height="25"/>
                                     <size key="maxSize" width="40" height="28"/>
                                     <button key="view" verticalHuggingPriority="750" id="c2j-aQ-Boa">
@@ -301,8 +295,7 @@
                                         </connections>
                                     </button>
                                 </toolbarItem>
-                                <toolbarItem implicitItemIdentifier="765F24D4-7178-430E-BB1A-13B11A820F48" label="info" paletteLabel="info" id="g1a-zY-Mpq">
-                                    <nil key="toolTip"/>
+                                <toolbarItem implicitItemIdentifier="765F24D4-7178-430E-BB1A-13B11A820F48" label="info" paletteLabel="info" toolTip="Display output from rsync singletasks..." id="g1a-zY-Mpq">
                                     <size key="minSize" width="40" height="25"/>
                                     <size key="maxSize" width="40" height="28"/>
                                     <button key="view" verticalHuggingPriority="750" id="m61-s7-JMA">
@@ -317,8 +310,7 @@
                                         <segue destination="mal-sc-mlY" kind="show" id="rJ6-3R-szv"/>
                                     </connections>
                                 </toolbarItem>
-                                <toolbarItem implicitItemIdentifier="9984F48F-97C0-4D13-9BA2-715406048804" label="totinfo" paletteLabel="totinfo" image="info" id="v12-7x-cig">
-                                    <nil key="toolTip"/>
+                                <toolbarItem implicitItemIdentifier="9984F48F-97C0-4D13-9BA2-715406048804" label="totinfo" paletteLabel="totinfo" toolTip="Execute estimate and quickbackup for all tasks..." image="info" id="v12-7x-cig">
                                     <size key="minSize" width="40" height="25"/>
                                     <size key="maxSize" width="40" height="28"/>
                                     <button key="view" verticalHuggingPriority="750" id="dsJ-ms-wHD">
