@@ -20,7 +20,6 @@ class OutputBatch {
         return self.output
     }
 
-    // Add line to output
     func addLine (str: String) {
         if self.output == nil {
             self.output = [String]()
