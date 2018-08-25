@@ -76,10 +76,7 @@ final class Verifyrsyncpath: SetConfigurations {
         return str ?? ""
     }
 
-    /// Function returns the correct path for rsync
-    /// according to configuration set by user or
-    /// default value.
-    /// - returns : full path of rsync command
+    // Function returns the correct path for rsync according to configuration set by user or
     func rsyncpath() -> String {
         if ViewControllerReference.shared.rsyncVer3 {
             if ViewControllerReference.shared.rsyncPath == nil {
