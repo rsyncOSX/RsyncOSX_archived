@@ -193,6 +193,7 @@ class ViewControllerCopyFiles: NSViewController, SetConfigurations, GetIndex, De
             self.tableViewSelect.reloadData()
         })
     }
+
     @objc(tableViewDoubleClick:) func tableViewDoubleClick(sender: AnyObject) {
         guard self.index != nil else { return }
         guard self.remoteCatalog.stringValue.isEmpty == false else { return }
