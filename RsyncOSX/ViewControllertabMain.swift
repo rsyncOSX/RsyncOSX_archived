@@ -264,7 +264,8 @@ class ViewControllertabMain: NSViewController, ReloadTable, Deselect, Coloractiv
         self.TCPButton.isEnabled = false
         self.loadProfileMenu = false
         self.displayProfile()
-        _ = TCPconnections().testAllremoteserverConnections()
+        self.tcpconnections = TCPconnections()
+        self.tcpconnections?.testAllremoteserverConnections()
     }
 
     // Presenting Information from Rsync
