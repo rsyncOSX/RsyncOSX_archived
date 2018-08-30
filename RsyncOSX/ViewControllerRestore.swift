@@ -40,9 +40,8 @@ class ViewControllerRestore: NSViewController, SetConfigurations, SetDismisser, 
 
     // Close and dismiss view
     @IBAction func close(_ sender: NSButton) {
-        if self.completed == false {
-            self.abort()
-        }
+        if self.estimation != nil && self.outputprocess != nil { self.abort() }
+        if self.completed == false { self.abort()}
         self.dismissview(viewcontroller: self, vcontroller: .vctabmain)
     }
 
@@ -73,6 +72,7 @@ class ViewControllerRestore: NSViewController, SetConfigurations, SetDismisser, 
         if answer {
             if let index = self.index(viewcontroller: .vctabmain) {
                 self.restorebutton.isEnabled = false
+                self.estimation = true
                 self.initiateProgressbar()
                 self.outputprocess = OutputProcess()
                 self.sendprocess?.sendoutputprocessreference(outputprocess: self.outputprocess)
@@ -96,6 +96,7 @@ class ViewControllerRestore: NSViewController, SetConfigurations, SetDismisser, 
 
     override func viewDidAppear() {
         super.viewDidAppear()
+        guard self.estimation == nil && self.outputprocess == nil else { return }
         self.estimation = true
         self.completed = false
         self.restorebutton.isEnabled = false
