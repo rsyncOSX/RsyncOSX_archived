@@ -127,6 +127,7 @@ class ViewControllerVerify: NSViewController, SetConfigurations, GetIndex {
             self.gotit.stringValue = "Please select a task in Execute ..."
             self.outputprocess = nil
             globalMainQueue.async(execute: { () -> Void in
+                self.resetinfo()
                 self.outputtable.reloadData()
             })
         }
@@ -266,11 +267,8 @@ extension ViewControllerVerify: UpdateProgress {
         } else {
             self.working.stopAnimation(nil)
             self.gotit.stringValue = "Completed ..."
-            if self.verifyradiobutton.state == .off {
-                self.verifybutton.isEnabled = true
-            } else {
-                self.changedbutton.isEnabled = true
-            }
+            self.changedbutton.isEnabled = true
+            self.verifybutton.isEnabled = true
         }
     }
 
