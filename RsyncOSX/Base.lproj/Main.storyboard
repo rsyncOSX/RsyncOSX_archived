@@ -6463,10 +6463,20 @@ DQ
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
+                            <textField hidden="YES" horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="3OI-xQ-Hbf">
+                                <rect key="frame" x="575" y="22" width="82" height="17"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Completed..." id="gRY-vZ-99W">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
                         </subviews>
                     </view>
                     <connections>
                         <outlet property="abortbutton" destination="Yur-Pz-vhJ" id="GzU-HU-HIU"/>
+                        <outlet property="completed" destination="3OI-xQ-Hbf" id="wJf-in-2hg"/>
                         <outlet property="executeButton" destination="WGW-dP-42t" id="PtI-QM-QZr"/>
                         <outlet property="mainTableView" destination="EFc-mk-M0n" id="uT1-sg-C9z"/>
                         <outlet property="noestimates" destination="FCo-lF-oip" id="Hrl-Pb-EoX"/>

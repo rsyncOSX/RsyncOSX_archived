@@ -26,7 +26,8 @@ class ViewControllerQuickBackup: NSViewController, SetDismisser, AbortTask, Dela
     @IBOutlet weak var search: NSSearchField!
     @IBOutlet weak var progress: NSProgressIndicator!
     @IBOutlet weak var noestimates: NSTextField!
-
+    @IBOutlet weak var completed: NSTextField!
+    
     // Either abort or close
     @IBAction func abort(_ sender: NSButton) {
         self.quickbackup = nil
@@ -46,6 +47,7 @@ class ViewControllerQuickBackup: NSViewController, SetDismisser, AbortTask, Dela
     }
 
     private func loadtasks() {
+        self.completed.isHidden = true
         self.quickbackup = QuickBackup()
     }
 
@@ -230,6 +232,7 @@ extension ViewControllerQuickBackup: UpdateProgress {
         self.quickbackup?.processTermination()
         guard self.quickbackup?.stackoftasktobeexecuted != nil else {
             self.progress.isHidden = true
+            self.completed.isHidden = false
             return
         }
         if self.checkforestimates() == true {
