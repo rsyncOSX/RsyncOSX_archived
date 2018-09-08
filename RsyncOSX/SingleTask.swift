@@ -17,7 +17,6 @@ protocol StartStopProgressIndicatorSingleTask: class {
 
 // Protocol functions implemented in main view
 protocol SingleTaskProgress: class {
-    func showProcessInfo(info: DisplayProcessInfo)
     func presentViewProgress()
     func presentViewInformation(outputprocess: OutputProcess)
     func terminateProgressProcess()
@@ -74,7 +73,6 @@ final class SingleTask: SetSchedules, SetConfigurations {
             if let index = self.index {
                 // Start animation and show process info
                 self.indicatorDelegate?.startIndicator()
-                self.taskDelegate?.showProcessInfo(info: .estimating)
                 arguments = self.configurations!.arguments4rsync(index: index, argtype: .argdryRun)
                 let process = Rsync(arguments: arguments)
                 self.outputprocess = OutputProcess()
@@ -83,7 +81,6 @@ final class SingleTask: SetSchedules, SetConfigurations {
                 self.taskDelegate?.getProcessReference(process: self.process!)
             }
         case .executesinglerun:
-            self.taskDelegate?.showProcessInfo(info: .executing)
             if let index = self.index {
                 // Show progress view
                 self.taskDelegate?.presentViewProgress()
@@ -130,8 +127,6 @@ final class SingleTask: SetSchedules, SetConfigurations {
                 self.taskDelegate?.presentViewInformation(outputprocess: self.outputprocess!)
                 self.workload = nil
             case .executesinglerun:
-                //NB: self.showProcessInfo(info: .Logging_run)
-                self.taskDelegate?.showProcessInfo(info: .loggingrun)
                 // Process termination and close progress view
                 self.taskDelegate?.terminateProgressProcess()
                 // If showInfoDryrun is on present result of dryrun automatically
