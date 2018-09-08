@@ -32,6 +32,7 @@ class ViewControllerRemoteInfo: NSViewController, SetDismisser, AbortTask {
     weak var remoteinfotaskDelegate: SetRemoteInfo?
     var selected: Bool = false
     var loaded: Bool = false
+    var diddissappear: Bool = false
 
     @IBAction func execute(_ sender: NSButton) {
         if let backup = self.dobackups() {
@@ -83,6 +84,10 @@ class ViewControllerRemoteInfo: NSViewController, SetDismisser, AbortTask {
 
     override func viewDidAppear() {
         super.viewDidAppear()
+        guard self.diddissappear == false else {
+            self.diddissappear = true
+            return
+        }
         globalMainQueue.async(execute: { () -> Void in
             self.mainTableView.reloadData()
         })
@@ -98,6 +103,7 @@ class ViewControllerRemoteInfo: NSViewController, SetDismisser, AbortTask {
 
     override func viewDidDisappear() {
         super.viewDidDisappear()
+        self.diddissappear = true
         self.remoteinfotask = nil
     }
 

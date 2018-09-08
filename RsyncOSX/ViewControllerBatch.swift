@@ -42,6 +42,7 @@ class ViewControllerBatch: NSViewController, SetDismisser, AbortTask {
     var row: Int?
     var batchTask: BatchTask?
     var batchisrunning: Bool?
+    var diddissappear: Bool = false
 
     @IBOutlet weak var mainTableView: NSTableView!
     @IBOutlet weak var working: NSProgressIndicator!
@@ -106,10 +107,19 @@ class ViewControllerBatch: NSViewController, SetDismisser, AbortTask {
 
     override func viewDidAppear() {
         super.viewDidAppear()
+        guard self.diddissappear == false else {
+            self.diddissappear = true
+            return
+        }
         self.executeButton.isEnabled = true
         globalMainQueue.async(execute: { () -> Void in
             self.mainTableView.reloadData()
         })
+    }
+
+    override func viewDidDisappear() {
+        super.viewDidDisappear()
+        self.diddissappear = true
     }
 
 }
