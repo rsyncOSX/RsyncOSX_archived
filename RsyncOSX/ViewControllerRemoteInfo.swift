@@ -85,7 +85,7 @@ class ViewControllerRemoteInfo: NSViewController, SetDismisser, AbortTask {
     override func viewDidAppear() {
         super.viewDidAppear()
         guard self.diddissappear == false else {
-            self.diddissappear = true
+            self.reloadtabledata()
             return
         }
         globalMainQueue.async(execute: { () -> Void in
@@ -104,7 +104,6 @@ class ViewControllerRemoteInfo: NSViewController, SetDismisser, AbortTask {
     override func viewDidDisappear() {
         super.viewDidDisappear()
         self.diddissappear = true
-        self.remoteinfotask = nil
     }
 
     private func number() -> String {

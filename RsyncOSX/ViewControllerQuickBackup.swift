@@ -66,7 +66,7 @@ class ViewControllerQuickBackup: NSViewController, SetDismisser, AbortTask, Dela
     override func viewDidAppear() {
         super.viewDidAppear()
         guard self.diddissappear == false else {
-            self.diddissappear = true
+            self.reloadtabledata()
             return
         }
         self.executeButton.isEnabled = false
