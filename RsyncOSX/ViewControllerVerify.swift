@@ -47,37 +47,35 @@ class ViewControllerVerify: NSViewController, SetConfigurations, GetIndex {
     @IBOutlet weak var remoteserver: NSTextField!
 
     @IBAction func verify(_ sender: NSButton) {
-        if self.index != nil {
-            self.rsynccommanddisplay.stringValue = Verifyrsyncpath().displayrsynccommand(index: self.index!, display: .verify)
-            self.verifyradiobutton.state = .on
-            self.changedradiobutton.state = .off
-            self.gotit.stringValue = "Verifying, please wait..."
-            self.enabledisablebuttons(enable: false)
-            self.working.startAnimation(nil)
-            let arguments = self.configurations?.arguments4verify(index: self.index!)
-            self.outputprocess = OutputProcess()
-            self.outputprocess?.addlinefromoutput("*** Verify ***")
-            let verifytask = VerifyTask(arguments: arguments)
-            verifytask.executeProcess(outputprocess: self.outputprocess)
-            self.processRefererence = verifytask
-        }
+        guard self.index != nil else { return }
+        self.rsynccommanddisplay.stringValue = Verifyrsyncpath().displayrsynccommand(index: self.index!, display: .verify)
+        self.verifyradiobutton.state = .on
+        self.changedradiobutton.state = .off
+        self.gotit.stringValue = "Verifying, please wait..."
+        self.enabledisablebuttons(enable: false)
+        self.working.startAnimation(nil)
+        let arguments = self.configurations?.arguments4verify(index: self.index!)
+        self.outputprocess = OutputProcess()
+        self.outputprocess?.addlinefromoutput("*** Verify ***")
+        let verifytask = VerifyTask(arguments: arguments)
+        verifytask.executeProcess(outputprocess: self.outputprocess)
+        self.processRefererence = verifytask
     }
 
     @IBAction func changed(_ sender: NSButton) {
-        if self.index != nil {
-            self.rsynccommanddisplay.stringValue = Verifyrsyncpath().displayrsynccommand(index: self.index!, display: .restore)
-            self.changedradiobutton.state = .on
-            self.verifyradiobutton.state = .off
-            self.gotit.stringValue = "Computing changed, please wait..."
-            self.enabledisablebuttons(enable: false)
-            self.working.startAnimation(nil)
-            let arguments = self.configurations?.arguments4restore(index: self.index!, argtype: .argdryRun)
-            self.outputprocess = OutputProcess()
-            self.outputprocess?.addlinefromoutput("*** Changed ***")
-            let verifytask = VerifyTask(arguments: arguments)
-            verifytask.executeProcess(outputprocess: self.outputprocess)
-            self.processRefererence = verifytask
-        }
+        guard self.index != nil else { return }
+        self.rsynccommanddisplay.stringValue = Verifyrsyncpath().displayrsynccommand(index: self.index!, display: .restore)
+        self.changedradiobutton.state = .on
+        self.verifyradiobutton.state = .off
+        self.gotit.stringValue = "Computing changed, please wait..."
+        self.enabledisablebuttons(enable: false)
+        self.working.startAnimation(nil)
+        let arguments = self.configurations?.arguments4restore(index: self.index!, argtype: .argdryRun)
+        self.outputprocess = OutputProcess()
+        self.outputprocess?.addlinefromoutput("*** Changed ***")
+        let verifytask = VerifyTask(arguments: arguments)
+        verifytask.executeProcess(outputprocess: self.outputprocess)
+        self.processRefererence = verifytask
     }
 
     @IBAction func info(_ sender: NSButton) {
