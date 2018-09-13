@@ -10,12 +10,12 @@
 import Foundation
 
 class Logging: Reportfileerror {
-    
+
     var outputprocess: OutputProcess?
     var log: String?
     var filename: String?
     var fileURL: URL?
-    
+
     private func writeloggfile() {
         globalMainQueue.async(execute: { () -> Void in
             do {
@@ -26,7 +26,7 @@ class Logging: Reportfileerror {
             }
         })
     }
-    
+
     private func readloggfile() {
         do {
             self.log = try String(contentsOf: self.fileURL!, encoding: String.Encoding.utf8)
@@ -35,7 +35,7 @@ class Logging: Reportfileerror {
             self.error(error: error.description, errortype: .openlogfile)
         }
     }
-    
+
     private func minimumlogging() {
         let currendate = Date()
         let dateformatter = Dateandtime().setDateformat()
@@ -59,7 +59,7 @@ class Logging: Reportfileerror {
         }
         self.writeloggfile()
     }
-    
+
     private func fulllogging() {
         let currendate = Date()
         let dateformatter = Dateandtime().setDateformat()
@@ -74,7 +74,7 @@ class Logging: Reportfileerror {
         }
         self.writeloggfile()
     }
-    
+
     init(outputprocess: OutputProcess?) {
         guard ViewControllerReference.shared.fulllogging == true || ViewControllerReference.shared.minimumlogging == true else {
             return
@@ -86,7 +86,7 @@ class Logging: Reportfileerror {
         ViewControllerReference.shared.fileURL = self.fileURL
         if ViewControllerReference.shared.fulllogging {
             self.fulllogging()
-        }  else {
+        } else {
             self.minimumlogging()
         }
     }
