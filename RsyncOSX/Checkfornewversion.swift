@@ -18,7 +18,6 @@ final class Checkfornewversion {
     private var runningVersion: String?
     private var urlPlist: String?
     private var urlNewVersion: String?
-
     // External resources
     private var resource: Resources?
 
@@ -30,12 +29,9 @@ final class Checkfornewversion {
             if let url = URL(string: self.urlPlist!) {
                 do {
                     let contents = NSDictionary (contentsOf: url)
-                    guard self.runningVersion != nil else {
-                        return
-                    }
                     if let url = contents?.object(forKey: self.runningVersion!) {
                         self.urlNewVersion = url as? String
-                        // Setting reference to new vesrion if any
+                        // Setting reference to new version if any
                         ViewControllerReference.shared.URLnewVersion = self.urlNewVersion
                         if inMain {
                             self.newversionDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllertabMain
@@ -56,16 +52,11 @@ final class Checkfornewversion {
     }
 
     init (inMain: Bool) {
-        let infoPlist = Bundle.main.infoDictionary
-        let version = infoPlist?["CFBundleShortVersionString"]
-        if version != nil {
-            self.runningVersion = version as? String
-        }
+        self.runningVersion = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String ?? ""
         self.resource = Resources()
         if let resource = self.resource {
             self.urlPlist = resource.getResource(resource: .urlPlist)
+            self.urlnewVersion(inMain: inMain)
         }
-        self.urlnewVersion(inMain: inMain)
     }
-
 }

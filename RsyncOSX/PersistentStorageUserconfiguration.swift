@@ -24,6 +24,8 @@ final class PersistentStorageUserconfiguration: Readwritefiles, SetConfiguration
     func saveUserconfiguration () {
         var version3Rsync: Int?
         var detailedlogging: Int?
+        var minimumlogging: Int?
+        var fulllogging: Int?
         var executeinmenuapp: Int?
         var rsyncPath: String?
         var restorePath: String?
@@ -38,6 +40,16 @@ final class PersistentStorageUserconfiguration: Readwritefiles, SetConfiguration
             detailedlogging = 1
         } else {
             detailedlogging = 0
+        }
+        if ViewControllerReference.shared.minimumlogging {
+            minimumlogging = 1
+        } else {
+            minimumlogging = 0
+        }
+        if ViewControllerReference.shared.fulllogging {
+            fulllogging = 1
+        } else {
+            fulllogging = 0
         }
         if ViewControllerReference.shared.rsyncPath != nil {
             rsyncPath = ViewControllerReference.shared.rsyncPath!
@@ -56,6 +68,8 @@ final class PersistentStorageUserconfiguration: Readwritefiles, SetConfiguration
         let dict: NSMutableDictionary = [
             "version3Rsync": version3Rsync ?? 0 as Int,
             "detailedlogging": detailedlogging ?? 0 as Int,
+            "minimumlogging": minimumlogging! as Int,
+            "fulllogging": fulllogging! as Int,
             "marknumberofdayssince": marknumberofdayssince ?? "5.0",
             "executeinmenuapp": executeinmenuapp ?? 1 as Int]
         if rsyncPath != nil {
