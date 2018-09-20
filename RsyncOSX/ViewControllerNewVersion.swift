@@ -58,9 +58,9 @@ class ViewControllerNewVersion: NSViewController, SetDismisser {
 
     override func viewDidAppear() {
         super.viewDidAppear()
-        self.seconds = 5
-        self.waitToClose = Timer.scheduledTimer(timeInterval: 5, target: self, selector: #selector(closeView), userInfo: nil, repeats: false)
+        self.seconds = 2
+        self.waitToClose = Timer.scheduledTimer(timeInterval: 2, target: self, selector: #selector(closeView), userInfo: nil, repeats: false)
         self.closeIn = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(setSecondsView), userInfo: nil, repeats: true)
-        self.closeinseconds.stringValue = "Close automatically in: 5 seconds"
+        self.closeinseconds.stringValue = "Close automatically in: 2 seconds"
     }
 }
