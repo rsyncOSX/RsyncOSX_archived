@@ -37,6 +37,7 @@ class ViewControllerRestore: NSViewController, SetConfigurations, SetDismisser, 
     var estimation: Bool?
     var completed: Bool?
     weak var sendprocess: Sendprocessreference?
+    var diddissappear: Bool = false
 
     // Close and dismiss view
     @IBAction func close(_ sender: NSButton) {
@@ -96,6 +97,7 @@ class ViewControllerRestore: NSViewController, SetConfigurations, SetDismisser, 
 
     override func viewDidAppear() {
         super.viewDidAppear()
+        guard self.diddissappear == false else { return }
         guard self.estimation == nil && self.outputprocess == nil else { return }
         self.estimation = true
         self.completed = false
@@ -126,6 +128,11 @@ class ViewControllerRestore: NSViewController, SetConfigurations, SetDismisser, 
             self.selecttmptorestore.state = .off
             _ = RestoreTask(index: index, outputprocess: self.outputprocess, dryrun: true, tmprestore: false)
         }
+    }
+
+    override func viewDidDisappear() {
+        super.viewDidDisappear()
+        self.diddissappear = true
     }
 
     private func setNumbers(outputprocess: OutputProcess?) {
