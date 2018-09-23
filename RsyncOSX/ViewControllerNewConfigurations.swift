@@ -33,6 +33,7 @@ class ViewControllerNewConfigurations: NSViewController, SetConfigurations, VcSc
     // Reference to rsync parameters to use in combox
     var comboBoxValues = ["synchronize", "snapshots", "single file"]
     var backuptypeselected: Typebackup = .synchronize
+    var diddissappear: Bool = false
 
     @IBOutlet weak var newTableView: NSTableView!
     @IBOutlet weak var viewParameter1: NSTextField!
@@ -111,6 +112,7 @@ class ViewControllerNewConfigurations: NSViewController, SetConfigurations, VcSc
 
     override func viewDidAppear() {
         super.viewDidAppear()
+        guard self.diddissappear == false else { return }
         self.backuptypeselected = .synchronize
         self.backuptype.selectItem(at: 0)
         self.index = self.index(viewcontroller: .vctabmain)
@@ -125,6 +127,11 @@ class ViewControllerNewConfigurations: NSViewController, SetConfigurations, VcSc
             self.storageapi = PersistentStorageAPI(profile: nil)
         }
         self.setFields()
+    }
+
+    override func viewDidDisappear() {
+        super.viewDidDisappear()
+        self.diddissappear = true
     }
 
     private func initcombox(combobox: NSComboBox, index: Int) {
