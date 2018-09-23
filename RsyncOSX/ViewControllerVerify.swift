@@ -15,6 +15,7 @@ class ViewControllerVerify: NSViewController, SetConfigurations, GetIndex {
     @IBOutlet weak var outputtable: NSTableView!
     var outputprocess: OutputProcess?
     var index: Int?
+    var lastindex: Int?
     var estimatedindex: Int?
     var gotremoteinfo: Bool = false
     private var numbers: NSMutableDictionary?
@@ -95,6 +96,13 @@ class ViewControllerVerify: NSViewController, SetConfigurations, GetIndex {
         }
     }
 
+    // Abort button
+    @IBAction func abort(_ sender: NSButton) {
+        self.lastindex = self.index
+        guard self.processRefererence != nil else { return }
+        self.processRefererence!.abortProcess()
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
         ViewControllerReference.shared.setvcref(viewcontroller: .vcverify, nsviewcontroller: self)
@@ -107,6 +115,7 @@ class ViewControllerVerify: NSViewController, SetConfigurations, GetIndex {
         super.viewDidAppear()
         self.index = self.index(viewcontroller: .vctabmain)
         if let index = self.index {
+            guard index != self.lastindex ?? -1 else { return }
             guard self.estimatedindex ?? -1 != index else { return }
             self.resetinfo()
             self.setinfo()
@@ -133,9 +142,7 @@ class ViewControllerVerify: NSViewController, SetConfigurations, GetIndex {
 
     override func viewDidDisappear() {
         super.viewDidDisappear()
-        self.gotit.textColor = .black
-        guard self.processRefererence != nil else { return }
-        self.processRefererence!.abortProcess()
+        self.lastindex = self.index
     }
 
     private func enabledisablebuttons(enable: Bool) {
