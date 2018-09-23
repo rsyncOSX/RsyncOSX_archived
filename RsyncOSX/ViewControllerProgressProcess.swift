@@ -27,10 +27,6 @@ class ViewControllerProgressProcess: NSViewController, SetConfigurations, SetDis
         self.abort()
     }
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
-    }
-
     override func viewDidAppear() {
         super.viewDidAppear()
         ViewControllerReference.shared.setvcref(viewcontroller: .vcprogressview, nsviewcontroller: self)
