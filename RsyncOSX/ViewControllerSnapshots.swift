@@ -18,6 +18,7 @@ class ViewControllerSnapshots: NSViewController, SetDismisser, SetConfigurations
     private var delete: Bool = false
     private var num: Int?
     private var index: Int?
+    var diddissappear: Bool = false
 
     @IBOutlet weak var snapshotstable: NSTableView!
     @IBOutlet weak var localCatalog: NSTextField!
@@ -116,6 +117,7 @@ class ViewControllerSnapshots: NSViewController, SetDismisser, SetConfigurations
 
     override func viewDidAppear() {
         super.viewDidAppear()
+        guard self.diddissappear == false else { return }
         self.deletebutton.isEnabled = false
         self.delete = false
         self.snapshotsloggdata = nil
@@ -139,7 +141,8 @@ class ViewControllerSnapshots: NSViewController, SetDismisser, SetConfigurations
     }
 
     override func viewDidDisappear() {
-        self.reloadtabledata()
+        super.viewDidDisappear()
+        self.diddissappear = true
     }
 
     private func deletesnapshotcatalogs() {

@@ -20,6 +20,7 @@ class ViewControllerEncrypt: NSViewController, GetIndex, SetConfigurations, VcCo
     var rcloneindex: Int?
     var index: Int?
     var hiddenID: Int?
+    var diddissappear: Bool = false
 
     @IBOutlet weak var mainTableView: NSTableView!
     @IBOutlet weak var profilescombobox: NSComboBox!
@@ -87,6 +88,7 @@ class ViewControllerEncrypt: NSViewController, GetIndex, SetConfigurations, VcCo
 
     override func viewDidAppear() {
         super.viewDidAppear()
+        guard self.diddissappear == false else { return }
         self.loadprofiles()
         self.index = self.index(viewcontroller: .vctabmain)
         self.getconfig()
@@ -95,6 +97,11 @@ class ViewControllerEncrypt: NSViewController, GetIndex, SetConfigurations, VcCo
         globalMainQueue.async(execute: { () -> Void in
             self.mainTableView.reloadData()
         })
+    }
+
+    override func viewDidDisappear() {
+        super.viewDidDisappear()
+        self.diddissappear = true
     }
 
     private func updateview() {
