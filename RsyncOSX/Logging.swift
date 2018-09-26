@@ -15,6 +15,7 @@ class Logging: Reportfileerror {
     var log: String?
     var filename: String?
     var fileURL: URL?
+    var filesize: NSNumber?
 
     private func writeloggfile() {
         globalMainQueue.async(execute: { () -> Void in
@@ -83,6 +84,7 @@ class Logging: Reportfileerror {
         self.filename = ViewControllerReference.shared.logname
         let DocumentDirURL = try? FileManager.default.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: true)
         self.fileURL = DocumentDirURL?.appendingPathComponent(self.filename!).appendingPathExtension("txt")
+        self.filesize = try? FileManager.default.attributesOfItem(atPath: self.fileURL!.path)[FileAttributeKey.size] as? NSNumber ?? 0
         ViewControllerReference.shared.fileURL = self.fileURL
         if ViewControllerReference.shared.fulllogging {
             self.fulllogging()
