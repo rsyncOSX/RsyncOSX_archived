@@ -31,6 +31,7 @@ class ViewControllerRsyncParameters: NSViewController, SetConfigurations, SetDis
     weak var userparamsupdatedDelegate: RsyncUserParams?
     // Reference to rsync parameters to use in combox
     var comboBoxValues = [String]()
+    var diddissappear: Bool = false
 
     @IBOutlet weak var param1: NSTextField!
     @IBOutlet weak var param2: NSTextField!
@@ -159,6 +160,7 @@ class ViewControllerRsyncParameters: NSViewController, SetConfigurations, SetDis
 
     override func viewDidAppear() {
         super.viewDidAppear()
+        guard self.diddissappear == false else { return }
         if let profile = self.configurations!.getProfile() {
             self.storageapi = PersistentStorageAPI(profile: profile)
         } else {
@@ -209,7 +211,7 @@ class ViewControllerRsyncParameters: NSViewController, SetConfigurations, SetDis
 
     override func viewDidDisappear() {
         super.viewDidDisappear()
-        self.parameters = nil
+        self.diddissappear = true
     }
 
     // Function for saving changed or new parameters for one configuration.
