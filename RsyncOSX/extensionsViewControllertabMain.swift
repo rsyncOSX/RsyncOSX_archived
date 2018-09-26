@@ -452,6 +452,8 @@ extension ViewControllertabMain: Fileerror {
         globalMainQueue.async(execute: { () -> Void in
             if errortype == .openlogfile {
                 self.rsyncCommand.stringValue = self.errordescription(errortype: errortype)
+            } else if errortype == .filesize {
+                self.rsyncCommand.stringValue = self.errordescription(errortype: errortype) + ": filesize = " + errorstr
             } else {
                 self.setinfonextaction(info: "Error", color: .red)
                 self.rsyncCommand.stringValue = self.errordescription(errortype: errortype) + "\n" + errorstr

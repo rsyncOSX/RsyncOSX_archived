@@ -21,6 +21,13 @@ class Logging: Reportfileerror {
         globalMainQueue.async(execute: { () -> Void in
             do {
                 try self.log!.write(to: self.fileURL!, atomically: true, encoding: String.Encoding.utf8)
+                if let filesize = self.filesize {
+                    guard Int(truncating: filesize) < ViewControllerReference.shared.logfilesize else {
+                        let size = Int(truncating: filesize)
+                        self.error(error: String(size), errortype: .filesize)
+                        return
+                    }
+                }
             } catch let e {
                 let error = e as NSError
                 self.error(error: error.description, errortype: .writelogfile)

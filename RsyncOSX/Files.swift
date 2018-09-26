@@ -19,6 +19,7 @@ enum Fileerrortype {
     case writelogfile
     case profilecreatedirectory
     case profiledeletedirectory
+    case filesize
 }
 
 // Protocol for reporting file errors
@@ -49,15 +50,17 @@ extension Fileerrormessage {
         switch errortype {
         case .openlogfile:
             guard ViewControllerReference.shared.fileURL != nil else {
-                return "No existing logfile, creating a new one"
+                return "No logfile, creating a new one"
             }
-            return "No existing logfile, creating a new one: " + String(describing: ViewControllerReference.shared.fileURL!)
+            return "No logfile, creating a new one: " + String(describing: ViewControllerReference.shared.fileURL!)
         case .writelogfile:
             return "Could not write to logfile"
         case .profilecreatedirectory:
             return "Could not create profile directory"
         case .profiledeletedirectory:
             return "Could not delete profile directory"
+        case .filesize:
+            return "Filesize of logfile is getting bigger"
         }
     }
 }
