@@ -18,7 +18,7 @@ class ViewControllerSnapshots: NSViewController, SetDismisser, SetConfigurations
     private var delete: Bool = false
     private var num: Int?
     private var index: Int?
-    var diddissappear: Bool = false
+    var lastindex: Int?
 
     @IBOutlet weak var snapshotstable: NSTableView!
     @IBOutlet weak var localCatalog: NSTextField!
@@ -117,23 +117,28 @@ class ViewControllerSnapshots: NSViewController, SetDismisser, SetConfigurations
 
     override func viewDidAppear() {
         super.viewDidAppear()
-        guard self.diddissappear == false else { return }
-        self.deletebutton.isEnabled = false
-        self.delete = false
-        self.snapshotsloggdata = nil
-        self.progressdelete.isHidden = true
-        self.info(num: 0)
-        self.initdeletesnapshots()
-        if let index = self.index(viewcontroller: .vctabmain) {
+        self.index = self.index(viewcontroller: .vctabmain)
+        if let index = self.index {
+            guard index != self.lastindex ?? -1 else { return }
+            self.deletebutton.isEnabled = false
+            self.delete = false
+            self.progressdelete.isHidden = true
+            self.info(num: 0)
+            self.initdeletesnapshots()
             let hiddenID = self.configurations?.gethiddenID(index: index)
             if self.configurations?.getConfigurations()[index].task == "snapshot" {
                 self.getSource(index: hiddenID!)
                 self.info(num: 6)
             } else {
                 self.info(num: 7)
+                self.snapshotsloggdata = nil
+                globalMainQueue.async(execute: { () -> Void in
+                    self.snapshotstable.reloadData()
+                })
             }
         } else {
             self.info(num: 8)
+            self.snapshotsloggdata = nil
             globalMainQueue.async(execute: { () -> Void in
                 self.snapshotstable.reloadData()
             })
@@ -142,7 +147,7 @@ class ViewControllerSnapshots: NSViewController, SetDismisser, SetConfigurations
 
     override func viewDidDisappear() {
         super.viewDidDisappear()
-        self.diddissappear = true
+        self.lastindex = self.index
     }
 
     private func deletesnapshotcatalogs() {
