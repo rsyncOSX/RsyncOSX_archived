@@ -218,7 +218,7 @@ class Schedules: ScheduleWriteLoggData {
         self.schedules = data
     }
 
-     init(profile: String?) {
+    init(profile: String?) {
         super.init()
         self.profile = profile
         self.storageapi = PersistentStorageAPI(profile: self.profile)
