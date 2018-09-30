@@ -1793,7 +1793,7 @@
                                 </textFieldCell>
                             </textField>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5j0-F5-boE">
-                                <rect key="frame" x="623" y="188" width="110" height="17"/>
+                                <rect key="frame" x="623" y="172" width="110" height="17"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="Remote catalog : " id="B2y-Kc-2LJ">
                                     <font key="font" metaFont="system"/>
@@ -1802,7 +1802,7 @@
                                 </textFieldCell>
                             </textField>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Bql-aU-ZP2">
-                                <rect key="frame" x="638" y="211" width="95" height="17"/>
+                                <rect key="frame" x="638" y="195" width="95" height="17"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="Local catalog :" id="rol-5e-w2X">
                                     <font key="font" metaFont="system"/>
@@ -1897,10 +1897,10 @@
                                 </searchFieldCell>
                             </searchField>
                             <box verticalHuggingPriority="249" fixedFrame="YES" title="File or catalog to restore" translatesAutoresizingMaskIntoConstraints="NO" id="PIK-cY-cmQ">
-                                <rect key="frame" x="613" y="153" width="462" height="105"/>
+                                <rect key="frame" x="612" y="153" width="463" height="105"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <view key="contentView" id="PXY-Lz-PCz">
-                                    <rect key="frame" x="3" y="3" width="456" height="87"/>
+                                    <rect key="frame" x="3" y="3" width="457" height="87"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 </view>
                             </box>
@@ -7107,7 +7107,7 @@ DQ
                                     <action selector="reset:" target="Mlk-V8-rVE" id="hfe-Va-I4W"/>
                                 </connections>
                             </button>
-                            <box fixedFrame="YES" title="Rsync configuration" translatesAutoresizingMaskIntoConstraints="NO" id="J0b-Hb-7Fb">
+                            <box fixedFrame="YES" title="RsyncOSX config" translatesAutoresizingMaskIntoConstraints="NO" id="J0b-Hb-7Fb">
                                 <rect key="frame" x="25" y="189" width="133" height="61"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <view key="contentView" id="xnK-7j-1tV">
