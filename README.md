@@ -40,7 +40,7 @@ The default version of `rsync` in macOS is old (version 2.6.9, [protocol](https:
 	- untar the [source archive](https://download.samba.org/pub/rsync/src/) and use `make` to compile and install, rsync compiles without any issues on macOS
 - install [homebrew](https://en.wikipedia.org/wiki/Homebrew_(package_management_software)) and then install rsync as part of homebrew
 
-In RsyncOSX select [user configuration](/UserConfiguration) and set path for optional version of rsync.
+In RsyncOSX select [user configuration](https://rsyncosx.github.io/UserConfiguration) and set path for optional version of rsync.
 
 #### SwiftLint
 
@@ -54,7 +54,7 @@ There are two ways to compile, either utilize `make` or compile by Xcode. `make 
 
 ### Development
 
-Details about how RsyncOSX is built is [here](https://rsyncosx.github.io/Source).
+Details about how RsyncOSX is [built](https://rsyncosx.github.io/Source).
 
 ### MacUpdate and Softpedia
 
@@ -66,4 +66,4 @@ I have setup up my own [NAS](https://rsyncosx.github.io/DIYNAS). My NAS SW is no
 
 #### RcloneOSX
 
-I have commenced a new project, the new project [RcloneOSX](https://github.com/rsyncOSX/rcloneosx) is adapting RsyncOSX to utilize [rclone](https://rclone.org). See the [Changelog](https://github.com/rsyncOSX/Documentation/blob/master/docs/RcloneOSX/Changelog.md) for the new project.
+I have commenced a new project, the new project [RcloneOSX](https://github.com/rsyncOSX/rcloneosx) is adapting RsyncOSX to utilize [rclone](https://rclone.org). See the [Changelog](https://rsyncosx.github.io/RcloneChangelog) for the new project.
