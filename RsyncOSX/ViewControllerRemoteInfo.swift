@@ -226,6 +226,8 @@ extension ViewControllerRemoteInfo: UpdateProgress {
         if self.remoteinfotask?.stackoftasktobeestimated == nil {
             self.progress.stopAnimation(nil)
             self.count.stringValue = "Completed"
+            self.remoteinfotask?.selectalltaskswithfilestobackup(deselect: self.selected)
+            self.selected = true
             self.selectalltaskswithfilestobackupbutton.isEnabled = true
         }
     }
