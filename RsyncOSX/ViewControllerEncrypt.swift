@@ -22,7 +22,8 @@ class ViewControllerEncrypt: NSViewController, GetIndex, SetConfigurations, VcCo
     var hiddenID: Int?
     var diddissappear: Bool = false
 
-    @IBOutlet weak var mainTableView: NSTableView!
+    @IBOutlet weak var rcloneTableView: NSTableView!
+    @IBOutlet weak var rsyncTableView: NSTableView!
     @IBOutlet weak var profilescombobox: NSComboBox!
     @IBOutlet weak var localCatalog: NSTextField!
     @IBOutlet weak var offsiteCatalog: NSTextField!
@@ -78,8 +79,10 @@ class ViewControllerEncrypt: NSViewController, GetIndex, SetConfigurations, VcCo
     override func viewDidLoad() {
         super.viewDidLoad()
         ViewControllerReference.shared.setvcref(viewcontroller: .vcencrypt, nsviewcontroller: self)
-        self.mainTableView.delegate = self
-        self.mainTableView.dataSource = self
+        self.rcloneTableView.delegate = self
+        self.rcloneTableView.dataSource = self
+        self.rsyncTableView.delegate = self
+        self.rsyncTableView.dataSource = self
         let storage = RclonePersistentStorageAPI(profile: nil)
         if let userConfiguration = storage.getUserconfiguration() {
             _ = RcloneUserconfiguration(userconfigRsyncOSX: userConfiguration)
@@ -95,7 +98,7 @@ class ViewControllerEncrypt: NSViewController, GetIndex, SetConfigurations, VcCo
         self.deselect()
         self.forceresetbutton.state = .off
         globalMainQueue.async(execute: { () -> Void in
-            self.mainTableView.reloadData()
+            self.rcloneTableView.reloadData()
         })
     }
 
@@ -107,12 +110,11 @@ class ViewControllerEncrypt: NSViewController, GetIndex, SetConfigurations, VcCo
     private func updateview() {
         self.getconfig()
         globalMainQueue.async(execute: { () -> Void in
-            self.mainTableView.reloadData()
+            self.rcloneTableView.reloadData()
         })
     }
 
     private func loadprofiles() {
-        self.rcloneprofile = nil
         self.rcloneprofile = RcloneProfiles()
         self.profilescombobox.removeAllItems()
         self.profilescombobox.addItems(withObjectValues: self.rcloneprofile!.getDirectorysStrings())
@@ -182,53 +184,67 @@ class ViewControllerEncrypt: NSViewController, GetIndex, SetConfigurations, VcCo
 
     private func deselect() {
         guard self.rcloneindex != nil else { return }
-        self.mainTableView.deselectRow(self.rcloneindex!)
+        self.rcloneTableView.deselectRow(self.rcloneindex!)
     }
 
     // when row is selected
     // setting which table row is selected
     func tableViewSelectionDidChange(_ notification: Notification) {
         let myTableViewFromNotification = (notification.object as? NSTableView)!
-        let indexes = myTableViewFromNotification.selectedRowIndexes
-        if let index = indexes.first {
-            self.rcloneindex = index
-            self.hiddenID = self.configurationsrclone!.gethiddenID(index: index)
+        if myTableViewFromNotification == self.rcloneTableView {
+            let indexes = myTableViewFromNotification.selectedRowIndexes
+            if let index = indexes.first {
+                self.rcloneindex = index
+                self.hiddenID = self.configurationsrclone!.gethiddenID(index: index)
+            } else {
+                self.rcloneindex = nil
+            }
+            if self.rcloneindex != nil {
+                self.connectbutton.isEnabled = self.enableconnectionbutton()
+                self.resetbutton.isEnabled = self.enableresetbutton()
+            } else {
+                self.connectbutton.isEnabled = false
+                self.resetbutton.isEnabled = false
+            }
+            globalMainQueue.async(execute: { () -> Void in
+                self.rcloneTableView.reloadData()
+            })
         } else {
-            self.rcloneindex = nil
+
         }
-        if self.rcloneindex != nil {
-            self.connectbutton.isEnabled = self.enableconnectionbutton()
-            self.resetbutton.isEnabled = self.enableresetbutton()
-        } else {
-            self.connectbutton.isEnabled = false
-            self.resetbutton.isEnabled = false
-        }
-        globalMainQueue.async(execute: { () -> Void in
-            self.mainTableView.reloadData()
-        })
     }
 }
 
 extension ViewControllerEncrypt: NSTableViewDataSource {
     func numberOfRows(in tableView: NSTableView) -> Int {
-        return self.configurationsrclone?.configurationsDataSourcecount() ?? 0
+        if tableView == self.rcloneTableView {
+            return self.configurationsrclone?.configurationsDataSourcecount() ?? 0
+        } else {
+            return self.configurations?.getConfigurationsDataSourcecountBackupCombined()?.count ?? 0
+        }
     }
 }
 
 extension ViewControllerEncrypt: NSTableViewDelegate {
     func tableView(_ tableView: NSTableView, objectValueFor tableColumn: NSTableColumn?, row: Int) -> Any? {
-        if row > self.configurationsrclone!.configurationsDataSourcecount() - 1 { return nil }
-        let object: NSDictionary = self.configurationsrclone!.getConfigurationsDataSource()![row]
-        let text = object[tableColumn!.identifier] as? String
-        if self.index != nil {
-            guard self.index! < self.configurations!.getConfigurations().count else { return nil }
-            if self.configurationsrclone!.getConfigurations()[row].hiddenID == self.configurations?.getConfigurations() [self.index!].rclonehiddenID && self.rcloneprofilename == self.configurations?.getConfigurations() [self.index!].rcloneprofile {
-                if tableColumn!.identifier.rawValue == "connected" {
-                    return #imageLiteral(resourceName: "complete")
+        if tableView == self.rcloneTableView {
+            guard row < self.configurationsrclone!.configurationsDataSourcecount() else { return nil }
+            let object: NSDictionary = self.configurationsrclone!.getConfigurationsDataSource()![row]
+            let text = object[tableColumn!.identifier] as? String
+            if self.index != nil {
+                guard self.index! < self.configurations!.getConfigurations().count else { return nil }
+                if self.configurationsrclone!.getConfigurations()[row].hiddenID == self.configurations?.getConfigurations() [self.index!].rclonehiddenID && self.rcloneprofilename == self.configurations?.getConfigurations() [self.index!].rcloneprofile {
+                    if tableColumn!.identifier.rawValue == "connected" {
+                        return #imageLiteral(resourceName: "complete")
+                    }
                 }
             }
+            return text
+        } else {
+            guard row < self.configurations!.getConfigurationsDataSourcecountBackupCombined()!.count else { return nil }
+            let object: NSDictionary = self.configurations!.getConfigurationsDataSourcecountBackupCombined()![row]
+            return object[tableColumn!.identifier] as? String
         }
-        return text
     }
 }
 
@@ -237,7 +253,7 @@ extension ViewControllerEncrypt: DismissViewController {
     func dismiss_view(viewcontroller: NSViewController) {
         self.dismissViewController(viewcontroller)
         globalMainQueue.async(execute: { () -> Void in
-            self.mainTableView.reloadData()
+            self.rcloneTableView.reloadData()
         })
     }
 }
