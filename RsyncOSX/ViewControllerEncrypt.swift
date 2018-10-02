@@ -206,7 +206,13 @@ class ViewControllerEncrypt: NSViewController, GetIndex, SetConfigurations, VcCo
                 self.rcloneTableView.reloadData()
             })
         } else {
-
+            let indexes = myTableViewFromNotification.selectedRowIndexes
+            if let index = indexes.first {
+                self.index = index
+                self.getconfig()
+            } else {
+                self.index = nil
+            }
         }
     }
 }
