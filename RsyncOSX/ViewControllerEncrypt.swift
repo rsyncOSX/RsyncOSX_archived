@@ -107,6 +107,7 @@ class ViewControllerEncrypt: NSViewController, GetIndex, SetConfigurations, VcCo
         self.getconfig()
         globalMainQueue.async(execute: { () -> Void in
             self.rcloneTableView.reloadData()
+            self.rsyncTableView.reloadData()
         })
     }
 
@@ -213,6 +214,9 @@ class ViewControllerEncrypt: NSViewController, GetIndex, SetConfigurations, VcCo
             } else {
                 self.index = nil
             }
+            globalMainQueue.async(execute: { () -> Void in
+                self.rsyncTableView.reloadData()
+            })
         }
     }
 }
