@@ -232,7 +232,6 @@ extension ViewControllerEncrypt: NSTableViewDelegate {
         if tableView == self.rcloneTableView {
             guard row < self.configurationsrclone!.configurationsDataSourcecount() else { return nil }
             let object: NSDictionary = self.configurationsrclone!.getConfigurationsDataSource()![row]
-            let text = object[tableColumn!.identifier] as? String
             if self.index != nil {
                 guard self.index! < self.configurations!.getConfigurations().count else { return nil }
                 if self.configurationsrclone!.getConfigurations()[row].hiddenID == self.configurations?.getConfigurations() [self.index!].rclonehiddenID && self.rcloneprofilename == self.configurations?.getConfigurations() [self.index!].rcloneprofile {
@@ -241,7 +240,7 @@ extension ViewControllerEncrypt: NSTableViewDelegate {
                     }
                 }
             }
-            return text
+            return object[tableColumn!.identifier] as? String
         } else {
             guard row < self.configurations!.getConfigurationsDataSourcecountBackupCombined()!.count else { return nil }
             let object: NSDictionary = self.configurations!.getConfigurationsDataSourcecountBackupCombined()![row]
