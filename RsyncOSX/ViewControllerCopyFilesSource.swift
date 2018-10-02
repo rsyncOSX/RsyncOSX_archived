@@ -18,7 +18,6 @@ class ViewControllerCopyFilesSource: NSViewController, SetConfigurations, SetDis
     weak var getSourceDelegateCopyFiles: ViewControllerCopyFiles?
     weak var getSourceDelegateSsh: ViewControllerSsh?
     weak var getSourceDelegateSnapshots: ViewControllerSnapshots?
-    weak var getSourceDelegateEncrypt: ViewControllerEncrypt?
     private var index: Int?
 
     private func dismissview() {
@@ -28,8 +27,6 @@ class ViewControllerCopyFilesSource: NSViewController, SetConfigurations, SetDis
             self.dismissview(viewcontroller: self, vcontroller: .vcssh)
         } else if (self.presenting as? ViewControllerSnapshots) != nil {
             self.dismissview(viewcontroller: self, vcontroller: .vcsnapshot)
-        } else if (self.presenting as? ViewControllerEncrypt) != nil {
-            self.dismissview(viewcontroller: self, vcontroller: .vcencrypt)
         }
     }
 
@@ -48,11 +45,6 @@ class ViewControllerCopyFilesSource: NSViewController, SetConfigurations, SetDis
             self.getSourceDelegateSnapshots = pvc
             if let index = self.index {
                 self.getSourceDelegateSnapshots?.getSource(index: index)
-            }
-        } else if let pvc = self.presenting as? ViewControllerEncrypt {
-            self.getSourceDelegateEncrypt = pvc
-            if let index = self.index {
-                self.getSourceDelegateEncrypt?.getSource(index: index)
             }
         }
     }
@@ -109,11 +101,6 @@ class ViewControllerCopyFilesSource: NSViewController, SetConfigurations, SetDis
                 let hiddenID = object.value(forKey: "hiddenID") as? Int
                 guard hiddenID != nil else { return }
                 self.index = hiddenID!
-            } else if self.presenting as? ViewControllerEncrypt != nil {
-                let object = self.configurations!.getConfigurationsDataSourcecountBackupCombined()![index]
-                let hiddenID = object.value(forKey: "hiddenID") as? Int
-                guard hiddenID != nil else { return }
-                self.index = self.configurations!.getIndex(hiddenID!)
             }
         }
     }

@@ -46,10 +46,6 @@ class ViewControllerEncrypt: NSViewController, GetIndex, SetConfigurations, VcCo
         }
     }
 
-    @IBAction func getconfig(_ sender: NSButton) {
-         self.presentViewControllerAsSheet(self.viewControllerSource!)
-    }
-
     @IBAction func connect(_ sender: NSButton) {
         guard self.index != nil else { return }
         if let rclonehiddenID = self.configurationsrclone?.gethiddenID(index: self.rcloneindex!) {
@@ -245,24 +241,5 @@ extension ViewControllerEncrypt: NSTableViewDelegate {
             let object: NSDictionary = self.configurations!.getConfigurationsDataSourcecountBackupCombined()![row]
             return object[tableColumn!.identifier] as? String
         }
-    }
-}
-
-extension ViewControllerEncrypt: DismissViewController {
-    // Protocol DismissViewController
-    func dismiss_view(viewcontroller: NSViewController) {
-        self.dismissViewController(viewcontroller)
-        globalMainQueue.async(execute: { () -> Void in
-            self.rcloneTableView.reloadData()
-        })
-    }
-}
-
-extension ViewControllerEncrypt: GetSource {
-    func getSource(index: Int) {
-        self.index = index
-        self.getconfig()
-        self.connectbutton.isEnabled = false
-        self.resetbutton.isEnabled = false
     }
 }
