@@ -6995,7 +6995,7 @@ DQ
                                 </tableHeaderView>
                             </scrollView>
                             <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="gF4-Qw-h7z">
-                                <rect key="frame" x="626" y="26" width="80" height="32"/>
+                                <rect key="frame" x="608" y="26" width="80" height="32"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <buttonCell key="cell" type="push" title="Connect" bezelStyle="rounded" alignment="center" enabled="NO" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="o1P-3T-Wzv">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -7011,16 +7011,6 @@ DQ
                                 <view key="contentView" id="UdH-Mu-YRr">
                                     <rect key="frame" x="3" y="3" width="417" height="36"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                    <subviews>
-                                        <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="zdg-TW-Apb">
-                                            <rect key="frame" x="102" y="14" width="14" height="13"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                            <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="red" imagePosition="only" alignment="center" imageScaling="proportionallyUpOrDown" inset="2" id="7Qy-V8-3jD">
-                                                <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                                <font key="font" metaFont="system"/>
-                                            </buttonCell>
-                                        </button>
-                                    </subviews>
                                 </view>
                             </box>
                             <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="FJk-9x-I6T">
@@ -7078,7 +7068,7 @@ DQ
                                 </connections>
                             </button>
                             <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="9f4-Pr-NEt">
-                                <rect key="frame" x="722" y="26" width="78" height="32"/>
+                                <rect key="frame" x="682" y="26" width="78" height="32"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <buttonCell key="cell" type="push" title="Reset" bezelStyle="rounded" alignment="center" enabled="NO" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="C79-QW-Wwe">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -7180,7 +7170,6 @@ DQ
                     <connections>
                         <outlet property="backupID" destination="gYQ-RJ-rfT" id="EIo-p9-eO0"/>
                         <outlet property="connectbutton" destination="gF4-Qw-h7z" id="0gX-Ru-C2L"/>
-                        <outlet property="connectionlight" destination="zdg-TW-Apb" id="HGC-VE-GYu"/>
                         <outlet property="forceresetbutton" destination="YSB-CT-jat" id="iF2-PM-hI9"/>
                         <outlet property="localCatalog" destination="DRR-F1-iKM" id="7zE-eR-5od"/>
                         <outlet property="offsiteCatalog" destination="wES-SP-MCG" id="l8r-cV-aGd"/>

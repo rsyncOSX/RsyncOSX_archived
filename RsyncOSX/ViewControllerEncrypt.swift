@@ -35,7 +35,6 @@ class ViewControllerEncrypt: NSViewController, GetIndex, SetConfigurations, VcCo
     @IBOutlet weak var rcloneID: NSTextField!
     @IBOutlet weak var rcloneremotecatalog: NSTextField!
     @IBOutlet weak var forceresetbutton: NSButton!
-    @IBOutlet weak var connectionlight: NSButton!
 
     @IBAction func forcereset(_ sender: NSButton) {
         guard self.rsyncindex != nil else { return }
@@ -153,7 +152,6 @@ class ViewControllerEncrypt: NSViewController, GetIndex, SetConfigurations, VcCo
             guard rcloneindex >= 0 else { return }
             self.rcloneID.stringValue = self.configurationsrclone!.getConfigurations()[rcloneindex].backupID
             self.rcloneremotecatalog.stringValue = self.configurationsrclone!.getConfigurations()[rcloneindex].offsiteCatalog
-            self.connectionlight.image = #imageLiteral(resourceName: "green")
         }
     }
 
