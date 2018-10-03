@@ -92,7 +92,7 @@ class ViewControllerEncrypt: NSViewController, GetIndex, SetConfigurations, VcCo
         self.deselect()
         self.forceresetbutton.state = .off
         globalMainQueue.async(execute: { () -> Void in
-            self.rcloneTableView.reloadData()
+            self.rsyncTableView.reloadData()
         })
     }
 
@@ -102,10 +102,9 @@ class ViewControllerEncrypt: NSViewController, GetIndex, SetConfigurations, VcCo
     }
 
     private func updateview() {
-        self.selectindexrsyncosx()
+        self.selectindexrcloneosx()
         globalMainQueue.async(execute: { () -> Void in
             self.rcloneTableView.reloadData()
-            self.rsyncTableView.reloadData()
         })
     }
 
@@ -138,6 +137,7 @@ class ViewControllerEncrypt: NSViewController, GetIndex, SetConfigurations, VcCo
     }
 
     private func selectindexrcloneosx() {
+        guard self.rsyncindex != nil else { return }
         let rsyncconfig: Configuration = self.configurations!.getConfigurations()[self.rsyncindex!]
         guard rsyncconfig.rclonehiddenID != nil else {
             self.rcloneID.stringValue = ""
@@ -154,10 +154,6 @@ class ViewControllerEncrypt: NSViewController, GetIndex, SetConfigurations, VcCo
             self.rcloneID.stringValue = self.configurationsrclone!.getConfigurations()[rcloneindex].backupID
             self.rcloneremotecatalog.stringValue = self.configurationsrclone!.getConfigurations()[rcloneindex].offsiteCatalog
             self.connectionlight.image = #imageLiteral(resourceName: "green")
-        } else {
-            self.rcloneID.stringValue = ""
-            self.rcloneremotecatalog.stringValue = ""
-            self.connectionlight.image = #imageLiteral(resourceName: "red")
         }
     }
 
@@ -210,7 +206,6 @@ class ViewControllerEncrypt: NSViewController, GetIndex, SetConfigurations, VcCo
                 self.resetbutton.isEnabled = false
             }
             globalMainQueue.async(execute: { () -> Void in
-                self.rsyncTableView.reloadData()
                 self.rcloneTableView.reloadData()
             })
         } else {
@@ -218,13 +213,12 @@ class ViewControllerEncrypt: NSViewController, GetIndex, SetConfigurations, VcCo
             if let index = indexes.first {
                 self.rsyncindex = index
                 self.selectindexrsyncosx()
+                globalMainQueue.async(execute: { () -> Void in
+                    self.rcloneTableView.reloadData()
+                })
             } else {
                 self.rsyncindex = nil
             }
-            globalMainQueue.async(execute: { () -> Void in
-                self.rsyncTableView.reloadData()
-                self.rcloneTableView.reloadData()
-            })
         }
     }
 }
@@ -247,9 +241,7 @@ extension ViewControllerEncrypt: NSTableViewDelegate {
             if self.rsyncindex != nil {
                 guard self.rsyncindex! < self.configurations!.getConfigurations().count else { return nil }
                 if self.configurationsrclone!.getConfigurations()[row].hiddenID == self.configurations?.getConfigurations() [self.rsyncindex!].rclonehiddenID && self.rcloneprofilename == self.configurations?.getConfigurations() [self.rsyncindex!].rcloneprofile {
-                    if tableColumn!.identifier.rawValue == "connected" {
-                        return #imageLiteral(resourceName: "complete")
-                    }
+                    if tableColumn!.identifier.rawValue == "connected" { return #imageLiteral(resourceName: "complete") }
                 }
             }
             return object[tableColumn!.identifier] as? String
