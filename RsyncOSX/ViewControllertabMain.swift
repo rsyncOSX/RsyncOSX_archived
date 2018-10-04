@@ -132,9 +132,9 @@ class ViewControllertabMain: NSViewController, ReloadTable, Deselect, Coloractiv
             self.verifyrsyncpath!.noRsync()
             return
         }
-        guard self.configurations!.getConfigurations()[self.index!].task == "backup" ||
-            self.configurations!.getConfigurations()[self.index!].task == "snapshot" ||
-            self.configurations!.getConfigurations()[self.index!].task == "combined" else {
+        guard self.configurations!.getConfigurations()[self.index!].task == ViewControllerReference.shared.backup ||
+            self.configurations!.getConfigurations()[self.index!].task == ViewControllerReference.shared.snapshot ||
+            self.configurations!.getConfigurations()[self.index!].task == ViewControllerReference.shared.combined else {
                 self.info(num: 7)
                 return
         }
@@ -174,9 +174,9 @@ class ViewControllertabMain: NSViewController, ReloadTable, Deselect, Coloractiv
             self.verifyrsyncpath!.noRsync()
             return
         }
-        guard self.configurations!.getConfigurations()[self.index!].task == "backup" ||
-            self.configurations!.getConfigurations()[self.index!].task == "snapshot" ||
-            self.configurations!.getConfigurations()[self.index!].task == "combined" else {
+        guard self.configurations!.getConfigurations()[self.index!].task == ViewControllerReference.shared.backup ||
+            self.configurations!.getConfigurations()[self.index!].task == ViewControllerReference.shared.snapshot ||
+            self.configurations!.getConfigurations()[self.index!].task == ViewControllerReference.shared.combined else {
                 self.info(num: 7)
                 return
         }
@@ -334,12 +334,12 @@ class ViewControllertabMain: NSViewController, ReloadTable, Deselect, Coloractiv
             self.info(num: 1)
             return
         }
-        guard self.configurations!.getConfigurations()[self.index!].task == "backup" ||
-            self.configurations!.getConfigurations()[self.index!].task == "snapshot" ||
-        self.configurations!.getConfigurations()[self.index!].task == "combined" else {
+        guard self.configurations!.getConfigurations()[self.index!].task == ViewControllerReference.shared.backup ||
+            self.configurations!.getConfigurations()[self.index!].task == ViewControllerReference.shared.snapshot ||
+        self.configurations!.getConfigurations()[self.index!].task == ViewControllerReference.shared.combined else {
                 return
         }
-        if self.configurations!.getConfigurations()[self.index!].task == "combined" {
+        if self.configurations!.getConfigurations()[self.index!].task == ViewControllerReference.shared.combined {
             self.processtermination = .combinedtask
             self.working.startAnimation(nil)
             _ = Combined(profile: self.configurations!.getConfigurations()[self.index!].rcloneprofile, index: self.index!)
@@ -479,8 +479,8 @@ class ViewControllertabMain: NSViewController, ReloadTable, Deselect, Coloractiv
             return
         }
         guard self.index != nil else { return }
-        guard self.configurations!.getConfigurations()[self.index!].task == "backup" ||
-            self.configurations!.getConfigurations()[self.index!].task == "snapshot" ||
+        guard self.configurations!.getConfigurations()[self.index!].task == ViewControllerReference.shared.backup ||
+            self.configurations!.getConfigurations()[self.index!].task == ViewControllerReference.shared.snapshot ||
             self.configurations!.getConfigurations()[self.index!].task == "restore" else {
                 self.info(num: 6)
                 return

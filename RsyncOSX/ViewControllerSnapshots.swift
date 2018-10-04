@@ -126,7 +126,7 @@ class ViewControllerSnapshots: NSViewController, SetDismisser, SetConfigurations
             self.info(num: 0)
             self.initdeletesnapshots()
             let hiddenID = self.configurations?.gethiddenID(index: index)
-            if self.configurations?.getConfigurations()[index].task == "snapshot" {
+            if self.configurations?.getConfigurations()[index].task == ViewControllerReference.shared.snapshot {
                 self.getSource(index: hiddenID!)
                 self.info(num: 6)
             } else {
@@ -229,7 +229,7 @@ extension ViewControllerSnapshots: GetSource {
         if config!.sshport != nil {
             self.sshport.stringValue = String(describing: self.config!.sshport!)
         }
-        if self.config!.task == "snapshot" {
+        if self.config!.task == ViewControllerReference.shared.snapshot {
             self.info(num: 0)
             self.gettinglogs.startAnimation(nil)
         } else {

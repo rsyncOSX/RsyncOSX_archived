@@ -31,7 +31,9 @@ class ViewControllerNewConfigurations: NSViewController, SetConfigurations, VcSc
     var outputprocess: OutputProcess?
     var index: Int?
     // Reference to rsync parameters to use in combox
-    var comboBoxValues = ["synchronize", "snapshots", "single file"]
+    var comboBoxValues = [ViewControllerReference.shared.backup,
+                          ViewControllerReference.shared.snapshot,
+                          "single file"]
     var backuptypeselected: Typebackup = .synchronize
     var diddissappear: Bool = false
 
@@ -165,7 +167,7 @@ class ViewControllerNewConfigurations: NSViewController, SetConfigurations, VcSc
 
     @IBAction func addConfig(_ sender: NSButton) {
         let dict: NSMutableDictionary = [
-            "task": "backup",
+            "task": ViewControllerReference.shared.backup,
             "backupID": backupID.stringValue,
             "localCatalog": localCatalog.stringValue,
             "offsiteCatalog": offsiteCatalog.stringValue,
@@ -183,7 +185,7 @@ class ViewControllerNewConfigurations: NSViewController, SetConfigurations, VcSc
         dict.setValue("no", forKey: "batch")
 
         if self.backuptypeselected == .snapshots {
-            dict.setValue("snapshot", forKey: "task")
+            dict.setValue(ViewControllerReference.shared.snapshot, forKey: "task")
             dict.setValue(1, forKey: "snapshotnum")
             self.outputprocess = OutputProcess()
             self.snapshotcreatecatalog(dict: dict, outputprocess: self.outputprocess)

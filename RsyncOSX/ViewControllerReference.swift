@@ -74,6 +74,10 @@ class ViewControllerReference {
     var fulllogging: Bool = false
     var logname: String = "rsynclog"
     var fileURL: URL?
+    // String tasks
+    var backup: String = "synchronize"
+    var combined: String = "combined"
+    var snapshot: String = "snapshot"
     // Mark number of days since last backup
     var marknumberofdayssince: Double = 5
     // rsync version string
