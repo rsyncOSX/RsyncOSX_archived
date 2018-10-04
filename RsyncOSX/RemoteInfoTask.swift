@@ -28,7 +28,7 @@ class RemoteInfoTask {
             "totalDirs": self.totalDirs ?? "",
             "newfiles": self.newfiles ?? ""]
         dict.setValue(self.deletefiles ?? "", forKey: "deletefiles")
-        dict.setValue(0, forKey: ViewControllerReference.shared.backup)
+        dict.setValue(0, forKey: "select")
         return dict
     }
 

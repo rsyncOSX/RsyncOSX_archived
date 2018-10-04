@@ -116,7 +116,7 @@ class ViewControllerRemoteInfo: NSViewController, SetDismisser, AbortTask {
     }
 
     private func dobackups() -> [NSMutableDictionary]? {
-        let backup = self.remoteinfotask?.records?.filter({$0.value(forKey: ViewControllerReference.shared.backup) as? Int == 1})
+        let backup = self.remoteinfotask?.records?.filter({$0.value( forKey: "select") as? Int == 1})
         return backup
     }
 
@@ -190,7 +190,7 @@ extension ViewControllerRemoteInfo: NSTableViewDelegate, Attributedestring {
         case "deletefiles":
             let celltext = object[tableColumn!.identifier] as? String
             return self.attributedstring(str: celltext!, color: NSColor.red, align: .right)
-        case ViewControllerReference.shared.backup:
+        case "select":
             return object[tableColumn!.identifier] as? Int
         default:
             return object[tableColumn!.identifier] as? String
@@ -200,10 +200,10 @@ extension ViewControllerRemoteInfo: NSTableViewDelegate, Attributedestring {
     // Toggling selection
     func tableView(_ tableView: NSTableView, setObjectValue object: Any?, for tableColumn: NSTableColumn?, row: Int) {
         guard  self.remoteinfotask?.records != nil else { return }
-        if tableColumn!.identifier.rawValue == ViewControllerReference.shared.backup {
-            var select: Int = (self.remoteinfotask?.records![row].value(forKey: ViewControllerReference.shared.backup) as? Int)!
+        if tableColumn!.identifier.rawValue == "select" {
+            var select: Int = (self.remoteinfotask?.records![row].value(forKey: "select") as? Int)!
             if select == 0 { select = 1 } else if select == 1 { select = 0 }
-            self.remoteinfotask?.records![row].setValue(select, forKey: ViewControllerReference.shared.backup)
+            self.remoteinfotask?.records![row].setValue(select, forKey: "select")
         }
         self.enableexecutebutton()
     }
