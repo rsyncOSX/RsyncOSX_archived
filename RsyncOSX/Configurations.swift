@@ -89,7 +89,7 @@ class Configurations: ReloadTable, SetSchedules {
     /// - parameter none: none
     /// - returns : Array of NSDictionary
     func getConfigurationsDataSourcecountBackup() -> [NSMutableDictionary]? {
-        let configurations: [Configuration] = self.configurations!.filter({return ($0.task == "backup" || $0.task == "snapshot")})
+        let configurations: [Configuration] = self.configurations!.filter({return ($0.task == ViewControllerReference.shared.backup || $0.task == ViewControllerReference.shared.snapshot)})
         var data = [NSMutableDictionary]()
         for i in 0 ..< configurations.count {
             let row: NSMutableDictionary = [
@@ -119,7 +119,7 @@ class Configurations: ReloadTable, SetSchedules {
     }
 
     func getConfigurationsDataSourcecountBackupSnapshot() -> [NSDictionary]? {
-        var configurations: [Configuration] = self.configurations!.filter({return ($0.task == "backup" || $0.task == "snapshot" )})
+        var configurations: [Configuration] = self.configurations!.filter({return ($0.task == ViewControllerReference.shared.backup || $0.task == ViewControllerReference.shared.snapshot )})
         var data = [NSDictionary]()
         for i in 0 ..< configurations.count {
             if configurations[i].offsiteServer.isEmpty == true {
@@ -143,7 +143,7 @@ class Configurations: ReloadTable, SetSchedules {
     }
 
     func getConfigurationsDataSourcecountBackupCombined() -> [NSDictionary]? {
-        var configurations: [Configuration] = self.configurations!.filter({return ($0.task == "backup" || $0.task == "combined" )})
+        var configurations: [Configuration] = self.configurations!.filter({return ($0.task == ViewControllerReference.shared.backup || $0.task == ViewControllerReference.shared.combined )})
         var data = [NSDictionary]()
         for i in 0 ..< configurations.count {
             if configurations[i].offsiteServer.isEmpty == true {
@@ -169,7 +169,7 @@ class Configurations: ReloadTable, SetSchedules {
     /// Function returns all Configurations marked for backup.
     /// - returns : array of Configurations
     func getConfigurationsBatch() -> [Configuration] {
-        return self.configurations!.filter({return ($0.task == "backup" || $0.task == "snapshot" ) && ($0.batch == "yes")})
+        return self.configurations!.filter({return ($0.task == ViewControllerReference.shared.backup || $0.task == ViewControllerReference.shared.snapshot ) && ($0.batch == "yes")})
     }
 
     /// Function computes arguments for rsync, either arguments for
@@ -236,7 +236,7 @@ class Configurations: ReloadTable, SetSchedules {
     /// in tableView.
     /// - parameter index: index of Configuration to update
     func setCurrentDateonConfigurationQuickbackup (_ index: Int, outputprocess: OutputProcess?) {
-        if self.configurations![index].task == "snapshot" {
+        if self.configurations![index].task == ViewControllerReference.shared.snapshot {
             self.increasesnapshotnum(index: index)
         }
         let currendate = Date()
@@ -259,7 +259,7 @@ class Configurations: ReloadTable, SetSchedules {
         let hiddenID = self.gethiddenID(index: index)
         let numbers = number.stats(numberOfFiles: transferredNumber, sizeOfFiles: transferredNumberSizebytes)
         self.schedules!.addlogtaskmanuel(hiddenID, result: numbers)
-        if self.configurations![index].task == "snapshot" {
+        if self.configurations![index].task == ViewControllerReference.shared.snapshot {
             self.increasesnapshotnum(index: index)
         }
         let currendate = Date()
@@ -394,17 +394,17 @@ class Configurations: ReloadTable, SetSchedules {
     }
 
     func setrcloneconnection(index: Int, rclonehiddenID: Int, rcloneprofile: String?) {
-        guard self.configurations![index].task == "backup" ||  self.configurations![index].task == "combined" else { return }
+        guard self.configurations![index].task == ViewControllerReference.shared.backup ||  self.configurations![index].task == ViewControllerReference.shared.combined else { return }
         self.configurations![index].rclonehiddenID = rclonehiddenID
         self.configurations![index].rcloneprofile = rcloneprofile
-        self.configurations![index].task = "combined"
+        self.configurations![index].task = ViewControllerReference.shared.combined
         self.storageapi!.saveConfigFromMemory()
     }
 
     func deletercloneconnection(index: Int) {
         self.configurations![index].rclonehiddenID = nil
         self.configurations![index].rcloneprofile = nil
-        self.configurations![index].task = "backup"
+        self.configurations![index].task = ViewControllerReference.shared.backup
         self.storageapi!.saveConfigFromMemory()
     }
 

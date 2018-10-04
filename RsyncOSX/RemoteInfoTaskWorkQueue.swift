@@ -31,8 +31,8 @@ class RemoteInfoTaskWorkQueue: SetConfigurations {
         self.stackoftasktobeestimated = nil
         self.stackoftasktobeestimated = [Row]()
         for i in 0 ..< self.configurations!.getConfigurations().count {
-            if self.configurations!.getConfigurations()[i].task == "backup" ||
-            self.configurations!.getConfigurations()[i].task == "snapshot" {
+            if self.configurations!.getConfigurations()[i].task == ViewControllerReference.shared.backup ||
+            self.configurations!.getConfigurations()[i].task == ViewControllerReference.shared.snapshot {
                 self.stackoftasktobeestimated?.append((self.configurations!.getConfigurations()[i].hiddenID, i))
             }
         }
@@ -108,9 +108,9 @@ class RemoteInfoTaskWorkQueue: SetConfigurations {
             let delete = (self.records![i].value(forKey: "deletefiles") as? String) ?? "0"
             if Int(number)! > 0 || Int(delete)! > 0 {
                 if deselect {
-                    self.records![i].setValue(0, forKey: "backup")
+                    self.records![i].setValue(0, forKey: ViewControllerReference.shared.backup)
                 } else {
-                    self.records![i].setValue(1, forKey: "backup")
+                    self.records![i].setValue(1, forKey: ViewControllerReference.shared.backup)
                 }
             }
         }
@@ -120,7 +120,7 @@ class RemoteInfoTaskWorkQueue: SetConfigurations {
         guard self.records != nil else { return }
         self.configurations?.quickbackuplist = [Int]()
         for i in 0 ..< self.records!.count {
-            if self.records![i].value(forKey: "backup") as? Int == 1 {
+            if self.records![i].value(forKey: ViewControllerReference.shared.backup) as? Int == 1 {
                 self.configurations?.quickbackuplist!.append((self.records![i].value(forKey: "hiddenID") as? Int)!)
             }
         }

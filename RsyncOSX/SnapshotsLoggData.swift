@@ -93,7 +93,7 @@ final class SnapshotsLoggData {
     init(config: Configuration) {
         self.snapshotslogs = ScheduleLoggData(sortdirection: true).loggdata
         self.config = config
-        guard config.task == "snapshot" else { return }
+        guard config.task == ViewControllerReference.shared.snapshot else { return }
         self.getremotecataloginfo()
     }
 }

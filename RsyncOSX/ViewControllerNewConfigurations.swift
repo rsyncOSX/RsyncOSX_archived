@@ -165,7 +165,7 @@ class ViewControllerNewConfigurations: NSViewController, SetConfigurations, VcSc
 
     @IBAction func addConfig(_ sender: NSButton) {
         let dict: NSMutableDictionary = [
-            "task": "backup",
+            "task": ViewControllerReference.shared.backup,
             "backupID": backupID.stringValue,
             "localCatalog": localCatalog.stringValue,
             "offsiteCatalog": offsiteCatalog.stringValue,
@@ -183,7 +183,7 @@ class ViewControllerNewConfigurations: NSViewController, SetConfigurations, VcSc
         dict.setValue("no", forKey: "batch")
 
         if self.backuptypeselected == .snapshots {
-            dict.setValue("snapshot", forKey: "task")
+            dict.setValue(ViewControllerReference.shared.snapshot, forKey: "task")
             dict.setValue(1, forKey: "snapshotnum")
             self.outputprocess = OutputProcess()
             self.snapshotcreatecatalog(dict: dict, outputprocess: self.outputprocess)
