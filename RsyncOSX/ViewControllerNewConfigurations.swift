@@ -31,7 +31,9 @@ class ViewControllerNewConfigurations: NSViewController, SetConfigurations, VcSc
     var outputprocess: OutputProcess?
     var index: Int?
     // Reference to rsync parameters to use in combox
-    var comboBoxValues = ["synchronize", "snapshots", "single file"]
+    var comboBoxValues = [ViewControllerReference.shared.backup,
+                          ViewControllerReference.shared.snapshot,
+                          "single file"]
     var backuptypeselected: Typebackup = .synchronize
     var diddissappear: Bool = false
 
