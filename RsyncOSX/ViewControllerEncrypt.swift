@@ -46,19 +46,18 @@ class ViewControllerEncrypt: NSViewController, GetIndex, SetConfigurations, VcCo
     }
 
     @IBAction func connect(_ sender: NSButton) {
-        guard self.rsyncindex != nil else { return }
+        guard self.rsyncindex != nil && self.rcloneindex != nil else { return }
+        guard  self.configurations!.getConfigurations()[self.rsyncindex!].task != ViewControllerReference.shared.combined else { return}
         if let rclonehiddenID = self.configurationsrclone?.gethiddenID(index: self.rcloneindex!) {
             self.configurations!.setrcloneconnection(index: self.rsyncindex!, rclonehiddenID: rclonehiddenID, rcloneprofile: rcloneprofilename)
-            self.updateview()
         }
+         self.updateview()
     }
 
     @IBAction func reset(_ sender: NSButton) {
         guard self.rsyncindex != nil else { return }
         self.configurations!.deletercloneconnection(index: self.rsyncindex!)
         self.updateview()
-        self.connectbutton.isEnabled = self.enableconnectionbutton()
-        self.resetbutton.isEnabled = self.enableresetbutton()
     }
 
     @IBAction func selectprofile(_ sender: NSComboBox) {
@@ -66,8 +65,6 @@ class ViewControllerEncrypt: NSViewController, GetIndex, SetConfigurations, VcCo
         self.rcloneprofilename = self.profilenamearray?[self.profilescombobox.indexOfSelectedItem]
         if self.rcloneprofilename == "Default profile" { self.rcloneprofilename = nil }
         self.configurationsrclone = RcloneConfigurations(profile: self.rcloneprofilename)
-        self.connectbutton.isEnabled = false
-        self.resetbutton.isEnabled = false
         self.updateview()
     }
 
@@ -101,10 +98,12 @@ class ViewControllerEncrypt: NSViewController, GetIndex, SetConfigurations, VcCo
     }
 
     private func updateview() {
-        self.selectindexrcloneosx()
         globalMainQueue.async(execute: { () -> Void in
             self.rcloneTableView.reloadData()
+            self.rsyncTableView.reloadData()
         })
+        self.connectbutton.isEnabled = !self.isconnected(row: self.rcloneindex)
+        self.resetbutton.isEnabled = self.isconnected(row: self.rcloneindex)
     }
 
     private func loadprofiles() {
@@ -155,29 +154,6 @@ class ViewControllerEncrypt: NSViewController, GetIndex, SetConfigurations, VcCo
         }
     }
 
-    private func enableconnectionbutton() -> Bool {
-        guard self.rsyncindex != nil && self.rcloneindex != nil else { return false }
-        let rclonehiddenID = self.configurationsrclone!.gethiddenID(index: self.rcloneindex!)
-        let rcloneremotecatalog = self.configurationsrclone!.getResourceConfiguration(rclonehiddenID, resource: .remoteCatalog) + "/"
-        let rsynclocalcatalog = self.localCatalog.stringValue
-        if rcloneremotecatalog == rsynclocalcatalog {
-            return true
-        } else {
-            return false
-        }
-    }
-
-    private func enableresetbutton() -> Bool {
-        guard self.forceresetbutton.state == .off else { return true }
-        guard self.rsyncindex != nil && self.rcloneindex != nil else { return false }
-        if self.configurationsrclone!.getConfigurations()[self.rcloneindex!].hiddenID == self.configurations?.getConfigurations() [self.rsyncindex!].rclonehiddenID
-            && self.rcloneprofilename == self.configurations?.getConfigurations() [self.rsyncindex!].rcloneprofile {
-            return true
-        } else {
-            return false
-        }
-    }
-
     private func deselect() {
         guard self.rcloneindex != nil else { return }
         self.rcloneTableView.deselectRow(self.rcloneindex!)
@@ -209,13 +185,6 @@ class ViewControllerEncrypt: NSViewController, GetIndex, SetConfigurations, VcCo
             } else {
                 self.rcloneindex = nil
             }
-            if self.rcloneindex != nil {
-                self.connectbutton.isEnabled = self.enableconnectionbutton()
-                self.resetbutton.isEnabled = self.enableresetbutton()
-            } else {
-                self.connectbutton.isEnabled = false
-                self.resetbutton.isEnabled = false
-            }
             globalMainQueue.async(execute: { () -> Void in
                 self.rcloneTableView.reloadData()
             })
@@ -231,6 +200,8 @@ class ViewControllerEncrypt: NSViewController, GetIndex, SetConfigurations, VcCo
                 self.rsyncindex = nil
             }
         }
+        self.connectbutton.isEnabled = !self.isconnected(row: self.rcloneindex)
+        self.resetbutton.isEnabled = self.isconnected(row: self.rcloneindex)
     }
 }
 
