@@ -79,7 +79,7 @@ class ViewControllerCopyFiles: NSViewController, SetConfigurations, GetIndex, De
             self.workingRsync.startAnimation(nil)
             if self.estimated == false {
                 self.copyFiles!.executeRsync(remotefile: remoteCatalog!.stringValue, localCatalog: localCatalog!.stringValue, dryrun: true)
-                self.copyButton.title = "Execute"
+                self.copyButton.title = "Restore"
                 self.estimated = true
             } else {
                 self.copyButton.isEnabled = false
@@ -149,6 +149,7 @@ class ViewControllerCopyFiles: NSViewController, SetConfigurations, GetIndex, De
         self.workingRsync.usesThreadedAnimation = true
         self.search.delegate = self
         self.localCatalog.delegate = self
+        self.remoteCatalog.delegate = self
         self.tableViewSelect.doubleAction = #selector(self.tableViewDoubleClick(sender:))
     }
 
@@ -208,9 +209,9 @@ class ViewControllerCopyFiles: NSViewController, SetConfigurations, GetIndex, De
         guard self.index != nil else { return }
         guard self.remoteCatalog.stringValue.isEmpty == false else { return }
         guard self.localCatalog.stringValue.isEmpty == false else { return }
-        let answer = Alerts.dialogOKCancel("Copy single files or directory", text: "Start copy?")
+        let answer = Alerts.dialogOKCancel("Copy single files or directory", text: "Start restore?")
         if answer {
-            self.copyButton.title = "Execute"
+            self.copyButton.title = "Restore"
             self.copyButton.isEnabled = false
             self.rsync = true
             self.workingRsync.startAnimation(nil)
@@ -244,6 +245,10 @@ extension ViewControllerCopyFiles: NSSearchFieldDelegate {
             }
         }
         self.verifylocalCatalog()
+        guard self.remoteCatalog.stringValue.count > 0 else { return }
+        self.delayWithSeconds(0.25) {
+            self.commandString.stringValue = self.copyFiles!.getCommandDisplayinView(remotefile: self.remoteCatalog.stringValue, localCatalog: self.localCatalog.stringValue)
+        }
     }
 
     func searchFieldDidEndSearching(_ sender: NSSearchField) {
