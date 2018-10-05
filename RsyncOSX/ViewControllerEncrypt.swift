@@ -184,7 +184,7 @@ class ViewControllerEncrypt: NSViewController, GetIndex, SetConfigurations, VcCo
     }
 
     private func isconnected(row: Int?) -> Bool {
-        if self.rsyncindex != nil || row != nil {
+        if self.rsyncindex != nil && row != nil {
             guard self.rsyncindex! < self.configurations!.getConfigurations().count else { return false }
             if self.configurationsrclone!.getConfigurations()[row!].hiddenID == self.configurations?.getConfigurations() [self.rsyncindex!].rclonehiddenID &&
                 self.rcloneprofilename == self.configurations?.getConfigurations() [self.rsyncindex!].rcloneprofile {
