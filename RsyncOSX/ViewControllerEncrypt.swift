@@ -183,6 +183,19 @@ class ViewControllerEncrypt: NSViewController, GetIndex, SetConfigurations, VcCo
         self.rcloneTableView.deselectRow(self.rcloneindex!)
     }
 
+    private func isconnected(row: Int?) -> Bool {
+        if self.rsyncindex != nil || row != nil {
+            guard self.rsyncindex! < self.configurations!.getConfigurations().count else { return false }
+            if self.configurationsrclone!.getConfigurations()[row!].hiddenID == self.configurations?.getConfigurations() [self.rsyncindex!].rclonehiddenID &&
+                self.rcloneprofilename == self.configurations?.getConfigurations() [self.rsyncindex!].rcloneprofile {
+                return true
+            }
+        } else {
+            return false
+        }
+        return false
+    }
+
     // when row is selected
     // setting which table row is selected
     func tableViewSelectionDidChange(_ notification: Notification) {
@@ -236,12 +249,7 @@ extension ViewControllerEncrypt: NSTableViewDelegate {
         if tableView == self.rcloneTableView {
             guard row < self.configurationsrclone!.configurationsDataSourcecount() else { return nil }
             let object: NSDictionary = self.configurationsrclone!.getConfigurationsDataSource()![row]
-            if self.rsyncindex != nil {
-                guard self.rsyncindex! < self.configurations!.getConfigurations().count else { return nil }
-                if self.configurationsrclone!.getConfigurations()[row].hiddenID == self.configurations?.getConfigurations() [self.rsyncindex!].rclonehiddenID && self.rcloneprofilename == self.configurations?.getConfigurations() [self.rsyncindex!].rcloneprofile {
-                    if tableColumn!.identifier.rawValue == "connected" { return #imageLiteral(resourceName: "complete") }
-                }
-            }
+            if self.isconnected(row: row) && tableColumn!.identifier.rawValue == "connected" { return #imageLiteral(resourceName: "complete") }
             return object[tableColumn!.identifier] as? String
         } else {
             guard row < self.configurations!.getConfigurationsDataSourcecountBackupCombined()!.count else { return nil }
