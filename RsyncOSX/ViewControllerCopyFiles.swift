@@ -79,7 +79,7 @@ class ViewControllerCopyFiles: NSViewController, SetConfigurations, GetIndex, De
             self.workingRsync.startAnimation(nil)
             if self.estimated == false {
                 self.copyFiles!.executeRsync(remotefile: remoteCatalog!.stringValue, localCatalog: localCatalog!.stringValue, dryrun: true)
-                self.copyButton.title = "Execute"
+                self.copyButton.title = "Restore"
                 self.estimated = true
             } else {
                 self.copyButton.isEnabled = false
@@ -149,6 +149,7 @@ class ViewControllerCopyFiles: NSViewController, SetConfigurations, GetIndex, De
         self.workingRsync.usesThreadedAnimation = true
         self.search.delegate = self
         self.localCatalog.delegate = self
+        self.remoteCatalog.delegate = self
         self.tableViewSelect.doubleAction = #selector(self.tableViewDoubleClick(sender:))
     }
 
@@ -208,9 +209,9 @@ class ViewControllerCopyFiles: NSViewController, SetConfigurations, GetIndex, De
         guard self.index != nil else { return }
         guard self.remoteCatalog.stringValue.isEmpty == false else { return }
         guard self.localCatalog.stringValue.isEmpty == false else { return }
-        let answer = Alerts.dialogOKCancel("Copy single files or directory", text: "Start copy?")
+        let answer = Alerts.dialogOKCancel("Copy single files or directory", text: "Start restore?")
         if answer {
-            self.copyButton.title = "Execute"
+            self.copyButton.title = "Restore"
             self.copyButton.isEnabled = false
             self.rsync = true
             self.workingRsync.startAnimation(nil)
@@ -228,22 +229,28 @@ class ViewControllerCopyFiles: NSViewController, SetConfigurations, GetIndex, De
 
 extension ViewControllerCopyFiles: NSSearchFieldDelegate {
 
-    override func controlTextDidChange(_ obj: Notification) {
-        self.delayWithSeconds(0.25) {
-            let filterstring = self.search.stringValue
-            if filterstring.isEmpty {
-                globalMainQueue.async(execute: { () -> Void in
-                    self.tabledata = self.copyFiles?.filter(search: nil)
-                    self.tableViewSelect.reloadData()
-                })
-            } else {
-                globalMainQueue.async(execute: { () -> Void in
-                    self.tabledata = self.copyFiles?.filter(search: filterstring)
-                    self.tableViewSelect.reloadData()
-                })
+    override func controlTextDidChange(_ notification: Notification) {
+        if (notification.object as? NSTextField)! == self.search {
+            self.delayWithSeconds(0.25) {
+                if self.search.stringValue.isEmpty {
+                    globalMainQueue.async(execute: { () -> Void in
+                        self.tabledata = self.copyFiles?.filter(search: nil)
+                        self.tableViewSelect.reloadData()
+                    })
+                } else {
+                    globalMainQueue.async(execute: { () -> Void in
+                        self.tabledata = self.copyFiles?.filter(search: self.search.stringValue)
+                        self.tableViewSelect.reloadData()
+                    })
+                }
+            }
+            self.verifylocalCatalog()
+        } else {
+            guard self.remoteCatalog.stringValue.count > 0 else { return }
+            self.delayWithSeconds(0.25) {
+                self.commandString.stringValue = self.copyFiles!.getCommandDisplayinView(remotefile: self.remoteCatalog.stringValue, localCatalog: self.localCatalog.stringValue)
             }
         }
-        self.verifylocalCatalog()
     }
 
     func searchFieldDidEndSearching(_ sender: NSSearchField) {
