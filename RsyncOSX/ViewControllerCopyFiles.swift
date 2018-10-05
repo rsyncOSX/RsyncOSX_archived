@@ -229,25 +229,27 @@ class ViewControllerCopyFiles: NSViewController, SetConfigurations, GetIndex, De
 
 extension ViewControllerCopyFiles: NSSearchFieldDelegate {
 
-    override func controlTextDidChange(_ obj: Notification) {
-        self.delayWithSeconds(0.25) {
-            let filterstring = self.search.stringValue
-            if filterstring.isEmpty {
-                globalMainQueue.async(execute: { () -> Void in
-                    self.tabledata = self.copyFiles?.filter(search: nil)
-                    self.tableViewSelect.reloadData()
-                })
-            } else {
-                globalMainQueue.async(execute: { () -> Void in
-                    self.tabledata = self.copyFiles?.filter(search: filterstring)
-                    self.tableViewSelect.reloadData()
-                })
+    override func controlTextDidChange(_ notification: Notification) {
+        if (notification.object as? NSTextField)! == self.search {
+            self.delayWithSeconds(0.25) {
+                if self.search.stringValue.isEmpty {
+                    globalMainQueue.async(execute: { () -> Void in
+                        self.tabledata = self.copyFiles?.filter(search: nil)
+                        self.tableViewSelect.reloadData()
+                    })
+                } else {
+                    globalMainQueue.async(execute: { () -> Void in
+                        self.tabledata = self.copyFiles?.filter(search: self.search.stringValue)
+                        self.tableViewSelect.reloadData()
+                    })
+                }
             }
-        }
-        self.verifylocalCatalog()
-        guard self.remoteCatalog.stringValue.count > 0 else { return }
-        self.delayWithSeconds(0.25) {
-            self.commandString.stringValue = self.copyFiles!.getCommandDisplayinView(remotefile: self.remoteCatalog.stringValue, localCatalog: self.localCatalog.stringValue)
+            self.verifylocalCatalog()
+        } else {
+            guard self.remoteCatalog.stringValue.count > 0 else { return }
+            self.delayWithSeconds(0.25) {
+                self.commandString.stringValue = self.copyFiles!.getCommandDisplayinView(remotefile: self.remoteCatalog.stringValue, localCatalog: self.localCatalog.stringValue)
+            }
         }
     }
 
