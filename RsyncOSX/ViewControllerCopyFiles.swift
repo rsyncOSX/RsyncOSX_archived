@@ -18,11 +18,11 @@ protocol GetSource: class {
     func getSource(index: Int)
 }
 
-class ViewControllerCopyFiles: NSViewController, SetConfigurations, GetIndex, Delay, VcCopyFiles {
+class ViewControllerCopyFiles: NSViewController, SetConfigurations, Delay, VcCopyFiles {
 
     var copyFiles: CopySingleFiles?
-    var index: Int?
-    var indexselected: Int?
+    // var index: Int?
+    // var indexselected: Int?
     var rsyncindex: Int?
     var getfiles: Bool = false
     var estimated: Bool = false
@@ -134,12 +134,13 @@ class ViewControllerCopyFiles: NSViewController, SetConfigurations, GetIndex, De
     }
 
     @objc(tableViewDoubleClick:) func tableViewDoubleClick(sender: AnyObject) {
-        guard self.index != nil else { return }
         guard self.remoteCatalog.stringValue.isEmpty == false else { return }
         guard self.localCatalog.stringValue.isEmpty == false else { return }
         let answer = Alerts.dialogOKCancel("Copy single files or directory", text: "Start restore?")
         if answer {
             self.restorebutton.isEnabled = false
+            self.rsynctableView.isEnabled = false
+            self.restoretableView.isEnabled = false
             self.getfiles = true
             self.workingRsync.startAnimation(nil)
             self.copyFiles!.executeRsync(remotefile: remoteCatalog!.stringValue, localCatalog: localCatalog!.stringValue, dryrun: false)
@@ -178,7 +179,6 @@ class ViewControllerCopyFiles: NSViewController, SetConfigurations, GetIndex, De
                     self.rsynctableView.isEnabled = false
                     self.restoretableView.isEnabled = false
                     self.rsyncindex = index
-                    self.indexselected = index
                     self.copyFiles = CopySingleFiles(index: index)
                     self.working.startAnimation(nil)
                     self.displayRemoteserver(index: index)
@@ -301,6 +301,8 @@ extension ViewControllerCopyFiles: GetPath {
 
 extension ViewControllerCopyFiles: DismissViewController {
     func dismiss_view(viewcontroller: NSViewController) {
+        self.rsynctableView.isEnabled = true
+        self.restoretableView.isEnabled = true
         self.dismissViewController(viewcontroller)
     }
 }
