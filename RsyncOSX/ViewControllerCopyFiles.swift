@@ -174,6 +174,7 @@ class ViewControllerCopyFiles: NSViewController, SetConfigurations, GetIndex, De
                 if let index = indexes.first {
                     self.getfiles = false
                     self.restorebutton.title = "Estimate"
+                    self.remoteCatalog.stringValue = ""
                     self.rsynctableView.isEnabled = false
                     self.restoretableView.isEnabled = false
                     self.rsyncindex = index
