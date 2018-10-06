@@ -31,12 +31,7 @@ class ViewControllerCopyFilesSource: NSViewController, SetConfigurations, SetDis
     }
 
     private func select() {
-        if let pvc = self.presenting as? ViewControllerCopyFiles {
-            self.getSourceDelegateCopyFiles = pvc
-            if let index = self.index {
-                self.getSourceDelegateCopyFiles?.getSource(index: index)
-            }
-        } else if let pvc = self.presenting as? ViewControllerSsh {
+        if let pvc = self.presenting as? ViewControllerSsh {
             self.getSourceDelegateSsh = pvc
             if let index = self.index {
                 self.getSourceDelegateSsh?.getSource(index: index)
@@ -84,14 +79,7 @@ class ViewControllerCopyFilesSource: NSViewController, SetConfigurations, SetDis
         let indexes = myTableViewFromNotification.selectedRowIndexes
         self.selectButton.isEnabled = true
         if let index = indexes.first {
-            if let pvc = self.presenting as? ViewControllerCopyFiles {
-                self.setIndexDelegate = pvc
-                let object = self.configurations!.getConfigurationsDataSourcecountBackupSnapshot()![index]
-                let hiddenID = object.value(forKey: "hiddenID") as? Int
-                guard hiddenID != nil else { return }
-                self.index = self.configurations!.getIndex(hiddenID!)
-                self.setIndexDelegate?.setIndex(index: self.index!)
-            } else if self.presenting as? ViewControllerSsh != nil {
+            if self.presenting as? ViewControllerSsh != nil {
                 let object = self.configurations!.getConfigurationsDataSourcecountBackupSnapshot()![index]
                 let hiddenID = object.value(forKey: "hiddenID") as? Int
                 guard hiddenID != nil else { return }
