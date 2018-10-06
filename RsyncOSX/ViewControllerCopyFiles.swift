@@ -113,7 +113,12 @@ class ViewControllerCopyFiles: NSViewController, SetConfigurations, Delay, VcCop
     }
 
     override func viewDidAppear() {
-        guard self.diddissappear == false else { return }
+        guard self.diddissappear == false else {
+            globalMainQueue.async(execute: { () -> Void in
+                self.rsynctableView.reloadData()
+            })
+            return
+        }
         super.viewDidAppear()
         if let restorePath = ViewControllerReference.shared.restorePath {
             self.localCatalog.stringValue = restorePath
@@ -240,7 +245,7 @@ extension ViewControllerCopyFiles: NSTableViewDataSource {
             self.numberofrows.stringValue = "Number of remote files: " + String(self.tabledata!.count)
             return self.tabledata!.count
         } else {
-             return self.configurations?.getConfigurationsDataSourcecountBackupCombined()?.count ?? 0
+             return self.configurations?.getConfigurationsDataSourcecountBackupSnapshot()?.count ?? 0
         }
     }
 }
@@ -257,8 +262,8 @@ extension ViewControllerCopyFiles: NSTableViewDelegate {
                 return cell
             }
         } else {
-            guard row < self.configurations!.getConfigurationsDataSourcecountBackupCombined()!.count else { return nil }
-            let object: NSDictionary = self.configurations!.getConfigurationsDataSourcecountBackupCombined()![row]
+            guard row < self.configurations!.getConfigurationsDataSourcecountBackupSnapshot()!.count else { return nil }
+            let object: NSDictionary = self.configurations!.getConfigurationsDataSourcecountBackupSnapshot()![row]
             let cellIdentifier: String = tableColumn!.identifier.rawValue
             if let cell = tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: cellIdentifier), owner: self) as? NSTableCellView {
                 cell.textField?.stringValue = object.value(forKey: cellIdentifier) as? String ?? ""
