@@ -42,10 +42,6 @@ class ViewControllerCopyFiles: NSViewController, SetConfigurations, GetIndex, De
             self.info.stringValue = "Not a remote task, use Finder to copy files..."
         case 3:
             self.info.stringValue = "Local or remote catalog cannot be empty..."
-        case 4:
-            self.info.stringValue = "Got index from Execute or Snapshots, select Source for another index..."
-        case 5:
-            self.info.stringValue = "Please select a source..."
         default:
             self.info.stringValue = ""
         }
@@ -119,10 +115,7 @@ class ViewControllerCopyFiles: NSViewController, SetConfigurations, GetIndex, De
     }
 
     override func viewDidAppear() {
-        guard self.diddissappear == false else {
-            self.reloadtabledata()
-            return
-        }
+        guard self.diddissappear == false else { return }
         super.viewDidAppear()
         if let restorePath = ViewControllerReference.shared.restorePath {
             self.localCatalog.stringValue = restorePath
