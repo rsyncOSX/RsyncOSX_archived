@@ -24,6 +24,17 @@ final class CopySingleFiles: SetConfigurations {
     func getOutput() -> [String] {
         return self.outputprocess?.getOutput() ?? [""]
     }
+    
+    func getOutputNSDictionary() -> [NSDictionary]? {
+        var result: [NSDictionary]
+        guard self.outputprocess?.getOutput() != nil else { return nil}
+        result = [NSDictionary]()
+        for i in 0 ..< self.outputprocess!.getOutput()!.count {
+            let record: NSDictionary = ["files": self.outputprocess!.getOutput()![i]]
+            result.append(record)
+        }
+        return result
+    }
 
     func abort() {
         guard self.process != nil else { return }
