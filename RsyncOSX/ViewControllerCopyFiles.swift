@@ -55,23 +55,22 @@ class ViewControllerCopyFiles: NSViewController, SetConfigurations, GetIndex, De
     @IBAction func abort(_ sender: NSButton) {
         self.working.stopAnimation(nil)
         guard self.copyFiles != nil else { return }
-        self.copyButton.isEnabled = true
+        self.restorebutton.isEnabled = true
         self.copyFiles!.abort()
     }
 
-    @IBOutlet weak var tableViewSelect: NSTableView!
-    @IBOutlet weak var rsyncTableView: NSTableView!
+    @IBOutlet weak var restoretableView: NSTableView!
+    @IBOutlet weak var rsynctableView: NSTableView!
     @IBOutlet weak var commandString: NSTextField!
     @IBOutlet weak var remoteCatalog: NSTextField!
     @IBOutlet weak var localCatalog: NSTextField!
     @IBOutlet weak var working: NSProgressIndicator!
     @IBOutlet weak var workingRsync: NSProgressIndicator!
     @IBOutlet weak var search: NSSearchField!
-    @IBOutlet weak var copyButton: NSButton!
-    @IBOutlet weak var sourceButton: NSButton!
+    @IBOutlet weak var restorebutton: NSButton!
 
     // Do the work
-    @IBAction func copy(_ sender: NSButton) {
+    @IBAction func restore(_ sender: NSButton) {
         guard self.remoteCatalog.stringValue.isEmpty == false && self.localCatalog.stringValue.isEmpty == false else {
             self.info(num: 3)
             return
@@ -81,10 +80,9 @@ class ViewControllerCopyFiles: NSViewController, SetConfigurations, GetIndex, De
             self.workingRsync.startAnimation(nil)
             if self.estimated == false {
                 self.copyFiles!.executeRsync(remotefile: remoteCatalog!.stringValue, localCatalog: localCatalog!.stringValue, dryrun: true)
-                self.copyButton.title = "Restore"
                 self.estimated = true
             } else {
-                self.copyButton.isEnabled = false
+                self.restorebutton.isEnabled = false
                 self.workingRsync.startAnimation(nil)
                 self.copyFiles!.executeRsync(remotefile: remoteCatalog!.stringValue, localCatalog: localCatalog!.stringValue, dryrun: false)
                 self.estimated = false
@@ -108,16 +106,16 @@ class ViewControllerCopyFiles: NSViewController, SetConfigurations, GetIndex, De
     override func viewDidLoad() {
         super.viewDidLoad()
         ViewControllerReference.shared.setvcref(viewcontroller: .vccopyfiles, nsviewcontroller: self)
-        self.tableViewSelect.delegate = self
-        self.tableViewSelect.dataSource = self
-        self.rsyncTableView.delegate = self
-        self.rsyncTableView.dataSource = self
+        self.restoretableView.delegate = self
+        self.restoretableView.dataSource = self
+        self.rsynctableView.delegate = self
+        self.rsynctableView.dataSource = self
         self.working.usesThreadedAnimation = true
         self.workingRsync.usesThreadedAnimation = true
         self.search.delegate = self
         self.localCatalog.delegate = self
         self.remoteCatalog.delegate = self
-        self.tableViewSelect.doubleAction = #selector(self.tableViewDoubleClick(sender:))
+        self.restoretableView.doubleAction = #selector(self.tableViewDoubleClick(sender:))
     }
 
     override func viewDidAppear() {
@@ -133,7 +131,7 @@ class ViewControllerCopyFiles: NSViewController, SetConfigurations, GetIndex, De
         }
         self.verifylocalCatalog()
         globalMainQueue.async(execute: { () -> Void in
-            self.rsyncTableView.reloadData()
+            self.rsynctableView.reloadData()
         })
     }
 
@@ -148,8 +146,7 @@ class ViewControllerCopyFiles: NSViewController, SetConfigurations, GetIndex, De
         guard self.localCatalog.stringValue.isEmpty == false else { return }
         let answer = Alerts.dialogOKCancel("Copy single files or directory", text: "Start restore?")
         if answer {
-            self.copyButton.title = "Restore"
-            self.copyButton.isEnabled = false
+            self.restorebutton.isEnabled = false
             self.getfiles = true
             self.workingRsync.startAnimation(nil)
             self.copyFiles!.executeRsync(remotefile: remoteCatalog!.stringValue, localCatalog: localCatalog!.stringValue, dryrun: false)
@@ -165,7 +162,7 @@ class ViewControllerCopyFiles: NSViewController, SetConfigurations, GetIndex, De
 
     func tableViewSelectionDidChange(_ notification: Notification) {
         let myTableViewFromNotification = (notification.object as? NSTableView)!
-        if myTableViewFromNotification == self.tableViewSelect {
+        if myTableViewFromNotification == self.restoretableView {
             self.info(num: 0)
             let indexes = myTableViewFromNotification.selectedRowIndexes
             if let index = indexes.first {
@@ -177,12 +174,15 @@ class ViewControllerCopyFiles: NSViewController, SetConfigurations, GetIndex, De
                 }
                 self.commandString.stringValue = self.copyFiles!.getCommandDisplayinView(remotefile: self.remoteCatalog.stringValue, localCatalog: self.localCatalog.stringValue)
                 self.estimated = false
-                self.copyButton.title = "Estimate"
+                self.restorebutton.title = "Estimate"
                 }
             } else {
                 let indexes = myTableViewFromNotification.selectedRowIndexes
                 if let index = indexes.first {
-                    self.rsyncTableView.isEnabled = false
+                    self.getfiles = false
+                    self.restorebutton.title = "Estimate"
+                    self.rsynctableView.isEnabled = false
+                    self.restoretableView.isEnabled = false
                     self.rsyncindex = index
                     self.indexselected = index
                     self.copyFiles = CopySingleFiles(index: index)
@@ -198,7 +198,7 @@ class ViewControllerCopyFiles: NSViewController, SetConfigurations, GetIndex, De
         guard self.copyFiles != nil else { return }
         globalMainQueue.async(execute: { () -> Void in
             self.tabledata = self.copyFiles!.filter(search: nil)
-            self.tableViewSelect.reloadData()
+            self.restoretableView.reloadData()
         })
     }
 }
@@ -211,12 +211,12 @@ extension ViewControllerCopyFiles: NSSearchFieldDelegate {
                 if self.search.stringValue.isEmpty {
                     globalMainQueue.async(execute: { () -> Void in
                         self.tabledata = self.copyFiles?.filter(search: nil)
-                        self.tableViewSelect.reloadData()
+                        self.restoretableView.reloadData()
                     })
                 } else {
                     globalMainQueue.async(execute: { () -> Void in
                         self.tabledata = self.copyFiles?.filter(search: self.search.stringValue)
-                        self.tableViewSelect.reloadData()
+                        self.restoretableView.reloadData()
                     })
                 }
             }
@@ -232,7 +232,7 @@ extension ViewControllerCopyFiles: NSSearchFieldDelegate {
     func searchFieldDidEndSearching(_ sender: NSSearchField) {
         globalMainQueue.async(execute: { () -> Void in
             self.tabledata = self.copyFiles?.filter(search: nil)
-            self.tableViewSelect.reloadData()
+            self.restoretableView.reloadData()
         })
     }
 }
@@ -240,7 +240,7 @@ extension ViewControllerCopyFiles: NSSearchFieldDelegate {
 extension ViewControllerCopyFiles: NSTableViewDataSource {
 
     func numberOfRows(in tableView: NSTableView) -> Int {
-        if tableView == self.tableViewSelect {
+        if tableView == self.restoretableView {
             guard self.tabledata != nil else {
                 self.numberofrows.stringValue = "Number of remote files: 0"
                 return 0
@@ -256,7 +256,7 @@ extension ViewControllerCopyFiles: NSTableViewDataSource {
 extension ViewControllerCopyFiles: NSTableViewDelegate {
 
     func tableView(_ tableView: NSTableView, viewFor tableColumn: NSTableColumn?, row: Int) -> NSView? {
-        if tableView == self.tableViewSelect {
+        if tableView == self.restoretableView {
             guard self.tabledata != nil else { return nil }
             let cellIdentifier = "files"
             let text: String = self.tabledata![row]
@@ -283,8 +283,10 @@ extension ViewControllerCopyFiles: UpdateProgress {
             self.copyFiles!.setRemoteFileList()
             self.reloadtabledata()
             self.working.stopAnimation(nil)
-            self.rsyncTableView.isEnabled = true
+            self.rsynctableView.isEnabled = true
+            self.restoretableView.isEnabled = true
         } else {
+            self.restorebutton.title = "Restore"
             self.workingRsync.stopAnimation(nil)
             self.presentViewControllerAsSheet(self.viewControllerInformation!)
         }

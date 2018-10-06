@@ -2047,34 +2047,34 @@
                                 </tableHeaderView>
                             </scrollView>
                             <progressIndicator wantsLayer="YES" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" maxValue="100" displayedWhenStopped="NO" bezeled="NO" indeterminate="YES" controlSize="small" style="spinning" translatesAutoresizingMaskIntoConstraints="NO" id="4rH-yy-Uhw">
-                                <rect key="frame" x="875" y="379" width="16" height="16"/>
+                                <rect key="frame" x="1056" y="380" width="16" height="16"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                             </progressIndicator>
                             <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="HvM-lg-JjX">
-                                <rect key="frame" x="790" y="370" width="83" height="32"/>
+                                <rect key="frame" x="971" y="371" width="83" height="32"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <buttonCell key="cell" type="push" title="Estimate" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="65j-NR-wz6">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
                                 <connections>
-                                    <action selector="copy:" target="GJH-xK-5LY" id="gbR-Fq-rOj"/>
+                                    <action selector="restore:" target="GJH-xK-5LY" id="gbR-Fq-rOj"/>
                                 </connections>
                             </button>
                         </subviews>
                     </view>
                     <connections>
                         <outlet property="commandString" destination="XwF-K5-R4q" id="wSn-jP-VtU"/>
-                        <outlet property="copyButton" destination="HvM-lg-JjX" id="RIx-1n-Z4j"/>
                         <outlet property="info" destination="gTy-bz-0lk" id="pcJ-f5-nib"/>
                         <outlet property="localCatalog" destination="L6A-JJ-Mvd" id="Nkp-wQ-iEO"/>
                         <outlet property="numberofrows" destination="tv7-CS-oe6" id="k9b-R6-3QJ"/>
                         <outlet property="rcatalog" destination="zPh-wH-B2h" id="Bhx-Mo-gre"/>
                         <outlet property="remoteCatalog" destination="1ES-5z-SmE" id="WZe-oK-FUr"/>
-                        <outlet property="rsyncTableView" destination="G94-d4-ATU" id="Lyz-an-dqk"/>
+                        <outlet property="restorebutton" destination="HvM-lg-JjX" id="RIx-1n-Z4j"/>
+                        <outlet property="restoretableView" destination="FOY-xS-bUA" id="Iy8-O7-aFx"/>
+                        <outlet property="rsynctableView" destination="G94-d4-ATU" id="Lyz-an-dqk"/>
                         <outlet property="search" destination="D7K-Le-RDk" id="jB3-Yw-FoO"/>
                         <outlet property="server" destination="dh3-kj-jDm" id="FOB-eX-KO6"/>
-                        <outlet property="tableViewSelect" destination="FOY-xS-bUA" id="Iy8-O7-aFx"/>
                         <outlet property="working" destination="ZGP-nY-o1u" id="cfd-Jz-qh4"/>
                         <outlet property="workingRsync" destination="4rH-yy-Uhw" id="wmL-DR-MxN"/>
                     </connections>
