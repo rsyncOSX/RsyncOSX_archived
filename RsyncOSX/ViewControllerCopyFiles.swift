@@ -21,8 +21,6 @@ protocol GetSource: class {
 class ViewControllerCopyFiles: NSViewController, SetConfigurations, Delay, VcCopyFiles {
 
     var copyFiles: CopySingleFiles?
-    // var index: Int?
-    // var indexselected: Int?
     var rsyncindex: Int?
     var getfiles: Bool = false
     var estimated: Bool = false
