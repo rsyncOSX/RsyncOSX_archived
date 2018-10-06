@@ -321,19 +321,23 @@ extension ViewControllerCopyFiles: NSTableViewDataSource {
 
 extension ViewControllerCopyFiles: NSTableViewDelegate {
 
-    func tableView(_ tableView: NSTableView, objectValueFor tableColumn: NSTableColumn?, row: Int) -> Any? {
-        guard row < self.configurations!.getConfigurationsDataSourcecountBackupCombined()!.count else { return nil }
-        let object: NSDictionary = self.configurations!.getConfigurationsDataSourcecountBackupCombined()![row]
-        return object[tableColumn!.identifier] as? String
-    }
-
     func tableView(_ tableView: NSTableView, viewFor tableColumn: NSTableColumn?, row: Int) -> NSView? {
-        guard self.tabledata != nil else { return nil }
-        let cellIdentifier: String = "files"
-        let text:String  = self.tabledata![row]
-        if let cell = tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: cellIdentifier), owner: self) as? NSTableCellView {
-            cell.textField?.stringValue = text
-            return cell
+        if tableView == self.tableViewSelect {
+            guard self.tabledata != nil else { return nil }
+            let cellIdentifier = "files"
+            let text: String = self.tabledata![row]
+            if let cell = tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: cellIdentifier), owner: self) as? NSTableCellView {
+                cell.textField?.stringValue = text
+                return cell
+            }
+        } else {
+            guard row < self.configurations!.getConfigurationsDataSourcecountBackupCombined()!.count else { return nil }
+            let object: NSDictionary = self.configurations!.getConfigurationsDataSourcecountBackupCombined()![row]
+            let cellIdentifier: String = tableColumn!.identifier.rawValue
+            if let cell = tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: cellIdentifier), owner: self) as? NSTableCellView {
+                cell.textField?.stringValue = object.value(forKey: cellIdentifier) as? String ?? ""
+                return cell
+            }
         }
         return nil
     }
