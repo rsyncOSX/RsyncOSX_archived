@@ -170,6 +170,7 @@ class ViewControllerCopyFiles: NSViewController, SetConfigurations, Delay, VcCop
                 self.commandString.stringValue = self.copyFiles!.getCommandDisplayinView(remotefile: self.remoteCatalog.stringValue, localCatalog: self.localCatalog.stringValue)
                 self.estimated = false
                 self.restorebutton.title = "Estimate"
+                self.restorebutton.isEnabled = true
                 }
             } else {
                 let indexes = myTableViewFromNotification.selectedRowIndexes
