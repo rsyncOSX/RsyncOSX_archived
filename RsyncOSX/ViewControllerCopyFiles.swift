@@ -142,8 +142,6 @@ class ViewControllerCopyFiles: NSViewController, SetConfigurations, Delay, VcCop
         let answer = Alerts.dialogOKCancel("Copy single files or directory", text: "Start restore?")
         if answer {
             self.restorebutton.isEnabled = false
-            self.rsynctableView.isEnabled = false
-            self.restoretableView.isEnabled = false
             self.getfiles = true
             self.workingRsync.startAnimation(nil)
             self.copyFiles!.executeRsync(remotefile: remoteCatalog!.stringValue, localCatalog: localCatalog!.stringValue, dryrun: false)
@@ -178,9 +176,8 @@ class ViewControllerCopyFiles: NSViewController, SetConfigurations, Delay, VcCop
                 if let index = indexes.first {
                     self.getfiles = false
                     self.restorebutton.title = "Estimate"
+                    self.restorebutton.isEnabled = false
                     self.remoteCatalog.stringValue = ""
-                    self.rsynctableView.isEnabled = false
-                    self.restoretableView.isEnabled = false
                     self.rsyncindex = index
                     self.copyFiles = CopySingleFiles(index: index)
                     self.working.startAnimation(nil)
@@ -280,8 +277,7 @@ extension ViewControllerCopyFiles: UpdateProgress {
             self.copyFiles!.setRemoteFileList()
             self.reloadtabledata()
             self.working.stopAnimation(nil)
-            self.rsynctableView.isEnabled = true
-            self.restoretableView.isEnabled = true
+            self.restorebutton.isEnabled = true
         } else {
             self.restorebutton.title = "Restore"
             self.workingRsync.stopAnimation(nil)
@@ -304,8 +300,6 @@ extension ViewControllerCopyFiles: GetPath {
 
 extension ViewControllerCopyFiles: DismissViewController {
     func dismiss_view(viewcontroller: NSViewController) {
-        self.rsynctableView.isEnabled = true
-        self.restoretableView.isEnabled = true
         self.dismissViewController(viewcontroller)
     }
 }
