@@ -82,8 +82,8 @@ final class CopySingleFiles: SetConfigurations {
         }
     }
 
-    init (index: Int) {
-        self.index = index
+    init (hiddenID: Int) {
+        self.index = self.configurations?.getIndex(hiddenID)
         self.config = self.configurations!.getConfigurations()[self.index!]
         self.getRemoteFileList()
     }
