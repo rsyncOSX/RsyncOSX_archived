@@ -195,7 +195,8 @@ class ViewControllerCopyFiles: NSViewController, SetConfigurations, Delay, VcCop
                     self.restorebutton.isEnabled = false
                     self.remoteCatalog.stringValue = ""
                     self.rsyncindex = index
-                    self.copyFiles = CopySingleFiles(index: index)
+                    let hiddenID = self.configurations!.getConfigurationsDataSourcecountBackupSnapshot()![index].value(forKey: "hiddenID") as? Int ?? -1
+                    self.copyFiles = CopySingleFiles(hiddenID: hiddenID)
                     self.working.startAnimation(nil)
                     self.displayRemoteserver(index: index)
                 } else {
