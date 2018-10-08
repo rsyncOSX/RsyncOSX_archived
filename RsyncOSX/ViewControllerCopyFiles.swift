@@ -69,18 +69,17 @@ class ViewControllerCopyFiles: NSViewController, SetConfigurations, Delay, VcCop
             self.info(num: 3)
             return
         }
-        if self.copyFiles != nil {
-            self.getfiles = true
+        guard self.copyFiles != nil else { return }
+        self.restorebutton.isEnabled = false
+        self.getfiles = true
+        self.workingRsync.startAnimation(nil)
+        if self.estimated == false {
+            self.copyFiles!.executeRsync(remotefile: remoteCatalog!.stringValue, localCatalog: localCatalog!.stringValue, dryrun: true)
+            self.estimated = true
+        } else {
             self.workingRsync.startAnimation(nil)
-            if self.estimated == false {
-                self.copyFiles!.executeRsync(remotefile: remoteCatalog!.stringValue, localCatalog: localCatalog!.stringValue, dryrun: true)
-                self.estimated = true
-            } else {
-                self.restorebutton.isEnabled = false
-                self.workingRsync.startAnimation(nil)
-                self.copyFiles!.executeRsync(remotefile: remoteCatalog!.stringValue, localCatalog: localCatalog!.stringValue, dryrun: false)
-                self.estimated = false
-            }
+            self.copyFiles!.executeRsync(remotefile: remoteCatalog!.stringValue, localCatalog: localCatalog!.stringValue, dryrun: false)
+            self.estimated = false
         }
     }
 
@@ -155,6 +154,15 @@ class ViewControllerCopyFiles: NSViewController, SetConfigurations, Delay, VcCop
         }
     }
 
+    private func inprogress() -> Bool {
+        guard self.copyFiles != nil else { return false }
+        if self.copyFiles?.process != nil {
+            return true
+        } else {
+            return false
+        }
+    }
+
     func tableViewSelectionDidChange(_ notification: Notification) {
         let myTableViewFromNotification = (notification.object as? NSTableView)!
         if myTableViewFromNotification == self.restoretableView {
@@ -175,6 +183,13 @@ class ViewControllerCopyFiles: NSViewController, SetConfigurations, Delay, VcCop
             } else {
                 let indexes = myTableViewFromNotification.selectedRowIndexes
                 if let index = indexes.first {
+                    guard self.inprogress() == false else {
+                        self.working.stopAnimation(nil)
+                        guard self.copyFiles != nil else { return }
+                        self.restorebutton.isEnabled = true
+                        self.copyFiles!.abort()
+                        return
+                    }
                     self.getfiles = false
                     self.restorebutton.title = "Estimate"
                     self.restorebutton.isEnabled = false
@@ -278,12 +293,13 @@ extension ViewControllerCopyFiles: UpdateProgress {
             self.copyFiles!.setRemoteFileList()
             self.reloadtabledata()
             self.working.stopAnimation(nil)
-            self.restorebutton.isEnabled = true
         } else {
             self.restorebutton.title = "Restore"
             self.workingRsync.stopAnimation(nil)
             self.presentViewControllerAsSheet(self.viewControllerInformation!)
+            self.restorebutton.isEnabled = true
         }
+        self.copyFiles?.process = nil
     }
 
     func fileHandler() {
