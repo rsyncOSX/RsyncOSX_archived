@@ -293,13 +293,13 @@ extension ViewControllerCopyFiles: UpdateProgress {
             self.copyFiles!.setRemoteFileList()
             self.reloadtabledata()
             self.working.stopAnimation(nil)
-            self.copyFiles?.process = nil
         } else {
             self.restorebutton.title = "Restore"
             self.workingRsync.stopAnimation(nil)
             self.presentViewControllerAsSheet(self.viewControllerInformation!)
             self.restorebutton.isEnabled = true
         }
+        self.copyFiles?.process = nil
     }
 
     func fileHandler() {
