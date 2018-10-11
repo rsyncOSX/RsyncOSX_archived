@@ -36,7 +36,7 @@ final class RsyncParametersSingleFilesArguments: ProcessArguments {
             let local: String = localCatalog!
             if config.sshport != nil {
                 self.args!.append(self.eparam)
-                self.args!.append(self.sshp + String(config.sshport!))
+                self.args!.append(self.sshp + " " + String(config.sshport!))
             } else {
                 self.args!.append(self.eparam)
                 self.args!.append(self.ssh)
@@ -64,6 +64,7 @@ final class RsyncParametersSingleFilesArguments: ProcessArguments {
             self.command = Verifyrsyncpath().rsyncpath()
             // Prepare the display version of arguments
             self.argDisplay = self.command! + " "
+            // self.args!.append("\"" + self.sshp + " " + String(config.sshport!) + "\"")
             for i in 0 ..< self.args!.count {
                 self.argDisplay = self.argDisplay!  + self.args![i] + " "
             }
