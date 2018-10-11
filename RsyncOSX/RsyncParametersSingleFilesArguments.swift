@@ -36,7 +36,7 @@ final class RsyncParametersSingleFilesArguments: ProcessArguments {
             let local: String = localCatalog!
             if config.sshport != nil {
                 self.args!.append(self.eparam)
-                self.args!.append(self.sshp + String(config.sshport!))
+                self.args!.append("\"" + self.sshp + " " + String(config.sshport!) + "\"")
             } else {
                 self.args!.append(self.eparam)
                 self.args!.append(self.ssh)
