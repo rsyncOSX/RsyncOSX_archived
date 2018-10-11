@@ -36,7 +36,7 @@ final class RsyncParametersSingleFilesArguments: ProcessArguments {
             let local: String = localCatalog!
             if config.sshport != nil {
                 self.args!.append(self.eparam)
-                self.args!.append("\"" + self.sshp + " " + String(config.sshport!) + "\"")
+                self.args!.append(self.sshp + " " + String(config.sshport!))
             } else {
                 self.args!.append(self.eparam)
                 self.args!.append(self.ssh)
@@ -62,11 +62,15 @@ final class RsyncParametersSingleFilesArguments: ProcessArguments {
             self.args!.append(local)
             // Set command to Process /usr/bin/rysnc or /usr/local/bin/rsync or other set by userconfiguration
             self.command = Verifyrsyncpath().rsyncpath()
-            // Prepare the display version of arguments
-            self.argDisplay = self.command! + " "
-            for i in 0 ..< self.args!.count {
-                self.argDisplay = self.argDisplay!  + self.args![i] + " "
-            }
+        }
+    }
+
+    private func argumentstodisplay() {
+        guard self.args != nil else { return }
+        // Prepare the display version of arguments
+        self.argDisplay = self.command! + " "
+        for i in 0 ..< self.args!.count {
+            self.argDisplay = self.argDisplay!  + self.args![i] + " "
         }
     }
 
@@ -86,5 +90,6 @@ final class RsyncParametersSingleFilesArguments: ProcessArguments {
         self.config = config
         self.args = [String]()
         self.arguments(remoteFile: remoteFile, localCatalog: localCatalog, drynrun: drynrun)
+        self.argumentstodisplay()
     }
 }
