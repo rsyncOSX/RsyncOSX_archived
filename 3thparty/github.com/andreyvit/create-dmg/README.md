@@ -17,17 +17,20 @@ If you're an active user and want to be a maintainer, or just want to chat, plea
 Installation
 ------------
   
-By being a shell script, yoursway-create-dmg installation is very simple. Simply download and run.  
-  
-> git clone https://github.com/andreyvit/create-dmg.git  
-> cd create-dmg  
-> ./create-dmg [options]  
-  
+By being a shell script, create-dmg installation is very simple. Simply download and run.
+
+```sh
+git clone https://github.com/andreyvit/create-dmg.git  
+cd create-dmg  
+./create-dmg [options]  
+```
   
 Usage
 -----
-  
-> create-dmg [options...] [output\_name.dmg] [source\_folder]  
+ 
+```sh
+create-dmg [options...] [output\_name.dmg] [source\_folder]  
+```
 
 All contents of source\_folder will be copied into the disk image.  
   
@@ -46,28 +49,34 @@ All contents of source\_folder will be copied into the disk image.
 *   **--app-drop-link [x y]:** make a drop link to Applications, at location x, y    
 *   **--eula [eula file]:** attach a license file to the dmg    
 *   **--no-internet-enable:** disable automatic mount&copy    
+*   **--add-file [target name] [path to source file] [x y]:** add additional file (option can be used multiple times)    
+*   **--add-folder [target name] [path to source folder] [x y]:** add additional folder (option can be used multiple times)    
+*   **--disk-image-size [x]:** set the disk image size manually to x MB    
+*   **--hdiutil-verbose:** execute hdiutil in verbose mode    
+*   **--hdiutil-quiet:** execute hdiutil in quiet mode 
 *   **--version:** show tool version number    
 *   **-h, --help:** display the help  
   
   
 Example
 -------
-  
-> \#!/bin/sh  
-> test -f Application-Installer.dmg && rm Application-Installer.dmg  
-> create-dmg \  
-> --volname "Application Installer" \  
-> --volicon "application\_icon.icns" \  
-> --background "installer\_background.png" \  
-> --window-pos 200 120 \  
-> --window-size 800 400 \  
-> --icon-size 100 \  
-> --icon Application.app 200 190 \  
-> --hide-extension Application.app \  
-> --app-drop-link 600 185 \  
-> Application-Installer.dmg \  
-> source\_folder/  
 
+```sh
+#!/bin/sh  
+test -f Application-Installer.dmg && rm Application-Installer.dmg  
+create-dmg \  
+--volname "Application Installer" \  
+--volicon "application\_icon.icns" \  
+--background "installer\_background.png" \  
+--window-pos 200 120 \  
+--window-size 800 400 \  
+--icon-size 100 \  
+--icon Application.app 200 190 \  
+--hide-extension Application.app \  
+--app-drop-link 600 185 \  
+Application-Installer.dmg \  
+source\_folder/  
+```
 
 Alternatives
 ------------
