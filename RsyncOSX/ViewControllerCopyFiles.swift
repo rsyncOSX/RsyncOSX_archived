@@ -179,31 +179,32 @@ class ViewControllerCopyFiles: NSViewController, SetConfigurations, Delay, VcCop
                 self.estimated = false
                 self.restorebutton.title = "Estimate"
                 self.restorebutton.isEnabled = true
+            }
+        } else {
+            let indexes = myTableViewFromNotification.selectedRowIndexes
+            self.commandString.stringValue = ""
+            if let index = indexes.first {
+                guard self.inprogress() == false else {
+                    self.working.stopAnimation(nil)
+                    guard self.copyFiles != nil else { return }
+                    self.restorebutton.isEnabled = true
+                    self.copyFiles!.abort()
+                    return
                 }
+                self.getfiles = false
+                self.restorebutton.title = "Estimate"
+                self.restorebutton.isEnabled = false
+                self.remoteCatalog.stringValue = ""
+                self.rsyncindex = index
+                let hiddenID = self.configurations!.getConfigurationsDataSourcecountBackupSnapshot()![index].value(forKey: "hiddenID") as? Int ?? -1
+                self.copyFiles = CopySingleFiles(hiddenID: hiddenID)
+                self.working.startAnimation(nil)
+                self.displayRemoteserver(index: index)
             } else {
-                let indexes = myTableViewFromNotification.selectedRowIndexes
-                if let index = indexes.first {
-                    guard self.inprogress() == false else {
-                        self.working.stopAnimation(nil)
-                        guard self.copyFiles != nil else { return }
-                        self.restorebutton.isEnabled = true
-                        self.copyFiles!.abort()
-                        return
-                    }
-                    self.getfiles = false
-                    self.restorebutton.title = "Estimate"
-                    self.restorebutton.isEnabled = false
-                    self.remoteCatalog.stringValue = ""
-                    self.rsyncindex = index
-                    let hiddenID = self.configurations!.getConfigurationsDataSourcecountBackupSnapshot()![index].value(forKey: "hiddenID") as? Int ?? -1
-                    self.copyFiles = CopySingleFiles(hiddenID: hiddenID)
-                    self.working.startAnimation(nil)
-                    self.displayRemoteserver(index: index)
-                } else {
-                    self.rsyncindex = nil
-                }
+                self.rsyncindex = nil
             }
         }
+    }
 
     private func reloadtabledata() {
         guard self.copyFiles != nil else { return }

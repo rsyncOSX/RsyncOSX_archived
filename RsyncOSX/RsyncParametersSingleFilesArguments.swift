@@ -70,7 +70,12 @@ final class RsyncParametersSingleFilesArguments: ProcessArguments {
         // Prepare the display version of arguments
         self.argDisplay = self.command! + " "
         for i in 0 ..< self.args!.count {
-            self.argDisplay = self.argDisplay!  + self.args![i] + " "
+            if i == 1 && self.config!.sshport != nil {
+                self.argDisplay = self.argDisplay!  + "\"" + self.args![i] + "\"  "
+            } else {
+                self.argDisplay = self.argDisplay!  + self.args![i] + " "
+
+            }
         }
     }
 
