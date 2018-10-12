@@ -456,7 +456,8 @@ class Configurations: ReloadTable, SetSchedules {
                 "offsiteServerCellID": self.configurations![i].offsiteServer,
                 "backupIDCellID": self.configurations![i].backupID,
                 "runDateCellID": self.configurations![i].dateRun ?? "",
-                "daysID": self.configurations![i].dayssincelastbackup ?? ""
+                "daysID": self.configurations![i].dayssincelastbackup ?? "",
+                "snapCellID": self.configurations![i].snapshotnum ?? ""
             ]
             data.append(row)
         }

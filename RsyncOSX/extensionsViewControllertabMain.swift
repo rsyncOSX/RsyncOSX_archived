@@ -79,6 +79,13 @@ extension ViewControllertabMain: NSTableViewDelegate, Attributedestring {
                     return #imageLiteral(resourceName: "green")
                 }
             }
+        } else if tableColumn!.identifier.rawValue == "snapCellID" {
+            let snap = object.value(forKey: "snapCellID") as? Int ?? -1
+            if snap > 0 {
+                 return String(snap)
+            } else {
+                return ""
+            }
         } else {
             return object[tableColumn!.identifier] as? String
         }
