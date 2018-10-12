@@ -74,11 +74,11 @@ class ViewControllerCopyFiles: NSViewController, SetConfigurations, Delay, VcCop
         self.getfiles = true
         self.workingRsync.startAnimation(nil)
         if self.estimated == false {
-            self.copyFiles!.executeRsync(remotefile: remoteCatalog!.stringValue, localCatalog: localCatalog!.stringValue, dryrun: true)
+            self.copyFiles!.executeRsync(remotefile: self.remoteCatalog!.stringValue, localCatalog: self.localCatalog!.stringValue, dryrun: true)
             self.estimated = true
         } else {
             self.workingRsync.startAnimation(nil)
-            self.copyFiles!.executeRsync(remotefile: remoteCatalog!.stringValue, localCatalog: localCatalog!.stringValue, dryrun: false)
+            self.copyFiles!.executeRsync(remotefile: self.remoteCatalog!.stringValue, localCatalog: self.localCatalog!.stringValue, dryrun: false)
             self.estimated = false
         }
     }
