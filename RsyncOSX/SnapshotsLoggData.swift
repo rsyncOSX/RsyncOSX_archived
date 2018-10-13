@@ -108,8 +108,15 @@ final class SnapshotsLoggData {
     }
 
     func countbydays(num: Double) -> Int {
-        let number = self.snapshotslogs?.filter({return ($0.value(forKey: "days") as? Double ?? -1.0 > num )})
-        return number?.count ?? -1
+        var j: Int = 0
+        guard self.snapshotslogs != nil else { return 0}
+        for i in 0 ..< self.snapshotslogs!.count - 1 {
+            let days: String = self.snapshotslogs![i].value(forKey: "days") as? String ?? "0"
+            if Double(days)! >= num {
+                j+=1
+            }
+        }
+        return j
     }
 
     init(config: Configuration) {
