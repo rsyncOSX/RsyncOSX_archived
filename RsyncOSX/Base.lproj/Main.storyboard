@@ -1634,6 +1634,28 @@
                             <progressIndicator wantsLayer="YES" horizontalHuggingPriority="750" verticalHuggingPriority="750" maxValue="100" displayedWhenStopped="NO" bezeled="NO" indeterminate="YES" controlSize="small" style="spinning" translatesAutoresizingMaskIntoConstraints="NO" id="Rqq-kE-YMv">
                                 <rect key="frame" x="163" y="361" width="16" height="16"/>
                             </progressIndicator>
+                            <slider verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="oOp-UK-kds">
+                                <rect key="frame" x="592" y="85" width="96" height="19"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <sliderCell key="cell" state="on" alignment="left" maxValue="100" doubleValue="50" tickMarkPosition="above" sliderType="linear" id="DJb-in-R8k"/>
+                            </slider>
+                            <box fixedFrame="YES" title="Select days older to delete" translatesAutoresizingMaskIntoConstraints="NO" id="8Dj-TE-3CZ">
+                                <rect key="frame" x="570" y="69" width="195" height="62"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <view key="contentView" id="vec-U6-k0a">
+                                    <rect key="frame" x="3" y="3" width="189" height="44"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                </view>
+                            </box>
+                            <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="RoD-gk-Zpc">
+                                <rect key="frame" x="702" y="87" width="41" height="22"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" alignment="right" bezelStyle="round" id="uWO-KW-vuL">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
                         </subviews>
                         <constraints>
                             <constraint firstItem="PZa-iY-BKT" firstAttribute="top" secondItem="h8d-af-XwT" secondAttribute="bottom" constant="2" id="0g6-Xi-lD8"/>
@@ -1711,6 +1733,8 @@
                         <outlet property="backupID" destination="h8d-af-XwT" id="FYE-S2-ylC"/>
                         <outlet property="deletebutton" destination="3FX-cL-s70" id="GY1-es-2oV"/>
                         <outlet property="deletesnapshots" destination="IPi-Xv-Xr2" id="dAa-jb-0AZ"/>
+                        <outlet property="deletesnapshotsdays" destination="oOp-UK-kds" id="EO6-dT-vgo"/>
+                        <outlet property="deletesnapshotsdaysnum" destination="RoD-gk-Zpc" id="rzY-ry-a1K"/>
                         <outlet property="deletesnapshotsnum" destination="XPM-CX-EDa" id="miI-tK-UUw"/>
                         <outlet property="gettinglogs" destination="Rqq-kE-YMv" id="lt6-Vu-96g"/>
                         <outlet property="info" destination="wL7-jF-cxm" id="6E6-wa-FTM"/>
@@ -4424,7 +4448,7 @@ DQ
                                 </connections>
                             </textField>
                             <comboBox verticalHuggingPriority="750" fixedFrame="YES" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Ora-4m-3w7">
-                                <rect key="frame" x="112" y="266" width="124" height="26"/>
+                                <rect key="frame" x="112" y="265" width="124" height="26"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <comboBoxCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" alignment="right" drawsBackground="YES" completes="NO" numberOfVisibleItems="5" id="zNJ-za-8pz">
                                     <font key="font" metaFont="system"/>

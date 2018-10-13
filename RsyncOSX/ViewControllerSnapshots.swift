@@ -34,7 +34,9 @@ class ViewControllerSnapshots: NSViewController, SetDismisser, SetConfigurations
     @IBOutlet weak var deletesnapshots: NSSlider!
     @IBOutlet weak var deletesnapshotsnum: NSTextField!
     @IBOutlet weak var gettinglogs: NSProgressIndicator!
-
+    @IBOutlet weak var deletesnapshotsdays: NSSlider!
+    @IBOutlet weak var deletesnapshotsdaysnum: NSTextField!
+    
     lazy var viewControllerSource: NSViewController = {
         return (self.storyboard!.instantiateController(withIdentifier: NSStoryboard.SceneIdentifier(rawValue: "CopyFilesID"))
             as? NSViewController)!
