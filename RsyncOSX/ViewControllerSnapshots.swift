@@ -16,7 +16,7 @@ class ViewControllerSnapshots: NSViewController, SetDismisser, SetConfigurations
     private var config: Configuration?
     private var snapshotsloggdata: SnapshotsLoggData?
     private var delete: Bool = false
-    private var num: Int?
+    private var numberstodelete: Int?
     private var index: Int?
     var lastindex: Int?
 
@@ -75,14 +75,14 @@ class ViewControllerSnapshots: NSViewController, SetDismisser, SetConfigurations
         self.deletesnapshotsdays.altIncrementValue = 1.0
         self.deletesnapshotsdays.maxValue = 99.0
         self.deletesnapshotsdays.minValue = 0.0
-        self.deletesnapshotsdays.intValue = 0
-        self.stringdeletesnapshotsdaysnum.stringValue = "0"
-        self.num = 0
+        self.deletesnapshotsdays.intValue = 99
+        self.stringdeletesnapshotsdaysnum.stringValue = "99"
+        self.numberstodelete = 0
     }
 
     @IBAction func updatedeletesnapshotsnum(_ sender: NSSlider) {
         self.stringdeletesnapshotsnum.stringValue = String(self.deletesnapshots.intValue)
-        self.num = Int(self.deletesnapshots.intValue)
+        self.numberstodelete = Int(self.deletesnapshots.intValue)
         globalMainQueue.async(execute: { () -> Void in
             self.snapshotstable.reloadData()
         })
@@ -90,7 +90,7 @@ class ViewControllerSnapshots: NSViewController, SetDismisser, SetConfigurations
 
     @IBAction func updatedeletesnapshotsdays(_ sender: Any) {
         self.stringdeletesnapshotsdaysnum.stringValue = String(self.deletesnapshotsdays.intValue)
-        self.num = self.snapshotsloggdata?.countbydays(num: Double(self.deletesnapshotsdays.intValue))
+        self.numberstodelete = self.snapshotsloggdata?.countbydays(num: Double(self.deletesnapshotsdays.intValue))
         globalMainQueue.async(execute: { () -> Void in
             self.snapshotstable.reloadData()
         })
@@ -103,13 +103,12 @@ class ViewControllerSnapshots: NSViewController, SetDismisser, SetConfigurations
     }
 
     @IBAction func delete(_ sender: NSButton) {
-        let delete = Int(self.deletesnapshots.intValue)
-        guard self.snapshotsloggdata != nil else { return }
-        let answer = Alerts.dialogOKCancel("Do you REALLY want to DELETE " + String(delete) + " snapshots?", text: "Cancel or OK")
+        guard self.snapshotsloggdata != nil && self.numberstodelete != nil else { return }
+        let answer = Alerts.dialogOKCancel("Do you REALLY want to DELETE " + String(self.numberstodelete!) + " snapshots?", text: "Cancel or OK")
         if answer {
             self.info(num: 0)
-            self.num = nil
-            self.snapshotsloggdata!.preparecatalogstodelete(num: delete)
+            self.snapshotsloggdata!.preparecatalogstodelete(num: self.numberstodelete!)
+            self.numberstodelete = nil
             self.deletebutton.isEnabled = false
             self.deletesnapshots.isEnabled = false
             self.initiateProgressbar()
@@ -307,8 +306,8 @@ extension ViewControllerSnapshots: NSTableViewDelegate {
     func tableView(_ tableView: NSTableView, objectValueFor tableColumn: NSTableColumn?, row: Int) -> Any? {
         guard row < self.snapshotsloggdata?.snapshotslogs!.count ?? 0 else { return nil }
         let object: NSDictionary = self.snapshotsloggdata!.snapshotslogs![row]
-        if self.num != nil {
-            if row < self.num! {
+        if self.numberstodelete != nil {
+            if row < self.numberstodelete! {
                 return self.attributedstring(str: object[tableColumn!.identifier] as? String ?? "", color: NSColor.red, align: .left)
             }
         }
@@ -341,34 +340,37 @@ extension ViewControllerSnapshots: GetSelecetedIndex {
 
 extension ViewControllerSnapshots: NSTextFieldDelegate {
     override func controlTextDidChange(_ notification: Notification) {
-        if (notification.object as? NSTextField)! == self.stringdeletesnapshotsnum {
-            if self.stringdeletesnapshotsnum.stringValue.isEmpty == false {
-                if let num = Int(self.stringdeletesnapshotsnum.stringValue) {
-                    self.info(num: 0)
-                    if num > self.snapshotsloggdata?.snapshotslogs?.count ?? 0 {
-                        self.deletesnapshots.intValue = Int32((self.snapshotsloggdata?.snapshotslogs?.count)! - 1)
-                        self.info(num: 5)
+        self.delayWithSeconds(0.5) {
+            guard self.snapshotsloggdata != nil else { return }
+            if (notification.object as? NSTextField)! == self.stringdeletesnapshotsnum {
+                if self.stringdeletesnapshotsnum.stringValue.isEmpty == false {
+                    if let num = Int(self.stringdeletesnapshotsnum.stringValue) {
+                        self.info(num: 0)
+                        if num > self.snapshotsloggdata?.snapshotslogs?.count ?? 0 {
+                            self.deletesnapshots.intValue = Int32((self.snapshotsloggdata?.snapshotslogs?.count)! - 1)
+                            self.info(num: 5)
+                        } else {
+                            self.deletesnapshots.intValue = Int32(num)
+                        }
+                        self.numberstodelete = Int(self.deletesnapshots.intValue)
+                        globalMainQueue.async(execute: { () -> Void in
+                            self.snapshotstable.reloadData()
+                        })
                     } else {
-                        self.deletesnapshots.intValue = Int32(num)
+                        self.info(num: 4)
                     }
-                    self.num = Int(self.deletesnapshots.intValue)
-                    globalMainQueue.async(execute: { () -> Void in
-                        self.snapshotstable.reloadData()
-                    })
-                } else {
-                    self.info(num: 4)
                 }
-            }
-        } else {
-            if self.stringdeletesnapshotsdaysnum.stringValue.isEmpty == false {
-                if let num = Int(self.stringdeletesnapshotsdaysnum.stringValue) {
-                    self.deletesnapshotsdays.intValue = Int32(num)
-                    self.num = self.snapshotsloggdata!.countbydays(num: Double(self.stringdeletesnapshotsdaysnum.stringValue) ?? 0)
-                    globalMainQueue.async(execute: { () -> Void in
-                        self.snapshotstable.reloadData()
-                    })
-                } else {
-                    self.info(num: 4)
+            } else {
+                if self.stringdeletesnapshotsdaysnum.stringValue.isEmpty == false {
+                    if let num = Int(self.stringdeletesnapshotsdaysnum.stringValue) {
+                        self.deletesnapshotsdays.intValue = Int32(num)
+                        self.numberstodelete = self.snapshotsloggdata!.countbydays(num: Double(self.stringdeletesnapshotsdaysnum.stringValue) ?? 0)
+                        globalMainQueue.async(execute: { () -> Void in
+                            self.snapshotstable.reloadData()
+                        })
+                    } else {
+                        self.info(num: 4)
+                    }
                 }
             }
         }
