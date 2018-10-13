@@ -32,10 +32,10 @@ class ViewControllerSnapshots: NSViewController, SetDismisser, SetConfigurations
     @IBOutlet weak var numberOflogfiles: NSTextField!
     @IBOutlet weak var progressdelete: NSProgressIndicator!
     @IBOutlet weak var deletesnapshots: NSSlider!
-    @IBOutlet weak var deletesnapshotsnum: NSTextField!
+    @IBOutlet weak var stringdeletesnapshotsnum: NSTextField!
     @IBOutlet weak var gettinglogs: NSProgressIndicator!
     @IBOutlet weak var deletesnapshotsdays: NSSlider!
-    @IBOutlet weak var deletesnapshotsdaysnum: NSTextField!
+    @IBOutlet weak var stringdeletesnapshotsdaysnum: NSTextField!
 
     lazy var viewControllerSource: NSViewController = {
         return (self.storyboard!.instantiateController(withIdentifier: NSStoryboard.SceneIdentifier(rawValue: "CopyFilesID"))
@@ -66,20 +66,31 @@ class ViewControllerSnapshots: NSViewController, SetDismisser, SetConfigurations
         }
     }
 
-    private func initdeletesnapshots() {
+    private func initslidersdeletesnapshots() {
         self.deletesnapshots.altIncrementValue = 1.0
         self.deletesnapshots.maxValue = Double(self.snapshotsloggdata?.snapshotslogs?.count ?? 0) - 1.0
         self.deletesnapshots.minValue = 0.0
-        self.deletesnapshotsnum.stringValue = ""
+        self.deletesnapshots.intValue = 0
+        self.stringdeletesnapshotsnum.stringValue = "0"
         self.deletesnapshotsdays.altIncrementValue = 1.0
-        self.deletesnapshotsdays.maxValue = 100.0
+        self.deletesnapshotsdays.maxValue = 99.0
         self.deletesnapshotsdays.minValue = 0.0
-        self.deletesnapshotsdaysnum.stringValue = ""
+        self.deletesnapshotsdays.intValue = 0
+        self.stringdeletesnapshotsdaysnum.stringValue = "0"
+        self.num = 0
     }
 
     @IBAction func updatedeletesnapshotsnum(_ sender: NSSlider) {
-        self.deletesnapshotsnum.stringValue = String(self.deletesnapshots.intValue)
+        self.stringdeletesnapshotsnum.stringValue = String(self.deletesnapshots.intValue)
         self.num = Int(self.deletesnapshots.intValue)
+        globalMainQueue.async(execute: { () -> Void in
+            self.snapshotstable.reloadData()
+        })
+    }
+
+    @IBAction func updatedeletesnapshotsdays(_ sender: Any) {
+        self.stringdeletesnapshotsdaysnum.stringValue = String(self.deletesnapshotsdays.intValue)
+        self.num = self.snapshotsloggdata?.countbydays(num: Double(self.deletesnapshotsdays.intValue))
         globalMainQueue.async(execute: { () -> Void in
             self.snapshotstable.reloadData()
         })
@@ -93,6 +104,7 @@ class ViewControllerSnapshots: NSViewController, SetDismisser, SetConfigurations
 
     @IBAction func delete(_ sender: NSButton) {
         let delete = Int(self.deletesnapshots.intValue)
+        guard self.snapshotsloggdata != nil else { return }
         let answer = Alerts.dialogOKCancel("Do you REALLY want to DELETE " + String(delete) + " snapshots?", text: "Cancel or OK")
         if answer {
             self.info(num: 0)
@@ -117,8 +129,8 @@ class ViewControllerSnapshots: NSViewController, SetDismisser, SetConfigurations
         self.snapshotstable.dataSource = self
         self.gettinglogs.usesThreadedAnimation = true
         self.progressdelete.usesThreadedAnimation = true
-        self.deletesnapshotsnum.delegate = self
-        self.deletesnapshotsdaysnum.delegate = self
+        self.stringdeletesnapshotsnum.delegate = self
+        self.stringdeletesnapshotsdaysnum.delegate = self
         ViewControllerReference.shared.setvcref(viewcontroller: .vcsnapshot, nsviewcontroller: self)
     }
 
@@ -131,7 +143,7 @@ class ViewControllerSnapshots: NSViewController, SetDismisser, SetConfigurations
             self.delete = false
             self.progressdelete.isHidden = true
             self.info(num: 0)
-            self.initdeletesnapshots()
+            self.initslidersdeletesnapshots()
             let hiddenID = self.configurations?.gethiddenID(index: index)
             if self.configurations?.getConfigurations()[index].task == ViewControllerReference.shared.snapshot {
                 self.getSource(index: hiddenID!)
@@ -265,7 +277,7 @@ extension ViewControllerSnapshots: UpdateProgress {
         } else {
             self.deletebutton.isEnabled = true
             self.snapshotsloggdata?.processTermination()
-            self.initdeletesnapshots()
+            self.initslidersdeletesnapshots()
             self.gettinglogs.stopAnimation(nil)
             globalMainQueue.async(execute: { () -> Void in
                 self.snapshotstable.reloadData()
@@ -329,9 +341,9 @@ extension ViewControllerSnapshots: GetSelecetedIndex {
 
 extension ViewControllerSnapshots: NSTextFieldDelegate {
     override func controlTextDidChange(_ notification: Notification) {
-        if (notification.object as? NSTextField)! == self.deletesnapshotsnum {
-            if self.deletesnapshotsnum.stringValue.isEmpty == false {
-                if let num = Int(self.deletesnapshotsnum.stringValue) {
+        if (notification.object as? NSTextField)! == self.stringdeletesnapshotsnum {
+            if self.stringdeletesnapshotsnum.stringValue.isEmpty == false {
+                if let num = Int(self.stringdeletesnapshotsnum.stringValue) {
                     self.info(num: 0)
                     if num > self.snapshotsloggdata?.snapshotslogs?.count ?? 0 {
                         self.deletesnapshots.intValue = Int32((self.snapshotsloggdata?.snapshotslogs?.count)! - 1)
@@ -348,9 +360,13 @@ extension ViewControllerSnapshots: NSTextFieldDelegate {
                 }
             }
         } else {
-            if self.deletesnapshotsdaysnum.stringValue.isEmpty == false {
-                if let num = Int(self.deletesnapshotsdaysnum.stringValue) {
+            if self.stringdeletesnapshotsdaysnum.stringValue.isEmpty == false {
+                if let num = Int(self.stringdeletesnapshotsdaysnum.stringValue) {
                     self.deletesnapshotsdays.intValue = Int32(num)
+                    self.num = self.snapshotsloggdata!.countbydays(num: Double(self.stringdeletesnapshotsdaysnum.stringValue) ?? 0)
+                    globalMainQueue.async(execute: { () -> Void in
+                        self.snapshotstable.reloadData()
+                    })
                 } else {
                     self.info(num: 4)
                 }
