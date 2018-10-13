@@ -107,11 +107,11 @@ final class SnapshotsLoggData {
         }
     }
 
-    func sortbydays(num: Double) -> Int {
+    func countbydays(num: Double) -> Int {
         let number = self.snapshotslogs?.filter({
             (($0.value(forKey: "days") as? Double) ?? -1.0 < num)
         })
-        return number?.count ?? 0
+        return number?.count ?? -1
     }
 
     init(config: Configuration) {

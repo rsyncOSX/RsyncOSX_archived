@@ -87,7 +87,7 @@ class ViewControllerSnapshots: NSViewController, SetDismisser, SetConfigurations
 
     @IBAction func updatedeletesnapshotsdays(_ sender: Any) {
         self.deletesnapshotsdaysnum.stringValue = String(self.deletesnapshotsdays.intValue)
-        self.num = self.snapshotsloggdata?.sortbydays(num: Double(self.deletesnapshotsdays.intValue))
+        self.num = self.snapshotsloggdata?.countbydays(num: Double(self.deletesnapshotsdays.intValue))
         globalMainQueue.async(execute: { () -> Void in
             self.snapshotstable.reloadData()
         })
@@ -305,7 +305,7 @@ extension ViewControllerSnapshots: NSTableViewDelegate {
         guard row < self.snapshotsloggdata?.snapshotslogs!.count ?? 0 else { return nil }
         let object: NSDictionary = self.snapshotsloggdata!.snapshotslogs![row]
         if self.num != nil {
-            if row < self.num! {
+            if row < self.num! && self.num! > 0 {
                 return self.attributedstring(str: object[tableColumn!.identifier] as? String ?? "", color: NSColor.red, align: .left)
             }
         }
