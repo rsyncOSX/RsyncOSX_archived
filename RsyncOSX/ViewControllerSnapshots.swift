@@ -36,7 +36,7 @@ class ViewControllerSnapshots: NSViewController, SetDismisser, SetConfigurations
     @IBOutlet weak var gettinglogs: NSProgressIndicator!
     @IBOutlet weak var deletesnapshotsdays: NSSlider!
     @IBOutlet weak var deletesnapshotsdaysnum: NSTextField!
-    
+
     lazy var viewControllerSource: NSViewController = {
         return (self.storyboard!.instantiateController(withIdentifier: NSStoryboard.SceneIdentifier(rawValue: "CopyFilesID"))
             as? NSViewController)!
@@ -71,6 +71,10 @@ class ViewControllerSnapshots: NSViewController, SetDismisser, SetConfigurations
         self.deletesnapshots.maxValue = Double(self.snapshotsloggdata?.snapshotslogs?.count ?? 0) - 1.0
         self.deletesnapshots.minValue = 0.0
         self.deletesnapshotsnum.stringValue = ""
+        self.deletesnapshotsdays.altIncrementValue = 1.0
+        self.deletesnapshotsdays.maxValue = 100.0
+        self.deletesnapshotsdays.minValue = 0.0
+        self.deletesnapshotsdaysnum.stringValue = ""
     }
 
     @IBAction func updatedeletesnapshotsnum(_ sender: NSSlider) {
@@ -114,6 +118,7 @@ class ViewControllerSnapshots: NSViewController, SetDismisser, SetConfigurations
         self.gettinglogs.usesThreadedAnimation = true
         self.progressdelete.usesThreadedAnimation = true
         self.deletesnapshotsnum.delegate = self
+        self.deletesnapshotsdaysnum.delegate = self
         ViewControllerReference.shared.setvcref(viewcontroller: .vcsnapshot, nsviewcontroller: self)
     }
 
@@ -323,22 +328,32 @@ extension ViewControllerSnapshots: GetSelecetedIndex {
 }
 
 extension ViewControllerSnapshots: NSTextFieldDelegate {
-    override func controlTextDidChange(_ obj: Notification) {
-        if self.deletesnapshotsnum.stringValue.isEmpty == false {
-            if let num = Int(self.deletesnapshotsnum.stringValue) {
-                self.info(num: 0)
-                if num > self.snapshotsloggdata?.snapshotslogs?.count ?? 0 {
-                    self.deletesnapshots.intValue = Int32((self.snapshotsloggdata?.snapshotslogs?.count)! - 1)
-                    self.info(num: 5)
+    override func controlTextDidChange(_ notification: Notification) {
+        if (notification.object as? NSTextField)! == self.deletesnapshotsnum {
+            if self.deletesnapshotsnum.stringValue.isEmpty == false {
+                if let num = Int(self.deletesnapshotsnum.stringValue) {
+                    self.info(num: 0)
+                    if num > self.snapshotsloggdata?.snapshotslogs?.count ?? 0 {
+                        self.deletesnapshots.intValue = Int32((self.snapshotsloggdata?.snapshotslogs?.count)! - 1)
+                        self.info(num: 5)
+                    } else {
+                        self.deletesnapshots.intValue = Int32(num)
+                    }
+                    self.num = Int(self.deletesnapshots.intValue)
+                    globalMainQueue.async(execute: { () -> Void in
+                        self.snapshotstable.reloadData()
+                    })
                 } else {
-                    self.deletesnapshots.intValue = Int32(num)
+                    self.info(num: 4)
                 }
-                self.num = Int(self.deletesnapshots.intValue)
-                globalMainQueue.async(execute: { () -> Void in
-                    self.snapshotstable.reloadData()
-                })
-            } else {
-                self.info(num: 4)
+            }
+        } else {
+            if self.deletesnapshotsdaysnum.stringValue.isEmpty == false {
+                if let num = Int(self.deletesnapshotsdaysnum.stringValue) {
+                    self.deletesnapshotsdays.intValue = Int32(num)
+                } else {
+                    self.info(num: 4)
+                }
             }
         }
     }
