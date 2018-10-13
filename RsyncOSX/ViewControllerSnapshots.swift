@@ -87,7 +87,7 @@ class ViewControllerSnapshots: NSViewController, SetDismisser, SetConfigurations
 
     @IBAction func updatedeletesnapshotsdays(_ sender: Any) {
         self.deletesnapshotsdaysnum.stringValue = String(self.deletesnapshotsdays.intValue)
-        self.num = self.snapshotsloggdata?.sortbydays(num: Int(self.deletesnapshotsdays.intValue))
+        self.num = self.snapshotsloggdata?.sortbydays(num: Double(self.deletesnapshotsdays.intValue))
         globalMainQueue.async(execute: { () -> Void in
             self.snapshotstable.reloadData()
         })
