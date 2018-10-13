@@ -76,6 +76,7 @@ class ViewControllerRemoteInfo: NSViewController, SetDismisser, AbortTask {
         if let remoteinfotask = self.remoteinfotaskDelegate?.getremoteinfo() {
             self.remoteinfotask = remoteinfotask
             self.loaded = true
+            self.progress.isHidden = true
         } else {
             self.remoteinfotask = RemoteInfoTaskWorkQueue()
             self.remoteinfotaskDelegate?.setremoteinfo(remoteinfotask: self.remoteinfotask)
@@ -225,6 +226,7 @@ extension ViewControllerRemoteInfo: UpdateProgress {
         self.updateProgressbar()
         if self.remoteinfotask?.stackoftasktobeestimated == nil {
             self.progress.stopAnimation(nil)
+            self.progress.isHidden = true
             self.count.stringValue = "Completed"
             self.remoteinfotask?.selectalltaskswithfilestobackup(deselect: self.selected)
             self.selected = true
