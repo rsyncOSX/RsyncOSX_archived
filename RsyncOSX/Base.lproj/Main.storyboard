@@ -1635,15 +1635,18 @@
                                 <rect key="frame" x="163" y="361" width="16" height="16"/>
                             </progressIndicator>
                             <slider verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="oOp-UK-kds">
-                                <rect key="frame" x="592" y="85" width="96" height="19"/>
+                                <rect key="frame" x="592" y="88" width="96" height="19"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <sliderCell key="cell" state="on" alignment="left" maxValue="100" doubleValue="50" tickMarkPosition="above" sliderType="linear" id="DJb-in-R8k"/>
+                                <connections>
+                                    <action selector="updatedeletesnapshotsdays:" target="fiO-Ux-xlw" id="fUN-k9-rPl"/>
+                                </connections>
                             </slider>
                             <box fixedFrame="YES" title="Select days older to delete" translatesAutoresizingMaskIntoConstraints="NO" id="8Dj-TE-3CZ">
-                                <rect key="frame" x="570" y="69" width="195" height="62"/>
+                                <rect key="frame" x="570" y="77" width="195" height="51"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <view key="contentView" id="vec-U6-k0a">
-                                    <rect key="frame" x="3" y="3" width="189" height="44"/>
+                                    <rect key="frame" x="3" y="3" width="189" height="33"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 </view>
                             </box>

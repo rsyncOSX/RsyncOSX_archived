@@ -107,6 +107,10 @@ final class SnapshotsLoggData {
         }
     }
 
+    func sortbydays(num: Int) -> Int {
+        return 4
+    }
+
     init(config: Configuration) {
         self.snapshotslogs = ScheduleLoggData(sortdirection: true).loggdata
         self.config = config

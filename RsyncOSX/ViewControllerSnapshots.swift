@@ -85,6 +85,14 @@ class ViewControllerSnapshots: NSViewController, SetDismisser, SetConfigurations
         })
     }
 
+    @IBAction func updatedeletesnapshotsdays(_ sender: Any) {
+        self.deletesnapshotsdaysnum.stringValue = String(self.deletesnapshotsdays.intValue)
+        self.num = self.snapshotsloggdata?.sortbydays(num: Int(self.deletesnapshotsdays.intValue))
+        globalMainQueue.async(execute: { () -> Void in
+            self.snapshotstable.reloadData()
+        })
+    }
+
     // Abort button
     @IBAction func abort(_ sender: NSButton) {
         self.info(num: 2)
@@ -93,6 +101,7 @@ class ViewControllerSnapshots: NSViewController, SetDismisser, SetConfigurations
 
     @IBAction func delete(_ sender: NSButton) {
         let delete = Int(self.deletesnapshots.intValue)
+        guard self.snapshotsloggdata != nil else { return }
         let answer = Alerts.dialogOKCancel("Do you REALLY want to DELETE " + String(delete) + " snapshots?", text: "Cancel or OK")
         if answer {
             self.info(num: 0)
