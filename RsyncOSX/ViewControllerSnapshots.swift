@@ -10,7 +10,7 @@
 import Foundation
 import Cocoa
 
-class ViewControllerSnapshots: NSViewController, SetDismisser, SetConfigurations, Delay, Attributedestring, GetIndex {
+class ViewControllerSnapshots: NSViewController, SetDismisser, SetConfigurations, Delay, Attributedestring {
 
     private var hiddenID: Int?
     private var config: Configuration?
@@ -19,6 +19,7 @@ class ViewControllerSnapshots: NSViewController, SetDismisser, SetConfigurations
     private var numberstodelete: Int?
     private var index: Int?
     var lastindex: Int?
+    var diddissappear: Bool = false
 
     @IBOutlet weak var snapshotstable: NSTableView!
     @IBOutlet weak var localCatalog: NSTextField!
@@ -135,37 +136,22 @@ class ViewControllerSnapshots: NSViewController, SetDismisser, SetConfigurations
 
     override func viewDidAppear() {
         super.viewDidAppear()
-        self.index = self.index(viewcontroller: .vctabmain)
-        if let index = self.index {
-            guard index != self.lastindex ?? -1 else { return }
-            self.deletebutton.isEnabled = false
-            self.delete = false
-            self.progressdelete.isHidden = true
-            self.info(num: 0)
-            self.initslidersdeletesnapshots()
-            let hiddenID = self.configurations?.gethiddenID(index: index)
-            if self.configurations?.getConfigurations()[index].task == ViewControllerReference.shared.snapshot {
-                self.getSource(index: hiddenID!)
-                self.info(num: 6)
-            } else {
-                self.info(num: 7)
-                self.snapshotsloggdata = nil
-                globalMainQueue.async(execute: { () -> Void in
-                    self.snapshotstable.reloadData()
-                })
-            }
-        } else {
-            self.info(num: 8)
-            self.snapshotsloggdata = nil
+        guard self.diddissappear == false else {
             globalMainQueue.async(execute: { () -> Void in
                 self.snapshotstable.reloadData()
             })
+            return
         }
+        self.snapshotsloggdata = nil
+        globalMainQueue.async(execute: { () -> Void in
+            self.snapshotstable.reloadData()
+        })
     }
 
     override func viewDidDisappear() {
         super.viewDidDisappear()
         self.lastindex = self.index
+        self.diddissappear = true
     }
 
     private func deletesnapshotcatalogs() {
