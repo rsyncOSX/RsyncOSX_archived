@@ -56,12 +56,6 @@ class ViewControllerSnapshots: NSViewController, SetDismisser, SetConfigurations
         case 5:
             let num = String((self.snapshotsloggdata?.snapshotslogs?.count ?? 1 - 1) - 1)
             self.info.stringValue = "You cannot delete that many, max is " + num + "..."
-        case 6:
-            self.info.stringValue = "Got index from Execute..."
-        case 7:
-            self.info.stringValue = "Got index from Execute, but not a snapshot task..."
-        case 8:
-            self.info.stringValue = "Either select Source or a task in Execute ..."
         default:
             self.info.stringValue = ""
         }
