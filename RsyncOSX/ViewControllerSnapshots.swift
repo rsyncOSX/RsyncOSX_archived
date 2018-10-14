@@ -238,6 +238,10 @@ extension ViewControllerSnapshots: GetSource {
     func getSource(index: Int) {
         self.hiddenID = index
         self.config = self.configurations!.getConfigurations()[self.configurations!.getIndex(hiddenID!)]
+        guard self.config!.task == ViewControllerReference.shared.snapshot else {
+             self.info(num: 1)
+            return
+        }
         self.snapshotsloggdata = SnapshotsLoggData(config: self.config!)
         self.localCatalog.stringValue = self.config!.localCatalog
         self.offsiteCatalog.stringValue = self.config!.offsiteCatalog
@@ -247,12 +251,8 @@ extension ViewControllerSnapshots: GetSource {
         if config!.sshport != nil {
             self.sshport.stringValue = String(describing: self.config!.sshport!)
         }
-        if self.config!.task == ViewControllerReference.shared.snapshot {
-            self.info(num: 0)
-            self.gettinglogs.startAnimation(nil)
-        } else {
-            self.info(num: 1)
-        }
+        self.info(num: 0)
+        self.gettinglogs.startAnimation(nil)
     }
 }
 
