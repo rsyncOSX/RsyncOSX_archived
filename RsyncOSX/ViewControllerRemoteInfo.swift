@@ -86,7 +86,9 @@ class ViewControllerRemoteInfo: NSViewController, SetDismisser, AbortTask {
     override func viewDidAppear() {
         super.viewDidAppear()
         guard self.diddissappear == false else {
-            self.reloadtabledata()
+            globalMainQueue.async(execute: { () -> Void in
+                self.mainTableView.reloadData()
+            })
             return
         }
         globalMainQueue.async(execute: { () -> Void in
