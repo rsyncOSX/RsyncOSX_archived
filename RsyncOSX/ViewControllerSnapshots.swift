@@ -103,10 +103,9 @@ class ViewControllerSnapshots: NSViewController, SetDismisser, SetConfigurations
         if answer {
             self.info(num: 0)
             self.snapshotsloggdata!.preparecatalogstodelete(num: self.numberstodelete!)
-            self.numberstodelete = nil
             self.deletebutton.isEnabled = false
             self.deletesnapshots.isEnabled = false
-            self.initiateProgressbar()
+            self.initiateProgressbar(maxvalue: Double(self.numberstodelete!))
             self.deletesnapshotcatalogs()
             self.delete = true
         }
@@ -176,9 +175,9 @@ class ViewControllerSnapshots: NSViewController, SetDismisser, SetConfigurations
     }
 
     // Progress bar
-    private func initiateProgressbar() {
+    private func initiateProgressbar(maxvalue: Double) {
         self.progressdelete.isHidden = false
-        self.progressdelete.maxValue = Double(self.deletesnapshots.intValue)
+        self.progressdelete.maxValue = maxvalue
         self.progressdelete.minValue = 0
         self.progressdelete.doubleValue = 0
         self.progressdelete.startAnimation(self)
@@ -239,7 +238,7 @@ extension ViewControllerSnapshots: GetSource {
 extension ViewControllerSnapshots: UpdateProgress {
     func processTermination() {
         if delete {
-            let deletenum = Int(self.deletesnapshots.intValue)
+            let deletenum = Int(self.numberstodelete ?? 0)
             if self.snapshotsloggdata!.remotecatalogstodelete == nil {
                 self.updateProgressbar(Double(deletenum))
                 self.delete = false
@@ -258,6 +257,7 @@ extension ViewControllerSnapshots: UpdateProgress {
             self.snapshotsloggdata?.processTermination()
             self.initslidersdeletesnapshots()
             self.gettinglogs.stopAnimation(nil)
+            self.numberstodelete = nil
             globalMainQueue.async(execute: { () -> Void in
                 self.snapshotstable.reloadData()
             })
