@@ -108,6 +108,7 @@ class ViewControllerRestore: NSViewController, SetConfigurations, SetDismisser, 
         self.offsiteServer.stringValue = ""
         self.backupID.stringValue = ""
         self.sshport.stringValue = ""
+        self.restoreprogress.isHidden = true
         if let index = self.index(viewcontroller: .vctabmain) {
             let config: Configuration = self.configurations!.getConfigurations()[index]
             self.localCatalog.stringValue = config.localCatalog
@@ -153,6 +154,7 @@ class ViewControllerRestore: NSViewController, SetConfigurations, SetDismisser, 
 
     // Progressbar restore
     private func initiateProgressbar() {
+        self.restoreprogress.isHidden = false
         if let calculatedNumberOfFiles = self.outputprocess?.getMaxcount() {
             self.restoreprogress.maxValue = Double(calculatedNumberOfFiles)
         }
@@ -177,6 +179,7 @@ extension ViewControllerRestore: UpdateProgress {
         } else {
             self.gotit.stringValue = "Restore is completed..."
             self.restoreprogress.isHidden = true
+            self.restoreprogress.isHidden = false
         }
         self.completed = true
     }
