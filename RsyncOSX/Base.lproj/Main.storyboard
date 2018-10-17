@@ -307,13 +307,13 @@
                                         <segue destination="mal-sc-mlY" kind="show" id="rJ6-3R-szv"/>
                                     </connections>
                                 </toolbarItem>
-                                <toolbarItem implicitItemIdentifier="9984F48F-97C0-4D13-9BA2-715406048804" label="totinfo" paletteLabel="totinfo" toolTip="Execute estimate and quickbackup for all tasks..." image="quickbackup" id="v12-7x-cig">
+                                <toolbarItem implicitItemIdentifier="9984F48F-97C0-4D13-9BA2-715406048804" label="totinfo" paletteLabel="totinfo" toolTip="Execute estimate and quickbackup for all tasks..." image="fastforward" id="v12-7x-cig">
                                     <size key="minSize" width="40" height="25"/>
                                     <size key="maxSize" width="40" height="28"/>
                                     <button key="view" verticalHuggingPriority="750" id="dsJ-ms-wHD">
                                         <rect key="frame" x="1" y="14" width="40" height="28"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                        <buttonCell key="cell" type="roundTextured" bezelStyle="texturedRounded" image="quickbackup" imagePosition="overlaps" alignment="center" lineBreakMode="truncatingTail" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="En8-0i-Aoy">
+                                        <buttonCell key="cell" type="roundTextured" bezelStyle="texturedRounded" image="fastforward" imagePosition="overlaps" alignment="center" lineBreakMode="truncatingTail" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="En8-0i-Aoy">
                                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                             <font key="font" metaFont="system"/>
                                         </buttonCell>
@@ -7715,6 +7715,7 @@ DQ
         <image name="batch" width="48" height="48"/>
         <image name="complete" width="48" height="48"/>
         <image name="config" width="64" height="64"/>
+        <image name="fastforward" width="64" height="64"/>
         <image name="menuapp" width="25.600000381469727" height="25.600000381469727"/>
         <image name="quickbackup" width="48" height="48"/>
         <image name="red" width="256" height="256"/>
