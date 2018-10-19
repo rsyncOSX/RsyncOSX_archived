@@ -82,7 +82,7 @@ extension ViewControllertabMain: NSTableViewDelegate, Attributedestring {
         } else if tableColumn!.identifier.rawValue == "snapCellID" {
             let snap = object.value(forKey: "snapCellID") as? Int ?? -1
             if snap > 0 {
-                 return String(snap)
+                 return String(snap - 1)
             } else {
                 return ""
             }
