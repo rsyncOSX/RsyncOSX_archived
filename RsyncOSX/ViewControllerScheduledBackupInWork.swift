@@ -58,10 +58,6 @@ class ViewControllerScheduledBackupinWork: NSViewController, SetConfigurations, 
         self.closeinseconds.stringValue = "Close automatically in: " + String(self.seconds!) + " seconds"
     }
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
-    }
-
     override func viewDidAppear() {
         super.viewDidAppear()
         self.seconds = 2
