@@ -6648,20 +6648,20 @@ DQ
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <scrollView fixedFrame="YES" borderType="groove" autohidesScrollers="YES" horizontalLineScroll="19" horizontalPageScroll="10" verticalLineScroll="19" verticalPageScroll="10" usesPredominantAxisScrolling="NO" scrollerKnobStyle="dark" translatesAutoresizingMaskIntoConstraints="NO" id="MXn-RQ-9vD">
-                                <rect key="frame" x="20" y="61" width="903" height="235"/>
+                                <rect key="frame" x="20" y="58" width="919" height="244"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <clipView key="contentView" ambiguous="YES" id="Tdb-C5-z3M">
-                                    <rect key="frame" x="2" y="2" width="899" height="231"/>
+                                    <rect key="frame" x="2" y="2" width="915" height="240"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnSelection="YES" multipleSelection="NO" autosaveColumns="NO" headerView="wAF-BP-eeN" id="cdd-YP-oPa">
-                                            <rect key="frame" x="0.0" y="0.0" width="899" height="208"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="915" height="217"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <size key="intercellSpacing" width="3" height="2"/>
                                             <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                             <color key="gridColor" name="gridColor" catalog="System" colorSpace="catalog"/>
                                             <tableColumns>
-                                                <tableColumn identifier="localCatalog" width="202.47265625" minWidth="40" maxWidth="1000" id="tBD-wX-XO5">
+                                                <tableColumn identifier="localCatalog" width="220.47265625" minWidth="40" maxWidth="1000" id="tBD-wX-XO5">
                                                     <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left" title="Local catalog">
                                                         <font key="font" metaFont="smallSystem"/>
                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
@@ -6816,7 +6816,7 @@ DQ
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
                                 <tableHeaderView key="headerView" id="wAF-BP-eeN">
-                                    <rect key="frame" x="0.0" y="0.0" width="899" height="23"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="915" height="23"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableHeaderView>
                             </scrollView>
@@ -6831,17 +6831,8 @@ DQ
                                     <action selector="abort:" target="X0A-DI-J7J" id="GHY-7K-l6e"/>
                                 </connections>
                             </button>
-                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="wpf-Hg-PWZ">
-                                <rect key="frame" x="20" y="297" width="695" height="17"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Select task(s) and close view will bring up Quick Backup with preselected tasks..." id="fQV-7u-E8D">
-                                    <font key="font" metaFont="smallSystem"/>
-                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                                </textFieldCell>
-                            </textField>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="TFu-bM-8N1">
-                                <rect key="frame" x="580" y="297" width="345" height="17"/>
+                                <rect key="frame" x="580" y="301" width="345" height="17"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="Select column to sort ..." id="NQQ-pH-x0v">
                                     <font key="font" metaFont="smallSystem"/>
