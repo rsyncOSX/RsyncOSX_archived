@@ -20,14 +20,12 @@ class ViewControllerQuickBackup: NSViewController, SetDismisser, AbortTask, Dela
     weak var inprogresscountDelegate: Count?
     var max: Double?
     var diddissappear: Bool = false
-    
     var indexinitiated: Int = -1
 
     @IBOutlet weak var mainTableView: NSTableView!
     @IBOutlet weak var executeButton: NSButton!
     @IBOutlet weak var abortbutton: NSButton!
     @IBOutlet weak var search: NSSearchField!
-    @IBOutlet weak var progress: NSProgressIndicator!
     @IBOutlet weak var noestimates: NSTextField!
     @IBOutlet weak var completed: NSTextField!
 
@@ -43,9 +41,6 @@ class ViewControllerQuickBackup: NSViewController, SetDismisser, AbortTask, Dela
         self.executing = true
         self.executeButton.isEnabled = false
         self.quickbackup?.prepareandstartexecutetasks()
-        if self.checkforestimates() == true {
-            self.initiateProgressbar()
-        }
         self.reloadtabledata()
     }
 
@@ -74,15 +69,11 @@ class ViewControllerQuickBackup: NSViewController, SetDismisser, AbortTask, Dela
             return
         }
         self.executeButton.isEnabled = false
-        self.progress.isHidden = true
         if let execute = self.enableexecutebutton() {
             if execute {
                 self.executing = true
                 self.executeButton.isEnabled = false
                 self.quickbackup?.prepareandstartexecutetasks()
-                if self.checkforestimates() == true {
-                    self.initiateProgressbar()
-                }
             }
         }
         self.reloadtabledata()
@@ -126,23 +117,6 @@ class ViewControllerQuickBackup: NSViewController, SetDismisser, AbortTask, Dela
             self.executeButton.isEnabled = false
             return false
         }
-    }
-
-    // Progress bars
-    private func initiateProgressbar() {
-        self.progress.isHidden = false
-        if let calculatedNumberOfFiles = self.quickbackup?.maxcount {
-            self.progress.maxValue = Double(calculatedNumberOfFiles)
-            self.max = Double(calculatedNumberOfFiles)
-        }
-        self.progress.minValue = 0
-        self.progress.doubleValue = 0
-        self.progress.startAnimation(self)
-    }
-
-    private func updateProgressbar() {
-        let value = Double((self.inprogresscountDelegate?.inprogressCount())!)
-        self.progress.doubleValue = value
     }
 
     // Progress bars
@@ -295,18 +269,12 @@ extension ViewControllerQuickBackup: UpdateProgress {
         self.quickbackup?.setcompleted()
         self.quickbackup?.processTermination()
         guard self.quickbackup?.stackoftasktobeexecuted != nil else {
-            self.progress.isHidden = true
             self.completed.isHidden = false
             return
-        }
-        if self.checkforestimates() == true {
-            self.progress.stopAnimation(self)
-            self.initiateProgressbar()
         }
     }
 
     func fileHandler() {
-        self.updateProgressbar()
         globalMainQueue.async(execute: { () -> Void in
             self.mainTableView.reloadData()
         })
