@@ -68,7 +68,6 @@ class ViewControllerQuickBackup: NSViewController, SetDismisser, AbortTask, Dela
         self.diddissappear = true
     }
 
-    // Progress bars
     private func initiateProgressbar(progress: NSProgressIndicator) {
         progress.isHidden = false
         if let calculatedNumberOfFiles = self.quickbackup?.maxcount {
@@ -97,7 +96,6 @@ class ViewControllerQuickBackup: NSViewController, SetDismisser, AbortTask, Dela
 }
 
 extension ViewControllerQuickBackup: NSTableViewDataSource {
-    // Delegate for size of table
     func numberOfRows(in tableView: NSTableView) -> Int {
         return self.quickbackup?.sortedlist?.count ?? 0
     }
