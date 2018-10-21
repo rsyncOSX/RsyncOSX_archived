@@ -24,7 +24,6 @@ class ViewControllerQuickBackup: NSViewController, SetDismisser, AbortTask, Dela
 
     @IBOutlet weak var mainTableView: NSTableView!
     @IBOutlet weak var abortbutton: NSButton!
-    @IBOutlet weak var search: NSSearchField!
     @IBOutlet weak var completed: NSTextField!
 
     // Either abort or close
@@ -83,16 +82,6 @@ class ViewControllerQuickBackup: NSViewController, SetDismisser, AbortTask, Dela
         let value = Double((self.inprogresscountDelegate?.inprogressCount())!)
         progress.doubleValue = value
     }
-
-    private func progressintable() -> String {
-        let value = Double((self.inprogresscountDelegate?.inprogressCount())!)
-        guard self.max != nil else { return ""}
-        if ((value/self.max!) * 100) > 100 {
-            return "100"
-        } else {
-            return String(format: "%.0f", ((value/self.max!) * 100))
-        }
-    }
 }
 
 extension ViewControllerQuickBackup: NSTableViewDataSource {
@@ -135,7 +124,6 @@ extension ViewControllerQuickBackup: NSTableViewDelegate {
 
 extension ViewControllerQuickBackup: Reloadandrefresh {
 
-    // Updates tableview according to progress of batch
     func reloadtabledata() {
         globalMainQueue.async(execute: { () -> Void in
             self.mainTableView.reloadData()
