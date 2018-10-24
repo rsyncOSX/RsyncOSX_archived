@@ -22,7 +22,10 @@ if [ -f "${RSYNCOSX_DMG}" ]; then
 	echo "   > ${RSYNCOSX_DMG}"
 else
 	echo "-- Creating RsyncOSX dmg"
-	echo "   > ${RSYNCOSX_DMG}"
+        echo "   > ${RSYNCOSX_DMG}"
+        rm -rf ${STAGING_DIR}
+        mkdir -p ${STAGING_DIR}
+        cp -a -p ${RSYNCOSX_APP} ${STAGING_DIR}
 
 	${CREATE_DMG} \
 		--volname "RsyncOSX" \
@@ -34,5 +37,5 @@ else
 		--hide-extension RsyncOSX.app \
 		--app-drop-link 240 380 \
 		${RSYNCOSX_DMG} \
-		${RSYNCOSX_APP}
+		${STAGING_DIR}
 fi
