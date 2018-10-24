@@ -6,6 +6,11 @@ This repository is the source code for the macOS app RsyncOSX. RsyncOSX is compi
 
 A short [intro to RsyncOSX](https://rsyncosx.github.io/Intro) and full [documentation of RsyncOSX](https://rsyncosx.github.io/AboutRsyncOSX).
 
+The main view of RsyncOSX.
+![](images/main1.png)
+Automatic synchronizing in action.
+![](images/main2.png)
+
 ### About bugs?
 
 What happens if bugs occurs during execution of tasks in RsyncOSX? The command line tool `rsync` is designed to continue where rsync is by any reason, stopped or killed. Users can abort execution of tasks at any time within RsyncOSX. To continue an aborted task execute the task again and rsync will restart and complete the task. This is also true if a bug in RsyncOSX occurs during execution of a task.
