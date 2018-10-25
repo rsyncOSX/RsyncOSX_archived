@@ -357,6 +357,16 @@ extension ViewControllertabMain: UpdateProgress {
             weak var processterminationDelegate: UpdateProgress?
             processterminationDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vcrestore) as? ViewControllerRestore
             processterminationDelegate?.processTermination()
+        case .estimatebatchtask:
+            guard self.configurations!.remoteinfotaskworkqueue != nil else { return }
+            // compute alle estimates
+            if self.configurations!.remoteinfotaskworkqueue!.stackoftasktobeestimated != nil {
+                self.configurations!.remoteinfotaskworkqueue?.processTermination()
+                self.estimateupdateDelegate?.updateProgressbar()
+            } else {
+                self.configurations!.remoteinfotaskworkqueue?.processTermination()
+                self.processtermination = .batchtask
+            }
         }
     }
 
@@ -416,6 +426,8 @@ extension ViewControllertabMain: UpdateProgress {
             if outputeverythingDelegate?.appendnow() ?? false {
                 outputeverythingDelegate?.reloadtable()
             }
+        case .estimatebatchtask:
+            return
         }
     }
 }

@@ -26,6 +26,7 @@ class RemoteInfoTaskWorkQueue: SetConfigurations {
     var index: Int?
     var maxnumber: Int?
     var count: Int?
+    var inbatch: Bool?
 
     private func prepareandstartexecutetasks() {
         self.stackoftasktobeestimated = nil
@@ -33,7 +34,13 @@ class RemoteInfoTaskWorkQueue: SetConfigurations {
         for i in 0 ..< self.configurations!.getConfigurations().count {
             if self.configurations!.getConfigurations()[i].task == ViewControllerReference.shared.backup ||
             self.configurations!.getConfigurations()[i].task == ViewControllerReference.shared.snapshot {
-                self.stackoftasktobeestimated?.append((self.configurations!.getConfigurations()[i].hiddenID, i))
+                if self.inbatch! {
+                    if self.configurations!.getConfigurations()[i].batch == "yes" {
+                        self.stackoftasktobeestimated?.append((self.configurations!.getConfigurations()[i].hiddenID, i))
+                    }
+                } else {
+                    self.stackoftasktobeestimated?.append((self.configurations!.getConfigurations()[i].hiddenID, i))
+                }
             }
         }
         self.maxnumber = self.stackoftasktobeestimated?.count
@@ -41,13 +48,17 @@ class RemoteInfoTaskWorkQueue: SetConfigurations {
 
     private func start() {
         guard self.stackoftasktobeestimated!.count > 0 else { return }
+        weak var startstopProgressIndicatorDelegate: StartStopProgressIndicator?
         self.outputprocess = OutputProcess()
         self.index = self.stackoftasktobeestimated?.remove(at: 0).1
         if self.stackoftasktobeestimated?.count == 0 {
             self.stackoftasktobeestimated = nil
         }
-        weak var startstopProgressIndicatorDelegate: StartStopProgressIndicator?
-        startstopProgressIndicatorDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vcremoteinfo) as? ViewControllerRemoteInfo
+        if self.inbatch! {
+            startstopProgressIndicatorDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vcbatch) as? ViewControllerBatch
+        } else {
+            startstopProgressIndicatorDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vcremoteinfo) as? ViewControllerRemoteInfo
+        }
         startstopProgressIndicatorDelegate?.start()
         _ = EstimateRemoteInformationTask(index: self.index!, outputprocess: self.outputprocess, local: false)
     }
@@ -65,8 +76,12 @@ class RemoteInfoTaskWorkQueue: SetConfigurations {
         }
         self.records?.append(record)
         self.configurations?.estimatedlist?.append(record)
-        self.updateprogressDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vcremoteinfo) as? ViewControllerRemoteInfo
-        self.updateprogressDelegate?.processTermination()
+        if self.inbatch! {
+            
+        } else {
+            self.updateprogressDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vcremoteinfo) as? ViewControllerRemoteInfo
+            self.updateprogressDelegate?.processTermination()
+        }
         guard self.stackoftasktobeestimated != nil else { return }
         self.outputprocess = nil
         self.outputprocess = OutputProcess()
@@ -134,7 +149,8 @@ class RemoteInfoTaskWorkQueue: SetConfigurations {
         self.enablebackupbuttonDelegate?.enablequickbackupbutton()
     }
 
-    init() {
+    init(inbatch: Bool) {
+        self.inbatch = inbatch
         self.prepareandstartexecutetasks()
         self.records = [NSMutableDictionary]()
         self.configurations!.estimatedlist = nil

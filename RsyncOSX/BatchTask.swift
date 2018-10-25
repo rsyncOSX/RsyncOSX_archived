@@ -29,8 +29,6 @@ final class BatchTask: SetSchedules, SetConfigurations, Delay {
     weak var processupdateDelegate: UpdateProgress?
     // Delegate for presenting batchView
     weak var batchViewDelegate: BatchTaskProgress?
-    // Delegate function for start/stop progress Indicator in BatchWindow
-    weak var indicatorDelegate: StartStopProgressIndicatorSingleTask?
     // Delegate function for show process step and present View
     weak var taskDelegate: SingleTaskProgress?
     // Reference to Process task
@@ -40,14 +38,17 @@ final class BatchTask: SetSchedules, SetConfigurations, Delay {
     // Getting output from batchrun
     private var outputbatch: OutputBatch?
     // HiddenID task, set when row is selected
-    private var hiddenID: Int?
+    var hiddenID: Int?
+    var maxcount: Int?
     // Schedules in progress
     private var scheduledJobInProgress: Bool = false
     // Some max numbers
+    var estimatedlist: [NSMutableDictionary]?
 
     // Functions are called from batchView.
     func executeBatch() {
         if let batchobject = self.configurations!.getbatchQueue() {
+            self.estimatedlist = self.configurations?.estimatedlist
             // Just copy the work object.
             // The work object will be removed in Process termination
             let work = batchobject.nextBatchCopy()
@@ -58,12 +59,15 @@ final class BatchTask: SetSchedules, SetConfigurations, Delay {
             self.outputprocess = OutputProcess()
             switch work.1 {
             case 0:
+                return
+                /*
                 self.batchViewDelegate?.progressIndicatorViewBatch(operation: .start)
                 let args: [String] = self.configurations!.arguments4rsync(index: index, argtype: .argdryRun)
                 let process = Rsync(arguments: args)
                 // Setting reference to process for Abort if requiered
                 process.executeProcess(outputprocess: self.outputprocess)
                 self.process = process.getProcess()
+                */
             case 1:
                 let arguments: [String] = self.configurations!.arguments4rsync(index: index, argtype: .arg)
                 let process = Rsync(arguments: arguments)
@@ -106,6 +110,8 @@ final class BatchTask: SetSchedules, SetConfigurations, Delay {
             // (work.0) is estimationrun, (work.1) is real run
             switch work.1 {
             case 0:
+                return
+                /*
                 // dry-run
                 self.taskDelegate?.setNumbers(outputprocess: self.outputprocess)
                 batchobject.setEstimated(numberOfFiles: self.outputprocess?.getMaxcount() ?? 0)
@@ -113,6 +119,7 @@ final class BatchTask: SetSchedules, SetConfigurations, Delay {
                 self.delayWithSeconds(1) {
                     self.executeBatch()
                 }
+                */
             case 1:
                 // Real run
                 batchobject.updateInProcess(numberOfFiles: self.outputprocess!.count())
@@ -140,7 +147,6 @@ final class BatchTask: SetSchedules, SetConfigurations, Delay {
     }
 
     init() {
-        self.indicatorDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllertabMain
         self.taskDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllertabMain
         self.batchViewDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllertabMain
         self.outputbatch = nil

@@ -16,6 +16,7 @@ protocol ErrorOutput: class {
 enum ProcessTermination {
     case singletask
     case batchtask
+    case estimatebatchtask
     case quicktask
     case singlequicktask
     case remoteinfotask
