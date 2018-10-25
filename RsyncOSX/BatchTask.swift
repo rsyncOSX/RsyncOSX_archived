@@ -31,19 +31,18 @@ final class BatchTask: SetSchedules, SetConfigurations, Delay {
     var outputprocess: OutputProcess?
     private var outputbatch: OutputBatch?
     var hiddenID: Int?
-    var maxcount: Int?
     var estimatedlist: [NSMutableDictionary]?
 
     func executeBatch() {
+        self.estimatedlist = self.configurations?.estimatedlist
         if let batchobject = self.configurations!.getbatchQueue() {
-            self.estimatedlist = self.configurations?.estimatedlist
             let work = batchobject.nextBatchCopy()
             let index: Int = self.configurations!.getIndex(work.0)
+            let config = self.configurations!.getConfigurations()[index]
+            self.hiddenID = config.hiddenID
             self.outputprocess = nil
             self.outputprocess = OutputProcess()
             switch work.1 {
-            case 0:
-                return
             case 1:
                 let arguments: [String] = self.configurations!.arguments4rsync(index: index, argtype: .arg)
                 let process = Rsync(arguments: arguments)
@@ -78,37 +77,36 @@ final class BatchTask: SetSchedules, SetConfigurations, Delay {
                 self.outputbatch = OutputBatch()
             }
             let work = batchobject.nextBatchRemove()
-            // (work.0) is estimationrun, (work.1) is real run
-            switch work.1 {
-            case 0:
-                return
-            case 1:
-                batchobject.updateInProcess(numberOfFiles: self.outputprocess!.count())
-                batchobject.setCompleted()
-                self.batchViewDelegate?.progressIndicatorViewBatch(operation: .refresh)
-                // Set date on Configuration
-                let index = self.configurations!.getIndex(work.0)
-                let config = self.configurations!.getConfigurations()[index]
-                self.configurations!.setCurrentDateonConfigurationSingletask(index: index, outputprocess: self.outputprocess)
-                let numbers = "test"
-                var result: String?
-                if config.offsiteServer.isEmpty {
-                    result = config.localCatalog + " , " + "localhost" + " , " + numbers
-                } else {
-                    result = config.localCatalog + " , " + config.offsiteServer + " , " + numbers
-                }
-                self.outputbatch!.addLine(str: result!)
-                self.delayWithSeconds(1) {
-                    self.executeBatch()
-                }
-            default :
-                break
+            batchobject.updateInProcess(numberOfFiles: self.outputprocess!.count())
+            batchobject.setCompleted()
+            self.batchViewDelegate?.progressIndicatorViewBatch(operation: .refresh)
+            // Set date on Configuration
+            let index = self.configurations!.getIndex(work.0)
+            let config = self.configurations!.getConfigurations()[index]
+            self.hiddenID = config.hiddenID
+            self.configurations!.setCurrentDateonConfigurationSingletask(index: index, outputprocess: self.outputprocess)
+            var result: String?
+            if config.offsiteServer.isEmpty {
+                result = config.localCatalog + " , " + "localhost"
+            } else {
+                result = config.localCatalog + " , " + config.offsiteServer
+            }
+            self.outputbatch!.addLine(str: result!)
+            self.delayWithSeconds(1) {
+                self.executeBatch()
             }
         }
     }
 
     func incount() -> Int {
         return self.outputprocess?.getOutput()?.count ?? 0
+    }
+
+    func maxcount(hiddenID: Int) -> Int {
+        let max = self.configurations?.estimatedlist?.filter({$0.value( forKey: "hiddenID") as? Int == hiddenID})
+        guard max!.count > 0 else { return 0}
+        let maxnumber = max![0].value(forKey: "transferredNumber") as? String ?? "0"
+        return Int(maxnumber) ?? 0
     }
 
     init() {

@@ -3207,7 +3207,7 @@ DQ
                                             <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                             <color key="gridColor" name="gridColor" catalog="System" colorSpace="catalog"/>
                                             <tableColumns>
-                                                <tableColumn identifier="taskCellID" width="40" minWidth="40" maxWidth="1000" id="qfC-8t-e7C">
+                                                <tableColumn identifier="taskCellID" width="81" minWidth="40" maxWidth="1000" id="qfC-8t-e7C">
                                                     <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="center" title="Task">
                                                         <font key="font" metaFont="smallSystem"/>
                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
@@ -3221,11 +3221,11 @@ DQ
                                                     <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                     <prototypeCellViews>
                                                         <tableCellView id="NvU-PZ-5BC">
-                                                            <rect key="frame" x="1" y="1" width="40" height="17"/>
+                                                            <rect key="frame" x="1" y="1" width="81" height="17"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
                                                                 <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5Kd-8F-pVV">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="40" height="17"/>
+                                                                    <rect key="frame" x="0.0" y="0.0" width="81" height="17"/>
                                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                                                     <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="Table View Cell" id="S9g-HX-Qf6">
                                                                         <font key="font" metaFont="system"/>
@@ -3254,12 +3254,12 @@ DQ
                                                     <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                     <prototypeCellViews>
                                                         <progressIndicator wantsLayer="YES" horizontalHuggingPriority="750" verticalHuggingPriority="750" maxValue="100" bezeled="NO" controlSize="small" style="spinning" id="uf6-8w-mtI">
-                                                            <rect key="frame" x="44" y="1" width="47" height="16"/>
+                                                            <rect key="frame" x="85" y="1" width="47" height="16"/>
                                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                                         </progressIndicator>
                                                     </prototypeCellViews>
                                                 </tableColumn>
-                                                <tableColumn identifier="localCatalogCellID" width="248.97265625" minWidth="40" maxWidth="1000" id="EZS-oJ-mKt">
+                                                <tableColumn identifier="localCatalogCellID" width="232.97265625" minWidth="40" maxWidth="1000" id="EZS-oJ-mKt">
                                                     <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" title="Local catalog">
                                                         <font key="font" metaFont="smallSystem"/>
                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
@@ -3273,11 +3273,11 @@ DQ
                                                     <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                     <prototypeCellViews>
                                                         <tableCellView id="WMu-Cd-Dot">
-                                                            <rect key="frame" x="94" y="1" width="249" height="17"/>
+                                                            <rect key="frame" x="135" y="1" width="233" height="17"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
                                                                 <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="v84-i5-tdT">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="249" height="17"/>
+                                                                    <rect key="frame" x="0.0" y="0.0" width="233" height="17"/>
                                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                                                     <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="Table View Cell" id="xZ6-fW-WQl">
                                                                         <font key="font" metaFont="system"/>
@@ -3292,7 +3292,7 @@ DQ
                                                         </tableCellView>
                                                     </prototypeCellViews>
                                                 </tableColumn>
-                                                <tableColumn identifier="offsiteCatalogCellID" width="272" minWidth="10" maxWidth="3.4028234663852886e+38" id="FyK-Vx-KC3">
+                                                <tableColumn identifier="offsiteCatalogCellID" width="244" minWidth="10" maxWidth="3.4028234663852886e+38" id="FyK-Vx-KC3">
                                                     <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="center" title="Remote catalog">
                                                         <font key="font" metaFont="smallSystem"/>
                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
@@ -3306,11 +3306,11 @@ DQ
                                                     <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                     <prototypeCellViews>
                                                         <tableCellView id="Osx-ba-A1x">
-                                                            <rect key="frame" x="346" y="1" width="272" height="17"/>
+                                                            <rect key="frame" x="371" y="1" width="244" height="17"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
                                                                 <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="gbF-RW-B6e">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="272" height="17"/>
+                                                                    <rect key="frame" x="0.0" y="0.0" width="244" height="17"/>
                                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                                                     <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="Table View Cell" id="v3T-Yl-fut">
                                                                         <font key="font" metaFont="system"/>
@@ -3339,7 +3339,7 @@ DQ
                                                     <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                     <prototypeCellViews>
                                                         <tableCellView id="H4g-oc-8Kn">
-                                                            <rect key="frame" x="621" y="1" width="110" height="17"/>
+                                                            <rect key="frame" x="618" y="1" width="110" height="17"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
                                                                 <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="6K7-a3-j24">

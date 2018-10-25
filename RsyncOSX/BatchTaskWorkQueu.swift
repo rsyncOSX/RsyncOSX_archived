@@ -93,17 +93,15 @@ final class BatchTaskWorkQueu {
         if let batchtasks = configurations?.getConfigurationsBatch() {
             for i in 0 ..< batchtasks.count {
                 let row: NSMutableDictionary = [
-                    "taskCellID": String(i+1),
+                    "taskCellID": batchtasks[i].task,
                     "localCatalogCellID": batchtasks[i].localCatalog,
                     "offsiteServerCellID": batchtasks[i].offsiteServer,
-                    "offsiteCatalogCellID": batchtasks[i].offsiteCatalog]
+                    "offsiteCatalogCellID": batchtasks[i].offsiteCatalog,
+                    "hiddenID": batchtasks[i].hiddenID]
                 if (row.object(forKey: "offsiteServerCellID") as? String)!.isEmpty {
                     row.setValue("localhost", forKey: "offsiteServerCellID")
                 }
                 self.data.append(row)
-                // Estimaterun queu = (hiddenID,0)
-                self.batchQueu.append((batchtasks[i].hiddenID, 0))
-                // Real run queu = (hiddenID,1)
                 self.batchQueu.append((batchtasks[i].hiddenID, 1))
                 self.index.append(i)
             }

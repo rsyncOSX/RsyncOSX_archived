@@ -38,13 +38,13 @@ class ViewControllerBatch: NSViewController, SetDismisser, AbortTask {
 
     var row: Int?
     var batchTask: BatchTask?
-    var batchisrunning: Bool?
     var diddissappear: Bool = false
     private var remoteinfotask: RemoteInfoTaskWorkQueue?
     weak var remoteinfotaskDelegate: SetRemoteInfo?
     weak var inprogresscountDelegate: Count?
     var indexinitiated: Int = -1
     var max: Double?
+    var batchisrunning: Bool?
 
     @IBOutlet weak var mainTableView: NSTableView!
     @IBOutlet weak var closeinseconds: NSTextField!
@@ -106,9 +106,9 @@ class ViewControllerBatch: NSViewController, SetDismisser, AbortTask {
         self.diddissappear = true
     }
 
-    private func initiateProgressbar(progress: NSProgressIndicator) {
+    private func initiateProgressbar(progress: NSProgressIndicator, hiddenID: Int) {
         progress.isHidden = false
-        if let calculatedNumberOfFiles = self.batchTask?.maxcount {
+        if let calculatedNumberOfFiles = self.batchTask?.maxcount(hiddenID: hiddenID) {
             progress.maxValue = Double(calculatedNumberOfFiles)
             self.max = Double(calculatedNumberOfFiles)
         }
@@ -140,11 +140,12 @@ extension ViewControllerBatch: NSTableViewDelegate {
         let hiddenID = object.value(forKey: "hiddenID") as? Int
         let cellIdentifier: String = tableColumn!.identifier.rawValue
         if cellIdentifier == "percentCellID" {
+            guard self.batchisrunning! == true else { return nil}
             if let cell: NSProgressIndicator = tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: cellIdentifier), owner: self) as? NSProgressIndicator {
                 if hiddenID == self.batchTask?.hiddenID {
                     if row > self.indexinitiated {
                         self.indexinitiated = row
-                        self.initiateProgressbar(progress: cell)
+                        self.initiateProgressbar(progress: cell, hiddenID: hiddenID!)
                     } else {
                         self.updateProgressbar(progress: cell)
                     }
@@ -174,11 +175,6 @@ extension ViewControllerBatch: StartStopProgressIndicator {
     }
 
     func complete() {
-        if self.batchisrunning! == false {
-            
-        } else {
-            self.batchisrunning = false
-        }
     }
 }
 
