@@ -34,24 +34,18 @@ final class BatchTaskWorkQueu {
     // Set estimated (0 or 1) for row at index
     func setEstimated(numberOfFiles: Int) {
         let index = self.index[0]
-        self.data[index].setValue(1, forKey: "estimatedCellID")
-        self.data[index].setValue(String(numberOfFiles), forKey: "maxnumberOfFilesCellID")
         self.row = index
     }
 
     // Set percent completed during process
     func updateInProcess(numberOfFiles: Int) {
         let index = self.index[0]
-        self.data[index].setValue(String(numberOfFiles), forKey: "numberOfFilesCellID")
         self.row = index
     }
 
     // Set Completed
     func setCompleted () {
         let index = self.index.removeFirst()
-        let numberOfFiles = self.data[index].value(forKey: "maxnumberOfFilesCellID")
-        self.data[index].setValue(numberOfFiles, forKey: "numberOfFilesCellID")
-        self.data[index].setValue(1, forKey: "completedCellID")
         self.row = index + 1
     }
 
@@ -102,10 +96,7 @@ final class BatchTaskWorkQueu {
                     "taskCellID": String(i+1),
                     "localCatalogCellID": batchtasks[i].localCatalog,
                     "offsiteServerCellID": batchtasks[i].offsiteServer,
-                    "estimatedCellID": 0,
-                    "completedCellID": 0,
-                    "numberOfFilesCellID": "0",
-                    "maxnumberOfFilesCellID": "0"]
+                    "offsiteCatalogCellID": batchtasks[i].offsiteCatalog]
                 if (row.object(forKey: "offsiteServerCellID") as? String)!.isEmpty {
                     row.setValue("localhost", forKey: "offsiteServerCellID")
                 }

@@ -36,9 +36,6 @@ extension Attributedestring {
 
 class ViewControllerBatch: NSViewController, SetDismisser, AbortTask {
 
-    var waitToClose: Timer?
-    var closeIn: Timer?
-    var seconds: Int?
     var row: Int?
     var batchTask: BatchTask?
     var batchisrunning: Bool?
@@ -58,10 +55,8 @@ class ViewControllerBatch: NSViewController, SetDismisser, AbortTask {
     @IBAction func abort(_ sender: NSButton) {
         if self.batchisrunning! == true {
             self.abort()
-            self.batchTask!.closeOperation()
         }
-        self.waitToClose?.invalidate()
-        self.closeIn?.invalidate()
+        self.batchTask!.closeOperation()
         self.batchTask = nil
         self.dismissview(viewcontroller: self, vcontroller: .vctabmain)
     }
@@ -73,19 +68,7 @@ class ViewControllerBatch: NSViewController, SetDismisser, AbortTask {
         self.executeButton.isEnabled = false
     }
 
-    @objc private func setSecondsView() {
-        self.seconds = self.seconds! - 1
-        self.closeinseconds.stringValue = "Close automatically in: " + String(self.seconds!) + " seconds"
-    }
-
-    @objc private func closeView() {
-        self.waitToClose?.invalidate()
-        self.closeIn?.invalidate()
-        self.dismissview(viewcontroller: self, vcontroller: .vctabmain)
-    }
-
     private func loadtasks() {
-        // Create new batctask
         self.batchTask = BatchTask()
         self.batchisrunning = false
         self.batchTask?.configurations?.createbatchQueue()
@@ -93,12 +76,9 @@ class ViewControllerBatch: NSViewController, SetDismisser, AbortTask {
         self.executeButton.isEnabled = true
     }
 
-    // Initial functions viewDidLoad and viewDidAppear
     override func viewDidLoad() {
         super.viewDidLoad()
         ViewControllerReference.shared.setvcref(viewcontroller: .vcbatch, nsviewcontroller: self)
-        // Do view setup here.
-        // Setting delegates and datasource
         self.mainTableView.delegate = self
         self.mainTableView.dataSource = self
         self.loadtasks()
@@ -136,9 +116,9 @@ class ViewControllerBatch: NSViewController, SetDismisser, AbortTask {
         progress.doubleValue = 0
         progress.startAnimation(self)
     }
-    
+
     private func updateProgressbar(progress: NSProgressIndicator) {
-        let value = Double((self.inprogresscountDelegate?.inprogressCount())!)
+        let value = Double(self.batchTask?.incount() ?? 0)
         progress.doubleValue = value
     }
 
@@ -186,11 +166,11 @@ extension ViewControllerBatch: NSTableViewDelegate {
 extension ViewControllerBatch: StartStopProgressIndicator {
 
     func stop() {
-        //
+        self.executeButton.isEnabled = true
     }
 
     func start() {
-       //
+       self.executeButton.isEnabled = false
     }
 
     func complete() {
@@ -198,10 +178,6 @@ extension ViewControllerBatch: StartStopProgressIndicator {
             
         } else {
             self.batchisrunning = false
-            self.closeinseconds.isHidden = false
-            self.seconds = 5
-            self.waitToClose = Timer.scheduledTimer(timeInterval: 5, target: self, selector: #selector(closeView), userInfo: nil, repeats: false)
-            self.closeIn = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(setSecondsView), userInfo: nil, repeats: true)
         }
     }
 }
@@ -227,8 +203,16 @@ extension ViewControllerBatch: CloseViewError {
     func closeerror() {
         self.batchTask = nil
         self.abort()
-        self.waitToClose?.invalidate()
-        self.closeIn?.invalidate()
         self.dismissview(viewcontroller: self, vcontroller: .vctabmain)
+    }
+}
+
+extension ViewControllerBatch: UpdateProgress {
+    func processTermination() {
+        //
+    }
+    
+    func fileHandler() {
+        //
     }
 }
