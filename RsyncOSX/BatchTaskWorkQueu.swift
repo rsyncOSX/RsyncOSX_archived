@@ -12,10 +12,7 @@ final class BatchTaskWorkQueu {
 
     // Structure holding updated data for batchrun
     private var data = [NSMutableDictionary]()
-    // BatchQueue
-    // First = hiddenID, second 0 estimate or 1 real run
     private var batchQueu = [(Int, Int)]()
-    // Just holding the indexes
     private var index = [Int]()
     // Holding value for working on row
     private var row: Int?
@@ -24,40 +21,6 @@ final class BatchTaskWorkQueu {
 
     func completedBatch() -> Bool {
         return self.completed
-    }
-
-    // Returning current row
-    func getRow() -> Int {
-        return self.row ?? 0
-    }
-
-    // Set estimated (0 or 1) for row at index
-    func setEstimated(numberOfFiles: Int) {
-        let index = self.index[0]
-        self.data[index].setValue(1, forKey: "estimatedCellID")
-        self.data[index].setValue(String(numberOfFiles), forKey: "maxnumberOfFilesCellID")
-        self.row = index
-    }
-
-    // Set percent completed during process
-    func updateInProcess(numberOfFiles: Int) {
-        let index = self.index[0]
-        self.data[index].setValue(String(numberOfFiles), forKey: "numberOfFilesCellID")
-        self.row = index
-    }
-
-    // Set Completed
-    func setCompleted () {
-        let index = self.index.removeFirst()
-        let numberOfFiles = self.data[index].value(forKey: "maxnumberOfFilesCellID")
-        self.data[index].setValue(numberOfFiles, forKey: "numberOfFilesCellID")
-        self.data[index].setValue(1, forKey: "completedCellID")
-        self.row = index + 1
-    }
-
-    // Pops of the first element of index Queue
-    func removeFirst() {
-        self.index.removeFirst()
     }
 
     // Return data
@@ -99,20 +62,15 @@ final class BatchTaskWorkQueu {
         if let batchtasks = configurations?.getConfigurationsBatch() {
             for i in 0 ..< batchtasks.count {
                 let row: NSMutableDictionary = [
-                    "taskCellID": String(i+1),
+                    "taskCellID": batchtasks[i].task,
                     "localCatalogCellID": batchtasks[i].localCatalog,
                     "offsiteServerCellID": batchtasks[i].offsiteServer,
-                    "estimatedCellID": 0,
-                    "completedCellID": 0,
-                    "numberOfFilesCellID": "0",
-                    "maxnumberOfFilesCellID": "0"]
+                    "offsiteCatalogCellID": batchtasks[i].offsiteCatalog,
+                    "hiddenID": batchtasks[i].hiddenID]
                 if (row.object(forKey: "offsiteServerCellID") as? String)!.isEmpty {
                     row.setValue("localhost", forKey: "offsiteServerCellID")
                 }
                 self.data.append(row)
-                // Estimaterun queu = (hiddenID,0)
-                self.batchQueu.append((batchtasks[i].hiddenID, 0))
-                // Real run queu = (hiddenID,1)
                 self.batchQueu.append((batchtasks[i].hiddenID, 1))
                 self.index.append(i)
             }

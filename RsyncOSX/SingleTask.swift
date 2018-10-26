@@ -35,43 +35,25 @@ enum ColorInfo {
 
 final class SingleTask: SetSchedules, SetConfigurations {
 
-    // Delegate function for start/stop progress Indicator in BatchWindow
     weak var indicatorDelegate: StartStopProgressIndicatorSingleTask?
-    // Delegate functions for kicking of various updates (informal) during
-    // process task in main View
     weak var taskDelegate: SingleTaskProgress?
-    // Reference to Process task
     var process: Process?
-    // Index to selected row, index is set when row is selected
     private var index: Int?
-    // Getting output from rsync
     var outputprocess: OutputProcess?
-    // Holding max count
     private var maxcount: Int = 0
-    // HiddenID task, set when row is selected
     private var hiddenID: Int?
-    // Single task work queu
     private var workload: SingleTaskWorkQueu?
-    // Schedules in progress
     private var scheduledJobInProgress: Bool = false
-    // Ready for execute again
     private var ready: Bool = true
 
-    // Single task can be activated by double click from table
     func executeSingleTask() {
-
         if self.workload == nil {
             self.workload = SingleTaskWorkQueu()
         }
-
         let arguments: [String]?
-        self.process = nil
-        self.outputprocess = nil
-
         switch self.workload!.peek() {
         case .estimatesinglerun:
             if let index = self.index {
-                // Start animation and show process info
                 self.indicatorDelegate?.startIndicator()
                 arguments = self.configurations!.arguments4rsync(index: index, argtype: .argdryRun)
                 let process = Rsync(arguments: arguments)
@@ -82,7 +64,6 @@ final class SingleTask: SetSchedules, SetConfigurations {
             }
         case .executesinglerun:
             if let index = self.index {
-                // Show progress view
                 self.taskDelegate?.presentViewProgress()
                 arguments = self.configurations!.arguments4rsync(index: index, argtype: .arg)
                 self.outputprocess = OutputProcess()
@@ -107,31 +88,22 @@ final class SingleTask: SetSchedules, SetConfigurations {
     func processTermination() {
 
         self.ready = true
-        // Making sure no nil pointer execption
         if let workload = self.workload {
-            // Pop topmost element of work queue
             switch workload.pop() {
             case .estimatesinglerun:
                 self.taskDelegate?.setinfonextaction(info: "Execute", color: .green)
-                // Stopping the working (estimation) progress indicator
                 self.indicatorDelegate?.stopIndicator()
-                // Getting and setting max file to transfer
                 self.taskDelegate?.setNumbers(outputprocess: self.outputprocess)
                 self.maxcount = self.outputprocess!.getMaxcount()
-                // If showInfoDryrun is on present result of dryrun automatically
                 self.taskDelegate?.presentViewInformation(outputprocess: self.outputprocess!)
             case .error:
-                // Stopping the working (estimation) progress indicator
                 self.indicatorDelegate?.stopIndicator()
-                // If showInfoDryrun is on present result of dryrun automatically
                 self.taskDelegate?.presentViewInformation(outputprocess: self.outputprocess!)
                 self.workload = nil
             case .executesinglerun:
-                // Process termination and close progress view
                 self.taskDelegate?.terminateProgressProcess()
-                // If showInfoDryrun is on present result of dryrun automatically
                 self.taskDelegate?.presentViewInformation(outputprocess: self.outputprocess!)
-                self.configurations!.setCurrentDateonConfigurationSingletask(index: self.index!, outputprocess: self.outputprocess)
+                self.configurations!.setCurrentDateonConfiguration(index: self.index!, outputprocess: self.outputprocess)
             case .empty:
                 self.workload = nil
             default:
@@ -140,7 +112,6 @@ final class SingleTask: SetSchedules, SetConfigurations {
         }
     }
 
-    // Put error token ontop of workload
     func error() {
         guard self.workload != nil else { return }
         self.workload!.error()
@@ -153,16 +124,12 @@ final class SingleTask: SetSchedules, SetConfigurations {
     }
 }
 
-// Counting
 extension SingleTask: Count {
 
-    // Maxnumber of files counted
     func maxCount() -> Int {
         return self.maxcount
     }
 
-    // Counting number of files
-    // Function is called when Process discover FileHandler notification
     func inprogressCount() -> Int {
         guard self.outputprocess != nil else { return 0 }
         return self.outputprocess!.count()

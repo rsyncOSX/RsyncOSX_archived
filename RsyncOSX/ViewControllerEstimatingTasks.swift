@@ -41,10 +41,6 @@ class ViewControllerEstimatingTasks: NSViewController, AbortTask {
         self.abort()
     }
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
-    }
-
     override func viewDidAppear() {
         super.viewDidAppear()
         ViewControllerReference.shared.setvcref(viewcontroller: .vcestimatingtasks, nsviewcontroller: self)

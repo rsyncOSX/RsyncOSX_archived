@@ -364,7 +364,7 @@ class ViewControllertabMain: NSViewController, ReloadTable, Deselect, Coloractiv
 
     func automaticbackup() {
         self.processtermination = .automaticbackup
-        self.configurations?.remoteinfotaskworkqueue = RemoteInfoTaskWorkQueue()
+        self.configurations?.remoteinfotaskworkqueue = RemoteInfoTaskWorkQueue(inbatch: false)
         self.presentViewControllerAsSheet(self.viewControllerEstimating!)
         self.estimateupdateDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vcestimatingtasks) as? ViewControllerEstimatingTasks
     }
@@ -501,7 +501,7 @@ class ViewControllertabMain: NSViewController, ReloadTable, Deselect, Coloractiv
 
     // Execute BATCH TASKS only
     @IBAction func executeBatch(_ sender: NSButton) {
-        self.processtermination = .batchtask
+        self.processtermination = .estimatebatchtask
         guard self.scheduledJobInProgress == false else {
             self.info(num: 4)
             return

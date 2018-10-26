@@ -23,9 +23,11 @@ class RemoteInfoTaskWorkQueue: SetConfigurations {
     weak var updateprogressDelegate: UpdateProgress?
     weak var reloadtableDelegate: Reloadandrefresh?
     weak var enablebackupbuttonDelegate: EnableQuicbackupButton?
+    weak var startstopProgressIndicatorDelegate: StartStopProgressIndicator?
     var index: Int?
     var maxnumber: Int?
     var count: Int?
+    var inbatch: Bool?
 
     private func prepareandstartexecutetasks() {
         self.stackoftasktobeestimated = nil
@@ -33,22 +35,26 @@ class RemoteInfoTaskWorkQueue: SetConfigurations {
         for i in 0 ..< self.configurations!.getConfigurations().count {
             if self.configurations!.getConfigurations()[i].task == ViewControllerReference.shared.backup ||
             self.configurations!.getConfigurations()[i].task == ViewControllerReference.shared.snapshot {
-                self.stackoftasktobeestimated?.append((self.configurations!.getConfigurations()[i].hiddenID, i))
+                if self.inbatch! {
+                    if self.configurations!.getConfigurations()[i].batch == "yes" {
+                        self.stackoftasktobeestimated?.append((self.configurations!.getConfigurations()[i].hiddenID, i))
+                    }
+                } else {
+                    self.stackoftasktobeestimated?.append((self.configurations!.getConfigurations()[i].hiddenID, i))
+                }
             }
         }
         self.maxnumber = self.stackoftasktobeestimated?.count
     }
 
-    private func start() {
+    private func startestimation() {
         guard self.stackoftasktobeestimated!.count > 0 else { return }
         self.outputprocess = OutputProcess()
         self.index = self.stackoftasktobeestimated?.remove(at: 0).1
         if self.stackoftasktobeestimated?.count == 0 {
             self.stackoftasktobeestimated = nil
         }
-        weak var startstopProgressIndicatorDelegate: StartStopProgressIndicator?
-        startstopProgressIndicatorDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vcremoteinfo) as? ViewControllerRemoteInfo
-        startstopProgressIndicatorDelegate?.start()
+        self.startstopProgressIndicatorDelegate?.start()
         _ = EstimateRemoteInformationTask(index: self.index!, outputprocess: self.outputprocess, local: false)
     }
 
@@ -65,9 +71,11 @@ class RemoteInfoTaskWorkQueue: SetConfigurations {
         }
         self.records?.append(record)
         self.configurations?.estimatedlist?.append(record)
-        self.updateprogressDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vcremoteinfo) as? ViewControllerRemoteInfo
         self.updateprogressDelegate?.processTermination()
-        guard self.stackoftasktobeestimated != nil else { return }
+        guard self.stackoftasktobeestimated != nil else {
+            self.startstopProgressIndicatorDelegate?.stop()
+            return
+        }
         self.outputprocess = nil
         self.outputprocess = OutputProcess()
         self.index = self.stackoftasktobeestimated?.remove(at: 0).1
@@ -134,12 +142,20 @@ class RemoteInfoTaskWorkQueue: SetConfigurations {
         self.enablebackupbuttonDelegate?.enablequickbackupbutton()
     }
 
-    init() {
+    init(inbatch: Bool) {
+        self.inbatch = inbatch
+        if inbatch {
+            self.updateprogressDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vcbatch) as? ViewControllerBatch
+             self.startstopProgressIndicatorDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vcbatch) as? ViewControllerBatch
+        } else {
+            self.updateprogressDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vcremoteinfo) as? ViewControllerRemoteInfo
+            self.startstopProgressIndicatorDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vcremoteinfo) as? ViewControllerRemoteInfo
+        }
         self.prepareandstartexecutetasks()
         self.records = [NSMutableDictionary]()
         self.configurations!.estimatedlist = nil
         self.configurations!.estimatedlist = [NSMutableDictionary]()
-        self.start()
+        self.startestimation()
     }
 }
 

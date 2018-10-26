@@ -249,13 +249,10 @@ class Configurations: ReloadTable, SetSchedules {
         _ = Logging(outputprocess: outputprocess)
     }
 
-    func setCurrentDateonConfigurationSingletask(index: Int, outputprocess: OutputProcess?) {
-        weak var taskDelegate: SingleTaskProgress?
-        taskDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllertabMain
-        // Logg run and get numbers from view
+    func setCurrentDateonConfiguration(index: Int, outputprocess: OutputProcess?) {
         let number = Numbers(outputprocess: outputprocess)
-        let transferredNumber = taskDelegate?.gettransferredNumber()
-        let transferredNumberSizebytes = taskDelegate?.gettransferredNumberSizebytes()
+        let transferredNumber = String(number.transferNum ?? 0)
+        let transferredNumberSizebytes = String(number.transferNumSize ?? 0)
         let hiddenID = self.gethiddenID(index: index)
         let numbers = number.stats(numberOfFiles: transferredNumber, sizeOfFiles: transferredNumberSizebytes)
         self.schedules!.addlogtaskmanuel(hiddenID, result: numbers)

@@ -10,11 +10,6 @@
 import Foundation
 import Cocoa
 
-protocol BatchTaskProgress: class {
-    func progressIndicatorViewBatch(operation: BatchViewProgressIndicator)
-    func setOutputBatch(outputbatch: OutputBatch?)
-}
-
 enum BatchViewProgressIndicator {
     case start
     case stop
@@ -25,68 +20,43 @@ enum BatchViewProgressIndicator {
 final class BatchTask: SetSchedules, SetConfigurations, Delay {
 
     weak var closeviewerrorDelegate: CloseViewError?
-    // Protocol function used in Process().
     weak var processupdateDelegate: UpdateProgress?
-    // Delegate for presenting batchView
-    weak var batchViewDelegate: BatchTaskProgress?
-    // Delegate function for start/stop progress Indicator in BatchWindow
-    weak var indicatorDelegate: StartStopProgressIndicatorSingleTask?
-    // Delegate function for show process step and present View
-    weak var taskDelegate: SingleTaskProgress?
-    // Reference to Process task
     var process: Process?
-    // Getting output from rsync
     var outputprocess: OutputProcess?
-    // Getting output from batchrun
     private var outputbatch: OutputBatch?
-    // HiddenID task, set when row is selected
-    private var hiddenID: Int?
-    // Schedules in progress
-    private var scheduledJobInProgress: Bool = false
-    // Some max numbers
+    var hiddenID: Int?
+    var estimatedlist: [NSMutableDictionary]?
 
-    // Functions are called from batchView.
     func executeBatch() {
+        self.estimatedlist = self.configurations?.estimatedlist
         if let batchobject = self.configurations!.getbatchQueue() {
-            // Just copy the work object.
-            // The work object will be removed in Process termination
             let work = batchobject.nextBatchCopy()
-            // Get the index if given hiddenID (in work.0)
-            let index: Int = self.configurations!.getIndex(work.0)
-            // Create the output object for rsync
-            self.outputprocess = nil
-            self.outputprocess = OutputProcess()
             switch work.1 {
-            case 0:
-                self.batchViewDelegate?.progressIndicatorViewBatch(operation: .start)
-                let args: [String] = self.configurations!.arguments4rsync(index: index, argtype: .argdryRun)
-                let process = Rsync(arguments: args)
-                // Setting reference to process for Abort if requiered
-                process.executeProcess(outputprocess: self.outputprocess)
-                self.process = process.getProcess()
             case 1:
+                let index: Int = self.configurations!.getIndex(work.0)
+                let config = self.configurations!.getConfigurations()[index]
+                self.hiddenID = config.hiddenID
+                self.outputprocess = OutputProcess()
                 let arguments: [String] = self.configurations!.arguments4rsync(index: index, argtype: .arg)
                 let process = Rsync(arguments: arguments)
-                // Setting reference to process for Abort if requiered
                 process.executeProcess(outputprocess: self.outputprocess)
                 self.process = process.getProcess()
             case -1:
-                self.batchViewDelegate?.setOutputBatch(outputbatch: self.outputbatch)
-                self.batchViewDelegate?.progressIndicatorViewBatch(operation: .complete)
                 self.configurationsDelegate?.reloadconfigurationsobject()
-            default : break
+            default :
+                break
             }
         }
     }
 
     func closeOperation() {
+        self.process?.terminate()
         self.process = nil
-        self.taskDelegate?.setinfonextaction(info: "", color: .black)
+        self.configurations?.estimatedlist = nil
+        self.configurations!.remoteinfotaskworkqueue = nil
     }
 
-    // Error and stop execution
     func error() {
-        // Just pop off remaining work
         if let batchobject = self.configurations!.getbatchQueue() {
             batchobject.abortOperations()
             self.closeviewerrorDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vcbatch) as? ViewControllerBatch
@@ -94,56 +64,41 @@ final class BatchTask: SetSchedules, SetConfigurations, Delay {
         }
     }
 
-    // Called when ProcessTermination is called in main View.
-    // Either dryn-run or realrun completed.
     func processTermination() {
         if let batchobject = self.configurations!.getbatchQueue() {
             if self.outputbatch == nil {
                 self.outputbatch = OutputBatch()
             }
-            // Remove the first worker object
             let work = batchobject.nextBatchRemove()
-            // (work.0) is estimationrun, (work.1) is real run
-            switch work.1 {
-            case 0:
-                // dry-run
-                self.taskDelegate?.setNumbers(outputprocess: self.outputprocess)
-                batchobject.setEstimated(numberOfFiles: self.outputprocess?.getMaxcount() ?? 0)
-                self.batchViewDelegate?.progressIndicatorViewBatch(operation: .stop)
-                self.delayWithSeconds(1) {
-                    self.executeBatch()
-                }
-            case 1:
-                // Real run
-                batchobject.updateInProcess(numberOfFiles: self.outputprocess!.count())
-                batchobject.setCompleted()
-                self.batchViewDelegate?.progressIndicatorViewBatch(operation: .refresh)
-                // Set date on Configuration
-                let index = self.configurations!.getIndex(work.0)
-                let config = self.configurations!.getConfigurations()[index]
-                self.configurations!.setCurrentDateonConfigurationSingletask(index: index, outputprocess: self.outputprocess)
-                let numbers = "test"
-                var result: String?
-                if config.offsiteServer.isEmpty {
-                    result = config.localCatalog + " , " + "localhost" + " , " + numbers
-                } else {
-                    result = config.localCatalog + " , " + config.offsiteServer + " , " + numbers
-                }
-                self.outputbatch!.addLine(str: result!)
-                self.delayWithSeconds(1) {
-                    self.executeBatch()
-                }
-            default :
-                break
+            let index = self.configurations!.getIndex(work.0)
+            let config = self.configurations!.getConfigurations()[index]
+            self.hiddenID = config.hiddenID
+            self.configurations!.setCurrentDateonConfiguration(index: index, outputprocess: self.outputprocess)
+            var result: String?
+            if config.offsiteServer.isEmpty {
+                result = config.localCatalog + " , " + "localhost"
+            } else {
+                result = config.localCatalog + " , " + config.offsiteServer
+            }
+            self.outputbatch!.addLine(str: result!)
+            self.delayWithSeconds(0.5) {
+                self.executeBatch()
             }
         }
     }
 
+    func incount() -> Int {
+        return self.outputprocess?.getOutput()?.count ?? 0
+    }
+
+    func maxcount(hiddenID: Int) -> Int {
+        let max = self.configurations?.estimatedlist?.filter({$0.value( forKey: "hiddenID") as? Int == hiddenID})
+        guard max!.count > 0 else { return 0}
+        let maxnumber = max![0].value(forKey: "transferredNumber") as? String ?? "0"
+        return Int(maxnumber) ?? 0
+    }
+
     init() {
-        self.indicatorDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllertabMain
-        self.taskDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllertabMain
-        self.batchViewDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllertabMain
-        self.outputbatch = nil
     }
 
 }

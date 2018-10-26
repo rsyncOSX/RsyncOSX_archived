@@ -16,6 +16,7 @@ protocol ErrorOutput: class {
 enum ProcessTermination {
     case singletask
     case batchtask
+    case estimatebatchtask
     case quicktask
     case singlequicktask
     case remoteinfotask
@@ -62,7 +63,7 @@ class ProcessCmd: Delay {
         outHandle.waitForDataInBackgroundAndNotify()
         // Observator for reading data from pipe, observer is removed when Process terminates
         self.notifications = NotificationCenter.default.addObserver(forName: NSNotification.Name.NSFileHandleDataAvailable,
-                            object: nil, queue: nil) { _ -> Void in
+                            object: nil, queue: nil) { _ in
             let data = outHandle.availableData
             if data.count > 0 {
                 if let str = NSString(data: data, encoding: String.Encoding.utf8.rawValue) {
@@ -81,7 +82,7 @@ class ProcessCmd: Delay {
         }
         // Observator Process termination, observer is removed when Process terminates
         self.notifications = NotificationCenter.default.addObserver(forName: Process.didTerminateNotification,
-                            object: task, queue: nil) { _ -> Void in
+                                                                    object: task, queue: nil) { _ in
             self.delayWithSeconds(0.5) {
                 self.termination = true
                 self.updateDelegate?.processTermination()

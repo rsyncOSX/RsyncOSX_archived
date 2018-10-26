@@ -67,8 +67,6 @@ class ViewControllerRemoteInfo: NSViewController, SetDismisser, AbortTask {
     // Initial functions viewDidLoad and viewDidAppear
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do view setup here.
-        // Setting delegates and datasource
         self.mainTableView.delegate = self
         self.mainTableView.dataSource = self
         ViewControllerReference.shared.setvcref(viewcontroller: .vcremoteinfo, nsviewcontroller: self)
@@ -78,7 +76,7 @@ class ViewControllerRemoteInfo: NSViewController, SetDismisser, AbortTask {
             self.loaded = true
             self.progress.isHidden = true
         } else {
-            self.remoteinfotask = RemoteInfoTaskWorkQueue()
+            self.remoteinfotask = RemoteInfoTaskWorkQueue(inbatch: false)
             self.remoteinfotaskDelegate?.setremoteinfo(remoteinfotask: self.remoteinfotask)
         }
     }
