@@ -29,7 +29,7 @@ final class CompleteScheduledOperation: SetConfigurations, SetSchedules, SetSche
         let datestring = self.dateformatter!.string(from: date!)
         let dateStartstring = self.dateformatter!.string(from: dateStart!)
         let number = Numbers(outputprocess: outputprocess)
-        let numberstring = number.stats(numberOfFiles: nil, sizeOfFiles: nil)
+        let numberstring = number.stats()
         self.schedules!.addresultschedule(self.hiddenID!, dateStart: dateStartstring, result: numberstring, date: datestring, schedule: schedule!)
         // Writing timestamp to configuration
         self.configurations!.setCurrentDateonConfigurationQuickbackup(self.index!, outputprocess: outputprocess)
