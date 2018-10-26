@@ -21,7 +21,6 @@ final class BatchTask: SetSchedules, SetConfigurations, Delay {
 
     weak var closeviewerrorDelegate: CloseViewError?
     weak var processupdateDelegate: UpdateProgress?
-    weak var taskDelegate: SingleTaskProgress?
     var process: Process?
     var outputprocess: OutputProcess?
     private var outputbatch: OutputBatch?
@@ -66,7 +65,6 @@ final class BatchTask: SetSchedules, SetConfigurations, Delay {
     }
 
     func processTermination() {
-        self.taskDelegate?.setNumbers(outputprocess: self.outputprocess)
         if let batchobject = self.configurations!.getbatchQueue() {
             if self.outputbatch == nil {
                 self.outputbatch = OutputBatch()
@@ -75,7 +73,7 @@ final class BatchTask: SetSchedules, SetConfigurations, Delay {
             let index = self.configurations!.getIndex(work.0)
             let config = self.configurations!.getConfigurations()[index]
             self.hiddenID = config.hiddenID
-            self.configurations!.setCurrentDateonConfigurationSingletask(index: index, outputprocess: self.outputprocess)
+            self.configurations!.setCurrentDateonConfiguration(index: index, outputprocess: self.outputprocess)
             var result: String?
             if config.offsiteServer.isEmpty {
                 result = config.localCatalog + " , " + "localhost"
@@ -83,7 +81,7 @@ final class BatchTask: SetSchedules, SetConfigurations, Delay {
                 result = config.localCatalog + " , " + config.offsiteServer
             }
             self.outputbatch!.addLine(str: result!)
-            self.delayWithSeconds(1) {
+            self.delayWithSeconds(0.5) {
                 self.executeBatch()
             }
         }
@@ -101,8 +99,6 @@ final class BatchTask: SetSchedules, SetConfigurations, Delay {
     }
 
     init() {
-        self.outputbatch = nil
-        self.taskDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllertabMain
     }
 
 }
