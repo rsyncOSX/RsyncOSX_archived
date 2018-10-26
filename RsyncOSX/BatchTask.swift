@@ -81,7 +81,7 @@ final class BatchTask: SetSchedules, SetConfigurations, Delay {
                 result = config.localCatalog + " , " + config.offsiteServer
             }
             self.outputbatch!.addLine(str: result!)
-            self.delayWithSeconds(0.5) {
+            self.delayWithSeconds(1) {
                 self.executeBatch()
             }
         }
