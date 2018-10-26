@@ -390,17 +390,7 @@ extension ViewControllertabMain: UpdateProgress {
                 outputeverythingDelegate?.reloadtable()
             }
         case .batchtask:
-            guard self.batchtaskObject != nil else { return }
-            if let batchobject = self.configurations!.getbatchQueue() {
-                let work = batchobject.nextBatchCopy()
-                if work.1 == 1 {
-                    // Real work is done, must set reference to Process object in case of Abort
-                    self.process = self.batchtaskObject!.process
-                    batchobject.updateInProcess(numberOfFiles: self.batchtaskObject!.outputprocess!.count())
-                    // Refresh view in Batchwindow
-                    self.reloadtable(vcontroller: .vcbatch)
-                }
-            }
+            return
         case .quicktask:
             weak var localprocessupdateDelegate: UpdateProgress?
             localprocessupdateDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vcquickbackup) as? ViewControllerQuickBackup
@@ -600,27 +590,6 @@ extension ViewControllertabMain: SingleTaskProgress {
 
     func gettransferredNumberSizebytes() -> String {
         return self.transferredNumberSizebytes.stringValue
-    }
-}
-
-extension ViewControllertabMain: BatchTaskProgress {
-    func progressIndicatorViewBatch(operation: BatchViewProgressIndicator) {
-        let localindicatorDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vcbatch) as? ViewControllerBatch
-        switch operation {
-        case .stop:
-            localindicatorDelegate?.stop()
-            self.reloadtable(vcontroller: .vcbatch)
-        case .start:
-            localindicatorDelegate?.start()
-        case .complete:
-            localindicatorDelegate?.complete()
-        case .refresh:
-            self.reloadtable(vcontroller: .vcbatch)
-        }
-    }
-
-    func setOutputBatch(outputbatch: OutputBatch?) {
-        self.outputbatch = outputbatch
     }
 }
 

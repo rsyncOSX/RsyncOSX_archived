@@ -12,10 +12,7 @@ final class BatchTaskWorkQueu {
 
     // Structure holding updated data for batchrun
     private var data = [NSMutableDictionary]()
-    // BatchQueue
-    // First = hiddenID, second 0 estimate or 1 real run
     private var batchQueu = [(Int, Int)]()
-    // Just holding the indexes
     private var index = [Int]()
     // Holding value for working on row
     private var row: Int?
@@ -24,34 +21,6 @@ final class BatchTaskWorkQueu {
 
     func completedBatch() -> Bool {
         return self.completed
-    }
-
-    // Returning current row
-    func getRow() -> Int {
-        return self.row ?? 0
-    }
-
-    // Set estimated (0 or 1) for row at index
-    func setEstimated(numberOfFiles: Int) {
-        let index = self.index[0]
-        self.row = index
-    }
-
-    // Set percent completed during process
-    func updateInProcess(numberOfFiles: Int) {
-        let index = self.index[0]
-        self.row = index
-    }
-
-    // Set Completed
-    func setCompleted () {
-        let index = self.index.removeFirst()
-        self.row = index + 1
-    }
-
-    // Pops of the first element of index Queue
-    func removeFirst() {
-        self.index.removeFirst()
     }
 
     // Return data

@@ -47,7 +47,6 @@ class ViewControllerBatch: NSViewController, SetDismisser, AbortTask {
     var batchisrunning: Bool?
 
     @IBOutlet weak var mainTableView: NSTableView!
-    @IBOutlet weak var closeinseconds: NSTextField!
     @IBOutlet weak var executeButton: NSButton!
     @IBOutlet weak var abortbutton: NSButton!
 
@@ -68,20 +67,15 @@ class ViewControllerBatch: NSViewController, SetDismisser, AbortTask {
         self.executeButton.isEnabled = false
     }
 
-    private func loadtasks() {
-        self.batchTask = BatchTask()
-        self.batchisrunning = false
-        self.batchTask?.configurations?.createbatchQueue()
-        self.closeinseconds.isHidden = true
-        self.executeButton.isEnabled = true
-    }
-
     override func viewDidLoad() {
         super.viewDidLoad()
         ViewControllerReference.shared.setvcref(viewcontroller: .vcbatch, nsviewcontroller: self)
         self.mainTableView.delegate = self
         self.mainTableView.dataSource = self
-        self.loadtasks()
+        self.batchTask = BatchTask()
+        self.batchisrunning = false
+        self.batchTask?.configurations?.createbatchQueue()
+        self.executeButton.isEnabled = true
     }
 
     override func viewDidAppear() {
