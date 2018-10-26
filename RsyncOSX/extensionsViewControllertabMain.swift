@@ -390,7 +390,9 @@ extension ViewControllertabMain: UpdateProgress {
                 outputeverythingDelegate?.reloadtable()
             }
         case .batchtask:
-            return
+            weak var localprocessupdateDelegate: UpdateProgress?
+            localprocessupdateDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vcbatch) as? ViewControllerBatch
+            localprocessupdateDelegate?.fileHandler()
         case .quicktask:
             weak var localprocessupdateDelegate: UpdateProgress?
             localprocessupdateDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vcquickbackup) as? ViewControllerQuickBackup
