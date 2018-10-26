@@ -251,10 +251,8 @@ class Configurations: ReloadTable, SetSchedules {
 
     func setCurrentDateonConfiguration(index: Int, outputprocess: OutputProcess?) {
         let number = Numbers(outputprocess: outputprocess)
-        let transferredNumber = String(number.transferNum ?? 0)
-        let transferredNumberSizebytes = String(number.transferNumSize ?? 0)
         let hiddenID = self.gethiddenID(index: index)
-        let numbers = number.stats(numberOfFiles: transferredNumber, sizeOfFiles: transferredNumberSizebytes)
+        let numbers = number.stats()
         self.schedules!.addlogtaskmanuel(hiddenID, result: numbers)
         if self.configurations![index].task == ViewControllerReference.shared.snapshot {
             self.increasesnapshotnum(index: index)
