@@ -66,6 +66,7 @@ final class BatchTask: SetSchedules, SetConfigurations, Delay {
     }
 
     func processTermination() {
+        self.taskDelegate?.setNumbers(outputprocess: self.outputprocess)
         if let batchobject = self.configurations!.getbatchQueue() {
             if self.outputbatch == nil {
                 self.outputbatch = OutputBatch()
@@ -74,7 +75,6 @@ final class BatchTask: SetSchedules, SetConfigurations, Delay {
             let index = self.configurations!.getIndex(work.0)
             let config = self.configurations!.getConfigurations()[index]
             self.hiddenID = config.hiddenID
-            self.taskDelegate?.setNumbers(outputprocess: self.outputprocess)
             self.configurations!.setCurrentDateonConfigurationSingletask(index: index, outputprocess: self.outputprocess)
             var result: String?
             if config.offsiteServer.isEmpty {
