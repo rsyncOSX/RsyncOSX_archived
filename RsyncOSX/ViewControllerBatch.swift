@@ -51,7 +51,7 @@ class ViewControllerBatch: NSViewController, SetDismisser, AbortTask, SetConfigu
     @IBOutlet weak var abortbutton: NSButton!
     @IBOutlet weak var estimatingbatch: NSProgressIndicator!
     @IBOutlet weak var estimatingbatchlabel: NSTextField!
-    
+
     // Either abort or close
     @IBAction func abort(_ sender: NSButton) {
         if self.batchisrunning! == true {
