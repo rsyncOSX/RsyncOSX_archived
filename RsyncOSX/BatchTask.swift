@@ -91,7 +91,7 @@ final class BatchTask: SetSchedules, SetConfigurations, Delay {
         return self.outputprocess?.getOutput()?.count ?? 0
     }
 
-    func maxcount(hiddenID: Int) -> Int {
+    func maxcountintask(hiddenID: Int) -> Int {
         let max = self.configurations?.estimatedlist?.filter({$0.value( forKey: "hiddenID") as? Int == hiddenID})
         guard max!.count > 0 else { return 0}
         let maxnumber = max![0].value(forKey: "transferredNumber") as? String ?? "0"
