@@ -215,6 +215,9 @@ extension ViewControllerBatch: CloseViewError {
 extension ViewControllerBatch: UpdateProgress {
     func processTermination() {
         self.updateProgressbar()
+        globalMainQueue.async(execute: { () -> Void in
+            self.mainTableView.reloadData()
+        })
     }
 
     func fileHandler() {
