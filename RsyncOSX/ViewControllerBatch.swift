@@ -50,7 +50,8 @@ class ViewControllerBatch: NSViewController, SetDismisser, AbortTask, SetConfigu
     @IBOutlet weak var executeButton: NSButton!
     @IBOutlet weak var abortbutton: NSButton!
     @IBOutlet weak var estimatingbatch: NSProgressIndicator!
-
+    @IBOutlet weak var estimatingbatchlabel: NSTextField!
+    
     // Either abort or close
     @IBAction func abort(_ sender: NSButton) {
         if self.batchisrunning! == true {
@@ -121,6 +122,7 @@ class ViewControllerBatch: NSViewController, SetDismisser, AbortTask, SetConfigu
 
     private func initiateProgressbar() {
         self.estimatingbatch.isHidden = false
+        self.estimatingbatchlabel.isHidden = false
         if let calculatedNumberOfFiles = self.configurations?.batchQueuecount() {
             self.estimatingbatch.maxValue = Double(calculatedNumberOfFiles)
             self.max = Double(calculatedNumberOfFiles)
@@ -184,6 +186,7 @@ extension ViewControllerBatch: StartStopProgressIndicator {
         self.executeButton.isEnabled = true
         self.estimatingbatch.stopAnimation(nil)
         self.estimatingbatch.isHidden = true
+        self.estimatingbatchlabel.stringValue = "Estimation completed..."
     }
 
     func start() {
