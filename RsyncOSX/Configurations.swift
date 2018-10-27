@@ -470,5 +470,6 @@ class Configurations: ReloadTable, SetSchedules {
         self.profile = profile
         self.storageapi = PersistentStorageAPI(profile: self.profile)
         self.readconfigurations()
+        self.createbatchQueue()
     }
 }

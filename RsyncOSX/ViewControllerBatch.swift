@@ -76,7 +76,6 @@ class ViewControllerBatch: NSViewController, SetDismisser, AbortTask, SetConfigu
         self.mainTableView.dataSource = self
         self.batchTask = BatchTask()
         self.batchisrunning = false
-        self.batchTask?.configurations?.createbatchQueue()
         self.executeButton.isEnabled = true
         self.estimatingbatch.usesThreadedAnimation = true
     }
