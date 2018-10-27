@@ -11,10 +11,9 @@ import Foundation
 final class BatchTaskWorkQueu {
 
     // Structure holding updated data for batchrun
-    private var data = [NSMutableDictionary]()
-    private var batchQueu = [(Int, Int)]()
-    private var index = [Int]()
-    private var completed: Bool = false
+    var data = [NSMutableDictionary]()
+    var batchQueu = [(Int, Int)]()
+    var completed: Bool = false
 
     func batchruniscompleted() -> Bool {
         return self.completed
@@ -69,7 +68,6 @@ final class BatchTaskWorkQueu {
                 }
                 self.data.append(row)
                 self.batchQueu.append((batchtasks[i].hiddenID, 1))
-                self.index.append(i)
             }
         }
     }

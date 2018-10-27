@@ -121,12 +121,13 @@ class ViewControllerBatch: NSViewController, SetDismisser, AbortTask, SetConfigu
     }
 
     private func initiateProgressbar() {
-        self.estimatingbatch.isHidden = false
-        self.estimatingbatchlabel.isHidden = false
         if let calculatedNumberOfFiles = self.configurations?.batchQueuecount() {
+            guard calculatedNumberOfFiles > 0 else { return }
             self.estimatingbatch.maxValue = Double(calculatedNumberOfFiles)
             self.max = Double(calculatedNumberOfFiles)
         }
+        self.estimatingbatch.isHidden = false
+        self.estimatingbatchlabel.isHidden = false
         self.estimatingbatch.minValue = 0
         self.estimatingbatch.doubleValue = 0
         self.estimatingbatch.startAnimation(nil)
@@ -143,20 +144,19 @@ class ViewControllerBatch: NSViewController, SetDismisser, AbortTask, SetConfigu
 extension ViewControllerBatch: NSTableViewDataSource {
         // Delegate for size of table
         func numberOfRows(in tableView: NSTableView) -> Int {
-            return self.batchTask?.configurations?.batchQueuecount() ?? 0
+            return self.batchTask?.configurations?.getbatchlist()?.count ?? 0
     }
 }
 
 extension ViewControllerBatch: NSTableViewDelegate {
 
     func tableView(_ tableView: NSTableView, viewFor tableColumn: NSTableColumn?, row: Int) -> NSView? {
-        guard  self.batchTask?.configurations?.getupdatedbatchQueue() != nil else { return nil }
-        guard row < self.batchTask!.configurations!.getupdatedbatchQueue()!.count else { return nil }
-        let object: NSMutableDictionary = (self.batchTask?.configurations!.getupdatedbatchQueue()![row])!
+        guard  self.batchTask?.configurations?.getbatchlist() != nil else { return nil }
+        guard row < self.batchTask!.configurations!.getbatchlist()!.count else { return nil }
+        let object: NSMutableDictionary = (self.batchTask?.configurations!.getbatchlist()![row])!
         let hiddenID = object.value(forKey: "hiddenID") as? Int
         let cellIdentifier: String = tableColumn!.identifier.rawValue
         if cellIdentifier == "percentCellID" {
-            guard self.batchisrunning! == true else { return nil}
             if let cell: NSProgressIndicator = tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: cellIdentifier), owner: self) as? NSProgressIndicator {
                 if hiddenID == self.batchTask?.hiddenID {
                     if row > self.indexinitiated {

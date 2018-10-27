@@ -41,11 +41,11 @@ class ViewControllertabMain: NSViewController, ReloadTable, Deselect, Coloractiv
     // Reference to the single taskobject
     var singletask: SingleTask?
     // Reference to batch taskobject
-    var batchtaskObject: BatchTask?
+    var batchtasks: BatchTask?
     var verifyrsyncpath: Verifyrsyncpath?
     var tcpconnections: TCPconnections?
     // Delegate function getting batchTaskObject
-    weak var batchObjectDelegate: GetNewBatchTask?
+    weak var batchtasksDelegate: GetNewBatchTask?
     // Main tableview
     @IBOutlet weak var mainTableView: NSTableView!
     // Progressbar indicating work
@@ -86,8 +86,6 @@ class ViewControllertabMain: NSViewController, ReloadTable, Deselect, Coloractiv
     var index: Int?
     // Getting output from rsync 
     var outputprocess: OutputProcess?
-    // Getting output from batchrun
-    var outputbatch: OutputBatch?
     // Dynamic view of output
     var dynamicappend: Bool = false
     weak var dynamicreloadoutputDelegate: Reloadandrefresh?
@@ -486,7 +484,7 @@ class ViewControllertabMain: NSViewController, ReloadTable, Deselect, Coloractiv
                 self.info(num: 6)
                 return
         }
-        self.batchtaskObject = nil
+        self.batchtasks = nil
         guard self.singletask != nil else {
             // Dry run
             self.singletask = SingleTask(index: self.index!)
@@ -559,7 +557,6 @@ class ViewControllertabMain: NSViewController, ReloadTable, Deselect, Coloractiv
             self.index = index
             self.hiddenID = self.configurations!.gethiddenID(index: index)
             self.outputprocess = nil
-            self.outputbatch = nil
             self.setNumbers(outputprocess: nil)
         } else {
             self.index = nil

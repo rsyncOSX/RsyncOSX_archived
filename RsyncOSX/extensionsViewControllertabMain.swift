@@ -102,7 +102,7 @@ extension ViewControllertabMain: NSTableViewDelegate, Attributedestring {
             self.configurations!.setBatchYesNo(row)
         }
         self.singletask = nil
-        self.batchtaskObject = nil
+        self.batchtasks = nil
         self.setinfonextaction(info: "Estimate", color: .green)
     }
 }
@@ -111,9 +111,7 @@ extension ViewControllertabMain: NSTableViewDelegate, Attributedestring {
 extension ViewControllertabMain: Information {
     // Get information from rsync output.
     func getInformation() -> [String] {
-        if self.outputbatch != nil {
-            return self.outputbatch?.getOutput() ?? [""]
-        } else if self.outputprocess != nil {
+        if self.outputprocess != nil {
             return self.outputprocess!.trimoutput(trim: .two)!
         } else {
             return [""]
@@ -152,7 +150,6 @@ extension ViewControllertabMain: NewProfile {
     func newProfile(profile: String?) {
         self.process = nil
         self.outputprocess = nil
-        self.outputbatch = nil
         self.singletask = nil
         self.serverOff = nil
         self.setNumbers(outputprocess: nil)
@@ -308,15 +305,11 @@ extension ViewControllertabMain: UpdateProgress {
             self.process = self.singletask!.process
             self.singletask!.processTermination()
         case .batchtask:
-            weak var localprocessupdateDelegate: UpdateProgress?
-            localprocessupdateDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vcbatch) as? ViewControllerBatch
-            localprocessupdateDelegate?.processTermination()
-            self.batchObjectDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vcbatch) as? ViewControllerBatch
-            self.batchtaskObject = self.batchObjectDelegate?.getbatchtaskObject()
-            guard self.batchtaskObject != nil else { return }
-            self.outputprocess = self.batchtaskObject!.outputprocess
-            self.process = self.batchtaskObject!.process
-            self.batchtaskObject!.processTermination()
+            self.batchtasksDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vcbatch) as? ViewControllerBatch
+            self.batchtasks = self.batchtasksDelegate?.getbatchtaskObject()
+            self.outputprocess = self.batchtasks?.outputprocess
+            self.process = self.batchtasks?.process
+            self.batchtasks?.processTermination()
         case .quicktask:
             guard ViewControllerReference.shared.completeoperation != nil else { return }
             ViewControllerReference.shared.completeoperation!.finalizeScheduledJob(outputprocess: self.outputprocess)
@@ -452,8 +445,8 @@ extension ViewControllertabMain: RsyncError {
             if self.singletask != nil {
                 self.singletask!.error()
             }
-            if self.batchtaskObject != nil {
-                self.batchtaskObject!.error()
+            if self.batchtasks != nil {
+                self.batchtasks!.error()
             }
         })
     }
@@ -614,8 +607,8 @@ extension ViewControllertabMain: GetConfigurationsObject {
     // After a write, a reload is forced.
     func reloadconfigurationsobject() {
         // If batchtask keep configuration object
-        self.batchtaskObject = self.batchObjectDelegate?.getbatchtaskObject()
-        guard self.batchtaskObject == nil else {
+        self.batchtasks = self.batchtasksDelegate?.getbatchtaskObject()
+        guard self.batchtasks == nil else {
             // Batchtask, check if task is completed
             guard self.configurations!.getbatchQueue()?.batchruniscompleted() == false else {
                 self.createandreloadconfigurations()
@@ -630,7 +623,7 @@ extension ViewControllertabMain: GetConfigurationsObject {
 extension ViewControllertabMain: GetSchedulesObject {
     func reloadschedulesobject() {
         // If batchtask scedules object
-        guard self.batchtaskObject == nil else {
+        guard self.batchtasks == nil else {
             // Batchtask, check if task is completed
             guard self.configurations!.getbatchQueue()?.batchruniscompleted() == false else {
                 self.createandreloadschedules()
