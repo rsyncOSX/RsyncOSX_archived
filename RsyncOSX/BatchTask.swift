@@ -30,7 +30,7 @@ final class BatchTask: SetSchedules, SetConfigurations, Delay {
     func executeBatch() {
         self.estimatedlist = self.configurations?.estimatedlist
         if let batchobject = self.configurations!.getbatchQueue() {
-            let work = batchobject.nextBatchCopy()
+            let work = batchobject.copyofnexttaskinqueue()
             switch work.1 {
             case 1:
                 let index: Int = self.configurations!.getIndex(work.0)
@@ -69,7 +69,7 @@ final class BatchTask: SetSchedules, SetConfigurations, Delay {
             if self.outputbatch == nil {
                 self.outputbatch = OutputBatch()
             }
-            let work = batchobject.nextBatchRemove()
+            let work = batchobject.removenexttaskinqueue()
             let index = self.configurations!.getIndex(work.0)
             let config = self.configurations!.getConfigurations()[index]
             self.hiddenID = config.hiddenID
