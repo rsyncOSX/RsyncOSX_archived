@@ -308,7 +308,9 @@ extension ViewControllertabMain: UpdateProgress {
             self.process = self.singletask!.process
             self.singletask!.processTermination()
         case .batchtask:
-            // Batch run
+            weak var localprocessupdateDelegate: UpdateProgress?
+            localprocessupdateDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vcbatch) as? ViewControllerBatch
+            localprocessupdateDelegate?.processTermination()
             self.batchObjectDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vcbatch) as? ViewControllerBatch
             self.batchtaskObject = self.batchObjectDelegate?.getbatchtaskObject()
             guard self.batchtaskObject != nil else { return }

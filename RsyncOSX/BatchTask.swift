@@ -17,7 +17,7 @@ enum BatchViewProgressIndicator {
     case refresh
 }
 
-final class BatchTask: SetSchedules, SetConfigurations, Delay {
+final class BatchTask: SetSchedules, SetConfigurations {
 
     weak var closeviewerrorDelegate: CloseViewError?
     weak var processupdateDelegate: UpdateProgress?
@@ -81,9 +81,7 @@ final class BatchTask: SetSchedules, SetConfigurations, Delay {
                 result = config.localCatalog + " , " + config.offsiteServer
             }
             self.outputbatch!.addLine(str: result!)
-            self.delayWithSeconds(1) {
-                self.executeBatch()
-            }
+            self.executeBatch()
         }
     }
 
