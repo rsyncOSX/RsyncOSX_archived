@@ -8,7 +8,7 @@
 
 import Foundation
 
-final class OutputEverything: OutputBatch {
+final class OutputEverything: OutputErrors {
     override init() {
         super.init()
     }

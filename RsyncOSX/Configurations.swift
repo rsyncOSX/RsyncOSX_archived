@@ -331,6 +331,10 @@ class Configurations: ReloadTable, SetSchedules {
         return self.batchQueue?.getbatchtaskstodo()
     }
 
+    func getbatchlist() -> [NSMutableDictionary]? {
+        return self.batchQueue?.data
+    }
+
     // Add new configurations
     func addNewConfigurations(_ dict: NSMutableDictionary) {
         self.storageapi!.addandsaveNewConfigurations(dict: dict)

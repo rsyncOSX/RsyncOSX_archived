@@ -23,7 +23,6 @@ final class BatchTask: SetSchedules, SetConfigurations {
     weak var processupdateDelegate: UpdateProgress?
     var process: Process?
     var outputprocess: OutputProcess?
-    private var outputbatch: OutputBatch?
     var hiddenID: Int?
     var estimatedlist: [NSMutableDictionary]?
 
@@ -65,22 +64,15 @@ final class BatchTask: SetSchedules, SetConfigurations {
     }
 
     func processTermination() {
+        weak var localprocessupdateDelegate: UpdateProgress?
+        localprocessupdateDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vcbatch) as? ViewControllerBatch
+        localprocessupdateDelegate?.processTermination()
         if let batchobject = self.configurations!.getbatchQueue() {
-            if self.outputbatch == nil {
-                self.outputbatch = OutputBatch()
-            }
             let work = batchobject.removenexttaskinqueue()
             let index = self.configurations!.getIndex(work.0)
             let config = self.configurations!.getConfigurations()[index]
             self.hiddenID = config.hiddenID
             self.configurations!.setCurrentDateonConfiguration(index: index, outputprocess: self.outputprocess)
-            var result: String?
-            if config.offsiteServer.isEmpty {
-                result = config.localCatalog + " , " + "localhost"
-            } else {
-                result = config.localCatalog + " , " + config.offsiteServer
-            }
-            self.outputbatch!.addLine(str: result!)
             self.executeBatch()
         }
     }

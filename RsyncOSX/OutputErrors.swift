@@ -8,18 +8,26 @@
 
 import Foundation
 
-final class OutputErrors: OutputBatch {
+class OutputErrors {
 
-    override func addLine(str: String) {
+    var output: [String]?
+
+    func getOutputCount () -> Int {
+        return self.output?.count ?? 0
+    }
+
+    func getOutput () -> [String]? {
+        return self.output
+    }
+
+    func addLine(str: String) {
         let currendate = Date()
         let dateformatter = Dateandtime().setDateformat()
         let date = dateformatter.string(from: currendate)
-        if self.output == nil {
-            self.output = [String]()
-        }
         self.output!.append(date + ": " + str)
     }
-    override init() {
-        super.init()
+
+    init() {
+         self.output = [String]()
     }
 }
