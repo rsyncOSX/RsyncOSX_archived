@@ -615,7 +615,7 @@ extension ViewControllertabMain: GetConfigurationsObject {
         self.batchtaskObject = self.batchObjectDelegate?.getbatchtaskObject()
         guard self.batchtaskObject == nil else {
             // Batchtask, check if task is completed
-            guard self.configurations!.getbatchQueue()?.completedBatch() == false else {
+            guard self.configurations!.getbatchQueue()?.batchruniscompleted() == false else {
                 self.createandreloadconfigurations()
                 return
             }
@@ -630,7 +630,7 @@ extension ViewControllertabMain: GetSchedulesObject {
         // If batchtask scedules object
         guard self.batchtaskObject == nil else {
             // Batchtask, check if task is completed
-            guard self.configurations!.getbatchQueue()?.completedBatch() == false else {
+            guard self.configurations!.getbatchQueue()?.batchruniscompleted() == false else {
                 self.createandreloadschedules()
                 return
             }

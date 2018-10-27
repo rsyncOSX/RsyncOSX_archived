@@ -235,7 +235,7 @@ class Configurations: ReloadTable, SetSchedules {
     /// Function also notifies Execute view to refresh data
     /// in tableView.
     /// - parameter index: index of Configuration to update
-    func setCurrentDateonConfigurationQuickbackup (_ index: Int, outputprocess: OutputProcess?) {
+    func setCurrentDateonConfigurationQuickbackup (index: Int, outputprocess: OutputProcess?) {
         if self.configurations![index].task == ViewControllerReference.shared.snapshot {
             self.increasesnapshotnum(index: index)
         }
@@ -322,13 +322,13 @@ class Configurations: ReloadTable, SetSchedules {
     /// Function is getting the number of rows batchDataQueue
     /// - returns : the number of rows
     func batchQueuecount() -> Int {
-        return self.batchQueue?.getbatchDataQueuecount() ?? 0
+        return self.batchQueue?.getbatchtaskstodocount() ?? 0
     }
 
     /// Function is getting the updated batch data queue
     /// - returns : reference to the batch data queue
     func getupdatedbatchQueue() -> [NSMutableDictionary]? {
-        return self.batchQueue?.getupdatedBatchdata()
+        return self.batchQueue?.getbatchtaskstodo()
     }
 
     // Add new configurations

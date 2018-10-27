@@ -34,7 +34,7 @@ extension Attributedestring {
     }
 }
 
-class ViewControllerBatch: NSViewController, SetDismisser, AbortTask {
+class ViewControllerBatch: NSViewController, SetDismisser, AbortTask, SetConfigurations {
 
     var row: Int?
     var batchTask: BatchTask?
@@ -49,6 +49,7 @@ class ViewControllerBatch: NSViewController, SetDismisser, AbortTask {
     @IBOutlet weak var mainTableView: NSTableView!
     @IBOutlet weak var executeButton: NSButton!
     @IBOutlet weak var abortbutton: NSButton!
+    @IBOutlet weak var estimatingbatch: NSProgressIndicator!
 
     // Either abort or close
     @IBAction func abort(_ sender: NSButton) {
@@ -76,6 +77,7 @@ class ViewControllerBatch: NSViewController, SetDismisser, AbortTask {
         self.batchisrunning = false
         self.batchTask?.configurations?.createbatchQueue()
         self.executeButton.isEnabled = true
+        self.estimatingbatch.usesThreadedAnimation = true
     }
 
     override func viewDidAppear() {
@@ -93,6 +95,7 @@ class ViewControllerBatch: NSViewController, SetDismisser, AbortTask {
         self.remoteinfotaskDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllertabMain
         self.remoteinfotask = RemoteInfoTaskWorkQueue(inbatch: true)
         self.remoteinfotaskDelegate?.setremoteinfo(remoteinfotask: self.remoteinfotask)
+        self.initiateProgressbar()
     }
 
     override func viewDidDisappear() {
@@ -102,7 +105,7 @@ class ViewControllerBatch: NSViewController, SetDismisser, AbortTask {
 
     private func initiateProgressbar(progress: NSProgressIndicator, hiddenID: Int) {
         progress.isHidden = false
-        if let calculatedNumberOfFiles = self.batchTask?.maxcount(hiddenID: hiddenID) {
+        if let calculatedNumberOfFiles = self.batchTask?.maxcountintask(hiddenID: hiddenID) {
             progress.maxValue = Double(calculatedNumberOfFiles)
             self.max = Double(calculatedNumberOfFiles)
         }
@@ -114,6 +117,23 @@ class ViewControllerBatch: NSViewController, SetDismisser, AbortTask {
     private func updateProgressbar(progress: NSProgressIndicator) {
         let value = Double(self.batchTask?.incount() ?? 0)
         progress.doubleValue = value
+    }
+
+    private func initiateProgressbar() {
+        self.estimatingbatch.isHidden = false
+        if let calculatedNumberOfFiles = self.configurations?.batchQueuecount() {
+            self.estimatingbatch.maxValue = Double(calculatedNumberOfFiles)
+            self.max = Double(calculatedNumberOfFiles)
+        }
+        self.estimatingbatch.minValue = 0
+        self.estimatingbatch.doubleValue = 0
+        self.estimatingbatch.startAnimation(nil)
+    }
+
+    private func updateProgressbar() {
+        let max = Double(self.configurations?.batchQueuecount() ?? 0)
+        let remaining = Double(self.remoteinfotask?.inprogressCount() ?? 0)
+        self.estimatingbatch.doubleValue = max - remaining
     }
 
 }
@@ -162,6 +182,8 @@ extension ViewControllerBatch: StartStopProgressIndicator {
 
     func stop() {
         self.executeButton.isEnabled = true
+        self.estimatingbatch.stopAnimation(nil)
+        self.estimatingbatch.isHidden = true
     }
 
     func start() {
@@ -189,7 +211,7 @@ extension ViewControllerBatch: CloseViewError {
 
 extension ViewControllerBatch: UpdateProgress {
     func processTermination() {
-        //
+        self.updateProgressbar()
     }
 
     func fileHandler() {

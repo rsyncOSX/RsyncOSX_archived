@@ -30,7 +30,7 @@ final class BatchTask: SetSchedules, SetConfigurations, Delay {
     func executeBatch() {
         self.estimatedlist = self.configurations?.estimatedlist
         if let batchobject = self.configurations!.getbatchQueue() {
-            let work = batchobject.nextBatchCopy()
+            let work = batchobject.copyofnexttaskinqueue()
             switch work.1 {
             case 1:
                 let index: Int = self.configurations!.getIndex(work.0)
@@ -69,7 +69,7 @@ final class BatchTask: SetSchedules, SetConfigurations, Delay {
             if self.outputbatch == nil {
                 self.outputbatch = OutputBatch()
             }
-            let work = batchobject.nextBatchRemove()
+            let work = batchobject.removenexttaskinqueue()
             let index = self.configurations!.getIndex(work.0)
             let config = self.configurations!.getConfigurations()[index]
             self.hiddenID = config.hiddenID
@@ -91,7 +91,7 @@ final class BatchTask: SetSchedules, SetConfigurations, Delay {
         return self.outputprocess?.getOutput()?.count ?? 0
     }
 
-    func maxcount(hiddenID: Int) -> Int {
+    func maxcountintask(hiddenID: Int) -> Int {
         let max = self.configurations?.estimatedlist?.filter({$0.value( forKey: "hiddenID") as? Int == hiddenID})
         guard max!.count > 0 else { return 0}
         let maxnumber = max![0].value(forKey: "transferredNumber") as? String ?? "0"

@@ -14,28 +14,25 @@ final class BatchTaskWorkQueu {
     private var data = [NSMutableDictionary]()
     private var batchQueu = [(Int, Int)]()
     private var index = [Int]()
-    // Holding value for working on row
-    private var row: Int?
-    // Completed or not
     private var completed: Bool = false
 
-    func completedBatch() -> Bool {
+    func batchruniscompleted() -> Bool {
         return self.completed
     }
 
     // Return data
-    func getupdatedBatchdata() -> [NSMutableDictionary] {
+    func getbatchtaskstodo() -> [NSMutableDictionary] {
         return self.data
     }
 
     // Return the number of rows
-    func getbatchDataQueuecount() -> Int {
+    func getbatchtaskstodocount() -> Int {
         return self.data.count
     }
 
     // Get next batch from Queue, REMOVES the first element
     // (-1,-1) indicates end of Queue
-    func nextBatchRemove() -> (Int, Int) {
+    func removenexttaskinqueue() -> (Int, Int) {
         guard self.batchQueu.count > 0 else {
             self.completed = true
             return (-1, -1)
@@ -45,7 +42,7 @@ final class BatchTaskWorkQueu {
 
     // Get next batch from Queue, COPY ONLY the first element
     // (-1,-1) indicates end of Queue
-    func nextBatchCopy() -> (Int, Int) {
+    func copyofnexttaskinqueue() -> (Int, Int) {
         guard self.batchQueu.count > 0 else {
             self.completed = true
             return (-1, -1)
