@@ -267,12 +267,6 @@ class Configurations: ReloadTable, SetSchedules {
         _ = Logging(outputprocess: outputprocess)
     }
 
-    /// Function destroys reference to object holding data and
-    /// methods for executing batch work
-    func deleteBatchData() {
-        self.batchQueue = nil
-    }
-
     /// Function is updating Configurations in memory (by record) and
     /// then saves updated Configurations from memory to persistent store
     /// - parameter config: updated configuration

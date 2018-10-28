@@ -49,11 +49,6 @@ final class BatchTaskWorkQueu {
         return self.batchQueu[0]
     }
 
-    // Func abort Queue
-    func abortOperations() {
-        self.batchQueu.removeAll()
-    }
-
     init (configurations: Configurations?) {
         if let batchtasks = configurations?.getConfigurationsBatch() {
             for i in 0 ..< batchtasks.count {
