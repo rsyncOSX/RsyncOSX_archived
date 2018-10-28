@@ -10,13 +10,6 @@
 import Foundation
 import Cocoa
 
-enum BatchViewProgressIndicator {
-    case start
-    case stop
-    case complete
-    case refresh
-}
-
 final class BatchTask: SetSchedules, SetConfigurations {
 
     weak var closeviewerrorDelegate: CloseViewError?
@@ -41,6 +34,9 @@ final class BatchTask: SetSchedules, SetConfigurations {
                 process.executeProcess(outputprocess: self.outputprocess)
                 self.process = process.getProcess()
             case -1:
+                weak var localupdateprogressDelegate: StartStopProgressIndicator?
+                localupdateprogressDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vcbatch) as? ViewControllerBatch
+                localupdateprogressDelegate?.complete()
                 self.configurationsDelegate?.reloadconfigurationsobject()
             default :
                 break
