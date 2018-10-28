@@ -56,11 +56,8 @@ final class BatchTask: SetSchedules, SetConfigurations {
     }
 
     func error() {
-        if let batchobject = self.configurations!.getbatchQueue() {
-            batchobject.abortOperations()
-            self.closeviewerrorDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vcbatch) as? ViewControllerBatch
-            self.closeviewerrorDelegate?.closeerror()
-        }
+        self.closeviewerrorDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vcbatch) as? ViewControllerBatch
+        self.closeviewerrorDelegate?.closeerror()
     }
 
     func processTermination() {

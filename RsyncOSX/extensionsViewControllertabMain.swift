@@ -493,14 +493,6 @@ extension ViewControllertabMain: AbortOperations {
             self.process = nil
             self.index = nil
         }
-        if let batchobject = self.configurations!.getbatchQueue() {
-            // Empty queue in batchobject
-            batchobject.abortOperations()
-            // Set reference to batchdata = nil
-            self.configurations!.deleteBatchData()
-            self.process = nil
-            self.setinfonextaction(info: "Abort", color: .red)
-        }
     }
 }
 
