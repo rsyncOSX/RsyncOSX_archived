@@ -54,9 +54,7 @@ class ViewControllerBatch: NSViewController, SetDismisser, AbortTask, SetConfigu
 
     // Either abort or close
     @IBAction func abort(_ sender: NSButton) {
-        if self.batchisrunning! == true {
-            self.abort()
-        }
+        self.abort()
         self.batchTask!.closeOperation()
         self.batchTask = nil
         self.dismissview(viewcontroller: self, vcontroller: .vctabmain)
