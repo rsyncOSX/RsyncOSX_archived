@@ -193,6 +193,12 @@ extension ViewControllerBatch: StartStopProgressIndicator {
     }
 
     func complete() {
+        self.executeButton.isEnabled = false
+        self.estimatingbatchlabel.stringValue = "Batchtasks completed..."
+        self.batchisrunning = false
+        globalMainQueue.async(execute: { () -> Void in
+            self.mainTableView.reloadData()
+        })
     }
 }
 
