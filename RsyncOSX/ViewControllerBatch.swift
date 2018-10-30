@@ -211,8 +211,9 @@ extension ViewControllerBatch: GetNewBatchTask {
 
 extension ViewControllerBatch: CloseViewError {
     func closeerror() {
-        self.batchTask = nil
         self.abort()
+        self.batchTask?.closeOperation()
+        self.batchTask = nil
         self.dismissview(viewcontroller: self, vcontroller: .vctabmain)
     }
 }
