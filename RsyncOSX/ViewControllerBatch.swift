@@ -54,7 +54,7 @@ class ViewControllerBatch: NSViewController, SetDismisser, AbortTask, SetConfigu
 
     // Either abort or close
     @IBAction func abort(_ sender: NSButton) {
-        if self.batchisrunning == true {
+        if self.batchisrunning == true || self.remoteinfotask?.stackoftasktobeestimated != nil {
             self.abort()
         }
         self.batchTask!.closeOperation()
