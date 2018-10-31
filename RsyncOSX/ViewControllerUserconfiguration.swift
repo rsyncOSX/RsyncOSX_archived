@@ -18,11 +18,7 @@ protocol MenuappChanged: class {
     func menuappchanged()
 }
 
-protocol TemporaryRestorePath: class {
-    func temporaryrestorepathchanged()
-}
-
-class ViewControllerUserconfiguration: NSViewController, NewRsync, SetDismisser, Delay {
+class ViewControllerUserconfiguration: NSViewController, NewRsync, SetDismisser, Delay, NewTemporaryRestorePath {
 
     var storageapi: PersistentStorageAPI?
     var dirty: Bool = false
@@ -49,6 +45,7 @@ class ViewControllerUserconfiguration: NSViewController, NewRsync, SetDismisser,
     @IBOutlet weak var statuslighttemppath: NSImageView!
     @IBOutlet weak var statuslightpathrsyncosx: NSImageView!
     @IBOutlet weak var statuslightpathrsyncosxsched: NSImageView!
+    @IBOutlet weak var savebutton: NSButton!
 
     @IBAction func toggleversion3rsync(_ sender: NSButton) {
         if self.version3rsync.state == .on {
@@ -62,7 +59,7 @@ class ViewControllerUserconfiguration: NSViewController, NewRsync, SetDismisser,
             ViewControllerReference.shared.rsyncVer3 = false
         }
         self.newrsync()
-        self.dirty = true
+        self.setdirty()
         self.verifyrsync()
     }
 
@@ -72,7 +69,7 @@ class ViewControllerUserconfiguration: NSViewController, NewRsync, SetDismisser,
         } else {
             ViewControllerReference.shared.detailedlogging = false
         }
-        self.dirty = true
+        self.setdirty()
     }
 
     @IBAction func close(_ sender: NSButton) {
@@ -87,6 +84,7 @@ class ViewControllerUserconfiguration: NSViewController, NewRsync, SetDismisser,
             }
             self.menuappDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllertabMain
             self.menuappDelegate?.menuappchanged()
+            self.newtemporarypathrestore()
         }
         if (self.presenting as? ViewControllertabMain) != nil {
             self.dismissview(viewcontroller: self, vcontroller: .vctabmain)
@@ -108,7 +106,7 @@ class ViewControllerUserconfiguration: NSViewController, NewRsync, SetDismisser,
         }
         self.operationchangeDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabschedule) as? ViewControllertabSchedule
         self.operationchangeDelegate?.operationsmethod()
-        self.dirty = true
+        self.setdirty()
     }
 
     @IBAction func logging(_ sender: NSButton) {
@@ -122,7 +120,12 @@ class ViewControllerUserconfiguration: NSViewController, NewRsync, SetDismisser,
             ViewControllerReference.shared.fulllogging = false
             ViewControllerReference.shared.minimumlogging = false
         }
-         self.dirty = true
+         self.setdirty()
+    }
+
+    private func setdirty() {
+        self.dirty = true
+        self.savebutton.title = "Save"
     }
 
     private func setmarknumberofdayssince() {
@@ -144,7 +147,7 @@ class ViewControllerUserconfiguration: NSViewController, NewRsync, SetDismisser,
         } else {
             ViewControllerReference.shared.rsyncPath = nil
         }
-        self.dirty = true
+        self.setdirty()
     }
 
     private func setRestorePath() {
@@ -158,7 +161,7 @@ class ViewControllerUserconfiguration: NSViewController, NewRsync, SetDismisser,
         } else {
             ViewControllerReference.shared.restorePath = nil
         }
-        self.dirty = true
+        self.setdirty()
     }
 
     private func verifyrsync() {
@@ -337,7 +340,7 @@ extension ViewControllerUserconfiguration: NSTextFieldDelegate {
 
     override func controlTextDidChange(_ notification: Notification) {
         delayWithSeconds(0.5) {
-            self.dirty = true
+            self.setdirty()
             switch (notification.object as? NSTextField)! {
             case self.rsyncPath:
                 if self.rsyncPath.stringValue.isEmpty == false {

@@ -157,6 +157,8 @@ class ViewControllerCopyFiles: NSViewController, SetConfigurations, Delay, VcCop
         }
         if fileManager.fileExists(atPath: self.localCatalog.stringValue) == false {
             self.info(num: 1)
+        } else {
+            self.info(num: 0)
         }
     }
 

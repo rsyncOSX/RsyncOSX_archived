@@ -400,7 +400,7 @@ protocol RsyncChanged: class {
 }
 
 protocol NewRsync {
-    var newRsyncDelegate: RsyncChanged? {get}
+    var newRsyncDelegate: RsyncChanged? { get }
 }
 
 extension NewRsync {
@@ -410,6 +410,24 @@ extension NewRsync {
 
     func newrsync() {
         self.newRsyncDelegate?.rsyncischanged()
+    }
+}
+
+protocol TemporaryRestorePath: class {
+    func temporaryrestorepathchanged()
+}
+
+protocol NewTemporaryRestorePath {
+    var newTemporaryPathDelegate: TemporaryRestorePath? { get }
+}
+
+extension NewTemporaryRestorePath {
+    weak var newTemporaryPathDelegate: TemporaryRestorePath? {
+        return ViewControllerReference.shared.getvcref(viewcontroller: .vccopyfiles) as? ViewControllerCopyFiles
+    }
+
+    func newtemporarypathrestore() {
+        self.newTemporaryPathDelegate?.temporaryrestorepathchanged()
     }
 }
 
