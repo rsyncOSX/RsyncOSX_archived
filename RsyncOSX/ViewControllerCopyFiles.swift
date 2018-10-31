@@ -35,7 +35,7 @@ class ViewControllerCopyFiles: NSViewController, SetConfigurations, Delay, VcCop
     private func info(num: Int) {
         switch num {
         case 1:
-            self.info.stringValue = "No such local catalog..."
+            self.info.stringValue = "No such local catalog for restore or set it in user config..."
         case 2:
             self.info.stringValue = "Not a remote task, use Finder to copy files..."
         case 3:
@@ -118,11 +118,6 @@ class ViewControllerCopyFiles: NSViewController, SetConfigurations, Delay, VcCop
             return
         }
         super.viewDidAppear()
-        if let restorePath = ViewControllerReference.shared.restorePath {
-            self.localCatalog.stringValue = restorePath
-        } else {
-            self.localCatalog.stringValue = ""
-        }
         self.verifylocalCatalog()
         globalMainQueue.async(execute: { () -> Void in
             self.rsynctableView.reloadData()
