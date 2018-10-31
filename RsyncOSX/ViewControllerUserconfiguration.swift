@@ -17,6 +17,11 @@ protocol OperationChanged: class {
 protocol MenuappChanged: class {
     func menuappchanged()
 }
+
+protocol TemporaryRestorePath: class {
+    func temporaryrestorepathchanged()
+}
+
 class ViewControllerUserconfiguration: NSViewController, NewRsync, SetDismisser, Delay {
 
     var storageapi: PersistentStorageAPI?
@@ -89,6 +94,8 @@ class ViewControllerUserconfiguration: NSViewController, NewRsync, SetDismisser,
             self.dismissview(viewcontroller: self, vcontroller: .vctabmain)
         } else if (self.presenting as? ViewControllerNewConfigurations) != nil {
             self.dismissview(viewcontroller: self, vcontroller: .vctabmain)
+        } else if (self.presenting as? ViewControllerCopyFiles) != nil {
+            self.dismissview(viewcontroller: self, vcontroller: .vccopyfiles)
         }
         _ = RsyncVersionString()
     }

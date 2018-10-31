@@ -18,7 +18,7 @@ protocol GetSource: class {
     func getSource(index: Int)
 }
 
-class ViewControllerCopyFiles: NSViewController, SetConfigurations, Delay, VcCopyFiles {
+class ViewControllerCopyFiles: NSViewController, SetConfigurations, Delay, VcCopyFiles, VcSchedule {
 
     var copyFiles: CopySingleFiles?
     var rsyncindex: Int?
@@ -31,6 +31,13 @@ class ViewControllerCopyFiles: NSViewController, SetConfigurations, Delay, VcCop
     @IBOutlet weak var server: NSTextField!
     @IBOutlet weak var rcatalog: NSTextField!
     @IBOutlet weak var info: NSTextField!
+
+    // Userconfiguration button
+    @IBAction func userconfiguration(_ sender: NSButton) {
+        globalMainQueue.async(execute: { () -> Void in
+            self.presentViewControllerAsSheet(self.viewControllerUserconfiguration!)
+        })
+    }
 
     private func info(num: Int) {
         switch num {
@@ -111,13 +118,13 @@ class ViewControllerCopyFiles: NSViewController, SetConfigurations, Delay, VcCop
     }
 
     override func viewDidAppear() {
+        super.viewDidAppear()
         guard self.diddissappear == false else {
             globalMainQueue.async(execute: { () -> Void in
                 self.rsynctableView.reloadData()
             })
             return
         }
-        super.viewDidAppear()
         self.verifylocalCatalog()
         globalMainQueue.async(execute: { () -> Void in
             self.rsynctableView.reloadData()
@@ -143,6 +150,11 @@ class ViewControllerCopyFiles: NSViewController, SetConfigurations, Delay, VcCop
 
     private func verifylocalCatalog() {
         let fileManager = FileManager.default
+        if let restorePath = ViewControllerReference.shared.restorePath {
+            self.localCatalog.stringValue = restorePath
+        } else {
+            self.localCatalog.stringValue = ""
+        }
         if fileManager.fileExists(atPath: self.localCatalog.stringValue) == false {
             self.info(num: 1)
         }
@@ -306,14 +318,6 @@ extension ViewControllerCopyFiles: UpdateProgress {
     }
 }
 
-extension ViewControllerCopyFiles: GetPath {
-    func pathSet(path: String?, requester: WhichPath) {
-        if let setpath = path {
-            self.localCatalog.stringValue = setpath
-        }
-    }
-}
-
 extension ViewControllerCopyFiles: DismissViewController {
     func dismiss_view(viewcontroller: NSViewController) {
         self.dismissViewController(viewcontroller)
@@ -323,5 +327,11 @@ extension ViewControllerCopyFiles: DismissViewController {
 extension ViewControllerCopyFiles: Information {
     func getInformation() -> [String] {
         return self.copyFiles!.getOutput()
+    }
+}
+
+extension ViewControllerCopyFiles: TemporaryRestorePath {
+    func temporaryrestorepathchanged() {
+        self.verifylocalCatalog()
     }
 }
