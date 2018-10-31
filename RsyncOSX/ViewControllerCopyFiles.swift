@@ -32,11 +32,29 @@ class ViewControllerCopyFiles: NSViewController, SetConfigurations, Delay, VcCop
     @IBOutlet weak var rcatalog: NSTextField!
     @IBOutlet weak var info: NSTextField!
 
+    @IBOutlet weak var restoretableView: NSTableView!
+    @IBOutlet weak var rsynctableView: NSTableView!
+    @IBOutlet weak var commandString: NSTextField!
+    @IBOutlet weak var remoteCatalog: NSTextField!
+    @IBOutlet weak var localCatalog: NSTextField!
+    @IBOutlet weak var working: NSProgressIndicator!
+    @IBOutlet weak var workingRsync: NSProgressIndicator!
+    @IBOutlet weak var search: NSSearchField!
+    @IBOutlet weak var restorebutton: NSButton!
+
     // Userconfiguration button
     @IBAction func userconfiguration(_ sender: NSButton) {
         globalMainQueue.async(execute: { () -> Void in
             self.presentViewControllerAsSheet(self.viewControllerUserconfiguration!)
         })
+    }
+
+    // Abort button
+    @IBAction func abort(_ sender: NSButton) {
+        self.working.stopAnimation(nil)
+        guard self.copyFiles != nil else { return }
+        self.restorebutton.isEnabled = true
+        self.copyFiles!.abort()
     }
 
     private func info(num: Int) {
@@ -51,24 +69,6 @@ class ViewControllerCopyFiles: NSViewController, SetConfigurations, Delay, VcCop
             self.info.stringValue = ""
         }
     }
-
-    // Abort button
-    @IBAction func abort(_ sender: NSButton) {
-        self.working.stopAnimation(nil)
-        guard self.copyFiles != nil else { return }
-        self.restorebutton.isEnabled = true
-        self.copyFiles!.abort()
-    }
-
-    @IBOutlet weak var restoretableView: NSTableView!
-    @IBOutlet weak var rsynctableView: NSTableView!
-    @IBOutlet weak var commandString: NSTextField!
-    @IBOutlet weak var remoteCatalog: NSTextField!
-    @IBOutlet weak var localCatalog: NSTextField!
-    @IBOutlet weak var working: NSProgressIndicator!
-    @IBOutlet weak var workingRsync: NSProgressIndicator!
-    @IBOutlet weak var search: NSSearchField!
-    @IBOutlet weak var restorebutton: NSButton!
 
     // Do the work
     @IBAction func restore(_ sender: NSButton) {
@@ -248,7 +248,7 @@ extension ViewControllerCopyFiles: NSSearchFieldDelegate {
             self.estimated = false
             guard self.remoteCatalog.stringValue.count > 0 else { return }
             self.delayWithSeconds(0.25) {
-                self.commandString.stringValue = self.copyFiles!.getCommandDisplayinView(remotefile: self.remoteCatalog.stringValue, localCatalog: self.localCatalog.stringValue)
+                self.commandString.stringValue = self.copyFiles?.getCommandDisplayinView(remotefile: self.remoteCatalog.stringValue, localCatalog: self.localCatalog.stringValue) ?? ""
             }
         }
     }
