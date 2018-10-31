@@ -328,17 +328,29 @@ class ViewControllerUserconfiguration: NSViewController, NewRsync, SetDismisser,
 
 extension ViewControllerUserconfiguration: NSTextFieldDelegate {
 
-    override func controlTextDidChange(_ obj: Notification) {
-        if self.rsyncPath.stringValue.isEmpty == false {
-            self.version3rsync.state = .on
-        }
-        self.dirty = true
+    override func controlTextDidChange(_ notification: Notification) {
         delayWithSeconds(0.5) {
-            self.verifyrsync()
-            self.newrsync()
-            self.verifypathtorsyncsched()
-            self.verifypathtorsyncosx()
+            self.dirty = true
+            switch (notification.object as? NSTextField)! {
+            case self.rsyncPath:
+                if self.rsyncPath.stringValue.isEmpty == false {
+                    self.version3rsync.state = .on
+                }
+                self.verifyrsync()
+                self.newrsync()
+            case self.restorePath:
+                return
+            case self.marknumberofdayssince:
+                return
+            case self.pathRsyncOSX:
+                self.verifypathtorsyncsched()
+                self.verifypathtorsyncosx()
+            case self.pathRsyncOSXsched:
+                self.verifypathtorsyncsched()
+                self.verifypathtorsyncosx()
+            default:
+                return
+            }
         }
     }
-
 }
