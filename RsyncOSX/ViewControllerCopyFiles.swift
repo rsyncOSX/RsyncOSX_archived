@@ -18,7 +18,7 @@ protocol GetSource: class {
     func getSource(index: Int)
 }
 
-class ViewControllerCopyFiles: NSViewController, SetConfigurations, Delay, VcCopyFiles {
+class ViewControllerCopyFiles: NSViewController, SetConfigurations, Delay, VcCopyFiles, VcSchedule {
 
     var copyFiles: CopySingleFiles?
     var rsyncindex: Int?
@@ -32,17 +32,21 @@ class ViewControllerCopyFiles: NSViewController, SetConfigurations, Delay, VcCop
     @IBOutlet weak var rcatalog: NSTextField!
     @IBOutlet weak var info: NSTextField!
 
-    private func info(num: Int) {
-        switch num {
-        case 1:
-            self.info.stringValue = "No such local catalog..."
-        case 2:
-            self.info.stringValue = "Not a remote task, use Finder to copy files..."
-        case 3:
-            self.info.stringValue = "Local or remote catalog cannot be empty..."
-        default:
-            self.info.stringValue = ""
-        }
+    @IBOutlet weak var restoretableView: NSTableView!
+    @IBOutlet weak var rsynctableView: NSTableView!
+    @IBOutlet weak var commandString: NSTextField!
+    @IBOutlet weak var remoteCatalog: NSTextField!
+    @IBOutlet weak var localCatalog: NSTextField!
+    @IBOutlet weak var working: NSProgressIndicator!
+    @IBOutlet weak var workingRsync: NSProgressIndicator!
+    @IBOutlet weak var search: NSSearchField!
+    @IBOutlet weak var restorebutton: NSButton!
+
+    // Userconfiguration button
+    @IBAction func userconfiguration(_ sender: NSButton) {
+        globalMainQueue.async(execute: { () -> Void in
+            self.presentViewControllerAsSheet(self.viewControllerUserconfiguration!)
+        })
     }
 
     // Abort button
@@ -53,15 +57,18 @@ class ViewControllerCopyFiles: NSViewController, SetConfigurations, Delay, VcCop
         self.copyFiles!.abort()
     }
 
-    @IBOutlet weak var restoretableView: NSTableView!
-    @IBOutlet weak var rsynctableView: NSTableView!
-    @IBOutlet weak var commandString: NSTextField!
-    @IBOutlet weak var remoteCatalog: NSTextField!
-    @IBOutlet weak var localCatalog: NSTextField!
-    @IBOutlet weak var working: NSProgressIndicator!
-    @IBOutlet weak var workingRsync: NSProgressIndicator!
-    @IBOutlet weak var search: NSSearchField!
-    @IBOutlet weak var restorebutton: NSButton!
+    private func info(num: Int) {
+        switch num {
+        case 1:
+            self.info.stringValue = "No such local catalog for restore or set it in user config..."
+        case 2:
+            self.info.stringValue = "Not a remote task, use Finder to copy files..."
+        case 3:
+            self.info.stringValue = "Local or remote catalog cannot be empty..."
+        default:
+            self.info.stringValue = ""
+        }
+    }
 
     // Do the work
     @IBAction func restore(_ sender: NSButton) {
@@ -111,17 +118,12 @@ class ViewControllerCopyFiles: NSViewController, SetConfigurations, Delay, VcCop
     }
 
     override func viewDidAppear() {
+        super.viewDidAppear()
         guard self.diddissappear == false else {
             globalMainQueue.async(execute: { () -> Void in
                 self.rsynctableView.reloadData()
             })
             return
-        }
-        super.viewDidAppear()
-        if let restorePath = ViewControllerReference.shared.restorePath {
-            self.localCatalog.stringValue = restorePath
-        } else {
-            self.localCatalog.stringValue = ""
         }
         self.verifylocalCatalog()
         globalMainQueue.async(execute: { () -> Void in
@@ -148,8 +150,15 @@ class ViewControllerCopyFiles: NSViewController, SetConfigurations, Delay, VcCop
 
     private func verifylocalCatalog() {
         let fileManager = FileManager.default
+        if let restorePath = ViewControllerReference.shared.restorePath {
+            self.localCatalog.stringValue = restorePath
+        } else {
+            self.localCatalog.stringValue = ""
+        }
         if fileManager.fileExists(atPath: self.localCatalog.stringValue) == false {
             self.info(num: 1)
+        } else {
+            self.info(num: 0)
         }
     }
 
@@ -233,12 +242,13 @@ extension ViewControllerCopyFiles: NSSearchFieldDelegate {
             }
             self.verifylocalCatalog()
         } else {
+            self.verifylocalCatalog()
             self.restorebutton.title = "Estimate"
             self.restorebutton.isEnabled = true
             self.estimated = false
             guard self.remoteCatalog.stringValue.count > 0 else { return }
             self.delayWithSeconds(0.25) {
-                self.commandString.stringValue = self.copyFiles!.getCommandDisplayinView(remotefile: self.remoteCatalog.stringValue, localCatalog: self.localCatalog.stringValue)
+                self.commandString.stringValue = self.copyFiles?.getCommandDisplayinView(remotefile: self.remoteCatalog.stringValue, localCatalog: self.localCatalog.stringValue) ?? ""
             }
         }
     }
@@ -311,14 +321,6 @@ extension ViewControllerCopyFiles: UpdateProgress {
     }
 }
 
-extension ViewControllerCopyFiles: GetPath {
-    func pathSet(path: String?, requester: WhichPath) {
-        if let setpath = path {
-            self.localCatalog.stringValue = setpath
-        }
-    }
-}
-
 extension ViewControllerCopyFiles: DismissViewController {
     func dismiss_view(viewcontroller: NSViewController) {
         self.dismissViewController(viewcontroller)
@@ -328,5 +330,11 @@ extension ViewControllerCopyFiles: DismissViewController {
 extension ViewControllerCopyFiles: Information {
     func getInformation() -> [String] {
         return self.copyFiles!.getOutput()
+    }
+}
+
+extension ViewControllerCopyFiles: TemporaryRestorePath {
+    func temporaryrestorepathchanged() {
+        self.verifylocalCatalog()
     }
 }
