@@ -2047,11 +2047,11 @@
                     <connections>
                         <outlet property="commandString" destination="XwF-K5-R4q" id="wSn-jP-VtU"/>
                         <outlet property="info" destination="gTy-bz-0lk" id="pcJ-f5-nib"/>
-                        <outlet property="localCatalog" destination="L6A-JJ-Mvd" id="Nkp-wQ-iEO"/>
                         <outlet property="numberofrows" destination="tv7-CS-oe6" id="k9b-R6-3QJ"/>
                         <outlet property="rcatalog" destination="zPh-wH-B2h" id="Bhx-Mo-gre"/>
                         <outlet property="remoteCatalog" destination="1ES-5z-SmE" id="WZe-oK-FUr"/>
                         <outlet property="restorebutton" destination="HvM-lg-JjX" id="RIx-1n-Z4j"/>
+                        <outlet property="restorecatalog" destination="L6A-JJ-Mvd" id="Nkp-wQ-iEO"/>
                         <outlet property="restoretableView" destination="FOY-xS-bUA" id="Iy8-O7-aFx"/>
                         <outlet property="rsynctableView" destination="G94-d4-ATU" id="Lyz-an-dqk"/>
                         <outlet property="search" destination="D7K-Le-RDk" id="jB3-Yw-FoO"/>
