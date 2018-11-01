@@ -272,6 +272,7 @@ extension ViewControllerVerify: UpdateProgress {
         } else {
             self.working.stopAnimation(nil)
             self.gotit.stringValue = "Completed ..."
+            self.gotit.textColor = .green
             self.changedbutton.isEnabled = true
             self.verifybutton.isEnabled = true
         }
