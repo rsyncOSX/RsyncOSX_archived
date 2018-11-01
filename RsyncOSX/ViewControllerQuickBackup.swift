@@ -152,7 +152,7 @@ extension ViewControllerQuickBackup: UpdateProgress {
         self.quickbackup?.processTermination()
         guard self.quickbackup?.stackoftasktobeexecuted != nil else {
             self.completed.isHidden = false
-            self.completed.isHidden = false
+            self.completed.textColor = .green
             self.working.stopAnimation(nil)
             return
         }
