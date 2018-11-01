@@ -228,6 +228,7 @@ extension ViewControllerRemoteInfo: UpdateProgress {
             self.progress.stopAnimation(nil)
             self.progress.isHidden = true
             self.count.stringValue = "Completed"
+            self.count.textColor = .green
             self.remoteinfotask?.selectalltaskswithfilestobackup(deselect: self.selected)
             self.selected = true
             self.selectalltaskswithfilestobackupbutton.isEnabled = true
