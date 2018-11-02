@@ -52,6 +52,7 @@ class ViewControllerVerify: NSViewController, SetConfigurations, GetIndex {
         self.rsynccommanddisplay.stringValue = Verifyrsyncpath().displayrsynccommand(index: self.index!, display: .verify)
         self.verifyradiobutton.state = .on
         self.changedradiobutton.state = .off
+         self.gotit.textColor = .white
         self.gotit.stringValue = "Verifying, please wait..."
         self.enabledisablebuttons(enable: false)
         self.working.startAnimation(nil)
@@ -68,6 +69,7 @@ class ViewControllerVerify: NSViewController, SetConfigurations, GetIndex {
         self.rsynccommanddisplay.stringValue = Verifyrsyncpath().displayrsynccommand(index: self.index!, display: .restore)
         self.changedradiobutton.state = .on
         self.verifyradiobutton.state = .off
+        self.gotit.textColor = .white
         self.gotit.stringValue = "Computing changed, please wait..."
         self.enabledisablebuttons(enable: false)
         self.working.startAnimation(nil)
