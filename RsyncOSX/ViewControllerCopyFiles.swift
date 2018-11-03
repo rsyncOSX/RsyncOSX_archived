@@ -242,12 +242,12 @@ extension ViewControllerCopyFiles: NSSearchFieldDelegate {
             }
             self.verifylocalCatalog()
         } else {
-            self.verifylocalCatalog()
-            self.restorebutton.title = "Estimate"
-            self.restorebutton.isEnabled = true
-            self.estimated = false
-            guard self.remoteCatalog.stringValue.count > 0 else { return }
             self.delayWithSeconds(0.25) {
+                self.verifylocalCatalog()
+                self.restorebutton.title = "Estimate"
+                self.restorebutton.isEnabled = true
+                self.estimated = false
+                guard self.remoteCatalog.stringValue.count > 0 else { return }
                 self.commandString.stringValue = self.copyFiles?.getCommandDisplayinView(remotefile: self.remoteCatalog.stringValue, localCatalog: self.restorecatalog.stringValue) ?? ""
             }
         }
