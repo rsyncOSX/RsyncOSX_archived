@@ -6,10 +6,26 @@ This repository is the source code for the macOS app RsyncOSX. RsyncOSX is compi
 
 A short [intro to RsyncOSX](https://rsyncosx.github.io/Intro) and full [documentation of RsyncOSX](https://rsyncosx.github.io/AboutRsyncOSX).
 
+About **signing** and **notarizing** of `RsyncOSX.app` see below.
+
 The main view of RsyncOSX.
 ![](images/main1.png)
 Automatic synchronizing in action.
 ![](images/main2.png)
+
+### Signing and notarizing
+
+The app is signed with my Apple ID developer certificate and [notarized](https://support.apple.com/en-us/HT202491) by Apple. If you have Xcode developer tools installed executing the following command will verify the the rcloneosx.app.
+```
+xcrun stapler validate no.blogspot.RsyncOSX RsyncOSX.app
+Processing: /Volumes/Home/thomas/GitHub/RsyncOSX/Build/Products/Release/RsyncOSX.app
+The validate action worked!
+```
+This is the message when opening a downloaded version (from version > 5.5.6).
+
+![](images/verify.png)
+
+The message is in Norwegian: "Apple har sjekket programmet uten å finne ondsinnet programvare."  The english version of it is: "Apple checked it for malicious software and none was detected."
 
 ### About bugs?
 
