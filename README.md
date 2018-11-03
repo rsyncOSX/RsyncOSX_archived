@@ -15,13 +15,13 @@ Automatic synchronizing in action.
 
 ### Signing and notarizing
 
-The app is signed with my Apple ID developer certificate and [notarized](https://support.apple.com/en-us/HT202491) by Apple. If you have Xcode developer tools installed executing the following command will verify the the rcloneosx.app.
+The app is signed with my Apple ID developer certificate and [notarized](https://support.apple.com/en-us/HT202491) by Apple. If you have Xcode developer tools installed executing the following command will verify the the RsyncOSX.app.
 ```
 xcrun stapler validate no.blogspot.RsyncOSX RsyncOSX.app
 Processing: /Volumes/Home/thomas/GitHub/RsyncOSX/Build/Products/Release/RsyncOSX.app
 The validate action worked!
 ```
-This is the message when opening a downloaded version (from version > 5.5.6).
+This is the message when opening a downloaded version (from version > 5.5.5).
 
 ![](images/verify.png)
 
