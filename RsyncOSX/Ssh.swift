@@ -44,9 +44,7 @@ class Ssh: Files {
 
     // Create local rsa keys
     func createLocalKeysRsa() {
-        guard self.rsaPubKeyExist == false else {
-            return
-        }
+        guard self.rsaPubKeyExist == false else { return }
         self.scpArguments = nil
         self.scpArguments = ScpArgumentsSsh(hiddenID: nil)
         self.arguments = scpArguments!.getArguments(operation: .createKey, key: "rsa", path: self.rootpath)
@@ -56,9 +54,7 @@ class Ssh: Files {
 
     // Create local dsa keys
     func createLocalKeysDsa() {
-        guard self.dsaPubKeyExist == false else {
-            return
-        }
+        guard self.dsaPubKeyExist == false else { return }
         self.scpArguments = nil
         self.scpArguments = ScpArgumentsSsh(hiddenID: nil)
         self.arguments = scpArguments!.getArguments(operation: .createKey, key: "dsa", path: self.rootpath)
@@ -74,12 +70,8 @@ class Ssh: Files {
 
     // Check if rsa and/or dsa is existing in local .ssh catalog
     func isLocalPublicKeysPresent (key: String) -> Bool {
-        guard self.keyFileStrings != nil else {
-            return false
-        }
-        guard self.keyFileStrings!.filter({$0.contains(key)}).count > 0 else {
-            return false
-        }
+        guard self.keyFileStrings != nil else { return false }
+        guard self.keyFileStrings!.filter({$0.contains(key)}).count > 0 else { return false }
         switch key {
         case rsaPubKey:
             self.rsaURLpath = URL(string: self.keyFileStrings!.filter({$0.contains(self.sshCatalog + key)})[0])
@@ -99,14 +91,10 @@ class Ssh: Files {
         self.scpArguments = ScpArgumentsSsh(hiddenID: hiddenID)
         switch key {
         case "rsa":
-            guard self.rsaStringPath != nil else {
-                return
-            }
+            guard self.rsaStringPath != nil else { return }
             self.arguments = scpArguments!.getArguments(operation: .scpKey, key: key, path: self.rsaStringPath!)
         case "dsa":
-            guard self.dsaStringPath != nil else {
-                return
-            }
+            guard self.dsaStringPath != nil else { return }
             self.arguments = scpArguments!.getArguments(operation: .scpKey, key: key, path: self.dsaStringPath!)
         default:
             break
@@ -121,14 +109,10 @@ class Ssh: Files {
         self.scpArguments = ScpArgumentsSsh(hiddenID: hiddenID)
         switch key {
         case "rsa":
-            guard self.rsaStringPath != nil else {
-                return
-            }
+            guard self.rsaStringPath != nil else { return }
             self.arguments = scpArguments!.getArguments(operation: .checkKey, key: key, path: nil)
         case "dsa":
-            guard self.dsaStringPath != nil else {
-                return
-            }
+            guard self.dsaStringPath != nil else { return }
             self.arguments = scpArguments!.getArguments(operation: .checkKey, key: key, path: nil)
         default:
             break

@@ -108,15 +108,15 @@ class Files: Reportfileerror {
             var isDir: ObjCBool = false
             if fileManager.fileExists(atPath: filePath, isDirectory: &isDir) {
                 guard isDir.boolValue else { return nil }
-            } else { return nil }
-            if let fileURLs = self.getfileURLs(path: filePath) {
-                array = [URL]()
-                for i in 0 ..< fileURLs.count where fileURLs[i].isFileURL {
-                    array!.append(fileURLs[i])
+                } else { return nil }
+                if let fileURLs = self.getfileURLs(path: filePath) {
+                    array = [URL]()
+                    for i in 0 ..< fileURLs.count where fileURLs[i].isFileURL {
+                        array!.append(fileURLs[i])
+                    }
+                    return array
                 }
-                return array
             }
-        }
         return nil
     }
 
@@ -128,15 +128,15 @@ class Files: Reportfileerror {
             var isDir: ObjCBool = false
             if fileManager.fileExists(atPath: filePath, isDirectory: &isDir) {
                 guard isDir.boolValue else { return nil }
-            } else { return nil }
-            if let fileURLs = self.getfileURLs(path: filePath) {
-                array = [String]()
-                for i in 0 ..< fileURLs.count where fileURLs[i].isFileURL {
-                    array!.append(fileURLs[i].path)
+                } else { return nil }
+                if let fileURLs = self.getfileURLs(path: filePath) {
+                    array = [String]()
+                    for i in 0 ..< fileURLs.count where fileURLs[i].isFileURL {
+                        array!.append(fileURLs[i].path)
+                    }
+                    return array
                 }
-                return array
             }
-        }
         return nil
     }
 
