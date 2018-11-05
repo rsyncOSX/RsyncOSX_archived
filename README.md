@@ -15,7 +15,7 @@ Automatic synchronizing in action.
 
 ### Signing and notarizing
 
-The app is signed with my Apple ID developer certificate and [notarized](https://support.apple.com/en-us/HT202491) by Apple. If you have Xcode developer tools installed executing the following command will verify the the RsyncOSX.app.
+The app is signed with my Apple ID developer certificate and [notarized](https://support.apple.com/en-us/HT202491) by Apple. If you have Xcode developer tools installed executing the following command will verify the RsyncOSX.app.
 ```
 xcrun stapler validate no.blogspot.RsyncOSX RsyncOSX.app
 Processing: /Volumes/Home/thomas/GitHub/RsyncOSX/Build/Products/Release/RsyncOSX.app
@@ -25,7 +25,8 @@ This is the message when opening a downloaded version (from version > 5.5.5).
 
 ![](images/verify.png)
 
-The message is in Norwegian: "Apple har sjekket programmet uten å finne ondsinnet programvare."  The english version of it is: "Apple checked it for malicious software and none was detected."
+The message is in Norwegian: "Apple har sjekket programmet uten å finne ondsinnet programvare.".
+The english version of it is: "Apple checked it for malicious software and none was detected.".
 
 ### About bugs?
 
