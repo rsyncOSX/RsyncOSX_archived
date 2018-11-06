@@ -26,6 +26,7 @@ class ViewControllerEdit: NSViewController, SetConfigurations, SetDismisser, Get
     @IBAction func enabledisableresetsnapshotnum(_ sender: NSButton) {
         let config: Configuration = self.configurations!.getConfigurations()[self.index!]
         guard config.task == "snapshot" else { return }
+        Alerts.showInfo("Dont change the snapshot num if you don´t know what you are doing...")
         if self.snapshotnum.isEnabled {
             self.snapshotnum.isEnabled = false
         } else {
