@@ -9,7 +9,7 @@
 import Foundation
 import Cocoa
 
-class ViewControllerEdit: NSViewController, SetConfigurations, SetDismisser, GetIndex {
+class ViewControllerEdit: NSViewController, SetConfigurations, SetDismisser, GetIndex, Delay {
 
     @IBOutlet weak var localCatalog: NSTextField!
     @IBOutlet weak var offsiteCatalog: NSTextField!
@@ -18,10 +18,21 @@ class ViewControllerEdit: NSViewController, SetConfigurations, SetDismisser, Get
     @IBOutlet weak var backupID: NSTextField!
     @IBOutlet weak var sshport: NSTextField!
     @IBOutlet weak var rsyncdaemon: NSButton!
+    @IBOutlet weak var snapshotnum: NSTextField!
 
     var index: Int?
     var singleFile: Bool = false
 
+    @IBAction func enabledisableresetsnapshotnum(_ sender: NSButton) {
+        let config: Configuration = self.configurations!.getConfigurations()[self.index!]
+        guard config.task == "snapshot" else { return }
+        Alerts.showInfo("Dont change the snapshot num if you don´t know what you are doing...")
+        if self.snapshotnum.isEnabled {
+            self.snapshotnum.isEnabled = false
+        } else {
+            self.snapshotnum.isEnabled = true
+        }
+    }
     // Close and dismiss view
     @IBAction func close(_ sender: NSButton) {
         self.dismissview(viewcontroller: self, vcontroller: .vctabmain)
@@ -50,8 +61,16 @@ class ViewControllerEdit: NSViewController, SetConfigurations, SetDismisser, Get
             config[self.index!].sshport = nil
         }
         config[self.index!].rsyncdaemon = self.rsyncdaemon.state.rawValue
+        if self.snapshotnum.stringValue.count > 0 {
+            config[self.index!].snapshotnum = Int(self.snapshotnum.stringValue)
+        }
         self.configurations!.updateConfigurations(config[self.index!], index: self.index!)
         self.dismissview(viewcontroller: self, vcontroller: .vctabmain)
+    }
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        self.snapshotnum.delegate = self
     }
 
     override func viewDidAppear() {
@@ -80,6 +99,26 @@ class ViewControllerEdit: NSViewController, SetConfigurations, SetDismisser, Get
         }
         if let rsyncdaemon = config.rsyncdaemon {
             self.rsyncdaemon.state = NSControl.StateValue(rawValue: rsyncdaemon)
+        }
+        if let snapshotnum = config.snapshotnum {
+            self.snapshotnum.stringValue = String(snapshotnum)
+        }
+    }
+}
+
+extension ViewControllerEdit: NSTextFieldDelegate {
+    override func controlTextDidChange(_ notification: Notification) {
+        delayWithSeconds(0.5) {
+            if let num = Int(self.snapshotnum.stringValue) {
+                let config: Configuration = self.configurations!.getConfigurations()[self.index!]
+                guard num < config.snapshotnum ?? 0 && num > -1 else {
+                    self.snapshotnum.stringValue = String(config.snapshotnum ?? 0)
+                    return
+                }
+            } else {
+                let config: Configuration = self.configurations!.getConfigurations()[self.index!]
+                self.snapshotnum.stringValue = String(config.snapshotnum ?? 0)
+            }
         }
     }
 }
