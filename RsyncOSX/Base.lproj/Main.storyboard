@@ -3851,7 +3851,7 @@ DQ
                                 </textFieldCell>
                             </textField>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="8HX-b2-hEj">
-                                <rect key="frame" x="18" y="62" width="118" height="17"/>
+                                <rect key="frame" x="18" y="63" width="118" height="17"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="ssh port:" id="BEH-BV-PWu">
                                     <font key="font" metaFont="system"/>
@@ -3874,13 +3874,13 @@ DQ
                             <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="W6v-BM-Stl">
                                 <rect key="frame" x="305" y="61" width="22" height="18"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <buttonCell key="cell" type="check" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="phv-xE-Eqk">
+                                <buttonCell key="cell" type="check" bezelStyle="regularSquare" imagePosition="left" inset="2" id="phv-xE-Eqk">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
                             </button>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="GtD-JH-E2k">
-                                <rect key="frame" x="207" y="62" width="94" height="17"/>
+                                <rect key="frame" x="212" y="62" width="94" height="17"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="rsync daemon:" id="2KI-Je-KtE">
                                     <font key="font" metaFont="system"/>
@@ -3901,7 +3901,7 @@ DQ
                                 </connections>
                             </textField>
                             <textField verticalHuggingPriority="750" fixedFrame="YES" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="xH3-OQ-4hl">
-                                <rect key="frame" x="136" y="59" width="61" height="22"/>
+                                <rect key="frame" x="136" y="60" width="61" height="22"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" alignment="right" bezelStyle="round" id="XSp-ff-ejI">
                                     <font key="font" metaFont="system"/>
@@ -3946,6 +3946,35 @@ DQ
                                     <action selector="close" target="CrF-Wa-Hfa" id="v5b-Fh-38R"/>
                                 </connections>
                             </button>
+                            <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Zar-jw-2b8">
+                                <rect key="frame" x="136" y="38" width="61" height="22"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" enabled="NO" sendsActionOnEndEditing="YES" borderStyle="bezel" alignment="right" drawsBackground="YES" id="OcR-Cz-Tso">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Wfc-NO-FK4">
+                                <rect key="frame" x="42" y="42" width="94" height="17"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <textFieldCell key="cell" lineBreakMode="clipping" title="snapshot num:" id="Tp7-5c-5Ii">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ytp-5e-0gT">
+                                <rect key="frame" x="206" y="40" width="116" height="18"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <buttonCell key="cell" type="check" title="reset snapnum:" bezelStyle="regularSquare" imagePosition="right" alignment="right" inset="2" id="Iii-2E-YHF">
+                                    <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="enabledisableresetsnapshotnum:" target="CrF-Wa-Hfa" id="RjW-Jl-cdx"/>
+                                </connections>
+                            </button>
                         </subviews>
                     </view>
                     <connections>
@@ -3955,6 +3984,7 @@ DQ
                         <outlet property="offsiteServer" destination="K4B-RP-RbM" id="tM6-4p-VHp"/>
                         <outlet property="offsiteUsername" destination="jVM-RL-IuU" id="wl3-4L-PcG"/>
                         <outlet property="rsyncdaemon" destination="W6v-BM-Stl" id="iNH-hV-8Qi"/>
+                        <outlet property="snapshotnum" destination="Zar-jw-2b8" id="rOK-LB-K08"/>
                         <outlet property="sshport" destination="xH3-OQ-4hl" id="kiy-q4-Yxt"/>
                     </connections>
                 </viewController>
