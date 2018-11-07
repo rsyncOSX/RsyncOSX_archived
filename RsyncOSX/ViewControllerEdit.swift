@@ -111,13 +111,13 @@ extension ViewControllerEdit: NSTextFieldDelegate {
         delayWithSeconds(0.5) {
             if let num = Int(self.snapshotnum.stringValue) {
                 let config: Configuration = self.configurations!.getConfigurations()[self.index!]
-                guard num < config.snapshotnum ?? 0 && num > -1 else {
-                    self.snapshotnum.stringValue = String(config.snapshotnum ?? 0)
+                guard num < config.snapshotnum ?? 0 && num > 0 else {
+                    self.snapshotnum.stringValue = String(config.snapshotnum ?? 1)
                     return
                 }
             } else {
                 let config: Configuration = self.configurations!.getConfigurations()[self.index!]
-                self.snapshotnum.stringValue = String(config.snapshotnum ?? 0)
+                self.snapshotnum.stringValue = String(config.snapshotnum ?? 1)
             }
         }
     }
