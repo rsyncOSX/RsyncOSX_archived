@@ -32,8 +32,7 @@ class ViewControllerSsh: NSViewController, SetConfigurations {
     @IBOutlet weak var sshCreateRemoteCatalog: NSTextField!
     @IBOutlet weak var remoteserverbutton: NSButton!
     @IBOutlet weak var terminalappbutton: NSButton!
-    
-    // Source for CopyFiles and Ssh
+
     // self.presentViewControllerAsSheet(self.ViewControllerAbout)
     lazy var viewControllerSource: NSViewController = {
         return (self.storyboard!.instantiateController(withIdentifier: NSStoryboard.SceneIdentifier(rawValue: "CopyFilesID"))
@@ -52,8 +51,6 @@ class ViewControllerSsh: NSViewController, SetConfigurations {
     }
 
     @IBAction func createPublicPrivateKeyPair(_ sender: NSButton) {
-        self.sshcmd = nil
-        self.outputprocess = nil
         self.outputprocess = OutputProcess()
         self.sshcmd = Ssh(outputprocess: self.outputprocess)
         guard self.sshcmd != nil else { return }
