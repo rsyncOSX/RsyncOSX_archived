@@ -142,13 +142,12 @@ class ViewControllerSsh: NSViewController, SetConfigurations {
         self.sshCreateRemoteCatalog.stringValue = ""
     }
 
-    @IBAction func commencescehck(_ sender: NSButton) {
+    @IBAction func commencecheck(_ sender: NSButton) {
         self.checkPrivatePublicKey()
     }
 
     private func checkPrivatePublicKey() {
-        self.outputprocess = OutputProcess()
-        self.sshcmd = Ssh(outputprocess: self.outputprocess)
+        self.sshcmd = Ssh(outputprocess: nil)
         self.sshcmd!.checkForLocalPubKeys()
         if self.sshcmd!.rsaPubKeyExist {
             self.rsaCheck.state = .on
@@ -164,9 +163,6 @@ class ViewControllerSsh: NSViewController, SetConfigurations {
             self.dsaCheck.state = .off
             self.createKeys.isEnabled = true
         }
-        globalMainQueue.async(execute: { () -> Void in
-            self.detailsTable.reloadData()
-        })
     }
 }
 
