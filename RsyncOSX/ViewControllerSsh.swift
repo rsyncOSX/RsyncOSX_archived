@@ -30,8 +30,9 @@ class ViewControllerSsh: NSViewController, SetConfigurations {
     @IBOutlet weak var scpRsaCopyPasteCommand: NSTextField!
     @IBOutlet weak var scpDsaCopyPasteCommand: NSTextField!
     @IBOutlet weak var sshCreateRemoteCatalog: NSTextField!
+    @IBOutlet weak var remoteserverbutton: NSButton!
+    @IBOutlet weak var terminalappbutton: NSButton!
 
-    // Source for CopyFiles and Ssh
     // self.presentViewControllerAsSheet(self.ViewControllerAbout)
     lazy var viewControllerSource: NSViewController = {
         return (self.storyboard!.instantiateController(withIdentifier: NSStoryboard.SceneIdentifier(rawValue: "CopyFilesID"))
@@ -50,8 +51,6 @@ class ViewControllerSsh: NSViewController, SetConfigurations {
     }
 
     @IBAction func createPublicPrivateKeyPair(_ sender: NSButton) {
-        self.sshcmd = nil
-        self.outputprocess = nil
         self.outputprocess = OutputProcess()
         self.sshcmd = Ssh(outputprocess: self.outputprocess)
         guard self.sshcmd != nil else { return }
@@ -108,8 +107,6 @@ class ViewControllerSsh: NSViewController, SetConfigurations {
     }
 
     @IBAction func checkDsaPubKey(_ sender: NSButton) {
-        self.sshcmd = nil
-        self.outputprocess = nil
         self.outputprocess = OutputProcess()
         self.sshcmd = Ssh(outputprocess: self.outputprocess)
         guard self.execute else { return }
@@ -132,7 +129,7 @@ class ViewControllerSsh: NSViewController, SetConfigurations {
         super.viewDidAppear()
         self.checkDsaPubKeyButton.isEnabled = false
         self.checkRsaPubKeyButton.isEnabled = false
-        self.checkPrivatePublicKey()
+        self.createKeys.isEnabled = false
     }
 
     override func viewDidDisappear() {
@@ -142,8 +139,11 @@ class ViewControllerSsh: NSViewController, SetConfigurations {
         self.sshCreateRemoteCatalog.stringValue = ""
     }
 
+    @IBAction func commencecheck(_ sender: NSButton) {
+        self.checkPrivatePublicKey()
+    }
+
     private func checkPrivatePublicKey() {
-        self.sshcmd = nil
         self.sshcmd = Ssh(outputprocess: nil)
         self.sshcmd!.checkForLocalPubKeys()
         if self.sshcmd!.rsaPubKeyExist {
