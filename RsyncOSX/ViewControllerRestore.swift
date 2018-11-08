@@ -48,9 +48,11 @@ class ViewControllerRestore: NSViewController, SetConfigurations, SetDismisser, 
 
     @IBAction func dotmprestore(_ sender: NSButton) {
         guard self.tmprestore.stringValue.isEmpty == false else { return }
+        self.restorebutton.isEnabled = false
         if let index = self.index(viewcontroller: .vctabmain) {
             self.selecttmptorestore.isEnabled = false
             self.estimation = true
+            self.gotit.textColor = .white
             self.gotit.stringValue = "Getting info, please wait..."
             self.working.startAnimation(nil)
             self.outputprocess = OutputProcess()
@@ -148,6 +150,7 @@ class ViewControllerRestore: NSViewController, SetConfigurations, SetDismisser, 
             self.deletefiles.stringValue = infotask.deletefiles!
             self.working.stopAnimation(nil)
             self.restorebutton.isEnabled = true
+            self.gotit.textColor = .green
             self.gotit.stringValue = "Got it..."
         })
     }
@@ -177,6 +180,7 @@ extension ViewControllerRestore: UpdateProgress {
             guard ViewControllerReference.shared.restorePath != nil else { return }
             self.selecttmptorestore.isEnabled = true
         } else {
+            self.gotit.textColor = .green
             self.gotit.stringValue = "Restore is completed..."
             self.restoreprogress.isHidden = true
             self.restoreprogress.isHidden = false
