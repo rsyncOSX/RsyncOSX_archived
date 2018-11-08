@@ -16,7 +16,6 @@ class ViewControllerSsh: NSViewController, SetConfigurations {
     var hiddenID: Int?
     var data: [String]?
     var outputprocess: OutputProcess?
-    // Execute or not
     var execute: Bool = false
 
     @IBOutlet weak var dsaCheck: NSButton!
@@ -39,9 +38,14 @@ class ViewControllerSsh: NSViewController, SetConfigurations {
             as? NSViewController)!
     }()
 
-    // Open the Terminal.app for pasting commands
     @IBAction func terminalApp(_ sender: NSButton) {
-        guard self.sshcmd != nil else { return }
+        guard self.sshcmd != nil else {
+            self.data = ["Press the \"Check\" button before this action..."]
+            globalMainQueue.async(execute: { () -> Void in
+                self.detailsTable.reloadData()
+            })
+            return
+        }
         self.sshcmd!.openTerminal()
     }
 
@@ -63,6 +67,13 @@ class ViewControllerSsh: NSViewController, SetConfigurations {
     }
 
     @IBAction func source(_ sender: NSButton) {
+        guard self.sshcmd != nil else {
+            self.data = ["Press the \"Check\" button before this action..."]
+            globalMainQueue.async(execute: { () -> Void in
+                self.detailsTable.reloadData()
+            })
+            return
+        }
         self.presentViewControllerAsSheet(self.viewControllerSource)
     }
 
@@ -94,14 +105,11 @@ class ViewControllerSsh: NSViewController, SetConfigurations {
     }
 
     @IBAction func checkRsaPubKey(_ sender: NSButton) {
-        self.sshcmd = nil
-        self.outputprocess = nil
         self.outputprocess = OutputProcess()
         self.sshcmd = Ssh(outputprocess: self.outputprocess)
         guard self.execute else { return }
         guard self.hiddenID != nil else { return }
         guard self.sshcmd != nil else { return }
-        // First chmod key then list key (Processtermination)
         self.sshcmd!.chmodSsh(key: "rsa", hiddenID: self.hiddenID!)
         self.sshcmd!.executeSshCommand()
     }
@@ -112,7 +120,6 @@ class ViewControllerSsh: NSViewController, SetConfigurations {
         guard self.execute else { return }
         guard self.hiddenID != nil else { return }
         guard self.sshcmd != nil else { return }
-        // First chmod key then list key (Processtermination)
         self.sshcmd!.chmodSsh(key: "dsa", hiddenID: self.hiddenID!)
         self.sshcmd!.executeSshCommand()
     }
@@ -164,8 +171,6 @@ class ViewControllerSsh: NSViewController, SetConfigurations {
 }
 
 extension ViewControllerSsh: DismissViewController {
-
-    // Protocol DismissViewController
     func dismiss_view(viewcontroller: NSViewController) {
         self.dismissViewController(viewcontroller)
         self.checkDsaPubKeyButton.isEnabled = true
@@ -177,11 +182,8 @@ extension ViewControllerSsh: DismissViewController {
 }
 
 extension ViewControllerSsh: GetSource {
-
-    // Returning hiddenID as Index
     func getSource(index: Int) {
         self.hiddenID = index
-        // Make sure that there is a offiseserver, if not set self.index = nil
         let config = self.configurations!.getConfigurations()[self.configurations!.getIndex(hiddenID!)]
         if config.offsiteServer.isEmpty == true {
             self.execute = false
@@ -192,14 +194,12 @@ extension ViewControllerSsh: GetSource {
 }
 
 extension ViewControllerSsh: NSTableViewDataSource {
-
     func numberOfRows(in aTableView: NSTableView) -> Int {
         return self.data?.count ?? 0
     }
 }
 
 extension ViewControllerSsh: NSTableViewDelegate {
-
     func tableView(_ tableView: NSTableView, viewFor tableColumn: NSTableColumn?, row: Int) -> NSView? {
         var text: String = ""
         var cellIdentifier: String = ""
@@ -217,16 +217,13 @@ extension ViewControllerSsh: NSTableViewDelegate {
 }
 
 extension ViewControllerSsh: UpdateProgress {
-
-    // Protocol UpdateProgress
     func processTermination() {
         globalMainQueue.async(execute: { () -> Void in
             self.checkPrivatePublicKey()
         })
-        // Check if chmod remote ssh directory is next work
+        guard self.sshcmd != nil else { return }
         guard self.sshcmd!.chmod != nil else { return }
         guard self.hiddenID != nil else { return }
-        guard self.sshcmd != nil else { return }
         switch self.sshcmd!.chmod!.pop() {
         case .chmodRsa:
             self.sshcmd!.checkRemotePubKey(key: "rsa", hiddenID: self.hiddenID!)
