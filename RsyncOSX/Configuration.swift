@@ -117,4 +117,22 @@ struct Configuration {
             self.rcloneprofile = rcloneprofile as? String
         }
     }
+
+    init(dictionary: NSMutableDictionary) {
+        self.hiddenID = (dictionary.object(forKey: "hiddenID") as? Int) ?? 0
+        self.task = (dictionary.object(forKey: "task") as? String) ?? ""
+        self.localCatalog = (dictionary.object(forKey: "localCatalog") as? String) ?? ""
+        self.offsiteCatalog = (dictionary.object(forKey: "offsiteCatalog") as? String) ?? ""
+        self.offsiteUsername = (dictionary.object(forKey: "offsiteUsername") as? String) ?? ""
+        self.batch = (dictionary.object(forKey: "batch") as? String) ?? ""
+        self.dryrun = (dictionary.object(forKey: "dryrun") as? String) ?? ""
+        self.parameter1 = (dictionary.object(forKey: "parameter1") as? String) ?? ""
+        self.parameter2 = (dictionary.object(forKey: "parameter2") as? String) ?? ""
+        self.parameter3 = (dictionary.object(forKey: "parameter3") as? String) ?? ""
+        self.parameter4 = (dictionary.object(forKey: "parameter4") as? String) ?? ""
+        self.parameter5 = (dictionary.object(forKey: "parameter5") as? String) ?? ""
+        self.parameter6 = (dictionary.object(forKey: "parameter6") as? String) ?? ""
+        self.offsiteServer = (dictionary.object(forKey: "offsiteServer") as? String) ?? ""
+        self.backupID = (dictionary.object(forKey: "backupID") as? String) ?? ""
+    }
 }

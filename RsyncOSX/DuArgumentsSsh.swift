@@ -23,15 +23,18 @@ final class DuArgumentsSsh: SetConfigurations {
         guard self.config!.offsiteServer.isEmpty == false else { return }
         self.args = [String]()
         if self.config!.sshport != nil {
-            let sshport: String = "\"" + "-p " + String(self.config!.sshport!) + "\""
-            self.args!.append(sshport)
+            self.sshport()
         }
         remotearg = self.config!.offsiteUsername + "@" + self.config!.offsiteServer
         self.args!.append(remotearg!)
-        self.args!.append("\"")
-        let sizestring = "cd " + config!.offsiteCatalog + ";" + "df -h ."
+        let sizestring = "cd " + config!.offsiteCatalog + ";" + " df -h ."
         self.args!.append(sizestring)
-        self.args!.append("\"")
+        self.command = "/usr/bin/ssh"
+    }
+
+    private func sshport() {
+        self.args!.append("-p")
+        self.args!.append(String(self.config!.sshport!))
     }
 
     func getCommand() -> String? {
@@ -43,9 +46,8 @@ final class DuArgumentsSsh: SetConfigurations {
         return self.args
     }
 
-    init(hiddenID: Int) {
-        self.command = "/usr/bin/ssh"
-        self.config = self.configurations!.getConfigurations()[self.configurations!.getIndex(hiddenID)]
+    init(config: Configuration) {
+        self.config = config
         self.argumentsDuremote()
     }
 }

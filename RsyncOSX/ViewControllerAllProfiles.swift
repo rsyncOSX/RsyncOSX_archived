@@ -25,7 +25,9 @@ class ViewControllerAllProfiles: NSViewController, Delay {
     private var filterby: Sortandfilter?
     private var sortedascendigdesending: Bool = true
     var diddissappear: Bool = false
-    private var remotesizeworkqueue: [Int]?
+    private var index: Int?
+    private var dict: NSDictionary?
+    private var outputprocess: OutputProcess?
 
     @IBAction func sortdirection(_ sender: NSButton) {
         if self.sortedascendigdesending == true {
@@ -35,6 +37,16 @@ class ViewControllerAllProfiles: NSViewController, Delay {
             self.sortedascendigdesending = true
             self.sortdirection.image = #imageLiteral(resourceName: "up")
         }
+    }
+
+    @IBAction func getremotesizes(_ sender: NSButton) {
+        guard self.index != nil else { return }
+        self.outputprocess = OutputProcess()
+        let dict = self.allprofiles!.allconfigurationsasdictionary?[self.index!]
+        let config = Configuration(dictionary: dict!)
+        let duargs: DuArgumentsSsh = DuArgumentsSsh(config: config)
+        guard duargs.getArguments() != nil && duargs.getCommand() != nil else { return }
+        _ = DuCommandSsh(command: duargs.getCommand(), arguments: duargs.getArguments()).executeProcess(outputprocess: self.outputprocess)
     }
 
     override func viewDidLoad() {
@@ -59,10 +71,6 @@ class ViewControllerAllProfiles: NSViewController, Delay {
     override func viewDidDisappear() {
         super.viewDidDisappear()
         self.diddissappear = true
-    }
-
-    private func getremotesize() {
-
     }
 
     func reloadallprofiles() {
@@ -113,6 +121,12 @@ extension ViewControllerAllProfiles: NSTableViewDelegate, Attributedestring {
     func tableViewSelectionDidChange(_ notification: Notification) {
         let myTableViewFromNotification = (notification.object as? NSTableView)!
         let column = myTableViewFromNotification.selectedColumn
+        let indexes = myTableViewFromNotification.selectedRowIndexes
+        if let index = indexes.first {
+            self.index = index
+        } else {
+            self.index = nil
+        }
         var sortbystring = true
         self.column = column
         switch column {
@@ -175,9 +189,9 @@ extension ViewControllerAllProfiles: NSSearchFieldDelegate {
 
 extension ViewControllerAllProfiles: UpdateProgress {
     func processTermination() {
-        //
+       //
     }
-    
+
     func fileHandler() {
         //
     }
