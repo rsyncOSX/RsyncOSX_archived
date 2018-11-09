@@ -13,5 +13,4 @@ final class CommandSsh: ProcessCmd {
         super.init(command: command, arguments: arguments)
         self.updateDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vcssh) as? ViewControllerSsh
     }
-
 }

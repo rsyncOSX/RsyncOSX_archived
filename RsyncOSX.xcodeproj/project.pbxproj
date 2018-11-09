@@ -118,6 +118,7 @@
 		E965E3072065658200EC4747 /* RcloneReference.swift in Sources */ = {isa = PBXBuildFile; fileRef = E965E3062065658200EC4747 /* RcloneReference.swift */; };
 		E965E3092065670B00EC4747 /* RcloneArgumentsOneConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = E965E3082065670B00EC4747 /* RcloneArgumentsOneConfiguration.swift */; };
 		E965E30B206567AC00EC4747 /* RcloneRsyncProcessArguments.swift in Sources */ = {isa = PBXBuildFile; fileRef = E965E30A206567AC00EC4747 /* RcloneRsyncProcessArguments.swift */; };
+		E96A95922195D5F3000326F2 /* DuArgumentsSsh.swift in Sources */ = {isa = PBXBuildFile; fileRef = E96A95912195D5F3000326F2 /* DuArgumentsSsh.swift */; };
 		E96B3E7820661C3900B730DB /* RcloneUserconfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = E96B3E7720661C3900B730DB /* RcloneUserconfiguration.swift */; };
 		E96B3E7A20661F2A00B730DB /* RcloneTools.swift in Sources */ = {isa = PBXBuildFile; fileRef = E96B3E7920661F2A00B730DB /* RcloneTools.swift */; };
 		E96CA1FE1E094C3000CD1D03 /* Resources.swift in Sources */ = {isa = PBXBuildFile; fileRef = E96CA1FD1E094C3000CD1D03 /* Resources.swift */; };
@@ -264,6 +265,7 @@
 		E965E3062065658200EC4747 /* RcloneReference.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RcloneReference.swift; sourceTree = "<group>"; };
 		E965E3082065670B00EC4747 /* RcloneArgumentsOneConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RcloneArgumentsOneConfiguration.swift; sourceTree = "<group>"; };
 		E965E30A206567AC00EC4747 /* RcloneRsyncProcessArguments.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RcloneRsyncProcessArguments.swift; sourceTree = "<group>"; };
+		E96A95912195D5F3000326F2 /* DuArgumentsSsh.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DuArgumentsSsh.swift; sourceTree = "<group>"; };
 		E96B3E7720661C3900B730DB /* RcloneUserconfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RcloneUserconfiguration.swift; sourceTree = "<group>"; };
 		E96B3E7920661F2A00B730DB /* RcloneTools.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RcloneTools.swift; sourceTree = "<group>"; };
 		E96CA1FD1E094C3000CD1D03 /* Resources.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Resources.swift; sourceTree = "<group>"; };
@@ -680,6 +682,7 @@
 				A04492A01D658F2100B3CE17 /* CopyFileArguments.swift */,
 				E9230C0D1E6DDC57001D9954 /* RsyncParametersSingleFilesArguments.swift */,
 				E9235E79201BC27F0060E3B2 /* SnapshotDeleteCatalogsArguments.swift */,
+				E96A95912195D5F3000326F2 /* DuArgumentsSsh.swift */,
 			);
 			name = ProcessArguments;
 			sourceTree = "<group>";
@@ -934,6 +937,7 @@
 				A004D81A1D9586580016914F /* ViewControllerLoggData.swift in Sources */,
 				E9F4EBB81EB4C32D006EEEF1 /* CommandSsh.swift in Sources */,
 				A04492BB1D658F2100B3CE17 /* ytcpsocket.swift in Sources */,
+				E96A95922195D5F3000326F2 /* DuArgumentsSsh.swift in Sources */,
 				E92D03192010CB2D00A92813 /* SnapshotCreateCatalog.swift in Sources */,
 				E9C30B4D201625500079C63D /* SnapshotCommandSubCatalogs.swift in Sources */,
 				E9C30B4B201623B00079C63D /* SnapshotsLoggData.swift in Sources */,

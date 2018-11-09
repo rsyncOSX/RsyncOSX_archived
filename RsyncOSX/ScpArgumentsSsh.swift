@@ -124,7 +124,6 @@ final class ScpArgumentsSsh: SetConfigurations {
         var remotearg: String?
         guard self.config != nil else { return }
         guard self.config!.offsiteServer.isEmpty == false else { return }
-        self.args = nil
         self.args = [String]()
         if self.config!.sshport != nil {
             let sshport: String = "\"" + "-p " + String(self.config!.sshport!) + "\""
