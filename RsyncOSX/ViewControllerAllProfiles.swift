@@ -17,7 +17,9 @@ class ViewControllerAllProfiles: NSViewController, Delay {
     @IBOutlet weak var search: NSSearchField!
     @IBOutlet weak var sortdirection: NSButton!
     @IBOutlet weak var numberOfprofiles: NSTextField!
-
+    @IBOutlet weak var size: NSTextField!
+    @IBOutlet weak var sizebutton: NSButton!
+    
     private var allprofiles: AllConfigurations?
     private var allschedules: Allschedules?
     private var allschedulessortedandexpanded: ScheduleSortedAndExpand?
@@ -26,7 +28,6 @@ class ViewControllerAllProfiles: NSViewController, Delay {
     private var sortedascendigdesending: Bool = true
     var diddissappear: Bool = false
     private var index: Int?
-    private var dict: NSDictionary?
     private var outputprocess: OutputProcess?
 
     @IBAction func sortdirection(_ sender: NSButton) {
@@ -45,7 +46,8 @@ class ViewControllerAllProfiles: NSViewController, Delay {
         let dict = self.allprofiles!.allconfigurationsasdictionary?[self.index!]
         let config = Configuration(dictionary: dict!)
         let duargs: DuArgumentsSsh = DuArgumentsSsh(config: config)
-        guard duargs.getArguments() != nil && duargs.getCommand() != nil else { return }
+        guard duargs.getArguments() != nil || duargs.getCommand() != nil else { return }
+        self.sizebutton.isEnabled = false
         _ = DuCommandSsh(command: duargs.getCommand(), arguments: duargs.getArguments()).executeProcess(outputprocess: self.outputprocess)
     }
 
@@ -122,6 +124,7 @@ extension ViewControllerAllProfiles: NSTableViewDelegate, Attributedestring {
         let myTableViewFromNotification = (notification.object as? NSTableView)!
         let column = myTableViewFromNotification.selectedColumn
         let indexes = myTableViewFromNotification.selectedRowIndexes
+        self.size.stringValue = ""
         if let index = indexes.first {
             self.index = index
         } else {
@@ -189,7 +192,11 @@ extension ViewControllerAllProfiles: NSSearchFieldDelegate {
 
 extension ViewControllerAllProfiles: UpdateProgress {
     func processTermination() {
-       //
+        self.size.stringValue = ""
+        for i in 0 ..< (self.outputprocess?.getOutput()?.count ?? 0) {
+            self.size.stringValue += self.outputprocess!.getOutput()![i] + "\n"
+        }
+        self.sizebutton.isEnabled = true
     }
 
     func fileHandler() {

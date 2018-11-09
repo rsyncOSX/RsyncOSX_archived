@@ -20,14 +20,14 @@ final class DuArgumentsSsh: SetConfigurations {
     private func argumentsDuremote() {
         var remotearg: String?
         guard self.config != nil else { return }
-        guard self.config!.offsiteServer.isEmpty == false else { return }
+        guard self.config!.offsiteUsername.isEmpty == false else { return }
         self.args = [String]()
         if self.config!.sshport != nil {
             self.sshport()
         }
         remotearg = self.config!.offsiteUsername + "@" + self.config!.offsiteServer
         self.args!.append(remotearg!)
-        let sizestring = "cd " + config!.offsiteCatalog + ";" + " df -h ."
+        let sizestring = "cd " + config!.offsiteCatalog + ";" + " df  ."
         self.args!.append(sizestring)
         self.command = "/usr/bin/ssh"
     }
