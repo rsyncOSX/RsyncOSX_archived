@@ -24,6 +24,8 @@ class ViewControllerAllProfiles: NSViewController, Delay {
     private var column: Int?
     private var filterby: Sortandfilter?
     private var sortedascendigdesending: Bool = true
+    var diddissappear: Bool = false
+    private var remotesizeworkqueue: [Int]?
 
     @IBAction func sortdirection(_ sender: NSButton) {
         if self.sortedascendigdesending == true {
@@ -37,7 +39,6 @@ class ViewControllerAllProfiles: NSViewController, Delay {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Setting delegates and datasource
         self.mainTableView.delegate = self
         self.mainTableView.dataSource = self
         self.search.delegate = self
@@ -46,6 +47,25 @@ class ViewControllerAllProfiles: NSViewController, Delay {
 
     override func viewDidAppear() {
         super.viewDidAppear()
+        guard self.diddissappear == false else {
+            globalMainQueue.async(execute: { () -> Void in
+                self.mainTableView.reloadData()
+            })
+            return
+        }
+        self.reloadallprofiles()
+    }
+
+    override func viewDidDisappear() {
+        super.viewDidDisappear()
+        self.diddissappear = true
+    }
+
+    private func getremotesize() {
+
+    }
+
+    func reloadallprofiles() {
         self.allprofiles = AllConfigurations()
         self.allschedules = Allschedules(nolog: true)
         self.allschedulessortedandexpanded = ScheduleSortedAndExpand(allschedules: self.allschedules)
@@ -56,17 +76,9 @@ class ViewControllerAllProfiles: NSViewController, Delay {
             self.mainTableView.reloadData()
         })
     }
-
-    override func viewDidDisappear() {
-        super.viewDidDisappear()
-        self.allprofiles = nil
-        self.allschedules = nil
-        self.allschedulessortedandexpanded = nil
-    }
 }
 
 extension ViewControllerAllProfiles: NSTableViewDataSource {
-    // Delegate for size of table
     func numberOfRows(in tableView: NSTableView) -> Int {
         if self.allprofiles?.allconfigurationsasdictionary == nil {
             self.numberOfprofiles.stringValue = "Number of profiles:"
@@ -158,5 +170,15 @@ extension ViewControllerAllProfiles: NSSearchFieldDelegate {
             self.allprofiles = AllConfigurations()
             self.mainTableView.reloadData()
         })
+    }
+}
+
+extension ViewControllerAllProfiles: UpdateProgress {
+    func processTermination() {
+        //
+    }
+    
+    func fileHandler() {
+        //
     }
 }

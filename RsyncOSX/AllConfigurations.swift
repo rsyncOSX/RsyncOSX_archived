@@ -9,7 +9,7 @@
 
 import Foundation
 
-class AllConfigurations: Sorting {
+final class AllConfigurations: Sorting {
     // Configurations object
     private var allconfigurations: [Configuration]?
     var allconfigurationsasdictionary: [NSMutableDictionary]?
