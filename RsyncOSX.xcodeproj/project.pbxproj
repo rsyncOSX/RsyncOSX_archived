@@ -94,6 +94,7 @@
 		E92D03192010CB2D00A92813 /* SnapshotCreateCatalog.swift in Sources */ = {isa = PBXBuildFile; fileRef = E92D03182010CB2D00A92813 /* SnapshotCreateCatalog.swift */; };
 		E932B2D52077B1E80057B8AE /* Combined.swift in Sources */ = {isa = PBXBuildFile; fileRef = E932B2D42077B1E80057B8AE /* Combined.swift */; };
 		E932B2D72077B3650057B8AE /* Rclone.swift in Sources */ = {isa = PBXBuildFile; fileRef = E932B2D62077B3650057B8AE /* Rclone.swift */; };
+		E933B6CD2196B30D0033D7D2 /* RemoteNumbers.swift in Sources */ = {isa = PBXBuildFile; fileRef = E933B6CC2196B30D0033D7D2 /* RemoteNumbers.swift */; };
 		E9374D2C1E3299E800CD3945 /* ExecuteTaskTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9374D2B1E3299E800CD3945 /* ExecuteTaskTimer.swift */; };
 		E9374D2E1E329A5800CD3945 /* CompleteScheduledOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9374D2D1E329A5800CD3945 /* CompleteScheduledOperation.swift */; };
 		E939EC4A20C048A000C47F91 /* extensionsViewControllertabMain.swift in Sources */ = {isa = PBXBuildFile; fileRef = E939EC4920C048A000C47F91 /* extensionsViewControllertabMain.swift */; };
@@ -242,6 +243,7 @@
 		E92D03182010CB2D00A92813 /* SnapshotCreateCatalog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnapshotCreateCatalog.swift; sourceTree = "<group>"; };
 		E932B2D42077B1E80057B8AE /* Combined.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Combined.swift; sourceTree = "<group>"; };
 		E932B2D62077B3650057B8AE /* Rclone.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Rclone.swift; sourceTree = "<group>"; };
+		E933B6CC2196B30D0033D7D2 /* RemoteNumbers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteNumbers.swift; sourceTree = "<group>"; };
 		E9374D2B1E3299E800CD3945 /* ExecuteTaskTimer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExecuteTaskTimer.swift; sourceTree = "<group>"; };
 		E9374D2D1E329A5800CD3945 /* CompleteScheduledOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CompleteScheduledOperation.swift; sourceTree = "<group>"; };
 		E939EC4920C048A000C47F91 /* extensionsViewControllertabMain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = extensionsViewControllertabMain.swift; sourceTree = "<group>"; };
@@ -490,6 +492,7 @@
 				E92755A121304F0000B1F781 /* Macserialnumber.swift */,
 				E92755A32130506000B1F781 /* Dateandtime.swift */,
 				E92755A52130539400B1F781 /* Dispatchqueues.swift */,
+				E933B6CC2196B30D0033D7D2 /* RemoteNumbers.swift */,
 			);
 			name = Utils;
 			sourceTree = "<group>";
@@ -904,6 +907,7 @@
 				E9573549201BB83E00316257 /* SnapshotCommandDeleteCatalogs.swift in Sources */,
 				E9C6EA8A1ED2AE2F00680D4D /* Numbers.swift in Sources */,
 				A0F2E20C1D6D91AA0091E8BF /* Userconfiguration.swift in Sources */,
+				E933B6CD2196B30D0033D7D2 /* RemoteNumbers.swift in Sources */,
 				A0762A1F1DB4A8F000538CE9 /* Profiles.swift in Sources */,
 				E98FA8A020654D02007F3ED1 /* RclonePersistentStorageUserconfiguration.swift in Sources */,
 				E982BA2820CEB59F00E71918 /* RestoreTask.swift in Sources */,

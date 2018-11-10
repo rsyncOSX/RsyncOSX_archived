@@ -197,7 +197,8 @@ extension ViewControllerAllProfiles: UpdateProgress {
             self.size.stringValue += self.outputprocess!.getOutput()![i] + "\n"
         }
         self.sizebutton.isEnabled = true
-        self.allprofiles!.allconfigurationsasdictionary?[self.index!].setValue("100", forKey: "remotesize")
+        self.allprofiles!.allconfigurationsasdictionary?[self.index!].setValue("Est", forKey: "remotesize")
+        _ = RemoteNumbers(outputprocess: self.outputprocess)
         globalMainQueue.async(execute: { () -> Void in
             self.mainTableView.reloadData()
         })
