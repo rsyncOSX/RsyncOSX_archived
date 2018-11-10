@@ -17,7 +17,6 @@ class ViewControllerAllProfiles: NSViewController, Delay {
     @IBOutlet weak var search: NSSearchField!
     @IBOutlet weak var sortdirection: NSButton!
     @IBOutlet weak var numberOfprofiles: NSTextField!
-    @IBOutlet weak var size: NSTextField!
     @IBOutlet weak var sizebutton: NSButton!
 
     private var allprofiles: AllConfigurations?
@@ -54,10 +53,7 @@ class ViewControllerAllProfiles: NSViewController, Delay {
         let dict = self.allprofiles!.allconfigurationsasdictionary?[self.index!]
         let config = Configuration(dictionary: dict!)
         let duargs: DuArgumentsSsh = DuArgumentsSsh(config: config)
-        guard duargs.getArguments() != nil || duargs.getCommand() != nil else {
-            self.size.stringValue = "Only avaliable for remote servers, use macOS Finder..."
-            return
-        }
+        guard duargs.getArguments() != nil || duargs.getCommand() != nil else { return }
         self.sizebutton.isEnabled = false
         _ = DuCommandSsh(command: duargs.getCommand(), arguments: duargs.getArguments()).executeProcess(outputprocess: self.outputprocess)
     }
@@ -101,6 +97,7 @@ class ViewControllerAllProfiles: NSViewController, Delay {
     }
 
     @objc(tableViewDoubleClick:) func tableViewDoubleClick(sender: AnyObject) {
+        guard self.sizebutton.isEnabled == true else { return }
         self.getremotesizes()
     }
 }
@@ -138,10 +135,10 @@ extension ViewControllerAllProfiles: NSTableViewDelegate, Attributedestring {
     }
     // setting which table row is selected
     func tableViewSelectionDidChange(_ notification: Notification) {
+        guard self.sizebutton.isEnabled == true else { return }
         let myTableViewFromNotification = (notification.object as? NSTableView)!
         let column = myTableViewFromNotification.selectedColumn
         let indexes = myTableViewFromNotification.selectedRowIndexes
-        self.size.stringValue = ""
         if let index = indexes.first {
             self.index = index
         } else {
@@ -160,9 +157,7 @@ extension ViewControllerAllProfiles: NSTableViewDelegate, Attributedestring {
             self.filterby = .remotecatalog
         case 6:
             self.filterby = .remoteserver
-        case 7:
-            self.filterby = .backupid
-        case 8, 9, 10:
+        case 10, 11:
             sortbystring = false
             self.filterby = .executedate
         default:
@@ -209,10 +204,6 @@ extension ViewControllerAllProfiles: NSSearchFieldDelegate {
 
 extension ViewControllerAllProfiles: UpdateProgress {
     func processTermination() {
-        self.size.stringValue = ""
-        for i in 0 ..< (self.outputprocess?.getOutput()?.count ?? 0) {
-            self.size.stringValue += self.outputprocess!.getOutput()![i] + "\n"
-        }
         self.sizebutton.isEnabled = true
         let numbers = RemoteNumbers(outputprocess: self.outputprocess)
         self.allprofiles!.allconfigurationsasdictionary?[self.index!].setValue(numbers.getused(), forKey: "used")
