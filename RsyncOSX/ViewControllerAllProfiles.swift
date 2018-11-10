@@ -145,7 +145,7 @@ extension ViewControllerAllProfiles: NSTableViewDelegate, Attributedestring {
             self.filterby = .remoteserver
         case 7:
             self.filterby = .backupid
-        case 8, 9:
+        case 8, 9, 10:
             sortbystring = false
             self.filterby = .executedate
         default:
@@ -197,6 +197,10 @@ extension ViewControllerAllProfiles: UpdateProgress {
             self.size.stringValue += self.outputprocess!.getOutput()![i] + "\n"
         }
         self.sizebutton.isEnabled = true
+        self.allprofiles!.allconfigurationsasdictionary?[self.index!].setValue("100", forKey: "remotesize")
+        globalMainQueue.async(execute: { () -> Void in
+            self.mainTableView.reloadData()
+        })
     }
 
     func fileHandler() {
