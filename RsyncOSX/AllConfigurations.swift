@@ -9,7 +9,7 @@
 
 import Foundation
 
-class AllConfigurations: Sorting {
+final class AllConfigurations: Sorting {
     // Configurations object
     private var allconfigurations: [Configuration]?
     var allconfigurationsasdictionary: [NSMutableDictionary]?
@@ -55,6 +55,7 @@ class AllConfigurations: Sorting {
                 "localCatalog": configurations[i].localCatalog,
                 "offsiteCatalog": configurations[i].offsiteCatalog,
                 "offsiteServer": configurations[i].offsiteServer,
+                "offsiteUsername": configurations[i].offsiteUsername,
                 "backupID": configurations[i].backupID,
                 "dateExecuted": configurations[i].dateRun!,
                 "days": configurations[i].dayssincelastbackup ?? "",

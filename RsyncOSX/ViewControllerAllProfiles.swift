@@ -17,6 +17,8 @@ class ViewControllerAllProfiles: NSViewController, Delay {
     @IBOutlet weak var search: NSSearchField!
     @IBOutlet weak var sortdirection: NSButton!
     @IBOutlet weak var numberOfprofiles: NSTextField!
+    @IBOutlet weak var size: NSTextField!
+    @IBOutlet weak var sizebutton: NSButton!
 
     private var allprofiles: AllConfigurations?
     private var allschedules: Allschedules?
@@ -24,6 +26,9 @@ class ViewControllerAllProfiles: NSViewController, Delay {
     private var column: Int?
     private var filterby: Sortandfilter?
     private var sortedascendigdesending: Bool = true
+    var diddissappear: Bool = false
+    private var index: Int?
+    private var outputprocess: OutputProcess?
 
     @IBAction func sortdirection(_ sender: NSButton) {
         if self.sortedascendigdesending == true {
@@ -35,9 +40,26 @@ class ViewControllerAllProfiles: NSViewController, Delay {
         }
     }
 
+    @IBAction func getremotesizes(_ sender: NSButton) {
+        guard self.index != nil else { return }
+        self.outputprocess = OutputProcess()
+        let dict = self.allprofiles!.allconfigurationsasdictionary?[self.index!]
+        let config = Configuration(dictionary: dict!)
+        let duargs: DuArgumentsSsh = DuArgumentsSsh(config: config)
+        guard duargs.getArguments() != nil || duargs.getCommand() != nil else {
+            self.size.stringValue = "Only avaliable for remote servers, use macOS Finder..."
+            return
+        }
+        self.sizebutton.isEnabled = false
+        _ = DuCommandSsh(command: duargs.getCommand(), arguments: duargs.getArguments()).executeProcess(outputprocess: self.outputprocess)
+    }
+
+    @IBAction func reload(_ sender: NSButton) {
+        self.reloadallprofiles()
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Setting delegates and datasource
         self.mainTableView.delegate = self
         self.mainTableView.dataSource = self
         self.search.delegate = self
@@ -46,6 +68,21 @@ class ViewControllerAllProfiles: NSViewController, Delay {
 
     override func viewDidAppear() {
         super.viewDidAppear()
+        guard self.diddissappear == false else {
+            globalMainQueue.async(execute: { () -> Void in
+                self.mainTableView.reloadData()
+            })
+            return
+        }
+        self.reloadallprofiles()
+    }
+
+    override func viewDidDisappear() {
+        super.viewDidDisappear()
+        self.diddissappear = true
+    }
+
+    func reloadallprofiles() {
         self.allprofiles = AllConfigurations()
         self.allschedules = Allschedules(nolog: true)
         self.allschedulessortedandexpanded = ScheduleSortedAndExpand(allschedules: self.allschedules)
@@ -56,17 +93,9 @@ class ViewControllerAllProfiles: NSViewController, Delay {
             self.mainTableView.reloadData()
         })
     }
-
-    override func viewDidDisappear() {
-        super.viewDidDisappear()
-        self.allprofiles = nil
-        self.allschedules = nil
-        self.allschedulessortedandexpanded = nil
-    }
 }
 
 extension ViewControllerAllProfiles: NSTableViewDataSource {
-    // Delegate for size of table
     func numberOfRows(in tableView: NSTableView) -> Int {
         if self.allprofiles?.allconfigurationsasdictionary == nil {
             self.numberOfprofiles.stringValue = "Number of profiles:"
@@ -101,6 +130,13 @@ extension ViewControllerAllProfiles: NSTableViewDelegate, Attributedestring {
     func tableViewSelectionDidChange(_ notification: Notification) {
         let myTableViewFromNotification = (notification.object as? NSTableView)!
         let column = myTableViewFromNotification.selectedColumn
+        let indexes = myTableViewFromNotification.selectedRowIndexes
+        self.size.stringValue = ""
+        if let index = indexes.first {
+            self.index = index
+        } else {
+            self.index = nil
+        }
         var sortbystring = true
         self.column = column
         switch column {
@@ -116,7 +152,7 @@ extension ViewControllerAllProfiles: NSTableViewDelegate, Attributedestring {
             self.filterby = .remoteserver
         case 7:
             self.filterby = .backupid
-        case 8, 9:
+        case 8, 9, 10:
             sortbystring = false
             self.filterby = .executedate
         default:
@@ -158,5 +194,26 @@ extension ViewControllerAllProfiles: NSSearchFieldDelegate {
             self.allprofiles = AllConfigurations()
             self.mainTableView.reloadData()
         })
+    }
+}
+
+extension ViewControllerAllProfiles: UpdateProgress {
+    func processTermination() {
+        self.size.stringValue = ""
+        for i in 0 ..< (self.outputprocess?.getOutput()?.count ?? 0) {
+            self.size.stringValue += self.outputprocess!.getOutput()![i] + "\n"
+        }
+        self.sizebutton.isEnabled = true
+        let numbers = RemoteNumbers(outputprocess: self.outputprocess)
+        self.allprofiles!.allconfigurationsasdictionary?[self.index!].setValue(numbers.getused(), forKey: "used")
+        self.allprofiles!.allconfigurationsasdictionary?[self.index!].setValue(numbers.getavail(), forKey: "avail")
+        self.allprofiles!.allconfigurationsasdictionary?[self.index!].setValue(numbers.getcapacity(), forKey: "capacity")
+        globalMainQueue.async(execute: { () -> Void in
+            self.mainTableView.reloadData()
+        })
+    }
+
+    func fileHandler() {
+        //
     }
 }
