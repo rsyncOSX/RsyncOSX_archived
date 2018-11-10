@@ -27,29 +27,29 @@ final class RemoteNumbers {
         for i in 0 ..< splitnumberstring.count where splitnumberstring[i].isEmpty == false {
             self.splitnumbers?.append(splitnumberstring[i])
         }
-        if let used1kblocks = Int(self.splitnumbers![1]) {
+        if let used1kblocks = Int(self.splitnumbers![2]) {
             self.used1kblocks = used1kblocks
         }
-        if let avail1kblocks = Int(self.splitnumbers![2]) {
+        if let avail1kblocks = Int(self.splitnumbers![3]) {
             self.avail1kblocks = avail1kblocks
         }
-        if let capacity1kblocks = Int(self.splitnumbers![3]) {
+        if let capacity1kblocks = Int(self.splitnumbers![1]) {
             self.capacity1kblocks = capacity1kblocks
         }
     }
 
     func getused() -> String {
-        let used = (self.used1kblocks ?? 0/1024)/1000
+        let used = (self.used1kblocks ?? 0/1024)/1024
         return NumberFormatter.localizedString(from: NSNumber(value: used), number: NumberFormatter.Style.decimal)
     }
 
     func getavail() -> String {
-        let avail = (self.avail1kblocks ?? 0/1024)/1000
+        let avail = (self.avail1kblocks ?? 0/1024)/1024
         return NumberFormatter.localizedString(from: NSNumber(value: avail), number: NumberFormatter.Style.decimal)
     }
 
     func getcapacity() -> String {
-        let capacity = (self.capacity1kblocks ?? 0/1024)/1000
+        let capacity = (self.capacity1kblocks ?? 0/1024)/1024
         return NumberFormatter.localizedString(from: NSNumber(value: capacity), number: NumberFormatter.Style.decimal)
     }
 
