@@ -9,14 +9,12 @@
 import Foundation
 
 final class RemoteNumbers {
-    // Second last String in Array rsync output of how much in what time
-    private var resultRsync: String?
-    // calculated number of files
-    // output Array to keep output from rsync in
     private var output: [String]?
     private var splitnumbers: [String]?
+    private var used1kblocks: Int?
+    private var avail1kblocks: Int?
+    private var capacity1kblocks: Int?
 
-    // Split an Rsync argument into argument and value
     private func split (_ str: String) -> [String] {
         return  str.components(separatedBy: " ")
     }
@@ -29,6 +27,30 @@ final class RemoteNumbers {
         for i in 0 ..< splitnumberstring.count where splitnumberstring[i].isEmpty == false {
             self.splitnumbers?.append(splitnumberstring[i])
         }
+        if let used1kblocks = Int(self.splitnumbers![1]) {
+            self.used1kblocks = used1kblocks
+        }
+        if let avail1kblocks = Int(self.splitnumbers![2]) {
+            self.avail1kblocks = avail1kblocks
+        }
+        if let capacity1kblocks = Int(self.splitnumbers![3]) {
+            self.capacity1kblocks = capacity1kblocks
+        }
+    }
+
+    func getused() -> String {
+        let used = (self.used1kblocks ?? 0/1024)/1000
+        return NumberFormatter.localizedString(from: NSNumber(value: used), number: NumberFormatter.Style.decimal)
+    }
+
+    func getavail() -> String {
+        let avail = (self.avail1kblocks ?? 0/1024)/1000
+        return NumberFormatter.localizedString(from: NSNumber(value: avail), number: NumberFormatter.Style.decimal)
+    }
+
+    func getcapacity() -> String {
+        let capacity = (self.capacity1kblocks ?? 0/1024)/1000
+        return NumberFormatter.localizedString(from: NSNumber(value: capacity), number: NumberFormatter.Style.decimal)
     }
 
     init (outputprocess: OutputProcess?) {
