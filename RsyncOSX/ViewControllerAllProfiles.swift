@@ -19,7 +19,7 @@ class ViewControllerAllProfiles: NSViewController, Delay {
     @IBOutlet weak var numberOfprofiles: NSTextField!
     @IBOutlet weak var size: NSTextField!
     @IBOutlet weak var sizebutton: NSButton!
-    
+
     private var allprofiles: AllConfigurations?
     private var allschedules: Allschedules?
     private var allschedulessortedandexpanded: ScheduleSortedAndExpand?
@@ -46,9 +46,16 @@ class ViewControllerAllProfiles: NSViewController, Delay {
         let dict = self.allprofiles!.allconfigurationsasdictionary?[self.index!]
         let config = Configuration(dictionary: dict!)
         let duargs: DuArgumentsSsh = DuArgumentsSsh(config: config)
-        guard duargs.getArguments() != nil || duargs.getCommand() != nil else { return }
+        guard duargs.getArguments() != nil || duargs.getCommand() != nil else {
+            self.size.stringValue = "Only avaliable for remote servers, use macOS Finder..."
+            return
+        }
         self.sizebutton.isEnabled = false
         _ = DuCommandSsh(command: duargs.getCommand(), arguments: duargs.getArguments()).executeProcess(outputprocess: self.outputprocess)
+    }
+
+    @IBAction func reload(_ sender: NSButton) {
+        self.reloadallprofiles()
     }
 
     override func viewDidLoad() {
