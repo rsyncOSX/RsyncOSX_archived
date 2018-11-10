@@ -41,6 +41,14 @@ class ViewControllerAllProfiles: NSViewController, Delay {
     }
 
     @IBAction func getremotesizes(_ sender: NSButton) {
+        self.getremotesizes()
+    }
+
+    @IBAction func reload(_ sender: NSButton) {
+        self.reloadallprofiles()
+    }
+
+    private func getremotesizes() {
         guard self.index != nil else { return }
         self.outputprocess = OutputProcess()
         let dict = self.allprofiles!.allconfigurationsasdictionary?[self.index!]
@@ -54,15 +62,13 @@ class ViewControllerAllProfiles: NSViewController, Delay {
         _ = DuCommandSsh(command: duargs.getCommand(), arguments: duargs.getArguments()).executeProcess(outputprocess: self.outputprocess)
     }
 
-    @IBAction func reload(_ sender: NSButton) {
-        self.reloadallprofiles()
-    }
-
     override func viewDidLoad() {
         super.viewDidLoad()
         self.mainTableView.delegate = self
         self.mainTableView.dataSource = self
         self.search.delegate = self
+        self.mainTableView.target = self
+        self.mainTableView.doubleAction = #selector(ViewControllerProfile.tableViewDoubleClick(sender:))
         ViewControllerReference.shared.setvcref(viewcontroller: .vcallprofiles, nsviewcontroller: self)
     }
 
@@ -92,6 +98,10 @@ class ViewControllerAllProfiles: NSViewController, Delay {
         globalMainQueue.async(execute: { () -> Void in
             self.mainTableView.reloadData()
         })
+    }
+
+    @objc(tableViewDoubleClick:) func tableViewDoubleClick(sender: AnyObject) {
+        self.getremotesizes()
     }
 }
 
