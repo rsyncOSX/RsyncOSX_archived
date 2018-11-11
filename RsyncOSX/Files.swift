@@ -189,16 +189,6 @@ class Files: Reportfileerror {
         }
     }
 
-    // Check if file exist or not
-    func checkFileExist(file: String) -> Bool {
-        let fileManager = FileManager.default
-        if fileManager.fileExists(atPath: file) {
-            return true
-        } else {
-            return false
-        }
-    }
-
     init (root: Root, configpath: String) {
         self.configpath = configpath
         self.root = root
