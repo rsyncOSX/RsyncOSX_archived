@@ -163,6 +163,7 @@ extension ViewControllerBatch: NSTableViewDelegate {
                         self.indexinitiated = row
                         self.initiateProgressbar(progress: cell, hiddenID: hiddenID!)
                     } else {
+                        if self.batchisrunning == false { return nil }
                         self.updateProgressbar(progress: cell)
                     }
                     return cell
@@ -224,7 +225,9 @@ extension ViewControllerBatch: CloseViewError {
 
 extension ViewControllerBatch: UpdateProgress {
     func processTermination() {
-        self.updateProgressbar()
+        if self.batchisrunning == false {
+            self.updateProgressbar()
+        }
         globalMainQueue.async(execute: { () -> Void in
             self.mainTableView.reloadData()
         })
