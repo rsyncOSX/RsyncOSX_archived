@@ -14,6 +14,7 @@ final class RemoteNumbers {
     private var used1kblocks: Int?
     private var avail1kblocks: Int?
     private var capacity1kblocks: Int?
+    private var percentavaliable: Double?
 
     private func split (_ str: String) -> [String] {
         return  str.components(separatedBy: " ")
@@ -36,6 +37,8 @@ final class RemoteNumbers {
         if let capacity1kblocks = Int(self.splitnumbers![1]) {
             self.capacity1kblocks = capacity1kblocks
         }
+        guard self.capacity1kblocks != nil && self.used1kblocks != nil else { return }
+        self.percentavaliable = (1 - Double(self.used1kblocks!) / Double(self.capacity1kblocks!)) * 100
     }
 
     func getused() -> String {
@@ -51,6 +54,10 @@ final class RemoteNumbers {
     func getcapacity() -> String {
         let capacity = (self.capacity1kblocks ?? 0/1024)/1024
         return NumberFormatter.localizedString(from: NSNumber(value: capacity), number: NumberFormatter.Style.decimal)
+    }
+
+    func getpercentavaliable() -> String {
+         return String(format: "%.2f", self.percentavaliable ?? 0)
     }
 
     init (outputprocess: OutputProcess?) {

@@ -208,7 +208,7 @@ extension ViewControllerAllProfiles: UpdateProgress {
         let numbers = RemoteNumbers(outputprocess: self.outputprocess)
         self.allprofiles!.allconfigurationsasdictionary?[self.index!].setValue(numbers.getused(), forKey: "used")
         self.allprofiles!.allconfigurationsasdictionary?[self.index!].setValue(numbers.getavail(), forKey: "avail")
-        self.allprofiles!.allconfigurationsasdictionary?[self.index!].setValue(numbers.getcapacity(), forKey: "capacity")
+        self.allprofiles!.allconfigurationsasdictionary?[self.index!].setValue(numbers.getpercentavaliable(), forKey: "availpercent")
         globalMainQueue.async(execute: { () -> Void in
             self.mainTableView.reloadData()
         })
