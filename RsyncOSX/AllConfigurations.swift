@@ -72,21 +72,21 @@ final class AllConfigurations: Sorting {
         guard search != nil && self.allconfigurationsasdictionary != nil && filterby != nil else { return }
         globalDefaultQueue.async(execute: {() -> Void in
             switch column {
-            case 0, 1, 2, 3, 4, 5:
+            case 0, 1, 2, 3, 4, 5, 6:
                 guard filterby != nil else { return }
                 let valueforkey = self.filterbystring(filterby: filterby!)
                 let filtereddata = self.allconfigurationsasdictionary?.filter({
                     ($0.value(forKey: valueforkey) as? String)!.contains(search!)
                 })
                 self.allconfigurationsasdictionary = filtereddata
-            case 6:
+            case 10:
                 let filtereddata = self.allconfigurationsasdictionary?.filter({
                     ($0.value(forKey: "daysID") as? String)!.contains(search!)
                 })
                 self.allconfigurationsasdictionary = filtereddata
-            case 7:
+            case 11:
                 let filtereddata = self.allconfigurationsasdictionary?.filter({
-                    ($0.value(forKey: "runDateCellID") as? String)!.contains(search!)
+                    ($0.value(forKey: "dateExecuted") as? String)!.contains(search!)
                 })
                 self.allconfigurationsasdictionary = filtereddata
             default:

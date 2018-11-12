@@ -18,7 +18,8 @@ class ViewControllerAllProfiles: NSViewController, Delay {
     @IBOutlet weak var sortdirection: NSButton!
     @IBOutlet weak var numberOfprofiles: NSTextField!
     @IBOutlet weak var sizebutton: NSButton!
-
+    @IBOutlet weak var working: NSProgressIndicator!
+    
     private var allprofiles: AllConfigurations?
     private var allschedules: Allschedules?
     private var allschedulessortedandexpanded: ScheduleSortedAndExpand?
@@ -55,6 +56,7 @@ class ViewControllerAllProfiles: NSViewController, Delay {
         let duargs: DuArgumentsSsh = DuArgumentsSsh(config: config)
         guard duargs.getArguments() != nil || duargs.getCommand() != nil else { return }
         self.sizebutton.isEnabled = false
+        self.working.startAnimation(nil)
         _ = DuCommandSsh(command: duargs.getCommand(), arguments: duargs.getArguments()).executeProcess(outputprocess: self.outputprocess)
     }
 
@@ -65,6 +67,7 @@ class ViewControllerAllProfiles: NSViewController, Delay {
         self.search.delegate = self
         self.mainTableView.target = self
         self.mainTableView.doubleAction = #selector(ViewControllerProfile.tableViewDoubleClick(sender:))
+        self.working.usesThreadedAnimation = true
         ViewControllerReference.shared.setvcref(viewcontroller: .vcallprofiles, nsviewcontroller: self)
     }
 
@@ -205,6 +208,7 @@ extension ViewControllerAllProfiles: NSSearchFieldDelegate {
 extension ViewControllerAllProfiles: UpdateProgress {
     func processTermination() {
         self.sizebutton.isEnabled = true
+        self.working.stopAnimation(nil)
         let numbers = RemoteNumbers(outputprocess: self.outputprocess)
         self.allprofiles!.allconfigurationsasdictionary?[self.index!].setValue(numbers.getused(), forKey: "used")
         self.allprofiles!.allconfigurationsasdictionary?[self.index!].setValue(numbers.getavail(), forKey: "avail")
