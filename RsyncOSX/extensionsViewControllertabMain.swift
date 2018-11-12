@@ -45,10 +45,9 @@ extension ViewControllertabMain: NSTableViewDelegate, Attributedestring {
     func tableView(_ tableView: NSTableView, objectValueFor tableColumn: NSTableColumn?, row: Int) -> Any? {
         if row > self.configurations!.configurationsDataSourcecount() - 1 { return nil }
         let object: NSDictionary = self.configurations!.getConfigurationsDataSource()![row]
-        var celltext: String?
         let hiddenID: Int = self.configurations!.getConfigurations()[row].hiddenID
         let markdays: Bool = self.configurations!.getConfigurations()[row].markdays
-        celltext = object[tableColumn!.identifier] as? String
+        let celltext = object[tableColumn!.identifier] as? String
         if tableColumn!.identifier.rawValue == "batchCellID" {
             return object[tableColumn!.identifier]
         } else if markdays == true && tableColumn!.identifier.rawValue == "daysID" {
