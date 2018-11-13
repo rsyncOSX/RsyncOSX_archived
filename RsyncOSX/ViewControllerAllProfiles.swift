@@ -19,7 +19,7 @@ class ViewControllerAllProfiles: NSViewController, Delay {
     @IBOutlet weak var numberOfprofiles: NSTextField!
     @IBOutlet weak var sizebutton: NSButton!
     @IBOutlet weak var working: NSProgressIndicator!
-    
+
     private var allprofiles: AllConfigurations?
     private var allschedules: Allschedules?
     private var allschedulessortedandexpanded: ScheduleSortedAndExpand?
