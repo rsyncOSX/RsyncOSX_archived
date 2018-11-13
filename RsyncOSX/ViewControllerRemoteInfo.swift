@@ -202,7 +202,7 @@ extension ViewControllerRemoteInfo: NSTableViewDelegate, Attributedestring {
     func tableView(_ tableView: NSTableView, setObjectValue object: Any?, for tableColumn: NSTableColumn?, row: Int) {
         guard  self.remoteinfotask?.records != nil else { return }
         if tableColumn!.identifier.rawValue == "select" {
-            var select: Int = (self.remoteinfotask?.records![row].value(forKey: "select") as? Int)!
+            var select: Int = self.remoteinfotask?.records![row].value(forKey: "select") as? Int ?? 0
             if select == 0 { select = 1 } else if select == 1 { select = 0 }
             self.remoteinfotask?.records![row].setValue(select, forKey: "select")
         }
