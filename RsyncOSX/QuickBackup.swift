@@ -19,7 +19,6 @@ enum Sort {
 class QuickBackup: SetConfigurations {
     var sortedlist: [NSMutableDictionary]?
     var estimatedlist: [NSMutableDictionary]?
-    // (hiddenID, index)
     typealias Row = (Int, Int)
     var stackoftasktobeexecuted: [Row]?
     var index: Int?
