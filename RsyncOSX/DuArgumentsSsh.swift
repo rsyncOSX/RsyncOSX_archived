@@ -15,8 +15,6 @@ final class DuArgumentsSsh: SetConfigurations {
     private var args: [String]?
     private var command: String?
 
-    //  Create remote catalog
-    // either ssh or ssh "-p port"
     private func argumentsDuremote() {
         var remotearg: String?
         guard self.config != nil else { return }
