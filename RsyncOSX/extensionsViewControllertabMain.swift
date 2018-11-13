@@ -72,10 +72,15 @@ extension ViewControllertabMain: NSTableViewDelegate, Attributedestring {
                 if self.scheduledJobInProgress == true {
                     return #imageLiteral(resourceName: "green")
                 }
-                if self.singletask == nil {
-                    return #imageLiteral(resourceName: "yellow")
+                if self.setbatchyesno == false {
+                    if self.singletask == nil {
+                        return #imageLiteral(resourceName: "yellow")
+                    } else {
+                        return #imageLiteral(resourceName: "green")
+                    }
                 } else {
-                    return #imageLiteral(resourceName: "green")
+                    self.setbatchyesno = false
+                    return nil
                 }
             }
         } else if tableColumn!.identifier.rawValue == "snapCellID" {
@@ -98,11 +103,12 @@ extension ViewControllertabMain: NSTableViewDelegate, Attributedestring {
         }
         if self.configurations!.getConfigurations()[row].task == ViewControllerReference.shared.backup ||
             self.configurations!.getConfigurations()[row].task == ViewControllerReference.shared.snapshot {
+            self.setbatchyesno = true
             self.configurations!.setBatchYesNo(row)
         }
         self.singletask = nil
         self.batchtasks = nil
-        self.setinfonextaction(info: "Estimate", color: .green)
+        self.setinfonextaction(info: "Estimate", color: .gray)
     }
 }
 
@@ -153,7 +159,7 @@ extension ViewControllertabMain: NewProfile {
         self.serverOff = nil
         self.setNumbers(outputprocess: nil)
         self.showrsynccommandmainview()
-        self.setinfonextaction(info: "Estimate", color: .green)
+        self.setinfonextaction(info: "Estimate", color: .gray)
         self.deselect()
         // Read configurations and Scheduledata
         self.configurations = self.createconfigurationsobject(profile: profile)
@@ -238,9 +244,7 @@ extension ViewControllertabMain: Connections {
     // Remote servers offline are marked with red line in mainTableView
     func displayConnections() {
         // Only do a reload if we are in the main view
-        guard self.configurations!.allowNotifyinMain == true else {
-            return
-        }
+        guard self.configurations!.allowNotifyinMain == true else { return }
         self.loadProfileMenu = true
         self.serverOff = self.tcpconnections!.gettestAllremoteserverConnections()
         globalMainQueue.async(execute: { () -> Void in
@@ -539,7 +543,7 @@ extension ViewControllertabMain: SingleTaskProgress {
             self.dryRunOrRealRun.textColor = .red
         case .black:
             self.dryRunOrRealRun.textColor = .black
-        case .green:
+        case .gray:
             self.dryRunOrRealRun.textColor = .gray
         }
         self.dryRunOrRealRun.stringValue = info

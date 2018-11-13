@@ -110,6 +110,9 @@ class ViewControllertabMain: NSViewController, ReloadTable, Deselect, Coloractiv
     var outputerrors: OutputErrors?
     // Update view estimating
     weak var estimateupdateDelegate: Updateestimating?
+    // used in updating tableview
+    var setbatchyesno: Bool = false
+
     @IBOutlet weak var info: NSTextField!
     @IBOutlet weak var pathtorsyncosxschedbutton: NSButton!
     @IBOutlet weak var menuappisrunning: NSButton!
@@ -249,7 +252,7 @@ class ViewControllertabMain: NSViewController, ReloadTable, Deselect, Coloractiv
     func reset() {
         self.outputprocess = nil
         self.setNumbers(outputprocess: nil)
-        self.setinfonextaction(info: "Estimate", color: .green)
+        self.setinfonextaction(info: "Estimate", color: .gray)
         self.process = nil
         self.singletask = nil
     }
@@ -567,7 +570,7 @@ class ViewControllertabMain: NSViewController, ReloadTable, Deselect, Coloractiv
         }
         self.process = nil
         self.singletask = nil
-        self.setinfonextaction(info: "Estimate", color: .green)
+        self.setinfonextaction(info: "Estimate", color: .gray)
         self.showrsynccommandmainview()
         self.reloadtabledata()
         self.configurations!.allowNotifyinMain = true
