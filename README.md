@@ -24,6 +24,7 @@ This is the message when opening a downloaded version (from version > 5.5.5).
 ![](images/verify.png)
 
 The message is in Norwegian: "Apple har sjekket programmet uten å finne ondsinnet programvare.".
+
 The english version of it is: "Apple checked it for malicious software and none was detected.".
 
 ### About bugs?
