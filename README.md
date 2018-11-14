@@ -4,9 +4,7 @@
 
 This repository is the source code for the macOS app RsyncOSX. RsyncOSX is compiled with support for macOS El Capitan version 10.11 - macOS Mojave version 10.14. The application is implemented in Swift 4 by using Xcode 10. RsyncOSX is not depended upon any third party binary distributions. There is, however, one third party source code included to check for TCP connections. The check is for informal use only and can be removed.
 
-A short [intro to RsyncOSX](https://rsyncosx.github.io/Intro) and full [documentation of RsyncOSX](https://rsyncosx.github.io/AboutRsyncOSX).
-
-About **signing** and **notarizing** of `RsyncOSX.app` see below.
+A short [intro to RsyncOSX](https://rsyncosx.github.io/Intro) and full [documentation of RsyncOSX](https://rsyncosx.github.io/AboutRsyncOSX). About **signing** and **notarizing** of `RsyncOSX.app` see below.
 
 The main view of RsyncOSX.
 ![](images/main1.png)
@@ -15,7 +13,7 @@ Automatic synchronizing in action.
 
 ### Signing and notarizing
 
-The app is signed with my Apple ID developer certificate and [notarized](https://support.apple.com/en-us/HT202491) by Apple. If you have Xcode developer tools installed executing the following command will verify the RsyncOSX.app.
+The app is signed with my Apple ID developer certificate and [notarized](https://rsyncosx.github.io/Notarized) by Apple. If you have Xcode developer tools installed executing the following command `xcrun stapler validate no.blogspot.RsyncOSX RsyncOSX.app` will verify the RsyncOSX.app.
 ```
 xcrun stapler validate no.blogspot.RsyncOSX RsyncOSX.app
 Processing: /Volumes/Home/thomas/GitHub/RsyncOSX/Build/Products/Release/RsyncOSX.app
