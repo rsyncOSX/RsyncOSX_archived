@@ -4,7 +4,7 @@
 
 This repository is the source code for the macOS app RsyncOSX. RsyncOSX is compiled with support for macOS El Capitan version 10.11 - macOS Mojave version 10.14. The application is implemented in Swift 4 by using Xcode 10. RsyncOSX is not depended upon any third party binary distributions. There is, however, one third party source code included to check for TCP connections. The check is for informal use only and can be removed.
 
-A short [intro to RsyncOSX](https://rsyncosx.github.io/Intro) and full [documentation of RsyncOSX](https://rsyncosx.github.io/AboutRsyncOSX). About **signing** and **notarizing** of `RsyncOSX.app` see below.
+A short [intro to RsyncOSX](https://rsyncosx.github.io/Intro) and full [documentation of RsyncOSX](https://rsyncosx.github.io/AboutRsyncOSX). About signing and notarizing of RsyncOSX see below.
 
 The main view of RsyncOSX.
 ![](images/main1.png)
@@ -23,9 +23,7 @@ This is the message when opening a downloaded version (from version > 5.5.5).
 
 ![](images/verify.png)
 
-The message is in Norwegian: "Apple har sjekket programmet uten å finne ondsinnet programvare.".
-
-The english version of it is: "Apple checked it for malicious software and none was detected.".
+The message is in Norwegian: "Apple har sjekket programmet uten å finne ondsinnet programvare.". The english version of it is: "Apple checked it for malicious software and none was detected.".
 
 ### About bugs?
 
@@ -69,7 +67,7 @@ In RsyncOSX select [user configuration](https://rsyncosx.github.io/UserConfigura
 
 #### SwiftLint
 
-As part of this version of RsyncOSX I am using [SwiftLint](https://github.com/realm/SwiftLint) as tool for writing more readable code. Adapting RsyncOSX to SwiftLint rules will take some time. There are about 10,000 lines of code in RsyncOSX (too many?). Many changes in code has been applied, but there are still some more to do before RsyncOSX is more compliant to SwiftLint rules.
+As part of this version of RsyncOSX I am using [SwiftLint](https://github.com/realm/SwiftLint) as tool for writing more readable code. Adapting RsyncOSX to SwiftLint rules will take some time. There are about 130 classes with 15,800 lines of code in RsyncOSX (too many?).
 
 ### Compile
 
