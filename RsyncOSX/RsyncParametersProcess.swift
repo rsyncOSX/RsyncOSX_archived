@@ -153,7 +153,6 @@ final class RsyncParametersProcess {
     /// - paramater forDisplay: true if for display, false if not
     /// - returns: Array of Strings
     func argumentsRsync(_ config: Configuration, dryRun: Bool, forDisplay: Bool) -> [String] {
-        guard config.task != "restore" else { return [] }
         self.localCatalog = config.localCatalog
         self.remoteargs(config)
         self.setParameters1To6(config, dryRun: dryRun, forDisplay: forDisplay, verify: false)
@@ -171,7 +170,6 @@ final class RsyncParametersProcess {
     }
 
     func argumentsRestore(_ config: Configuration, dryRun: Bool, forDisplay: Bool, tmprestore: Bool) -> [String] {
-        guard config.task != "restore" else { return [] }
         self.localCatalog = config.localCatalog
         if config.snapshotnum != nil {
             self.remoteargssnapshot(config)
@@ -189,7 +187,6 @@ final class RsyncParametersProcess {
     }
 
     func argumentsVerify(_ config: Configuration, forDisplay: Bool) -> [String] {
-        guard config.task != "restore" else { return [] }
         self.localCatalog = config.localCatalog
         self.remoteargs(config)
         self.setParameters1To6(config, dryRun: true, forDisplay: forDisplay, verify: true)
