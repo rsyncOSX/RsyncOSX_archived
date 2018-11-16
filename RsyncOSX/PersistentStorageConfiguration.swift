@@ -146,56 +146,6 @@ final class PersistentStorageConfiguration: Readwritefiles, SetConfigurations {
         }
     }
 
-    // Function for setting the restore part of newly created added configuration
-    // based on dictionary for backup part.
-    private func setRestorePart (dict: NSMutableDictionary) -> NSMutableDictionary {
-        let restore: NSMutableDictionary = [
-            "task": "restore",
-            "backupID": dict.value(forKey: "backupID")!,
-            "localCatalog": dict.value(forKey: "localCatalog")!,
-            "offsiteCatalog": dict.value(forKey: "offsiteCatalog")!,
-            "batch": dict.value(forKey: "batch")!,
-            "offsiteServer": dict.value(forKey: "offsiteServer")!,
-            "offsiteUsername": dict.value(forKey: "offsiteUsername")!,
-            "parameter1": dict.value(forKey: "parameter1")!,
-            "parameter2": dict.value(forKey: "parameter2")!,
-            "parameter3": dict.value(forKey: "parameter3")!,
-            "parameter4": dict.value(forKey: "parameter4")!,
-            "parameter5": dict.value(forKey: "parameter5")!,
-            "parameter6": dict.value(forKey: "parameter6")!,
-            "dryrun": dict.value(forKey: "dryrun")!,
-            "dateRun": "",
-            "hiddenID": self.maxhiddenID + 2]
-        if dict.value(forKey: "parameter8") != nil {
-            restore.setObject(dict.value(forKey: "parameter8")!, forKey: "parameter8" as NSCopying)
-        }
-        if dict.value(forKey: "parameter9") != nil {
-            restore.setObject(dict.value(forKey: "parameter9")!, forKey: "parameter9" as NSCopying)
-        }
-        if dict.value(forKey: "parameter10") != nil {
-            restore.setObject(dict.value(forKey: "parameter10")!, forKey: "parameter10" as NSCopying)
-        }
-        if dict.value(forKey: "parameter11") != nil {
-            restore.setObject(dict.value(forKey: "parameter11")!, forKey: "parameter11" as NSCopying)
-        }
-        if dict.value(forKey: "parameter12") != nil {
-            restore.setObject(dict.value(forKey: "parameter12")!, forKey: "parameter12" as NSCopying)
-        }
-        if dict.value(forKey: "parameter13") != nil {
-            restore.setObject(dict.value(forKey: "parameter13")!, forKey: "parameter13" as NSCopying)
-        }
-        if dict.value(forKey: "parameter14") != nil {
-            restore.setObject(dict.value(forKey: "parameter14")!, forKey: "parameter14" as NSCopying)
-        }
-        if dict.value(forKey: "rsyncdaemon") != nil {
-            restore.setObject(dict.value(forKey: "rsyncdaemon")!, forKey: "rsyncdaemon" as NSCopying)
-        }
-        if dict.value(forKey: "sshport") != nil {
-            restore.setObject(dict.value(forKey: "sshport")!, forKey: "sshport" as NSCopying)
-        }
-        return restore
-    }
-
     // Writing configuration to persistent store
     // Configuration is [NSDictionary]
     private func writeToStore (_ array: [NSDictionary]) {

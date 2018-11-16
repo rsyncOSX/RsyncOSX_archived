@@ -187,7 +187,6 @@ final class RsyncParametersProcess {
     }
 
     func argumentsVerify(_ config: Configuration, forDisplay: Bool) -> [String] {
-        guard config.task != "restore" else { return [] }
         self.localCatalog = config.localCatalog
         self.remoteargs(config)
         self.setParameters1To6(config, dryRun: true, forDisplay: forDisplay, verify: true)

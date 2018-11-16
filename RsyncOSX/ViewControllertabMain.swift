@@ -486,8 +486,8 @@ class ViewControllertabMain: NSViewController, ReloadTable, Deselect, Coloractiv
         }
         guard self.index != nil else { return }
         guard self.configurations!.getConfigurations()[self.index!].task == ViewControllerReference.shared.backup ||
-            self.configurations!.getConfigurations()[self.index!].task == ViewControllerReference.shared.snapshot ||
-            self.configurations!.getConfigurations()[self.index!].task == "restore" else {
+            self.configurations!.getConfigurations()[self.index!].task == ViewControllerReference.shared.snapshot
+            else {
                 self.info(num: 6)
                 return
         }

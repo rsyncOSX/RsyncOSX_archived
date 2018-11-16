@@ -452,7 +452,9 @@ class Configurations: ReloadTable, SetSchedules {
                 "daysID": self.configurations![i].dayssincelastbackup ?? "",
                 "snapCellID": self.configurations![i].snapshotnum ?? ""
             ]
-            data.append(row)
+            if self.configurations![i].task != "restore" {
+                data.append(row)
+            }
         }
         self.configurationsDataSource = data
     }
