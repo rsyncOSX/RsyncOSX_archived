@@ -51,11 +51,6 @@ final class RemoteNumbers {
         return NumberFormatter.localizedString(from: NSNumber(value: avail), number: NumberFormatter.Style.decimal)
     }
 
-    func getcapacity() -> String {
-        let capacity = (self.capacity1kblocks ?? 0/1024)/1024
-        return NumberFormatter.localizedString(from: NSNumber(value: capacity), number: NumberFormatter.Style.decimal)
-    }
-
     func getpercentavaliable() -> String {
          return String(format: "%.2f", self.percentavaliable ?? 0)
     }

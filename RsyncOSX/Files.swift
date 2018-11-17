@@ -85,21 +85,6 @@ class Files: Reportfileerror {
         }
     }
 
-    // Function for returning directorys in path as array of URLs
-    func getDirectorysURLs() -> [URL]? {
-        var array: [URL]?
-        if let filePath = self.rootpath {
-            if let fileURLs = self.getfileURLs(path: filePath) {
-                array = [URL]()
-                for i in 0 ..< fileURLs.count where fileURLs[i].hasDirectoryPath {
-                    array!.append(fileURLs[i])
-                }
-                return array
-            }
-        }
-        return nil
-    }
-
     // Function for returning files in path as array of URLs
     func getFilesURLs() -> [URL]? {
         var array: [URL]?

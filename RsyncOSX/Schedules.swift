@@ -174,29 +174,6 @@ class Schedules: ScheduleWriteLoggData {
         }
     }
 
-    // Check if hiddenID is in Scheduled tasks
-    func hiddenIDinSchedule(_ hiddenID: Int) -> Bool {
-        let result = self.schedules!.filter({return ($0.hiddenID == hiddenID && $0.dateStop != nil)})
-        if result.isEmpty {
-            return false
-        } else {
-            return true
-        }
-    }
-
-    // Returning the set of executed tasks for å schedule.
-    // Used for recalcutlate the parent key when task change schedule
-    // from active to "stopped"
-    private func getScheduleExecuted(_ hiddenID: Int) -> [NSMutableDictionary]? {
-        var result = self.schedules!.filter({return ($0.hiddenID == hiddenID) && ($0.schedule == "stopped")})
-        if result.count > 0 {
-            let schedule = result.removeFirst()
-            return schedule.logrecords
-        } else {
-            return nil
-        }
-    }
-
     // Function for reading all jobs for schedule and all history of past executions.
     // Schedules are stored in self.schedules. Schedules are sorted after hiddenID.
     private func readschedules() {

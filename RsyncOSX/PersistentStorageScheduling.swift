@@ -53,29 +53,6 @@ final class PersistentStorageScheduling: Readwritefiles, SetSchedules {
         }
     }
 
-    // Saving not deleted schedule records to persistent store
-    // Deleted Schedule by hiddenID
-    func savescheduleDeletedRecordsToFile (_ hiddenID: Int) {
-        var array = [NSDictionary]()
-        let Schedule = self.schedules!.getSchedule()
-        for i in 0 ..< Schedule.count {
-            let schedule = Schedule[i]
-            if schedule.delete == nil && schedule.hiddenID != hiddenID {
-                let dict: NSMutableDictionary = [
-                    "hiddenID": schedule.hiddenID,
-                    "dateStart": schedule.dateStart,
-                    "schedule": schedule.schedule,
-                    "executed": schedule.logrecords]
-                if schedule.dateStop != nil {
-                    dict.setValue(schedule.dateStop, forKey: "dateStop")
-                }
-                array.append(dict)
-            }
-        }
-        // Write array to persistent store
-        self.writeToStore(array)
-    }
-
     // Writing schedules to persistent store
     // Schedule is [NSDictionary]
     private func writeToStore (_ array: [NSDictionary]) {

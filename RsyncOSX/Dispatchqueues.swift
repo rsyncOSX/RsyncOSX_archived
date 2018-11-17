@@ -15,15 +15,7 @@ var globalMainQueue: DispatchQueue {
 var globalBackgroundQueue: DispatchQueue {
     return DispatchQueue.global(qos: .background)
 }
-var globalUserInitiatedQueue: DispatchQueue {
-    return DispatchQueue.global(qos: .userInitiated)
-}
-var globalUtilityQueue: DispatchQueue {
-    return DispatchQueue.global(qos: .utility)
-}
-var globalUserInteractiveQueue: DispatchQueue {
-    return DispatchQueue.global(qos: .userInteractive)
-}
+
 var globalDefaultQueue: DispatchQueue {
     return DispatchQueue.global(qos: .default)
 }

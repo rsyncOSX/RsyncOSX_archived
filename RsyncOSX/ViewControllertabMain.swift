@@ -88,7 +88,6 @@ class ViewControllertabMain: NSViewController, ReloadTable, Deselect, Coloractiv
     var outputprocess: OutputProcess?
     // Dynamic view of output
     var dynamicappend: Bool = false
-    weak var dynamicreloadoutputDelegate: Reloadandrefresh?
     // HiddenID task, set when row is selected
     var hiddenID: Int?
     // Reference to Schedules object

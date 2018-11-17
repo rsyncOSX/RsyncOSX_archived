@@ -31,14 +31,4 @@ public struct Alerts {
         }
         return false
     }
-
-    public static func dialogOK(_ question: String, text: String) {
-        let myPopup: NSAlert = NSAlert()
-        myPopup.messageText = question
-        myPopup.informativeText = text
-        myPopup.alertStyle = NSAlert.Style.informational
-        myPopup.addButton(withTitle: "OK")
-        _ = myPopup.runModal()
-    }
-
 }

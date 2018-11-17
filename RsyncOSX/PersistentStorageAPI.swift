@@ -86,24 +86,6 @@ final class PersistentStorageAPI: SetConfigurations, SetSchedules, NextTask {
         }
     }
 
-    // Reading and writing scheduling data and results of executions.
-    // StoreAPI : API to class persistentStorescheduling.
-    // Readig schedules only (not sorted and expanden)
-    // Sorted and expanded are only stored in memory
-    func getScheduleonly () -> [ConfigurationSchedule] {
-        let read = PersistentStorageScheduling(profile: self.profile)
-        if read.readSchedulesFromPermanentStore() != nil {
-            var schedule = [ConfigurationSchedule]()
-            for dict in read.readSchedulesFromPermanentStore()! {
-                let conf = ConfigurationSchedule(dictionary: dict, log: nil, nolog: false)
-                schedule.append(conf)
-            }
-            return schedule
-        } else {
-            return []
-        }
-    }
-
     // USERCONFIG
 
     // Saving user configuration

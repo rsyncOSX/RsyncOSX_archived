@@ -14,8 +14,6 @@ class ViewControllerCopyFilesSource: NSViewController, SetConfigurations, SetDis
     @IBOutlet weak var mainTableView: NSTableView!
     @IBOutlet weak var selectButton: NSButton!
 
-    weak var setIndexDelegate: ViewControllerCopyFiles?
-    weak var getSourceDelegateCopyFiles: ViewControllerCopyFiles?
     weak var getSourceDelegateSsh: ViewControllerSsh?
     weak var getSourceDelegateSnapshots: ViewControllerSnapshots?
     private var index: Int?

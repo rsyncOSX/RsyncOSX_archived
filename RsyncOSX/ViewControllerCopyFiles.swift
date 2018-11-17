@@ -10,10 +10,6 @@
 import Foundation
 import Cocoa
 
-protocol SetIndex: class {
-    func setIndex(index: Int)
-}
-
 protocol GetSource: class {
     func getSource(index: Int)
 }

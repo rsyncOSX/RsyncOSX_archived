@@ -17,7 +17,6 @@ enum Enumscopyfiles {
 
 final class CopyFileArguments: ProcessArguments {
 
-    private var file: String?
     private var arguments: [String]?
     private var argDisplay: String?
     private var command: String?

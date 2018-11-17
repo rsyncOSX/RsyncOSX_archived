@@ -15,10 +15,6 @@ final class AllConfigurations: Sorting {
     var allconfigurationsasdictionary: [NSMutableDictionary]?
     private var allprofiles: [String]?
 
-    func getallconfigurations() -> [Configuration]? {
-        return self.allconfigurations
-    }
-
     private func readallconfigurations() {
         guard self.allprofiles != nil else { return }
         var configurations: [Configuration]?

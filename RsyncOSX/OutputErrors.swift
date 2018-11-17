@@ -12,10 +12,6 @@ class OutputErrors {
 
     var output: [String]?
 
-    func getOutputCount () -> Int {
-        return self.output?.count ?? 0
-    }
-
     func getOutput () -> [String]? {
         return self.output
     }
