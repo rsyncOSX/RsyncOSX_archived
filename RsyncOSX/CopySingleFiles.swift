@@ -17,7 +17,6 @@ final class CopySingleFiles: SetConfigurations {
     private var command: String?
     var argumentsObject: CopyFileArguments?
     private var commandDisplay: String?
-    weak var progressDelegate: StartStopProgressIndicator?
     var process: CommandCopyFiles?
     var outputprocess: OutputProcess?
 

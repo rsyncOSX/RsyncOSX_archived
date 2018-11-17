@@ -13,7 +13,6 @@ import Cocoa
 final class BatchTask: SetSchedules, SetConfigurations {
 
     weak var closeviewerrorDelegate: CloseViewError?
-    weak var processupdateDelegate: UpdateProgress?
     var process: Process?
     var outputprocess: OutputProcess?
     var hiddenID: Int?
