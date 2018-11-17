@@ -22,7 +22,6 @@ final class RsyncParametersSingleFilesArguments: ProcessArguments {
     private var config: Configuration?
     private var args: [String]?
     private var command: String?
-    private var file: String?
     private var argDisplay: String?
 
     // Set parameters for rsync

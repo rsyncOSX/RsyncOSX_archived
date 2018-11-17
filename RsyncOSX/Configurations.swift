@@ -319,12 +319,6 @@ class Configurations: ReloadTable, SetSchedules {
         return self.batchQueue?.getbatchtaskstodocount() ?? 0
     }
 
-    /// Function is getting the updated batch data queue
-    /// - returns : reference to the batch data queue
-    func getupdatedbatchQueue() -> [NSMutableDictionary]? {
-        return self.batchQueue?.getbatchtaskstodo()
-    }
-
     func getbatchlist() -> [NSMutableDictionary]? {
         return self.batchQueue?.data
     }
@@ -405,14 +399,6 @@ class Configurations: ReloadTable, SetSchedules {
         guard self.configurations != nil else { return }
         let num = self.configurations![index].snapshotnum ?? 0
         self.configurations![index].snapshotnum  = num + 1
-    }
-
-    private func updatelinkcurrent(index: Int, outputprocess: OutputProcess?) {
-        let config = self.configurations![index]
-        var args: SnapshotCurrentArguments?
-        args = SnapshotCurrentArguments(config: config)
-        let updatecurrent = SnapshotCurrent(command: args!.getCommand(), arguments: args!.getArguments())
-        updatecurrent.executeProcess(outputprocess: outputprocess)
     }
 
     /// Function is reading all Configurations into memory from permanent store and

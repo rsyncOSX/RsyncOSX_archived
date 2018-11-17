@@ -18,7 +18,6 @@ final class GetRemoteFileListingsArguments: ProcessArguments {
     private var config: Configuration?
     private var args: [String]?
     private var command: String?
-    private var file: String?
 
     private func remotearguments(recursive: Bool) {
         if let config = self.config {

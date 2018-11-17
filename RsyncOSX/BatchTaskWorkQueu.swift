@@ -19,11 +19,6 @@ final class BatchTaskWorkQueu {
         return self.completed
     }
 
-    // Return data
-    func getbatchtaskstodo() -> [NSMutableDictionary] {
-        return self.data
-    }
-
     // Return the number of rows
     func getbatchtaskstodocount() -> Int {
         return self.data.count

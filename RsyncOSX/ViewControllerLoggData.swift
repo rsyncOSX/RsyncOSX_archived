@@ -24,7 +24,6 @@ class ViewControllerLoggData: NSViewController, SetConfigurations, SetSchedules,
     private var viewispresent: Bool = false
     private var sortedascendigdesending: Bool = true
     typealias Row = (Int, Int)
-    private var deletes: [Row]?
 
     @IBOutlet weak var scheduletable: NSTableView!
     @IBOutlet weak var search: NSSearchField!

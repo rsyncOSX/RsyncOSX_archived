@@ -23,9 +23,6 @@ final class ScpArgumentsSsh: SetConfigurations {
     private var config: Configuration?
     private var args: [String]?
     private var command: String?
-    private var file: String?
-    private var stringArray: [String]?
-
     private var remoteRsaPubkeyString: String = ".ssh/authorized_keys"
     private var remoteDsaPubkeyString: String = ".ssh/authorized_keys2"
 

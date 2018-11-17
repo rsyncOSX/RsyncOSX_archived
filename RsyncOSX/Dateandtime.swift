@@ -21,27 +21,10 @@ final class Dateandtime {
 
     // Calculation of time to a spesific date
     // Used in view of all tasks
-    // Returns time in minutes
-    func timeDoubleMinutes (_ startdate: Date, enddate: Date?) -> Double {
-        let seconds: Double = self.seconds(startdate, enddate: enddate)
-        let (_, minf) = modf (seconds / 3600)
-        let (min, _) = modf (60 * minf)
-        return min
-    }
-
-    // Calculation of time to a spesific date
-    // Used in view of all tasks
     // Returns time in seconds
     func timeDoubleSeconds (_ startdate: Date, enddate: Date?) -> Double {
         let seconds: Double = self.seconds(startdate, enddate: enddate)
         return seconds
-    }
-
-    // Returns number of hours between start and stop date
-    func timehourInt(_ startdate: Date, enddate: Date?) -> Int {
-        let seconds: Double = self.seconds(startdate, enddate: enddate)
-        let (hr, _) = modf (seconds / 3600)
-        return Int(hr)
     }
 
     // Calculation of time to a spesific date

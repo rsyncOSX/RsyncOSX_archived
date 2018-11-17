@@ -12,12 +12,10 @@ import Cocoa
 class ScheduleSortedAndExpand: SetConfigurations, SetSchedules {
 
     // Reference to main View
-    private var vctabmain: NSViewController?
     private var schedulesNSDictionary: [NSDictionary]?
     private var scheduleConfiguration: [ConfigurationSchedule]?
     private var expandedData = [NSDictionary]()
     private var sortedschedules: [NSDictionary]?
-    private var scheduleInProgress: Bool = false
     private var dateandtime: Dateandtime?
 
     // First job to execute. Job is first element in
@@ -28,11 +26,6 @@ class ScheduleSortedAndExpand: SetConfigurations, SetSchedules {
             return nil
         }
         return self.sortedschedules![0]
-    }
-
-    // Returns reference to all sorted and expanded schedules
-    func getsortedAndExpandedScheduleData() -> [NSDictionary]? {
-        return self.sortedschedules
     }
 
     // Calculate daily schedules

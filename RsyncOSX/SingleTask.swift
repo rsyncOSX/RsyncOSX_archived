@@ -41,9 +41,7 @@ final class SingleTask: SetSchedules, SetConfigurations {
     private var index: Int?
     var outputprocess: OutputProcess?
     private var maxcount: Int = 0
-    private var hiddenID: Int?
     private var workload: SingleTaskWorkQueu?
-    private var scheduledJobInProgress: Bool = false
     private var ready: Bool = true
 
     func executeSingleTask() {
