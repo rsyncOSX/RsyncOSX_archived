@@ -67,7 +67,7 @@ In RsyncOSX select [user configuration](https://rsyncosx.github.io/UserConfigura
 
 #### SwiftLint
 
-As part of this version of RsyncOSX I am using [SwiftLint](https://github.com/realm/SwiftLint) as tool for writing more readable code. Adapting RsyncOSX to SwiftLint rules will take some time. There are about 130 classes with 15,800 lines of code in RsyncOSX (too many?).
+As part of this version of RsyncOSX I am using [SwiftLint](https://github.com/realm/SwiftLint) as tool for writing more readable code. Adapting RsyncOSX to SwiftLint rules will take some time. There are about 125 classes with 15,000 lines of code in RsyncOSX (too many?).
 
 ### Compile
 
