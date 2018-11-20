@@ -13,8 +13,7 @@ import Foundation
 // when the job discover (observs) the termination of the process.
 
 class ExecuteTaskTimer: Operation {
-
     override func main() {
-        _ = ExecuteTaskDispatch()
+        _ = ExecuteScheduledTask()
     }
 }
