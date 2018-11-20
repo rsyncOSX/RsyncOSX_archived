@@ -2,7 +2,6 @@
 //  Created by Thomas Evensen on 20/01/2017.
 //  Copyright © 2017 Thomas Evensen. All rights reserved.
 //
-//  swiftlint:disable line_length
 
 import Foundation
 
@@ -13,7 +12,7 @@ import Foundation
 // is set in the static object. The finalize object is invoked
 // when the job discover (observs) the termination of the process.
 
-class ExecuteTaskTimer: Operation, SetSchedules, SetConfigurations, SetScheduledTask {
+class ExecuteTaskTimer: Operation {
 
     override func main() {
         _ = ExecuteTaskDispatch()
