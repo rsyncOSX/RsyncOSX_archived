@@ -55,7 +55,6 @@ protocol VcMain {
     var newVersionViewController: NSViewController? { get }
     var viewControllerProfile: NSViewController? { get }
     var editViewController: NSViewController? { get }
-    var viewControllerScheduledBackupInWork: NSViewController? { get }
     var viewControllerAbout: NSViewController? { get }
     var viewControllerScheduleDetails: NSViewController? { get }
     var viewControllerInformationLocalRemote: NSViewController? { get }
@@ -127,13 +126,6 @@ extension VcMain {
     // self.presentViewControllerAsSheet(self.viewControllerProfile)
     var viewControllerProfile: NSViewController? {
         return (self.storyboard!.instantiateController(withIdentifier: NSStoryboard.SceneIdentifier(rawValue: "ProfileID"))
-            as? NSViewController)!
-    }
-
-    // ScheduledBackupInWorkID
-    // self.presentViewControllerAsSheet(self.viewControllerScheduledBackupInWork)
-    var viewControllerScheduledBackupInWork: NSViewController? {
-        return (self.storyboard!.instantiateController(withIdentifier: NSStoryboard.SceneIdentifier(rawValue: "ScheduledBackupInWorkID"))
             as? NSViewController)!
     }
 
@@ -323,7 +315,7 @@ extension Coloractivetask {
     }
 
     func color() -> Int? {
-        if let dict: NSDictionary = ViewControllerReference.shared.scheduledTask {
+        if let dict: NSDictionary = ViewControllerReference.shared.quickbackuptask {
             if let hiddenID: Int = dict.value(forKey: "hiddenID") as? Int {
                 return hiddenID
             } else {

@@ -21,14 +21,6 @@ final class Dateandtime {
 
     // Calculation of time to a spesific date
     // Used in view of all tasks
-    // Returns time in seconds
-    func timeDoubleSeconds (_ startdate: Date, enddate: Date?) -> Double {
-        let seconds: Double = self.seconds(startdate, enddate: enddate)
-        return seconds
-    }
-
-    // Calculation of time to a spesific date
-    // Used in view of all tasks
     func timeString (_ startdate: Date, enddate: Date?) -> String {
         var result: String?
         let seconds: Double = self.seconds(startdate, enddate: enddate)

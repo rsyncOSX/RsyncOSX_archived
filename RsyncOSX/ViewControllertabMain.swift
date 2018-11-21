@@ -349,17 +349,15 @@ class ViewControllertabMain: NSViewController, ReloadTable, Deselect, Coloractiv
     }
 
     func executetasknow() {
+        guard self.index != nil  else { return }
         self.processtermination = .singlequicktask
-        let now: Date = Date()
-        let dateformatter = Dateandtime().setDateformat()
-        let task: NSDictionary = [
-            "start": now,
-            "hiddenID": self.hiddenID!,
-            "dateStart": dateformatter.date(from: "01 Jan 1900 00:00")!,
-            "schedule": "manuel"]
-        ViewControllerReference.shared.scheduledTask = task
-        self.configurations!.allowNotifyinMain = false
-        _ = OperationFactory()
+        self.setinfonextaction(info: "Execute", color: .gray)
+        self.working.startAnimation(nil)
+        let arguments = self.configurations!.arguments4rsync(index: self.index!, argtype: .arg)
+        self.outputprocess = OutputProcess()
+        let process = Rsync(arguments: arguments)
+        process.executeProcess(outputprocess: self.outputprocess)
+        self.process = process.getProcess()
     }
 
     func automaticbackup() {
@@ -392,7 +390,6 @@ class ViewControllertabMain: NSViewController, ReloadTable, Deselect, Coloractiv
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.sleepandwakenotifications()
         self.mainTableView.delegate = self
         self.mainTableView.dataSource = self
         self.working.usesThreadedAnimation = true
@@ -406,7 +403,6 @@ class ViewControllertabMain: NSViewController, ReloadTable, Deselect, Coloractiv
         // configurations and schedules
         self.createandreloadconfigurations()
         self.createandreloadschedules()
-        self.startfirstcheduledtask()
     }
 
     override func viewDidAppear() {
@@ -589,7 +585,7 @@ class ViewControllertabMain: NSViewController, ReloadTable, Deselect, Coloractiv
             self.schedules = Schedules(profile: nil)
         }
         self.schedulesortedandexpanded = ScheduleSortedAndExpand()
-        ViewControllerReference.shared.scheduledTask = self.schedulesortedandexpanded?.firstscheduledtask()
+        ViewControllerReference.shared.quickbackuptask = self.schedulesortedandexpanded?.firstscheduledtask()
     }
 
     func createandreloadconfigurations() {
@@ -607,23 +603,5 @@ class ViewControllertabMain: NSViewController, ReloadTable, Deselect, Coloractiv
         globalMainQueue.async(execute: { () -> Void in
             self.mainTableView.reloadData()
         })
-    }
-
-    @objc func onWakeNote(note: NSNotification) {
-        self.schedulesortedandexpanded = ScheduleSortedAndExpand()
-        ViewControllerReference.shared.scheduledTask = self.schedulesortedandexpanded?.firstscheduledtask()
-        self.startfirstcheduledtask()
-    }
-
-    @objc func onSleepNote(note: NSNotification) {
-        ViewControllerReference.shared.dispatchTaskWaiting?.cancel()
-        ViewControllerReference.shared.timerTaskWaiting?.invalidate()
-    }
-
-    private func sleepandwakenotifications() {
-        NSWorkspace.shared.notificationCenter.addObserver( self, selector: #selector(onWakeNote(note:)),
-                                                           name: NSWorkspace.didWakeNotification, object: nil)
-        NSWorkspace.shared.notificationCenter.addObserver( self, selector: #selector(onSleepNote(note:)),
-                                                           name: NSWorkspace.willSleepNotification, object: nil)
     }
 }

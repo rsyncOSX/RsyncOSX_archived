@@ -43,10 +43,9 @@ class ViewControllerReference {
     }
 
     // Reference to waiting tasks, required for cancel task
-    var timerTaskWaiting: Timer?
     var dispatchTaskWaiting: DispatchWorkItem?
     // Temporary storage of the first scheduled task
-    var scheduledTask: NSDictionary?
+    var quickbackuptask: NSDictionary?
     // Download URL if new version is avaliable
     var URLnewVersion: String?
     // True if version 3.2.1 of rsync in /usr/local/bin
@@ -63,7 +62,7 @@ class ViewControllerReference {
     var operation: OperationObject = .dispatch
     // Reference to the Operation object
     // Reference is set in when Scheduled task is executed
-    var completeoperation: CompleteScheduledOperation?
+    var completeoperation: CompleteQuickbackupOperation?
     // rsync command
     var rsync: String = "rsync"
     var usrbinrsync: String = "/usr/bin/rsync"

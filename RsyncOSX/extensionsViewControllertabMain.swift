@@ -161,8 +161,6 @@ extension ViewControllertabMain: NewProfile {
         self.reloadtable(vcontroller: .vctabschedule)
         self.deselectrowtable(vcontroller: .vctabschedule)
         self.reloadtable(vcontroller: .vcsnapshot)
-        // We have to start any Scheduled process again - if any
-        self.startfirstcheduledtask()
     }
 
     func enableProfileMenu() {
@@ -170,49 +168,6 @@ extension ViewControllertabMain: NewProfile {
         globalMainQueue.async(execute: { () -> Void in
             self.displayProfile()
         })
-    }
-}
-
-// A scheduled task is executed
-extension ViewControllertabMain: ScheduledTaskWorking {
-    func start() {
-        globalMainQueue.async(execute: {() -> Void in
-            self.scheduledJobInProgress = true
-            if self.processtermination == .singlequicktask {
-                self.scheduledJobworking.startAnimation(nil)
-            }
-            self.scheduleJobworkinglabel.isHidden = false
-        })
-    }
-
-    func completed() {
-        globalMainQueue.async(execute: {() -> Void in
-            self.scheduledJobInProgress = false
-            self.info(num: 1)
-            if self.processtermination == .singlequicktask {
-                self.scheduledJobworking.stopAnimation(nil)
-            }
-            self.scheduleJobworkinglabel.isHidden = true
-        })
-    }
-
-    func notifyScheduledTask(config: Configuration?) {
-        if self.configurations!.allowNotifyinMain {
-            if config == nil {
-                globalMainQueue.async(execute: {() -> Void in
-                    Alerts.showInfo("Scheduled backup DID not execute?")
-                })
-            } else {
-                if self.processtermination == nil {
-                    self.processtermination = .singlequicktask
-                }
-                if self.processtermination! != .quicktask {
-                    globalMainQueue.async(execute: {() -> Void in
-                        self.presentViewControllerAsSheet(self.viewControllerScheduledBackupInWork!)
-                    })
-                }
-            }
-        }
     }
 }
 
@@ -311,12 +266,9 @@ extension ViewControllertabMain: UpdateProgress {
             processterminationDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vcquickbackup) as? ViewControllerQuickBackup
             processterminationDelegate?.processTermination()
         case .singlequicktask:
-            guard ViewControllerReference.shared.completeoperation != nil else { return }
-            ViewControllerReference.shared.completeoperation!.finalizeScheduledJob(outputprocess: self.outputprocess)
-            // After logging is done set reference to object = nil
-            ViewControllerReference.shared.completeoperation = nil
-            // Kick off next task
-            self.startfirstcheduledtask()
+            self.setinfonextaction(info: "", color: .gray)
+            self.working.stopAnimation(nil)
+            self.configurations!.setCurrentDateonConfiguration(index: self.index!, outputprocess: self.outputprocess)
         case .remoteinfotask:
             guard self.configurations!.remoteinfotaskworkqueue != nil else { return }
             self.configurations!.remoteinfotaskworkqueue?.processTermination()
@@ -626,7 +578,7 @@ extension ViewControllertabMain: GetSchedulesObject {
         self.schedules = nil
         self.schedules = Schedules(profile: profile)
         self.schedulesortedandexpanded = ScheduleSortedAndExpand()
-        ViewControllerReference.shared.scheduledTask = self.schedulesortedandexpanded?.firstscheduledtask()
+        ViewControllerReference.shared.quickbackuptask = self.schedulesortedandexpanded?.firstscheduledtask()
         return self.schedules
     }
 }
@@ -667,15 +619,6 @@ extension ViewControllertabMain: Sendprocessreference {
     }
 }
 
-extension ViewControllertabMain: StartNextTask {
-    func startfirstcheduledtask() {
-        // Cancel any schedeuled tasks first
-        ViewControllerReference.shared.timerTaskWaiting?.invalidate()
-        ViewControllerReference.shared.dispatchTaskWaiting?.cancel()
-        _ = OperationFactory(factory: self.configurations!.operation)
-    }
-}
-
 extension ViewControllertabMain: SetRemoteInfo {
     func getremoteinfo() -> RemoteInfoTaskWorkQueue? {
         return self.configurations!.remoteinfotaskworkqueue
@@ -711,7 +654,6 @@ extension ViewControllertabMain: Count {
 extension ViewControllertabMain: Reloadsortedandrefresh {
     func reloadsortedandrefreshtabledata() {
         self.schedulesortedandexpanded = ScheduleSortedAndExpand()
-        self.startfirstcheduledtask()
         globalMainQueue.async(execute: { () -> Void in
             self.mainTableView.reloadData()
         })
@@ -747,12 +689,6 @@ extension ViewControllertabMain: SetLocalRemoteInfo {
         } else {
             self.configurations?.localremote!.append(info!)
         }
-    }
-}
-
-extension ViewControllertabMain: GetsortedanexpandedObject {
-    func getsortedanexpandedObject() -> ScheduleSortedAndExpand? {
-        return self.schedulesortedandexpanded
     }
 }
 
