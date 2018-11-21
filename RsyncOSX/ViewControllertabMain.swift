@@ -349,17 +349,15 @@ class ViewControllertabMain: NSViewController, ReloadTable, Deselect, Coloractiv
     }
 
     func executetasknow() {
+        guard self.index != nil  else { return }
         self.processtermination = .singlequicktask
-        let now: Date = Date()
-        let dateformatter = Dateandtime().setDateformat()
-        let task: NSDictionary = [
-            "start": now,
-            "hiddenID": self.hiddenID!,
-            "dateStart": dateformatter.date(from: "01 Jan 1900 00:00")!,
-            "schedule": "manuel"]
-        ViewControllerReference.shared.scheduledTask = task
-        self.configurations!.allowNotifyinMain = false
-        _ = OperationFactory()
+        self.setinfonextaction(info: "Execute", color: .gray)
+        self.working.startAnimation(nil)
+        let arguments = self.configurations!.arguments4rsync(index: self.index!, argtype: .arg)
+        self.outputprocess = OutputProcess()
+        let process = Rsync(arguments: arguments)
+        process.executeProcess(outputprocess: self.outputprocess)
+        self.process = process.getProcess()
     }
 
     func automaticbackup() {
