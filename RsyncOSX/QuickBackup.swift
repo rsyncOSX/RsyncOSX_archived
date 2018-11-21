@@ -67,7 +67,7 @@ class QuickBackup: SetConfigurations {
             "hiddenID": hiddenID,
             "dateStart": dateformatter.date(from: "01 Jan 1900 00:00")!,
             "schedule": "manuel"]
-        ViewControllerReference.shared.scheduledTask = task
+        ViewControllerReference.shared.quickbackuptask = task
         _ = OperationFactory()
     }
 

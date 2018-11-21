@@ -323,7 +323,7 @@ extension Coloractivetask {
     }
 
     func color() -> Int? {
-        if let dict: NSDictionary = ViewControllerReference.shared.scheduledTask {
+        if let dict: NSDictionary = ViewControllerReference.shared.quickbackuptask {
             if let hiddenID: Int = dict.value(forKey: "hiddenID") as? Int {
                 return hiddenID
             } else {

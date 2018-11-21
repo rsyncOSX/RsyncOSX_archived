@@ -13,27 +13,20 @@ import Foundation
 // is set in the static object. The finalize object is invoked
 // when the job discover (observs) the termination of the process.
 
-final class ExecuteScheduledTask: SetSchedules, SetConfigurations, SetScheduledTask {
+final class ExecuteScheduledTask: SetSchedules, SetConfigurations {
 
     let outputprocess = OutputProcess()
     var arguments: [String]?
     var config: Configuration?
 
     private func executetask() {
-        // Get the first job of the queue
-        if let dict: NSDictionary = ViewControllerReference.shared.scheduledTask {
+        if let dict: NSDictionary = ViewControllerReference.shared.quickbackuptask {
             if let hiddenID: Int = dict.value(forKey: "hiddenID") as? Int {
                 let getconfigurations: [Configuration]? = configurations?.getConfigurations()
                 guard getconfigurations != nil else { return }
                 let configArray = getconfigurations!.filter({return ($0.hiddenID == hiddenID)})
-                guard configArray.count > 0 else {
-                    self.notify(config: nil)
-                    return
-                }
+                guard configArray.count > 0 else { return }
                 config = configArray[0]
-                // Inform and notify
-                self.scheduleJob?.start()
-                self.notify(config: config)
                 if hiddenID >= 0 && config != nil {
                     arguments = RsyncParametersProcess().argumentsRsync(config!, dryRun: false, forDisplay: false)
                     // Setting reference to finalize the job, finalize job is done when rsynctask ends (in process termination)
@@ -49,11 +42,7 @@ final class ExecuteScheduledTask: SetSchedules, SetConfigurations, SetScheduledT
                         }
                     })
                 }
-            } else {
-                _ = Notifications().showNotification(message: "Scheduled backup did not execute")
             }
-        } else {
-            _ = Notifications().showNotification(message: "Scheduled backup did not execute")
         }
     }
 

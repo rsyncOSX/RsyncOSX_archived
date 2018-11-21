@@ -11,7 +11,7 @@ import Foundation
 
 // Class for completion of Operation objects when Process object termination.
 // The object does also kicks of next scheduled job by setting new waiter time.
-final class CompleteScheduledOperation: SetConfigurations, SetSchedules, SetScheduledTask {
+final class CompleteScheduledOperation: SetConfigurations, SetSchedules {
 
     weak var startTimerDelegate: StartTimer?
     private var date: Date?
@@ -33,7 +33,6 @@ final class CompleteScheduledOperation: SetConfigurations, SetSchedules, SetSche
         self.schedules!.addresultschedule(self.hiddenID!, dateStart: dateStartstring, result: numberstring, date: datestring, schedule: schedule!)
         // Writing timestamp to configuration
         self.configurations!.setCurrentDateonConfigurationQuickbackup(index: self.index!, outputprocess: outputprocess)
-        self.scheduleJob?.completed()
         self.startTimerDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabschedule) as? ViewControllertabSchedule
         self.startTimerDelegate?.startTimerNextJob()
         self.schedulesDelegate?.reloadschedulesobject()

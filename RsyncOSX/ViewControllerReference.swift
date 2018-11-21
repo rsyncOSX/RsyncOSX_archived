@@ -43,10 +43,9 @@ class ViewControllerReference {
     }
 
     // Reference to waiting tasks, required for cancel task
-    var timerTaskWaiting: Timer?
     var dispatchTaskWaiting: DispatchWorkItem?
     // Temporary storage of the first scheduled task
-    var scheduledTask: NSDictionary?
+    var quickbackuptask: NSDictionary?
     // Download URL if new version is avaliable
     var URLnewVersion: String?
     // True if version 3.2.1 of rsync in /usr/local/bin

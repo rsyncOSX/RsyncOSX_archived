@@ -22,7 +22,7 @@ class ScheduleSortedAndExpand: SetConfigurations, SetSchedules {
     func firstscheduledtask() -> NSDictionary? {
         guard self.sortedschedules != nil else { return nil}
         guard self.sortedschedules!.count > 0 else {
-            ViewControllerReference.shared.scheduledTask = nil
+            ViewControllerReference.shared.quickbackuptask = nil
             return nil
         }
         return self.sortedschedules![0]
