@@ -692,13 +692,6 @@ extension ViewControllertabMain: SetLocalRemoteInfo {
     }
 }
 
-/*
-extension ViewControllertabMain: GetsortedanexpandedObject {
-    func getsortedanexpandedObject() -> ScheduleSortedAndExpand? {
-        return self.schedulesortedandexpanded
-    }
-}
-*/
 extension ViewControllertabMain: Allerrors {
     func allerrors(outputprocess: OutputProcess?) {
         globalMainQueue.async(execute: { () -> Void in

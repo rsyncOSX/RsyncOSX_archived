@@ -11,7 +11,7 @@ import Foundation
 
 // Class for completion of Operation objects when Process object termination.
 // The object does also kicks of next scheduled job by setting new waiter time.
-final class CompleteScheduledOperation: SetConfigurations, SetSchedules {
+final class CompleteQuickbackupOperation: SetConfigurations, SetSchedules {
 
     weak var startTimerDelegate: StartTimer?
     private var date: Date?

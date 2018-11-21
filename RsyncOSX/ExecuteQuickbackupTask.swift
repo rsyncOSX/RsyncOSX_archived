@@ -13,7 +13,7 @@ import Foundation
 // is set in the static object. The finalize object is invoked
 // when the job discover (observs) the termination of the process.
 
-final class ExecuteScheduledTask: SetSchedules, SetConfigurations {
+final class ExecuteQuickbackupTask: SetSchedules, SetConfigurations {
 
     let outputprocess = OutputProcess()
     var arguments: [String]?
@@ -30,7 +30,7 @@ final class ExecuteScheduledTask: SetSchedules, SetConfigurations {
                 if hiddenID >= 0 && config != nil {
                     arguments = RsyncParametersProcess().argumentsRsync(config!, dryRun: false, forDisplay: false)
                     // Setting reference to finalize the job, finalize job is done when rsynctask ends (in process termination)
-                    ViewControllerReference.shared.completeoperation = CompleteScheduledOperation(dict: dict)
+                    ViewControllerReference.shared.completeoperation = CompleteQuickbackupOperation(dict: dict)
                     globalMainQueue.async(execute: {
                         if self.arguments != nil {
                             weak var sendprocess: Sendprocessreference?

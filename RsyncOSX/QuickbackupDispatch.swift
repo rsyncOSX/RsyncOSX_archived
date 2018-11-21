@@ -8,13 +8,13 @@
 
 import Foundation
 
-class ScheduleOperationDispatch: SetSchedules {
+class QuickbackupDispatch: SetSchedules {
 
     private var workitem: DispatchWorkItem?
 
     private func dispatchtask(_ seconds: Int) {
         let scheduledtask = DispatchWorkItem { [weak self] in
-            _ = ExecuteScheduledTask()
+            _ = ExecuteQuickbackupTask()
         }
         self.workitem = scheduledtask
         DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(seconds), execute: scheduledtask)
@@ -25,5 +25,4 @@ class ScheduleOperationDispatch: SetSchedules {
         // Set reference to schedule for later cancel if any
         ViewControllerReference.shared.dispatchTaskWaiting = self.workitem
     }
-
 }

@@ -62,7 +62,7 @@ class ViewControllerReference {
     var operation: OperationObject = .dispatch
     // Reference to the Operation object
     // Reference is set in when Scheduled task is executed
-    var completeoperation: CompleteScheduledOperation?
+    var completeoperation: CompleteQuickbackupOperation?
     // rsync command
     var rsync: String = "rsync"
     var usrbinrsync: String = "/usr/bin/rsync"

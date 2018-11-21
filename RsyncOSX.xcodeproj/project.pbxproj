@@ -93,7 +93,7 @@
 		E932B2D52077B1E80057B8AE /* Combined.swift in Sources */ = {isa = PBXBuildFile; fileRef = E932B2D42077B1E80057B8AE /* Combined.swift */; };
 		E932B2D72077B3650057B8AE /* Rclone.swift in Sources */ = {isa = PBXBuildFile; fileRef = E932B2D62077B3650057B8AE /* Rclone.swift */; };
 		E933B6CD2196B30D0033D7D2 /* RemoteNumbers.swift in Sources */ = {isa = PBXBuildFile; fileRef = E933B6CC2196B30D0033D7D2 /* RemoteNumbers.swift */; };
-		E9374D2E1E329A5800CD3945 /* CompleteScheduledOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9374D2D1E329A5800CD3945 /* CompleteScheduledOperation.swift */; };
+		E9374D2E1E329A5800CD3945 /* CompleteQuickbackupOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9374D2D1E329A5800CD3945 /* CompleteQuickbackupOperation.swift */; };
 		E939EC4A20C048A000C47F91 /* extensionsViewControllertabMain.swift in Sources */ = {isa = PBXBuildFile; fileRef = E939EC4920C048A000C47F91 /* extensionsViewControllertabMain.swift */; };
 		E93A64842195E3BD0040B334 /* DuCommandSsh.swift in Sources */ = {isa = PBXBuildFile; fileRef = E93A64832195E3BD0040B334 /* DuCommandSsh.swift */; };
 		E9407BB9208AFB7C00A6780E /* ViewControllerEstimatingTasks.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9407BB8208AFB7C00A6780E /* ViewControllerEstimatingTasks.swift */; };
@@ -103,8 +103,8 @@
 		E943DC6A1FF9141D00E6B8B7 /* RemoteInfoTaskWorkQueue.swift in Sources */ = {isa = PBXBuildFile; fileRef = E943DC691FF9141D00E6B8B7 /* RemoteInfoTaskWorkQueue.swift */; };
 		E945D61420B736E9000E787B /* ViewControllerInformationLocalRemote.swift in Sources */ = {isa = PBXBuildFile; fileRef = E945D61320B736E9000E787B /* ViewControllerInformationLocalRemote.swift */; };
 		E94D2603205025790026D18F /* ViewControllerAllProfiles.swift in Sources */ = {isa = PBXBuildFile; fileRef = E94D2602205025790026D18F /* ViewControllerAllProfiles.swift */; };
-		E94D6E3221A5BBA400DDDB61 /* ScheduleOperationDispatch.swift in Sources */ = {isa = PBXBuildFile; fileRef = E94D6E2E21A5BBA300DDDB61 /* ScheduleOperationDispatch.swift */; };
-		E94D6E3321A5BBA400DDDB61 /* ExecuteScheduledTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = E94D6E2F21A5BBA400DDDB61 /* ExecuteScheduledTask.swift */; };
+		E94D6E3221A5BBA400DDDB61 /* QuickbackupDispatch.swift in Sources */ = {isa = PBXBuildFile; fileRef = E94D6E2E21A5BBA300DDDB61 /* QuickbackupDispatch.swift */; };
+		E94D6E3321A5BBA400DDDB61 /* ExecuteQuickbackupTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = E94D6E2F21A5BBA400DDDB61 /* ExecuteQuickbackupTask.swift */; };
 		E94F0708211D8FCC00B2C3D8 /* ViewControllerAllOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = E94F0707211D8FCC00B2C3D8 /* ViewControllerAllOutput.swift */; };
 		E9573549201BB83E00316257 /* SnapshotCommandDeleteCatalogs.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9573548201BB83E00316257 /* SnapshotCommandDeleteCatalogs.swift */; };
 		E957B1121F5F17220099947A /* ViewControllerReference.swift in Sources */ = {isa = PBXBuildFile; fileRef = E957B1111F5F17220099947A /* ViewControllerReference.swift */; };
@@ -234,7 +234,7 @@
 		E932B2D42077B1E80057B8AE /* Combined.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Combined.swift; sourceTree = "<group>"; };
 		E932B2D62077B3650057B8AE /* Rclone.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Rclone.swift; sourceTree = "<group>"; };
 		E933B6CC2196B30D0033D7D2 /* RemoteNumbers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteNumbers.swift; sourceTree = "<group>"; };
-		E9374D2D1E329A5800CD3945 /* CompleteScheduledOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CompleteScheduledOperation.swift; sourceTree = "<group>"; };
+		E9374D2D1E329A5800CD3945 /* CompleteQuickbackupOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CompleteQuickbackupOperation.swift; sourceTree = "<group>"; };
 		E939EC4920C048A000C47F91 /* extensionsViewControllertabMain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = extensionsViewControllertabMain.swift; sourceTree = "<group>"; };
 		E93A64832195E3BD0040B334 /* DuCommandSsh.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DuCommandSsh.swift; sourceTree = "<group>"; };
 		E9407BB8208AFB7C00A6780E /* ViewControllerEstimatingTasks.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerEstimatingTasks.swift; sourceTree = "<group>"; };
@@ -244,8 +244,8 @@
 		E943DC691FF9141D00E6B8B7 /* RemoteInfoTaskWorkQueue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteInfoTaskWorkQueue.swift; sourceTree = "<group>"; };
 		E945D61320B736E9000E787B /* ViewControllerInformationLocalRemote.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerInformationLocalRemote.swift; sourceTree = "<group>"; };
 		E94D2602205025790026D18F /* ViewControllerAllProfiles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerAllProfiles.swift; sourceTree = "<group>"; };
-		E94D6E2E21A5BBA300DDDB61 /* ScheduleOperationDispatch.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScheduleOperationDispatch.swift; sourceTree = "<group>"; };
-		E94D6E2F21A5BBA400DDDB61 /* ExecuteScheduledTask.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExecuteScheduledTask.swift; sourceTree = "<group>"; };
+		E94D6E2E21A5BBA300DDDB61 /* QuickbackupDispatch.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuickbackupDispatch.swift; sourceTree = "<group>"; };
+		E94D6E2F21A5BBA400DDDB61 /* ExecuteQuickbackupTask.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExecuteQuickbackupTask.swift; sourceTree = "<group>"; };
 		E94F0707211D8FCC00B2C3D8 /* ViewControllerAllOutput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerAllOutput.swift; sourceTree = "<group>"; };
 		E9573548201BB83E00316257 /* SnapshotCommandDeleteCatalogs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnapshotCommandDeleteCatalogs.swift; sourceTree = "<group>"; };
 		E957B1111F5F17220099947A /* ViewControllerReference.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerReference.swift; sourceTree = "<group>"; };
@@ -369,7 +369,7 @@
 				E99FC81F200FDE2A00477B1A /* Output */,
 				E9234FF91EB0680D00A4C550 /* UserProfiles */,
 				E9EC786F1EACE063001EED9B /* Ssh */,
-				E988FCBC1F9BCF0A00F21FB9 /* Quickbackuptasks */,
+				E988FCBC1F9BCF0A00F21FB9 /* QuickbackupOperation */,
 				A04492C41D65901400B3CE17 /* Utils */,
 				A091C6591D86A1F400278E74 /* CopyFiles */,
 				A05275DB1D6F6E2C00D8ECBE /* Execution */,
@@ -586,15 +586,15 @@
 			name = AllProfiles;
 			sourceTree = "<group>";
 		};
-		E988FCBC1F9BCF0A00F21FB9 /* Quickbackuptasks */ = {
+		E988FCBC1F9BCF0A00F21FB9 /* QuickbackupOperation */ = {
 			isa = PBXGroup;
 			children = (
 				E95AE70621A5B88A00B2420B /* OperationFactory.swift */,
-				E9374D2D1E329A5800CD3945 /* CompleteScheduledOperation.swift */,
-				E94D6E2F21A5BBA400DDDB61 /* ExecuteScheduledTask.swift */,
-				E94D6E2E21A5BBA300DDDB61 /* ScheduleOperationDispatch.swift */,
+				E9374D2D1E329A5800CD3945 /* CompleteQuickbackupOperation.swift */,
+				E94D6E2F21A5BBA400DDDB61 /* ExecuteQuickbackupTask.swift */,
+				E94D6E2E21A5BBA300DDDB61 /* QuickbackupDispatch.swift */,
 			);
-			name = Quickbackuptasks;
+			name = QuickbackupOperation;
 			sourceTree = "<group>";
 		};
 		E98BD0991FF8BF8400A00782 /* RemoteInformation */ = {
@@ -804,7 +804,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "if which swiftlint >/dev/null; then\nswiftlint\nelse\necho \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
+			shellScript = "if which swiftlint >/dev/null; then\nswiftlint\nelse\necho \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -825,7 +825,7 @@
 				A0041EEF1D7D4357002BF081 /* ScheduleSortedAndExpanded.swift in Sources */,
 				E9A8D81C1ED20AEB009648DE /* GetRemoteFileListingsArguments.swift in Sources */,
 				E9A63064202B425D00F1FFF1 /* Running.swift in Sources */,
-				E94D6E3221A5BBA400DDDB61 /* ScheduleOperationDispatch.swift in Sources */,
+				E94D6E3221A5BBA400DDDB61 /* QuickbackupDispatch.swift in Sources */,
 				E9F941651FC5FCC3005F2439 /* Logging.swift in Sources */,
 				E9614AD61F231AFC00CAE21A /* Verifyrsyncpath.swift in Sources */,
 				E97E3BA71F6256DB00411D0E /* Configurations.swift in Sources */,
@@ -875,7 +875,7 @@
 				E97C09A71EFAFBC400E86999 /* BatchTask.swift in Sources */,
 				E91B6E8A1FFA17B800A2231A /* ViewControllerRemoteInfo.swift in Sources */,
 				A00FE1A81D6A19CF00012089 /* ViewControllerNewConfigurations.swift in Sources */,
-				E9374D2E1E329A5800CD3945 /* CompleteScheduledOperation.swift in Sources */,
+				E9374D2E1E329A5800CD3945 /* CompleteQuickbackupOperation.swift in Sources */,
 				E914B7722131197B00FFE398 /* extensionsSchedules.swift in Sources */,
 				A0400C851D794EF1008A3949 /* ViewControllerNewVersion.swift in Sources */,
 				E98FA89E20654D02007F3ED1 /* RclonePersistentStorageAPI.swift in Sources */,
@@ -885,7 +885,7 @@
 				A0AA33811D6F926A00DF4C77 /* ViewControllerBatch.swift in Sources */,
 				E9F068EC1F27B7FB00DDF1A1 /* SingleTask.swift in Sources */,
 				A054F1A91D6D773E00D27688 /* ViewControllerInformation.swift in Sources */,
-				E94D6E3321A5BBA400DDDB61 /* ExecuteScheduledTask.swift in Sources */,
+				E94D6E3321A5BBA400DDDB61 /* ExecuteQuickbackupTask.swift in Sources */,
 				E9F4A0C220A9A7DE0019A9F6 /* AllSchedules.swift in Sources */,
 				A0430ADA1DAFFD3C00BBC106 /* SingleTaskWorkQueu.swift in Sources */,
 				E92A623B203D7B1C000B9300 /* Notifications.swift in Sources */,

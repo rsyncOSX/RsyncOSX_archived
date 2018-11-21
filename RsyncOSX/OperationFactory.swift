@@ -20,6 +20,6 @@ protocol Sendprocessreference: class {
 
 class OperationFactory {
     init() {
-        _ = ScheduleOperationDispatch(seconds: 0)
+        _ = QuickbackupDispatch(seconds: 0)
     }
 }
