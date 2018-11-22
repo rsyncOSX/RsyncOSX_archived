@@ -1,5 +1,5 @@
 //
-//  completeScheduledOperation.swift
+//  CompleteQuickbackupTask.swift
 //  RsyncOSX
 //
 //  Created by Thomas Evensen on 20/01/2017.
@@ -11,9 +11,8 @@ import Foundation
 
 // Class for completion of Operation objects when Process object termination.
 // The object does also kicks of next scheduled job by setting new waiter time.
-final class CompleteQuickbackupOperation: SetConfigurations, SetSchedules {
+final class CompleteQuickbackupTask: SetConfigurations, SetSchedules {
 
-    weak var startTimerDelegate: StartTimer?
     private var date: Date?
     private var dateStart: Date?
     private var dateformatter: DateFormatter?
@@ -31,10 +30,7 @@ final class CompleteQuickbackupOperation: SetConfigurations, SetSchedules {
         let number = Numbers(outputprocess: outputprocess)
         let numberstring = number.stats()
         self.schedules!.addresultschedule(self.hiddenID!, dateStart: dateStartstring, result: numberstring, date: datestring, schedule: schedule!)
-        // Writing timestamp to configuration
         self.configurations!.setCurrentDateonConfigurationQuickbackup(index: self.index!, outputprocess: outputprocess)
-        self.startTimerDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabschedule) as? ViewControllertabSchedule
-        self.startTimerDelegate?.startTimerNextJob()
         self.schedulesDelegate?.reloadschedulesobject()
     }
 

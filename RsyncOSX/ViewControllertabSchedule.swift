@@ -10,11 +10,6 @@
 import Foundation
 import Cocoa
 
-// Protocol for restarting timer
-protocol StartTimer: class {
-    func startTimerNextJob()
-}
-
 protocol SetProfileinfo: class {
     func setprofile(profile: String, color: NSColor)
 }
@@ -309,17 +304,6 @@ extension ViewControllertabSchedule: Reloadandrefresh {
         })
     }
 
-}
-
-extension ViewControllertabSchedule: StartTimer {
-
-    // Called from Process
-    func startTimerNextJob() {
-        self.schedulessorted = ScheduleSortedAndExpand()
-        globalMainQueue.async(execute: { () -> Void in
-            self.mainTableView.reloadData()
-        })
-    }
 }
 
 // Deselect a row

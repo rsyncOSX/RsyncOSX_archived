@@ -36,7 +36,7 @@ class ViewControllerRestore: NSViewController, SetConfigurations, SetDismisser, 
     var outputprocess: OutputProcess?
     var estimation: Bool?
     var completed: Bool?
-    weak var sendprocess: Sendprocessreference?
+    weak var sendprocess: SendProcessreference?
     var diddissappear: Bool = false
 
     // Close and dismiss view
