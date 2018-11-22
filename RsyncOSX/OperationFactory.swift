@@ -13,7 +13,7 @@ enum OperationObject {
     case dispatch
 }
 
-protocol Sendprocessreference: class {
+protocol SendProcessreference: class {
     func sendprocessreference(process: Process?)
     func sendoutputprocessreference(outputprocess: OutputProcess?)
 }

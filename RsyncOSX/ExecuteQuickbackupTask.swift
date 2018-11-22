@@ -30,10 +30,10 @@ final class ExecuteQuickbackupTask: SetSchedules, SetConfigurations {
                 if hiddenID >= 0 && config != nil {
                     arguments = RsyncParametersProcess().argumentsRsync(config!, dryRun: false, forDisplay: false)
                     // Setting reference to finalize the job, finalize job is done when rsynctask ends (in process termination)
-                    ViewControllerReference.shared.completeoperation = CompleteQuickbackupOperation(dict: dict)
+                    ViewControllerReference.shared.completeoperation = CompleteQuickbackupTask(dict: dict)
                     globalMainQueue.async(execute: {
                         if self.arguments != nil {
-                            weak var sendprocess: Sendprocessreference?
+                            weak var sendprocess: SendProcessreference?
                             sendprocess = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllertabMain
                             let process = RsyncScheduled(arguments: self.arguments)
                             process.executeProcess(outputprocess: self.outputprocess)

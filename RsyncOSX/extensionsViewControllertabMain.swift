@@ -609,7 +609,7 @@ extension ViewControllertabMain: Createandreloadconfigurations {
     // func reateandreloadconfigurations()
 }
 
-extension ViewControllertabMain: Sendprocessreference {
+extension ViewControllertabMain: SendProcessreference {
     func sendoutputprocessreference(outputprocess: OutputProcess?) {
         self.outputprocess = outputprocess
     }
