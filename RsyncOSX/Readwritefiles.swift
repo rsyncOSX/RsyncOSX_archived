@@ -97,6 +97,7 @@ class Readwritefiles {
         guard self.filename != nil else { return false }
         let write = dictionary.write(toFile: self.filename!, atomically: true)
         if write && task == .schedule && ViewControllerReference.shared.menuappisrunning {
+            _ = Notifications().showNotification(message: "Sending reload message to menu app")
             DistributedNotificationCenter.default().postNotificationName(NSNotification.Name("no.blogspot.RsyncOSX.reload"), object: nil, deliverImmediately: true)
         }
         return  write
