@@ -80,9 +80,7 @@ class ViewControllertabSchedule: NSViewController, SetConfigurations, SetSchedul
     private func addschedule() {
         let answer = Alerts.dialogOKCancel("Add Schedule?", text: "Cancel or OK")
         if answer {
-            if ViewControllerReference.shared.executescheduledtasksmenuapp == true {
-                self.info(num: 2)
-            }
+            self.info(num: 2)
             let seconds: TimeInterval = self.starttime.dateValue.timeIntervalSinceNow
             let startdate: Date = self.startdate.dateValue.addingTimeInterval(seconds)
             if self.index != nil {

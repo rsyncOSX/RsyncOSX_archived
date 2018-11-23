@@ -188,7 +188,7 @@ final class Numbers: SetConfigurations {
     }
 
     init (outputprocess: OutputProcess?) {
-        guard outputprocess != nil else { return } 
+        guard outputprocess != nil else { return }
         self.output = outputprocess!.trimoutput(trim: .two)
         // Getting the summarized output from output.
         if self.output!.count > 2 {

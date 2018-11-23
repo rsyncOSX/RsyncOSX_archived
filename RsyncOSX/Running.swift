@@ -30,8 +30,10 @@ class Running {
         }
         if rsyncosxschde.count > 0 {
             self.rsyncOSXschedisrunning = true
+            ViewControllerReference.shared.menuappisrunning = true
         } else {
             self.rsyncOSXschedisrunning = false
+            ViewControllerReference.shared.menuappisrunning = false
         }
     }
 
