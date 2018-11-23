@@ -8,6 +8,8 @@ Rsync is a file-based synchronization and backup tool. There is no custom soluti
 
 A short [intro to RsyncOSX](https://rsyncosx.github.io/Intro) and full [documentation of RsyncOSX](https://rsyncosx.github.io/AboutRsyncOSX). About signing and notarizing of RsyncOSX see below.
 
+Scheduled tasks (from next [release](https://github.com/rsyncOSX/RsyncOSX/releases) after version 5.5.7) are only added and deleted within RsyncOSX. Scheduled tasks are **only** executed by the [menu app](https://github.com/rsyncOSX/RsyncOSXsched).
+
 The main view of RsyncOSX.
 ![](images/main1.png)
 Automatic synchronizing in action.
@@ -69,7 +71,7 @@ In RsyncOSX select [user configuration](https://rsyncosx.github.io/UserConfigura
 
 #### SwiftLint
 
-As part of this version of RsyncOSX I am using [SwiftLint](https://github.com/realm/SwiftLint) as tool for writing more readable code. There are about 125 classes with 15,000 lines of code in RsyncOSX (too many?). I am also using [Paul Taykalo swift-scripts](https://github.com/PaulTaykalo/swift-scripts) to find and delete not used code.
+As part of this version of RsyncOSX I am using [SwiftLint](https://github.com/realm/SwiftLint) as tool for writing more readable code. There are about 120 classes with 14,500 lines of code in RsyncOSX (probably too many?). I am also using Paul Taykalo´s [swift-scripts](https://github.com/PaulTaykalo/swift-scripts) to find and delete not used code.
 
 ### Compile
 
