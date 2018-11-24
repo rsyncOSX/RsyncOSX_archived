@@ -27,10 +27,6 @@ class Readwritefiles {
     private var name: String?
     // key in objectForKey, e.g key for reading what
     private var key: String?
-    // Default reading from disk
-    // The class either reads data from persistent store or
-    // returns nil if data is NOT dirty
-    private var readdisk: Bool = true
     // Which profile to read
     var profile: String?
     // If to use profile, only configurations and schedules to read from profile
@@ -118,7 +114,6 @@ class Readwritefiles {
             self.key = "config"
         case .none:
             self.name = nil
-            self.readdisk = false
         }
     }
 
