@@ -132,6 +132,8 @@ class ViewControllerReference {
     private var viewControllerAlloutput: NSViewController?
     // Execute scheduled tasks in menu app, default off
     var executescheduledtasksmenuapp: Bool = false
+    // True if menuapp is running
+    var menuappisrunning: Bool = false
 
     func getvcref(viewcontroller: ViewController) -> NSViewController? {
         switch viewcontroller {

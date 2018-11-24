@@ -11,7 +11,7 @@ import Foundation
 class Notifications {
     func showNotification(message: String) {
         let notification = NSUserNotification()
-        notification.title = "A scheduled backup is completed"
+        notification.title = "A notifiction from RsyncOSX"
         notification.subtitle = message
         notification.soundName = NSUserNotificationDefaultSoundName
         NSUserNotificationCenter.default.delegate = self as? NSUserNotificationCenterDelegate
