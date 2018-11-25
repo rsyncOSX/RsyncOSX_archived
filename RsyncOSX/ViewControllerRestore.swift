@@ -75,6 +75,8 @@ class ViewControllerRestore: NSViewController, SetConfigurations, SetDismisser, 
         let answer = Alerts.dialogOKCancel("Do you REALLY want to start a RESTORE ?", text: "Cancel or OK")
         if answer {
             if let index = self.index(viewcontroller: .vctabmain) {
+                self.gotit.textColor = .white
+                self.gotit.stringValue = "Executing restore..."
                 self.restorebutton.isEnabled = false
                 self.abortandclose = true
                 self.initiateProgressbar()
