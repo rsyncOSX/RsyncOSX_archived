@@ -10,6 +10,14 @@ A short [intro to RsyncOSX](https://rsyncosx.github.io/Intro) and full [document
 
 From next [release](https://github.com/rsyncOSX/RsyncOSX/releases) after version 5.5.7, executing scheduled tasks is removed from RsyncOSX. Scheduled tasks are still added and deleted within RsyncOSX. Executing the scheduled tasks is by the [menu app](https://github.com/rsyncOSX/RsyncOSXsched).
 
+## `--delete` parameter
+
+**Caution** about RsyncOSX and the `--delete` parameter. The `--delete` is a default parameter to rsync. The parameter instructs rsync to **delete** all files in the destination which are not present in the source. Every time you add a new task to RsyncOSX, execute a estimation run (`--dry-run` parameter) and inspect the result before executing a real run. If you by accident set an empty catalog as source RsyncOSX will delete all files in the destination.
+
+## Fighting bugs
+
+Fighting bugs are difficult. I am not able to test RsyncOSX for all possible user interactions and use. From time to time I discover new bugs. But I also need support from other users discovering bugs or not expected results. If you discover a bug **please** use the [issues](https://github.com/rsyncOSX/RsyncOSX/issues) and report it.  
+
 The main view of RsyncOSX.
 ![](images/main1.png)
 Automatic synchronizing in action.
@@ -29,7 +37,7 @@ This is the message when opening a downloaded version.
 
 The message is in Norwegian: "Apple har sjekket programmet uten å finne ondsinnet programvare.". The english version of it is: "Apple checked it for malicious software and none was detected.".
 
-### About bugs and crash?
+### About crash?
 
 What happens if bugs occurs during execution of tasks in RsyncOSX? The command line tool `rsync` is designed to continue where rsync is by any reason, stopped or killed. Users can abort execution of tasks at any time. To continue an aborted task execute the task again and rsync will restart and complete the task. This is also true if a bug in RsyncOSX occurs during execution of a task.
 
