@@ -5887,6 +5887,7 @@ DQ
                         </subviews>
                     </view>
                     <connections>
+                        <outlet property="loadbutton" destination="JeM-Ky-gSo" id="ryl-dA-YZ9"/>
                         <outlet property="newprofile" destination="SjN-sW-Scz" id="bIn-zE-0ZY"/>
                         <outlet property="profilesTable" destination="re6-1I-n0D" id="jwR-Af-JqX"/>
                     </connections>
@@ -6506,7 +6507,7 @@ DQ
                                                     <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                     <prototypeCellViews>
                                                         <tableCellView id="Jfq-8g-Kw8">
-                                                            <rect key="frame" x="375.5" y="1" width="232" height="17"/>
+                                                            <rect key="frame" x="376" y="1" width="232" height="17"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
                                                                 <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="A8l-m1-RdA">
@@ -6539,7 +6540,7 @@ DQ
                                                     <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                     <prototypeCellViews>
                                                         <tableCellView id="ilE-qv-I4v">
-                                                            <rect key="frame" x="610.5" y="1" width="89" height="17"/>
+                                                            <rect key="frame" x="611" y="1" width="89" height="17"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
                                                                 <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="gIG-Gn-mNs">
@@ -7737,7 +7738,7 @@ DQ
         <image name="config" width="64" height="64"/>
         <image name="menuapp" width="25.600000381469727" height="25.600000381469727"/>
         <image name="quickbackup" width="48" height="48"/>
-        <image name="red" width="256" height="256"/>
+        <image name="red" width="512" height="512"/>
         <image name="report" width="64" height="64"/>
         <image name="up" width="256" height="256"/>
     </resources>

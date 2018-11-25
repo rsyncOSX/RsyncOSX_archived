@@ -16,7 +16,7 @@ protocol NewProfile: class {
     func enableProfileMenu()
 }
 
-class ViewControllerProfile: NSViewController, SetConfigurations, SetDismisser {
+class ViewControllerProfile: NSViewController, SetConfigurations, SetDismisser, Delay {
 
     var storageapi: PersistentStorageAPI?
     weak var newProfileDelegate: NewProfile?
@@ -24,6 +24,7 @@ class ViewControllerProfile: NSViewController, SetConfigurations, SetDismisser {
     private var profile: Profiles?
     private var useprofile: String?
 
+    @IBOutlet weak var loadbutton: NSButton!
     @IBOutlet weak var newprofile: NSTextField!
     @IBOutlet weak var profilesTable: NSTableView!
 
@@ -71,6 +72,7 @@ class ViewControllerProfile: NSViewController, SetConfigurations, SetDismisser {
         self.profilesTable.delegate = self
         self.profilesTable.dataSource = self
         self.profilesTable.target = self
+        self.newprofile.delegate = self
         self.profilesTable.doubleAction = #selector(ViewControllerProfile.tableViewDoubleClick(sender:))
     }
 
@@ -122,6 +124,18 @@ extension ViewControllerProfile: NSTableViewDelegate {
         let indexes = myTableViewFromNotification.selectedRowIndexes
         if let index = indexes.first {
             self.useprofile = self.profilesArray![index]
+        }
+    }
+}
+
+extension ViewControllerProfile: NSTextFieldDelegate {
+    override func controlTextDidChange(_ notification: Notification) {
+        self.delayWithSeconds(0.5) {
+            if self.newprofile.stringValue.count > 0 {
+                self.loadbutton.title = "Save"
+            } else {
+                self.loadbutton.title = "Load"
+            }
         }
     }
 }
