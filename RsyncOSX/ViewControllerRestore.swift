@@ -130,7 +130,6 @@ class ViewControllerRestore: NSViewController, SetConfigurations, SetDismisser, 
                 self.selecttmptorestore.state = .off
                 _ = RestoreTask(index: index, outputprocess: self.outputprocess, dryrun: true, tmprestore: false)
             }
-            
         }
     }
 
