@@ -123,8 +123,14 @@ class ViewControllerRestore: NSViewController, SetConfigurations, SetDismisser, 
             self.working.startAnimation(nil)
             self.outputprocess = OutputProcess()
             self.sendprocess?.sendoutputprocessreference(outputprocess: self.outputprocess)
-            self.selecttmptorestore.state = .off
-            _ = RestoreTask(index: index, outputprocess: self.outputprocess, dryrun: true, tmprestore: false)
+            if ViewControllerReference.shared.restorePath != nil {
+                self.selecttmptorestore.state = .on
+                _ = RestoreTask(index: index, outputprocess: self.outputprocess, dryrun: true, tmprestore: true)
+            } else {
+                self.selecttmptorestore.state = .off
+                _ = RestoreTask(index: index, outputprocess: self.outputprocess, dryrun: true, tmprestore: false)
+            }
+            
         }
     }
 
@@ -184,6 +190,8 @@ extension ViewControllerRestore: UpdateProgress {
     }
 
     func fileHandler() {
-        self.updateProgressbar(Double(self.outputprocess!.count()))
+        if self.estimationcompleted == true {
+             self.updateProgressbar(Double(self.outputprocess!.count()))
+        }
     }
 }
