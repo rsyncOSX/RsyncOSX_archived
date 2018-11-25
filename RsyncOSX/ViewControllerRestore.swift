@@ -34,15 +34,14 @@ class ViewControllerRestore: NSViewController, SetConfigurations, SetDismisser, 
     @IBOutlet weak var selecttmptorestore: NSButton!
 
     var outputprocess: OutputProcess?
-    var estimation: Bool?
-    var completed: Bool?
+    var estimationcompleted: Bool = false
+    var restorecompleted: Bool = false
     weak var sendprocess: SendProcessreference?
     var diddissappear: Bool = false
 
     // Close and dismiss view
     @IBAction func close(_ sender: NSButton) {
-        if self.estimation != nil && self.outputprocess != nil { self.abort() }
-        if self.completed == false { self.abort()}
+        if self.estimationcompleted == true && self.restorecompleted == false { self.abort() }
         self.dismissview(viewcontroller: self, vcontroller: .vctabmain)
     }
 
@@ -51,7 +50,7 @@ class ViewControllerRestore: NSViewController, SetConfigurations, SetDismisser, 
         self.restorebutton.isEnabled = false
         if let index = self.index(viewcontroller: .vctabmain) {
             self.selecttmptorestore.isEnabled = false
-            self.estimation = true
+            self.estimationcompleted = false
             self.gotit.textColor = .white
             self.gotit.stringValue = "Getting info, please wait..."
             self.working.startAnimation(nil)
@@ -75,7 +74,6 @@ class ViewControllerRestore: NSViewController, SetConfigurations, SetDismisser, 
         if answer {
             if let index = self.index(viewcontroller: .vctabmain) {
                 self.restorebutton.isEnabled = false
-                self.estimation = true
                 self.initiateProgressbar()
                 self.outputprocess = OutputProcess()
                 self.sendprocess?.sendoutputprocessreference(outputprocess: self.outputprocess)
@@ -100,9 +98,6 @@ class ViewControllerRestore: NSViewController, SetConfigurations, SetDismisser, 
     override func viewDidAppear() {
         super.viewDidAppear()
         guard self.diddissappear == false else { return }
-        guard self.estimation == nil && self.outputprocess == nil else { return }
-        self.estimation = true
-        self.completed = false
         self.restorebutton.isEnabled = false
         self.localCatalog.stringValue = ""
         self.offsiteCatalog.stringValue = ""
@@ -128,8 +123,14 @@ class ViewControllerRestore: NSViewController, SetConfigurations, SetDismisser, 
             self.working.startAnimation(nil)
             self.outputprocess = OutputProcess()
             self.sendprocess?.sendoutputprocessreference(outputprocess: self.outputprocess)
-            self.selecttmptorestore.state = .off
-            _ = RestoreTask(index: index, outputprocess: self.outputprocess, dryrun: true, tmprestore: false)
+            if ViewControllerReference.shared.restorePath != nil {
+                self.selecttmptorestore.state = .on
+                _ = RestoreTask(index: index, outputprocess: self.outputprocess, dryrun: true, tmprestore: true)
+            } else {
+                self.selecttmptorestore.state = .off
+                _ = RestoreTask(index: index, outputprocess: self.outputprocess, dryrun: true, tmprestore: false)
+            }
+            
         }
     }
 
@@ -174,8 +175,8 @@ class ViewControllerRestore: NSViewController, SetConfigurations, SetDismisser, 
 
 extension ViewControllerRestore: UpdateProgress {
     func processTermination() {
-        if estimation == true {
-            self.estimation = false
+        if self.estimationcompleted == false {
+            self.estimationcompleted = true
             self.setNumbers(outputprocess: self.outputprocess)
             guard ViewControllerReference.shared.restorePath != nil else { return }
             self.selecttmptorestore.isEnabled = true
@@ -184,13 +185,13 @@ extension ViewControllerRestore: UpdateProgress {
             self.gotit.stringValue = "Restore is completed..."
             self.restoreprogress.isHidden = true
             self.restoreprogress.isHidden = false
+            self.restorecompleted = true
         }
-        self.completed = true
     }
 
     func fileHandler() {
-        if self.estimation == false {
-            self.updateProgressbar(Double(self.outputprocess!.count()))
+        if self.estimationcompleted == true {
+             self.updateProgressbar(Double(self.outputprocess!.count()))
         }
     }
 }
