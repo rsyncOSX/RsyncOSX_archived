@@ -152,6 +152,8 @@ class ViewControllerRestore: NSViewController, SetConfigurations, SetDismisser, 
             self.restorebutton.isEnabled = true
             self.gotit.textColor = .green
             self.gotit.stringValue = "Got it..."
+            self.estimation = nil
+            self.outputprocess = nil
         })
     }
 
