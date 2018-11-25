@@ -38,16 +38,18 @@ class ViewControllerRestore: NSViewController, SetConfigurations, SetDismisser, 
     var restorecompleted: Bool = false
     weak var sendprocess: SendProcessreference?
     var diddissappear: Bool = false
+    var abortandclose: Bool = true
 
     // Close and dismiss view
     @IBAction func close(_ sender: NSButton) {
-        if self.estimationcompleted == true && self.restorecompleted == false { self.abort() }
+        if self.abortandclose { self.abort() }
         self.dismissview(viewcontroller: self, vcontroller: .vctabmain)
     }
 
     @IBAction func dotmprestore(_ sender: NSButton) {
         guard self.tmprestore.stringValue.isEmpty == false else { return }
         self.restorebutton.isEnabled = false
+        self.abortandclose = true
         if let index = self.index(viewcontroller: .vctabmain) {
             self.selecttmptorestore.isEnabled = false
             self.estimationcompleted = false
@@ -74,6 +76,7 @@ class ViewControllerRestore: NSViewController, SetConfigurations, SetDismisser, 
         if answer {
             if let index = self.index(viewcontroller: .vctabmain) {
                 self.restorebutton.isEnabled = false
+                self.abortandclose = true
                 self.initiateProgressbar()
                 self.outputprocess = OutputProcess()
                 self.sendprocess?.sendoutputprocessreference(outputprocess: self.outputprocess)
@@ -174,6 +177,7 @@ class ViewControllerRestore: NSViewController, SetConfigurations, SetDismisser, 
 
 extension ViewControllerRestore: UpdateProgress {
     func processTermination() {
+        self.abortandclose = false
         if self.estimationcompleted == false {
             self.estimationcompleted = true
             self.setNumbers(outputprocess: self.outputprocess)
@@ -183,7 +187,6 @@ extension ViewControllerRestore: UpdateProgress {
             self.gotit.textColor = .green
             self.gotit.stringValue = "Restore is completed..."
             self.restoreprogress.isHidden = true
-            self.restoreprogress.isHidden = false
             self.restorecompleted = true
         }
     }
