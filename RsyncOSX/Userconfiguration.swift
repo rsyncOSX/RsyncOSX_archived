@@ -37,9 +37,11 @@ final class Userconfiguration {
         }
         // Temporary path for restores single files or directory
         if let restorePath = dict.value(forKey: "restorePath") as? String {
-            ViewControllerReference.shared.restorePath = restorePath
-        } else {
-            ViewControllerReference.shared.restorePath = NSHomeDirectory() + "/tmp/"
+            if restorePath.count > 0 {
+                ViewControllerReference.shared.restorePath = restorePath
+            } else {
+                ViewControllerReference.shared.restorePath = nil
+            }
         }
         if let executeinmenuapp = dict.value(forKey: "executeinmenuapp") as? Int {
             if executeinmenuapp == 1 {
