@@ -288,7 +288,10 @@ extension ViewControllerSnapshots: NSTableViewDelegate {
         let object: NSDictionary = self.snapshotsloggdata!.snapshotslogs![row]
         if self.numberstodelete != nil {
             if row < self.numberstodelete! {
+                self.snapshotsloggdata?.snapshotslogs![row].setValue(1, forKey: "selectCellID")
                 return self.attributedstring(str: object[tableColumn!.identifier] as? String ?? "", color: NSColor.red, align: .left)
+            } else {
+                self.snapshotsloggdata?.snapshotslogs![row].setValue(0, forKey: "selectCellID")
             }
         }
         if tableColumn!.identifier.rawValue == "selectCellID" {
@@ -302,7 +305,7 @@ extension ViewControllerSnapshots: NSTableViewDelegate {
         if tableColumn!.identifier.rawValue == "selectCellID" {
             var select: Int = (self.snapshotsloggdata?.snapshotslogs![row].value(forKey: "selectCellID") as? Int) ?? 0
             if select == 0 { select = 1 } else if select == 1 { select = 0 }
-            self.self.snapshotsloggdata?.snapshotslogs![row].setValue(select, forKey: "selectCellID")
+            self.snapshotsloggdata?.snapshotslogs![row].setValue(select, forKey: "selectCellID")
         }
     }
 }
