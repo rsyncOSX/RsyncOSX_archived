@@ -18,6 +18,7 @@ protocol ReadLoggdata: class {
 class ViewControllerLoggData: NSViewController, SetConfigurations, SetSchedules, Delay, GetIndex {
 
     private var scheduleloggdata: ScheduleLoggData?
+    private var snapshotsloggdata: SnapshotsLoggData?
     private var row: NSDictionary?
     private var filterby: Sortandfilter?
     private var index: Int?
@@ -95,7 +96,9 @@ class ViewControllerLoggData: NSViewController, SetConfigurations, SetSchedules,
         self.index = self.index(viewcontroller: .vctabmain)
         if let index = self.index {
             let hiddenID = self.configurations?.gethiddenID(index: index) ?? -1
+            let config = self.configurations?.getConfigurations()[index]
             self.scheduleloggdata = ScheduleLoggData(hiddenID: hiddenID, sortdirection: self.sortedascendigdesending)
+            self.snapshotsloggdata = SnapshotsLoggData(config: config!, insnapshot: false)
             self.info(num: 1)
         } else {
             self.info(num: 0)
@@ -259,5 +262,18 @@ extension ViewControllerLoggData: ReadLoggdata {
                 self.scheduletable.reloadData()
             })
         }
+    }
+}
+
+extension ViewControllerLoggData: UpdateProgress {
+    func processTermination() {
+        self.snapshotsloggdata?.processTermination()
+        globalMainQueue.async(execute: { () -> Void in
+            self.scheduletable.reloadData()
+        })
+    }
+
+    func fileHandler() {
+        //
     }
 }

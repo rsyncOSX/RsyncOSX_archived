@@ -18,11 +18,16 @@ final class SnapshotsLoggData {
     var expandedremotecatalogs: [String]?
     var remotecatalogstodelete: [String]?
 
-    private func getremotecataloginfo() {
+    private func getremotecataloginfo(insnapshots: Bool) {
         self.outputprocess = OutputProcess()
         let arguments = CopyFileArguments(task: .snapshotcatalogs, config: self.config!, remoteFile: nil, localCatalog: nil, drynrun: nil)
-        let object = SnapshotCommandSubCatalogs(command: arguments.getCommand(), arguments: arguments.getArguments())
-        object.executeProcess(outputprocess: self.outputprocess)
+        if insnapshots {
+            let object = SnapshotCommandSubCatalogs(command: arguments.getCommand(), arguments: arguments.getArguments())
+            object.executeProcess(outputprocess: self.outputprocess)
+        } else {
+            let object = SnapshotCommandSubCatalogsLogview(command: arguments.getCommand(), arguments: arguments.getArguments())
+            object.executeProcess(outputprocess: self.outputprocess)
+        }
     }
 
     private func getsnapshotlogs() {
@@ -119,11 +124,11 @@ final class SnapshotsLoggData {
         return j
     }
 
-    init(config: Configuration) {
+    init(config: Configuration, insnapshot: Bool) {
+        guard config.task == ViewControllerReference.shared.snapshot else { return }
         self.snapshotslogs = ScheduleLoggData(sortdirection: true).loggdata
         self.config = config
-        guard config.task == ViewControllerReference.shared.snapshot else { return }
-        self.getremotecataloginfo()
+        self.getremotecataloginfo(insnapshots: insnapshot)
     }
 }
 
@@ -145,3 +150,4 @@ extension SnapshotsLoggData: UpdateProgress {
         //
     }
 }
+

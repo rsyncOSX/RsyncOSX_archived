@@ -236,7 +236,7 @@ extension ViewControllerSnapshots: GetSource {
              self.info(num: 1)
             return
         }
-        self.snapshotsloggdata = SnapshotsLoggData(config: self.config!)
+        self.snapshotsloggdata = SnapshotsLoggData(config: self.config!, insnapshot: true)
         self.localCatalog.stringValue = self.config!.localCatalog
         self.offsiteCatalog.stringValue = self.config!.offsiteCatalog
         self.offsiteUsername.stringValue = self.config!.offsiteUsername
@@ -261,7 +261,7 @@ extension ViewControllerSnapshots: UpdateProgress {
                 self.deletebutton.isEnabled = true
                 self.deletesnapshots.isEnabled = true
                 self.info(num: 3)
-                self.snapshotsloggdata = SnapshotsLoggData(config: self.config!)
+                self.snapshotsloggdata = SnapshotsLoggData(config: self.config!, insnapshot: true)
             } else {
                 let progress = deletenum - self.snapshotsloggdata!.remotecatalogstodelete!.count
                 self.updateProgressbar(Double(progress))
