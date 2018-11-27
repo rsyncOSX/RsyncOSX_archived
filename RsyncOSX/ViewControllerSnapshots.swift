@@ -291,7 +291,19 @@ extension ViewControllerSnapshots: NSTableViewDelegate {
                 return self.attributedstring(str: object[tableColumn!.identifier] as? String ?? "", color: NSColor.red, align: .left)
             }
         }
-        return object[tableColumn!.identifier] as? String
+        if tableColumn!.identifier.rawValue == "selectCellID" {
+            return object[tableColumn!.identifier] as? Int
+        } else {
+            return object[tableColumn!.identifier] as? String
+        }
+    }
+
+    func tableView(_ tableView: NSTableView, setObjectValue object: Any?, for tableColumn: NSTableColumn?, row: Int) {
+        if tableColumn!.identifier.rawValue == "selectCellID" {
+            var select: Int = (self.snapshotsloggdata?.snapshotslogs![row].value(forKey: "selectCellID") as? Int) ?? 0
+            if select == 0 { select = 1 } else if select == 1 { select = 0 }
+            self.self.snapshotsloggdata?.snapshotslogs![row].setValue(select, forKey: "selectCellID")
+        }
     }
 }
 
