@@ -55,6 +55,7 @@ final class ScheduleLoggData: SetConfigurations, SetSchedules, Sorting {
                     "resultExecuted": dict.value(forKey: "resultExecuted") as? String ?? "",
                     "deleteCellID": dict.value(forKey: "deleteCellID") as? Int ?? 0,
                     "hiddenID": hiddenID,
+                    "snapCellID": 0,
                     "parent": i,
                     "sibling": j]
                 data.append(logdetail)
@@ -79,6 +80,7 @@ final class ScheduleLoggData: SetConfigurations, SetSchedules, Sorting {
                     "resultExecuted": dict.value(forKey: "resultExecuted") as? String ?? "",
                     "deleteCellID": dict.value(forKey: "deleteCellID") as? Int ?? 0,
                     "hiddenID": hiddenID,
+                    "snapCellID": 0,
                     "parent": i,
                     "sibling": j]
                 data.append(logdetail)
@@ -100,6 +102,26 @@ final class ScheduleLoggData: SetConfigurations, SetSchedules, Sorting {
             }
         }
         self.loggdata = self.sortbyrundate(notsorted: data, sortdirection: true)
+    }
+
+    let closure: (NSMutableDictionary, NSMutableDictionary) -> Bool = { (number1, number2) in
+        if number1.value(forKey: "sibling") as? Int == number2.value(forKey: "sibling") as? Int &&
+            number1.value(forKey: "parent") as? Int == number2.value(forKey: "parent") as? Int {
+            return true
+        } else {
+            return false
+        }
+    }
+
+    func intersect(snapshotaloggdata: SnapshotsLoggData?) {
+        guard snapshotaloggdata?.snapshotslogs != nil else { return }
+        guard self.loggdata != nil else { return }
+        for i in 0 ..< self.loggdata!.count {
+            for j in 0 ..< snapshotaloggdata!.snapshotslogs!.count where
+                self.closure(snapshotaloggdata!.snapshotslogs![j], self.loggdata![i]) {
+                self.loggdata![i].setValue(1, forKey: "snapCellID")
+            }
+        }
     }
 
     init (sortdirection: Bool) {

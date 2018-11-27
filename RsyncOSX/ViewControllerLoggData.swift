@@ -186,7 +186,8 @@ extension ViewControllerLoggData: NSTableViewDelegate {
         guard self.scheduleloggdata != nil else { return nil }
         guard row < self.scheduleloggdata!.loggdata!.count else { return nil }
         let object: NSDictionary = self.scheduleloggdata!.loggdata![row]
-        if tableColumn!.identifier.rawValue == "deleteCellID" {
+        if tableColumn!.identifier.rawValue == "deleteCellID" ||
+            tableColumn!.identifier.rawValue == "snapCellID" {
             return object[tableColumn!.identifier] as? Int
         } else {
             return object[tableColumn!.identifier] as? String
@@ -206,13 +207,13 @@ extension ViewControllerLoggData: NSTableViewDelegate {
         switch column {
         case 0:
              self.filterby = .task
-        case 2:
-            self.filterby = .backupid
         case 3:
-            self.filterby = .localcatalog
+            self.filterby = .backupid
         case 4:
-            self.filterby = .remoteserver
+            self.filterby = .localcatalog
         case 5:
+            self.filterby = .remoteserver
+        case 6:
             sortbystring = false
             self.filterby = .executedate
         default:
@@ -281,6 +282,7 @@ extension ViewControllerLoggData: ReadLoggdata {
 extension ViewControllerLoggData: UpdateProgress {
     func processTermination() {
         self.snapshotsloggdata?.processTermination()
+        self.scheduleloggdata?.intersect(snapshotaloggdata: self.snapshotsloggdata)
         globalMainQueue.async(execute: { () -> Void in
             self.scheduletable.reloadData()
         })
