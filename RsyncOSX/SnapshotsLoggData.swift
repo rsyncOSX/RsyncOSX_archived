@@ -136,6 +136,8 @@ final class SnapshotsLoggData {
 
 extension SnapshotsLoggData: UpdateProgress {
     func processTermination() {
+        _ = self.outputprocess?.trimoutput(trim: .two)
+        guard outputprocess!.error == false else { return }
         self.catalogs = self.outputprocess?.trimoutput(trim: .one)
         if self.catalogs?.count ?? 0 > 1 {
             if self.catalogs![0] == "./." {
@@ -152,4 +154,3 @@ extension SnapshotsLoggData: UpdateProgress {
         //
     }
 }
-

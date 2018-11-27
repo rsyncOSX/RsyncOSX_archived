@@ -282,6 +282,7 @@ extension ViewControllerLoggData: ReadLoggdata {
 extension ViewControllerLoggData: UpdateProgress {
     func processTermination() {
         self.snapshotsloggdata?.processTermination()
+        guard self.snapshotsloggdata?.outputprocess?.error == false else { return }
         self.scheduleloggdata?.intersect(snapshotaloggdata: self.snapshotsloggdata)
         globalMainQueue.async(execute: { () -> Void in
             self.scheduletable.reloadData()
