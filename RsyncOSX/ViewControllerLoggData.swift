@@ -98,7 +98,9 @@ class ViewControllerLoggData: NSViewController, SetConfigurations, SetSchedules,
             let hiddenID = self.configurations?.gethiddenID(index: index) ?? -1
             let config = self.configurations?.getConfigurations()[index]
             self.scheduleloggdata = ScheduleLoggData(hiddenID: hiddenID, sortdirection: self.sortedascendigdesending)
-            self.snapshotsloggdata = SnapshotsLoggData(config: config!, insnapshot: false)
+            if self.connected(config: config!) {
+                self.snapshotsloggdata = SnapshotsLoggData(config: config!, insnapshot: false)
+            }
             self.info(num: 1)
         } else {
             self.info(num: 0)
@@ -120,6 +122,17 @@ class ViewControllerLoggData: NSViewController, SetConfigurations, SetSchedules,
     private func deselectRow() {
         guard self.index != nil else { return }
         self.scheduletable.deselectRow(self.index!)
+    }
+
+    private func connected(config: Configuration) -> Bool {
+        var port: Int = 22
+        if config.offsiteServer.isEmpty == false {
+            if let sshport: Int = config.sshport { port = sshport }
+            let (success, _) = TCPconnections().testTCPconnection(config.offsiteServer, port: port, timeout: 1)
+            return success
+        } else {
+            return true
+        }
     }
 }
 
