@@ -17,6 +17,7 @@ final class SnapshotsLoggData {
     private var catalogs: [String]?
     var expandedremotecatalogs: [String]?
     var remotecatalogstodelete: [String]?
+    var insnapshot: Bool = true
 
     private func getremotecataloginfo(insnapshots: Bool) {
         self.outputprocess = OutputProcess()
@@ -64,9 +65,9 @@ final class SnapshotsLoggData {
             let num1 = Int(str1?.dropFirst(2) ?? "") ?? 0
             let num2 = Int(str2?.dropFirst(2) ?? "") ?? 0
             if num1 <= num2 {
-                return true
+                return self.insnapshot
             } else {
-                return false
+                return !self.insnapshot
             }
         }
         self.snapshotslogs = sorted.filter({($0.value(forKey: "snapshotCatalog") as? String)?.isEmpty == false})
@@ -126,6 +127,7 @@ final class SnapshotsLoggData {
 
     init(config: Configuration, insnapshot: Bool) {
         guard config.task == ViewControllerReference.shared.snapshot else { return }
+        self.insnapshot = insnapshot
         self.snapshotslogs = ScheduleLoggData(sortdirection: true).loggdata
         self.config = config
         self.getremotecataloginfo(insnapshots: insnapshot)
