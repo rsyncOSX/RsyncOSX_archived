@@ -61,8 +61,21 @@ class ViewControllerCopyFiles: NSViewController, SetConfigurations, Delay, VcCop
             self.info.stringValue = "Not a remote task, use Finder to copy files..."
         case 3:
             self.info.stringValue = "Local or remote catalog cannot be empty..."
+        case 4:
+            self.info.stringValue = "Seems not to be connected..."
         default:
             self.info.stringValue = ""
+        }
+    }
+
+    private func connected(config: Configuration) -> Bool {
+        var port: Int = 22
+        if config.offsiteServer.isEmpty == false {
+            if let sshport: Int = config.sshport { port = sshport }
+            let (success, _) = TCPconnections().testTCPconnection(config.offsiteServer, port: port, timeout: 1)
+            return success
+        } else {
+            return true
         }
     }
 
@@ -195,6 +208,13 @@ class ViewControllerCopyFiles: NSViewController, SetConfigurations, Delay, VcCop
                     self.copyFiles!.abort()
                     return
                 }
+                let config = self.configurations!.getConfigurations()[index]
+                guard self.connected(config: config) == true else {
+                    self.restorebutton.isEnabled = false
+                    self.info(num: 4)
+                    return
+                }
+                self.info(num: 0)
                 self.getfiles = false
                 self.restorebutton.title = "Estimate"
                 self.restorebutton.isEnabled = false

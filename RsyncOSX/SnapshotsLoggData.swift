@@ -15,7 +15,6 @@ final class SnapshotsLoggData {
     var config: Configuration?
     var outputprocess: OutputProcess?
     private var catalogs: [String]?
-    var expandedremotecatalogs: [String]?
     var remotecatalogstodelete: [String]?
     var insnapshot: Bool = true
 
@@ -81,35 +80,11 @@ final class SnapshotsLoggData {
         return seconds * (-1)
     }
 
-    private func sortedandexpandremotecatalogs() {
-        guard self.expandedremotecatalogs != nil else { return }
-        var sorted = self.expandedremotecatalogs?.sorted { (di1, di2) -> Bool in
-            let num1 = Int(di1) ?? 0
-            let num2 = Int(di2) ?? 0
-            if num1 <= num2 {
-                return true
-            } else {
-                return false
-            }
-        }
-        // Remove the top ./ catalog
-        if sorted?.count ?? 0 > 1 {
-            if sorted![0] == "." {
-                sorted?.remove(at: 0)
-            }
-        }
-        self.expandedremotecatalogs = sorted
-        for i in 0 ..< self.expandedremotecatalogs!.count {
-            let expanded = self.config!.offsiteCatalog + self.expandedremotecatalogs![i]
-            self.expandedremotecatalogs![i] = expanded
-        }
-    }
-
     func preparecatalogstodelete() {
         guard self.snapshotslogs != nil else { return }
-        self.remotecatalogstodelete = []
         for i in 0 ..< self.snapshotslogs!.count {
             if self.snapshotslogs![i].value(forKey: "selectCellID") as? Int == 1 {
+                if self.remotecatalogstodelete == nil { self.remotecatalogstodelete = [] }
                 let snaproot = self.config!.offsiteCatalog
                 let snapcatalog = self.snapshotslogs![i].value(forKey: "snapshotCatalog") as? String
                 self.remotecatalogstodelete!.append(snaproot + snapcatalog!.dropFirst(2))
@@ -148,10 +123,8 @@ extension SnapshotsLoggData: UpdateProgress {
                 self.catalogs?.remove(at: 0)
             }
         }
-        self.expandedremotecatalogs = self.outputprocess?.trimoutput(trim: .three)
         self.getsnapshotlogs()
         self.mergeremotecatalogsandlogs()
-        self.sortedandexpandremotecatalogs()
     }
 
     func fileHandler() {
