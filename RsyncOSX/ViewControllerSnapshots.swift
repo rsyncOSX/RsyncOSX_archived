@@ -328,6 +328,7 @@ extension ViewControllerSnapshots: NSTableViewDelegate {
         if tableColumn!.identifier.rawValue == "selectCellID" {
             var select: Int = (self.snapshotsloggdata?.snapshotslogs![row].value(forKey: "selectCellID") as? Int) ?? 0
             if select == 0 { select = 1 } else if select == 1 { select = 0 }
+            guard row < self.snapshotsloggdata!.snapshotslogs!.count - 1 else { return }
             self.snapshotsloggdata?.snapshotslogs![row].setValue(select, forKey: "selectCellID")
         }
     }
