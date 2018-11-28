@@ -100,7 +100,7 @@ class ViewControllerLoggData: NSViewController, SetConfigurations, SetSchedules,
             let config = self.configurations?.getConfigurations()[index]
             self.scheduleloggdata = ScheduleLoggData(hiddenID: hiddenID, sortdirection: self.sortedascendigdesending)
             if self.connected(config: config!) {
-                self.working.startAnimation(nil)
+                if config?.task == "snapshot" { self.working.startAnimation(nil) }
                 self.snapshotsloggdata = SnapshotsLoggData(config: config!, insnapshot: false)
             }
             self.info(num: 1)
