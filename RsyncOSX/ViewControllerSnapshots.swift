@@ -80,7 +80,7 @@ class ViewControllerSnapshots: NSViewController, SetDismisser, SetConfigurations
 
     @IBAction func updatedeletesnapshotsnum(_ sender: NSSlider) {
         self.stringdeletesnapshotsnum.stringValue = String(self.deletesnapshots.intValue)
-        self.numbersinsequencetodelete = Int(self.deletesnapshots.intValue)
+        self.numbersinsequencetodelete = Int(self.deletesnapshots.intValue - 1)
         self.markfordelete(numberstomark: self.numbersinsequencetodelete!)
         globalMainQueue.async(execute: { () -> Void in
             self.snapshotstable.reloadData()
@@ -372,7 +372,8 @@ extension ViewControllerSnapshots: NSTextFieldDelegate {
                         } else {
                             self.deletesnapshots.intValue = Int32(num)
                         }
-                        self.numbersinsequencetodelete = Int(self.deletesnapshots.intValue)
+                        self.numbersinsequencetodelete = Int(self.deletesnapshots.intValue) - 1
+                        self.markfordelete(numberstomark: self.numbersinsequencetodelete!)
                         globalMainQueue.async(execute: { () -> Void in
                             self.snapshotstable.reloadData()
                         })
@@ -385,6 +386,7 @@ extension ViewControllerSnapshots: NSTextFieldDelegate {
                     if let num = Int(self.stringdeletesnapshotsdaysnum.stringValue) {
                         self.deletesnapshotsdays.intValue = Int32(num)
                         self.numbersinsequencetodelete = self.snapshotsloggdata!.countbydays(num: Double(self.stringdeletesnapshotsdaysnum.stringValue) ?? 0)
+                        self.markfordelete(numberstomark: self.numbersinsequencetodelete!)
                         globalMainQueue.async(execute: { () -> Void in
                             self.snapshotstable.reloadData()
                         })
