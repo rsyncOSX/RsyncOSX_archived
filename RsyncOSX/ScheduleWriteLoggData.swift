@@ -146,7 +146,6 @@ class ScheduleWriteLoggData: SetConfigurations, ReloadTable, Deselect {
                         self.storageapi!.saveScheduleFromMemory()
                     }
             }
-            // This might happen if a task is executed by schedule and there are no previous logged run
             if logged == false {
                 self.addlogtaskmanuel(hiddenID, result: result)
             }

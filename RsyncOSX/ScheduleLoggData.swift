@@ -27,7 +27,6 @@ final class ScheduleLoggData: SetConfigurations, SetSchedules, Sorting {
     var loggdata: [NSMutableDictionary]?
     private var scheduleConfiguration: [ConfigurationSchedule]?
 
-    // Function for filter loggdata
     func filter(search: String?, filterby: Sortandfilter?) {
         guard search != nil && self.loggdata != nil && filterby != nil else { return }
         globalDefaultQueue.async(execute: {() -> Void in
@@ -38,7 +37,6 @@ final class ScheduleLoggData: SetConfigurations, SetSchedules, Sorting {
         })
     }
 
-    // Loggdata is only read and sorted once
     private func readAndSortAllLoggdata(sortdirection: Bool) {
         var data = [NSMutableDictionary]()
         let input: [ConfigurationSchedule] = self.schedules!.getSchedule()
@@ -64,7 +62,6 @@ final class ScheduleLoggData: SetConfigurations, SetSchedules, Sorting {
         self.loggdata = self.sortbyrundate(notsorted: data, sortdirection: sortdirection)
     }
 
-    // Loggdata is only read and sorted once
     private func readAndSortAllLoggdata(hiddenID: Int, sortdirection: Bool) {
         var data = [NSMutableDictionary]()
         let input: [ConfigurationSchedule] = self.schedules!.getSchedule()
@@ -125,7 +122,6 @@ final class ScheduleLoggData: SetConfigurations, SetSchedules, Sorting {
     }
 
     init (sortdirection: Bool) {
-        // Read and sort loggdata
         if self.loggdata == nil {
             self.readAndSortAllLoggdata(sortdirection: sortdirection)
         }
@@ -138,7 +134,6 @@ final class ScheduleLoggData: SetConfigurations, SetSchedules, Sorting {
     }
 
     init (hiddenID: Int, sortdirection: Bool) {
-        // Read and sort loggdata
         if self.loggdata == nil {
             self.readAndSortAllLoggdata(hiddenID: hiddenID, sortdirection: sortdirection)
         }

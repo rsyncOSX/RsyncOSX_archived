@@ -33,6 +33,7 @@ class ViewControllerLoggData: NSViewController, SetConfigurations, SetSchedules,
     @IBOutlet weak var selectedrows: NSTextField!
     @IBOutlet weak var info: NSTextField!
     @IBOutlet weak var working: NSProgressIndicator!
+    @IBOutlet weak var selectbutton: NSButton!
 
     private func info(num: Int) {
         switch num {
@@ -120,6 +121,7 @@ class ViewControllerLoggData: NSViewController, SetConfigurations, SetSchedules,
         self.scheduleloggdata = nil
         self.viewispresent = false
         self.working.stopAnimation(nil)
+        self.selectbutton.state = .off
     }
 
     private func deselectRow() {
@@ -263,7 +265,6 @@ extension ViewControllerLoggData: Reloadandrefresh {
 
 extension ViewControllerLoggData: ReadLoggdata {
     func readloggdata() {
-        // Triggered after a delete of log rows
         if viewispresent {
             self.scheduleloggdata = nil
             globalMainQueue.async(execute: { () -> Void in
