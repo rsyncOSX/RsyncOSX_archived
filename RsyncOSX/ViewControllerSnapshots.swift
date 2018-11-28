@@ -121,8 +121,8 @@ class ViewControllerSnapshots: NSViewController, SetDismisser, SetConfigurations
             guard self.snapshotsloggdata!.remotecatalogstodelete != nil else { return }
             self.deletebutton.isEnabled = false
             self.deletesnapshots.isEnabled = false
-            self.initiateProgressbar(maxvalue: Double(self.numbersinsequencetodelete!))
-            // self.deletesnapshotcatalogs()
+            self.initiateProgressbar(maxvalue: Double(self.snapshotsloggdata!.remotecatalogstodelete!.count))
+            self.deletesnapshotcatalogs()
             self.delete = true
         }
     }
