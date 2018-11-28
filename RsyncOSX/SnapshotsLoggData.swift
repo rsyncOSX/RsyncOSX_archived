@@ -106,10 +106,14 @@ final class SnapshotsLoggData {
     }
 
     func preparecatalogstodelete() {
-        guard self.expandedremotecatalogs != nil else { return }
+        guard self.snapshotslogs != nil else { return }
         self.remotecatalogstodelete = []
-        for i in 0 ..< self.expandedremotecatalogs!.count {
-            self.remotecatalogstodelete!.append(self.expandedremotecatalogs![i])
+        for i in 0 ..< self.snapshotslogs!.count {
+            if self.snapshotslogs![i].value(forKey: "selectCellID") as? Int == 1 {
+                let snaproot = self.config!.offsiteCatalog
+                let snapcatalog = self.snapshotslogs![i].value(forKey: "snapshotCatalog") as? String
+                self.remotecatalogstodelete!.append(snaproot + snapcatalog!.dropFirst(2))
+            }
         }
     }
 

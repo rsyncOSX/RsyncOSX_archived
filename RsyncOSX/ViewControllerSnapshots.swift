@@ -56,6 +56,8 @@ class ViewControllerSnapshots: NSViewController, SetDismisser, SetConfigurations
         case 5:
             let num = String((self.snapshotsloggdata?.snapshotslogs?.count ?? 1 - 1) - 1)
             self.info.stringValue = "You cannot delete that many, max is " + num + "..."
+        case 6:
+            self.info.stringValue = "Seems not to be connected..."
         default:
             self.info.stringValue = ""
         }
@@ -115,7 +117,7 @@ class ViewControllerSnapshots: NSViewController, SetDismisser, SetConfigurations
         let answer = Alerts.dialogOKCancel("Do you REALLY want to DELETE " + String(self.numbersinsequencetodelete!) + " snapshots?", text: "Cancel or OK")
         if answer {
             self.info(num: 0)
-            self.snapshotsloggdata!.preparecatalogstodelete(num: self.numbersinsequencetodelete!)
+            self.snapshotsloggdata!.preparecatalogstodelete()
             self.deletebutton.isEnabled = false
             self.deletesnapshots.isEnabled = false
             self.initiateProgressbar(maxvalue: Double(self.numbersinsequencetodelete!))
@@ -200,6 +202,17 @@ class ViewControllerSnapshots: NSViewController, SetDismisser, SetConfigurations
         self.progressdelete.doubleValue = value
     }
 
+    private func connected(config: Configuration) -> Bool {
+        var port: Int = 22
+        if config.offsiteServer.isEmpty == false {
+            if let sshport: Int = config.sshport { port = sshport }
+            let (success, _) = TCPconnections().testTCPconnection(config.offsiteServer, port: port, timeout: 1)
+            return success
+        } else {
+            return true
+        }
+    }
+
     // setting which table row is selected
     func tableViewSelectionDidChange(_ notification: Notification) {
         let myTableViewFromNotification = (notification.object as? NSTableView)!
@@ -232,6 +245,10 @@ extension ViewControllerSnapshots: GetSource {
         self.config = self.configurations!.getConfigurations()[self.configurations!.getIndex(hiddenID!)]
         guard self.config!.task == ViewControllerReference.shared.snapshot else {
              self.info(num: 1)
+            return
+        }
+        guard self.connected(config: config!) == true else {
+             self.info(num: 6)
             return
         }
         self.snapshotsloggdata = SnapshotsLoggData(config: self.config!, insnapshot: true)
