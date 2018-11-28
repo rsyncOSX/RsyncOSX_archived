@@ -2324,7 +2324,7 @@
                                 </connections>
                             </button>
                             <progressIndicator wantsLayer="YES" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" maxValue="100" displayedWhenStopped="NO" bezeled="NO" indeterminate="YES" controlSize="small" style="spinning" translatesAutoresizingMaskIntoConstraints="NO" id="VzJ-2R-TK6">
-                                <rect key="frame" x="688" y="361" width="16" height="16"/>
+                                <rect key="frame" x="796" y="361" width="16" height="16"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                             </progressIndicator>
                         </subviews>
@@ -2334,6 +2334,7 @@
                         <outlet property="numberOflogfiles" destination="3YU-9a-eyi" id="8ub-fK-Vzn"/>
                         <outlet property="scheduletable" destination="VmR-YZ-iuN" id="Q8s-Bw-QnZ"/>
                         <outlet property="search" destination="t6k-ja-pKU" id="lHP-Fs-hLu"/>
+                        <outlet property="selectbutton" destination="MWk-oQ-akj" id="IpN-Of-Kbj"/>
                         <outlet property="selectedrows" destination="XeS-qc-qta" id="HFe-lE-Vfi"/>
                         <outlet property="sortdirection" destination="aCc-3C-rgD" id="GvL-qU-4lB"/>
                         <outlet property="working" destination="VzJ-2R-TK6" id="soL-yM-4Sj"/>
