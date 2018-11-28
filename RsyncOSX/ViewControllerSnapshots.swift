@@ -114,15 +114,13 @@ class ViewControllerSnapshots: NSViewController, SetDismisser, SetConfigurations
         guard self.snapshotsloggdata != nil && self.numbersinsequencetodelete != nil else { return }
         let answer = Alerts.dialogOKCancel("Do you REALLY want to DELETE " + String(self.numbersinsequencetodelete!) + " snapshots?", text: "Cancel or OK")
         if answer {
-            /*
             self.info(num: 0)
             self.snapshotsloggdata!.preparecatalogstodelete(num: self.numbersinsequencetodelete!)
             self.deletebutton.isEnabled = false
             self.deletesnapshots.isEnabled = false
             self.initiateProgressbar(maxvalue: Double(self.numbersinsequencetodelete!))
-            self.deletesnapshotcatalogs()
+            // self.deletesnapshotcatalogs()
             self.delete = true
-            */
         }
     }
 

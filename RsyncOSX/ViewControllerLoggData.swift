@@ -32,6 +32,7 @@ class ViewControllerLoggData: NSViewController, SetConfigurations, SetSchedules,
     @IBOutlet weak var sortdirection: NSButton!
     @IBOutlet weak var selectedrows: NSTextField!
     @IBOutlet weak var info: NSTextField!
+    @IBOutlet weak var working: NSProgressIndicator!
 
     private func info(num: Int) {
         switch num {
@@ -51,8 +52,7 @@ class ViewControllerLoggData: NSViewController, SetConfigurations, SetSchedules,
             self.sortdirection.image = #imageLiteral(resourceName: "up")
         }
     }
-
-    @IBAction func selectalllogs(_ sender: NSButton) {
+    @IBAction func selectlogs(_ sender: NSButton) {
         guard self.scheduleloggdata!.loggdata != nil else { return }
         for i in 0 ..< self.scheduleloggdata!.loggdata!.count {
             if self.scheduleloggdata!.loggdata![i].value(forKey: "deleteCellID") as? Int == 1 {
@@ -89,6 +89,7 @@ class ViewControllerLoggData: NSViewController, SetConfigurations, SetSchedules,
         ViewControllerReference.shared.setvcref(viewcontroller: .vcloggdata, nsviewcontroller: self)
         self.sortdirection.image = #imageLiteral(resourceName: "up")
         self.sortedascendigdesending = true
+        self.working.usesThreadedAnimation = true
     }
 
     override func viewDidAppear() {
@@ -99,6 +100,7 @@ class ViewControllerLoggData: NSViewController, SetConfigurations, SetSchedules,
             let config = self.configurations?.getConfigurations()[index]
             self.scheduleloggdata = ScheduleLoggData(hiddenID: hiddenID, sortdirection: self.sortedascendigdesending)
             if self.connected(config: config!) {
+                self.working.startAnimation(nil)
                 self.snapshotsloggdata = SnapshotsLoggData(config: config!, insnapshot: false)
             }
             self.info(num: 1)
@@ -117,6 +119,7 @@ class ViewControllerLoggData: NSViewController, SetConfigurations, SetSchedules,
         super.viewDidDisappear()
         self.scheduleloggdata = nil
         self.viewispresent = false
+        self.working.stopAnimation(nil)
     }
 
     private func deselectRow() {
@@ -284,6 +287,7 @@ extension ViewControllerLoggData: UpdateProgress {
         self.snapshotsloggdata?.processTermination()
         guard self.snapshotsloggdata?.outputprocess?.error == false else { return }
         self.scheduleloggdata?.intersect(snapshotaloggdata: self.snapshotsloggdata)
+        self.working.stopAnimation(nil)
         globalMainQueue.async(execute: { () -> Void in
             self.scheduletable.reloadData()
         })

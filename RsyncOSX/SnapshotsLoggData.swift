@@ -105,10 +105,10 @@ final class SnapshotsLoggData {
         }
     }
 
-    func preparecatalogstodelete(num: Int) {
-        guard num < self.expandedremotecatalogs?.count ?? 0 else { return }
+    func preparecatalogstodelete() {
+        guard self.expandedremotecatalogs != nil else { return }
         self.remotecatalogstodelete = []
-        for i in 0 ..< num {
+        for i in 0 ..< self.expandedremotecatalogs!.count {
             self.remotecatalogstodelete!.append(self.expandedremotecatalogs![i])
         }
     }

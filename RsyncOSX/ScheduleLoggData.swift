@@ -104,7 +104,7 @@ final class ScheduleLoggData: SetConfigurations, SetSchedules, Sorting {
         self.loggdata = self.sortbyrundate(notsorted: data, sortdirection: true)
     }
 
-    let closure: (NSMutableDictionary, NSMutableDictionary) -> Bool = { (number1, number2) in
+    let compare: (NSMutableDictionary, NSMutableDictionary) -> Bool = { (number1, number2) in
         if number1.value(forKey: "sibling") as? Int == number2.value(forKey: "sibling") as? Int &&
             number1.value(forKey: "parent") as? Int == number2.value(forKey: "parent") as? Int {
             return true
@@ -118,7 +118,7 @@ final class ScheduleLoggData: SetConfigurations, SetSchedules, Sorting {
         guard self.loggdata != nil else { return }
         for i in 0 ..< self.loggdata!.count {
             for j in 0 ..< snapshotaloggdata!.snapshotslogs!.count where
-                self.closure(snapshotaloggdata!.snapshotslogs![j], self.loggdata![i]) {
+                self.compare(snapshotaloggdata!.snapshotslogs![j], self.loggdata![i]) {
                 self.loggdata![i].setValue(1, forKey: "snapCellID")
             }
         }
