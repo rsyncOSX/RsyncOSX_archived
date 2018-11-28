@@ -17,6 +17,7 @@ class ViewControllerSnapshots: NSViewController, SetDismisser, SetConfigurations
     private var snapshotsloggdata: SnapshotsLoggData?
     private var delete: Bool = false
     private var numbersinsequencetodelete: Int?
+    private var snapshotstodelete: Double = 0
     private var index: Int?
     var lastindex: Int?
     var diddissappear: Bool = false
@@ -79,7 +80,7 @@ class ViewControllerSnapshots: NSViewController, SetDismisser, SetConfigurations
 
     @IBAction func updatedeletesnapshotsnum(_ sender: NSSlider) {
         self.stringdeletesnapshotsnum.stringValue = String(self.deletesnapshots.intValue)
-        self.numbersinsequencetodelete = Int(self.deletesnapshots.intValue)
+        self.numbersinsequencetodelete = Int(self.deletesnapshots.intValue - 1)
         self.markfordelete(numberstomark: self.numbersinsequencetodelete!)
         globalMainQueue.async(execute: { () -> Void in
             self.snapshotstable.reloadData()
@@ -194,6 +195,7 @@ class ViewControllerSnapshots: NSViewController, SetDismisser, SetConfigurations
     private func initiateProgressbar(maxvalue: Double) {
         self.progressdelete.isHidden = false
         self.progressdelete.maxValue = maxvalue
+        self.snapshotstodelete = maxvalue
         self.progressdelete.minValue = 0
         self.progressdelete.doubleValue = 0
         self.progressdelete.startAnimation(self)
@@ -269,9 +271,8 @@ extension ViewControllerSnapshots: GetSource {
 extension ViewControllerSnapshots: UpdateProgress {
     func processTermination() {
         if delete {
-            let deletenum = Int(self.numbersinsequencetodelete ?? 0)
             if self.snapshotsloggdata!.remotecatalogstodelete == nil {
-                self.updateProgressbar(Double(deletenum))
+                // self.updateProgressbar(self.snapshotstodelete)
                 self.delete = false
                 self.progressdelete.isHidden = true
                 self.deletebutton.isEnabled = true
@@ -279,8 +280,8 @@ extension ViewControllerSnapshots: UpdateProgress {
                 self.info(num: 3)
                 self.snapshotsloggdata = SnapshotsLoggData(config: self.config!, insnapshot: true)
             } else {
-                let progress = deletenum - self.snapshotsloggdata!.remotecatalogstodelete!.count
-                self.updateProgressbar(Double(progress))
+                let progress = self.snapshotstodelete - Double(self.snapshotsloggdata!.remotecatalogstodelete!.count)
+                self.updateProgressbar(progress)
             }
             self.deletesnapshotcatalogs()
         } else {
@@ -371,7 +372,8 @@ extension ViewControllerSnapshots: NSTextFieldDelegate {
                         } else {
                             self.deletesnapshots.intValue = Int32(num)
                         }
-                        self.numbersinsequencetodelete = Int(self.deletesnapshots.intValue)
+                        self.numbersinsequencetodelete = Int(self.deletesnapshots.intValue) - 1
+                        self.markfordelete(numberstomark: self.numbersinsequencetodelete!)
                         globalMainQueue.async(execute: { () -> Void in
                             self.snapshotstable.reloadData()
                         })
@@ -384,6 +386,7 @@ extension ViewControllerSnapshots: NSTextFieldDelegate {
                     if let num = Int(self.stringdeletesnapshotsdaysnum.stringValue) {
                         self.deletesnapshotsdays.intValue = Int32(num)
                         self.numbersinsequencetodelete = self.snapshotsloggdata!.countbydays(num: Double(self.stringdeletesnapshotsdaysnum.stringValue) ?? 0)
+                        self.markfordelete(numberstomark: self.numbersinsequencetodelete!)
                         globalMainQueue.async(execute: { () -> Void in
                             self.snapshotstable.reloadData()
                         })
