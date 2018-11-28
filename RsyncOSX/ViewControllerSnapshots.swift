@@ -97,7 +97,7 @@ class ViewControllerSnapshots: NSViewController, SetDismisser, SetConfigurations
 
     private func markfordelete(numberstomark: Int ) {
         guard self.snapshotsloggdata?.snapshotslogs != nil else { return }
-        for i in 0 ..< self.snapshotsloggdata!.snapshotslogs!.count {
+        for i in 0 ..< self.snapshotsloggdata!.snapshotslogs!.count - 1 {
             if i <= numberstomark {
                 self.snapshotsloggdata?.snapshotslogs![i].setValue(1, forKey: "selectCellID")
             } else {

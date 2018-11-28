@@ -82,7 +82,7 @@ final class SnapshotsLoggData {
 
     func preparecatalogstodelete() {
         guard self.snapshotslogs != nil else { return }
-        for i in 0 ..< self.snapshotslogs!.count {
+        for i in 0 ..< self.snapshotslogs!.count - 1 {
             if self.snapshotslogs![i].value(forKey: "selectCellID") as? Int == 1 {
                 if self.remotecatalogstodelete == nil { self.remotecatalogstodelete = [] }
                 let snaproot = self.config!.offsiteCatalog
@@ -101,7 +101,7 @@ final class SnapshotsLoggData {
                 j+=1
             }
         }
-        return j
+        return j - 1
     }
 
     init(config: Configuration, insnapshot: Bool) {
