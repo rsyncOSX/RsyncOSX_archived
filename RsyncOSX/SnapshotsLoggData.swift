@@ -15,14 +15,19 @@ final class SnapshotsLoggData {
     var config: Configuration?
     var outputprocess: OutputProcess?
     private var catalogs: [String]?
-    var expandedremotecatalogs: [String]?
     var remotecatalogstodelete: [String]?
+    var insnapshot: Bool = true
 
-    private func getremotecataloginfo() {
+    private func getremotecataloginfo(insnapshots: Bool) {
         self.outputprocess = OutputProcess()
         let arguments = CopyFileArguments(task: .snapshotcatalogs, config: self.config!, remoteFile: nil, localCatalog: nil, drynrun: nil)
-        let object = SnapshotCommandSubCatalogs(command: arguments.getCommand(), arguments: arguments.getArguments())
-        object.executeProcess(outputprocess: self.outputprocess)
+        if insnapshots {
+            let object = SnapshotCommandSubCatalogs(command: arguments.getCommand(), arguments: arguments.getArguments())
+            object.executeProcess(outputprocess: self.outputprocess)
+        } else {
+            let object = SnapshotCommandSubCatalogsLogview(command: arguments.getCommand(), arguments: arguments.getArguments())
+            object.executeProcess(outputprocess: self.outputprocess)
+        }
     }
 
     private func getsnapshotlogs() {
@@ -59,9 +64,9 @@ final class SnapshotsLoggData {
             let num1 = Int(str1?.dropFirst(2) ?? "") ?? 0
             let num2 = Int(str2?.dropFirst(2) ?? "") ?? 0
             if num1 <= num2 {
-                return true
+                return self.insnapshot
             } else {
-                return false
+                return !self.insnapshot
             }
         }
         self.snapshotslogs = sorted.filter({($0.value(forKey: "snapshotCatalog") as? String)?.isEmpty == false})
@@ -75,35 +80,15 @@ final class SnapshotsLoggData {
         return seconds * (-1)
     }
 
-    private func sortedandexpandremotecatalogs() {
-        guard self.expandedremotecatalogs != nil else { return }
-        var sorted = self.expandedremotecatalogs?.sorted { (di1, di2) -> Bool in
-            let num1 = Int(di1) ?? 0
-            let num2 = Int(di2) ?? 0
-            if num1 <= num2 {
-                return true
-            } else {
-                return false
+    func preparecatalogstodelete() {
+        guard self.snapshotslogs != nil else { return }
+        for i in 0 ..< self.snapshotslogs!.count - 1 {
+            if self.snapshotslogs![i].value(forKey: "selectCellID") as? Int == 1 {
+                if self.remotecatalogstodelete == nil { self.remotecatalogstodelete = [] }
+                let snaproot = self.config!.offsiteCatalog
+                let snapcatalog = self.snapshotslogs![i].value(forKey: "snapshotCatalog") as? String
+                self.remotecatalogstodelete!.append(snaproot + snapcatalog!.dropFirst(2))
             }
-        }
-        // Remove the top ./ catalog
-        if sorted?.count ?? 0 > 1 {
-            if sorted![0] == "." {
-                sorted?.remove(at: 0)
-            }
-        }
-        self.expandedremotecatalogs = sorted
-        for i in 0 ..< self.expandedremotecatalogs!.count {
-            let expanded = self.config!.offsiteCatalog + self.expandedremotecatalogs![i]
-            self.expandedremotecatalogs![i] = expanded
-        }
-    }
-
-    func preparecatalogstodelete(num: Int) {
-        guard num < self.expandedremotecatalogs?.count ?? 0 else { return }
-        self.remotecatalogstodelete = []
-        for i in 0 ..< num {
-            self.remotecatalogstodelete!.append(self.expandedremotecatalogs![i])
         }
     }
 
@@ -116,29 +101,30 @@ final class SnapshotsLoggData {
                 j+=1
             }
         }
-        return j
+        return j - 1
     }
 
-    init(config: Configuration) {
+    init(config: Configuration, insnapshot: Bool) {
+        guard config.task == ViewControllerReference.shared.snapshot else { return }
+        self.insnapshot = insnapshot
         self.snapshotslogs = ScheduleLoggData(sortdirection: true).loggdata
         self.config = config
-        guard config.task == ViewControllerReference.shared.snapshot else { return }
-        self.getremotecataloginfo()
+        self.getremotecataloginfo(insnapshots: insnapshot)
     }
 }
 
 extension SnapshotsLoggData: UpdateProgress {
     func processTermination() {
+        _ = self.outputprocess?.trimoutput(trim: .two)
+        guard outputprocess!.error == false else { return }
         self.catalogs = self.outputprocess?.trimoutput(trim: .one)
         if self.catalogs?.count ?? 0 > 1 {
             if self.catalogs![0] == "./." {
                 self.catalogs?.remove(at: 0)
             }
         }
-        self.expandedremotecatalogs = self.outputprocess?.trimoutput(trim: .three)
         self.getsnapshotlogs()
         self.mergeremotecatalogsandlogs()
-        self.sortedandexpandremotecatalogs()
     }
 
     func fileHandler() {

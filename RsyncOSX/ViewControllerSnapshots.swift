@@ -10,13 +10,13 @@
 import Foundation
 import Cocoa
 
-class ViewControllerSnapshots: NSViewController, SetDismisser, SetConfigurations, Delay, Attributedestring {
+class ViewControllerSnapshots: NSViewController, SetDismisser, SetConfigurations, Delay {
 
     private var hiddenID: Int?
     private var config: Configuration?
     private var snapshotsloggdata: SnapshotsLoggData?
     private var delete: Bool = false
-    private var numberstodelete: Int?
+    private var numbersinsequencetodelete: Int?
     private var index: Int?
     var lastindex: Int?
     var diddissappear: Bool = false
@@ -56,6 +56,8 @@ class ViewControllerSnapshots: NSViewController, SetDismisser, SetConfigurations
         case 5:
             let num = String((self.snapshotsloggdata?.snapshotslogs?.count ?? 1 - 1) - 1)
             self.info.stringValue = "You cannot delete that many, max is " + num + "..."
+        case 6:
+            self.info.stringValue = "Seems not to be connected..."
         default:
             self.info.stringValue = ""
         }
@@ -72,12 +74,13 @@ class ViewControllerSnapshots: NSViewController, SetDismisser, SetConfigurations
         self.deletesnapshotsdays.minValue = 0.0
         self.deletesnapshotsdays.intValue = 99
         self.stringdeletesnapshotsdaysnum.stringValue = "99"
-        self.numberstodelete = 0
+        self.numbersinsequencetodelete = 0
     }
 
     @IBAction func updatedeletesnapshotsnum(_ sender: NSSlider) {
         self.stringdeletesnapshotsnum.stringValue = String(self.deletesnapshots.intValue)
-        self.numberstodelete = Int(self.deletesnapshots.intValue)
+        self.numbersinsequencetodelete = Int(self.deletesnapshots.intValue)
+        self.markfordelete(numberstomark: self.numbersinsequencetodelete!)
         globalMainQueue.async(execute: { () -> Void in
             self.snapshotstable.reloadData()
         })
@@ -85,10 +88,22 @@ class ViewControllerSnapshots: NSViewController, SetDismisser, SetConfigurations
 
     @IBAction func updatedeletesnapshotsdays(_ sender: Any) {
         self.stringdeletesnapshotsdaysnum.stringValue = String(self.deletesnapshotsdays.intValue)
-        self.numberstodelete = self.snapshotsloggdata?.countbydays(num: Double(self.deletesnapshotsdays.intValue))
+        self.numbersinsequencetodelete = self.snapshotsloggdata?.countbydays(num: Double(self.deletesnapshotsdays.intValue))
+        self.markfordelete(numberstomark: self.numbersinsequencetodelete!)
         globalMainQueue.async(execute: { () -> Void in
             self.snapshotstable.reloadData()
         })
+    }
+
+    private func markfordelete(numberstomark: Int ) {
+        guard self.snapshotsloggdata?.snapshotslogs != nil else { return }
+        for i in 0 ..< self.snapshotsloggdata!.snapshotslogs!.count - 1 {
+            if i <= numberstomark {
+                self.snapshotsloggdata?.snapshotslogs![i].setValue(1, forKey: "selectCellID")
+            } else {
+                self.snapshotsloggdata?.snapshotslogs![i].setValue(0, forKey: "selectCellID")
+            }
+        }
     }
 
     // Abort button
@@ -98,14 +113,15 @@ class ViewControllerSnapshots: NSViewController, SetDismisser, SetConfigurations
     }
 
     @IBAction func delete(_ sender: NSButton) {
-        guard self.snapshotsloggdata != nil && self.numberstodelete != nil else { return }
-        let answer = Alerts.dialogOKCancel("Do you REALLY want to DELETE " + String(self.numberstodelete!) + " snapshots?", text: "Cancel or OK")
+        guard self.snapshotsloggdata != nil else { return }
+        let answer = Alerts.dialogOKCancel("Do you REALLY want to DELETE selected snapshots?", text: "Cancel or OK")
         if answer {
             self.info(num: 0)
-            self.snapshotsloggdata!.preparecatalogstodelete(num: self.numberstodelete!)
+            self.snapshotsloggdata!.preparecatalogstodelete()
+            guard self.snapshotsloggdata!.remotecatalogstodelete != nil else { return }
             self.deletebutton.isEnabled = false
             self.deletesnapshots.isEnabled = false
-            self.initiateProgressbar(maxvalue: Double(self.numberstodelete!))
+            self.initiateProgressbar(maxvalue: Double(self.snapshotsloggdata!.remotecatalogstodelete!.count))
             self.deletesnapshotcatalogs()
             self.delete = true
         }
@@ -187,6 +203,17 @@ class ViewControllerSnapshots: NSViewController, SetDismisser, SetConfigurations
         self.progressdelete.doubleValue = value
     }
 
+    private func connected(config: Configuration) -> Bool {
+        var port: Int = 22
+        if config.offsiteServer.isEmpty == false {
+            if let sshport: Int = config.sshport { port = sshport }
+            let (success, _) = TCPconnections().testTCPconnection(config.offsiteServer, port: port, timeout: 1)
+            return success
+        } else {
+            return true
+        }
+    }
+
     // setting which table row is selected
     func tableViewSelectionDidChange(_ notification: Notification) {
         let myTableViewFromNotification = (notification.object as? NSTableView)!
@@ -221,7 +248,11 @@ extension ViewControllerSnapshots: GetSource {
              self.info(num: 1)
             return
         }
-        self.snapshotsloggdata = SnapshotsLoggData(config: self.config!)
+        guard self.connected(config: config!) == true else {
+             self.info(num: 6)
+            return
+        }
+        self.snapshotsloggdata = SnapshotsLoggData(config: self.config!, insnapshot: true)
         self.localCatalog.stringValue = self.config!.localCatalog
         self.offsiteCatalog.stringValue = self.config!.offsiteCatalog
         self.offsiteUsername.stringValue = self.config!.offsiteUsername
@@ -238,7 +269,7 @@ extension ViewControllerSnapshots: GetSource {
 extension ViewControllerSnapshots: UpdateProgress {
     func processTermination() {
         if delete {
-            let deletenum = Int(self.numberstodelete ?? 0)
+            let deletenum = Int(self.numbersinsequencetodelete ?? 0)
             if self.snapshotsloggdata!.remotecatalogstodelete == nil {
                 self.updateProgressbar(Double(deletenum))
                 self.delete = false
@@ -246,7 +277,7 @@ extension ViewControllerSnapshots: UpdateProgress {
                 self.deletebutton.isEnabled = true
                 self.deletesnapshots.isEnabled = true
                 self.info(num: 3)
-                self.snapshotsloggdata = SnapshotsLoggData(config: self.config!)
+                self.snapshotsloggdata = SnapshotsLoggData(config: self.config!, insnapshot: true)
             } else {
                 let progress = deletenum - self.snapshotsloggdata!.remotecatalogstodelete!.count
                 self.updateProgressbar(Double(progress))
@@ -257,7 +288,7 @@ extension ViewControllerSnapshots: UpdateProgress {
             self.snapshotsloggdata?.processTermination()
             self.initslidersdeletesnapshots()
             self.gettinglogs.stopAnimation(nil)
-            self.numberstodelete = nil
+            self.numbersinsequencetodelete = nil
             globalMainQueue.async(execute: { () -> Void in
                 self.snapshotstable.reloadData()
             })
@@ -286,12 +317,20 @@ extension ViewControllerSnapshots: NSTableViewDelegate {
     func tableView(_ tableView: NSTableView, objectValueFor tableColumn: NSTableColumn?, row: Int) -> Any? {
         guard row < self.snapshotsloggdata?.snapshotslogs!.count ?? 0 else { return nil }
         let object: NSDictionary = self.snapshotsloggdata!.snapshotslogs![row]
-        if self.numberstodelete != nil {
-            if row < self.numberstodelete! {
-                return self.attributedstring(str: object[tableColumn!.identifier] as? String ?? "", color: NSColor.red, align: .left)
-            }
+        if tableColumn!.identifier.rawValue == "selectCellID" {
+            return object[tableColumn!.identifier] as? Int
+        } else {
+            return object[tableColumn!.identifier] as? String
         }
-        return object[tableColumn!.identifier] as? String
+    }
+
+    func tableView(_ tableView: NSTableView, setObjectValue object: Any?, for tableColumn: NSTableColumn?, row: Int) {
+        if tableColumn!.identifier.rawValue == "selectCellID" {
+            var select: Int = (self.snapshotsloggdata?.snapshotslogs![row].value(forKey: "selectCellID") as? Int) ?? 0
+            if select == 0 { select = 1 } else if select == 1 { select = 0 }
+            guard row < self.snapshotsloggdata!.snapshotslogs!.count - 1 else { return }
+            self.snapshotsloggdata?.snapshotslogs![row].setValue(select, forKey: "selectCellID")
+        }
     }
 }
 
@@ -332,7 +371,7 @@ extension ViewControllerSnapshots: NSTextFieldDelegate {
                         } else {
                             self.deletesnapshots.intValue = Int32(num)
                         }
-                        self.numberstodelete = Int(self.deletesnapshots.intValue)
+                        self.numbersinsequencetodelete = Int(self.deletesnapshots.intValue)
                         globalMainQueue.async(execute: { () -> Void in
                             self.snapshotstable.reloadData()
                         })
@@ -344,7 +383,7 @@ extension ViewControllerSnapshots: NSTextFieldDelegate {
                 if self.stringdeletesnapshotsdaysnum.stringValue.isEmpty == false {
                     if let num = Int(self.stringdeletesnapshotsdaysnum.stringValue) {
                         self.deletesnapshotsdays.intValue = Int32(num)
-                        self.numberstodelete = self.snapshotsloggdata!.countbydays(num: Double(self.stringdeletesnapshotsdaysnum.stringValue) ?? 0)
+                        self.numbersinsequencetodelete = self.snapshotsloggdata!.countbydays(num: Double(self.stringdeletesnapshotsdaysnum.stringValue) ?? 0)
                         globalMainQueue.async(execute: { () -> Void in
                             self.snapshotstable.reloadData()
                         })

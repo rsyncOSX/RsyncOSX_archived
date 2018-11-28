@@ -27,6 +27,7 @@ final class OutputProcess {
     private var maxNumber: Int = 0
     weak var errorDelegate: RsyncError?
     weak var allerrorsDelegate: Allerrors?
+    var error: Bool = false
 
     func getMaxcount() -> Int {
         if self.trimmedoutput == nil {
@@ -77,8 +78,8 @@ final class OutputProcess {
         case .two:
             for i in 0 ..< self.output!.count where self.output![i].last != "/" {
                 out.append(self.output![i])
-                let error = self.output![i].contains("rsync error:")
-                if error {
+                self.error = self.output![i].contains("rsync error:")
+                if self.error {
                     self.errorDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllertabMain
                     self.allerrorsDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllertabMain
                     self.errorDelegate?.rsyncerror()

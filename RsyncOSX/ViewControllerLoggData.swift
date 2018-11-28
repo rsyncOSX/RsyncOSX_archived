@@ -18,6 +18,7 @@ protocol ReadLoggdata: class {
 class ViewControllerLoggData: NSViewController, SetConfigurations, SetSchedules, Delay, GetIndex {
 
     private var scheduleloggdata: ScheduleLoggData?
+    private var snapshotsloggdata: SnapshotsLoggData?
     private var row: NSDictionary?
     private var filterby: Sortandfilter?
     private var index: Int?
@@ -31,6 +32,7 @@ class ViewControllerLoggData: NSViewController, SetConfigurations, SetSchedules,
     @IBOutlet weak var sortdirection: NSButton!
     @IBOutlet weak var selectedrows: NSTextField!
     @IBOutlet weak var info: NSTextField!
+    @IBOutlet weak var working: NSProgressIndicator!
 
     private func info(num: Int) {
         switch num {
@@ -50,8 +52,7 @@ class ViewControllerLoggData: NSViewController, SetConfigurations, SetSchedules,
             self.sortdirection.image = #imageLiteral(resourceName: "up")
         }
     }
-
-    @IBAction func selectalllogs(_ sender: NSButton) {
+    @IBAction func selectlogs(_ sender: NSButton) {
         guard self.scheduleloggdata!.loggdata != nil else { return }
         for i in 0 ..< self.scheduleloggdata!.loggdata!.count {
             if self.scheduleloggdata!.loggdata![i].value(forKey: "deleteCellID") as? Int == 1 {
@@ -88,6 +89,7 @@ class ViewControllerLoggData: NSViewController, SetConfigurations, SetSchedules,
         ViewControllerReference.shared.setvcref(viewcontroller: .vcloggdata, nsviewcontroller: self)
         self.sortdirection.image = #imageLiteral(resourceName: "up")
         self.sortedascendigdesending = true
+        self.working.usesThreadedAnimation = true
     }
 
     override func viewDidAppear() {
@@ -95,7 +97,12 @@ class ViewControllerLoggData: NSViewController, SetConfigurations, SetSchedules,
         self.index = self.index(viewcontroller: .vctabmain)
         if let index = self.index {
             let hiddenID = self.configurations?.gethiddenID(index: index) ?? -1
+            let config = self.configurations?.getConfigurations()[index]
             self.scheduleloggdata = ScheduleLoggData(hiddenID: hiddenID, sortdirection: self.sortedascendigdesending)
+            if self.connected(config: config!) {
+                if config?.task == "snapshot" { self.working.startAnimation(nil) }
+                self.snapshotsloggdata = SnapshotsLoggData(config: config!, insnapshot: false)
+            }
             self.info(num: 1)
         } else {
             self.info(num: 0)
@@ -112,11 +119,23 @@ class ViewControllerLoggData: NSViewController, SetConfigurations, SetSchedules,
         super.viewDidDisappear()
         self.scheduleloggdata = nil
         self.viewispresent = false
+        self.working.stopAnimation(nil)
     }
 
     private func deselectRow() {
         guard self.index != nil else { return }
         self.scheduletable.deselectRow(self.index!)
+    }
+
+    private func connected(config: Configuration) -> Bool {
+        var port: Int = 22
+        if config.offsiteServer.isEmpty == false {
+            if let sshport: Int = config.sshport { port = sshport }
+            let (success, _) = TCPconnections().testTCPconnection(config.offsiteServer, port: port, timeout: 1)
+            return success
+        } else {
+            return true
+        }
     }
 }
 
@@ -170,7 +189,8 @@ extension ViewControllerLoggData: NSTableViewDelegate {
         guard self.scheduleloggdata != nil else { return nil }
         guard row < self.scheduleloggdata!.loggdata!.count else { return nil }
         let object: NSDictionary = self.scheduleloggdata!.loggdata![row]
-        if tableColumn!.identifier.rawValue == "deleteCellID" {
+        if tableColumn!.identifier.rawValue == "deleteCellID" ||
+            tableColumn!.identifier.rawValue == "snapCellID" {
             return object[tableColumn!.identifier] as? Int
         } else {
             return object[tableColumn!.identifier] as? String
@@ -190,13 +210,13 @@ extension ViewControllerLoggData: NSTableViewDelegate {
         switch column {
         case 0:
              self.filterby = .task
-        case 2:
-            self.filterby = .backupid
         case 3:
-            self.filterby = .localcatalog
+            self.filterby = .backupid
         case 4:
-            self.filterby = .remoteserver
+            self.filterby = .localcatalog
         case 5:
+            self.filterby = .remoteserver
+        case 6:
             sortbystring = false
             self.filterby = .executedate
         default:
@@ -259,5 +279,21 @@ extension ViewControllerLoggData: ReadLoggdata {
                 self.scheduletable.reloadData()
             })
         }
+    }
+}
+
+extension ViewControllerLoggData: UpdateProgress {
+    func processTermination() {
+        self.snapshotsloggdata?.processTermination()
+        guard self.snapshotsloggdata?.outputprocess?.error == false else { return }
+        self.scheduleloggdata?.intersect(snapshotaloggdata: self.snapshotsloggdata)
+        self.working.stopAnimation(nil)
+        globalMainQueue.async(execute: { () -> Void in
+            self.scheduletable.reloadData()
+        })
+    }
+
+    func fileHandler() {
+        //
     }
 }
