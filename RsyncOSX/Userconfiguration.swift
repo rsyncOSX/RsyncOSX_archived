@@ -12,7 +12,7 @@ import Foundation
 // Reading userconfiguration from file into RsyncOSX
 final class Userconfiguration {
 
-    weak var rsyncchangedDelegate: RsyncChanged?
+    weak var rsyncchangedDelegate: RsyncIsChanged?
 
     private func readUserconfiguration(dict: NSDictionary) {
         // Another version of rsync

@@ -280,7 +280,6 @@ extension Deselect {
 // The protocol is implemented in ViewControllertabMain
 protocol GetIndex: class {
     var getindexDelegateMain: GetSelecetedIndex? { get }
-    var getindexDelegateSnapshot: GetSelecetedIndex? { get }
 }
 
 extension GetIndex {
@@ -288,19 +287,8 @@ extension GetIndex {
         return ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllertabMain
     }
 
-    weak var getindexDelegateSnapshot: GetSelecetedIndex? {
-        return ViewControllerReference.shared.getvcref(viewcontroller: .vcsnapshot) as? ViewControllerSnapshots
-    }
-
-    func index(viewcontroller: ViewController) -> Int? {
-        switch viewcontroller {
-        case .vctabmain:
-            return self.getindexDelegateMain?.getindex()
-        case .vcsnapshot:
-            return self.getindexDelegateSnapshot?.getindex()
-        default:
-            return self.getindexDelegateMain?.getindex()
-        }
+    func index() -> Int? {
+        return self.getindexDelegateMain?.getindex()
     }
 }
 
@@ -358,22 +346,14 @@ extension Connected {
 }
 
 // Protocol for aborting task
-protocol AbortOperations: class {
-    func abortOperations()
-}
-
-protocol AbortTask {
-    var abortDelegate: AbortOperations? { get }
+protocol Abort {
     func abort()
 }
 
-extension AbortTask {
-    weak var abortDelegate: AbortOperations? {
-        return ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllertabMain
-    }
-
+extension Abort {
     func abort() {
-        self.abortDelegate?.abortOperations()
+        let view = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllertabMain
+        view?.abortOperations()
     }
 }
 
@@ -402,18 +382,17 @@ extension GetInformation {
         }
     }
 }
-// Protocol for doing updates when optional path for rsync is changed
-// or user enable or disable doubleclick to execte
-protocol RsyncChanged: class {
+
+protocol RsyncIsChanged: class {
     func rsyncischanged()
 }
 
 protocol NewRsync {
-    var newRsyncDelegate: RsyncChanged? { get }
+    var newRsyncDelegate: RsyncIsChanged? { get }
 }
 
 extension NewRsync {
-    weak var newRsyncDelegate: RsyncChanged? {
+    weak var newRsyncDelegate: RsyncIsChanged? {
         return ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllertabMain
     }
 

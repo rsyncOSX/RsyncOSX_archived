@@ -18,7 +18,7 @@ protocol EnableQuicbackupButton: class {
     func enablequickbackupbutton()
 }
 
-class ViewControllerRemoteInfo: NSViewController, SetDismisser, AbortTask {
+class ViewControllerRemoteInfo: NSViewController, SetDismisser, Abort {
 
     @IBOutlet weak var mainTableView: NSTableView!
     @IBOutlet weak var progress: NSProgressIndicator!

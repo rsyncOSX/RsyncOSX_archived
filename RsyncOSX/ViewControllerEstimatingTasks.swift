@@ -25,7 +25,7 @@ protocol DismissViewEstimating: class {
     func dismissestimating(viewcontroller: NSViewController)
 }
 
-class ViewControllerEstimatingTasks: NSViewController, AbortTask {
+class ViewControllerEstimatingTasks: NSViewController, Abort {
 
     var count: Double = 0
     var maxcount: Double = 0

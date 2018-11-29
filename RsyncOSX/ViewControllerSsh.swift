@@ -182,7 +182,7 @@ extension ViewControllerSsh: DismissViewController {
 }
 
 extension ViewControllerSsh: GetSource {
-    func getSource(index: Int) {
+    func getSourceindex(index: Int) {
         self.hiddenID = index
         let config = self.configurations!.getConfigurations()[self.configurations!.getIndex(hiddenID!)]
         if config.offsiteServer.isEmpty == true {

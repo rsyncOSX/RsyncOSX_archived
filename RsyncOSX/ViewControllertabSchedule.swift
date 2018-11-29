@@ -142,7 +142,7 @@ class ViewControllertabSchedule: NSViewController, SetConfigurations, SetSchedul
 
     override func viewDidAppear() {
         super.viewDidAppear()
-        self.index = self.index(viewcontroller: .vctabmain)
+        self.index = self.index()
         if self.index != nil {
             self.hiddenID = self.configurations!.gethiddenID(index: self.index!)
             self.info(num: 3)

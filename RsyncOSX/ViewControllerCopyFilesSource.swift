@@ -32,12 +32,12 @@ class ViewControllerCopyFilesSource: NSViewController, SetConfigurations, SetDis
         if let pvc = self.presenting as? ViewControllerSsh {
             self.getSourceDelegateSsh = pvc
             if let index = self.index {
-                self.getSourceDelegateSsh?.getSource(index: index)
+                self.getSourceDelegateSsh?.getSourceindex(index: index)
             }
         } else if let pvc = self.presenting as? ViewControllerSnapshots {
             self.getSourceDelegateSnapshots = pvc
             if let index = self.index {
-                self.getSourceDelegateSnapshots?.getSource(index: index)
+                self.getSourceDelegateSnapshots?.getSourceindex(index: index)
             }
         }
     }

@@ -115,7 +115,7 @@ class ViewControllerVerify: NSViewController, SetConfigurations, GetIndex {
 
     override func viewDidAppear() {
         super.viewDidAppear()
-        self.index = self.index(viewcontroller: .vctabmain)
+        self.index = self.index()
         if let index = self.index {
             guard index != self.lastindex ?? -1 else { return }
             guard self.estimatedindex ?? -1 != index else { return }

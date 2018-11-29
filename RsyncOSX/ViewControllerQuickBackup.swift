@@ -10,7 +10,7 @@
 import Foundation
 import Cocoa
 
-class ViewControllerQuickBackup: NSViewController, SetDismisser, AbortTask, Delay {
+class ViewControllerQuickBackup: NSViewController, SetDismisser, Abort, Delay {
 
     var seconds: Int?
     var row: Int?

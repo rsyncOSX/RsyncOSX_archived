@@ -5,12 +5,14 @@
 //  Created by Thomas Evensen on 22.01.2018.
 //  Copyright © 2018 Thomas Evensen. All rights reserved.
 //
-// swiftlint:disable line_length
+// swiftlint:disable line_length file_length
 
 import Foundation
 import Cocoa
 
-class ViewControllerSnapshots: NSViewController, SetDismisser, SetConfigurations, Delay, Connected {
+// self.presentViewControllerAsSheet(self.ViewControllerProgress)
+
+class ViewControllerSnapshots: NSViewController, SetDismisser, SetConfigurations, Delay, Connected, GetIndex {
 
     private var hiddenID: Int?
     private var config: Configuration?
@@ -21,6 +23,7 @@ class ViewControllerSnapshots: NSViewController, SetDismisser, SetConfigurations
     private var index: Int?
     var lastindex: Int?
     var diddissappear: Bool = false
+    weak var processterminationDelegate: UpdateProgress?
 
     @IBOutlet weak var snapshotstable: NSTableView!
     @IBOutlet weak var localCatalog: NSTextField!
@@ -59,6 +62,8 @@ class ViewControllerSnapshots: NSViewController, SetDismisser, SetConfigurations
             self.info.stringValue = "You cannot delete that many, max is " + num + "..."
         case 6:
             self.info.stringValue = "Seems not to be connected..."
+        case 7:
+            self.info.stringValue = "Use Soure button to change..."
         default:
             self.info.stringValue = ""
         }
@@ -147,15 +152,21 @@ class ViewControllerSnapshots: NSViewController, SetDismisser, SetConfigurations
     override func viewDidAppear() {
         super.viewDidAppear()
         guard self.diddissappear == false else {
+            self.info(num: 7)
             globalMainQueue.async(execute: { () -> Void in
                 self.snapshotstable.reloadData()
             })
             return
         }
-        self.snapshotsloggdata = nil
-        globalMainQueue.async(execute: { () -> Void in
-            self.snapshotstable.reloadData()
-        })
+        if let index = self.index() {
+            let hiddenID = self.configurations!.gethiddenID(index: index)
+            self.getSourceindex(index: hiddenID)
+        } else {
+            self.snapshotsloggdata = nil
+            globalMainQueue.async(execute: { () -> Void in
+                self.snapshotstable.reloadData()
+            })
+        }
     }
 
     override func viewDidDisappear() {
@@ -203,6 +214,7 @@ class ViewControllerSnapshots: NSViewController, SetDismisser, SetConfigurations
 
     private func updateProgressbar(_ value: Double) {
         self.progressdelete.doubleValue = value
+        self.processterminationDelegate?.fileHandler()
     }
 
     // setting which table row is selected
@@ -218,12 +230,10 @@ class ViewControllerSnapshots: NSViewController, SetDismisser, SetConfigurations
             self.index = nil
         }
     }
-
 }
 
 extension ViewControllerSnapshots: DismissViewController {
 
-    // Protocol DismissViewController
     func dismiss_view(viewcontroller: NSViewController) {
         self.dismissViewController(viewcontroller)
     }
@@ -232,15 +242,15 @@ extension ViewControllerSnapshots: DismissViewController {
 extension ViewControllerSnapshots: GetSource {
 
     // Returning hiddenID as Index
-    func getSource(index: Int) {
+    func getSourceindex(index: Int) {
         self.hiddenID = index
         self.config = self.configurations!.getConfigurations()[self.configurations!.getIndex(hiddenID!)]
         guard self.config!.task == ViewControllerReference.shared.snapshot else {
-             self.info(num: 1)
+            self.info(num: 1)
             return
         }
         guard self.connected(config: config!) == true else {
-             self.info(num: 6)
+            self.info(num: 6)
             return
         }
         self.snapshotsloggdata = SnapshotsLoggData(config: self.config!, insnapshot: true)
@@ -261,7 +271,6 @@ extension ViewControllerSnapshots: UpdateProgress {
     func processTermination() {
         if delete {
             if self.snapshotsloggdata!.remotecatalogstodelete == nil {
-                // self.updateProgressbar(self.snapshotstodelete)
                 self.delete = false
                 self.progressdelete.isHidden = true
                 self.deletebutton.isEnabled = true
@@ -341,12 +350,6 @@ extension ViewControllerSnapshots: Reloadandrefresh {
     }
 }
 
-extension ViewControllerSnapshots: GetSelecetedIndex {
-    func getindex() -> Int? {
-        return self.index
-    }
-}
-
 extension ViewControllerSnapshots: NSTextFieldDelegate {
     override func controlTextDidChange(_ notification: Notification) {
         self.delayWithSeconds(0.5) {
@@ -385,5 +388,25 @@ extension ViewControllerSnapshots: NSTextFieldDelegate {
                 }
             }
         }
+    }
+}
+
+extension ViewControllerSnapshots: Count {
+    func maxCount() -> Int {
+        guard self.snapshotsloggdata?.remotecatalogstodelete != nil else { return 0 }
+        let max = self.snapshotsloggdata!.remotecatalogstodelete!.count
+        return max
+    }
+
+    func inprogressCount() -> Int {
+        guard self.snapshotsloggdata?.remotecatalogstodelete != nil else { return 0 }
+        let progress = Int(self.snapshotstodelete) - self.snapshotsloggdata!.remotecatalogstodelete!.count
+        return progress
+    }
+}
+
+extension ViewControllerSnapshots: Abort {
+    func abortOperations() {
+        //
     }
 }

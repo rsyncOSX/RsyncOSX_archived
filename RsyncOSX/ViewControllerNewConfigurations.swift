@@ -117,7 +117,7 @@ class ViewControllerNewConfigurations: NSViewController, SetConfigurations, VcSc
         guard self.diddissappear == false else { return }
         self.backuptypeselected = .synchronize
         self.backuptype.selectItem(at: 0)
-        self.index = self.index(viewcontroller: .vctabmain)
+        self.index = self.index()
         if self.index != nil {
             self.copyconfigbutton.isEnabled = true
         } else {

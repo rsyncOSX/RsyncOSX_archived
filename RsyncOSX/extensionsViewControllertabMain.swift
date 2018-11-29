@@ -172,7 +172,7 @@ extension ViewControllertabMain: NewProfile {
 }
 
 // Rsync path is changed, update displayed rsync command
-extension ViewControllertabMain: RsyncChanged {
+extension ViewControllertabMain: RsyncIsChanged {
     // If row is selected an update rsync command in view
     func rsyncischanged() {
         // Update rsync command in display
@@ -413,7 +413,7 @@ extension ViewControllertabMain: Fileerror {
 }
 
 // Abort task from progressview
-extension ViewControllertabMain: AbortOperations {
+extension ViewControllertabMain: Abort {
     // Abort any task
     func abortOperations() {
         // Terminates the running process

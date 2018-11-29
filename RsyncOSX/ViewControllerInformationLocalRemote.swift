@@ -46,7 +46,7 @@ class ViewControllerInformationLocalRemote: NSViewController, SetDismisser, GetI
     override func viewDidAppear() {
         super.viewDidAppear()
         self.complete = false
-        self.index = self.index(viewcontroller: .vctabmain)
+        self.index = self.index()
         if let index = self.index {
             if let info = self.localremoteinfoDelegate?.getlocalremoteinfo(index: index) {
                 self.setcachedNumbers(dict: info)

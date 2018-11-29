@@ -14,7 +14,7 @@ protocol Count: class {
     func inprogressCount() -> Int
 }
 
-class ViewControllerProgressProcess: NSViewController, SetConfigurations, SetDismisser, AbortTask {
+class ViewControllerProgressProcess: NSViewController, SetConfigurations, SetDismisser, Abort {
 
     var count: Double = 0
     var maxcount: Double = 0
