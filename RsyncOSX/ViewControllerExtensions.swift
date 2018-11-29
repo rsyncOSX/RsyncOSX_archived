@@ -201,6 +201,7 @@ extension VcCopyFiles {
 protocol DismissViewController: class {
     func dismiss_view(viewcontroller: NSViewController)
 }
+
 protocol SetDismisser {
     var dismissDelegateMain: DismissViewController? {get}
     var dismissDelegateSchedule: DismissViewController? {get}
@@ -276,42 +277,14 @@ extension Deselect {
     }
 }
 
-// Protocol for sending selected index in tableView
-// The protocol is implemented in ViewControllertabMain
-protocol GetIndex: class {
-    var getindexDelegateMain: GetSelecetedIndex? { get }
+protocol GetIndex {
+    func index() -> Int?
 }
 
 extension GetIndex {
-    weak var getindexDelegateMain: GetSelecetedIndex? {
-        return ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllertabMain
-    }
-
     func index() -> Int? {
-        return self.getindexDelegateMain?.getindex()
-    }
-}
-
-protocol Coloractivetask {
-    var colorindex: Int? { get }
-}
-
-extension Coloractivetask {
-
-    var colorindex: Int? {
-        return self.color()
-    }
-
-    func color() -> Int? {
-        if let dict: NSDictionary = ViewControllerReference.shared.quickbackuptask {
-            if let hiddenID: Int = dict.value(forKey: "hiddenID") as? Int {
-                return hiddenID
-            } else {
-                return nil
-            }
-        } else {
-            return nil
-        }
+        let view = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllertabMain
+        return view?.getindex()
     }
 }
 
@@ -320,7 +293,6 @@ protocol Delay {
 }
 
 extension Delay {
-
     func delayWithSeconds(_ seconds: Double, completion: @escaping () -> Void) {
         DispatchQueue.main.asyncAfter(deadline: .now() + seconds) {
             completion()
@@ -345,7 +317,6 @@ extension Connected {
     }
 }
 
-// Protocol for aborting task
 protocol Abort {
     func abort()
 }
