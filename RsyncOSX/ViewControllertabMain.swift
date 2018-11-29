@@ -33,7 +33,7 @@ protocol ViewOutputDetails: class {
     func disableappend()
 }
 
-class ViewControllertabMain: NSViewController, ReloadTable, Deselect, Coloractivetask, VcMain, Delay, Fileerrormessage {
+class ViewControllertabMain: NSViewController, ReloadTable, Deselect, VcMain, Delay, Fileerrormessage {
 
     // Configurations object
     var configurations: Configurations?

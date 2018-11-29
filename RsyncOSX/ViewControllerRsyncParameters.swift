@@ -22,7 +22,7 @@ protocol GetSelecetedIndex: class {
     func getindex() -> Int?
 }
 
-class ViewControllerRsyncParameters: NSViewController, SetConfigurations, SetDismisser, GetIndex {
+class ViewControllerRsyncParameters: NSViewController, SetConfigurations, SetDismisser, Index {
 
     var storageapi: PersistentStorageAPI?
     // Object for calculating rsync parameters

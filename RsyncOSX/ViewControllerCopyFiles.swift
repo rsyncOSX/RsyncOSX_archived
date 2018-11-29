@@ -332,8 +332,8 @@ extension ViewControllerCopyFiles: DismissViewController {
     }
 }
 
-extension ViewControllerCopyFiles: Information {
-    func getInformation() -> [String] {
+extension ViewControllerCopyFiles: GetOutput {
+    func getoutput() -> [String] {
         return self.copyFiles!.getOutput()
     }
 }

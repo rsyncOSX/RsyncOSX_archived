@@ -102,9 +102,9 @@ extension ViewControllertabMain: NSTableViewDelegate, Attributedestring {
 }
 
 // Get output from rsync command
-extension ViewControllertabMain: Information {
+extension ViewControllertabMain: GetOutput {
     // Get information from rsync output.
-    func getInformation() -> [String] {
+    func getoutput() -> [String] {
         if self.outputprocess != nil {
             return self.outputprocess!.trimoutput(trim: .two)!
         } else {

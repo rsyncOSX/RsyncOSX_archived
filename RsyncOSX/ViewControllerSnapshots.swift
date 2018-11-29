@@ -12,7 +12,7 @@ import Cocoa
 
 // self.presentViewControllerAsSheet(self.ViewControllerProgress)
 
-class ViewControllerSnapshots: NSViewController, SetDismisser, SetConfigurations, Delay, Connected, GetIndex {
+class ViewControllerSnapshots: NSViewController, SetDismisser, SetConfigurations, Delay, Connected, Index {
 
     private var hiddenID: Int?
     private var config: Configuration?

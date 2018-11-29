@@ -8,7 +8,7 @@
 
 import Cocoa
 
-class ViewControllerInformationCopyFiles: NSViewController, SetDismisser, GetInformation {
+class ViewControllerInformationCopyFiles: NSViewController, SetDismisser, OutPut {
 
     @IBOutlet weak var detailsTable: NSTableView!
     var output: [String]?

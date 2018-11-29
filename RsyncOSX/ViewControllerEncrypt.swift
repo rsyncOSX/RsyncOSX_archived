@@ -11,7 +11,7 @@ import Foundation
 
 import Cocoa
 
-class ViewControllerEncrypt: NSViewController, GetIndex, SetConfigurations, VcCopyFiles {
+class ViewControllerEncrypt: NSViewController, Index, SetConfigurations, VcCopyFiles {
 
     private var rcloneprofile: RcloneProfiles?
     private var rcloneprofilename: String?
