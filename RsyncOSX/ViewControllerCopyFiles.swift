@@ -11,7 +11,7 @@ import Foundation
 import Cocoa
 
 protocol GetSource: class {
-    func getSource(index: Int)
+    func getSourceindex(index: Int)
 }
 
 class ViewControllerCopyFiles: NSViewController, SetConfigurations, Delay, VcCopyFiles, VcSchedule, Connected {
