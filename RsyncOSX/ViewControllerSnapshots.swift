@@ -10,7 +10,7 @@
 import Foundation
 import Cocoa
 
-class ViewControllerSnapshots: NSViewController, SetDismisser, SetConfigurations, Delay {
+class ViewControllerSnapshots: NSViewController, SetDismisser, SetConfigurations, Delay, Connected {
 
     private var hiddenID: Int?
     private var config: Configuration?
@@ -203,17 +203,6 @@ class ViewControllerSnapshots: NSViewController, SetDismisser, SetConfigurations
 
     private func updateProgressbar(_ value: Double) {
         self.progressdelete.doubleValue = value
-    }
-
-    private func connected(config: Configuration) -> Bool {
-        var port: Int = 22
-        if config.offsiteServer.isEmpty == false {
-            if let sshport: Int = config.sshport { port = sshport }
-            let (success, _) = TCPconnections().testTCPconnection(config.offsiteServer, port: port, timeout: 1)
-            return success
-        } else {
-            return true
-        }
     }
 
     // setting which table row is selected
