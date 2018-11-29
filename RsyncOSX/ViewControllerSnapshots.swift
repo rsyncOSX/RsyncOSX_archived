@@ -10,6 +10,8 @@
 import Foundation
 import Cocoa
 
+// self.presentViewControllerAsSheet(self.ViewControllerProgress)
+
 class ViewControllerSnapshots: NSViewController, SetDismisser, SetConfigurations, Delay, Connected, GetIndex {
 
     private var hiddenID: Int?
@@ -21,6 +23,7 @@ class ViewControllerSnapshots: NSViewController, SetDismisser, SetConfigurations
     private var index: Int?
     var lastindex: Int?
     var diddissappear: Bool = false
+    weak var processterminationDelegate: UpdateProgress?
 
     @IBOutlet weak var snapshotstable: NSTableView!
     @IBOutlet weak var localCatalog: NSTextField!
@@ -211,6 +214,7 @@ class ViewControllerSnapshots: NSViewController, SetDismisser, SetConfigurations
 
     private func updateProgressbar(_ value: Double) {
         self.progressdelete.doubleValue = value
+        self.processterminationDelegate?.fileHandler()
     }
 
     // setting which table row is selected
@@ -389,14 +393,20 @@ extension ViewControllerSnapshots: NSTextFieldDelegate {
 
 extension ViewControllerSnapshots: Count {
     func maxCount() -> Int {
-        guard self.snapshotsloggdata != nil else { return 0 }
+        guard self.snapshotsloggdata?.remotecatalogstodelete != nil else { return 0 }
         let max = self.snapshotsloggdata!.remotecatalogstodelete!.count
         return max
     }
 
     func inprogressCount() -> Int {
-        guard self.snapshotsloggdata != nil else { return 0 }
+        guard self.snapshotsloggdata?.remotecatalogstodelete != nil else { return 0 }
         let progress = Int(self.snapshotstodelete) - self.snapshotsloggdata!.remotecatalogstodelete!.count
         return progress
+    }
+}
+
+extension ViewControllerSnapshots: Abort {
+    func abortOperations() {
+        //
     }
 }

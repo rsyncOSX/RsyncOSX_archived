@@ -5,7 +5,6 @@
 //  Created by Thomas Evensen on 24/08/2016.
 //  Copyright © 2016 Thomas Evensen. All rights reserved.
 //
-// swiftlint:disable line_length
 
 import Cocoa
 
@@ -15,7 +14,7 @@ protocol Count: class {
     func inprogressCount() -> Int
 }
 
-class ViewControllerProgressProcess: NSViewController, SetConfigurations, SetDismisser, AbortTask {
+class ViewControllerProgressProcess: NSViewController, SetConfigurations, SetDismisser, Abort {
 
     var count: Double = 0
     var maxcount: Double = 0
@@ -33,8 +32,6 @@ class ViewControllerProgressProcess: NSViewController, SetConfigurations, SetDis
         ViewControllerReference.shared.setvcref(viewcontroller: .vcprogressview, nsviewcontroller: self)
         if let pvc = self.configurations!.singleTask {
             self.countDelegate = pvc
-        } else {
-            self.countDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vcsnapshot) as? ViewControllerSnapshots
         }
         self.calculatedNumberOfFiles = self.countDelegate?.maxCount()
         self.initiateProgressbar()

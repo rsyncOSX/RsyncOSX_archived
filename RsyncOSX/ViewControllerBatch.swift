@@ -34,7 +34,7 @@ extension Attributedestring {
     }
 }
 
-class ViewControllerBatch: NSViewController, SetDismisser, AbortTask, SetConfigurations {
+class ViewControllerBatch: NSViewController, SetDismisser, Abort, SetConfigurations {
 
     var row: Int?
     var batchTask: BatchTask?

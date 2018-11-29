@@ -346,22 +346,14 @@ extension Connected {
 }
 
 // Protocol for aborting task
-protocol AbortOperations: class {
-    func abortOperations()
-}
-
-protocol AbortTask {
-    var abortDelegate: AbortOperations? { get }
+protocol Abort {
     func abort()
 }
 
-extension AbortTask {
-    weak var abortDelegate: AbortOperations? {
-        return ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllertabMain
-    }
-
+extension Abort {
     func abort() {
-        self.abortDelegate?.abortOperations()
+        let view = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllertabMain
+        view?.abortOperations()
     }
 }
 
@@ -390,18 +382,17 @@ extension GetInformation {
         }
     }
 }
-// Protocol for doing updates when optional path for rsync is changed
-// or user enable or disable doubleclick to execte
-protocol RsyncChanged: class {
+
+protocol RsyncIsChanged: class {
     func rsyncischanged()
 }
 
 protocol NewRsync {
-    var newRsyncDelegate: RsyncChanged? { get }
+    var newRsyncDelegate: RsyncIsChanged? { get }
 }
 
 extension NewRsync {
-    weak var newRsyncDelegate: RsyncChanged? {
+    weak var newRsyncDelegate: RsyncIsChanged? {
         return ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllertabMain
     }
 
