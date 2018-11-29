@@ -14,7 +14,7 @@ protocol GetSource: class {
     func getSource(index: Int)
 }
 
-class ViewControllerCopyFiles: NSViewController, SetConfigurations, Delay, VcCopyFiles, VcSchedule {
+class ViewControllerCopyFiles: NSViewController, SetConfigurations, Delay, VcCopyFiles, VcSchedule, Connected {
 
     var copyFiles: CopySingleFiles?
     var rsyncindex: Int?
@@ -65,17 +65,6 @@ class ViewControllerCopyFiles: NSViewController, SetConfigurations, Delay, VcCop
             self.info.stringValue = "Seems not to be connected..."
         default:
             self.info.stringValue = ""
-        }
-    }
-
-    private func connected(config: Configuration) -> Bool {
-        var port: Int = 22
-        if config.offsiteServer.isEmpty == false {
-            if let sshport: Int = config.sshport { port = sshport }
-            let (success, _) = TCPconnections().testTCPconnection(config.offsiteServer, port: port, timeout: 1)
-            return success
-        } else {
-            return true
         }
     }
 

@@ -15,7 +15,7 @@ protocol ReadLoggdata: class {
     func readloggdata()
 }
 
-class ViewControllerLoggData: NSViewController, SetConfigurations, SetSchedules, Delay, GetIndex {
+class ViewControllerLoggData: NSViewController, SetConfigurations, SetSchedules, Delay, GetIndex, Connected {
 
     private var scheduleloggdata: ScheduleLoggData?
     private var snapshotsloggdata: SnapshotsLoggData?
@@ -127,17 +127,6 @@ class ViewControllerLoggData: NSViewController, SetConfigurations, SetSchedules,
     private func deselectRow() {
         guard self.index != nil else { return }
         self.scheduletable.deselectRow(self.index!)
-    }
-
-    private func connected(config: Configuration) -> Bool {
-        var port: Int = 22
-        if config.offsiteServer.isEmpty == false {
-            if let sshport: Int = config.sshport { port = sshport }
-            let (success, _) = TCPconnections().testTCPconnection(config.offsiteServer, port: port, timeout: 1)
-            return success
-        } else {
-            return true
-        }
     }
 }
 

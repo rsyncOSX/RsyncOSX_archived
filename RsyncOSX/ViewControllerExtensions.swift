@@ -340,6 +340,23 @@ extension Delay {
     }
 }
 
+protocol Connected {
+    func connected(config: Configuration) -> Bool
+}
+
+extension Connected {
+    func connected(config: Configuration) -> Bool {
+        var port: Int = 22
+        if config.offsiteServer.isEmpty == false {
+            if let sshport: Int = config.sshport { port = sshport }
+            let (success, _) = TCPconnections().testTCPconnection(config.offsiteServer, port: port, timeout: 1)
+            return success
+        } else {
+            return true
+        }
+    }
+}
+
 // Protocol for aborting task
 protocol AbortOperations: class {
     func abortOperations()
