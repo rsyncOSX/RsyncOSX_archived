@@ -9,7 +9,7 @@
 import Foundation
 import Cocoa
 
-class ViewControllerEdit: NSViewController, SetConfigurations, SetDismisser, GetIndex, Delay {
+class ViewControllerEdit: NSViewController, SetConfigurations, SetDismisser, Index, Delay {
 
     @IBOutlet weak var localCatalog: NSTextField!
     @IBOutlet weak var offsiteCatalog: NSTextField!

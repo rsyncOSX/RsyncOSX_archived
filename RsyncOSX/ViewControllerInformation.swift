@@ -10,7 +10,7 @@
 import Foundation
 import Cocoa
 
-class ViewControllerInformation: NSViewController, SetDismisser, GetInformation {
+class ViewControllerInformation: NSViewController, SetDismisser, OutPut {
 
     @IBOutlet weak var detailsTable: NSTableView!
 

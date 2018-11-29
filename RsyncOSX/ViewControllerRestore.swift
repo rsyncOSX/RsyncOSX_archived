@@ -10,7 +10,7 @@
 import Foundation
 import Cocoa
 
-class ViewControllerRestore: NSViewController, SetConfigurations, SetDismisser, GetIndex, Abort {
+class ViewControllerRestore: NSViewController, SetConfigurations, SetDismisser, Index, Abort {
 
     @IBOutlet weak var localCatalog: NSTextField!
     @IBOutlet weak var offsiteCatalog: NSTextField!

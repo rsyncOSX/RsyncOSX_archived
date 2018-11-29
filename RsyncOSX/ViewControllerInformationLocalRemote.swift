@@ -15,7 +15,7 @@ protocol SetLocalRemoteInfo: class {
     func getlocalremoteinfo(index: Int) -> NSMutableDictionary?
 }
 
-class ViewControllerInformationLocalRemote: NSViewController, SetDismisser, GetIndex, SetConfigurations {
+class ViewControllerInformationLocalRemote: NSViewController, SetDismisser, Index, SetConfigurations {
 
     private var index: Int?
     private var outputprocess: OutputProcess?

@@ -10,7 +10,7 @@
 import Foundation
 import Cocoa
 
-class ViewControllerVerify: NSViewController, SetConfigurations, GetIndex {
+class ViewControllerVerify: NSViewController, SetConfigurations, Index {
 
     @IBOutlet weak var outputtable: NSTableView!
     var outputprocess: OutputProcess?

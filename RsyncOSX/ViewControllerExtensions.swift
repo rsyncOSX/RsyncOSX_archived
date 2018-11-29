@@ -277,11 +277,11 @@ extension Deselect {
     }
 }
 
-protocol GetIndex {
+protocol Index {
     func index() -> Int?
 }
 
-extension GetIndex {
+extension Index {
     func index() -> Int? {
         let view = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllertabMain
         return view?.getindex()
@@ -328,28 +328,28 @@ extension Abort {
     }
 }
 
-protocol Information: class {
-    func getInformation () -> [String]
+protocol GetOutput: class {
+    func getoutput () -> [String]
 }
 
-protocol GetInformation {
-    var informationDelegateMain: Information? {get}
-    var informationDelegateCopyFiles: Information? {get}
+protocol OutPut {
+    var informationDelegateMain: GetOutput? {get}
+    var informationDelegateCopyFiles: GetOutput? {get}
 }
 
-extension GetInformation {
-    weak var informationDelegateMain: Information? {
+extension OutPut {
+    weak var informationDelegateMain: GetOutput? {
         return ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllertabMain
     }
-    weak var informationDelegateCopyFiles: Information? {
+    weak var informationDelegateCopyFiles: GetOutput? {
         return ViewControllerReference.shared.getvcref(viewcontroller: .vccopyfiles) as? ViewControllerCopyFiles
     }
 
     func getinfo(viewcontroller: ViewController) -> [String] {
         if viewcontroller == .vctabmain {
-            return (self.informationDelegateMain?.getInformation())!
+            return (self.informationDelegateMain?.getoutput())!
         } else {
-            return (self.informationDelegateCopyFiles?.getInformation())!
+            return (self.informationDelegateCopyFiles?.getoutput())!
         }
     }
 }
@@ -359,16 +359,13 @@ protocol RsyncIsChanged: class {
 }
 
 protocol NewRsync {
-    var newRsyncDelegate: RsyncIsChanged? { get }
+    func newrsync()
 }
 
 extension NewRsync {
-    weak var newRsyncDelegate: RsyncIsChanged? {
-        return ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllertabMain
-    }
-
     func newrsync() {
-        self.newRsyncDelegate?.rsyncischanged()
+        let view = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllertabMain
+        view?.rsyncischanged()
     }
 }
 
@@ -377,16 +374,13 @@ protocol TemporaryRestorePath: class {
 }
 
 protocol NewTemporaryRestorePath {
-    var newTemporaryPathDelegate: TemporaryRestorePath? { get }
+    func newtemporarypathrestore()
 }
 
 extension NewTemporaryRestorePath {
-    weak var newTemporaryPathDelegate: TemporaryRestorePath? {
-        return ViewControllerReference.shared.getvcref(viewcontroller: .vccopyfiles) as? ViewControllerCopyFiles
-    }
-
     func newtemporarypathrestore() {
-        self.newTemporaryPathDelegate?.temporaryrestorepathchanged()
+        let view = ViewControllerReference.shared.getvcref(viewcontroller: .vccopyfiles) as? ViewControllerCopyFiles
+        view?.temporaryrestorepathchanged()
     }
 }
 

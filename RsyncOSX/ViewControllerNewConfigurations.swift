@@ -16,7 +16,7 @@ enum Typebackup {
     case singlefile
 }
 
-class ViewControllerNewConfigurations: NSViewController, SetConfigurations, VcSchedule, Delay, GetIndex {
+class ViewControllerNewConfigurations: NSViewController, SetConfigurations, VcSchedule, Delay, Index {
 
     var storageapi: PersistentStorageAPI?
     var newconfigurations: NewConfigurations?
