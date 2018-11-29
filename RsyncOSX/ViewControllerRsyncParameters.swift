@@ -63,7 +63,7 @@ class ViewControllerRsyncParameters: NSViewController, SetConfigurations, SetDis
     }
 
     @IBAction func removecompressparameter(_ sender: NSButton) {
-        if let index = self.index(viewcontroller: .vctabmain) {
+        if let index = self.index() {
             switch self.compressparameter.state {
             case .on:
                 self.configurations!.removecompressparameter(index: index, delete: true)
@@ -83,7 +83,7 @@ class ViewControllerRsyncParameters: NSViewController, SetConfigurations, SetDis
         case .on:
             self.initcombox(combobox: self.combo12, index: (self.parameters!.indexandvaluersyncparameter(self.parameters!.getBackupString()[0]).0))
             self.param12.stringValue = self.parameters!.indexandvaluersyncparameter(self.parameters!.getBackupString()[0]).1
-            let hiddenID = self.configurations!.gethiddenID(index: (self.index(viewcontroller: .vctabmain))!)
+            let hiddenID = self.configurations!.gethiddenID(index: (self.index())!)
             let localcatalog = self.configurations!.getResourceConfiguration(hiddenID, resource: .localCatalog)
             let localcatalogParts = (localcatalog as AnyObject).components(separatedBy: "/")
             self.initcombox(combobox: self.combo13, index: (self.parameters!.indexandvaluersyncparameter(self.parameters!.getBackupString()[1]).0))
@@ -167,7 +167,7 @@ class ViewControllerRsyncParameters: NSViewController, SetConfigurations, SetDis
             self.storageapi = PersistentStorageAPI(profile: nil)
         }
         var configurations: [Configuration] = self.configurations!.getConfigurations()
-        if let index = self.index(viewcontroller: .vctabmain) {
+        if let index = self.index() {
             self.parameters = RsyncParametersVC(config: configurations[index])
             self.comboBoxValues = parameters!.getComboBoxValues()
             self.backupbutton.state = .off
@@ -221,7 +221,7 @@ class ViewControllerRsyncParameters: NSViewController, SetConfigurations, SetDis
             return
         }
         // Get the index of selected configuration
-        if let index = self.index(viewcontroller: .vctabmain) {
+        if let index = self.index() {
             configurations[index].parameter8 = self.parameters!.getRsyncParameter(indexComboBox:
                 self.combo8.indexOfSelectedItem, value: getValue(value: self.param8.stringValue))
             configurations[index].parameter9 = self.parameters!.getRsyncParameter(indexComboBox:

@@ -50,7 +50,7 @@ class ViewControllerRestore: NSViewController, SetConfigurations, SetDismisser, 
         guard self.tmprestore.stringValue.isEmpty == false else { return }
         self.restorebutton.isEnabled = false
         self.abortandclose = true
-        if let index = self.index(viewcontroller: .vctabmain) {
+        if let index = self.index() {
             self.selecttmptorestore.isEnabled = false
             self.estimationcompleted = false
             self.gotit.textColor = .white
@@ -74,7 +74,7 @@ class ViewControllerRestore: NSViewController, SetConfigurations, SetDismisser, 
     @IBAction func restore(_ sender: NSButton) {
         let answer = Alerts.dialogOKCancel("Do you REALLY want to start a RESTORE ?", text: "Cancel or OK")
         if answer {
-            if let index = self.index(viewcontroller: .vctabmain) {
+            if let index = self.index() {
                 self.gotit.textColor = .white
                 self.gotit.stringValue = "Executing restore..."
                 self.restorebutton.isEnabled = false
@@ -111,7 +111,7 @@ class ViewControllerRestore: NSViewController, SetConfigurations, SetDismisser, 
         self.backupID.stringValue = ""
         self.sshport.stringValue = ""
         self.restoreprogress.isHidden = true
-        if let index = self.index(viewcontroller: .vctabmain) {
+        if let index = self.index() {
             let config: Configuration = self.configurations!.getConfigurations()[index]
             self.localCatalog.stringValue = config.localCatalog
             self.offsiteCatalog.stringValue = config.offsiteCatalog

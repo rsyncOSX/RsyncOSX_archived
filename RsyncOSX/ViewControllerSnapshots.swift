@@ -5,7 +5,7 @@
 //  Created by Thomas Evensen on 22.01.2018.
 //  Copyright © 2018 Thomas Evensen. All rights reserved.
 //
-// swiftlint:disable line_length
+// swiftlint:disable line_length file_length
 
 import Foundation
 import Cocoa
@@ -155,7 +155,7 @@ class ViewControllerSnapshots: NSViewController, SetDismisser, SetConfigurations
             })
             return
         }
-        if let index = self.index(viewcontroller: .vctabmain) {
+        if let index = self.index() {
             let hiddenID = self.configurations!.gethiddenID(index: index)
             self.getSourceindex(index: hiddenID)
         } else {
@@ -267,7 +267,6 @@ extension ViewControllerSnapshots: UpdateProgress {
     func processTermination() {
         if delete {
             if self.snapshotsloggdata!.remotecatalogstodelete == nil {
-                // self.updateProgressbar(self.snapshotstodelete)
                 self.delete = false
                 self.progressdelete.isHidden = true
                 self.deletebutton.isEnabled = true
@@ -347,12 +346,6 @@ extension ViewControllerSnapshots: Reloadandrefresh {
     }
 }
 
-extension ViewControllerSnapshots: GetSelecetedIndex {
-    func getindex() -> Int? {
-        return self.index
-    }
-}
-
 extension ViewControllerSnapshots: NSTextFieldDelegate {
     override func controlTextDidChange(_ notification: Notification) {
         self.delayWithSeconds(0.5) {
@@ -391,5 +384,19 @@ extension ViewControllerSnapshots: NSTextFieldDelegate {
                 }
             }
         }
+    }
+}
+
+extension ViewControllerSnapshots: Count {
+    func maxCount() -> Int {
+        guard self.snapshotsloggdata != nil else { return 0 }
+        let max = self.snapshotsloggdata!.remotecatalogstodelete!.count
+        return max
+    }
+
+    func inprogressCount() -> Int {
+        guard self.snapshotsloggdata != nil else { return 0 }
+        let progress = Int(self.snapshotstodelete) - self.snapshotsloggdata!.remotecatalogstodelete!.count
+        return progress
     }
 }

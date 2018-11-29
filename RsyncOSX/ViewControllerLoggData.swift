@@ -95,7 +95,7 @@ class ViewControllerLoggData: NSViewController, SetConfigurations, SetSchedules,
 
     override func viewDidAppear() {
         super.viewDidAppear()
-        self.index = self.index(viewcontroller: .vctabmain)
+        self.index = self.index()
         if let index = self.index {
             let hiddenID = self.configurations?.gethiddenID(index: index) ?? -1
             let config = self.configurations?.getConfigurations()[index]
@@ -257,7 +257,7 @@ extension ViewControllerLoggData: ReadLoggdata {
         if viewispresent {
             self.scheduleloggdata = nil
             globalMainQueue.async(execute: { () -> Void in
-                self.index = self.index(viewcontroller: .vctabmain)
+                self.index = self.index()
                 if let index = self.index {
                     let hiddenID = self.configurations?.gethiddenID(index: index) ?? -1
                     self.scheduleloggdata = ScheduleLoggData(hiddenID: hiddenID, sortdirection: self.sortedascendigdesending)
