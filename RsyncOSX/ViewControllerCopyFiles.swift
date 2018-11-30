@@ -339,7 +339,7 @@ extension ViewControllerCopyFiles: GetOutput {
 }
 
 extension ViewControllerCopyFiles: TemporaryRestorePath {
-    func temporaryrestorepathchanged() {
+    func temporaryrestorepath() {
         if let restorePath = ViewControllerReference.shared.restorePath {
             self.restorecatalog.stringValue = restorePath
         } else {

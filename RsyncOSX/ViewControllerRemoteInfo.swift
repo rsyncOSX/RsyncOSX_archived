@@ -10,7 +10,7 @@
 import Foundation
 import Cocoa
 
-protocol OpenQuickBackup: class {
+protocol OpenQuickBackup {
     func openquickbackup()
 }
 
