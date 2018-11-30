@@ -369,18 +369,18 @@ extension NewRsync {
     }
 }
 
-protocol TemporaryRestorePath: class {
-    func temporaryrestorepathchanged()
+protocol TemporaryRestorePath {
+    func temporaryrestorepath()
 }
 
-protocol NewTemporaryRestorePath {
-    func newtemporarypathrestore()
+protocol ChangeTemporaryRestorePath {
+    func changetemporaryrestorepath()
 }
 
-extension NewTemporaryRestorePath {
-    func newtemporarypathrestore() {
+extension ChangeTemporaryRestorePath {
+    func changetemporaryrestorepath() {
         let view = ViewControllerReference.shared.getvcref(viewcontroller: .vccopyfiles) as? ViewControllerCopyFiles
-        view?.temporaryrestorepathchanged()
+        view?.temporaryrestorepath()
     }
 }
 
@@ -389,7 +389,7 @@ protocol Createandreloadconfigurations: class {
 }
 
 // Protocol for doing a refresh of tabledata
-protocol Reloadsortedandrefresh: class {
+protocol Reloadsortedandrefresh {
     func reloadsortedandrefreshtabledata()
 }
 

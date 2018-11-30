@@ -18,7 +18,7 @@ protocol MenuappChanged: class {
     func menuappchanged()
 }
 
-class ViewControllerUserconfiguration: NSViewController, NewRsync, SetDismisser, Delay, NewTemporaryRestorePath {
+class ViewControllerUserconfiguration: NSViewController, NewRsync, SetDismisser, Delay, ChangeTemporaryRestorePath {
 
     var storageapi: PersistentStorageAPI?
     var dirty: Bool = false
@@ -84,7 +84,7 @@ class ViewControllerUserconfiguration: NSViewController, NewRsync, SetDismisser,
             }
             self.menuappDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllertabMain
             self.menuappDelegate?.menuappchanged()
-            self.newtemporarypathrestore()
+            self.changetemporaryrestorepath()
         }
         if (self.presenting as? ViewControllertabMain) != nil {
             self.dismissview(viewcontroller: self, vcontroller: .vctabmain)
