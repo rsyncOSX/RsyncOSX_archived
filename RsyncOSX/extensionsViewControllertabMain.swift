@@ -19,7 +19,7 @@ extension ViewControllertabMain: NSTableViewDataSource {
 
 extension ViewControllertabMain: NSTableViewDelegate, Attributedestring {
     // Function to test for remote server available or not, used in tableview delegate
-    private func testTCP(_ row: Int) -> Bool {
+    private func isconnected(_ row: Int) -> Bool {
         if let serverOff = self.serverOff {
             if row < serverOff.count {
                 return serverOff[row]
@@ -41,7 +41,7 @@ extension ViewControllertabMain: NSTableViewDelegate, Attributedestring {
             return object[tableColumn!.identifier]
         } else if markdays == true && tableColumn!.identifier.rawValue == "daysID" {
             return self.attributedstring(str: celltext!, color: NSColor.red, align: .right)
-        } else if self.testTCP(row) {
+        } else if self.isconnected(row) {
             guard celltext != nil else {return nil}
             return self.attributedstring(str: celltext!, color: NSColor.red, align: .left)
         } else if tableColumn!.identifier.rawValue == "offsiteServerCellID", ((object[tableColumn!.identifier] as? String)?.isEmpty)! {
