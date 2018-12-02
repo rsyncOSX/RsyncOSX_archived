@@ -12,7 +12,7 @@ import Cocoa
 
 // self.presentViewControllerAsSheet(self.ViewControllerProgress)
 
-class ViewControllerSnapshots: NSViewController, SetDismisser, SetConfigurations, Delay, Connected, Index {
+class ViewControllerSnapshots: NSViewController, SetDismisser, SetConfigurations, Delay, Connected, Index, VcMain {
 
     private var hiddenID: Int?
     private var config: Configuration?
@@ -35,7 +35,6 @@ class ViewControllerSnapshots: NSViewController, SetDismisser, SetConfigurations
     @IBOutlet weak var info: NSTextField!
     @IBOutlet weak var deletebutton: NSButton!
     @IBOutlet weak var numberOflogfiles: NSTextField!
-    @IBOutlet weak var progressdelete: NSProgressIndicator!
     @IBOutlet weak var deletesnapshots: NSSlider!
     @IBOutlet weak var stringdeletesnapshotsnum: NSTextField!
     @IBOutlet weak var gettinglogs: NSProgressIndicator!
@@ -125,9 +124,9 @@ class ViewControllerSnapshots: NSViewController, SetDismisser, SetConfigurations
             self.info(num: 0)
             self.snapshotsloggdata!.preparecatalogstodelete()
             guard self.snapshotsloggdata!.remotecatalogstodelete != nil else { return }
+            self.presentViewControllerAsSheet(self.viewControllerProgress!)
             self.deletebutton.isEnabled = false
             self.deletesnapshots.isEnabled = false
-            self.initiateProgressbar(maxvalue: Double(self.snapshotsloggdata!.remotecatalogstodelete!.count))
             self.deletesnapshotcatalogs()
             self.delete = true
         }
@@ -143,7 +142,6 @@ class ViewControllerSnapshots: NSViewController, SetDismisser, SetConfigurations
         self.snapshotstable.delegate = self
         self.snapshotstable.dataSource = self
         self.gettinglogs.usesThreadedAnimation = true
-        self.progressdelete.usesThreadedAnimation = true
         self.stringdeletesnapshotsnum.delegate = self
         self.stringdeletesnapshotsdaysnum.delegate = self
         ViewControllerReference.shared.setvcref(viewcontroller: .vcsnapshot, nsviewcontroller: self)
@@ -179,14 +177,12 @@ class ViewControllerSnapshots: NSViewController, SetDismisser, SetConfigurations
         var arguments: SnapshotDeleteCatalogsArguments?
         var deletecommand: SnapshotCommandDeleteCatalogs?
         guard self.snapshotsloggdata?.remotecatalogstodelete != nil else {
-            self.progressdelete.isHidden = true
             self.deletebutton.isEnabled = true
             self.deletesnapshots.isEnabled = true
             self.info(num: 0)
             return
         }
         guard self.snapshotsloggdata!.remotecatalogstodelete!.count > 0 else {
-            self.progressdelete.isHidden = true
             self.deletebutton.isEnabled = true
             self.deletesnapshots.isEnabled = true
             self.info(num: 0)
@@ -200,21 +196,6 @@ class ViewControllerSnapshots: NSViewController, SetDismisser, SetConfigurations
         arguments = SnapshotDeleteCatalogsArguments(config: self.config!, remotecatalog: remotecatalog)
         deletecommand = SnapshotCommandDeleteCatalogs(command: arguments?.getCommand(), arguments: arguments?.getArguments())
         deletecommand?.executeProcess(outputprocess: nil)
-    }
-
-    // Progress bar
-    private func initiateProgressbar(maxvalue: Double) {
-        self.progressdelete.isHidden = false
-        self.progressdelete.maxValue = maxvalue
-        self.snapshotstodelete = maxvalue
-        self.progressdelete.minValue = 0
-        self.progressdelete.doubleValue = 0
-        self.progressdelete.startAnimation(self)
-    }
-
-    private func updateProgressbar(_ value: Double) {
-        self.progressdelete.doubleValue = value
-        self.processterminationDelegate?.fileHandler()
     }
 
     // setting which table row is selected
@@ -241,7 +222,6 @@ extension ViewControllerSnapshots: DismissViewController {
 
 extension ViewControllerSnapshots: GetSource {
 
-    // Returning hiddenID as Index
     func getSourceindex(index: Int) {
         self.hiddenID = index
         self.config = self.configurations!.getConfigurations()[self.configurations!.getIndex(hiddenID!)]
@@ -270,16 +250,16 @@ extension ViewControllerSnapshots: GetSource {
 extension ViewControllerSnapshots: UpdateProgress {
     func processTermination() {
         if delete {
+            let vc = ViewControllerReference.shared.getvcref(viewcontroller: .vcprogressview) as? ViewControllerProgressProcess
             if self.snapshotsloggdata!.remotecatalogstodelete == nil {
                 self.delete = false
-                self.progressdelete.isHidden = true
                 self.deletebutton.isEnabled = true
                 self.deletesnapshots.isEnabled = true
                 self.info(num: 3)
                 self.snapshotsloggdata = SnapshotsLoggData(config: self.config!, insnapshot: true)
+                vc?.processTermination()
             } else {
-                let progress = self.snapshotstodelete - Double(self.snapshotsloggdata!.remotecatalogstodelete!.count)
-                self.updateProgressbar(progress)
+                vc?.fileHandler()
             }
             self.deletesnapshotcatalogs()
         } else {
@@ -337,7 +317,6 @@ extension ViewControllerSnapshots: Reloadandrefresh {
     func reloadtabledata() {
         self.snapshotsloggdata = nil
         self.deletebutton.isEnabled = false
-        self.progressdelete.isHidden = true
         self.localCatalog.stringValue = ""
         self.offsiteCatalog.stringValue = ""
         self.offsiteUsername.stringValue = ""

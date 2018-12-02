@@ -74,7 +74,7 @@ extension VcMain {
     }
 
     // Progressbar process
-    // self.presentViewControllerAsSheet(self.ViewControllerProgress)
+    // self.presentViewControllerAsSheet(self.viewControllerProgress)
     var viewControllerProgress: NSViewController? {
         return (self.storyboard!.instantiateController(withIdentifier: NSStoryboard.SceneIdentifier(rawValue: "StoryboardProgressID"))
             as? NSViewController)!
