@@ -5,6 +5,7 @@
 //  Created by Thomas Evensen on 24/08/2016.
 //  Copyright © 2016 Thomas Evensen. All rights reserved.
 //
+// swiftlint:disable line_length
 
 import Cocoa
 
@@ -20,6 +21,7 @@ class ViewControllerProgressProcess: NSViewController, SetConfigurations, SetDis
     var maxcount: Double = 0
     var calculatedNumberOfFiles: Int?
     weak var countDelegate: Count?
+    var inmain: Bool = true
     @IBOutlet weak var abort: NSButton!
     @IBOutlet weak var progress: NSProgressIndicator!
 
@@ -32,6 +34,9 @@ class ViewControllerProgressProcess: NSViewController, SetConfigurations, SetDis
         ViewControllerReference.shared.setvcref(viewcontroller: .vcprogressview, nsviewcontroller: self)
         if let pvc = self.configurations!.singleTask {
             self.countDelegate = pvc
+        } else {
+            self.countDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vcsnapshot) as? ViewControllerSnapshots
+            self.inmain = false
         }
         self.calculatedNumberOfFiles = self.countDelegate?.maxCount()
         self.initiateProgressbar()
@@ -67,7 +72,11 @@ extension ViewControllerProgressProcess: UpdateProgress {
 
     func processTermination() {
         self.stopProgressbar()
-        self.dismissview(viewcontroller: self, vcontroller: .vctabmain)
+        if inmain {
+            self.dismissview(viewcontroller: self, vcontroller: .vctabmain)
+        } else {
+             self.dismissview(viewcontroller: self, vcontroller: .vcsnapshot)
+        }
     }
 
     func fileHandler() {

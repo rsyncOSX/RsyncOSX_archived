@@ -1469,29 +1469,6 @@
                                     <color key="backgroundColor" name="gridColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
-                            <progressIndicator wantsLayer="YES" fixedFrame="YES" maxValue="100" displayedWhenStopped="NO" style="bar" translatesAutoresizingMaskIntoConstraints="NO" id="KO0-rB-Hx8">
-                                <rect key="frame" x="871" y="51" width="147" height="20"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                            </progressIndicator>
-                            <box fixedFrame="YES" title="Execute delete snapshots" translatesAutoresizingMaskIntoConstraints="NO" id="MhN-HT-SUy">
-                                <rect key="frame" x="774" y="41" width="269" height="51"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <view key="contentView" id="RVm-1q-Qcj">
-                                    <rect key="frame" x="3" y="3" width="263" height="33"/>
-                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                </view>
-                            </box>
-                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="3FX-cL-s70">
-                                <rect key="frame" x="783" y="45" width="80" height="32"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <buttonCell key="cell" type="push" title="Delete" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="WYK-hg-6Bv">
-                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                    <font key="font" metaFont="system"/>
-                                </buttonCell>
-                                <connections>
-                                    <action selector="delete:" target="fiO-Ux-xlw" id="aRg-gQ-8sb"/>
-                                </connections>
-                            </button>
                             <textField verticalHuggingPriority="750" fixedFrame="YES" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="iBP-PV-dKW">
                                 <rect key="frame" x="702" y="290" width="316" height="22"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
@@ -1651,31 +1628,6 @@
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 </view>
                             </box>
-                            <slider verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="oOp-UK-kds">
-                                <rect key="frame" x="592" y="52" width="96" height="19"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <sliderCell key="cell" state="on" alignment="left" maxValue="100" doubleValue="50" tickMarkPosition="above" sliderType="linear" id="DJb-in-R8k"/>
-                                <connections>
-                                    <action selector="updatedeletesnapshotsdays:" target="fiO-Ux-xlw" id="fUN-k9-rPl"/>
-                                </connections>
-                            </slider>
-                            <box fixedFrame="YES" title="Select days OLDER than to delete" translatesAutoresizingMaskIntoConstraints="NO" id="8Dj-TE-3CZ">
-                                <rect key="frame" x="570" y="41" width="195" height="51"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <view key="contentView" id="vec-U6-k0a">
-                                    <rect key="frame" x="3" y="3" width="189" height="33"/>
-                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                </view>
-                            </box>
-                            <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="RoD-gk-Zpc">
-                                <rect key="frame" x="702" y="53" width="41" height="22"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" alignment="right" bezelStyle="round" id="uWO-KW-vuL">
-                                    <font key="font" metaFont="system"/>
-                                    <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
-                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                </textFieldCell>
-                            </textField>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Luu-QK-BXr">
                                 <rect key="frame" x="18" y="382" width="161" height="17"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
@@ -1686,9 +1638,45 @@
                                 </textFieldCell>
                             </textField>
                             <progressIndicator wantsLayer="YES" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" maxValue="100" displayedWhenStopped="NO" bezeled="NO" indeterminate="YES" controlSize="small" style="spinning" translatesAutoresizingMaskIntoConstraints="NO" id="Rqq-kE-YMv">
-                                <rect key="frame" x="649" y="357" width="16" height="16"/>
+                                <rect key="frame" x="538" y="382" width="16" height="16"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                             </progressIndicator>
+                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="3FX-cL-s70">
+                                <rect key="frame" x="650" y="347" width="80" height="32"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <buttonCell key="cell" type="push" title="Delete" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="WYK-hg-6Bv">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="delete:" target="fiO-Ux-xlw" id="aRg-gQ-8sb"/>
+                                </connections>
+                            </button>
+                            <slider verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="oOp-UK-kds">
+                                <rect key="frame" x="789" y="117" width="96" height="19"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <sliderCell key="cell" state="on" alignment="left" maxValue="100" doubleValue="50" tickMarkPosition="above" sliderType="linear" id="DJb-in-R8k"/>
+                                <connections>
+                                    <action selector="updatedeletesnapshotsdays:" target="fiO-Ux-xlw" id="fUN-k9-rPl"/>
+                                </connections>
+                            </slider>
+                            <box fixedFrame="YES" title="Select days OLDER than to delete" translatesAutoresizingMaskIntoConstraints="NO" id="8Dj-TE-3CZ">
+                                <rect key="frame" x="767" y="106" width="195" height="51"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <view key="contentView" id="vec-U6-k0a">
+                                    <rect key="frame" x="3" y="3" width="189" height="33"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                </view>
+                            </box>
+                            <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="RoD-gk-Zpc">
+                                <rect key="frame" x="899" y="118" width="41" height="22"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" alignment="right" bezelStyle="round" id="uWO-KW-vuL">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
                         </subviews>
                     </view>
                     <connections>
@@ -1703,7 +1691,6 @@
                         <outlet property="offsiteCatalog" destination="1Mh-bv-XRt" id="pTc-Fd-JTu"/>
                         <outlet property="offsiteServer" destination="Uhz-6V-DLY" id="lJd-Ep-R5l"/>
                         <outlet property="offsiteUsername" destination="Rd4-NT-WkH" id="OTc-Ld-ZgC"/>
-                        <outlet property="progressdelete" destination="KO0-rB-Hx8" id="5iX-AH-Y10"/>
                         <outlet property="snapshotstable" destination="ADg-qt-oLX" id="vx0-h4-cGn"/>
                         <outlet property="sshport" destination="PZa-iY-BKT" id="kZS-ya-wlj"/>
                         <outlet property="stringdeletesnapshotsdaysnum" destination="RoD-gk-Zpc" id="rzY-ry-a1K"/>
