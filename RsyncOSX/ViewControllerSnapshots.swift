@@ -374,6 +374,7 @@ extension ViewControllerSnapshots: Count {
     func maxCount() -> Int {
         guard self.snapshotsloggdata?.remotecatalogstodelete != nil else { return 0 }
         let max = self.snapshotsloggdata!.remotecatalogstodelete!.count
+        self.snapshotstodelete = Double(max)
         return max
     }
 
