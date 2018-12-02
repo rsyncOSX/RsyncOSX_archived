@@ -387,6 +387,7 @@ extension ViewControllerSnapshots: Count {
 
 extension ViewControllerSnapshots: Abort {
     func abortOperations() {
-        //
+        self.info(num: 2)
+        self.snapshotsloggdata?.remotecatalogstodelete = nil
     }
 }

@@ -317,7 +317,7 @@ extension Connected {
     }
 }
 
-protocol Abort {
+protocol Abort: class {
     func abort()
 }
 
