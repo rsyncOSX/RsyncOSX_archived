@@ -3447,7 +3447,7 @@ DQ
                                 </connections>
                             </button>
                             <textField hidden="YES" horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="9Nu-cq-yps">
-                                <rect key="frame" x="18" y="26" width="184" height="17"/>
+                                <rect key="frame" x="18" y="26" width="315" height="17"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <textFieldCell key="cell" lineBreakMode="clipping" title="Estimating task, please wait..." id="BDO-Nt-D9h">
                                     <font key="font" metaFont="system"/>
