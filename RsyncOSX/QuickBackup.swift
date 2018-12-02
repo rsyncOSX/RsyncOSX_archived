@@ -73,7 +73,6 @@ class QuickBackup: SetConfigurations {
 
     func prepareandstartexecutetasks() {
         if let list = self.sortedlist {
-            self.stackoftasktobeexecuted = nil
             self.stackoftasktobeexecuted = [Row]()
             for i in 0 ..< list.count {
                 self.sortedlist![i].setObject(false, forKey: "completeCellID" as NSCopying)
@@ -149,9 +148,7 @@ class QuickBackup: SetConfigurations {
         self.estimatedlist = self.configurations?.estimatedlist
         if self.estimatedlist != nil {
             self.sortedlist = self.configurations?.getConfigurationsDataSourcecountBackup()?.filter({($0.value(forKey: "selectCellID") as? Int) == 1})
-            if self.sortedlist!.count == 0 {
-                self.sortedlist = self.configurations?.getConfigurationsDataSourcecountBackup()
-            }
+            guard self.sortedlist!.count > 0 else { return }
         } else {
             self.sortedlist = self.configurations?.getConfigurationsDataSourcecountBackup()
         }

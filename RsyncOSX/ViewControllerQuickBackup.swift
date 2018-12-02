@@ -16,6 +16,7 @@ class ViewControllerQuickBackup: NSViewController, SetDismisser, Abort, Delay {
     var row: Int?
     var filterby: Sortandfilter?
     var quickbackup: QuickBackup?
+    var executing: Bool = true
     weak var inprogresscountDelegate: Count?
     var max: Double?
     var diddissappear: Bool = false
@@ -28,9 +29,11 @@ class ViewControllerQuickBackup: NSViewController, SetDismisser, Abort, Delay {
 
     // Either abort or close
     @IBAction func abort(_ sender: NSButton) {
-        self.quickbackup = nil
-        self.abort()
-        self.working.stopAnimation(nil)
+        if self.executing {
+            self.quickbackup = nil
+            self.abort()
+            self.working.stopAnimation(nil)
+        }
         self.dismissview(viewcontroller: self, vcontroller: .vctabmain)
     }
 
@@ -56,6 +59,13 @@ class ViewControllerQuickBackup: NSViewController, SetDismisser, Abort, Delay {
             globalMainQueue.async(execute: { () -> Void in
                 self.mainTableView.reloadData()
             })
+            return
+        }
+        guard self.quickbackup?.sortedlist?.count ?? 0 > 0 else {
+            self.completed.isHidden = false
+            self.completed.textColor = .green
+            self.completed.stringValue = "There seems to be nothing to do..."
+            self.executing = false
             return
         }
         self.quickbackup?.prepareandstartexecutetasks()
@@ -139,7 +149,7 @@ extension ViewControllerQuickBackup: CloseViewError {
     func closeerror() {
         self.quickbackup = nil
         self.abort()
-         self.working.stopAnimation(nil)
+        self.working.stopAnimation(nil)
         self.dismissview(viewcontroller: self, vcontroller: .vctabmain)
     }
 }
@@ -153,6 +163,7 @@ extension ViewControllerQuickBackup: UpdateProgress {
             self.completed.isHidden = false
             self.completed.textColor = .green
             self.working.stopAnimation(nil)
+            self.executing = false
             return
         }
     }

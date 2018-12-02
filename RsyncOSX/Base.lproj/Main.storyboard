@@ -6651,7 +6651,7 @@ DQ
                                 </connections>
                             </button>
                             <textField hidden="YES" horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="3OI-xQ-Hbf">
-                                <rect key="frame" x="18" y="23" width="127" height="17"/>
+                                <rect key="frame" x="18" y="23" width="636" height="17"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="left" title="Completed..." id="gRY-vZ-99W">
                                     <font key="font" metaFont="system"/>
