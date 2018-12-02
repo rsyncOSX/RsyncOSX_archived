@@ -58,6 +58,7 @@ class ViewControllerQuickBackup: NSViewController, SetDismisser, Abort, Delay {
             })
             return
         }
+        guard self.quickbackup?.sortedlist?.count ?? 0 > 0 else { return }
         self.quickbackup?.prepareandstartexecutetasks()
         globalMainQueue.async(execute: { () -> Void in
             self.mainTableView.reloadData()
