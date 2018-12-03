@@ -5,12 +5,10 @@
 //  Created by Thomas Evensen on 22.01.2018.
 //  Copyright © 2018 Thomas Evensen. All rights reserved.
 //
-// swiftlint:disable line_length file_length
+// swiftlint:disable line_length
 
 import Foundation
 import Cocoa
-
-// self.presentViewControllerAsSheet(self.ViewControllerProgress)
 
 class ViewControllerSnapshots: NSViewController, SetDismisser, SetConfigurations, Delay, Connected, Index, VcMain {
 
@@ -217,6 +215,8 @@ extension ViewControllerSnapshots: DismissViewController {
 
     func dismiss_view(viewcontroller: NSViewController) {
         self.dismissViewController(viewcontroller)
+        self.snapshotsloggdata?.remotecatalogstodelete = nil
+        // self.info(num: 2)
     }
 }
 
@@ -382,12 +382,5 @@ extension ViewControllerSnapshots: Count {
         guard self.snapshotsloggdata?.remotecatalogstodelete != nil else { return 0 }
         let progress = Int(self.snapshotstodelete) - self.snapshotsloggdata!.remotecatalogstodelete!.count
         return progress
-    }
-}
-
-extension ViewControllerSnapshots: Abort {
-    func abortOperations() {
-        self.info(num: 2)
-        self.snapshotsloggdata?.remotecatalogstodelete = nil
     }
 }

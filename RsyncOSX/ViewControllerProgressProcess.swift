@@ -30,8 +30,7 @@ class ViewControllerProgressProcess: NSViewController, SetConfigurations, SetDis
         if self.inmain {
             self.abort()
         } else {
-            self.abortDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vcsnapshot) as? ViewControllerSnapshots
-            self.abortDelegate?.abort()
+            self.dismissview(viewcontroller: self, vcontroller: .vcsnapshot)
         }
     }
 
