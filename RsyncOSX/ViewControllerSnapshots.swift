@@ -22,6 +22,7 @@ class ViewControllerSnapshots: NSViewController, SetDismisser, SetConfigurations
     var lastindex: Int?
     var diddissappear: Bool = false
     weak var processterminationDelegate: UpdateProgress?
+    var abort: Bool = false
 
     @IBOutlet weak var snapshotstable: NSTableView!
     @IBOutlet weak var localCatalog: NSTextField!
@@ -215,8 +216,11 @@ extension ViewControllerSnapshots: DismissViewController {
 
     func dismiss_view(viewcontroller: NSViewController) {
         self.dismissViewController(viewcontroller)
-        self.snapshotsloggdata?.remotecatalogstodelete = nil
-        // self.info(num: 2)
+        if self.snapshotsloggdata?.remotecatalogstodelete != nil {
+            self.snapshotsloggdata?.remotecatalogstodelete = nil
+            self.info(num: 2)
+            self.abort = true
+        }
     }
 }
 
@@ -257,7 +261,11 @@ extension ViewControllerSnapshots: UpdateProgress {
                 self.deletesnapshots.isEnabled = true
                 self.info(num: 3)
                 self.snapshotsloggdata = SnapshotsLoggData(config: self.config!, insnapshot: true)
-                vc?.processTermination()
+                if self.abort == true {
+                    self.abort = false
+                } else {
+                    vc?.processTermination()
+                }
             } else {
                 vc?.fileHandler()
             }
