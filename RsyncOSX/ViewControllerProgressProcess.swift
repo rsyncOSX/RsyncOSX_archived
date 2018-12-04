@@ -21,12 +21,17 @@ class ViewControllerProgressProcess: NSViewController, SetConfigurations, SetDis
     var maxcount: Double = 0
     var calculatedNumberOfFiles: Int?
     weak var countDelegate: Count?
+    weak var abortDelegate: Abort?
     var inmain: Bool = true
     @IBOutlet weak var abort: NSButton!
     @IBOutlet weak var progress: NSProgressIndicator!
 
     @IBAction func abort(_ sender: NSButton) {
-        self.abort()
+        if self.inmain {
+            self.abort()
+        } else {
+            self.dismissview(viewcontroller: self, vcontroller: .vcsnapshot)
+        }
     }
 
     override func viewDidAppear() {

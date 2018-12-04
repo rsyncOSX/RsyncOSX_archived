@@ -5,12 +5,10 @@
 //  Created by Thomas Evensen on 22.01.2018.
 //  Copyright © 2018 Thomas Evensen. All rights reserved.
 //
-// swiftlint:disable line_length file_length
+// swiftlint:disable line_length
 
 import Foundation
 import Cocoa
-
-// self.presentViewControllerAsSheet(self.ViewControllerProgress)
 
 class ViewControllerSnapshots: NSViewController, SetDismisser, SetConfigurations, Delay, Connected, Index, VcMain {
 
@@ -24,6 +22,7 @@ class ViewControllerSnapshots: NSViewController, SetDismisser, SetConfigurations
     var lastindex: Int?
     var diddissappear: Bool = false
     weak var processterminationDelegate: UpdateProgress?
+    var abort: Bool = false
 
     @IBOutlet weak var snapshotstable: NSTableView!
     @IBOutlet weak var localCatalog: NSTextField!
@@ -217,6 +216,11 @@ extension ViewControllerSnapshots: DismissViewController {
 
     func dismiss_view(viewcontroller: NSViewController) {
         self.dismissViewController(viewcontroller)
+        if self.snapshotsloggdata?.remotecatalogstodelete != nil {
+            self.snapshotsloggdata?.remotecatalogstodelete = nil
+            self.info(num: 2)
+            self.abort = true
+        }
     }
 }
 
@@ -257,7 +261,11 @@ extension ViewControllerSnapshots: UpdateProgress {
                 self.deletesnapshots.isEnabled = true
                 self.info(num: 3)
                 self.snapshotsloggdata = SnapshotsLoggData(config: self.config!, insnapshot: true)
-                vc?.processTermination()
+                if self.abort == true {
+                    self.abort = false
+                } else {
+                    vc?.processTermination()
+                }
             } else {
                 vc?.fileHandler()
             }
@@ -382,11 +390,5 @@ extension ViewControllerSnapshots: Count {
         guard self.snapshotsloggdata?.remotecatalogstodelete != nil else { return 0 }
         let progress = Int(self.snapshotstodelete) - self.snapshotsloggdata!.remotecatalogstodelete!.count
         return progress
-    }
-}
-
-extension ViewControllerSnapshots: Abort {
-    func abortOperations() {
-        //
     }
 }
