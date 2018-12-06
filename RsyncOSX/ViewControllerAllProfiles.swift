@@ -10,7 +10,7 @@
 import Foundation
 import Cocoa
 
-class ViewControllerAllProfiles: NSViewController, Delay {
+class ViewControllerAllProfiles: NSViewController, Delay, Abort {
 
     // Main tableview
     @IBOutlet weak var mainTableView: NSTableView!
@@ -29,6 +29,12 @@ class ViewControllerAllProfiles: NSViewController, Delay {
     var diddissappear: Bool = false
     private var index: Int?
     private var outputprocess: OutputProcess?
+    private var process: Process?
+
+    @IBAction func abort(_ sender: NSButton) {
+        self.process?.terminate()
+        self.process = nil
+    }
 
     @IBAction func sortdirection(_ sender: NSButton) {
         if self.sortedascendigdesending == true {
@@ -50,6 +56,7 @@ class ViewControllerAllProfiles: NSViewController, Delay {
 
     private func getremotesizes() {
         guard self.index != nil else { return }
+        guard self.process == nil else { return }
         self.outputprocess = OutputProcess()
         let dict = self.allprofiles!.allconfigurationsasdictionary?[self.index!]
         let config = Configuration(dictionary: dict!)
@@ -57,7 +64,9 @@ class ViewControllerAllProfiles: NSViewController, Delay {
         guard duargs.getArguments() != nil || duargs.getCommand() != nil else { return }
         self.sizebutton.isEnabled = false
         self.working.startAnimation(nil)
-        _ = DuCommandSsh(command: duargs.getCommand(), arguments: duargs.getArguments()).executeProcess(outputprocess: self.outputprocess)
+        let task: DuCommandSsh = DuCommandSsh(command: duargs.getCommand(), arguments: duargs.getArguments())
+        task.executeProcess(outputprocess: self.outputprocess)
+        self.process = task.getprocess()
     }
 
     override func viewDidLoad() {
@@ -209,6 +218,8 @@ extension ViewControllerAllProfiles: UpdateProgress {
     func processTermination() {
         self.sizebutton.isEnabled = true
         self.working.stopAnimation(nil)
+        guard self.process != nil else { return }
+        self.process = nil
         let numbers = RemoteNumbers(outputprocess: self.outputprocess)
         self.allprofiles!.allconfigurationsasdictionary?[self.index!].setValue(numbers.getused(), forKey: "used")
         self.allprofiles!.allconfigurationsasdictionary?[self.index!].setValue(numbers.getavail(), forKey: "avail")
