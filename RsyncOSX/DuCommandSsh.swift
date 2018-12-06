@@ -9,7 +9,7 @@
 
 import Foundation
 
-class DuCommandSsh: ProcessCmd {
+final class DuCommandSsh: ProcessCmd {
     func getprocess() -> Process? {
         return self.getProcess()
     }
