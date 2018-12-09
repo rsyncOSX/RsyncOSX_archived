@@ -1,24 +1,19 @@
 //
-//  Calendar.swift
+//  extension Date
 //  RsyncOSX
 //
 //  Created by Thomas Evensen on 08/12/2018.
 //  Copyright © 2018 Thomas Evensen. All rights reserved.
 //
+// swiftlint:disable line_length
 
 import Foundation
 
 extension Date {
 
-    func calendar() -> Calendar {
-        var cal = Calendar(identifier: .iso8601)
-        cal.firstWeekday = 1
-        return cal
-    }
-
     func weekday(date: Date) -> Int {
-        let cal = self.calendar()
-        let dateComponent = (cal as NSCalendar).components(.weekday, from: self)
+        let calendar = Calendar.current
+        let dateComponent = (calendar as NSCalendar).components(.weekday, from: self)
         return dateComponent.weekday!
     }
 
