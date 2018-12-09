@@ -139,6 +139,7 @@
 		E9A8D81C1ED20AEB009648DE /* GetRemoteFileListingsArguments.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9A8D81B1ED20AEB009648DE /* GetRemoteFileListingsArguments.swift */; };
 		E9ACD3982066B9CB0080E09C /* ViewControllerEncrypt.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9ACD3972066B9CB0080E09C /* ViewControllerEncrypt.swift */; };
 		E9ACD39C2066BE1A0080E09C /* RcloneProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9ACD39B2066BE1A0080E09C /* RcloneProfile.swift */; };
+		E9B9CCA621BC46B00042D5CE /* extensionDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9B9CCA521BC46B00042D5CE /* extensionDate.swift */; };
 		E9C30B4B201623B00079C63D /* SnapshotsLoggData.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9C30B4A201623B00079C63D /* SnapshotsLoggData.swift */; };
 		E9C30B4D201625500079C63D /* SnapshotCommandSubCatalogs.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9C30B4C201625500079C63D /* SnapshotCommandSubCatalogs.swift */; };
 		E9C6D24120AAB96800B9D212 /* AllProfilenames.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9C6D24020AAB96800B9D212 /* AllProfilenames.swift */; };
@@ -281,6 +282,7 @@
 		E9ACD3972066B9CB0080E09C /* ViewControllerEncrypt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerEncrypt.swift; sourceTree = "<group>"; };
 		E9ACD39B2066BE1A0080E09C /* RcloneProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RcloneProfile.swift; sourceTree = "<group>"; };
 		E9AE2E90217E3270003486E0 /* RsyncOSX.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = RsyncOSX.entitlements; sourceTree = "<group>"; };
+		E9B9CCA521BC46B00042D5CE /* extensionDate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = extensionDate.swift; sourceTree = "<group>"; };
 		E9C30B4A201623B00079C63D /* SnapshotsLoggData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnapshotsLoggData.swift; sourceTree = "<group>"; };
 		E9C30B4C201625500079C63D /* SnapshotCommandSubCatalogs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnapshotCommandSubCatalogs.swift; sourceTree = "<group>"; };
 		E9C6D24020AAB96800B9D212 /* AllProfilenames.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllProfilenames.swift; sourceTree = "<group>"; };
@@ -472,6 +474,7 @@
 				E92755A32130506000B1F781 /* Dateandtime.swift */,
 				E92755A52130539400B1F781 /* Dispatchqueues.swift */,
 				E933B6CC2196B30D0033D7D2 /* RemoteNumbers.swift */,
+				E9B9CCA521BC46B00042D5CE /* extensionDate.swift */,
 			);
 			name = Utils;
 			sourceTree = "<group>";
@@ -867,6 +870,7 @@
 				E945D61420B736E9000E787B /* ViewControllerInformationLocalRemote.swift in Sources */,
 				E9FFA02F1E728C6E00B7AB2B /* Rsync.swift in Sources */,
 				E9234FFB1EB068AE00A4C550 /* Files.swift in Sources */,
+				E9B9CCA621BC46B00042D5CE /* extensionDate.swift in Sources */,
 				E9284CF621308AE9006648C1 /* extensionsConfigurations.swift in Sources */,
 				E9E763711E6AEA5300B45E8D /* ViewControllerCopyFilesSource.swift in Sources */,
 				A0FC45641D9545CC005208EF /* ScheduleLoggData.swift in Sources */,

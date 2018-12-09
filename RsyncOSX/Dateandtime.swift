@@ -71,5 +71,4 @@ final class Dateandtime {
         dateformatter.dateFormat = "dd MMM yyyy HH:mm"
         return dateformatter
     }
-
 }
