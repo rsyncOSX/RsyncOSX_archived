@@ -392,3 +392,9 @@ extension ViewControllerSnapshots: Count {
         return progress
     }
 }
+
+extension ViewControllerSnapshots: GetSnapshotsLoggData {
+    func getsnapshotsloggaata() -> SnapshotsLoggData? {
+        return self.snapshotsloggdata
+    }
+}
