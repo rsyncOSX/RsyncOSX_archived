@@ -19,6 +19,7 @@ class PlanSnapshots {
     var snapshotsloggdata: SnapshotsLoggData?
     private var numberoflogs: Int?
     private var firstlog: Double?
+    private var now: Date?
 
     private func datefromstring(datestring: String) -> Date {
         let dateformatter = Dateandtime().setDateformat()
@@ -31,5 +32,6 @@ class PlanSnapshots {
         guard self.snapshotsloggdata?.snapshotslogs != nil else { return }
         self.numberoflogs = self.snapshotsloggdata?.snapshotslogs?.count ?? 0
         self.firstlog = Double(self.snapshotsloggdata?.snapshotslogs![0].value(forKey: "days") as? String ?? "0")
+        self.now = Date()
     }
 }
