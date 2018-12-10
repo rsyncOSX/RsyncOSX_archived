@@ -11,7 +11,6 @@ import Cocoa
 
 protocol SetSchedules {
     var schedulesDelegate: GetSchedulesObject? {get}
-    var schedules: Schedules? {get}
 }
 
 extension SetSchedules {
