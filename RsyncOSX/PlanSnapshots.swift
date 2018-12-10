@@ -19,22 +19,22 @@ class PlanSnapshots {
     var snapshotsloggdata: SnapshotsLoggData?
 
     // 1 - 7 days
-    private func lasteweek() {
+    private func currentweek(offsetcurrentweek: Int) {
         
     }
     
     // 8 - 28/29/30/31 days
-    private func lastmonth() {
+    private func currentmonth(offsetcurrentmonth: Int) {
         
     }
 
     // 31 - 365 days
-    private func lastyear() {
+    private func currentyear(offsetlastyear: Int) {
         
     }
 
     // 365 days
-    private func previousyears() {
+    private func previousyears(offsett: Int) {
         
     }
 
