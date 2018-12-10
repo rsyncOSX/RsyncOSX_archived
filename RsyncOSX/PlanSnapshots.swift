@@ -17,29 +17,19 @@ class PlanSnapshots {
 
     weak var SnapshotsLoggDataDelegate: GetSnapshotsLoggData?
     var snapshotsloggdata: SnapshotsLoggData?
+    private var numberoflogs: Int?
+    private var firstlog: Double?
 
-    // 1 - 7 days
-    private func currentweek(offsetcurrentweek: Int) {
-        
-    }
-    
-    // 8 - 28/29/30/31 days
-    private func currentmonth(offsetcurrentmonth: Int) {
-        
-    }
-
-    // 31 - 365 days
-    private func currentyear(offsetlastyear: Int) {
-        
-    }
-
-    // 365 days
-    private func previousyears(offsett: Int) {
-        
+    private func datefromstring(datestring: String) -> Date {
+        let dateformatter = Dateandtime().setDateformat()
+        return dateformatter.date(from: datestring)!
     }
 
     init() {
         self.SnapshotsLoggDataDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vcsnapshot) as? ViewControllerSnapshots
         self.snapshotsloggdata = self.SnapshotsLoggDataDelegate?.getsnapshotsloggaata()
+        guard self.snapshotsloggdata?.snapshotslogs != nil else { return }
+        self.numberoflogs = self.snapshotsloggdata?.snapshotslogs?.count ?? 0
+        self.firstlog = Double(self.snapshotsloggdata?.snapshotslogs![0].value(forKey: "days") as? String ?? "0")
     }
 }
