@@ -81,6 +81,10 @@ class ViewControllerSnapshots: NSViewController, SetDismisser, SetConfigurations
         self.numbersinsequencetodelete = 0
     }
 
+    @IBAction func plansforsnapshots(_ sender: NSButton) {
+        let plans = PlanSnapshots()
+    }
+
     @IBAction func updatedeletesnapshotsnum(_ sender: NSSlider) {
         self.stringdeletesnapshotsnum.stringValue = String(self.deletesnapshots.intValue)
         self.numbersinsequencetodelete = Int(self.deletesnapshots.intValue - 1)
