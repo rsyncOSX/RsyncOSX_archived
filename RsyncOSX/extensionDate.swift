@@ -51,6 +51,10 @@ extension Date {
         return getWeekday() == 1
     }
 
+    func isWeekday() -> Bool {
+        return getWeekday() != 1
+    }
+
     func getWeekday() -> Int {
         let calendar = Calendar.current
         return (calendar as NSCalendar).components( .weekday, from: self).weekday!

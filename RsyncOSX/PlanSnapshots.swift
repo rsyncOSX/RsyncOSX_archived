@@ -73,7 +73,9 @@ class PlanSnapshots {
         if self.datecomponentsfromstring(datestring: datesnapshotstring).month ==
             self.datecomponentscurrent!.month &&
             self.datecomponentsfromstring(datestring: datesnapshotstring).yearForWeekOfYear == self.datecomponentscurrent!.yearForWeekOfYear {
-            return true
+            if self.datefromstring(datestring: datesnapshotstring).isWeekday() {
+                return true
+            }
         }
         return false
     }
