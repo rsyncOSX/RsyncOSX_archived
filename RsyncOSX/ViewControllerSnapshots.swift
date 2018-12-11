@@ -136,6 +136,14 @@ class ViewControllerSnapshots: NSViewController, SetDismisser, SetConfigurations
     }
 
     @IBAction func getindex(_ sender: NSButton) {
+        self.snapshotsloggdata = nil
+        self.deletebutton.isEnabled = false
+        self.localCatalog.stringValue = ""
+        self.offsiteCatalog.stringValue = ""
+        self.offsiteUsername.stringValue = ""
+        self.offsiteServer.stringValue = ""
+        self.backupID.stringValue = ""
+        self.sshport.stringValue = ""
         self.reloadtabledata()
         self.presentViewControllerAsSheet(self.viewControllerSource)
     }
@@ -327,14 +335,6 @@ extension ViewControllerSnapshots: NSTableViewDelegate {
 
 extension ViewControllerSnapshots: Reloadandrefresh {
     func reloadtabledata() {
-        self.snapshotsloggdata = nil
-        self.deletebutton.isEnabled = false
-        self.localCatalog.stringValue = ""
-        self.offsiteCatalog.stringValue = ""
-        self.offsiteUsername.stringValue = ""
-        self.offsiteServer.stringValue = ""
-        self.backupID.stringValue = ""
-        self.sshport.stringValue = ""
         globalMainQueue.async(execute: { () -> Void in
             self.snapshotstable.reloadData()
         })

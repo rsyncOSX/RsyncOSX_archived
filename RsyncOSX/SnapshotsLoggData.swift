@@ -40,7 +40,6 @@ final class SnapshotsLoggData {
                     self.snapshotslogs![i].setObject(dayssincelastbackup, forKey: "days" as NSCopying)
                 }
             }
-            self.snapshotslogs![i].setObject(0, forKey: "delete" as NSCopying)
         }
     }
 

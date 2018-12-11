@@ -16,6 +16,7 @@ protocol GetSnapshotsLoggData: class {
 class PlanSnapshots {
 
     weak var SnapshotsLoggDataDelegate: GetSnapshotsLoggData?
+    weak var reloadDelegate: Reloadandrefresh?
     var snapshotsloggdata: SnapshotsLoggData?
     private var numberoflogs: Int?
     private var firstlog: Double?
@@ -26,20 +27,75 @@ class PlanSnapshots {
         return dateformatter.date(from: datestring)!
     }
 
-    private func datecomponentsfromstring(datestring: String) -> DateComponents {
-        let date = self.datefromstring(datestring: datestring)
+    private func datecomponentsfromstring(datestring: String?) -> DateComponents {
+        var date: Date?
+        if datestring == nil {
+            date = Date()
+        } else {
+            date = self.datefromstring(datestring: datestring!)
+        }
         let calendar = Calendar.current
-        return calendar.dateComponents([.year, .month, .day], from: date)
+        return calendar.dateComponents([.calendar, .timeZone,
+                                        .year, .month, .day,
+                                        .hour, .minute,
+                                        .weekday, .weekOfYear, .yearForWeekOfYear], from: date!)
+    }
+
+    // let dateStart: Date = dateformatter.date(from: (dict.value(forKey: "dateStart") as? String)!)!
+    // let filter = self.snapshotsloggdata!.snapshotslogs!.filter({$0.value( forKey: "select") as? Int == 1})
+    private func markfordelete() {
+        guard self.snapshotsloggdata?.snapshotslogs != nil else { return }
+        for i in 0 ..< self.snapshotsloggdata!.snapshotslogs!.count {
+            let index = self.snapshotsloggdata!.snapshotslogs!.count - 1 - i
+            if self.thisweek(index: index) {
+                self.snapshotsloggdata?.snapshotslogs![index].setValue(0, forKey: "selectCellID")
+            } else if self.thismonth(index: index) {
+                 self.snapshotsloggdata?.snapshotslogs![index].setValue(1, forKey: "selectCellID")
+            } else if self.previousmonths(index: index) {
+                self.snapshotsloggdata?.snapshotslogs![index].setValue(1, forKey: "selectCellID")
+            }
+        }
+        self.reloadDelegate?.reloadtabledata()
+    }
+
+    private func thisweek(index: Int) -> Bool {
+        let datesnapshotstring = (self.snapshotsloggdata!.snapshotslogs![index].value(forKey: "dateExecuted") as? String)!
+        if self.datecomponentsfromstring(datestring: datesnapshotstring).weekOfYear ==
+            self.datecomponentscurrent!.weekOfYear &&
+            self.datecomponentsfromstring(datestring: datesnapshotstring).yearForWeekOfYear == self.datecomponentscurrent!.yearForWeekOfYear {
+            return true
+        }
+        return false
+    }
+
+    private func thismonth(index: Int) -> Bool {
+        let datesnapshotstring = (self.snapshotsloggdata!.snapshotslogs![index].value(forKey: "dateExecuted") as? String)!
+        if self.datecomponentsfromstring(datestring: datesnapshotstring).month ==
+            self.datecomponentscurrent!.month &&
+            self.datecomponentsfromstring(datestring: datesnapshotstring).yearForWeekOfYear == self.datecomponentscurrent!.yearForWeekOfYear {
+            return true
+        }
+        return false
+    }
+
+    private func previousmonths(index: Int) -> Bool {
+        let datesnapshotstring = (self.snapshotsloggdata!.snapshotslogs![index].value(forKey: "dateExecuted") as? String)!
+        if self.datecomponentsfromstring(datestring: datesnapshotstring).month !=
+            self.datecomponentscurrent!.month &&
+            self.datecomponentsfromstring(datestring: datesnapshotstring).yearForWeekOfYear == self.datecomponentscurrent!.yearForWeekOfYear {
+            return true
+        }
+        return false
     }
 
     init() {
         self.SnapshotsLoggDataDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vcsnapshot) as? ViewControllerSnapshots
+        self.reloadDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vcsnapshot) as? ViewControllerSnapshots
         self.snapshotsloggdata = self.SnapshotsLoggDataDelegate?.getsnapshotsloggaata()
         guard self.snapshotsloggdata?.snapshotslogs != nil else { return }
         self.numberoflogs = self.snapshotsloggdata?.snapshotslogs?.count ?? 0
         self.firstlog = Double(self.snapshotsloggdata?.snapshotslogs![0].value(forKey: "days") as? String ?? "0")
-        let date = Date()
-        let calendar = Calendar.current
-        self.datecomponentscurrent = calendar.dateComponents([.year, .month, .day], from: date)
+        self.datecomponentscurrent = self.datecomponentsfromstring(datestring: nil)
+        self.markfordelete()
     }
 }
