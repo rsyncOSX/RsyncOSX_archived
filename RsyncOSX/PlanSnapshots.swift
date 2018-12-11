@@ -26,6 +26,12 @@ class PlanSnapshots {
         return dateformatter.date(from: datestring)!
     }
 
+    private func datecomponentsfromstring(datestring: String) -> DateComponents {
+        let date = self.datefromstring(datestring: datestring)
+        let calendar = Calendar.current
+        return calendar.dateComponents([.year, .month, .day], from: date)
+    }
+
     init() {
         self.SnapshotsLoggDataDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vcsnapshot) as? ViewControllerSnapshots
         self.snapshotsloggdata = self.SnapshotsLoggDataDelegate?.getsnapshotsloggaata()
