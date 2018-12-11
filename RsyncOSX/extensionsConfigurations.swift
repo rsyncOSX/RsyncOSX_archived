@@ -18,7 +18,6 @@ protocol GetConfigurationsObject: class {
 
 protocol SetConfigurations {
     var configurationsDelegate: GetConfigurationsObject? { get }
-    var configurations: Configurations? { get }
 }
 
 extension SetConfigurations {
@@ -40,7 +39,6 @@ protocol ReloadTable {
     var reloadDelegateSchedule: Reloadandrefresh? { get }
     var reloadDelegateLoggData: Reloadandrefresh? { get }
     var reloadDelegateSnapshot: Reloadandrefresh? { get }
-    func reloadtable(vcontroller: ViewController)
 }
 
 extension ReloadTable {

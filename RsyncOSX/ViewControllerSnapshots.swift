@@ -5,7 +5,7 @@
 //  Created by Thomas Evensen on 22.01.2018.
 //  Copyright © 2018 Thomas Evensen. All rights reserved.
 //
-// swiftlint:disable line_length
+// swiftlint:disable line_length file_length
 
 import Foundation
 import Cocoa
@@ -81,6 +81,10 @@ class ViewControllerSnapshots: NSViewController, SetDismisser, SetConfigurations
         self.numbersinsequencetodelete = 0
     }
 
+    @IBAction func plansforsnapshots(_ sender: NSButton) {
+        _ = PlanSnapshots()
+    }
+
     @IBAction func updatedeletesnapshotsnum(_ sender: NSSlider) {
         self.stringdeletesnapshotsnum.stringValue = String(self.deletesnapshots.intValue)
         self.numbersinsequencetodelete = Int(self.deletesnapshots.intValue - 1)
@@ -132,6 +136,14 @@ class ViewControllerSnapshots: NSViewController, SetDismisser, SetConfigurations
     }
 
     @IBAction func getindex(_ sender: NSButton) {
+        self.snapshotsloggdata = nil
+        self.deletebutton.isEnabled = false
+        self.localCatalog.stringValue = ""
+        self.offsiteCatalog.stringValue = ""
+        self.offsiteUsername.stringValue = ""
+        self.offsiteServer.stringValue = ""
+        self.backupID.stringValue = ""
+        self.sshport.stringValue = ""
         self.reloadtabledata()
         self.presentViewControllerAsSheet(self.viewControllerSource)
     }
@@ -323,14 +335,6 @@ extension ViewControllerSnapshots: NSTableViewDelegate {
 
 extension ViewControllerSnapshots: Reloadandrefresh {
     func reloadtabledata() {
-        self.snapshotsloggdata = nil
-        self.deletebutton.isEnabled = false
-        self.localCatalog.stringValue = ""
-        self.offsiteCatalog.stringValue = ""
-        self.offsiteUsername.stringValue = ""
-        self.offsiteServer.stringValue = ""
-        self.backupID.stringValue = ""
-        self.sshport.stringValue = ""
         globalMainQueue.async(execute: { () -> Void in
             self.snapshotstable.reloadData()
         })
@@ -390,5 +394,11 @@ extension ViewControllerSnapshots: Count {
         guard self.snapshotsloggdata?.remotecatalogstodelete != nil else { return 0 }
         let progress = Int(self.snapshotstodelete) - self.snapshotsloggdata!.remotecatalogstodelete!.count
         return progress
+    }
+}
+
+extension ViewControllerSnapshots: GetSnapshotsLoggData {
+    func getsnapshotsloggaata() -> SnapshotsLoggData? {
+        return self.snapshotsloggdata
     }
 }
