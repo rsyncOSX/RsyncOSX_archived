@@ -82,7 +82,7 @@ class ViewControllerSnapshots: NSViewController, SetDismisser, SetConfigurations
     }
 
     @IBAction func plansforsnapshots(_ sender: NSButton) {
-        let plans = PlanSnapshots()
+        _ = PlanSnapshots()
     }
 
     @IBAction func updatedeletesnapshotsnum(_ sender: NSSlider) {

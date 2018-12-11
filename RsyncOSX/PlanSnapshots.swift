@@ -47,10 +47,10 @@ class PlanSnapshots {
         guard self.snapshotsloggdata?.snapshotslogs != nil else { return }
         for i in 0 ..< self.snapshotsloggdata!.snapshotslogs!.count {
             let index = self.snapshotsloggdata!.snapshotslogs!.count - 1 - i
-            if self.thisweek(index: index) {
+            if self.currentweek(index: index) {
                 self.snapshotsloggdata?.snapshotslogs![index].setValue(0, forKey: "selectCellID")
-            } else if self.thismonth(index: index) {
-                 self.snapshotsloggdata?.snapshotslogs![index].setValue(1, forKey: "selectCellID")
+            } else if self.currentmonth(index: index) {
+                self.snapshotsloggdata?.snapshotslogs![index].setValue(1, forKey: "selectCellID")
             } else if self.previousmonths(index: index) {
                 self.snapshotsloggdata?.snapshotslogs![index].setValue(1, forKey: "selectCellID")
             }
@@ -58,22 +58,24 @@ class PlanSnapshots {
         self.reloadDelegate?.reloadtabledata()
     }
 
-    private func thisweek(index: Int) -> Bool {
+    private func currentweek(index: Int) -> Bool {
         let datesnapshotstring = (self.snapshotsloggdata!.snapshotslogs![index].value(forKey: "dateExecuted") as? String)!
         if self.datecomponentsfromstring(datestring: datesnapshotstring).weekOfYear ==
             self.datecomponentscurrent!.weekOfYear &&
             self.datecomponentsfromstring(datestring: datesnapshotstring).yearForWeekOfYear == self.datecomponentscurrent!.yearForWeekOfYear {
+            self.snapshotsloggdata?.snapshotslogs![index].setValue("current", forKey: "day")
             return true
         }
         return false
     }
 
-    private func thismonth(index: Int) -> Bool {
+    private func currentmonth(index: Int) -> Bool {
         let datesnapshotstring = (self.snapshotsloggdata!.snapshotslogs![index].value(forKey: "dateExecuted") as? String)!
         if self.datecomponentsfromstring(datestring: datesnapshotstring).month ==
             self.datecomponentscurrent!.month &&
             self.datecomponentsfromstring(datestring: datesnapshotstring).yearForWeekOfYear == self.datecomponentscurrent!.yearForWeekOfYear {
             if self.datefromstring(datestring: datesnapshotstring).isWeekday() {
+                self.snapshotsloggdata?.snapshotslogs![index].setValue("weekday", forKey: "day")
                 return true
             }
         }
@@ -85,7 +87,10 @@ class PlanSnapshots {
         if self.datecomponentsfromstring(datestring: datesnapshotstring).month !=
             self.datecomponentscurrent!.month &&
             self.datecomponentsfromstring(datestring: datesnapshotstring).yearForWeekOfYear == self.datecomponentscurrent!.yearForWeekOfYear {
-            return true
+            if self.datefromstring(datestring: datesnapshotstring).isWeekday() {
+                self.snapshotsloggdata?.snapshotslogs![index].setValue("weekday", forKey: "day")
+                return true
+            }
         }
         return false
     }
