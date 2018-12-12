@@ -90,6 +90,22 @@ extension Date {
         return rhs.compare(lhs) == ComparisonResult.orderedAscending
     }
 
+    func startOfMonth() -> Date {
+        return Calendar.current.date(from: Calendar.current.dateComponents([.year, .month], from: Calendar.current.startOfDay(for: self)))!
+    }
+
+    func endOfMonth() -> Date {
+        return Calendar.current.date(byAdding: DateComponents(month: 1, day: -1), to: self.startOfMonth())!
+    }
+
+    var startOfWeek: Date {
+        return Calendar.current.date(from: Calendar.current.dateComponents([.yearForWeekOfYear, .weekOfYear], from: self))!
+    }
+
+    func nextSunday () -> Date {
+        return Calendar.current.date(byAdding: DateComponents(weekOfYear: 1), to: startOfWeek)!
+    }
+
     init(year: Int, month: Int, day: Int) {
         let calendar = Calendar.current
         var dateComponent = DateComponents()

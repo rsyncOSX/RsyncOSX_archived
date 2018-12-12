@@ -251,7 +251,6 @@ class ViewControllertabMain: NSViewController, ReloadTable, Deselect, VcMain, De
     func reset() {
         self.outputprocess = nil
         self.setNumbers(outputprocess: nil)
-        self.setinfonextaction(info: "Estimate", color: .gray)
         self.process = nil
         self.singletask = nil
     }
@@ -351,7 +350,6 @@ class ViewControllertabMain: NSViewController, ReloadTable, Deselect, VcMain, De
     func executetasknow() {
         guard self.index != nil  else { return }
         self.processtermination = .singlequicktask
-        self.setinfonextaction(info: "Execute", color: .gray)
         self.working.startAnimation(nil)
         let arguments = self.configurations!.arguments4rsync(index: self.index!, argtype: .arg)
         self.outputprocess = OutputProcess()
@@ -416,7 +414,6 @@ class ViewControllertabMain: NSViewController, ReloadTable, Deselect, VcMain, De
         }
         // Allow notify about Scheduled jobs
         self.configurations!.allowNotifyinMain = true
-        self.setinfonextaction(info: "", color: .black)
         if self.configurations!.configurationsDataSourcecount() > 0 {
             globalMainQueue.async(execute: { () -> Void in
                 self.mainTableView.reloadData()
@@ -546,6 +543,7 @@ class ViewControllertabMain: NSViewController, ReloadTable, Deselect, VcMain, De
     // setting which table row is selected, force new estimation
     func tableViewSelectionDidChange(_ notification: Notification) {
         guard self.scheduledJobInProgress == false else { return }
+        self.seterrorinfo(info: "")
         // If change row during estimation
         if self.process != nil { self.abortOperations() }
         // If change row after estimation, force new estimation
@@ -565,7 +563,6 @@ class ViewControllertabMain: NSViewController, ReloadTable, Deselect, VcMain, De
         }
         self.process = nil
         self.singletask = nil
-        self.setinfonextaction(info: "Estimate", color: .gray)
         self.showrsynccommandmainview()
         self.reloadtabledata()
         self.configurations!.allowNotifyinMain = true
