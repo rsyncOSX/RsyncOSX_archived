@@ -97,7 +97,6 @@ extension ViewControllertabMain: NSTableViewDelegate, Attributedestring {
         }
         self.singletask = nil
         self.batchtasks = nil
-        self.setinfonextaction(info: "Estimate", color: .gray)
     }
 }
 
@@ -148,7 +147,6 @@ extension ViewControllertabMain: NewProfile {
         self.serverOff = nil
         self.setNumbers(outputprocess: nil)
         self.showrsynccommandmainview()
-        self.setinfonextaction(info: "Estimate", color: .gray)
         self.deselect()
         // Read configurations and Scheduledata
         self.configurations = self.createconfigurationsobject(profile: profile)
@@ -266,7 +264,7 @@ extension ViewControllertabMain: UpdateProgress {
             processterminationDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vcquickbackup) as? ViewControllerQuickBackup
             processterminationDelegate?.processTermination()
         case .singlequicktask:
-            self.setinfonextaction(info: "", color: .gray)
+            self.seterrorinfo(info: "")
             self.working.stopAnimation(nil)
             self.configurations!.setCurrentDateonConfiguration(index: self.index!, outputprocess: self.outputprocess)
         case .remoteinfotask:
@@ -377,7 +375,7 @@ extension ViewControllertabMain: RsyncError {
     func rsyncerror() {
         // Set on or off in user configuration
         globalMainQueue.async(execute: { () -> Void in
-            self.setinfonextaction(info: "Error", color: .red)
+            self.seterrorinfo(info: "Error")
             self.showrsynccommandmainview()
             self.deselect()
             // Abort any operations
@@ -405,7 +403,7 @@ extension ViewControllertabMain: Fileerror {
             } else if errortype == .filesize {
                 self.rsyncCommand.stringValue = self.errordescription(errortype: errortype) + ": filesize = " + errorstr
             } else {
-                self.setinfonextaction(info: "Error", color: .red)
+                self.seterrorinfo(info: "Error")
                 self.rsyncCommand.stringValue = self.errordescription(errortype: errortype) + "\n" + errorstr
             }
         })
@@ -424,7 +422,7 @@ extension ViewControllertabMain: Abort {
             self.workinglabel.isHidden = true
             self.process = nil
             // Create workqueu and add abort
-            self.setinfonextaction(info: "Abort", color: .red)
+            self.seterrorinfo(info: "Abort")
             self.rsyncCommand.stringValue = ""
             if self.configurations!.remoteinfotaskworkqueue != nil && self.configurations?.estimatedlist != nil {
                 self.estimateupdateDelegate?.dismissview()
@@ -478,15 +476,13 @@ extension ViewControllertabMain: SingleTaskProgress {
         localprocessupdateDelegate?.processTermination()
     }
 
-    func setinfonextaction(info: String, color: ColorInfo) {
-        switch color {
-        case .red:
-            self.dryRunOrRealRun.textColor = .red
-        case .black:
-            self.dryRunOrRealRun.textColor = .black
-        case .gray:
-            self.dryRunOrRealRun.textColor = .gray
+    func seterrorinfo(info: String) {
+        guard info != "" else {
+            self.dryRunOrRealRun.isHidden = true
+            return
         }
+        self.dryRunOrRealRun.textColor = .red
+        self.dryRunOrRealRun.isHidden = false
         self.dryRunOrRealRun.stringValue = info
     }
 
@@ -695,7 +691,7 @@ extension ViewControllertabMain: SetLocalRemoteInfo {
 extension ViewControllertabMain: Allerrors {
     func allerrors(outputprocess: OutputProcess?) {
         globalMainQueue.async(execute: { () -> Void in
-            self.setinfonextaction(info: "Error", color: .red)
+            self.seterrorinfo(info: "Error")
         })
         self.outputprocess = nil
         if self.outputerrors == nil {
