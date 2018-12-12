@@ -22,6 +22,14 @@ class PlanSnapshots {
     private var firstlog: Double?
     private var datecomponentscurrent: DateComponents?
 
+    func islastSundayinMonth(date: Date) -> Bool {
+        if date.isSunday() && date.day() > 24 {
+            return true
+        } else {
+            return false
+        }
+    }
+
     private func datefromstring(datestring: String) -> Date {
         let dateformatter = Dateandtime().setDateformat()
         guard datestring != "no log" else { return Date()}
@@ -42,8 +50,6 @@ class PlanSnapshots {
                                         .weekday, .weekOfYear, .yearForWeekOfYear], from: date!)
     }
 
-    // let dateStart: Date = dateformatter.date(from: (dict.value(forKey: "dateStart") as? String)!)!
-    // let filter = self.snapshotsloggdata!.snapshotslogs!.filter({$0.value( forKey: "select") as? Int == 1})
     private func markfordelete() {
         guard self.snapshotsloggdata?.snapshotslogs != nil else { return }
         for i in 0 ..< self.snapshotsloggdata!.snapshotslogs!.count {
@@ -52,8 +58,10 @@ class PlanSnapshots {
                 self.snapshotsloggdata?.snapshotslogs![index].setValue(0, forKey: "selectCellID")
             } else if self.currentmonth(index: index) {
                 self.snapshotsloggdata?.snapshotslogs![index].setValue(1, forKey: "selectCellID")
-            } else if self.previousmonths(index: index) {
-                self.snapshotsloggdata?.snapshotslogs![index].setValue(1, forKey: "selectCellID")
+            } else {
+                if self.previousmonths(index: index) {
+                    self.snapshotsloggdata?.snapshotslogs![index].setValue(1, forKey: "selectCellID")
+                }
             }
         }
         self.reloadDelegate?.reloadtabledata()
@@ -88,8 +96,8 @@ class PlanSnapshots {
         if self.datecomponentsfromstring(datestring: datesnapshotstring).month !=
             self.datecomponentscurrent!.month &&
             self.datecomponentsfromstring(datestring: datesnapshotstring).yearForWeekOfYear == self.datecomponentscurrent!.yearForWeekOfYear {
-            if self.datefromstring(datestring: datesnapshotstring).isWeekday() {
-                self.snapshotsloggdata?.snapshotslogs![index].setValue("weekday", forKey: "day")
+            if self.islastSundayinMonth(date: self.datefromstring(datestring: datesnapshotstring)) == false {
+                self.snapshotsloggdata?.snapshotslogs![index].setValue("previous", forKey: "day")
                 return true
             }
         }
