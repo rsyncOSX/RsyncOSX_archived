@@ -72,7 +72,7 @@ class PlanSnapshots {
         if self.datecomponentsfromstring(datestring: datesnapshotstring).weekOfYear ==
             self.datecomponentscurrent!.weekOfYear &&
             self.datecomponentsfromstring(datestring: datesnapshotstring).yearForWeekOfYear == self.datecomponentscurrent!.yearForWeekOfYear {
-            self.snapshotsloggdata?.snapshotslogs![index].setValue("current", forKey: "day")
+            self.snapshotsloggdata?.snapshotslogs![index].setValue("this week", forKey: "period")
             return true
         }
         return false
@@ -84,7 +84,7 @@ class PlanSnapshots {
             self.datecomponentscurrent!.month &&
             self.datecomponentsfromstring(datestring: datesnapshotstring).yearForWeekOfYear == self.datecomponentscurrent!.yearForWeekOfYear {
             if self.datefromstring(datestring: datesnapshotstring).isWeekday() {
-                self.snapshotsloggdata?.snapshotslogs![index].setValue("weekday", forKey: "day")
+                self.snapshotsloggdata?.snapshotslogs![index].setValue("this month", forKey: "period")
                 return true
             }
         }
@@ -97,7 +97,7 @@ class PlanSnapshots {
             self.datecomponentscurrent!.month &&
             self.datecomponentsfromstring(datestring: datesnapshotstring).yearForWeekOfYear == self.datecomponentscurrent!.yearForWeekOfYear {
             if self.islastSundayinMonth(date: self.datefromstring(datestring: datesnapshotstring)) == false {
-                self.snapshotsloggdata?.snapshotslogs![index].setValue("previous", forKey: "day")
+                self.snapshotsloggdata?.snapshotslogs![index].setValue("prev months", forKey: "period")
                 return true
             }
         }
