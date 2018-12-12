@@ -24,6 +24,7 @@ class PlanSnapshots {
 
     private func datefromstring(datestring: String) -> Date {
         let dateformatter = Dateandtime().setDateformat()
+        guard datestring != "no log" else { return Date()}
         return dateformatter.date(from: datestring)!
     }
 
