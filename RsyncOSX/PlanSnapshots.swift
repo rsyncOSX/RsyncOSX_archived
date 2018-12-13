@@ -67,6 +67,7 @@ class PlanSnapshots {
         self.reloadDelegate?.reloadtabledata()
     }
 
+    // Keep all snapshots current week.
     private func currentweek(index: Int) -> Bool {
         let datesnapshotstring = (self.snapshotsloggdata!.snapshotslogs![index].value(forKey: "dateExecuted") as? String)!
         if self.datecomponentsfromstring(datestring: datesnapshotstring).weekOfYear ==
@@ -78,6 +79,7 @@ class PlanSnapshots {
         return false
     }
 
+    // Keep snapshots every Sunday
     private func currentmonth(index: Int) -> Bool {
         let datesnapshotstring = (self.snapshotsloggdata!.snapshotslogs![index].value(forKey: "dateExecuted") as? String)!
         if self.datecomponentsfromstring(datestring: datesnapshotstring).month ==
@@ -91,6 +93,7 @@ class PlanSnapshots {
         return false
     }
 
+    // Keep snapshots last Sunday every month
     private func previousmonths(index: Int) -> Bool {
         let datesnapshotstring = (self.snapshotsloggdata!.snapshotslogs![index].value(forKey: "dateExecuted") as? String)!
         if self.datecomponentsfromstring(datestring: datesnapshotstring).month !=
