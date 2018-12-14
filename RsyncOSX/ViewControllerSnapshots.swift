@@ -10,10 +10,9 @@
 import Foundation
 import Cocoa
 
-class ViewControllerSnapshots: NSViewController, SetDismisser, SetConfigurations, Delay, Connected, Index, VcMain {
+class ViewControllerSnapshots: NSViewController, SetDismisser, SetConfigurations, Delay, Connected, VcMain {
 
     private var hiddenID: Int?
-    var rsyncindex: Int?
     private var config: Configuration?
     private var snapshotsloggdata: SnapshotsLoggData?
     private var delete: Bool = false
@@ -61,10 +60,6 @@ class ViewControllerSnapshots: NSViewController, SetDismisser, SetConfigurations
             let num = String((self.snapshotsloggdata?.snapshotslogs?.count ?? 1 - 1) - 1)
             self.info.stringValue = "You cannot delete that many, max is " + num + "..."
         case 6:
-            self.info.stringValue = "Seems not to be connected..."
-        case 7:
-            self.info.stringValue = "Use Soure button to change..."
-        case 8:
             self.info.stringValue = "Seems not to be connected..."
         default:
             self.info.stringValue = ""
@@ -139,19 +134,6 @@ class ViewControllerSnapshots: NSViewController, SetDismisser, SetConfigurations
         }
     }
 
-    @IBAction func getindex(_ sender: NSButton) {
-        self.snapshotsloggdata = nil
-        self.deletebutton.isEnabled = false
-        self.localCatalog.stringValue = ""
-        self.offsiteCatalog.stringValue = ""
-        self.offsiteUsername.stringValue = ""
-        self.offsiteServer.stringValue = ""
-        self.backupID.stringValue = ""
-        self.sshport.stringValue = ""
-        self.reloadtabledata()
-        self.presentViewControllerAsSheet(self.viewControllerSource)
-    }
-
     override func viewDidLoad() {
         super.viewDidLoad()
         self.snapshotstableView.delegate = self
@@ -167,21 +149,10 @@ class ViewControllerSnapshots: NSViewController, SetDismisser, SetConfigurations
     override func viewDidAppear() {
         super.viewDidAppear()
         guard self.diddissappear == false else {
-            self.info(num: 7)
-            globalMainQueue.async(execute: { () -> Void in
-                self.snapshotstableView.reloadData()
-            })
+            self.reloadtabledata()
             return
         }
-        if let index = self.index() {
-            let hiddenID = self.configurations!.gethiddenID(index: index)
-            self.getSourceindex(index: hiddenID)
-        } else {
-            self.snapshotsloggdata = nil
-            globalMainQueue.async(execute: { () -> Void in
-                self.snapshotstableView.reloadData()
-            })
-        }
+        self.reloadtabledata()
     }
 
     override func viewDidDisappear() {
@@ -233,42 +204,21 @@ class ViewControllerSnapshots: NSViewController, SetDismisser, SetConfigurations
             if let index = indexes.first {
                 let config = self.configurations!.getConfigurations()[index]
                 guard self.connected(config: config) == true else {
-                    self.info(num: 8)
+                    self.info(num: 6)
                     return
                 }
                 self.info(num: 0)
-                self.rsyncindex = index
                 let hiddenID = self.configurations!.getConfigurationsDataSourcecountBackupSnapshot()![index].value(forKey: "hiddenID") as? Int ?? -1
-            } else {
-                self.rsyncindex = nil
+                self.getSourceindex(index: hiddenID)
             }
         }
     }
-}
-
-extension ViewControllerSnapshots: DismissViewController {
-
-    func dismiss_view(viewcontroller: NSViewController) {
-        self.dismissViewController(viewcontroller)
-        if self.snapshotsloggdata?.remotecatalogstodelete != nil {
-            self.snapshotsloggdata?.remotecatalogstodelete = nil
-            self.info(num: 2)
-            self.abort = true
-        }
-    }
-}
-
-extension ViewControllerSnapshots: GetSource {
 
     func getSourceindex(index: Int) {
         self.hiddenID = index
         self.config = self.configurations!.getConfigurations()[self.configurations!.getIndex(hiddenID!)]
         guard self.config!.task == ViewControllerReference.shared.snapshot else {
             self.info(num: 1)
-            return
-        }
-        guard self.connected(config: config!) == true else {
-            self.info(num: 6)
             return
         }
         self.snapshotsloggdata = SnapshotsLoggData(config: self.config!, insnapshot: true)
@@ -282,6 +232,18 @@ extension ViewControllerSnapshots: GetSource {
         }
         self.info(num: 0)
         self.gettinglogs.startAnimation(nil)
+    }
+}
+
+extension ViewControllerSnapshots: DismissViewController {
+
+    func dismiss_view(viewcontroller: NSViewController) {
+        self.dismissViewController(viewcontroller)
+        if self.snapshotsloggdata?.remotecatalogstodelete != nil {
+            self.snapshotsloggdata?.remotecatalogstodelete = nil
+            self.info(num: 2)
+            self.abort = true
+        }
     }
 }
 
