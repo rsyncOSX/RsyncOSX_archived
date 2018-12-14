@@ -5,7 +5,7 @@
 //  Created by Thomas Evensen on 22.01.2018.
 //  Copyright © 2018 Thomas Evensen. All rights reserved.
 //
-// swiftlint:disable line_length file_length
+// swiftlint:disable line_length
 
 import Foundation
 import Cocoa
@@ -19,8 +19,6 @@ class ViewControllerSnapshots: NSViewController, SetDismisser, SetConfigurations
     private var numbersinsequencetodelete: Int?
     private var snapshotstodelete: Double = 0
     private var index: Int?
-    var lastindex: Int?
-    var diddissappear: Bool = false
     weak var processterminationDelegate: UpdateProgress?
     var abort: Bool = false
 
@@ -143,17 +141,7 @@ class ViewControllerSnapshots: NSViewController, SetDismisser, SetConfigurations
 
     override func viewDidAppear() {
         super.viewDidAppear()
-        guard self.diddissappear == false else {
-            self.reloadtabledata()
-            return
-        }
         self.reloadtabledata()
-    }
-
-    override func viewDidDisappear() {
-        super.viewDidDisappear()
-        self.lastindex = self.index
-        self.diddissappear = true
     }
 
     private func deletesnapshotcatalogs() {
