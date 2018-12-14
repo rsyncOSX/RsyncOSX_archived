@@ -34,7 +34,6 @@ class ViewControllerCopyFiles: NSViewController, SetConfigurations, Delay, VcCop
     @IBOutlet weak var remoteCatalog: NSTextField!
     @IBOutlet weak var restorecatalog: NSTextField!
     @IBOutlet weak var working: NSProgressIndicator!
-    @IBOutlet weak var workingRsync: NSProgressIndicator!
     @IBOutlet weak var search: NSSearchField!
     @IBOutlet weak var restorebutton: NSButton!
 
@@ -77,7 +76,7 @@ class ViewControllerCopyFiles: NSViewController, SetConfigurations, Delay, VcCop
         guard self.copyFiles != nil else { return }
         self.restorebutton.isEnabled = false
         self.getfiles = true
-        self.workingRsync.startAnimation(nil)
+        self.working.startAnimation(nil)
         if self.estimated == false {
             self.copyFiles!.executeRsync(remotefile: self.remoteCatalog!.stringValue, localCatalog: self.restorecatalog!.stringValue, dryrun: true)
             self.estimated = true
@@ -108,7 +107,6 @@ class ViewControllerCopyFiles: NSViewController, SetConfigurations, Delay, VcCop
         self.rsynctableView.delegate = self
         self.rsynctableView.dataSource = self
         self.working.usesThreadedAnimation = true
-        self.workingRsync.usesThreadedAnimation = true
         self.search.delegate = self
         self.restorecatalog.delegate = self
         self.remoteCatalog.delegate = self
@@ -147,7 +145,7 @@ class ViewControllerCopyFiles: NSViewController, SetConfigurations, Delay, VcCop
         if answer {
             self.restorebutton.isEnabled = false
             self.getfiles = true
-            self.workingRsync.startAnimation(nil)
+            self.working.startAnimation(nil)
             self.copyFiles!.executeRsync(remotefile: remoteCatalog!.stringValue, localCatalog: restorecatalog!.stringValue, dryrun: false)
         }
     }
@@ -315,7 +313,7 @@ extension ViewControllerCopyFiles: UpdateProgress {
             self.working.stopAnimation(nil)
         } else {
             self.restorebutton.title = "Restore"
-            self.workingRsync.stopAnimation(nil)
+            self.working.stopAnimation(nil)
             self.presentViewControllerAsSheet(self.viewControllerInformation!)
             self.restorebutton.isEnabled = true
         }
