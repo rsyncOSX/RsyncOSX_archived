@@ -13,6 +13,7 @@ import Cocoa
 class ViewControllerSnapshots: NSViewController, SetDismisser, SetConfigurations, Delay, Connected, Index, VcMain {
 
     private var hiddenID: Int?
+    var rsyncindex: Int?
     private var config: Configuration?
     private var snapshotsloggdata: SnapshotsLoggData?
     private var delete: Bool = false
@@ -24,7 +25,8 @@ class ViewControllerSnapshots: NSViewController, SetDismisser, SetConfigurations
     weak var processterminationDelegate: UpdateProgress?
     var abort: Bool = false
 
-    @IBOutlet weak var snapshotstable: NSTableView!
+    @IBOutlet weak var snapshotstableView: NSTableView!
+    @IBOutlet weak var rsynctableView: NSTableView!
     @IBOutlet weak var localCatalog: NSTextField!
     @IBOutlet weak var offsiteCatalog: NSTextField!
     @IBOutlet weak var offsiteUsername: NSTextField!
@@ -62,6 +64,8 @@ class ViewControllerSnapshots: NSViewController, SetDismisser, SetConfigurations
             self.info.stringValue = "Seems not to be connected..."
         case 7:
             self.info.stringValue = "Use Soure button to change..."
+        case 8:
+            self.info.stringValue = "Seems not to be connected..."
         default:
             self.info.stringValue = ""
         }
@@ -90,7 +94,7 @@ class ViewControllerSnapshots: NSViewController, SetDismisser, SetConfigurations
         self.numbersinsequencetodelete = Int(self.deletesnapshots.intValue - 1)
         self.markfordelete(numberstomark: self.numbersinsequencetodelete!)
         globalMainQueue.async(execute: { () -> Void in
-            self.snapshotstable.reloadData()
+            self.snapshotstableView.reloadData()
         })
     }
 
@@ -99,7 +103,7 @@ class ViewControllerSnapshots: NSViewController, SetDismisser, SetConfigurations
         self.numbersinsequencetodelete = self.snapshotsloggdata?.countbydays(num: Double(self.deletesnapshotsdays.intValue))
         self.markfordelete(numberstomark: self.numbersinsequencetodelete!)
         globalMainQueue.async(execute: { () -> Void in
-            self.snapshotstable.reloadData()
+            self.snapshotstableView.reloadData()
         })
     }
 
@@ -150,8 +154,10 @@ class ViewControllerSnapshots: NSViewController, SetDismisser, SetConfigurations
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.snapshotstable.delegate = self
-        self.snapshotstable.dataSource = self
+        self.snapshotstableView.delegate = self
+        self.snapshotstableView.dataSource = self
+        self.rsynctableView.delegate = self
+        self.rsynctableView.dataSource = self
         self.gettinglogs.usesThreadedAnimation = true
         self.stringdeletesnapshotsnum.delegate = self
         self.stringdeletesnapshotsdaysnum.delegate = self
@@ -163,7 +169,7 @@ class ViewControllerSnapshots: NSViewController, SetDismisser, SetConfigurations
         guard self.diddissappear == false else {
             self.info(num: 7)
             globalMainQueue.async(execute: { () -> Void in
-                self.snapshotstable.reloadData()
+                self.snapshotstableView.reloadData()
             })
             return
         }
@@ -173,7 +179,7 @@ class ViewControllerSnapshots: NSViewController, SetDismisser, SetConfigurations
         } else {
             self.snapshotsloggdata = nil
             globalMainQueue.async(execute: { () -> Void in
-                self.snapshotstable.reloadData()
+                self.snapshotstableView.reloadData()
             })
         }
     }
@@ -212,14 +218,30 @@ class ViewControllerSnapshots: NSViewController, SetDismisser, SetConfigurations
     // setting which table row is selected
     func tableViewSelectionDidChange(_ notification: Notification) {
         let myTableViewFromNotification = (notification.object as? NSTableView)!
-        let indexes = myTableViewFromNotification.selectedRowIndexes
-        if let index = indexes.first {
-            let dict = self.snapshotsloggdata!.snapshotslogs![index]
-            self.hiddenID = dict.value(forKey: "hiddenID") as? Int
-            guard self.hiddenID != nil else { return }
-            self.index = self.configurations?.getIndex(hiddenID!)
+        if myTableViewFromNotification == self.snapshotstableView {
+            let indexes = myTableViewFromNotification.selectedRowIndexes
+            if let index = indexes.first {
+                let dict = self.snapshotsloggdata!.snapshotslogs![index]
+                self.hiddenID = dict.value(forKey: "hiddenID") as? Int
+                guard self.hiddenID != nil else { return }
+                self.index = self.configurations?.getIndex(hiddenID!)
+            } else {
+                self.index = nil
+            }
         } else {
-            self.index = nil
+            let indexes = myTableViewFromNotification.selectedRowIndexes
+            if let index = indexes.first {
+                let config = self.configurations!.getConfigurations()[index]
+                guard self.connected(config: config) == true else {
+                    self.info(num: 8)
+                    return
+                }
+                self.info(num: 0)
+                self.rsyncindex = index
+                let hiddenID = self.configurations!.getConfigurationsDataSourcecountBackupSnapshot()![index].value(forKey: "hiddenID") as? Int ?? -1
+            } else {
+                self.rsyncindex = nil
+            }
         }
     }
 }
@@ -289,7 +311,7 @@ extension ViewControllerSnapshots: UpdateProgress {
             self.gettinglogs.stopAnimation(nil)
             self.numbersinsequencetodelete = nil
             globalMainQueue.async(execute: { () -> Void in
-                self.snapshotstable.reloadData()
+                self.snapshotstableView.reloadData()
             })
         }
     }
@@ -302,28 +324,40 @@ extension ViewControllerSnapshots: UpdateProgress {
 extension ViewControllerSnapshots: NSTableViewDataSource {
 
     func numberOfRows(in tableView: NSTableView) -> Int {
-        guard self.snapshotsloggdata?.snapshotslogs != nil else {
-            self.numberOflogfiles.stringValue = "Number of snapshots:"
-            return 0
+        if tableView == self.snapshotstableView {
+            guard self.snapshotsloggdata?.snapshotslogs != nil else {
+                self.numberOflogfiles.stringValue = "Number of snapshots:"
+                return 0
+            }
+            self.numberOflogfiles.stringValue = "Number of snapshots: " + String(self.snapshotsloggdata?.snapshotslogs!.count ?? 0)
+            return (self.snapshotsloggdata?.snapshotslogs!.count ?? 0)
+        } else {
+           return self.configurations?.getConfigurationsDataSourcecountBackupSnapshot()?.count ?? 0
         }
-        self.numberOflogfiles.stringValue = "Number of snapshots: " + String(self.snapshotsloggdata?.snapshotslogs!.count ?? 0)
-        return (self.snapshotsloggdata?.snapshotslogs!.count ?? 0)
     }
 }
 
 extension ViewControllerSnapshots: NSTableViewDelegate {
 
     func tableView(_ tableView: NSTableView, objectValueFor tableColumn: NSTableColumn?, row: Int) -> Any? {
-        guard row < self.snapshotsloggdata?.snapshotslogs!.count ?? 0 else { return nil }
-        let object: NSDictionary = self.snapshotsloggdata!.snapshotslogs![row]
-        if tableColumn!.identifier.rawValue == "selectCellID" {
-            return object[tableColumn!.identifier] as? Int
-        } else {
+        if tableView == self.rsynctableView {
+            guard row < self.configurations!.getConfigurationsDataSourcecountBackupSnapshot()!.count else { return nil }
+            guard row < self.configurations!.getConfigurationsDataSourcecountBackupSnapshot()!.count else { return nil }
+            let object: NSDictionary = self.configurations!.getConfigurationsDataSourcecountBackupSnapshot()![row]
             return object[tableColumn!.identifier] as? String
+        } else {
+            guard row < self.snapshotsloggdata?.snapshotslogs!.count ?? 0 else { return nil }
+            let object: NSDictionary = self.snapshotsloggdata!.snapshotslogs![row]
+            if tableColumn!.identifier.rawValue == "selectCellID" {
+                return object[tableColumn!.identifier] as? Int
+            } else {
+                return object[tableColumn!.identifier] as? String
+            }
         }
     }
 
     func tableView(_ tableView: NSTableView, setObjectValue object: Any?, for tableColumn: NSTableColumn?, row: Int) {
+        guard tableView == self.snapshotstableView else { return }
         if tableColumn!.identifier.rawValue == "selectCellID" {
             var select: Int = (self.snapshotsloggdata?.snapshotslogs![row].value(forKey: "selectCellID") as? Int) ?? 0
             if select == 0 { select = 1 } else if select == 1 { select = 0 }
@@ -336,7 +370,8 @@ extension ViewControllerSnapshots: NSTableViewDelegate {
 extension ViewControllerSnapshots: Reloadandrefresh {
     func reloadtabledata() {
         globalMainQueue.async(execute: { () -> Void in
-            self.snapshotstable.reloadData()
+            self.snapshotstableView.reloadData()
+            self.rsynctableView.reloadData()
         })
     }
 }
@@ -358,7 +393,7 @@ extension ViewControllerSnapshots: NSTextFieldDelegate {
                         self.numbersinsequencetodelete = Int(self.deletesnapshots.intValue) - 1
                         self.markfordelete(numberstomark: self.numbersinsequencetodelete!)
                         globalMainQueue.async(execute: { () -> Void in
-                            self.snapshotstable.reloadData()
+                            self.snapshotstableView.reloadData()
                         })
                     } else {
                         self.info(num: 4)
@@ -371,7 +406,7 @@ extension ViewControllerSnapshots: NSTextFieldDelegate {
                         self.numbersinsequencetodelete = self.snapshotsloggdata!.countbydays(num: Double(self.stringdeletesnapshotsdaysnum.stringValue) ?? 0)
                         self.markfordelete(numberstomark: self.numbersinsequencetodelete!)
                         globalMainQueue.async(execute: { () -> Void in
-                            self.snapshotstable.reloadData()
+                            self.snapshotstableView.reloadData()
                         })
                     } else {
                         self.info(num: 4)
