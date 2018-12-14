@@ -107,6 +107,13 @@ class PlanSnapshots {
         return false
     }
 
+    private func reset() {
+        guard self.snapshotsloggdata?.snapshotslogs != nil else { return }
+        for i in 0 ..< self.snapshotsloggdata!.snapshotslogs!.count {
+            self.snapshotsloggdata?.snapshotslogs![i].setValue(0, forKey: "selectCellID")
+        }
+    }
+
     init() {
         self.SnapshotsLoggDataDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vcsnapshot) as? ViewControllerSnapshots
         self.reloadDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vcsnapshot) as? ViewControllerSnapshots
@@ -115,6 +122,7 @@ class PlanSnapshots {
         self.numberoflogs = self.snapshotsloggdata?.snapshotslogs?.count ?? 0
         self.firstlog = Double(self.snapshotsloggdata?.snapshotslogs![0].value(forKey: "days") as? String ?? "0")
         self.datecomponentscurrent = self.datecomponentsfromstring(datestring: nil)
+        self.reset()
         self.markfordelete()
     }
 }
