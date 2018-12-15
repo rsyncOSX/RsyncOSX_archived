@@ -1513,18 +1513,6 @@
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
-                            <textField verticalHuggingPriority="750" fixedFrame="YES" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="h8d-af-XwT">
-                                <rect key="frame" x="744" y="75" width="131" height="22"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" alignment="left" bezelStyle="round" id="Dka-pT-vvI">
-                                    <font key="font" metaFont="system"/>
-                                    <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
-                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                </textFieldCell>
-                                <connections>
-                                    <outlet property="nextKeyView" destination="PZa-iY-BKT" id="UcF-QW-Jnc"/>
-                                </connections>
-                            </textField>
                             <textField verticalHuggingPriority="750" fixedFrame="YES" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Rd4-NT-WkH">
                                 <rect key="frame" x="744" y="97" width="131" height="22"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
@@ -1533,21 +1521,6 @@
                                     <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
-                                <connections>
-                                    <outlet property="nextKeyView" destination="Uhz-6V-DLY" id="HGH-Ez-eyS"/>
-                                </connections>
-                            </textField>
-                            <textField verticalHuggingPriority="750" fixedFrame="YES" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="PZa-iY-BKT">
-                                <rect key="frame" x="1000" y="75" width="60" height="22"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" alignment="right" bezelStyle="round" id="yPn-uy-3gk">
-                                    <font key="font" metaFont="system"/>
-                                    <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
-                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                </textFieldCell>
-                                <connections>
-                                    <outlet property="nextKeyView" destination="W6v-BM-Stl" id="m5p-Fk-EgF"/>
-                                </connections>
                             </textField>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="B3j-6h-1zz">
                                 <rect key="frame" x="626" y="124" width="118" height="17"/>
@@ -1558,29 +1531,11 @@
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
-                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="gLR-Lt-wIE">
-                                <rect key="frame" x="626" y="80" width="118" height="17"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="ID:" id="vQn-ev-3Ai">
-                                    <font key="font" metaFont="system"/>
-                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                                </textFieldCell>
-                            </textField>
-                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="JN5-Sp-mUI">
-                                <rect key="frame" x="882" y="80" width="118" height="17"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="ssh port:" id="w1P-z0-HVo">
-                                    <font key="font" metaFont="system"/>
-                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                                </textFieldCell>
-                            </textField>
                             <box fixedFrame="YES" title="Configuration snapshot" translatesAutoresizingMaskIntoConstraints="NO" id="Mn8-vX-I59">
-                                <rect key="frame" x="612" y="65" width="463" height="122"/>
+                                <rect key="frame" x="612" y="83" width="463" height="104"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <view key="contentView" id="Wsc-3h-bN9">
-                                    <rect key="frame" x="3" y="3" width="457" height="104"/>
+                                    <rect key="frame" x="3" y="3" width="457" height="86"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 </view>
                             </box>
@@ -1741,22 +1696,19 @@
                                 <rect key="frame" x="615" y="383" width="16" height="16"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                             </progressIndicator>
-                            <textField verticalHuggingPriority="750" fixedFrame="YES" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Uhz-6V-DLY">
-                                <rect key="frame" x="941" y="97" width="119" height="22"/>
+                            <textField verticalHuggingPriority="750" fixedFrame="YES" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="h8d-af-XwT">
+                                <rect key="frame" x="929" y="97" width="131" height="22"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" alignment="left" bezelStyle="round" id="XnC-Yr-Abh">
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" alignment="left" bezelStyle="round" id="Dka-pT-vvI">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
-                                <connections>
-                                    <outlet property="nextKeyView" destination="h8d-af-XwT" id="MWC-gl-SGg"/>
-                                </connections>
                             </textField>
-                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="wzv-Dc-vai">
-                                <rect key="frame" x="840" y="100" width="101" height="17"/>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="gLR-Lt-wIE">
+                                <rect key="frame" x="881" y="102" width="48" height="17"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="Server:" id="a08-Ye-p3F">
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="ID:" id="vQn-ev-3Ai">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
@@ -1774,11 +1726,9 @@
                         <outlet property="localCatalog" destination="iBP-PV-dKW" id="4J3-by-Zzd"/>
                         <outlet property="numberOflogfiles" destination="Luu-QK-BXr" id="4jY-Oe-9Uu"/>
                         <outlet property="offsiteCatalog" destination="1Mh-bv-XRt" id="pTc-Fd-JTu"/>
-                        <outlet property="offsiteServer" destination="Uhz-6V-DLY" id="lJd-Ep-R5l"/>
                         <outlet property="offsiteUsername" destination="Rd4-NT-WkH" id="OTc-Ld-ZgC"/>
                         <outlet property="rsynctableView" destination="Gyz-fh-gfZ" id="8ft-DE-57O"/>
                         <outlet property="snapshotstableView" destination="ADg-qt-oLX" id="vx0-h4-cGn"/>
-                        <outlet property="sshport" destination="PZa-iY-BKT" id="kZS-ya-wlj"/>
                         <outlet property="stringdeletesnapshotsdaysnum" destination="RoD-gk-Zpc" id="rzY-ry-a1K"/>
                         <outlet property="stringdeletesnapshotsnum" destination="XPM-CX-EDa" id="miI-tK-UUw"/>
                     </connections>

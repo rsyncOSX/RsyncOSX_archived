@@ -27,9 +27,7 @@ class ViewControllerSnapshots: NSViewController, SetDismisser, SetConfigurations
     @IBOutlet weak var localCatalog: NSTextField!
     @IBOutlet weak var offsiteCatalog: NSTextField!
     @IBOutlet weak var offsiteUsername: NSTextField!
-    @IBOutlet weak var offsiteServer: NSTextField!
     @IBOutlet weak var backupID: NSTextField!
-    @IBOutlet weak var sshport: NSTextField!
     @IBOutlet weak var info: NSTextField!
     @IBOutlet weak var deletebutton: NSButton!
     @IBOutlet weak var numberOflogfiles: NSTextField!
@@ -208,11 +206,7 @@ class ViewControllerSnapshots: NSViewController, SetDismisser, SetConfigurations
         self.localCatalog.stringValue = self.config!.localCatalog
         self.offsiteCatalog.stringValue = self.config!.offsiteCatalog
         self.offsiteUsername.stringValue = self.config!.offsiteUsername
-        self.offsiteServer.stringValue = self.config!.offsiteServer
         self.backupID.stringValue = self.config!.backupID
-        if config!.sshport != nil {
-            self.sshport.stringValue = String(describing: self.config!.sshport!)
-        }
         self.info(num: 0)
         self.gettinglogs.startAnimation(nil)
     }
