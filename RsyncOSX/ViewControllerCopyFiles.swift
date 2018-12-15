@@ -20,7 +20,7 @@ class ViewControllerCopyFiles: NSViewController, SetConfigurations, Delay, VcCop
     var rsyncindex: Int?
     var getfiles: Bool = false
     var estimated: Bool = false
-    private var tabledata: [String]?
+    private var restoretabledata: [String]?
     var diddissappear: Bool = false
 
     @IBOutlet weak var numberofrows: NSTextField!
@@ -118,7 +118,6 @@ class ViewControllerCopyFiles: NSViewController, SetConfigurations, Delay, VcCop
         guard self.diddissappear == false else {
             globalMainQueue.async(execute: { () -> Void in
                 self.rsynctableView.reloadData()
-                self.restoretableView.reloadData()
             })
             return
         }
@@ -174,8 +173,8 @@ class ViewControllerCopyFiles: NSViewController, SetConfigurations, Delay, VcCop
             self.info(num: 0)
             let indexes = myTableViewFromNotification.selectedRowIndexes
             if let index = indexes.first {
-                guard self.tabledata != nil else { return }
-                self.remoteCatalog.stringValue = self.tabledata![index]
+                guard self.restoretabledata != nil else { return }
+                self.remoteCatalog.stringValue = self.restoretabledata![index]
                 guard self.remoteCatalog.stringValue.isEmpty == false && self.restorecatalog.stringValue.isEmpty == false else {
                     self.info(num: 3)
                     return
@@ -221,7 +220,7 @@ class ViewControllerCopyFiles: NSViewController, SetConfigurations, Delay, VcCop
     private func reloadtabledata() {
         guard self.copyFiles != nil else { return }
         globalMainQueue.async(execute: { () -> Void in
-            self.tabledata = self.copyFiles!.filter(search: nil)
+            self.restoretabledata = self.copyFiles!.filter(search: nil)
             self.restoretableView.reloadData()
         })
     }
@@ -234,12 +233,12 @@ extension ViewControllerCopyFiles: NSSearchFieldDelegate {
             self.delayWithSeconds(0.25) {
                 if self.search.stringValue.isEmpty {
                     globalMainQueue.async(execute: { () -> Void in
-                        self.tabledata = self.copyFiles?.filter(search: nil)
+                        self.restoretabledata = self.copyFiles?.filter(search: nil)
                         self.restoretableView.reloadData()
                     })
                 } else {
                     globalMainQueue.async(execute: { () -> Void in
-                        self.tabledata = self.copyFiles?.filter(search: self.search.stringValue)
+                        self.restoretabledata = self.copyFiles?.filter(search: self.search.stringValue)
                         self.restoretableView.reloadData()
                     })
                 }
@@ -259,7 +258,7 @@ extension ViewControllerCopyFiles: NSSearchFieldDelegate {
 
     func searchFieldDidEndSearching(_ sender: NSSearchField) {
         globalMainQueue.async(execute: { () -> Void in
-            self.tabledata = self.copyFiles?.filter(search: nil)
+            self.restoretabledata = self.copyFiles?.filter(search: nil)
             self.restoretableView.reloadData()
         })
     }
@@ -269,12 +268,12 @@ extension ViewControllerCopyFiles: NSTableViewDataSource {
 
     func numberOfRows(in tableView: NSTableView) -> Int {
         if tableView == self.restoretableView {
-            guard self.tabledata != nil else {
+            guard self.restoretabledata != nil else {
                 self.numberofrows.stringValue = "Number of remote files: 0"
                 return 0
             }
-            self.numberofrows.stringValue = "Number of remote files: " + String(self.tabledata!.count)
-            return self.tabledata!.count
+            self.numberofrows.stringValue = "Number of remote files: " + String(self.restoretabledata!.count)
+            return self.restoretabledata!.count
         } else {
              return self.configurations?.getConfigurationsDataSourcecountBackupSnapshot()?.count ?? 0
         }
@@ -285,9 +284,9 @@ extension ViewControllerCopyFiles: NSTableViewDelegate {
 
     func tableView(_ tableView: NSTableView, viewFor tableColumn: NSTableColumn?, row: Int) -> NSView? {
         if tableView == self.restoretableView {
-            guard self.tabledata != nil else { return nil }
+            guard self.restoretabledata != nil else { return nil }
             let cellIdentifier = "files"
-            let text: String = self.tabledata![row]
+            let text: String = self.restoretabledata![row]
             if let cell = tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: cellIdentifier), owner: self) as? NSTableCellView {
                 cell.textField?.stringValue = text
                 return cell
@@ -345,5 +344,18 @@ extension ViewControllerCopyFiles: TemporaryRestorePath {
             self.restorecatalog.stringValue = ""
         }
         self.verifylocalCatalog()
+    }
+}
+
+extension ViewControllerCopyFiles: NewProfile {
+    func newProfile(profile: String?) {
+        self.restoretabledata  = nil
+        globalMainQueue.async(execute: { () -> Void in
+            self.restoretableView.reloadData()
+        })
+    }
+    
+    func enableProfileMenu() {
+        //
     }
 }
