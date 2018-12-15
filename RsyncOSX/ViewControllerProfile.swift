@@ -20,6 +20,8 @@ class ViewControllerProfile: NSViewController, SetConfigurations, SetDismisser, 
 
     var storageapi: PersistentStorageAPI?
     weak var newProfileDelegate: NewProfile?
+    weak var snapshotnewProfileDelegate: NewProfile?
+    weak var copyfilesnewProfileDelegate: NewProfile?
     private var profilesArray: [String]?
     private var profile: Profiles?
     private var useprofile: String?
@@ -31,6 +33,8 @@ class ViewControllerProfile: NSViewController, SetConfigurations, SetDismisser, 
     @IBAction func defaultProfile(_ sender: NSButton) {
         self.useprofile = nil
         self.newProfileDelegate?.newProfile(profile: self.useprofile)
+        self.snapshotnewProfileDelegate?.newProfile(profile: nil)
+        self.copyfilesnewProfileDelegate?.newProfile(profile: nil)
         self.dismissView()
     }
 
@@ -38,6 +42,8 @@ class ViewControllerProfile: NSViewController, SetConfigurations, SetDismisser, 
         if let useprofile = self.useprofile {
             self.profile?.deleteProfile(profileName: useprofile)
             self.newProfileDelegate?.newProfile(profile: nil)
+            self.snapshotnewProfileDelegate?.newProfile(profile: nil)
+            self.copyfilesnewProfileDelegate?.newProfile(profile: nil)
         }
         self.dismissView()
     }
@@ -47,6 +53,8 @@ class ViewControllerProfile: NSViewController, SetConfigurations, SetDismisser, 
         let newprofile = self.newprofile.stringValue
         guard newprofile.isEmpty == false else {
             self.newProfileDelegate?.newProfile(profile: self.useprofile)
+            self.snapshotnewProfileDelegate?.newProfile(profile: nil)
+            self.copyfilesnewProfileDelegate?.newProfile(profile: nil)
             self.dismissView()
             return
         }
@@ -56,6 +64,8 @@ class ViewControllerProfile: NSViewController, SetConfigurations, SetDismisser, 
             return
         }
         self.newProfileDelegate?.newProfile(profile: newprofile)
+        self.snapshotnewProfileDelegate?.newProfile(profile: nil)
+        self.copyfilesnewProfileDelegate?.newProfile(profile: nil)
         self.dismissView()
     }
 
@@ -82,6 +92,8 @@ class ViewControllerProfile: NSViewController, SetConfigurations, SetDismisser, 
         self.profile = Profiles()
         self.profilesArray = self.profile!.getDirectorysStrings()
         self.newProfileDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllertabMain
+        self.snapshotnewProfileDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vcsnapshot) as? ViewControllerSnapshots
+        self.copyfilesnewProfileDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vccopyfiles) as? ViewControllerCopyFiles
         globalMainQueue.async(execute: { () -> Void in
             self.profilesTable.reloadData()
         })
@@ -90,6 +102,8 @@ class ViewControllerProfile: NSViewController, SetConfigurations, SetDismisser, 
 
     @objc(tableViewDoubleClick:) func tableViewDoubleClick(sender: AnyObject) {
         self.newProfileDelegate?.newProfile(profile: self.useprofile)
+        self.snapshotnewProfileDelegate?.newProfile(profile: nil)
+        self.copyfilesnewProfileDelegate?.newProfile(profile: nil)
         self.dismissView()
     }
 }

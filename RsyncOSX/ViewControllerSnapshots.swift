@@ -376,3 +376,16 @@ extension ViewControllerSnapshots: GetSnapshotsLoggData {
         return self.snapshotsloggdata
     }
 }
+
+extension ViewControllerSnapshots: NewProfile {
+    func newProfile(profile: String?) {
+        self.snapshotsloggdata = nil
+        globalMainQueue.async(execute: { () -> Void in
+            self.snapshotstableView.reloadData()
+        })
+    }
+
+    func enableProfileMenu() {
+        //
+    }
+}
