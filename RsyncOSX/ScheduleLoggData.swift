@@ -118,6 +118,11 @@ final class ScheduleLoggData: SetConfigurations, SetSchedules, Sorting {
                 self.compare(snapshotaloggdata!.snapshotslogs![j], self.loggdata![i]) {
                 self.loggdata![i].setValue(1, forKey: "snapCellID")
             }
+            if self.loggdata![i].value(forKey: "snapCellID") as? Int == 1 {
+                self.loggdata![i].setValue(0, forKey: "deleteCellID")
+            } else {
+                self.loggdata![i].setValue(1, forKey: "deleteCellID")
+            }
         }
     }
 
