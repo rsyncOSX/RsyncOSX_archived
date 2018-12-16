@@ -13,8 +13,12 @@ final class DuCommandSsh: ProcessCmd {
     func getprocess() -> Process? {
         return self.getProcess()
     }
+
+    func setdelegate(object: UpdateProgress) {
+        self.updateDelegate = object
+    }
+
     override init (command: String?, arguments: [String]?) {
         super.init(command: command, arguments: arguments)
-        self.updateDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vcallprofiles) as? ViewControllerAllProfiles
     }
 }
