@@ -65,6 +65,7 @@ class ViewControllerAllProfiles: NSViewController, Delay, Abort {
         self.sizebutton.isEnabled = false
         self.working.startAnimation(nil)
         let task: DuCommandSsh = DuCommandSsh(command: duargs.getCommand(), arguments: duargs.getArguments())
+        task.setdelegate(object: self)
         task.executeProcess(outputprocess: self.outputprocess)
         self.process = task.getprocess()
     }
