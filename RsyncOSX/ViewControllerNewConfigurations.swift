@@ -36,6 +36,7 @@ class ViewControllerNewConfigurations: NSViewController, SetConfigurations, VcSc
                           "single file"]
     var backuptypeselected: Typebackup = .synchronize
     var diddissappear: Bool = false
+    var remote: RemoteCapacity?
 
     @IBOutlet weak var newTableView: NSTableView!
     @IBOutlet weak var viewParameter1: NSTextField!
@@ -50,12 +51,13 @@ class ViewControllerNewConfigurations: NSViewController, SetConfigurations, VcSc
     @IBOutlet weak var backupID: NSTextField!
     @IBOutlet weak var sshport: NSTextField!
     @IBOutlet weak var rsyncdaemon: NSButton!
-    // @IBOutlet weak var singleFile: NSButton!
     @IBOutlet weak var profilInfo: NSTextField!
-    // @IBOutlet weak var snapshots: NSButton!
-    @IBOutlet weak var snapshotmessage: NSTextField!
     @IBOutlet weak var copyconfigbutton: NSButton!
     @IBOutlet weak var backuptype: NSComboBox!
+
+    @IBAction func remotecapacity(_ sender: NSButton) {
+        self.remote = RemoteCapacity(object: self)
+    }
 
     @IBAction func copyconfiguration(_ sender: NSButton) {
         guard self.index != nil else { return }
@@ -154,7 +156,6 @@ class ViewControllerNewConfigurations: NSViewController, SetConfigurations, VcSc
         self.offsiteServer.stringValue = ""
         self.backupID.stringValue = ""
         self.rsyncdaemon.state = .off
-        self.snapshotmessage.isHidden = true
     }
 
     private func snapshotcreatecatalog (dict: NSDictionary, outputprocess: OutputProcess?) {
@@ -266,13 +267,7 @@ extension ViewControllerNewConfigurations: SetProfileinfo {
 
 extension ViewControllerNewConfigurations: UpdateProgress {
     func processTermination() {
-        self.delayWithSeconds(0.25) {
-            let text = self.outputprocess?.getOutput()
-            if text?.count ?? 0 > 0 {
-                self.snapshotmessage.isHidden = false
-                self.snapshotmessage.stringValue = text![0]
-            }
-        }
+       self.remote?.processTermination()
     }
 
     func fileHandler() {

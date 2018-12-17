@@ -14,6 +14,7 @@ class RemoteCapacity: SetConfigurations, Connected {
     var outputprocess: OutputProcess?
     var remotecapacity: [NSMutableDictionary]?
     var index: Int?
+    var object: UpdateProgress?
 
     private func getremotesizes(index: Int) {
         self.outputprocess = OutputProcess()
@@ -22,16 +23,18 @@ class RemoteCapacity: SetConfigurations, Connected {
             let duargs: DuArgumentsSsh = DuArgumentsSsh(config: config)
             guard duargs.getArguments() != nil || duargs.getCommand() != nil else { return }
             let task: DuCommandSsh = DuCommandSsh(command: duargs.getCommand(), arguments: duargs.getArguments())
-            task.setdelegate(object: self)
+            task.setdelegate(object: self.object!)
             task.executeProcess(outputprocess: self.outputprocess)
             self.process = task.getprocess()
         }
     }
 
-    init() {
+    init(object: UpdateProgress) {
         guard self.configurations?.getConfigurationsDataSource() != nil else { return }
+        self.object = object
         self.remotecapacity = [NSMutableDictionary]()
         self.index = 0
+        self.getremotesizes(index: self.index ?? 0)
     }
 }
 
