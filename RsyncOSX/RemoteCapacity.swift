@@ -52,6 +52,8 @@ extension RemoteCapacity: UpdateProgress {
     func processTermination() {
         let numbers = RemoteNumbers(outputprocess: self.outputprocess)
         let result = NSMutableDictionary()
+        let offsiteServer = self.configurations!.getConfigurations()[index!].offsiteServer
+        result.setValue(offsiteServer, forKey: "offsiteServer")
         result.setValue(numbers.getused(), forKey: "used")
         result.setValue(numbers.getavail(), forKey: "avail")
         result.setValue(numbers.getpercentavaliable(), forKey: "availpercent")
