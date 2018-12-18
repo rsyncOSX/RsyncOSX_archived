@@ -3132,6 +3132,7 @@
                         <outlet property="offsiteServer" destination="Dd9-ZY-ewa" id="UxA-aT-Viu"/>
                         <outlet property="offsiteUsername" destination="SU3-FM-dip" id="iHh-g7-hch"/>
                         <outlet property="profilInfo" destination="NDH-vD-wXh" id="x1r-3x-xGE"/>
+                        <outlet property="remotecapacitybutton" destination="vH9-nE-GXW" id="k3m-MA-jQw"/>
                         <outlet property="rsyncdaemon" destination="3QZ-SK-L8Z" id="UfE-FI-vh8"/>
                         <outlet property="sshport" destination="mc9-Gh-Wa4" id="UCC-RU-a23"/>
                         <outlet property="viewParameter1" destination="UAM-7e-uQ9" id="GBv-Cl-bn7"/>

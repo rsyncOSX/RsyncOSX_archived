@@ -16,6 +16,14 @@ class RemoteCapacity: SetConfigurations, Connected {
     var index: Int?
     var object: UpdateProgress?
 
+    func enableremotecapacitybutton() -> Bool {
+        if self.index! < self.configurations!.getConfigurations().count {
+            return false
+        } else {
+            return true
+        }
+    }
+
     private func getremotesizes(index: Int) {
         self.outputprocess = OutputProcess()
         let config = self.configurations!.getConfigurations()[index]
@@ -26,6 +34,8 @@ class RemoteCapacity: SetConfigurations, Connected {
             task.setdelegate(object: self.object!)
             task.executeProcess(outputprocess: self.outputprocess)
             self.process = task.getprocess()
+        } else {
+            self.processTermination()
         }
     }
 
@@ -46,6 +56,9 @@ extension RemoteCapacity: UpdateProgress {
         result.setValue(numbers.getavail(), forKey: "avail")
         result.setValue(numbers.getpercentavaliable(), forKey: "availpercent")
         self.remotecapacity?.append(result)
+        self.index = self.index! + 1
+        guard self.index! < self.configurations!.getConfigurations().count else { return }
+        self.getremotesizes(index: self.index!)
     }
 
     func fileHandler() {

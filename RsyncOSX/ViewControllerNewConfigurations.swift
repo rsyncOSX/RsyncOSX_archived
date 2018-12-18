@@ -54,8 +54,10 @@ class ViewControllerNewConfigurations: NSViewController, SetConfigurations, VcSc
     @IBOutlet weak var profilInfo: NSTextField!
     @IBOutlet weak var copyconfigbutton: NSButton!
     @IBOutlet weak var backuptype: NSComboBox!
-
+    @IBOutlet weak var remotecapacitybutton: NSButton!
+    
     @IBAction func remotecapacity(_ sender: NSButton) {
+        self.remotecapacitybutton.isEnabled = false
         self.remote = RemoteCapacity(object: self)
     }
 
@@ -267,7 +269,8 @@ extension ViewControllerNewConfigurations: SetProfileinfo {
 
 extension ViewControllerNewConfigurations: UpdateProgress {
     func processTermination() {
-       self.remote?.processTermination()
+        self.remote?.processTermination()
+        self.remotecapacitybutton.isEnabled = self.remote!.enableremotecapacitybutton()
     }
 
     func fileHandler() {
