@@ -354,7 +354,7 @@ extension ViewControllerCopyFiles: NewProfile {
             self.restoretableView.reloadData()
         })
     }
-    
+
     func enableProfileMenu() {
         //
     }

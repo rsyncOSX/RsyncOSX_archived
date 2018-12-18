@@ -60,6 +60,7 @@ class ViewControllerVerify: NSViewController, SetConfigurations, Index {
         self.outputprocess = OutputProcess()
         self.outputprocess?.addlinefromoutput("*** Verify ***")
         let verifytask = VerifyTask(arguments: arguments)
+        verifytask.setdelegate(object: self)
         verifytask.executeProcess(outputprocess: self.outputprocess)
         self.processRefererence = verifytask
     }
@@ -77,6 +78,7 @@ class ViewControllerVerify: NSViewController, SetConfigurations, Index {
         self.outputprocess = OutputProcess()
         self.outputprocess?.addlinefromoutput("*** Changed ***")
         let verifytask = VerifyTask(arguments: arguments)
+        verifytask.setdelegate(object: self)
         verifytask.executeProcess(outputprocess: self.outputprocess)
         self.processRefererence = verifytask
     }
@@ -165,6 +167,7 @@ class ViewControllerVerify: NSViewController, SetConfigurations, Index {
             arguments = self.configurations!.arguments4rsync(index: index, argtype: .argdryRun)
         }
         let verifytask = VerifyTask(arguments: arguments)
+        verifytask.setdelegate(object: self)
         verifytask.executeProcess(outputprocess: self.outputprocess)
         self.processRefererence = verifytask
     }
