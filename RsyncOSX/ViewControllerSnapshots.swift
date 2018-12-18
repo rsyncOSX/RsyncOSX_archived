@@ -164,6 +164,7 @@ class ViewControllerSnapshots: NSViewController, SetDismisser, SetConfigurations
         }
         arguments = SnapshotDeleteCatalogsArguments(config: self.config!, remotecatalog: remotecatalog)
         deletecommand = SnapshotCommandDeleteCatalogs(command: arguments?.getCommand(), arguments: arguments?.getArguments())
+        deletecommand?.setdelegate(object: self)
         deletecommand?.executeProcess(outputprocess: nil)
     }
 
