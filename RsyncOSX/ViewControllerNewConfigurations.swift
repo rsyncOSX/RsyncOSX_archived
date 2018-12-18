@@ -38,7 +38,8 @@ class ViewControllerNewConfigurations: NSViewController, SetConfigurations, VcSc
     var diddissappear: Bool = false
     var remote: RemoteCapacity?
 
-    @IBOutlet weak var newTableView: NSTableView!
+    @IBOutlet weak var addtable: NSTableView!
+    @IBOutlet weak var remotecapacitytable: NSTableView!
     @IBOutlet weak var viewParameter1: NSTextField!
     @IBOutlet weak var viewParameter2: NSTextField!
     @IBOutlet weak var viewParameter3: NSTextField!
@@ -55,7 +56,7 @@ class ViewControllerNewConfigurations: NSViewController, SetConfigurations, VcSc
     @IBOutlet weak var copyconfigbutton: NSButton!
     @IBOutlet weak var backuptype: NSComboBox!
     @IBOutlet weak var remotecapacitybutton: NSButton!
-    
+
     @IBAction func remotecapacity(_ sender: NSButton) {
         self.remotecapacitybutton.isEnabled = false
         self.remote = RemoteCapacity(object: self)
@@ -80,7 +81,7 @@ class ViewControllerNewConfigurations: NSViewController, SetConfigurations, VcSc
         self.newconfigurations = nil
         self.newconfigurations = NewConfigurations()
         globalMainQueue.async(execute: { () -> Void in
-            self.newTableView.reloadData()
+            self.addtable.reloadData()
             self.setFields()
         })
     }
@@ -108,8 +109,10 @@ class ViewControllerNewConfigurations: NSViewController, SetConfigurations, VcSc
     override func viewDidLoad() {
         super.viewDidLoad()
         self.newconfigurations = NewConfigurations()
-        self.newTableView.delegate = self
-        self.newTableView.dataSource = self
+        self.addtable.delegate = self
+        self.addtable.dataSource = self
+        self.remotecapacitytable.delegate = self
+        self.remotecapacitytable.dataSource = self
         self.localCatalog.toolTip = "By using Finder drag and drop filepaths."
         self.offsiteCatalog.toolTip = "By using Finder drag and drop filepaths."
         ViewControllerReference.shared.setvcref(viewcontroller: .vcnewconfigurations, nsviewcontroller: self)
@@ -225,7 +228,7 @@ class ViewControllerNewConfigurations: NSViewController, SetConfigurations, VcSc
         self.newconfigurations?.appendnewConfigurations(dict: dict)
         self.tabledata = self.newconfigurations!.getnewConfigurations()
         globalMainQueue.async(execute: { () -> Void in
-            self.newTableView.reloadData()
+            self.addtable.reloadData()
         })
         self.setFields()
     }
@@ -234,16 +237,26 @@ class ViewControllerNewConfigurations: NSViewController, SetConfigurations, VcSc
 extension ViewControllerNewConfigurations: NSTableViewDataSource {
 
     func numberOfRows(in tableView: NSTableView) -> Int {
-        return self.newconfigurations?.newConfigurationsCount() ?? 0
+        if tableView == self.addtable {
+            return self.newconfigurations?.newConfigurationsCount() ?? 0
+        } else {
+            return self.remote?.remotecapacity?.count ?? 0
+        }
     }
 }
 
 extension ViewControllerNewConfigurations: NSTableViewDelegate {
 
     func tableView(_ tableView: NSTableView, objectValueFor tableColumn: NSTableColumn?, row: Int) -> Any? {
-        guard self.newconfigurations?.getnewConfigurations() != nil else { return nil }
-        let object: NSMutableDictionary = self.newconfigurations!.getnewConfigurations()![row]
-        return object[tableColumn!.identifier] as? String
+        if tableView == self.addtable {
+            guard self.newconfigurations?.getnewConfigurations() != nil else { return nil }
+            let object: NSMutableDictionary = self.newconfigurations!.getnewConfigurations()![row]
+            return object[tableColumn!.identifier] as? String
+        } else {
+            guard self.remote?.remotecapacity != nil else { return nil }
+            let object: NSMutableDictionary = self.remote!.remotecapacity![row]
+            return object[tableColumn!.identifier] as? String
+        }
     }
 
     func tableView(_ tableView: NSTableView, setObjectValue object: Any?, for tableColumn: NSTableColumn?, row: Int) {
@@ -271,6 +284,9 @@ extension ViewControllerNewConfigurations: UpdateProgress {
     func processTermination() {
         self.remote?.processTermination()
         self.remotecapacitybutton.isEnabled = self.remote!.enableremotecapacitybutton()
+        globalMainQueue.async(execute: { () -> Void in
+            self.remotecapacitytable.reloadData()
+        })
     }
 
     func fileHandler() {
