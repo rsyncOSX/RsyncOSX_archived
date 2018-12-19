@@ -3069,7 +3069,7 @@
                                                     </textFieldCell>
                                                     <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                 </tableColumn>
-                                                <tableColumn identifier="availpercent" width="64" minWidth="10" maxWidth="3.4028234663852886e+38" id="37m-qS-TRa" userLabel="Availpercent">
+                                                <tableColumn identifier="availpercent" width="63" minWidth="10" maxWidth="3.4028234663852886e+38" id="37m-qS-TRa" userLabel="Availpercent">
                                                     <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="right" title="Avail(%)">
                                                         <font key="font" metaFont="smallSystem"/>
                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
@@ -3109,7 +3109,7 @@
                                 </textFieldCell>
                             </textField>
                             <textField verticalHuggingPriority="750" fixedFrame="YES" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="804-O7-xTM">
-                                <rect key="frame" x="926" y="322" width="83" height="22"/>
+                                <rect key="frame" x="926" y="322" width="95" height="22"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" alignment="left" bezelStyle="round" id="pvM-Vy-kqi">
                                     <font key="font" metaFont="system"/>
@@ -3118,7 +3118,7 @@
                                 </textFieldCell>
                             </textField>
                             <textField verticalHuggingPriority="750" fixedFrame="YES" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="lPj-jv-4I2">
-                                <rect key="frame" x="926" y="299" width="83" height="22"/>
+                                <rect key="frame" x="926" y="299" width="95" height="22"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" alignment="left" bezelStyle="round" id="Qh3-gq-1k8">
                                     <font key="font" metaFont="system"/>
@@ -3127,7 +3127,7 @@
                                 </textFieldCell>
                             </textField>
                             <textField verticalHuggingPriority="750" fixedFrame="YES" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hWK-Iu-Vyz">
-                                <rect key="frame" x="926" y="253" width="83" height="22"/>
+                                <rect key="frame" x="926" y="253" width="95" height="22"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" alignment="left" bezelStyle="round" id="Uzg-Pw-eAr">
                                     <font key="font" metaFont="system"/>
@@ -3136,7 +3136,7 @@
                                 </textFieldCell>
                             </textField>
                             <textField verticalHuggingPriority="750" fixedFrame="YES" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="UAM-7e-uQ9">
-                                <rect key="frame" x="926" y="345" width="83" height="22"/>
+                                <rect key="frame" x="926" y="345" width="95" height="22"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" alignment="left" bezelStyle="round" id="70D-5D-Rak">
                                     <font key="font" metaFont="system"/>
@@ -3145,7 +3145,7 @@
                                 </textFieldCell>
                             </textField>
                             <textField verticalHuggingPriority="750" fixedFrame="YES" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="OQV-4j-jAW">
-                                <rect key="frame" x="926" y="276" width="83" height="22"/>
+                                <rect key="frame" x="926" y="276" width="95" height="22"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" alignment="left" bezelStyle="round" id="fB2-6S-egy">
                                     <font key="font" metaFont="system"/>
@@ -3154,10 +3154,10 @@
                                 </textFieldCell>
                             </textField>
                             <box fixedFrame="YES" title="Default params" translatesAutoresizingMaskIntoConstraints="NO" id="Qc4-06-mOR">
-                                <rect key="frame" x="911" y="245" width="109" height="143"/>
+                                <rect key="frame" x="911" y="245" width="123" height="143"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <view key="contentView" id="LYt-vh-cql">
-                                    <rect key="frame" x="3" y="3" width="103" height="125"/>
+                                    <rect key="frame" x="3" y="3" width="117" height="125"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 </view>
                             </box>
