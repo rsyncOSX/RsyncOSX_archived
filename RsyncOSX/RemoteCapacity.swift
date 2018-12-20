@@ -53,7 +53,9 @@ extension RemoteCapacity: UpdateProgress {
         let numbers = RemoteNumbers(outputprocess: self.outputprocess)
         let result = NSMutableDictionary()
         let offsiteServer = self.configurations!.getConfigurations()[index!].offsiteServer
+        let offsiteCatalog = self.configurations!.getConfigurations()[index!].offsiteCatalog
         result.setValue(offsiteServer, forKey: "offsiteServer")
+        result.setValue(offsiteCatalog, forKey: "offsiteCatalog")
         result.setValue(numbers.getused(), forKey: "used")
         result.setValue(numbers.getavail(), forKey: "avail")
         result.setValue(numbers.getpercentavaliable(), forKey: "availpercent")
