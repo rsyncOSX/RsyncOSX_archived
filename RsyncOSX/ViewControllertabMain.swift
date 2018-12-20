@@ -95,8 +95,6 @@ class ViewControllertabMain: NSViewController, ReloadTable, Deselect, VcMain, De
     // Bool if one or more remote server is offline
     // Used in testing if remote server is on/off-line
     var serverOff: [Bool]?
-    // Schedules in progress
-    var scheduledJobInProgress: Bool = false
     // Ready for execute again
     var readyforexecution: Bool = true
     // Can load profiles
@@ -321,10 +319,6 @@ class ViewControllertabMain: NSViewController, ReloadTable, Deselect, VcMain, De
             self.verifyrsyncpath!.noRsync()
             return
         }
-        guard self.scheduledJobInProgress == false else {
-            self.info(num: 4)
-            return
-        }
         guard self.hiddenID != nil else {
             self.info(num: 1)
             return
@@ -405,14 +399,6 @@ class ViewControllertabMain: NSViewController, ReloadTable, Deselect, VcMain, De
 
     override func viewDidAppear() {
         super.viewDidAppear()
-        guard self.scheduledJobInProgress == false else {
-            if self.processtermination == .singlequicktask {
-                self.scheduledJobworking.startAnimation(nil)
-            }
-            self.scheduleJobworkinglabel.isHidden = false
-            return
-        }
-        // Allow notify about Scheduled jobs
         self.configurations!.allowNotifyinMain = true
         if self.configurations!.configurationsDataSourcecount() > 0 {
             globalMainQueue.async(execute: { () -> Void in
@@ -468,10 +454,6 @@ class ViewControllertabMain: NSViewController, ReloadTable, Deselect, VcMain, De
     // Single task can be activated by double click from table
     func executeSingleTask() {
         self.processtermination = .singletask
-        guard self.scheduledJobInProgress == false else {
-            self.info(num: 4)
-            return
-        }
         guard ViewControllerReference.shared.norsync == false else {
             self.verifyrsyncpath!.noRsync()
             return
@@ -499,10 +481,6 @@ class ViewControllertabMain: NSViewController, ReloadTable, Deselect, VcMain, De
     // Execute BATCH TASKS only
     @IBAction func executeBatch(_ sender: NSButton) {
         self.processtermination = .estimatebatchtask
-        guard self.scheduledJobInProgress == false else {
-            self.info(num: 4)
-            return
-        }
         guard ViewControllerReference.shared.norsync == false else {
             self.verifyrsyncpath!.noRsync()
             return
@@ -542,7 +520,6 @@ class ViewControllertabMain: NSViewController, ReloadTable, Deselect, VcMain, De
     // when row is selected
     // setting which table row is selected, force new estimation
     func tableViewSelectionDidChange(_ notification: Notification) {
-        guard self.scheduledJobInProgress == false else { return }
         self.seterrorinfo(info: "")
         // If change row during estimation
         if self.process != nil { self.abortOperations() }
