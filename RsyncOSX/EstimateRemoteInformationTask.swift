@@ -12,6 +12,7 @@ final class EstimateRemoteInformationTask: SetConfigurations {
     var arguments: [String]?
     init(index: Int, outputprocess: OutputProcess?, local: Bool) {
         let taskDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllertabMain
+        let outDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllertabMain
         if local {
             self.arguments = self.configurations!.arguments4rsync(index: index, argtype: .argdryRunlocalcataloginfo)
         } else {
@@ -20,5 +21,6 @@ final class EstimateRemoteInformationTask: SetConfigurations {
         let process = Rsync(arguments: self.arguments)
         process.executeProcess(outputprocess: outputprocess)
         taskDelegate?.getProcessReference(process: process.getProcess()!)
+        outDelegate?.sendoutputprocessreference(outputprocess: outputprocess)
     }
 }
