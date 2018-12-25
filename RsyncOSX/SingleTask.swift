@@ -75,7 +75,6 @@ final class SingleTask: SetSchedules, SetConfigurations {
     }
 
     func processTermination() {
-
         self.ready = true
         if let workload = self.workload {
             switch workload.pop() {
