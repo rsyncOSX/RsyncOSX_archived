@@ -56,9 +56,6 @@ class ViewControllertabMain: NSViewController, ReloadTable, Deselect, VcMain, De
     // If On result of Dryrun is presented before
     // executing the real run
     @IBOutlet weak var dryRunOrRealRun: NSTextField!
-    // Progressbar scheduled task
-    @IBOutlet weak var scheduledJobworking: NSProgressIndicator!
-    @IBOutlet weak var scheduleJobworkinglabel: NSTextField!
     // number of files to be transferred
     @IBOutlet weak var transferredNumber: NSTextField!
     // size of files to be transferred
@@ -385,7 +382,6 @@ class ViewControllertabMain: NSViewController, ReloadTable, Deselect, VcMain, De
         self.mainTableView.delegate = self
         self.mainTableView.dataSource = self
         self.working.usesThreadedAnimation = true
-        self.scheduledJobworking.usesThreadedAnimation = true
         ViewControllerReference.shared.setvcref(viewcontroller: .vctabmain, nsviewcontroller: self)
         _ = RsyncVersionString()
         self.mainTableView.target = self
