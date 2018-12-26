@@ -261,6 +261,7 @@ extension ViewControllertabMain: UpdateProgress {
             processterminationDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vcquickbackup) as? ViewControllerQuickBackup
             processterminationDelegate?.processTermination()
         case .singlequicktask:
+            guard self.index != nil else { return }
             self.seterrorinfo(info: "")
             self.working.stopAnimation(nil)
             self.configurations!.setCurrentDateonConfiguration(index: self.index!, outputprocess: self.outputprocess)
