@@ -36,6 +36,7 @@ class ViewControllerSnapshots: NSViewController, SetDismisser, SetConfigurations
     @IBOutlet weak var gettinglogs: NSProgressIndicator!
     @IBOutlet weak var deletesnapshotsdays: NSSlider!
     @IBOutlet weak var stringdeletesnapshotsdaysnum: NSTextField!
+    @IBOutlet weak var planbutton: NSButton!
 
     private func info (num: Int) {
         switch num {
@@ -140,6 +141,7 @@ class ViewControllerSnapshots: NSViewController, SetDismisser, SetConfigurations
     override func viewDidAppear() {
         super.viewDidAppear()
         self.reloadtabledata()
+        self.planbutton.isEnabled = false
     }
 
     private func deletesnapshotcatalogs() {
@@ -189,6 +191,7 @@ class ViewControllerSnapshots: NSViewController, SetDismisser, SetConfigurations
                     self.info(num: 6)
                     return
                 }
+                self.planbutton.isEnabled = false
                 self.info(num: 0)
                 let hiddenID = self.configurations!.getConfigurationsDataSourcecountBackupSnapshot()![index].value(forKey: "hiddenID") as? Int ?? -1
                 self.getSourceindex(index: hiddenID)
@@ -227,6 +230,7 @@ extension ViewControllerSnapshots: DismissViewController {
 
 extension ViewControllerSnapshots: UpdateProgress {
     func processTermination() {
+        self.planbutton.isEnabled = true
         if delete {
             let vc = ViewControllerReference.shared.getvcref(viewcontroller: .vcprogressview) as? ViewControllerProgressProcess
             if self.snapshotsloggdata!.remotecatalogstodelete == nil {
