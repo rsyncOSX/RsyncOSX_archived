@@ -1707,6 +1707,7 @@
                         <outlet property="numberOflogfiles" destination="Luu-QK-BXr" id="4jY-Oe-9Uu"/>
                         <outlet property="offsiteCatalog" destination="1Mh-bv-XRt" id="pTc-Fd-JTu"/>
                         <outlet property="offsiteUsername" destination="Rd4-NT-WkH" id="OTc-Ld-ZgC"/>
+                        <outlet property="planbutton" destination="Ean-am-qSn" id="EVp-DG-QGN"/>
                         <outlet property="rsynctableView" destination="Gyz-fh-gfZ" id="8ft-DE-57O"/>
                         <outlet property="snapshotstableView" destination="ADg-qt-oLX" id="vx0-h4-cGn"/>
                         <outlet property="stringdeletesnapshotsdaysnum" destination="RoD-gk-Zpc" id="rzY-ry-a1K"/>
