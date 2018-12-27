@@ -25,11 +25,8 @@ protocol GetSelecetedIndex {
 class ViewControllerRsyncParameters: NSViewController, SetConfigurations, SetDismisser, Index {
 
     var storageapi: PersistentStorageAPI?
-    // Object for calculating rsync parameters
-    var parameters: RsyncParametersVC?
-    // Delegate returning params updated or not
+    var parameters: RsyncParameters?
     weak var userparamsupdatedDelegate: RsyncUserParams?
-    // Reference to rsync parameters to use in combox
     var comboBoxValues = [String]()
     var diddissappear: Bool = false
 
@@ -38,7 +35,7 @@ class ViewControllerRsyncParameters: NSViewController, SetConfigurations, SetDis
     @IBOutlet weak var param3: NSTextField!
     @IBOutlet weak var param4: NSTextField!
     @IBOutlet weak var param5: NSTextField!
-    // user selected parameter
+
     @IBOutlet weak var param8: NSTextField!
     @IBOutlet weak var param9: NSTextField!
     @IBOutlet weak var param10: NSTextField!
@@ -49,7 +46,7 @@ class ViewControllerRsyncParameters: NSViewController, SetConfigurations, SetDis
     @IBOutlet weak var rsyncdaemon: NSButton!
     @IBOutlet weak var sshport: NSTextField!
     @IBOutlet weak var compressparameter: NSButton!
-    // Comboboxes
+
     @IBOutlet weak var combo8: NSComboBox!
     @IBOutlet weak var combo9: NSComboBox!
     @IBOutlet weak var combo10: NSComboBox!
@@ -101,7 +98,6 @@ class ViewControllerRsyncParameters: NSViewController, SetConfigurations, SetDis
 
     // Function for enabling suffix date + time changed files. 
     // Parameters are appended to last parameter (14).
-
     @IBOutlet weak var suffixButton: NSButton!
     @IBAction func suffix(_ sender: NSButton) {
         self.suffixButton2.state = .off
@@ -150,7 +146,7 @@ class ViewControllerRsyncParameters: NSViewController, SetConfigurations, SetDis
         }
 
     }
-    // Backup button - only for testing on state
+
     @IBOutlet weak var backupbutton: NSButton!
 
     override func viewDidLoad() {
@@ -168,7 +164,7 @@ class ViewControllerRsyncParameters: NSViewController, SetConfigurations, SetDis
         }
         var configurations: [Configuration] = self.configurations!.getConfigurations()
         if let index = self.index() {
-            self.parameters = RsyncParametersVC(config: configurations[index])
+            self.parameters = RsyncParameters(config: configurations[index])
             self.comboBoxValues = parameters!.getComboBoxValues()
             self.backupbutton.state = .off
             self.suffixButton.state = .off
