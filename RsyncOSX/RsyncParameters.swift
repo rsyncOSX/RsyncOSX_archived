@@ -8,7 +8,7 @@
 
 import Foundation
 
-final class RsyncParametersVC {
+final class RsyncParameters {
 
     // Tuple for rsync argument and value
     typealias Argument = (String, Int)
@@ -67,9 +67,7 @@ final class RsyncParametersVC {
     /// - parameter none: none
     /// - return : array of String
     func getComboBoxValues() -> [String] {
-        guard self.comboBoxValues != nil else {
-            return [""]
-        }
+        guard self.comboBoxValues != nil else { return [""] }
         return self.comboBoxValues!
     }
 
@@ -79,9 +77,7 @@ final class RsyncParametersVC {
     /// - parameter value: the value of rsync parameter
     /// - return: array of String
     func getRsyncParameter (indexComboBox: Int, value: String?) -> String {
-        guard  indexComboBox < self.rsyncArguments.count && indexComboBox > -1 else {
-            return ""
-        }
+        guard  indexComboBox < self.rsyncArguments.count && indexComboBox > -1 else { return "" }
         switch self.rsyncArguments[indexComboBox].1 {
         case 0:
             // Predefined rsync argument from combobox
@@ -134,18 +130,13 @@ final class RsyncParametersVC {
     /// Function returns index and value of rsync argument to set the corrospending
     /// value in combobox when rsync parameters are presented and stored in configuration
     func indexandvaluersyncparameter(_ parameter: String?) -> (Int, String) {
-        guard parameter != nil else {
-            return (0, "")
-        }
+        guard parameter != nil else { return (0, "")}
         let splitstr: [String] = self.split(parameter!)
-        guard splitstr.count > 1 else {
-            return (0, "")
-        }
+        guard splitstr.count > 1 else { return (0, "")}
         let argument = splitstr[0]
         let value = splitstr[1]
         var returnvalue: String?
         var returnindex: Int?
-
         if argument != value && self.indexofrsyncparameter(argument) >= 0 {
             returnvalue = value
             returnindex =  self.indexofrsyncparameter(argument)
@@ -178,9 +169,7 @@ final class RsyncParametersVC {
     /// - returns : touple with index for combobox and corresponding rsync value
     func getParameter (rsyncparameternumber: Int) -> (Int, String) {
         var indexandvalue: (Int, String)?
-        guard self.config != nil else {
-            return (0, "")
-        }
+        guard self.config != nil else { return (0, "")}
         switch rsyncparameternumber {
         case 8:
            indexandvalue = self.indexandvaluersyncparameter(self.config!.parameter8)

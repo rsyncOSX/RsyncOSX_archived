@@ -67,7 +67,7 @@
 		A0B340B21D67077A00C6DAC3 /* ViewControllertabMain.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0B340B11D67077A00C6DAC3 /* ViewControllertabMain.swift */; };
 		A0B340B41D67079700C6DAC3 /* ViewControllertabSchedule.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0B340B31D67079700C6DAC3 /* ViewControllertabSchedule.swift */; };
 		A0B3D9741D758E20001E190E /* ViewControllerUserconfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0B3D9731D758E20001E190E /* ViewControllerUserconfiguration.swift */; };
-		A0CACFD41DA2738500C5997A /* RsyncParametersVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0CACFD31DA2738500C5997A /* RsyncParametersVC.swift */; };
+		A0CACFD41DA2738500C5997A /* RsyncParameters.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0CACFD31DA2738500C5997A /* RsyncParameters.swift */; };
 		A0EE98991D8948310034F1A4 /* ViewControllerInformationCopyFiles.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0EE98981D8948310034F1A4 /* ViewControllerInformationCopyFiles.swift */; };
 		A0EFB4501DC080A9008C21A6 /* PersistentStorageUserconfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0EFB44F1DC080A9008C21A6 /* PersistentStorageUserconfiguration.swift */; };
 		A0F2E20C1D6D91AA0091E8BF /* Userconfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0F2E20B1D6D91AA0091E8BF /* Userconfiguration.swift */; };
@@ -211,7 +211,7 @@
 		A0B340B11D67077A00C6DAC3 /* ViewControllertabMain.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewControllertabMain.swift; sourceTree = "<group>"; };
 		A0B340B31D67079700C6DAC3 /* ViewControllertabSchedule.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewControllertabSchedule.swift; sourceTree = "<group>"; };
 		A0B3D9731D758E20001E190E /* ViewControllerUserconfiguration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewControllerUserconfiguration.swift; sourceTree = "<group>"; };
-		A0CACFD31DA2738500C5997A /* RsyncParametersVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RsyncParametersVC.swift; sourceTree = "<group>"; };
+		A0CACFD31DA2738500C5997A /* RsyncParameters.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RsyncParameters.swift; sourceTree = "<group>"; };
 		A0EE98981D8948310034F1A4 /* ViewControllerInformationCopyFiles.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewControllerInformationCopyFiles.swift; sourceTree = "<group>"; };
 		A0EFB44F1DC080A9008C21A6 /* PersistentStorageUserconfiguration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersistentStorageUserconfiguration.swift; sourceTree = "<group>"; };
 		A0F2E20B1D6D91AA0091E8BF /* Userconfiguration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Userconfiguration.swift; sourceTree = "<group>"; };
@@ -661,7 +661,7 @@
 			isa = PBXGroup;
 			children = (
 				A044929E1D658F2100B3CE17 /* RsyncParametersProcess.swift */,
-				A0CACFD31DA2738500C5997A /* RsyncParametersVC.swift */,
+				A0CACFD31DA2738500C5997A /* RsyncParameters.swift */,
 			);
 			name = RsyncParameters;
 			sourceTree = "<group>";
@@ -949,7 +949,7 @@
 				E91A68901EA777690056BCFC /* ScheduleWriteLoggData.swift in Sources */,
 				E9FFA02D1E7287E100B7AB2B /* ProcessCmd.swift in Sources */,
 				A02A4AD91D7EFD3D0059CECD /* ViewControllerScheduleDetails.swift in Sources */,
-				A0CACFD41DA2738500C5997A /* RsyncParametersVC.swift in Sources */,
+				A0CACFD41DA2738500C5997A /* RsyncParameters.swift in Sources */,
 				A04492AC1D658F2100B3CE17 /* Configuration.swift in Sources */,
 				A04492861D658EE800B3CE17 /* AppDelegate.swift in Sources */,
 				E943DC681FF9115200E6B8B7 /* EstimateRemoteInformationTask.swift in Sources */,
