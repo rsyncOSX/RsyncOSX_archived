@@ -14,7 +14,7 @@ protocol SetProfileinfo: class {
     func setprofile(profile: String, color: NSColor)
 }
 
-class ViewControllertabSchedule: NSViewController, SetConfigurations, SetSchedules, OperationChanged, VcSchedule, Delay, Index {
+class ViewControllertabSchedule: NSViewController, SetConfigurations, SetSchedules, VcSchedule, Delay, Index {
 
     private var index: Int?
     private var hiddenID: Int?
@@ -162,18 +162,8 @@ class ViewControllertabSchedule: NSViewController, SetConfigurations, SetSchedul
         globalMainQueue.async(execute: { () -> Void in
             self.mainTableView.reloadData()
         })
-        self.operationsmethod()
         self.delayWithSeconds(0.5) {
             self.enablemenuappbutton()
-        }
-    }
-
-    internal func operationsmethod() {
-        switch ViewControllerReference.shared.operation {
-        case .dispatch:
-            self.operation.stringValue = "Operation method: dispatch"
-        case .timer:
-            self.operation.stringValue = "Operation method: timer"
         }
     }
 
@@ -288,7 +278,6 @@ extension ViewControllertabSchedule: DismissViewController {
         globalMainQueue.async(execute: { () -> Void in
             self.mainTableView.reloadData()
         })
-        self.operationsmethod()
     }
 }
 

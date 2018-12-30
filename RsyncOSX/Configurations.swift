@@ -21,8 +21,6 @@ class Configurations: ReloadTable, SetSchedules {
     var storageapi: PersistentStorageAPI?
     // reference to Process, used for kill in executing task
     var process: Process?
-    // Kind of Operation method. eiher Timer or DispatchWork
-    var operation: OperationObject = .dispatch
     private var profile: String?
     // Notify about scheduled process
     // Only allowed to notity by modal window when in main view

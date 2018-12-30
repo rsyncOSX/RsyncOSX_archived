@@ -13,11 +13,11 @@ class QuickbackupDispatch: SetSchedules {
     private var workitem: DispatchWorkItem?
 
     private func dispatchtask(_ seconds: Int) {
-        let scheduledtask = DispatchWorkItem { [weak self] in
+        let work = DispatchWorkItem { [weak self] in
             _ = ExecuteQuickbackupTask()
         }
-        self.workitem = scheduledtask
-        DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(seconds), execute: scheduledtask)
+        self.workitem = work
+        DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(seconds), execute: work)
     }
 
     init(seconds: Int) {

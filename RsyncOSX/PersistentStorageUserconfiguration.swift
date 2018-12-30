@@ -80,12 +80,6 @@ final class PersistentStorageUserconfiguration: Readwritefiles, SetConfiguration
         } else {
             dict.setObject("", forKey: "restorePath" as NSCopying)
         }
-        switch self.configurations!.operation {
-        case .dispatch:
-            dict.setObject("dispatch", forKey: "operation" as NSCopying)
-        case .timer:
-            dict.setObject("timer", forKey: "operation" as NSCopying)
-        }
         if ViewControllerReference.shared.pathrsyncosx != nil {
             dict.setObject(ViewControllerReference.shared.pathrsyncosx!, forKey: "pathrsyncosx" as NSCopying)
         } else {

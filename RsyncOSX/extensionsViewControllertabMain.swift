@@ -526,8 +526,6 @@ extension ViewControllertabMain: SingleTaskProgress {
 extension ViewControllertabMain: GetConfigurationsObject {
     func getconfigurationsobject() -> Configurations? {
         guard self.configurations != nil else { return nil }
-        // Update alle userconfigurations
-        self.configurations!.operation = ViewControllerReference.shared.operation
         return self.configurations
     }
 

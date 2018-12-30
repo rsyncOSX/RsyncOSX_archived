@@ -3671,17 +3671,6 @@ DQ
                                                 <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                             </textFieldCell>
                                         </textField>
-                                        <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="lfE-RV-MgW">
-                                            <rect key="frame" x="36" y="18" width="340" height="18"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                            <buttonCell key="cell" type="check" title=" scheduled tasks (default/on : dispatch, if off: timer) " bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="oRd-hx-waI">
-                                                <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                                                <font key="font" metaFont="system"/>
-                                            </buttonCell>
-                                            <connections>
-                                                <action selector="toggleOperation:" target="Psw-ga-cgO" id="gpP-Rx-BiM"/>
-                                            </connections>
-                                        </button>
                                         <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="x5R-hx-ATZ">
                                             <rect key="frame" x="206" y="42" width="227" height="22"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
@@ -3861,7 +3850,6 @@ DQ
                         <outlet property="minimumlogging" destination="rRE-KD-I0w" id="ULZ-Cz-3Gs"/>
                         <outlet property="noRsync" destination="MU5-XI-9GS" id="apy-XI-W5g"/>
                         <outlet property="nologging" destination="nJR-oe-0vl" id="CwU-Bk-FNB"/>
-                        <outlet property="operation" destination="lfE-RV-MgW" id="kwe-Bo-Rh6"/>
                         <outlet property="pathRsyncOSX" destination="XTm-P8-lHR" id="LbF-Fm-aAY"/>
                         <outlet property="pathRsyncOSXsched" destination="aVo-6x-XDy" id="qon-Hb-TQy"/>
                         <outlet property="restorePath" destination="x5R-hx-ATZ" id="qoy-sV-5fh"/>

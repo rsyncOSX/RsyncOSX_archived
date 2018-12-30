@@ -8,11 +8,6 @@
 
 import Foundation
 
-enum OperationObject {
-    case timer
-    case dispatch
-}
-
 protocol SendProcessreference: class {
     func sendprocessreference(process: Process?)
     func sendoutputprocessreference(outputprocess: OutputProcess?)
