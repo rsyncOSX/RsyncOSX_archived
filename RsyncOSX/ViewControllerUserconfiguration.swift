@@ -98,17 +98,6 @@ class ViewControllerUserconfiguration: NSViewController, NewRsync, SetDismisser,
         _ = RsyncVersionString()
     }
 
-    @IBAction func toggleOperation(_ sender: NSButton) {
-        if self.operation.state == .on {
-            ViewControllerReference.shared.operation = .dispatch
-        } else {
-            ViewControllerReference.shared.operation = .timer
-        }
-        self.operationchangeDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabschedule) as? ViewControllertabSchedule
-        self.operationchangeDelegate?.operationsmethod()
-        self.setdirty()
-    }
-
     @IBAction func logging(_ sender: NSButton) {
         if self.fulllogging.state == .on {
             ViewControllerReference.shared.fulllogging = true
@@ -320,12 +309,6 @@ class ViewControllerUserconfiguration: NSViewController, NewRsync, SetDismisser,
             self.restorePath.stringValue = ViewControllerReference.shared.restorePath!
         } else {
             self.restorePath.stringValue = ""
-        }
-        switch ViewControllerReference.shared.operation {
-        case .dispatch:
-            self.operation.state = .on
-        case .timer:
-            self.operation.state = .off
         }
         if ViewControllerReference.shared.minimumlogging {
             self.minimumlogging.state = .on

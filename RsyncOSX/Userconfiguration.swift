@@ -50,18 +50,6 @@ final class Userconfiguration {
                 ViewControllerReference.shared.executescheduledtasksmenuapp = false
             }
         }
-        // Operation object
-        // Default is dispatch
-        if let operation = dict.value(forKey: "operation") as? String {
-            switch operation {
-            case "dispatch":
-                ViewControllerReference.shared.operation = .dispatch
-            case "timer":
-                ViewControllerReference.shared.operation = .timer
-            default:
-                ViewControllerReference.shared.operation = .dispatch
-            }
-        }
         // Mark tasks
         if let marknumberofdayssince = dict.value(forKey: "marknumberofdayssince") as? String {
             if Double(marknumberofdayssince)! > 0 {
