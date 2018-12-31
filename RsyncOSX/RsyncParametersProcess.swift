@@ -18,6 +18,8 @@ final class RsyncParametersProcess {
     var offsiteServer: String?
     var remoteargs: String?
     var linkdestparam: String?
+    private let suffixString = "--suffix=_`date +'%Y-%m-%d.%H.%M'`"
+    private let suffixString2 = "--suffix=_$(date +%Y-%m-%d.%H.%M)"
 
     private func setParameters1To6(_ config: Configuration, dryRun: Bool, forDisplay: Bool, verify: Bool) {
         var parameter1: String?
@@ -95,7 +97,12 @@ final class RsyncParametersProcess {
             self.appendParameter(parameter: config.parameter13!, forDisplay: forDisplay)
         }
         if config.parameter14 != nil {
-            self.appendParameter(parameter: config.parameter14!, forDisplay: forDisplay)
+            if config.offsiteServer.isEmpty == true && config.parameter14! == self.suffixString ||
+                config.parameter14! == self.suffixString2 {
+                self.appendParameter(parameter: self.setdatesuffixlocalhost(), forDisplay: forDisplay)
+            } else {
+                self.appendParameter(parameter: config.parameter14!, forDisplay: forDisplay)
+            }
         }
         // Append --stats parameter to collect info about run
         if dryRun {
@@ -105,6 +112,12 @@ final class RsyncParametersProcess {
                 self.appendParameter(parameter: "--stats", forDisplay: forDisplay)
             }
         }
+    }
+
+    private func setdatesuffixlocalhost() -> String {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "-yyyy-MM-dd"
+        return  "--suffix=" + formatter.string(from: Date())
     }
 
     private func dryrunparameter(_ config: Configuration, forDisplay: Bool) {

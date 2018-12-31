@@ -103,7 +103,7 @@ class ViewControllerRsyncParameters: NSViewController, SetConfigurations, SetDis
         self.suffixButton2.state = .off
         switch self.suffixButton.state {
         case .on:
-            let suffix = self.parameters!.getSuffixString()[0]
+            let suffix = self.parameters!.getSuffixString()
             self.initcombox(combobox: self.combo14, index: (self.parameters!.indexandvaluersyncparameter(suffix).0))
             self.param14.stringValue = self.parameters!.indexandvaluersyncparameter(suffix).1
         case .off:
@@ -119,7 +119,7 @@ class ViewControllerRsyncParameters: NSViewController, SetConfigurations, SetDis
         self.suffixButton.state = .off
         switch self.suffixButton2.state {
         case .on:
-            let suffix = self.parameters!.getSuffixString2()[0]
+            let suffix = self.parameters!.getSuffixString2()
             self.initcombox(combobox: self.combo14, index: (self.parameters!.indexandvaluersyncparameter(suffix).0))
             self.param14.stringValue = self.parameters!.indexandvaluersyncparameter(suffix).1
         case .off:
@@ -135,7 +135,7 @@ class ViewControllerRsyncParameters: NSViewController, SetConfigurations, SetDis
     @IBAction func donotdeletefiles(_ sender: NSButton) {
         switch self.donotdeletebutton.state {
         case .on:
-            let suffix = self.parameters!.getdonotdeletefilesString()[0]
+            let suffix = self.parameters!.getdonotdeletefilesString()
             self.initcombox(combobox: self.combo11, index: (self.parameters!.indexandvaluersyncparameter(suffix).0))
             self.param11.stringValue = self.parameters!.indexandvaluersyncparameter(suffix).1
         case .off:
