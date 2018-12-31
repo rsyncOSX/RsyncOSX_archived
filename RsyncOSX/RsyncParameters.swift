@@ -31,9 +31,9 @@ final class RsyncParameters {
     // Preselected parameters for storing a backup of deleted or changed files before
     // rsync synchronises the directories
     private let backupString = ["--backup", "--backup-dir=../backup"]
-    private let suffixString = ["--suffix=_`date +'%Y-%m-%d.%H.%M'`"]
-    private let suffixString2 = ["--suffix=_$(date +%Y-%m-%d.%H.%M)"]
-    private let donotdeletefiles = ["--max-delete=-1"]
+    private let suffixString = "--suffix=_`date +'%Y-%m-%d.%H.%M'`"
+    private let suffixString2 = "--suffix=_$(date +%Y-%m-%d.%H.%M)"
+    private let donotdeletefiles = "--max-delete=-1"
 
     // Reference to config
     private var config: Configuration?
@@ -48,18 +48,18 @@ final class RsyncParameters {
     /// Function for getting string for suffix parameter
     /// - parameter none: none
     /// - return : array of String
-    func getSuffixString() -> [String] {
+    func getSuffixString() -> String {
         return self.suffixString
     }
 
     /// Function for getting string for alternative suffix parameter
     /// - parameter none: none
     /// - return : array of String
-    func getSuffixString2() -> [String] {
+    func getSuffixString2() -> String {
         return self.suffixString2
     }
 
-    func getdonotdeletefilesString() -> [String] {
+    func getdonotdeletefilesString() -> String {
         return self.donotdeletefiles
     }
 
