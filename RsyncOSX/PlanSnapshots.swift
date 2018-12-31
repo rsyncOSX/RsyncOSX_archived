@@ -89,7 +89,7 @@ class PlanSnapshots {
                 self.snapshotsloggdata?.snapshotslogs![index].setValue("this month", forKey: "period")
                 return true
             } else if self.datefromstring(datestring: datesnapshotstring).isWeekday() == false {
-                self.snapshotsloggdata?.snapshotslogs![index].setValue("a Sunday", forKey: "period")
+                self.snapshotsloggdata?.snapshotslogs![index].setValue("Sunday this month", forKey: "period")
                 return false
             }
         }
@@ -100,14 +100,13 @@ class PlanSnapshots {
     private func previousmonths(index: Int) -> Bool {
         let datesnapshotstring = (self.snapshotsloggdata!.snapshotslogs![index].value(forKey: "dateExecuted") as? String)!
         if self.datecomponentsfromstring(datestring: datesnapshotstring).month !=
-            self.datecomponentscurrent!.month &&
-            self.datecomponentsfromstring(datestring: datesnapshotstring).year == self.datecomponentscurrent!.year {
-            if self.islastSundayinMonth(date: self.datefromstring(datestring: datesnapshotstring)) == false {
+            self.datecomponentscurrent!.month {
+            if self.islastSundayinMonth(date: self.datefromstring(datestring: datesnapshotstring)) == true {
+                self.snapshotsloggdata?.snapshotslogs![index].setValue("last Sunday month", forKey: "period")
+                return false
+            } else {
                 self.snapshotsloggdata?.snapshotslogs![index].setValue("prev months", forKey: "period")
                 return true
-            } else if self.islastSundayinMonth(date: self.datefromstring(datestring: datesnapshotstring)) == true {
-                self.snapshotsloggdata?.snapshotslogs![index].setValue("a Sunday", forKey: "period")
-                return false
             }
         }
         return false
