@@ -47,7 +47,7 @@ class PlanSnapshots {
         return calendar.dateComponents([.calendar, .timeZone,
                                         .year, .month, .day,
                                         .hour, .minute,
-                                        .weekday, .weekOfYear, .yearForWeekOfYear], from: date!)
+                                        .weekday, .weekOfYear, .year], from: date!)
     }
 
     private func markfordelete() {
@@ -72,7 +72,7 @@ class PlanSnapshots {
         let datesnapshotstring = (self.snapshotsloggdata!.snapshotslogs![index].value(forKey: "dateExecuted") as? String)!
         if self.datecomponentsfromstring(datestring: datesnapshotstring).weekOfYear ==
             self.datecomponentscurrent!.weekOfYear &&
-            self.datecomponentsfromstring(datestring: datesnapshotstring).yearForWeekOfYear == self.datecomponentscurrent!.yearForWeekOfYear {
+            self.datecomponentsfromstring(datestring: datesnapshotstring).year == self.datecomponentscurrent!.year {
             self.snapshotsloggdata?.snapshotslogs![index].setValue("this week", forKey: "period")
             return true
         }
@@ -84,7 +84,7 @@ class PlanSnapshots {
         let datesnapshotstring = (self.snapshotsloggdata!.snapshotslogs![index].value(forKey: "dateExecuted") as? String)!
         if self.datecomponentsfromstring(datestring: datesnapshotstring).month ==
             self.datecomponentscurrent!.month &&
-            self.datecomponentsfromstring(datestring: datesnapshotstring).yearForWeekOfYear == self.datecomponentscurrent!.yearForWeekOfYear {
+            self.datecomponentsfromstring(datestring: datesnapshotstring).year == self.datecomponentscurrent!.year {
             if self.datefromstring(datestring: datesnapshotstring).isWeekday() {
                 self.snapshotsloggdata?.snapshotslogs![index].setValue("this month", forKey: "period")
                 return true
@@ -101,7 +101,7 @@ class PlanSnapshots {
         let datesnapshotstring = (self.snapshotsloggdata!.snapshotslogs![index].value(forKey: "dateExecuted") as? String)!
         if self.datecomponentsfromstring(datestring: datesnapshotstring).month !=
             self.datecomponentscurrent!.month &&
-            self.datecomponentsfromstring(datestring: datesnapshotstring).yearForWeekOfYear == self.datecomponentscurrent!.yearForWeekOfYear {
+            self.datecomponentsfromstring(datestring: datesnapshotstring).year == self.datecomponentscurrent!.year {
             if self.islastSundayinMonth(date: self.datefromstring(datestring: datesnapshotstring)) == false {
                 self.snapshotsloggdata?.snapshotslogs![index].setValue("prev months", forKey: "period")
                 return true
