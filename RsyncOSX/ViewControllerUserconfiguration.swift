@@ -10,10 +10,6 @@
 import Foundation
 import Cocoa
 
-protocol OperationChanged: class {
-    func operationsmethod()
-}
-
 protocol MenuappChanged: class {
     func menuappchanged()
 }
@@ -22,7 +18,6 @@ class ViewControllerUserconfiguration: NSViewController, NewRsync, SetDismisser,
 
     var storageapi: PersistentStorageAPI?
     var dirty: Bool = false
-    weak var operationchangeDelegate: OperationChanged?
     weak var reloadconfigurationsDelegate: Createandreloadconfigurations?
     weak var menuappDelegate: MenuappChanged?
     var oldmarknumberofdayssince: Double?
