@@ -121,7 +121,6 @@ class ViewControllerNewConfigurations: NSViewController, SetConfigurations, VcSc
 
     override func viewDidAppear() {
         super.viewDidAppear()
-        guard self.diddissappear == false else { return }
         self.backuptypeselected = .synchronize
         self.backuptype.selectItem(at: 0)
         self.index = self.index()
@@ -135,12 +134,6 @@ class ViewControllerNewConfigurations: NSViewController, SetConfigurations, VcSc
         } else {
             self.storageapi = PersistentStorageAPI(profile: nil)
         }
-        self.setFields()
-    }
-
-    override func viewDidDisappear() {
-        super.viewDidDisappear()
-        self.diddissappear = true
     }
 
     private func initcombox(combobox: NSComboBox, index: Int) {
@@ -189,7 +182,6 @@ class ViewControllerNewConfigurations: NSViewController, SetConfigurations, VcSc
             "dateRun": "",
             "singleFile": 0]
         dict.setValue("no", forKey: "batch")
-
         if self.backuptypeselected == .snapshots {
             dict.setValue(ViewControllerReference.shared.snapshot, forKey: "task")
             dict.setValue(1, forKey: "snapshotnum")
