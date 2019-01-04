@@ -8,7 +8,7 @@
 
 import Foundation
 
-class Profiles: Files {
+final class CatalogProfile: Files {
 
     // Function for creating new profile directory
     func createProfile(profileName: String) -> Bool {
@@ -34,7 +34,6 @@ class Profiles: Files {
     }
 
     // Function for deleting profile
-    // if let path = URL.init(string: profileDirectory) {
     func deleteProfile(profileName: String) {
         let fileManager = FileManager.default
         if let path = self.rootpath {

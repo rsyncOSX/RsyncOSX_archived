@@ -48,13 +48,13 @@ class Readwritefiles {
             ViewControllerReference.shared.macserialnumber = Macserialnumber().getMacSerialNumber() ?? ""
         }
         let macserialnumber = ViewControllerReference.shared.macserialnumber
-        let profilePath = Profiles()
+        let profilePath = CatalogProfile()
         profilePath.createDirectory()
         if self.useProfile {
             // Use profile
             if let profile = self.profile {
                 guard profile.isEmpty == false else { return }
-                let profilePath = Profiles()
+                let profilePath = CatalogProfile()
                 profilePath.createDirectory()
                 self.filepath = self.configpath! + macserialnumber! + "/" + profile + "/"
                 self.filename = docuDir + self.configpath! + macserialnumber! + "/" + profile + self.name!
