@@ -23,7 +23,7 @@ class ViewControllerProfile: NSViewController, SetConfigurations, SetDismisser, 
     weak var snapshotnewProfileDelegate: NewProfile?
     weak var copyfilesnewProfileDelegate: NewProfile?
     private var profilesArray: [String]?
-    private var profile: Profiles?
+    private var profile: CatalogProfile?
     private var useprofile: String?
 
     @IBOutlet weak var loadbutton: NSButton!
@@ -89,7 +89,7 @@ class ViewControllerProfile: NSViewController, SetConfigurations, SetDismisser, 
     override func viewDidAppear() {
         super.viewDidAppear()
         self.profile = nil
-        self.profile = Profiles()
+        self.profile = CatalogProfile()
         self.profilesArray = self.profile!.getDirectorysStrings()
         self.newProfileDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllertabMain
         self.snapshotnewProfileDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vcsnapshot) as? ViewControllerSnapshots
