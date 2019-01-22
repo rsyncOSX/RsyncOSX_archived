@@ -88,7 +88,7 @@ class PlanSnapshots {
             if self.datefromstring(datestring: datesnapshotstring).isWeekday() {
                 self.snapshotsloggdata?.snapshotslogs![index].setValue("this month", forKey: "period")
                 return true
-            } else if self.datefromstring(datestring: datesnapshotstring).isWeekday() == false {
+            } else {
                 self.snapshotsloggdata?.snapshotslogs![index].setValue("Sunday this month", forKey: "period")
                 return false
             }
