@@ -5,7 +5,6 @@
 //  Created by Thomas Evensen on 23.04.2017.
 //  Copyright © 2017 Thomas Evensen. All rights reserved.
 //
-//  swiftlint:disable  line_length
 
 import Foundation
 import Cocoa
@@ -34,7 +33,7 @@ class ViewControllerSsh: NSViewController, SetConfigurations {
 
     // self.presentViewControllerAsSheet(self.ViewControllerAbout)
     lazy var viewControllerSource: NSViewController = {
-        return (self.storyboard!.instantiateController(withIdentifier: NSStoryboard.SceneIdentifier(rawValue: "CopyFilesID"))
+        return (self.storyboard!.instantiateController(withIdentifier: "CopyFilesID")
             as? NSViewController)!
     }()
 
@@ -74,7 +73,7 @@ class ViewControllerSsh: NSViewController, SetConfigurations {
             })
             return
         }
-        self.presentViewControllerAsSheet(self.viewControllerSource)
+        self.presentAsSheet(self.viewControllerSource)
     }
 
     func createRemoteSshDirectory() {
@@ -172,7 +171,7 @@ class ViewControllerSsh: NSViewController, SetConfigurations {
 
 extension ViewControllerSsh: DismissViewController {
     func dismiss_view(viewcontroller: NSViewController) {
-        self.dismissViewController(viewcontroller)
+        self.dismiss(viewcontroller)
         self.checkDsaPubKeyButton.isEnabled = true
         self.checkRsaPubKeyButton.isEnabled = true
         self.createRemoteSshDirectory()

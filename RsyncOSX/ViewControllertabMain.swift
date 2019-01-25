@@ -134,7 +134,7 @@ class ViewControllertabMain: NSViewController, ReloadTable, Deselect, VcMain, De
                 return
         }
         self.processtermination = .restore
-        self.presentViewControllerAsSheet(self.restoreViewController!)
+        self.presentAsSheet(self.restoreViewController!)
     }
 
     func info(num: Int) {
@@ -176,7 +176,7 @@ class ViewControllertabMain: NSViewController, ReloadTable, Deselect, VcMain, De
                 return
         }
         self.processtermination = .infosingletask
-        self.presentViewControllerAsSheet(self.viewControllerInformationLocalRemote!)
+        self.presentAsSheet(self.viewControllerInformationLocalRemote!)
     }
 
     @IBAction func totinfo(_ sender: NSButton) {
@@ -186,7 +186,7 @@ class ViewControllertabMain: NSViewController, ReloadTable, Deselect, VcMain, De
         }
         self.processtermination = .remoteinfotask
         globalMainQueue.async(execute: { () -> Void in
-            self.presentViewControllerAsSheet(self.viewControllerRemoteInfo!)
+            self.presentAsSheet(self.viewControllerRemoteInfo!)
         })
     }
 
@@ -205,7 +205,7 @@ class ViewControllertabMain: NSViewController, ReloadTable, Deselect, VcMain, De
             return
         }
         globalMainQueue.async(execute: { () -> Void in
-            self.presentViewControllerAsSheet(self.editViewController!)
+            self.presentAsSheet(self.editViewController!)
         })
     }
 
@@ -216,7 +216,7 @@ class ViewControllertabMain: NSViewController, ReloadTable, Deselect, VcMain, De
             return
         }
         globalMainQueue.async(execute: { () -> Void in
-            self.presentViewControllerAsSheet(self.viewControllerRsyncParams!)
+            self.presentAsSheet(self.viewControllerRsyncParams!)
         })
     }
 
@@ -262,7 +262,7 @@ class ViewControllertabMain: NSViewController, ReloadTable, Deselect, VcMain, De
     // Presenting Information from Rsync
     @IBAction func information(_ sender: NSButton) {
         globalMainQueue.async(execute: { () -> Void in
-            self.presentViewControllerAsSheet(self.viewControllerInformation!)
+            self.presentAsSheet(self.viewControllerInformation!)
         })
     }
 
@@ -277,7 +277,7 @@ class ViewControllertabMain: NSViewController, ReloadTable, Deselect, VcMain, De
     // Userconfiguration button
     @IBAction func userconfiguration(_ sender: NSButton) {
         globalMainQueue.async(execute: { () -> Void in
-            self.presentViewControllerAsSheet(self.viewControllerUserconfiguration!)
+            self.presentAsSheet(self.viewControllerUserconfiguration!)
         })
     }
 
@@ -285,7 +285,7 @@ class ViewControllertabMain: NSViewController, ReloadTable, Deselect, VcMain, De
     @IBAction func profiles(_ sender: NSButton) {
         if self.loadProfileMenu == true {
             globalMainQueue.async(execute: { () -> Void in
-                self.presentViewControllerAsSheet(self.viewControllerProfile!)
+                self.presentAsSheet(self.viewControllerProfile!)
             })
         } else {
             self.displayProfile()
@@ -296,13 +296,13 @@ class ViewControllertabMain: NSViewController, ReloadTable, Deselect, VcMain, De
     @IBAction func loggrecords(_ sender: NSButton) {
         self.configurations!.allowNotifyinMain = true
         globalMainQueue.async(execute: { () -> Void in
-            self.presentViewControllerAsSheet(self.viewControllerScheduleDetails!)
+            self.presentAsSheet(self.viewControllerScheduleDetails!)
         })
     }
 
     // Selecting About
     @IBAction func about (_ sender: NSButton) {
-        self.presentViewControllerAsModalWindow(self.viewControllerAbout!)
+        self.presentAsModalWindow(self.viewControllerAbout!)
     }
 
     // Selecting automatic backup
@@ -352,7 +352,7 @@ class ViewControllertabMain: NSViewController, ReloadTable, Deselect, VcMain, De
     func automaticbackup() {
         self.processtermination = .automaticbackup
         self.configurations?.remoteinfotaskworkqueue = RemoteInfoTaskWorkQueue(inbatch: false)
-        self.presentViewControllerAsSheet(self.viewControllerEstimating!)
+        self.presentAsSheet(self.viewControllerEstimating!)
         self.estimateupdateDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vcestimatingtasks) as? ViewControllerEstimatingTasks
     }
 
@@ -485,7 +485,7 @@ class ViewControllertabMain: NSViewController, ReloadTable, Deselect, VcMain, De
         self.setNumbers(outputprocess: nil)
         self.deselect()
         globalMainQueue.async(execute: { () -> Void in
-            self.presentViewControllerAsSheet(self.viewControllerBatch!)
+            self.presentAsSheet(self.viewControllerBatch!)
         })
     }
 

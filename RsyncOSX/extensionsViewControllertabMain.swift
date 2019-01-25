@@ -198,7 +198,7 @@ extension ViewControllertabMain: NewVersionDiscovered {
     func notifyNewVersion() {
         if self.configurations!.allowNotifyinMain {
             globalMainQueue.async(execute: { () -> Void in
-                self.presentViewControllerAsSheet(self.newVersionViewController!)
+                self.presentAsSheet(self.newVersionViewController!)
             })
         }
     }
@@ -208,7 +208,7 @@ extension ViewControllertabMain: NewVersionDiscovered {
 extension ViewControllertabMain: DismissViewController {
     // Function for dismissing a presented view
     func dismiss_view(viewcontroller: NSViewController) {
-        self.dismissViewController(viewcontroller)
+        self.dismiss(viewcontroller)
         // Reset radiobuttons
         self.loadProfileMenu = true
         globalMainQueue.async(execute: { () -> Void in
@@ -224,7 +224,7 @@ extension ViewControllertabMain: DismissViewController {
 
 extension ViewControllertabMain: DismissViewEstimating {
     func dismissestimating(viewcontroller: NSViewController) {
-        self.dismissViewController(viewcontroller)
+        self.dismiss(viewcontroller)
     }
 }
 
@@ -460,14 +460,14 @@ extension ViewControllertabMain: SingleTaskProgress {
 
     func presentViewProgress() {
         globalMainQueue.async(execute: { () -> Void in
-            self.presentViewControllerAsSheet(self.viewControllerProgress!)
+            self.presentAsSheet(self.viewControllerProgress!)
         })
     }
 
     func presentViewInformation(outputprocess: OutputProcess) {
         self.outputprocess = outputprocess
         globalMainQueue.async(execute: { () -> Void in
-            self.presentViewControllerAsSheet(self.viewControllerInformation!)
+            self.presentAsSheet(self.viewControllerInformation!)
         })
     }
 
@@ -629,7 +629,7 @@ extension ViewControllertabMain: OpenQuickBackup {
         self.processtermination = .quicktask
         self.configurations!.allowNotifyinMain = false
         globalMainQueue.async(execute: { () -> Void in
-            self.presentViewControllerAsSheet(self.viewControllerQuickBackup!)
+            self.presentAsSheet(self.viewControllerQuickBackup!)
         })
     }
 }

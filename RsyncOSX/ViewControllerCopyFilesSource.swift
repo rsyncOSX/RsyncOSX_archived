@@ -19,22 +19,22 @@ class ViewControllerCopyFilesSource: NSViewController, SetConfigurations, SetDis
     private var index: Int?
 
     private func dismissview() {
-        if (self.presenting as? ViewControllerCopyFiles) != nil {
+        if (self.presentingViewController as? ViewControllerCopyFiles) != nil {
             self.dismissview(viewcontroller: self, vcontroller: .vccopyfiles)
-        } else if (self.presenting as? ViewControllerSsh) != nil {
+        } else if (self.presentingViewController as? ViewControllerSsh) != nil {
             self.dismissview(viewcontroller: self, vcontroller: .vcssh)
-        } else if (self.presenting as? ViewControllerSnapshots) != nil {
+        } else if (self.presentingViewController as? ViewControllerSnapshots) != nil {
             self.dismissview(viewcontroller: self, vcontroller: .vcsnapshot)
         }
     }
 
     private func select() {
-        if let pvc = self.presenting as? ViewControllerSsh {
+        if let pvc = self.presentingViewController as? ViewControllerSsh {
             self.getSourceDelegateSsh = pvc
             if let index = self.index {
                 self.getSourceDelegateSsh?.getSourceindex(index: index)
             }
-        } else if let pvc = self.presenting as? ViewControllerSnapshots {
+        } else if let pvc = self.presentingViewController as? ViewControllerSnapshots {
             self.getSourceDelegateSnapshots = pvc
             if let index = self.index {
                 self.getSourceDelegateSnapshots?.getSourceindex(index: index)
@@ -77,12 +77,12 @@ class ViewControllerCopyFilesSource: NSViewController, SetConfigurations, SetDis
         let indexes = myTableViewFromNotification.selectedRowIndexes
         self.selectButton.isEnabled = true
         if let index = indexes.first {
-            if self.presenting as? ViewControllerSsh != nil {
+            if self.presentingViewController as? ViewControllerSsh != nil {
                 let object = self.configurations!.getConfigurationsDataSourcecountBackupSnapshot()![index]
                 let hiddenID = object.value(forKey: "hiddenID") as? Int
                 guard hiddenID != nil else { return }
                 self.index = hiddenID!
-            } else if self.presenting as? ViewControllerSnapshots != nil {
+            } else if self.presentingViewController as? ViewControllerSnapshots != nil {
                 let object = self.configurations!.getConfigurationsDataSourcecountBackupSnapshot()![index]
                 let hiddenID = object.value(forKey: "hiddenID") as? Int
                 guard hiddenID != nil else { return }
@@ -95,7 +95,7 @@ class ViewControllerCopyFilesSource: NSViewController, SetConfigurations, SetDis
 extension ViewControllerCopyFilesSource: NSTableViewDataSource {
     func numberOfRows(in tableView: NSTableView) -> Int {
         guard self.configurations != nil else { return 0 }
-        if self.presenting as? ViewControllerEncrypt != nil {
+        if self.presentingViewController as? ViewControllerEncrypt != nil {
             return self.configurations!.getConfigurationsDataSourcecountBackupCombined()?.count ?? 0
         } else {
              return self.configurations!.getConfigurationsDataSourcecountBackupSnapshot()?.count ?? 0
@@ -105,7 +105,7 @@ extension ViewControllerCopyFilesSource: NSTableViewDataSource {
 
 extension ViewControllerCopyFilesSource: NSTableViewDelegate {
     func tableView(_ tableView: NSTableView, objectValueFor tableColumn: NSTableColumn?, row: Int) -> Any? {
-        if self.presenting as? ViewControllerEncrypt != nil {
+        if self.presentingViewController as? ViewControllerEncrypt != nil {
             let object: NSDictionary = self.configurations!.getConfigurationsDataSourcecountBackupCombined()![row]
             return object[tableColumn!.identifier] as? String
         } else {
