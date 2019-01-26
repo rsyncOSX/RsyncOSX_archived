@@ -172,9 +172,9 @@ class Files: Reportfileerror {
         }
     }
 
-    init (root: WhatRoot, configpath: String) {
+    init (whatroot: WhatRoot, configpath: String) {
         self.configpath = configpath
-        self.whatroot = root
+        self.whatroot = whatroot
         self.setrootpath()
     }
 }
