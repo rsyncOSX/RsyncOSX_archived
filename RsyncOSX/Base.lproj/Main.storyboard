@@ -1585,17 +1585,6 @@
                                     <action selector="delete:" target="fiO-Ux-xlw" id="aRg-gQ-8sb"/>
                                 </connections>
                             </button>
-                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Ean-am-qSn">
-                                <rect key="frame" x="998" y="39" width="80" height="32"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <buttonCell key="cell" type="push" title="Plan" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="Y0a-E6-9Yb">
-                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                    <font key="font" metaFont="system"/>
-                                </buttonCell>
-                                <connections>
-                                    <action selector="plansforsnapshots:" target="fiO-Ux-xlw" id="wh4-xs-8HU"/>
-                                </connections>
-                            </button>
                             <slider verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="oOp-UK-kds">
                                 <rect key="frame" x="827" y="27" width="96" height="19"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
@@ -1715,6 +1704,20 @@
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
+                            <comboBox verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cZK-2H-fVE">
+                                <rect key="frame" x="1006" y="44" width="69" height="26"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <comboBoxCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" drawsBackground="YES" completes="NO" numberOfVisibleItems="5" id="rVW-Db-slX">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                    <objectValues>
+                                        <string>Item 1</string>
+                                        <string>Item 2</string>
+                                        <string>Item 3</string>
+                                    </objectValues>
+                                </comboBoxCell>
+                            </comboBox>
                         </subviews>
                     </view>
                     <connections>
@@ -1728,8 +1731,8 @@
                         <outlet property="numberOflogfiles" destination="Luu-QK-BXr" id="4jY-Oe-9Uu"/>
                         <outlet property="offsiteCatalog" destination="1Mh-bv-XRt" id="pTc-Fd-JTu"/>
                         <outlet property="offsiteUsername" destination="Rd4-NT-WkH" id="OTc-Ld-ZgC"/>
-                        <outlet property="planbutton" destination="Ean-am-qSn" id="EVp-DG-QGN"/>
                         <outlet property="rsynctableView" destination="Gyz-fh-gfZ" id="8ft-DE-57O"/>
+                        <outlet property="selectplan" destination="cZK-2H-fVE" id="y0Q-Gs-KJn"/>
                         <outlet property="snapshotstableView" destination="ADg-qt-oLX" id="vx0-h4-cGn"/>
                         <outlet property="stringdeletesnapshotsdaysnum" destination="RoD-gk-Zpc" id="rzY-ry-a1K"/>
                         <outlet property="stringdeletesnapshotsnum" destination="XPM-CX-EDa" id="miI-tK-UUw"/>

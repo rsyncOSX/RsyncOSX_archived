@@ -21,6 +21,9 @@ class ViewControllerSnapshots: NSViewController, SetDismisser, SetConfigurations
     private var index: Int?
     weak var processterminationDelegate: UpdateProgress?
     var abort: Bool = false
+    // Reference to which planin combox
+    var comboBoxValues = ["plan1",
+                          "plan2"]
 
     @IBOutlet weak var snapshotstableView: NSTableView!
     @IBOutlet weak var rsynctableView: NSTableView!
@@ -36,7 +39,7 @@ class ViewControllerSnapshots: NSViewController, SetDismisser, SetConfigurations
     @IBOutlet weak var gettinglogs: NSProgressIndicator!
     @IBOutlet weak var deletesnapshotsdays: NSSlider!
     @IBOutlet weak var stringdeletesnapshotsdaysnum: NSTextField!
-    @IBOutlet weak var planbutton: NSButton!
+    @IBOutlet weak var selectplan: NSComboBox!
 
     private func info (num: Int) {
         switch num {
@@ -72,8 +75,16 @@ class ViewControllerSnapshots: NSViewController, SetDismisser, SetConfigurations
         self.numbersinsequencetodelete = 0
     }
 
+/*
     @IBAction func plansforsnapshots(_ sender: NSButton) {
-        _ = PlanSnapshots()
+        // _ = PlanSnapshots()
+    }
+*/
+
+    private func initcombox(combobox: NSComboBox, index: Int) {
+        combobox.removeAllItems()
+        combobox.addItems(withObjectValues: self.comboBoxValues)
+        combobox.selectItem(at: index)
     }
 
     @IBAction func updatedeletesnapshotsnum(_ sender: NSSlider) {
@@ -141,7 +152,8 @@ class ViewControllerSnapshots: NSViewController, SetDismisser, SetConfigurations
     override func viewDidAppear() {
         super.viewDidAppear()
         self.reloadtabledata()
-        self.planbutton.isEnabled = false
+        self.initcombox(combobox: self.selectplan, index: 0)
+        self.selectplan.isEnabled = false
     }
 
     private func deletesnapshotcatalogs() {
@@ -191,7 +203,7 @@ class ViewControllerSnapshots: NSViewController, SetDismisser, SetConfigurations
                     self.info(num: 6)
                     return
                 }
-                self.planbutton.isEnabled = false
+                self.selectplan.isEnabled = false
                 self.info(num: 0)
                 let hiddenID = self.configurations!.getConfigurationsDataSourcecountBackupSnapshot()![index].value(forKey: "hiddenID") as? Int ?? -1
                 self.getSourceindex(index: hiddenID)
@@ -230,7 +242,7 @@ extension ViewControllerSnapshots: DismissViewController {
 
 extension ViewControllerSnapshots: UpdateProgress {
     func processTermination() {
-        self.planbutton.isEnabled = true
+        self.selectplan.isEnabled = true
         if delete {
             let vc = ViewControllerReference.shared.getvcref(viewcontroller: .vcprogressview) as? ViewControllerProgressProcess
             if self.snapshotsloggdata!.remotecatalogstodelete == nil {
