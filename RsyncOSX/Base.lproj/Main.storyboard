@@ -6762,7 +6762,7 @@ DQ
                                 </textFieldCell>
                             </textField>
                             <progressIndicator hidden="YES" wantsLayer="YES" horizontalHuggingPriority="750" verticalHuggingPriority="750" maxValue="100" displayedWhenStopped="NO" bezeled="NO" indeterminate="YES" controlSize="small" style="spinning" translatesAutoresizingMaskIntoConstraints="NO" id="jSP-cN-5qE">
-                                <rect key="frame" x="725" y="23" width="16" height="17"/>
+                                <rect key="frame" x="698" y="23" width="16" height="17"/>
                             </progressIndicator>
                         </subviews>
                         <constraints>
@@ -6770,7 +6770,7 @@ DQ
                             <constraint firstItem="3OI-xQ-Hbf" firstAttribute="top" secondItem="SnQ-zf-7ai" secondAttribute="bottom" constant="22" id="6Nb-A3-klQ"/>
                             <constraint firstItem="3OI-xQ-Hbf" firstAttribute="bottom" secondItem="jSP-cN-5qE" secondAttribute="bottom" id="ASX-D7-ylf"/>
                             <constraint firstItem="SnQ-zf-7ai" firstAttribute="trailing" secondItem="Yur-Pz-vhJ" secondAttribute="trailing" id="EJG-Ob-xfS"/>
-                            <constraint firstItem="jSP-cN-5qE" firstAttribute="leading" secondItem="3OI-xQ-Hbf" secondAttribute="trailing" constant="627" id="ILj-TG-GwU"/>
+                            <constraint firstItem="jSP-cN-5qE" firstAttribute="leading" secondItem="3OI-xQ-Hbf" secondAttribute="trailing" constant="600" id="ILj-TG-GwU"/>
                             <constraint firstItem="3OI-xQ-Hbf" firstAttribute="centerY" secondItem="jSP-cN-5qE" secondAttribute="centerY" id="IW4-5x-VHx"/>
                             <constraint firstAttribute="bottom" secondItem="3OI-xQ-Hbf" secondAttribute="bottom" constant="23" id="Jzu-Au-oJO"/>
                             <constraint firstItem="3OI-xQ-Hbf" firstAttribute="centerY" secondItem="Yur-Pz-vhJ" secondAttribute="centerY" id="cAn-bw-FSC"/>
