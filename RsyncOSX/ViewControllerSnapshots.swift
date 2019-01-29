@@ -5,7 +5,7 @@
 //  Created by Thomas Evensen on 22.01.2018.
 //  Copyright © 2018 Thomas Evensen. All rights reserved.
 //
-// swiftlint:disable line_length
+// swiftlint:disable line_length file_length
 
 import Foundation
 import Cocoa
@@ -22,8 +22,9 @@ class ViewControllerSnapshots: NSViewController, SetDismisser, SetConfigurations
     weak var processterminationDelegate: UpdateProgress?
     var abort: Bool = false
     // Reference to which planin combox
-    var comboBoxValues = ["plan1",
-                          "plan2"]
+    var comboBoxValues = ["none",
+                          "plan 1",
+                          "plan 2"]
 
     @IBOutlet weak var snapshotstableView: NSTableView!
     @IBOutlet weak var rsynctableView: NSTableView!
@@ -74,12 +75,6 @@ class ViewControllerSnapshots: NSViewController, SetDismisser, SetConfigurations
         self.stringdeletesnapshotsdaysnum.stringValue = "99"
         self.numbersinsequencetodelete = 0
     }
-
-/*
-    @IBAction func plansforsnapshots(_ sender: NSButton) {
-        // _ = PlanSnapshots()
-    }
-*/
 
     private func initcombox(combobox: NSComboBox, index: Int) {
         combobox.removeAllItems()
@@ -146,6 +141,7 @@ class ViewControllerSnapshots: NSViewController, SetDismisser, SetConfigurations
         self.gettinglogs.usesThreadedAnimation = true
         self.stringdeletesnapshotsnum.delegate = self
         self.stringdeletesnapshotsdaysnum.delegate = self
+        self.selectplan.delegate = self
         ViewControllerReference.shared.setvcref(viewcontroller: .vcsnapshot, nsviewcontroller: self)
     }
 
@@ -404,5 +400,19 @@ extension ViewControllerSnapshots: NewProfile {
 
     func enableProfileMenu() {
         //
+    }
+}
+
+extension ViewControllerSnapshots: NSComboBoxDelegate {
+
+    func comboBoxSelectionDidChange(_ notification: Notification) {
+        switch self.selectplan.indexOfSelectedItem {
+        case 1:
+            _ = PlanSnapshots(plan: 1)
+        case 2:
+            _ = PlanSnapshots(plan: 2)
+        default:
+            return
+        }
     }
 }
