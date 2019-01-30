@@ -10,7 +10,7 @@
 import Foundation
 import Cocoa
 
-class ViewControllerSnapshots: NSViewController, SetDismisser, SetConfigurations, Delay, Connected, VcMain {
+class ViewControllerSnapshots: NSViewController, SetDismisser, SetConfigurations, Delay, Connected, VcMain, Index {
 
     private var hiddenID: Int?
     private var config: Configuration?
@@ -147,9 +147,17 @@ class ViewControllerSnapshots: NSViewController, SetDismisser, SetConfigurations
 
     override func viewDidAppear() {
         super.viewDidAppear()
-        self.reloadtabledata()
         self.initcombox(combobox: self.selectplan, index: 0)
         self.selectplan.isEnabled = false
+        if let index = self.index() {
+            guard index < self.configurations!.getConfigurationsDataSourcecountBackupSnapshot()!.count else { return }
+            let hiddenID = self.configurations!.getConfigurationsDataSourcecountBackupSnapshot()![index].value(forKey: "hiddenID") as? Int ?? -1
+            self.index = self.configurations?.getIndex(hiddenID)
+            self.getSourceindex(index: hiddenID)
+        } else {
+            self.snapshotsloggdata = nil
+            self.reloadtabledata()
+        }
     }
 
     private func deletesnapshotcatalogs() {
