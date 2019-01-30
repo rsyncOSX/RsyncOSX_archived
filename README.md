@@ -12,7 +12,7 @@ About signing and notarizing of RsyncOSX see below.
 
 ### Version of rsync
 
-RsyncOSX is only tested with rsync versions 2.6.9, 3.1.2 and 3.1.3. It is a known issue if remote server is e.g Synology NAS with rsync version 3.0.9.
+RsyncOSX is only verified with rsync versions 2.6.9, 3.1.2 and 3.1.3. It is a known issue if other versions, as version 3.0.9, of rsync is used. The bug is fixed and will be released in next version.
 
 ### --delete parameter
 
