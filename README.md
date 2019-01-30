@@ -6,9 +6,13 @@ This repository is the source code for the macOS app RsyncOSX. RsyncOSX is compi
 
 Rsync is a file-based synchronization and backup tool. There is no custom solution for the backup archive. You can quit utilizing RsyncOSX (and rsync) at any time and still have access to all synchronized files.
 
-Scheduled tasks are added and deleted within RsyncOSX. Executing the scheduled tasks is by the [menu app](https://github.com/rsyncOSX/RsyncOSXsched). A short [intro to RsyncOSX](https://rsyncosx.github.io/Intro) and full [documentation of RsyncOSX](https://rsyncosx.github.io/AboutRsyncOSX). 
+Scheduled tasks are added and deleted within RsyncOSX. Executing the scheduled tasks is by the [menu app](https://github.com/rsyncOSX/RsyncOSXsched). A short [intro to RsyncOSX](https://rsyncosx.github.io/Intro) and full [documentation of RsyncOSX](https://rsyncosx.github.io/AboutRsyncOSX).
 
 About signing and notarizing of RsyncOSX see below.
+
+### Version of rsync
+
+RsyncOSX is only tested with rsync versions 2.6.9, 3.1.2 and 3.1.3. It is a known issue if remote server is e.g Synology NAS with rsync version 3.0.9.
 
 ### --delete parameter
 
