@@ -79,6 +79,7 @@ final class Numbers: SetConfigurations {
     }
 
     private func checandadjustknumbers() {
+        guard self.transferNum != nil else { return }
         if self.transferNum! > 0 {
             self.totNum = (self.totNum ?? 0) - (self.transferNum ?? 0)
             self.totNumSize = (self.totNumSize ?? 0) - (self.transferNumSize ?? 0)
@@ -86,6 +87,12 @@ final class Numbers: SetConfigurations {
     }
 
     private func resultrsyncver3() {
+        guard self.files?.count ?? -1 > 0 else { return }
+        guard self.filesSize?.count ?? -1 > 0 else { return }
+        guard self.totfilesNum?.count ?? -1 > 0 else { return }
+        guard self.totfileSize?.count ?? -1 > 0 else { return }
+        guard self.new?.count ?? -1 > 0 else { return }
+        guard self.delete?.count ?? -1 > 0 else { return }
         // Ver3 of rsync adds "," as 1000 mark, must replace it and then split numbers into components
         let filesPart = self.files![0].replacingOccurrences(of: ",", with: "").components(separatedBy: " ")
         let filesPartSize = self.filesSize![0].replacingOccurrences(of: ",", with: "").components(separatedBy: " ")
@@ -113,6 +120,10 @@ final class Numbers: SetConfigurations {
     }
 
     private func resultrsyncver2() {
+        guard self.files?.count ?? -1 > 0 else { return }
+        guard self.filesSize?.count ?? -1 > 0 else { return }
+        guard self.totfilesNum?.count ?? -1 > 0 else { return }
+        guard self.totfileSize?.count ?? -1 > 0 else { return }
         let filesPart = self.files![0].components(separatedBy: " ")
         let filesPartSize = self.filesSize![0].components(separatedBy: " ")
         let totfilesPart = self.totfilesNum![0].components(separatedBy: " ")
