@@ -26,7 +26,6 @@ class ViewControllertabSchedule: NSViewController, SetConfigurations, SetSchedul
     // Main tableview
     @IBOutlet weak var mainTableView: NSTableView!
     @IBOutlet weak var profilInfo: NSTextField!
-    @IBOutlet weak var operation: NSTextField!
     @IBOutlet weak var weeklybutton: NSButton!
     @IBOutlet weak var dailybutton: NSButton!
     @IBOutlet weak var oncebutton: NSButton!
