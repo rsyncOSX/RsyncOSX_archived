@@ -81,13 +81,13 @@ class ViewControllerUserconfiguration: NSViewController, NewRsync, SetDismisser,
             self.menuappDelegate?.menuappchanged()
             self.changetemporaryrestorepath()
         }
-        if (self.presenting as? ViewControllertabMain) != nil {
+        if (self.presentingViewController as? ViewControllertabMain) != nil {
             self.dismissview(viewcontroller: self, vcontroller: .vctabmain)
-        } else if (self.presenting as? ViewControllertabSchedule) != nil {
+        } else if (self.presentingViewController as? ViewControllertabSchedule) != nil {
             self.dismissview(viewcontroller: self, vcontroller: .vctabmain)
-        } else if (self.presenting as? ViewControllerNewConfigurations) != nil {
+        } else if (self.presentingViewController as? ViewControllerNewConfigurations) != nil {
             self.dismissview(viewcontroller: self, vcontroller: .vctabmain)
-        } else if (self.presenting as? ViewControllerCopyFiles) != nil {
+        } else if (self.presentingViewController as? ViewControllerCopyFiles) != nil {
             self.dismissview(viewcontroller: self, vcontroller: .vccopyfiles)
         }
         _ = RsyncVersionString()
@@ -316,7 +316,7 @@ class ViewControllerUserconfiguration: NSViewController, NewRsync, SetDismisser,
 
 extension ViewControllerUserconfiguration: NSTextFieldDelegate {
 
-    override func controlTextDidChange(_ notification: Notification) {
+    func controlTextDidChange(_ notification: Notification) {
         delayWithSeconds(0.5) {
             self.setdirty()
             switch (notification.object as? NSTextField)! {

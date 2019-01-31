@@ -5,12 +5,12 @@
 //  Created by Thomas Evensen on 22.01.2018.
 //  Copyright © 2018 Thomas Evensen. All rights reserved.
 //
-// swiftlint:disable line_length
+// swiftlint:disable line_length file_length
 
 import Foundation
 import Cocoa
 
-class ViewControllerSnapshots: NSViewController, SetDismisser, SetConfigurations, Delay, Connected, VcMain {
+class ViewControllerSnapshots: NSViewController, SetDismisser, SetConfigurations, Delay, Connected, VcMain, Index {
 
     private var hiddenID: Int?
     private var config: Configuration?
@@ -21,6 +21,10 @@ class ViewControllerSnapshots: NSViewController, SetDismisser, SetConfigurations
     private var index: Int?
     weak var processterminationDelegate: UpdateProgress?
     var abort: Bool = false
+    // Reference to which planin combox
+    var comboBoxValues = ["none",
+                          "plan 1",
+                          "plan 2"]
 
     @IBOutlet weak var snapshotstableView: NSTableView!
     @IBOutlet weak var rsynctableView: NSTableView!
@@ -36,7 +40,7 @@ class ViewControllerSnapshots: NSViewController, SetDismisser, SetConfigurations
     @IBOutlet weak var gettinglogs: NSProgressIndicator!
     @IBOutlet weak var deletesnapshotsdays: NSSlider!
     @IBOutlet weak var stringdeletesnapshotsdaysnum: NSTextField!
-    @IBOutlet weak var planbutton: NSButton!
+    @IBOutlet weak var selectplan: NSComboBox!
 
     private func info (num: Int) {
         switch num {
@@ -72,8 +76,10 @@ class ViewControllerSnapshots: NSViewController, SetDismisser, SetConfigurations
         self.numbersinsequencetodelete = 0
     }
 
-    @IBAction func plansforsnapshots(_ sender: NSButton) {
-        _ = PlanSnapshots()
+    private func initcombox(combobox: NSComboBox, index: Int) {
+        combobox.removeAllItems()
+        combobox.addItems(withObjectValues: self.comboBoxValues)
+        combobox.selectItem(at: index)
     }
 
     @IBAction func updatedeletesnapshotsnum(_ sender: NSSlider) {
@@ -118,7 +124,7 @@ class ViewControllerSnapshots: NSViewController, SetDismisser, SetConfigurations
             self.info(num: 0)
             self.snapshotsloggdata!.preparecatalogstodelete()
             guard self.snapshotsloggdata!.remotecatalogstodelete != nil else { return }
-            self.presentViewControllerAsSheet(self.viewControllerProgress!)
+            self.presentAsSheet(self.viewControllerProgress!)
             self.deletebutton.isEnabled = false
             self.deletesnapshots.isEnabled = false
             self.deletesnapshotcatalogs()
@@ -135,13 +141,23 @@ class ViewControllerSnapshots: NSViewController, SetDismisser, SetConfigurations
         self.gettinglogs.usesThreadedAnimation = true
         self.stringdeletesnapshotsnum.delegate = self
         self.stringdeletesnapshotsdaysnum.delegate = self
+        self.selectplan.delegate = self
         ViewControllerReference.shared.setvcref(viewcontroller: .vcsnapshot, nsviewcontroller: self)
     }
 
     override func viewDidAppear() {
         super.viewDidAppear()
-        self.reloadtabledata()
-        self.planbutton.isEnabled = false
+        self.initcombox(combobox: self.selectplan, index: 0)
+        self.selectplan.isEnabled = false
+        if let index = self.index() {
+            guard index < self.configurations!.getConfigurationsDataSourcecountBackupSnapshot()!.count else { return }
+            let hiddenID = self.configurations!.getConfigurationsDataSourcecountBackupSnapshot()![index].value(forKey: "hiddenID") as? Int ?? -1
+            self.index = self.configurations?.getIndex(hiddenID)
+            self.getSourceindex(index: hiddenID)
+        } else {
+            self.snapshotsloggdata = nil
+            self.reloadtabledata()
+        }
     }
 
     private func deletesnapshotcatalogs() {
@@ -191,7 +207,7 @@ class ViewControllerSnapshots: NSViewController, SetDismisser, SetConfigurations
                     self.info(num: 6)
                     return
                 }
-                self.planbutton.isEnabled = false
+                self.selectplan.isEnabled = false
                 self.info(num: 0)
                 let hiddenID = self.configurations!.getConfigurationsDataSourcecountBackupSnapshot()![index].value(forKey: "hiddenID") as? Int ?? -1
                 self.getSourceindex(index: hiddenID)
@@ -219,7 +235,7 @@ class ViewControllerSnapshots: NSViewController, SetDismisser, SetConfigurations
 extension ViewControllerSnapshots: DismissViewController {
 
     func dismiss_view(viewcontroller: NSViewController) {
-        self.dismissViewController(viewcontroller)
+        self.dismiss(viewcontroller)
         if self.snapshotsloggdata?.remotecatalogstodelete != nil {
             self.snapshotsloggdata?.remotecatalogstodelete = nil
             self.info(num: 2)
@@ -230,7 +246,7 @@ extension ViewControllerSnapshots: DismissViewController {
 
 extension ViewControllerSnapshots: UpdateProgress {
     func processTermination() {
-        self.planbutton.isEnabled = true
+        self.selectplan.isEnabled = true
         if delete {
             let vc = ViewControllerReference.shared.getvcref(viewcontroller: .vcprogressview) as? ViewControllerProgressProcess
             if self.snapshotsloggdata!.remotecatalogstodelete == nil {
@@ -321,7 +337,7 @@ extension ViewControllerSnapshots: Reloadandrefresh {
 }
 
 extension ViewControllerSnapshots: NSTextFieldDelegate {
-    override func controlTextDidChange(_ notification: Notification) {
+    func controlTextDidChange(_ notification: Notification) {
         self.delayWithSeconds(0.5) {
             guard self.snapshotsloggdata != nil else { return }
             if (notification.object as? NSTextField)! == self.stringdeletesnapshotsnum {
@@ -392,5 +408,19 @@ extension ViewControllerSnapshots: NewProfile {
 
     func enableProfileMenu() {
         //
+    }
+}
+
+extension ViewControllerSnapshots: NSComboBoxDelegate {
+
+    func comboBoxSelectionDidChange(_ notification: Notification) {
+        switch self.selectplan.indexOfSelectedItem {
+        case 1:
+            _ = PlanSnapshots(plan: 1)
+        case 2:
+            _ = PlanSnapshots(plan: 2)
+        default:
+            return
+        }
     }
 }

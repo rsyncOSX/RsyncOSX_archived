@@ -105,7 +105,7 @@ class QuickBackup: SetConfigurations {
         // If list is sorted during execution we have to find new index
         let dict = self.sortedlist!.filter({($0.value(forKey: "hiddenID") as? Int) == self.hiddenID!})
         guard dict.count == 1 else { return }
-        self.index = self.sortedlist!.index(of: dict[0])
+        self.index = self.sortedlist!.firstIndex(of: dict[0])
         self.sortedlist![self.index!].setValue(true, forKey: "completeCellID")
         self.sortedlist![self.index!].setValue(false, forKey: "inprogressCellID")
     }

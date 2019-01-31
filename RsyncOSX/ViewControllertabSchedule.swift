@@ -109,21 +109,21 @@ class ViewControllertabSchedule: NSViewController, SetConfigurations, SetSchedul
     // Selecting profiles
     @IBAction func profiles(_ sender: NSButton) {
         globalMainQueue.async(execute: { () -> Void in
-            self.presentViewControllerAsSheet(self.viewControllerProfile!)
+            self.presentAsSheet(self.viewControllerProfile!)
         })
     }
 
     // Userconfiguration button
     @IBAction func userconfiguration(_ sender: NSButton) {
         globalMainQueue.async(execute: { () -> Void in
-            self.presentViewControllerAsSheet(self.viewControllerUserconfiguration!)
+            self.presentAsSheet(self.viewControllerUserconfiguration!)
         })
     }
 
     // Logg records
     @IBAction func loggrecords(_ sender: NSButton) {
         globalMainQueue.async(execute: { () -> Void in
-            self.presentViewControllerAsSheet(self.viewControllerScheduleDetails!)
+            self.presentAsSheet(self.viewControllerScheduleDetails!)
         })
     }
 
@@ -188,7 +188,7 @@ class ViewControllertabSchedule: NSViewController, SetConfigurations, SetSchedul
     @objc(tableViewDoubleClick:) func tableViewDoubleClick(sender: AnyObject) {
         self.preselectrow = false
         globalMainQueue.async(execute: { () -> Void in
-            self.presentViewControllerAsSheet(self.viewControllerScheduleDetails!)
+            self.presentAsSheet(self.viewControllerScheduleDetails!)
         })
     }
 
@@ -274,7 +274,7 @@ extension  ViewControllertabSchedule: GetHiddenID {
 extension ViewControllertabSchedule: DismissViewController {
 
     func dismiss_view(viewcontroller: NSViewController) {
-        self.dismissViewController(viewcontroller)
+        self.dismiss(viewcontroller)
         globalMainQueue.async(execute: { () -> Void in
             self.mainTableView.reloadData()
         })

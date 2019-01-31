@@ -107,7 +107,7 @@ class ViewControllerEdit: NSViewController, SetConfigurations, SetDismisser, Ind
 }
 
 extension ViewControllerEdit: NSTextFieldDelegate {
-    override func controlTextDidChange(_ notification: Notification) {
+    func controlTextDidChange(_ notification: Notification) {
         delayWithSeconds(0.5) {
             if let num = Int(self.snapshotnum.stringValue) {
                 let config: Configuration = self.configurations!.getConfigurations()[self.index!]

@@ -28,7 +28,7 @@ extension Attributedestring {
     func attributedstring(str: String, color: NSColor, align: NSTextAlignment) -> NSMutableAttributedString {
         let attributedString = NSMutableAttributedString(string: str)
         let range = (str as NSString).range(of: str)
-        attributedString.addAttribute(NSAttributedStringKey.foregroundColor, value: color, range: range)
+        attributedString.addAttribute(NSAttributedString.Key.foregroundColor, value: color, range: range)
         attributedString.setAlignment(align, range: range)
         return attributedString
     }
