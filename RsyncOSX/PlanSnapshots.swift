@@ -14,14 +14,15 @@ protocol GetSnapshotsLoggData: class {
 }
 
 class PlanSnapshots {
-
+    
     weak var SnapshotsLoggDataDelegate: GetSnapshotsLoggData?
     weak var reloadDelegate: Reloadandrefresh?
     var snapshotsloggdata: SnapshotsLoggData?
     private var numberoflogs: Int?
     private var firstlog: Double?
     private var datecomponentscurrent: DateComponents?
-
+    private var keepallSundays: Bool = true
+    
     func islastSundayinMonth(date: Date) -> Bool {
         if date.isSunday() && date.day() > 24 {
             return true
@@ -29,13 +30,17 @@ class PlanSnapshots {
             return false
         }
     }
-
+    
+    func isaSunday(date: Date) -> Bool {
+        return date.isSunday()
+    }
+    
     private func datefromstring(datestring: String) -> Date {
         let dateformatter = Dateandtime().setDateformat()
         guard datestring != "no log" else { return Date()}
         return dateformatter.date(from: datestring)!
     }
-
+    
     private func datecomponentsfromstring(datestring: String?) -> DateComponents {
         var date: Date?
         if datestring == nil {
@@ -49,7 +54,7 @@ class PlanSnapshots {
                                         .hour, .minute,
                                         .weekday, .weekOfYear, .year], from: date!)
     }
-
+    
     private func markfordelete() {
         guard self.snapshotsloggdata?.snapshotslogs != nil else { return }
         for i in 0 ..< self.snapshotsloggdata!.snapshotslogs!.count {
@@ -59,14 +64,20 @@ class PlanSnapshots {
             } else if self.currentmonth(index: index) {
                 self.snapshotsloggdata?.snapshotslogs![index].setValue(1, forKey: "selectCellID")
             } else {
-                if self.previousmonths(index: index) {
-                    self.snapshotsloggdata?.snapshotslogs![index].setValue(1, forKey: "selectCellID")
+                if self.keepallSundays == true {
+                    if self.previousmonthskeepallsundays(index: index) {
+                        self.snapshotsloggdata?.snapshotslogs![index].setValue(1, forKey: "selectCellID")
+                    }
+                } else {
+                    if self.previousmonthskeeplastsunday(index: index) {
+                        self.snapshotsloggdata?.snapshotslogs![index].setValue(1, forKey: "selectCellID")
+                    }
                 }
             }
         }
         self.reloadDelegate?.reloadtabledata()
     }
-
+    
     // Keep all snapshots current week.
     private func currentweek(index: Int) -> Bool {
         let datesnapshotstring = (self.snapshotsloggdata!.snapshotslogs![index].value(forKey: "dateExecuted") as? String)!
@@ -78,7 +89,7 @@ class PlanSnapshots {
         }
         return false
     }
-
+    
     // Keep snapshots every Sunday
     private func currentmonth(index: Int) -> Bool {
         let datesnapshotstring = (self.snapshotsloggdata!.snapshotslogs![index].value(forKey: "dateExecuted") as? String)!
@@ -95,9 +106,9 @@ class PlanSnapshots {
         }
         return false
     }
-
-    // Keep snapshots last Sunday every month
-    private func previousmonths(index: Int) -> Bool {
+    
+    // Keep snapshots last Sunday every previous months
+    private func previousmonthskeeplastsunday(index: Int) -> Bool {
         let datesnapshotstring = (self.snapshotsloggdata!.snapshotslogs![index].value(forKey: "dateExecuted") as? String)!
         if self.datecomponentsfromstring(datestring: datesnapshotstring).month !=
             self.datecomponentscurrent!.month {
@@ -111,15 +122,36 @@ class PlanSnapshots {
         }
         return false
     }
-
+    
+    // Keep snapshots all Sundays every previous months
+    private func previousmonthskeepallsundays(index: Int) -> Bool {
+        let datesnapshotstring = (self.snapshotsloggdata!.snapshotslogs![index].value(forKey: "dateExecuted") as? String)!
+        if self.datecomponentsfromstring(datestring: datesnapshotstring).month !=
+            self.datecomponentscurrent!.month {
+            if self.isaSunday(date: self.datefromstring(datestring: datesnapshotstring)) == true {
+                self.snapshotsloggdata?.snapshotslogs![index].setValue("Sunday prev months", forKey: "period")
+                return false
+            } else {
+                self.snapshotsloggdata?.snapshotslogs![index].setValue("prev months", forKey: "period")
+                return true
+            }
+        }
+        return false
+    }
+    
     private func reset() {
         guard self.snapshotsloggdata?.snapshotslogs != nil else { return }
         for i in 0 ..< self.snapshotsloggdata!.snapshotslogs!.count {
             self.snapshotsloggdata?.snapshotslogs![i].setValue(0, forKey: "selectCellID")
         }
     }
-
-    init() {
+    
+    init(plan: Int) {
+        if plan == 1 {
+            self.keepallSundays = false
+        } else {
+            self.keepallSundays = true
+        }
         self.SnapshotsLoggDataDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vcsnapshot) as? ViewControllerSnapshots
         self.reloadDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vcsnapshot) as? ViewControllerSnapshots
         self.snapshotsloggdata = self.SnapshotsLoggDataDelegate?.getsnapshotsloggaata()

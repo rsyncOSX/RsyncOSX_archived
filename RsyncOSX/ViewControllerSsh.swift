@@ -156,16 +156,22 @@ class ViewControllerSsh: NSViewController, SetConfigurations {
         if self.sshcmd!.rsaPubKeyExist {
             self.rsaCheck.state = .on
             self.createKeys.isEnabled = false
+            self.createRsaKey.state = .off
         } else {
             self.rsaCheck.state = .off
             self.createKeys.isEnabled = true
+            self.createRsaKey.state = .on
         }
         if self.sshcmd!.dsaPubKeyExist {
             self.dsaCheck.state = .on
             self.createKeys.isEnabled = false
+            self.createDsaKey.state = .off
         } else {
             self.dsaCheck.state = .off
             self.createKeys.isEnabled = true
+            if self.sshcmd!.rsaPubKeyExist {
+                self.createDsaKey.state = .on
+            }
         }
     }
 }
