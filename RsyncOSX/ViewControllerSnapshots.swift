@@ -5,7 +5,7 @@
 //  Created by Thomas Evensen on 22.01.2018.
 //  Copyright © 2018 Thomas Evensen. All rights reserved.
 //
-// swiftlint:disable line_length
+// swiftlint:disable line_length file_length
 
 import Foundation
 import Cocoa
@@ -75,7 +75,7 @@ class ViewControllerSnapshots: NSViewController, SetDismisser, SetConfigurations
         self.stringdeletesnapshotsdaysnum.stringValue = "99"
         self.numbersinsequencetodelete = 0
     }
-    
+
     private func initcombox(combobox: NSComboBox, index: Int) {
         combobox.removeAllItems()
         combobox.addItems(withObjectValues: self.comboBoxValues)
@@ -144,7 +144,7 @@ class ViewControllerSnapshots: NSViewController, SetDismisser, SetConfigurations
         self.selectplan.delegate = self
         ViewControllerReference.shared.setvcref(viewcontroller: .vcsnapshot, nsviewcontroller: self)
     }
-    
+
     override func viewDidAppear() {
         super.viewDidAppear()
         self.initcombox(combobox: self.selectplan, index: 0)
@@ -152,6 +152,11 @@ class ViewControllerSnapshots: NSViewController, SetDismisser, SetConfigurations
         if let index = self.index() {
             guard index < self.configurations!.getConfigurationsDataSourcecountBackupSnapshot()!.count else { return }
             let hiddenID = self.configurations!.getConfigurationsDataSourcecountBackupSnapshot()![index].value(forKey: "hiddenID") as? Int ?? -1
+            let config = self.configurations!.getConfigurations()[index]
+            guard self.connected(config: config) == true else {
+                self.info(num: 6)
+                return
+            }
             self.index = self.configurations?.getIndex(hiddenID)
             self.getSourceindex(index: hiddenID)
         } else {
@@ -159,7 +164,7 @@ class ViewControllerSnapshots: NSViewController, SetDismisser, SetConfigurations
             self.reloadtabledata()
         }
     }
-    
+
     private func deletesnapshotcatalogs() {
         var arguments: SnapshotDeleteCatalogsArguments?
         var deletecommand: SnapshotCommandDeleteCatalogs?
@@ -185,7 +190,7 @@ class ViewControllerSnapshots: NSViewController, SetDismisser, SetConfigurations
         deletecommand?.setdelegate(object: self)
         deletecommand?.executeProcess(outputprocess: nil)
     }
-    
+
     // setting which table row is selected
     func tableViewSelectionDidChange(_ notification: Notification) {
         let myTableViewFromNotification = (notification.object as? NSTableView)!
@@ -214,7 +219,7 @@ class ViewControllerSnapshots: NSViewController, SetDismisser, SetConfigurations
             }
         }
     }
-    
+
     func getSourceindex(index: Int) {
         self.hiddenID = index
         self.config = self.configurations!.getConfigurations()[self.configurations!.getIndex(hiddenID!)]
@@ -233,7 +238,7 @@ class ViewControllerSnapshots: NSViewController, SetDismisser, SetConfigurations
 }
 
 extension ViewControllerSnapshots: DismissViewController {
-    
+
     func dismiss_view(viewcontroller: NSViewController) {
         self.dismiss(viewcontroller)
         if self.snapshotsloggdata?.remotecatalogstodelete != nil {
@@ -275,14 +280,14 @@ extension ViewControllerSnapshots: UpdateProgress {
             })
         }
     }
-    
+
     func fileHandler() {
         //
     }
 }
 
 extension ViewControllerSnapshots: NSTableViewDataSource {
-    
+
     func numberOfRows(in tableView: NSTableView) -> Int {
         if tableView == self.snapshotstableView {
             guard self.snapshotsloggdata?.snapshotslogs != nil else {
@@ -298,7 +303,7 @@ extension ViewControllerSnapshots: NSTableViewDataSource {
 }
 
 extension ViewControllerSnapshots: NSTableViewDelegate {
-    
+
     func tableView(_ tableView: NSTableView, objectValueFor tableColumn: NSTableColumn?, row: Int) -> Any? {
         if tableView == self.rsynctableView {
             guard row < self.configurations!.getConfigurationsDataSourcecountBackupSnapshot()!.count else { return nil }
@@ -315,7 +320,7 @@ extension ViewControllerSnapshots: NSTableViewDelegate {
             }
         }
     }
-    
+
     func tableView(_ tableView: NSTableView, setObjectValue object: Any?, for tableColumn: NSTableColumn?, row: Int) {
         guard tableView == self.snapshotstableView else { return }
         if tableColumn!.identifier.rawValue == "selectCellID" {
@@ -384,7 +389,7 @@ extension ViewControllerSnapshots: Count {
         self.snapshotstodelete = Double(max)
         return max
     }
-    
+
     func inprogressCount() -> Int {
         guard self.snapshotsloggdata?.remotecatalogstodelete != nil else { return 0 }
         let progress = Int(self.snapshotstodelete) - self.snapshotsloggdata!.remotecatalogstodelete!.count
@@ -405,14 +410,14 @@ extension ViewControllerSnapshots: NewProfile {
             self.snapshotstableView.reloadData()
         })
     }
-    
+
     func enableProfileMenu() {
         //
     }
 }
 
 extension ViewControllerSnapshots: NSComboBoxDelegate {
-    
+
     func comboBoxSelectionDidChange(_ notification: Notification) {
         switch self.selectplan.indexOfSelectedItem {
         case 1:

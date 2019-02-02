@@ -153,6 +153,7 @@ class ViewControllerNewConfigurations: NSViewController, SetConfigurations, VcSc
         self.offsiteUsername.stringValue = ""
         self.offsiteServer.stringValue = ""
         self.backupID.stringValue = ""
+        self.sshport.stringValue = ""
         self.rsyncdaemon.state = .off
     }
 
