@@ -152,6 +152,11 @@ class ViewControllerSnapshots: NSViewController, SetDismisser, SetConfigurations
         if let index = self.index() {
             guard index < self.configurations!.getConfigurationsDataSourcecountBackupSnapshot()!.count else { return }
             let hiddenID = self.configurations!.getConfigurationsDataSourcecountBackupSnapshot()![index].value(forKey: "hiddenID") as? Int ?? -1
+            let config = self.configurations!.getConfigurations()[index]
+            guard self.connected(config: config) == true else {
+                self.info(num: 6)
+                return
+            }
             self.index = self.configurations?.getIndex(hiddenID)
             self.getSourceindex(index: hiddenID)
         } else {
