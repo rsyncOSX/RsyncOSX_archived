@@ -8,6 +8,7 @@
 //  Class for crunching numbers from rsyn output.  Numbers are
 //  informal only, either used in main view or for logging purposes.
 //
+// swiftlint:disable cyclomatic_complexity
 
 import Foundation
 
