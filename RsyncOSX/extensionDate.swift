@@ -37,7 +37,7 @@ extension Date {
         return (calendar as NSCalendar).date(byAdding: dateComponent, to: self, options: NSCalendar.Options.matchNextTime)!
     }
 
-    func day() -> Int {
+    func daymonth() -> Int {
         let calendar = Calendar.current
         let dateComponent = (calendar as NSCalendar).components(.day, from: self)
         return dateComponent.day!
@@ -58,6 +58,10 @@ extension Date {
     func getWeekday() -> Int {
         let calendar = Calendar.current
         return (calendar as NSCalendar).components( .weekday, from: self).weekday!
+    }
+
+    func isSelectedDayofWeek(day: Dayofweek) -> Bool {
+        return getWeekday() == day.rawValue
     }
 
     func monthNameFull() -> String {
