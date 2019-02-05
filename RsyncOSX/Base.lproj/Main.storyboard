@@ -1718,10 +1718,20 @@
                                     </objectValues>
                                 </comboBoxCell>
                             </comboBox>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="j7T-Ad-el9">
+                                <rect key="frame" x="881" y="1" width="191" height="17"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <textFieldCell key="cell" lineBreakMode="clipping" alignment="right" title="Day of week to keep: " id="1Cn-bb-92E">
+                                    <font key="font" metaFont="system" size="11"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
                         </subviews>
                     </view>
                     <connections>
                         <outlet property="backupID" destination="h8d-af-XwT" id="FYE-S2-ylC"/>
+                        <outlet property="dayofweektokeep" destination="j7T-Ad-el9" id="ZPR-q0-abo"/>
                         <outlet property="deletebutton" destination="3FX-cL-s70" id="GY1-es-2oV"/>
                         <outlet property="deletesnapshots" destination="IPi-Xv-Xr2" id="dAa-jb-0AZ"/>
                         <outlet property="deletesnapshotsdays" destination="oOp-UK-kds" id="EO6-dT-vgo"/>
