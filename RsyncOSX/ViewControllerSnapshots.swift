@@ -21,10 +21,10 @@ class ViewControllerSnapshots: NSViewController, SetDismisser, SetConfigurations
     private var index: Int?
     weak var processterminationDelegate: UpdateProgress?
     var abort: Bool = false
-    // Reference to which planin combox
+    // Reference to which plan in combox
     var comboBoxValues = ["none",
-                          "plan 1",
-                          "plan 2"]
+                          "last",
+                          "every"]
 
     @IBOutlet weak var snapshotstableView: NSTableView!
     @IBOutlet weak var rsynctableView: NSTableView!
@@ -41,6 +41,7 @@ class ViewControllerSnapshots: NSViewController, SetDismisser, SetConfigurations
     @IBOutlet weak var deletesnapshotsdays: NSSlider!
     @IBOutlet weak var stringdeletesnapshotsdaysnum: NSTextField!
     @IBOutlet weak var selectplan: NSComboBox!
+    @IBOutlet weak var dayofweektokeep: NSTextField!
 
     private func info (num: Int) {
         switch num {
@@ -149,6 +150,7 @@ class ViewControllerSnapshots: NSViewController, SetDismisser, SetConfigurations
         super.viewDidAppear()
         self.initcombox(combobox: self.selectplan, index: 0)
         self.selectplan.isEnabled = false
+        self.dayofweektokeep.stringValue = "Day of week to keep: " + ViewControllerReference.shared.dayofweeksnapshots.rawValue
         if let index = self.index() {
             guard index < self.configurations!.getConfigurationsDataSourcecountBackupSnapshot()!.count else { return }
             let hiddenID = self.configurations!.getConfigurationsDataSourcecountBackupSnapshot()![index].value(forKey: "hiddenID") as? Int ?? -1

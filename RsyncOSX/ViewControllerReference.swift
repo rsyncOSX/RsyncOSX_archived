@@ -130,6 +130,8 @@ class ViewControllerReference {
     var executescheduledtasksmenuapp: Bool = false
     // True if menuapp is running
     var menuappisrunning: Bool = false
+    // Day of week to keep snapshots
+    var dayofweeksnapshots: StringDayofweek = .Sunday
 
     func getvcref(viewcontroller: ViewController) -> NSViewController? {
         switch viewcontroller {
