@@ -89,6 +89,8 @@ class ViewControllerUserconfiguration: NSViewController, NewRsync, SetDismisser,
             self.dismissview(viewcontroller: self, vcontroller: .vctabmain)
         } else if (self.presentingViewController as? ViewControllerCopyFiles) != nil {
             self.dismissview(viewcontroller: self, vcontroller: .vccopyfiles)
+        } else if (self.presentingViewController as? ViewControllerSnapshots) != nil {
+            self.dismissview(viewcontroller: self, vcontroller: .vcsnapshot)
         }
         _ = RsyncVersionString()
     }
