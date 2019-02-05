@@ -3866,6 +3866,7 @@ DQ
                         </subviews>
                     </view>
                     <connections>
+                        <outlet property="dayofweektokeep" destination="0q6-Wj-plx" id="U4G-5v-H6P"/>
                         <outlet property="detailedlogging" destination="dg1-Pc-D5r" id="Z5n-3i-nJ1"/>
                         <outlet property="executescheduledappsinmenuapp" destination="tyj-K6-PJj" id="cbA-0X-jrJ"/>
                         <outlet property="fulllogging" destination="aZk-KL-3Z0" id="9vS-lT-gDI"/>
