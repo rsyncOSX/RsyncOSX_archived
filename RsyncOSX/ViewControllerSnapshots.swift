@@ -83,6 +83,13 @@ class ViewControllerSnapshots: NSViewController, SetDismisser, SetConfigurations
         combobox.selectItem(at: index)
     }
 
+    // Userconfiguration button
+    @IBAction func userconfiguration(_ sender: NSButton) {
+        globalMainQueue.async(execute: { () -> Void in
+            self.presentAsSheet(self.viewControllerUserconfiguration!)
+        })
+    }
+
     @IBAction func updatedeletesnapshotsnum(_ sender: NSSlider) {
         self.stringdeletesnapshotsnum.stringValue = String(self.deletesnapshots.intValue)
         self.numbersinsequencetodelete = Int(self.deletesnapshots.intValue - 1)
@@ -243,6 +250,7 @@ extension ViewControllerSnapshots: DismissViewController {
 
     func dismiss_view(viewcontroller: NSViewController) {
         self.dismiss(viewcontroller)
+        self.dayofweektokeep.stringValue = "Day of week to keep: " + ViewControllerReference.shared.dayofweeksnapshots.rawValue
         if self.snapshotsloggdata?.remotecatalogstodelete != nil {
             self.snapshotsloggdata?.remotecatalogstodelete = nil
             self.info(num: 2)
