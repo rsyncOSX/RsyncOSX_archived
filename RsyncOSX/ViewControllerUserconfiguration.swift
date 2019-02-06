@@ -365,6 +365,7 @@ extension ViewControllerUserconfiguration: NSTextFieldDelegate {
 extension ViewControllerUserconfiguration: NSComboBoxDelegate {
 
     func comboBoxSelectionDidChange(_ notification: Notification) {
+        self.setdirty()
         switch self.dayofweektokeep.indexOfSelectedItem {
         case 0:
             ViewControllerReference.shared.dayofweeksnapshots = .Sunday

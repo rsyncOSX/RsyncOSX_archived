@@ -84,6 +84,27 @@ final class Userconfiguration {
                 ViewControllerReference.shared.fulllogging = false
             }
         }
+        // Day of week snapshots
+        if let dayofweeksnaphot = dict.value(forKey: "dayofweeksnaphot") as? String {
+            switch dayofweeksnaphot {
+            case StringDayofweek.Monday.rawValue:
+                ViewControllerReference.shared.dayofweeksnapshots = .Monday
+            case StringDayofweek.Tuesday.rawValue:
+                ViewControllerReference.shared.dayofweeksnapshots = .Tuesday
+            case StringDayofweek.Wednesday.rawValue:
+                ViewControllerReference.shared.dayofweeksnapshots = .Wednesday
+            case StringDayofweek.Thursday.rawValue:
+                ViewControllerReference.shared.dayofweeksnapshots = .Thursday
+            case StringDayofweek.Friday.rawValue:
+                ViewControllerReference.shared.dayofweeksnapshots = .Friday
+            case StringDayofweek.Saturday.rawValue:
+                ViewControllerReference.shared.dayofweeksnapshots = .Saturday
+            case StringDayofweek.Sunday.rawValue:
+                ViewControllerReference.shared.dayofweeksnapshots = .Sunday
+            default:
+                ViewControllerReference.shared.dayofweeksnapshots = .Sunday
+            }
+        }
     }
 
     init (userconfigRsyncOSX: [NSDictionary]) {
