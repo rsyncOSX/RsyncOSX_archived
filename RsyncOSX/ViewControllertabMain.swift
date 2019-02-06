@@ -495,12 +495,12 @@ class ViewControllertabMain: NSViewController, ReloadTable, Deselect, VcMain, De
         weak var localprofileinfo2: SetProfileinfo?
         guard self.loadProfileMenu == true else {
             self.profilInfo.stringValue = "Profile: please wait..."
-            self.profilInfo.textColor = .blue
+            self.profilInfo.textColor = .white
             return
         }
         if let profile = self.configurations!.getProfile() {
             self.profilInfo.stringValue = "Profile: " + profile
-            self.profilInfo.textColor = .blue
+            self.profilInfo.textColor = .white
         } else {
             self.profilInfo.stringValue = "Profile: default"
             self.profilInfo.textColor = .black
