@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="14490.55" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="abu-zT-Ht4">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="14490.59" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="abu-zT-Ht4">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14490.55"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14490.59"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -187,7 +187,7 @@
                 <customObject id="Voe-Tx-rLC" customClass="AppDelegate" customModule="RsyncOSX" customModuleProvider="target"/>
                 <customObject id="Ady-hI-5gd" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-398" y="-222"/>
+            <point key="canvasLocation" x="-1638" y="-11"/>
         </scene>
         <!--Window Controller-->
         <scene sceneID="GeT-NB-lhy">
@@ -331,7 +331,7 @@
                 </windowController>
                 <customObject id="Rv5-yv-lsc" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1213" y="56"/>
+            <point key="canvasLocation" x="-1767" y="-410"/>
         </scene>
         <!--Tab View Controller-->
         <scene sceneID="Hwe-jL-WAZ">
@@ -373,7 +373,7 @@
                 </tabViewController>
                 <customObject id="am9-td-Qjg" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-454" y="-12"/>
+            <point key="canvasLocation" x="-1039" y="40"/>
         </scene>
         <!--Execute-->
         <scene sceneID="84s-6a-t0v">
@@ -1073,7 +1073,7 @@
                 <customObject id="aBq-uD-wbZ" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
                 <userDefaultsController representsSharedInstance="YES" id="dxj-3R-kkV"/>
             </objects>
-            <point key="canvasLocation" x="-1070" y="1241.5"/>
+            <point key="canvasLocation" x="-1114" y="1242"/>
         </scene>
         <!--Ssh-->
         <scene sceneID="Cfs-fa-Wlg">
@@ -1345,7 +1345,7 @@
                 </viewController>
                 <customObject id="rmz-oH-xzJ" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1751" y="169"/>
+            <point key="canvasLocation" x="1213" y="173"/>
         </scene>
         <!--Snapshots-->
         <scene sceneID="RHL-K7-jUr">
@@ -1750,7 +1750,7 @@
                 </viewController>
                 <customObject id="Ryh-dP-c0c" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1805" y="723.5"/>
+            <point key="canvasLocation" x="1213" y="670"/>
         </scene>
         <!--Copy files-->
         <scene sceneID="eWC-14-5oE">
@@ -2126,7 +2126,7 @@
                 </viewController>
                 <customObject id="Mqu-Zr-4NJ" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="621" y="723.5"/>
+            <point key="canvasLocation" x="33" y="670"/>
         </scene>
         <!--Logs-->
         <scene sceneID="7KW-R1-b2z">
@@ -2523,7 +2523,7 @@
                                 </connections>
                             </datePicker>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="n6f-sj-uAb">
-                                <rect key="frame" x="701" y="380" width="373" height="17"/>
+                                <rect key="frame" x="701" y="372" width="373" height="17"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="⌘L or double click  or on row to stop or delete schedules..." id="d9k-fP-XKG">
                                     <font key="font" size="11" name=".LucidaGrandeUI"/>
@@ -2532,10 +2532,10 @@
                                 </textFieldCell>
                             </textField>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="uIq-wW-zUf">
-                                <rect key="frame" x="254" y="380" width="205" height="17"/>
+                                <rect key="frame" x="254" y="372" width="205" height="17"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="left" title="Profile :" id="TqG-6l-QwU">
-                                    <font key="font" metaFont="system" size="11"/>
+                                    <font key="font" metaFont="smallSystem"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
@@ -2644,7 +2644,7 @@
                 </viewController>
                 <customObject id="4bt-29-abw" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1243" y="1241.5"/>
+            <point key="canvasLocation" x="1213" y="1242"/>
         </scene>
         <!--Add-->
         <scene sceneID="Djw-1M-Bvf">
@@ -3012,7 +3012,7 @@
                                 <rect key="frame" x="912" y="1" width="162" height="17"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="Profile :" id="dTX-H7-8VC">
-                                    <font key="font" metaFont="system" size="11"/>
+                                    <font key="font" metaFont="smallSystem"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
@@ -3202,7 +3202,7 @@
                 </viewController>
                 <customObject id="eib-cb-pn8" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="89" y="1241.5"/>
+            <point key="canvasLocation" x="33" y="1242"/>
         </scene>
         <!--Details about files-->
         <scene sceneID="GIT-ED-d2h">
@@ -3549,7 +3549,7 @@ DQ
                 </viewController>
                 <customObject id="qOZ-8D-wb3" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-651" y="2692"/>
+            <point key="canvasLocation" x="-1155" y="2039"/>
         </scene>
         <!--Progress-->
         <scene sceneID="u6v-Zu-TpF">
@@ -3597,7 +3597,7 @@ DQ
                 </viewController>
                 <customObject id="DlE-oK-27I" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1433" y="1569"/>
+            <point key="canvasLocation" x="-1402" y="1549"/>
         </scene>
         <!--View Controller Configuration-->
         <scene sceneID="8qp-aA-J4K">
@@ -3934,15 +3934,6 @@ DQ
                                     <outlet property="nextKeyView" destination="2Y8-Qa-HQE" id="ft8-Ii-RiK"/>
                                 </connections>
                             </textField>
-                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Fth-WK-lgQ">
-                                <rect key="frame" x="-2" y="224" width="470" height="17"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" title="Edit server and catalog parameters" id="yon-aC-0V3">
-                                    <font key="font" metaFont="system"/>
-                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                                </textFieldCell>
-                            </textField>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ZWj-qH-2I5">
                                 <rect key="frame" x="48" y="198" width="89" height="17"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
@@ -4119,7 +4110,7 @@ DQ
                 </viewController>
                 <customObject id="cus-9G-xLk" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1384" y="2320.5"/>
+            <point key="canvasLocation" x="-1863" y="1644"/>
         </scene>
         <!--About-->
         <scene sceneID="qtg-l1-11e">
@@ -4755,7 +4746,7 @@ DQ
                 </viewController>
                 <customObject id="Q22-JH-0wK" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-2068" y="16.5"/>
+            <point key="canvasLocation" x="-2336" y="154"/>
         </scene>
         <!--All profiles-->
         <scene sceneID="AnB-2j-8Cc">
@@ -5891,7 +5882,7 @@ DQ
                 </viewController>
                 <customObject id="YGp-CI-DSF" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1265.5" y="1954.5"/>
+            <point key="canvasLocation" x="-2458" y="1681"/>
         </scene>
         <!--View Controller Profile-->
         <scene sceneID="Ifs-65-j1l">
@@ -6303,7 +6294,7 @@ DQ
                 </viewController>
                 <customObject id="Ev4-fO-37e" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="128" y="2667.5"/>
+            <point key="canvasLocation" x="-873" y="2472"/>
         </scene>
         <!--View Controller Copy Files Source-->
         <scene sceneID="54O-4C-Jot">
@@ -6426,7 +6417,7 @@ DQ
                 </viewController>
                 <customObject id="mDL-yc-AmA" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1369" y="2692"/>
+            <point key="canvasLocation" x="-1835" y="2039"/>
         </scene>
         <!--Details about files-->
         <scene sceneID="YH7-XV-N0K">
@@ -6812,7 +6803,7 @@ DQ
                 </viewController>
                 <customObject id="tYc-nC-URw" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1212.5" y="3096.5"/>
+            <point key="canvasLocation" x="-2548" y="2105"/>
         </scene>
         <!--View Controller Remote Info-->
         <scene sceneID="UZZ-3R-We2">
@@ -7063,7 +7054,7 @@ DQ
                 </viewController>
                 <customObject id="EeF-i6-w3M" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-288.5" y="3096"/>
+            <point key="canvasLocation" x="-2474" y="2496"/>
         </scene>
         <!--Encrypt-->
         <scene sceneID="xZb-yt-jzx">
@@ -7527,7 +7518,7 @@ DQ
                 </viewController>
                 <customObject id="dgD-Px-NZ3" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1414" y="1697.5"/>
+            <point key="canvasLocation" x="-1383" y="1698"/>
         </scene>
         <!--View Controller Restore-->
         <scene sceneID="rtC-yB-nfp">
@@ -7895,7 +7886,7 @@ DQ
                 </viewController>
                 <customObject id="gxo-zs-Tkh" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1246" y="3471"/>
+            <point key="canvasLocation" x="-1588" y="2483"/>
         </scene>
     </scenes>
     <resources>
