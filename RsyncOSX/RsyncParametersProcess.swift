@@ -97,9 +97,10 @@ final class RsyncParametersProcess {
             self.appendParameter(parameter: config.parameter13!, forDisplay: forDisplay)
         }
         if config.parameter14 != nil {
-            if config.offsiteServer.isEmpty == true && config.parameter14! == self.suffixString ||
-                config.parameter14! == self.suffixString2 {
-                self.appendParameter(parameter: self.setdatesuffixlocalhost(), forDisplay: forDisplay)
+            if config.offsiteServer.isEmpty == true {
+                if config.parameter14! == self.suffixString || config.parameter14! == self.suffixString2 {
+                    self.appendParameter(parameter: self.setdatesuffixlocalhost(), forDisplay: forDisplay)
+                }
             } else {
                 self.appendParameter(parameter: config.parameter14!, forDisplay: forDisplay)
             }

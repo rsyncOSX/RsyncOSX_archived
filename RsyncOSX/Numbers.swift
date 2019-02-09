@@ -89,6 +89,12 @@ final class Numbers: SetConfigurations {
     }
 
     private func resultrsyncver3() {
+        guard self.files?.count ?? -1 > 0 else { return }
+        guard self.filesSize?.count ?? -1 > 0 else { return }
+        guard self.totfilesNum?.count ?? -1 > 0 else { return }
+        guard self.totfileSize?.count ?? -1 > 0 else { return }
+        guard self.new?.count ?? -1 > 0 else { return }
+        guard self.delete?.count ?? -1 > 0 else { return }
         // Ver3 of rsync adds "," as 1000 mark, must replace it and then split numbers into components
         guard self.files?.count ?? -1 > 0 else { return }
         guard self.filesSize?.count ?? -1 > 0 else { return }
