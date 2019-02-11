@@ -9,7 +9,7 @@
 
 import Foundation
 
-enum WhatRoot {
+enum WhichRoot {
     case profileRoot
     case sshRoot
 }
@@ -67,12 +67,14 @@ extension Fileerrormessage {
 
 class Files: Reportfileerror {
 
-    var whatroot: WhatRoot?
+    var whichroot: WhichRoot?
     var rootpath: String?
+    // config path either
+    // ViewControllerReference.shared.configpath or RcloneReference.shared.configpath
     private var configpath: String?
 
     private func setrootpath() {
-        switch self.whatroot! {
+        switch self.whichroot! {
         case .profileRoot:
             let paths = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true) as NSArray
             let docuDir = (paths.firstObject as? String)!
@@ -172,9 +174,9 @@ class Files: Reportfileerror {
         }
     }
 
-    init (whatroot: WhatRoot, configpath: String) {
+    init (whichroot: WhichRoot, configpath: String) {
         self.configpath = configpath
-        self.whatroot = whatroot
+        self.whichroot = whichroot
         self.setrootpath()
     }
 }

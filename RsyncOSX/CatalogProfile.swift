@@ -53,6 +53,6 @@ final class CatalogProfile: Files {
     }
 
     init () {
-        super.init(whatroot: .profileRoot, configpath: ViewControllerReference.shared.configpath)
+        super.init(whichroot: .profileRoot, configpath: ViewControllerReference.shared.configpath)
     }
 }
