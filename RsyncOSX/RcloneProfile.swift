@@ -11,6 +11,6 @@ import Foundation
 class RcloneProfiles: Files {
 
     init () {
-        super.init(whatroot: .profileRoot, configpath: RcloneReference.shared.configpath)
+        super.init(whichroot: .profileRoot, configpath: RcloneReference.shared.configpath)
     }
 }

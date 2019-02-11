@@ -36,7 +36,6 @@ class ViewControllerUserconfiguration: NSViewController, NewRsync, SetDismisser,
     @IBOutlet weak var detailedlogging: NSButton!
     @IBOutlet weak var noRsync: NSTextField!
     @IBOutlet weak var restorePath: NSTextField!
-    @IBOutlet weak var operation: NSButton!
     @IBOutlet weak var fulllogging: NSButton!
     @IBOutlet weak var minimumlogging: NSButton!
     @IBOutlet weak var nologging: NSButton!
