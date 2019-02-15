@@ -378,6 +378,16 @@ class Configurations: ReloadTable, SetSchedules {
         }
     }
 
+    func removeesshparameter(index: Int, delete: Bool) {
+        guard self.configurations != nil else { return }
+        guard index < self.configurations!.count  else { return }
+        if delete {
+            self.configurations![index].parameter5 = ""
+        } else {
+            self.configurations![index].parameter5 = "-e"
+        }
+    }
+
     func setrcloneconnection(index: Int, rclonehiddenID: Int, rcloneprofile: String?) {
         guard self.configurations![index].task == ViewControllerReference.shared.backup ||  self.configurations![index].task == ViewControllerReference.shared.combined else { return }
         self.configurations![index].rclonehiddenID = rclonehiddenID

@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="abu-zT-Ht4">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="14490.59" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="abu-zT-Ht4">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14460.31"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14490.59"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -2528,7 +2528,7 @@
                                 <rect key="frame" x="254" y="380" width="205" height="17"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="left" title="Profile :" id="TqG-6l-QwU">
-                                    <font key="font" metaFont="system" size="11"/>
+                                    <font key="font" metaFont="smallSystem"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
@@ -3005,7 +3005,7 @@
                                 <rect key="frame" x="912" y="2" width="162" height="17"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="Profile :" id="dTX-H7-8VC">
-                                    <font key="font" metaFont="system" size="11"/>
+                                    <font key="font" metaFont="smallSystem"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
@@ -4586,14 +4586,25 @@ DQ
                                             </connections>
                                         </button>
                                         <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="S6M-mZ-vGU">
-                                            <rect key="frame" x="300" y="14" width="219" height="18"/>
+                                            <rect key="frame" x="300" y="14" width="162" height="18"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                            <buttonCell key="cell" type="check" title="Remove --compress parameter" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="zF8-9O-ajg">
+                                            <buttonCell key="cell" type="check" title="remove --compress" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="zF8-9O-ajg">
                                                 <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                                 <font key="font" metaFont="system"/>
                                             </buttonCell>
                                             <connections>
                                                 <action selector="removecompressparameter:" target="K9c-yf-VMY" id="DJO-A6-xe7"/>
+                                            </connections>
+                                        </button>
+                                        <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="C9o-rX-6We">
+                                            <rect key="frame" x="300" y="39" width="109" height="18"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                            <buttonCell key="cell" type="check" title="remove -e ssh" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="2zQ-iW-vbk">
+                                                <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                                <font key="font" metaFont="system"/>
+                                            </buttonCell>
+                                            <connections>
+                                                <action selector="removeesshparameter:" target="K9c-yf-VMY" id="CmN-og-PSJ"/>
                                             </connections>
                                         </button>
                                     </subviews>
@@ -4637,6 +4648,7 @@ DQ
                         <outlet property="combo9" destination="5I0-rR-9OO" id="Pvu-0D-Dia"/>
                         <outlet property="compressparameter" destination="S6M-mZ-vGU" id="L3P-jl-fP0"/>
                         <outlet property="donotdeletebutton" destination="qDc-Ou-8uj" id="PC6-7q-WDV"/>
+                        <outlet property="esshparameter" destination="C9o-rX-6We" id="M72-vv-NSB"/>
                         <outlet property="param1" destination="8lV-18-VgA" id="NpZ-IK-7Vl"/>
                         <outlet property="param10" destination="eH7-7W-QkX" id="4zd-Ig-50I"/>
                         <outlet property="param11" destination="0II-7a-Edf" id="YeC-Vz-tjI"/>
@@ -7827,11 +7839,11 @@ DQ
     <resources>
         <image name="abort" width="48" height="48"/>
         <image name="backupnow" width="64" height="64"/>
-        <image name="batch" width="48" height="48"/>
+        <image name="batch" width="64" height="64"/>
         <image name="complete" width="48" height="48"/>
         <image name="config" width="64" height="64"/>
-        <image name="menuapp" width="25.600000381469727" height="25.600000381469727"/>
-        <image name="quickbackup" width="48" height="48"/>
+        <image name="menuapp" width="16" height="16"/>
+        <image name="quickbackup" width="64" height="64"/>
         <image name="red" width="512" height="512"/>
         <image name="report" width="64" height="64"/>
         <image name="up" width="256" height="256"/>

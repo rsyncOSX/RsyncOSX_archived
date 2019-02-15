@@ -31,6 +31,7 @@ final class RsyncParametersProcess {
         let parameter2: String = config.parameter2
         let parameter3: String = config.parameter3
         let parameter4: String = config.parameter4
+        let parameter5: String = config.parameter5
         let offsiteServer: String = config.offsiteServer
         self.arguments!.append(parameter1 ?? "")
         if verify {
@@ -51,7 +52,9 @@ final class RsyncParametersProcess {
         if offsiteServer.isEmpty {
             // nothing
         } else {
-            self.sshportparameter(config, forDisplay: forDisplay)
+            if parameter5.isEmpty == false {
+                self.sshportparameter(config, forDisplay: forDisplay)
+            }
         }
     }
 
