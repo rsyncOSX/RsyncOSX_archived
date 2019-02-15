@@ -46,6 +46,7 @@ class ViewControllerRsyncParameters: NSViewController, SetConfigurations, SetDis
     @IBOutlet weak var rsyncdaemon: NSButton!
     @IBOutlet weak var sshport: NSTextField!
     @IBOutlet weak var compressparameter: NSButton!
+    @IBOutlet weak var esshparameter: NSButton!
 
     @IBOutlet weak var combo8: NSComboBox!
     @IBOutlet weak var combo9: NSComboBox!
@@ -70,6 +71,21 @@ class ViewControllerRsyncParameters: NSViewController, SetConfigurations, SetDis
                 break
             }
             self.param3.stringValue = self.configurations!.getConfigurations()[index].parameter3
+        }
+    }
+
+    @IBAction func removeesshparameter(_ sender: NSButton) {
+        if let index = self.index() {
+            switch self.esshparameter.state {
+            case .on:
+                self.configurations!.removeesshparameter(index: index, delete: true)
+                self.param5.stringValue = self.configurations!.getConfigurations()[index].parameter5
+            case .off:
+                self.configurations!.removeesshparameter(index: index, delete: false)
+                self.param5.stringValue = self.configurations!.getConfigurations()[index].parameter5 + " ssh"
+            default:
+                break
+            }
         }
     }
 
@@ -174,11 +190,18 @@ class ViewControllerRsyncParameters: NSViewController, SetConfigurations, SetDis
             self.param2.stringValue = configurations[index].parameter2
             self.param3.stringValue = configurations[index].parameter3
             self.param4.stringValue = configurations[index].parameter4
-            self.param5.stringValue = configurations[index].parameter5 + " " + configurations[index].parameter6
+            if configurations[index].parameter5.isEmpty == false {
+                self.param5.stringValue = configurations[index].parameter5 + " " + configurations[index].parameter6
+            }
             if configurations[index].parameter3.isEmpty == true {
                 self.compressparameter.state = .on
             } else {
                 self.compressparameter.state = .off
+            }
+            if configurations[index].parameter5.isEmpty == true {
+                self.esshparameter.state = .on
+            } else {
+                self.esshparameter.state = .off
             }
             self.initcombox(combobox: self.combo8, index: self.parameters!.getParameter(rsyncparameternumber: 8).0)
             self.param8.stringValue = self.parameters!.getParameter(rsyncparameternumber: 8).1

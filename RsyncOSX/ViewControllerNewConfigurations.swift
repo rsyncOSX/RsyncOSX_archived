@@ -134,7 +134,12 @@ class ViewControllerNewConfigurations: NSViewController, SetConfigurations, VcSc
         } else {
             self.storageapi = PersistentStorageAPI(profile: nil)
         }
-        self.setFields()
+        self.viewParameter1.stringValue = self.archive
+        self.viewParameter2.stringValue = self.verbose
+        self.viewParameter3.stringValue = self.compress
+        self.viewParameter4.stringValue = self.delete
+        self.viewParameter5.stringValue = self.eparam + " " + self.ssh
+        self.rsyncdaemon.state = .off
     }
 
     private func initcombox(combobox: NSComboBox, index: Int) {
@@ -144,11 +149,6 @@ class ViewControllerNewConfigurations: NSViewController, SetConfigurations, VcSc
     }
 
     private func setFields() {
-        self.viewParameter1.stringValue = self.archive
-        self.viewParameter2.stringValue = self.verbose
-        self.viewParameter3.stringValue = self.compress
-        self.viewParameter4.stringValue = self.delete
-        self.viewParameter5.stringValue = self.eparam + " " + self.ssh
         self.localCatalog.stringValue = ""
         self.offsiteCatalog.stringValue = ""
         self.offsiteUsername.stringValue = ""
