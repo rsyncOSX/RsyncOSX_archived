@@ -120,7 +120,12 @@ final class RsyncParameters {
         var split = str.components(separatedBy: "=")
         argument = String(split[0])
         if split.count > 1 {
-            value = String(split[1])
+            if split.count > 2 {
+                split.remove(at: 0)
+                value = split.joined(separator: "=")
+            } else {
+                value = String(split[1])
+            }
         } else {
             value = argument
         }
