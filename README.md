@@ -10,11 +10,13 @@ Rsync is a file-based synchronization and backup tool. There is no custom soluti
 
 Scheduled tasks are added and deleted within RsyncOSX. Executing the scheduled tasks is by the [menu app](https://github.com/rsyncOSX/RsyncOSXsched). A short [intro to RsyncOSX](https://rsyncosx.github.io/Intro) and full [documentation of RsyncOSX](https://rsyncosx.github.io/AboutRsyncOSX).
 
-About signing and notarizing of RsyncOSX see below.
-
 ### Version of rsync
 
 RsyncOSX is only verified with rsync versions 2.6.9, 3.1.2 and 3.1.3. Other versions of rsync will work but numbers in logs are not set.
+
+### Changelog
+
+The [Changelog](https://rsyncosx.github.io/Changelog).
 
 ### The --delete parameter
 
@@ -48,10 +50,6 @@ If you do a **restore** from the `remote` to the `source`, some files in the sou
 ### Application icon
 
 The application icon is created by [Zsolt Sándor](https://github.com/graphis). All rights reserved to Zsolt Sándor.
-
-### Changelog
-
-The [Changelog](https://rsyncosx.github.io/Changelog).
 
 ### How to use RsyncOSX - YouTube videos
 
