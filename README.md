@@ -14,10 +14,6 @@ Scheduled tasks are added and deleted within RsyncOSX. Executing the scheduled t
 
 RsyncOSX is only verified with rsync versions 2.6.9, 3.1.2 and 3.1.3. Other versions of rsync will work but numbers in logs are not set.
 
-### Changelog
-
-The [Changelog](https://rsyncosx.github.io/Changelog).
-
 ### The --delete parameter
 
 Caution about RsyncOSX and the `--delete` parameter. The `--delete` is a [default parameter](https://rsyncosx.github.io/RsyncParameters). The parameter instructs rsync to delete all files in the destination which are not present in the source. Every time you add a new task to RsyncOSX, execute an estimation run (`--dry-run` parameter) and inspect the result before executing a real run. If you by accident set an empty catalog as source RsyncOSX will delete all files in the destination. To save deleted and changes files either utilize [snapshots](https://rsyncosx.github.io/Snapshots) or the `--backup` [feature](https://rsyncosx.github.io/Parameters).
@@ -61,7 +57,11 @@ There are four short YouTube videos of RsyncOSX:
 - doing a full [restore](https://youtu.be/-R6n_8fl6Ls) to a temporary local restore catalogs
 - how to change [version of rsync](https://youtu.be/mVFL25-lo6Y) utilized by RsyncOSX
 
-### Rsync
+### Changelog
+
+The [Changelog](https://rsyncosx.github.io/Changelog).
+
+### Which version of rsync
 
 The default version of `rsync` in macOS is old (version 2.6.9, [protocol](https://rsync.samba.org/how-rsync-works.html) version 29). Version [2.6.9](https://download.samba.org/pub/rsync/src/rsync-2.6.9-NEWS) was released in nov 2006. The current release of rsync is version [3.1.3](https://download.samba.org/pub/rsync/src/rsync-3.1.3-NEWS) protocol 31 released 28 January 2018. There are at least three options to get and install the current version of rsync for use in RsyncOSX:
 
