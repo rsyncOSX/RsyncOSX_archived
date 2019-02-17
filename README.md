@@ -10,15 +10,13 @@ Rsync is a file-based synchronization and backup tool. There is no custom soluti
 
 Scheduled tasks are added and deleted within RsyncOSX. Executing the scheduled tasks is by the [menu app](https://github.com/rsyncOSX/RsyncOSXsched). A short [intro to RsyncOSX](https://rsyncosx.github.io/Intro) and full [documentation of RsyncOSX](https://rsyncosx.github.io/AboutRsyncOSX).
 
-About signing and notarizing of RsyncOSX see below.
-
 ### Version of rsync
 
 RsyncOSX is only verified with rsync versions 2.6.9, 3.1.2 and 3.1.3. Other versions of rsync will work but numbers in logs are not set.
 
 ### The --delete parameter
 
-**Caution** about RsyncOSX and the `--delete` parameter. The `--delete` is a [default parameter](https://rsyncosx.github.io/RsyncParameters). The parameter instructs rsync to **delete** all files in the destination which are not present in the source. Every time you add a new task to RsyncOSX, execute an estimation run (`--dry-run` parameter) and inspect the result before executing a real run. If you by accident set an empty catalog as source RsyncOSX will delete all files in the destination. To save deleted and changes files either utilize [snapshots](https://rsyncosx.github.io/Snapshots) or the `--backup` [feature](https://rsyncosx.github.io/Parameters).
+Caution about RsyncOSX and the `--delete` parameter. The `--delete` is a [default parameter](https://rsyncosx.github.io/RsyncParameters). The parameter instructs rsync to delete all files in the destination which are not present in the source. Every time you add a new task to RsyncOSX, execute an estimation run (`--dry-run` parameter) and inspect the result before executing a real run. If you by accident set an empty catalog as source RsyncOSX will delete all files in the destination. To save deleted and changes files either utilize [snapshots](https://rsyncosx.github.io/Snapshots) or the `--backup` [feature](https://rsyncosx.github.io/Parameters).
 
 ### Fighting bugs
 
@@ -33,17 +31,7 @@ Automatic synchronizing in action.
 
 ### Signing and notarizing
 
-The app is signed with my Apple ID developer certificate and [notarized](https://support.apple.com/en-us/HT202491) by Apple. If you have Xcode developer tools installed executing the following command `xcrun stapler validate no.blogspot.RsyncOSX RsyncOSX.app` will verify the RsyncOSX.app.
-```
-xcrun stapler validate no.blogspot.RsyncOSX RsyncOSX.app
-Processing: /Volumes/Home/thomas/GitHub/RsyncOSX/Build/Products/Release/RsyncOSX.app
-The validate action worked!
-```
-This is the message when opening a downloaded version.
-
-![](images/verify.png)
-
-The message is in Norwegian: "Apple har sjekket programmet uten å finne ondsinnet programvare.". The english version of it is: "Apple checked it for malicious software and none was detected.".
+The app is signed with my Apple ID developer certificate and [notarized](https://support.apple.com/en-us/HT202491) by Apple. See [signing and notarizing](https://rsyncosx.github.io/Notarized) for info.
 
 ### About crash?
 
@@ -59,10 +47,6 @@ If you do a **restore** from the `remote` to the `source`, some files in the sou
 
 The application icon is created by [Zsolt Sándor](https://github.com/graphis). All rights reserved to Zsolt Sándor.
 
-### Changelog
-
-The [Changelog](https://rsyncosx.github.io/Changelog).
-
 ### How to use RsyncOSX - YouTube videos
 
 There are four short YouTube videos of RsyncOSX:
@@ -73,7 +57,11 @@ There are four short YouTube videos of RsyncOSX:
 - doing a full [restore](https://youtu.be/-R6n_8fl6Ls) to a temporary local restore catalogs
 - how to change [version of rsync](https://youtu.be/mVFL25-lo6Y) utilized by RsyncOSX
 
-### Rsync
+### Changelog
+
+The [Changelog](https://rsyncosx.github.io/Changelog).
+
+### Which version of rsync
 
 The default version of `rsync` in macOS is old (version 2.6.9, [protocol](https://rsync.samba.org/how-rsync-works.html) version 29). Version [2.6.9](https://download.samba.org/pub/rsync/src/rsync-2.6.9-NEWS) was released in nov 2006. The current release of rsync is version [3.1.3](https://download.samba.org/pub/rsync/src/rsync-3.1.3-NEWS) protocol 31 released 28 January 2018. There are at least three options to get and install the current version of rsync for use in RsyncOSX:
 
@@ -94,19 +82,3 @@ As part of this version of RsyncOSX I am using [SwiftLint](https://github.com/re
 To compile the code, install Xcode and open the RsyncOSX project file. Before compiling, open in Xcode the `RsyncOSX/General` preference page (after opening the RsyncOSX project file) and replace your own credentials in `Signing`, or disable Signing.
 
 There are two ways to compile, either utilize `make` or compile by Xcode. `make release` will compile the `RsyncOSX.app` and `make dmg` will make a dmg file to be released.  The build of dmg files are by utilizing [andreyvit](https://github.com/andreyvit/create-dmg) script for creating dmg and [syncthing-macos](https://github.com/syncthing/syncthing-macos) setup.
-
-### Development
-
-Details about how RsyncOSX is [built](https://rsyncosx.github.io/Source).
-
-### MacUpdate and Softpedia
-
-RsyncOSX is also released on [MacUpdate](https://www.macupdate.com/app/mac/56516/rsyncosx) and linked for download on [Softpedia](http://mac.softpedia.com/get/Internet-Utilities/RsyncOSX.shtml) as well.
-
-### My NAS setup
-
-I have setup up my own [NAS](https://rsyncosx.github.io/DIYNAS). My NAS SW is now FreeNAS. I am doing backups by using RsyncOSX and sharing out disk by AFP and SMB.
-
-#### RcloneOSX
-
-I have commenced a new project, the new project [RcloneOSX](https://github.com/rsyncOSX/rcloneosx) is adapting RsyncOSX to utilize [rclone](https://rclone.org). See the [Changelog](https://rsyncosx.github.io/RcloneChangelog) for the new project.
