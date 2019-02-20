@@ -87,8 +87,7 @@ class Readwritefiles {
     }
 
     // Function for write data to persistent store
-    func writeDatatoPersistentStorage (_ array: [NSDictionary], task: WhatToReadWrite) -> Bool {
-        self.setpreferences(task)
+    func writeDatatoPersistentStorage (_ array: [NSDictionary]) -> Bool {
         let dictionary = NSDictionary(object: array, forKey: self.key! as NSCopying)
         guard self.filename != nil else { return false }
         let write = dictionary.write(toFile: self.filename!, atomically: true)

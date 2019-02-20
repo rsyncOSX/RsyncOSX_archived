@@ -99,7 +99,7 @@ final class PersistentStorageUserconfiguration: Readwritefiles, SetConfiguration
     // Configuration is [NSDictionary]
     private func writeToStore (_ array: [NSDictionary]) {
         // Getting the object just for the write method, no read from persistent store
-        _ = self.writeDatatoPersistentStorage(array, task: .userconfig)
+        _ = self.writeDatatoPersistentStorage(array)
     }
 
     init (readfromstorage: Bool) {
