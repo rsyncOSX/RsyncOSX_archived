@@ -13,7 +13,7 @@
 
 import Foundation
 
-final class PersistentStorageScheduling: Readwritefiles, SetSchedules {
+final class PersistentStorageScheduling: ReadWriteDictionary, SetSchedules {
 
     weak var readloggdataDelegate: ReadLoggdata?
     private var schedulesasdictionary: [NSDictionary]?

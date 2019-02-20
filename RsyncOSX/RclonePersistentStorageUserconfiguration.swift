@@ -8,7 +8,7 @@
 
 import Foundation
 
-final class RclonePersistentStorageUserconfiguration: Readwritefiles {
+final class RclonePersistentStorageUserconfiguration: ReadWriteDictionary {
 
     private var userconfiguration: [NSDictionary]?
 

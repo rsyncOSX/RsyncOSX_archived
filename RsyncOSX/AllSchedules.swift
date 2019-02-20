@@ -5,7 +5,6 @@
 //  Created by Thomas Evensen on 06.05.2018.
 //  Copyright © 2018 Maxim. All rights reserved.
 //
-// swiftlint:disable line_length
 
 import Foundation
 import Cocoa
@@ -25,9 +24,9 @@ class Allschedules {
                 self.allschedules = []
             }
             if profilename == "Default profile" {
-                configurationschedule = PersistentStorageAPI(profile: nil, forceread: true).getScheduleandhistory(nolog: nolog)
+                configurationschedule = PersistentStorageAPI(profile: nil).getScheduleandhistory(nolog: nolog)
             } else {
-                configurationschedule = PersistentStorageAPI(profile: profilename, forceread: true).getScheduleandhistory(nolog: nolog)
+                configurationschedule = PersistentStorageAPI(profile: profilename).getScheduleandhistory(nolog: nolog)
             }
             guard configurationschedule != nil else { return }
             for j in 0 ..< configurationschedule!.count {

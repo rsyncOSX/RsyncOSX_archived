@@ -9,7 +9,7 @@
 
 import Foundation
 
-final class PersistentStorageConfiguration: Readwritefiles, SetConfigurations {
+final class PersistentStorageConfiguration: ReadWriteDictionary, SetConfigurations {
 
     /// Variable holds all configuration data from persisten storage
     private var configurationsasdictionary: [NSDictionary]?

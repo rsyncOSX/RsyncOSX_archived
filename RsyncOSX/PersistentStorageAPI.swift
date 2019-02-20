@@ -11,29 +11,18 @@ import Foundation
 final class PersistentStorageAPI: SetConfigurations, SetSchedules {
 
     var profile: String?
-    var forceread: Bool = false
 
     // CONFIGURATIONS
-
     // Read configurations from persisten store
     func getConfigurations() -> [Configuration]? {
-        var read: PersistentStorageConfiguration?
-        if self.forceread {
-            read = PersistentStorageConfiguration(profile: self.profile, forceread: true)
-        } else {
-            read = PersistentStorageConfiguration(profile: self.profile)
+        let read = PersistentStorageConfiguration(profile: self.profile)
+        guard read.readConfigurationsFromPermanentStore() != nil else { return nil}
+        var Configurations = [Configuration]()
+        for dict in read.readConfigurationsFromPermanentStore()! {
+            let conf = Configuration(dictionary: dict)
+            Configurations.append(conf)
         }
-        // Either read from persistent store or return Configurations already in memory
-        if read!.readConfigurationsFromPermanentStore() != nil {
-            var Configurations = [Configuration]()
-            for dict in read!.readConfigurationsFromPermanentStore()! {
-                let conf = Configuration(dictionary: dict)
-                Configurations.append(conf)
-            }
-            return Configurations
-        } else {
-            return nil
-        }
+        return Configurations
     }
 
     // Saving configuration from memory to persistent store
@@ -50,7 +39,6 @@ final class PersistentStorageAPI: SetConfigurations, SetSchedules {
     }
 
     // SCHEDULE
-
     // Saving Schedules from memory to persistent store
     func saveScheduleFromMemory() {
         let store = PersistentStorageScheduling(profile: self.profile)
@@ -60,32 +48,22 @@ final class PersistentStorageAPI: SetConfigurations, SetSchedules {
     // Read schedules and history
     // If no Schedule from persistent store return nil
     func getScheduleandhistory(nolog: Bool) -> [ConfigurationSchedule]? {
-        var read: PersistentStorageScheduling?
-        if self.forceread {
-            read = PersistentStorageScheduling(profile: self.profile, forceread: true)
-        } else {
-            read = PersistentStorageScheduling(profile: self.profile)
-        }
+        let read = PersistentStorageScheduling(profile: self.profile)
         var schedule = [ConfigurationSchedule]()
-        // Either read from persistent store or return Schedule already in memory
-        if read!.readSchedulesFromPermanentStore() != nil {
-            for dict in read!.readSchedulesFromPermanentStore()! {
-                if let log = dict.value(forKey: "executed") {
-                    let conf = ConfigurationSchedule(dictionary: dict, log: log as? NSArray, nolog: nolog)
-                    schedule.append(conf)
-                } else {
-                    let conf = ConfigurationSchedule(dictionary: dict, log: nil, nolog: nolog)
-                    schedule.append(conf)
-                }
+        guard read.readSchedulesFromPermanentStore() != nil else { return nil}
+        for dict in read.readSchedulesFromPermanentStore()! {
+            if let log = dict.value(forKey: "executed") {
+                let conf = ConfigurationSchedule(dictionary: dict, log: log as? NSArray, nolog: nolog)
+                schedule.append(conf)
+            } else {
+                let conf = ConfigurationSchedule(dictionary: dict, log: nil, nolog: nolog)
+                schedule.append(conf)
             }
-            return schedule
-        } else {
-            return nil
         }
+        return schedule
     }
 
     // USERCONFIG
-
     // Saving user configuration
     func saveUserconfiguration() {
         let store = PersistentStorageUserconfiguration(readfromstorage: false)
@@ -101,8 +79,4 @@ final class PersistentStorageAPI: SetConfigurations, SetSchedules {
         self.profile = profile
     }
 
-    init(profile: String?, forceread: Bool) {
-        self.profile = profile
-        self.forceread = forceread
-    }
 }

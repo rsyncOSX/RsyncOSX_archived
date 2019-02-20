@@ -21,7 +21,7 @@ enum WhatToReadWrite {
     case none
 }
 
-class Readwritefiles {
+class ReadWriteDictionary {
 
     // Name set for schedule, configuration or config
     private var name: String?
@@ -95,7 +95,7 @@ class Readwritefiles {
             _ = Notifications().showNotification(message: "Sending reload message to menu app")
             DistributedNotificationCenter.default().postNotificationName(NSNotification.Name("no.blogspot.RsyncOSX.reload"), object: nil, deliverImmediately: true)
         }
-        return  write
+        return write
     }
 
     // Set preferences for which data to read or write

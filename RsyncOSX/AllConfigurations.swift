@@ -24,9 +24,9 @@ final class AllConfigurations: Sorting {
                 self.allconfigurations = []
             }
             if profile == "Default profile" {
-                configurations = PersistentStorageAPI(profile: nil, forceread: true).getConfigurations()
+                configurations = PersistentStorageAPI(profile: nil).getConfigurations()
             } else {
-                configurations = PersistentStorageAPI(profile: profile, forceread: true).getConfigurations()
+                configurations = PersistentStorageAPI(profile: profile).getConfigurations()
             }
             guard configurations != nil else { return }
             for j in 0 ..< configurations!.count {
