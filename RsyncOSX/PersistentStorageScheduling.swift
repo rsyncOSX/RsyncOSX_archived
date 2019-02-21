@@ -57,7 +57,7 @@ final class PersistentStorageScheduling: ReadWriteDictionary, SetSchedules {
     }
 
     init (profile: String?) {
-        super.init(task: .schedule, profile: profile, configpath: ViewControllerReference.shared.configpath)
+        super.init(whattoreadwrite: .schedule, profile: profile, configpath: ViewControllerReference.shared.configpath)
         self.readloggdataDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vcloggdata) as? ViewControllerLoggData
         if self.schedules == nil {
             self.schedulesasdictionary = self.readNSDictionaryFromPersistentStore()

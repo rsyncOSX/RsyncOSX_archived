@@ -97,7 +97,7 @@ final class PersistentStorageUserconfiguration: ReadWriteDictionary, SetConfigur
     }
 
     init (readfromstorage: Bool) {
-        super.init(task: .userconfig, profile: nil, configpath: ViewControllerReference.shared.configpath)
+        super.init(whattoreadwrite: .userconfig, profile: nil, configpath: ViewControllerReference.shared.configpath)
         if readfromstorage {
             self.userconfiguration = self.readNSDictionaryFromPersistentStore()
         }

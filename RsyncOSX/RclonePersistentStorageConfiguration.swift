@@ -17,7 +17,7 @@ final class RclonePersistentStorageConfiguration: ReadWriteDictionary {
     }
 
     init(profile: String?) {
-        super.init(task: .configuration, profile: profile, configpath: RcloneReference.shared.configpath)
+        super.init(whattoreadwrite: .configuration, profile: profile, configpath: RcloneReference.shared.configpath)
         self.configurationsasdictionary = self.readNSDictionaryFromPersistentStore()
     }
 }

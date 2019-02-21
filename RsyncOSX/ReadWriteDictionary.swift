@@ -99,8 +99,8 @@ class ReadWriteDictionary {
     }
 
     // Set preferences for which data to read or write
-    private func setpreferences (_ task: WhatToReadWrite) {
-        self.task = task
+    private func setpreferences (whattoreadwrite: WhatToReadWrite) {
+        self.task = whattoreadwrite
         switch self.task! {
         case .schedule:
             self.name = "/scheduleRsync.plist"
@@ -116,13 +116,13 @@ class ReadWriteDictionary {
         }
     }
 
-    init(task: WhatToReadWrite, profile: String?, configpath: String) {
+    init(whattoreadwrite: WhatToReadWrite, profile: String?, configpath: String) {
         self.configpath = configpath
         if profile != nil {
             self.profile = profile
             self.useProfile = true
         }
-        self.setpreferences(task)
+        self.setpreferences(whattoreadwrite: whattoreadwrite)
         self.setnameandpath()
     }
 
