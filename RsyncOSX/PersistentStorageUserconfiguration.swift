@@ -12,13 +12,7 @@ import Foundation
 final class PersistentStorageUserconfiguration: ReadWriteDictionary, SetConfigurations {
 
     /// Variable holds all configuration data
-    private var userconfiguration: [NSDictionary]?
-
-    /// Function reads configurations from permanent store
-    /// - returns : array of NSDictonarys, return might be nil
-    func readUserconfigurationsFromPermanentStore() -> [NSDictionary]? {
-        return self.userconfiguration
-    }
+    var userconfiguration: [NSDictionary]?
 
     // Saving user configuration
     func saveUserconfiguration () {
@@ -92,20 +86,20 @@ final class PersistentStorageUserconfiguration: ReadWriteDictionary, SetConfigur
             dict.setObject("", forKey: "pathrsyncosxsched" as NSCopying)
         }
         array.append(dict)
-        self.writeToStore(array)
+        self.writeToStore(array: array)
     }
 
     // Writing configuration to persistent store
     // Configuration is [NSDictionary]
-    private func writeToStore (_ array: [NSDictionary]) {
+    private func writeToStore(array: [NSDictionary]) {
         // Getting the object just for the write method, no read from persistent store
-        _ = self.WriteNSDictionaryToPersistentStorage(array)
+        _ = self.writeNSDictionaryToPersistentStorage(array)
     }
 
     init (readfromstorage: Bool) {
         super.init(task: .userconfig, profile: nil, configpath: ViewControllerReference.shared.configpath)
         if readfromstorage {
-            self.userconfiguration = self.ReadNSDictionaryFromPersistentStore()
+            self.userconfiguration = self.readNSDictionaryFromPersistentStore()
         }
     }
 }

@@ -44,12 +44,12 @@ final class PersistentStorageConfiguration: ReadWriteDictionary, SetConfiguratio
             array.append(self.dictionaryFromconfig(index: i))
         }
         // Write array to persistent store
-        self.writeToStore(array)
+        self.writeToStore(array: array)
     }
 
     // Add new configuration in memory to permanent storage
     // NB : Function does NOT store Configurations to persistent store
-    func newConfigurations (_ dict: NSMutableDictionary) {
+    func newConfigurations(dict: NSMutableDictionary) {
         var array = [NSDictionary]()
         // Get existing configurations from memory
         let configs: [Configuration] = self.configurations!.getConfigurations()
@@ -65,7 +65,7 @@ final class PersistentStorageConfiguration: ReadWriteDictionary, SetConfiguratio
     }
 
     // Function for returning a NSMutabledictionary from a configuration record
-    private func dictionaryFromconfig (index: Int) -> NSMutableDictionary {
+    private func dictionaryFromconfig(index: Int) -> NSMutableDictionary {
         var config: Configuration = self.configurations!.getConfigurations()[index]
         let dict: NSMutableDictionary = [
             "task": config.task,
@@ -131,7 +131,7 @@ final class PersistentStorageConfiguration: ReadWriteDictionary, SetConfiguratio
         return dict
     }
 
-    private func checkparameter (param: String?) -> String? {
+    private func checkparameter(param: String?) -> String? {
         if let parameter = param {
             guard parameter.isEmpty == false else { return nil }
             return parameter
@@ -142,8 +142,8 @@ final class PersistentStorageConfiguration: ReadWriteDictionary, SetConfiguratio
 
     // Writing configuration to persistent store
     // Configuration is [NSDictionary]
-    private func writeToStore (_ array: [NSDictionary]) {
-        if self.WriteNSDictionaryToPersistentStorage(array) {
+    private func writeToStore(array: [NSDictionary]) {
+        if self.writeNSDictionaryToPersistentStorage(array) {
             self.configurationsDelegate?.reloadconfigurationsobject()
         }
     }
@@ -151,7 +151,7 @@ final class PersistentStorageConfiguration: ReadWriteDictionary, SetConfiguratio
     init (profile: String?) {
         super.init(task: .configuration, profile: profile, configpath: ViewControllerReference.shared.configpath)
         if self.configurations == nil {
-            self.configurationsasdictionary = self.ReadNSDictionaryFromPersistentStore()
+            self.configurationsasdictionary = self.readNSDictionaryFromPersistentStore()
         }
     }
 

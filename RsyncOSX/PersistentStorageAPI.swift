@@ -34,7 +34,7 @@ final class PersistentStorageAPI: SetConfigurations, SetSchedules {
     // Saving added configuration
     func addandsaveNewConfigurations(dict: NSMutableDictionary) {
         let save = PersistentStorageConfiguration(profile: self.profile)
-        save.newConfigurations(dict)
+        save.newConfigurations(dict: dict)
         save.saveconfigInMemoryToPersistentStore()
     }
 
@@ -72,7 +72,7 @@ final class PersistentStorageAPI: SetConfigurations, SetSchedules {
 
     func getUserconfiguration (readfromstorage: Bool) -> [NSDictionary]? {
         let store = PersistentStorageUserconfiguration(readfromstorage: readfromstorage)
-        return store.readUserconfigurationsFromPermanentStore()
+        return store.userconfiguration
     }
 
     init(profile: String?) {

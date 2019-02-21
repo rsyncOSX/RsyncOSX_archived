@@ -43,14 +43,14 @@ final class PersistentStorageScheduling: ReadWriteDictionary, SetSchedules {
                 }
             }
             // Write array to persistent store
-            self.writeToStore(array)
+            self.writeToStore(array: array)
         }
     }
 
     // Writing schedules to persistent store
     // Schedule is [NSDictionary]
-    private func writeToStore (_ array: [NSDictionary]) {
-        if self.WriteNSDictionaryToPersistentStorage(array) {
+    private func writeToStore(array: [NSDictionary]) {
+        if self.writeNSDictionaryToPersistentStorage(array) {
             self.schedulesDelegate?.reloadschedulesobject()
             self.readloggdataDelegate?.readloggdata()
         }
@@ -60,7 +60,7 @@ final class PersistentStorageScheduling: ReadWriteDictionary, SetSchedules {
         super.init(task: .schedule, profile: profile, configpath: ViewControllerReference.shared.configpath)
         self.readloggdataDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vcloggdata) as? ViewControllerLoggData
         if self.schedules == nil {
-            self.schedulesasdictionary = self.ReadNSDictionaryFromPersistentStore()
+            self.schedulesasdictionary = self.readNSDictionaryFromPersistentStore()
         }
     }
 
