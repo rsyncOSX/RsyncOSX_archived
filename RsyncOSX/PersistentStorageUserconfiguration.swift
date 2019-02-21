@@ -99,13 +99,13 @@ final class PersistentStorageUserconfiguration: ReadWriteDictionary, SetConfigur
     // Configuration is [NSDictionary]
     private func writeToStore (_ array: [NSDictionary]) {
         // Getting the object just for the write method, no read from persistent store
-        _ = self.writeDatatoPersistentStorage(array)
+        _ = self.WriteNSDictionaryToPersistentStorage(array)
     }
 
     init (readfromstorage: Bool) {
         super.init(task: .userconfig, profile: nil, configpath: ViewControllerReference.shared.configpath)
         if readfromstorage {
-            self.userconfiguration = self.getDatafromfile()
+            self.userconfiguration = self.ReadNSDictionaryFromPersistentStore()
         }
     }
 }

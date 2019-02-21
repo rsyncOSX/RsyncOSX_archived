@@ -70,7 +70,7 @@ class ReadWriteDictionary {
     }
 
     // Function for reading data from persistent store
-    func getDatafromfile () -> [NSDictionary]? {
+    func ReadNSDictionaryFromPersistentStore () -> [NSDictionary]? {
         var data = [NSDictionary]()
         guard self.filename != nil && self.key != nil else { return nil }
         let dictionary = NSDictionary(contentsOfFile: self.filename!)
@@ -87,7 +87,7 @@ class ReadWriteDictionary {
     }
 
     // Function for write data to persistent store
-    func writeDatatoPersistentStorage (_ array: [NSDictionary]) -> Bool {
+    func WriteNSDictionaryToPersistentStorage (_ array: [NSDictionary]) -> Bool {
         let dictionary = NSDictionary(object: array, forKey: self.key! as NSCopying)
         guard self.filename != nil else { return false }
         let write = dictionary.write(toFile: self.filename!, atomically: true)

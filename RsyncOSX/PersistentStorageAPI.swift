@@ -16,9 +16,9 @@ final class PersistentStorageAPI: SetConfigurations, SetSchedules {
     // Read configurations from persisten store
     func getConfigurations() -> [Configuration]? {
         let read = PersistentStorageConfiguration(profile: self.profile)
-        guard read.readConfigurationsFromPermanentStore() != nil else { return nil}
+        guard read.configurationsasdictionary != nil else { return nil}
         var Configurations = [Configuration]()
-        for dict in read.readConfigurationsFromPermanentStore()! {
+        for dict in read.configurationsasdictionary! {
             let conf = Configuration(dictionary: dict)
             Configurations.append(conf)
         }
@@ -50,8 +50,8 @@ final class PersistentStorageAPI: SetConfigurations, SetSchedules {
     func getScheduleandhistory(nolog: Bool) -> [ConfigurationSchedule]? {
         let read = PersistentStorageScheduling(profile: self.profile)
         var schedule = [ConfigurationSchedule]()
-        guard read.readSchedulesFromPermanentStore() != nil else { return nil}
-        for dict in read.readSchedulesFromPermanentStore()! {
+        guard read.schedulesasdictionary != nil else { return nil }
+        for dict in read.schedulesasdictionary! {
             if let log = dict.value(forKey: "executed") {
                 let conf = ConfigurationSchedule(dictionary: dict, log: log as? NSArray, nolog: nolog)
                 schedule.append(conf)

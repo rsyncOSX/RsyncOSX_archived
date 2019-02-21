@@ -16,13 +16,7 @@ import Foundation
 final class PersistentStorageScheduling: ReadWriteDictionary, SetSchedules {
 
     weak var readloggdataDelegate: ReadLoggdata?
-    private var schedulesasdictionary: [NSDictionary]?
-
-    /// Function reads schedules from permanent store
-    /// - returns : array of NSDictonarys, return might be nil if schedule is already in memory
-    func readSchedulesFromPermanentStore() -> [NSDictionary]? {
-        return self.schedulesasdictionary
-    }
+    var schedulesasdictionary: [NSDictionary]?
 
     // Saving Schedules from MEMORY to persistent store
     func savescheduleInMemoryToPersistentStore() {
@@ -56,7 +50,7 @@ final class PersistentStorageScheduling: ReadWriteDictionary, SetSchedules {
     // Writing schedules to persistent store
     // Schedule is [NSDictionary]
     private func writeToStore (_ array: [NSDictionary]) {
-        if self.writeDatatoPersistentStorage(array) {
+        if self.WriteNSDictionaryToPersistentStorage(array) {
             self.schedulesDelegate?.reloadschedulesobject()
             self.readloggdataDelegate?.readloggdata()
         }
@@ -66,12 +60,8 @@ final class PersistentStorageScheduling: ReadWriteDictionary, SetSchedules {
         super.init(task: .schedule, profile: profile, configpath: ViewControllerReference.shared.configpath)
         self.readloggdataDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vcloggdata) as? ViewControllerLoggData
         if self.schedules == nil {
-            self.schedulesasdictionary = self.getDatafromfile()
+            self.schedulesasdictionary = self.ReadNSDictionaryFromPersistentStore()
         }
     }
 
-    init(profile: String?, forceread: Bool) {
-        super.init(task: .schedule, profile: profile, configpath: ViewControllerReference.shared.configpath)
-        self.schedulesasdictionary = self.getDatafromfile()
-    }
 }
