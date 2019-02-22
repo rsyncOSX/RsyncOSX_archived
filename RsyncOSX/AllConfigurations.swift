@@ -10,7 +10,7 @@
 import Foundation
 
 final class AllConfigurations: Sorting {
-    // Configurations object
+
     private var allconfigurations: [Configuration]?
     var allconfigurationsasdictionary: [NSMutableDictionary]?
     private var allprofiles: [String]?
@@ -24,9 +24,9 @@ final class AllConfigurations: Sorting {
                 self.allconfigurations = []
             }
             if profile == "Default profile" {
-                configurations = PersistentStorageAPI(profile: nil, forceread: true).getConfigurations()
+                configurations = PersistentStorageAllprofilesAPI(profile: nil).getConfigurations()
             } else {
-                configurations = PersistentStorageAPI(profile: profile, forceread: true).getConfigurations()
+                configurations = PersistentStorageAllprofilesAPI(profile: profile).getConfigurations()
             }
             guard configurations != nil else { return }
             for j in 0 ..< configurations!.count {

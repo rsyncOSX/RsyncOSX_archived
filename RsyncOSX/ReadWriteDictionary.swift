@@ -21,7 +21,7 @@ enum WhatToReadWrite {
     case none
 }
 
-class Readwritefiles {
+class ReadWriteDictionary {
 
     // Name set for schedule, configuration or config
     private var name: String?
@@ -70,7 +70,7 @@ class Readwritefiles {
     }
 
     // Function for reading data from persistent store
-    func getDatafromfile () -> [NSDictionary]? {
+    func readNSDictionaryFromPersistentStore () -> [NSDictionary]? {
         var data = [NSDictionary]()
         guard self.filename != nil && self.key != nil else { return nil }
         let dictionary = NSDictionary(contentsOfFile: self.filename!)
@@ -87,8 +87,7 @@ class Readwritefiles {
     }
 
     // Function for write data to persistent store
-    func writeDatatoPersistentStorage (_ array: [NSDictionary], task: WhatToReadWrite) -> Bool {
-        self.setpreferences(task)
+    func writeNSDictionaryToPersistentStorage (_ array: [NSDictionary]) -> Bool {
         let dictionary = NSDictionary(object: array, forKey: self.key! as NSCopying)
         guard self.filename != nil else { return false }
         let write = dictionary.write(toFile: self.filename!, atomically: true)
@@ -96,12 +95,12 @@ class Readwritefiles {
             _ = Notifications().showNotification(message: "Sending reload message to menu app")
             DistributedNotificationCenter.default().postNotificationName(NSNotification.Name("no.blogspot.RsyncOSX.reload"), object: nil, deliverImmediately: true)
         }
-        return  write
+        return write
     }
 
     // Set preferences for which data to read or write
-    private func setpreferences (_ task: WhatToReadWrite) {
-        self.task = task
+    private func setpreferences (whattoreadwrite: WhatToReadWrite) {
+        self.task = whattoreadwrite
         switch self.task! {
         case .schedule:
             self.name = "/scheduleRsync.plist"
@@ -117,13 +116,13 @@ class Readwritefiles {
         }
     }
 
-    init(task: WhatToReadWrite, profile: String?, configpath: String) {
+    init(whattoreadwrite: WhatToReadWrite, profile: String?, configpath: String) {
         self.configpath = configpath
         if profile != nil {
             self.profile = profile
             self.useProfile = true
         }
-        self.setpreferences(task)
+        self.setpreferences(whattoreadwrite: whattoreadwrite)
         self.setnameandpath()
     }
 
