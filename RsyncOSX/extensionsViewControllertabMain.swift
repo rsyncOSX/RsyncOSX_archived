@@ -731,3 +731,14 @@ extension ViewControllertabMain: ViewOutputDetails {
         return self.dynamicappend
     }
 }
+
+extension ViewControllertabMain: AllProfileDetails {
+    func disablereloadallprofiles() {
+        //
+    }
+
+    func enablereloadallprofiles() {
+        //
+    }
+
+}

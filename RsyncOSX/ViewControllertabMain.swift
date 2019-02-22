@@ -33,6 +33,11 @@ protocol ViewOutputDetails: class {
     func disableappend()
 }
 
+protocol AllProfileDetails: class {
+    func enablereloadallprofiles()
+    func disablereloadallprofiles()
+}
+
 class ViewControllertabMain: NSViewController, ReloadTable, Deselect, VcMain, Delay, Fileerrormessage {
 
     // Configurations object
