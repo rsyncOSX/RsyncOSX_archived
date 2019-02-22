@@ -8,7 +8,7 @@
 
 import Foundation
 
-final class PersistentStorageAPI: SetConfigurations, SetSchedules {
+class PersistentStorageAPI: SetConfigurations, SetSchedules {
 
     var profile: String?
 

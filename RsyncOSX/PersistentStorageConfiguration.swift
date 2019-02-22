@@ -155,4 +155,8 @@ final class PersistentStorageConfiguration: ReadWriteDictionary, SetConfiguratio
         }
     }
 
+    init (profile: String?, allprofiles: Bool) {
+        super.init(whattoreadwrite: .configuration, profile: profile, configpath: ViewControllerReference.shared.configpath)
+        self.configurationsasdictionary = self.readNSDictionaryFromPersistentStore()
+    }
 }

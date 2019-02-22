@@ -64,4 +64,8 @@ final class PersistentStorageScheduling: ReadWriteDictionary, SetSchedules {
         }
     }
 
+    init (profile: String?, allprofiles: Bool) {
+        super.init(whattoreadwrite: .schedule, profile: profile, configpath: ViewControllerReference.shared.configpath)
+        self.schedulesasdictionary = self.readNSDictionaryFromPersistentStore()
+    }
 }
