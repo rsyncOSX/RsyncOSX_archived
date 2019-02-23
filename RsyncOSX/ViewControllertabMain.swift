@@ -33,6 +33,11 @@ protocol ViewOutputDetails: class {
     func disableappend()
 }
 
+protocol AllProfileDetails: class {
+    func enablereloadallprofiles()
+    func disablereloadallprofiles()
+}
+
 class ViewControllertabMain: NSViewController, ReloadTable, Deselect, VcMain, Delay, Fileerrormessage {
 
     // Configurations object
@@ -106,6 +111,10 @@ class ViewControllertabMain: NSViewController, ReloadTable, Deselect, VcMain, De
     weak var estimateupdateDelegate: Updateestimating?
     // used in updating tableview
     var setbatchyesno: Bool = false
+    // Allprofiles view presented
+    var allprofilesview: Bool = false
+    // Delegate for refresh allprofiles if changes in profiles
+    weak var allprofiledetailsDelegate: ReloadTableAllProfiles?
 
     @IBOutlet weak var info: NSTextField!
     @IBOutlet weak var pathtorsyncosxschedbutton: NSButton!
@@ -573,5 +582,8 @@ class ViewControllertabMain: NSViewController, ReloadTable, Deselect, VcMain, De
         globalMainQueue.async(execute: { () -> Void in
             self.mainTableView.reloadData()
         })
+        if self.allprofilesview {
+             self.allprofiledetailsDelegate?.reloadtable()
+        }
     }
 }
