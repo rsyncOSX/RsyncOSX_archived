@@ -466,9 +466,15 @@ extension ViewControllertabMain: SingleTaskProgress {
 
     func presentViewInformation(outputprocess: OutputProcess) {
         self.outputprocess = outputprocess
-        globalMainQueue.async(execute: { () -> Void in
-            self.presentAsSheet(self.viewControllerInformation!)
-        })
+        if self.dynamicappend {
+            globalMainQueue.async(execute: { () -> Void in
+                self.mainTableView.reloadData()
+            })
+        } else {
+            globalMainQueue.async(execute: { () -> Void in
+                self.presentAsSheet(self.viewControllerInformation!)
+            })
+        }
     }
 
     func terminateProgressProcess() {
