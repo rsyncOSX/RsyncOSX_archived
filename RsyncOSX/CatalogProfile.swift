@@ -11,7 +11,7 @@ import Foundation
 final class CatalogProfile: Files {
 
     // Function for creating new profile directory
-    func createProfile(profileName: String) -> Bool {
+    func createProfileDirectory(profileName: String) -> Bool {
         let fileManager = FileManager.default
         if let path = self.rootpath {
             let profileDirectory = path + "/" + profileName
@@ -33,8 +33,8 @@ final class CatalogProfile: Files {
         return false
     }
 
-    // Function for deleting profile
-    func deleteProfile(profileName: String) {
+    // Function for deleting profile directory
+    func deleteProfileDirectory(profileName: String) {
         let fileManager = FileManager.default
         if let path = self.rootpath {
             let profileDirectory = path + "/" + profileName

@@ -9,7 +9,7 @@
 
 import Foundation
 
-class Logging: Reportfileerror {
+class Logging: ReportFileerror {
 
     var outputprocess: OutputProcess?
     var log: String?

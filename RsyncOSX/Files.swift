@@ -27,11 +27,11 @@ protocol Fileerror: class {
     func errormessage(errorstr: String, errortype: Fileerrortype)
 }
 
-protocol Reportfileerror {
+protocol ReportFileerror {
     var errorDelegate: Fileerror? { get }
 }
 
-extension Reportfileerror {
+extension ReportFileerror {
     var errorDelegate: Fileerror? {
         return ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllertabMain
     }
@@ -41,11 +41,11 @@ extension Reportfileerror {
     }
 }
 
-protocol Fileerrormessage {
+protocol FileerrorMessage {
     func errordescription(errortype: Fileerrortype) -> String
 }
 
-extension Fileerrormessage {
+extension FileerrorMessage {
     func errordescription(errortype: Fileerrortype) -> String {
         switch errortype {
         case .openlogfile:
@@ -65,7 +65,7 @@ extension Fileerrormessage {
     }
 }
 
-class Files: Reportfileerror {
+class Files: ReportFileerror {
 
     var whichroot: WhichRoot?
     var rootpath: String?
