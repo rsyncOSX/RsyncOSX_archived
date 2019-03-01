@@ -73,12 +73,11 @@ class ViewControllerAllProfiles: NSViewController, Delay, Abort {
         self.mainTableView.target = self
         self.mainTableView.doubleAction = #selector(ViewControllerProfile.tableViewDoubleClick(sender:))
         self.working.usesThreadedAnimation = true
-        
     }
 
     override func viewDidAppear() {
         super.viewDidAppear()
-         self.reloadallprofiles()
+        self.reloadallprofiles()
         ViewControllerReference.shared.setvcref(viewcontroller: .vcallprofiles, nsviewcontroller: self)
         self.allprofiledetailsdelegata = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllertabMain
         self.allprofiledetailsdelegata?.enablereloadallprofiles()
