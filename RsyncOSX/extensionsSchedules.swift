@@ -14,7 +14,7 @@ protocol SetSchedules {
 }
 
 extension SetSchedules {
-    weak var schedulesDelegate: GetSchedulesObject? {
+    var schedulesDelegate: GetSchedulesObject? {
         return ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllertabMain
     }
     var schedules: Schedules? {
