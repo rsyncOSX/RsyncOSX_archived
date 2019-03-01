@@ -21,7 +21,7 @@ protocol SetConfigurations {
 }
 
 extension SetConfigurations {
-    weak var configurationsDelegate: GetConfigurationsObject? {
+    var configurationsDelegate: GetConfigurationsObject? {
         return ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllertabMain
     }
     var configurations: Configurations? {
@@ -42,16 +42,16 @@ protocol ReloadTable {
 }
 
 extension ReloadTable {
-    weak var reloadDelegateMain: Reloadandrefresh? {
+    var reloadDelegateMain: Reloadandrefresh? {
         return ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllertabMain
     }
-    weak var reloadDelegateSchedule: Reloadandrefresh? {
+    var reloadDelegateSchedule: Reloadandrefresh? {
         return ViewControllerReference.shared.getvcref(viewcontroller: .vctabschedule) as? ViewControllertabSchedule
     }
-    weak var reloadDelegateLoggData: Reloadandrefresh? {
+    var reloadDelegateLoggData: Reloadandrefresh? {
         return ViewControllerReference.shared.getvcref(viewcontroller: .vcloggdata) as? ViewControllerLoggData
     }
-    weak var reloadDelegateSnapshot: Reloadandrefresh? {
+    var reloadDelegateSnapshot: Reloadandrefresh? {
         return ViewControllerReference.shared.getvcref(viewcontroller: .vcsnapshot) as? ViewControllerSnapshots
     }
 

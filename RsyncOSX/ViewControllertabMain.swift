@@ -38,7 +38,7 @@ protocol AllProfileDetails: class {
     func disablereloadallprofiles()
 }
 
-class ViewControllertabMain: NSViewController, ReloadTable, Deselect, VcMain, Delay, Fileerrormessage {
+class ViewControllertabMain: NSViewController, ReloadTable, Deselect, VcMain, Delay, FileerrorMessage {
 
     // Configurations object
     var configurations: Configurations?
