@@ -103,8 +103,6 @@ class ViewControllertabMain: NSViewController, ReloadTable, Deselect, VcMain, De
     // Load profiles only when testing for connections are done.
     // Application crash if not
     var loadProfileMenu: Bool = false
-    // Which kind of task
-    var processtermination: ProcessTermination?
     // Keep track of all errors
     var outputerrors: OutputErrors?
     // Update view estimating
@@ -142,7 +140,7 @@ class ViewControllertabMain: NSViewController, ReloadTable, Deselect, VcMain, De
                 self.info(num: 7)
                 return
         }
-        self.processtermination = .restore
+        self.configurations!.processtermination = .restore
         self.presentAsSheet(self.restoreViewController!)
     }
 
@@ -184,7 +182,7 @@ class ViewControllertabMain: NSViewController, ReloadTable, Deselect, VcMain, De
                 self.info(num: 7)
                 return
         }
-        self.processtermination = .infosingletask
+        self.configurations!.processtermination = .infosingletask
         self.presentAsSheet(self.viewControllerInformationLocalRemote!)
     }
 
@@ -193,7 +191,7 @@ class ViewControllertabMain: NSViewController, ReloadTable, Deselect, VcMain, De
             self.verifyrsyncpath!.noRsync()
             return
         }
-        self.processtermination = .remoteinfotask
+        self.configurations!.processtermination = .remoteinfotask
         globalMainQueue.async(execute: { () -> Void in
             self.presentAsSheet(self.viewControllerRemoteInfo!)
         })
@@ -320,7 +318,7 @@ class ViewControllertabMain: NSViewController, ReloadTable, Deselect, VcMain, De
     }
 
     @IBAction func executetasknow(_ sender: NSButton) {
-        self.processtermination = .singlequicktask
+        self.configurations!.processtermination = .singlequicktask
         guard ViewControllerReference.shared.norsync == false else {
             self.verifyrsyncpath!.noRsync()
             return
@@ -339,7 +337,7 @@ class ViewControllertabMain: NSViewController, ReloadTable, Deselect, VcMain, De
                 return
         }
         if self.configurations!.getConfigurations()[self.index!].task == ViewControllerReference.shared.combined {
-            self.processtermination = .combinedtask
+            self.configurations!.processtermination = .combinedtask
             self.working.startAnimation(nil)
             _ = Combined(profile: self.configurations!.getConfigurations()[self.index!].rcloneprofile, index: self.index!)
         } else {
@@ -349,7 +347,7 @@ class ViewControllertabMain: NSViewController, ReloadTable, Deselect, VcMain, De
 
     func executetasknow() {
         guard self.index != nil  else { return }
-        self.processtermination = .singlequicktask
+        self.configurations!.processtermination = .singlequicktask
         self.working.startAnimation(nil)
         let arguments = self.configurations!.arguments4rsync(index: self.index!, argtype: .arg)
         self.outputprocess = OutputProcess()
@@ -359,7 +357,7 @@ class ViewControllertabMain: NSViewController, ReloadTable, Deselect, VcMain, De
     }
 
     func automaticbackup() {
-        self.processtermination = .automaticbackup
+        self.configurations!.processtermination = .automaticbackup
         self.configurations?.remoteinfotaskworkqueue = RemoteInfoTaskWorkQueue(inbatch: false)
         self.presentAsSheet(self.viewControllerEstimating!)
         self.estimateupdateDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vcestimatingtasks) as? ViewControllerEstimatingTasks
@@ -458,7 +456,7 @@ class ViewControllertabMain: NSViewController, ReloadTable, Deselect, VcMain, De
 
     // Single task can be activated by double click from table
     func executeSingleTask() {
-        self.processtermination = .singletask
+        self.configurations!.processtermination = .singletask
         guard ViewControllerReference.shared.norsync == false else {
             self.verifyrsyncpath!.noRsync()
             return
@@ -485,7 +483,7 @@ class ViewControllertabMain: NSViewController, ReloadTable, Deselect, VcMain, De
 
     // Execute BATCH TASKS only
     @IBAction func executeBatch(_ sender: NSButton) {
-        self.processtermination = .estimatebatchtask
+        self.configurations!.processtermination = .estimatebatchtask
         guard ViewControllerReference.shared.norsync == false else {
             self.verifyrsyncpath!.noRsync()
             return

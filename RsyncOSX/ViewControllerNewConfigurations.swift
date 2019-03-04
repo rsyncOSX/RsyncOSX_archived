@@ -16,7 +16,7 @@ enum Typebackup {
     case singlefile
 }
 
-class ViewControllerNewConfigurations: NSViewController, SetConfigurations, VcSchedule, Delay, Index {
+class ViewControllerNewConfigurations: NSViewController, SetConfigurations, VcSchedule, Delay, Index, VcExecute {
 
     var storageapi: PersistentStorageAPI?
     var newconfigurations: NewConfigurations?
@@ -56,6 +56,35 @@ class ViewControllerNewConfigurations: NSViewController, SetConfigurations, VcSc
     @IBOutlet weak var copyconfigbutton: NSButton!
     @IBOutlet weak var backuptype: NSComboBox!
     @IBOutlet weak var remotecapacitybutton: NSButton!
+
+    var verifyrsyncpath: Verifyrsyncpath?
+
+    @IBAction func totinfo(_ sender: NSButton) {
+        guard ViewControllerReference.shared.norsync == false else {
+            self.verifyrsyncpath!.noRsync()
+            return
+        }
+        self.configurations!.processtermination = .remoteinfotask
+        globalMainQueue.async(execute: { () -> Void in
+            self.presentAsSheet(self.viewControllerRemoteInfo!)
+        })
+    }
+
+    @IBAction func quickbackup(_ sender: NSButton) {
+        guard ViewControllerReference.shared.norsync == false else {
+            self.verifyrsyncpath!.noRsync()
+            return
+        }
+        self.openquickbackup()
+    }
+
+    func openquickbackup() {
+        self.configurations!.processtermination = .quicktask
+        self.configurations!.allowNotifyinMain = false
+        globalMainQueue.async(execute: { () -> Void in
+            self.presentAsSheet(self.viewControllerQuickBackup!)
+        })
+    }
 
     @IBAction func remotecapacity(_ sender: NSButton) {
         self.remotecapacitybutton.isEnabled = false
@@ -140,6 +169,7 @@ class ViewControllerNewConfigurations: NSViewController, SetConfigurations, VcSc
         self.viewParameter4.stringValue = self.delete
         self.viewParameter5.stringValue = self.eparam + " " + self.ssh
         self.rsyncdaemon.state = .off
+        if self.verifyrsyncpath == nil { self.verifyrsyncpath = Verifyrsyncpath()}
     }
 
     private func initcombox(combobox: NSComboBox, index: Int) {

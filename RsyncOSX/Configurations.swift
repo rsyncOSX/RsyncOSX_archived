@@ -44,6 +44,8 @@ class Configurations: ReloadTable, SetSchedules {
     var localremote: [NSMutableDictionary]?
     // remote info tasks
     var remoteinfotaskworkqueue: RemoteInfoTaskWorkQueue?
+    // Which kind of task
+    var processtermination: ProcessTermination?
 
     /// Function for getting the profile
     func getProfile() -> String? {
