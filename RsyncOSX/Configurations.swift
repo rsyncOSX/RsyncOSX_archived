@@ -460,6 +460,7 @@ class Configurations: ReloadTable, SetSchedules {
         self.argumentAllConfigurations = nil
         self.configurationsDataSource = nil
         self.profile = profile
+        self.processtermination = .quicktask
         self.storageapi = PersistentStorageAPI(profile: self.profile)
         self.readconfigurations()
         self.createbatchQueue()
