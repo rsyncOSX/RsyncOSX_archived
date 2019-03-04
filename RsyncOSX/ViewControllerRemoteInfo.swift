@@ -40,6 +40,7 @@ class ViewControllerRemoteInfo: NSViewController, SetDismisser, Abort {
                 self.remoteinfotask?.setbackuplist(list: backup)
                 let openDelegate: OpenQuickBackup?
                 openDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllertabMain
+                // openDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vcnewconfigurations) as? ViewControllerNewConfigurations
                 openDelegate?.openquickbackup()
             }
         }
