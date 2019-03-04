@@ -132,6 +132,8 @@ class ViewControllerReference {
     var menuappisrunning: Bool = false
     // Day of week to keep snapshots
     var dayofweeksnapshots: StringDayofweek = .Sunday
+    // Which tab is active
+    var activetab: ViewController?
 
     func getvcref(viewcontroller: ViewController) -> NSViewController? {
         switch viewcontroller {

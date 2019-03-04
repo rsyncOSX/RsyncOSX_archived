@@ -402,6 +402,7 @@ class ViewControllertabMain: NSViewController, ReloadTable, Deselect, VcMain, De
 
     override func viewDidAppear() {
         super.viewDidAppear()
+        ViewControllerReference.shared.activetab = .vctabmain
         self.configurations!.allowNotifyinMain = true
         if self.configurations!.configurationsDataSourcecount() > 0 {
             globalMainQueue.async(execute: { () -> Void in
