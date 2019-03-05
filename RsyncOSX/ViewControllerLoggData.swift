@@ -15,7 +15,7 @@ protocol ReadLoggdata: class {
     func readloggdata()
 }
 
-class ViewControllerLoggData: NSViewController, SetConfigurations, SetSchedules, Delay, Index, Connected {
+class ViewControllerLoggData: NSViewController, SetConfigurations, SetSchedules, Delay, Index, Connected, VcExecute {
 
     private var scheduleloggdata: ScheduleLoggData?
     private var snapshotsloggdata: SnapshotsLoggData?
@@ -34,6 +34,33 @@ class ViewControllerLoggData: NSViewController, SetConfigurations, SetSchedules,
     @IBOutlet weak var info: NSTextField!
     @IBOutlet weak var working: NSProgressIndicator!
     @IBOutlet weak var selectbutton: NSButton!
+
+    var verifyrsyncpath: Verifyrsyncpath?
+
+    @IBAction func totinfo(_ sender: NSButton) {
+        guard ViewControllerReference.shared.norsync == false else {
+            self.verifyrsyncpath!.noRsync()
+            return
+        }
+        self.configurations!.processtermination = .remoteinfotask
+        globalMainQueue.async(execute: { () -> Void in
+            self.presentAsSheet(self.viewControllerRemoteInfo!)
+        })
+    }
+
+    @IBAction func quickbackup(_ sender: NSButton) {
+        guard ViewControllerReference.shared.norsync == false else {
+            self.verifyrsyncpath!.noRsync()
+            return
+        }
+        self.openquickbackup()
+    }
+
+    @IBAction func automaticbackup(_ sender: NSButton) {
+        self.configurations!.processtermination = .automaticbackup
+        self.configurations?.remoteinfotaskworkqueue = RemoteInfoTaskWorkQueue(inbatch: false)
+        self.presentAsSheet(self.viewControllerEstimating!)
+    }
 
     private func info(num: Int) {
         switch num {
@@ -95,6 +122,7 @@ class ViewControllerLoggData: NSViewController, SetConfigurations, SetSchedules,
 
     override func viewDidAppear() {
         super.viewDidAppear()
+        ViewControllerReference.shared.activetab = .vcloggdata
         self.index = self.index()
         if let index = self.index {
             let hiddenID = self.configurations?.gethiddenID(index: index) ?? -1
@@ -285,5 +313,15 @@ extension ViewControllerLoggData: UpdateProgress {
 
     func fileHandler() {
         //
+    }
+}
+
+extension ViewControllerLoggData: OpenQuickBackup {
+    func openquickbackup() {
+        self.configurations!.processtermination = .quicktask
+        self.configurations!.allowNotifyinMain = false
+        globalMainQueue.async(execute: { () -> Void in
+            self.presentAsSheet(self.viewControllerQuickBackup!)
+        })
     }
 }

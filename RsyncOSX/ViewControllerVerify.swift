@@ -68,6 +68,12 @@ class ViewControllerVerify: NSViewController, SetConfigurations, Index, VcExecut
         self.openquickbackup()
     }
 
+    @IBAction func automaticbackup(_ sender: NSButton) {
+        self.configurations!.processtermination = .automaticbackup
+        self.configurations?.remoteinfotaskworkqueue = RemoteInfoTaskWorkQueue(inbatch: false)
+        self.presentAsSheet(self.viewControllerEstimating!)
+    }
+
     @IBAction func verify(_ sender: NSButton) {
         guard self.index != nil else { return }
         self.rsynccommanddisplay.stringValue = Verifyrsyncpath().displayrsynccommand(index: self.index!, display: .verify)

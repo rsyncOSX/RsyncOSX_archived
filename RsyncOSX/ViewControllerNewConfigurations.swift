@@ -78,6 +78,12 @@ class ViewControllerNewConfigurations: NSViewController, SetConfigurations, VcSc
         self.openquickbackup()
     }
 
+    @IBAction func automaticbackup(_ sender: NSButton) {
+        self.configurations!.processtermination = .automaticbackup
+        self.configurations?.remoteinfotaskworkqueue = RemoteInfoTaskWorkQueue(inbatch: false)
+        self.presentAsSheet(self.viewControllerEstimating!)
+    }
+
     @IBAction func remotecapacity(_ sender: NSButton) {
         self.remotecapacitybutton.isEnabled = false
         self.remote = RemoteCapacity(object: self)

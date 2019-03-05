@@ -10,7 +10,7 @@
 import Foundation
 import Cocoa
 
-protocol OpenQuickBackup {
+protocol OpenQuickBackup: class {
     func openquickbackup()
 }
 
@@ -38,7 +38,7 @@ class ViewControllerRemoteInfo: NSViewController, SetDismisser, Abort {
         if let backup = self.dobackups() {
             if backup.count > 0 {
                 self.remoteinfotask?.setbackuplist(list: backup)
-                var openDelegate: OpenQuickBackup?
+                weak var openDelegate: OpenQuickBackup?
                 switch ViewControllerReference.shared.activetab ?? .vctabmain {
                 case .vcnewconfigurations:
                     openDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vcnewconfigurations) as? ViewControllerNewConfigurations
@@ -52,6 +52,10 @@ class ViewControllerRemoteInfo: NSViewController, SetDismisser, Abort {
                     openDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vcsnapshot) as? ViewControllerSnapshots
                 case .vcverify:
                     openDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vcverify) as? ViewControllerVerify
+                case .vcssh:
+                    openDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vcssh) as? ViewControllerSsh
+                case .vcloggdata:
+                    openDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vcloggdata) as? ViewControllerLoggData
                 default:
                     openDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllertabMain
                 }
