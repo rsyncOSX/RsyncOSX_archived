@@ -314,7 +314,10 @@ class ViewControllertabMain: NSViewController, ReloadTable, Deselect, VcMain, De
 
     // Selecting automatic backup
     @IBAction func automaticbackup (_ sender: NSButton) {
-        self.automaticbackup()
+        self.configurations!.processtermination = .automaticbackup
+        self.configurations?.remoteinfotaskworkqueue = RemoteInfoTaskWorkQueue(inbatch: false)
+        self.presentAsSheet(self.viewControllerEstimating!)
+        self.estimateupdateDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vcestimatingtasks) as? ViewControllerEstimatingTasks
     }
 
     @IBAction func executetasknow(_ sender: NSButton) {
@@ -354,13 +357,6 @@ class ViewControllertabMain: NSViewController, ReloadTable, Deselect, VcMain, De
         let process = Rsync(arguments: arguments)
         process.executeProcess(outputprocess: self.outputprocess)
         self.process = process.getProcess()
-    }
-
-    func automaticbackup() {
-        self.configurations!.processtermination = .automaticbackup
-        self.configurations?.remoteinfotaskworkqueue = RemoteInfoTaskWorkQueue(inbatch: false)
-        self.presentAsSheet(self.viewControllerEstimating!)
-        self.estimateupdateDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vcestimatingtasks) as? ViewControllerEstimatingTasks
     }
 
     // Function for display rsync command
