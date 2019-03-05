@@ -14,7 +14,7 @@ protocol GetSource: class {
     func getSourceindex(index: Int)
 }
 
-class ViewControllerCopyFiles: NSViewController, SetConfigurations, Delay, VcCopyFiles, VcSchedule, Connected {
+class ViewControllerCopyFiles: NSViewController, SetConfigurations, Delay, VcCopyFiles, VcSchedule, Connected, VcExecute {
 
     var copyFiles: CopySingleFiles?
     var rsyncindex: Int?
@@ -36,6 +36,27 @@ class ViewControllerCopyFiles: NSViewController, SetConfigurations, Delay, VcCop
     @IBOutlet weak var working: NSProgressIndicator!
     @IBOutlet weak var search: NSSearchField!
     @IBOutlet weak var restorebutton: NSButton!
+
+    var verifyrsyncpath: Verifyrsyncpath?
+
+    @IBAction func totinfo(_ sender: NSButton) {
+        guard ViewControllerReference.shared.norsync == false else {
+            self.verifyrsyncpath!.noRsync()
+            return
+        }
+        self.configurations!.processtermination = .remoteinfotask
+        globalMainQueue.async(execute: { () -> Void in
+            self.presentAsSheet(self.viewControllerRemoteInfo!)
+        })
+    }
+
+    @IBAction func quickbackup(_ sender: NSButton) {
+        guard ViewControllerReference.shared.norsync == false else {
+            self.verifyrsyncpath!.noRsync()
+            return
+        }
+        self.openquickbackup()
+    }
 
     // Userconfiguration button
     @IBAction func userconfiguration(_ sender: NSButton) {
@@ -115,6 +136,7 @@ class ViewControllerCopyFiles: NSViewController, SetConfigurations, Delay, VcCop
 
     override func viewDidAppear() {
         super.viewDidAppear()
+        ViewControllerReference.shared.activetab = .vccopyfiles
         guard self.diddissappear == false else {
             globalMainQueue.async(execute: { () -> Void in
                 self.rsynctableView.reloadData()
@@ -357,5 +379,15 @@ extension ViewControllerCopyFiles: NewProfile {
 
     func enableProfileMenu() {
         //
+    }
+}
+
+extension ViewControllerCopyFiles: OpenQuickBackup {
+    func openquickbackup() {
+        self.configurations!.processtermination = .quicktask
+        self.configurations!.allowNotifyinMain = false
+        globalMainQueue.async(execute: { () -> Void in
+            self.presentAsSheet(self.viewControllerQuickBackup!)
+        })
     }
 }

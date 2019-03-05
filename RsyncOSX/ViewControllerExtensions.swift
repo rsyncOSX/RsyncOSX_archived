@@ -45,6 +45,38 @@ extension VcSchedule {
 
 }
 
+protocol VcExecute {
+    var storyboard: NSStoryboard? { get }
+}
+
+extension VcExecute {
+
+    var storyboard: NSStoryboard? {
+        return NSStoryboard(name: "Main", bundle: nil)
+    }
+
+    // Remote Info
+    // self.presentViewControllerAsSheet(self.viewControllerQuickBackup)
+    var viewControllerRemoteInfo: NSViewController? {
+        return (self.storyboard!.instantiateController(withIdentifier: "StoryboardRemoteInfoID")
+            as? NSViewController)!
+    }
+
+    // Quick backup process
+    // self.presentViewControllerAsSheet(self.viewControllerQuickBackup)
+    var viewControllerQuickBackup: NSViewController? {
+        return (self.storyboard!.instantiateController(withIdentifier: "StoryboardQuickBackupID")
+            as? NSViewController)!
+    }
+
+    // Estimating
+    // self.presentViewControllerAsSheet(self.viewControllerEstimating)
+    var viewControllerEstimating: NSViewController? {
+        return (self.storyboard!.instantiateController(withIdentifier: "StoryboardEstimatingID")
+            as? NSViewController)!
+    }
+}
+
 protocol VcMain {
     var storyboard: NSStoryboard? { get }
     var viewControllerInformation: NSViewController? { get }

@@ -38,8 +38,23 @@ class ViewControllerRemoteInfo: NSViewController, SetDismisser, Abort {
         if let backup = self.dobackups() {
             if backup.count > 0 {
                 self.remoteinfotask?.setbackuplist(list: backup)
-                let openDelegate: OpenQuickBackup?
-                openDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllertabMain
+                var openDelegate: OpenQuickBackup?
+                switch ViewControllerReference.shared.activetab ?? .vctabmain {
+                case .vcnewconfigurations:
+                    openDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vcnewconfigurations) as? ViewControllerNewConfigurations
+                case .vctabmain:
+                    openDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllertabMain
+                case .vctabschedule:
+                    openDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabschedule) as? ViewControllertabSchedule
+                case .vccopyfiles:
+                    openDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vccopyfiles) as? ViewControllerCopyFiles
+                case .vcsnapshot:
+                    openDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vcsnapshot) as? ViewControllerSnapshots
+                case .vcverify:
+                    openDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vcverify) as? ViewControllerVerify
+                default:
+                    openDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllertabMain
+                }
                 openDelegate?.openquickbackup()
             }
         }
