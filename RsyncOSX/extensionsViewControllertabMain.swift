@@ -277,16 +277,39 @@ extension ViewControllertabMain: UpdateProgress {
             self.executetasknow()
         case .automaticbackup:
             guard self.configurations!.remoteinfotaskworkqueue != nil else { return }
+            weak var estimateupdateDelegate: Updateestimating?
+            estimateupdateDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vcestimatingtasks) as? ViewControllerEstimatingTasks
             // compute alle estimates
             if self.configurations!.remoteinfotaskworkqueue!.stackoftasktobeestimated != nil {
                 self.configurations!.remoteinfotaskworkqueue?.processTermination()
-                self.estimateupdateDelegate?.updateProgressbar()
+                estimateupdateDelegate?.updateProgressbar()
             } else {
-                self.estimateupdateDelegate?.dismissview()
+                estimateupdateDelegate?.dismissview()
                 self.configurations!.remoteinfotaskworkqueue?.processTermination()
                 self.configurations!.remoteinfotaskworkqueue?.selectalltaskswithnumbers(deselect: false)
                 self.configurations!.remoteinfotaskworkqueue?.setbackuplist()
-                self.openquickbackup()
+                weak var openDelegate: OpenQuickBackup?
+                switch ViewControllerReference.shared.activetab ?? .vctabmain {
+                case .vcnewconfigurations:
+                    openDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vcnewconfigurations) as? ViewControllerNewConfigurations
+                case .vctabmain:
+                    openDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllertabMain
+                case .vctabschedule:
+                    openDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabschedule) as? ViewControllertabSchedule
+                case .vccopyfiles:
+                    openDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vccopyfiles) as? ViewControllerCopyFiles
+                case .vcsnapshot:
+                    openDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vcsnapshot) as? ViewControllerSnapshots
+                case .vcverify:
+                    openDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vcverify) as? ViewControllerVerify
+                case .vcssh:
+                    openDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vcssh) as? ViewControllerSsh
+                case .vcloggdata:
+                    openDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vcloggdata) as? ViewControllerLoggData
+                default:
+                    openDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllertabMain
+                }
+                openDelegate?.openquickbackup()
             }
         case .restore:
             weak var processterminationDelegate: UpdateProgress?
@@ -294,10 +317,12 @@ extension ViewControllertabMain: UpdateProgress {
             processterminationDelegate?.processTermination()
         case .estimatebatchtask:
             guard self.configurations!.remoteinfotaskworkqueue != nil else { return }
+            weak var estimateupdateDelegate: Updateestimating?
+            estimateupdateDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vcestimatingtasks) as? ViewControllerEstimatingTasks
             // compute alle estimates
             if self.configurations!.remoteinfotaskworkqueue!.stackoftasktobeestimated != nil {
                 self.configurations!.remoteinfotaskworkqueue?.processTermination()
-                self.estimateupdateDelegate?.updateProgressbar()
+                estimateupdateDelegate?.updateProgressbar()
             } else {
                 self.configurations!.remoteinfotaskworkqueue?.processTermination()
                 self.configurations!.processtermination = .batchtask
@@ -426,7 +451,9 @@ extension ViewControllertabMain: Abort {
             self.seterrorinfo(info: "Abort")
             self.rsyncCommand.stringValue = ""
             if self.configurations!.remoteinfotaskworkqueue != nil && self.configurations?.estimatedlist != nil {
-                self.estimateupdateDelegate?.dismissview()
+                weak var localestimateupdateDelegate: Updateestimating?
+                localestimateupdateDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vcestimatingtasks) as? ViewControllerEstimatingTasks
+                localestimateupdateDelegate?.dismissview()
                 self.configurations!.remoteinfotaskworkqueue = nil
             }
         } else {

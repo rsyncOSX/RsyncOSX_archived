@@ -9,7 +9,7 @@
 import Foundation
 import Cocoa
 
-class ViewControllerSsh: NSViewController, SetConfigurations {
+class ViewControllerSsh: NSViewController, SetConfigurations, VcExecute {
 
     var sshcmd: Ssh?
     var hiddenID: Int?
@@ -36,6 +36,33 @@ class ViewControllerSsh: NSViewController, SetConfigurations {
         return (self.storyboard!.instantiateController(withIdentifier: "CopyFilesID")
             as? NSViewController)!
     }()
+
+    var verifyrsyncpath: Verifyrsyncpath?
+
+    @IBAction func totinfo(_ sender: NSButton) {
+        guard ViewControllerReference.shared.norsync == false else {
+            self.verifyrsyncpath!.noRsync()
+            return
+        }
+        self.configurations!.processtermination = .remoteinfotask
+        globalMainQueue.async(execute: { () -> Void in
+            self.presentAsSheet(self.viewControllerRemoteInfo!)
+        })
+    }
+
+    @IBAction func quickbackup(_ sender: NSButton) {
+        guard ViewControllerReference.shared.norsync == false else {
+            self.verifyrsyncpath!.noRsync()
+            return
+        }
+        self.openquickbackup()
+    }
+
+    @IBAction func automaticbackup(_ sender: NSButton) {
+        self.configurations!.processtermination = .automaticbackup
+        self.configurations?.remoteinfotaskworkqueue = RemoteInfoTaskWorkQueue(inbatch: false)
+        self.presentAsSheet(self.viewControllerEstimating!)
+    }
 
     @IBAction func terminalApp(_ sender: NSButton) {
         guard self.sshcmd != nil else {
@@ -133,6 +160,7 @@ class ViewControllerSsh: NSViewController, SetConfigurations {
 
     override func viewDidAppear() {
         super.viewDidAppear()
+        ViewControllerReference.shared.activetab = .vcssh
         self.checkDsaPubKeyButton.isEnabled = false
         self.checkRsaPubKeyButton.isEnabled = false
         self.createKeys.isEnabled = false
@@ -245,6 +273,16 @@ extension ViewControllerSsh: UpdateProgress {
         self.data = self.outputprocess!.getOutput()
         globalMainQueue.async(execute: { () -> Void in
             self.detailsTable.reloadData()
+        })
+    }
+}
+
+extension ViewControllerSsh: OpenQuickBackup {
+    func openquickbackup() {
+        self.configurations!.processtermination = .quicktask
+        self.configurations!.allowNotifyinMain = false
+        globalMainQueue.async(execute: { () -> Void in
+            self.presentAsSheet(self.viewControllerQuickBackup!)
         })
     }
 }

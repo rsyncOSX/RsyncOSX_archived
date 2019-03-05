@@ -64,6 +64,13 @@ class ViewControllerSnapshots: NSViewController, SetDismisser, SetConfigurations
         self.openquickbackup()
     }
 
+    @IBAction func automaticbackup(_ sender: NSButton) {
+        self.configurations!.processtermination = .automaticbackup
+        self.configurations?.remoteinfotaskworkqueue = RemoteInfoTaskWorkQueue(inbatch: false)
+        self.presentAsSheet(self.viewControllerEstimating!)
+    }
+
+
     private func info (num: Int) {
         switch num {
         case 1:
