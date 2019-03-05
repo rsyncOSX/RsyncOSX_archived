@@ -43,6 +43,27 @@ class ViewControllerSnapshots: NSViewController, SetDismisser, SetConfigurations
     @IBOutlet weak var selectplan: NSComboBox!
     @IBOutlet weak var dayofweektokeep: NSTextField!
 
+    var verifyrsyncpath: Verifyrsyncpath?
+
+    @IBAction func totinfo(_ sender: NSButton) {
+        guard ViewControllerReference.shared.norsync == false else {
+            self.verifyrsyncpath!.noRsync()
+            return
+        }
+        self.configurations!.processtermination = .remoteinfotask
+        globalMainQueue.async(execute: { () -> Void in
+            self.presentAsSheet(self.viewControllerRemoteInfo!)
+        })
+    }
+
+    @IBAction func quickbackup(_ sender: NSButton) {
+        guard ViewControllerReference.shared.norsync == false else {
+            self.verifyrsyncpath!.noRsync()
+            return
+        }
+        self.openquickbackup()
+    }
+
     private func info (num: Int) {
         switch num {
         case 1:
@@ -155,6 +176,7 @@ class ViewControllerSnapshots: NSViewController, SetDismisser, SetConfigurations
 
     override func viewDidAppear() {
         super.viewDidAppear()
+        ViewControllerReference.shared.activetab = .vcsnapshot
         self.initcombox(combobox: self.selectplan, index: 0)
         self.selectplan.isEnabled = false
         self.dayofweektokeep.stringValue = "Day of week to keep: " + ViewControllerReference.shared.dayofweeksnapshots.rawValue
@@ -427,7 +449,6 @@ extension ViewControllerSnapshots: NewProfile {
 }
 
 extension ViewControllerSnapshots: NSComboBoxDelegate {
-
     func comboBoxSelectionDidChange(_ notification: Notification) {
         switch self.selectplan.indexOfSelectedItem {
         case 1:
@@ -437,5 +458,15 @@ extension ViewControllerSnapshots: NSComboBoxDelegate {
         default:
             return
         }
+    }
+}
+
+extension ViewControllerSnapshots: OpenQuickBackup {
+    func openquickbackup() {
+        self.configurations!.processtermination = .quicktask
+        self.configurations!.allowNotifyinMain = false
+        globalMainQueue.async(execute: { () -> Void in
+            self.presentAsSheet(self.viewControllerQuickBackup!)
+        })
     }
 }

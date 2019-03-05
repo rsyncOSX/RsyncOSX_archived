@@ -10,7 +10,7 @@
 import Foundation
 import Cocoa
 
-class ViewControllerVerify: NSViewController, SetConfigurations, Index {
+class ViewControllerVerify: NSViewController, SetConfigurations, Index, VcExecute {
 
     @IBOutlet weak var outputtable: NSTableView!
     var outputprocess: OutputProcess?
@@ -46,6 +46,27 @@ class ViewControllerVerify: NSViewController, SetConfigurations, Index {
     @IBOutlet weak var localcatalog: NSTextField!
     @IBOutlet weak var remotecatalog: NSTextField!
     @IBOutlet weak var remoteserver: NSTextField!
+
+    var verifyrsyncpath: Verifyrsyncpath?
+
+    @IBAction func totinfo(_ sender: NSButton) {
+        guard ViewControllerReference.shared.norsync == false else {
+            self.verifyrsyncpath!.noRsync()
+            return
+        }
+        self.configurations!.processtermination = .remoteinfotask
+        globalMainQueue.async(execute: { () -> Void in
+            self.presentAsSheet(self.viewControllerRemoteInfo!)
+        })
+    }
+
+    @IBAction func quickbackup(_ sender: NSButton) {
+        guard ViewControllerReference.shared.norsync == false else {
+            self.verifyrsyncpath!.noRsync()
+            return
+        }
+        self.openquickbackup()
+    }
 
     @IBAction func verify(_ sender: NSButton) {
         guard self.index != nil else { return }
@@ -117,6 +138,7 @@ class ViewControllerVerify: NSViewController, SetConfigurations, Index {
 
     override func viewDidAppear() {
         super.viewDidAppear()
+        ViewControllerReference.shared.activetab = .vcverify
         self.index = self.index()
         if let index = self.index {
             guard index != self.lastindex ?? -1 else { return }
@@ -292,5 +314,15 @@ extension ViewControllerVerify: UpdateProgress {
                 self.outputtable.reloadData()
             })
         }
+    }
+}
+
+extension ViewControllerVerify: OpenQuickBackup {
+    func openquickbackup() {
+        self.configurations!.processtermination = .quicktask
+        self.configurations!.allowNotifyinMain = false
+        globalMainQueue.async(execute: { () -> Void in
+            self.presentAsSheet(self.viewControllerQuickBackup!)
+        })
     }
 }

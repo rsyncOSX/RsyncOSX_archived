@@ -14,7 +14,7 @@ protocol SetProfileinfo: class {
     func setprofile(profile: String, color: NSColor)
 }
 
-class ViewControllertabSchedule: NSViewController, SetConfigurations, SetSchedules, VcSchedule, Delay, Index {
+class ViewControllertabSchedule: NSViewController, SetConfigurations, SetSchedules, VcSchedule, Delay, Index, VcExecute {
 
     private var index: Int?
     private var hiddenID: Int?
@@ -32,6 +32,27 @@ class ViewControllertabSchedule: NSViewController, SetConfigurations, SetSchedul
     @IBOutlet weak var info: NSTextField!
     @IBOutlet weak var rsyncosxschedbutton: NSButton!
     @IBOutlet weak var menuappisrunning: NSButton!
+
+    var verifyrsyncpath: Verifyrsyncpath?
+
+    @IBAction func totinfo(_ sender: NSButton) {
+        guard ViewControllerReference.shared.norsync == false else {
+            self.verifyrsyncpath!.noRsync()
+            return
+        }
+        self.configurations!.processtermination = .remoteinfotask
+        globalMainQueue.async(execute: { () -> Void in
+            self.presentAsSheet(self.viewControllerRemoteInfo!)
+        })
+    }
+
+    @IBAction func quickbackup(_ sender: NSButton) {
+        guard ViewControllerReference.shared.norsync == false else {
+            self.verifyrsyncpath!.noRsync()
+            return
+        }
+        self.openquickbackup()
+    }
 
     @IBAction func rsyncosxsched(_ sender: NSButton) {
         let pathtorsyncosxschedapp: String = ViewControllerReference.shared.pathrsyncosxsched! + ViewControllerReference.shared.namersyncosssched
@@ -141,6 +162,7 @@ class ViewControllertabSchedule: NSViewController, SetConfigurations, SetSchedul
 
     override func viewDidAppear() {
         super.viewDidAppear()
+        ViewControllerReference.shared.activetab = .vctabschedule
         self.index = self.index()
         if self.index != nil {
             self.hiddenID = self.configurations!.gethiddenID(index: self.index!)
@@ -306,6 +328,16 @@ extension ViewControllertabSchedule: SetProfileinfo {
         globalMainQueue.async(execute: { () -> Void in
             self.profilInfo.stringValue = profile
             self.profilInfo.textColor = color
+        })
+    }
+}
+
+extension ViewControllertabSchedule: OpenQuickBackup {
+    func openquickbackup() {
+        self.configurations!.processtermination = .quicktask
+        self.configurations!.allowNotifyinMain = false
+        globalMainQueue.async(execute: { () -> Void in
+            self.presentAsSheet(self.viewControllerQuickBackup!)
         })
     }
 }
