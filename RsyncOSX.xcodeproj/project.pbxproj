@@ -756,7 +756,7 @@
 			};
 			buildConfigurationList = A044927D1D658EE800B3CE17 /* Build configuration list for PBXProject "RsyncOSX" */;
 			compatibilityVersion = "Xcode 3.2";
-			developmentRegion = English;
+			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
