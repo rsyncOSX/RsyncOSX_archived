@@ -70,7 +70,6 @@ class ViewControllerSnapshots: NSViewController, SetDismisser, SetConfigurations
         self.presentAsSheet(self.viewControllerEstimating!)
     }
 
-
     private func info (num: Int) {
         switch num {
         case 1:

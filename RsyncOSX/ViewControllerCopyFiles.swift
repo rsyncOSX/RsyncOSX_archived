@@ -64,7 +64,6 @@ class ViewControllerCopyFiles: NSViewController, SetConfigurations, Delay, VcCop
         self.presentAsSheet(self.viewControllerEstimating!)
     }
 
-
     // Userconfiguration button
     @IBAction func userconfiguration(_ sender: NSButton) {
         globalMainQueue.async(execute: { () -> Void in
