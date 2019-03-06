@@ -326,11 +326,27 @@
                                         <segue destination="ngh-0r-Hwj" kind="show" id="SYz-Wa-W9d"/>
                                     </connections>
                                 </toolbarItem>
+                                <toolbarItem implicitItemIdentifier="BBB7AF57-F1A1-405C-A8C3-846046A10EF7" label="Encrypt" paletteLabel="Encrypt" toolTip="List all profiles and configurations..." image="encrypt" id="jd9-c6-ykP">
+                                    <size key="minSize" width="40" height="25"/>
+                                    <size key="maxSize" width="40" height="28"/>
+                                    <button key="view" verticalHuggingPriority="750" id="O2S-MY-3jP">
+                                        <rect key="frame" x="4" y="14" width="40" height="28"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                        <buttonCell key="cell" type="roundTextured" bezelStyle="texturedRounded" image="encrypt" imagePosition="overlaps" alignment="center" lineBreakMode="truncatingTail" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="fdE-xJ-mdr">
+                                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                            <font key="font" metaFont="system"/>
+                                        </buttonCell>
+                                    </button>
+                                    <connections>
+                                        <segue destination="Mlk-V8-rVE" kind="show" id="M2p-kV-oQf"/>
+                                    </connections>
+                                </toolbarItem>
                             </allowedToolbarItems>
                             <defaultToolbarItems>
                                 <toolbarItem reference="wiK-ZO-ZDm"/>
                                 <toolbarItem reference="g1a-zY-Mpq"/>
                                 <toolbarItem reference="1Xq-6O-MUE"/>
+                                <toolbarItem reference="jd9-c6-ykP"/>
                                 <toolbarItem reference="zs6-ub-LOa"/>
                                 <toolbarItem reference="QmL-ZM-Xc4"/>
                                 <toolbarItem reference="v12-7x-cig"/>
@@ -365,7 +381,6 @@
                         <tabViewItem identifier="" id="Oau-Kd-gbS"/>
                         <tabViewItem id="UDl-Ex-hgb"/>
                         <tabViewItem id="gOf-XL-ZbX"/>
-                        <tabViewItem id="34v-03-RXL"/>
                         <tabViewItem id="aXU-PU-6Yq"/>
                         <tabViewItem id="Ty6-To-jtK"/>
                     </tabViewItems>
@@ -385,7 +400,6 @@
                         <segue destination="rht-JI-asq" kind="relationship" relationship="tabItems" id="U2e-si-zob"/>
                         <segue destination="fiO-Ux-xlw" kind="relationship" relationship="tabItems" id="48O-tK-ddQ"/>
                         <segue destination="GJH-xK-5LY" kind="relationship" relationship="tabItems" id="iJj-kL-Tje"/>
-                        <segue destination="Mlk-V8-rVE" kind="relationship" relationship="tabItems" id="t2T-bN-jkL"/>
                         <segue destination="AlG-Cw-Xi9" kind="relationship" relationship="tabItems" id="AMX-9u-aUB"/>
                         <segue destination="B9V-8v-Aba" kind="relationship" relationship="tabItems" id="hpt-AH-P81"/>
                     </connections>
@@ -7398,7 +7412,7 @@ DQ
                 </viewController>
                 <customObject id="zBX-Zs-NkY" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="710" y="-368.5"/>
+            <point key="canvasLocation" x="289" y="-477"/>
         </scene>
         <!--Estimating progress-->
         <scene sceneID="X1y-0Z-sdi">
@@ -7823,6 +7837,7 @@ DQ
         <image name="batch" width="64" height="64"/>
         <image name="complete" width="48" height="48"/>
         <image name="config" width="64" height="64"/>
+        <image name="encrypt" width="64" height="64"/>
         <image name="menuapp" width="16" height="16"/>
         <image name="quickbackup" width="64" height="64"/>
         <image name="red" width="512" height="512"/>
