@@ -103,9 +103,15 @@
                                             </connections>
                                         </menuItem>
                                         <menuItem isSeparatorItem="YES" id="p7w-an-4lO"/>
-                                        <menuItem title="Info" keyEquivalent="i" id="p56-o9-HcO" userLabel="Info">
+                                        <menuItem title="Info all" keyEquivalent="t" id="p56-o9-HcO" userLabel="Info">
                                             <connections>
-                                                <action selector="infoonetask:" target="Ady-hI-5gd" id="xje-X3-0nC"/>
+                                                <action selector="totinfo:" target="Ady-hI-5gd" id="uGV-ad-8lY"/>
+                                            </connections>
+                                        </menuItem>
+                                        <menuItem isSeparatorItem="YES" id="8ks-5I-Wuh"/>
+                                        <menuItem title="Info" keyEquivalent="i" id="oSU-tO-D9d" userLabel="Info">
+                                            <connections>
+                                                <action selector="infoonetask:" target="Ady-hI-5gd" id="m4B-ii-16b"/>
                                             </connections>
                                         </menuItem>
                                         <menuItem isSeparatorItem="YES" id="doz-B8-buN"/>
