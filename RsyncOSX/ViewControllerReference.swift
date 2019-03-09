@@ -134,6 +134,8 @@ class ViewControllerReference {
     var dayofweeksnapshots: StringDayofweek = .Sunday
     // Which tab is active
     var activetab: ViewController?
+    // Initial start
+    var initialstart:Int = 0
 
     func getvcref(viewcontroller: ViewController) -> NSViewController? {
         switch viewcontroller {

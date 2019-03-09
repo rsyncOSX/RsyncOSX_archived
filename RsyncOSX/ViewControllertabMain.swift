@@ -395,7 +395,10 @@ class ViewControllertabMain: NSViewController, ReloadTable, Deselect, VcMain, De
 
     override func viewDidAppear() {
         super.viewDidAppear()
-        self.view.window?.center()
+        if ViewControllerReference.shared.initialstart == 0 {
+            self.view.window?.center()
+            ViewControllerReference.shared.initialstart = 1
+        }
         ViewControllerReference.shared.activetab = .vctabmain
         self.configurations!.allowNotifyinMain = true
         if self.configurations!.configurationsDataSourcecount() > 0 {
