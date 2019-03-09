@@ -332,7 +332,7 @@
                                         <segue destination="ngh-0r-Hwj" kind="show" id="SYz-Wa-W9d"/>
                                     </connections>
                                 </toolbarItem>
-                                <toolbarItem implicitItemIdentifier="BBB7AF57-F1A1-405C-A8C3-846046A10EF7" label="Encrypt" paletteLabel="Encrypt" toolTip="List all profiles and configurations..." image="encrypt" id="jd9-c6-ykP">
+                                <toolbarItem implicitItemIdentifier="BBB7AF57-F1A1-405C-A8C3-846046A10EF7" label="Encrypt" paletteLabel="Encrypt" toolTip="Encrypted files..." image="encrypt" id="jd9-c6-ykP">
                                     <size key="minSize" width="40" height="25"/>
                                     <size key="maxSize" width="40" height="28"/>
                                     <button key="view" verticalHuggingPriority="750" id="O2S-MY-3jP">
