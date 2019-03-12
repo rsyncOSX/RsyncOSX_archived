@@ -33,7 +33,6 @@ class ViewControllerEncrypt: NSViewController, Index, SetConfigurations, VcCopyF
     @IBOutlet weak var connectbutton: NSButton!
     @IBOutlet weak var resetbutton: NSButton!
     @IBOutlet weak var rcloneID: NSTextField!
-    @IBOutlet weak var rcloneremotecatalog: NSTextField!
     @IBOutlet weak var forceresetbutton: NSButton!
 
     @IBAction func forcereset(_ sender: NSButton) {
@@ -139,18 +138,15 @@ class ViewControllerEncrypt: NSViewController, Index, SetConfigurations, VcCopyF
         let rsyncconfig: Configuration = self.configurations!.getConfigurations()[self.rsyncindex!]
         guard rsyncconfig.rclonehiddenID != nil else {
             self.rcloneID.stringValue = ""
-            self.rcloneremotecatalog.stringValue = ""
             return
         }
         guard self.rcloneprofilename ?? "" == rsyncconfig.rcloneprofile ?? "" && rsyncconfig.rclonehiddenID != nil else {
             self.rcloneID.stringValue = ""
-            self.rcloneremotecatalog.stringValue = ""
             return
         }
         if let rcloneindex = self.configurationsrclone?.getIndex(rsyncconfig.rclonehiddenID!) {
             guard rcloneindex >= 0 else { return }
             self.rcloneID.stringValue = self.configurationsrclone!.getConfigurations()[rcloneindex].backupID
-            self.rcloneremotecatalog.stringValue = self.configurationsrclone!.getConfigurations()[rcloneindex].offsiteCatalog
         }
     }
 
