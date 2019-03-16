@@ -10,11 +10,7 @@ import Foundation
 
 final class RclonePersistentStorageConfiguration: ReadWriteDictionary {
 
-    private var configurationsasdictionary: [NSDictionary]?
-
-    func readConfigurationsFromPermanentStore() -> [NSDictionary]? {
-        return self.configurationsasdictionary
-    }
+    var configurationsasdictionary: [NSDictionary]?
 
     init(profile: String?) {
         super.init(whattoreadwrite: .configuration, profile: profile, configpath: RcloneReference.shared.configpath)

@@ -15,7 +15,7 @@ final class RclonePersistentStorageAPI {
     // CONFIGURATIONS
     // Read configurations from persisten store
     func getConfigurations() -> [RcloneConfiguration]? {
-        let read = PersistentStorageConfiguration(profile: self.profile)
+        let read = RclonePersistentStorageConfiguration(profile: self.profile)
         guard read.configurationsasdictionary != nil else { return nil}
         var Configurations = [RcloneConfiguration]()
         for dict in read.configurationsasdictionary! {
