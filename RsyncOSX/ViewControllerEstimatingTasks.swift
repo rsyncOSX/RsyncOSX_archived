@@ -33,6 +33,7 @@ class ViewControllerEstimatingTasks: NSViewController, Abort {
     var vc: ViewControllertabMain?
     weak var countDelegate: CountEstimating?
     weak var dismissDelegate: DismissViewEstimating?
+    var diddissappear: Bool = false
 
     @IBOutlet weak var abort: NSButton!
     @IBOutlet weak var progress: NSProgressIndicator!
@@ -43,6 +44,7 @@ class ViewControllerEstimatingTasks: NSViewController, Abort {
 
     override func viewDidAppear() {
         super.viewDidAppear()
+        guard self.diddissappear == false else { return }
         ViewControllerReference.shared.setvcref(viewcontroller: .vcestimatingtasks, nsviewcontroller: self)
         self.vc = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllertabMain
         self.dismissDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllertabMain
@@ -56,11 +58,7 @@ class ViewControllerEstimatingTasks: NSViewController, Abort {
 
     override func viewWillDisappear() {
         super.viewWillDisappear()
-        self.stopProgressbar()
-    }
-
-    private func stopProgressbar() {
-        self.progress.stopAnimation(self)
+        self.diddissappear = true
     }
 
     // Progress bars
@@ -76,7 +74,7 @@ class ViewControllerEstimatingTasks: NSViewController, Abort {
 
 extension ViewControllerEstimatingTasks: Updateestimating {
     func dismissview() {
-        self.stopProgressbar()
+        self.progress.stopAnimation(self)
         self.dismissDelegate?.dismissestimating(viewcontroller: self)
     }
 
