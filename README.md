@@ -2,15 +2,7 @@
 
 ![](icon/rsyncosx.png)
 
-### Work in progress
-
-This repository is updated for **Xcode 10.2** and **Swift 5**. Both are still in beta and yet not released by Apple. The branch `v5.7.3-fixes` is for updating fixes to the released version of RsyncOSX if the upcoming versions of Xcode 10.2 and Swift 5 takes some time to release. The branch `v5.7.3-fixes` is stable and compiles with released Xcode 10.1 and Swift 4.
-
-### Next version of RsyncOSX
-
-The master repository is updated with changes for next version and might be unstable. 
-
-This repository is the source code for the macOS app RsyncOSX. RsyncOSX is compiled with support for macOS El Capitan version 10.11 - macOS Mojave version 10.14. The application is implemented in **Swift 5** by using Xcode 10. RsyncOSX is not depended upon any third party binary distributions. There is, however, one third party source code included to check for TCP connections. The check is for informal use only and can be removed.
+This repository is the source code for the macOS app RsyncOSX. RsyncOSX is compiled with support for macOS El Capitan version 10.11 - macOS Mojave version 10.14. The application is implemented in Swift 4.2 by using Xcode 10. RsyncOSX is not depended upon any third party binary distributions. There is, however, one third party source code included to check for TCP connections. The check is for informal use only and can be removed.
 
 Rsync is a file-based synchronization and backup tool. There is no custom solution for the backup archive. You can quit utilizing RsyncOSX (and rsync) at any time and still have access to all synchronized files.
 
