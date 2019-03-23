@@ -22,9 +22,17 @@ class ViewControllerSnapshots: NSViewController, SetDismisser, SetConfigurations
     weak var processterminationDelegate: UpdateProgress?
     var abort: Bool = false
     // Reference to which plan in combox
-    var comboBoxValues = ["none",
+    var combovalueslast = ["none",
                           "last",
                           "every"]
+
+    let combovaluesdayofweek: [String] = [StringDayofweek.Sunday.rawValue,
+                                    StringDayofweek.Monday.rawValue,
+                                    StringDayofweek.Tuesday.rawValue,
+                                    StringDayofweek.Wednesday.rawValue,
+                                    StringDayofweek.Thursday.rawValue,
+                                    StringDayofweek.Friday.rawValue,
+                                    StringDayofweek.Saturday.rawValue]
 
     @IBOutlet weak var snapshotstableView: NSTableView!
     @IBOutlet weak var rsynctableView: NSTableView!
@@ -41,7 +49,8 @@ class ViewControllerSnapshots: NSViewController, SetDismisser, SetConfigurations
     @IBOutlet weak var deletesnapshotsdays: NSSlider!
     @IBOutlet weak var stringdeletesnapshotsdaysnum: NSTextField!
     @IBOutlet weak var selectplan: NSComboBox!
-    @IBOutlet weak var dayofweektokeep: NSTextField!
+    @IBOutlet weak var savebutton: NSButton!
+    @IBOutlet weak var selectdayofweek: NSComboBox!
 
     var verifyrsyncpath: Verifyrsyncpath?
 
@@ -68,6 +77,9 @@ class ViewControllerSnapshots: NSViewController, SetDismisser, SetConfigurations
         self.configurations!.processtermination = .automaticbackup
         self.configurations?.remoteinfotaskworkqueue = RemoteInfoTaskWorkQueue(inbatch: false)
         self.presentAsSheet(self.viewControllerEstimating!)
+    }
+
+    @IBAction func savesnapday(_ sender: NSButton) {
     }
 
     private func info (num: Int) {
@@ -104,9 +116,9 @@ class ViewControllerSnapshots: NSViewController, SetDismisser, SetConfigurations
         self.numbersinsequencetodelete = 0
     }
 
-    private func initcombox(combobox: NSComboBox, index: Int) {
+    private func initcombox(combobox: NSComboBox, values: [String], index: Int) {
         combobox.removeAllItems()
-        combobox.addItems(withObjectValues: self.comboBoxValues)
+        combobox.addItems(withObjectValues: values)
         combobox.selectItem(at: index)
     }
 
@@ -183,9 +195,9 @@ class ViewControllerSnapshots: NSViewController, SetDismisser, SetConfigurations
     override func viewDidAppear() {
         super.viewDidAppear()
         ViewControllerReference.shared.activetab = .vcsnapshot
-        self.initcombox(combobox: self.selectplan, index: 0)
+        self.initcombox(combobox: self.selectplan, values: self.combovalueslast, index: 0)
+        self.initcombox(combobox: self.selectdayofweek, values: self.combovaluesdayofweek, index: 0)
         self.selectplan.isEnabled = false
-        self.dayofweektokeep.stringValue = "Day of week to keep: " + ViewControllerReference.shared.dayofweeksnapshots.rawValue
         if let index = self.index() {
             guard index < self.configurations!.getConfigurationsDataSourcecountBackupSnapshot()!.count else { return }
             let hiddenID = self.configurations!.getConfigurationsDataSourcecountBackupSnapshot()![index].value(forKey: "hiddenID") as? Int ?? -1
@@ -278,7 +290,6 @@ extension ViewControllerSnapshots: DismissViewController {
 
     func dismiss_view(viewcontroller: NSViewController) {
         self.dismiss(viewcontroller)
-        self.dayofweektokeep.stringValue = "Day of week to keep: " + ViewControllerReference.shared.dayofweeksnapshots.rawValue
         if self.snapshotsloggdata?.remotecatalogstodelete != nil {
             self.snapshotsloggdata?.remotecatalogstodelete = nil
             self.info(num: 2)
