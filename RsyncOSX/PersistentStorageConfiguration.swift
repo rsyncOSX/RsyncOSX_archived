@@ -121,6 +121,12 @@ final class PersistentStorageConfiguration: ReadWriteDictionary, SetConfiguratio
         }
         if config.snapshotnum != nil {
             dict.setObject(config.snapshotnum!, forKey: "snapshotnum" as NSCopying)
+            if config.snaplast != nil {
+                dict.setObject(config.snaplast!, forKey: "snaplast" as NSCopying)
+            }
+            if config.snapday != nil {
+                dict.setObject(config.snapday!, forKey: "snapday" as NSCopying)
+            }
         }
         if config.rclonehiddenID != nil {
             dict.setObject(config.rclonehiddenID!, forKey: "rclonehiddenID" as NSCopying)

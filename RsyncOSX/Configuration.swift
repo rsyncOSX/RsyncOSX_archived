@@ -40,6 +40,9 @@ struct Configuration {
     // If connected to rclone for encrypted backups
     var rclonehiddenID: Int?
     var rcloneprofile: String?
+    // Snapshots, day to save and last = 1 or every last=0
+    var snapday: String?
+    var snaplast: Int?
 
     private func calculatedays(date: String) -> Double? {
         guard date != "" else { return nil }
@@ -71,6 +74,8 @@ struct Configuration {
         self.backupID = dictionary.object(forKey: "backupID") as? String ?? ""
         if let snapshotnum = dictionary.object(forKey: "snapshotnum") as? Int {
             self.snapshotnum = snapshotnum
+            self.snapday = dictionary.object(forKey: "snapday") as? String ?? "Sunday"
+            self.snaplast = dictionary.object(forKey: "snaplast") as? Int ?? 1
         }
         // Last run of task
         if let dateRun = dictionary.object(forKey: "dateRun") {
