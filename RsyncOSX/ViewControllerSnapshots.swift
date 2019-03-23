@@ -10,7 +10,7 @@
 import Foundation
 import Cocoa
 
-class ViewControllerSnapshots: NSViewController, SetDismisser, SetConfigurations, Delay, Connected, VcMain, Index {
+class ViewControllerSnapshots: NSViewController, SetDismisser, SetConfigurations, Delay, Connected, VcMain {
 
     private var hiddenID: Int?
     private var config: Configuration?
@@ -33,6 +33,7 @@ class ViewControllerSnapshots: NSViewController, SetDismisser, SetConfigurations
                                     StringDayofweek.Thursday.rawValue,
                                     StringDayofweek.Friday.rawValue,
                                     StringDayofweek.Saturday.rawValue]
+    var diddissappear: Bool = false
 
     @IBOutlet weak var snapshotstableView: NSTableView!
     @IBOutlet weak var rsynctableView: NSTableView!
@@ -195,23 +196,17 @@ class ViewControllerSnapshots: NSViewController, SetDismisser, SetConfigurations
     override func viewDidAppear() {
         super.viewDidAppear()
         ViewControllerReference.shared.activetab = .vcsnapshot
+        guard self.diddissappear == false else { return }
         self.initcombox(combobox: self.selectplan, values: self.combovalueslast, index: 0)
         self.initcombox(combobox: self.selectdayofweek, values: self.combovaluesdayofweek, index: 0)
         self.selectplan.isEnabled = false
-        if let index = self.index() {
-            guard index < self.configurations!.getConfigurationsDataSourcecountBackupSnapshot()!.count else { return }
-            let hiddenID = self.configurations!.getConfigurationsDataSourcecountBackupSnapshot()![index].value(forKey: "hiddenID") as? Int ?? -1
-            let config = self.configurations!.getConfigurations()[index]
-            guard self.connected(config: config) == true else {
-                self.info(num: 6)
-                return
-            }
-            self.index = self.configurations?.getIndex(hiddenID)
-            self.getSourceindex(index: hiddenID)
-        } else {
-            self.snapshotsloggdata = nil
-            self.reloadtabledata()
-        }
+        self.snapshotsloggdata = nil
+        self.reloadtabledata()
+    }
+
+    override func viewDidDisappear() {
+        super.viewDidDisappear()
+        self.diddissappear = true
     }
 
     private func deletesnapshotcatalogs() {
