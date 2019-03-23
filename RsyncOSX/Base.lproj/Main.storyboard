@@ -3868,28 +3868,6 @@ DQ
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
-                            <comboBox verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2ay-be-aDz">
-                                <rect key="frame" x="371" y="178" width="99" height="26"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <comboBoxCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" drawsBackground="YES" completes="NO" numberOfVisibleItems="5" id="3Qd-SZ-fe8">
-                                    <font key="font" metaFont="system"/>
-                                    <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
-                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                    <objectValues>
-                                        <string>Item 1</string>
-                                        <string>Item 2</string>
-                                        <string>Item 3</string>
-                                    </objectValues>
-                                </comboBoxCell>
-                            </comboBox>
-                            <box fixedFrame="YES" title="Snapshot day of week to keep" translatesAutoresizingMaskIntoConstraints="NO" id="sTg-0d-swR">
-                                <rect key="frame" x="234" y="171" width="250" height="51"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <view key="contentView" id="tpo-cX-xWg">
-                                    <rect key="frame" x="3" y="3" width="244" height="33"/>
-                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                </view>
-                            </box>
                             <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="u41-A5-KKx">
                                 <rect key="frame" x="412" y="13" width="75" height="32"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
@@ -3907,7 +3885,6 @@ DQ
                         </subviews>
                     </view>
                     <connections>
-                        <outlet property="dayofweektokeep" destination="2ay-be-aDz" id="PNN-8N-egY"/>
                         <outlet property="detailedlogging" destination="dg1-Pc-D5r" id="Z5n-3i-nJ1"/>
                         <outlet property="executescheduledappsinmenuapp" destination="tyj-K6-PJj" id="cbA-0X-jrJ"/>
                         <outlet property="fulllogging" destination="aZk-KL-3Z0" id="9vS-lT-gDI"/>

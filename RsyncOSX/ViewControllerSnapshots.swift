@@ -467,11 +467,30 @@ extension ViewControllerSnapshots: NewProfile {
 
 extension ViewControllerSnapshots: NSComboBoxDelegate {
     func comboBoxSelectionDidChange(_ notification: Notification) {
+        guard self.config != nil  else { return }
+        switch self.selectdayofweek.indexOfSelectedItem {
+        case 0:
+            self.config!.snapday = StringDayofweek.Sunday.rawValue
+        case 1:
+            self.config!.snapday = StringDayofweek.Monday.rawValue
+        case 2:
+            self.config!.snapday = StringDayofweek.Tuesday.rawValue
+        case 3:
+            self.config!.snapday = StringDayofweek.Wednesday.rawValue
+        case 4:
+            self.config!.snapday = StringDayofweek.Thursday.rawValue
+        case 5:
+            self.config!.snapday = StringDayofweek.Friday.rawValue
+        case 6:
+            self.config!.snapday = StringDayofweek.Saturday.rawValue
+        default:
+            self.config!.snapday = StringDayofweek.Sunday.rawValue
+        }
         switch self.selectplan.indexOfSelectedItem {
         case 1:
-            _ = PlanSnapshots(plan: 1)
+            _ = PlanSnapshots(plan: 1, config: self.config!)
         case 2:
-            _ = PlanSnapshots(plan: 2)
+            _ = PlanSnapshots(plan: 2, config: self.config!)
         default:
             return
         }

@@ -60,7 +60,7 @@ extension Date {
         return (calendar as NSCalendar).components( .weekday, from: self).weekday!
     }
 
-    func isSelectedDayofWeek(day: Dayofweek) -> Bool {
+    func isSelectedDayofWeek(day: NumDayofweek) -> Bool {
         return getWeekday() == day.rawValue
     }
 

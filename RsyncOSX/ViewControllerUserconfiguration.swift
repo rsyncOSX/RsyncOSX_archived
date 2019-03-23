@@ -23,14 +23,6 @@ class ViewControllerUserconfiguration: NSViewController, NewRsync, SetDismisser,
     var oldmarknumberofdayssince: Double?
     var reload: Bool = false
 
-    let comboBoxValues: [String] = [StringDayofweek.Sunday.rawValue,
-                                    StringDayofweek.Monday.rawValue,
-                                    StringDayofweek.Tuesday.rawValue,
-                                    StringDayofweek.Wednesday.rawValue,
-                                    StringDayofweek.Thursday.rawValue,
-                                    StringDayofweek.Friday.rawValue,
-                                    StringDayofweek.Saturday.rawValue]
-
     @IBOutlet weak var rsyncPath: NSTextField!
     @IBOutlet weak var version3rsync: NSButton!
     @IBOutlet weak var detailedlogging: NSButton!
@@ -48,13 +40,6 @@ class ViewControllerUserconfiguration: NSViewController, NewRsync, SetDismisser,
     @IBOutlet weak var statuslightpathrsyncosx: NSImageView!
     @IBOutlet weak var statuslightpathrsyncosxsched: NSImageView!
     @IBOutlet weak var savebutton: NSButton!
-    @IBOutlet weak var dayofweektokeep: NSComboBox!
-
-    private func initcombox(combobox: NSComboBox, index: Int) {
-        combobox.removeAllItems()
-        combobox.addItems(withObjectValues: self.comboBoxValues)
-        combobox.selectItem(at: index)
-    }
 
     @IBAction func toggleversion3rsync(_ sender: NSButton) {
         if self.version3rsync.state == .on {
@@ -274,7 +259,6 @@ class ViewControllerUserconfiguration: NSViewController, NewRsync, SetDismisser,
         self.marknumberofdayssince.delegate = self
         self.pathRsyncOSX.delegate = self
         self.pathRsyncOSXsched.delegate = self
-        self.dayofweektokeep.delegate = self
         self.storageapi = PersistentStorageAPI(profile: nil)
         self.nologging.state = .on
         self.reloadconfigurationsDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllertabMain
@@ -298,7 +282,6 @@ class ViewControllerUserconfiguration: NSViewController, NewRsync, SetDismisser,
         self.statuslightpathrsync.isHidden = true
         self.statuslightpathrsyncosx.isHidden = true
         self.statuslightpathrsyncosxsched.isHidden = true
-        self.initcombox(combobox: self.dayofweektokeep, index: 0)
     }
 
     // Function for check and set user configuration
@@ -357,31 +340,6 @@ extension ViewControllerUserconfiguration: NSTextFieldDelegate {
             default:
                 return
             }
-        }
-    }
-}
-
-extension ViewControllerUserconfiguration: NSComboBoxDelegate {
-
-    func comboBoxSelectionDidChange(_ notification: Notification) {
-        self.setdirty()
-        switch self.dayofweektokeep.indexOfSelectedItem {
-        case 0:
-            ViewControllerReference.shared.dayofweeksnapshots = .Sunday
-        case 1:
-            ViewControllerReference.shared.dayofweeksnapshots = .Monday
-        case 2:
-            ViewControllerReference.shared.dayofweeksnapshots = .Tuesday
-        case 3:
-            ViewControllerReference.shared.dayofweeksnapshots = .Wednesday
-        case 4:
-            ViewControllerReference.shared.dayofweeksnapshots = .Thursday
-        case 5:
-            ViewControllerReference.shared.dayofweeksnapshots = .Friday
-        case 6:
-            ViewControllerReference.shared.dayofweeksnapshots = .Saturday
-        default:
-            return
         }
     }
 }

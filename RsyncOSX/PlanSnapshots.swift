@@ -13,7 +13,7 @@ protocol GetSnapshotsLoggData: class {
     func getsnapshotsloggaata() -> SnapshotsLoggData?
 }
 
-enum Dayofweek: Int {
+enum NumDayofweek: Int {
     case Monday = 2
     case Tuesday = 3
     case Wednesday = 4
@@ -35,9 +35,8 @@ enum StringDayofweek: String {
 
 class PlanSnapshots {
 
-    var day: Dayofweek = .Sunday
+    var day: NumDayofweek = .Sunday
     var nameofday: StringDayofweek = .Sunday
-
     weak var SnapshotsLoggDataDelegate: GetSnapshotsLoggData?
     weak var reloadDelegate: Reloadandrefresh?
     var snapshotsloggdata: SnapshotsLoggData?
@@ -181,34 +180,43 @@ class PlanSnapshots {
         }
     }
 
-    private func setweekdaytokeep() {
-        self.nameofday = ViewControllerReference.shared.dayofweeksnapshots
-        switch ViewControllerReference.shared.dayofweeksnapshots {
-        case .Monday:
+    private func setweekdaytokeep(config: Configuration) {
+        switch config.snapday {
+        case StringDayofweek.Monday.rawValue:
             self.day = .Monday
-        case .Tuesday:
+            self.nameofday = .Monday
+        case StringDayofweek.Tuesday.rawValue:
             self.day = .Tuesday
-        case .Wednesday:
+            self.nameofday = .Tuesday
+        case StringDayofweek.Wednesday.rawValue:
             self.day = .Wednesday
-        case .Thursday:
+            self.nameofday = .Wednesday
+        case StringDayofweek.Thursday.rawValue:
             self.day = .Thursday
-        case .Friday:
+            self.nameofday = .Thursday
+        case StringDayofweek.Friday.rawValue:
             self.day = .Friday
-        case .Saturday:
+            self.nameofday = .Friday
+        case StringDayofweek.Saturday.rawValue:
             self.day = .Saturday
-        case .Sunday:
+            self.nameofday = .Saturday
+        case StringDayofweek.Sunday.rawValue:
             self.day = .Sunday
+            self.nameofday = .Sunday
+        default:
+            self.day = .Sunday
+            self.nameofday = .Sunday
         }
     }
 
-    init(plan: Int) {
+    init(plan: Int, config: Configuration) {
         // which plan to apply
         if plan == 1 {
             self.keepallselcteddayofweek = false
         } else {
             self.keepallselcteddayofweek = true
         }
-        self.setweekdaytokeep()
+        self.setweekdaytokeep(config: config)
         self.SnapshotsLoggDataDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vcsnapshot) as? ViewControllerSnapshots
         self.reloadDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vcsnapshot) as? ViewControllerSnapshots
         self.snapshotsloggdata = self.SnapshotsLoggDataDelegate?.getsnapshotsloggaata()
