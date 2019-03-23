@@ -5,12 +5,12 @@
 //  Created by Thomas Evensen on 22.01.2018.
 //  Copyright © 2018 Thomas Evensen. All rights reserved.
 //
-// swiftlint:disable line_length file_length
+// swiftlint:disable line_length file_length cyclomatic_complexity type_body_length
 
 import Foundation
 import Cocoa
 
-class ViewControllerSnapshots: NSViewController, SetDismisser, SetConfigurations, Delay, Connected, VcMain, Index {
+class ViewControllerSnapshots: NSViewController, SetDismisser, SetConfigurations, Delay, Connected, VcMain {
 
     private var hiddenID: Int?
     private var config: Configuration?
@@ -22,9 +22,18 @@ class ViewControllerSnapshots: NSViewController, SetDismisser, SetConfigurations
     weak var processterminationDelegate: UpdateProgress?
     var abort: Bool = false
     // Reference to which plan in combox
-    var comboBoxValues = ["none",
+    var combovalueslast = ["none",
                           "last",
                           "every"]
+
+    let combovaluesdayofweek: [String] = [StringDayofweek.Sunday.rawValue,
+                                    StringDayofweek.Monday.rawValue,
+                                    StringDayofweek.Tuesday.rawValue,
+                                    StringDayofweek.Wednesday.rawValue,
+                                    StringDayofweek.Thursday.rawValue,
+                                    StringDayofweek.Friday.rawValue,
+                                    StringDayofweek.Saturday.rawValue]
+    var diddissappear: Bool = false
 
     @IBOutlet weak var snapshotstableView: NSTableView!
     @IBOutlet weak var rsynctableView: NSTableView!
@@ -41,7 +50,8 @@ class ViewControllerSnapshots: NSViewController, SetDismisser, SetConfigurations
     @IBOutlet weak var deletesnapshotsdays: NSSlider!
     @IBOutlet weak var stringdeletesnapshotsdaysnum: NSTextField!
     @IBOutlet weak var selectplan: NSComboBox!
-    @IBOutlet weak var dayofweektokeep: NSTextField!
+    @IBOutlet weak var savebutton: NSButton!
+    @IBOutlet weak var selectdayofweek: NSComboBox!
 
     var verifyrsyncpath: Verifyrsyncpath?
 
@@ -68,6 +78,9 @@ class ViewControllerSnapshots: NSViewController, SetDismisser, SetConfigurations
         self.configurations!.processtermination = .automaticbackup
         self.configurations?.remoteinfotaskworkqueue = RemoteInfoTaskWorkQueue(inbatch: false)
         self.presentAsSheet(self.viewControllerEstimating!)
+    }
+
+    @IBAction func savesnapdayofweek(_ sender: NSButton) {
     }
 
     private func info (num: Int) {
@@ -104,9 +117,9 @@ class ViewControllerSnapshots: NSViewController, SetDismisser, SetConfigurations
         self.numbersinsequencetodelete = 0
     }
 
-    private func initcombox(combobox: NSComboBox, index: Int) {
+    private func initcombox(combobox: NSComboBox, values: [String], index: Int) {
         combobox.removeAllItems()
-        combobox.addItems(withObjectValues: self.comboBoxValues)
+        combobox.addItems(withObjectValues: values)
         combobox.selectItem(at: index)
     }
 
@@ -183,23 +196,17 @@ class ViewControllerSnapshots: NSViewController, SetDismisser, SetConfigurations
     override func viewDidAppear() {
         super.viewDidAppear()
         ViewControllerReference.shared.activetab = .vcsnapshot
-        self.initcombox(combobox: self.selectplan, index: 0)
+        guard self.diddissappear == false else { return }
+        self.initcombox(combobox: self.selectplan, values: self.combovalueslast, index: 0)
+        self.initcombox(combobox: self.selectdayofweek, values: self.combovaluesdayofweek, index: 0)
         self.selectplan.isEnabled = false
-        self.dayofweektokeep.stringValue = "Day of week to keep: " + ViewControllerReference.shared.dayofweeksnapshots.rawValue
-        if let index = self.index() {
-            guard index < self.configurations!.getConfigurationsDataSourcecountBackupSnapshot()!.count else { return }
-            let hiddenID = self.configurations!.getConfigurationsDataSourcecountBackupSnapshot()![index].value(forKey: "hiddenID") as? Int ?? -1
-            let config = self.configurations!.getConfigurations()[index]
-            guard self.connected(config: config) == true else {
-                self.info(num: 6)
-                return
-            }
-            self.index = self.configurations?.getIndex(hiddenID)
-            self.getSourceindex(index: hiddenID)
-        } else {
-            self.snapshotsloggdata = nil
-            self.reloadtabledata()
-        }
+        self.snapshotsloggdata = nil
+        self.reloadtabledata()
+    }
+
+    override func viewDidDisappear() {
+        super.viewDidDisappear()
+        self.diddissappear = true
     }
 
     private func deletesnapshotcatalogs() {
@@ -278,7 +285,6 @@ extension ViewControllerSnapshots: DismissViewController {
 
     func dismiss_view(viewcontroller: NSViewController) {
         self.dismiss(viewcontroller)
-        self.dayofweektokeep.stringValue = "Day of week to keep: " + ViewControllerReference.shared.dayofweeksnapshots.rawValue
         if self.snapshotsloggdata?.remotecatalogstodelete != nil {
             self.snapshotsloggdata?.remotecatalogstodelete = nil
             self.info(num: 2)
@@ -456,11 +462,30 @@ extension ViewControllerSnapshots: NewProfile {
 
 extension ViewControllerSnapshots: NSComboBoxDelegate {
     func comboBoxSelectionDidChange(_ notification: Notification) {
+        guard self.config != nil  else { return }
+        switch self.selectdayofweek.indexOfSelectedItem {
+        case 0:
+            self.config!.snapdayoffweek = StringDayofweek.Sunday.rawValue
+        case 1:
+            self.config!.snapdayoffweek = StringDayofweek.Monday.rawValue
+        case 2:
+            self.config!.snapdayoffweek = StringDayofweek.Tuesday.rawValue
+        case 3:
+            self.config!.snapdayoffweek = StringDayofweek.Wednesday.rawValue
+        case 4:
+            self.config!.snapdayoffweek = StringDayofweek.Thursday.rawValue
+        case 5:
+            self.config!.snapdayoffweek = StringDayofweek.Friday.rawValue
+        case 6:
+            self.config!.snapdayoffweek = StringDayofweek.Saturday.rawValue
+        default:
+            self.config!.snapdayoffweek = StringDayofweek.Sunday.rawValue
+        }
         switch self.selectplan.indexOfSelectedItem {
         case 1:
-            _ = PlanSnapshots(plan: 1)
+            _ = PlanSnapshots(plan: 1, snapdayoffweek: self.config?.snapdayoffweek ?? "Sunday")
         case 2:
-            _ = PlanSnapshots(plan: 2)
+            _ = PlanSnapshots(plan: 2, snapdayoffweek: self.config?.snapdayoffweek ?? "Sunday")
         default:
             return
         }

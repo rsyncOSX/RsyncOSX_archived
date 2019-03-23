@@ -65,8 +65,7 @@ final class PersistentStorageUserconfiguration: ReadWriteDictionary, SetConfigur
             "minimumlogging": minimumlogging! as Int,
             "fulllogging": fulllogging! as Int,
             "marknumberofdayssince": marknumberofdayssince ?? "5.0",
-            "executeinmenuapp": executeinmenuapp ?? 1 as Int,
-            "dayofweeksnaphot": ViewControllerReference.shared.dayofweeksnapshots.rawValue]
+            "executeinmenuapp": executeinmenuapp ?? 1 as Int]
         if rsyncPath != nil {
             dict.setObject(rsyncPath!, forKey: "rsyncPath" as NSCopying)
         }

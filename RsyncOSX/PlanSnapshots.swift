@@ -13,7 +13,7 @@ protocol GetSnapshotsLoggData: class {
     func getsnapshotsloggaata() -> SnapshotsLoggData?
 }
 
-enum Dayofweek: Int {
+enum NumDayofweek: Int {
     case Monday = 2
     case Tuesday = 3
     case Wednesday = 4
@@ -35,9 +35,8 @@ enum StringDayofweek: String {
 
 class PlanSnapshots {
 
-    var day: Dayofweek = .Sunday
-    var nameofday: StringDayofweek = .Sunday
-
+    var day: NumDayofweek?
+    var nameofday: StringDayofweek?
     weak var SnapshotsLoggDataDelegate: GetSnapshotsLoggData?
     weak var reloadDelegate: Reloadandrefresh?
     var snapshotsloggdata: SnapshotsLoggData?
@@ -119,11 +118,11 @@ class PlanSnapshots {
         if self.datecomponentsfromstring(datestring: datesnapshotstring).month ==
             self.datecomponentscurrent!.month &&
             self.datecomponentsfromstring(datestring: datesnapshotstring).year == self.datecomponentscurrent!.year {
-            if self.datefromstring(datestring: datesnapshotstring).isSelectedDayofWeek(day: self.day) == false {
+            if self.datefromstring(datestring: datesnapshotstring).isSelectedDayofWeek(day: self.day!) == false {
                 self.snapshotsloggdata?.snapshotslogs![index].setValue("this month", forKey: "period")
                 return true
             } else {
-                self.snapshotsloggdata?.snapshotslogs![index].setValue(self.nameofday.rawValue + " this month", forKey: "period")
+                self.snapshotsloggdata?.snapshotslogs![index].setValue(self.nameofday!.rawValue + " this month", forKey: "period")
                 return false
             }
         }
@@ -136,7 +135,7 @@ class PlanSnapshots {
         if self.datecomponentsfromstring(datestring: datesnapshotstring).month !=
             self.datecomponentscurrent!.month {
             if self.islastSelectedDayinMonth(date: self.datefromstring(datestring: datesnapshotstring)) == true {
-                self.snapshotsloggdata?.snapshotslogs![index].setValue("last " + self.nameofday.rawValue + " month", forKey: "period")
+                self.snapshotsloggdata?.snapshotslogs![index].setValue("last " + self.nameofday!.rawValue + " month", forKey: "period")
                 return false
             } else {
                 self.snapshotsloggdata?.snapshotslogs![index].setValue("prev months", forKey: "period")
@@ -152,7 +151,7 @@ class PlanSnapshots {
         if self.datecomponentsfromstring(datestring: datesnapshotstring).month !=
             self.datecomponentscurrent!.month {
             if self.isselectedDayinWeek(date: self.datefromstring(datestring: datesnapshotstring)) == true {
-                self.snapshotsloggdata?.snapshotslogs![index].setValue(self.nameofday.rawValue + " prev months", forKey: "period")
+                self.snapshotsloggdata?.snapshotslogs![index].setValue(self.nameofday!.rawValue + " prev months", forKey: "period")
                 return false
             } else {
                 self.snapshotsloggdata?.snapshotslogs![index].setValue("prev months", forKey: "period")
@@ -163,7 +162,7 @@ class PlanSnapshots {
     }
 
     func islastSelectedDayinMonth(date: Date) -> Bool {
-        if date.isSelectedDayofWeek(day: self.day) && date.daymonth() > 24 {
+        if date.isSelectedDayofWeek(day: self.day!) && date.daymonth() > 24 {
             return true
         } else {
             return false
@@ -171,7 +170,7 @@ class PlanSnapshots {
     }
 
     func isselectedDayinWeek(date: Date) -> Bool {
-        return self.day.rawValue == date.getWeekday()
+        return self.day!.rawValue == date.getWeekday()
     }
 
     private func reset() {
@@ -181,34 +180,43 @@ class PlanSnapshots {
         }
     }
 
-    private func setweekdaytokeep() {
-        self.nameofday = ViewControllerReference.shared.dayofweeksnapshots
-        switch ViewControllerReference.shared.dayofweeksnapshots {
-        case .Monday:
+    private func setweekdaytokeep(snapdayoffweek: String) {
+        switch snapdayoffweek {
+        case StringDayofweek.Monday.rawValue:
             self.day = .Monday
-        case .Tuesday:
+            self.nameofday = .Monday
+        case StringDayofweek.Tuesday.rawValue:
             self.day = .Tuesday
-        case .Wednesday:
+            self.nameofday = .Tuesday
+        case StringDayofweek.Wednesday.rawValue:
             self.day = .Wednesday
-        case .Thursday:
+            self.nameofday = .Wednesday
+        case StringDayofweek.Thursday.rawValue:
             self.day = .Thursday
-        case .Friday:
+            self.nameofday = .Thursday
+        case StringDayofweek.Friday.rawValue:
             self.day = .Friday
-        case .Saturday:
+            self.nameofday = .Friday
+        case StringDayofweek.Saturday.rawValue:
             self.day = .Saturday
-        case .Sunday:
+            self.nameofday = .Saturday
+        case StringDayofweek.Sunday.rawValue:
             self.day = .Sunday
+            self.nameofday = .Sunday
+        default:
+            self.day = .Sunday
+            self.nameofday = .Sunday
         }
     }
 
-    init(plan: Int) {
+    init(plan: Int, snapdayoffweek: String) {
         // which plan to apply
         if plan == 1 {
             self.keepallselcteddayofweek = false
         } else {
             self.keepallselcteddayofweek = true
         }
-        self.setweekdaytokeep()
+        self.setweekdaytokeep(snapdayoffweek: snapdayoffweek)
         self.SnapshotsLoggDataDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vcsnapshot) as? ViewControllerSnapshots
         self.reloadDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vcsnapshot) as? ViewControllerSnapshots
         self.snapshotsloggdata = self.SnapshotsLoggDataDelegate?.getsnapshotsloggaata()

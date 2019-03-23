@@ -130,8 +130,6 @@ class ViewControllerReference {
     var executescheduledtasksmenuapp: Bool = false
     // True if menuapp is running
     var menuappisrunning: Bool = false
-    // Day of week to keep snapshots
-    var dayofweeksnapshots: StringDayofweek = .Sunday
     // Which tab is active
     var activetab: ViewController?
     // Initial start
