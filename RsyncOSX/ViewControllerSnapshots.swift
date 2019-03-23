@@ -131,6 +131,7 @@ class ViewControllerSnapshots: NSViewController, SetDismisser, SetConfigurations
     }
 
     @IBAction func updatedeletesnapshotsnum(_ sender: NSSlider) {
+        guard self.index != nil else { return }
         self.stringdeletesnapshotsnum.stringValue = String(self.deletesnapshots.intValue)
         self.numbersinsequencetodelete = Int(self.deletesnapshots.intValue - 1)
         self.markfordelete(numberstomark: self.numbersinsequencetodelete!)
@@ -139,7 +140,8 @@ class ViewControllerSnapshots: NSViewController, SetDismisser, SetConfigurations
         })
     }
 
-    @IBAction func updatedeletesnapshotsdays(_ sender: Any) {
+    @IBAction func updatedeletesnapshotsdays(_ sender: NSSlider) {
+        guard self.index != nil else { return }
         self.stringdeletesnapshotsdaysnum.stringValue = String(self.deletesnapshotsdays.intValue)
         self.numbersinsequencetodelete = self.snapshotsloggdata?.countbydays(num: Double(self.deletesnapshotsdays.intValue))
         self.markfordelete(numberstomark: self.numbersinsequencetodelete!)
@@ -259,6 +261,7 @@ class ViewControllerSnapshots: NSViewController, SetDismisser, SetConfigurations
                 self.selectplan.isEnabled = false
                 self.info(num: 0)
                 let hiddenID = self.configurations!.getConfigurationsDataSourcecountBackupSnapshot()![index].value(forKey: "hiddenID") as? Int ?? -1
+                self.index = self.configurations?.getIndex(hiddenID)
                 self.getSourceindex(index: hiddenID)
             }
         }
@@ -269,6 +272,7 @@ class ViewControllerSnapshots: NSViewController, SetDismisser, SetConfigurations
         self.config = self.configurations!.getConfigurations()[self.configurations!.getIndex(hiddenID!)]
         guard self.config!.task == ViewControllerReference.shared.snapshot else {
             self.info(num: 1)
+            self.index = nil
             return
         }
         self.snapshotsloggdata = SnapshotsLoggData(config: self.config!, insnapshot: true)
