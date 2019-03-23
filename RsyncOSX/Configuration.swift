@@ -41,7 +41,7 @@ struct Configuration {
     var rclonehiddenID: Int?
     var rcloneprofile: String?
     // Snapshots, day to save and last = 1 or every last=0
-    var snapday: String?
+    var snapdayoffweek: String?
     var snaplast: Int?
 
     private func calculatedays(date: String) -> Double? {
@@ -74,7 +74,7 @@ struct Configuration {
         self.backupID = dictionary.object(forKey: "backupID") as? String ?? ""
         if let snapshotnum = dictionary.object(forKey: "snapshotnum") as? Int {
             self.snapshotnum = snapshotnum
-            self.snapday = dictionary.object(forKey: "snapday") as? String ?? "Sunday"
+            self.snapdayoffweek = dictionary.object(forKey: "snapdayoffweek") as? String ?? "Sunday"
             self.snaplast = dictionary.object(forKey: "snaplast") as? Int ?? 1
         }
         // Last run of task

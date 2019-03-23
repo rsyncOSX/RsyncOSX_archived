@@ -79,7 +79,7 @@ class ViewControllerSnapshots: NSViewController, SetDismisser, SetConfigurations
         self.presentAsSheet(self.viewControllerEstimating!)
     }
 
-    @IBAction func savesnapday(_ sender: NSButton) {
+    @IBAction func savesnapdayofweek(_ sender: NSButton) {
     }
 
     private func info (num: Int) {
@@ -470,27 +470,27 @@ extension ViewControllerSnapshots: NSComboBoxDelegate {
         guard self.config != nil  else { return }
         switch self.selectdayofweek.indexOfSelectedItem {
         case 0:
-            self.config!.snapday = StringDayofweek.Sunday.rawValue
+            self.config!.snapdayoffweek = StringDayofweek.Sunday.rawValue
         case 1:
-            self.config!.snapday = StringDayofweek.Monday.rawValue
+            self.config!.snapdayoffweek = StringDayofweek.Monday.rawValue
         case 2:
-            self.config!.snapday = StringDayofweek.Tuesday.rawValue
+            self.config!.snapdayoffweek = StringDayofweek.Tuesday.rawValue
         case 3:
-            self.config!.snapday = StringDayofweek.Wednesday.rawValue
+            self.config!.snapdayoffweek = StringDayofweek.Wednesday.rawValue
         case 4:
-            self.config!.snapday = StringDayofweek.Thursday.rawValue
+            self.config!.snapdayoffweek = StringDayofweek.Thursday.rawValue
         case 5:
-            self.config!.snapday = StringDayofweek.Friday.rawValue
+            self.config!.snapdayoffweek = StringDayofweek.Friday.rawValue
         case 6:
-            self.config!.snapday = StringDayofweek.Saturday.rawValue
+            self.config!.snapdayoffweek = StringDayofweek.Saturday.rawValue
         default:
-            self.config!.snapday = StringDayofweek.Sunday.rawValue
+            self.config!.snapdayoffweek = StringDayofweek.Sunday.rawValue
         }
         switch self.selectplan.indexOfSelectedItem {
         case 1:
-            _ = PlanSnapshots(plan: 1, config: self.config!)
+            _ = PlanSnapshots(plan: 1, snapdayoffweek: self.config?.snapdayoffweek ?? "Sunday")
         case 2:
-            _ = PlanSnapshots(plan: 2, config: self.config!)
+            _ = PlanSnapshots(plan: 2, snapdayoffweek: self.config?.snapdayoffweek ?? "Sunday")
         default:
             return
         }

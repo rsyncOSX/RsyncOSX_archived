@@ -180,8 +180,8 @@ class PlanSnapshots {
         }
     }
 
-    private func setweekdaytokeep(config: Configuration) {
-        switch config.snapday {
+    private func setweekdaytokeep(snapdayoffweek: String) {
+        switch snapdayoffweek {
         case StringDayofweek.Monday.rawValue:
             self.day = .Monday
             self.nameofday = .Monday
@@ -209,14 +209,14 @@ class PlanSnapshots {
         }
     }
 
-    init(plan: Int, config: Configuration) {
+    init(plan: Int, snapdayoffweek: String) {
         // which plan to apply
         if plan == 1 {
             self.keepallselcteddayofweek = false
         } else {
             self.keepallselcteddayofweek = true
         }
-        self.setweekdaytokeep(config: config)
+        self.setweekdaytokeep(snapdayoffweek: snapdayoffweek)
         self.SnapshotsLoggDataDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vcsnapshot) as? ViewControllerSnapshots
         self.reloadDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vcsnapshot) as? ViewControllerSnapshots
         self.snapshotsloggdata = self.SnapshotsLoggDataDelegate?.getsnapshotsloggaata()

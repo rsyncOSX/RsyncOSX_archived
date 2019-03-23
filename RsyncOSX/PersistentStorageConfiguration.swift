@@ -124,8 +124,8 @@ final class PersistentStorageConfiguration: ReadWriteDictionary, SetConfiguratio
             if config.snaplast != nil {
                 dict.setObject(config.snaplast!, forKey: "snaplast" as NSCopying)
             }
-            if config.snapday != nil {
-                dict.setObject(config.snapday!, forKey: "snapday" as NSCopying)
+            if config.snapdayoffweek != nil {
+                dict.setObject(config.snapdayoffweek!, forKey: "snapdayoffweek" as NSCopying)
             }
         }
         if config.rclonehiddenID != nil {
