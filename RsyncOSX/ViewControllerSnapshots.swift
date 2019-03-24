@@ -323,6 +323,7 @@ extension ViewControllerSnapshots: UpdateProgress {
             self.initslidersdeletesnapshots()
             self.gettinglogs.stopAnimation(nil)
             self.numbersinsequencetodelete = nil
+            _ = PlanSnapshots(plan: self.config?.snaplast ?? 1, snapdayoffweek: self.config?.snapdayoffweek ?? "Sunday")
             globalMainQueue.async(execute: { () -> Void in
                 self.snapshotstableView.reloadData()
             })
