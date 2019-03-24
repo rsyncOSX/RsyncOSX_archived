@@ -27,7 +27,6 @@ class ViewControllerCopyFiles: NSViewController, SetConfigurations, Delay, VcCop
     @IBOutlet weak var server: NSTextField!
     @IBOutlet weak var rcatalog: NSTextField!
     @IBOutlet weak var info: NSTextField!
-
     @IBOutlet weak var restoretableView: NSTableView!
     @IBOutlet weak var rsynctableView: NSTableView!
     @IBOutlet weak var commandString: NSTextField!
