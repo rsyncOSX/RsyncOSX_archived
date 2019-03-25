@@ -207,6 +207,7 @@ class ViewControllerSnapshots: NSViewController, SetDismisser, SetConfigurations
         self.stringdeletesnapshotsnum.delegate = self
         self.stringdeletesnapshotsdaysnum.delegate = self
         self.selectplan.delegate = self
+        self.selectdayofweek.delegate = self
         ViewControllerReference.shared.setvcref(viewcontroller: .vcsnapshot, nsviewcontroller: self)
     }
 
@@ -217,6 +218,7 @@ class ViewControllerSnapshots: NSViewController, SetDismisser, SetConfigurations
         self.initcombox(combobox: self.selectplan, values: self.combovalueslast, index: 0)
         self.initcombox(combobox: self.selectdayofweek, values: self.combovaluesdayofweek, index: 0)
         self.selectplan.isEnabled = false
+        self.selectdayofweek.isEnabled = false
         self.snapshotsloggdata = nil
         self.reloadtabledata()
     }
@@ -274,6 +276,7 @@ class ViewControllerSnapshots: NSViewController, SetDismisser, SetConfigurations
                     return
                 }
                 self.selectplan.isEnabled = false
+                self.selectdayofweek.isEnabled = false
                 self.info(num: 0)
                 let hiddenID = self.configurations!.getConfigurationsDataSourcecountBackupSnapshot()![index].value(forKey: "hiddenID") as? Int ?? -1
                 self.index = self.configurations?.getIndex(hiddenID)
@@ -324,6 +327,7 @@ extension ViewControllerSnapshots: DismissViewController {
 extension ViewControllerSnapshots: UpdateProgress {
     func processTermination() {
         self.selectplan.isEnabled = true
+         self.selectdayofweek.isEnabled = true
         if delete {
             let vc = ViewControllerReference.shared.getvcref(viewcontroller: .vcprogressview) as? ViewControllerProgressProcess
             if self.snapshotsloggdata!.remotecatalogstodelete == nil {
