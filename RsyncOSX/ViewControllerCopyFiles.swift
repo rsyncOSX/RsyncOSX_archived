@@ -240,6 +240,10 @@ class ViewControllerCopyFiles: NSViewController, SetConfigurations, Delay, VcCop
                 self.displayRemoteserver(index: index)
             } else {
                 self.rsyncindex = nil
+                self.restoretabledata = nil
+                globalMainQueue.async(execute: { () -> Void in
+                    self.restoretableView.reloadData()
+                })
             }
         }
     }
