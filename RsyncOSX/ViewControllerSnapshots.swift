@@ -81,6 +81,21 @@ class ViewControllerSnapshots: NSViewController, SetDismisser, SetConfigurations
     }
 
     @IBAction func savesnapdayofweek(_ sender: NSButton) {
+        var configurations: [Configuration] = self.configurations!.getConfigurations()
+        guard configurations.count > 0 else { return }
+        if let index = self.index {
+            configurations[index].snapdayoffweek = self.config!.snapdayoffweek
+            switch self.selectplan.indexOfSelectedItem {
+            case 1:
+                configurations[index].snaplast = 1
+            case 2:
+                configurations[index].snaplast = 2
+            default:
+                configurations[index].snaplast = 0
+            }
+            // Update configuration in memory before saving
+            self.configurations!.updateConfigurations(configurations[index], index: index)
+        }
     }
 
     private func info (num: Int) {
@@ -192,6 +207,7 @@ class ViewControllerSnapshots: NSViewController, SetDismisser, SetConfigurations
         self.stringdeletesnapshotsnum.delegate = self
         self.stringdeletesnapshotsdaysnum.delegate = self
         self.selectplan.delegate = self
+        self.selectdayofweek.delegate = self
         ViewControllerReference.shared.setvcref(viewcontroller: .vcsnapshot, nsviewcontroller: self)
     }
 
@@ -202,6 +218,7 @@ class ViewControllerSnapshots: NSViewController, SetDismisser, SetConfigurations
         self.initcombox(combobox: self.selectplan, values: self.combovalueslast, index: 0)
         self.initcombox(combobox: self.selectdayofweek, values: self.combovaluesdayofweek, index: 0)
         self.selectplan.isEnabled = false
+        self.selectdayofweek.isEnabled = false
         self.snapshotsloggdata = nil
         self.reloadtabledata()
     }
@@ -259,10 +276,17 @@ class ViewControllerSnapshots: NSViewController, SetDismisser, SetConfigurations
                     return
                 }
                 self.selectplan.isEnabled = false
+                self.selectdayofweek.isEnabled = false
                 self.info(num: 0)
                 let hiddenID = self.configurations!.getConfigurationsDataSourcecountBackupSnapshot()![index].value(forKey: "hiddenID") as? Int ?? -1
                 self.index = self.configurations?.getIndex(hiddenID)
                 self.getSourceindex(index: hiddenID)
+            } else {
+                self.selectplan.isEnabled = false
+                self.selectdayofweek.isEnabled = false
+                self.snapshotsloggdata = nil
+                self.index = nil
+                self.reloadtabledata()
             }
         }
     }
@@ -283,6 +307,15 @@ class ViewControllerSnapshots: NSViewController, SetDismisser, SetConfigurations
         self.info(num: 0)
         self.gettinglogs.startAnimation(nil)
     }
+
+    private func preselectcomboboxes() {
+        self.selectdayofweek.selectItem(withObjectValue: self.config!.snapdayoffweek)
+        if self.config!.snaplast == 0 {
+            self.selectplan.selectItem(withObjectValue: "last")
+        } else {
+            self.selectplan.selectItem(withObjectValue: "every")
+        }
+    }
 }
 
 extension ViewControllerSnapshots: DismissViewController {
@@ -300,6 +333,7 @@ extension ViewControllerSnapshots: DismissViewController {
 extension ViewControllerSnapshots: UpdateProgress {
     func processTermination() {
         self.selectplan.isEnabled = true
+         self.selectdayofweek.isEnabled = true
         if delete {
             let vc = ViewControllerReference.shared.getvcref(viewcontroller: .vcprogressview) as? ViewControllerProgressProcess
             if self.snapshotsloggdata!.remotecatalogstodelete == nil {
@@ -323,6 +357,7 @@ extension ViewControllerSnapshots: UpdateProgress {
             self.initslidersdeletesnapshots()
             self.gettinglogs.stopAnimation(nil)
             self.numbersinsequencetodelete = nil
+            self.preselectcomboboxes()
             _ = PlanSnapshots(plan: self.config?.snaplast ?? 1, snapdayoffweek: self.config?.snapdayoffweek ?? "Sunday")
             globalMainQueue.async(execute: { () -> Void in
                 self.snapshotstableView.reloadData()
