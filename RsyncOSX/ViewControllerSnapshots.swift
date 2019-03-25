@@ -281,6 +281,12 @@ class ViewControllerSnapshots: NSViewController, SetDismisser, SetConfigurations
                 let hiddenID = self.configurations!.getConfigurationsDataSourcecountBackupSnapshot()![index].value(forKey: "hiddenID") as? Int ?? -1
                 self.index = self.configurations?.getIndex(hiddenID)
                 self.getSourceindex(index: hiddenID)
+            } else {
+                self.selectplan.isEnabled = false
+                self.selectdayofweek.isEnabled = false
+                self.snapshotsloggdata = nil
+                self.index = nil
+                self.reloadtabledata()
             }
         }
     }
