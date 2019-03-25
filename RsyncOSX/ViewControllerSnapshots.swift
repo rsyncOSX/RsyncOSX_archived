@@ -81,6 +81,21 @@ class ViewControllerSnapshots: NSViewController, SetDismisser, SetConfigurations
     }
 
     @IBAction func savesnapdayofweek(_ sender: NSButton) {
+        var configurations: [Configuration] = self.configurations!.getConfigurations()
+        guard configurations.count > 0 else { return }
+        if let index = self.index {
+            configurations[index].snapdayoffweek = self.config!.snapdayoffweek
+            switch self.selectplan.indexOfSelectedItem {
+            case 1:
+                configurations[index].snaplast = 1
+            case 2:
+                configurations[index].snaplast = 2
+            default:
+                configurations[index].snaplast = 0
+            }
+            // Update configuration in memory before saving
+            self.configurations!.updateConfigurations(configurations[index], index: index)
+        }
     }
 
     private func info (num: Int) {
@@ -283,6 +298,15 @@ class ViewControllerSnapshots: NSViewController, SetDismisser, SetConfigurations
         self.info(num: 0)
         self.gettinglogs.startAnimation(nil)
     }
+
+    private func preselectcomboboxes() {
+        self.selectdayofweek.selectItem(withObjectValue: self.config!.snapdayoffweek)
+        if self.config!.snaplast == 0 {
+            self.selectplan.selectItem(withObjectValue: "last")
+        } else {
+            self.selectplan.selectItem(withObjectValue: "every")
+        }
+    }
 }
 
 extension ViewControllerSnapshots: DismissViewController {
@@ -323,6 +347,7 @@ extension ViewControllerSnapshots: UpdateProgress {
             self.initslidersdeletesnapshots()
             self.gettinglogs.stopAnimation(nil)
             self.numbersinsequencetodelete = nil
+            self.preselectcomboboxes()
             _ = PlanSnapshots(plan: self.config?.snaplast ?? 1, snapdayoffweek: self.config?.snapdayoffweek ?? "Sunday")
             globalMainQueue.async(execute: { () -> Void in
                 self.snapshotstableView.reloadData()

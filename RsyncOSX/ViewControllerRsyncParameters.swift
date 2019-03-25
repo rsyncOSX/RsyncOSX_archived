@@ -236,9 +236,7 @@ class ViewControllerRsyncParameters: NSViewController, SetConfigurations, SetDis
     // Function for saving changed or new parameters for one configuration.
     @IBAction func update(_ sender: NSButton) {
         var configurations: [Configuration] = self.configurations!.getConfigurations()
-        guard configurations.count > 0 else {
-            return
-        }
+        guard configurations.count > 0 else { return }
         // Get the index of selected configuration
         if let index = self.index() {
             configurations[index].parameter8 = self.parameters!.getRsyncParameter(indexComboBox:
