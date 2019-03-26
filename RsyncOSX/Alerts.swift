@@ -14,16 +14,16 @@ public struct Alerts {
         let alert = NSAlert()
         alert.messageText = info
         alert.alertStyle = NSAlert.Style.warning
-        alert.addButton(withTitle: "OK")
+        alert.addButton(withTitle: "Close")
         alert.runModal()
     }
 
-    public static func dialogOKCancel(_ question: String, text: String) -> Bool {
+    public static func dialogOrCancel(_ question: String, text: String, dialog: String) -> Bool {
         let myPopup: NSAlert = NSAlert()
         myPopup.messageText = question
         myPopup.informativeText = text
         myPopup.alertStyle = NSAlert.Style.warning
-        myPopup.addButton(withTitle: "OK")
+        myPopup.addButton(withTitle: dialog)
         myPopup.addButton(withTitle: "Cancel")
         let res = myPopup.runModal()
         if res == NSApplication.ModalResponse.alertFirstButtonReturn {

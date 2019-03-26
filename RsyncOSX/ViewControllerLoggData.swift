@@ -96,7 +96,7 @@ class ViewControllerLoggData: NSViewController, SetConfigurations, SetSchedules,
     }
 
     @IBAction func deletealllogs(_ sender: NSButton) {
-        let answer = Alerts.dialogOKCancel("Delete " + self.selectednumber() + " logrecords?", text: "Cancel or OK")
+        let answer = Alerts.dialogOrCancel("Delete " + self.selectednumber() + " logrecords?", text: "Cancel or Delete", dialog: "Delete")
         if answer {
             self.deselectRow()
             self.schedules?.deleteselectedrows(scheduleloggdata: self.scheduleloggdata)

@@ -72,7 +72,7 @@ class ViewControllerRestore: NSViewController, SetConfigurations, SetDismisser, 
     }
 
     @IBAction func restore(_ sender: NSButton) {
-        let answer = Alerts.dialogOKCancel("Do you REALLY want to start a RESTORE ?", text: "Cancel or OK")
+        let answer = Alerts.dialogOrCancel("Do you REALLY want to start a RESTORE ?", text: "Cancel or Restore", dialog: "Restore")
         if answer {
             if let index = self.index() {
                 self.gotit.textColor = .white

@@ -167,7 +167,7 @@ class ViewControllerCopyFiles: NSViewController, SetConfigurations, Delay, VcCop
     @objc(tableViewDoubleClick:) func tableViewDoubleClick(sender: AnyObject) {
         guard self.remoteCatalog.stringValue.isEmpty == false else { return }
         guard self.restorecatalog.stringValue.isEmpty == false else { return }
-        let answer = Alerts.dialogOKCancel("Copy single files or directory", text: "Start restore?")
+        let answer = Alerts.dialogOrCancel("Copy single files or directory", text: "Start restore?", dialog: "Restore")
         if answer {
             self.restorebutton.isEnabled = false
             self.getfiles = true
