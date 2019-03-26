@@ -1611,7 +1611,7 @@
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <comboBox verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="nIT-11-DzH">
-                                            <rect key="frame" x="8" y="5" width="64" height="26"/>
+                                            <rect key="frame" x="8" y="5" width="75" height="26"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             <comboBoxCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" drawsBackground="YES" completes="NO" numberOfVisibleItems="5" id="DTJ-Gc-ILX">
                                                 <font key="font" metaFont="system"/>
@@ -1641,7 +1641,7 @@
                                     </subviews>
                                 </view>
                             </box>
-                            <box fixedFrame="YES" title="Select days OLDER or number of" translatesAutoresizingMaskIntoConstraints="NO" id="zGR-lC-3fH">
+                            <box fixedFrame="YES" title="Select days older or number of" translatesAutoresizingMaskIntoConstraints="NO" id="zGR-lC-3fH">
                                 <rect key="frame" x="180" y="16" width="226" height="82"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <view key="contentView" id="xEQ-RE-oqQ">
@@ -1756,7 +1756,7 @@
                                 </tableHeaderView>
                             </scrollView>
                             <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="3FX-cL-s70">
-                                <rect key="frame" x="405" y="14" width="78" height="32"/>
+                                <rect key="frame" x="405" y="13" width="78" height="32"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <buttonCell key="cell" type="push" title="Delete" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="WYK-hg-6Bv">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
