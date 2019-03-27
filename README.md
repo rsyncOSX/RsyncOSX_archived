@@ -2,7 +2,7 @@
 
 ![](icon/rsyncosx.png)
 
-This repository is the source code for the macOS app RsyncOSX. RsyncOSX is compiled with support for macOS El Capitan version 10.11 - macOS Mojave version 10.14. The application is implemented in Swift 4.2 by using Xcode 10. RsyncOSX is not depended upon any third party binary distributions. There is, however, one third party source code included to check for TCP connections. The check is for informal use only and can be removed.
+This repository is the source code for the macOS app RsyncOSX. RsyncOSX is compiled with support for macOS El Capitan version 10.11 - macOS Mojave version 10.14. The application is implemented in Swift 5 by using Xcode 10. RsyncOSX is not depended upon any third party binary distributions. There is, however, one third party source code included to check for TCP connections. The check is for informal use only and can be removed.
 
 Rsync is a file-based synchronization and backup tool. There is no custom solution for the backup archive. You can quit utilizing RsyncOSX (and rsync) at any time and still have access to all synchronized files.
 
@@ -10,7 +10,7 @@ Scheduled tasks are added and deleted within RsyncOSX. Executing the scheduled t
 
 ### Version of rsync
 
-RsyncOSX is only verified with rsync versions 2.6.9, 3.1.2 and 3.1.3. Other versions of rsync will work but numbers in logs are not set.
+RsyncOSX is only verified with rsync versions 2.6.9, 3.1.2 and 3.1.3. Other versions of rsync will work but numbers about transferred files is not set in logs. It is recommended to [install](https://rsyncosx.github.io/Install) the latest version of rsync.
 
 ### The --delete parameter
 
@@ -59,21 +59,9 @@ There are four short YouTube videos of RsyncOSX:
 
 The [Changelog](https://rsyncosx.github.io/Changelog).
 
-### Which version of rsync
-
-The default version of `rsync` in macOS is old (version 2.6.9, [protocol](https://rsync.samba.org/how-rsync-works.html) version 29). Version [2.6.9](https://download.samba.org/pub/rsync/src/rsync-2.6.9-NEWS) was released in nov 2006. The current release of rsync is version [3.1.3](https://download.samba.org/pub/rsync/src/rsync-3.1.3-NEWS) protocol 31 released 28 January 2018. There are at least three options to get and install the current version of rsync for use in RsyncOSX:
-
-- get `rsync-3.1.3.dmg` from [releases](https://github.com/rsyncOSX/RsyncOSX/releases) to install the latest version of rsync
-- install Xcode and download the rsync [source](https://rsync.samba.org/) from rsync.samba.org
-	- required tools are `gcc` and `make` which are part of Xcode command line tool (you might be able to install Xcode command line tool only by downloading the tools from [Apple Developer page](https://developer.apple.com/))
-	- untar the [source archive](https://download.samba.org/pub/rsync/src/) and use `make` to compile and install, rsync compiles without any issues on macOS
-- install [homebrew](https://en.wikipedia.org/wiki/Homebrew_(package_management_software)) and then install rsync as part of homebrew
-
-In RsyncOSX select [user configuration](https://rsyncosx.github.io/UserConfiguration) and set path for optional version of rsync.
-
 #### SwiftLint
 
-As part of this version of RsyncOSX I am using [SwiftLint](https://github.com/realm/SwiftLint) as tool for writing more readable code. There are about 120 classes with 14,500 lines of code in RsyncOSX (probably too many?). I am also using Paul Taykalo´s [swift-scripts](https://github.com/PaulTaykalo/swift-scripts) to find and delete not used code.
+As part of this version of RsyncOSX I am using [SwiftLint](https://github.com/realm/SwiftLint) as tool for writing more readable code. There are about 130 classes with 15,700 lines of code in RsyncOSX (probably too many?). I am also using Paul Taykalo´s [swift-scripts](https://github.com/PaulTaykalo/swift-scripts) to find and delete not used code.
 
 ### Compile
 
