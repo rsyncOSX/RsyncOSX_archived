@@ -57,7 +57,7 @@ struct Configuration {
         self.hiddenID = (dictionary.object(forKey: "hiddenID") as? Int) ?? 0
         self.task = (dictionary.object(forKey: "task") as? String)!
         if self.task == "backup" {
-            self.task = ViewControllerReference.shared.backup
+            self.task = ViewControllerReference.shared.synchronize
         }
         self.localCatalog = dictionary.object(forKey: "localCatalog") as? String ?? ""
         self.offsiteCatalog = dictionary.object(forKey: "offsiteCatalog") as? String ?? ""

@@ -85,14 +85,7 @@ class ViewControllerSnapshots: NSViewController, SetDismisser, SetConfigurations
         guard configurations.count > 0 else { return }
         if let index = self.index {
             configurations[index].snapdayoffweek = self.config!.snapdayoffweek
-            switch self.selectplan.indexOfSelectedItem {
-            case 1:
-                configurations[index].snaplast = 1
-            case 2:
-                configurations[index].snaplast = 2
-            default:
-                configurations[index].snaplast = 0
-            }
+            configurations[index].snaplast = self.config!.snaplast
             // Update configuration in memory before saving
             self.configurations!.updateConfigurations(configurations[index], index: index)
         }
@@ -208,6 +201,7 @@ class ViewControllerSnapshots: NSViewController, SetDismisser, SetConfigurations
         self.stringdeletesnapshotsdaysnum.delegate = self
         self.selectplan.delegate = self
         self.selectdayofweek.delegate = self
+        self.savebutton.isEnabled = false
         ViewControllerReference.shared.setvcref(viewcontroller: .vcsnapshot, nsviewcontroller: self)
     }
 
@@ -503,6 +497,7 @@ extension ViewControllerSnapshots: NewProfile {
 extension ViewControllerSnapshots: NSComboBoxDelegate {
     func comboBoxSelectionDidChange(_ notification: Notification) {
         guard self.config != nil  else { return }
+        self.savebutton.isEnabled = true
         switch self.selectdayofweek.indexOfSelectedItem {
         case 0:
             self.config!.snapdayoffweek = StringDayofweek.Sunday.rawValue
@@ -523,8 +518,10 @@ extension ViewControllerSnapshots: NSComboBoxDelegate {
         }
         switch self.selectplan.indexOfSelectedItem {
         case 1:
+            self.config!.snaplast = 1
             _ = PlanSnapshots(plan: 1, snapdayoffweek: self.config?.snapdayoffweek ?? "Sunday")
         case 2:
+            self.config!.snaplast = 2
             _ = PlanSnapshots(plan: 2, snapdayoffweek: self.config?.snapdayoffweek ?? "Sunday")
         default:
             return

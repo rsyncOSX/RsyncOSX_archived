@@ -125,7 +125,7 @@ class ViewControllerEncrypt: NSViewController, Index, SetConfigurations, VcCopyF
             return
         }
         let rsyncconfig: Configuration = self.configurations!.getConfigurations()[self.rsyncindex!]
-        guard rsyncconfig.task == ViewControllerReference.shared.backup || rsyncconfig.task == ViewControllerReference.shared.combined else { return }
+        guard rsyncconfig.task == ViewControllerReference.shared.synchronize || rsyncconfig.task == ViewControllerReference.shared.combined else { return }
         self.localCatalog.stringValue = rsyncconfig.localCatalog
         self.offsiteCatalog.stringValue = rsyncconfig.offsiteCatalog
         self.offsiteUsername.stringValue = rsyncconfig.offsiteUsername
