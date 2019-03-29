@@ -31,7 +31,7 @@ class ViewControllerNewConfigurations: NSViewController, SetConfigurations, VcSc
     var outputprocess: OutputProcess?
     var index: Int?
     // Reference to rsync parameters to use in combox
-    var comboBoxValues = [ViewControllerReference.shared.backup,
+    var comboBoxValues = [ViewControllerReference.shared.synchronize,
                           ViewControllerReference.shared.snapshot,
                           "single file"]
     var backuptypeselected: Typebackup = .synchronize
@@ -197,7 +197,7 @@ class ViewControllerNewConfigurations: NSViewController, SetConfigurations, VcSc
 
     @IBAction func addConfig(_ sender: NSButton) {
         let dict: NSMutableDictionary = [
-            "task": ViewControllerReference.shared.backup,
+            "task": ViewControllerReference.shared.synchronize,
             "backupID": backupID.stringValue,
             "localCatalog": localCatalog.stringValue,
             "offsiteCatalog": offsiteCatalog.stringValue,
