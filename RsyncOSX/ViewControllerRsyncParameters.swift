@@ -47,6 +47,7 @@ class ViewControllerRsyncParameters: NSViewController, SetConfigurations, SetDis
     @IBOutlet weak var sshport: NSTextField!
     @IBOutlet weak var compressparameter: NSButton!
     @IBOutlet weak var esshparameter: NSButton!
+    @IBOutlet weak var deleteparamater: NSButton!
 
     @IBOutlet weak var combo8: NSComboBox!
     @IBOutlet weak var combo9: NSComboBox!
@@ -86,6 +87,20 @@ class ViewControllerRsyncParameters: NSViewController, SetConfigurations, SetDis
             default:
                 break
             }
+        }
+    }
+
+    @IBAction func removedeleteparameter(_ sender: NSButton) {
+        if let index = self.index() {
+            switch self.deleteparamater.state {
+            case .on:
+                self.configurations!.removeedeleteparameter(index: index, delete: true)
+            case .off:
+                self.configurations!.removeedeleteparameter(index: index, delete: false)
+            default:
+                break
+            }
+            self.param4.stringValue = self.configurations!.getConfigurations()[index].parameter4
         }
     }
 
@@ -147,22 +162,6 @@ class ViewControllerRsyncParameters: NSViewController, SetConfigurations, SetDis
 
     }
 
-    @IBOutlet weak var donotdeletebutton: NSButton!
-    @IBAction func donotdeletefiles(_ sender: NSButton) {
-        switch self.donotdeletebutton.state {
-        case .on:
-            let suffix = self.parameters!.getdonotdeletefilesString()
-            self.initcombox(combobox: self.combo11, index: (self.parameters!.indexandvaluersyncparameter(suffix).0))
-            self.param11.stringValue = self.parameters!.indexandvaluersyncparameter(suffix).1
-        case .off:
-            self.initcombox(combobox: self.combo11, index: (0))
-            self.param11.stringValue = ""
-        default:
-            break
-        }
-
-    }
-
     @IBOutlet weak var backupbutton: NSButton!
 
     override func viewDidLoad() {
@@ -185,7 +184,6 @@ class ViewControllerRsyncParameters: NSViewController, SetConfigurations, SetDis
             self.backupbutton.state = .off
             self.suffixButton.state = .off
             self.suffixButton2.state = .off
-            self.donotdeletebutton.state = .off
             self.param1.stringValue = configurations[index].parameter1
             self.param2.stringValue = configurations[index].parameter2
             self.param3.stringValue = configurations[index].parameter3
@@ -202,6 +200,11 @@ class ViewControllerRsyncParameters: NSViewController, SetConfigurations, SetDis
                 self.esshparameter.state = .on
             } else {
                 self.esshparameter.state = .off
+            }
+            if configurations[index].parameter4.isEmpty == true {
+                self.self.deleteparamater.state = .on
+            } else {
+                self.deleteparamater.state = .off
             }
             self.initcombox(combobox: self.combo8, index: self.parameters!.getParameter(rsyncparameternumber: 8).0)
             self.param8.stringValue = self.parameters!.getParameter(rsyncparameternumber: 8).1

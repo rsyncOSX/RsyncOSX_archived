@@ -380,6 +380,16 @@ class Configurations: ReloadTable, SetSchedules {
         }
     }
 
+    func removeedeleteparameter(index: Int, delete: Bool) {
+        guard self.configurations != nil else { return }
+        guard index < self.configurations!.count  else { return }
+        if delete {
+            self.configurations![index].parameter4 = ""
+        } else {
+            self.configurations![index].parameter4 = "--delete"
+        }
+    }
+
     func removeesshparameter(index: Int, delete: Bool) {
         guard self.configurations != nil else { return }
         guard index < self.configurations!.count  else { return }
