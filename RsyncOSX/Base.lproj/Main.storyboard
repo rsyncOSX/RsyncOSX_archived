@@ -1573,7 +1573,7 @@
                                 </view>
                             </box>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Luu-QK-BXr">
-                                <rect key="frame" x="483" y="376" width="161" height="17"/>
+                                <rect key="frame" x="483" y="378" width="161" height="17"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="left" title="Number of snapshots:" id="of4-qq-ykX">
                                     <font key="font" metaFont="smallSystem"/>
@@ -1774,7 +1774,7 @@
                                 </connections>
                             </button>
                             <progressIndicator wantsLayer="YES" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" maxValue="100" displayedWhenStopped="NO" bezeled="NO" indeterminate="YES" controlSize="small" style="spinning" translatesAutoresizingMaskIntoConstraints="NO" id="Rqq-kE-YMv">
-                                <rect key="frame" x="450" y="377" width="16" height="16"/>
+                                <rect key="frame" x="450" y="380" width="16" height="16"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                             </progressIndicator>
                         </subviews>
@@ -4264,11 +4264,11 @@ DQ
             <objects>
                 <viewController title="RsyncOSX parameters" storyboardIdentifier="StoryboardRsyncParamsID" id="K9c-yf-VMY" customClass="ViewControllerRsyncParameters" customModule="RsyncOSX" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="gfp-a1-tlg">
-                        <rect key="frame" x="0.0" y="0.0" width="683" height="337"/>
+                        <rect key="frame" x="0.0" y="0.0" width="683" height="320"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="DeO-b1-JIC">
-                                <rect key="frame" x="18" y="289" width="97" height="20"/>
+                                <rect key="frame" x="18" y="272" width="97" height="20"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="left" title="Default params" id="RPd-mi-bp4">
                                     <font key="font" metaFont="smallSystem"/>
@@ -4277,7 +4277,7 @@ DQ
                                 </textFieldCell>
                             </textField>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ebN-VZ-Zqz">
-                                <rect key="frame" x="133" y="289" width="137" height="20"/>
+                                <rect key="frame" x="133" y="272" width="137" height="20"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="left" title="User selected params" id="ZJm-XI-lka">
                                     <font key="font" metaFont="smallSystem"/>
@@ -4286,7 +4286,7 @@ DQ
                                 </textFieldCell>
                             </textField>
                             <textField verticalHuggingPriority="750" fixedFrame="YES" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fwv-Pg-ERn">
-                                <rect key="frame" x="20" y="177" width="93" height="22"/>
+                                <rect key="frame" x="20" y="160" width="93" height="22"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" alignment="left" bezelStyle="round" id="OEU-bb-WW1">
                                     <font key="font" metaFont="system"/>
@@ -4295,7 +4295,7 @@ DQ
                                 </textFieldCell>
                             </textField>
                             <textField verticalHuggingPriority="750" fixedFrame="YES" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hnr-eU-KGd">
-                                <rect key="frame" x="257" y="155" width="406" height="22"/>
+                                <rect key="frame" x="257" y="138" width="406" height="22"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" alignment="left" bezelStyle="round" id="cmL-aL-9iq">
                                     <font key="font" metaFont="system"/>
@@ -4307,7 +4307,7 @@ DQ
                                 </connections>
                             </textField>
                             <textField verticalHuggingPriority="750" fixedFrame="YES" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="H4U-rK-bKi">
-                                <rect key="frame" x="257" y="133" width="406" height="22"/>
+                                <rect key="frame" x="257" y="116" width="406" height="22"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" alignment="left" bezelStyle="round" id="Ifp-lC-fjF">
                                     <font key="font" metaFont="system"/>
@@ -4316,7 +4316,7 @@ DQ
                                 </textFieldCell>
                             </textField>
                             <textField verticalHuggingPriority="750" fixedFrame="YES" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="0II-7a-Edf">
-                                <rect key="frame" x="257" y="201" width="406" height="22"/>
+                                <rect key="frame" x="257" y="184" width="406" height="22"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" alignment="left" bezelStyle="round" id="0Yc-Kr-r5j">
                                     <font key="font" metaFont="system"/>
@@ -4328,7 +4328,7 @@ DQ
                                 </connections>
                             </textField>
                             <textField verticalHuggingPriority="750" fixedFrame="YES" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="VIk-S3-TCa">
-                                <rect key="frame" x="20" y="246" width="93" height="22"/>
+                                <rect key="frame" x="20" y="229" width="93" height="22"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" alignment="left" bezelStyle="round" id="TQ1-VU-cE5">
                                     <font key="font" metaFont="system"/>
@@ -4337,7 +4337,7 @@ DQ
                                 </textFieldCell>
                             </textField>
                             <textField verticalHuggingPriority="750" fixedFrame="YES" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="h17-p0-HGx">
-                                <rect key="frame" x="20" y="223" width="93" height="22"/>
+                                <rect key="frame" x="20" y="206" width="93" height="22"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" alignment="left" bezelStyle="round" id="jyQ-7h-QA3">
                                     <font key="font" metaFont="system"/>
@@ -4346,7 +4346,7 @@ DQ
                                 </textFieldCell>
                             </textField>
                             <textField verticalHuggingPriority="750" fixedFrame="YES" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="8lV-18-VgA">
-                                <rect key="frame" x="20" y="269" width="93" height="22"/>
+                                <rect key="frame" x="20" y="252" width="93" height="22"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" alignment="left" bezelStyle="round" id="2hp-54-Zf7">
                                     <font key="font" metaFont="system"/>
@@ -4355,7 +4355,7 @@ DQ
                                 </textFieldCell>
                             </textField>
                             <textField verticalHuggingPriority="750" fixedFrame="YES" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="3XX-fE-HT5">
-                                <rect key="frame" x="20" y="200" width="93" height="22"/>
+                                <rect key="frame" x="20" y="183" width="93" height="22"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" alignment="left" bezelStyle="round" id="rpD-4Q-IK1">
                                     <font key="font" metaFont="system"/>
@@ -4364,7 +4364,7 @@ DQ
                                 </textFieldCell>
                             </textField>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="70Q-kd-5YB">
-                                <rect key="frame" x="17" y="156" width="35" height="17"/>
+                                <rect key="frame" x="17" y="139" width="35" height="17"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title=" port: " id="ipH-US-wgO">
                                     <font key="font" metaFont="smallSystem"/>
@@ -4373,7 +4373,7 @@ DQ
                                 </textFieldCell>
                             </textField>
                             <textField verticalHuggingPriority="750" fixedFrame="YES" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Rp5-WA-cza">
-                                <rect key="frame" x="257" y="178" width="406" height="22"/>
+                                <rect key="frame" x="257" y="161" width="406" height="22"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" alignment="left" bezelStyle="round" id="Jhj-Js-czI">
                                     <font key="font" metaFont="system"/>
@@ -4385,7 +4385,7 @@ DQ
                                 </connections>
                             </textField>
                             <textField verticalHuggingPriority="750" fixedFrame="YES" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="T5K-j8-kUZ">
-                                <rect key="frame" x="257" y="247" width="406" height="22"/>
+                                <rect key="frame" x="257" y="230" width="406" height="22"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" alignment="left" bezelStyle="round" id="nH1-Mj-bVM">
                                     <font key="font" metaFont="system"/>
@@ -4397,7 +4397,7 @@ DQ
                                 </connections>
                             </textField>
                             <textField verticalHuggingPriority="750" fixedFrame="YES" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="eH7-7W-QkX">
-                                <rect key="frame" x="257" y="224" width="406" height="22"/>
+                                <rect key="frame" x="257" y="207" width="406" height="22"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" alignment="left" bezelStyle="round" id="sVe-sf-cUJ">
                                     <font key="font" metaFont="system"/>
@@ -4409,7 +4409,7 @@ DQ
                                 </connections>
                             </textField>
                             <textField verticalHuggingPriority="750" fixedFrame="YES" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="igq-DC-o5N">
-                                <rect key="frame" x="257" y="270" width="406" height="22"/>
+                                <rect key="frame" x="257" y="253" width="406" height="22"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" alignment="left" bezelStyle="round" id="IOV-wR-1Er">
                                     <font key="font" metaFont="system"/>
@@ -4421,7 +4421,7 @@ DQ
                                 </connections>
                             </textField>
                             <comboBox verticalHuggingPriority="750" fixedFrame="YES" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Ora-4m-3w7">
-                                <rect key="frame" x="135" y="266" width="124" height="26"/>
+                                <rect key="frame" x="135" y="249" width="124" height="26"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <comboBoxCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" alignment="right" drawsBackground="YES" completes="NO" numberOfVisibleItems="5" id="zNJ-za-8pz">
                                     <font key="font" metaFont="system"/>
@@ -4435,7 +4435,7 @@ DQ
                                 </comboBoxCell>
                             </comboBox>
                             <comboBox verticalHuggingPriority="750" fixedFrame="YES" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5I0-rR-9OO">
-                                <rect key="frame" x="135" y="244" width="124" height="26"/>
+                                <rect key="frame" x="135" y="227" width="124" height="26"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <comboBoxCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" alignment="right" drawsBackground="YES" completes="NO" numberOfVisibleItems="5" id="h3o-g3-PjS">
                                     <font key="font" metaFont="system"/>
@@ -4449,7 +4449,7 @@ DQ
                                 </comboBoxCell>
                             </comboBox>
                             <comboBox verticalHuggingPriority="750" fixedFrame="YES" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="xiz-1A-Kua">
-                                <rect key="frame" x="135" y="221" width="124" height="26"/>
+                                <rect key="frame" x="135" y="204" width="124" height="26"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <comboBoxCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" alignment="right" drawsBackground="YES" completes="NO" numberOfVisibleItems="5" id="QGz-mF-WxY">
                                     <font key="font" metaFont="system"/>
@@ -4463,7 +4463,7 @@ DQ
                                 </comboBoxCell>
                             </comboBox>
                             <comboBox verticalHuggingPriority="750" fixedFrame="YES" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="G1S-Es-fdT">
-                                <rect key="frame" x="135" y="198" width="124" height="26"/>
+                                <rect key="frame" x="135" y="181" width="124" height="26"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <comboBoxCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" alignment="right" drawsBackground="YES" completes="NO" numberOfVisibleItems="5" id="fJh-Wm-Z4c">
                                     <font key="font" metaFont="system"/>
@@ -4477,7 +4477,7 @@ DQ
                                 </comboBoxCell>
                             </comboBox>
                             <comboBox verticalHuggingPriority="750" fixedFrame="YES" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="028-As-PZF">
-                                <rect key="frame" x="135" y="175" width="124" height="26"/>
+                                <rect key="frame" x="135" y="158" width="124" height="26"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <comboBoxCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" alignment="right" drawsBackground="YES" completes="NO" numberOfVisibleItems="5" id="BvU-FK-PJD">
                                     <font key="font" metaFont="system"/>
@@ -4491,7 +4491,7 @@ DQ
                                 </comboBoxCell>
                             </comboBox>
                             <comboBox verticalHuggingPriority="750" fixedFrame="YES" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="yDF-VC-oRJ">
-                                <rect key="frame" x="135" y="152" width="124" height="26"/>
+                                <rect key="frame" x="135" y="135" width="124" height="26"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <comboBoxCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" alignment="right" drawsBackground="YES" completes="NO" numberOfVisibleItems="5" id="yEK-Sx-kq1">
                                     <font key="font" metaFont="system"/>
@@ -4505,7 +4505,7 @@ DQ
                                 </comboBoxCell>
                             </comboBox>
                             <comboBox verticalHuggingPriority="750" fixedFrame="YES" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ShF-17-cUM">
-                                <rect key="frame" x="135" y="130" width="124" height="26"/>
+                                <rect key="frame" x="135" y="113" width="124" height="26"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <comboBoxCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" alignment="right" drawsBackground="YES" completes="NO" numberOfVisibleItems="5" id="zhA-cS-4mr">
                                     <font key="font" metaFont="system"/>
@@ -4519,7 +4519,7 @@ DQ
                                 </comboBoxCell>
                             </comboBox>
                             <textField verticalHuggingPriority="750" fixedFrame="YES" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="RPh-7l-0uy">
-                                <rect key="frame" x="58" y="154" width="55" height="22"/>
+                                <rect key="frame" x="58" y="137" width="55" height="22"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" alignment="right" bezelStyle="round" id="HRq-0c-PVM">
                                     <font key="font" metaFont="system"/>
@@ -4527,15 +4527,15 @@ DQ
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
-                            <box fixedFrame="YES" title="Add parameters to rsync" translatesAutoresizingMaskIntoConstraints="NO" id="lGN-As-q21">
-                                <rect key="frame" x="17" y="16" width="351" height="104"/>
+                            <box fixedFrame="YES" title="Add parameters" translatesAutoresizingMaskIntoConstraints="NO" id="lGN-As-q21">
+                                <rect key="frame" x="17" y="16" width="351" height="87"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <view key="contentView" id="umc-Km-s0d">
-                                    <rect key="frame" x="3" y="3" width="345" height="86"/>
+                                    <rect key="frame" x="3" y="3" width="345" height="69"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="856-oB-aMq">
-                                            <rect key="frame" x="18" y="63" width="508" height="18"/>
+                                            <rect key="frame" x="18" y="46" width="508" height="18"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             <buttonCell key="cell" type="check" title="backup (uses two last user selected parameters)" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="VBk-Qe-g0o">
                                                 <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
@@ -4546,7 +4546,7 @@ DQ
                                             </connections>
                                         </button>
                                         <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="i2I-Oh-x29">
-                                            <rect key="frame" x="18" y="14" width="22" height="18"/>
+                                            <rect key="frame" x="18" y="8" width="22" height="18"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             <buttonCell key="cell" type="check" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="U2i-ZD-sSZ">
                                                 <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
@@ -4554,7 +4554,7 @@ DQ
                                             </buttonCell>
                                         </button>
                                         <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ete-As-Uhd">
-                                            <rect key="frame" x="36" y="16" width="90" height="17"/>
+                                            <rect key="frame" x="36" y="10" width="90" height="17"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="rsync daemon" id="ImR-R8-DPA">
                                                 <font key="font" metaFont="system"/>
@@ -4563,7 +4563,7 @@ DQ
                                             </textFieldCell>
                                         </textField>
                                         <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="0II-os-whp">
-                                            <rect key="frame" x="18" y="39" width="143" height="18"/>
+                                            <rect key="frame" x="18" y="27" width="143" height="18"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             <buttonCell key="cell" type="check" title="add suffix FreeBSD " bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="Am3-Ji-1Ox">
                                                 <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
@@ -4574,7 +4574,7 @@ DQ
                                             </connections>
                                         </button>
                                         <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="pba-kf-bqk">
-                                            <rect key="frame" x="161" y="39" width="118" height="18"/>
+                                            <rect key="frame" x="161" y="27" width="118" height="18"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             <buttonCell key="cell" type="check" title="add suffix Linux" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="QPs-xd-DDF">
                                                 <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
@@ -4613,14 +4613,14 @@ DQ
                                 </connections>
                             </button>
                             <box fixedFrame="YES" title="Remove parameters" translatesAutoresizingMaskIntoConstraints="NO" id="uUH-RU-JKF">
-                                <rect key="frame" x="374" y="16" width="177" height="104"/>
+                                <rect key="frame" x="374" y="16" width="177" height="87"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <view key="contentView" id="RCr-Sa-2MN">
-                                    <rect key="frame" x="3" y="3" width="171" height="86"/>
+                                    <rect key="frame" x="3" y="3" width="171" height="69"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="S6M-mZ-vGU">
-                                            <rect key="frame" x="17" y="40" width="162" height="18"/>
+                                            <rect key="frame" x="17" y="24" width="142" height="18"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             <buttonCell key="cell" type="check" title="remove --compress" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="zF8-9O-ajg">
                                                 <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
@@ -4631,7 +4631,7 @@ DQ
                                             </connections>
                                         </button>
                                         <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="qDc-Ou-8uj">
-                                            <rect key="frame" x="17" y="20" width="121" height="18"/>
+                                            <rect key="frame" x="17" y="5" width="121" height="18"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             <buttonCell key="cell" type="check" title="remove --delete" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="5Zv-SY-8nT">
                                                 <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
@@ -4642,7 +4642,7 @@ DQ
                                             </connections>
                                         </button>
                                         <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="C9o-rX-6We">
-                                            <rect key="frame" x="17" y="60" width="109" height="18"/>
+                                            <rect key="frame" x="17" y="43" width="109" height="18"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             <buttonCell key="cell" type="check" title="remove -e ssh" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="2zQ-iW-vbk">
                                                 <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
@@ -4689,7 +4689,7 @@ DQ
                 </viewController>
                 <customObject id="WDP-gm-I5Q" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="929.5" y="1726.5"/>
+            <point key="canvasLocation" x="929.5" y="1718"/>
         </scene>
         <!--All output-->
         <scene sceneID="ExO-HS-EpI">
