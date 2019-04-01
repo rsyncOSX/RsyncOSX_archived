@@ -196,15 +196,15 @@ class ViewControllerRsyncParameters: NSViewController, SetConfigurations, SetDis
             } else {
                 self.compressparameter.state = .off
             }
-            if configurations[index].parameter5.isEmpty == true {
-                self.esshparameter.state = .on
-            } else {
-                self.esshparameter.state = .off
-            }
             if configurations[index].parameter4.isEmpty == true {
                 self.self.deleteparamater.state = .on
             } else {
                 self.deleteparamater.state = .off
+            }
+            if configurations[index].parameter5.isEmpty == true {
+                self.esshparameter.state = .on
+            } else {
+                self.esshparameter.state = .off
             }
             self.initcombox(combobox: self.combo8, index: self.parameters!.getParameter(rsyncparameternumber: 8).0)
             self.param8.stringValue = self.parameters!.getParameter(rsyncparameternumber: 8).1
