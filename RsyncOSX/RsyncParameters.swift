@@ -33,7 +33,6 @@ final class RsyncParameters {
     private let backupstrings = ["--backup", "--backup-dir=../backup"]
     private let suffixstringfreebsd = "--suffix=_`date +'%Y-%m-%d.%H.%M'`"
     private let suffixstringlinux = "--suffix=_$(date +%Y-%m-%d.%H.%M)"
-    private let donotdeletefiles = "--max-delete=-1"
 
     // Reference to config
     private var config: Configuration?
@@ -57,10 +56,6 @@ final class RsyncParameters {
     /// - return : array of String
     func getSuffixString2() -> String {
         return self.suffixstringlinux
-    }
-
-    func getdonotdeletefilesString() -> String {
-        return self.donotdeletefiles
     }
 
     /// Function for getting for rsync arguments to use in ComboBoxes in ViewControllerRsyncParameters
