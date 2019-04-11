@@ -12,7 +12,7 @@ class QuickbackupDispatch: SetSchedules {
 
     private var workitem: DispatchWorkItem?
 
-    private func dispatchtask(_ seconds: Int) {
+    private func dispatchtask(seconds: Int) {
         let work = DispatchWorkItem { [weak self] in
             _ = ExecuteQuickbackupTask()
         }
@@ -20,8 +20,8 @@ class QuickbackupDispatch: SetSchedules {
         DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(seconds), execute: work)
     }
 
-    init(seconds: Int) {
-        self.dispatchtask(seconds)
+    init() {
+        self.dispatchtask(seconds: 0)
         // Set reference to schedule for later cancel if any
         ViewControllerReference.shared.dispatchTaskWaiting = self.workitem
     }
