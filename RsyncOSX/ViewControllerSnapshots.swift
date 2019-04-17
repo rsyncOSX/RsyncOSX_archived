@@ -23,8 +23,8 @@ class ViewControllerSnapshots: NSViewController, SetDismisser, SetConfigurations
     var abort: Bool = false
     // Reference to which plan in combox
     var combovalueslast = ["none",
-                          "last",
-                          "every"]
+                          "every",
+                          "last"]
 
     let combovaluesdayofweek: [String] = [StringDayofweek.Sunday.rawValue,
                                     StringDayofweek.Monday.rawValue,
@@ -304,10 +304,10 @@ class ViewControllerSnapshots: NSViewController, SetDismisser, SetConfigurations
 
     private func preselectcomboboxes() {
         self.selectdayofweek.selectItem(withObjectValue: self.config!.snapdayoffweek)
-        if self.config!.snaplast == 0 {
-            self.selectplan.selectItem(withObjectValue: "last")
-        } else {
+        if self.config!.snaplast == 1 {
             self.selectplan.selectItem(withObjectValue: "every")
+        } else {
+            self.selectplan.selectItem(withObjectValue: "last")
         }
     }
 }

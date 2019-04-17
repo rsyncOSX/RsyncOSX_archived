@@ -212,9 +212,9 @@ class PlanSnapshots {
     init(plan: Int, snapdayoffweek: String) {
         // which plan to apply
         if plan == 1 {
-            self.keepallselcteddayofweek = false
-        } else {
             self.keepallselcteddayofweek = true
+        } else {
+            self.keepallselcteddayofweek = false
         }
         self.setweekdaytokeep(snapdayoffweek: snapdayoffweek)
         self.SnapshotsLoggDataDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vcsnapshot) as? ViewControllerSnapshots
