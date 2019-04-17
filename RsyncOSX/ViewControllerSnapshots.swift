@@ -280,6 +280,10 @@ class ViewControllerSnapshots: NSViewController, SetDismisser, SetConfigurations
                 self.selectdayofweek.isEnabled = false
                 self.snapshotsloggdata = nil
                 self.index = nil
+                self.localCatalog.stringValue = ""
+                self.offsiteCatalog.stringValue = ""
+                self.offsiteUsername.stringValue = ""
+                self.backupID.stringValue = ""
                 self.reloadtabledata()
             }
         }
@@ -487,6 +491,10 @@ extension ViewControllerSnapshots: NewProfile {
         globalMainQueue.async(execute: { () -> Void in
             self.snapshotstableView.reloadData()
         })
+        self.localCatalog.stringValue = ""
+        self.offsiteCatalog.stringValue = ""
+        self.offsiteUsername.stringValue = ""
+        self.backupID.stringValue = ""
     }
 
     func enableProfileMenu() {
