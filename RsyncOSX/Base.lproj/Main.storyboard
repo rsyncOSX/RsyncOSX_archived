@@ -1599,7 +1599,7 @@
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
-                            <box fixedFrame="YES" title="Day of week, last or every" translatesAutoresizingMaskIntoConstraints="NO" id="eIC-WC-dFt">
+                            <box fixedFrame="YES" title="Select which to keep" translatesAutoresizingMaskIntoConstraints="NO" id="eIC-WC-dFt">
                                 <rect key="frame" x="17" y="16" width="154" height="54"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <view key="contentView" id="6im-Da-AYX">
