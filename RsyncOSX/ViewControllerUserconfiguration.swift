@@ -40,6 +40,16 @@ class ViewControllerUserconfiguration: NSViewController, NewRsync, SetDismisser,
     @IBOutlet weak var statuslightpathrsyncosx: NSImageView!
     @IBOutlet weak var statuslightpathrsyncosxsched: NSImageView!
     @IBOutlet weak var savebutton: NSButton!
+    @IBOutlet weak var automaticexecutelocalvolumes: NSButton!
+
+    @IBAction func toggleautomaticexecutelocalvolumes(_ sender: NSButton) {
+        if automaticexecutelocalvolumes.state == .on {
+            ViewControllerReference.shared.automaticexecutelocalvolumes = true
+        } else {
+            ViewControllerReference.shared.automaticexecutelocalvolumes = false
+        }
+        self.setdirty()
+    }
 
     @IBAction func toggleversion3rsync(_ sender: NSButton) {
         if self.version3rsync.state == .on {
@@ -282,6 +292,11 @@ class ViewControllerUserconfiguration: NSViewController, NewRsync, SetDismisser,
         self.statuslightpathrsync.isHidden = true
         self.statuslightpathrsyncosx.isHidden = true
         self.statuslightpathrsyncosxsched.isHidden = true
+        if ViewControllerReference.shared.automaticexecutelocalvolumes {
+            self.automaticexecutelocalvolumes.state = .on
+        } else {
+            self.automaticexecutelocalvolumes.state = .off
+        }
     }
 
     // Function for check and set user configuration
