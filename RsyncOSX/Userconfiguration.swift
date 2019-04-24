@@ -84,6 +84,13 @@ final class Userconfiguration {
                 ViewControllerReference.shared.fulllogging = false
             }
         }
+        if let automaticexecutelocalvolumes = dict.value(forKey: "automaticexecutelocalvolumes") as? Int {
+            if automaticexecutelocalvolumes == 1 {
+                ViewControllerReference.shared.automaticexecutelocalvolumes = true
+            } else {
+                ViewControllerReference.shared.automaticexecutelocalvolumes = false
+            }
+        }
     }
 
     init (userconfigRsyncOSX: [NSDictionary]) {

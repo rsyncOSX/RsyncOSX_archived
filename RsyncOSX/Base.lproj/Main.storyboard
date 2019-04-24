@@ -3639,11 +3639,11 @@ DQ
             <objects>
                 <viewController title="View Controller Configuration" storyboardIdentifier="StoryboardUserconfigID" id="Psw-ga-cgO" customClass="ViewControllerUserconfiguration" customModule="RsyncOSX" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="SDJ-iR-PEg">
-                        <rect key="frame" x="0.0" y="0.0" width="501" height="427"/>
+                        <rect key="frame" x="0.0" y="0.0" width="501" height="432"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <box fixedFrame="YES" title="Rsync, paths and logging" translatesAutoresizingMaskIntoConstraints="NO" id="vgF-FF-cIJ">
-                                <rect key="frame" x="17" y="273" width="467" height="134"/>
+                                <rect key="frame" x="17" y="278" width="467" height="134"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <view key="contentView" id="dSE-x8-8Gm">
                                     <rect key="frame" x="3" y="3" width="461" height="116"/>
@@ -3730,7 +3730,7 @@ DQ
                                 </view>
                             </box>
                             <box fixedFrame="YES" title="Logging to file" translatesAutoresizingMaskIntoConstraints="NO" id="bPa-Pw-blK">
-                                <rect key="frame" x="18" y="171" width="214" height="101"/>
+                                <rect key="frame" x="18" y="176" width="214" height="101"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <view key="contentView" id="h8e-qf-Vbf">
                                     <rect key="frame" x="3" y="3" width="208" height="83"/>
@@ -3773,7 +3773,7 @@ DQ
                                 </view>
                             </box>
                             <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="LM6-LS-XBt">
-                                <rect key="frame" x="429" y="229" width="40" height="22"/>
+                                <rect key="frame" x="429" y="234" width="40" height="22"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" alignment="right" bezelStyle="round" id="8Rr-4D-GB8">
                                     <font key="font" metaFont="system"/>
@@ -3782,7 +3782,7 @@ DQ
                                 </textFieldCell>
                             </textField>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="uHp-LT-IEp">
-                                <rect key="frame" x="249" y="232" width="176" height="17"/>
+                                <rect key="frame" x="249" y="237" width="176" height="17"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="number of days last backup:" id="TdE-t5-FjR">
                                     <font key="font" metaFont="system"/>
@@ -3791,7 +3791,7 @@ DQ
                                 </textFieldCell>
                             </textField>
                             <box fixedFrame="YES" title="Number of days" translatesAutoresizingMaskIntoConstraints="NO" id="FrI-lc-qcT">
-                                <rect key="frame" x="238" y="219" width="246" height="53"/>
+                                <rect key="frame" x="238" y="224" width="246" height="53"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <view key="contentView" id="37n-bv-LK8">
                                     <rect key="frame" x="3" y="3" width="240" height="35"/>
@@ -3799,14 +3799,14 @@ DQ
                                 </view>
                             </box>
                             <box fixedFrame="YES" title="Paths for RsyncOSX and RsyncOSXsched" translatesAutoresizingMaskIntoConstraints="NO" id="iLe-BY-z0B">
-                                <rect key="frame" x="18" y="69" width="466" height="98"/>
+                                <rect key="frame" x="18" y="57" width="466" height="115"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <view key="contentView" id="Pvr-2t-bdn">
-                                    <rect key="frame" x="3" y="3" width="460" height="80"/>
+                                    <rect key="frame" x="3" y="3" width="460" height="97"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="tyj-K6-PJj">
-                                            <rect key="frame" x="148" y="60" width="250" height="18"/>
+                                            <rect key="frame" x="148" y="77" width="250" height="18"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             <buttonCell key="cell" type="check" title="Execute scheduled tasks in menu app" bezelStyle="regularSquare" imagePosition="left" enabled="NO" state="on" inset="2" id="Fzz-BB-PJC">
                                                 <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
@@ -3814,20 +3814,31 @@ DQ
                                             </buttonCell>
                                         </button>
                                         <imageView hidden="YES" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="D0h-7V-MQS">
-                                            <rect key="frame" x="433" y="40" width="15" height="14"/>
+                                            <rect key="frame" x="433" y="57" width="15" height="14"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="red" id="ptB-QL-Ebb"/>
                                         </imageView>
                                         <imageView hidden="YES" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="nT3-sG-Fe1">
-                                            <rect key="frame" x="433" y="20" width="15" height="14"/>
+                                            <rect key="frame" x="433" y="37" width="15" height="14"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="red" id="QCj-nZ-ysI"/>
                                         </imageView>
+                                        <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="crt-kf-oG4">
+                                            <rect key="frame" x="148" y="10" width="284" height="18"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                            <buttonCell key="cell" type="check" title="Automatic execution of local configurations" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="BG6-Wq-kSc">
+                                                <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                                <font key="font" metaFont="system"/>
+                                            </buttonCell>
+                                            <connections>
+                                                <action selector="toggleautomaticexecutelocalvolumes:" target="Psw-ga-cgO" id="Rwd-Ow-dFg"/>
+                                            </connections>
+                                        </button>
                                     </subviews>
                                 </view>
                             </box>
                             <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="XTm-P8-lHR">
-                                <rect key="frame" x="171" y="109" width="277" height="22"/>
+                                <rect key="frame" x="171" y="114" width="277" height="22"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" bezelStyle="round" id="MOn-XE-F97">
                                     <font key="font" metaFont="system"/>
@@ -3836,7 +3847,7 @@ DQ
                                 </textFieldCell>
                             </textField>
                             <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="aVo-6x-XDy">
-                                <rect key="frame" x="171" y="86" width="277" height="22"/>
+                                <rect key="frame" x="171" y="91" width="277" height="22"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" bezelStyle="round" id="drx-G7-DBw">
                                     <font key="font" metaFont="system"/>
@@ -3845,7 +3856,7 @@ DQ
                                 </textFieldCell>
                             </textField>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="PHV-O5-dRs">
-                                <rect key="frame" x="19" y="114" width="146" height="17"/>
+                                <rect key="frame" x="19" y="119" width="146" height="17"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="path RsyncOSX: " id="wrj-tn-Y3v">
                                     <font key="font" metaFont="system"/>
@@ -3854,7 +3865,7 @@ DQ
                                 </textFieldCell>
                             </textField>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5Uh-p8-vBz">
-                                <rect key="frame" x="19" y="89" width="146" height="17"/>
+                                <rect key="frame" x="19" y="94" width="146" height="17"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="path RsyncOSXsched:" id="XjB-Sb-slI">
                                     <font key="font" metaFont="system"/>
@@ -3879,6 +3890,7 @@ DQ
                         </subviews>
                     </view>
                     <connections>
+                        <outlet property="automaticexecutelocalvolumes" destination="crt-kf-oG4" id="j8r-bh-Wdj"/>
                         <outlet property="detailedlogging" destination="dg1-Pc-D5r" id="Z5n-3i-nJ1"/>
                         <outlet property="executescheduledappsinmenuapp" destination="tyj-K6-PJj" id="cbA-0X-jrJ"/>
                         <outlet property="fulllogging" destination="aZk-KL-3Z0" id="9vS-lT-gDI"/>
@@ -3900,7 +3912,7 @@ DQ
                 </viewController>
                 <customObject id="mqj-jt-V17" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="314.5" y="1772.5"/>
+            <point key="canvasLocation" x="314.5" y="1775"/>
         </scene>
         <!--View Controller Edit-->
         <scene sceneID="5Mo-Eu-OTy">

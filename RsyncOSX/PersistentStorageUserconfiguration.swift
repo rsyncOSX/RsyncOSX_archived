@@ -24,6 +24,7 @@ final class PersistentStorageUserconfiguration: ReadWriteDictionary, SetConfigur
         var rsyncPath: String?
         var restorePath: String?
         var marknumberofdayssince: String?
+        var automaticexecutelocalvolumes: Int?
 
         if ViewControllerReference.shared.rsyncVer3 {
             version3Rsync = 1
@@ -56,7 +57,11 @@ final class PersistentStorageUserconfiguration: ReadWriteDictionary, SetConfigur
         } else {
             executeinmenuapp = 0
         }
-
+        if ViewControllerReference.shared.automaticexecutelocalvolumes {
+            automaticexecutelocalvolumes = 1
+        } else {
+            automaticexecutelocalvolumes = 0
+        }
         var array = [NSDictionary]()
         marknumberofdayssince = String(ViewControllerReference.shared.marknumberofdayssince)
         let dict: NSMutableDictionary = [
@@ -65,7 +70,8 @@ final class PersistentStorageUserconfiguration: ReadWriteDictionary, SetConfigur
             "minimumlogging": minimumlogging! as Int,
             "fulllogging": fulllogging! as Int,
             "marknumberofdayssince": marknumberofdayssince ?? "5.0",
-            "executeinmenuapp": executeinmenuapp ?? 1 as Int]
+            "executeinmenuapp": executeinmenuapp ?? 1 as Int,
+            "automaticexecutelocalvolumes": automaticexecutelocalvolumes! as Int]
         if rsyncPath != nil {
             dict.setObject(rsyncPath!, forKey: "rsyncPath" as NSCopying)
         }

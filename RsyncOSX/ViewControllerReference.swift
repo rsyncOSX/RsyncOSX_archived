@@ -88,6 +88,8 @@ class ViewControllerReference {
     var namersyncosssched = "RsyncOSXsched.app"
     // Mac serialnumer
     var macserialnumber: String?
+    // Automatic execute local configurations in menuapp when mounting local volumes
+    var automaticexecutelocalvolumes: Bool = false
     // Reference to main View
     private var viewControllertabMain: NSViewController?
     // Reference to Copy files
