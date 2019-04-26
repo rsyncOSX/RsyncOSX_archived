@@ -7,7 +7,7 @@
     <body>
       <trans-unit id="0B4-M8-m3v.title">
         <source>Edit configurations</source>
-        <target>Edit configurations</target>
+        <target>Endre configurations</target>
         <note>Class = "NSBox"; title = "Edit configurations"; ObjectID = "0B4-M8-m3v";</note>
       </trans-unit>
       <trans-unit id="00G-Ps-GJD.title">
@@ -152,7 +152,7 @@
       </trans-unit>
       <trans-unit id="3Ch-5Q-dft.title">
         <source>Edit</source>
-        <target>Edit</target>
+        <target>Endre</target>
         <note>Class = "NSButtonCell"; title = "Edit"; ObjectID = "3Ch-5Q-dft";</note>
       </trans-unit>
       <trans-unit id="3LC-v7-7Pz.title">
@@ -202,7 +202,7 @@
       </trans-unit>
       <trans-unit id="5A9-Q1-SN9.title">
         <source>Edit</source>
-        <target>Edit</target>
+        <target>Endre</target>
         <note>Class = "NSMenu"; title = "Edit"; ObjectID = "5A9-Q1-SN9";</note>
       </trans-unit>
       <trans-unit id="5Ha-1J-UqF.title">
@@ -2092,7 +2092,7 @@
       </trans-unit>
       <trans-unit id="hrN-sQ-oUZ.title">
         <source>Edit</source>
-        <target>Edit</target>
+        <target>Endre</target>
         <note>Class = "NSMenuItem"; title = "Edit"; ObjectID = "hrN-sQ-oUZ";</note>
       </trans-unit>
       <trans-unit id="hsc-HX-kP6.headerCell.title">
@@ -2707,7 +2707,7 @@
       </trans-unit>
       <trans-unit id="x4K-TO-hhc.title">
         <source>Edit</source>
-        <target>Edit</target>
+        <target>Endre</target>
         <note>Class = "NSMenuItem"; title = "Edit"; ObjectID = "x4K-TO-hhc";</note>
       </trans-unit>
       <trans-unit id="xAS-dU-L0B.headerCell.title">
