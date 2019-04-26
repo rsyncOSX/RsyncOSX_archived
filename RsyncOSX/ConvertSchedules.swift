@@ -9,7 +9,7 @@
 import Foundation
 
 final class ConvertSchedules: SetSchedules {
-    
+
     // Converting Schedules from MEMORY to array of NSDictionary
     func convertschedules() -> [NSDictionary] {
         var array = [NSDictionary]()
