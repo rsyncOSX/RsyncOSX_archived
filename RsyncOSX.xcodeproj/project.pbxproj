@@ -140,6 +140,7 @@
 		E99FC81D200FD88D00477B1A /* SnapshotCreateCatalogArguments.swift in Sources */ = {isa = PBXBuildFile; fileRef = E99FC81C200FD88D00477B1A /* SnapshotCreateCatalogArguments.swift */; };
 		E9A63064202B425D00F1FFF1 /* Running.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9A63063202B425D00F1FFF1 /* Running.swift */; };
 		E9A8D81C1ED20AEB009648DE /* GetRemoteFileListingsArguments.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9A8D81B1ED20AEB009648DE /* GetRemoteFileListingsArguments.swift */; };
+		E9AC77602272F4DC0063F324 /* ConvertUserconfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9AC775F2272F4DC0063F324 /* ConvertUserconfiguration.swift */; };
 		E9ACD3982066B9CB0080E09C /* ViewControllerEncrypt.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9ACD3972066B9CB0080E09C /* ViewControllerEncrypt.swift */; };
 		E9ACD39C2066BE1A0080E09C /* RcloneProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9ACD39B2066BE1A0080E09C /* RcloneProfile.swift */; };
 		E9B9CCA621BC46B00042D5CE /* extensionDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9B9CCA521BC46B00042D5CE /* extensionDate.swift */; };
@@ -285,6 +286,7 @@
 		E99FC81C200FD88D00477B1A /* SnapshotCreateCatalogArguments.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnapshotCreateCatalogArguments.swift; sourceTree = "<group>"; };
 		E9A63063202B425D00F1FFF1 /* Running.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Running.swift; sourceTree = "<group>"; };
 		E9A8D81B1ED20AEB009648DE /* GetRemoteFileListingsArguments.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GetRemoteFileListingsArguments.swift; sourceTree = "<group>"; };
+		E9AC775F2272F4DC0063F324 /* ConvertUserconfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConvertUserconfiguration.swift; sourceTree = "<group>"; };
 		E9ACD3972066B9CB0080E09C /* ViewControllerEncrypt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerEncrypt.swift; sourceTree = "<group>"; };
 		E9ACD39B2066BE1A0080E09C /* RcloneProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RcloneProfile.swift; sourceTree = "<group>"; };
 		E9AE2E90217E3270003486E0 /* RsyncOSX.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = RsyncOSX.entitlements; sourceTree = "<group>"; };
@@ -356,6 +358,7 @@
 		A04492BD1D658F7C00B3CE17 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				E9AC775E2272F4710063F324 /* Conversions */,
 				E84E091621BD2974006BD293 /* PlanSnapshots */,
 				E957B1131F5F2A3A0099947A /* ViewControllerReference */,
 				E91A688E1EA7771B0056BCFC /* Loggdata */,
@@ -684,6 +687,14 @@
 			name = Output;
 			sourceTree = "<group>";
 		};
+		E9AC775E2272F4710063F324 /* Conversions */ = {
+			isa = PBXGroup;
+			children = (
+				E9AC775F2272F4DC0063F324 /* ConvertUserconfiguration.swift */,
+			);
+			name = Conversions;
+			sourceTree = "<group>";
+		};
 		E9EC786F1EACE063001EED9B /* Ssh */ = {
 			isa = PBXGroup;
 			children = (
@@ -959,6 +970,7 @@
 				A08110671D6DA7D8009444D3 /* ViewControllerProgressProcess.swift in Sources */,
 				E96B3E7820661C3900B730DB /* RcloneUserconfiguration.swift in Sources */,
 				E903FF39221FD99F004673D9 /* PersistentStorageAllprofilesAPI.swift in Sources */,
+				E9AC77602272F4DC0063F324 /* ConvertUserconfiguration.swift in Sources */,
 				E94D2603205025790026D18F /* ViewControllerAllProfiles.swift in Sources */,
 				A04492B01D658F2100B3CE17 /* PersistentStorageScheduling.swift in Sources */,
 			);
