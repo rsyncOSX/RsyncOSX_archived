@@ -89,6 +89,7 @@
 		E92755A221304F0000B1F781 /* Macserialnumber.swift in Sources */ = {isa = PBXBuildFile; fileRef = E92755A121304F0000B1F781 /* Macserialnumber.swift */; };
 		E92755A42130506000B1F781 /* Dateandtime.swift in Sources */ = {isa = PBXBuildFile; fileRef = E92755A32130506000B1F781 /* Dateandtime.swift */; };
 		E92755A62130539400B1F781 /* Dispatchqueues.swift in Sources */ = {isa = PBXBuildFile; fileRef = E92755A52130539400B1F781 /* Dispatchqueues.swift */; };
+		E927C0052272FAD30036A2DB /* ConvertConfigurations.swift in Sources */ = {isa = PBXBuildFile; fileRef = E927C0042272FAD30036A2DB /* ConvertConfigurations.swift */; };
 		E9284CF621308AE9006648C1 /* extensionsConfigurations.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9284CF521308AE9006648C1 /* extensionsConfigurations.swift */; };
 		E92A623B203D7B1C000B9300 /* Notifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = E92A623A203D7B1C000B9300 /* Notifications.swift */; };
 		E92D03192010CB2D00A92813 /* SnapshotCreateCatalog.swift in Sources */ = {isa = PBXBuildFile; fileRef = E92D03182010CB2D00A92813 /* SnapshotCreateCatalog.swift */; };
@@ -235,6 +236,7 @@
 		E92755A121304F0000B1F781 /* Macserialnumber.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Macserialnumber.swift; sourceTree = "<group>"; };
 		E92755A32130506000B1F781 /* Dateandtime.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dateandtime.swift; sourceTree = "<group>"; };
 		E92755A52130539400B1F781 /* Dispatchqueues.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dispatchqueues.swift; sourceTree = "<group>"; };
+		E927C0042272FAD30036A2DB /* ConvertConfigurations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConvertConfigurations.swift; sourceTree = "<group>"; };
 		E9284CF521308AE9006648C1 /* extensionsConfigurations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = extensionsConfigurations.swift; sourceTree = "<group>"; };
 		E92A623A203D7B1C000B9300 /* Notifications.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Notifications.swift; sourceTree = "<group>"; };
 		E92D03182010CB2D00A92813 /* SnapshotCreateCatalog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnapshotCreateCatalog.swift; sourceTree = "<group>"; };
@@ -691,6 +693,7 @@
 			isa = PBXGroup;
 			children = (
 				E9AC775F2272F4DC0063F324 /* ConvertUserconfiguration.swift */,
+				E927C0042272FAD30036A2DB /* ConvertConfigurations.swift */,
 			);
 			name = Conversions;
 			sourceTree = "<group>";
@@ -872,6 +875,7 @@
 				A03876E11DB4FD9D00C14AEA /* ViewControllerProfile.swift in Sources */,
 				E932B2D52077B1E80057B8AE /* Combined.swift in Sources */,
 				E98DA4C220EC12F4007CBDEF /* OutputErrors.swift in Sources */,
+				E927C0052272FAD30036A2DB /* ConvertConfigurations.swift in Sources */,
 				A0400C871D794FF8008A3949 /* Checkfornewversion.swift in Sources */,
 				A04492AA1D658F2100B3CE17 /* yudpsocket.c in Sources */,
 				E96CA1FE1E094C3000CD1D03 /* Resources.swift in Sources */,
