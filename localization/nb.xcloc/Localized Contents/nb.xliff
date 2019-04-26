@@ -12,12 +12,12 @@
       </trans-unit>
       <trans-unit id="00G-Ps-GJD.title">
         <source>Local catalog : </source>
-        <target>Local catalog : </target>
+        <target>Lokal katalog:</target>
         <note>Class = "NSTextFieldCell"; title = "Local catalog : "; ObjectID = "00G-Ps-GJD";</note>
       </trans-unit>
       <trans-unit id="0KI-B9-ezl.headerCell.title">
         <source>Task</source>
-        <target>Task</target>
+        <target>Oppgave</target>
         <note>Class = "NSTableColumn"; headerCell.title = "Task"; ObjectID = "0KI-B9-ezl";</note>
       </trans-unit>
       <trans-unit id="0f6-kk-e9f.title">
@@ -72,12 +72,12 @@
       </trans-unit>
       <trans-unit id="1xL-86-DnF.headerCell.title">
         <source>Local catalog</source>
-        <target>Local catalog</target>
+        <target>Lokal katalog</target>
         <note>Class = "NSTableColumn"; headerCell.title = "Local catalog"; ObjectID = "1xL-86-DnF";</note>
       </trans-unit>
       <trans-unit id="1xY-fG-SDm.title">
         <source>Remote catalog :</source>
-        <target>Remote catalog :</target>
+        <target>Ekstern katalog :</target>
         <note>Class = "NSTextFieldCell"; title = "Remote catalog :"; ObjectID = "1xY-fG-SDm";</note>
       </trans-unit>
       <trans-unit id="2Cv-Hb-dy9.title">
@@ -102,7 +102,7 @@
       </trans-unit>
       <trans-unit id="2Fm-Br-GhC.headerCell.title">
         <source>Local catalog</source>
-        <target>Local catalog</target>
+        <target>Lokal katalog</target>
         <note>Class = "NSTableColumn"; headerCell.title = "Local catalog"; ObjectID = "2Fm-Br-GhC";</note>
       </trans-unit>
       <trans-unit id="2KI-Je-KtE.title">
@@ -132,7 +132,7 @@
       </trans-unit>
       <trans-unit id="2ep-dg-7eI.title">
         <source>Remote catalog:</source>
-        <target>Remote catalog:</target>
+        <target>Ekstern katalog:</target>
         <note>Class = "NSTextFieldCell"; title = "Remote catalog:"; ObjectID = "2ep-dg-7eI";</note>
       </trans-unit>
       <trans-unit id="2sX-ek-QE0.title">
@@ -242,7 +242,7 @@
       </trans-unit>
       <trans-unit id="6rO-sZ-edB.title">
         <source>Remote catalog:</source>
-        <target>Remote catalog:</target>
+        <target>Ekstern katalog:</target>
         <note>Class = "NSTextFieldCell"; title = "Remote catalog:"; ObjectID = "6rO-sZ-edB";</note>
       </trans-unit>
       <trans-unit id="7KY-LK-D7K.title">
@@ -322,7 +322,7 @@
       </trans-unit>
       <trans-unit id="27J-nn-5gh.headerCell.title">
         <source>Local catalog</source>
-        <target>Local catalog</target>
+        <target>Lokal katalog</target>
         <note>Class = "NSTableColumn"; headerCell.title = "Local catalog"; ObjectID = "27J-nn-5gh";</note>
       </trans-unit>
       <trans-unit id="032-vc-gNs.title">
@@ -332,7 +332,7 @@
       </trans-unit>
       <trans-unit id="35g-px-ZH6.headerCell.title">
         <source>Local catalog</source>
-        <target>Local catalog</target>
+        <target>Lokal katalog</target>
         <note>Class = "NSTableColumn"; headerCell.title = "Local catalog"; ObjectID = "35g-px-ZH6";</note>
       </trans-unit>
       <trans-unit id="37m-qS-TRa.headerCell.title">
@@ -357,7 +357,7 @@
       </trans-unit>
       <trans-unit id="52M-g3-zq9.headerCell.title">
         <source>Task</source>
-        <target>Task</target>
+        <target>Oppgave</target>
         <note>Class = "NSTableColumn"; headerCell.title = "Task"; ObjectID = "52M-g3-zq9";</note>
       </trans-unit>
       <trans-unit id="55D-T2-yld.title">
@@ -407,7 +407,7 @@
       </trans-unit>
       <trans-unit id="143-UO-M2U.title">
         <source>Local catalog:</source>
-        <target>Local catalog:</target>
+        <target>Lokal katalog:</target>
         <note>Class = "NSTextFieldCell"; title = "Local catalog:"; ObjectID = "143-UO-M2U";</note>
       </trans-unit>
       <trans-unit id="241-VI-fhB.headerCell.title">
@@ -432,7 +432,7 @@
       </trans-unit>
       <trans-unit id="857-EY-QrY.headerCell.title">
         <source>Task</source>
-        <target>Task</target>
+        <target>Oppgave</target>
         <note>Class = "NSTableColumn"; headerCell.title = "Task"; ObjectID = "857-EY-QrY";</note>
       </trans-unit>
       <trans-unit id="ACw-EV-vDL.title">
@@ -472,7 +472,7 @@
       </trans-unit>
       <trans-unit id="AkJ-MA-346.headerCell.title">
         <source>Task</source>
-        <target>Task</target>
+        <target>Oppgave</target>
         <note>Class = "NSTableColumn"; headerCell.title = "Task"; ObjectID = "AkJ-MA-346";</note>
       </trans-unit>
       <trans-unit id="AlG-Cw-Xi9.title">
@@ -487,7 +487,7 @@
       </trans-unit>
       <trans-unit id="B2y-Kc-2LJ.title">
         <source>Remote catalog : </source>
-        <target>Remote catalog : </target>
+        <target>Ekstern katalog : </target>
         <note>Class = "NSTextFieldCell"; title = "Remote catalog : "; ObjectID = "B2y-Kc-2LJ";</note>
       </trans-unit>
       <trans-unit id="B5v-j0-w2F.title">
@@ -502,7 +502,7 @@
       </trans-unit>
       <trans-unit id="B39-H6-802.headerCell.title">
         <source>Remote catalog</source>
-        <target>Remote catalog</target>
+        <target>Ekstern katalog</target>
         <note>Class = "NSTableColumn"; headerCell.title = "Remote catalog"; ObjectID = "B39-H6-802";</note>
       </trans-unit>
       <trans-unit id="BDO-Nt-D9h.title">
@@ -617,7 +617,7 @@
       </trans-unit>
       <trans-unit id="DH3-Cj-gh5.title">
         <source>Local catalog:</source>
-        <target>Local catalog:</target>
+        <target>Lokal katalog:</target>
         <note>Class = "NSTextFieldCell"; title = "Local catalog:"; ObjectID = "DH3-Cj-gh5";</note>
       </trans-unit>
       <trans-unit id="DNv-s3-smo.title">
@@ -672,7 +672,7 @@
       </trans-unit>
       <trans-unit id="EZS-oJ-mKt.headerCell.title">
         <source>Local catalog</source>
-        <target>Local catalog</target>
+        <target>Lokal katalog</target>
         <note>Class = "NSTableColumn"; headerCell.title = "Local catalog"; ObjectID = "EZS-oJ-mKt";</note>
       </trans-unit>
       <trans-unit id="Eb4-2s-zft.title">
@@ -762,7 +762,7 @@
       </trans-unit>
       <trans-unit id="FyK-Vx-KC3.headerCell.title">
         <source>Remote catalog</source>
-        <target>Remote catalog</target>
+        <target>Ekstern katalog</target>
         <note>Class = "NSTableColumn"; headerCell.title = "Remote catalog"; ObjectID = "FyK-Vx-KC3";</note>
       </trans-unit>
       <trans-unit id="Fzm-Cm-ENf.title">
@@ -787,12 +787,12 @@
       </trans-unit>
       <trans-unit id="G43-jD-Ptq.headerCell.title">
         <source>Remote catalog</source>
-        <target>Remote catalog</target>
+        <target>Ekstern katalog</target>
         <note>Class = "NSTableColumn"; headerCell.title = "Remote catalog"; ObjectID = "G43-jD-Ptq";</note>
       </trans-unit>
       <trans-unit id="GEV-PH-o2z.headerCell.title">
         <source>Local catalog</source>
-        <target>Local catalog</target>
+        <target>Lokal katalog</target>
         <note>Class = "NSTableColumn"; headerCell.title = "Local catalog"; ObjectID = "GEV-PH-o2z";</note>
       </trans-unit>
       <trans-unit id="GF9-Lf-PIQ.headerCell.title">
@@ -907,7 +907,7 @@
       </trans-unit>
       <trans-unit id="IDs-zU-XOw.headerCell.title">
         <source>Task</source>
-        <target>Task</target>
+        <target>Oppgave</target>
         <note>Class = "NSTableColumn"; headerCell.title = "Task"; ObjectID = "IDs-zU-XOw";</note>
       </trans-unit>
       <trans-unit id="IMJ-3e-rYJ.title">
@@ -942,12 +942,12 @@
       </trans-unit>
       <trans-unit id="Izt-dc-ZBW.headerCell.title">
         <source>Remote catalog</source>
-        <target>Remote catalog</target>
+        <target>Ekstern katalog</target>
         <note>Class = "NSTableColumn"; headerCell.title = "Remote catalog"; ObjectID = "Izt-dc-ZBW";</note>
       </trans-unit>
       <trans-unit id="J3H-wG-sas.title">
         <source>Local catalog:</source>
-        <target>Local catalog:</target>
+        <target>Lokal katalog:</target>
         <note>Class = "NSTextFieldCell"; title = "Local catalog:"; ObjectID = "J3H-wG-sas";</note>
       </trans-unit>
       <trans-unit id="J5u-bX-RZk.headerCell.title">
@@ -992,7 +992,7 @@
       </trans-unit>
       <trans-unit id="KJd-Dr-12s.title">
         <source>Local catalog:</source>
-        <target>Local catalog:</target>
+        <target>Lokal katalog:</target>
         <note>Class = "NSTextFieldCell"; title = "Local catalog:"; ObjectID = "KJd-Dr-12s";</note>
       </trans-unit>
       <trans-unit id="Kd2-mp-pUS.title">
@@ -1012,7 +1012,7 @@
       </trans-unit>
       <trans-unit id="L1n-6w-rIj.headerCell.title">
         <source>Local catalog</source>
-        <target>Local catalog</target>
+        <target>Lokal katalog</target>
         <note>Class = "NSTableColumn"; headerCell.title = "Local catalog"; ObjectID = "L1n-6w-rIj";</note>
       </trans-unit>
       <trans-unit id="L5g-6S-at9.title">
@@ -1207,7 +1207,7 @@
       </trans-unit>
       <trans-unit id="Ow3-Wv-2WC.headerCell.title">
         <source>Task</source>
-        <target>Task</target>
+        <target>Oppgave</target>
         <note>Class = "NSTableColumn"; headerCell.title = "Task"; ObjectID = "Ow3-Wv-2WC";</note>
       </trans-unit>
       <trans-unit id="P4M-Uu-xLy.title">
@@ -1307,7 +1307,7 @@
       </trans-unit>
       <trans-unit id="RDZ-vd-MTb.headerCell.title">
         <source>Local catalog</source>
-        <target>Local catalog</target>
+        <target>Lokal katalog</target>
         <note>Class = "NSTableColumn"; headerCell.title = "Local catalog"; ObjectID = "RDZ-vd-MTb";</note>
       </trans-unit>
       <trans-unit id="RFG-uU-oRD.title">
@@ -1497,7 +1497,7 @@
       </trans-unit>
       <trans-unit id="V8a-eh-20b.headerCell.title">
         <source>Remote catalog</source>
-        <target>Remote catalog</target>
+        <target>Ekstern katalog</target>
         <note>Class = "NSTableColumn"; headerCell.title = "Remote catalog"; ObjectID = "V8a-eh-20b";</note>
       </trans-unit>
       <trans-unit id="VBk-Qe-g0o.title">
@@ -1747,12 +1747,12 @@
       </trans-unit>
       <trans-unit id="bMD-bn-iZW.title">
         <source>Remote catalog:</source>
-        <target>Remote catalog:</target>
+        <target>Ekstern katalog:</target>
         <note>Class = "NSTextFieldCell"; title = "Remote catalog:"; ObjectID = "bMD-bn-iZW";</note>
       </trans-unit>
       <trans-unit id="bPV-Wb-DGM.headerCell.title">
         <source>Task</source>
-        <target>Task</target>
+        <target>Oppgave</target>
         <note>Class = "NSTableColumn"; headerCell.title = "Task"; ObjectID = "bPV-Wb-DGM";</note>
       </trans-unit>
       <trans-unit id="bPa-Pw-blK.title">
@@ -1782,7 +1782,7 @@
       </trans-unit>
       <trans-unit id="cDj-gG-IHY.headerCell.title">
         <source>Local catalog</source>
-        <target>Local catalog</target>
+        <target>Lokal katalog</target>
         <note>Class = "NSTableColumn"; headerCell.title = "Local catalog"; ObjectID = "cDj-gG-IHY";</note>
       </trans-unit>
       <trans-unit id="cKa-xb-U4B.headerCell.title">
@@ -1932,7 +1932,7 @@
       </trans-unit>
       <trans-unit id="eys-24-pCG.headerCell.title">
         <source>Local catalog</source>
-        <target>Local catalog</target>
+        <target>Lokal katalog</target>
         <note>Class = "NSTableColumn"; headerCell.title = "Local catalog"; ObjectID = "eys-24-pCG";</note>
       </trans-unit>
       <trans-unit id="f6o-pt-x0z.title">
@@ -1967,7 +1967,7 @@
       </trans-unit>
       <trans-unit id="fnk-Kq-6LU.headerCell.title">
         <source>Remote catalog</source>
-        <target>Remote catalog</target>
+        <target>Ekstern katalog</target>
         <note>Class = "NSTableColumn"; headerCell.title = "Remote catalog"; ObjectID = "fnk-Kq-6LU";</note>
       </trans-unit>
       <trans-unit id="fwm-ch-a0w.headerCell.title">
@@ -2117,7 +2117,7 @@
       </trans-unit>
       <trans-unit id="i2N-9t-0ni.title">
         <source>Remote catalog:</source>
-        <target>Remote catalog:</target>
+        <target>Ekstern katalog:</target>
         <note>Class = "NSTextFieldCell"; title = "Remote catalog:"; ObjectID = "i2N-9t-0ni";</note>
       </trans-unit>
       <trans-unit id="i8f-03-7XY.title">
@@ -2177,7 +2177,7 @@
       </trans-unit>
       <trans-unit id="j1Z-jM-6Q6.headerCell.title">
         <source>Task</source>
-        <target>Task</target>
+        <target>Oppgave</target>
         <note>Class = "NSTableColumn"; headerCell.title = "Task"; ObjectID = "j1Z-jM-6Q6";</note>
       </trans-unit>
       <trans-unit id="jTS-YA-55S.title">
@@ -2227,7 +2227,7 @@
       </trans-unit>
       <trans-unit id="kFc-LP-RkZ.title">
         <source>Remote catalog : </source>
-        <target>Remote catalog : </target>
+        <target>Ekstern katalog : </target>
         <note>Class = "NSTextFieldCell"; title = "Remote catalog : "; ObjectID = "kFc-LP-RkZ";</note>
       </trans-unit>
       <trans-unit id="kNR-NX-OzR.title">
@@ -2272,7 +2272,7 @@
       </trans-unit>
       <trans-unit id="lxg-t9-eiU.title">
         <source>Task info</source>
-        <target>Task info</target>
+        <target>Oppgave info</target>
         <note>Class = "NSBox"; title = "Task info"; ObjectID = "lxg-t9-eiU";</note>
       </trans-unit>
       <trans-unit id="lzX-Ie-xTz.title">
@@ -2292,7 +2292,7 @@
       </trans-unit>
       <trans-unit id="mJ2-R8-Fa6.headerCell.title">
         <source>Task</source>
-        <target>Task</target>
+        <target>Oppgave</target>
         <note>Class = "NSTableColumn"; headerCell.title = "Task"; ObjectID = "mJ2-R8-Fa6";</note>
       </trans-unit>
       <trans-unit id="mXT-RY-XvH.headerCell.title">
@@ -2302,7 +2302,7 @@
       </trans-unit>
       <trans-unit id="mYi-Km-zY1.title">
         <source>Local catalog :</source>
-        <target>Local catalog :</target>
+        <target>Lokal katalog :</target>
         <note>Class = "NSTextFieldCell"; title = "Local catalog :"; ObjectID = "mYi-Km-zY1";</note>
       </trans-unit>
       <trans-unit id="mal-sc-mlY.title">
@@ -2342,7 +2342,7 @@
       </trans-unit>
       <trans-unit id="nsN-YU-MJ2.title">
         <source>Local catalog:</source>
-        <target>Local catalog:</target>
+        <target>Lokal katalog:</target>
         <note>Class = "NSTextFieldCell"; title = "Local catalog:"; ObjectID = "nsN-YU-MJ2";</note>
       </trans-unit>
       <trans-unit id="o1G-0k-G0I.title">
@@ -2387,7 +2387,7 @@
       </trans-unit>
       <trans-unit id="oqO-Td-7wg.headerCell.title">
         <source>Remote catalog</source>
-        <target>Remote catalog</target>
+        <target>Ekstern katalog</target>
         <note>Class = "NSTableColumn"; headerCell.title = "Remote catalog"; ObjectID = "oqO-Td-7wg";</note>
       </trans-unit>
       <trans-unit id="ozI-GG-cgX.title">
@@ -2432,7 +2432,7 @@
       </trans-unit>
       <trans-unit id="qfC-8t-e7C.headerCell.title">
         <source>Task</source>
-        <target>Task</target>
+        <target>Oppgave</target>
         <note>Class = "NSTableColumn"; headerCell.title = "Task"; ObjectID = "qfC-8t-e7C";</note>
       </trans-unit>
       <trans-unit id="qit-95-flM.title">
@@ -2477,7 +2477,7 @@
       </trans-unit>
       <trans-unit id="rol-5e-w2X.title">
         <source>Local catalog :</source>
-        <target>Local catalog :</target>
+        <target>Lokal katalog :</target>
         <note>Class = "NSTextFieldCell"; title = "Local catalog :"; ObjectID = "rol-5e-w2X";</note>
       </trans-unit>
       <trans-unit id="ru1-fS-UXD.title">
@@ -2532,7 +2532,7 @@
       </trans-unit>
       <trans-unit id="tBD-wX-XO5.headerCell.title">
         <source>Local catalog</source>
-        <target>Local catalog</target>
+        <target>Lokal katalog</target>
         <note>Class = "NSTableColumn"; headerCell.title = "Local catalog"; ObjectID = "tBD-wX-XO5";</note>
       </trans-unit>
       <trans-unit id="tIo-dN-yJ3.title">
@@ -2542,7 +2542,7 @@
       </trans-unit>
       <trans-unit id="tNA-hi-kYT.headerCell.title">
         <source>Local catalog</source>
-        <target>Local catalog</target>
+        <target>Lokal katalog</target>
         <note>Class = "NSTableColumn"; headerCell.title = "Local catalog"; ObjectID = "tNA-hi-kYT";</note>
       </trans-unit>
       <trans-unit id="tQD-0V-0FQ.title">
@@ -2567,7 +2567,7 @@
       </trans-unit>
       <trans-unit id="u73-Hi-Tsn.title">
         <source>Remote catalog :</source>
-        <target>Remote catalog :</target>
+        <target>Ekstern katalog:</target>
         <note>Class = "NSTextFieldCell"; title = "Remote catalog :"; ObjectID = "u73-Hi-Tsn";</note>
       </trans-unit>
       <trans-unit id="uAb-Pv-NUT.title">
@@ -2712,7 +2712,7 @@
       </trans-unit>
       <trans-unit id="xAS-dU-L0B.headerCell.title">
         <source>Task</source>
-        <target>Task</target>
+        <target>Oppgave</target>
         <note>Class = "NSTableColumn"; headerCell.title = "Task"; ObjectID = "xAS-dU-L0B";</note>
       </trans-unit>
       <trans-unit id="xKW-0W-Nbb.title">
@@ -2727,7 +2727,7 @@
       </trans-unit>
       <trans-unit id="xUg-0M-AYM.title">
         <source>Remote catalog:</source>
-        <target>Remote catalog:</target>
+        <target>Ekstern katalog:</target>
         <note>Class = "NSTextFieldCell"; title = "Remote catalog:"; ObjectID = "xUg-0M-AYM";</note>
       </trans-unit>
       <trans-unit id="xXy-oY-7zq.title">
@@ -2832,7 +2832,7 @@
       </trans-unit>
       <trans-unit id="zzK-ZO-wvj.headerCell.title">
         <source>Remote catalog</source>
-        <target>Remote catalog</target>
+        <target>Ekstern katalog</target>
         <note>Class = "NSTableColumn"; headerCell.title = "Remote catalog"; ObjectID = "zzK-ZO-wvj";</note>
       </trans-unit>
     </body>
