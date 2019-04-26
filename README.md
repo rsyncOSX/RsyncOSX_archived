@@ -8,6 +8,10 @@ Rsync is a file-based synchronization and backup tool. There is no custom soluti
 
 Scheduled tasks are added and deleted within RsyncOSX. Executing the scheduled tasks is by the [menu app](https://github.com/rsyncOSX/RsyncOSXsched). A short [intro to RsyncOSX](https://rsyncosx.github.io/Intro) and full [documentation of RsyncOSX](https://rsyncosx.github.io/AboutRsyncOSX).
 
+### Changelog
+
+The [Changelog](https://rsyncosx.github.io/Changelog).
+
 ### Version of rsync
 
 RsyncOSX is only verified with rsync versions 2.6.9, 3.1.2 and 3.1.3. Other versions of rsync will work but numbers about transferred files is not set in logs. It is recommended to [install](https://rsyncosx.github.io/Install) the latest version of rsync.
@@ -54,10 +58,6 @@ There are four short YouTube videos of RsyncOSX:
 - adding and executing the [first backup](https://youtu.be/8oe1lKgiDx8)
 - doing a full [restore](https://youtu.be/-R6n_8fl6Ls) to a temporary local restore catalogs
 - how to change [version of rsync](https://youtu.be/mVFL25-lo6Y) utilized by RsyncOSX
-
-### Changelog
-
-The [Changelog](https://rsyncosx.github.io/Changelog).
 
 #### SwiftLint
 
