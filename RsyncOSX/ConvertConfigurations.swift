@@ -8,7 +8,7 @@
 
 import Foundation
 
-class ConvertConfigurations: SetConfigurations {
+final class ConvertConfigurations: SetConfigurations {
 
     // Function for returning a NSMutabledictionary from a configuration record
     func convertconfiguration(index: Int) -> NSMutableDictionary {

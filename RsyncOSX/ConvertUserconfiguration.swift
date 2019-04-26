@@ -8,7 +8,7 @@
 
 import Foundation
 
-class ConvertUserconfiguration {
+final class ConvertUserconfiguration {
 
     // Converting user configuration to array of NSDictionary
     func convertUserconfiguration() -> [NSDictionary] {
