@@ -32,7 +32,7 @@
       </trans-unit>
       <trans-unit id="1SA-wM-7Lh.title">
         <source>Close</source>
-        <target>Close</target>
+        <target>Lukk</target>
         <note>Class = "NSButtonCell"; title = "Close"; ObjectID = "1SA-wM-7Lh";</note>
       </trans-unit>
       <trans-unit id="1SO-6i-hws.title">
@@ -62,7 +62,7 @@
       </trans-unit>
       <trans-unit id="01g-QQ-yHM.headerCell.title">
         <source>Date executed</source>
-        <target>Date executed</target>
+        <target>Dato kjørt</target>
         <note>Class = "NSTableColumn"; headerCell.title = "Date executed"; ObjectID = "01g-QQ-yHM";</note>
       </trans-unit>
       <trans-unit id="1o3-wD-XkY.headerCell.title">
@@ -117,7 +117,7 @@
       </trans-unit>
       <trans-unit id="2UK-3T-i4b.headerCell.title">
         <source>Stop date schedule</source>
-        <target>Stop date schedule</target>
+        <target>Stopp dato schedule</target>
         <note>Class = "NSTableColumn"; headerCell.title = "Stop date schedule"; ObjectID = "2UK-3T-i4b";</note>
       </trans-unit>
       <trans-unit id="2W2-3F-urP.title">
@@ -317,7 +317,7 @@
       </trans-unit>
       <trans-unit id="21H-Ns-bTh.title">
         <source>Close automatically in: </source>
-        <target>Close automatically in: </target>
+        <target>Lukker automatisk i: </target>
         <note>Class = "NSTextFieldCell"; title = "Close automatically in: "; ObjectID = "21H-Ns-bTh";</note>
       </trans-unit>
       <trans-unit id="27J-nn-5gh.headerCell.title">
@@ -327,7 +327,7 @@
       </trans-unit>
       <trans-unit id="032-vc-gNs.title">
         <source>Remote server:</source>
-        <target>Remote server:</target>
+        <target>Ekstern server:</target>
         <note>Class = "NSTextFieldCell"; title = "Remote server:"; ObjectID = "032-vc-gNs";</note>
       </trans-unit>
       <trans-unit id="35g-px-ZH6.headerCell.title">
@@ -387,7 +387,7 @@
       </trans-unit>
       <trans-unit id="75g-jk-ycD.title">
         <source>Remote server:</source>
-        <target>Remote server:</target>
+        <target>Ekstern server:</target>
         <note>Class = "NSTextFieldCell"; title = "Remote server:"; ObjectID = "75g-jk-ycD";</note>
       </trans-unit>
       <trans-unit id="78a-Cw-Mjk.title">
@@ -462,7 +462,7 @@
       </trans-unit>
       <trans-unit id="Aa2-8Q-PPo.headerCell.title">
         <source>Days</source>
-        <target>Days</target>
+        <target>Dager</target>
         <note>Class = "NSTableColumn"; headerCell.title = "Days"; ObjectID = "Aa2-8Q-PPo";</note>
       </trans-unit>
       <trans-unit id="Ad7-9e-Q7b.title">
@@ -572,7 +572,7 @@
       </trans-unit>
       <trans-unit id="CUQ-YI-Irs.title">
         <source>Close</source>
-        <target>Close</target>
+        <target>Lukk</target>
         <note>Class = "NSButtonCell"; title = "Close"; ObjectID = "CUQ-YI-Irs";</note>
       </trans-unit>
       <trans-unit id="Can-2K-epd.headerCell.title">
@@ -587,12 +587,12 @@
       </trans-unit>
       <trans-unit id="Cg6-Ym-xzl.title">
         <source>Days since last backup:</source>
-        <target>Days since last backup:</target>
+        <target>Dager siden siste backup:</target>
         <note>Class = "NSTextFieldCell"; title = "Days since last backup:"; ObjectID = "Cg6-Ym-xzl";</note>
       </trans-unit>
       <trans-unit id="CiR-sD-XpQ.headerCell.title">
         <source>Remote server</source>
-        <target>Remote server</target>
+        <target>Ekstern server</target>
         <note>Class = "NSTableColumn"; headerCell.title = "Remote server"; ObjectID = "CiR-sD-XpQ";</note>
       </trans-unit>
       <trans-unit id="CkB-lg-RfP.title">
@@ -692,7 +692,7 @@
       </trans-unit>
       <trans-unit id="Emj-io-EGu.headerCell.title">
         <source>Date executed</source>
-        <target>Date executed</target>
+        <target>Dato kjørt</target>
         <note>Class = "NSTableColumn"; headerCell.title = "Date executed"; ObjectID = "Emj-io-EGu";</note>
       </trans-unit>
       <trans-unit id="ExZ-72-tbq.headerCell.title">
@@ -752,7 +752,7 @@
       </trans-unit>
       <trans-unit id="FrI-lc-qcT.title">
         <source>Number of days</source>
-        <target>Number of days</target>
+        <target>Antall dager</target>
         <note>Class = "NSBox"; title = "Number of days"; ObjectID = "FrI-lc-qcT";</note>
       </trans-unit>
       <trans-unit id="Fry-AD-Rmf.headerCell.title">
@@ -777,7 +777,7 @@
       </trans-unit>
       <trans-unit id="G5V-jz-71t.headerCell.title">
         <source>Days</source>
-        <target>Days</target>
+        <target>Dager</target>
         <note>Class = "NSTableColumn"; headerCell.title = "Days"; ObjectID = "G5V-jz-71t";</note>
       </trans-unit>
       <trans-unit id="G8q-vp-nPf.title">
@@ -797,7 +797,7 @@
       </trans-unit>
       <trans-unit id="GF9-Lf-PIQ.headerCell.title">
         <source>Remote server</source>
-        <target>Remote server</target>
+        <target>Ekstern server</target>
         <note>Class = "NSTableColumn"; headerCell.title = "Remote server"; ObjectID = "GF9-Lf-PIQ";</note>
       </trans-unit>
       <trans-unit id="GJH-xK-5LY.title">
@@ -852,7 +852,7 @@
       </trans-unit>
       <trans-unit id="HLP-3M-FTI.headerCell.title">
         <source>Remote server</source>
-        <target>Remote server</target>
+        <target>Ekstern server</target>
         <note>Class = "NSTableColumn"; headerCell.title = "Remote server"; ObjectID = "HLP-3M-FTI";</note>
       </trans-unit>
       <trans-unit id="HPC-E0-3iO.title">
@@ -887,7 +887,7 @@
       </trans-unit>
       <trans-unit id="Hsf-Id-DQu.title">
         <source>Remote server:</source>
-        <target>Remote server:</target>
+        <target>Ekstern server:</target>
         <note>Class = "NSTextFieldCell"; title = "Remote server:"; ObjectID = "Hsf-Id-DQu";</note>
       </trans-unit>
       <trans-unit id="I5D-Dq-PRZ.title">
@@ -952,7 +952,7 @@
       </trans-unit>
       <trans-unit id="J5u-bX-RZk.headerCell.title">
         <source>Remote server</source>
-        <target>Remote server</target>
+        <target>Ekstern server</target>
         <note>Class = "NSTableColumn"; headerCell.title = "Remote server"; ObjectID = "J5u-bX-RZk";</note>
       </trans-unit>
       <trans-unit id="JF9-s4-tD7.title">
@@ -972,7 +972,7 @@
       </trans-unit>
       <trans-unit id="K2f-Jb-uUB.headerCell.title">
         <source>Days</source>
-        <target>Days</target>
+        <target>Dager</target>
         <note>Class = "NSTableColumn"; headerCell.title = "Days"; ObjectID = "K2f-Jb-uUB";</note>
       </trans-unit>
       <trans-unit id="K4L-Yx-uOn.title">
@@ -1037,7 +1037,7 @@
       </trans-unit>
       <trans-unit id="LNh-Ch-4lY.title">
         <source>Close</source>
-        <target>Close</target>
+        <target>Lukk</target>
         <note>Class = "NSButtonCell"; title = "Close"; ObjectID = "LNh-Ch-4lY";</note>
       </trans-unit>
       <trans-unit id="Ldp-hj-0Qe.title">
@@ -1227,7 +1227,7 @@
       </trans-unit>
       <trans-unit id="PkH-9i-AY6.title">
         <source>Select a start date and then a schedule </source>
-        <target>Select a start date and then a schedule </target>
+        <target>Velg en start date og så schedule</target>
         <note>Class = "NSBox"; title = "Select a start date and then a schedule "; ObjectID = "PkH-9i-AY6";</note>
       </trans-unit>
       <trans-unit id="PqI-jS-0y7.headerCell.title">
@@ -1247,7 +1247,7 @@
       </trans-unit>
       <trans-unit id="Pty-Sm-7R1.title">
         <source>Remote server</source>
-        <target>Remote server</target>
+        <target>Ekstern server</target>
         <note>Class = "NSBox"; title = "Remote server"; ObjectID = "Pty-Sm-7R1";</note>
       </trans-unit>
       <trans-unit id="Pya-4O-vFn.title">
@@ -1407,7 +1407,7 @@
       </trans-unit>
       <trans-unit id="T8X-dP-h3a.headerCell.title">
         <source>Remote server</source>
-        <target>Remote server</target>
+        <target>Ekstern server</target>
         <note>Class = "NSTableColumn"; headerCell.title = "Remote server"; ObjectID = "T8X-dP-h3a";</note>
       </trans-unit>
       <trans-unit id="TG2-I2-JNe.title">
@@ -1437,7 +1437,7 @@
       </trans-unit>
       <trans-unit id="TdE-t5-FjR.title">
         <source>number of days last backup:</source>
-        <target>number of days last backup:</target>
+        <target>Antall dager siste backup:</target>
         <note>Class = "NSTextFieldCell"; title = "number of days last backup:"; ObjectID = "TdE-t5-FjR";</note>
       </trans-unit>
       <trans-unit id="Tes-Z8-BIj.title">
@@ -1577,7 +1577,7 @@
       </trans-unit>
       <trans-unit id="Wmd-vt-cwI.title">
         <source>Required if remote server</source>
-        <target>Required if remote server</target>
+        <target>Krav hvis ekstern server</target>
         <note>Class = "NSTextFieldCell"; title = "Required if remote server"; ObjectID = "Wmd-vt-cwI";</note>
       </trans-unit>
       <trans-unit id="Woh-4u-GUH.title">
@@ -1587,7 +1587,7 @@
       </trans-unit>
       <trans-unit id="X2U-4M-dkS.title">
         <source>Required if remote server</source>
-        <target>Required if remote server</target>
+        <target>Krav hvis ekstern server</target>
         <note>Class = "NSTextFieldCell"; title = "Required if remote server"; ObjectID = "X2U-4M-dkS";</note>
       </trans-unit>
       <trans-unit id="X6b-BG-uCr.title">
@@ -1637,7 +1637,7 @@
       </trans-unit>
       <trans-unit id="YCe-8d-WsE.headerCell.title">
         <source>Remote server</source>
-        <target>Remote server</target>
+        <target>Ekstern server</target>
         <note>Class = "NSTableColumn"; headerCell.title = "Remote server"; ObjectID = "YCe-8d-WsE";</note>
       </trans-unit>
       <trans-unit id="YGi-oe-yDr.title">
@@ -1652,7 +1652,7 @@
       </trans-unit>
       <trans-unit id="YaD-4f-lEl.title">
         <source>Date last backup:</source>
-        <target>Date last backup:</target>
+        <target>Dato siste backup:</target>
         <note>Class = "NSTextFieldCell"; title = "Date last backup:"; ObjectID = "YaD-4f-lEl";</note>
       </trans-unit>
       <trans-unit id="YdX-1p-DZ9.title">
@@ -1672,7 +1672,7 @@
       </trans-unit>
       <trans-unit id="ZpW-Be-i8h.headerCell.title">
         <source>Days</source>
-        <target>Days</target>
+        <target>Dager</target>
         <note>Class = "NSTableColumn"; headerCell.title = "Days"; ObjectID = "ZpW-Be-i8h";</note>
       </trans-unit>
       <trans-unit id="Zsa-We-CKZ.title">
@@ -1727,7 +1727,7 @@
       </trans-unit>
       <trans-unit id="b8u-6y-RSC.headerCell.title">
         <source>Start date schedule</source>
-        <target>Start date schedule</target>
+        <target>Start dato schedule</target>
         <note>Class = "NSTableColumn"; headerCell.title = "Start date schedule"; ObjectID = "b8u-6y-RSC";</note>
       </trans-unit>
       <trans-unit id="b9w-AI-p9K.title">
@@ -1802,7 +1802,7 @@
       </trans-unit>
       <trans-unit id="cgs-kn-d7O.title">
         <source>Close</source>
-        <target>Close</target>
+        <target>Lukk</target>
         <note>Class = "NSButtonCell"; title = "Close"; ObjectID = "cgs-kn-d7O";</note>
       </trans-unit>
       <trans-unit id="cpU-CN-ZOm.title">
@@ -1882,7 +1882,7 @@
       </trans-unit>
       <trans-unit id="eAP-VY-l6H.title">
         <source>Close</source>
-        <target>Close</target>
+        <target>Lukk</target>
         <note>Class = "NSButtonCell"; title = "Close"; ObjectID = "eAP-VY-l6H";</note>
       </trans-unit>
       <trans-unit id="eHU-gd-SBP.title">
@@ -1927,7 +1927,7 @@
       </trans-unit>
       <trans-unit id="ej1-6m-NgB.title">
         <source>Close</source>
-        <target>Close</target>
+        <target>Lukk</target>
         <note>Class = "NSButtonCell"; title = "Close"; ObjectID = "ej1-6m-NgB";</note>
       </trans-unit>
       <trans-unit id="eys-24-pCG.headerCell.title">
@@ -1947,12 +1947,12 @@
       </trans-unit>
       <trans-unit id="fAL-TO-qxo.headerCell.title">
         <source>Remote server</source>
-        <target>Remote server</target>
+        <target>Ekstern server</target>
         <note>Class = "NSTableColumn"; headerCell.title = "Remote server"; ObjectID = "fAL-TO-qxo";</note>
       </trans-unit>
       <trans-unit id="fYy-ch-qjc.title">
         <source>Close</source>
-        <target>Close</target>
+        <target>Lukk</target>
         <note>Class = "NSButtonCell"; title = "Close"; ObjectID = "fYy-ch-qjc";</note>
       </trans-unit>
       <trans-unit id="fZA-KQ-voS.title">
@@ -2062,7 +2062,7 @@
       </trans-unit>
       <trans-unit id="hF2-vi-oTK.title">
         <source>Close</source>
-        <target>Close</target>
+        <target>Lukk</target>
         <note>Class = "NSButtonCell"; title = "Close"; ObjectID = "hF2-vi-oTK";</note>
       </trans-unit>
       <trans-unit id="hGt-Wj-YDD.title">
@@ -2102,7 +2102,7 @@
       </trans-unit>
       <trans-unit id="huo-sU-wpe.title">
         <source>Close</source>
-        <target>Close</target>
+        <target>Lukk</target>
         <note>Class = "NSButtonCell"; title = "Close"; ObjectID = "huo-sU-wpe";</note>
       </trans-unit>
       <trans-unit id="hwk-s3-pSJ.title">
@@ -2212,7 +2212,7 @@
       </trans-unit>
       <trans-unit id="jgQ-HM-WTh.title">
         <source>Remote server:</source>
-        <target>Remote server:</target>
+        <target>Ekstern server:</target>
         <note>Class = "NSTextFieldCell"; title = "Remote server:"; ObjectID = "jgQ-HM-WTh";</note>
       </trans-unit>
       <trans-unit id="k2Y-Hy-jMj.title">
@@ -2267,7 +2267,7 @@
       </trans-unit>
       <trans-unit id="lvl-UW-J6U.title">
         <source>Date last backup:</source>
-        <target>Date last backup:</target>
+        <target>Dato siste backup:</target>
         <note>Class = "NSTextFieldCell"; title = "Date last backup:"; ObjectID = "lvl-UW-J6U";</note>
       </trans-unit>
       <trans-unit id="lxg-t9-eiU.title">
@@ -2372,7 +2372,7 @@
       </trans-unit>
       <trans-unit id="oar-D1-pfu.title">
         <source>Close</source>
-        <target>Close</target>
+        <target>Lukk</target>
         <note>Class = "NSButtonCell"; title = "Close"; ObjectID = "oar-D1-pfu";</note>
       </trans-unit>
       <trans-unit id="oeQ-dU-mHB.title">
@@ -2407,7 +2407,7 @@
       </trans-unit>
       <trans-unit id="pZb-i1-xyG.headerCell.title">
         <source>Remote server</source>
-        <target>Remote server</target>
+        <target>Ekstern server</target>
         <note>Class = "NSTableColumn"; headerCell.title = "Remote server"; ObjectID = "pZb-i1-xyG";</note>
       </trans-unit>
       <trans-unit id="pql-cs-AEK.headerCell.title">
@@ -2427,7 +2427,7 @@
       </trans-unit>
       <trans-unit id="qat-Dj-4j6.title">
         <source>Days since last backup:</source>
-        <target>Days since last backup:</target>
+        <target>Dager siden siste backup:</target>
         <note>Class = "NSTextFieldCell"; title = "Days since last backup:"; ObjectID = "qat-Dj-4j6";</note>
       </trans-unit>
       <trans-unit id="qfC-8t-e7C.headerCell.title">
@@ -2552,12 +2552,12 @@
       </trans-unit>
       <trans-unit id="tT2-Hu-JSP.headerCell.title">
         <source>Remote server</source>
-        <target>Remote server</target>
+        <target>Ekstern server</target>
         <note>Class = "NSTableColumn"; headerCell.title = "Remote server"; ObjectID = "tT2-Hu-JSP";</note>
       </trans-unit>
       <trans-unit id="tVm-A1-xMK.title">
         <source>Remote server</source>
-        <target>Remote server</target>
+        <target>Ekstern server</target>
         <note>Class = "NSButtonCell"; title = "Remote server"; ObjectID = "tVm-A1-xMK";</note>
       </trans-unit>
       <trans-unit id="tjU-bB-LEK.title">
@@ -2612,7 +2612,7 @@
       </trans-unit>
       <trans-unit id="ufF-c0-esL.headerCell.title">
         <source>Remote server</source>
-        <target>Remote server</target>
+        <target>Ekstern server</target>
         <note>Class = "NSTableColumn"; headerCell.title = "Remote server"; ObjectID = "ufF-c0-esL";</note>
       </trans-unit>
       <trans-unit id="v3T-Yl-fut.title">
@@ -2662,7 +2662,7 @@
       </trans-unit>
       <trans-unit id="wD5-vA-j0P.title">
         <source>Remote server parameters</source>
-        <target>Remote server parameters</target>
+        <target>Ekstern server parameter</target>
         <note>Class = "NSBox"; title = "Remote server parameters"; ObjectID = "wD5-vA-j0P";</note>
       </trans-unit>
       <trans-unit id="wIa-4f-wP2.title">
@@ -2747,7 +2747,7 @@
       </trans-unit>
       <trans-unit id="xol-Yr-McI.title">
         <source>Remote server :</source>
-        <target>Remote server :</target>
+        <target>Ekstern server :</target>
         <note>Class = "NSTextFieldCell"; title = "Remote server :"; ObjectID = "xol-Yr-McI";</note>
       </trans-unit>
       <trans-unit id="xsi-tM-sv9.title">
@@ -2772,7 +2772,7 @@
       </trans-unit>
       <trans-unit id="ydG-5b-K3r.title">
         <source>Close</source>
-        <target>Close</target>
+        <target>Lukk</target>
         <note>Class = "NSButtonCell"; title = "Close"; ObjectID = "ydG-5b-K3r";</note>
       </trans-unit>
       <trans-unit id="ygQ-aZ-NXY.title">
@@ -2797,7 +2797,7 @@
       </trans-unit>
       <trans-unit id="zGR-lC-3fH.title">
         <source>Select days older or number of</source>
-        <target>Select days older or number of</target>
+        <target>Velg dager eldre eller antall</target>
         <note>Class = "NSBox"; title = "Select days older or number of"; ObjectID = "zGR-lC-3fH";</note>
       </trans-unit>
       <trans-unit id="zHz-9r-Cpj.title">
