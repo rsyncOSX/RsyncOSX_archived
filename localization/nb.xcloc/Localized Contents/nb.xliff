@@ -647,7 +647,7 @@
       </trans-unit>
       <trans-unit id="E4i-DW-PcT.title">
         <source>New version</source>
-        <target>New version</target>
+        <target>Ny versjon</target>
         <note>Class = "NSViewController"; title = "New version"; ObjectID = "E4i-DW-PcT";</note>
       </trans-unit>
       <trans-unit id="E9g-tP-EaI.headerCell.title">
@@ -677,7 +677,7 @@
       </trans-unit>
       <trans-unit id="Eb4-2s-zft.title">
         <source>new :  </source>
-        <target>new :  </target>
+        <target>ny :  </target>
         <note>Class = "NSTextFieldCell"; title = "new :  "; ObjectID = "Eb4-2s-zft";</note>
       </trans-unit>
       <trans-unit id="EeS-fZ-csl.title">
@@ -742,7 +742,7 @@
       </trans-unit>
       <trans-unit id="Fd7-v3-h8m.headerCell.title">
         <source>User name</source>
-        <target>User name</target>
+        <target>Bruker navn</target>
         <note>Class = "NSTableColumn"; headerCell.title = "User name"; ObjectID = "Fd7-v3-h8m";</note>
       </trans-unit>
       <trans-unit id="Fmg-bN-W4h.title">
@@ -832,7 +832,7 @@
       </trans-unit>
       <trans-unit id="GiH-5F-U37.headerCell.title">
         <source>New</source>
-        <target>New</target>
+        <target>Ny</target>
         <note>Class = "NSTableColumn"; headerCell.title = "New"; ObjectID = "GiH-5F-U37";</note>
       </trans-unit>
       <trans-unit id="Gw5-qa-AvW.title">
@@ -927,7 +927,7 @@
       </trans-unit>
       <trans-unit id="IiK-OB-SY0.title">
         <source>New profile name </source>
-        <target>New profile name </target>
+        <target>Nytt profil navn </target>
         <note>Class = "NSTextFieldCell"; title = "New profile name "; ObjectID = "IiK-OB-SY0";</note>
       </trans-unit>
       <trans-unit id="Iii-2E-YHF.title">
@@ -1047,7 +1047,7 @@
       </trans-unit>
       <trans-unit id="Lkc-8f-opa.title">
         <source>Remote username:</source>
-        <target>Remote username:</target>
+        <target>Eksternt brukernavn:</target>
         <note>Class = "NSTextFieldCell"; title = "Remote username:"; ObjectID = "Lkc-8f-opa";</note>
       </trans-unit>
       <trans-unit id="LpG-4N-4hH.title">
@@ -1227,7 +1227,7 @@
       </trans-unit>
       <trans-unit id="PkH-9i-AY6.title">
         <source>Select a start date and then a schedule </source>
-        <target>Velg en start date og så schedule</target>
+        <target>Velg en start dato og så schedule</target>
         <note>Class = "NSBox"; title = "Select a start date and then a schedule "; ObjectID = "PkH-9i-AY6";</note>
       </trans-unit>
       <trans-unit id="PqI-jS-0y7.headerCell.title">
@@ -1547,7 +1547,7 @@
       </trans-unit>
       <trans-unit id="W3l-xH-fMA.title">
         <source>New files:</source>
-        <target>New files:</target>
+        <target>Nye filer:</target>
         <note>Class = "NSTextFieldCell"; title = "New files:"; ObjectID = "W3l-xH-fMA";</note>
       </trans-unit>
       <trans-unit id="WVf-5Q-8C4.title">
@@ -1977,7 +1977,7 @@
       </trans-unit>
       <trans-unit id="fyc-hd-Fqh.title">
         <source>New or delete</source>
-        <target>New or delete</target>
+        <target>Ny eller slett</target>
         <note>Class = "NSBox"; title = "New or delete"; ObjectID = "fyc-hd-Fqh";</note>
       </trans-unit>
       <trans-unit id="fyt-XU-Mpu.title">
@@ -2057,7 +2057,7 @@
       </trans-unit>
       <trans-unit id="hBf-gt-Mxo.title">
         <source>Remote username:</source>
-        <target>Remote username:</target>
+        <target>Eksternt brukernavn:</target>
         <note>Class = "NSTextFieldCell"; title = "Remote username:"; ObjectID = "hBf-gt-Mxo";</note>
       </trans-unit>
       <trans-unit id="hF2-vi-oTK.title">
@@ -2147,7 +2147,7 @@
       </trans-unit>
       <trans-unit id="iUw-2a-dr3.title">
         <source>Remote username:</source>
-        <target>Remote username:</target>
+        <target>Eksternt brukernavn:</target>
         <note>Class = "NSTextFieldCell"; title = "Remote username:"; ObjectID = "iUw-2a-dr3";</note>
       </trans-unit>
       <trans-unit id="ibW-Po-vbR.title">
@@ -2312,7 +2312,7 @@
       </trans-unit>
       <trans-unit id="mfz-zc-vDd.title">
         <source>Remote username:</source>
-        <target>Remote username:</target>
+        <target>Eksternt brukernavn:</target>
         <note>Class = "NSTextFieldCell"; title = "Remote username:"; ObjectID = "mfz-zc-vDd";</note>
       </trans-unit>
       <trans-unit id="mkb-9F-CQR.title">
@@ -2332,7 +2332,7 @@
       </trans-unit>
       <trans-unit id="nHu-Ph-Td8.title">
         <source>Remote username:</source>
-        <target>Remote username:</target>
+        <target>Eksternt brukernavn:</target>
         <note>Class = "NSTextFieldCell"; title = "Remote username:"; ObjectID = "nHu-Ph-Td8";</note>
       </trans-unit>
       <trans-unit id="ngh-0r-Hwj.title">
@@ -2357,7 +2357,7 @@
       </trans-unit>
       <trans-unit id="o77-iT-bNa.title">
         <source>New files:</source>
-        <target>New files:</target>
+        <target>Nye filer:</target>
         <note>Class = "NSTextFieldCell"; title = "New files:"; ObjectID = "o77-iT-bNa";</note>
       </trans-unit>
       <trans-unit id="oSU-tO-D9d.title">
@@ -2587,7 +2587,7 @@
       </trans-unit>
       <trans-unit id="uJk-xr-MjU.title">
         <source>New files:</source>
-        <target>New files:</target>
+        <target>Nye filer:</target>
         <note>Class = "NSTextFieldCell"; title = "New files:"; ObjectID = "uJk-xr-MjU";</note>
       </trans-unit>
       <trans-unit id="uQy-DD-JDr.title">
@@ -2657,7 +2657,7 @@
       </trans-unit>
       <trans-unit id="w6i-hq-pcc.title">
         <source>Required</source>
-        <target>Required</target>
+        <target>Krav</target>
         <note>Class = "NSTextFieldCell"; title = "Required"; ObjectID = "w6i-hq-pcc";</note>
       </trans-unit>
       <trans-unit id="wD5-vA-j0P.title">
@@ -2817,7 +2817,7 @@
       </trans-unit>
       <trans-unit id="znZ-ht-M5x.title">
         <source>Required if remote server</source>
-        <target>Required if remote server</target>
+        <target>Krav hvis ekstern server</target>
         <note>Class = "NSTextFieldCell"; title = "Required if remote server"; ObjectID = "znZ-ht-M5x";</note>
       </trans-unit>
       <trans-unit id="zoV-D2-sU8.headerCell.title">
