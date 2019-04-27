@@ -392,17 +392,17 @@
       </trans-unit>
       <trans-unit id="78a-Cw-Mjk.title">
         <source>Count</source>
-        <target>Count</target>
+        <target>Antall</target>
         <note>Class = "NSTextFieldCell"; title = "Count"; ObjectID = "78a-Cw-Mjk";</note>
       </trans-unit>
       <trans-unit id="82f-Xt-OFP.headerCell.title">
         <source>Active</source>
-        <target>Active</target>
+        <target>Aktive</target>
         <note>Class = "NSTableColumn"; headerCell.title = "Active"; ObjectID = "82f-Xt-OFP";</note>
       </trans-unit>
       <trans-unit id="090-WS-IHZ.title">
         <source>Info about : </source>
-        <target>Info about : </target>
+        <target>Info om : </target>
         <note>Class = "NSTextFieldCell"; title = "Info about : "; ObjectID = "090-WS-IHZ";</note>
       </trans-unit>
       <trans-unit id="143-UO-M2U.title">
@@ -412,7 +412,7 @@
       </trans-unit>
       <trans-unit id="241-VI-fhB.headerCell.title">
         <source>Double click to select or Default</source>
-        <target>Double click to select or Default</target>
+        <target>Dobbel klikk for valg eller default</target>
         <note>Class = "NSTableColumn"; headerCell.title = "Double click to select or Default"; ObjectID = "241-VI-fhB";</note>
       </trans-unit>
       <trans-unit id="302-lC-sbl.headerCell.title">
@@ -422,7 +422,7 @@
       </trans-unit>
       <trans-unit id="571-N7-84g.title">
         <source>Connections</source>
-        <target>Connections</target>
+        <target>Koblinger</target>
         <note>Class = "NSBox"; title = "Connections"; ObjectID = "571-N7-84g";</note>
       </trans-unit>
       <trans-unit id="798-Ig-rVS.title">
@@ -442,22 +442,22 @@
       </trans-unit>
       <trans-unit id="AEh-Gt-Awg.title">
         <source>Number of files:</source>
-        <target>Number of files:</target>
+        <target>Antall filer:</target>
         <note>Class = "NSTextFieldCell"; title = "Number of files:"; ObjectID = "AEh-Gt-Awg";</note>
       </trans-unit>
       <trans-unit id="AGP-WH-AJy.title">
         <source>Save</source>
-        <target>Save</target>
+        <target>Lagre</target>
         <note>Class = "NSButtonCell"; title = "Save"; ObjectID = "AGP-WH-AJy";</note>
       </trans-unit>
       <trans-unit id="AMs-qg-ohN.title">
         <source>Either double click on row or select row and Load button</source>
-        <target>Either double click on row or select row and Load button</target>
+        <target>Enten dobbel klikk på rad eller velg rad og velg last</target>
         <note>Class = "NSTextFieldCell"; title = "Either double click on row or select row and Load button"; ObjectID = "AMs-qg-ohN";</note>
       </trans-unit>
       <trans-unit id="AYu-sK-qS6.title">
         <source>Main Menu</source>
-        <target>Main Menu</target>
+        <target>Hoved Meny</target>
         <note>Class = "NSMenu"; title = "Main Menu"; ObjectID = "AYu-sK-qS6";</note>
       </trans-unit>
       <trans-unit id="Aa2-8Q-PPo.headerCell.title">
@@ -467,7 +467,7 @@
       </trans-unit>
       <trans-unit id="Ad7-9e-Q7b.title">
         <source>Delete</source>
-        <target>Delete</target>
+        <target>Slett</target>
         <note>Class = "NSMenuItem"; title = "Delete"; ObjectID = "Ad7-9e-Q7b";</note>
       </trans-unit>
       <trans-unit id="AkJ-MA-346.headerCell.title">
@@ -477,12 +477,12 @@
       </trans-unit>
       <trans-unit id="AlG-Cw-Xi9.title">
         <source>Logs</source>
-        <target>Logs</target>
+        <target>Logger</target>
         <note>Class = "NSViewController"; title = "Logs"; ObjectID = "AlG-Cw-Xi9";</note>
       </trans-unit>
       <trans-unit id="Am3-Ji-1Ox.title">
         <source>add suffix FreeBSD </source>
-        <target>add suffix FreeBSD </target>
+        <target>legg til suffix FreeBSD </target>
         <note>Class = "NSButtonCell"; title = "add suffix FreeBSD "; ObjectID = "Am3-Ji-1Ox";</note>
       </trans-unit>
       <trans-unit id="B2y-Kc-2LJ.title">
