@@ -27,7 +27,7 @@
       </trans-unit>
       <trans-unit id="1Mb-0q-Dwi.title">
         <source>New version available:</source>
-        <target>New version available:</target>
+        <target>Ny versjon tilgjengelig:</target>
         <note>Class = "NSTextFieldCell"; title = "New version available:"; ObjectID = "1Mb-0q-Dwi";</note>
       </trans-unit>
       <trans-unit id="1SA-wM-7Lh.title">
@@ -42,17 +42,17 @@
       </trans-unit>
       <trans-unit id="1Xq-6O-MUE.label">
         <source>All</source>
-        <target>All</target>
+        <target>Alt</target>
         <note>Class = "NSToolbarItem"; label = "All"; ObjectID = "1Xq-6O-MUE";</note>
       </trans-unit>
       <trans-unit id="1Xq-6O-MUE.paletteLabel">
         <source>All</source>
-        <target>All</target>
+        <target>Alt</target>
         <note>Class = "NSToolbarItem"; paletteLabel = "All"; ObjectID = "1Xq-6O-MUE";</note>
       </trans-unit>
       <trans-unit id="1Xq-6O-MUE.toolTip">
         <source>List all profiles and configurations...</source>
-        <target>List all profiles and configurations...</target>
+        <target>List alle profiler og konfigurasjoner...</target>
         <note>Class = "NSToolbarItem"; toolTip = "List all profiles and configurations..."; ObjectID = "1Xq-6O-MUE";</note>
       </trans-unit>
       <trans-unit id="1Xt-HY-uBw.title">
@@ -67,7 +67,7 @@
       </trans-unit>
       <trans-unit id="1o3-wD-XkY.headerCell.title">
         <source>Avail (GB)</source>
-        <target>Avail (GB)</target>
+        <target>Tilgjengelig (GB)</target>
         <note>Class = "NSTableColumn"; headerCell.title = "Avail (GB)"; ObjectID = "1o3-wD-XkY";</note>
       </trans-unit>
       <trans-unit id="1xL-86-DnF.headerCell.title">
@@ -122,7 +122,7 @@
       </trans-unit>
       <trans-unit id="2W2-3F-urP.title">
         <source>KB to be transferred:</source>
-        <target>KB to be transferred:</target>
+        <target>KB for overføring:</target>
         <note>Class = "NSTextFieldCell"; title = "KB to be transferred:"; ObjectID = "2W2-3F-urP";</note>
       </trans-unit>
       <trans-unit id="2eK-ib-h9A.title">
@@ -137,17 +137,17 @@
       </trans-unit>
       <trans-unit id="2sX-ek-QE0.title">
         <source>Required</source>
-        <target>Required</target>
+        <target>Krav</target>
         <note>Class = "NSTextFieldCell"; title = "Required"; ObjectID = "2sX-ek-QE0";</note>
       </trans-unit>
       <trans-unit id="2tH-gF-ycx.title">
         <source>synchronize</source>
-        <target>synchronize</target>
+        <target>synkroniser</target>
         <note>Class = "NSButtonCell"; title = "synchronize"; ObjectID = "2tH-gF-ycx";</note>
       </trans-unit>
       <trans-unit id="2zQ-iW-vbk.title">
         <source>remove -e ssh</source>
-        <target>remove -e ssh</target>
+        <target>slett -e ssh</target>
         <note>Class = "NSButtonCell"; title = "remove -e ssh"; ObjectID = "2zQ-iW-vbk";</note>
       </trans-unit>
       <trans-unit id="3Ch-5Q-dft.title">
@@ -157,12 +157,12 @@
       </trans-unit>
       <trans-unit id="3LC-v7-7Pz.title">
         <source>Rsync command (--dry-run)</source>
-        <target>Rsync command (--dry-run)</target>
+        <target>Rsync kommando (--dry-run)</target>
         <note>Class = "NSBox"; title = "Rsync command (--dry-run)"; ObjectID = "3LC-v7-7Pz";</note>
       </trans-unit>
       <trans-unit id="3Td-g5-CaS.title">
         <source>Total size (kB):</source>
-        <target>Total size (kB):</target>
+        <target>Total størrelse (kB):</target>
         <note>Class = "NSTextFieldCell"; title = "Total size (kB):"; ObjectID = "3Td-g5-CaS";</note>
       </trans-unit>
       <trans-unit id="3lN-qc-jYH.title">
@@ -177,7 +177,7 @@
       </trans-unit>
       <trans-unit id="3xI-3C-guU.title">
         <source>Add</source>
-        <target>Add</target>
+        <target>Legg til</target>
         <note>Class = "NSViewController"; title = "Add"; ObjectID = "3xI-3C-guU";</note>
       </trans-unit>
       <trans-unit id="4bI-2z-3J9.title">
@@ -187,7 +187,7 @@
       </trans-unit>
       <trans-unit id="4cL-gF-geP.headerCell.title">
         <source>Sched</source>
-        <target>Sched</target>
+        <target>Plan</target>
         <note>Class = "NSTableColumn"; headerCell.title = "Sched"; ObjectID = "4cL-gF-geP";</note>
       </trans-unit>
       <trans-unit id="4rw-XH-Spd.title">
@@ -197,7 +197,7 @@
       </trans-unit>
       <trans-unit id="4sb-4s-VLi.title">
         <source>Quit RsyncOSX</source>
-        <target>Quit RsyncOSX</target>
+        <target>Slutt RsyncOSX</target>
         <note>Class = "NSMenuItem"; title = "Quit RsyncOSX"; ObjectID = "4sb-4s-VLi";</note>
       </trans-unit>
       <trans-unit id="5A9-Q1-SN9.title">
@@ -217,22 +217,22 @@
       </trans-unit>
       <trans-unit id="5SJ-qh-z2I.title">
         <source>Getting information, please wait ...</source>
-        <target>Getting information, please wait ...</target>
+        <target>Henter information, vennligst vent ...</target>
         <note>Class = "NSTextFieldCell"; title = "Getting information, please wait ..."; ObjectID = "5SJ-qh-z2I";</note>
       </trans-unit>
       <trans-unit id="5Zv-SY-8nT.title">
         <source>remove --delete</source>
-        <target>remove --delete</target>
+        <target>slett --delete</target>
         <note>Class = "NSButtonCell"; title = "remove --delete"; ObjectID = "5Zv-SY-8nT";</note>
       </trans-unit>
       <trans-unit id="5cK-IB-eA3.title">
         <source>Files to be transferred:</source>
-        <target>Files to be transferred:</target>
+        <target>Filer for overføring:</target>
         <note>Class = "NSTextFieldCell"; title = "Files to be transferred:"; ObjectID = "5cK-IB-eA3";</note>
       </trans-unit>
       <trans-unit id="5kV-Vb-QxS.title">
         <source>About RsyncOSX</source>
-        <target>About RsyncOSX</target>
+        <target>Om RsyncOSX</target>
         <note>Class = "NSMenuItem"; title = "About RsyncOSX"; ObjectID = "5kV-Vb-QxS";</note>
       </trans-unit>
       <trans-unit id="5zk-w0-I3D.title">
@@ -252,22 +252,22 @@
       </trans-unit>
       <trans-unit id="7w4-6r-ai5.label">
         <source>abort</source>
-        <target>abort</target>
+        <target>avslutt</target>
         <note>Class = "NSToolbarItem"; label = "abort"; ObjectID = "7w4-6r-ai5";</note>
       </trans-unit>
       <trans-unit id="7w4-6r-ai5.paletteLabel">
         <source>abort</source>
-        <target>abort</target>
+        <target>avslutt</target>
         <note>Class = "NSToolbarItem"; paletteLabel = "abort"; ObjectID = "7w4-6r-ai5";</note>
       </trans-unit>
       <trans-unit id="7w4-6r-ai5.toolTip">
         <source>Abort task...</source>
-        <target>Abort task...</target>
+        <target>Avslutt oppgave...</target>
         <note>Class = "NSToolbarItem"; toolTip = "Abort task..."; ObjectID = "7w4-6r-ai5";</note>
       </trans-unit>
       <trans-unit id="8YP-GO-G5h.title">
         <source>files :</source>
-        <target>files :</target>
+        <target>filer :</target>
         <note>Class = "NSTextFieldCell"; title = "files :"; ObjectID = "8YP-GO-G5h";</note>
       </trans-unit>
       <trans-unit id="8ml-tx-gzW.title">
@@ -277,7 +277,7 @@
       </trans-unit>
       <trans-unit id="8n3-RC-KfH.title">
         <source>Number of files:</source>
-        <target>Number of files:</target>
+        <target>Antall filer:</target>
         <note>Class = "NSTextFieldCell"; title = "Number of files:"; ObjectID = "8n3-RC-KfH";</note>
       </trans-unit>
       <trans-unit id="8nA-Jb-fac.title">
@@ -287,12 +287,12 @@
       </trans-unit>
       <trans-unit id="8pt-99-AYJ.headerCell.title">
         <source>Files </source>
-        <target>Files </target>
+        <target>Filer</target>
         <note>Class = "NSTableColumn"; headerCell.title = "Files "; ObjectID = "8pt-99-AYJ";</note>
       </trans-unit>
       <trans-unit id="9Zv-nL-VVC.title">
         <source>New version available</source>
-        <target>New version available</target>
+        <target>Ny versjon tilgjengelig</target>
         <note>Class = "NSTextFieldCell"; title = "New version available"; ObjectID = "9Zv-nL-VVC";</note>
       </trans-unit>
       <trans-unit id="9hn-5x-M6a.title">
@@ -337,12 +337,12 @@
       </trans-unit>
       <trans-unit id="37m-qS-TRa.headerCell.title">
         <source>Avail(%)</source>
-        <target>Avail(%)</target>
+        <target>Tilgjengelig(%)</target>
         <note>Class = "NSTableColumn"; headerCell.title = "Avail(%)"; ObjectID = "37m-qS-TRa";</note>
       </trans-unit>
       <trans-unit id="39A-da-zAW.title">
         <source>Show error messages...</source>
-        <target>Show error messages...</target>
+        <target>Vis feil meldinger...</target>
         <note>Class = "NSButtonCell"; title = "Show error messages..."; ObjectID = "39A-da-zAW";</note>
       </trans-unit>
       <trans-unit id="41i-nE-ZWF.title">
@@ -377,12 +377,12 @@
       </trans-unit>
       <trans-unit id="65j-NR-wz6.title">
         <source>Estimate</source>
-        <target>Estimate</target>
+        <target>Estimer</target>
         <note>Class = "NSButtonCell"; title = "Estimate"; ObjectID = "65j-NR-wz6";</note>
       </trans-unit>
       <trans-unit id="66b-7r-iey.title">
         <source>Number of directories:</source>
-        <target>Number of directories:</target>
+        <target>Antall  kataloger:</target>
         <note>Class = "NSTextFieldCell"; title = "Number of directories:"; ObjectID = "66b-7r-iey";</note>
       </trans-unit>
       <trans-unit id="75g-jk-ycD.title">
@@ -392,17 +392,17 @@
       </trans-unit>
       <trans-unit id="78a-Cw-Mjk.title">
         <source>Count</source>
-        <target>Count</target>
+        <target>Antall</target>
         <note>Class = "NSTextFieldCell"; title = "Count"; ObjectID = "78a-Cw-Mjk";</note>
       </trans-unit>
       <trans-unit id="82f-Xt-OFP.headerCell.title">
         <source>Active</source>
-        <target>Active</target>
+        <target>Aktive</target>
         <note>Class = "NSTableColumn"; headerCell.title = "Active"; ObjectID = "82f-Xt-OFP";</note>
       </trans-unit>
       <trans-unit id="090-WS-IHZ.title">
         <source>Info about : </source>
-        <target>Info about : </target>
+        <target>Info om : </target>
         <note>Class = "NSTextFieldCell"; title = "Info about : "; ObjectID = "090-WS-IHZ";</note>
       </trans-unit>
       <trans-unit id="143-UO-M2U.title">
@@ -412,7 +412,7 @@
       </trans-unit>
       <trans-unit id="241-VI-fhB.headerCell.title">
         <source>Double click to select or Default</source>
-        <target>Double click to select or Default</target>
+        <target>Dobbel klikk for valg eller default</target>
         <note>Class = "NSTableColumn"; headerCell.title = "Double click to select or Default"; ObjectID = "241-VI-fhB";</note>
       </trans-unit>
       <trans-unit id="302-lC-sbl.headerCell.title">
@@ -422,7 +422,7 @@
       </trans-unit>
       <trans-unit id="571-N7-84g.title">
         <source>Connections</source>
-        <target>Connections</target>
+        <target>Koblinger</target>
         <note>Class = "NSBox"; title = "Connections"; ObjectID = "571-N7-84g";</note>
       </trans-unit>
       <trans-unit id="798-Ig-rVS.title">
@@ -442,22 +442,22 @@
       </trans-unit>
       <trans-unit id="AEh-Gt-Awg.title">
         <source>Number of files:</source>
-        <target>Number of files:</target>
+        <target>Antall filer:</target>
         <note>Class = "NSTextFieldCell"; title = "Number of files:"; ObjectID = "AEh-Gt-Awg";</note>
       </trans-unit>
       <trans-unit id="AGP-WH-AJy.title">
         <source>Save</source>
-        <target>Save</target>
+        <target>Lagre</target>
         <note>Class = "NSButtonCell"; title = "Save"; ObjectID = "AGP-WH-AJy";</note>
       </trans-unit>
       <trans-unit id="AMs-qg-ohN.title">
         <source>Either double click on row or select row and Load button</source>
-        <target>Either double click on row or select row and Load button</target>
+        <target>Enten dobbel klikk på rad eller velg rad og velg last</target>
         <note>Class = "NSTextFieldCell"; title = "Either double click on row or select row and Load button"; ObjectID = "AMs-qg-ohN";</note>
       </trans-unit>
       <trans-unit id="AYu-sK-qS6.title">
         <source>Main Menu</source>
-        <target>Main Menu</target>
+        <target>Hoved Meny</target>
         <note>Class = "NSMenu"; title = "Main Menu"; ObjectID = "AYu-sK-qS6";</note>
       </trans-unit>
       <trans-unit id="Aa2-8Q-PPo.headerCell.title">
@@ -467,7 +467,7 @@
       </trans-unit>
       <trans-unit id="Ad7-9e-Q7b.title">
         <source>Delete</source>
-        <target>Delete</target>
+        <target>Slett</target>
         <note>Class = "NSMenuItem"; title = "Delete"; ObjectID = "Ad7-9e-Q7b";</note>
       </trans-unit>
       <trans-unit id="AkJ-MA-346.headerCell.title">
@@ -477,12 +477,12 @@
       </trans-unit>
       <trans-unit id="AlG-Cw-Xi9.title">
         <source>Logs</source>
-        <target>Logs</target>
+        <target>Logger</target>
         <note>Class = "NSViewController"; title = "Logs"; ObjectID = "AlG-Cw-Xi9";</note>
       </trans-unit>
       <trans-unit id="Am3-Ji-1Ox.title">
         <source>add suffix FreeBSD </source>
-        <target>add suffix FreeBSD </target>
+        <target>legg til suffix FreeBSD </target>
         <note>Class = "NSButtonCell"; title = "add suffix FreeBSD "; ObjectID = "Am3-Ji-1Ox";</note>
       </trans-unit>
       <trans-unit id="B2y-Kc-2LJ.title">
@@ -647,7 +647,7 @@
       </trans-unit>
       <trans-unit id="E4i-DW-PcT.title">
         <source>New version</source>
-        <target>New version</target>
+        <target>Ny versjon</target>
         <note>Class = "NSViewController"; title = "New version"; ObjectID = "E4i-DW-PcT";</note>
       </trans-unit>
       <trans-unit id="E9g-tP-EaI.headerCell.title">
@@ -677,7 +677,7 @@
       </trans-unit>
       <trans-unit id="Eb4-2s-zft.title">
         <source>new :  </source>
-        <target>new :  </target>
+        <target>ny :  </target>
         <note>Class = "NSTextFieldCell"; title = "new :  "; ObjectID = "Eb4-2s-zft";</note>
       </trans-unit>
       <trans-unit id="EeS-fZ-csl.title">
@@ -742,7 +742,7 @@
       </trans-unit>
       <trans-unit id="Fd7-v3-h8m.headerCell.title">
         <source>User name</source>
-        <target>User name</target>
+        <target>Bruker navn</target>
         <note>Class = "NSTableColumn"; headerCell.title = "User name"; ObjectID = "Fd7-v3-h8m";</note>
       </trans-unit>
       <trans-unit id="Fmg-bN-W4h.title">
@@ -832,7 +832,7 @@
       </trans-unit>
       <trans-unit id="GiH-5F-U37.headerCell.title">
         <source>New</source>
-        <target>New</target>
+        <target>Ny</target>
         <note>Class = "NSTableColumn"; headerCell.title = "New"; ObjectID = "GiH-5F-U37";</note>
       </trans-unit>
       <trans-unit id="Gw5-qa-AvW.title">
@@ -927,7 +927,7 @@
       </trans-unit>
       <trans-unit id="IiK-OB-SY0.title">
         <source>New profile name </source>
-        <target>New profile name </target>
+        <target>Nytt profil navn </target>
         <note>Class = "NSTextFieldCell"; title = "New profile name "; ObjectID = "IiK-OB-SY0";</note>
       </trans-unit>
       <trans-unit id="Iii-2E-YHF.title">
@@ -1047,7 +1047,7 @@
       </trans-unit>
       <trans-unit id="Lkc-8f-opa.title">
         <source>Remote username:</source>
-        <target>Remote username:</target>
+        <target>Eksternt brukernavn:</target>
         <note>Class = "NSTextFieldCell"; title = "Remote username:"; ObjectID = "Lkc-8f-opa";</note>
       </trans-unit>
       <trans-unit id="LpG-4N-4hH.title">
@@ -1227,7 +1227,7 @@
       </trans-unit>
       <trans-unit id="PkH-9i-AY6.title">
         <source>Select a start date and then a schedule </source>
-        <target>Velg en start date og så schedule</target>
+        <target>Velg en start dato og så schedule</target>
         <note>Class = "NSBox"; title = "Select a start date and then a schedule "; ObjectID = "PkH-9i-AY6";</note>
       </trans-unit>
       <trans-unit id="PqI-jS-0y7.headerCell.title">
@@ -1547,7 +1547,7 @@
       </trans-unit>
       <trans-unit id="W3l-xH-fMA.title">
         <source>New files:</source>
-        <target>New files:</target>
+        <target>Nye filer:</target>
         <note>Class = "NSTextFieldCell"; title = "New files:"; ObjectID = "W3l-xH-fMA";</note>
       </trans-unit>
       <trans-unit id="WVf-5Q-8C4.title">
@@ -1977,7 +1977,7 @@
       </trans-unit>
       <trans-unit id="fyc-hd-Fqh.title">
         <source>New or delete</source>
-        <target>New or delete</target>
+        <target>Ny eller slett</target>
         <note>Class = "NSBox"; title = "New or delete"; ObjectID = "fyc-hd-Fqh";</note>
       </trans-unit>
       <trans-unit id="fyt-XU-Mpu.title">
@@ -2057,7 +2057,7 @@
       </trans-unit>
       <trans-unit id="hBf-gt-Mxo.title">
         <source>Remote username:</source>
-        <target>Remote username:</target>
+        <target>Eksternt brukernavn:</target>
         <note>Class = "NSTextFieldCell"; title = "Remote username:"; ObjectID = "hBf-gt-Mxo";</note>
       </trans-unit>
       <trans-unit id="hF2-vi-oTK.title">
@@ -2147,7 +2147,7 @@
       </trans-unit>
       <trans-unit id="iUw-2a-dr3.title">
         <source>Remote username:</source>
-        <target>Remote username:</target>
+        <target>Eksternt brukernavn:</target>
         <note>Class = "NSTextFieldCell"; title = "Remote username:"; ObjectID = "iUw-2a-dr3";</note>
       </trans-unit>
       <trans-unit id="ibW-Po-vbR.title">
@@ -2312,7 +2312,7 @@
       </trans-unit>
       <trans-unit id="mfz-zc-vDd.title">
         <source>Remote username:</source>
-        <target>Remote username:</target>
+        <target>Eksternt brukernavn:</target>
         <note>Class = "NSTextFieldCell"; title = "Remote username:"; ObjectID = "mfz-zc-vDd";</note>
       </trans-unit>
       <trans-unit id="mkb-9F-CQR.title">
@@ -2332,7 +2332,7 @@
       </trans-unit>
       <trans-unit id="nHu-Ph-Td8.title">
         <source>Remote username:</source>
-        <target>Remote username:</target>
+        <target>Eksternt brukernavn:</target>
         <note>Class = "NSTextFieldCell"; title = "Remote username:"; ObjectID = "nHu-Ph-Td8";</note>
       </trans-unit>
       <trans-unit id="ngh-0r-Hwj.title">
@@ -2357,7 +2357,7 @@
       </trans-unit>
       <trans-unit id="o77-iT-bNa.title">
         <source>New files:</source>
-        <target>New files:</target>
+        <target>Nye filer:</target>
         <note>Class = "NSTextFieldCell"; title = "New files:"; ObjectID = "o77-iT-bNa";</note>
       </trans-unit>
       <trans-unit id="oSU-tO-D9d.title">
@@ -2587,7 +2587,7 @@
       </trans-unit>
       <trans-unit id="uJk-xr-MjU.title">
         <source>New files:</source>
-        <target>New files:</target>
+        <target>Nye filer:</target>
         <note>Class = "NSTextFieldCell"; title = "New files:"; ObjectID = "uJk-xr-MjU";</note>
       </trans-unit>
       <trans-unit id="uQy-DD-JDr.title">
@@ -2657,7 +2657,7 @@
       </trans-unit>
       <trans-unit id="w6i-hq-pcc.title">
         <source>Required</source>
-        <target>Required</target>
+        <target>Krav</target>
         <note>Class = "NSTextFieldCell"; title = "Required"; ObjectID = "w6i-hq-pcc";</note>
       </trans-unit>
       <trans-unit id="wD5-vA-j0P.title">
@@ -2817,7 +2817,7 @@
       </trans-unit>
       <trans-unit id="znZ-ht-M5x.title">
         <source>Required if remote server</source>
-        <target>Required if remote server</target>
+        <target>Krav hvis ekstern server</target>
         <note>Class = "NSTextFieldCell"; title = "Required if remote server"; ObjectID = "znZ-ht-M5x";</note>
       </trans-unit>
       <trans-unit id="zoV-D2-sU8.headerCell.title">
