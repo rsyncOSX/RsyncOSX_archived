@@ -507,7 +507,7 @@
       </trans-unit>
       <trans-unit id="BDO-Nt-D9h.title">
         <source>Estimating task, please wait...</source>
-        <target>Estimating task, please wait...</target>
+        <target>Estimerer oppgave, vennligst vent...</target>
         <note>Class = "NSTextFieldCell"; title = "Estimating task, please wait..."; ObjectID = "BDO-Nt-D9h";</note>
       </trans-unit>
       <trans-unit id="BEH-BV-PWu.title">
@@ -517,17 +517,17 @@
       </trans-unit>
       <trans-unit id="BG6-Wq-kSc.title">
         <source>Automatic execution of local configurations</source>
-        <target>Automatic execution of local configurations</target>
+        <target>Automatisk kjøring av lokal konfigurasjon</target>
         <note>Class = "NSButtonCell"; title = "Automatic execution of local configurations"; ObjectID = "BG6-Wq-kSc";</note>
       </trans-unit>
       <trans-unit id="BGM-Kg-KGO.title">
         <source>Clear</source>
-        <target>Clear</target>
+        <target>Slett</target>
         <note>Class = "NSButtonCell"; title = "Clear"; ObjectID = "BGM-Kg-KGO";</note>
       </trans-unit>
       <trans-unit id="BOF-NM-1cW.title">
         <source>Preferences…</source>
-        <target>Preferences…</target>
+        <target>Preferanser…</target>
         <note>Class = "NSMenuItem"; title = "Preferences…"; ObjectID = "BOF-NM-1cW";</note>
       </trans-unit>
       <trans-unit id="BVb-Fw-C80.headerCell.title">
@@ -537,12 +537,12 @@
       </trans-unit>
       <trans-unit id="Bb6-iv-DYc.title">
         <source>Verify</source>
-        <target>Verify</target>
+        <target>Verifiser</target>
         <note>Class = "NSViewController"; title = "Verify"; ObjectID = "Bb6-iv-DYc";</note>
       </trans-unit>
       <trans-unit id="Beq-PN-DJW.headerCell.title">
         <source>Avail (GB)</source>
-        <target>Avail (GB)</target>
+        <target>Tilgjengelig (GB)</target>
         <note>Class = "NSTableColumn"; headerCell.title = "Avail (GB)"; ObjectID = "Beq-PN-DJW";</note>
       </trans-unit>
       <trans-unit id="Byb-kM-Mpk.headerCell.title">
@@ -597,7 +597,7 @@
       </trans-unit>
       <trans-unit id="CkB-lg-RfP.title">
         <source>Delete</source>
-        <target>Delete</target>
+        <target>Slett</target>
         <note>Class = "NSButtonCell"; title = "Delete"; ObjectID = "CkB-lg-RfP";</note>
       </trans-unit>
       <trans-unit id="CwH-vm-SWF.title">
@@ -687,7 +687,7 @@
       </trans-unit>
       <trans-unit id="EiP-tC-Ve8.title">
         <source>Selected logs: 0</source>
-        <target>Selected logs: 0</target>
+        <target>Valgt logger: 0</target>
         <note>Class = "NSTextFieldCell"; title = "Selected logs: 0"; ObjectID = "EiP-tC-Ve8";</note>
       </trans-unit>
       <trans-unit id="Emj-io-EGu.headerCell.title">
@@ -697,7 +697,7 @@
       </trans-unit>
       <trans-unit id="ExZ-72-tbq.headerCell.title">
         <source>Delete</source>
-        <target>Delete</target>
+        <target>Slett</target>
         <note>Class = "NSTableColumn"; headerCell.title = "Delete"; ObjectID = "ExZ-72-tbq";</note>
       </trans-unit>
       <trans-unit id="F2S-fz-NVQ.title">
@@ -842,12 +842,12 @@
       </trans-unit>
       <trans-unit id="H79-tQ-7yT.headerCell.title">
         <source>Avail(%)</source>
-        <target>Avail(%)</target>
+        <target>Tilgjengelig(%)</target>
         <note>Class = "NSTableColumn"; headerCell.title = "Avail(%)"; ObjectID = "H79-tQ-7yT";</note>
       </trans-unit>
       <trans-unit id="HEg-kc-zdY.headerCell.title">
         <source>Delete</source>
-        <target>Delete</target>
+        <target>Slett</target>
         <note>Class = "NSTableColumn"; headerCell.title = "Delete"; ObjectID = "HEg-kc-zdY";</note>
       </trans-unit>
       <trans-unit id="HLP-3M-FTI.headerCell.title">
@@ -862,7 +862,7 @@
       </trans-unit>
       <trans-unit id="HQE-mN-lgx.title">
         <source>Number of files:</source>
-        <target>Number of files:</target>
+        <target>Antall filer:</target>
         <note>Class = "NSTextFieldCell"; title = "Number of files:"; ObjectID = "HQE-mN-lgx";</note>
       </trans-unit>
       <trans-unit id="HWO-DQ-sfw.title">
@@ -872,7 +872,7 @@
       </trans-unit>
       <trans-unit id="HXz-ee-7v0.title">
         <source>Select</source>
-        <target>Select</target>
+        <target>Velg</target>
         <note>Class = "NSButtonCell"; title = "Select"; ObjectID = "HXz-ee-7v0";</note>
       </trans-unit>
       <trans-unit id="Hah-L7-Bvj.title">
@@ -932,7 +932,7 @@
       </trans-unit>
       <trans-unit id="Iii-2E-YHF.title">
         <source>reset next snapshot number</source>
-        <target>reset next snapshot number</target>
+        <target>reset neste snapshot nummer</target>
         <note>Class = "NSButtonCell"; title = "reset next snapshot number"; ObjectID = "Iii-2E-YHF";</note>
       </trans-unit>
       <trans-unit id="ImR-R8-DPA.title">
@@ -977,7 +977,7 @@
       </trans-unit>
       <trans-unit id="K4L-Yx-uOn.title">
         <source>Delete all</source>
-        <target>Delete all</target>
+        <target>Slett alt</target>
         <note>Class = "NSButtonCell"; title = "Delete all"; ObjectID = "K4L-Yx-uOn";</note>
       </trans-unit>
       <trans-unit id="K9c-yf-VMY.title">
@@ -1002,7 +1002,7 @@
       </trans-unit>
       <trans-unit id="KfP-cj-1yp.headerCell.title">
         <source>Select</source>
-        <target>Select</target>
+        <target>Velg</target>
         <note>Class = "NSTableColumn"; headerCell.title = "Select"; ObjectID = "KfP-cj-1yp";</note>
       </trans-unit>
       <trans-unit id="L1R-y2-phu.title">
@@ -1117,7 +1117,7 @@
       </trans-unit>
       <trans-unit id="NQQ-pH-x0v.title">
         <source>Select column to sort ...</source>
-        <target>Select column to sort ...</target>
+        <target>Velg cologne for sortering ...</target>
         <note>Class = "NSTextFieldCell"; title = "Select column to sort ..."; ObjectID = "NQQ-pH-x0v";</note>
       </trans-unit>
       <trans-unit id="NQS-NB-OI2.title">
@@ -1132,7 +1132,7 @@
       </trans-unit>
       <trans-unit id="Nbe-Ck-Oeu.title">
         <source>Delete files:</source>
-        <target>Delete files:</target>
+        <target>Slett filer:</target>
         <note>Class = "NSTextFieldCell"; title = "Delete files:"; ObjectID = "Nbe-Ck-Oeu";</note>
       </trans-unit>
       <trans-unit id="NhR-OP-Eqo.title">
@@ -1182,7 +1182,7 @@
       </trans-unit>
       <trans-unit id="OlM-9W-pxf.title">
         <source>Delete</source>
-        <target>Delete</target>
+        <target>Slett</target>
         <note>Class = "NSButtonCell"; title = "Delete"; ObjectID = "OlM-9W-pxf";</note>
       </trans-unit>
       <trans-unit id="Olw-nP-bQN.title">
@@ -1362,7 +1362,7 @@
       </trans-unit>
       <trans-unit id="SBO-UN-kMy.title">
         <source>Number of remote files: 0 </source>
-        <target>Number of remote files: 0 </target>
+        <target>Antall eksterne filer: 0 </target>
         <note>Class = "NSTextFieldCell"; title = "Number of remote files: 0 "; ObjectID = "SBO-UN-kMy";</note>
       </trans-unit>
       <trans-unit id="SHi-wp-O4D.title">
@@ -1427,7 +1427,7 @@
       </trans-unit>
       <trans-unit id="TTa-S0-fjX.title">
         <source>Numbers remote</source>
-        <target>Numbers remote</target>
+        <target>Antall eksterne</target>
         <note>Class = "NSBox"; title = "Numbers remote"; ObjectID = "TTa-S0-fjX";</note>
       </trans-unit>
       <trans-unit id="Td7-aD-5lo.title">
@@ -1562,7 +1562,7 @@
       </trans-unit>
       <trans-unit id="WYK-hg-6Bv.title">
         <source>Delete</source>
-        <target>Delete</target>
+        <target>Slett</target>
         <note>Class = "NSButtonCell"; title = "Delete"; ObjectID = "WYK-hg-6Bv";</note>
       </trans-unit>
       <trans-unit id="WbP-J3-f5z.title">
@@ -1582,7 +1582,7 @@
       </trans-unit>
       <trans-unit id="Woh-4u-GUH.title">
         <source>Number of directories:</source>
-        <target>Number of directories:</target>
+        <target>Antall kataloger:</target>
         <note>Class = "NSTextFieldCell"; title = "Number of directories:"; ObjectID = "Woh-4u-GUH";</note>
       </trans-unit>
       <trans-unit id="X2U-4M-dkS.title">
@@ -1617,7 +1617,7 @@
       </trans-unit>
       <trans-unit id="XoQ-If-N1I.headerCell.title">
         <source>Delete schedule</source>
-        <target>Delete schedule</target>
+        <target>Slett schedule</target>
         <note>Class = "NSTableColumn"; headerCell.title = "Delete schedule"; ObjectID = "XoQ-If-N1I";</note>
       </trans-unit>
       <trans-unit id="Y5P-iP-A70.title">
@@ -1667,7 +1667,7 @@
       </trans-unit>
       <trans-unit id="ZJm-XI-lka.title">
         <source>User selected params</source>
-        <target>User selected params</target>
+        <target>Bruker valgt parametre</target>
         <note>Class = "NSTextFieldCell"; title = "User selected params"; ObjectID = "ZJm-XI-lka";</note>
       </trans-unit>
       <trans-unit id="ZpW-Be-i8h.headerCell.title">
@@ -1717,12 +1717,12 @@
       </trans-unit>
       <trans-unit id="aye-JD-U1q.title">
         <source>Number of logs:</source>
-        <target>Number of logs:</target>
+        <target>Antall logger:</target>
         <note>Class = "NSTextFieldCell"; title = "Number of logs:"; ObjectID = "aye-JD-U1q";</note>
       </trans-unit>
       <trans-unit id="b5N-g5-vv6.title">
         <source>verify</source>
-        <target>verify</target>
+        <target>verifiser</target>
         <note>Class = "NSButtonCell"; title = "verify"; ObjectID = "b5N-g5-vv6";</note>
       </trans-unit>
       <trans-unit id="b8u-6y-RSC.headerCell.title">
@@ -1822,7 +1822,7 @@
       </trans-unit>
       <trans-unit id="dEW-Mo-F8C.title">
         <source>Select tmp: </source>
-        <target>Select tmp: </target>
+        <target>Velg tmp: </target>
         <note>Class = "NSButtonCell"; title = "Select tmp: "; ObjectID = "dEW-Mo-F8C";</note>
       </trans-unit>
       <trans-unit id="dIc-cB-CiC.title">
@@ -1892,7 +1892,7 @@
       </trans-unit>
       <trans-unit id="eIC-WC-dFt.title">
         <source>Select snapshots to keep</source>
-        <target>Select snapshots to keep</target>
+        <target>Velg snapshots</target>
         <note>Class = "NSBox"; title = "Select snapshots to keep"; ObjectID = "eIC-WC-dFt";</note>
       </trans-unit>
       <trans-unit id="eLp-YO-ses.title">
@@ -1957,7 +1957,7 @@
       </trans-unit>
       <trans-unit id="fZA-KQ-voS.title">
         <source>Delete files:</source>
-        <target>Delete files:</target>
+        <target>Slett filer:</target>
         <note>Class = "NSTextFieldCell"; title = "Delete files:"; ObjectID = "fZA-KQ-voS";</note>
       </trans-unit>
       <trans-unit id="fiO-Ux-xlw.title">
@@ -2047,7 +2047,7 @@
       </trans-unit>
       <trans-unit id="gsP-5c-DW5.title">
         <source>delete :  </source>
-        <target>delete :  </target>
+        <target>slett :  </target>
         <note>Class = "NSTextFieldCell"; title = "delete :  "; ObjectID = "gsP-5c-DW5";</note>
       </trans-unit>
       <trans-unit id="h4F-dN-GN0.title">
@@ -2162,7 +2162,7 @@
       </trans-unit>
       <trans-unit id="ifc-VC-OWD.title">
         <source>Number of directories:</source>
-        <target>Number of directories:</target>
+        <target>Antall kataloger:</target>
         <note>Class = "NSTextFieldCell"; title = "Number of directories:"; ObjectID = "ifc-VC-OWD";</note>
       </trans-unit>
       <trans-unit id="ipH-US-wgO.title">
@@ -2182,12 +2182,12 @@
       </trans-unit>
       <trans-unit id="jTS-YA-55S.title">
         <source>verify</source>
-        <target>verify</target>
+        <target>verifiser</target>
         <note>Class = "NSButtonCell"; title = "verify"; ObjectID = "jTS-YA-55S";</note>
       </trans-unit>
       <trans-unit id="jTT-Mq-cPB.title">
         <source>Delete files:</source>
-        <target>Delete files:</target>
+        <target>Slett filer:</target>
         <note>Class = "NSTextFieldCell"; title = "Delete files:"; ObjectID = "jTT-Mq-cPB";</note>
       </trans-unit>
       <trans-unit id="jTs-0X-qqh.title">
@@ -2327,7 +2327,7 @@
       </trans-unit>
       <trans-unit id="n1z-ZA-mQN.title">
         <source>Number of directories:</source>
-        <target>Number of directories:</target>
+        <target>Antall kataloger:</target>
         <note>Class = "NSTextFieldCell"; title = "Number of directories:"; ObjectID = "n1z-ZA-mQN";</note>
       </trans-unit>
       <trans-unit id="nHu-Ph-Td8.title">
@@ -2367,7 +2367,7 @@
       </trans-unit>
       <trans-unit id="oUI-Az-UAI.title">
         <source>Number of files:</source>
-        <target>Number of files:</target>
+        <target>Antall filer:</target>
         <note>Class = "NSTextFieldCell"; title = "Number of files:"; ObjectID = "oUI-Az-UAI";</note>
       </trans-unit>
       <trans-unit id="oar-D1-pfu.title">
@@ -2382,7 +2382,7 @@
       </trans-unit>
       <trans-unit id="of4-qq-ykX.title">
         <source>Number of snapshots:</source>
-        <target>Number of snapshots:</target>
+        <target>Antall snapshots:</target>
         <note>Class = "NSTextFieldCell"; title = "Number of snapshots:"; ObjectID = "of4-qq-ykX";</note>
       </trans-unit>
       <trans-unit id="oqO-Td-7wg.headerCell.title">
@@ -2492,7 +2492,7 @@
       </trans-unit>
       <trans-unit id="sBt-QN-KGK.title">
         <source>Number of configurations:</source>
-        <target>Number of configurations:</target>
+        <target>Antall konfigurasjoner:</target>
         <note>Class = "NSTextFieldCell"; title = "Number of configurations:"; ObjectID = "sBt-QN-KGK";</note>
       </trans-unit>
       <trans-unit id="sDH-LN-0H4.title">
@@ -2572,7 +2572,7 @@
       </trans-unit>
       <trans-unit id="uAb-Pv-NUT.title">
         <source>Number of directories:</source>
-        <target>Number of directories:</target>
+        <target>Antall kataloger:</target>
         <note>Class = "NSTextFieldCell"; title = "Number of directories:"; ObjectID = "uAb-Pv-NUT";</note>
       </trans-unit>
       <trans-unit id="uBc-LG-TjQ.title">
@@ -2762,7 +2762,7 @@
       </trans-unit>
       <trans-unit id="yOD-ng-BAz.title">
         <source>Delete</source>
-        <target>Delete</target>
+        <target>Slett</target>
         <note>Class = "NSButtonCell"; title = "Delete"; ObjectID = "yOD-ng-BAz";</note>
       </trans-unit>
       <trans-unit id="yUA-PJ-sOA.title">
@@ -2802,7 +2802,7 @@
       </trans-unit>
       <trans-unit id="zHz-9r-Cpj.title">
         <source>Verify</source>
-        <target>Verify</target>
+        <target>Verifiser</target>
         <note>Class = "NSButtonCell"; title = "Verify"; ObjectID = "zHz-9r-Cpj";</note>
       </trans-unit>
       <trans-unit id="zSZ-Tb-zlJ.title">
@@ -2827,7 +2827,7 @@
       </trans-unit>
       <trans-unit id="zv2-BP-T5J.headerCell.title">
         <source>Select</source>
-        <target>Select</target>
+        <target>Velg</target>
         <note>Class = "NSTableColumn"; headerCell.title = "Select"; ObjectID = "zv2-BP-T5J";</note>
       </trans-unit>
       <trans-unit id="zzK-ZO-wvj.headerCell.title">
