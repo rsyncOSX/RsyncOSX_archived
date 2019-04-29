@@ -231,7 +231,7 @@ class ViewControllertabMain: NSViewController, ReloadTable, Deselect, VcMain, De
             self.info(num: 1)
             return
         }
-        let answer = Alerts.dialogOrCancel("Delete selected task?", text: "Cancel or Delete", dialog: "Delete")
+        let answer = Alerts.dialogOrCancel(question: "Delete selected task?", text: "Cancel or Delete", dialog: "Delete")
         if answer {
             if self.hiddenID != nil {
                 // Delete Configurations and Schedules by hiddenID

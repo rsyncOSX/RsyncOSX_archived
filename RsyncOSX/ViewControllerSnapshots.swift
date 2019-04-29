@@ -177,7 +177,7 @@ class ViewControllerSnapshots: NSViewController, SetDismisser, SetConfigurations
 
     @IBAction func delete(_ sender: NSButton) {
         guard self.snapshotsloggdata != nil else { return }
-        let answer = Alerts.dialogOrCancel("Do you REALLY want to DELETE selected snapshots?", text: "Cancel or Delete", dialog: "Delete")
+        let answer = Alerts.dialogOrCancel(question: "Do you REALLY want to DELETE selected snapshots?", text: "Cancel or Delete", dialog: "Delete")
         if answer {
             self.info(num: 0)
             self.snapshotsloggdata!.preparecatalogstodelete()
