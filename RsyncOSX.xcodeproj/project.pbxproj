@@ -152,7 +152,6 @@
 		E9CB57F52272FFDD0021FFEF /* ConvertSchedules.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9CB57F42272FFDD0021FFEF /* ConvertSchedules.swift */; };
 		E9CF14141E729540008E8A15 /* RsyncScheduled.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9CF14131E729540008E8A15 /* RsyncScheduled.swift */; };
 		E9CF14161E729636008E8A15 /* CommandCopyFiles.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9CF14151E729636008E8A15 /* CommandCopyFiles.swift */; };
-		E9DFD8E6227724AE002CD2F2 /* Localization.Strings in Resources */ = {isa = PBXBuildFile; fileRef = E9DFD8E8227724AE002CD2F2 /* Localization.Strings */; };
 		E9E70A3C1FF3BCB30099554D /* RsyncVersionString.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9E70A3B1FF3BCB30099554D /* RsyncVersionString.swift */; };
 		E9E763711E6AEA5300B45E8D /* ViewControllerCopyFilesSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9E763701E6AEA5300B45E8D /* ViewControllerCopyFilesSource.swift */; };
 		E9E88FD01EB25A080028432F /* ScpArgumentsSsh.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9E88FCF1EB25A080028432F /* ScpArgumentsSsh.swift */; };
@@ -304,8 +303,6 @@
 		E9CB57F42272FFDD0021FFEF /* ConvertSchedules.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConvertSchedules.swift; sourceTree = "<group>"; };
 		E9CF14131E729540008E8A15 /* RsyncScheduled.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RsyncScheduled.swift; sourceTree = "<group>"; };
 		E9CF14151E729636008E8A15 /* CommandCopyFiles.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommandCopyFiles.swift; sourceTree = "<group>"; };
-		E9DFD8E7227724AE002CD2F2 /* nb */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nb; path = nb.lproj/Localization.Strings; sourceTree = "<group>"; };
-		E9DFD8E9227724B2002CD2F2 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localization.Strings"; sourceTree = "<group>"; };
 		E9E70A3B1FF3BCB30099554D /* RsyncVersionString.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RsyncVersionString.swift; sourceTree = "<group>"; };
 		E9E763701E6AEA5300B45E8D /* ViewControllerCopyFilesSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewControllerCopyFilesSource.swift; sourceTree = "<group>"; };
 		E9E88FCF1EB25A080028432F /* ScpArgumentsSsh.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScpArgumentsSsh.swift; sourceTree = "<group>"; };
@@ -336,7 +333,6 @@
 		A04492791D658EE800B3CE17 = {
 			isa = PBXGroup;
 			children = (
-				E9DFD8E8227724AE002CD2F2 /* Localization.Strings */,
 				A04492841D658EE800B3CE17 /* RsyncOSX */,
 				A04492831D658EE800B3CE17 /* Products */,
 			);
@@ -804,7 +800,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E9DFD8E6227724AE002CD2F2 /* Localization.Strings in Resources */,
 				A044928A1D658EE800B3CE17 /* Assets.xcassets in Resources */,
 				A044928D1D658EE800B3CE17 /* Main.storyboard in Resources */,
 			);
@@ -1012,15 +1007,6 @@
 				E92037AF22741D9900CC3EE5 /* zh-Hans */,
 			);
 			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
-		E9DFD8E8227724AE002CD2F2 /* Localization.Strings */ = {
-			isa = PBXVariantGroup;
-			children = (
-				E9DFD8E7227724AE002CD2F2 /* nb */,
-				E9DFD8E9227724B2002CD2F2 /* zh-Hans */,
-			);
-			name = Localization.Strings;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
