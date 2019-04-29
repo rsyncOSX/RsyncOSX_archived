@@ -10,21 +10,23 @@ import Cocoa
 
 public struct Alerts {
 
-    public static func showInfo(_ info: String) {
+    public static func showInfo(info: String) {
         let alert = NSAlert()
         alert.messageText = info
         alert.alertStyle = NSAlert.Style.warning
-        alert.addButton(withTitle: "Close")
+        let close: String = NSLocalizedString("Close", comment: "Close NSAlert")
+        alert.addButton(withTitle: close)
         alert.runModal()
     }
 
-    public static func dialogOrCancel(_ question: String, text: String, dialog: String) -> Bool {
+    public static func dialogOrCancel(question: String, text: String, dialog: String) -> Bool {
         let myPopup: NSAlert = NSAlert()
         myPopup.messageText = question
         myPopup.informativeText = text
         myPopup.alertStyle = NSAlert.Style.warning
         myPopup.addButton(withTitle: dialog)
-        myPopup.addButton(withTitle: "Cancel")
+        let cancel: String = NSLocalizedString("Cancel", comment: "Cancel NSAlert")
+        myPopup.addButton(withTitle: cancel)
         let res = myPopup.runModal()
         if res == NSApplication.ModalResponse.alertFirstButtonReturn {
             return true

@@ -91,9 +91,11 @@ final class Verifyrsyncpath: SetConfigurations {
 
     func noRsync() {
         if let rsync = ViewControllerReference.shared.rsyncPath {
-            Alerts.showInfo("ERROR: no rsync in " + rsync)
+            let error: String = NSLocalizedString("ERROR: no rsync in ", comment: "Error rsync") + rsync
+            Alerts.showInfo(info: error)
         } else {
-            Alerts.showInfo("ERROR: no rsync in /usr/local/bin")
+            let error: String = NSLocalizedString("ERROR: no rsync in /usr/local/bin", comment: "Error rsync")
+            Alerts.showInfo(info: error)
         }
     }
 
