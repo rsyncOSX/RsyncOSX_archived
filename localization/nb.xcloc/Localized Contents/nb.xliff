@@ -1047,7 +1047,7 @@
       </trans-unit>
       <trans-unit id="Lkc-8f-opa.title">
         <source>Remote username:</source>
-        <target>Eksternt brukernavn:</target>
+        <target>Ekster bruker:</target>
         <note>Class = "NSTextFieldCell"; title = "Remote username:"; ObjectID = "Lkc-8f-opa";</note>
       </trans-unit>
       <trans-unit id="LpG-4N-4hH.title">
@@ -2057,7 +2057,7 @@
       </trans-unit>
       <trans-unit id="hBf-gt-Mxo.title">
         <source>Remote username:</source>
-        <target>Eksternt brukernavn:</target>
+        <target>Ekster bruker:</target>
         <note>Class = "NSTextFieldCell"; title = "Remote username:"; ObjectID = "hBf-gt-Mxo";</note>
       </trans-unit>
       <trans-unit id="hF2-vi-oTK.title">
@@ -2147,7 +2147,7 @@
       </trans-unit>
       <trans-unit id="iUw-2a-dr3.title">
         <source>Remote username:</source>
-        <target>Eksternt brukernavn:</target>
+        <target>Ekster bruker:</target>
         <note>Class = "NSTextFieldCell"; title = "Remote username:"; ObjectID = "iUw-2a-dr3";</note>
       </trans-unit>
       <trans-unit id="ibW-Po-vbR.title">
@@ -2312,7 +2312,7 @@
       </trans-unit>
       <trans-unit id="mfz-zc-vDd.title">
         <source>Remote username:</source>
-        <target>Eksternt brukernavn:</target>
+        <target>Ekster bruker:</target>
         <note>Class = "NSTextFieldCell"; title = "Remote username:"; ObjectID = "mfz-zc-vDd";</note>
       </trans-unit>
       <trans-unit id="mkb-9F-CQR.title">
@@ -2332,7 +2332,7 @@
       </trans-unit>
       <trans-unit id="nHu-Ph-Td8.title">
         <source>Remote username:</source>
-        <target>Eksternt brukernavn:</target>
+        <target>Ekster bruker:</target>
         <note>Class = "NSTextFieldCell"; title = "Remote username:"; ObjectID = "nHu-Ph-Td8";</note>
       </trans-unit>
       <trans-unit id="ngh-0r-Hwj.title">

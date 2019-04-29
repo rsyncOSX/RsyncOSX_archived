@@ -231,9 +231,9 @@ class ViewControllertabMain: NSViewController, ReloadTable, Deselect, VcMain, De
             self.info(num: 1)
             return
         }
-        let question: String = NSLocalizedString("Delete selected task? ", comment: "Tasks")
-        let text: String = NSLocalizedString("Cancel or Delete", comment: "Tasks")
-        let dialog: String = NSLocalizedString("Delete", comment: "Tasks")
+        let question: String = NSLocalizedString("Delete selected task? ", comment: "Loggs, Tasks and Profile")
+        let text: String = NSLocalizedString("Cancel or Delete", comment: "Loggs, Tasks and Profile")
+        let dialog: String = NSLocalizedString("Delete", comment: "Loggs, Tasks and Profile")
         let answer = Alerts.dialogOrCancel(question: question, text: text, dialog: dialog)
         if answer {
             if self.hiddenID != nil {

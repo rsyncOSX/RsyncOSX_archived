@@ -96,9 +96,9 @@ class ViewControllerLoggData: NSViewController, SetConfigurations, SetSchedules,
     }
 
     @IBAction func deletealllogs(_ sender: NSButton) {
-        let question: String = NSLocalizedString("Delete ", comment: "Loggs")
-        let text: String = NSLocalizedString("Cancel or Delete", comment: "Loggs")
-        let dialog: String = NSLocalizedString("Delete", comment: "Loggs")
+        let question: String = NSLocalizedString("Delete ", comment: "Loggs, Tasks and Profile")
+        let text: String = NSLocalizedString("Cancel or Delete", comment: "Loggs, Tasks and Profile")
+        let dialog: String = NSLocalizedString("Delete", comment: "Loggs, Tasks and Profile")
         let answer = Alerts.dialogOrCancel(question: question + self.selectednumber() + " logrecords?", text: text, dialog: dialog)
         if answer {
             self.deselectRow()
