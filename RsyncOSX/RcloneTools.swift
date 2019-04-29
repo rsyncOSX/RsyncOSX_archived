@@ -51,11 +51,11 @@ class RcloneTools {
 
     func norclone() {
         if let rclone = RcloneReference.shared.rclonePath {
-            let error3: String = NSLocalizedString("ERROR: no rclone i ", comment: "Error rclone") + rclone
-            Alerts.showInfo(info: error3)
+            let error: String = NSLocalizedString("ERROR: no rclone i ", comment: "Error rclone") + rclone
+            Alerts.showInfo(info: error)
         } else {
-            let error4: String = NSLocalizedString("ERROR: no rclone in /usr/local/bin", comment: "Error rclone")
-            Alerts.showInfo(info: error4)
+            let error: String = NSLocalizedString("ERROR: no rclone in /usr/local/bin", comment: "Error rclone")
+            Alerts.showInfo(info: error)
         }
     }
 

@@ -5,6 +5,7 @@
 //  Created by Thomas Evensen on 05/09/2016.
 //  Copyright © 2016 Thomas Evensen. All rights reserved.
 //
+// swiftlint:disable line_length
 
 import Foundation
 import Cocoa
@@ -26,7 +27,8 @@ class ViewControllerEdit: NSViewController, SetConfigurations, SetDismisser, Ind
     @IBAction func enabledisableresetsnapshotnum(_ sender: NSButton) {
         let config: Configuration = self.configurations!.getConfigurations()[self.index!]
         guard config.task == "snapshot" else { return }
-        Alerts.showInfo(info: "Dont change the snapshot num if you don´t know what you are doing...")
+        let info: String = NSLocalizedString("Dont change the snapshot num if you don´t know what you are doing...", comment: "Snapshots")
+        Alerts.showInfo(info: info)
         if self.snapshotnum.isEnabled {
             self.snapshotnum.isEnabled = false
         } else {
