@@ -802,7 +802,7 @@
       </trans-unit>
       <trans-unit id="GJH-xK-5LY.title">
         <source>Copy files</source>
-        <target>Copy files</target>
+        <target>Kopi filer</target>
         <note>Class = "NSViewController"; title = "Copy files"; ObjectID = "GJH-xK-5LY";</note>
       </trans-unit>
       <trans-unit id="GKP-F2-XbX.title">
@@ -917,7 +917,7 @@
       </trans-unit>
       <trans-unit id="Icw-Qm-VbA.headerCell.title">
         <source>files copied</source>
-        <target>files copied</target>
+        <target>filer kopiert</target>
         <note>Class = "NSTableColumn"; headerCell.title = "files copied"; ObjectID = "Icw-Qm-VbA";</note>
       </trans-unit>
       <trans-unit id="Ien-PS-8Dv.title">
@@ -1017,7 +1017,7 @@
       </trans-unit>
       <trans-unit id="L5g-6S-at9.title">
         <source>Save</source>
-        <target>Save</target>
+        <target>Lagre</target>
         <note>Class = "NSButtonCell"; title = "Save"; ObjectID = "L5g-6S-at9";</note>
       </trans-unit>
       <trans-unit id="LD6-1k-P7V.headerCell.title">
@@ -1232,7 +1232,7 @@
       </trans-unit>
       <trans-unit id="PqI-jS-0y7.headerCell.title">
         <source>Profile</source>
-        <target>Profile</target>
+        <target>Profil</target>
         <note>Class = "NSTableColumn"; headerCell.title = "Profile"; ObjectID = "PqI-jS-0y7";</note>
       </trans-unit>
       <trans-unit id="Psw-ga-cgO.title">
@@ -1452,7 +1452,7 @@
       </trans-unit>
       <trans-unit id="TqG-6l-QwU.title">
         <source>Profile :</source>
-        <target>Profile :</target>
+        <target>Profil :</target>
         <note>Class = "NSTextFieldCell"; title = "Profile :"; ObjectID = "TqG-6l-QwU";</note>
       </trans-unit>
       <trans-unit id="Tz9-L8-6PV.title">
@@ -1472,7 +1472,7 @@
       </trans-unit>
       <trans-unit id="UWX-Xo-8Mh.title">
         <source>Save</source>
-        <target>Save</target>
+        <target>Lagre</target>
         <note>Class = "NSButtonCell"; title = "Save"; ObjectID = "UWX-Xo-8Mh";</note>
       </trans-unit>
       <trans-unit id="UZO-oe-ZyD.title">
@@ -1602,7 +1602,7 @@
       </trans-unit>
       <trans-unit id="XIS-9x-9Gh.title">
         <source>Files to be transferred:</source>
-        <target>Files to be transferred:</target>
+        <target>Filer for overføring:</target>
         <note>Class = "NSTextFieldCell"; title = "Files to be transferred:"; ObjectID = "XIS-9x-9Gh";</note>
       </trans-unit>
       <trans-unit id="XbU-fs-Bir.title">
@@ -1757,7 +1757,7 @@
       </trans-unit>
       <trans-unit id="bPa-Pw-blK.title">
         <source>Logging to file</source>
-        <target>Logging to file</target>
+        <target>Logging til fil</target>
         <note>Class = "NSBox"; title = "Logging to file"; ObjectID = "bPa-Pw-blK";</note>
       </trans-unit>
       <trans-unit id="bPp-gZ-UDZ.title">
@@ -1772,7 +1772,7 @@
       </trans-unit>
       <trans-unit id="bib-Uj-vzu.title">
         <source>File</source>
-        <target>File</target>
+        <target>Fil</target>
         <note>Class = "NSMenu"; title = "File"; ObjectID = "bib-Uj-vzu";</note>
       </trans-unit>
       <trans-unit id="c3e-f5-7YK.title">
@@ -1787,7 +1787,7 @@
       </trans-unit>
       <trans-unit id="cKa-xb-U4B.headerCell.title">
         <source>Select file or catalog to restore (and double click to copy in one go)</source>
-        <target>Select file or catalog to restore (and double click to copy in one go)</target>
+        <target>Velg fil eller katalog for restore (og dobbel klikk for å kopiere)</target>
         <note>Class = "NSTableColumn"; headerCell.title = "Select file or catalog to restore (and double click to copy in one go)"; ObjectID = "cKa-xb-U4B";</note>
       </trans-unit>
       <trans-unit id="cKd-C9-yCK.title">
@@ -1797,7 +1797,7 @@
       </trans-unit>
       <trans-unit id="ceM-Kt-SJU.title">
         <source>Details about files</source>
-        <target>Details about files</target>
+        <target>Detaljer om filer</target>
         <note>Class = "NSViewController"; title = "Details about files"; ObjectID = "ceM-Kt-SJU";</note>
       </trans-unit>
       <trans-unit id="cgs-kn-d7O.title">
@@ -1832,12 +1832,12 @@
       </trans-unit>
       <trans-unit id="dMs-cI-mzQ.title">
         <source>File</source>
-        <target>File</target>
+        <target>Fil</target>
         <note>Class = "NSMenuItem"; title = "File"; ObjectID = "dMs-cI-mzQ";</note>
       </trans-unit>
       <trans-unit id="dTX-H7-8VC.title">
         <source>Profile :</source>
-        <target>Profile :</target>
+        <target>Profil :</target>
         <note>Class = "NSTextFieldCell"; title = "Profile :"; ObjectID = "dTX-H7-8VC";</note>
       </trans-unit>
       <trans-unit id="ddR-gB-Dgt.headerCell.title">
@@ -1877,7 +1877,7 @@
       </trans-unit>
       <trans-unit id="e5v-pd-xF9.title">
         <source>Details about files</source>
-        <target>Details about files</target>
+        <target>Detaljer om filer</target>
         <note>Class = "NSViewController"; title = "Details about files"; ObjectID = "e5v-pd-xF9";</note>
       </trans-unit>
       <trans-unit id="eAP-VY-l6H.title">
@@ -2077,7 +2077,7 @@
       </trans-unit>
       <trans-unit id="hTP-NL-EPM.title">
         <source>Number of files:</source>
-        <target>Number of files:</target>
+        <target>Antall filer:</target>
         <note>Class = "NSTextFieldCell"; title = "Number of files:"; ObjectID = "hTP-NL-EPM";</note>
       </trans-unit>
       <trans-unit id="hXq-5p-KS7.title">
@@ -2172,7 +2172,7 @@
       </trans-unit>
       <trans-unit id="irb-Gi-c2A.title">
         <source>Source for restore file or catalog</source>
-        <target>Source for restore file or catalog</target>
+        <target>Kilde for restore fil eller katalog</target>
         <note>Class = "NSBox"; title = "Source for restore file or catalog"; ObjectID = "irb-Gi-c2A";</note>
       </trans-unit>
       <trans-unit id="j1Z-jM-6Q6.headerCell.title">
@@ -2207,7 +2207,7 @@
       </trans-unit>
       <trans-unit id="jd9-c6-ykP.toolTip">
         <source>Encrypted files...</source>
-        <target>Encrypted files...</target>
+        <target>Encrypt filer...</target>
         <note>Class = "NSToolbarItem"; toolTip = "Encrypted files..."; ObjectID = "jd9-c6-ykP";</note>
       </trans-unit>
       <trans-unit id="jgQ-HM-WTh.title">
@@ -2222,7 +2222,7 @@
       </trans-unit>
       <trans-unit id="k8Z-wy-8ml.title">
         <source>Files to be transferred:</source>
-        <target>Files to be transferred:</target>
+        <target>Filer for overføring:</target>
         <note>Class = "NSTextFieldCell"; title = "Files to be transferred:"; ObjectID = "k8Z-wy-8ml";</note>
       </trans-unit>
       <trans-unit id="kFc-LP-RkZ.title">
@@ -2232,12 +2232,12 @@
       </trans-unit>
       <trans-unit id="kNR-NX-OzR.title">
         <source>files :</source>
-        <target>files :</target>
+        <target>filee :</target>
         <note>Class = "NSTextFieldCell"; title = "files :"; ObjectID = "kNR-NX-OzR";</note>
       </trans-unit>
       <trans-unit id="kOk-Mh-JZ7.title">
         <source>Rclone profile :</source>
-        <target>Rclone profile :</target>
+        <target>Rclone profil :</target>
         <note>Class = "NSTextFieldCell"; title = "Rclone profile :"; ObjectID = "kOk-Mh-JZ7";</note>
       </trans-unit>
       <trans-unit id="kUC-cs-Fc2.title">
@@ -2337,7 +2337,7 @@
       </trans-unit>
       <trans-unit id="ngh-0r-Hwj.title">
         <source>All profiles</source>
-        <target>All profiles</target>
+        <target>Alle profiler</target>
         <note>Class = "NSViewController"; title = "All profiles"; ObjectID = "ngh-0r-Hwj";</note>
       </trans-unit>
       <trans-unit id="nsN-YU-MJ2.title">
@@ -2742,7 +2742,7 @@
       </trans-unit>
       <trans-unit id="xnI-Se-9HL.title">
         <source>Save</source>
-        <target>Save</target>
+        <target>Lagre</target>
         <note>Class = "NSButtonCell"; title = "Save"; ObjectID = "xnI-Se-9HL";</note>
       </trans-unit>
       <trans-unit id="xol-Yr-McI.title">
