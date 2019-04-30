@@ -562,7 +562,7 @@
       </trans-unit>
       <trans-unit id="CCB-zy-XDh.title">
         <source>Error : no rsync in path</source>
-        <target>Error : no rsync in path</target>
+        <target>Feil: ingen rsync i sti</target>
         <note>Class = "NSTextFieldCell"; title = "Error : no rsync in path"; ObjectID = "CCB-zy-XDh";</note>
       </trans-unit>
       <trans-unit id="CIR-Jz-Krc.title">
@@ -857,7 +857,7 @@
       </trans-unit>
       <trans-unit id="HPC-E0-3iO.title">
         <source>(for your own safety, please verify the shasum after download)</source>
-        <target>(for your own safety, please verify the shasum after download)</target>
+        <target>(for din egen sikkerhet verifiser shasum)</target>
         <note>Class = "NSTextFieldCell"; title = "(for your own safety, please verify the shasum after download)"; ObjectID = "HPC-E0-3iO";</note>
       </trans-unit>
       <trans-unit id="HQE-mN-lgx.title">
@@ -912,7 +912,7 @@
       </trans-unit>
       <trans-unit id="IMJ-3e-rYJ.title">
         <source>Getting information, please wait ...</source>
-        <target>Getting information, please wait ...</target>
+        <target>Henter info, vennligst vent...</target>
         <note>Class = "NSTextFieldCell"; title = "Getting information, please wait ..."; ObjectID = "IMJ-3e-rYJ";</note>
       </trans-unit>
       <trans-unit id="Icw-Qm-VbA.headerCell.title">
@@ -1072,7 +1072,7 @@
       </trans-unit>
       <trans-unit id="MVn-QH-6i5.title">
         <source>Executing task, please wait...</source>
-        <target>Executing task, please wait...</target>
+        <target>Kjører oppgave, vennligst vent...</target>
         <note>Class = "NSTextFieldCell"; title = "Executing task, please wait..."; ObjectID = "MVn-QH-6i5";</note>
       </trans-unit>
       <trans-unit id="Md7-8G-z2y.title">
@@ -2732,7 +2732,7 @@
       </trans-unit>
       <trans-unit id="xXy-oY-7zq.title">
         <source>Finding tasks for automatic backup, please wait...</source>
-        <target>Finding tasks for automatic backup, please wait...</target>
+        <target>Søker oppgaver for automatisk backup, vennligst vent...</target>
         <note>Class = "NSTextFieldCell"; title = "Finding tasks for automatic backup, please wait..."; ObjectID = "xXy-oY-7zq";</note>
       </trans-unit>
       <trans-unit id="xZ6-fW-WQl.title">
@@ -2844,11 +2844,123 @@
     <body>
       <trans-unit id="CFBundleName">
         <source>RsyncOSX</source>
-        <note>Bundle name</note>
+        <note>Bundle name</note><target>RsyncOSX</target>
       </trans-unit>
       <trans-unit id="NSHumanReadableCopyright">
         <source>Copyright © 2019 Thomas Evensen. All rights reserved.</source>
-        <note>Copyright (human-readable)</note>
+        <note>Copyright (human-readable)</note><target> &lt;trans-unit id="Restore"&gt;
+        &lt;source&gt;Restore&lt;/source&gt;
+        &lt;note&gt;Restore&lt;/note&gt;
+      &lt;/trans-unit&gt;
+      &lt;trans-unit id="Start restore?"&gt;
+        &lt;source&gt;Start restore?&lt;/source&gt;
+        &lt;note&gt;Restore&lt;/note&gt;
+      &lt;/trans-unit&gt;
+    &lt;/body&gt;
+  Copyright ©2019 Thomas Evensen. Alle rettigheter.</target>
+      </trans-unit>
+    </body>
+  </file>
+<file original="RsyncOSX/en.lproj/Localizable.strings" datatype="plaintext" source-language="en" target-language="nb">
+    <header>
+      <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="10.2.1" build-num="10E1001"/>
+    </header>
+    <body>
+      <trans-unit id="Add">
+        <source>Add</source>
+        <note>Add schedule</note><target>Legg til</target>
+      </trans-unit>
+      <trans-unit id="Add Schedule?">
+        <source>Add Schedule?</source>
+        <note>Add schedule</note><target>Legg til schedule?</target>
+      </trans-unit>
+      <trans-unit id="Cancel">
+        <source>Cancel</source>
+        <note>Cancel NSAlert</note><target>Kanseler</target>
+      </trans-unit>
+      <trans-unit id="Cancel or Add">
+        <source>Cancel or Add</source>
+        <note>Add schedule</note><target>Kanseler eller legg til</target>
+      </trans-unit>
+      <trans-unit id="Cancel or Delete">
+        <source>Cancel or Delete</source>
+        <note>Loggs, Tasks and Profile</note><target>Kanseler eller slett</target>
+      </trans-unit>
+      <trans-unit id="Cancel or Delete?">
+        <source>Cancel or Delete?</source>
+        <note>Loggs, Tasks and Profile</note><target>Kanseler eller slett?</target>
+      </trans-unit>
+      <trans-unit id="Cancel or Restore">
+        <source>Cancel or Restore</source>
+        <note>Restore</note><target>Kanseler eller restore</target>
+      </trans-unit>
+      <trans-unit id="Close">
+        <source>Close</source>
+        <note>Close NSAlert</note><target>Lukk</target>
+      </trans-unit>
+      <trans-unit id="Copy single files or directory?">
+        <source>Copy single files or directory?</source>
+        <note>Restore</note><target>Copier fil eller katalog?</target>
+      </trans-unit>
+      <trans-unit id="Copyright ©2019 Thomas Evensen">
+        <source>Copyright ©2019 Thomas Evensen</source>
+        <note>copyright</note><target>Copyright ©2019 Thomas Evensen.</target>
+      </trans-unit>
+      <trans-unit id="Delete">
+        <source>Delete</source>
+        <note>Loggs, Tasks and Profile</note><target>Slett</target>
+      </trans-unit>
+<trans-unit id="Delete ">
+        <source>Delete </source>
+        <note>Loggs, Tasks and Profile</note><target>Slett</target>
+      </trans-unit>
+      <trans-unit id="Delete profile: ">
+        <source>Delete profile: </source>
+        <note>Loggs, Tasks and Profile</note><target>Slett profil:</target>
+      </trans-unit>
+      <trans-unit id="Delete selected task? ">
+        <source>Delete selected task? </source>
+        <note>Loggs, Tasks and Profile</note><target>Slett valgt oppgave?</target>
+      </trans-unit>
+      <trans-unit id="Do you REALLY want to DELETE selected snapshots?">
+        <source>Do you REALLY want to DELETE selected snapshots?</source>
+        <note>Snapshots</note><target>Vil du VIRKELIG SLETTE valgte snapshot?</target>
+      </trans-unit>
+      <trans-unit id="Do you REALLY want to start a RESTORE ?">
+        <source>Do you REALLY want to start a RESTORE ?</source>
+        <note>Restore</note><target>Vil du VIRKELIG utføre en RESTORE?</target>
+      </trans-unit>
+      <trans-unit id="Dont change the snapshot num if you don´t know what you are doing...">
+        <source>Dont change the snapshot num if you don´t know what you are doing...</source>
+        <note>Snapshots</note><target>Ikke endre snapshot nummer hvis du ikke vet hva du gjør...</target>
+      </trans-unit>
+      <trans-unit id="ERROR: no rclone in ">
+        <source>ERROR: no rclone in </source>
+        <note>Error rclone</note><target>FEIL: ingen rclone i</target>
+      </trans-unit>
+      <trans-unit id="ERROR: no rclone in /usr/local/bin">
+        <source>ERROR: no rclone in /usr/local/bin</source>
+        <note>Error rclone</note><target>FEIL: ingen rclone i /usr/local/bin</target>
+      </trans-unit>
+      <trans-unit id="ERROR: no rsync in ">
+        <source>ERROR: no rsync in </source>
+        <note>Error rsync</note><target>FEIL: ingen rsync i</target>
+      </trans-unit>
+      <trans-unit id="ERROR: no rsync in /usr/local/bin">
+        <source>ERROR: no rsync in /usr/local/bin</source>
+        <note>Error rsync</note><target>FEIL: ingen rsync i /usr/local/bin</target>
+      </trans-unit>
+      <trans-unit id="Icon by: Zsolt Sándor">
+        <source>Icon by: Zsolt Sándor</source>
+        <note>icon</note><target>Icon av: Zsolt Sándor</target>
+      </trans-unit>
+ 	<trans-unit id="Restore">
+        <source>Restore</source>
+        <note>Restore</note><target>Restore</target>
+      </trans-unit>
+      <trans-unit id="Start restore?">
+        <source>Start restore?</source>
+        <note>Restore</note><target>Start restore?</target>
       </trans-unit>
     </body>
   </file>
