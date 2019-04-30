@@ -2910,10 +2910,6 @@
         <source>Delete</source>
         <note>Loggs, Tasks and Profile</note><target>Slett</target>
       </trans-unit>
-<trans-unit id="Delete ">
-        <source>Delete </source>
-        <note>Loggs, Tasks and Profile</note><target>Slett</target>
-      </trans-unit>
       <trans-unit id="Delete profile: ">
         <source>Delete profile: </source>
         <note>Loggs, Tasks and Profile</note><target>Slett profil:</target>
