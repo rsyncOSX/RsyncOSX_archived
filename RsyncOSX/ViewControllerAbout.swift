@@ -18,8 +18,8 @@ class ViewControllerAbout: NSViewController, SetDismisser, Delay {
     @IBOutlet weak var copyright: NSTextField!
     @IBOutlet weak var iconby: NSTextField!
 
-    var copyrigthstring: String = "Copyright ©2019 Thomas Evensen"
-    var iconbystring: String = "Icon by: Zsolt Sándor"
+    var copyrigthstring: String = NSLocalizedString("Copyright ©2019 Thomas Evensen", comment: "copyright")
+    var iconbystring: String = NSLocalizedString("Icon by: Zsolt Sándor", comment: "icon")
 
     var checkfornewversion: Checkfornewversion?
     private var resource: Resources?
