@@ -562,7 +562,7 @@
       </trans-unit>
       <trans-unit id="CCB-zy-XDh.title">
         <source>Error : no rsync in path</source>
-        <target>Error : no rsync in path</target>
+        <target>Feil: ingen rsync i sti</target>
         <note>Class = "NSTextFieldCell"; title = "Error : no rsync in path"; ObjectID = "CCB-zy-XDh";</note>
       </trans-unit>
       <trans-unit id="CIR-Jz-Krc.title">
@@ -857,7 +857,7 @@
       </trans-unit>
       <trans-unit id="HPC-E0-3iO.title">
         <source>(for your own safety, please verify the shasum after download)</source>
-        <target>(for your own safety, please verify the shasum after download)</target>
+        <target>(for din egen sikkerhet verifiser shasum)</target>
         <note>Class = "NSTextFieldCell"; title = "(for your own safety, please verify the shasum after download)"; ObjectID = "HPC-E0-3iO";</note>
       </trans-unit>
       <trans-unit id="HQE-mN-lgx.title">
@@ -912,7 +912,7 @@
       </trans-unit>
       <trans-unit id="IMJ-3e-rYJ.title">
         <source>Getting information, please wait ...</source>
-        <target>Getting information, please wait ...</target>
+        <target>Henter info, vennligst vent...</target>
         <note>Class = "NSTextFieldCell"; title = "Getting information, please wait ..."; ObjectID = "IMJ-3e-rYJ";</note>
       </trans-unit>
       <trans-unit id="Icw-Qm-VbA.headerCell.title">
@@ -1072,7 +1072,7 @@
       </trans-unit>
       <trans-unit id="MVn-QH-6i5.title">
         <source>Executing task, please wait...</source>
-        <target>Executing task, please wait...</target>
+        <target>Kjører oppgave, vennligst vent...</target>
         <note>Class = "NSTextFieldCell"; title = "Executing task, please wait..."; ObjectID = "MVn-QH-6i5";</note>
       </trans-unit>
       <trans-unit id="Md7-8G-z2y.title">
@@ -2732,7 +2732,7 @@
       </trans-unit>
       <trans-unit id="xXy-oY-7zq.title">
         <source>Finding tasks for automatic backup, please wait...</source>
-        <target>Finding tasks for automatic backup, please wait...</target>
+        <target>Søker oppgaver for automatisk backup, vennligst vent...</target>
         <note>Class = "NSTextFieldCell"; title = "Finding tasks for automatic backup, please wait..."; ObjectID = "xXy-oY-7zq";</note>
       </trans-unit>
       <trans-unit id="xZ6-fW-WQl.title">
