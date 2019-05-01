@@ -1612,7 +1612,7 @@
       </trans-unit>
       <trans-unit id="XjB-Sb-slI.title">
         <source>path RsyncOSXsched:</source>
-        <target>path RsyncOSXsched:</target>
+        <target>sti RsyncOSXsched:</target>
         <note>Class = "NSTextFieldCell"; title = "path RsyncOSXsched:"; ObjectID = "XjB-Sb-slI";</note>
       </trans-unit>
       <trans-unit id="XoQ-If-N1I.headerCell.title">
@@ -1767,7 +1767,7 @@
       </trans-unit>
       <trans-unit id="bgh-eQ-3ly.headerCell.title">
         <source>Used (GB)</source>
-        <target>Used (GB)</target>
+        <target>Brukt (GB)</target>
         <note>Class = "NSTableColumn"; headerCell.title = "Used (GB)"; ObjectID = "bgh-eQ-3ly";</note>
       </trans-unit>
       <trans-unit id="bib-Uj-vzu.title">
@@ -1807,7 +1807,7 @@
       </trans-unit>
       <trans-unit id="cpU-CN-ZOm.title">
         <source>Copy</source>
-        <target>Copy</target>
+        <target>Kopi</target>
         <note>Class = "NSButtonCell"; title = "Copy"; ObjectID = "cpU-CN-ZOm";</note>
       </trans-unit>
       <trans-unit id="d9k-fP-XKG.title">
@@ -1857,7 +1857,7 @@
       </trans-unit>
       <trans-unit id="dtI-40-Iqi.headerCell.title">
         <source>When</source>
-        <target>When</target>
+        <target>Når</target>
         <note>Class = "NSTableColumn"; headerCell.title = "When"; ObjectID = "dtI-40-Iqi";</note>
       </trans-unit>
       <trans-unit id="dti-GW-qCA.title">
@@ -1937,7 +1937,7 @@
       </trans-unit>
       <trans-unit id="f6o-pt-x0z.title">
         <source>v 3.1.2 or 3.1.3 rsync - set optional path if NOT in /usr/local/bin</source>
-        <target>v 3.1.2 or 3.1.3 rsync - set optional path if NOT in /usr/local/bin</target>
+        <target>v 3.1.2 or 3.1.3 rsync - set sti hvis IKKE i /usr/local/bin</target>
         <note>Class = "NSButtonCell"; title = "v 3.1.2 or 3.1.3 rsync - set optional path if NOT in /usr/local/bin"; ObjectID = "f6o-pt-x0z";</note>
       </trans-unit>
       <trans-unit id="f8w-ZJ-YZg.title">
@@ -2017,7 +2017,7 @@
       </trans-unit>
       <trans-unit id="gRY-vZ-99W.title">
         <source>Completed...</source>
-        <target>Completed...</target>
+        <target>Utført...</target>
         <note>Class = "NSTextFieldCell"; title = "Completed..."; ObjectID = "gRY-vZ-99W";</note>
       </trans-unit>
       <trans-unit id="gSZ-r8-8Ry.headerCell.title">
@@ -2242,7 +2242,7 @@
       </trans-unit>
       <trans-unit id="kUC-cs-Fc2.title">
         <source>ssh directory:</source>
-        <target>ssh directory:</target>
+        <target>ssh katalog:</target>
         <note>Class = "NSTextFieldCell"; title = "ssh directory:"; ObjectID = "kUC-cs-Fc2";</note>
       </trans-unit>
       <trans-unit id="lBk-94-nYF.title">
@@ -2267,7 +2267,7 @@
       </trans-unit>
       <trans-unit id="lvl-UW-J6U.title">
         <source>Date last backup:</source>
-        <note>Class = "NSTextFieldCell"; title = "Date last backup:"; ObjectID = "lvl-UW-J6U";</note>
+        <note>Class = "NSTextFieldCell"; title = "Date last backup:"; ObjectID = "lvl-UW-J6U";</note><target>Dato siste backup:</target>
       </trans-unit>
       <trans-unit id="lxg-t9-eiU.title">
         <source>Task info</source>
@@ -2296,7 +2296,7 @@
       </trans-unit>
       <trans-unit id="mXT-RY-XvH.headerCell.title">
         <source>Stop schedule</source>
-        <target>Stop schedule</target>
+        <target>Stopp schedule</target>
         <note>Class = "NSTableColumn"; headerCell.title = "Stop schedule"; ObjectID = "mXT-RY-XvH";</note>
       </trans-unit>
       <trans-unit id="mYi-Km-zY1.title">
@@ -2421,7 +2421,7 @@
       </trans-unit>
       <trans-unit id="q8z-Ku-oKx.title">
         <source>Version :</source>
-        <target>Version :</target>
+        <target>Versjon :</target>
         <note>Class = "NSTextFieldCell"; title = "Version :"; ObjectID = "q8z-Ku-oKx";</note>
       </trans-unit>
       <trans-unit id="qat-Dj-4j6.title">
@@ -2436,7 +2436,7 @@
       </trans-unit>
       <trans-unit id="qit-95-flM.title">
         <source>Logs</source>
-        <target>Logs</target>
+        <target>Logger</target>
         <note>Class = "NSMenuItem"; title = "Logs"; ObjectID = "qit-95-flM";</note>
       </trans-unit>
       <trans-unit id="qq5-4q-5kV.title">
@@ -2496,7 +2496,7 @@
       </trans-unit>
       <trans-unit id="sDH-LN-0H4.title">
         <source>Progress</source>
-        <target>Progress</target>
+        <target>Progresjon</target>
         <note>Class = "NSViewController"; title = "Progress"; ObjectID = "sDH-LN-0H4";</note>
       </trans-unit>
       <trans-unit id="sE6-n6-Lin.title">
@@ -2867,6 +2867,10 @@
       <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="10.2.1" build-num="10E1001"/>
     </header>
     <body>
+      <trans-unit id=" ... set in User configuration ...">
+        <source> ... set in User configuration ...</source>
+        <note>Restore</note><target>... sett i bruker preferanser...</target>
+      </trans-unit>
       <trans-unit id="Add">
         <source>Add</source>
         <target>Legg til</target>
@@ -2907,9 +2911,14 @@
         <target>Lukk</target>
         <note>Close NSAlert</note>
       </trans-unit>
+      <trans-unit id="Completed ...">
+        <source>Completed ...</source>
+        <note>Verify</note><target>Utført</target>
+      </trans-unit>
       <trans-unit id="Computing changed, please wait...">
         <source>Computing changed, please wait...</source>
-        <note>Verify</note><target>Beregning endret, vennligst vent...</target>
+        <target>Beregning endret, vennligst vent...</target>
+        <note>Verify</note>
       </trans-unit>
       <trans-unit id="Copy single files or directory?">
         <source>Copy single files or directory?</source>
@@ -2986,10 +2995,22 @@
         <target>FEIL: ingen rsync i /usr/local/bin</target>
         <note>Error rsync</note>
       </trans-unit>
+      <trans-unit id="Executing restore...">
+        <source>Executing restore...</source>
+        <note>Restore</note><target>Utfører restore</target>
+      </trans-unit>
+      <trans-unit id="Getting info, please wait...">
+        <source>Getting info, please wait...</source>
+        <note>Restore</note><target>Henter informasjon, vennligst vent...</target>
+      </trans-unit>
       <trans-unit id="Getting information, please wait ...">
         <source>Getting information, please wait ...</source>
         <target>Henter informasjon, vennligst vent</target>
         <note>Verify</note>
+      </trans-unit>
+      <trans-unit id="Got it...">
+        <source>Got it...</source>
+        <note>Restore</note><target>Info hentet...</target>
       </trans-unit>
       <trans-unit id="Icon by: Zsolt Sándor">
         <source>Icon by: Zsolt Sándor</source>
@@ -3001,10 +3022,18 @@
         <target>Velg en oppgave i Utfør</target>
         <note>Verify</note>
       </trans-unit>
+      <trans-unit id="Probably some rsync error...">
+        <source>Probably some rsync error...</source>
+        <note>Restore</note><target>Malignes rsync feil...</target>
+      </trans-unit>
       <trans-unit id="Restore">
         <source>Restore</source>
         <target>Restore</target>
         <note>Restore</note>
+      </trans-unit>
+      <trans-unit id="Restore is completed...">
+        <source>Restore is completed...</source>
+        <note>Restore</note><target>Restore er utført...</target>
       </trans-unit>
       <trans-unit id="Start restore?">
         <source>Start restore?</source>
@@ -3013,7 +3042,8 @@
       </trans-unit>
       <trans-unit id="Verifying, please wait...">
         <source>Verifying, please wait...</source>
-        <note>Verify</note><target>Verifiserer, vennligst vent...</target>
+        <target>Verifiserer, vennligst vent...</target>
+        <note>Verify</note>
       </trans-unit>
     </body>
   </file>

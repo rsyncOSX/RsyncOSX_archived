@@ -54,7 +54,8 @@ class ViewControllerRestore: NSViewController, SetConfigurations, SetDismisser, 
             self.selecttmptorestore.isEnabled = false
             self.estimationcompleted = false
             self.gotit.textColor = .white
-            self.gotit.stringValue = "Getting info, please wait..."
+            let gotit: String = NSLocalizedString("Getting info, please wait...", comment: "Restore")
+            self.gotit.stringValue = gotit
             self.working.startAnimation(nil)
             self.outputprocess = OutputProcess()
             self.sendprocess?.sendoutputprocessreference(outputprocess: self.outputprocess)
@@ -67,7 +68,8 @@ class ViewControllerRestore: NSViewController, SetConfigurations, SetDismisser, 
                 return
             }
         } else {
-            self.gotit.stringValue = "Probably some rsync error..."
+            let gotit: String = NSLocalizedString("Probably some rsync error...", comment: "Restore")
+            self.gotit.stringValue = gotit
         }
     }
 
@@ -79,7 +81,8 @@ class ViewControllerRestore: NSViewController, SetConfigurations, SetDismisser, 
         if answer {
             if let index = self.index() {
                 self.gotit.textColor = .white
-                self.gotit.stringValue = "Executing restore..."
+                let gotit: String = NSLocalizedString("Executing restore...", comment: "Restore")
+                self.gotit.stringValue = gotit
                 self.restorebutton.isEnabled = false
                 self.abortandclose = true
                 self.initiateProgressbar()
@@ -124,7 +127,8 @@ class ViewControllerRestore: NSViewController, SetConfigurations, SetDismisser, 
             if let port = config.sshport {
                 self.sshport.stringValue = String(port)
             }
-            self.tmprestore.stringValue = ViewControllerReference.shared.restorePath ?? " ... set in User configuration ..."
+            let setuserconfig: String = NSLocalizedString(" ... set in User configuration ...", comment: "Restore")
+            self.tmprestore.stringValue = ViewControllerReference.shared.restorePath ?? setuserconfig
             if ViewControllerReference.shared.restorePath == nil {
                 self.selecttmptorestore.isEnabled = false
             }
@@ -159,7 +163,8 @@ class ViewControllerRestore: NSViewController, SetConfigurations, SetDismisser, 
             self.working.stopAnimation(nil)
             self.restorebutton.isEnabled = true
             self.gotit.textColor = .green
-            self.gotit.stringValue = "Got it..."
+            let gotit: String = NSLocalizedString("Got it...", comment: "Restore")
+            self.gotit.stringValue = gotit
         })
     }
 
@@ -190,7 +195,8 @@ extension ViewControllerRestore: UpdateProgress {
             self.selecttmptorestore.isEnabled = true
         } else {
             self.gotit.textColor = .green
-            self.gotit.stringValue = "Restore is completed..."
+            let gotit: String = NSLocalizedString("Restore is completed...", comment: "Restore")
+            self.gotit.stringValue = gotit
             self.restoreprogress.isHidden = true
             self.restorecompleted = true
         }
