@@ -1,0 +1,69 @@
+/* Add schedule */
+"Add" = "Legg til";
+
+/* Add schedule */
+"Add Schedule?" = "Legg til schedule?";
+
+/* Cancel NSAlert */
+"Cancel" = "Kanseler";
+
+/* Add schedule */
+"Cancel or Add" = "Kanseler eller legg til";
+
+/* Loggs, Tasks and Profile */
+"Cancel or Delete" = "Kanseler eller slett";
+
+/* Loggs, Tasks and Profile */
+"Cancel or Delete?" = "Kanseler eller slett?";
+
+/* Restore */
+"Cancel or Restore" = "Kanseler eller restore";
+
+/* Close NSAlert */
+"Close" = "Lukk";
+
+/* Restore */
+"Copy single files or directory?" = "Copier fil eller katalog?";
+
+/* copyright */
+"Copyright ©2019 Thomas Evensen" = "Copyright ©2019 Thomas Evensen.";
+
+/* Loggs, Tasks and Profile */
+"Delete" = "Slett";
+
+/* Loggs, Tasks and Profile */
+"Delete profile: " = "Slett profil:";
+
+/* Loggs, Tasks and Profile */
+"Delete selected task? " = "Slett valgt oppgave?";
+
+/* Snapshots */
+"Do you REALLY want to DELETE selected snapshots?" = "Vil du VIRKELIG SLETTE valgte snapshot?";
+
+/* Restore */
+"Do you REALLY want to start a RESTORE ?" = "Vil du VIRKELIG utføre en RESTORE?";
+
+/* Snapshots */
+"Dont change the snapshot num if you don´t know what you are doing..." = "Ikke endre snapshot nummer hvis du ikke vet hva du gjør...";
+
+/* Error rclone */
+"ERROR: no rclone in " = "FEIL: ingen rclone i";
+
+/* Error rclone */
+"ERROR: no rclone in /usr/local/bin" = "FEIL: ingen rclone i /usr/local/bin";
+
+/* Error rsync */
+"ERROR: no rsync in " = "FEIL: ingen rsync i";
+
+/* Error rsync */
+"ERROR: no rsync in /usr/local/bin" = "FEIL: ingen rsync i /usr/local/bin";
+
+/* icon */
+"Icon by: Zsolt Sándor" = "Icon av: Zsolt Sándor";
+
+/* Restore */
+"Restore" = "Restore";
+
+/* Restore */
+"Start restore?" = "Start restore?";
+

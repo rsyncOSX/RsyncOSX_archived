@@ -1,0 +1,6 @@
+/* Bundle name */
+"CFBundleName" = "RsyncOSX";
+
+/* Copyright (human-readable) */
+"NSHumanReadableCopyright" = " <trans-unit id=\"Restore\">\n        <source>Restore</source>\n        <note>Restore</note>\n      </trans-unit>\n      <trans-unit id=\"Start restore?\">\n        <source>Start restore?</source>\n        <note>Restore</note>\n      </trans-unit>\n    </body>\n  Copyright ©2019 Thomas Evensen. Alle rettigheter.";
+
