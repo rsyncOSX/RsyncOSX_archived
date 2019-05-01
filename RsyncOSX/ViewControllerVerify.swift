@@ -153,17 +153,21 @@ class ViewControllerVerify: NSViewController, SetConfigurations, Index, VcExecut
             self.setinfo()
             self.enabledisablebuttons(enable: false)
             self.estimatedindex = index
-            self.gotit.stringValue = "Getting information, please wait ..."
+            let gotit: String = NSLocalizedString("Getting information, please wait ...", comment: "Verify")
+            self.gotit.stringValue = gotit
             self.gotremoteinfo = false
             self.complete = false
             let datelastbackup = self.configurations?.getConfigurations()[index].dateRun ?? "none"
             let numberlastbackup = self.configurations?.getConfigurations()[index].dayssincelastbackup ?? "none"
-            self.datelastbackup.stringValue = "Date last backup: " + datelastbackup
-            self.dayslastbackup.stringValue = "Days since last backup: " + numberlastbackup
+            let lastdate: String = NSLocalizedString("Date last backup: ", comment: "Verify")
+            let dayssince: String = NSLocalizedString("Days since last backup: ", comment: "Verify")
+            self.datelastbackup.stringValue = lastdate + datelastbackup
+            self.dayslastbackup.stringValue = dayssince + numberlastbackup
             self.estimateremoteinfo(index: index, local: true)
         } else {
             self.gotit.textColor = .red
-            self.gotit.stringValue = "Please select a task in Execute ..."
+            let task: String = NSLocalizedString("Please select a task in Execute ...", comment: "Verify")
+            self.gotit.stringValue = task
             self.outputprocess = nil
             globalMainQueue.async(execute: { () -> Void in
                 self.resetinfo()
@@ -251,8 +255,10 @@ class ViewControllerVerify: NSViewController, SetConfigurations, Index, VcExecut
         self.totalDirs.stringValue = ""
         self.newfiles.stringValue = ""
         self.deletefiles.stringValue = ""
-        self.datelastbackup.stringValue = "Date last backup:"
-        self.dayslastbackup.stringValue = "Days since last backup:"
+        let lastdate: String = NSLocalizedString("Date last backup:", comment: "Verify")
+        let dayssince: String = NSLocalizedString("Days since last backup:", comment: "Verify")
+        self.datelastbackup.stringValue = lastdate
+        self.dayslastbackup.stringValue = dayssince
         self.rsynccommanddisplay.stringValue = ""
         self.verifyradiobutton.state = .off
         self.changedradiobutton.state = .off
