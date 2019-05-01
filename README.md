@@ -12,6 +12,10 @@ Scheduled tasks are added and deleted within RsyncOSX. Executing the scheduled t
 
 The [Changelog](https://rsyncosx.github.io/Changelog).
 
+### Localization
+
+RsyncOSX is in progress for being translated to Chinese and Norwegian. If there are volunteers for translating to other languages please create an issue for this. Translating RsyncOSX is done by utilizing a [Xlifftool](https://github.com/remuslazar/osx-xliff-tool). I will generate the required xliff file for translating. 
+
 ### Version of rsync
 
 RsyncOSX is only verified with rsync versions 2.6.9, 3.1.2 and 3.1.3. Other versions of rsync will work but numbers about transferred files is not set in logs. It is recommended to [install](https://rsyncosx.github.io/Install) the latest version of rsync.
