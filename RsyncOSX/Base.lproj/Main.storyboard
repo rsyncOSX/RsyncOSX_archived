@@ -5425,7 +5425,7 @@ DQ
                                 </textFieldCell>
                             </textField>
                             <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="gl4-DQ-Oz7">
-                                <rect key="frame" x="268" y="86" width="56" height="18"/>
+                                <rect key="frame" x="268" y="86" width="78" height="18"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <buttonCell key="cell" type="radio" title="verify" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="jTS-YA-55S">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>

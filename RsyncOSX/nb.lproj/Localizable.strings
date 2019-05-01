@@ -1,3 +1,6 @@
+/* Restore */
+" ... set in User configuration ..." = "... sett i bruker preferanser...";
+
 /* Add schedule */
 "Add" = "Legg til";
 
@@ -21,6 +24,9 @@
 
 /* Close NSAlert */
 "Close" = "Lukk";
+
+/* Verify */
+"Completed ..." = "Utført";
 
 /* Verify */
 "Computing changed, please wait..." = "Beregning endret, vennligst vent...";
@@ -70,8 +76,17 @@
 /* Error rsync */
 "ERROR: no rsync in /usr/local/bin" = "FEIL: ingen rsync i /usr/local/bin";
 
+/* Restore */
+"Executing restore..." = "Utfører restore";
+
+/* Restore */
+"Getting info, please wait..." = "Henter informasjon, vennligst vent...";
+
 /* Verify */
 "Getting information, please wait ..." = "Henter informasjon, vennligst vent";
+
+/* Restore */
+"Got it..." = "Info hentet...";
 
 /* icon */
 "Icon by: Zsolt Sándor" = "Icon av: Zsolt Sándor";
@@ -80,7 +95,13 @@
 "Please select a task in Execute ..." = "Velg en oppgave i Utfør";
 
 /* Restore */
+"Probably some rsync error..." = "Malignes rsync feil...";
+
+/* Restore */
 "Restore" = "Restore";
+
+/* Restore */
+"Restore is completed..." = "Restore er utført...";
 
 /* Restore */
 "Start restore?" = "Start restore?";
