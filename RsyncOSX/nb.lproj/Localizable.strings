@@ -28,8 +28,17 @@
 /* copyright */
 "Copyright ©2019 Thomas Evensen" = "Copyright ©2019 Thomas Evensen.";
 
+/* Verify */
+"Date last backup:" = "Dato siste backup:";
+
+/* Verify */
+"Days since last backup:" = "Dager siden siste backup:";
+
 /* Loggs, Tasks and Profile */
 "Delete" = "Slett";
+
+/* Loggs, Tasks and Profile */
+"Delete " = "Slett";
 
 /* Loggs, Tasks and Profile */
 "Delete profile: " = "Slett profil:";
@@ -58,8 +67,14 @@
 /* Error rsync */
 "ERROR: no rsync in /usr/local/bin" = "FEIL: ingen rsync i /usr/local/bin";
 
+/* Verify */
+"Getting information, please wait ..." = "Henter informasjon, vennligst vent";
+
 /* icon */
 "Icon by: Zsolt Sándor" = "Icon av: Zsolt Sándor";
+
+/* Verify */
+"Please select a task in Execute ..." = "Velg en oppgave i Utfør";
 
 /* Restore */
 "Restore" = "Restore";

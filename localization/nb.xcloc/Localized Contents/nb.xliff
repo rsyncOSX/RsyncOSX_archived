@@ -2265,11 +2265,6 @@
         <target>Text Cell</target>
         <note>Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "lsc-bT-MTr";</note>
       </trans-unit>
-      <trans-unit id="lvl-UW-J6U.title">
-        <source>Date last backup:</source>
-        <target>Dato siste backup:</target>
-        <note>Class = "NSTextFieldCell"; title = "Date last backup:"; ObjectID = "lvl-UW-J6U";</note>
-      </trans-unit>
       <trans-unit id="lxg-t9-eiU.title">
         <source>Task info</source>
         <target>Oppgave info</target>
@@ -2928,10 +2923,6 @@
       </trans-unit>
       <trans-unit id="Days since last backup:">
         <source>Days since last backup:</source>
-        <note>Verify</note><target>Dager siden siste backup:</target>
-      </trans-unit>
-      <trans-unit id="Days since last backup: ">
-        <source>Days since last backup: </source>
         <note>Verify</note><target>Dager siden siste backup:</target>
       </trans-unit>
       <trans-unit id="Delete">
