@@ -682,7 +682,7 @@
       </trans-unit>
       <trans-unit id="EeS-fZ-csl.title">
         <source>Dsa public key is found.</source>
-        <target>Dsa public key is found.</target>
+        <target>Dsa offentlig nøkkel.</target>
         <note>Class = "NSButtonCell"; title = "Dsa public key is found."; ObjectID = "EeS-fZ-csl";</note>
       </trans-unit>
       <trans-unit id="EiP-tC-Ve8.title">
@@ -702,7 +702,7 @@
       </trans-unit>
       <trans-unit id="F2S-fz-NVQ.title">
         <source>Help</source>
-        <target>Help</target>
+        <target>Hjelp</target>
         <note>Class = "NSMenu"; title = "Help"; ObjectID = "F2S-fz-NVQ";</note>
       </trans-unit>
       <trans-unit id="F3S-S0-DIg.headerCell.title">
@@ -717,7 +717,7 @@
       </trans-unit>
       <trans-unit id="FKE-Sm-Kum.title">
         <source>RsyncOSX Help</source>
-        <target>RsyncOSX Help</target>
+        <target>RsyncOSX hjelp</target>
         <note>Class = "NSMenuItem"; title = "RsyncOSX Help"; ObjectID = "FKE-Sm-Kum";</note>
       </trans-unit>
       <trans-unit id="FSh-WF-QKH.title">
@@ -727,7 +727,7 @@
       </trans-unit>
       <trans-unit id="FW3-kS-er7.title">
         <source>kB to be transferred:</source>
-        <target>kB to be transferred:</target>
+        <target>kB for overføring:</target>
         <note>Class = "NSTextFieldCell"; title = "kB to be transferred:"; ObjectID = "FW3-kS-er7";</note>
       </trans-unit>
       <trans-unit id="FXq-M1-hKG.headerCell.title">
@@ -747,7 +747,7 @@
       </trans-unit>
       <trans-unit id="Fmg-bN-W4h.title">
         <source>About</source>
-        <target>About</target>
+        <target>Om</target>
         <note>Class = "NSViewController"; title = "About"; ObjectID = "Fmg-bN-W4h";</note>
       </trans-unit>
       <trans-unit id="FrI-lc-qcT.title">
@@ -822,7 +822,7 @@
       </trans-unit>
       <trans-unit id="GYz-8J-WDp.toolTip">
         <source>Display output from rsync...</source>
-        <target>Display output from rsync...</target>
+        <target>Vis output fra rsync...</target>
         <note>Class = "NSToolbarItem"; toolTip = "Display output from rsync..."; ObjectID = "GYz-8J-WDp";</note>
       </trans-unit>
       <trans-unit id="GZS-gl-N62.title">
@@ -902,7 +902,7 @@
       </trans-unit>
       <trans-unit id="IAo-SY-fd9.title">
         <source>Profiles</source>
-        <target>Profiles</target>
+        <target>Profiler</target>
         <note>Class = "NSMenuItem"; title = "Profiles"; ObjectID = "IAo-SY-fd9";</note>
       </trans-unit>
       <trans-unit id="IDs-zU-XOw.headerCell.title">
@@ -1032,7 +1032,7 @@
       </trans-unit>
       <trans-unit id="LGQ-8V-u3e.title">
         <source>Restore to tmp catalog</source>
-        <target>Restore to tmp catalog</target>
+        <target>Restore til tmp katalog</target>
         <note>Class = "NSBox"; title = "Restore to tmp catalog"; ObjectID = "LGQ-8V-u3e";</note>
       </trans-unit>
       <trans-unit id="LNh-Ch-4lY.title">
@@ -1047,7 +1047,7 @@
       </trans-unit>
       <trans-unit id="Lkc-8f-opa.title">
         <source>Remote username:</source>
-        <target>Ekster bruker:</target>
+        <target>Ekstern bruker:</target>
         <note>Class = "NSTextFieldCell"; title = "Remote username:"; ObjectID = "Lkc-8f-opa";</note>
       </trans-unit>
       <trans-unit id="LpG-4N-4hH.title">
@@ -1057,7 +1057,7 @@
       </trans-unit>
       <trans-unit id="LtM-4s-IJ1.title">
         <source>Dsa key</source>
-        <target>Dsa key</target>
+        <target>Dsa nøkkel</target>
         <note>Class = "NSButtonCell"; title = "Dsa key"; ObjectID = "LtM-4s-IJ1";</note>
       </trans-unit>
       <trans-unit id="Lur-Sd-kBP.headerCell.title">
@@ -1222,7 +1222,7 @@
       </trans-unit>
       <trans-unit id="PIK-cY-cmQ.title">
         <source>File or catalog to restore</source>
-        <target>File or catalog to restore</target>
+        <target>Fil eller katalog for restore</target>
         <note>Class = "NSBox"; title = "File or catalog to restore"; ObjectID = "PIK-cY-cmQ";</note>
       </trans-unit>
       <trans-unit id="PkH-9i-AY6.title">
@@ -1292,7 +1292,7 @@
       </trans-unit>
       <trans-unit id="QmL-ZM-Xc4.toolTip">
         <source>Execute all tasks now...</source>
-        <target>Execute all tasks now...</target>
+        <target>Utfør alle oppgaver nå...</target>
         <note>Class = "NSToolbarItem"; toolTip = "Execute all tasks now..."; ObjectID = "QmL-ZM-Xc4";</note>
       </trans-unit>
       <trans-unit id="QwI-78-cY5.title">
@@ -1682,7 +1682,7 @@
       </trans-unit>
       <trans-unit id="a0m-Z1-grn.title">
         <source>Rsa public key is found.</source>
-        <target>Rsa public key is found.</target>
+        <target>Rsa offentlig nøkkel.</target>
         <note>Class = "NSButtonCell"; title = "Rsa public key is found."; ObjectID = "a0m-Z1-grn";</note>
       </trans-unit>
       <trans-unit id="aCU-js-shc.title">
@@ -2032,7 +2032,7 @@
       </trans-unit>
       <trans-unit id="gXW-nt-e2S.title">
         <source>Check</source>
-        <target>Check</target>
+        <target>Sjekk</target>
         <note>Class = "NSButtonCell"; title = "Check"; ObjectID = "gXW-nt-e2S";</note>
       </trans-unit>
       <trans-unit id="gci-hz-pdE.headerCell.title">
@@ -2042,7 +2042,7 @@
       </trans-unit>
       <trans-unit id="goN-EU-g61.title">
         <source>Check rsa</source>
-        <target>Check rsa</target>
+        <target>Sjekk rsa</target>
         <note>Class = "NSButtonCell"; title = "Check rsa"; ObjectID = "goN-EU-g61";</note>
       </trans-unit>
       <trans-unit id="gsP-5c-DW5.title">
@@ -2057,7 +2057,7 @@
       </trans-unit>
       <trans-unit id="hBf-gt-Mxo.title">
         <source>Remote username:</source>
-        <target>Ekster bruker:</target>
+        <target>Ekstern bruker:</target>
         <note>Class = "NSTextFieldCell"; title = "Remote username:"; ObjectID = "hBf-gt-Mxo";</note>
       </trans-unit>
       <trans-unit id="hF2-vi-oTK.title">
@@ -2087,7 +2087,7 @@
       </trans-unit>
       <trans-unit id="hq8-Fq-pip.title">
         <source>Check dsa</source>
-        <target>Check dsa</target>
+        <target>Sjekk dsa</target>
         <note>Class = "NSButtonCell"; title = "Check dsa"; ObjectID = "hq8-Fq-pip";</note>
       </trans-unit>
       <trans-unit id="hrN-sQ-oUZ.title">
@@ -2142,12 +2142,12 @@
       </trans-unit>
       <trans-unit id="iS6-br-dsn.title">
         <source>Daily</source>
-        <target>Daily</target>
+        <target>Daglig</target>
         <note>Class = "NSButtonCell"; title = "Daily"; ObjectID = "iS6-br-dsn";</note>
       </trans-unit>
       <trans-unit id="iUw-2a-dr3.title">
         <source>Remote username:</source>
-        <target>Ekster bruker:</target>
+        <target>Ekstern bruker:</target>
         <note>Class = "NSTextFieldCell"; title = "Remote username:"; ObjectID = "iUw-2a-dr3";</note>
       </trans-unit>
       <trans-unit id="ibW-Po-vbR.title">
@@ -2312,7 +2312,7 @@
       </trans-unit>
       <trans-unit id="mfz-zc-vDd.title">
         <source>Remote username:</source>
-        <target>Ekster bruker:</target>
+        <target>Ekstern bruker:</target>
         <note>Class = "NSTextFieldCell"; title = "Remote username:"; ObjectID = "mfz-zc-vDd";</note>
       </trans-unit>
       <trans-unit id="mkb-9F-CQR.title">
@@ -2332,7 +2332,7 @@
       </trans-unit>
       <trans-unit id="nHu-Ph-Td8.title">
         <source>Remote username:</source>
-        <target>Ekster bruker:</target>
+        <target>Ekstern bruker:</target>
         <note>Class = "NSTextFieldCell"; title = "Remote username:"; ObjectID = "nHu-Ph-Td8";</note>
       </trans-unit>
       <trans-unit id="ngh-0r-Hwj.title">
@@ -2487,7 +2487,7 @@
       </trans-unit>
       <trans-unit id="s3e-Xz-emD.title">
         <source>Weekly</source>
-        <target>Weekly</target>
+        <target>Ukentlig</target>
         <note>Class = "NSButtonCell"; title = "Weekly"; ObjectID = "s3e-Xz-emD";</note>
       </trans-unit>
       <trans-unit id="sBt-QN-KGK.title">
@@ -2517,12 +2517,12 @@
       </trans-unit>
       <trans-unit id="sVQ-MX-XJE.title">
         <source>Most recent schedule on top...</source>
-        <target>Most recent schedule on top...</target>
+        <target>Siste schedule på topp...</target>
         <note>Class = "NSTextFieldCell"; title = "Most recent schedule on top..."; ObjectID = "sVQ-MX-XJE";</note>
       </trans-unit>
       <trans-unit id="srs-cz-k0D.title">
         <source>Local ssh keys</source>
-        <target>Local ssh keys</target>
+        <target>Lokale ssh nøkler</target>
         <note>Class = "NSBox"; title = "Local ssh keys"; ObjectID = "srs-cz-k0D";</note>
       </trans-unit>
       <trans-unit id="svl-UN-wQe.title">
@@ -2577,7 +2577,7 @@
       </trans-unit>
       <trans-unit id="uBc-LG-TjQ.title">
         <source>KB to be transferred:</source>
-        <target>KB to be transferred:</target>
+        <target>KB for overføring:</target>
         <note>Class = "NSTextFieldCell"; title = "KB to be transferred:"; ObjectID = "uBc-LG-TjQ";</note>
       </trans-unit>
       <trans-unit id="uCb-Gb-mwj.headerCell.title">
@@ -2607,7 +2607,7 @@
       </trans-unit>
       <trans-unit id="uUH-RU-JKF.title">
         <source>Remove parameters</source>
-        <target>Remove parameters</target>
+        <target>Slett parametre</target>
         <note>Class = "NSBox"; title = "Remove parameters"; ObjectID = "uUH-RU-JKF";</note>
       </trans-unit>
       <trans-unit id="ufF-c0-esL.headerCell.title">
@@ -2652,7 +2652,7 @@
       </trans-unit>
       <trans-unit id="vgF-FF-cIJ.title">
         <source>Rsync, paths and logging</source>
-        <target>Rsync, paths and logging</target>
+        <target>Rsync, path og logging</target>
         <note>Class = "NSBox"; title = "Rsync, paths and logging"; ObjectID = "vgF-FF-cIJ";</note>
       </trans-unit>
       <trans-unit id="w6i-hq-pcc.title">
@@ -2687,12 +2687,12 @@
       </trans-unit>
       <trans-unit id="wmz-CK-ZzC.title">
         <source>Rsa key</source>
-        <target>Rsa key</target>
+        <target>Rsa nøkkel</target>
         <note>Class = "NSButtonCell"; title = "Rsa key"; ObjectID = "wmz-CK-ZzC";</note>
       </trans-unit>
       <trans-unit id="wpr-3q-Mcd.title">
         <source>Help</source>
-        <target>Help</target>
+        <target>Hjelp</target>
         <note>Class = "NSMenuItem"; title = "Help"; ObjectID = "wpr-3q-Mcd";</note>
       </trans-unit>
       <trans-unit id="wrj-tn-Y3v.title">
@@ -2782,12 +2782,12 @@
       </trans-unit>
       <trans-unit id="ypE-IB-6gc.title">
         <source>Local info</source>
-        <target>Local info</target>
+        <target>Lokal info</target>
         <note>Class = "NSBox"; title = "Local info"; ObjectID = "ypE-IB-6gc";</note>
       </trans-unit>
       <trans-unit id="zF8-9O-ajg.title">
         <source>remove --compress</source>
-        <target>remove --compress</target>
+        <target>slett --compress</target>
         <note>Class = "NSButtonCell"; title = "remove --compress"; ObjectID = "zF8-9O-ajg";</note>
       </trans-unit>
       <trans-unit id="zFx-cJ-7DI.title">
