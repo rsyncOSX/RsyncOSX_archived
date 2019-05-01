@@ -926,7 +926,7 @@
 "KJd-Dr-12s.title" = "Lokal katalog:";
 
 /* Class = "NSTextFieldCell"; title = "files :"; ObjectID = "kNR-NX-OzR"; */
-"kNR-NX-OzR.title" = "filee :";
+"kNR-NX-OzR.title" = "filer :";
 
 /* Class = "NSTextFieldCell"; title = "Rclone profile :"; ObjectID = "kOk-Mh-JZ7"; */
 "kOk-Mh-JZ7.title" = "Rclone profil :";

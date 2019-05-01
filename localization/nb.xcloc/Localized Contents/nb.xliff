@@ -2232,7 +2232,7 @@
       </trans-unit>
       <trans-unit id="kNR-NX-OzR.title">
         <source>files :</source>
-        <target>filee :</target>
+        <target>filer :</target>
         <note>Class = "NSTextFieldCell"; title = "files :"; ObjectID = "kNR-NX-OzR";</note>
       </trans-unit>
       <trans-unit id="kOk-Mh-JZ7.title">
