@@ -772,7 +772,7 @@
       </trans-unit>
       <trans-unit id="Fzz-BB-PJC.title">
         <source>Execute scheduled tasks in menu app</source>
-        <target>Execute scheduled tasks in menu app</target>
+        <target>Utfør schedulert  oppgave i meny app</target>
         <note>Class = "NSButtonCell"; title = "Execute scheduled tasks in menu app"; ObjectID = "Fzz-BB-PJC";</note>
       </trans-unit>
       <trans-unit id="G5V-jz-71t.headerCell.title">
@@ -962,7 +962,7 @@
       </trans-unit>
       <trans-unit id="JKJ-Kp-IuV.title">
         <source>Double click  on row or shortcut ⌘R to execute task or ⌘I to get info ...</source>
-        <target>Double click  on row or shortcut ⌘R to execute task or ⌘I to get info ...</target>
+        <target>Dobbel klikk på rad eller  ⌘R for å utføre eller ⌘I for info ...</target>
         <note>Class = "NSTextFieldCell"; title = "Double click  on row or shortcut ⌘R to execute task or ⌘I to get info ..."; ObjectID = "JKJ-Kp-IuV";</note>
       </trans-unit>
       <trans-unit id="Jil-HV-f4r.title">
@@ -1142,7 +1142,7 @@
       </trans-unit>
       <trans-unit id="O7r-k8-Xo1.title">
         <source>Capacity</source>
-        <target>Capacity</target>
+        <target>Kapasitet</target>
         <note>Class = "NSButtonCell"; title = "Capacity"; ObjectID = "O7r-k8-Xo1";</note>
       </trans-unit>
       <trans-unit id="OIG-cZ-jQ9.title">
@@ -1157,7 +1157,7 @@
       </trans-unit>
       <trans-unit id="OS5-Kb-1ct.title">
         <source>Params</source>
-        <target>Params</target>
+        <target>Parameter</target>
         <note>Class = "NSButtonCell"; title = "Params"; ObjectID = "OS5-Kb-1ct";</note>
       </trans-unit>
       <trans-unit id="OY7-WF-poV.title">
@@ -1202,7 +1202,7 @@
       </trans-unit>
       <trans-unit id="OrH-Ty-gyv.toolTip">
         <source>Execute tasks marked for batch...</source>
-        <target>Execute tasks marked for batch...</target>
+        <target>Utfør oppgaver merket for batch...</target>
         <note>Class = "NSToolbarItem"; toolTip = "Execute tasks marked for batch..."; ObjectID = "OrH-Ty-gyv";</note>
       </trans-unit>
       <trans-unit id="Ow3-Wv-2WC.headerCell.title">
@@ -1257,12 +1257,12 @@
       </trans-unit>
       <trans-unit id="Q6F-3P-fJy.title">
         <source>Download</source>
-        <target>Download</target>
+        <target>Kopier</target>
         <note>Class = "NSButtonCell"; title = "Download"; ObjectID = "Q6F-3P-fJy";</note>
       </trans-unit>
       <trans-unit id="QCj-5P-T2N.title">
         <source>Once</source>
-        <target>Once</target>
+        <target>Engang</target>
         <note>Class = "NSButtonCell"; title = "Once"; ObjectID = "QCj-5P-T2N";</note>
       </trans-unit>
       <trans-unit id="QPs-xd-DDF.title">
@@ -1347,7 +1347,7 @@
       </trans-unit>
       <trans-unit id="Rv2-24-MJh.title">
         <source>Dowload</source>
-        <target>Dowload</target>
+        <target>Kopier</target>
         <note>Class = "NSButtonCell"; title = "Dowload"; ObjectID = "Rv2-24-MJh";</note>
       </trans-unit>
       <trans-unit id="Rve-M9-9Pp.title">
@@ -1852,7 +1852,7 @@
       </trans-unit>
       <trans-unit id="dsn-9I-wI5.title">
         <source> detailed logging</source>
-        <target> detailed logging</target>
+        <target> detaljert logging</target>
         <note>Class = "NSButtonCell"; title = " detailed logging"; ObjectID = "dsn-9I-wI5";</note>
       </trans-unit>
       <trans-unit id="dtI-40-Iqi.headerCell.title">
@@ -1922,7 +1922,7 @@
       </trans-unit>
       <trans-unit id="egt-C3-u4G.title">
         <source>Execute</source>
-        <target>Execute</target>
+        <target>Utfør</target>
         <note>Class = "NSViewController"; title = "Execute"; ObjectID = "egt-C3-u4G";</note>
       </trans-unit>
       <trans-unit id="ej1-6m-NgB.title">
@@ -2052,7 +2052,7 @@
       </trans-unit>
       <trans-unit id="h4F-dN-GN0.title">
         <source>Load</source>
-        <target>Load</target>
+        <target>Last</target>
         <note>Class = "NSButtonCell"; title = "Load"; ObjectID = "h4F-dN-GN0";</note>
       </trans-unit>
       <trans-unit id="hBf-gt-Mxo.title">
@@ -2082,7 +2082,7 @@
       </trans-unit>
       <trans-unit id="hXq-5p-KS7.title">
         <source>Load</source>
-        <target>Load</target>
+        <target>Last</target>
         <note>Class = "NSButtonCell"; title = "Load"; ObjectID = "hXq-5p-KS7";</note>
       </trans-unit>
       <trans-unit id="hq8-Fq-pip.title">
@@ -2112,7 +2112,7 @@
       </trans-unit>
       <trans-unit id="hz9-B4-Xy5.title">
         <source>Services</source>
-        <target>Services</target>
+        <target>Tjenester</target>
         <note>Class = "NSMenu"; title = "Services"; ObjectID = "hz9-B4-Xy5";</note>
       </trans-unit>
       <trans-unit id="i2N-9t-0ni.title">
@@ -2197,17 +2197,17 @@
       </trans-unit>
       <trans-unit id="jd9-c6-ykP.label">
         <source>Encrypt</source>
-        <target>Encrypt</target>
+        <target>Krypter</target>
         <note>Class = "NSToolbarItem"; label = "Encrypt"; ObjectID = "jd9-c6-ykP";</note>
       </trans-unit>
       <trans-unit id="jd9-c6-ykP.paletteLabel">
         <source>Encrypt</source>
-        <target>Encrypt</target>
+        <target>Krypter</target>
         <note>Class = "NSToolbarItem"; paletteLabel = "Encrypt"; ObjectID = "jd9-c6-ykP";</note>
       </trans-unit>
       <trans-unit id="jd9-c6-ykP.toolTip">
         <source>Encrypted files...</source>
-        <target>Encrypt filer...</target>
+        <target>Krypter filer...</target>
         <note>Class = "NSToolbarItem"; toolTip = "Encrypted files..."; ObjectID = "jd9-c6-ykP";</note>
       </trans-unit>
       <trans-unit id="jgQ-HM-WTh.title">
@@ -2217,7 +2217,7 @@
       </trans-unit>
       <trans-unit id="k2Y-Hy-jMj.title">
         <source>Abort</source>
-        <target>Abort</target>
+        <target>Avslutt</target>
         <note>Class = "NSMenuItem"; title = "Abort"; ObjectID = "k2Y-Hy-jMj";</note>
       </trans-unit>
       <trans-unit id="k8Z-wy-8ml.title">
@@ -2232,7 +2232,7 @@
       </trans-unit>
       <trans-unit id="kNR-NX-OzR.title">
         <source>files :</source>
-        <target>filee :</target>
+        <target>filer :</target>
         <note>Class = "NSTextFieldCell"; title = "files :"; ObjectID = "kNR-NX-OzR";</note>
       </trans-unit>
       <trans-unit id="kOk-Mh-JZ7.title">
@@ -2267,7 +2267,6 @@
       </trans-unit>
       <trans-unit id="lvl-UW-J6U.title">
         <source>Date last backup:</source>
-        <target>Dato siste backup:</target>
         <note>Class = "NSTextFieldCell"; title = "Date last backup:"; ObjectID = "lvl-UW-J6U";</note>
       </trans-unit>
       <trans-unit id="lxg-t9-eiU.title">
@@ -2282,7 +2281,7 @@
       </trans-unit>
       <trans-unit id="m7F-8t-VwR.title">
         <source>optional path for rsync:</source>
-        <target>optional path for rsync:</target>
+        <target>annen sti for rsync:</target>
         <note>Class = "NSTextFieldCell"; title = "optional path for rsync:"; ObjectID = "m7F-8t-VwR";</note>
       </trans-unit>
       <trans-unit id="mEQ-aD-Owg.title">
@@ -2322,7 +2321,7 @@
       </trans-unit>
       <trans-unit id="mry-vG-0Hd.title">
         <source>Doubleclick on row to get remote capacity...</source>
-        <target>Doubleclick on row to get remote capacity...</target>
+        <target>Dobbel klikk på rad for ekstern info...</target>
         <note>Class = "NSTextFieldCell"; title = "Doubleclick on row to get remote capacity..."; ObjectID = "mry-vG-0Hd";</note>
       </trans-unit>
       <trans-unit id="n1z-ZA-mQN.title">
@@ -2352,7 +2351,7 @@
       </trans-unit>
       <trans-unit id="o1P-3T-Wzv.title">
         <source>Connect</source>
-        <target>Connect</target>
+        <target>Koble</target>
         <note>Class = "NSButtonCell"; title = "Connect"; ObjectID = "o1P-3T-Wzv";</note>
       </trans-unit>
       <trans-unit id="o77-iT-bNa.title">
@@ -2377,7 +2376,7 @@
       </trans-unit>
       <trans-unit id="oeQ-dU-mHB.title">
         <source>force reset</source>
-        <target>force reset</target>
+        <target>utfør reset</target>
         <note>Class = "NSButtonCell"; title = "force reset"; ObjectID = "oeQ-dU-mHB";</note>
       </trans-unit>
       <trans-unit id="of4-qq-ykX.title">
@@ -2457,7 +2456,7 @@
       </trans-unit>
       <trans-unit id="rXA-1B-Zpu.headerCell.title">
         <source>When</source>
-        <target>When</target>
+        <target>Når</target>
         <note>Class = "NSTableColumn"; headerCell.title = "When"; ObjectID = "rXA-1B-Zpu";</note>
       </trans-unit>
       <trans-unit id="rYt-b4-jmF.title">
@@ -2642,7 +2641,7 @@
       </trans-unit>
       <trans-unit id="vJI-G9-Mbp.title">
         <source>Remote info</source>
-        <target>Remote info</target>
+        <target>Ekstern info</target>
         <note>Class = "NSBox"; title = "Remote info"; ObjectID = "vJI-G9-Mbp";</note>
       </trans-unit>
       <trans-unit id="vQn-ev-3Ai.title">
@@ -2697,12 +2696,12 @@
       </trans-unit>
       <trans-unit id="wrj-tn-Y3v.title">
         <source>path RsyncOSX: </source>
-        <target>path RsyncOSX: </target>
+        <target>sti RsyncOSX: </target>
         <note>Class = "NSTextFieldCell"; title = "path RsyncOSX: "; ObjectID = "wrj-tn-Y3v";</note>
       </trans-unit>
       <trans-unit id="wrk-73-4cu.title">
         <source>Backup now</source>
-        <target>Backup now</target>
+        <target>Backup nå</target>
         <note>Class = "NSMenuItem"; title = "Backup now"; ObjectID = "wrk-73-4cu";</note>
       </trans-unit>
       <trans-unit id="x4K-TO-hhc.title">
@@ -2722,7 +2721,7 @@
       </trans-unit>
       <trans-unit id="xTN-ZB-wt8.headerCell.title">
         <source>Logs</source>
-        <target>Logs</target>
+        <target>Logger</target>
         <note>Class = "NSTableColumn"; headerCell.title = "Logs"; ObjectID = "xTN-ZB-wt8";</note>
       </trans-unit>
       <trans-unit id="xUg-0M-AYM.title">
@@ -2837,18 +2836,19 @@
       </trans-unit>
     </body>
   </file>
-  <file original="RsyncOSX/en.lproj/InfoPlist.strings" datatype="plaintext" source-language="en" target-language="nb">
+  <file original="RsyncOSX/en.lproj/InfoPlist.strings" source-language="en" target-language="nb" datatype="plaintext">
     <header>
       <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="10.2.1" build-num="10E1001"/>
     </header>
     <body>
       <trans-unit id="CFBundleName">
         <source>RsyncOSX</source>
-        <note>Bundle name</note><target>RsyncOSX</target>
+        <target>RsyncOSX</target>
+        <note>Bundle name</note>
       </trans-unit>
       <trans-unit id="NSHumanReadableCopyright">
         <source>Copyright © 2019 Thomas Evensen. All rights reserved.</source>
-        <note>Copyright (human-readable)</note><target> &lt;trans-unit id="Restore"&gt;
+        <target> &lt;trans-unit id="Restore"&gt;
         &lt;source&gt;Restore&lt;/source&gt;
         &lt;note&gt;Restore&lt;/note&gt;
       &lt;/trans-unit&gt;
@@ -2858,105 +2858,162 @@
       &lt;/trans-unit&gt;
     &lt;/body&gt;
   Copyright ©2019 Thomas Evensen. Alle rettigheter.</target>
+        <note>Copyright (human-readable)</note>
       </trans-unit>
     </body>
   </file>
-<file original="RsyncOSX/en.lproj/Localizable.strings" datatype="plaintext" source-language="en" target-language="nb">
+  <file original="RsyncOSX/en.lproj/Localizable.strings" source-language="en" target-language="nb" datatype="plaintext">
     <header>
       <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="10.2.1" build-num="10E1001"/>
     </header>
     <body>
       <trans-unit id="Add">
         <source>Add</source>
-        <note>Add schedule</note><target>Legg til</target>
+        <target>Legg til</target>
+        <note>Add schedule</note>
       </trans-unit>
       <trans-unit id="Add Schedule?">
         <source>Add Schedule?</source>
-        <note>Add schedule</note><target>Legg til schedule?</target>
+        <target>Legg til schedule?</target>
+        <note>Add schedule</note>
       </trans-unit>
       <trans-unit id="Cancel">
         <source>Cancel</source>
-        <note>Cancel NSAlert</note><target>Kanseler</target>
+        <target>Kanseler</target>
+        <note>Cancel NSAlert</note>
       </trans-unit>
       <trans-unit id="Cancel or Add">
         <source>Cancel or Add</source>
-        <note>Add schedule</note><target>Kanseler eller legg til</target>
+        <target>Kanseler eller legg til</target>
+        <note>Add schedule</note>
       </trans-unit>
       <trans-unit id="Cancel or Delete">
         <source>Cancel or Delete</source>
-        <note>Loggs, Tasks and Profile</note><target>Kanseler eller slett</target>
+        <target>Kanseler eller slett</target>
+        <note>Loggs, Tasks and Profile</note>
       </trans-unit>
       <trans-unit id="Cancel or Delete?">
         <source>Cancel or Delete?</source>
-        <note>Loggs, Tasks and Profile</note><target>Kanseler eller slett?</target>
+        <target>Kanseler eller slett?</target>
+        <note>Loggs, Tasks and Profile</note>
       </trans-unit>
       <trans-unit id="Cancel or Restore">
         <source>Cancel or Restore</source>
-        <note>Restore</note><target>Kanseler eller restore</target>
+        <target>Kanseler eller restore</target>
+        <note>Restore</note>
       </trans-unit>
       <trans-unit id="Close">
         <source>Close</source>
-        <note>Close NSAlert</note><target>Lukk</target>
+        <target>Lukk</target>
+        <note>Close NSAlert</note>
+      </trans-unit>
+      <trans-unit id="Computing changed, please wait...">
+        <source>Computing changed, please wait...</source>
+        <note>Verify</note><target>Beregning endret, vennligst vent...</target>
       </trans-unit>
       <trans-unit id="Copy single files or directory?">
         <source>Copy single files or directory?</source>
-        <note>Restore</note><target>Copier fil eller katalog?</target>
+        <target>Copier fil eller katalog?</target>
+        <note>Restore</note>
       </trans-unit>
       <trans-unit id="Copyright ©2019 Thomas Evensen">
         <source>Copyright ©2019 Thomas Evensen</source>
-        <note>copyright</note><target>Copyright ©2019 Thomas Evensen.</target>
+        <target>Copyright ©2019 Thomas Evensen.</target>
+        <note>copyright</note>
+      </trans-unit>
+      <trans-unit id="Date last backup:">
+        <source>Date last backup:</source>
+        <target>Dato siste backup:</target>
+        <note>Verify</note>
+      </trans-unit>
+      <trans-unit id="Days since last backup:">
+        <source>Days since last backup:</source>
+        <target>Dager siden siste backup:</target>
+        <note>Verify</note>
       </trans-unit>
       <trans-unit id="Delete">
         <source>Delete</source>
-        <note>Loggs, Tasks and Profile</note><target>Slett</target>
+        <target>Slett</target>
+        <note>Loggs, Tasks and Profile</note>
+      </trans-unit>
+      <trans-unit id="Delete ">
+        <source>Delete </source>
+        <target>Slett</target>
+        <note>Loggs, Tasks and Profile</note>
       </trans-unit>
       <trans-unit id="Delete profile: ">
         <source>Delete profile: </source>
-        <note>Loggs, Tasks and Profile</note><target>Slett profil:</target>
+        <target>Slett profil:</target>
+        <note>Loggs, Tasks and Profile</note>
       </trans-unit>
       <trans-unit id="Delete selected task? ">
         <source>Delete selected task? </source>
-        <note>Loggs, Tasks and Profile</note><target>Slett valgt oppgave?</target>
+        <target>Slett valgt oppgave?</target>
+        <note>Loggs, Tasks and Profile</note>
       </trans-unit>
       <trans-unit id="Do you REALLY want to DELETE selected snapshots?">
         <source>Do you REALLY want to DELETE selected snapshots?</source>
-        <note>Snapshots</note><target>Vil du VIRKELIG SLETTE valgte snapshot?</target>
+        <target>Vil du VIRKELIG SLETTE valgte snapshot?</target>
+        <note>Snapshots</note>
       </trans-unit>
       <trans-unit id="Do you REALLY want to start a RESTORE ?">
         <source>Do you REALLY want to start a RESTORE ?</source>
-        <note>Restore</note><target>Vil du VIRKELIG utføre en RESTORE?</target>
+        <target>Vil du VIRKELIG utføre en RESTORE?</target>
+        <note>Restore</note>
       </trans-unit>
       <trans-unit id="Dont change the snapshot num if you don´t know what you are doing...">
         <source>Dont change the snapshot num if you don´t know what you are doing...</source>
-        <note>Snapshots</note><target>Ikke endre snapshot nummer hvis du ikke vet hva du gjør...</target>
+        <target>Ikke endre snapshot nummer hvis du ikke vet hva du gjør...</target>
+        <note>Snapshots</note>
       </trans-unit>
       <trans-unit id="ERROR: no rclone in ">
         <source>ERROR: no rclone in </source>
-        <note>Error rclone</note><target>FEIL: ingen rclone i</target>
+        <target>FEIL: ingen rclone i</target>
+        <note>Error rclone</note>
       </trans-unit>
       <trans-unit id="ERROR: no rclone in /usr/local/bin">
         <source>ERROR: no rclone in /usr/local/bin</source>
-        <note>Error rclone</note><target>FEIL: ingen rclone i /usr/local/bin</target>
+        <target>FEIL: ingen rclone i /usr/local/bin</target>
+        <note>Error rclone</note>
       </trans-unit>
       <trans-unit id="ERROR: no rsync in ">
         <source>ERROR: no rsync in </source>
-        <note>Error rsync</note><target>FEIL: ingen rsync i</target>
+        <target>FEIL: ingen rsync i</target>
+        <note>Error rsync</note>
       </trans-unit>
       <trans-unit id="ERROR: no rsync in /usr/local/bin">
         <source>ERROR: no rsync in /usr/local/bin</source>
-        <note>Error rsync</note><target>FEIL: ingen rsync i /usr/local/bin</target>
+        <target>FEIL: ingen rsync i /usr/local/bin</target>
+        <note>Error rsync</note>
+      </trans-unit>
+      <trans-unit id="Getting information, please wait ...">
+        <source>Getting information, please wait ...</source>
+        <target>Henter informasjon, vennligst vent</target>
+        <note>Verify</note>
       </trans-unit>
       <trans-unit id="Icon by: Zsolt Sándor">
         <source>Icon by: Zsolt Sándor</source>
-        <note>icon</note><target>Icon av: Zsolt Sándor</target>
+        <target>Icon av: Zsolt Sándor</target>
+        <note>icon</note>
       </trans-unit>
- 	<trans-unit id="Restore">
+      <trans-unit id="Please select a task in Execute ...">
+        <source>Please select a task in Execute ...</source>
+        <target>Velg en oppgave i Utfør</target>
+        <note>Verify</note>
+      </trans-unit>
+      <trans-unit id="Restore">
         <source>Restore</source>
-        <note>Restore</note><target>Restore</target>
+        <target>Restore</target>
+        <note>Restore</note>
       </trans-unit>
       <trans-unit id="Start restore?">
         <source>Start restore?</source>
-        <note>Restore</note><target>Start restore?</target>
+        <target>Start restore?</target>
+        <note>Restore</note>
+      </trans-unit>
+      <trans-unit id="Verifying, please wait...">
+        <source>Verifying, please wait...</source>
+        <note>Verify</note><target>Verifiserer, vennligst vent...</target>
       </trans-unit>
     </body>
   </file>

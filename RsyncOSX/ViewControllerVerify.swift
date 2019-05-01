@@ -21,6 +21,8 @@ class ViewControllerVerify: NSViewController, SetConfigurations, Index, VcExecut
     private var numbers: NSMutableDictionary?
     private var complete: Bool = false
     private var processRefererence: ProcessCmd?
+    let lastdate: String = NSLocalizedString("Date last backup:", comment: "Verify")
+    let dayssince: String = NSLocalizedString("Days since last backup:", comment: "Verify")
 
     @IBOutlet weak var working: NSProgressIndicator!
     @IBOutlet weak var verifybutton: NSButton!
@@ -79,8 +81,9 @@ class ViewControllerVerify: NSViewController, SetConfigurations, Index, VcExecut
         self.rsynccommanddisplay.stringValue = Verifyrsyncpath().displayrsynccommand(index: self.index!, display: .verify)
         self.verifyradiobutton.state = .on
         self.changedradiobutton.state = .off
-         self.gotit.textColor = .white
-        self.gotit.stringValue = "Verifying, please wait..."
+        self.gotit.textColor = .white
+        let gotit: String = NSLocalizedString("Verifying, please wait...", comment: "Verify")
+        self.gotit.stringValue = gotit
         self.enabledisablebuttons(enable: false)
         self.working.startAnimation(nil)
         let arguments = self.configurations?.arguments4verify(index: self.index!)
@@ -98,7 +101,8 @@ class ViewControllerVerify: NSViewController, SetConfigurations, Index, VcExecut
         self.changedradiobutton.state = .on
         self.verifyradiobutton.state = .off
         self.gotit.textColor = .white
-        self.gotit.stringValue = "Computing changed, please wait..."
+        let gotit: String = NSLocalizedString("Computing changed, please wait...", comment: "Verify")
+        self.gotit.stringValue = gotit
         self.enabledisablebuttons(enable: false)
         self.working.startAnimation(nil)
         let arguments = self.configurations?.arguments4restore(index: self.index!, argtype: .argdryRun)
@@ -153,17 +157,19 @@ class ViewControllerVerify: NSViewController, SetConfigurations, Index, VcExecut
             self.setinfo()
             self.enabledisablebuttons(enable: false)
             self.estimatedindex = index
-            self.gotit.stringValue = "Getting information, please wait ..."
+            let gotit: String = NSLocalizedString("Getting information, please wait ...", comment: "Verify")
+            self.gotit.stringValue = gotit
             self.gotremoteinfo = false
             self.complete = false
             let datelastbackup = self.configurations?.getConfigurations()[index].dateRun ?? "none"
             let numberlastbackup = self.configurations?.getConfigurations()[index].dayssincelastbackup ?? "none"
-            self.datelastbackup.stringValue = "Date last backup: " + datelastbackup
-            self.dayslastbackup.stringValue = "Days since last backup: " + numberlastbackup
+            self.datelastbackup.stringValue = self.lastdate + datelastbackup
+            self.dayslastbackup.stringValue = self.dayssince + numberlastbackup
             self.estimateremoteinfo(index: index, local: true)
         } else {
             self.gotit.textColor = .red
-            self.gotit.stringValue = "Please select a task in Execute ..."
+            let task: String = NSLocalizedString("Please select a task in Execute ...", comment: "Verify")
+            self.gotit.stringValue = task
             self.outputprocess = nil
             globalMainQueue.async(execute: { () -> Void in
                 self.resetinfo()
@@ -251,8 +257,8 @@ class ViewControllerVerify: NSViewController, SetConfigurations, Index, VcExecut
         self.totalDirs.stringValue = ""
         self.newfiles.stringValue = ""
         self.deletefiles.stringValue = ""
-        self.datelastbackup.stringValue = "Date last backup:"
-        self.dayslastbackup.stringValue = "Days since last backup:"
+        self.datelastbackup.stringValue = self.lastdate
+        self.dayslastbackup.stringValue = self.dayssince
         self.rsynccommanddisplay.stringValue = ""
         self.verifyradiobutton.state = .off
         self.changedradiobutton.state = .off
