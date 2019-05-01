@@ -2265,6 +2265,10 @@
         <target>Text Cell</target>
         <note>Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "lsc-bT-MTr";</note>
       </trans-unit>
+      <trans-unit id="lvl-UW-J6U.title">
+        <source>Date last backup:</source>
+        <note>Class = "NSTextFieldCell"; title = "Date last backup:"; ObjectID = "lvl-UW-J6U";</note>
+      </trans-unit>
       <trans-unit id="lxg-t9-eiU.title">
         <source>Task info</source>
         <target>Oppgave info</target>
@@ -2903,6 +2907,10 @@
         <target>Lukk</target>
         <note>Close NSAlert</note>
       </trans-unit>
+      <trans-unit id="Computing changed, please wait...">
+        <source>Computing changed, please wait...</source>
+        <note>Verify</note><target>Beregning endret, vennligst vent...</target>
+      </trans-unit>
       <trans-unit id="Copy single files or directory?">
         <source>Copy single files or directory?</source>
         <target>Copier fil eller katalog?</target>
@@ -2915,15 +2923,13 @@
       </trans-unit>
       <trans-unit id="Date last backup:">
         <source>Date last backup:</source>
-        <note>Verify</note><target>Dato siste backup:</target>
-      </trans-unit>
-      <trans-unit id="Date last backup: ">
-        <source>Date last backup: </source>
-        <note>Verify</note><target>Dato siste backup:</target>
+        <target>Dato siste backup:</target>
+        <note>Verify</note>
       </trans-unit>
       <trans-unit id="Days since last backup:">
         <source>Days since last backup:</source>
-        <note>Verify</note><target>Dager siden siste backup:</target>
+        <target>Dager siden siste backup:</target>
+        <note>Verify</note>
       </trans-unit>
       <trans-unit id="Delete">
         <source>Delete</source>
@@ -2932,7 +2938,8 @@
       </trans-unit>
       <trans-unit id="Delete ">
         <source>Delete </source>
-        <note>Loggs, Tasks and Profile</note><target>Slett</target>
+        <target>Slett</target>
+        <note>Loggs, Tasks and Profile</note>
       </trans-unit>
       <trans-unit id="Delete profile: ">
         <source>Delete profile: </source>
@@ -2981,7 +2988,8 @@
       </trans-unit>
       <trans-unit id="Getting information, please wait ...">
         <source>Getting information, please wait ...</source>
-        <note>Verify</note><target>Henter informasjon, vennligst vent</target>
+        <target>Henter informasjon, vennligst vent</target>
+        <note>Verify</note>
       </trans-unit>
       <trans-unit id="Icon by: Zsolt Sándor">
         <source>Icon by: Zsolt Sándor</source>
@@ -2990,7 +2998,8 @@
       </trans-unit>
       <trans-unit id="Please select a task in Execute ...">
         <source>Please select a task in Execute ...</source>
-        <note>Verify</note><target>Velg en oppgave i Utfør</target>
+        <target>Velg en oppgave i Utfør</target>
+        <note>Verify</note>
       </trans-unit>
       <trans-unit id="Restore">
         <source>Restore</source>
@@ -3001,6 +3010,10 @@
         <source>Start restore?</source>
         <target>Start restore?</target>
         <note>Restore</note>
+      </trans-unit>
+      <trans-unit id="Verifying, please wait...">
+        <source>Verifying, please wait...</source>
+        <note>Verify</note><target>Verifiserer, vennligst vent...</target>
       </trans-unit>
     </body>
   </file>

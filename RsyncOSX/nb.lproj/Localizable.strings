@@ -22,6 +22,9 @@
 /* Close NSAlert */
 "Close" = "Lukk";
 
+/* Verify */
+"Computing changed, please wait..." = "Beregning endret, vennligst vent...";
+
 /* Restore */
 "Copy single files or directory?" = "Copier fil eller katalog?";
 
@@ -81,4 +84,7 @@
 
 /* Restore */
 "Start restore?" = "Start restore?";
+
+/* Verify */
+"Verifying, please wait..." = "Verifiserer, vennligst vent...";
 
