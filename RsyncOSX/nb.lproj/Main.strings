@@ -470,7 +470,7 @@
 "drG-d3-Dsv.headerCell.title" = "ID";
 
 /* Class = "NSButtonCell"; title = " detailed logging"; ObjectID = "dsn-9I-wI5"; */
-"dsn-9I-wI5.title" = " detailed logging";
+"dsn-9I-wI5.title" = " detaljert logging";
 
 /* Class = "NSTableColumn"; headerCell.title = "When"; ObjectID = "dtI-40-Iqi"; */
 "dtI-40-Iqi.headerCell.title" = "When";
@@ -521,7 +521,7 @@
 "EeS-fZ-csl.title" = "Dsa offentlig nøkkel.";
 
 /* Class = "NSViewController"; title = "Execute"; ObjectID = "egt-C3-u4G"; */
-"egt-C3-u4G.title" = "Execute";
+"egt-C3-u4G.title" = "Utfør";
 
 /* Class = "NSButtonCell"; title = "full log"; ObjectID = "egX-mx-3Br"; */
 "egX-mx-3Br.title" = "full log";
@@ -638,7 +638,7 @@
 "Fzm-Cm-ENf.title" = "Text Cell";
 
 /* Class = "NSButtonCell"; title = "Execute scheduled tasks in menu app"; ObjectID = "Fzz-BB-PJC"; */
-"Fzz-BB-PJC.title" = "Execute scheduled tasks in menu app";
+"Fzz-BB-PJC.title" = "Utfør schedulert  oppgave i meny app";
 
 /* Class = "NSToolbarItem"; label = "info"; ObjectID = "g1a-zY-Mpq"; */
 "g1a-zY-Mpq.label" = "info";
@@ -884,7 +884,7 @@
 "Jil-HV-f4r.title" = "Text Cell";
 
 /* Class = "NSTextFieldCell"; title = "Double click  on row or shortcut ⌘R to execute task or ⌘I to get info ..."; ObjectID = "JKJ-Kp-IuV"; */
-"JKJ-Kp-IuV.title" = "Double click  on row or shortcut ⌘R to execute task or ⌘I to get info ...";
+"JKJ-Kp-IuV.title" = "Dobbel klikk på rad eller  ⌘R for å utføre eller ⌘I for info ...";
 
 /* Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "jTs-0X-qqh"; */
 "jTs-0X-qqh.title" = "Text Cell";
@@ -1079,10 +1079,10 @@
 "o1G-0k-G0I.title" = "Text Cell";
 
 /* Class = "NSButtonCell"; title = "Connect"; ObjectID = "o1P-3T-Wzv"; */
-"o1P-3T-Wzv.title" = "Connect";
+"o1P-3T-Wzv.title" = "Koble";
 
 /* Class = "NSButtonCell"; title = "Capacity"; ObjectID = "O7r-k8-Xo1"; */
-"O7r-k8-Xo1.title" = "Capacity";
+"O7r-k8-Xo1.title" = "Kapasitet";
 
 /* Class = "NSTextFieldCell"; title = "New files:"; ObjectID = "o77-iT-bNa"; */
 "o77-iT-bNa.title" = "Nye filer:";
@@ -1091,7 +1091,7 @@
 "oar-D1-pfu.title" = "Lukk";
 
 /* Class = "NSButtonCell"; title = "force reset"; ObjectID = "oeQ-dU-mHB"; */
-"oeQ-dU-mHB.title" = "force reset";
+"oeQ-dU-mHB.title" = "utfør reset";
 
 /* Class = "NSTextFieldCell"; title = "Number of snapshots:"; ObjectID = "of4-qq-ykX"; */
 "of4-qq-ykX.title" = "Antall snapshots:";
@@ -1127,10 +1127,10 @@
 "OrH-Ty-gyv.paletteLabel" = "batch";
 
 /* Class = "NSToolbarItem"; toolTip = "Execute tasks marked for batch..."; ObjectID = "OrH-Ty-gyv"; */
-"OrH-Ty-gyv.toolTip" = "Execute tasks marked for batch...";
+"OrH-Ty-gyv.toolTip" = "Utfør oppgaver merket for batch...";
 
 /* Class = "NSButtonCell"; title = "Params"; ObjectID = "OS5-Kb-1ct"; */
-"OS5-Kb-1ct.title" = "Params";
+"OS5-Kb-1ct.title" = "Parameter";
 
 /* Class = "NSMenuItem"; title = "Info"; ObjectID = "oSU-tO-D9d"; */
 "oSU-tO-D9d.title" = "Info";
@@ -1202,7 +1202,7 @@
 "Qc4-06-mOR.title" = "Standard parametre";
 
 /* Class = "NSButtonCell"; title = "Once"; ObjectID = "QCj-5P-T2N"; */
-"QCj-5P-T2N.title" = "Once";
+"QCj-5P-T2N.title" = "Engang";
 
 /* Class = "NSBox"; title = "Process info"; ObjectID = "QdJ-n1-Mtr"; */
 "QdJ-n1-Mtr.title" = "Process info";
