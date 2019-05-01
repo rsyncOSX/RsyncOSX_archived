@@ -772,7 +772,7 @@
       </trans-unit>
       <trans-unit id="Fzz-BB-PJC.title">
         <source>Execute scheduled tasks in menu app</source>
-        <target>Execute scheduled tasks in menu app</target>
+        <target>Utfør schedulert  oppgave i meny app</target>
         <note>Class = "NSButtonCell"; title = "Execute scheduled tasks in menu app"; ObjectID = "Fzz-BB-PJC";</note>
       </trans-unit>
       <trans-unit id="G5V-jz-71t.headerCell.title">
@@ -962,7 +962,7 @@
       </trans-unit>
       <trans-unit id="JKJ-Kp-IuV.title">
         <source>Double click  on row or shortcut ⌘R to execute task or ⌘I to get info ...</source>
-        <target>Double click  on row or shortcut ⌘R to execute task or ⌘I to get info ...</target>
+        <target>Dobbel klikk på rad eller  ⌘R for å utføre eller ⌘I for info ...</target>
         <note>Class = "NSTextFieldCell"; title = "Double click  on row or shortcut ⌘R to execute task or ⌘I to get info ..."; ObjectID = "JKJ-Kp-IuV";</note>
       </trans-unit>
       <trans-unit id="Jil-HV-f4r.title">
@@ -1142,7 +1142,7 @@
       </trans-unit>
       <trans-unit id="O7r-k8-Xo1.title">
         <source>Capacity</source>
-        <target>Capacity</target>
+        <target>Kapasitet</target>
         <note>Class = "NSButtonCell"; title = "Capacity"; ObjectID = "O7r-k8-Xo1";</note>
       </trans-unit>
       <trans-unit id="OIG-cZ-jQ9.title">
@@ -1157,7 +1157,7 @@
       </trans-unit>
       <trans-unit id="OS5-Kb-1ct.title">
         <source>Params</source>
-        <target>Params</target>
+        <target>Parameter</target>
         <note>Class = "NSButtonCell"; title = "Params"; ObjectID = "OS5-Kb-1ct";</note>
       </trans-unit>
       <trans-unit id="OY7-WF-poV.title">
@@ -1202,7 +1202,7 @@
       </trans-unit>
       <trans-unit id="OrH-Ty-gyv.toolTip">
         <source>Execute tasks marked for batch...</source>
-        <target>Execute tasks marked for batch...</target>
+        <target>Utfør oppgaver merket for batch...</target>
         <note>Class = "NSToolbarItem"; toolTip = "Execute tasks marked for batch..."; ObjectID = "OrH-Ty-gyv";</note>
       </trans-unit>
       <trans-unit id="Ow3-Wv-2WC.headerCell.title">
@@ -1262,7 +1262,7 @@
       </trans-unit>
       <trans-unit id="QCj-5P-T2N.title">
         <source>Once</source>
-        <target>Once</target>
+        <target>Engang</target>
         <note>Class = "NSButtonCell"; title = "Once"; ObjectID = "QCj-5P-T2N";</note>
       </trans-unit>
       <trans-unit id="QPs-xd-DDF.title">
@@ -1852,7 +1852,7 @@
       </trans-unit>
       <trans-unit id="dsn-9I-wI5.title">
         <source> detailed logging</source>
-        <target> detailed logging</target>
+        <target> detaljert logging</target>
         <note>Class = "NSButtonCell"; title = " detailed logging"; ObjectID = "dsn-9I-wI5";</note>
       </trans-unit>
       <trans-unit id="dtI-40-Iqi.headerCell.title">
@@ -1922,7 +1922,7 @@
       </trans-unit>
       <trans-unit id="egt-C3-u4G.title">
         <source>Execute</source>
-        <target>Execute</target>
+        <target>Utfør</target>
         <note>Class = "NSViewController"; title = "Execute"; ObjectID = "egt-C3-u4G";</note>
       </trans-unit>
       <trans-unit id="ej1-6m-NgB.title">
@@ -2352,7 +2352,7 @@
       </trans-unit>
       <trans-unit id="o1P-3T-Wzv.title">
         <source>Connect</source>
-        <target>Connect</target>
+        <target>Koble</target>
         <note>Class = "NSButtonCell"; title = "Connect"; ObjectID = "o1P-3T-Wzv";</note>
       </trans-unit>
       <trans-unit id="o77-iT-bNa.title">
@@ -2377,7 +2377,7 @@
       </trans-unit>
       <trans-unit id="oeQ-dU-mHB.title">
         <source>force reset</source>
-        <target>force reset</target>
+        <target>utfør reset</target>
         <note>Class = "NSButtonCell"; title = "force reset"; ObjectID = "oeQ-dU-mHB";</note>
       </trans-unit>
       <trans-unit id="of4-qq-ykX.title">
