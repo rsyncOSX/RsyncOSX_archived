@@ -602,7 +602,7 @@
       </trans-unit>
       <trans-unit id="CwH-vm-SWF.title">
         <source>Total size (kB):</source>
-        <target>Total size (kB):</target>
+        <target>Total størrelse (kB):</target>
         <note>Class = "NSTextFieldCell"; title = "Total size (kB):"; ObjectID = "CwH-vm-SWF";</note>
       </trans-unit>
       <trans-unit id="D7f-Cg-ZtW.title">
@@ -657,7 +657,7 @@
       </trans-unit>
       <trans-unit id="EH0-Ty-cyz.title">
         <source>Catalog parameters (use Finder to drag and drop paths)</source>
-        <target>Catalog parameters (use Finder to drag and drop paths)</target>
+        <target>Katalog parametre (bruk Finder for dra og slipp stier)</target>
         <note>Class = "NSBox"; title = "Catalog parameters (use Finder to drag and drop paths)"; ObjectID = "EH0-Ty-cyz";</note>
       </trans-unit>
       <trans-unit id="EU9-bF-96n.title">
@@ -782,7 +782,7 @@
       </trans-unit>
       <trans-unit id="G8q-vp-nPf.title">
         <source>Total size (kB) :</source>
-        <target>Total size (kB) :</target>
+        <target>Total størrelse (kB) :</target>
         <note>Class = "NSTextFieldCell"; title = "Total size (kB) :"; ObjectID = "G8q-vp-nPf";</note>
       </trans-unit>
       <trans-unit id="G43-jD-Ptq.headerCell.title">
@@ -982,7 +982,7 @@
       </trans-unit>
       <trans-unit id="K9c-yf-VMY.title">
         <source>RsyncOSX parameters</source>
-        <target>RsyncOSX parameters</target>
+        <target>RsyncOSX parametre</target>
         <note>Class = "NSViewController"; title = "RsyncOSX parameters"; ObjectID = "K9c-yf-VMY";</note>
       </trans-unit>
       <trans-unit id="KIJ-hF-wBF.title">
@@ -1267,12 +1267,12 @@
       </trans-unit>
       <trans-unit id="QPs-xd-DDF.title">
         <source>add suffix Linux</source>
-        <target>add suffix Linux</target>
+        <target>legg til suffix Linux</target>
         <note>Class = "NSButtonCell"; title = "add suffix Linux"; ObjectID = "QPs-xd-DDF";</note>
       </trans-unit>
       <trans-unit id="Qc4-06-mOR.title">
         <source>Default params</source>
-        <target>Default params</target>
+        <target>Standard parametre</target>
         <note>Class = "NSBox"; title = "Default params"; ObjectID = "Qc4-06-mOR";</note>
       </trans-unit>
       <trans-unit id="QdJ-n1-Mtr.title">
@@ -1317,7 +1317,7 @@
       </trans-unit>
       <trans-unit id="RPd-mi-bp4.title">
         <source>Default params</source>
-        <target>Default params</target>
+        <target>Standard parametre</target>
         <note>Class = "NSTextFieldCell"; title = "Default params"; ObjectID = "RPd-mi-bp4";</note>
       </trans-unit>
       <trans-unit id="RVB-9H-LQM.title">
@@ -1387,7 +1387,7 @@
       </trans-unit>
       <trans-unit id="SWF-DA-TlU.headerCell.title">
         <source>Size (kB)</source>
-        <target>Size (kB)</target>
+        <target>Størrelse (kB)</target>
         <note>Class = "NSTableColumn"; headerCell.title = "Size (kB)"; ObjectID = "SWF-DA-TlU";</note>
       </trans-unit>
       <trans-unit id="Sr3-1q-P2Q.title">
@@ -1502,7 +1502,7 @@
       </trans-unit>
       <trans-unit id="VBk-Qe-g0o.title">
         <source>backup (uses two last user selected parameters)</source>
-        <target>backup (uses two last user selected parameters)</target>
+        <target>backup (bruker to siste bruker valgte parametre)</target>
         <note>Class = "NSButtonCell"; title = "backup (uses two last user selected parameters)"; ObjectID = "VBk-Qe-g0o";</note>
       </trans-unit>
       <trans-unit id="VFf-HQ-GLW.headerCell.title">
@@ -1567,7 +1567,7 @@
       </trans-unit>
       <trans-unit id="WbP-J3-f5z.title">
         <source>To be transferred</source>
-        <target>To be transferred</target>
+        <target>For overføring</target>
         <note>Class = "NSBox"; title = "To be transferred"; ObjectID = "WbP-J3-f5z";</note>
       </trans-unit>
       <trans-unit id="WlH-m8-C35.title">
@@ -1982,7 +1982,7 @@
       </trans-unit>
       <trans-unit id="fyt-XU-Mpu.title">
         <source>Default</source>
-        <target>Default</target>
+        <target>Standard</target>
         <note>Class = "NSButtonCell"; title = "Default"; ObjectID = "fyt-XU-Mpu";</note>
       </trans-unit>
       <trans-unit id="g1a-zY-Mpq.label">
@@ -2027,7 +2027,7 @@
       </trans-unit>
       <trans-unit id="gVQ-92-htT.title">
         <source>Total size (kB):</source>
-        <target>Total size (kB):</target>
+        <target>Total størrelse (kB):</target>
         <note>Class = "NSTextFieldCell"; title = "Total size (kB):"; ObjectID = "gVQ-92-htT";</note>
       </trans-unit>
       <trans-unit id="gXW-nt-e2S.title">
@@ -2122,7 +2122,7 @@
       </trans-unit>
       <trans-unit id="i8f-03-7XY.title">
         <source>Total size (kB):</source>
-        <target>Total size (kB):</target>
+        <target>Total størrelse (kB):</target>
         <note>Class = "NSTextFieldCell"; title = "Total size (kB):"; ObjectID = "i8f-03-7XY";</note>
       </trans-unit>
       <trans-unit id="iEk-Zm-Qpb.title">
@@ -2252,7 +2252,7 @@
       </trans-unit>
       <trans-unit id="lGN-As-q21.title">
         <source>Add parameters</source>
-        <target>Add parameters</target>
+        <target>Legg til parametre</target>
         <note>Class = "NSBox"; title = "Add parameters"; ObjectID = "lGN-As-q21";</note>
       </trans-unit>
       <trans-unit id="lV3-TO-Uao.title">
@@ -2397,7 +2397,7 @@
       </trans-unit>
       <trans-unit id="p9L-16-Icv.title">
         <source>Parameters</source>
-        <target>Parameters</target>
+        <target>Parameter</target>
         <note>Class = "NSMenuItem"; title = "Parameters"; ObjectID = "p9L-16-Icv";</note>
       </trans-unit>
       <trans-unit id="p56-o9-HcO.title">
@@ -2822,7 +2822,7 @@
       </trans-unit>
       <trans-unit id="zoV-D2-sU8.headerCell.title">
         <source>Total size (kB)</source>
-        <target>Total size (kB)</target>
+        <target>Total størrelse (kB)</target>
         <note>Class = "NSTableColumn"; headerCell.title = "Total size (kB)"; ObjectID = "zoV-D2-sU8";</note>
       </trans-unit>
       <trans-unit id="zv2-BP-T5J.headerCell.title">
