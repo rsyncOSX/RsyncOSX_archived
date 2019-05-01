@@ -7,7 +7,7 @@
     <body>
       <trans-unit id="0B4-M8-m3v.title">
         <source>Edit configurations</source>
-        <target>Endre configurations</target>
+        <target>Endre konfigurasjoner</target>
         <note>Class = "NSBox"; title = "Edit configurations"; ObjectID = "0B4-M8-m3v";</note>
       </trans-unit>
       <trans-unit id="00G-Ps-GJD.title">
@@ -712,7 +712,7 @@
       </trans-unit>
       <trans-unit id="F9T-gx-oeJ.title">
         <source>configuration ID:</source>
-        <target>configuration ID:</target>
+        <target>konfigurasjons ID:</target>
         <note>Class = "NSTextFieldCell"; title = "configuration ID:"; ObjectID = "F9T-gx-oeJ";</note>
       </trans-unit>
       <trans-unit id="FKE-Sm-Kum.title">
@@ -1097,7 +1097,7 @@
       </trans-unit>
       <trans-unit id="Mn8-vX-I59.title">
         <source>Configuration snapshot</source>
-        <target>Configuration snapshot</target>
+        <target>Konfigurasjoner snapshot</target>
         <note>Class = "NSBox"; title = "Configuration snapshot"; ObjectID = "Mn8-vX-I59";</note>
       </trans-unit>
       <trans-unit id="NFc-sB-jWP.title">
@@ -1127,7 +1127,7 @@
       </trans-unit>
       <trans-unit id="Nar-BR-J2v.title">
         <source>RcloneOSX config</source>
-        <target>RcloneOSX config</target>
+        <target>RcloneOSX konfigurasjon</target>
         <note>Class = "NSBox"; title = "RcloneOSX config"; ObjectID = "Nar-BR-J2v";</note>
       </trans-unit>
       <trans-unit id="Nbe-Ck-Oeu.title">
@@ -1382,7 +1382,7 @@
       </trans-unit>
       <trans-unit id="SUC-MM-CCI.title">
         <source>RsyncOSX config</source>
-        <target>RsyncOSX config</target>
+        <target>RsyncOSX konfigurasjon</target>
         <note>Class = "NSBox"; title = "RsyncOSX config"; ObjectID = "SUC-MM-CCI";</note>
       </trans-unit>
       <trans-unit id="SWF-DA-TlU.headerCell.title">
@@ -1517,17 +1517,17 @@
       </trans-unit>
       <trans-unit id="VYu-Xf-XJc.label">
         <source>config</source>
-        <target>config</target>
+        <target>konfigurasjon</target>
         <note>Class = "NSToolbarItem"; label = "config"; ObjectID = "VYu-Xf-XJc";</note>
       </trans-unit>
       <trans-unit id="VYu-Xf-XJc.paletteLabel">
         <source>config</source>
-        <target>config</target>
+        <target>konfigurasjon</target>
         <note>Class = "NSToolbarItem"; paletteLabel = "config"; ObjectID = "VYu-Xf-XJc";</note>
       </trans-unit>
       <trans-unit id="VYu-Xf-XJc.toolTip">
         <source>Display userconfiguration</source>
-        <target>Display userconfiguration</target>
+        <target>Vis  brukervalg</target>
         <note>Class = "NSToolbarItem"; toolTip = "Display userconfiguration"; ObjectID = "VYu-Xf-XJc";</note>
       </trans-unit>
       <trans-unit id="Vbd-tp-W9Q.title">
@@ -1997,7 +1997,7 @@
       </trans-unit>
       <trans-unit id="g1a-zY-Mpq.toolTip">
         <source>Display output from rsync singletasks...</source>
-        <target>Display output from rsync singletasks...</target>
+        <target>Vis output fra rsync oppgaver...</target>
         <note>Class = "NSToolbarItem"; toolTip = "Display output from rsync singletasks..."; ObjectID = "g1a-zY-Mpq";</note>
       </trans-unit>
       <trans-unit id="gCo-mB-zNc.title">
@@ -2667,7 +2667,7 @@
       </trans-unit>
       <trans-unit id="wIa-4f-wP2.title">
         <source>Configuration info</source>
-        <target>Configuration info</target>
+        <target>Konfigurasjons info</target>
         <note>Class = "NSBox"; title = "Configuration info"; ObjectID = "wIa-4f-wP2";</note>
       </trans-unit>
       <trans-unit id="wJk-a6-R3B.title">
