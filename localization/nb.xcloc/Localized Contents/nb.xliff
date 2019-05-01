@@ -1067,7 +1067,7 @@
       </trans-unit>
       <trans-unit id="MRU-rs-ycW.title">
         <source>Changelog</source>
-        <target>Changelog</target>
+        <target>Endringslog</target>
         <note>Class = "NSButtonCell"; title = "Changelog"; ObjectID = "MRU-rs-ycW";</note>
       </trans-unit>
       <trans-unit id="MVn-QH-6i5.title">
@@ -1082,7 +1082,7 @@
       </trans-unit>
       <trans-unit id="Ml3-CP-4eZ.title">
         <source>Estimating progress</source>
-        <target>Estimating progress</target>
+        <target>Estimering progresjon</target>
         <note>Class = "NSViewController"; title = "Estimating progress"; ObjectID = "Ml3-CP-4eZ";</note>
       </trans-unit>
       <trans-unit id="Mlk-V8-rVE.title">
@@ -1327,7 +1327,7 @@
       </trans-unit>
       <trans-unit id="RX2-fV-dtX.title">
         <source>estimating</source>
-        <target>estimating</target>
+        <target>estimeriing</target>
         <note>Class = "NSTextFieldCell"; title = "estimating"; ObjectID = "RX2-fV-dtX";</note>
       </trans-unit>
       <trans-unit id="Rg5-XV-hcW.title">
@@ -1532,7 +1532,7 @@
       </trans-unit>
       <trans-unit id="Vbd-tp-W9Q.title">
         <source>Changed</source>
-        <target>Changed</target>
+        <target>Endret</target>
         <note>Class = "NSButtonCell"; title = "Changed"; ObjectID = "Vbd-tp-W9Q";</note>
       </trans-unit>
       <trans-unit id="Vdr-fp-XzO.title">
@@ -2632,12 +2632,12 @@
       </trans-unit>
       <trans-unit id="v12-7x-cig.toolTip">
         <source>Execute estimate and quickbackup for all tasks...</source>
-        <target>Execute estimate and quickbackup for all tasks...</target>
+        <target>Utfør estimat og quickbackup for alle oppgaver...</target>
         <note>Class = "NSToolbarItem"; toolTip = "Execute estimate and quickbackup for all tasks..."; ObjectID = "v12-7x-cig";</note>
       </trans-unit>
       <trans-unit id="vDS-vt-fgh.title">
         <source>Changelog</source>
-        <target>Changelog</target>
+        <target>Endringslog</target>
         <note>Class = "NSButtonCell"; title = "Changelog"; ObjectID = "vDS-vt-fgh";</note>
       </trans-unit>
       <trans-unit id="vJI-G9-Mbp.title">
@@ -2812,7 +2812,7 @@
       </trans-unit>
       <trans-unit id="zXX-tD-Lcg.title">
         <source>changed</source>
-        <target>changed</target>
+        <target>endret</target>
         <note>Class = "NSButtonCell"; title = "changed"; ObjectID = "zXX-tD-Lcg";</note>
       </trans-unit>
       <trans-unit id="znZ-ht-M5x.title">
