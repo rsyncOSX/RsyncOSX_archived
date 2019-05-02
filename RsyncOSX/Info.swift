@@ -22,10 +22,10 @@ class Info {
     // Loggdata
     let info21: String = NSLocalizedString("Got index from Execute and listing logs for one configuration...", comment: "Loggdata")
     // Copy files
-    let info31: String = NSLocalizedString("No such local catalog for restore or set it in user config...", comment: " Copy files")
-    let info32: String = NSLocalizedString("Not a remote task, use Finder to copy files...", comment: " Copy files")
-    let info33: String = NSLocalizedString("Local or remote catalog cannot be empty...", comment: " Copy files")
-    let info34: String = NSLocalizedString("Seems not to be connected...", comment: " Copy files")
+    let info31: String = NSLocalizedString("No such local catalog for restore or set it in user config...", comment: "Copy files")
+    let info32: String = NSLocalizedString("Not a remote task, use Finder to copy files...", comment: "Copy files")
+    let info33: String = NSLocalizedString("Local or remote catalog cannot be empty...", comment: "Copy files")
+    let info34: String = NSLocalizedString("Seems not to be connected...", comment: "Copy files")
     // Schedules
     let info42: String = NSLocalizedString("Scheduled tasks in menu app...", comment: "Schedules")
     let info43: String = NSLocalizedString("Got index from Execute...", comment: "Schedules")
@@ -35,7 +35,6 @@ class Info {
     let info53: String = NSLocalizedString("Delete operation completed...", comment: "Snapshots")
     let info54: String = NSLocalizedString("Seriously, enter a real number...", comment: "Snapshots")
     let info55: String = NSLocalizedString("You cannot delete that many, max are", comment: "Snapshots")
-    let info56: String = NSLocalizedString("Seems not to be connected...", comment: "Snapshots")
     
     // Execute
     func info(num: Int) -> String {
@@ -115,7 +114,7 @@ class Info {
         case 5:
             return self.info55
         case 6:
-            return self.info56
+            return self.info34
         default:
             return ""
         }

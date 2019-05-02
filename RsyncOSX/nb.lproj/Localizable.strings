@@ -1,6 +1,12 @@
 /* Restore */
 " ... set in User configuration ..." = "... sett i bruker preferanser...";
 
+/* Execute */
+"⌘A to abort or wait..." = "⌘A for å avslutte eller vent...";
+
+/* Snapshots */
+"Aborting delete operation..." = "Avslutter slette operasjon...";
+
 /* Add schedule */
 "Add" = "Legg til";
 
@@ -49,6 +55,9 @@
 /* Loggs, Tasks and Profile */
 "Delete " = "Slett";
 
+/* Snapshots */
+"Delete operation completed..." = "Slette operasjon gjennomført...";
+
 /* Loggs, Tasks and Profile */
 "Delete profile: " = "Slett profil:";
 
@@ -85,14 +94,47 @@
 /* Verify */
 "Getting information, please wait ..." = "Henter informasjon, vennligst vent";
 
+/* Loggdata */
+"Got index from Execute and listing logs for one configuration..." = "Hentet index fra Utfør og lister logg for en konfigurasjon ";
+
+/* Schedules */
+"Got index from Execute..." = "Hentet index fra Utfør";
+
 /* Restore */
 "Got it..." = "Info hentet...";
 
 /* icon */
 "Icon by: Zsolt Sándor" = "Icon av: Zsolt Sándor";
 
+/* Copy files */
+"Local or remote catalog cannot be empty..." = "Lokal og ekstern må fylles ut...";
+
+/* Execute */
+"Menu app is running..." = "Meny appen kjører...";
+
+/* Execute */
+"No rclone config found..." = "Ingen rclone konfigurasjon funnet";
+
+/* Execute */
+"No rsync in path..." = "Ingen rsync i sti...";
+
+/* Copy files */
+"No such local catalog for restore or set it in user config..." = "Ingen slik lokal katalog for restore eller sett den i bruker preferanser...";
+
+/* Copy files */
+"Not a remote task, use Finder to copy files..." = "Ikke en ekstern oppgave, bruk Finder for å kopiere filer...";
+
+/* Snapshots */
+"Not a snapshot task..." = "Ikke en snapshot oppgave...";
+
+/* Execute */
+"Only valid for backup, snapshot and combined tasks..." = "Kun gyldig for backup, snapshot og kombinerte oppgaver...";
+
 /* Verify */
 "Please select a task in Execute ..." = "Velg en oppgave i Utfør";
+
+/* Execute */
+"Possible error logging..." = "Mulig feil logging...";
 
 /* Restore */
 "Probably some rsync error..." = "Muligens rsync feil...";
@@ -103,9 +145,27 @@
 /* Restore */
 "Restore is completed..." = "Restore er utført...";
 
+/* Schedules */
+"Scheduled tasks in menu app..." = "Schedulerte oppgaver i meny app...";
+
+/* Copy files */
+"Seems not to be connected..." = "Synes ikke å være tilgjengelig...";
+
+/* Execute */
+"Select a task...." = "Velg en oppgave...";
+
+/* Snapshots */
+"Seriously, enter a real number..." = "Seriøst, legg inn et nummer...";
+
 /* Restore */
 "Start restore?" = "Start restore?";
 
+/* Execute */
+"This is a combined task, execute by ⌘R..." = "Kombinert oppgave, kjør med ⌘R";
+
 /* Verify */
 "Verifying, please wait..." = "Verifiserer, vennligst vent...";
+
+/* Snapshots */
+"You cannot delete that many, max are" = "Du kan ikke slette så mange, max er";
 
