@@ -91,7 +91,7 @@ class ViewControllerSnapshots: NSViewController, SetDismisser, SetConfigurations
         }
     }
 
-    private func info (num: Int) {
+    private func info(num: Int) {
         switch num {
         case 1:
             self.info.stringValue = "Not a snapshot task..."
