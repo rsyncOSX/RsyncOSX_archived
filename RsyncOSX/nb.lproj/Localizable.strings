@@ -95,7 +95,7 @@
 "Please select a task in Execute ..." = "Velg en oppgave i Utfør";
 
 /* Restore */
-"Probably some rsync error..." = "Malignes rsync feil...";
+"Probably some rsync error..." = "Muligens rsync feil...";
 
 /* Restore */
 "Restore" = "Restore";
