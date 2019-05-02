@@ -91,11 +91,17 @@
 /* icon */
 "Icon by: Zsolt Sándor" = "Icon av: Zsolt Sándor";
 
+/* Copy files */
+"Number remote files: " = "Antall eksterne filer";
+
+/* Snapshots */
+"Number snapshots: " = "Antall snapshots:";
+
 /* Verify */
 "Please select a task in Execute ..." = "Velg en oppgave i Utfør";
 
 /* Restore */
-"Probably some rsync error..." = "Malignes rsync feil...";
+"Probably some rsync error..." = "Muligens rsync feil...";
 
 /* Restore */
 "Restore" = "Restore";
