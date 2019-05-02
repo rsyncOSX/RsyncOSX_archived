@@ -2873,6 +2873,11 @@
         <target>... sett i bruker preferanser...</target>
         <note>Restore</note>
       </trans-unit>
+      <trans-unit id="Aborting delete operation...">
+        <source>Aborting delete operation...</source>
+        <target>Avslutter slette operasjon...</target>
+        <note>Snapshots</note>
+      </trans-unit>
       <trans-unit id="Add">
         <source>Add</source>
         <target>Legg til</target>
@@ -2953,6 +2958,11 @@
         <target>Slett</target>
         <note>Loggs, Tasks and Profile</note>
       </trans-unit>
+      <trans-unit id="Delete operation completed...">
+        <source>Delete operation completed...</source>
+        <target>Slette operasjon gjennomført...</target>
+        <note>Snapshots</note>
+      </trans-unit>
       <trans-unit id="Delete profile: ">
         <source>Delete profile: </source>
         <target>Slett profil:</target>
@@ -3013,6 +3023,16 @@
         <target>Henter informasjon, vennligst vent</target>
         <note>Verify</note>
       </trans-unit>
+      <trans-unit id="Got index from Execute and listing logs for one configuration...">
+        <source>Got index from Execute and listing logs for one configuration...</source>
+        <target>Hentet index fra Utfør og lister logg for en konfigurasjon </target>
+        <note>Loggdata</note>
+      </trans-unit>
+      <trans-unit id="Got index from Execute...">
+        <source>Got index from Execute...</source>
+        <target>Hentet index fra Utfør</target>
+        <note>Schedules</note>
+      </trans-unit>
       <trans-unit id="Got it...">
         <source>Got it...</source>
         <target>Info hentet...</target>
@@ -3023,6 +3043,41 @@
         <target>Icon av: Zsolt Sándor</target>
         <note>icon</note>
       </trans-unit>
+      <trans-unit id="Local or remote catalog cannot be empty...">
+        <source>Local or remote catalog cannot be empty...</source>
+        <target>Lokal og ekstern må fylles ut...</target>
+        <note>Copy files</note>
+      </trans-unit>
+      <trans-unit id="Menu app is running...">
+        <source>Menu app is running...</source>
+        <target>Meny appen kjører...</target>
+        <note>Execute</note>
+      </trans-unit>
+      <trans-unit id="No rclone config found...">
+        <source>No rclone config found...</source>
+        <target>Ingen rclone konfigurasjon funnet</target>
+        <note>Execute</note>
+      </trans-unit>
+      <trans-unit id="No rsync in path...">
+        <source>No rsync in path...</source>
+        <target>Ingen rsync i sti...</target>
+        <note>Execute</note>
+      </trans-unit>
+      <trans-unit id="No such local catalog for restore or set it in user config...">
+        <source>No such local catalog for restore or set it in user config...</source>
+        <target>Ingen slik lokal katalog for restore eller sett den i bruker preferanser...</target>
+        <note>Copy files</note>
+      </trans-unit>
+      <trans-unit id="Not a remote task, use Finder to copy files...">
+        <source>Not a remote task, use Finder to copy files...</source>
+        <target>Ikke en ekstern oppgave, bruk Finder for å kopiere filer...</target>
+        <note>Copy files</note>
+      </trans-unit>
+      <trans-unit id="Not a snapshot task...">
+        <source>Not a snapshot task...</source>
+        <target>Ikke en snapshot oppgave...</target>
+        <note>Snapshots</note>
+      </trans-unit>
       <trans-unit id="Number remote files: ">
         <source>Number remote files: </source>
         <note>Copy files</note>
@@ -3031,10 +3086,20 @@
         <source>Number snapshots: </source>
         <note>Snapshots</note>
       </trans-unit>
+      <trans-unit id="Only valid for backup, snapshot and combined tasks...">
+        <source>Only valid for backup, snapshot and combined tasks...</source>
+        <target>Kun gyldig for backup, snapshot og kombinerte oppgaver...</target>
+        <note>Execute</note>
+      </trans-unit>
       <trans-unit id="Please select a task in Execute ...">
         <source>Please select a task in Execute ...</source>
         <target>Velg en oppgave i Utfør</target>
         <note>Verify</note>
+      </trans-unit>
+      <trans-unit id="Possible error logging...">
+        <source>Possible error logging...</source>
+        <target>Mulig feil logging...</target>
+        <note>Execute</note>
       </trans-unit>
       <trans-unit id="Probably some rsync error...">
         <source>Probably some rsync error...</source>
@@ -3051,15 +3116,50 @@
         <target>Restore er utført...</target>
         <note>Restore</note>
       </trans-unit>
+      <trans-unit id="Scheduled tasks in menu app...">
+        <source>Scheduled tasks in menu app...</source>
+        <target>Schedulerte oppgaver i meny app...</target>
+        <note>Schedules</note>
+      </trans-unit>
+      <trans-unit id="Seems not to be connected...">
+        <source>Seems not to be connected...</source>
+        <target>Synes ikke å være tilgjengelig...</target>
+        <note>Copy files</note>
+      </trans-unit>
+      <trans-unit id="Select a task....">
+        <source>Select a task....</source>
+        <target>Velg en oppgave...</target>
+        <note>Execute</note>
+      </trans-unit>
+      <trans-unit id="Seriously, enter a real number...">
+        <source>Seriously, enter a real number...</source>
+        <target>Seriøst, legg inn et nummer...</target>
+        <note>Snapshots</note>
+      </trans-unit>
       <trans-unit id="Start restore?">
         <source>Start restore?</source>
         <target>Start restore?</target>
         <note>Restore</note>
       </trans-unit>
+      <trans-unit id="This is a combined task, execute by ⌘R...">
+        <source>This is a combined task, execute by ⌘R...</source>
+        <target>Kombinert oppgave, kjør med ⌘R</target>
+        <note>Execute</note>
+      </trans-unit>
       <trans-unit id="Verifying, please wait...">
         <source>Verifying, please wait...</source>
         <target>Verifiserer, vennligst vent...</target>
         <note>Verify</note>
+      </trans-unit>
+      <trans-unit id="You cannot delete that many, max are">
+        <source>You cannot delete that many, max are</source>
+        <target>Du kan ikke slette så mange, max er</target>
+        <note>Snapshots</note>
+      </trans-unit>
+      <trans-unit id="⌘A to abort or wait...">
+        <source>⌘A to abort or wait...</source>
+        <target>⌘A for å avslutte eller vent...</target>
+        <note>Execute</note>
       </trans-unit>
     </body>
   </file>
