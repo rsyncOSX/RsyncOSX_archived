@@ -2267,7 +2267,8 @@
       </trans-unit>
       <trans-unit id="lvl-UW-J6U.title">
         <source>Date last backup:</source>
-        <note>Class = "NSTextFieldCell"; title = "Date last backup:"; ObjectID = "lvl-UW-J6U";</note><target>Dato siste backup:</target>
+        <target>Dato siste backup:</target>
+        <note>Class = "NSTextFieldCell"; title = "Date last backup:"; ObjectID = "lvl-UW-J6U";</note>
       </trans-unit>
       <trans-unit id="lxg-t9-eiU.title">
         <source>Task info</source>
@@ -2869,7 +2870,8 @@
     <body>
       <trans-unit id=" ... set in User configuration ...">
         <source> ... set in User configuration ...</source>
-        <note>Restore</note><target>... sett i bruker preferanser...</target>
+        <target>... sett i bruker preferanser...</target>
+        <note>Restore</note>
       </trans-unit>
       <trans-unit id="Add">
         <source>Add</source>
@@ -2913,7 +2915,8 @@
       </trans-unit>
       <trans-unit id="Completed ...">
         <source>Completed ...</source>
-        <note>Verify</note><target>Utført</target>
+        <target>Utført</target>
+        <note>Verify</note>
       </trans-unit>
       <trans-unit id="Computing changed, please wait...">
         <source>Computing changed, please wait...</source>
@@ -2997,11 +3000,13 @@
       </trans-unit>
       <trans-unit id="Executing restore...">
         <source>Executing restore...</source>
-        <note>Restore</note><target>Utfører restore</target>
+        <target>Utfører restore</target>
+        <note>Restore</note>
       </trans-unit>
       <trans-unit id="Getting info, please wait...">
         <source>Getting info, please wait...</source>
-        <note>Restore</note><target>Henter informasjon, vennligst vent...</target>
+        <target>Henter informasjon, vennligst vent...</target>
+        <note>Restore</note>
       </trans-unit>
       <trans-unit id="Getting information, please wait ...">
         <source>Getting information, please wait ...</source>
@@ -3010,12 +3015,21 @@
       </trans-unit>
       <trans-unit id="Got it...">
         <source>Got it...</source>
-        <note>Restore</note><target>Info hentet...</target>
+        <target>Info hentet...</target>
+        <note>Restore</note>
       </trans-unit>
       <trans-unit id="Icon by: Zsolt Sándor">
         <source>Icon by: Zsolt Sándor</source>
         <target>Icon av: Zsolt Sándor</target>
         <note>icon</note>
+      </trans-unit>
+      <trans-unit id="Number remote files: ">
+        <source>Number remote files: </source>
+        <note>Copy files</note>
+      </trans-unit>
+      <trans-unit id="Number snapshots: ">
+        <source>Number snapshots: </source>
+        <note>Snapshots</note>
       </trans-unit>
       <trans-unit id="Please select a task in Execute ...">
         <source>Please select a task in Execute ...</source>
@@ -3024,7 +3038,8 @@
       </trans-unit>
       <trans-unit id="Probably some rsync error...">
         <source>Probably some rsync error...</source>
-        <note>Restore</note><target>Malignes rsync feil...</target>
+        <target>Muligens rsync feil...</target>
+        <note>Restore</note>
       </trans-unit>
       <trans-unit id="Restore">
         <source>Restore</source>
@@ -3033,7 +3048,8 @@
       </trans-unit>
       <trans-unit id="Restore is completed...">
         <source>Restore is completed...</source>
-        <note>Restore</note><target>Restore er utført...</target>
+        <target>Restore er utført...</target>
+        <note>Restore</note>
       </trans-unit>
       <trans-unit id="Start restore?">
         <source>Start restore?</source>
