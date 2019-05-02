@@ -9,91 +9,115 @@
 import Foundation
 
 class Info {
-    var info: String?
+
+    // Execute
+    let info11: String = NSLocalizedString("Select a task....", comment: "Execute")
+    let info12: String = NSLocalizedString("Possible error logging...", comment: "Execute")
+    let info13: String = NSLocalizedString("No rsync in path...", comment: "Execute")
+    let info14: String = NSLocalizedString("⌘A to abort or wait...", comment: "Execute")
+    let info15: String = NSLocalizedString("Menu app is running...", comment: "Execute")
+    let info16: String = NSLocalizedString("This is a combined task, execute by ⌘R...", comment: "Execute")
+    let info17: String = NSLocalizedString("Only valid for backup, snapshot and combined tasks...", comment: "Execute")
+    let info18: String = NSLocalizedString("No rclone config found...", comment: "Execute")
+    // Loggdata
+    let info21: String = NSLocalizedString("Got index from Execute and listing logs for one configuration...", comment: "Loggdata")
+    // Copy files
+    let info31: String = NSLocalizedString("No such local catalog for restore or set it in user config...", comment: " Copy files")
+    let info32: String = NSLocalizedString("Not a remote task, use Finder to copy files...", comment: " Copy files")
+    let info33: String = NSLocalizedString("Local or remote catalog cannot be empty...", comment: " Copy files")
+    let info34: String = NSLocalizedString("Seems not to be connected...", comment: " Copy files")
+    // Schedules
+    let info42: String = NSLocalizedString("Scheduled tasks in menu app...", comment: "Schedules")
+    let info43: String = NSLocalizedString("Got index from Execute...", comment: "Schedules")
+    // Snapshots
+    let info51: String = NSLocalizedString("Not a snapshot task...", comment: "Snapshots")
+    let info52: String = NSLocalizedString("Aborting delete operation...", comment: "Snapshots")
+    let info53: String = NSLocalizedString("Delete operation completed...", comment: "Snapshots")
+    let info54: String = NSLocalizedString("Seriously, enter a real number...", comment: "Snapshots")
+    let info55: String = NSLocalizedString("You cannot delete that many, max are", comment: "Snapshots")
+    let info56: String = NSLocalizedString("Seems not to be connected...", comment: "Snapshots")
     
     // Execute
-    func info(num: Int) {
+    func info(num: Int) -> String {
         switch num {
         case 1:
-            self.info = "Select a task...."
+            return self.info11
         case 2:
-            self.info = "Possible error logging..."
+            return self.info12
         case 3:
-            self.info = "No rsync in path..."
+            return self.info13
         case 4:
-            self.info = "⌘A to abort or wait..."
+            return self.info14
         case 5:
-            self.info = "Menu app is running..."
+            return self.info15
         case 6:
-            self.info = "This is a combined task, execute by ⌘R..."
+            return self.info16
         case 7:
-            self.info = "Only valid for backup, snapshot and combined tasks..."
+            return self.info17
         case 8:
-            self.info = "No rclone config found..."
+            return self.info18
         default:
-            self.info = ""
+            return ""
         }
     }
 
     // Loggdata
-     func info2(num: Int) {
+     func info2(num: Int) -> String {
         switch num {
         case 1:
-            self.info = "Got index from Execute and listing logs for one configuration..."
+            return self.info21
         default:
-            self.info = ""
+            return ""
         }
     }
 
     // Copy files
-
-    func info3(num: Int) {
+    func info3(num: Int) -> String {
         switch num {
         case 1:
-            self.info = "No such local catalog for restore or set it in user config..."
+            return self.info31
         case 2:
-            self.info = "Not a remote task, use Finder to copy files..."
+            return self.info32
         case 3:
-            self.info = "Local or remote catalog cannot be empty..."
+            return self.info33
         case 4:
-            self.info = "Seems not to be connected..."
+            return self.info34
         default:
-            self.info = ""
+            return ""
         }
     }
     
     // Schedules
-    func info4(num: Int) {
+    func info4(num: Int) -> String {
         switch num {
         case 1:
-            self.info = "Select a task..."
+            return self.info11
         case 2:
-            self.info = "Scheduled tasks in menu app..."
+            return self.info42
         case 3:
-            self.info = "Got index from Execute..."
+            return self.info43
         default:
-            self.info = ""
+            return ""
         }
     }
 
     // snapshots
-    func info5(num: Int) {
+    func info5(num: Int) -> String {
         switch num {
         case 1:
-            self.info = "Not a snapshot task..."
+            return self.info51
         case 2:
-            self.info = "Aborting delete operation..."
+            return self.info52
         case 3:
-            self.info = "Delete operation completed..."
+            return self.info53
         case 4:
-            self.info = "Seriously, enter a real number..."
+            return self.info54
         case 5:
-            // let num = String((self.snapshotsloggdata?.snapshotslogs?.count ?? 1 - 1) - 1)
-            self.info = "You cannot delete that many, max is " + "num" + "..."
+            return self.info55
         case 6:
-            self.info = "Seems not to be connected..."
+            return self.info56
         default:
-            self.info = ""
+            return ""
         }
     }
     
