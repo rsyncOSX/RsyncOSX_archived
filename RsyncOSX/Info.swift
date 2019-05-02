@@ -5,10 +5,11 @@
 //  Created by Thomas Evensen on 02/05/2019.
 //  Copyright © 2019 Thomas Evensen. All rights reserved.
 //
+// swiftlint:disable line_length
 
 import Foundation
 
-class Info {
+public struct Info {
 
     // Execute
     let info11: String = NSLocalizedString("Select a task....", comment: "Execute")
@@ -35,7 +36,7 @@ class Info {
     let info53: String = NSLocalizedString("Delete operation completed...", comment: "Snapshots")
     let info54: String = NSLocalizedString("Seriously, enter a real number...", comment: "Snapshots")
     let info55: String = NSLocalizedString("You cannot delete that many, max are", comment: "Snapshots")
-    
+
     // Execute
     func info(num: Int) -> String {
         switch num {
@@ -85,7 +86,7 @@ class Info {
             return ""
         }
     }
-    
+
     // Schedules
     func info4(num: Int) -> String {
         switch num {
@@ -119,5 +120,4 @@ class Info {
             return ""
         }
     }
-    
 }
