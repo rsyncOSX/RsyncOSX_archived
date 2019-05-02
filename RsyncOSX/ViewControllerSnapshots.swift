@@ -375,11 +375,12 @@ extension ViewControllerSnapshots: NSTableViewDataSource {
 
     func numberOfRows(in tableView: NSTableView) -> Int {
         if tableView == self.snapshotstableView {
+            let numberOflogfiles: String = NSLocalizedString("Number of snapshots: ", comment: "Snapshots")
             guard self.snapshotsloggdata?.snapshotslogs != nil else {
-                self.numberOflogfiles.stringValue = "Number of snapshots:"
+                self.numberOflogfiles.stringValue = numberOflogfiles
                 return 0
             }
-            self.numberOflogfiles.stringValue = "Number of snapshots: " + String(self.snapshotsloggdata?.snapshotslogs!.count ?? 0)
+            self.numberOflogfiles.stringValue = numberOflogfiles + String(self.snapshotsloggdata?.snapshotslogs!.count ?? 0)
             return (self.snapshotsloggdata?.snapshotslogs!.count ?? 0)
         } else {
            return self.configurations?.getConfigurationsDataSourcecountBackupSnapshot()?.count ?? 0

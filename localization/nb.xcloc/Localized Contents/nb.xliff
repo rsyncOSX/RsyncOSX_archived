@@ -1117,7 +1117,7 @@
       </trans-unit>
       <trans-unit id="NQQ-pH-x0v.title">
         <source>Select column to sort ...</source>
-        <target>Velg cologne for sortering ...</target>
+        <target>Velg kolonne for sortering ...</target>
         <note>Class = "NSTextFieldCell"; title = "Select column to sort ..."; ObjectID = "NQQ-pH-x0v";</note>
       </trans-unit>
       <trans-unit id="NQS-NB-OI2.title">
@@ -1277,7 +1277,7 @@
       </trans-unit>
       <trans-unit id="QdJ-n1-Mtr.title">
         <source>Process info</source>
-        <target>Process info</target>
+        <target>Prosess info</target>
         <note>Class = "NSBox"; title = "Process info"; ObjectID = "QdJ-n1-Mtr";</note>
       </trans-unit>
       <trans-unit id="QmL-ZM-Xc4.label">
@@ -1322,7 +1322,7 @@
       </trans-unit>
       <trans-unit id="RVB-9H-LQM.title">
         <source>Local info</source>
-        <target>Local info</target>
+        <target>Lokal info</target>
         <note>Class = "NSBox"; title = "Local info"; ObjectID = "RVB-9H-LQM";</note>
       </trans-unit>
       <trans-unit id="RX2-fV-dtX.title">
@@ -1447,7 +1447,7 @@
       </trans-unit>
       <trans-unit id="Tp7-5c-5Ii.title">
         <source>next snapshot num:</source>
-        <target>next snapshot num:</target>
+        <target>neste snapshot nummer:</target>
         <note>Class = "NSTextFieldCell"; title = "next snapshot num:"; ObjectID = "Tp7-5c-5Ii";</note>
       </trans-unit>
       <trans-unit id="TqG-6l-QwU.title">
@@ -1812,7 +1812,7 @@
       </trans-unit>
       <trans-unit id="d9k-fP-XKG.title">
         <source>⌘L or double click  or on row to stop or delete schedules...</source>
-        <target>⌘L or double click  or on row to stop or delete schedules...</target>
+        <target>⌘L eller dobbel klikk på rad for å stoppe eller slette schedules..</target>
         <note>Class = "NSTextFieldCell"; title = "⌘L or double click  or on row to stop or delete schedules..."; ObjectID = "d9k-fP-XKG";</note>
       </trans-unit>
       <trans-unit id="dDj-C3-nB5.title">
