@@ -437,7 +437,7 @@
 "D7f-Cg-ZtW.title" = "Text Cell";
 
 /* Class = "NSTextFieldCell"; title = "⌘L or double click  or on row to stop or delete schedules..."; ObjectID = "d9k-fP-XKG"; */
-"d9k-fP-XKG.title" = "⌘L or double click  or on row to stop or delete schedules...";
+"d9k-fP-XKG.title" = "⌘L eller dobbel klikk på rad for å stoppe eller slette schedules..";
 
 /* Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "dDj-C3-nB5"; */
 "dDj-C3-nB5.title" = "Text Cell";
@@ -1067,7 +1067,7 @@
 "NMo-om-nkz.title" = "Services";
 
 /* Class = "NSTextFieldCell"; title = "Select column to sort ..."; ObjectID = "NQQ-pH-x0v"; */
-"NQQ-pH-x0v.title" = "Velg cologne for sortering ...";
+"NQQ-pH-x0v.title" = "Velg kolonne for sortering ...";
 
 /* Class = "NSTextFieldCell"; title = "Table View Cell"; ObjectID = "NQS-NB-OI2"; */
 "NQS-NB-OI2.title" = "Table View Cell";
@@ -1205,7 +1205,7 @@
 "QCj-5P-T2N.title" = "Engang";
 
 /* Class = "NSBox"; title = "Process info"; ObjectID = "QdJ-n1-Mtr"; */
-"QdJ-n1-Mtr.title" = "Process info";
+"QdJ-n1-Mtr.title" = "Prosess info";
 
 /* Class = "NSTableColumn"; headerCell.title = "Task"; ObjectID = "qfC-8t-e7C"; */
 "qfC-8t-e7C.headerCell.title" = "Oppgave";
@@ -1274,7 +1274,7 @@
 "Rv2-24-MJh.title" = "Kopier";
 
 /* Class = "NSBox"; title = "Local info"; ObjectID = "RVB-9H-LQM"; */
-"RVB-9H-LQM.title" = "Local info";
+"RVB-9H-LQM.title" = "Lokal info";
 
 /* Class = "NSTextFieldCell"; title = "kB :"; ObjectID = "Rve-M9-9Pp"; */
 "Rve-M9-9Pp.title" = "kB :";
@@ -1376,7 +1376,7 @@
 "tNA-hi-kYT.headerCell.title" = "Lokal katalog";
 
 /* Class = "NSTextFieldCell"; title = "next snapshot num:"; ObjectID = "Tp7-5c-5Ii"; */
-"Tp7-5c-5Ii.title" = "next snapshot num:";
+"Tp7-5c-5Ii.title" = "neste snapshot nummer:";
 
 /* Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "TPL-u8-ah1"; */
 "TPL-u8-ah1.title" = "Text Cell";
