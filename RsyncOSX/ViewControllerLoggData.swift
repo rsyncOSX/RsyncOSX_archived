@@ -62,15 +62,6 @@ class ViewControllerLoggData: NSViewController, SetConfigurations, SetSchedules,
         self.presentAsSheet(self.viewControllerEstimating!)
     }
 
-    private func info(num: Int) {
-        switch num {
-        case 1:
-            self.info.stringValue = "Got index from Execute and listing logs for one configuration..."
-        default:
-            self.info.stringValue = ""
-        }
-    }
-
     @IBAction func sortdirection(_ sender: NSButton) {
         if self.sortedascendigdesending == true {
             self.sortedascendigdesending = false
@@ -135,9 +126,9 @@ class ViewControllerLoggData: NSViewController, SetConfigurations, SetSchedules,
                 if config?.task == "snapshot" { self.working.startAnimation(nil) }
                 self.snapshotsloggdata = SnapshotsLoggData(config: config!, insnapshot: false)
             }
-            self.info(num: 1)
+            self.info.stringValue = Info().info2(num: 1)
         } else {
-            self.info(num: 0)
+            self.info.stringValue = Info().info2(num: 0)
             self.scheduleloggdata = ScheduleLoggData(sortdirection: self.sortedascendigdesending)
         }
         self.viewispresent = true
@@ -292,9 +283,9 @@ extension ViewControllerLoggData: ReadLoggdata {
                 if let index = self.index {
                     let hiddenID = self.configurations?.gethiddenID(index: index) ?? -1
                     self.scheduleloggdata = ScheduleLoggData(hiddenID: hiddenID, sortdirection: self.sortedascendigdesending)
-                    self.info(num: 1)
+                    self.info.stringValue = Info().info2(num: 1)
                 } else {
-                    self.info(num: 0)
+                    self.info.stringValue = Info().info2(num: 0)
                     self.scheduleloggdata = ScheduleLoggData(sortdirection: self.sortedascendigdesending)
                 }
                 self.scheduletable.reloadData()

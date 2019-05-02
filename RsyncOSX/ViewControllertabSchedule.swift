@@ -67,7 +67,7 @@ class ViewControllertabSchedule: NSViewController, SetConfigurations, SetSchedul
         NSApp.terminate(self)
     }
 
-    private func info (num: Int) {
+    private func info(num: Int) {
         switch num {
         case 1:
             self.info.stringValue = "Select a task..."
