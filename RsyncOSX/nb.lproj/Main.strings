@@ -49,15 +49,6 @@
 /* Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "2eK-ib-h9A"; */
 "2eK-ib-h9A.title" = "Text Cell";
 
-/* Class = "NSComboBoxCell"; 2En-fo-pee.ibShadowedObjectValues[0] = "Item 1"; ObjectID = "2En-fo-pee"; */
-"2En-fo-pee.ibShadowedObjectValues[0]" = "Item 1";
-
-/* Class = "NSComboBoxCell"; 2En-fo-pee.ibShadowedObjectValues[1] = "Item 2"; ObjectID = "2En-fo-pee"; */
-"2En-fo-pee.ibShadowedObjectValues[1]" = "Item 2";
-
-/* Class = "NSComboBoxCell"; 2En-fo-pee.ibShadowedObjectValues[2] = "Item 3"; ObjectID = "2En-fo-pee"; */
-"2En-fo-pee.ibShadowedObjectValues[2]" = "Item 3";
-
 /* Class = "NSTextFieldCell"; title = "Remote catalog:"; ObjectID = "2ep-dg-7eI"; */
 "2ep-dg-7eI.title" = "Ekstern katalog:";
 
@@ -477,15 +468,6 @@
 
 /* Class = "NSTextFieldCell"; title = "Optional"; ObjectID = "dti-GW-qCA"; */
 "dti-GW-qCA.title" = "Optional";
-
-/* Class = "NSComboBoxCell"; DTJ-Gc-ILX.ibShadowedObjectValues[0] = "Item 1"; ObjectID = "DTJ-Gc-ILX"; */
-"DTJ-Gc-ILX.ibShadowedObjectValues[0]" = "Item 1";
-
-/* Class = "NSComboBoxCell"; DTJ-Gc-ILX.ibShadowedObjectValues[1] = "Item 2"; ObjectID = "DTJ-Gc-ILX"; */
-"DTJ-Gc-ILX.ibShadowedObjectValues[1]" = "Item 2";
-
-/* Class = "NSComboBoxCell"; DTJ-Gc-ILX.ibShadowedObjectValues[2] = "Item 3"; ObjectID = "DTJ-Gc-ILX"; */
-"DTJ-Gc-ILX.ibShadowedObjectValues[2]" = "Item 3";
 
 /* Class = "NSTextFieldCell"; title = "Profile :"; ObjectID = "dTX-H7-8VC"; */
 "dTX-H7-8VC.title" = "Profil :";
@@ -1098,15 +1080,6 @@
 
 /* Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "OIG-cZ-jQ9"; */
 "OIG-cZ-jQ9.title" = "Text Cell";
-
-/* Class = "NSComboBoxCell"; Okg-xE-hlF.ibShadowedObjectValues[0] = "Item 1"; ObjectID = "Okg-xE-hlF"; */
-"Okg-xE-hlF.ibShadowedObjectValues[0]" = "Item 1";
-
-/* Class = "NSComboBoxCell"; Okg-xE-hlF.ibShadowedObjectValues[1] = "Item 2"; ObjectID = "Okg-xE-hlF"; */
-"Okg-xE-hlF.ibShadowedObjectValues[1]" = "Item 2";
-
-/* Class = "NSComboBoxCell"; Okg-xE-hlF.ibShadowedObjectValues[2] = "Item 3"; ObjectID = "Okg-xE-hlF"; */
-"Okg-xE-hlF.ibShadowedObjectValues[2]" = "Item 3";
 
 /* Class = "NSButtonCell"; title = "Delete"; ObjectID = "OlM-9W-pxf"; */
 "OlM-9W-pxf.title" = "Slett";
