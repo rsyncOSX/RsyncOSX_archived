@@ -21,6 +21,8 @@ class ViewControllerSnapshots: NSViewController, SetDismisser, SetConfigurations
     private var index: Int?
     weak var processterminationDelegate: UpdateProgress?
     var abort: Bool = false
+    // Infoobject
+    var information: Info?
     // Reference to which plan in combox
     var combovalueslast = ["none",
                           "every",
@@ -91,26 +93,6 @@ class ViewControllerSnapshots: NSViewController, SetDismisser, SetConfigurations
         }
     }
 
-    private func info(num: Int) {
-        switch num {
-        case 1:
-            self.info.stringValue = "Not a snapshot task..."
-        case 2:
-            self.info.stringValue = "Aborting delete operation..."
-        case 3:
-            self.info.stringValue = "Delete operation completed..."
-        case 4:
-            self.info.stringValue = "Seriously, enter a real number..."
-        case 5:
-            let num = String((self.snapshotsloggdata?.snapshotslogs?.count ?? 1 - 1) - 1)
-            self.info.stringValue = "You cannot delete that many, max is " + num + "..."
-        case 6:
-            self.info.stringValue = "Seems not to be connected..."
-        default:
-            self.info.stringValue = ""
-        }
-    }
-
     private func initslidersdeletesnapshots() {
         self.deletesnapshots.altIncrementValue = 1.0
         self.deletesnapshots.maxValue = Double(self.snapshotsloggdata?.snapshotslogs?.count ?? 0) - 1.0
@@ -171,7 +153,7 @@ class ViewControllerSnapshots: NSViewController, SetDismisser, SetConfigurations
 
     // Abort button
     @IBAction func abort(_ sender: NSButton) {
-        self.info(num: 2)
+        self.info.stringValue = self.information!.info5(num: 2)
         self.snapshotsloggdata?.remotecatalogstodelete = nil
     }
 
@@ -182,7 +164,7 @@ class ViewControllerSnapshots: NSViewController, SetDismisser, SetConfigurations
         let dialog: String = NSLocalizedString("Delete", comment: "Loggs, Tasks and Profile")
         let answer = Alerts.dialogOrCancel(question: question, text: text, dialog: dialog)
         if answer {
-            self.info(num: 0)
+            self.info.stringValue = self.information!.info5(num: 0)
             self.snapshotsloggdata!.preparecatalogstodelete()
             guard self.snapshotsloggdata!.remotecatalogstodelete != nil else { return }
             self.presentAsSheet(self.viewControllerProgress!)
@@ -206,6 +188,7 @@ class ViewControllerSnapshots: NSViewController, SetDismisser, SetConfigurations
         self.selectdayofweek.delegate = self
         self.savebutton.isEnabled = false
         ViewControllerReference.shared.setvcref(viewcontroller: .vcsnapshot, nsviewcontroller: self)
+        self.information = Info()
     }
 
     override func viewDidAppear() {
@@ -231,13 +214,13 @@ class ViewControllerSnapshots: NSViewController, SetDismisser, SetConfigurations
         guard self.snapshotsloggdata?.remotecatalogstodelete != nil else {
             self.deletebutton.isEnabled = true
             self.deletesnapshots.isEnabled = true
-            self.info(num: 0)
+            self.info.stringValue = self.information!.info5(num: 0)
             return
         }
         guard self.snapshotsloggdata!.remotecatalogstodelete!.count > 0 else {
             self.deletebutton.isEnabled = true
             self.deletesnapshots.isEnabled = true
-            self.info(num: 0)
+            self.info.stringValue = self.information!.info5(num: 0)
             return
         }
         let remotecatalog = self.snapshotsloggdata!.remotecatalogstodelete![0]
@@ -269,12 +252,12 @@ class ViewControllerSnapshots: NSViewController, SetDismisser, SetConfigurations
             if let index = indexes.first {
                 let config = self.configurations!.getConfigurations()[index]
                 guard self.connected(config: config) == true else {
-                    self.info(num: 6)
+                    self.info.stringValue = self.information!.info5(num: 6)
                     return
                 }
                 self.selectplan.isEnabled = false
                 self.selectdayofweek.isEnabled = false
-                self.info(num: 0)
+                self.info.stringValue = self.information!.info5(num: 0)
                 let hiddenID = self.configurations!.getConfigurationsDataSourcecountBackupSnapshot()![index].value(forKey: "hiddenID") as? Int ?? -1
                 self.index = self.configurations?.getIndex(hiddenID)
                 self.getSourceindex(index: hiddenID)
@@ -296,7 +279,7 @@ class ViewControllerSnapshots: NSViewController, SetDismisser, SetConfigurations
         self.hiddenID = index
         self.config = self.configurations!.getConfigurations()[self.configurations!.getIndex(hiddenID!)]
         guard self.config!.task == ViewControllerReference.shared.snapshot else {
-            self.info(num: 1)
+            self.info.stringValue = self.information!.info5(num: 1)
             self.index = nil
             return
         }
@@ -305,7 +288,7 @@ class ViewControllerSnapshots: NSViewController, SetDismisser, SetConfigurations
         self.offsiteCatalog.stringValue = self.config!.offsiteCatalog
         self.offsiteUsername.stringValue = self.config!.offsiteUsername
         self.backupID.stringValue = self.config!.backupID
-        self.info(num: 0)
+        self.info.stringValue = self.information!.info5(num: 0)
         self.gettinglogs.startAnimation(nil)
     }
 
@@ -325,7 +308,7 @@ extension ViewControllerSnapshots: DismissViewController {
         self.dismiss(viewcontroller)
         if self.snapshotsloggdata?.remotecatalogstodelete != nil {
             self.snapshotsloggdata?.remotecatalogstodelete = nil
-            self.info(num: 2)
+            self.info.stringValue = self.information!.info5(num: 2)
             self.abort = true
         }
     }
@@ -341,7 +324,7 @@ extension ViewControllerSnapshots: UpdateProgress {
                 self.delete = false
                 self.deletebutton.isEnabled = true
                 self.deletesnapshots.isEnabled = true
-                self.info(num: 3)
+                self.info.stringValue = self.information!.info5(num: 3)
                 self.snapshotsloggdata = SnapshotsLoggData(config: self.config!, insnapshot: true)
                 if self.abort == true {
                     self.abort = false
@@ -434,10 +417,10 @@ extension ViewControllerSnapshots: NSTextFieldDelegate {
             if (notification.object as? NSTextField)! == self.stringdeletesnapshotsnum {
                 if self.stringdeletesnapshotsnum.stringValue.isEmpty == false {
                     if let num = Int(self.stringdeletesnapshotsnum.stringValue) {
-                        self.info(num: 0)
+                        self.info.stringValue = self.information!.info5(num: 0)
                         if num > self.snapshotsloggdata?.snapshotslogs?.count ?? 0 {
                             self.deletesnapshots.intValue = Int32((self.snapshotsloggdata?.snapshotslogs?.count)! - 1)
-                            self.info(num: 5)
+                            self.info.stringValue = self.information!.info5(num: 5)
                         } else {
                             self.deletesnapshots.intValue = Int32(num)
                         }
@@ -447,7 +430,7 @@ extension ViewControllerSnapshots: NSTextFieldDelegate {
                             self.snapshotstableView.reloadData()
                         })
                     } else {
-                        self.info(num: 4)
+                        self.info.stringValue = self.information!.info5(num: 4)
                     }
                 }
             } else {
@@ -460,7 +443,7 @@ extension ViewControllerSnapshots: NSTextFieldDelegate {
                             self.snapshotstableView.reloadData()
                         })
                     } else {
-                        self.info(num: 4)
+                        self.info.stringValue = self.information!.info5(num: 4)
                     }
                 }
             }

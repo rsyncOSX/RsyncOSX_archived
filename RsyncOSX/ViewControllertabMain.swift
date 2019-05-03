@@ -111,6 +111,8 @@ class ViewControllertabMain: NSViewController, ReloadTable, Deselect, VcMain, De
     var allprofilesview: Bool = false
     // Delegate for refresh allprofiles if changes in profiles
     weak var allprofiledetailsDelegate: ReloadTableAllProfiles?
+    // Infoobject
+    var information: Info?
 
     @IBOutlet weak var info: NSTextField!
     @IBOutlet weak var pathtorsyncosxschedbutton: NSButton!
@@ -125,7 +127,7 @@ class ViewControllertabMain: NSViewController, ReloadTable, Deselect, VcMain, De
 
     @IBAction func restore(_ sender: NSButton) {
         guard self.index != nil else {
-            self.info(num: 1)
+            self.info.stringValue = self.information!.info(num: 1)
             return
         }
         guard ViewControllerReference.shared.norsync == false else {
@@ -135,39 +137,16 @@ class ViewControllertabMain: NSViewController, ReloadTable, Deselect, VcMain, De
         guard self.configurations!.getConfigurations()[self.index!].task == ViewControllerReference.shared.synchronize ||
             self.configurations!.getConfigurations()[self.index!].task == ViewControllerReference.shared.snapshot ||
             self.configurations!.getConfigurations()[self.index!].task == ViewControllerReference.shared.combined else {
-                self.info(num: 7)
+                self.info.stringValue = self.information!.info(num: 7)
                 return
         }
         self.configurations!.processtermination = .restore
         self.presentAsSheet(self.restoreViewController!)
     }
 
-    func info(num: Int) {
-        switch num {
-        case 1:
-            self.info.stringValue = "Select a task...."
-        case 2:
-            self.info.stringValue = "Possible error logging..."
-        case 3:
-            self.info.stringValue = "No rsync in path..."
-        case 4:
-            self.info.stringValue = "⌘A to abort or wait..."
-        case 5:
-             self.info.stringValue = "Menu app is running..."
-        case 6:
-            self.info.stringValue = "This is a combined task, execute by ⌘R..."
-        case 7:
-            self.info.stringValue = "Only valid for backup, snapshot and combined tasks..."
-        case 8:
-            self.info.stringValue = "No rclone config found..."
-        default:
-            self.info.stringValue = ""
-        }
-    }
-
     @IBAction func infoonetask(_ sender: NSButton) {
         guard self.index != nil else {
-            self.info(num: 1)
+            self.info.stringValue = self.information!.info(num: 1)
             return
         }
         guard ViewControllerReference.shared.norsync == false else {
@@ -177,7 +156,7 @@ class ViewControllertabMain: NSViewController, ReloadTable, Deselect, VcMain, De
         guard self.configurations!.getConfigurations()[self.index!].task == ViewControllerReference.shared.synchronize ||
             self.configurations!.getConfigurations()[self.index!].task == ViewControllerReference.shared.snapshot ||
             self.configurations!.getConfigurations()[self.index!].task == ViewControllerReference.shared.combined else {
-                self.info(num: 7)
+                self.info.stringValue = self.information!.info(num: 7)
                 return
         }
         self.configurations!.processtermination = .infosingletask
@@ -206,7 +185,7 @@ class ViewControllertabMain: NSViewController, ReloadTable, Deselect, VcMain, De
     @IBAction func edit(_ sender: NSButton) {
         self.reset()
         guard self.index != nil else {
-            self.info(num: 1)
+            self.info.stringValue = self.information!.info(num: 1)
             return
         }
         globalMainQueue.async(execute: { () -> Void in
@@ -217,7 +196,7 @@ class ViewControllertabMain: NSViewController, ReloadTable, Deselect, VcMain, De
     @IBAction func rsyncparams(_ sender: NSButton) {
         self.reset()
         guard self.index != nil else {
-            self.info(num: 1)
+            self.info.stringValue = self.information!.info(num: 1)
             return
         }
         globalMainQueue.async(execute: { () -> Void in
@@ -228,7 +207,7 @@ class ViewControllertabMain: NSViewController, ReloadTable, Deselect, VcMain, De
     @IBAction func delete(_ sender: NSButton) {
         self.reset()
         guard self.hiddenID != nil else {
-            self.info(num: 1)
+            self.info.stringValue = self.information!.info(num: 1)
             return
         }
         let question: String = NSLocalizedString("Delete selected task? ", comment: "Loggs, Tasks and Profile")
@@ -327,11 +306,11 @@ class ViewControllertabMain: NSViewController, ReloadTable, Deselect, VcMain, De
             return
         }
         guard self.hiddenID != nil else {
-            self.info(num: 1)
+            self.info.stringValue = self.information!.info(num: 1)
             return
         }
         guard self.index != nil else {
-            self.info(num: 1)
+            self.info.stringValue = self.information!.info(num: 1)
             return
         }
         guard self.configurations!.getConfigurations()[self.index!].task == ViewControllerReference.shared.synchronize ||
@@ -394,6 +373,7 @@ class ViewControllertabMain: NSViewController, ReloadTable, Deselect, VcMain, De
         // configurations and schedules
         self.createandreloadconfigurations()
         self.createandreloadschedules()
+        self.information = Info()
     }
 
     override func viewDidAppear() {
@@ -414,7 +394,7 @@ class ViewControllertabMain: NSViewController, ReloadTable, Deselect, VcMain, De
         self.readyforexecution = true
         if self.verifyrsyncpath == nil { self.verifyrsyncpath = Verifyrsyncpath()}
         if self.tcpconnections == nil { self.tcpconnections = TCPconnections()}
-        self.info(num: 0)
+        self.info.stringValue = self.information!.info(num: 0)
         self.delayWithSeconds(0.5) {
             self.enablemenuappbutton()
         }
@@ -438,7 +418,7 @@ class ViewControllertabMain: NSViewController, ReloadTable, Deselect, VcMain, De
                 self.pathtorsyncosxschedbutton.isEnabled = false
                 if running.menuappnoconfig == false {
                     self.menuappisrunning.image = #imageLiteral(resourceName: "green")
-                    self.info(num: 5)
+                    self.info.stringValue = self.information!.info(num: 5)
                 }
                 return
             }
@@ -466,7 +446,7 @@ class ViewControllertabMain: NSViewController, ReloadTable, Deselect, VcMain, De
         guard self.configurations!.getConfigurations()[self.index!].task == ViewControllerReference.shared.synchronize ||
             self.configurations!.getConfigurations()[self.index!].task == ViewControllerReference.shared.snapshot
             else {
-                self.info(num: 6)
+                self.info.stringValue = self.information!.info(num: 6)
                 return
         }
         self.batchtasks = nil
@@ -531,7 +511,7 @@ class ViewControllertabMain: NSViewController, ReloadTable, Deselect, VcMain, De
         if self.readyforexecution == false { self.abortOperations() }
         self.readyforexecution = true
         self.backupdryrun.state = .on
-        self.info(num: 0)
+        self.info.stringValue = self.information!.info(num: 0)
         let myTableViewFromNotification = (notification.object as? NSTableView)!
         let indexes = myTableViewFromNotification.selectedRowIndexes
         if let index = indexes.first {
