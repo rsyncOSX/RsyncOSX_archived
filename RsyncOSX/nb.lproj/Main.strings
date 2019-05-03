@@ -758,7 +758,7 @@
 "hwk-s3-pSJ.title" = "output";
 
 /* Class = "NSTextFieldCell"; title = "Getting remote info..."; ObjectID = "HWO-DQ-sfw"; */
-"HWO-DQ-sfw.title" = "Getting remote info...";
+"HWO-DQ-sfw.title" = "Henter ekstern info...";
 
 /* Class = "NSButtonCell"; title = "Load"; ObjectID = "hXq-5p-KS7"; */
 "hXq-5p-KS7.title" = "Last";
@@ -809,7 +809,7 @@
 "ifc-VC-OWD.title" = "Antall kataloger:";
 
 /* Class = "NSButtonCell"; title = "reset next snapshot number"; ObjectID = "Iii-2E-YHF"; */
-"Iii-2E-YHF.title" = "reset neste snapshot nummer";
+"Iii-2E-YHF.title" = "reset neste snapshot num";
 
 /* Class = "NSTextFieldCell"; title = "New profile name "; ObjectID = "IiK-OB-SY0"; */
 "IiK-OB-SY0.title" = "Nytt profil navn ";
@@ -1349,7 +1349,7 @@
 "tNA-hi-kYT.headerCell.title" = "Lokal katalog";
 
 /* Class = "NSTextFieldCell"; title = "next snapshot num:"; ObjectID = "Tp7-5c-5Ii"; */
-"Tp7-5c-5Ii.title" = "neste snapshot nummer:";
+"Tp7-5c-5Ii.title" = "neste snapshot num:";
 
 /* Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "TPL-u8-ah1"; */
 "TPL-u8-ah1.title" = "Text Cell";

@@ -4067,7 +4067,7 @@ DQ
                             <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ytp-5e-0gT">
                                 <rect key="frame" x="203" y="59" width="192" height="18"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <buttonCell key="cell" type="check" title="reset next snapshot number" bezelStyle="regularSquare" imagePosition="left" alignment="right" inset="2" id="Iii-2E-YHF">
+                                <buttonCell key="cell" type="check" title="reset next snapshot number" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="Iii-2E-YHF">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
