@@ -607,7 +607,7 @@
       </trans-unit>
       <trans-unit id="DNv-s3-smo.title">
         <source>Actions</source>
-        <target>Actions</target>
+        <target>Aksjoner</target>
         <note>Class = "NSBox"; title = "Actions"; ObjectID = "DNv-s3-smo";</note>
       </trans-unit>
       <trans-unit id="Dl6-i6-oA7.title">
@@ -927,7 +927,7 @@
       </trans-unit>
       <trans-unit id="JF9-s4-tD7.title">
         <source>Create keys</source>
-        <target>Create keys</target>
+        <target>Opprett nøkler</target>
         <note>Class = "NSButtonCell"; title = "Create keys"; ObjectID = "JF9-s4-tD7";</note>
       </trans-unit>
       <trans-unit id="JKJ-Kp-IuV.title">

@@ -455,7 +455,7 @@
 "dMs-cI-mzQ.title" = "Fil";
 
 /* Class = "NSBox"; title = "Actions"; ObjectID = "DNv-s3-smo"; */
-"DNv-s3-smo.title" = "Actions";
+"DNv-s3-smo.title" = "Aksjoner";
 
 /* Class = "NSTableColumn"; headerCell.title = "ID"; ObjectID = "drG-d3-Dsv"; */
 "drG-d3-Dsv.headerCell.title" = "ID";
@@ -857,7 +857,7 @@
 "jd9-c6-ykP.toolTip" = "Krypter filer...";
 
 /* Class = "NSButtonCell"; title = "Create keys"; ObjectID = "JF9-s4-tD7"; */
-"JF9-s4-tD7.title" = "Create keys";
+"JF9-s4-tD7.title" = "Opprett nøkler";
 
 /* Class = "NSTextFieldCell"; title = "Remote server:"; ObjectID = "jgQ-HM-WTh"; */
 "jgQ-HM-WTh.title" = "Ekstern server:";
