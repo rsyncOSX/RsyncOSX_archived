@@ -69,19 +69,6 @@ class ViewControllertabSchedule: NSViewController, SetConfigurations, SetSchedul
         NSApp.terminate(self)
     }
 
-    private func info(num: Int) {
-        switch num {
-        case 1:
-            self.info.stringValue = "Select a task..."
-        case 2:
-            self.info.stringValue = "Scheduled tasks in menu app..."
-        case 3:
-            self.info.stringValue = "Got index from Execute..."
-        default:
-            self.info.stringValue = ""
-        }
-    }
-
     @IBAction func once(_ sender: NSButton) {
         self.schedule = .once
         self.addschedule()
@@ -111,7 +98,7 @@ class ViewControllertabSchedule: NSViewController, SetConfigurations, SetSchedul
         let dialog: String = NSLocalizedString("Add", comment: "Add schedule")
         let answer = Alerts.dialogOrCancel(question: question, text: text, dialog: dialog)
         if answer {
-            self.info(num: 2)
+            self.info.stringValue = self.information!.info4(num: 2)
             let seconds: TimeInterval = self.starttime.dateValue.timeIntervalSinceNow
             let startdate: Date = self.startdate.dateValue.addingTimeInterval(seconds)
             if self.index != nil {
@@ -178,11 +165,11 @@ class ViewControllertabSchedule: NSViewController, SetConfigurations, SetSchedul
         self.index = self.index()
         if self.index != nil {
             self.hiddenID = self.configurations!.gethiddenID(index: self.index!)
-            self.info(num: 3)
+            self.info.stringValue = self.information!.info4(num: 3)
             self.preselectrow = true
         } else {
             self.preselectrow = false
-            self.info(num: 0)
+            self.info.stringValue = self.information!.info4(num: 0)
         }
         self.weeklybutton.isEnabled = false
         self.dailybutton.isEnabled = false
@@ -202,7 +189,7 @@ class ViewControllertabSchedule: NSViewController, SetConfigurations, SetSchedul
 
     // setting which table row is selected
     func tableViewSelectionDidChange(_ notification: Notification) {
-        self.info(num: 0)
+        self.info.stringValue = self.information!.info4(num: 0)
         self.preselectrow = false
         let myTableViewFromNotification = (notification.object as? NSTableView)!
         let indexes = myTableViewFromNotification.selectedRowIndexes
@@ -236,7 +223,7 @@ class ViewControllertabSchedule: NSViewController, SetConfigurations, SetSchedul
                 self.rsyncosxschedbutton.isEnabled = false
                 if running.menuappnoconfig == false {
                     self.menuappisrunning.image = #imageLiteral(resourceName: "green")
-                    self.info(num: 5)
+                    self.info.stringValue = self.information!.info4(num: 5)
                 }
                 return
             }
