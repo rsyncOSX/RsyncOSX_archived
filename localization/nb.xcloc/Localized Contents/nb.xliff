@@ -85,21 +85,6 @@
         <target>Text Cell</target>
         <note>Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "2Cv-Hb-dy9";</note>
       </trans-unit>
-      <trans-unit id="2En-fo-pee.ibShadowedObjectValues[0]">
-        <source>Item 1</source>
-        <target>Item 1</target>
-        <note>Class = "NSComboBoxCell"; 2En-fo-pee.ibShadowedObjectValues[0] = "Item 1"; ObjectID = "2En-fo-pee";</note>
-      </trans-unit>
-      <trans-unit id="2En-fo-pee.ibShadowedObjectValues[1]">
-        <source>Item 2</source>
-        <target>Item 2</target>
-        <note>Class = "NSComboBoxCell"; 2En-fo-pee.ibShadowedObjectValues[1] = "Item 2"; ObjectID = "2En-fo-pee";</note>
-      </trans-unit>
-      <trans-unit id="2En-fo-pee.ibShadowedObjectValues[2]">
-        <source>Item 3</source>
-        <target>Item 3</target>
-        <note>Class = "NSComboBoxCell"; 2En-fo-pee.ibShadowedObjectValues[2] = "Item 3"; ObjectID = "2En-fo-pee";</note>
-      </trans-unit>
       <trans-unit id="2Fm-Br-GhC.headerCell.title">
         <source>Local catalog</source>
         <target>Lokal katalog</target>
@@ -625,21 +610,6 @@
         <target>Actions</target>
         <note>Class = "NSBox"; title = "Actions"; ObjectID = "DNv-s3-smo";</note>
       </trans-unit>
-      <trans-unit id="DTJ-Gc-ILX.ibShadowedObjectValues[0]">
-        <source>Item 1</source>
-        <target>Item 1</target>
-        <note>Class = "NSComboBoxCell"; DTJ-Gc-ILX.ibShadowedObjectValues[0] = "Item 1"; ObjectID = "DTJ-Gc-ILX";</note>
-      </trans-unit>
-      <trans-unit id="DTJ-Gc-ILX.ibShadowedObjectValues[1]">
-        <source>Item 2</source>
-        <target>Item 2</target>
-        <note>Class = "NSComboBoxCell"; DTJ-Gc-ILX.ibShadowedObjectValues[1] = "Item 2"; ObjectID = "DTJ-Gc-ILX";</note>
-      </trans-unit>
-      <trans-unit id="DTJ-Gc-ILX.ibShadowedObjectValues[2]">
-        <source>Item 3</source>
-        <target>Item 3</target>
-        <note>Class = "NSComboBoxCell"; DTJ-Gc-ILX.ibShadowedObjectValues[2] = "Item 3"; ObjectID = "DTJ-Gc-ILX";</note>
-      </trans-unit>
       <trans-unit id="Dl6-i6-oA7.title">
         <source>status</source>
         <target>status</target>
@@ -1164,21 +1134,6 @@
         <source>Minimize</source>
         <target>Minimize</target>
         <note>Class = "NSMenuItem"; title = "Minimize"; ObjectID = "OY7-WF-poV";</note>
-      </trans-unit>
-      <trans-unit id="Okg-xE-hlF.ibShadowedObjectValues[0]">
-        <source>Item 1</source>
-        <target>Item 1</target>
-        <note>Class = "NSComboBoxCell"; Okg-xE-hlF.ibShadowedObjectValues[0] = "Item 1"; ObjectID = "Okg-xE-hlF";</note>
-      </trans-unit>
-      <trans-unit id="Okg-xE-hlF.ibShadowedObjectValues[1]">
-        <source>Item 2</source>
-        <target>Item 2</target>
-        <note>Class = "NSComboBoxCell"; Okg-xE-hlF.ibShadowedObjectValues[1] = "Item 2"; ObjectID = "Okg-xE-hlF";</note>
-      </trans-unit>
-      <trans-unit id="Okg-xE-hlF.ibShadowedObjectValues[2]">
-        <source>Item 3</source>
-        <target>Item 3</target>
-        <note>Class = "NSComboBoxCell"; Okg-xE-hlF.ibShadowedObjectValues[2] = "Item 3"; ObjectID = "Okg-xE-hlF";</note>
       </trans-unit>
       <trans-unit id="OlM-9W-pxf.title">
         <source>Delete</source>

@@ -1613,11 +1613,6 @@
                                                 <font key="font" metaFont="system"/>
                                                 <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                                 <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                                <objectValues>
-                                                    <string>Item 1</string>
-                                                    <string>Item 2</string>
-                                                    <string>Item 3</string>
-                                                </objectValues>
                                             </comboBoxCell>
                                         </comboBox>
                                         <comboBox verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Yc7-4i-U6Z">
@@ -1627,11 +1622,6 @@
                                                 <font key="font" metaFont="system"/>
                                                 <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                                 <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                                <objectValues>
-                                                    <string>Item 1</string>
-                                                    <string>Item 2</string>
-                                                    <string>Item 3</string>
-                                                </objectValues>
                                             </comboBoxCell>
                                         </comboBox>
                                     </subviews>
@@ -7312,11 +7302,6 @@ DQ
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                    <objectValues>
-                                        <string>Item 1</string>
-                                        <string>Item 2</string>
-                                        <string>Item 3</string>
-                                    </objectValues>
                                 </comboBoxCell>
                                 <connections>
                                     <action selector="selectprofile:" target="Mlk-V8-rVE" id="Tqa-Ta-dI0"/>
