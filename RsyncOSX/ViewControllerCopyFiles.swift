@@ -22,6 +22,8 @@ class ViewControllerCopyFiles: NSViewController, SetConfigurations, Delay, VcCop
     var estimated: Bool = false
     private var restoretabledata: [String]?
     var diddissappear: Bool = false
+    // Infoobject
+    var information: Info?
 
     @IBOutlet weak var numberofrows: NSTextField!
     @IBOutlet weak var server: NSTextField!
@@ -137,6 +139,7 @@ class ViewControllerCopyFiles: NSViewController, SetConfigurations, Delay, VcCop
         self.restorecatalog.delegate = self
         self.remoteCatalog.delegate = self
         self.restoretableView.doubleAction = #selector(self.tableViewDoubleClick(sender:))
+        self.information = Info()
     }
 
     override func viewDidAppear() {

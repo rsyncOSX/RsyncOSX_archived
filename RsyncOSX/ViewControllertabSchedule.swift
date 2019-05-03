@@ -34,6 +34,8 @@ class ViewControllertabSchedule: NSViewController, SetConfigurations, SetSchedul
     @IBOutlet weak var menuappisrunning: NSButton!
 
     var verifyrsyncpath: Verifyrsyncpath?
+    // Infoobject
+    var information: Info?
 
     @IBAction func totinfo(_ sender: NSButton) {
         guard ViewControllerReference.shared.norsync == false else {
@@ -167,6 +169,7 @@ class ViewControllertabSchedule: NSViewController, SetConfigurations, SetSchedul
         self.mainTableView.doubleAction = #selector(ViewControllertabMain.tableViewDoubleClick(sender:))
         ViewControllerReference.shared.setvcref(viewcontroller: .vctabschedule, nsviewcontroller: self)
         self.tools = Verifyrsyncpath()
+        self.information = Info()
     }
 
     override func viewDidAppear() {

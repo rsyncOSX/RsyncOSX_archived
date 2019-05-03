@@ -21,6 +21,8 @@ class ViewControllerSnapshots: NSViewController, SetDismisser, SetConfigurations
     private var index: Int?
     weak var processterminationDelegate: UpdateProgress?
     var abort: Bool = false
+    // Infoobject
+    var information: Info?
     // Reference to which plan in combox
     var combovalueslast = ["none",
                           "every",
@@ -206,6 +208,7 @@ class ViewControllerSnapshots: NSViewController, SetDismisser, SetConfigurations
         self.selectdayofweek.delegate = self
         self.savebutton.isEnabled = false
         ViewControllerReference.shared.setvcref(viewcontroller: .vcsnapshot, nsviewcontroller: self)
+        self.information = Info()
     }
 
     override func viewDidAppear() {
