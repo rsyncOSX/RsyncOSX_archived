@@ -837,7 +837,7 @@
       </trans-unit>
       <trans-unit id="HWO-DQ-sfw.title">
         <source>Getting remote info...</source>
-        <target>Getting remote info...</target>
+        <target>Henter ekstern info...</target>
         <note>Class = "NSTextFieldCell"; title = "Getting remote info..."; ObjectID = "HWO-DQ-sfw";</note>
       </trans-unit>
       <trans-unit id="HXz-ee-7v0.title">
@@ -902,7 +902,7 @@
       </trans-unit>
       <trans-unit id="Iii-2E-YHF.title">
         <source>reset next snapshot number</source>
-        <target>reset neste snapshot nummer</target>
+        <target>reset neste snapshot num</target>
         <note>Class = "NSButtonCell"; title = "reset next snapshot number"; ObjectID = "Iii-2E-YHF";</note>
       </trans-unit>
       <trans-unit id="ImR-R8-DPA.title">
@@ -1402,7 +1402,7 @@
       </trans-unit>
       <trans-unit id="Tp7-5c-5Ii.title">
         <source>next snapshot num:</source>
-        <target>neste snapshot nummer:</target>
+        <target>neste snapshot num:</target>
         <note>Class = "NSTextFieldCell"; title = "next snapshot num:"; ObjectID = "Tp7-5c-5Ii";</note>
       </trans-unit>
       <trans-unit id="TqG-6l-QwU.title">
