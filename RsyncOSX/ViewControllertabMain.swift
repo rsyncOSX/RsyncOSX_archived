@@ -482,15 +482,15 @@ class ViewControllertabMain: NSViewController, ReloadTable, Deselect, VcMain, De
         weak var localprofileinfo: SetProfileinfo?
         weak var localprofileinfo2: SetProfileinfo?
         guard self.loadProfileMenu == true else {
-            self.profilInfo.stringValue = "Profile: please wait..."
+            self.profilInfo.stringValue = NSLocalizedString("Profile: please wait...", comment: "Execute")
             self.profilInfo.textColor = .white
             return
         }
         if let profile = self.configurations!.getProfile() {
-            self.profilInfo.stringValue = "Profile: " + profile
+            self.profilInfo.stringValue = NSLocalizedString("Profile:", comment: "Execute ") + " " + profile
             self.profilInfo.textColor = .white
         } else {
-            self.profilInfo.stringValue = "Profile: default"
+            self.profilInfo.stringValue = NSLocalizedString("Profile:", comment: "Execute ") + " default"
             self.profilInfo.textColor = .black
         }
         localprofileinfo = ViewControllerReference.shared.getvcref(viewcontroller: .vctabschedule) as? ViewControllertabSchedule

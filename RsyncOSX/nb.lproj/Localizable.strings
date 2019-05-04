@@ -150,6 +150,12 @@
 /* Restore */
 "Probably some rsync error..." = "Muligens rsync feil...";
 
+/* Execute */
+"Profile:" = "Profil:";
+
+/* Execute */
+"Profile: please wait..." = "Profil: vennligst vent...";
+
 /* Restore */
 "Restore" = "Restore";
 
