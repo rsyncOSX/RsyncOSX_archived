@@ -186,12 +186,14 @@ extension ViewControllerLoggData: NSTableViewDataSource {
 
     func numberOfRows(in tableView: NSTableView) -> Int {
         if self.scheduleloggdata == nil {
-            self.numberOflogfiles.stringValue = "Number of logs:"
-            self.selectedrows.stringValue = "Selected logs: 0"
+            self.numberOflogfiles.stringValue = NSLocalizedString("Number of logs:", comment: "Logg")
+            self.selectedrows.stringValue = NSLocalizedString("Selected logs:", comment: "Logg") + " 0"
             return 0
         } else {
-            self.numberOflogfiles.stringValue = "Number of logs: " + String(self.scheduleloggdata!.loggdata?.count ?? 0)
-            self.selectedrows.stringValue = "Selected logs: " + self.selectednumber()
+            self.numberOflogfiles.stringValue = NSLocalizedString("Number of logs:", comment: "Logg")
+                + " " + String(self.scheduleloggdata!.loggdata?.count ?? 0)
+            self.selectedrows.stringValue = NSLocalizedString("Selected logs:", comment: "Logg")
+                + " " + self.selectednumber()
             return self.scheduleloggdata!.loggdata?.count ?? 0
         }
     }
