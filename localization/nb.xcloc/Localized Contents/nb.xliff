@@ -3043,6 +3043,11 @@
         <target>Ikke en snapshot oppgave...</target>
         <note>Snapshots</note>
       </trans-unit>
+      <trans-unit id="Number of logs:">
+        <source>Number of logs:</source>
+        <target>Antall logger:</target>
+        <note>Logg</note>
+      </trans-unit>
       <trans-unit id="Number remote files: ">
         <source>Number remote files: </source>
         <note>Copy files</note>
@@ -3074,11 +3079,13 @@
       </trans-unit>
       <trans-unit id="Profile:">
         <source>Profile:</source>
-        <note>Execute</note><target>Profil:</target>
+        <target>Profil:</target>
+        <note>Execute</note>
       </trans-unit>
       <trans-unit id="Profile: please wait...">
         <source>Profile: please wait...</source>
-        <note>Execute</note><target>Profil: vennligst vent...</target>
+        <target>Profil: vennligst vent...</target>
+        <note>Execute</note>
       </trans-unit>
       <trans-unit id="Restore">
         <source>Restore</source>
@@ -3104,6 +3111,11 @@
         <source>Select a task....</source>
         <target>Velg en oppgave...</target>
         <note>Execute</note>
+      </trans-unit>
+      <trans-unit id="Selected logs:">
+        <source>Selected logs:</source>
+        <target>Valgte logger:</target>
+        <note>Logg</note>
       </trans-unit>
       <trans-unit id="Seriously, enter a real number...">
         <source>Seriously, enter a real number...</source>
