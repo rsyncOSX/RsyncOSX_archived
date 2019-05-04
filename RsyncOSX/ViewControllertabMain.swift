@@ -210,9 +210,9 @@ class ViewControllertabMain: NSViewController, ReloadTable, Deselect, VcMain, De
             self.info.stringValue = self.information!.info(num: 1)
             return
         }
-        let question: String = NSLocalizedString("Delete selected task? ", comment: "Loggs, Tasks and Profile")
-        let text: String = NSLocalizedString("Cancel or Delete", comment: "Loggs, Tasks and Profile")
-        let dialog: String = NSLocalizedString("Delete", comment: "Loggs, Tasks and Profile")
+        let question: String = NSLocalizedString("Delete selected task? ", comment: "Execute")
+        let text: String = NSLocalizedString("Cancel or Delete", comment: "Execute")
+        let dialog: String = NSLocalizedString("Delete", comment: "Execute")
         let answer = Alerts.dialogOrCancel(question: question, text: text, dialog: dialog)
         if answer {
             if self.hiddenID != nil {
@@ -482,15 +482,15 @@ class ViewControllertabMain: NSViewController, ReloadTable, Deselect, VcMain, De
         weak var localprofileinfo: SetProfileinfo?
         weak var localprofileinfo2: SetProfileinfo?
         guard self.loadProfileMenu == true else {
-            self.profilInfo.stringValue = "Profile: please wait..."
+            self.profilInfo.stringValue = NSLocalizedString("Profile: please wait...", comment: "Execute")
             self.profilInfo.textColor = .white
             return
         }
         if let profile = self.configurations!.getProfile() {
-            self.profilInfo.stringValue = "Profile: " + profile
+            self.profilInfo.stringValue = NSLocalizedString("Profile:", comment: "Execute ") + " " + profile
             self.profilInfo.textColor = .white
         } else {
-            self.profilInfo.stringValue = "Profile: default"
+            self.profilInfo.stringValue = NSLocalizedString("Profile:", comment: "Execute ") + " default"
             self.profilInfo.textColor = .black
         }
         localprofileinfo = ViewControllerReference.shared.getvcref(viewcontroller: .vctabschedule) as? ViewControllertabSchedule

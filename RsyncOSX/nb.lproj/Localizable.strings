@@ -19,7 +19,8 @@
 /* Add schedule */
 "Cancel or Add" = "Kanseler eller legg til";
 
-/* Loggs, Tasks and Profile */
+/* Execute
+   Loggs, Tasks and Profile */
 "Cancel or Delete" = "Kanseler eller slett";
 
 /* Loggs, Tasks and Profile */
@@ -43,13 +44,16 @@
 /* copyright */
 "Copyright ©2019 Thomas Evensen" = "Copyright ©2019 Thomas Evensen.";
 
-/* Verify */
+/* Remote Info
+   Verify */
 "Date last backup:" = "Dato siste backup:";
 
-/* Verify */
+/* Remote Info
+   Verify */
 "Days since last backup:" = "Dager siden siste backup:";
 
-/* Loggs, Tasks and Profile */
+/* Execute
+   Loggs, Tasks and Profile */
 "Delete" = "Slett";
 
 /* Loggs, Tasks and Profile */
@@ -61,7 +65,7 @@
 /* Loggs, Tasks and Profile */
 "Delete profile: " = "Slett profil:";
 
-/* Loggs, Tasks and Profile */
+/* Execute */
 "Delete selected task? " = "Slett valgt oppgave?";
 
 /* Snapshots */
@@ -100,11 +104,15 @@
 /* Schedules */
 "Got index from Execute..." = "Hentet index fra Utfør";
 
-/* Restore */
+/* Remote Info
+   Restore */
 "Got it..." = "Info hentet...";
 
 /* icon */
 "Icon by: Zsolt Sándor" = "Icon av: Zsolt Sándor";
+
+/* Remote Info */
+"Loaded cached data..." = "Lastet cached info...";
 
 /* Copy files */
 "Local or remote catalog cannot be empty..." = "Lokal og ekstern må fylles ut...";
@@ -141,6 +149,12 @@
 
 /* Restore */
 "Probably some rsync error..." = "Muligens rsync feil...";
+
+/* Execute */
+"Profile:" = "Profil:";
+
+/* Execute */
+"Profile: please wait..." = "Profil: vennligst vent...";
 
 /* Restore */
 "Restore" = "Restore";

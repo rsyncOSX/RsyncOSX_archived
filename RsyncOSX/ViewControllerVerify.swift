@@ -163,8 +163,8 @@ class ViewControllerVerify: NSViewController, SetConfigurations, Index, VcExecut
             self.complete = false
             let datelastbackup = self.configurations?.getConfigurations()[index].dateRun ?? "none"
             let numberlastbackup = self.configurations?.getConfigurations()[index].dayssincelastbackup ?? "none"
-            self.datelastbackup.stringValue = self.lastdate + datelastbackup
-            self.dayslastbackup.stringValue = self.dayssince + numberlastbackup
+            self.datelastbackup.stringValue = self.lastdate +  " " + datelastbackup
+            self.dayslastbackup.stringValue = self.dayssince +  " " + numberlastbackup
             self.estimateremoteinfo(index: index, local: true)
         } else {
             self.gotit.textColor = .red
