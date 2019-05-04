@@ -1180,7 +1180,7 @@
                                 </tableHeaderView>
                             </scrollView>
                             <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="On6-88-D5F">
-                                <rect key="frame" x="31" y="225" width="69" height="18"/>
+                                <rect key="frame" x="31" y="225" width="116" height="18"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <buttonCell key="cell" type="radio" title="Rsa key" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="wmz-CK-ZzC">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
@@ -1191,7 +1191,7 @@
                                 </connections>
                             </button>
                             <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="oGK-Wc-GpX">
-                                <rect key="frame" x="23" y="245" width="98" height="32"/>
+                                <rect key="frame" x="23" y="245" width="128" height="32"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <buttonCell key="cell" type="push" title="Create keys" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="JF9-s4-tD7">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -1225,7 +1225,7 @@
                                             </buttonCell>
                                         </button>
                                         <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="7FI-wy-1gJ">
-                                            <rect key="frame" x="2" y="141" width="99" height="32"/>
+                                            <rect key="frame" x="2" y="141" width="124" height="32"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             <buttonCell key="cell" type="push" title="Check" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="gXW-nt-e2S">
                                                 <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -1347,7 +1347,7 @@
                                 </view>
                             </box>
                             <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="7AP-6h-C0i">
-                                <rect key="frame" x="31" y="203" width="70" height="18"/>
+                                <rect key="frame" x="31" y="203" width="116" height="18"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <buttonCell key="cell" type="radio" title="Dsa key" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="LtM-4s-IJ1">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
