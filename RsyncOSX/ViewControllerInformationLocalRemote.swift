@@ -54,8 +54,10 @@ class ViewControllerInformationLocalRemote: NSViewController, SetDismisser, Inde
                 self.working.startAnimation(nil)
                 let datelastbackup = self.configurations?.getConfigurations()[index].dateRun ?? "none"
                 let numberlastbackup = self.configurations?.getConfigurations()[index].dayssincelastbackup ?? "none"
-                self.datelastbackup.stringValue = "Date last backup: " + datelastbackup
-                self.dayslastbackup.stringValue = "Days since last backup: " + numberlastbackup
+                self.datelastbackup.stringValue = NSLocalizedString("Date last backup:", comment: "Remote Info")
+                    + " " + datelastbackup
+                self.dayslastbackup.stringValue = NSLocalizedString("Days since last backup:", comment: "Remote Info")
+                    + " " + numberlastbackup
                 self.outputprocess = OutputProcess()
                 _ = EstimateRemoteInformationTask(index: index, outputprocess: self.outputprocess, local: true)
             }
@@ -97,7 +99,7 @@ class ViewControllerInformationLocalRemote: NSViewController, SetDismisser, Inde
                 self.numbers?.setValue(infotask.deletefiles!, forKey: "deletefiles")
                 self.localremoteinfoDelegate!.setlocalremoteinfo(info: self.numbers)
                 self.working.stopAnimation(nil)
-                self.gotit.stringValue = "Got it..."
+                self.gotit.stringValue = NSLocalizedString("Got it...", comment: "Remote Info")
             }
         })
     }
@@ -113,7 +115,7 @@ class ViewControllerInformationLocalRemote: NSViewController, SetDismisser, Inde
         self.totalDirs.stringValue = (dict.value(forKey: "totalDirs") as? String) ?? ""
         self.newfiles.stringValue = (dict.value(forKey: "newfiles") as? String) ?? ""
         self.deletefiles.stringValue = (dict.value(forKey: "deletefiles") as? String) ?? ""
-        self.gotit.stringValue = "Loaded cached data..."
+        self.gotit.stringValue = NSLocalizedString("Loaded cached data...", comment: "Remote Info")
     }
 }
 
