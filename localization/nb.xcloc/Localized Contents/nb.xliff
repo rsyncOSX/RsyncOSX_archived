@@ -957,7 +957,7 @@
       </trans-unit>
       <trans-unit id="KIJ-hF-wBF.title">
         <source>Remote info</source>
-        <target>Remote info</target>
+        <target>Ekstern info</target>
         <note>Class = "NSBox"; title = "Remote info"; ObjectID = "KIJ-hF-wBF";</note>
       </trans-unit>
       <trans-unit id="KJd-Dr-12s.title">
@@ -1322,7 +1322,7 @@
       </trans-unit>
       <trans-unit id="SHi-wp-O4D.title">
         <source>Remote info</source>
-        <target>Remote info</target>
+        <target>Ekstern info</target>
         <note>Class = "NSBox"; title = "Remote info"; ObjectID = "SHi-wp-O4D";</note>
       </trans-unit>
       <trans-unit id="SJF-H0-E3i.title">

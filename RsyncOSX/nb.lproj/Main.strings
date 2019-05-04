@@ -902,7 +902,7 @@
 "KfP-cj-1yp.headerCell.title" = "Velg";
 
 /* Class = "NSBox"; title = "Remote info"; ObjectID = "KIJ-hF-wBF"; */
-"KIJ-hF-wBF.title" = "Remote info";
+"KIJ-hF-wBF.title" = "Ekstern info";
 
 /* Class = "NSTextFieldCell"; title = "Local catalog:"; ObjectID = "KJd-Dr-12s"; */
 "KJd-Dr-12s.title" = "Lokal katalog:";
@@ -1280,7 +1280,7 @@
 "sE6-n6-Lin.title" = "Add";
 
 /* Class = "NSBox"; title = "Remote info"; ObjectID = "SHi-wp-O4D"; */
-"SHi-wp-O4D.title" = "Remote info";
+"SHi-wp-O4D.title" = "Ekstern info";
 
 /* Class = "NSMenuItem"; title = "Paste"; ObjectID = "SJF-H0-E3i"; */
 "SJF-H0-E3i.title" = "Paste";
