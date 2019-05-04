@@ -127,6 +127,9 @@
 /* Snapshots */
 "Not a snapshot task..." = "Ikke en snapshot oppgave...";
 
+/* Snapshots */
+"Number snapshots: " = "Antall snapshots:";
+
 /* Execute */
 "Only valid for backup, snapshot and combined tasks..." = "Kun gyldig for backup, snapshot og kombinerte oppgaver...";
 
