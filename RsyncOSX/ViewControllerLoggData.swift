@@ -88,9 +88,9 @@ class ViewControllerLoggData: NSViewController, SetConfigurations, SetSchedules,
     }
 
     @IBAction func deletealllogs(_ sender: NSButton) {
-        let question: String = NSLocalizedString("Delete ", comment: "Loggs, Tasks and Profile")
-        let text: String = NSLocalizedString("Cancel or Delete", comment: "Loggs, Tasks and Profile")
-        let dialog: String = NSLocalizedString("Delete", comment: "Loggs, Tasks and Profile")
+        let question: String = NSLocalizedString("Delete", comment: "Logg")
+        let text: String = NSLocalizedString("Cancel or Delete", comment: "Logg")
+        let dialog: String = NSLocalizedString("Delete", comment: "Logg")
         let answer = Alerts.dialogOrCancel(question: question + self.selectednumber() + " logrecords?", text: text, dialog: dialog)
         if answer {
             self.deselectRow()
@@ -260,7 +260,7 @@ extension ViewControllerLoggData: NSTableViewDelegate {
                 break
             }
             globalMainQueue.async(execute: { () -> Void in
-                self.selectedrows.stringValue = "Selected rows: " + self.selectednumber()
+                self.selectedrows.stringValue = NSLocalizedString("Selected rows:", comment: "Logg") + " " + self.selectednumber()
             })
         }
     }
@@ -274,7 +274,7 @@ extension ViewControllerLoggData: Reloadandrefresh {
             self.scheduletable.reloadData()
         })
         self.row = nil
-        self.selectedrows.stringValue = "Selected rows:"
+        self.selectedrows.stringValue = NSLocalizedString("Selected rows:", comment: "Logg")
     }
 }
 

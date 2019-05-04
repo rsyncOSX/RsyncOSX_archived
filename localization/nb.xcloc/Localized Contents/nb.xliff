@@ -2857,7 +2857,7 @@
         <source>Cancel or Delete</source>
         <target>Kanseler eller slett</target>
         <note>Execute
-   Loggs, Tasks and Profile</note>
+   Logg</note>
       </trans-unit>
       <trans-unit id="Cancel or Delete?">
         <source>Cancel or Delete?</source>
@@ -2910,12 +2910,8 @@
         <source>Delete</source>
         <target>Slett</target>
         <note>Execute
+   Logg
    Loggs, Tasks and Profile</note>
-      </trans-unit>
-      <trans-unit id="Delete ">
-        <source>Delete </source>
-        <target>Slett</target>
-        <note>Loggs, Tasks and Profile</note>
       </trans-unit>
       <trans-unit id="Delete operation completed...">
         <source>Delete operation completed...</source>
@@ -3116,6 +3112,10 @@
         <source>Selected logs:</source>
         <target>Valgte logger:</target>
         <note>Logg</note>
+      </trans-unit>
+      <trans-unit id="Selected rows:">
+        <source>Selected rows:</source>
+        <note>Logg</note><target>Valgte rader:</target>
       </trans-unit>
       <trans-unit id="Seriously, enter a real number...">
         <source>Seriously, enter a real number...</source>
