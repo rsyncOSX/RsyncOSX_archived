@@ -135,6 +135,9 @@
 /* Snapshots */
 "Not a snapshot task..." = "Ikke en snapshot oppgave...";
 
+/* Logg */
+"Number of logs:" = "Antall logger:";
+
 /* Snapshots */
 "Number snapshots: " = "Antall snapshots:";
 
@@ -170,6 +173,9 @@
 
 /* Execute */
 "Select a task...." = "Velg en oppgave...";
+
+/* Logg */
+"Selected logs:" = "Valgte logger:";
 
 /* Snapshots */
 "Seriously, enter a real number..." = "Seriøst, legg inn et nummer...";

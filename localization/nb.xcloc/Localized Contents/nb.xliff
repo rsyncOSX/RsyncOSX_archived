@@ -2856,7 +2856,8 @@
       <trans-unit id="Cancel or Delete">
         <source>Cancel or Delete</source>
         <target>Kanseler eller slett</target>
-        <note>Loggs, Tasks and Profile</note>
+        <note>Execute
+   Loggs, Tasks and Profile</note>
       </trans-unit>
       <trans-unit id="Cancel or Delete?">
         <source>Cancel or Delete?</source>
@@ -2896,17 +2897,20 @@
       <trans-unit id="Date last backup:">
         <source>Date last backup:</source>
         <target>Dato siste backup:</target>
-        <note>Verify</note>
+        <note>Remote Info
+   Verify</note>
       </trans-unit>
       <trans-unit id="Days since last backup:">
         <source>Days since last backup:</source>
         <target>Dager siden siste backup:</target>
-        <note>Verify</note>
+        <note>Remote Info
+   Verify</note>
       </trans-unit>
       <trans-unit id="Delete">
         <source>Delete</source>
         <target>Slett</target>
-        <note>Loggs, Tasks and Profile</note>
+        <note>Execute
+   Loggs, Tasks and Profile</note>
       </trans-unit>
       <trans-unit id="Delete ">
         <source>Delete </source>
@@ -2926,7 +2930,7 @@
       <trans-unit id="Delete selected task? ">
         <source>Delete selected task? </source>
         <target>Slett valgt oppgave?</target>
-        <note>Loggs, Tasks and Profile</note>
+        <note>Execute</note>
       </trans-unit>
       <trans-unit id="Do you REALLY want to DELETE selected snapshots?">
         <source>Do you REALLY want to DELETE selected snapshots?</source>
@@ -2991,12 +2995,18 @@
       <trans-unit id="Got it...">
         <source>Got it...</source>
         <target>Info hentet...</target>
-        <note>Restore</note>
+        <note>Remote Info
+   Restore</note>
       </trans-unit>
       <trans-unit id="Icon by: Zsolt Sándor">
         <source>Icon by: Zsolt Sándor</source>
         <target>Icon av: Zsolt Sándor</target>
         <note>icon</note>
+      </trans-unit>
+      <trans-unit id="Loaded cached data...">
+        <source>Loaded cached data...</source>
+        <target>Lastet cached info...</target>
+        <note>Remote Info</note>
       </trans-unit>
       <trans-unit id="Local or remote catalog cannot be empty...">
         <source>Local or remote catalog cannot be empty...</source>
@@ -3033,6 +3043,11 @@
         <target>Ikke en snapshot oppgave...</target>
         <note>Snapshots</note>
       </trans-unit>
+      <trans-unit id="Number of logs:">
+        <source>Number of logs:</source>
+        <target>Antall logger:</target>
+        <note>Logg</note>
+      </trans-unit>
       <trans-unit id="Number remote files: ">
         <source>Number remote files: </source>
         <note>Copy files</note>
@@ -3062,6 +3077,16 @@
         <target>Muligens rsync feil...</target>
         <note>Restore</note>
       </trans-unit>
+      <trans-unit id="Profile:">
+        <source>Profile:</source>
+        <target>Profil:</target>
+        <note>Execute</note>
+      </trans-unit>
+      <trans-unit id="Profile: please wait...">
+        <source>Profile: please wait...</source>
+        <target>Profil: vennligst vent...</target>
+        <note>Execute</note>
+      </trans-unit>
       <trans-unit id="Restore">
         <source>Restore</source>
         <target>Restore</target>
@@ -3086,6 +3111,11 @@
         <source>Select a task....</source>
         <target>Velg en oppgave...</target>
         <note>Execute</note>
+      </trans-unit>
+      <trans-unit id="Selected logs:">
+        <source>Selected logs:</source>
+        <target>Valgte logger:</target>
+        <note>Logg</note>
       </trans-unit>
       <trans-unit id="Seriously, enter a real number...">
         <source>Seriously, enter a real number...</source>
