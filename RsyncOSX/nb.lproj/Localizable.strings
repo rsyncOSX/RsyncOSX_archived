@@ -20,7 +20,7 @@
 "Cancel or Add" = "Kanseler eller legg til";
 
 /* Execute
-   Loggs, Tasks and Profile */
+   Logg */
 "Cancel or Delete" = "Kanseler eller slett";
 
 /* Loggs, Tasks and Profile */
@@ -53,11 +53,9 @@
 "Days since last backup:" = "Dager siden siste backup:";
 
 /* Execute
+   Logg
    Loggs, Tasks and Profile */
 "Delete" = "Slett";
-
-/* Loggs, Tasks and Profile */
-"Delete " = "Slett";
 
 /* Snapshots */
 "Delete operation completed..." = "Slette operasjon gjennomført...";
@@ -176,6 +174,9 @@
 
 /* Logg */
 "Selected logs:" = "Valgte logger:";
+
+/* Logg */
+"Selected rows:" = "Valgte rader:";
 
 /* Snapshots */
 "Seriously, enter a real number..." = "Seriøst, legg inn et nummer...";
