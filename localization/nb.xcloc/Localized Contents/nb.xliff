@@ -3039,6 +3039,7 @@
       </trans-unit>
       <trans-unit id="Number snapshots: ">
         <source>Number snapshots: </source>
+        <target>Antall snapshots:</target>
         <note>Snapshots</note>
       </trans-unit>
       <trans-unit id="Only valid for backup, snapshot and combined tasks...">
