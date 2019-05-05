@@ -290,7 +290,7 @@ extension ViewControllerCopyFiles: NSTableViewDataSource {
 
     func numberOfRows(in tableView: NSTableView) -> Int {
         if tableView == self.restoretableView {
-            let numberofrows: String = NSLocalizedString("Number remote files: ", comment: "Copy files")
+            let numberofrows: String = NSLocalizedString("Number remote files:", comment: "Copy files")
             guard self.restoretabledata != nil else {
                 self.numberofrows.stringValue = numberofrows
                 return 0

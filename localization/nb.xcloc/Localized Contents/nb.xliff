@@ -2828,6 +2828,11 @@
         <target>... sett i bruker preferanser...</target>
         <note>Restore</note>
       </trans-unit>
+      <trans-unit id="... no remote server ...">
+        <source>... no remote server ...</source>
+        <target>...ingen ekstern server...</target>
+        <note>Ssh</note>
+      </trans-unit>
       <trans-unit id="Aborting delete operation...">
         <source>Aborting delete operation...</source>
         <target>Avslutter slette operasjon...</target>
@@ -2842,6 +2847,16 @@
         <source>Add Schedule?</source>
         <target>Legg til schedule?</target>
         <note>Add schedule</note>
+      </trans-unit>
+      <trans-unit id="Batchtasks completed, close view...">
+        <source>Batchtasks completed, close view...</source>
+        <target>Batch oppgaver ferdig, lukker...</target>
+        <note>Batch</note>
+      </trans-unit>
+      <trans-unit id="By using Finder drag and drop filepaths.">
+        <source>By using Finder drag and drop filepaths.</source>
+        <target>Bruk Finder for dra og slipp stier.</target>
+        <note>Tooltip</note>
       </trans-unit>
       <trans-unit id="Cancel">
         <source>Cancel</source>
@@ -2858,12 +2873,8 @@
         <target>Kanseler eller slett</target>
         <note>Execute
    Logg
+   Profiles
    Snapshots</note>
-      </trans-unit>
-      <trans-unit id="Cancel or Delete?">
-        <source>Cancel or Delete?</source>
-        <target>Kanseler eller slett?</target>
-        <note>Profiles</note>
       </trans-unit>
       <trans-unit id="Cancel or Restore">
         <source>Cancel or Restore</source>
@@ -2874,6 +2885,16 @@
         <source>Close</source>
         <target>Lukk</target>
         <note>Close NSAlert</note>
+      </trans-unit>
+      <trans-unit id="Close automatically in:">
+        <source>Close automatically in:</source>
+        <target>Lukker automatisk om:</target>
+        <note>New version</note>
+      </trans-unit>
+      <trans-unit id="Completed">
+        <source>Completed</source>
+        <target>Utført</target>
+        <note>Remote info</note>
       </trans-unit>
       <trans-unit id="Completed ...">
         <source>Completed ...</source>
@@ -2922,11 +2943,13 @@
       </trans-unit>
       <trans-unit id="Delete profile:">
         <source>Delete profile:</source>
-        <note>Profiles</note><target>Slett profil:</target>
+        <target>Slett profil:</target>
+        <note>Profiles</note>
       </trans-unit>
       <trans-unit id="Delete selected task?">
         <source>Delete selected task?</source>
-        <note>Execute</note><target>Slett valgte oppgave?</target>
+        <target>Slett valgte oppgave?</target>
+        <note>Execute</note>
       </trans-unit>
       <trans-unit id="Do you REALLY want to DELETE selected snapshots?">
         <source>Do you REALLY want to DELETE selected snapshots?</source>
@@ -2962,6 +2985,11 @@
         <source>ERROR: no rsync in /usr/local/bin</source>
         <target>FEIL: ingen rsync i /usr/local/bin</target>
         <note>Error rsync</note>
+      </trans-unit>
+      <trans-unit id="Estimation completed, you can start batch...">
+        <source>Estimation completed, you can start batch...</source>
+        <target>Estimering utført, start batch...</target>
+        <note>Batch</note>
       </trans-unit>
       <trans-unit id="Executing restore...">
         <source>Executing restore...</source>
@@ -2999,10 +3027,16 @@
         <target>Icon av: Zsolt Sándor</target>
         <note>icon</note>
       </trans-unit>
+      <trans-unit id="Load">
+        <source>Load</source>
+        <target>Last</target>
+        <note>Profile</note>
+      </trans-unit>
       <trans-unit id="Loaded cached data...">
         <source>Loaded cached data...</source>
         <target>Lastet cached info...</target>
-        <note>Remote Info</note>
+        <note>Remote info
+   Remote Info</note>
       </trans-unit>
       <trans-unit id="Local or remote catalog cannot be empty...">
         <source>Local or remote catalog cannot be empty...</source>
@@ -3013,6 +3047,11 @@
         <source>Menu app is running...</source>
         <target>Meny appen kjører...</target>
         <note>Execute</note>
+      </trans-unit>
+      <trans-unit id="New version available:">
+        <source>New version available:</source>
+        <target>Ny versjon tilgjengelig:</target>
+        <note>About</note>
       </trans-unit>
       <trans-unit id="No rclone config found...">
         <source>No rclone config found...</source>
@@ -3039,14 +3078,24 @@
         <target>Ikke en snapshot oppgave...</target>
         <note>Snapshots</note>
       </trans-unit>
+      <trans-unit id="Number of configurations:">
+        <source>Number of configurations:</source>
+        <target>Antall konfigurasjoner:</target>
+        <note>AllProfiles</note>
+      </trans-unit>
       <trans-unit id="Number of logs:">
         <source>Number of logs:</source>
         <target>Antall logger:</target>
         <note>Logg</note>
       </trans-unit>
-      <trans-unit id="Number remote files: ">
-        <source>Number remote files: </source>
-        <note>Copy files</note><target></target>
+      <trans-unit id="Number of tasks to estimate:">
+        <source>Number of tasks to estimate:</source>
+        <target>Antall oppgaver å estimere:</target>
+        <note>Remote info</note>
+      </trans-unit>
+      <trans-unit id="Number remote files:">
+        <source>Number remote files:</source>
+        <note>Copy files</note>
       </trans-unit>
       <trans-unit id="Number snapshots: ">
         <source>Number snapshots: </source>
@@ -3093,6 +3142,11 @@
         <target>Restore er utført...</target>
         <note>Restore</note>
       </trans-unit>
+      <trans-unit id="Save">
+        <source>Save</source>
+        <target>Lagre</target>
+        <note>Profile</note>
+      </trans-unit>
       <trans-unit id="Scheduled tasks in menu app...">
         <source>Scheduled tasks in menu app...</source>
         <target>Schedulerte oppgaver i meny app...</target>
@@ -3118,6 +3172,11 @@
         <target>Valgte rader:</target>
         <note>Logg</note>
       </trans-unit>
+      <trans-unit id="Selection out of range - aborting">
+        <source>Selection out of range - aborting</source>
+        <target>Utvalg ikke mulig - avslutter</target>
+        <note>Execute</note>
+      </trans-unit>
       <trans-unit id="Seriously, enter a real number...">
         <source>Seriously, enter a real number...</source>
         <target>Seriøst, legg inn et nummer...</target>
@@ -3127,6 +3186,11 @@
         <source>Start restore?</source>
         <target>Start restore?</target>
         <note>Restore</note>
+      </trans-unit>
+      <trans-unit id="There seems to be nothing to do...">
+        <source>There seems to be nothing to do...</source>
+        <target>Her er det ikke noe å gjøre...</target>
+        <note>Quickbackup</note>
       </trans-unit>
       <trans-unit id="This is a combined task, execute by ⌘R...">
         <source>This is a combined task, execute by ⌘R...</source>
@@ -3142,6 +3206,16 @@
         <source>You cannot delete that many, max are</source>
         <target>Du kan ikke slette så mange, max er</target>
         <note>Snapshots</note>
+      </trans-unit>
+      <trans-unit id="You have the latest ...">
+        <source>You have the latest ...</source>
+        <target>Du har siste versjon...</target>
+        <note>About</note>
+      </trans-unit>
+      <trans-unit id="seconds">
+        <source>seconds</source>
+        <target>sekunder</target>
+        <note>New version</note>
       </trans-unit>
       <trans-unit id="⌘A to abort or wait...">
         <source>⌘A to abort or wait...</source>

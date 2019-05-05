@@ -30,11 +30,9 @@
 
 /* Execute
    Logg
+   Profiles
    Snapshots */
 "Cancel or Delete" = "Kanseler eller slett";
-
-/* Profiles */
-"Cancel or Delete?" = "Kanseler eller slett?";
 
 /* Restore */
 "Cancel or Restore" = "Kanseler eller restore";
@@ -168,9 +166,6 @@
 
 /* Remote info */
 "Number of tasks to estimate:" = "Antall oppgaver å estimere:";
-
-/* Copy files */
-"Number remote files: " = "";
 
 /* Snapshots */
 "Number snapshots: " = "Antall snapshots:";
