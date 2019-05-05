@@ -459,7 +459,7 @@ extension ViewControllertabMain: Abort {
         } else {
             self.working.stopAnimation(nil)
             self.workinglabel.isHidden = true
-            self.rsyncCommand.stringValue = "Selection out of range - aborting"
+            self.rsyncCommand.stringValue = NSLocalizedString("Selection out of range - aborting", comment: "Execute")
             self.process = nil
             self.index = nil
         }

@@ -108,7 +108,7 @@ class ViewControllerSsh: NSViewController, SetConfigurations, VcExecute {
         guard self.sshcmd != nil else { return }
         self.sshcmd!.createSshRemoteDirectory(hiddenID: self.hiddenID!)
         guard sshcmd!.commandCopyPasteTermninal != nil else {
-            self.sshCreateRemoteCatalog.stringValue = " ... no remote server ..."
+            self.sshCreateRemoteCatalog.stringValue = NSLocalizedString("... no remote server ...", comment: "Ssh")
             return
         }
         self.sshCreateRemoteCatalog.stringValue = sshcmd!.commandCopyPasteTermninal!
