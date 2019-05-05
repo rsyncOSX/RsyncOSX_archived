@@ -210,7 +210,7 @@ class ViewControllertabMain: NSViewController, ReloadTable, Deselect, VcMain, De
             self.info.stringValue = self.information!.info(num: 1)
             return
         }
-        let question: String = NSLocalizedString("Delete selected task? ", comment: "Execute")
+        let question: String = NSLocalizedString("Delete selected task?", comment: "Execute")
         let text: String = NSLocalizedString("Cancel or Delete", comment: "Execute")
         let dialog: String = NSLocalizedString("Delete", comment: "Execute")
         let answer = Alerts.dialogOrCancel(question: question, text: text, dialog: dialog)

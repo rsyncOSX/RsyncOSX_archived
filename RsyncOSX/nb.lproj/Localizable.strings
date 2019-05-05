@@ -20,10 +20,11 @@
 "Cancel or Add" = "Kanseler eller legg til";
 
 /* Execute
-   Logg */
+   Logg
+   Snapshots */
 "Cancel or Delete" = "Kanseler eller slett";
 
-/* Loggs, Tasks and Profile */
+/* Profiles */
 "Cancel or Delete?" = "Kanseler eller slett?";
 
 /* Restore */
@@ -54,17 +55,18 @@
 
 /* Execute
    Logg
-   Loggs, Tasks and Profile */
+   Profiles
+   Snapshots */
 "Delete" = "Slett";
 
 /* Snapshots */
 "Delete operation completed..." = "Slette operasjon gjennomført...";
 
-/* Loggs, Tasks and Profile */
-"Delete profile: " = "Slett profil:";
+/* Profiles */
+"Delete profile:" = "Slett profil:";
 
 /* Execute */
-"Delete selected task? " = "Slett valgt oppgave?";
+"Delete selected task?" = "Slett valgte oppgave?";
 
 /* Snapshots */
 "Do you REALLY want to DELETE selected snapshots?" = "Vil du VIRKELIG SLETTE valgte snapshot?";
@@ -135,6 +137,9 @@
 
 /* Logg */
 "Number of logs:" = "Antall logger:";
+
+/* Copy files */
+"Number remote files: " = "";
 
 /* Snapshots */
 "Number snapshots: " = "Antall snapshots:";
