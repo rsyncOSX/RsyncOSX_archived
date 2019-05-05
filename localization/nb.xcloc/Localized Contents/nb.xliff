@@ -2857,12 +2857,13 @@
         <source>Cancel or Delete</source>
         <target>Kanseler eller slett</target>
         <note>Execute
-   Logg</note>
+   Logg
+   Snapshots</note>
       </trans-unit>
       <trans-unit id="Cancel or Delete?">
         <source>Cancel or Delete?</source>
         <target>Kanseler eller slett?</target>
-        <note>Loggs, Tasks and Profile</note>
+        <note>Profiles</note>
       </trans-unit>
       <trans-unit id="Cancel or Restore">
         <source>Cancel or Restore</source>
@@ -2911,22 +2912,21 @@
         <target>Slett</target>
         <note>Execute
    Logg
-   Loggs, Tasks and Profile</note>
+   Profiles
+   Snapshots</note>
       </trans-unit>
       <trans-unit id="Delete operation completed...">
         <source>Delete operation completed...</source>
         <target>Slette operasjon gjennomført...</target>
         <note>Snapshots</note>
       </trans-unit>
-      <trans-unit id="Delete profile: ">
-        <source>Delete profile: </source>
-        <target>Slett profil:</target>
-        <note>Loggs, Tasks and Profile</note>
+      <trans-unit id="Delete profile:">
+        <source>Delete profile:</source>
+        <note>Profiles</note><target>Slett profil:</target>
       </trans-unit>
-      <trans-unit id="Delete selected task? ">
-        <source>Delete selected task? </source>
-        <target>Slett valgt oppgave?</target>
-        <note>Execute</note>
+      <trans-unit id="Delete selected task?">
+        <source>Delete selected task?</source>
+        <note>Execute</note><target>Slett valgte oppgave?</target>
       </trans-unit>
       <trans-unit id="Do you REALLY want to DELETE selected snapshots?">
         <source>Do you REALLY want to DELETE selected snapshots?</source>
@@ -3046,7 +3046,7 @@
       </trans-unit>
       <trans-unit id="Number remote files: ">
         <source>Number remote files: </source>
-        <note>Copy files</note>
+        <note>Copy files</note><target></target>
       </trans-unit>
       <trans-unit id="Number snapshots: ">
         <source>Number snapshots: </source>
@@ -3115,7 +3115,8 @@
       </trans-unit>
       <trans-unit id="Selected rows:">
         <source>Selected rows:</source>
-        <note>Logg</note><target>Valgte rader:</target>
+        <target>Valgte rader:</target>
+        <note>Logg</note>
       </trans-unit>
       <trans-unit id="Seriously, enter a real number...">
         <source>Seriously, enter a real number...</source>
