@@ -128,10 +128,10 @@ class ViewControllerRemoteInfo: NSViewController, SetDismisser, Abort {
 
     private func number() -> String {
         if self.loaded {
-            return "Loaded cached data..."
+            return NSLocalizedString("Loaded cached data...", comment: "Remote info")
         } else {
             let max = self.remoteinfotask?.maxnumber ?? 0
-            return "Number of tasks to estimate: " + String(describing: max)
+            return NSLocalizedString("Number of tasks to estimate:", comment: "Remote info") + " " + String(describing: max)
         }
     }
 
@@ -246,7 +246,7 @@ extension ViewControllerRemoteInfo: UpdateProgress {
         if self.remoteinfotask?.stackoftasktobeestimated == nil {
             self.progress.stopAnimation(nil)
             self.progress.isHidden = true
-            self.count.stringValue = "Completed"
+            self.count.stringValue = NSLocalizedString("Completed", comment: "Remote info")
             self.count.textColor = .green
             self.remoteinfotask?.selectalltaskswithfilestobackup(deselect: self.selected)
             self.selected = true

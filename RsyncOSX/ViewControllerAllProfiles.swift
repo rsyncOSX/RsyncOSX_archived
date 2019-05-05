@@ -108,10 +108,10 @@ class ViewControllerAllProfiles: NSViewController, Delay, Abort {
 extension ViewControllerAllProfiles: NSTableViewDataSource {
     func numberOfRows(in tableView: NSTableView) -> Int {
         if self.allprofiles?.allconfigurationsasdictionary == nil {
-            self.numberOfprofiles.stringValue = "Number of configurations:"
+            self.numberOfprofiles.stringValue = NSLocalizedString("Number of configurations:", comment: "AllProfiles")
             return 0
         } else {
-            self.numberOfprofiles.stringValue = "Number of configurations: " +
+            self.numberOfprofiles.stringValue = NSLocalizedString("Number of configurations:", comment: "AllProfiles") + " " +
                 String(self.allprofiles!.allconfigurationsasdictionary?.count ?? 0)
             return self.allprofiles!.allconfigurationsasdictionary?.count ?? 0
         }

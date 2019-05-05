@@ -1,6 +1,9 @@
 /* Restore */
 " ... set in User configuration ..." = "... sett i bruker preferanser...";
 
+/* Ssh */
+"... no remote server ..." = "...ingen ekstern server...";
+
 /* Execute */
 "⌘A to abort or wait..." = "⌘A for å avslutte eller vent...";
 
@@ -13,6 +16,12 @@
 /* Add schedule */
 "Add Schedule?" = "Legg til schedule?";
 
+/* Batch */
+"Batchtasks completed, close view..." = "Batch oppgaver ferdig, lukker...";
+
+/* Tooltip */
+"By using Finder drag and drop filepaths." = "Bruk Finder for dra og slipp stier.";
+
 /* Cancel NSAlert */
 "Cancel" = "Kanseler";
 
@@ -21,17 +30,21 @@
 
 /* Execute
    Logg
+   Profiles
    Snapshots */
 "Cancel or Delete" = "Kanseler eller slett";
-
-/* Profiles */
-"Cancel or Delete?" = "Kanseler eller slett?";
 
 /* Restore */
 "Cancel or Restore" = "Kanseler eller restore";
 
 /* Close NSAlert */
 "Close" = "Lukk";
+
+/* New version */
+"Close automatically in:" = "Lukker automatisk om:";
+
+/* Remote info */
+"Completed" = "Utført";
 
 /* Verify */
 "Completed ..." = "Utført";
@@ -89,6 +102,9 @@
 /* Error rsync */
 "ERROR: no rsync in /usr/local/bin" = "FEIL: ingen rsync i /usr/local/bin";
 
+/* Batch */
+"Estimation completed, you can start batch..." = "Estimering utført, start batch...";
+
 /* Restore */
 "Executing restore..." = "Utfører restore";
 
@@ -111,7 +127,11 @@
 /* icon */
 "Icon by: Zsolt Sándor" = "Icon av: Zsolt Sándor";
 
-/* Remote Info */
+/* Profile */
+"Load" = "Last";
+
+/* Remote info
+   Remote Info */
 "Loaded cached data..." = "Lastet cached info...";
 
 /* Copy files */
@@ -119,6 +139,9 @@
 
 /* Execute */
 "Menu app is running..." = "Meny appen kjører...";
+
+/* About */
+"New version available:" = "Ny versjon tilgjengelig:";
 
 /* Execute */
 "No rclone config found..." = "Ingen rclone konfigurasjon funnet";
@@ -135,11 +158,14 @@
 /* Snapshots */
 "Not a snapshot task..." = "Ikke en snapshot oppgave...";
 
+/* AllProfiles */
+"Number of configurations:" = "Antall konfigurasjoner:";
+
 /* Logg */
 "Number of logs:" = "Antall logger:";
 
-/* Copy files */
-"Number remote files: " = "";
+/* Remote info */
+"Number of tasks to estimate:" = "Antall oppgaver å estimere:";
 
 /* Snapshots */
 "Number snapshots: " = "Antall snapshots:";
@@ -168,8 +194,14 @@
 /* Restore */
 "Restore is completed..." = "Restore er utført...";
 
+/* Profile */
+"Save" = "Lagre";
+
 /* Schedules */
 "Scheduled tasks in menu app..." = "Schedulerte oppgaver i meny app...";
+
+/* New version */
+"seconds" = "sekunder";
 
 /* Copy files */
 "Seems not to be connected..." = "Synes ikke å være tilgjengelig...";
@@ -183,11 +215,17 @@
 /* Logg */
 "Selected rows:" = "Valgte rader:";
 
+/* Execute */
+"Selection out of range - aborting" = "Utvalg ikke mulig - avslutter";
+
 /* Snapshots */
 "Seriously, enter a real number..." = "Seriøst, legg inn et nummer...";
 
 /* Restore */
 "Start restore?" = "Start restore?";
+
+/* Quickbackup */
+"There seems to be nothing to do..." = "Her er det ikke noe å gjøre...";
 
 /* Execute */
 "This is a combined task, execute by ⌘R..." = "Kombinert oppgave, kjør med ⌘R";
@@ -197,4 +235,7 @@
 
 /* Snapshots */
 "You cannot delete that many, max are" = "Du kan ikke slette så mange, max er";
+
+/* About */
+"You have the latest ..." = "Du har siste versjon...";
 
