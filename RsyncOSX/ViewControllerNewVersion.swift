@@ -37,7 +37,8 @@ class ViewControllerNewVersion: NSViewController, SetDismisser {
 
     @objc private func setSecondsView() {
         self.seconds = self.seconds! - 1
-        self.closeinseconds.stringValue = "Close automatically in: " + String(self.seconds!) + " seconds"
+        self.closeinseconds.stringValue = NSLocalizedString("Close automatically in:", comment: "New version") +
+            " " + String(self.seconds!) + " " + NSLocalizedString("seconds", comment: "New version")
     }
 
     @objc private func closeView() {
@@ -61,6 +62,6 @@ class ViewControllerNewVersion: NSViewController, SetDismisser {
         self.seconds = 2
         self.waitToClose = Timer.scheduledTimer(timeInterval: 2, target: self, selector: #selector(closeView), userInfo: nil, repeats: false)
         self.closeIn = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(setSecondsView), userInfo: nil, repeats: true)
-        self.closeinseconds.stringValue = "Close automatically in: 2 seconds"
+        self.closeinseconds.stringValue =  NSLocalizedString("Close automatically in: 2 seconds", comment: "New version")
     }
 }

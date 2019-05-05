@@ -140,8 +140,8 @@ class ViewControllerNewConfigurations: NSViewController, SetConfigurations, VcSc
         self.addtable.dataSource = self
         self.remotecapacitytable.delegate = self
         self.remotecapacitytable.dataSource = self
-        self.localCatalog.toolTip = "By using Finder drag and drop filepaths."
-        self.offsiteCatalog.toolTip = "By using Finder drag and drop filepaths."
+        self.localCatalog.toolTip = NSLocalizedString("By using Finder drag and drop filepaths.", comment: "Tooltip")
+        self.offsiteCatalog.toolTip = NSLocalizedString("By using Finder drag and drop filepaths.", comment: "Tooltip")
         ViewControllerReference.shared.setvcref(viewcontroller: .vcnewconfigurations, nsviewcontroller: self)
         self.initcombox(combobox: self.backuptype, index: 0)
     }

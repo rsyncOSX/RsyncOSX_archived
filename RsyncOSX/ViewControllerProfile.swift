@@ -146,9 +146,9 @@ extension ViewControllerProfile: NSTextFieldDelegate {
     func controlTextDidChange(_ notification: Notification) {
         self.delayWithSeconds(0.5) {
             if self.newprofile.stringValue.count > 0 {
-                self.loadbutton.title = "Save"
+                self.loadbutton.title = NSLocalizedString("Save", comment: "Profile")
             } else {
-                self.loadbutton.title = "Load"
+                self.loadbutton.title = NSLocalizedString("Load", comment: "Profile")
             }
         }
     }
