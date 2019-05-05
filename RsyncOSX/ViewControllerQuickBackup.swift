@@ -64,7 +64,7 @@ class ViewControllerQuickBackup: NSViewController, SetDismisser, Abort, Delay {
         guard self.quickbackup?.sortedlist?.count ?? 0 > 0 else {
             self.completed.isHidden = false
             self.completed.textColor = .green
-            self.completed.stringValue = "There seems to be nothing to do..."
+            self.completed.stringValue = NSLocalizedString("There seems to be nothing to do...", comment: "Quickbackup")
             self.executing = false
             return
         }
