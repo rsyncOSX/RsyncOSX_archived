@@ -1287,7 +1287,7 @@
       </trans-unit>
       <trans-unit id="Rg5-XV-hcW.title">
         <source>Stop all</source>
-        <target>Stop all</target>
+        <target>Stopp alt</target>
         <note>Class = "NSButtonCell"; title = "Stop all"; ObjectID = "Rg5-XV-hcW";</note>
       </trans-unit>
       <trans-unit id="Rq7-8F-bHb.headerCell.title">
@@ -2457,7 +2457,7 @@
       </trans-unit>
       <trans-unit id="sE6-n6-Lin.title">
         <source>Add</source>
-        <target>Add</target>
+        <target>Legg til</target>
         <note>Class = "NSButtonCell"; title = "Add"; ObjectID = "sE6-n6-Lin";</note>
       </trans-unit>
       <trans-unit id="sKa-Hn-USH.title">
