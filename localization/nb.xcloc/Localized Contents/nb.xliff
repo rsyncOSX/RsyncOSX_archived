@@ -2928,6 +2928,11 @@
         <note>Remote Info
    Verify</note>
       </trans-unit>
+      <trans-unit id="Default profile">
+        <source>Default profile</source>
+        <target>Standard profil</target>
+        <note>default profile</note>
+      </trans-unit>
       <trans-unit id="Delete">
         <source>Delete</source>
         <target>Slett</target>
