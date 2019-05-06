@@ -38,7 +38,7 @@ class ScheduleSortedAndExpand: SetConfigurations, SetSchedules {
         if let start: Date = cal.date(byAdding: dateComponent, to: dateStart) {
             if start.timeIntervalSinceNow > 0 {
                 let hiddenID = (dict.value(forKey: "hiddenID") as? Int)!
-                let profilename = dict.value(forKey: "profilename") ?? "Default profile"
+                let profilename = dict.value(forKey: "profilename") ?? NSLocalizedString("Default profile", comment: "default profile")
                 let time = start.timeIntervalSinceNow
                 let dictSchedule: NSDictionary = [
                     "start": start,
@@ -62,7 +62,7 @@ class ScheduleSortedAndExpand: SetConfigurations, SetSchedules {
         if let start: Date = cal.date(byAdding: dateComponent, to: dateStart) {
             if start.timeIntervalSinceNow > 0 {
                 let hiddenID = (dict.value(forKey: "hiddenID") as? Int)!
-                let profilename = dict.value(forKey: "profilename") ?? "Default profile"
+                let profilename = dict.value(forKey: "profilename") ?? NSLocalizedString("Default profile", comment: "default profile")
                 let time = start.timeIntervalSinceNow
                 let dictSchedule: NSDictionary = [
                     "start": start,
@@ -111,7 +111,7 @@ class ScheduleSortedAndExpand: SetConfigurations, SetSchedules {
                 switch schedule {
                 case "once" :
                     let hiddenID = (dict.value(forKey: "hiddenID") as? Int)!
-                    let profilename = dict.value(forKey: "profilename") ?? "Default profile"
+                    let profilename = dict.value(forKey: "profilename") ?? NSLocalizedString("Default profile", comment: "default profile")
                     let time = seconds
                     let dict: NSDictionary = [
                         "start": dateStart,
@@ -190,7 +190,7 @@ class ScheduleSortedAndExpand: SetConfigurations, SetSchedules {
                     "dateStop": self.scheduleConfiguration![i].dateStop!,
                     "hiddenID": self.scheduleConfiguration![i].hiddenID,
                     "schedule": self.scheduleConfiguration![i].schedule,
-                    "profilename": self.scheduleConfiguration![i].profilename ?? "Default profile"]
+                    "profilename": self.scheduleConfiguration![i].profilename ?? NSLocalizedString("Default profile", comment: "default profile")]
                 data.append(dict as NSDictionary)
             }
         self.schedulesNSDictionary = data

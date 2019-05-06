@@ -16,7 +16,7 @@ class AllProfilenames {
         let profile = Files(whichroot: .profileRoot, configpath: ViewControllerReference.shared.configpath)
         self.allprofiles = profile.getDirectorysStrings()
         guard self.allprofiles != nil else { return }
-        self.allprofiles!.append("Default profile")
+        self.allprofiles!.append(NSLocalizedString("Default profile", comment: "default profile"))
     }
 
     init() {

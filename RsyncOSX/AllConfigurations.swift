@@ -23,7 +23,7 @@ final class AllConfigurations: Sorting {
             if self.allconfigurations == nil {
                 self.allconfigurations = []
             }
-            if profile == "Default profile" {
+            if profile == NSLocalizedString("Default profile", comment: "default profile") {
                 configurations = PersistentStorageAllprofilesAPI(profile: nil).getConfigurations()
             } else {
                 configurations = PersistentStorageAllprofilesAPI(profile: profile).getConfigurations()

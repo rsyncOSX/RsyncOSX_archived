@@ -62,7 +62,7 @@ class ViewControllerEncrypt: NSViewController, Index, SetConfigurations, VcCopyF
     @IBAction func selectprofile(_ sender: NSComboBox) {
         guard self.profilescombobox.indexOfSelectedItem > -1 else { return}
         self.rcloneprofilename = self.profilenamearray?[self.profilescombobox.indexOfSelectedItem]
-        if self.rcloneprofilename == "Default profile" { self.rcloneprofilename = nil }
+        if self.rcloneprofilename == NSLocalizedString("Default profile", comment: "default profile") { self.rcloneprofilename = nil }
         self.configurationsrclone = RcloneConfigurations(profile: self.rcloneprofilename)
         self.updateview()
     }
@@ -109,9 +109,9 @@ class ViewControllerEncrypt: NSViewController, Index, SetConfigurations, VcCopyF
         self.rcloneprofile = RcloneProfiles()
         self.profilescombobox.removeAllItems()
         self.profilescombobox.addItems(withObjectValues: self.rcloneprofile!.getDirectorysStrings())
-        self.profilescombobox.addItem(withObjectValue: "Default profile")
+        self.profilescombobox.addItem(withObjectValue: NSLocalizedString("Default profile", comment: "default profile"))
         self.profilenamearray = self.rcloneprofile!.getDirectorysStrings()
-        self.profilenamearray?.append("Default profile")
+        self.profilenamearray?.append(NSLocalizedString("Default profile", comment: "default profile"))
         self.connectbutton.isEnabled = false
     }
 

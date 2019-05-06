@@ -125,7 +125,7 @@ extension ViewControllerAllProfiles: NSTableViewDelegate, Attributedestring {
         if row > self.allprofiles!.allconfigurationsasdictionary!.count - 1 { return nil }
         let object: NSDictionary = self.allprofiles!.allconfigurationsasdictionary![row]
         let hiddenID = object.value(forKey: "hiddenID") as? Int ?? -1
-        let profilename = object.value(forKey: "profile") as? String ?? "Default profile"
+        let profilename = object.value(forKey: "profile") as? String ?? NSLocalizedString("Default profile", comment: "default profile")
         if tableColumn!.identifier.rawValue == "intime" {
             let taskintime: String? = self.allschedulessortedandexpanded!.sortandcountscheduledonetask(hiddenID, profilename: profilename, number: true)
             return taskintime ?? ""
