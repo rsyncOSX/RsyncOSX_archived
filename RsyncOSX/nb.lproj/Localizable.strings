@@ -66,6 +66,9 @@
    Verify */
 "Days since last backup:" = "Dager siden siste backup:";
 
+/* default profile */
+"Default profile" = "Standard profil:";
+
 /* Execute
    Logg
    Profiles
