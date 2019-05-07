@@ -323,7 +323,7 @@
 "Bb6-iv-DYc.title" = "Verifiser";
 
 /* Class = "NSMenuItem"; title = "Backup all now"; ObjectID = "bCH-Oe-dEC"; */
-"bCH-Oe-dEC.title" = "Backup all now";
+"bCH-Oe-dEC.title" = "Backup alt nå";
 
 /* Class = "NSTextFieldCell"; title = "Estimating task, please wait..."; ObjectID = "BDO-Nt-D9h"; */
 "BDO-Nt-D9h.title" = "Estimerer oppgave, vennligst vent...";
@@ -935,7 +935,7 @@
 "Ldp-hj-0Qe.title" = "Text Cell";
 
 /* Class = "NSMenuItem"; title = "Bring All to Front"; ObjectID = "LE2-aR-0XJ"; */
-"LE2-aR-0XJ.title" = "Bring All to Front";
+"LE2-aR-0XJ.title" = "Bring frem til front";
 
 /* Class = "NSBox"; title = "Add parameters"; ObjectID = "lGN-As-q21"; */
 "lGN-As-q21.title" = "Legg til parametre";
@@ -1085,7 +1085,7 @@
 "OlM-9W-pxf.title" = "Slett";
 
 /* Class = "NSMenuItem"; title = "Hide RsyncOSX"; ObjectID = "Olw-nP-bQN"; */
-"Olw-nP-bQN.title" = "Hide RsyncOSX";
+"Olw-nP-bQN.title" = "Lukk RsyncOSX";
 
 /* Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "OOi-RG-4If"; */
 "OOi-RG-4If.title" = "Text Cell";
@@ -1115,7 +1115,7 @@
 "Ow3-Wv-2WC.headerCell.title" = "Oppgave";
 
 /* Class = "NSMenuItem"; title = "Minimize"; ObjectID = "OY7-WF-poV"; */
-"OY7-WF-poV.title" = "Minimize";
+"OY7-WF-poV.title" = "Minimer";
 
 /* Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "ozI-GG-cgX"; */
 "ozI-GG-cgX.title" = "Text Cell";
@@ -1130,7 +1130,7 @@
 "p9L-16-Icv.title" = "Parameter";
 
 /* Class = "NSMenuItem"; title = "Info all"; ObjectID = "p56-o9-HcO"; */
-"p56-o9-HcO.title" = "Info all";
+"p56-o9-HcO.title" = "Info alt";
 
 /* Class = "NSBox"; title = "File or catalog to restore"; ObjectID = "PIK-cY-cmQ"; */
 "PIK-cY-cmQ.title" = "Fil eller katalog for restore";
@@ -1445,7 +1445,7 @@
 "VBk-Qe-g0o.title" = "backup (bruker to siste bruker valgte parametre)";
 
 /* Class = "NSMenuItem"; title = "Hide Others"; ObjectID = "Vdr-fp-XzO"; */
-"Vdr-fp-XzO.title" = "Hide Others";
+"Vdr-fp-XzO.title" = "Lukk andre";
 
 /* Class = "NSButtonCell"; title = "Changelog"; ObjectID = "vDS-vt-fgh"; */
 "vDS-vt-fgh.title" = "Endringslog";

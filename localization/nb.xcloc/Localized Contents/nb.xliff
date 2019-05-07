@@ -997,7 +997,7 @@
       </trans-unit>
       <trans-unit id="LE2-aR-0XJ.title">
         <source>Bring All to Front</source>
-        <target>Bring All to Front</target>
+        <target>Bring frem til front</target>
         <note>Class = "NSMenuItem"; title = "Bring All to Front"; ObjectID = "LE2-aR-0XJ";</note>
       </trans-unit>
       <trans-unit id="LGQ-8V-u3e.title">
@@ -1132,7 +1132,7 @@
       </trans-unit>
       <trans-unit id="OY7-WF-poV.title">
         <source>Minimize</source>
-        <target>Minimize</target>
+        <target>Minimer</target>
         <note>Class = "NSMenuItem"; title = "Minimize"; ObjectID = "OY7-WF-poV";</note>
       </trans-unit>
       <trans-unit id="OlM-9W-pxf.title">
@@ -1142,7 +1142,7 @@
       </trans-unit>
       <trans-unit id="Olw-nP-bQN.title">
         <source>Hide RsyncOSX</source>
-        <target>Hide RsyncOSX</target>
+        <target>Lukk RsyncOSX</target>
         <note>Class = "NSMenuItem"; title = "Hide RsyncOSX"; ObjectID = "Olw-nP-bQN";</note>
       </trans-unit>
       <trans-unit id="OrH-Ty-gyv.label">
@@ -1492,7 +1492,7 @@
       </trans-unit>
       <trans-unit id="Vdr-fp-XzO.title">
         <source>Hide Others</source>
-        <target>Hide Others</target>
+        <target>Lukk andre</target>
         <note>Class = "NSMenuItem"; title = "Hide Others"; ObjectID = "Vdr-fp-XzO";</note>
       </trans-unit>
       <trans-unit id="Vnu-mV-aob.title">
@@ -1692,7 +1692,7 @@
       </trans-unit>
       <trans-unit id="bCH-Oe-dEC.title">
         <source>Backup all now</source>
-        <target>Backup all now</target>
+        <target>Backup alt nå</target>
         <note>Class = "NSMenuItem"; title = "Backup all now"; ObjectID = "bCH-Oe-dEC";</note>
       </trans-unit>
       <trans-unit id="bKV-1H-cOf.title">
@@ -2357,7 +2357,7 @@
       </trans-unit>
       <trans-unit id="p56-o9-HcO.title">
         <source>Info all</source>
-        <target>Info all</target>
+        <target>Info alt</target>
         <note>Class = "NSMenuItem"; title = "Info all"; ObjectID = "p56-o9-HcO";</note>
       </trans-unit>
       <trans-unit id="pZb-i1-xyG.headerCell.title">
