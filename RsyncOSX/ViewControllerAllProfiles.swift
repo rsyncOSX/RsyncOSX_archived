@@ -131,7 +131,18 @@ extension ViewControllerAllProfiles: NSTableViewDelegate, Attributedestring {
             return taskintime ?? ""
         } else if tableColumn!.identifier.rawValue == "schedule" {
             let schedule: String? = self.allschedulessortedandexpanded!.sortandcountscheduledonetask(hiddenID, profilename: profilename, number: false)
-            return schedule
+            switch schedule {
+            case "once":
+                return NSLocalizedString("once", comment: "main")
+            case "daily":
+                return NSLocalizedString("daily", comment: "main")
+            case "weekly":
+                return NSLocalizedString("weekly", comment: "main")
+            case "manuel":
+                return NSLocalizedString("manuel", comment: "main")
+            default:
+                return ""
+            }
         } else {
             return object[tableColumn!.identifier] as? String
         }
