@@ -250,7 +250,22 @@ extension ViewControllertabSchedule: NSTableViewDelegate, Attributedestring {
         case "scheduleID" :
             if self.schedulessorted != nil {
                 let schedule: String? = self.schedulessorted!.sortandcountscheduledonetask(hiddenID, profilename: nil, number: false)
-                return schedule ?? ""
+                if schedule?.isEmpty == false {
+                    switch schedule {
+                    case "once":
+                        return NSLocalizedString("once", comment: "main")
+                    case "daily":
+                        return NSLocalizedString("daily", comment: "main")
+                    case "weekly":
+                        return NSLocalizedString("weekly", comment: "main")
+                    case "manuel":
+                        return NSLocalizedString("manuel", comment: "main")
+                    default:
+                        return ""
+                    }
+                } else {
+                    return ""
+                }
             }
         case "offsiteServerCellID":
             if (object[tableColumn!.identifier] as? String)!.isEmpty {

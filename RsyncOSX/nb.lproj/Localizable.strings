@@ -245,3 +245,15 @@
 /* Copy Files */
 "Number remote files:" = "Antall filer:";
 
+/* main */
+"once" = "engang";
+
+/* main */
+"daily" = "daglig";
+
+/* main */
+"weekly" = "ukentlig";
+
+/* main */
+"manuel" = "manuell";
+
