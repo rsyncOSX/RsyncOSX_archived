@@ -137,6 +137,19 @@ extension ViewControllerScheduleDetails: NSTableViewDelegate {
             }
             if tableColumn!.identifier.rawValue == "stopCellID" || tableColumn!.identifier.rawValue == "deleteCellID" {
                    return object[tableColumn!.identifier] as? Int
+            } else if tableColumn!.identifier.rawValue == "schedule"{
+                switch object[tableColumn!.identifier] as? String {
+                case "once":
+                    return NSLocalizedString("once", comment: "main")
+                case "daily":
+                    return NSLocalizedString("daily", comment: "main")
+                case "weekly":
+                    return NSLocalizedString("weekly", comment: "main")
+                case "manuel":
+                    return NSLocalizedString("manuel", comment: "main")
+                default:
+                    return ""
+                }
             } else {
                 if active {
                     if tableColumn!.identifier.rawValue == "active" {
