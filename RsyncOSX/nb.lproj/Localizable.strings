@@ -242,3 +242,6 @@
 /* About */
 "You have the latest ..." = "Du har siste versjon...";
 
+/* Copy Files */
+"Number remote files:" = "Antall filer:";
+
