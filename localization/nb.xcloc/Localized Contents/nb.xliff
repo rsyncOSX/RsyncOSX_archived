@@ -1227,7 +1227,7 @@
       </trans-unit>
       <trans-unit id="Qc4-06-mOR.title">
         <source>Default params</source>
-        <target>Standard parametre</target>
+        <target>Default parametre</target>
         <note>Class = "NSBox"; title = "Default params"; ObjectID = "Qc4-06-mOR";</note>
       </trans-unit>
       <trans-unit id="QdJ-n1-Mtr.title">
@@ -1272,7 +1272,7 @@
       </trans-unit>
       <trans-unit id="RPd-mi-bp4.title">
         <source>Default params</source>
-        <target>Standard parametre</target>
+        <target>Default parametre</target>
         <note>Class = "NSTextFieldCell"; title = "Default params"; ObjectID = "RPd-mi-bp4";</note>
       </trans-unit>
       <trans-unit id="RVB-9H-LQM.title">
@@ -1937,7 +1937,7 @@
       </trans-unit>
       <trans-unit id="fyt-XU-Mpu.title">
         <source>Default</source>
-        <target>Standard</target>
+        <target>Default</target>
         <note>Class = "NSButtonCell"; title = "Default"; ObjectID = "fyt-XU-Mpu";</note>
       </trans-unit>
       <trans-unit id="g1a-zY-Mpq.label">
@@ -2930,7 +2930,7 @@
       </trans-unit>
       <trans-unit id="Default profile">
         <source>Default profile</source>
-        <target>Standard profil</target>
+        <target>Default profil</target>
         <note>default profile</note>
       </trans-unit>
       <trans-unit id="Delete">

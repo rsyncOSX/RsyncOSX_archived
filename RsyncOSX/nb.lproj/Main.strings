@@ -608,7 +608,7 @@
 "FyK-Vx-KC3.headerCell.title" = "Ekstern katalog";
 
 /* Class = "NSButtonCell"; title = "Default"; ObjectID = "fyt-XU-Mpu"; */
-"fyt-XU-Mpu.title" = "Standard";
+"fyt-XU-Mpu.title" = "Default";
 
 /* Class = "NSButtonCell"; title = "Close"; ObjectID = "fYy-ch-qjc"; */
 "fYy-ch-qjc.title" = "Lukk";
@@ -1172,7 +1172,7 @@
 "qat-Dj-4j6.title" = "Dager siden siste backup:";
 
 /* Class = "NSBox"; title = "Default params"; ObjectID = "Qc4-06-mOR"; */
-"Qc4-06-mOR.title" = "Standard parametre";
+"Qc4-06-mOR.title" = "Default parametre";
 
 /* Class = "NSButtonCell"; title = "Once"; ObjectID = "QCj-5P-T2N"; */
 "QCj-5P-T2N.title" = "Engang";
@@ -1229,7 +1229,7 @@
 "rol-5e-w2X.title" = "Lokal katalog :";
 
 /* Class = "NSTextFieldCell"; title = "Default params"; ObjectID = "RPd-mi-bp4"; */
-"RPd-mi-bp4.title" = "Standard parametre";
+"RPd-mi-bp4.title" = "Default parametre";
 
 /* Class = "NSTableColumn"; headerCell.title = "Snap"; ObjectID = "Rq7-8F-bHb"; */
 "Rq7-8F-bHb.headerCell.title" = "Snap";
