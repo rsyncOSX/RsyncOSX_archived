@@ -58,9 +58,15 @@
 /* copyright */
 "Copyright ©2019 Thomas Evensen" = "Copyright ©2019 Thomas Evensen.";
 
+/* main */
+"daily" = "daglig";
+
 /* Remote Info
    Verify */
 "Date last backup:" = "Dato siste backup:";
+
+/* datetime */
+"days" = "dager";
 
 /* Remote Info
    Verify */
@@ -127,6 +133,12 @@
    Restore */
 "Got it..." = "Info hentet...";
 
+/* datetime */
+"h" = "t";
+
+/* datetime */
+"hours" = "timer";
+
 /* icon */
 "Icon by: Zsolt Sándor" = "Icon av: Zsolt Sándor";
 
@@ -140,8 +152,14 @@
 /* Copy files */
 "Local or remote catalog cannot be empty..." = "Lokal og ekstern må fylles ut...";
 
+/* main */
+"manuel" = "manuell";
+
 /* Execute */
 "Menu app is running..." = "Meny appen kjører...";
+
+/* datetime */
+"mins" = "min";
 
 /* About */
 "New version available:" = "Ny versjon tilgjengelig:";
@@ -170,8 +188,14 @@
 /* Remote info */
 "Number of tasks to estimate:" = "Antall oppgaver å estimere:";
 
+/* Copy files */
+"Number remote files:" = "Antall filer:";
+
 /* Snapshots */
 "Number snapshots: " = "Antall snapshots:";
+
+/* main */
+"once" = "engang";
 
 /* Execute */
 "Only valid for backup, snapshot and combined tasks..." = "Kun gyldig for backup, snapshot og kombinerte oppgaver...";
@@ -206,6 +230,9 @@
 /* New version */
 "seconds" = "sekunder";
 
+/* datetime */
+"secs" = "sek";
+
 /* Copy files */
 "Seems not to be connected..." = "Synes ikke å være tilgjengelig...";
 
@@ -236,38 +263,12 @@
 /* Verify */
 "Verifying, please wait..." = "Verifiserer, vennligst vent...";
 
+/* main */
+"weekly" = "ukentlig";
+
 /* Snapshots */
 "You cannot delete that many, max are" = "Du kan ikke slette så mange, max er";
 
 /* About */
 "You have the latest ..." = "Du har siste versjon...";
 
-/* Copy Files */
-"Number remote files:" = "Antall filer:";
-
-/* main */
-"once" = "engang";
-
-/* main */
-"daily" = "daglig";
-
-/* main */
-"weekly" = "ukentlig";
-
-/* main */
-"manuel" = "manuell";
-
-/* datetime */
-"mins" = "min";
-
-/* datetime */
-"secs" = "sek";
-
-/* datetime */
-"hours" = "timer";
-
-/* datetime */
-"days" = "dager";
-
-/* datetime */
-"h" = "t";

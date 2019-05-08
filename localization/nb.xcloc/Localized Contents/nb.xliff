@@ -3100,6 +3100,7 @@
       </trans-unit>
       <trans-unit id="Number remote files:">
         <source>Number remote files:</source>
+        <target></target>
         <note>Copy files</note>
       </trans-unit>
       <trans-unit id="Number snapshots: ">
@@ -3217,10 +3218,55 @@
         <target>Du har siste versjon...</target>
         <note>About</note>
       </trans-unit>
+      <trans-unit id="daily">
+        <source>daily</source>
+        <target>daglig</target>
+        <note>main</note>
+      </trans-unit>
+      <trans-unit id="days">
+        <source>days</source>
+        <target>dager</target>
+        <note>datetime</note>
+      </trans-unit>
+      <trans-unit id="h">
+        <source>h</source>
+        <target>t</target>
+        <note>datetime</note>
+      </trans-unit>
+      <trans-unit id="hours">
+        <source>hours</source>
+        <target>timer</target>
+        <note>datetime</note>
+      </trans-unit>
+      <trans-unit id="manuel">
+        <source>manuel</source>
+        <target>manuell</target>
+        <note>main</note>
+      </trans-unit>
+      <trans-unit id="mins">
+        <source>mins</source>
+        <target>min</target>
+        <note>datetime</note>
+      </trans-unit>
+      <trans-unit id="once">
+        <source>once</source>
+        <target>engang</target>
+        <note>main</note>
+      </trans-unit>
       <trans-unit id="seconds">
         <source>seconds</source>
         <target>sekunder</target>
         <note>New version</note>
+      </trans-unit>
+      <trans-unit id="secs">
+        <source>secs</source>
+        <target>sek</target>
+        <note>datetime</note>
+      </trans-unit>
+      <trans-unit id="weekly">
+        <source>weekly</source>
+        <target>ukentlig</target>
+        <note>main</note>
       </trans-unit>
       <trans-unit id="⌘A to abort or wait...">
         <source>⌘A to abort or wait...</source>
