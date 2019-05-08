@@ -938,7 +938,7 @@
 "LE2-aR-0XJ.title" = "Bring frem til front";
 
 /* Class = "NSBox"; title = "Add parameters"; ObjectID = "lGN-As-q21"; */
-"lGN-As-q21.title" = "Legg til parametre";
+"lGN-As-q21.title" = "Legge til parametre";
 
 /* Class = "NSBox"; title = "Restore to tmp catalog"; ObjectID = "LGQ-8V-u3e"; */
 "LGQ-8V-u3e.title" = "Restore til tmp katalog";
@@ -1412,7 +1412,7 @@
 "uSt-4P-11h.title" = "Text Cell";
 
 /* Class = "NSBox"; title = "Remove parameters"; ObjectID = "uUH-RU-JKF"; */
-"uUH-RU-JKF.title" = "Slett parametre";
+"uUH-RU-JKF.title" = "Slette parametre";
 
 /* Class = "NSButtonCell"; title = "Save"; ObjectID = "UWX-Xo-8Mh"; */
 "UWX-Xo-8Mh.title" = "Lagre";
@@ -1640,7 +1640,7 @@
 "zHz-9r-Cpj.title" = "Verifiser";
 
 /* Class = "NSTextFieldCell"; title = "User selected params"; ObjectID = "ZJm-XI-lka"; */
-"ZJm-XI-lka.title" = "Bruker valgt parametre";
+"ZJm-XI-lka.title" = "Bruker valgte parametre";
 
 /* Class = "NSTextFieldCell"; title = "Required if remote server"; ObjectID = "znZ-ht-M5x"; */
 "znZ-ht-M5x.title" = "Krav hvis ekstern server";
