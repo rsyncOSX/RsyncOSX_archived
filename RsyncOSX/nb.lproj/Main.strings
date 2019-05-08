@@ -248,7 +248,7 @@
 "857-EY-QrY.headerCell.title" = "Oppgave";
 
 /* Class = "NSButtonCell"; title = "Rsa public key is found."; ObjectID = "a0m-Z1-grn"; */
-"a0m-Z1-grn.title" = "Rsa offentlig nøkkel.";
+"a0m-Z1-grn.title" = "Rsa offentlig nøkkel";
 
 /* Class = "NSMenuItem"; title = "Open"; ObjectID = "aCU-js-shc"; */
 "aCU-js-shc.title" = "Open";
@@ -491,7 +491,7 @@
 "eAP-VY-l6H.title" = "Lukk";
 
 /* Class = "NSTextFieldCell"; title = "new :  "; ObjectID = "Eb4-2s-zft"; */
-"Eb4-2s-zft.title" = "ny :  ";
+"Eb4-2s-zft.title" = "nye :";
 
 /* Class = "NSTextFieldCell"; title = "ID:"; ObjectID = "ebe-i5-8DN"; */
 "ebe-i5-8DN.title" = "ID:";
@@ -500,7 +500,7 @@
 "ecv-vl-IKk.headerCell.title" = "Server";
 
 /* Class = "NSButtonCell"; title = "Dsa public key is found."; ObjectID = "EeS-fZ-csl"; */
-"EeS-fZ-csl.title" = "Dsa offentlig nøkkel.";
+"EeS-fZ-csl.title" = "Dsa offentlig nøkkel";
 
 /* Class = "NSViewController"; title = "Execute"; ObjectID = "egt-C3-u4G"; */
 "egt-C3-u4G.title" = "Utfør";
@@ -515,7 +515,7 @@
 "eHU-gd-SBP.title" = "Text Cell";
 
 /* Class = "NSBox"; title = "Select snapshots to keep"; ObjectID = "eIC-WC-dFt"; */
-"eIC-WC-dFt.title" = "Velg snapshots";
+"eIC-WC-dFt.title" = "Valg snapshots";
 
 /* Class = "NSTextFieldCell"; title = "Selected logs: 0"; ObjectID = "EiP-tC-Ve8"; */
 "EiP-tC-Ve8.title" = "Valgt logger: 0";
@@ -602,7 +602,7 @@
 "FXq-M1-hKG.headerCell.title" = "Schedule";
 
 /* Class = "NSBox"; title = "New or delete"; ObjectID = "fyc-hd-Fqh"; */
-"fyc-hd-Fqh.title" = "Ny eller slett";
+"fyc-hd-Fqh.title" = "Nye eller slette";
 
 /* Class = "NSTableColumn"; headerCell.title = "Remote catalog"; ObjectID = "FyK-Vx-KC3"; */
 "FyK-Vx-KC3.headerCell.title" = "Ekstern katalog";
@@ -674,7 +674,7 @@
 "gRY-vZ-99W.title" = "Utført...";
 
 /* Class = "NSTextFieldCell"; title = "delete :  "; ObjectID = "gsP-5c-DW5"; */
-"gsP-5c-DW5.title" = "slett :  ";
+"gsP-5c-DW5.title" = "slette: ";
 
 /* Class = "NSTableColumn"; headerCell.title = "Cloud service"; ObjectID = "gSZ-r8-8Ry"; */
 "gSZ-r8-8Ry.headerCell.title" = "Cloud service";
@@ -1202,7 +1202,7 @@
 "qq5-4q-5kV.title" = "Text Cell";
 
 /* Class = "NSTableColumn"; headerCell.title = "Last run"; ObjectID = "qvy-yX-V6C"; */
-"qvy-yX-V6C.headerCell.title" = "Last run";
+"qvy-yX-V6C.headerCell.title" = "Siste kjøring";
 
 /* Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "QwI-78-cY5"; */
 "QwI-78-cY5.title" = "Text Cell";
