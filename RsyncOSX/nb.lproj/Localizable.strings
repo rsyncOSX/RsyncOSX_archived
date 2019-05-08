@@ -189,7 +189,7 @@
 "Number of tasks to estimate:" = "Antall oppgaver å estimere:";
 
 /* Copy files */
-"Number remote files:" = "";
+"Number remote files:" = "Antall filer:";
 
 /* Snapshots */
 "Number snapshots: " = "Antall snapshots:";
