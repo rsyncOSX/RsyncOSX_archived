@@ -569,7 +569,7 @@
 "FaP-hR-iYc.title" = "Tcp";
 
 /* Class = "NSTableColumn"; headerCell.title = "User name"; ObjectID = "Fd7-v3-h8m"; */
-"Fd7-v3-h8m.headerCell.title" = "Bruker navn";
+"Fd7-v3-h8m.headerCell.title" = "Ekstern bruker";
 
 /* Class = "NSViewController"; title = "Snapshots"; ObjectID = "fiO-Ux-xlw"; */
 "fiO-Ux-xlw.title" = "Snapshots";
