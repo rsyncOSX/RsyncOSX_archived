@@ -82,6 +82,14 @@ extension Date {
         return dateComponent.year!
     }
 
+    func localizeDate() -> String {
+        let formatter = DateFormatter()
+        formatter.formatterBehavior = .behavior10_4
+        formatter.dateStyle = .medium
+        formatter.timeStyle = .short
+        return formatter.string(from: self)
+    }
+
     static func == (lhs: Date, rhs: Date) -> Bool {
         return lhs.compare(rhs) == ComparisonResult.orderedSame
     }
