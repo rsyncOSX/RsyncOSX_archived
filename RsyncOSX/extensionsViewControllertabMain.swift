@@ -79,8 +79,12 @@ extension ViewControllertabMain: NSTableViewDelegate, Attributedestring {
             }
         } else if tableColumn!.identifier.rawValue == "runDateCellID" {
             let stringdate: String = object[tableColumn!.identifier] as? String ?? ""
-            let date = dateformatter.date(from: stringdate)
-            return date?.localizeDate()
+            if stringdate.isEmpty {
+                return ""
+            } else {
+                let date = dateformatter.date(from: stringdate)
+                return date?.localizeDate()
+            }
         } else {
             return object[tableColumn!.identifier] as? String
         }
