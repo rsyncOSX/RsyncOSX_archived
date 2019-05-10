@@ -52,10 +52,16 @@ class ViewControllerInformationLocalRemote: NSViewController, SetDismisser, Inde
                 self.setcachedNumbers(dict: info)
             } else {
                 self.working.startAnimation(nil)
-                let datelastbackup = self.configurations?.getConfigurations()[index].dateRun ?? "none"
-                let numberlastbackup = self.configurations?.getConfigurations()[index].dayssincelastbackup ?? "none"
-                self.datelastbackup.stringValue = NSLocalizedString("Date last backup:", comment: "Remote Info")
-                    + " " + datelastbackup
+                let dateformatter = Dateandtime().setDateformat()
+                let datelastbackup = self.configurations?.getConfigurations()[index].dateRun ?? ""
+                let numberlastbackup = self.configurations?.getConfigurations()[index].dayssincelastbackup ?? ""
+                if datelastbackup.isEmpty == false {
+                    let date = dateformatter.date(from: datelastbackup)
+                    self.datelastbackup.stringValue = NSLocalizedString("Date last backup:", comment: "Remote Info")
+                        + " " + date!.localizeDate()
+                } else {
+                    self.datelastbackup.stringValue = NSLocalizedString("Date last backup:", comment: "Remote Info")
+                }
                 self.dayslastbackup.stringValue = NSLocalizedString("Days since last backup:", comment: "Remote Info")
                     + " " + numberlastbackup
                 self.outputprocess = OutputProcess()
