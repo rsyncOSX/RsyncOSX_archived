@@ -5,7 +5,7 @@
 //  Created by Thomas Evensen on 06/09/2016.
 //  Copyright © 2016 Thomas Evensen. All rights reserved.
 //
-//  swiftlint:disable line_length cyclomatic_complexity
+//  swiftlint:disable line_length cyclomatic_complexity function_body_length
 
 import Foundation
 import Cocoa
@@ -121,6 +121,7 @@ extension ViewControllerScheduleDetails: NSTableViewDelegate {
     // TableView delegates
     func tableView(_ tableView: NSTableView, objectValueFor tableColumn: NSTableColumn?, row: Int) -> Any? {
         var active: Bool = false
+        let dateformatter = Dateandtime().setDateformat()
         guard self.data != nil else { return nil }
         if row < self.data!.count {
             let object: NSMutableDictionary = self.data![row]
@@ -160,15 +161,27 @@ extension ViewControllerScheduleDetails: NSTableViewDelegate {
                 } else {
                     if tableColumn!.identifier.rawValue == "dateStart" {
                         if object[tableColumn!.identifier] as? String == "01 Jan 1900 00:00" {
-                            return "no startdate"
+                            return NSLocalizedString("no startdate", comment: "Schedule details")
                         } else {
-                            return object[tableColumn!.identifier] as? String
+                            let stringdate: String = object[tableColumn!.identifier] as? String ?? ""
+                            if stringdate.isEmpty {
+                                return ""
+                            } else {
+                                let date = dateformatter.date(from: stringdate)
+                                return date?.localizeDate()
+                            }
                         }
-                    } else if tableColumn!.identifier.rawValue == "dateStop" {
+                    } else if tableColumn!.identifier.rawValue == NSLocalizedString("dateStop", comment: "Schedule details") {
                         if object[tableColumn!.identifier] as? String == "01 Jan 2100 00:00" {
                             return "no stopdate"
                         } else {
-                            return object[tableColumn!.identifier] as? String
+                            let stringdate: String = object[tableColumn!.identifier] as? String ?? ""
+                            if stringdate.isEmpty {
+                                return ""
+                            } else {
+                                let date = dateformatter.date(from: stringdate)
+                                return date?.localizeDate()
+                            }
                         }
                     } else {
                         return object[tableColumn!.identifier] as? String

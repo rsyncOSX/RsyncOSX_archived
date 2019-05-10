@@ -272,3 +272,11 @@
 /* About */
 "You have the latest ..." = "Du har siste versjon...";
 
+/* Schedule details */
+"no startdate" = "ingen startdato";
+
+/* Schedule details */
+"no stopdate" = "ingen stoppdato";
+
+
+
