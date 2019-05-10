@@ -161,9 +161,16 @@ class ViewControllerVerify: NSViewController, SetConfigurations, Index, VcExecut
             self.gotit.stringValue = gotit
             self.gotremoteinfo = false
             self.complete = false
-            let datelastbackup = self.configurations?.getConfigurations()[index].dateRun ?? "none"
-            let numberlastbackup = self.configurations?.getConfigurations()[index].dayssincelastbackup ?? "none"
-            self.datelastbackup.stringValue = self.lastdate +  " " + datelastbackup
+            let datelastbackup = self.configurations?.getConfigurations()[index].dateRun ?? ""
+            if datelastbackup.isEmpty == false {
+                let dateformatter = Dateandtime().setDateformat()
+                let date = dateformatter.date(from: datelastbackup)
+                self.datelastbackup.stringValue = NSLocalizedString("Date last backup:", comment: "Remote Info")
+                    + " " + date!.localizeDate()
+            } else {
+                self.datelastbackup.stringValue = NSLocalizedString("Date last backup:", comment: "Remote Info")
+            }
+            let numberlastbackup = self.configurations?.getConfigurations()[index].dayssincelastbackup ?? ""
             self.dayslastbackup.stringValue = self.dayssince +  " " + numberlastbackup
             self.estimateremoteinfo(index: index, local: true)
         } else {
