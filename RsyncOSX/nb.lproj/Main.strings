@@ -641,7 +641,7 @@
 "G43-jD-Ptq.headerCell.title" = "Ekstern katalog";
 
 /* Class = "NSTableColumn"; headerCell.title = "Result"; ObjectID = "gci-hz-pdE"; */
-"gci-hz-pdE.headerCell.title" = "Result";
+"gci-hz-pdE.headerCell.title" = "Resultat";
 
 /* Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "gCo-mB-zNc"; */
 "gCo-mB-zNc.title" = "Text Cell";
@@ -1451,7 +1451,7 @@
 "vDS-vt-fgh.title" = "Endringslog";
 
 /* Class = "NSTableColumn"; headerCell.title = "Period"; ObjectID = "VFf-HQ-GLW"; */
-"VFf-HQ-GLW.headerCell.title" = "Period";
+"VFf-HQ-GLW.headerCell.title" = "Periode";
 
 /* Class = "NSBox"; title = "Rsync, paths and logging"; ObjectID = "vgF-FF-cIJ"; */
 "vgF-FF-cIJ.title" = "Rsync, path og logging";
