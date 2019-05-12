@@ -308,3 +308,12 @@
 /* plan */
 "Saturday" = "lørdag";
 
+/* plan */
+"none" = "ingen";
+
+/* plan */
+"every" = "alle";
+
+/* plan */
+"last" = "siste";
+
