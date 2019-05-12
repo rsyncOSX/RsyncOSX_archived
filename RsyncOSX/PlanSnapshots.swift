@@ -106,7 +106,7 @@ class PlanSnapshots {
         if self.datecomponentsfromstring(datestring: datesnapshotstring).weekOfYear ==
             self.datecomponentscurrent!.weekOfYear &&
             self.datecomponentsfromstring(datestring: datesnapshotstring).year == self.datecomponentscurrent!.year {
-            self.snapshotsloggdata?.snapshotslogs![index].setValue("this week", forKey: "period")
+            self.snapshotsloggdata?.snapshotslogs![index].setValue(NSLocalizedString("this week", comment: "plan"), forKey: "period")
             return true
         }
         return false
@@ -119,10 +119,11 @@ class PlanSnapshots {
             self.datecomponentscurrent!.month &&
             self.datecomponentsfromstring(datestring: datesnapshotstring).year == self.datecomponentscurrent!.year {
             if self.datefromstring(datestring: datesnapshotstring).isSelectedDayofWeek(day: self.day!) == false {
-                self.snapshotsloggdata?.snapshotslogs![index].setValue("this month", forKey: "period")
+                self.snapshotsloggdata?.snapshotslogs![index].setValue(NSLocalizedString("this month", comment: "plan"), forKey: "period")
                 return true
             } else {
-                self.snapshotsloggdata?.snapshotslogs![index].setValue(self.nameofday!.rawValue + " this month", forKey: "period")
+                self.snapshotsloggdata?.snapshotslogs![index].setValue(self.nameofday!.rawValue + " "
+                    + NSLocalizedString("this month", comment: "plan"), forKey: "period")
                 return false
             }
         }
@@ -135,10 +136,11 @@ class PlanSnapshots {
         if self.datecomponentsfromstring(datestring: datesnapshotstring).month !=
             self.datecomponentscurrent!.month {
             if self.islastSelectedDayinMonth(date: self.datefromstring(datestring: datesnapshotstring)) == true {
-                self.snapshotsloggdata?.snapshotslogs![index].setValue("last " + self.nameofday!.rawValue + " month", forKey: "period")
+                self.snapshotsloggdata?.snapshotslogs![index].setValue(NSLocalizedString("last", comment: "plan")
+                    + " " + self.nameofday!.rawValue + " " + "month", forKey: "period")
                 return false
             } else {
-                self.snapshotsloggdata?.snapshotslogs![index].setValue("prev months", forKey: "period")
+                self.snapshotsloggdata?.snapshotslogs![index].setValue(NSLocalizedString("prev months", comment: "plan"), forKey: "period")
                 return true
             }
         }
@@ -151,10 +153,11 @@ class PlanSnapshots {
         if self.datecomponentsfromstring(datestring: datesnapshotstring).month !=
             self.datecomponentscurrent!.month {
             if self.isselectedDayinWeek(date: self.datefromstring(datestring: datesnapshotstring)) == true {
-                self.snapshotsloggdata?.snapshotslogs![index].setValue(self.nameofday!.rawValue + " prev months", forKey: "period")
+                self.snapshotsloggdata?.snapshotslogs![index].setValue(self.nameofday!.rawValue + " " +
+                    NSLocalizedString("prev months", comment: "plan"), forKey: "period")
                 return false
             } else {
-                self.snapshotsloggdata?.snapshotslogs![index].setValue("prev months", forKey: "period")
+                self.snapshotsloggdata?.snapshotslogs![index].setValue(NSLocalizedString("prev months", comment: "plan"), forKey: "period")
                 return true
             }
         }

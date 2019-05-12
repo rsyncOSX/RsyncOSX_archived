@@ -647,12 +647,12 @@
       </trans-unit>
       <trans-unit id="Eb4-2s-zft.title">
         <source>new :  </source>
-        <target>ny :  </target>
+        <target>nye :</target>
         <note>Class = "NSTextFieldCell"; title = "new :  "; ObjectID = "Eb4-2s-zft";</note>
       </trans-unit>
       <trans-unit id="EeS-fZ-csl.title">
         <source>Dsa public key is found.</source>
-        <target>Dsa offentlig nøkkel.</target>
+        <target>Dsa offentlig nøkkel</target>
         <note>Class = "NSButtonCell"; title = "Dsa public key is found."; ObjectID = "EeS-fZ-csl";</note>
       </trans-unit>
       <trans-unit id="EiP-tC-Ve8.title">
@@ -712,7 +712,7 @@
       </trans-unit>
       <trans-unit id="Fd7-v3-h8m.headerCell.title">
         <source>User name</source>
-        <target>Bruker navn</target>
+        <target>Ekstern bruker</target>
         <note>Class = "NSTableColumn"; headerCell.title = "User name"; ObjectID = "Fd7-v3-h8m";</note>
       </trans-unit>
       <trans-unit id="Fmg-bN-W4h.title">
@@ -1462,7 +1462,7 @@
       </trans-unit>
       <trans-unit id="VFf-HQ-GLW.headerCell.title">
         <source>Period</source>
-        <target>Period</target>
+        <target>Periode</target>
         <note>Class = "NSTableColumn"; headerCell.title = "Period"; ObjectID = "VFf-HQ-GLW";</note>
       </trans-unit>
       <trans-unit id="VWl-UA-V1i.title">
@@ -1622,7 +1622,7 @@
       </trans-unit>
       <trans-unit id="ZJm-XI-lka.title">
         <source>User selected params</source>
-        <target>Bruker valgt parametre</target>
+        <target>Bruker valgte parametre</target>
         <note>Class = "NSTextFieldCell"; title = "User selected params"; ObjectID = "ZJm-XI-lka";</note>
       </trans-unit>
       <trans-unit id="ZpW-Be-i8h.headerCell.title">
@@ -1637,7 +1637,7 @@
       </trans-unit>
       <trans-unit id="a0m-Z1-grn.title">
         <source>Rsa public key is found.</source>
-        <target>Rsa offentlig nøkkel.</target>
+        <target>Rsa offentlig nøkkel</target>
         <note>Class = "NSButtonCell"; title = "Rsa public key is found."; ObjectID = "a0m-Z1-grn";</note>
       </trans-unit>
       <trans-unit id="aCU-js-shc.title">
@@ -1847,7 +1847,7 @@
       </trans-unit>
       <trans-unit id="eIC-WC-dFt.title">
         <source>Select snapshots to keep</source>
-        <target>Velg snapshots</target>
+        <target>Valg snapshots</target>
         <note>Class = "NSBox"; title = "Select snapshots to keep"; ObjectID = "eIC-WC-dFt";</note>
       </trans-unit>
       <trans-unit id="eLp-YO-ses.title">
@@ -1932,7 +1932,7 @@
       </trans-unit>
       <trans-unit id="fyc-hd-Fqh.title">
         <source>New or delete</source>
-        <target>Ny eller slett</target>
+        <target>Nye eller slette</target>
         <note>Class = "NSBox"; title = "New or delete"; ObjectID = "fyc-hd-Fqh";</note>
       </trans-unit>
       <trans-unit id="fyt-XU-Mpu.title">
@@ -1992,7 +1992,7 @@
       </trans-unit>
       <trans-unit id="gci-hz-pdE.headerCell.title">
         <source>Result</source>
-        <target>Result</target>
+        <target>Resultat</target>
         <note>Class = "NSTableColumn"; headerCell.title = "Result"; ObjectID = "gci-hz-pdE";</note>
       </trans-unit>
       <trans-unit id="goN-EU-g61.title">
@@ -2002,7 +2002,7 @@
       </trans-unit>
       <trans-unit id="gsP-5c-DW5.title">
         <source>delete :  </source>
-        <target>slett :  </target>
+        <target>slette: </target>
         <note>Class = "NSTextFieldCell"; title = "delete :  "; ObjectID = "gsP-5c-DW5";</note>
       </trans-unit>
       <trans-unit id="h4F-dN-GN0.title">
@@ -2207,7 +2207,7 @@
       </trans-unit>
       <trans-unit id="lGN-As-q21.title">
         <source>Add parameters</source>
-        <target>Legg til parametre</target>
+        <target>Legge til parametre</target>
         <note>Class = "NSBox"; title = "Add parameters"; ObjectID = "lGN-As-q21";</note>
       </trans-unit>
       <trans-unit id="lV3-TO-Uao.title">
@@ -2402,7 +2402,7 @@
       </trans-unit>
       <trans-unit id="qvy-yX-V6C.headerCell.title">
         <source>Last run</source>
-        <target>Last run</target>
+        <target>Siste kjøring</target>
         <note>Class = "NSTableColumn"; headerCell.title = "Last run"; ObjectID = "qvy-yX-V6C";</note>
       </trans-unit>
       <trans-unit id="rSn-oB-WbC.title">
@@ -2562,7 +2562,7 @@
       </trans-unit>
       <trans-unit id="uUH-RU-JKF.title">
         <source>Remove parameters</source>
-        <target>Slett parametre</target>
+        <target>Slette parametre</target>
         <note>Class = "NSBox"; title = "Remove parameters"; ObjectID = "uUH-RU-JKF";</note>
       </trans-unit>
       <trans-unit id="ufF-c0-esL.headerCell.title">
@@ -2617,7 +2617,7 @@
       </trans-unit>
       <trans-unit id="wD5-vA-j0P.title">
         <source>Remote server parameters</source>
-        <target>Ekstern server parameter</target>
+        <target>Ekstern server parametre</target>
         <note>Class = "NSBox"; title = "Remote server parameters"; ObjectID = "wD5-vA-j0P";</note>
       </trans-unit>
       <trans-unit id="wIa-4f-wP2.title">
@@ -3223,6 +3223,10 @@
         <target>daglig</target>
         <note>main</note>
       </trans-unit>
+      <trans-unit id="dateStop">
+        <source>dateStop</source>
+        <note>Schedule details</note>
+      </trans-unit>
       <trans-unit id="days">
         <source>days</source>
         <target>dager</target>
@@ -3238,6 +3242,10 @@
         <target>timer</target>
         <note>datetime</note>
       </trans-unit>
+      <trans-unit id="last">
+        <source>last</source>
+        <note>plan</note><target>siste</target>
+      </trans-unit>
       <trans-unit id="manuel">
         <source>manuel</source>
         <target>manuell</target>
@@ -3248,10 +3256,19 @@
         <target>min</target>
         <note>datetime</note>
       </trans-unit>
+      <trans-unit id="no startdate">
+        <source>no startdate</source>
+        <target>ingen startdato</target>
+        <note>Schedule details</note>
+      </trans-unit>
       <trans-unit id="once">
         <source>once</source>
         <target>engang</target>
         <note>main</note>
+      </trans-unit>
+      <trans-unit id="prev months">
+        <source>prev months</source>
+        <note>plan</note><target>forrige måned</target>
       </trans-unit>
       <trans-unit id="seconds">
         <source>seconds</source>
@@ -3262,6 +3279,14 @@
         <source>secs</source>
         <target>sek</target>
         <note>datetime</note>
+      </trans-unit>
+      <trans-unit id="this month">
+        <source>this month</source>
+        <note>plan</note><target>denne måned</target>
+      </trans-unit>
+      <trans-unit id="this week">
+        <source>this week</source>
+        <note>plan</note><target>denne uke</target>
       </trans-unit>
       <trans-unit id="weekly">
         <source>weekly</source>

@@ -374,6 +374,7 @@ extension ViewControllerSnapshots: NSTableViewDataSource {
 extension ViewControllerSnapshots: NSTableViewDelegate {
 
     func tableView(_ tableView: NSTableView, objectValueFor tableColumn: NSTableColumn?, row: Int) -> Any? {
+        let dateformatter = Dateandtime().setDateformat()
         if tableView == self.rsynctableView {
             guard row < self.configurations!.getConfigurationsDataSourcecountBackupSnapshot()!.count else { return nil }
             guard row < self.configurations!.getConfigurationsDataSourcecountBackupSnapshot()!.count else { return nil }
@@ -384,6 +385,14 @@ extension ViewControllerSnapshots: NSTableViewDelegate {
             let object: NSDictionary = self.snapshotsloggdata!.snapshotslogs![row]
             if tableColumn!.identifier.rawValue == "selectCellID" {
                 return object[tableColumn!.identifier] as? Int
+            } else if tableColumn!.identifier.rawValue == "dateExecuted" {
+                let stringdate: String = object[tableColumn!.identifier] as? String ?? ""
+                if stringdate.isEmpty {
+                    return ""
+                } else {
+                    let date = dateformatter.date(from: stringdate)
+                    return date?.localizeDate()
+                }
             } else {
                 return object[tableColumn!.identifier] as? String
             }
