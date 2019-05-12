@@ -37,6 +37,13 @@ class PlanSnapshots {
 
     var day: NumDayofweek?
     var nameofday: StringDayofweek?
+    var daylocalized = [NSLocalizedString("Sunday", comment: "plan"),
+                        NSLocalizedString("Monday", comment: "plan"),
+                        NSLocalizedString("Tuesday", comment: "plan"),
+                        NSLocalizedString("Wednesday", comment: "plan"),
+                        NSLocalizedString("Thursday", comment: "plan"),
+                        NSLocalizedString("Friday", comment: "plan"),
+                        NSLocalizedString("Saturday", comment: "plan")]
     weak var SnapshotsLoggDataDelegate: GetSnapshotsLoggData?
     weak var reloadDelegate: Reloadandrefresh?
     var snapshotsloggdata: SnapshotsLoggData?
@@ -122,7 +129,7 @@ class PlanSnapshots {
                 self.snapshotsloggdata?.snapshotslogs![index].setValue(NSLocalizedString("this month", comment: "plan"), forKey: "period")
                 return true
             } else {
-                self.snapshotsloggdata?.snapshotslogs![index].setValue(self.nameofday!.rawValue + " "
+                self.snapshotsloggdata?.snapshotslogs![index].setValue(self.daylocalized[self.day!.rawValue - 1] + " "
                     + NSLocalizedString("this month", comment: "plan"), forKey: "period")
                 return false
             }
@@ -137,7 +144,7 @@ class PlanSnapshots {
             self.datecomponentscurrent!.month {
             if self.islastSelectedDayinMonth(date: self.datefromstring(datestring: datesnapshotstring)) == true {
                 self.snapshotsloggdata?.snapshotslogs![index].setValue(NSLocalizedString("last", comment: "plan")
-                    + " " + self.nameofday!.rawValue + " " + "month", forKey: "period")
+                    + " " + self.daylocalized[self.day!.rawValue - 1] + " " + "month", forKey: "period")
                 return false
             } else {
                 self.snapshotsloggdata?.snapshotslogs![index].setValue(NSLocalizedString("prev months", comment: "plan"), forKey: "period")
@@ -153,7 +160,7 @@ class PlanSnapshots {
         if self.datecomponentsfromstring(datestring: datesnapshotstring).month !=
             self.datecomponentscurrent!.month {
             if self.isselectedDayinWeek(date: self.datefromstring(datestring: datesnapshotstring)) == true {
-                self.snapshotsloggdata?.snapshotslogs![index].setValue(self.nameofday!.rawValue + " " +
+                self.snapshotsloggdata?.snapshotslogs![index].setValue(self.daylocalized[self.day!.rawValue - 1] + " " +
                     NSLocalizedString("prev months", comment: "plan"), forKey: "period")
                 return false
             } else {
