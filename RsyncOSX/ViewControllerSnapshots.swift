@@ -295,9 +295,9 @@ class ViewControllerSnapshots: NSViewController, SetDismisser, SetConfigurations
     private func preselectcomboboxes() {
         self.selectdayofweek.selectItem(withObjectValue: self.config!.snapdayoffweek)
         if self.config!.snaplast == 1 {
-            self.selectplan.selectItem(withObjectValue: "every")
+            self.selectplan.selectItem(withObjectValue: NSLocalizedString("every", comment: "plan"))
         } else {
-            self.selectplan.selectItem(withObjectValue: "last")
+            self.selectplan.selectItem(withObjectValue: NSLocalizedString("last", comment: "plan"))
         }
     }
 }
