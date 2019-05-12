@@ -2,7 +2,7 @@
 //  Created by Thomas Evensen on 08/02/16.
 //  Copyright © 2016 Thomas Evensen. All rights reserved.
 //
-// swiftlint:disable cyclomatic_complexity function_body_length
+// swiftlint:disable cyclomatic_complexity function_body_length line_length
 
 import Foundation
 
@@ -74,7 +74,7 @@ struct Configuration {
         self.backupID = dictionary.object(forKey: "backupID") as? String ?? ""
         if let snapshotnum = dictionary.object(forKey: "snapshotnum") as? Int {
             self.snapshotnum = snapshotnum
-            self.snapdayoffweek = dictionary.object(forKey: "snapdayoffweek") as? String ?? "Sunday"
+            self.snapdayoffweek = dictionary.object(forKey: "snapdayoffweek") as? String ?? StringDayofweek.Sunday.rawValue
             self.snaplast = dictionary.object(forKey: "snaplast") as? Int ?? 1
         }
         // Last run of task

@@ -342,7 +342,7 @@ extension ViewControllerSnapshots: UpdateProgress {
             self.gettinglogs.stopAnimation(nil)
             self.numbersinsequencetodelete = nil
             self.preselectcomboboxes()
-            _ = PlanSnapshots(plan: self.config?.snaplast ?? 1, snapdayoffweek: self.config?.snapdayoffweek ?? "Sunday")
+            _ = PlanSnapshots(plan: self.config?.snaplast ?? 1, snapdayoffweek: self.config?.snapdayoffweek ?? StringDayofweek.Sunday.rawValue)
             globalMainQueue.async(execute: { () -> Void in
                 self.snapshotstableView.reloadData()
             })
@@ -523,10 +523,10 @@ extension ViewControllerSnapshots: NSComboBoxDelegate {
         switch self.selectplan.indexOfSelectedItem {
         case 1:
             self.config!.snaplast = 1
-            _ = PlanSnapshots(plan: 1, snapdayoffweek: self.config?.snapdayoffweek ?? "Sunday")
+            _ = PlanSnapshots(plan: 1, snapdayoffweek: self.config?.snapdayoffweek ?? StringDayofweek.Sunday.rawValue)
         case 2:
             self.config!.snaplast = 2
-            _ = PlanSnapshots(plan: 2, snapdayoffweek: self.config?.snapdayoffweek ?? "Sunday")
+            _ = PlanSnapshots(plan: 2, snapdayoffweek: self.config?.snapdayoffweek ?? StringDayofweek.Sunday.rawValue)
         default:
             return
         }
