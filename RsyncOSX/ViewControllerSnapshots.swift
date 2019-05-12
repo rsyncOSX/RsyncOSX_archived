@@ -24,17 +24,17 @@ class ViewControllerSnapshots: NSViewController, SetDismisser, SetConfigurations
     // Infoobject
     var information: Info?
     // Reference to which plan in combox
-    var combovalueslast = ["none",
-                          "every",
-                          "last"]
+    var combovalueslast = [NSLocalizedString("none", comment: "plan"),
+                          NSLocalizedString("every", comment: "plan"),
+                          NSLocalizedString("last", comment: "plan")]
 
-    let combovaluesdayofweek: [String] = [StringDayofweek.Sunday.rawValue,
-                                    StringDayofweek.Monday.rawValue,
-                                    StringDayofweek.Tuesday.rawValue,
-                                    StringDayofweek.Wednesday.rawValue,
-                                    StringDayofweek.Thursday.rawValue,
-                                    StringDayofweek.Friday.rawValue,
-                                    StringDayofweek.Saturday.rawValue]
+    let combovaluesdayofweek: [String] = [NSLocalizedString("Sunday", comment: "plan"),
+                                          NSLocalizedString("Monday", comment: "plan"),
+                                          NSLocalizedString("Tuesday", comment: "plan"),
+                                          NSLocalizedString("Wednesday", comment: "plan"),
+                                          NSLocalizedString("Thursday", comment: "plan"),
+                                          NSLocalizedString("Friday", comment: "plan"),
+                                          NSLocalizedString("Saturday", comment: "plan")]
     var diddissappear: Bool = false
 
     @IBOutlet weak var snapshotstableView: NSTableView!
