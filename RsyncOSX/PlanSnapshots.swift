@@ -144,7 +144,7 @@ class PlanSnapshots {
             self.datecomponentscurrent!.month {
             if self.islastSelectedDayinMonth(date: self.datefromstring(datestring: datesnapshotstring)) == true {
                 self.snapshotsloggdata?.snapshotslogs![index].setValue(NSLocalizedString("last", comment: "plan")
-                    + " " + self.daylocalized[self.day!.rawValue - 1] + " " + "month", forKey: "period")
+                    + " " + self.daylocalized[self.day!.rawValue - 1] + " " + NSLocalizedString("month", comment: "plan"), forKey: "period")
                 return false
             } else {
                 self.snapshotsloggdata?.snapshotslogs![index].setValue(NSLocalizedString("prev months", comment: "plan"), forKey: "period")
