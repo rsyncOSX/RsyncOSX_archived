@@ -274,6 +274,7 @@
 		E965E3062065658200EC4747 /* RcloneReference.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RcloneReference.swift; sourceTree = "<group>"; };
 		E965E3082065670B00EC4747 /* RcloneArgumentsOneConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RcloneArgumentsOneConfiguration.swift; sourceTree = "<group>"; };
 		E965E30A206567AC00EC4747 /* RcloneRsyncProcessArguments.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RcloneRsyncProcessArguments.swift; sourceTree = "<group>"; };
+		E96604E5228A7FAB00BE6161 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
 		E96A95912195D5F3000326F2 /* DuArgumentsSsh.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DuArgumentsSsh.swift; sourceTree = "<group>"; };
 		E96B3E7720661C3900B730DB /* RcloneUserconfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RcloneUserconfiguration.swift; sourceTree = "<group>"; };
 		E96B3E7920661F2A00B730DB /* RcloneTools.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RcloneTools.swift; sourceTree = "<group>"; };
@@ -1025,6 +1026,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				E9DF6DD4227976030083405C /* nb */,
+				E96604E5228A7FAB00BE6161 /* zh-Hans */,
 			);
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
