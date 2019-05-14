@@ -2871,12 +2871,12 @@
       <trans-unit id="Date last backup:">
         <source>Date last backup:</source>
         <note>Remote Info
-   Verify</note>
+   Verify</note><target>上次备份日期：</target>
       </trans-unit>
       <trans-unit id="Days since last backup:">
         <source>Days since last backup:</source>
         <note>Remote Info
-   Verify</note>
+   Verify</note><target>上次备份后的天数：</target>
       </trans-unit>
       <trans-unit id="Default profile">
         <source>Default profile</source>

@@ -308,6 +308,7 @@
 		E9CB57F42272FFDD0021FFEF /* ConvertSchedules.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConvertSchedules.swift; sourceTree = "<group>"; };
 		E9CF14131E729540008E8A15 /* RsyncScheduled.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RsyncScheduled.swift; sourceTree = "<group>"; };
 		E9CF14151E729636008E8A15 /* CommandCopyFiles.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommandCopyFiles.swift; sourceTree = "<group>"; };
+		E9DE2CCE228A835C003BC663 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		E9DF6DD4227976030083405C /* nb */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nb; path = nb.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		E9DF6DD7227976030083405C /* nb */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nb; path = nb.lproj/Localizable.strings; sourceTree = "<group>"; };
 		E9E70A3B1FF3BCB30099554D /* RsyncVersionString.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RsyncVersionString.swift; sourceTree = "<group>"; };
@@ -1035,6 +1036,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				E9DF6DD7227976030083405C /* nb */,
+				E9DE2CCE228A835C003BC663 /* zh-Hans */,
 			);
 			name = Localizable.strings;
 			sourceTree = "<group>";
