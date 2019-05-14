@@ -12,7 +12,6 @@
       </trans-unit>
       <trans-unit id="00G-Ps-GJD.title">
         <source>Local catalog : </source>
-        <target>本地目录：</target>
         <note>Class = "NSTextFieldCell"; title = "Local catalog : "; ObjectID = "00G-Ps-GJD";</note>
       </trans-unit>
       <trans-unit id="0KI-B9-ezl.headerCell.title">
@@ -92,7 +91,6 @@
       </trans-unit>
       <trans-unit id="2KI-Je-KtE.title">
         <source>rsync daemon: </source>
-        <target>rsync守护程序：</target>
         <note>Class = "NSTextFieldCell"; title = "rsync daemon: "; ObjectID = "2KI-Je-KtE";</note>
       </trans-unit>
       <trans-unit id="2Kr-a7-U09.title">
@@ -107,7 +105,7 @@
       </trans-unit>
       <trans-unit id="2W2-3F-urP.title">
         <source>KB to be transferred:</source>
-        <target>要转移的KB：</target>
+        <target>需要传输 KB：</target>
         <note>Class = "NSTextFieldCell"; title = "KB to be transferred:"; ObjectID = "2W2-3F-urP";</note>
       </trans-unit>
       <trans-unit id="2eK-ib-h9A.title">
@@ -132,7 +130,7 @@
       </trans-unit>
       <trans-unit id="2zQ-iW-vbk.title">
         <source>remove -e ssh</source>
-        <target>删除-e ssh</target>
+        <target>移除 -e ssh</target>
         <note>Class = "NSButtonCell"; title = "remove -e ssh"; ObjectID = "2zQ-iW-vbk";</note>
       </trans-unit>
       <trans-unit id="3Ch-5Q-dft.title">
@@ -147,7 +145,7 @@
       </trans-unit>
       <trans-unit id="3Td-g5-CaS.title">
         <source>Total size (kB):</source>
-        <target>总大小（kB）：</target>
+        <target>总大小（KB）：</target>
         <note>Class = "NSTextFieldCell"; title = "Total size (kB):"; ObjectID = "3Td-g5-CaS";</note>
       </trans-unit>
       <trans-unit id="3lN-qc-jYH.title">
@@ -162,7 +160,7 @@
       </trans-unit>
       <trans-unit id="3xI-3C-guU.title">
         <source>Add</source>
-        <target>加</target>
+        <target>添加</target>
         <note>Class = "NSViewController"; title = "Add"; ObjectID = "3xI-3C-guU";</note>
       </trans-unit>
       <trans-unit id="4bI-2z-3J9.title">
@@ -172,7 +170,7 @@
       </trans-unit>
       <trans-unit id="4cL-gF-geP.headerCell.title">
         <source>Sched</source>
-        <target>附表：</target>
+        <target>计划任务：</target>
         <note>Class = "NSTableColumn"; headerCell.title = "Sched"; ObjectID = "4cL-gF-geP";</note>
       </trans-unit>
       <trans-unit id="4rw-XH-Spd.title">
@@ -207,12 +205,12 @@
       </trans-unit>
       <trans-unit id="5Zv-SY-8nT.title">
         <source>remove --delete</source>
-        <target>删除 - 删除</target>
+        <target>移除 --remove</target>
         <note>Class = "NSButtonCell"; title = "remove --delete"; ObjectID = "5Zv-SY-8nT";</note>
       </trans-unit>
       <trans-unit id="5cK-IB-eA3.title">
         <source>Files to be transferred:</source>
-        <target>要转移的文件：</target>
+        <target>需要传输文件：</target>
         <note>Class = "NSTextFieldCell"; title = "Files to be transferred:"; ObjectID = "5cK-IB-eA3";</note>
       </trans-unit>
       <trans-unit id="5kV-Vb-QxS.title">
@@ -252,7 +250,7 @@
       </trans-unit>
       <trans-unit id="8YP-GO-G5h.title">
         <source>files :</source>
-        <target>档案：</target>
+        <target>文件：</target>
         <note>Class = "NSTextFieldCell"; title = "files :"; ObjectID = "8YP-GO-G5h";</note>
       </trans-unit>
       <trans-unit id="8ml-tx-gzW.title">
@@ -272,7 +270,6 @@
       </trans-unit>
       <trans-unit id="8pt-99-AYJ.headerCell.title">
         <source>Files </source>
-        <target>档</target>
         <note>Class = "NSTableColumn"; headerCell.title = "Files "; ObjectID = "8pt-99-AYJ";</note>
       </trans-unit>
       <trans-unit id="9Zv-nL-VVC.title">
@@ -297,12 +294,11 @@
       </trans-unit>
       <trans-unit id="20O-EX-fKH.title">
         <source>ssh port:</source>
-        <target>ssh端口：</target>
+        <target>SSH 端口：</target>
         <note>Class = "NSTextFieldCell"; title = "ssh port:"; ObjectID = "20O-EX-fKH";</note>
       </trans-unit>
       <trans-unit id="21H-Ns-bTh.title">
         <source>Close automatically in: </source>
-        <target>自动关闭：</target>
         <note>Class = "NSTextFieldCell"; title = "Close automatically in: "; ObjectID = "21H-Ns-bTh";</note>
       </trans-unit>
       <trans-unit id="27J-nn-5gh.headerCell.title">
@@ -322,7 +318,7 @@
       </trans-unit>
       <trans-unit id="37m-qS-TRa.headerCell.title">
         <source>Avail(%)</source>
-        <target>果（％）</target>
+        <target>可用（％）</target>
         <note>Class = "NSTableColumn"; headerCell.title = "Avail(%)"; ObjectID = "37m-qS-TRa";</note>
       </trans-unit>
       <trans-unit id="39A-da-zAW.title">
@@ -382,12 +378,11 @@
       </trans-unit>
       <trans-unit id="82f-Xt-OFP.headerCell.title">
         <source>Active</source>
-        <target>活性</target>
+        <target>活动</target>
         <note>Class = "NSTableColumn"; headerCell.title = "Active"; ObjectID = "82f-Xt-OFP";</note>
       </trans-unit>
       <trans-unit id="090-WS-IHZ.title">
         <source>Info about : </source>
-        <target>信息：</target>
         <note>Class = "NSTextFieldCell"; title = "Info about : "; ObjectID = "090-WS-IHZ";</note>
       </trans-unit>
       <trans-unit id="143-UO-M2U.title">
@@ -467,12 +462,10 @@
       </trans-unit>
       <trans-unit id="Am3-Ji-1Ox.title">
         <source>add suffix FreeBSD </source>
-        <target>添加后缀FreeBSD</target>
         <note>Class = "NSButtonCell"; title = "add suffix FreeBSD "; ObjectID = "Am3-Ji-1Ox";</note>
       </trans-unit>
       <trans-unit id="B2y-Kc-2LJ.title">
         <source>Remote catalog : </source>
-        <target>远程目录：</target>
         <note>Class = "NSTextFieldCell"; title = "Remote catalog : "; ObjectID = "B2y-Kc-2LJ";</note>
       </trans-unit>
       <trans-unit id="B5v-j0-w2F.title">
@@ -497,7 +490,7 @@
       </trans-unit>
       <trans-unit id="BEH-BV-PWu.title">
         <source>ssh port:</source>
-        <target>ssh端口：</target>
+        <target>SSH 端口：</target>
         <note>Class = "NSTextFieldCell"; title = "ssh port:"; ObjectID = "BEH-BV-PWu";</note>
       </trans-unit>
       <trans-unit id="BG6-Wq-kSc.title">
@@ -507,12 +500,12 @@
       </trans-unit>
       <trans-unit id="BGM-Kg-KGO.title">
         <source>Clear</source>
-        <target>明确</target>
+        <target>清理</target>
         <note>Class = "NSButtonCell"; title = "Clear"; ObjectID = "BGM-Kg-KGO";</note>
       </trans-unit>
       <trans-unit id="BOF-NM-1cW.title">
         <source>Preferences…</source>
-        <target>喜好…</target>
+        <target>偏好设置…</target>
         <note>Class = "NSMenuItem"; title = "Preferences…"; ObjectID = "BOF-NM-1cW";</note>
       </trans-unit>
       <trans-unit id="BVb-Fw-C80.headerCell.title">
@@ -587,7 +580,7 @@
       </trans-unit>
       <trans-unit id="CwH-vm-SWF.title">
         <source>Total size (kB):</source>
-        <target>总大小（kB）：</target>
+        <target>总大小（KB）：</target>
         <note>Class = "NSTextFieldCell"; title = "Total size (kB):"; ObjectID = "CwH-vm-SWF";</note>
       </trans-unit>
       <trans-unit id="D7f-Cg-ZtW.title">
@@ -647,7 +640,6 @@
       </trans-unit>
       <trans-unit id="Eb4-2s-zft.title">
         <source>new :  </source>
-        <target>新的：</target>
         <note>Class = "NSTextFieldCell"; title = "new :  "; ObjectID = "Eb4-2s-zft";</note>
       </trans-unit>
       <trans-unit id="EeS-fZ-csl.title">
@@ -697,12 +689,12 @@
       </trans-unit>
       <trans-unit id="FW3-kS-er7.title">
         <source>kB to be transferred:</source>
-        <target>要转移的kB：</target>
+        <target>需要传输 KB：</target>
         <note>Class = "NSTextFieldCell"; title = "kB to be transferred:"; ObjectID = "FW3-kS-er7";</note>
       </trans-unit>
       <trans-unit id="FXq-M1-hKG.headerCell.title">
         <source>Schedule</source>
-        <target>时间表</target>
+        <target>计划任务</target>
         <note>Class = "NSTableColumn"; headerCell.title = "Schedule"; ObjectID = "FXq-M1-hKG";</note>
       </trans-unit>
       <trans-unit id="FaP-hR-iYc.title">
@@ -752,7 +744,7 @@
       </trans-unit>
       <trans-unit id="G8q-vp-nPf.title">
         <source>Total size (kB) :</source>
-        <target>总大小（kB）：</target>
+        <target>总大小（KB）：</target>
         <note>Class = "NSTextFieldCell"; title = "Total size (kB) :"; ObjectID = "G8q-vp-nPf";</note>
       </trans-unit>
       <trans-unit id="G43-jD-Ptq.headerCell.title">
@@ -812,7 +804,7 @@
       </trans-unit>
       <trans-unit id="H79-tQ-7yT.headerCell.title">
         <source>Avail(%)</source>
-        <target>果（％）</target>
+        <target>可用（％）</target>
         <note>Class = "NSTableColumn"; headerCell.title = "Avail(%)"; ObjectID = "H79-tQ-7yT";</note>
       </trans-unit>
       <trans-unit id="HEg-kc-zdY.headerCell.title">
@@ -847,7 +839,7 @@
       </trans-unit>
       <trans-unit id="Hah-L7-Bvj.title">
         <source>Cut</source>
-        <target>切</target>
+        <target>剪切</target>
         <note>Class = "NSMenuItem"; title = "Cut"; ObjectID = "Hah-L7-Bvj";</note>
       </trans-unit>
       <trans-unit id="Hpz-ZU-Eny.title">
@@ -897,7 +889,6 @@
       </trans-unit>
       <trans-unit id="IiK-OB-SY0.title">
         <source>New profile name </source>
-        <target>新的个人资料名称</target>
         <note>Class = "NSTextFieldCell"; title = "New profile name "; ObjectID = "IiK-OB-SY0";</note>
       </trans-unit>
       <trans-unit id="Iii-2E-YHF.title">
@@ -932,7 +923,6 @@
       </trans-unit>
       <trans-unit id="JKJ-Kp-IuV.title">
         <source>Double click  on row or shortcut ⌘R to execute task or ⌘I to get info ...</source>
-        <target>双击行或快捷键⌘R执行任务或⌘I获取信息...</target>
         <note>Class = "NSTextFieldCell"; title = "Double click  on row or shortcut ⌘R to execute task or ⌘I to get info ..."; ObjectID = "JKJ-Kp-IuV";</note>
       </trans-unit>
       <trans-unit id="Jil-HV-f4r.title">
@@ -1127,7 +1117,7 @@
       </trans-unit>
       <trans-unit id="OS5-Kb-1ct.title">
         <source>Params</source>
-        <target>PARAMS</target>
+        <target>参数</target>
         <note>Class = "NSButtonCell"; title = "Params"; ObjectID = "OS5-Kb-1ct";</note>
       </trans-unit>
       <trans-unit id="OY7-WF-poV.title">
@@ -1182,7 +1172,6 @@
       </trans-unit>
       <trans-unit id="PkH-9i-AY6.title">
         <source>Select a start date and then a schedule </source>
-        <target>选择开始日期，然后选择计划</target>
         <note>Class = "NSBox"; title = "Select a start date and then a schedule "; ObjectID = "PkH-9i-AY6";</note>
       </trans-unit>
       <trans-unit id="PqI-jS-0y7.headerCell.title">
@@ -1217,7 +1206,7 @@
       </trans-unit>
       <trans-unit id="QCj-5P-T2N.title">
         <source>Once</source>
-        <target>一旦</target>
+        <target>一次</target>
         <note>Class = "NSButtonCell"; title = "Once"; ObjectID = "QCj-5P-T2N";</note>
       </trans-unit>
       <trans-unit id="QPs-xd-DDF.title">
@@ -1302,12 +1291,12 @@
       </trans-unit>
       <trans-unit id="Rv2-24-MJh.title">
         <source>Dowload</source>
-        <target>下载中心</target>
+        <target>下载</target>
         <note>Class = "NSButtonCell"; title = "Dowload"; ObjectID = "Rv2-24-MJh";</note>
       </trans-unit>
       <trans-unit id="Rve-M9-9Pp.title">
         <source>kB :</source>
-        <target>kB：</target>
+        <target>KB：</target>
         <note>Class = "NSTextFieldCell"; title = "kB :"; ObjectID = "Rve-M9-9Pp";</note>
       </trans-unit>
       <trans-unit id="S9g-HX-Qf6.title">
@@ -1317,7 +1306,6 @@
       </trans-unit>
       <trans-unit id="SBO-UN-kMy.title">
         <source>Number of remote files: 0 </source>
-        <target>远程文件数：0</target>
         <note>Class = "NSTextFieldCell"; title = "Number of remote files: 0 "; ObjectID = "SBO-UN-kMy";</note>
       </trans-unit>
       <trans-unit id="SHi-wp-O4D.title">
@@ -1342,7 +1330,7 @@
       </trans-unit>
       <trans-unit id="SWF-DA-TlU.headerCell.title">
         <source>Size (kB)</source>
-        <target>大小（kB）</target>
+        <target>大小（KB）</target>
         <note>Class = "NSTableColumn"; headerCell.title = "Size (kB)"; ObjectID = "SWF-DA-TlU";</note>
       </trans-unit>
       <trans-unit id="Sr3-1q-P2Q.title">
@@ -1382,7 +1370,7 @@
       </trans-unit>
       <trans-unit id="TTa-S0-fjX.title">
         <source>Numbers remote</source>
-        <target>数字遥控</target>
+        <target>远程数量</target>
         <note>Class = "NSBox"; title = "Numbers remote"; ObjectID = "TTa-S0-fjX";</note>
       </trans-unit>
       <trans-unit id="Td7-aD-5lo.title">
@@ -1432,7 +1420,7 @@
       </trans-unit>
       <trans-unit id="UZO-oe-ZyD.title">
         <source>ssh port:</source>
-        <target>ssh端口：</target>
+        <target>SSH 端口：</target>
         <note>Class = "NSTextFieldCell"; title = "ssh port:"; ObjectID = "UZO-oe-ZyD";</note>
       </trans-unit>
       <trans-unit id="UbI-k2-XjL.title">
@@ -1522,7 +1510,7 @@
       </trans-unit>
       <trans-unit id="WbP-J3-f5z.title">
         <source>To be transferred</source>
-        <target>被转移</target>
+        <target>需要传输</target>
         <note>Class = "NSBox"; title = "To be transferred"; ObjectID = "WbP-J3-f5z";</note>
       </trans-unit>
       <trans-unit id="WlH-m8-C35.title">
@@ -1557,7 +1545,7 @@
       </trans-unit>
       <trans-unit id="XIS-9x-9Gh.title">
         <source>Files to be transferred:</source>
-        <target>要转移的文件：</target>
+        <target>需要传输文件：</target>
         <note>Class = "NSTextFieldCell"; title = "Files to be transferred:"; ObjectID = "XIS-9x-9Gh";</note>
       </trans-unit>
       <trans-unit id="XbU-fs-Bir.title">
@@ -1567,7 +1555,7 @@
       </trans-unit>
       <trans-unit id="XjB-Sb-slI.title">
         <source>path RsyncOSXsched:</source>
-        <target>路径RsyncOSXsched：</target>
+        <target>路径 RsyncOSXsched：</target>
         <note>Class = "NSTextFieldCell"; title = "path RsyncOSXsched:"; ObjectID = "XjB-Sb-slI";</note>
       </trans-unit>
       <trans-unit id="XoQ-If-N1I.headerCell.title">
@@ -1722,7 +1710,7 @@
       </trans-unit>
       <trans-unit id="bgh-eQ-3ly.headerCell.title">
         <source>Used (GB)</source>
-        <target>二手（GB）</target>
+        <target>已使用（GB）</target>
         <note>Class = "NSTableColumn"; headerCell.title = "Used (GB)"; ObjectID = "bgh-eQ-3ly";</note>
       </trans-unit>
       <trans-unit id="bib-Uj-vzu.title">
@@ -1767,7 +1755,6 @@
       </trans-unit>
       <trans-unit id="d9k-fP-XKG.title">
         <source>⌘L or double click  or on row to stop or delete schedules...</source>
-        <target>⌘L或双击或在行上停止或删除计划...</target>
         <note>Class = "NSTextFieldCell"; title = "⌘L or double click  or on row to stop or delete schedules..."; ObjectID = "d9k-fP-XKG";</note>
       </trans-unit>
       <trans-unit id="dDj-C3-nB5.title">
@@ -1777,7 +1764,6 @@
       </trans-unit>
       <trans-unit id="dEW-Mo-F8C.title">
         <source>Select tmp: </source>
-        <target>选择tmp：</target>
         <note>Class = "NSButtonCell"; title = "Select tmp: "; ObjectID = "dEW-Mo-F8C";</note>
       </trans-unit>
       <trans-unit id="dIc-cB-CiC.title">
@@ -1807,7 +1793,6 @@
       </trans-unit>
       <trans-unit id="dsn-9I-wI5.title">
         <source> detailed logging</source>
-        <target> 详细记录</target>
         <note>Class = "NSButtonCell"; title = " detailed logging"; ObjectID = "dsn-9I-wI5";</note>
       </trans-unit>
       <trans-unit id="dtI-40-Iqi.headerCell.title">
@@ -1882,7 +1867,7 @@
       </trans-unit>
       <trans-unit id="ej1-6m-NgB.title">
         <source>Close</source>
-        <target>Close</target>
+        <target>关</target>
         <note>Class = "NSButtonCell"; title = "Close"; ObjectID = "ej1-6m-NgB";</note>
       </trans-unit>
       <trans-unit id="eys-24-pCG.headerCell.title">
@@ -1902,22 +1887,22 @@
       </trans-unit>
       <trans-unit id="fAL-TO-qxo.headerCell.title">
         <source>Remote server</source>
-        <target>Remote server</target>
+        <target>远程服务器</target>
         <note>Class = "NSTableColumn"; headerCell.title = "Remote server"; ObjectID = "fAL-TO-qxo";</note>
       </trans-unit>
       <trans-unit id="fYy-ch-qjc.title">
         <source>Close</source>
-        <target>Close</target>
+        <target>关</target>
         <note>Class = "NSButtonCell"; title = "Close"; ObjectID = "fYy-ch-qjc";</note>
       </trans-unit>
       <trans-unit id="fZA-KQ-voS.title">
         <source>Delete files:</source>
-        <target>Delete files:</target>
+        <target>删除文件：</target>
         <note>Class = "NSTextFieldCell"; title = "Delete files:"; ObjectID = "fZA-KQ-voS";</note>
       </trans-unit>
       <trans-unit id="fiO-Ux-xlw.title">
         <source>Snapshots</source>
-        <target>Snapshots</target>
+        <target>快照</target>
         <note>Class = "NSViewController"; title = "Snapshots"; ObjectID = "fiO-Ux-xlw";</note>
       </trans-unit>
       <trans-unit id="fnk-Kq-6LU.headerCell.title">
@@ -1927,32 +1912,32 @@
       </trans-unit>
       <trans-unit id="fwm-ch-a0w.headerCell.title">
         <source>Total num</source>
-        <target>Total num</target>
+        <target>总计</target>
         <note>Class = "NSTableColumn"; headerCell.title = "Total num"; ObjectID = "fwm-ch-a0w";</note>
       </trans-unit>
       <trans-unit id="fyc-hd-Fqh.title">
         <source>New or delete</source>
-        <target>New or delete</target>
+        <target>新建或删除</target>
         <note>Class = "NSBox"; title = "New or delete"; ObjectID = "fyc-hd-Fqh";</note>
       </trans-unit>
       <trans-unit id="fyt-XU-Mpu.title">
         <source>Default</source>
-        <target>Default</target>
+        <target>默认</target>
         <note>Class = "NSButtonCell"; title = "Default"; ObjectID = "fyt-XU-Mpu";</note>
       </trans-unit>
       <trans-unit id="g1a-zY-Mpq.label">
         <source>info</source>
-        <target>info</target>
+        <target>信息</target>
         <note>Class = "NSToolbarItem"; label = "info"; ObjectID = "g1a-zY-Mpq";</note>
       </trans-unit>
       <trans-unit id="g1a-zY-Mpq.paletteLabel">
         <source>info</source>
-        <target>info</target>
+        <target>信息</target>
         <note>Class = "NSToolbarItem"; paletteLabel = "info"; ObjectID = "g1a-zY-Mpq";</note>
       </trans-unit>
       <trans-unit id="g1a-zY-Mpq.toolTip">
         <source>Display output from rsync singletasks...</source>
-        <target>Display output from rsync singletasks...</target>
+        <target>显示rsync singletasks的输出...</target>
         <note>Class = "NSToolbarItem"; toolTip = "Display output from rsync singletasks..."; ObjectID = "g1a-zY-Mpq";</note>
       </trans-unit>
       <trans-unit id="gCo-mB-zNc.title">
@@ -1972,52 +1957,51 @@
       </trans-unit>
       <trans-unit id="gRY-vZ-99W.title">
         <source>Completed...</source>
-        <target>Completed...</target>
+        <target>完成...</target>
         <note>Class = "NSTextFieldCell"; title = "Completed..."; ObjectID = "gRY-vZ-99W";</note>
       </trans-unit>
       <trans-unit id="gSZ-r8-8Ry.headerCell.title">
         <source>Cloud service</source>
-        <target>Cloud service</target>
+        <target>云服务</target>
         <note>Class = "NSTableColumn"; headerCell.title = "Cloud service"; ObjectID = "gSZ-r8-8Ry";</note>
       </trans-unit>
       <trans-unit id="gVQ-92-htT.title">
         <source>Total size (kB):</source>
-        <target>Total size (kB):</target>
+        <target>总大小（KB）：</target>
         <note>Class = "NSTextFieldCell"; title = "Total size (kB):"; ObjectID = "gVQ-92-htT";</note>
       </trans-unit>
       <trans-unit id="gXW-nt-e2S.title">
         <source>Check</source>
-        <target>Check</target>
+        <target>检查</target>
         <note>Class = "NSButtonCell"; title = "Check"; ObjectID = "gXW-nt-e2S";</note>
       </trans-unit>
       <trans-unit id="gci-hz-pdE.headerCell.title">
         <source>Result</source>
-        <target>Result</target>
+        <target>结果</target>
         <note>Class = "NSTableColumn"; headerCell.title = "Result"; ObjectID = "gci-hz-pdE";</note>
       </trans-unit>
       <trans-unit id="goN-EU-g61.title">
         <source>Check rsa</source>
-        <target>Check rsa</target>
+        <target>检查 rsa</target>
         <note>Class = "NSButtonCell"; title = "Check rsa"; ObjectID = "goN-EU-g61";</note>
       </trans-unit>
       <trans-unit id="gsP-5c-DW5.title">
         <source>delete :  </source>
-        <target>delete :  </target>
         <note>Class = "NSTextFieldCell"; title = "delete :  "; ObjectID = "gsP-5c-DW5";</note>
       </trans-unit>
       <trans-unit id="h4F-dN-GN0.title">
         <source>Load</source>
-        <target>Load</target>
+        <target>加载</target>
         <note>Class = "NSButtonCell"; title = "Load"; ObjectID = "h4F-dN-GN0";</note>
       </trans-unit>
       <trans-unit id="hBf-gt-Mxo.title">
         <source>Remote username:</source>
-        <target>Remote username:</target>
+        <target>远程用户名：</target>
         <note>Class = "NSTextFieldCell"; title = "Remote username:"; ObjectID = "hBf-gt-Mxo";</note>
       </trans-unit>
       <trans-unit id="hF2-vi-oTK.title">
         <source>Close</source>
-        <target>Close</target>
+        <target>关</target>
         <note>Class = "NSButtonCell"; title = "Close"; ObjectID = "hF2-vi-oTK";</note>
       </trans-unit>
       <trans-unit id="hGt-Wj-YDD.title">
@@ -2032,22 +2016,22 @@
       </trans-unit>
       <trans-unit id="hTP-NL-EPM.title">
         <source>Number of files:</source>
-        <target>Number of files:</target>
+        <target>文件数量：</target>
         <note>Class = "NSTextFieldCell"; title = "Number of files:"; ObjectID = "hTP-NL-EPM";</note>
       </trans-unit>
       <trans-unit id="hXq-5p-KS7.title">
         <source>Load</source>
-        <target>Load</target>
+        <target>加载</target>
         <note>Class = "NSButtonCell"; title = "Load"; ObjectID = "hXq-5p-KS7";</note>
       </trans-unit>
       <trans-unit id="hq8-Fq-pip.title">
         <source>Check dsa</source>
-        <target>Check dsa</target>
+        <target>检查 rsa</target>
         <note>Class = "NSButtonCell"; title = "Check dsa"; ObjectID = "hq8-Fq-pip";</note>
       </trans-unit>
       <trans-unit id="hrN-sQ-oUZ.title">
         <source>Edit</source>
-        <target>Edit</target>
+        <target>编辑</target>
         <note>Class = "NSMenuItem"; title = "Edit"; ObjectID = "hrN-sQ-oUZ";</note>
       </trans-unit>
       <trans-unit id="hsc-HX-kP6.headerCell.title">
@@ -2057,17 +2041,17 @@
       </trans-unit>
       <trans-unit id="huo-sU-wpe.title">
         <source>Close</source>
-        <target>Close</target>
+        <target>关</target>
         <note>Class = "NSButtonCell"; title = "Close"; ObjectID = "huo-sU-wpe";</note>
       </trans-unit>
       <trans-unit id="hwk-s3-pSJ.title">
         <source>output</source>
-        <target>output</target>
+        <target>输出</target>
         <note>Class = "NSTextFieldCell"; title = "output"; ObjectID = "hwk-s3-pSJ";</note>
       </trans-unit>
       <trans-unit id="hz9-B4-Xy5.title">
         <source>Services</source>
-        <target>Services</target>
+        <target>服务器</target>
         <note>Class = "NSMenu"; title = "Services"; ObjectID = "hz9-B4-Xy5";</note>
       </trans-unit>
       <trans-unit id="i2N-9t-0ni.title">
@@ -2077,12 +2061,12 @@
       </trans-unit>
       <trans-unit id="i8f-03-7XY.title">
         <source>Total size (kB):</source>
-        <target>Total size (kB):</target>
+        <target>总大小（KB）：</target>
         <note>Class = "NSTextFieldCell"; title = "Total size (kB):"; ObjectID = "i8f-03-7XY";</note>
       </trans-unit>
       <trans-unit id="iEk-Zm-Qpb.title">
         <source>dir :</source>
-        <target>dir :</target>
+        <target>目录：</target>
         <note>Class = "NSTextFieldCell"; title = "dir :"; ObjectID = "iEk-Zm-Qpb";</note>
       </trans-unit>
       <trans-unit id="iEn-jH-KFP.title">
@@ -2097,12 +2081,12 @@
       </trans-unit>
       <trans-unit id="iS6-br-dsn.title">
         <source>Daily</source>
-        <target>Daily</target>
+        <target>日常</target>
         <note>Class = "NSButtonCell"; title = "Daily"; ObjectID = "iS6-br-dsn";</note>
       </trans-unit>
       <trans-unit id="iUw-2a-dr3.title">
         <source>Remote username:</source>
-        <target>Remote username:</target>
+        <target>远程用户名：</target>
         <note>Class = "NSTextFieldCell"; title = "Remote username:"; ObjectID = "iUw-2a-dr3";</note>
       </trans-unit>
       <trans-unit id="ibW-Po-vbR.title">
@@ -2112,37 +2096,36 @@
       </trans-unit>
       <trans-unit id="ibt-MA-DJs.title">
         <source>Restore</source>
-        <target>Restore</target>
+        <target>恢复</target>
         <note>Class = "NSButtonCell"; title = "Restore"; ObjectID = "ibt-MA-DJs";</note>
       </trans-unit>
       <trans-unit id="ifc-VC-OWD.title">
         <source>Number of directories:</source>
-        <target>Number of directories:</target>
+        <target>目录数量：</target>
         <note>Class = "NSTextFieldCell"; title = "Number of directories:"; ObjectID = "ifc-VC-OWD";</note>
       </trans-unit>
       <trans-unit id="ipH-US-wgO.title">
         <source> port: </source>
-        <target> port: </target>
         <note>Class = "NSTextFieldCell"; title = " port: "; ObjectID = "ipH-US-wgO";</note>
       </trans-unit>
       <trans-unit id="irb-Gi-c2A.title">
         <source>Source for restore file or catalog</source>
-        <target>Source for restore file or catalog</target>
+        <target>源文件恢复或者日志</target>
         <note>Class = "NSBox"; title = "Source for restore file or catalog"; ObjectID = "irb-Gi-c2A";</note>
       </trans-unit>
       <trans-unit id="j1Z-jM-6Q6.headerCell.title">
         <source>Task</source>
-        <target>Task</target>
+        <target>任务</target>
         <note>Class = "NSTableColumn"; headerCell.title = "Task"; ObjectID = "j1Z-jM-6Q6";</note>
       </trans-unit>
       <trans-unit id="jTS-YA-55S.title">
         <source>verify</source>
-        <target>verify</target>
+        <target>校验</target>
         <note>Class = "NSButtonCell"; title = "verify"; ObjectID = "jTS-YA-55S";</note>
       </trans-unit>
       <trans-unit id="jTT-Mq-cPB.title">
         <source>Delete files:</source>
-        <target>Delete files:</target>
+        <target>删除文件：</target>
         <note>Class = "NSTextFieldCell"; title = "Delete files:"; ObjectID = "jTT-Mq-cPB";</note>
       </trans-unit>
       <trans-unit id="jTs-0X-qqh.title">
@@ -2152,42 +2135,41 @@
       </trans-unit>
       <trans-unit id="jd9-c6-ykP.label">
         <source>Encrypt</source>
-        <target>Encrypt</target>
+        <target>加密</target>
         <note>Class = "NSToolbarItem"; label = "Encrypt"; ObjectID = "jd9-c6-ykP";</note>
       </trans-unit>
       <trans-unit id="jd9-c6-ykP.paletteLabel">
         <source>Encrypt</source>
-        <target>Encrypt</target>
+        <target>加密</target>
         <note>Class = "NSToolbarItem"; paletteLabel = "Encrypt"; ObjectID = "jd9-c6-ykP";</note>
       </trans-unit>
       <trans-unit id="jd9-c6-ykP.toolTip">
         <source>Encrypted files...</source>
-        <target>Encrypted files...</target>
+        <target>加密文件...</target>
         <note>Class = "NSToolbarItem"; toolTip = "Encrypted files..."; ObjectID = "jd9-c6-ykP";</note>
       </trans-unit>
       <trans-unit id="jgQ-HM-WTh.title">
         <source>Remote server:</source>
-        <target>Remote server:</target>
+        <target>远程服务器:</target>
         <note>Class = "NSTextFieldCell"; title = "Remote server:"; ObjectID = "jgQ-HM-WTh";</note>
       </trans-unit>
       <trans-unit id="k2Y-Hy-jMj.title">
         <source>Abort</source>
-        <target>Abort</target>
+        <target>取消</target>
         <note>Class = "NSMenuItem"; title = "Abort"; ObjectID = "k2Y-Hy-jMj";</note>
       </trans-unit>
       <trans-unit id="k8Z-wy-8ml.title">
         <source>Files to be transferred:</source>
-        <target>Files to be transferred:</target>
+        <target>需要传输文件：</target>
         <note>Class = "NSTextFieldCell"; title = "Files to be transferred:"; ObjectID = "k8Z-wy-8ml";</note>
       </trans-unit>
       <trans-unit id="kFc-LP-RkZ.title">
         <source>Remote catalog : </source>
-        <target>远程目录 : </target>
         <note>Class = "NSTextFieldCell"; title = "Remote catalog : "; ObjectID = "kFc-LP-RkZ";</note>
       </trans-unit>
       <trans-unit id="kNR-NX-OzR.title">
         <source>files :</source>
-        <target>files :</target>
+        <target>文件：</target>
         <note>Class = "NSTextFieldCell"; title = "files :"; ObjectID = "kNR-NX-OzR";</note>
       </trans-unit>
       <trans-unit id="kOk-Mh-JZ7.title">
@@ -2197,7 +2179,7 @@
       </trans-unit>
       <trans-unit id="kUC-cs-Fc2.title">
         <source>ssh directory:</source>
-        <target>ssh directory:</target>
+        <target>SSH 目录：</target>
         <note>Class = "NSTextFieldCell"; title = "ssh directory:"; ObjectID = "kUC-cs-Fc2";</note>
       </trans-unit>
       <trans-unit id="lBk-94-nYF.title">
@@ -2207,12 +2189,12 @@
       </trans-unit>
       <trans-unit id="lGN-As-q21.title">
         <source>Add parameters</source>
-        <target>Add parameters</target>
+        <target>添加参数</target>
         <note>Class = "NSBox"; title = "Add parameters"; ObjectID = "lGN-As-q21";</note>
       </trans-unit>
       <trans-unit id="lV3-TO-Uao.title">
         <source>Terminal.App</source>
-        <target>Terminal.App</target>
+        <target>终端</target>
         <note>Class = "NSButtonCell"; title = "Terminal.App"; ObjectID = "lV3-TO-Uao";</note>
       </trans-unit>
       <trans-unit id="lsc-bT-MTr.title">
@@ -2222,12 +2204,12 @@
       </trans-unit>
       <trans-unit id="lvl-UW-J6U.title">
         <source>Date last backup:</source>
-        <target>Date last backup:</target>
+        <target>最近一次备份</target>
         <note>Class = "NSTextFieldCell"; title = "Date last backup:"; ObjectID = "lvl-UW-J6U";</note>
       </trans-unit>
       <trans-unit id="lxg-t9-eiU.title">
         <source>Task info</source>
-        <target>Task info</target>
+        <target>任务信息</target>
         <note>Class = "NSBox"; title = "Task info"; ObjectID = "lxg-t9-eiU";</note>
       </trans-unit>
       <trans-unit id="lzX-Ie-xTz.title">
@@ -2247,12 +2229,12 @@
       </trans-unit>
       <trans-unit id="mJ2-R8-Fa6.headerCell.title">
         <source>Task</source>
-        <target>Task</target>
+        <target>任务</target>
         <note>Class = "NSTableColumn"; headerCell.title = "Task"; ObjectID = "mJ2-R8-Fa6";</note>
       </trans-unit>
       <trans-unit id="mXT-RY-XvH.headerCell.title">
         <source>Stop schedule</source>
-        <target>Stop schedule</target>
+        <target>停止计划任务</target>
         <note>Class = "NSTableColumn"; headerCell.title = "Stop schedule"; ObjectID = "mXT-RY-XvH";</note>
       </trans-unit>
       <trans-unit id="mYi-Km-zY1.title">
@@ -2267,32 +2249,32 @@
       </trans-unit>
       <trans-unit id="mfz-zc-vDd.title">
         <source>Remote username:</source>
-        <target>Remote username:</target>
+        <target>远程用户名：</target>
         <note>Class = "NSTextFieldCell"; title = "Remote username:"; ObjectID = "mfz-zc-vDd";</note>
       </trans-unit>
       <trans-unit id="mkb-9F-CQR.title">
         <source>restore</source>
-        <target>restore</target>
+        <target>恢复</target>
         <note>Class = "NSButtonCell"; title = "restore"; ObjectID = "mkb-9F-CQR";</note>
       </trans-unit>
       <trans-unit id="mry-vG-0Hd.title">
         <source>Doubleclick on row to get remote capacity...</source>
-        <target>Doubleclick on row to get remote capacity...</target>
+        <target>双击获取剩余空间</target>
         <note>Class = "NSTextFieldCell"; title = "Doubleclick on row to get remote capacity..."; ObjectID = "mry-vG-0Hd";</note>
       </trans-unit>
       <trans-unit id="n1z-ZA-mQN.title">
         <source>Number of directories:</source>
-        <target>Number of directories:</target>
+        <target>目录数量：</target>
         <note>Class = "NSTextFieldCell"; title = "Number of directories:"; ObjectID = "n1z-ZA-mQN";</note>
       </trans-unit>
       <trans-unit id="nHu-Ph-Td8.title">
         <source>Remote username:</source>
-        <target>Remote username:</target>
+        <target>远程用户名：</target>
         <note>Class = "NSTextFieldCell"; title = "Remote username:"; ObjectID = "nHu-Ph-Td8";</note>
       </trans-unit>
       <trans-unit id="ngh-0r-Hwj.title">
         <source>All profiles</source>
-        <target>All profiles</target>
+        <target>所有配置</target>
         <note>Class = "NSViewController"; title = "All profiles"; ObjectID = "ngh-0r-Hwj";</note>
       </trans-unit>
       <trans-unit id="nsN-YU-MJ2.title">
@@ -2307,27 +2289,27 @@
       </trans-unit>
       <trans-unit id="o1P-3T-Wzv.title">
         <source>Connect</source>
-        <target>Connect</target>
+        <target>链接</target>
         <note>Class = "NSButtonCell"; title = "Connect"; ObjectID = "o1P-3T-Wzv";</note>
       </trans-unit>
       <trans-unit id="o77-iT-bNa.title">
         <source>New files:</source>
-        <target>New files:</target>
+        <target>新文件：</target>
         <note>Class = "NSTextFieldCell"; title = "New files:"; ObjectID = "o77-iT-bNa";</note>
       </trans-unit>
       <trans-unit id="oSU-tO-D9d.title">
         <source>Info</source>
-        <target>Info</target>
+        <target>信息</target>
         <note>Class = "NSMenuItem"; title = "Info"; ObjectID = "oSU-tO-D9d";</note>
       </trans-unit>
       <trans-unit id="oUI-Az-UAI.title">
         <source>Number of files:</source>
-        <target>Number of files:</target>
+        <target>文件数量：</target>
         <note>Class = "NSTextFieldCell"; title = "Number of files:"; ObjectID = "oUI-Az-UAI";</note>
       </trans-unit>
       <trans-unit id="oar-D1-pfu.title">
         <source>Close</source>
-        <target>Close</target>
+        <target>关</target>
         <note>Class = "NSButtonCell"; title = "Close"; ObjectID = "oar-D1-pfu";</note>
       </trans-unit>
       <trans-unit id="oeQ-dU-mHB.title">
@@ -2337,7 +2319,7 @@
       </trans-unit>
       <trans-unit id="of4-qq-ykX.title">
         <source>Number of snapshots:</source>
-        <target>Number of snapshots:</target>
+        <target>快照数量:</target>
         <note>Class = "NSTextFieldCell"; title = "Number of snapshots:"; ObjectID = "of4-qq-ykX";</note>
       </trans-unit>
       <trans-unit id="oqO-Td-7wg.headerCell.title">
@@ -2357,12 +2339,12 @@
       </trans-unit>
       <trans-unit id="p56-o9-HcO.title">
         <source>Info all</source>
-        <target>Info all</target>
+        <target>所有信息</target>
         <note>Class = "NSMenuItem"; title = "Info all"; ObjectID = "p56-o9-HcO";</note>
       </trans-unit>
       <trans-unit id="pZb-i1-xyG.headerCell.title">
         <source>Remote server</source>
-        <target>Remote server</target>
+        <target>远程服务器</target>
         <note>Class = "NSTableColumn"; headerCell.title = "Remote server"; ObjectID = "pZb-i1-xyG";</note>
       </trans-unit>
       <trans-unit id="pql-cs-AEK.headerCell.title">
@@ -2377,22 +2359,22 @@
       </trans-unit>
       <trans-unit id="q8z-Ku-oKx.title">
         <source>Version :</source>
-        <target>Version :</target>
+        <target>版本：</target>
         <note>Class = "NSTextFieldCell"; title = "Version :"; ObjectID = "q8z-Ku-oKx";</note>
       </trans-unit>
       <trans-unit id="qat-Dj-4j6.title">
         <source>Days since last backup:</source>
-        <target>Days since last backup:</target>
+        <target>上次备份后的天数：</target>
         <note>Class = "NSTextFieldCell"; title = "Days since last backup:"; ObjectID = "qat-Dj-4j6";</note>
       </trans-unit>
       <trans-unit id="qfC-8t-e7C.headerCell.title">
         <source>Task</source>
-        <target>Task</target>
+        <target>任务</target>
         <note>Class = "NSTableColumn"; headerCell.title = "Task"; ObjectID = "qfC-8t-e7C";</note>
       </trans-unit>
       <trans-unit id="qit-95-flM.title">
         <source>Logs</source>
-        <target>Logs</target>
+        <target>日志</target>
         <note>Class = "NSMenuItem"; title = "Logs"; ObjectID = "qit-95-flM";</note>
       </trans-unit>
       <trans-unit id="qq5-4q-5kV.title">
@@ -2402,7 +2384,7 @@
       </trans-unit>
       <trans-unit id="qvy-yX-V6C.headerCell.title">
         <source>Last run</source>
-        <target>Last run</target>
+        <target>首次允许</target>
         <note>Class = "NSTableColumn"; headerCell.title = "Last run"; ObjectID = "qvy-yX-V6C";</note>
       </trans-unit>
       <trans-unit id="rSn-oB-WbC.title">
@@ -2422,12 +2404,12 @@
       </trans-unit>
       <trans-unit id="rfy-TN-1YB.headerCell.title">
         <source>Sched</source>
-        <target>Sched</target>
+        <target>计划任务</target>
         <note>Class = "NSTableColumn"; headerCell.title = "Sched"; ObjectID = "rfy-TN-1YB";</note>
       </trans-unit>
       <trans-unit id="rht-JI-asq.title">
         <source>Schedule</source>
-        <target>Schedule</target>
+        <target>计划任务</target>
         <note>Class = "NSViewController"; title = "Schedule"; ObjectID = "rht-JI-asq";</note>
       </trans-unit>
       <trans-unit id="rol-5e-w2X.title">
@@ -2437,27 +2419,26 @@
       </trans-unit>
       <trans-unit id="ru1-fS-UXD.title">
         <source>Server: </source>
-        <target>Server: </target>
         <note>Class = "NSTextFieldCell"; title = "Server: "; ObjectID = "ru1-fS-UXD";</note>
       </trans-unit>
       <trans-unit id="s3e-Xz-emD.title">
         <source>Weekly</source>
-        <target>Weekly</target>
+        <target>每周</target>
         <note>Class = "NSButtonCell"; title = "Weekly"; ObjectID = "s3e-Xz-emD";</note>
       </trans-unit>
       <trans-unit id="sBt-QN-KGK.title">
         <source>Number of configurations:</source>
-        <target>Number of configurations:</target>
+        <target>配置数量：</target>
         <note>Class = "NSTextFieldCell"; title = "Number of configurations:"; ObjectID = "sBt-QN-KGK";</note>
       </trans-unit>
       <trans-unit id="sDH-LN-0H4.title">
         <source>Progress</source>
-        <target>Progress</target>
+        <target>进程</target>
         <note>Class = "NSViewController"; title = "Progress"; ObjectID = "sDH-LN-0H4";</note>
       </trans-unit>
       <trans-unit id="sE6-n6-Lin.title">
         <source>Add</source>
-        <target>Add</target>
+        <target>添加</target>
         <note>Class = "NSButtonCell"; title = "Add"; ObjectID = "sE6-n6-Lin";</note>
       </trans-unit>
       <trans-unit id="sKa-Hn-USH.title">
@@ -2472,12 +2453,12 @@
       </trans-unit>
       <trans-unit id="sVQ-MX-XJE.title">
         <source>Most recent schedule on top...</source>
-        <target>Most recent schedule on top...</target>
+        <target>最近的计划任务</target>
         <note>Class = "NSTextFieldCell"; title = "Most recent schedule on top..."; ObjectID = "sVQ-MX-XJE";</note>
       </trans-unit>
       <trans-unit id="srs-cz-k0D.title">
         <source>Local ssh keys</source>
-        <target>Local ssh keys</target>
+        <target>本地 SSH 密钥</target>
         <note>Class = "NSBox"; title = "Local ssh keys"; ObjectID = "srs-cz-k0D";</note>
       </trans-unit>
       <trans-unit id="svl-UN-wQe.title">
@@ -2507,17 +2488,17 @@
       </trans-unit>
       <trans-unit id="tT2-Hu-JSP.headerCell.title">
         <source>Remote server</source>
-        <target>Remote server</target>
+        <target>远程服务器</target>
         <note>Class = "NSTableColumn"; headerCell.title = "Remote server"; ObjectID = "tT2-Hu-JSP";</note>
       </trans-unit>
       <trans-unit id="tVm-A1-xMK.title">
         <source>Remote server</source>
-        <target>Remote server</target>
+        <target>远程服务器</target>
         <note>Class = "NSButtonCell"; title = "Remote server"; ObjectID = "tVm-A1-xMK";</note>
       </trans-unit>
       <trans-unit id="tjU-bB-LEK.title">
         <source>Info</source>
-        <target>Info</target>
+        <target>信息</target>
         <note>Class = "NSButtonCell"; title = "Info"; ObjectID = "tjU-bB-LEK";</note>
       </trans-unit>
       <trans-unit id="u73-Hi-Tsn.title">
@@ -2527,12 +2508,12 @@
       </trans-unit>
       <trans-unit id="uAb-Pv-NUT.title">
         <source>Number of directories:</source>
-        <target>Number of directories:</target>
+        <target>目录数量：</target>
         <note>Class = "NSTextFieldCell"; title = "Number of directories:"; ObjectID = "uAb-Pv-NUT";</note>
       </trans-unit>
       <trans-unit id="uBc-LG-TjQ.title">
         <source>KB to be transferred:</source>
-        <target>KB to be transferred:</target>
+        <target>需要传输 KB：</target>
         <note>Class = "NSTextFieldCell"; title = "KB to be transferred:"; ObjectID = "uBc-LG-TjQ";</note>
       </trans-unit>
       <trans-unit id="uCb-Gb-mwj.headerCell.title">
@@ -2542,7 +2523,7 @@
       </trans-unit>
       <trans-unit id="uJk-xr-MjU.title">
         <source>New files:</source>
-        <target>New files:</target>
+        <target>新文件：</target>
         <note>Class = "NSTextFieldCell"; title = "New files:"; ObjectID = "uJk-xr-MjU";</note>
       </trans-unit>
       <trans-unit id="uQy-DD-JDr.title">
@@ -2552,7 +2533,7 @@
       </trans-unit>
       <trans-unit id="uRN-6L-8Nq.title">
         <source>kB :</source>
-        <target>kB :</target>
+        <target>KB：</target>
         <note>Class = "NSTextFieldCell"; title = "kB :"; ObjectID = "uRN-6L-8Nq";</note>
       </trans-unit>
       <trans-unit id="uSt-4P-11h.title">
@@ -2562,12 +2543,12 @@
       </trans-unit>
       <trans-unit id="uUH-RU-JKF.title">
         <source>Remove parameters</source>
-        <target>Remove parameters</target>
+        <target>移除参数</target>
         <note>Class = "NSBox"; title = "Remove parameters"; ObjectID = "uUH-RU-JKF";</note>
       </trans-unit>
       <trans-unit id="ufF-c0-esL.headerCell.title">
         <source>Remote server</source>
-        <target>Remote server</target>
+        <target>远程服务器</target>
         <note>Class = "NSTableColumn"; headerCell.title = "Remote server"; ObjectID = "ufF-c0-esL";</note>
       </trans-unit>
       <trans-unit id="v3T-Yl-fut.title">
@@ -2577,27 +2558,27 @@
       </trans-unit>
       <trans-unit id="v12-7x-cig.label">
         <source>totinfo</source>
-        <target>totinfo</target>
+        <target>总信息</target>
         <note>Class = "NSToolbarItem"; label = "totinfo"; ObjectID = "v12-7x-cig";</note>
       </trans-unit>
       <trans-unit id="v12-7x-cig.paletteLabel">
         <source>totinfo</source>
-        <target>totinfo</target>
+        <target>总信息</target>
         <note>Class = "NSToolbarItem"; paletteLabel = "totinfo"; ObjectID = "v12-7x-cig";</note>
       </trans-unit>
       <trans-unit id="v12-7x-cig.toolTip">
         <source>Execute estimate and quickbackup for all tasks...</source>
-        <target>Execute estimate and quickbackup for all tasks...</target>
+        <target>估算所有任务和备份</target>
         <note>Class = "NSToolbarItem"; toolTip = "Execute estimate and quickbackup for all tasks..."; ObjectID = "v12-7x-cig";</note>
       </trans-unit>
       <trans-unit id="vDS-vt-fgh.title">
         <source>Changelog</source>
-        <target>Changelog</target>
+        <target>修改日志</target>
         <note>Class = "NSButtonCell"; title = "Changelog"; ObjectID = "vDS-vt-fgh";</note>
       </trans-unit>
       <trans-unit id="vJI-G9-Mbp.title">
         <source>Remote info</source>
-        <target>Remote info</target>
+        <target>远程信息</target>
         <note>Class = "NSBox"; title = "Remote info"; ObjectID = "vJI-G9-Mbp";</note>
       </trans-unit>
       <trans-unit id="vQn-ev-3Ai.title">
@@ -2612,17 +2593,17 @@
       </trans-unit>
       <trans-unit id="w6i-hq-pcc.title">
         <source>Required</source>
-        <target>Required</target>
+        <target>必须</target>
         <note>Class = "NSTextFieldCell"; title = "Required"; ObjectID = "w6i-hq-pcc";</note>
       </trans-unit>
       <trans-unit id="wD5-vA-j0P.title">
         <source>Remote server parameters</source>
-        <target>Remote server parameters</target>
+        <target>远程服务器参数</target>
         <note>Class = "NSBox"; title = "Remote server parameters"; ObjectID = "wD5-vA-j0P";</note>
       </trans-unit>
       <trans-unit id="wIa-4f-wP2.title">
         <source>Configuration info</source>
-        <target>Configuration info</target>
+        <target>配置详情</target>
         <note>Class = "NSBox"; title = "Configuration info"; ObjectID = "wIa-4f-wP2";</note>
       </trans-unit>
       <trans-unit id="wJk-a6-R3B.title">
@@ -2637,37 +2618,36 @@
       </trans-unit>
       <trans-unit id="wh3-18-AJ4.headerCell.title">
         <source>Output</source>
-        <target>Output</target>
+        <target>输出</target>
         <note>Class = "NSTableColumn"; headerCell.title = "Output"; ObjectID = "wh3-18-AJ4";</note>
       </trans-unit>
       <trans-unit id="wmz-CK-ZzC.title">
         <source>Rsa key</source>
-        <target>Rsa key</target>
+        <target>Rsa 密钥</target>
         <note>Class = "NSButtonCell"; title = "Rsa key"; ObjectID = "wmz-CK-ZzC";</note>
       </trans-unit>
       <trans-unit id="wpr-3q-Mcd.title">
         <source>Help</source>
-        <target>Help</target>
+        <target>帮助</target>
         <note>Class = "NSMenuItem"; title = "Help"; ObjectID = "wpr-3q-Mcd";</note>
       </trans-unit>
       <trans-unit id="wrj-tn-Y3v.title">
         <source>path RsyncOSX: </source>
-        <target>path RsyncOSX: </target>
         <note>Class = "NSTextFieldCell"; title = "path RsyncOSX: "; ObjectID = "wrj-tn-Y3v";</note>
       </trans-unit>
       <trans-unit id="wrk-73-4cu.title">
         <source>Backup now</source>
-        <target>Backup now</target>
+        <target>立即备份</target>
         <note>Class = "NSMenuItem"; title = "Backup now"; ObjectID = "wrk-73-4cu";</note>
       </trans-unit>
       <trans-unit id="x4K-TO-hhc.title">
         <source>Edit</source>
-        <target>Edit</target>
+        <target>编辑</target>
         <note>Class = "NSMenuItem"; title = "Edit"; ObjectID = "x4K-TO-hhc";</note>
       </trans-unit>
       <trans-unit id="xAS-dU-L0B.headerCell.title">
         <source>Task</source>
-        <target>Task</target>
+        <target>任务</target>
         <note>Class = "NSTableColumn"; headerCell.title = "Task"; ObjectID = "xAS-dU-L0B";</note>
       </trans-unit>
       <trans-unit id="xKW-0W-Nbb.title">
@@ -2677,7 +2657,7 @@
       </trans-unit>
       <trans-unit id="xTN-ZB-wt8.headerCell.title">
         <source>Logs</source>
-        <target>Logs</target>
+        <target>日志</target>
         <note>Class = "NSTableColumn"; headerCell.title = "Logs"; ObjectID = "xTN-ZB-wt8";</note>
       </trans-unit>
       <trans-unit id="xUg-0M-AYM.title">
@@ -2687,7 +2667,7 @@
       </trans-unit>
       <trans-unit id="xXy-oY-7zq.title">
         <source>Finding tasks for automatic backup, please wait...</source>
-        <target>Finding tasks for automatic backup, please wait...</target>
+        <target>查找自动备份任务，请稍候...</target>
         <note>Class = "NSTextFieldCell"; title = "Finding tasks for automatic backup, please wait..."; ObjectID = "xXy-oY-7zq";</note>
       </trans-unit>
       <trans-unit id="xZ6-fW-WQl.title">
@@ -2697,12 +2677,12 @@
       </trans-unit>
       <trans-unit id="xnI-Se-9HL.title">
         <source>Save</source>
-        <target>Save</target>
+        <target>保存</target>
         <note>Class = "NSButtonCell"; title = "Save"; ObjectID = "xnI-Se-9HL";</note>
       </trans-unit>
       <trans-unit id="xol-Yr-McI.title">
         <source>Remote server :</source>
-        <target>Remote server :</target>
+        <target>远程服务器：</target>
         <note>Class = "NSTextFieldCell"; title = "Remote server :"; ObjectID = "xol-Yr-McI";</note>
       </trans-unit>
       <trans-unit id="xsi-tM-sv9.title">
@@ -2717,7 +2697,7 @@
       </trans-unit>
       <trans-unit id="yOD-ng-BAz.title">
         <source>Delete</source>
-        <target>Delete</target>
+        <target>删除</target>
         <note>Class = "NSButtonCell"; title = "Delete"; ObjectID = "yOD-ng-BAz";</note>
       </trans-unit>
       <trans-unit id="yUA-PJ-sOA.title">
@@ -2727,7 +2707,7 @@
       </trans-unit>
       <trans-unit id="ydG-5b-K3r.title">
         <source>Close</source>
-        <target>Close</target>
+        <target>关</target>
         <note>Class = "NSButtonCell"; title = "Close"; ObjectID = "ydG-5b-K3r";</note>
       </trans-unit>
       <trans-unit id="ygQ-aZ-NXY.title">
@@ -2742,7 +2722,7 @@
       </trans-unit>
       <trans-unit id="zF8-9O-ajg.title">
         <source>remove --compress</source>
-        <target>remove --compress</target>
+        <target>移除 --compress</target>
         <note>Class = "NSButtonCell"; title = "remove --compress"; ObjectID = "zF8-9O-ajg";</note>
       </trans-unit>
       <trans-unit id="zFx-cJ-7DI.title">
@@ -2752,12 +2732,12 @@
       </trans-unit>
       <trans-unit id="zGR-lC-3fH.title">
         <source>Select days older or number of</source>
-        <target>Select days older or number of</target>
+        <target>选择过去的时间或数量</target>
         <note>Class = "NSBox"; title = "Select days older or number of"; ObjectID = "zGR-lC-3fH";</note>
       </trans-unit>
       <trans-unit id="zHz-9r-Cpj.title">
         <source>Verify</source>
-        <target>Verify</target>
+        <target>校验</target>
         <note>Class = "NSButtonCell"; title = "Verify"; ObjectID = "zHz-9r-Cpj";</note>
       </trans-unit>
       <trans-unit id="zSZ-Tb-zlJ.title">
@@ -2767,22 +2747,22 @@
       </trans-unit>
       <trans-unit id="zXX-tD-Lcg.title">
         <source>changed</source>
-        <target>changed</target>
+        <target>改变</target>
         <note>Class = "NSButtonCell"; title = "changed"; ObjectID = "zXX-tD-Lcg";</note>
       </trans-unit>
       <trans-unit id="znZ-ht-M5x.title">
         <source>Required if remote server</source>
-        <target>Required if remote server</target>
+        <target>需要远程服务器</target>
         <note>Class = "NSTextFieldCell"; title = "Required if remote server"; ObjectID = "znZ-ht-M5x";</note>
       </trans-unit>
       <trans-unit id="zoV-D2-sU8.headerCell.title">
         <source>Total size (kB)</source>
-        <target>Total size (kB)</target>
+        <target>总大小（KB）：</target>
         <note>Class = "NSTableColumn"; headerCell.title = "Total size (kB)"; ObjectID = "zoV-D2-sU8";</note>
       </trans-unit>
       <trans-unit id="zv2-BP-T5J.headerCell.title">
         <source>Select</source>
-        <target>Select</target>
+        <target>选择</target>
         <note>Class = "NSTableColumn"; headerCell.title = "Select"; ObjectID = "zv2-BP-T5J";</note>
       </trans-unit>
       <trans-unit id="zzK-ZO-wvj.headerCell.title">
@@ -2792,7 +2772,7 @@
       </trans-unit>
     </body>
   </file>
-  <file original="RsyncOSX/en.lproj/InfoPlist.strings" datatype="plaintext" source-language="en" target-language="zh-Hans">
+  <file original="RsyncOSX/en.lproj/InfoPlist.strings" source-language="en" target-language="zh-Hans" datatype="plaintext">
     <header>
       <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="10.2.1" build-num="10E1001"/>
     </header>
@@ -2803,6 +2783,7 @@
       </trans-unit>
       <trans-unit id="NSHumanReadableCopyright">
         <source>Copyright © 2019 Thomas Evensen. All rights reserved.</source>
+        <target>© 2019 Thomas Evensen. 版权所有.</target>
         <note>Copyright (human-readable)</note>
       </trans-unit>
     </body>
@@ -2956,6 +2937,10 @@
         <source>Executing restore...</source>
         <note>Restore</note>
       </trans-unit>
+      <trans-unit id="Friday">
+        <source>Friday</source>
+        <note>plan</note>
+      </trans-unit>
       <trans-unit id="Getting info, please wait...">
         <source>Getting info, please wait...</source>
         <note>Restore</note>
@@ -2997,6 +2982,10 @@
       <trans-unit id="Menu app is running...">
         <source>Menu app is running...</source>
         <note>Execute</note>
+      </trans-unit>
+      <trans-unit id="Monday">
+        <source>Monday</source>
+        <note>plan</note>
       </trans-unit>
       <trans-unit id="New version available:">
         <source>New version available:</source>
@@ -3074,6 +3063,10 @@
         <source>Restore is completed...</source>
         <note>Restore</note>
       </trans-unit>
+      <trans-unit id="Saturday">
+        <source>Saturday</source>
+        <note>plan</note>
+      </trans-unit>
       <trans-unit id="Save">
         <source>Save</source>
         <note>Profile</note>
@@ -3110,6 +3103,10 @@
         <source>Start restore?</source>
         <note>Restore</note>
       </trans-unit>
+      <trans-unit id="Sunday">
+        <source>Sunday</source>
+        <note>plan</note>
+      </trans-unit>
       <trans-unit id="There seems to be nothing to do...">
         <source>There seems to be nothing to do...</source>
         <note>Quickbackup</note>
@@ -3118,9 +3115,21 @@
         <source>This is a combined task, execute by ⌘R...</source>
         <note>Execute</note>
       </trans-unit>
+      <trans-unit id="Thursday">
+        <source>Thursday</source>
+        <note>plan</note>
+      </trans-unit>
+      <trans-unit id="Tuesday">
+        <source>Tuesday</source>
+        <note>plan</note>
+      </trans-unit>
       <trans-unit id="Verifying, please wait...">
         <source>Verifying, please wait...</source>
         <note>Verify</note>
+      </trans-unit>
+      <trans-unit id="Wednesday">
+        <source>Wednesday</source>
+        <note>plan</note>
       </trans-unit>
       <trans-unit id="You cannot delete that many, max are">
         <source>You cannot delete that many, max are</source>
@@ -3134,9 +3143,17 @@
         <source>daily</source>
         <note>main</note>
       </trans-unit>
+      <trans-unit id="dateStop">
+        <source>dateStop</source>
+        <note>Schedule details</note>
+      </trans-unit>
       <trans-unit id="days">
         <source>days</source>
         <note>datetime</note>
+      </trans-unit>
+      <trans-unit id="every">
+        <source>every</source>
+        <note>plan</note>
       </trans-unit>
       <trans-unit id="h">
         <source>h</source>
@@ -3146,6 +3163,10 @@
         <source>hours</source>
         <note>datetime</note>
       </trans-unit>
+      <trans-unit id="last">
+        <source>last</source>
+        <note>plan</note>
+      </trans-unit>
       <trans-unit id="manuel">
         <source>manuel</source>
         <note>main</note>
@@ -3154,9 +3175,25 @@
         <source>mins</source>
         <note>datetime</note>
       </trans-unit>
+      <trans-unit id="month">
+        <source>month</source>
+        <note>plan</note>
+      </trans-unit>
+      <trans-unit id="no startdate">
+        <source>no startdate</source>
+        <note>Schedule details</note>
+      </trans-unit>
+      <trans-unit id="none">
+        <source>none</source>
+        <note>plan</note>
+      </trans-unit>
       <trans-unit id="once">
         <source>once</source>
         <note>main</note>
+      </trans-unit>
+      <trans-unit id="prev months">
+        <source>prev months</source>
+        <note>plan</note>
       </trans-unit>
       <trans-unit id="seconds">
         <source>seconds</source>
@@ -3165,6 +3202,14 @@
       <trans-unit id="secs">
         <source>secs</source>
         <note>datetime</note>
+      </trans-unit>
+      <trans-unit id="this month">
+        <source>this month</source>
+        <note>plan</note>
+      </trans-unit>
+      <trans-unit id="this week">
+        <source>this week</source>
+        <note>plan</note>
       </trans-unit>
       <trans-unit id="weekly">
         <source>weekly</source>
