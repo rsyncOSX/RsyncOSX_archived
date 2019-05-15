@@ -22,7 +22,5 @@ class QuickbackupDispatch: SetSchedules {
 
     init() {
         self.dispatchtask(seconds: 0)
-        // Set reference to schedule for later cancel if any
-        ViewControllerReference.shared.dispatchTaskWaiting = self.workitem
     }
 }
