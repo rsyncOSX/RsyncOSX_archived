@@ -18,6 +18,7 @@ From version 5.8.5 RsyncOSX speaks new languages. For the moment the following l
 - Chinese (Simplified) - translated by [StringKe](https://github.com/StringKe)
 - Norwegian - translated by me
 - English - the base language of RsyncOSX
+
 RsyncOSX is prepared for new languages and volunteers for translating to other languages are wanted. Translating RsyncOSX is done by utilizing the [Xlifftool](https://github.com/remuslazar/osx-xliff-tool). The tool reads a xliff file, which I prepare, for translating. The xliff file is imported into RsyncOSX by Xcode.
 
 ### Version of rsync
