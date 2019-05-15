@@ -42,9 +42,7 @@ class ViewControllerReference {
         return Singleton.instance
     }
 
-    // Reference to waiting tasks, required for cancel task
-    var dispatchTaskWaiting: DispatchWorkItem?
-    // Temporary storage of the first scheduled task
+    // Reference to the quick backup task
     var quickbackuptask: NSDictionary?
     // Download URL if new version is avaliable
     var URLnewVersion: String?
