@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="1.2" xsi:schemaLocation="urn:oasis:names:tc:xliff:document:1.2 http://docs.oasis-open.org/xliff/v1.2/os/xliff-core-1.2-strict.xsd">
   <file original="RsyncOSX/Base.lproj/Main.storyboard" source-language="en" target-language="zh-Hans" datatype="plaintext">
     <header>
@@ -12,8 +12,8 @@
       </trans-unit>
       <trans-unit id="00G-Ps-GJD.title">
         <source>Local catalog : </source>
-        <note>Class = "NSTextFieldCell"; title = "Local catalog : "; ObjectID = "00G-Ps-GJD";</note>
         <target>本地目录：</target>
+        <note>Class = "NSTextFieldCell"; title = "Local catalog : "; ObjectID = "00G-Ps-GJD";</note>
       </trans-unit>
       <trans-unit id="0KI-B9-ezl.headerCell.title">
         <source>Task</source>
@@ -92,8 +92,8 @@
       </trans-unit>
       <trans-unit id="2KI-Je-KtE.title">
         <source>rsync daemon: </source>
-        <note>Class = "NSTextFieldCell"; title = "rsync daemon: "; ObjectID = "2KI-Je-KtE";</note>
         <target>Rsync 守护程序</target>
+        <note>Class = "NSTextFieldCell"; title = "rsync daemon: "; ObjectID = "2KI-Je-KtE";</note>
       </trans-unit>
       <trans-unit id="2Kr-a7-U09.title">
         <source>ID:</source>
@@ -272,8 +272,8 @@
       </trans-unit>
       <trans-unit id="8pt-99-AYJ.headerCell.title">
         <source>Files </source>
-        <note>Class = "NSTableColumn"; headerCell.title = "Files "; ObjectID = "8pt-99-AYJ";</note>
         <target>文件</target>
+        <note>Class = "NSTableColumn"; headerCell.title = "Files "; ObjectID = "8pt-99-AYJ";</note>
       </trans-unit>
       <trans-unit id="9Zv-nL-VVC.title">
         <source>New version available</source>
@@ -386,8 +386,8 @@
       </trans-unit>
       <trans-unit id="090-WS-IHZ.title">
         <source>Info about : </source>
-        <note>Class = "NSTextFieldCell"; title = "Info about : "; ObjectID = "090-WS-IHZ";</note>
         <target>信息详情：</target>
+        <note>Class = "NSTextFieldCell"; title = "Info about : "; ObjectID = "090-WS-IHZ";</note>
       </trans-unit>
       <trans-unit id="143-UO-M2U.title">
         <source>Local catalog:</source>
@@ -466,13 +466,13 @@
       </trans-unit>
       <trans-unit id="Am3-Ji-1Ox.title">
         <source>add suffix FreeBSD </source>
-        <note>Class = "NSButtonCell"; title = "add suffix FreeBSD "; ObjectID = "Am3-Ji-1Ox";</note>
         <target>添加后缀 FreeBSD</target>
+        <note>Class = "NSButtonCell"; title = "add suffix FreeBSD "; ObjectID = "Am3-Ji-1Ox";</note>
       </trans-unit>
       <trans-unit id="B2y-Kc-2LJ.title">
         <source>Remote catalog : </source>
-        <note>Class = "NSTextFieldCell"; title = "Remote catalog : "; ObjectID = "B2y-Kc-2LJ";</note>
         <target>远程目录：</target>
+        <note>Class = "NSTextFieldCell"; title = "Remote catalog : "; ObjectID = "B2y-Kc-2LJ";</note>
       </trans-unit>
       <trans-unit id="B5v-j0-w2F.title">
         <source>Text Cell</source>
@@ -646,8 +646,8 @@
       </trans-unit>
       <trans-unit id="Eb4-2s-zft.title">
         <source>new :  </source>
-        <note>Class = "NSTextFieldCell"; title = "new :  "; ObjectID = "Eb4-2s-zft";</note>
         <target>新增：</target>
+        <note>Class = "NSTextFieldCell"; title = "new :  "; ObjectID = "Eb4-2s-zft";</note>
       </trans-unit>
       <trans-unit id="EeS-fZ-csl.title">
         <source>Dsa public key is found.</source>
@@ -896,8 +896,8 @@
       </trans-unit>
       <trans-unit id="IiK-OB-SY0.title">
         <source>New profile name </source>
-        <note>Class = "NSTextFieldCell"; title = "New profile name "; ObjectID = "IiK-OB-SY0";</note>
         <target>新配置信息名称：</target>
+        <note>Class = "NSTextFieldCell"; title = "New profile name "; ObjectID = "IiK-OB-SY0";</note>
       </trans-unit>
       <trans-unit id="Iii-2E-YHF.title">
         <source>reset next snapshot number</source>
@@ -931,8 +931,8 @@
       </trans-unit>
       <trans-unit id="JKJ-Kp-IuV.title">
         <source>Double click  on row or shortcut ⌘R to execute task or ⌘I to get info ...</source>
-        <note>Class = "NSTextFieldCell"; title = "Double click  on row or shortcut ⌘R to execute task or ⌘I to get info ..."; ObjectID = "JKJ-Kp-IuV";</note>
         <target>双击选择一行或者按下⌘R执行任务或者⌘I获取信息</target>
+        <note>Class = "NSTextFieldCell"; title = "Double click  on row or shortcut ⌘R to execute task or ⌘I to get info ..."; ObjectID = "JKJ-Kp-IuV";</note>
       </trans-unit>
       <trans-unit id="Jil-HV-f4r.title">
         <source>Text Cell</source>
@@ -1181,8 +1181,8 @@
       </trans-unit>
       <trans-unit id="PkH-9i-AY6.title">
         <source>Select a start date and then a schedule </source>
-        <note>Class = "NSBox"; title = "Select a start date and then a schedule "; ObjectID = "PkH-9i-AY6";</note>
         <target>选择开始的时间和定时计划</target>
+        <note>Class = "NSBox"; title = "Select a start date and then a schedule "; ObjectID = "PkH-9i-AY6";</note>
       </trans-unit>
       <trans-unit id="PqI-jS-0y7.headerCell.title">
         <source>Profile</source>
@@ -1316,8 +1316,8 @@
       </trans-unit>
       <trans-unit id="SBO-UN-kMy.title">
         <source>Number of remote files: 0 </source>
-        <note>Class = "NSTextFieldCell"; title = "Number of remote files: 0 "; ObjectID = "SBO-UN-kMy";</note>
         <target>总远程文件：0</target>
+        <note>Class = "NSTextFieldCell"; title = "Number of remote files: 0 "; ObjectID = "SBO-UN-kMy";</note>
       </trans-unit>
       <trans-unit id="SHi-wp-O4D.title">
         <source>Remote info</source>
@@ -1766,8 +1766,8 @@
       </trans-unit>
       <trans-unit id="d9k-fP-XKG.title">
         <source>⌘L or double click  or on row to stop or delete schedules...</source>
-        <note>Class = "NSTextFieldCell"; title = "⌘L or double click  or on row to stop or delete schedules..."; ObjectID = "d9k-fP-XKG";</note>
         <target>⌘L或者双击一行停止或者删除</target>
+        <note>Class = "NSTextFieldCell"; title = "⌘L or double click  or on row to stop or delete schedules..."; ObjectID = "d9k-fP-XKG";</note>
       </trans-unit>
       <trans-unit id="dDj-C3-nB5.title">
         <source>Text Cell</source>
@@ -1776,8 +1776,8 @@
       </trans-unit>
       <trans-unit id="dEW-Mo-F8C.title">
         <source>Select tmp: </source>
-        <note>Class = "NSButtonCell"; title = "Select tmp: "; ObjectID = "dEW-Mo-F8C";</note>
         <target>选择 tmp：</target>
+        <note>Class = "NSButtonCell"; title = "Select tmp: "; ObjectID = "dEW-Mo-F8C";</note>
       </trans-unit>
       <trans-unit id="dIc-cB-CiC.title">
         <source>rsync daemon:</source>
@@ -1806,8 +1806,8 @@
       </trans-unit>
       <trans-unit id="dsn-9I-wI5.title">
         <source> detailed logging</source>
-        <note>Class = "NSButtonCell"; title = " detailed logging"; ObjectID = "dsn-9I-wI5";</note>
         <target>日志详情</target>
+        <note>Class = "NSButtonCell"; title = " detailed logging"; ObjectID = "dsn-9I-wI5";</note>
       </trans-unit>
       <trans-unit id="dtI-40-Iqi.headerCell.title">
         <source>When</source>
@@ -1876,7 +1876,7 @@
       </trans-unit>
       <trans-unit id="egt-C3-u4G.title">
         <source>Execute</source>
-        <target>Execute</target>
+        <target>执行</target>
         <note>Class = "NSViewController"; title = "Execute"; ObjectID = "egt-C3-u4G";</note>
       </trans-unit>
       <trans-unit id="ej1-6m-NgB.title">
@@ -2001,8 +2001,8 @@
       </trans-unit>
       <trans-unit id="gsP-5c-DW5.title">
         <source>delete :  </source>
-        <note>Class = "NSTextFieldCell"; title = "delete :  "; ObjectID = "gsP-5c-DW5";</note>
         <target>删除：</target>
+        <note>Class = "NSTextFieldCell"; title = "delete :  "; ObjectID = "gsP-5c-DW5";</note>
       </trans-unit>
       <trans-unit id="h4F-dN-GN0.title">
         <source>Load</source>
@@ -2121,8 +2121,8 @@
       </trans-unit>
       <trans-unit id="ipH-US-wgO.title">
         <source> port: </source>
-        <note>Class = "NSTextFieldCell"; title = " port: "; ObjectID = "ipH-US-wgO";</note>
         <target>端口：</target>
+        <note>Class = "NSTextFieldCell"; title = " port: "; ObjectID = "ipH-US-wgO";</note>
       </trans-unit>
       <trans-unit id="irb-Gi-c2A.title">
         <source>Source for restore file or catalog</source>
@@ -2181,8 +2181,8 @@
       </trans-unit>
       <trans-unit id="kFc-LP-RkZ.title">
         <source>Remote catalog : </source>
-        <note>Class = "NSTextFieldCell"; title = "Remote catalog : "; ObjectID = "kFc-LP-RkZ";</note>
         <target>远程目录：</target>
+        <note>Class = "NSTextFieldCell"; title = "Remote catalog : "; ObjectID = "kFc-LP-RkZ";</note>
       </trans-unit>
       <trans-unit id="kNR-NX-OzR.title">
         <source>files :</source>
@@ -2436,8 +2436,8 @@
       </trans-unit>
       <trans-unit id="ru1-fS-UXD.title">
         <source>Server: </source>
-        <note>Class = "NSTextFieldCell"; title = "Server: "; ObjectID = "ru1-fS-UXD";</note>
         <target>服务器：</target>
+        <note>Class = "NSTextFieldCell"; title = "Server: "; ObjectID = "ru1-fS-UXD";</note>
       </trans-unit>
       <trans-unit id="s3e-Xz-emD.title">
         <source>Weekly</source>
@@ -2651,8 +2651,8 @@
       </trans-unit>
       <trans-unit id="wrj-tn-Y3v.title">
         <source>path RsyncOSX: </source>
-        <note>Class = "NSTextFieldCell"; title = "path RsyncOSX: "; ObjectID = "wrj-tn-Y3v";</note>
         <target>RsyncOSX路径：</target>
+        <note>Class = "NSTextFieldCell"; title = "path RsyncOSX: "; ObjectID = "wrj-tn-Y3v";</note>
       </trans-unit>
       <trans-unit id="wrk-73-4cu.title">
         <source>Backup now</source>
@@ -2807,98 +2807,98 @@
       </trans-unit>
     </body>
   </file>
-  <file original="RsyncOSX/en.lproj/Localizable.strings" datatype="plaintext" source-language="en" target-language="zh-Hans">
+  <file original="RsyncOSX/en.lproj/Localizable.strings" source-language="en" target-language="zh-Hans" datatype="plaintext">
     <header>
       <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="10.2.1" build-num="10E1001"/>
     </header>
     <body>
       <trans-unit id=" ... set in User configuration ...">
         <source> ... set in User configuration ...</source>
-        <note>Restore</note>
         <target>设置用户配置</target>
+        <note>Restore</note>
       </trans-unit>
       <trans-unit id="... no remote server ...">
         <source>... no remote server ...</source>
-        <note>Ssh</note>
         <target>没有远程服务器</target>
+        <note>Ssh</note>
       </trans-unit>
       <trans-unit id="Aborting delete operation...">
         <source>Aborting delete operation...</source>
-        <note>Snapshots</note>
         <target>停止删除操作</target>
+        <note>Snapshots</note>
       </trans-unit>
       <trans-unit id="Add">
         <source>Add</source>
-        <note>Add schedule</note>
         <target>添加</target>
+        <note>Add schedule</note>
       </trans-unit>
       <trans-unit id="Add Schedule?">
         <source>Add Schedule?</source>
-        <note>Add schedule</note>
         <target>添加定时任务</target>
+        <note>Add schedule</note>
       </trans-unit>
       <trans-unit id="Batchtasks completed, close view...">
         <source>Batchtasks completed, close view...</source>
-        <note>Batch</note>
         <target>BathTasks 完成，关闭界面</target>
+        <note>Batch</note>
       </trans-unit>
       <trans-unit id="By using Finder drag and drop filepaths.">
         <source>By using Finder drag and drop filepaths.</source>
-        <note>Tooltip</note>
         <target>使用 Finder 拽拖文件路径</target>
+        <note>Tooltip</note>
       </trans-unit>
       <trans-unit id="Cancel">
         <source>Cancel</source>
-        <note>Cancel NSAlert</note>
         <target>取消</target>
+        <note>Cancel NSAlert</note>
       </trans-unit>
       <trans-unit id="Cancel or Add">
         <source>Cancel or Add</source>
-        <note>Add schedule</note>
         <target>取消或添加</target>
+        <note>Add schedule</note>
       </trans-unit>
       <trans-unit id="Cancel or Delete">
         <source>Cancel or Delete</source>
+        <target>取消活删除</target>
         <note>Execute
    Logg
    Profiles
    Snapshots</note>
-        <target>取消活删除</target>
       </trans-unit>
       <trans-unit id="Cancel or Restore">
         <source>Cancel or Restore</source>
-        <note>Restore</note>
         <target>取消或恢复</target>
+        <note>Restore</note>
       </trans-unit>
       <trans-unit id="Close">
         <source>Close</source>
-        <note>Close NSAlert</note>
         <target>取消</target>
+        <note>Close NSAlert</note>
       </trans-unit>
       <trans-unit id="Close automatically in:">
         <source>Close automatically in:</source>
-        <note>New version</note>
         <target>取消自动处理：</target>
+        <note>New version</note>
       </trans-unit>
       <trans-unit id="Completed">
         <source>Completed</source>
-        <note>Remote info</note>
         <target>完成</target>
+        <note>Remote info</note>
       </trans-unit>
       <trans-unit id="Completed ...">
         <source>Completed ...</source>
-        <note>Verify</note>
         <target>完成...</target>
+        <note>Verify</note>
       </trans-unit>
       <trans-unit id="Computing changed, please wait...">
         <source>Computing changed, please wait...</source>
-        <note>Verify</note>
         <target>计算更改，请稍后...</target>
+        <note>Verify</note>
       </trans-unit>
       <trans-unit id="Copy single files or directory?">
         <source>Copy single files or directory?</source>
-        <note>Restore</note>
         <target>复制单个文件或目录？</target>
+        <note>Restore</note>
       </trans-unit>
       <trans-unit id="Copyright ©2019 Thomas Evensen">
         <source>Copyright ©2019 Thomas Evensen</source>
@@ -2906,119 +2906,119 @@
       </trans-unit>
       <trans-unit id="Date last backup:">
         <source>Date last backup:</source>
+        <target>上次备份日期：</target>
         <note>Remote Info
    Verify</note>
-        <target>上次备份日期：</target>
       </trans-unit>
       <trans-unit id="Days since last backup:">
         <source>Days since last backup:</source>
+        <target>上次备份后的天数：</target>
         <note>Remote Info
    Verify</note>
-        <target>上次备份后的天数：</target>
       </trans-unit>
       <trans-unit id="Default profile">
         <source>Default profile</source>
-        <note>default profile</note>
         <target>默认配置</target>
+        <note>default profile</note>
       </trans-unit>
       <trans-unit id="Delete">
         <source>Delete</source>
+        <target>删除</target>
         <note>Execute
    Logg
    Profiles
    Snapshots</note>
-        <target>删除</target>
       </trans-unit>
       <trans-unit id="Delete operation completed...">
         <source>Delete operation completed...</source>
-        <note>Snapshots</note>
         <target>删除完成操作</target>
+        <note>Snapshots</note>
       </trans-unit>
       <trans-unit id="Delete profile:">
         <source>Delete profile:</source>
-        <note>Profiles</note>
         <target>删除配置</target>
+        <note>Profiles</note>
       </trans-unit>
       <trans-unit id="Delete selected task?">
         <source>Delete selected task?</source>
-        <note>Execute</note>
         <target>删除定制任务</target>
+        <note>Execute</note>
       </trans-unit>
       <trans-unit id="Do you REALLY want to DELETE selected snapshots?">
         <source>Do you REALLY want to DELETE selected snapshots?</source>
-        <note>Snapshots</note>
         <target>你真的要删除这个快照么？</target>
+        <note>Snapshots</note>
       </trans-unit>
       <trans-unit id="Do you REALLY want to start a RESTORE ?">
         <source>Do you REALLY want to start a RESTORE ?</source>
-        <note>Restore</note>
         <target>你真的要启动恢复？</target>
+        <note>Restore</note>
       </trans-unit>
       <trans-unit id="Dont change the snapshot num if you don´t know what you are doing...">
         <source>Dont change the snapshot num if you don´t know what you are doing...</source>
-        <note>Snapshots</note>
         <target>不要修改快照数量，如果你不知道您正在做什么</target>
+        <note>Snapshots</note>
       </trans-unit>
       <trans-unit id="ERROR: no rclone in ">
         <source>ERROR: no rclone in </source>
-        <note>Error rclone</note>
         <target>错误：no rclone in</target>
+        <note>Error rclone</note>
       </trans-unit>
       <trans-unit id="ERROR: no rclone in /usr/local/bin">
         <source>ERROR: no rclone in /usr/local/bin</source>
-        <note>Error rclone</note>
         <target>错误：no rclone in /usr/local/bin</target>
+        <note>Error rclone</note>
       </trans-unit>
       <trans-unit id="ERROR: no rsync in ">
         <source>ERROR: no rsync in </source>
-        <note>Error rsync</note>
         <target>错误：no rsync in</target>
+        <note>Error rsync</note>
       </trans-unit>
       <trans-unit id="ERROR: no rsync in /usr/local/bin">
         <source>ERROR: no rsync in /usr/local/bin</source>
-        <note>Error rsync</note>
         <target>错误：no rsync in /usr/local/bin</target>
+        <note>Error rsync</note>
       </trans-unit>
       <trans-unit id="Estimation completed, you can start batch...">
         <source>Estimation completed, you can start batch...</source>
-        <note>Batch</note>
         <target>估计完成后，你可以开始批量...</target>
+        <note>Batch</note>
       </trans-unit>
       <trans-unit id="Executing restore...">
         <source>Executing restore...</source>
-        <note>Restore</note>
         <target>执行恢复...</target>
+        <note>Restore</note>
       </trans-unit>
       <trans-unit id="Friday">
         <source>Friday</source>
-        <note>plan</note>
         <target>星期五</target>
+        <note>plan</note>
       </trans-unit>
       <trans-unit id="Getting info, please wait...">
         <source>Getting info, please wait...</source>
-        <note>Restore</note>
         <target>获取信息，请稍候......</target>
+        <note>Restore</note>
       </trans-unit>
       <trans-unit id="Getting information, please wait ...">
         <source>Getting information, please wait ...</source>
-        <note>Verify</note>
         <target>获取信息，请稍候......</target>
+        <note>Verify</note>
       </trans-unit>
       <trans-unit id="Got index from Execute and listing logs for one configuration...">
         <source>Got index from Execute and listing logs for one configuration...</source>
-        <note>Loggdata</note>
         <target>从Execute获取索引并列出一个配置的日志...</target>
+        <note>Loggdata</note>
       </trans-unit>
       <trans-unit id="Got index from Execute...">
         <source>Got index from Execute...</source>
-        <note>Schedules</note>
         <target>从Execute获得索引...</target>
+        <note>Schedules</note>
       </trans-unit>
       <trans-unit id="Got it...">
         <source>Got it...</source>
+        <target>得到它了...</target>
         <note>Remote Info
    Restore</note>
-        <target>得到它了...</target>
       </trans-unit>
       <trans-unit id="Icon by: Zsolt Sándor">
         <source>Icon by: Zsolt Sándor</source>
@@ -3026,319 +3026,319 @@
       </trans-unit>
       <trans-unit id="Load">
         <source>Load</source>
-        <note>Profile</note>
         <target>加载</target>
+        <note>Profile</note>
       </trans-unit>
       <trans-unit id="Loaded cached data...">
         <source>Loaded cached data...</source>
+        <target>加载的缓存数据......</target>
         <note>Remote info
    Remote Info</note>
-        <target>加载的缓存数据......</target>
       </trans-unit>
       <trans-unit id="Local or remote catalog cannot be empty...">
         <source>Local or remote catalog cannot be empty...</source>
-        <note>Copy files</note>
         <target>本地或远程目录不能为空...</target>
+        <note>Copy files</note>
       </trans-unit>
       <trans-unit id="Menu app is running...">
         <source>Menu app is running...</source>
-        <note>Execute</note>
         <target>菜单应用正在运行...</target>
+        <note>Execute</note>
       </trans-unit>
       <trans-unit id="Monday">
         <source>Monday</source>
-        <note>plan</note>
         <target>星期一</target>
+        <note>plan</note>
       </trans-unit>
       <trans-unit id="New version available:">
         <source>New version available:</source>
-        <note>About</note>
         <target>新版本：</target>
+        <note>About</note>
       </trans-unit>
       <trans-unit id="No rclone config found...">
         <source>No rclone config found...</source>
-        <note>Execute</note>
         <target>找不到rclone配置...</target>
+        <note>Execute</note>
       </trans-unit>
       <trans-unit id="No rsync in path...">
         <source>No rsync in path...</source>
-        <note>Execute</note>
         <target>路径中没有rsync ...</target>
+        <note>Execute</note>
       </trans-unit>
       <trans-unit id="No such local catalog for restore or set it in user config...">
         <source>No such local catalog for restore or set it in user config...</source>
-        <note>Copy files</note>
         <target>没有这样的本地目录还原或在用户配置中设置它...</target>
+        <note>Copy files</note>
       </trans-unit>
       <trans-unit id="Not a remote task, use Finder to copy files...">
         <source>Not a remote task, use Finder to copy files...</source>
-        <note>Copy files</note>
         <target>不是远程任务，使用Finder复制文件...</target>
+        <note>Copy files</note>
       </trans-unit>
       <trans-unit id="Not a snapshot task...">
         <source>Not a snapshot task...</source>
-        <note>Snapshots</note>
         <target>不是快照任务......</target>
+        <note>Snapshots</note>
       </trans-unit>
       <trans-unit id="Number of configurations:">
         <source>Number of configurations:</source>
-        <note>AllProfiles</note>
         <target>配置数量：</target>
+        <note>AllProfiles</note>
       </trans-unit>
       <trans-unit id="Number of logs:">
         <source>Number of logs:</source>
-        <note>Logg</note>
         <target>日志数量：</target>
+        <note>Logg</note>
       </trans-unit>
       <trans-unit id="Number of tasks to estimate:">
         <source>Number of tasks to estimate:</source>
-        <note>Remote info</note>
         <target>要估算的任务数量：</target>
+        <note>Remote info</note>
       </trans-unit>
       <trans-unit id="Number remote files:">
         <source>Number remote files:</source>
-        <note>Copy files</note>
         <target>数字远程文件：</target>
+        <note>Copy files</note>
       </trans-unit>
       <trans-unit id="Number snapshots: ">
         <source>Number snapshots: </source>
-        <note>Snapshots</note>
         <target>数字快照：</target>
+        <note>Snapshots</note>
       </trans-unit>
       <trans-unit id="Only valid for backup, snapshot and combined tasks...">
         <source>Only valid for backup, snapshot and combined tasks...</source>
-        <note>Execute</note>
         <target>仅对备份，快照和组合任务有效...</target>
+        <note>Execute</note>
       </trans-unit>
       <trans-unit id="Please select a task in Execute ...">
         <source>Please select a task in Execute ...</source>
-        <note>Verify</note>
         <target>请在执行中选择一项任务...</target>
+        <note>Verify</note>
       </trans-unit>
       <trans-unit id="Possible error logging...">
         <source>Possible error logging...</source>
-        <note>Execute</note>
         <target>可能的错误记录......</target>
+        <note>Execute</note>
       </trans-unit>
       <trans-unit id="Probably some rsync error...">
         <source>Probably some rsync error...</source>
-        <note>Restore</note>
         <target>可能是一些rsync错误......</target>
+        <note>Restore</note>
       </trans-unit>
       <trans-unit id="Profile:">
         <source>Profile:</source>
-        <note>Execute</note>
         <target>轮廓：</target>
+        <note>Execute</note>
       </trans-unit>
       <trans-unit id="Profile: please wait...">
         <source>Profile: please wait...</source>
-        <note>Execute</note>
         <target>简介：请稍候......</target>
+        <note>Execute</note>
       </trans-unit>
       <trans-unit id="Restore">
         <source>Restore</source>
-        <note>Restore</note>
         <target>恢复</target>
+        <note>Restore</note>
       </trans-unit>
       <trans-unit id="Restore is completed...">
         <source>Restore is completed...</source>
-        <note>Restore</note>
         <target>恢复完成......</target>
+        <note>Restore</note>
       </trans-unit>
       <trans-unit id="Saturday">
         <source>Saturday</source>
-        <note>plan</note>
         <target>星期六</target>
+        <note>plan</note>
       </trans-unit>
       <trans-unit id="Save">
         <source>Save</source>
-        <note>Profile</note>
         <target>保存</target>
+        <note>Profile</note>
       </trans-unit>
       <trans-unit id="Scheduled tasks in menu app...">
         <source>Scheduled tasks in menu app...</source>
-        <note>Schedules</note>
         <target>菜单应用中的预定任务...</target>
+        <note>Schedules</note>
       </trans-unit>
       <trans-unit id="Seems not to be connected...">
         <source>Seems not to be connected...</source>
-        <note>Copy files</note>
         <target>似乎没有联系......</target>
+        <note>Copy files</note>
       </trans-unit>
       <trans-unit id="Select a task....">
         <source>Select a task....</source>
-        <note>Execute</note>
         <target>选择任务....</target>
+        <note>Execute</note>
       </trans-unit>
       <trans-unit id="Selected logs:">
         <source>Selected logs:</source>
-        <note>Logg</note>
         <target>选定的日志：</target>
+        <note>Logg</note>
       </trans-unit>
       <trans-unit id="Selected rows:">
         <source>Selected rows:</source>
-        <note>Logg</note>
         <target>选定的行：</target>
+        <note>Logg</note>
       </trans-unit>
       <trans-unit id="Selection out of range - aborting">
         <source>Selection out of range - aborting</source>
-        <note>Execute</note>
         <target>选择超出范围 - 中止</target>
+        <note>Execute</note>
       </trans-unit>
       <trans-unit id="Seriously, enter a real number...">
         <source>Seriously, enter a real number...</source>
-        <note>Snapshots</note>
         <target>说真的，输入一个实数...</target>
+        <note>Snapshots</note>
       </trans-unit>
       <trans-unit id="Start restore?">
         <source>Start restore?</source>
-        <note>Restore</note>
         <target>开始恢复？</target>
+        <note>Restore</note>
       </trans-unit>
       <trans-unit id="Sunday">
         <source>Sunday</source>
-        <note>plan</note>
         <target>星期日</target>
+        <note>plan</note>
       </trans-unit>
       <trans-unit id="There seems to be nothing to do...">
         <source>There seems to be nothing to do...</source>
-        <note>Quickbackup</note>
         <target>似乎无所事事......</target>
+        <note>Quickbackup</note>
       </trans-unit>
       <trans-unit id="This is a combined task, execute by ⌘R...">
         <source>This is a combined task, execute by ⌘R...</source>
-        <note>Execute</note>
         <target>这是一个组合任务，由⌘R执行...</target>
+        <note>Execute</note>
       </trans-unit>
       <trans-unit id="Thursday">
         <source>Thursday</source>
-        <note>plan</note>
         <target>星期四</target>
+        <note>plan</note>
       </trans-unit>
       <trans-unit id="Tuesday">
         <source>Tuesday</source>
-        <note>plan</note>
         <target>星期二</target>
+        <note>plan</note>
       </trans-unit>
       <trans-unit id="Verifying, please wait...">
         <source>Verifying, please wait...</source>
-        <note>Verify</note>
         <target>正在验证，请稍候......</target>
+        <note>Verify</note>
       </trans-unit>
       <trans-unit id="Wednesday">
         <source>Wednesday</source>
-        <note>plan</note>
         <target>星期三</target>
+        <note>plan</note>
       </trans-unit>
       <trans-unit id="You cannot delete that many, max are">
         <source>You cannot delete that many, max are</source>
-        <note>Snapshots</note>
         <target>你不能删除那么多，最多</target>
+        <note>Snapshots</note>
       </trans-unit>
       <trans-unit id="You have the latest ...">
         <source>You have the latest ...</source>
-        <note>About</note>
         <target>你有最新的......</target>
+        <note>About</note>
       </trans-unit>
       <trans-unit id="daily">
         <source>daily</source>
-        <note>main</note>
         <target>每天</target>
+        <note>main</note>
       </trans-unit>
       <trans-unit id="dateStop">
         <source>dateStop</source>
-        <note>Schedule details</note>
         <target>停止时间</target>
+        <note>Schedule details</note>
       </trans-unit>
       <trans-unit id="days">
         <source>days</source>
-        <note>datetime</note>
         <target>天数</target>
+        <note>datetime</note>
       </trans-unit>
       <trans-unit id="every">
         <source>every</source>
-        <note>plan</note>
         <target>一切</target>
+        <note>plan</note>
       </trans-unit>
       <trans-unit id="h">
         <source>h</source>
-        <note>datetime</note>
         <target>H</target>
+        <note>datetime</note>
       </trans-unit>
       <trans-unit id="hours">
         <source>hours</source>
-        <note>datetime</note>
         <target>小时</target>
+        <note>datetime</note>
       </trans-unit>
       <trans-unit id="last">
         <source>last</source>
-        <note>plan</note>
         <target>持续</target>
+        <note>plan</note>
       </trans-unit>
       <trans-unit id="manuel">
         <source>manuel</source>
-        <note>main</note>
         <target>曼努埃尔</target>
+        <note>main</note>
       </trans-unit>
       <trans-unit id="mins">
         <source>mins</source>
-        <note>datetime</note>
         <target>分钟</target>
+        <note>datetime</note>
       </trans-unit>
       <trans-unit id="month">
         <source>month</source>
-        <note>plan</note>
         <target>月</target>
+        <note>plan</note>
       </trans-unit>
       <trans-unit id="no startdate">
         <source>no startdate</source>
-        <note>Schedule details</note>
         <target>没有开始</target>
+        <note>Schedule details</note>
       </trans-unit>
       <trans-unit id="none">
         <source>none</source>
-        <note>plan</note>
         <target>没有</target>
+        <note>plan</note>
       </trans-unit>
       <trans-unit id="once">
         <source>once</source>
-        <note>main</note>
         <target>一次</target>
+        <note>main</note>
       </trans-unit>
       <trans-unit id="prev months">
         <source>prev months</source>
-        <note>plan</note>
         <target>上个月</target>
+        <note>plan</note>
       </trans-unit>
       <trans-unit id="seconds">
         <source>seconds</source>
-        <note>New version</note>
         <target>秒</target>
+        <note>New version</note>
       </trans-unit>
       <trans-unit id="secs">
         <source>secs</source>
-        <note>datetime</note>
         <target>秒</target>
+        <note>datetime</note>
       </trans-unit>
       <trans-unit id="this month">
         <source>this month</source>
-        <note>plan</note>
         <target>这个月</target>
+        <note>plan</note>
       </trans-unit>
       <trans-unit id="this week">
         <source>this week</source>
-        <note>plan</note>
         <target>本星期</target>
+        <note>plan</note>
       </trans-unit>
       <trans-unit id="weekly">
         <source>weekly</source>
-        <note>main</note>
         <target>每周</target>
+        <note>main</note>
       </trans-unit>
       <trans-unit id="⌘A to abort or wait...">
         <source>⌘A to abort or wait...</source>
-        <note>Execute</note>
         <target>⌘A中止或等待......</target>
+        <note>Execute</note>
       </trans-unit>
     </body>
   </file>
