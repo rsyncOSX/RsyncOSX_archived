@@ -500,7 +500,7 @@
 "EeS-fZ-csl.title" = "找到Dsa公钥。";
 
 /* Class = "NSViewController"; title = "Execute"; ObjectID = "egt-C3-u4G"; */
-"egt-C3-u4G.title" = "Execute";
+"egt-C3-u4G.title" = "执行";
 
 /* Class = "NSButtonCell"; title = "full log"; ObjectID = "egX-mx-3Br"; */
 "egX-mx-3Br.title" = "完整的日志";
