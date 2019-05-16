@@ -14,7 +14,7 @@ The [Changelog](https://rsyncosx.github.io/Changelog).
 
 ### Localization
 
-From version 5.8.5 RsyncOSX [speaks new languages](https://rsyncosx.github.io/Localization). RsyncOSX is localized to:
+From version 5.8.6 RsyncOSX [speaks new languages](https://rsyncosx.github.io/Localization). RsyncOSX is localized to:
 - Chinese (Simplified) -  by [StringKe](https://github.com/StringKe)
 - Norwegian - by me
 - English - the base language of RsyncOSX
