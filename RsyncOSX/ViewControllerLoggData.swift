@@ -91,7 +91,7 @@ class ViewControllerLoggData: NSViewController, SetConfigurations, SetSchedules,
         let question: String = NSLocalizedString("Delete", comment: "Logg")
         let text: String = NSLocalizedString("Cancel or Delete", comment: "Logg")
         let dialog: String = NSLocalizedString("Delete", comment: "Logg")
-        let answer = Alerts.dialogOrCancel(question: question + self.selectednumber() + " logrecords?", text: text, dialog: dialog)
+        let answer = Alerts.dialogOrCancel(question: question + " " + self.selectednumber() + " logrecords?", text: text, dialog: dialog)
         if answer {
             self.deselectRow()
             self.schedules?.deleteselectedrows(scheduleloggdata: self.scheduleloggdata)
@@ -105,7 +105,6 @@ class ViewControllerLoggData: NSViewController, SetConfigurations, SetSchedules,
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do view setup here.
         self.scheduletable.delegate = self
         self.scheduletable.dataSource = self
         self.search.delegate = self
