@@ -1577,7 +1577,7 @@
 "xUg-0M-AYM.title" = "Ekstern katalog:";
 
 /* Class = "NSTextFieldCell"; title = "Finding tasks for automatic backup, please wait..."; ObjectID = "xXy-oY-7zq"; */
-"xXy-oY-7zq.title" = "Søker oppgaver for automatisk backup, vennligst vent...";
+"xXy-oY-7zq.title" = "Søker etter oppgaver for automatisk backup...";
 
 /* Class = "NSTextFieldCell"; title = "Table View Cell"; ObjectID = "xZ6-fW-WQl"; */
 "xZ6-fW-WQl.title" = "Table View Cell";
