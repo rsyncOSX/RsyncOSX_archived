@@ -202,21 +202,12 @@ extension ViewControllerLoggData: NSTableViewDataSource {
 extension ViewControllerLoggData: NSTableViewDelegate {
 
     func tableView(_ tableView: NSTableView, objectValueFor tableColumn: NSTableColumn?, row: Int) -> Any? {
-        let dateformatter = Dateandtime().setDateformat()
         guard self.scheduleloggdata != nil else { return nil }
         guard row < self.scheduleloggdata!.loggdata!.count else { return nil }
         let object: NSDictionary = self.scheduleloggdata!.loggdata![row]
         if tableColumn!.identifier.rawValue == "deleteCellID" ||
             tableColumn!.identifier.rawValue == "snapCellID" {
             return object[tableColumn!.identifier] as? Int
-        } else if tableColumn!.identifier.rawValue == "dateExecuted" {
-            let stringdate: String = object[tableColumn!.identifier] as? String ?? ""
-            if stringdate.isEmpty {
-                return ""
-            } else {
-                let date = dateformatter.date(from: stringdate)
-                return date?.localizeDate()
-            }
         } else {
             return object[tableColumn!.identifier] as? String
         }
