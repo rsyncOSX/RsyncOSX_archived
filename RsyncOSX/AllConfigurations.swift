@@ -38,11 +38,17 @@ final class AllConfigurations: Sorting {
 
     private func setConfigurationsDataSourcecountBackupSnapshot() {
         guard self.allconfigurations != nil else { return }
+        let dateformatter = Dateandtime().setDateformat()
         var configurations: [Configuration] = self.allconfigurations!.filter({return ($0.task == ViewControllerReference.shared.synchronize || $0.task == ViewControllerReference.shared.snapshot )})
         var data = [NSMutableDictionary]()
         for i in 0 ..< configurations.count {
             if configurations[i].offsiteServer.isEmpty == true {
                 configurations[i].offsiteServer = "localhost"
+            }
+            var date: String = ""
+            let stringdate = configurations[i].dateRun ?? ""
+            if stringdate.isEmpty == false {
+                date = dateformatter.date(from: stringdate)!.localizeDate()
             }
             let row: NSMutableDictionary = [
                 "profile": configurations[i].profile ?? "",
@@ -53,7 +59,7 @@ final class AllConfigurations: Sorting {
                 "offsiteServer": configurations[i].offsiteServer,
                 "offsiteUsername": configurations[i].offsiteUsername,
                 "backupID": configurations[i].backupID,
-                "dateExecuted": configurations[i].dateRun!,
+                "dateExecuted": date,
                 "days": configurations[i].dayssincelastbackup ?? "",
                 "markdays": configurations[i].markdays,
                 "selectCellID": 0
