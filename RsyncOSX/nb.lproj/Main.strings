@@ -1013,7 +1013,7 @@
 "mry-vG-0Hd.title" = "Dobbel klikk på rad for ekstern info...";
 
 /* Class = "NSTextFieldCell"; title = "Executing task, please wait..."; ObjectID = "MVn-QH-6i5"; */
-"MVn-QH-6i5.title" = "Kjører oppgave, vennligst vent...";
+"MVn-QH-6i5.title" = "Utfører oppgave, vennligst vent...";
 
 /* Class = "NSTableColumn"; headerCell.title = "Stop schedule"; ObjectID = "mXT-RY-XvH"; */
 "mXT-RY-XvH.headerCell.title" = "Stopp schedule";

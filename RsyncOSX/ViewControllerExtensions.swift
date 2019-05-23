@@ -435,12 +435,19 @@ protocol Sorting {
 extension Sorting {
     func sortbyrundate(notsorted: [NSMutableDictionary]?, sortdirection: Bool) -> [NSMutableDictionary]? {
         guard notsorted != nil else { return nil }
-        let dateformatter = Dateandtime().setDateformat()
+        let dateformatter = DateFormatter()
+        dateformatter.formatterBehavior = .behavior10_4
+        dateformatter.dateStyle = .medium
+        dateformatter.timeStyle = .short
         let sorted = notsorted!.sorted { (dict1, dict2) -> Bool in
-            let date1 = (dateformatter.date(from: (dict1.value(forKey: "dateExecuted") as? String) ?? "") ?? dateformatter.date(from: "01 Jan 1900 00:00")!)
-            let date2 = (dateformatter.date(from: (dict2.value(forKey: "dateExecuted") as? String) ?? "") ?? dateformatter.date(from: "01 Jan 1900 00:00")!)
-            if date1.timeIntervalSince(date2) > 0 {
-                return sortdirection
+            let date1 = dateformatter.date(from: (dict1.value(forKey: "dateExecuted") as? String) ?? "")
+            let date2 = dateformatter.date(from: (dict2.value(forKey: "dateExecuted") as? String) ?? "")
+            if date1 != nil && date2 != nil {
+                if date1!.timeIntervalSince(date2!) > 0 {
+                    return sortdirection
+                } else {
+                   return !sortdirection
+                }
             } else {
                 return !sortdirection
             }

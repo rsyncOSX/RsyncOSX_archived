@@ -122,7 +122,6 @@ extension ViewControllerAllProfiles: NSTableViewDelegate, Attributedestring {
 
     // TableView delegates
     func tableView(_ tableView: NSTableView, objectValueFor tableColumn: NSTableColumn?, row: Int) -> Any? {
-        let dateformatter = Dateandtime().setDateformat()
         if row > self.allprofiles!.allconfigurationsasdictionary!.count - 1 { return nil }
         let object: NSDictionary = self.allprofiles!.allconfigurationsasdictionary![row]
         let hiddenID = object.value(forKey: "hiddenID") as? Int ?? -1
@@ -143,14 +142,6 @@ extension ViewControllerAllProfiles: NSTableViewDelegate, Attributedestring {
                 return NSLocalizedString("manuel", comment: "main")
             default:
                 return ""
-            }
-        } else if tableColumn!.identifier.rawValue == "dateExecuted" {
-            let stringdate: String = object[tableColumn!.identifier] as? String ?? ""
-            if stringdate.isEmpty {
-                return ""
-            } else {
-                let date = dateformatter.date(from: stringdate)
-                return date?.localizeDate()
             }
         } else {
             return object[tableColumn!.identifier] as? String
