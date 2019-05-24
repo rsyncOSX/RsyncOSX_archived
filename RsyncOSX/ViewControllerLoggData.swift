@@ -82,7 +82,7 @@ class ViewControllerLoggData: NSViewController, SetConfigurations, SetSchedules,
             }
         }
         globalMainQueue.async(execute: { () -> Void in
-            self.selectedrows.stringValue = "Selected logs: " + self.selectednumber()
+            self.selectedrows.stringValue = NSLocalizedString("Selected logs:", comment: "Logg") + " " + self.selectednumber()
             self.scheduletable.reloadData()
         })
     }
