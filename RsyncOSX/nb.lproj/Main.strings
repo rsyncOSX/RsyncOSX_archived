@@ -1295,7 +1295,7 @@
 "srs-cz-k0D.title" = "Lokale ssh nøkler";
 
 /* Class = "NSTableColumn"; headerCell.title = "Last run"; ObjectID = "STf-VO-dOL"; */
-"STf-VO-dOL.headerCell.title" = "Last run";
+"STf-VO-dOL.headerCell.title" = "Siste kjøring";
 
 /* Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "sTj-Zm-1Dz"; */
 "sTj-Zm-1Dz.title" = "Text Cell";
