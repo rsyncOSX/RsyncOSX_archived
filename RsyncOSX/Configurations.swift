@@ -92,18 +92,7 @@ class Configurations: ReloadTable, SetSchedules {
         let configurations: [Configuration] = self.configurations!.filter({return ($0.task == ViewControllerReference.shared.synchronize || $0.task == ViewControllerReference.shared.snapshot)})
         var data = [NSMutableDictionary]()
         for i in 0 ..< configurations.count {
-            let row: NSMutableDictionary = [
-                "taskCellID": configurations[i].task,
-                "hiddenID": configurations[i].hiddenID,
-                "localCatalogCellID": configurations[i].localCatalog,
-                "offsiteCatalogCellID": configurations[i].offsiteCatalog,
-                "offsiteServerCellID": configurations[i].offsiteServer,
-                "backupIDCellID": configurations[i].backupID,
-                "runDateCellID": configurations[i].dateRun!,
-                "daysID": configurations[i].dayssincelastbackup ?? "",
-                "markdays": configurations[i].markdays,
-                "selectCellID": 0
-            ]
+            let row: NSMutableDictionary = ConvertOneConfig(config: self.configurations![i]).dict
             if (row.value(forKey: "offsiteServerCellID") as? String)?.isEmpty == true {
                 row.setValue("localhost", forKey: "offsiteServerCellID")
             }
@@ -125,19 +114,7 @@ class Configurations: ReloadTable, SetSchedules {
             if configurations[i].offsiteServer.isEmpty == true {
                 configurations[i].offsiteServer = "localhost"
             }
-            let row: NSDictionary = [
-                "taskCellID": configurations[i].task,
-                "hiddenID": configurations[i].hiddenID,
-                "localCatalogCellID": configurations[i].localCatalog,
-                "offsiteCatalogCellID": configurations[i].offsiteCatalog,
-                "offsiteServerCellID": configurations[i].offsiteServer,
-                "backupIDCellID": configurations[i].backupID,
-                "runDateCellID": configurations[i].dateRun!,
-                "daysID": configurations[i].dayssincelastbackup ?? "",
-                "markdays": configurations[i].markdays,
-                "selectCellID": 0
-            ]
-            data.append(row)
+            data.append(ConvertOneConfig(config: self.configurations![i]).dict2)
         }
         return data
     }
@@ -149,19 +126,7 @@ class Configurations: ReloadTable, SetSchedules {
             if configurations[i].offsiteServer.isEmpty == true {
                 configurations[i].offsiteServer = "localhost"
             }
-            let row: NSDictionary = [
-                "taskCellID": configurations[i].task,
-                "hiddenID": configurations[i].hiddenID,
-                "localCatalogCellID": configurations[i].localCatalog,
-                "offsiteCatalogCellID": configurations[i].offsiteCatalog,
-                "offsiteServerCellID": configurations[i].offsiteServer,
-                "backupIDCellID": configurations[i].backupID,
-                "runDateCellID": configurations[i].dateRun!,
-                "daysID": configurations[i].dayssincelastbackup ?? "",
-                "markdays": configurations[i].markdays,
-                "selectCellID": 0
-            ]
-            data.append(row)
+            data.append(ConvertOneConfig(config: self.configurations![i]).dict2)
         }
         return data
     }
@@ -444,28 +409,11 @@ class Configurations: ReloadTable, SetSchedules {
         //var row =  NSMutableDictionary()
         var data = [NSMutableDictionary]()
         self.configurationsDataSource = nil
-        var batch: Int = 0
         for i in 0 ..< self.configurations!.count {
-            if self.configurations![i].batch == "yes" {
-                batch = 1
-            } else {
-                batch = 0
-            }
-            let row: NSMutableDictionary = [
-                "taskCellID": self.configurations![i].task,
-                "batchCellID": batch,
-                "localCatalogCellID": self.configurations![i].localCatalog,
-                "offsiteCatalogCellID": self.configurations![i].offsiteCatalog,
-                "offsiteServerCellID": self.configurations![i].offsiteServer,
-                "backupIDCellID": self.configurations![i].backupID,
-                "runDateCellID": self.configurations![i].dateRun ?? "",
-                "daysID": self.configurations![i].dayssincelastbackup ?? "",
-                "snapCellID": self.configurations![i].snapshotnum ?? ""
-            ]
             if self.configurations![i].task == ViewControllerReference.shared.synchronize ||
                 self.configurations![i].task == ViewControllerReference.shared.snapshot ||
                 self.configurations![i].task == ViewControllerReference.shared.combined {
-                   data.append(row)
+                data.append(ConvertOneConfig(config: self.configurations![i]).dict3)
             }
         }
         self.configurationsDataSource = data
