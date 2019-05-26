@@ -397,7 +397,6 @@ class Configurations: ReloadTable, SetSchedules {
     /// Function is destroying any previous Configurations before loading new and computing new arguments.
     /// - parameter none: none
     private func readconfigurations() {
-        self.configurations = [Configuration]()
         self.argumentAllConfigurations = [ArgumentsOneConfiguration]()
         var store: [Configuration]? = self.storageapi!.getConfigurations()
         guard store != nil else { return }
@@ -412,7 +411,6 @@ class Configurations: ReloadTable, SetSchedules {
         }
         // Then prepare the datasource for use in tableviews as Dictionarys
         var data = [NSMutableDictionary]()
-        self.configurationsDataSource = nil
         for i in 0 ..< self.configurations!.count {
             if self.configurations![i].task == ViewControllerReference.shared.synchronize ||
                 self.configurations![i].task == ViewControllerReference.shared.snapshot ||
@@ -424,7 +422,7 @@ class Configurations: ReloadTable, SetSchedules {
     }
 
     init(profile: String?, viewcontroller: NSViewController) {
-        self.configurations = nil
+        self.configurations = [Configuration]()
         self.argumentAllConfigurations = nil
         self.configurationsDataSource = nil
         self.profile = profile
