@@ -74,8 +74,11 @@ final class SnapshotsLoggData {
 
     private func calculatedays(date: String) -> Double? {
         guard date != "" else { return nil }
-        let dateformatter = Dateandtime().setDateformat()
-        let lastbackup = dateformatter.date(from: date)
+        let formatter = DateFormatter()
+        formatter.formatterBehavior = .behavior10_4
+        formatter.dateStyle = .medium
+        formatter.timeStyle = .short
+        let lastbackup = formatter.date(from: date)
         let seconds: TimeInterval = lastbackup!.timeIntervalSinceNow
         return seconds * (-1)
     }

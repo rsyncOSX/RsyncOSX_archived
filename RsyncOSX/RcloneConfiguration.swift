@@ -38,9 +38,7 @@ struct RcloneConfiguration {
     var profile: String?
 
     private func calculatedays(date: String) -> Double? {
-        guard date != "" else {
-            return nil
-        }
+        guard date != "" else { return nil }
         let dateformatter = Dateandtime().setDateformat()
         let lastbackup = dateformatter.date(from: date)
         let seconds: TimeInterval = lastbackup!.timeIntervalSinceNow
