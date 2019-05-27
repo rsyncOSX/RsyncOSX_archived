@@ -120,7 +120,7 @@ class ViewControllerUserconfiguration: NSViewController, NewRsync, SetDismisser,
 
     private func setdirty() {
         self.dirty = true
-        self.savebutton.title = "Save"
+        self.savebutton.title = NSLocalizedString("Save", comment: "Userconfig ")
     }
 
     private func setmarknumberofdayssince() {
