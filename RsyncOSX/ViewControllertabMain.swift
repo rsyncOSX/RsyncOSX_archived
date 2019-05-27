@@ -135,8 +135,7 @@ class ViewControllertabMain: NSViewController, ReloadTable, Deselect, VcMain, De
             return
         }
         guard self.configurations!.getConfigurations()[self.index!].task == ViewControllerReference.shared.synchronize ||
-            self.configurations!.getConfigurations()[self.index!].task == ViewControllerReference.shared.snapshot ||
-            self.configurations!.getConfigurations()[self.index!].task == ViewControllerReference.shared.combined else {
+            self.configurations!.getConfigurations()[self.index!].task == ViewControllerReference.shared.snapshot else {
                 self.info.stringValue = self.information!.info(num: 7)
                 return
         }
@@ -154,8 +153,7 @@ class ViewControllertabMain: NSViewController, ReloadTable, Deselect, VcMain, De
             return
         }
         guard self.configurations!.getConfigurations()[self.index!].task == ViewControllerReference.shared.synchronize ||
-            self.configurations!.getConfigurations()[self.index!].task == ViewControllerReference.shared.snapshot ||
-            self.configurations!.getConfigurations()[self.index!].task == ViewControllerReference.shared.combined else {
+            self.configurations!.getConfigurations()[self.index!].task == ViewControllerReference.shared.snapshot else {
                 self.info.stringValue = self.information!.info(num: 7)
                 return
         }
@@ -314,17 +312,10 @@ class ViewControllertabMain: NSViewController, ReloadTable, Deselect, VcMain, De
             return
         }
         guard self.configurations!.getConfigurations()[self.index!].task == ViewControllerReference.shared.synchronize ||
-            self.configurations!.getConfigurations()[self.index!].task == ViewControllerReference.shared.snapshot ||
-        self.configurations!.getConfigurations()[self.index!].task == ViewControllerReference.shared.combined else {
+            self.configurations!.getConfigurations()[self.index!].task == ViewControllerReference.shared.snapshot else {
                 return
         }
-        if self.configurations!.getConfigurations()[self.index!].task == ViewControllerReference.shared.combined {
-            self.configurations!.processtermination = .combinedtask
-            self.working.startAnimation(nil)
-            _ = Combined(profile: self.configurations!.getConfigurations()[self.index!].rcloneprofile, index: self.index!)
-        } else {
-            self.executetasknow()
-        }
+        self.executetasknow()
     }
 
     func executetasknow() {

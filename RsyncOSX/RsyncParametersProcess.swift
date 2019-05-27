@@ -163,7 +163,7 @@ final class RsyncParametersProcess {
         self.setParameters1To6(config, dryRun: dryRun, forDisplay: forDisplay, verify: false)
         self.setParameters8To14(config, dryRun: dryRun, forDisplay: forDisplay)
         switch config.task {
-        case ViewControllerReference.shared.synchronize, ViewControllerReference.shared.combined:
+        case ViewControllerReference.shared.synchronize:
             self.argumentsforsynchronize(dryRun: dryRun, forDisplay: forDisplay)
         case ViewControllerReference.shared.snapshot:
             self.linkdestparameter(config, verify: false)
@@ -197,7 +197,7 @@ final class RsyncParametersProcess {
         self.setParameters1To6(config, dryRun: true, forDisplay: forDisplay, verify: true)
         self.setParameters8To14(config, dryRun: true, forDisplay: forDisplay)
         switch config.task {
-        case ViewControllerReference.shared.synchronize, ViewControllerReference.shared.combined:
+        case ViewControllerReference.shared.synchronize:
             self.argumentsforsynchronize(dryRun: true, forDisplay: forDisplay)
         case ViewControllerReference.shared.snapshot:
             self.linkdestparameter(config, verify: true)
@@ -213,7 +213,7 @@ final class RsyncParametersProcess {
         self.setParameters1To6(config, dryRun: dryRun, forDisplay: forDisplay, verify: false)
         self.setParameters8To14(config, dryRun: dryRun, forDisplay: forDisplay)
         switch config.task {
-        case ViewControllerReference.shared.synchronize, ViewControllerReference.shared.combined:
+        case ViewControllerReference.shared.synchronize:
             self.argumentsforsynchronize(dryRun: dryRun, forDisplay: forDisplay)
         case ViewControllerReference.shared.snapshot:
             self.argumentsforsynchronizesnapshot(dryRun: dryRun, forDisplay: forDisplay)

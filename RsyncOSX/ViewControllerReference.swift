@@ -24,7 +24,6 @@ enum ViewController {
     case vcremoteinfo
     case vcsnapshot
     case vcallprofiles
-    case vcencrypt
     case vcestimatingtasks
     case vcinfolocalremote
     case vcrestore
@@ -69,7 +68,6 @@ class ViewControllerReference {
     var fileURL: URL?
     // String tasks
     var synchronize: String = "synchronize"
-    var combined: String = "combined"
     var snapshot: String = "snapshot"
     // Mark number of days since last backup
     var marknumberofdayssince: Double = 5
@@ -114,8 +112,6 @@ class ViewControllerReference {
     private var viewControllerSnapshot: NSViewController?
     // All profiles
     private var viewControllerAllProfiles: NSViewController?
-    // Encrypt
-     private var viewControllerEncrypt: NSViewController?
     // Estimating tasks
     private var viewControllerEstimatingTasks: NSViewController?
     // Local and remote info
@@ -163,8 +159,6 @@ class ViewControllerReference {
             return self.viewControllerSnapshot
         case .vcallprofiles:
             return self.viewControllerAllProfiles
-        case .vcencrypt:
-            return self.viewControllerEncrypt
         case .vcestimatingtasks:
             return self.viewControllerEstimatingTasks
         case .vcinfolocalremote:
@@ -206,8 +200,6 @@ class ViewControllerReference {
             self.viewControllerSnapshot = nsviewcontroller
         case .vcallprofiles:
             self.viewControllerAllProfiles = nsviewcontroller
-        case .vcencrypt:
-            self.viewControllerEncrypt = nsviewcontroller
         case .vcestimatingtasks:
             self.viewControllerEstimatingTasks = nsviewcontroller
         case .vcinfolocalremote:
