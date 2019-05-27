@@ -95,22 +95,13 @@ class ViewControllerCopyFilesSource: NSViewController, SetConfigurations, SetDis
 extension ViewControllerCopyFilesSource: NSTableViewDataSource {
     func numberOfRows(in tableView: NSTableView) -> Int {
         guard self.configurations != nil else { return 0 }
-        if self.presentingViewController as? ViewControllerEncrypt != nil {
-            return self.configurations!.getConfigurationsDataSourcecountBackupCombined()?.count ?? 0
-        } else {
-             return self.configurations!.getConfigurationsDataSourcecountBackupSnapshot()?.count ?? 0
-        }
+        return self.configurations!.getConfigurationsDataSourcecountBackupSnapshot()?.count ?? 0
     }
 }
 
 extension ViewControllerCopyFilesSource: NSTableViewDelegate {
     func tableView(_ tableView: NSTableView, objectValueFor tableColumn: NSTableColumn?, row: Int) -> Any? {
-        if self.presentingViewController as? ViewControllerEncrypt != nil {
-            let object: NSDictionary = self.configurations!.getConfigurationsDataSourcecountBackupCombined()![row]
-            return object[tableColumn!.identifier] as? String
-        } else {
-            let object: NSDictionary = self.configurations!.getConfigurationsDataSourcecountBackupSnapshot()![row]
-            return object[tableColumn!.identifier] as? String
-        }
+        let object: NSDictionary = self.configurations!.getConfigurationsDataSourcecountBackupSnapshot()![row]
+        return object[tableColumn!.identifier] as? String
     }
 }

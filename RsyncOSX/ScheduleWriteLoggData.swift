@@ -95,8 +95,7 @@ class ScheduleWriteLoggData: SetConfigurations, ReloadTable, Deselect {
     private func addloggtaskmanuelnew(_ hiddenID: Int, result: String, date: String) -> Bool {
         var loggadded: Bool = false
         if self.configurations!.getResourceConfiguration(hiddenID, resource: .task) == ViewControllerReference.shared.synchronize ||
-            self.configurations!.getResourceConfiguration(hiddenID, resource: .task) == ViewControllerReference.shared.snapshot ||
-            self.configurations!.getResourceConfiguration(hiddenID, resource: .task) == ViewControllerReference.shared.combined {
+            self.configurations!.getResourceConfiguration(hiddenID, resource: .task) == ViewControllerReference.shared.snapshot {
             let masterdict = NSMutableDictionary()
             masterdict.setObject(hiddenID, forKey: "hiddenID" as NSCopying)
             masterdict.setObject("01 Jan 1900 00:00", forKey: "dateStart" as NSCopying)
@@ -128,8 +127,7 @@ class ScheduleWriteLoggData: SetConfigurations, ReloadTable, Deselect {
                 self.schedules![i].schedule == schedule &&
                 self.schedules![i].dateStart == dateStart {
                     if self.configurations!.getResourceConfiguration(hiddenID, resource: .task) == ViewControllerReference.shared.synchronize ||
-                        self.configurations!.getResourceConfiguration(hiddenID, resource: .task) == ViewControllerReference.shared.snapshot ||
-                        self.configurations!.getResourceConfiguration(hiddenID, resource: .task) == ViewControllerReference.shared.combined {
+                        self.configurations!.getResourceConfiguration(hiddenID, resource: .task) == ViewControllerReference.shared.snapshot {
                         logged = true
                         let dict = NSMutableDictionary()
                         var resultannotaded: String?

@@ -21,7 +21,6 @@ enum ProcessTermination {
     case singlequicktask
     case remoteinfotask
     case infosingletask
-    case combinedtask
     case automaticbackup
     case restore
 }

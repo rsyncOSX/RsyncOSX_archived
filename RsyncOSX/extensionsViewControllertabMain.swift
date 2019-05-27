@@ -281,9 +281,6 @@ extension ViewControllertabMain: UpdateProgress {
             weak var processterminationDelegate: UpdateProgress?
             processterminationDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vcinfolocalremote) as? ViewControllerInformationLocalRemote
             processterminationDelegate?.processTermination()
-        case .combinedtask:
-            self.working.stopAnimation(nil)
-            self.executetasknow()
         case .automaticbackup:
             guard self.configurations!.remoteinfotaskworkqueue != nil else { return }
             weak var estimateupdateDelegate: Updateestimating?
@@ -377,8 +374,6 @@ extension ViewControllertabMain: UpdateProgress {
                 outputeverythingDelegate?.reloadtable()
             }
         case .infosingletask:
-            return
-        case .combinedtask:
             return
         case .automaticbackup:
             return
@@ -700,13 +695,6 @@ extension ViewControllertabMain: Reloadsortedandrefresh {
 extension ViewControllertabMain: MenuappChanged {
     func menuappchanged() {
         self.enablemenuappbutton()
-    }
-}
-
-extension ViewControllertabMain: Norcloneconfig {
-    func norcloneconfig() {
-        self.working.stopAnimation(nil)
-        self.info.stringValue = self.information!.info(num: 8)
     }
 }
 

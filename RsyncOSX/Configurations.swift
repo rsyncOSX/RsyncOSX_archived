@@ -121,19 +121,6 @@ class Configurations: ReloadTable, SetSchedules {
         return data
     }
 
-    func getConfigurationsDataSourcecountBackupCombined() -> [NSDictionary]? {
-        var configurations: [Configuration] = self.configurations!.filter({return ($0.task == ViewControllerReference.shared.synchronize ||
-            $0.task == ViewControllerReference.shared.combined )})
-        var data = [NSDictionary]()
-        for i in 0 ..< configurations.count {
-            if configurations[i].offsiteServer.isEmpty == true {
-                configurations[i].offsiteServer = "localhost"
-            }
-            data.append(ConvertOneConfig(config: self.configurations![i]).dict2)
-        }
-        return data
-    }
-
     /// Function returns all Configurations marked for backup.
     /// - returns : array of Configurations
     func getConfigurationsBatch() -> [Configuration] {
@@ -369,22 +356,6 @@ class Configurations: ReloadTable, SetSchedules {
         }
     }
 
-    func setrcloneconnection(index: Int, rclonehiddenID: Int, rcloneprofile: String?) {
-        guard self.configurations![index].task == ViewControllerReference.shared.synchronize ||
-            self.configurations![index].task == ViewControllerReference.shared.combined else { return }
-        self.configurations![index].rclonehiddenID = rclonehiddenID
-        self.configurations![index].rcloneprofile = rcloneprofile
-        self.configurations![index].task = ViewControllerReference.shared.combined
-        self.storageapi!.saveConfigFromMemory()
-    }
-
-    func deletercloneconnection(index: Int) {
-        self.configurations![index].rclonehiddenID = nil
-        self.configurations![index].rcloneprofile = nil
-        self.configurations![index].task = ViewControllerReference.shared.synchronize
-        self.storageapi!.saveConfigFromMemory()
-    }
-
     private func increasesnapshotnum(index: Int) {
         guard self.configurations != nil else { return }
         let num = self.configurations![index].snapshotnum ?? 0
@@ -402,8 +373,7 @@ class Configurations: ReloadTable, SetSchedules {
         guard store != nil else { return }
         for i in 0 ..< store!.count {
             if store![i].task == ViewControllerReference.shared.synchronize ||
-                store![i].task == ViewControllerReference.shared.snapshot ||
-                store![i].task == ViewControllerReference.shared.combined {
+                store![i].task == ViewControllerReference.shared.snapshot {
                     self.configurations!.append(store![i])
                     let rsyncArgumentsOneConfig = ArgumentsOneConfiguration(config: store![i])
                     self.argumentAllConfigurations!.append(rsyncArgumentsOneConfig)
@@ -413,8 +383,7 @@ class Configurations: ReloadTable, SetSchedules {
         var data = [NSMutableDictionary]()
         for i in 0 ..< self.configurations!.count {
             if self.configurations![i].task == ViewControllerReference.shared.synchronize ||
-                self.configurations![i].task == ViewControllerReference.shared.snapshot ||
-                self.configurations![i].task == ViewControllerReference.shared.combined {
+                self.configurations![i].task == ViewControllerReference.shared.snapshot {
                 data.append(ConvertOneConfig(config: self.configurations![i]).dict3)
             }
         }
