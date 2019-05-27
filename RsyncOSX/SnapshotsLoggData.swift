@@ -35,7 +35,7 @@ final class SnapshotsLoggData {
         guard self.snapshotslogs != nil else { return }
         for i in 0 ..< self.snapshotslogs!.count {
             if let dateRun = self.snapshotslogs![i].object(forKey: "dateExecuted") {
-                if let secondssince = self.calculatedays(date: dateRun as? String ?? "") {
+                if let secondssince = self.calculatedays(datestringlocalized: dateRun as? String ?? "") {
                     let dayssincelastbackup = String(format: "%.2f", secondssince/(60*60*24))
                     self.snapshotslogs![i].setObject(dayssincelastbackup, forKey: "days" as NSCopying)
                 }
@@ -72,13 +72,13 @@ final class SnapshotsLoggData {
         self.snapshotslogs = sorted.filter({($0.value(forKey: "snapshotCatalog") as? String)?.isEmpty == false})
     }
 
-    private func calculatedays(date: String) -> Double? {
-        guard date != "" else { return nil }
+    private func calculatedays(datestringlocalized: String) -> Double? {
+        guard datestringlocalized != "" else { return nil }
         let formatter = DateFormatter()
         formatter.formatterBehavior = .behavior10_4
         formatter.dateStyle = .medium
         formatter.timeStyle = .short
-        let lastbackup = formatter.date(from: date)
+        let lastbackup = formatter.date(from: datestringlocalized)
         let seconds: TimeInterval = lastbackup!.timeIntervalSinceNow
         return seconds * (-1)
     }
