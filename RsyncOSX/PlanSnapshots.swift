@@ -65,9 +65,12 @@ class PlanSnapshots {
     }
 
     private func datefromstring(datestring: String) -> Date {
-        let dateformatter = Dateandtime().setDateformat()
+        let formatter = DateFormatter()
+        formatter.formatterBehavior = .behavior10_4
+        formatter.dateStyle = .medium
+        formatter.timeStyle = .short
         guard datestring != "no log" else { return Date()}
-        return dateformatter.date(from: datestring)!
+        return formatter.date(from: datestring)!
     }
 
     private func datecomponentsfromstring(datestring: String?) -> DateComponents {
