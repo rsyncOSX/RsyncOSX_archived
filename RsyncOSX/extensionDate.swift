@@ -70,6 +70,12 @@ extension Date {
         return dateFormatter.string(from: self)
     }
 
+    func monthNameShort() -> String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "MMM"
+        return dateFormatter.string(from: self)
+    }
+
     func month() -> Int {
         let calendar = Calendar.current
         let dateComponent = (calendar as NSCalendar).components(.month, from: self)
