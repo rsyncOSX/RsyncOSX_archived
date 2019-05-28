@@ -239,9 +239,9 @@ extension ViewControllerLoggData: NSTableViewDelegate {
             return
         }
         if sortbystring {
-            self.scheduleloggdata?.loggdata = self.scheduleloggdata!.sortbystring(notsorted: self.scheduleloggdata?.loggdata, sortby: self.filterby!, sortdirection: self.sortedascendigdesending)
+            self.scheduleloggdata?.loggdata = self.scheduleloggdata!.sortbystring(notsortedlist: self.scheduleloggdata?.loggdata, sortby: self.filterby!, sortdirection: self.sortedascendigdesending)
         } else {
-            self.scheduleloggdata?.loggdata = self.scheduleloggdata!.sortbyrundate(notsorted: self.scheduleloggdata?.loggdata, sortdirection: self.sortedascendigdesending)
+            self.scheduleloggdata?.loggdata = self.scheduleloggdata!.sortbyrundate(notsortedlist: self.scheduleloggdata?.loggdata, sortdirection: self.sortedascendigdesending)
         }
         globalMainQueue.async(execute: { () -> Void in
             self.scheduletable.reloadData()
