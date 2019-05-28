@@ -14,7 +14,7 @@ protocol ReloadTableAllProfiles: class {
     func reloadtable()
 }
 
-class ViewControllerAllProfiles: NSViewController, Delay, Abort {
+class ViewControllerAllProfiles: NSViewController, Delay, Abort, Connected {
 
     // Main tableview
     @IBOutlet weak var mainTableView: NSTableView!
@@ -56,6 +56,7 @@ class ViewControllerAllProfiles: NSViewController, Delay, Abort {
         self.outputprocess = OutputProcess()
         let dict = self.allprofiles!.allconfigurationsasdictionary?[self.index!]
         let config = Configuration(dictionary: dict!)
+        guard self.connected(config: config) == true else { return }
         let duargs: DuArgumentsSsh = DuArgumentsSsh(config: config)
         guard duargs.getArguments() != nil || duargs.getCommand() != nil else { return }
         self.working.startAnimation(nil)
