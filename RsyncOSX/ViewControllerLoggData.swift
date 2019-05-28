@@ -160,8 +160,7 @@ extension ViewControllerLoggData: NSSearchFieldDelegate {
             let filterstring = self.search.stringValue
             if filterstring.isEmpty {
                 globalMainQueue.async(execute: { () -> Void in
-                    self.scheduleloggdata = ScheduleLoggData(sortdirection: self.sortedascendigdesending)
-                    self.scheduletable.reloadData()
+                    self.reloadtabledata()
                 })
             } else {
                 globalMainQueue.async(execute: { () -> Void in
@@ -173,10 +172,7 @@ extension ViewControllerLoggData: NSSearchFieldDelegate {
     }
 
     func searchFieldDidEndSearching(_ sender: NSSearchField) {
-        self.index = nil
-        globalMainQueue.async(execute: { () -> Void in
-            self.scheduletable.reloadData()
-        })
+        self.reloadtabledata()
     }
 
 }
@@ -268,7 +264,17 @@ extension ViewControllerLoggData: NSTableViewDelegate {
 extension ViewControllerLoggData: Reloadandrefresh {
 
     func reloadtabledata() {
-        self.scheduleloggdata = ScheduleLoggData(sortdirection: self.sortedascendigdesending)
+        if let index = self.index {
+            let hiddenID = self.configurations?.gethiddenID(index: index) ?? -1
+            let config = self.configurations?.getConfigurations()[index]
+            self.scheduleloggdata = ScheduleLoggData(hiddenID: hiddenID, sortdirection: self.sortedascendigdesending)
+            if self.connected(config: config!) {
+                if config?.task == "snapshot" { self.working.startAnimation(nil) }
+                self.snapshotsloggdata = SnapshotsLoggData(config: config!, insnapshot: false)
+            }
+        } else {
+            self.scheduleloggdata = ScheduleLoggData(sortdirection: self.sortedascendigdesending)
+        }
         globalMainQueue.async(execute: { () -> Void in
             self.scheduletable.reloadData()
         })
