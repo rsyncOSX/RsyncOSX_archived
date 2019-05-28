@@ -427,23 +427,23 @@ protocol Reloadsortedandrefresh {
 
 // Protocol for sorting
 protocol Sorting {
-    func sortbyrundate(notsorted: [NSMutableDictionary]?, sortdirection: Bool) -> [NSMutableDictionary]?
-    func sortbystring(notsorted: [NSMutableDictionary]?, sortby: Sortandfilter, sortdirection: Bool) -> [NSMutableDictionary]?
+    func sortbyrundate(notsortedlist: [NSMutableDictionary]?, sortdirection: Bool) -> [NSMutableDictionary]?
+    func sortbystring(notsortedlist: [NSMutableDictionary]?, sortby: Sortandfilter, sortdirection: Bool) -> [NSMutableDictionary]?
     func filterbystring(filterby: Sortandfilter) -> String
 }
 
 extension Sorting {
-    func sortbyrundate(notsorted: [NSMutableDictionary]?, sortdirection: Bool) -> [NSMutableDictionary]? {
-        guard notsorted != nil else { return nil }
+    func sortbyrundate(notsortedlist: [NSMutableDictionary]?, sortdirection: Bool) -> [NSMutableDictionary]? {
+        guard notsortedlist != nil else { return nil }
         let dateformatter = DateFormatter()
         dateformatter.formatterBehavior = .behavior10_4
         dateformatter.dateStyle = .medium
         dateformatter.timeStyle = .short
-        let sorted = notsorted!.sorted { (dict1, dict2) -> Bool in
-            let date1 = dateformatter.date(from: (dict1.value(forKey: "dateExecuted") as? String) ?? "")
-            let date2 = dateformatter.date(from: (dict2.value(forKey: "dateExecuted") as? String) ?? "")
-            if date1 != nil && date2 != nil {
-                if date1!.timeIntervalSince(date2!) > 0 {
+        let sorted = notsortedlist!.sorted { (dict1, dict2) -> Bool in
+            let date1localized = dateformatter.date(from: (dict1.value(forKey: "dateExecuted") as? String) ?? "")
+            let date2localized = dateformatter.date(from: (dict2.value(forKey: "dateExecuted") as? String) ?? "")
+            if date1localized != nil && date2localized != nil {
+                if date1localized!.timeIntervalSince(date2localized!) > 0 {
                     return sortdirection
                 } else {
                    return !sortdirection
@@ -455,8 +455,8 @@ extension Sorting {
         return sorted
     }
 
-    func sortbystring(notsorted: [NSMutableDictionary]?, sortby: Sortandfilter, sortdirection: Bool) -> [NSMutableDictionary]? {
-        guard notsorted != nil else { return nil }
+    func sortbystring(notsortedlist: [NSMutableDictionary]?, sortby: Sortandfilter, sortdirection: Bool) -> [NSMutableDictionary]? {
+        guard notsortedlist != nil else { return nil }
         var sortstring: String?
         switch sortby {
         case .localcatalog:
@@ -472,7 +472,7 @@ extension Sorting {
         default:
             sortstring = ""
         }
-        let sorted = notsorted!.sorted { (dict1, dict2) -> Bool in
+        let sorted = notsortedlist!.sorted { (dict1, dict2) -> Bool in
             if (dict1.value(forKey: sortstring!) as? String) ?? "" > (dict2.value(forKey: sortstring!) as? String) ?? "" {
                 return sortdirection
             } else {

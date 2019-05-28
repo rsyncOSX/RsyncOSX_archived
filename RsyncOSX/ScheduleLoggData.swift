@@ -65,7 +65,7 @@ final class ScheduleLoggData: SetConfigurations, SetSchedules, Sorting {
                 data.append(logdetail)
             }
         }
-        self.loggdata = self.sortbyrundate(notsorted: data, sortdirection: sortdirection)
+        self.loggdata = self.sortbyrundate(notsortedlist: data, sortdirection: sortdirection)
     }
 
     private func readAndSortAllLoggdata(hiddenID: Int, sortdirection: Bool) {
@@ -95,7 +95,7 @@ final class ScheduleLoggData: SetConfigurations, SetSchedules, Sorting {
                 data.append(logdetail)
             }
         }
-        self.loggdata = self.sortbyrundate(notsorted: data, sortdirection: sortdirection)
+        self.loggdata = self.sortbyrundate(notsortedlist: data, sortdirection: sortdirection)
     }
 
     private func allreadAndSortAllLoggdata() {
@@ -110,7 +110,7 @@ final class ScheduleLoggData: SetConfigurations, SetSchedules, Sorting {
                 data.append(dict)
             }
         }
-        self.loggdata = self.sortbyrundate(notsorted: data, sortdirection: true)
+        self.loggdata = self.sortbyrundate(notsortedlist: data, sortdirection: true)
     }
 
     let compare: (NSMutableDictionary, NSMutableDictionary) -> Bool = { (number1, number2) in
