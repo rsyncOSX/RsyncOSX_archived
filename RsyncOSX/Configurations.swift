@@ -85,7 +85,7 @@ class Configurations: ReloadTable, SetSchedules {
         return self.configurationsDataSource
     }
 
-    /// Function for getting all Configurations marked as backup (not restore)
+    /// Function for getting all Configurations
     /// - parameter none: none
     /// - returns : Array of NSDictionary
     func getConfigurationsDataSourcecountBackup() -> [NSMutableDictionary]? {

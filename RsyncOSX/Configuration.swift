@@ -37,9 +37,6 @@ struct Configuration {
     var dayssincelastbackup: String?
     var markdays: Bool = false
     var profile: String?
-    // If connected to rclone for encrypted backups
-    var rclonehiddenID: Int?
-    var rcloneprofile: String?
     // Snapshots, day to save and last = 1 or every last=0
     var snapdayoffweek: String?
     var snaplast: Int?
@@ -114,12 +111,6 @@ struct Configuration {
         }
         if let sshport = dictionary.object(forKey: "sshport") {
             self.sshport = sshport as? Int
-        }
-        if let rclonehiddenID = dictionary.object(forKey: "rclonehiddenID") {
-            self.rclonehiddenID = rclonehiddenID as? Int
-        }
-        if let rcloneprofile = dictionary.object(forKey: "rcloneprofile") {
-            self.rcloneprofile = rcloneprofile as? String
         }
     }
 
