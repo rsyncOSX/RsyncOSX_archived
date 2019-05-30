@@ -75,12 +75,6 @@ final class ConvertConfigurations: SetConfigurations {
                 dict.setObject(config.snapdayoffweek!, forKey: "snapdayoffweek" as NSCopying)
             }
         }
-        if config.rclonehiddenID != nil {
-            dict.setObject(config.rclonehiddenID!, forKey: "rclonehiddenID" as NSCopying)
-        }
-        if config.rcloneprofile != nil {
-            dict.setObject(config.rcloneprofile!, forKey: "rcloneprofile" as NSCopying)
-        }
         return dict
     }
 
