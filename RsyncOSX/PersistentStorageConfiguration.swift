@@ -40,8 +40,9 @@ final class PersistentStorageConfiguration: ReadWriteDictionary, SetConfiguratio
         var array = [NSDictionary]()
         let configs: [Configuration] = self.configurations!.getConfigurations()
         for i in 0 ..< configs.count {
-            let dict: NSMutableDictionary = ConvertConfigurations().convertconfiguration(index: i)
-            array.append(dict)
+            if let dict: NSMutableDictionary = ConvertConfigurations(index: i).configuration {
+                array.append(dict)
+            }
         }
         self.writeToStore(array: array)
     }
@@ -52,8 +53,9 @@ final class PersistentStorageConfiguration: ReadWriteDictionary, SetConfiguratio
         var array = [NSDictionary]()
         let configs: [Configuration] = self.configurations!.getConfigurations()
         for i in 0 ..< configs.count {
-            let dict: NSMutableDictionary = ConvertConfigurations().convertconfiguration(index: i)
-            array.append(dict)
+            if let dict: NSMutableDictionary = ConvertConfigurations(index: i).configuration {
+                array.append(dict)
+            }
         }
         dict.setObject(self.maxhiddenID + 1, forKey: "hiddenID" as NSCopying)
         dict.removeObject(forKey: "singleFile")

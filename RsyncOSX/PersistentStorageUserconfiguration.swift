@@ -15,8 +15,9 @@ final class PersistentStorageUserconfiguration: ReadWriteDictionary {
 
     // Saving user configuration
     func saveUserconfiguration () {
-        let array: [NSDictionary] = ConvertUserconfiguration().convertUserconfiguration()
-        self.writeToStore(array: array)
+        if let array: [NSDictionary] = ConvertUserconfiguration().userconfiguration {
+            self.writeToStore(array: array)
+        }
     }
 
     // Writing configuration to persistent store
