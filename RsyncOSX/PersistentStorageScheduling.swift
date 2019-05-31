@@ -20,8 +20,9 @@ final class PersistentStorageScheduling: ReadWriteDictionary, SetSchedules {
 
     // Saving Schedules from MEMORY to persistent store
     func savescheduleInMemoryToPersistentStore() {
-        let dicts: [NSDictionary] = ConvertSchedules().convertschedules()
-        self.writeToStore(array: dicts)
+        if let dicts: [NSDictionary] = ConvertSchedules().schedules {
+            self.writeToStore(array: dicts)
+        }
     }
 
     // Writing schedules to persistent store

@@ -8,10 +8,11 @@
 
 import Foundation
 
-final class ConvertSchedules: SetSchedules {
+struct ConvertSchedules: SetSchedules {
 
-    // Converting Schedules from MEMORY to array of NSDictionary
-    func convertschedules() -> [NSDictionary] {
+    var schedules: [NSDictionary]?
+
+    init() {
         var array = [NSDictionary]()
         // Reading Schedules from memory
         if let schedules = self.schedulesDelegate?.getschedulesobject()?.getSchedule() {
@@ -35,6 +36,6 @@ final class ConvertSchedules: SetSchedules {
                 }
             }
         }
-        return array
+        self.schedules = array
     }
 }
