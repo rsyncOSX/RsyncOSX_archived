@@ -88,6 +88,12 @@ struct ConvertUserconfiguration {
         } else {
             dict.setObject("", forKey: "pathrsyncosxsched" as NSCopying)
         }
+        if ViewControllerReference.shared.environment != nil {
+            dict.setObject(ViewControllerReference.shared.environment!, forKey: "environment" as NSCopying)
+        }
+        if ViewControllerReference.shared.environmentvalue != nil {
+            dict.setObject(ViewControllerReference.shared.environmentvalue!, forKey: "environmentvalue" as NSCopying)
+        }
         array.append(dict)
         self.userconfiguration = array
     }
