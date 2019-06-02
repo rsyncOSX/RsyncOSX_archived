@@ -54,6 +54,11 @@ class ProcessCmd: Delay {
             task.launchPath = Verifyrsyncpath().rsyncpath()
         }
         task.arguments = self.arguments
+        // If there are any Environmentvariables like
+        // SSH_AUTH_SOCK": "/Users/user/.gnupg/S.gpg-agent.ssh"
+        if let environment = Environment() {
+            task.environment = environment.environment
+        }
         // Pipe for reading output from Process
         let pipe = Pipe()
         task.standardOutput = pipe

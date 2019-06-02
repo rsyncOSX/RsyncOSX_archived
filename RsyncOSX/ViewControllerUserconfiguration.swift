@@ -167,6 +167,9 @@ class ViewControllerUserconfiguration: NSViewController, NewRsync, SetDismisser,
             guard self.environmentvalue.stringValue.isEmpty == false else { return }
             ViewControllerReference.shared.environment = self.environment.stringValue
             ViewControllerReference.shared.environmentvalue = self.environmentvalue.stringValue
+        } else {
+            ViewControllerReference.shared.environment = nil
+            ViewControllerReference.shared.environmentvalue = nil
         }
     }
 
