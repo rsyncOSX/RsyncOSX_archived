@@ -130,6 +130,9 @@ class ViewControllerReference {
     var activetab: ViewController?
     // Initial start
     var initialstart: Int = 0
+    // Setting environmentvariable for Process object
+    var environment: String?
+    var environmentvalue: String?
 
     func getvcref(viewcontroller: ViewController) -> NSViewController? {
         switch viewcontroller {

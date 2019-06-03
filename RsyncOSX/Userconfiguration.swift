@@ -91,6 +91,12 @@ final class Userconfiguration {
                 ViewControllerReference.shared.automaticexecutelocalvolumes = false
             }
         }
+        if let environment = dict.value(forKey: "environment") as? String {
+             ViewControllerReference.shared.environment = environment
+        }
+        if let environmentvalue = dict.value(forKey: "environmentvalue") as? String {
+            ViewControllerReference.shared.environmentvalue = environmentvalue
+        }
     }
 
     init (userconfigRsyncOSX: [NSDictionary]) {

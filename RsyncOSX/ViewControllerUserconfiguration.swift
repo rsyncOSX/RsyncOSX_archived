@@ -41,6 +41,8 @@ class ViewControllerUserconfiguration: NSViewController, NewRsync, SetDismisser,
     @IBOutlet weak var statuslightpathrsyncosxsched: NSImageView!
     @IBOutlet weak var savebutton: NSButton!
     @IBOutlet weak var automaticexecutelocalvolumes: NSButton!
+    @IBOutlet weak var environment: NSTextField!
+    @IBOutlet weak var environmentvalue: NSTextField!
 
     @IBAction func toggleautomaticexecutelocalvolumes(_ sender: NSButton) {
         if automaticexecutelocalvolumes.state == .on {
@@ -82,6 +84,7 @@ class ViewControllerUserconfiguration: NSViewController, NewRsync, SetDismisser,
             self.setRsyncPath()
             self.setRestorePath()
             self.setmarknumberofdayssince()
+            self.setEnvironment()
             _ = self.storageapi!.saveUserconfiguration()
             if self.reload {
                 self.reloadconfigurationsDelegate?.createandreloadconfigurations()
@@ -157,6 +160,17 @@ class ViewControllerUserconfiguration: NSViewController, NewRsync, SetDismisser,
             ViewControllerReference.shared.restorePath = nil
         }
         self.setdirty()
+    }
+
+    private func setEnvironment() {
+        if self.environment.stringValue.isEmpty == false {
+            guard self.environmentvalue.stringValue.isEmpty == false else { return }
+            ViewControllerReference.shared.environment = self.environment.stringValue
+            ViewControllerReference.shared.environmentvalue = self.environmentvalue.stringValue
+        } else {
+            ViewControllerReference.shared.environment = nil
+            ViewControllerReference.shared.environmentvalue = nil
+        }
     }
 
     private func verifyrsync() {
@@ -269,6 +283,7 @@ class ViewControllerUserconfiguration: NSViewController, NewRsync, SetDismisser,
         self.marknumberofdayssince.delegate = self
         self.pathRsyncOSX.delegate = self
         self.pathRsyncOSXsched.delegate = self
+        self.environment.delegate = self
         self.storageapi = PersistentStorageAPI(profile: nil)
         self.nologging.state = .on
         self.reloadconfigurationsDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllertabMain
@@ -327,6 +342,16 @@ class ViewControllerUserconfiguration: NSViewController, NewRsync, SetDismisser,
         if ViewControllerReference.shared.fulllogging {
             self.fulllogging.state = .on
         }
+        if ViewControllerReference.shared.environment != nil {
+            self.environment.stringValue = ViewControllerReference.shared.environment!
+        } else {
+            self.environment.stringValue = ""
+        }
+        if ViewControllerReference.shared.environmentvalue != nil {
+            self.environmentvalue.stringValue = ViewControllerReference.shared.environmentvalue!
+        } else {
+            self.environmentvalue.stringValue = ""
+        }
     }
 }
 
@@ -352,6 +377,8 @@ extension ViewControllerUserconfiguration: NSTextFieldDelegate {
             case self.pathRsyncOSXsched:
                 self.verifypathtorsyncsched()
                 self.verifypathtorsyncosx()
+            case self.environment:
+                return
             default:
                 return
             }
