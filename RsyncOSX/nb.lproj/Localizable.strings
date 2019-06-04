@@ -65,6 +65,9 @@
    Verify */
 "Date last backup:" = "Dato siste backup:";
 
+/* Schedule details */
+"dateStop" = "";
+
 /* datetime */
 "days" = "dager";
 
@@ -77,6 +80,7 @@
 
 /* Execute
    Logg
+   plan
    Profiles
    Snapshots */
 "Delete" = "Slett";
@@ -99,12 +103,6 @@
 /* Snapshots */
 "Dont change the snapshot num if you don´t know what you are doing..." = "Ikke endre snapshot nummer hvis du ikke vet hva du gjør...";
 
-/* Error rclone */
-"ERROR: no rclone in " = "FEIL: ingen rclone i";
-
-/* Error rclone */
-"ERROR: no rclone in /usr/local/bin" = "FEIL: ingen rclone i /usr/local/bin";
-
 /* Error rsync */
 "ERROR: no rsync in " = "FEIL: ingen rsync i";
 
@@ -114,8 +112,14 @@
 /* Batch */
 "Estimation completed, you can start batch..." = "Estimering utført, start batch...";
 
+/* plan */
+"every" = "alle";
+
 /* Restore */
 "Executing restore..." = "Utfører restore";
+
+/* plan */
+"Friday" = "fredag";
 
 /* Restore */
 "Getting info, please wait..." = "Henter informasjon, vennligst vent...";
@@ -143,6 +147,9 @@
 "Icon by: Zsolt Sándor" = "Icon av: Zsolt Sándor";
 
 /* plan */
+"Keep" = "Behold";
+
+/* plan */
 "last" = "siste";
 
 /* Profile */
@@ -164,6 +171,12 @@
 /* datetime */
 "mins" = "min";
 
+/* plan */
+"Monday" = "mandag";
+
+/* plan */
+"month" = "måned";
+
 /* About */
 "New version available:" = "Ny versjon tilgjengelig:";
 
@@ -178,6 +191,9 @@
 
 /* Copy files */
 "No such local catalog for restore or set it in user config..." = "Ingen slik lokal katalog for restore eller sett den i bruker preferanser...";
+
+/* plan */
+"none" = "ingen";
 
 /* Copy files */
 "Not a remote task, use Finder to copy files..." = "Ikke en ekstern oppgave, bruk Finder for å kopiere filer...";
@@ -230,7 +246,11 @@
 /* Restore */
 "Restore is completed..." = "Restore er utført...";
 
-/* Profile */
+/* plan */
+"Saturday" = "lørdag";
+
+/* Profile
+   Userconfig */
 "Save" = "Lagre";
 
 /* Schedules */
@@ -263,6 +283,9 @@
 /* Restore */
 "Start restore?" = "Start restore?";
 
+/* plan */
+"Sunday" = "søndag";
+
 /* Quickbackup */
 "There seems to be nothing to do..." = "Her er det ikke noe å gjøre...";
 
@@ -275,8 +298,17 @@
 /* plan */
 "this week" = "denne uke";
 
+/* plan */
+"Thursday" = "torsdag";
+
+/* plan */
+"Tuesday" = "tirsdag";
+
 /* Verify */
 "Verifying, please wait..." = "Verifiserer, vennligst vent...";
+
+/* plan */
+"Wednesday" = "onsdag";
 
 /* main */
 "weekly" = "ukentlig";
@@ -286,40 +318,4 @@
 
 /* About */
 "You have the latest ..." = "Du har siste versjon...";
-
-/* plan */
-"Sunday" = "søndag";
-
-/* plan */
-"Monday" = "mandag";
-
-/* plan */
-"Tuesday" = "tirsdag";
-
-/* plan */
-"Wednesday" = "onsdag";
-
-/* plan */
-"Thursday" = "torsdag";
-
-/* plan */
-"Friday" = "fredag";
-
-/* plan */
-"Saturday" = "lørdag";
-
-/* plan */
-"none" = "ingen";
-
-/* plan */
-"every" = "alle";
-
-/* plan */
-"last" = "siste";
-
-/* plan */
-"month" = "måned";
-
-/* plan */
-"Keep" = "Behold";
 
