@@ -43,6 +43,20 @@ class ViewControllerUserconfiguration: NSViewController, NewRsync, SetDismisser,
     @IBOutlet weak var automaticexecutelocalvolumes: NSButton!
     @IBOutlet weak var environment: NSTextField!
     @IBOutlet weak var environmentvalue: NSTextField!
+    @IBOutlet weak var enableenvironment: NSButton!
+
+    @IBAction func toggleenableenvironment(_ sender: NSButton) {
+        switch self.enableenvironment.state {
+        case .on:
+            self.environment.isEnabled = true
+            self.environmentvalue.isEnabled = true
+        case .off:
+            self.environment.isEnabled = false
+            self.environmentvalue.isEnabled = false
+        default:
+            return
+        }
+    }
 
     @IBAction func toggleautomaticexecutelocalvolumes(_ sender: NSButton) {
         if automaticexecutelocalvolumes.state == .on {
