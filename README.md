@@ -8,6 +8,12 @@ Rsync is a file-based synchronization and backup tool. There is no custom soluti
 
 Scheduled tasks are added and deleted within RsyncOSX. Executing the scheduled tasks is by the [menu app](https://github.com/rsyncOSX/RsyncOSXsched). A short [intro to RsyncOSX](https://rsyncosx.github.io/Intro) and full [documentation of RsyncOSX](https://rsyncosx.github.io/AboutRsyncOSX).
 
+### Signing and notarizing
+
+The app is signed with my Apple ID developer certificate and [notarized](https://support.apple.com/en-us/HT202491) by Apple. See [signing and notarizing](https://rsyncosx.github.io/Notarized) for info.
+
+Important: from macOS 10.15 Catalina, notarization is required by default for all software. RsyncOSX is signed and notarized and a new signed and notarized release will be available shortly after release of macOS 10.15. 
+
 ### Changelog
 
 The [Changelog](https://rsyncosx.github.io/Changelog).
@@ -39,10 +45,6 @@ The main view of RsyncOSX.
 ![](images/main1.png)
 Automatic synchronizing in action.
 ![](images/main2.png)
-
-### Signing and notarizing
-
-The app is signed with my Apple ID developer certificate and [notarized](https://support.apple.com/en-us/HT202491) by Apple. See [signing and notarizing](https://rsyncosx.github.io/Notarized) for info.
 
 ### About crash?
 
