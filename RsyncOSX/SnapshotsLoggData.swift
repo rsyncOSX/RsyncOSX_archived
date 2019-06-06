@@ -48,7 +48,7 @@ final class SnapshotsLoggData {
         for i in 0 ..< self.catalogs!.count {
             if self.catalogs![i].contains(".DS_Store") == false {
                 let snapshotnum = "(" + self.catalogs![i].dropFirst(2) + ")"
-                var filter = self.snapshotslogs?.filter({($0.value(forKey: "resultExecuted") as? String ?? "").contains(snapshotnum)})
+                let filter = self.snapshotslogs?.filter({($0.value(forKey: "resultExecuted") as? String ?? "").contains(snapshotnum)})
                 if filter!.count == 1 {
                     filter![0].setObject(self.catalogs![i], forKey: "snapshotCatalog" as NSCopying)
                 } else {
