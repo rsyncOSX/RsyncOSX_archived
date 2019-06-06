@@ -18,14 +18,14 @@ struct Setrsyncpath {
         let fileManager = FileManager.default
         let path: String?
         // If not in /usr/bin or /usr/local/bin, rsyncPath is set if none of the above
-        if let rsyncPath = ViewControllerReference.shared.rsyncPath {
+        if let rsyncPath = ViewControllerReference.shared.localrsyncpath {
             path = rsyncPath + ViewControllerReference.shared.rsync
-        } else if ViewControllerReference.shared.rsyncVer3 {
+        } else if ViewControllerReference.shared.rsyncversion3 {
             path = "/usr/local/bin/" + ViewControllerReference.shared.rsync
         } else {
             path = "/usr/bin/" + ViewControllerReference.shared.rsync
         }
-        guard ViewControllerReference.shared.rsyncVer3 == true else {
+        guard ViewControllerReference.shared.rsyncversion3 == true else {
             ViewControllerReference.shared.norsync = false
             self.setinfoaboutsyncDelegate?.setinfoaboutrsync()
             return
@@ -43,12 +43,12 @@ struct Setrsyncpath {
         if path.isEmpty == false {
             if path.hasSuffix("/") == false {
                 path += "/"
-                ViewControllerReference.shared.rsyncPath = path
+                ViewControllerReference.shared.localrsyncpath = path
             } else {
-                ViewControllerReference.shared.rsyncPath = path
+                ViewControllerReference.shared.localrsyncpath = path
             }
         } else {
-            ViewControllerReference.shared.rsyncPath = nil
+            ViewControllerReference.shared.localrsyncpath = nil
         }
     }
 }

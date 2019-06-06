@@ -19,7 +19,6 @@ class ViewControllertabSchedule: NSViewController, SetConfigurations, SetSchedul
     private var index: Int?
     private var hiddenID: Int?
     private var schedulessorted: ScheduleSortedAndExpand?
-    var tools: Displayrsyncpath?
     var schedule: Scheduletype?
     private var preselectrow: Bool = false
 
@@ -33,13 +32,12 @@ class ViewControllertabSchedule: NSViewController, SetConfigurations, SetSchedul
     @IBOutlet weak var rsyncosxschedbutton: NSButton!
     @IBOutlet weak var menuappisrunning: NSButton!
 
-    var verifyrsyncpath: Displayrsyncpath?
     // Infoobject
     var information: Info?
 
     @IBAction func totinfo(_ sender: NSButton) {
         guard ViewControllerReference.shared.norsync == false else {
-            self.verifyrsyncpath!.noRsync()
+            _ = Norsync()
             return
         }
         self.configurations!.processtermination = .remoteinfotask
@@ -50,7 +48,7 @@ class ViewControllertabSchedule: NSViewController, SetConfigurations, SetSchedul
 
     @IBAction func quickbackup(_ sender: NSButton) {
         guard ViewControllerReference.shared.norsync == false else {
-            self.verifyrsyncpath!.noRsync()
+            _ = Norsync()
             return
         }
         self.openquickbackup()
@@ -155,7 +153,6 @@ class ViewControllertabSchedule: NSViewController, SetConfigurations, SetSchedul
         self.mainTableView.dataSource = self
         self.mainTableView.doubleAction = #selector(ViewControllertabMain.tableViewDoubleClick(sender:))
         ViewControllerReference.shared.setvcref(viewcontroller: .vctabschedule, nsviewcontroller: self)
-        self.tools = Displayrsyncpath()
         self.information = Info()
     }
 

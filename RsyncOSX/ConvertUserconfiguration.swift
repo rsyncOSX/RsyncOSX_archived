@@ -19,13 +19,13 @@ struct ConvertUserconfiguration {
         var minimumlogging: Int?
         var fulllogging: Int?
         var executeinmenuapp: Int?
-        var rsyncPath: String?
-        var restorePath: String?
+        var rsyncpath: String?
+        var restorepath: String?
         var marknumberofdayssince: String?
         var automaticexecutelocalvolumes: Int?
         var array = [NSDictionary]()
 
-        if ViewControllerReference.shared.rsyncVer3 {
+        if ViewControllerReference.shared.rsyncversion3 {
             version3Rsync = 1
         } else {
             version3Rsync = 0
@@ -45,11 +45,11 @@ struct ConvertUserconfiguration {
         } else {
             fulllogging = 0
         }
-        if ViewControllerReference.shared.rsyncPath != nil {
-            rsyncPath = ViewControllerReference.shared.rsyncPath!
+        if ViewControllerReference.shared.localrsyncpath != nil {
+            rsyncpath = ViewControllerReference.shared.localrsyncpath!
         }
         if ViewControllerReference.shared.restorePath != nil {
-            restorePath = ViewControllerReference.shared.restorePath!
+            restorepath = ViewControllerReference.shared.restorePath!
         }
         if ViewControllerReference.shared.executescheduledtasksmenuapp == true {
             executeinmenuapp = 1
@@ -70,11 +70,11 @@ struct ConvertUserconfiguration {
             "marknumberofdayssince": marknumberofdayssince ?? "5.0",
             "executeinmenuapp": executeinmenuapp ?? 1 as Int,
             "automaticexecutelocalvolumes": automaticexecutelocalvolumes! as Int]
-        if rsyncPath != nil {
-            dict.setObject(rsyncPath!, forKey: "rsyncPath" as NSCopying)
+        if rsyncpath != nil {
+            dict.setObject(rsyncpath!, forKey: "rsyncPath" as NSCopying)
         }
-        if restorePath != nil {
-            dict.setObject(restorePath!, forKey: "restorePath" as NSCopying)
+        if restorepath != nil {
+            dict.setObject(restorepath!, forKey: "restorePath" as NSCopying)
         } else {
             dict.setObject("", forKey: "restorePath" as NSCopying)
         }

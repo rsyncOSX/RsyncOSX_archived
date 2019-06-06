@@ -57,11 +57,9 @@ class ViewControllerNewConfigurations: NSViewController, SetConfigurations, VcSc
     @IBOutlet weak var backuptype: NSComboBox!
     @IBOutlet weak var remotecapacitybutton: NSButton!
 
-    var verifyrsyncpath: Displayrsyncpath?
-
     @IBAction func totinfo(_ sender: NSButton) {
         guard ViewControllerReference.shared.norsync == false else {
-            self.verifyrsyncpath!.noRsync()
+            _ = Norsync()
             return
         }
         self.configurations!.processtermination = .remoteinfotask
@@ -72,7 +70,7 @@ class ViewControllerNewConfigurations: NSViewController, SetConfigurations, VcSc
 
     @IBAction func quickbackup(_ sender: NSButton) {
         guard ViewControllerReference.shared.norsync == false else {
-            self.verifyrsyncpath!.noRsync()
+            _ = Norsync()
             return
         }
         self.openquickbackup()
@@ -168,7 +166,6 @@ class ViewControllerNewConfigurations: NSViewController, SetConfigurations, VcSc
         self.viewParameter4.stringValue = self.delete
         self.viewParameter5.stringValue = self.eparam + " " + self.ssh
         self.rsyncdaemon.state = .off
-        if self.verifyrsyncpath == nil { self.verifyrsyncpath = Displayrsyncpath()}
     }
 
     private func initcombox(combobox: NSComboBox, index: Int) {

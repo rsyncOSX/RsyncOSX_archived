@@ -20,7 +20,9 @@ enum RsynccommandDisplay {
 
 struct Displayrsyncpath: SetConfigurations {
 
-    func displayrsynccommand(index: Int, display: RsynccommandDisplay) -> String {
+    var displayrsyncpath: String?
+
+    init(index: Int, display: RsynccommandDisplay) {
         var str: String?
         let config = self.configurations!.getargumentAllConfigurations()[index]
         str = Getrsyncpath().rsyncpath ?? "" + " "
@@ -44,20 +46,6 @@ struct Displayrsyncpath: SetConfigurations {
                 }
             }
         }
-        return str ?? ""
-    }
-
-    func noRsync() {
-        if let path = ViewControllerReference.shared.rsyncPath {
-            let error: String = NSLocalizedString("ERROR: no rsync in", comment: "Error rsync") + " " + path
-            Alerts.showInfo(info: error)
-        } else {
-            let error: String = NSLocalizedString("ERROR: no rsync in /usr/local/bin", comment: "Error rsync")
-            Alerts.showInfo(info: error)
-        }
-    }
-
-    init() {
-
+        self.displayrsyncpath  = str
     }
 }

@@ -12,15 +12,13 @@ import Foundation
 // Reading userconfiguration from file into RsyncOSX
 final class Userconfiguration {
 
-    weak var rsyncchangedDelegate: RsyncIsChanged?
-
     private func readUserconfiguration(dict: NSDictionary) {
         // Another version of rsync
         if let version3rsync = dict.value(forKey: "version3Rsync") as? Int {
             if version3rsync == 1 {
-                ViewControllerReference.shared.rsyncVer3 = true
+                ViewControllerReference.shared.rsyncversion3 = true
             } else {
-                ViewControllerReference.shared.rsyncVer3 = false
+                ViewControllerReference.shared.rsyncversion3 = false
             }
         }
         // Detailed logging
@@ -33,7 +31,7 @@ final class Userconfiguration {
         }
         // Optional path for rsync
         if let rsyncPath = dict.value(forKey: "rsyncPath") as? String {
-            ViewControllerReference.shared.rsyncPath = rsyncPath
+            ViewControllerReference.shared.localrsyncpath = rsyncPath
         }
         // Temporary path for restores single files or directory
         if let restorePath = dict.value(forKey: "restorePath") as? String {
