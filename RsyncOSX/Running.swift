@@ -17,27 +17,7 @@ class Running {
     private var rsyncOSXschedisrunning: Bool = false
     var menuappnoconfig: Bool = true
 
-    private func checkforrunningapps() {
-         // Get all running applications
-        let workspace = NSWorkspace.shared
-        let applications = workspace.runningApplications
-        let rsyncosx = applications.filter({return ($0.bundleIdentifier == self.rsyncOSX)})
-        let rsyncosxschde = applications.filter({return ($0.bundleIdentifier == self.rsyncOSXsched)})
-        if rsyncosx.count > 0 {
-            self.rsyncOSXisrunning = true
-        } else {
-            self.rsyncOSXisrunning = false
-        }
-        if rsyncosxschde.count > 0 {
-            self.rsyncOSXschedisrunning = true
-            ViewControllerReference.shared.menuappisrunning = true
-        } else {
-            self.rsyncOSXschedisrunning = false
-            ViewControllerReference.shared.menuappisrunning = false
-        }
-    }
-
-    func enablemenuappbutton() -> Bool {
+    var enablemenuappbutton: Bool {
         // Check the flags
         guard ViewControllerReference.shared.pathrsyncosxsched != nil else {
             self.menuappnoconfig = true
@@ -57,6 +37,22 @@ class Running {
     }
 
     init() {
-        self.checkforrunningapps()
+        // Get all running applications
+        let workspace = NSWorkspace.shared
+        let applications = workspace.runningApplications
+        let rsyncosx = applications.filter({return ($0.bundleIdentifier == self.rsyncOSX)})
+        let rsyncosxschde = applications.filter({return ($0.bundleIdentifier == self.rsyncOSXsched)})
+        if rsyncosx.count > 0 {
+            self.rsyncOSXisrunning = true
+        } else {
+            self.rsyncOSXisrunning = false
+        }
+        if rsyncosxschde.count > 0 {
+            self.rsyncOSXschedisrunning = true
+            ViewControllerReference.shared.menuappisrunning = true
+        } else {
+            self.rsyncOSXschedisrunning = false
+            ViewControllerReference.shared.menuappisrunning = false
+        }
     }
 }

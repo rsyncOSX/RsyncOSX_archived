@@ -38,7 +38,7 @@ class ViewControllerCopyFiles: NSViewController, SetConfigurations, Delay, VcCop
     @IBOutlet weak var search: NSSearchField!
     @IBOutlet weak var restorebutton: NSButton!
 
-    var verifyrsyncpath: Verifyrsyncpath?
+    var verifyrsyncpath: Displayrsyncpath?
 
     @IBAction func totinfo(_ sender: NSButton) {
         guard ViewControllerReference.shared.norsync == false else {

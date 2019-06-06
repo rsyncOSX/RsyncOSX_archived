@@ -47,7 +47,7 @@ class ViewControllertabMain: NSViewController, ReloadTable, Deselect, VcMain, De
     var singletask: SingleTask?
     // Reference to batch taskobject
     var batchtasks: BatchTask?
-    var verifyrsyncpath: Verifyrsyncpath?
+    var verifyrsyncpath: Displayrsyncpath?
     var tcpconnections: TCPconnections?
     // Delegate function getting batchTaskObject
     weak var batchtasksDelegate: GetNewBatchTask?
@@ -356,7 +356,6 @@ class ViewControllertabMain: NSViewController, ReloadTable, Deselect, VcMain, De
         self.mainTableView.dataSource = self
         self.working.usesThreadedAnimation = true
         ViewControllerReference.shared.setvcref(viewcontroller: .vctabmain, nsviewcontroller: self)
-        _ = RsyncVersionString()
         self.mainTableView.target = self
         self.mainTableView.doubleAction = #selector(ViewControllertabMain.tableViewDoubleClick(sender:))
         self.backupdryrun.state = .on
@@ -383,7 +382,7 @@ class ViewControllertabMain: NSViewController, ReloadTable, Deselect, VcMain, De
         self.rsyncischanged()
         self.displayProfile()
         self.readyforexecution = true
-        if self.verifyrsyncpath == nil { self.verifyrsyncpath = Verifyrsyncpath()}
+        if self.verifyrsyncpath == nil { self.verifyrsyncpath = Displayrsyncpath()}
         if self.tcpconnections == nil { self.tcpconnections = TCPconnections()}
         self.info.stringValue = self.information!.info(num: 0)
         self.delayWithSeconds(0.5) {
@@ -405,7 +404,7 @@ class ViewControllertabMain: NSViewController, ReloadTable, Deselect, VcMain, De
                 return
             }
             let running = Running()
-            guard running.enablemenuappbutton() == true else {
+            guard running.enablemenuappbutton == true else {
                 self.pathtorsyncosxschedbutton.isEnabled = false
                 if running.menuappnoconfig == false {
                     self.menuappisrunning.image = #imageLiteral(resourceName: "green")

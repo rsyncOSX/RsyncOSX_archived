@@ -104,7 +104,7 @@
 "Dont change the snapshot num if you don´t know what you are doing..." = "Ikke endre snapshot nummer hvis du ikke vet hva du gjør...";
 
 /* Error rsync */
-"ERROR: no rsync in " = "FEIL: ingen rsync i";
+"ERROR: no rsync in" = "FEIL: ingen rsync i";
 
 /* Error rsync */
 "ERROR: no rsync in /usr/local/bin" = "FEIL: ingen rsync i /usr/local/bin";

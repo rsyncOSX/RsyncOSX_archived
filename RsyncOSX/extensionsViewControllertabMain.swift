@@ -182,8 +182,6 @@ extension ViewControllertabMain: RsyncIsChanged {
         // Update rsync command in display
         self.showrsynccommandmainview()
         self.setinfoaboutrsync()
-        // Setting shortstring
-        self.rsyncversionshort.stringValue = ViewControllerReference.shared.rsyncversionshort ?? ""
     }
 }
 
@@ -627,6 +625,7 @@ extension ViewControllertabMain: Setinfoaboutrsync {
             self.info.stringValue = self.information!.info(num: 3)
         } else {
             self.info.stringValue = self.information!.info(num: 0)
+            self.rsyncversionshort.stringValue = ViewControllerReference.shared.rsyncversionshort ?? ""
         }
     }
 }

@@ -37,7 +37,7 @@ class ViewControllerSsh: NSViewController, SetConfigurations, VcExecute {
             as? NSViewController)!
     }()
 
-    var verifyrsyncpath: Verifyrsyncpath?
+    var verifyrsyncpath: Displayrsyncpath?
 
     @IBAction func totinfo(_ sender: NSButton) {
         guard ViewControllerReference.shared.norsync == false else {

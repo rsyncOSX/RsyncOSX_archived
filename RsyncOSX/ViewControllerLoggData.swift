@@ -36,7 +36,7 @@ class ViewControllerLoggData: NSViewController, SetConfigurations, SetSchedules,
     @IBOutlet weak var working: NSProgressIndicator!
     @IBOutlet weak var selectbutton: NSButton!
 
-    var verifyrsyncpath: Verifyrsyncpath?
+    var verifyrsyncpath: Displayrsyncpath?
 
     @IBAction func totinfo(_ sender: NSButton) {
         guard ViewControllerReference.shared.norsync == false else {

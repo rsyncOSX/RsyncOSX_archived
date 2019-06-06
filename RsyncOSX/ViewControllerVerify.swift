@@ -49,7 +49,7 @@ class ViewControllerVerify: NSViewController, SetConfigurations, Index, VcExecut
     @IBOutlet weak var remotecatalog: NSTextField!
     @IBOutlet weak var remoteserver: NSTextField!
 
-    var verifyrsyncpath: Verifyrsyncpath?
+    var verifyrsyncpath: Displayrsyncpath?
 
     @IBAction func totinfo(_ sender: NSButton) {
         guard ViewControllerReference.shared.norsync == false else {
@@ -78,7 +78,7 @@ class ViewControllerVerify: NSViewController, SetConfigurations, Index, VcExecut
 
     @IBAction func verify(_ sender: NSButton) {
         guard self.index != nil else { return }
-        self.rsynccommanddisplay.stringValue = Verifyrsyncpath().displayrsynccommand(index: self.index!, display: .verify)
+        self.rsynccommanddisplay.stringValue = Displayrsyncpath().displayrsynccommand(index: self.index!, display: .verify)
         self.verifyradiobutton.state = .on
         self.changedradiobutton.state = .off
         self.gotit.textColor = .white
@@ -97,7 +97,7 @@ class ViewControllerVerify: NSViewController, SetConfigurations, Index, VcExecut
 
     @IBAction func changed(_ sender: NSButton) {
         guard self.index != nil else { return }
-        self.rsynccommanddisplay.stringValue = Verifyrsyncpath().displayrsynccommand(index: self.index!, display: .restore)
+        self.rsynccommanddisplay.stringValue = Displayrsyncpath().displayrsynccommand(index: self.index!, display: .restore)
         self.changedradiobutton.state = .on
         self.verifyradiobutton.state = .off
         self.gotit.textColor = .white
@@ -125,9 +125,9 @@ class ViewControllerVerify: NSViewController, SetConfigurations, Index, VcExecut
             return
         }
         if self.verifyradiobutton.state == .on {
-            self.rsynccommanddisplay.stringValue = Verifyrsyncpath().displayrsynccommand(index: self.index!, display: .verify)
+            self.rsynccommanddisplay.stringValue = Displayrsyncpath().displayrsynccommand(index: self.index!, display: .verify)
         } else {
-            self.rsynccommanddisplay.stringValue = Verifyrsyncpath().displayrsynccommand(index: self.index!, display: .restore)
+            self.rsynccommanddisplay.stringValue = Displayrsyncpath().displayrsynccommand(index: self.index!, display: .restore)
         }
     }
 
