@@ -155,6 +155,8 @@ class ViewControllerUserconfiguration: NSViewController, NewRsync, SetDismisser,
             if rsyncPath.stringValue.hasSuffix("/") == false {
                 rsyncPath.stringValue += "/"
                 ViewControllerReference.shared.rsyncPath = rsyncPath.stringValue
+            } else {
+                 ViewControllerReference.shared.rsyncPath = rsyncPath.stringValue
             }
         } else {
             ViewControllerReference.shared.rsyncPath = nil
