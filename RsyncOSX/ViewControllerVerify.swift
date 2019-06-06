@@ -10,7 +10,7 @@
 import Foundation
 import Cocoa
 
-class ViewControllerVerify: NSViewController, SetConfigurations, Index, VcExecute {
+class ViewControllerVerify: NSViewController, SetConfigurations, Index, VcExecute, Connected {
 
     @IBOutlet weak var outputtable: NSTableView!
     var outputprocess: OutputProcess?
@@ -151,6 +151,12 @@ class ViewControllerVerify: NSViewController, SetConfigurations, Index, VcExecut
         ViewControllerReference.shared.activetab = .vcverify
         self.index = self.index()
         if let index = self.index {
+            let config = self.configurations!.getConfigurations()[index]
+            guard self.connected(config: config) == true else {
+                let dontgotit: String = NSLocalizedString("Seems not to be connected...", comment: "Verify")
+                self.gotit.stringValue = dontgotit
+                return
+            }
             guard index != self.lastindex ?? -1 else { return }
             guard self.estimatedindex ?? -1 != index else { return }
             self.resetinfo()
