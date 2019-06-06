@@ -21,7 +21,6 @@ final class RsyncParametersSingleFilesArguments: ProcessArguments {
 
     private var config: Configuration?
     private var args: [String]?
-    private var command: String?
     private var argDisplay: String?
 
     // Set parameters for rsync
@@ -59,15 +58,13 @@ final class RsyncParametersSingleFilesArguments: ProcessArguments {
                 self.args!.append(rarg)
             }
             self.args!.append(local)
-            // Set command to Process /usr/bin/rysnc or /usr/local/bin/rsync or other set by userconfiguration
-            self.command = Displayrsyncpath().rsyncpath()
         }
     }
 
     private func argumentstodisplay() {
         guard self.args != nil else { return }
         // Prepare the display version of arguments
-        self.argDisplay = self.command! + " "
+        self.argDisplay = Getrsyncpath().rsyncpath ?? "" + " "
         for i in 0 ..< self.args!.count {
             if i == 1 && self.config!.sshport != nil {
                 self.argDisplay = self.argDisplay!  + "\"" + self.args![i] + "\"  "
@@ -87,7 +84,7 @@ final class RsyncParametersSingleFilesArguments: ProcessArguments {
     }
 
     func getCommand() -> String? {
-        return self.command
+        return nil
     }
 
     init(config: Configuration, remoteFile: String?, localCatalog: String?, drynrun: Bool?) {

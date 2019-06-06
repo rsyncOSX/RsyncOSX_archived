@@ -23,7 +23,7 @@ struct Displayrsyncpath: SetConfigurations {
     func displayrsynccommand(index: Int, display: RsynccommandDisplay) -> String {
         var str: String?
         let config = self.configurations!.getargumentAllConfigurations()[index]
-        str = self.rsyncpath() + " "
+        str = Getrsyncpath().rsyncpath ?? "" + " "
         switch display {
         case .synchronize:
             if let count = config.argdryRunDisplay?.count {
@@ -45,19 +45,6 @@ struct Displayrsyncpath: SetConfigurations {
             }
         }
         return str ?? ""
-    }
-
-    // Function returns the correct path for rsync according to configuration set by user or
-    func rsyncpath() -> String {
-        if ViewControllerReference.shared.rsyncVer3 {
-            if ViewControllerReference.shared.rsyncPath == nil {
-                return ViewControllerReference.shared.usrlocalbinrsync
-            } else {
-                return ViewControllerReference.shared.rsyncPath! + ViewControllerReference.shared.rsync
-            }
-        } else {
-            return ViewControllerReference.shared.usrbinrsync
-        }
     }
 
     func noRsync() {

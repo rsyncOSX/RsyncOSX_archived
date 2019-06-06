@@ -9,7 +9,7 @@
 
 import Foundation
 
-struct Rsyncpath {
+struct Setrsyncpath {
 
     weak var setinfoaboutsyncDelegate: Setinfoaboutrsync?
 
@@ -17,8 +17,7 @@ struct Rsyncpath {
         self.setinfoaboutsyncDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllertabMain
         let fileManager = FileManager.default
         let path: String?
-        // If not in /usr/bin or /usr/local/bin
-        // rsyncPath is set if none of the above
+        // If not in /usr/bin or /usr/local/bin, rsyncPath is set if none of the above
         if let rsyncPath = ViewControllerReference.shared.rsyncPath {
             path = rsyncPath + ViewControllerReference.shared.rsync
         } else if ViewControllerReference.shared.rsyncVer3 {

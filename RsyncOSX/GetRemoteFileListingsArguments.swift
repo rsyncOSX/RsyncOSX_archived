@@ -17,7 +17,6 @@ final class GetRemoteFileListingsArguments: ProcessArguments {
 
     private var config: Configuration?
     private var args: [String]?
-    private var command: String?
 
     private func remotearguments(recursive: Bool) {
         if let config = self.config {
@@ -58,16 +57,11 @@ final class GetRemoteFileListingsArguments: ProcessArguments {
     }
 
     func getCommand() -> String? {
-        guard self.command != nil else {
-            return nil
-        }
-        return self.command
+        return nil
     }
 
     init(config: Configuration, recursive: Bool) {
         self.config = config
-        let tools = Displayrsyncpath()
-        self.command = tools.rsyncpath()
         self.args = [String]()
         if config.offsiteServer.isEmpty == false {
             self.remotearguments(recursive: recursive)

@@ -44,14 +44,14 @@ class ProcessCmd: Delay {
     // possible error ouput
     weak var possibleerrorDelegate: ErrorOutput?
 
-    func executeProcess (outputprocess: OutputProcess?) {
+    func executeProcess(outputprocess: OutputProcess?) {
         // Process
         let task = Process()
         // If self.command != nil either alternativ path for rsync or other command than rsync to be executed
         if let command = self.command {
             task.launchPath = command
         } else {
-            task.launchPath = Displayrsyncpath().rsyncpath()
+            task.launchPath = Getrsyncpath().rsyncpath
         }
         task.arguments = self.arguments
         // If there are any Environmentvariables like
