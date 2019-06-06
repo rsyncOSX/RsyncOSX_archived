@@ -219,7 +219,7 @@ class ViewControllertabSchedule: NSViewController, SetConfigurations, SetSchedul
                 return
             }
             let running = Running()
-            guard running.enablemenuappbutton() == true else {
+            guard running.enablemenuappbutton == true else {
                 self.rsyncosxschedbutton.isEnabled = false
                 if running.menuappnoconfig == false {
                     self.menuappisrunning.image = #imageLiteral(resourceName: "green")
