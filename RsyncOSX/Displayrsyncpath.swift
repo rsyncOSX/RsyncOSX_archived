@@ -48,8 +48,8 @@ struct Displayrsyncpath: SetConfigurations {
     }
 
     func noRsync() {
-        if let rsync = ViewControllerReference.shared.rsyncPath {
-            let error: String = NSLocalizedString("ERROR: no rsync in", comment: "Error rsync") + " " + rsync
+        if let path = ViewControllerReference.shared.rsyncPath {
+            let error: String = NSLocalizedString("ERROR: no rsync in", comment: "Error rsync") + " " + path
             Alerts.showInfo(info: error)
         } else {
             let error: String = NSLocalizedString("ERROR: no rsync in /usr/local/bin", comment: "Error rsync")

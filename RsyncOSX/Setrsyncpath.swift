@@ -37,4 +37,18 @@ struct Setrsyncpath {
         }
         self.setinfoaboutsyncDelegate?.setinfoaboutrsync()
     }
+
+    init(path: String) {
+        var path = path
+        if path.isEmpty == false {
+            if path.hasSuffix("/") == false {
+                path += "/"
+                ViewControllerReference.shared.rsyncPath = path
+            } else {
+                ViewControllerReference.shared.rsyncPath = path
+            }
+        } else {
+            ViewControllerReference.shared.rsyncPath = nil
+        }
+    }
 }

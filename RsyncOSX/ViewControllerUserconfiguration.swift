@@ -5,7 +5,7 @@
 //  Created by Thomas Evensen on 30/08/2016.
 //  Copyright © 2016 Thomas Evensen. All rights reserved.
 //
-// swiftlint:disable line_length type_body_length file_length
+// swiftlint:disable line_length type_body_length
 
 import Foundation
 import Cocoa
@@ -73,7 +73,7 @@ class ViewControllerUserconfiguration: NSViewController, NewRsync, SetDismisser,
             if self.rsyncPath.stringValue == "" {
                 ViewControllerReference.shared.rsyncPath = nil
             } else {
-                self.setRsyncPath()
+                _ = Setrsyncpath(path: self.rsyncPath.stringValue)
             }
         } else {
             ViewControllerReference.shared.rsyncVer3 = false
@@ -95,7 +95,7 @@ class ViewControllerUserconfiguration: NSViewController, NewRsync, SetDismisser,
     @IBAction func close(_ sender: NSButton) {
         if self.dirty {
             // Before closing save changed configuration
-            self.setRsyncPath()
+            _ = Setrsyncpath(path: self.rsyncPath.stringValue)
             self.setRestorePath()
             self.setmarknumberofdayssince()
             self.setEnvironment()
@@ -148,20 +148,6 @@ class ViewControllerUserconfiguration: NSViewController, NewRsync, SetDismisser,
                 self.reload = true
             }
         }
-    }
-
-    private func setRsyncPath() {
-        if self.rsyncPath.stringValue.isEmpty == false {
-            if rsyncPath.stringValue.hasSuffix("/") == false {
-                rsyncPath.stringValue += "/"
-                ViewControllerReference.shared.rsyncPath = rsyncPath.stringValue
-            } else {
-                 ViewControllerReference.shared.rsyncPath = rsyncPath.stringValue
-            }
-        } else {
-            ViewControllerReference.shared.rsyncPath = nil
-        }
-        self.setdirty()
     }
 
     private func setRestorePath() {
