@@ -106,7 +106,7 @@
 "ERROR: no rclone in /usr/local/bin" = "错误：no rclone in /usr/local/bin";
 
 /* Error rsync */
-"ERROR: no rsync in " = "错误：no rsync in";
+"ERROR: no rsync in" = "错误：no rsync in";
 
 /* Error rsync */
 "ERROR: no rsync in /usr/local/bin" = "错误：no rsync in /usr/local/bin";

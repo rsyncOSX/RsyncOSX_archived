@@ -5,7 +5,6 @@
 //  Created by Thomas Evensen on 22.07.2017.
 //  Copyright © 2017 Thomas Evensen. All rights reserved.
 //
-//  swiftlint:disable line_length
 
 import Foundation
 
@@ -19,35 +18,7 @@ enum RsynccommandDisplay {
     case verify
 }
 
-final class Verifyrsyncpath: SetConfigurations {
-
-    weak var setinfoaboutsyncDelegate: Setinfoaboutrsync?
-
-    // Function to verify full rsyncpath
-    func verifyrsyncpath() {
-        let fileManager = FileManager.default
-        let path: String?
-        // If not in /usr/bin or /usr/local/bin
-        // rsyncPath is set if none of the above
-        if let rsyncPath = ViewControllerReference.shared.rsyncPath {
-            path = rsyncPath + ViewControllerReference.shared.rsync
-        } else if ViewControllerReference.shared.rsyncVer3 {
-            path = "/usr/local/bin/" + ViewControllerReference.shared.rsync
-        } else {
-            path = "/usr/bin/" + ViewControllerReference.shared.rsync
-        }
-        guard ViewControllerReference.shared.rsyncVer3 == true else {
-            ViewControllerReference.shared.norsync = false
-            self.setinfoaboutsyncDelegate?.setinfoaboutrsync()
-            return
-        }
-        if fileManager.fileExists(atPath: path!) == false {
-            ViewControllerReference.shared.norsync = true
-        } else {
-            ViewControllerReference.shared.norsync = false
-        }
-        self.setinfoaboutsyncDelegate?.setinfoaboutrsync()
-    }
+struct Displayrsyncpath: SetConfigurations {
 
     func displayrsynccommand(index: Int, display: RsynccommandDisplay) -> String {
         var str: String?
@@ -91,7 +62,7 @@ final class Verifyrsyncpath: SetConfigurations {
 
     func noRsync() {
         if let rsync = ViewControllerReference.shared.rsyncPath {
-            let error: String = NSLocalizedString("ERROR: no rsync in ", comment: "Error rsync") + rsync
+            let error: String = NSLocalizedString("ERROR: no rsync in", comment: "Error rsync") + " " + rsync
             Alerts.showInfo(info: error)
         } else {
             let error: String = NSLocalizedString("ERROR: no rsync in /usr/local/bin", comment: "Error rsync")
@@ -100,6 +71,6 @@ final class Verifyrsyncpath: SetConfigurations {
     }
 
     init() {
-        self.setinfoaboutsyncDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllertabMain
+
     }
 }

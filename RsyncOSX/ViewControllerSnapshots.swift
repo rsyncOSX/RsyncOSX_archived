@@ -55,7 +55,7 @@ class ViewControllerSnapshots: NSViewController, SetDismisser, SetConfigurations
     @IBOutlet weak var savebutton: NSButton!
     @IBOutlet weak var selectdayofweek: NSComboBox!
 
-    var verifyrsyncpath: Verifyrsyncpath?
+    var verifyrsyncpath: Displayrsyncpath?
 
     @IBAction func totinfo(_ sender: NSButton) {
         guard ViewControllerReference.shared.norsync == false else {

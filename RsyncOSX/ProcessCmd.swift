@@ -51,7 +51,7 @@ class ProcessCmd: Delay {
         if let command = self.command {
             task.launchPath = command
         } else {
-            task.launchPath = Verifyrsyncpath().rsyncpath()
+            task.launchPath = Displayrsyncpath().rsyncpath()
         }
         task.arguments = self.arguments
         // If there are any Environmentvariables like
