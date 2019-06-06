@@ -37,11 +37,9 @@ class ViewControllerSsh: NSViewController, SetConfigurations, VcExecute {
             as? NSViewController)!
     }()
 
-    var verifyrsyncpath: Displayrsyncpath?
-
     @IBAction func totinfo(_ sender: NSButton) {
         guard ViewControllerReference.shared.norsync == false else {
-            self.verifyrsyncpath!.noRsync()
+            _ = Norsync()
             return
         }
         self.configurations!.processtermination = .remoteinfotask
@@ -52,7 +50,7 @@ class ViewControllerSsh: NSViewController, SetConfigurations, VcExecute {
 
     @IBAction func quickbackup(_ sender: NSButton) {
         guard ViewControllerReference.shared.norsync == false else {
-            self.verifyrsyncpath!.noRsync()
+            _ = Norsync()
             return
         }
         self.openquickbackup()

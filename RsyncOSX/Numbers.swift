@@ -153,7 +153,7 @@ final class Numbers: SetConfigurations {
             let size = numberOfFiles + " files :" + sizeOfFiles + " KB" + " in just a few seconds"
             return size
         }
-        if ViewControllerReference.shared.rsyncVer3 {
+        if ViewControllerReference.shared.rsyncversion3 {
             // ["sent", "409687", "bytes", "", "received", "5331", "bytes", "", "830036.00", "bytes/sec"]
             let newmessage = self.resultRsync!.replacingOccurrences(of: ",", with: "")
             parts = newmessage.components(separatedBy: " ")
@@ -224,7 +224,7 @@ final class Numbers: SetConfigurations {
         // Delete files
         self.delete = self.output!.filter({(($0).contains("Number of deleted files:"))})
         if files!.count == 1 && filesSize!.count == 1 && totfileSize!.count == 1 &&  totfilesNum!.count == 1 {
-            if ViewControllerReference.shared.rsyncVer3 {
+            if ViewControllerReference.shared.rsyncversion3 {
                 self.resultrsyncver3()
                 self.checandadjustknumbers()
             } else {

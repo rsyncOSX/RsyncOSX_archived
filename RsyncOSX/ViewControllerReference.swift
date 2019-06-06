@@ -46,21 +46,22 @@ class ViewControllerReference {
     // Download URL if new version is avaliable
     var URLnewVersion: String?
     // True if version 3.2.1 of rsync in /usr/local/bin
-    var rsyncVer3: Bool = false
+    var rsyncversion3: Bool = false
     // Optional path to rsync
-    var rsyncPath: String?
+    var localrsyncpath: String?
     // No valid rsyncPath - true if no valid rsync is found
     var norsync: Bool = false
+    // rsync command
+    var rsync: String = "rsync"
+    var usrbinrsync: String = "/usr/bin/rsync"
+    var usrlocalbinrsync: String = "/usr/local/bin/rsync"
+    // Where RsyncOSX config files are stored
+    var configpath: String = "/Rsync/"
     // Detailed logging
     var detailedlogging: Bool = true
     // Temporary path for restore
     var restorePath: String?
     var completeoperation: CompleteQuickbackupTask?
-    // rsync command
-    var rsync: String = "rsync"
-    var usrbinrsync: String = "/usr/bin/rsync"
-    var usrlocalbinrsync: String = "/usr/local/bin/rsync"
-    var configpath: String = "/Rsync/"
     // Loggfile
     var minimumlogging: Bool = false
     var fulllogging: Bool = false

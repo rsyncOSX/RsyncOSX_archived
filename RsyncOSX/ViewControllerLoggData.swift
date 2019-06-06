@@ -36,11 +36,9 @@ class ViewControllerLoggData: NSViewController, SetConfigurations, SetSchedules,
     @IBOutlet weak var working: NSProgressIndicator!
     @IBOutlet weak var selectbutton: NSButton!
 
-    var verifyrsyncpath: Displayrsyncpath?
-
     @IBAction func totinfo(_ sender: NSButton) {
         guard ViewControllerReference.shared.norsync == false else {
-            self.verifyrsyncpath!.noRsync()
+            _ = Norsync()
             return
         }
         self.configurations!.processtermination = .remoteinfotask
@@ -51,7 +49,7 @@ class ViewControllerLoggData: NSViewController, SetConfigurations, SetSchedules,
 
     @IBAction func quickbackup(_ sender: NSButton) {
         guard ViewControllerReference.shared.norsync == false else {
-            self.verifyrsyncpath!.noRsync()
+            _ = Norsync()
             return
         }
         self.openquickbackup()

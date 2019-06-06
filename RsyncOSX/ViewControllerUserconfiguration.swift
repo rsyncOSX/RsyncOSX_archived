@@ -69,14 +69,14 @@ class ViewControllerUserconfiguration: NSViewController, NewRsync, SetDismisser,
 
     @IBAction func toggleversion3rsync(_ sender: NSButton) {
         if self.version3rsync.state == .on {
-            ViewControllerReference.shared.rsyncVer3 = true
+            ViewControllerReference.shared.rsyncversion3 = true
             if self.rsyncPath.stringValue == "" {
-                ViewControllerReference.shared.rsyncPath = nil
+                ViewControllerReference.shared.localrsyncpath = nil
             } else {
                 _ = Setrsyncpath(path: self.rsyncPath.stringValue)
             }
         } else {
-            ViewControllerReference.shared.rsyncVer3 = false
+            ViewControllerReference.shared.rsyncversion3 = false
         }
         self.newrsync()
         self.setdirty()
@@ -318,7 +318,7 @@ class ViewControllerUserconfiguration: NSViewController, NewRsync, SetDismisser,
 
     // Function for check and set user configuration
     private func checkUserConfig() {
-        if ViewControllerReference.shared.rsyncVer3 {
+        if ViewControllerReference.shared.rsyncversion3 {
             self.version3rsync.state = .on
         } else {
             self.version3rsync.state = .off
@@ -328,8 +328,8 @@ class ViewControllerUserconfiguration: NSViewController, NewRsync, SetDismisser,
         } else {
             self.detailedlogging.state = .off
         }
-        if ViewControllerReference.shared.rsyncPath != nil {
-            self.rsyncPath.stringValue = ViewControllerReference.shared.rsyncPath!
+        if ViewControllerReference.shared.localrsyncpath != nil {
+            self.rsyncPath.stringValue = ViewControllerReference.shared.localrsyncpath!
         } else {
             self.rsyncPath.stringValue = ""
         }
