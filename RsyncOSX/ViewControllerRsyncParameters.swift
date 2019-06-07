@@ -177,7 +177,7 @@ class ViewControllerRsyncParameters: NSViewController, SetConfigurations, SetDis
         } else {
             self.storageapi = PersistentStorageAPI(profile: nil)
         }
-        var configurations: [Configuration] = self.configurations!.getConfigurations()
+        let configurations: [Configuration] = self.configurations!.getConfigurations()
         if let index = self.index() {
             self.parameters = RsyncParameters(config: configurations[index])
             self.comboBoxValues = parameters!.getComboBoxValues()
