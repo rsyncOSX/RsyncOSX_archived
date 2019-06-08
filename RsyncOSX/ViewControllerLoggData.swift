@@ -25,7 +25,6 @@ class ViewControllerLoggData: NSViewController, SetConfigurations, SetSchedules,
     private var viewispresent: Bool = false
     private var sortedascendigdesending: Bool = true
     typealias Row = (Int, Int)
-    var information: Info?
 
     @IBOutlet weak var scheduletable: NSTableView!
     @IBOutlet weak var search: NSSearchField!
@@ -110,7 +109,6 @@ class ViewControllerLoggData: NSViewController, SetConfigurations, SetSchedules,
         self.sortdirection.image = #imageLiteral(resourceName: "up")
         self.sortedascendigdesending = true
         self.working.usesThreadedAnimation = true
-        self.information = Info()
     }
 
     override func viewDidAppear() {
@@ -125,9 +123,9 @@ class ViewControllerLoggData: NSViewController, SetConfigurations, SetSchedules,
                 if config?.task == "snapshot" { self.working.startAnimation(nil) }
                 self.snapshotsloggdata = SnapshotsLoggData(config: config!, insnapshot: false)
             }
-            self.info.stringValue = self.information!.info2(num: 1)
+            self.info.stringValue = Infologgdata().info(num: 1)
         } else {
-            self.info.stringValue = self.information!.info2(num: 0)
+            self.info.stringValue = Infologgdata().info(num: 0)
             self.scheduleloggdata = ScheduleLoggData(sortdirection: self.sortedascendigdesending)
         }
         self.viewispresent = true
@@ -290,9 +288,9 @@ extension ViewControllerLoggData: ReadLoggdata {
                 if let index = self.index {
                     let hiddenID = self.configurations?.gethiddenID(index: index) ?? -1
                     self.scheduleloggdata = ScheduleLoggData(hiddenID: hiddenID, sortdirection: self.sortedascendigdesending)
-                    self.info.stringValue = self.information!.info2(num: 1)
+                    self.info.stringValue = Infologgdata().info(num: 1)
                 } else {
-                    self.info.stringValue = self.information!.info2(num: 0)
+                    self.info.stringValue = Infologgdata().info(num: 0)
                     self.scheduleloggdata = ScheduleLoggData(sortdirection: self.sortedascendigdesending)
                 }
                 self.scheduletable.reloadData()
