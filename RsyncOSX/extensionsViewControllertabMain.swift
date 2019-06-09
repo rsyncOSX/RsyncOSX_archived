@@ -622,9 +622,9 @@ extension  ViewControllertabMain: GetHiddenID {
 extension ViewControllertabMain: Setinfoaboutrsync {
     internal func setinfoaboutrsync() {
         if ViewControllerReference.shared.norsync == true {
-            self.info.stringValue = self.information!.info(num: 3)
+            self.info.stringValue = Infoexecute().info(num: 3)
         } else {
-            self.info.stringValue = self.information!.info(num: 0)
+            self.info.stringValue = Infoexecute().info(num: 0)
             self.rsyncversionshort.stringValue = ViewControllerReference.shared.rsyncversionshort ?? ""
         }
     }
@@ -632,7 +632,7 @@ extension ViewControllertabMain: Setinfoaboutrsync {
 
 extension ViewControllertabMain: ErrorOutput {
     func erroroutput() {
-        self.info.stringValue = self.information!.info(num: 2)
+        self.info.stringValue = Infoexecute().info(num: 2)
     }
 }
 

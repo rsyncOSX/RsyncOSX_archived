@@ -22,8 +22,6 @@ class ViewControllerCopyFiles: NSViewController, SetConfigurations, Delay, VcCop
     var estimated: Bool = false
     private var restoretabledata: [String]?
     var diddissappear: Bool = false
-    // Infoobject
-    var information: Info?
 
     @IBOutlet weak var numberofrows: NSTextField!
     @IBOutlet weak var server: NSTextField!
@@ -81,7 +79,7 @@ class ViewControllerCopyFiles: NSViewController, SetConfigurations, Delay, VcCop
     // Do the work
     @IBAction func restore(_ sender: NSButton) {
         guard self.remoteCatalog.stringValue.isEmpty == false && self.restorecatalog.stringValue.isEmpty == false else {
-            self.info.stringValue = self.information!.info3(num: 3)
+            self.info.stringValue = Infocopyfiles().info(num: 3)
             return
         }
         guard self.copyFiles != nil else { return }
@@ -122,7 +120,6 @@ class ViewControllerCopyFiles: NSViewController, SetConfigurations, Delay, VcCop
         self.restorecatalog.delegate = self
         self.remoteCatalog.delegate = self
         self.restoretableView.doubleAction = #selector(self.tableViewDoubleClick(sender:))
-        self.information = Info()
     }
 
     override func viewDidAppear() {
@@ -168,9 +165,9 @@ class ViewControllerCopyFiles: NSViewController, SetConfigurations, Delay, VcCop
     private func verifylocalCatalog() {
         let fileManager = FileManager.default
         if fileManager.fileExists(atPath: self.restorecatalog.stringValue) == false {
-            self.info.stringValue = self.information!.info3(num: 1)
+            self.info.stringValue = Infocopyfiles().info(num: 1)
         } else {
-            self.info.stringValue = self.information!.info3(num: 0)
+            self.info.stringValue = Infocopyfiles().info(num: 0)
         }
     }
 
@@ -186,13 +183,13 @@ class ViewControllerCopyFiles: NSViewController, SetConfigurations, Delay, VcCop
     func tableViewSelectionDidChange(_ notification: Notification) {
         let myTableViewFromNotification = (notification.object as? NSTableView)!
         if myTableViewFromNotification == self.restoretableView {
-            self.info.stringValue = self.information!.info3(num: 0)
+            self.info.stringValue = Infocopyfiles().info(num: 0)
             let indexes = myTableViewFromNotification.selectedRowIndexes
             if let index = indexes.first {
                 guard self.restoretabledata != nil else { return }
                 self.remoteCatalog.stringValue = self.restoretabledata![index]
                 guard self.remoteCatalog.stringValue.isEmpty == false && self.restorecatalog.stringValue.isEmpty == false else {
-                    self.info.stringValue = self.information!.info3(num: 3)
+                    self.info.stringValue = Infocopyfiles().info(num: 3)
                     return
                 }
                 self.commandString.stringValue = self.copyFiles!.getCommandDisplayinView(remotefile: self.remoteCatalog.stringValue, localCatalog: self.restorecatalog.stringValue)
@@ -214,10 +211,10 @@ class ViewControllerCopyFiles: NSViewController, SetConfigurations, Delay, VcCop
                 let config = self.configurations!.getConfigurations()[index]
                 guard self.connected(config: config) == true else {
                     self.restorebutton.isEnabled = false
-                    self.info.stringValue = self.information!.info3(num: 4)
+                    self.info.stringValue = Infocopyfiles().info(num: 4)
                     return
                 }
-                self.info.stringValue = self.information!.info3(num: 0)
+                self.info.stringValue = Infocopyfiles().info(num: 0)
                 self.getfiles = false
                 self.restorebutton.title = "Estimate"
                 self.restorebutton.isEnabled = false

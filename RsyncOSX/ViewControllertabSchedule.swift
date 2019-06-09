@@ -32,9 +32,6 @@ class ViewControllertabSchedule: NSViewController, SetConfigurations, SetSchedul
     @IBOutlet weak var rsyncosxschedbutton: NSButton!
     @IBOutlet weak var menuappisrunning: NSButton!
 
-    // Infoobject
-    var information: Info?
-
     @IBAction func totinfo(_ sender: NSButton) {
         guard ViewControllerReference.shared.norsync == false else {
             _ = Norsync()
@@ -96,7 +93,7 @@ class ViewControllertabSchedule: NSViewController, SetConfigurations, SetSchedul
         let dialog: String = NSLocalizedString("Add", comment: "Add schedule")
         let answer = Alerts.dialogOrCancel(question: question, text: text, dialog: dialog)
         if answer {
-            self.info.stringValue = self.information!.info4(num: 2)
+            self.info.stringValue = Infoschedule().info(num: 2)
             let seconds: TimeInterval = self.starttime.dateValue.timeIntervalSinceNow
             let startdate: Date = self.startdate.dateValue.addingTimeInterval(seconds)
             if self.index != nil {
@@ -153,7 +150,6 @@ class ViewControllertabSchedule: NSViewController, SetConfigurations, SetSchedul
         self.mainTableView.dataSource = self
         self.mainTableView.doubleAction = #selector(ViewControllertabMain.tableViewDoubleClick(sender:))
         ViewControllerReference.shared.setvcref(viewcontroller: .vctabschedule, nsviewcontroller: self)
-        self.information = Info()
     }
 
     override func viewDidAppear() {
@@ -162,11 +158,11 @@ class ViewControllertabSchedule: NSViewController, SetConfigurations, SetSchedul
         self.index = self.index()
         if self.index != nil {
             self.hiddenID = self.configurations!.gethiddenID(index: self.index!)
-            self.info.stringValue = self.information!.info4(num: 3)
+            self.info.stringValue = Infoschedule().info(num: 3)
             self.preselectrow = true
         } else {
             self.preselectrow = false
-            self.info.stringValue = self.information!.info4(num: 0)
+            self.info.stringValue = Infoschedule().info(num: 0)
         }
         self.weeklybutton.isEnabled = false
         self.dailybutton.isEnabled = false
@@ -186,7 +182,7 @@ class ViewControllertabSchedule: NSViewController, SetConfigurations, SetSchedul
 
     // setting which table row is selected
     func tableViewSelectionDidChange(_ notification: Notification) {
-        self.info.stringValue = self.information!.info4(num: 0)
+        self.info.stringValue = Infoschedule().info(num: 0)
         self.preselectrow = false
         let myTableViewFromNotification = (notification.object as? NSTableView)!
         let indexes = myTableViewFromNotification.selectedRowIndexes
@@ -220,7 +216,7 @@ class ViewControllertabSchedule: NSViewController, SetConfigurations, SetSchedul
                 self.rsyncosxschedbutton.isEnabled = false
                 if running.menuappnoconfig == false {
                     self.menuappisrunning.image = #imageLiteral(resourceName: "green")
-                    self.info.stringValue = self.information!.info4(num: 5)
+                    self.info.stringValue = Infoschedule().info(num: 5)
                 }
                 return
             }

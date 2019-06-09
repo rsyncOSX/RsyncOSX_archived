@@ -21,6 +21,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         storage = PersistentStorageAPI(profile: nil)
         if let userConfiguration =  storage?.getUserconfiguration(readfromstorage: true) {
             _ = Userconfiguration(userconfigRsyncOSX: userConfiguration)
+        } else {
+             _ = RsyncVersionString()
         }
     }
 

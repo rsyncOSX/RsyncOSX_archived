@@ -366,6 +366,7 @@ extension ViewControllerUserconfiguration: NSTextFieldDelegate {
             case self.rsyncPath:
                 if self.rsyncPath.stringValue.isEmpty == false {
                     self.version3rsync.state = .on
+                    ViewControllerReference.shared.rsyncversion3 = true
                 }
                 self.verifyrsync()
                 self.newrsync()
