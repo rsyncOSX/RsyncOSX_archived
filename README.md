@@ -43,7 +43,7 @@ Fighting bugs are difficult. I am not able to test RsyncOSX for all possible use
 
 The main view of RsyncOSX.
 ![](images/main1.png)
-Automatic synchronizing in action.
+Prepare for synchronizing tasks.
 ![](images/main2.png)
 
 ### About crash?
