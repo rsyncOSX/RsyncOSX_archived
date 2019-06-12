@@ -10,7 +10,7 @@
 import Foundation
 import Cocoa
 
-class ViewControllerQuickBackup: NSViewController, SetDismisser, Abort, Delay {
+class ViewControllerQuickBackup: NSViewController, SetDismisser, Abort, Delay, Setcolor {
 
     var seconds: Int?
     var row: Int?
@@ -63,7 +63,7 @@ class ViewControllerQuickBackup: NSViewController, SetDismisser, Abort, Delay {
         }
         guard self.quickbackup?.sortedlist?.count ?? 0 > 0 else {
             self.completed.isHidden = false
-            self.completed.textColor = .green
+            self.completed.textColor = setcolor(nsviewcontroller: self, color: .green)
             self.completed.stringValue = NSLocalizedString("There seems to be nothing to do...", comment: "Quickbackup")
             self.executing = false
             return
@@ -161,7 +161,7 @@ extension ViewControllerQuickBackup: UpdateProgress {
         self.quickbackup?.processTermination()
         guard self.quickbackup?.stackoftasktobeexecuted != nil else {
             self.completed.isHidden = false
-            self.completed.textColor = .green
+            self.completed.textColor = setcolor(nsviewcontroller: self, color: .green)
             self.working.stopAnimation(nil)
             self.executing = false
             return

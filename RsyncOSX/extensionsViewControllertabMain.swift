@@ -517,7 +517,7 @@ extension ViewControllertabMain: SingleTaskProgress {
             self.dryRunOrRealRun.isHidden = true
             return
         }
-        self.dryRunOrRealRun.textColor = .red
+        self.dryRunOrRealRun.textColor = setcolor(nsviewcontroller: self, color: .red)
         self.dryRunOrRealRun.isHidden = false
         self.dryRunOrRealRun.stringValue = info
     }

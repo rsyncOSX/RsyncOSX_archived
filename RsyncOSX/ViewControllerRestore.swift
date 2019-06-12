@@ -9,7 +9,7 @@
 import Foundation
 import Cocoa
 
-class ViewControllerRestore: NSViewController, SetConfigurations, SetDismisser, Index, Abort {
+class ViewControllerRestore: NSViewController, SetConfigurations, SetDismisser, Index, Abort, Setcolor {
 
     @IBOutlet weak var localCatalog: NSTextField!
     @IBOutlet weak var offsiteCatalog: NSTextField!
@@ -52,7 +52,7 @@ class ViewControllerRestore: NSViewController, SetConfigurations, SetDismisser, 
         if let index = self.index() {
             self.selecttmptorestore.isEnabled = false
             self.estimationcompleted = false
-            self.gotit.textColor = .white
+            self.gotit.textColor = setcolor(nsviewcontroller: self, color: .white)
             let gotit: String = NSLocalizedString("Getting info, please wait...", comment: "Restore")
             self.gotit.stringValue = gotit
             self.working.startAnimation(nil)
@@ -79,7 +79,7 @@ class ViewControllerRestore: NSViewController, SetConfigurations, SetDismisser, 
         let answer = Alerts.dialogOrCancel(question: question, text: text, dialog: dialog)
         if answer {
             if let index = self.index() {
-                self.gotit.textColor = .white
+                self.gotit.textColor = setcolor(nsviewcontroller: self, color: .white)
                 let gotit: String = NSLocalizedString("Executing restore...", comment: "Restore")
                 self.gotit.stringValue = gotit
                 self.restorebutton.isEnabled = false
@@ -161,7 +161,7 @@ class ViewControllerRestore: NSViewController, SetConfigurations, SetDismisser, 
             self.deletefiles.stringValue = infotask.deletefiles!
             self.working.stopAnimation(nil)
             self.restorebutton.isEnabled = true
-            self.gotit.textColor = .green
+            self.gotit.textColor = self.setcolor(nsviewcontroller: self, color: .green)
             let gotit: String = NSLocalizedString("Got it...", comment: "Restore")
             self.gotit.stringValue = gotit
         })
@@ -193,7 +193,7 @@ extension ViewControllerRestore: UpdateProgress {
             guard ViewControllerReference.shared.restorePath != nil else { return }
             self.selecttmptorestore.isEnabled = true
         } else {
-            self.gotit.textColor = .green
+            self.gotit.textColor = setcolor(nsviewcontroller: self, color: .green)
             let gotit: String = NSLocalizedString("Restore is completed...", comment: "Restore")
             self.gotit.stringValue = gotit
             self.restoreprogress.isHidden = true
