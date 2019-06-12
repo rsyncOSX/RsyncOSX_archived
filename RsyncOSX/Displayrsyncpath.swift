@@ -25,7 +25,8 @@ struct Displayrsyncpath: SetConfigurations {
     init(index: Int, display: RsynccommandDisplay) {
         var str: String?
         let config = self.configurations!.getargumentAllConfigurations()[index]
-        str = Getrsyncpath().rsyncpath ?? "" + " "
+        str = Getrsyncpath().rsyncpath ?? ""
+        str = str! + " "
         switch display {
         case .synchronize:
             if let count = config.argdryRunDisplay?.count {
