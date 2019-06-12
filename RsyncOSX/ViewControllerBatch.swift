@@ -34,7 +34,7 @@ extension Attributedestring {
     }
 }
 
-class ViewControllerBatch: NSViewController, SetDismisser, Abort, SetConfigurations {
+class ViewControllerBatch: NSViewController, SetDismisser, Abort, SetConfigurations, Setcolor {
 
     var row: Int?
     var batchTask: BatchTask?
@@ -188,7 +188,7 @@ extension ViewControllerBatch: StartStopProgressIndicator {
         self.estimatingbatch.stopAnimation(nil)
         self.estimatingbatch.isHidden = true
         self.estimatingbatchlabel.stringValue = NSLocalizedString("Estimation completed, you can start batch...", comment: "Batch")
-        self.estimatingbatchlabel.textColor = .green
+        self.estimatingbatchlabel.textColor = setcolor(nsviewcontroller: self, color: .green)
     }
 
     func start() {
@@ -199,7 +199,7 @@ extension ViewControllerBatch: StartStopProgressIndicator {
         self.executeButton.isEnabled = false
         self.estimatingbatchlabel.isHidden = false
         self.estimatingbatchlabel.stringValue = NSLocalizedString("Batchtasks completed, close view...", comment: "Batch")
-        self.estimatingbatchlabel.textColor = .green
+        self.estimatingbatchlabel.textColor = setcolor(nsviewcontroller: self, color: .green)
         self.batchisrunning = false
         globalMainQueue.async(execute: { () -> Void in
             self.mainTableView.reloadData()

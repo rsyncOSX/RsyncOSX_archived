@@ -38,7 +38,7 @@ protocol AllProfileDetails: class {
     func disablereloadallprofiles()
 }
 
-class ViewControllertabMain: NSViewController, ReloadTable, Deselect, VcMain, Delay, FileerrorMessage {
+class ViewControllertabMain: NSViewController, ReloadTable, Deselect, VcMain, Delay, FileerrorMessage, Setcolor {
 
     // Configurations object
     var configurations: Configurations?
@@ -466,11 +466,7 @@ class ViewControllertabMain: NSViewController, ReloadTable, Deselect, VcMain, De
     func displayProfile() {
         weak var localprofileinfo: SetProfileinfo?
         weak var localprofileinfo2: SetProfileinfo?
-        if self.isDarkMode(view: self.view) {
-            self.profilInfo.textColor = .white
-        } else {
-            self.profilInfo.textColor = .black
-        }
+        self.profilInfo.textColor = setcolor(nsviewcontroller: self, color: .white)
         guard self.loadProfileMenu == true else {
             self.profilInfo.stringValue = NSLocalizedString("Profile: please wait...", comment: "Execute")
             return
@@ -486,13 +482,6 @@ class ViewControllertabMain: NSViewController, ReloadTable, Deselect, VcMain, De
         localprofileinfo2?.setprofile(profile: self.profilInfo.stringValue, color: self.profilInfo.textColor!)
         self.TCPButton.isEnabled = true
         self.showrsynccommandmainview()
-    }
-
-    func isDarkMode(view: NSView) -> Bool {
-        if #available(OSX 10.14, *) {
-            return view.effectiveAppearance.bestMatch(from: [.darkAqua, .aqua]) == .darkAqua
-        }
-        return false
     }
 
     // when row is selected
@@ -557,6 +546,53 @@ class ViewControllertabMain: NSViewController, ReloadTable, Deselect, VcMain, De
         })
         if self.allprofilesview {
              self.allprofiledetailsDelegate?.reloadtable()
+        }
+    }
+}
+
+enum Color {
+    case red
+    case white
+    case green
+    case black
+}
+
+protocol Setcolor: class {
+    func setcolor(nsviewcontroller: NSViewController, color: Color) -> NSColor
+}
+
+extension Setcolor {
+
+    private func isDarkMode(view: NSView) -> Bool {
+        if #available(OSX 10.14, *) {
+            return view.effectiveAppearance.bestMatch(from: [.darkAqua, .aqua]) == .darkAqua
+        }
+        return false
+    }
+
+    func setcolor(nsviewcontroller: NSViewController, color: Color) -> NSColor {
+        let darkmode = isDarkMode(view: nsviewcontroller.view)
+        switch color {
+        case .red:
+            return .red
+        case .white:
+            if darkmode {
+                return .white
+            } else {
+                return .black
+            }
+        case .green:
+            if darkmode {
+                return .green
+            } else {
+                return .blue
+            }
+        case .black:
+            if darkmode {
+                return .white
+            } else {
+                return .black
+            }
         }
     }
 }

@@ -10,7 +10,7 @@
 import Foundation
 import Cocoa
 
-class ViewControllerVerify: NSViewController, SetConfigurations, Index, VcExecute, Connected {
+class ViewControllerVerify: NSViewController, SetConfigurations, Index, VcExecute, Connected, Setcolor {
 
     @IBOutlet weak var outputtable: NSTableView!
     var outputprocess: OutputProcess?
@@ -79,7 +79,7 @@ class ViewControllerVerify: NSViewController, SetConfigurations, Index, VcExecut
         self.rsynccommanddisplay.stringValue = Displayrsyncpath(index: self.index!, display: .verify).displayrsyncpath ?? ""
         self.verifyradiobutton.state = .on
         self.changedradiobutton.state = .off
-        self.gotit.textColor = .white
+        self.gotit.textColor = setcolor(nsviewcontroller: self, color: .white)
         let gotit: String = NSLocalizedString("Verifying, please wait...", comment: "Verify")
         self.gotit.stringValue = gotit
         self.enabledisablebuttons(enable: false)
@@ -98,7 +98,7 @@ class ViewControllerVerify: NSViewController, SetConfigurations, Index, VcExecut
         self.rsynccommanddisplay.stringValue = Displayrsyncpath(index: self.index!, display: .restore).displayrsyncpath ?? ""
         self.changedradiobutton.state = .on
         self.verifyradiobutton.state = .off
-        self.gotit.textColor = .white
+        self.gotit.textColor = setcolor(nsviewcontroller: self, color: .white)
         let gotit: String = NSLocalizedString("Computing changed, please wait...", comment: "Verify")
         self.gotit.stringValue = gotit
         self.enabledisablebuttons(enable: false)
@@ -178,7 +178,7 @@ class ViewControllerVerify: NSViewController, SetConfigurations, Index, VcExecut
             self.dayslastbackup.stringValue = self.dayssince +  " " + numberlastbackup
             self.estimateremoteinfo(index: index, local: true)
         } else {
-            self.gotit.textColor = .red
+            self.gotit.textColor = setcolor(nsviewcontroller: self, color: .red)
             let task: String = NSLocalizedString("Please select a task in Execute ...", comment: "Verify")
             self.gotit.stringValue = task
             self.outputprocess = nil
@@ -326,7 +326,7 @@ extension ViewControllerVerify: UpdateProgress {
             self.working.stopAnimation(nil)
             let gotit: String = NSLocalizedString("Completed ...", comment: "Verify")
             self.gotit.stringValue = gotit
-            self.gotit.textColor = .green
+            self.gotit.textColor = setcolor(nsviewcontroller: self, color: .green)
             self.changedbutton.isEnabled = true
             self.verifybutton.isEnabled = true
         }

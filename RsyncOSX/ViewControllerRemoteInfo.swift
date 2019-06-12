@@ -18,7 +18,7 @@ protocol EnableQuicbackupButton: class {
     func enablequickbackupbutton()
 }
 
-class ViewControllerRemoteInfo: NSViewController, SetDismisser, Abort {
+class ViewControllerRemoteInfo: NSViewController, SetDismisser, Abort, Setcolor {
 
     @IBOutlet weak var mainTableView: NSTableView!
     @IBOutlet weak var progress: NSProgressIndicator!
@@ -247,7 +247,7 @@ extension ViewControllerRemoteInfo: UpdateProgress {
             self.progress.stopAnimation(nil)
             self.progress.isHidden = true
             self.count.stringValue = NSLocalizedString("Completed", comment: "Remote info")
-            self.count.textColor = .green
+            self.count.textColor = setcolor(nsviewcontroller: self, color: .green)
             self.remoteinfotask?.selectalltaskswithfilestobackup(deselect: self.selected)
             self.selected = true
             self.selectalltaskswithfilestobackupbutton.isEnabled = true
