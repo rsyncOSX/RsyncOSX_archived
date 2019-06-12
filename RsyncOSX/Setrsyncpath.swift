@@ -11,10 +11,10 @@ import Foundation
 
 struct Setrsyncpath {
 
-    weak var setinfoaboutsyncDelegate: Setinfoaboutrsync?
+    weak var setinfoaboutrsyncDelegate: Setinfoaboutrsync?
 
     init() {
-        self.setinfoaboutsyncDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllertabMain
+        self.setinfoaboutrsyncDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllertabMain
         let fileManager = FileManager.default
         let path: String?
         // If not in /usr/bin or /usr/local/bin, rsyncPath is set if none of the above
@@ -27,7 +27,7 @@ struct Setrsyncpath {
         }
         guard ViewControllerReference.shared.rsyncversion3 == true else {
             ViewControllerReference.shared.norsync = false
-            self.setinfoaboutsyncDelegate?.setinfoaboutrsync()
+            self.setinfoaboutrsyncDelegate?.setinfoaboutrsync()
             return
         }
         if fileManager.fileExists(atPath: path!) == false {
@@ -35,7 +35,7 @@ struct Setrsyncpath {
         } else {
             ViewControllerReference.shared.norsync = false
         }
-        self.setinfoaboutsyncDelegate?.setinfoaboutrsync()
+        self.setinfoaboutrsyncDelegate?.setinfoaboutrsync()
     }
 
     init(path: String) {
