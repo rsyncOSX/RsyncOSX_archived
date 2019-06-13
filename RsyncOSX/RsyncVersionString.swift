@@ -11,21 +11,30 @@ import Foundation
 
 final class RsyncVersionString: ProcessCmd {
 
+    var outputprocess: OutputProcess?
+
     init () {
         super.init(command: nil, arguments: ["--version"])
-        let outputprocess = OutputProcess()
+        self.outputprocess = OutputProcess()
         if ViewControllerReference.shared.norsync == false {
-            self.updateDelegate = nil
-            self.executeProcess(outputprocess: outputprocess)
-            self.delayWithSeconds(0.25) {
-                guard outputprocess.getOutput() != nil else { return }
-                guard outputprocess.getOutput()!.count > 0 else { return }
-                ViewControllerReference.shared.rsyncversionshort = outputprocess.getOutput()![0]
-                ViewControllerReference.shared.rsyncversionstring = outputprocess.getOutput()!.joined(separator: "\n")
-                weak var shortstringDelegate: RsyncIsChanged?
-                shortstringDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllertabMain
-                shortstringDelegate?.rsyncischanged()
-            }
+            self.updateDelegate = self
+            self.executeProcess(outputprocess: self.outputprocess)
         }
+    }
+}
+
+extension RsyncVersionString: UpdateProgress {
+    func processTermination() {
+        guard self.outputprocess?.getOutput() != nil else { return }
+        guard self.outputprocess!.getOutput()!.count > 0 else { return }
+        ViewControllerReference.shared.rsyncversionshort = self.outputprocess!.getOutput()![0]
+        ViewControllerReference.shared.rsyncversionstring = self.outputprocess!.getOutput()!.joined(separator: "\n")
+        weak var shortstringDelegate: RsyncIsChanged?
+        shortstringDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllertabMain
+        shortstringDelegate?.rsyncischanged()
+    }
+
+    func fileHandler() {
+        // none
     }
 }
