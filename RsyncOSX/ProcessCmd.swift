@@ -91,9 +91,9 @@ class ProcessCmd: Delay {
             self.delayWithSeconds(0.5) {
                 self.termination = true
                 self.updateDelegate?.processTermination()
+                NotificationCenter.default.removeObserver(self.notifications_datahandle as Any)
+                NotificationCenter.default.removeObserver(self.notifications_termination as Any)
             }
-            NotificationCenter.default.removeObserver(self.notifications_datahandle as Any)
-            NotificationCenter.default.removeObserver(self.notifications_termination as Any)
         }
         self.processReference = task
         task.launch()
