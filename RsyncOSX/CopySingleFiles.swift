@@ -53,21 +53,6 @@ final class CopySingleFiles: SetConfigurations {
         return self.commandDisplay!
     }
 
-    private func getRemoteFileList() {
-        self.outputprocess = nil
-        self.outputprocess = OutputProcess()
-        self.argumentsObject = CopyFileArguments(task: .rsyncCmdFileListings, config: self.config!, remoteFile: nil,
-                                                 localCatalog: nil, drynrun: nil)
-        self.arguments = self.argumentsObject!.getArguments()
-        self.command = self.argumentsObject!.getCommand()
-        self.process = CommandCopyFiles(command: self.command, arguments: self.arguments)
-        self.process!.executeProcess(outputprocess: self.outputprocess)
-    }
-
-    func setRemoteFileList() {
-        self.remotefilelist = self.outputprocess?.trimoutput(trim: .one)
-    }
-
     func filter(search: String?) -> [String] {
         guard search != nil else {
             if self.remotefilelist != nil {
@@ -84,6 +69,5 @@ final class CopySingleFiles: SetConfigurations {
     init (hiddenID: Int) {
         self.index = self.configurations?.getIndex(hiddenID)
         self.config = self.configurations!.getConfigurations()[self.index!]
-        self.getRemoteFileList()
     }
   }

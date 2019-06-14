@@ -14,11 +14,15 @@ protocol GetSource: class {
     func getSourceindex(index: Int)
 }
 
+protocol Updateremotefilelist: class {
+    func updateremotefilelist()
+}
+
 class ViewControllerCopyFiles: NSViewController, SetConfigurations, Delay, VcCopyFiles, VcSchedule, Connected, VcExecute {
 
     var copyFiles: CopySingleFiles?
+    var remotefilelist: Remotefilelist?
     var rsyncindex: Int?
-    var getfiles: Bool = false
     var estimated: Bool = false
     private var restoretabledata: [String]?
     var diddissappear: Bool = false
@@ -84,7 +88,6 @@ class ViewControllerCopyFiles: NSViewController, SetConfigurations, Delay, VcCop
         }
         guard self.copyFiles != nil else { return }
         self.restorebutton.isEnabled = false
-        self.getfiles = true
         self.working.startAnimation(nil)
         if self.estimated == false {
             self.copyFiles!.executeRsync(remotefile: self.remoteCatalog!.stringValue, localCatalog: self.restorecatalog!.stringValue, dryrun: true)
@@ -156,7 +159,6 @@ class ViewControllerCopyFiles: NSViewController, SetConfigurations, Delay, VcCop
         let answer = Alerts.dialogOrCancel(question: question, text: text, dialog: dialog)
         if answer {
             self.restorebutton.isEnabled = false
-            self.getfiles = true
             self.working.startAnimation(nil)
             self.copyFiles!.executeRsync(remotefile: remoteCatalog!.stringValue, localCatalog: restorecatalog!.stringValue, dryrun: false)
         }
@@ -215,13 +217,13 @@ class ViewControllerCopyFiles: NSViewController, SetConfigurations, Delay, VcCop
                     return
                 }
                 self.info.stringValue = Infocopyfiles().info(num: 0)
-                self.getfiles = false
                 self.restorebutton.title = "Estimate"
                 self.restorebutton.isEnabled = false
                 self.remoteCatalog.stringValue = ""
                 self.rsyncindex = index
                 let hiddenID = self.configurations!.getConfigurationsDataSourcecountBackupSnapshot()![index].value(forKey: "hiddenID") as? Int ?? -1
                 self.copyFiles = CopySingleFiles(hiddenID: hiddenID)
+                self.remotefilelist = Remotefilelist(hiddenID: hiddenID)
                 self.working.startAnimation(nil)
                 self.displayRemoteserver(index: index)
             } else {
@@ -235,9 +237,7 @@ class ViewControllerCopyFiles: NSViewController, SetConfigurations, Delay, VcCop
     }
 
     private func reloadtabledata() {
-        guard self.copyFiles != nil else { return }
         globalMainQueue.async(execute: { () -> Void in
-            self.restoretabledata = self.copyFiles!.filter(search: nil)
             self.restoretableView.reloadData()
         })
     }
@@ -324,16 +324,10 @@ extension ViewControllerCopyFiles: NSTableViewDelegate {
 
 extension ViewControllerCopyFiles: UpdateProgress {
     func processTermination() {
-        if self.getfiles == false {
-            self.copyFiles!.setRemoteFileList()
-            self.reloadtabledata()
-            self.working.stopAnimation(nil)
-        } else {
-            self.restorebutton.title = "Restore"
-            self.working.stopAnimation(nil)
-            self.presentAsSheet(self.viewControllerInformation!)
-            self.restorebutton.isEnabled = true
-        }
+        self.restorebutton.title = "Restore"
+        self.working.stopAnimation(nil)
+        self.presentAsSheet(self.viewControllerInformation!)
+        self.restorebutton.isEnabled = true
         self.copyFiles?.process = nil
     }
 
@@ -385,5 +379,13 @@ extension ViewControllerCopyFiles: OpenQuickBackup {
         globalMainQueue.async(execute: { () -> Void in
             self.presentAsSheet(self.viewControllerQuickBackup!)
         })
+    }
+}
+
+extension ViewControllerCopyFiles: Updateremotefilelist {
+    func updateremotefilelist() {
+        self.restoretabledata = self.remotefilelist?.remotefilelist
+        self.reloadtabledata()
+        self.working.stopAnimation(nil)
     }
 }
