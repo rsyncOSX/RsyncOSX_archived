@@ -235,12 +235,6 @@ class ViewControllerCopyFiles: NSViewController, SetConfigurations, Delay, VcCop
             }
         }
     }
-
-    private func reloadtabledata() {
-        globalMainQueue.async(execute: { () -> Void in
-            self.restoretableView.reloadData()
-        })
-    }
 }
 
 extension ViewControllerCopyFiles: NSSearchFieldDelegate {
@@ -250,12 +244,15 @@ extension ViewControllerCopyFiles: NSSearchFieldDelegate {
             self.delayWithSeconds(0.25) {
                 if self.search.stringValue.isEmpty {
                     globalMainQueue.async(execute: { () -> Void in
-                        self.restoretabledata = self.copyFiles?.filter(search: nil)
-                        self.restoretableView.reloadData()
+                        if let index = self.rsyncindex {
+                            if let hiddenID = self.configurations!.getConfigurationsDataSourcecountBackupSnapshot()![index].value(forKey: "hiddenID") as? Int {
+                                self.remotefilelist = Remotefilelist(hiddenID: hiddenID)
+                            }
+                        }
                     })
                 } else {
                     globalMainQueue.async(execute: { () -> Void in
-                        self.restoretabledata = self.copyFiles?.filter(search: self.search.stringValue)
+                        self.restoretabledata = self.restoretabledata!.filter({$0.contains(self.search.stringValue)})
                         self.restoretableView.reloadData()
                     })
                 }
@@ -274,10 +271,11 @@ extension ViewControllerCopyFiles: NSSearchFieldDelegate {
     }
 
     func searchFieldDidEndSearching(_ sender: NSSearchField) {
-        globalMainQueue.async(execute: { () -> Void in
-            self.restoretabledata = self.copyFiles?.filter(search: nil)
-            self.restoretableView.reloadData()
-        })
+        if let index = self.rsyncindex {
+            if let hiddenID = self.configurations!.getConfigurationsDataSourcecountBackupSnapshot()![index].value(forKey: "hiddenID") as? Int {
+                self.remotefilelist = Remotefilelist(hiddenID: hiddenID)
+            }
+        }
     }
 }
 
@@ -385,7 +383,10 @@ extension ViewControllerCopyFiles: OpenQuickBackup {
 extension ViewControllerCopyFiles: Updateremotefilelist {
     func updateremotefilelist() {
         self.restoretabledata = self.remotefilelist?.remotefilelist
-        self.reloadtabledata()
+        globalMainQueue.async(execute: { () -> Void in
+            self.restoretableView.reloadData()
+        })
         self.working.stopAnimation(nil)
+        self.remotefilelist = nil
     }
 }

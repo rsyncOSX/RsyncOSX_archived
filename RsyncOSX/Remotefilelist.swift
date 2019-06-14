@@ -5,6 +5,7 @@
 //  Created by Thomas Evensen on 14/06/2019.
 //  Copyright © 2019 Thomas Evensen. All rights reserved.
 //
+// swiftlint:disable line_length
 
 import Foundation
 
@@ -38,6 +39,6 @@ extension Remotefilelist: UpdateProgress {
     }
 
     func fileHandler() {
-        //
+        // nothing
     }
 }

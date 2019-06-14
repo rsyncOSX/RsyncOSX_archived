@@ -53,19 +53,6 @@ final class CopySingleFiles: SetConfigurations {
         return self.commandDisplay!
     }
 
-    func filter(search: String?) -> [String] {
-        guard search != nil else {
-            if self.remotefilelist != nil {
-                return self.remotefilelist!
-            } else { return [""] }
-        }
-        if search!.isEmpty == false {
-            return self.remotefilelist!.filter({$0.contains(search!)})
-        } else {
-            return self.remotefilelist!
-        }
-    }
-
     init (hiddenID: Int) {
         self.index = self.configurations?.getIndex(hiddenID)
         self.config = self.configurations!.getConfigurations()[self.index!]
