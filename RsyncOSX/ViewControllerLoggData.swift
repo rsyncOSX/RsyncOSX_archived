@@ -138,6 +138,7 @@ class ViewControllerLoggData: NSViewController, SetConfigurations, SetSchedules,
     override func viewDidDisappear() {
         super.viewDidDisappear()
         self.scheduleloggdata = nil
+        self.snapshotsloggdata = nil
         self.viewispresent = false
         self.working.stopAnimation(nil)
         self.selectbutton.state = .off
