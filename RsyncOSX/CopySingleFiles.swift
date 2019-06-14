@@ -57,4 +57,5 @@ final class CopySingleFiles: SetConfigurations {
         self.index = self.configurations?.getIndex(hiddenID)
         self.config = self.configurations!.getConfigurations()[self.index!]
     }
+
   }
