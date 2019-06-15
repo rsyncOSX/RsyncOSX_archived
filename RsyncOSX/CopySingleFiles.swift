@@ -5,6 +5,7 @@
 //  Created by Thomas Evensen on 12/09/2016.
 //  Copyright © 2016 Thomas Evensen. All rights reserved.
 //
+// swiftlint:disable line_length
 
 import Foundation
 
@@ -12,12 +13,9 @@ final class CopySingleFiles: SetConfigurations {
 
     private var index: Int?
     private var config: Configuration?
-    private var remotefilelist: [String]?
-    private var arguments: [String]?
-    private var command: String?
     var argumentsObject: CopyFileArguments?
     private var commandDisplay: String?
-    var process: CommandCopyFiles?
+    var process: ProcessCmd?
     var outputprocess: OutputProcess?
 
     func getOutput() -> [String] {
@@ -30,18 +28,20 @@ final class CopySingleFiles: SetConfigurations {
     }
 
     func executeRsync(remotefile: String, localCatalog: String, dryrun: Bool) {
+        var arguments: [String]?
         guard self.config != nil else { return }
         if dryrun {
             self.argumentsObject = CopyFileArguments(task: .rsyncCmd, config: self.config!, remoteFile: remotefile,
                                                      localCatalog: localCatalog, drynrun: true)
-            self.arguments = self.argumentsObject!.getArguments()
+            arguments = self.argumentsObject!.getArguments()
         } else {
             self.argumentsObject = CopyFileArguments(task: .rsyncCmd, config: self.config!, remoteFile: remotefile,
                                                      localCatalog: localCatalog, drynrun: false)
-            self.arguments = self.argumentsObject!.getArguments()
+            arguments = self.argumentsObject!.getArguments()
         }
         self.outputprocess = OutputProcess()
-        self.process = CommandCopyFiles(command: nil, arguments: self.arguments)
+        self.process = ProcessCmd(command: nil, arguments: arguments)
+        self.process?.updateDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vccopyfiles) as? ViewControllerCopyFiles
         self.process!.executeProcess(outputprocess: self.outputprocess)
     }
 
