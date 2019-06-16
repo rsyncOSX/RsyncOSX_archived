@@ -384,7 +384,7 @@ class Configurations: ReloadTable, SetSchedules {
         for i in 0 ..< self.configurations!.count {
             if self.configurations![i].task == ViewControllerReference.shared.synchronize ||
                 self.configurations![i].task == ViewControllerReference.shared.snapshot {
-                data.append(ConvertOneConfig(config: self.configurations![i]).dict3)
+                data.append(ConvertOneConfig(config: self.configurations![i]).dict)
             }
         }
         self.configurationsDataSource = data
