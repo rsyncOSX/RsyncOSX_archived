@@ -32,6 +32,7 @@ class ViewControllerAllProfiles: NSViewController, Delay, Abort, Connected {
     private var index: Int?
     private var outputprocess: OutputProcess?
     private var process: Process?
+    private var selectedprofile: String?
 
     weak var allprofiledetailsdelegata: AllProfileDetails?
 
@@ -48,6 +49,23 @@ class ViewControllerAllProfiles: NSViewController, Delay, Abort, Connected {
             self.sortedascendigdesending = true
             self.sortdirection.image = #imageLiteral(resourceName: "up")
         }
+    }
+
+    @IBAction func selectprofile(_ sender: NSButton) {
+        weak var newProfileDelegate: NewProfile?
+        weak var snapshotnewProfileDelegate: NewProfile?
+        weak var copyfilesnewProfileDelegate: NewProfile?
+        guard self.selectedprofile != nil else { return }
+        newProfileDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllertabMain
+        snapshotnewProfileDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vcsnapshot) as? ViewControllerSnapshots
+        copyfilesnewProfileDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vccopyfiles) as? ViewControllerCopyFiles
+        if self.selectedprofile == NSLocalizedString("Default profile", comment: "default profile") {
+            newProfileDelegate?.newProfile(profile: nil)
+        } else {
+            newProfileDelegate?.newProfile(profile: self.selectedprofile)
+        }
+        snapshotnewProfileDelegate?.newProfile(profile: nil)
+        copyfilesnewProfileDelegate?.newProfile(profile: nil)        
     }
 
     private func getremotesizes() {
@@ -157,8 +175,10 @@ extension ViewControllerAllProfiles: NSTableViewDelegate, Attributedestring {
         let indexes = myTableViewFromNotification.selectedRowIndexes
         if let index = indexes.first {
             self.index = index
+            self.selectedprofile = self.allprofiles!.allconfigurationsasdictionary![index].value(forKey: "profile") as? String
         } else {
             self.index = nil
+            self.selectedprofile = nil
         }
         var sortbystring = true
         self.column = column
