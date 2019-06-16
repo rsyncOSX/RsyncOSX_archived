@@ -52,20 +52,7 @@ class ViewControllerAllProfiles: NSViewController, Delay, Abort, Connected {
     }
 
     @IBAction func selectprofile(_ sender: NSButton) {
-        weak var newProfileDelegate: NewProfile?
-        weak var snapshotnewProfileDelegate: NewProfile?
-        weak var copyfilesnewProfileDelegate: NewProfile?
-        guard self.selectedprofile != nil else { return }
-        newProfileDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllertabMain
-        snapshotnewProfileDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vcsnapshot) as? ViewControllerSnapshots
-        copyfilesnewProfileDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vccopyfiles) as? ViewControllerCopyFiles
-        if self.selectedprofile == NSLocalizedString("Default profile", comment: "default profile") {
-            newProfileDelegate?.newProfile(profile: nil)
-        } else {
-            newProfileDelegate?.newProfile(profile: self.selectedprofile)
-        }
-        snapshotnewProfileDelegate?.newProfile(profile: nil)
-        copyfilesnewProfileDelegate?.newProfile(profile: nil)        
+        _ = Selectprofile(profile: self.selectedprofile)
     }
 
     private func getremotesizes() {
