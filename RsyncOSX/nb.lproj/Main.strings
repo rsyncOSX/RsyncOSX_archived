@@ -25,6 +25,9 @@
 /* Class = "NSButtonCell"; title = "Close"; ObjectID = "1SA-wM-7Lh"; */
 "1SA-wM-7Lh.title" = "Lukk";
 
+/* Class = "NSButtonCell"; title = "Profile"; ObjectID = "1Sk-ep-KA9"; */
+"1Sk-ep-KA9.title" = "Profil";
+
 /* Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "1SO-6i-hws"; */
 "1SO-6i-hws.title" = "Text Cell";
 
@@ -252,9 +255,6 @@
 
 /* Class = "NSButtonCell"; title = "Rsa public key is found."; ObjectID = "a0m-Z1-grn"; */
 "a0m-Z1-grn.title" = "Rsa offentlig nøkkel";
-
-/* Class = "NSTableColumn"; headerCell.title = "Days"; ObjectID = "Aa2-8Q-PPo"; */
-"Aa2-8Q-PPo.headerCell.title" = "Dager";
 
 /* Class = "NSMenuItem"; title = "Open"; ObjectID = "aCU-js-shc"; */
 "aCU-js-shc.title" = "Open";
@@ -1587,4 +1587,7 @@
 
 /* Class = "NSTableColumn"; headerCell.title = "Remote catalog"; ObjectID = "zzK-ZO-wvj"; */
 "zzK-ZO-wvj.headerCell.title" = "Ekstern katalog";
+
+/* Class = "NSTableColumn"; headerCell.title = "Days"; ObjectID = "Aa2-8Q-PPo"; */
+"Aa2-8Q-PPo.headerCell.title" = "Dager";
 

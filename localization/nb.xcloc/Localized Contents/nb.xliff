@@ -27,7 +27,8 @@
       </trans-unit>
       <trans-unit id="1DK-sF-JKV.title">
         <source>Logging</source>
-        <note>Class = "NSBox"; title = "Logging"; ObjectID = "1DK-sF-JKV";</note><target>Logging</target>
+        <target>Logging</target>
+        <note>Class = "NSBox"; title = "Logging"; ObjectID = "1DK-sF-JKV";</note>
       </trans-unit>
       <trans-unit id="1Mb-0q-Dwi.title">
         <source>New version available:</source>
@@ -43,6 +44,10 @@
         <source>Text Cell</source>
         <target>Text Cell</target>
         <note>Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "1SO-6i-hws";</note>
+      </trans-unit>
+      <trans-unit id="1Sk-ep-KA9.title">
+        <source>Profile</source>
+        <note>Class = "NSButtonCell"; title = "Profile"; ObjectID = "1Sk-ep-KA9";</note><target>Profil</target>
       </trans-unit>
       <trans-unit id="1Xq-6O-MUE.label">
         <source>All</source>
@@ -1556,7 +1561,8 @@
       </trans-unit>
       <trans-unit id="YmB-7A-vYE.title">
         <source>Environment</source>
-        <note>Class = "NSBox"; title = "Environment"; ObjectID = "YmB-7A-vYE";</note><target>Shell variabel</target>
+        <target>Shell variabel</target>
+        <note>Class = "NSBox"; title = "Environment"; ObjectID = "YmB-7A-vYE";</note>
       </trans-unit>
       <trans-unit id="Z8Z-vX-Z7f.title">
         <source>Table View Cell</source>
@@ -1955,7 +1961,8 @@
       </trans-unit>
       <trans-unit id="hpD-hN-6Xb.title">
         <source>Enable environment</source>
-        <note>Class = "NSButtonCell"; title = "Enable environment"; ObjectID = "hpD-hN-6Xb";</note><target>Åpne shell variable</target>
+        <target>Åpne shell variable</target>
+        <note>Class = "NSButtonCell"; title = "Enable environment"; ObjectID = "hpD-hN-6Xb";</note>
       </trans-unit>
       <trans-unit id="hq8-Fq-pip.title">
         <source>Check dsa</source>
@@ -2834,8 +2841,8 @@
         <target>Ikke endre snapshot nummer hvis du ikke vet hva du gjør...</target>
         <note>Snapshots</note>
       </trans-unit>
-      <trans-unit id="ERROR: no rsync in ">
-        <source>ERROR: no rsync in </source>
+      <trans-unit id="ERROR: no rsync in">
+        <source>ERROR: no rsync in</source>
         <target>FEIL: ingen rsync i</target>
         <note>Error rsync</note>
       </trans-unit>
@@ -3035,7 +3042,8 @@
       <trans-unit id="Seems not to be connected...">
         <source>Seems not to be connected...</source>
         <target>Synes ikke å være tilgjengelig...</target>
-        <note>Copy files</note>
+        <note>Copy files
+   Verify</note>
       </trans-unit>
       <trans-unit id="Select a task....">
         <source>Select a task....</source>
@@ -3119,7 +3127,8 @@
       </trans-unit>
       <trans-unit id="dateStop">
         <source>dateStop</source>
-        <note>Schedule details</note><target></target>
+        <target/>
+        <note>Schedule details</note>
       </trans-unit>
       <trans-unit id="days">
         <source>days</source>

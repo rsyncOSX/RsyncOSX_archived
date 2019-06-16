@@ -25,6 +25,10 @@
         <target>Text Cell</target>
         <note>Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "0f6-kk-e9f";</note>
       </trans-unit>
+      <trans-unit id="1DK-sF-JKV.title">
+        <source>Logging</source>
+        <note>Class = "NSBox"; title = "Logging"; ObjectID = "1DK-sF-JKV";</note>
+      </trans-unit>
       <trans-unit id="1Mb-0q-Dwi.title">
         <source>New version available:</source>
         <target>新版本：</target>
@@ -39,6 +43,10 @@
         <source>Text Cell</source>
         <target>Text Cell</target>
         <note>Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "1SO-6i-hws";</note>
+      </trans-unit>
+      <trans-unit id="1Sk-ep-KA9.title">
+        <source>Profile</source>
+        <note>Class = "NSButtonCell"; title = "Profile"; ObjectID = "1Sk-ep-KA9";</note><target>简介</target>
       </trans-unit>
       <trans-unit id="1Xq-6O-MUE.label">
         <source>All</source>
@@ -539,11 +547,6 @@
         <target>Text Cell</target>
         <note>Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "C7v-tI-RMe";</note>
       </trans-unit>
-      <trans-unit id="C79-QW-Wwe.title">
-        <source>Reset</source>
-        <target>重启</target>
-        <note>Class = "NSButtonCell"; title = "Reset"; ObjectID = "C79-QW-Wwe";</note>
-      </trans-unit>
       <trans-unit id="CCB-zy-XDh.title">
         <source>Error : no rsync in path</source>
         <target>错误：路径中没有rsync</target>
@@ -674,11 +677,6 @@
         <target>救命</target>
         <note>Class = "NSMenu"; title = "Help"; ObjectID = "F2S-fz-NVQ";</note>
       </trans-unit>
-      <trans-unit id="F3S-S0-DIg.headerCell.title">
-        <source>Con</source>
-        <target>精读</target>
-        <note>Class = "NSTableColumn"; headerCell.title = "Con"; ObjectID = "F3S-S0-DIg";</note>
-      </trans-unit>
       <trans-unit id="F9T-gx-oeJ.title">
         <source>configuration ID:</source>
         <target>配置ID：</target>
@@ -758,11 +756,6 @@
         <source>Remote catalog</source>
         <target>远程目录</target>
         <note>Class = "NSTableColumn"; headerCell.title = "Remote catalog"; ObjectID = "G43-jD-Ptq";</note>
-      </trans-unit>
-      <trans-unit id="GEV-PH-o2z.headerCell.title">
-        <source>Local catalog</source>
-        <target>本地目录</target>
-        <note>Class = "NSTableColumn"; headerCell.title = "Local catalog"; ObjectID = "GEV-PH-o2z";</note>
       </trans-unit>
       <trans-unit id="GF9-Lf-PIQ.headerCell.title">
         <source>Remote server</source>
@@ -848,16 +841,6 @@
         <source>Cut</source>
         <target>剪切</target>
         <note>Class = "NSMenuItem"; title = "Cut"; ObjectID = "Hah-L7-Bvj";</note>
-      </trans-unit>
-      <trans-unit id="Hpz-ZU-Eny.title">
-        <source>Text Cell</source>
-        <target>Text Cell</target>
-        <note>Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "Hpz-ZU-Eny";</note>
-      </trans-unit>
-      <trans-unit id="Hsf-Id-DQu.title">
-        <source>Remote server:</source>
-        <target>远程服务器：</target>
-        <note>Class = "NSTextFieldCell"; title = "Remote server:"; ObjectID = "Hsf-Id-DQu";</note>
       </trans-unit>
       <trans-unit id="I5D-Dq-PRZ.title">
         <source>Text Cell</source>
@@ -959,11 +942,6 @@
         <target>远程信息</target>
         <note>Class = "NSBox"; title = "Remote info"; ObjectID = "KIJ-hF-wBF";</note>
       </trans-unit>
-      <trans-unit id="KJd-Dr-12s.title">
-        <source>Local catalog:</source>
-        <target>本地目录：</target>
-        <note>Class = "NSTextFieldCell"; title = "Local catalog:"; ObjectID = "KJd-Dr-12s";</note>
-      </trans-unit>
       <trans-unit id="Kd2-mp-pUS.title">
         <source>Show All</source>
         <target>显示所有</target>
@@ -1009,11 +987,6 @@
         <target>关</target>
         <note>Class = "NSButtonCell"; title = "Close"; ObjectID = "LNh-Ch-4lY";</note>
       </trans-unit>
-      <trans-unit id="Ldp-hj-0Qe.title">
-        <source>Text Cell</source>
-        <target>Text Cell</target>
-        <note>Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "Ldp-hj-0Qe";</note>
-      </trans-unit>
       <trans-unit id="Lkc-8f-opa.title">
         <source>Remote username:</source>
         <target>远程用户名：</target>
@@ -1054,11 +1027,6 @@
         <target>估计进度</target>
         <note>Class = "NSViewController"; title = "Estimating progress"; ObjectID = "Ml3-CP-4eZ";</note>
       </trans-unit>
-      <trans-unit id="Mlk-V8-rVE.title">
-        <source>Encrypt</source>
-        <target>加密</target>
-        <note>Class = "NSViewController"; title = "Encrypt"; ObjectID = "Mlk-V8-rVE";</note>
-      </trans-unit>
       <trans-unit id="MmU-sA-BEQ.title">
         <source>output</source>
         <target>产量</target>
@@ -1093,11 +1061,6 @@
         <source>Table View Cell</source>
         <target>表视图单元格</target>
         <note>Class = "NSTextFieldCell"; title = "Table View Cell"; ObjectID = "NQS-NB-OI2";</note>
-      </trans-unit>
-      <trans-unit id="Nar-BR-J2v.title">
-        <source>RcloneOSX config</source>
-        <target>RcloneOSX配置</target>
-        <note>Class = "NSBox"; title = "RcloneOSX config"; ObjectID = "Nar-BR-J2v";</note>
       </trans-unit>
       <trans-unit id="Nbe-Ck-Oeu.title">
         <source>Delete files:</source>
@@ -1334,11 +1297,6 @@
         <target>上次运行</target>
         <note>Class = "NSTableColumn"; headerCell.title = "Last run"; ObjectID = "STf-VO-dOL";</note>
       </trans-unit>
-      <trans-unit id="SUC-MM-CCI.title">
-        <source>RsyncOSX config</source>
-        <target>RsyncOSX配置</target>
-        <note>Class = "NSBox"; title = "RsyncOSX config"; ObjectID = "SUC-MM-CCI";</note>
-      </trans-unit>
       <trans-unit id="SWF-DA-TlU.headerCell.title">
         <source>Size (kB)</source>
         <target>大小（KB）</target>
@@ -1374,11 +1332,6 @@
         <target>产量</target>
         <note>Class = "NSTableColumn"; headerCell.title = "Output"; ObjectID = "TG2-kC-9mp";</note>
       </trans-unit>
-      <trans-unit id="TPL-u8-ah1.title">
-        <source>Text Cell</source>
-        <target>Text Cell</target>
-        <note>Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "TPL-u8-ah1";</note>
-      </trans-unit>
       <trans-unit id="TTa-S0-fjX.title">
         <source>Numbers remote</source>
         <target>远程数量</target>
@@ -1408,11 +1361,6 @@
         <source>Profile :</source>
         <target>简介：</target>
         <note>Class = "NSTextFieldCell"; title = "Profile :"; ObjectID = "TqG-6l-QwU";</note>
-      </trans-unit>
-      <trans-unit id="Tz9-L8-6PV.title">
-        <source>Text Cell</source>
-        <target>Text Cell</target>
-        <note>Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "Tz9-L8-6PV";</note>
       </trans-unit>
       <trans-unit id="U4F-fe-c48.title">
         <source>Text Cell</source>
@@ -1579,11 +1527,6 @@
         <target>Table View Cell</target>
         <note>Class = "NSTextFieldCell"; title = "Table View Cell"; ObjectID = "Y5P-iP-A70";</note>
       </trans-unit>
-      <trans-unit id="Y7l-nn-O7g.title">
-        <source>Rclone ID :</source>
-        <target>Rclone ID：</target>
-        <note>Class = "NSTextFieldCell"; title = "Rclone ID :"; ObjectID = "Y7l-nn-O7g";</note>
-      </trans-unit>
       <trans-unit id="YCX-qU-avh.title">
         <source>Text Cell</source>
         <target>Text Cell</target>
@@ -1613,6 +1556,10 @@
         <source>Text Cell</source>
         <target>Text Cell</target>
         <note>Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "YdX-1p-DZ9";</note>
+      </trans-unit>
+      <trans-unit id="YmB-7A-vYE.title">
+        <source>Environment</source>
+        <note>Class = "NSBox"; title = "Environment"; ObjectID = "YmB-7A-vYE";</note>
       </trans-unit>
       <trans-unit id="Z8Z-vX-Z7f.title">
         <source>Table View Cell</source>
@@ -1694,11 +1641,6 @@
         <target>立即备份</target>
         <note>Class = "NSMenuItem"; title = "Backup all now"; ObjectID = "bCH-Oe-dEC";</note>
       </trans-unit>
-      <trans-unit id="bKV-1H-cOf.title">
-        <source>Text Cell</source>
-        <target>Text Cell</target>
-        <note>Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "bKV-1H-cOf";</note>
-      </trans-unit>
       <trans-unit id="bMD-bn-iZW.title">
         <source>Remote catalog:</source>
         <target>远程目录：</target>
@@ -1744,11 +1686,6 @@
         <target>选择要还原的文件或目录（双击一次复制）</target>
         <note>Class = "NSTableColumn"; headerCell.title = "Select file or catalog to restore (and double click to copy in one go)"; ObjectID = "cKa-xb-U4B";</note>
       </trans-unit>
-      <trans-unit id="cKd-C9-yCK.title">
-        <source>Connections</source>
-        <target>连接</target>
-        <note>Class = "NSBox"; title = "Connections"; ObjectID = "cKd-C9-yCK";</note>
-      </trans-unit>
       <trans-unit id="ceM-Kt-SJU.title">
         <source>Details about files</source>
         <target>有关文件的详情</target>
@@ -1793,16 +1730,6 @@
         <source>Profile :</source>
         <target>简介：</target>
         <note>Class = "NSTextFieldCell"; title = "Profile :"; ObjectID = "dTX-H7-8VC";</note>
-      </trans-unit>
-      <trans-unit id="ddR-gB-Dgt.headerCell.title">
-        <source>ID</source>
-        <target>ID</target>
-        <note>Class = "NSTableColumn"; headerCell.title = "ID"; ObjectID = "ddR-gB-Dgt";</note>
-      </trans-unit>
-      <trans-unit id="drG-d3-Dsv.headerCell.title">
-        <source>ID</source>
-        <target>ID</target>
-        <note>Class = "NSTableColumn"; headerCell.title = "ID"; ObjectID = "drG-d3-Dsv";</note>
       </trans-unit>
       <trans-unit id="dsn-9I-wI5.title">
         <source> detailed logging</source>
@@ -1858,11 +1785,6 @@
         <source>Text Cell</source>
         <target>Text Cell</target>
         <note>Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "eNk-N9-vVo";</note>
-      </trans-unit>
-      <trans-unit id="ebe-i5-8DN.title">
-        <source>ID:</source>
-        <target>ID：</target>
-        <note>Class = "NSTextFieldCell"; title = "ID:"; ObjectID = "ebe-i5-8DN";</note>
       </trans-unit>
       <trans-unit id="ecv-vl-IKk.headerCell.title">
         <source>Server</source>
@@ -1974,11 +1896,6 @@
         <target>完成...</target>
         <note>Class = "NSTextFieldCell"; title = "Completed..."; ObjectID = "gRY-vZ-99W";</note>
       </trans-unit>
-      <trans-unit id="gSZ-r8-8Ry.headerCell.title">
-        <source>Cloud service</source>
-        <target>云服务</target>
-        <note>Class = "NSTableColumn"; headerCell.title = "Cloud service"; ObjectID = "gSZ-r8-8Ry";</note>
-      </trans-unit>
       <trans-unit id="gVQ-92-htT.title">
         <source>Total size (kB):</source>
         <target>总大小（KB）：</target>
@@ -2039,6 +1956,10 @@
         <target>加载</target>
         <note>Class = "NSButtonCell"; title = "Load"; ObjectID = "hXq-5p-KS7";</note>
       </trans-unit>
+      <trans-unit id="hpD-hN-6Xb.title">
+        <source>Enable environment</source>
+        <note>Class = "NSButtonCell"; title = "Enable environment"; ObjectID = "hpD-hN-6Xb";</note>
+      </trans-unit>
       <trans-unit id="hq8-Fq-pip.title">
         <source>Check dsa</source>
         <target>检查 rsa</target>
@@ -2068,11 +1989,6 @@
         <source>Services</source>
         <target>服务器</target>
         <note>Class = "NSMenu"; title = "Services"; ObjectID = "hz9-B4-Xy5";</note>
-      </trans-unit>
-      <trans-unit id="i2N-9t-0ni.title">
-        <source>Remote catalog:</source>
-        <target>远程目录:</target>
-        <note>Class = "NSTextFieldCell"; title = "Remote catalog:"; ObjectID = "i2N-9t-0ni";</note>
       </trans-unit>
       <trans-unit id="i8f-03-7XY.title">
         <source>Total size (kB):</source>
@@ -2129,11 +2045,6 @@
         <target>源文件恢复或者日志</target>
         <note>Class = "NSBox"; title = "Source for restore file or catalog"; ObjectID = "irb-Gi-c2A";</note>
       </trans-unit>
-      <trans-unit id="j1Z-jM-6Q6.headerCell.title">
-        <source>Task</source>
-        <target>任务</target>
-        <note>Class = "NSTableColumn"; headerCell.title = "Task"; ObjectID = "j1Z-jM-6Q6";</note>
-      </trans-unit>
       <trans-unit id="jTS-YA-55S.title">
         <source>verify</source>
         <target>校验</target>
@@ -2148,21 +2059,6 @@
         <source>Text Cell</source>
         <target>Text Cell</target>
         <note>Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "jTs-0X-qqh";</note>
-      </trans-unit>
-      <trans-unit id="jd9-c6-ykP.label">
-        <source>Encrypt</source>
-        <target>加密</target>
-        <note>Class = "NSToolbarItem"; label = "Encrypt"; ObjectID = "jd9-c6-ykP";</note>
-      </trans-unit>
-      <trans-unit id="jd9-c6-ykP.paletteLabel">
-        <source>Encrypt</source>
-        <target>加密</target>
-        <note>Class = "NSToolbarItem"; paletteLabel = "Encrypt"; ObjectID = "jd9-c6-ykP";</note>
-      </trans-unit>
-      <trans-unit id="jd9-c6-ykP.toolTip">
-        <source>Encrypted files...</source>
-        <target>加密文件...</target>
-        <note>Class = "NSToolbarItem"; toolTip = "Encrypted files..."; ObjectID = "jd9-c6-ykP";</note>
       </trans-unit>
       <trans-unit id="jgQ-HM-WTh.title">
         <source>Remote server:</source>
@@ -2188,11 +2084,6 @@
         <source>files :</source>
         <target>文件：</target>
         <note>Class = "NSTextFieldCell"; title = "files :"; ObjectID = "kNR-NX-OzR";</note>
-      </trans-unit>
-      <trans-unit id="kOk-Mh-JZ7.title">
-        <source>Rclone profile :</source>
-        <target>Rclone profile :</target>
-        <note>Class = "NSTextFieldCell"; title = "Rclone profile :"; ObjectID = "kOk-Mh-JZ7";</note>
       </trans-unit>
       <trans-unit id="kUC-cs-Fc2.title">
         <source>ssh directory:</source>
@@ -2264,11 +2155,6 @@
         <target>All output</target>
         <note>Class = "NSViewController"; title = "All output"; ObjectID = "mal-sc-mlY";</note>
       </trans-unit>
-      <trans-unit id="mfz-zc-vDd.title">
-        <source>Remote username:</source>
-        <target>远程用户名：</target>
-        <note>Class = "NSTextFieldCell"; title = "Remote username:"; ObjectID = "mfz-zc-vDd";</note>
-      </trans-unit>
       <trans-unit id="mkb-9F-CQR.title">
         <source>restore</source>
         <target>恢复</target>
@@ -2304,11 +2190,6 @@
         <target>Text Cell</target>
         <note>Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "o1G-0k-G0I";</note>
       </trans-unit>
-      <trans-unit id="o1P-3T-Wzv.title">
-        <source>Connect</source>
-        <target>链接</target>
-        <note>Class = "NSButtonCell"; title = "Connect"; ObjectID = "o1P-3T-Wzv";</note>
-      </trans-unit>
       <trans-unit id="o77-iT-bNa.title">
         <source>New files:</source>
         <target>新文件：</target>
@@ -2328,11 +2209,6 @@
         <source>Close</source>
         <target>关</target>
         <note>Class = "NSButtonCell"; title = "Close"; ObjectID = "oar-D1-pfu";</note>
-      </trans-unit>
-      <trans-unit id="oeQ-dU-mHB.title">
-        <source>force reset</source>
-        <target>force reset</target>
-        <note>Class = "NSButtonCell"; title = "force reset"; ObjectID = "oeQ-dU-mHB";</note>
       </trans-unit>
       <trans-unit id="of4-qq-ykX.title">
         <source>Number of snapshots:</source>
@@ -2554,11 +2430,6 @@
         <target>KB：</target>
         <note>Class = "NSTextFieldCell"; title = "kB :"; ObjectID = "uRN-6L-8Nq";</note>
       </trans-unit>
-      <trans-unit id="uSt-4P-11h.title">
-        <source>Text Cell</source>
-        <target>Text Cell</target>
-        <note>Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "uSt-4P-11h";</note>
-      </trans-unit>
       <trans-unit id="uUH-RU-JKF.title">
         <source>Remove parameters</source>
         <target>移除参数</target>
@@ -2605,9 +2476,9 @@
         <note>Class = "NSTextFieldCell"; title = "ID:"; ObjectID = "vQn-ev-3Ai";</note>
       </trans-unit>
       <trans-unit id="vgF-FF-cIJ.title">
-        <source>Rsync, paths and logging</source>
+        <source>Rsync</source>
         <target>Rsync, paths and logging</target>
-        <note>Class = "NSBox"; title = "Rsync, paths and logging"; ObjectID = "vgF-FF-cIJ";</note>
+        <note>Class = "NSBox"; title = "Rsync"; ObjectID = "vgF-FF-cIJ";</note>
       </trans-unit>
       <trans-unit id="w6i-hq-pcc.title">
         <source>Required</source>
@@ -2663,11 +2534,6 @@
         <source>Edit</source>
         <target>编辑</target>
         <note>Class = "NSMenuItem"; title = "Edit"; ObjectID = "x4K-TO-hhc";</note>
-      </trans-unit>
-      <trans-unit id="xAS-dU-L0B.headerCell.title">
-        <source>Task</source>
-        <target>任务</target>
-        <note>Class = "NSTableColumn"; headerCell.title = "Task"; ObjectID = "xAS-dU-L0B";</note>
       </trans-unit>
       <trans-unit id="xKW-0W-Nbb.title">
         <source>Text Cell</source>
@@ -2926,6 +2792,7 @@
         <target>删除</target>
         <note>Execute
    Logg
+   plan
    Profiles
    Snapshots</note>
       </trans-unit>
@@ -2959,18 +2826,8 @@
         <target>不要修改快照数量，如果你不知道您正在做什么</target>
         <note>Snapshots</note>
       </trans-unit>
-      <trans-unit id="ERROR: no rclone in ">
-        <source>ERROR: no rclone in </source>
-        <target>错误：no rclone in</target>
-        <note>Error rclone</note>
-      </trans-unit>
-      <trans-unit id="ERROR: no rclone in /usr/local/bin">
-        <source>ERROR: no rclone in /usr/local/bin</source>
-        <target>错误：no rclone in /usr/local/bin</target>
-        <note>Error rclone</note>
-      </trans-unit>
-      <trans-unit id="ERROR: no rsync in ">
-        <source>ERROR: no rsync in </source>
+      <trans-unit id="ERROR: no rsync in">
+        <source>ERROR: no rsync in</source>
         <target>错误：no rsync in</target>
         <note>Error rsync</note>
       </trans-unit>
@@ -3023,6 +2880,11 @@
       <trans-unit id="Icon by: Zsolt Sándor">
         <source>Icon by: Zsolt Sándor</source>
         <note>icon</note>
+      </trans-unit>
+      <trans-unit id="Keep">
+        <source>Keep</source>
+        <target>Keep</target>
+        <note>plan</note>
       </trans-unit>
       <trans-unit id="Load">
         <source>Load</source>
@@ -3100,8 +2962,8 @@
         <target>数字远程文件：</target>
         <note>Copy files</note>
       </trans-unit>
-      <trans-unit id="Number snapshots: ">
-        <source>Number snapshots: </source>
+      <trans-unit id="Number snapshots:">
+        <source>Number snapshots:</source>
         <target>数字快照：</target>
         <note>Snapshots</note>
       </trans-unit>
@@ -3153,7 +3015,8 @@
       <trans-unit id="Save">
         <source>Save</source>
         <target>保存</target>
-        <note>Profile</note>
+        <note>Profile
+   Userconfig</note>
       </trans-unit>
       <trans-unit id="Scheduled tasks in menu app...">
         <source>Scheduled tasks in menu app...</source>
@@ -3163,7 +3026,8 @@
       <trans-unit id="Seems not to be connected...">
         <source>Seems not to be connected...</source>
         <target>似乎没有联系......</target>
-        <note>Copy files</note>
+        <note>Copy files
+   Verify</note>
       </trans-unit>
       <trans-unit id="Select a task....">
         <source>Select a task....</source>

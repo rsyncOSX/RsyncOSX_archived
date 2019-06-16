@@ -32,6 +32,7 @@ class ViewControllerAllProfiles: NSViewController, Delay, Abort, Connected {
     private var index: Int?
     private var outputprocess: OutputProcess?
     private var process: Process?
+    private var selectedprofile: String?
 
     weak var allprofiledetailsdelegata: AllProfileDetails?
 
@@ -48,6 +49,10 @@ class ViewControllerAllProfiles: NSViewController, Delay, Abort, Connected {
             self.sortedascendigdesending = true
             self.sortdirection.image = #imageLiteral(resourceName: "up")
         }
+    }
+
+    @IBAction func selectprofile(_ sender: NSButton) {
+        _ = Selectprofile(profile: self.selectedprofile)
     }
 
     private func getremotesizes() {
@@ -157,8 +162,10 @@ extension ViewControllerAllProfiles: NSTableViewDelegate, Attributedestring {
         let indexes = myTableViewFromNotification.selectedRowIndexes
         if let index = indexes.first {
             self.index = index
+            self.selectedprofile = self.allprofiles!.allconfigurationsasdictionary![index].value(forKey: "profile") as? String
         } else {
             self.index = nil
+            self.selectedprofile = nil
         }
         var sortbystring = true
         self.column = column
