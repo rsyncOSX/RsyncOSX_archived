@@ -262,7 +262,8 @@
 /* datetime */
 "secs" = "sek";
 
-/* Copy files */
+/* Copy files
+   Verify */
 "Seems not to be connected..." = "Synes ikke å være tilgjengelig...";
 
 /* Execute */

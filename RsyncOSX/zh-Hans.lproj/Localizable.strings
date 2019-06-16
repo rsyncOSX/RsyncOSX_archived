@@ -77,6 +77,7 @@
 
 /* Execute
    Logg
+   plan
    Profiles
    Snapshots */
 "Delete" = "删除";
@@ -98,12 +99,6 @@
 
 /* Snapshots */
 "Dont change the snapshot num if you don´t know what you are doing..." = "不要修改快照数量，如果你不知道您正在做什么";
-
-/* Error rclone */
-"ERROR: no rclone in " = "错误：no rclone in";
-
-/* Error rclone */
-"ERROR: no rclone in /usr/local/bin" = "错误：no rclone in /usr/local/bin";
 
 /* Error rsync */
 "ERROR: no rsync in" = "错误：no rsync in";
@@ -144,6 +139,9 @@
 
 /* datetime */
 "hours" = "小时";
+
+/* plan */
+"Keep" = "Keep";
 
 /* plan */
 "last" = "持续";
@@ -245,7 +243,8 @@
 /* plan */
 "Saturday" = "星期六";
 
-/* Profile */
+/* Profile
+   Userconfig */
 "Save" = "保存";
 
 /* Schedules */
@@ -257,7 +256,8 @@
 /* datetime */
 "secs" = "秒";
 
-/* Copy files */
+/* Copy files
+   Verify */
 "Seems not to be connected..." = "似乎没有联系......";
 
 /* Execute */
@@ -313,7 +313,4 @@
 
 /* About */
 "You have the latest ..." = "你有最新的......";
-
-/* plan */
-"Keep" = "Keep";
 
