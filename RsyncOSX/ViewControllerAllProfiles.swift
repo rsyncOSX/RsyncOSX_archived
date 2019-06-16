@@ -22,6 +22,7 @@ class ViewControllerAllProfiles: NSViewController, Delay, Abort, Connected {
     @IBOutlet weak var sortdirection: NSButton!
     @IBOutlet weak var numberOfprofiles: NSTextField!
     @IBOutlet weak var working: NSProgressIndicator!
+    @IBOutlet weak var profilebutton: NSButton!
 
     private var allprofiles: AllConfigurations?
     private var allschedules: Allschedules?
@@ -52,6 +53,7 @@ class ViewControllerAllProfiles: NSViewController, Delay, Abort, Connected {
     }
 
     @IBAction func selectprofile(_ sender: NSButton) {
+        self.profilebutton.isEnabled = false
         _ = Selectprofile(profile: self.selectedprofile)
     }
 
@@ -84,6 +86,7 @@ class ViewControllerAllProfiles: NSViewController, Delay, Abort, Connected {
     override func viewDidAppear() {
         super.viewDidAppear()
         self.reloadallprofiles()
+        self.profilebutton.isEnabled = false
         ViewControllerReference.shared.setvcref(viewcontroller: .vcallprofiles, nsviewcontroller: self)
         self.allprofiledetailsdelegata = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllertabMain
         self.allprofiledetailsdelegata?.enablereloadallprofiles()
@@ -163,9 +166,11 @@ extension ViewControllerAllProfiles: NSTableViewDelegate, Attributedestring {
         if let index = indexes.first {
             self.index = index
             self.selectedprofile = self.allprofiles!.allconfigurationsasdictionary![index].value(forKey: "profile") as? String
+            self.profilebutton.isEnabled = true
         } else {
             self.index = nil
             self.selectedprofile = nil
+            self.profilebutton.isEnabled = false
         }
         var sortbystring = true
         self.column = column
