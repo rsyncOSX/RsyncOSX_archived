@@ -39,6 +39,7 @@ class ViewControllerAllProfiles: NSViewController, Delay, Abort, Connected {
     private var outputprocess: OutputProcess?
     private var process: Process?
     private var selectedprofile: String?
+    private var changeprofileisallowed:Bool = true
 
     weak var allprofiledetailsdelegata: AllProfileDetails?
 
@@ -58,8 +59,13 @@ class ViewControllerAllProfiles: NSViewController, Delay, Abort, Connected {
     }
 
     @IBAction func selectprofile(_ sender: NSButton) {
-        self.profilebutton.isEnabled = false
-        _ = Selectprofile(profile: self.selectedprofile)
+        if self.changeprofileisallowed == false {
+            let info: String = NSLocalizedString("Cannot change profile now...", comment: "Execute")
+            Alerts.showInfo(info: info)
+        } else {
+            self.profilebutton.isEnabled = false
+            _ = Selectprofile(profile: self.selectedprofile)
+        }
     }
 
     private func getremotesizes() {
@@ -263,12 +269,12 @@ extension ViewControllerAllProfiles: ReloadTableAllProfiles {
 
 extension ViewControllerAllProfiles: DisableselectProfile {
     func enableselectprofile() {
-        //
+        self.profilebutton.isEnabled = true
+        self.changeprofileisallowed = true
     }
     
     func disableselectprofile() {
         self.profilebutton.isEnabled = false
-        // let info: String = NSLocalizedString("Cannot change profile now...", comment: "Execute")
-        // Alerts.showInfo(info: info)
+        self.changeprofileisallowed = false
     }
 }

@@ -13,9 +13,13 @@ final class Deselectprofile {
 
     weak var deselectprofileDelegate: DisableselectProfile?
 
-    init() {
+    init(deselect: Bool) {
         self.deselectprofileDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vcallprofiles) as? ViewControllerAllProfiles
         guard self.deselectprofileDelegate != nil else { return }
-        self.deselectprofileDelegate?.disableselectprofile()
+        if deselect {
+            self.deselectprofileDelegate?.disableselectprofile()
+        } else {
+            self.deselectprofileDelegate?.enableselectprofile()
+        }
     }
 }

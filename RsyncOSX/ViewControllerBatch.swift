@@ -97,7 +97,7 @@ class ViewControllerBatch: NSViewController, SetDismisser, Abort, SetConfigurati
         self.remoteinfotask = RemoteInfoTaskWorkQueue(inbatch: true)
         self.remoteinfotaskDelegate?.setremoteinfo(remoteinfotask: self.remoteinfotask)
         self.initiateProgressbar()
-        _ = Deselectprofile()
+        _ = Deselectprofile(deselect: true)
     }
 
     override func viewDidDisappear() {

@@ -119,7 +119,7 @@ class ViewControllerRemoteInfo: NSViewController, SetDismisser, Abort, Setcolor 
             self.initiateProgressbar()
             self.selectalltaskswithfilestobackupbutton.isEnabled = false
         }
-        _ = Deselectprofile()
+        _ = Deselectprofile(deselect: true)
     }
 
     override func viewDidDisappear() {
