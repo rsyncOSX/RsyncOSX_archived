@@ -87,10 +87,12 @@ final class SingleTask: SetSchedules, SetConfigurations {
                 self.indicatorDelegate?.stopIndicator()
                 self.taskDelegate?.presentViewInformation(outputprocess: self.outputprocess!)
                 self.workload = nil
+                _ = Deselectprofile(deselect: false)
             case .executesinglerun:
                 self.taskDelegate?.terminateProgressProcess()
                 self.taskDelegate?.presentViewInformation(outputprocess: self.outputprocess!)
                 self.configurations!.setCurrentDateonConfiguration(index: self.index!, outputprocess: self.outputprocess)
+                _ = Deselectprofile(deselect: false)
             case .empty:
                 self.workload = nil
             default:

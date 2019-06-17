@@ -37,6 +37,7 @@ final class BatchTask: SetSchedules, SetConfigurations {
                 localupdateprogressDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vcbatch) as? ViewControllerBatch
                 localupdateprogressDelegate?.complete()
                 self.configurationsDelegate?.reloadconfigurationsobject()
+                _ = Deselectprofile(deselect: false)
             default :
                 break
             }
