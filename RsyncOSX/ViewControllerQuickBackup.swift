@@ -74,6 +74,7 @@ class ViewControllerQuickBackup: NSViewController, SetDismisser, Abort, Delay, S
         })
         self.working.isHidden = false
         self.working.startAnimation(nil)
+        _ = Deselectprofile()
     }
 
     override func viewDidDisappear() {

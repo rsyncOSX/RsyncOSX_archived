@@ -9,7 +9,7 @@
 
 import Foundation
 
-class Selectprofile {
+final class Selectprofile {
 
     var profile: String?
     weak var newProfileDelegate: NewProfile?

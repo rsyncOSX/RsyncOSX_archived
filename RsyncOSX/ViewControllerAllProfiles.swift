@@ -14,6 +14,11 @@ protocol ReloadTableAllProfiles: class {
     func reloadtable()
 }
 
+protocol DisableselectProfile: class {
+    func disableselectprofile()
+    func enableselectprofile()
+}
+
 class ViewControllerAllProfiles: NSViewController, Delay, Abort, Connected {
 
     // Main tableview
@@ -95,6 +100,7 @@ class ViewControllerAllProfiles: NSViewController, Delay, Abort, Connected {
     override func viewDidDisappear() {
         super.viewDidDisappear()
         self.allprofiledetailsdelegata?.disablereloadallprofiles()
+        ViewControllerReference.shared.setvcref(viewcontroller: .vcallprofiles, nsviewcontroller: nil)
         self.allprofiles = nil
         self.allschedules = nil
     }
@@ -252,5 +258,17 @@ extension ViewControllerAllProfiles: UpdateProgress {
 extension ViewControllerAllProfiles: ReloadTableAllProfiles {
     func reloadtable() {
         self.reloadallprofiles()
+    }
+}
+
+extension ViewControllerAllProfiles: DisableselectProfile {
+    func enableselectprofile() {
+        //
+    }
+    
+    func disableselectprofile() {
+        self.profilebutton.isEnabled = false
+        // let info: String = NSLocalizedString("Cannot change profile now...", comment: "Execute")
+        // Alerts.showInfo(info: info)
     }
 }
