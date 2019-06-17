@@ -37,6 +37,9 @@
 /* Restore */
 "Cancel or Restore" = "Kanseler eller restore";
 
+/* Execute */
+"Cannot change profile now..." = "Kan ikke laste ny profil nå...";
+
 /* Close NSAlert */
 "Close" = "Lukk";
 
