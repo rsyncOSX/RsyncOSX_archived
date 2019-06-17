@@ -176,7 +176,7 @@ class ViewControllerReference {
         }
     }
 
-    func setvcref(viewcontroller: ViewController, nsviewcontroller: NSViewController?) {
+    func setvcref(viewcontroller: ViewController, nsviewcontroller: NSViewController) {
         switch viewcontroller {
         case .vctabmain:
             self.viewControllertabMain = nsviewcontroller
