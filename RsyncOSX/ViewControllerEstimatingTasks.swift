@@ -54,7 +54,6 @@ class ViewControllerEstimatingTasks: NSViewController, Abort {
         self.calculatedNumberOfFiles = self.countDelegate?.maxCount()
         self.initiateProgressbar()
         self.abort.isEnabled = true
-        _ = Deselectprofile(deselect: true)
     }
 
     override func viewWillDisappear() {

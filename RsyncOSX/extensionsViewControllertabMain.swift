@@ -272,7 +272,6 @@ extension ViewControllertabMain: UpdateProgress {
             self.seterrorinfo(info: "")
             self.working.stopAnimation(nil)
             self.configurations!.setCurrentDateonConfiguration(index: self.index!, outputprocess: self.outputprocess)
-            _ = Deselectprofile(deselect: false)
         case .remoteinfotask:
             guard self.configurations!.remoteinfotaskworkqueue != nil else { return }
             self.configurations!.remoteinfotaskworkqueue?.processTermination()
@@ -466,7 +465,6 @@ extension ViewControllertabMain: Abort {
             self.process = nil
             self.index = nil
         }
-        _ = Deselectprofile(deselect: false)
     }
 }
 
@@ -666,7 +664,6 @@ extension ViewControllertabMain: OpenQuickBackup {
     func openquickbackup() {
         self.configurations!.processtermination = .quicktask
         self.configurations!.allowNotifyinMain = false
-        _ = Deselectprofile(deselect: true)
         globalMainQueue.async(execute: { () -> Void in
             self.presentAsSheet(self.viewControllerQuickBackup!)
         })

@@ -317,7 +317,6 @@ class ViewControllertabMain: NSViewController, ReloadTable, Deselect, VcMain, De
 
     func executetasknow() {
         guard self.index != nil  else { return }
-        _ = Deselectprofile(deselect: true)
         self.configurations!.processtermination = .singlequicktask
         self.working.startAnimation(nil)
         let arguments = self.configurations!.arguments4rsync(index: self.index!, argtype: .arg)

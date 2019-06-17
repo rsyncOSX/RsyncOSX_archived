@@ -32,7 +32,6 @@ final class CompleteQuickbackupTask: SetConfigurations, SetSchedules {
         self.schedules!.addresultschedule(self.hiddenID!, dateStart: dateStartstring, result: numberstring, date: datestring, schedule: schedule!)
         self.configurations!.setCurrentDateonConfigurationQuickbackup(index: self.index!, outputprocess: outputprocess)
         self.schedulesDelegate?.reloadschedulesobject()
-        _ = Deselectprofile(deselect: false)
     }
 
     init (dict: NSDictionary) {

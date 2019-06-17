@@ -14,11 +14,6 @@ protocol ReloadTableAllProfiles: class {
     func reloadtable()
 }
 
-protocol DisableselectProfile: class {
-    func disableselectprofile()
-    func enableselectprofile()
-}
-
 class ViewControllerAllProfiles: NSViewController, Delay, Abort, Connected {
 
     // Main tableview
@@ -27,7 +22,6 @@ class ViewControllerAllProfiles: NSViewController, Delay, Abort, Connected {
     @IBOutlet weak var sortdirection: NSButton!
     @IBOutlet weak var numberOfprofiles: NSTextField!
     @IBOutlet weak var working: NSProgressIndicator!
-    @IBOutlet weak var profilebutton: NSButton!
 
     private var allprofiles: AllConfigurations?
     private var allschedules: Allschedules?
@@ -38,8 +32,6 @@ class ViewControllerAllProfiles: NSViewController, Delay, Abort, Connected {
     private var index: Int?
     private var outputprocess: OutputProcess?
     private var process: Process?
-    private var selectedprofile: String?
-    private var changeprofileisallowed:Bool = true
 
     weak var allprofiledetailsdelegata: AllProfileDetails?
 
@@ -55,16 +47,6 @@ class ViewControllerAllProfiles: NSViewController, Delay, Abort, Connected {
         } else {
             self.sortedascendigdesending = true
             self.sortdirection.image = #imageLiteral(resourceName: "up")
-        }
-    }
-
-    @IBAction func selectprofile(_ sender: NSButton) {
-        if self.changeprofileisallowed == false {
-            let info: String = NSLocalizedString("Cannot change profile now...", comment: "Execute")
-            Alerts.showInfo(info: info)
-        } else {
-            self.profilebutton.isEnabled = false
-            _ = Selectprofile(profile: self.selectedprofile)
         }
     }
 
@@ -97,7 +79,6 @@ class ViewControllerAllProfiles: NSViewController, Delay, Abort, Connected {
     override func viewDidAppear() {
         super.viewDidAppear()
         self.reloadallprofiles()
-        self.profilebutton.isEnabled = false
         ViewControllerReference.shared.setvcref(viewcontroller: .vcallprofiles, nsviewcontroller: self)
         self.allprofiledetailsdelegata = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllertabMain
         self.allprofiledetailsdelegata?.enablereloadallprofiles()
@@ -106,7 +87,6 @@ class ViewControllerAllProfiles: NSViewController, Delay, Abort, Connected {
     override func viewDidDisappear() {
         super.viewDidDisappear()
         self.allprofiledetailsdelegata?.disablereloadallprofiles()
-        ViewControllerReference.shared.setvcref(viewcontroller: .vcallprofiles, nsviewcontroller: nil)
         self.allprofiles = nil
         self.allschedules = nil
     }
@@ -177,12 +157,8 @@ extension ViewControllerAllProfiles: NSTableViewDelegate, Attributedestring {
         let indexes = myTableViewFromNotification.selectedRowIndexes
         if let index = indexes.first {
             self.index = index
-            self.selectedprofile = self.allprofiles!.allconfigurationsasdictionary![index].value(forKey: "profile") as? String
-            self.profilebutton.isEnabled = true
         } else {
             self.index = nil
-            self.selectedprofile = nil
-            self.profilebutton.isEnabled = false
         }
         var sortbystring = true
         self.column = column
@@ -264,17 +240,5 @@ extension ViewControllerAllProfiles: UpdateProgress {
 extension ViewControllerAllProfiles: ReloadTableAllProfiles {
     func reloadtable() {
         self.reloadallprofiles()
-    }
-}
-
-extension ViewControllerAllProfiles: DisableselectProfile {
-    func enableselectprofile() {
-        self.profilebutton.isEnabled = true
-        self.changeprofileisallowed = true
-    }
-    
-    func disableselectprofile() {
-        self.profilebutton.isEnabled = false
-        self.changeprofileisallowed = false
     }
 }

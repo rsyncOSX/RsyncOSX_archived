@@ -163,7 +163,6 @@ class ViewControllerSnapshots: NSViewController, SetDismisser, SetConfigurations
             self.info.stringValue = Infosnapshots().info(num: 0)
             self.snapshotsloggdata!.preparecatalogstodelete()
             guard self.snapshotsloggdata!.remotecatalogstodelete != nil else { return }
-            _ = Deselectprofile(deselect: true)
             self.presentAsSheet(self.viewControllerProgress!)
             self.deletebutton.isEnabled = false
             self.deletesnapshots.isEnabled = false

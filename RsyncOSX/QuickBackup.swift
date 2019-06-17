@@ -166,7 +166,6 @@ extension QuickBackup: UpdateProgress {
             self.stackoftasktobeexecuted = nil
             self.hiddenID = nil
             self.reloadtableDelegate?.reloadtabledata()
-            _ = Deselectprofile(deselect: false)
             return
         }
         self.hiddenID = self.stackoftasktobeexecuted![0].0
