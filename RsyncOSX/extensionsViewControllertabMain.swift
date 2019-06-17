@@ -147,6 +147,10 @@ extension ViewControllertabMain: GetSelecetedIndex {
 extension ViewControllertabMain: NewProfile {
     // Function is called from profiles when new or default profiles is seleceted
     func newProfile(profile: String?) {
+        guard self.process == nil && self.singletask == nil else {
+            _ = Infoexecute().info(num: 9)
+            return
+        }
         self.process = nil
         self.outputprocess = nil
         self.singletask = nil
