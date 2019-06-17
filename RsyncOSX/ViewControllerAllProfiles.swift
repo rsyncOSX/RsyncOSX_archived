@@ -22,7 +22,6 @@ class ViewControllerAllProfiles: NSViewController, Delay, Abort, Connected {
     @IBOutlet weak var sortdirection: NSButton!
     @IBOutlet weak var numberOfprofiles: NSTextField!
     @IBOutlet weak var working: NSProgressIndicator!
-    @IBOutlet weak var profilebutton: NSButton!
 
     private var allprofiles: AllConfigurations?
     private var allschedules: Allschedules?
@@ -33,7 +32,6 @@ class ViewControllerAllProfiles: NSViewController, Delay, Abort, Connected {
     private var index: Int?
     private var outputprocess: OutputProcess?
     private var process: Process?
-    private var selectedprofile: String?
 
     weak var allprofiledetailsdelegata: AllProfileDetails?
 
@@ -50,11 +48,6 @@ class ViewControllerAllProfiles: NSViewController, Delay, Abort, Connected {
             self.sortedascendigdesending = true
             self.sortdirection.image = #imageLiteral(resourceName: "up")
         }
-    }
-
-    @IBAction func selectprofile(_ sender: NSButton) {
-        self.profilebutton.isEnabled = false
-        _ = Selectprofile(profile: self.selectedprofile)
     }
 
     private func getremotesizes() {
@@ -86,7 +79,6 @@ class ViewControllerAllProfiles: NSViewController, Delay, Abort, Connected {
     override func viewDidAppear() {
         super.viewDidAppear()
         self.reloadallprofiles()
-        self.profilebutton.isEnabled = false
         ViewControllerReference.shared.setvcref(viewcontroller: .vcallprofiles, nsviewcontroller: self)
         self.allprofiledetailsdelegata = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllertabMain
         self.allprofiledetailsdelegata?.enablereloadallprofiles()
@@ -165,12 +157,8 @@ extension ViewControllerAllProfiles: NSTableViewDelegate, Attributedestring {
         let indexes = myTableViewFromNotification.selectedRowIndexes
         if let index = indexes.first {
             self.index = index
-            self.selectedprofile = self.allprofiles!.allconfigurationsasdictionary![index].value(forKey: "profile") as? String
-            self.profilebutton.isEnabled = true
         } else {
             self.index = nil
-            self.selectedprofile = nil
-            self.profilebutton.isEnabled = false
         }
         var sortbystring = true
         self.column = column
