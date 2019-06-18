@@ -155,6 +155,7 @@ extension ViewControllerLoggData: NSSearchFieldDelegate {
     func controlTextDidChange(_ obj: Notification) {
         self.delayWithSeconds(0.25) {
             let filterstring = self.search.stringValue
+            self.selectbutton.state = .off
             if filterstring.isEmpty {
                 globalMainQueue.async(execute: { () -> Void in
                     self.reloadtabledata()
@@ -170,6 +171,7 @@ extension ViewControllerLoggData: NSSearchFieldDelegate {
 
     func searchFieldDidEndSearching(_ sender: NSSearchField) {
         self.reloadtabledata()
+        self.selectbutton.state = .off
     }
 
 }
