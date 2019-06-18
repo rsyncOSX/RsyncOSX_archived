@@ -348,6 +348,17 @@ extension ViewControllerCopyFiles: UpdateProgress {
     }
 }
 
+extension ViewControllerCopyFiles: Count {
+    func maxCount() -> Int {
+        return self.maxcount
+    }
+    
+    func inprogressCount() -> Int {
+        guard self.outputprocess != nil else { return 0 }
+        return self.outputprocess!.count()
+    }
+}
+
 extension ViewControllerCopyFiles: DismissViewController {
     func dismiss_view(viewcontroller: NSViewController) {
         self.dismiss(viewcontroller)
@@ -402,16 +413,5 @@ extension ViewControllerCopyFiles: Updateremotefilelist {
         })
         self.working.stopAnimation(nil)
         self.remotefilelist = nil
-    }
-}
-
-extension ViewControllerCopyFiles: Count {
-    func maxCount() -> Int {
-        return self.maxcount
-    }
-
-    func inprogressCount() -> Int {
-        guard self.outputprocess != nil else { return 0 }
-        return self.outputprocess!.count()
     }
 }

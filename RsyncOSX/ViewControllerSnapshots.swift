@@ -314,22 +314,23 @@ extension ViewControllerSnapshots: UpdateProgress {
         self.selectplan.isEnabled = true
         self.selectdayofweek.isEnabled = true
         if delete {
-            let vc = ViewControllerReference.shared.getvcref(viewcontroller: .vcprogressview) as? ViewControllerProgressProcess
-            if self.snapshotsloggdata!.remotecatalogstodelete == nil {
-                self.delete = false
-                self.deletebutton.isEnabled = true
-                self.deletesnapshots.isEnabled = true
-                self.info.stringValue = Infosnapshots().info(num: 3)
-                self.snapshotsloggdata = SnapshotsLoggData(config: self.config!, insnapshot: true)
-                if self.abort == true {
-                    self.abort = false
+            if let vc = ViewControllerReference.shared.getvcref(viewcontroller: .vcprogressview) as? ViewControllerProgressProcess {
+                if self.snapshotsloggdata!.remotecatalogstodelete == nil {
+                    self.delete = false
+                    self.deletebutton.isEnabled = true
+                    self.deletesnapshots.isEnabled = true
+                    self.info.stringValue = Infosnapshots().info(num: 3)
+                    self.snapshotsloggdata = SnapshotsLoggData(config: self.config!, insnapshot: true)
+                    if self.abort == true {
+                        self.abort = false
+                    } else {
+                        vc.processTermination()
+                    }
                 } else {
-                    vc?.processTermination()
+                    vc.fileHandler()
                 }
-            } else {
-                vc?.fileHandler()
+                self.deletesnapshotcatalogs()
             }
-            self.deletesnapshotcatalogs()
         } else {
             self.deletebutton.isEnabled = true
             self.snapshotsloggdata?.processTermination()
@@ -346,6 +347,21 @@ extension ViewControllerSnapshots: UpdateProgress {
 
     func fileHandler() {
         //
+    }
+}
+
+extension ViewControllerSnapshots: Count {
+    func maxCount() -> Int {
+        guard self.snapshotsloggdata?.remotecatalogstodelete != nil else { return 0 }
+        let max = self.snapshotsloggdata!.remotecatalogstodelete!.count
+        self.snapshotstodelete = Double(max)
+        return max
+    }
+    
+    func inprogressCount() -> Int {
+        guard self.snapshotsloggdata?.remotecatalogstodelete != nil else { return 0 }
+        let progress = Int(self.snapshotstodelete) - self.snapshotsloggdata!.remotecatalogstodelete!.count
+        return progress
     }
 }
 
@@ -443,21 +459,6 @@ extension ViewControllerSnapshots: NSTextFieldDelegate {
                 }
             }
         }
-    }
-}
-
-extension ViewControllerSnapshots: Count {
-    func maxCount() -> Int {
-        guard self.snapshotsloggdata?.remotecatalogstodelete != nil else { return 0 }
-        let max = self.snapshotsloggdata!.remotecatalogstodelete!.count
-        self.snapshotstodelete = Double(max)
-        return max
-    }
-
-    func inprogressCount() -> Int {
-        guard self.snapshotsloggdata?.remotecatalogstodelete != nil else { return 0 }
-        let progress = Int(self.snapshotstodelete) - self.snapshotsloggdata!.remotecatalogstodelete!.count
-        return progress
     }
 }
 
