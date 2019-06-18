@@ -27,6 +27,7 @@ class ViewControllerCopyFiles: NSViewController, SetConfigurations, Delay, VcCop
     private var restoretabledata: [String]?
     var diddissappear: Bool = false
     var outputprocess: OutputProcess?
+    private var maxcount: Int = 0
 
     @IBOutlet weak var numberofrows: NSTextField!
     @IBOutlet weak var server: NSTextField!
@@ -93,8 +94,9 @@ class ViewControllerCopyFiles: NSViewController, SetConfigurations, Delay, VcCop
             self.working.startAnimation(nil)
             self.copyFiles!.executecopyfiles(remotefile: self.remoteCatalog!.stringValue, localCatalog: self.restorecatalog!.stringValue, dryrun: true)
             self.estimated = true
-        } else {
             self.outputprocess = self.copyFiles?.outputprocess
+        } else {
+            
             self.presentAsSheet(self.viewControllerProgress!)
             self.copyFiles!.executecopyfiles(remotefile: self.remoteCatalog!.stringValue, localCatalog: self.restorecatalog!.stringValue, dryrun: false)
             self.estimated = false
@@ -325,17 +327,24 @@ extension ViewControllerCopyFiles: NSTableViewDelegate {
 
 extension ViewControllerCopyFiles: UpdateProgress {
     func processTermination() {
-        let vc = ViewControllerReference.shared.getvcref(viewcontroller: .vcprogressview) as? ViewControllerProgressProcess
-        vc?.processTermination()
-        self.restorebutton.title = "Restore"
+        self.maxcount = self.outputprocess?.getMaxcount() ?? 0
+        if let vc = ViewControllerReference.shared.getvcref(viewcontroller: .vcprogressview) as? ViewControllerProgressProcess {
+            vc.processTermination()
+            self.restorebutton.isEnabled = false
+            self.restorebutton.title = "Estimate"
+        } else {
+            self.restorebutton.title = "Restore"
+            self.restorebutton.isEnabled = true
+        }
         self.working.stopAnimation(nil)
         self.presentAsSheet(self.viewControllerInformation!)
-        self.restorebutton.isEnabled = true
         self.copyFiles?.process = nil
     }
 
     func fileHandler() {
-        //
+        if let vc = ViewControllerReference.shared.getvcref(viewcontroller: .vcprogressview) as? ViewControllerProgressProcess {
+            vc.fileHandler()
+        }
     }
 }
 
@@ -398,9 +407,7 @@ extension ViewControllerCopyFiles: Updateremotefilelist {
 
 extension ViewControllerCopyFiles: Count {
     func maxCount() -> Int {
-        self.outputprocess = self.copyFiles?.outputprocess
-        guard self.outputprocess != nil else { return 0 }
-        return self.outputprocess!.getMaxcount()
+        return self.maxcount
     }
 
     func inprogressCount() -> Int {

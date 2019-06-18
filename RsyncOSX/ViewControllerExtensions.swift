@@ -281,7 +281,7 @@ protocol DeselectRowTable: class {
 }
 
 protocol Deselect {
-    var deselectDelegateMain: DeselectRowTable?{ get }
+    var deselectDelegateMain: DeselectRowTable? { get }
     var deselectDelegateSchedule: DeselectRowTable? { get }
     func deselectrowtable(vcontroller: ViewController)
 }
