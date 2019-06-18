@@ -25,9 +25,6 @@
 /* Class = "NSButtonCell"; title = "Close"; ObjectID = "1SA-wM-7Lh"; */
 "1SA-wM-7Lh.title" = "Lukk";
 
-/* Class = "NSButtonCell"; title = "Profile"; ObjectID = "1Sk-ep-KA9"; */
-"1Sk-ep-KA9.title" = "Profil";
-
 /* Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "1SO-6i-hws"; */
 "1SO-6i-hws.title" = "Text Cell";
 
