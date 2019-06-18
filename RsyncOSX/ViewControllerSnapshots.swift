@@ -312,7 +312,7 @@ extension ViewControllerSnapshots: DismissViewController {
 extension ViewControllerSnapshots: UpdateProgress {
     func processTermination() {
         self.selectplan.isEnabled = true
-         self.selectdayofweek.isEnabled = true
+        self.selectdayofweek.isEnabled = true
         if delete {
             let vc = ViewControllerReference.shared.getvcref(viewcontroller: .vcprogressview) as? ViewControllerProgressProcess
             if self.snapshotsloggdata!.remotecatalogstodelete == nil {

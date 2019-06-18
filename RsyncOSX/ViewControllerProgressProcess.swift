@@ -21,26 +21,33 @@ class ViewControllerProgressProcess: NSViewController, SetConfigurations, SetDis
     var maxcount: Double = 0
     var calculatedNumberOfFiles: Int?
     weak var countDelegate: Count?
-    var inmain: Bool = true
     @IBOutlet weak var abort: NSButton!
     @IBOutlet weak var progress: NSProgressIndicator!
 
     @IBAction func abort(_ sender: NSButton) {
-        if self.inmain {
+        switch self.countDelegate {
+        case is ViewControllertabMain:
             self.abort()
-        } else {
+        case is ViewControllerSnapshots:
             self.dismissview(viewcontroller: self, vcontroller: .vcsnapshot)
+        case is ViewControllerCopyFiles:
+            self.dismissview(viewcontroller: self, vcontroller: .vccopyfiles)
+        default:
+            return
         }
     }
 
     override func viewDidAppear() {
         super.viewDidAppear()
         ViewControllerReference.shared.setvcref(viewcontroller: .vcprogressview, nsviewcontroller: self)
-        if let pvc = self.configurations!.singleTask {
-            self.countDelegate = pvc
-        } else {
+        if (self.presentingViewController as? ViewControllertabMain) != nil {
+            if let pvc = self.configurations!.singleTask {
+                self.countDelegate = pvc
+            }
+        } else if (self.presentingViewController as? ViewControllerCopyFiles) != nil {
+            self.countDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vccopyfiles) as? ViewControllerCopyFiles
+        } else if (self.presentingViewController as? ViewControllerSnapshots) != nil {
             self.countDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vcsnapshot) as? ViewControllerSnapshots
-            self.inmain = false
         }
         self.calculatedNumberOfFiles = self.countDelegate?.maxCount()
         self.initiateProgressbar()
@@ -76,10 +83,15 @@ extension ViewControllerProgressProcess: UpdateProgress {
 
     func processTermination() {
         self.stopProgressbar()
-        if inmain {
+        switch self.countDelegate {
+        case is ViewControllertabMain:
             self.dismissview(viewcontroller: self, vcontroller: .vctabmain)
-        } else {
-             self.dismissview(viewcontroller: self, vcontroller: .vcsnapshot)
+        case is ViewControllerSnapshots:
+            self.dismissview(viewcontroller: self, vcontroller: .vcsnapshot)
+        case is ViewControllerCopyFiles:
+            self.dismissview(viewcontroller: self, vcontroller: .vccopyfiles)
+        default:
+            self.dismissview(viewcontroller: self, vcontroller: .vctabmain)
         }
     }
 
