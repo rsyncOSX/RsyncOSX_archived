@@ -357,7 +357,7 @@ extension ViewControllerSnapshots: Count {
         self.snapshotstodelete = Double(max)
         return max
     }
-    
+
     func inprogressCount() -> Int {
         guard self.snapshotsloggdata?.remotecatalogstodelete != nil else { return 0 }
         let progress = Int(self.snapshotstodelete) - self.snapshotsloggdata!.remotecatalogstodelete!.count

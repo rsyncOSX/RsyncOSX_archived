@@ -19,7 +19,6 @@ class ViewControllerProgressProcess: NSViewController, SetConfigurations, SetDis
 
     var count: Double = 0
     var maxcount: Double = 0
-    var calculatedNumberOfFiles: Int?
     weak var countDelegate: Count?
     @IBOutlet weak var abort: NSButton!
     @IBOutlet weak var progress: NSProgressIndicator!
@@ -49,7 +48,6 @@ class ViewControllerProgressProcess: NSViewController, SetConfigurations, SetDis
         } else if (self.presentingViewController as? ViewControllerSnapshots) != nil {
             self.countDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vcsnapshot) as? ViewControllerSnapshots
         }
-        self.calculatedNumberOfFiles = self.countDelegate?.maxCount()
         self.initiateProgressbar()
         self.abort.isEnabled = true
     }
@@ -66,9 +64,7 @@ class ViewControllerProgressProcess: NSViewController, SetConfigurations, SetDis
 
     // Progress bars
     private func initiateProgressbar() {
-        if let calculatedNumberOfFiles = self.calculatedNumberOfFiles {
-            self.progress.maxValue = Double(calculatedNumberOfFiles)
-        }
+        self.progress.maxValue = Double(self.countDelegate?.maxCount() ?? 0)
         self.progress.minValue = 0
         self.progress.doubleValue = 0
         self.progress.startAnimation(self)
