@@ -75,21 +75,17 @@ extension VcExecute {
         return (self.storyboard!.instantiateController(withIdentifier: "StoryboardEstimatingID")
             as? NSViewController)!
     }
+
+    // Progressbar process
+    // self.presentViewControllerAsSheet(self.viewControllerProgress)
+    var viewControllerProgress: NSViewController? {
+        return (self.storyboard!.instantiateController(withIdentifier: "StoryboardProgressID")
+            as? NSViewController)!
+    }
 }
 
 protocol VcMain {
     var storyboard: NSStoryboard? { get }
-    var viewControllerInformation: NSViewController? { get }
-    var viewControllerProgress: NSViewController? { get }
-    var viewControllerBatch: NSViewController? { get }
-    var viewControllerUserconfiguration: NSViewController? { get }
-    var viewControllerRsyncParams: NSViewController? { get }
-    var newVersionViewController: NSViewController? { get }
-    var viewControllerProfile: NSViewController? { get }
-    var editViewController: NSViewController? { get }
-    var viewControllerAbout: NSViewController? { get }
-    var viewControllerScheduleDetails: NSViewController? { get }
-    var viewControllerInformationLocalRemote: NSViewController? { get }
 }
 
 extension VcMain {
@@ -207,8 +203,6 @@ extension VcMain {
 
 protocol VcCopyFiles {
     var storyboard: NSStoryboard? { get }
-    var viewControllerInformation: NSViewController? { get }
-    var viewControllerSource: NSViewController? { get }
 }
 
 extension VcCopyFiles {
@@ -235,12 +229,12 @@ protocol DismissViewController: class {
 }
 
 protocol SetDismisser {
-    var dismissDelegateMain: DismissViewController? {get}
-    var dismissDelegateSchedule: DismissViewController? {get}
-    var dismissDelegateCopyFiles: DismissViewController? {get}
-    var dismissDelegateNewConfigurations: DismissViewController? {get}
-    var dismissDelegateSsh: DismissViewController? {get}
-    var dimissDelegateSnapshot: DismissViewController? {get}
+    var dismissDelegateMain: DismissViewController? { get }
+    var dismissDelegateSchedule: DismissViewController? { get }
+    var dismissDelegateCopyFiles: DismissViewController? { get }
+    var dismissDelegateNewConfigurations: DismissViewController? { get }
+    var dismissDelegateSsh: DismissViewController? { get }
+    var dimissDelegateSnapshot: DismissViewController? { get }
     func dismissview(viewcontroller: NSViewController, vcontroller: ViewController)
 }
 
@@ -287,8 +281,8 @@ protocol DeselectRowTable: class {
 }
 
 protocol Deselect {
-    var deselectDelegateMain: DeselectRowTable? {get}
-    var deselectDelegateSchedule: DeselectRowTable? {get}
+    var deselectDelegateMain: DeselectRowTable? { get }
+    var deselectDelegateSchedule: DeselectRowTable? { get }
     func deselectrowtable(vcontroller: ViewController)
 }
 
@@ -365,8 +359,8 @@ protocol GetOutput: class {
 }
 
 protocol OutPut {
-    var informationDelegateMain: GetOutput? {get}
-    var informationDelegateCopyFiles: GetOutput? {get}
+    var informationDelegateMain: GetOutput? { get }
+    var informationDelegateCopyFiles: GetOutput? { get }
 }
 
 extension OutPut {
