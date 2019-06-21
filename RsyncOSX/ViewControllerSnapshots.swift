@@ -96,9 +96,9 @@ class ViewControllerSnapshots: NSViewController, SetDismisser, SetConfigurations
         self.deletesnapshots.intValue = 0
         self.stringdeletesnapshotsnum.stringValue = "0"
         self.deletesnapshotsdays.altIncrementValue = 1.0
-        self.deletesnapshotsdays.maxValue = 99.0
+        self.deletesnapshotsdays.maxValue = 200.0
         self.deletesnapshotsdays.minValue = 0.0
-        self.deletesnapshotsdays.intValue = 99
+        self.deletesnapshotsdays.intValue = 200
         self.stringdeletesnapshotsdaysnum.stringValue = "99"
         self.numbersinsequencetodelete = 0
     }
@@ -288,7 +288,8 @@ class ViewControllerSnapshots: NSViewController, SetDismisser, SetConfigurations
     }
 
     private func preselectcomboboxes() {
-        self.selectdayofweek.selectItem(withObjectValue: self.config!.snapdayoffweek)
+        guard self.config?.snaplast != nil && self.config?.snapdayoffweek != nil else { return }
+        self.selectdayofweek.selectItem(withObjectValue: NSLocalizedString(self.config!.snapdayoffweek!, comment: "dayofweek"))
         if self.config!.snaplast == 1 {
             self.selectplan.selectItem(withObjectValue: NSLocalizedString("every", comment: "plan"))
         } else {
