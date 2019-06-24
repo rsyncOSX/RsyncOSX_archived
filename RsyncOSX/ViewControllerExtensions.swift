@@ -12,9 +12,6 @@ import Cocoa
 
 protocol VcSchedule {
     var storyboard: NSStoryboard? { get }
-    var viewControllerScheduleDetails: NSViewController? { get }
-    var viewControllerUserconfiguration: NSViewController? { get }
-    var viewControllerProfile: NSViewController? { get }
 }
 
 extension VcSchedule {
