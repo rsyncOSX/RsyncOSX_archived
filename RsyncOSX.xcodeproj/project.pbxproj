@@ -90,6 +90,7 @@
 		E9231AFB1F6E3D270055000C /* NewConfigurations.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9231AFA1F6E3D260055000C /* NewConfigurations.swift */; };
 		E9234FFB1EB068AE00A4C550 /* Files.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9234FFA1EB068AE00A4C550 /* Files.swift */; };
 		E9235E7A201BC27F0060E3B2 /* SnapshotDeleteCatalogsArguments.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9235E79201BC27F0060E3B2 /* SnapshotDeleteCatalogsArguments.swift */; };
+		E9240FB522C26A0700203207 /* RsyncOSXTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9240FB422C26A0700203207 /* RsyncOSXTests.swift */; };
 		E92755A221304F0000B1F781 /* Macserialnumber.swift in Sources */ = {isa = PBXBuildFile; fileRef = E92755A121304F0000B1F781 /* Macserialnumber.swift */; };
 		E92755A42130506000B1F781 /* Dateandtime.swift in Sources */ = {isa = PBXBuildFile; fileRef = E92755A32130506000B1F781 /* Dateandtime.swift */; };
 		E92755A62130539400B1F781 /* Dispatchqueues.swift in Sources */ = {isa = PBXBuildFile; fileRef = E92755A52130539400B1F781 /* Dispatchqueues.swift */; };
@@ -164,6 +165,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		E9240FB722C26A0700203207 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A044927A1D658EE800B3CE17 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = A04492811D658EE800B3CE17;
+			remoteInfo = RsyncOSX;
+		};
 		E94FB2082124AA040007DCAF /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = A044927A1D658EE800B3CE17 /* Project object */;
@@ -234,6 +242,9 @@
 		E9231AFA1F6E3D260055000C /* NewConfigurations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewConfigurations.swift; sourceTree = "<group>"; };
 		E9234FFA1EB068AE00A4C550 /* Files.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Files.swift; sourceTree = "<group>"; };
 		E9235E79201BC27F0060E3B2 /* SnapshotDeleteCatalogsArguments.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnapshotDeleteCatalogsArguments.swift; sourceTree = "<group>"; };
+		E9240FB222C26A0600203207 /* RsyncOSXTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RsyncOSXTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		E9240FB422C26A0700203207 /* RsyncOSXTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RsyncOSXTests.swift; sourceTree = "<group>"; };
+		E9240FB622C26A0700203207 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E92755A121304F0000B1F781 /* Macserialnumber.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Macserialnumber.swift; sourceTree = "<group>"; };
 		E92755A32130506000B1F781 /* Dateandtime.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dateandtime.swift; sourceTree = "<group>"; };
 		E92755A52130539400B1F781 /* Dispatchqueues.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dispatchqueues.swift; sourceTree = "<group>"; };
@@ -319,6 +330,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		E9240FAF22C26A0600203207 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -326,6 +344,7 @@
 			isa = PBXGroup;
 			children = (
 				A04492841D658EE800B3CE17 /* RsyncOSX */,
+				E9240FB322C26A0700203207 /* RsyncOSXTests */,
 				A04492831D658EE800B3CE17 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -334,6 +353,7 @@
 			isa = PBXGroup;
 			children = (
 				A04492821D658EE800B3CE17 /* RsyncOSX.app */,
+				E9240FB222C26A0600203207 /* RsyncOSXTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -585,6 +605,15 @@
 			name = Loggdata;
 			sourceTree = "<group>";
 		};
+		E9240FB322C26A0700203207 /* RsyncOSXTests */ = {
+			isa = PBXGroup;
+			children = (
+				E9240FB422C26A0700203207 /* RsyncOSXTests.swift */,
+				E9240FB622C26A0700203207 /* Info.plist */,
+			);
+			path = RsyncOSXTests;
+			sourceTree = "<group>";
+		};
 		E94BCEF221C63EDD00DB8EA2 /* RemoteCapacity */ = {
 			isa = PBXGroup;
 			children = (
@@ -720,13 +749,31 @@
 			productReference = A04492821D658EE800B3CE17 /* RsyncOSX.app */;
 			productType = "com.apple.product-type.application";
 		};
+		E9240FB122C26A0600203207 /* RsyncOSXTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E9240FBB22C26A0700203207 /* Build configuration list for PBXNativeTarget "RsyncOSXTests" */;
+			buildPhases = (
+				E9240FAE22C26A0600203207 /* Sources */,
+				E9240FAF22C26A0600203207 /* Frameworks */,
+				E9240FB022C26A0600203207 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				E9240FB822C26A0700203207 /* PBXTargetDependency */,
+			);
+			name = RsyncOSXTests;
+			productName = RsyncOSXTests;
+			productReference = E9240FB222C26A0600203207 /* RsyncOSXTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
 		A044927A1D658EE800B3CE17 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 0800;
+				LastSwiftUpdateCheck = 1020;
 				LastUpgradeCheck = 0930;
 				ORGANIZATIONNAME = "Thomas Evensen";
 				TargetAttributes = {
@@ -740,6 +787,12 @@
 								enabled = 1;
 							};
 						};
+					};
+					E9240FB122C26A0600203207 = {
+						CreatedOnToolsVersion = 10.2.1;
+						DevelopmentTeam = 93M47F4H9T;
+						ProvisioningStyle = Automatic;
+						TestTargetID = A04492811D658EE800B3CE17;
 					};
 					E94FB2032124A8FE0007DCAF = {
 						CreatedOnToolsVersion = 9.4.1;
@@ -770,6 +823,7 @@
 				A04492811D658EE800B3CE17 /* RsyncOSX */,
 				E94FB2032124A8FE0007DCAF /* rsyncosx-dmg */,
 				E9D63661217FB8EA004B634E /* rsyncosx-dmg-notarize */,
+				E9240FB122C26A0600203207 /* RsyncOSXTests */,
 			);
 		};
 /* End PBXProject section */
@@ -783,6 +837,13 @@
 				E9DF6DD8227976030083405C /* Localizable.strings in Resources */,
 				E9DF6DD5227976030083405C /* InfoPlist.strings in Resources */,
 				A044928D1D658EE800B3CE17 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E9240FB022C26A0600203207 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -962,9 +1023,22 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		E9240FAE22C26A0600203207 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E9240FB522C26A0700203207 /* RsyncOSXTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		E9240FB822C26A0700203207 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = A04492811D658EE800B3CE17 /* RsyncOSX */;
+			targetProxy = E9240FB722C26A0700203207 /* PBXContainerItemProxy */;
+		};
 		E94FB2092124AA040007DCAF /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = A04492811D658EE800B3CE17 /* RsyncOSX */;
@@ -1159,6 +1233,55 @@
 			};
 			name = Release;
 		};
+		E9240FB922C26A0700203207 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_IDENTITY = "Mac Developer";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = 93M47F4H9T;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				INFOPLIST_FILE = RsyncOSXTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.14;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = no.blogspot.RsyncOSXTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/RsyncOSX.app/Contents/MacOS/RsyncOSX";
+			};
+			name = Debug;
+		};
+		E9240FBA22C26A0700203207 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_IDENTITY = "Mac Developer";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = 93M47F4H9T;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				INFOPLIST_FILE = RsyncOSXTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.14;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = no.blogspot.RsyncOSXTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/RsyncOSX.app/Contents/MacOS/RsyncOSX";
+			};
+			name = Release;
+		};
 		E94FB2042124A8FE0007DCAF /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -1212,6 +1335,15 @@
 			buildConfigurations = (
 				A04492921D658EE800B3CE17 /* Debug */,
 				A04492931D658EE800B3CE17 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		E9240FBB22C26A0700203207 /* Build configuration list for PBXNativeTarget "RsyncOSXTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E9240FB922C26A0700203207 /* Debug */,
+				E9240FBA22C26A0700203207 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
