@@ -11,18 +11,43 @@ import XCTest
 
 class RsyncOSXTests: XCTestCase {
 
+    var outputprocess: OutputProcess?
+
     override func setUp() {
         // Put setup code here. This method is called before the invocation of each test method in the class.
+    }
+
+    override func tearDown() {
+        // Put teardown code here. This method is called after the invocation of each test method in the class.
+    }
+
+    func test() {
         let storage = PersistentStorageAPI(profile: nil)
         if let userConfiguration =  storage.getUserconfiguration(readfromstorage: true) {
             _ = Userconfiguration(userconfigRsyncOSX: userConfiguration)
         }
         let configurations = Configurations(profile: "XCTest")
-        let schedules = Schedules(profile: "XCTest")
+        // let schedules = Schedules(profile: "XCTest")
+        
+        let index = 1
+        // let hiddenID = configurations.gethiddenID(index: index)
+        let arguments = configurations.arguments4rsync(index: index, argtype: .argdryRun)
+        let process = Rsync(arguments: arguments)
+        self.outputprocess = OutputProcess()
+        process.setdelegate(object: self)
+        process.executeProcess(outputprocess: self.outputprocess)
     }
 
-    override func tearDown() {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
+}
+
+extension RsyncOSXTests: UpdateProgress {
+
+    func processTermination() {
+        print(self.outputprocess?.getOutput() ?? "")
+    }
+
+    func fileHandler() {
+        //
     }
 
 }
