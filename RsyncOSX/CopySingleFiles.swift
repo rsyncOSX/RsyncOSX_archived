@@ -49,8 +49,7 @@ final class CopySingleFiles: SetConfigurations {
         guard self.config != nil else { return "" }
         self.commandDisplay = CopyFileArguments(task: .rsyncCmd, config: self.config!, remoteFile: remotefile,
                                                 localCatalog: localCatalog, drynrun: true).getcommandDisplay()
-        guard self.commandDisplay != nil else { return "" }
-        return self.commandDisplay!
+        return self.commandDisplay ?? ""
     }
 
     init (hiddenID: Int) {
