@@ -10,6 +10,12 @@
 import Foundation
 
 final class Rsync: ProcessCmd {
+
+    // Used to set in XCTest
+    func setdelegate(object: UpdateProgress) {
+        self.updateDelegate = object
+    }
+
     init (arguments: [String]?) {
         super.init(command: nil, arguments: arguments)
         self.updateDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllertabMain

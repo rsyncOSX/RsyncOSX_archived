@@ -566,7 +566,7 @@ extension ViewControllertabMain: GetConfigurationsObject {
 
     func createconfigurationsobject(profile: String?) -> Configurations? {
         self.configurations = nil
-        self.configurations = Configurations(profile: profile, viewcontroller: self)
+        self.configurations = Configurations(profile: profile)
         return self.configurations
     }
 
