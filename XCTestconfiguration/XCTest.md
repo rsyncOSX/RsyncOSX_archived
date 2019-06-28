@@ -1,0 +1,1 @@
+This is the RsyncOSX configurations for executing XCTest runs for RsyncOSX. The tests are in development. To execute the tests create a profile named "XCTest" and copy the configurations `configRsync.plist`and `scheduleRsync`to the following catalog `~/Documents/Rsync/mac_serial_number/XCTest`. 
