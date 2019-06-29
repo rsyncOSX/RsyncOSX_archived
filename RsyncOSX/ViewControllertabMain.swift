@@ -312,12 +312,6 @@ class ViewControllertabMain: NSViewController, ReloadTable, Deselect, VcMain, De
             self.configurations!.getConfigurations()[self.index!].task == ViewControllerReference.shared.snapshot else {
                 return
         }
-        self.executetasknow()
-    }
-
-    func executetasknow() {
-        guard self.index != nil  else { return }
-        self.configurations!.processtermination = .singlequicktask
         self.working.startAnimation(nil)
         let arguments = self.configurations!.arguments4rsync(index: self.index!, argtype: .arg)
         self.outputprocess = OutputProcess()
