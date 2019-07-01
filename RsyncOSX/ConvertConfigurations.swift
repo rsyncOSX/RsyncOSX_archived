@@ -38,7 +38,6 @@ struct ConvertConfigurations: SetConfigurations {
             "parameter4": config.parameter4,
             "parameter5": config.parameter5,
             "parameter6": config.parameter6,
-            "dryrun": config.dryrun,
             "dateRun": config.dateRun!,
             "hiddenID": config.hiddenID]
         // All parameters parameter8 - parameter14 are set
