@@ -13,7 +13,6 @@ struct Configuration {
     var offsiteCatalog: String
     var offsiteUsername: String
     var batch: String
-    var dryrun: String
     var parameter1: String
     var parameter2: String
     var parameter3: String
@@ -60,7 +59,6 @@ struct Configuration {
         self.offsiteCatalog = dictionary.object(forKey: "offsiteCatalog") as? String ?? ""
         self.offsiteUsername = dictionary.object(forKey: "offsiteUsername") as? String ?? ""
         self.batch = dictionary.object(forKey: "batch") as? String ?? ""
-        self.dryrun = dictionary.object(forKey: "dryrun") as? String ?? ""
         self.parameter1 = dictionary.object(forKey: "parameter1") as? String ?? ""
         self.parameter2 = dictionary.object(forKey: "parameter2") as? String ?? ""
         self.parameter3 = dictionary.object(forKey: "parameter3") as? String ?? ""
@@ -121,7 +119,6 @@ struct Configuration {
         self.offsiteCatalog = dictionary.object(forKey: "offsiteCatalog") as? String ?? ""
         self.offsiteUsername = dictionary.object(forKey: "offsiteUsername") as? String ?? ""
         self.batch = dictionary.object(forKey: "batch") as? String ?? ""
-        self.dryrun = dictionary.object(forKey: "dryrun") as? String ?? ""
         self.parameter1 = dictionary.object(forKey: "parameter1") as? String ?? ""
         self.parameter2 = dictionary.object(forKey: "parameter2") as? String ?? ""
         self.parameter3 = dictionary.object(forKey: "parameter3") as? String ?? ""
