@@ -306,8 +306,9 @@ protocol Index {
 
 extension Index {
     func index() -> Int? {
-        let view = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllertabMain
-        return view?.getindex()
+        weak var getindexDelegate: GetSelecetedIndex?
+        getindexDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllertabMain
+        return getindexDelegate?.getindex()
     }
 }
 
