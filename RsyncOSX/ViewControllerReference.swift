@@ -17,17 +17,17 @@ enum ViewController {
     case vctabschedule
     case vccopyfiles
     case vcssh
+    case vcsnapshot
+    case vcverify
     case vcabout
     case vcbatch
     case vcprogressview
     case vcquickbackup
     case vcremoteinfo
-    case vcsnapshot
     case vcallprofiles
     case vcestimatingtasks
     case vcinfolocalremote
     case vcrestore
-    case vcverify
     case vcalloutput
 }
 

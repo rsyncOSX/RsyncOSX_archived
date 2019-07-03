@@ -30,7 +30,7 @@ class ViewControllerScheduleDetails: NSViewController, SetConfigurations, SetSch
 
     // Close view and either stop or delete Schedules
     @IBAction func close(_ sender: NSButton) {
-        if self.configurations!.allowNotifyinMain == true {
+        if Activetab(viewcontroller: .vctabmain).isactive {
             self.dismissview(viewcontroller: self, vcontroller: .vctabmain)
         } else {
             self.dismissview(viewcontroller: self, vcontroller: .vctabschedule)
@@ -43,7 +43,7 @@ class ViewControllerScheduleDetails: NSViewController, SetConfigurations, SetSch
             self.reloadtable(vcontroller: .vctabmain)
             self.reloadtable(vcontroller: .vctabschedule)
         }
-        if self.configurations!.allowNotifyinMain == true {
+        if Activetab(viewcontroller: .vctabmain).isactive {
             self.dismissview(viewcontroller: self, vcontroller: .vctabmain)
         } else {
             self.dismissview(viewcontroller: self, vcontroller: .vctabschedule)
@@ -87,7 +87,7 @@ class ViewControllerScheduleDetails: NSViewController, SetConfigurations, SetSch
     override func viewDidAppear() {
         super.viewDidAppear()
         // Decide which viewcontroller calling the view
-        if self.configurations!.allowNotifyinMain == true {
+        if Activetab(viewcontroller: .vctabmain).isactive {
             self.getHiddenIDDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllertabMain
         } else {
             self.getHiddenIDDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabschedule) as? ViewControllertabSchedule
