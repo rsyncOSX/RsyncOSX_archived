@@ -530,3 +530,9 @@ extension ViewControllerSnapshots: OpenQuickBackup {
         })
     }
 }
+
+extension ViewControllerSnapshots: GetSelecetedIndex {
+    func getindex() -> Int? {
+        return self.index
+    }
+}

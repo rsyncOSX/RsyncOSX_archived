@@ -308,7 +308,12 @@ extension Index {
     func index() -> Int? {
         weak var getindexDelegate: GetSelecetedIndex?
         getindexDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllertabMain
-        return getindexDelegate?.getindex()
+        if getindexDelegate?.getindex() != nil {
+            return getindexDelegate?.getindex()
+        } else {
+            getindexDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vcsnapshot) as? ViewControllerSnapshots
+            return getindexDelegate?.getindex()
+        }
     }
 }
 
