@@ -22,7 +22,6 @@ class ViewControllerLoggData: NSViewController, SetConfigurations, SetSchedules,
     private var row: NSDictionary?
     private var filterby: Sortandfilter?
     private var index: Int?
-    private var viewispresent: Bool = false
     private var sortedascendigdesending: Bool = true
     typealias Row = (Int, Int)
 
@@ -128,7 +127,6 @@ class ViewControllerLoggData: NSViewController, SetConfigurations, SetSchedules,
             self.info.stringValue = Infologgdata().info(num: 0)
             self.scheduleloggdata = ScheduleLoggData(sortdirection: self.sortedascendigdesending)
         }
-        self.viewispresent = true
         globalMainQueue.async(execute: { () -> Void in
             self.scheduletable.reloadData()
         })
@@ -139,7 +137,6 @@ class ViewControllerLoggData: NSViewController, SetConfigurations, SetSchedules,
         super.viewDidDisappear()
         self.scheduleloggdata = nil
         self.snapshotsloggdata = nil
-        self.viewispresent = false
         self.working.stopAnimation(nil)
         self.selectbutton.state = .off
     }
@@ -284,7 +281,7 @@ extension ViewControllerLoggData: Reloadandrefresh {
 
 extension ViewControllerLoggData: ReadLoggdata {
     func readloggdata() {
-        if viewispresent {
+        if Activetab(viewcontroller: .vcloggdata).isactive {
             self.scheduleloggdata = nil
             globalMainQueue.async(execute: { () -> Void in
                 self.index = self.index()
