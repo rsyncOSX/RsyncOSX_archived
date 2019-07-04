@@ -190,7 +190,7 @@ extension ViewControllertabMain: Connections {
     // Remote servers offline are marked with red line in mainTableView
     func displayConnections() {
         // Only do a reload if we are in the main view
-        guard self.configurations!.allowNotifyinMain == true else { return }
+        guard Activetab(viewcontroller: .vctabmain).isactive == true else { return }
         self.loadProfileMenu = true
         self.serverOff = self.tcpconnections!.gettestAllremoteserverConnections()
         globalMainQueue.async(execute: { () -> Void in
@@ -203,11 +203,10 @@ extension ViewControllertabMain: Connections {
 extension ViewControllertabMain: NewVersionDiscovered {
     // Notifies if new version is discovered
     func notifyNewVersion() {
-        if self.configurations!.allowNotifyinMain {
-            globalMainQueue.async(execute: { () -> Void in
-                self.presentAsSheet(self.newVersionViewController!)
-            })
-        }
+        guard Activetab(viewcontroller: .vctabmain).isactive == true else { return }
+        globalMainQueue.async(execute: { () -> Void in
+            self.presentAsSheet(self.newVersionViewController!)
+        })
     }
 }
 
@@ -223,9 +222,6 @@ extension ViewControllertabMain: DismissViewController {
             self.displayProfile()
         })
         self.setinfoaboutrsync()
-        if viewcontroller == ViewControllerReference.shared.getvcref(viewcontroller: .vcquickbackup) {
-            self.configurations!.allowNotifyinMain = true
-        }
     }
 }
 
@@ -663,7 +659,6 @@ extension ViewControllertabMain: SetRemoteInfo {
 extension ViewControllertabMain: OpenQuickBackup {
     func openquickbackup() {
         self.configurations!.processtermination = .quicktask
-        self.configurations!.allowNotifyinMain = false
         globalMainQueue.async(execute: { () -> Void in
             self.presentAsSheet(self.viewControllerQuickBackup!)
         })
