@@ -130,6 +130,9 @@
 /* Loggdata */
 "Got index from Execute and listing logs for one configuration..." = "Hentet index fra Utfør og lister logg for en konfigurasjon ";
 
+/* Loggdata */
+"Got index from Snapshots and listing logs for one configuration..." = "Hentet index fra Snapshots og lister logg for en konfigurasjon ";
+
 /* Schedules */
 "Got index from Execute..." = "Hentet index fra Utfør";
 
