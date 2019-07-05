@@ -510,12 +510,12 @@ extension ViewControllertabMain: SingleTaskProgress {
 
     func seterrorinfo(info: String) {
         guard info != "" else {
-            self.dryRunOrRealRun.isHidden = true
+            self.errorinfo.isHidden = true
             return
         }
-        self.dryRunOrRealRun.textColor = setcolor(nsviewcontroller: self, color: .red)
-        self.dryRunOrRealRun.isHidden = false
-        self.dryRunOrRealRun.stringValue = info
+        self.errorinfo.textColor = setcolor(nsviewcontroller: self, color: .red)
+        self.errorinfo.isHidden = false
+        self.errorinfo.stringValue = info
     }
 
     // Function for getting numbers out of output object updated when
