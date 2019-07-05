@@ -59,7 +59,7 @@ class ViewControllertabMain: NSViewController, ReloadTable, Deselect, VcMain, De
     @IBOutlet weak var rsyncCommand: NSTextField!
     // If On result of Dryrun is presented before
     // executing the real run
-    @IBOutlet weak var dryRunOrRealRun: NSTextField!
+    @IBOutlet weak var errorinfo: NSTextField!
     // number of files to be transferred
     @IBOutlet weak var transferredNumber: NSTextField!
     // size of files to be transferred
