@@ -122,7 +122,11 @@ class ViewControllerLoggData: NSViewController, SetConfigurations, SetSchedules,
                 if config?.task == "snapshot" { self.working.startAnimation(nil) }
                 self.snapshotsloggdata = SnapshotsLoggData(config: config!, insnapshot: false)
             }
-            self.info.stringValue = Infologgdata().info(num: 1)
+            if self.indexfromwhere() == .vcsnapshot {
+                self.info.stringValue = Infologgdata().info(num: 2)
+            } else {
+                self.info.stringValue = Infologgdata().info(num: 1)
+            }
         } else {
             self.info.stringValue = Infologgdata().info(num: 0)
             self.scheduleloggdata = ScheduleLoggData(sortdirection: self.sortedascendigdesending)
@@ -288,7 +292,11 @@ extension ViewControllerLoggData: ReadLoggdata {
                 if let index = self.index {
                     let hiddenID = self.configurations?.gethiddenID(index: index) ?? -1
                     self.scheduleloggdata = ScheduleLoggData(hiddenID: hiddenID, sortdirection: self.sortedascendigdesending)
-                    self.info.stringValue = Infologgdata().info(num: 1)
+                    if self.indexfromwhere() == .vcsnapshot {
+                        self.info.stringValue = Infologgdata().info(num: 2)
+                    } else {
+                        self.info.stringValue = Infologgdata().info(num: 1)
+                    }
                 } else {
                     self.info.stringValue = Infologgdata().info(num: 0)
                     self.scheduleloggdata = ScheduleLoggData(sortdirection: self.sortedascendigdesending)

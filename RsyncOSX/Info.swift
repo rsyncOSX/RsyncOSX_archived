@@ -50,11 +50,14 @@ struct Infologgdata {
 
     // Loggdata
     let info21: String = NSLocalizedString("Got index from Execute and listing logs for one configuration...", comment: "Loggdata")
+    let info22: String = NSLocalizedString("Got index from Snapshots and listing logs for one configuration...", comment: "Loggdata")
 
     func info(num: Int) -> String {
         switch num {
         case 1:
             return self.info21
+        case 2:
+            return self.info22
         default:
             return ""
         }
