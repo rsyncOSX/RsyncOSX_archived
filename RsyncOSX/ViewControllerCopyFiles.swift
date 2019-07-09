@@ -276,7 +276,7 @@ extension ViewControllerCopyFiles: NSSearchFieldDelegate {
 
     func searchFieldDidEndSearching(_ sender: NSSearchField) {
         if let index = self.rsyncindex {
-            if let hiddenID = self.configurations!.getConfigurationsDataSourcecountBackupSnapshot()![index].value(forKey: "hiddenID") as? Int {
+            if self.configurations!.getConfigurationsDataSourcecountBackupSnapshot()![index].value(forKey: "hiddenID") as? Int != nil {
                 self.working.startAnimation(nil)
             }
         }
