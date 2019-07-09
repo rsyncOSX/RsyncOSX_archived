@@ -13,7 +13,7 @@ class QuickbackupDispatch: SetSchedules {
     private var workitem: DispatchWorkItem?
 
     private func dispatchtask(seconds: Int) {
-        let work = DispatchWorkItem { [weak self] in
+        let work = DispatchWorkItem {  () -> Void in
             _ = ExecuteQuickbackupTask()
         }
         self.workitem = work
