@@ -12,7 +12,7 @@ import Cocoa
 
 // Protocol for getting the hiddenID for a configuration
 protocol GetHiddenID: class {
-    func gethiddenID() -> Int?
+    func gethiddenID() -> Int
 }
 
 class ViewControllerScheduleDetails: NSViewController, SetConfigurations, SetSchedules, SetDismisser, ReloadTable {
