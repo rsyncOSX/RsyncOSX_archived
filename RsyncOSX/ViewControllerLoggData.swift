@@ -19,7 +19,6 @@ class ViewControllerLoggData: NSViewController, SetConfigurations, SetSchedules,
 
     private var scheduleloggdata: ScheduleLoggData?
     private var snapshotsloggdata: SnapshotsLoggData?
-    private var row: NSDictionary?
     private var filterby: Sortandfilter?
     private var index: Int?
     private var sortedascendigdesending: Bool = true
@@ -116,6 +115,7 @@ class ViewControllerLoggData: NSViewController, SetConfigurations, SetSchedules,
         self.index = self.index()
         if let index = self.index {
             let hiddenID = self.configurations?.gethiddenID(index: index) ?? -1
+            guard hiddenID > -1 else { return }
             let config = self.configurations?.getConfigurations()[index]
             self.scheduleloggdata = ScheduleLoggData(hiddenID: hiddenID, sortdirection: self.sortedascendigdesending)
             if self.connected(config: config!) {
@@ -134,7 +134,6 @@ class ViewControllerLoggData: NSViewController, SetConfigurations, SetSchedules,
         globalMainQueue.async(execute: { () -> Void in
             self.scheduletable.reloadData()
         })
-        self.row = nil
     }
 
     override func viewDidDisappear() {
@@ -158,12 +157,10 @@ extension ViewControllerLoggData: NSSearchFieldDelegate {
             let filterstring = self.search.stringValue
             self.selectbutton.state = .off
             if filterstring.isEmpty {
-                globalMainQueue.async(execute: { () -> Void in
-                    self.reloadtabledata()
-                })
+                self.reloadtabledata()
             } else {
+                self.scheduleloggdata!.filter(search: filterstring, filterby: self.filterby)
                 globalMainQueue.async(execute: { () -> Void in
-                    self.scheduleloggdata!.filter(search: filterstring, filterby: self.filterby)
                     self.scheduletable.reloadData()
                 })
             }
@@ -215,7 +212,6 @@ extension ViewControllerLoggData: NSTableViewDelegate {
         let indexes = myTableViewFromNotification.selectedRowIndexes
         if let index = indexes.first {
             self.index = index
-            self.row = self.scheduleloggdata?.loggdata![self.index!]
         }
         let column = myTableViewFromNotification.selectedColumn
         var sortbystring = true
@@ -266,6 +262,7 @@ extension ViewControllerLoggData: Reloadandrefresh {
     func reloadtabledata() {
         if let index = self.index {
             let hiddenID = self.configurations?.gethiddenID(index: index) ?? -1
+            guard hiddenID > -1 else { return }
             let config = self.configurations?.getConfigurations()[index]
             self.scheduleloggdata = ScheduleLoggData(hiddenID: hiddenID, sortdirection: self.sortedascendigdesending)
             if self.connected(config: config!) {
@@ -278,7 +275,6 @@ extension ViewControllerLoggData: Reloadandrefresh {
         globalMainQueue.async(execute: { () -> Void in
             self.scheduletable.reloadData()
         })
-        self.row = nil
         self.selectedrows.stringValue = NSLocalizedString("Selected rows:", comment: "Logg")
     }
 }
@@ -287,23 +283,24 @@ extension ViewControllerLoggData: ReadLoggdata {
     func readloggdata() {
         if Activetab(viewcontroller: .vcloggdata).isactive {
             self.scheduleloggdata = nil
-            globalMainQueue.async(execute: { () -> Void in
-                self.index = self.index()
-                if let index = self.index {
-                    let hiddenID = self.configurations?.gethiddenID(index: index) ?? -1
-                    self.scheduleloggdata = ScheduleLoggData(hiddenID: hiddenID, sortdirection: self.sortedascendigdesending)
-                    if self.indexfromwhere() == .vcsnapshot {
-                        self.info.stringValue = Infologgdata().info(num: 2)
-                    } else {
-                        self.info.stringValue = Infologgdata().info(num: 1)
-                    }
+            self.index = self.index()
+            if let index = self.index {
+                let hiddenID = self.configurations?.gethiddenID(index: index) ?? -1
+                guard hiddenID > -1 else { return }
+                self.scheduleloggdata = ScheduleLoggData(hiddenID: hiddenID, sortdirection: self.sortedascendigdesending)
+                if self.indexfromwhere() == .vcsnapshot {
+                    self.info.stringValue = Infologgdata().info(num: 2)
                 } else {
-                    self.info.stringValue = Infologgdata().info(num: 0)
-                    self.scheduleloggdata = ScheduleLoggData(sortdirection: self.sortedascendigdesending)
+                    self.info.stringValue = Infologgdata().info(num: 1)
                 }
-                self.scheduletable.reloadData()
-            })
-        }
+            } else {
+                self.info.stringValue = Infologgdata().info(num: 0)
+                self.scheduleloggdata = ScheduleLoggData(sortdirection: self.sortedascendigdesending)
+            }
+        globalMainQueue.async(execute: { () -> Void in
+            self.scheduletable.reloadData()
+        })
+    }
     }
 }
 

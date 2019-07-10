@@ -112,6 +112,7 @@ class ViewControllerRsyncParameters: NSViewController, SetConfigurations, SetDis
             self.initcombox(combobox: self.combo12, index: (self.parameters!.indexandvaluersyncparameter(self.parameters!.getBackupstrings()[0]).0))
             self.param12.stringValue = self.parameters!.indexandvaluersyncparameter(self.parameters!.getBackupstrings()[0]).1
             let hiddenID = self.configurations!.gethiddenID(index: (self.index())!)
+            guard hiddenID > -1 else { return }
             let localcatalog = self.configurations!.getResourceConfiguration(hiddenID, resource: .localCatalog)
             let localcatalogParts = (localcatalog as AnyObject).components(separatedBy: "/")
             self.initcombox(combobox: self.combo13, index: (self.parameters!.indexandvaluersyncparameter(self.parameters!.getBackupstrings()[1]).0))

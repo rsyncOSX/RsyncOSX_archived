@@ -320,6 +320,7 @@ class Configurations: ReloadTable, SetSchedules {
     }
 
     func gethiddenID (index: Int) -> Int {
+        guard index < (self.configurations?.count ?? -1) else { return -1 }
         return self.configurations![index].hiddenID
     }
 
@@ -359,11 +360,6 @@ class Configurations: ReloadTable, SetSchedules {
         self.configurations![index].snapshotnum  = num + 1
     }
 
-    /// Function is reading all Configurations into memory from permanent store and
-    /// prepare all arguments for rsync. All configurations are stored in the private
-    /// variable within object.
-    /// Function is destroying any previous Configurations before loading new and computing new arguments.
-    /// - parameter none: none
     private func readconfigurations() {
         self.argumentAllConfigurations = [ArgumentsOneConfiguration]()
         let store: [Configuration]? = self.storageapi!.getConfigurations()

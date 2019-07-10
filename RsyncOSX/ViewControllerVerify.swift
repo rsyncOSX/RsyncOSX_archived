@@ -251,7 +251,8 @@ class ViewControllerVerify: NSViewController, SetConfigurations, Index, VcExecut
     }
 
     private func setinfo() {
-        let hiddenID = self.configurations?.gethiddenID(index: self.index!) ?? 0
+        let hiddenID = self.configurations?.gethiddenID(index: self.index!) ?? -1
+        guard hiddenID > -1 else { return }
         self.localcatalog.stringValue = self.configurations!.getResourceConfiguration(hiddenID, resource: .localCatalog)
         self.remoteserver.stringValue = self.configurations!.getResourceConfiguration(hiddenID, resource: .offsiteServer)
         self.remotecatalog.stringValue = self.configurations!.getResourceConfiguration(hiddenID, resource: .remoteCatalog)
