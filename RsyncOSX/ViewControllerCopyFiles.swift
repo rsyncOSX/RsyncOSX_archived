@@ -109,6 +109,7 @@ class ViewControllerCopyFiles: NSViewController, SetConfigurations, Delay, VcCop
             return
         }
         let hiddenID = self.configurations!.gethiddenID(index: index!)
+        guard hiddenID > -1 else { return }
         globalMainQueue.async(execute: { () -> Void in
             self.server.stringValue = self.configurations!.getResourceConfiguration(hiddenID, resource: .offsiteServer)
             self.rcatalog.stringValue = self.configurations!.getResourceConfiguration(hiddenID, resource: .remoteCatalog)

@@ -158,6 +158,7 @@ class ViewControllertabSchedule: NSViewController, SetConfigurations, SetSchedul
         self.index = self.index()
         if self.index != nil {
             self.hiddenID = self.configurations!.gethiddenID(index: self.index!)
+            guard (self.hiddenID ?? -1) > -1 else { return }
             self.info.stringValue = Infoschedule().info(num: 3)
             self.preselectrow = true
         } else {
@@ -294,8 +295,8 @@ extension ViewControllertabSchedule: NSTableViewDelegate, Attributedestring {
 }
 
 extension  ViewControllertabSchedule: GetHiddenID {
-    func gethiddenID() -> Int? {
-        return self.hiddenID
+    func gethiddenID() -> Int {
+        return self.hiddenID ?? -1
     }
 }
 

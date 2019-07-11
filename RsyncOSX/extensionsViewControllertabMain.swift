@@ -610,8 +610,8 @@ extension ViewControllertabMain: GetSchedulesObject {
 }
 
 extension  ViewControllertabMain: GetHiddenID {
-    func gethiddenID() -> Int? {
-        return self.hiddenID
+    func gethiddenID() -> Int {
+        return self.hiddenID ?? -1
     }
 }
 

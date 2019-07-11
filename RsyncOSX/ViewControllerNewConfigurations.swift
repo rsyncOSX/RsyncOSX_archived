@@ -90,6 +90,7 @@ class ViewControllerNewConfigurations: NSViewController, SetConfigurations, VcSc
     @IBAction func copyconfiguration(_ sender: NSButton) {
         guard self.index != nil else { return }
         let hiddenID = self.configurations!.gethiddenID(index: self.index!)
+        guard hiddenID > -1 else { return }
         self.localCatalog.stringValue = self.configurations!.getResourceConfiguration(hiddenID, resource: .localCatalog)
         self.offsiteCatalog.stringValue = self.configurations!.getResourceConfiguration(hiddenID, resource: .remoteCatalog)
         self.offsiteUsername.stringValue = self.configurations!.getResourceConfiguration(hiddenID, resource: .offsiteusername)

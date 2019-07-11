@@ -12,7 +12,7 @@ import Cocoa
 
 // Protocol for getting the hiddenID for a configuration
 protocol GetHiddenID: class {
-    func gethiddenID() -> Int?
+    func gethiddenID() -> Int
 }
 
 class ViewControllerScheduleDetails: NSViewController, SetConfigurations, SetSchedules, SetDismisser, ReloadTable {
@@ -93,6 +93,7 @@ class ViewControllerScheduleDetails: NSViewController, SetConfigurations, SetSch
             self.getHiddenIDDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabschedule) as? ViewControllertabSchedule
         }
         self.hiddendID = self.getHiddenIDDelegate?.gethiddenID()
+        guard (self.hiddendID ?? -1) > -1 else { return }
         self.data = self.schedules!.readscheduleonetask(self.hiddendID)
         globalMainQueue.async(execute: { () -> Void in
             self.scheduletable.reloadData()

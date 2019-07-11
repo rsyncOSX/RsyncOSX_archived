@@ -37,7 +37,7 @@ final class ScheduleLoggData: SetConfigurations, SetSchedules, Sorting {
         })
     }
 
-    private func readAndSortAllLoggdata(sortdirection: Bool) {
+    private func readAndSortAllLoggdata(sortascending: Bool) {
         var data = [NSMutableDictionary]()
         let dateformatter = Dateandtime().setDateformat()
         let input: [ConfigurationSchedule] = self.schedules!.getSchedule()
@@ -65,15 +65,16 @@ final class ScheduleLoggData: SetConfigurations, SetSchedules, Sorting {
                 data.append(logdetail)
             }
         }
-        self.loggdata = self.sortbyrundate(notsortedlist: data, sortdirection: sortdirection)
+        self.loggdata = self.sortbyrundate(notsortedlist: data, sortdirection: sortascending)
     }
 
-    private func readAndSortAllLoggdata(hiddenID: Int, sortdirection: Bool) {
+    private func readAndSortAllLoggdata(hiddenID: Int, sortascending: Bool) {
         var data = [NSMutableDictionary]()
         let dateformatter = Dateandtime().setDateformat()
         let input: [ConfigurationSchedule] = self.schedules!.getSchedule()
         for i in 0 ..< input.count {
-            for j in 0 ..< input[i].logrecords.count where self.schedules!.getSchedule()[i].hiddenID == hiddenID {
+            for j in 0 ..< input[i].logrecords.count where
+                self.schedules!.getSchedule()[i].hiddenID == hiddenID {
                 let dict = input[i].logrecords[j]
                 var date: String = ""
                 let stringdate = dict.value(forKey: "dateExecuted") as? String ?? ""
@@ -95,7 +96,7 @@ final class ScheduleLoggData: SetConfigurations, SetSchedules, Sorting {
                 data.append(logdetail)
             }
         }
-        self.loggdata = self.sortbyrundate(notsortedlist: data, sortdirection: sortdirection)
+        self.loggdata = self.sortbyrundate(notsortedlist: data, sortdirection: sortascending)
     }
 
     private func allreadAndSortAllLoggdata() {
@@ -138,9 +139,9 @@ final class ScheduleLoggData: SetConfigurations, SetSchedules, Sorting {
         }
     }
 
-    init (sortdirection: Bool) {
+    init (sortascending: Bool) {
         if self.loggdata == nil {
-            self.readAndSortAllLoggdata(sortdirection: sortdirection)
+            self.readAndSortAllLoggdata(sortascending: sortascending)
         }
     }
 
@@ -150,9 +151,9 @@ final class ScheduleLoggData: SetConfigurations, SetSchedules, Sorting {
         self.allreadAndSortAllLoggdata()
     }
 
-    init (hiddenID: Int, sortdirection: Bool) {
+    init (hiddenID: Int, sortascending: Bool) {
         if self.loggdata == nil {
-            self.readAndSortAllLoggdata(hiddenID: hiddenID, sortdirection: sortdirection)
+            self.readAndSortAllLoggdata(hiddenID: hiddenID, sortascending: sortascending)
         }
     }
 }
