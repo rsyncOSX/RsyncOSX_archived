@@ -31,7 +31,7 @@ final class SnapshotsLoggData {
     }
 
     private func getsnapshotlogs() {
-        self.snapshotslogs = ScheduleLoggData(sortdirection: true).loggdata?.filter({($0.value(forKey: "hiddenID") as? Int)! == config?.hiddenID})
+        self.snapshotslogs = ScheduleLoggData(sortascending: true).loggdata?.filter({($0.value(forKey: "hiddenID") as? Int)! == config?.hiddenID})
         guard self.snapshotslogs != nil else { return }
         for i in 0 ..< self.snapshotslogs!.count {
             if let dateRun = self.snapshotslogs![i].object(forKey: "dateExecuted") {
@@ -110,7 +110,7 @@ final class SnapshotsLoggData {
     init(config: Configuration, insnapshot: Bool) {
         guard config.task == ViewControllerReference.shared.snapshot else { return }
         self.insnapshot = insnapshot
-        self.snapshotslogs = ScheduleLoggData(sortdirection: true).loggdata
+        self.snapshotslogs = ScheduleLoggData(sortascending: true).loggdata
         self.config = config
         self.getremotecataloginfo(insnapshots: insnapshot)
     }

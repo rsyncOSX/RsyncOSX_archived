@@ -21,7 +21,7 @@ class ViewControllerLoggData: NSViewController, SetConfigurations, SetSchedules,
     private var snapshotsloggdata: SnapshotsLoggData?
     private var filterby: Sortandfilter?
     private var index: Int?
-    private var sortedascendigdesending: Bool = true
+    private var sortedascending: Bool = true
     typealias Row = (Int, Int)
 
     @IBOutlet weak var scheduletable: NSTableView!
@@ -59,11 +59,11 @@ class ViewControllerLoggData: NSViewController, SetConfigurations, SetSchedules,
     }
 
     @IBAction func sortdirection(_ sender: NSButton) {
-        if self.sortedascendigdesending == true {
-            self.sortedascendigdesending = false
+        if self.sortedascending == true {
+            self.sortedascending = false
             self.sortdirection.image = #imageLiteral(resourceName: "down")
         } else {
-            self.sortedascendigdesending = true
+            self.sortedascending = true
             self.sortdirection.image = #imageLiteral(resourceName: "up")
         }
     }
@@ -105,7 +105,7 @@ class ViewControllerLoggData: NSViewController, SetConfigurations, SetSchedules,
         self.search.delegate = self
         ViewControllerReference.shared.setvcref(viewcontroller: .vcloggdata, nsviewcontroller: self)
         self.sortdirection.image = #imageLiteral(resourceName: "up")
-        self.sortedascendigdesending = true
+        self.sortedascending = true
         self.working.usesThreadedAnimation = true
     }
 
@@ -117,7 +117,7 @@ class ViewControllerLoggData: NSViewController, SetConfigurations, SetSchedules,
             let hiddenID = self.configurations?.gethiddenID(index: index) ?? -1
             guard hiddenID > -1 else { return }
             let config = self.configurations?.getConfigurations()[index]
-            self.scheduleloggdata = ScheduleLoggData(hiddenID: hiddenID, sortdirection: self.sortedascendigdesending)
+            self.scheduleloggdata = ScheduleLoggData(hiddenID: hiddenID, sortascending: self.sortedascending)
             if self.connected(config: config!) {
                 if config?.task == "snapshot" { self.working.startAnimation(nil) }
                 self.snapshotsloggdata = SnapshotsLoggData(config: config!, insnapshot: false)
@@ -129,7 +129,7 @@ class ViewControllerLoggData: NSViewController, SetConfigurations, SetSchedules,
             }
         } else {
             self.info.stringValue = Infologgdata().info(num: 0)
-            self.scheduleloggdata = ScheduleLoggData(sortdirection: self.sortedascendigdesending)
+            self.scheduleloggdata = ScheduleLoggData(sortascending: self.sortedascending)
         }
         globalMainQueue.async(execute: { () -> Void in
             self.scheduletable.reloadData()
@@ -231,9 +231,9 @@ extension ViewControllerLoggData: NSTableViewDelegate {
             return
         }
         if sortbystring {
-            self.scheduleloggdata?.loggdata = self.scheduleloggdata!.sortbystring(notsortedlist: self.scheduleloggdata?.loggdata, sortby: self.filterby!, sortdirection: self.sortedascendigdesending)
+            self.scheduleloggdata?.loggdata = self.scheduleloggdata!.sortbystring(notsortedlist: self.scheduleloggdata?.loggdata, sortby: self.filterby!, sortdirection: self.sortedascending)
         } else {
-            self.scheduleloggdata?.loggdata = self.scheduleloggdata!.sortbyrundate(notsortedlist: self.scheduleloggdata?.loggdata, sortdirection: self.sortedascendigdesending)
+            self.scheduleloggdata?.loggdata = self.scheduleloggdata!.sortbyrundate(notsortedlist: self.scheduleloggdata?.loggdata, sortdirection: self.sortedascending)
         }
         globalMainQueue.async(execute: { () -> Void in
             self.scheduletable.reloadData()
@@ -264,13 +264,13 @@ extension ViewControllerLoggData: Reloadandrefresh {
             let hiddenID = self.configurations?.gethiddenID(index: index) ?? -1
             guard hiddenID > -1 else { return }
             let config = self.configurations?.getConfigurations()[index]
-            self.scheduleloggdata = ScheduleLoggData(hiddenID: hiddenID, sortdirection: self.sortedascendigdesending)
+            self.scheduleloggdata = ScheduleLoggData(hiddenID: hiddenID, sortascending: self.sortedascending)
             if self.connected(config: config!) {
                 if config?.task == "snapshot" { self.working.startAnimation(nil) }
                 self.snapshotsloggdata = SnapshotsLoggData(config: config!, insnapshot: false)
             }
         } else {
-            self.scheduleloggdata = ScheduleLoggData(sortdirection: self.sortedascendigdesending)
+            self.scheduleloggdata = ScheduleLoggData(sortascending: self.sortedascending)
         }
         globalMainQueue.async(execute: { () -> Void in
             self.scheduletable.reloadData()
@@ -287,7 +287,7 @@ extension ViewControllerLoggData: ReadLoggdata {
             if let index = self.index {
                 let hiddenID = self.configurations?.gethiddenID(index: index) ?? -1
                 guard hiddenID > -1 else { return }
-                self.scheduleloggdata = ScheduleLoggData(hiddenID: hiddenID, sortdirection: self.sortedascendigdesending)
+                self.scheduleloggdata = ScheduleLoggData(hiddenID: hiddenID, sortascending: self.sortedascending)
                 if self.indexfromwhere() == .vcsnapshot {
                     self.info.stringValue = Infologgdata().info(num: 2)
                 } else {
@@ -295,7 +295,7 @@ extension ViewControllerLoggData: ReadLoggdata {
                 }
             } else {
                 self.info.stringValue = Infologgdata().info(num: 0)
-                self.scheduleloggdata = ScheduleLoggData(sortdirection: self.sortedascendigdesending)
+                self.scheduleloggdata = ScheduleLoggData(sortascending: self.sortedascending)
             }
         globalMainQueue.async(execute: { () -> Void in
             self.scheduletable.reloadData()
