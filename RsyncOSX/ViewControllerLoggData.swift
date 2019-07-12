@@ -11,10 +11,6 @@
 import Foundation
 import Cocoa
 
-protocol ReadLoggdata: class {
-    func readloggdata()
-}
-
 class ViewControllerLoggData: NSViewController, SetConfigurations, SetSchedules, Delay, Index, Connected, VcExecute {
 
     private var scheduleloggdata: ScheduleLoggData?
@@ -276,31 +272,6 @@ extension ViewControllerLoggData: Reloadandrefresh {
             self.scheduletable.reloadData()
         })
         self.selectedrows.stringValue = NSLocalizedString("Selected rows:", comment: "Logg")
-    }
-}
-
-extension ViewControllerLoggData: ReadLoggdata {
-    func readloggdata() {
-        if Activetab(viewcontroller: .vcloggdata).isactive {
-            self.scheduleloggdata = nil
-            self.index = self.index()
-            if let index = self.index {
-                let hiddenID = self.configurations?.gethiddenID(index: index) ?? -1
-                guard hiddenID > -1 else { return }
-                self.scheduleloggdata = ScheduleLoggData(hiddenID: hiddenID, sortascending: self.sortedascending)
-                if self.indexfromwhere() == .vcsnapshot {
-                    self.info.stringValue = Infologgdata().info(num: 2)
-                } else {
-                    self.info.stringValue = Infologgdata().info(num: 1)
-                }
-            } else {
-                self.info.stringValue = Infologgdata().info(num: 0)
-                self.scheduleloggdata = ScheduleLoggData(sortascending: self.sortedascending)
-            }
-        globalMainQueue.async(execute: { () -> Void in
-            self.scheduletable.reloadData()
-        })
-    }
     }
 }
 
