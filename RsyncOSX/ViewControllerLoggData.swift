@@ -18,7 +18,6 @@ class ViewControllerLoggData: NSViewController, SetConfigurations, SetSchedules,
     private var filterby: Sortandfilter?
     private var index: Int?
     private var sortedascending: Bool = true
-    typealias Row = (Int, Int)
 
     @IBOutlet weak var scheduletable: NSTableView!
     @IBOutlet weak var search: NSSearchField!
@@ -62,7 +61,18 @@ class ViewControllerLoggData: NSViewController, SetConfigurations, SetSchedules,
             self.sortedascending = true
             self.sortdirection.image = #imageLiteral(resourceName: "up")
         }
+        guard self.filterby != nil else { return }
+        switch self.filterby! {
+        case .executedate:
+            self.scheduleloggdata?.loggdata = self.scheduleloggdata!.sortbydate(notsortedlist: self.scheduleloggdata?.loggdata, sortdirection: self.sortedascending)
+        default:
+            self.scheduleloggdata?.loggdata = self.scheduleloggdata!.sortbystring(notsortedlist: self.scheduleloggdata?.loggdata, sortby: self.filterby!, sortdirection: self.sortedascending)
+        }
+        globalMainQueue.async(execute: { () -> Void in
+            self.scheduletable.reloadData()
+        })
     }
+
     @IBAction func selectlogs(_ sender: NSButton) {
         guard self.scheduleloggdata!.loggdata != nil else { return }
         for i in 0 ..< self.scheduleloggdata!.loggdata!.count {
