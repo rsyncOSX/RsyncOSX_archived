@@ -436,13 +436,12 @@ protocol Reloadsortedandrefresh {
 
 // Protocol for sorting
 protocol Sorting {
-    func sortbyrundate(notsortedlist: [NSMutableDictionary]?, sortdirection: Bool) -> [NSMutableDictionary]?
+    func sortbydate(notsortedlist: [NSMutableDictionary]?, sortdirection: Bool) -> [NSMutableDictionary]?
     func sortbystring(notsortedlist: [NSMutableDictionary]?, sortby: Sortandfilter, sortdirection: Bool) -> [NSMutableDictionary]?
-    func filterbystring(filterby: Sortandfilter) -> String
 }
 
 extension Sorting {
-    func sortbyrundate(notsortedlist: [NSMutableDictionary]?, sortdirection: Bool) -> [NSMutableDictionary]? {
+    func sortbydate(notsortedlist: [NSMutableDictionary]?, sortdirection: Bool) -> [NSMutableDictionary]? {
         guard notsortedlist != nil else { return nil }
         let dateformatter = DateFormatter()
         dateformatter.formatterBehavior = .behavior10_4

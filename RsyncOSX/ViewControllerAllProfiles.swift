@@ -97,7 +97,7 @@ class ViewControllerAllProfiles: NSViewController, Delay, Abort, Connected {
         self.allschedulessortedandexpanded = ScheduleSortedAndExpand(allschedules: self.allschedules)
         self.sortdirection.image = #imageLiteral(resourceName: "up")
         self.sortedascendigdesending = true
-        self.allprofiles?.allconfigurationsasdictionary = self.allprofiles!.sortbyrundate(notsortedlist: self.allprofiles?.allconfigurationsasdictionary, sortdirection: self.sortedascendigdesending)
+        self.allprofiles?.allconfigurationsasdictionary = self.allprofiles!.sortbydate(notsortedlist: self.allprofiles?.allconfigurationsasdictionary, sortdirection: self.sortedascendigdesending)
         globalMainQueue.async(execute: { () -> Void in
             self.mainTableView.reloadData()
         })
@@ -182,7 +182,7 @@ extension ViewControllerAllProfiles: NSTableViewDelegate, Attributedestring {
         if sortbystring {
             self.allprofiles?.allconfigurationsasdictionary = self.allprofiles!.sortbystring(notsortedlist: self.allprofiles?.allconfigurationsasdictionary, sortby: self.filterby!, sortdirection: self.sortedascendigdesending)
         } else {
-            self.allprofiles?.allconfigurationsasdictionary = self.allprofiles!.sortbyrundate(notsortedlist: self.allprofiles?.allconfigurationsasdictionary, sortdirection: self.sortedascendigdesending)
+            self.allprofiles?.allconfigurationsasdictionary = self.allprofiles!.sortbydate(notsortedlist: self.allprofiles?.allconfigurationsasdictionary, sortdirection: self.sortedascendigdesending)
         }
         globalMainQueue.async(execute: { () -> Void in
             self.mainTableView.reloadData()

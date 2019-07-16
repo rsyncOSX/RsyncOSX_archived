@@ -46,4 +46,19 @@ class RsyncOSXTests: XCTestCase, SetConfigurations {
                        "Arguments should be equal")
     }
 
+    func testalllogs() {
+        let schedules = ScheduleLoggData(sortascending: true)
+        XCTAssertEqual(1, schedules.loggdata?.count, "Should be one")
+    }
+
+    func testselectedlog() {
+        let schedules = ScheduleLoggData(hiddenID: 2, sortascending: true)
+        XCTAssertEqual(1, schedules.loggdata?.count, "Should be one")
+    }
+
+    func testnologg() {
+        let schedules = ScheduleLoggData(hiddenID: 1, sortascending: true)
+        XCTAssertEqual(0, schedules.loggdata?.count, "Should be zero")
+    }
+
 }
