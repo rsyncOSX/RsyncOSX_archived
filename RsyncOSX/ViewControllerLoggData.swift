@@ -174,6 +174,7 @@ extension ViewControllerLoggData: NSSearchFieldDelegate {
     }
 
     func searchFieldDidEndSearching(_ sender: NSSearchField) {
+        self.index = nil
         self.reloadtabledata()
         self.selectbutton.state = .off
     }
@@ -257,7 +258,7 @@ extension ViewControllerLoggData: NSTableViewDelegate {
                 break
             }
             globalMainQueue.async(execute: { () -> Void in
-                self.selectedrows.stringValue = NSLocalizedString("Selected rows:", comment: "Logg") + " " + self.selectednumber()
+                self.selectedrows.stringValue = NSLocalizedString("Selected logs:", comment: "Logg") + " " + self.selectednumber()
             })
         }
     }
@@ -281,7 +282,6 @@ extension ViewControllerLoggData: Reloadandrefresh {
         globalMainQueue.async(execute: { () -> Void in
             self.scheduletable.reloadData()
         })
-        self.selectedrows.stringValue = NSLocalizedString("Selected rows:", comment: "Logg")
     }
 }
 
