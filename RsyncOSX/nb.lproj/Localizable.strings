@@ -275,9 +275,6 @@
 /* Logg */
 "Selected logs:" = "Valgte logger:";
 
-/* Logg */
-"Selected rows:" = "Valgte rader:";
-
 /* Execute */
 "Selection out of range - aborting" = "Utvalg ikke mulig - avslutter";
 

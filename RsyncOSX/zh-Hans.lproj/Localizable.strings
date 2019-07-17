@@ -266,9 +266,6 @@
 /* Logg */
 "Selected logs:" = "选定的日志：";
 
-/* Logg */
-"Selected rows:" = "选定的行：";
-
 /* Execute */
 "Selection out of range - aborting" = "选择超出范围 - 中止";
 
