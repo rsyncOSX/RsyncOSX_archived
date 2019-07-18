@@ -20,7 +20,7 @@ class ViewControllerScheduleDetails: NSViewController, SetConfigurations, SetSch
     @IBOutlet weak var localCatalog: NSTextField!
     @IBOutlet weak var remoteCatalog: NSTextField!
     @IBOutlet weak var offsiteServer: NSTextField!
-    weak var getHiddenIDDelegate: GetHiddenID?
+    weak var gethiddenIDDelegate: GetHiddenID?
 
     var hiddendID: Int?
     var data: [NSMutableDictionary]?
@@ -88,11 +88,11 @@ class ViewControllerScheduleDetails: NSViewController, SetConfigurations, SetSch
         super.viewDidAppear()
         // Decide which viewcontroller calling the view
         if Activetab(viewcontroller: .vctabmain).isactive {
-            self.getHiddenIDDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllertabMain
+            self.gethiddenIDDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllertabMain
         } else {
-            self.getHiddenIDDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabschedule) as? ViewControllertabSchedule
+            self.gethiddenIDDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabschedule) as? ViewControllertabSchedule
         }
-        self.hiddendID = self.getHiddenIDDelegate?.gethiddenID()
+        self.hiddendID = self.gethiddenIDDelegate?.gethiddenID()
         guard (self.hiddendID ?? -1) > -1 else { return }
         self.data = self.schedules!.readscheduleonetask(self.hiddendID)
         globalMainQueue.async(execute: { () -> Void in
