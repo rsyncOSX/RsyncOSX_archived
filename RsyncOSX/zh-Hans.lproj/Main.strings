@@ -1,4 +1,4 @@
-/* Class = "NSBox"; title = "Edit configurations"; ObjectID = "0B4-M8-m3v"; */
+/* Class = "NSBox"; title = "Edit"; ObjectID = "0B4-M8-m3v"; */
 "0B4-M8-m3v.title" = "编辑配置";
 
 /* Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "0f6-kk-e9f"; */
@@ -21,9 +21,6 @@
 
 /* Class = "NSButtonCell"; title = "Close"; ObjectID = "1SA-wM-7Lh"; */
 "1SA-wM-7Lh.title" = "关";
-
-/* Class = "NSButtonCell"; title = "Profile"; ObjectID = "1Sk-ep-KA9"; */
-"1Sk-ep-KA9.title" = "简介";
 
 /* Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "1SO-6i-hws"; */
 "1SO-6i-hws.title" = "Text Cell";
