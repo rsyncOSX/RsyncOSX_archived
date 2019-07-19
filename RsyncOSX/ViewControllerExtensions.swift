@@ -471,6 +471,8 @@ extension Sorting {
             sortstring = "localCatalog"
         case .remoteserver:
             sortstring = "offsiteServer"
+        case .remotecatalog:
+            sortstring = "offsiteCatalog"
         case .task:
             sortstring = "task"
         case .backupid:
