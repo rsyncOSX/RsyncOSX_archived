@@ -278,10 +278,7 @@ class ViewControllerRsyncParameters: NSViewController, SetConfigurations, SetDis
 
     // Returns nil or value from stringvalue (rsync parameters)
     private func getValue(value: String) -> String? {
-        if value.isEmpty {
-            return nil
-        } else {
-            return value
-        }
+        guard value.isEmpty == false else { return nil }
+        return value
     }
 }
