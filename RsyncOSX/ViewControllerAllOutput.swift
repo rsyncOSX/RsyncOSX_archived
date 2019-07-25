@@ -12,22 +12,22 @@ import Cocoa
 
 class ViewControllerAllOutput: NSViewController, Delay {
 
-    @IBOutlet weak var detailsTable: NSTableView!
+    @IBOutlet weak var outputtable: NSTableView!
     weak var getoutputDelegate: ViewOutputDetails?
 
     override func viewDidLoad() {
         super.viewDidLoad()
         ViewControllerReference.shared.setvcref(viewcontroller: .vcalloutput, nsviewcontroller: self)
         self.getoutputDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllertabMain
-        self.detailsTable.delegate = self
-        self.detailsTable.dataSource = self
+        self.outputtable.delegate = self
+        self.outputtable.dataSource = self
     }
 
     override func viewDidAppear() {
         super.viewDidAppear()
         self.getoutputDelegate?.enableappend()
         globalMainQueue.async(execute: { () -> Void in
-            self.detailsTable.reloadData()
+            self.outputtable.reloadData()
         })
     }
 
@@ -58,7 +58,7 @@ extension ViewControllerAllOutput: NSTableViewDelegate {
 extension ViewControllerAllOutput: Reloadandrefresh {
     func reloadtabledata() {
         globalMainQueue.async(execute: { () -> Void in
-            self.detailsTable.reloadData()
+            self.outputtable.reloadData()
         })
     }
 }
