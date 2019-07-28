@@ -12,18 +12,17 @@ import Cocoa
 
 class ViewControllerVerify: NSViewController, SetConfigurations, Index, VcExecute, Connected, Setcolor {
 
-    @IBOutlet weak var outputtable: NSTableView!
     var outputprocess: OutputProcess?
     var index: Int?
     var lastindex: Int?
     var estimatedindex: Int?
     var gotremoteinfo: Bool = false
-    private var numbers: NSMutableDictionary?
     private var complete: Bool = false
     private var processRefererence: ProcessCmd?
     let lastdate: String = NSLocalizedString("Date last backup:", comment: "Verify")
     let dayssince: String = NSLocalizedString("Days since last backup:", comment: "Verify")
 
+    @IBOutlet weak var outputtable: NSTableView!
     @IBOutlet weak var working: NSProgressIndicator!
     @IBOutlet weak var verifybutton: NSButton!
     @IBOutlet weak var changedbutton: NSButton!
@@ -224,14 +223,9 @@ class ViewControllerVerify: NSViewController, SetConfigurations, Index, VcExecut
         globalMainQueue.async(execute: { () -> Void in
             let infotask = RemoteInfoTask(outputprocess: outputprocess)
             if local {
-                self.numbers = NSMutableDictionary()
                 self.localtotalNumber.stringValue = infotask.totalNumber!
                 self.localtotalNumberSizebytes.stringValue = infotask.totalNumberSizebytes!
                 self.localtotalDirs.stringValue = infotask.totalDirs!
-                self.numbers?.setValue(self.index!, forKey: "index")
-                self.numbers?.setValue(infotask.totalNumber!, forKey: "localtotalNumber")
-                self.numbers?.setValue(infotask.totalNumberSizebytes!, forKey: "localtotalNumberSizebytes")
-                self.numbers?.setValue(infotask.totalDirs!, forKey: "localtotalDirs")
             } else {
                 self.transferredNumber.stringValue = infotask.transferredNumber!
                 self.transferredNumberSizebytes.stringValue = infotask.transferredNumberSizebytes!
@@ -240,13 +234,6 @@ class ViewControllerVerify: NSViewController, SetConfigurations, Index, VcExecut
                 self.totalDirs.stringValue = infotask.totalDirs!
                 self.newfiles.stringValue = infotask.newfiles!
                 self.deletefiles.stringValue = infotask.deletefiles!
-                self.numbers?.setValue(infotask.transferredNumber!, forKey: "transferredNumber")
-                self.numbers?.setValue(infotask.transferredNumberSizebytes!, forKey: "transferredNumberSizebytes")
-                self.numbers?.setValue(infotask.totalNumber!, forKey: "totalNumber")
-                self.numbers?.setValue(infotask.totalNumberSizebytes!, forKey: "totalNumberSizebytes")
-                self.numbers?.setValue(infotask.totalDirs!, forKey: "totalDirs")
-                self.numbers?.setValue(infotask.newfiles!, forKey: "newfiles")
-                self.numbers?.setValue(infotask.deletefiles!, forKey: "deletefiles")
                 self.working.stopAnimation(nil)
                 self.gotit.stringValue = ""
             }
@@ -292,17 +279,12 @@ extension ViewControllerVerify: NSTableViewDataSource {
 
 extension ViewControllerVerify: NSTableViewDelegate {
     func tableView(_ tableView: NSTableView, viewFor tableColumn: NSTableColumn?, row: Int) -> NSView? {
-        var text: String = ""
-        var cellIdentifier: String = ""
-        if tableColumn == tableView.tableColumns[0] {
-            text = self.outputprocess!.getOutput()![row]
-            cellIdentifier = "outputID"
-        }
-        if let cell = tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: cellIdentifier), owner: nil) as? NSTableCellView {
-            cell.textField?.stringValue = text
+        if let cell = tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "outputID"), owner: nil) as? NSTableCellView {
+            cell.textField?.stringValue = self.outputprocess!.getOutput()![row]
             return cell
+        } else {
+            return nil
         }
-        return nil
     }
 }
 
