@@ -45,6 +45,11 @@ class ProcessCmd: Delay {
     // possible error ouput
     weak var possibleerrorDelegate: ErrorOutput?
 
+    // Used to set in XCTest
+    func setupdateDelegate(object: UpdateProgress) {
+        self.updateDelegate = object
+    }
+
     func executeProcess(outputprocess: OutputProcess?) {
         // Process
         let task = Process()
