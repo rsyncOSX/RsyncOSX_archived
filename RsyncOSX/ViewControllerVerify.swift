@@ -214,10 +214,10 @@ class ViewControllerVerify: NSViewController, SetConfigurations, Index, VcExecut
         } else {
             arguments = self.configurations!.arguments4rsync(index: index, argtype: .argdryRun)
         }
-        let verifytask = VerifyTask(arguments: arguments)
-        verifytask.setdelegate(object: self)
-        verifytask.executeProcess(outputprocess: self.outputprocess)
-        self.processRefererence = verifytask
+        let estimate = ProcessCmd(command: nil, arguments: arguments)
+        estimate.setupdateDelegate(object: self)
+        estimate.executeProcess(outputprocess: self.outputprocess)
+        self.processRefererence = estimate
     }
 
     private func setNumbers(outputprocess: OutputProcess?, local: Bool) {
