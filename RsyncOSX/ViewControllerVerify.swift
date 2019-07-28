@@ -84,13 +84,11 @@ class ViewControllerVerify: NSViewController, SetConfigurations, Index, VcExecut
         self.gotit.stringValue = gotit
         self.enabledisablebuttons(enable: false)
         self.working.startAnimation(nil)
-        let arguments = self.configurations?.arguments4verify(index: self.index!)
-        self.outputprocess = OutputProcess()
-        self.outputprocess?.addlinefromoutput("*** Verify ***")
-        let verifytask = VerifyTask(arguments: arguments)
-        verifytask.setdelegate(object: self)
-        verifytask.executeProcess(outputprocess: self.outputprocess)
-        self.processRefererence = verifytask
+        if let arguments = self.configurations?.arguments4verify(index: self.index!) {
+            self.outputprocess = OutputProcess()
+            self.outputprocess?.addlinefromoutput("*** Verify ***")
+            self.verifyandchanged(arguments: arguments)
+        }
     }
 
     @IBAction func changed(_ sender: NSButton) {
@@ -103,11 +101,16 @@ class ViewControllerVerify: NSViewController, SetConfigurations, Index, VcExecut
         self.gotit.stringValue = gotit
         self.enabledisablebuttons(enable: false)
         self.working.startAnimation(nil)
-        let arguments = self.configurations?.arguments4restore(index: self.index!, argtype: .argdryRun)
-        self.outputprocess = OutputProcess()
-        self.outputprocess?.addlinefromoutput("*** Changed ***")
-        let verifytask = VerifyTask(arguments: arguments)
-        verifytask.setdelegate(object: self)
+        if let arguments = self.configurations?.arguments4restore(index: self.index!, argtype: .argdryRun) {
+            self.outputprocess = OutputProcess()
+            self.outputprocess?.addlinefromoutput("*** Changed ***")
+            self.verifyandchanged(arguments: arguments)
+        }
+    }
+
+    private func verifyandchanged(arguments: [String]) {
+        let verifytask = ProcessCmd(command: nil, arguments: arguments)
+        verifytask.setupdateDelegate(object: self)
         verifytask.executeProcess(outputprocess: self.outputprocess)
         self.processRefererence = verifytask
     }
