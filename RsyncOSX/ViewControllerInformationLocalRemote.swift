@@ -20,8 +20,8 @@ class ViewControllerInformationLocalRemote: NSViewController, SetDismisser, Inde
     private var index: Int?
     private var outputprocess: OutputProcess?
     private var complete: Bool = false
-    private var numbers: NSMutableDictionary?
     weak var localremoteinfoDelegate: SetLocalRemoteInfo?
+
     @IBOutlet weak var transferredNumber: NSTextField!
     @IBOutlet weak var transferredNumberSizebytes: NSTextField!
     @IBOutlet weak var newfiles: NSTextField!
@@ -76,18 +76,13 @@ class ViewControllerInformationLocalRemote: NSViewController, SetDismisser, Inde
 
     // Function for getting numbers out of output object updated when
     // Process object executes the job.
-    private func setNumbers(outputprocess: OutputProcess?, local: Bool) {
+    private func setnumbers(outputprocess: OutputProcess?, local: Bool) {
         globalMainQueue.async(execute: { () -> Void in
             let infotask = RemoteInfoTask(outputprocess: outputprocess)
             if local {
-                self.numbers = NSMutableDictionary()
                 self.localtotalNumber.stringValue = infotask.totalNumber!
                 self.localtotalNumberSizebytes.stringValue = infotask.totalNumberSizebytes!
                 self.localtotalDirs.stringValue = infotask.totalDirs!
-                self.numbers?.setValue(self.index!, forKey: "index")
-                self.numbers?.setValue(infotask.totalNumber!, forKey: "localtotalNumber")
-                self.numbers?.setValue(infotask.totalNumberSizebytes!, forKey: "localtotalNumberSizebytes")
-                self.numbers?.setValue(infotask.totalDirs!, forKey: "localtotalDirs")
             } else {
                 self.transferredNumber.stringValue = infotask.transferredNumber!
                 self.transferredNumberSizebytes.stringValue = infotask.transferredNumberSizebytes!
@@ -96,14 +91,7 @@ class ViewControllerInformationLocalRemote: NSViewController, SetDismisser, Inde
                 self.totalDirs.stringValue = infotask.totalDirs!
                 self.newfiles.stringValue = infotask.newfiles!
                 self.deletefiles.stringValue = infotask.deletefiles!
-                self.numbers?.setValue(infotask.transferredNumber!, forKey: "transferredNumber")
-                self.numbers?.setValue(infotask.transferredNumberSizebytes!, forKey: "transferredNumberSizebytes")
-                self.numbers?.setValue(infotask.totalNumber!, forKey: "totalNumber")
-                self.numbers?.setValue(infotask.totalNumberSizebytes!, forKey: "totalNumberSizebytes")
-                self.numbers?.setValue(infotask.totalDirs!, forKey: "totalDirs")
-                self.numbers?.setValue(infotask.newfiles!, forKey: "newfiles")
-                self.numbers?.setValue(infotask.deletefiles!, forKey: "deletefiles")
-                self.localremoteinfoDelegate!.setlocalremoteinfo(info: self.numbers)
+                self.localremoteinfoDelegate!.setlocalremoteinfo(info: infotask.recordremotenumbers(index: self.index ?? -1))
                 self.working.stopAnimation(nil)
                 self.gotit.stringValue = NSLocalizedString("Got it...", comment: "Remote Info")
             }
@@ -128,9 +116,9 @@ class ViewControllerInformationLocalRemote: NSViewController, SetDismisser, Inde
 extension ViewControllerInformationLocalRemote: UpdateProgress {
     func processTermination() {
         if self.complete == false {
-            self.setNumbers(outputprocess: self.outputprocess, local: true)
+            self.setnumbers(outputprocess: self.outputprocess, local: true)
         } else {
-            self.setNumbers(outputprocess: self.outputprocess, local: false)
+            self.setnumbers(outputprocess: self.outputprocess, local: false)
         }
         if let index = self.index {
             if self.complete == false {
