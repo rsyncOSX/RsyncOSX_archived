@@ -219,7 +219,7 @@ class ViewControllerVerify: NSViewController, SetConfigurations, Index, VcExecut
         self.processRefererence = estimate
     }
 
-    private func setNumbers(outputprocess: OutputProcess?, local: Bool) {
+    private func publishnumbers(outputprocess: OutputProcess?, local: Bool) {
         globalMainQueue.async(execute: { () -> Void in
             let infotask = RemoteInfoTask(outputprocess: outputprocess)
             if local {
@@ -292,10 +292,10 @@ extension ViewControllerVerify: UpdateProgress {
     func processTermination() {
         if self.gotremoteinfo == false {
             if self.complete == false {
-                self.setNumbers(outputprocess: self.outputprocess, local: true)
+                self.publishnumbers(outputprocess: self.outputprocess, local: true)
             } else {
                 self.gotremoteinfo = true
-                self.setNumbers(outputprocess: self.outputprocess, local: false)
+                self.publishnumbers(outputprocess: self.outputprocess, local: false)
                 self.enabledisablebuttons(enable: true)
             }
             if let index = self.index {

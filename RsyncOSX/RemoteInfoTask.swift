@@ -32,6 +32,19 @@ class RemoteInfoTask {
         return dict
     }
 
+    func recordremotenumbers(index: Int) -> NSMutableDictionary {
+        let dict: NSMutableDictionary = [
+            "transferredNumber": self.transferredNumber ?? "",
+            "transferredNumberSizebytes": self.transferredNumberSizebytes ?? "",
+            "totalNumber": self.totalNumber ?? "",
+            "totalNumberSizebytes": self.totalNumberSizebytes ?? "",
+            "totalDirs": self.totalDirs ?? "",
+            "newfiles": self.newfiles ?? "",
+            "deletefiles": self.deletefiles ?? "",
+            "index": index]
+        return dict
+    }
+
     init(outputprocess: OutputProcess?) {
         let number = Numbers(outputprocess: outputprocess)
         self.transferredNumber = NumberFormatter.localizedString(from: NSNumber(value: number.getTransferredNumbers(numbers: .transferredNumber)), number: NumberFormatter.Style.none)
