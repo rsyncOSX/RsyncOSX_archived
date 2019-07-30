@@ -280,7 +280,7 @@ extension ViewControllerVerify: NSTableViewDataSource {
 extension ViewControllerVerify: NSTableViewDelegate {
     func tableView(_ tableView: NSTableView, viewFor tableColumn: NSTableColumn?, row: Int) -> NSView? {
         if let cell = tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "outputID"), owner: nil) as? NSTableCellView {
-            cell.textField?.stringValue = self.outputprocess!.getOutput()![row]
+            cell.textField?.stringValue = self.outputprocess?.getOutput()?[row] ?? ""
             return cell
         } else {
             return nil
