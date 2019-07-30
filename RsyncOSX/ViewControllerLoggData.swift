@@ -94,7 +94,7 @@ class ViewControllerLoggData: NSViewController, SetConfigurations, SetSchedules,
         let dialog: String = NSLocalizedString("Delete", comment: "Logg")
         let answer = Alerts.dialogOrCancel(question: question + " " + self.selectednumber() + " logrecords?", text: text, dialog: dialog)
         if answer {
-            self.deselectRow()
+            self.deselectrow()
             self.schedules?.deleteselectedrows(scheduleloggdata: self.scheduleloggdata)
         }
     }
@@ -150,9 +150,10 @@ class ViewControllerLoggData: NSViewController, SetConfigurations, SetSchedules,
         self.selectbutton.state = .off
     }
 
-    private func deselectRow() {
+    private func deselectrow() {
         guard self.index != nil else { return }
         self.scheduletable.deselectRow(self.index!)
+        self.index = self.index()
     }
 }
 
