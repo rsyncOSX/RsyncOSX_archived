@@ -5,6 +5,7 @@
 //  Created by Thomas Evensen on 23.04.2017.
 //  Copyright © 2017 Thomas Evensen. All rights reserved.
 //
+// swiftlint:disable line_length
 
 import Foundation
 import Cocoa
@@ -231,19 +232,14 @@ extension ViewControllerSsh: NSTableViewDataSource {
 }
 
 extension ViewControllerSsh: NSTableViewDelegate {
+
     func tableView(_ tableView: NSTableView, viewFor tableColumn: NSTableColumn?, row: Int) -> NSView? {
-        var text: String = ""
-        var cellIdentifier: String = ""
-        if tableColumn == tableView.tableColumns[0] {
-            text = self.data![row]
-            cellIdentifier = "outputID"
-        }
-        if let cell = tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: cellIdentifier),
-                                         owner: nil) as? NSTableCellView {
-            cell.textField?.stringValue = text
+        if let cell = tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "outputID"), owner: nil) as? NSTableCellView {
+            cell.textField?.stringValue =  self.data?[row] ?? ""
             return cell
+        } else {
+            return nil
         }
-        return nil
     }
 }
 

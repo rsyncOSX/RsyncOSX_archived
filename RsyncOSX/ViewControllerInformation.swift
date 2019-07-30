@@ -57,17 +57,13 @@ extension ViewControllerInformation: NSTableViewDataSource {
 }
 
 extension ViewControllerInformation: NSTableViewDelegate {
+
     func tableView(_ tableView: NSTableView, viewFor tableColumn: NSTableColumn?, row: Int) -> NSView? {
-        var text: String = ""
-        var cellIdentifier: String = ""
-        if tableColumn == tableView.tableColumns[0] {
-            text = self.output![row]
-            cellIdentifier = "outputID"
-        }
-        if let cell = tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: cellIdentifier), owner: nil) as? NSTableCellView {
-            cell.textField?.stringValue = text
+        if let cell = tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "outputID"), owner: nil) as? NSTableCellView {
+            cell.textField?.stringValue =  self.output?[row] ?? ""
             return cell
+        } else {
+            return nil
         }
-        return nil
     }
 }
