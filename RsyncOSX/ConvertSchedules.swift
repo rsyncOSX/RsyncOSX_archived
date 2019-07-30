@@ -32,7 +32,9 @@ struct ConvertSchedules: SetSchedules {
                         array.append(dict)
                     }
                 } else {
-                    array.append(dict)
+                    if schedule.logrecords.isEmpty == false {
+                         array.append(dict)
+                    }
                 }
             }
         }
