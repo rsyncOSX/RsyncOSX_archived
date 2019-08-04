@@ -1,8 +1,8 @@
 ## RsyncOSX
 
-[![Join the chat at https://gitter.im/RsyncOSX/community](https://badges.gitter.im/RsyncOSX/community.svg)](https://gitter.im/RsyncOSX/community?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
-
 ![](icon/rsyncosx.png)
+
+The [Changelog](https://rsyncosx.github.io/Changelog).
 
 A short [intro to RsyncOSX](https://rsyncosx.github.io/Intro) and full [documentation of RsyncOSX](https://rsyncosx.github.io/AboutRsyncOSX).
 
@@ -19,10 +19,6 @@ RsyncOSX is dependent on [setting up password less logins](https://rsyncosx.gith
 The app is signed with my Apple ID developer certificate and [notarized](https://support.apple.com/en-us/HT202491) by Apple. See [signing and notarizing](https://rsyncosx.github.io/Notarized) for info.
 
 **Important**: from macOS 10.15 Catalina, notarization is required by default for all software. RsyncOSX is signed and notarized and a new signed and notarized release will be available shortly after release of macOS 10.15.
-
-### Changelog
-
-The [Changelog](https://rsyncosx.github.io/Changelog).
 
 ### Localization
 
@@ -51,6 +47,10 @@ The main view of RsyncOSX.
 ![](images/main1.png)
 Prepare for synchronizing tasks.
 ![](images/main2.png)
+
+### A Sandboxed version
+
+[There is also released a minor version, RsyncGUI](https://itunes.apple.com/us/app/rsyncgui/id1449707783?l=nb&ls=1&mt=12) of RsyncOSX on Apple Mac App Store. See the [changelog](https://rsyncosx.github.io/RsyncGUIChangelog). RsyncGUI utilizes stock version of rsync in macOS and RsyncGUI only supports synchronize task (no snapshots).
 
 ### About crash?
 
