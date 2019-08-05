@@ -306,10 +306,8 @@ extension ViewControllerCopyFiles: NSTableViewDelegate {
     func tableView(_ tableView: NSTableView, viewFor tableColumn: NSTableColumn?, row: Int) -> NSView? {
         if tableView == self.restoretableView {
             guard self.restoretabledata != nil else { return nil }
-            let cellIdentifier = "files"
-            let text: String = self.restoretabledata![row]
-            if let cell = tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: cellIdentifier), owner: self) as? NSTableCellView {
-                cell.textField?.stringValue = text
+            if let cell = tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "files"), owner: self) as? NSTableCellView {
+                cell.textField?.stringValue = self.restoretabledata?[row] ?? ""
                 return cell
             }
         } else {
