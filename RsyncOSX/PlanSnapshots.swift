@@ -10,7 +10,7 @@
 import Foundation
 
 protocol GetSnapshotsLoggData: class {
-    func getsnapshotsloggaata() -> SnapshotsLoggData?
+    func getsnapshotsloggdata() -> SnapshotsLoggData?
 }
 
 enum NumDayofweek: Int {
@@ -242,7 +242,7 @@ class PlanSnapshots {
         self.setweekdaytokeep(snapdayoffweek: snapdayoffweek)
         self.SnapshotsLoggDataDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vcsnapshot) as? ViewControllerSnapshots
         self.reloadDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vcsnapshot) as? ViewControllerSnapshots
-        self.snapshotsloggdata = self.SnapshotsLoggDataDelegate?.getsnapshotsloggaata()
+        self.snapshotsloggdata = self.SnapshotsLoggDataDelegate?.getsnapshotsloggdata()
         guard self.snapshotsloggdata?.snapshotslogs != nil else { return }
         self.numberoflogs = self.snapshotsloggdata?.snapshotslogs?.count ?? 0
         self.firstlog = Double(self.snapshotsloggdata?.snapshotslogs![0].value(forKey: "days") as? String ?? "0")
