@@ -12,7 +12,7 @@ RsyncOSX is compiled with support for macOS El Capitan version 10.11 - macOS Moj
 
 Scheduled tasks are added and deleted within RsyncOSX. Executing the scheduled tasks is by the [menu app](https://github.com/rsyncOSX/RsyncOSXsched).
 
-RsyncOSX is dependent on [setting up password less logins](https://rsyncosx.github.io/AboutRsyncOSX). Both ssh-keys and rsync daemon setup are enabled. It is advised utilizing ssh-keys.
+RsyncOSX is dependent on [setting up password less logins](https://rsyncosx.github.io/Remotelogins). Both ssh-keys and rsync daemon setup are enabled. It is advised utilizing ssh-keys.
 
 ### Signing and notarizing
 
@@ -37,10 +37,6 @@ RsyncOSX is only verified with rsync versions 2.6.9, 3.1.2 and 3.1.3. Other vers
 
 Caution about RsyncOSX and the `--delete` parameter. The `--delete` is a [default parameter](https://rsyncosx.github.io/RsyncParameters). The parameter instructs rsync to delete all files in the destination which are not present in the source. Every time you add a new task to RsyncOSX, execute an estimation run (`--dry-run` parameter) and inspect the result before executing a real run. If you by accident set an empty catalog as source RsyncOSX will delete all files in the destination. To save deleted and changes files either utilize [snapshots](https://rsyncosx.github.io/Snapshots) or the `--backup` [feature](https://rsyncosx.github.io/Parameters).
 
-### Fighting bugs
-
-Fighting bugs are difficult. I am not able to test RsyncOSX for all possible user interactions and use. From time to time I discover new bugs. But I also need support from other users discovering bugs or not expected results. If you discover a bug please use the [issues](https://github.com/rsyncOSX/RsyncOSX/issues) and report it.
-
 ### Main view
 
 The main view of RsyncOSX.
@@ -52,11 +48,9 @@ Prepare for synchronizing tasks.
 
 [There is also released a minor version, RsyncGUI](https://itunes.apple.com/us/app/rsyncgui/id1449707783?l=nb&ls=1&mt=12) of RsyncOSX on Apple Mac App Store. See the [changelog](https://rsyncosx.github.io/RsyncGUIChangelog). RsyncGUI utilizes stock version of rsync in macOS and RsyncGUI only supports synchronize task (no snapshots).
 
-### About crash?
+### About bugs and crash?
 
-What happens if bugs occurs during execution of tasks in RsyncOSX? The command line tool `rsync` is designed to continue where rsync is by any reason, stopped or killed. Users can abort execution of tasks at any time. To continue an aborted task execute the task again and rsync will restart and complete the task. This is also true if a bug in RsyncOSX occurs during execution of a task.
-
-If RsyncOSX does halt or crash during operation there is no damage to files or deletion of files in the `source`. The `source` is only read during `synchronize` and `snapshot` tasks.
+What happens [if bugs occurs during execution of tasks in RsyncOSX?](https://rsyncosx.github.io/Bugs). Fighting bugs are difficult. I am not able to test RsyncOSX for all possible user interactions and use. From time to time I discover new bugs. But I also need support from other users discovering bugs or not expected results. If you discover a bug please use the [issues](https://github.com/rsyncOSX/RsyncOSX/issues) and report it.
 
 ### About restoring files to a temporary restore catalog
 
