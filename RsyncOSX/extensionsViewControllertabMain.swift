@@ -42,9 +42,6 @@ extension ViewControllertabMain: NSTableViewDelegate, Attributedestring {
             if markdays {
                 return self.attributedstring(str: celltext!, color: NSColor.red, align: .right)
             }
-        } else if self.isconnected(row) {
-            guard celltext != nil else { return nil }
-            return self.attributedstring(str: celltext!, color: NSColor.red, align: .left)
         } else if tableColumn!.identifier.rawValue == "offsiteServerCellID",
             ((object[tableColumn!.identifier] as? String)?.isEmpty) == true {
             return "localhost"
@@ -90,7 +87,11 @@ extension ViewControllertabMain: NSTableViewDelegate, Attributedestring {
             if tableColumn!.identifier.rawValue == "batchCellID" {
                 return object[tableColumn!.identifier] as? Int
             } else {
-                return object[tableColumn!.identifier] as? String
+                if self.isconnected(row) && celltext != nil {
+                    return self.attributedstring(str: celltext!, color: NSColor.red, align: .left)
+                } else {
+                    return object[tableColumn!.identifier] as? String
+                }
             }
         }
         return nil
