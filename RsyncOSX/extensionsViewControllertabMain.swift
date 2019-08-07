@@ -38,14 +38,12 @@ extension ViewControllertabMain: NSTableViewDelegate, Attributedestring {
         let hiddenID: Int = self.configurations!.getConfigurations()[row].hiddenID
         let markdays: Bool = self.configurations!.getConfigurations()[row].markdays
         let celltext = object[tableColumn!.identifier] as? String
-        if tableColumn!.identifier.rawValue == "batchCellID" {
-            return object[tableColumn!.identifier]
-        } else if markdays == true && tableColumn!.identifier.rawValue == "daysID" {
-            return self.attributedstring(str: celltext!, color: NSColor.red, align: .right)
-        } else if self.isconnected(row) {
-            guard celltext != nil else {return nil}
-            return self.attributedstring(str: celltext!, color: NSColor.red, align: .left)
-        } else if tableColumn!.identifier.rawValue == "offsiteServerCellID", ((object[tableColumn!.identifier] as? String)?.isEmpty)! {
+        if tableColumn!.identifier.rawValue == "daysID" {
+            if markdays {
+                return self.attributedstring(str: celltext!, color: NSColor.red, align: .right)
+            }
+        } else if tableColumn!.identifier.rawValue == "offsiteServerCellID",
+            ((object[tableColumn!.identifier] as? String)?.isEmpty) == true {
             return "localhost"
         } else if tableColumn!.identifier.rawValue == "schedCellID" {
             if let obj = self.schedulesortedandexpanded {
@@ -86,7 +84,15 @@ extension ViewControllertabMain: NSTableViewDelegate, Attributedestring {
                 return date?.localizeDate()
             }
         } else {
-            return object[tableColumn!.identifier] as? String
+            if tableColumn!.identifier.rawValue == "batchCellID" {
+                return object[tableColumn!.identifier] as? Int
+            } else {
+                if self.isconnected(row) && celltext != nil {
+                    return self.attributedstring(str: celltext!, color: NSColor.red, align: .left)
+                } else {
+                    return object[tableColumn!.identifier] as? String
+                }
+            }
         }
         return nil
     }
