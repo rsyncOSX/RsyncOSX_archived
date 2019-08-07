@@ -464,7 +464,7 @@ extension ViewControllerSnapshots: NSTextFieldDelegate {
 }
 
 extension ViewControllerSnapshots: GetSnapshotsLoggData {
-    func getsnapshotsloggaata() -> SnapshotsLoggData? {
+    func getsnapshotsloggdata() -> SnapshotsLoggData? {
         return self.snapshotsloggdata
     }
 }

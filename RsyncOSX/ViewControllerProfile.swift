@@ -43,7 +43,9 @@ class ViewControllerProfile: NSViewController, SetConfigurations, SetDismisser, 
     @IBAction func close(_ sender: NSButton) {
         let newprofile = self.newprofile.stringValue
         guard newprofile.isEmpty == false else {
-            _ = Selectprofile(profile: self.useprofile)
+            if self.useprofile != nil {
+                _ = Selectprofile(profile: self.useprofile)
+            }
             self.dismissView()
             return
         }
