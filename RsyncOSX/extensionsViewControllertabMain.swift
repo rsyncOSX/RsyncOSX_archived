@@ -38,9 +38,7 @@ extension ViewControllertabMain: NSTableViewDelegate, Attributedestring {
         let hiddenID: Int = self.configurations!.getConfigurations()[row].hiddenID
         let markdays: Bool = self.configurations!.getConfigurations()[row].markdays
         let celltext = object[tableColumn!.identifier] as? String
-        if tableColumn!.identifier.rawValue == "batchCellID" {
-            return object[tableColumn!.identifier]
-        } else if tableColumn!.identifier.rawValue == "daysID" {
+        if tableColumn!.identifier.rawValue == "daysID" {
             if markdays {
                 return self.attributedstring(str: celltext!, color: NSColor.red, align: .right)
             }
@@ -89,7 +87,11 @@ extension ViewControllertabMain: NSTableViewDelegate, Attributedestring {
                 return date?.localizeDate()
             }
         } else {
-            return object[tableColumn!.identifier] as? String
+            if tableColumn!.identifier.rawValue == "batchCellID" {
+                return object[tableColumn!.identifier] as? Int
+            } else {
+                return object[tableColumn!.identifier] as? String
+            }
         }
         return nil
     }
