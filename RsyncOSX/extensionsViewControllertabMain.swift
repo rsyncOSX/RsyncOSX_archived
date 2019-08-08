@@ -101,11 +101,7 @@ extension ViewControllertabMain: NSTableViewDelegate, Attributedestring {
 extension ViewControllertabMain: GetOutput {
     // Get information from rsync output.
     func getoutput() -> [String] {
-        if self.outputprocess != nil {
-            return self.outputprocess!.trimoutput(trim: .two)!
-        } else {
-            return [""]
-        }
+         return (self.outputprocess?.trimoutput(trim: .two)) ?? []
     }
 }
 
@@ -121,7 +117,6 @@ extension ViewControllertabMain: Reloadandrefresh {
 
 // Parameters to rsync is changed
 extension ViewControllertabMain: RsyncUserParams {
-    // Do a reread of all Configurations
     func rsyncuserparamsupdated() {
         self.showrsynccommandmainview()
     }
@@ -189,9 +184,7 @@ extension ViewControllertabMain: Connections {
     }
 }
 
-// Uuups, new version is discovered
 extension ViewControllertabMain: NewVersionDiscovered {
-    // Notifies if new version is discovered
     func notifyNewVersion() {
         guard Activetab(viewcontroller: .vctabmain).isactive == true else { return }
         globalMainQueue.async(execute: { () -> Void in
@@ -200,12 +193,9 @@ extension ViewControllertabMain: NewVersionDiscovered {
     }
 }
 
-// Dismisser for sheets
 extension ViewControllertabMain: DismissViewController {
-    // Function for dismissing a presented view
     func dismiss_view(viewcontroller: NSViewController) {
         self.dismiss(viewcontroller)
-        // Reset radiobuttons
         self.loadProfileMenu = true
         globalMainQueue.async(execute: { () -> Void in
             self.mainTableView.reloadData()
