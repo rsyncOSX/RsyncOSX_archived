@@ -48,15 +48,10 @@ extension ViewControllertabMain: NSTableViewDelegate, Attributedestring {
             }
         } else if tableColumn!.identifier.rawValue == "statCellID" {
             if row == self.index {
-                if self.setbatchyesno == false {
-                    if self.singletask == nil {
-                        return #imageLiteral(resourceName: "yellow")
-                    } else {
-                        return #imageLiteral(resourceName: "green")
-                    }
+                if self.singletask == nil {
+                    return #imageLiteral(resourceName: "yellow")
                 } else {
-                    self.setbatchyesno = false
-                    return nil
+                    return #imageLiteral(resourceName: "green")
                 }
             }
         } else if tableColumn!.identifier.rawValue == "snapCellID" {
@@ -95,8 +90,7 @@ extension ViewControllertabMain: NSTableViewDelegate, Attributedestring {
         }
         if self.configurations!.getConfigurations()[row].task == ViewControllerReference.shared.synchronize ||
             self.configurations!.getConfigurations()[row].task == ViewControllerReference.shared.snapshot {
-            self.setbatchyesno = true
-            self.configurations!.setBatchYesNo(row)
+            self.configurations!.enabledisablebatch(row)
         }
         self.singletask = nil
         self.batchtasks = nil
