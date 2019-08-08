@@ -18,17 +18,6 @@ extension ViewControllertabMain: NSTableViewDataSource {
 }
 
 extension ViewControllertabMain: NSTableViewDelegate, Attributedestring {
-    // Function to test for remote server available or not, used in tableview delegate
-    private func isconnected(_ row: Int) -> Bool {
-        if let serverOff = self.serverOff {
-            if row < serverOff.count {
-                return serverOff[row]
-            } else {
-                return false
-            }
-        }
-        return false
-    }
 
     // TableView delegates
     func tableView(_ tableView: NSTableView, objectValueFor tableColumn: NSTableColumn?, row: Int) -> Any? {
@@ -89,7 +78,7 @@ extension ViewControllertabMain: NSTableViewDelegate, Attributedestring {
             if tableColumn!.identifier.rawValue == "batchCellID" {
                 return object[tableColumn!.identifier] as? Int
             } else {
-                if self.isconnected(row) && celltext != nil {
+                if (self.tcpconnections?.gettestAllremoteserverConnections()?[row]) ?? false && celltext != nil {
                     return self.attributedstring(str: celltext!, color: NSColor.red, align: .left)
                 } else {
                     return object[tableColumn!.identifier] as? String
@@ -158,7 +147,7 @@ extension ViewControllertabMain: NewProfile {
         self.process = nil
         self.outputprocess = nil
         self.singletask = nil
-        self.serverOff = nil
+        self.tcpconnections = nil
         self.setNumbers(outputprocess: nil)
         self.showrsynccommandmainview()
         self.deselect()
@@ -200,7 +189,6 @@ extension ViewControllertabMain: Connections {
         // Only do a reload if we are in the main view
         guard Activetab(viewcontroller: .vctabmain).isactive == true else { return }
         self.loadProfileMenu = true
-        self.serverOff = self.tcpconnections!.gettestAllremoteserverConnections()
         globalMainQueue.async(execute: { () -> Void in
             self.mainTableView.reloadData()
         })
