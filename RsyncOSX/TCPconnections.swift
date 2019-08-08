@@ -61,7 +61,6 @@ class TCPconnections: SetConfigurations, Delay {
                         if success {
                             self.indexBoolremoteserverOff!.append(false)
                         } else {
-                            // self.remoteserverOff = true
                             self.indexBoolremoteserverOff!.append(true)
                         }
                     } else {
