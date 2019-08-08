@@ -130,6 +130,9 @@
 /* Schedules */
 "Got index from Execute..." = "从Execute获得索引...";
 
+/* Loggdata */
+"Got index from Snapshots and listing logs for one configuration..." = "从一个配置的快照和列表日志获得索引...";
+
 /* Remote Info
    Restore */
 "Got it..." = "得到它了...";
@@ -229,10 +232,10 @@
 "Probably some rsync error..." = "可能是一些rsync错误......";
 
 /* Execute */
-"Profile:" = "轮廓：";
+"Profile:" = "配置：";
 
 /* Execute */
-"Profile: please wait..." = "简介：请稍候......";
+"Profile: please wait..." = "配置：请稍候......";
 
 /* Restore */
 "Restore" = "恢复";

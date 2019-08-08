@@ -1,5 +1,5 @@
 /* Class = "NSBox"; title = "Edit"; ObjectID = "0B4-M8-m3v"; */
-"0B4-M8-m3v.title" = "编辑配置";
+"0B4-M8-m3v.title" = "编辑";
 
 /* Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "0f6-kk-e9f"; */
 "0f6-kk-e9f.title" = "Text Cell";
@@ -9,6 +9,9 @@
 
 /* Class = "NSTableColumn"; headerCell.title = "Task"; ObjectID = "0KI-B9-ezl"; */
 "0KI-B9-ezl.headerCell.title" = "任务";
+
+/* Class = "NSBox"; title = "Logging"; ObjectID = "1DK-sF-JKV"; */
+"1DK-sF-JKV.title" = "日志";
 
 /* Class = "NSTableColumn"; headerCell.title = "Date executed"; ObjectID = "01g-QQ-yHM"; */
 "01g-QQ-yHM.headerCell.title" = "执行日期";
@@ -175,6 +178,9 @@
 /* Class = "NSTextFieldCell"; title = "ssh port:"; ObjectID = "20O-EX-fKH"; */
 "20O-EX-fKH.title" = "SSH 端口：";
 
+/* Class = "NSTextFieldCell"; title = "Close automatically in: "; ObjectID = "21H-Ns-bTh"; */
+"21H-Ns-bTh.title" = "关闭自动执行在：";
+
 /* Class = "NSTableColumn"; headerCell.title = "Local catalog"; ObjectID = "27J-nn-5gh"; */
 "27J-nn-5gh.headerCell.title" = "本地目录";
 
@@ -308,7 +314,7 @@
 "b8u-6y-RSC.headerCell.title" = "开始日期安排";
 
 /* Class = "NSViewController"; title = "Ssh"; ObjectID = "B9V-8v-Aba"; */
-"B9V-8v-Aba.title" = "嘘";
+"B9V-8v-Aba.title" = "SSH";
 
 /* Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "b9w-AI-p9K"; */
 "b9w-AI-p9K.title" = "Text Cell";
@@ -527,7 +533,7 @@
 "EZS-oJ-mKt.headerCell.title" = "本地目录";
 
 /* Class = "NSMenu"; title = "Help"; ObjectID = "F2S-fz-NVQ"; */
-"F2S-fz-NVQ.title" = "救命";
+"F2S-fz-NVQ.title" = "帮助";
 
 /* Class = "NSButtonCell"; title = "v 3.1.2 or 3.1.3 rsync - set optional path if NOT in /usr/local/bin"; ObjectID = "f6o-pt-x0z"; */
 "f6o-pt-x0z.title" = "v 3.1.2 or 3.1.3 rsync - set optional path if NOT in /usr/local/bin";
@@ -833,7 +839,7 @@
 "k2Y-Hy-jMj.title" = "取消";
 
 /* Class = "NSButtonCell"; title = "Delete all"; ObjectID = "K4L-Yx-uOn"; */
-"K4L-Yx-uOn.title" = "删除所有";
+"K4L-Yx-uOn.title" = "删除全部";
 
 /* Class = "NSTextFieldCell"; title = "Files to be transferred:"; ObjectID = "k8Z-wy-8ml"; */
 "k8Z-wy-8ml.title" = "需要传输文件：";
@@ -935,7 +941,7 @@
 "Ml3-CP-4eZ.title" = "估计进度";
 
 /* Class = "NSTextFieldCell"; title = "output"; ObjectID = "MmU-sA-BEQ"; */
-"MmU-sA-BEQ.title" = "产量";
+"MmU-sA-BEQ.title" = "输出";
 
 /* Class = "NSBox"; title = "Configuration snapshot"; ObjectID = "Mn8-vX-I59"; */
 "Mn8-vX-I59.title" = "配置快照";
@@ -1226,7 +1232,7 @@
 "sTj-Zm-1Dz.title" = "Text Cell";
 
 /* Class = "NSBox"; title = "Box"; ObjectID = "svl-UN-wQe"; */
-"svl-UN-wQe.title" = "Box";
+"svl-UN-wQe.title" = "盒子";
 
 /* Class = "NSTextFieldCell"; title = "Most recent schedule on top..."; ObjectID = "sVQ-MX-XJE"; */
 "sVQ-MX-XJE.title" = "最近的计划任务";
@@ -1259,7 +1265,7 @@
 "TG2-I2-JNe.title" = "恢复";
 
 /* Class = "NSTableColumn"; headerCell.title = "Output"; ObjectID = "TG2-kC-9mp"; */
-"TG2-kC-9mp.headerCell.title" = "产量";
+"TG2-kC-9mp.headerCell.title" = "输出";
 
 /* Class = "NSTextFieldCell"; title = "Table View Cell"; ObjectID = "tIo-dN-yJ3"; */
 "tIo-dN-yJ3.title" = "Table View Cell";
@@ -1352,7 +1358,7 @@
 "v12-7x-cig.toolTip" = "估算所有任务和备份";
 
 /* Class = "NSButtonCell"; title = "Changed"; ObjectID = "Vbd-tp-W9Q"; */
-"Vbd-tp-W9Q.title" = "变";
+"Vbd-tp-W9Q.title" = "改变";
 
 /* Class = "NSButtonCell"; title = "backup (uses two last user selected parameters)"; ObjectID = "VBk-Qe-g0o"; */
 "VBk-Qe-g0o.title" = "备份（使用最后两个用户选择的参数）";
@@ -1518,6 +1524,9 @@
 
 /* Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "ygQ-aZ-NXY"; */
 "ygQ-aZ-NXY.title" = "Text Cell";
+
+/* Class = "NSBox"; title = "Environment"; ObjectID = "YmB-7A-vYE"; */
+"YmB-7A-vYE.title" = "环境";
 
 /* Class = "NSButtonCell"; title = "Delete"; ObjectID = "yOD-ng-BAz"; */
 "yOD-ng-BAz.title" = "删除";
