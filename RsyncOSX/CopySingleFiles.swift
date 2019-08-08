@@ -19,7 +19,7 @@ final class CopySingleFiles: SetConfigurations {
     var outputprocess: OutputProcess?
 
     func getOutput() -> [String] {
-        return self.outputprocess?.getOutput() ?? [""]
+        return self.outputprocess?.getOutput() ?? []
     }
 
     func abort() {
