@@ -101,8 +101,6 @@ class ViewControllertabMain: NSViewController, ReloadTable, Deselect, VcMain, De
     var loadProfileMenu: Bool = false
     // Keep track of all errors
     var outputerrors: OutputErrors?
-    // used in updating tableview
-    var setbatchyesno: Bool = false
     // Allprofiles view presented
     var allprofilesview: Bool = false
     // Delegate for refresh allprofiles if changes in profiles
