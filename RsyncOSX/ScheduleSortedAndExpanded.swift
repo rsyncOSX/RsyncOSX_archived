@@ -19,16 +19,6 @@ class ScheduleSortedAndExpand: SetConfigurations, SetSchedules {
     private var sortedschedules: [NSDictionary]?
     private var dateandtime: Dateandtime?
 
-    // First job to execute. Job is first element in
-    func firstscheduledtask() -> NSDictionary? {
-        guard self.sortedschedules != nil else { return nil}
-        guard self.sortedschedules!.count > 0 else {
-            ViewControllerReference.shared.quickbackuptask = nil
-            return nil
-        }
-        return self.sortedschedules![0]
-    }
-
     // Calculate daily schedules
     private func daily(dateStart: Date, schedule: String, dict: NSDictionary) {
         var i = 0

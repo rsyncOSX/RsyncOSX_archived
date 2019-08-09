@@ -163,9 +163,7 @@ extension ViewControllertabMain: NewProfile {
 
 // Rsync path is changed, update displayed rsync command
 extension ViewControllertabMain: RsyncIsChanged {
-    // If row is selected an update rsync command in view
     func rsyncischanged() {
-        // Update rsync command in display
         self.showrsynccommandmainview()
         self.setinfoaboutrsync()
     }
@@ -173,9 +171,7 @@ extension ViewControllertabMain: RsyncIsChanged {
 
 // Check for remote connections, reload table when completed.
 extension ViewControllertabMain: Connections {
-    // Remote servers offline are marked with red line in mainTableView
     func displayConnections() {
-        // Only do a reload if we are in the main view
         guard Activetab(viewcontroller: .vctabmain).isactive == true else { return }
         self.loadProfileMenu = true
         globalMainQueue.async(execute: { () -> Void in
@@ -213,11 +209,8 @@ extension ViewControllertabMain: DismissViewEstimating {
 
 // Called when either a terminatopn of Process is
 // discovered or data is availiable in the filehandler
-// See file rsyncProcess.swift.
 extension ViewControllertabMain: UpdateProgress {
 
-    // Delegate functions called from the Process object
-    // Protocol UpdateProgress two functions, ProcessTermination() and FileHandler()
     func processTermination() {
         self.readyforexecution = true
         if self.configurations!.processtermination == nil {
@@ -584,7 +577,6 @@ extension ViewControllertabMain: GetSchedulesObject {
         self.schedules = nil
         self.schedules = Schedules(profile: profile)
         self.schedulesortedandexpanded = ScheduleSortedAndExpand()
-        ViewControllerReference.shared.quickbackuptask = self.schedulesortedandexpanded?.firstscheduledtask()
         return self.schedules
     }
 }
