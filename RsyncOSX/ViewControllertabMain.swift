@@ -511,7 +511,6 @@ class ViewControllertabMain: NSViewController, ReloadTable, Deselect, VcMain, De
             self.schedules = Schedules(profile: nil)
         }
         self.schedulesortedandexpanded = ScheduleSortedAndExpand()
-        ViewControllerReference.shared.quickbackuptask = self.schedulesortedandexpanded?.firstscheduledtask()
     }
 
     func createandreloadconfigurations() {
