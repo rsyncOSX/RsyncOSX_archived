@@ -12,13 +12,9 @@ struct ConvertOneConfig {
     var config: Configuration?
 
     var dict: NSMutableDictionary {
-        var batch: Int = 0
-        if self.config!.batch == "yes" {
-            batch = 1
-        }
         let row: NSMutableDictionary = [
             "taskCellID": self.config!.task,
-            "batchCellID": batch,
+            "batchCellID": self.config!.batch,
             "hiddenID": self.config!.hiddenID,
             "localCatalogCellID": self.config!.localCatalog,
             "offsiteCatalogCellID": self.config!.offsiteCatalog,

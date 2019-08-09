@@ -122,7 +122,7 @@ class Configurations: ReloadTable, SetSchedules {
     /// - returns : array of Configurations
     func getConfigurationsBatch() -> [Configuration] {
         return self.configurations!.filter({return ($0.task == ViewControllerReference.shared.synchronize ||
-            $0.task == ViewControllerReference.shared.snapshot ) && ($0.batch == "yes")})
+            $0.task == ViewControllerReference.shared.snapshot ) && ($0.batch == 1)})
     }
 
     /// Function computes arguments for rsync, either arguments for
@@ -245,10 +245,10 @@ class Configurations: ReloadTable, SetSchedules {
     /// persisten store
     /// - parameter index: index of Configuration to toogle batch on/off
     func enabledisablebatch (_ index: Int) {
-        if self.configurations![index].batch == "yes" {
-            self.configurations![index].batch = "no"
+        if self.configurations![index].batch == 1 {
+            self.configurations![index].batch = 0
         } else {
-            self.configurations![index].batch = "yes"
+            self.configurations![index].batch = 1
         }
         self.storageapi!.saveConfigFromMemory()
         self.reloadtable(vcontroller: .vctabmain)

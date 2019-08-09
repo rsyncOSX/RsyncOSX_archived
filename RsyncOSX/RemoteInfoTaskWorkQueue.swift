@@ -36,7 +36,7 @@ class RemoteInfoTaskWorkQueue: SetConfigurations {
             if self.configurations!.getConfigurations()[i].task == ViewControllerReference.shared.synchronize ||
             self.configurations!.getConfigurations()[i].task == ViewControllerReference.shared.snapshot {
                 if self.inbatch! {
-                    if self.configurations!.getConfigurations()[i].batch == "yes" {
+                    if self.configurations!.getConfigurations()[i].batch == 1 {
                         self.stackoftasktobeestimated?.append((self.configurations!.getConfigurations()[i].hiddenID, i))
                     }
                 } else {
