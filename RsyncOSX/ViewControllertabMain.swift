@@ -222,9 +222,10 @@ class ViewControllertabMain: NSViewController, ReloadTable, Deselect, VcMain, De
 
     func reset() {
         self.outputprocess = nil
-        self.setNumbers(outputprocess: nil)
         self.process = nil
         self.singletask = nil
+        self.batchtasks = nil
+        self.setNumbers(outputprocess: nil)
     }
 
     @IBOutlet weak var TCPButton: NSButton!
@@ -247,7 +248,6 @@ class ViewControllertabMain: NSViewController, ReloadTable, Deselect, VcMain, De
     @IBAction func abort(_ sender: NSButton) {
         globalMainQueue.async(execute: { () -> Void in
             self.abortOperations()
-            self.process = nil
         })
     }
 
@@ -365,7 +365,6 @@ class ViewControllertabMain: NSViewController, ReloadTable, Deselect, VcMain, De
         self.rsyncischanged()
         self.displayProfile()
         self.readyforexecution = true
-        if self.tcpconnections == nil { self.tcpconnections = TCPconnections()}
         self.info.stringValue = Infoexecute().info(num: 0)
         self.delayWithSeconds(0.5) {
             self.enablemenuappbutton()
@@ -424,8 +423,6 @@ class ViewControllertabMain: NSViewController, ReloadTable, Deselect, VcMain, De
             // Dry run
             self.singletask = SingleTask(index: self.index!)
             self.singletask?.executeSingleTask()
-            // Set reference to singleTask object
-            self.configurations!.singleTask = self.singletask
             return
         }
         // Real run
