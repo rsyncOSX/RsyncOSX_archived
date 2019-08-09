@@ -40,7 +40,7 @@ class ViewControllerProgressProcess: NSViewController, SetConfigurations, SetDis
         super.viewDidAppear()
         ViewControllerReference.shared.setvcref(viewcontroller: .vcprogressview, nsviewcontroller: self)
         if (self.presentingViewController as? ViewControllertabMain) != nil {
-            if let pvc = self.configurations!.singleTask {
+            if let pvc = (self.presentingViewController as? ViewControllertabMain)?.singletask {
                 self.countDelegate = pvc
             }
         } else if (self.presentingViewController as? ViewControllerCopyFiles) != nil {
