@@ -28,7 +28,7 @@ class Configurations: ReloadTable, SetSchedules {
     // Initialized during startup
     private var argumentAllConfigurations: [ArgumentsOneConfiguration]?
     // Datasource for NSTableViews
-    private var configurationsDataSource: [NSMutableDictionary]?
+    private var configurationsDataSource: [NSDictionary]?
     // Object for batchQueue data and operations
     private var batchQueue: BatchTaskWorkQueu?
     // backup list from remote info view
@@ -76,7 +76,7 @@ class Configurations: ReloadTable, SetSchedules {
     /// as datasource for tableViews
     /// - parameter none: none
     /// - returns : Array of Configurations
-    func getConfigurationsDataSource() -> [NSMutableDictionary]? {
+    func getConfigurationsDataSource() -> [NSDictionary]? {
         return self.configurationsDataSource
     }
 
