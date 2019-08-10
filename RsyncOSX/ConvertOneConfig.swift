@@ -28,21 +28,6 @@ struct ConvertOneConfig {
         return row
     }
 
-    var dict2: NSDictionary {
-        let row: NSDictionary = [
-            "taskCellID": self.config!.task,
-            "hiddenID": self.config!.hiddenID,
-            "localCatalogCellID": self.config!.localCatalog,
-            "offsiteCatalogCellID": self.config!.offsiteCatalog,
-            "offsiteServerCellID": self.config!.offsiteServer,
-            "backupIDCellID": self.config!.backupID,
-            "runDateCellID": self.config!.dateRun!,
-            "daysID": self.config!.dayssincelastbackup ?? "",
-            "markdays": self.config!.markdays,
-            "selectCellID": 0]
-        return row
-    }
-
     init(config: Configuration) {
         self.config = config
     }

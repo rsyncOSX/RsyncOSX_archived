@@ -103,15 +103,15 @@ class Configurations: ReloadTable, SetSchedules {
         return data
     }
 
-    func getConfigurationsDataSourcecountBackupSnapshot() -> [NSDictionary]? {
+    func getConfigurationsDataSourcecountBackupSnapshot() -> [NSMutableDictionary]? {
         var configurations: [Configuration] = self.configurations!.filter({return ($0.task == ViewControllerReference.shared.synchronize ||
             $0.task == ViewControllerReference.shared.snapshot )})
-        var data = [NSDictionary]()
+        var data = [NSMutableDictionary]()
         for i in 0 ..< configurations.count {
             if configurations[i].offsiteServer.isEmpty == true {
                 configurations[i].offsiteServer = "localhost"
             }
-            data.append(ConvertOneConfig(config: self.configurations![i]).dict2)
+            data.append(ConvertOneConfig(config: self.configurations![i]).dict)
         }
         return data
     }
