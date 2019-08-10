@@ -190,7 +190,7 @@ class ViewControllertabSchedule: NSViewController, SetConfigurations, SetSchedul
         if let index = indexes.first {
             // Set index
             self.index = index
-            let dict = self.configurations!.getConfigurationsDataSourcecountBackup()![index]
+            let dict = self.configurations!.getConfigurationsDataSourceSynchronize()![index]
             self.hiddenID = dict.value(forKey: "hiddenID") as? Int
         } else {
             self.index = nil
@@ -230,15 +230,15 @@ class ViewControllertabSchedule: NSViewController, SetConfigurations, SetSchedul
 extension ViewControllertabSchedule: NSTableViewDataSource {
 
     func numberOfRows(in tableView: NSTableView) -> Int {
-        return self.configurations?.getConfigurationsDataSourcecountBackup()?.count ?? 0
+        return self.configurations?.getConfigurationsDataSourceSynchronize()?.count ?? 0
     }
 }
 
 extension ViewControllertabSchedule: NSTableViewDelegate, Attributedestring {
 
    func tableView(_ tableView: NSTableView, objectValueFor tableColumn: NSTableColumn?, row: Int) -> Any? {
-        guard row < self.configurations!.getConfigurationsDataSourcecountBackup()!.count  else { return nil }
-        let object: NSDictionary = self.configurations!.getConfigurationsDataSourcecountBackup()![row]
+        guard row < self.configurations!.getConfigurationsDataSourceSynchronize()!.count  else { return nil }
+        let object: NSDictionary = self.configurations!.getConfigurationsDataSourceSynchronize()![row]
         let hiddenID: Int = object.value(forKey: "hiddenID") as? Int ?? -1
         switch tableColumn!.identifier.rawValue {
         case "scheduleID" :

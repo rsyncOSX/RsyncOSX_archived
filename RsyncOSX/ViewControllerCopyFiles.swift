@@ -226,7 +226,7 @@ class ViewControllerCopyFiles: NSViewController, SetConfigurations, Delay, VcCop
                 self.restorebutton.isEnabled = false
                 self.remoteCatalog.stringValue = ""
                 self.rsyncindex = index
-                let hiddenID = self.configurations!.getConfigurationsDataSourcecountBackupSnapshot()![index].value(forKey: "hiddenID") as? Int ?? -1
+                let hiddenID = self.configurations!.getConfigurationsDataSourceSynchronize()![index].value(forKey: "hiddenID") as? Int ?? -1
                 self.copysinglefiles = CopySingleFiles(hiddenID: hiddenID)
                 self.remotefilelist = Remotefilelist(hiddenID: hiddenID)
                 self.working.startAnimation(nil)
@@ -250,7 +250,7 @@ extension ViewControllerCopyFiles: NSSearchFieldDelegate {
                 if self.search.stringValue.isEmpty {
                     globalMainQueue.async(execute: { () -> Void in
                         if let index = self.rsyncindex {
-                            if let hiddenID = self.configurations!.getConfigurationsDataSourcecountBackupSnapshot()![index].value(forKey: "hiddenID") as? Int {
+                            if let hiddenID = self.configurations!.getConfigurationsDataSourceSynchronize()![index].value(forKey: "hiddenID") as? Int {
                                 self.remotefilelist = Remotefilelist(hiddenID: hiddenID)
                             }
                         }
@@ -277,7 +277,7 @@ extension ViewControllerCopyFiles: NSSearchFieldDelegate {
 
     func searchFieldDidEndSearching(_ sender: NSSearchField) {
         if let index = self.rsyncindex {
-            if self.configurations!.getConfigurationsDataSourcecountBackupSnapshot()![index].value(forKey: "hiddenID") as? Int != nil {
+            if self.configurations!.getConfigurationsDataSourceSynchronize()![index].value(forKey: "hiddenID") as? Int != nil {
                 self.working.startAnimation(nil)
             }
         }
@@ -296,7 +296,7 @@ extension ViewControllerCopyFiles: NSTableViewDataSource {
             self.numberofrows.stringValue = numberofrows + String(self.restoretabledata!.count)
             return self.restoretabledata!.count
         } else {
-             return self.configurations?.getConfigurationsDataSourcecountBackupSnapshot()?.count ?? 0
+             return self.configurations?.getConfigurationsDataSourceSynchronize()?.count ?? 0
         }
     }
 }
@@ -311,8 +311,8 @@ extension ViewControllerCopyFiles: NSTableViewDelegate {
                 return cell
             }
         } else {
-            guard row < self.configurations!.getConfigurationsDataSourcecountBackupSnapshot()!.count else { return nil }
-            let object: NSDictionary = self.configurations!.getConfigurationsDataSourcecountBackupSnapshot()![row]
+            guard row < self.configurations!.getConfigurationsDataSourceSynchronize()!.count else { return nil }
+            let object: NSDictionary = self.configurations!.getConfigurationsDataSourceSynchronize()![row]
             let cellIdentifier: String = tableColumn!.identifier.rawValue
             if let cell = tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: cellIdentifier), owner: self) as? NSTableCellView {
                 cell.textField?.stringValue = object.value(forKey: cellIdentifier) as? String ?? ""
