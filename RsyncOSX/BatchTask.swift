@@ -16,7 +16,7 @@ final class BatchTask: SetSchedules, SetConfigurations {
     var process: Process?
     var outputprocess: OutputProcess?
     var hiddenID: Int?
-    var estimatedlist: [NSMutableDictionary]?
+    var estimatedlist: [NSDictionary]?
 
     func executeBatch() {
         self.estimatedlist = self.configurations?.estimatedlist

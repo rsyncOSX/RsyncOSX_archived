@@ -12,7 +12,7 @@ import Cocoa
 
 protocol SetLocalRemoteInfo: class {
     func setlocalremoteinfo(info: NSMutableDictionary?)
-    func getlocalremoteinfo(index: Int) -> NSMutableDictionary?
+    func getlocalremoteinfo(index: Int) -> NSDictionary?
 }
 
 class ViewControllerInformationLocalRemote: NSViewController, SetDismisser, Index, SetConfigurations {
@@ -98,7 +98,7 @@ class ViewControllerInformationLocalRemote: NSViewController, SetDismisser, Inde
         })
     }
 
-    private func setcachedNumbers(dict: NSMutableDictionary) {
+    private func setcachedNumbers(dict: NSDictionary) {
         self.localtotalNumber.stringValue = (dict.value(forKey: "localtotalNumber") as? String) ?? ""
         self.localtotalNumberSizebytes.stringValue = (dict.value(forKey: "localtotalNumberSizebytes") as? String) ?? ""
         self.localtotalDirs.stringValue = (dict.value(forKey: "localtotalDirs") as? String) ?? ""

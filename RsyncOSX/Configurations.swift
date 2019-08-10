@@ -34,9 +34,9 @@ class Configurations: ReloadTable, SetSchedules {
     // backup list from remote info view
     var quickbackuplist: [Int]?
     // Estimated backup list, all backups
-    var estimatedlist: [NSMutableDictionary]?
+    var estimatedlist: [NSDictionary]?
     // remote and local info
-    var localremote: [NSMutableDictionary]?
+    var localremote: [NSDictionary]?
     // remote info tasks
     var remoteinfotaskworkqueue: RemoteInfoTaskWorkQueue?
     // Which kind of task
