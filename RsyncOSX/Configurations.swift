@@ -83,15 +83,15 @@ class Configurations: ReloadTable, SetSchedules {
     /// Function for getting all Configurations
     /// - parameter none: none
     /// - returns : Array of NSDictionary
-    func getConfigurationsDataSourcecountBackup() -> [NSMutableDictionary]? {
-        let configurations: [Configuration] = self.configurations!.filter({return ($0.task == ViewControllerReference.shared.synchronize ||
+    func getConfigurationsDataSourceSynchronize() -> [NSMutableDictionary]? {
+        var configurations: [Configuration] = self.configurations!.filter({return ($0.task == ViewControllerReference.shared.synchronize ||
             $0.task == ViewControllerReference.shared.snapshot)})
         var data = [NSMutableDictionary]()
         for i in 0 ..< configurations.count {
-            let row: NSMutableDictionary = ConvertOneConfig(config: self.configurations![i]).dict
-            if (row.value(forKey: "offsiteServerCellID") as? String)?.isEmpty == true {
-                row.setValue("localhost", forKey: "offsiteServerCellID")
+            if configurations[i].offsiteServer.isEmpty == true {
+                configurations[i].offsiteServer = "localhost"
             }
+            let row: NSMutableDictionary = ConvertOneConfig(config: self.configurations![i]).dict
             if self.quickbackuplist != nil {
                 let quickbackup = self.quickbackuplist!.filter({$0 == configurations[i].hiddenID})
                 if quickbackup.count > 0 {
@@ -99,19 +99,6 @@ class Configurations: ReloadTable, SetSchedules {
                 }
             }
             data.append(row)
-        }
-        return data
-    }
-
-    func getConfigurationsDataSourcecountBackupSnapshot() -> [NSMutableDictionary]? {
-        var configurations: [Configuration] = self.configurations!.filter({return ($0.task == ViewControllerReference.shared.synchronize ||
-            $0.task == ViewControllerReference.shared.snapshot )})
-        var data = [NSMutableDictionary]()
-        for i in 0 ..< configurations.count {
-            if configurations[i].offsiteServer.isEmpty == true {
-                configurations[i].offsiteServer = "localhost"
-            }
-            data.append(ConvertOneConfig(config: self.configurations![i]).dict)
         }
         return data
     }
