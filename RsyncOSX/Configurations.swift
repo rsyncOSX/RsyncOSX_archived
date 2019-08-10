@@ -28,15 +28,15 @@ class Configurations: ReloadTable, SetSchedules {
     // Initialized during startup
     private var argumentAllConfigurations: [ArgumentsOneConfiguration]?
     // Datasource for NSTableViews
-    private var configurationsDataSource: [NSMutableDictionary]?
+    private var configurationsDataSource: [NSDictionary]?
     // Object for batchQueue data and operations
     private var batchQueue: BatchTaskWorkQueu?
     // backup list from remote info view
     var quickbackuplist: [Int]?
     // Estimated backup list, all backups
-    var estimatedlist: [NSMutableDictionary]?
+    var estimatedlist: [NSDictionary]?
     // remote and local info
-    var localremote: [NSMutableDictionary]?
+    var localremote: [NSDictionary]?
     // remote info tasks
     var remoteinfotaskworkqueue: RemoteInfoTaskWorkQueue?
     // Which kind of task
@@ -76,7 +76,7 @@ class Configurations: ReloadTable, SetSchedules {
     /// as datasource for tableViews
     /// - parameter none: none
     /// - returns : Array of Configurations
-    func getConfigurationsDataSource() -> [NSMutableDictionary]? {
+    func getConfigurationsDataSource() -> [NSDictionary]? {
         return self.configurationsDataSource
     }
 
@@ -103,15 +103,15 @@ class Configurations: ReloadTable, SetSchedules {
         return data
     }
 
-    func getConfigurationsDataSourcecountBackupSnapshot() -> [NSDictionary]? {
+    func getConfigurationsDataSourcecountBackupSnapshot() -> [NSMutableDictionary]? {
         var configurations: [Configuration] = self.configurations!.filter({return ($0.task == ViewControllerReference.shared.synchronize ||
             $0.task == ViewControllerReference.shared.snapshot )})
-        var data = [NSDictionary]()
+        var data = [NSMutableDictionary]()
         for i in 0 ..< configurations.count {
             if configurations[i].offsiteServer.isEmpty == true {
                 configurations[i].offsiteServer = "localhost"
             }
-            data.append(ConvertOneConfig(config: self.configurations![i]).dict2)
+            data.append(ConvertOneConfig(config: self.configurations![i]).dict)
         }
         return data
     }
