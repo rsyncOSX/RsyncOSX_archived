@@ -61,6 +61,23 @@ class ViewControllerRsyncParameters: NSViewController, SetConfigurations, SetDis
         self.dismissview(viewcontroller: self, vcontroller: .vctabmain)
     }
 
+    @IBAction func togglersyncdaemon(_ sender: NSButton) {
+        if let index = self.index() {
+            switch self.rsyncdaemon.state {
+            case .on:
+                self.configurations!.removeesshparameter(index: index, delete: true)
+                self.param5.stringValue = self.configurations!.getConfigurations()[index].parameter5
+                self.esshparameter.state = .on
+            case .off:
+                self.configurations!.removeesshparameter(index: index, delete: false)
+                self.param5.stringValue = self.configurations!.getConfigurations()[index].parameter5 + " ssh"
+                self.esshparameter.state = .off
+            default:
+                return
+            }
+        }
+    }
+
     @IBAction func removecompressparameter(_ sender: NSButton) {
         if let index = self.index() {
             switch self.compressparameter.state {

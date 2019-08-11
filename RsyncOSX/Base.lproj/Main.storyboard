@@ -4490,6 +4490,9 @@ DQ
                                                 <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                                 <font key="font" metaFont="system"/>
                                             </buttonCell>
+                                            <connections>
+                                                <action selector="togglersyncdaemon:" target="K9c-yf-VMY" id="ID8-Fp-UMW"/>
+                                            </connections>
                                         </button>
                                         <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ete-As-Uhd">
                                             <rect key="frame" x="36" y="10" width="90" height="17"/>
