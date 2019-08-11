@@ -51,7 +51,6 @@ class ViewControllerNewConfigurations: NSViewController, SetConfigurations, VcSc
     @IBOutlet weak var offsiteServer: NSTextField!
     @IBOutlet weak var backupID: NSTextField!
     @IBOutlet weak var sshport: NSTextField!
-    @IBOutlet weak var rsyncdaemon: NSButton!
     @IBOutlet weak var profilInfo: NSTextField!
     @IBOutlet weak var copyconfigbutton: NSButton!
     @IBOutlet weak var backuptype: NSComboBox!
@@ -166,7 +165,6 @@ class ViewControllerNewConfigurations: NSViewController, SetConfigurations, VcSc
         self.viewParameter3.stringValue = self.compress
         self.viewParameter4.stringValue = self.delete
         self.viewParameter5.stringValue = self.eparam + " " + self.ssh
-        self.rsyncdaemon.state = .off
     }
 
     private func initcombox(combobox: NSComboBox, index: Int) {
@@ -182,7 +180,6 @@ class ViewControllerNewConfigurations: NSViewController, SetConfigurations, VcSc
         self.offsiteServer.stringValue = ""
         self.backupID.stringValue = ""
         self.sshport.stringValue = ""
-        self.rsyncdaemon.state = .off
     }
 
     private func snapshotcreatecatalog (dict: NSDictionary, outputprocess: OutputProcess?) {
@@ -228,7 +225,6 @@ class ViewControllerNewConfigurations: NSViewController, SetConfigurations, VcSc
             self.offsiteCatalog.stringValue += "/"
             dict.setValue(self.offsiteCatalog.stringValue, forKey: "offsiteCatalog")
         }
-        dict.setObject(self.rsyncdaemon.state, forKey: "rsyncdaemon" as NSCopying)
         if sshport.stringValue != "" {
             if let port: Int = Int(self.sshport.stringValue) {
                 dict.setObject(port, forKey: "sshport" as NSCopying)

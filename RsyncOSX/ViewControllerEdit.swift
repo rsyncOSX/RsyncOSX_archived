@@ -18,7 +18,6 @@ class ViewControllerEdit: NSViewController, SetConfigurations, SetDismisser, Ind
     @IBOutlet weak var offsiteServer: NSTextField!
     @IBOutlet weak var backupID: NSTextField!
     @IBOutlet weak var sshport: NSTextField!
-    @IBOutlet weak var rsyncdaemon: NSButton!
     @IBOutlet weak var snapshotnum: NSTextField!
 
     var index: Int?
@@ -62,7 +61,6 @@ class ViewControllerEdit: NSViewController, SetConfigurations, SetDismisser, Ind
         } else {
             config[self.index!].sshport = nil
         }
-        config[self.index!].rsyncdaemon = self.rsyncdaemon.state.rawValue
         if self.snapshotnum.stringValue.count > 0 {
             config[self.index!].snapshotnum = Int(self.snapshotnum.stringValue)
         }
@@ -83,7 +81,6 @@ class ViewControllerEdit: NSViewController, SetConfigurations, SetDismisser, Ind
         self.offsiteServer.stringValue = ""
         self.backupID.stringValue = ""
         self.sshport.stringValue = ""
-        self.rsyncdaemon.state = .off
         self.index = self.index()
         let config: Configuration = self.configurations!.getConfigurations()[self.index!]
         self.localCatalog.stringValue = config.localCatalog
@@ -98,9 +95,6 @@ class ViewControllerEdit: NSViewController, SetConfigurations, SetDismisser, Ind
         self.backupID.stringValue = config.backupID
         if let port = config.sshport {
             self.sshport.stringValue = String(port)
-        }
-        if let rsyncdaemon = config.rsyncdaemon {
-            self.rsyncdaemon.state = NSControl.StateValue(rawValue: rsyncdaemon)
         }
         if let snapshotnum = config.snapshotnum {
             self.snapshotnum.stringValue = String(snapshotnum)
