@@ -11,7 +11,7 @@ import Foundation
 
 struct ConvertUserconfiguration {
 
-    var userconfiguration: [NSDictionary]?
+    var userconfiguration: [NSMutableDictionary]?
 
     init() {
         var version3Rsync: Int?
@@ -23,7 +23,7 @@ struct ConvertUserconfiguration {
         var restorepath: String?
         var marknumberofdayssince: String?
         var automaticexecutelocalvolumes: Int?
-        var array = [NSDictionary]()
+        var array = [NSMutableDictionary]()
 
         if ViewControllerReference.shared.rsyncversion3 {
             version3Rsync = 1

@@ -28,7 +28,7 @@ class Configurations: ReloadTable, SetSchedules {
     // Initialized during startup
     private var argumentAllConfigurations: [ArgumentsOneConfiguration]?
     // Datasource for NSTableViews
-    private var configurationsDataSource: [NSDictionary]?
+    private var configurationsDataSource: [NSMutableDictionary]?
     // Object for batchQueue data and operations
     private var batchQueue: BatchTaskWorkQueu?
     // backup list from remote info view
