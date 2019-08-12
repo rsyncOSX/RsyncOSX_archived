@@ -440,9 +440,6 @@ extension ViewControllertabMain: StartStopProgressIndicatorSingleTask {
 }
 
 extension ViewControllertabMain: SingleTaskProgress {
-    func setprocessreference(process: Process) {
-        self.process = process
-    }
 
     func presentViewProgress() {
         globalMainQueue.async(execute: { () -> Void in
