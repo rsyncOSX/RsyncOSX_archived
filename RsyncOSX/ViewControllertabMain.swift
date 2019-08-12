@@ -307,11 +307,12 @@ class ViewControllertabMain: NSViewController, ReloadTable, Deselect, VcMain, De
                 return
         }
         self.working.startAnimation(nil)
-        let arguments = self.configurations!.arguments4rsync(index: self.index!, argtype: .arg)
-        self.outputprocess = OutputProcess()
-        let process = Rsync(arguments: arguments)
-        process.executeProcess(outputprocess: self.outputprocess)
-        self.process = process.getProcess()
+        if let arguments = self.configurations?.arguments4rsync(index: self.index!, argtype: .arg) {
+            self.outputprocess = OutputProcess()
+            let process = Rsync(arguments: arguments)
+            process.executeProcess(outputprocess: self.outputprocess)
+            self.process = process.getProcess()
+        }
     }
 
     // Function for display rsync command
@@ -398,15 +399,11 @@ class ViewControllertabMain: NSViewController, ReloadTable, Deselect, VcMain, De
 
     // Execute tasks by double click in table
     @objc(tableViewDoubleClick:) func tableViewDoubleClick(sender: AnyObject) {
-        // if self.readyforexecution {
-            self.executeSingleTask()
-        //}
-        //self.readyforexecution = false
+         self.executeSingleTask()
     }
 
     // Single task can be activated by double click from table
     func executeSingleTask() {
-        // self.configurations!.processtermination = .singletask
         guard ViewControllerReference.shared.norsync == false else {
             _ = Norsync()
             return
@@ -418,7 +415,6 @@ class ViewControllertabMain: NSViewController, ReloadTable, Deselect, VcMain, De
                 self.info.stringValue = Infoexecute().info(num: 6)
                 return
         }
-        // self.batchtasks = nil
         guard self.singletask != nil else {
             // Dry run
             self.singletask = SingleTask(index: self.index!)
