@@ -33,6 +33,6 @@ final class RestoreTask: SetConfigurations {
         guard arguments != nil else { return }
         let process = Rsync(arguments: self.arguments)
         process.executeProcess(outputprocess: outputprocess)
-        taskDelegate?.getProcessReference(process: process.getProcess()!)
+        taskDelegate?.setprocessreference(process: process.getProcess()!)
     }
 }

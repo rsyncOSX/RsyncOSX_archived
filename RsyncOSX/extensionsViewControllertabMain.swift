@@ -218,10 +218,7 @@ extension ViewControllertabMain: UpdateProgress {
         }
         switch self.configurations!.processtermination! {
         case .singletask:
-            guard self.singletask != nil else { return }
-            self.outputprocess = self.singletask!.outputprocess
-            self.process = self.singletask!.process
-            self.singletask!.processTermination()
+            return
         case .batchtask:
             self.batchtasksDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vcbatch) as? ViewControllerBatch
             self.batchtasks = self.batchtasksDelegate?.getbatchtaskObject()
@@ -312,16 +309,7 @@ extension ViewControllertabMain: UpdateProgress {
         }
         switch self.configurations!.processtermination! {
         case .singletask:
-            guard self.singletask != nil else { return }
-            weak var localprocessupdateDelegate: UpdateProgress?
-            localprocessupdateDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vcprogressview) as? ViewControllerProgressProcess
-            self.outputprocess = self.singletask!.outputprocess
-            self.process = self.singletask!.process
-            localprocessupdateDelegate?.fileHandler()
-            outputeverythingDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllertabMain
-            if outputeverythingDelegate?.appendnow() ?? false {
-                outputeverythingDelegate?.reloadtable()
-            }
+            return
         case .batchtask:
             weak var localprocessupdateDelegate: UpdateProgress?
             localprocessupdateDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vcbatch) as? ViewControllerBatch
@@ -452,7 +440,7 @@ extension ViewControllertabMain: StartStopProgressIndicatorSingleTask {
 }
 
 extension ViewControllertabMain: SingleTaskProgress {
-    func getProcessReference(process: Process) {
+    func setprocessreference(process: Process) {
         self.process = process
     }
 

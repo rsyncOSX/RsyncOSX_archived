@@ -21,7 +21,7 @@ final class EstimateRemoteInformationTask: SetConfigurations {
         }
         let process = Rsync(arguments: self.arguments)
         process.executeProcess(outputprocess: outputprocess)
-        taskDelegate?.getProcessReference(process: process.getProcess()!)
+        taskDelegate?.setprocessreference(process: process.getProcess()!)
         outDelegate?.sendoutputprocessreference(outputprocess: outputprocess)
     }
 }

@@ -398,15 +398,15 @@ class ViewControllertabMain: NSViewController, ReloadTable, Deselect, VcMain, De
 
     // Execute tasks by double click in table
     @objc(tableViewDoubleClick:) func tableViewDoubleClick(sender: AnyObject) {
-        if self.readyforexecution {
+        // if self.readyforexecution {
             self.executeSingleTask()
-        }
-        self.readyforexecution = false
+        //}
+        //self.readyforexecution = false
     }
 
     // Single task can be activated by double click from table
     func executeSingleTask() {
-        self.configurations!.processtermination = .singletask
+        // self.configurations!.processtermination = .singletask
         guard ViewControllerReference.shared.norsync == false else {
             _ = Norsync()
             return
@@ -418,7 +418,7 @@ class ViewControllertabMain: NSViewController, ReloadTable, Deselect, VcMain, De
                 self.info.stringValue = Infoexecute().info(num: 6)
                 return
         }
-        self.batchtasks = nil
+        // self.batchtasks = nil
         guard self.singletask != nil else {
             // Dry run
             self.singletask = SingleTask(index: self.index!)
