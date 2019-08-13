@@ -43,10 +43,10 @@ class ViewControllertabMain: NSViewController, ReloadTable, Deselect, VcMain, De
     // Configurations object
     var configurations: Configurations?
     var schedules: Schedules?
-    // Reference to the single taskobject
+    // Reference to the taskobjects
     var singletask: SingleTask?
-    // Reference to batch taskobject
     var batchtasks: BatchTask?
+    var executetasknow: ExecuteTaskNow?
     var tcpconnections: TCPconnections?
     // Delegate function getting batchTaskObject
     weak var batchtasksDelegate: GetNewBatchTask?
@@ -289,7 +289,6 @@ class ViewControllertabMain: NSViewController, ReloadTable, Deselect, VcMain, De
     }
 
     @IBAction func executetasknow(_ sender: NSButton) {
-        self.configurations!.processtermination = .singlequicktask
         guard ViewControllerReference.shared.norsync == false else {
             _ = Norsync()
             return
@@ -306,13 +305,7 @@ class ViewControllertabMain: NSViewController, ReloadTable, Deselect, VcMain, De
             self.configurations!.getConfigurations()[self.index!].task == ViewControllerReference.shared.snapshot else {
                 return
         }
-        self.working.startAnimation(nil)
-        if let arguments = self.configurations?.arguments4rsync(index: self.index!, argtype: .arg) {
-            self.outputprocess = OutputProcess()
-            let process = Rsync(arguments: arguments)
-            process.executeProcess(outputprocess: self.outputprocess)
-            self.process = process.getProcess()
-        }
+        self.executetasknow = ExecuteTaskNow(index: self.index!)
     }
 
     // Function for display rsync command

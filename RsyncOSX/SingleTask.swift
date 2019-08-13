@@ -32,7 +32,6 @@ final class SingleTask: SetSchedules, SetConfigurations {
     weak var singletaskDelegate: SingleTaskProgress?
     weak var setprocessDelegate: SendProcessreference?
 
-    private var process: Process?
     private var index: Int?
     private var outputprocess: OutputProcess?
     private var maxcount: Int = 0
@@ -51,8 +50,7 @@ final class SingleTask: SetSchedules, SetConfigurations {
                     self.outputprocess = OutputProcess()
                     process.setdelegate(object: self)
                     process.executeProcess(outputprocess: self.outputprocess)
-                    self.process = process.getProcess()
-                    self.setprocessDelegate?.sendprocessreference(process: self.process!)
+                    self.setprocessDelegate?.sendprocessreference(process: process.getProcess())
                     self.setprocessDelegate?.sendoutputprocessreference(outputprocess: self.outputprocess)
                 }
             }
@@ -64,8 +62,7 @@ final class SingleTask: SetSchedules, SetConfigurations {
                     self.outputprocess = OutputProcess()
                     process.setdelegate(object: self)
                     process.executeProcess(outputprocess: self.outputprocess)
-                    self.process = process.getProcess()
-                    self.setprocessDelegate?.sendprocessreference(process: self.process!)
+                    self.setprocessDelegate?.sendprocessreference(process: process.getProcess())
                     self.setprocessDelegate?.sendoutputprocessreference(outputprocess: self.outputprocess)
                 }
             }
