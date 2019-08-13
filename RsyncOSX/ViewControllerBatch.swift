@@ -64,6 +64,7 @@ class ViewControllerBatch: NSViewController, SetDismisser, Abort, SetConfigurati
 
     // Execute batch
     @IBAction func execute(_ sender: NSButton) {
+        self.configurations!.processtermination = .batchtask
         self.batchisrunning = true
         self.estimatingbatchlabel.isHidden = true
         self.batchTask!.executeBatch()
@@ -222,6 +223,7 @@ extension ViewControllerBatch: CloseViewError {
         self.dismissview(viewcontroller: self, vcontroller: .vctabmain)
     }
 }
+
 
 extension ViewControllerBatch: UpdateProgress {
     func processTermination() {

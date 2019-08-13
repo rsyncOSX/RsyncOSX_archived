@@ -276,7 +276,14 @@ extension ViewControllertabMain: UpdateProgress {
     // Function is triggered when Process outputs data in filehandler
     // Process is either in singleRun or batchRun
     func fileHandler() {
-        //
+        switch self.configurations!.processtermination! {
+        case .singletask, .infosingletask, .automaticbackup, .estimatebatchtask, .quicktask, .singlequicktask, .remoteinfotask, .restore:
+            return
+        case .batchtask:
+            weak var localprocessupdateDelegate: UpdateProgress?
+            localprocessupdateDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vcbatch) as? ViewControllerBatch
+            localprocessupdateDelegate?.fileHandler()
+        }
     }
 }
 
