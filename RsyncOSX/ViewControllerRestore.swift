@@ -5,6 +5,7 @@
 //  Created by Thomas Evensen on 05/09/2016.
 //  Copyright © 2016 Thomas Evensen. All rights reserved.
 //
+// swiftlint:disable line_length
 
 import Foundation
 import Cocoa
@@ -60,9 +61,11 @@ class ViewControllerRestore: NSViewController, SetConfigurations, SetDismisser, 
             self.sendprocess?.sendoutputprocessreference(outputprocess: self.outputprocess)
             switch self.selecttmptorestore.state {
             case .on:
-                _ = RestoreTask(index: index, outputprocess: self.outputprocess, dryrun: true, tmprestore: true)
+                _ = RestoreTask(index: index, outputprocess: self.outputprocess, dryrun: true,
+                                tmprestore: true, updateprogress: self)
             case .off:
-                _ = RestoreTask(index: index, outputprocess: self.outputprocess, dryrun: true, tmprestore: false)
+                _ = RestoreTask(index: index, outputprocess: self.outputprocess, dryrun: true,
+                                tmprestore: false, updateprogress: self)
             default:
                 return
             }
@@ -89,9 +92,11 @@ class ViewControllerRestore: NSViewController, SetConfigurations, SetDismisser, 
                 self.sendprocess?.sendoutputprocessreference(outputprocess: self.outputprocess)
                 switch self.selecttmptorestore.state {
                 case .on:
-                    _ = RestoreTask(index: index, outputprocess: self.outputprocess, dryrun: false, tmprestore: true)
+                    _ = RestoreTask(index: index, outputprocess: self.outputprocess, dryrun: false,
+                                    tmprestore: true, updateprogress: self)
                 case .off:
-                    _ = RestoreTask(index: index, outputprocess: self.outputprocess, dryrun: false, tmprestore: false)
+                    _ = RestoreTask(index: index, outputprocess: self.outputprocess, dryrun: false,
+                                    tmprestore: false, updateprogress: self)
                 default:
                     return
                 }
@@ -136,10 +141,12 @@ class ViewControllerRestore: NSViewController, SetConfigurations, SetDismisser, 
             self.sendprocess?.sendoutputprocessreference(outputprocess: self.outputprocess)
             if ViewControllerReference.shared.restorePath != nil {
                 self.selecttmptorestore.state = .on
-                _ = RestoreTask(index: index, outputprocess: self.outputprocess, dryrun: true, tmprestore: true)
+                _ = RestoreTask(index: index, outputprocess: self.outputprocess, dryrun: true,
+                                tmprestore: true, updateprogress: self)
             } else {
                 self.selecttmptorestore.state = .off
-                _ = RestoreTask(index: index, outputprocess: self.outputprocess, dryrun: true, tmprestore: false)
+                _ = RestoreTask(index: index, outputprocess: self.outputprocess, dryrun: true,
+                                tmprestore: false, updateprogress: self)
             }
         }
     }
@@ -204,6 +211,11 @@ extension ViewControllerRestore: UpdateProgress {
     func fileHandler() {
         if self.estimationcompleted == true {
              self.updateProgressbar(Double(self.outputprocess!.count()))
+        }
+        weak var outputeverythingDelegate: ViewOutputDetails?
+        outputeverythingDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllertabMain
+        if outputeverythingDelegate?.appendnow() ?? false {
+            outputeverythingDelegate?.reloadtable()
         }
     }
 }

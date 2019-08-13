@@ -11,8 +11,9 @@ import Foundation
 
 final class RestoreTask: SetConfigurations {
     var arguments: [String]?
-    init(index: Int, outputprocess: OutputProcess?, dryrun: Bool, tmprestore: Bool) {
-        weak var taskDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllertabMain
+    init(index: Int, outputprocess: OutputProcess?, dryrun: Bool, tmprestore: Bool, updateprogress: UpdateProgress?) {
+        weak var setprocessDelegate: SendProcessreference?
+        setprocessDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllertabMain
         if dryrun {
             if tmprestore {
                 self.arguments = self.configurations!.arguments4tmprestore(index: index, argtype: .argdryRun)
@@ -32,7 +33,8 @@ final class RestoreTask: SetConfigurations {
         }
         guard arguments != nil else { return }
         let process = Rsync(arguments: self.arguments)
+        process.setdelegate(object: updateprogress!)
         process.executeProcess(outputprocess: outputprocess)
-        taskDelegate?.getProcessReference(process: process.getProcess()!)
+        setprocessDelegate?.sendprocessreference(process: process.getProcess()!)
     }
 }

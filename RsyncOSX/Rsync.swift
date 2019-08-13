@@ -11,7 +11,6 @@ import Foundation
 
 final class Rsync: ProcessCmd {
 
-    // Used to set in XCTest
     func setdelegate(object: UpdateProgress) {
         self.updateDelegate = object
     }

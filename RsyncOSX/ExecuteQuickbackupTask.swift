@@ -19,7 +19,7 @@ final class ExecuteQuickbackupTask: SetSchedules, SetConfigurations {
     var arguments: [String]?
     var config: Configuration?
 
-    private func executetask() {
+    private func executetask(updateprogress: UpdateProgress?) {
         if let dict: NSDictionary = ViewControllerReference.shared.quickbackuptask {
             if let hiddenID: Int = dict.value(forKey: "hiddenID") as? Int {
                 let getconfigurations: [Configuration]? = configurations?.getConfigurations()
@@ -32,10 +32,15 @@ final class ExecuteQuickbackupTask: SetSchedules, SetConfigurations {
                     // Setting reference to finalize the job, finalize job is done when rsynctask ends (in process termination)
                     ViewControllerReference.shared.completeoperation = CompleteQuickbackupTask(dict: dict)
                     globalMainQueue.async(execute: {
-                        if self.arguments != nil {
+                        if let arguments = self.arguments {
                             weak var sendprocess: SendProcessreference?
                             sendprocess = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllertabMain
-                            let process = RsyncScheduled(arguments: self.arguments)
+                            let process = Rsync(arguments: arguments)
+                            if updateprogress != nil {
+                                process.setdelegate(object: updateprogress!)
+                                let sendprocessreference = updateprogress as? SendProcessreference
+                                sendprocessreference?.sendoutputprocessreference(outputprocess: self.outputprocess)
+                            }
                             process.executeProcess(outputprocess: self.outputprocess)
                             sendprocess?.sendprocessreference(process: process.getProcess())
                             sendprocess?.sendoutputprocessreference(outputprocess: self.outputprocess)
@@ -47,6 +52,10 @@ final class ExecuteQuickbackupTask: SetSchedules, SetConfigurations {
     }
 
     init () {
-       self.executetask()
+        self.executetask(updateprogress: nil)
+    }
+
+    init(updateprogress: UpdateProgress?) {
+        self.executetask(updateprogress: updateprogress)
     }
 }
