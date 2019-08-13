@@ -217,7 +217,7 @@ extension ViewControllertabMain: UpdateProgress {
             self.configurations!.processtermination = .singlequicktask
         }
         switch self.configurations!.processtermination! {
-        case .singletask, .singlequicktask:
+        case .singletask, .singlequicktask, .quicktask:
             return
         case .batchtask:
             self.batchtasksDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vcbatch) as? ViewControllerBatch
@@ -225,14 +225,6 @@ extension ViewControllertabMain: UpdateProgress {
             self.outputprocess = self.batchtasks?.outputprocess
             self.process = self.batchtasks?.process
             self.batchtasks?.processTermination()
-        case .quicktask:
-            guard ViewControllerReference.shared.completeoperation != nil else { return }
-            ViewControllerReference.shared.completeoperation!.finalizeScheduledJob(outputprocess: self.outputprocess)
-            // After logging is done set reference to object = nil
-            ViewControllerReference.shared.completeoperation = nil
-            weak var processterminationDelegate: UpdateProgress?
-            processterminationDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vcquickbackup) as? ViewControllerQuickBackup
-            processterminationDelegate?.processTermination()
         case .remoteinfotask:
             guard self.configurations!.remoteinfotaskworkqueue != nil else { return }
             self.configurations!.remoteinfotaskworkqueue?.processTermination()
@@ -303,18 +295,12 @@ extension ViewControllertabMain: UpdateProgress {
             self.configurations!.processtermination = .singlequicktask
         }
         switch self.configurations!.processtermination! {
-        case .singletask, .infosingletask, .automaticbackup, .estimatebatchtask:
+        case .singletask, .infosingletask, .automaticbackup, .estimatebatchtask, .quicktask, .singlequicktask:
             return
         case .batchtask:
             weak var localprocessupdateDelegate: UpdateProgress?
             localprocessupdateDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vcbatch) as? ViewControllerBatch
             localprocessupdateDelegate?.fileHandler()
-        case .quicktask:
-            weak var localprocessupdateDelegate: UpdateProgress?
-            localprocessupdateDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vcquickbackup) as? ViewControllerQuickBackup
-            localprocessupdateDelegate?.fileHandler()
-        case .singlequicktask:
-            return
         case .remoteinfotask:
             outputeverythingDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllertabMain
             if outputeverythingDelegate?.appendnow() ?? false {

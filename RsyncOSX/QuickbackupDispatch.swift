@@ -20,7 +20,19 @@ class QuickbackupDispatch: SetSchedules {
         DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(seconds), execute: work)
     }
 
+    private func dispatchtask(seconds: Int, updateprogress: UpdateProgress?) {
+        let work = DispatchWorkItem {  () -> Void in
+            _ = ExecuteQuickbackupTask(updateprogress: updateprogress)
+        }
+        self.workitem = work
+        DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(seconds), execute: work)
+    }
+
     init() {
         self.dispatchtask(seconds: 0)
+    }
+
+    init(updateprogress: UpdateProgress?) {
+        self.dispatchtask(seconds: 0, updateprogress: updateprogress)
     }
 }

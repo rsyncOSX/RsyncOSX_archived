@@ -41,25 +41,7 @@ class QuickBackup: SetConfigurations {
         self.reloadtableDelegate?.reloadtabledata()
     }
 
-    func sortbystrings(sort: Sort) {
-        var sortby: String?
-        guard self.sortedlist != nil else { return }
-        switch sort {
-        case .localCatalog:
-            sortby = "localCatalogCellID"
-        case .backupId:
-            sortby = "backupIDCellID"
-        case .offsiteCatalog:
-            sortby = "offsiteCatalogCellID"
-        case .offsiteServer:
-            sortby = "offsiteServerCellID"
-        }
-        let sorted = self.sortedlist!.sorted {return ($0.value(forKey: sortby!) as? String)!.localizedStandardCompare(($1.value(forKey: sortby!) as? String)!) == .orderedAscending}
-        self.sortedlist = sorted
-        self.reloadtableDelegate?.reloadtabledata()
-    }
-
-    private func executetasknow(hiddenID: Int) {
+    private func executetask(hiddenID: Int) {
         let now: Date = Date()
         let dateformatter = Dateandtime().setDateformat()
         let task: NSDictionary = [
@@ -68,7 +50,7 @@ class QuickBackup: SetConfigurations {
             "dateStart": dateformatter.date(from: "01 Jan 1900 00:00")!,
             "schedule": "manuel"]
         ViewControllerReference.shared.quickbackuptask = task
-        _ = OperationFactory()
+        _ = OperationFactory(updateprogress: self)
     }
 
     func prepareandstartexecutetasks() {
@@ -96,52 +78,16 @@ class QuickBackup: SetConfigurations {
             self.sortedlist![self.index!].setValue(true, forKey: "inprogressCellID")
             self.maxcount = Int(self.sortedlist![self.index!].value(forKey: "transferredNumber") as? String ?? "0")
             self.stackoftasktobeexecuted?.remove(at: 0)
-            self.executetasknow(hiddenID: self.hiddenID!)
+            self.executetask(hiddenID: self.hiddenID!)
         }
     }
 
-    // Called before processTerminatiom
     func setcompleted() {
-        // If list is sorted during execution we have to find new index
         let dict = self.sortedlist!.filter({($0.value(forKey: "hiddenID") as? Int) == self.hiddenID!})
         guard dict.count == 1 else { return }
         self.index = self.sortedlist!.firstIndex(of: dict[0])
         self.sortedlist![self.index!].setValue(true, forKey: "completeCellID")
         self.sortedlist![self.index!].setValue(false, forKey: "inprogressCellID")
-    }
-
-    // Function for filter
-    func filter(search: String?, filterby: Sortandfilter?) {
-        guard search != nil && self.sortedlist != nil && filterby != nil else { return }
-        globalDefaultQueue.async(execute: {() -> Void in
-            switch filterby! {
-            case .executedate:
-                return
-            case .localcatalog:
-                self.sortedlist = self.sortedlist?.filter({
-                    ($0.value(forKey: "localCatalogCellID") as? String)!.contains(search!)
-                })
-            case .remoteserver:
-                self.sortedlist = self.sortedlist?.filter({
-                    ($0.value(forKey: "offsiteServerCellID") as? String)!.contains(search!)
-                })
-            case .numberofdays:
-                self.sortedlist = self.sortedlist?.filter({
-                    ($0.value(forKey: "daysID") as? String)!.contains(search!)
-                })
-            case .remotecatalog:
-                self.sortedlist = self.sortedlist?.filter({
-                    ($0.value(forKey: "offsiteCatalogCellID") as? String)!.contains(search!)
-                })
-            case .task:
-                return
-            case .backupid:
-                return
-            case .profile:
-                return
-            }
-            self.reloadtableDelegate?.reloadtabledata()
-        })
     }
 
     init() {
@@ -161,6 +107,20 @@ class QuickBackup: SetConfigurations {
 extension QuickBackup: UpdateProgress {
 
     func processTermination() {
+        self.setcompleted()
+        guard self.stackoftasktobeexecuted != nil else {
+            // self.completed.isHidden = false
+            // self.completed.textColor = setcolor(nsviewcontroller: self, color: .green)
+            // self.working.stopAnimation(nil)
+            // self.executing = false
+            return
+        }
+
+        guard ViewControllerReference.shared.completeoperation != nil else { return }
+        // ViewControllerReference.shared.completeoperation!.finalizeScheduledJob(outputprocess: self.outputprocess)
+        // After logging is done set reference to object = nil
+        ViewControllerReference.shared.completeoperation = nil
+
         guard self.stackoftasktobeexecuted != nil else { return }
         guard self.stackoftasktobeexecuted!.count > 0  else {
             self.stackoftasktobeexecuted = nil
@@ -173,11 +133,13 @@ extension QuickBackup: UpdateProgress {
         self.stackoftasktobeexecuted?.remove(at: 0)
         self.sortedlist![self.index!].setValue(true, forKey: "inprogressCellID")
         self.maxcount = Int(self.sortedlist![self.index!].value(forKey: "transferredNumber") as? String ?? "0")
-        self.executetasknow(hiddenID: self.hiddenID!)
+        self.executetask(hiddenID: self.hiddenID!)
         self.reloadtableDelegate?.reloadtabledata()
     }
 
     func fileHandler() {
-        // nothing
+        weak var localprocessupdateDelegate: Reloadandrefresh?
+        localprocessupdateDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vcquickbackup) as? ViewControllerQuickBackup
+        localprocessupdateDelegate?.reloadtabledata()
     }
 }
