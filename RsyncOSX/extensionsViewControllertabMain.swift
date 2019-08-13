@@ -217,7 +217,7 @@ extension ViewControllertabMain: UpdateProgress {
             self.configurations!.processtermination = .singlequicktask
         }
         switch self.configurations!.processtermination! {
-        case .singletask:
+        case .singletask, .singlequicktask:
             return
         case .batchtask:
             self.batchtasksDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vcbatch) as? ViewControllerBatch
@@ -233,8 +233,6 @@ extension ViewControllertabMain: UpdateProgress {
             weak var processterminationDelegate: UpdateProgress?
             processterminationDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vcquickbackup) as? ViewControllerQuickBackup
             processterminationDelegate?.processTermination()
-        case .singlequicktask:
-             return
         case .remoteinfotask:
             guard self.configurations!.remoteinfotaskworkqueue != nil else { return }
             self.configurations!.remoteinfotaskworkqueue?.processTermination()
@@ -305,7 +303,7 @@ extension ViewControllertabMain: UpdateProgress {
             self.configurations!.processtermination = .singlequicktask
         }
         switch self.configurations!.processtermination! {
-        case .singletask:
+        case .singletask, .infosingletask, .automaticbackup, .estimatebatchtask:
             return
         case .batchtask:
             weak var localprocessupdateDelegate: UpdateProgress?
@@ -322,10 +320,6 @@ extension ViewControllertabMain: UpdateProgress {
             if outputeverythingDelegate?.appendnow() ?? false {
                 outputeverythingDelegate?.reloadtable()
             }
-        case .infosingletask:
-            return
-        case .automaticbackup:
-            return
         case .restore:
             weak var localprocessupdateDelegate: UpdateProgress?
             localprocessupdateDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vcrestore) as? ViewControllerRestore
@@ -334,8 +328,6 @@ extension ViewControllertabMain: UpdateProgress {
             if outputeverythingDelegate?.appendnow() ?? false {
                 outputeverythingDelegate?.reloadtable()
             }
-        case .estimatebatchtask:
-            return
         }
     }
 }
