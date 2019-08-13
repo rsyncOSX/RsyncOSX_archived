@@ -30,6 +30,7 @@ final class BatchTask: SetSchedules, SetConfigurations {
                 self.outputprocess = OutputProcess()
                 let arguments: [String] = self.configurations!.arguments4rsync(index: index, argtype: .arg)
                 let process = Rsync(arguments: arguments)
+                // process.setdelegate(object: self)
                 process.executeProcess(outputprocess: self.outputprocess)
                 self.process = process.getProcess()
             case -1:
@@ -55,6 +56,23 @@ final class BatchTask: SetSchedules, SetConfigurations {
         self.closeviewerrorDelegate?.closeerror()
     }
 
+    func incount() -> Int {
+        return self.outputprocess?.getOutput()?.count ?? 0
+    }
+
+    func maxcountintask(hiddenID: Int) -> Int {
+        let max = self.configurations?.estimatedlist?.filter({$0.value( forKey: "hiddenID") as? Int == hiddenID})
+        guard max!.count > 0 else { return 0}
+        let maxnumber = max![0].value(forKey: "transferredNumber") as? String ?? "0"
+        return Int(maxnumber) ?? 0
+    }
+
+    init() {
+    }
+}
+
+extension BatchTask: UpdateProgress {
+
     func processTermination() {
         weak var localprocessupdateDelegate: UpdateProgress?
         localprocessupdateDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vcbatch) as? ViewControllerBatch
@@ -69,18 +87,9 @@ final class BatchTask: SetSchedules, SetConfigurations {
         }
     }
 
-    func incount() -> Int {
-        return self.outputprocess?.getOutput()?.count ?? 0
+    func fileHandler() {
+        weak var localprocessupdateDelegate: UpdateProgress?
+        localprocessupdateDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vcbatch) as? ViewControllerBatch
+        localprocessupdateDelegate?.fileHandler()
     }
-
-    func maxcountintask(hiddenID: Int) -> Int {
-        let max = self.configurations?.estimatedlist?.filter({$0.value( forKey: "hiddenID") as? Int == hiddenID})
-        guard max!.count > 0 else { return 0}
-        let maxnumber = max![0].value(forKey: "transferredNumber") as? String ?? "0"
-        return Int(maxnumber) ?? 0
-    }
-
-    init() {
-    }
-
 }
