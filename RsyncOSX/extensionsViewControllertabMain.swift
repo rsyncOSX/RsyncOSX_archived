@@ -217,7 +217,7 @@ extension ViewControllertabMain: UpdateProgress {
             self.configurations!.processtermination = .singlequicktask
         }
         switch self.configurations!.processtermination! {
-        case .singletask, .singlequicktask, .quicktask:
+        case .singletask, .singlequicktask, .quicktask, .remoteinfotask:
             return
         case .batchtask:
             self.batchtasksDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vcbatch) as? ViewControllerBatch
@@ -225,9 +225,6 @@ extension ViewControllertabMain: UpdateProgress {
             self.outputprocess = self.batchtasks?.outputprocess
             self.process = self.batchtasks?.process
             self.batchtasks?.processTermination()
-        case .remoteinfotask:
-            guard self.configurations!.remoteinfotaskworkqueue != nil else { return }
-            self.configurations!.remoteinfotaskworkqueue?.processTermination()
         case .infosingletask:
             weak var processterminationDelegate: UpdateProgress?
             processterminationDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vcinfolocalremote) as? ViewControllerInformationLocalRemote
@@ -295,17 +292,12 @@ extension ViewControllertabMain: UpdateProgress {
             self.configurations!.processtermination = .singlequicktask
         }
         switch self.configurations!.processtermination! {
-        case .singletask, .infosingletask, .automaticbackup, .estimatebatchtask, .quicktask, .singlequicktask:
+        case .singletask, .infosingletask, .automaticbackup, .estimatebatchtask, .quicktask, .singlequicktask, .remoteinfotask:
             return
         case .batchtask:
             weak var localprocessupdateDelegate: UpdateProgress?
             localprocessupdateDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vcbatch) as? ViewControllerBatch
             localprocessupdateDelegate?.fileHandler()
-        case .remoteinfotask:
-            outputeverythingDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllertabMain
-            if outputeverythingDelegate?.appendnow() ?? false {
-                outputeverythingDelegate?.reloadtable()
-            }
         case .restore:
             weak var localprocessupdateDelegate: UpdateProgress?
             localprocessupdateDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vcrestore) as? ViewControllerRestore

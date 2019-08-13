@@ -55,34 +55,7 @@ class RemoteInfoTaskWorkQueue: SetConfigurations {
             self.stackoftasktobeestimated = nil
         }
         self.startstopProgressIndicatorDelegate?.start()
-        _ = EstimateRemoteInformationTask(index: self.index!, outputprocess: self.outputprocess, local: false)
-    }
-
-    func processTermination() {
-        self.count = self.stackoftasktobeestimated?.count
-        let record = RemoteInfoTask(outputprocess: self.outputprocess).record()
-        record.setValue(self.configurations?.getConfigurations()[self.index!].localCatalog, forKey: "localCatalog")
-        record.setValue(self.configurations?.getConfigurations()[self.index!].offsiteCatalog, forKey: "offsiteCatalog")
-        record.setValue(self.configurations?.getConfigurations()[self.index!].hiddenID, forKey: "hiddenID")
-        if self.configurations?.getConfigurations()[self.index!].offsiteServer.isEmpty == true {
-            record.setValue("localhost", forKey: "offsiteServer")
-        } else {
-            record.setValue(self.configurations?.getConfigurations()[self.index!].offsiteServer, forKey: "offsiteServer")
-        }
-        self.records?.append(record)
-        self.configurations?.estimatedlist?.append(record)
-        self.updateprogressDelegate?.processTermination()
-        guard self.stackoftasktobeestimated != nil else {
-            self.startstopProgressIndicatorDelegate?.stop()
-            return
-        }
-        self.outputprocess = nil
-        self.outputprocess = OutputProcess()
-        self.index = self.stackoftasktobeestimated?.remove(at: 0).1
-        if self.stackoftasktobeestimated?.count == 0 {
-            self.stackoftasktobeestimated = nil
-        }
-        _ = EstimateRemoteInformationTask(index: self.index!, outputprocess: self.outputprocess, local: false)
+        _ = EstimateRemoteInformationTask(index: self.index!, outputprocess: self.outputprocess, local: false, updateprogress: self)
     }
 
     func setbackuplist(list: [NSMutableDictionary]) {
@@ -166,5 +139,43 @@ extension RemoteInfoTaskWorkQueue: CountEstimating {
 
     func inprogressCount() -> Int {
         return self.stackoftasktobeestimated?.count ?? 0
+    }
+}
+
+extension RemoteInfoTaskWorkQueue: UpdateProgress {
+
+    func processTermination() {
+        self.count = self.stackoftasktobeestimated?.count
+        let record = RemoteInfoTask(outputprocess: self.outputprocess).record()
+        record.setValue(self.configurations?.getConfigurations()[self.index!].localCatalog, forKey: "localCatalog")
+        record.setValue(self.configurations?.getConfigurations()[self.index!].offsiteCatalog, forKey: "offsiteCatalog")
+        record.setValue(self.configurations?.getConfigurations()[self.index!].hiddenID, forKey: "hiddenID")
+        if self.configurations?.getConfigurations()[self.index!].offsiteServer.isEmpty == true {
+            record.setValue("localhost", forKey: "offsiteServer")
+        } else {
+            record.setValue(self.configurations?.getConfigurations()[self.index!].offsiteServer, forKey: "offsiteServer")
+        }
+        self.records?.append(record)
+        self.configurations?.estimatedlist?.append(record)
+        self.updateprogressDelegate?.processTermination()
+        guard self.stackoftasktobeestimated != nil else {
+            self.startstopProgressIndicatorDelegate?.stop()
+            return
+        }
+        self.outputprocess = nil
+        self.outputprocess = OutputProcess()
+        self.index = self.stackoftasktobeestimated?.remove(at: 0).1
+        if self.stackoftasktobeestimated?.count == 0 {
+            self.stackoftasktobeestimated = nil
+        }
+        _ = EstimateRemoteInformationTask(index: self.index!, outputprocess: self.outputprocess, local: false, updateprogress: self)
+    }
+
+    func fileHandler() {
+        weak var outputeverythingDelegate: ViewOutputDetails?
+        outputeverythingDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllertabMain
+        if outputeverythingDelegate?.appendnow() ?? false {
+            outputeverythingDelegate?.reloadtable()
+        }
     }
 }

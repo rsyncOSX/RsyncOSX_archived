@@ -158,7 +158,6 @@ class ViewControllertabMain: NSViewController, ReloadTable, Deselect, VcMain, De
             _ = Norsync()
             return
         }
-        self.configurations!.processtermination = .remoteinfotask
         globalMainQueue.async(execute: { () -> Void in
             self.presentAsSheet(self.viewControllerRemoteInfo!)
         })
