@@ -38,6 +38,8 @@ final class ExecuteQuickbackupTask: SetSchedules, SetConfigurations {
                             let process = Rsync(arguments: arguments)
                             if updateprogress != nil {
                                 process.setdelegate(object: updateprogress!)
+                                let sendprocessreference = updateprogress as? SendProcessreference
+                                sendprocessreference?.sendoutputprocessreference(outputprocess: self.outputprocess)
                             }
                             process.executeProcess(outputprocess: self.outputprocess)
                             sendprocess?.sendprocessreference(process: process.getProcess())

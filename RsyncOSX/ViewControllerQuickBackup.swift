@@ -10,6 +10,10 @@
 import Foundation
 import Cocoa
 
+protocol QuickBackupCompleted: class {
+    func quickbackupcompleted()
+}
+
 class ViewControllerQuickBackup: NSViewController, SetDismisser, Abort, Delay, Setcolor {
 
     var seconds: Int?
@@ -91,6 +95,7 @@ class ViewControllerQuickBackup: NSViewController, SetDismisser, Abort, Delay, S
         let value = Double((self.inprogresscountDelegate?.inprogressCount())!)
         progress.doubleValue = value
     }
+
 }
 
 extension ViewControllerQuickBackup: NSTableViewDataSource {
@@ -132,7 +137,6 @@ extension ViewControllerQuickBackup: NSTableViewDelegate {
 }
 
 extension ViewControllerQuickBackup: Reloadandrefresh {
-
     func reloadtabledata() {
         globalMainQueue.async(execute: { () -> Void in
             self.mainTableView.reloadData()
@@ -146,5 +150,14 @@ extension ViewControllerQuickBackup: CloseViewError {
         self.abort()
         self.working.stopAnimation(nil)
         self.dismissview(viewcontroller: self, vcontroller: .vctabmain)
+    }
+}
+
+extension ViewControllerQuickBackup: QuickBackupCompleted {
+    func quickbackupcompleted() {
+        self.completed.isHidden = false
+        self.completed.textColor = setcolor(nsviewcontroller: self, color: .green)
+        self.working.stopAnimation(nil)
+        self.executing = false
     }
 }

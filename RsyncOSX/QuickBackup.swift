@@ -24,6 +24,7 @@ class QuickBackup: SetConfigurations {
     var index: Int?
     var hiddenID: Int?
     var maxcount: Int?
+    var outputprocess: OutputProcess?
     weak var reloadtableDelegate: Reloadandrefresh?
 
     func sortbydays() {
@@ -104,28 +105,30 @@ class QuickBackup: SetConfigurations {
     }
 }
 
+extension QuickBackup: SendProcessreference {
+    func sendprocessreference(process: Process?) {
+        //
+    }
+
+    func sendoutputprocessreference(outputprocess: OutputProcess?) {
+        self.outputprocess = outputprocess
+    }
+}
+
 extension QuickBackup: UpdateProgress {
 
     func processTermination() {
         self.setcompleted()
-        guard self.stackoftasktobeexecuted != nil else {
-            // self.completed.isHidden = false
-            // self.completed.textColor = setcolor(nsviewcontroller: self, color: .green)
-            // self.working.stopAnimation(nil)
-            // self.executing = false
-            return
-        }
-
-        guard ViewControllerReference.shared.completeoperation != nil else { return }
-        // ViewControllerReference.shared.completeoperation!.finalizeScheduledJob(outputprocess: self.outputprocess)
-        // After logging is done set reference to object = nil
+        ViewControllerReference.shared.completeoperation?.finalizeScheduledJob(outputprocess: self.outputprocess)
         ViewControllerReference.shared.completeoperation = nil
-
         guard self.stackoftasktobeexecuted != nil else { return }
         guard self.stackoftasktobeexecuted!.count > 0  else {
             self.stackoftasktobeexecuted = nil
             self.hiddenID = nil
             self.reloadtableDelegate?.reloadtabledata()
+            weak var quickbackupcompletedDelegate: QuickBackupCompleted?
+            quickbackupcompletedDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vcquickbackup) as? ViewControllerQuickBackup
+            quickbackupcompletedDelegate?.quickbackupcompleted()
             return
         }
         self.hiddenID = self.stackoftasktobeexecuted![0].0
