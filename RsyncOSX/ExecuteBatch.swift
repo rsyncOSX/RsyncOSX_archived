@@ -10,7 +10,7 @@
 import Foundation
 import Cocoa
 
-final class BatchTask: SetSchedules, SetConfigurations {
+final class ExecuteBatch: SetSchedules, SetConfigurations {
 
     weak var closeviewerrorDelegate: ReportonandhaltonError?
     var process: Process?
@@ -71,7 +71,7 @@ final class BatchTask: SetSchedules, SetConfigurations {
     }
 }
 
-extension BatchTask: UpdateProgress {
+extension ExecuteBatch: UpdateProgress {
 
     func processTermination() {
         weak var localprocessupdateDelegate: UpdateProgress?

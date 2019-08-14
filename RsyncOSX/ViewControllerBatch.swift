@@ -12,7 +12,7 @@ import Cocoa
 
 // Return the created batchobject
 protocol GetNewBatchTask: class {
-    func getbatchtaskObject() -> BatchTask?
+    func getbatchtaskObject() -> ExecuteBatch?
 }
 
 // Dismiss view when rsync error
@@ -37,7 +37,7 @@ extension Attributedestring {
 class ViewControllerBatch: NSViewController, SetDismisser, Abort, SetConfigurations, Setcolor {
 
     var row: Int?
-    var batchTask: BatchTask?
+    var batchTask: ExecuteBatch?
     var diddissappear: Bool = false
     private var remoteinfotask: RemoteinfoEstimation?
     weak var remoteinfotaskDelegate: SetRemoteInfo?
@@ -76,7 +76,7 @@ class ViewControllerBatch: NSViewController, SetDismisser, Abort, SetConfigurati
         ViewControllerReference.shared.setvcref(viewcontroller: .vcbatch, nsviewcontroller: self)
         self.mainTableView.delegate = self
         self.mainTableView.dataSource = self
-        self.batchTask = BatchTask()
+        self.batchTask = ExecuteBatch()
         self.batchisrunning = false
         self.executeButton.isEnabled = true
         self.estimatingbatch.usesThreadedAnimation = true
@@ -210,7 +210,7 @@ extension ViewControllerBatch: StartStopProgressIndicator {
 
 extension ViewControllerBatch: GetNewBatchTask {
 
-    func getbatchtaskObject() -> BatchTask? {
+    func getbatchtaskObject() -> ExecuteBatch? {
         return self.batchTask
     }
 }

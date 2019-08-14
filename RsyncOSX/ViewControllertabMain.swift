@@ -45,7 +45,7 @@ class ViewControllertabMain: NSViewController, ReloadTable, Deselect, VcMain, De
     var schedules: Schedules?
     // Reference to the taskobjects
     var singletask: SingleTask?
-    var batchtasks: BatchTask?
+    var batchtasks: ExecuteBatch?
     var executetasknow: ExecuteTaskNow?
     var tcpconnections: TCPconnections?
     // Delegate function getting batchTaskObject
