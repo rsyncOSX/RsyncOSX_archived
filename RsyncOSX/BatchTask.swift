@@ -12,7 +12,7 @@ import Cocoa
 
 final class BatchTask: SetSchedules, SetConfigurations {
 
-    weak var closeviewerrorDelegate: CloseViewError?
+    weak var closeviewerrorDelegate: ReportonandhaltonError?
     var process: Process?
     var outputprocess: OutputProcess?
     var hiddenID: Int?
@@ -53,7 +53,7 @@ final class BatchTask: SetSchedules, SetConfigurations {
 
     func error() {
         self.closeviewerrorDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vcbatch) as? ViewControllerBatch
-        self.closeviewerrorDelegate?.closeerror()
+        self.closeviewerrorDelegate?.reportandhaltonerror()
     }
 
     func incount() -> Int {

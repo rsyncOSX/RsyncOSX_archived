@@ -16,8 +16,8 @@ protocol GetNewBatchTask: class {
 }
 
 // Dismiss view when rsync error
-protocol CloseViewError: class {
-    func closeerror()
+protocol ReportonandhaltonError: class {
+    func reportandhaltonerror()
 }
 
 protocol Attributedestring: class {
@@ -215,12 +215,13 @@ extension ViewControllerBatch: GetNewBatchTask {
     }
 }
 
-extension ViewControllerBatch: CloseViewError {
-    func closeerror() {
+extension ViewControllerBatch: ReportonandhaltonError {
+    func reportandhaltonerror() {
         self.abort()
         self.batchTask?.closeOperation()
         self.batchTask = nil
-        self.dismissview(viewcontroller: self, vcontroller: .vctabmain)
+        self.estimatingbatchlabel.stringValue = "Error"
+        self.estimatingbatchlabel.textColor = setcolor(nsviewcontroller: self, color: .red)
     }
 }
 
