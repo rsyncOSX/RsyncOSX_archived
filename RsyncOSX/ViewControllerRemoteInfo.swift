@@ -28,7 +28,7 @@ class ViewControllerRemoteInfo: NSViewController, SetDismisser, Abort, Setcolor 
     @IBOutlet weak var selectalltaskswithfilestobackupbutton: NSButton!
 
     // remote info tasks
-    private var remoteinfotask: RemoteInfoTaskWorkQueue?
+    private var remoteinfotask: RemoteinfoEstimation?
     weak var remoteinfotaskDelegate: SetRemoteInfo?
     var selected: Bool = false
     var loaded: Bool = false
@@ -95,7 +95,7 @@ class ViewControllerRemoteInfo: NSViewController, SetDismisser, Abort, Setcolor 
             self.loaded = true
             self.progress.isHidden = true
         } else {
-            self.remoteinfotask = RemoteInfoTaskWorkQueue(inbatch: false)
+            self.remoteinfotask = RemoteinfoEstimation()
             self.remoteinfotaskDelegate?.setremoteinfo(remoteinfotask: self.remoteinfotask)
         }
     }
@@ -150,21 +150,6 @@ class ViewControllerRemoteInfo: NSViewController, SetDismisser, Abort, Setcolor 
         } else {
             self.executebutton.isEnabled = false
         }
-    }
-
-    func tableViewSelectionDidChange(_ notification: Notification) {
-        let myTableViewFromNotification = (notification.object as? NSTableView)!
-        let column = myTableViewFromNotification.selectedColumn
-        if column == 0 {
-            self.remoteinfotask?.sortbystrings(sort: .localCatalog)
-        } else if column == 2 {
-            self.remoteinfotask?.sortbystrings(sort: .offsiteCatalog)
-        } else if column == 3 {
-            self.remoteinfotask?.sortbystrings(sort: .offsiteServer)
-        } else {
-            return
-        }
-        self.reloadtabledata()
     }
 
     // Progress bars

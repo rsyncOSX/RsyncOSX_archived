@@ -10,11 +10,11 @@
 import Foundation
 
 protocol SetRemoteInfo: class {
-    func setremoteinfo(remoteinfotask: RemoteInfoTaskWorkQueue?)
-    func getremoteinfo() -> RemoteInfoTaskWorkQueue?
+    func setremoteinfo(remoteinfotask: RemoteinfoEstimation?)
+    func getremoteinfo() -> RemoteinfoEstimation?
 }
 
-class RemoteInfoTaskWorkQueue: SetConfigurations {
+class RemoteinfoEstimation: SetConfigurations {
     // (hiddenID, index)
     typealias Row = (Int, Int)
     var stackoftasktobeestimated: [Row]?
@@ -30,12 +30,11 @@ class RemoteInfoTaskWorkQueue: SetConfigurations {
     var inbatch: Bool?
 
     private func prepareandstartexecutetasks() {
-        self.stackoftasktobeestimated = nil
         self.stackoftasktobeestimated = [Row]()
         for i in 0 ..< self.configurations!.getConfigurations().count {
             if self.configurations!.getConfigurations()[i].task == ViewControllerReference.shared.synchronize ||
             self.configurations!.getConfigurations()[i].task == ViewControllerReference.shared.snapshot {
-                if self.inbatch! {
+                if self.inbatch ?? false {
                     if self.configurations!.getConfigurations()[i].batch == 1 {
                         self.stackoftasktobeestimated?.append((self.configurations!.getConfigurations()[i].hiddenID, i))
                     }
@@ -63,23 +62,6 @@ class RemoteInfoTaskWorkQueue: SetConfigurations {
         for i in 0 ..< list.count {
             self.configurations?.quickbackuplist!.append((list[i].value(forKey: "hiddenID") as? Int)!)
         }
-    }
-
-    func sortbystrings(sort: Sort) {
-        var sortby: String?
-        guard self.records != nil else { return }
-        switch sort {
-        case .localCatalog:
-            sortby = "localCatalog"
-        case .backupId:
-            sortby = "backupIDCellID"
-        case .offsiteCatalog:
-            sortby = "offsiteCatalog"
-        case .offsiteServer:
-            sortby = "offsiteServer"
-        }
-        let sorted = self.records!.sorted {return ($0.value(forKey: sortby!) as? String)!.localizedStandardCompare(($1.value(forKey: sortby!) as? String)!) == .orderedAscending}
-        self.records = sorted
     }
 
     func selectalltaskswithnumbers(deselect: Bool) {
@@ -117,22 +99,25 @@ class RemoteInfoTaskWorkQueue: SetConfigurations {
 
     init(inbatch: Bool) {
         self.inbatch = inbatch
-        if inbatch {
-            self.updateprogressDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vcbatch) as? ViewControllerBatch
-             self.startstopProgressIndicatorDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vcbatch) as? ViewControllerBatch
-        } else {
-            self.updateprogressDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vcremoteinfo) as? ViewControllerRemoteInfo
-            self.startstopProgressIndicatorDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vcremoteinfo) as? ViewControllerRemoteInfo
-        }
+        self.updateprogressDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vcbatch) as? ViewControllerBatch
+        self.startstopProgressIndicatorDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vcbatch) as? ViewControllerBatch
         self.prepareandstartexecutetasks()
         self.records = [NSMutableDictionary]()
-        self.configurations!.estimatedlist = nil
+        self.configurations!.estimatedlist = [NSMutableDictionary]()
+        self.startestimation()
+    }
+
+    init() {
+        self.updateprogressDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vcremoteinfo) as? ViewControllerRemoteInfo
+        self.startstopProgressIndicatorDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vcremoteinfo) as? ViewControllerRemoteInfo
+        self.prepareandstartexecutetasks()
+        self.records = [NSMutableDictionary]()
         self.configurations!.estimatedlist = [NSMutableDictionary]()
         self.startestimation()
     }
 }
 
-extension RemoteInfoTaskWorkQueue: CountEstimating {
+extension RemoteinfoEstimation: CountEstimating {
     func maxCount() -> Int {
         return self.maxnumber ?? 0
     }
@@ -142,11 +127,11 @@ extension RemoteInfoTaskWorkQueue: CountEstimating {
     }
 }
 
-extension RemoteInfoTaskWorkQueue: UpdateProgress {
+extension RemoteinfoEstimation: UpdateProgress {
 
     func processTermination() {
         self.count = self.stackoftasktobeestimated?.count
-        let record = RemoteInfoTask(outputprocess: self.outputprocess).record()
+        let record = RemoteinfoNumbers(outputprocess: self.outputprocess).record()
         record.setValue(self.configurations?.getConfigurations()[self.index!].localCatalog, forKey: "localCatalog")
         record.setValue(self.configurations?.getConfigurations()[self.index!].offsiteCatalog, forKey: "offsiteCatalog")
         record.setValue(self.configurations?.getConfigurations()[self.index!].hiddenID, forKey: "hiddenID")
@@ -162,7 +147,6 @@ extension RemoteInfoTaskWorkQueue: UpdateProgress {
             self.startstopProgressIndicatorDelegate?.stop()
             return
         }
-        self.outputprocess = nil
         self.outputprocess = OutputProcess()
         self.index = self.stackoftasktobeestimated?.remove(at: 0).1
         if self.stackoftasktobeestimated?.count == 0 {

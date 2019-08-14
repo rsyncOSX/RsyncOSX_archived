@@ -39,7 +39,7 @@ class ViewControllerBatch: NSViewController, SetDismisser, Abort, SetConfigurati
     var row: Int?
     var batchTask: BatchTask?
     var diddissappear: Bool = false
-    private var remoteinfotask: RemoteInfoTaskWorkQueue?
+    private var remoteinfotask: RemoteinfoEstimation?
     weak var remoteinfotaskDelegate: SetRemoteInfo?
     weak var inprogresscountDelegate: Count?
     var indexinitiated: Int = -1
@@ -95,7 +95,7 @@ class ViewControllerBatch: NSViewController, SetDismisser, Abort, SetConfigurati
             self.mainTableView.reloadData()
         })
         self.remoteinfotaskDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllertabMain
-        self.remoteinfotask = RemoteInfoTaskWorkQueue(inbatch: true)
+        self.remoteinfotask = RemoteinfoEstimation(inbatch: true)
         self.remoteinfotaskDelegate?.setremoteinfo(remoteinfotask: self.remoteinfotask)
         self.initiateProgressbar()
     }

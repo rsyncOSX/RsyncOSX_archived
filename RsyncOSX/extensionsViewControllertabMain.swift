@@ -431,7 +431,7 @@ extension ViewControllertabMain: SingleTaskProgress {
                 self.deletefiles.stringValue = ""
                 return
             }
-            let remoteinfotask = RemoteInfoTask(outputprocess: outputprocess)
+            let remoteinfotask = RemoteinfoNumbers(outputprocess: outputprocess)
             self.transferredNumber.stringValue = remoteinfotask.transferredNumber!
             self.transferredNumberSizebytes.stringValue = remoteinfotask.transferredNumberSizebytes!
             self.totalNumber.stringValue = remoteinfotask.totalNumber!
@@ -545,11 +545,11 @@ extension ViewControllertabMain: SendProcessreference {
 }
 
 extension ViewControllertabMain: SetRemoteInfo {
-    func getremoteinfo() -> RemoteInfoTaskWorkQueue? {
+    func getremoteinfo() -> RemoteinfoEstimation? {
         return self.configurations!.remoteinfotaskworkqueue
     }
 
-    func setremoteinfo(remoteinfotask: RemoteInfoTaskWorkQueue?) {
+    func setremoteinfo(remoteinfotask: RemoteinfoEstimation?) {
         self.configurations!.remoteinfotaskworkqueue = remoteinfotask
     }
 }

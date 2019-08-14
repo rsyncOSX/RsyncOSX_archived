@@ -38,7 +38,7 @@ class Configurations: ReloadTable, SetSchedules {
     // remote and local info
     var localremote: [NSDictionary]?
     // remote info tasks
-    var remoteinfotaskworkqueue: RemoteInfoTaskWorkQueue?
+    var remoteinfotaskworkqueue: RemoteinfoEstimation?
     // Which kind of task
     var processtermination: ProcessTermination?
 
