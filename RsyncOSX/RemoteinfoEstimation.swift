@@ -130,6 +130,13 @@ extension RemoteinfoEstimation: CountEstimating {
 extension RemoteinfoEstimation: UpdateProgress {
 
     func processTermination() {
+        
+        // Automatic backup estimation updates
+        weak var estimateupdateDelegate: Updateestimating?
+        estimateupdateDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vcestimatingtasks) as? ViewControllerEstimatingTasks
+        estimateupdateDelegate?.updateProgressbar()
+        // Automatic backup estimation updates
+        
         self.count = self.stackoftasktobeestimated?.count
         let record = RemoteinfoNumbers(outputprocess: self.outputprocess).record()
         record.setValue(self.configurations?.getConfigurations()[self.index!].localCatalog, forKey: "localCatalog")

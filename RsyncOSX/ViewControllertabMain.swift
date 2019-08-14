@@ -282,8 +282,6 @@ class ViewControllertabMain: NSViewController, ReloadTable, Deselect, VcMain, De
 
     // Selecting automatic backup
     @IBAction func automaticbackup (_ sender: NSButton) {
-        self.configurations!.processtermination = .automaticbackup
-        self.configurations?.remoteinfotaskworkqueue = RemoteinfoEstimation()
         self.presentAsSheet(self.viewControllerEstimating!)
     }
 

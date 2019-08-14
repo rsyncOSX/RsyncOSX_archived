@@ -25,7 +25,7 @@ protocol DismissViewEstimating: class {
     func dismissestimating(viewcontroller: NSViewController)
 }
 
-class ViewControllerEstimatingTasks: NSViewController, Abort {
+class ViewControllerEstimatingTasks: NSViewController, Abort, SetConfigurations {
 
     var count: Double = 0
     var maxcount: Double = 0
@@ -54,6 +54,8 @@ class ViewControllerEstimatingTasks: NSViewController, Abort {
         self.calculatedNumberOfFiles = self.countDelegate?.maxCount()
         self.initiateProgressbar()
         self.abort.isEnabled = true
+        self.configurations!.processtermination = .automaticbackup
+        self.configurations?.remoteinfotaskworkqueue = RemoteinfoEstimation()
     }
 
     override func viewWillDisappear() {
