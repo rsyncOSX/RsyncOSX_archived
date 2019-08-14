@@ -92,8 +92,6 @@ extension ViewControllertabMain: NSTableViewDelegate, Attributedestring {
             self.configurations!.getConfigurations()[row].task == ViewControllerReference.shared.snapshot {
             self.configurations!.enabledisablebatch(row)
         }
-        self.singletask = nil
-        self.batchtasks = nil
     }
 }
 
@@ -219,18 +217,6 @@ extension ViewControllertabMain: UpdateProgress {
             self.outputprocess = self.batchtasks?.outputprocess
             self.process = self.batchtasks?.process
             self.batchtasks?.processTermination()
-        case .estimatebatchtask:
-            guard self.configurations!.remoteinfoestimation != nil else { return }
-            weak var estimateupdateDelegate: Updateestimating?
-            estimateupdateDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vcestimatingtasks) as? ViewControllerEstimatingTasks
-            // compute alle estimates
-            if self.configurations!.remoteinfoestimation!.stackoftasktobeestimated != nil {
-                self.configurations!.remoteinfoestimation?.processTermination()
-                estimateupdateDelegate?.updateProgressbar()
-            } else {
-                self.configurations!.remoteinfoestimation?.processTermination()
-                self.configurations!.processtermination = .batchtask
-            }
         default:
             return
         }
@@ -394,7 +380,7 @@ extension ViewControllertabMain: SingleTaskProgress {
                 self.deletefiles.stringValue = ""
                 return
             }
-            let remoteinfotask = RemoteinfoNumbers(outputprocess: outputprocess)
+            let remoteinfotask = RemoteinfonumbersOnetask(outputprocess: outputprocess)
             self.transferredNumber.stringValue = remoteinfotask.transferredNumber!
             self.transferredNumberSizebytes.stringValue = remoteinfotask.transferredNumberSizebytes!
             self.totalNumber.stringValue = remoteinfotask.totalNumber!

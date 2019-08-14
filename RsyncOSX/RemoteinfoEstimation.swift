@@ -58,7 +58,7 @@ class RemoteinfoEstimation: SetConfigurations, Connected {
             self.stackoftasktobeestimated = nil
         }
         self.startstopProgressIndicatorDelegate?.start()
-        _ = EstimateRemoteInformationTask(index: self.index!, outputprocess: self.outputprocess, local: false, updateprogress: self)
+        _ = EstimateremoteInformationOnetask(index: self.index!, outputprocess: self.outputprocess, local: false, updateprogress: self)
     }
 
     func setbackuplist(list: [NSMutableDictionary]) {
@@ -142,7 +142,7 @@ extension RemoteinfoEstimation: UpdateProgress {
         // Automatic backup estimation updates
 
         self.count = self.stackoftasktobeestimated?.count
-        let record = RemoteinfoNumbers(outputprocess: self.outputprocess).record()
+        let record = RemoteinfonumbersOnetask(outputprocess: self.outputprocess).record()
         record.setValue(self.configurations?.getConfigurations()[self.index!].localCatalog, forKey: "localCatalog")
         record.setValue(self.configurations?.getConfigurations()[self.index!].offsiteCatalog, forKey: "offsiteCatalog")
         record.setValue(self.configurations?.getConfigurations()[self.index!].hiddenID, forKey: "hiddenID")
@@ -163,7 +163,7 @@ extension RemoteinfoEstimation: UpdateProgress {
         if self.stackoftasktobeestimated?.count == 0 {
             self.stackoftasktobeestimated = nil
         }
-        _ = EstimateRemoteInformationTask(index: self.index!, outputprocess: self.outputprocess, local: false, updateprogress: self)
+        _ = EstimateremoteInformationOnetask(index: self.index!, outputprocess: self.outputprocess, local: false, updateprogress: self)
     }
 
     func fileHandler() {

@@ -66,7 +66,7 @@ class ViewControllerInformationLocalRemote: NSViewController, SetDismisser, Inde
                 if self.connected(config: self.configurations!.getConfigurations()[index]) == true {
                     self.working.startAnimation(nil)
                     self.outputprocess = OutputProcess()
-                    _ = EstimateRemoteInformationTask(index: index, outputprocess: self.outputprocess, local: true, updateprogress: self)
+                    _ = EstimateremoteInformationOnetask(index: index, outputprocess: self.outputprocess, local: true, updateprogress: self)
                 } else {
                     self.gotit.stringValue = NSLocalizedString("Seems not to be connected...", comment: "Remote Info")
                     self.gotit.textColor = self.setcolor(nsviewcontroller: self, color: .green)
@@ -83,7 +83,7 @@ class ViewControllerInformationLocalRemote: NSViewController, SetDismisser, Inde
     // Process object executes the job.
     private func setnumbers(outputprocess: OutputProcess?, local: Bool) {
         globalMainQueue.async(execute: { () -> Void in
-            let infotask = RemoteinfoNumbers(outputprocess: outputprocess)
+            let infotask = RemoteinfonumbersOnetask(outputprocess: outputprocess)
             if local {
                 self.localtotalNumber.stringValue = infotask.totalNumber!
                 self.localtotalNumberSizebytes.stringValue = infotask.totalNumberSizebytes!
@@ -131,7 +131,7 @@ extension ViewControllerInformationLocalRemote: UpdateProgress {
             if self.complete == false {
                 self.complete = true
                 self.outputprocess = OutputProcess()
-                _ = EstimateRemoteInformationTask(index: index, outputprocess: self.outputprocess, local: false, updateprogress: self)
+                _ = EstimateremoteInformationOnetask(index: index, outputprocess: self.outputprocess, local: false, updateprogress: self)
             }
         }
     }
