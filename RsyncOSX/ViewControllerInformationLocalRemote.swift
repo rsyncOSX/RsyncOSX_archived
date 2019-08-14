@@ -15,7 +15,7 @@ protocol SetLocalRemoteInfo: class {
     func getlocalremoteinfo(index: Int) -> NSDictionary?
 }
 
-class ViewControllerInformationLocalRemote: NSViewController, SetDismisser, Index, SetConfigurations {
+class ViewControllerInformationLocalRemote: NSViewController, SetDismisser, Index, SetConfigurations, Setcolor {
 
     private var index: Int?
     private var outputprocess: OutputProcess?
@@ -94,6 +94,7 @@ class ViewControllerInformationLocalRemote: NSViewController, SetDismisser, Inde
                 self.localremoteinfoDelegate!.setlocalremoteinfo(info: infotask.recordremotenumbers(index: self.index ?? -1))
                 self.working.stopAnimation(nil)
                 self.gotit.stringValue = NSLocalizedString("Got it...", comment: "Remote Info")
+                self.gotit.textColor = self.setcolor(nsviewcontroller: self, color: .green)
             }
         })
     }
@@ -110,6 +111,7 @@ class ViewControllerInformationLocalRemote: NSViewController, SetDismisser, Inde
         self.newfiles.stringValue = (dict.value(forKey: "newfiles") as? String) ?? ""
         self.deletefiles.stringValue = (dict.value(forKey: "deletefiles") as? String) ?? ""
         self.gotit.stringValue = NSLocalizedString("Loaded cached data...", comment: "Remote Info")
+        self.gotit.textColor = self.setcolor(nsviewcontroller: self, color: .green)
     }
 }
 
