@@ -223,18 +223,18 @@ extension ViewControllertabMain: UpdateProgress {
             self.process = self.batchtasks?.process
             self.batchtasks?.processTermination()
         case .automaticbackup:
-            guard self.configurations!.remoteinfotaskworkqueue != nil else { return }
+            guard self.configurations!.remoteinfoestimation != nil else { return }
             weak var estimateupdateDelegate: Updateestimating?
             estimateupdateDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vcestimatingtasks) as? ViewControllerEstimatingTasks
             // compute alle estimates
-            if self.configurations!.remoteinfotaskworkqueue!.stackoftasktobeestimated != nil {
-                self.configurations!.remoteinfotaskworkqueue?.processTermination()
+            if self.configurations!.remoteinfoestimation!.stackoftasktobeestimated != nil {
+                self.configurations!.remoteinfoestimation?.processTermination()
                 estimateupdateDelegate?.updateProgressbar()
             } else {
                 estimateupdateDelegate?.dismissview()
-                self.configurations!.remoteinfotaskworkqueue?.processTermination()
-                self.configurations!.remoteinfotaskworkqueue?.selectalltaskswithnumbers(deselect: false)
-                self.configurations!.remoteinfotaskworkqueue?.setbackuplist()
+                self.configurations!.remoteinfoestimation?.processTermination()
+                self.configurations!.remoteinfoestimation?.selectalltaskswithnumbers(deselect: false)
+                self.configurations!.remoteinfoestimation?.setbackuplist()
                 weak var openDelegate: OpenQuickBackup?
                 switch ViewControllerReference.shared.activetab ?? .vctabmain {
                 case .vcnewconfigurations:
@@ -259,15 +259,15 @@ extension ViewControllertabMain: UpdateProgress {
                 openDelegate?.openquickbackup()
             }
         case .estimatebatchtask:
-            guard self.configurations!.remoteinfotaskworkqueue != nil else { return }
+            guard self.configurations!.remoteinfoestimation != nil else { return }
             weak var estimateupdateDelegate: Updateestimating?
             estimateupdateDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vcestimatingtasks) as? ViewControllerEstimatingTasks
             // compute alle estimates
-            if self.configurations!.remoteinfotaskworkqueue!.stackoftasktobeestimated != nil {
-                self.configurations!.remoteinfotaskworkqueue?.processTermination()
+            if self.configurations!.remoteinfoestimation!.stackoftasktobeestimated != nil {
+                self.configurations!.remoteinfoestimation?.processTermination()
                 estimateupdateDelegate?.updateProgressbar()
             } else {
-                self.configurations!.remoteinfotaskworkqueue?.processTermination()
+                self.configurations!.remoteinfoestimation?.processTermination()
                 self.configurations!.processtermination = .batchtask
             }
         }
@@ -350,11 +350,11 @@ extension ViewControllertabMain: Abort {
             // Create workqueu and add abort
             self.seterrorinfo(info: "Abort")
             self.rsyncCommand.stringValue = ""
-            if self.configurations!.remoteinfotaskworkqueue != nil && self.configurations?.estimatedlist != nil {
+            if self.configurations!.remoteinfoestimation != nil && self.configurations?.estimatedlist != nil {
                 weak var localestimateupdateDelegate: Updateestimating?
                 localestimateupdateDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vcestimatingtasks) as? ViewControllerEstimatingTasks
                 localestimateupdateDelegate?.dismissview()
-                self.configurations!.remoteinfotaskworkqueue = nil
+                self.configurations!.remoteinfoestimation = nil
             }
         } else {
             self.working.stopAnimation(nil)
@@ -546,11 +546,11 @@ extension ViewControllertabMain: SendProcessreference {
 
 extension ViewControllertabMain: SetRemoteInfo {
     func getremoteinfo() -> RemoteinfoEstimation? {
-        return self.configurations!.remoteinfotaskworkqueue
+        return self.configurations!.remoteinfoestimation
     }
 
     func setremoteinfo(remoteinfotask: RemoteinfoEstimation?) {
-        self.configurations!.remoteinfotaskworkqueue = remoteinfotask
+        self.configurations!.remoteinfoestimation = remoteinfotask
     }
 }
 

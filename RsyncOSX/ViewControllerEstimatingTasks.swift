@@ -48,14 +48,14 @@ class ViewControllerEstimatingTasks: NSViewController, Abort, SetConfigurations 
         ViewControllerReference.shared.setvcref(viewcontroller: .vcestimatingtasks, nsviewcontroller: self)
         self.vc = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllertabMain
         self.dismissDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllertabMain
-        if let pvc = self.vc?.configurations!.remoteinfotaskworkqueue {
+        if let pvc = self.vc?.configurations!.remoteinfoestimation {
             self.countDelegate = pvc
         }
         self.calculatedNumberOfFiles = self.countDelegate?.maxCount()
         self.initiateProgressbar()
         self.abort.isEnabled = true
         self.configurations!.processtermination = .automaticbackup
-        self.configurations?.remoteinfotaskworkqueue = RemoteinfoEstimation()
+        self.configurations?.remoteinfoestimation = RemoteinfoEstimation()
     }
 
     override func viewWillDisappear() {
@@ -83,5 +83,11 @@ extension ViewControllerEstimatingTasks: Updateestimating {
     func updateProgressbar() {
         let count = self.countDelegate?.inprogressCount() ?? 0
         self.progress.doubleValue = Double(self.calculatedNumberOfFiles! - count)
+        // When estimating is completed dismiss view
+        if self.configurations!.remoteinfoestimation!.stackoftasktobeestimated != nil {
+            self.configurations!.remoteinfoestimation?.selectalltaskswithnumbers(deselect: false)
+            self.configurations!.remoteinfoestimation?.setbackuplist()
+            self.dismissview()
+        }
     }
 }
