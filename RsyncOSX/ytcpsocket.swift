@@ -27,6 +27,8 @@
 //  (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
 //  SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 //
+// swiftlint:disable colon comma line_length return_arrow_whitespace trailing_semicolon
+// swiftlint:disable control_statement trailing_whitespace
 
 import Foundation
 
