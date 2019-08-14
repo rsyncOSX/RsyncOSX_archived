@@ -19,20 +19,18 @@ class TCPconnections: SetConfigurations, Delay {
     private var indexBoolremoteserverOff: [Bool]?
     weak var testconnectionsDelegate: Connections?
     weak var newprofileDelegate: NewProfile?
+    var client: TCPClient?
 
     // Test for TCP connection
-    func testTCPconnection (_ addr: String, port: Int, timeout: Int) -> (Bool, String) {
-        var connectionOK: Bool = false
-        var str: String = ""
-        let client: TCPClient = TCPClient(addr: addr, port: port)
-        let (success, errmsg) = client.connect(timeout: timeout)
-        connectionOK = success
-        if connectionOK {
-            str = "connection OK"
-        } else {
-            str = errmsg
+    func testTCPconnection (_ host: String, port: Int, timeout: Int) -> Bool {
+        self.client = TCPClient(address: host, port: Int32(port))
+        guard let client = client else { return true }
+        switch client.connect(timeout: timeout) {
+        case .success:
+            return true
+        default:
+            return false
         }
-        return (connectionOK, str)
     }
 
     // Getting the structure for test connection
@@ -57,7 +55,7 @@ class TCPconnections: SetConfigurations, Delay {
                 if let record = self.configurations?.getargumentAllConfigurations()[i] {
                     if record.config!.offsiteServer.isEmpty == false {
                         if let sshport: Int = record.config!.sshport { port = sshport }
-                        let (success, _) = self.testTCPconnection(record.config!.offsiteServer, port: port, timeout: 1)
+                        let success = self.testTCPconnection(record.config!.offsiteServer, port: port, timeout: 1)
                         if success {
                             self.indexBoolremoteserverOff!.append(false)
                         } else {

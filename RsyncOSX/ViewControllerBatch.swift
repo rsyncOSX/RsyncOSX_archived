@@ -224,7 +224,6 @@ extension ViewControllerBatch: CloseViewError {
     }
 }
 
-
 extension ViewControllerBatch: UpdateProgress {
     func processTermination() {
         if self.batchisrunning == false {

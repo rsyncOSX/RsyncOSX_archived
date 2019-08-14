@@ -350,7 +350,7 @@ extension Connected {
         var port: Int = 22
         if config.offsiteServer.isEmpty == false {
             if let sshport: Int = config.sshport { port = sshport }
-            let (success, _) = TCPconnections().testTCPconnection(config.offsiteServer, port: port, timeout: 1)
+            let success = TCPconnections().testTCPconnection(config.offsiteServer, port: port, timeout: 1)
             return success
         } else {
             return true
