@@ -30,12 +30,11 @@ class RemoteInfoTaskWorkQueue: SetConfigurations {
     var inbatch: Bool?
 
     private func prepareandstartexecutetasks() {
-        self.stackoftasktobeestimated = nil
         self.stackoftasktobeestimated = [Row]()
         for i in 0 ..< self.configurations!.getConfigurations().count {
             if self.configurations!.getConfigurations()[i].task == ViewControllerReference.shared.synchronize ||
             self.configurations!.getConfigurations()[i].task == ViewControllerReference.shared.snapshot {
-                if self.inbatch! {
+                if self.inbatch ?? false {
                     if self.configurations!.getConfigurations()[i].batch == 1 {
                         self.stackoftasktobeestimated?.append((self.configurations!.getConfigurations()[i].hiddenID, i))
                     }
@@ -100,16 +99,19 @@ class RemoteInfoTaskWorkQueue: SetConfigurations {
 
     init(inbatch: Bool) {
         self.inbatch = inbatch
-        if inbatch {
-            self.updateprogressDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vcbatch) as? ViewControllerBatch
-             self.startstopProgressIndicatorDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vcbatch) as? ViewControllerBatch
-        } else {
-            self.updateprogressDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vcremoteinfo) as? ViewControllerRemoteInfo
-            self.startstopProgressIndicatorDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vcremoteinfo) as? ViewControllerRemoteInfo
-        }
+        self.updateprogressDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vcbatch) as? ViewControllerBatch
+        self.startstopProgressIndicatorDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vcbatch) as? ViewControllerBatch
         self.prepareandstartexecutetasks()
         self.records = [NSMutableDictionary]()
-        self.configurations!.estimatedlist = nil
+        self.configurations!.estimatedlist = [NSMutableDictionary]()
+        self.startestimation()
+    }
+
+    init() {
+        self.updateprogressDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vcremoteinfo) as? ViewControllerRemoteInfo
+        self.startstopProgressIndicatorDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vcremoteinfo) as? ViewControllerRemoteInfo
+        self.prepareandstartexecutetasks()
+        self.records = [NSMutableDictionary]()
         self.configurations!.estimatedlist = [NSMutableDictionary]()
         self.startestimation()
     }

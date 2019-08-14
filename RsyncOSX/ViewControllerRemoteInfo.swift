@@ -95,7 +95,7 @@ class ViewControllerRemoteInfo: NSViewController, SetDismisser, Abort, Setcolor 
             self.loaded = true
             self.progress.isHidden = true
         } else {
-            self.remoteinfotask = RemoteInfoTaskWorkQueue(inbatch: false)
+            self.remoteinfotask = RemoteInfoTaskWorkQueue()
             self.remoteinfotaskDelegate?.setremoteinfo(remoteinfotask: self.remoteinfotask)
         }
     }
