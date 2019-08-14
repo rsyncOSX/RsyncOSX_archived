@@ -9,7 +9,7 @@
 
 import Foundation
 
-final class EstimateRemoteInformationTask: SetConfigurations {
+final class EstimateRemoteInformationTask: SetConfigurations, Connected {
     var arguments: [String]?
     init(index: Int, outputprocess: OutputProcess?, local: Bool, updateprogress: UpdateProgress?) {
         weak var setprocessDelegate: SendProcessreference?
@@ -19,6 +19,7 @@ final class EstimateRemoteInformationTask: SetConfigurations {
         } else {
             self.arguments = self.configurations!.arguments4rsync(index: index, argtype: .argdryRun)
         }
+        guard self.connected(config: self.configurations!.getConfigurations()[index]) == true else { return }
         let process = Rsync(arguments: self.arguments)
         if updateprogress != nil {
             process.setdelegate(object: updateprogress!)
