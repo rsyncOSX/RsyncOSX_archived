@@ -88,6 +88,28 @@ extension ViewControllerEstimatingTasks: Updateestimating {
             self.configurations!.remoteinfoestimation?.selectalltaskswithnumbers(deselect: false)
             self.configurations!.remoteinfoestimation?.setbackuplist()
             self.dismissview()
+            weak var openDelegate: OpenQuickBackup?
+            switch ViewControllerReference.shared.activetab ?? .vctabmain {
+            case .vcnewconfigurations:
+                openDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vcnewconfigurations) as? ViewControllerNewConfigurations
+            case .vctabmain:
+                openDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllertabMain
+            case .vctabschedule:
+                openDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabschedule) as? ViewControllertabSchedule
+            case .vccopyfiles:
+                openDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vccopyfiles) as? ViewControllerCopyFiles
+            case .vcsnapshot:
+                openDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vcsnapshot) as? ViewControllerSnapshots
+            case .vcverify:
+                openDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vcverify) as? ViewControllerVerify
+            case .vcssh:
+                openDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vcssh) as? ViewControllerSsh
+            case .vcloggdata:
+                openDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vcloggdata) as? ViewControllerLoggData
+            default:
+                openDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllertabMain
+            }
+            openDelegate?.openquickbackup()
         }
     }
 }

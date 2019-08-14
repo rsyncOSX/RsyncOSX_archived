@@ -94,7 +94,7 @@ class ViewControllertabMain: NSViewController, ReloadTable, Deselect, VcMain, De
     // Reference to Schedules object
     var schedulesortedandexpanded: ScheduleSortedAndExpand?
     // Ready for execute again
-    var readyforexecution: Bool = true
+    // var readyforexecution: Bool = true
     // Can load profiles
     // Load profiles only when testing for connections are done.
     // Application crash if not
@@ -355,7 +355,6 @@ class ViewControllertabMain: NSViewController, ReloadTable, Deselect, VcMain, De
         }
         self.rsyncischanged()
         self.displayProfile()
-        self.readyforexecution = true
         self.info.stringValue = Infoexecute().info(num: 0)
         self.delayWithSeconds(0.5) {
             self.enablemenuappbutton()
@@ -459,9 +458,6 @@ class ViewControllertabMain: NSViewController, ReloadTable, Deselect, VcMain, De
         self.seterrorinfo(info: "")
         // If change row during estimation
         if self.process != nil { self.abortOperations() }
-        // If change row after estimation, force new estimation
-        if self.readyforexecution == false { self.abortOperations() }
-        self.readyforexecution = true
         self.backupdryrun.state = .on
         self.info.stringValue = Infoexecute().info(num: 0)
         let myTableViewFromNotification = (notification.object as? NSTableView)!
