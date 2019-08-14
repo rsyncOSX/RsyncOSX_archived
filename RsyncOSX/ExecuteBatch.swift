@@ -18,7 +18,7 @@ final class ExecuteBatch: SetSchedules, SetConfigurations {
     var hiddenID: Int?
     var estimatedlist: [NSDictionary]?
 
-    func executeBatch() {
+    func executebatch() {
         self.estimatedlist = self.configurations?.estimatedlist
         if let batchobject = self.configurations!.getbatchQueue() {
             let work = batchobject.copyofnexttaskinqueue()
@@ -83,7 +83,7 @@ extension ExecuteBatch: UpdateProgress {
             let config = self.configurations!.getConfigurations()[index]
             self.hiddenID = config.hiddenID
             self.configurations!.setCurrentDateonConfiguration(index: index, outputprocess: self.outputprocess)
-            self.executeBatch()
+            self.executebatch()
         }
     }
 

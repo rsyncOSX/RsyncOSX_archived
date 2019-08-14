@@ -67,7 +67,7 @@ class ViewControllerBatch: NSViewController, SetDismisser, Abort, SetConfigurati
         self.configurations!.processtermination = .batchtask
         self.batchisrunning = true
         self.estimatingbatchlabel.isHidden = true
-        self.executebatch!.executeBatch()
+        self.executebatch!.executebatch()
         self.executeButton.isEnabled = false
     }
 
