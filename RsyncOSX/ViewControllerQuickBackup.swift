@@ -144,12 +144,14 @@ extension ViewControllerQuickBackup: Reloadandrefresh {
     }
 }
 
-extension ViewControllerQuickBackup: CloseViewError {
-    func closeerror() {
+extension ViewControllerQuickBackup: ReportonandhaltonError {
+    func reportandhaltonerror() {
         self.quickbackup = nil
         self.abort()
         self.working.stopAnimation(nil)
-        self.dismissview(viewcontroller: self, vcontroller: .vctabmain)
+        self.completed.isHidden = false
+        self.completed.stringValue = "Error"
+        self.completed.textColor = setcolor(nsviewcontroller: self, color: .red)
     }
 }
 
