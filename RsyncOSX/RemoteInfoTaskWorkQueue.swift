@@ -65,23 +65,6 @@ class RemoteInfoTaskWorkQueue: SetConfigurations {
         }
     }
 
-    func sortbystrings(sort: Sort) {
-        var sortby: String?
-        guard self.records != nil else { return }
-        switch sort {
-        case .localCatalog:
-            sortby = "localCatalog"
-        case .backupId:
-            sortby = "backupIDCellID"
-        case .offsiteCatalog:
-            sortby = "offsiteCatalog"
-        case .offsiteServer:
-            sortby = "offsiteServer"
-        }
-        let sorted = self.records!.sorted {return ($0.value(forKey: sortby!) as? String)!.localizedStandardCompare(($1.value(forKey: sortby!) as? String)!) == .orderedAscending}
-        self.records = sorted
-    }
-
     func selectalltaskswithnumbers(deselect: Bool) {
         guard self.records != nil else { return }
         for i in 0 ..< self.records!.count {
@@ -162,7 +145,6 @@ extension RemoteInfoTaskWorkQueue: UpdateProgress {
             self.startstopProgressIndicatorDelegate?.stop()
             return
         }
-        self.outputprocess = nil
         self.outputprocess = OutputProcess()
         self.index = self.stackoftasktobeestimated?.remove(at: 0).1
         if self.stackoftasktobeestimated?.count == 0 {

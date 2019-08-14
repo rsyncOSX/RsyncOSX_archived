@@ -152,21 +152,6 @@ class ViewControllerRemoteInfo: NSViewController, SetDismisser, Abort, Setcolor 
         }
     }
 
-    func tableViewSelectionDidChange(_ notification: Notification) {
-        let myTableViewFromNotification = (notification.object as? NSTableView)!
-        let column = myTableViewFromNotification.selectedColumn
-        if column == 0 {
-            self.remoteinfotask?.sortbystrings(sort: .localCatalog)
-        } else if column == 2 {
-            self.remoteinfotask?.sortbystrings(sort: .offsiteCatalog)
-        } else if column == 3 {
-            self.remoteinfotask?.sortbystrings(sort: .offsiteServer)
-        } else {
-            return
-        }
-        self.reloadtabledata()
-    }
-
     // Progress bars
     private func initiateProgressbar() {
         if let calculatedNumberOfFiles = self.remoteinfotask?.maxnumber {
