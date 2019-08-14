@@ -58,9 +58,6 @@
 /* Class = "NSTableColumn"; headerCell.title = "Local catalog"; ObjectID = "2Fm-Br-GhC"; */
 "2Fm-Br-GhC.headerCell.title" = "本地目录";
 
-/* Class = "NSTextFieldCell"; title = "rsync daemon: "; ObjectID = "2KI-Je-KtE"; */
-"2KI-Je-KtE.title" = "Rsync 守护程序";
-
 /* Class = "NSTextFieldCell"; title = "ID:"; ObjectID = "2Kr-a7-U09"; */
 "2Kr-a7-U09.title" = "ID：";
 
@@ -435,9 +432,6 @@
 
 /* Class = "NSTextFieldCell"; title = "Local catalog:"; ObjectID = "DH3-Cj-gh5"; */
 "DH3-Cj-gh5.title" = "本地目录：";
-
-/* Class = "NSTextFieldCell"; title = "rsync daemon:"; ObjectID = "dIc-cB-CiC"; */
-"dIc-cB-CiC.title" = "rsync守护程序：";
 
 /* Class = "NSTextFieldCell"; title = "status"; ObjectID = "Dl6-i6-oA7"; */
 "Dl6-i6-oA7.title" = "状态";
@@ -984,9 +978,6 @@
 
 /* Class = "NSMenuItem"; title = "Services"; ObjectID = "NMo-om-nkz"; */
 "NMo-om-nkz.title" = "服务";
-
-/* Class = "NSTextFieldCell"; title = "Select column to sort ..."; ObjectID = "NQQ-pH-x0v"; */
-"NQQ-pH-x0v.title" = "选择要排序的列...";
 
 /* Class = "NSTextFieldCell"; title = "Table View Cell"; ObjectID = "NQS-NB-OI2"; */
 "NQS-NB-OI2.title" = "表视图单元格";

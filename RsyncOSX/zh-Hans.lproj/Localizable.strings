@@ -260,6 +260,7 @@
 "secs" = "秒";
 
 /* Copy files
+   Remote Info
    Verify */
 "Seems not to be connected..." = "似乎没有联系......";
 

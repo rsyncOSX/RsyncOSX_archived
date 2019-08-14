@@ -58,9 +58,6 @@
 /* Class = "NSTableColumn"; headerCell.title = "Local catalog"; ObjectID = "2Fm-Br-GhC"; */
 "2Fm-Br-GhC.headerCell.title" = "Lokal katalog";
 
-/* Class = "NSTextFieldCell"; title = "rsync daemon: "; ObjectID = "2KI-Je-KtE"; */
-"2KI-Je-KtE.title" = "rsync daemon: ";
-
 /* Class = "NSTextFieldCell"; title = "ID:"; ObjectID = "2Kr-a7-U09"; */
 "2Kr-a7-U09.title" = "ID:";
 
@@ -435,9 +432,6 @@
 
 /* Class = "NSTextFieldCell"; title = "Local catalog:"; ObjectID = "DH3-Cj-gh5"; */
 "DH3-Cj-gh5.title" = "Lokal katalog:";
-
-/* Class = "NSTextFieldCell"; title = "rsync daemon:"; ObjectID = "dIc-cB-CiC"; */
-"dIc-cB-CiC.title" = "rsync daemon:";
 
 /* Class = "NSTextFieldCell"; title = "status"; ObjectID = "Dl6-i6-oA7"; */
 "Dl6-i6-oA7.title" = "status";
@@ -990,9 +984,6 @@
 
 /* Class = "NSMenuItem"; title = "Services"; ObjectID = "NMo-om-nkz"; */
 "NMo-om-nkz.title" = "Services";
-
-/* Class = "NSTextFieldCell"; title = "Select column to sort ..."; ObjectID = "NQQ-pH-x0v"; */
-"NQQ-pH-x0v.title" = "Velg kolonne for sortering ...";
 
 /* Class = "NSTextFieldCell"; title = "Table View Cell"; ObjectID = "NQS-NB-OI2"; */
 "NQS-NB-OI2.title" = "Table View Cell";
