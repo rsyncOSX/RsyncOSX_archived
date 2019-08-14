@@ -212,52 +212,13 @@ extension ViewControllertabMain: DismissViewEstimating {
 extension ViewControllertabMain: UpdateProgress {
 
     func processTermination() {
-        self.readyforexecution = true
         switch self.configurations!.processtermination! {
-        case .singletask, .singlequicktask, .quicktask, .remoteinfotask, .infosingletask, .restore:
-            return
         case .batchtask:
             self.batchtasksDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vcbatch) as? ViewControllerBatch
             self.batchtasks = self.batchtasksDelegate?.getbatchtaskObject()
             self.outputprocess = self.batchtasks?.outputprocess
             self.process = self.batchtasks?.process
             self.batchtasks?.processTermination()
-        case .automaticbackup:
-            guard self.configurations!.remoteinfoestimation != nil else { return }
-            weak var estimateupdateDelegate: Updateestimating?
-            estimateupdateDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vcestimatingtasks) as? ViewControllerEstimatingTasks
-            // compute alle estimates
-            if self.configurations!.remoteinfoestimation!.stackoftasktobeestimated != nil {
-                self.configurations!.remoteinfoestimation?.processTermination()
-                estimateupdateDelegate?.updateProgressbar()
-            } else {
-                estimateupdateDelegate?.dismissview()
-                self.configurations!.remoteinfoestimation?.processTermination()
-                self.configurations!.remoteinfoestimation?.selectalltaskswithnumbers(deselect: false)
-                self.configurations!.remoteinfoestimation?.setbackuplist()
-                weak var openDelegate: OpenQuickBackup?
-                switch ViewControllerReference.shared.activetab ?? .vctabmain {
-                case .vcnewconfigurations:
-                    openDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vcnewconfigurations) as? ViewControllerNewConfigurations
-                case .vctabmain:
-                    openDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllertabMain
-                case .vctabschedule:
-                    openDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabschedule) as? ViewControllertabSchedule
-                case .vccopyfiles:
-                    openDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vccopyfiles) as? ViewControllerCopyFiles
-                case .vcsnapshot:
-                    openDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vcsnapshot) as? ViewControllerSnapshots
-                case .vcverify:
-                    openDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vcverify) as? ViewControllerVerify
-                case .vcssh:
-                    openDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vcssh) as? ViewControllerSsh
-                case .vcloggdata:
-                    openDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vcloggdata) as? ViewControllerLoggData
-                default:
-                    openDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllertabMain
-                }
-                openDelegate?.openquickbackup()
-            }
         case .estimatebatchtask:
             guard self.configurations!.remoteinfoestimation != nil else { return }
             weak var estimateupdateDelegate: Updateestimating?
@@ -270,6 +231,8 @@ extension ViewControllertabMain: UpdateProgress {
                 self.configurations!.remoteinfoestimation?.processTermination()
                 self.configurations!.processtermination = .batchtask
             }
+        default:
+            return
         }
     }
 
@@ -277,12 +240,12 @@ extension ViewControllertabMain: UpdateProgress {
     // Process is either in singleRun or batchRun
     func fileHandler() {
         switch self.configurations!.processtermination! {
-        case .singletask, .infosingletask, .automaticbackup, .estimatebatchtask, .quicktask, .singlequicktask, .remoteinfotask, .restore:
-            return
         case .batchtask:
             weak var localprocessupdateDelegate: UpdateProgress?
             localprocessupdateDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vcbatch) as? ViewControllerBatch
             localprocessupdateDelegate?.fileHandler()
+        default:
+            return
         }
     }
 }
