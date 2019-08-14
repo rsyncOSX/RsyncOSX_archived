@@ -8,7 +8,7 @@ A short [intro to RsyncOSX](https://rsyncosx.github.io/Intro) and full [document
 
 RsyncOSX is a GUI on top of the command line utility `rsync`. Rsync is a file-based synchronization and backup tool. There is no custom solution for the backup archive. You can quit utilizing RsyncOSX (and rsync) at any time and still have access to all synchronized files.
 
-RsyncOSX is compiled with support for macOS El Capitan version 10.11 - macOS Mojave version 10.14 (and macOS Catalina 10.15 when released). The application is implemented in Swift 5 by using Xcode 10. RsyncOSX is not depended upon any third party binary distributions. There is, however, one third party source code included to check for TCP connections. The check is for informal use only and can be removed.
+RsyncOSX is compiled with support for macOS El Capitan version 10.11 - macOS Mojave version 10.14 (and macOS Catalina 10.15 when released). The application is implemented in Swift 5 by using Xcode 10. RsyncOSX is not depended upon any third party binary distributions. There is, however, [one third party source code](https://github.com/swiftsocket/SwiftSocket) included to check for TCP connections.
 
 Scheduled tasks are added and deleted within RsyncOSX. Executing the scheduled tasks is by the [menu app](https://github.com/rsyncOSX/RsyncOSXsched).
 
