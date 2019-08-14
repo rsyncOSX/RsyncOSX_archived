@@ -393,10 +393,8 @@
 		A04492BE1D658F8900B3CE17 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				E94BCEF221C63EDD00DB8EA2 /* RemoteCapacity */,
 				E9764F5E204BEE710018C0D7 /* AllProfiles */,
 				E99FC81E200FDDBC00477B1A /* ProcessArguments */,
-				E98BD0991FF8BF8400A00782 /* RemoteInformation */,
 				E99AEC701FF8BBA40004992B /* Userconfiguration */,
 				E9F941611FC5FCAE005F2439 /* Logging */,
 				E99D50781EE16241003621D3 /* RsyncParameters */,
@@ -494,6 +492,7 @@
 			isa = PBXGroup;
 			children = (
 				A04492C21D658FC300B3CE17 /* yudpsocket */,
+				E943DC651FF90A6600E6B8B7 /* RemoteinfonumbersOnetask.swift */,
 				E9C6EA891ED2AE2F00680D4D /* Numbers.swift */,
 				A00FE1A91D6A1AAB00012089 /* Alerts.swift */,
 				A0400C861D794FF8008A3949 /* Checkfornewversion.swift */,
@@ -540,6 +539,8 @@
 		A05275DB1D6F6E2C00D8ECBE /* Execution */ = {
 			isa = PBXGroup;
 			children = (
+				E943DC691FF9141D00E6B8B7 /* RemoteinfoEstimation.swift */,
+				E94BCEF321C63F0800DB8EA2 /* RemoteCapacity.swift */,
 				E905EDB31FED05B10044234E /* QuickBackup.swift */,
 				A0430AD91DAFFD3C00BBC106 /* SingleTaskWorkQueu.swift */,
 				A05275D91D6F6E0000D8ECBE /* BatchTaskWorkQueu.swift */,
@@ -617,14 +618,6 @@
 			path = RsyncOSXTests;
 			sourceTree = "<group>";
 		};
-		E94BCEF221C63EDD00DB8EA2 /* RemoteCapacity */ = {
-			isa = PBXGroup;
-			children = (
-				E94BCEF321C63F0800DB8EA2 /* RemoteCapacity.swift */,
-			);
-			name = RemoteCapacity;
-			sourceTree = "<group>";
-		};
 		E957B1131F5F2A3A0099947A /* ViewControllerReference */ = {
 			isa = PBXGroup;
 			children = (
@@ -652,15 +645,6 @@
 				E94D6E2E21A5BBA300DDDB61 /* QuickbackupDispatch.swift */,
 			);
 			name = QuickbackupOperation;
-			sourceTree = "<group>";
-		};
-		E98BD0991FF8BF8400A00782 /* RemoteInformation */ = {
-			isa = PBXGroup;
-			children = (
-				E943DC651FF90A6600E6B8B7 /* RemoteinfonumbersOnetask.swift */,
-				E943DC691FF9141D00E6B8B7 /* RemoteinfoEstimation.swift */,
-			);
-			name = RemoteInformation;
 			sourceTree = "<group>";
 		};
 		E99AEC701FF8BBA40004992B /* Userconfiguration */ = {
