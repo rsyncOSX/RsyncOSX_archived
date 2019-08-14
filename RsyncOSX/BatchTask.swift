@@ -48,7 +48,7 @@ final class BatchTask: SetSchedules, SetConfigurations {
         self.process?.terminate()
         self.process = nil
         self.configurations?.estimatedlist = nil
-        self.configurations!.remoteinfotaskworkqueue = nil
+        self.configurations!.remoteinfoestimation = nil
     }
 
     func error() {

@@ -10,7 +10,7 @@
 import Foundation
 import Cocoa
 
-class ViewControllerRestore: NSViewController, SetConfigurations, SetDismisser, Index, Abort, Setcolor {
+class ViewControllerRestore: NSViewController, SetConfigurations, SetDismisser, Index, Abort, Setcolor, Connected {
 
     @IBOutlet weak var localCatalog: NSTextField!
     @IBOutlet weak var offsiteCatalog: NSTextField!
@@ -136,17 +136,22 @@ class ViewControllerRestore: NSViewController, SetConfigurations, SetDismisser, 
             if ViewControllerReference.shared.restorePath == nil {
                 self.selecttmptorestore.isEnabled = false
             }
-            self.working.startAnimation(nil)
-            self.outputprocess = OutputProcess()
-            self.sendprocess?.sendoutputprocessreference(outputprocess: self.outputprocess)
-            if ViewControllerReference.shared.restorePath != nil {
-                self.selecttmptorestore.state = .on
-                _ = RestoreTask(index: index, outputprocess: self.outputprocess, dryrun: true,
-                                tmprestore: true, updateprogress: self)
+            if self.connected(config: self.configurations!.getConfigurations()[index]) == true {
+                self.working.startAnimation(nil)
+                self.outputprocess = OutputProcess()
+                self.sendprocess?.sendoutputprocessreference(outputprocess: self.outputprocess)
+                if ViewControllerReference.shared.restorePath != nil {
+                    self.selecttmptorestore.state = .on
+                    _ = RestoreTask(index: index, outputprocess: self.outputprocess, dryrun: true,
+                                    tmprestore: true, updateprogress: self)
+                } else {
+                    self.selecttmptorestore.state = .off
+                    _ = RestoreTask(index: index, outputprocess: self.outputprocess, dryrun: true,
+                                    tmprestore: false, updateprogress: self)
+                }
             } else {
-                self.selecttmptorestore.state = .off
-                _ = RestoreTask(index: index, outputprocess: self.outputprocess, dryrun: true,
-                                tmprestore: false, updateprogress: self)
+                self.gotit.stringValue = NSLocalizedString("Seems not to be connected...", comment: "Remote Info")
+                self.gotit.textColor = self.setcolor(nsviewcontroller: self, color: .green)
             }
         }
     }

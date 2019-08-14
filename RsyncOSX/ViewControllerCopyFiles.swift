@@ -62,8 +62,6 @@ class ViewControllerCopyFiles: NSViewController, SetConfigurations, Delay, VcCop
     }
 
     @IBAction func automaticbackup(_ sender: NSButton) {
-        self.configurations!.processtermination = .automaticbackup
-        self.configurations?.remoteinfotaskworkqueue = RemoteinfoEstimation()
         self.presentAsSheet(self.viewControllerEstimating!)
     }
 

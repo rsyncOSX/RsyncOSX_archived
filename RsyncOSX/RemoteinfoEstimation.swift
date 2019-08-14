@@ -14,7 +14,7 @@ protocol SetRemoteInfo: class {
     func getremoteinfo() -> RemoteinfoEstimation?
 }
 
-class RemoteinfoEstimation: SetConfigurations {
+class RemoteinfoEstimation: SetConfigurations, Connected {
     // (hiddenID, index)
     typealias Row = (Int, Int)
     var stackoftasktobeestimated: [Row]?
@@ -36,10 +36,14 @@ class RemoteinfoEstimation: SetConfigurations {
             self.configurations!.getConfigurations()[i].task == ViewControllerReference.shared.snapshot {
                 if self.inbatch ?? false {
                     if self.configurations!.getConfigurations()[i].batch == 1 {
-                        self.stackoftasktobeestimated?.append((self.configurations!.getConfigurations()[i].hiddenID, i))
+                        if self.connected(config: self.configurations!.getConfigurations()[i]) == true {
+                            self.stackoftasktobeestimated?.append((self.configurations!.getConfigurations()[i].hiddenID, i))
+                        }
                     }
                 } else {
-                    self.stackoftasktobeestimated?.append((self.configurations!.getConfigurations()[i].hiddenID, i))
+                    if self.connected(config: self.configurations!.getConfigurations()[i]) == true {
+                        self.stackoftasktobeestimated?.append((self.configurations!.getConfigurations()[i].hiddenID, i))
+                    }
                 }
             }
         }
@@ -130,6 +134,13 @@ extension RemoteinfoEstimation: CountEstimating {
 extension RemoteinfoEstimation: UpdateProgress {
 
     func processTermination() {
+
+        // Automatic backup estimation updates
+        weak var estimateupdateDelegate: Updateestimating?
+        estimateupdateDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vcestimatingtasks) as? ViewControllerEstimatingTasks
+        estimateupdateDelegate?.updateProgressbar()
+        // Automatic backup estimation updates
+
         self.count = self.stackoftasktobeestimated?.count
         let record = RemoteinfoNumbers(outputprocess: self.outputprocess).record()
         record.setValue(self.configurations?.getConfigurations()[self.index!].localCatalog, forKey: "localCatalog")
