@@ -131,7 +131,7 @@ extension RemoteinfoEstimation: UpdateProgress {
 
     func processTermination() {
         self.count = self.stackoftasktobeestimated?.count
-        let record = RemoteInfoTask(outputprocess: self.outputprocess).record()
+        let record = RemoteinfoNumbers(outputprocess: self.outputprocess).record()
         record.setValue(self.configurations?.getConfigurations()[self.index!].localCatalog, forKey: "localCatalog")
         record.setValue(self.configurations?.getConfigurations()[self.index!].offsiteCatalog, forKey: "offsiteCatalog")
         record.setValue(self.configurations?.getConfigurations()[self.index!].hiddenID, forKey: "hiddenID")

@@ -78,7 +78,7 @@ class ViewControllerInformationLocalRemote: NSViewController, SetDismisser, Inde
     // Process object executes the job.
     private func setnumbers(outputprocess: OutputProcess?, local: Bool) {
         globalMainQueue.async(execute: { () -> Void in
-            let infotask = RemoteInfoTask(outputprocess: outputprocess)
+            let infotask = RemoteinfoNumbers(outputprocess: outputprocess)
             if local {
                 self.localtotalNumber.stringValue = infotask.totalNumber!
                 self.localtotalNumberSizebytes.stringValue = infotask.totalNumberSizebytes!

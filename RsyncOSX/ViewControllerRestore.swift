@@ -158,7 +158,7 @@ class ViewControllerRestore: NSViewController, SetConfigurations, SetDismisser, 
 
     private func setNumbers(outputprocess: OutputProcess?) {
         globalMainQueue.async(execute: { () -> Void in
-            let infotask = RemoteInfoTask(outputprocess: outputprocess)
+            let infotask = RemoteinfoNumbers(outputprocess: outputprocess)
             self.transferredNumber.stringValue = infotask.transferredNumber!
             self.transferredNumberSizebytes.stringValue = infotask.transferredNumberSizebytes!
             self.totalNumber.stringValue = infotask.totalNumber!

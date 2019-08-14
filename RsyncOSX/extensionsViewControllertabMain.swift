@@ -431,7 +431,7 @@ extension ViewControllertabMain: SingleTaskProgress {
                 self.deletefiles.stringValue = ""
                 return
             }
-            let remoteinfotask = RemoteInfoTask(outputprocess: outputprocess)
+            let remoteinfotask = RemoteinfoNumbers(outputprocess: outputprocess)
             self.transferredNumber.stringValue = remoteinfotask.transferredNumber!
             self.transferredNumberSizebytes.stringValue = remoteinfotask.transferredNumberSizebytes!
             self.totalNumber.stringValue = remoteinfotask.totalNumber!
