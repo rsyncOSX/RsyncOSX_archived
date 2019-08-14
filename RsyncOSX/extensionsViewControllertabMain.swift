@@ -545,11 +545,11 @@ extension ViewControllertabMain: SendProcessreference {
 }
 
 extension ViewControllertabMain: SetRemoteInfo {
-    func getremoteinfo() -> RemoteInfoTaskWorkQueue? {
+    func getremoteinfo() -> RemoteinfoEstimation? {
         return self.configurations!.remoteinfotaskworkqueue
     }
 
-    func setremoteinfo(remoteinfotask: RemoteInfoTaskWorkQueue?) {
+    func setremoteinfo(remoteinfotask: RemoteinfoEstimation?) {
         self.configurations!.remoteinfotaskworkqueue = remoteinfotask
     }
 }

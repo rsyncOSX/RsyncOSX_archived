@@ -107,7 +107,7 @@
 		E942FF291FED41D0004191B5 /* ViewControllerQuickBackup.swift in Sources */ = {isa = PBXBuildFile; fileRef = E942FF281FED41D0004191B5 /* ViewControllerQuickBackup.swift */; };
 		E943DC661FF90A6600E6B8B7 /* RemoteInfoTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = E943DC651FF90A6600E6B8B7 /* RemoteInfoTask.swift */; };
 		E943DC681FF9115200E6B8B7 /* EstimateRemoteInformationTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = E943DC671FF9115200E6B8B7 /* EstimateRemoteInformationTask.swift */; };
-		E943DC6A1FF9141D00E6B8B7 /* RemoteInfoTaskWorkQueue.swift in Sources */ = {isa = PBXBuildFile; fileRef = E943DC691FF9141D00E6B8B7 /* RemoteInfoTaskWorkQueue.swift */; };
+		E943DC6A1FF9141D00E6B8B7 /* RemoteinfoEstimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = E943DC691FF9141D00E6B8B7 /* RemoteinfoEstimation.swift */; };
 		E945D61420B736E9000E787B /* ViewControllerInformationLocalRemote.swift in Sources */ = {isa = PBXBuildFile; fileRef = E945D61320B736E9000E787B /* ViewControllerInformationLocalRemote.swift */; };
 		E94BCEF421C63F0800DB8EA2 /* RemoteCapacity.swift in Sources */ = {isa = PBXBuildFile; fileRef = E94BCEF321C63F0800DB8EA2 /* RemoteCapacity.swift */; };
 		E94D2603205025790026D18F /* ViewControllerAllProfiles.swift in Sources */ = {isa = PBXBuildFile; fileRef = E94D2602205025790026D18F /* ViewControllerAllProfiles.swift */; };
@@ -262,7 +262,7 @@
 		E942FF281FED41D0004191B5 /* ViewControllerQuickBackup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerQuickBackup.swift; sourceTree = "<group>"; };
 		E943DC651FF90A6600E6B8B7 /* RemoteInfoTask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteInfoTask.swift; sourceTree = "<group>"; };
 		E943DC671FF9115200E6B8B7 /* EstimateRemoteInformationTask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EstimateRemoteInformationTask.swift; sourceTree = "<group>"; };
-		E943DC691FF9141D00E6B8B7 /* RemoteInfoTaskWorkQueue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteInfoTaskWorkQueue.swift; sourceTree = "<group>"; };
+		E943DC691FF9141D00E6B8B7 /* RemoteinfoEstimation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteinfoEstimation.swift; sourceTree = "<group>"; };
 		E945D61320B736E9000E787B /* ViewControllerInformationLocalRemote.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerInformationLocalRemote.swift; sourceTree = "<group>"; };
 		E94BCEF321C63F0800DB8EA2 /* RemoteCapacity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteCapacity.swift; sourceTree = "<group>"; };
 		E94D2602205025790026D18F /* ViewControllerAllProfiles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerAllProfiles.swift; sourceTree = "<group>"; };
@@ -655,7 +655,7 @@
 			isa = PBXGroup;
 			children = (
 				E943DC651FF90A6600E6B8B7 /* RemoteInfoTask.swift */,
-				E943DC691FF9141D00E6B8B7 /* RemoteInfoTaskWorkQueue.swift */,
+				E943DC691FF9141D00E6B8B7 /* RemoteinfoEstimation.swift */,
 			);
 			name = RemoteInformation;
 			sourceTree = "<group>";
@@ -897,7 +897,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A04972511D6595B200086EFD /* OutputProcess.swift in Sources */,
-				E943DC6A1FF9141D00E6B8B7 /* RemoteInfoTaskWorkQueue.swift in Sources */,
+				E943DC6A1FF9141D00E6B8B7 /* RemoteinfoEstimation.swift in Sources */,
 				E939EC4A20C048A000C47F91 /* extensionsViewControllertabMain.swift in Sources */,
 				E942FF291FED41D0004191B5 /* ViewControllerQuickBackup.swift in Sources */,
 				A0B340B41D67079700C6DAC3 /* ViewControllertabSchedule.swift in Sources */,
