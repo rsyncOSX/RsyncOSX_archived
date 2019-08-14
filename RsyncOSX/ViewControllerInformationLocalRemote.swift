@@ -15,7 +15,7 @@ protocol SetLocalRemoteInfo: class {
     func getlocalremoteinfo(index: Int) -> NSDictionary?
 }
 
-class ViewControllerInformationLocalRemote: NSViewController, SetDismisser, Index, SetConfigurations, Setcolor {
+class ViewControllerInformationLocalRemote: NSViewController, SetDismisser, Index, SetConfigurations, Setcolor, Connected {
 
     private var index: Int?
     private var outputprocess: OutputProcess?
@@ -51,7 +51,6 @@ class ViewControllerInformationLocalRemote: NSViewController, SetDismisser, Inde
             if let info = self.localremoteinfoDelegate?.getlocalremoteinfo(index: index) {
                 self.setcachedNumbers(dict: info)
             } else {
-                self.working.startAnimation(nil)
                 let datelastbackup = self.configurations?.getConfigurations()[index].dateRun ?? ""
                 if datelastbackup.isEmpty == false {
                     let dateformatter = Dateandtime().setDateformat()
@@ -64,8 +63,14 @@ class ViewControllerInformationLocalRemote: NSViewController, SetDismisser, Inde
                 let numberlastbackup = self.configurations?.getConfigurations()[index].dayssincelastbackup ?? ""
                 self.dayslastbackup.stringValue = NSLocalizedString("Days since last backup:", comment: "Remote Info")
                     + " " + numberlastbackup
-                self.outputprocess = OutputProcess()
-                _ = EstimateRemoteInformationTask(index: index, outputprocess: self.outputprocess, local: true, updateprogress: self)
+                if self.connected(config: self.configurations!.getConfigurations()[index]) == true {
+                    self.working.startAnimation(nil)
+                    self.outputprocess = OutputProcess()
+                    _ = EstimateRemoteInformationTask(index: index, outputprocess: self.outputprocess, local: true, updateprogress: self)
+                } else {
+                    self.gotit.stringValue = NSLocalizedString("Seems not to be connected...", comment: "Remote Info")
+                    self.gotit.textColor = self.setcolor(nsviewcontroller: self, color: .green)
+                }
             }
          }
     }

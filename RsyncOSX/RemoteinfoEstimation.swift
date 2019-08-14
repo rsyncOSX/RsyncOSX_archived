@@ -14,7 +14,7 @@ protocol SetRemoteInfo: class {
     func getremoteinfo() -> RemoteinfoEstimation?
 }
 
-class RemoteinfoEstimation: SetConfigurations {
+class RemoteinfoEstimation: SetConfigurations, Connected {
     // (hiddenID, index)
     typealias Row = (Int, Int)
     var stackoftasktobeestimated: [Row]?
@@ -36,10 +36,14 @@ class RemoteinfoEstimation: SetConfigurations {
             self.configurations!.getConfigurations()[i].task == ViewControllerReference.shared.snapshot {
                 if self.inbatch ?? false {
                     if self.configurations!.getConfigurations()[i].batch == 1 {
-                        self.stackoftasktobeestimated?.append((self.configurations!.getConfigurations()[i].hiddenID, i))
+                        if self.connected(config: self.configurations!.getConfigurations()[i]) == true {
+                            self.stackoftasktobeestimated?.append((self.configurations!.getConfigurations()[i].hiddenID, i))
+                        }
                     }
                 } else {
-                    self.stackoftasktobeestimated?.append((self.configurations!.getConfigurations()[i].hiddenID, i))
+                    if self.connected(config: self.configurations!.getConfigurations()[i]) == true {
+                        self.stackoftasktobeestimated?.append((self.configurations!.getConfigurations()[i].hiddenID, i))
+                    }
                 }
             }
         }
