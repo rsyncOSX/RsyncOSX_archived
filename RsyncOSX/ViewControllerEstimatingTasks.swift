@@ -5,7 +5,7 @@
 //  Created by Thomas Evensen on 21.04.2018.
 //  Copyright © 2018 Thomas Evensen. All rights reserved.
 //
-// swiftlint:disable line_length cyclomatic_complexity function_body_length
+// swiftlint:disable line_length cyclomatic_complexity
 
 import Foundation
 import Cocoa
@@ -78,7 +78,7 @@ extension ViewControllerEstimatingTasks: StartStopProgressIndicator {
         self.initiateProgressbar()
     }
 
-    func complete(){
+    func complete() {
         //
     }
 
@@ -126,5 +126,4 @@ extension ViewControllerEstimatingTasks: StartStopProgressIndicator {
             self.dismissview(viewcontroller: self, vcontroller: .vcloggdata)
         }
     }
-    
 }
