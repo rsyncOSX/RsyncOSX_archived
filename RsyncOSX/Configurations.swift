@@ -39,9 +39,6 @@ class Configurations: ReloadTable, SetSchedules {
     var localremote: [NSDictionary]?
     // remote info tasks
     var remoteinfoestimation: RemoteinfoEstimation?
-    // Which kind of task
-    var processtermination: ProcessTermination?
-
     /// Function for getting the profile
     func getProfile() -> String? {
         return self.profile
@@ -373,7 +370,6 @@ class Configurations: ReloadTable, SetSchedules {
         self.argumentAllConfigurations = nil
         self.configurationsDataSource = nil
         self.profile = profile
-        self.processtermination = .quicktask
         self.storageapi = PersistentStorageAPI(profile: self.profile)
         self.readconfigurations()
         self.createbatchQueue()

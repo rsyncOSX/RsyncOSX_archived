@@ -53,7 +53,6 @@ class ViewControllerVerify: NSViewController, SetConfigurations, Index, VcExecut
             _ = Norsync()
             return
         }
-        self.configurations!.processtermination = .remoteinfotask
         globalMainQueue.async(execute: { () -> Void in
             self.presentAsSheet(self.viewControllerRemoteInfo!)
         })
@@ -327,7 +326,6 @@ extension ViewControllerVerify: UpdateProgress {
 
 extension ViewControllerVerify: OpenQuickBackup {
     func openquickbackup() {
-        self.configurations!.processtermination = .quicktask
         globalMainQueue.async(execute: { () -> Void in
             self.presentAsSheet(self.viewControllerQuickBackup!)
         })

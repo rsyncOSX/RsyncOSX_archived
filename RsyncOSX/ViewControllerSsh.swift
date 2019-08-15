@@ -43,7 +43,6 @@ class ViewControllerSsh: NSViewController, SetConfigurations, VcExecute {
             _ = Norsync()
             return
         }
-        self.configurations!.processtermination = .remoteinfotask
         globalMainQueue.async(execute: { () -> Void in
             self.presentAsSheet(self.viewControllerRemoteInfo!)
         })
@@ -271,7 +270,6 @@ extension ViewControllerSsh: UpdateProgress {
 
 extension ViewControllerSsh: OpenQuickBackup {
     func openquickbackup() {
-        self.configurations!.processtermination = .quicktask
         globalMainQueue.async(execute: { () -> Void in
             self.presentAsSheet(self.viewControllerQuickBackup!)
         })

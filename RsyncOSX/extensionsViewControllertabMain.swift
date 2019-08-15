@@ -205,37 +205,6 @@ extension ViewControllertabMain: DismissViewEstimating {
     }
 }
 
-// Called when either a terminatopn of Process is
-// discovered or data is availiable in the filehandler
-extension ViewControllertabMain: UpdateProgress {
-
-    func processTermination() {
-        switch self.configurations!.processtermination! {
-        case .batchtask:
-            self.batchtasksDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vcbatch) as? ViewControllerBatch
-            self.batchtasks = self.batchtasksDelegate?.getbatchtaskObject()
-            self.outputprocess = self.batchtasks?.outputprocess
-            self.process = self.batchtasks?.process
-            self.batchtasks?.processTermination()
-        default:
-            return
-        }
-    }
-
-    // Function is triggered when Process outputs data in filehandler
-    // Process is either in singleRun or batchRun
-    func fileHandler() {
-        switch self.configurations!.processtermination! {
-        case .batchtask:
-            weak var localprocessupdateDelegate: UpdateProgress?
-            localprocessupdateDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vcbatch) as? ViewControllerBatch
-            localprocessupdateDelegate?.fileHandler()
-        default:
-            return
-        }
-    }
-}
-
 // Deselect a row
 extension ViewControllertabMain: DeselectRowTable {
     // deselect a row after row is deleted
@@ -416,8 +385,6 @@ extension ViewControllertabMain: GetConfigurationsObject {
 
     // After a write, a reload is forced.
     func reloadconfigurationsobject() {
-        // If batchtask keep configuration object
-        self.batchtasks = self.batchtasksDelegate?.getbatchtaskObject()
         guard self.batchtasks == nil else {
             // Batchtask, check if task is completed
             guard self.configurations!.getbatchQueue()?.batchruniscompleted() == false else {
@@ -505,7 +472,6 @@ extension ViewControllertabMain: SetRemoteInfo {
 
 extension ViewControllertabMain: OpenQuickBackup {
     func openquickbackup() {
-        self.configurations!.processtermination = .quicktask
         globalMainQueue.async(execute: { () -> Void in
             self.presentAsSheet(self.viewControllerQuickBackup!)
         })

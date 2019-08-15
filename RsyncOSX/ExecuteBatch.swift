@@ -10,17 +10,18 @@
 import Foundation
 import Cocoa
 
-final class BatchTask: SetSchedules, SetConfigurations {
+final class ExecuteBatch: SetSchedules, SetConfigurations {
 
     weak var closeviewerrorDelegate: ReportonandhaltonError?
     var process: Process?
     var outputprocess: OutputProcess?
     var hiddenID: Int?
-    var estimatedlist: [NSDictionary]?
 
-    func executeBatch() {
-        self.estimatedlist = self.configurations?.estimatedlist
-        if let batchobject = self.configurations!.getbatchQueue() {
+    var estimatedlist: [NSDictionary]?
+    var batchqueue: BatchTaskWorkQueu?
+
+    func executebatch() {
+        if let batchobject = self.batchqueue {
             let work = batchobject.copyofnexttaskinqueue()
             switch work.1 {
             case 1:
@@ -30,7 +31,7 @@ final class BatchTask: SetSchedules, SetConfigurations {
                 self.outputprocess = OutputProcess()
                 let arguments: [String] = self.configurations!.arguments4rsync(index: index, argtype: .arg)
                 let process = Rsync(arguments: arguments)
-                // process.setdelegate(object: self)
+                process.setdelegate(object: self)
                 process.executeProcess(outputprocess: self.outputprocess)
                 self.process = process.getProcess()
             case -1:
@@ -61,29 +62,31 @@ final class BatchTask: SetSchedules, SetConfigurations {
     }
 
     func maxcountintask(hiddenID: Int) -> Int {
-        let max = self.configurations?.estimatedlist?.filter({$0.value( forKey: "hiddenID") as? Int == hiddenID})
-        guard max!.count > 0 else { return 0}
+        let max = self.estimatedlist?.filter({$0.value( forKey: "hiddenID") as? Int == hiddenID})
+        guard max?.count ?? 0 > 0 else { return 0}
         let maxnumber = max![0].value(forKey: "transferredNumber") as? String ?? "0"
         return Int(maxnumber) ?? 0
     }
 
     init() {
+        self.estimatedlist = self.configurations?.estimatedlist
+        self.batchqueue = self.configurations!.getbatchQueue()
     }
 }
 
-extension BatchTask: UpdateProgress {
+extension ExecuteBatch: UpdateProgress {
 
     func processTermination() {
         weak var localprocessupdateDelegate: UpdateProgress?
         localprocessupdateDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vcbatch) as? ViewControllerBatch
         localprocessupdateDelegate?.processTermination()
-        if let batchobject = self.configurations!.getbatchQueue() {
+        if let batchobject = self.batchqueue {
             let work = batchobject.removenexttaskinqueue()
             let index = self.configurations!.getIndex(work.0)
             let config = self.configurations!.getConfigurations()[index]
             self.hiddenID = config.hiddenID
             self.configurations!.setCurrentDateonConfiguration(index: index, outputprocess: self.outputprocess)
-            self.executeBatch()
+            self.executebatch()
         }
     }
 

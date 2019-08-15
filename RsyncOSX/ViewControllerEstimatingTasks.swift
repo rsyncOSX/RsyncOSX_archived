@@ -45,7 +45,6 @@ class ViewControllerEstimatingTasks: NSViewController, Abort, SetConfigurations 
     override func viewDidAppear() {
         super.viewDidAppear()
         guard self.diddissappear == false else { return }
-        self.configurations!.processtermination = .automaticbackup
         self.configurations?.remoteinfoestimation = RemoteinfoEstimation()
         ViewControllerReference.shared.setvcref(viewcontroller: .vcestimatingtasks, nsviewcontroller: self)
         self.vc = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllertabMain
