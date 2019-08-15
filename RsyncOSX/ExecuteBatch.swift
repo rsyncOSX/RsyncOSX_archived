@@ -16,11 +16,12 @@ final class ExecuteBatch: SetSchedules, SetConfigurations {
     var process: Process?
     var outputprocess: OutputProcess?
     var hiddenID: Int?
+
     var estimatedlist: [NSDictionary]?
+    var batchqueue: BatchTaskWorkQueu?
 
     func executebatch() {
-        self.estimatedlist = self.configurations?.estimatedlist
-        if let batchobject = self.configurations!.getbatchQueue() {
+        if let batchobject = self.batchqueue {
             let work = batchobject.copyofnexttaskinqueue()
             switch work.1 {
             case 1:
@@ -61,13 +62,15 @@ final class ExecuteBatch: SetSchedules, SetConfigurations {
     }
 
     func maxcountintask(hiddenID: Int) -> Int {
-        let max = self.configurations?.estimatedlist?.filter({$0.value( forKey: "hiddenID") as? Int == hiddenID})
-        guard max!.count > 0 else { return 0}
+        let max = self.estimatedlist?.filter({$0.value( forKey: "hiddenID") as? Int == hiddenID})
+        guard max?.count ?? 0 > 0 else { return 0}
         let maxnumber = max![0].value(forKey: "transferredNumber") as? String ?? "0"
         return Int(maxnumber) ?? 0
     }
 
     init() {
+        self.estimatedlist = self.configurations?.estimatedlist
+        self.batchqueue = self.configurations!.getbatchQueue()
     }
 }
 
@@ -77,7 +80,7 @@ extension ExecuteBatch: UpdateProgress {
         weak var localprocessupdateDelegate: UpdateProgress?
         localprocessupdateDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vcbatch) as? ViewControllerBatch
         localprocessupdateDelegate?.processTermination()
-        if let batchobject = self.configurations!.getbatchQueue() {
+        if let batchobject = self.batchqueue {
             let work = batchobject.removenexttaskinqueue()
             let index = self.configurations!.getIndex(work.0)
             let config = self.configurations!.getConfigurations()[index]
