@@ -96,6 +96,7 @@ class ViewControllerRemoteInfo: NSViewController, SetDismisser, Abort, Setcolor 
         globalMainQueue.async(execute: { () -> Void in
             self.mainTableView.reloadData()
         })
+        self.enableexecutebutton()
     }
 
     // Initial functions viewDidLoad and viewDidAppear

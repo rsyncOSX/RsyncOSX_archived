@@ -136,8 +136,8 @@ extension RemoteinfoEstimation: UpdateProgress {
         self.records?.append(record)
         self.configurations?.estimatedlist?.append(record)
         guard self.stackoftasktobeestimated != nil else {
-            self.startstopProgressIndicatorDelegate?.stop()
             self.selectalltaskswithnumbers(deselect: false)
+            self.startstopProgressIndicatorDelegate?.stop()
             return
         }
         // Update View
