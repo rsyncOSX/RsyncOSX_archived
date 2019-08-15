@@ -21,10 +21,7 @@ final class RemoteinfoEstimation: SetConfigurations {
     var outputprocess: OutputProcess?
     var records: [NSMutableDictionary]?
     weak var updateprogressDelegate: UpdateProgress?
-
     weak var reloadtableDelegate: Reloadandrefresh?
-
-    weak var enablebackupbuttonDelegate: EnableQuicbackupButton?
     weak var startstopProgressIndicatorDelegate: StartStopProgressIndicator?
     var index: Int?
     var maxnumber: Int?
@@ -78,14 +75,6 @@ final class RemoteinfoEstimation: SetConfigurations {
                 self.configurations?.quickbackuplist!.append((self.records![i].value(forKey: "hiddenID") as? Int)!)
             }
         }
-    }
-
-    func selectalltaskswithfilestobackup(deselect: Bool) {
-        self.selectalltaskswithnumbers(deselect: deselect)
-        self.reloadtableDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vcremoteinfo) as? ViewControllerRemoteInfo
-        self.enablebackupbuttonDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vcremoteinfo) as? ViewControllerRemoteInfo
-        self.reloadtableDelegate?.reloadtabledata()
-        self.enablebackupbuttonDelegate?.enablequickbackupbutton()
     }
 
     private func startestimation() {

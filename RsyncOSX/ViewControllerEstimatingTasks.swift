@@ -86,8 +86,6 @@ extension ViewControllerEstimatingTasks: Updateestimating {
         if self.configurations!.remoteinfoestimation!.stackoftasktobeestimated == nil {
             // self.configurations!.remoteinfoestimation?.selectalltaskswithnumbers(deselect: false)
             self.configurations!.remoteinfoestimation?.setbackuplist()
-            self.dismissview()
-            /*
             weak var openDelegate: OpenQuickBackup?
             switch ViewControllerReference.shared.activetab ?? .vctabmain {
             case .vcnewconfigurations:
@@ -110,7 +108,7 @@ extension ViewControllerEstimatingTasks: Updateestimating {
                 openDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllertabMain
             }
             openDelegate?.openquickbackup()
-            */
         }
+        self.dismissview()
     }
 }
