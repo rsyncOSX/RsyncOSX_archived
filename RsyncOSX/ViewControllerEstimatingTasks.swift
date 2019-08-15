@@ -16,23 +16,13 @@ protocol CountEstimating: class {
     func inprogressCount() -> Int
 }
 
-protocol Updateestimating: class {
-    func updateProgressbar()
-    func dismissview()
-}
-
-protocol DismissViewEstimating: class {
-    func dismissestimating(viewcontroller: NSViewController)
-}
-
 class ViewControllerEstimatingTasks: NSViewController, Abort, SetConfigurations, SetDismisser {
 
     var count: Double = 0
     var maxcount: Double = 0
     var calculatedNumberOfFiles: Int?
-    var vc: ViewControllertabMain?
+
     weak var countDelegate: CountEstimating?
-    weak var dismissDelegate: DismissViewEstimating?
     var diddissappear: Bool = false
 
     @IBOutlet weak var abort: NSButton!
@@ -42,19 +32,17 @@ class ViewControllerEstimatingTasks: NSViewController, Abort, SetConfigurations,
         self.abort()
     }
 
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        ViewControllerReference.shared.setvcref(viewcontroller: .vcestimatingtasks, nsviewcontroller: self)
+    }
+
     override func viewDidAppear() {
         super.viewDidAppear()
         guard self.diddissappear == false else { return }
-        self.configurations?.remoteinfoestimation = RemoteinfoEstimation()
-        ViewControllerReference.shared.setvcref(viewcontroller: .vcestimatingtasks, nsviewcontroller: self)
-        self.vc = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllertabMain
-        self.dismissDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllertabMain
-        if let pvc = self.vc?.configurations?.remoteinfoestimation {
-            self.countDelegate = pvc
-        }
-        self.calculatedNumberOfFiles = self.countDelegate?.maxCount()
-        self.initiateProgressbar()
         self.abort.isEnabled = true
+        self.configurations?.remoteinfoestimation = RemoteinfoEstimation(inbatch: false)
+        self.countDelegate = self.configurations?.remoteinfoestimation
     }
 
     override func viewWillDisappear() {
@@ -64,7 +52,8 @@ class ViewControllerEstimatingTasks: NSViewController, Abort, SetConfigurations,
 
     // Progress bars
     private func initiateProgressbar() {
-        if let calculatedNumberOfFiles = self.calculatedNumberOfFiles {
+        self.countDelegate = self.configurations!.remoteinfoestimation
+        if let calculatedNumberOfFiles = self.countDelegate?.maxCount() {
             self.progress.maxValue = Double(calculatedNumberOfFiles)
         }
         self.progress.minValue = 0
@@ -73,41 +62,50 @@ class ViewControllerEstimatingTasks: NSViewController, Abort, SetConfigurations,
     }
 }
 
-extension ViewControllerEstimatingTasks: Updateestimating {
-    func dismissview() {
+extension ViewControllerEstimatingTasks: UpdateProgress {
+    func processTermination() {
+        let count = self.countDelegate?.inprogressCount() ?? 0
+        self.progress.doubleValue = Double(self.calculatedNumberOfFiles ?? 0 - count)
+    }
+
+    func fileHandler() {
+     //
+    }
+}
+
+extension ViewControllerEstimatingTasks: StartStopProgressIndicator {
+    func start() {
+        self.initiateProgressbar()
+    }
+
+    func complete(){
         //
     }
 
-    func updateProgressbar() {
-        let count = self.countDelegate?.inprogressCount() ?? 0
-        self.progress.doubleValue = Double(self.calculatedNumberOfFiles! - count)
-        // When estimating is completed dismiss view
-        if self.configurations!.remoteinfoestimation!.stackoftasktobeestimated == nil {
-            // self.configurations!.remoteinfoestimation?.selectalltaskswithnumbers(deselect: false)
-            self.configurations!.remoteinfoestimation?.setbackuplist()
-            weak var openDelegate: OpenQuickBackup?
-            switch ViewControllerReference.shared.activetab ?? .vctabmain {
-            case .vcnewconfigurations:
-                openDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vcnewconfigurations) as? ViewControllerNewConfigurations
-            case .vctabmain:
-                openDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllertabMain
-            case .vctabschedule:
-                openDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabschedule) as? ViewControllertabSchedule
-            case .vccopyfiles:
-                openDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vccopyfiles) as? ViewControllerCopyFiles
-            case .vcsnapshot:
-                openDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vcsnapshot) as? ViewControllerSnapshots
-            case .vcverify:
-                openDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vcverify) as? ViewControllerVerify
-            case .vcssh:
-                openDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vcssh) as? ViewControllerSsh
-            case .vcloggdata:
-                openDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vcloggdata) as? ViewControllerLoggData
-            default:
-                openDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllertabMain
-            }
-            openDelegate?.openquickbackup()
+    func stop() {
+        self.configurations!.remoteinfoestimation?.setbackuplist()
+        weak var openDelegate: OpenQuickBackup?
+        switch ViewControllerReference.shared.activetab ?? .vctabmain {
+        case .vcnewconfigurations:
+            openDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vcnewconfigurations) as? ViewControllerNewConfigurations
+        case .vctabmain:
+            openDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllertabMain
+        case .vctabschedule:
+            openDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabschedule) as? ViewControllertabSchedule
+        case .vccopyfiles:
+            openDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vccopyfiles) as? ViewControllerCopyFiles
+        case .vcsnapshot:
+            openDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vcsnapshot) as? ViewControllerSnapshots
+        case .vcverify:
+            openDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vcverify) as? ViewControllerVerify
+        case .vcssh:
+            openDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vcssh) as? ViewControllerSsh
+        case .vcloggdata:
+            openDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vcloggdata) as? ViewControllerLoggData
+        default:
+            openDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllertabMain
         }
+        openDelegate?.openquickbackup()
         if (self.presentingViewController as? ViewControllertabMain) != nil {
             self.dismissview(viewcontroller: self, vcontroller: .vctabmain)
         } else if (self.presentingViewController as? ViewControllertabSchedule) != nil {
@@ -128,4 +126,5 @@ extension ViewControllerEstimatingTasks: Updateestimating {
             self.dismissview(viewcontroller: self, vcontroller: .vcloggdata)
         }
     }
+    
 }
