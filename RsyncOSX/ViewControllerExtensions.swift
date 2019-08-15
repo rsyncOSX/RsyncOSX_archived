@@ -226,12 +226,6 @@ protocol DismissViewController: class {
 }
 
 protocol SetDismisser {
-    var dismissDelegateMain: DismissViewController? { get }
-    var dismissDelegateSchedule: DismissViewController? { get }
-    var dismissDelegateCopyFiles: DismissViewController? { get }
-    var dismissDelegateNewConfigurations: DismissViewController? { get }
-    var dismissDelegateSsh: DismissViewController? { get }
-    var dimissDelegateSnapshot: DismissViewController? { get }
     func dismissview(viewcontroller: NSViewController, vcontroller: ViewController)
 }
 
@@ -254,6 +248,12 @@ extension SetDismisser {
     var dimissDelegateSnapshot: DismissViewController? {
         return ViewControllerReference.shared.getvcref(viewcontroller: .vcsnapshot) as? ViewControllerSnapshots
     }
+    var dismissDelegateVerify: DismissViewController? {
+        return ViewControllerReference.shared.getvcref(viewcontroller: .vcverify) as? ViewControllerVerify
+    }
+    var dismissDelegateLoggData: DismissViewController? {
+        return ViewControllerReference.shared.getvcref(viewcontroller: .vcloggdata) as? ViewControllerLoggData
+    }
 
     func dismissview(viewcontroller: NSViewController, vcontroller: ViewController) {
         if vcontroller == .vctabmain {
@@ -268,6 +268,10 @@ extension SetDismisser {
             self.dismissDelegateSsh?.dismiss_view(viewcontroller: (self as? NSViewController)!)
         } else if vcontroller == .vcsnapshot {
             self.dimissDelegateSnapshot?.dismiss_view(viewcontroller: (self as? NSViewController)!)
+        } else if vcontroller == .vcverify {
+            self.dismissDelegateVerify?.dismiss_view(viewcontroller: (self as? NSViewController)!)
+        } else if vcontroller == .vcloggdata {
+            self.dismissDelegateLoggData?.dismiss_view(viewcontroller: (self as? NSViewController)!)
         }
     }
 }

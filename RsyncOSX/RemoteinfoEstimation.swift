@@ -22,7 +22,6 @@ final class RemoteinfoEstimation: SetConfigurations {
     var records: [NSMutableDictionary]?
     weak var updateprogressDelegate: UpdateProgress?
     weak var reloadtableDelegate: Reloadandrefresh?
-    weak var enablebackupbuttonDelegate: EnableQuicbackupButton?
     weak var startstopProgressIndicatorDelegate: StartStopProgressIndicator?
     var index: Int?
     var maxnumber: Int?
@@ -44,17 +43,6 @@ final class RemoteinfoEstimation: SetConfigurations {
             }
         }
         self.maxnumber = self.stackoftasktobeestimated?.count
-    }
-
-    private func startestimation() {
-        guard self.stackoftasktobeestimated!.count > 0 else { return }
-        self.outputprocess = OutputProcess()
-        self.index = self.stackoftasktobeestimated?.remove(at: 0).1
-        if self.stackoftasktobeestimated?.count == 0 {
-            self.stackoftasktobeestimated = nil
-        }
-        self.startstopProgressIndicatorDelegate?.start()
-        _ = EstimateremoteInformationOnetask(index: self.index!, outputprocess: self.outputprocess, local: false, updateprogress: self)
     }
 
     func setbackuplist(list: [NSMutableDictionary]) {
@@ -89,12 +77,12 @@ final class RemoteinfoEstimation: SetConfigurations {
         }
     }
 
-    func selectalltaskswithfilestobackup(deselect: Bool) {
-        self.selectalltaskswithnumbers(deselect: deselect)
-        self.reloadtableDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vcremoteinfo) as? ViewControllerRemoteInfo
-        self.enablebackupbuttonDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vcremoteinfo) as? ViewControllerRemoteInfo
-        self.reloadtableDelegate?.reloadtabledata()
-        self.enablebackupbuttonDelegate?.enablequickbackupbutton()
+    private func startestimation() {
+        guard self.stackoftasktobeestimated!.count > 0 else { return }
+        self.outputprocess = OutputProcess()
+        self.index = self.stackoftasktobeestimated?.remove(at: 0).1
+        self.startstopProgressIndicatorDelegate?.start()
+        _ = EstimateremoteInformationOnetask(index: self.index!, outputprocess: self.outputprocess, local: false, updateprogress: self)
     }
 
     init(inbatch: Bool) {
@@ -130,13 +118,6 @@ extension RemoteinfoEstimation: CountEstimating {
 extension RemoteinfoEstimation: UpdateProgress {
 
     func processTermination() {
-
-        // Automatic backup estimation updates
-        weak var estimateupdateDelegate: Updateestimating?
-        estimateupdateDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vcestimatingtasks) as? ViewControllerEstimatingTasks
-        estimateupdateDelegate?.updateProgressbar()
-        // Automatic backup estimation updates
-
         self.count = self.stackoftasktobeestimated?.count
         let record = RemoteinfonumbersOnetask(outputprocess: self.outputprocess).record()
         record.setValue(self.configurations?.getConfigurations()[self.index!].localCatalog, forKey: "localCatalog")
@@ -149,14 +130,19 @@ extension RemoteinfoEstimation: UpdateProgress {
         }
         self.records?.append(record)
         self.configurations?.estimatedlist?.append(record)
-        self.updateprogressDelegate?.processTermination()
         guard self.stackoftasktobeestimated != nil else {
             self.startstopProgressIndicatorDelegate?.stop()
+            self.selectalltaskswithnumbers(deselect: false)
+            // Update View
+            self.updateprogressDelegate?.processTermination()
             return
         }
+        // Update View
+        self.updateprogressDelegate?.processTermination()
         self.outputprocess = OutputProcess()
         self.index = self.stackoftasktobeestimated?.remove(at: 0).1
         if self.stackoftasktobeestimated?.count == 0 {
+            // Last estimation
             self.stackoftasktobeestimated = nil
         }
         _ = EstimateremoteInformationOnetask(index: self.index!, outputprocess: self.outputprocess, local: false, updateprogress: self)
