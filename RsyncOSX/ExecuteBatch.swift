@@ -21,6 +21,9 @@ final class ExecuteBatch: SetSchedules, SetConfigurations {
     var batchqueue: BatchTaskWorkQueu?
 
     func executebatch() {
+        if self.estimatedlist == nil {
+            self.estimatedlist = self.configurations?.estimatedlist
+        }
         if let batchobject = self.batchqueue {
             let work = batchobject.copyofnexttaskinqueue()
             switch work.1 {
@@ -48,7 +51,7 @@ final class ExecuteBatch: SetSchedules, SetConfigurations {
     func closeOperation() {
         self.process?.terminate()
         self.process = nil
-        self.configurations?.estimatedlist = nil
+        self.estimatedlist = nil
         self.configurations!.remoteinfoestimation = nil
     }
 
@@ -69,7 +72,6 @@ final class ExecuteBatch: SetSchedules, SetConfigurations {
     }
 
     init() {
-        self.estimatedlist = self.configurations?.estimatedlist
         self.batchqueue = self.configurations!.getbatchQueue()
     }
 }
