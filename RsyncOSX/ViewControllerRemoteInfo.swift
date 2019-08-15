@@ -163,9 +163,11 @@ class ViewControllerRemoteInfo: NSViewController, SetDismisser, Abort, Setcolor 
     }
 
     private func updateProgressbar() {
-        let rest = self.remoteinfotask?.count ?? 0
-        let max = self.remoteinfotask?.maxnumber ?? 0
-        self.progress.doubleValue = Double(max - rest)
+         globalMainQueue.async(execute: { () -> Void in
+            let rest = self.remoteinfotask?.count ?? 0
+            let max = self.remoteinfotask?.maxnumber ?? 0
+            self.progress.doubleValue = Double(max - rest)
+        })
     }
 }
 
@@ -233,14 +235,14 @@ extension ViewControllerRemoteInfo: UpdateProgress {
             self.progress.isHidden = true
             self.count.stringValue = NSLocalizedString("Completed", comment: "Remote info")
             self.count.textColor = setcolor(nsviewcontroller: self, color: .green)
-            self.remoteinfotask?.selectalltaskswithfilestobackup(deselect: self.selected)
             self.selected = true
             self.selectalltaskswithfilestobackupbutton.isEnabled = true
+            self.enableexecutebutton()
         }
     }
 
     func fileHandler() {
-        // nothing
+        //
     }
 }
 
