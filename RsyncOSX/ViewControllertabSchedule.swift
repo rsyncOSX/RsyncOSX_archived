@@ -37,7 +37,6 @@ class ViewControllertabSchedule: NSViewController, SetConfigurations, SetSchedul
             _ = Norsync()
             return
         }
-        self.configurations!.processtermination = .remoteinfotask
         globalMainQueue.async(execute: { () -> Void in
             self.presentAsSheet(self.viewControllerRemoteInfo!)
         })
@@ -340,7 +339,6 @@ extension ViewControllertabSchedule: SetProfileinfo {
 
 extension ViewControllertabSchedule: OpenQuickBackup {
     func openquickbackup() {
-        self.configurations!.processtermination = .quicktask
         globalMainQueue.async(execute: { () -> Void in
             self.presentAsSheet(self.viewControllerQuickBackup!)
         })

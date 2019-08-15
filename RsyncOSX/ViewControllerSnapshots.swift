@@ -58,7 +58,6 @@ class ViewControllerSnapshots: NSViewController, SetDismisser, SetConfigurations
             _ = Norsync()
             return
         }
-        self.configurations!.processtermination = .remoteinfotask
         globalMainQueue.async(execute: { () -> Void in
             self.presentAsSheet(self.viewControllerRemoteInfo!)
         })
@@ -521,7 +520,6 @@ extension ViewControllerSnapshots: NSComboBoxDelegate {
 
 extension ViewControllerSnapshots: OpenQuickBackup {
     func openquickbackup() {
-        self.configurations!.processtermination = .quicktask
         globalMainQueue.async(execute: { () -> Void in
             self.presentAsSheet(self.viewControllerQuickBackup!)
         })

@@ -48,8 +48,6 @@ class ViewControllertabMain: NSViewController, ReloadTable, Deselect, VcMain, De
     var batchtasks: ExecuteBatch?
     var executetasknow: ExecuteTaskNow?
     var tcpconnections: TCPconnections?
-    // Delegate function getting batchTaskObject
-    weak var batchtasksDelegate: GetNewBatchTask?
     // Main tableview
     @IBOutlet weak var mainTableView: NSTableView!
     // Progressbar indicating work
@@ -131,7 +129,6 @@ class ViewControllertabMain: NSViewController, ReloadTable, Deselect, VcMain, De
                 self.info.stringValue = Infoexecute().info(num: 7)
                 return
         }
-        self.configurations!.processtermination = .restore
         self.presentAsSheet(self.restoreViewController!)
     }
 
@@ -149,7 +146,6 @@ class ViewControllertabMain: NSViewController, ReloadTable, Deselect, VcMain, De
                 self.info.stringValue = Infoexecute().info(num: 7)
                 return
         }
-        self.configurations!.processtermination = .infosingletask
         self.presentAsSheet(self.viewControllerInformationLocalRemote!)
     }
 
@@ -416,7 +412,6 @@ class ViewControllertabMain: NSViewController, ReloadTable, Deselect, VcMain, De
 
     // Execute BATCH TASKS only
     @IBAction func executeBatch(_ sender: NSButton) {
-        self.configurations!.processtermination = .estimatebatchtask
         guard ViewControllerReference.shared.norsync == false else {
             _ = Norsync()
             return

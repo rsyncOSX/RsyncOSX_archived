@@ -30,7 +30,7 @@ final class ExecuteBatch: SetSchedules, SetConfigurations {
                 self.outputprocess = OutputProcess()
                 let arguments: [String] = self.configurations!.arguments4rsync(index: index, argtype: .arg)
                 let process = Rsync(arguments: arguments)
-                // process.setdelegate(object: self)
+                process.setdelegate(object: self)
                 process.executeProcess(outputprocess: self.outputprocess)
                 self.process = process.getProcess()
             case -1:

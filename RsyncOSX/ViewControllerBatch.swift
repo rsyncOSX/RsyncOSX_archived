@@ -10,11 +10,6 @@
 import Foundation
 import Cocoa
 
-// Return the created batchobject
-protocol GetNewBatchTask: class {
-    func getbatchtaskObject() -> ExecuteBatch?
-}
-
 // Dismiss view when rsync error
 protocol ReportonandhaltonError: class {
     func reportandhaltonerror()
@@ -64,7 +59,6 @@ class ViewControllerBatch: NSViewController, SetDismisser, Abort, SetConfigurati
 
     // Execute batch
     @IBAction func execute(_ sender: NSButton) {
-        self.configurations!.processtermination = .batchtask
         self.batchisrunning = true
         self.estimatingbatchlabel.isHidden = true
         self.executebatch!.executebatch()
@@ -205,13 +199,6 @@ extension ViewControllerBatch: StartStopProgressIndicator {
         globalMainQueue.async(execute: { () -> Void in
             self.mainTableView.reloadData()
         })
-    }
-}
-
-extension ViewControllerBatch: GetNewBatchTask {
-
-    func getbatchtaskObject() -> ExecuteBatch? {
-        return self.executebatch
     }
 }
 
