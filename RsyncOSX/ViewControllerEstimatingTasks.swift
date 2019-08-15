@@ -5,7 +5,7 @@
 //  Created by Thomas Evensen on 21.04.2018.
 //  Copyright © 2018 Thomas Evensen. All rights reserved.
 //
-// swiftlint:disable line_length
+// swiftlint:disable line_length cyclomatic_complexity function_body_length
 
 import Foundation
 import Cocoa
@@ -25,7 +25,7 @@ protocol DismissViewEstimating: class {
     func dismissestimating(viewcontroller: NSViewController)
 }
 
-class ViewControllerEstimatingTasks: NSViewController, Abort, SetConfigurations {
+class ViewControllerEstimatingTasks: NSViewController, Abort, SetConfigurations, SetDismisser {
 
     var count: Double = 0
     var maxcount: Double = 0
@@ -75,8 +75,7 @@ class ViewControllerEstimatingTasks: NSViewController, Abort, SetConfigurations 
 
 extension ViewControllerEstimatingTasks: Updateestimating {
     func dismissview() {
-        self.progress.stopAnimation(self)
-        self.dismissDelegate?.dismissestimating(viewcontroller: self)
+        //
     }
 
     func updateProgressbar() {
@@ -109,6 +108,24 @@ extension ViewControllerEstimatingTasks: Updateestimating {
             }
             openDelegate?.openquickbackup()
         }
-        self.dismissview()
+        if (self.presentingViewController as? ViewControllertabMain) != nil {
+            self.dismissview(viewcontroller: self, vcontroller: .vctabmain)
+        } else if (self.presentingViewController as? ViewControllertabSchedule) != nil {
+            self.dismissview(viewcontroller: self, vcontroller: .vctabmain)
+        } else if (self.presentingViewController as? ViewControllerNewConfigurations) != nil {
+            self.dismissview(viewcontroller: self, vcontroller: .vctabmain)
+        } else if (self.presentingViewController as? ViewControllerCopyFiles) != nil {
+            self.dismissview(viewcontroller: self, vcontroller: .vccopyfiles)
+        } else if (self.presentingViewController as? ViewControllerSnapshots) != nil {
+            self.dismissview(viewcontroller: self, vcontroller: .vcsnapshot)
+        } else if (self.presentingViewController as? ViewControllerSsh) != nil {
+            self.dismissview(viewcontroller: self, vcontroller: .vcssh)
+        } else if (self.presentingViewController as? ViewControllerVerify) != nil {
+            self.dismissview(viewcontroller: self, vcontroller: .vcverify)
+        } else if (self.presentingViewController as? ViewControllerLoggData) != nil {
+            self.dismissview(viewcontroller: self, vcontroller: .vcloggdata)
+        } else if (self.presentingViewController as? ViewControllerLoggData) != nil {
+            self.dismissview(viewcontroller: self, vcontroller: .vcloggdata)
+        }
     }
 }
