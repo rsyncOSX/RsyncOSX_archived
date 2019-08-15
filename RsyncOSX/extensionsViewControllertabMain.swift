@@ -205,21 +205,6 @@ extension ViewControllertabMain: DismissViewEstimating {
     }
 }
 
-// Called when either a terminatopn of Process is
-// discovered or data is availiable in the filehandler
-extension ViewControllertabMain: UpdateProgress {
-
-    func processTermination() {
-       //
-    }
-
-    // Function is triggered when Process outputs data in filehandler
-    // Process is either in singleRun or batchRun
-    func fileHandler() {
-        //
-    }
-}
-
 // Deselect a row
 extension ViewControllertabMain: DeselectRowTable {
     // deselect a row after row is deleted
