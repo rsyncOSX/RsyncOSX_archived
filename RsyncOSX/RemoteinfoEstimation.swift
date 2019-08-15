@@ -14,7 +14,7 @@ protocol SetRemoteInfo: class {
     func getremoteinfo() -> RemoteinfoEstimation?
 }
 
-class RemoteinfoEstimation: SetConfigurations {
+final class RemoteinfoEstimation: SetConfigurations {
     // (hiddenID, index)
     typealias Row = (Int, Int)
     var stackoftasktobeestimated: [Row]?

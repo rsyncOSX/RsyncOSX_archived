@@ -41,7 +41,10 @@ final class CopySingleFiles: SetConfigurations {
         }
         self.outputprocess = OutputProcess()
         self.process = ProcessCmd(command: nil, arguments: arguments)
-        self.process?.updateDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vccopyfiles) as? ViewControllerCopyFiles
+        weak var copyfilesDelegate: UpdateProgress?
+        copyfilesDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vccopyfiles) as? ViewControllerCopyFiles
+        guard copyfilesDelegate != nil else { return }
+        process?.setupdateDelegate(object: copyfilesDelegate!)
         self.process!.executeProcess(outputprocess: self.outputprocess)
     }
 
@@ -56,5 +59,4 @@ final class CopySingleFiles: SetConfigurations {
         self.index = self.configurations?.getIndex(hiddenID)
         self.config = self.configurations!.getConfigurations()[self.index!]
     }
-
   }
