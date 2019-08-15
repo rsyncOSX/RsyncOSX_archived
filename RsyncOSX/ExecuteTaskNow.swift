@@ -9,7 +9,7 @@
 
 import Foundation
 
-class ExecuteTaskNow: SetConfigurations {
+final class ExecuteTaskNow: SetConfigurations {
     weak var setprocessDelegate: SendProcessreference?
     weak var startstopindicators: StartStopProgressIndicatorSingleTask?
     var outputprocess: OutputProcess?

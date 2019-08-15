@@ -8,7 +8,7 @@
 
 import Foundation
 
-class RemoteCapacity: SetConfigurations, Connected {
+final class RemoteCapacity: SetConfigurations, Connected {
 
     var process: Process?
     var outputprocess: OutputProcess?

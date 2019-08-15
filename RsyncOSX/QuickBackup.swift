@@ -16,7 +16,7 @@ enum Sort {
     case backupId
 }
 
-class QuickBackup: SetConfigurations {
+final class QuickBackup: SetConfigurations {
     var sortedlist: [NSMutableDictionary]?
     var estimatedlist: [NSDictionary]?
     typealias Row = (Int, Int)
