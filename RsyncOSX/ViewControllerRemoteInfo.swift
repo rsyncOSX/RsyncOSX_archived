@@ -96,6 +96,7 @@ class ViewControllerRemoteInfo: NSViewController, SetDismisser, Abort, Setcolor 
         globalMainQueue.async(execute: { () -> Void in
             self.mainTableView.reloadData()
         })
+        self.enableexecutebutton()
     }
 
     // Initial functions viewDidLoad and viewDidAppear
@@ -237,15 +238,6 @@ extension ViewControllerRemoteInfo: UpdateProgress {
             self.mainTableView.reloadData()
         })
         self.updateProgressbar()
-        if self.remoteinfotask?.stackoftasktobeestimated == nil {
-            self.progress.stopAnimation(nil)
-            self.progress.isHidden = true
-            self.count.stringValue = NSLocalizedString("Completed", comment: "Remote info")
-            self.count.textColor = setcolor(nsviewcontroller: self, color: .green)
-            self.selected = true
-            self.selectalltaskswithfilestobackupbutton.isEnabled = true
-            self.enableexecutebutton()
-        }
     }
 
     func fileHandler() {
@@ -259,7 +251,16 @@ extension ViewControllerRemoteInfo: StartStopProgressIndicator {
     }
 
     func stop() {
+        globalMainQueue.async(execute: { () -> Void in
+            self.mainTableView.reloadData()
+        })
         self.progress.stopAnimation(nil)
+        self.progress.isHidden = true
+        self.count.stringValue = NSLocalizedString("Completed", comment: "Remote info")
+        self.count.textColor = setcolor(nsviewcontroller: self, color: .green)
+        self.selected = true
+        self.selectalltaskswithfilestobackupbutton.isEnabled = true
+        self.enableexecutebutton()
     }
 
     func complete() {

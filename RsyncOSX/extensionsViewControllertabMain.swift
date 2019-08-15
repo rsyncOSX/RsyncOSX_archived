@@ -199,12 +199,6 @@ extension ViewControllertabMain: DismissViewController {
     }
 }
 
-extension ViewControllertabMain: DismissViewEstimating {
-    func dismissestimating(viewcontroller: NSViewController) {
-        self.dismiss(viewcontroller)
-    }
-}
-
 // Deselect a row
 extension ViewControllertabMain: DeselectRowTable {
     // deselect a row after row is deleted
@@ -269,9 +263,6 @@ extension ViewControllertabMain: Abort {
             self.seterrorinfo(info: "Abort")
             self.rsyncCommand.stringValue = ""
             if self.configurations!.remoteinfoestimation != nil && self.configurations?.estimatedlist != nil {
-                weak var localestimateupdateDelegate: Updateestimating?
-                localestimateupdateDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vcestimatingtasks) as? ViewControllerEstimatingTasks
-                localestimateupdateDelegate?.dismissview()
                 self.configurations!.remoteinfoestimation = nil
             }
         } else {

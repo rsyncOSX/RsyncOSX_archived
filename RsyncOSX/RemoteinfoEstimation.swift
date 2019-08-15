@@ -87,8 +87,13 @@ final class RemoteinfoEstimation: SetConfigurations {
 
     init(inbatch: Bool) {
         self.inbatch = inbatch
-        self.updateprogressDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vcbatch) as? ViewControllerBatch
-        self.startstopProgressIndicatorDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vcbatch) as? ViewControllerBatch
+        if inbatch {
+            self.updateprogressDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vcbatch) as? ViewControllerBatch
+            self.startstopProgressIndicatorDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vcbatch) as? ViewControllerBatch
+        } else {
+            self.updateprogressDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vcestimatingtasks) as? ViewControllerEstimatingTasks
+            self.startstopProgressIndicatorDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vcestimatingtasks) as? ViewControllerEstimatingTasks
+        }
         self.prepareandstartexecutetasks()
         self.records = [NSMutableDictionary]()
         self.configurations!.estimatedlist = [NSMutableDictionary]()
@@ -131,10 +136,8 @@ extension RemoteinfoEstimation: UpdateProgress {
         self.records?.append(record)
         self.configurations?.estimatedlist?.append(record)
         guard self.stackoftasktobeestimated != nil else {
-            self.startstopProgressIndicatorDelegate?.stop()
             self.selectalltaskswithnumbers(deselect: false)
-            // Update View
-            self.updateprogressDelegate?.processTermination()
+            self.startstopProgressIndicatorDelegate?.stop()
             return
         }
         // Update View
