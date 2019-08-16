@@ -35,13 +35,14 @@ class ViewControllerEstimatingTasks: NSViewController, Abort, SetConfigurations,
     override func viewDidLoad() {
         super.viewDidLoad()
         ViewControllerReference.shared.setvcref(viewcontroller: .vcestimatingtasks, nsviewcontroller: self)
+        ViewControllerReference.shared.activetab = .vcestimatingtasks
     }
 
     override func viewDidAppear() {
         super.viewDidAppear()
         guard self.diddissappear == false else { return }
         self.abort.isEnabled = true
-        self.configurations?.remoteinfoestimation = RemoteinfoEstimation(inbatch: false)
+        self.configurations?.remoteinfoestimation = RemoteinfoEstimation()
         self.countDelegate = self.configurations?.remoteinfoestimation
     }
 

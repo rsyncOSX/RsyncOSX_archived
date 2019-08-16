@@ -45,13 +45,6 @@ final class RemoteinfoEstimation: SetConfigurations {
         self.maxnumber = self.stackoftasktobeestimated?.count
     }
 
-    func setbackuplist(list: [NSMutableDictionary]) {
-        self.configurations?.quickbackuplist = [Int]()
-        for i in 0 ..< list.count {
-            self.configurations?.quickbackuplist!.append((list[i].value(forKey: "hiddenID") as? Int)!)
-        }
-    }
-
     func selectalltaskswithnumbers(deselect: Bool) {
         guard self.records != nil else { return }
         for i in 0 ..< self.records!.count {
@@ -64,6 +57,13 @@ final class RemoteinfoEstimation: SetConfigurations {
                     self.records![i].setValue(1, forKey: "select")
                 }
             }
+        }
+    }
+
+    func setbackuplist(list: [NSMutableDictionary]) {
+        self.configurations?.quickbackuplist = [Int]()
+        for i in 0 ..< list.count {
+            self.configurations?.quickbackuplist!.append((list[i].value(forKey: "hiddenID") as? Int)!)
         }
     }
 
@@ -85,24 +85,21 @@ final class RemoteinfoEstimation: SetConfigurations {
         _ = EstimateremoteInformationOnetask(index: self.index!, outputprocess: self.outputprocess, local: false, updateprogress: self)
     }
 
-    init(inbatch: Bool) {
-        self.inbatch = inbatch
-        if inbatch {
+    init() {
+        switch ViewControllerReference.shared.activetab ?? .vcremoteinfo {
+        case .vcbatch:
             self.updateprogressDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vcbatch) as? ViewControllerBatch
             self.startstopProgressIndicatorDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vcbatch) as? ViewControllerBatch
-        } else {
+            self.inbatch = true
+        case .vcestimatingtasks:
             self.updateprogressDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vcestimatingtasks) as? ViewControllerEstimatingTasks
             self.startstopProgressIndicatorDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vcestimatingtasks) as? ViewControllerEstimatingTasks
+        case .vcremoteinfo:
+            self.updateprogressDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vcremoteinfo) as? ViewControllerRemoteInfo
+            self.startstopProgressIndicatorDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vcremoteinfo) as? ViewControllerRemoteInfo
+        default:
+            return
         }
-        self.prepareandstartexecutetasks()
-        self.records = [NSMutableDictionary]()
-        self.configurations!.estimatedlist = [NSMutableDictionary]()
-        self.startestimation()
-    }
-
-    init() {
-        self.updateprogressDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vcremoteinfo) as? ViewControllerRemoteInfo
-        self.startstopProgressIndicatorDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vcremoteinfo) as? ViewControllerRemoteInfo
         self.prepareandstartexecutetasks()
         self.records = [NSMutableDictionary]()
         self.configurations!.estimatedlist = [NSMutableDictionary]()

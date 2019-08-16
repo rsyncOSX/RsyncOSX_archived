@@ -84,6 +84,7 @@ class ViewControllerBatch: NSViewController, SetDismisser, Abort, SetConfigurati
     override func viewDidLoad() {
         super.viewDidLoad()
         ViewControllerReference.shared.setvcref(viewcontroller: .vcbatch, nsviewcontroller: self)
+        ViewControllerReference.shared.activetab = .vcbatch
         self.mainTableView.delegate = self
         self.mainTableView.dataSource = self
         self.executebatch = ExecuteBatch()
@@ -105,7 +106,7 @@ class ViewControllerBatch: NSViewController, SetDismisser, Abort, SetConfigurati
             self.mainTableView.reloadData()
         })
         self.remoteinfotaskDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllertabMain
-        self.remoteinfotask = RemoteinfoEstimation(inbatch: true)
+        self.remoteinfotask = RemoteinfoEstimation()
         self.remoteinfotaskDelegate?.setremoteinfo(remoteinfotask: self.remoteinfotask)
         self.initiateProgressbar()
     }
