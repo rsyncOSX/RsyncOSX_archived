@@ -56,7 +56,7 @@ class ViewControllerLoggData: NSViewController, SetConfigurations, SetSchedules,
             self.presentAsSheet(self.viewControllerProfile!)
         })
     }
-    
+
     // Userconfiguration button
     @IBAction func userconfiguration(_ sender: NSButton) {
         globalMainQueue.async(execute: { () -> Void in
