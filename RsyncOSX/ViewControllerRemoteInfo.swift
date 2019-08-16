@@ -35,30 +35,43 @@ class ViewControllerRemoteInfo: NSViewController, SetDismisser, Abort, Setcolor 
             if backup.count > 0 {
                 self.remoteinfotask?.setbackuplist(list: backup)
                 weak var openDelegate: OpenQuickBackup?
-                switch ViewControllerReference.shared.activetab ?? .vctabmain {
-                case .vcnewconfigurations:
-                    openDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vcnewconfigurations) as? ViewControllerNewConfigurations
-                case .vctabmain:
+                if (self.presentingViewController as? ViewControllertabMain) != nil {
                     openDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllertabMain
-                case .vctabschedule:
+                } else if (self.presentingViewController as? ViewControllertabSchedule) != nil {
                     openDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabschedule) as? ViewControllertabSchedule
-                case .vccopyfiles:
+                } else if (self.presentingViewController as? ViewControllerNewConfigurations) != nil {
+                    openDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vcnewconfigurations) as? ViewControllerNewConfigurations
+                } else if (self.presentingViewController as? ViewControllerCopyFiles) != nil {
                     openDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vccopyfiles) as? ViewControllerCopyFiles
-                case .vcsnapshot:
-                    openDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vcsnapshot) as? ViewControllerSnapshots
-                case .vcverify:
-                    openDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vcverify) as? ViewControllerVerify
-                case .vcssh:
+                } else if (self.presentingViewController as? ViewControllerSsh) != nil {
                     openDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vcssh) as? ViewControllerSsh
-                case .vcloggdata:
+                } else if (self.presentingViewController as? ViewControllerVerify) != nil {
+                    openDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vcverify) as? ViewControllerVerify
+                } else if (self.presentingViewController as? ViewControllerLoggData) != nil {
                     openDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vcloggdata) as? ViewControllerLoggData
-                default:
-                    openDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllertabMain
+                } else if (self.presentingViewController as? ViewControllerSnapshots) != nil {
+                    openDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vcsnapshot) as? ViewControllerSnapshots
                 }
                 openDelegate?.openquickbackup()
             }
         }
-        self.dismissview(viewcontroller: self, vcontroller: .vctabmain)
+        if (self.presentingViewController as? ViewControllertabMain) != nil {
+            self.dismissview(viewcontroller: self, vcontroller: .vctabmain)
+        } else if (self.presentingViewController as? ViewControllertabSchedule) != nil {
+            self.dismissview(viewcontroller: self, vcontroller: .vctabschedule)
+        } else if (self.presentingViewController as? ViewControllerNewConfigurations) != nil {
+            self.dismissview(viewcontroller: self, vcontroller: .vcnewconfigurations)
+        } else if (self.presentingViewController as? ViewControllerCopyFiles) != nil {
+            self.dismissview(viewcontroller: self, vcontroller: .vccopyfiles)
+        } else if (self.presentingViewController as? ViewControllerSnapshots) != nil {
+            self.dismissview(viewcontroller: self, vcontroller: .vcsnapshot)
+        } else if (self.presentingViewController as? ViewControllerSsh) != nil {
+            self.dismissview(viewcontroller: self, vcontroller: .vcssh)
+        } else if (self.presentingViewController as? ViewControllerVerify) != nil {
+            self.dismissview(viewcontroller: self, vcontroller: .vcverify)
+        } else if (self.presentingViewController as? ViewControllerLoggData) != nil {
+            self.dismissview(viewcontroller: self, vcontroller: .vcloggdata)
+        }
     }
 
     // Either abort or close
