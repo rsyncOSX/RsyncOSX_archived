@@ -453,6 +453,7 @@
 		A04492C31D658FF900B3CE17 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				E958BB2523070ACE00349C81 /* RemoteEstimation */,
 				E975284420CEAADB0029B027 /* ViewControllerRestore.swift */,
 				A0A403501D76BD2E00A30017 /* ViewControllerRsyncParameters.swift */,
 				A004D8191D9586580016914F /* ViewControllerLoggData.swift */,
@@ -462,7 +463,6 @@
 				A054F1A81D6D773E00D27688 /* ViewControllerInformation.swift */,
 				A08110661D6DA7D8009444D3 /* ViewControllerProgressProcess.swift */,
 				A00FE1A71D6A19CF00012089 /* ViewControllerNewConfigurations.swift */,
-				A0AA33801D6F926A00DF4C77 /* ViewControllerBatch.swift */,
 				A0B3D9731D758E20001E190E /* ViewControllerUserconfiguration.swift */,
 				A0400C841D794EF1008A3949 /* ViewControllerNewVersion.swift */,
 				A017E29F1D7D3242003016F5 /* ViewControllerEdit.swift */,
@@ -475,10 +475,8 @@
 				E905DC101EACF7550003BF37 /* ViewControllerSsh.swift */,
 				E958CDDE1FA4CEBD00EA37A5 /* ViewControllerExtensions.swift */,
 				E942FF281FED41D0004191B5 /* ViewControllerQuickBackup.swift */,
-				E91B6E891FFA17B800A2231A /* ViewControllerRemoteInfo.swift */,
 				E90F3C40201659720089D68B /* ViewControllerSnapshots.swift */,
 				E94D2602205025790026D18F /* ViewControllerAllProfiles.swift */,
-				E9407BB8208AFB7C00A6780E /* ViewControllerEstimatingTasks.swift */,
 				E945D61320B736E9000E787B /* ViewControllerInformationLocalRemote.swift */,
 				E96059A92109B63D00DFA08E /* ViewControllerVerify.swift */,
 				E94F0707211D8FCC00B2C3D8 /* ViewControllerAllOutput.swift */,
@@ -517,9 +515,9 @@
 		A04492C51D65904500B3CE17 /* Process */ = {
 			isa = PBXGroup;
 			children = (
+				E958BB2723070BBB00349C81 /* Mainprocess */,
 				E9F4EBB71EB4C32D006EEEF1 /* CommandSsh.swift */,
 				E943DC671FF9115200E6B8B7 /* EstimateremoteInformationOnetask.swift */,
-				E9FFA02C1E7287E100B7AB2B /* ProcessCmd.swift */,
 				E9FFA02E1E728C6E00B7AB2B /* Rsync.swift */,
 				E9E70A3B1FF3BCB30099554D /* RsyncVersionString.swift */,
 				E92D03182010CB2D00A92813 /* SnapshotCreateCatalog.swift */,
@@ -536,12 +534,11 @@
 		A05275DB1D6F6E2C00D8ECBE /* Execution */ = {
 			isa = PBXGroup;
 			children = (
+				E958BB2623070B8A00349C81 /* Batch */,
 				E943DC691FF9141D00E6B8B7 /* RemoteinfoEstimation.swift */,
 				E94BCEF321C63F0800DB8EA2 /* RemoteCapacity.swift */,
 				E905EDB31FED05B10044234E /* QuickBackup.swift */,
 				A0430AD91DAFFD3C00BBC106 /* SingleTaskWorkQueu.swift */,
-				A05275D91D6F6E0000D8ECBE /* BatchTaskWorkQueu.swift */,
-				E97C09A61EFAFBC400E86999 /* ExecuteBatch.swift */,
 				E9F068EB1F27B7FB00DDF1A1 /* SingleTask.swift */,
 				E9BC4DE6230277A10058CB52 /* ExecuteTaskNow.swift */,
 			);
@@ -621,6 +618,33 @@
 				E957B1111F5F17220099947A /* ViewControllerReference.swift */,
 			);
 			name = ViewControllerReference;
+			sourceTree = "<group>";
+		};
+		E958BB2523070ACE00349C81 /* RemoteEstimation */ = {
+			isa = PBXGroup;
+			children = (
+				E91B6E891FFA17B800A2231A /* ViewControllerRemoteInfo.swift */,
+				A0AA33801D6F926A00DF4C77 /* ViewControllerBatch.swift */,
+				E9407BB8208AFB7C00A6780E /* ViewControllerEstimatingTasks.swift */,
+			);
+			name = RemoteEstimation;
+			sourceTree = "<group>";
+		};
+		E958BB2623070B8A00349C81 /* Batch */ = {
+			isa = PBXGroup;
+			children = (
+				A05275D91D6F6E0000D8ECBE /* BatchTaskWorkQueu.swift */,
+				E97C09A61EFAFBC400E86999 /* ExecuteBatch.swift */,
+			);
+			name = Batch;
+			sourceTree = "<group>";
+		};
+		E958BB2723070BBB00349C81 /* Mainprocess */ = {
+			isa = PBXGroup;
+			children = (
+				E9FFA02C1E7287E100B7AB2B /* ProcessCmd.swift */,
+			);
+			name = Mainprocess;
 			sourceTree = "<group>";
 		};
 		E9764F5E204BEE710018C0D7 /* AllProfiles */ = {
