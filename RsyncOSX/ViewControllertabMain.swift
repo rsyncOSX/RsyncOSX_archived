@@ -343,7 +343,6 @@ class ViewControllertabMain: NSViewController, ReloadTable, Deselect, VcMain, De
             self.view.window?.center()
             ViewControllerReference.shared.initialstart = 1
         }
-        ViewControllerReference.shared.activetab = .vctabmain
         if self.configurations!.configurationsDataSourcecount() > 0 {
             globalMainQueue.async(execute: { () -> Void in
                 self.mainTableView.reloadData()

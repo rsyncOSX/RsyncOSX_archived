@@ -72,7 +72,6 @@
 		A0F2E20C1D6D91AA0091E8BF /* Userconfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0F2E20B1D6D91AA0091E8BF /* Userconfiguration.swift */; };
 		A0FAF5CF1DDF2E5F0009FE7A /* ViewControllerAbout.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0FAF5CE1DDF2E5F0009FE7A /* ViewControllerAbout.swift */; };
 		A0FC45641D9545CC005208EF /* ScheduleLoggData.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0FC45631D9545CC005208EF /* ScheduleLoggData.swift */; };
-		E810D2A222CCD0C600153F8C /* Activetab.swift in Sources */ = {isa = PBXBuildFile; fileRef = E810D2A122CCD0C600153F8C /* Activetab.swift */; };
 		E84E091821BD29A3006BD293 /* PlanSnapshots.swift in Sources */ = {isa = PBXBuildFile; fileRef = E84E091721BD29A3006BD293 /* PlanSnapshots.swift */; };
 		E903F76322A8F8E6008EA38D /* Setrsyncpath.swift in Sources */ = {isa = PBXBuildFile; fileRef = E903F76222A8F8E6008EA38D /* Setrsyncpath.swift */; };
 		E903FF39221FD99F004673D9 /* PersistentStorageAllprofilesAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = E903FF38221FD99F004673D9 /* PersistentStorageAllprofilesAPI.swift */; };
@@ -224,7 +223,6 @@
 		A0F2E20B1D6D91AA0091E8BF /* Userconfiguration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Userconfiguration.swift; sourceTree = "<group>"; };
 		A0FAF5CE1DDF2E5F0009FE7A /* ViewControllerAbout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewControllerAbout.swift; sourceTree = "<group>"; };
 		A0FC45631D9545CC005208EF /* ScheduleLoggData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScheduleLoggData.swift; sourceTree = "<group>"; };
-		E810D2A122CCD0C600153F8C /* Activetab.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Activetab.swift; sourceTree = "<group>"; };
 		E84E091721BD29A3006BD293 /* PlanSnapshots.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlanSnapshots.swift; sourceTree = "<group>"; };
 		E903F76222A8F8E6008EA38D /* Setrsyncpath.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Setrsyncpath.swift; sourceTree = "<group>"; };
 		E903FF38221FD99F004673D9 /* PersistentStorageAllprofilesAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistentStorageAllprofilesAPI.swift; sourceTree = "<group>"; };
@@ -512,7 +510,6 @@
 				E99E2CCD22A9260E009C60FF /* Getrsyncpath.swift */,
 				E91E1A3322A9823B00AD0935 /* Norsync.swift */,
 				E958D62422B65ADF00755074 /* Selectprofile.swift */,
-				E810D2A122CCD0C600153F8C /* Activetab.swift */,
 			);
 			name = Utils;
 			sourceTree = "<group>";
@@ -974,7 +971,6 @@
 				A091C65B1D86A59500278E74 /* CopySingleFiles.swift in Sources */,
 				E943DC661FF90A6600E6B8B7 /* RemoteinfonumbersOnetask.swift in Sources */,
 				A0A403521D76BD2E00A30017 /* ViewControllerRsyncParameters.swift in Sources */,
-				E810D2A222CCD0C600153F8C /* Activetab.swift in Sources */,
 				E92276E422995B3500F7D2B6 /* ConvertOneConfig.swift in Sources */,
 				A04492B41D658F2100B3CE17 /* CopyFileArguments.swift in Sources */,
 				A0B3D9741D758E20001E190E /* ViewControllerUserconfiguration.swift in Sources */,

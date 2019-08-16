@@ -170,7 +170,7 @@ extension ViewControllertabMain: RsyncIsChanged {
 // Check for remote connections, reload table when completed.
 extension ViewControllertabMain: Connections {
     func displayConnections() {
-        guard Activetab(viewcontroller: .vctabmain).isactive == true else { return }
+        guard (self.presentingViewController as? ViewControllertabMain) != nil else { return }
         self.loadProfileMenu = true
         globalMainQueue.async(execute: { () -> Void in
             self.mainTableView.reloadData()
@@ -180,7 +180,7 @@ extension ViewControllertabMain: Connections {
 
 extension ViewControllertabMain: NewVersionDiscovered {
     func notifyNewVersion() {
-        guard Activetab(viewcontroller: .vctabmain).isactive == true else { return }
+        guard (self.presentingViewController as? ViewControllertabMain) != nil else { return }
         globalMainQueue.async(execute: { () -> Void in
             self.presentAsSheet(self.newVersionViewController!)
         })
