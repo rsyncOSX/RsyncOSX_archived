@@ -132,7 +132,7 @@ extension RemoteinfoEstimation: UpdateProgress {
         }
         self.records?.append(record)
         self.configurations?.estimatedlist?.append(record)
-        guard self.stackoftasktobeestimated != nil else {
+        guard self.stackoftasktobeestimated?.count ?? 0 > 0 else {
             self.selectalltaskswithnumbers(deselect: false)
             self.startstopProgressIndicatorDelegate?.stop()
             return
@@ -141,10 +141,6 @@ extension RemoteinfoEstimation: UpdateProgress {
         self.updateprogressDelegate?.processTermination()
         self.outputprocess = OutputProcess()
         self.index = self.stackoftasktobeestimated?.remove(at: 0).1
-        if self.stackoftasktobeestimated?.count == 0 {
-            // Last estimation
-            self.stackoftasktobeestimated = nil
-        }
         _ = EstimateremoteInformationOnetask(index: self.index!, outputprocess: self.outputprocess, local: false, updateprogress: self)
     }
 
