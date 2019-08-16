@@ -143,7 +143,6 @@ class ViewControllerNewConfigurations: NSViewController, SetConfigurations, VcSc
 
     override func viewDidAppear() {
         super.viewDidAppear()
-        ViewControllerReference.shared.activetab = .vcnewconfigurations
         self.backuptypeselected = .synchronize
         self.backuptype.selectItem(at: 0)
         self.index = self.index()

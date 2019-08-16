@@ -156,7 +156,6 @@ class ViewControllerSsh: NSViewController, SetConfigurations, VcExecute {
 
     override func viewDidAppear() {
         super.viewDidAppear()
-        ViewControllerReference.shared.activetab = .vcssh
         self.checkDsaPubKeyButton.isEnabled = false
         self.checkRsaPubKeyButton.isEnabled = false
         self.createKeys.isEnabled = false

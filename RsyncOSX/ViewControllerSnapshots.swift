@@ -185,7 +185,6 @@ class ViewControllerSnapshots: NSViewController, SetDismisser, SetConfigurations
 
     override func viewDidAppear() {
         super.viewDidAppear()
-        ViewControllerReference.shared.activetab = .vcsnapshot
         guard self.diddissappear == false else { return }
         self.initcombox(combobox: self.selectplan, values: self.combovalueslast, index: 0)
         self.initcombox(combobox: self.selectdayofweek, values: self.combovaluesdayofweek, index: 0)

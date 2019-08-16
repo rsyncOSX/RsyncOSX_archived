@@ -5,7 +5,7 @@
 //  Created by Thomas Evensen on 26.07.2018.
 //  Copyright © 2018 Thomas Evensen. All rights reserved.
 //
-// swiftlint:disable line_length type_body_length
+// swiftlint:disable line_length
 
 import Foundation
 import Cocoa
@@ -145,7 +145,6 @@ class ViewControllerVerify: NSViewController, SetConfigurations, Index, VcExecut
 
     override func viewDidAppear() {
         super.viewDidAppear()
-        ViewControllerReference.shared.activetab = .vcverify
         self.index = self.index()
         if let index = self.index {
             let config = self.configurations!.getConfigurations()[index]

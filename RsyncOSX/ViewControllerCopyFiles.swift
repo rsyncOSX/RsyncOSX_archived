@@ -129,7 +129,6 @@ class ViewControllerCopyFiles: NSViewController, SetConfigurations, Delay, VcCop
 
     override func viewDidAppear() {
         super.viewDidAppear()
-        ViewControllerReference.shared.activetab = .vccopyfiles
         guard self.diddissappear == false else {
             globalMainQueue.async(execute: { () -> Void in
                 self.rsynctableView.reloadData()
