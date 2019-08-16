@@ -83,6 +83,20 @@ class ViewControllerNewConfigurations: NSViewController, SetConfigurations, VcSc
         self.remote = RemoteCapacity(object: self)
     }
 
+    // Selecting profiles
+    @IBAction func profiles(_ sender: NSButton) {
+        globalMainQueue.async(execute: { () -> Void in
+            self.presentAsSheet(self.viewControllerProfile!)
+        })
+    }
+
+    // Userconfiguration button
+    @IBAction func userconfiguration(_ sender: NSButton) {
+        globalMainQueue.async(execute: { () -> Void in
+            self.presentAsSheet(self.viewControllerUserconfiguration!)
+        })
+    }
+
     @IBAction func copyconfiguration(_ sender: NSButton) {
         guard self.index != nil else { return }
         let hiddenID = self.configurations!.gethiddenID(index: self.index!)
@@ -105,13 +119,6 @@ class ViewControllerNewConfigurations: NSViewController, SetConfigurations, VcSc
         globalMainQueue.async(execute: { () -> Void in
             self.addtable.reloadData()
             self.setFields()
-        })
-    }
-
-    // Userconfiguration button
-    @IBAction func userconfiguration(_ sender: NSButton) {
-        globalMainQueue.async(execute: { () -> Void in
-            self.presentAsSheet(self.viewControllerUserconfiguration!)
         })
     }
 

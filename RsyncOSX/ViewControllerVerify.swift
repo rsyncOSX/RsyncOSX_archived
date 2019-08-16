@@ -5,12 +5,12 @@
 //  Created by Thomas Evensen on 26.07.2018.
 //  Copyright © 2018 Thomas Evensen. All rights reserved.
 //
-// swiftlint:disable line_length
+// swiftlint:disable line_length type_body_length
 
 import Foundation
 import Cocoa
 
-class ViewControllerVerify: NSViewController, SetConfigurations, Index, VcExecute, Connected, Setcolor {
+class ViewControllerVerify: NSViewController, SetConfigurations, Index, VcMain, Connected, Setcolor {
 
     var outputprocess: OutputProcess?
     var index: Int?
@@ -68,6 +68,20 @@ class ViewControllerVerify: NSViewController, SetConfigurations, Index, VcExecut
 
     @IBAction func automaticbackup(_ sender: NSButton) {
         self.presentAsSheet(self.viewControllerEstimating!)
+    }
+
+    // Selecting profiles
+    @IBAction func profiles(_ sender: NSButton) {
+        globalMainQueue.async(execute: { () -> Void in
+            self.presentAsSheet(self.viewControllerProfile!)
+        })
+    }
+
+    // Userconfiguration button
+    @IBAction func userconfiguration(_ sender: NSButton) {
+        globalMainQueue.async(execute: { () -> Void in
+            self.presentAsSheet(self.viewControllerUserconfiguration!)
+        })
     }
 
     @IBAction func verify(_ sender: NSButton) {

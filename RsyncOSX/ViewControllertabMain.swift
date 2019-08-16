@@ -415,7 +415,6 @@ class ViewControllertabMain: NSViewController, ReloadTable, Deselect, VcMain, De
             _ = Norsync()
             return
         }
-        self.singletask = nil
         self.setNumbers(outputprocess: nil)
         self.deselect()
         globalMainQueue.async(execute: { () -> Void in

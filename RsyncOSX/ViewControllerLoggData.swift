@@ -11,7 +11,7 @@
 import Foundation
 import Cocoa
 
-class ViewControllerLoggData: NSViewController, SetConfigurations, SetSchedules, Delay, Index, Connected, VcExecute {
+class ViewControllerLoggData: NSViewController, SetConfigurations, SetSchedules, Delay, Index, Connected, VcMain {
 
     private var scheduleloggdata: ScheduleLoggData?
     private var snapshotsloggdata: SnapshotsLoggData?
@@ -48,6 +48,20 @@ class ViewControllerLoggData: NSViewController, SetConfigurations, SetSchedules,
 
     @IBAction func automaticbackup(_ sender: NSButton) {
         self.presentAsSheet(self.viewControllerEstimating!)
+    }
+
+    // Selecting profiles
+    @IBAction func profiles(_ sender: NSButton) {
+        globalMainQueue.async(execute: { () -> Void in
+            self.presentAsSheet(self.viewControllerProfile!)
+        })
+    }
+
+    // Userconfiguration button
+    @IBAction func userconfiguration(_ sender: NSButton) {
+        globalMainQueue.async(execute: { () -> Void in
+            self.presentAsSheet(self.viewControllerUserconfiguration!)
+        })
     }
 
     @IBAction func sortdirection(_ sender: NSButton) {

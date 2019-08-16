@@ -10,7 +10,7 @@
 import Foundation
 import Cocoa
 
-class ViewControllerSsh: NSViewController, SetConfigurations, VcExecute {
+class ViewControllerSsh: NSViewController, SetConfigurations, VcMain {
 
     var sshcmd: Ssh?
     var hiddenID: Int?
@@ -58,6 +58,20 @@ class ViewControllerSsh: NSViewController, SetConfigurations, VcExecute {
 
     @IBAction func automaticbackup(_ sender: NSButton) {
         self.presentAsSheet(self.viewControllerEstimating!)
+    }
+
+    // Selecting profiles
+    @IBAction func profiles(_ sender: NSButton) {
+        globalMainQueue.async(execute: { () -> Void in
+            self.presentAsSheet(self.viewControllerProfile!)
+        })
+    }
+
+    // Userconfiguration button
+    @IBAction func userconfiguration(_ sender: NSButton) {
+        globalMainQueue.async(execute: { () -> Void in
+            self.presentAsSheet(self.viewControllerUserconfiguration!)
+        })
     }
 
     @IBAction func terminalApp(_ sender: NSButton) {

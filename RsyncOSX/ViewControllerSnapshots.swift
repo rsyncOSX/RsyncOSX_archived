@@ -75,6 +75,20 @@ class ViewControllerSnapshots: NSViewController, SetDismisser, SetConfigurations
         self.presentAsSheet(self.viewControllerEstimating!)
     }
 
+    // Selecting profiles
+    @IBAction func profiles(_ sender: NSButton) {
+        globalMainQueue.async(execute: { () -> Void in
+            self.presentAsSheet(self.viewControllerProfile!)
+        })
+    }
+
+    // Userconfiguration button
+    @IBAction func userconfiguration(_ sender: NSButton) {
+        globalMainQueue.async(execute: { () -> Void in
+            self.presentAsSheet(self.viewControllerUserconfiguration!)
+        })
+    }
+
     @IBAction func savesnapdayofweek(_ sender: NSButton) {
         var configurations: [Configuration] = self.configurations!.getConfigurations()
         guard configurations.count > 0 else { return }
@@ -104,13 +118,6 @@ class ViewControllerSnapshots: NSViewController, SetDismisser, SetConfigurations
         combobox.removeAllItems()
         combobox.addItems(withObjectValues: values)
         combobox.selectItem(at: index)
-    }
-
-    // Userconfiguration button
-    @IBAction func userconfiguration(_ sender: NSButton) {
-        globalMainQueue.async(execute: { () -> Void in
-            self.presentAsSheet(self.viewControllerUserconfiguration!)
-        })
     }
 
     @IBAction func updatedeletesnapshotsnum(_ sender: NSSlider) {
