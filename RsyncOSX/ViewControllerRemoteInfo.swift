@@ -76,7 +76,7 @@ class ViewControllerRemoteInfo: NSViewController, SetDismisser, Abort, Setcolor 
 
     // Either abort or close
     @IBAction func abort(_ sender: NSButton) {
-        if self.remoteinfotask?.stackoftasktobeestimated != nil {
+        if self.remoteinfotask?.stackoftasktobeestimated?.count ?? 0 > 0 {
             self.abort()
             self.remoteinfotaskDelegate?.setremoteinfo(remoteinfotask: nil)
         }
