@@ -110,9 +110,9 @@ class ViewControllerUserconfiguration: NSViewController, NewRsync, SetDismisser,
         if (self.presentingViewController as? ViewControllertabMain) != nil {
             self.dismissview(viewcontroller: self, vcontroller: .vctabmain)
         } else if (self.presentingViewController as? ViewControllertabSchedule) != nil {
-            self.dismissview(viewcontroller: self, vcontroller: .vctabmain)
+            self.dismissview(viewcontroller: self, vcontroller: .vctabschedule)
         } else if (self.presentingViewController as? ViewControllerNewConfigurations) != nil {
-            self.dismissview(viewcontroller: self, vcontroller: .vctabmain)
+            self.dismissview(viewcontroller: self, vcontroller: .vcnewconfigurations)
         } else if (self.presentingViewController as? ViewControllerCopyFiles) != nil {
             self.dismissview(viewcontroller: self, vcontroller: .vccopyfiles)
         } else if (self.presentingViewController as? ViewControllerSnapshots) != nil {
