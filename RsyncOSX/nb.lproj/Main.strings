@@ -944,7 +944,7 @@
 "Mn8-vX-I59.title" = "Konfigurasjoner snapshot";
 
 /* Class = "NSButtonCell"; title = "Changelog"; ObjectID = "MRU-rs-ycW"; */
-"MRU-rs-ycW.title" = "Endringslog";
+"MRU-rs-ycW.title" = "Endringslogg";
 
 /* Class = "NSTextFieldCell"; title = "Doubleclick on row to get remote capacity..."; ObjectID = "mry-vG-0Hd"; */
 "mry-vG-0Hd.title" = "Dobbel klikk på rad for ekstern info...";
@@ -1364,7 +1364,7 @@
 "Vdr-fp-XzO.title" = "Lukk andre";
 
 /* Class = "NSButtonCell"; title = "Changelog"; ObjectID = "vDS-vt-fgh"; */
-"vDS-vt-fgh.title" = "Endringslog";
+"vDS-vt-fgh.title" = "Endringslogg";
 
 /* Class = "NSTableColumn"; headerCell.title = "Period"; ObjectID = "VFf-HQ-GLW"; */
 "VFf-HQ-GLW.headerCell.title" = "Periode";
@@ -1492,6 +1492,9 @@
 /* Class = "NSTextFieldCell"; title = "Finding tasks for automatic backup, please wait..."; ObjectID = "xXy-oY-7zq"; */
 "xXy-oY-7zq.title" = "Søker etter oppgaver for automatisk backup...";
 
+/* Class = "NSTextFieldCell"; title = "Chinese"; ObjectID = "xz5-2j-E51"; */
+"xz5-2j-E51.title" = "";
+
 /* Class = "NSTextFieldCell"; title = "Table View Cell"; ObjectID = "xZ6-fW-WQl"; */
 "xZ6-fW-WQl.title" = "Table View Cell";
 
@@ -1536,6 +1539,9 @@
 
 /* Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "yUA-PJ-sOA"; */
 "yUA-PJ-sOA.title" = "Text Cell";
+
+/* Class = "NSTextFieldCell"; title = "Norwegian"; ObjectID = "Z6c-BQ-VEV"; */
+"Z6c-BQ-VEV.title" = "";
 
 /* Class = "NSTextFieldCell"; title = "Table View Cell"; ObjectID = "Z8Z-vX-Z7f"; */
 "Z8Z-vX-Z7f.title" = "Table View Cell";

@@ -37,6 +37,9 @@
 /* Restore */
 "Cancel or Restore" = "Kanseler eller restore";
 
+/* chinese */
+"Chinese (Simplified) translation by: StringKe" = "Chinese (Simplified) oversettelse av: StringKe";
+
 /* Close NSAlert */
 "Close" = "Lukk";
 
@@ -197,6 +200,9 @@
 
 /* plan */
 "none" = "ingen";
+
+/* norwegian */
+"Norwegian translation by: Thomas Evensen" = "Norsk oversettelse av: Thomas Evensen";
 
 /* Copy files */
 "Not a remote task, use Finder to copy files..." = "Ikke en ekstern oppgave, bruk Finder for å kopiere filer...";

@@ -4102,11 +4102,11 @@ DQ
             <objects>
                 <viewController title="About" storyboardIdentifier="AboutID" id="Fmg-bN-W4h" customClass="ViewControllerAbout" customModule="RsyncOSX" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="VH8-E3-P50">
-                        <rect key="frame" x="0.0" y="0.0" width="530" height="401"/>
+                        <rect key="frame" x="0.0" y="0.0" width="530" height="438"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="qSD-iK-Od5">
-                                <rect key="frame" x="-2" y="314" width="534" height="14"/>
+                                <rect key="frame" x="-2" y="351" width="534" height="14"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" title="Version :" id="q8z-Ku-oKx">
                                     <font key="font" metaFont="smallSystem"/>
@@ -4126,7 +4126,7 @@ DQ
                                 </connections>
                             </button>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="eEm-dl-WTP">
-                                <rect key="frame" x="-2" y="367" width="534" height="14"/>
+                                <rect key="frame" x="-2" y="404" width="534" height="14"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" title="copyright" id="RFG-uU-oRD">
                                     <font key="font" metaFont="smallSystem"/>
@@ -4135,7 +4135,7 @@ DQ
                                 </textFieldCell>
                             </textField>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="rcJ-d0-Xcf">
-                                <rect key="frame" x="-2" y="331" width="534" height="14"/>
+                                <rect key="frame" x="-2" y="368" width="534" height="14"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" title="All rights reserved." id="I48-tD-2H3">
                                     <font key="font" metaFont="smallSystem"/>
@@ -4153,7 +4153,7 @@ DQ
                                 </textFieldCell>
                             </textField>
                             <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="aay-IU-vK3">
-                                <rect key="frame" x="145" y="276" width="97" height="32"/>
+                                <rect key="frame" x="136" y="276" width="106" height="32"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <buttonCell key="cell" type="push" title="Changelog" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="vDS-vt-fgh">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -4164,7 +4164,7 @@ DQ
                                 </connections>
                             </button>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="WiU-GQ-9Gh">
-                                <rect key="frame" x="-2" y="348" width="534" height="14"/>
+                                <rect key="frame" x="-2" y="385" width="534" height="14"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" title="icon" id="Vnu-mV-aob">
                                     <font key="font" metaFont="smallSystem"/>
@@ -4181,20 +4181,6 @@ DQ
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
-                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2Q3-0k-gJt">
-                                <rect key="frame" x="453" y="13" width="63" height="32"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <buttonCell key="cell" type="push" title="Close" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="ej1-6m-NgB">
-                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                    <font key="font" metaFont="system"/>
-                                    <string key="keyEquivalent" base64-UTF8="YES">
-DQ
-</string>
-                                </buttonCell>
-                                <connections>
-                                    <action selector="dismiss:" target="Fmg-bN-W4h" id="ho3-Iv-YYU"/>
-                                </connections>
-                            </button>
                             <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="zNF-Od-Xv5">
                                 <rect key="frame" x="237" y="276" width="68" height="32"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
@@ -4217,12 +4203,46 @@ DQ
                                     <action selector="documentation:" target="Fmg-bN-W4h" id="zf8-5k-r86"/>
                                 </connections>
                             </button>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="6Ef-YO-S51">
+                                <rect key="frame" x="-2" y="330" width="534" height="17"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <textFieldCell key="cell" lineBreakMode="clipping" alignment="center" title="Chinese" id="xz5-2j-E51">
+                                    <font key="font" metaFont="system" size="11"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5ca-eX-GpJ">
+                                <rect key="frame" x="-2" y="312" width="534" height="17"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <textFieldCell key="cell" lineBreakMode="clipping" alignment="center" title="Norwegian" id="Z6c-BQ-VEV">
+                                    <font key="font" metaFont="system" size="11"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2Q3-0k-gJt">
+                                <rect key="frame" x="453" y="13" width="63" height="32"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <buttonCell key="cell" type="push" title="Close" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="ej1-6m-NgB">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                    <string key="keyEquivalent" base64-UTF8="YES">
+DQ
+</string>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="dismiss:" target="Fmg-bN-W4h" id="ho3-Iv-YYU"/>
+                                </connections>
+                            </button>
                         </subviews>
                     </view>
                     <connections>
+                        <outlet property="chinese" destination="6Ef-YO-S51" id="VZr-sb-sZC"/>
                         <outlet property="copyright" destination="eEm-dl-WTP" id="qVz-Jy-8ht"/>
                         <outlet property="downloadbutton" destination="ZNh-nd-7hR" id="KN1-dK-3ek"/>
                         <outlet property="iconby" destination="WiU-GQ-9Gh" id="t7n-9s-jK2"/>
+                        <outlet property="norwegian" destination="5ca-eX-GpJ" id="ybw-86-msP"/>
                         <outlet property="rsyncversionstring" destination="e5f-1g-Nc5" id="coO-Zq-IKg"/>
                         <outlet property="thereisanewversion" destination="EZx-Vc-vlo" id="d0s-2A-O7x"/>
                         <outlet property="version" destination="qSD-iK-Od5" id="CcB-Wb-ucF"/>
@@ -4230,7 +4250,7 @@ DQ
                 </viewController>
                 <customObject id="r6G-dy-dyg" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-235" y="2186.5"/>
+            <point key="canvasLocation" x="-235" y="2205"/>
         </scene>
         <!--RsyncOSX parameters-->
         <scene sceneID="lYn-Uy-8Sa">

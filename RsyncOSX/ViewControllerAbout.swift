@@ -17,9 +17,14 @@ class ViewControllerAbout: NSViewController, SetDismisser, Delay {
     @IBOutlet weak var rsyncversionstring: NSTextField!
     @IBOutlet weak var copyright: NSTextField!
     @IBOutlet weak var iconby: NSTextField!
+    @IBOutlet weak var chinese: NSTextField!
+    @IBOutlet weak var norwegian: NSTextField!
+    
 
     var copyrigthstring: String = NSLocalizedString("Copyright ©2019 Thomas Evensen", comment: "copyright")
     var iconbystring: String = NSLocalizedString("Icon by: Zsolt Sándor", comment: "icon")
+    var chinesestring: String = NSLocalizedString("Chinese (Simplified) translation by: StringKe", comment: "chinese")
+    var norwegianstring: String = NSLocalizedString("Norwegian translation by: Thomas Evensen", comment: "norwegian")
 
     var checkfornewversion: Checkfornewversion?
     private var resource: Resources?
@@ -64,6 +69,8 @@ class ViewControllerAbout: NSViewController, SetDismisser, Delay {
         ViewControllerReference.shared.setvcref(viewcontroller: .vcabout, nsviewcontroller: self)
         self.copyright.stringValue = self.copyrigthstring
         self.iconby.stringValue = self.iconbystring
+        self.chinese.stringValue = self.chinesestring
+        self.norwegian.stringValue = self.norwegianstring
         self.resource = Resources()
     }
 
