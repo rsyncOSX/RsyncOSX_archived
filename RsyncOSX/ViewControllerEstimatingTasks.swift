@@ -30,6 +30,7 @@ class ViewControllerEstimatingTasks: NSViewController, Abort, SetConfigurations,
 
     @IBAction func abort(_ sender: NSButton) {
         self.abort()
+        self.closeview()
     }
 
     override func viewDidLoad() {
@@ -61,6 +62,26 @@ class ViewControllerEstimatingTasks: NSViewController, Abort, SetConfigurations,
         self.progress.doubleValue = 0
         self.progress.startAnimation(self)
     }
+
+    private func closeview() {
+        if (self.presentingViewController as? ViewControllertabMain) != nil {
+            self.dismissview(viewcontroller: self, vcontroller: .vctabmain)
+        } else if (self.presentingViewController as? ViewControllertabSchedule) != nil {
+            self.dismissview(viewcontroller: self, vcontroller: .vctabschedule)
+        } else if (self.presentingViewController as? ViewControllerNewConfigurations) != nil {
+            self.dismissview(viewcontroller: self, vcontroller: .vcnewconfigurations)
+        } else if (self.presentingViewController as? ViewControllerCopyFiles) != nil {
+            self.dismissview(viewcontroller: self, vcontroller: .vccopyfiles)
+        } else if (self.presentingViewController as? ViewControllerSnapshots) != nil {
+            self.dismissview(viewcontroller: self, vcontroller: .vcsnapshot)
+        } else if (self.presentingViewController as? ViewControllerSsh) != nil {
+            self.dismissview(viewcontroller: self, vcontroller: .vcssh)
+        } else if (self.presentingViewController as? ViewControllerVerify) != nil {
+            self.dismissview(viewcontroller: self, vcontroller: .vcverify)
+        } else if (self.presentingViewController as? ViewControllerLoggData) != nil {
+            self.dismissview(viewcontroller: self, vcontroller: .vcloggdata)
+        }
+    }
 }
 
 extension ViewControllerEstimatingTasks: UpdateProgress {
@@ -87,30 +108,23 @@ extension ViewControllerEstimatingTasks: StartStopProgressIndicator {
         self.configurations!.remoteinfoestimation?.setbackuplist()
         weak var openDelegate: OpenQuickBackup?
         if (self.presentingViewController as? ViewControllertabMain) != nil {
-            self.dismissview(viewcontroller: self, vcontroller: .vctabmain)
             openDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllertabMain
         } else if (self.presentingViewController as? ViewControllertabSchedule) != nil {
-            self.dismissview(viewcontroller: self, vcontroller: .vctabschedule)
             openDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabschedule) as? ViewControllertabSchedule
         } else if (self.presentingViewController as? ViewControllerNewConfigurations) != nil {
-            self.dismissview(viewcontroller: self, vcontroller: .vcnewconfigurations)
             openDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vcnewconfigurations) as? ViewControllerNewConfigurations
         } else if (self.presentingViewController as? ViewControllerCopyFiles) != nil {
-            self.dismissview(viewcontroller: self, vcontroller: .vccopyfiles)
             openDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vccopyfiles) as? ViewControllerCopyFiles
         } else if (self.presentingViewController as? ViewControllerSsh) != nil {
             openDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vcssh) as? ViewControllerSsh
-            self.dismissview(viewcontroller: self, vcontroller: .vcssh)
         } else if (self.presentingViewController as? ViewControllerVerify) != nil {
             openDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vcverify) as? ViewControllerVerify
-            self.dismissview(viewcontroller: self, vcontroller: .vcverify)
         } else if (self.presentingViewController as? ViewControllerLoggData) != nil {
             openDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vcloggdata) as? ViewControllerLoggData
-            self.dismissview(viewcontroller: self, vcontroller: .vcloggdata)
         } else if (self.presentingViewController as? ViewControllerSnapshots) != nil {
             openDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vcsnapshot) as? ViewControllerSnapshots
-            self.dismissview(viewcontroller: self, vcontroller: .vcsnapshot)
         }
+        self.closeview()
         openDelegate?.openquickbackup()
     }
 }
