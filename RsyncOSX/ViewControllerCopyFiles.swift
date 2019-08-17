@@ -64,6 +64,13 @@ class ViewControllerCopyFiles: NSViewController, SetConfigurations, Delay, VcCop
         self.presentAsSheet(self.viewControllerEstimating!)
     }
 
+    // Selecting profiles
+    @IBAction func profiles(_ sender: NSButton) {
+        globalMainQueue.async(execute: { () -> Void in
+            self.presentAsSheet(self.viewControllerProfile!)
+        })
+    }
+
     // Userconfiguration button
     @IBAction func userconfiguration(_ sender: NSButton) {
         globalMainQueue.async(execute: { () -> Void in
@@ -380,6 +387,7 @@ extension ViewControllerCopyFiles: NewProfile {
         self.restoretabledata  = nil
         globalMainQueue.async(execute: { () -> Void in
             self.restoretableView.reloadData()
+            self.rsynctableView.reloadData()
         })
     }
 

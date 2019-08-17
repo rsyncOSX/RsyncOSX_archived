@@ -325,3 +325,13 @@ extension ViewControllerLoggData: DismissViewController {
         self.dismiss(viewcontroller)
     }
 }
+
+extension ViewControllerLoggData: NewProfile {
+    func newProfile(profile: String?) {
+        self.reloadtabledata()
+    }
+
+    func enableProfileMenu() {
+        //
+    }
+}
