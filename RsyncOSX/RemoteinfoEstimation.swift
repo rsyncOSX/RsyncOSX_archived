@@ -24,8 +24,7 @@ final class RemoteinfoEstimation: SetConfigurations {
     weak var reloadtableDelegate: Reloadandrefresh?
     weak var startstopProgressIndicatorDelegate: StartStopProgressIndicator?
     var index: Int?
-    var maxnumber: Int?
-    var count: Int?
+    private var maxnumber: Int?
     var inbatch: Bool?
 
     private func prepareandstartexecutetasks() {
@@ -107,7 +106,7 @@ final class RemoteinfoEstimation: SetConfigurations {
     }
 }
 
-extension RemoteinfoEstimation: CountEstimating {
+extension RemoteinfoEstimation: CountRemoteEstimatingNumberoftasks {
     func maxCount() -> Int {
         return self.maxnumber ?? 0
     }
@@ -120,7 +119,6 @@ extension RemoteinfoEstimation: CountEstimating {
 extension RemoteinfoEstimation: UpdateProgress {
 
     func processTermination() {
-        self.count = self.stackoftasktobeestimated?.count
         let record = RemoteinfonumbersOnetask(outputprocess: self.outputprocess).record()
         record.setValue(self.configurations?.getConfigurations()[self.index!].localCatalog, forKey: "localCatalog")
         record.setValue(self.configurations?.getConfigurations()[self.index!].offsiteCatalog, forKey: "offsiteCatalog")

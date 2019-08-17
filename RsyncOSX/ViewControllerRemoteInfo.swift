@@ -148,7 +148,7 @@ class ViewControllerRemoteInfo: NSViewController, SetDismisser, Abort, Setcolor 
         if self.loaded {
             return NSLocalizedString("Loaded cached data...", comment: "Remote info")
         } else {
-            let max = self.remoteinfotask?.maxnumber ?? 0
+            let max = self.remoteinfotask?.maxCount() ?? 0
             return NSLocalizedString("Number of tasks to estimate:", comment: "Remote info") + " " + String(describing: max)
         }
     }
@@ -170,34 +170,27 @@ class ViewControllerRemoteInfo: NSViewController, SetDismisser, Abort, Setcolor 
         }
     }
 
-    // Progress bars
     private func initiateProgressbar() {
-        if let calculatedNumberOfFiles = self.remoteinfotask?.maxnumber {
-            self.progress.maxValue = Double(calculatedNumberOfFiles)
-        }
+        self.progress.maxValue = Double(self.remoteinfotask?.maxCount() ?? 0)
         self.progress.minValue = 0
         self.progress.doubleValue = 0
         self.progress.startAnimation(self)
     }
 
-    private func updateProgressbar() {
-         globalMainQueue.async(execute: { () -> Void in
-            let rest = self.remoteinfotask?.count ?? 0
-            let max = self.remoteinfotask?.maxnumber ?? 0
-            self.progress.doubleValue = Double(max - rest)
-        })
+    private func updateProgressbar(_ value: Double) {
+        self.progress.doubleValue = value
     }
 }
 
 extension ViewControllerRemoteInfo: NSTableViewDataSource {
-    // Delegate for size of table
+
     func numberOfRows(in tableView: NSTableView) -> Int {
         return self.remoteinfotask?.records?.count ?? 0
     }
 }
 
 extension ViewControllerRemoteInfo: NSTableViewDelegate, Attributedestring {
-    // TableView delegates
+
     func tableView(_ tableView: NSTableView, objectValueFor tableColumn: NSTableColumn?, row: Int) -> Any? {
         guard self.remoteinfotask?.records != nil else { return nil }
         guard row < (self.remoteinfotask!.records?.count)! else { return nil }
@@ -239,7 +232,8 @@ extension ViewControllerRemoteInfo: UpdateProgress {
         globalMainQueue.async(execute: { () -> Void in
             self.mainTableView.reloadData()
         })
-        self.updateProgressbar()
+        let progress = Double(self.remoteinfotask?.maxCount() ?? 0) - Double(self.remoteinfotask?.inprogressCount() ?? 0)
+        self.updateProgressbar(progress)
     }
 
     func fileHandler() {
@@ -249,7 +243,7 @@ extension ViewControllerRemoteInfo: UpdateProgress {
 
 extension ViewControllerRemoteInfo: StartStopProgressIndicator {
     func start() {
-        // self.initiateProgressbar()
+        //
     }
 
     func stop() {
@@ -266,6 +260,6 @@ extension ViewControllerRemoteInfo: StartStopProgressIndicator {
     }
 
     func complete() {
-        // nothing
+        //
     }
 }
