@@ -11,7 +11,7 @@ import Foundation
 import Cocoa
 
 // Protocol for progress indicator
-protocol CountEstimating: class {
+protocol CountRemoteEstimatingNumberoftasks: class {
     func maxCount() -> Int
     func inprogressCount() -> Int
 }
@@ -22,7 +22,8 @@ class ViewControllerEstimatingTasks: NSViewController, Abort, SetConfigurations,
     var maxcount: Double = 0
     var calculatedNumberOfFiles: Int?
 
-    weak var countDelegate: CountEstimating?
+    weak var countDelegate: CountRemoteEstimatingNumberoftasks?
+    private var remoteinfotask: RemoteinfoEstimation?
     var diddissappear: Bool = false
 
     @IBOutlet weak var abort: NSButton!
@@ -43,8 +44,10 @@ class ViewControllerEstimatingTasks: NSViewController, Abort, SetConfigurations,
         super.viewDidAppear()
         guard self.diddissappear == false else { return }
         self.abort.isEnabled = true
-        self.configurations?.remoteinfoestimation = RemoteinfoEstimation()
-        self.countDelegate = self.configurations?.remoteinfoestimation
+        self.remoteinfotask = RemoteinfoEstimation()
+        self.initiateProgressbar()
+        // self.configurations?.remoteinfoestimation = RemoteinfoEstimation()
+        // self.countDelegate = self.configurations?.remoteinfoestimation
     }
 
     override func viewWillDisappear() {
@@ -54,13 +57,14 @@ class ViewControllerEstimatingTasks: NSViewController, Abort, SetConfigurations,
 
     // Progress bars
     private func initiateProgressbar() {
-        self.countDelegate = self.configurations!.remoteinfoestimation
-        if let calculatedNumberOfFiles = self.countDelegate?.maxCount() {
-            self.progress.maxValue = Double(calculatedNumberOfFiles)
-        }
+        self.progress.maxValue = Double(self.remoteinfotask?.maxCount() ?? 0)
         self.progress.minValue = 0
         self.progress.doubleValue = 0
         self.progress.startAnimation(self)
+    }
+
+    private func updateProgressbar(_ value: Double) {
+        self.progress.doubleValue = value
     }
 
     private func closeview() {
@@ -86,8 +90,8 @@ class ViewControllerEstimatingTasks: NSViewController, Abort, SetConfigurations,
 
 extension ViewControllerEstimatingTasks: UpdateProgress {
     func processTermination() {
-        let count = self.countDelegate?.inprogressCount() ?? 0
-        self.progress.doubleValue = Double(self.calculatedNumberOfFiles ?? 0 - count)
+        let progress = Double(self.remoteinfotask?.maxCount() ?? 0) - Double(self.remoteinfotask?.inprogressCount() ?? 0)
+        self.updateProgressbar(progress)
     }
 
     func fileHandler() {
@@ -97,7 +101,7 @@ extension ViewControllerEstimatingTasks: UpdateProgress {
 
 extension ViewControllerEstimatingTasks: StartStopProgressIndicator {
     func start() {
-        self.initiateProgressbar()
+        //
     }
 
     func complete() {
