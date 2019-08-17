@@ -4,7 +4,7 @@
 
 [![Join the chat at https://gitter.im/RsyncOSX/community](https://badges.gitter.im/RsyncOSX/community.svg)](https://gitter.im/RsyncOSX/community?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
-The [Changelog](https://rsyncosx.github.io/Changelog). If you want to discuss changes either create an [Issue](https://github.com/rsyncOSX/RsyncOSX/issues) or a [chat on Gitter](https://gitter.im/RsyncOSX).
+The [Changelog](https://rsyncosx.github.io/Changelog). If you want to discuss changes either create an [Issue](https://github.com/rsyncOSX/RsyncOSX/issues) or a [chat on Gitter](https://gitter.im/RsyncOSX/community?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge).
 
 A short [intro to RsyncOSX](https://rsyncosx.github.io/Intro) and full [documentation of RsyncOSX](https://rsyncosx.github.io/AboutRsyncOSX).
 
