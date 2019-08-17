@@ -111,6 +111,7 @@ class Unused
     if not should_skip_predefined_ignores
       regexps += [
        "^Pods/",
+       "fastlane/",
        "Tests.swift$",
        "Spec.swift$",
        "Tests/"
