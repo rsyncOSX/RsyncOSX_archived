@@ -12,7 +12,7 @@ import Cocoa
 
 protocol SetLocalRemoteInfo: class {
     func setlocalremoteinfo(info: NSMutableDictionary?)
-    func getlocalremoteinfo(index: Int) -> NSDictionary?
+    func getlocalremoteinfo(index: Int) -> [NSDictionary]?
 }
 
 class ViewControllerInformationLocalRemote: NSViewController, SetDismisser, Index, SetConfigurations, Setcolor, Connected {
@@ -48,21 +48,21 @@ class ViewControllerInformationLocalRemote: NSViewController, SetDismisser, Inde
         self.complete = false
         self.index = self.index()
         if let index = self.index {
-            if let info = self.localremoteinfoDelegate?.getlocalremoteinfo(index: index) {
-                self.setcachedNumbers(dict: info)
+            let datelastbackup = self.configurations?.getConfigurations()[index].dateRun ?? ""
+            if datelastbackup.isEmpty == false {
+                let dateformatter = Dateandtime().setDateformat()
+                let date = dateformatter.date(from: datelastbackup)
+                self.datelastbackup.stringValue = NSLocalizedString("Date last backup:", comment: "Remote Info")
+                    + " " + date!.localizeDate()
             } else {
-                let datelastbackup = self.configurations?.getConfigurations()[index].dateRun ?? ""
-                if datelastbackup.isEmpty == false {
-                    let dateformatter = Dateandtime().setDateformat()
-                    let date = dateformatter.date(from: datelastbackup)
-                    self.datelastbackup.stringValue = NSLocalizedString("Date last backup:", comment: "Remote Info")
-                        + " " + date!.localizeDate()
-                } else {
-                    self.datelastbackup.stringValue = NSLocalizedString("Date last backup:", comment: "Remote Info")
-                }
-                let numberlastbackup = self.configurations?.getConfigurations()[index].dayssincelastbackup ?? ""
-                self.dayslastbackup.stringValue = NSLocalizedString("Days since last backup:", comment: "Remote Info")
-                    + " " + numberlastbackup
+                self.datelastbackup.stringValue = NSLocalizedString("Date last backup:", comment: "Remote Info")
+            }
+            let numberlastbackup = self.configurations?.getConfigurations()[index].dayssincelastbackup ?? ""
+            self.dayslastbackup.stringValue = NSLocalizedString("Days since last backup:", comment: "Remote Info")
+                + " " + numberlastbackup
+            if  self.localremoteinfoDelegate?.getlocalremoteinfo(index: index)?.count ?? 0 > 0 {
+                self.setcachedNumbers(dict: self.localremoteinfoDelegate?.getlocalremoteinfo(index: index))
+            } else {
                 if self.connected(config: self.configurations!.getConfigurations()[index]) == true {
                     self.working.startAnimation(nil)
                     self.outputprocess = OutputProcess()
@@ -88,6 +88,7 @@ class ViewControllerInformationLocalRemote: NSViewController, SetDismisser, Inde
                 self.localtotalNumber.stringValue = infotask.totalNumber!
                 self.localtotalNumberSizebytes.stringValue = infotask.totalNumberSizebytes!
                 self.localtotalDirs.stringValue = infotask.totalDirs!
+                self.localremoteinfoDelegate!.setlocalremoteinfo(info: infotask.recordremotenumbers(index: self.index ?? -1))
             } else {
                 self.transferredNumber.stringValue = infotask.transferredNumber!
                 self.transferredNumberSizebytes.stringValue = infotask.transferredNumberSizebytes!
@@ -104,19 +105,22 @@ class ViewControllerInformationLocalRemote: NSViewController, SetDismisser, Inde
         })
     }
 
-    private func setcachedNumbers(dict: NSDictionary) {
-        self.localtotalNumber.stringValue = (dict.value(forKey: "localtotalNumber") as? String) ?? ""
-        self.localtotalNumberSizebytes.stringValue = (dict.value(forKey: "localtotalNumberSizebytes") as? String) ?? ""
-        self.localtotalDirs.stringValue = (dict.value(forKey: "localtotalDirs") as? String) ?? ""
-        self.transferredNumber.stringValue = (dict.value(forKey: "transferredNumber") as? String) ?? ""
-        self.transferredNumberSizebytes.stringValue = (dict.value(forKey: "transferredNumberSizebytes") as? String) ?? ""
-        self.totalNumber.stringValue = (dict.value(forKey: "totalNumber") as? String) ?? ""
-        self.totalNumberSizebytes.stringValue = (dict.value(forKey: "totalNumberSizebytes") as? String) ?? ""
-        self.totalDirs.stringValue = (dict.value(forKey: "totalDirs") as? String) ?? ""
-        self.newfiles.stringValue = (dict.value(forKey: "newfiles") as? String) ?? ""
-        self.deletefiles.stringValue = (dict.value(forKey: "deletefiles") as? String) ?? ""
-        self.gotit.stringValue = NSLocalizedString("Loaded cached data...", comment: "Remote Info")
-        self.gotit.textColor = self.setcolor(nsviewcontroller: self, color: .green)
+    private func setcachedNumbers(dict: [NSDictionary]?) {
+        if let infodictes = dict {
+            guard infodictes.count == 2 else { return }
+            self.localtotalNumber.stringValue = (infodictes[0].value(forKey: "totalNumber") as? String) ?? ""
+            self.localtotalNumberSizebytes.stringValue = (infodictes[0].value(forKey: "totalNumberSizebytes") as? String) ?? ""
+            self.localtotalDirs.stringValue = (infodictes[0].value(forKey: "totalDirs") as? String) ?? ""
+            self.transferredNumber.stringValue = (infodictes[1].value(forKey: "transferredNumber") as? String) ?? ""
+            self.transferredNumberSizebytes.stringValue = (infodictes[1].value(forKey: "transferredNumberSizebytes") as? String) ?? ""
+            self.totalNumber.stringValue = (infodictes[1].value(forKey: "totalNumber") as? String) ?? ""
+            self.totalNumberSizebytes.stringValue = (infodictes[1].value(forKey: "totalNumberSizebytes") as? String) ?? ""
+            self.totalDirs.stringValue = (infodictes[1].value(forKey: "totalDirs") as? String) ?? ""
+            self.newfiles.stringValue = (infodictes[1].value(forKey: "newfiles") as? String) ?? ""
+            self.deletefiles.stringValue = (infodictes[1].value(forKey: "deletefiles") as? String) ?? ""
+            self.gotit.stringValue = NSLocalizedString("Loaded cached data...", comment: "Remote Info")
+            self.gotit.textColor = self.setcolor(nsviewcontroller: self, color: .green)
+        }
     }
 }
 
