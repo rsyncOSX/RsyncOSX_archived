@@ -37,14 +37,13 @@ class ViewControllerEstimatingTasks: NSViewController, Abort, SetConfigurations,
     override func viewDidLoad() {
         super.viewDidLoad()
         ViewControllerReference.shared.setvcref(viewcontroller: .vcestimatingtasks, nsviewcontroller: self)
-        ViewControllerReference.shared.activetab = .vcestimatingtasks
     }
 
     override func viewDidAppear() {
         super.viewDidAppear()
         guard self.diddissappear == false else { return }
         self.abort.isEnabled = true
-        self.remoteinfotask = RemoteinfoEstimation()
+        self.remoteinfotask = RemoteinfoEstimation(viewvcontroller: self)
         self.initiateProgressbar()
     }
 

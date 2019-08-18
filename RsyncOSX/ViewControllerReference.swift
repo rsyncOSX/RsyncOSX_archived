@@ -127,8 +127,6 @@ class ViewControllerReference {
     var executescheduledtasksmenuapp: Bool = false
     // True if menuapp is running
     var menuappisrunning: Bool = false
-    // Which tab is active
-    var activetab: ViewController?
     // Initial start
     var initialstart: Int = 0
     // Setting environmentvariable for Process object

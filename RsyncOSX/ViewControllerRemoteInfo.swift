@@ -106,14 +106,13 @@ class ViewControllerRemoteInfo: NSViewController, SetDismisser, Abort, Setcolor 
         self.mainTableView.delegate = self
         self.mainTableView.dataSource = self
         ViewControllerReference.shared.setvcref(viewcontroller: .vcremoteinfo, nsviewcontroller: self)
-        ViewControllerReference.shared.activetab = .vcremoteinfo
         self.remoteinfotaskDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllertabMain
         if let remoteinfotask = self.remoteinfotaskDelegate?.getremoteinfo() {
             self.remoteinfotask = remoteinfotask
             self.loaded = true
             self.progress.isHidden = true
         } else {
-            self.remoteinfotask = RemoteinfoEstimation()
+            self.remoteinfotask = RemoteinfoEstimation(viewvcontroller: self)
             self.remoteinfotaskDelegate?.setremoteinfo(remoteinfotask: self.remoteinfotask)
         }
     }
