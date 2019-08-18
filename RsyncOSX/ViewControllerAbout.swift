@@ -19,7 +19,6 @@ class ViewControllerAbout: NSViewController, SetDismisser, Delay {
     @IBOutlet weak var iconby: NSTextField!
     @IBOutlet weak var chinese: NSTextField!
     @IBOutlet weak var norwegian: NSTextField!
-    
 
     var copyrigthstring: String = NSLocalizedString("Copyright ©2019 Thomas Evensen", comment: "copyright")
     var iconbystring: String = NSLocalizedString("Icon by: Zsolt Sándor", comment: "icon")
