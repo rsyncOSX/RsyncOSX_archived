@@ -516,7 +516,6 @@
 			children = (
 				E958BB2723070BBB00349C81 /* Mainprocess */,
 				E9F4EBB71EB4C32D006EEEF1 /* CommandSsh.swift */,
-				E943DC671FF9115200E6B8B7 /* EstimateremoteInformationOnetask.swift */,
 				E9FFA02E1E728C6E00B7AB2B /* Rsync.swift */,
 				E9E70A3B1FF3BCB30099554D /* RsyncVersionString.swift */,
 				E92D03182010CB2D00A92813 /* SnapshotCreateCatalog.swift */,
@@ -730,6 +729,7 @@
 		E9D0B3F623099570009ABB74 /* Estimating */ = {
 			isa = PBXGroup;
 			children = (
+				E943DC671FF9115200E6B8B7 /* EstimateremoteInformationOnetask.swift */,
 				E943DC691FF9141D00E6B8B7 /* RemoteinfoEstimation.swift */,
 			);
 			name = Estimating;
