@@ -132,6 +132,7 @@ extension RemoteinfoEstimation: UpdateProgress {
         self.configurations?.estimatedlist?.append(record)
         guard self.stackoftasktobeestimated?.count ?? 0 > 0 else {
             self.selectalltaskswithnumbers(deselect: false)
+            self.setbackuplist()
             self.startstopProgressIndicatorDelegate?.stop()
             return
         }
