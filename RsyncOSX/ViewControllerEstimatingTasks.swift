@@ -107,7 +107,7 @@ extension ViewControllerEstimatingTasks: StartStopProgressIndicator {
     }
 
     func stop() {
-        self.configurations!.remoteinfoestimation?.setbackuplist()
+        self.remoteinfotask?.setbackuplist()
         weak var openDelegate: OpenQuickBackup?
         if (self.presentingViewController as? ViewControllertabMain) != nil {
             openDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllertabMain
