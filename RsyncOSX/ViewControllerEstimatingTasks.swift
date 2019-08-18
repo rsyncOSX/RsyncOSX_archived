@@ -46,8 +46,6 @@ class ViewControllerEstimatingTasks: NSViewController, Abort, SetConfigurations,
         self.abort.isEnabled = true
         self.remoteinfotask = RemoteinfoEstimation()
         self.initiateProgressbar()
-        // self.configurations?.remoteinfoestimation = RemoteinfoEstimation()
-        // self.countDelegate = self.configurations?.remoteinfoestimation
     }
 
     override func viewWillDisappear() {
