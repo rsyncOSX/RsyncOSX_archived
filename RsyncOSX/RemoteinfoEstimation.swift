@@ -8,6 +8,7 @@
 // swiftlint:disable line_length
 
 import Foundation
+import Cocoa
 
 protocol SetRemoteInfo: class {
     func setremoteinfo(remoteinfotask: RemoteinfoEstimation?)
@@ -84,20 +85,11 @@ final class RemoteinfoEstimation: SetConfigurations {
         _ = EstimateremoteInformationOnetask(index: self.index!, outputprocess: self.outputprocess, local: false, updateprogress: self)
     }
 
-    init() {
-        switch ViewControllerReference.shared.activetab ?? .vcremoteinfo {
-        case .vcbatch:
-            self.updateprogressDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vcbatch) as? ViewControllerBatch
-            self.startstopProgressIndicatorDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vcbatch) as? ViewControllerBatch
+    init(viewvcontroller: NSViewController) {
+        self.updateprogressDelegate = viewvcontroller as? UpdateProgress
+        self.startstopProgressIndicatorDelegate = viewvcontroller as? StartStopProgressIndicator
+        if viewvcontroller == ViewControllerReference.shared.getvcref(viewcontroller: .vcbatch) as? ViewControllerBatch {
             self.inbatch = true
-        case .vcestimatingtasks:
-            self.updateprogressDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vcestimatingtasks) as? ViewControllerEstimatingTasks
-            self.startstopProgressIndicatorDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vcestimatingtasks) as? ViewControllerEstimatingTasks
-        case .vcremoteinfo:
-            self.updateprogressDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vcremoteinfo) as? ViewControllerRemoteInfo
-            self.startstopProgressIndicatorDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vcremoteinfo) as? ViewControllerRemoteInfo
-        default:
-            return
         }
         self.prepareandstartexecutetasks()
         self.records = [NSMutableDictionary]()
