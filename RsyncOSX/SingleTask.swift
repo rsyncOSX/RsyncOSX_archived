@@ -96,8 +96,7 @@ extension SingleTask: Count {
     }
 
     func inprogressCount() -> Int {
-        guard self.outputprocess != nil else { return 0 }
-        return self.outputprocess!.count()
+        return (self.outputprocess?.count() ?? 0)
     }
 
 }
