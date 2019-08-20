@@ -14,7 +14,7 @@ protocol SetProfileinfo: class {
     func setprofile(profile: String, color: NSColor)
 }
 
-class ViewControllertabSchedule: NSViewController, SetConfigurations, SetSchedules, VcSchedule, Delay, Index, VcExecute {
+class ViewControllertabSchedule: NSViewController, SetConfigurations, SetSchedules, Delay, Index, VcMain {
 
     private var index: Int?
     private var hiddenID: Int?

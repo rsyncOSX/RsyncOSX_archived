@@ -10,77 +10,6 @@
 import Foundation
 import Cocoa
 
-protocol VcSchedule {
-    var storyboard: NSStoryboard? { get }
-}
-
-extension VcSchedule {
-    var storyboard: NSStoryboard? {
-        return NSStoryboard(name: "Main", bundle: nil)
-    }
-
-    // Information Schedule details
-    // self.presentViewControllerAsSheet(self.ViewControllerScheduleDetails)
-    var viewControllerScheduleDetails: NSViewController? {
-        return (self.storyboard!.instantiateController(withIdentifier: "StoryboardScheduleID")
-            as? NSViewController)!
-    }
-
-    // Userconfiguration
-    // self.presentViewControllerAsSheet(self.ViewControllerUserconfiguration)
-    var viewControllerUserconfiguration: NSViewController? {
-        return (self.storyboard!.instantiateController(withIdentifier: "StoryboardUserconfigID")
-            as? NSViewController)!
-    }
-
-    // Profile
-    // self.presentViewControllerAsSheet(self.ViewControllerProfile)
-    var viewControllerProfile: NSViewController? {
-        return (self.storyboard!.instantiateController(withIdentifier: "ProfileID")
-            as? NSViewController)!
-    }
-
-}
-
-protocol VcExecute {
-    var storyboard: NSStoryboard? { get }
-}
-
-extension VcExecute {
-
-    var storyboard: NSStoryboard? {
-        return NSStoryboard(name: "Main", bundle: nil)
-    }
-
-    // Remote Info
-    // self.presentViewControllerAsSheet(self.viewControllerQuickBackup)
-    var viewControllerRemoteInfo: NSViewController? {
-        return (self.storyboard!.instantiateController(withIdentifier: "StoryboardRemoteInfoID")
-            as? NSViewController)!
-    }
-
-    // Quick backup process
-    // self.presentViewControllerAsSheet(self.viewControllerQuickBackup)
-    var viewControllerQuickBackup: NSViewController? {
-        return (self.storyboard!.instantiateController(withIdentifier: "StoryboardQuickBackupID")
-            as? NSViewController)!
-    }
-
-    // Estimating
-    // self.presentViewControllerAsSheet(self.viewControllerEstimating)
-    var viewControllerEstimating: NSViewController? {
-        return (self.storyboard!.instantiateController(withIdentifier: "StoryboardEstimatingID")
-            as? NSViewController)!
-    }
-
-    // Progressbar process
-    // self.presentViewControllerAsSheet(self.viewControllerProgress)
-    var viewControllerProgress: NSViewController? {
-        return (self.storyboard!.instantiateController(withIdentifier: "StoryboardProgressID")
-            as? NSViewController)!
-    }
-}
-
 protocol VcMain {
     var storyboard: NSStoryboard? { get }
 }
@@ -196,28 +125,6 @@ extension VcMain {
             as? NSViewController)!
     }
 
-}
-
-protocol VcCopyFiles {
-    var storyboard: NSStoryboard? { get }
-}
-
-extension VcCopyFiles {
-    var storyboard: NSStoryboard? {
-        return NSStoryboard(name: "Main", bundle: nil)
-    }
-
-    // Information about rsync output
-    // self.presentViewControllerAsSheet(self.ViewControllerInformation)
-    var viewControllerInformation: NSViewController? {
-        return (self.storyboard!.instantiateController(withIdentifier: "StoryboardInformationCopyFilesID") as? NSViewController)!
-    }
-
-    // Source for CopyFiles
-    // self.presentViewControllerAsSheet(self.viewControllerSource)
-    var viewControllerSource: NSViewController? {
-        return (self.storyboard!.instantiateController(withIdentifier: "CopyFilesID") as? NSViewController)!
-    }
 }
 
 // Protocol for dismissing a viewcontroller
