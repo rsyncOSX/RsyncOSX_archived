@@ -471,13 +471,11 @@ extension ViewControllertabMain: OpenQuickBackup {
 
 extension ViewControllertabMain: Count {
     func maxCount() -> Int {
-        guard self.outputprocess != nil else { return 0 }
-        return self.outputprocess!.getMaxcount()
+        return (self.outputprocess?.getMaxcount() ?? 0)
     }
 
     func inprogressCount() -> Int {
-        guard self.outputprocess != nil else { return 0 }
-        return self.outputprocess!.count()
+        return (self.outputprocess?.count() ?? 0)
     }
 }
 
@@ -526,8 +524,7 @@ extension ViewControllertabMain: Allerrors {
         if self.outputerrors == nil {
             self.outputerrors = OutputErrors()
         }
-        guard outputprocess?.getOutput() != nil else { return }
-        for i in 0 ..< outputprocess!.getOutput()!.count {
+        for i in 0 ..< (outputprocess?.getOutput()?.count ?? 0) {
             self.outputerrors!.addLine(str: outputprocess!.getOutput()![i])
         }
     }
