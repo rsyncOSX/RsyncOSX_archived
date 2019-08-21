@@ -23,10 +23,10 @@ class NewConfigurations {
     func appendnewConfigurations(dict: NSMutableDictionary) {
         guard self.newConfigurations != nil else {
             self.newConfigurations = [NSMutableDictionary]()
-            self.newConfigurations!.append(dict)
+            self.newConfigurations?.append(dict)
             return
         }
-        self.newConfigurations!.append(dict)
+        self.newConfigurations?.append(dict)
     }
 
     func newConfigurationsCount() -> Int {
