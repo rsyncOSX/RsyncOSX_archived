@@ -91,8 +91,6 @@ class ViewControllertabMain: NSViewController, ReloadTable, Deselect, VcMain, De
     var hiddenID: Int?
     // Reference to Schedules object
     var schedulesortedandexpanded: ScheduleSortedAndExpand?
-    // Ready for execute again
-    // var readyforexecution: Bool = true
     // Can load profiles
     // Load profiles only when testing for connections are done.
     // Application crash if not
