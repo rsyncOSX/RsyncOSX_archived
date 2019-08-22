@@ -45,7 +45,7 @@ class ViewControllertabMain: NSViewController, ReloadTable, Deselect, VcMain, De
     var schedules: Schedules?
     // Reference to the taskobjects
     var singletask: SingleTask?
-    var batchtasks: ExecuteBatch?
+    var executebatch: ExecuteBatch?
     var executetasknow: ExecuteTaskNow?
     var tcpconnections: TCPconnections?
     // Main tableview
@@ -217,7 +217,7 @@ class ViewControllertabMain: NSViewController, ReloadTable, Deselect, VcMain, De
         self.outputprocess = nil
         self.process = nil
         self.singletask = nil
-        self.batchtasks = nil
+        self.executebatch = nil
         self.setNumbers(outputprocess: nil)
     }
 
@@ -500,53 +500,6 @@ class ViewControllertabMain: NSViewController, ReloadTable, Deselect, VcMain, De
         })
         if self.allprofilesview {
              self.allprofiledetailsDelegate?.reloadtable()
-        }
-    }
-}
-
-enum Color {
-    case red
-    case white
-    case green
-    case black
-}
-
-protocol Setcolor: class {
-    func setcolor(nsviewcontroller: NSViewController, color: Color) -> NSColor
-}
-
-extension Setcolor {
-
-    private func isDarkMode(view: NSView) -> Bool {
-        if #available(OSX 10.14, *) {
-            return view.effectiveAppearance.bestMatch(from: [.darkAqua, .aqua]) == .darkAqua
-        }
-        return false
-    }
-
-    func setcolor(nsviewcontroller: NSViewController, color: Color) -> NSColor {
-        let darkmode = isDarkMode(view: nsviewcontroller.view)
-        switch color {
-        case .red:
-            return .red
-        case .white:
-            if darkmode {
-                return .white
-            } else {
-                return .black
-            }
-        case .green:
-            if darkmode {
-                return .green
-            } else {
-                return .blue
-            }
-        case .black:
-            if darkmode {
-                return .white
-            } else {
-                return .black
-            }
         }
     }
 }

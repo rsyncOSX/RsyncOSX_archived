@@ -225,8 +225,8 @@ extension ViewControllertabMain: RsyncError {
             if self.singletask != nil {
                 self.singletask!.error()
             }
-            if self.batchtasks != nil {
-                self.batchtasks!.error()
+            if self.executebatch != nil {
+                self.executebatch!.error()
             }
         })
     }
@@ -376,7 +376,7 @@ extension ViewControllertabMain: GetConfigurationsObject {
 
     // After a write, a reload is forced.
     func reloadconfigurationsobject() {
-        guard self.batchtasks == nil else {
+        guard self.executebatch == nil else {
             // Batchtask, check if task is completed
             guard self.configurations!.getbatchQueue()?.batchruniscompleted() == false else {
                 self.createandreloadconfigurations()
@@ -391,7 +391,7 @@ extension ViewControllertabMain: GetConfigurationsObject {
 extension ViewControllertabMain: GetSchedulesObject {
     func reloadschedulesobject() {
         // If batchtask scedules object
-        guard self.batchtasks == nil else {
+        guard self.executebatch == nil else {
             // Batchtask, check if task is completed
             guard self.configurations!.getbatchQueue()?.batchruniscompleted() == false else {
                 self.createandreloadschedules()
@@ -568,5 +568,51 @@ extension ViewControllertabMain: AllProfileDetails {
         self.allprofilesview = true
         self.allprofiledetailsDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vcallprofiles) as? ViewControllerAllProfiles
     }
+}
 
+enum Color {
+    case red
+    case white
+    case green
+    case black
+}
+
+protocol Setcolor: class {
+    func setcolor(nsviewcontroller: NSViewController, color: Color) -> NSColor
+}
+
+extension Setcolor {
+    
+    private func isDarkMode(view: NSView) -> Bool {
+        if #available(OSX 10.14, *) {
+            return view.effectiveAppearance.bestMatch(from: [.darkAqua, .aqua]) == .darkAqua
+        }
+        return false
+    }
+    
+    func setcolor(nsviewcontroller: NSViewController, color: Color) -> NSColor {
+        let darkmode = isDarkMode(view: nsviewcontroller.view)
+        switch color {
+        case .red:
+            return .red
+        case .white:
+            if darkmode {
+                return .white
+            } else {
+                return .black
+            }
+        case .green:
+            if darkmode {
+                return .green
+            } else {
+                return .blue
+            }
+        case .black:
+            if darkmode {
+                return .white
+            } else {
+                return .black
+            }
+        }
+    }
 }
