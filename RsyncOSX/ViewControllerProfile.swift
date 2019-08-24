@@ -28,7 +28,7 @@ class ViewControllerProfile: NSViewController, SetConfigurations, SetDismisser, 
 
     @IBAction func defaultProfile(_ sender: NSButton) {
         _ = Selectprofile(profile: nil)
-        self.dismissView()
+        self.closeview()
     }
 
     @IBAction func deleteProfile(_ sender: NSButton) {
@@ -36,7 +36,7 @@ class ViewControllerProfile: NSViewController, SetConfigurations, SetDismisser, 
             self.profile?.deleteProfileDirectory(profileName: useprofile)
             _ = Selectprofile(profile: nil)
         }
-        self.dismissView()
+        self.closeview()
     }
 
     // Use profile or close
@@ -46,19 +46,19 @@ class ViewControllerProfile: NSViewController, SetConfigurations, SetDismisser, 
             if self.useprofile != nil {
                 _ = Selectprofile(profile: self.useprofile)
             }
-            self.dismissView()
+            self.closeview()
             return
         }
         let success = self.profile?.createProfileDirectory(profileName: newprofile)
         guard success == true else {
-            self.dismissView()
+            self.closeview()
             return
         }
         _ = Selectprofile(profile: newprofile)
-        self.dismissView()
+        self.closeview()
     }
 
-    private func dismissView() {
+    private func closeview() {
         if (self.presentingViewController as? ViewControllertabMain) != nil {
             self.dismissview(viewcontroller: self, vcontroller: .vctabmain)
         } else if (self.presentingViewController as? ViewControllertabSchedule) != nil {
@@ -100,7 +100,7 @@ class ViewControllerProfile: NSViewController, SetConfigurations, SetDismisser, 
 
     @objc(tableViewDoubleClick:) func tableViewDoubleClick(sender: AnyObject) {
         _ = Selectprofile(profile: self.useprofile)
-        self.dismissView()
+        self.closeview()
     }
 }
 
