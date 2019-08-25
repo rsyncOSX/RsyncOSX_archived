@@ -9,7 +9,7 @@
 import Foundation
 import AppKit
 
-class Running {
+final class Running {
 
     let rsyncOSX = "no.blogspot.RsyncOSX"
     let rsyncOSXsched = "no.blogspot.RsyncOSXsched"
