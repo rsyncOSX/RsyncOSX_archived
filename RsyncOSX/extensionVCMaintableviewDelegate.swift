@@ -90,7 +90,7 @@ extension ViewControllerMain: NSTableViewDelegate, Attributedestring {
         }
         if self.configurations!.getConfigurations()[row].task == ViewControllerReference.shared.synchronize ||
             self.configurations!.getConfigurations()[row].task == ViewControllerReference.shared.snapshot {
-            self.configurations!.enabledisablebatch(row)
+            self.configurations!.togglebatch(row)
         }
     }
 }
