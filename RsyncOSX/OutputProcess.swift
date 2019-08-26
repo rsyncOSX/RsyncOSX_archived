@@ -80,8 +80,8 @@ final class OutputProcess {
                 out.append(self.output![i])
                 self.error = self.output![i].contains("rsync error:")
                 if self.error {
-                    self.errorDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllertabMain
-                    self.allerrorsDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllertabMain
+                    self.errorDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllerMain
+                    self.allerrorsDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllerMain
                     self.errorDelegate?.rsyncerror()
                     self.allerrorsDelegate?.allerrors(outputprocess: self)
                 }

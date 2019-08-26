@@ -5,7 +5,6 @@
 //  Created by Thomas Evensen on 27.12.2017.
 //  Copyright © 2017 Thomas Evensen. All rights reserved.
 //
-// swiftlint:disable line_length
 
 import Foundation
 
@@ -29,7 +28,7 @@ extension RsyncVersionString: UpdateProgress {
         ViewControllerReference.shared.rsyncversionshort = self.outputprocess!.getOutput()![0]
         ViewControllerReference.shared.rsyncversionstring = self.outputprocess!.getOutput()!.joined(separator: "\n")
         weak var shortstringDelegate: RsyncIsChanged?
-        shortstringDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllertabMain
+        shortstringDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllerMain
         shortstringDelegate?.rsyncischanged()
     }
 

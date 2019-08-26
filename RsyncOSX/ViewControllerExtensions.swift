@@ -138,10 +138,10 @@ protocol SetDismisser {
 
 extension SetDismisser {
     var dismissDelegateMain: DismissViewController? {
-        return ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllertabMain
+        return ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllerMain
     }
     var dismissDelegateSchedule: DismissViewController? {
-        return ViewControllerReference.shared.getvcref(viewcontroller: .vctabschedule) as? ViewControllertabSchedule
+        return ViewControllerReference.shared.getvcref(viewcontroller: .vctabschedule) as? ViewControllerSchedule
     }
     var dismissDelegateCopyFiles: DismissViewController? {
         return ViewControllerReference.shared.getvcref(viewcontroller: .vccopyfiles) as? ViewControllerCopyFiles
@@ -196,10 +196,10 @@ protocol Deselect {
 
 extension Deselect {
     var deselectDelegateMain: DeselectRowTable? {
-        return ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllertabMain
+        return ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllerMain
     }
     var deselectDelegateSchedule: DeselectRowTable? {
-        return ViewControllerReference.shared.getvcref(viewcontroller: .vctabschedule) as? ViewControllertabSchedule
+        return ViewControllerReference.shared.getvcref(viewcontroller: .vctabschedule) as? ViewControllerSchedule
     }
 
     func deselectrowtable(vcontroller: ViewController) {
@@ -223,7 +223,7 @@ extension Index {
         if getindexDelegate?.getindex() != nil {
             return getindexDelegate?.getindex()
         } else {
-            getindexDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllertabMain
+            getindexDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllerMain
             return getindexDelegate?.getindex()
         }
     }
@@ -234,7 +234,7 @@ extension Index {
         if getindexDelegate?.getindex() != nil {
             return .vcsnapshot
         } else {
-            getindexDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllertabMain
+            getindexDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllerMain
             return .vctabmain
         }
     }
@@ -275,7 +275,7 @@ protocol Abort: class {
 
 extension Abort {
     func abort() {
-        let view = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllertabMain
+        let view = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllerMain
         view?.abortOperations()
     }
 }
@@ -291,7 +291,7 @@ protocol OutPut {
 
 extension OutPut {
     var informationDelegateMain: GetOutput? {
-        return ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllertabMain
+        return ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllerMain
     }
     var informationDelegateCopyFiles: GetOutput? {
         return ViewControllerReference.shared.getvcref(viewcontroller: .vccopyfiles) as? ViewControllerCopyFiles
@@ -316,7 +316,7 @@ protocol NewRsync {
 
 extension NewRsync {
     func newrsync() {
-        let view = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllertabMain
+        let view = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllerMain
         view?.rsyncischanged()
     }
 }

@@ -35,10 +35,10 @@ class ViewControllerRemoteInfo: NSViewController, SetDismisser, Abort, Setcolor 
             if backup.count > 0 {
                 self.remoteinfotask?.setbackuplist(list: backup)
                 weak var openDelegate: OpenQuickBackup?
-                if (self.presentingViewController as? ViewControllertabMain) != nil {
-                    openDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllertabMain
-                } else if (self.presentingViewController as? ViewControllertabSchedule) != nil {
-                    openDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabschedule) as? ViewControllertabSchedule
+                if (self.presentingViewController as? ViewControllerMain) != nil {
+                    openDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllerMain
+                } else if (self.presentingViewController as? ViewControllerSchedule) != nil {
+                    openDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabschedule) as? ViewControllerSchedule
                 } else if (self.presentingViewController as? ViewControllerNewConfigurations) != nil {
                     openDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vcnewconfigurations) as? ViewControllerNewConfigurations
                 } else if (self.presentingViewController as? ViewControllerCopyFiles) != nil {
@@ -68,9 +68,9 @@ class ViewControllerRemoteInfo: NSViewController, SetDismisser, Abort, Setcolor 
     }
 
     private func closeview() {
-        if (self.presentingViewController as? ViewControllertabMain) != nil {
+        if (self.presentingViewController as? ViewControllerMain) != nil {
             self.dismissview(viewcontroller: self, vcontroller: .vctabmain)
-        } else if (self.presentingViewController as? ViewControllertabSchedule) != nil {
+        } else if (self.presentingViewController as? ViewControllerSchedule) != nil {
             self.dismissview(viewcontroller: self, vcontroller: .vctabschedule)
         } else if (self.presentingViewController as? ViewControllerNewConfigurations) != nil {
             self.dismissview(viewcontroller: self, vcontroller: .vcnewconfigurations)
@@ -106,7 +106,7 @@ class ViewControllerRemoteInfo: NSViewController, SetDismisser, Abort, Setcolor 
         self.mainTableView.delegate = self
         self.mainTableView.dataSource = self
         ViewControllerReference.shared.setvcref(viewcontroller: .vcremoteinfo, nsviewcontroller: self)
-        self.remoteinfotaskDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllertabMain
+        self.remoteinfotaskDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllerMain
         if let remoteinfotask = self.remoteinfotaskDelegate?.getremoteinfo() {
             self.remoteinfotask = remoteinfotask
             self.loaded = true

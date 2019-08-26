@@ -14,7 +14,7 @@ protocol SetProfileinfo: class {
     func setprofile(profile: String, color: NSColor)
 }
 
-class ViewControllertabSchedule: NSViewController, SetConfigurations, SetSchedules, Delay, Index, VcMain {
+class ViewControllerSchedule: NSViewController, SetConfigurations, SetSchedules, Delay, Index, VcMain {
 
     private var index: Int?
     private var hiddenID: Int?
@@ -145,7 +145,7 @@ class ViewControllertabSchedule: NSViewController, SetConfigurations, SetSchedul
         super.viewDidLoad()
         self.mainTableView.delegate = self
         self.mainTableView.dataSource = self
-        self.mainTableView.doubleAction = #selector(ViewControllertabMain.tableViewDoubleClick(sender:))
+        self.mainTableView.doubleAction = #selector(ViewControllerMain.tableViewDoubleClick(sender:))
         ViewControllerReference.shared.setvcref(viewcontroller: .vctabschedule, nsviewcontroller: self)
     }
 
@@ -223,14 +223,14 @@ class ViewControllertabSchedule: NSViewController, SetConfigurations, SetSchedul
     }
 }
 
-extension ViewControllertabSchedule: NSTableViewDataSource {
+extension ViewControllerSchedule: NSTableViewDataSource {
 
     func numberOfRows(in tableView: NSTableView) -> Int {
         return self.configurations?.getConfigurationsDataSourceSynchronize()?.count ?? 0
     }
 }
 
-extension ViewControllertabSchedule: NSTableViewDelegate, Attributedestring {
+extension ViewControllerSchedule: NSTableViewDelegate, Attributedestring {
 
    func tableView(_ tableView: NSTableView, objectValueFor tableColumn: NSTableColumn?, row: Int) -> Any? {
         guard row < self.configurations!.getConfigurationsDataSourceSynchronize()!.count  else { return nil }
@@ -290,13 +290,13 @@ extension ViewControllertabSchedule: NSTableViewDelegate, Attributedestring {
 
 }
 
-extension  ViewControllertabSchedule: GetHiddenID {
+extension  ViewControllerSchedule: GetHiddenID {
     func gethiddenID() -> Int {
         return self.hiddenID ?? -1
     }
 }
 
-extension ViewControllertabSchedule: DismissViewController {
+extension ViewControllerSchedule: DismissViewController {
 
     func dismiss_view(viewcontroller: NSViewController) {
         self.dismiss(viewcontroller)
@@ -306,7 +306,7 @@ extension ViewControllertabSchedule: DismissViewController {
     }
 }
 
-extension ViewControllertabSchedule: Reloadandrefresh {
+extension ViewControllerSchedule: Reloadandrefresh {
 
     func reloadtabledata() {
         // Create a New schedules object
@@ -319,7 +319,7 @@ extension ViewControllertabSchedule: Reloadandrefresh {
 }
 
 // Deselect a row
-extension ViewControllertabSchedule: DeselectRowTable {
+extension ViewControllerSchedule: DeselectRowTable {
     // deselect a row after row is deleted
     func deselect() {
         guard self.index != nil else { return }
@@ -327,7 +327,7 @@ extension ViewControllertabSchedule: DeselectRowTable {
     }
 }
 
-extension ViewControllertabSchedule: SetProfileinfo {
+extension ViewControllerSchedule: SetProfileinfo {
     func setprofile(profile: String, color: NSColor) {
         globalMainQueue.async(execute: { () -> Void in
             self.profilInfo.stringValue = profile
@@ -336,7 +336,7 @@ extension ViewControllertabSchedule: SetProfileinfo {
     }
 }
 
-extension ViewControllertabSchedule: OpenQuickBackup {
+extension ViewControllerSchedule: OpenQuickBackup {
     func openquickbackup() {
         globalMainQueue.async(execute: { () -> Void in
             self.presentAsSheet(self.viewControllerQuickBackup!)

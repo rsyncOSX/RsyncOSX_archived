@@ -38,9 +38,9 @@ class ViewControllerQuickBackup: NSViewController, SetDismisser, Abort, Delay, S
             self.abort()
             self.working.stopAnimation(nil)
         }
-        if (self.presentingViewController as? ViewControllertabMain) != nil {
+        if (self.presentingViewController as? ViewControllerMain) != nil {
             self.dismissview(viewcontroller: self, vcontroller: .vctabmain)
-        } else if (self.presentingViewController as? ViewControllertabSchedule) != nil {
+        } else if (self.presentingViewController as? ViewControllerSchedule) != nil {
             self.dismissview(viewcontroller: self, vcontroller: .vctabschedule)
         } else if (self.presentingViewController as? ViewControllerNewConfigurations) != nil {
             self.dismissview(viewcontroller: self, vcontroller: .vcnewconfigurations)
@@ -59,7 +59,7 @@ class ViewControllerQuickBackup: NSViewController, SetDismisser, Abort, Delay, S
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.inprogresscountDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllertabMain
+        self.inprogresscountDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllerMain
         ViewControllerReference.shared.setvcref(viewcontroller: .vcquickbackup, nsviewcontroller: self)
         self.mainTableView.delegate = self
         self.mainTableView.dataSource = self

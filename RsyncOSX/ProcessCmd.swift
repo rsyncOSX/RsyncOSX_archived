@@ -105,6 +105,6 @@ class ProcessCmd: Delay {
     init(command: String?, arguments: [String]?) {
         self.command = command
         self.arguments = arguments
-        self.possibleerrorDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllertabMain
+        self.possibleerrorDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllerMain
     }
 }

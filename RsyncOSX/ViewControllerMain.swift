@@ -11,43 +11,8 @@
 import Foundation
 import Cocoa
 
-// Protocol for start,stop, complete progressviewindicator
-protocol StartStopProgressIndicator: class {
-    func start()
-    func stop()
-    func complete()
-}
+class ViewControllerMain: NSViewController, ReloadTable, Deselect, VcMain, Delay, FileerrorMessage, Setcolor {
 
-// Protocol for either completion of work or update progress when Process discovers a
-// process termination and when filehandler discover data
-protocol UpdateProgress: class {
-    func processTermination()
-    func fileHandler()
-}
-
-protocol ViewOutputDetails: class {
-    func reloadtable()
-    func appendnow() -> Bool
-    func getalloutput() -> [String]
-    func enableappend()
-    func disableappend()
-}
-
-protocol AllProfileDetails: class {
-    func enablereloadallprofiles()
-    func disablereloadallprofiles()
-}
-
-class ViewControllertabMain: NSViewController, ReloadTable, Deselect, VcMain, Delay, FileerrorMessage, Setcolor {
-
-    // Configurations object
-    var configurations: Configurations?
-    var schedules: Schedules?
-    // Reference to the taskobjects
-    var singletask: SingleTask?
-    var executebatch: ExecuteBatch?
-    var executetasknow: ExecuteTaskNow?
-    var tcpconnections: TCPconnections?
     // Main tableview
     @IBOutlet weak var mainTableView: NSTableView!
     // Progressbar indicating work
@@ -78,12 +43,23 @@ class ViewControllertabMain: NSViewController, ReloadTable, Deselect, VcMain, De
     @IBOutlet weak var backupdryrun: NSButton!
     @IBOutlet weak var restoredryrun: NSButton!
     @IBOutlet weak var verifydryrun: NSButton!
+    @IBOutlet weak var info: NSTextField!
+    @IBOutlet weak var pathtorsyncosxschedbutton: NSButton!
+    @IBOutlet weak var menuappisrunning: NSButton!
 
+    // Reference to Configurations and Schedules object
+    var configurations: Configurations?
+    var schedules: Schedules?
+    // Reference to the taskobjects
+    var singletask: SingleTask?
+    var executebatch: ExecuteBatch?
+    var executetasknow: ExecuteTaskNow?
+    var tcpconnections: TCPconnections?
     // Reference to Process task
     var process: Process?
     // Index to selected row, index is set when row is selected
     var index: Int?
-    // Getting output from rsync 
+    // Getting output from rsync
     var outputprocess: OutputProcess?
     // Dynamic view of output
     var dynamicappend: Bool = false
@@ -101,10 +77,6 @@ class ViewControllertabMain: NSViewController, ReloadTable, Deselect, VcMain, De
     var allprofilesview: Bool = false
     // Delegate for refresh allprofiles if changes in profiles
     weak var allprofiledetailsDelegate: ReloadTableAllProfiles?
-
-    @IBOutlet weak var info: NSTextField!
-    @IBOutlet weak var pathtorsyncosxschedbutton: NSButton!
-    @IBOutlet weak var menuappisrunning: NSButton!
 
     @IBAction func rsyncosxsched(_ sender: NSButton) {
         let pathtorsyncosxschedapp: String = ViewControllerReference.shared.pathrsyncosxsched! + ViewControllerReference.shared.namersyncosssched
@@ -213,14 +185,6 @@ class ViewControllertabMain: NSViewController, ReloadTable, Deselect, VcMain, De
         }
     }
 
-    func reset() {
-        self.outputprocess = nil
-        self.process = nil
-        self.singletask = nil
-        self.executebatch = nil
-        self.setNumbers(outputprocess: nil)
-    }
-
     @IBOutlet weak var TCPButton: NSButton!
     @IBAction func TCP(_ sender: NSButton) {
         self.TCPButton.isEnabled = false
@@ -327,7 +291,7 @@ class ViewControllertabMain: NSViewController, ReloadTable, Deselect, VcMain, De
         self.working.usesThreadedAnimation = true
         ViewControllerReference.shared.setvcref(viewcontroller: .vctabmain, nsviewcontroller: self)
         self.mainTableView.target = self
-        self.mainTableView.doubleAction = #selector(ViewControllertabMain.tableViewDoubleClick(sender:))
+        self.mainTableView.doubleAction = #selector(ViewControllerMain.tableViewDoubleClick(sender:))
         self.backupdryrun.state = .on
         self.loadProfileMenu = true
         // configurations and schedules
@@ -357,6 +321,14 @@ class ViewControllertabMain: NSViewController, ReloadTable, Deselect, VcMain, De
     override func viewDidDisappear() {
         super.viewDidDisappear()
         self.dynamicappend = false
+    }
+
+    func reset() {
+        self.outputprocess = nil
+        self.process = nil
+        self.singletask = nil
+        self.executebatch = nil
+        self.setNumbers(outputprocess: nil)
     }
 
     func enablemenuappbutton() {
@@ -407,7 +379,7 @@ class ViewControllertabMain: NSViewController, ReloadTable, Deselect, VcMain, De
         self.singletask?.executeSingleTask()
     }
 
-    // Execute BATCH TASKS only
+    // Execute batche tasks, only from main view
     @IBAction func executeBatch(_ sender: NSButton) {
         guard ViewControllerReference.shared.norsync == false else {
             _ = Norsync()
@@ -435,7 +407,7 @@ class ViewControllertabMain: NSViewController, ReloadTable, Deselect, VcMain, De
             self.profilInfo.stringValue = NSLocalizedString("Profile:", comment: "Execute ") + " default"
             self.profilInfo.textColor = setcolor(nsviewcontroller: self, color: .green)
         }
-        localprofileinfo = ViewControllerReference.shared.getvcref(viewcontroller: .vctabschedule) as? ViewControllertabSchedule
+        localprofileinfo = ViewControllerReference.shared.getvcref(viewcontroller: .vctabschedule) as? ViewControllerSchedule
         localprofileinfo2 = ViewControllerReference.shared.getvcref(viewcontroller: .vcnewconfigurations ) as? ViewControllerNewConfigurations
         localprofileinfo?.setprofile(profile: self.profilInfo.stringValue, color: self.profilInfo.textColor!)
         localprofileinfo2?.setprofile(profile: self.profilInfo.stringValue, color: self.profilInfo.textColor!)

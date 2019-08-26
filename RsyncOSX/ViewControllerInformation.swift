@@ -20,7 +20,7 @@ class ViewControllerInformation: NSViewController, SetDismisser, OutPut {
 
     @IBAction func showerrormessages(_ sender: NSButton) {
         if self.errormessagesbutton.state == .on {
-            self.geterrormessagesDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllertabMain
+            self.geterrormessagesDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllerMain
             self.output = self.geterrormessagesDelegate?.getoutputerrors()?.getOutput()
         } else {
             self.output = self.getinfo(viewcontroller: .vctabmain)

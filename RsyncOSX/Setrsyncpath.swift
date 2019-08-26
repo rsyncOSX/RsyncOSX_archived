@@ -14,7 +14,7 @@ struct Setrsyncpath {
     weak var setinfoaboutrsyncDelegate: Setinfoaboutrsync?
 
     init() {
-        self.setinfoaboutrsyncDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllertabMain
+        self.setinfoaboutrsyncDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllerMain
         let fileManager = FileManager.default
         let path: String?
         // If not in /usr/bin or /usr/local/bin, rsyncPath is set if none of the above

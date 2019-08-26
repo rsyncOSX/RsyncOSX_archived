@@ -103,13 +103,13 @@ class ViewControllerUserconfiguration: NSViewController, NewRsync, SetDismisser,
             if self.reload {
                 self.reloadconfigurationsDelegate?.createandreloadconfigurations()
             }
-            self.menuappDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllertabMain
+            self.menuappDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllerMain
             self.menuappDelegate?.menuappchanged()
             self.changetemporaryrestorepath()
         }
-        if (self.presentingViewController as? ViewControllertabMain) != nil {
+        if (self.presentingViewController as? ViewControllerMain) != nil {
             self.dismissview(viewcontroller: self, vcontroller: .vctabmain)
-        } else if (self.presentingViewController as? ViewControllertabSchedule) != nil {
+        } else if (self.presentingViewController as? ViewControllerSchedule) != nil {
             self.dismissview(viewcontroller: self, vcontroller: .vctabschedule)
         } else if (self.presentingViewController as? ViewControllerNewConfigurations) != nil {
             self.dismissview(viewcontroller: self, vcontroller: .vcnewconfigurations)
@@ -294,7 +294,7 @@ class ViewControllerUserconfiguration: NSViewController, NewRsync, SetDismisser,
         self.environment.delegate = self
         self.storageapi = PersistentStorageAPI(profile: nil)
         self.nologging.state = .on
-        self.reloadconfigurationsDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllertabMain
+        self.reloadconfigurationsDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllerMain
     }
 
     override func viewDidAppear() {
