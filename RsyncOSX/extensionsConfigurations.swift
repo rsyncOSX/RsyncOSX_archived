@@ -46,7 +46,7 @@ extension ReloadTable {
         return ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllerMain
     }
     var reloadDelegateSchedule: Reloadandrefresh? {
-        return ViewControllerReference.shared.getvcref(viewcontroller: .vctabschedule) as? ViewControllertabSchedule
+        return ViewControllerReference.shared.getvcref(viewcontroller: .vctabschedule) as? ViewControllerSchedule
     }
     var reloadDelegateLoggData: Reloadandrefresh? {
         return ViewControllerReference.shared.getvcref(viewcontroller: .vcloggdata) as? ViewControllerLoggData

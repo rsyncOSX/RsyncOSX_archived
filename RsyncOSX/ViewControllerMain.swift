@@ -407,7 +407,7 @@ class ViewControllerMain: NSViewController, ReloadTable, Deselect, VcMain, Delay
             self.profilInfo.stringValue = NSLocalizedString("Profile:", comment: "Execute ") + " default"
             self.profilInfo.textColor = setcolor(nsviewcontroller: self, color: .green)
         }
-        localprofileinfo = ViewControllerReference.shared.getvcref(viewcontroller: .vctabschedule) as? ViewControllertabSchedule
+        localprofileinfo = ViewControllerReference.shared.getvcref(viewcontroller: .vctabschedule) as? ViewControllerSchedule
         localprofileinfo2 = ViewControllerReference.shared.getvcref(viewcontroller: .vcnewconfigurations ) as? ViewControllerNewConfigurations
         localprofileinfo?.setprofile(profile: self.profilInfo.stringValue, color: self.profilInfo.textColor!)
         localprofileinfo2?.setprofile(profile: self.profilInfo.stringValue, color: self.profilInfo.textColor!)

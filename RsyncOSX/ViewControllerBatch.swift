@@ -56,7 +56,7 @@ class ViewControllerBatch: NSViewController, SetDismisser, Abort, SetConfigurati
         self.executebatch = nil
         if (self.presentingViewController as? ViewControllerMain) != nil {
             self.dismissview(viewcontroller: self, vcontroller: .vctabmain)
-        } else if (self.presentingViewController as? ViewControllertabSchedule) != nil {
+        } else if (self.presentingViewController as? ViewControllerSchedule) != nil {
             self.dismissview(viewcontroller: self, vcontroller: .vctabschedule)
         } else if (self.presentingViewController as? ViewControllerNewConfigurations) != nil {
             self.dismissview(viewcontroller: self, vcontroller: .vcnewconfigurations)

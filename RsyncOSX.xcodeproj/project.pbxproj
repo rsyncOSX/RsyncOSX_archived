@@ -64,7 +64,7 @@
 		A0A403521D76BD2E00A30017 /* ViewControllerRsyncParameters.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0A403501D76BD2E00A30017 /* ViewControllerRsyncParameters.swift */; };
 		A0AA33811D6F926A00DF4C77 /* ViewControllerBatch.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0AA33801D6F926A00DF4C77 /* ViewControllerBatch.swift */; };
 		A0B340B21D67077A00C6DAC3 /* ViewControllerMain.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0B340B11D67077A00C6DAC3 /* ViewControllerMain.swift */; };
-		A0B340B41D67079700C6DAC3 /* ViewControllertabSchedule.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0B340B31D67079700C6DAC3 /* ViewControllertabSchedule.swift */; };
+		A0B340B41D67079700C6DAC3 /* ViewControllerSchedule.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0B340B31D67079700C6DAC3 /* ViewControllerSchedule.swift */; };
 		A0B3D9741D758E20001E190E /* ViewControllerUserconfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0B3D9731D758E20001E190E /* ViewControllerUserconfiguration.swift */; };
 		A0CACFD41DA2738500C5997A /* RsyncParameters.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0CACFD31DA2738500C5997A /* RsyncParameters.swift */; };
 		A0EE98991D8948310034F1A4 /* ViewControllerInformationCopyFiles.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0EE98981D8948310034F1A4 /* ViewControllerInformationCopyFiles.swift */; };
@@ -217,7 +217,7 @@
 		A0A403501D76BD2E00A30017 /* ViewControllerRsyncParameters.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewControllerRsyncParameters.swift; sourceTree = "<group>"; };
 		A0AA33801D6F926A00DF4C77 /* ViewControllerBatch.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewControllerBatch.swift; sourceTree = "<group>"; };
 		A0B340B11D67077A00C6DAC3 /* ViewControllerMain.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewControllerMain.swift; sourceTree = "<group>"; };
-		A0B340B31D67079700C6DAC3 /* ViewControllertabSchedule.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewControllertabSchedule.swift; sourceTree = "<group>"; };
+		A0B340B31D67079700C6DAC3 /* ViewControllerSchedule.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewControllerSchedule.swift; sourceTree = "<group>"; };
 		A0B3D9731D758E20001E190E /* ViewControllerUserconfiguration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewControllerUserconfiguration.swift; sourceTree = "<group>"; };
 		A0CACFD31DA2738500C5997A /* RsyncParameters.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RsyncParameters.swift; sourceTree = "<group>"; };
 		A0EE98981D8948310034F1A4 /* ViewControllerInformationCopyFiles.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewControllerInformationCopyFiles.swift; sourceTree = "<group>"; };
@@ -462,7 +462,7 @@
 				A004D8191D9586580016914F /* ViewControllerLoggData.swift */,
 				A0B340B11D67077A00C6DAC3 /* ViewControllerMain.swift */,
 				E94649662313121000ADDF22 /* extensionVCMain */,
-				A0B340B31D67079700C6DAC3 /* ViewControllertabSchedule.swift */,
+				A0B340B31D67079700C6DAC3 /* ViewControllerSchedule.swift */,
 				A054F1A81D6D773E00D27688 /* ViewControllerInformation.swift */,
 				A08110661D6DA7D8009444D3 /* ViewControllerProgressProcess.swift */,
 				A00FE1A71D6A19CF00012089 /* ViewControllerNewConfigurations.swift */,
@@ -938,7 +938,7 @@
 				E943DC6A1FF9141D00E6B8B7 /* RemoteinfoEstimation.swift in Sources */,
 				E939EC4A20C048A000C47F91 /* extensionVCMain.swift in Sources */,
 				E942FF291FED41D0004191B5 /* ViewControllerQuickBackup.swift in Sources */,
-				A0B340B41D67079700C6DAC3 /* ViewControllertabSchedule.swift in Sources */,
+				A0B340B41D67079700C6DAC3 /* ViewControllerSchedule.swift in Sources */,
 				E9231AFB1F6E3D270055000C /* NewConfigurations.swift in Sources */,
 				E9609EF51F229F5900F5BFAA /* PersistentStorageConfiguration.swift in Sources */,
 				A0041EEF1D7D4357002BF081 /* ScheduleSortedAndExpanded.swift in Sources */,

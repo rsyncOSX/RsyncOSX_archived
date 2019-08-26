@@ -2355,7 +2355,7 @@
         <!--Schedule-->
         <scene sceneID="fFE-4s-MP5">
             <objects>
-                <viewController title="Schedule" storyboardIdentifier="ViewControllertabSchedule" id="rht-JI-asq" customClass="ViewControllertabSchedule" customModule="RsyncOSX" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Schedule" storyboardIdentifier="ViewControllertabSchedule" id="rht-JI-asq" customClass="ViewControllerSchedule" customModule="RsyncOSX" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="X8A-2M-FtC">
                         <rect key="frame" x="0.0" y="0.0" width="1092" height="407"/>
                         <autoresizingMask key="autoresizingMask"/>

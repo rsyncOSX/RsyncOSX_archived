@@ -67,7 +67,7 @@ class ViewControllerEstimatingTasks: NSViewController, Abort, SetConfigurations,
     private func closeview() {
         if (self.presentingViewController as? ViewControllerMain) != nil {
             self.dismissview(viewcontroller: self, vcontroller: .vctabmain)
-        } else if (self.presentingViewController as? ViewControllertabSchedule) != nil {
+        } else if (self.presentingViewController as? ViewControllerSchedule) != nil {
             self.dismissview(viewcontroller: self, vcontroller: .vctabschedule)
         } else if (self.presentingViewController as? ViewControllerNewConfigurations) != nil {
             self.dismissview(viewcontroller: self, vcontroller: .vcnewconfigurations)
@@ -109,8 +109,8 @@ extension ViewControllerEstimatingTasks: StartStopProgressIndicator {
         weak var openDelegate: OpenQuickBackup?
         if (self.presentingViewController as? ViewControllerMain) != nil {
             openDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllerMain
-        } else if (self.presentingViewController as? ViewControllertabSchedule) != nil {
-            openDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabschedule) as? ViewControllertabSchedule
+        } else if (self.presentingViewController as? ViewControllerSchedule) != nil {
+            openDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabschedule) as? ViewControllerSchedule
         } else if (self.presentingViewController as? ViewControllerNewConfigurations) != nil {
             openDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vcnewconfigurations) as? ViewControllerNewConfigurations
         } else if (self.presentingViewController as? ViewControllerCopyFiles) != nil {
