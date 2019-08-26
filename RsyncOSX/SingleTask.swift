@@ -16,7 +16,7 @@ protocol StartStopProgressIndicatorSingleTask: class {
 }
 
 // Protocol functions implemented in main view
-protocol SingleTaskProgress: class {
+protocol SingleTaskProcess: class {
     func presentViewProgress()
     func presentViewInformation(outputprocess: OutputProcess)
     func terminateProgressProcess()
@@ -29,7 +29,7 @@ protocol SingleTaskProgress: class {
 final class SingleTask: SetSchedules, SetConfigurations {
 
     weak var indicatorDelegate: StartStopProgressIndicatorSingleTask?
-    weak var singletaskDelegate: SingleTaskProgress?
+    weak var singletaskDelegate: SingleTaskProcess?
     weak var setprocessDelegate: SendProcessreference?
 
     private var index: Int?

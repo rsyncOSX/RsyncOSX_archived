@@ -226,7 +226,7 @@ class Configurations: ReloadTable, SetSchedules {
     /// and stores Configuration i memory to
     /// persisten store
     /// - parameter index: index of Configuration to toogle batch on/off
-    func enabledisablebatch (_ index: Int) {
+    func togglebatch (_ index: Int) {
         if self.configurations![index].batch == 1 {
             self.configurations![index].batch = 0
         } else {
