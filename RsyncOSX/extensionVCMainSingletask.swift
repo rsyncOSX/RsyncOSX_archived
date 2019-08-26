@@ -10,7 +10,7 @@
 import Foundation
 import Cocoa
 
-extension ViewControllertabMain: SingleTaskProgress {
+extension ViewControllerMain: SingleTaskProgress {
 
     func presentViewProgress() {
         globalMainQueue.async(execute: { () -> Void in

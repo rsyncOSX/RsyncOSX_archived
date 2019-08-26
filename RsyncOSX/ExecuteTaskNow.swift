@@ -17,8 +17,8 @@ final class ExecuteTaskNow: SetConfigurations {
 
     init(index: Int) {
         self.index = index
-        self.setprocessDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllertabMain
-        self.startstopindicators = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllertabMain
+        self.setprocessDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllerMain
+        self.startstopindicators = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllerMain
         if let arguments = self.configurations?.arguments4rsync(index: index, argtype: .arg) {
             let process = Rsync(arguments: arguments)
             self.outputprocess = OutputProcess()
@@ -39,7 +39,7 @@ extension ExecuteTaskNow: UpdateProgress {
 
     func fileHandler() {
         weak var outputeverythingDelegate: ViewOutputDetails?
-        outputeverythingDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllertabMain
+        outputeverythingDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllerMain
         if outputeverythingDelegate?.appendnow() ?? false {
             outputeverythingDelegate?.reloadtable()
         }

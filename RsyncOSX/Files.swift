@@ -33,7 +33,7 @@ protocol ReportFileerror {
 
 extension ReportFileerror {
     var errorDelegate: Fileerror? {
-        return ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllertabMain
+        return ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllerMain
     }
 
     func error(error: String, errortype: Fileerrortype) {

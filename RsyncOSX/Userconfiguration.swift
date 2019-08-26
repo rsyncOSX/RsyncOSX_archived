@@ -55,7 +55,7 @@ final class Userconfiguration {
                 ViewControllerReference.shared.marknumberofdayssince = Double(marknumberofdayssince)!
                 if oldmarknumberofdayssince != ViewControllerReference.shared.marknumberofdayssince {
                     weak var reloadconfigurationsDelegate: Createandreloadconfigurations?
-                    reloadconfigurationsDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllertabMain
+                    reloadconfigurationsDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllerMain
                     reloadconfigurationsDelegate?.createandreloadconfigurations()
                 }
             }

@@ -15,7 +15,7 @@ protocol SetSchedules {
 
 extension SetSchedules {
     var schedulesDelegate: GetSchedulesObject? {
-        return ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllertabMain
+        return ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllerMain
     }
     var schedules: Schedules? {
         return self.schedulesDelegate?.getschedulesobject()

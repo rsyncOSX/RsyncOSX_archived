@@ -22,7 +22,7 @@ protocol SetConfigurations {
 
 extension SetConfigurations {
     var configurationsDelegate: GetConfigurationsObject? {
-        return ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllertabMain
+        return ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllerMain
     }
     var configurations: Configurations? {
         return self.configurationsDelegate?.getconfigurationsobject()
@@ -43,7 +43,7 @@ protocol ReloadTable {
 
 extension ReloadTable {
     var reloadDelegateMain: Reloadandrefresh? {
-        return ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllertabMain
+        return ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllerMain
     }
     var reloadDelegateSchedule: Reloadandrefresh? {
         return ViewControllerReference.shared.getvcref(viewcontroller: .vctabschedule) as? ViewControllertabSchedule

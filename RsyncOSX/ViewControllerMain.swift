@@ -11,7 +11,7 @@
 import Foundation
 import Cocoa
 
-class ViewControllertabMain: NSViewController, ReloadTable, Deselect, VcMain, Delay, FileerrorMessage, Setcolor {
+class ViewControllerMain: NSViewController, ReloadTable, Deselect, VcMain, Delay, FileerrorMessage, Setcolor {
 
     // Main tableview
     @IBOutlet weak var mainTableView: NSTableView!
@@ -291,7 +291,7 @@ class ViewControllertabMain: NSViewController, ReloadTable, Deselect, VcMain, De
         self.working.usesThreadedAnimation = true
         ViewControllerReference.shared.setvcref(viewcontroller: .vctabmain, nsviewcontroller: self)
         self.mainTableView.target = self
-        self.mainTableView.doubleAction = #selector(ViewControllertabMain.tableViewDoubleClick(sender:))
+        self.mainTableView.doubleAction = #selector(ViewControllerMain.tableViewDoubleClick(sender:))
         self.backupdryrun.state = .on
         self.loadProfileMenu = true
         // configurations and schedules

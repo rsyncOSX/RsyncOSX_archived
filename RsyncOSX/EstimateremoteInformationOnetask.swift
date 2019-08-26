@@ -5,7 +5,6 @@
 //  Created by Thomas Evensen on 31.12.2017.
 //  Copyright © 2017 Thomas Evensen. All rights reserved.
 //
-// swiftlint:disable line_length
 
 import Foundation
 
@@ -13,7 +12,7 @@ final class EstimateremoteInformationOnetask: SetConfigurations {
     var arguments: [String]?
     init(index: Int, outputprocess: OutputProcess?, local: Bool, updateprogress: UpdateProgress?) {
         weak var setprocessDelegate: SendProcessreference?
-        setprocessDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllertabMain
+        setprocessDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllerMain
         if local {
             self.arguments = self.configurations!.arguments4rsync(index: index, argtype: .argdryRunlocalcataloginfo)
         } else {

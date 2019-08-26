@@ -5,7 +5,6 @@
 //  Created by Thomas Evensen on 11.06.2018.
 //  Copyright © 2018 Thomas Evensen. All rights reserved.
 //
-// swiftlint:disable line_length
 
 import Foundation
 
@@ -13,7 +12,7 @@ final class RestoreTask: SetConfigurations {
     var arguments: [String]?
     init(index: Int, outputprocess: OutputProcess?, dryrun: Bool, tmprestore: Bool, updateprogress: UpdateProgress?) {
         weak var setprocessDelegate: SendProcessreference?
-        setprocessDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllertabMain
+        setprocessDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllerMain
         if dryrun {
             if tmprestore {
                 self.arguments = self.configurations!.arguments4tmprestore(index: index, argtype: .argdryRun)

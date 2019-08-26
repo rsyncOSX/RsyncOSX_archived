@@ -145,7 +145,7 @@ class ViewControllertabSchedule: NSViewController, SetConfigurations, SetSchedul
         super.viewDidLoad()
         self.mainTableView.delegate = self
         self.mainTableView.dataSource = self
-        self.mainTableView.doubleAction = #selector(ViewControllertabMain.tableViewDoubleClick(sender:))
+        self.mainTableView.doubleAction = #selector(ViewControllerMain.tableViewDoubleClick(sender:))
         ViewControllerReference.shared.setvcref(viewcontroller: .vctabschedule, nsviewcontroller: self)
     }
 

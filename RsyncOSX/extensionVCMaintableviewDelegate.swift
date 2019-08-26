@@ -10,14 +10,14 @@
 import Foundation
 import Cocoa
 
-extension ViewControllertabMain: NSTableViewDataSource {
+extension ViewControllerMain: NSTableViewDataSource {
     // Delegate for size of table
     func numberOfRows(in tableView: NSTableView) -> Int {
         return self.configurations?.configurationsDataSourcecount() ?? 0
     }
 }
 
-extension ViewControllertabMain: NSTableViewDelegate, Attributedestring {
+extension ViewControllerMain: NSTableViewDelegate, Attributedestring {
 
     // TableView delegates
     func tableView(_ tableView: NSTableView, objectValueFor tableColumn: NSTableColumn?, row: Int) -> Any? {

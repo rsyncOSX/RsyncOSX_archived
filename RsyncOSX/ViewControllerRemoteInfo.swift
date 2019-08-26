@@ -35,8 +35,8 @@ class ViewControllerRemoteInfo: NSViewController, SetDismisser, Abort, Setcolor 
             if backup.count > 0 {
                 self.remoteinfotask?.setbackuplist(list: backup)
                 weak var openDelegate: OpenQuickBackup?
-                if (self.presentingViewController as? ViewControllertabMain) != nil {
-                    openDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllertabMain
+                if (self.presentingViewController as? ViewControllerMain) != nil {
+                    openDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllerMain
                 } else if (self.presentingViewController as? ViewControllertabSchedule) != nil {
                     openDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabschedule) as? ViewControllertabSchedule
                 } else if (self.presentingViewController as? ViewControllerNewConfigurations) != nil {
@@ -68,7 +68,7 @@ class ViewControllerRemoteInfo: NSViewController, SetDismisser, Abort, Setcolor 
     }
 
     private func closeview() {
-        if (self.presentingViewController as? ViewControllertabMain) != nil {
+        if (self.presentingViewController as? ViewControllerMain) != nil {
             self.dismissview(viewcontroller: self, vcontroller: .vctabmain)
         } else if (self.presentingViewController as? ViewControllertabSchedule) != nil {
             self.dismissview(viewcontroller: self, vcontroller: .vctabschedule)
@@ -106,7 +106,7 @@ class ViewControllerRemoteInfo: NSViewController, SetDismisser, Abort, Setcolor 
         self.mainTableView.delegate = self
         self.mainTableView.dataSource = self
         ViewControllerReference.shared.setvcref(viewcontroller: .vcremoteinfo, nsviewcontroller: self)
-        self.remoteinfotaskDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllertabMain
+        self.remoteinfotaskDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllerMain
         if let remoteinfotask = self.remoteinfotaskDelegate?.getremoteinfo() {
             self.remoteinfotask = remoteinfotask
             self.loaded = true

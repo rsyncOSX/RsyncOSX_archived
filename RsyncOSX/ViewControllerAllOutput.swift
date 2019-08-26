@@ -18,7 +18,7 @@ class ViewControllerAllOutput: NSViewController, Delay {
     override func viewDidLoad() {
         super.viewDidLoad()
         ViewControllerReference.shared.setvcref(viewcontroller: .vcalloutput, nsviewcontroller: self)
-        self.getoutputDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllertabMain
+        self.getoutputDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllerMain
         self.outputtable.delegate = self
         self.outputtable.dataSource = self
     }

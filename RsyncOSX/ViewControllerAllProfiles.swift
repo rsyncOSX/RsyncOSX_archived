@@ -90,7 +90,7 @@ class ViewControllerAllProfiles: NSViewController, Delay, Abort, Connected {
         super.viewDidAppear()
         self.reloadallprofiles()
         ViewControllerReference.shared.setvcref(viewcontroller: .vcallprofiles, nsviewcontroller: self)
-        self.allprofiledetailsdelegata = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllertabMain
+        self.allprofiledetailsdelegata = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllerMain
         self.allprofiledetailsdelegata?.enablereloadallprofiles()
     }
 

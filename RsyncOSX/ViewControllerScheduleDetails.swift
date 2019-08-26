@@ -30,7 +30,7 @@ class ViewControllerScheduleDetails: NSViewController, SetConfigurations, SetSch
 
     // Close view and either stop or delete Schedules
     @IBAction func close(_ sender: NSButton) {
-        if (self.presentingViewController as? ViewControllertabMain) != nil {
+        if (self.presentingViewController as? ViewControllerMain) != nil {
             self.dismissview(viewcontroller: self, vcontroller: .vctabmain)
         } else if (self.presentingViewController as? ViewControllertabSchedule) != nil {
             self.dismissview(viewcontroller: self, vcontroller: .vctabschedule)
@@ -55,7 +55,7 @@ class ViewControllerScheduleDetails: NSViewController, SetConfigurations, SetSch
             self.reloadtable(vcontroller: .vctabmain)
             self.reloadtable(vcontroller: .vctabschedule)
         }
-        if (self.presentingViewController as? ViewControllertabMain) != nil {
+        if (self.presentingViewController as? ViewControllerMain) != nil {
             self.dismissview(viewcontroller: self, vcontroller: .vctabmain)
         } else if (self.presentingViewController as? ViewControllertabSchedule) != nil {
             self.dismissview(viewcontroller: self, vcontroller: .vctabschedule)
@@ -111,8 +111,8 @@ class ViewControllerScheduleDetails: NSViewController, SetConfigurations, SetSch
     override func viewDidAppear() {
         super.viewDidAppear()
         // Decide which viewcontroller calling the view
-        if (self.presentingViewController as? ViewControllertabMain) != nil {
-            self.gethiddenIDDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllertabMain
+        if (self.presentingViewController as? ViewControllerMain) != nil {
+            self.gethiddenIDDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllerMain
         } else {
             self.gethiddenIDDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabschedule) as? ViewControllertabSchedule
         }

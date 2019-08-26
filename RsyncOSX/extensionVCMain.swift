@@ -11,7 +11,7 @@ import Foundation
 import Cocoa
 
 // Get output from rsync command
-extension ViewControllertabMain: GetOutput {
+extension ViewControllerMain: GetOutput {
     // Get information from rsync output.
     func getoutput() -> [String] {
          return (self.outputprocess?.trimoutput(trim: .two)) ?? []
@@ -19,7 +19,7 @@ extension ViewControllertabMain: GetOutput {
 }
 
 // Scheduled task are changed, read schedule again og redraw table
-extension ViewControllertabMain: Reloadandrefresh {
+extension ViewControllerMain: Reloadandrefresh {
     // Refresh tableView in main
     func reloadtabledata() {
         globalMainQueue.async(execute: { () -> Void in
@@ -29,21 +29,21 @@ extension ViewControllertabMain: Reloadandrefresh {
 }
 
 // Parameters to rsync is changed
-extension ViewControllertabMain: RsyncUserParams {
+extension ViewControllerMain: RsyncUserParams {
     func rsyncuserparamsupdated() {
         self.showrsynccommandmainview()
     }
 }
 
 // Get index of selected row
-extension ViewControllertabMain: GetSelecetedIndex {
+extension ViewControllerMain: GetSelecetedIndex {
     func getindex() -> Int? {
         return self.index
     }
 }
 
 // New profile is loaded.
-extension ViewControllertabMain: NewProfile {
+extension ViewControllerMain: NewProfile {
     // Function is called from profiles when new or default profiles is seleceted
     func newProfile(profile: String?) {
         self.process = nil
@@ -75,7 +75,7 @@ extension ViewControllertabMain: NewProfile {
 }
 
 // Rsync path is changed, update displayed rsync command
-extension ViewControllertabMain: RsyncIsChanged {
+extension ViewControllerMain: RsyncIsChanged {
     func rsyncischanged() {
         self.showrsynccommandmainview()
         self.setinfoaboutrsync()
@@ -83,9 +83,9 @@ extension ViewControllertabMain: RsyncIsChanged {
 }
 
 // Check for remote connections, reload table when completed.
-extension ViewControllertabMain: Connections {
+extension ViewControllerMain: Connections {
     func displayConnections() {
-        guard (self.presentingViewController as? ViewControllertabMain) != nil else { return }
+        guard (self.presentingViewController as? ViewControllerMain) != nil else { return }
         self.loadProfileMenu = true
         globalMainQueue.async(execute: { () -> Void in
             self.mainTableView.reloadData()
@@ -93,16 +93,16 @@ extension ViewControllertabMain: Connections {
     }
 }
 
-extension ViewControllertabMain: NewVersionDiscovered {
+extension ViewControllerMain: NewVersionDiscovered {
     func notifyNewVersion() {
-        guard (self.presentingViewController as? ViewControllertabMain) != nil else { return }
+        guard (self.presentingViewController as? ViewControllerMain) != nil else { return }
         globalMainQueue.async(execute: { () -> Void in
             self.presentAsSheet(self.newVersionViewController!)
         })
     }
 }
 
-extension ViewControllertabMain: DismissViewController {
+extension ViewControllerMain: DismissViewController {
     func dismiss_view(viewcontroller: NSViewController) {
         self.dismiss(viewcontroller)
         self.loadProfileMenu = true
@@ -115,7 +115,7 @@ extension ViewControllertabMain: DismissViewController {
 }
 
 // Deselect a row
-extension ViewControllertabMain: DeselectRowTable {
+extension ViewControllerMain: DeselectRowTable {
     // deselect a row after row is deleted
     func deselect() {
         guard self.index != nil else { return }
@@ -124,7 +124,7 @@ extension ViewControllertabMain: DeselectRowTable {
 }
 
 // If rsync throws any error
-extension ViewControllertabMain: RsyncError {
+extension ViewControllerMain: RsyncError {
     func rsyncerror() {
         // Set on or off in user configuration
         globalMainQueue.async(execute: { () -> Void in
@@ -148,7 +148,7 @@ extension ViewControllertabMain: RsyncError {
 }
 
 // If, for any reason, handling files or directory throws an error
-extension ViewControllertabMain: Fileerror {
+extension ViewControllerMain: Fileerror {
     func errormessage(errorstr: String, errortype: Fileerrortype ) {
         globalMainQueue.async(execute: { () -> Void in
             if errortype == .openlogfile {
@@ -164,7 +164,7 @@ extension ViewControllertabMain: Fileerror {
 }
 
 // Abort task from progressview
-extension ViewControllertabMain: Abort {
+extension ViewControllerMain: Abort {
     // Abort any task
     func abortOperations() {
         // Terminates the running process
@@ -192,7 +192,7 @@ extension ViewControllertabMain: Abort {
 
 // Extensions from here are used in either newSingleTask or newBatchTask
 
-extension ViewControllertabMain: StartStopProgressIndicatorSingleTask {
+extension ViewControllerMain: StartStopProgressIndicatorSingleTask {
     func startIndicator() {
         self.working.startAnimation(nil)
         self.workinglabel.isHidden = false
@@ -204,7 +204,7 @@ extension ViewControllertabMain: StartStopProgressIndicatorSingleTask {
     }
 }
 
-extension ViewControllertabMain: GetConfigurationsObject {
+extension ViewControllerMain: GetConfigurationsObject {
     func getconfigurationsobject() -> Configurations? {
         guard self.configurations != nil else { return nil }
         return self.configurations
@@ -230,7 +230,7 @@ extension ViewControllertabMain: GetConfigurationsObject {
     }
 }
 
-extension ViewControllertabMain: GetSchedulesObject {
+extension ViewControllerMain: GetSchedulesObject {
     func reloadschedulesobject() {
         // If batchtask scedules object
         guard self.executebatch == nil else {
@@ -256,13 +256,13 @@ extension ViewControllertabMain: GetSchedulesObject {
     }
 }
 
-extension  ViewControllertabMain: GetHiddenID {
+extension  ViewControllerMain: GetHiddenID {
     func gethiddenID() -> Int {
         return self.hiddenID ?? -1
     }
 }
 
-extension ViewControllertabMain: Setinfoaboutrsync {
+extension ViewControllerMain: Setinfoaboutrsync {
     internal func setinfoaboutrsync() {
         if ViewControllerReference.shared.norsync == true {
             self.info.stringValue = Infoexecute().info(num: 3)
@@ -273,17 +273,17 @@ extension ViewControllertabMain: Setinfoaboutrsync {
     }
 }
 
-extension ViewControllertabMain: ErrorOutput {
+extension ViewControllerMain: ErrorOutput {
     func erroroutput() {
         self.info.stringValue = Infoexecute().info(num: 2)
     }
 }
 
-extension ViewControllertabMain: Createandreloadconfigurations {
+extension ViewControllerMain: Createandreloadconfigurations {
     // func reateandreloadconfigurations()
 }
 
-extension ViewControllertabMain: SendProcessreference {
+extension ViewControllerMain: SendProcessreference {
     func sendoutputprocessreference(outputprocess: OutputProcess?) {
         self.outputprocess = outputprocess
     }
@@ -293,7 +293,7 @@ extension ViewControllertabMain: SendProcessreference {
     }
 }
 
-extension ViewControllertabMain: SetRemoteInfo {
+extension ViewControllerMain: SetRemoteInfo {
     func getremoteinfo() -> RemoteinfoEstimation? {
         return self.configurations!.remoteinfoestimation
     }
@@ -303,7 +303,7 @@ extension ViewControllertabMain: SetRemoteInfo {
     }
 }
 
-extension ViewControllertabMain: OpenQuickBackup {
+extension ViewControllerMain: OpenQuickBackup {
     func openquickbackup() {
         globalMainQueue.async(execute: { () -> Void in
             self.presentAsSheet(self.viewControllerQuickBackup!)
@@ -311,7 +311,7 @@ extension ViewControllertabMain: OpenQuickBackup {
     }
 }
 
-extension ViewControllertabMain: Count {
+extension ViewControllerMain: Count {
     func maxCount() -> Int {
         return (self.outputprocess?.getMaxcount() ?? 0)
     }
@@ -321,7 +321,7 @@ extension ViewControllertabMain: Count {
     }
 }
 
-extension ViewControllertabMain: Reloadsortedandrefresh {
+extension ViewControllerMain: Reloadsortedandrefresh {
     func reloadsortedandrefreshtabledata() {
         self.schedulesortedandexpanded = ScheduleSortedAndExpand()
         globalMainQueue.async(execute: { () -> Void in
@@ -330,13 +330,13 @@ extension ViewControllertabMain: Reloadsortedandrefresh {
     }
 }
 
-extension ViewControllertabMain: MenuappChanged {
+extension ViewControllerMain: MenuappChanged {
     func menuappchanged() {
         self.enablemenuappbutton()
     }
 }
 
-extension ViewControllertabMain: SetLocalRemoteInfo {
+extension ViewControllerMain: SetLocalRemoteInfo {
     func getlocalremoteinfo(index: Int) -> [NSDictionary]? {
         guard self.configurations?.localremote != nil else { return nil }
         if let info = self.configurations?.localremote?.filter({($0.value(forKey: "index") as? Int)! == index}) {
@@ -357,7 +357,7 @@ extension ViewControllertabMain: SetLocalRemoteInfo {
     }
 }
 
-extension ViewControllertabMain: Allerrors {
+extension ViewControllerMain: Allerrors {
     func allerrors(outputprocess: OutputProcess?) {
         globalMainQueue.async(execute: { () -> Void in
             self.seterrorinfo(info: "Error")
@@ -376,7 +376,7 @@ extension ViewControllertabMain: Allerrors {
     }
 }
 
-extension ViewControllertabMain: ViewOutputDetails {
+extension ViewControllerMain: ViewOutputDetails {
 
     func disableappend() {
         self.dynamicappend = false
@@ -401,7 +401,7 @@ extension ViewControllertabMain: ViewOutputDetails {
     }
 }
 
-extension ViewControllertabMain: AllProfileDetails {
+extension ViewControllerMain: AllProfileDetails {
     func disablereloadallprofiles() {
         self.allprofilesview = false
     }

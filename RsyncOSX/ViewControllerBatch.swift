@@ -54,7 +54,7 @@ class ViewControllerBatch: NSViewController, SetDismisser, Abort, SetConfigurati
         }
         self.executebatch!.closeOperation()
         self.executebatch = nil
-        if (self.presentingViewController as? ViewControllertabMain) != nil {
+        if (self.presentingViewController as? ViewControllerMain) != nil {
             self.dismissview(viewcontroller: self, vcontroller: .vctabmain)
         } else if (self.presentingViewController as? ViewControllertabSchedule) != nil {
             self.dismissview(viewcontroller: self, vcontroller: .vctabschedule)
@@ -104,7 +104,7 @@ class ViewControllerBatch: NSViewController, SetDismisser, Abort, SetConfigurati
         globalMainQueue.async(execute: { () -> Void in
             self.mainTableView.reloadData()
         })
-        self.remoteinfotaskDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllertabMain
+        self.remoteinfotaskDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllerMain
         self.remoteinfotask = RemoteinfoEstimation(viewvcontroller: self)
         self.remoteinfotaskDelegate?.setremoteinfo(remoteinfotask: self.remoteinfotask)
         self.initiateProgressbar()
