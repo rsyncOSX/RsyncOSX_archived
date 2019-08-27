@@ -170,29 +170,28 @@ extension ViewControllerMain: Abort {
         // Terminates the running process
         if let process = self.process {
             process.terminate()
-            self.index = nil
-            self.working.stopAnimation(nil)
-            self.workinglabel.isHidden = true
             self.process = nil
-            // Create workqueu and add abort
             self.seterrorinfo(info: "Abort")
             self.rsyncCommand.stringValue = ""
             if self.configurations!.remoteinfoestimation != nil && self.configurations?.estimatedlist != nil {
                 self.configurations!.remoteinfoestimation = nil
             }
         } else {
-            self.working.stopAnimation(nil)
-            self.workinglabel.isHidden = true
             self.rsyncCommand.stringValue = NSLocalizedString("Selection out of range - aborting", comment: "Execute")
-            self.process = nil
-            self.index = nil
         }
+        self.working.stopAnimation(nil)
+        self.workinglabel.isHidden = true
+        self.process = nil
+        self.index = nil
     }
 }
 
 // Extensions from here are used in either newSingleTask or newBatchTask
 
 extension ViewControllerMain: StartStopProgressIndicatorSingleTask {
+    func startIndicatorExecuteTaskNow() {
+         self.working.startAnimation(nil)
+    }
     func startIndicator() {
         self.working.startAnimation(nil)
         self.workinglabel.isHidden = false

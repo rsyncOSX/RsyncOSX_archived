@@ -24,7 +24,7 @@ final class ExecuteTaskNow: SetConfigurations {
             self.outputprocess = OutputProcess()
             process.setdelegate(object: self)
             process.executeProcess(outputprocess: self.outputprocess)
-            self.startstopindicators?.startIndicator()
+            self.startstopindicators?.startIndicatorExecuteTaskNow()
             self.setprocessDelegate?.sendprocessreference(process: process.getProcess())
             self.setprocessDelegate?.sendoutputprocessreference(outputprocess: self.outputprocess)
         }
