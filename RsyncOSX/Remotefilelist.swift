@@ -26,7 +26,7 @@ class Remotefilelist: ProcessCmd, SetConfigurations {
                                 remoteFile: nil, localCatalog: nil, drynrun: nil)
         self.arguments = self.argumentsobject!.getArguments()
         self.command = self.argumentsobject!.getCommand()
-        self.updateDelegate = self
+        self.setupdateDelegate(object: self)
         self.setremotefilelistDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vccopyfiles) as? ViewControllerCopyFiles
         self.executeProcess(outputprocess: self.outputprocess)
     }
