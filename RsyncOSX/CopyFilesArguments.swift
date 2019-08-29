@@ -15,7 +15,7 @@ enum Enumscopyfiles {
     case snapshotcatalogs
 }
 
-final class CopyFileArguments: ProcessArguments {
+final class CopyFilesArguments: ProcessArguments {
 
     private var arguments: [String]?
     private var argDisplay: String?
