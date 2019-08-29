@@ -96,12 +96,12 @@ class ViewControllerCopyFiles: NSViewController, SetConfigurations, Delay, Conne
         self.restorebutton.isEnabled = false
         if self.estimated == false {
             self.working.startAnimation(nil)
-            self.copysinglefiles!.executecopyfiles(remotefile: self.remoteCatalog!.stringValue, localCatalog: self.restorecatalog!.stringValue, dryrun: true)
+            self.copysinglefiles!.executecopyfiles(remotefile: self.remoteCatalog!.stringValue, localCatalog: self.restorecatalog!.stringValue, dryrun: true, updateprogress: self)
             self.estimated = true
             self.outputprocess = self.copysinglefiles?.outputprocess
         } else {
             self.presentAsSheet(self.viewControllerProgress!)
-            self.copysinglefiles!.executecopyfiles(remotefile: self.remoteCatalog!.stringValue, localCatalog: self.restorecatalog!.stringValue, dryrun: false)
+            self.copysinglefiles!.executecopyfiles(remotefile: self.remoteCatalog!.stringValue, localCatalog: self.restorecatalog!.stringValue, dryrun: false, updateprogress: self)
             self.estimated = false
         }
     }
@@ -168,7 +168,7 @@ class ViewControllerCopyFiles: NSViewController, SetConfigurations, Delay, Conne
         if answer {
             self.restorebutton.isEnabled = false
             self.working.startAnimation(nil)
-            self.copysinglefiles!.executecopyfiles(remotefile: remoteCatalog!.stringValue, localCatalog: restorecatalog!.stringValue, dryrun: false)
+            self.copysinglefiles!.executecopyfiles(remotefile: remoteCatalog!.stringValue, localCatalog: restorecatalog!.stringValue, dryrun: false, updateprogress: self)
         }
     }
 

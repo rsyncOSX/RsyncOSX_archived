@@ -5,7 +5,6 @@
 //  Created by Thomas Evensen on 12/09/2016.
 //  Copyright © 2016 Thomas Evensen. All rights reserved.
 //
-// swiftlint:disable line_length
 
 import Foundation
 
@@ -28,7 +27,7 @@ final class CopySingleFiles: SetConfigurations {
         self.process!.abortProcess()
     }
 
-    func executecopyfiles(remotefile: String, localCatalog: String, dryrun: Bool) {
+    func executecopyfiles(remotefile: String, localCatalog: String, dryrun: Bool, updateprogress: UpdateProgress) {
         var arguments: [String]?
         guard self.config != nil else { return }
         if dryrun {
@@ -43,10 +42,7 @@ final class CopySingleFiles: SetConfigurations {
         self.outputprocess = OutputProcess()
         self.sendprocess?.sendoutputprocessreference(outputprocess: self.outputprocess)
         self.process = ProcessCmd(command: nil, arguments: arguments)
-        weak var copyfilesDelegate: UpdateProgress?
-        copyfilesDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vccopyfiles) as? ViewControllerCopyFiles
-        guard copyfilesDelegate != nil else { return }
-        process?.setupdateDelegate(object: copyfilesDelegate!)
+        self.process?.setupdateDelegate(object: updateprogress)
         self.process!.executeProcess(outputprocess: self.outputprocess)
     }
 
