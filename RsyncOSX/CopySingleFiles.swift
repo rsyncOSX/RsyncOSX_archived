@@ -17,6 +17,7 @@ final class CopySingleFiles: SetConfigurations {
     private var commandDisplay: String?
     var process: ProcessCmd?
     var outputprocess: OutputProcess?
+    weak var sendprocess: SendProcessreference?
 
     func getOutput() -> [String] {
         return self.outputprocess?.getOutput() ?? []
@@ -40,6 +41,7 @@ final class CopySingleFiles: SetConfigurations {
             arguments = self.argumentsObject!.getArguments()
         }
         self.outputprocess = OutputProcess()
+        self.sendprocess?.sendoutputprocessreference(outputprocess: self.outputprocess)
         self.process = ProcessCmd(command: nil, arguments: arguments)
         weak var copyfilesDelegate: UpdateProgress?
         copyfilesDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vccopyfiles) as? ViewControllerCopyFiles
@@ -56,6 +58,7 @@ final class CopySingleFiles: SetConfigurations {
     }
 
     init (hiddenID: Int) {
+        self.sendprocess = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllerMain
         self.index = self.configurations?.getIndex(hiddenID)
         self.config = self.configurations!.getConfigurations()[self.index!]
     }
