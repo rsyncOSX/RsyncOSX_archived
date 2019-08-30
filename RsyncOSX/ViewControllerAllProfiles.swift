@@ -180,9 +180,9 @@ extension ViewControllerAllProfiles: NSTableViewDelegate, Attributedestring {
         case 4:
             self.filterby = .localcatalog
         case 5:
-            self.filterby = .remotecatalog
+            self.filterby = .offsitecatalog
         case 6:
-            self.filterby = .remoteserver
+            self.filterby = .offsiteserver
         case 10, 11:
             sortbystring = false
             self.filterby = .executedate

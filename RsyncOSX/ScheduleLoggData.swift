@@ -12,10 +12,10 @@
 import Foundation
 
 enum Sortandfilter {
-    case remotecatalog
+    case offsitecatalog
     case localcatalog
     case profile
-    case remoteserver
+    case offsiteserver
     case task
     case backupid
     case numberofdays
