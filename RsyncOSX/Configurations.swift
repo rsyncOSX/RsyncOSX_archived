@@ -10,7 +10,7 @@
 //  Created by Thomas Evensen on 08/02/16.
 //  Copyright © 2016 Thomas Evensen. All rights reserved.
 //
-//  swiftlint:disable line_length type_body_length
+//  swiftlint:disable line_length
 
 import Foundation
 import Cocoa
@@ -165,44 +165,11 @@ class Configurations: ReloadTable, SetSchedules {
         self.configurations!.append(config)
     }
 
-/*
-    /// Function sets currentDate on Configuration when executed on task
-    /// stored in memory and then saves updated configuration from memory to persistent store.
-    /// Function also notifies Execute view to refresh data
-    /// in tableView.
-    /// - parameter index: index of Configuration to update
-    func setCurrentDateonConfigurationQuickbackup (index: Int, outputprocess: OutputProcess?) {
-        /*
-        // Write result to Schedule
-        let datestring = self.dateformatter!.string(from: date!)
-        let dateStartstring = self.dateformatter!.string(from: dateStart!)
-        let number = Numbers(outputprocess: outputprocess)
-        let numberstring = number.stats()
-        self.schedules!.addresultschedule(self.hiddenID!, dateStart: dateStartstring, result: numberstring, date: datestring, schedule: schedule!)
-        self.configurations!.setCurrentDateonConfigurationQuickbackup(index: self.index!, outputprocess: outputprocess)
-        self.schedulesDelegate?.reloadschedulesobject()
-        */
-        
-        
-        
-        if self.configurations![index].task == ViewControllerReference.shared.snapshot {
-            self.increasesnapshotnum(index: index)
-        }
-        let currendate = Date()
-        let dateformatter = Dateandtime().setDateformat()
-        self.configurations![index].dateRun = dateformatter.string(from: currendate)
-        // Saving updated configuration in memory to persistent store
-        self.storageapi!.saveConfigFromMemory()
-        // Call the view and do a refresh of tableView
-        self.reloadtable(vcontroller: .vctabmain)
-        _ = Logging(outputprocess: outputprocess)
-    }
-*/
     func setCurrentDateonConfiguration(index: Int, outputprocess: OutputProcess?) {
         let number = Numbers(outputprocess: outputprocess)
         let hiddenID = self.gethiddenID(index: index)
         let numbers = number.stats()
-        self.schedules!.addlogtaskmanuel(hiddenID, result: numbers)
+        self.schedules!.addlog(hiddenID, result: numbers)
         if self.configurations![index].task == ViewControllerReference.shared.snapshot {
             self.increasesnapshotnum(index: index)
         }
