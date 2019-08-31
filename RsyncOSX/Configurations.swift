@@ -165,12 +165,26 @@ class Configurations: ReloadTable, SetSchedules {
         self.configurations!.append(config)
     }
 
+/*
     /// Function sets currentDate on Configuration when executed on task
     /// stored in memory and then saves updated configuration from memory to persistent store.
     /// Function also notifies Execute view to refresh data
     /// in tableView.
     /// - parameter index: index of Configuration to update
     func setCurrentDateonConfigurationQuickbackup (index: Int, outputprocess: OutputProcess?) {
+        /*
+        // Write result to Schedule
+        let datestring = self.dateformatter!.string(from: date!)
+        let dateStartstring = self.dateformatter!.string(from: dateStart!)
+        let number = Numbers(outputprocess: outputprocess)
+        let numberstring = number.stats()
+        self.schedules!.addresultschedule(self.hiddenID!, dateStart: dateStartstring, result: numberstring, date: datestring, schedule: schedule!)
+        self.configurations!.setCurrentDateonConfigurationQuickbackup(index: self.index!, outputprocess: outputprocess)
+        self.schedulesDelegate?.reloadschedulesobject()
+        */
+        
+        
+        
         if self.configurations![index].task == ViewControllerReference.shared.snapshot {
             self.increasesnapshotnum(index: index)
         }
@@ -183,7 +197,7 @@ class Configurations: ReloadTable, SetSchedules {
         self.reloadtable(vcontroller: .vctabmain)
         _ = Logging(outputprocess: outputprocess)
     }
-
+*/
     func setCurrentDateonConfiguration(index: Int, outputprocess: OutputProcess?) {
         let number = Numbers(outputprocess: outputprocess)
         let hiddenID = self.gethiddenID(index: index)

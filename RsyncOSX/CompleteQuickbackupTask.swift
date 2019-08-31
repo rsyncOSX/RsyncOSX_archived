@@ -24,13 +24,16 @@ final class CompleteQuickbackupTask: SetConfigurations, SetSchedules {
     // The Operation object sets reference to the completeScheduledOperation in self.schedules!.operation
     // This function is executed when rsyn process terminates
     func finalizeScheduledJob(outputprocess: OutputProcess?) {
+        /*
         // Write result to Schedule
         let datestring = self.dateformatter!.string(from: date!)
         let dateStartstring = self.dateformatter!.string(from: dateStart!)
         let number = Numbers(outputprocess: outputprocess)
         let numberstring = number.stats()
         self.schedules!.addresultschedule(self.hiddenID!, dateStart: dateStartstring, result: numberstring, date: datestring, schedule: schedule!)
-        self.configurations!.setCurrentDateonConfigurationQuickbackup(index: self.index!, outputprocess: outputprocess)
+        */
+        // self.configurations!.setCurrentDateonConfigurationQuickbackup(index: self.index!, outputprocess: outputprocess)
+        self.configurations?.setCurrentDateonConfiguration(index: self.index!, outputprocess: outputprocess)
         self.schedulesDelegate?.reloadschedulesobject()
     }
 

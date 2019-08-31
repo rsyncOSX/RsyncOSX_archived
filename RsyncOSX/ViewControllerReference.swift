@@ -31,7 +31,7 @@ enum ViewController {
     case vcalloutput
 }
 
-class ViewControllerReference {
+final class ViewControllerReference {
 
     // Creates a singelton of this class
     class var  shared: ViewControllerReference {
