@@ -32,10 +32,10 @@ class ViewControllerSsh: NSViewController, SetConfigurations, VcMain {
     @IBOutlet weak var remoteserverbutton: NSButton!
     @IBOutlet weak var terminalappbutton: NSButton!
 
-    var viewControllerSource: NSViewController? {
+    lazy var viewControllerSource: NSViewController? = {
         return (self.storyboard!.instantiateController(withIdentifier: "CopyFilesID")
             as? NSViewController)
-    }
+    }()
 
     @IBAction func totinfo(_ sender: NSButton) {
         guard ViewControllerReference.shared.norsync == false else {

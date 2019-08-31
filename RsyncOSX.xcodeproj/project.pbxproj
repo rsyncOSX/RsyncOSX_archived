@@ -453,7 +453,6 @@
 		A04492C31D658FF900B3CE17 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				E958CDDE1FA4CEBD00EA37A5 /* ViewControllerExtensions.swift */,
 				E8EF5EB9231A871600444F9E /* Sheetviews */,
 				E8EF5EB8231A86FE00444F9E /* Tabviews */,
 				E958BB2523070ACE00349C81 /* RemoteEstimation */,
@@ -640,6 +639,7 @@
 		E957B1131F5F2A3A0099947A /* ViewControllerReference */ = {
 			isa = PBXGroup;
 			children = (
+				E958CDDE1FA4CEBD00EA37A5 /* ViewControllerExtensions.swift */,
 				E957B1111F5F17220099947A /* ViewControllerReference.swift */,
 			);
 			name = ViewControllerReference;
