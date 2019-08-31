@@ -39,6 +39,7 @@ class Configurations: ReloadTable, SetSchedules {
     var localremote: [NSDictionary]?
     // remote info tasks
     var remoteinfoestimation: RemoteinfoEstimation?
+
     /// Function for getting the profile
     func getProfile() -> String? {
         return self.profile
