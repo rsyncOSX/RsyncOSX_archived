@@ -42,7 +42,7 @@ final class QuickBackup: SetConfigurations {
         self.reloadtableDelegate?.reloadtabledata()
     }
 
-    private func executetask(hiddenID: Int) {
+    private func executequickbackuptask(hiddenID: Int) {
         let now: Date = Date()
         let dateformatter = Dateandtime().setDateformat()
         let task: NSDictionary = [
@@ -79,7 +79,7 @@ final class QuickBackup: SetConfigurations {
             self.sortedlist![self.index!].setValue(true, forKey: "inprogressCellID")
             self.maxcount = Int(self.sortedlist![self.index!].value(forKey: "transferredNumber") as? String ?? "0")
             self.stackoftasktobeexecuted?.remove(at: 0)
-            self.executetask(hiddenID: self.hiddenID!)
+            self.executequickbackuptask(hiddenID: self.hiddenID!)
         }
     }
 
@@ -136,7 +136,7 @@ extension QuickBackup: UpdateProgress {
         self.stackoftasktobeexecuted?.remove(at: 0)
         self.sortedlist![self.index!].setValue(true, forKey: "inprogressCellID")
         self.maxcount = Int(self.sortedlist![self.index!].value(forKey: "transferredNumber") as? String ?? "0")
-        self.executetask(hiddenID: self.hiddenID!)
+        self.executequickbackuptask(hiddenID: self.hiddenID!)
         self.reloadtableDelegate?.reloadtabledata()
     }
 

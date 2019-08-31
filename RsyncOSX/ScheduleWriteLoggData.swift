@@ -49,7 +49,7 @@ class ScheduleWriteLoggData: SetConfigurations, ReloadTable, Deselect {
     /// - parameter hiddenID : hiddenID for task
     /// - parameter result : String representation of result
     /// - parameter date : String representation of date and time stamp
-    func addlogtaskmanuel(_ hiddenID: Int, result: String) {
+    func addlog(_ hiddenID: Int, result: String) {
         if ViewControllerReference.shared.detailedlogging {
             // Set the current date
             let currendate = Date()
@@ -63,10 +63,10 @@ class ScheduleWriteLoggData: SetConfigurations, ReloadTable, Deselect {
             } else {
                 resultannotaded = result
             }
-            var inserted: Bool = self.addloggtaskmanuelexisting(hiddenID, result: resultannotaded ?? "", date: date)
+            var inserted: Bool = self.addlogexisting(hiddenID, result: resultannotaded ?? "", date: date)
             // Record does not exist, create new Schedule (not inserted)
             if inserted == false {
-                inserted = self.addloggtaskmanuelnew(hiddenID, result: resultannotaded ?? "", date: date)
+                inserted = self.addlognew(hiddenID, result: resultannotaded ?? "", date: date)
             }
             if inserted {
                 self.storageapi!.saveScheduleFromMemory()
@@ -75,7 +75,7 @@ class ScheduleWriteLoggData: SetConfigurations, ReloadTable, Deselect {
         }
     }
 
-    private func addloggtaskmanuelexisting(_ hiddenID: Int, result: String, date: String) -> Bool {
+    private func addlogexisting(_ hiddenID: Int, result: String, date: String) -> Bool {
         var loggadded: Bool = false
         for i in 0 ..< self.schedules!.count where
             self.configurations!.getResourceConfiguration(hiddenID, resource: .task) == ViewControllerReference.shared.synchronize {
@@ -92,7 +92,7 @@ class ScheduleWriteLoggData: SetConfigurations, ReloadTable, Deselect {
         return loggadded
     }
 
-    private func addloggtaskmanuelnew(_ hiddenID: Int, result: String, date: String) -> Bool {
+    private func addlognew(_ hiddenID: Int, result: String, date: String) -> Bool {
         var loggadded: Bool = false
         if self.configurations!.getResourceConfiguration(hiddenID, resource: .task) == ViewControllerReference.shared.synchronize ||
             self.configurations!.getResourceConfiguration(hiddenID, resource: .task) == ViewControllerReference.shared.snapshot {
@@ -110,44 +110,6 @@ class ScheduleWriteLoggData: SetConfigurations, ReloadTable, Deselect {
             loggadded = true
         }
         return loggadded
-    }
-
-    /// Function adds results of task to file (via memory). Memory are
-    /// saved after changed. Used in either single tasks or batch.
-    /// - parameter hiddenID : hiddenID for task
-    /// - parameter dateStart : String representation of date and time stamp start schedule
-    /// - parameter result : String representation of result
-    /// - parameter date : String representation of date and time stamp for task executed
-    /// - parameter schedule : schedule of task
-    func addresultschedule(_ hiddenID: Int, dateStart: String, result: String, date: String, schedule: String) {
-        if ViewControllerReference.shared.detailedlogging {
-            var logged: Bool = false
-            for i in 0 ..< self.schedules!.count where
-                self.schedules![i].hiddenID == hiddenID  &&
-                self.schedules![i].schedule == schedule &&
-                self.schedules![i].dateStart == dateStart {
-                    if self.configurations!.getResourceConfiguration(hiddenID, resource: .task) == ViewControllerReference.shared.synchronize ||
-                        self.configurations!.getResourceConfiguration(hiddenID, resource: .task) == ViewControllerReference.shared.snapshot {
-                        logged = true
-                        let dict = NSMutableDictionary()
-                        var resultannotaded: String?
-                        let config = self.getconfig(hiddenID: hiddenID)
-                        if config.task == ViewControllerReference.shared.snapshot {
-                            let snapshotnum = String(config.snapshotnum!)
-                            resultannotaded = "(" +  snapshotnum + ") " + result
-                        } else {
-                            resultannotaded = result
-                        }
-                        dict.setObject(date, forKey: "dateExecuted" as NSCopying)
-                        dict.setObject(resultannotaded ?? "", forKey: "resultExecuted" as NSCopying)
-                        self.schedules![i].logrecords.append(dict)
-                        self.storageapi!.saveScheduleFromMemory()
-                    }
-            }
-            if logged == false {
-                self.addlogtaskmanuel(hiddenID, result: result)
-            }
-        }
     }
 
     private func getconfig(hiddenID: Int) -> Configuration {
