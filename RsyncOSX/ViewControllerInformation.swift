@@ -23,7 +23,7 @@ class ViewControllerInformation: NSViewController, SetDismisser, OutPut {
             self.geterrormessagesDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllerMain
             self.output = self.geterrormessagesDelegate?.getoutputerrors()?.getOutput()
         } else {
-            self.output = self.getinfo(viewcontroller: .vctabmain)
+            self.output = self.getinfo()
         }
         globalMainQueue.async(execute: { () -> Void in
             self.detailsTable.reloadData()
@@ -38,7 +38,7 @@ class ViewControllerInformation: NSViewController, SetDismisser, OutPut {
 
     override func viewDidAppear() {
         super.viewDidAppear()
-        self.output = self.getinfo(viewcontroller: .vctabmain)
+        self.output = self.getinfo()
         globalMainQueue.async(execute: { () -> Void in
             self.detailsTable.reloadData()
         })
