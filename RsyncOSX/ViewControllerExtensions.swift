@@ -286,23 +286,15 @@ protocol GetOutput: class {
 
 protocol OutPut {
     var informationDelegateMain: GetOutput? { get }
-    var informationDelegateCopyFiles: GetOutput? { get }
 }
 
 extension OutPut {
     var informationDelegateMain: GetOutput? {
         return ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllerMain
     }
-    var informationDelegateCopyFiles: GetOutput? {
-        return ViewControllerReference.shared.getvcref(viewcontroller: .vccopyfiles) as? ViewControllerCopyFiles
-    }
 
-    func getinfo(viewcontroller: ViewController) -> [String] {
-        if viewcontroller == .vctabmain {
-            return (self.informationDelegateMain?.getoutput())!
-        } else {
-            return (self.informationDelegateCopyFiles?.getoutput())!
-        }
+    func getinfo() -> [String] {
+        return (self.informationDelegateMain?.getoutput()) ?? [""]
     }
 }
 
