@@ -87,6 +87,16 @@ final class ViewControllerReference {
     var macserialnumber: String?
     // Automatic execute local configurations in menuapp when mounting local volumes
     var automaticexecutelocalvolumes: Bool = false
+    // Execute scheduled tasks in menu app, default off
+    var executescheduledtasksmenuapp: Bool = false
+    // True if menuapp is running
+    var menuappisrunning: Bool = false
+    // Initial start
+    var initialstart: Int = 0
+    // Setting environmentvariable for Process object
+    var environment: String?
+    var environmentvalue: String?
+
     // Reference to main View
     private var viewControllertabMain: NSViewController?
     // Reference to Copy files
@@ -123,15 +133,6 @@ final class ViewControllerReference {
     private var viewControllerVerify: NSViewController?
     // Alloutput
     private var viewControllerAlloutput: NSViewController?
-    // Execute scheduled tasks in menu app, default off
-    var executescheduledtasksmenuapp: Bool = false
-    // True if menuapp is running
-    var menuappisrunning: Bool = false
-    // Initial start
-    var initialstart: Int = 0
-    // Setting environmentvariable for Process object
-    var environment: String?
-    var environmentvalue: String?
 
     func getvcref(viewcontroller: ViewController) -> NSViewController? {
         switch viewcontroller {
