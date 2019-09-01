@@ -354,8 +354,7 @@ extension ViewControllerCopyFiles: Count {
     }
 
     func inprogressCount() -> Int {
-        guard self.copyfiles?.outputprocess != nil else { return 0 }
-        return self.copyfiles!.outputprocess!.count()
+        return self.copyfiles?.outputprocess?.count() ?? 0
     }
 }
 
