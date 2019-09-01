@@ -356,15 +356,13 @@ extension ViewControllerSnapshots: UpdateProgress {
 
 extension ViewControllerSnapshots: Count {
     func maxCount() -> Int {
-        guard self.snapshotsloggdata?.remotecatalogstodelete != nil else { return 0 }
-        let max = self.snapshotsloggdata!.remotecatalogstodelete!.count
+        let max = self.snapshotsloggdata?.remotecatalogstodelete?.count ?? 0
         self.snapshotstodelete = Double(max)
         return max
     }
 
     func inprogressCount() -> Int {
-        guard self.snapshotsloggdata?.remotecatalogstodelete != nil else { return 0 }
-        let progress = Int(self.snapshotstodelete) - self.snapshotsloggdata!.remotecatalogstodelete!.count
+        let progress = Int(self.snapshotstodelete) - (self.snapshotsloggdata?.remotecatalogstodelete?.count ?? 0)
         return progress
     }
 }
@@ -378,8 +376,8 @@ extension ViewControllerSnapshots: NSTableViewDataSource {
                 self.numberOflogfiles.stringValue = numberofsnaps + " "
                 return 0
             }
-            self.numberOflogfiles.stringValue = numberofsnaps + " " + String(self.snapshotsloggdata?.snapshotslogs!.count ?? 0)
-            return (self.snapshotsloggdata?.snapshotslogs!.count ?? 0)
+            self.numberOflogfiles.stringValue = numberofsnaps + " " + String(self.snapshotsloggdata?.snapshotslogs?.count ?? 0)
+            return self.snapshotsloggdata?.snapshotslogs?.count ?? 0
         } else {
            return self.configurations?.getConfigurationsDataSourceSynchronize()?.count ?? 0
         }

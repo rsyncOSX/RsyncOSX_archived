@@ -312,11 +312,11 @@ extension ViewControllerMain: OpenQuickBackup {
 
 extension ViewControllerMain: Count {
     func maxCount() -> Int {
-        return (self.outputprocess?.getMaxcount() ?? 0)
+        return self.outputprocess?.getMaxcount() ?? 0
     }
 
     func inprogressCount() -> Int {
-        return (self.outputprocess?.count() ?? 0)
+        return self.outputprocess?.count() ?? 0
     }
 }
 
