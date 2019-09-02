@@ -27,7 +27,7 @@ final class ScheduleLoggData: SetConfigurations, SetSchedules, Sorting {
     var loggdata: [NSMutableDictionary]?
     private var scheduleConfiguration: [ConfigurationSchedule]?
 
-    func filter(search: String?, filterby: Sortandfilter?) {
+    func myownfilter(search: String?, filterby: Sortandfilter?) {
         guard search != nil && self.loggdata != nil && filterby != nil else { return }
         globalDefaultQueue.async(execute: {() -> Void in
             let valueforkey = self.filterbystring(filterby: filterby!)
