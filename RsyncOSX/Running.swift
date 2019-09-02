@@ -28,7 +28,6 @@ final class Running {
             return false
         }
         self.menuappnoconfig = false
-        guard  ViewControllerReference.shared.executescheduledtasksmenuapp == true else { return false }
         if self.rsyncOSXschedisrunning == true {
             return false
         } else {

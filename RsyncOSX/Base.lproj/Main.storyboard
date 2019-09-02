@@ -3674,14 +3674,6 @@ DQ
                                                 <action selector="toggleautomaticexecutelocalvolumes:" target="Psw-ga-cgO" id="Rwd-Ow-dFg"/>
                                             </connections>
                                         </button>
-                                        <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="tyj-K6-PJj">
-                                            <rect key="frame" x="65" y="22" width="250" height="18"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                            <buttonCell key="cell" type="check" title="Execute scheduled tasks in menu app" bezelStyle="regularSquare" imagePosition="left" enabled="NO" state="on" inset="2" id="Fzz-BB-PJC">
-                                                <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                                                <font key="font" metaFont="system"/>
-                                            </buttonCell>
-                                        </button>
                                     </subviews>
                                 </view>
                             </box>
@@ -3874,7 +3866,6 @@ DQ
                         <outlet property="enableenvironment" destination="I07-48-scn" id="dHw-8Z-G8I"/>
                         <outlet property="environment" destination="9fS-yY-5No" id="AOY-QT-JFC"/>
                         <outlet property="environmentvalue" destination="Hps-Ij-Zdg" id="2Ak-p7-w4m"/>
-                        <outlet property="executescheduledappsinmenuapp" destination="tyj-K6-PJj" id="cbA-0X-jrJ"/>
                         <outlet property="fulllogging" destination="aZk-KL-3Z0" id="9vS-lT-gDI"/>
                         <outlet property="marknumberofdayssince" destination="LM6-LS-XBt" id="i3n-O2-UHK"/>
                         <outlet property="minimumlogging" destination="rRE-KD-I0w" id="ULZ-Cz-3Gs"/>

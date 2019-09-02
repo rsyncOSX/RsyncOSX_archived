@@ -88,7 +88,7 @@ final class ViewControllerReference {
     // Automatic execute local configurations in menuapp when mounting local volumes
     var automaticexecutelocalvolumes: Bool = false
     // Execute scheduled tasks in menu app, default off
-    var executescheduledtasksmenuapp: Bool = false
+    // var executescheduledtasksmenuapp: Bool = false
     // True if menuapp is running
     var menuappisrunning: Bool = false
     // Initial start

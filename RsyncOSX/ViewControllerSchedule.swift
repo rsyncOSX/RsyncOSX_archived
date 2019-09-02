@@ -204,10 +204,6 @@ class ViewControllerSchedule: NSViewController, SetConfigurations, SetSchedules,
 
     private func enablemenuappbutton() {
         globalMainQueue.async(execute: { () -> Void in
-            guard ViewControllerReference.shared.executescheduledtasksmenuapp == true else {
-                self.rsyncosxschedbutton.isEnabled = false
-                return
-            }
             let running = Running()
             guard running.enablemenuappbutton == true else {
                 self.rsyncosxschedbutton.isEnabled = false

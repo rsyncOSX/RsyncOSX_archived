@@ -595,9 +595,6 @@
 /* Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "Fzm-Cm-ENf"; */
 "Fzm-Cm-ENf.title" = "文本单元格";
 
-/* Class = "NSButtonCell"; title = "Execute scheduled tasks in menu app"; ObjectID = "Fzz-BB-PJC"; */
-"Fzz-BB-PJC.title" = "在菜单应用程序中执行计划任务";
-
 /* Class = "NSToolbarItem"; label = "info"; ObjectID = "g1a-zY-Mpq"; */
 "g1a-zY-Mpq.label" = "信息";
 
