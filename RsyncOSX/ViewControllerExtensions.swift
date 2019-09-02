@@ -368,25 +368,9 @@ extension Sorting {
 
     func sortbystring(notsortedlist: [NSMutableDictionary]?, sortby: Sortandfilter, sortdirection: Bool) -> [NSMutableDictionary]? {
         guard notsortedlist != nil else { return nil }
-        var sortstring: String?
-        switch sortby {
-        case .localcatalog:
-            sortstring = "localCatalog"
-        case .offsiteserver:
-            sortstring = "offsiteServer"
-        case .offsitecatalog:
-            sortstring = "offsiteCatalog"
-        case .task:
-            sortstring = "task"
-        case .backupid:
-            sortstring = "backupID"
-        case .profile:
-            sortstring = "profile"
-        default:
-            sortstring = ""
-        }
-        let sorted = notsortedlist!.sorted { (dict1, dict2) -> Bool in
-            if (dict1.value(forKey: sortstring!) as? String) ?? "" > (dict2.value(forKey: sortstring!) as? String) ?? "" {
+        let sortstring = self.filterbystring(filterby: sortby)
+        let sorted = notsortedlist?.sorted { (dict1, dict2) -> Bool in
+            if (dict1.value(forKey: sortstring) as? String) ?? "" > (dict2.value(forKey: sortstring) as? String) ?? "" {
                 return sortdirection
             } else {
                 return !sortdirection
