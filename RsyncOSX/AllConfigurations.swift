@@ -60,7 +60,7 @@ final class AllConfigurations: Sorting {
                 "offsiteUsername": configurations[i].offsiteUsername,
                 "backupID": configurations[i].backupID,
                 "dateExecuted": date,
-                "days": configurations[i].dayssincelastbackup ?? "",
+                "daysID": configurations[i].dayssincelastbackup ?? "",
                 "markdays": configurations[i].markdays,
                 "selectCellID": 0
             ]
@@ -70,30 +70,14 @@ final class AllConfigurations: Sorting {
     }
 
     // Function for filter
-    func filter(search: String?, column: Int, filterby: Sortandfilter?) {
+    func filter(search: String?, filterby: Sortandfilter?) {
         guard search != nil && self.allconfigurationsasdictionary != nil && filterby != nil else { return }
         globalDefaultQueue.async(execute: {() -> Void in
-            switch column {
-            case 0, 1, 2, 3, 4, 5, 6:
-                guard filterby != nil else { return }
-                let valueforkey = self.filterbystring(filterby: filterby!)
-                let filtereddata = self.allconfigurationsasdictionary?.filter({
-                    ($0.value(forKey: valueforkey) as? String)!.contains(search!)
-                })
-                self.allconfigurationsasdictionary = filtereddata
-            case 10:
-                let filtereddata = self.allconfigurationsasdictionary?.filter({
-                    ($0.value(forKey: "daysID") as? String)!.contains(search!)
-                })
-                self.allconfigurationsasdictionary = filtereddata
-            case 11:
-                let filtereddata = self.allconfigurationsasdictionary?.filter({
-                    ($0.value(forKey: "dateExecuted") as? String)!.contains(search!)
-                })
-                self.allconfigurationsasdictionary = filtereddata
-            default:
-                return
-            }
+            let valueforkey = self.filterbystring(filterby: filterby!)
+            let filtereddata = self.allconfigurationsasdictionary?.filter({
+                ($0.value(forKey: valueforkey) as? String)?.contains(search ?? "") ?? false
+            })
+            self.allconfigurationsasdictionary = filtereddata
         })
     }
 
