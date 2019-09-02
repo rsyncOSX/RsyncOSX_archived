@@ -41,13 +41,6 @@ final class Userconfiguration {
                 ViewControllerReference.shared.restorePath = nil
             }
         }
-        if let executeinmenuapp = dict.value(forKey: "executeinmenuapp") as? Int {
-            if executeinmenuapp == 1 {
-                ViewControllerReference.shared.executescheduledtasksmenuapp = true
-            } else {
-                ViewControllerReference.shared.executescheduledtasksmenuapp = false
-            }
-        }
         // Mark tasks
         if let marknumberofdayssince = dict.value(forKey: "marknumberofdayssince") as? String {
             if Double(marknumberofdayssince)! > 0 {

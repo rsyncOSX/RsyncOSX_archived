@@ -18,7 +18,6 @@ struct ConvertUserconfiguration {
         var detailedlogging: Int?
         var minimumlogging: Int?
         var fulllogging: Int?
-        var executeinmenuapp: Int?
         var rsyncpath: String?
         var restorepath: String?
         var marknumberofdayssince: String?
@@ -51,11 +50,6 @@ struct ConvertUserconfiguration {
         if ViewControllerReference.shared.restorePath != nil {
             restorepath = ViewControllerReference.shared.restorePath!
         }
-        if ViewControllerReference.shared.executescheduledtasksmenuapp == true {
-            executeinmenuapp = 1
-        } else {
-            executeinmenuapp = 0
-        }
         if ViewControllerReference.shared.automaticexecutelocalvolumes {
             automaticexecutelocalvolumes = 1
         } else {
@@ -68,7 +62,6 @@ struct ConvertUserconfiguration {
             "minimumlogging": minimumlogging! as Int,
             "fulllogging": fulllogging! as Int,
             "marknumberofdayssince": marknumberofdayssince ?? "5.0",
-            "executeinmenuapp": executeinmenuapp ?? 1 as Int,
             "automaticexecutelocalvolumes": automaticexecutelocalvolumes! as Int]
         if rsyncpath != nil {
             dict.setObject(rsyncpath!, forKey: "rsyncPath" as NSCopying)

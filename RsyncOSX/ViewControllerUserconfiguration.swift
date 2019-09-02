@@ -34,7 +34,6 @@ class ViewControllerUserconfiguration: NSViewController, NewRsync, SetDismisser,
     @IBOutlet weak var marknumberofdayssince: NSTextField!
     @IBOutlet weak var pathRsyncOSX: NSTextField!
     @IBOutlet weak var pathRsyncOSXsched: NSTextField!
-    @IBOutlet weak var executescheduledappsinmenuapp: NSButton!
     @IBOutlet weak var statuslightpathrsync: NSImageView!
     @IBOutlet weak var statuslighttemppath: NSImageView!
     @IBOutlet weak var statuslightpathrsyncosx: NSImageView!
@@ -225,7 +224,6 @@ class ViewControllerUserconfiguration: NSViewController, NewRsync, SetDismisser,
         if verifypatexists(pathorfilename: pathtorsyncosx! + ViewControllerReference.shared.namersyncosx) {
             ViewControllerReference.shared.pathrsyncosx = pathtorsyncosx
             self.statuslightpathrsyncosx.image = #imageLiteral(resourceName: "green")
-            self.enablestateexecutescheduledappsinmenuapp()
         } else {
             self.nopathtorsyncosx()
         }
@@ -246,30 +244,19 @@ class ViewControllerUserconfiguration: NSViewController, NewRsync, SetDismisser,
         if verifypatexists(pathorfilename: pathtorsyncosxsched! + ViewControllerReference.shared.namersyncosssched) {
             ViewControllerReference.shared.pathrsyncosxsched = pathtorsyncosxsched
             self.statuslightpathrsyncosxsched.image = #imageLiteral(resourceName: "green")
-            self.enablestateexecutescheduledappsinmenuapp()
         } else {
             self.nopathtorsyncossched()
         }
     }
 
     private func nopathtorsyncossched() {
-        ViewControllerReference.shared.executescheduledtasksmenuapp = false
         ViewControllerReference.shared.pathrsyncosxsched = nil
         self.statuslightpathrsyncosxsched.image = #imageLiteral(resourceName: "red")
-        self.executescheduledappsinmenuapp.state = .off
     }
 
     private func nopathtorsyncosx() {
-        ViewControllerReference.shared.executescheduledtasksmenuapp = false
         ViewControllerReference.shared.pathrsyncosx = nil
         self.statuslightpathrsyncosx.image = #imageLiteral(resourceName: "red")
-        self.executescheduledappsinmenuapp.state = .off
-    }
-
-    private func enablestateexecutescheduledappsinmenuapp() {
-        guard ViewControllerReference.shared.pathrsyncosxsched != nil && ViewControllerReference.shared.pathrsyncosx != nil  else { return }
-        ViewControllerReference.shared.executescheduledtasksmenuapp = true
-        self.executescheduledappsinmenuapp.state = .on
     }
 
     private func verifypatexists(pathorfilename: String?) -> Bool {
@@ -306,11 +293,6 @@ class ViewControllerUserconfiguration: NSViewController, NewRsync, SetDismisser,
         self.reload = false
         self.pathRsyncOSXsched.stringValue = ViewControllerReference.shared.pathrsyncosxsched ?? ""
         self.pathRsyncOSX.stringValue = ViewControllerReference.shared.pathrsyncosx ?? ""
-        if ViewControllerReference.shared.executescheduledtasksmenuapp {
-            self.executescheduledappsinmenuapp.state = .on
-        } else {
-            self.executescheduledappsinmenuapp.state = .off
-        }
         self.statuslighttemppath.isHidden = true
         self.statuslightpathrsync.isHidden = true
         self.statuslightpathrsyncosx.isHidden = true
