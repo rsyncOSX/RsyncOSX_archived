@@ -18,28 +18,24 @@ final class Checkfornewversion {
     private var runningVersion: String?
     private var urlPlist: String?
     private var urlNewVersion: String?
-    // External resources
-    private var resource: Resources?
 
-    weak var newversionDelegate: NewVersionDiscovered?
+    weak var newversionDelegateMain: NewVersionDiscovered?
+    weak var newversionDelegateAbout: NewVersionDiscovered?
 
     //If new version set URL for download link and notify caller
-    private func urlnewVersion (inMain: Bool) {
+    private func urlnewVersion () {
         globalBackgroundQueue.async(execute: { () -> Void in
-            if let url = URL(string: self.urlPlist!) {
+            if let url = URL(string: self.urlPlist ?? "") {
                 do {
                     let contents = NSDictionary (contentsOf: url)
-                    if let url = contents?.object(forKey: self.runningVersion!) {
+                    if let url = contents?.object(forKey: self.runningVersion ?? "") {
                         self.urlNewVersion = url as? String
                         // Setting reference to new version if any
                         ViewControllerReference.shared.URLnewVersion = self.urlNewVersion
-                        if inMain {
-                            self.newversionDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllerMain
-                            self.newversionDelegate?.notifyNewVersion()
-                        } else {
-                            self.newversionDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vcabout) as? ViewControllerAbout
-                            self.newversionDelegate?.notifyNewVersion()
-                        }
+                        self.newversionDelegateMain = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllerMain
+                        self.newversionDelegateAbout = ViewControllerReference.shared.getvcref(viewcontroller: .vcabout) as? ViewControllerAbout
+                        self.newversionDelegateMain?.notifyNewVersion()
+                        self.newversionDelegateAbout?.notifyNewVersion()
                     }
                 }
             }
@@ -51,12 +47,10 @@ final class Checkfornewversion {
         return self.runningVersion
     }
 
-    init (inMain: Bool) {
+    init () {
         self.runningVersion = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String ?? ""
-        self.resource = Resources()
-        if let resource = self.resource {
-            self.urlPlist = resource.getResource(resource: .urlPlist)
-            self.urlnewVersion(inMain: inMain)
-        }
+        let resource = Resources()
+        self.urlPlist = resource.getResource(resource: .urlPlist)
+        self.urlnewVersion()
     }
 }

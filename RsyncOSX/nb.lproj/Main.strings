@@ -166,17 +166,11 @@
 /* Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "9lf-HS-UMZ"; */
 "9lf-HS-UMZ.title" = "Text Cell";
 
-/* Class = "NSTextFieldCell"; title = "New version available"; ObjectID = "9Zv-nL-VVC"; */
-"9Zv-nL-VVC.title" = "Ny versjon tilgjengelig";
-
 /* Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "12s-Z1-kRl"; */
 "12s-Z1-kRl.title" = "Text Cell";
 
 /* Class = "NSTextFieldCell"; title = "ssh port:"; ObjectID = "20O-EX-fKH"; */
 "20O-EX-fKH.title" = "ssh port:";
-
-/* Class = "NSTextFieldCell"; title = "Close automatically in: "; ObjectID = "21H-Ns-bTh"; */
-"21H-Ns-bTh.title" = "Lukker automatisk i: ";
 
 /* Class = "NSTableColumn"; headerCell.title = "Local catalog"; ObjectID = "27J-nn-5gh"; */
 "27J-nn-5gh.headerCell.title" = "Lokal katalog";
@@ -249,6 +243,9 @@
 
 /* Class = "NSButtonCell"; title = "Rsa public key is found."; ObjectID = "a0m-Z1-grn"; */
 "a0m-Z1-grn.title" = "Rsa offentlig nøkkel";
+
+/* Class = "NSTableColumn"; headerCell.title = "Days"; ObjectID = "Aa2-8Q-PPo"; */
+"Aa2-8Q-PPo.headerCell.title" = "Dager";
 
 /* Class = "NSMenuItem"; title = "Open"; ObjectID = "aCU-js-shc"; */
 "aCU-js-shc.title" = "Open";
@@ -391,9 +388,6 @@
 /* Class = "NSTextFieldCell"; title = "Days since last backup:"; ObjectID = "Cg6-Ym-xzl"; */
 "Cg6-Ym-xzl.title" = "Dager siden siste backup:";
 
-/* Class = "NSButtonCell"; title = "Close"; ObjectID = "cgs-kn-d7O"; */
-"cgs-kn-d7O.title" = "Lukk";
-
 /* Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "CIR-Jz-Krc"; */
 "CIR-Jz-Krc.title" = "Text Cell";
 
@@ -459,9 +453,6 @@
 
 /* Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "e1h-Yf-46N"; */
 "e1h-Yf-46N.title" = "Text Cell";
-
-/* Class = "NSViewController"; title = "New version"; ObjectID = "E4i-DW-PcT"; */
-"E4i-DW-PcT.title" = "Ny versjon";
 
 /* Class = "NSViewController"; title = "Details about files"; ObjectID = "e5v-pd-xF9"; */
 "e5v-pd-xF9.title" = "Detaljer om filer";
@@ -693,9 +684,6 @@
 
 /* Class = "NSTableColumn"; headerCell.title = "Remote server"; ObjectID = "HLP-3M-FTI"; */
 "HLP-3M-FTI.headerCell.title" = "Ekstern server";
-
-/* Class = "NSTextFieldCell"; title = "(for your own safety, please verify the shasum after download)"; ObjectID = "HPC-E0-3iO"; */
-"HPC-E0-3iO.title" = "(for din egen sikkerhet verifiser shasum)";
 
 /* Class = "NSButtonCell"; title = "Enable environment"; ObjectID = "hpD-hN-6Xb"; */
 "hpD-hN-6Xb.title" = "Åpne shell variable";
@@ -940,9 +928,6 @@
 /* Class = "NSBox"; title = "Configuration snapshot"; ObjectID = "Mn8-vX-I59"; */
 "Mn8-vX-I59.title" = "Konfigurasjoner snapshot";
 
-/* Class = "NSButtonCell"; title = "Changelog"; ObjectID = "MRU-rs-ycW"; */
-"MRU-rs-ycW.title" = "Endringslogg";
-
 /* Class = "NSTextFieldCell"; title = "Doubleclick on row to get remote capacity..."; ObjectID = "mry-vG-0Hd"; */
 "mry-vG-0Hd.title" = "Dobbel klikk på rad for ekstern info...";
 
@@ -1086,9 +1071,6 @@
 
 /* Class = "NSTableColumn"; headerCell.title = "Remote server"; ObjectID = "pZb-i1-xyG"; */
 "pZb-i1-xyG.headerCell.title" = "Ekstern server";
-
-/* Class = "NSButtonCell"; title = "Download"; ObjectID = "Q6F-3P-fJy"; */
-"Q6F-3P-fJy.title" = "Kopier";
 
 /* Class = "NSTextFieldCell"; title = "Version :"; ObjectID = "q8z-Ku-oKx"; */
 "q8z-Ku-oKx.title" = "Versjon :";
@@ -1581,7 +1563,4 @@
 
 /* Class = "NSTableColumn"; headerCell.title = "Remote catalog"; ObjectID = "zzK-ZO-wvj"; */
 "zzK-ZO-wvj.headerCell.title" = "Ekstern katalog";
-
-/* Class = "NSTableColumn"; headerCell.title = "Days"; ObjectID = "Aa2-8Q-PPo"; */
-"Aa2-8Q-PPo.headerCell.title" = "Dager";
 

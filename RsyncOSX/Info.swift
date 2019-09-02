@@ -20,6 +20,7 @@ struct Infoexecute {
     let info16: String = NSLocalizedString("This is a combined task, execute by ⌘R...", comment: "Execute")
     let info17: String = NSLocalizedString("Only valid for backup, snapshot and combined tasks...", comment: "Execute")
     let info18: String = NSLocalizedString("No rclone config found...", comment: "Execute")
+    let info19: String = NSLocalizedString("New version is available - see About", comment: "Execute")
 
     // Execute
     func info(num: Int) -> String {
@@ -40,6 +41,8 @@ struct Infoexecute {
             return self.info17
         case 8:
             return self.info18
+        case 9:
+            return self.info19
         default:
             return ""
         }

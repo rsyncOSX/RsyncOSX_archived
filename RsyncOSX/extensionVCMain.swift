@@ -95,9 +95,10 @@ extension ViewControllerMain: Connections {
 
 extension ViewControllerMain: NewVersionDiscovered {
     func notifyNewVersion() {
-        guard (self.presentingViewController as? ViewControllerMain) != nil else { return }
+        // guard (self.presentingViewController as? ViewControllerMain) != nil else { return }
         globalMainQueue.async(execute: { () -> Void in
-            self.presentAsSheet(self.newVersionViewController!)
+                // self.presentAsSheet(self.newVersionViewController!)
+           self.info.stringValue = Infoexecute().info(num: 9)
         })
     }
 }
@@ -266,7 +267,6 @@ extension ViewControllerMain: Setinfoaboutrsync {
         if ViewControllerReference.shared.norsync == true {
             self.info.stringValue = Infoexecute().info(num: 3)
         } else {
-            self.info.stringValue = Infoexecute().info(num: 0)
             self.rsyncversionshort.stringValue = ViewControllerReference.shared.rsyncversionshort ?? ""
         }
     }
