@@ -352,12 +352,11 @@ extension Sorting {
         dateformatter.timeStyle = .short
         let sorted = notsortedlist!.sorted { (dict1, dict2) -> Bool in
             let date1localized = dateformatter.date(from: (dict1.value(forKey: "dateExecuted") as? String) ?? "")
-            let date2localized = dateformatter.date(from: (dict2.value(forKey: "dateExecuted") as? String) ?? "")
-            if date1localized != nil && date2localized != nil {
-                if date1localized!.timeIntervalSince(date2localized!) > 0 {
+            if let date2localized = dateformatter.date(from: (dict2.value(forKey: "dateExecuted") as? String) ?? "") {
+                if date1localized?.timeIntervalSince(date2localized) ?? -1 > 0 {
                     return sortdirection
                 } else {
-                   return !sortdirection
+                    return !sortdirection
                 }
             } else {
                 return !sortdirection
