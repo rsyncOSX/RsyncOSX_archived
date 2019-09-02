@@ -213,7 +213,7 @@ extension ViewControllerAllProfiles: NSSearchFieldDelegate {
                 })
             } else {
                 globalMainQueue.async(execute: { () -> Void in
-                    self.allprofiles?.filter(search: filterstring, filterby: self.filterby)
+                    self.allprofiles?.myownfilter(search: filterstring, filterby: self.filterby)
                     self.mainTableView.reloadData()
                 })
             }
