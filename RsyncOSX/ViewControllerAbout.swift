@@ -92,8 +92,8 @@ class ViewControllerAbout: NSViewController, SetDismisser, Delay {
     override func viewDidAppear() {
         super.viewDidAppear()
         self.downloadbutton.isEnabled = false
-        self.checkfornewversion = Checkfornewversion(inMain: false)
-        if let version = self.checkfornewversion!.rsyncOSXversion() {
+        self.checkfornewversion = Checkfornewversion()
+        if let version = self.checkfornewversion?.rsyncOSXversion() {
             self.version.stringValue = "RsyncOSX ver: " + version
         }
         self.thereisanewversion.stringValue = NSLocalizedString("You have the latest ...", comment: "About")
@@ -111,7 +111,7 @@ extension ViewControllerAbout: NewVersionDiscovered {
     func notifyNewVersion() {
         globalMainQueue.async(execute: { () -> Void in
             self.downloadbutton.isEnabled = true
-            self.thereisanewversion.stringValue = NSLocalizedString("New version available:", comment: "About")
+            self.thereisanewversion.stringValue = NSLocalizedString("New version is available:", comment: "About")
         })
     }
 }

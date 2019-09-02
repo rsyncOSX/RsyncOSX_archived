@@ -304,6 +304,7 @@ class ViewControllerMain: NSViewController, ReloadTable, Deselect, VcMain, Delay
         if ViewControllerReference.shared.initialstart == 0 {
             self.view.window?.center()
             ViewControllerReference.shared.initialstart = 1
+            _ = Checkfornewversion()
         }
         if self.configurations!.configurationsDataSourcecount() > 0 {
             globalMainQueue.async(execute: { () -> Void in
@@ -312,7 +313,6 @@ class ViewControllerMain: NSViewController, ReloadTable, Deselect, VcMain, Delay
         }
         self.rsyncischanged()
         self.displayProfile()
-        self.info.stringValue = Infoexecute().info(num: 0)
         self.delayWithSeconds(0.5) {
             self.enablemenuappbutton()
         }

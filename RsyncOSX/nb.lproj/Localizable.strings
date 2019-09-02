@@ -43,9 +43,6 @@
 /* Close NSAlert */
 "Close" = "Lukk";
 
-/* New version */
-"Close automatically in:" = "Lukker automatisk om:";
-
 /* Remote info */
 "Completed" = "Utført";
 
@@ -183,8 +180,11 @@
 /* plan */
 "month" = "måned";
 
+/* Execute */
+"New version is available - see About" = "Ny versjon er tilgjengelig - se Om";
+
 /* About */
-"New version available:" = "Ny versjon tilgjengelig:";
+"New version is available:" = "Ny versjon er tilgjengelig:";
 
 /* Execute */
 "No rclone config found..." = "Ingen rclone konfigurasjon funnet";
@@ -264,9 +264,6 @@
 
 /* Schedules */
 "Scheduled tasks in menu app..." = "Schedulerte oppgaver i meny app...";
-
-/* New version */
-"seconds" = "sekunder";
 
 /* datetime */
 "secs" = "sek";

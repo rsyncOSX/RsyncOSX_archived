@@ -45,7 +45,7 @@ final class ViewControllerReference {
     var quickbackuptask: NSDictionary?
     // Download URL if new version is avaliable
     var URLnewVersion: String?
-    // True if version 3.2.1 of rsync in /usr/local/bin
+    // True if version 3.1.2 or 3.1.3 of rsync in /usr/local/bin
     var rsyncversion3: Bool = false
     // Optional path to rsync
     var localrsyncpath: String?
@@ -87,8 +87,6 @@ final class ViewControllerReference {
     var macserialnumber: String?
     // Automatic execute local configurations in menuapp when mounting local volumes
     var automaticexecutelocalvolumes: Bool = false
-    // Execute scheduled tasks in menu app, default off
-    // var executescheduledtasksmenuapp: Bool = false
     // True if menuapp is running
     var menuappisrunning: Bool = false
     // Initial start
