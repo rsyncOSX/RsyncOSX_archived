@@ -95,9 +95,7 @@ extension ViewControllerMain: Connections {
 
 extension ViewControllerMain: NewVersionDiscovered {
     func notifyNewVersion() {
-        // guard (self.presentingViewController as? ViewControllerMain) != nil else { return }
         globalMainQueue.async(execute: { () -> Void in
-                // self.presentAsSheet(self.newVersionViewController!)
            self.info.stringValue = Infoexecute().info(num: 9)
         })
     }
