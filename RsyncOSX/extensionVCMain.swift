@@ -56,7 +56,6 @@ extension ViewControllerMain: NewProfile {
         self.configurations = self.createconfigurationsobject(profile: profile)
         self.schedules = self.createschedulesobject(profile: profile)
         // Make sure loading profile
-        self.loadProfileMenu = true
         self.displayProfile()
         self.reloadtabledata()
         // Reset in tabSchedule
@@ -66,7 +65,6 @@ extension ViewControllerMain: NewProfile {
     }
 
     func enableProfileMenu() {
-        self.loadProfileMenu = true
         globalMainQueue.async(execute: { () -> Void in
             self.displayProfile()
         })
@@ -85,7 +83,6 @@ extension ViewControllerMain: RsyncIsChanged {
 extension ViewControllerMain: Connections {
     func displayConnections() {
         guard (self.presentingViewController as? ViewControllerMain) != nil else { return }
-        self.loadProfileMenu = true
         globalMainQueue.async(execute: { () -> Void in
             self.mainTableView.reloadData()
         })
@@ -103,7 +100,6 @@ extension ViewControllerMain: NewVersionDiscovered {
 extension ViewControllerMain: DismissViewController {
     func dismiss_view(viewcontroller: NSViewController) {
         self.dismiss(viewcontroller)
-        self.loadProfileMenu = true
         globalMainQueue.async(execute: { () -> Void in
             self.mainTableView.reloadData()
             self.displayProfile()
