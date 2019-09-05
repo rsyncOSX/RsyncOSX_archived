@@ -54,7 +54,6 @@ class ViewControllerMain: NSViewController, ReloadTable, Deselect, VcMain, Delay
     var singletask: SingleTask?
     var executebatch: ExecuteBatch?
     var executetasknow: ExecuteTaskNow?
-    var tcpconnections: TCPconnections?
     // Reference to Process task
     var process: Process?
     // Index to selected row, index is set when row is selected
@@ -190,8 +189,8 @@ class ViewControllerMain: NSViewController, ReloadTable, Deselect, VcMain, Delay
         self.TCPButton.isEnabled = false
         self.loadProfileMenu = false
         self.displayProfile()
-        self.tcpconnections = TCPconnections()
-        self.tcpconnections?.testAllremoteserverConnections()
+        self.configurations?.tcpconnections = TCPconnections()
+        self.configurations?.tcpconnections?.testAllremoteserverConnections()
     }
 
     // Presenting Information from Rsync

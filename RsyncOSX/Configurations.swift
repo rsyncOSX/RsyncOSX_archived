@@ -39,6 +39,8 @@ class Configurations: ReloadTable, SetSchedules {
     var localremote: [NSDictionary]?
     // remote info tasks
     var remoteinfoestimation: RemoteinfoEstimation?
+    // Reference to check TCP-connections
+    var tcpconnections: TCPconnections?
 
     /// Function for getting the profile
     func getProfile() -> String? {

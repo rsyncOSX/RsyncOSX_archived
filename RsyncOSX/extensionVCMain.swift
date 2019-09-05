@@ -49,7 +49,6 @@ extension ViewControllerMain: NewProfile {
         self.process = nil
         self.outputprocess = nil
         self.singletask = nil
-        self.tcpconnections = nil
         self.setNumbers(outputprocess: nil)
         self.showrsynccommandmainview()
         self.deselect()

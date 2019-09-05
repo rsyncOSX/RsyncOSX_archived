@@ -5,7 +5,7 @@
 //  Created by Thomas Evensen on 25/08/2019.
 //  Copyright © 2019 Thomas Evensen. All rights reserved.
 //
-//  swiftlint:disable cyclomatic_complexity function_body_length
+//  swiftlint:disable cyclomatic_complexity function_body_length line_length
 
 import Foundation
 import Cocoa
@@ -73,7 +73,7 @@ extension ViewControllerMain: NSTableViewDelegate, Attributedestring {
             if tableColumn!.identifier.rawValue == "batchCellID" {
                 return object[tableColumn!.identifier] as? Int
             } else {
-                if (self.tcpconnections?.gettestAllremoteserverConnections()?[row]) ?? false && celltext != nil {
+                if (self.configurations?.tcpconnections?.gettestAllremoteserverConnections()?[row]) ?? false && celltext != nil {
                     return self.attributedstring(str: celltext!, color: NSColor.red, align: .left)
                 } else {
                     return object[tableColumn!.identifier] as? String
