@@ -75,7 +75,8 @@ extension ViewControllerMain: NSTableViewDelegate, Attributedestring {
             } else {
                 // Check if test for connections is selected
                 if self.configurations?.tcpconnections?.connectionscheckcompleted ?? false == true {
-                    if (self.configurations?.tcpconnections?.gettestAllremoteserverConnections()?[row]) ?? false {
+                    if (self.configurations?.tcpconnections?.gettestAllremoteserverConnections()?[row]) ?? false &&
+                        tableColumn!.identifier.rawValue == "offsiteServerCellID" {
                         return self.attributedstring(str: celltext ?? "", color: NSColor.red, align: .left)
                     } else {
                         return object[tableColumn!.identifier] as? String
