@@ -10,7 +10,7 @@
 import Foundation
 import Cocoa
 
-class ViewControllerVerify: NSViewController, SetConfigurations, Index, VcMain, Connected, Setcolor {
+class ViewControllerVerify: NSViewController, SetConfigurations, Index, VcMain, Connected, Setcolor, Checkforrsync {
 
     var outputprocess: OutputProcess?
     var index: Int?
@@ -49,20 +49,14 @@ class ViewControllerVerify: NSViewController, SetConfigurations, Index, VcMain, 
     @IBOutlet weak var remoteserver: NSTextField!
 
     @IBAction func totinfo(_ sender: NSButton) {
-        guard ViewControllerReference.shared.norsync == false else {
-            _ = Norsync()
-            return
-        }
+        guard self.checkforrsync() == false else { return }
         globalMainQueue.async(execute: { () -> Void in
             self.presentAsSheet(self.viewControllerRemoteInfo!)
         })
     }
 
     @IBAction func quickbackup(_ sender: NSButton) {
-        guard ViewControllerReference.shared.norsync == false else {
-            _ = Norsync()
-            return
-        }
+        guard self.checkforrsync() == false else { return }
         self.openquickbackup()
     }
 

@@ -18,7 +18,7 @@ protocol Updateremotefilelist: class {
     func updateremotefilelist()
 }
 
-class ViewControllerCopyFiles: NSViewController, SetConfigurations, Delay, Connected, VcMain {
+class ViewControllerCopyFiles: NSViewController, SetConfigurations, Delay, Connected, VcMain, Checkforrsync {
 
     var copyfiles: CopyFiles?
     var remotefilelist: Remotefilelist?
@@ -43,20 +43,14 @@ class ViewControllerCopyFiles: NSViewController, SetConfigurations, Delay, Conne
     @IBOutlet weak var restorebutton: NSButton!
 
     @IBAction func totinfo(_ sender: NSButton) {
-        guard ViewControllerReference.shared.norsync == false else {
-            _ = Norsync()
-            return
-        }
+        guard self.checkforrsync() == false else { return }
         globalMainQueue.async(execute: { () -> Void in
             self.presentAsSheet(self.viewControllerRemoteInfo!)
         })
     }
 
     @IBAction func quickbackup(_ sender: NSButton) {
-        guard ViewControllerReference.shared.norsync == false else {
-            _ = Norsync()
-            return
-        }
+        guard self.checkforrsync() == false else { return }
         self.openquickbackup()
     }
 

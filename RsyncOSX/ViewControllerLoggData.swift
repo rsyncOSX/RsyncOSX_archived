@@ -11,7 +11,7 @@
 import Foundation
 import Cocoa
 
-class ViewControllerLoggData: NSViewController, SetConfigurations, SetSchedules, Delay, Index, Connected, VcMain {
+class ViewControllerLoggData: NSViewController, SetConfigurations, SetSchedules, Delay, Index, Connected, VcMain, Checkforrsync {
 
     private var scheduleloggdata: ScheduleLoggData?
     private var snapshotsloggdata: SnapshotsLoggData?
@@ -29,20 +29,14 @@ class ViewControllerLoggData: NSViewController, SetConfigurations, SetSchedules,
     @IBOutlet weak var selectbutton: NSButton!
 
     @IBAction func totinfo(_ sender: NSButton) {
-        guard ViewControllerReference.shared.norsync == false else {
-            _ = Norsync()
-            return
-        }
+        guard self.checkforrsync() == false else { return }
         globalMainQueue.async(execute: { () -> Void in
             self.presentAsSheet(self.viewControllerRemoteInfo!)
         })
     }
 
     @IBAction func quickbackup(_ sender: NSButton) {
-        guard ViewControllerReference.shared.norsync == false else {
-            _ = Norsync()
-            return
-        }
+        guard self.checkforrsync() == false else { return }
         self.openquickbackup()
     }
 
