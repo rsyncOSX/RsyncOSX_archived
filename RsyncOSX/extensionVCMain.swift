@@ -450,6 +450,21 @@ extension Setcolor {
     }
 }
 
+protocol Checkforrsync: class {
+    func checkforrsync() -> Bool
+}
+
+extension Checkforrsync {
+    func checkforrsync() -> Bool {
+        if ViewControllerReference.shared.norsync == true {
+            _ = Norsync()
+            return true
+        } else {
+            return false
+        }
+    }
+}
+
 // Protocol for start,stop, complete progressviewindicator
 protocol StartStopProgressIndicator: class {
     func start()
