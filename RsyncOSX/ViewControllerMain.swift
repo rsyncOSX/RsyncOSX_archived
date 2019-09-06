@@ -183,9 +183,9 @@ class ViewControllerMain: NSViewController, ReloadTable, Deselect, VcMain, Delay
     @IBOutlet weak var TCPButton: NSButton!
     @IBAction func TCP(_ sender: NSButton) {
         self.TCPButton.isEnabled = false
-        self.displayProfile()
         self.configurations?.tcpconnections = TCPconnections()
         self.configurations?.tcpconnections?.testAllremoteserverConnections()
+        self.displayProfile()
     }
 
     // Presenting Information from Rsync

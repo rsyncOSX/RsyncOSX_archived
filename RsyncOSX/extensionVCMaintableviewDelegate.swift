@@ -73,8 +73,13 @@ extension ViewControllerMain: NSTableViewDelegate, Attributedestring {
             if tableColumn!.identifier.rawValue == "batchCellID" {
                 return object[tableColumn!.identifier] as? Int
             } else {
-                if (self.configurations?.tcpconnections?.gettestAllremoteserverConnections()?[row]) ?? false && celltext != nil {
-                    return self.attributedstring(str: celltext!, color: NSColor.red, align: .left)
+                // Check if test for connections is selected
+                if self.configurations?.tcpconnections?.connectionscheckcompleted ?? false == true {
+                    if (self.configurations?.tcpconnections?.gettestAllremoteserverConnections()?[row]) ?? false {
+                        return self.attributedstring(str: celltext ?? "", color: NSColor.red, align: .left)
+                    } else {
+                        return object[tableColumn!.identifier] as? String
+                    }
                 } else {
                     return object[tableColumn!.identifier] as? String
                 }

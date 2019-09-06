@@ -482,7 +482,7 @@ extension ViewControllerSnapshots: NewProfile {
         self.backupID.stringValue = ""
     }
 
-    func enableProfileMenu() {
+    func enableselectprofile() {
         //
     }
 }

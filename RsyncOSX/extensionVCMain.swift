@@ -64,7 +64,7 @@ extension ViewControllerMain: NewProfile {
         self.reloadtable(vcontroller: .vcsnapshot)
     }
 
-    func enableProfileMenu() {
+    func enableselectprofile() {
         globalMainQueue.async(execute: { () -> Void in
             self.displayProfile()
         })
@@ -82,7 +82,6 @@ extension ViewControllerMain: RsyncIsChanged {
 // Check for remote connections, reload table when completed.
 extension ViewControllerMain: Connections {
     func displayConnections() {
-        guard (self.presentingViewController as? ViewControllerMain) != nil else { return }
         globalMainQueue.async(execute: { () -> Void in
             self.mainTableView.reloadData()
         })
