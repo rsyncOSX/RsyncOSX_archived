@@ -54,7 +54,6 @@ class ViewControllerMain: NSViewController, ReloadTable, Deselect, VcMain, Delay
     var singletask: SingleTask?
     var executebatch: ExecuteBatch?
     var executetasknow: ExecuteTaskNow?
-    var tcpconnections: TCPconnections?
     // Reference to Process task
     var process: Process?
     // Index to selected row, index is set when row is selected
@@ -67,10 +66,6 @@ class ViewControllerMain: NSViewController, ReloadTable, Deselect, VcMain, Delay
     var hiddenID: Int?
     // Reference to Schedules object
     var schedulesortedandexpanded: ScheduleSortedAndExpand?
-    // Can load profiles
-    // Load profiles only when testing for connections are done.
-    // Application crash if not
-    var loadProfileMenu: Bool = false
     // Keep track of all errors
     var outputerrors: OutputErrors?
     // Allprofiles view presented
@@ -188,10 +183,9 @@ class ViewControllerMain: NSViewController, ReloadTable, Deselect, VcMain, Delay
     @IBOutlet weak var TCPButton: NSButton!
     @IBAction func TCP(_ sender: NSButton) {
         self.TCPButton.isEnabled = false
-        self.loadProfileMenu = false
+        self.configurations?.tcpconnections = TCPconnections()
+        self.configurations?.tcpconnections?.testAllremoteserverConnections()
         self.displayProfile()
-        self.tcpconnections = TCPconnections()
-        self.tcpconnections?.testAllremoteserverConnections()
     }
 
     // Presenting Information from Rsync
@@ -217,12 +211,12 @@ class ViewControllerMain: NSViewController, ReloadTable, Deselect, VcMain, Delay
 
     // Selecting profiles
     @IBAction func profiles(_ sender: NSButton) {
-        if self.loadProfileMenu == true {
+        if  self.configurations?.tcpconnections?.connectionscheckcompleted ?? true {
             globalMainQueue.async(execute: { () -> Void in
                 self.presentAsSheet(self.viewControllerProfile!)
             })
         } else {
-            self.displayProfile()
+             self.displayProfile()
         }
     }
 
@@ -293,7 +287,6 @@ class ViewControllerMain: NSViewController, ReloadTable, Deselect, VcMain, Delay
         self.mainTableView.target = self
         self.mainTableView.doubleAction = #selector(ViewControllerMain.tableViewDoubleClick(sender:))
         self.backupdryrun.state = .on
-        self.loadProfileMenu = true
         // configurations and schedules
         self.createandreloadconfigurations()
         self.createandreloadschedules()
@@ -392,7 +385,7 @@ class ViewControllerMain: NSViewController, ReloadTable, Deselect, VcMain, Delay
     func displayProfile() {
         weak var localprofileinfo: SetProfileinfo?
         weak var localprofileinfo2: SetProfileinfo?
-        guard self.loadProfileMenu == true else {
+        guard self.configurations?.tcpconnections?.connectionscheckcompleted ?? true else {
             self.profilInfo.stringValue = NSLocalizedString("Profile: please wait...", comment: "Execute")
             return
         }

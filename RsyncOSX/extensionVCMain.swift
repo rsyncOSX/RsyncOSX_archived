@@ -49,7 +49,6 @@ extension ViewControllerMain: NewProfile {
         self.process = nil
         self.outputprocess = nil
         self.singletask = nil
-        self.tcpconnections = nil
         self.setNumbers(outputprocess: nil)
         self.showrsynccommandmainview()
         self.deselect()
@@ -57,7 +56,6 @@ extension ViewControllerMain: NewProfile {
         self.configurations = self.createconfigurationsobject(profile: profile)
         self.schedules = self.createschedulesobject(profile: profile)
         // Make sure loading profile
-        self.loadProfileMenu = true
         self.displayProfile()
         self.reloadtabledata()
         // Reset in tabSchedule
@@ -66,8 +64,7 @@ extension ViewControllerMain: NewProfile {
         self.reloadtable(vcontroller: .vcsnapshot)
     }
 
-    func enableProfileMenu() {
-        self.loadProfileMenu = true
+    func enableselectprofile() {
         globalMainQueue.async(execute: { () -> Void in
             self.displayProfile()
         })
@@ -85,8 +82,6 @@ extension ViewControllerMain: RsyncIsChanged {
 // Check for remote connections, reload table when completed.
 extension ViewControllerMain: Connections {
     func displayConnections() {
-        guard (self.presentingViewController as? ViewControllerMain) != nil else { return }
-        self.loadProfileMenu = true
         globalMainQueue.async(execute: { () -> Void in
             self.mainTableView.reloadData()
         })
@@ -104,7 +99,6 @@ extension ViewControllerMain: NewVersionDiscovered {
 extension ViewControllerMain: DismissViewController {
     func dismiss_view(viewcontroller: NSViewController) {
         self.dismiss(viewcontroller)
-        self.loadProfileMenu = true
         globalMainQueue.async(execute: { () -> Void in
             self.mainTableView.reloadData()
             self.displayProfile()

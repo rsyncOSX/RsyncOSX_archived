@@ -331,7 +331,7 @@ extension ViewControllerLoggData: NewProfile {
         self.reloadtabledata()
     }
 
-    func enableProfileMenu() {
+    func enableselectprofile() {
         //
     }
 }

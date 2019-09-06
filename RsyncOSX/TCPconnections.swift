@@ -20,6 +20,7 @@ class TCPconnections: SetConfigurations, Delay {
     weak var testconnectionsDelegate: Connections?
     weak var newprofileDelegate: NewProfile?
     var client: TCPClient?
+    var connectionscheckcompleted: Bool = false
 
     // Test for TCP connection
     func testTCPconnection (_ host: String, port: Int, timeout: Int) -> Bool {
@@ -46,7 +47,7 @@ class TCPconnections: SetConfigurations, Delay {
         self.indexBoolremoteserverOff = [Bool]()
         guard self.configurations!.configurationsDataSourcecount() > 0 else {
             // Tell main view profile menu might presented
-            self.newprofileDelegate?.enableProfileMenu()
+            self.newprofileDelegate?.enableselectprofile()
             return
         }
         globalDefaultQueue.async(execute: { () -> Void in
@@ -66,11 +67,11 @@ class TCPconnections: SetConfigurations, Delay {
                     }
                     // Reload table when all remote servers are checked
                     if i == (self.configurations!.configurationsDataSourcecount() - 1) {
-                        // Send message to do a refresh
-                        // Update table in main view
+                        // Send message to do a refresh table in main view
                         self.testconnectionsDelegate?.displayConnections()
                         // Tell main view profile menu might presented
-                        self.newprofileDelegate?.enableProfileMenu()
+                        self.newprofileDelegate?.enableselectprofile()
+                        self.connectionscheckcompleted = true
                     }
                 }
             }
