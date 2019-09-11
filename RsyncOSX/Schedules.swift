@@ -180,7 +180,7 @@ class Schedules: ScheduleWriteLoggData {
         let store: [ConfigurationSchedule]? = self.storageapi!.getScheduleandhistory(nolog: false)
         guard store != nil else { return }
         var data = [ConfigurationSchedule]()
-        for i in 0 ..< store!.count where store![i].logrecords.isEmpty == false {
+        for i in 0 ..< store!.count where ( store![i].logrecords.isEmpty == false || store![i].dateStop != nil ) {
             data.append(store![i])
         }
         // Sorting schedule after hiddenID
