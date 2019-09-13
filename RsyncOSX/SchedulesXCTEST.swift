@@ -9,6 +9,7 @@
 import Foundation
 
 class SchedulesXCTEST: Schedules {
+
     override func addschedule(_ hiddenID: Int, schedule: Scheduletype, start: Date) {
         var stop: Date?
         let dateformatter = Dateandtime().setDateformat()
@@ -34,6 +35,7 @@ class SchedulesXCTEST: Schedules {
         let newSchedule = ConfigurationSchedule(dictionary: dict, log: nil, nolog: true)
         self.schedules!.append(newSchedule)
     }
+
     override init(profile: String?) {
         super.init(profile: profile)
     }
