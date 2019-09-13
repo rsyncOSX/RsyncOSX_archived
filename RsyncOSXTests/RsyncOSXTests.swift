@@ -9,7 +9,7 @@
 import XCTest
 @testable import RsyncOSX
 
-class RsyncOSXTests: XCTestCase, SetConfigurations {
+class RsyncOSXTests: XCTestCase, SetConfigurations, SetSchedules {
 
     override func setUp() {
         // Put setup code here. This method is called before the invocation of each test method in the class.
@@ -61,4 +61,13 @@ class RsyncOSXTests: XCTestCase, SetConfigurations {
         XCTAssertEqual(0, schedules.loggdata?.count, "Should be zero")
     }
 
+    func testschedule() {
+        let schedules = SchedulesXCTEST(profile: "XCTest")
+        let startdate: Date = Date() + 24.0
+        schedules.addschedule(1, schedule: .once, start: startdate)
+        schedules.addschedule(1, schedule: .daily, start: startdate)
+        schedules.addschedule(1, schedule: .weekly, start: startdate)
+        XCTAssertEqual(4, self.schedules!.getSchedule().count, "Should be three")
+        // let schedulesortedandexpanded = ScheduleSortedAndExpand()
+    }
 }
