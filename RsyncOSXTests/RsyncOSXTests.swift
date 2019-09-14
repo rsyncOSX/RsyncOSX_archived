@@ -63,11 +63,13 @@ class RsyncOSXTests: XCTestCase, SetConfigurations, SetSchedules {
 
     func testschedule() {
         let schedules = SchedulesXCTEST(profile: "XCTest")
-        let startdate: Date = Date() + 24.0
-        schedules.addschedule(1, schedule: .once, start: startdate)
-        schedules.addschedule(1, schedule: .daily, start: startdate)
-        schedules.addschedule(1, schedule: .weekly, start: startdate)
-        XCTAssertEqual(4, self.schedules!.getSchedule().count, "Should be three")
-        // let schedulesortedandexpanded = ScheduleSortedAndExpand()
+        let today: Date = Date()
+        let tomorrow = Calendar.current.date(byAdding: .day, value: 1, to: today)
+        schedules.addschedule(1, schedule: .once, start: tomorrow!)
+        schedules.addschedule(1, schedule: .daily, start: tomorrow!)
+        schedules.addschedule(1, schedule: .weekly, start: tomorrow!)
+        XCTAssertEqual(3, schedules.getSchedule().count, "Should be three")
+        let schedulesortedandexpanded = ScheduleSortedAndExpand(schedules: schedules)
+        XCTAssertEqual("23h 59m", schedulesortedandexpanded.sortandcountscheduledonetask(1, profilename: nil, number: true), "23h 59m")
     }
 }

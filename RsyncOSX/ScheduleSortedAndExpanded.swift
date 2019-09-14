@@ -133,7 +133,7 @@ class ScheduleSortedAndExpand: SetConfigurations, SetSchedules {
     typealias Futureschedules = (Int, Double)
 
     // Calculates number of future Schedules ID by hiddenID
-    func numberoftasks (_ hiddenID: Int) -> Futureschedules {
+    func numberoftasks(_ hiddenID: Int) -> Futureschedules {
         let result = self.sortedschedules?.filter({return (($0.value(forKey: "hiddenID") as? Int)! == hiddenID)})
         guard result?.count ?? 0 > 0 else { return (0, 0)}
         let timetostart = result![0].value(forKey: "timetostart" ) as? Double ?? 0
@@ -171,7 +171,7 @@ class ScheduleSortedAndExpand: SetConfigurations, SetSchedules {
     /// Function is reading Schedule plans and transform plans to
     /// array of NSDictionary.
     /// - returns : none
-    private func setallscheduledtasksNSDictionary () {
+    private func setallscheduledtasksNSDictionary() {
         guard self.scheduleConfiguration != nil else { return }
         var data = [NSDictionary]()
         for i in 0 ..< self.scheduleConfiguration!.count where
@@ -187,7 +187,7 @@ class ScheduleSortedAndExpand: SetConfigurations, SetSchedules {
         self.schedulesNSDictionary = data
     }
 
-    init () {
+    init() {
         // Getting the Schedule and expanding all the jobs
         if self.schedules != nil {
             self.scheduleConfiguration = self.schedules!.getSchedule()
@@ -197,9 +197,17 @@ class ScheduleSortedAndExpand: SetConfigurations, SetSchedules {
         self.dateandtime = Dateandtime()
     }
 
-    init (allschedules: Allschedules?) {
+    init(allschedules: Allschedules?) {
         guard allschedules != nil else { return }
         self.scheduleConfiguration = allschedules!.getallschedules()
+        self.setallscheduledtasksNSDictionary()
+        self.sortAndExpandScheduleTasks()
+        self.dateandtime = Dateandtime()
+    }
+
+    // For XCtest
+    init(schedules: Schedules?) {
+        self.scheduleConfiguration = schedules?.getSchedule()
         self.setallscheduledtasksNSDictionary()
         self.sortAndExpandScheduleTasks()
         self.dateandtime = Dateandtime()

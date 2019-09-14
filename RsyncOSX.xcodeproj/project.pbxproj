@@ -542,10 +542,10 @@
 		A0BAA5F31D70C349003BE69F /* Schedules */ = {
 			isa = PBXGroup;
 			children = (
+				E97D96DA232C3E54004405DD /* XCtest */,
 				A0041EEE1D7D4357002BF081 /* ScheduleSortedAndExpanded.swift */,
 				E9F413BA1F63AC2A00C0945E /* Schedules.swift */,
 				E914B7712131197B00FFE398 /* extensionsSchedules.swift */,
-				E925DD30232C33D0001499D1 /* SchedulesXCTEST.swift */,
 			);
 			name = Schedules;
 			sourceTree = "<group>";
@@ -680,6 +680,14 @@
 				E9C6D24020AAB96800B9D212 /* AllProfilenames.swift */,
 			);
 			name = AllProfiles;
+			sourceTree = "<group>";
+		};
+		E97D96DA232C3E54004405DD /* XCtest */ = {
+			isa = PBXGroup;
+			children = (
+				E925DD30232C33D0001499D1 /* SchedulesXCTEST.swift */,
+			);
+			name = XCtest;
 			sourceTree = "<group>";
 		};
 		E988FCBC1F9BCF0A00F21FB9 /* QuickbackupOperation */ = {
