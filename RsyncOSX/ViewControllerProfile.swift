@@ -89,7 +89,6 @@ class ViewControllerProfile: NSViewController, SetConfigurations, SetDismisser, 
 
     override func viewDidAppear() {
         super.viewDidAppear()
-        self.profile = nil
         self.profile = CatalogProfile()
         self.profilesArray = self.profile!.getDirectorysStrings()
         globalMainQueue.async(execute: { () -> Void in
