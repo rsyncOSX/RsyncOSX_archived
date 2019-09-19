@@ -33,8 +33,6 @@ class ViewControllerAllProfiles: NSViewController, Delay, Abort, Connected {
     private var outputprocess: OutputProcess?
     private var process: Process?
 
-    weak var allprofiledetailsdelegata: AllProfileDetails?
-
     @IBAction func abort(_ sender: NSButton) {
         self.process?.terminate()
         self.process = nil
@@ -90,15 +88,11 @@ class ViewControllerAllProfiles: NSViewController, Delay, Abort, Connected {
         super.viewDidAppear()
         self.reloadallprofiles()
         ViewControllerReference.shared.setvcref(viewcontroller: .vcallprofiles, nsviewcontroller: self)
-        self.allprofiledetailsdelegata = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllerMain
-        self.allprofiledetailsdelegata?.enablereloadallprofiles()
     }
 
     override func viewDidDisappear() {
         super.viewDidDisappear()
-        self.allprofiledetailsdelegata?.disablereloadallprofiles()
-        self.allprofiles = nil
-        self.allschedules = nil
+        ViewControllerReference.shared.setvcref(viewcontroller: .vcallprofiles, nsviewcontroller: nil)
     }
 
     func reloadallprofiles() {
