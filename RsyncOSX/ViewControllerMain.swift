@@ -302,7 +302,6 @@ class ViewControllerMain: NSViewController, ReloadTable, Deselect, VcMain, Delay
     }
 
     func reset() {
-        self.outputprocess = nil
         self.process = nil
         self.singletask = nil
         self.executebatch = nil
@@ -396,13 +395,10 @@ class ViewControllerMain: NSViewController, ReloadTable, Deselect, VcMain, Delay
         if let index = indexes.first {
             self.index = index
             self.hiddenID = self.configurations!.gethiddenID(index: index)
-            self.outputprocess = nil
-            self.setNumbers(outputprocess: nil)
         } else {
             self.index = nil
         }
-        self.process = nil
-        self.singletask = nil
+        self.reset()
         self.showrsynccommandmainview()
         self.reloadtabledata()
     }
