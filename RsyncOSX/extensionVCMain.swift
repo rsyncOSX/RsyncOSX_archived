@@ -46,10 +46,7 @@ extension ViewControllerMain: GetSelecetedIndex {
 extension ViewControllerMain: NewProfile {
     // Function is called from profiles when new or default profiles is seleceted
     func newProfile(profile: String?) {
-        self.process = nil
-        self.outputprocess = nil
-        self.singletask = nil
-        self.setNumbers(outputprocess: nil)
+        self.reset()
         self.showrsynccommandmainview()
         self.deselect()
         // Read configurations and Scheduledata

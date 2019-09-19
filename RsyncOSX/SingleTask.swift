@@ -19,7 +19,7 @@ protocol StartStopProgressIndicatorSingleTask: class {
 // Protocol functions implemented in main view
 protocol SingleTaskProcess: class {
     func presentViewProgress()
-    func presentViewInformation(outputprocess: OutputProcess)
+    func presentViewInformation(outputprocess: OutputProcess?)
     func terminateProgressProcess()
     func seterrorinfo(info: String)
     func setNumbers(outputprocess: OutputProcess?)
@@ -111,14 +111,14 @@ extension SingleTask: UpdateProgress {
                 self.indicatorDelegate?.stopIndicator()
                 self.singletaskDelegate?.setNumbers(outputprocess: self.outputprocess)
                 self.maxcount = self.outputprocess!.getMaxcount()
-                self.singletaskDelegate?.presentViewInformation(outputprocess: self.outputprocess!)
+                self.singletaskDelegate?.presentViewInformation(outputprocess: self.outputprocess)
             case .error:
                 self.indicatorDelegate?.stopIndicator()
-                self.singletaskDelegate?.presentViewInformation(outputprocess: self.outputprocess!)
+                self.singletaskDelegate?.presentViewInformation(outputprocess: self.outputprocess)
                 self.workload = nil
             case .executesinglerun:
                 self.singletaskDelegate?.terminateProgressProcess()
-                self.singletaskDelegate?.presentViewInformation(outputprocess: self.outputprocess!)
+                self.singletaskDelegate?.presentViewInformation(outputprocess: self.outputprocess)
                 self.configurations!.setCurrentDateonConfiguration(index: self.index!, outputprocess: self.outputprocess)
             case .empty:
                 self.workload = nil
