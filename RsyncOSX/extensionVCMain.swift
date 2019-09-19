@@ -389,17 +389,6 @@ extension ViewControllerMain: ViewOutputDetails {
     }
 }
 
-extension ViewControllerMain: AllProfileDetails {
-    func disablereloadallprofiles() {
-        self.allprofilesview = false
-    }
-
-    func enablereloadallprofiles() {
-        self.allprofilesview = true
-        self.allprofiledetailsDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vcallprofiles) as? ViewControllerAllProfiles
-    }
-}
-
 enum Color {
     case red
     case white
@@ -482,9 +471,4 @@ protocol ViewOutputDetails: class {
     func getalloutput() -> [String]
     func enableappend()
     func disableappend()
-}
-
-protocol AllProfileDetails: class {
-    func enablereloadallprofiles()
-    func disablereloadallprofiles()
 }

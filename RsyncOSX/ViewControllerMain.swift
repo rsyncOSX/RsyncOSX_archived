@@ -6,7 +6,7 @@
 //  Created by Thomas Evensen on 19/08/2016.
 //  Copyright © 2016 Thomas Evensen. All rights reserved.
 //
-//  swiftlint:disable file_length type_body_length line_length
+//  swiftlint:disable type_body_length line_length file_length
 
 import Foundation
 import Cocoa
@@ -68,10 +68,6 @@ class ViewControllerMain: NSViewController, ReloadTable, Deselect, VcMain, Delay
     var schedulesortedandexpanded: ScheduleSortedAndExpand?
     // Keep track of all errors
     var outputerrors: OutputErrors?
-    // Allprofiles view presented
-    var allprofilesview: Bool = false
-    // Delegate for refresh allprofiles if changes in profiles
-    weak var allprofiledetailsDelegate: ReloadTableAllProfiles?
 
     @IBAction func rsyncosxsched(_ sender: NSButton) {
         let pathtorsyncosxschedapp: String = ViewControllerReference.shared.pathrsyncosxsched! + ViewControllerReference.shared.namersyncosssched
@@ -434,8 +430,8 @@ class ViewControllerMain: NSViewController, ReloadTable, Deselect, VcMain, Delay
         globalMainQueue.async(execute: { () -> Void in
             self.mainTableView.reloadData()
         })
-        if self.allprofilesview {
-             self.allprofiledetailsDelegate?.reloadtable()
+        if let reloadDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vcallprofiles) as? ViewControllerAllProfiles {
+            reloadDelegate.reloadtable()
         }
     }
 }
