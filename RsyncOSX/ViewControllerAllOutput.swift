@@ -25,7 +25,6 @@ class ViewControllerAllOutput: NSViewController, Delay {
 
     override func viewDidAppear() {
         super.viewDidAppear()
-        self.getoutputDelegate?.enableappend()
         globalMainQueue.async(execute: { () -> Void in
             self.outputtable.reloadData()
         })
@@ -33,7 +32,7 @@ class ViewControllerAllOutput: NSViewController, Delay {
 
     override func viewDidDisappear() {
         super.viewDidDisappear()
-        self.getoutputDelegate?.disableappend()
+        ViewControllerReference.shared.setvcref(viewcontroller: .vcalloutput, nsviewcontroller: nil)
     }
 
 }

@@ -60,8 +60,6 @@ class ViewControllerMain: NSViewController, ReloadTable, Deselect, VcMain, Delay
     var index: Int?
     // Getting output from rsync
     var outputprocess: OutputProcess?
-    // Dynamic view of output
-    var dynamicappend: Bool = false
     // HiddenID task, set when row is selected
     var hiddenID: Int?
     // Reference to Schedules object
@@ -149,10 +147,10 @@ class ViewControllerMain: NSViewController, ReloadTable, Deselect, VcMain, Delay
         let dialog: String = NSLocalizedString("Delete", comment: "Execute")
         let answer = Alerts.dialogOrCancel(question: question, text: text, dialog: dialog)
         if answer {
-            if self.hiddenID != nil {
+            if let hiddenID = self.hiddenID {
                 // Delete Configurations and Schedules by hiddenID
-                self.configurations!.deleteConfigurationsByhiddenID(hiddenID: self.hiddenID!)
-                self.schedules!.deletescheduleonetask(hiddenID: self.hiddenID!)
+                self.configurations!.deleteConfigurationsByhiddenID(hiddenID: hiddenID)
+                self.schedules!.deletescheduleonetask(hiddenID: hiddenID)
                 self.deselect()
                 self.hiddenID = nil
                 self.index = nil
@@ -223,10 +221,6 @@ class ViewControllerMain: NSViewController, ReloadTable, Deselect, VcMain, Delay
 
     @IBAction func executetasknow(_ sender: NSButton) {
         guard self.checkforrsync() == false else { return }
-        guard self.hiddenID != nil else {
-            self.info.stringValue = Infoexecute().info(num: 1)
-            return
-        }
         guard self.index != nil else {
             self.info.stringValue = Infoexecute().info(num: 1)
             return
@@ -294,7 +288,6 @@ class ViewControllerMain: NSViewController, ReloadTable, Deselect, VcMain, Delay
 
     override func viewDidDisappear() {
         super.viewDidDisappear()
-        self.dynamicappend = false
     }
 
     func reset() {
