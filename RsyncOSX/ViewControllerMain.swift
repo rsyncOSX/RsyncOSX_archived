@@ -56,8 +56,6 @@ class ViewControllerMain: NSViewController, ReloadTable, Deselect, VcMain, Delay
     var index: Int?
     // Getting output from rsync
     var outputprocess: OutputProcess?
-    // HiddenID task, set when row is selected
-    var hiddenID: Int?
     // Reference to Schedules object
     var schedulesortedandexpanded: ScheduleSortedAndExpand?
     // Keep track of all errors
@@ -133,29 +131,27 @@ class ViewControllerMain: NSViewController, ReloadTable, Deselect, VcMain, Delay
     }
 
     @IBAction func delete(_ sender: NSButton) {
-        self.reset()
-        guard self.hiddenID != nil else {
+        guard self.index != nil else {
             self.info.stringValue = Infoexecute().info(num: 1)
             return
         }
-        let question: String = NSLocalizedString("Delete selected task?", comment: "Execute")
-        let text: String = NSLocalizedString("Cancel or Delete", comment: "Execute")
-        let dialog: String = NSLocalizedString("Delete", comment: "Execute")
-        let answer = Alerts.dialogOrCancel(question: question, text: text, dialog: dialog)
-        if answer {
-            if let hiddenID = self.hiddenID {
+        if let hiddenID = self.configurations?.gethiddenID(index: self.index!) {
+            let question: String = NSLocalizedString("Delete selected task?", comment: "Execute")
+            let text: String = NSLocalizedString("Cancel or Delete", comment: "Execute")
+            let dialog: String = NSLocalizedString("Delete", comment: "Execute")
+            let answer = Alerts.dialogOrCancel(question: question, text: text, dialog: dialog)
+            if answer {
                 // Delete Configurations and Schedules by hiddenID
                 self.configurations!.deleteConfigurationsByhiddenID(hiddenID: hiddenID)
                 self.schedules!.deletescheduleonetask(hiddenID: hiddenID)
                 self.deselect()
-                self.hiddenID = nil
-                self.index = nil
                 self.reloadtabledata()
                 // Reset in tabSchedule
                 self.reloadtable(vcontroller: .vctabschedule)
                 self.reloadtable(vcontroller: .vcsnapshot)
             }
         }
+        self.reset()
     }
 
     @IBOutlet weak var TCPButton: NSButton!
@@ -379,7 +375,6 @@ class ViewControllerMain: NSViewController, ReloadTable, Deselect, VcMain, Delay
         let indexes = myTableViewFromNotification.selectedRowIndexes
         if let index = indexes.first {
             self.index = index
-            self.hiddenID = self.configurations!.gethiddenID(index: index)
         } else {
             self.index = nil
         }
