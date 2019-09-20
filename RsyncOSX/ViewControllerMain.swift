@@ -1,8 +1,7 @@
-//
 //  Created by Thomas Evensen on 19/08/2016.
 //  Copyright © 2016 Thomas Evensen. All rights reserved.
 //
-//  swiftlint:disable type_body_length line_length file_length
+//  swiftlint:disable type_body_length line_length
 
 import Foundation
 import Cocoa
@@ -361,26 +360,6 @@ class ViewControllerMain: NSViewController, ReloadTable, Deselect, VcMain, Delay
         localprofileinfo2?.setprofile(profile: self.profilInfo.stringValue, color: self.profilInfo.textColor!)
         self.TCPButton.isEnabled = true
         self.showrsynccommandmainview()
-    }
-
-    // when row is selected
-    // setting which table row is selected, force new estimation
-    func tableViewSelectionDidChange(_ notification: Notification) {
-        self.seterrorinfo(info: "")
-        // If change row during estimation
-        if self.process != nil { self.abortOperations() }
-        self.backupdryrun.state = .on
-        self.info.stringValue = Infoexecute().info(num: 0)
-        let myTableViewFromNotification = (notification.object as? NSTableView)!
-        let indexes = myTableViewFromNotification.selectedRowIndexes
-        if let index = indexes.first {
-            self.index = index
-        } else {
-            self.index = nil
-        }
-        self.reset()
-        self.showrsynccommandmainview()
-        self.reloadtabledata()
     }
 
     func createandreloadschedules() {
