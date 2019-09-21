@@ -24,8 +24,8 @@ final class Dateandtime {
     func timeString (_ startdate: Date, enddate: Date?) -> String {
         var result: String?
         let seconds: Double = self.seconds(startdate, enddate: enddate)
-        let (hr, minf) = modf (seconds / 3600)
-        let (min, secf) = modf (60 * minf)
+        let (hr, minf) = modf(seconds / 3600)
+        let (min, secf) = modf(60 * minf)
         // hr, min, 60 * secf
         if hr == 0 && min == 0 {
             result = String(format: "%.0f", 60 * secf) + " " + NSLocalizedString("secs", comment: "datetime")
@@ -48,8 +48,8 @@ final class Dateandtime {
     // Used in view of all tasks
     func timeString (_ seconds: Double) -> String {
         var result: String?
-        let (hr, minf) = modf (seconds / 3600)
-        let (min, secf) = modf (60 * minf)
+        let (hr, minf) = modf(seconds / 3600)
+        let (min, secf) = modf(60 * minf)
         // hr, min, 60 * secf
         if hr == 0 && min == 0 {
             result = String(format: "%.0f", 60 * secf) + "s"
