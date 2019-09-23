@@ -15,8 +15,6 @@ protocol ErrorOutput: class {
 
 class ProcessCmd: Delay {
 
-    // Number of calculated files to be copied
-    var calculatedNumberOfFiles: Int = 0
     // Variable for reference to Process
     var processReference: Process?
     // Message to calling class
@@ -66,7 +64,6 @@ class ProcessCmd: Delay {
                 if let str = NSString(data: data, encoding: String.Encoding.utf8.rawValue) {
                     if outputprocess != nil {
                         outputprocess!.addlinefromoutput(str as String)
-                        self.calculatedNumberOfFiles = outputprocess!.count()
                         // Send message about files
                         self.updateDelegate?.fileHandler()
                         if self.termination {
