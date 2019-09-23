@@ -17,10 +17,8 @@ protocol SetProfileinfo: class {
 class ViewControllerSchedule: NSViewController, SetConfigurations, SetSchedules, Delay, Index, VcMain, Checkforrsync {
 
     private var index: Int?
-    private var hiddenID: Int?
     private var schedulessorted: ScheduleSortedAndExpand?
     var schedule: Scheduletype?
-    private var preselectrow: Bool = false
 
     // Main tableview
     @IBOutlet weak var mainTableView: NSTableView!
@@ -87,8 +85,9 @@ class ViewControllerSchedule: NSViewController, SetConfigurations, SetSchedules,
             self.info.stringValue = Infoschedule().info(num: 2)
             let seconds: TimeInterval = self.starttime.dateValue.timeIntervalSinceNow
             let startdate: Date = self.startdate.dateValue.addingTimeInterval(seconds)
-            if self.index != nil {
-                self.schedules!.addschedule(self.hiddenID!, schedule: self.schedule ?? .once, start: startdate)
+            if let hiddenID = self.configurations?.gethiddenID(index: self.index ?? -1) {
+                guard hiddenID != -1 else { return }
+                self.schedules!.addschedule(hiddenID, schedule: self.schedule ?? .once, start: startdate)
             }
         }
     }
@@ -145,14 +144,9 @@ class ViewControllerSchedule: NSViewController, SetConfigurations, SetSchedules,
 
     override func viewDidAppear() {
         super.viewDidAppear()
-        self.index = self.index()
-        if self.index != nil {
-            self.hiddenID = self.configurations!.gethiddenID(index: self.index!)
-            guard (self.hiddenID ?? -1) > -1 else { return }
+        if self.index() != nil {
             self.info.stringValue = Infoschedule().info(num: 3)
-            self.preselectrow = true
         } else {
-            self.preselectrow = false
             self.info.stringValue = Infoschedule().info(num: 0)
         }
         self.weeklybutton.isEnabled = false
@@ -174,23 +168,17 @@ class ViewControllerSchedule: NSViewController, SetConfigurations, SetSchedules,
     // setting which table row is selected
     func tableViewSelectionDidChange(_ notification: Notification) {
         self.info.stringValue = Infoschedule().info(num: 0)
-        self.preselectrow = false
         let myTableViewFromNotification = (notification.object as? NSTableView)!
         let indexes = myTableViewFromNotification.selectedRowIndexes
         if let index = indexes.first {
-            // Set index
             self.index = index
-            let dict = self.configurations!.getConfigurationsDataSourceSynchronize()![index]
-            self.hiddenID = dict.value(forKey: "hiddenID") as? Int
         } else {
             self.index = nil
-            self.hiddenID = nil
         }
     }
 
-    // Execute tasks by double click in table
+    // View schedule details by double click in table
     @objc(tableViewDoubleClick:) func tableViewDoubleClick(sender: AnyObject) {
-        self.preselectrow = false
         globalMainQueue.async(execute: { () -> Void in
             self.presentAsSheet(self.viewControllerScheduleDetails!)
         })
@@ -249,13 +237,13 @@ extension ViewControllerSchedule: NSTableViewDelegate, Attributedestring {
             }
         case "offsiteServerCellID":
             if (object[tableColumn!.identifier] as? String)!.isEmpty {
-                if self.preselectrow == true && hiddenID == self.hiddenID ?? -1 {
+                if self.index() ?? -1 == row && self.index == nil {
                     return self.attributedstring(str: "localhost", color: NSColor.red, align: .left)
                 } else {
                     return "localhost"
                 }
             } else {
-                if self.preselectrow == true && hiddenID == self.hiddenID ?? -1 {
+                if self.index() ?? -1 == row && self.index == nil {
                     let text = object[tableColumn!.identifier] as? String
                     return self.attributedstring(str: text!, color: NSColor.red, align: .left)
                 } else {
@@ -268,7 +256,7 @@ extension ViewControllerSchedule: NSTableViewDelegate, Attributedestring {
                 return taskintime ?? ""
             }
         default:
-            if self.preselectrow == true && hiddenID == self.hiddenID ?? -1 {
+            if self.index() ?? -1 == row && self.index == nil {
                 let text = object[tableColumn!.identifier] as? String
                 return self.attributedstring(str: text!, color: NSColor.red, align: .left)
             } else {
@@ -282,7 +270,11 @@ extension ViewControllerSchedule: NSTableViewDelegate, Attributedestring {
 
 extension  ViewControllerSchedule: GetHiddenID {
     func gethiddenID() -> Int {
-        return self.hiddenID ?? -1
+        if let hiddenID = self.configurations?.gethiddenID(index: self.index ?? -1) {
+            return hiddenID
+        } else {
+            return -1
+        }
     }
 }
 
