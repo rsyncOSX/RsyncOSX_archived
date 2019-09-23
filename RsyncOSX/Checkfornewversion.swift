@@ -27,7 +27,7 @@ final class Checkfornewversion {
         globalBackgroundQueue.async(execute: { () -> Void in
             if let url = URL(string: self.urlPlist ?? "") {
                 do {
-                    let contents = NSDictionary (contentsOf: url)
+                    let contents = NSDictionary(contentsOf: url)
                     if let url = contents?.object(forKey: self.runningVersion ?? "") {
                         self.urlNewVersion = url as? String
                         // Setting reference to new version if any

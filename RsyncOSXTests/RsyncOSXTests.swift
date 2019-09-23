@@ -5,6 +5,7 @@
 //  Created by Thomas Evensen on 25/06/2019.
 //  Copyright © 2019 Thomas Evensen. All rights reserved.
 //
+// swiftlint:disable line_length
 
 import XCTest
 @testable import RsyncOSX
