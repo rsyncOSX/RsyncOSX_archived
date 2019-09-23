@@ -77,6 +77,7 @@ class ViewControllerSchedule: NSViewController, SetConfigurations, SetSchedules,
     }
 
     private func addschedule() {
+        guard self.index != nil || self.index() != nil else { return }
         let question: String = NSLocalizedString("Add Schedule?", comment: "Add schedule")
         let text: String = NSLocalizedString("Cancel or Add", comment: "Add schedule")
         let dialog: String = NSLocalizedString("Add", comment: "Add schedule")
