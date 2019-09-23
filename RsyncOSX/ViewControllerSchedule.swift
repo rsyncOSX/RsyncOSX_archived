@@ -86,6 +86,11 @@ class ViewControllerSchedule: NSViewController, SetConfigurations, SetSchedules,
             self.info.stringValue = Infoschedule().info(num: 2)
             let seconds: TimeInterval = self.starttime.dateValue.timeIntervalSinceNow
             let startdate: Date = self.startdate.dateValue.addingTimeInterval(seconds)
+            if let index = self.index() {
+                if self.index == nil {
+                    self.index = index
+                }
+            }
             if let hiddenID = self.configurations?.gethiddenID(index: self.index ?? -1) {
                 guard hiddenID != -1 else { return }
                 self.schedules!.addschedule(hiddenID, schedule: self.schedule ?? .once, start: startdate)
