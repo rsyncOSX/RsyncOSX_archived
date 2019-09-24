@@ -29,7 +29,6 @@ class ViewControllerNewConfigurations: NSViewController, SetConfigurations, Dela
     let ssh: String = "ssh"
     let dryrun: String = "--dry-run"
     var outputprocess: OutputProcess?
-    var index: Int?
     // Reference to rsync parameters to use in combox
     var comboBoxValues = [ViewControllerReference.shared.synchronize,
                           ViewControllerReference.shared.snapshot,
@@ -92,8 +91,8 @@ class ViewControllerNewConfigurations: NSViewController, SetConfigurations, Dela
     }
 
     @IBAction func copyconfiguration(_ sender: NSButton) {
-        guard self.index != nil else { return }
-        let hiddenID = self.configurations!.gethiddenID(index: self.index!)
+        guard self.index() != nil else { return }
+        let hiddenID = self.configurations!.gethiddenID(index: self.index() ?? -1)
         guard hiddenID > -1 else { return }
         self.localCatalog.stringValue = self.configurations!.getResourceConfiguration(hiddenID, resource: .localCatalog)
         self.offsiteCatalog.stringValue = self.configurations!.getResourceConfiguration(hiddenID, resource: .remoteCatalog)
@@ -146,8 +145,7 @@ class ViewControllerNewConfigurations: NSViewController, SetConfigurations, Dela
         super.viewDidAppear()
         self.backuptypeselected = .synchronize
         self.backuptype.selectItem(at: 0)
-        self.index = self.index()
-        if self.index != nil {
+        if self.index() != nil {
             self.copyconfigbutton.isEnabled = true
         } else {
             self.copyconfigbutton.isEnabled = false
@@ -213,7 +211,6 @@ class ViewControllerNewConfigurations: NSViewController, SetConfigurations, Dela
         } else if self.backuptypeselected == .singlefile {
             dict.setValue(1, forKey: "singleFile")
         }
-
         if !self.localCatalog.stringValue.hasSuffix("/") && self.backuptypeselected != .singlefile {
             self.localCatalog.stringValue += "/"
             dict.setValue(self.localCatalog.stringValue, forKey: "localCatalog")
