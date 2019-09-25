@@ -8,11 +8,9 @@
 			<key>backupID</key>
 			<string>XCTest</string>
 			<key>batch</key>
-			<string>no</string>
+			<integer>0</integer>
 			<key>dateRun</key>
 			<string></string>
-			<key>dryrun</key>
-			<string>--dry-run</string>
 			<key>hiddenID</key>
 			<integer>1</integer>
 			<key>localCatalog</key>
@@ -54,11 +52,9 @@
 			<key>backupID</key>
 			<string>XCTest</string>
 			<key>batch</key>
-			<string>no</string>
+			<integer>0</integer>
 			<key>dateRun</key>
 			<string>26 Jun 2019 09:40</string>
-			<key>dryrun</key>
-			<string>--dry-run</string>
 			<key>hiddenID</key>
 			<integer>2</integer>
 			<key>localCatalog</key>
