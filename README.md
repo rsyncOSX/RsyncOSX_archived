@@ -6,6 +6,8 @@
 
 [The Changelog](https://rsyncosx.github.io/Changelog). If you want to discuss changes either create an [Issue](https://github.com/rsyncOSX/RsyncOSX/issues) or a [chat on Gitter](https://gitter.im/RsyncOSX/community?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge).
 
+**Important** : read about the --delete parameter (see below) to rsync **before** using rsync and RsyncOSX.
+
 A short [intro to RsyncOSX](https://rsyncosx.github.io/Intro) and full [documentation of RsyncOSX](https://rsyncosx.github.io/AboutRsyncOSX).
 
 RsyncOSX is a GUI on top of the command line utility `rsync`. Rsync is a file-based synchronization and backup tool. There is no custom solution for the backup archive. You can quit utilizing RsyncOSX (and rsync) at any time and still have access to all synchronized files.
