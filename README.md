@@ -6,6 +6,8 @@
 
 [The Changelog](https://rsyncosx.github.io/Changelog). If you want to discuss changes either create an [Issue](https://github.com/rsyncOSX/RsyncOSX/issues) or a [chat on Gitter](https://gitter.im/RsyncOSX/community?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge).
 
+**Important** : read about the --delete parameter (see below) to rsync **before** using rsync and RsyncOSX.
+
 A short [intro to RsyncOSX](https://rsyncosx.github.io/Intro) and full [documentation of RsyncOSX](https://rsyncosx.github.io/AboutRsyncOSX).
 
 RsyncOSX is a GUI on top of the command line utility `rsync`. Rsync is a file-based synchronization and backup tool. There is no custom solution for the backup archive. You can quit utilizing RsyncOSX (and rsync) at any time and still have access to all synchronized files.
@@ -37,7 +39,17 @@ RsyncOSX is only verified with rsync versions 2.6.9, 3.1.2 and 3.1.3. Other vers
 
 ### The --delete parameter
 
-Caution about RsyncOSX and the `--delete` parameter. The `--delete` is a [default parameter](https://rsyncosx.github.io/RsyncParameters). The parameter instructs rsync to delete all files in the destination which are not present in the source. Every time you add a new task to RsyncOSX, execute an estimation run (`--dry-run` parameter) and inspect the result before executing a real run. If you by accident set an empty catalog as source RsyncOSX will delete all files in the destination. To save deleted and changes files either utilize [snapshots](https://rsyncosx.github.io/Snapshots) or the `--backup` [feature](https://rsyncosx.github.io/Parameters).
+```
+Caution about RsyncOSX and the `--delete` parameter. The `--delete` is a default parameter.
+The parameter instructs rsync to delete all files in the destination which are not present
+in the source. Every time you add a new task to RsyncOSX, execute an estimation run
+(--dry-run parameter) and inspect the result before executing a real run.
+
+If you by accident  set an empty catalog as source RsyncOSX will delete all files in the
+destination. To save deleted and changes files either utilize  snapshots
+(https://rsyncosx.github.io/Snapshots) or the `--backup` feature
+(https://rsyncosx.github.io/Parameters).
+```
 
 ### Main view
 
