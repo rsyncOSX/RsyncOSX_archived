@@ -42,11 +42,13 @@ RsyncOSX is only verified with rsync versions 2.6.9, 3.1.2 and 3.1.3. Other vers
 ```
 Caution about RsyncOSX and the `--delete` parameter. The `--delete` is a default parameter.
 The parameter instructs rsync to delete all files in the destination which are not present
-in the source. Every time you add a new task to RsyncOSX, execute an estimation run (`--dry-run` parameter)
-and inspect the result before executing a real run. If you by accident set an empty catalog as
-source RsyncOSX will delete all files in the destination. To save deleted and changes files either
-utilize [snapshots](https://rsyncosx.github.io/Snapshots) or the `--backup`
-[feature](https://rsyncosx.github.io/Parameters).
+in the source. Every time you add a new task to RsyncOSX, execute an estimation run
+(--dry-run parameter) and inspect the result before executing a real run.
+
+If you by accident  set an empty catalog as source RsyncOSX will delete all files in the
+destination. To save deleted and changes files either utilize  snapshots @
+(https://rsyncosx.github.io/Snapshots) or the `--backup` feature
+(https://rsyncosx.github.io/Parameters).
 ```
 
 ### Main view
