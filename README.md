@@ -49,7 +49,7 @@ Every time you add a new task to RsyncOSX, execute an estimation run (--dry-run 
 and inspect the result before executing a real run. If you by accident  set an empty catalog as
 source RsyncOSX will delete all files in the destination.
 
-To save deleted and changes files either utilize  snapshots (https://rsyncosx.github.io/Snapshots)
+To save deleted and changes files either utilize snapshots (https://rsyncosx.github.io/Snapshots)
 or the `--backup` feature (https://rsyncosx.github.io/Parameters).
 ```
 
