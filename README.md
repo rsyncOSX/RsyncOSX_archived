@@ -51,6 +51,8 @@ source RsyncOSX will delete all files in the destination.
 
 To save deleted and changes files either utilize snapshots (https://rsyncosx.github.io/Snapshots)
 or the `--backup` feature (https://rsyncosx.github.io/Parameters).
+
+The --delete parameter and other default parameters might be deleted if wanted.
 ```
 
 ### Main view
