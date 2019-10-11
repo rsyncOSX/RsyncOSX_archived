@@ -30,33 +30,12 @@ final class RsyncParameters {
 
     // Preselected parameters for storing a backup of deleted or changed files before
     // rsync synchronises the directories
-    private let backupstrings = ["--backup", "--backup-dir=../backup"]
-    private let suffixstringfreebsd = "--suffix=_`date +'%Y-%m-%d.%H.%M'`"
-    private let suffixstringlinux = "--suffix=_$(date +%Y-%m-%d.%H.%M)"
+    let backupstrings = ["--backup", "--backup-dir=../backup"]
+    let suffixstringfreebsd = "--suffix=_`date +'%Y-%m-%d.%H.%M'`"
+    let suffixstringlinux = "--suffix=_$(date +%Y-%m-%d.%H.%M)"
 
     // Reference to config
     private var config: Configuration?
-
-    /// Function for getting string for backup parameters
-    /// - parameter none: none
-    /// - return : array of String
-    func getBackupstrings() -> [String] {
-        return self.backupstrings
-    }
-
-    /// Function for getting string for suffix parameter
-    /// - parameter none: none
-    /// - return : array of String
-    func getSuffixString() -> String {
-        return self.suffixstringfreebsd
-    }
-
-    /// Function for getting string for alternative suffix parameter
-    /// - parameter none: none
-    /// - return : array of String
-    func getSuffixString2() -> String {
-        return self.suffixstringlinux
-    }
 
     /// Function for getting for rsync arguments to use in ComboBoxes in ViewControllerRsyncParameters
     /// - parameter none: none
@@ -84,9 +63,7 @@ final class RsyncParameters {
             }
         case 1:
             // If value == nil value is deleted and return empty string
-            guard value != nil else {
-                return ""
-            }
+            guard value != nil else { return "" }
             if self.rsyncArguments[indexComboBox].0 != self.rsyncArguments[0].0 {
                 return self.rsyncArguments[indexComboBox].0 + "=" + value!
             } else {
@@ -168,30 +145,28 @@ final class RsyncParameters {
     /// - parameter rsyncparameternumber : which stored rsync parameter, integer 8 - 14
     /// - returns : touple with index for combobox and corresponding rsync value
     func getParameter (rsyncparameternumber: Int) -> (Int, String) {
-        var indexandvalue: (Int, String)?
         guard self.config != nil else { return (0, "")}
         switch rsyncparameternumber {
         case 8:
-           indexandvalue = self.indexandvaluersyncparameter(self.config!.parameter8)
+           return self.indexandvaluersyncparameter(self.config?.parameter8)
         case 9:
-            indexandvalue = self.indexandvaluersyncparameter(self.config!.parameter9)
+            return self.indexandvaluersyncparameter(self.config?.parameter9)
         case 10:
-            indexandvalue = self.indexandvaluersyncparameter(self.config!.parameter10)
+            return self.indexandvaluersyncparameter(self.config?.parameter10)
         case 11:
-            indexandvalue = self.indexandvaluersyncparameter(self.config!.parameter11)
+            return self.indexandvaluersyncparameter(self.config?.parameter11)
         case 12:
-            indexandvalue = self.indexandvaluersyncparameter(self.config!.parameter12)
+            return self.indexandvaluersyncparameter(self.config?.parameter12)
         case 13:
-            indexandvalue = self.indexandvaluersyncparameter(self.config!.parameter13)
+            return self.indexandvaluersyncparameter(self.config?.parameter13)
         case 14:
-            indexandvalue = self.indexandvaluersyncparameter(self.config!.parameter14)
+            return self.indexandvaluersyncparameter(self.config?.parameter14)
         default:
             return (0, "")
         }
-        return indexandvalue!
     }
 
-    init(config: Configuration) {
+    init(config: Configuration?) {
         self.config = config
         self.comboBoxValues = [String]()
         for i in 0 ..< self.rsyncArguments.count {
