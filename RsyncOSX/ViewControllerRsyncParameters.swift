@@ -25,7 +25,6 @@ protocol GetSelecetedIndex: class {
 class ViewControllerRsyncParameters: NSViewController, SetConfigurations, SetDismisser, Index {
 
     var storageapi: PersistentStorageAPI?
-    var parameters: RsyncParameters?
     weak var userparamsupdatedDelegate: RsyncUserParams?
     var comboBoxValues = [String]()
     var diddissappear: Bool = false
@@ -124,24 +123,28 @@ class ViewControllerRsyncParameters: NSViewController, SetConfigurations, SetDis
     // Function for enabling backup of changed files in a backup catalog.
     // Parameters are appended to last two parameters (12 and 13).
     @IBAction func backup(_ sender: NSButton) {
-        switch self.backupbutton.state {
-        case .on:
-            self.initcombox(combobox: self.combo12, index: (self.parameters!.indexandvaluersyncparameter(self.parameters!.getBackupstrings()[0]).0))
-            self.param12.stringValue = self.parameters!.indexandvaluersyncparameter(self.parameters!.getBackupstrings()[0]).1
-            let hiddenID = self.configurations!.gethiddenID(index: (self.index())!)
-            guard hiddenID > -1 else { return }
-            let localcatalog = self.configurations!.getResourceConfiguration(hiddenID, resource: .localCatalog)
-            let localcatalogParts = (localcatalog as AnyObject).components(separatedBy: "/")
-            self.initcombox(combobox: self.combo13, index: (self.parameters!.indexandvaluersyncparameter(self.parameters!.getBackupstrings()[1]).0))
-            self.param13.stringValue = "../backup" + "_" + localcatalogParts[localcatalogParts.count - 2]
-        case .off:
-            self.initcombox(combobox: self.combo12, index: (0))
-            self.param12.stringValue = ""
-            self.initcombox(combobox: self.combo13, index: (0))
-            self.param13.stringValue = ""
-            self.initcombox(combobox: self.combo14, index: (0))
-            self.param14.stringValue = ""
-        default : break
+        if let index = self.index() {
+            let configurations: [Configuration] = self.configurations!.getConfigurations()
+            let param = ComboboxRsyncParameters(config: configurations[index])
+            switch self.backupbutton.state {
+            case .on:
+                self.initcombox(combobox: self.combo12, index: (param.indexandvaluersyncparameter(SuffixstringsRsyncParameters().backupstrings[0]).0))
+                self.param12.stringValue = param.indexandvaluersyncparameter(SuffixstringsRsyncParameters().backupstrings[0]).1
+                let hiddenID = self.configurations!.gethiddenID(index: (self.index())!)
+                guard hiddenID > -1 else { return }
+                let localcatalog = self.configurations!.getResourceConfiguration(hiddenID, resource: .localCatalog)
+                let localcatalogParts = (localcatalog as AnyObject).components(separatedBy: "/")
+                self.initcombox(combobox: self.combo13, index: (param.indexandvaluersyncparameter(SuffixstringsRsyncParameters().backupstrings[1]).0))
+                self.param13.stringValue = "../backup" + "_" + localcatalogParts[localcatalogParts.count - 2]
+            case .off:
+                self.initcombox(combobox: self.combo12, index: (0))
+                self.param12.stringValue = ""
+                self.initcombox(combobox: self.combo13, index: (0))
+                self.param13.stringValue = ""
+                self.initcombox(combobox: self.combo14, index: (0))
+                self.param14.stringValue = ""
+            default : break
+            }
         }
     }
 
@@ -149,35 +152,42 @@ class ViewControllerRsyncParameters: NSViewController, SetConfigurations, SetDis
     // Parameters are appended to last parameter (14).
     @IBOutlet weak var suffixButton: NSButton!
     @IBAction func suffix(_ sender: NSButton) {
-        self.suffixButton2.state = .off
-        switch self.suffixButton.state {
-        case .on:
-            let suffix = self.parameters!.getSuffixString()
-            self.initcombox(combobox: self.combo14, index: (self.parameters!.indexandvaluersyncparameter(suffix).0))
-            self.param14.stringValue = self.parameters!.indexandvaluersyncparameter(suffix).1
-        case .off:
-            self.initcombox(combobox: self.combo14, index: (0))
-            self.param14.stringValue = ""
-        default:
-            break
+        if let index = self.index() {
+            self.suffixButton2.state = .off
+            let configurations: [Configuration] = self.configurations!.getConfigurations()
+            let param = ComboboxRsyncParameters(config: configurations[index])
+            switch self.suffixButton.state {
+            case .on:
+                let suffix = SuffixstringsRsyncParameters().suffixstringfreebsd
+                self.initcombox(combobox: self.combo14, index: (param.indexandvaluersyncparameter(suffix).0))
+                self.param14.stringValue = param.indexandvaluersyncparameter(suffix).1
+            case .off:
+                self.initcombox(combobox: self.combo14, index: (0))
+                self.param14.stringValue = ""
+            default:
+                break
+            }
         }
     }
 
     @IBOutlet weak var suffixButton2: NSButton!
     @IBAction func suffix2(_ sender: NSButton) {
-        self.suffixButton.state = .off
-        switch self.suffixButton2.state {
-        case .on:
-            let suffix = self.parameters!.getSuffixString2()
-            self.initcombox(combobox: self.combo14, index: (self.parameters!.indexandvaluersyncparameter(suffix).0))
-            self.param14.stringValue = self.parameters!.indexandvaluersyncparameter(suffix).1
-        case .off:
-            self.initcombox(combobox: self.combo14, index: (0))
-            self.param14.stringValue = ""
-        default:
-            break
+        if let index = self.index() {
+            let configurations: [Configuration] = self.configurations!.getConfigurations()
+            let param = ComboboxRsyncParameters(config: configurations[index])
+            self.suffixButton.state = .off
+            switch self.suffixButton2.state {
+            case .on:
+                let suffix = SuffixstringsRsyncParameters().suffixstringlinux
+                self.initcombox(combobox: self.combo14, index: (param.indexandvaluersyncparameter(suffix).0))
+                self.param14.stringValue = param.indexandvaluersyncparameter(suffix).1
+            case .off:
+                self.initcombox(combobox: self.combo14, index: (0))
+                self.param14.stringValue = ""
+            default:
+                break
+            }
         }
-
     }
 
     @IBOutlet weak var backupbutton: NSButton!
@@ -195,10 +205,10 @@ class ViewControllerRsyncParameters: NSViewController, SetConfigurations, SetDis
         } else {
             self.storageapi = PersistentStorageAPI(profile: nil)
         }
-        let configurations: [Configuration] = self.configurations!.getConfigurations()
         if let index = self.index() {
-            self.parameters = RsyncParameters(config: configurations[index])
-            self.comboBoxValues = parameters!.getComboBoxValues()
+            let configurations: [Configuration] = self.configurations!.getConfigurations()
+            let param = ComboboxRsyncParameters(config: configurations[index])
+            self.comboBoxValues = param.getComboBoxValues()
             self.backupbutton.state = .off
             self.suffixButton.state = .off
             self.suffixButton2.state = .off
@@ -224,20 +234,27 @@ class ViewControllerRsyncParameters: NSViewController, SetConfigurations, SetDis
             } else {
                 self.esshparameter.state = .off
             }
-            self.initcombox(combobox: self.combo8, index: self.parameters!.getParameter(rsyncparameternumber: 8).0)
-            self.param8.stringValue = self.parameters!.getParameter(rsyncparameternumber: 8).1
-            self.initcombox(combobox: self.combo9, index: self.parameters!.getParameter(rsyncparameternumber: 9).0)
-            self.param9.stringValue = self.parameters!.getParameter(rsyncparameternumber: 9).1
-            self.initcombox(combobox: self.combo10, index: self.parameters!.getParameter(rsyncparameternumber: 10).0)
-            self.param10.stringValue = self.parameters!.getParameter(rsyncparameternumber: 10).1
-            self.initcombox(combobox: self.combo11, index: self.parameters!.getParameter(rsyncparameternumber: 11).0)
-            self.param11.stringValue = self.parameters!.getParameter(rsyncparameternumber: 11).1
-            self.initcombox(combobox: self.combo12, index: self.parameters!.getParameter(rsyncparameternumber: 12).0)
-            self.param12.stringValue = self.parameters!.getParameter(rsyncparameternumber: 12).1
-            self.initcombox(combobox: self.combo13, index: self.parameters!.getParameter(rsyncparameternumber: 13).0)
-            self.param13.stringValue = self.parameters!.getParameter(rsyncparameternumber: 13).1
-            self.initcombox(combobox: self.combo14, index: self.parameters!.getParameter(rsyncparameternumber: 14).0)
-            self.param14.stringValue = self.parameters!.getParameter(rsyncparameternumber: 14).1
+            let value8 = param.getParameter(rsyncparameternumber: 8).0
+            self.initcombox(combobox: self.combo8, index: value8)
+            self.param8.stringValue = param.getParameter(rsyncparameternumber: 8).1
+            let value9 = param.getParameter(rsyncparameternumber: 9).0
+            self.initcombox(combobox: self.combo9, index: value9)
+            self.param9.stringValue = param.getParameter(rsyncparameternumber: 9).1
+            let value10 = param.getParameter(rsyncparameternumber: 10).0
+            self.initcombox(combobox: self.combo10, index: value10)
+            self.param10.stringValue = param.getParameter(rsyncparameternumber: 10).1
+            let value11 = param.getParameter(rsyncparameternumber: 11).0
+            self.initcombox(combobox: self.combo11, index: value11)
+            self.param11.stringValue = param.getParameter(rsyncparameternumber: 11).1
+            let value12 = param.getParameter(rsyncparameternumber: 12).0
+            self.initcombox(combobox: self.combo12, index: value12)
+            self.param12.stringValue = param.getParameter(rsyncparameternumber: 12).1
+            let value13 = param.getParameter(rsyncparameternumber: 13).0
+            self.initcombox(combobox: self.combo13, index: value13)
+            self.param13.stringValue = param.getParameter(rsyncparameternumber: 13).1
+            let value14 = param.getParameter(rsyncparameternumber: 14).0
+            self.initcombox(combobox: self.combo14, index: value14)
+            self.param14.stringValue = param.getParameter(rsyncparameternumber: 14).1
             if configurations[index].rsyncdaemon != nil {
                 self.rsyncdaemon.state = NSControl.StateValue(rawValue: configurations[index].rsyncdaemon!)
             } else {
@@ -260,19 +277,20 @@ class ViewControllerRsyncParameters: NSViewController, SetConfigurations, SetDis
         guard configurations.count > 0 else { return }
         // Get the index of selected configuration
         if let index = self.index() {
-            configurations[index].parameter8 = self.parameters!.getRsyncParameter(indexComboBox:
+            let param = SetrsyncParameters()
+            configurations[index].parameter8 = param.getRsyncParameter(indexComboBox:
                 self.combo8.indexOfSelectedItem, value: getValue(value: self.param8.stringValue))
-            configurations[index].parameter9 = self.parameters!.getRsyncParameter(indexComboBox:
+            configurations[index].parameter9 = param.getRsyncParameter(indexComboBox:
                 self.combo9.indexOfSelectedItem, value: getValue(value: self.param9.stringValue))
-            configurations[index].parameter10 = self.parameters!.getRsyncParameter(indexComboBox:
+            configurations[index].parameter10 = param.getRsyncParameter(indexComboBox:
                 self.combo10.indexOfSelectedItem, value: getValue(value: self.param10.stringValue))
-            configurations[index].parameter11 = self.parameters!.getRsyncParameter(indexComboBox:
+            configurations[index].parameter11 = param.getRsyncParameter(indexComboBox:
                 self.combo11.indexOfSelectedItem, value: getValue(value: self.param11.stringValue))
-            configurations[index].parameter12 = self.parameters!.getRsyncParameter(indexComboBox:
+            configurations[index].parameter12 = param.getRsyncParameter(indexComboBox:
                 self.combo12.indexOfSelectedItem, value: getValue(value: self.param12.stringValue))
-            configurations[index].parameter13 = self.parameters!.getRsyncParameter(indexComboBox:
+            configurations[index].parameter13 = param.getRsyncParameter(indexComboBox:
                 self.combo13.indexOfSelectedItem, value: getValue(value: self.param13.stringValue))
-            configurations[index].parameter14 = self.parameters!.getRsyncParameter(indexComboBox:
+            configurations[index].parameter14 = param.getRsyncParameter(indexComboBox:
                 self.combo14.indexOfSelectedItem, value: getValue(value: self.param14.stringValue))
             configurations[index].rsyncdaemon = self.rsyncdaemon.state.rawValue
             if let port = self.sshport {
@@ -288,6 +306,7 @@ class ViewControllerRsyncParameters: NSViewController, SetConfigurations, SetDis
 
     // There are eight comboboxes, all eight are initalized during ViewDidLoad and the correct index is set.
     private func initcombox(combobox: NSComboBox, index: Int) {
+        guard index > -1 else { return }
         combobox.removeAllItems()
         combobox.addItems(withObjectValues: self.comboBoxValues)
         combobox.selectItem(at: index)

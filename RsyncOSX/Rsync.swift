@@ -10,7 +10,7 @@ import Foundation
 
 final class Rsync: ProcessCmd {
 
-    func setdelegate(object: UpdateProgress) {
+    func setdelegate(object: UpdateProgress?) {
         self.updateDelegate = object
     }
 
