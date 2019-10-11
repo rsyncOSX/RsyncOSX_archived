@@ -18,8 +18,6 @@ final class RsyncParametersProcess {
     var offsiteServer: String?
     var remoteargs: String?
     var linkdestparam: String?
-    private let suffixString = "--suffix=_`date +'%Y-%m-%d.%H.%M'`"
-    private let suffixString2 = "--suffix=_$(date +%Y-%m-%d.%H.%M)"
 
     private func setParameters1To6(_ config: Configuration, dryRun: Bool, forDisplay: Bool, verify: Bool) {
         var parameter1: String?
@@ -103,7 +101,8 @@ final class RsyncParametersProcess {
         }
         if config.parameter14 != nil {
             if config.offsiteServer.isEmpty == true {
-                if config.parameter14! == self.suffixString || config.parameter14! == self.suffixString2 {
+                if config.parameter14! == SuffixstringsRsyncParameters().suffixstringfreebsd ||
+                config.parameter14! == SuffixstringsRsyncParameters().suffixstringlinux {
                     self.appendParameter(parameter: self.setdatesuffixlocalhost(), forDisplay: forDisplay)
                 }
             } else {
