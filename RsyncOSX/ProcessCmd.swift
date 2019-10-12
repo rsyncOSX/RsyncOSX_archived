@@ -76,12 +76,13 @@ class ProcessCmd: Delay {
         }
         // Observator Process termination, observer is removed when Process terminates
         self.notifications_termination = NotificationCenter.default.addObserver(forName: Process.didTerminateNotification,
-                                object: task, queue: nil) { _ in
+                                object: nil, queue: nil) { _ in
             self.delayWithSeconds(0.5) {
                 self.termination = true
                 self.updateDelegate?.processTermination()
-                NotificationCenter.default.removeObserver(self.notifications_datahandle as Any)
-                NotificationCenter.default.removeObserver(self.notifications_termination as Any)
+                // Must remove for deallocation
+                NotificationCenter.default.removeObserver(self.notifications_datahandle!)
+                NotificationCenter.default.removeObserver(self.notifications_termination!)
             }
         }
         self.processReference = task
@@ -103,5 +104,9 @@ class ProcessCmd: Delay {
         self.command = command
         self.arguments = arguments
         self.possibleerrorDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllerMain
+    }
+
+    deinit {
+        // print("deinit")
     }
 }
