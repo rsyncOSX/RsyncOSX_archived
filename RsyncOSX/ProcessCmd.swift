@@ -62,13 +62,11 @@ class ProcessCmd: Delay {
             let data = outHandle.availableData
             if data.count > 0 {
                 if let str = NSString(data: data, encoding: String.Encoding.utf8.rawValue) {
-                    if outputprocess != nil {
-                        outputprocess!.addlinefromoutput(str as String)
-                        // Send message about files
-                        self.updateDelegate?.fileHandler()
-                        if self.termination {
-                            self.possibleerrorDelegate?.erroroutput()
-                        }
+                    outputprocess?.addlinefromoutput(str as String)
+                    // Send message about files
+                    self.updateDelegate?.fileHandler()
+                    if self.termination {
+                        self.possibleerrorDelegate?.erroroutput()
                     }
                 }
                 outHandle.waitForDataInBackgroundAndNotify()
@@ -107,6 +105,6 @@ class ProcessCmd: Delay {
     }
 
     deinit {
-        // print("deinit")
+        print("deinit \(self)")
     }
 }
