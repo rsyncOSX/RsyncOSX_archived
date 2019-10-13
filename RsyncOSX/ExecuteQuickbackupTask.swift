@@ -28,7 +28,7 @@ final class ExecuteQuickbackupTask: SetSchedules, SetConfigurations {
                 guard configArray.count > 0 else { return }
                 config = configArray[0]
                 if hiddenID >= 0 && config != nil {
-                    arguments = RsyncParametersProcess().argumentsRsync(config!, dryRun: false, forDisplay: false)
+                    arguments = ArgumentsSynchronize(config: config).argumentssynchronize(dryRun: false, forDisplay: false)
                     // Setting reference to finalize the job, finalize job is done when rsynctask ends (in process termination)
                     ViewControllerReference.shared.completeoperation = CompleteQuickbackupTask(dict: dict)
                     globalMainQueue.async(execute: {

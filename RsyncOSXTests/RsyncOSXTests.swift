@@ -33,8 +33,9 @@ class RsyncOSXTests: XCTestCase, SetConfigurations, SetSchedules {
 
     func testargumentsdryrun() {
         let arguments = ["--archive", "--verbose", "--compress", "--delete", "-e", "ssh -p 22", "--exclude=.git",
-                         "--backup", "--backup-dir=../backup_XCTest", "--suffix=_$(date +%Y-%m-%d.%H.%M)", "--dry-run",
-                         "--stats", "/Users/thomas/XCTest/", "thomas@10.0.0.57:/backup2/RsyncOSX/XCTest/"]
+                         "--backup", "--backup-dir=../backup_XCTest", "--suffix=_$(date +%Y-%m-%d.%H.%M)",
+                         "--dry-run", "--stats", "/Users/thomas/XCTest/",
+                         "thomas@10.0.0.57:/backup2/RsyncOSX/XCTest/"]
         XCTAssertEqual(arguments, self.configurations?.arguments4rsync(index: 0, argtype: .argdryRun),
                        "Arguments should be equal")
     }
@@ -44,6 +45,23 @@ class RsyncOSXTests: XCTestCase, SetConfigurations, SetSchedules {
                          "--backup", "--backup-dir=../backup_XCTest", "--suffix=_$(date +%Y-%m-%d.%H.%M)",
                          "--stats", "/Users/thomas/XCTest/", "thomas@web:~/XCTest/"]
         XCTAssertEqual(arguments, self.configurations?.arguments4rsync(index: 1, argtype: .arg),
+                       "Arguments should be equal")
+    }
+
+    func testargumentsrestore() {
+        let arguments = ["--archive", "--verbose", "--compress", "--delete", "-e", "ssh -p 22", "--exclude=.git",
+                         "--backup", "--backup-dir=../backup_XCTest", "--suffix=_$(date +%Y-%m-%d.%H.%M)",
+                         "--stats", "thomas@web:~/XCTest/", "/Users/thomas/XCTest/"]
+        XCTAssertEqual(arguments, self.configurations?.arguments4restore(index: 1, argtype: .arg),
+                       "Arguments should be equal")
+    }
+
+    func testargumentsverify() {
+        let arguments = ["--checksum", "--recursive", "--verbose", "--compress", "--delete", "-e", "ssh -p 22",
+                         "--exclude=.git", "--backup", "--backup-dir=../backup_XCTest",
+                         "--suffix=_$(date +%Y-%m-%d.%H.%M)", "--dry-run", "--stats", "/Users/thomas/XCTest/",
+                         "thomas@web:~/XCTest/"]
+        XCTAssertEqual(arguments, self.configurations?.arguments4verify(index: 1),
                        "Arguments should be equal")
     }
 
