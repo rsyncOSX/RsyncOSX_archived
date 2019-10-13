@@ -26,24 +26,24 @@ final class ExecuteQuickbackupTask: SetSchedules, SetConfigurations {
                 guard getconfigurations != nil else { return }
                 let configArray = getconfigurations!.filter({return ($0.hiddenID == hiddenID)})
                 guard configArray.count > 0 else { return }
-                config = configArray[0]
-                if hiddenID >= 0 && config != nil {
-                    arguments = ArgumentsSynchronize(config: config).argumentssynchronize(dryRun: false, forDisplay: false)
+                self.config = configArray[0]
+                if hiddenID >= 0 && self.config != nil {
+                    self.arguments = ArgumentsSynchronize(config: self.config).argumentssynchronize(dryRun: false, forDisplay: false)
                     // Setting reference to finalize the job, finalize job is done when rsynctask ends (in process termination)
                     ViewControllerReference.shared.completeoperation = CompleteQuickbackupTask(dict: dict)
-                    globalMainQueue.async(execute: {
-                        if let arguments = self.arguments {
+                    globalMainQueue.async(execute: { [weak self] in
+                        if let arguments = self?.arguments {
                             weak var sendprocess: SendProcessreference?
                             sendprocess = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllerMain
                             let process = Rsync(arguments: arguments)
                             if updateprogress != nil {
                                 process.setdelegate(object: updateprogress!)
                                 let sendprocessreference = updateprogress as? SendProcessreference
-                                sendprocessreference?.sendoutputprocessreference(outputprocess: self.outputprocess)
+                                sendprocessreference?.sendoutputprocessreference(outputprocess: self?.outputprocess)
                             }
-                            process.executeProcess(outputprocess: self.outputprocess)
+                            process.executeProcess(outputprocess: self?.outputprocess)
                             sendprocess?.sendprocessreference(process: process.getProcess())
-                            sendprocess?.sendoutputprocessreference(outputprocess: self.outputprocess)
+                            sendprocess?.sendoutputprocessreference(outputprocess: self?.outputprocess)
                         }
                     })
                 }

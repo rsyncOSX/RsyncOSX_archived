@@ -8,7 +8,7 @@
 
 import Foundation
 
-final class ArgumentsLocalcatalogInfo: RsyncParametersProcess {
+final class ArgumentsLocalcatalogInfo: RsyncParameters {
 
 var config: Configuration?
 

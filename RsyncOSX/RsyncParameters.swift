@@ -8,7 +8,7 @@
 
 import Foundation
 
-class RsyncParametersProcess {
+class RsyncParameters {
 
     var stats: Bool?
     var arguments: [String]?

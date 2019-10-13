@@ -8,7 +8,7 @@
 
 import Foundation
 
-final class ArgumentsRestore: RsyncParametersProcess {
+final class ArgumentsRestore: RsyncParameters {
 
     var config: Configuration?
 

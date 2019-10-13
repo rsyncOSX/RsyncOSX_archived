@@ -8,7 +8,7 @@
 
 import Foundation
 
-final class ArgumentsVerify: RsyncParametersProcess {
+final class ArgumentsVerify: RsyncParameters {
 
     var config: Configuration?
 
