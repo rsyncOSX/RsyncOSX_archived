@@ -79,7 +79,6 @@ class ProcessCmd: Delay {
                     self.termination = true
                     self.updateDelegate?.processTermination()
                     // Must remove for deallocation
-                    print("remove observers")
                     NotificationCenter.default.removeObserver(self.notifications_datahandle as Any)
                     NotificationCenter.default.removeObserver(self.notifications_termination as Any)
                 }
@@ -106,6 +105,6 @@ class ProcessCmd: Delay {
     }
 
     deinit {
-        print("deinit \(self)")
+        // print("deinit \(self)")
     }
 }
