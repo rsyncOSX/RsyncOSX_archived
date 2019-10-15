@@ -2,7 +2,7 @@
 
 ![](icon/rsyncosx.png)
 
-[Please read the Changelog](https://rsyncosx.github.io/Changelog). If you want to discuss changes either create an [Issue](https://github.com/rsyncOSX/RsyncOSX/issues).
+[Please read the Changelog](https://rsyncosx.github.io/Changelog). If you want to discuss changes or report bugs please create an [Issue](https://github.com/rsyncOSX/RsyncOSX/issues).
 
 **Important:** read about the --delete parameter (see below) to rsync **before** using rsync and RsyncOSX.
 
