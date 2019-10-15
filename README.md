@@ -2,11 +2,9 @@
 
 ![](icon/rsyncosx.png)
 
-[![Join the chat at https://gitter.im/RsyncOSX/community](https://badges.gitter.im/RsyncOSX/community.svg)](https://gitter.im/RsyncOSX/community?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+[Please read the Changelog](https://rsyncosx.github.io/Changelog). If you want to discuss changes or report bugs please create an [Issue](https://github.com/rsyncOSX/RsyncOSX/issues).
 
-[The Changelog](https://rsyncosx.github.io/Changelog). If you want to discuss changes either create an [Issue](https://github.com/rsyncOSX/RsyncOSX/issues) or a [chat on Gitter](https://gitter.im/RsyncOSX/community?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge).
-
-**Important** : read about the --delete parameter (see below) to rsync **before** using rsync and RsyncOSX.
+**Important:** read about the --delete parameter (see below) to rsync **before** using rsync and RsyncOSX.
 
 A short [intro to RsyncOSX](https://rsyncosx.github.io/Intro) and full [documentation of RsyncOSX](https://rsyncosx.github.io/AboutRsyncOSX).
 
@@ -26,12 +24,12 @@ The app is signed with my Apple ID developer certificate and [notarized](https:/
 
 ### Localization
 
-From version 5.8.6 RsyncOSX [speaks new languages](https://rsyncosx.github.io/Localization). RsyncOSX is localized to:
+[RsyncOSX speaks new languages](https://rsyncosx.github.io/Localization). RsyncOSX is localized to:
 - Chinese (Simplified) -  by [StringKe](https://github.com/StringKe)
 - Norwegian - by me
 - English - the base language of RsyncOSX
 
-RsyncOSX is prepared for new languages and volunteers for translating to other languages are wanted. Translating RsyncOSX is done by utilizing the [Xlifftool](https://github.com/remuslazar/osx-xliff-tool). The tool reads a xliff file, which I prepare, for translating. The xliff file is imported into RsyncOSX by Xcode.
+RsyncOSX is prepared for new languages. Translating RsyncOSX is done by utilizing the [Xlifftool](https://github.com/remuslazar/osx-xliff-tool). The tool reads a xliff file, which I prepare, for translating. The xliff file is imported into RsyncOSX by Xcode.
 
 ### Version of rsync
 
