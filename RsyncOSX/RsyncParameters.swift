@@ -19,7 +19,7 @@ class RsyncParameters {
     var remoteargs: String?
     var linkdestparam: String?
 
-    func setParameters1To6(_ config: Configuration, dryRun: Bool, forDisplay: Bool, verify: Bool) {
+    func setParameters1To6(config: Configuration, dryRun: Bool, forDisplay: Bool, verify: Bool) {
         var parameter1: String?
         if verify {
             parameter1 = "--checksum"
@@ -53,12 +53,12 @@ class RsyncParameters {
             // nothing
         } else {
             if parameter5.isEmpty == false {
-                self.sshportparameter(config, forDisplay: forDisplay)
+                self.sshportparameter(config: config, forDisplay: forDisplay)
             }
         }
     }
 
-    func sshportparameter(_ config: Configuration, forDisplay: Bool) {
+    func sshportparameter(config: Configuration, forDisplay: Bool) {
         let parameter5: String = config.parameter5
         let parameter6: String = config.parameter6
         // -e
@@ -79,7 +79,7 @@ class RsyncParameters {
     // Compute user selected parameters parameter8 ... parameter14
     // Brute force, check every parameter, not special elegant, but it works
 
-    func setParameters8To14(_ config: Configuration, dryRun: Bool, forDisplay: Bool) {
+    func setParameters8To14(config: Configuration, dryRun: Bool, forDisplay: Bool) {
         self.stats = false
         if config.parameter8 != nil {
             self.appendParameter(parameter: config.parameter8!, forDisplay: forDisplay)
@@ -111,7 +111,7 @@ class RsyncParameters {
         }
         // Append --stats parameter to collect info about run
         if dryRun {
-            self.dryrunparameter(config, forDisplay: forDisplay)
+            self.dryrunparameter(config: config, forDisplay: forDisplay)
         } else {
             if self.stats == false {
                 self.appendParameter(parameter: "--stats", forDisplay: forDisplay)
@@ -125,7 +125,7 @@ class RsyncParameters {
         return  "--suffix=" + formatter.string(from: Date())
     }
 
-    func dryrunparameter(_ config: Configuration, forDisplay: Bool) {
+    func dryrunparameter(config: Configuration, forDisplay: Bool) {
         let dryrun = "--dry-run"
         self.arguments!.append(dryrun)
         if forDisplay {self.arguments!.append(" ")}
@@ -150,7 +150,7 @@ class RsyncParameters {
         }
     }
 
-    func remoteargs(_ config: Configuration) {
+    func remoteargs(config: Configuration) {
         self.offsiteCatalog = config.offsiteCatalog
         self.offsiteUsername = config.offsiteUsername
         self.offsiteServer = config.offsiteServer
@@ -167,7 +167,7 @@ class RsyncParameters {
         }
     }
 
-    func remoteargssnapshot(_ config: Configuration) {
+    func remoteargssnapshot(config: Configuration) {
         let snapshotnum = config.snapshotnum ?? 1
         self.offsiteCatalog = config.offsiteCatalog + String(snapshotnum - 1) + "/"
         self.offsiteUsername = config.offsiteUsername
@@ -186,7 +186,7 @@ class RsyncParameters {
     }
 
     // Additional parameters if snapshot
-    func linkdestparameter(_ config: Configuration, verify: Bool) {
+    func linkdestparameter(config: Configuration, verify: Bool) {
         let snapshotnum = config.snapshotnum ?? 1
         self.linkdestparam =  "--link-dest=" + config.offsiteCatalog + String(snapshotnum - 1)
         if self.remoteargs != nil {

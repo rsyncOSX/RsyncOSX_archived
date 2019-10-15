@@ -14,8 +14,8 @@ var config: Configuration?
 
     func argumentslocalcataloginfo(dryRun: Bool, forDisplay: Bool) -> [String] {
         self.localCatalog = self.config!.localCatalog
-        self.setParameters1To6(self.config!, dryRun: dryRun, forDisplay: forDisplay, verify: false)
-        self.setParameters8To14(self.config!, dryRun: dryRun, forDisplay: forDisplay)
+        self.setParameters1To6(config: self.config!, dryRun: dryRun, forDisplay: forDisplay, verify: false)
+        self.setParameters8To14(config: self.config!, dryRun: dryRun, forDisplay: forDisplay)
         switch self.config!.task {
         case ViewControllerReference.shared.synchronize:
             self.argumentsforsynchronize(dryRun: dryRun, forDisplay: forDisplay)
@@ -24,7 +24,7 @@ var config: Configuration?
         default:
             break
         }
-        return self.arguments!
+        return self.arguments ?? [""]
     }
 
     init(config: Configuration?) {

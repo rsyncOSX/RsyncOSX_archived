@@ -15,18 +15,18 @@ final class ArgumentsRestore: RsyncParameters {
     func argumentsrestore(dryRun: Bool, forDisplay: Bool, tmprestore: Bool) -> [String] {
         self.localCatalog =  self.config!.localCatalog
         if  self.config!.snapshotnum != nil {
-            self.remoteargssnapshot( self.config!)
+            self.remoteargssnapshot(config: self.config!)
         } else {
-            self.remoteargs( self.config!)
+            self.remoteargs(config: self.config!)
         }
-        self.setParameters1To6( self.config!, dryRun: dryRun, forDisplay: forDisplay, verify: false)
-        self.setParameters8To14( self.config!, dryRun: dryRun, forDisplay: forDisplay)
+        self.setParameters1To6(config: self.config!, dryRun: dryRun, forDisplay: forDisplay, verify: false)
+        self.setParameters8To14(config: self.config!, dryRun: dryRun, forDisplay: forDisplay)
         if tmprestore {
             self.argumentsforrestore(dryRun: dryRun, forDisplay: forDisplay, tmprestore: tmprestore)
         } else {
             self.argumentsforrestore(dryRun: dryRun, forDisplay: forDisplay, tmprestore: tmprestore)
         }
-        return self.arguments!
+        return self.arguments ?? [""]
     }
 
     init(config: Configuration?) {
