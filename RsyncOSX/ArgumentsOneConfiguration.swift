@@ -14,7 +14,6 @@ import Foundation
 
 struct ArgumentsOneConfiguration {
 
-    var config: Configuration?
     var arg: [String]?
     var argdryRun: [String]?
     var argDisplay: [String]?
@@ -33,25 +32,23 @@ struct ArgumentsOneConfiguration {
     var verifyDisplay: [String]?
 
     init(config: Configuration) {
-        // The configuration
-        self.config = config
         // All arguments for rsync is computed, two sets. One for dry-run and one for real run.
         // the parameter forDisplay = true computes arguments to display in view.
-        self.arg = RsyncParametersProcess().argumentsRsync(config, dryRun: false, forDisplay: false)
-        self.argDisplay = RsyncParametersProcess().argumentsRsync(config, dryRun: false, forDisplay: true)
-        self.argdryRun = RsyncParametersProcess().argumentsRsync(config, dryRun: true, forDisplay: false)
-        self.argdryRunDisplay = RsyncParametersProcess().argumentsRsync(config, dryRun: true, forDisplay: true)
-        self.argdryRunLocalcatalogInfo = RsyncParametersProcess().argumentsRsyncLocalcatalogInfo(config, dryRun: true, forDisplay: false)
+        self.arg = ArgumentsSynchronize(config: config).argumentssynchronize(dryRun: false, forDisplay: false)
+        self.argDisplay = ArgumentsSynchronize(config: config).argumentssynchronize(dryRun: false, forDisplay: true)
+        self.argdryRun = ArgumentsSynchronize(config: config).argumentssynchronize(dryRun: true, forDisplay: false)
+        self.argdryRunDisplay = ArgumentsSynchronize(config: config).argumentssynchronize(dryRun: true, forDisplay: true)
+        self.argdryRunLocalcatalogInfo = ArgumentsLocalcatalogInfo(config: config).argumentslocalcataloginfo(dryRun: true, forDisplay: false)
         // Restore path
-        self.restore = RsyncParametersProcess().argumentsRestore(config, dryRun: false, forDisplay: false, tmprestore: false)
-        self.restoredryRun = RsyncParametersProcess().argumentsRestore(config, dryRun: true, forDisplay: false, tmprestore: false)
-        self.restoreDisplay = RsyncParametersProcess().argumentsRestore(config, dryRun: false, forDisplay: true, tmprestore: false)
-        self.restoredryRunDisplay = RsyncParametersProcess().argumentsRestore(config, dryRun: true, forDisplay: true, tmprestore: false)
+        self.restore = ArgumentsRestore(config: config).argumentsrestore(dryRun: false, forDisplay: false, tmprestore: false)
+        self.restoredryRun = ArgumentsRestore(config: config).argumentsrestore(dryRun: true, forDisplay: false, tmprestore: false)
+        self.restoreDisplay = ArgumentsRestore(config: config).argumentsrestore(dryRun: false, forDisplay: true, tmprestore: false)
+        self.restoredryRunDisplay = ArgumentsRestore(config: config).argumentsrestore(dryRun: true, forDisplay: true, tmprestore: false)
         // Temporary restore path
-        self.tmprestore = RsyncParametersProcess().argumentsRestore(config, dryRun: false, forDisplay: false, tmprestore: true)
-        self.tmprestoredryRun = RsyncParametersProcess().argumentsRestore(config, dryRun: true, forDisplay: false, tmprestore: true)
+        self.tmprestore = ArgumentsRestore(config: config).argumentsrestore(dryRun: false, forDisplay: false, tmprestore: true)
+        self.tmprestoredryRun = ArgumentsRestore(config: config).argumentsrestore(dryRun: true, forDisplay: false, tmprestore: true)
         // Verify
-        self.verify = RsyncParametersProcess().argumentsVerify(config, forDisplay: false)
-        self.verifyDisplay = RsyncParametersProcess().argumentsVerify(config, forDisplay: true)
+        self.verify = ArgumentsVerify(config: config).argumentsverify(forDisplay: false)
+        self.verifyDisplay = ArgumentsVerify(config: config).argumentsverify(forDisplay: true)
     }
 }
