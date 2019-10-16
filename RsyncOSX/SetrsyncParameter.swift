@@ -20,7 +20,7 @@ struct SetrsyncParameter {
     // - parameter value: the value of rsync parameter
     // - return: array of String
     func setrsyncparameter (indexComboBox: Int, value: String?) -> String {
-        guard  indexComboBox < self.rsyncparameters!.count && indexComboBox > -1 else { return "" }
+        guard  indexComboBox < self.rsyncparameters?.count ?? -1 && indexComboBox > -1 else { return "" }
         switch self.rsyncparameters![indexComboBox].1 {
         case 0:
             // Predefined rsync argument from combobox
@@ -34,10 +34,10 @@ struct SetrsyncParameter {
             // If value == nil value is deleted and return empty string
             guard value != nil else { return "" }
             if self.rsyncparameters![indexComboBox].0 != self.rsyncparameters![0].0 {
-                return self.rsyncparameters![indexComboBox].0 + "=" + value!
+                return self.rsyncparameters![indexComboBox].0 + "=" + (value ?? "")
             } else {
                 // Userselected argument and value
-                return value!
+                return value ?? ""
             }
         default:
             return  ""
