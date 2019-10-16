@@ -277,20 +277,20 @@ class ViewControllerRsyncParameters: NSViewController, SetConfigurations, SetDis
         guard configurations.count > 0 else { return }
         // Get the index of selected configuration
         if let index = self.index() {
-            let param = SetrsyncParameters()
-            configurations[index].parameter8 = param.getRsyncParameter(indexComboBox:
+            let param = SetrsyncParameter()
+            configurations[index].parameter8 = param.setrsyncparameter(indexComboBox:
                 self.combo8.indexOfSelectedItem, value: getValue(value: self.param8.stringValue))
-            configurations[index].parameter9 = param.getRsyncParameter(indexComboBox:
+            configurations[index].parameter9 = param.setrsyncparameter(indexComboBox:
                 self.combo9.indexOfSelectedItem, value: getValue(value: self.param9.stringValue))
-            configurations[index].parameter10 = param.getRsyncParameter(indexComboBox:
+            configurations[index].parameter10 = param.setrsyncparameter(indexComboBox:
                 self.combo10.indexOfSelectedItem, value: getValue(value: self.param10.stringValue))
-            configurations[index].parameter11 = param.getRsyncParameter(indexComboBox:
+            configurations[index].parameter11 = param.setrsyncparameter(indexComboBox:
                 self.combo11.indexOfSelectedItem, value: getValue(value: self.param11.stringValue))
-            configurations[index].parameter12 = param.getRsyncParameter(indexComboBox:
+            configurations[index].parameter12 = param.setrsyncparameter(indexComboBox:
                 self.combo12.indexOfSelectedItem, value: getValue(value: self.param12.stringValue))
-            configurations[index].parameter13 = param.getRsyncParameter(indexComboBox:
+            configurations[index].parameter13 = param.setrsyncparameter(indexComboBox:
                 self.combo13.indexOfSelectedItem, value: getValue(value: self.param13.stringValue))
-            configurations[index].parameter14 = param.getRsyncParameter(indexComboBox:
+            configurations[index].parameter14 = param.setrsyncparameter(indexComboBox:
                 self.combo14.indexOfSelectedItem, value: getValue(value: self.param14.stringValue))
             configurations[index].rsyncdaemon = self.rsyncdaemon.state.rawValue
             if let port = self.sshport {
