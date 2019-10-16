@@ -65,7 +65,6 @@
 		A0B340B21D67077A00C6DAC3 /* ViewControllerMain.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0B340B11D67077A00C6DAC3 /* ViewControllerMain.swift */; };
 		A0B340B41D67079700C6DAC3 /* ViewControllerSchedule.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0B340B31D67079700C6DAC3 /* ViewControllerSchedule.swift */; };
 		A0B3D9741D758E20001E190E /* ViewControllerUserconfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0B3D9731D758E20001E190E /* ViewControllerUserconfiguration.swift */; };
-		A0CACFD41DA2738500C5997A /* SetrsyncParameters.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0CACFD31DA2738500C5997A /* SetrsyncParameters.swift */; };
 		A0EFB4501DC080A9008C21A6 /* PersistentStorageUserconfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0EFB44F1DC080A9008C21A6 /* PersistentStorageUserconfiguration.swift */; };
 		A0F2E20C1D6D91AA0091E8BF /* Userconfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0F2E20B1D6D91AA0091E8BF /* Userconfiguration.swift */; };
 		A0FAF5CF1DDF2E5F0009FE7A /* ViewControllerAbout.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0FAF5CE1DDF2E5F0009FE7A /* ViewControllerAbout.swift */; };
@@ -91,6 +90,7 @@
 		E9235E7A201BC27F0060E3B2 /* SnapshotDeleteCatalogsArguments.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9235E79201BC27F0060E3B2 /* SnapshotDeleteCatalogsArguments.swift */; };
 		E9240FB522C26A0700203207 /* RsyncOSXTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9240FB422C26A0700203207 /* RsyncOSXTests.swift */; };
 		E925DD31232C33D0001499D1 /* SchedulesXCTEST.swift in Sources */ = {isa = PBXBuildFile; fileRef = E925DD30232C33D0001499D1 /* SchedulesXCTEST.swift */; };
+		E925F9882356E23500DF7943 /* SetrsyncParameter.swift in Sources */ = {isa = PBXBuildFile; fileRef = E925F9872356E23500DF7943 /* SetrsyncParameter.swift */; };
 		E92755A221304F0000B1F781 /* Macserialnumber.swift in Sources */ = {isa = PBXBuildFile; fileRef = E92755A121304F0000B1F781 /* Macserialnumber.swift */; };
 		E92755A42130506000B1F781 /* Dateandtime.swift in Sources */ = {isa = PBXBuildFile; fileRef = E92755A32130506000B1F781 /* Dateandtime.swift */; };
 		E92755A62130539400B1F781 /* Dispatchqueues.swift in Sources */ = {isa = PBXBuildFile; fileRef = E92755A52130539400B1F781 /* Dispatchqueues.swift */; };
@@ -223,7 +223,6 @@
 		A0B340B11D67077A00C6DAC3 /* ViewControllerMain.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewControllerMain.swift; sourceTree = "<group>"; };
 		A0B340B31D67079700C6DAC3 /* ViewControllerSchedule.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewControllerSchedule.swift; sourceTree = "<group>"; };
 		A0B3D9731D758E20001E190E /* ViewControllerUserconfiguration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewControllerUserconfiguration.swift; sourceTree = "<group>"; };
-		A0CACFD31DA2738500C5997A /* SetrsyncParameters.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SetrsyncParameters.swift; sourceTree = "<group>"; };
 		A0EFB44F1DC080A9008C21A6 /* PersistentStorageUserconfiguration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersistentStorageUserconfiguration.swift; sourceTree = "<group>"; };
 		A0F2E20B1D6D91AA0091E8BF /* Userconfiguration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Userconfiguration.swift; sourceTree = "<group>"; };
 		A0FAF5CE1DDF2E5F0009FE7A /* ViewControllerAbout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewControllerAbout.swift; sourceTree = "<group>"; };
@@ -252,6 +251,7 @@
 		E9240FB422C26A0700203207 /* RsyncOSXTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RsyncOSXTests.swift; sourceTree = "<group>"; };
 		E9240FB622C26A0700203207 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E925DD30232C33D0001499D1 /* SchedulesXCTEST.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SchedulesXCTEST.swift; sourceTree = "<group>"; };
+		E925F9872356E23500DF7943 /* SetrsyncParameter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SetrsyncParameter.swift; sourceTree = "<group>"; };
 		E92755A121304F0000B1F781 /* Macserialnumber.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Macserialnumber.swift; sourceTree = "<group>"; };
 		E92755A32130506000B1F781 /* Dateandtime.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dateandtime.swift; sourceTree = "<group>"; };
 		E92755A52130539400B1F781 /* Dispatchqueues.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dispatchqueues.swift; sourceTree = "<group>"; };
@@ -725,7 +725,7 @@
 			isa = PBXGroup;
 			children = (
 				A044929E1D658F2100B3CE17 /* RsyncParameters.swift */,
-				A0CACFD31DA2738500C5997A /* SetrsyncParameters.swift */,
+				E925F9872356E23500DF7943 /* SetrsyncParameter.swift */,
 				E9196FDC2350CAC30037AA8B /* ComboboxRsyncParameters.swift */,
 				E9196FDE2350CFCD0037AA8B /* SuffixstringsRsyncParameters.swift */,
 				E9C4A40C2353017400BCF1C4 /* ArgumentsSynchronize.swift */,
@@ -999,6 +999,7 @@
 				E9F068F41F27BA0200DDF1A1 /* ReadWriteDictionary.swift in Sources */,
 				E989CE961EF948D0000CB7C2 /* ChmodPubKey.swift in Sources */,
 				E94649652313112300ADDF22 /* extensionVCMaintableviewDelegate.swift in Sources */,
+				E925F9882356E23500DF7943 /* SetrsyncParameter.swift in Sources */,
 				E9E70A3C1FF3BCB30099554D /* RsyncVersionString.swift in Sources */,
 				E9E88FD01EB25A080028432F /* ScpArgumentsSsh.swift in Sources */,
 				A03876E11DB4FD9D00C14AEA /* ViewControllerProfile.swift in Sources */,
@@ -1084,7 +1085,6 @@
 				E91A68901EA777690056BCFC /* ScheduleWriteLoggData.swift in Sources */,
 				E9FFA02D1E7287E100B7AB2B /* ProcessCmd.swift in Sources */,
 				A02A4AD91D7EFD3D0059CECD /* ViewControllerScheduleDetails.swift in Sources */,
-				A0CACFD41DA2738500C5997A /* SetrsyncParameters.swift in Sources */,
 				A04492AC1D658F2100B3CE17 /* Configuration.swift in Sources */,
 				E9C4A4132353139200BCF1C4 /* ArgumentsVerify.swift in Sources */,
 				A04492861D658EE800B3CE17 /* AppDelegate.swift in Sources */,

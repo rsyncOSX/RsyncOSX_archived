@@ -8,36 +8,36 @@
 
 import Foundation
 
-struct SetrsyncParameters {
+struct SetrsyncParameter {
 
     // Tuple for rsync argument and value
     typealias Argument = (String, Int)
-    var rsyncArguments: [Argument]?
+    var rsyncparameters: [Argument]?
 
     // Computes the raw argument for rsync to save in configuration
     // Function for computing the raw argument for rsync to save in configuration
     // - parameter indexComboBox: index of selected ComboBox
     // - parameter value: the value of rsync parameter
     // - return: array of String
-    func getRsyncParameter (indexComboBox: Int, value: String?) -> String {
-        guard  indexComboBox < self.rsyncArguments!.count && indexComboBox > -1 else { return "" }
-        switch self.rsyncArguments![indexComboBox].1 {
+    func setrsyncparameter (indexComboBox: Int, value: String?) -> String {
+        guard  indexComboBox < self.rsyncparameters?.count ?? -1 && indexComboBox > -1 else { return "" }
+        switch self.rsyncparameters![indexComboBox].1 {
         case 0:
             // Predefined rsync argument from combobox
             // Must check if DELETE is selected
-            if self.rsyncArguments![indexComboBox].0 == self.rsyncArguments![1].0 {
+            if self.rsyncparameters![indexComboBox].0 == self.rsyncparameters![1].0 {
                 return ""
             } else {
-                return  self.rsyncArguments![indexComboBox].0
+                return  self.rsyncparameters![indexComboBox].0
             }
         case 1:
             // If value == nil value is deleted and return empty string
             guard value != nil else { return "" }
-            if self.rsyncArguments![indexComboBox].0 != self.rsyncArguments![0].0 {
-                return self.rsyncArguments![indexComboBox].0 + "=" + value!
+            if self.rsyncparameters![indexComboBox].0 != self.rsyncparameters![0].0 {
+                return self.rsyncparameters![indexComboBox].0 + "=" + (value ?? "")
             } else {
                 // Userselected argument and value
-                return value!
+                return value ?? ""
             }
         default:
             return  ""
@@ -45,6 +45,6 @@ struct SetrsyncParameters {
     }
 
     init() {
-        self.rsyncArguments = SuffixstringsRsyncParameters().rsyncArguments
+        self.rsyncparameters = SuffixstringsRsyncParameters().rsyncArguments
     }
 }

@@ -103,8 +103,4 @@ class ProcessCmd: Delay {
         self.arguments = arguments
         self.possibleerrorDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllerMain
     }
-
-    deinit {
-        // print("deinit \(self)")
-    }
 }

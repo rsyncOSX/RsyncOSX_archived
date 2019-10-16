@@ -58,27 +58,8 @@ class RsyncParameters {
         }
     }
 
-    func sshportparameter(config: Configuration, forDisplay: Bool) {
-        let parameter5: String = config.parameter5
-        let parameter6: String = config.parameter6
-        // -e
-        self.arguments!.append(parameter5)
-        if forDisplay {self.arguments!.append(" ")}
-        if let sshport = config.sshport {
-            // "ssh -p xxx"
-            if forDisplay {self.arguments!.append(" \"")}
-            self.arguments!.append("ssh -p " + String(sshport))
-            if forDisplay {self.arguments!.append("\" ")}
-        } else {
-            // ssh
-            self.arguments!.append(parameter6)
-        }
-        if forDisplay {self.arguments!.append(" ")}
-    }
-
     // Compute user selected parameters parameter8 ... parameter14
     // Brute force, check every parameter, not special elegant, but it works
-
     func setParameters8To14(config: Configuration, dryRun: Bool, forDisplay: Bool) {
         self.stats = false
         if config.parameter8 != nil {
@@ -119,6 +100,24 @@ class RsyncParameters {
         }
     }
 
+    func sshportparameter(config: Configuration, forDisplay: Bool) {
+        let parameter5: String = config.parameter5
+        let parameter6: String = config.parameter6
+        // -e
+        self.arguments!.append(parameter5)
+        if forDisplay {self.arguments!.append(" ")}
+        if let sshport = config.sshport {
+            // "ssh -p xxx"
+            if forDisplay {self.arguments!.append(" \"")}
+            self.arguments!.append("ssh -p " + String(sshport))
+            if forDisplay {self.arguments!.append("\" ")}
+        } else {
+            // ssh
+            self.arguments!.append(parameter6)
+        }
+        if forDisplay {self.arguments!.append(" ")}
+    }
+
     func setdatesuffixlocalhost() -> String {
         let formatter = DateFormatter()
         formatter.dateFormat = "-yyyy-MM-dd"
@@ -134,9 +133,6 @@ class RsyncParameters {
             if forDisplay {self.arguments!.append(" ")}
         }
     }
-
-    // Check userselected parameter and append it to arguments array passed to rsync or displayed
-    // on screen.
 
     func appendParameter (parameter: String, forDisplay: Bool) {
         if parameter.count > 1 {
