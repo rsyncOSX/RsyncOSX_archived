@@ -37,7 +37,19 @@ final class OutputProcess {
     }
 
     func count() -> Int {
-        return self.output?.count ?? 0
+        var count: Int = 0
+        if ViewControllerReference.shared.rsyncversion3 {
+            // --stats is 15 lines
+            count = self.output?.count ?? 0 - 15
+        } else {
+            // --stats is 13 lines
+            count = self.output?.count ?? 0 - 13
+        }
+        if count > 0 {
+            return count
+        } else {
+            return 0
+        }
     }
 
     func getrawOutput() -> [String]? {
