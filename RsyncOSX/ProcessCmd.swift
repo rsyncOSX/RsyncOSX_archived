@@ -62,7 +62,7 @@ class ProcessCmd: Delay {
             let data = outHandle.availableData
             if data.count > 0 {
                 if let str = NSString(data: data, encoding: String.Encoding.utf8.rawValue) {
-                    outputprocess?.addlinefromoutput(str as String)
+                    outputprocess?.addlinefromoutput(str: str as String)
                     // Send message about files
                     self?.updateDelegate?.fileHandler()
                     if self?.termination ?? false {

@@ -22,9 +22,8 @@ final class OutputProcess {
 
     private var output: [String]?
     private var trimmedoutput: [String]?
-    private var startIndex: Int?
-    private var endIndex: Int?
-    private var maxNumber: Int = 0
+    private var startindex: Int?
+    private var maxnumber: Int = 0
     weak var errorDelegate: RsyncError?
     weak var allerrorsDelegate: Allerrors?
     var error: Bool = false
@@ -33,7 +32,7 @@ final class OutputProcess {
         if self.trimmedoutput == nil {
             _ = self.trimoutput(trim: .two)
         }
-        return self.maxNumber
+        return self.maxnumber
     }
 
     func count() -> Int {
@@ -52,14 +51,14 @@ final class OutputProcess {
         }
     }
 
-    func addlinefromoutput (_ str: String) {
-        if self.startIndex == nil {
-            self.startIndex = 0
+    func addlinefromoutput (str: String) {
+        if self.startindex == nil {
+            self.startindex = 0
         } else {
-            self.startIndex = self.output!.count + 1
+            self.startindex = self.output?.count ?? 0 + 1
         }
         str.enumerateLines { (line, _) in
-            self.output!.append(line)
+            self.output?.append(line)
         }
     }
 
@@ -86,8 +85,7 @@ final class OutputProcess {
                     self.allerrorsDelegate?.allerrors(outputprocess: self)
                 }
             }
-            self.endIndex = out.count
-            self.maxNumber = self.endIndex!
+            self.maxnumber = out.count
         case .three:
             for i in 0 ..< self.output!.count {
                 let substr = self.output![i].dropFirst(10).trimmingCharacters(in: .whitespacesAndNewlines)
