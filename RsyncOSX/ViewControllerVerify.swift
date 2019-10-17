@@ -90,7 +90,7 @@ class ViewControllerVerify: NSViewController, SetConfigurations, Index, VcMain, 
         self.working.startAnimation(nil)
         if let arguments = self.configurations?.arguments4verify(index: self.index!) {
             self.outputprocess = OutputProcess()
-            self.outputprocess?.addlinefromoutput("*** Verify ***")
+            self.outputprocess?.addlinefromoutput(str: "*** Verify ***")
             self.verifyandchanged(arguments: arguments)
         }
     }
@@ -107,7 +107,7 @@ class ViewControllerVerify: NSViewController, SetConfigurations, Index, VcMain, 
         self.working.startAnimation(nil)
         if let arguments = self.configurations?.arguments4restore(index: self.index!, argtype: .argdryRun) {
             self.outputprocess = OutputProcess()
-            self.outputprocess?.addlinefromoutput("*** Changed ***")
+            self.outputprocess?.addlinefromoutput(str: "*** Changed ***")
             self.verifyandchanged(arguments: arguments)
         }
     }
