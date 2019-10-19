@@ -13,12 +13,6 @@ import Cocoa
 class ViewControllerRestore: NSViewController, SetConfigurations, Abort, Connected, Setcolor {
 
     @IBOutlet weak var restoretable: NSTableView!
-    @IBOutlet weak var localCatalog: NSTextField!
-    @IBOutlet weak var offsiteCatalog: NSTextField!
-    @IBOutlet weak var offsiteUsername: NSTextField!
-    @IBOutlet weak var offsiteServer: NSTextField!
-    @IBOutlet weak var backupID: NSTextField!
-    @IBOutlet weak var sshport: NSTextField!
     @IBOutlet weak var working: NSProgressIndicator!
     @IBOutlet weak var gotit: NSTextField!
 
@@ -33,19 +27,18 @@ class ViewControllerRestore: NSViewController, SetConfigurations, Abort, Connect
     @IBOutlet weak var restorebutton: NSButton!
     @IBOutlet weak var tmprestore: NSTextField!
     @IBOutlet weak var selecttmptorestore: NSButton!
+    @IBOutlet weak var checkbutton: NSButton!
 
     private var index: Int?
     var outputprocess: OutputProcess?
-    var estimationcompleted: Bool = false
-    var restorecompleted: Bool = false
     var diddissappear: Bool = false
 
+/*
     @IBAction func dotmprestore(_ sender: NSButton) {
         guard self.tmprestore.stringValue.isEmpty == false else { return }
         self.restorebutton.isEnabled = false
         if let index = self.index {
             self.selecttmptorestore.isEnabled = false
-            self.estimationcompleted = false
             self.gotit.textColor = setcolor(nsviewcontroller: self, color: .white)
             let gotit: String = NSLocalizedString("Getting info, please wait...", comment: "Restore")
             self.gotit.stringValue = gotit
@@ -66,7 +59,7 @@ class ViewControllerRestore: NSViewController, SetConfigurations, Abort, Connect
             self.gotit.stringValue = gotit
         }
     }
-
+*/
     @IBAction func restore(_ sender: NSButton) {
         let question: String = NSLocalizedString("Do you REALLY want to start a RESTORE ?", comment: "Restore")
         let text: String = NSLocalizedString("Cancel or Restore", comment: "Restore")
@@ -101,65 +94,14 @@ class ViewControllerRestore: NSViewController, SetConfigurations, Abort, Connect
         ViewControllerReference.shared.setvcref(viewcontroller: .vcrestore, nsviewcontroller: self)
     }
 
-    /*
-     @IBAction func restore(_ sender: NSButton) {
-            guard self.index != nil else {
-                self.info.stringValue = Infoexecute().info(num: 1)
-                return
-            }
-            guard self.checkforrsync() == false else { return }
-            guard self.configurations!.getConfigurations()[self.index!].task == ViewControllerReference.shared.synchronize ||
-                self.configurations!.getConfigurations()[self.index!].task == ViewControllerReference.shared.snapshot else {
-                    self.info.stringValue = Infoexecute().info(num: 7)
-                    return
-            }
-            self.presentAsSheet(self.restoreViewController!)
-        }
-     */
-    
     override func viewDidAppear() {
         super.viewDidAppear()
         guard self.diddissappear == false else { return }
         self.restorebutton.isEnabled = false
-        self.localCatalog.stringValue = ""
-        self.offsiteCatalog.stringValue = ""
-        self.offsiteUsername.stringValue = ""
-        self.offsiteServer.stringValue = ""
-        self.backupID.stringValue = ""
-        self.sshport.stringValue = ""
         self.restoreprogress.isHidden = true
-        if let index = self.index {
-            let config: Configuration = self.configurations!.getConfigurations()[index]
-            self.localCatalog.stringValue = config.localCatalog
-            self.offsiteCatalog.stringValue = config.offsiteCatalog
-            self.offsiteUsername.stringValue = config.offsiteUsername
-            self.offsiteServer.stringValue = config.offsiteServer
-            self.backupID.stringValue = config.backupID
-            if let port = config.sshport {
-                self.sshport.stringValue = String(port)
-            }
-            let setuserconfig: String = NSLocalizedString(" ... set in User configuration ...", comment: "Restore")
-            self.tmprestore.stringValue = ViewControllerReference.shared.restorePath ?? setuserconfig
-            if ViewControllerReference.shared.restorePath == nil {
-                self.selecttmptorestore.isEnabled = false
-            }
-            if self.connected(config: self.configurations!.getConfigurations()[index]) == true {
-                self.working.startAnimation(nil)
-                self.outputprocess = OutputProcess()
-                if ViewControllerReference.shared.restorePath != nil {
-                    self.selecttmptorestore.state = .on
-                    _ = RestoreTask(index: index, outputprocess: self.outputprocess, dryrun: true,
-                                    tmprestore: true, updateprogress: self)
-                } else {
-                    self.selecttmptorestore.state = .off
-                    _ = RestoreTask(index: index, outputprocess: self.outputprocess, dryrun: true,
-                                    tmprestore: false, updateprogress: self)
-                }
-            } else {
-                self.gotit.stringValue = NSLocalizedString("Seems not to be connected...", comment: "Remote Info")
-                self.gotit.textColor = self.setcolor(nsviewcontroller: self, color: .green)
-            }
-        }
+        self.checkbutton.isEnabled = false
+        let setuserconfig: String = NSLocalizedString(" ... set in User configuration ...", comment: "Restore")
+        self.tmprestore.stringValue = ViewControllerReference.shared.restorePath ?? setuserconfig
     }
 
     override func viewDidDisappear() {
@@ -185,6 +127,32 @@ class ViewControllerRestore: NSViewController, SetConfigurations, Abort, Connect
         })
     }
 
+    @IBAction func prepareforrestore(_ sender: NSButton) {
+        if let index = self.index {
+/*
+            if ViewControllerReference.shared.restorePath == nil {
+                self.selecttmptorestore.isEnabled = false
+            }
+ */
+            if self.connected(config: self.configurations!.getConfigurations()[index]) == true {
+                self.checkbutton.isEnabled = false
+                self.working.startAnimation(nil)
+                self.outputprocess = OutputProcess()
+                if ViewControllerReference.shared.restorePath != nil && self.selecttmptorestore.state == .on {
+                    _ = RestoreTask(index: index, outputprocess: self.outputprocess, dryrun: true,
+                                    tmprestore: true, updateprogress: self)
+                } else {
+                    self.selecttmptorestore.state = .off
+                    _ = RestoreTask(index: index, outputprocess: self.outputprocess, dryrun: true,
+                                    tmprestore: false, updateprogress: self)
+                }
+            } else {
+                self.gotit.stringValue = NSLocalizedString("Seems not to be connected...", comment: "Remote Info")
+                self.gotit.textColor = self.setcolor(nsviewcontroller: self, color: .green)
+            }
+        }
+    }
+
     // Progressbar restore
     private func initiateProgressbar() {
         self.restoreprogress.isHidden = false
@@ -200,33 +168,18 @@ class ViewControllerRestore: NSViewController, SetConfigurations, Abort, Connect
         self.restoreprogress.doubleValue = value
     }
 
-}
-
-extension ViewControllerRestore: UpdateProgress {
-    func processTermination() {
-        if self.estimationcompleted == false {
-            self.estimationcompleted = true
-            self.setNumbers(outputprocess: self.outputprocess)
-            guard ViewControllerReference.shared.restorePath != nil else { return }
-            self.selecttmptorestore.isEnabled = true
+    // setting which table row is selected
+    func tableViewSelectionDidChange(_ notification: Notification) {
+        let myTableViewFromNotification = (notification.object as? NSTableView)!
+        let indexes = myTableViewFromNotification.selectedRowIndexes
+        if let index = indexes.first {
+            self.checkbutton.isEnabled = true
+            self.index = index
         } else {
-            self.gotit.textColor = setcolor(nsviewcontroller: self, color: .green)
-            let gotit: String = NSLocalizedString("Restore is completed...", comment: "Restore")
-            self.gotit.stringValue = gotit
-            self.restoreprogress.isHidden = true
-            self.restorecompleted = true
+            self.checkbutton.isEnabled = false
+            self.index = nil
         }
-    }
-
-    func fileHandler() {
-        if self.estimationcompleted == true {
-             self.updateProgressbar(Double(self.outputprocess!.count()))
-        }
-        weak var outputeverythingDelegate: ViewOutputDetails?
-        outputeverythingDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllerMain
-        if outputeverythingDelegate?.appendnow() ?? false {
-            outputeverythingDelegate?.reloadtable()
-        }
+        self.restorebutton.isEnabled = false
     }
 }
 
@@ -237,7 +190,7 @@ extension ViewControllerRestore: NSTableViewDataSource {
     }
 }
 
-extension ViewControllerRestore: NSTableViewDelegate, Attributedestring {
+extension ViewControllerRestore: NSTableViewDelegate {
 
    func tableView(_ tableView: NSTableView, objectValueFor tableColumn: NSTableColumn?, row: Int) -> Any? {
         guard row < self.configurations!.getConfigurationsDataSourceSynchronize()!.count  else { return nil }
@@ -252,5 +205,24 @@ extension ViewControllerRestore: NSTableViewDelegate, Attributedestring {
         default:
             return object[tableColumn!.identifier] as? String
         }
+    }
+}
+
+extension ViewControllerRestore: UpdateProgress {
+    func processTermination() {
+        self.setNumbers(outputprocess: self.outputprocess)
+    }
+
+    func fileHandler() {
+        /*
+        if self.estimationcompleted == true {
+             self.updateProgressbar(Double(self.outputprocess!.count()))
+        }
+        weak var outputeverythingDelegate: ViewOutputDetails?
+        outputeverythingDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllerMain
+        if outputeverythingDelegate?.appendnow() ?? false {
+            outputeverythingDelegate?.reloadtable()
+        }
+        */
     }
 }
