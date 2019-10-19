@@ -23,7 +23,6 @@ class ViewControllerRestore: NSViewController, SetConfigurations, Abort, Connect
     @IBOutlet weak var totalNumber: NSTextField!
     @IBOutlet weak var totalDirs: NSTextField!
     @IBOutlet weak var totalNumberSizebytes: NSTextField!
-    @IBOutlet weak var restoreprogress: NSProgressIndicator!
     @IBOutlet weak var restorebutton: NSButton!
     @IBOutlet weak var tmprestore: NSTextField!
     @IBOutlet weak var selecttmptorestore: NSButton!
@@ -33,33 +32,6 @@ class ViewControllerRestore: NSViewController, SetConfigurations, Abort, Connect
     var outputprocess: OutputProcess?
     var diddissappear: Bool = false
 
-/*
-    @IBAction func dotmprestore(_ sender: NSButton) {
-        guard self.tmprestore.stringValue.isEmpty == false else { return }
-        self.restorebutton.isEnabled = false
-        if let index = self.index {
-            self.selecttmptorestore.isEnabled = false
-            self.gotit.textColor = setcolor(nsviewcontroller: self, color: .white)
-            let gotit: String = NSLocalizedString("Getting info, please wait...", comment: "Restore")
-            self.gotit.stringValue = gotit
-            self.working.startAnimation(nil)
-            self.outputprocess = OutputProcess()
-            switch self.selecttmptorestore.state {
-            case .on:
-                _ = RestoreTask(index: index, outputprocess: self.outputprocess, dryrun: true,
-                                tmprestore: true, updateprogress: self)
-            case .off:
-                _ = RestoreTask(index: index, outputprocess: self.outputprocess, dryrun: true,
-                                tmprestore: false, updateprogress: self)
-            default:
-                return
-            }
-        } else {
-            let gotit: String = NSLocalizedString("Probably some rsync error...", comment: "Restore")
-            self.gotit.stringValue = gotit
-        }
-    }
-*/
     @IBAction func restore(_ sender: NSButton) {
         let question: String = NSLocalizedString("Do you REALLY want to start a RESTORE ?", comment: "Restore")
         let text: String = NSLocalizedString("Cancel or Restore", comment: "Restore")
@@ -71,7 +43,7 @@ class ViewControllerRestore: NSViewController, SetConfigurations, Abort, Connect
                 let gotit: String = NSLocalizedString("Executing restore...", comment: "Restore")
                 self.gotit.stringValue = gotit
                 self.restorebutton.isEnabled = false
-                self.initiateProgressbar()
+                /*
                 self.outputprocess = OutputProcess()
                 switch self.selecttmptorestore.state {
                 case .on:
@@ -83,6 +55,7 @@ class ViewControllerRestore: NSViewController, SetConfigurations, Abort, Connect
                 default:
                     return
                 }
+                */
             }
         }
     }
@@ -98,10 +71,12 @@ class ViewControllerRestore: NSViewController, SetConfigurations, Abort, Connect
         super.viewDidAppear()
         guard self.diddissappear == false else { return }
         self.restorebutton.isEnabled = false
-        self.restoreprogress.isHidden = true
         self.checkbutton.isEnabled = false
         let setuserconfig: String = NSLocalizedString(" ... set in User configuration ...", comment: "Restore")
         self.tmprestore.stringValue = ViewControllerReference.shared.restorePath ?? setuserconfig
+        if (ViewControllerReference.shared.restorePath ?? "").isEmpty == true {
+            self.selecttmptorestore.state = .off
+        }
     }
 
     override func viewDidDisappear() {
@@ -129,12 +104,10 @@ class ViewControllerRestore: NSViewController, SetConfigurations, Abort, Connect
 
     @IBAction func prepareforrestore(_ sender: NSButton) {
         if let index = self.index {
-/*
-            if ViewControllerReference.shared.restorePath == nil {
-                self.selecttmptorestore.isEnabled = false
-            }
- */
             if self.connected(config: self.configurations!.getConfigurations()[index]) == true {
+                self.gotit.textColor = setcolor(nsviewcontroller: self, color: .white)
+                let gotit: String = NSLocalizedString("Getting info, please wait...", comment: "Restore")
+                self.gotit.stringValue = gotit
                 self.checkbutton.isEnabled = false
                 self.working.startAnimation(nil)
                 self.outputprocess = OutputProcess()
@@ -151,21 +124,6 @@ class ViewControllerRestore: NSViewController, SetConfigurations, Abort, Connect
                 self.gotit.textColor = self.setcolor(nsviewcontroller: self, color: .green)
             }
         }
-    }
-
-    // Progressbar restore
-    private func initiateProgressbar() {
-        self.restoreprogress.isHidden = false
-        if let calculatedNumberOfFiles = self.outputprocess?.getMaxcount() {
-            self.restoreprogress.maxValue = Double(calculatedNumberOfFiles)
-        }
-        self.restoreprogress.minValue = 0
-        self.restoreprogress.doubleValue = 0
-        self.restoreprogress.startAnimation(self)
-    }
-
-    private func updateProgressbar(_ value: Double) {
-        self.restoreprogress.doubleValue = value
     }
 
     // setting which table row is selected
