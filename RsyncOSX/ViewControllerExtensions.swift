@@ -117,7 +117,6 @@ extension VcMain {
         return (self.storyboard?.instantiateController(withIdentifier: "StoryboardLocalRemoteID")
             as? NSViewController)
     }
-
 }
 
 // Protocol for dismissing a viewcontroller

@@ -28,7 +28,8 @@ class ViewControllerRestore: NSViewController, SetConfigurations, Abort, Connect
     @IBOutlet weak var selecttmptorestore: NSButton!
     @IBOutlet weak var checkbutton: NSButton!
 
-    private var index: Int?
+    var index: Int?
+    var maxcount: Int = 0
     var outputprocess: OutputProcess?
     var diddissappear: Bool = false
     weak var sendprocess: SendProcessreference?
@@ -63,7 +64,6 @@ class ViewControllerRestore: NSViewController, SetConfigurations, Abort, Connect
         })
     }
 
-
     @IBAction func restore(_ sender: NSButton) {
         guard self.checkforrsync() == false else { return }
         let question: String = NSLocalizedString("Do you REALLY want to start a RESTORE ?", comment: "Restore")
@@ -76,7 +76,6 @@ class ViewControllerRestore: NSViewController, SetConfigurations, Abort, Connect
                 let gotit: String = NSLocalizedString("Executing restore...", comment: "Restore")
                 self.gotit.stringValue = gotit
                 self.restorebutton.isEnabled = false
-                /*
                 self.outputprocess = OutputProcess()
                 switch self.selecttmptorestore.state {
                 case .on:
@@ -88,7 +87,6 @@ class ViewControllerRestore: NSViewController, SetConfigurations, Abort, Connect
                 default:
                     return
                 }
-                */
             }
         }
     }
@@ -204,6 +202,7 @@ extension ViewControllerRestore: NSTableViewDelegate {
 extension ViewControllerRestore: UpdateProgress {
     func processTermination() {
         self.setNumbers(outputprocess: self.outputprocess)
+        self.maxcount = self.outputprocess?.getMaxcount() ?? 0
     }
 
     func fileHandler() {
@@ -234,7 +233,7 @@ extension ViewControllerRestore: DismissViewController {
 
 extension ViewControllerRestore: Count {
     func maxCount() -> Int {
-        return self.outputprocess?.getMaxcount() ?? 0
+        return self.maxcount
     }
 
     func inprogressCount() -> Int {
