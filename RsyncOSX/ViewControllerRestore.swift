@@ -10,7 +10,7 @@
 import Foundation
 import Cocoa
 
-class ViewControllerRestore: NSViewController, SetConfigurations, Abort, Connected, Setcolor {
+class ViewControllerRestore: NSViewController, SetConfigurations, Abort, Connected, Setcolor, VcMain, Checkforrsync {
 
     @IBOutlet weak var restoretable: NSTableView!
     @IBOutlet weak var working: NSProgressIndicator!
@@ -31,8 +31,41 @@ class ViewControllerRestore: NSViewController, SetConfigurations, Abort, Connect
     private var index: Int?
     var outputprocess: OutputProcess?
     var diddissappear: Bool = false
+    weak var sendprocess: SendProcessreference?
+
+    @IBAction func totinfo(_ sender: NSButton) {
+        guard self.checkforrsync() == false else { return }
+        globalMainQueue.async(execute: { () -> Void in
+            self.presentAsSheet(self.viewControllerRemoteInfo!)
+        })
+    }
+
+    @IBAction func quickbackup(_ sender: NSButton) {
+        guard self.checkforrsync() == false else { return }
+        self.openquickbackup()
+    }
+
+    @IBAction func automaticbackup(_ sender: NSButton) {
+        self.presentAsSheet(self.viewControllerEstimating!)
+    }
+
+    // Selecting profiles
+    @IBAction func profiles(_ sender: NSButton) {
+        globalMainQueue.async(execute: { () -> Void in
+            self.presentAsSheet(self.viewControllerProfile!)
+        })
+    }
+
+    // Userconfiguration button
+    @IBAction func userconfiguration(_ sender: NSButton) {
+        globalMainQueue.async(execute: { () -> Void in
+            self.presentAsSheet(self.viewControllerUserconfiguration!)
+        })
+    }
+
 
     @IBAction func restore(_ sender: NSButton) {
+        guard self.checkforrsync() == false else { return }
         let question: String = NSLocalizedString("Do you REALLY want to start a RESTORE ?", comment: "Restore")
         let text: String = NSLocalizedString("Cancel or Restore", comment: "Restore")
         let dialog: String = NSLocalizedString("Restore", comment: "Restore")
@@ -65,6 +98,7 @@ class ViewControllerRestore: NSViewController, SetConfigurations, Abort, Connect
         self.restoretable.delegate = self
         self.restoretable.dataSource = self
         ViewControllerReference.shared.setvcref(viewcontroller: .vcrestore, nsviewcontroller: self)
+        self.sendprocess = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllerMain
     }
 
     override func viewDidAppear() {
@@ -111,6 +145,7 @@ class ViewControllerRestore: NSViewController, SetConfigurations, Abort, Connect
                 self.checkbutton.isEnabled = false
                 self.working.startAnimation(nil)
                 self.outputprocess = OutputProcess()
+                self.sendprocess?.sendoutputprocessreference(outputprocess: self.outputprocess)
                 if ViewControllerReference.shared.restorePath != nil && self.selecttmptorestore.state == .on {
                     _ = RestoreTask(index: index, outputprocess: self.outputprocess, dryrun: true,
                                     tmprestore: true, updateprogress: self)
@@ -172,15 +207,37 @@ extension ViewControllerRestore: UpdateProgress {
     }
 
     func fileHandler() {
-        /*
-        if self.estimationcompleted == true {
-             self.updateProgressbar(Double(self.outputprocess!.count()))
-        }
         weak var outputeverythingDelegate: ViewOutputDetails?
         outputeverythingDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllerMain
         if outputeverythingDelegate?.appendnow() ?? false {
             outputeverythingDelegate?.reloadtable()
         }
-        */
+    }
+}
+
+extension ViewControllerRestore: OpenQuickBackup {
+    func openquickbackup() {
+        globalMainQueue.async(execute: { () -> Void in
+            self.presentAsSheet(self.viewControllerQuickBackup!)
+        })
+    }
+}
+
+extension ViewControllerRestore: DismissViewController {
+    func dismiss_view(viewcontroller: NSViewController) {
+        self.dismiss(viewcontroller)
+        globalMainQueue.async(execute: { () -> Void in
+            self.restoretable.reloadData()
+        })
+    }
+}
+
+extension ViewControllerRestore: Count {
+    func maxCount() -> Int {
+        return self.outputprocess?.getMaxcount() ?? 0
+    }
+
+    func inprogressCount() -> Int {
+        return self.outputprocess?.count() ?? 0
     }
 }
