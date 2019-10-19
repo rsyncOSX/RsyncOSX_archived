@@ -26,7 +26,7 @@ class ViewControllerRestore: NSViewController, SetConfigurations, Abort, Connect
     @IBOutlet weak var restorebutton: NSButton!
     @IBOutlet weak var tmprestore: NSTextField!
     @IBOutlet weak var selecttmptorestore: NSButton!
-    @IBOutlet weak var checkbutton: NSButton!
+    @IBOutlet weak var estimatebutton: NSButton!
 
     var index: Int?
     var maxcount: Int = 0
@@ -103,7 +103,7 @@ class ViewControllerRestore: NSViewController, SetConfigurations, Abort, Connect
         super.viewDidAppear()
         guard self.diddissappear == false else { return }
         self.restorebutton.isEnabled = false
-        self.checkbutton.isEnabled = false
+        self.estimatebutton.isEnabled = false
         let setuserconfig: String = NSLocalizedString(" ... set in User configuration ...", comment: "Restore")
         self.tmprestore.stringValue = ViewControllerReference.shared.restorePath ?? setuserconfig
         if (ViewControllerReference.shared.restorePath ?? "").isEmpty == true {
@@ -140,7 +140,7 @@ class ViewControllerRestore: NSViewController, SetConfigurations, Abort, Connect
                 self.gotit.textColor = setcolor(nsviewcontroller: self, color: .white)
                 let gotit: String = NSLocalizedString("Getting info, please wait...", comment: "Restore")
                 self.gotit.stringValue = gotit
-                self.checkbutton.isEnabled = false
+                self.estimatebutton.isEnabled = false
                 self.working.startAnimation(nil)
                 self.outputprocess = OutputProcess()
                 self.sendprocess?.sendoutputprocessreference(outputprocess: self.outputprocess)
@@ -164,10 +164,10 @@ class ViewControllerRestore: NSViewController, SetConfigurations, Abort, Connect
         let myTableViewFromNotification = (notification.object as? NSTableView)!
         let indexes = myTableViewFromNotification.selectedRowIndexes
         if let index = indexes.first {
-            self.checkbutton.isEnabled = true
+            self.estimatebutton.isEnabled = true
             self.index = index
         } else {
-            self.checkbutton.isEnabled = false
+            self.estimatebutton.isEnabled = false
             self.index = nil
         }
         self.restorebutton.isEnabled = false
