@@ -5,7 +5,7 @@
 //  Created by Thomas Evensen on 22.12.2017.
 //  Copyright © 2017 Thomas Evensen. All rights reserved.
 //
-// swiftlint:disable line_length 
+// swiftlint:disable line_length cyclomatic_complexity
 
 import Foundation
 import Cocoa
@@ -51,6 +51,8 @@ class ViewControllerRemoteInfo: NSViewController, SetDismisser, Abort, Setcolor 
                     openDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vcloggdata) as? ViewControllerLoggData
                 } else if (self.presentingViewController as? ViewControllerSnapshots) != nil {
                     openDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vcsnapshot) as? ViewControllerSnapshots
+                } else if (self.presentingViewController as? ViewControllerRestore) != nil {
+                    openDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vcrestore) as? ViewControllerRestore
                 }
                 openDelegate?.openquickbackup()
             }
@@ -84,6 +86,8 @@ class ViewControllerRemoteInfo: NSViewController, SetDismisser, Abort, Setcolor 
             self.dismissview(viewcontroller: self, vcontroller: .vcverify)
         } else if (self.presentingViewController as? ViewControllerLoggData) != nil {
             self.dismissview(viewcontroller: self, vcontroller: .vcloggdata)
+        } else if (self.presentingViewController as? ViewControllerRestore) != nil {
+            self.dismissview(viewcontroller: self, vcontroller: .vcrestore)
         }
     }
 

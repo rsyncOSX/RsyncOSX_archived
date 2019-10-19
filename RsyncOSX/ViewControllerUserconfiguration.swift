@@ -5,7 +5,7 @@
 //  Created by Thomas Evensen on 30/08/2016.
 //  Copyright © 2016 Thomas Evensen. All rights reserved.
 //
-// swiftlint:disable line_length type_body_length
+// swiftlint:disable line_length type_body_length cyclomatic_complexity
 
 import Foundation
 import Cocoa
@@ -122,6 +122,8 @@ class ViewControllerUserconfiguration: NSViewController, NewRsync, SetDismisser,
             self.dismissview(viewcontroller: self, vcontroller: .vcverify)
         } else if (self.presentingViewController as? ViewControllerLoggData) != nil {
             self.dismissview(viewcontroller: self, vcontroller: .vcloggdata)
+        } else if (self.presentingViewController as? ViewControllerRestore) != nil {
+            self.dismissview(viewcontroller: self, vcontroller: .vcrestore)
         }
         _ = RsyncVersionString()
     }

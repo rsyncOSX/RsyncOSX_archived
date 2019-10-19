@@ -5,7 +5,7 @@
 //  Created by Thomas Evensen on 28.10.2017.
 //  Copyright © 2017 Thomas Evensen. All rights reserved.
 //
-// swiftlint:disable line_length file_length
+// swiftlint:disable line_length
 
 import Foundation
 import Cocoa
@@ -69,13 +69,6 @@ extension VcMain {
             as? NSViewController)
     }
 
-    // Restore
-    // self.presentViewControllerAsSheet(self.restoreViewController)
-    var restoreViewController: NSViewController? {
-        return (self.storyboard?.instantiateController(withIdentifier: "StoryboardRestoreID")
-            as? NSViewController)
-    }
-
     // Profile
     // self.presentViewControllerAsSheet(self.viewControllerProfile)
     var viewControllerProfile: NSViewController? {
@@ -124,7 +117,6 @@ extension VcMain {
         return (self.storyboard?.instantiateController(withIdentifier: "StoryboardLocalRemoteID")
             as? NSViewController)
     }
-
 }
 
 // Protocol for dismissing a viewcontroller
@@ -161,6 +153,9 @@ extension SetDismisser {
     var dismissDelegateLoggData: DismissViewController? {
         return ViewControllerReference.shared.getvcref(viewcontroller: .vcloggdata) as? ViewControllerLoggData
     }
+    var dismissDelegateRestore: DismissViewController? {
+        return ViewControllerReference.shared.getvcref(viewcontroller: .vcrestore) as? ViewControllerRestore
+    }
 
     func dismissview(viewcontroller: NSViewController, vcontroller: ViewController) {
         if vcontroller == .vctabmain {
@@ -179,6 +174,8 @@ extension SetDismisser {
             self.dismissDelegateVerify?.dismiss_view(viewcontroller: (self as? NSViewController)!)
         } else if vcontroller == .vcloggdata {
             self.dismissDelegateLoggData?.dismiss_view(viewcontroller: (self as? NSViewController)!)
+        } else if vcontroller == .vcrestore {
+            self.dismissDelegateRestore?.dismiss_view(viewcontroller: (self as? NSViewController)!)
         }
     }
 }

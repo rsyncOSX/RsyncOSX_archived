@@ -67,20 +67,6 @@ class ViewControllerMain: NSViewController, ReloadTable, Deselect, VcMain, Delay
         NSApp.terminate(self)
     }
 
-    @IBAction func restore(_ sender: NSButton) {
-        guard self.index != nil else {
-            self.info.stringValue = Infoexecute().info(num: 1)
-            return
-        }
-        guard self.checkforrsync() == false else { return }
-        guard self.configurations!.getConfigurations()[self.index!].task == ViewControllerReference.shared.synchronize ||
-            self.configurations!.getConfigurations()[self.index!].task == ViewControllerReference.shared.snapshot else {
-                self.info.stringValue = Infoexecute().info(num: 7)
-                return
-        }
-        self.presentAsSheet(self.restoreViewController!)
-    }
-
     @IBAction func infoonetask(_ sender: NSButton) {
         guard self.index != nil else {
             self.info.stringValue = Infoexecute().info(num: 1)
