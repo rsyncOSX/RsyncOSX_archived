@@ -573,6 +573,7 @@
 		E8EF5EB8231A86FE00444F9E /* Tabviews */ = {
 			isa = PBXGroup;
 			children = (
+				E975284420CEAADB0029B027 /* ViewControllerRestore.swift */,
 				E90F3C40201659720089D68B /* ViewControllerSnapshots.swift */,
 				E96059A92109B63D00DFA08E /* ViewControllerVerify.swift */,
 				A091C6571D86A0A800278E74 /* ViewControllerCopyFiles.swift */,
@@ -595,7 +596,6 @@
 				A08110661D6DA7D8009444D3 /* ViewControllerProgressProcess.swift */,
 				A054F1A81D6D773E00D27688 /* ViewControllerInformation.swift */,
 				A03876E01DB4FD9D00C14AEA /* ViewControllerProfile.swift */,
-				E975284420CEAADB0029B027 /* ViewControllerRestore.swift */,
 				A0FAF5CE1DDF2E5F0009FE7A /* ViewControllerAbout.swift */,
 				A0A403501D76BD2E00A30017 /* ViewControllerRsyncParameters.swift */,
 				E942FF281FED41D0004191B5 /* ViewControllerQuickBackup.swift */,

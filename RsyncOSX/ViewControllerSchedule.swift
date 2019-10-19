@@ -21,7 +21,7 @@ class ViewControllerSchedule: NSViewController, SetConfigurations, SetSchedules,
     var schedule: Scheduletype?
 
     // Main tableview
-    @IBOutlet weak var mainTableView: NSTableView!
+    @IBOutlet weak var scheduletable: NSTableView!
     @IBOutlet weak var profilInfo: NSTextField!
     @IBOutlet weak var weeklybutton: NSButton!
     @IBOutlet weak var dailybutton: NSButton!
@@ -142,9 +142,9 @@ class ViewControllerSchedule: NSViewController, SetConfigurations, SetSchedules,
     // Initial functions viewDidLoad and viewDidAppear
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.mainTableView.delegate = self
-        self.mainTableView.dataSource = self
-        self.mainTableView.doubleAction = #selector(ViewControllerMain.tableViewDoubleClick(sender:))
+        self.scheduletable.delegate = self
+        self.scheduletable.dataSource = self
+        self.scheduletable.doubleAction = #selector(ViewControllerMain.tableViewDoubleClick(sender:))
         ViewControllerReference.shared.setvcref(viewcontroller: .vctabschedule, nsviewcontroller: self)
     }
 
@@ -164,7 +164,7 @@ class ViewControllerSchedule: NSViewController, SetConfigurations, SetSchedules,
             self.schedulessorted = ScheduleSortedAndExpand()
         }
         globalMainQueue.async(execute: { () -> Void in
-            self.mainTableView.reloadData()
+            self.scheduletable.reloadData()
         })
         self.delayWithSeconds(0.5) {
             self.enablemenuappbutton()
@@ -271,7 +271,6 @@ extension ViewControllerSchedule: NSTableViewDelegate, Attributedestring {
         }
     return nil
     }
-
 }
 
 extension  ViewControllerSchedule: GetHiddenID {
@@ -289,7 +288,7 @@ extension ViewControllerSchedule: DismissViewController {
     func dismiss_view(viewcontroller: NSViewController) {
         self.dismiss(viewcontroller)
         globalMainQueue.async(execute: { () -> Void in
-            self.mainTableView.reloadData()
+            self.scheduletable.reloadData()
         })
     }
 }
@@ -300,7 +299,7 @@ extension ViewControllerSchedule: Reloadandrefresh {
         // Create a New schedules object
         self.schedulessorted = ScheduleSortedAndExpand()
         globalMainQueue.async(execute: { () -> Void in
-            self.mainTableView.reloadData()
+            self.scheduletable.reloadData()
         })
     }
 
@@ -311,7 +310,7 @@ extension ViewControllerSchedule: DeselectRowTable {
     // deselect a row after row is deleted
     func deselect() {
         guard self.index != nil else { return }
-        self.mainTableView.deselectRow(self.index!)
+        self.scheduletable.deselectRow(self.index!)
     }
 }
 

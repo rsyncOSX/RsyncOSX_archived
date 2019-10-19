@@ -10,8 +10,9 @@
 import Foundation
 import Cocoa
 
-class ViewControllerRestore: NSViewController, SetConfigurations, SetDismisser, Index, Abort, Setcolor, Connected {
+class ViewControllerRestore: NSViewController, SetConfigurations, Abort, Connected, Setcolor {
 
+    @IBOutlet weak var restoretable: NSTableView!
     @IBOutlet weak var localCatalog: NSTextField!
     @IBOutlet weak var offsiteCatalog: NSTextField!
     @IBOutlet weak var offsiteUsername: NSTextField!
@@ -33,24 +34,16 @@ class ViewControllerRestore: NSViewController, SetConfigurations, SetDismisser, 
     @IBOutlet weak var tmprestore: NSTextField!
     @IBOutlet weak var selecttmptorestore: NSButton!
 
+    private var index: Int?
     var outputprocess: OutputProcess?
     var estimationcompleted: Bool = false
     var restorecompleted: Bool = false
-    weak var sendprocess: SendProcessreference?
     var diddissappear: Bool = false
-    var abortandclose: Bool = true
-
-    // Close and dismiss view
-    @IBAction func close(_ sender: NSButton) {
-        if self.abortandclose { self.abort() }
-        self.dismissview(viewcontroller: self, vcontroller: .vctabmain)
-    }
 
     @IBAction func dotmprestore(_ sender: NSButton) {
         guard self.tmprestore.stringValue.isEmpty == false else { return }
         self.restorebutton.isEnabled = false
-        self.abortandclose = true
-        if let index = self.index() {
+        if let index = self.index {
             self.selecttmptorestore.isEnabled = false
             self.estimationcompleted = false
             self.gotit.textColor = setcolor(nsviewcontroller: self, color: .white)
@@ -58,7 +51,6 @@ class ViewControllerRestore: NSViewController, SetConfigurations, SetDismisser, 
             self.gotit.stringValue = gotit
             self.working.startAnimation(nil)
             self.outputprocess = OutputProcess()
-            self.sendprocess?.sendoutputprocessreference(outputprocess: self.outputprocess)
             switch self.selecttmptorestore.state {
             case .on:
                 _ = RestoreTask(index: index, outputprocess: self.outputprocess, dryrun: true,
@@ -81,15 +73,13 @@ class ViewControllerRestore: NSViewController, SetConfigurations, SetDismisser, 
         let dialog: String = NSLocalizedString("Restore", comment: "Restore")
         let answer = Alerts.dialogOrCancel(question: question, text: text, dialog: dialog)
         if answer {
-            if let index = self.index() {
+            if let index = self.index {
                 self.gotit.textColor = setcolor(nsviewcontroller: self, color: .white)
                 let gotit: String = NSLocalizedString("Executing restore...", comment: "Restore")
                 self.gotit.stringValue = gotit
                 self.restorebutton.isEnabled = false
-                self.abortandclose = true
                 self.initiateProgressbar()
                 self.outputprocess = OutputProcess()
-                self.sendprocess?.sendoutputprocessreference(outputprocess: self.outputprocess)
                 switch self.selecttmptorestore.state {
                 case .on:
                     _ = RestoreTask(index: index, outputprocess: self.outputprocess, dryrun: false,
@@ -106,10 +96,27 @@ class ViewControllerRestore: NSViewController, SetConfigurations, SetDismisser, 
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.restoretable.delegate = self
+        self.restoretable.dataSource = self
         ViewControllerReference.shared.setvcref(viewcontroller: .vcrestore, nsviewcontroller: self)
-        self.sendprocess = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllerMain
     }
 
+    /*
+     @IBAction func restore(_ sender: NSButton) {
+            guard self.index != nil else {
+                self.info.stringValue = Infoexecute().info(num: 1)
+                return
+            }
+            guard self.checkforrsync() == false else { return }
+            guard self.configurations!.getConfigurations()[self.index!].task == ViewControllerReference.shared.synchronize ||
+                self.configurations!.getConfigurations()[self.index!].task == ViewControllerReference.shared.snapshot else {
+                    self.info.stringValue = Infoexecute().info(num: 7)
+                    return
+            }
+            self.presentAsSheet(self.restoreViewController!)
+        }
+     */
+    
     override func viewDidAppear() {
         super.viewDidAppear()
         guard self.diddissappear == false else { return }
@@ -121,7 +128,7 @@ class ViewControllerRestore: NSViewController, SetConfigurations, SetDismisser, 
         self.backupID.stringValue = ""
         self.sshport.stringValue = ""
         self.restoreprogress.isHidden = true
-        if let index = self.index() {
+        if let index = self.index {
             let config: Configuration = self.configurations!.getConfigurations()[index]
             self.localCatalog.stringValue = config.localCatalog
             self.offsiteCatalog.stringValue = config.offsiteCatalog
@@ -139,7 +146,6 @@ class ViewControllerRestore: NSViewController, SetConfigurations, SetDismisser, 
             if self.connected(config: self.configurations!.getConfigurations()[index]) == true {
                 self.working.startAnimation(nil)
                 self.outputprocess = OutputProcess()
-                self.sendprocess?.sendoutputprocessreference(outputprocess: self.outputprocess)
                 if ViewControllerReference.shared.restorePath != nil {
                     self.selecttmptorestore.state = .on
                     _ = RestoreTask(index: index, outputprocess: self.outputprocess, dryrun: true,
@@ -198,7 +204,6 @@ class ViewControllerRestore: NSViewController, SetConfigurations, SetDismisser, 
 
 extension ViewControllerRestore: UpdateProgress {
     func processTermination() {
-        self.abortandclose = false
         if self.estimationcompleted == false {
             self.estimationcompleted = true
             self.setNumbers(outputprocess: self.outputprocess)
@@ -221,6 +226,31 @@ extension ViewControllerRestore: UpdateProgress {
         outputeverythingDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllerMain
         if outputeverythingDelegate?.appendnow() ?? false {
             outputeverythingDelegate?.reloadtable()
+        }
+    }
+}
+
+extension ViewControllerRestore: NSTableViewDataSource {
+
+    func numberOfRows(in tableView: NSTableView) -> Int {
+        return self.configurations?.getConfigurationsDataSourceSynchronize()?.count ?? 0
+    }
+}
+
+extension ViewControllerRestore: NSTableViewDelegate, Attributedestring {
+
+   func tableView(_ tableView: NSTableView, objectValueFor tableColumn: NSTableColumn?, row: Int) -> Any? {
+        guard row < self.configurations!.getConfigurationsDataSourceSynchronize()!.count  else { return nil }
+        let object: NSDictionary = self.configurations!.getConfigurationsDataSourceSynchronize()![row]
+        switch tableColumn!.identifier.rawValue {
+        case "offsiteServerCellID":
+            if (object[tableColumn!.identifier] as? String)!.isEmpty {
+                return "localhost"
+            } else {
+                return object[tableColumn!.identifier] as? String
+            }
+        default:
+            return object[tableColumn!.identifier] as? String
         }
     }
 }
