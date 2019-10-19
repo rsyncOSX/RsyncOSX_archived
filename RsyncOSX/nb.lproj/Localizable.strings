@@ -35,7 +35,7 @@
 "Cancel or Delete" = "Kanseler eller slett";
 
 /* Restore */
-"Cancel or Restore" = "Kanseler eller restore";
+"Cancel or Restore" = "Kanseler eller kopier";
 
 /* chinese */
 "Chinese (Simplified) translation by: StringKe" = "Chinese (Simplified) oversettelse av: StringKe";
@@ -98,7 +98,7 @@
 "Do you REALLY want to DELETE selected snapshots?" = "Vil du VIRKELIG SLETTE valgte snapshot?";
 
 /* Restore */
-"Do you REALLY want to start a RESTORE ?" = "Vil du VIRKELIG utføre en RESTORE?";
+"Do you REALLY want to start a RESTORE ?" = "Vil du VIRKELIG utføre en KOPIER?";
 
 /* Snapshots */
 "Dont change the snapshot num if you don´t know what you are doing..." = "Ikke endre snapshot nummer hvis du ikke vet hva du gjør...";
@@ -116,7 +116,7 @@
 "every" = "alle";
 
 /* Restore */
-"Executing restore..." = "Utfører restore";
+"Executing restore..." = "Utfører kopier...";
 
 /* plan */
 "Friday" = "fredag";
@@ -247,7 +247,7 @@
 "Profile: please wait..." = "Profil: vennligst vent...";
 
 /* Restore */
-"Restore" = "Restore";
+"Restore" = "Kopier";
 
 /* plan */
 "Saturday" = "lørdag";
@@ -280,7 +280,7 @@
 "Seriously, enter a real number..." = "Seriøst, legg inn et nummer...";
 
 /* Restore */
-"Start restore?" = "Start restore?";
+"Start restore?" = "Start kopier?";
 
 /* plan */
 "Sunday" = "søndag";

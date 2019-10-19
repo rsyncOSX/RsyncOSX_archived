@@ -238,9 +238,6 @@
 /* Class = "NSButtonCell"; title = "Rsa public key is found."; ObjectID = "a0m-Z1-grn"; */
 "a0m-Z1-grn.title" = "Rsa offentlig nøkkel";
 
-/* Class = "NSTableColumn"; headerCell.title = "Days"; ObjectID = "Aa2-8Q-PPo"; */
-"Aa2-8Q-PPo.headerCell.title" = "Dager";
-
 /* Class = "NSMenuItem"; title = "Open"; ObjectID = "aCU-js-shc"; */
 "aCU-js-shc.title" = "Open";
 
@@ -725,7 +722,7 @@
 "IAo-SY-fd9.title" = "Profiler";
 
 /* Class = "NSButtonCell"; title = "Restore"; ObjectID = "ibt-MA-DJs"; */
-"ibt-MA-DJs.title" = "Restore";
+"ibt-MA-DJs.title" = "Kopier";
 
 /* Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "ibW-Po-vbR"; */
 "ibW-Po-vbR.title" = "Text Cell";
@@ -860,7 +857,7 @@
 "lGN-As-q21.title" = "Legge til parametre";
 
 /* Class = "NSBox"; title = "Restore to tmp catalog"; ObjectID = "LGQ-8V-u3e"; */
-"LGQ-8V-u3e.title" = "Restore til tmp katalog";
+"LGQ-8V-u3e.title" = "Kopier til tmp katalog";
 
 /* Class = "NSTextFieldCell"; title = "Remote username:"; ObjectID = "Lkc-8f-opa"; */
 "Lkc-8f-opa.title" = "Ekstern bruker:";
@@ -908,7 +905,7 @@
 "mJ2-R8-Fa6.headerCell.title" = "Oppgave";
 
 /* Class = "NSButtonCell"; title = "restore"; ObjectID = "mkb-9F-CQR"; */
-"mkb-9F-CQR.title" = "restore";
+"mkb-9F-CQR.title" = "kopier";
 
 /* Class = "NSViewController"; title = "Estimating progress"; ObjectID = "Ml3-CP-4eZ"; */
 "Ml3-CP-4eZ.title" = "Estimering progresjon";
@@ -1502,7 +1499,7 @@
 "ypE-IB-6gc.title" = "Lokal info";
 
 /* Class = "NSButtonCell"; title = "Restore"; ObjectID = "YPN-3P-BXs"; */
-"YPN-3P-BXs.title" = "Restore";
+"YPN-3P-BXs.title" = "Kopier";
 
 /* Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "yUA-PJ-sOA"; */
 "yUA-PJ-sOA.title" = "Text Cell";
@@ -1551,4 +1548,7 @@
 
 /* Class = "NSTableColumn"; headerCell.title = "Remote catalog"; ObjectID = "zzK-ZO-wvj"; */
 "zzK-ZO-wvj.headerCell.title" = "Ekstern katalog";
+
+/* Class = "NSTableColumn"; headerCell.title = "Days"; ObjectID = "Aa2-8Q-PPo"; */
+"Aa2-8Q-PPo.headerCell.title" = "Dager";
 
