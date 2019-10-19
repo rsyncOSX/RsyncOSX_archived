@@ -172,12 +172,18 @@ class PlanSnapshots {
         if self.datecomponentsfromstring(datestringlocalized: datesnapshotstring).month !=
             self.datecomponentscurrent!.month {
             if self.isselectedDayinWeek(date: self.datefromstring(datestringlocalized: datesnapshotstring)) == true {
-                let tag = NSLocalizedString("Keep", comment: "plan")  + " " + day + ", " + month + " " + NSLocalizedString("prev months", comment: "plan")
+                let tag = NSLocalizedString("Keep", comment: "plan")  + " " + day + ", " + month + " " + NSLocalizedString("prev month", comment: "plan")
                 self.snapshotsloggdata?.snapshotslogs![index].setValue(tag, forKey: "period")
                 return false
             } else {
-                let tag = NSLocalizedString("Delete", comment: "plan") + " " + day + ", " + month + " " + NSLocalizedString("prev months", comment: "plan")
-                self.snapshotsloggdata?.snapshotslogs![index].setValue(tag, forKey: "period")
+                let test = self.datefromstring(datestringlocalized: datesnapshotstring)
+                if test.ispreviosmonth() {
+                    let tag = NSLocalizedString("Delete", comment: "plan") + " " + day + ", " + month + " " + NSLocalizedString("previous month", comment: "plan")
+                    self.snapshotsloggdata?.snapshotslogs![index].setValue(tag, forKey: "period")
+                } else {
+                    let tag = NSLocalizedString("Delete", comment: "plan") + " " + day + ", " + month + " " + NSLocalizedString("earlier months", comment: "plan")
+                    self.snapshotsloggdata?.snapshotslogs![index].setValue(tag, forKey: "period")
+                }
                 return true
             }
         }

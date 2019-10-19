@@ -114,6 +114,36 @@ extension Date {
         return rhs.compare(lhs) == ComparisonResult.orderedAscending
     }
 
+    func ispreviosmonth() -> Bool {
+        let calendar = Calendar.current
+        let yearComponent = (calendar as NSCalendar).components(.year, from: self)
+        let monthComponent = (calendar as NSCalendar).components(.month, from: self)
+        let today = Date()
+        let todayComponentyear = (calendar as NSCalendar).components(.year, from: today)
+        let todaymonthComponent = (calendar as NSCalendar).components(.month, from: today)
+        if yearComponent == todayComponentyear {
+            if monthComponent.month! == todaymonthComponent.month! - 1 {
+                return true
+            }
+        }
+        return false
+    }
+
+    func isearliermonth() -> Bool {
+        let calendar = Calendar.current
+        let yearComponent = (calendar as NSCalendar).components(.year, from: self)
+        let monthComponent = (calendar as NSCalendar).components(.month, from: self)
+        let today = Date()
+        let todayComponentyear = (calendar as NSCalendar).components(.year, from: today)
+        let todaymonthComponent = (calendar as NSCalendar).components(.month, from: today)
+        if yearComponent.year! <= todayComponentyear.year! {
+            if monthComponent.month! < todaymonthComponent.month! - 1 {
+                return true
+            }
+        }
+        return false
+    }
+
     init(year: Int, month: Int, day: Int) {
         let calendar = Calendar.current
         var dateComponent = DateComponents()
