@@ -77,6 +77,9 @@ class ViewControllerRestore: NSViewController, SetConfigurations, Abort, Connect
                 self.gotit.stringValue = gotit
                 self.restorebutton.isEnabled = false
                 self.outputprocess = OutputProcess()
+                globalMainQueue.async(execute: { () -> Void in
+                    self.presentAsSheet(self.viewControllerProgress!)
+                })
                 switch self.selecttmptorestore.state {
                 case .on:
                     _ = RestoreTask(index: index, outputprocess: self.outputprocess, dryrun: false,
@@ -159,6 +162,11 @@ class ViewControllerRestore: NSViewController, SetConfigurations, Abort, Connect
         }
     }
 
+    @IBAction func toggletmprestore(_ sender: NSButton) {
+        self.estimatebutton.isEnabled = true
+        self.restorebutton.isEnabled = false
+    }
+
     // setting which table row is selected
     func tableViewSelectionDidChange(_ notification: Notification) {
         let myTableViewFromNotification = (notification.object as? NSTableView)!
@@ -203,6 +211,9 @@ extension ViewControllerRestore: UpdateProgress {
     func processTermination() {
         self.setNumbers(outputprocess: self.outputprocess)
         self.maxcount = self.outputprocess?.getMaxcount() ?? 0
+        if let vc = ViewControllerReference.shared.getvcref(viewcontroller: .vcprogressview) as? ViewControllerProgressProcess {
+            vc.processTermination()
+        }
     }
 
     func fileHandler() {
@@ -210,6 +221,9 @@ extension ViewControllerRestore: UpdateProgress {
         outputeverythingDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllerMain
         if outputeverythingDelegate?.appendnow() ?? false {
             outputeverythingDelegate?.reloadtable()
+        }
+        if let vc = ViewControllerReference.shared.getvcref(viewcontroller: .vcprogressview) as? ViewControllerProgressProcess {
+            vc.fileHandler()
         }
     }
 }
