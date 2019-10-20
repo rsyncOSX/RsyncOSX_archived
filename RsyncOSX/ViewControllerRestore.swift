@@ -107,16 +107,22 @@ class ViewControllerRestore: NSViewController, SetConfigurations, Abort, Connect
         guard self.diddissappear == false else { return }
         self.restorebutton.isEnabled = false
         self.estimatebutton.isEnabled = false
-        let setuserconfig: String = NSLocalizedString(" ... set in User configuration ...", comment: "Restore")
-        self.tmprestore.stringValue = ViewControllerReference.shared.restorePath ?? setuserconfig
-        if (ViewControllerReference.shared.restorePath ?? "").isEmpty == true {
-            self.selecttmptorestore.state = .off
-        }
+        self.settmp()
     }
 
     override func viewDidDisappear() {
         super.viewDidDisappear()
         self.diddissappear = true
+    }
+
+    private func settmp() {
+        let setuserconfig: String = NSLocalizedString(" ... set in User configuration ...", comment: "Restore")
+        self.tmprestore.stringValue = ViewControllerReference.shared.restorePath ?? setuserconfig
+        if (ViewControllerReference.shared.restorePath ?? "").isEmpty == true {
+            self.selecttmptorestore.state = .off
+        } else {
+             self.selecttmptorestore.state = .on
+        }
     }
 
     private func setNumbers(outputprocess: OutputProcess?) {
@@ -252,5 +258,11 @@ extension ViewControllerRestore: Count {
 
     func inprogressCount() -> Int {
         return self.outputprocess?.count() ?? 0
+    }
+}
+
+extension ViewControllerRestore: TemporaryRestorePath {
+    func temporaryrestorepath() {
+        self.settmp()
     }
 }
