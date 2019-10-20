@@ -49,8 +49,8 @@ class PlanSnapshots {
     var snapshotsloggdata: SnapshotsLoggData?
     private var numberoflogs: Int?
     private var firstlog: Double?
-    private var datecomponentscurrent: DateComponents?
     private var keepallselcteddayofweek: Bool = true
+    var now: String?
 
     func islastSundayinMonth(date: Date) -> Bool {
         if date.isSunday() && date.daymonth() > 24 {
@@ -75,16 +75,14 @@ class PlanSnapshots {
 
     private func datecomponentsfromstring(datestringlocalized: String?) -> DateComponents {
         var date: Date?
-        if datestringlocalized == nil {
-            date = Date()
-        } else {
-            date = self.datefromstring(datestringlocalized: datestringlocalized!)
+        if datestringlocalized != nil {
+           date = self.datefromstring(datestringlocalized: datestringlocalized!)
         }
         let calendar = Calendar.current
         return calendar.dateComponents([.calendar, .timeZone,
                                         .year, .month, .day,
                                         .hour, .minute,
-                                        .weekday, .weekOfYear, .year], from: date!)
+                                        .weekday, .weekOfYear, .year], from: date ?? Date())
     }
 
     private func markfordelete() {
@@ -114,8 +112,9 @@ class PlanSnapshots {
     private func currentweek(index: Int) -> Bool {
         let datesnapshotstring = (self.snapshotsloggdata!.snapshotslogs![index].value(forKey: "dateExecuted") as? String)!
         if self.datecomponentsfromstring(datestringlocalized: datesnapshotstring).weekOfYear ==
-            self.datecomponentscurrent!.weekOfYear &&
-            self.datecomponentsfromstring(datestringlocalized: datesnapshotstring).year == self.datecomponentscurrent!.year {
+            self.datecomponentsfromstring(datestringlocalized: self.now).weekOfYear &&
+            self.datecomponentsfromstring(datestringlocalized: datesnapshotstring).year ==
+            self.datecomponentsfromstring(datestringlocalized: self.now).year {
             let tag = NSLocalizedString("Keep", comment: "plan") + " " + NSLocalizedString("this week", comment: "plan")
             self.snapshotsloggdata?.snapshotslogs![index].setValue(tag, forKey: "period")
             return true
@@ -129,8 +128,8 @@ class PlanSnapshots {
         let month = self.datefromstring(datestringlocalized: datesnapshotstring).monthNameShort()
         let day = self.datefromstring(datestringlocalized: datesnapshotstring).dayNameShort()
         if self.datecomponentsfromstring(datestringlocalized: datesnapshotstring).month ==
-            self.datecomponentscurrent!.month &&
-            self.datecomponentsfromstring(datestringlocalized: datesnapshotstring).year == self.datecomponentscurrent!.year {
+            self.datecomponentsfromstring(datestringlocalized: self.now).month &&
+            self.datecomponentsfromstring(datestringlocalized: datesnapshotstring).year == self.datecomponentsfromstring(datestringlocalized: self.now).year {
             if self.datefromstring(datestringlocalized: datesnapshotstring).isSelectedDayofWeek(day: self.day!) == false {
                 let tag = NSLocalizedString("Delete", comment: "plan") + " " + day + ", " + month + " " + NSLocalizedString("this month", comment: "plan")
                 self.snapshotsloggdata?.snapshotslogs![index].setValue(tag, forKey: "period")
@@ -149,15 +148,24 @@ class PlanSnapshots {
         let datesnapshotstring = (self.snapshotsloggdata!.snapshotslogs![index].value(forKey: "dateExecuted") as? String)!
         let month = self.datefromstring(datestringlocalized: datesnapshotstring).monthNameShort()
         let day = self.datefromstring(datestringlocalized: datesnapshotstring).dayNameShort()
+        // let year = self.datefromstring(datestringlocalized: datesnapshotstring).year()
         if self.datecomponentsfromstring(datestringlocalized: datesnapshotstring).month !=
-            self.datecomponentscurrent!.month {
+            self.datecomponentsfromstring(datestringlocalized: self.now).month ||
+            self.datecomponentsfromstring(datestringlocalized: datesnapshotstring).year! <
+            self.datecomponentsfromstring(datestringlocalized: self.now).year! {
             if self.islastSelectedDayinMonth(date: self.datefromstring(datestringlocalized: datesnapshotstring)) == true {
                 let tag = NSLocalizedString("Keep", comment: "plan") + " " + day + ", " + month + " " + NSLocalizedString("last", comment: "plan") + " " + NSLocalizedString("month", comment: "plan")
                 self.snapshotsloggdata?.snapshotslogs![index].setValue(tag, forKey: "period")
                 return false
             } else {
-                let tag = NSLocalizedString("Delete", comment: "plan") + " " + day + ", " + month + " " + NSLocalizedString("prev months", comment: "plan")
-                self.snapshotsloggdata?.snapshotslogs![index].setValue(tag, forKey: "period")
+                let date = self.datefromstring(datestringlocalized: datesnapshotstring)
+                if date.ispreviosmonth() {
+                    let tag = NSLocalizedString("Delete", comment: "plan") + " " + day + ", " + month + " " + NSLocalizedString("previous month", comment: "plan")
+                    self.snapshotsloggdata?.snapshotslogs![index].setValue(tag, forKey: "period")
+                } else {
+                    let tag = NSLocalizedString("Delete", comment: "plan") + " " + day + ", " + month + " " + NSLocalizedString("earlier months", comment: "plan")
+                    self.snapshotsloggdata?.snapshotslogs![index].setValue(tag, forKey: "period")
+                }
                 return true
             }
         }
@@ -169,15 +177,18 @@ class PlanSnapshots {
         let datesnapshotstring = (self.snapshotsloggdata!.snapshotslogs![index].value(forKey: "dateExecuted") as? String)!
         let month = self.datefromstring(datestringlocalized: datesnapshotstring).monthNameShort()
         let day = self.datefromstring(datestringlocalized: datesnapshotstring).dayNameShort()
+        // let year = self.datefromstring(datestringlocalized: datesnapshotstring).year()
         if self.datecomponentsfromstring(datestringlocalized: datesnapshotstring).month !=
-            self.datecomponentscurrent!.month {
+            self.datecomponentsfromstring(datestringlocalized: self.now).month ||
+            self.datecomponentsfromstring(datestringlocalized: datesnapshotstring).year! <
+            self.datecomponentsfromstring(datestringlocalized: self.now).year! {
             if self.isselectedDayinWeek(date: self.datefromstring(datestringlocalized: datesnapshotstring)) == true {
                 let tag = NSLocalizedString("Keep", comment: "plan")  + " " + day + ", " + month + " " + NSLocalizedString("prev month", comment: "plan")
                 self.snapshotsloggdata?.snapshotslogs![index].setValue(tag, forKey: "period")
                 return false
             } else {
-                let test = self.datefromstring(datestringlocalized: datesnapshotstring)
-                if test.ispreviosmonth() {
+                let date = self.datefromstring(datestringlocalized: datesnapshotstring)
+                if date.ispreviosmonth() {
                     let tag = NSLocalizedString("Delete", comment: "plan") + " " + day + ", " + month + " " + NSLocalizedString("previous month", comment: "plan")
                     self.snapshotsloggdata?.snapshotslogs![index].setValue(tag, forKey: "period")
                 } else {
@@ -252,7 +263,11 @@ class PlanSnapshots {
         guard self.snapshotsloggdata?.snapshotslogs != nil else { return }
         self.numberoflogs = self.snapshotsloggdata?.snapshotslogs?.count ?? 0
         self.firstlog = Double(self.snapshotsloggdata?.snapshotslogs![0].value(forKey: "days") as? String ?? "0")
-        self.datecomponentscurrent = self.datecomponentsfromstring(datestringlocalized: nil)
+        let dateformatter = DateFormatter()
+        dateformatter.formatterBehavior = .behavior10_4
+        dateformatter.dateStyle = .medium
+        dateformatter.timeStyle = .short
+        self.now = dateformatter.string(from: Date())
         self.reset()
         self.markfordelete()
     }
