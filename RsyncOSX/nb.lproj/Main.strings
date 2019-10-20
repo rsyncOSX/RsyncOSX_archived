@@ -238,6 +238,9 @@
 /* Class = "NSButtonCell"; title = "Rsa public key is found."; ObjectID = "a0m-Z1-grn"; */
 "a0m-Z1-grn.title" = "Rsa offentlig nøkkel";
 
+/* Class = "NSTableColumn"; headerCell.title = "Days"; ObjectID = "Aa2-8Q-PPo"; */
+"Aa2-8Q-PPo.headerCell.title" = "Dager";
+
 /* Class = "NSMenuItem"; title = "Open"; ObjectID = "aCU-js-shc"; */
 "aCU-js-shc.title" = "Open";
 
@@ -934,6 +937,9 @@
 /* Class = "NSTextFieldCell"; title = "Delete files:"; ObjectID = "Nbe-Ck-Oeu"; */
 "Nbe-Ck-Oeu.title" = "Slett filer:";
 
+/* Class = "NSTextFieldCell"; title = "days older"; ObjectID = "NC7-Ka-Wgs"; */
+"NC7-Ka-Wgs.title" = "dager eldre";
+
 /* Class = "NSBox"; title = "Task"; ObjectID = "NDf-8B-idO"; */
 "NDf-8B-idO.title" = "Oppgave";
 
@@ -1123,6 +1129,9 @@
 /* Class = "NSViewController"; title = "Schedule"; ObjectID = "rht-JI-asq"; */
 "rht-JI-asq.title" = "Schedule";
 
+/* Class = "NSTableColumn"; headerCell.title = "ID"; ObjectID = "rMD-o2-QB4"; */
+"rMD-o2-QB4.headerCell.title" = "ID";
+
 /* Class = "NSTextFieldCell"; title = "Local catalog :"; ObjectID = "rol-5e-w2X"; */
 "rol-5e-w2X.title" = "Lokal katalog :";
 
@@ -1245,6 +1254,9 @@
 
 /* Class = "NSTextFieldCell"; title = "Profile :"; ObjectID = "TqG-6l-QwU"; */
 "TqG-6l-QwU.title" = "Profil :";
+
+/* Class = "NSTextFieldCell"; title = "number of"; ObjectID = "tRO-2l-LW7"; */
+"tRO-2l-LW7.title" = "antall";
 
 /* Class = "NSTableColumn"; headerCell.title = "Remote server"; ObjectID = "tT2-Hu-JSP"; */
 "tT2-Hu-JSP.headerCell.title" = "Ekstern server";
@@ -1516,7 +1528,7 @@
 /* Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "zFx-cJ-7DI"; */
 "zFx-cJ-7DI.title" = "Text Cell";
 
-/* Class = "NSBox"; title = "Select days older or number of"; ObjectID = "zGR-lC-3fH"; */
+/* Class = "NSBox"; title = "Select to delete"; ObjectID = "zGR-lC-3fH"; */
 "zGR-lC-3fH.title" = "Velg dager eldre eller antall";
 
 /* Class = "NSButtonCell"; title = "Verify"; ObjectID = "zHz-9r-Cpj"; */
@@ -1548,7 +1560,4 @@
 
 /* Class = "NSTableColumn"; headerCell.title = "Remote catalog"; ObjectID = "zzK-ZO-wvj"; */
 "zzK-ZO-wvj.headerCell.title" = "Ekstern katalog";
-
-/* Class = "NSTableColumn"; headerCell.title = "Days"; ObjectID = "Aa2-8Q-PPo"; */
-"Aa2-8Q-PPo.headerCell.title" = "Dager";
 
