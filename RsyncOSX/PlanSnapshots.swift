@@ -94,14 +94,8 @@ class PlanSnapshots {
             } else if self.currentdaymonth(index: index) {
                 self.snapshotsloggdata?.snapshotslogs![index].setValue(1, forKey: "selectCellID")
             } else {
-                if self.keepallselcteddayofweek == true {
-                    if self.previousmonthskeepAllselecteddayofweek(index: index) {
-                        self.snapshotsloggdata?.snapshotslogs![index].setValue(1, forKey: "selectCellID")
-                    }
-                } else {
-                    if self.previousmonthskeepLastselecteddayofweek(index: index) {
-                        self.snapshotsloggdata?.snapshotslogs![index].setValue(1, forKey: "selectCellID")
-                    }
+                if self.keepallorlastdayinweek(index: index) {
+                    self.snapshotsloggdata?.snapshotslogs![index].setValue(1, forKey: "selectCellID")
                 }
             }
         }
@@ -143,8 +137,15 @@ class PlanSnapshots {
         return false
     }
 
-    // Keep snapshots last selected day every previous months
-    private func previousmonthskeepLastselecteddayofweek(index: Int) -> Bool {
+    typealias Keepallorlastdayinweekfunc = (Date) -> Bool
+
+    func keepallorlastdayinweek(index: Int) -> Bool {
+        var check: Keepallorlastdayinweekfunc?
+        if self.keepallselcteddayofweek {
+            check = self.isselectedDayinWeek
+        } else {
+            check = self.islastSelectedDayinMonth
+        }
         let datesnapshotstring = (self.snapshotsloggdata!.snapshotslogs![index].value(forKey: "dateExecuted") as? String)!
         let month = self.datefromstring(datestringlocalized: datesnapshotstring).monthNameShort()
         let day = self.datefromstring(datestringlocalized: datesnapshotstring).dayNameShort()
@@ -152,7 +153,7 @@ class PlanSnapshots {
             self.datecomponentsfromstring(datestringlocalized: self.now).month ||
             self.datecomponentsfromstring(datestringlocalized: datesnapshotstring).year! <
             self.datecomponentsfromstring(datestringlocalized: self.now).year! {
-            if self.islastSelectedDayinMonth(date: self.datefromstring(datestringlocalized: datesnapshotstring)) == true {
+            if check!(self.datefromstring(datestringlocalized: datesnapshotstring)) == true {
                 if self.datecomponentsfromstring(datestringlocalized: datesnapshotstring).month == self.datecomponentsfromstring(datestringlocalized: self.now).month! - 1 {
                     let tag = NSLocalizedString("Keep", comment: "plan")  + " " + day + ", " + month + " " + NSLocalizedString("previous month", comment: "plan")
                     self.snapshotsloggdata?.snapshotslogs![index].setValue(tag, forKey: "period")
@@ -176,40 +177,7 @@ class PlanSnapshots {
         return false
     }
 
-    // Keep snapshots all selected day every previous months
-    private func previousmonthskeepAllselecteddayofweek(index: Int) -> Bool {
-        let datesnapshotstring = (self.snapshotsloggdata!.snapshotslogs![index].value(forKey: "dateExecuted") as? String)!
-        let month = self.datefromstring(datestringlocalized: datesnapshotstring).monthNameShort()
-        let day = self.datefromstring(datestringlocalized: datesnapshotstring).dayNameShort()
-        if self.datecomponentsfromstring(datestringlocalized: datesnapshotstring).month !=
-            self.datecomponentsfromstring(datestringlocalized: self.now).month ||
-            self.datecomponentsfromstring(datestringlocalized: datesnapshotstring).year! <
-            self.datecomponentsfromstring(datestringlocalized: self.now).year! {
-            if self.isselectedDayinWeek(date: self.datefromstring(datestringlocalized: datesnapshotstring)) == true {
-                if self.datecomponentsfromstring(datestringlocalized: datesnapshotstring).month == self.datecomponentsfromstring(datestringlocalized: self.now).month! - 1 {
-                    let tag = NSLocalizedString("Keep", comment: "plan")  + " " + day + ", " + month + " " + NSLocalizedString("previous month", comment: "plan")
-                    self.snapshotsloggdata?.snapshotslogs![index].setValue(tag, forKey: "period")
-                } else {
-                    let tag = NSLocalizedString("Keep", comment: "plan")  + " " + day + ", " + month + " " + NSLocalizedString("earlier months", comment: "plan")
-                    self.snapshotsloggdata?.snapshotslogs![index].setValue(tag, forKey: "period")
-                }
-                return false
-            } else {
-                let date = self.datefromstring(datestringlocalized: datesnapshotstring)
-                if date.ispreviosmonth() {
-                    let tag = NSLocalizedString("Delete", comment: "plan") + " " + day + ", " + month + " " + NSLocalizedString("previous month", comment: "plan")
-                    self.snapshotsloggdata?.snapshotslogs![index].setValue(tag, forKey: "period")
-                } else {
-                    let tag = NSLocalizedString("Delete", comment: "plan") + " " + day + ", " + month + " " + NSLocalizedString("earlier months", comment: "plan")
-                    self.snapshotsloggdata?.snapshotslogs![index].setValue(tag, forKey: "period")
-                }
-                return true
-            }
-        }
-        return false
-    }
-
-    func islastSelectedDayinMonth(date: Date) -> Bool {
+    func islastSelectedDayinMonth(_ date: Date) -> Bool {
         if date.isSelectedDayofWeek(day: self.day!) && date.daymonth() > 24 {
             return true
         } else {
@@ -217,7 +185,7 @@ class PlanSnapshots {
         }
     }
 
-    func isselectedDayinWeek(date: Date) -> Bool {
+    func isselectedDayinWeek(_ date: Date) -> Bool {
         return self.day!.rawValue == date.getWeekday()
     }
 
