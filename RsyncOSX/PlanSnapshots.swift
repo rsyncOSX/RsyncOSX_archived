@@ -181,7 +181,6 @@ class PlanSnapshots {
         let datesnapshotstring = (self.snapshotsloggdata!.snapshotslogs![index].value(forKey: "dateExecuted") as? String)!
         let month = self.datefromstring(datestringlocalized: datesnapshotstring).monthNameShort()
         let day = self.datefromstring(datestringlocalized: datesnapshotstring).dayNameShort()
-        // let year = self.datefromstring(datestringlocalized: datesnapshotstring).year()
         if self.datecomponentsfromstring(datestringlocalized: datesnapshotstring).month !=
             self.datecomponentsfromstring(datestringlocalized: self.now).month ||
             self.datecomponentsfromstring(datestringlocalized: datesnapshotstring).year! <
