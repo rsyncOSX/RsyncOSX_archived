@@ -180,9 +180,6 @@
 /* plan */
 "Monday" = "mandag";
 
-/* plan */
-"month" = "måned";
-
 /* Execute */
 "New version is available - see About" = "Ny versjon er tilgjengelig - se Om";
 
@@ -239,12 +236,6 @@
 
 /* Execute */
 "Possible error logging..." = "Mulig feil logging...";
-
-/* plan */
-"prev month" = "forrige måned";
-
-/* plan */
-"prev months" = "forrige måned";
 
 /* plan */
 "previous month" = "forrige måned";
