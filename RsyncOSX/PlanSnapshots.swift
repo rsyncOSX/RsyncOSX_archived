@@ -142,7 +142,7 @@ class PlanSnapshots {
     func keepallorlastdayinweek(index: Int) -> Bool {
         var check: Keepallorlastdayinweekfunc?
         if self.keepallselcteddayofweek {
-             check = self.isselectedDayinWeek
+            check = self.isselectedDayinWeek
         } else {
             check = self.islastSelectedDayinMonth
         }
@@ -177,7 +177,7 @@ class PlanSnapshots {
         return false
     }
 
-    func islastSelectedDayinMonth(date: Date) -> Bool {
+    func islastSelectedDayinMonth(_ date: Date) -> Bool {
         if date.isSelectedDayofWeek(day: self.day!) && date.daymonth() > 24 {
             return true
         } else {
@@ -185,7 +185,7 @@ class PlanSnapshots {
         }
     }
 
-    func isselectedDayinWeek(date: Date) -> Bool {
+    func isselectedDayinWeek(_ date: Date) -> Bool {
         return self.day!.rawValue == date.getWeekday()
     }
 
