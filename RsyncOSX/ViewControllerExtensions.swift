@@ -321,6 +321,8 @@ extension ChangeTemporaryRestorePath {
     func changetemporaryrestorepath() {
         let view = ViewControllerReference.shared.getvcref(viewcontroller: .vccopyfiles) as? ViewControllerCopyFiles
         view?.temporaryrestorepath()
+        let view2 = ViewControllerReference.shared.getvcref(viewcontroller: .vcrestore) as? ViewControllerRestore
+        view2?.temporaryrestorepath()
     }
 }
 
