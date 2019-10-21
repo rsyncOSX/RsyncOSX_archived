@@ -14,13 +14,13 @@
 "Add" = "Legg til";
 
 /* Add schedule */
-"Add Schedule?" = "Legg til schedule?";
+"Add Schedule?" = "Legg til oppgave?";
 
 /* Batch */
 "Batchtasks completed, close view..." = "Batch oppgaver ferdig, lukker...";
 
 /* Tooltip */
-"By using Finder drag and drop filepaths." = "Bruk Finder for dra og slipp stier.";
+"By using Finder drag and drop filepaths." = "Bruk Finder for dra og slipp filstier.";
 
 /* Cancel NSAlert */
 "Cancel" = "Kanseler";
@@ -257,7 +257,7 @@
 "Save" = "Lagre";
 
 /* Schedules */
-"Scheduled tasks in menu app..." = "Schedulerte oppgaver i meny app...";
+"Scheduled tasks in menu app..." = "Planlagte oppgaver i meny app...";
 
 /* datetime */
 "secs" = "sek";
