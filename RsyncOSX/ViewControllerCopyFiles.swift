@@ -332,7 +332,6 @@ extension ViewControllerCopyFiles: UpdateProgress {
             self.restorebutton.isEnabled = true
         }
         self.working.stopAnimation(nil)
-        self.presentAsSheet(self.viewControllerInformation!)
     }
 
     func fileHandler() {
