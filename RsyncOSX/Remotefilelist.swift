@@ -22,7 +22,7 @@ class Remotefilelist: ProcessCmd, SetConfigurations {
         let index = self.configurations?.getIndex(hiddenID) ?? -1
         self.config = self.configurations!.getConfigurations()[index]
         self.outputprocess = OutputProcess()
-        self.argumentsobject = CopyFilesArguments(task: .rsyncCmdFileListings, config: self.config!,
+        self.argumentsobject = CopyFilesArguments(task: .rsyncfilelistings, config: self.config!,
                                 remoteFile: nil, localCatalog: nil, drynrun: nil)
         self.arguments = self.argumentsobject!.getArguments()
         self.command = self.argumentsobject!.getCommand()

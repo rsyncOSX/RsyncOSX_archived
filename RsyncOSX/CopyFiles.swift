@@ -12,7 +12,6 @@ final class CopyFiles: SetConfigurations {
 
     private var index: Int?
     private var config: Configuration?
-    var argumentsObject: CopyFilesArguments?
     private var commandDisplay: String?
     var process: ProcessCmd?
     var outputprocess: OutputProcess?
@@ -30,25 +29,18 @@ final class CopyFiles: SetConfigurations {
     func executecopyfiles(remotefile: String, localCatalog: String, dryrun: Bool, updateprogress: UpdateProgress) {
         var arguments: [String]?
         guard self.config != nil else { return }
-        if dryrun {
-            self.argumentsObject = CopyFilesArguments(task: .rsyncCmd, config: self.config!, remoteFile: remotefile,
-                                                     localCatalog: localCatalog, drynrun: true)
-            arguments = self.argumentsObject!.getArguments()
-        } else {
-            self.argumentsObject = CopyFilesArguments(task: .rsyncCmd, config: self.config!, remoteFile: remotefile,
-                                                     localCatalog: localCatalog, drynrun: false)
-            arguments = self.argumentsObject!.getArguments()
-        }
+        arguments = CopyFilesArguments(task: .rsync, config: self.config!, remoteFile: remotefile,
+        localCatalog: localCatalog, drynrun: dryrun).getArguments()
         self.outputprocess = OutputProcess()
         self.sendprocess?.sendoutputprocessreference(outputprocess: self.outputprocess)
         self.process = ProcessCmd(command: nil, arguments: arguments)
         self.process?.setupdateDelegate(object: updateprogress)
-        self.process!.executeProcess(outputprocess: self.outputprocess)
+        self.process?.executeProcess(outputprocess: self.outputprocess)
     }
 
     func getCommandDisplayinView(remotefile: String, localCatalog: String) -> String {
         guard self.config != nil else { return "" }
-        self.commandDisplay = CopyFilesArguments(task: .rsyncCmd, config: self.config!, remoteFile: remotefile,
+        self.commandDisplay = CopyFilesArguments(task: .rsync, config: self.config!, remoteFile: remotefile,
                                                 localCatalog: localCatalog, drynrun: true).getcommandDisplay()
         return self.commandDisplay ?? ""
     }

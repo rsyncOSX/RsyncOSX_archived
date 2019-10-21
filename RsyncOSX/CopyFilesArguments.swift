@@ -10,15 +10,15 @@
 import Foundation
 
 enum Enumscopyfiles {
-    case rsyncCmd
-    case rsyncCmdFileListings
+    case rsync
+    case rsyncfilelistings
     case snapshotcatalogs
 }
 
 final class CopyFilesArguments: ProcessArguments {
 
     private var arguments: [String]?
-    private var argDisplay: String?
+    private var argdisplay: String?
     private var command: String?
     private var config: Configuration?
 
@@ -31,20 +31,20 @@ final class CopyFilesArguments: ProcessArguments {
     }
 
     func getcommandDisplay() -> String {
-        guard self.argDisplay != nil else { return "" }
-        return self.argDisplay!
+        guard self.argdisplay != nil else { return "" }
+        return self.argdisplay!
     }
 
     init (task: Enumscopyfiles, config: Configuration, remoteFile: String?, localCatalog: String?, drynrun: Bool?) {
         self.arguments = [String]()
         self.config = config
         switch task {
-        case .rsyncCmd:
+        case .rsync:
             let arguments = RsyncParametersSingleFilesArguments(config: config, remoteFile: remoteFile, localCatalog: localCatalog, drynrun: drynrun)
             self.arguments = arguments.getArguments()
             self.command = arguments.getCommand()
-            self.argDisplay = arguments.getArgumentsDisplay()
-        case .rsyncCmdFileListings:
+            self.argdisplay = arguments.getArgumentsDisplay()
+        case .rsyncfilelistings:
             let arguments = GetRemoteFileListingsArguments(config: config, recursive: true)
             self.arguments = arguments.getArguments()
             self.command = arguments.getCommand()
