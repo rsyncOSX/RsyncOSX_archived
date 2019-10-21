@@ -383,7 +383,7 @@
 "CiR-sD-XpQ.headerCell.title" = "Ekstern server";
 
 /* Class = "NSTableColumn"; headerCell.title = "Select file or catalog to restore (and double click to copy in one go)"; ObjectID = "cKa-xb-U4B"; */
-"cKa-xb-U4B.headerCell.title" = "Velg fil eller katalog for restore (og dobbel klikk for å kopiere)";
+"cKa-xb-U4B.headerCell.title" = "Velg fil eller katalog for kopier (eller dobbel klikk)";
 
 /* Class = "NSButtonCell"; title = "Delete"; ObjectID = "CkB-lg-RfP"; */
 "CkB-lg-RfP.title" = "Slett";
@@ -607,7 +607,7 @@
 /* Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "gJb-lQ-0wt"; */
 "gJb-lQ-0wt.title" = "Text Cell";
 
-/* Class = "NSViewController"; title = "Copy files"; ObjectID = "GJH-xK-5LY"; */
+/* Class = "NSViewController"; title = "Files"; ObjectID = "GJH-xK-5LY"; */
 "GJH-xK-5LY.title" = "Filer";
 
 /* Class = "NSTextFieldCell"; title = "Table View Cell"; ObjectID = "gKi-ca-sia"; */
