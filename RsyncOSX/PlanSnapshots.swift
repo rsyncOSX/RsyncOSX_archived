@@ -48,7 +48,6 @@ class PlanSnapshots {
     weak var reloadDelegate: Reloadandrefresh?
     var snapshotsloggdata: SnapshotsLoggData?
     private var numberoflogs: Int?
-    private var firstlog: Double?
     private var keepallselcteddayofweek: Bool = true
     var now: String?
 
@@ -94,7 +93,7 @@ class PlanSnapshots {
             } else if self.currentdaymonth(index: index) {
                 self.snapshotsloggdata?.snapshotslogs![index].setValue(1, forKey: "selectCellID")
             } else {
-                if self.keepallorlastdayinweek(index: index) {
+                if self.keepallorlastdayinperiod(index: index) {
                     self.snapshotsloggdata?.snapshotslogs![index].setValue(1, forKey: "selectCellID")
                 }
             }
@@ -137,10 +136,10 @@ class PlanSnapshots {
         return false
     }
 
-    typealias Keepallorlastdayinweekfunc = (Date) -> Bool
+    typealias Keepallorlastdayinperiodfunc = (Date) -> Bool
 
-    func keepallorlastdayinweek(index: Int) -> Bool {
-        var check: Keepallorlastdayinweekfunc?
+    func keepallorlastdayinperiod(index: Int) -> Bool {
+        var check: Keepallorlastdayinperiodfunc?
         if self.keepallselcteddayofweek {
             check = self.isselectedDayinWeek
         } else {
@@ -190,8 +189,7 @@ class PlanSnapshots {
     }
 
     private func reset() {
-        guard self.snapshotsloggdata?.snapshotslogs != nil else { return }
-        for i in 0 ..< self.snapshotsloggdata!.snapshotslogs!.count {
+        for i in 0 ..< (self.snapshotsloggdata!.snapshotslogs?.count ?? 0) {
             self.snapshotsloggdata?.snapshotslogs![i].setValue(0, forKey: "selectCellID")
         }
     }
@@ -238,7 +236,6 @@ class PlanSnapshots {
         self.snapshotsloggdata = self.SnapshotsLoggDataDelegate?.getsnapshotsloggdata()
         guard self.snapshotsloggdata?.snapshotslogs != nil else { return }
         self.numberoflogs = self.snapshotsloggdata?.snapshotslogs?.count ?? 0
-        self.firstlog = Double(self.snapshotsloggdata?.snapshotslogs![0].value(forKey: "days") as? String ?? "0")
         let dateformatter = DateFormatter()
         dateformatter.formatterBehavior = .behavior10_4
         dateformatter.dateStyle = .medium
