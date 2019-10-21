@@ -1343,7 +1343,7 @@
 "VFf-HQ-GLW.headerCell.title" = "Periode";
 
 /* Class = "NSBox"; title = "Rsync"; ObjectID = "vgF-FF-cIJ"; */
-"vgF-FF-cIJ.title" = "Rsync, path og logging";
+"vgF-FF-cIJ.title" = "Rsync";
 
 /* Class = "NSBox"; title = "Remote info"; ObjectID = "vJI-G9-Mbp"; */
 "vJI-G9-Mbp.title" = "Ekstern info";
