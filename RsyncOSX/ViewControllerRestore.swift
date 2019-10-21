@@ -75,6 +75,7 @@ class ViewControllerRestore: NSViewController, SetConfigurations, Abort, Connect
                 self.gotit.textColor = setcolor(nsviewcontroller: self, color: .white)
                 let gotit: String = NSLocalizedString("Executing restore...", comment: "Restore")
                 self.gotit.stringValue = gotit
+                self.gotit.isHidden = false
                 self.restorebutton.isEnabled = false
                 self.outputprocess = OutputProcess()
                 globalMainQueue.async(execute: { () -> Void in
@@ -104,6 +105,7 @@ class ViewControllerRestore: NSViewController, SetConfigurations, Abort, Connect
 
     override func viewDidAppear() {
         super.viewDidAppear()
+        self.gotit.isHidden = true
         guard self.diddissappear == false else { return }
         self.restorebutton.isEnabled = false
         self.estimatebutton.isEnabled = false
@@ -140,6 +142,7 @@ class ViewControllerRestore: NSViewController, SetConfigurations, Abort, Connect
             self.gotit.textColor = self.setcolor(nsviewcontroller: self, color: .green)
             let gotit: String = NSLocalizedString("Got it...", comment: "Restore")
             self.gotit.stringValue = gotit
+            self.gotit.isHidden = false
         })
     }
 
@@ -149,6 +152,7 @@ class ViewControllerRestore: NSViewController, SetConfigurations, Abort, Connect
                 self.gotit.textColor = setcolor(nsviewcontroller: self, color: .white)
                 let gotit: String = NSLocalizedString("Getting info, please wait...", comment: "Restore")
                 self.gotit.stringValue = gotit
+                self.gotit.isHidden = false
                 self.estimatebutton.isEnabled = false
                 self.working.startAnimation(nil)
                 self.outputprocess = OutputProcess()
@@ -163,7 +167,8 @@ class ViewControllerRestore: NSViewController, SetConfigurations, Abort, Connect
                 }
             } else {
                 self.gotit.stringValue = NSLocalizedString("Seems not to be connected...", comment: "Remote Info")
-                self.gotit.textColor = self.setcolor(nsviewcontroller: self, color: .green)
+                self.gotit.textColor = self.setcolor(nsviewcontroller: self, color: .red)
+                self.gotit.isHidden = false
             }
         }
     }
