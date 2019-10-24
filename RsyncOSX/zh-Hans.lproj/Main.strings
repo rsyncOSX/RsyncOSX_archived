@@ -209,10 +209,10 @@
 "55G-cO-jYL.title" = "Text Cell";
 
 /* Class = "NSTextFieldCell"; title = "Profile :"; ObjectID = "60W-M7-Vqr"; */
-"60W-M7-Vqr.title" = "简介：";
+"60W-M7-Vqr.title" = "配置：";
 
 /* Class = "NSButtonCell"; title = "Estimate"; ObjectID = "65j-NR-wz6"; */
-"65j-NR-wz6.title" = "估计";
+"65j-NR-wz6.title" = "预计";
 
 /* Class = "NSTextFieldCell"; title = "Number of directories:"; ObjectID = "66b-7r-iey"; */
 "66b-7r-iey.title" = "目录数量：";
@@ -452,7 +452,7 @@
 "dti-GW-qCA.title" = "可选的";
 
 /* Class = "NSTextFieldCell"; title = "Profile :"; ObjectID = "dTX-H7-8VC"; */
-"dTX-H7-8VC.title" = "简介：";
+"dTX-H7-8VC.title" = "配置：";
 
 /* Class = "NSTableColumn"; headerCell.title = "Snap"; ObjectID = "e0Y-OG-qu5"; */
 "e0Y-OG-qu5.headerCell.title" = "快照";
@@ -464,7 +464,7 @@
 "E4i-DW-PcT.title" = "新版本";
 
 /* Class = "NSViewController"; title = "Details about files"; ObjectID = "e5v-pd-xF9"; */
-"e5v-pd-xF9.title" = "有关文件的详情";
+"e5v-pd-xF9.title" = "相关文件的详情";
 
 /* Class = "NSTableColumn"; headerCell.title = "ID"; ObjectID = "E9g-tP-EaI"; */
 "E9g-tP-EaI.headerCell.title" = "ID";
@@ -512,7 +512,7 @@
 "eNk-N9-vVo.title" = "Text Cell";
 
 /* Class = "NSTextFieldCell"; title = "rsyncversionshort"; ObjectID = "EU9-bF-96n"; */
-"EU9-bF-96n.title" = "rsyncversionshort";
+"EU9-bF-96n.title" = "rsync短版本";
 
 /* Class = "NSWindow"; title = "RsyncOSX"; ObjectID = "EVd-zs-u1i"; */
 "EVd-zs-u1i.title" = "RsyncOSX";
@@ -773,7 +773,7 @@
 "IiK-OB-SY0.title" = "新配置信息名称：";
 
 /* Class = "NSBox"; title = "Paths for RsyncOSX and RsyncOSXsched"; ObjectID = "iLe-BY-z0B"; */
-"iLe-BY-z0B.title" = "Paths for RsyncOSX and RsyncOSXsched";
+"iLe-BY-z0B.title" = "RsyncOSX and RsyncOSXsched 的路径";
 
 /* Class = "NSTextFieldCell"; title = "Getting information, please wait ..."; ObjectID = "IMJ-3e-rYJ"; */
 "IMJ-3e-rYJ.title" = "获取信息，请稍候......";
@@ -911,10 +911,10 @@
 "lzX-Ie-xTz.title" = "Text Cell";
 
 /* Class = "NSTextFieldCell"; title = "optional path for rsync:"; ObjectID = "m7F-8t-VwR"; */
-"m7F-8t-VwR.title" = "optional path for rsync:";
+"m7F-8t-VwR.title" = "rsync可选路径:";
 
 /* Class = "NSViewController"; title = "All output"; ObjectID = "mal-sc-mlY"; */
-"mal-sc-mlY.title" = "All output";
+"mal-sc-mlY.title" = "所有输出";
 
 /* Class = "NSButtonCell"; title = "minimum log"; ObjectID = "Md7-8G-z2y"; */
 "Md7-8G-z2y.title" = "最小日志";
@@ -1046,7 +1046,7 @@
 "P5d-qB-XWj.title" = "服务器：";
 
 /* Class = "NSMenuItem"; title = "Parameters"; ObjectID = "p9L-16-Icv"; */
-"p9L-16-Icv.title" = "Parameters";
+"p9L-16-Icv.title" = "参数";
 
 /* Class = "NSMenuItem"; title = "Info all"; ObjectID = "p56-o9-HcO"; */
 "p56-o9-HcO.title" = "所有信息";
@@ -1175,7 +1175,7 @@
 "RX2-fV-dtX.title" = "估计";
 
 /* Class = "NSTableColumn"; headerCell.title = "When"; ObjectID = "rXA-1B-Zpu"; */
-"rXA-1B-Zpu.headerCell.title" = "When";
+"rXA-1B-Zpu.headerCell.title" = "什么时候？";
 
 /* Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "rYt-b4-jmF"; */
 "rYt-b4-jmF.title" = "Text Cell";
@@ -1202,7 +1202,7 @@
 "SHi-wp-O4D.title" = "远程信息";
 
 /* Class = "NSMenuItem"; title = "Paste"; ObjectID = "SJF-H0-E3i"; */
-"SJF-H0-E3i.title" = "糊";
+"SJF-H0-E3i.title" = "粘贴";
 
 /* Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "sKa-Hn-USH"; */
 "sKa-Hn-USH.title" = "Text Cell";
@@ -1247,7 +1247,7 @@
 "TdE-t5-FjR.title" = "上次备份的天数：";
 
 /* Class = "NSTextFieldCell"; title = "scp dsa pub key:"; ObjectID = "Tes-Z8-BIj"; */
-"Tes-Z8-BIj.title" = "scp dsa pub key：";
+"Tes-Z8-BIj.title" = "scp dsa 公钥：";
 
 /* Class = "NSBox"; title = "Restore"; ObjectID = "TG2-I2-JNe"; */
 "TG2-I2-JNe.title" = "恢复";
@@ -1361,7 +1361,7 @@
 "VFf-HQ-GLW.headerCell.title" = "期";
 
 /* Class = "NSBox"; title = "Rsync"; ObjectID = "vgF-FF-cIJ"; */
-"vgF-FF-cIJ.title" = "Rsync, paths and logging";
+"vgF-FF-cIJ.title" = "Rsync 路径和日志";
 
 /* Class = "NSBox"; title = "Remote info"; ObjectID = "vJI-G9-Mbp"; */
 "vJI-G9-Mbp.title" = "远程信息";
@@ -1433,7 +1433,7 @@
 "WVf-5Q-8C4.title" = "可选的";
 
 /* Class = "NSTextFieldCell"; title = "scp rsa pub key:"; ObjectID = "WW7-sg-7Xq"; */
-"WW7-sg-7Xq.title" = "scp rsa pub key：";
+"WW7-sg-7Xq.title" = "scp rsa 公钥：";
 
 /* Class = "NSButtonCell"; title = "Delete"; ObjectID = "WYK-hg-6Bv"; */
 "WYK-hg-6Bv.title" = "删除";
