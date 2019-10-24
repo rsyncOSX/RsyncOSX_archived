@@ -135,7 +135,7 @@
 
 /* Remote Info
    Restore */
-"Got it..." = "得到它了...";
+"Got it..." = "已经获取...";
 
 /* datetime */
 "h" = "H";
@@ -160,7 +160,7 @@
 "Local or remote catalog cannot be empty..." = "本地或远程目录不能为空...";
 
 /* main */
-"manuel" = "曼努埃尔";
+"manuel" = "文档";
 
 /* Execute */
 "Menu app is running..." = "菜单应用正在运行...";
@@ -262,7 +262,7 @@
 /* Copy files
    Remote Info
    Verify */
-"Seems not to be connected..." = "似乎没有联系......";
+"Seems not to be connected..." = "似乎无法链接......";
 
 /* Execute */
 "Select a task...." = "选择任务....";
@@ -274,7 +274,7 @@
 "Selection out of range - aborting" = "选择超出范围 - 中止";
 
 /* Snapshots */
-"Seriously, enter a real number..." = "说真的，输入一个实数...";
+"Seriously, enter a real number..." = "请输入一个h数字...";
 
 /* Restore */
 "Start restore?" = "开始恢复？";
@@ -283,16 +283,16 @@
 "Sunday" = "星期日";
 
 /* Quickbackup */
-"There seems to be nothing to do..." = "似乎无所事事......";
+"There seems to be nothing to do..." = "好像什么都没有做......";
 
 /* Execute */
-"This is a combined task, execute by ⌘R..." = "这是一个组合任务，由⌘R执行...";
+"This is a combined task, execute by ⌘R..." = "这是一个组合任务，按⌘R执行...";
 
 /* plan */
-"this month" = "这个月";
+"this month" = "本月";
 
 /* plan */
-"this week" = "本星期";
+"this week" = "本周";
 
 /* plan */
 "Thursday" = "星期四";
@@ -310,8 +310,8 @@
 "weekly" = "每周";
 
 /* Snapshots */
-"You cannot delete that many, max are" = "你不能删除那么多，最多";
+"You cannot delete that many, max are" = "无法删除，最多";
 
 /* About */
-"You have the latest ..." = "你有最新的......";
+"You have the latest ..." = "发现新版本......";
 
