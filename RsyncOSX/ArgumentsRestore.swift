@@ -21,11 +21,7 @@ final class ArgumentsRestore: RsyncParameters {
         }
         self.setParameters1To6(config: self.config!, dryRun: dryRun, forDisplay: forDisplay, verify: false)
         self.setParameters8To14(config: self.config!, dryRun: dryRun, forDisplay: forDisplay)
-        if tmprestore {
-            self.argumentsforrestore(dryRun: dryRun, forDisplay: forDisplay, tmprestore: tmprestore)
-        } else {
-            self.argumentsforrestore(dryRun: dryRun, forDisplay: forDisplay, tmprestore: tmprestore)
-        }
+        self.argumentsforrestore(dryRun: dryRun, forDisplay: forDisplay, tmprestore: tmprestore)
         return self.arguments ?? [""]
     }
 
