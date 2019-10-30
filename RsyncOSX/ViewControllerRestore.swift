@@ -64,6 +64,14 @@ class ViewControllerRestore: NSViewController, SetConfigurations, Abort, Connect
         })
     }
 
+    // Abort button
+       @IBAction func abort(_ sender: NSButton) {
+           self.working.stopAnimation(nil)
+           self.estimatebutton.isEnabled = true
+           self.restorebutton.isEnabled = false
+           self.abort()
+       }
+
     @IBAction func restore(_ sender: NSButton) {
         guard self.checkforrsync() == false else { return }
         let question: String = NSLocalizedString("Do you REALLY want to start a RESTORE ?", comment: "Restore")
