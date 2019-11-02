@@ -66,6 +66,22 @@ class RsyncOSXTests: XCTestCase, SetConfigurations, SetSchedules {
                        "Arguments should be equal")
     }
 
+    func testargumentsrestore0() {
+          let arguments = ["--archive", "--verbose", "--compress", "--delete", "-e", "ssh -p 22", "--exclude=.git",
+          "--backup", "--backup-dir=../backup_XCTest", "--suffix=_$(date +%Y-%m-%d.%H.%M)",
+          "--stats", "thomas@10.0.0.57:/backup2/RsyncOSX/XCTest/", "/Users/thomas/XCTest/"]
+          XCTAssertEqual(arguments, self.configurations?.arguments4restore(index: 0, argtype: .arg),
+                         "Arguments should be equal")
+      }
+
+    func testargumentsrestoretmp0() {
+        let arguments = ["--archive", "--verbose", "--compress", "--delete", "-e", "ssh -p 22", "--exclude=.git",
+        "--backup", "--backup-dir=../backup_XCTest", "--suffix=_$(date +%Y-%m-%d.%H.%M)",
+        "--stats", "thomas@10.0.0.57:/backup2/RsyncOSX/XCTest/", "/temporaryrestore"]
+        XCTAssertEqual(arguments, self.configurations?.arguments4tmprestore(index: 0, argtype: .arg),
+                         "Arguments should be equal")
+    }
+
     func testalllogs() {
         let schedules = ScheduleLoggData(sortascending: true)
         XCTAssertEqual(1, schedules.loggdata?.count, "Should be one")
@@ -91,21 +107,5 @@ class RsyncOSXTests: XCTestCase, SetConfigurations, SetSchedules {
         XCTAssertEqual(3, schedules.getSchedule().count, "Should be three")
         let schedulesortedandexpanded = ScheduleSortedAndExpand(schedules: schedules)
         XCTAssertEqual("23h 59m", schedulesortedandexpanded.sortandcountscheduledonetask(1, profilename: nil, number: true), "23h 59m")
-    }
-
-    func testargumentsrestore3() {
-        let arguments = ["--archive", "--verbose", "--compress", "--delete", "-e", "ssh -p 22", "--exclude=.git",
-        "--backup", "--backup-dir=../backup_XCTest", "--suffix=_$(date +%Y-%m-%d.%H.%M)",
-        "--stats", "thomas@10.0.0.57:/backup2/RsyncOSX/XCTest/", "/Users/thomas/XCTest/"]
-        XCTAssertEqual(arguments, self.configurations?.arguments4restore(index: 0, argtype: .arg),
-                       "Arguments should be equal")
-    }
-
-    func testargumentsrestoretmp3() {
-        let arguments = ["--archive", "--verbose", "--compress", "--delete", "-e", "ssh -p 22", "--exclude=.git",
-        "--backup", "--backup-dir=../backup_XCTest", "--suffix=_$(date +%Y-%m-%d.%H.%M)",
-        "--stats", "thomas@10.0.0.57:/backup2/RsyncOSX/XCTest/", "/temporaryrestore"]
-        XCTAssertEqual(arguments, self.configurations?.arguments4tmprestore(index: 0, argtype: .arg),
-                       "Arguments should be equal")
     }
 }

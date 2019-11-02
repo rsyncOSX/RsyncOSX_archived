@@ -98,7 +98,7 @@
 "Do you REALLY want to DELETE selected snapshots?" = "Vil du VIRKELIG SLETTE valgte snapshot?";
 
 /* Restore */
-"Do you REALLY want to start a RESTORE ?" = "Vil du VIRKELIG utføre en KOPIER?";
+"Do you REALLY want to start a RESTORE ?" = "Vil du VIRKELIG utføre en KOPI?";
 
 /* Snapshots */
 "Dont change the snapshot num if you don´t know what you are doing..." = "Ikke endre snapshot nummer hvis du ikke vet hva du gjør...";
@@ -119,7 +119,7 @@
 "every" = "alle";
 
 /* Restore */
-"Executing restore..." = "Utfører kopier...";
+"Executing restore..." = "Utfører kopi...";
 
 /* plan */
 "Friday" = "fredag";
@@ -247,7 +247,7 @@
 "Profile: please wait..." = "Profil: vennligst vent...";
 
 /* Restore */
-"Restore" = "Kopier";
+"Restore" = "Kopi";
 
 /* plan */
 "Saturday" = "lørdag";
@@ -280,7 +280,7 @@
 "Seriously, enter a real number..." = "Seriøst, legg inn et nummer...";
 
 /* Restore */
-"Start restore?" = "Start kopier?";
+"Start restore?" = "Start kopi?";
 
 /* plan */
 "Sunday" = "søndag";
