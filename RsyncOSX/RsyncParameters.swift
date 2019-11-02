@@ -242,7 +242,7 @@ class RsyncParameters {
             if forDisplay {self.arguments!.append(" ")}
         }
         if tmprestore {
-            let restorepath = ""
+            let restorepath = ViewControllerReference.shared.restorePath ?? ""
             self.arguments!.append(restorepath)
         } else {
             self.arguments!.append(self.localCatalog!)
