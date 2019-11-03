@@ -25,7 +25,7 @@ class PersistentStorageAllprofilesAPI: PersistentStorageAPI {
 
     // Read schedules and history
     // If no Schedule from persistent store return nil
-    override func getScheduleandhistory(nolog: Bool) -> [ConfigurationSchedule]? {
+    func getScheduleandhistory(nolog: Bool) -> [ConfigurationSchedule]? {
         let read = PersistentStorageScheduling(profile: self.profile, allprofiles: true)
         var schedule = [ConfigurationSchedule]()
         guard read.schedulesasdictionary != nil else { return nil }
