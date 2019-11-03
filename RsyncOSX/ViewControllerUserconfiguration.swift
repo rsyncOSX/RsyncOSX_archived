@@ -16,7 +16,6 @@ protocol MenuappChanged: class {
 
 class ViewControllerUserconfiguration: NSViewController, NewRsync, SetDismisser, Delay, ChangeTemporaryRestorePath {
 
-    var storageapi: PersistentStorageAPI?
     var dirty: Bool = false
     weak var reloadconfigurationsDelegate: Createandreloadconfigurations?
     weak var menuappDelegate: MenuappChanged?
@@ -98,7 +97,7 @@ class ViewControllerUserconfiguration: NSViewController, NewRsync, SetDismisser,
             self.setRestorePath()
             self.setmarknumberofdayssince()
             self.setEnvironment()
-            _ = self.storageapi!.saveUserconfiguration()
+            _ = PersistentStorageUserconfiguration().saveuserconfiguration()
             if self.reload {
                 self.reloadconfigurationsDelegate?.createandreloadconfigurations()
             }
@@ -281,7 +280,6 @@ class ViewControllerUserconfiguration: NSViewController, NewRsync, SetDismisser,
         self.pathRsyncOSX.delegate = self
         self.pathRsyncOSXsched.delegate = self
         self.environment.delegate = self
-        self.storageapi = PersistentStorageAPI(profile: nil)
         self.nologging.state = .on
         self.reloadconfigurationsDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllerMain
     }

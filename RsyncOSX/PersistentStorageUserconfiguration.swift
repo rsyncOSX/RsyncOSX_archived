@@ -10,27 +10,26 @@ import Foundation
 
 final class PersistentStorageUserconfiguration: ReadWriteDictionary {
 
-    /// Variable holds all configuration data
-    var userconfiguration: [NSDictionary]?
+      // Saving user configuration
+     func saveuserconfiguration() {
+         if let array: [NSDictionary] = ConvertUserconfiguration().userconfiguration {
+             self.writeToStore(array: array)
+         }
+     }
 
-    // Saving user configuration
-    func saveUserconfiguration () {
-        if let array: [NSDictionary] = ConvertUserconfiguration().userconfiguration {
-            self.writeToStore(array: array)
-        }
-    }
+     //func read userconfiguration
+     func readuserconfiguration() -> [NSDictionary]? {
+         return self.readNSDictionaryFromPersistentStore()
+     }
 
-    // Writing configuration to persistent store
-    // Configuration is [NSDictionary]
-    private func writeToStore(array: [NSDictionary]) {
-        // Getting the object just for the write method, no read from persistent store
-        _ = self.writeNSDictionaryToPersistentStorage(array)
-    }
+     // Writing configuration to persistent store
+     // Configuration is [NSDictionary]
+     private func writeToStore (array: [NSDictionary]) {
+         // Getting the object just for the write method, no read from persistent store
+         _ = self.writeNSDictionaryToPersistentStorage(array)
+     }
 
-    init (readfromstorage: Bool) {
-        super.init(whattoreadwrite: .userconfig, profile: nil, configpath: ViewControllerReference.shared.configpath)
-        if readfromstorage {
-            self.userconfiguration = self.readNSDictionaryFromPersistentStore()
-        }
-    }
+     init () {
+         super.init(whattoreadwrite: .userconfig, profile: nil, configpath: ViewControllerReference.shared.configpath)
+     }
 }
