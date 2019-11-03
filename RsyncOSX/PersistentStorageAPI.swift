@@ -66,5 +66,4 @@ class PersistentStorageAPI: SetConfigurations, SetSchedules {
     init(profile: String?) {
         self.profile = profile
     }
-
 }
