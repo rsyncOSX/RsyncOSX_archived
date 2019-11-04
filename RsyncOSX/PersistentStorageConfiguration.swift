@@ -34,7 +34,6 @@ final class PersistentStorageConfiguration: ReadWriteDictionary, SetConfiguratio
         }
     }
 
-    // CONFIGURATIONS
     // Read configurations from persisten store
     func getConfigurations() -> [Configuration]? {
         let read = PersistentStorageConfiguration(profile: self.profile)
