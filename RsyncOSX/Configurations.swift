@@ -242,7 +242,7 @@ class Configurations: ReloadTable, SetSchedules {
 
     // Add new configurations
     func addNewConfigurations(_ dict: NSMutableDictionary) {
-        _ = PersistentStorageConfiguration(profile: self.profile).addandsaveNewConfigurations(dict: dict)
+        _ = PersistentStorageConfiguration(profile: self.profile).newConfigurations(dict: dict)
     }
 
     func getResourceConfiguration(_ hiddenID: Int, resource: ResourceInConfiguration) -> String {

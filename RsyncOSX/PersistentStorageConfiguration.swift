@@ -46,13 +46,6 @@ final class PersistentStorageConfiguration: ReadWriteDictionary, SetConfiguratio
         return Configurations
     }
 
-    // Saving added configuration
-    func addandsaveNewConfigurations(dict: NSMutableDictionary) {
-        let save = PersistentStorageConfiguration(profile: self.profile)
-        save.newConfigurations(dict: dict)
-        save.saveconfigInMemoryToPersistentStore()
-    }
-
     // Saving Configuration from MEMORY to persistent store
     // Reads Configurations from MEMORY and saves to persistent Store
     func saveconfigInMemoryToPersistentStore() {
@@ -67,7 +60,6 @@ final class PersistentStorageConfiguration: ReadWriteDictionary, SetConfiguratio
     }
 
     // Add new configuration in memory to permanent storage
-    // NB : Function does NOT store Configurations to persistent store
     func newConfigurations(dict: NSMutableDictionary) {
         var array = [NSDictionary]()
         let configs: [Configuration] = self.configurations!.getConfigurations()
@@ -80,6 +72,7 @@ final class PersistentStorageConfiguration: ReadWriteDictionary, SetConfiguratio
         dict.removeObject(forKey: "singleFile")
         array.append(dict)
         self.configurations!.appendconfigurationstomemory(dict: array[array.count - 1])
+        self.saveconfigInMemoryToPersistentStore()
     }
 
     // Writing configuration to persistent store
