@@ -12,7 +12,7 @@ class PersistentStorageAllprofilesAPI: SetConfigurations, SetSchedules {
 
     var profile: String?
 
-    // CONFIGURATIONS
+    // Configurations
     // Read configurations from persisten store
     func getConfigurations() -> [Configuration]? {
         let read = PersistentStorageConfiguration(profile: self.profile, allprofiles: true)
@@ -25,7 +25,7 @@ class PersistentStorageAllprofilesAPI: SetConfigurations, SetSchedules {
         return Configurations
     }
 
-    // Read schedules and history
+    // Schedules
     // If no Schedule from persistent store return nil
     func getScheduleandhistory(nolog: Bool) -> [ConfigurationSchedule]? {
         let read = PersistentStorageScheduling(profile: self.profile, allprofiles: true)
