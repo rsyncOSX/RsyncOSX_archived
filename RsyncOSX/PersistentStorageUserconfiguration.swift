@@ -26,7 +26,7 @@ final class PersistentStorageUserconfiguration: ReadWriteDictionary {
      // Configuration is [NSDictionary]
      private func writeToStore (array: [NSDictionary]) {
          // Getting the object just for the write method, no read from persistent store
-         _ = self.writeNSDictionaryToPersistentStorage(array)
+        _ = self.writeNSDictionaryToPersistentStorage(array: array)
      }
 
      init () {
