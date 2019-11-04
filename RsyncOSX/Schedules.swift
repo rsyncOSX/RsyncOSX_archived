@@ -12,20 +12,18 @@ import Cocoa
 
 class Schedules: ScheduleWriteLoggData {
 
-    var profile: String?
-
     // Return reference to Schedule data
     // self.Schedule is privat data
     func getSchedule() -> [ConfigurationSchedule] {
         return self.schedules ?? []
     }
 
-    /// Function adds new Shcedules (plans). Functions writes
-    /// schedule plans to permanent store.
-    /// - parameter hiddenID: hiddenID for task
-    /// - parameter schedule: schedule
-    /// - parameter start: start date and time
-    /// - parameter stop: stop date and time
+    // Function adds new Shcedules (plans). Functions writes
+    // schedule plans to permanent store.
+    // - parameter hiddenID: hiddenID for task
+    // - parameter schedule: schedule
+    // - parameter start: start date and time
+    // - parameter stop: stop date and time
     func addschedule (_ hiddenID: Int, schedule: Scheduletype, start: Date) {
         var stop: Date?
         let dateformatter = Dateandtime().setDateformat()
@@ -50,14 +48,14 @@ class Schedules: ScheduleWriteLoggData {
         }
         let newSchedule = ConfigurationSchedule(dictionary: dict, log: nil, nolog: true)
         self.schedules!.append(newSchedule)
-        self.storageapi!.saveScheduleFromMemory()
+        _ = PersistentStorageScheduling(profile: self.profile).savescheduleInMemoryToPersistentStore()
         self.reloadtable(vcontroller: .vctabschedule)
     }
 
-    /// Function deletes all Schedules by hiddenID. Invoked when Configurations are
-    /// deleted. When a Configuration are deleted all tasks connected to
-    /// Configuration has to  be deleted.
-    /// - parameter hiddenID : hiddenID for task
+    // Function deletes all Schedules by hiddenID. Invoked when Configurations are
+    // deleted. When a Configuration are deleted all tasks connected to
+    // Configuration has to  be deleted.
+    // - parameter hiddenID : hiddenID for task
     func deletescheduleonetask(hiddenID: Int) {
         var delete: Bool = false
         for i in 0 ..< self.schedules!.count where self.schedules![i].hiddenID == hiddenID {
@@ -67,7 +65,7 @@ class Schedules: ScheduleWriteLoggData {
             delete = true
         }
         if delete {
-            self.storageapi!.saveScheduleFromMemory()
+            _ = PersistentStorageScheduling(profile: self.profile).savescheduleInMemoryToPersistentStore()
             // Send message about refresh tableView
             self.reloadtable(vcontroller: .vctabmain)
         }
@@ -115,8 +113,8 @@ class Schedules: ScheduleWriteLoggData {
         return data
     }
 
-    /// Function either deletes or stops Schedules.
-    /// - parameter data : array of Schedules which some of them are either marked for stop or delete
+    // Function either deletes or stops Schedules.
+    // - parameter data : array of Schedules which some of them are either marked for stop or delete
     func deleteorstopschedule(data: [NSMutableDictionary]) {
         var update: Bool = false
         if (data.count) > 0 {
@@ -138,7 +136,7 @@ class Schedules: ScheduleWriteLoggData {
             }
             if update {
                 // Saving the resulting data file
-                self.storageapi!.saveScheduleFromMemory()
+                _ = PersistentStorageScheduling(profile: self.profile).savescheduleInMemoryToPersistentStore()
                 // Send message about refresh tableView
                 self.reloadtable(vcontroller: .vctabmain)
             }
@@ -177,7 +175,7 @@ class Schedules: ScheduleWriteLoggData {
     // Function for reading all jobs for schedule and all history of past executions.
     // Schedules are stored in self.schedules. Schedules are sorted after hiddenID.
     private func readschedules() {
-        let store: [ConfigurationSchedule]? = self.storageapi!.getScheduleandhistory(nolog: false)
+        let store = PersistentStorageScheduling(profile: self.profile).getScheduleandhistory(nolog: false)
         guard store != nil else { return }
         var data = [ConfigurationSchedule]()
         for i in 0 ..< store!.count where ( store![i].logrecords.isEmpty == false || store![i].dateStop != nil ) {
@@ -195,10 +193,9 @@ class Schedules: ScheduleWriteLoggData {
         self.schedules = data
     }
 
-    init(profile: String?) {
-        super.init()
+    override init(profile: String?) {
+        super.init(profile: profile)
         self.profile = profile
-        self.storageapi = PersistentStorageAPI(profile: self.profile)
         self.readschedules()
     }
 }

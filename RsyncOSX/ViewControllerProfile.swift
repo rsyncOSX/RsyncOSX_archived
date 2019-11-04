@@ -17,7 +17,6 @@ protocol NewProfile: class {
 
 class ViewControllerProfile: NSViewController, SetConfigurations, SetDismisser, Delay {
 
-    var storageapi: PersistentStorageAPI?
     private var profilesArray: [String]?
     private var profile: CatalogProfile?
     private var useprofile: String?

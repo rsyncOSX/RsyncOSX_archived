@@ -12,8 +12,8 @@ import Cocoa
 
 class ScheduleWriteLoggData: SetConfigurations, ReloadTable, Deselect {
 
-    var storageapi: PersistentStorageAPI?
     var schedules: [ConfigurationSchedule]?
+    var profile: String?
 
     typealias Row = (Int, Int)
     func deleteselectedrows(scheduleloggdata: ScheduleLoggData?) {
@@ -40,15 +40,15 @@ class ScheduleWriteLoggData: SetConfigurations, ReloadTable, Deselect {
         for i in 0 ..< deletes.count {
             self.schedules![deletes[i].0].logrecords.remove(at: deletes[i].1)
         }
-        self.storageapi!.saveScheduleFromMemory()
+        _ = PersistentStorageScheduling(profile: self.profile).savescheduleInMemoryToPersistentStore()
         self.reloadtable(vcontroller: .vcloggdata)
     }
 
-    /// Function adds results of task to file (via memory). Memory are
-    /// saved after changed. Used in either single tasks or batch.
-    /// - parameter hiddenID : hiddenID for task
-    /// - parameter result : String representation of result
-    /// - parameter date : String representation of date and time stamp
+    // Function adds results of task to file (via memory). Memory are
+    // saved after changed. Used in either single tasks or batch.
+    // - parameter hiddenID : hiddenID for task
+    // - parameter result : String representation of result
+    // - parameter date : String representation of date and time stamp
     func addlog(_ hiddenID: Int, result: String) {
         if ViewControllerReference.shared.detailedlogging {
             // Set the current date
@@ -69,7 +69,7 @@ class ScheduleWriteLoggData: SetConfigurations, ReloadTable, Deselect {
                 inserted = self.addlognew(hiddenID, result: resultannotaded ?? "", date: date)
             }
             if inserted {
-                self.storageapi!.saveScheduleFromMemory()
+                _ = PersistentStorageScheduling(profile: self.profile).savescheduleInMemoryToPersistentStore()
                 self.deselectrowtable(vcontroller: .vctabmain)
             }
         }
@@ -117,7 +117,8 @@ class ScheduleWriteLoggData: SetConfigurations, ReloadTable, Deselect {
         return self.configurations!.getConfigurations()[index]
     }
 
-    init() {
+    init(profile: String?) {
+        self.profile = profile
         self.schedules = [ConfigurationSchedule]()
     }
 }
