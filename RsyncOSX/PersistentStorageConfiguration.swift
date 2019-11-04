@@ -78,7 +78,7 @@ final class PersistentStorageConfiguration: ReadWriteDictionary, SetConfiguratio
     // Writing configuration to persistent store
     // Configuration is [NSDictionary]
     private func writeToStore(array: [NSDictionary]) {
-        if self.writeNSDictionaryToPersistentStorage(array) {
+        if self.writeNSDictionaryToPersistentStorage(array: array) {
             self.configurationsDelegate?.reloadconfigurationsobject()
         }
     }

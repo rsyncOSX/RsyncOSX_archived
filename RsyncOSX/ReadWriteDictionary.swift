@@ -48,17 +48,17 @@ class ReadWriteDictionary {
         let macserialnumber = ViewControllerReference.shared.macserialnumber
         let profilePath = CatalogProfile()
         profilePath.createDirectory()
-        // Use profile
         if let profile = self.profile {
+            // Use profile
             guard profile.isEmpty == false else { return }
             let profilePath = CatalogProfile()
             profilePath.createDirectory()
             self.filepath = self.configpath! + macserialnumber! + "/" + profile + "/"
             self.filename = docuDir + self.configpath! + macserialnumber! + "/" + profile + self.name!
         } else {
-        // no profile
-        self.filename = docuDir + self.configpath! + macserialnumber! + self.name!
-        self.filepath = self.configpath! + macserialnumber! + "/"
+            // no profile
+            self.filename = docuDir + self.configpath! + macserialnumber! + self.name!
+            self.filepath = self.configpath! + macserialnumber! + "/"
         }
     }
 
@@ -80,7 +80,7 @@ class ReadWriteDictionary {
     }
 
     // Function for write data to persistent store
-    func writeNSDictionaryToPersistentStorage(_ array: [NSDictionary]) -> Bool {
+    func writeNSDictionaryToPersistentStorage(array: [NSDictionary]) -> Bool {
         let dictionary = NSDictionary(object: array, forKey: self.key! as NSCopying)
         guard self.filename != nil else { return false }
         let write = dictionary.write(toFile: self.filename!, atomically: true)
