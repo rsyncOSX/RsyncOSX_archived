@@ -44,11 +44,11 @@ class ScheduleWriteLoggData: SetConfigurations, ReloadTable, Deselect {
         self.reloadtable(vcontroller: .vcloggdata)
     }
 
-    /// Function adds results of task to file (via memory). Memory are
-    /// saved after changed. Used in either single tasks or batch.
-    /// - parameter hiddenID : hiddenID for task
-    /// - parameter result : String representation of result
-    /// - parameter date : String representation of date and time stamp
+    // Function adds results of task to file (via memory). Memory are
+    // saved after changed. Used in either single tasks or batch.
+    // - parameter hiddenID : hiddenID for task
+    // - parameter result : String representation of result
+    // - parameter date : String representation of date and time stamp
     func addlog(_ hiddenID: Int, result: String) {
         if ViewControllerReference.shared.detailedlogging {
             // Set the current date
