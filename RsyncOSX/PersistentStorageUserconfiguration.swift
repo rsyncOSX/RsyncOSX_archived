@@ -10,14 +10,14 @@ import Foundation
 
 final class PersistentStorageUserconfiguration: ReadWriteDictionary {
 
-      // Saving user configuration
+      // Save user configuration
      func saveuserconfiguration() {
          if let array: [NSDictionary] = ConvertUserconfiguration().userconfiguration {
              self.writeToStore(array: array)
          }
      }
 
-     //func read userconfiguration
+     // Read userconfiguration
      func readuserconfiguration() -> [NSDictionary]? {
          return self.readNSDictionaryFromPersistentStore()
      }
