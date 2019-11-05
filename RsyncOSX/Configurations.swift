@@ -28,7 +28,7 @@ class Configurations: ReloadTable, SetSchedules {
     // Datasource for NSTableViews
     private var configurationsDataSource: [NSMutableDictionary]?
     // Object for batchQueue data and operations
-    private var batchQueue: BatchTaskWorkQueu?
+    var batchQueue: BatchTaskWorkQueu?
     // backup list from remote info view
     var quickbackuplist: [Int]?
     // Estimated backup list, all backups
@@ -222,7 +222,9 @@ class Configurations: ReloadTable, SetSchedules {
     /// for batch execution of Configurations.
     /// - returns : reference to to object holding data and methods
     func getbatchQueue() -> BatchTaskWorkQueu? {
-        self.batchQueue = BatchTaskWorkQueu(configurations: self)
+        if self.batchQueue == nil {
+            self.batchQueue = BatchTaskWorkQueu(configurations: self)
+        }
         return self.batchQueue
     }
 
