@@ -8,10 +8,10 @@
 
 import Foundation
 
-final class Dateandtime {
+struct Dateandtime {
 
     // Calculate seconds from now to startdate
-    private func seconds (_ startdate: Date, enddate: Date?) -> Double {
+    private func seconds(_ startdate: Date, enddate: Date?) -> Double {
         if enddate == nil {
             return startdate.timeIntervalSinceNow
         } else {
@@ -21,7 +21,7 @@ final class Dateandtime {
 
     // Calculation of time to a spesific date
     // Used in view of all tasks
-    func timeString (_ startdate: Date, enddate: Date?) -> String {
+    func timeString(_ startdate: Date, enddate: Date?) -> String {
         var result: String?
         let seconds: Double = self.seconds(startdate, enddate: enddate)
         let (hr, minf) = modf(seconds / 3600)
@@ -46,7 +46,7 @@ final class Dateandtime {
 
     // Calculation of time to a spesific date
     // Used in view of all tasks
-    func timeString (_ seconds: Double) -> String {
+    func timeString(_ seconds: Double) -> String {
         var result: String?
         let (hr, minf) = modf(seconds / 3600)
         let (min, secf) = modf(60 * minf)
