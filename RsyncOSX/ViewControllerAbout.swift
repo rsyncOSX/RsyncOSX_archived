@@ -25,8 +25,7 @@ class ViewControllerAbout: NSViewController, SetDismisser, Delay {
     var chinesestring: String = NSLocalizedString("Chinese (Simplified) translation by: StringKe", comment: "chinese")
     var norwegianstring: String = NSLocalizedString("Norwegian translation by: Thomas Evensen", comment: "norwegian")
 
-    var checkfornewversion: Checkfornewversion?
-    private var resource: Resources?
+    var resource: Resources?
     var outputprocess: OutputProcess?
 
     @IBAction func dismiss(_ sender: NSButton) {
@@ -94,8 +93,7 @@ class ViewControllerAbout: NSViewController, SetDismisser, Delay {
     override func viewDidAppear() {
         super.viewDidAppear()
         self.downloadbutton.isEnabled = false
-        self.checkfornewversion = Checkfornewversion()
-        if let version = self.checkfornewversion?.rsyncOSXversion() {
+        if let version = Checkfornewversion().rsyncOSXversion() {
             self.version.stringValue = "RsyncOSX ver: " + version
         }
         self.thereisanewversion.stringValue = NSLocalizedString("You have the latest ...", comment: "About")
