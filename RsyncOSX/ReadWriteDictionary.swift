@@ -24,7 +24,7 @@ enum WhatToReadWrite {
 class ReadWriteDictionary {
 
     // Name set for schedule, configuration or config
-    private var name: String?
+    private var plistname: String?
     // key in objectForKey, e.g key for reading what
     private var key: String?
     // Which profile to read
@@ -54,10 +54,10 @@ class ReadWriteDictionary {
             let profilePath = CatalogProfile()
             profilePath.createDirectory()
             self.filepath = self.configpath! + macserialnumber! + "/" + profile + "/"
-            self.filename = docuDir + self.configpath! + macserialnumber! + "/" + profile + self.name!
+            self.filename = docuDir + self.configpath! + macserialnumber! + "/" + profile + self.plistname!
         } else {
             // no profile
-            self.filename = docuDir + self.configpath! + macserialnumber! + self.name!
+            self.filename = docuDir + self.configpath! + macserialnumber! + self.plistname!
             self.filepath = self.configpath! + macserialnumber! + "/"
         }
     }
@@ -96,16 +96,16 @@ class ReadWriteDictionary {
         self.task = whattoreadwrite
         switch self.task! {
         case .schedule:
-            self.name = "/scheduleRsync.plist"
+            self.plistname = "/scheduleRsync.plist"
             self.key = "Schedule"
         case .configuration:
-            self.name = "/configRsync.plist"
+            self.plistname = "/configRsync.plist"
             self.key = "Catalogs"
         case .userconfig:
-            self.name = "/config.plist"
+            self.plistname = "/config.plist"
             self.key = "config"
         case .none:
-            self.name = nil
+            self.plistname = nil
         }
     }
 
