@@ -1708,15 +1708,35 @@
                                     <action selector="delete:" target="fiO-Ux-xlw" id="97y-GG-MfR"/>
                                 </connections>
                             </button>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Gmc-Bz-496">
+                                <rect key="frame" x="627" y="380" width="123" height="16"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <textFieldCell key="cell" lineBreakMode="clipping" alignment="right" title="lastorevery" id="4fh-oN-1Ue">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="zfd-n6-8hC">
+                                <rect key="frame" x="754" y="380" width="151" height="16"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <textFieldCell key="cell" lineBreakMode="clipping" title="dayofweek" id="QOZ-8g-24B">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
                         </subviews>
                     </view>
                     <connections>
                         <outlet property="backupID" destination="h8d-af-XwT" id="FYE-S2-ylC"/>
+                        <outlet property="dayofweek" destination="zfd-n6-8hC" id="o06-Mb-ynB"/>
                         <outlet property="deletebutton" destination="3FX-cL-s70" id="GY1-es-2oV"/>
                         <outlet property="deletesnapshots" destination="IPi-Xv-Xr2" id="dAa-jb-0AZ"/>
                         <outlet property="deletesnapshotsdays" destination="oOp-UK-kds" id="EO6-dT-vgo"/>
                         <outlet property="gettinglogs" destination="Rqq-kE-YMv" id="lt6-Vu-96g"/>
                         <outlet property="info" destination="wL7-jF-cxm" id="6E6-wa-FTM"/>
+                        <outlet property="lastorevery" destination="Gmc-Bz-496" id="An0-9K-6gw"/>
                         <outlet property="localCatalog" destination="iBP-PV-dKW" id="4J3-by-Zzd"/>
                         <outlet property="numberOflogfiles" destination="Luu-QK-BXr" id="4jY-Oe-9Uu"/>
                         <outlet property="offsiteCatalog" destination="1Mh-bv-XRt" id="pTc-Fd-JTu"/>
