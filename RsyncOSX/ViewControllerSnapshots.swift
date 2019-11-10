@@ -10,7 +10,7 @@
 import Foundation
 import Cocoa
 
-class ViewControllerSnapshots: NSViewController, SetDismisser, SetConfigurations, Delay, Connected, VcMain, Checkforrsync {
+class ViewControllerSnapshots: NSViewController, SetDismisser, SetConfigurations, Delay, Connected, VcMain, Checkforrsync, Setcolor {
 
     private var hiddenID: Int?
     private var config: Configuration?
@@ -52,6 +52,8 @@ class ViewControllerSnapshots: NSViewController, SetDismisser, SetConfigurations
     @IBOutlet weak var selectplan: NSComboBox!
     @IBOutlet weak var savebutton: NSButton!
     @IBOutlet weak var selectdayofweek: NSComboBox!
+    @IBOutlet weak var dayofweek: NSTextField!
+    @IBOutlet weak var lastorevery: NSTextField!
 
     @IBAction func totinfo(_ sender: NSButton) {
         guard self.checkforrsync() == false else { return }
@@ -192,6 +194,8 @@ class ViewControllerSnapshots: NSViewController, SetDismisser, SetConfigurations
         self.selectplan.isEnabled = false
         self.selectdayofweek.isEnabled = false
         self.snapshotsloggdata = nil
+        self.dayofweek.isHidden = true
+        self.lastorevery.isHidden = true
         self.reloadtabledata()
     }
 
@@ -291,6 +295,20 @@ class ViewControllerSnapshots: NSViewController, SetDismisser, SetConfigurations
             self.selectplan.selectItem(withObjectValue: NSLocalizedString("every", comment: "plan"))
         } else {
             self.selectplan.selectItem(withObjectValue: NSLocalizedString("last", comment: "plan"))
+        }
+    }
+
+    private func setlabeldayofweekandlast() {
+        guard self.config?.snaplast != nil && self.config?.snapdayoffweek != nil else { return }
+        self.dayofweek.textColor = self.setcolor(nsviewcontroller: self, color: .green)
+        self.lastorevery.textColor = self.setcolor(nsviewcontroller: self, color: .green)
+        self.dayofweek.isHidden = false
+        self.lastorevery.isHidden = false
+        self.dayofweek.stringValue =  NSLocalizedString(self.config!.snapdayoffweek!, comment: "dayofweek")
+        if self.config!.snaplast == 1 {
+            self.lastorevery.stringValue = NSLocalizedString("every", comment: "plan")
+        } else {
+            self.lastorevery.stringValue = NSLocalizedString("last", comment: "plan")
         }
     }
 }
@@ -410,6 +428,7 @@ extension ViewControllerSnapshots: NSTableViewDelegate {
 
 extension ViewControllerSnapshots: Reloadandrefresh {
     func reloadtabledata() {
+        self.setlabeldayofweekandlast()
         globalMainQueue.async(execute: { () -> Void in
             self.snapshotstableView.reloadData()
             self.rsynctableView.reloadData()
