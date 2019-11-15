@@ -6,7 +6,7 @@
 
 If you want to discuss changes or report bugs please create an [Issue](https://github.com/rsyncOSX/RsyncOSX/issues).
 
-**Read about the --delete parameter** (se below) to rsync **before** using rsync and RsyncOSX.
+**Read about the --delete parameter** (below) to rsync **before** using rsync and RsyncOSX.
 
 A short [intro to RsyncOSX](https://rsyncosx.github.io/Intro) and full [documentation of RsyncOSX](https://rsyncosx.github.io/AboutRsyncOSX).
 
