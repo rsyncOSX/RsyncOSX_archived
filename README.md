@@ -20,9 +20,7 @@ RsyncOSX is dependent on [setting up password less logins for remote servers](ht
 
 ### Signing and notarizing
 
-The app is signed with my Apple ID developer certificate and [notarized](https://support.apple.com/en-us/HT202491) by Apple. See [signing and notarizing](https://rsyncosx.github.io/Notarized) for info.
-
-**Important**: from macOS 10.15 Catalina, notarization is required by default for all software.
+The app is signed with my Apple ID developer certificate and [notarized](https://support.apple.com/en-us/HT202491) by Apple. See [signing and notarizing](https://rsyncosx.github.io/Notarized) for info. Signing and notarizing is required to run on macOS Catalina.
 
 ### Localization
 
