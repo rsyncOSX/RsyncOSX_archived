@@ -324,9 +324,10 @@ extension ViewControllerSchedule: NSTableViewDelegate, Attributedestring {
             case "active":
                 let dateformatter = Dateandtime().setDateformat()
                 let datestopstring = object.value(forKey: "dateStop") as? String ?? ""
+                let schedule = object.value(forKey: "schedule") as? String ?? ""
                 guard datestopstring.isEmpty == false && datestopstring != "no stop date" else { return nil }
                 let dateStop: Date = dateformatter.date(from: datestopstring)!
-                if dateStop.timeIntervalSinceNow > 0 {
+                if dateStop.timeIntervalSinceNow > 0 && schedule != "stopped" {
                     return #imageLiteral(resourceName: "complete")
                 } else {
                     return nil
