@@ -115,11 +115,12 @@ class Schedules: ScheduleWriteLoggData {
 
     // Function either deletes or stops Schedules.
     // - parameter data : array of Schedules which some of them are either marked for stop or delete
-    func deleteorstopschedule(data: [NSMutableDictionary]) {
+    func deleteorstopschedule(data: [NSMutableDictionary]?) {
+        guard data != nil else { return }
         var update: Bool = false
-        if (data.count) > 0 {
-            let stop = data.filter({ return (($0.value(forKey: "stopCellID") as? Int) == 1)})
-            let delete = data.filter({ return (($0.value(forKey: "deleteCellID") as? Int) == 1)})
+        if (data!.count) > 0 {
+            let stop = data!.filter({ return (($0.value(forKey: "stopCellID") as? Int) == 1)})
+            let delete = data!.filter({ return (($0.value(forKey: "deleteCellID") as? Int) == 1)})
             // Delete Schedules
             if delete.count > 0 {
                 update = true
@@ -139,6 +140,7 @@ class Schedules: ScheduleWriteLoggData {
                 _ = PersistentStorageScheduling(profile: self.profile).savescheduleInMemoryToPersistentStore()
                 // Send message about refresh tableView
                 self.reloadtable(vcontroller: .vctabmain)
+                self.reloadtable(vcontroller: .vctabschedule)
             }
         }
     }

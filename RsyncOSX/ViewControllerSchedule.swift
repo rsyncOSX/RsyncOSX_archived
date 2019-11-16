@@ -144,6 +144,10 @@ class ViewControllerSchedule: NSViewController, SetConfigurations, SetSchedules,
     @IBOutlet weak var starttime: NSDatePicker!
     @IBOutlet weak var selectedstart: NSTextField!
 
+     @IBAction func update(_ sender: NSButton) {
+        self.schedules?.deleteorstopschedule(data: scheduledetails!)
+    }
+
     @IBAction func stoppall(_ sender: NSButton) {
         for i in 0 ..< (self.scheduledetails?.count ?? 0) {
             if self.scheduledetails![i].value(forKey: "stopCellID") as? Int == 1 {
