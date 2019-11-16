@@ -169,6 +169,8 @@ class Schedules: ScheduleWriteLoggData {
                     dict.value(forKey: "schedule") as? String == self.schedules![i].schedule &&
                     dict.value(forKey: "dateStart") as? String == self.schedules![i].dateStart {
                     self.schedules![i].schedule = "stopped"
+                    let dateformatter = Dateandtime().setDateformat()
+                    self.schedules![i].dateStop = dateformatter.string(from: Date())
                     break
                 }
         }
