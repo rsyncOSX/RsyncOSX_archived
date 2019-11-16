@@ -118,6 +118,9 @@
 /* Class = "NSTextFieldCell"; title = "Getting information, please wait ..."; ObjectID = "5SJ-qh-z2I"; */
 "5SJ-qh-z2I.title" = "Henter information, vennligst vent ...";
 
+/* Class = "NSTableColumn"; headerCell.title = "Stop schedule"; ObjectID = "5TL-a2-yBQ"; */
+"5TL-a2-yBQ.headerCell.title" = "Stopp oppgave";
+
 /* Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "5zk-w0-I3D"; */
 "5zk-w0-I3D.title" = "Text Cell";
 
@@ -168,6 +171,9 @@
 
 /* Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "12s-Z1-kRl"; */
 "12s-Z1-kRl.title" = "Text Cell";
+
+/* Class = "NSTableColumn"; headerCell.title = "Active"; ObjectID = "12y-cd-eEQ"; */
+"12y-cd-eEQ.headerCell.title" = "Aktiv";
 
 /* Class = "NSTableColumn"; headerCell.title = "Local catalog"; ObjectID = "27J-nn-5gh"; */
 "27J-nn-5gh.headerCell.title" = "Lokal katalog";
@@ -255,6 +261,9 @@
 
 /* Class = "NSTextFieldCell"; title = "Table View Cell"; ObjectID = "aHy-27-4y5"; */
 "aHy-27-4y5.title" = "Table View Cell";
+
+/* Class = "NSTableColumn"; headerCell.title = "Stop date schedule"; ObjectID = "AIr-rt-OLN"; */
+"AIr-rt-OLN.headerCell.title" = "Stopp dato oppgave";
 
 /* Class = "NSTableColumn"; headerCell.title = "Task"; ObjectID = "AkJ-MA-346"; */
 "AkJ-MA-346.headerCell.title" = "Oppgave";
@@ -345,6 +354,9 @@
 
 /* Class = "NSTableColumn"; headerCell.title = "Task"; ObjectID = "bPV-Wb-DGM"; */
 "bPV-Wb-DGM.headerCell.title" = "Oppgave";
+
+/* Class = "NSTableColumn"; headerCell.title = "Logs"; ObjectID = "BrN-3s-w3t"; */
+"BrN-3s-w3t.headerCell.title" = "Logg";
 
 /* Class = "NSTableColumn"; headerCell.title = "Snap"; ObjectID = "BVb-Fw-C80"; */
 "BVb-Fw-C80.headerCell.title" = "Snap";
@@ -537,6 +549,9 @@
 
 /* Class = "NSTableColumn"; headerCell.title = "Remote catalog"; ObjectID = "fnk-Kq-6LU"; */
 "fnk-Kq-6LU.headerCell.title" = "Ekstern katalog";
+
+/* Class = "NSTableColumn"; headerCell.title = "Delete schedule"; ObjectID = "Fpf-1W-JiM"; */
+"Fpf-1W-JiM.headerCell.title" = "Slett oppgave";
 
 /* Class = "NSBox"; title = "Number of days"; ObjectID = "FrI-lc-qcT"; */
 "FrI-lc-qcT.title" = "Antall dager";
@@ -1030,6 +1045,9 @@
 /* Class = "NSTextFieldCell"; title = "Server :"; ObjectID = "P5d-qB-XWj"; */
 "P5d-qB-XWj.title" = "Server :";
 
+/* Class = "NSTableColumn"; headerCell.title = "Start date schedule"; ObjectID = "p7O-cs-wwA"; */
+"p7O-cs-wwA.headerCell.title" = "Start dato oppgave";
+
 /* Class = "NSMenuItem"; title = "Parameters"; ObjectID = "p9L-16-Icv"; */
 "p9L-16-Icv.title" = "Parameter";
 
@@ -1182,6 +1200,9 @@
 
 /* Class = "NSButtonCell"; title = "Add"; ObjectID = "sE6-n6-Lin"; */
 "sE6-n6-Lin.title" = "Legg til";
+
+/* Class = "NSTextFieldCell"; title = "Most recent schedule on top..."; ObjectID = "SH2-9k-XFZ"; */
+"SH2-9k-XFZ.title" = "Siste oppgave på topp...";
 
 /* Class = "NSBox"; title = "Remote info"; ObjectID = "SHi-wp-O4D"; */
 "SHi-wp-O4D.title" = "Ekstern info";
@@ -1347,6 +1368,9 @@
 
 /* Class = "NSBox"; title = "Remote info"; ObjectID = "vJI-G9-Mbp"; */
 "vJI-G9-Mbp.title" = "Ekstern info";
+
+/* Class = "NSTableColumn"; headerCell.title = "Schedule"; ObjectID = "vls-wI-lPQ"; */
+"vls-wI-lPQ.headerCell.title" = "Oppgave";
 
 /* Class = "NSTextFieldCell"; title = "icon"; ObjectID = "Vnu-mV-aob"; */
 "Vnu-mV-aob.title" = "icon";

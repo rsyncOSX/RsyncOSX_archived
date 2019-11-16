@@ -20,6 +20,11 @@ class ViewControllerSchedule: NSViewController, SetConfigurations, SetSchedules,
     private var schedulessorted: ScheduleSortedAndExpand?
     var schedule: Scheduletype?
 
+    // Details
+    var hiddendID: Int?
+    var data: [NSMutableDictionary]?
+    var dateandtime: Dateandtime?
+
     // Main tableview
     @IBOutlet weak var scheduletable: NSTableView!
     @IBOutlet weak var profilInfo: NSTextField!
@@ -29,6 +34,8 @@ class ViewControllerSchedule: NSViewController, SetConfigurations, SetSchedules,
     @IBOutlet weak var info: NSTextField!
     @IBOutlet weak var rsyncosxschedbutton: NSButton!
     @IBOutlet weak var menuappisrunning: NSButton!
+
+    @IBOutlet weak var scheduletabledetails: NSTableView!
 
     @IBAction func totinfo(_ sender: NSButton) {
         guard self.checkforrsync() == false else { return }
@@ -154,6 +161,8 @@ class ViewControllerSchedule: NSViewController, SetConfigurations, SetSchedules,
         self.scheduletable.delegate = self
         self.scheduletable.dataSource = self
         self.scheduletable.doubleAction = #selector(ViewControllerMain.tableViewDoubleClick(sender:))
+        self.scheduletabledetails.delegate = self
+        self.scheduletabledetails.dataSource = self
         ViewControllerReference.shared.setvcref(viewcontroller: .vctabschedule, nsviewcontroller: self)
     }
 
@@ -170,11 +179,13 @@ class ViewControllerSchedule: NSViewController, SetConfigurations, SetSchedules,
         self.selectedstart.isHidden = true
         self.startdate.dateValue = Date()
         self.starttime.dateValue = Date()
+        if self.dateandtime == nil { self.dateandtime = Dateandtime()}
         if self.schedulessorted == nil {
             self.schedulessorted = ScheduleSortedAndExpand()
         }
         globalMainQueue.async(execute: { () -> Void in
             self.scheduletable.reloadData()
+            self.scheduletabledetails.reloadData()
         })
         self.delayWithSeconds(0.5) {
             self.enablemenuappbutton()
@@ -187,9 +198,16 @@ class ViewControllerSchedule: NSViewController, SetConfigurations, SetSchedules,
         let myTableViewFromNotification = (notification.object as? NSTableView)!
         let indexes = myTableViewFromNotification.selectedRowIndexes
         if let index = indexes.first {
+            self.hiddendID = gethiddenID()
             self.index = index
+            self.data = self.schedules!.readscheduleonetask(self.hiddendID)
+            globalMainQueue.async(execute: { () -> Void in
+                self.scheduletabledetails.reloadData()
+            })
         } else {
             self.index = nil
+            self.data = nil
+            self.hiddendID = nil
         }
     }
 
@@ -220,45 +238,67 @@ class ViewControllerSchedule: NSViewController, SetConfigurations, SetSchedules,
 extension ViewControllerSchedule: NSTableViewDataSource {
 
     func numberOfRows(in tableView: NSTableView) -> Int {
-        return self.configurations?.getConfigurationsDataSourceSynchronize()?.count ?? 0
+        if tableView == self.scheduletable {
+             return self.configurations?.getConfigurationsDataSourceSynchronize()?.count ?? 0
+        } else {
+            if self.hiddendID != nil && self.data != nil {
+                return (self.data!.count)
+            } else {
+                return 0
+            }
+        }
     }
 }
 
 extension ViewControllerSchedule: NSTableViewDelegate, Attributedestring {
 
    func tableView(_ tableView: NSTableView, objectValueFor tableColumn: NSTableColumn?, row: Int) -> Any? {
-        guard row < self.configurations!.getConfigurationsDataSourceSynchronize()!.count  else { return nil }
-        let object: NSDictionary = self.configurations!.getConfigurationsDataSourceSynchronize()![row]
-        let hiddenID: Int = object.value(forKey: "hiddenID") as? Int ?? -1
-        switch tableColumn!.identifier.rawValue {
-        case "scheduleID" :
-            if self.schedulessorted != nil {
-                let schedule: String? = self.schedulessorted!.sortandcountscheduledonetask(hiddenID, profilename: nil, number: false)
-                if schedule?.isEmpty == false {
-                    switch schedule {
-                    case "once":
-                        return NSLocalizedString("once", comment: "main")
-                    case "daily":
-                        return NSLocalizedString("daily", comment: "main")
-                    case "weekly":
-                        return NSLocalizedString("weekly", comment: "main")
-                    case "manuel":
-                        return NSLocalizedString("manuel", comment: "main")
-                    default:
+    if tableView == self.scheduletable {
+        guard row < self.configurations!.getConfigurationsDataSourceSynchronize()!.count else { return nil }
+            let object: NSDictionary = self.configurations!.getConfigurationsDataSourceSynchronize()![row]
+            let hiddenID: Int = object.value(forKey: "hiddenID") as? Int ?? -1
+            switch tableColumn!.identifier.rawValue {
+            case "scheduleID" :
+                if self.schedulessorted != nil {
+                    let schedule: String? = self.schedulessorted!.sortandcountscheduledonetask(hiddenID, profilename: nil, number: false)
+                    if schedule?.isEmpty == false {
+                        switch schedule {
+                        case "once":
+                            return NSLocalizedString("once", comment: "main")
+                        case "daily":
+                            return NSLocalizedString("daily", comment: "main")
+                        case "weekly":
+                            return NSLocalizedString("weekly", comment: "main")
+                        case "manuel":
+                            return NSLocalizedString("manuel", comment: "main")
+                        default:
+                            return ""
+                        }
+                    } else {
                         return ""
                     }
-                } else {
-                    return ""
                 }
-            }
-        case "offsiteServerCellID":
-            if (object[tableColumn!.identifier] as? String)!.isEmpty {
-                if self.index() ?? -1 == row && self.index == nil {
-                    return self.attributedstring(str: "localhost", color: NSColor.red, align: .left)
+            case "offsiteServerCellID":
+                if (object[tableColumn!.identifier] as? String)!.isEmpty {
+                    if self.index() ?? -1 == row && self.index == nil {
+                        return self.attributedstring(str: "localhost", color: NSColor.red, align: .left)
+                    } else {
+                        return "localhost"
+                    }
                 } else {
-                    return "localhost"
+                    if self.index() ?? -1 == row && self.index == nil {
+                        let text = object[tableColumn!.identifier] as? String
+                        return self.attributedstring(str: text!, color: NSColor.red, align: .left)
+                    } else {
+                        return object[tableColumn!.identifier] as? String
+                    }
                 }
-            } else {
+            case "inCellID":
+                if self.schedulessorted != nil {
+                    let taskintime: String? = self.schedulessorted!.sortandcountscheduledonetask(hiddenID, profilename: nil, number: true)
+                    return taskintime ?? ""
+                }
+            default:
                 if self.index() ?? -1 == row && self.index == nil {
                     let text = object[tableColumn!.identifier] as? String
                     return self.attributedstring(str: text!, color: NSColor.red, align: .left)
@@ -266,20 +306,97 @@ extension ViewControllerSchedule: NSTableViewDelegate, Attributedestring {
                     return object[tableColumn!.identifier] as? String
                 }
             }
-        case "inCellID":
-            if self.schedulessorted != nil {
-                let taskintime: String? = self.schedulessorted!.sortandcountscheduledonetask(hiddenID, profilename: nil, number: true)
-                return taskintime ?? ""
+        return nil
+    } else {
+        var active: Bool = false
+        let dateformatter = Dateandtime().setDateformat()
+        guard self.data != nil else { return nil }
+        if row < self.data!.count {
+            let object: NSMutableDictionary = self.data![row]
+            if  object.value(forKey: "schedule") as? String == "once" ||
+                object.value(forKey: "schedule") as? String == "daily" ||
+                object.value(forKey: "schedule") as? String == "weekly" {
+                let dateformatter = self.dateandtime!.setDateformat()
+                let dateStop: Date = dateformatter.date(from: (object.value(forKey: "dateStop") as? String)!)!
+                if dateStop.timeIntervalSinceNow > 0 {
+                    active = true
+                } else {
+                    active = false
+                }
             }
-        default:
-            if self.index() ?? -1 == row && self.index == nil {
-                let text = object[tableColumn!.identifier] as? String
-                return self.attributedstring(str: text!, color: NSColor.red, align: .left)
+            if tableColumn!.identifier.rawValue == "stopCellID" || tableColumn!.identifier.rawValue == "deleteCellID" {
+                   return object[tableColumn!.identifier] as? Int
+            } else if tableColumn!.identifier.rawValue == "schedule"{
+                switch object[tableColumn!.identifier] as? String {
+                case "once":
+                    return NSLocalizedString("once", comment: "main")
+                case "daily":
+                    return NSLocalizedString("daily", comment: "main")
+                case "weekly":
+                    return NSLocalizedString("weekly", comment: "main")
+                case "manuel":
+                    return NSLocalizedString("manuel", comment: "main")
+                default:
+                    return ""
+                }
             } else {
-                return object[tableColumn!.identifier] as? String
+                if active {
+                    if tableColumn!.identifier.rawValue == "active" {
+                        return #imageLiteral(resourceName: "complete")
+                    } else {
+                        return object[tableColumn!.identifier] as? String
+                    }
+                } else {
+                    if tableColumn!.identifier.rawValue == "dateStart" {
+                        if object[tableColumn!.identifier] as? String == "01 Jan 1900 00:00" {
+                            return NSLocalizedString("no startdate", comment: "Schedule details")
+                        } else {
+                            let stringdate: String = object[tableColumn!.identifier] as? String ?? ""
+                            if stringdate.isEmpty {
+                                return ""
+                            } else {
+                                let date = dateformatter.date(from: stringdate)
+                                return date?.localizeDate()
+                            }
+                        }
+                    } else if tableColumn!.identifier.rawValue == NSLocalizedString("dateStop", comment: "Schedule details") {
+                        if object[tableColumn!.identifier] as? String == "01 Jan 2100 00:00" {
+                            return "no stopdate"
+                        } else {
+                            let stringdate: String = object[tableColumn!.identifier] as? String ?? ""
+                            if stringdate.isEmpty {
+                                return ""
+                            } else {
+                                let date = dateformatter.date(from: stringdate)
+                                return date?.localizeDate()
+                            }
+                        }
+                    } else {
+                        return object[tableColumn!.identifier] as? String
+                    }
+                }
             }
         }
-    return nil
+        return nil
+    }
+
+    }
+
+    func tableView(_ tableView: NSTableView, setObjectValue object: Any?, for tableColumn: NSTableColumn?, row: Int) {
+        if tableColumn!.identifier.rawValue == "stopCellID" || tableColumn!.identifier.rawValue == "deleteCellID" {
+            var stop: Int = (self.data![row].value(forKey: "stopCellID") as? Int)!
+            var delete: Int = (self.data![row].value(forKey: "deleteCellID") as? Int)!
+            if stop == 0 { stop = 1 } else if stop == 1 { stop = 0 }
+            if delete == 0 { delete = 1 } else if delete == 1 { delete = 0 }
+            switch tableColumn!.identifier.rawValue {
+            case "stopCellID":
+                self.data![row].setValue(stop, forKey: "stopCellID")
+            case "deleteCellID":
+                self.data![row].setValue(delete, forKey: "deleteCellID")
+            default:
+                break
+            }
+        }
     }
 }
 

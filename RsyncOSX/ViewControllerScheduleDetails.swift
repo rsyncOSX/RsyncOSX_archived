@@ -26,7 +26,7 @@ class ViewControllerScheduleDetails: NSViewController, SetConfigurations, SetSch
     var data: [NSMutableDictionary]?
     var dateandtime: Dateandtime?
 
-    @IBOutlet weak var scheduletable: NSTableView!
+    @IBOutlet weak var scheduletabledetails: NSTableView!
 
     // Close view and either stop or delete Schedules
     @IBAction func close(_ sender: NSButton) {
@@ -86,7 +86,7 @@ class ViewControllerScheduleDetails: NSViewController, SetConfigurations, SetSch
             }
         }
         globalMainQueue.async(execute: { () -> Void in
-            self.scheduletable.reloadData()
+            self.scheduletabledetails.reloadData()
         })
     }
 
@@ -100,14 +100,14 @@ class ViewControllerScheduleDetails: NSViewController, SetConfigurations, SetSch
             }
         }
         globalMainQueue.async(execute: { () -> Void in
-            self.scheduletable.reloadData()
+            self.scheduletabledetails.reloadData()
         })
     }
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.scheduletable.delegate = self
-        self.scheduletable.dataSource = self
+        self.scheduletabledetails.delegate = self
+        self.scheduletabledetails.dataSource = self
     }
 
     override func viewDidAppear() {
@@ -122,7 +122,7 @@ class ViewControllerScheduleDetails: NSViewController, SetConfigurations, SetSch
         guard (self.hiddendID ?? -1) > -1 else { return }
         self.data = self.schedules!.readscheduleonetask(self.hiddendID)
         globalMainQueue.async(execute: { () -> Void in
-            self.scheduletable.reloadData()
+            self.scheduletabledetails.reloadData()
         })
         guard self.hiddendID != nil else { return }
         self.localCatalog.stringValue = self.configurations!.getResourceConfiguration(self.hiddendID!, resource: .localCatalog)
