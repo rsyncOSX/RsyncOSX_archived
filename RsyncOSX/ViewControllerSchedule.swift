@@ -5,7 +5,7 @@
 //  Created by Thomas Evensen on 19/08/2016.
 //  Copyright © 2016 Thomas Evensen. All rights reserved.
 //
-//  swiftlint:disable line_length cyclomatic_complexity function_body_length
+//  swiftlint:disable line_length cyclomatic_complexity function_body_length file_length
 
 import Foundation
 import Cocoa
@@ -32,7 +32,6 @@ class ViewControllerSchedule: NSViewController, SetConfigurations, SetSchedules,
     @IBOutlet weak var info: NSTextField!
     @IBOutlet weak var rsyncosxschedbutton: NSButton!
     @IBOutlet weak var menuappisrunning: NSButton!
-
     @IBOutlet weak var scheduletabledetails: NSTableView!
 
     @IBAction func totinfo(_ sender: NSButton) {
@@ -139,13 +138,6 @@ class ViewControllerSchedule: NSViewController, SetConfigurations, SetSchedules,
     @IBAction func userconfiguration(_ sender: NSButton) {
         globalMainQueue.async(execute: { () -> Void in
             self.presentAsSheet(self.viewControllerUserconfiguration!)
-        })
-    }
-
-    // Logg records
-    @IBAction func loggrecords(_ sender: NSButton) {
-        globalMainQueue.async(execute: { () -> Void in
-            self.presentAsSheet(self.viewControllerScheduleDetails!)
         })
     }
 
