@@ -112,12 +112,7 @@ class ViewControllerScheduleDetails: NSViewController, SetConfigurations, SetSch
 
     override func viewDidAppear() {
         super.viewDidAppear()
-        // Decide which viewcontroller calling the view
-        if (self.presentingViewController as? ViewControllerMain) != nil {
-            self.gethiddenIDDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllerMain
-        } else {
-            self.gethiddenIDDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabschedule) as? ViewControllerSchedule
-        }
+        self.gethiddenIDDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllerMain
         self.hiddendID = self.gethiddenIDDelegate?.gethiddenID()
         guard (self.hiddendID ?? -1) > -1 else { return }
         self.data = self.schedules!.readscheduleonetask(self.hiddendID)

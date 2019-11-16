@@ -19,10 +19,8 @@ class ViewControllerSchedule: NSViewController, SetConfigurations, SetSchedules,
     private var index: Int?
     private var schedulessorted: ScheduleSortedAndExpand?
     var schedule: Scheduletype?
-
-    // Details
-    var hiddendID: Int?
-    var data: [NSMutableDictionary]?
+    // Scheduleetails
+    var scheduledetails: [NSMutableDictionary]?
     var dateandtime: Dateandtime?
 
     // Main tableview
@@ -160,7 +158,6 @@ class ViewControllerSchedule: NSViewController, SetConfigurations, SetSchedules,
         super.viewDidLoad()
         self.scheduletable.delegate = self
         self.scheduletable.dataSource = self
-        self.scheduletable.doubleAction = #selector(ViewControllerMain.tableViewDoubleClick(sender:))
         self.scheduletabledetails.delegate = self
         self.scheduletabledetails.dataSource = self
         ViewControllerReference.shared.setvcref(viewcontroller: .vctabschedule, nsviewcontroller: self)
@@ -194,28 +191,22 @@ class ViewControllerSchedule: NSViewController, SetConfigurations, SetSchedules,
 
     // setting which table row is selected
     func tableViewSelectionDidChange(_ notification: Notification) {
-        self.info.stringValue = Infoschedule().info(num: 0)
         let myTableViewFromNotification = (notification.object as? NSTableView)!
-        let indexes = myTableViewFromNotification.selectedRowIndexes
-        if let index = indexes.first {
-            self.hiddendID = gethiddenID()
-            self.index = index
-            self.data = self.schedules!.readscheduleonetask(self.hiddendID)
-            globalMainQueue.async(execute: { () -> Void in
-                self.scheduletabledetails.reloadData()
-            })
-        } else {
-            self.index = nil
-            self.data = nil
-            self.hiddendID = nil
+        if myTableViewFromNotification == self.scheduletable {
+            self.info.stringValue = Infoschedule().info(num: 0)
+            let indexes = myTableViewFromNotification.selectedRowIndexes
+            if let index = indexes.first {
+                self.index = index
+                let hiddendID = self.configurations?.gethiddenID(index: self.index ?? -1)
+                self.scheduledetails = self.schedules?.readscheduleonetask(hiddendID)
+                globalMainQueue.async(execute: { () -> Void in
+                    self.scheduletabledetails.reloadData()
+                })
+            } else {
+                self.index = nil
+                self.scheduledetails = nil
+            }
         }
-    }
-
-    // View schedule details by double click in table
-    @objc(tableViewDoubleClick:) func tableViewDoubleClick(sender: AnyObject) {
-        globalMainQueue.async(execute: { () -> Void in
-            self.presentAsSheet(self.viewControllerScheduleDetails!)
-        })
     }
 
     private func enablemenuappbutton() {
@@ -239,13 +230,9 @@ extension ViewControllerSchedule: NSTableViewDataSource {
 
     func numberOfRows(in tableView: NSTableView) -> Int {
         if tableView == self.scheduletable {
-             return self.configurations?.getConfigurationsDataSourceSynchronize()?.count ?? 0
+            return self.configurations?.getConfigurationsDataSourceSynchronize()?.count ?? 0
         } else {
-            if self.hiddendID != nil && self.data != nil {
-                return (self.data!.count)
-            } else {
-                return 0
-            }
+            return self.scheduledetails?.count ?? 0
         }
     }
 }
@@ -310,9 +297,9 @@ extension ViewControllerSchedule: NSTableViewDelegate, Attributedestring {
     } else {
         var active: Bool = false
         let dateformatter = Dateandtime().setDateformat()
-        guard self.data != nil else { return nil }
-        if row < self.data!.count {
-            let object: NSMutableDictionary = self.data![row]
+        guard self.scheduledetails != nil else { return nil }
+        if row < self.scheduledetails!.count {
+            let object: NSMutableDictionary = self.scheduledetails![row]
             if  object.value(forKey: "schedule") as? String == "once" ||
                 object.value(forKey: "schedule") as? String == "daily" ||
                 object.value(forKey: "schedule") as? String == "weekly" {
@@ -378,34 +365,23 @@ extension ViewControllerSchedule: NSTableViewDelegate, Attributedestring {
             }
         }
         return nil
-    }
-
+        }
     }
 
     func tableView(_ tableView: NSTableView, setObjectValue object: Any?, for tableColumn: NSTableColumn?, row: Int) {
         if tableColumn!.identifier.rawValue == "stopCellID" || tableColumn!.identifier.rawValue == "deleteCellID" {
-            var stop: Int = (self.data![row].value(forKey: "stopCellID") as? Int)!
-            var delete: Int = (self.data![row].value(forKey: "deleteCellID") as? Int)!
+            var stop: Int = (self.scheduledetails![row].value(forKey: "stopCellID") as? Int)!
+            var delete: Int = (self.scheduledetails![row].value(forKey: "deleteCellID") as? Int)!
             if stop == 0 { stop = 1 } else if stop == 1 { stop = 0 }
             if delete == 0 { delete = 1 } else if delete == 1 { delete = 0 }
             switch tableColumn!.identifier.rawValue {
             case "stopCellID":
-                self.data![row].setValue(stop, forKey: "stopCellID")
+                self.scheduledetails![row].setValue(stop, forKey: "stopCellID")
             case "deleteCellID":
-                self.data![row].setValue(delete, forKey: "deleteCellID")
+                self.scheduledetails![row].setValue(delete, forKey: "deleteCellID")
             default:
                 break
             }
-        }
-    }
-}
-
-extension  ViewControllerSchedule: GetHiddenID {
-    func gethiddenID() -> Int {
-        if let hiddenID = self.configurations?.gethiddenID(index: self.index ?? -1) {
-            return hiddenID
-        } else {
-            return -1
         }
     }
 }
@@ -427,6 +403,7 @@ extension ViewControllerSchedule: Reloadandrefresh {
         self.schedulessorted = ScheduleSortedAndExpand()
         globalMainQueue.async(execute: { () -> Void in
             self.scheduletable.reloadData()
+            self.scheduletabledetails.reloadData()
         })
     }
 
