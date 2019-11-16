@@ -601,6 +601,9 @@
 /* Class = "NSTableColumn"; headerCell.title = "New"; ObjectID = "GiH-5F-U37"; */
 "GiH-5F-U37.headerCell.title" = "Ny";
 
+/* Class = "NSButtonCell"; title = "Stop all"; ObjectID = "gih-MT-omN"; */
+"gih-MT-omN.title" = "Stopp alt";
+
 /* Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "gJb-lQ-0wt"; */
 "gJb-lQ-0wt.title" = "Text Cell";
 
@@ -1272,6 +1275,9 @@
 
 /* Class = "NSBox"; title = "Remove parameters"; ObjectID = "uUH-RU-JKF"; */
 "uUH-RU-JKF.title" = "Slette parametre";
+
+/* Class = "NSButtonCell"; title = "Delete all"; ObjectID = "Uvm-NK-TNr"; */
+"Uvm-NK-TNr.title" = "Slett alt";
 
 /* Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "Uye-5c-buD"; */
 "Uye-5c-buD.title" = "Text Cell";

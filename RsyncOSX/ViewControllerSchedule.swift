@@ -21,7 +21,6 @@ class ViewControllerSchedule: NSViewController, SetConfigurations, SetSchedules,
     var schedule: Scheduletype?
     // Scheduleetails
     var scheduledetails: [NSMutableDictionary]?
-    var dateandtime: Dateandtime?
 
     // Main tableview
     @IBOutlet weak var scheduletable: NSTableView!
@@ -194,7 +193,6 @@ class ViewControllerSchedule: NSViewController, SetConfigurations, SetSchedules,
         self.selectedstart.isHidden = true
         self.startdate.dateValue = Date()
         self.starttime.dateValue = Date()
-        if self.dateandtime == nil { self.dateandtime = Dateandtime()}
         if self.schedulessorted == nil {
             self.schedulessorted = ScheduleSortedAndExpand()
         }
@@ -315,10 +313,10 @@ extension ViewControllerSchedule: NSTableViewDelegate, Attributedestring {
                 return nil
             }
     } else {
-        var active: Bool = false
         let dateformatter = Dateandtime().setDateformat()
         if row < self.scheduledetails?.count ?? 0 {
             let object: NSMutableDictionary = self.scheduledetails![row]
+            /*
             if  object.value(forKey: "schedule") as? String == "once" ||
                 object.value(forKey: "schedule") as? String == "daily" ||
                 object.value(forKey: "schedule") as? String == "weekly" {
@@ -330,7 +328,18 @@ extension ViewControllerSchedule: NSTableViewDelegate, Attributedestring {
                     active = false
                 }
             }
+            */
             switch tableColumn!.identifier.rawValue {
+            case "active":
+                let dateformatter = Dateandtime().setDateformat()
+                let datestopstring = object.value(forKey: "dateStop") as? String ?? ""
+                guard datestopstring.isEmpty == false && datestopstring != "no stop date" else { return nil }
+                let dateStop: Date = dateformatter.date(from: datestopstring)!
+                if dateStop.timeIntervalSinceNow > 0 {
+                    return #imageLiteral(resourceName: "complete")
+                } else {
+                    return nil
+                }
             case "stopCellID", "deleteCellID":
                 return object[tableColumn!.identifier] as? Int
             case "schedule":

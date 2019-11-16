@@ -65,9 +65,6 @@
    Verify */
 "Date last backup:" = "Dato siste backup:";
 
-/* Schedule details */
-"dateStop" = "";
-
 /* datetime */
 "days" = "dager";
 

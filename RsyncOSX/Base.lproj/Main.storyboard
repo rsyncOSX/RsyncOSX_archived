@@ -2739,6 +2739,9 @@
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
+                                <connections>
+                                    <action selector="stoppall:" target="rht-JI-asq" id="pmX-YX-1HX"/>
+                                </connections>
                             </button>
                             <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="KG7-Gj-i4D">
                                 <rect key="frame" x="992" y="31" width="86" height="21"/>
@@ -2747,6 +2750,9 @@
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
+                                <connections>
+                                    <action selector="deleteall:" target="rht-JI-asq" id="y1Y-ow-wBf"/>
+                                </connections>
                             </button>
                         </subviews>
                     </view>
