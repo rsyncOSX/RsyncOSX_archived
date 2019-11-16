@@ -1366,6 +1366,9 @@
 /* Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "wJk-a6-R3B"; */
 "wJk-a6-R3B.title" = "Text Cell";
 
+/* Class = "NSButtonCell"; title = "Update"; ObjectID = "WkQ-b5-iVL"; */
+"WkQ-b5-iVL.title" = "Oppdater";
+
 /* Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "WlH-m8-C35"; */
 "WlH-m8-C35.title" = "Text Cell";
 

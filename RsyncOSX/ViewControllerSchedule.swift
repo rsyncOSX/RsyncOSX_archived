@@ -320,19 +320,6 @@ extension ViewControllerSchedule: NSTableViewDelegate, Attributedestring {
         let dateformatter = Dateandtime().setDateformat()
         if row < self.scheduledetails?.count ?? 0 {
             let object: NSMutableDictionary = self.scheduledetails![row]
-            /*
-            if  object.value(forKey: "schedule") as? String == "once" ||
-                object.value(forKey: "schedule") as? String == "daily" ||
-                object.value(forKey: "schedule") as? String == "weekly" {
-                let dateformatter = self.dateandtime!.setDateformat()
-                let dateStop: Date = dateformatter.date(from: (object.value(forKey: "dateStop") as? String)!)!
-                if dateStop.timeIntervalSinceNow > 0 {
-                    active = true
-                } else {
-                    active = false
-                }
-            }
-            */
             switch tableColumn!.identifier.rawValue {
             case "active":
                 let dateformatter = Dateandtime().setDateformat()
@@ -428,6 +415,8 @@ extension ViewControllerSchedule: Reloadandrefresh {
     func reloadtabledata() {
         // Create a New schedules object
         self.schedulessorted = ScheduleSortedAndExpand()
+        let hiddendID = self.configurations?.gethiddenID(index: self.index ?? -1)
+        self.scheduledetails = self.schedules?.readscheduleonetask(hiddendID)
         globalMainQueue.async(execute: { () -> Void in
             self.scheduletable.reloadData()
             self.scheduletabledetails.reloadData()
