@@ -258,39 +258,52 @@ extension ViewControllerSchedule: NSTableViewDataSource {
 extension ViewControllerSchedule: NSTableViewDelegate, Attributedestring {
 
    func tableView(_ tableView: NSTableView, objectValueFor tableColumn: NSTableColumn?, row: Int) -> Any? {
-    if tableView == self.scheduletable {
-        guard row < self.configurations!.getConfigurationsDataSourceSynchronize()!.count else { return nil }
-            let object: NSDictionary = self.configurations!.getConfigurationsDataSourceSynchronize()![row]
-            let hiddenID: Int = object.value(forKey: "hiddenID") as? Int ?? -1
-            switch tableColumn!.identifier.rawValue {
-            case "scheduleID" :
-                if self.schedulessorted != nil {
-                    let schedule: String? = self.schedulessorted!.sortandcountscheduledonetask(hiddenID, profilename: nil, number: false)
-                    if schedule?.isEmpty == false {
-                        switch schedule {
-                        case "once":
-                            return NSLocalizedString("once", comment: "main")
-                        case "daily":
-                            return NSLocalizedString("daily", comment: "main")
-                        case "weekly":
-                            return NSLocalizedString("weekly", comment: "main")
-                        case "manuel":
-                            return NSLocalizedString("manuel", comment: "main")
-                        default:
+        if tableView == self.scheduletable {
+            if row < self.configurations!.getConfigurationsDataSourceSynchronize()?.count ?? 0 {
+                let object: NSDictionary = self.configurations!.getConfigurationsDataSourceSynchronize()![row]
+                let hiddenID: Int = object.value(forKey: "hiddenID") as? Int ?? -1
+                switch tableColumn!.identifier.rawValue {
+                case "scheduleID":
+                    if self.schedulessorted != nil {
+                        let schedule: String? = self.schedulessorted!.sortandcountscheduledonetask(hiddenID, profilename: nil, number: false)
+                        if schedule?.isEmpty == false {
+                            switch schedule {
+                            case "once":
+                                return NSLocalizedString("once", comment: "main")
+                            case "daily":
+                                return NSLocalizedString("daily", comment: "main")
+                            case "weekly":
+                                return NSLocalizedString("weekly", comment: "main")
+                            case "manuel":
+                                return NSLocalizedString("manuel", comment: "main")
+                            default:
+                                return ""
+                            }
+                        } else {
                             return ""
                         }
-                    } else {
-                        return ""
                     }
-                }
-            case "offsiteServerCellID":
-                if (object[tableColumn!.identifier] as? String)!.isEmpty {
-                    if self.index() ?? -1 == row && self.index == nil {
-                        return self.attributedstring(str: "localhost", color: NSColor.red, align: .left)
+                case "offsiteServerCellID":
+                    if (object[tableColumn!.identifier] as? String)!.isEmpty {
+                        if self.index() ?? -1 == row && self.index == nil {
+                            return self.attributedstring(str: "localhost", color: NSColor.red, align: .left)
+                        } else {
+                            return "localhost"
+                        }
                     } else {
-                        return "localhost"
+                        if self.index() ?? -1 == row && self.index == nil {
+                            let text = object[tableColumn!.identifier] as? String
+                            return self.attributedstring(str: text!, color: NSColor.red, align: .left)
+                        } else {
+                            return object[tableColumn!.identifier] as? String
+                        }
                     }
-                } else {
+                case "inCellID":
+                    if self.schedulessorted != nil {
+                        let taskintime: String? = self.schedulessorted!.sortandcountscheduledonetask(hiddenID, profilename: nil, number: true)
+                        return taskintime ?? ""
+                    }
+                default:
                     if self.index() ?? -1 == row && self.index == nil {
                         let text = object[tableColumn!.identifier] as? String
                         return self.attributedstring(str: text!, color: NSColor.red, align: .left)
@@ -298,25 +311,13 @@ extension ViewControllerSchedule: NSTableViewDelegate, Attributedestring {
                         return object[tableColumn!.identifier] as? String
                     }
                 }
-            case "inCellID":
-                if self.schedulessorted != nil {
-                    let taskintime: String? = self.schedulessorted!.sortandcountscheduledonetask(hiddenID, profilename: nil, number: true)
-                    return taskintime ?? ""
-                }
-            default:
-                if self.index() ?? -1 == row && self.index == nil {
-                    let text = object[tableColumn!.identifier] as? String
-                    return self.attributedstring(str: text!, color: NSColor.red, align: .left)
-                } else {
-                    return object[tableColumn!.identifier] as? String
-                }
+            } else {
+                return nil
             }
-        return nil
     } else {
         var active: Bool = false
         let dateformatter = Dateandtime().setDateformat()
-        guard self.scheduledetails != nil else { return nil }
-        if row < self.scheduledetails!.count {
+        if row < self.scheduledetails?.count ?? 0 {
             let object: NSMutableDictionary = self.scheduledetails![row]
             if  object.value(forKey: "schedule") as? String == "once" ||
                 object.value(forKey: "schedule") as? String == "daily" ||
@@ -329,9 +330,10 @@ extension ViewControllerSchedule: NSTableViewDelegate, Attributedestring {
                     active = false
                 }
             }
-            if tableColumn!.identifier.rawValue == "stopCellID" || tableColumn!.identifier.rawValue == "deleteCellID" {
-                   return object[tableColumn!.identifier] as? Int
-            } else if tableColumn!.identifier.rawValue == "schedule"{
+            switch tableColumn!.identifier.rawValue {
+            case "stopCellID", "deleteCellID":
+                return object[tableColumn!.identifier] as? Int
+            case "schedule":
                 switch object[tableColumn!.identifier] as? String {
                 case "once":
                     return NSLocalizedString("once", comment: "main")
@@ -344,46 +346,40 @@ extension ViewControllerSchedule: NSTableViewDelegate, Attributedestring {
                 default:
                     return ""
                 }
-            } else {
-                if active {
-                    if tableColumn!.identifier.rawValue == "active" {
-                        return #imageLiteral(resourceName: "complete")
-                    } else {
-                        return object[tableColumn!.identifier] as? String
-                    }
+            case "dateStart":
+                if object[tableColumn!.identifier] as? String == "01 Jan 1900 00:00" {
+                    return NSLocalizedString("no startdate", comment: "Schedule details")
                 } else {
-                    if tableColumn!.identifier.rawValue == "dateStart" {
-                        if object[tableColumn!.identifier] as? String == "01 Jan 1900 00:00" {
-                            return NSLocalizedString("no startdate", comment: "Schedule details")
-                        } else {
-                            let stringdate: String = object[tableColumn!.identifier] as? String ?? ""
-                            if stringdate.isEmpty {
-                                return ""
-                            } else {
-                                let date = dateformatter.date(from: stringdate)
-                                return date?.localizeDate()
-                            }
-                        }
-                    } else if tableColumn!.identifier.rawValue == NSLocalizedString("dateStop", comment: "Schedule details") {
-                        if object[tableColumn!.identifier] as? String == "01 Jan 2100 00:00" {
-                            return "no stopdate"
-                        } else {
-                            let stringdate: String = object[tableColumn!.identifier] as? String ?? ""
-                            if stringdate.isEmpty {
-                                return ""
-                            } else {
-                                let date = dateformatter.date(from: stringdate)
-                                return date?.localizeDate()
-                            }
-                        }
+                    let stringdate: String = object[tableColumn!.identifier] as? String ?? ""
+                    if stringdate.isEmpty {
+                        return ""
                     } else {
-                        return object[tableColumn!.identifier] as? String
+                        let date = dateformatter.date(from: stringdate)
+                        return date?.localizeDate()
                     }
                 }
+            case "dateStop":
+                if object[tableColumn!.identifier] as? String == "01 Jan 2100 00:00" {
+                    return "no stopdate"
+                } else {
+                    let stringdate: String = object[tableColumn!.identifier] as? String ?? ""
+                    if stringdate.isEmpty {
+                        return ""
+                    } else {
+                        let date = dateformatter.date(from: stringdate)
+                        return date?.localizeDate()
+                    }
+                }
+            case "numberoflogs":
+                return object[tableColumn!.identifier] as? String
+            default:
+                return nil
             }
+        } else {
+            return nil
         }
-        return nil
         }
+    return nil
     }
 
     func tableView(_ tableView: NSTableView, setObjectValue object: Any?, for tableColumn: NSTableColumn?, row: Int) {
