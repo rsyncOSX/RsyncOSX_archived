@@ -153,6 +153,32 @@ class ViewControllerSchedule: NSViewController, SetConfigurations, SetSchedules,
     @IBOutlet weak var starttime: NSDatePicker!
     @IBOutlet weak var selectedstart: NSTextField!
 
+    @IBAction func stoppall(_ sender: NSButton) {
+        for i in 0 ..< (self.scheduledetails?.count ?? 0) {
+            if self.scheduledetails![i].value(forKey: "stopCellID") as? Int == 1 {
+                self.scheduledetails![i].setValue(0, forKey: "stopCellID")
+            } else {
+                self.scheduledetails![i].setValue(1, forKey: "stopCellID")
+            }
+        }
+        globalMainQueue.async(execute: { () -> Void in
+            self.scheduletabledetails.reloadData()
+        })
+    }
+
+       @IBAction func deleteall(_ sender: NSButton) {
+            for i in 0 ..< (self.scheduledetails?.count ?? 0) {
+                if self.scheduledetails![i].value(forKey: "deleteCellID") as? Int == 1 {
+                   self.scheduledetails![i].setValue(0, forKey: "deleteCellID")
+               } else {
+                   self.scheduledetails![i].setValue(1, forKey: "deleteCellID")
+               }
+           }
+        globalMainQueue.async(execute: { () -> Void in
+            self.scheduletabledetails.reloadData()
+        })
+    }
+
     // Initial functions viewDidLoad and viewDidAppear
     override func viewDidLoad() {
         super.viewDidLoad()
