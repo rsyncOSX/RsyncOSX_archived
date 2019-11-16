@@ -14,7 +14,7 @@ protocol SetProfileinfo: class {
     func setprofile(profile: String, color: NSColor)
 }
 
-class ViewControllerSchedule: NSViewController, SetConfigurations, SetSchedules, Delay, Index, VcMain, Checkforrsync {
+class ViewControllerSchedule: NSViewController, SetConfigurations, SetSchedules, Delay, Index, VcMain, Checkforrsync, Setcolor {
 
     private var index: Int?
     private var schedulessorted: ScheduleSortedAndExpand?
@@ -104,11 +104,19 @@ class ViewControllerSchedule: NSViewController, SetConfigurations, SetSchedules,
         let startime: Date = self.startdate.dateValue.addingTimeInterval(seconds)
         let secondstostart = startime.timeIntervalSinceNow
         if secondstostart < 60 {
+            self.selectedstart.isHidden = true
             self.weeklybutton.isEnabled = false
             self.dailybutton.isEnabled = false
             self.oncebutton.isEnabled = false
         }
         if secondstostart > 60 {
+            let dateformatter = DateFormatter()
+            dateformatter.formatterBehavior = .behavior10_4
+            dateformatter.dateStyle = .medium
+            dateformatter.timeStyle = .short
+            self.selectedstart.isHidden = false
+            self.selectedstart.stringValue = dateformatter.string(from: startime)
+            self.selectedstart.textColor = self.setcolor(nsviewcontroller: self, color: .green)
             self.weeklybutton.isEnabled = true
             self.dailybutton.isEnabled = true
             self.oncebutton.isEnabled = true
@@ -138,6 +146,7 @@ class ViewControllerSchedule: NSViewController, SetConfigurations, SetSchedules,
 
     @IBOutlet weak var startdate: NSDatePicker!
     @IBOutlet weak var starttime: NSDatePicker!
+    @IBOutlet weak var selectedstart: NSTextField!
 
     // Initial functions viewDidLoad and viewDidAppear
     override func viewDidLoad() {
@@ -158,6 +167,7 @@ class ViewControllerSchedule: NSViewController, SetConfigurations, SetSchedules,
         self.weeklybutton.isEnabled = false
         self.dailybutton.isEnabled = false
         self.oncebutton.isEnabled = false
+        self.selectedstart.isHidden = true
         self.startdate.dateValue = Date()
         self.starttime.dateValue = Date()
         if self.schedulessorted == nil {
