@@ -361,7 +361,7 @@ extension ViewControllerSchedule: NSTableViewDelegate, Attributedestring {
                 }
             case "dateStop":
                 if object[tableColumn!.identifier] as? String == "01 Jan 2100 00:00" {
-                    return "no stopdate"
+                    return NSLocalizedString("no stopdate", comment: "Schedule details")
                 } else {
                     let stringdate: String = object[tableColumn!.identifier] as? String ?? ""
                     if stringdate.isEmpty {
@@ -379,7 +379,7 @@ extension ViewControllerSchedule: NSTableViewDelegate, Attributedestring {
         } else {
             return nil
         }
-        }
+    }
     return nil
     }
 

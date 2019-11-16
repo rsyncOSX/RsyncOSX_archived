@@ -192,6 +192,9 @@
 /* Schedule details */
 "no startdate" = "ingen startdato";
 
+/* Schedule details */
+"no stopdate" = "ingen stopp dato";
+
 /* Copy files */
 "No such local catalog for restore or set it in user config..." = "Ingen slik lokal katalog for restore eller sett den i bruker preferanser...";
 
