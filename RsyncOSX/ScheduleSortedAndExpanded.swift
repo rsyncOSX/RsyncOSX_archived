@@ -12,7 +12,6 @@ import Cocoa
 
 class ScheduleSortedAndExpand: SetConfigurations, SetSchedules {
 
-    // Reference to main View
     private var schedulesNSDictionary: [NSDictionary]?
     private var scheduleConfiguration: [ConfigurationSchedule]?
     private var expandedData = [NSDictionary]()
