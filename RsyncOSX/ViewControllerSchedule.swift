@@ -406,8 +406,6 @@ extension ViewControllerSchedule: DismissViewController {
 extension ViewControllerSchedule: Reloadandrefresh {
 
     func reloadtabledata() {
-        // Create a New schedules object
-        self.schedulessorted = ScheduleSortedAndExpand()
         let hiddendID = self.configurations?.gethiddenID(index: self.index ?? -1)
         self.scheduledetails = self.schedules?.readscheduleonetask(hiddenID: hiddendID)
         globalMainQueue.async(execute: { () -> Void in
