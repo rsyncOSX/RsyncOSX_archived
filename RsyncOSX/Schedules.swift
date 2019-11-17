@@ -24,7 +24,7 @@ class Schedules: ScheduleWriteLoggData {
     // - parameter schedule: schedule
     // - parameter start: start date and time
     // - parameter stop: stop date and time
-    func addschedule (_ hiddenID: Int, schedule: Scheduletype, start: Date) {
+    func addschedule (hiddenID: Int, schedule: Scheduletype, start: Date) {
         var stop: Date?
         let dateformatter = Dateandtime().setDateformat()
         if schedule == .once {
@@ -74,7 +74,7 @@ class Schedules: ScheduleWriteLoggData {
     // Function reads all Schedule data for one task by hiddenID
     // - parameter hiddenID : hiddenID for task
     // - returns : array of Schedules sorted after startDate
-    func readscheduleonetask (_ hiddenID: Int?) -> [NSMutableDictionary]? {
+    func readscheduleonetask(hiddenID: Int?) -> [NSMutableDictionary]? {
         guard hiddenID != nil else { return nil }
         var row: NSMutableDictionary
         var data = [NSMutableDictionary]()

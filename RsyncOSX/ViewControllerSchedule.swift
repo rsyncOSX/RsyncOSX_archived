@@ -96,7 +96,7 @@ class ViewControllerSchedule: NSViewController, SetConfigurations, SetSchedules,
             }
             if let hiddenID = self.configurations?.gethiddenID(index: self.index ?? -1) {
                 guard hiddenID != -1 else { return }
-                self.schedules!.addschedule(hiddenID, schedule: self.schedule ?? .once, start: startdate)
+                self.schedules!.addschedule(hiddenID: hiddenID, schedule: self.schedule ?? .once, start: startdate)
             }
         }
     }
@@ -218,7 +218,7 @@ class ViewControllerSchedule: NSViewController, SetConfigurations, SetSchedules,
             if let index = indexes.first {
                 self.index = index
                 let hiddendID = self.configurations?.gethiddenID(index: self.index ?? -1)
-                self.scheduledetails = self.schedules?.readscheduleonetask(hiddendID)
+                self.scheduledetails = self.schedules?.readscheduleonetask(hiddenID: hiddendID)
                 globalMainQueue.async(execute: { () -> Void in
                     self.scheduletabledetails.reloadData()
                 })
@@ -417,7 +417,7 @@ extension ViewControllerSchedule: Reloadandrefresh {
         // Create a New schedules object
         self.schedulessorted = ScheduleSortedAndExpand()
         let hiddendID = self.configurations?.gethiddenID(index: self.index ?? -1)
-        self.scheduledetails = self.schedules?.readscheduleonetask(hiddendID)
+        self.scheduledetails = self.schedules?.readscheduleonetask(hiddenID: hiddendID)
         globalMainQueue.async(execute: { () -> Void in
             self.scheduletable.reloadData()
             self.scheduletabledetails.reloadData()
