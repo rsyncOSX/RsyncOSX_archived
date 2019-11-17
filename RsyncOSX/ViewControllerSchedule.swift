@@ -197,13 +197,7 @@ class ViewControllerSchedule: NSViewController, SetConfigurations, SetSchedules,
         self.selectedstart.isHidden = true
         self.startdate.dateValue = Date()
         self.starttime.dateValue = Date()
-        if self.schedulessorted == nil {
-            self.schedulessorted = ScheduleSortedAndExpand()
-        }
-        globalMainQueue.async(execute: { () -> Void in
-            self.scheduletable.reloadData()
-            self.scheduletabledetails.reloadData()
-        })
+        self.reloadtabledata()
         self.delayWithSeconds(0.5) {
             self.enablemenuappbutton()
         }
@@ -219,13 +213,13 @@ class ViewControllerSchedule: NSViewController, SetConfigurations, SetSchedules,
                 self.index = index
                 let hiddendID = self.configurations?.gethiddenID(index: self.index ?? -1)
                 self.scheduledetails = self.schedules?.readscheduleonetask(hiddenID: hiddendID)
-                globalMainQueue.async(execute: { () -> Void in
-                    self.scheduletabledetails.reloadData()
-                })
             } else {
                 self.index = nil
                 self.scheduledetails = nil
             }
+            globalMainQueue.async(execute: { () -> Void in
+                self.scheduletabledetails.reloadData()
+            })
         }
     }
 
@@ -405,9 +399,7 @@ extension ViewControllerSchedule: DismissViewController {
 
     func dismiss_view(viewcontroller: NSViewController) {
         self.dismiss(viewcontroller)
-        globalMainQueue.async(execute: { () -> Void in
-            self.scheduletable.reloadData()
-        })
+        self.reloadtabledata()
     }
 }
 
