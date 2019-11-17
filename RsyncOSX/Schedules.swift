@@ -24,7 +24,7 @@ class Schedules: ScheduleWriteLoggData {
     // - parameter schedule: schedule
     // - parameter start: start date and time
     // - parameter stop: stop date and time
-    func addschedule (_ hiddenID: Int, schedule: Scheduletype, start: Date) {
+    func addschedule (hiddenID: Int, schedule: Scheduletype, start: Date) {
         var stop: Date?
         let dateformatter = Dateandtime().setDateformat()
         if schedule == .once {
@@ -71,10 +71,10 @@ class Schedules: ScheduleWriteLoggData {
         }
     }
 
-    /// Function reads all Schedule data for one task by hiddenID
-    /// - parameter hiddenID : hiddenID for task
-    /// - returns : array of Schedules sorted after startDate
-    func readscheduleonetask (_ hiddenID: Int?) -> [NSMutableDictionary]? {
+    // Function reads all Schedule data for one task by hiddenID
+    // - parameter hiddenID : hiddenID for task
+    // - returns : array of Schedules sorted after startDate
+    func readscheduleonetask(hiddenID: Int?) -> [NSMutableDictionary]? {
         guard hiddenID != nil else { return nil }
         var row: NSMutableDictionary
         var data = [NSMutableDictionary]()
@@ -115,11 +115,12 @@ class Schedules: ScheduleWriteLoggData {
 
     // Function either deletes or stops Schedules.
     // - parameter data : array of Schedules which some of them are either marked for stop or delete
-    func deleteorstopschedule(data: [NSMutableDictionary]) {
+    func deleteorstopschedule(data: [NSMutableDictionary]?) {
+        guard data != nil else { return }
         var update: Bool = false
-        if (data.count) > 0 {
-            let stop = data.filter({ return (($0.value(forKey: "stopCellID") as? Int) == 1)})
-            let delete = data.filter({ return (($0.value(forKey: "deleteCellID") as? Int) == 1)})
+        if (data!.count) > 0 {
+            let stop = data!.filter({ return (($0.value(forKey: "stopCellID") as? Int) == 1)})
+            let delete = data!.filter({ return (($0.value(forKey: "deleteCellID") as? Int) == 1)})
             // Delete Schedules
             if delete.count > 0 {
                 update = true
@@ -139,6 +140,7 @@ class Schedules: ScheduleWriteLoggData {
                 _ = PersistentStorageScheduling(profile: self.profile).savescheduleInMemoryToPersistentStore()
                 // Send message about refresh tableView
                 self.reloadtable(vcontroller: .vctabmain)
+                self.reloadtable(vcontroller: .vctabschedule)
             }
         }
     }
@@ -167,6 +169,8 @@ class Schedules: ScheduleWriteLoggData {
                     dict.value(forKey: "schedule") as? String == self.schedules![i].schedule &&
                     dict.value(forKey: "dateStart") as? String == self.schedules![i].dateStart {
                     self.schedules![i].schedule = "stopped"
+                    let dateformatter = Dateandtime().setDateformat()
+                    self.schedules![i].dateStop = dateformatter.string(from: Date())
                     break
                 }
         }

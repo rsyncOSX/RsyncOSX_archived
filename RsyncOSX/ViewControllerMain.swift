@@ -178,13 +178,6 @@ class ViewControllerMain: NSViewController, ReloadTable, Deselect, VcMain, Delay
         }
     }
 
-    // Logg records
-    @IBAction func loggrecords(_ sender: NSButton) {
-        globalMainQueue.async(execute: { () -> Void in
-            self.presentAsSheet(self.viewControllerScheduleDetails!)
-        })
-    }
-
     // Selecting About
     @IBAction func about (_ sender: NSButton) {
         self.presentAsModalWindow(self.viewControllerAbout!)
