@@ -296,15 +296,6 @@ extension ViewControllerMain: Count {
     }
 }
 
-extension ViewControllerMain: Reloadsortedandrefresh {
-    func reloadsortedandrefreshtabledata() {
-        self.schedulesortedandexpanded = ScheduleSortedAndExpand()
-        globalMainQueue.async(execute: { () -> Void in
-            self.mainTableView.reloadData()
-        })
-    }
-}
-
 extension ViewControllerMain: MenuappChanged {
     func menuappchanged() {
         self.enablemenuappbutton()

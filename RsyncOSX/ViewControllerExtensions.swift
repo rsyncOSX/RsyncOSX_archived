@@ -323,11 +323,6 @@ protocol Createandreloadconfigurations: class {
     func createandreloadconfigurations()
 }
 
-// Protocol for doing a refresh of tabledata
-protocol Reloadsortedandrefresh {
-    func reloadsortedandrefreshtabledata()
-}
-
 // Protocol for sorting
 protocol Sorting {
     func sortbydate(notsortedlist: [NSMutableDictionary]?, sortdirection: Bool) -> [NSMutableDictionary]?
