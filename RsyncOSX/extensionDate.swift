@@ -155,7 +155,17 @@ extension Date {
         return Calendar.current.dateComponents([.day], from: self, to: now)
     }
     
-    var tst: String {
+    var weekssincenow: DateComponents {
+        let now = Date()
+        let dateformatter = DateFormatter()
+        dateformatter.locale = Locale(identifier: "en_US")
+        dateformatter.dateStyle = .medium
+        dateformatter.timeStyle = .short
+        dateformatter.dateFormat = "dd MMM yyyy HH:mm"
+        return Calendar.current.dateComponents([.weekOfYear], from: self, to: now)
+    }
+    
+    var localized_string_from_date: String {
         let dateformatter = DateFormatter()
         dateformatter.formatterBehavior = .behavior10_4
         dateformatter.dateStyle = .medium
@@ -175,7 +185,7 @@ extension Date {
 
 extension String {
     // Returns a date from a string in MMMM dd, yyyy. Will return today's date if input is invalid.
-    var en_us_date: Date {
+    var en_us_date_from_string: Date {
         let dateformatter = DateFormatter()
         dateformatter.locale = Locale(identifier: "en_US")
         dateformatter.dateStyle = .medium
@@ -184,7 +194,7 @@ extension String {
         return dateformatter.date(from: self) ?? Date()
     }
     
-    var tst2: Date {
+    var localized_date_from_string: Date {
         let dateformatter = DateFormatter()
         dateformatter.formatterBehavior = .behavior10_4
         dateformatter.dateStyle = .medium

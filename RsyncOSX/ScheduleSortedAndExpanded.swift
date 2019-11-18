@@ -24,8 +24,8 @@ class ScheduleSortedAndExpand: SetConfigurations, SetSchedules {
         while self.nextdayorweekindex(dateStart: dateStart, day: i, schedule: schedule) < 0 && i < 1000 { i += 1 }
         var dateComponent = DateComponents()
         dateComponent.day = i
-        // print(dateComponent.day!)
-        // print(dateStart.dayssincenow)
+        print(dateStart.dayssincenow)
+        print(i)
         let cal = Calendar.current
         if let start: Date = cal.date(byAdding: dateComponent, to: dateStart) {
             if start.timeIntervalSinceNow > 0 {
@@ -50,8 +50,8 @@ class ScheduleSortedAndExpand: SetConfigurations, SetSchedules {
         while self.nextdayorweekindex(dateStart: dateStart, day: i, schedule: schedule) < 0 && i < 1000 { i += 1 }
         var dateComponent = DateComponents()
         dateComponent.day = (i * 7)
-        // print(dateComponent.day!)
-        // print(dateStart.dayssincenow)
+        print(dateStart.weekssincenow)
+        print(i)
         let cal = Calendar.current
         if let start: Date = cal.date(byAdding: dateComponent, to: dateStart) {
             if start.timeIntervalSinceNow > 0 {
