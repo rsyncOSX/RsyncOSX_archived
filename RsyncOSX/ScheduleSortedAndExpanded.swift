@@ -12,7 +12,6 @@ import Cocoa
 
 class ScheduleSortedAndExpand: SetConfigurations, SetSchedules {
 
-    // Reference to main View
     private var schedulesNSDictionary: [NSDictionary]?
     private var scheduleConfiguration: [ConfigurationSchedule]?
     private var expandedData = [NSDictionary]()
@@ -21,12 +20,8 @@ class ScheduleSortedAndExpand: SetConfigurations, SetSchedules {
 
     // Calculate daily schedules
     private func daily(dateStart: Date, schedule: String, dict: NSDictionary) {
-        var i = 0
-        while self.nextdayorweekindex(dateStart: dateStart, day: i, schedule: schedule) < 0 && i < 1000 { i += 1 }
-        var dateComponent = DateComponents()
-        dateComponent.day = i
         let cal = Calendar.current
-        if let start: Date = cal.date(byAdding: dateComponent, to: dateStart) {
+        if let start: Date = cal.date(byAdding: dateStart.dayssincenow, to: dateStart) {
             if start.timeIntervalSinceNow > 0 {
                 let hiddenID = (dict.value(forKey: "hiddenID") as? Int)!
                 let profilename = dict.value(forKey: "profilename") ?? NSLocalizedString("Default profile", comment: "default profile")
@@ -45,12 +40,8 @@ class ScheduleSortedAndExpand: SetConfigurations, SetSchedules {
 
     // Calculate weekly schedules
     private func weekly(dateStart: Date, schedule: String, dict: NSDictionary) {
-        var i = 0
-        while self.nextdayorweekindex(dateStart: dateStart, day: i, schedule: schedule) < 0 && i < 1000 { i += 1 }
-        var dateComponent = DateComponents()
-        dateComponent.day = (i * 7)
         let cal = Calendar.current
-        if let start: Date = cal.date(byAdding: dateComponent, to: dateStart) {
+        if let start: Date = cal.date(byAdding: dateStart.weekssincenowplusoneweek, to: dateStart) {
             if start.timeIntervalSinceNow > 0 {
                 let hiddenID = (dict.value(forKey: "hiddenID") as? Int)!
                 let profilename = dict.value(forKey: "profilename") ?? NSLocalizedString("Default profile", comment: "default profile")
@@ -65,27 +56,6 @@ class ScheduleSortedAndExpand: SetConfigurations, SetSchedules {
                 self.expandedData.append(dictSchedule)
             }
         }
-    }
-
-    private func nextdayorweekindex(dateStart: Date, day: Int, schedule: String) -> Int {
-        var dateComponent = DateComponents()
-        switch schedule {
-        case "daily":
-            dateComponent.day = day
-        case "weekly":
-            dateComponent.day = (day * 7)
-        default:
-            dateComponent.day = (day * 7)
-        }
-        let cal = Calendar.current
-        if let start: Date = cal.date(byAdding: dateComponent, to: dateStart) {
-            if start.timeIntervalSinceNow > 0 {
-                return day
-            } else {
-                return -1
-            }
-        }
-        return -1
     }
 
     // Expanding and sorting Scheduledata
@@ -161,7 +131,7 @@ class ScheduleSortedAndExpand: SetConfigurations, SetSchedules {
         guard sorted.count > 0 else { return "" }
         if number {
             let firsttask = (sorted[0].value(forKey: "start") as? Date)?.timeIntervalSinceNow
-            return self.dateandtime?.timeString(firsttask!) ?? ""
+            return self.dateandtime?.timeString(seconds: firsttask!) ?? ""
         } else {
             let type = sorted[0].value(forKey: "schedule") as? String
             return type ?? ""

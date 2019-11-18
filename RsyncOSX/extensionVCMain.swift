@@ -211,6 +211,10 @@ extension ViewControllerMain: GetConfigurationsObject {
         }
         self.createandreloadconfigurations()
     }
+
+    func getschedulesortedandexpanded() -> ScheduleSortedAndExpand? {
+        return self.schedulesortedandexpanded
+    }
 }
 
 extension ViewControllerMain: GetSchedulesObject {

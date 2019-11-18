@@ -598,6 +598,9 @@
 /* Class = "NSTableColumn"; headerCell.title = "Remote server"; ObjectID = "GF9-Lf-PIQ"; */
 "GF9-Lf-PIQ.headerCell.title" = "Ekstern server";
 
+/* Class = "NSTableColumn"; headerCell.title = "Day in week"; ObjectID = "gfR-hu-CuQ"; */
+"gfR-hu-CuQ.headerCell.title" = "Ukedag";
+
 /* Class = "NSTableColumn"; headerCell.title = "New"; ObjectID = "GiH-5F-U37"; */
 "GiH-5F-U37.headerCell.title" = "Ny";
 

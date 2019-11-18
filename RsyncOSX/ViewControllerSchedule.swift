@@ -16,8 +16,8 @@ protocol SetProfileinfo: class {
 
 class ViewControllerSchedule: NSViewController, SetConfigurations, SetSchedules, Delay, Index, VcMain, Checkforrsync, Setcolor {
 
-    private var index: Int?
-    private var schedulessorted: ScheduleSortedAndExpand?
+    var index: Int?
+    //var schedulessorted: ScheduleSortedAndExpand?
     var schedule: Scheduletype?
     // Scheduleetails
     var scheduledetails: [NSMutableDictionary]?
@@ -260,8 +260,8 @@ extension ViewControllerSchedule: NSTableViewDelegate, Attributedestring {
                 let hiddenID: Int = object.value(forKey: "hiddenID") as? Int ?? -1
                 switch tableColumn!.identifier.rawValue {
                 case "scheduleID":
-                    if self.schedulessorted != nil {
-                        let schedule: String? = self.schedulessorted!.sortandcountscheduledonetask(hiddenID, profilename: nil, number: false)
+                    if self.sortedandexpanded != nil {
+                        let schedule: String? = self.sortedandexpanded!.sortandcountscheduledonetask(hiddenID, profilename: nil, number: false)
                         if schedule?.isEmpty == false {
                             switch schedule {
                             case "once":
@@ -295,8 +295,8 @@ extension ViewControllerSchedule: NSTableViewDelegate, Attributedestring {
                         }
                     }
                 case "inCellID":
-                    if self.schedulessorted != nil {
-                        let taskintime: String? = self.schedulessorted!.sortandcountscheduledonetask(hiddenID, profilename: nil, number: true)
+                    if self.sortedandexpanded != nil {
+                        let taskintime: String? = self.sortedandexpanded!.sortandcountscheduledonetask(hiddenID, profilename: nil, number: true)
                         return taskintime ?? ""
                     }
                 default:
@@ -365,7 +365,7 @@ extension ViewControllerSchedule: NSTableViewDelegate, Attributedestring {
                         return date?.localizeDate()
                     }
                 }
-            case "numberoflogs":
+            case "numberoflogs", "dayinweek":
                 return object[tableColumn!.identifier] as? String
             default:
                 return nil
