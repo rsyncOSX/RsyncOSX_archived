@@ -131,12 +131,6 @@ class RsyncParameters {
         return  "--suffix=" + formatter.string(from: Date())
     }
 
-    func setdatesuffixbackupstring(backup: String) -> String {
-        let formatter = DateFormatter()
-        formatter.dateFormat = "-yyyy-MM-dd"
-        return  backup + formatter.string(from: Date())
-    }
-
     func dryrunparameter(config: Configuration, forDisplay: Bool) {
         let dryrun = "--dry-run"
         self.arguments!.append(dryrun)
