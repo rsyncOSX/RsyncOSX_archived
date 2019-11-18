@@ -144,6 +144,17 @@ extension Date {
         return false
     }
 
+    // Returns a DateComponent value with number of days away from a specified date
+    var dayssincenow: DateComponents {
+        let now = Date()
+        let dateformatter = DateFormatter()
+        dateformatter.locale = Locale(identifier: "en_US")
+        dateformatter.dateStyle = .medium
+        dateformatter.timeStyle = .short
+        dateformatter.dateFormat = "dd MMM yyyy HH:mm"
+        return Calendar.current.dateComponents([.day], from: self, to: now)
+    }
+
     init(year: Int, month: Int, day: Int) {
         let calendar = Calendar.current
         var dateComponent = DateComponents()
@@ -151,5 +162,17 @@ extension Date {
         dateComponent.month = month
         dateComponent.day = day
         self = calendar.date(from: dateComponent)!
+    }
+}
+
+extension String {
+    // Returns a date from a string in MMMM dd, yyyy. Will return today's date if input is invalid.
+    var asdate: Date {
+        let dateformatter = DateFormatter()
+        dateformatter.locale = Locale(identifier: "en_US")
+        dateformatter.dateStyle = .medium
+        dateformatter.timeStyle = .short
+        dateformatter.dateFormat = "dd MMM yyyy HH:mm"
+        return dateformatter.date(from: self) ?? Date()
     }
 }
