@@ -82,6 +82,7 @@ class Schedules: ScheduleWriteLoggData {
             if self.schedules![i].hiddenID == hiddenID {
                 row = [
                     "dateStart": self.schedules![i].dateStart,
+                    "dayinweek": self.schedules![i].dateStart.en_us_date_from_string.dayNameShort(),
                     "stopCellID": 0,
                     "deleteCellID": 0,
                     "dateStop": "",
