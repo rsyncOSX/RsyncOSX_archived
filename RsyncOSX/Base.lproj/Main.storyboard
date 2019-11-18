@@ -2608,14 +2608,14 @@
                                 </textFieldCell>
                             </textField>
                             <scrollView fixedFrame="YES" borderType="groove" autohidesScrollers="YES" horizontalLineScroll="19" horizontalPageScroll="10" verticalLineScroll="19" verticalPageScroll="10" usesPredominantAxisScrolling="NO" scrollerKnobStyle="dark" translatesAutoresizingMaskIntoConstraints="NO" id="H3T-x2-1A7">
-                                <rect key="frame" x="256" y="26" width="665" height="128"/>
+                                <rect key="frame" x="256" y="26" width="734" height="128"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <clipView key="contentView" ambiguous="YES" id="WwY-8x-RzY">
-                                    <rect key="frame" x="2" y="2" width="661" height="124"/>
+                                    <rect key="frame" x="2" y="2" width="730" height="124"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <tableView verticalHuggingPriority="750" ambiguous="YES" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnSelection="YES" multipleSelection="NO" autosaveColumns="NO" headerView="JTr-0j-NoU" id="JNd-eu-YV7">
-                                            <rect key="frame" x="0.0" y="0.0" width="707" height="99"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="730" height="99"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <size key="intercellSpacing" width="3" height="2"/>
                                             <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -2706,7 +2706,7 @@
                                                     </textFieldCell>
                                                     <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                 </tableColumn>
-                                                <tableColumn identifier="numberoflogs" width="45" minWidth="10" maxWidth="3.4028234663852886e+38" id="BrN-3s-w3t">
+                                                <tableColumn identifier="numberoflogs" width="68.5" minWidth="10" maxWidth="3.4028234663852886e+38" id="BrN-3s-w3t">
                                                     <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="center" title="Logs">
                                                         <font key="font" metaFont="message" size="11"/>
                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
@@ -2723,8 +2723,8 @@
                                         </tableView>
                                     </subviews>
                                 </clipView>
-                                <scroller key="horizontalScroller" wantsLayer="YES" verticalHuggingPriority="750" horizontal="YES" id="9gk-vz-9Xr">
-                                    <rect key="frame" x="2" y="110" width="661" height="16"/>
+                                <scroller key="horizontalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" horizontal="YES" id="9gk-vz-9Xr">
+                                    <rect key="frame" x="2" y="110" width="730" height="16"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
                                 <scroller key="verticalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" horizontal="NO" id="H57-uO-EgJ">
@@ -2732,7 +2732,7 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
                                 <tableHeaderView key="headerView" id="JTr-0j-NoU">
-                                    <rect key="frame" x="0.0" y="0.0" width="707" height="25"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="730" height="25"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableHeaderView>
                             </scrollView>
@@ -2746,7 +2746,7 @@
                                 </textFieldCell>
                             </textField>
                             <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="S0W-sj-Ojh">
-                                <rect key="frame" x="992" y="137" width="86" height="21"/>
+                                <rect key="frame" x="992" y="132" width="86" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <buttonCell key="cell" type="push" title="Stop all" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="gih-MT-omN">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
