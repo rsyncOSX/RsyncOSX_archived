@@ -170,7 +170,7 @@ class Configurations: ReloadTable, SetSchedules {
         let number = Numbers(outputprocess: outputprocess)
         let hiddenID = self.gethiddenID(index: index)
         let numbers = number.stats()
-        self.schedules!.addlog(hiddenID, result: numbers)
+        self.schedules!.addlog(hiddenID: hiddenID, result: numbers)
         if self.configurations![index].task == ViewControllerReference.shared.snapshot {
             self.increasesnapshotnum(index: index)
         }
