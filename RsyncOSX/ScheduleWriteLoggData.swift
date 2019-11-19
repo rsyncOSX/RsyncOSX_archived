@@ -49,7 +49,7 @@ class ScheduleWriteLoggData: SetConfigurations, ReloadTable, Deselect {
     // - parameter hiddenID : hiddenID for task
     // - parameter result : String representation of result
     // - parameter date : String representation of date and time stamp
-    func addlog(_ hiddenID: Int, result: String) {
+    func addlog(hiddenID: Int, result: String) {
         if ViewControllerReference.shared.detailedlogging {
             // Set the current date
             let currendate = Date()
@@ -63,10 +63,10 @@ class ScheduleWriteLoggData: SetConfigurations, ReloadTable, Deselect {
             } else {
                 resultannotaded = result
             }
-            var inserted: Bool = self.addlogexisting(hiddenID, result: resultannotaded ?? "", date: date)
+            var inserted: Bool = self.addlogexisting(hiddenID: hiddenID, result: resultannotaded ?? "", date: date)
             // Record does not exist, create new Schedule (not inserted)
             if inserted == false {
-                inserted = self.addlognew(hiddenID, result: resultannotaded ?? "", date: date)
+                inserted = self.addlognew(hiddenID: hiddenID, result: resultannotaded ?? "", date: date)
             }
             if inserted {
                 _ = PersistentStorageScheduling(profile: self.profile).savescheduleInMemoryToPersistentStore()
@@ -75,10 +75,11 @@ class ScheduleWriteLoggData: SetConfigurations, ReloadTable, Deselect {
         }
     }
 
-    private func addlogexisting(_ hiddenID: Int, result: String, date: String) -> Bool {
+    private func addlogexisting(hiddenID: Int, result: String, date: String) -> Bool {
         var loggadded: Bool = false
-        for i in 0 ..< self.schedules!.count where
-            self.configurations!.getResourceConfiguration(hiddenID, resource: .task) == ViewControllerReference.shared.synchronize {
+        loop: for i in 0 ..< self.schedules!.count where
+            self.configurations!.getResourceConfiguration(hiddenID, resource: .task) == ViewControllerReference.shared.synchronize ||
+            self.configurations!.getResourceConfiguration(hiddenID, resource: .task) == ViewControllerReference.shared.snapshot {
                 if self.schedules![i].hiddenID == hiddenID  &&
                     self.schedules![i].schedule == "manuel" &&
                     self.schedules![i].dateStop == nil {
@@ -87,28 +88,29 @@ class ScheduleWriteLoggData: SetConfigurations, ReloadTable, Deselect {
                     dict.setObject(result, forKey: "resultExecuted" as NSCopying)
                     self.schedules![i].logrecords.append(dict)
                     loggadded = true
+                    break loop
                 }
             }
         return loggadded
     }
 
-    private func addlognew(_ hiddenID: Int, result: String, date: String) -> Bool {
+    private func addlognew(hiddenID: Int, result: String, date: String) -> Bool {
         var loggadded: Bool = false
         if self.configurations!.getResourceConfiguration(hiddenID, resource: .task) == ViewControllerReference.shared.synchronize ||
             self.configurations!.getResourceConfiguration(hiddenID, resource: .task) == ViewControllerReference.shared.snapshot {
-            let masterdict = NSMutableDictionary()
-            masterdict.setObject(hiddenID, forKey: "hiddenID" as NSCopying)
-            masterdict.setObject("01 Jan 1900 00:00", forKey: "dateStart" as NSCopying)
-            masterdict.setObject("manuel", forKey: "schedule" as NSCopying)
-            let dict = NSMutableDictionary()
-            dict.setObject(date, forKey: "dateExecuted" as NSCopying)
-            dict.setObject(result, forKey: "resultExecuted" as NSCopying)
-            let executed = NSMutableArray()
-            executed.add(dict)
-            let newSchedule = ConfigurationSchedule(dictionary: masterdict, log: executed, nolog: false)
-            self.schedules!.append(newSchedule)
-            loggadded = true
-        }
+                    let masterdict = NSMutableDictionary()
+                    masterdict.setObject(hiddenID, forKey: "hiddenID" as NSCopying)
+                    masterdict.setObject("01 Jan 1900 00:00", forKey: "dateStart" as NSCopying)
+                    masterdict.setObject("manuel", forKey: "schedule" as NSCopying)
+                    let dict = NSMutableDictionary()
+                    dict.setObject(date, forKey: "dateExecuted" as NSCopying)
+                    dict.setObject(result, forKey: "resultExecuted" as NSCopying)
+                    let executed = NSMutableArray()
+                    executed.add(dict)
+                    let newSchedule = ConfigurationSchedule(dictionary: masterdict, log: executed, nolog: false)
+                    self.schedules!.append(newSchedule)
+                    loggadded = true
+                }
         return loggadded
     }
 
