@@ -148,15 +148,14 @@ class Schedules: ScheduleWriteLoggData {
 
     // Test if Schedule record in memory is set to delete or not
     private func delete(dict: NSDictionary) {
-       for i in 0 ..< self.schedules!.count {
-            if dict.value(forKey: "hiddenID") as? Int == self.schedules![i].hiddenID {
-                if dict.value(forKey: "dateStop") as? String == self.schedules![i].dateStop ||
-                    self.schedules![i].dateStop == nil &&
-                    dict.value(forKey: "schedule") as? String == self.schedules![i].schedule &&
-                    dict.value(forKey: "dateStart") as? String == self.schedules![i].dateStart {
-                    self.schedules![i].delete = true
-                    break
-                }
+        for i in 0 ..< self.schedules!.count where
+        dict.value(forKey: "hiddenID") as? Int == self.schedules![i].hiddenID {
+            if dict.value(forKey: "dateStop") as? String == self.schedules![i].dateStop ||
+                self.schedules![i].dateStop == nil &&
+                dict.value(forKey: "schedule") as? String == self.schedules![i].schedule &&
+                dict.value(forKey: "dateStart") as? String == self.schedules![i].dateStart {
+                self.schedules![i].delete = true
+                break
             }
         }
     }
@@ -164,16 +163,16 @@ class Schedules: ScheduleWriteLoggData {
     // Test if Schedule record in memory is set to stop er not
     private func stop(dict: NSDictionary) {
         for i in 0 ..< self.schedules!.count where
-            dict.value(forKey: "hiddenID") as? Int == self.schedules![i].hiddenID {
-                if dict.value(forKey: "dateStop") as? String == self.schedules![i].dateStop ||
-                    self.schedules![i].dateStop == nil &&
-                    dict.value(forKey: "schedule") as? String == self.schedules![i].schedule &&
-                    dict.value(forKey: "dateStart") as? String == self.schedules![i].dateStart {
-                    self.schedules![i].schedule = "stopped"
-                    let dateformatter = Dateandtime().setDateformat()
-                    self.schedules![i].dateStop = dateformatter.string(from: Date())
-                    break
-                }
+        dict.value(forKey: "hiddenID") as? Int == self.schedules![i].hiddenID {
+            if dict.value(forKey: "dateStop") as? String == self.schedules![i].dateStop ||
+                self.schedules![i].dateStop == nil &&
+                dict.value(forKey: "schedule") as? String == self.schedules![i].schedule &&
+                dict.value(forKey: "dateStart") as? String == self.schedules![i].dateStart {
+                self.schedules![i].schedule = "stopped"
+                let dateformatter = Dateandtime().setDateformat()
+                self.schedules![i].dateStop = dateformatter.string(from: Date())
+                break
+            }
         }
     }
 
