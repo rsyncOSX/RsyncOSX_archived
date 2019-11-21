@@ -54,8 +54,7 @@ class Logging: ReportFileerror {
 
     private func minimumlogging() {
         let currendate = Date()
-        let dateformatter = Dateandtime().setDateformat()
-        let date = dateformatter.string(from: currendate)
+        let date = currendate.localized_string_from_date()
         self.readloggfile()
         var tmplogg = [String]()
         var startindex = self.outputprocess!.getOutput()!.count - 8
@@ -78,8 +77,7 @@ class Logging: ReportFileerror {
 
     private func fulllogging() {
         let currendate = Date()
-        let dateformatter = Dateandtime().setDateformat()
-        let date = dateformatter.string(from: currendate)
+        let date = currendate.localized_string_from_date()
         self.readloggfile()
         let tmplogg: String = "\n" + "-------------------------------------------\n" + date + "\n"
             + "-------------------------------------------\n"

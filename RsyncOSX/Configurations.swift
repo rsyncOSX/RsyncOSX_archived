@@ -175,8 +175,7 @@ class Configurations: ReloadTable, SetSchedules {
             self.increasesnapshotnum(index: index)
         }
         let currendate = Date()
-        let dateformatter = Dateandtime().setDateformat()
-        self.configurations![index].dateRun = dateformatter.string(from: currendate)
+        self.configurations![index].dateRun = currendate.en_us_string_from_date()
         // Saving updated configuration in memory to persistent store
         _ = PersistentStorageConfiguration(profile: self.profile).saveconfigInMemoryToPersistentStore()
         // Call the view and do a refresh of tableView

@@ -94,14 +94,6 @@ extension Date {
         return dateComponent.year!
     }
 
-    func localizeDate() -> String {
-        let formatter = DateFormatter()
-        formatter.formatterBehavior = .behavior10_4
-        formatter.dateStyle = .medium
-        formatter.timeStyle = .short
-        return formatter.string(from: self)
-    }
-
     static func == (lhs: Date, rhs: Date) -> Bool {
         return lhs.compare(rhs) == ComparisonResult.orderedSame
     }
@@ -165,11 +157,20 @@ extension Date {
         return Calendar.current.dateComponents([.weekOfYear], from: self, to: now.dateByAddingDays(7))
     }
 
-    var localized_string_from_date: String {
+    func localized_string_from_date() -> String {
         let dateformatter = DateFormatter()
         dateformatter.formatterBehavior = .behavior10_4
         dateformatter.dateStyle = .medium
         dateformatter.timeStyle = .short
+        return dateformatter.string(from: self)
+    }
+    
+    func en_us_string_from_date() -> String {
+        let dateformatter = DateFormatter()
+        dateformatter.locale = Locale(identifier: "en_US")
+        dateformatter.dateStyle = .medium
+        dateformatter.timeStyle = .short
+        dateformatter.dateFormat = "dd MMM yyyy HH:mm"
         return dateformatter.string(from: self)
     }
 
@@ -185,7 +186,7 @@ extension Date {
 
 extension String {
 
-    var en_us_date_from_string: Date {
+    func en_us_date_from_string() -> Date {
         let dateformatter = DateFormatter()
         dateformatter.locale = Locale(identifier: "en_US")
         dateformatter.dateStyle = .medium
@@ -194,7 +195,7 @@ extension String {
         return dateformatter.date(from: self) ?? Date()
     }
 
-    var localized_date_from_string: Date {
+    func localized_date_from_string() -> Date {
         let dateformatter = DateFormatter()
         dateformatter.formatterBehavior = .behavior10_4
         dateformatter.dateStyle = .medium
@@ -205,6 +206,6 @@ extension String {
     var setdatesuffixbackupstring: String {
         let formatter = DateFormatter()
         formatter.dateFormat = "-yyyy-MM-dd"
-        return  self + formatter.string(from: Date())
+        return self + formatter.string(from: Date())
     }
 }

@@ -311,16 +311,14 @@ extension ViewControllerSchedule: NSTableViewDelegate, Attributedestring {
                 return nil
             }
     } else {
-        let dateformatter = Dateandtime().setDateformat()
         if row < self.scheduledetails?.count ?? 0 {
             let object: NSMutableDictionary = self.scheduledetails![row]
             switch tableColumn!.identifier.rawValue {
             case "active":
-                let dateformatter = Dateandtime().setDateformat()
                 let datestopstring = object.value(forKey: "dateStop") as? String ?? ""
                 let schedule = object.value(forKey: "schedule") as? String ?? ""
                 guard datestopstring.isEmpty == false && datestopstring != "no stop date" else { return nil }
-                let dateStop: Date = dateformatter.date(from: datestopstring)!
+                let dateStop: Date = datestopstring.en_us_date_from_string()
                 if dateStop.timeIntervalSinceNow > 0 && schedule != "stopped" {
                     return #imageLiteral(resourceName: "complete")
                 } else {
@@ -349,8 +347,7 @@ extension ViewControllerSchedule: NSTableViewDelegate, Attributedestring {
                     if stringdate.isEmpty {
                         return ""
                     } else {
-                        let date = dateformatter.date(from: stringdate)
-                        return date?.localizeDate()
+                        return stringdate.localized_date_from_string().localized_string_from_date()
                     }
                 }
             case "dateStop":
@@ -361,8 +358,7 @@ extension ViewControllerSchedule: NSTableViewDelegate, Attributedestring {
                     if stringdate.isEmpty {
                         return ""
                     } else {
-                        let date = dateformatter.date(from: stringdate)
-                        return date?.localizeDate()
+                        return stringdate.localized_date_from_string().localized_string_from_date()
                     }
                 }
             case "numberoflogs", "dayinweek":

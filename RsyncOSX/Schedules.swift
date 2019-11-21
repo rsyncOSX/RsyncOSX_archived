@@ -26,17 +26,16 @@ class Schedules: ScheduleWriteLoggData {
     // - parameter stop: stop date and time
     func addschedule (hiddenID: Int, schedule: Scheduletype, start: Date) {
         var stop: Date?
-        let dateformatter = Dateandtime().setDateformat()
         if schedule == .once {
             stop = start
         } else {
-            stop = dateformatter.date(from: "01 Jan 2100 00:00")
+            stop = "01 Jan 2100 00:00".en_us_date_from_string()
         }
         let dict = NSMutableDictionary()
         let offsiteserver = self.configurations?.getResourceConfiguration(hiddenID, resource: .offsiteServer)
         dict.setObject(hiddenID, forKey: "hiddenID" as NSCopying)
-        dict.setObject(dateformatter.string(from: start), forKey: "dateStart" as NSCopying)
-        dict.setObject(dateformatter.string(from: stop!), forKey: "dateStop" as NSCopying)
+        dict.setObject(start.en_us_string_from_date(), forKey: "dateStart" as NSCopying)
+        dict.setObject(stop!.en_us_string_from_date(), forKey: "dateStop" as NSCopying)
         dict.setObject(offsiteserver as Any, forKey: "offsiteserver" as NSCopying)
         switch schedule {
         case .once:
@@ -82,7 +81,7 @@ class Schedules: ScheduleWriteLoggData {
             if self.schedules![i].hiddenID == hiddenID {
                 row = [
                     "dateStart": self.schedules![i].dateStart,
-                    "dayinweek": self.schedules![i].dateStart.en_us_date_from_string.dayNameShort(),
+                    "dayinweek": self.schedules![i].dateStart.en_us_date_from_string().dayNameShort(),
                     "stopCellID": 0,
                     "deleteCellID": 0,
                     "dateStop": "",
@@ -102,9 +101,8 @@ class Schedules: ScheduleWriteLoggData {
             }
             // Sorting schedule after dateStart, last startdate on top
             data.sort { (sched1, sched2) -> Bool in
-                let dateformatter = Dateandtime().setDateformat()
-                if dateformatter.date(from: (sched1.value(forKey: "dateStart") as? String)!)! >
-                    dateformatter.date(from: (sched2.value(forKey: "dateStart") as? String)!)! {
+                if (sched1.value(forKey: "dateStart") as? String)!.en_us_date_from_string() >
+                (sched2.value(forKey: "dateStart") as? String)!.en_us_date_from_string() {
                     return true
                 } else {
                     return false
@@ -169,8 +167,7 @@ class Schedules: ScheduleWriteLoggData {
                 dict.value(forKey: "schedule") as? String == self.schedules![i].schedule &&
                 dict.value(forKey: "dateStart") as? String == self.schedules![i].dateStart {
                 self.schedules![i].schedule = "stopped"
-                let dateformatter = Dateandtime().setDateformat()
-                self.schedules![i].dateStop = dateformatter.string(from: Date())
+                self.schedules![i].dateStop = Date().en_us_string_from_date()
                 break
             }
         }

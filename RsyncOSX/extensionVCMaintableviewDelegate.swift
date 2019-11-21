@@ -21,7 +21,6 @@ extension ViewControllerMain: NSTableViewDelegate, Attributedestring {
 
     // TableView delegates
     func tableView(_ tableView: NSTableView, objectValueFor tableColumn: NSTableColumn?, row: Int) -> Any? {
-        let dateformatter = Dateandtime().setDateformat()
         if row > self.configurations!.configurationsDataSourcecount() - 1 { return nil }
         let object: NSDictionary = self.configurations!.getConfigurationsDataSource()![row]
         let hiddenID: Int = self.configurations!.getConfigurations()[row].hiddenID
@@ -66,8 +65,7 @@ extension ViewControllerMain: NSTableViewDelegate, Attributedestring {
             if stringdate.isEmpty {
                 return ""
             } else {
-                let date = dateformatter.date(from: stringdate)
-                return date?.localizeDate()
+                return stringdate.en_us_date_from_string().localized_string_from_date()
             }
         } else {
             if tableColumn!.identifier.rawValue == "batchCellID" {
