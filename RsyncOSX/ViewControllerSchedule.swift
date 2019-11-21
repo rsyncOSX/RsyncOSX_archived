@@ -113,12 +113,8 @@ class ViewControllerSchedule: NSViewController, SetConfigurations, SetSchedules,
             self.oncebutton.isEnabled = false
         }
         if secondstostart > 60 {
-            let dateformatter = DateFormatter()
-            dateformatter.formatterBehavior = .behavior10_4
-            dateformatter.dateStyle = .medium
-            dateformatter.timeStyle = .short
             self.selectedstart.isHidden = false
-            self.selectedstart.stringValue = dateformatter.string(from: startime)
+            self.selectedstart.stringValue = startime.localized_string_from_date()
             self.selectedstart.textColor = self.setcolor(nsviewcontroller: self, color: .green)
             self.weeklybutton.isEnabled = true
             self.dailybutton.isEnabled = true

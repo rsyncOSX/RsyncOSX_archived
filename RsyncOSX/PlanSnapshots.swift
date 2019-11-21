@@ -64,12 +64,8 @@ class PlanSnapshots {
     }
 
     private func datefromstring(datestringlocalized: String) -> Date {
-        let formatter = DateFormatter()
-        formatter.formatterBehavior = .behavior10_4
-        formatter.dateStyle = .medium
-        formatter.timeStyle = .short
         guard datestringlocalized != "no log" else { return Date()}
-        return formatter.date(from: datestringlocalized)!
+        return datestringlocalized.localized_date_from_string()
     }
 
     private func datecomponentsfromstring(datestringlocalized: String?) -> DateComponents {
@@ -236,11 +232,7 @@ class PlanSnapshots {
         self.snapshotsloggdata = self.SnapshotsLoggDataDelegate?.getsnapshotsloggdata()
         guard self.snapshotsloggdata?.snapshotslogs != nil else { return }
         self.numberoflogs = self.snapshotsloggdata?.snapshotslogs?.count ?? 0
-        let dateformatter = DateFormatter()
-        dateformatter.formatterBehavior = .behavior10_4
-        dateformatter.dateStyle = .medium
-        dateformatter.timeStyle = .short
-        self.now = dateformatter.string(from: Date())
+        self.now = Date().localized_string_from_date()
         self.reset()
         self.markfordelete()
     }

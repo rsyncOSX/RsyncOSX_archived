@@ -164,7 +164,7 @@ extension Date {
         dateformatter.timeStyle = .short
         return dateformatter.string(from: self)
     }
-    
+
     func en_us_string_from_date() -> String {
         let dateformatter = DateFormatter()
         dateformatter.locale = Locale(identifier: "en_US")
