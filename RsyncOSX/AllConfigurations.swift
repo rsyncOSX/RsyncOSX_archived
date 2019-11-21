@@ -38,7 +38,6 @@ final class AllConfigurations: Sorting {
 
     private func setConfigurationsDataSourcecountBackupSnapshot() {
         guard self.allconfigurations != nil else { return }
-        let dateformatter = Dateandtime().setDateformat()
         var configurations: [Configuration] = self.allconfigurations!.filter({return ($0.task == ViewControllerReference.shared.synchronize || $0.task == ViewControllerReference.shared.snapshot )})
         var data = [NSMutableDictionary]()
         for i in 0 ..< configurations.count {
@@ -48,7 +47,7 @@ final class AllConfigurations: Sorting {
             var date: String = ""
             let stringdate = configurations[i].dateRun ?? ""
             if stringdate.isEmpty == false {
-                date = dateformatter.date(from: stringdate)!.localizeDate()
+                date = stringdate.en_us_date_from_string().localized_string_from_date()
             }
             let row: NSMutableDictionary = [
                 "profile": configurations[i].profile ?? "",

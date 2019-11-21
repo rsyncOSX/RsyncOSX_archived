@@ -63,15 +63,4 @@ struct Dateandtime {
         }
         return result ?? ""
     }
-
-    // Setting date format
-    func setDateformat() -> DateFormatter {
-        let dateformatter = DateFormatter()
-        // We are forcing en_US format of date strings
-        dateformatter.locale = Locale(identifier: "en_US")
-        dateformatter.dateStyle = .medium
-        dateformatter.timeStyle = .short
-        dateformatter.dateFormat = "dd MMM yyyy HH:mm"
-        return dateformatter
-    }
 }

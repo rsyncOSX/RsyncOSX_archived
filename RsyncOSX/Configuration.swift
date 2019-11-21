@@ -42,9 +42,8 @@ struct Configuration {
 
     private func calculatedays(date: String) -> Double? {
         guard date != "" else { return nil }
-        let dateformatter = Dateandtime().setDateformat()
-        let lastbackup = dateformatter.date(from: date)
-        let seconds: TimeInterval = lastbackup!.timeIntervalSinceNow
+        let lastbackup = date.en_us_date_from_string()
+        let seconds: TimeInterval = lastbackup.timeIntervalSinceNow
         return seconds * (-1)
     }
 
