@@ -17,8 +17,7 @@ class OutputErrors {
     }
 
     func addLine(str: String) {
-        let currendate = Date()
-        let date = currendate.localized_string_from_date()
+        let date = Date().localized_string_from_date()
         self.output!.append(date + ": " + str)
     }
 

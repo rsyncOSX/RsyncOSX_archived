@@ -62,10 +62,11 @@ class ScheduleSortedAndExpand: SetConfigurations, SetSchedules {
     private func sortAndExpandScheduleTasks() {
         for i in 0 ..< self.schedulesNSDictionary!.count {
             let dict = self.schedulesNSDictionary![i]
-            let dateStop: Date = (dict.value(forKey: "dateStop") as? String)!.localized_date_from_string()
-            let dateStart: Date = (dict.value(forKey: "dateStart") as? String)!.localized_date_from_string()
+            let dateStop: Date = (dict.value(forKey: "dateStop") as? String)!.en_us_date_from_string()
+            let dateStart: Date = (dict.value(forKey: "dateStart") as? String)!.en_us_date_from_string()
             let schedule: String = (dict.value(forKey: "schedule") as? String)!
             let seconds: Double = dateStop.timeIntervalSinceNow
+            print(seconds)
             // Get all jobs which are not executed
             if seconds > 0 {
                 switch schedule {
