@@ -94,8 +94,6 @@ final class ViewControllerReference {
     // Setting environmentvariable for Process object
     var environment: String?
     var environmentvalue: String?
-    // reorg scheduledata, sort and clean
-    var reorg: Bool = false
 
     // Reference to main View
     private var viewControllertabMain: NSViewController?

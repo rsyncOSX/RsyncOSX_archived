@@ -42,18 +42,6 @@ class ViewControllerUserconfiguration: NSViewController, NewRsync, SetDismisser,
     @IBOutlet weak var environment: NSTextField!
     @IBOutlet weak var environmentvalue: NSTextField!
     @IBOutlet weak var enableenvironment: NSButton!
-    @IBOutlet weak var reorgbutton: NSButton!
-
-    @IBAction func reorg(_ sender: NSButton) {
-        switch self.reorgbutton.state.rawValue {
-        case 0:
-            ViewControllerReference.shared.reorg = false
-        case 1:
-            ViewControllerReference.shared.reorg = true
-        default:
-            return
-        }
-    }
 
     @IBAction func toggleenableenvironment(_ sender: NSButton) {
         switch self.enableenvironment.state {
@@ -314,7 +302,6 @@ class ViewControllerUserconfiguration: NSViewController, NewRsync, SetDismisser,
         } else {
             self.automaticexecutelocalvolumes.state = .off
         }
-        ViewControllerReference.shared.reorg = false
     }
 
     // Function for check and set user configuration

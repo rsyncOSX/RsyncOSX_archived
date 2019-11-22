@@ -193,11 +193,6 @@ class Schedules: ScheduleWriteLoggData {
         }
         // Setting self.Schedule as data
         self.schedules = data
-        if ViewControllerReference.shared.reorg {
-            let reorg = Reorgschedule(schedule: data)
-            self.schedules = reorg.schedule
-            ViewControllerReference.shared.reorg = false
-        }
     }
 
     override init(profile: String?) {
