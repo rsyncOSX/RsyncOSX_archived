@@ -5,6 +5,7 @@
 //  Created by Thomas Evensen on 21/11/2019.
 //  Copyright © 2019 Thomas Evensen. All rights reserved.
 //
+// swiftlint:disable line_length
 
 import Foundation
 
@@ -43,32 +44,15 @@ class Reorgschedule {
     }
 
     func findnotmanual() {
-        var notmanuel = [ConfigurationSchedule]()
-        for i in 0 ..< uniquehiddenIDs!.count {
-            let hiddenID = uniquehiddenIDs![i]
-            let filter = schedule!.filter({$0.hiddenID == hiddenID && $0.schedule != "manuel"})
-            if filter.count > 0 {
-                notmanuel.append(filter[0])
-                let index = notmanuel.count - 1
-                for j in 1 ..< filter.count {
-                    for k in 0 ..< filter[j].logrecords.count {
-                         notmanuel[index].logrecords.append(filter[j].logrecords[k])
-                    }
-                }
-            }
-        }
-        self.schedulenotmanuel = notmanuel
+        self.schedulenotmanuel = schedule!.filter({$0.schedule != "manuel"})
     }
 
     init(schedule: [ConfigurationSchedule]?) {
         self.schedule = schedule
-        /*
-        Do not use...
         self.finduniquehiddenIDs()
         self.mergeloggsmaunal()
         self.findnotmanual()
         self.schedule = (self.schedulemanuel ?? []) + (self.schedulenotmanuel ?? [])
-        */
     }
 }
 
