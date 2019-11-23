@@ -20,8 +20,7 @@ struct Dateandtime {
     }
 
     // Calculation of time to a spesific date
-    // Used in view of all tasks
-    func timeString(startdate: Date, enddate: Date?) -> String {
+    func timestring(startdate: Date, enddate: Date?) -> String {
         var result: String?
         let seconds: Double = self.seconds(startdate: startdate, enddate: enddate)
         let (hr, minf) = modf(seconds / 3600)
@@ -45,8 +44,7 @@ struct Dateandtime {
     }
 
     // Calculation of time to a spesific date
-    // Used in view of all tasks
-    func timeString(seconds: Double) -> String {
+    func timestring(seconds: Double) -> String {
         var result: String?
         let (hr, minf) = modf(seconds / 3600)
         let (min, secf) = modf(60 * minf)
