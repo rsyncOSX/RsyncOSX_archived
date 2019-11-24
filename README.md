@@ -2,13 +2,9 @@
 
 ![](icon/rsyncosx.png)
 
-[Please read the Changelog](https://rsyncosx.github.io/Changelog).
-
-If you want to discuss changes or report bugs please create an [Issue](https://github.com/rsyncOSX/RsyncOSX/issues).
+Please [read the Changelog](https://rsyncosx.github.io/Changelog). If you want to discuss changes or report bugs please create an [Issue](https://github.com/rsyncOSX/RsyncOSX/issues).
 
 **Read about the --delete parameter** (below) to rsync **before** using rsync and RsyncOSX.
-
-A short [intro to RsyncOSX](https://rsyncosx.github.io/Intro) and full [documentation of RsyncOSX](https://rsyncosx.github.io/AboutRsyncOSX).
 
 RsyncOSX is a GUI on top of the command line utility `rsync`. Rsync is a file-based synchronization and backup tool. There is no custom solution for the backup archive. You can quit utilizing RsyncOSX (and rsync) at any time and still have access to all synchronized files.
 
@@ -29,17 +25,20 @@ The app is signed with my Apple ID developer certificate and [notarized](https:/
 - Norwegian - by me
 - English - the base language of RsyncOSX
 
-RsyncOSX is prepared for new languages. Translating RsyncOSX is done by utilizing the [Xlifftool](https://github.com/remuslazar/osx-xliff-tool). The tool reads a xliff file, which I prepare, for translating. The xliff file is imported into RsyncOSX by Xcode.
+RsyncOSX is prepared for new languages.
 
-### Easy to use or not, the right tool or not - please read this
+### Please read this
 
-Is RsyncOSX easy to use or a backup tool for the average user? If you have some understanding of what rsync is and how to use rsync it is helpful for understand what RsyncOSX is and the use. If you dont know whar rsync is I would not recommend utilize RsyncOSX. I would as a minimum read about rsync before commencing use of RsyncOSX.
+Is RsyncOSX easy to use or a backup tool for the average user? If you have some understanding of what rsync is and how to use rsync it is helpful for understand what RsyncOSX is and the use. If you don't know what rsync is I would not recommend utilize RsyncOSX. I would as a minimum read about rsync before commencing use of RsyncOSX.
 
-RsyncOSX is not developed to be an easy synchronize and backup tool. It is developed to ease the use of rsync and specially synchronize files on your Mac to remote FreeBSD and Linux servers. And of course restore files from remote servers.
+RsyncOSX is not developed to be an easy synchronize and backup tool. It is developed to ease the use of rsync and specially synchronize files on your Mac to remote FreeBSD and Linux servers. And of course restore files from remote servers. The UX might be difficult to understand if you don't know rsync.
 
-RsyncOSX supports synchronize files and snapshots of files. If you don´t know what a snapshot is don´t use it.
+RsyncOSX supports synchronize files and snapshots of files. It is important you understand either what synchronize is and snapshot before using RsyncOSX.
 
 If your plan is to use RsyncOSX as your main tool for backup of files, please investigate and understand the limits of RsyncOSX and rsync. RsyncOSX is quite powerful, but it is might not the primary backup tool for the average user of macOS.
+
+There is a [short intro to RsyncOSX](https://rsyncosx.github.io/Intro) and [some more documentation of RsyncOSX](https://rsyncosx.github.io/AboutRsyncOSX).
+
 
 ### Version of rsync
 
@@ -109,6 +108,10 @@ To compile the code, install Xcode and open the RsyncOSX project file. Before co
 
 There are two ways to compile, either utilize `make` or compile by Xcode. `make release` will compile the `RsyncOSX.app` and `make dmg` will make a dmg file to be released.  The build of dmg files are by utilizing [andreyvit](https://github.com/andreyvit/create-dmg) script for creating dmg and [syncthing-macos](https://github.com/syncthing/syncthing-macos) setup.
 
-#### XCTest
+### Xliff and translating
+
+Translating RsyncOSX is done by utilizing the [Xlifftool](https://github.com/remuslazar/osx-xliff-tool). The tool reads a xliff file. The xliff file is imported into RsyncOSX by Xcode.
+
+### XCTest
 
 XCTest configurations are in [development](https://github.com/rsyncOSX/RsyncOSX/blob/master/XCTestconfiguration/XCTest.md).
