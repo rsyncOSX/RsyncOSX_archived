@@ -2,13 +2,9 @@
 
 ![](icon/rsyncosx.png)
 
-[Please read the Changelog](https://rsyncosx.github.io/Changelog).
-
-If you want to discuss changes or report bugs please create an [Issue](https://github.com/rsyncOSX/RsyncOSX/issues).
+Please [read the Changelog](https://rsyncosx.github.io/Changelog). If you want to discuss changes or report bugs please create an [Issue](https://github.com/rsyncOSX/RsyncOSX/issues).
 
 **Read about the --delete parameter** (below) to rsync **before** using rsync and RsyncOSX.
-
-A short [intro to RsyncOSX](https://rsyncosx.github.io/Intro) and full [documentation of RsyncOSX](https://rsyncosx.github.io/AboutRsyncOSX).
 
 RsyncOSX is a GUI on top of the command line utility `rsync`. Rsync is a file-based synchronization and backup tool. There is no custom solution for the backup archive. You can quit utilizing RsyncOSX (and rsync) at any time and still have access to all synchronized files.
 
@@ -33,13 +29,16 @@ RsyncOSX is prepared for new languages. Translating RsyncOSX is done by utilizin
 
 ### Easy to use or not, the right tool or not - please read this
 
-Is RsyncOSX easy to use or a backup tool for the average user? If you have some understanding of what rsync is and how to use rsync it is helpful for understand what RsyncOSX is and the use. If you dont know whar rsync is I would not recommend utilize RsyncOSX. I would as a minimum read about rsync before commencing use of RsyncOSX.
+Is RsyncOSX easy to use or a backup tool for the average user? If you have some understanding of what rsync is and how to use rsync it is helpful for understand what RsyncOSX is and the use. If you don't know what rsync is I would not recommend utilize RsyncOSX. I would as a minimum read about rsync before commencing use of RsyncOSX.
 
 RsyncOSX is not developed to be an easy synchronize and backup tool. It is developed to ease the use of rsync and specially synchronize files on your Mac to remote FreeBSD and Linux servers. And of course restore files from remote servers.
 
-RsyncOSX supports synchronize files and snapshots of files. If you don´t know what a snapshot is don´t use it.
+RsyncOSX supports synchronize files and snapshots of files. If you don't know what a snapshot is don´t use it.
 
 If your plan is to use RsyncOSX as your main tool for backup of files, please investigate and understand the limits of RsyncOSX and rsync. RsyncOSX is quite powerful, but it is might not the primary backup tool for the average user of macOS.
+
+There is a [short intro to RsyncOSX](https://rsyncosx.github.io/Intro) and [some more documentation of RsyncOSX](https://rsyncosx.github.io/AboutRsyncOSX).
+
 
 ### Version of rsync
 
