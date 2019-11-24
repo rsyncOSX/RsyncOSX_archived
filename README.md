@@ -25,7 +25,7 @@ The app is signed with my Apple ID developer certificate and [notarized](https:/
 - Norwegian - by me
 - English - the base language of RsyncOSX
 
-RsyncOSX is prepared for new languages. Translating RsyncOSX is done by utilizing the [Xlifftool](https://github.com/remuslazar/osx-xliff-tool). The tool reads a xliff file, which I prepare, for translating. The xliff file is imported into RsyncOSX by Xcode.
+RsyncOSX is prepared for new languages.
 
 ### Easy to use or not, the right tool or not - please read this
 
@@ -108,6 +108,10 @@ To compile the code, install Xcode and open the RsyncOSX project file. Before co
 
 There are two ways to compile, either utilize `make` or compile by Xcode. `make release` will compile the `RsyncOSX.app` and `make dmg` will make a dmg file to be released.  The build of dmg files are by utilizing [andreyvit](https://github.com/andreyvit/create-dmg) script for creating dmg and [syncthing-macos](https://github.com/syncthing/syncthing-macos) setup.
 
-#### XCTest
+### Xliff and translating
+
+Translating RsyncOSX is done by utilizing the [Xlifftool](https://github.com/remuslazar/osx-xliff-tool). The tool reads a xliff file. The xliff file is imported into RsyncOSX by Xcode.
+
+### XCTest
 
 XCTest configurations are in [development](https://github.com/rsyncOSX/RsyncOSX/blob/master/XCTestconfiguration/XCTest.md).
