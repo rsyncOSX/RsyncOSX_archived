@@ -31,6 +31,16 @@ The app is signed with my Apple ID developer certificate and [notarized](https:/
 
 RsyncOSX is prepared for new languages. Translating RsyncOSX is done by utilizing the [Xlifftool](https://github.com/remuslazar/osx-xliff-tool). The tool reads a xliff file, which I prepare, for translating. The xliff file is imported into RsyncOSX by Xcode.
 
+### Easy to use or not, the right tool or not - please read this
+
+Is RsyncOSX easy to use or a backup tool for the average user? If you have some understanding of what rsync is and how to use rsync it is helpful for understand what RsyncOSX is and the use. If you dont know whar rsync is I would not recommend utilize RsyncOSX. I would as a minimum read about rsync before commencing use of RsyncOSX.
+
+RsyncOSX is not developed to be an easy synchronize and backup tool. It is developed to ease the use of rsync and specially synchronize files on your Mac to remote FreeBSD and Linux servers. And of course restore files from remote servers.
+
+RsyncOSX supports synchronize files and snapshots of files. If you don´t know what a snapshot is don´t use it.
+
+If your plan is to use RsyncOSX as your main tool for backup of files, please investigate and understand the limits of RsyncOSX and rsync. RsyncOSX is quite powerful, but it is might not the backup tool for the average user of macOS.
+
 ### Version of rsync
 
 RsyncOSX is only verified with rsync versions 2.6.9, 3.1.2 and 3.1.3. Other versions of rsync will work but numbers about transferred files is not set in logs. It is recommended to [install](https://rsyncosx.github.io/Install) the latest version of rsync.
