@@ -29,9 +29,9 @@ RsyncOSX is prepared for new languages.
 
 ### Please read this
 
-Is RsyncOSX easy to use or a backup tool for the average user? If you have some understanding of what rsync is and how to use rsync it is helpful for understand what RsyncOSX is and the use. If you don't know what rsync is I would not recommend utilize RsyncOSX. I would as a minimum read about rsync before commencing use of RsyncOSX.
+Is RsyncOSX easy to use or a backup tool for the average user? If you have some understanding of how to use rsync, it is helpful for understand the use of RsyncOSX. If you don't know what rsync is I recommend to read about rsync before commencing use of RsyncOSX.
 
-RsyncOSX is not developed to be an easy synchronize and backup tool. It is developed to ease the use of rsync and specially synchronize files on your Mac to remote FreeBSD and Linux servers. And of course restore files from remote servers. The UX might be difficult to understand if you don't know rsync.
+RsyncOSX is not developed to be an easy synchronize and backup tool. The main purpose is to ease the use of rsync and synchronize files on your Mac to remote FreeBSD and Linux servers. And of course restore files from remote servers. The UX might be difficult to understand if you don't know rsync.
 
 RsyncOSX supports synchronize files and snapshots of files. It is important you understand either what synchronize is and snapshot before using RsyncOSX.
 
