@@ -199,6 +199,6 @@ class Schedules: ScheduleWriteLoggData {
         super.init(profile: profile)
         self.profile = profile
         self.readschedules()
-        // _ = Reorgschedule(schedule: self.schedules)
+        self.schedules = Reorgschedule().mergeelements(data: self.schedules)
     }
 }

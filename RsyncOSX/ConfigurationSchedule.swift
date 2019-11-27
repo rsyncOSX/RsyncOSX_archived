@@ -42,5 +42,11 @@ extension ConfigurationSchedule: Hashable, Equatable {
     func hash(into hasher: inout Hasher) {
         hasher.combine([String(self.hiddenID), self.dateStart, self.schedule])
     }
+}
 
+extension Sequence where Iterator.Element: Hashable {
+    func unique() -> [Iterator.Element] {
+        var alreadyAdded = Set<Iterator.Element>()
+        return self.filter {alreadyAdded.insert($0).inserted}
+    }
 }
