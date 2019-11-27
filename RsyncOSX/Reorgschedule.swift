@@ -9,7 +9,6 @@
 import Foundation
 
 class Reorgschedule {
-
     func uniquelements<T: Hashable>(data: [T]) -> [T] {
         var elements: [T]?
         elements = [T]()
@@ -33,37 +32,17 @@ class Reorgschedule {
                 mergedelements.append(element)
             default:
                 mergedelements.append(element)
+                let index = mergedelements.count - 1
+                var mergedrecord = mergedelements[index] as? ConfigurationSchedule
                 for j in 1 ..< filter.count {
                     let record = filter[j] as? ConfigurationSchedule
-                    let index = mergedelements.count - 1
-                    var mergedrecord = mergedelements[index] as? ConfigurationSchedule
                     for k in 0 ..< (record?.logrecords.count ?? 0) {
                         mergedrecord!.logrecords.append(record!.logrecords[k])
                     }
                 }
+                mergedelements[index] = (mergedrecord as? T)!
             }
         }
         return mergedelements
     }
 }
-
-/*
-    func mergeloggsmaunal() {
-        var manuel = [ConfigurationSchedule]()
-        for i in 0 ..< uniquehiddenIDs!.count {
-            let hiddenID = uniquehiddenIDs![i]
-            let filter = schedule!.filter({$0.hiddenID == hiddenID && $0.schedule == "manuel"})
-            if filter.count > 0 {
-                manuel.append(filter[0])
-                let index = manuel.count - 1
-                for j in 1 ..< filter.count {
-                    for k in 0 ..< filter[j].logrecords.count {
-                         manuel[index].logrecords.append(filter[j].logrecords[k])
-                    }
-                }
-            }
-        }
-        self.schedulemanuel = manuel
-    }
-
-*/

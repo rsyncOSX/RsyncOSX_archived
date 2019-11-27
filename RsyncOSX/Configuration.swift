@@ -137,3 +137,16 @@ struct Configuration {
         self.backupID = dictionary.object(forKey: "backupID") as? String ?? ""
     }
 }
+
+extension Configuration: Hashable, Equatable {
+    static func == (lhs: Configuration, rhs: Configuration) -> Bool {
+      return lhs.localCatalog == rhs.localCatalog &&
+        lhs.offsiteCatalog == rhs.offsiteCatalog &&
+        lhs.offsiteUsername == rhs.offsiteUsername &&
+        lhs.offsiteServer == rhs.offsiteServer
+    }
+
+    func hash(into hasher: inout Hasher) {
+        hasher.combine([self.localCatalog, self.offsiteCatalog, self.offsiteUsername, self.offsiteServer])
+    }
+}
