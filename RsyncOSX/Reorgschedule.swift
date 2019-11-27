@@ -24,6 +24,15 @@ class Reorgschedule {
         self.uniquehiddenIDs = hiddenids!.unique()
     }
 
+    func uniquelements<T: Hashable>(data: [T]) -> [T]? {
+        var elements: [T]?
+        elements = [T]()
+        for i in 0 ..< data.count {
+            elements!.append(data[i])
+        }
+        return elements?.unique()
+    }
+
     func mergeloggsmaunal() {
         var manuel = [ConfigurationSchedule]()
         for i in 0 ..< uniquehiddenIDs!.count {
@@ -51,13 +60,15 @@ class Reorgschedule {
         self.finduniquehiddenIDs()
         self.mergeloggsmaunal()
         self.findnotmanual()
-        self.schedule = (self.schedulemanuel ?? []) + (self.schedulenotmanuel ?? [])
+        // self.schedule = (self.schedulemanuel ?? []) + (self.schedulenotmanuel ?? [])
+        _ = self.uniquelements(data: schedule!)
     }
 }
 
 extension Sequence where Iterator.Element: Hashable {
     func unique() -> [Iterator.Element] {
         var alreadyAdded = Set<Iterator.Element>()
-        return self.filter { alreadyAdded.insert($0).inserted }
+        return self.filter {alreadyAdded.insert($0).inserted}
     }
 }
+
