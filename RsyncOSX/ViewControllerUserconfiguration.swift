@@ -42,6 +42,17 @@ class ViewControllerUserconfiguration: NSViewController, NewRsync, SetDismisser,
     @IBOutlet weak var environment: NSTextField!
     @IBOutlet weak var environmentvalue: NSTextField!
     @IBOutlet weak var enableenvironment: NSButton!
+    @IBOutlet weak var togglecheckdatabutton: NSButton!
+
+    @IBAction func togglecheckdata(_ sender: NSButton) {
+        if ViewControllerReference.shared.checkinput {
+            self.togglecheckdatabutton.state = .off
+            ViewControllerReference.shared.checkinput = false
+        } else {
+            self.togglecheckdatabutton.state = .on
+            ViewControllerReference.shared.checkinput = true
+        }
+    }
 
     @IBAction func toggleenableenvironment(_ sender: NSButton) {
         switch self.enableenvironment.state {
@@ -301,6 +312,11 @@ class ViewControllerUserconfiguration: NSViewController, NewRsync, SetDismisser,
             self.automaticexecutelocalvolumes.state = .on
         } else {
             self.automaticexecutelocalvolumes.state = .off
+        }
+        if ViewControllerReference.shared.checkinput {
+            self.togglecheckdatabutton.state = .on
+        } else {
+            self.togglecheckdatabutton.state = .off
         }
     }
 

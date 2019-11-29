@@ -332,6 +332,8 @@ extension ViewControllerSchedule: NSTableViewDelegate, Attributedestring {
                     return NSLocalizedString("weekly", comment: "main")
                 case "manuel":
                     return NSLocalizedString("manuel", comment: "main")
+                case "stopped":
+                     return NSLocalizedString("stopped", comment: "main")
                 default:
                     return ""
                 }

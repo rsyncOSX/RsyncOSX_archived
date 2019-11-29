@@ -153,7 +153,6 @@ class Schedules: ScheduleWriteLoggData {
                 dict.value(forKey: "schedule") as? String == self.schedules![i].schedule &&
                 dict.value(forKey: "dateStart") as? String == self.schedules![i].dateStart {
                 self.schedules![i].delete = true
-                break
             }
         }
     }
@@ -168,7 +167,6 @@ class Schedules: ScheduleWriteLoggData {
                 dict.value(forKey: "dateStart") as? String == self.schedules![i].dateStart {
                 self.schedules![i].schedule = "stopped"
                 self.schedules![i].dateStop = Date().en_us_string_from_date()
-                break
             }
         }
     }
