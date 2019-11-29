@@ -94,6 +94,8 @@ final class ViewControllerReference {
     // Setting environmentvariable for Process object
     var environment: String?
     var environmentvalue: String?
+    // Check input when loading schedules and adding config
+    var checkinput: Bool = false
 
     // Reference to main View
     private var viewControllertabMain: NSViewController?

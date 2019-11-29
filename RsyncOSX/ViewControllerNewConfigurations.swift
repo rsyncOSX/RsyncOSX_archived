@@ -5,7 +5,7 @@
 //  Created by Thomas Evensen on 13/02/16.
 //  Copyright © 2016 Thomas Evensen. All rights reserved.
 //
-//  swiftlint:disable function_body_length line_length
+//  swiftlint:disable function_body_length line_length cyclomatic_complexity
 
 import Foundation
 import Cocoa
@@ -228,6 +228,17 @@ class ViewControllerNewConfigurations: NSViewController, SetConfigurations, Dela
             self.offsiteCatalog.stringValue = ""
             self.localCatalog.stringValue = ""
             return
+        }
+        if ViewControllerReference.shared.checkinput {
+            let config: Configuration = Configuration(dictionary: dict)
+            let equal = Equal().isequal(data: self.configurations?.getConfigurations(), element: config)
+            if equal {
+                let question: String = NSLocalizedString("This is added before?", comment: "New")
+                let text: String = NSLocalizedString("Add config?", comment: "New")
+                let dialog: String = NSLocalizedString("Add", comment: "New")
+                let answer = Alerts.dialogOrCancel(question: question, text: text, dialog: dialog)
+                guard answer == true else { return }
+            }
         }
         self.configurations!.addNewConfigurations(dict)
         self.newconfigurations?.appendnewConfigurations(dict: dict)

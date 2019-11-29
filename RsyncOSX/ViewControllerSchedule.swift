@@ -332,6 +332,8 @@ extension ViewControllerSchedule: NSTableViewDelegate, Attributedestring {
                     return NSLocalizedString("weekly", comment: "main")
                 case "manuel":
                     return NSLocalizedString("manuel", comment: "main")
+                case "stopped":
+                     return NSLocalizedString("stopped", comment: "main")
                 default:
                     return ""
                 }
@@ -343,7 +345,7 @@ extension ViewControllerSchedule: NSTableViewDelegate, Attributedestring {
                     if stringdate.isEmpty {
                         return ""
                     } else {
-                        return stringdate.localized_date_from_string().localized_string_from_date()
+                        return stringdate.en_us_date_from_string().localized_string_from_date()
                     }
                 }
             case "dateStop":
@@ -354,7 +356,7 @@ extension ViewControllerSchedule: NSTableViewDelegate, Attributedestring {
                     if stringdate.isEmpty {
                         return ""
                     } else {
-                        return stringdate.localized_date_from_string().localized_string_from_date()
+                        return stringdate.en_us_date_from_string().localized_string_from_date()
                     }
                 }
             case "numberoflogs", "dayinweek":

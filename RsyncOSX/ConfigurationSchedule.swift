@@ -31,3 +31,22 @@ struct ConfigurationSchedule {
         }
     }
 }
+
+extension ConfigurationSchedule: Hashable, Equatable {
+    static func == (lhs: ConfigurationSchedule, rhs: ConfigurationSchedule) -> Bool {
+      return lhs.hiddenID == rhs.hiddenID &&
+        lhs.dateStart == rhs.dateStart &&
+        lhs.schedule == rhs.schedule
+    }
+
+    func hash(into hasher: inout Hasher) {
+        hasher.combine([String(self.hiddenID), self.dateStart, self.schedule])
+    }
+}
+
+extension Sequence where Iterator.Element: Hashable {
+    func unique() -> [Iterator.Element] {
+        var alreadyAdded = Set<Iterator.Element>()
+        return self.filter {alreadyAdded.insert($0).inserted}
+    }
+}

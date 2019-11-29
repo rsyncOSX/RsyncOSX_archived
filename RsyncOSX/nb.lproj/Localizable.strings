@@ -10,8 +10,12 @@
 /* Snapshots */
 "Aborting delete operation..." = "Avslutter slette operasjon...";
 
-/* Add schedule */
+/* Add schedule
+   New */
 "Add" = "Legg til";
+
+/* New */
+"Add config?" = "Legge til?";
 
 /* Add schedule */
 "Add Schedule?" = "Legg til oppgave?";
@@ -282,6 +286,9 @@
 /* Restore */
 "Start restore?" = "Start kopi?";
 
+/* main */
+"stopped" = "stoppet";
+
 /* plan */
 "Sunday" = "søndag";
 
@@ -290,6 +297,9 @@
 
 /* Execute */
 "This is a combined task, execute by ⌘R..." = "Kombinert oppgave, kjør med ⌘R";
+
+/* New */
+"This is added before?" = "Denne er lagt til tidligere?";
 
 /* plan */
 "this month" = "denne måned";

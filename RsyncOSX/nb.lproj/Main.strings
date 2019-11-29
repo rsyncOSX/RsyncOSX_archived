@@ -793,6 +793,9 @@
 /* Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "Jil-HV-f4r"; */
 "Jil-HV-f4r.title" = "Text Cell";
 
+/* Class = "NSButtonCell"; title = "Check data"; ObjectID = "jjS-gu-o5C"; */
+"jjS-gu-o5C.title" = "Sjekke data";
+
 /* Class = "NSTextFieldCell"; title = "Double click  on row or shortcut ⌘R to execute task or ⌘I to get info ..."; ObjectID = "JKJ-Kp-IuV"; */
 "JKJ-Kp-IuV.title" = "Dobbel klikk på rad eller  ⌘R for å utføre eller ⌘I for info ...";
 
@@ -1101,6 +1104,9 @@
 
 /* Class = "NSTableColumn"; headerCell.title = "Local catalog"; ObjectID = "RDZ-vd-MTb"; */
 "RDZ-vd-MTb.headerCell.title" = "Lokal katalog";
+
+/* Class = "NSBox"; title = "Check data when loading"; ObjectID = "rFc-o9-SOW"; */
+"rFc-o9-SOW.title" = "Sjekke data når leses";
 
 /* Class = "NSTextFieldCell"; title = "copyright"; ObjectID = "RFG-uU-oRD"; */
 "RFG-uU-oRD.title" = "copyright";
