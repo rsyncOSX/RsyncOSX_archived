@@ -109,4 +109,13 @@ class RsyncOSXTests: XCTestCase, SetConfigurations, SetSchedules {
         let schedulesortedandexpanded = ScheduleSortedAndExpand(schedules: schedules)
         XCTAssertEqual("23h 59m", schedulesortedandexpanded.sortandcountscheduledonetask(1, profilename: nil, number: true), "23h 59m")
     }
+
+    func testreorgschedules() {
+        _ = Selectprofile(profile: "Datacheck")
+        ViewControllerReference.shared.restorePath = "/temporaryrestore"
+        ViewControllerReference.shared.checkinput = true
+        let count = CountSchedulesandLogs()
+        XCTAssertEqual(10, count.schedulerecords, "Should be 10")
+        XCTAssertEqual(299, count.logrecords, "Should be 299")
+    }
 }
