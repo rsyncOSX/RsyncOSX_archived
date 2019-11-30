@@ -16,10 +16,8 @@ struct CountSchedulesandLogs: SetSchedules {
     init() {
         if let schedules = self.schedules?.getSchedule() {
             for i in 0 ..< schedules.count {
-                self.schedulerecords = +self.schedulerecords
-                for j in 0 ..< schedules[i].logrecords.count {
-                    self.logrecords = +self.logrecords + schedules[j].logrecords.count
-                }
+                self.schedulerecords =  i + 1
+                self.logrecords = +self.logrecords + schedules[i].logrecords.count
             }
         }
     }
