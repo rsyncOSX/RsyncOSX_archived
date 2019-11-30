@@ -16,7 +16,6 @@ class ScheduleSortedAndExpand: SetConfigurations, SetSchedules {
     private var scheduleConfiguration: [ConfigurationSchedule]?
     private var expandedData = [NSDictionary]()
     private var sortedschedules: [NSDictionary]?
-    private var dateandtime: Dateandtime?
 
     // Calculate daily schedules
     private func daily(dateStart: Date, schedule: String, dict: NSDictionary) {
@@ -131,7 +130,7 @@ class ScheduleSortedAndExpand: SetConfigurations, SetSchedules {
         guard sorted.count > 0 else { return "" }
         if number {
             let firsttask = (sorted[0].value(forKey: "start") as? Date)?.timeIntervalSinceNow
-            return self.dateandtime?.timestring(seconds: firsttask!) ?? ""
+            return Dateandtime().timestring(seconds: firsttask!)
         } else {
             let type = sorted[0].value(forKey: "schedule") as? String
             return type ?? ""
@@ -164,7 +163,6 @@ class ScheduleSortedAndExpand: SetConfigurations, SetSchedules {
             self.setallscheduledtasksNSDictionary()
             self.sortAndExpandScheduleTasks()
         }
-        self.dateandtime = Dateandtime()
     }
 
     init(allschedules: Allschedules?) {
@@ -172,7 +170,6 @@ class ScheduleSortedAndExpand: SetConfigurations, SetSchedules {
         self.scheduleConfiguration = allschedules!.getallschedules()
         self.setallscheduledtasksNSDictionary()
         self.sortAndExpandScheduleTasks()
-        self.dateandtime = Dateandtime()
     }
 
     // For XCtest
@@ -180,6 +177,5 @@ class ScheduleSortedAndExpand: SetConfigurations, SetSchedules {
         self.scheduleConfiguration = schedules?.getSchedule()
         self.setallscheduledtasksNSDictionary()
         self.sortAndExpandScheduleTasks()
-        self.dateandtime = Dateandtime()
     }
 }
