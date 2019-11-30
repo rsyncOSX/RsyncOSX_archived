@@ -198,7 +198,7 @@ class Schedules: ScheduleWriteLoggData {
         self.profile = profile
         self.readschedules()
         if ViewControllerReference.shared.checkinput {
-             self.schedules = Reorgschedule().mergeelements(data: self.schedules)
+             self.schedules = Reorgschedule().mergerecords(data: self.schedules)
         }
     }
 }
