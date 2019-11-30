@@ -18,7 +18,7 @@ class Reorgschedule {
         return elements!.unique()
     }
 
-    func mergeelements<T: Hashable>(data: [T]?) -> [T]? {
+    func mergerecords<T: Hashable>(data: [T]?) -> [T]? {
         guard data != nil else { return  nil }
         var mergedelements = [T]()
         let uniqueelements = self.uniquelements(data: data!)
@@ -44,5 +44,12 @@ class Reorgschedule {
             }
         }
         return mergedelements
+    }
+}
+
+extension Sequence where Iterator.Element: Hashable {
+    func unique() -> [Iterator.Element] {
+        var alreadyAdded = Set<Iterator.Element>()
+        return self.filter {alreadyAdded.insert($0).inserted}
     }
 }
