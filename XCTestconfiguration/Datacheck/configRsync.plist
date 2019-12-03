@@ -44,7 +44,7 @@
 			<key>rsyncdaemon</key>
 			<integer>0</integer>
 			<key>task</key>
-			<string>backup</string>
+			<string>synchronize</string>
 		</dict>
 		<dict>
 			<key>backupID</key>
@@ -82,7 +82,7 @@
 			<key>rsyncdaemon</key>
 			<integer>0</integer>
 			<key>task</key>
-			<string>backup</string>
+			<string>synchronize</string>
 		</dict>
 		<dict>
 			<key>backupID</key>
