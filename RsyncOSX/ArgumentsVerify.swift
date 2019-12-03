@@ -13,21 +13,21 @@ final class ArgumentsVerify: RsyncParameters {
     var config: Configuration?
 
      func argumentsverify(forDisplay: Bool) -> [String] {
-           self.localCatalog = self.config!.localCatalog
+        self.localCatalog = self.config!.localCatalog
         self.remoteargs(config: self.config!)
         self.setParameters1To6(config: self.config!, dryRun: true, forDisplay: forDisplay, verify: true)
         self.setParameters8To14(config: self.config!, dryRun: true, forDisplay: forDisplay)
-           switch self.config!.task {
-           case ViewControllerReference.shared.synchronize:
-               self.argumentsforsynchronize(dryRun: true, forDisplay: forDisplay)
-           case ViewControllerReference.shared.snapshot:
-            self.linkdestparameter(config: self.config!, verify: true)
-               self.argumentsforsynchronizesnapshot(dryRun: true, forDisplay: forDisplay)
-           default:
+        switch self.config!.task {
+        case ViewControllerReference.shared.synchronize:
+            self.argumentsforsynchronize(dryRun: true, forDisplay: forDisplay)
+        case ViewControllerReference.shared.snapshot:
+        self.linkdestparameter(config: self.config!, verify: true)
+        self.argumentsforsynchronizesnapshot(dryRun: true, forDisplay: forDisplay)
+        default:
                break
-           }
-           return self.arguments ?? [""]
-       }
+        }
+        return self.arguments ?? [""]
+    }
 
     init(config: Configuration?) {
         super.init()

@@ -16,7 +16,6 @@ protocol MenuappChanged: class {
 
 class ViewControllerUserconfiguration: NSViewController, NewRsync, SetDismisser, Delay, ChangeTemporaryRestorePath {
 
-    var storageapi: PersistentStorageAPI?
     var dirty: Bool = false
     weak var reloadconfigurationsDelegate: Createandreloadconfigurations?
     weak var menuappDelegate: MenuappChanged?
@@ -43,6 +42,17 @@ class ViewControllerUserconfiguration: NSViewController, NewRsync, SetDismisser,
     @IBOutlet weak var environment: NSTextField!
     @IBOutlet weak var environmentvalue: NSTextField!
     @IBOutlet weak var enableenvironment: NSButton!
+    @IBOutlet weak var togglecheckdatabutton: NSButton!
+
+    @IBAction func togglecheckdata(_ sender: NSButton) {
+        if ViewControllerReference.shared.checkinput {
+            self.togglecheckdatabutton.state = .off
+            ViewControllerReference.shared.checkinput = false
+        } else {
+            self.togglecheckdatabutton.state = .on
+            ViewControllerReference.shared.checkinput = true
+        }
+    }
 
     @IBAction func toggleenableenvironment(_ sender: NSButton) {
         switch self.enableenvironment.state {
@@ -98,7 +108,7 @@ class ViewControllerUserconfiguration: NSViewController, NewRsync, SetDismisser,
             self.setRestorePath()
             self.setmarknumberofdayssince()
             self.setEnvironment()
-            _ = self.storageapi!.saveUserconfiguration()
+            _ = PersistentStorageUserconfiguration().saveuserconfiguration()
             if self.reload {
                 self.reloadconfigurationsDelegate?.createandreloadconfigurations()
             }
@@ -281,7 +291,6 @@ class ViewControllerUserconfiguration: NSViewController, NewRsync, SetDismisser,
         self.pathRsyncOSX.delegate = self
         self.pathRsyncOSXsched.delegate = self
         self.environment.delegate = self
-        self.storageapi = PersistentStorageAPI(profile: nil)
         self.nologging.state = .on
         self.reloadconfigurationsDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllerMain
     }
@@ -303,6 +312,11 @@ class ViewControllerUserconfiguration: NSViewController, NewRsync, SetDismisser,
             self.automaticexecutelocalvolumes.state = .on
         } else {
             self.automaticexecutelocalvolumes.state = .off
+        }
+        if ViewControllerReference.shared.checkinput {
+            self.togglecheckdatabutton.state = .on
+        } else {
+            self.togglecheckdatabutton.state = .off
         }
     }
 

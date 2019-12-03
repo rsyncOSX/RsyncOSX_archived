@@ -17,8 +17,6 @@ import Cocoa
 
 class Configurations: ReloadTable, SetSchedules {
 
-    // Storage API
-    var storageapi: PersistentStorageAPI?
     // reference to Process, used for kill in executing task
     var process: Process?
     private var profile: String?
@@ -30,7 +28,7 @@ class Configurations: ReloadTable, SetSchedules {
     // Datasource for NSTableViews
     private var configurationsDataSource: [NSMutableDictionary]?
     // Object for batchQueue data and operations
-    private var batchQueue: BatchTaskWorkQueu?
+    var batchQueue: BatchTaskWorkQueu?
     // backup list from remote info view
     var quickbackuplist: [Int]?
     // Estimated backup list, all backups
@@ -172,15 +170,14 @@ class Configurations: ReloadTable, SetSchedules {
         let number = Numbers(outputprocess: outputprocess)
         let hiddenID = self.gethiddenID(index: index)
         let numbers = number.stats()
-        self.schedules!.addlog(hiddenID, result: numbers)
+        self.schedules!.addlog(hiddenID: hiddenID, result: numbers)
         if self.configurations![index].task == ViewControllerReference.shared.snapshot {
             self.increasesnapshotnum(index: index)
         }
         let currendate = Date()
-        let dateformatter = Dateandtime().setDateformat()
-        self.configurations![index].dateRun = dateformatter.string(from: currendate)
+        self.configurations![index].dateRun = currendate.en_us_string_from_date()
         // Saving updated configuration in memory to persistent store
-        self.storageapi!.saveConfigFromMemory()
+        _ = PersistentStorageConfiguration(profile: self.profile).saveconfigInMemoryToPersistentStore()
         // Call the view and do a refresh of tableView
         self.reloadtable(vcontroller: .vctabmain)
         _ = Logging(outputprocess: outputprocess)
@@ -192,7 +189,7 @@ class Configurations: ReloadTable, SetSchedules {
     /// - parameter index: index to Configuration to replace by config
     func updateConfigurations (_ config: Configuration, index: Int) {
         self.configurations![index] = config
-        self.storageapi!.saveConfigFromMemory()
+        _ = PersistentStorageConfiguration(profile: self.profile).saveconfigInMemoryToPersistentStore()
     }
 
     /// Function deletes Configuration in memory at hiddenID and
@@ -202,7 +199,7 @@ class Configurations: ReloadTable, SetSchedules {
     func deleteConfigurationsByhiddenID (hiddenID: Int) {
         let index = self.getIndex(hiddenID)
         self.configurations!.remove(at: index)
-        self.storageapi!.saveConfigFromMemory()
+        _ = PersistentStorageConfiguration(profile: self.profile).saveconfigInMemoryToPersistentStore()
     }
 
     /// Function toggles Configurations for batch or no
@@ -216,19 +213,17 @@ class Configurations: ReloadTable, SetSchedules {
         } else {
             self.configurations![index].batch = 1
         }
-        self.storageapi!.saveConfigFromMemory()
+        _ = PersistentStorageConfiguration(profile: self.profile).saveconfigInMemoryToPersistentStore()
         self.reloadtable(vcontroller: .vctabmain)
-    }
-
-    // Create batchQueue
-    func createbatchQueue() {
-        self.batchQueue = BatchTaskWorkQueu(configurations: self)
     }
 
     /// Function return the reference to object holding data and methods
     /// for batch execution of Configurations.
     /// - returns : reference to to object holding data and methods
     func getbatchQueue() -> BatchTaskWorkQueu? {
+        if self.batchQueue == nil {
+            self.batchQueue = BatchTaskWorkQueu(configurations: self)
+        }
         return self.batchQueue
     }
 
@@ -244,7 +239,7 @@ class Configurations: ReloadTable, SetSchedules {
 
     // Add new configurations
     func addNewConfigurations(_ dict: NSMutableDictionary) {
-        self.storageapi!.addandsaveNewConfigurations(dict: dict)
+        _ = PersistentStorageConfiguration(profile: self.profile).newConfigurations(dict: dict)
     }
 
     func getResourceConfiguration(_ hiddenID: Int, resource: ResourceInConfiguration) -> String {
@@ -328,7 +323,7 @@ class Configurations: ReloadTable, SetSchedules {
 
     private func readconfigurations() {
         self.argumentAllConfigurations = [ArgumentsOneConfiguration]()
-        let store: [Configuration]? = self.storageapi?.getConfigurations()
+        let store: [Configuration]? = PersistentStorageConfiguration(profile: self.profile).getConfigurations()
         for i in 0 ..< ( store?.count ?? 0 ) {
             if store![i].task == ViewControllerReference.shared.synchronize ||
                 store![i].task == ViewControllerReference.shared.snapshot {
@@ -352,9 +347,8 @@ class Configurations: ReloadTable, SetSchedules {
         self.configurations = [Configuration]()
         self.argumentAllConfigurations = nil
         self.configurationsDataSource = nil
+        self.batchQueue = nil
         self.profile = profile
-        self.storageapi = PersistentStorageAPI(profile: self.profile)
         self.readconfigurations()
-        self.createbatchQueue()
     }
 }

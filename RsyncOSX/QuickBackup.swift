@@ -44,11 +44,10 @@ final class QuickBackup: SetConfigurations {
 
     private func executequickbackuptask(hiddenID: Int) {
         let now: Date = Date()
-        let dateformatter = Dateandtime().setDateformat()
         let task: NSDictionary = [
             "start": now,
             "hiddenID": hiddenID,
-            "dateStart": dateformatter.date(from: "01 Jan 1900 00:00")!,
+            "dateStart": "01 Jan 1900 00:00".en_us_date_from_string(),
             "schedule": "manuel"]
         ViewControllerReference.shared.quickbackuptask = task
         _ = OperationFactory(updateprogress: self)

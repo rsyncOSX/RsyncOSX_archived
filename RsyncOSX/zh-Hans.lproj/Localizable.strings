@@ -40,9 +40,6 @@
 /* Close NSAlert */
 "Close" = "取消";
 
-/* New version */
-"Close automatically in:" = "取消自动处理：";
-
 /* Remote info */
 "Completed" = "完成";
 
@@ -171,12 +168,6 @@
 /* plan */
 "Monday" = "星期一";
 
-/* plan */
-"month" = "月";
-
-/* About */
-"New version available:" = "新版本：";
-
 /* Execute */
 "No rclone config found..." = "找不到rclone配置...";
 
@@ -225,12 +216,6 @@
 /* Execute */
 "Possible error logging..." = "可能的错误记录......";
 
-/* plan */
-"prev months" = "上个月";
-
-/* Restore */
-"Probably some rsync error..." = "可能是一些rsync错误......";
-
 /* Execute */
 "Profile:" = "配置：";
 
@@ -239,9 +224,6 @@
 
 /* Restore */
 "Restore" = "恢复";
-
-/* Restore */
-"Restore is completed..." = "恢复完成......";
 
 /* plan */
 "Saturday" = "星期六";
@@ -252,9 +234,6 @@
 
 /* Schedules */
 "Scheduled tasks in menu app..." = "菜单应用中的预定任务...";
-
-/* New version */
-"seconds" = "秒";
 
 /* datetime */
 "secs" = "秒";

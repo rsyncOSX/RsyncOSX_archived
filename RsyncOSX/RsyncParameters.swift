@@ -78,7 +78,14 @@ class RsyncParameters {
             self.appendParameter(parameter: config.parameter12!, forDisplay: forDisplay)
         }
         if config.parameter13 != nil {
-            self.appendParameter(parameter: config.parameter13!, forDisplay: forDisplay)
+            let split = config.parameter13!.components(separatedBy: "+$")
+            if split.count == 2 {
+                if split[1] == "date" {
+                     self.appendParameter(parameter: split[0].setdatesuffixbackupstring, forDisplay: forDisplay)
+                }
+            } else {
+                self.appendParameter(parameter: config.parameter13!, forDisplay: forDisplay)
+            }
         }
         if config.parameter14 != nil {
             if config.offsiteServer.isEmpty == true {
@@ -242,7 +249,7 @@ class RsyncParameters {
             if forDisplay {self.arguments!.append(" ")}
         }
         if tmprestore {
-            let restorepath = ""
+            let restorepath = ViewControllerReference.shared.restorePath ?? ""
             self.arguments!.append(restorepath)
         } else {
             self.arguments!.append(self.localCatalog!)

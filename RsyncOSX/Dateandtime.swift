@@ -8,10 +8,10 @@
 
 import Foundation
 
-final class Dateandtime {
+struct Dateandtime {
 
     // Calculate seconds from now to startdate
-    private func seconds (_ startdate: Date, enddate: Date?) -> Double {
+    private func seconds(startdate: Date, enddate: Date?) -> Double {
         if enddate == nil {
             return startdate.timeIntervalSinceNow
         } else {
@@ -20,10 +20,9 @@ final class Dateandtime {
     }
 
     // Calculation of time to a spesific date
-    // Used in view of all tasks
-    func timeString (_ startdate: Date, enddate: Date?) -> String {
+    func timestring(startdate: Date, enddate: Date?) -> String {
         var result: String?
-        let seconds: Double = self.seconds(startdate, enddate: enddate)
+        let seconds: Double = self.seconds(startdate: startdate, enddate: enddate)
         let (hr, minf) = modf(seconds / 3600)
         let (min, secf) = modf(60 * minf)
         // hr, min, 60 * secf
@@ -45,8 +44,7 @@ final class Dateandtime {
     }
 
     // Calculation of time to a spesific date
-    // Used in view of all tasks
-    func timeString (_ seconds: Double) -> String {
+    func timestring(seconds: Double) -> String {
         var result: String?
         let (hr, minf) = modf(seconds / 3600)
         let (min, secf) = modf(60 * minf)
@@ -62,16 +60,5 @@ final class Dateandtime {
             result = String(format: "%.0f", hr/24) + "d"
         }
         return result ?? ""
-    }
-
-    // Setting date format
-    func setDateformat() -> DateFormatter {
-        let dateformatter = DateFormatter()
-        // We are forcing en_US format of date strings
-        dateformatter.locale = Locale(identifier: "en_US")
-        dateformatter.dateStyle = .medium
-        dateformatter.timeStyle = .short
-        dateformatter.dateFormat = "dd MMM yyyy HH:mm"
-        return dateformatter
     }
 }

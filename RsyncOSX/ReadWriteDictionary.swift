@@ -24,13 +24,11 @@ enum WhatToReadWrite {
 class ReadWriteDictionary {
 
     // Name set for schedule, configuration or config
-    private var name: String?
+    private var plistname: String?
     // key in objectForKey, e.g key for reading what
     private var key: String?
     // Which profile to read
     var profile: String?
-    // If to use profile, only configurations and schedules to read from profile
-    private var useProfile: Bool = false
     // task to do
     private var task: WhatToReadWrite?
     // Path for configuration files
@@ -50,21 +48,16 @@ class ReadWriteDictionary {
         let macserialnumber = ViewControllerReference.shared.macserialnumber
         let profilePath = CatalogProfile()
         profilePath.createDirectory()
-        if self.useProfile {
+        if let profile = self.profile {
             // Use profile
-            if let profile = self.profile {
-                guard profile.isEmpty == false else { return }
-                let profilePath = CatalogProfile()
-                profilePath.createDirectory()
-                self.filepath = self.configpath! + macserialnumber! + "/" + profile + "/"
-                self.filename = docuDir + self.configpath! + macserialnumber! + "/" + profile + self.name!
-            } else {
-                // If profile not set use no profile
-                self.filename = docuDir +  self.configpath! + macserialnumber! + self.name!
-            }
+            guard profile.isEmpty == false else { return }
+            let profilePath = CatalogProfile()
+            profilePath.createDirectory()
+            self.filepath = self.configpath! + macserialnumber! + "/" + profile + "/"
+            self.filename = docuDir + self.configpath! + macserialnumber! + "/" + profile + self.plistname!
         } else {
             // no profile
-            self.filename = docuDir + self.configpath! + macserialnumber! + self.name!
+            self.filename = docuDir + self.configpath! + macserialnumber! + self.plistname!
             self.filepath = self.configpath! + macserialnumber! + "/"
         }
     }
@@ -87,7 +80,7 @@ class ReadWriteDictionary {
     }
 
     // Function for write data to persistent store
-    func writeNSDictionaryToPersistentStorage(_ array: [NSDictionary]) -> Bool {
+    func writeNSDictionaryToPersistentStorage(array: [NSDictionary]) -> Bool {
         let dictionary = NSDictionary(object: array, forKey: self.key! as NSCopying)
         guard self.filename != nil else { return false }
         let write = dictionary.write(toFile: self.filename!, atomically: true)
@@ -103,25 +96,22 @@ class ReadWriteDictionary {
         self.task = whattoreadwrite
         switch self.task! {
         case .schedule:
-            self.name = "/scheduleRsync.plist"
+            self.plistname = "/scheduleRsync.plist"
             self.key = "Schedule"
         case .configuration:
-            self.name = "/configRsync.plist"
+            self.plistname = "/configRsync.plist"
             self.key = "Catalogs"
         case .userconfig:
-            self.name = "/config.plist"
+            self.plistname = "/config.plist"
             self.key = "config"
         case .none:
-            self.name = nil
+            self.plistname = nil
         }
     }
 
     init(whattoreadwrite: WhatToReadWrite, profile: String?, configpath: String) {
         self.configpath = configpath
-        if profile != nil {
-            self.profile = profile
-            self.useProfile = true
-        }
+        self.profile = profile
         self.setpreferences(whattoreadwrite: whattoreadwrite)
         self.setnameandpath()
     }

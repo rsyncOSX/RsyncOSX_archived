@@ -47,7 +47,6 @@ class ViewControllerMain: NSViewController, ReloadTable, Deselect, VcMain, Delay
     var schedules: Schedules?
     // Reference to the taskobjects
     var singletask: SingleTask?
-    var executebatch: ExecuteBatch?
     var executetasknow: ExecuteTaskNow?
     // Reference to Process task
     var process: Process?
@@ -179,13 +178,6 @@ class ViewControllerMain: NSViewController, ReloadTable, Deselect, VcMain, Delay
         }
     }
 
-    // Logg records
-    @IBAction func loggrecords(_ sender: NSButton) {
-        globalMainQueue.async(execute: { () -> Void in
-            self.presentAsSheet(self.viewControllerScheduleDetails!)
-        })
-    }
-
     // Selecting About
     @IBAction func about (_ sender: NSButton) {
         self.presentAsModalWindow(self.viewControllerAbout!)
@@ -270,7 +262,6 @@ class ViewControllerMain: NSViewController, ReloadTable, Deselect, VcMain, Delay
     func reset() {
         self.process = nil
         self.singletask = nil
-        self.executebatch = nil
         self.setNumbers(outputprocess: nil)
     }
 

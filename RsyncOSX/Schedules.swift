@@ -12,33 +12,30 @@ import Cocoa
 
 class Schedules: ScheduleWriteLoggData {
 
-    var profile: String?
-
     // Return reference to Schedule data
     // self.Schedule is privat data
     func getSchedule() -> [ConfigurationSchedule] {
         return self.schedules ?? []
     }
 
-    /// Function adds new Shcedules (plans). Functions writes
-    /// schedule plans to permanent store.
-    /// - parameter hiddenID: hiddenID for task
-    /// - parameter schedule: schedule
-    /// - parameter start: start date and time
-    /// - parameter stop: stop date and time
-    func addschedule (_ hiddenID: Int, schedule: Scheduletype, start: Date) {
+    // Function adds new Shcedules (plans). Functions writes
+    // schedule plans to permanent store.
+    // - parameter hiddenID: hiddenID for task
+    // - parameter schedule: schedule
+    // - parameter start: start date and time
+    // - parameter stop: stop date and time
+    func addschedule (hiddenID: Int, schedule: Scheduletype, start: Date) {
         var stop: Date?
-        let dateformatter = Dateandtime().setDateformat()
         if schedule == .once {
             stop = start
         } else {
-            stop = dateformatter.date(from: "01 Jan 2100 00:00")
+            stop = "01 Jan 2100 00:00".en_us_date_from_string()
         }
         let dict = NSMutableDictionary()
         let offsiteserver = self.configurations?.getResourceConfiguration(hiddenID, resource: .offsiteServer)
         dict.setObject(hiddenID, forKey: "hiddenID" as NSCopying)
-        dict.setObject(dateformatter.string(from: start), forKey: "dateStart" as NSCopying)
-        dict.setObject(dateformatter.string(from: stop!), forKey: "dateStop" as NSCopying)
+        dict.setObject(start.en_us_string_from_date(), forKey: "dateStart" as NSCopying)
+        dict.setObject(stop!.en_us_string_from_date(), forKey: "dateStop" as NSCopying)
         dict.setObject(offsiteserver as Any, forKey: "offsiteserver" as NSCopying)
         switch schedule {
         case .once:
@@ -50,14 +47,14 @@ class Schedules: ScheduleWriteLoggData {
         }
         let newSchedule = ConfigurationSchedule(dictionary: dict, log: nil, nolog: true)
         self.schedules!.append(newSchedule)
-        self.storageapi!.saveScheduleFromMemory()
+        _ = PersistentStorageScheduling(profile: self.profile).savescheduleInMemoryToPersistentStore()
         self.reloadtable(vcontroller: .vctabschedule)
     }
 
-    /// Function deletes all Schedules by hiddenID. Invoked when Configurations are
-    /// deleted. When a Configuration are deleted all tasks connected to
-    /// Configuration has to  be deleted.
-    /// - parameter hiddenID : hiddenID for task
+    // Function deletes all Schedules by hiddenID. Invoked when Configurations are
+    // deleted. When a Configuration are deleted all tasks connected to
+    // Configuration has to  be deleted.
+    // - parameter hiddenID : hiddenID for task
     func deletescheduleonetask(hiddenID: Int) {
         var delete: Bool = false
         for i in 0 ..< self.schedules!.count where self.schedules![i].hiddenID == hiddenID {
@@ -67,16 +64,16 @@ class Schedules: ScheduleWriteLoggData {
             delete = true
         }
         if delete {
-            self.storageapi!.saveScheduleFromMemory()
+            _ = PersistentStorageScheduling(profile: self.profile).savescheduleInMemoryToPersistentStore()
             // Send message about refresh tableView
             self.reloadtable(vcontroller: .vctabmain)
         }
     }
 
-    /// Function reads all Schedule data for one task by hiddenID
-    /// - parameter hiddenID : hiddenID for task
-    /// - returns : array of Schedules sorted after startDate
-    func readscheduleonetask (_ hiddenID: Int?) -> [NSMutableDictionary]? {
+    // Function reads all Schedule data for one task by hiddenID
+    // - parameter hiddenID : hiddenID for task
+    // - returns : array of Schedules sorted after startDate
+    func readscheduleonetask(hiddenID: Int?) -> [NSMutableDictionary]? {
         guard hiddenID != nil else { return nil }
         var row: NSMutableDictionary
         var data = [NSMutableDictionary]()
@@ -84,6 +81,7 @@ class Schedules: ScheduleWriteLoggData {
             if self.schedules![i].hiddenID == hiddenID {
                 row = [
                     "dateStart": self.schedules![i].dateStart,
+                    "dayinweek": self.schedules![i].dateStart.en_us_date_from_string().dayNameShort(),
                     "stopCellID": 0,
                     "deleteCellID": 0,
                     "dateStop": "",
@@ -103,9 +101,8 @@ class Schedules: ScheduleWriteLoggData {
             }
             // Sorting schedule after dateStart, last startdate on top
             data.sort { (sched1, sched2) -> Bool in
-                let dateformatter = Dateandtime().setDateformat()
-                if dateformatter.date(from: (sched1.value(forKey: "dateStart") as? String)!)! >
-                    dateformatter.date(from: (sched2.value(forKey: "dateStart") as? String)!)! {
+                if (sched1.value(forKey: "dateStart") as? String)!.en_us_date_from_string() >
+                (sched2.value(forKey: "dateStart") as? String)!.en_us_date_from_string() {
                     return true
                 } else {
                     return false
@@ -115,13 +112,14 @@ class Schedules: ScheduleWriteLoggData {
         return data
     }
 
-    /// Function either deletes or stops Schedules.
-    /// - parameter data : array of Schedules which some of them are either marked for stop or delete
-    func deleteorstopschedule(data: [NSMutableDictionary]) {
+    // Function either deletes or stops Schedules.
+    // - parameter data : array of Schedules which some of them are either marked for stop or delete
+    func deleteorstopschedule(data: [NSMutableDictionary]?) {
+        guard data != nil else { return }
         var update: Bool = false
-        if (data.count) > 0 {
-            let stop = data.filter({ return (($0.value(forKey: "stopCellID") as? Int) == 1)})
-            let delete = data.filter({ return (($0.value(forKey: "deleteCellID") as? Int) == 1)})
+        if (data!.count) > 0 {
+            let stop = data!.filter({ return (($0.value(forKey: "stopCellID") as? Int) == 1)})
+            let delete = data!.filter({ return (($0.value(forKey: "deleteCellID") as? Int) == 1)})
             // Delete Schedules
             if delete.count > 0 {
                 update = true
@@ -138,24 +136,23 @@ class Schedules: ScheduleWriteLoggData {
             }
             if update {
                 // Saving the resulting data file
-                self.storageapi!.saveScheduleFromMemory()
+                _ = PersistentStorageScheduling(profile: self.profile).savescheduleInMemoryToPersistentStore()
                 // Send message about refresh tableView
                 self.reloadtable(vcontroller: .vctabmain)
+                self.reloadtable(vcontroller: .vctabschedule)
             }
         }
     }
 
     // Test if Schedule record in memory is set to delete or not
     private func delete(dict: NSDictionary) {
-       for i in 0 ..< self.schedules!.count {
-            if dict.value(forKey: "hiddenID") as? Int == self.schedules![i].hiddenID {
-                if dict.value(forKey: "dateStop") as? String == self.schedules![i].dateStop ||
-                    self.schedules![i].dateStop == nil &&
-                    dict.value(forKey: "schedule") as? String == self.schedules![i].schedule &&
-                    dict.value(forKey: "dateStart") as? String == self.schedules![i].dateStart {
-                    self.schedules![i].delete = true
-                    break
-                }
+        for i in 0 ..< self.schedules!.count where
+        dict.value(forKey: "hiddenID") as? Int == self.schedules![i].hiddenID {
+            if dict.value(forKey: "dateStop") as? String == self.schedules![i].dateStop ||
+                self.schedules![i].dateStop == nil &&
+                dict.value(forKey: "schedule") as? String == self.schedules![i].schedule &&
+                dict.value(forKey: "dateStart") as? String == self.schedules![i].dateStart {
+                self.schedules![i].delete = true
             }
         }
     }
@@ -163,24 +160,25 @@ class Schedules: ScheduleWriteLoggData {
     // Test if Schedule record in memory is set to stop er not
     private func stop(dict: NSDictionary) {
         for i in 0 ..< self.schedules!.count where
-            dict.value(forKey: "hiddenID") as? Int == self.schedules![i].hiddenID {
-                if dict.value(forKey: "dateStop") as? String == self.schedules![i].dateStop ||
-                    self.schedules![i].dateStop == nil &&
-                    dict.value(forKey: "schedule") as? String == self.schedules![i].schedule &&
-                    dict.value(forKey: "dateStart") as? String == self.schedules![i].dateStart {
-                    self.schedules![i].schedule = "stopped"
-                    break
-                }
+        dict.value(forKey: "hiddenID") as? Int == self.schedules![i].hiddenID {
+            if dict.value(forKey: "dateStop") as? String == self.schedules![i].dateStop ||
+                self.schedules![i].dateStop == nil &&
+                dict.value(forKey: "schedule") as? String == self.schedules![i].schedule &&
+                dict.value(forKey: "dateStart") as? String == self.schedules![i].dateStart {
+                self.schedules![i].schedule = "stopped"
+                self.schedules![i].dateStop = Date().en_us_string_from_date()
+            }
         }
     }
 
     // Function for reading all jobs for schedule and all history of past executions.
     // Schedules are stored in self.schedules. Schedules are sorted after hiddenID.
     private func readschedules() {
-        let store: [ConfigurationSchedule]? = self.storageapi!.getScheduleandhistory(nolog: false)
+        var store = PersistentStorageScheduling(profile: self.profile).getScheduleandhistory(nolog: false)
         guard store != nil else { return }
         var data = [ConfigurationSchedule]()
         for i in 0 ..< store!.count where ( store![i].logrecords.isEmpty == false || store![i].dateStop != nil ) {
+            store![i].profilename = self.profile
             data.append(store![i])
         }
         // Sorting schedule after hiddenID
@@ -195,10 +193,12 @@ class Schedules: ScheduleWriteLoggData {
         self.schedules = data
     }
 
-    init(profile: String?) {
-        super.init()
+    override init(profile: String?) {
+        super.init(profile: profile)
         self.profile = profile
-        self.storageapi = PersistentStorageAPI(profile: self.profile)
         self.readschedules()
+        if ViewControllerReference.shared.checkinput {
+             self.schedules = Reorgschedule().mergerecords(data: self.schedules)
+        }
     }
 }

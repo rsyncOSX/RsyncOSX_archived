@@ -74,12 +74,8 @@ final class SnapshotsLoggData {
 
     private func calculatedays(datestringlocalized: String) -> Double? {
         guard datestringlocalized != "" else { return nil }
-        let formatter = DateFormatter()
-        formatter.formatterBehavior = .behavior10_4
-        formatter.dateStyle = .medium
-        formatter.timeStyle = .short
-        let lastbackup = formatter.date(from: datestringlocalized)
-        let seconds: TimeInterval = lastbackup!.timeIntervalSinceNow
+        let lastbackup = datestringlocalized.localized_date_from_string()
+        let seconds: TimeInterval = lastbackup.timeIntervalSinceNow
         return seconds * (-1)
     }
 

@@ -39,7 +39,6 @@ final class ScheduleLoggData: SetConfigurations, SetSchedules, Sorting {
 
     private func readAndSortAllLoggdata(hiddenID: Int?, sortascending: Bool) {
         var data = [NSMutableDictionary]()
-        let dateformatter = Dateandtime().setDateformat()
         let input: [ConfigurationSchedule] = self.schedules!.getSchedule()
         for i in 0 ..< input.count {
             for j in 0 ..< input[i].logrecords.count {
@@ -48,7 +47,7 @@ final class ScheduleLoggData: SetConfigurations, SetSchedules, Sorting {
                 var date: String = ""
                 let stringdate = dict.value(forKey: "dateExecuted") as? String ?? ""
                 if stringdate.isEmpty == false {
-                    date = dateformatter.date(from: stringdate)!.localizeDate()
+                    date = stringdate.en_us_date_from_string().localized_string_from_date()
                 }
                 let logdetail: NSMutableDictionary = [
                     "localCatalog": self.configurations!.getResourceConfiguration(hiddenID, resource: .localCatalog),

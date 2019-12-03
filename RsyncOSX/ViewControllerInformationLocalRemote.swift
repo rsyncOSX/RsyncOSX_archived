@@ -50,10 +50,9 @@ class ViewControllerInformationLocalRemote: NSViewController, SetDismisser, Inde
         if let index = self.index {
             let datelastbackup = self.configurations?.getConfigurations()[index].dateRun ?? ""
             if datelastbackup.isEmpty == false {
-                let dateformatter = Dateandtime().setDateformat()
-                let date = dateformatter.date(from: datelastbackup)
+                let date = datelastbackup.en_us_date_from_string()
                 self.datelastbackup.stringValue = NSLocalizedString("Date last backup:", comment: "Remote Info")
-                    + " " + date!.localizeDate()
+                    + " " + date.localized_string_from_date()
             } else {
                 self.datelastbackup.stringValue = NSLocalizedString("Date last backup:", comment: "Remote Info")
             }

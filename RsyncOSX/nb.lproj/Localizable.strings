@@ -10,8 +10,12 @@
 /* Snapshots */
 "Aborting delete operation..." = "Avslutter slette operasjon...";
 
-/* Add schedule */
+/* Add schedule
+   New */
 "Add" = "Legg til";
+
+/* New */
+"Add config?" = "Legge til?";
 
 /* Add schedule */
 "Add Schedule?" = "Legg til oppgave?";
@@ -65,9 +69,6 @@
    Verify */
 "Date last backup:" = "Dato siste backup:";
 
-/* Schedule details */
-"dateStop" = "";
-
 /* datetime */
 "days" = "dager";
 
@@ -98,7 +99,7 @@
 "Do you REALLY want to DELETE selected snapshots?" = "Vil du VIRKELIG SLETTE valgte snapshot?";
 
 /* Restore */
-"Do you REALLY want to start a RESTORE ?" = "Vil du VIRKELIG utføre en KOPIER?";
+"Do you REALLY want to start a RESTORE ?" = "Vil du VIRKELIG utføre en KOPI?";
 
 /* Snapshots */
 "Dont change the snapshot num if you don´t know what you are doing..." = "Ikke endre snapshot nummer hvis du ikke vet hva du gjør...";
@@ -119,7 +120,7 @@
 "every" = "alle";
 
 /* Restore */
-"Executing restore..." = "Utfører kopier...";
+"Executing restore..." = "Utfører kopi...";
 
 /* plan */
 "Friday" = "fredag";
@@ -195,6 +196,9 @@
 /* Schedule details */
 "no startdate" = "ingen startdato";
 
+/* Schedule details */
+"no stopdate" = "ingen stopp dato";
+
 /* Copy files */
 "No such local catalog for restore or set it in user config..." = "Ingen slik lokal katalog for restore eller sett den i bruker preferanser...";
 
@@ -247,7 +251,7 @@
 "Profile: please wait..." = "Profil: vennligst vent...";
 
 /* Restore */
-"Restore" = "Kopier";
+"Restore" = "Kopi";
 
 /* plan */
 "Saturday" = "lørdag";
@@ -280,7 +284,10 @@
 "Seriously, enter a real number..." = "Seriøst, legg inn et nummer...";
 
 /* Restore */
-"Start restore?" = "Start kopier?";
+"Start restore?" = "Start kopi?";
+
+/* main */
+"stopped" = "stoppet";
 
 /* plan */
 "Sunday" = "søndag";
@@ -290,6 +297,9 @@
 
 /* Execute */
 "This is a combined task, execute by ⌘R..." = "Kombinert oppgave, kjør med ⌘R";
+
+/* New */
+"This is added before?" = "Denne er lagt til tidligere?";
 
 /* plan */
 "this month" = "denne måned";

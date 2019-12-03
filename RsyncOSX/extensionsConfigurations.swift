@@ -14,6 +14,7 @@ protocol GetConfigurationsObject: class {
     func getconfigurationsobject() -> Configurations?
     func createconfigurationsobject(profile: String?) -> Configurations?
     func reloadconfigurationsobject()
+    func getschedulesortedandexpanded() -> ScheduleSortedAndExpand?
 }
 
 protocol SetConfigurations {
@@ -26,6 +27,9 @@ extension SetConfigurations {
     }
     var configurations: Configurations? {
         return self.configurationsDelegate?.getconfigurationsobject()
+    }
+    var sortedandexpanded: ScheduleSortedAndExpand? {
+        return self.configurationsDelegate?.getschedulesortedandexpanded()
     }
 }
 

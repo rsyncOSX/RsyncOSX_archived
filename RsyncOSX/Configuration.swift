@@ -42,9 +42,8 @@ struct Configuration {
 
     private func calculatedays(date: String) -> Double? {
         guard date != "" else { return nil }
-        let dateformatter = Dateandtime().setDateformat()
-        let lastbackup = dateformatter.date(from: date)
-        let seconds: TimeInterval = lastbackup!.timeIntervalSinceNow
+        let lastbackup = date.en_us_date_from_string()
+        let seconds: TimeInterval = lastbackup.timeIntervalSinceNow
         return seconds * (-1)
     }
 
@@ -136,5 +135,18 @@ struct Configuration {
         self.parameter6 = dictionary.object(forKey: "parameter6") as? String ?? ""
         self.offsiteServer = dictionary.object(forKey: "offsiteServer") as? String ?? ""
         self.backupID = dictionary.object(forKey: "backupID") as? String ?? ""
+    }
+}
+
+extension Configuration: Hashable, Equatable {
+    static func == (lhs: Configuration, rhs: Configuration) -> Bool {
+      return lhs.localCatalog == rhs.localCatalog &&
+        lhs.offsiteCatalog == rhs.offsiteCatalog &&
+        lhs.offsiteUsername == rhs.offsiteUsername &&
+        lhs.offsiteServer == rhs.offsiteServer
+    }
+
+    func hash(into hasher: inout Hasher) {
+        hasher.combine([self.localCatalog, self.offsiteCatalog, self.offsiteUsername, self.offsiteServer])
     }
 }

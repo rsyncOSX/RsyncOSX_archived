@@ -38,7 +38,6 @@
 		A00FE1A81D6A19CF00012089 /* ViewControllerNewConfigurations.swift in Sources */ = {isa = PBXBuildFile; fileRef = A00FE1A71D6A19CF00012089 /* ViewControllerNewConfigurations.swift */; };
 		A00FE1AA1D6A1AAB00012089 /* Alerts.swift in Sources */ = {isa = PBXBuildFile; fileRef = A00FE1A91D6A1AAB00012089 /* Alerts.swift */; };
 		A017E2A01D7D3242003016F5 /* ViewControllerEdit.swift in Sources */ = {isa = PBXBuildFile; fileRef = A017E29F1D7D3242003016F5 /* ViewControllerEdit.swift */; };
-		A02A4AD91D7EFD3D0059CECD /* ViewControllerScheduleDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = A02A4AD81D7EFD3D0059CECD /* ViewControllerScheduleDetails.swift */; };
 		A03876E11DB4FD9D00C14AEA /* ViewControllerProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = A03876E01DB4FD9D00C14AEA /* ViewControllerProfile.swift */; };
 		A0400C871D794FF8008A3949 /* Checkfornewversion.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0400C861D794FF8008A3949 /* Checkfornewversion.swift */; };
 		A0430ADA1DAFFD3C00BBC106 /* SingleTaskWorkQueu.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0430AD91DAFFD3C00BBC106 /* SingleTaskWorkQueu.swift */; };
@@ -51,7 +50,6 @@
 		A04492B01D658F2100B3CE17 /* PersistentStorageScheduling.swift in Sources */ = {isa = PBXBuildFile; fileRef = A044929C1D658F2100B3CE17 /* PersistentStorageScheduling.swift */; };
 		A04492B21D658F2100B3CE17 /* RsyncParameters.swift in Sources */ = {isa = PBXBuildFile; fileRef = A044929E1D658F2100B3CE17 /* RsyncParameters.swift */; };
 		A04492B41D658F2100B3CE17 /* CopyFilesArguments.swift in Sources */ = {isa = PBXBuildFile; fileRef = A04492A01D658F2100B3CE17 /* CopyFilesArguments.swift */; };
-		A04492B71D658F2100B3CE17 /* PersistentStorageAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = A04492A31D658F2100B3CE17 /* PersistentStorageAPI.swift */; };
 		A04492BB1D658F2100B3CE17 /* ytcpsocket.swift in Sources */ = {isa = PBXBuildFile; fileRef = A04492A71D658F2100B3CE17 /* ytcpsocket.swift */; };
 		A04972511D6595B200086EFD /* OutputProcess.swift in Sources */ = {isa = PBXBuildFile; fileRef = A049724F1D6595B200086EFD /* OutputProcess.swift */; };
 		A05275DA1D6F6E0000D8ECBE /* BatchTaskWorkQueu.swift in Sources */ = {isa = PBXBuildFile; fileRef = A05275D91D6F6E0000D8ECBE /* BatchTaskWorkQueu.swift */; };
@@ -126,6 +124,7 @@
 		E96291B1213049D7005119A7 /* TCPconnections.swift in Sources */ = {isa = PBXBuildFile; fileRef = E96291B0213049D7005119A7 /* TCPconnections.swift */; };
 		E96A95922195D5F3000326F2 /* DuArgumentsSsh.swift in Sources */ = {isa = PBXBuildFile; fileRef = E96A95912195D5F3000326F2 /* DuArgumentsSsh.swift */; };
 		E96CA1FE1E094C3000CD1D03 /* Resources.swift in Sources */ = {isa = PBXBuildFile; fileRef = E96CA1FD1E094C3000CD1D03 /* Resources.swift */; };
+		E973B6F8238F1AF600B0FD12 /* Equal.swift in Sources */ = {isa = PBXBuildFile; fileRef = E973B6F7238F1AF600B0FD12 /* Equal.swift */; };
 		E975284520CEAADC0029B027 /* ViewControllerRestore.swift in Sources */ = {isa = PBXBuildFile; fileRef = E975284420CEAADB0029B027 /* ViewControllerRestore.swift */; };
 		E9764F60204BEE970018C0D7 /* AllConfigurations.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9764F5F204BEE970018C0D7 /* AllConfigurations.swift */; };
 		E979628F227AE4F600115513 /* Info.swift in Sources */ = {isa = PBXBuildFile; fileRef = E979628E227AE4F600115513 /* Info.swift */; };
@@ -141,8 +140,10 @@
 		E99E2CCE22A9260E009C60FF /* Getrsyncpath.swift in Sources */ = {isa = PBXBuildFile; fileRef = E99E2CCD22A9260E009C60FF /* Getrsyncpath.swift */; };
 		E99FC81D200FD88D00477B1A /* SnapshotCreateCatalogArguments.swift in Sources */ = {isa = PBXBuildFile; fileRef = E99FC81C200FD88D00477B1A /* SnapshotCreateCatalogArguments.swift */; };
 		E9A63064202B425D00F1FFF1 /* Running.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9A63063202B425D00F1FFF1 /* Running.swift */; };
+		E9A8307D23925CBA00FB877E /* CountSchedulesandLogs.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9A8307C23925CBA00FB877E /* CountSchedulesandLogs.swift */; };
 		E9A8D81C1ED20AEB009648DE /* GetRemoteFileListingsArguments.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9A8D81B1ED20AEB009648DE /* GetRemoteFileListingsArguments.swift */; };
 		E9AC77602272F4DC0063F324 /* ConvertUserconfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9AC775F2272F4DC0063F324 /* ConvertUserconfiguration.swift */; };
+		E9B04CFC2388489E0072DA41 /* Reorgschedule.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9B04CFB2388489E0072DA41 /* Reorgschedule.swift */; };
 		E9B9CCA621BC46B00042D5CE /* extensionDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9B9CCA521BC46B00042D5CE /* extensionDate.swift */; };
 		E9BC4DE7230277A10058CB52 /* ExecuteTaskNow.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9BC4DE6230277A10058CB52 /* ExecuteTaskNow.swift */; };
 		E9C30B4B201623B00079C63D /* SnapshotsLoggData.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9C30B4A201623B00079C63D /* SnapshotsLoggData.swift */; };
@@ -194,7 +195,6 @@
 		A00FE1A71D6A19CF00012089 /* ViewControllerNewConfigurations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewControllerNewConfigurations.swift; sourceTree = "<group>"; };
 		A00FE1A91D6A1AAB00012089 /* Alerts.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Alerts.swift; sourceTree = "<group>"; };
 		A017E29F1D7D3242003016F5 /* ViewControllerEdit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewControllerEdit.swift; sourceTree = "<group>"; };
-		A02A4AD81D7EFD3D0059CECD /* ViewControllerScheduleDetails.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewControllerScheduleDetails.swift; sourceTree = "<group>"; };
 		A03876E01DB4FD9D00C14AEA /* ViewControllerProfile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewControllerProfile.swift; sourceTree = "<group>"; };
 		A0400C861D794FF8008A3949 /* Checkfornewversion.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Checkfornewversion.swift; sourceTree = "<group>"; };
 		A0430AD91DAFFD3C00BBC106 /* SingleTaskWorkQueu.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SingleTaskWorkQueu.swift; sourceTree = "<group>"; };
@@ -209,7 +209,6 @@
 		A044929C1D658F2100B3CE17 /* PersistentStorageScheduling.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersistentStorageScheduling.swift; sourceTree = "<group>"; };
 		A044929E1D658F2100B3CE17 /* RsyncParameters.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RsyncParameters.swift; sourceTree = "<group>"; };
 		A04492A01D658F2100B3CE17 /* CopyFilesArguments.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CopyFilesArguments.swift; sourceTree = "<group>"; };
-		A04492A31D658F2100B3CE17 /* PersistentStorageAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersistentStorageAPI.swift; sourceTree = "<group>"; };
 		A04492A71D658F2100B3CE17 /* ytcpsocket.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ytcpsocket.swift; sourceTree = "<group>"; };
 		A049724F1D6595B200086EFD /* OutputProcess.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OutputProcess.swift; sourceTree = "<group>"; };
 		A05275D91D6F6E0000D8ECBE /* BatchTaskWorkQueu.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BatchTaskWorkQueu.swift; sourceTree = "<group>"; };
@@ -289,6 +288,7 @@
 		E96604E5228A7FAB00BE6161 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
 		E96A95912195D5F3000326F2 /* DuArgumentsSsh.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DuArgumentsSsh.swift; sourceTree = "<group>"; };
 		E96CA1FD1E094C3000CD1D03 /* Resources.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Resources.swift; sourceTree = "<group>"; };
+		E973B6F7238F1AF600B0FD12 /* Equal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Equal.swift; sourceTree = "<group>"; };
 		E975284420CEAADB0029B027 /* ViewControllerRestore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewControllerRestore.swift; sourceTree = "<group>"; };
 		E9764F5F204BEE970018C0D7 /* AllConfigurations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllConfigurations.swift; sourceTree = "<group>"; };
 		E979628E227AE4F600115513 /* Info.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Info.swift; sourceTree = "<group>"; };
@@ -304,9 +304,11 @@
 		E99E2CCD22A9260E009C60FF /* Getrsyncpath.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Getrsyncpath.swift; sourceTree = "<group>"; };
 		E99FC81C200FD88D00477B1A /* SnapshotCreateCatalogArguments.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnapshotCreateCatalogArguments.swift; sourceTree = "<group>"; };
 		E9A63063202B425D00F1FFF1 /* Running.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Running.swift; sourceTree = "<group>"; };
+		E9A8307C23925CBA00FB877E /* CountSchedulesandLogs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountSchedulesandLogs.swift; sourceTree = "<group>"; };
 		E9A8D81B1ED20AEB009648DE /* GetRemoteFileListingsArguments.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GetRemoteFileListingsArguments.swift; sourceTree = "<group>"; };
 		E9AC775F2272F4DC0063F324 /* ConvertUserconfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConvertUserconfiguration.swift; sourceTree = "<group>"; };
 		E9AE2E90217E3270003486E0 /* RsyncOSX.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = RsyncOSX.entitlements; sourceTree = "<group>"; };
+		E9B04CFB2388489E0072DA41 /* Reorgschedule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reorgschedule.swift; sourceTree = "<group>"; };
 		E9B9CCA521BC46B00042D5CE /* extensionDate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = extensionDate.swift; sourceTree = "<group>"; };
 		E9BC4DE6230277A10058CB52 /* ExecuteTaskNow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExecuteTaskNow.swift; sourceTree = "<group>"; };
 		E9C30B4A201623B00079C63D /* SnapshotsLoggData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnapshotsLoggData.swift; sourceTree = "<group>"; };
@@ -436,6 +438,7 @@
 		A04492C01D658FA600B3CE17 /* Configuration */ = {
 			isa = PBXGroup;
 			children = (
+				E973B6F6238F1AC500B0FD12 /* Equal */,
 				A04492981D658F2100B3CE17 /* Configuration.swift */,
 				E9F068F11F27B9C100DDF1A1 /* ArgumentsOneConfiguration.swift */,
 			);
@@ -554,6 +557,7 @@
 		A0BAA5F31D70C349003BE69F /* Schedules */ = {
 			isa = PBXGroup;
 			children = (
+				E9B04CFA238848760072DA41 /* Reorg */,
 				E97D96DA232C3E54004405DD /* XCtest */,
 				A0041EEE1D7D4357002BF081 /* ScheduleSortedAndExpanded.swift */,
 				E9F413BA1F63AC2A00C0945E /* Schedules.swift */,
@@ -591,7 +595,6 @@
 			isa = PBXGroup;
 			children = (
 				E94D2602205025790026D18F /* ViewControllerAllProfiles.swift */,
-				A02A4AD81D7EFD3D0059CECD /* ViewControllerScheduleDetails.swift */,
 				A017E29F1D7D3242003016F5 /* ViewControllerEdit.swift */,
 				A08110661D6DA7D8009444D3 /* ViewControllerProgressProcess.swift */,
 				A054F1A81D6D773E00D27688 /* ViewControllerInformation.swift */,
@@ -610,7 +613,6 @@
 		E90E51051F47094800B71F0F /* PersistentStorage */ = {
 			isa = PBXGroup;
 			children = (
-				A04492A31D658F2100B3CE17 /* PersistentStorageAPI.swift */,
 				A044929C1D658F2100B3CE17 /* PersistentStorageScheduling.swift */,
 				E9609EF41F229F5900F5BFAA /* PersistentStorageConfiguration.swift */,
 				A0EFB44F1DC080A9008C21A6 /* PersistentStorageUserconfiguration.swift */,
@@ -684,6 +686,14 @@
 			name = Mainprocess;
 			sourceTree = "<group>";
 		};
+		E973B6F6238F1AC500B0FD12 /* Equal */ = {
+			isa = PBXGroup;
+			children = (
+				E973B6F7238F1AF600B0FD12 /* Equal.swift */,
+			);
+			name = Equal;
+			sourceTree = "<group>";
+		};
 		E9764F5E204BEE710018C0D7 /* AllProfiles */ = {
 			isa = PBXGroup;
 			children = (
@@ -697,6 +707,7 @@
 		E97D96DA232C3E54004405DD /* XCtest */ = {
 			isa = PBXGroup;
 			children = (
+				E9A8307C23925CBA00FB877E /* CountSchedulesandLogs.swift */,
 				E925DD30232C33D0001499D1 /* SchedulesXCTEST.swift */,
 			);
 			name = XCtest;
@@ -768,6 +779,14 @@
 				E92276E322995B3500F7D2B6 /* ConvertOneConfig.swift */,
 			);
 			name = Conversions;
+			sourceTree = "<group>";
+		};
+		E9B04CFA238848760072DA41 /* Reorg */ = {
+			isa = PBXGroup;
+			children = (
+				E9B04CFB2388489E0072DA41 /* Reorgschedule.swift */,
+			);
+			name = Reorg;
 			sourceTree = "<group>";
 		};
 		E9D0B3F523099549009ABB74 /* Singletask */ = {
@@ -994,7 +1013,6 @@
 				E9C4A40F23530F7E00BCF1C4 /* ArgumentsLocalcatalogInfo.swift in Sources */,
 				E92755A62130539400B1F781 /* Dispatchqueues.swift in Sources */,
 				E99D187423041C47003F1796 /* Result.swift in Sources */,
-				A04492B71D658F2100B3CE17 /* PersistentStorageAPI.swift in Sources */,
 				E979628F227AE4F600115513 /* Info.swift in Sources */,
 				E9F068F41F27BA0200DDF1A1 /* ReadWriteDictionary.swift in Sources */,
 				E989CE961EF948D0000CB7C2 /* ChmodPubKey.swift in Sources */,
@@ -1037,9 +1055,11 @@
 				A0FC45641D9545CC005208EF /* ScheduleLoggData.swift in Sources */,
 				A04492A91D658F2100B3CE17 /* ytcpsocket.c in Sources */,
 				E90F3C41201659720089D68B /* ViewControllerSnapshots.swift in Sources */,
+				E9A8307D23925CBA00FB877E /* CountSchedulesandLogs.swift in Sources */,
 				E97C09A71EFAFBC400E86999 /* ExecuteBatch.swift in Sources */,
 				E91B6E8A1FFA17B800A2231A /* ViewControllerRemoteInfo.swift in Sources */,
 				A00FE1A81D6A19CF00012089 /* ViewControllerNewConfigurations.swift in Sources */,
+				E9B04CFC2388489E0072DA41 /* Reorgschedule.swift in Sources */,
 				E9374D2E1E329A5800CD3945 /* CompleteQuickbackupTask.swift in Sources */,
 				E914B7722131197B00FFE398 /* extensionsSchedules.swift in Sources */,
 				E957B1121F5F17220099947A /* ViewControllerReference.swift in Sources */,
@@ -1059,6 +1079,7 @@
 				E9F4EBB81EB4C32D006EEEF1 /* CommandSsh.swift in Sources */,
 				A04492BB1D658F2100B3CE17 /* ytcpsocket.swift in Sources */,
 				E925DD31232C33D0001499D1 /* SchedulesXCTEST.swift in Sources */,
+				E973B6F8238F1AF600B0FD12 /* Equal.swift in Sources */,
 				E96A95922195D5F3000326F2 /* DuArgumentsSsh.swift in Sources */,
 				E996431C231AEFA100E05B40 /* ViewControllerSource.swift in Sources */,
 				E9C4A411235311FE00BCF1C4 /* ArgumentsRestore.swift in Sources */,
@@ -1084,7 +1105,6 @@
 				E905DC111EACF7550003BF37 /* ViewControllerSsh.swift in Sources */,
 				E91A68901EA777690056BCFC /* ScheduleWriteLoggData.swift in Sources */,
 				E9FFA02D1E7287E100B7AB2B /* ProcessCmd.swift in Sources */,
-				A02A4AD91D7EFD3D0059CECD /* ViewControllerScheduleDetails.swift in Sources */,
 				A04492AC1D658F2100B3CE17 /* Configuration.swift in Sources */,
 				E9C4A4132353139200BCF1C4 /* ArgumentsVerify.swift in Sources */,
 				A04492861D658EE800B3CE17 /* AppDelegate.swift in Sources */,

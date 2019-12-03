@@ -12,21 +12,15 @@ import Cocoa
 
 class ScheduleSortedAndExpand: SetConfigurations, SetSchedules {
 
-    // Reference to main View
     private var schedulesNSDictionary: [NSDictionary]?
     private var scheduleConfiguration: [ConfigurationSchedule]?
     private var expandedData = [NSDictionary]()
     private var sortedschedules: [NSDictionary]?
-    private var dateandtime: Dateandtime?
 
     // Calculate daily schedules
     private func daily(dateStart: Date, schedule: String, dict: NSDictionary) {
-        var i = 0
-        while self.nextdayorweekindex(dateStart: dateStart, day: i, schedule: schedule) < 0 && i < 1000 { i += 1 }
-        var dateComponent = DateComponents()
-        dateComponent.day = i
         let cal = Calendar.current
-        if let start: Date = cal.date(byAdding: dateComponent, to: dateStart) {
+        if let start: Date = cal.date(byAdding: dateStart.dayssincenow, to: dateStart) {
             if start.timeIntervalSinceNow > 0 {
                 let hiddenID = (dict.value(forKey: "hiddenID") as? Int)!
                 let profilename = dict.value(forKey: "profilename") ?? NSLocalizedString("Default profile", comment: "default profile")
@@ -45,12 +39,8 @@ class ScheduleSortedAndExpand: SetConfigurations, SetSchedules {
 
     // Calculate weekly schedules
     private func weekly(dateStart: Date, schedule: String, dict: NSDictionary) {
-        var i = 0
-        while self.nextdayorweekindex(dateStart: dateStart, day: i, schedule: schedule) < 0 && i < 1000 { i += 1 }
-        var dateComponent = DateComponents()
-        dateComponent.day = (i * 7)
         let cal = Calendar.current
-        if let start: Date = cal.date(byAdding: dateComponent, to: dateStart) {
+        if let start: Date = cal.date(byAdding: dateStart.weekssincenowplusoneweek, to: dateStart) {
             if start.timeIntervalSinceNow > 0 {
                 let hiddenID = (dict.value(forKey: "hiddenID") as? Int)!
                 let profilename = dict.value(forKey: "profilename") ?? NSLocalizedString("Default profile", comment: "default profile")
@@ -67,36 +57,15 @@ class ScheduleSortedAndExpand: SetConfigurations, SetSchedules {
         }
     }
 
-    private func nextdayorweekindex(dateStart: Date, day: Int, schedule: String) -> Int {
-        var dateComponent = DateComponents()
-        switch schedule {
-        case "daily":
-            dateComponent.day = day
-        case "weekly":
-            dateComponent.day = (day * 7)
-        default:
-            dateComponent.day = (day * 7)
-        }
-        let cal = Calendar.current
-        if let start: Date = cal.date(byAdding: dateComponent, to: dateStart) {
-            if start.timeIntervalSinceNow > 0 {
-                return day
-            } else {
-                return -1
-            }
-        }
-        return -1
-    }
-
     // Expanding and sorting Scheduledata
     private func sortAndExpandScheduleTasks() {
-        let dateformatter = Dateandtime().setDateformat()
         for i in 0 ..< self.schedulesNSDictionary!.count {
             let dict = self.schedulesNSDictionary![i]
-            let dateStop: Date = dateformatter.date(from: (dict.value(forKey: "dateStop") as? String)!)!
-            let dateStart: Date = dateformatter.date(from: (dict.value(forKey: "dateStart") as? String)!)!
+            let dateStop: Date = (dict.value(forKey: "dateStop") as? String)!.en_us_date_from_string()
+            let dateStart: Date = (dict.value(forKey: "dateStart") as? String)!.en_us_date_from_string()
             let schedule: String = (dict.value(forKey: "schedule") as? String)!
             let seconds: Double = dateStop.timeIntervalSinceNow
+            print(seconds)
             // Get all jobs which are not executed
             if seconds > 0 {
                 switch schedule {
@@ -161,7 +130,7 @@ class ScheduleSortedAndExpand: SetConfigurations, SetSchedules {
         guard sorted.count > 0 else { return "" }
         if number {
             let firsttask = (sorted[0].value(forKey: "start") as? Date)?.timeIntervalSinceNow
-            return self.dateandtime?.timeString(firsttask!) ?? ""
+            return Dateandtime().timestring(seconds: firsttask!)
         } else {
             let type = sorted[0].value(forKey: "schedule") as? String
             return type ?? ""
@@ -194,7 +163,6 @@ class ScheduleSortedAndExpand: SetConfigurations, SetSchedules {
             self.setallscheduledtasksNSDictionary()
             self.sortAndExpandScheduleTasks()
         }
-        self.dateandtime = Dateandtime()
     }
 
     init(allschedules: Allschedules?) {
@@ -202,7 +170,6 @@ class ScheduleSortedAndExpand: SetConfigurations, SetSchedules {
         self.scheduleConfiguration = allschedules!.getallschedules()
         self.setallscheduledtasksNSDictionary()
         self.sortAndExpandScheduleTasks()
-        self.dateandtime = Dateandtime()
     }
 
     // For XCtest
@@ -210,6 +177,5 @@ class ScheduleSortedAndExpand: SetConfigurations, SetSchedules {
         self.scheduleConfiguration = schedules?.getSchedule()
         self.setallscheduledtasksNSDictionary()
         self.sortAndExpandScheduleTasks()
-        self.dateandtime = Dateandtime()
     }
 }

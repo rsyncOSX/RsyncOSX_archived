@@ -10,7 +10,7 @@
 import Foundation
 
 // Reading userconfiguration from file into RsyncOSX
-final class Userconfiguration {
+struct Userconfiguration {
 
     private func readUserconfiguration(dict: NSDictionary) {
         // Another version of rsync

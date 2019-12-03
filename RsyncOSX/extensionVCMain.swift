@@ -126,13 +126,7 @@ extension ViewControllerMain: RsyncError {
                 process.terminate()
                 self.process = nil
             }
-            // Either error in single task or batch task
-            if self.singletask != nil {
-                self.singletask!.error()
-            }
-            if self.executebatch != nil {
-                self.executebatch!.error()
-            }
+            self.singletask?.error()
         })
     }
 }
@@ -207,28 +201,31 @@ extension ViewControllerMain: GetConfigurationsObject {
 
     // After a write, a reload is forced.
     func reloadconfigurationsobject() {
-        guard self.executebatch == nil else {
-            // Batchtask, check if task is completed
-            guard self.configurations!.getbatchQueue()?.batchruniscompleted() == false else {
+        guard self.configurations?.batchQueue == nil else {
+            if self.configurations!.batchQueue?.batchruniscompleted() == true {
                 self.createandreloadconfigurations()
                 return
+            } else {
+                return
             }
-            return
         }
         self.createandreloadconfigurations()
+    }
+
+    func getschedulesortedandexpanded() -> ScheduleSortedAndExpand? {
+        return self.schedulesortedandexpanded
     }
 }
 
 extension ViewControllerMain: GetSchedulesObject {
     func reloadschedulesobject() {
-        // If batchtask scedules object
-        guard self.executebatch == nil else {
-            // Batchtask, check if task is completed
-            guard self.configurations!.getbatchQueue()?.batchruniscompleted() == false else {
+        guard self.configurations?.batchQueue == nil else {
+            if self.configurations!.batchQueue?.batchruniscompleted() == true {
                 self.createandreloadschedules()
                 return
+            } else {
+                return
             }
-            return
         }
         self.createandreloadschedules()
     }
@@ -242,17 +239,6 @@ extension ViewControllerMain: GetSchedulesObject {
         self.schedules = Schedules(profile: profile)
         self.schedulesortedandexpanded = ScheduleSortedAndExpand()
         return self.schedules
-    }
-}
-
-extension  ViewControllerMain: GetHiddenID {
-    func gethiddenID() -> Int {
-        guard self.index != nil else { return -1 }
-        if let hiddenID = self.configurations?.gethiddenID(index: self.index!) {
-            return hiddenID
-        } else {
-            return -1
-        }
     }
 }
 
@@ -311,15 +297,6 @@ extension ViewControllerMain: Count {
 
     func inprogressCount() -> Int {
         return self.outputprocess?.count() ?? 0
-    }
-}
-
-extension ViewControllerMain: Reloadsortedandrefresh {
-    func reloadsortedandrefreshtabledata() {
-        self.schedulesortedandexpanded = ScheduleSortedAndExpand()
-        globalMainQueue.async(execute: { () -> Void in
-            self.mainTableView.reloadData()
-        })
     }
 }
 

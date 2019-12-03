@@ -5,7 +5,7 @@
 //  Created by Thomas Evensen on 28.10.2017.
 //  Copyright © 2017 Thomas Evensen. All rights reserved.
 //
-// swiftlint:disable line_length file_length
+// swiftlint:disable line_length
 
 import Foundation
 import Cocoa
@@ -80,13 +80,6 @@ extension VcMain {
     // self.presentViewControllerAsSheet(self.viewControllerAbout)
     var viewControllerAbout: NSViewController? {
         return (self.storyboard?.instantiateController(withIdentifier: "AboutID")
-            as? NSViewController)
-    }
-
-    // Information Schedule details
-    // self.presentViewControllerAsSheet(self.viewControllerScheduleDetails)
-    var viewControllerScheduleDetails: NSViewController? {
-        return (self.storyboard?.instantiateController(withIdentifier: "StoryboardScheduleID")
             as? NSViewController)
     }
 
@@ -328,11 +321,6 @@ extension ChangeTemporaryRestorePath {
 
 protocol Createandreloadconfigurations: class {
     func createandreloadconfigurations()
-}
-
-// Protocol for doing a refresh of tabledata
-protocol Reloadsortedandrefresh {
-    func reloadsortedandrefreshtabledata()
 }
 
 // Protocol for sorting
