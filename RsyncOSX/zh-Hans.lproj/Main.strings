@@ -254,7 +254,7 @@
 "AlG-Cw-Xi9.title" = "日志";
 
 /* Class = "NSButtonCell"; title = "add suffix FreeBSD "; ObjectID = "Am3-Ji-1Ox"; */
-"Am3-Ji-1Ox.title" = "添加后缀 FreeBSD";
+"Am3-Ji-1Ox.title" = "添加 FreeBSD 后缀";
 
 /* Class = "NSTextFieldCell"; title = "Either double click on row or select row and Load button"; ObjectID = "AMs-qg-ohN"; */
 "AMs-qg-ohN.title" = "双击行或选择行和加载按钮";
@@ -299,7 +299,7 @@
 "bCH-Oe-dEC.title" = "立即备份";
 
 /* Class = "NSTextFieldCell"; title = "Estimating task, please wait..."; ObjectID = "BDO-Nt-D9h"; */
-"BDO-Nt-D9h.title" = "估算任务，请稍候......";
+"BDO-Nt-D9h.title" = "估算任务，请稍候...";
 
 /* Class = "NSTextFieldCell"; title = "ssh port:"; ObjectID = "BEH-BV-PWu"; */
 "BEH-BV-PWu.title" = "SSH 端口：";
@@ -323,7 +323,7 @@
 "bMD-bn-iZW.title" = "远程目录：";
 
 /* Class = "NSMenuItem"; title = "Preferences…"; ObjectID = "BOF-NM-1cW"; */
-"BOF-NM-1cW.title" = "偏好设置…";
+"BOF-NM-1cW.title" = "偏好设置...";
 
 /* Class = "NSBox"; title = "Logging to file"; ObjectID = "bPa-Pw-blK"; */
 "bPa-Pw-blK.title" = "记录到文件";
@@ -644,7 +644,7 @@
 "HEg-kc-zdY.headerCell.title" = "删除";
 
 /* Class = "NSButtonCell"; title = "Close"; ObjectID = "hF2-vi-oTK"; */
-"hF2-vi-oTK.title" = "关";
+"hF2-vi-oTK.title" = "关闭";
 
 /* Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "hGt-Wj-YDD"; */
 "hGt-Wj-YDD.title" = "Text Cell";
@@ -995,7 +995,7 @@
 "PkH-9i-AY6.title" = "选择开始的时间和定时计划";
 
 /* Class = "NSTableColumn"; headerCell.title = "Profile"; ObjectID = "PqI-jS-0y7"; */
-"PqI-jS-0y7.headerCell.title" = "轮廓";
+"PqI-jS-0y7.headerCell.title" = "配置";
 
 /* Class = "NSTableColumn"; headerCell.title = "ID"; ObjectID = "pql-cs-AEK"; */
 "pql-cs-AEK.headerCell.title" = "ID";
@@ -1031,7 +1031,7 @@
 "QCj-5P-T2N.title" = "一次";
 
 /* Class = "NSBox"; title = "Process info"; ObjectID = "QdJ-n1-Mtr"; */
-"QdJ-n1-Mtr.title" = "流程信息";
+"QdJ-n1-Mtr.title" = "进程信息";
 
 /* Class = "NSTableColumn"; headerCell.title = "Task"; ObjectID = "qfC-8t-e7C"; */
 "qfC-8t-e7C.headerCell.title" = "任务";
@@ -1046,7 +1046,7 @@
 "QmL-ZM-Xc4.toolTip" = "立即执行所有任务......";
 
 /* Class = "NSButtonCell"; title = "add suffix Linux"; ObjectID = "QPs-xd-DDF"; */
-"QPs-xd-DDF.title" = "添加后缀Linux";
+"QPs-xd-DDF.title" = "添加 Linux 后缀";
 
 /* Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "qq5-4q-5kV"; */
 "qq5-4q-5kV.title" = "Text Cell";
@@ -1148,7 +1148,7 @@
 "sTj-Zm-1Dz.title" = "Text Cell";
 
 /* Class = "NSBox"; title = "Box"; ObjectID = "svl-UN-wQe"; */
-"svl-UN-wQe.title" = "盒子";
+"svl-UN-wQe.title" = "Box";
 
 /* Class = "NSTableColumn"; headerCell.title = "Size (kB)"; ObjectID = "SWF-DA-TlU"; */
 "SWF-DA-TlU.headerCell.title" = "大小（KB）";
@@ -1193,7 +1193,7 @@
 "TqG-6l-QwU.title" = "简介：";
 
 /* Class = "NSTextFieldCell"; title = "number of"; ObjectID = "tRO-2l-LW7"; */
-"tRO-2l-LW7.title" = "数";
+"tRO-2l-LW7.title" = "数目";
 
 /* Class = "NSTableColumn"; headerCell.title = "Remote server"; ObjectID = "tT2-Hu-JSP"; */
 "tT2-Hu-JSP.headerCell.title" = "远程服务器";
@@ -1268,7 +1268,7 @@
 "vDS-vt-fgh.title" = "修改日志";
 
 /* Class = "NSTableColumn"; headerCell.title = "Period"; ObjectID = "VFf-HQ-GLW"; */
-"VFf-HQ-GLW.headerCell.title" = "期";
+"VFf-HQ-GLW.headerCell.title" = "周期";
 
 /* Class = "NSBox"; title = "Rsync"; ObjectID = "vgF-FF-cIJ"; */
 "vgF-FF-cIJ.title" = "Rsync 路径和日志";
@@ -1421,7 +1421,7 @@
 "yOD-ng-BAz.title" = "删除";
 
 /* Class = "NSBox"; title = "Local info"; ObjectID = "ypE-IB-6gc"; */
-"ypE-IB-6gc.title" = "Local info";
+"ypE-IB-6gc.title" = "本地信息";
 
 /* Class = "NSButtonCell"; title = "Restore"; ObjectID = "YPN-3P-BXs"; */
 "YPN-3P-BXs.title" = "恢复";
@@ -1466,7 +1466,7 @@
 "zv2-BP-T5J.headerCell.title" = "选择";
 
 /* Class = "NSButtonCell"; title = "changed"; ObjectID = "zXX-tD-Lcg"; */
-"zXX-tD-Lcg.title" = "改变";
+"zXX-tD-Lcg.title" = "更改";
 
 /* Class = "NSTableColumn"; headerCell.title = "Remote catalog"; ObjectID = "zzK-ZO-wvj"; */
 "zzK-ZO-wvj.headerCell.title" = "远程目录";
