@@ -139,21 +139,11 @@ extension Date {
     // Returns a DateComponent value with number of days away from a specified date
     var dayssincenow: DateComponents {
         let now = Date()
-        let dateformatter = DateFormatter()
-        dateformatter.locale = Locale(identifier: "en_US")
-        dateformatter.dateStyle = .medium
-        dateformatter.timeStyle = .short
-        dateformatter.dateFormat = "dd MMM yyyy HH:mm"
         return Calendar.current.dateComponents([.day], from: self, to: now)
     }
 
     var weekssincenowplusoneweek: DateComponents {
         let now = Date()
-        let dateformatter = DateFormatter()
-        dateformatter.locale = Locale(identifier: "en_US")
-        dateformatter.dateStyle = .medium
-        dateformatter.timeStyle = .short
-        dateformatter.dateFormat = "dd MMM yyyy HH:mm"
         return Calendar.current.dateComponents([.weekOfYear], from: self, to: now.dateByAddingDays(7))
     }
 
