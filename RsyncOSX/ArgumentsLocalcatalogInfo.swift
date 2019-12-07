@@ -21,6 +21,8 @@ var config: Configuration?
             self.argumentsforsynchronize(dryRun: dryRun, forDisplay: forDisplay)
         case ViewControllerReference.shared.snapshot:
             self.argumentsforsynchronizesnapshot(dryRun: dryRun, forDisplay: forDisplay)
+        case ViewControllerReference.shared.syncremote:
+            return []
         default:
             break
         }

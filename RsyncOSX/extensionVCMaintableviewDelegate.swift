@@ -92,8 +92,8 @@ extension ViewControllerMain: NSTableViewDelegate, Attributedestring {
         if self.process != nil {
             self.abortOperations()
         }
-        if self.configurations!.getConfigurations()[row].task == ViewControllerReference.shared.synchronize ||
-            self.configurations!.getConfigurations()[row].task == ViewControllerReference.shared.snapshot {
+        let task = self.configurations!.getConfigurations()[row].task
+        if ViewControllerReference.shared.synctasks.contains(task) {
             self.configurations!.togglebatch(row)
         }
     }

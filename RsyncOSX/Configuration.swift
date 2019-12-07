@@ -50,10 +50,7 @@ struct Configuration {
     init(dictionary: NSDictionary) {
         // Parameters 1 - 6 is mandatory, set by RsyncOSX.
         self.hiddenID = (dictionary.object(forKey: "hiddenID") as? Int) ?? 0
-        self.task = (dictionary.object(forKey: "task") as? String)!
-        if self.task == "backup" {
-            self.task = ViewControllerReference.shared.synchronize
-        }
+        self.task = dictionary.object(forKey: "task") as? String ?? ""
         self.localCatalog = dictionary.object(forKey: "localCatalog") as? String ?? ""
         self.offsiteCatalog = dictionary.object(forKey: "offsiteCatalog") as? String ?? ""
         self.offsiteUsername = dictionary.object(forKey: "offsiteUsername") as? String ?? ""

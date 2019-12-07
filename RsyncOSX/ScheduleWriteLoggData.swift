@@ -78,7 +78,9 @@ class ScheduleWriteLoggData: SetConfigurations, ReloadTable, Deselect {
         var loggadded: Bool = false
         loop: for i in 0 ..< self.schedules!.count where
             self.configurations!.getResourceConfiguration(hiddenID, resource: .task) == ViewControllerReference.shared.synchronize ||
-            self.configurations!.getResourceConfiguration(hiddenID, resource: .task) == ViewControllerReference.shared.snapshot {
+            self.configurations!.getResourceConfiguration(hiddenID, resource: .task) == ViewControllerReference.shared.snapshot ||
+            self.configurations!.getResourceConfiguration(hiddenID, resource: .task) ==
+                ViewControllerReference.shared.syncremote {
                 if self.schedules![i].hiddenID == hiddenID  &&
                     self.schedules![i].schedule == "manuel" &&
                     self.schedules![i].dateStop == nil {
@@ -96,7 +98,9 @@ class ScheduleWriteLoggData: SetConfigurations, ReloadTable, Deselect {
     private func addlognew(hiddenID: Int, result: String, date: String) -> Bool {
         var loggadded: Bool = false
         if self.configurations!.getResourceConfiguration(hiddenID, resource: .task) == ViewControllerReference.shared.synchronize ||
-            self.configurations!.getResourceConfiguration(hiddenID, resource: .task) == ViewControllerReference.shared.snapshot {
+            self.configurations!.getResourceConfiguration(hiddenID, resource: .task) == ViewControllerReference.shared.snapshot ||
+            self.configurations!.getResourceConfiguration(hiddenID, resource: .task) ==
+                ViewControllerReference.shared.syncremote {
                     let masterdict = NSMutableDictionary()
                     masterdict.setObject(hiddenID, forKey: "hiddenID" as NSCopying)
                     masterdict.setObject("01 Jan 1900 00:00", forKey: "dateStart" as NSCopying)

@@ -13,6 +13,7 @@ import Cocoa
 enum Typebackup {
     case synchronize
     case snapshots
+    case syncremote
     case singlefile
 }
 
@@ -31,6 +32,7 @@ class ViewControllerNewConfigurations: NSViewController, SetConfigurations, Dela
     // Reference to rsync parameters to use in combox
     var comboBoxValues = [ViewControllerReference.shared.synchronize,
                           ViewControllerReference.shared.snapshot,
+                          ViewControllerReference.shared.syncremote,
                           "single file"]
     var backuptypeselected: Typebackup = .synchronize
     var diddissappear: Bool = false
@@ -121,6 +123,8 @@ class ViewControllerNewConfigurations: NSViewController, SetConfigurations, Dela
         case 1:
             self.backuptypeselected = .snapshots
         case 2:
+            self.backuptypeselected = .syncremote
+        case 3:
             self.backuptypeselected = .singlefile
         default:
             self.backuptypeselected = .synchronize
@@ -202,6 +206,8 @@ class ViewControllerNewConfigurations: NSViewController, SetConfigurations, Dela
             dict.setValue(1, forKey: "snapshotnum")
             self.outputprocess = OutputProcess()
             self.snapshotcreatecatalog(dict: dict, outputprocess: self.outputprocess)
+        } else if self.backuptypeselected == .syncremote {
+            dict.setValue(ViewControllerReference.shared.syncremote, forKey: "task")
         } else if self.backuptypeselected == .singlefile {
             dict.setValue(1, forKey: "singleFile")
         }
