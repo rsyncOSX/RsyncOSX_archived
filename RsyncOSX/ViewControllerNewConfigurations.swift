@@ -207,6 +207,7 @@ class ViewControllerNewConfigurations: NSViewController, SetConfigurations, Dela
             self.outputprocess = OutputProcess()
             self.snapshotcreatecatalog(dict: dict, outputprocess: self.outputprocess)
         } else if self.backuptypeselected == .syncremote {
+            guard self.offsiteServer.stringValue.isEmpty == false else { return }
             dict.setValue(ViewControllerReference.shared.syncremote, forKey: "task")
         } else if self.backuptypeselected == .singlefile {
             dict.setValue(1, forKey: "singleFile")
