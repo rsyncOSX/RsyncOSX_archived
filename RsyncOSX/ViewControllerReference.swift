@@ -219,6 +219,6 @@ final class ViewControllerReference {
     }
     init() {
         self.synctasks = Set<String>()
-        self.synctasks = [self.synchronize, self.snapshot,self.syncremote]
+        self.synctasks = [self.synchronize, self.snapshot, self.syncremote]
     }
 }

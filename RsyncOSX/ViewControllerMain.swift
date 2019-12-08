@@ -75,7 +75,8 @@ class ViewControllerMain: NSViewController, ReloadTable, Deselect, VcMain, Delay
         let task = self.configurations!.getConfigurations()[self.index!].task
         guard ViewControllerReference.shared.synctasks.contains(task) else {
             self.info.stringValue = Infoexecute().info(num: 7)
-            return }
+            return
+        }
         self.presentAsSheet(self.viewControllerInformationLocalRemote!)
     }
 
@@ -195,7 +196,7 @@ class ViewControllerMain: NSViewController, ReloadTable, Deselect, VcMain, Delay
         }
         let task = self.configurations!.getConfigurations()[self.index!].task
         guard ViewControllerReference.shared.synctasks.contains(task) else {
-                return
+            return
         }
         self.executetasknow = ExecuteTaskNow(index: self.index!)
     }

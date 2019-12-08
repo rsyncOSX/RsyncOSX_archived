@@ -5,7 +5,7 @@
 //  Created by Thomas Evensen on 26.07.2018.
 //  Copyright © 2018 Thomas Evensen. All rights reserved.
 //
-// swiftlint:disable line_length type_body_length
+// swiftlint:disable line_length type_body_length function_body_length
 
 import Foundation
 import Cocoa
@@ -156,9 +156,16 @@ class ViewControllerVerify: NSViewController, SetConfigurations, Index, VcMain, 
         self.index = self.index()
         if let index = self.index {
             let config = self.configurations!.getConfigurations()[index]
+            guard config.task != ViewControllerReference.shared.syncremote else {
+                self.verifybutton.isEnabled = false
+                self.changedbutton.isEnabled = false
+                return
+            }
             guard self.connected(config: config) == true else {
                 let dontgotit: String = NSLocalizedString("Seems not to be connected...", comment: "Verify")
                 self.gotit.stringValue = dontgotit
+                self.verifybutton.isEnabled = false
+                self.changedbutton.isEnabled = false
                 return
             }
             guard index != self.lastindex ?? -1 else { return }
