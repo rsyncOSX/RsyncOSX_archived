@@ -157,7 +157,6 @@ class ViewControllerRestore: NSViewController, SetConfigurations, Abort, Connect
     @IBAction func prepareforrestore(_ sender: NSButton) {
         if let index = self.index {
             if self.connected(config: self.configurations!.getConfigurations()[index]) == true {
-                guard self.configurations!.getConfigurations()[index].task != ViewControllerReference.shared.syncremote else { return }
                 self.gotit.textColor = setcolor(nsviewcontroller: self, color: .white)
                 let gotit: String = NSLocalizedString("Getting info, please wait...", comment: "Restore")
                 self.gotit.stringValue = gotit
