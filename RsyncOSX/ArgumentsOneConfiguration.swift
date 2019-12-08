@@ -38,6 +38,7 @@ struct ArgumentsOneConfiguration {
         self.argDisplay = ArgumentsSynchronize(config: config).argumentssynchronize(dryRun: false, forDisplay: true)
         self.argdryRun = ArgumentsSynchronize(config: config).argumentssynchronize(dryRun: true, forDisplay: false)
         self.argdryRunDisplay = ArgumentsSynchronize(config: config).argumentssynchronize(dryRun: true, forDisplay: true)
+        guard config.task != ViewControllerReference.shared.syncremote else { return }
         self.argdryRunLocalcatalogInfo = ArgumentsLocalcatalogInfo(config: config).argumentslocalcataloginfo(dryRun: true, forDisplay: false)
         // Restore path
         self.restore = ArgumentsRestore(config: config).argumentsrestore(dryRun: false, forDisplay: false, tmprestore: false)

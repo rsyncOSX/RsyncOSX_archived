@@ -170,6 +170,24 @@ class RsyncParameters {
         }
     }
 
+    func remoteargssyncremote(config: Configuration) {
+        self.offsiteCatalog = config.offsiteCatalog
+        self.localCatalog = config.localCatalog
+        self.offsiteUsername = config.offsiteUsername
+        self.offsiteServer = config.offsiteServer
+        if self.offsiteServer!.isEmpty == false {
+            if config.rsyncdaemon != nil {
+                if config.rsyncdaemon == 1 {
+                    self.remoteargs = self.offsiteUsername! + "@" + self.offsiteServer! + "::" + self.localCatalog!
+                } else {
+                    self.remoteargs = self.offsiteUsername! + "@" + self.offsiteServer! + ":" + self.localCatalog!
+                }
+            } else {
+                self.remoteargs = self.offsiteUsername! + "@" + self.offsiteServer! + ":" + self.localCatalog!
+            }
+        }
+    }
+
     func remoteargssnapshot(config: Configuration) {
         let snapshotnum = config.snapshotnum ?? 1
         self.offsiteCatalog = config.offsiteCatalog + String(snapshotnum - 1) + "/"
@@ -218,6 +236,15 @@ class RsyncParameters {
             self.arguments!.append(remoteargs!)
             if forDisplay {self.arguments!.append(" ")}
         }
+    }
+
+    func argumentsforsynchronizeremote(dryRun: Bool, forDisplay: Bool) {
+        guard self.offsiteCatalog != nil else { return }
+        if forDisplay {self.arguments!.append(" ")}
+        self.arguments!.append(remoteargs!)
+        if forDisplay {self.arguments!.append(" ")}
+        self.arguments!.append(self.offsiteCatalog!)
+        if forDisplay {self.arguments!.append(" ")}
     }
 
     func argumentsforsynchronizesnapshot(dryRun: Bool, forDisplay: Bool) {

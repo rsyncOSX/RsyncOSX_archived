@@ -72,10 +72,10 @@ class ViewControllerMain: NSViewController, ReloadTable, Deselect, VcMain, Delay
             return
         }
         guard self.checkforrsync() == false else { return }
-        guard self.configurations!.getConfigurations()[self.index!].task == ViewControllerReference.shared.synchronize ||
-            self.configurations!.getConfigurations()[self.index!].task == ViewControllerReference.shared.snapshot else {
-                self.info.stringValue = Infoexecute().info(num: 7)
-                return
+        let task = self.configurations!.getConfigurations()[self.index!].task
+        guard ViewControllerReference.shared.synctasks.contains(task) else {
+            self.info.stringValue = Infoexecute().info(num: 7)
+            return
         }
         self.presentAsSheet(self.viewControllerInformationLocalRemote!)
     }
@@ -194,9 +194,9 @@ class ViewControllerMain: NSViewController, ReloadTable, Deselect, VcMain, Delay
             self.info.stringValue = Infoexecute().info(num: 1)
             return
         }
-        guard self.configurations!.getConfigurations()[self.index!].task == ViewControllerReference.shared.synchronize ||
-            self.configurations!.getConfigurations()[self.index!].task == ViewControllerReference.shared.snapshot else {
-                return
+        let task = self.configurations!.getConfigurations()[self.index!].task
+        guard ViewControllerReference.shared.synctasks.contains(task) else {
+            return
         }
         self.executetasknow = ExecuteTaskNow(index: self.index!)
     }
@@ -290,11 +290,10 @@ class ViewControllerMain: NSViewController, ReloadTable, Deselect, VcMain, Delay
     func executeSingleTask() {
         guard self.checkforrsync() == false else { return }
         guard self.index != nil else { return }
-        guard self.configurations!.getConfigurations()[self.index!].task == ViewControllerReference.shared.synchronize ||
-            self.configurations!.getConfigurations()[self.index!].task == ViewControllerReference.shared.snapshot
-            else {
-                self.info.stringValue = Infoexecute().info(num: 6)
-                return
+        let task = self.configurations!.getConfigurations()[self.index!].task
+        guard ViewControllerReference.shared.synctasks.contains(task) else {
+            self.info.stringValue = Infoexecute().info(num: 6)
+            return
         }
         guard self.singletask != nil else {
             // Dry run

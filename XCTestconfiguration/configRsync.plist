@@ -92,6 +92,44 @@
 			<key>task</key>
 			<string>synchronize</string>
 		</dict>
+		<dict>
+			<key>backupID</key>
+			<string>XCTest</string>
+			<key>batch</key>
+			<integer>0</integer>
+			<key>dateRun</key>
+			<string></string>
+			<key>hiddenID</key>
+			<integer>3</integer>
+			<key>localCatalog</key>
+			<string>~/remotecatalog/</string>
+			<key>offsiteCatalog</key>
+			<string>/Users/thomas/localcatalog/</string>
+			<key>offsiteServer</key>
+			<string>web</string>
+			<key>offsiteUsername</key>
+			<string>thomas</string>
+			<key>parameter1</key>
+			<string>--archive</string>
+			<key>parameter2</key>
+			<string>--verbose</string>
+			<key>parameter3</key>
+			<string>--compress</string>
+			<key>parameter4</key>
+			<string>--delete</string>
+			<key>parameter5</key>
+			<string>-e</string>
+			<key>parameter6</key>
+			<string>ssh</string>
+			<key>parameter8</key>
+			<string>--exclude=.git</string>
+			<key>rsyncdaemon</key>
+			<integer>0</integer>
+			<key>sshport</key>
+			<integer>22</integer>
+			<key>task</key>
+			<string>syncremote</string>
+		</dict>
 	</array>
 </dict>
 </plist>

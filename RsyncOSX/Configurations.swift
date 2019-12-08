@@ -83,7 +83,8 @@ class Configurations: ReloadTable, SetSchedules {
     /// - returns : Array of NSDictionary
     func getConfigurationsDataSourceSynchronize() -> [NSMutableDictionary]? {
         var configurations: [Configuration] = self.configurations!.filter({return ($0.task == ViewControllerReference.shared.synchronize ||
-            $0.task == ViewControllerReference.shared.snapshot)})
+            $0.task == ViewControllerReference.shared.snapshot ||
+            $0.task == ViewControllerReference.shared.syncremote )})
         var data = [NSMutableDictionary]()
         for i in 0 ..< configurations.count {
             if configurations[i].offsiteServer.isEmpty == true {
@@ -105,7 +106,8 @@ class Configurations: ReloadTable, SetSchedules {
     /// - returns : array of Configurations
     func getConfigurationsBatch() -> [Configuration] {
         return self.configurations!.filter({return ($0.task == ViewControllerReference.shared.synchronize ||
-            $0.task == ViewControllerReference.shared.snapshot ) && ($0.batch == 1)})
+            $0.task == ViewControllerReference.shared.snapshot ||
+            $0.task == ViewControllerReference.shared.syncremote ) && ($0.batch == 1)})
     }
 
     /// Function computes arguments for rsync, either arguments for
@@ -325,18 +327,17 @@ class Configurations: ReloadTable, SetSchedules {
         self.argumentAllConfigurations = [ArgumentsOneConfiguration]()
         let store: [Configuration]? = PersistentStorageConfiguration(profile: self.profile).getConfigurations()
         for i in 0 ..< ( store?.count ?? 0 ) {
-            if store![i].task == ViewControllerReference.shared.synchronize ||
-                store![i].task == ViewControllerReference.shared.snapshot {
-                    self.configurations?.append(store![i])
-                    let rsyncArgumentsOneConfig = ArgumentsOneConfiguration(config: store![i])
-                    self.argumentAllConfigurations!.append(rsyncArgumentsOneConfig)
+            if ViewControllerReference.shared.synctasks.contains(store![i].task) {
+                self.configurations?.append(store![i])
+                let rsyncArgumentsOneConfig = ArgumentsOneConfiguration(config: store![i])
+                self.argumentAllConfigurations!.append(rsyncArgumentsOneConfig)
             }
         }
         // Then prepare the datasource for use in tableviews as Dictionarys
         var data = [NSMutableDictionary]()
         for i in 0 ..< ( self.configurations?.count ?? 0 ) {
-            if self.configurations?[i].task == ViewControllerReference.shared.synchronize ||
-                self.configurations?[i].task == ViewControllerReference.shared.snapshot {
+            let task = self.configurations?[i].task
+            if ViewControllerReference.shared.synctasks.contains(task ?? "") {
                 data.append(ConvertOneConfig(config: self.configurations![i]).dict)
             }
         }

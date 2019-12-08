@@ -10,7 +10,7 @@ import Foundation
 
 final class ArgumentsLocalcatalogInfo: RsyncParameters {
 
-var config: Configuration?
+    var config: Configuration?
 
     func argumentslocalcataloginfo(dryRun: Bool, forDisplay: Bool) -> [String] {
         self.localCatalog = self.config!.localCatalog
@@ -21,6 +21,8 @@ var config: Configuration?
             self.argumentsforsynchronize(dryRun: dryRun, forDisplay: forDisplay)
         case ViewControllerReference.shared.snapshot:
             self.argumentsforsynchronizesnapshot(dryRun: dryRun, forDisplay: forDisplay)
+        case ViewControllerReference.shared.syncremote:
+            return []
         default:
             break
         }
