@@ -30,7 +30,7 @@ class RsyncOSXTests: XCTestCase, SetConfigurations, SetSchedules {
 
     func testnumberofconfigurations() {
         let count = self.configurations?.getConfigurations().count
-        XCTAssertEqual(count, 2, "Should be equal to 2")
+        XCTAssertEqual(count, 3, "Should be equal to 3")
     }
 
     func testargumentsdryrun() {
@@ -81,6 +81,13 @@ class RsyncOSXTests: XCTestCase, SetConfigurations, SetSchedules {
         "--stats", "thomas@10.0.0.57:/backup2/RsyncOSX/XCTest/", "/temporaryrestore"]
         XCTAssertEqual(arguments, self.configurations?.arguments4tmprestore(index: 0, argtype: .arg),
                          "Arguments should be equal")
+    }
+
+    func testargumentssyncremoterealrun() {
+        let arguments = ["--archive", "--verbose", "--compress", "--delete", "-e", "ssh -p 22", "--exclude=.git",
+        "--stats", "thomas@web:~/remotecatalog/", "/Users/thomas/localcatalog/"]
+        XCTAssertEqual(arguments, self.configurations?.arguments4rsync(index: 2, argtype: .arg),
+        "Arguments should be equal")
     }
 
     func testalllogs() {
