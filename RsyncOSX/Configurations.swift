@@ -105,8 +105,7 @@ class Configurations: ReloadTable, SetSchedules {
     /// - returns : array of Configurations
     func getConfigurationsBatch() -> [Configuration] {
         return self.configurations!.filter({return ($0.task == ViewControllerReference.shared.synchronize ||
-            $0.task == ViewControllerReference.shared.snapshot ||
-            $0.task == ViewControllerReference.shared.syncremote ) && ($0.batch == 1)})
+            $0.task == ViewControllerReference.shared.snapshot) && ($0.batch == 1)})
     }
 
     /// Function computes arguments for rsync, either arguments for
