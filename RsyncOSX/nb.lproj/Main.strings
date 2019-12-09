@@ -328,7 +328,7 @@
 /* Class = "NSMenu"; title = "File"; ObjectID = "bib-Uj-vzu"; */
 "bib-Uj-vzu.title" = "Fil";
 
-/* Class = "NSTextFieldCell"; title = "Remote catalog:"; ObjectID = "bMD-bn-iZW"; */
+/* Class = "NSTextFieldCell"; title = "Destination catalog:"; ObjectID = "bMD-bn-iZW"; */
 "bMD-bn-iZW.title" = "Ekstern katalog:";
 
 /* Class = "NSMenuItem"; title = "Preferences…"; ObjectID = "BOF-NM-1cW"; */
@@ -952,7 +952,7 @@
 /* Class = "NSTextFieldCell"; title = "Table View Cell"; ObjectID = "NQS-NB-OI2"; */
 "NQS-NB-OI2.title" = "Table View Cell";
 
-/* Class = "NSTextFieldCell"; title = "Local catalog:"; ObjectID = "nsN-YU-MJ2"; */
+/* Class = "NSTextFieldCell"; title = "Source catalog:"; ObjectID = "nsN-YU-MJ2"; */
 "nsN-YU-MJ2.title" = "Lokal katalog:";
 
 /* Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "o1G-0k-G0I"; */
@@ -1380,6 +1380,9 @@
 
 /* Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "WlH-m8-C35"; */
 "WlH-m8-C35.title" = "Text Cell";
+
+/* Class = "NSButtonCell"; title = "Don´t add trailing /"; ObjectID = "WMA-Xf-UcN"; */
+"WMA-Xf-UcN.title" = "Ikke legg til /";
 
 /* Class = "NSTextFieldCell"; title = "Required if remote server"; ObjectID = "Wmd-vt-cwI"; */
 "Wmd-vt-cwI.title" = "Krav hvis ekstern server";
