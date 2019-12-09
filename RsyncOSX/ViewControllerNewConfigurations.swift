@@ -56,10 +56,8 @@ class ViewControllerNewConfigurations: NSViewController, SetConfigurations, Dela
     @IBOutlet weak var backuptype: NSComboBox!
     @IBOutlet weak var remotecapacitybutton: NSButton!
     @IBOutlet weak var addingtrailingbackslash: NSButton!
-
     @IBOutlet weak var stringlocalcatalog: NSTextField!
     @IBOutlet weak var stringremotecatalog: NSTextField!
-
 
     @IBAction func totinfo(_ sender: NSButton) {
         guard self.checkforrsync() == false else { return }
@@ -121,9 +119,18 @@ class ViewControllerNewConfigurations: NSViewController, SetConfigurations, Dela
         })
     }
 
+    private func changelabels() {
+        switch self.backuptype.indexOfSelectedItem {
+        case 2:
+            self.stringlocalcatalog.stringValue = NSLocalizedString("Source catalog:", comment: "Tooltip")
+            self.stringremotecatalog.stringValue = NSLocalizedString("Destination catalog:", comment: "Tooltip")
+        default:
+            self.stringlocalcatalog.stringValue = NSLocalizedString("Local catalog:", comment: "Tooltip")
+            self.stringremotecatalog.stringValue = NSLocalizedString("Remote catalog:", comment: "Tooltip")
+        }
+    }
+
     @IBAction func setbackuptype(_ sender: NSComboBox) {
-        self.stringlocalcatalog.stringValue = NSLocalizedString("Local catalog:", comment: "Tooltip")
-        self.stringremotecatalog.stringValue = NSLocalizedString("Remote catalog:", comment: "Tooltip")
         switch self.backuptype.indexOfSelectedItem {
         case 0:
             self.backuptypeselected = .synchronize
@@ -131,13 +138,13 @@ class ViewControllerNewConfigurations: NSViewController, SetConfigurations, Dela
             self.backuptypeselected = .snapshots
         case 2:
             self.backuptypeselected = .syncremote
-            self.stringlocalcatalog.stringValue = NSLocalizedString("Source catalog:", comment: "Tooltip")
-            self.stringremotecatalog.stringValue = NSLocalizedString("Destination catalog:", comment: "Tooltip")
+
         case 3:
             self.backuptypeselected = .singlefile
         default:
             self.backuptypeselected = .synchronize
         }
+        self.changelabels()
     }
 
     override func viewDidLoad() {
@@ -168,6 +175,7 @@ class ViewControllerNewConfigurations: NSViewController, SetConfigurations, Dela
         self.viewParameter3.stringValue = self.compress
         self.viewParameter4.stringValue = self.delete
         self.viewParameter5.stringValue = self.eparam + " " + self.ssh
+        self.changelabels()
     }
 
     private func initcombox(combobox: NSComboBox, index: Int) {
