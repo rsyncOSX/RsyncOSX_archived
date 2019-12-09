@@ -132,7 +132,7 @@ class ViewControllerNewConfigurations: NSViewController, SetConfigurations, Dela
         case 2:
             self.backuptypeselected = .syncremote
             self.stringlocalcatalog.stringValue = NSLocalizedString("Source catalog:", comment: "Tooltip")
-            self.stringremotecatalog.stringValue = NSLocalizedString("Local catalog:", comment: "Tooltip")
+            self.stringremotecatalog.stringValue = NSLocalizedString("Destination catalog:", comment: "Tooltip")
         case 3:
             self.backuptypeselected = .singlefile
         default:
