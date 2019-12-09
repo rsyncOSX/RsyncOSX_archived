@@ -95,6 +95,9 @@
 /* Execute */
 "Delete selected task?" = "Slett valgte oppgave?";
 
+/* Tooltip */
+"Destination catalog:" = "Lokal katalog:";
+
 /* Snapshots */
 "Do you REALLY want to DELETE selected snapshots?" = "Vil du VIRKELIG SLETTE valgte snapshot?";
 
@@ -165,6 +168,9 @@
 /* Remote info
    Remote Info */
 "Loaded cached data..." = "Lastet cached info...";
+
+/* Tooltip */
+"Local catalog:" = "Lokal katalog:";
 
 /* Copy files */
 "Local or remote catalog cannot be empty..." = "Lokal og ekstern må fylles ut...";
@@ -250,6 +256,9 @@
 /* Execute */
 "Profile: please wait..." = "Profil: vennligst vent...";
 
+/* Tooltip */
+"Remote catalog:" = "Ekstern katalog:";
+
 /* Restore */
 "Restore" = "Kopi";
 
@@ -282,6 +291,9 @@
 
 /* Snapshots */
 "Seriously, enter a real number..." = "Seriøst, legg inn et nummer...";
+
+/* Tooltip */
+"Source catalog:" = "Ekstern katalog:";
 
 /* Restore */
 "Start restore?" = "Start kopi?";

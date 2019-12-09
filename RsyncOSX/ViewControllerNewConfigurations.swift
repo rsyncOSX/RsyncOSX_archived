@@ -57,6 +57,10 @@ class ViewControllerNewConfigurations: NSViewController, SetConfigurations, Dela
     @IBOutlet weak var remotecapacitybutton: NSButton!
     @IBOutlet weak var addingtrailingbackslash: NSButton!
 
+    @IBOutlet weak var stringlocalcatalog: NSTextField!
+    @IBOutlet weak var stringremotecatalog: NSTextField!
+
+
     @IBAction func totinfo(_ sender: NSButton) {
         guard self.checkforrsync() == false else { return }
         globalMainQueue.async(execute: { () -> Void in
@@ -118,6 +122,8 @@ class ViewControllerNewConfigurations: NSViewController, SetConfigurations, Dela
     }
 
     @IBAction func setbackuptype(_ sender: NSComboBox) {
+        self.stringlocalcatalog.stringValue = NSLocalizedString("Local catalog:", comment: "Tooltip")
+        self.stringremotecatalog.stringValue = NSLocalizedString("Remote catalog:", comment: "Tooltip")
         switch self.backuptype.indexOfSelectedItem {
         case 0:
             self.backuptypeselected = .synchronize
@@ -125,6 +131,8 @@ class ViewControllerNewConfigurations: NSViewController, SetConfigurations, Dela
             self.backuptypeselected = .snapshots
         case 2:
             self.backuptypeselected = .syncremote
+            self.stringlocalcatalog.stringValue = NSLocalizedString("Source catalog:", comment: "Tooltip")
+            self.stringremotecatalog.stringValue = NSLocalizedString("Destination catalog:", comment: "Tooltip")
         case 3:
             self.backuptypeselected = .singlefile
         default:
