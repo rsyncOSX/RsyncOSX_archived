@@ -55,6 +55,7 @@ class ViewControllerNewConfigurations: NSViewController, SetConfigurations, Dela
     @IBOutlet weak var copyconfigbutton: NSButton!
     @IBOutlet weak var backuptype: NSComboBox!
     @IBOutlet weak var remotecapacitybutton: NSButton!
+    @IBOutlet weak var addingtrailingbackslash: NSButton!
 
     @IBAction func totinfo(_ sender: NSButton) {
         guard self.checkforrsync() == false else { return }
@@ -147,6 +148,7 @@ class ViewControllerNewConfigurations: NSViewController, SetConfigurations, Dela
     override func viewDidAppear() {
         super.viewDidAppear()
         self.backuptypeselected = .synchronize
+        self.addingtrailingbackslash.state = .off
         self.backuptype.selectItem(at: 0)
         if self.index() != nil {
             self.copyconfigbutton.isEnabled = true
@@ -212,11 +214,11 @@ class ViewControllerNewConfigurations: NSViewController, SetConfigurations, Dela
         } else if self.backuptypeselected == .singlefile {
             dict.setValue(1, forKey: "singleFile")
         }
-        if !self.localCatalog.stringValue.hasSuffix("/") && self.backuptypeselected != .singlefile {
+        if !self.localCatalog.stringValue.hasSuffix("/") && self.backuptypeselected != .singlefile && self.addingtrailingbackslash.state == .off {
             self.localCatalog.stringValue += "/"
             dict.setValue(self.localCatalog.stringValue, forKey: "localCatalog")
         }
-        if !self.offsiteCatalog.stringValue.hasSuffix("/") {
+        if !self.offsiteCatalog.stringValue.hasSuffix("/") && self.addingtrailingbackslash.state == .off {
             self.offsiteCatalog.stringValue += "/"
             dict.setValue(self.offsiteCatalog.stringValue, forKey: "offsiteCatalog")
         }
