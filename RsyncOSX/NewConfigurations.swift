@@ -9,13 +9,12 @@
 import Foundation
 
 class NewConfigurations {
-
     // Temporary structure to hold added Configurations before writing to permanent store
     private var newConfigurations: [NSMutableDictionary]?
 
     /// Function is getting all added (new) configurations
     /// - returns : Array of Dictionary storing all new configurations
-    func getnewConfigurations () -> [NSMutableDictionary]? {
+    func getnewConfigurations() -> [NSMutableDictionary]? {
         return self.newConfigurations
     }
 
@@ -36,5 +35,4 @@ class NewConfigurations {
     init() {
         self.newConfigurations = [NSMutableDictionary]()
     }
-
 }

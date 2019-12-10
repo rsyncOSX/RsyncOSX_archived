@@ -9,12 +9,11 @@
 import Foundation
 
 final class Rsync: ProcessCmd {
-
     func setdelegate(object: UpdateProgress?) {
         self.updateDelegate = object
     }
 
-    init (arguments: [String]?) {
+    init(arguments: [String]?) {
         super.init(command: nil, arguments: arguments)
     }
 }

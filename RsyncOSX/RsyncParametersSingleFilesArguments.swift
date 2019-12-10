@@ -9,7 +9,6 @@
 import Foundation
 
 final class RsyncParametersSingleFilesArguments: ProcessArguments {
-
     let archive: String = "--archive"
     let verbose: String = "--verbose"
     let compress: String = "--compress"
@@ -66,11 +65,10 @@ final class RsyncParametersSingleFilesArguments: ProcessArguments {
         // Prepare the display version of arguments
         self.argDisplay = Getrsyncpath().rsyncpath ?? "" + " "
         for i in 0 ..< self.args!.count {
-            if i == 1 && self.config!.sshport != nil {
-                self.argDisplay = self.argDisplay!  + "\"" + self.args![i] + "\"  "
+            if i == 1, self.config!.sshport != nil {
+                self.argDisplay = self.argDisplay! + "\"" + self.args![i] + "\"  "
             } else {
-                self.argDisplay = self.argDisplay!  + self.args![i] + " "
-
+                self.argDisplay = self.argDisplay! + self.args![i] + " "
             }
         }
     }

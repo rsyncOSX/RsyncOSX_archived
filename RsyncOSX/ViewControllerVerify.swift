@@ -7,11 +7,10 @@
 //
 // swiftlint:disable line_length type_body_length function_body_length
 
-import Foundation
 import Cocoa
+import Foundation
 
 class ViewControllerVerify: NSViewController, SetConfigurations, Index, VcMain, Connected, Setcolor, Checkforrsync {
-
     var outputprocess: OutputProcess?
     var index: Int?
     var lastindex: Int?
@@ -22,63 +21,63 @@ class ViewControllerVerify: NSViewController, SetConfigurations, Index, VcMain, 
     let lastdate: String = NSLocalizedString("Date last backup:", comment: "Verify")
     let dayssince: String = NSLocalizedString("Days since last backup:", comment: "Verify")
 
-    @IBOutlet weak var outputtable: NSTableView!
-    @IBOutlet weak var working: NSProgressIndicator!
-    @IBOutlet weak var verifybutton: NSButton!
-    @IBOutlet weak var changedbutton: NSButton!
+    @IBOutlet var outputtable: NSTableView!
+    @IBOutlet var working: NSProgressIndicator!
+    @IBOutlet var verifybutton: NSButton!
+    @IBOutlet var changedbutton: NSButton!
 
-    @IBOutlet weak var transferredNumber: NSTextField!
-    @IBOutlet weak var transferredNumberSizebytes: NSTextField!
-    @IBOutlet weak var newfiles: NSTextField!
-    @IBOutlet weak var deletefiles: NSTextField!
-    @IBOutlet weak var totalNumber: NSTextField!
-    @IBOutlet weak var totalDirs: NSTextField!
-    @IBOutlet weak var totalNumberSizebytes: NSTextField!
-    @IBOutlet weak var localtotalNumber: NSTextField!
-    @IBOutlet weak var localtotalDirs: NSTextField!
-    @IBOutlet weak var localtotalNumberSizebytes: NSTextField!
-    @IBOutlet weak var gotit: NSTextField!
-    @IBOutlet weak var datelastbackup: NSTextField!
-    @IBOutlet weak var dayslastbackup: NSTextField!
-    @IBOutlet weak var rsynccommanddisplay: NSTextField!
-    @IBOutlet weak var verifyradiobutton: NSButton!
-    @IBOutlet weak var changedradiobutton: NSButton!
+    @IBOutlet var transferredNumber: NSTextField!
+    @IBOutlet var transferredNumberSizebytes: NSTextField!
+    @IBOutlet var newfiles: NSTextField!
+    @IBOutlet var deletefiles: NSTextField!
+    @IBOutlet var totalNumber: NSTextField!
+    @IBOutlet var totalDirs: NSTextField!
+    @IBOutlet var totalNumberSizebytes: NSTextField!
+    @IBOutlet var localtotalNumber: NSTextField!
+    @IBOutlet var localtotalDirs: NSTextField!
+    @IBOutlet var localtotalNumberSizebytes: NSTextField!
+    @IBOutlet var gotit: NSTextField!
+    @IBOutlet var datelastbackup: NSTextField!
+    @IBOutlet var dayslastbackup: NSTextField!
+    @IBOutlet var rsynccommanddisplay: NSTextField!
+    @IBOutlet var verifyradiobutton: NSButton!
+    @IBOutlet var changedradiobutton: NSButton!
 
-    @IBOutlet weak var localcatalog: NSTextField!
-    @IBOutlet weak var remotecatalog: NSTextField!
-    @IBOutlet weak var remoteserver: NSTextField!
+    @IBOutlet var localcatalog: NSTextField!
+    @IBOutlet var remotecatalog: NSTextField!
+    @IBOutlet var remoteserver: NSTextField!
 
-    @IBAction func totinfo(_ sender: NSButton) {
+    @IBAction func totinfo(_: NSButton) {
         guard self.checkforrsync() == false else { return }
-        globalMainQueue.async(execute: { () -> Void in
+        globalMainQueue.async { () -> Void in
             self.presentAsSheet(self.viewControllerRemoteInfo!)
-        })
+        }
     }
 
-    @IBAction func quickbackup(_ sender: NSButton) {
+    @IBAction func quickbackup(_: NSButton) {
         guard self.checkforrsync() == false else { return }
         self.openquickbackup()
     }
 
-    @IBAction func automaticbackup(_ sender: NSButton) {
+    @IBAction func automaticbackup(_: NSButton) {
         self.presentAsSheet(self.viewControllerEstimating!)
     }
 
     // Selecting profiles
-    @IBAction func profiles(_ sender: NSButton) {
-        globalMainQueue.async(execute: { () -> Void in
+    @IBAction func profiles(_: NSButton) {
+        globalMainQueue.async { () -> Void in
             self.presentAsSheet(self.viewControllerProfile!)
-        })
+        }
     }
 
     // Userconfiguration button
-    @IBAction func userconfiguration(_ sender: NSButton) {
-        globalMainQueue.async(execute: { () -> Void in
+    @IBAction func userconfiguration(_: NSButton) {
+        globalMainQueue.async { () -> Void in
             self.presentAsSheet(self.viewControllerUserconfiguration!)
-        })
+        }
     }
 
-    @IBAction func verify(_ sender: NSButton) {
+    @IBAction func verify(_: NSButton) {
         guard self.index != nil else { return }
         self.rsynccommanddisplay.stringValue = Displayrsyncpath(index: self.index!, display: .verify).displayrsyncpath ?? ""
         self.verifyradiobutton.state = .on
@@ -95,7 +94,7 @@ class ViewControllerVerify: NSViewController, SetConfigurations, Index, VcMain, 
         }
     }
 
-    @IBAction func changed(_ sender: NSButton) {
+    @IBAction func changed(_: NSButton) {
         guard self.index != nil else { return }
         self.rsynccommanddisplay.stringValue = Displayrsyncpath(index: self.index!, display: .restore).displayrsyncpath ?? ""
         self.changedradiobutton.state = .on
@@ -119,12 +118,12 @@ class ViewControllerVerify: NSViewController, SetConfigurations, Index, VcMain, 
         self.processRefererence = verifytask
     }
 
-    @IBAction func info(_ sender: NSButton) {
+    @IBAction func info(_: NSButton) {
         let resources = Resources()
         NSWorkspace.shared.open(URL(string: resources.getResource(resource: .verify))!)
     }
 
-    @IBAction func displayrsynccommand(_ sender: NSButton) {
+    @IBAction func displayrsynccommand(_: NSButton) {
         guard self.index != nil else {
             self.rsynccommanddisplay.stringValue = ""
             return
@@ -137,7 +136,7 @@ class ViewControllerVerify: NSViewController, SetConfigurations, Index, VcMain, 
     }
 
     // Abort button
-    @IBAction func abort(_ sender: NSButton) {
+    @IBAction func abort(_: NSButton) {
         self.lastindex = self.index
         guard self.processRefererence != nil else { return }
         self.processRefererence!.abortProcess()
@@ -192,17 +191,17 @@ class ViewControllerVerify: NSViewController, SetConfigurations, Index, VcMain, 
                 self.datelastbackup.stringValue = NSLocalizedString("Date last backup:", comment: "Remote Info")
             }
             let numberlastbackup = self.configurations?.getConfigurations()[index].dayssincelastbackup ?? ""
-            self.dayslastbackup.stringValue = self.dayssince +  " " + numberlastbackup
+            self.dayslastbackup.stringValue = self.dayssince + " " + numberlastbackup
             self.estimateremoteinfo(index: index, local: true)
         } else {
             self.gotit.textColor = setcolor(nsviewcontroller: self, color: .green)
             let task: String = NSLocalizedString("Please select a task in Execute ...", comment: "Verify")
             self.gotit.stringValue = task
             self.outputprocess = nil
-            globalMainQueue.async(execute: { () -> Void in
+            globalMainQueue.async { () -> Void in
                 self.resetinfo()
                 self.outputtable.reloadData()
-            })
+            }
         }
     }
 
@@ -221,9 +220,9 @@ class ViewControllerVerify: NSViewController, SetConfigurations, Index, VcMain, 
         self.working.startAnimation(nil)
         self.outputprocess = OutputProcess()
         if local {
-            globalMainQueue.async(execute: { () -> Void in
+            globalMainQueue.async { () -> Void in
                 self.outputtable.reloadData()
-            })
+            }
             arguments = self.configurations!.arguments4rsync(index: index, argtype: .argdryRunlocalcataloginfo)
         } else {
             arguments = self.configurations!.arguments4rsync(index: index, argtype: .argdryRun)
@@ -235,7 +234,7 @@ class ViewControllerVerify: NSViewController, SetConfigurations, Index, VcMain, 
     }
 
     private func publishnumbers(outputprocess: OutputProcess?, local: Bool) {
-        globalMainQueue.async(execute: { () -> Void in
+        globalMainQueue.async { () -> Void in
             let infotask = RemoteinfonumbersOnetask(outputprocess: outputprocess)
             if local {
                 self.localtotalNumber.stringValue = infotask.totalNumber!
@@ -252,7 +251,7 @@ class ViewControllerVerify: NSViewController, SetConfigurations, Index, VcMain, 
                 self.working.stopAnimation(nil)
                 self.gotit.stringValue = ""
             }
-        })
+        }
     }
 
     private func setinfo() {
@@ -287,13 +286,13 @@ class ViewControllerVerify: NSViewController, SetConfigurations, Index, VcMain, 
 }
 
 extension ViewControllerVerify: NSTableViewDataSource {
-    func numberOfRows(in aTableView: NSTableView) -> Int {
+    func numberOfRows(in _: NSTableView) -> Int {
         return self.outputprocess?.getOutput()?.count ?? 0
     }
 }
 
 extension ViewControllerVerify: NSTableViewDelegate {
-    func tableView(_ tableView: NSTableView, viewFor tableColumn: NSTableColumn?, row: Int) -> NSView? {
+    func tableView(_ tableView: NSTableView, viewFor _: NSTableColumn?, row: Int) -> NSView? {
         if let cell = tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "outputID"), owner: nil) as? NSTableCellView {
             cell.textField?.stringValue = self.outputprocess?.getOutput()?[row] ?? ""
             return cell
@@ -335,23 +334,23 @@ extension ViewControllerVerify: UpdateProgress {
 
     func fileHandler() {
         if self.gotremoteinfo == true {
-            globalMainQueue.async(execute: { () -> Void in
+            globalMainQueue.async { () -> Void in
                 self.outputtable.reloadData()
-            })
+            }
         }
     }
 }
 
 extension ViewControllerVerify: OpenQuickBackup {
     func openquickbackup() {
-        globalMainQueue.async(execute: { () -> Void in
+        globalMainQueue.async { () -> Void in
             self.presentAsSheet(self.viewControllerQuickBackup!)
-        })
+        }
     }
 }
 
 extension ViewControllerVerify: DismissViewController {
     func dismiss_view(viewcontroller: NSViewController) {
-         self.dismiss(viewcontroller)
+        self.dismiss(viewcontroller)
     }
 }

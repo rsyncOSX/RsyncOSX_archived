@@ -29,7 +29,7 @@ final class QuickBackup: SetConfigurations {
 
     func sortbydays() {
         guard self.sortedlist != nil else { return }
-        let sorted = self.sortedlist!.sorted {(di1, di2) -> Bool in
+        let sorted = self.sortedlist!.sorted { (di1, di2) -> Bool in
             let di1 = (di1.value(forKey: "daysID") as? NSString)!.doubleValue
             let di2 = (di2.value(forKey: "daysID") as? NSString)!.doubleValue
             if di1 > di2 {
@@ -48,7 +48,8 @@ final class QuickBackup: SetConfigurations {
             "start": now,
             "hiddenID": hiddenID,
             "dateStart": "01 Jan 1900 00:00".en_us_date_from_string(),
-            "schedule": "manuel"]
+            "schedule": "manuel",
+        ]
         ViewControllerReference.shared.quickbackuptask = task
         _ = OperationFactory(updateprogress: self)
     }
@@ -64,7 +65,7 @@ final class QuickBackup: SetConfigurations {
                 }
                 let hiddenID = list[i].value(forKey: "hiddenID") as? Int
                 if self.estimatedlist != nil {
-                    let estimated = self.estimatedlist!.filter({($0.value(forKey: "hiddenID") as? Int) == hiddenID!})
+                    let estimated = self.estimatedlist!.filter { ($0.value(forKey: "hiddenID") as? Int) == hiddenID! }
                     if estimated.count > 0 {
                         let transferredNumber = estimated[0].value(forKey: "transferredNumber") as? String ?? ""
                         self.sortedlist![i].setObject(transferredNumber, forKey: "transferredNumber" as NSCopying)
@@ -83,7 +84,7 @@ final class QuickBackup: SetConfigurations {
     }
 
     func setcompleted() {
-        let dict = self.sortedlist!.filter({($0.value(forKey: "hiddenID") as? Int) == self.hiddenID!})
+        let dict = self.sortedlist!.filter { ($0.value(forKey: "hiddenID") as? Int) == self.hiddenID! }
         guard dict.count == 1 else { return }
         self.index = self.sortedlist!.firstIndex(of: dict[0])
         self.sortedlist![self.index!].setValue(true, forKey: "completeCellID")
@@ -93,7 +94,7 @@ final class QuickBackup: SetConfigurations {
     init() {
         self.estimatedlist = self.configurations?.estimatedlist
         if self.estimatedlist != nil {
-            self.sortedlist = self.configurations?.getConfigurationsDataSourceSynchronize()?.filter({($0.value(forKey: "selectCellID") as? Int) == 1})
+            self.sortedlist = self.configurations?.getConfigurationsDataSourceSynchronize()?.filter { ($0.value(forKey: "selectCellID") as? Int) == 1 }
             guard self.sortedlist!.count > 0 else { return }
         } else {
             self.sortedlist = self.configurations?.getConfigurationsDataSourceSynchronize()
@@ -105,7 +106,7 @@ final class QuickBackup: SetConfigurations {
 }
 
 extension QuickBackup: SendProcessreference {
-    func sendprocessreference(process: Process?) {
+    func sendprocessreference(process _: Process?) {
         //
     }
 
@@ -115,13 +116,12 @@ extension QuickBackup: SendProcessreference {
 }
 
 extension QuickBackup: UpdateProgress {
-
     func processTermination() {
         self.setcompleted()
         ViewControllerReference.shared.completeoperation?.finalizeScheduledJob(outputprocess: self.outputprocess)
         ViewControllerReference.shared.completeoperation = nil
         guard self.stackoftasktobeexecuted != nil else { return }
-        guard self.stackoftasktobeexecuted!.count > 0  else {
+        guard self.stackoftasktobeexecuted!.count > 0 else {
             self.stackoftasktobeexecuted = nil
             self.hiddenID = nil
             self.reloadtableDelegate?.reloadtabledata()

@@ -10,8 +10,7 @@
 import Foundation
 
 extension Date {
-
-    func weekday(date: Date) -> Int {
+    func weekday(date _: Date) -> Int {
         let calendar = Calendar.current
         let dateComponent = (calendar as NSCalendar).components(.weekday, from: self)
         return dateComponent.weekday!
@@ -23,14 +22,14 @@ extension Date {
         return days.length
     }
 
-    func dateByAddingMonths(_ months: Int ) -> Date {
+    func dateByAddingMonths(_ months: Int) -> Date {
         let calendar = Calendar.current
         var dateComponent = DateComponents()
         dateComponent.month = months
         return (calendar as NSCalendar).date(byAdding: dateComponent, to: self, options: NSCalendar.Options.matchNextTime)!
     }
 
-    func dateByAddingDays(_ days: Int ) -> Date {
+    func dateByAddingDays(_ days: Int) -> Date {
         let calendar = Calendar.current
         var dateComponent = DateComponents()
         dateComponent.day = days
@@ -57,7 +56,7 @@ extension Date {
 
     func getWeekday() -> Int {
         let calendar = Calendar.current
-        return (calendar as NSCalendar).components( .weekday, from: self).weekday!
+        return (calendar as NSCalendar).components(.weekday, from: self).weekday!
     }
 
     func isSelectedDayofWeek(day: NumDayofweek) -> Bool {
@@ -175,7 +174,6 @@ extension Date {
 }
 
 extension String {
-
     func en_us_date_from_string() -> Date {
         let dateformatter = DateFormatter()
         dateformatter.locale = Locale(identifier: "en_US")

@@ -10,7 +10,6 @@
 import Foundation
 
 struct Infoexecute {
-
     // Execute
     let info11: String = NSLocalizedString("Select a task....", comment: "Execute")
     let info12: String = NSLocalizedString("Possible error logging...", comment: "Execute")
@@ -50,7 +49,6 @@ struct Infoexecute {
 }
 
 struct Infologgdata {
-
     // Loggdata
     let info21: String = NSLocalizedString("Got index from Execute and listing logs for one configuration...", comment: "Loggdata")
     let info22: String = NSLocalizedString("Got index from Snapshots and listing logs for one configuration...", comment: "Loggdata")
@@ -68,7 +66,6 @@ struct Infologgdata {
 }
 
 struct Infocopyfiles {
-
     // Copy files
     let info31: String = NSLocalizedString("No such local catalog for restore or set it in user config...", comment: "Copy files")
     let info32: String = NSLocalizedString("Not a remote task, use Finder to copy files...", comment: "Copy files")
@@ -92,7 +89,6 @@ struct Infocopyfiles {
 }
 
 struct Infoschedule {
-
     // Schedules
     let info11: String = NSLocalizedString("Select a task....", comment: "Execute")
     let info42: String = NSLocalizedString("Scheduled tasks in menu app...", comment: "Schedules")

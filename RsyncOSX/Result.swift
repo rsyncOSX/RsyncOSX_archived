@@ -21,7 +21,7 @@ public enum Result {
         switch self {
         case .success:
             return nil
-        case .failure(let error):
+        case let .failure(error):
             return error
         }
     }

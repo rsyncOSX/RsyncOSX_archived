@@ -7,27 +7,26 @@
 //
 //  swiftlint:disable line_length
 
-import Foundation
 import Cocoa
+import Foundation
 
 extension ViewControllerMain: SingleTaskProcess {
-
     func presentViewProgress() {
-        globalMainQueue.async(execute: { () -> Void in
+        globalMainQueue.async { () -> Void in
             self.presentAsSheet(self.viewControllerProgress!)
-        })
+        }
     }
 
     func presentViewInformation(outputprocess: OutputProcess?) {
         self.outputprocess = outputprocess
         if self.appendnow() {
-            globalMainQueue.async(execute: { () -> Void in
+            globalMainQueue.async { () -> Void in
                 self.mainTableView.reloadData()
-            })
+            }
         } else {
-            globalMainQueue.async(execute: { () -> Void in
+            globalMainQueue.async { () -> Void in
                 self.presentAsSheet(self.viewControllerInformation!)
-            })
+            }
         }
     }
 
@@ -50,7 +49,7 @@ extension ViewControllerMain: SingleTaskProcess {
     // Function for getting numbers out of output object updated when
     // Process object executes the job.
     func setNumbers(outputprocess: OutputProcess?) {
-        globalMainQueue.async(execute: { () -> Void in
+        globalMainQueue.async { () -> Void in
             guard outputprocess != nil else {
                 self.transferredNumber.stringValue = ""
                 self.transferredNumberSizebytes.stringValue = ""
@@ -69,7 +68,7 @@ extension ViewControllerMain: SingleTaskProcess {
             self.totalDirs.stringValue = remoteinfotask.totalDirs!
             self.newfiles.stringValue = remoteinfotask.newfiles!
             self.deletefiles.stringValue = remoteinfotask.deletefiles!
-        })
+        }
     }
 
     // Returns number set from dryrun to use in logging run

@@ -9,7 +9,6 @@
 import Foundation
 
 final class BatchTaskWorkQueu {
-
     // Structure holding updated data for batchrun
     var data = [NSMutableDictionary]()
     var batchQueu = [(Int, Int)]()
@@ -44,7 +43,7 @@ final class BatchTaskWorkQueu {
         return self.batchQueu[0]
     }
 
-    init (configurations: Configurations?) {
+    init(configurations: Configurations?) {
         if let batchtasks = configurations?.getConfigurationsBatch() {
             for i in 0 ..< batchtasks.count {
                 let row: NSMutableDictionary = [
@@ -52,7 +51,8 @@ final class BatchTaskWorkQueu {
                     "localCatalogCellID": batchtasks[i].localCatalog,
                     "offsiteServerCellID": batchtasks[i].offsiteServer,
                     "offsiteCatalogCellID": batchtasks[i].offsiteCatalog,
-                    "hiddenID": batchtasks[i].hiddenID]
+                    "hiddenID": batchtasks[i].hiddenID,
+                ]
                 if (row.object(forKey: "offsiteServerCellID") as? String)!.isEmpty {
                     row.setValue("localhost", forKey: "offsiteServerCellID")
                 }

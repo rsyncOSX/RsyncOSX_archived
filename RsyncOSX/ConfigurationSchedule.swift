@@ -24,7 +24,7 @@ struct ConfigurationSchedule {
         self.schedule = dictionary.object(forKey: "schedule") as? String ?? ""
         self.offsiteserver = dictionary.object(forKey: "offsiteserver") as? String ?? ""
         if let date = dictionary.object(forKey: "dateStop") as? String { self.dateStop = date }
-        if log != nil && nolog == false {
+        if log != nil, nolog == false {
             for i in 0 ..< log!.count {
                 self.logrecords.append((log![i] as? NSMutableDictionary)!)
             }
@@ -34,9 +34,9 @@ struct ConfigurationSchedule {
 
 extension ConfigurationSchedule: Hashable, Equatable {
     static func == (lhs: ConfigurationSchedule, rhs: ConfigurationSchedule) -> Bool {
-      return lhs.hiddenID == rhs.hiddenID &&
-        lhs.dateStart == rhs.dateStart &&
-        lhs.schedule == rhs.schedule
+        return lhs.hiddenID == rhs.hiddenID &&
+            lhs.dateStart == rhs.dateStart &&
+            lhs.schedule == rhs.schedule
     }
 
     func hash(into hasher: inout Hasher) {

@@ -16,7 +16,6 @@ enum Enumscopyfiles {
 }
 
 final class CopyFilesArguments: ProcessArguments {
-
     private var arguments: [String]?
     private var argdisplay: String?
     private var command: String?
@@ -35,7 +34,7 @@ final class CopyFilesArguments: ProcessArguments {
         return self.argdisplay!
     }
 
-    init (task: Enumscopyfiles, config: Configuration, remoteFile: String?, localCatalog: String?, drynrun: Bool?) {
+    init(task: Enumscopyfiles, config: Configuration, remoteFile: String?, localCatalog: String?, drynrun: Bool?) {
         self.arguments = [String]()
         self.config = config
         switch task {

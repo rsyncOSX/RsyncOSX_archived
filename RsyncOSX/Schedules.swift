@@ -7,11 +7,10 @@
 //  Copyright © 2016 Thomas Evensen. All rights reserved.
 //
 
-import Foundation
 import Cocoa
+import Foundation
 
 class Schedules: ScheduleWriteLoggData {
-
     // Return reference to Schedule data
     // self.Schedule is privat data
     func getSchedule() -> [ConfigurationSchedule] {
@@ -24,7 +23,7 @@ class Schedules: ScheduleWriteLoggData {
     // - parameter schedule: schedule
     // - parameter start: start date and time
     // - parameter stop: stop date and time
-    func addschedule (hiddenID: Int, schedule: Scheduletype, start: Date) {
+    func addschedule(hiddenID: Int, schedule: Scheduletype, start: Date) {
         var stop: Date?
         if schedule == .once {
             stop = start
@@ -87,7 +86,7 @@ class Schedules: ScheduleWriteLoggData {
                     "dateStop": "",
                     "schedule": self.schedules![i].schedule,
                     "hiddenID": schedules![i].hiddenID,
-                    "numberoflogs": String(schedules![i].logrecords.count)
+                    "numberoflogs": String(schedules![i].logrecords.count),
                 ]
                 if self.schedules![i].dateStop == nil {
                     row.setValue("no stop date", forKey: "dateStop")
@@ -102,7 +101,7 @@ class Schedules: ScheduleWriteLoggData {
             // Sorting schedule after dateStart, last startdate on top
             data.sort { (sched1, sched2) -> Bool in
                 if (sched1.value(forKey: "dateStart") as? String)!.en_us_date_from_string() >
-                (sched2.value(forKey: "dateStart") as? String)!.en_us_date_from_string() {
+                    (sched2.value(forKey: "dateStart") as? String)!.en_us_date_from_string() {
                     return true
                 } else {
                     return false
@@ -118,8 +117,8 @@ class Schedules: ScheduleWriteLoggData {
         guard data != nil else { return }
         var update: Bool = false
         if (data!.count) > 0 {
-            let stop = data!.filter({ return (($0.value(forKey: "stopCellID") as? Int) == 1)})
-            let delete = data!.filter({ return (($0.value(forKey: "deleteCellID") as? Int) == 1)})
+            let stop = data!.filter { (($0.value(forKey: "stopCellID") as? Int) == 1) }
+            let delete = data!.filter { (($0.value(forKey: "deleteCellID") as? Int) == 1) }
             // Delete Schedules
             if delete.count > 0 {
                 update = true
@@ -147,7 +146,7 @@ class Schedules: ScheduleWriteLoggData {
     // Test if Schedule record in memory is set to delete or not
     private func delete(dict: NSDictionary) {
         for i in 0 ..< self.schedules!.count where
-        dict.value(forKey: "hiddenID") as? Int == self.schedules![i].hiddenID {
+            dict.value(forKey: "hiddenID") as? Int == self.schedules![i].hiddenID {
             if dict.value(forKey: "dateStop") as? String == self.schedules![i].dateStop ||
                 self.schedules![i].dateStop == nil &&
                 dict.value(forKey: "schedule") as? String == self.schedules![i].schedule &&
@@ -160,7 +159,7 @@ class Schedules: ScheduleWriteLoggData {
     // Test if Schedule record in memory is set to stop er not
     private func stop(dict: NSDictionary) {
         for i in 0 ..< self.schedules!.count where
-        dict.value(forKey: "hiddenID") as? Int == self.schedules![i].hiddenID {
+            dict.value(forKey: "hiddenID") as? Int == self.schedules![i].hiddenID {
             if dict.value(forKey: "dateStop") as? String == self.schedules![i].dateStop ||
                 self.schedules![i].dateStop == nil &&
                 dict.value(forKey: "schedule") as? String == self.schedules![i].schedule &&
@@ -177,7 +176,7 @@ class Schedules: ScheduleWriteLoggData {
         var store = PersistentStorageScheduling(profile: self.profile).getScheduleandhistory(nolog: false)
         guard store != nil else { return }
         var data = [ConfigurationSchedule]()
-        for i in 0 ..< store!.count where ( store![i].logrecords.isEmpty == false || store![i].dateStop != nil ) {
+        for i in 0 ..< store!.count where store![i].logrecords.isEmpty == false || store![i].dateStop != nil {
             store![i].profilename = self.profile
             data.append(store![i])
         }
@@ -198,7 +197,7 @@ class Schedules: ScheduleWriteLoggData {
         self.profile = profile
         self.readschedules()
         if ViewControllerReference.shared.checkinput {
-             self.schedules = Reorgschedule().mergerecords(data: self.schedules)
+            self.schedules = Reorgschedule().mergerecords(data: self.schedules)
         }
     }
 }

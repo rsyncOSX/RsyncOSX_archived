@@ -6,8 +6,8 @@
 //  Copyright © 2016 Thomas Evensen. All rights reserved.
 //
 
-import Foundation
 import Cocoa
+import Foundation
 
 // Protocol for adding new profiles
 protocol NewProfile: class {
@@ -16,21 +16,20 @@ protocol NewProfile: class {
 }
 
 class ViewControllerProfile: NSViewController, SetConfigurations, SetDismisser, Delay {
-
     private var profilesArray: [String]?
     private var profile: CatalogProfile?
     private var useprofile: String?
 
-    @IBOutlet weak var loadbutton: NSButton!
-    @IBOutlet weak var newprofile: NSTextField!
-    @IBOutlet weak var profilesTable: NSTableView!
+    @IBOutlet var loadbutton: NSButton!
+    @IBOutlet var newprofile: NSTextField!
+    @IBOutlet var profilesTable: NSTableView!
 
-    @IBAction func defaultProfile(_ sender: NSButton) {
+    @IBAction func defaultProfile(_: NSButton) {
         _ = Selectprofile(profile: nil)
         self.closeview()
     }
 
-    @IBAction func deleteProfile(_ sender: NSButton) {
+    @IBAction func deleteProfile(_: NSButton) {
         if let useprofile = self.useprofile {
             self.profile?.deleteProfileDirectory(profileName: useprofile)
             _ = Selectprofile(profile: nil)
@@ -39,7 +38,7 @@ class ViewControllerProfile: NSViewController, SetConfigurations, SetDismisser, 
     }
 
     // Use profile or close
-    @IBAction func close(_ sender: NSButton) {
+    @IBAction func close(_: NSButton) {
         let newprofile = self.newprofile.stringValue
         guard newprofile.isEmpty == false else {
             if self.useprofile != nil {
@@ -92,28 +91,26 @@ class ViewControllerProfile: NSViewController, SetConfigurations, SetDismisser, 
         super.viewDidAppear()
         self.profile = CatalogProfile()
         self.profilesArray = self.profile!.getDirectorysStrings()
-        globalMainQueue.async(execute: { () -> Void in
+        globalMainQueue.async { () -> Void in
             self.profilesTable.reloadData()
-        })
+        }
         self.newprofile.stringValue = ""
     }
 
-    @objc(tableViewDoubleClick:) func tableViewDoubleClick(sender: AnyObject) {
+    @objc(tableViewDoubleClick:) func tableViewDoubleClick(sender _: AnyObject) {
         _ = Selectprofile(profile: self.useprofile)
         self.closeview()
     }
 }
 
 extension ViewControllerProfile: NSTableViewDataSource {
-
-    func numberOfRows(in tableViewMaster: NSTableView) -> Int {
+    func numberOfRows(in _: NSTableView) -> Int {
         return self.profilesArray?.count ?? 0
     }
 }
 
 extension ViewControllerProfile: NSTableViewDelegate {
-
-    func tableView(_ tableView: NSTableView, viewFor tableColumn: NSTableColumn?, row: Int) -> NSView? {
+    func tableView(_ tableView: NSTableView, viewFor _: NSTableColumn?, row: Int) -> NSView? {
         if let cell = tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "profilesID"),
                                          owner: self) as? NSTableCellView {
             cell.textField?.stringValue = self.profilesArray?[row] ?? ""
@@ -133,7 +130,7 @@ extension ViewControllerProfile: NSTableViewDelegate {
 }
 
 extension ViewControllerProfile: NSTextFieldDelegate {
-    func controlTextDidChange(_ notification: Notification) {
+    func controlTextDidChange(_: Notification) {
         self.delayWithSeconds(0.5) {
             if self.newprofile.stringValue.count > 0 {
                 self.loadbutton.title = NSLocalizedString("Save", comment: "Profile")

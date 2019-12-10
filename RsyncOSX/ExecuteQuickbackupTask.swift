@@ -14,7 +14,6 @@ import Foundation
 // when the job discover (observs) the termination of the process.
 
 final class ExecuteQuickbackupTask: SetSchedules, SetConfigurations {
-
     let outputprocess = OutputProcess()
     var arguments: [String]?
     var config: Configuration?
@@ -24,14 +23,14 @@ final class ExecuteQuickbackupTask: SetSchedules, SetConfigurations {
             if let hiddenID: Int = dict.value(forKey: "hiddenID") as? Int {
                 let getconfigurations: [Configuration]? = configurations?.getConfigurations()
                 guard getconfigurations != nil else { return }
-                let configArray = getconfigurations!.filter({return ($0.hiddenID == hiddenID)})
+                let configArray = getconfigurations!.filter { ($0.hiddenID == hiddenID) }
                 guard configArray.count > 0 else { return }
                 self.config = configArray[0]
-                if hiddenID >= 0 && self.config != nil {
+                if hiddenID >= 0, self.config != nil {
                     self.arguments = ArgumentsSynchronize(config: self.config).argumentssynchronize(dryRun: false, forDisplay: false)
                     // Setting reference to finalize the job, finalize job is done when rsynctask ends (in process termination)
                     ViewControllerReference.shared.completeoperation = CompleteQuickbackupTask(dict: dict)
-                    globalMainQueue.async(execute: {
+                    globalMainQueue.async {
                         if let arguments = self.arguments {
                             weak var sendprocess: SendProcessreference?
                             sendprocess = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllerMain
@@ -45,13 +44,13 @@ final class ExecuteQuickbackupTask: SetSchedules, SetConfigurations {
                             sendprocess?.sendprocessreference(process: process.getProcess())
                             sendprocess?.sendoutputprocessreference(outputprocess: self.outputprocess)
                         }
-                    })
+                    }
                 }
             }
         }
     }
 
-    init () {
+    init() {
         self.executetask(updateprogress: nil)
     }
 

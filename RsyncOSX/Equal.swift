@@ -10,12 +10,12 @@ import Foundation
 
 class Equal {
     func isequal<T: Hashable>(data: [T]?, element: T) -> Bool {
-        guard data != nil else { return false}
-        let filter = data!.filter({$0 == element})
+        guard data != nil else { return false }
+        let filter = data!.filter { $0 == element }
         if filter.count > 0 {
             return true
         } else {
-             return false
+            return false
         }
     }
 }

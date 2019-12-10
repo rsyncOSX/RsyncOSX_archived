@@ -6,11 +6,10 @@
 //  Copyright © 2017 Thomas Evensen. All rights reserved.
 //
 
-import Foundation
 import Cocoa
+import Foundation
 
 class Ssh: Files {
-
     var commandCopyPasteTermninal: String?
     // Local public rsa and dsa based keys
     let rsaPubKey: String = "id_rsa.pub"
@@ -61,16 +60,16 @@ class Ssh: Files {
     }
 
     // Check if rsa and/or dsa is existing in local .ssh catalog
-    func isLocalPublicKeysPresent (key: String) -> Bool {
+    func isLocalPublicKeysPresent(key: String) -> Bool {
         guard self.keyFileStrings != nil else { return false }
-        guard self.keyFileStrings!.filter({$0.contains(key)}).count > 0 else { return false }
+        guard self.keyFileStrings!.filter({ $0.contains(key) }).count > 0 else { return false }
         switch key {
         case rsaPubKey:
-            self.rsaURLpath = URL(string: self.keyFileStrings!.filter({$0.contains(self.sshCatalog + key)})[0])
-            self.rsaStringPath = self.keyFileStrings!.filter({$0.contains(self.sshCatalog + key)})[0]
+            self.rsaURLpath = URL(string: self.keyFileStrings!.filter { $0.contains(self.sshCatalog + key) }[0])
+            self.rsaStringPath = self.keyFileStrings!.filter { $0.contains(self.sshCatalog + key) }[0]
         case dsaPubKey:
-            self.dsaURLpath = URL(string: self.keyFileStrings!.filter({$0.contains(self.sshCatalog + key)})[0])
-            self.dsaStringPath = self.keyFileStrings!.filter({$0.contains(self.sshCatalog + key)})[0]
+            self.dsaURLpath = URL(string: self.keyFileStrings!.filter { $0.contains(self.sshCatalog + key) }[0])
+            self.dsaStringPath = self.keyFileStrings!.filter { $0.contains(self.sshCatalog + key) }[0]
         default:
             return false
         }

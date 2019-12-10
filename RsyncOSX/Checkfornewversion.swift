@@ -14,7 +14,6 @@ protocol NewVersionDiscovered: class {
 }
 
 final class Checkfornewversion {
-
     private var runningVersion: String?
     private var urlPlist: String?
     private var urlNewVersion: String?
@@ -22,9 +21,9 @@ final class Checkfornewversion {
     weak var newversionDelegateMain: NewVersionDiscovered?
     weak var newversionDelegateAbout: NewVersionDiscovered?
 
-    //If new version set URL for download link and notify caller
-    private func urlnewVersion () {
-        globalBackgroundQueue.async(execute: { () -> Void in
+    // If new version set URL for download link and notify caller
+    private func urlnewVersion() {
+        globalBackgroundQueue.async { () -> Void in
             if let url = URL(string: self.urlPlist ?? "") {
                 do {
                     let contents = NSDictionary(contentsOf: url)
@@ -39,7 +38,7 @@ final class Checkfornewversion {
                     }
                 }
             }
-        })
+        }
     }
 
     // Return version of RsyncOSX
@@ -47,7 +46,7 @@ final class Checkfornewversion {
         return self.runningVersion
     }
 
-    init () {
+    init() {
         self.runningVersion = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String ?? ""
         let resource = Resources()
         self.urlPlist = resource.getResource(resource: .urlPlist)

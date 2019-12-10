@@ -10,7 +10,6 @@
 import Foundation
 
 struct Setrsyncpath {
-
     weak var setinfoaboutrsyncDelegate: Setinfoaboutrsync?
 
     init() {

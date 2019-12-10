@@ -18,7 +18,6 @@ enum SingleTaskWork {
 }
 
 final class SingleTaskWorkQueu {
-
     // Work Queue
     private var work: [SingleTaskWork]?
 

@@ -10,7 +10,6 @@
 import Foundation
 
 class Logging: ReportFileerror {
-
     var outputprocess: OutputProcess?
     var log: String?
     var filename: String?
@@ -26,7 +25,7 @@ class Logging: ReportFileerror {
     }
 
     private func writeloggfile() {
-        globalMainQueue.async(execute: { () -> Void in
+        globalMainQueue.async { () -> Void in
             do {
                 try self.log!.write(to: self.fileURL!, atomically: true, encoding: String.Encoding.utf8)
                 if let filesize = self.filesize {
@@ -40,7 +39,7 @@ class Logging: ReportFileerror {
                 let error = e as NSError
                 self.error(error: error.description, errortype: .writelogfile)
             }
-        })
+        }
     }
 
     private func readloggfile() {
@@ -82,7 +81,7 @@ class Logging: ReportFileerror {
         if self.log == nil {
             self.log = tmplogg + self.outputprocess!.getOutput()!.joined(separator: "\n")
         } else {
-            self.log = self.log! + tmplogg  + self.outputprocess!.getOutput()!.joined(separator: "\n")
+            self.log = self.log! + tmplogg + self.outputprocess!.getOutput()!.joined(separator: "\n")
         }
         self.writeloggfile()
     }

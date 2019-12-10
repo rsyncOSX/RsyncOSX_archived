@@ -5,6 +5,7 @@
 //  Created by Thomas Evensen on 27.04.2017.
 //  Copyright © 2017 Thomas Evensen. All rights reserved.
 //
+// swiftlint:disable line_length
 
 import Foundation
 
@@ -14,11 +15,9 @@ enum SshOperations {
     case createKey
     case createRemoteSshCatalog
     case chmod
-
 }
 
 final class ScpArgumentsSsh: SetConfigurations {
-
     var commandCopyPasteTerminal: String?
     private var config: Configuration?
     private var args: [String]?
@@ -40,9 +39,9 @@ final class ScpArgumentsSsh: SetConfigurations {
         }
         self.args!.append(path)
         if key == "rsa" {
-          remotearg = self.config!.offsiteUsername + "@" + self.config!.offsiteServer + ":" + self.remoteRsaPubkeyString
+            remotearg = self.config!.offsiteUsername + "@" + self.config!.offsiteServer + ":" + self.remoteRsaPubkeyString
         } else {
-          remotearg = self.config!.offsiteUsername + "@" + self.config!.offsiteServer + ":" + self.remoteDsaPubkeyString
+            remotearg = self.config!.offsiteUsername + "@" + self.config!.offsiteServer + ":" + self.remoteDsaPubkeyString
         }
         self.args!.append(remotearg!)
         self.command = "/usr/bin/scp"
@@ -82,16 +81,15 @@ final class ScpArgumentsSsh: SetConfigurations {
         self.args = [String]()
         self.args!.append("-f")
         if key == "rsa" {
-             self.args!.append(path + "id_rsa")
-         } else {
-             self.args!.append(path + "id_dsa")
+            self.args!.append(path + "id_rsa")
+        } else {
+            self.args!.append(path + "id_dsa")
         }
         self.args!.append("-t")
         self.args!.append(key)
         self.args!.append("-N")
         self.args!.append("")
         self.command = "/usr/bin/ssh-keygen"
-
     }
 
     // Chmod .ssh catalog
@@ -162,7 +160,6 @@ final class ScpArgumentsSsh: SetConfigurations {
             self.argumentsCreateRemoteSshCatalog()
         case .chmod:
             self.argumentsChmod(key: key!)
-
         }
         return self.args
     }

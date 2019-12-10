@@ -9,7 +9,6 @@
 import Foundation
 
 final class Macserialnumber {
-
     private var macSerialNumber: String?
 
     /// Function for computing MacSerialNumber
@@ -39,5 +38,4 @@ final class Macserialnumber {
         }
         return self.macSerialNumber
     }
-
 }

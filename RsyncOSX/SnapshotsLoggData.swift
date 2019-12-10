@@ -10,7 +10,6 @@
 import Foundation
 
 final class SnapshotsLoggData {
-
     var snapshotslogs: [NSMutableDictionary]?
     var config: Configuration?
     var outputprocess: OutputProcess?
@@ -31,12 +30,12 @@ final class SnapshotsLoggData {
     }
 
     private func getsnapshotlogs() {
-        self.snapshotslogs = ScheduleLoggData(sortascending: true).loggdata?.filter({($0.value(forKey: "hiddenID") as? Int)! == config?.hiddenID})
+        self.snapshotslogs = ScheduleLoggData(sortascending: true).loggdata?.filter { ($0.value(forKey: "hiddenID") as? Int)! == config?.hiddenID }
         guard self.snapshotslogs != nil else { return }
         for i in 0 ..< self.snapshotslogs!.count {
             if let dateRun = self.snapshotslogs![i].object(forKey: "dateExecuted") {
                 if let secondssince = self.calculatedays(datestringlocalized: dateRun as? String ?? "") {
-                    let dayssincelastbackup = String(format: "%.2f", secondssince/(60*60*24))
+                    let dayssincelastbackup = String(format: "%.2f", secondssince / (60 * 60 * 24))
                     self.snapshotslogs![i].setObject(dayssincelastbackup, forKey: "days" as NSCopying)
                 }
             }
@@ -48,7 +47,7 @@ final class SnapshotsLoggData {
         for i in 0 ..< self.catalogs!.count {
             if self.catalogs![i].contains(".DS_Store") == false {
                 let snapshotnum = "(" + self.catalogs![i].dropFirst(2) + ")"
-                let filter = self.snapshotslogs?.filter({($0.value(forKey: "resultExecuted") as? String ?? "").contains(snapshotnum)})
+                let filter = self.snapshotslogs?.filter { ($0.value(forKey: "resultExecuted") as? String ?? "").contains(snapshotnum) }
                 if filter!.count == 1 {
                     filter![0].setObject(self.catalogs![i], forKey: "snapshotCatalog" as NSCopying)
                 } else {
@@ -69,7 +68,7 @@ final class SnapshotsLoggData {
                 return !self.insnapshot
             }
         }
-        self.snapshotslogs = sorted.filter({($0.value(forKey: "snapshotCatalog") as? String)?.isEmpty == false})
+        self.snapshotslogs = sorted.filter { ($0.value(forKey: "snapshotCatalog") as? String)?.isEmpty == false }
     }
 
     private func calculatedays(datestringlocalized: String) -> Double? {
@@ -93,11 +92,11 @@ final class SnapshotsLoggData {
 
     func countbydays(num: Double) -> Int {
         var j: Int = 0
-        guard self.snapshotslogs != nil else { return 0}
+        guard self.snapshotslogs != nil else { return 0 }
         for i in 0 ..< self.snapshotslogs!.count - 1 {
             let days: String = self.snapshotslogs![i].value(forKey: "days") as? String ?? "0"
             if Double(days)! >= num {
-                j+=1
+                j += 1
             }
         }
         return j - 1

@@ -12,11 +12,10 @@
 //
 //  swiftlint:disable line_length
 
-import Foundation
 import Cocoa
+import Foundation
 
 class Configurations: ReloadTable, SetSchedules {
-
     // reference to Process, used for kill in executing task
     var process: Process?
     private var profile: String?
@@ -82,8 +81,8 @@ class Configurations: ReloadTable, SetSchedules {
     /// - parameter none: none
     /// - returns : Array of NSDictionary
     func getConfigurationsDataSourceSynchronize() -> [NSMutableDictionary]? {
-        var configurations: [Configuration] = self.configurations!.filter({return ($0.task == ViewControllerReference.shared.synchronize ||
-            $0.task == ViewControllerReference.shared.snapshot || $0.task == ViewControllerReference.shared.syncremote )})
+        var configurations: [Configuration] = self.configurations!.filter { ($0.task == ViewControllerReference.shared.synchronize ||
+                $0.task == ViewControllerReference.shared.snapshot || $0.task == ViewControllerReference.shared.syncremote) }
         var data = [NSMutableDictionary]()
         for i in 0 ..< configurations.count {
             if configurations[i].offsiteServer.isEmpty == true {
@@ -91,7 +90,7 @@ class Configurations: ReloadTable, SetSchedules {
             }
             let row: NSMutableDictionary = ConvertOneConfig(config: self.configurations![i]).dict
             if self.quickbackuplist != nil {
-                let quickbackup = self.quickbackuplist!.filter({$0 == configurations[i].hiddenID})
+                let quickbackup = self.quickbackuplist!.filter { $0 == configurations[i].hiddenID }
                 if quickbackup.count > 0 {
                     row.setValue(1, forKey: "selectCellID")
                 }
@@ -104,8 +103,8 @@ class Configurations: ReloadTable, SetSchedules {
     /// Function returns all Configurations marked for backup.
     /// - returns : array of Configurations
     func getConfigurationsBatch() -> [Configuration] {
-        return self.configurations!.filter({return ($0.task == ViewControllerReference.shared.synchronize ||
-            $0.task == ViewControllerReference.shared.snapshot) && ($0.batch == 1)})
+        return self.configurations!.filter { ($0.task == ViewControllerReference.shared.synchronize ||
+                $0.task == ViewControllerReference.shared.snapshot) && ($0.batch == 1) }
     }
 
     /// Function computes arguments for rsync, either arguments for
@@ -161,7 +160,7 @@ class Configurations: ReloadTable, SetSchedules {
 
     /// Function is adding new Configurations to existing in memory.
     /// - parameter dict : new record configuration
-    func appendconfigurationstomemory (dict: NSDictionary) {
+    func appendconfigurationstomemory(dict: NSDictionary) {
         let config = Configuration(dictionary: dict)
         self.configurations!.append(config)
     }
@@ -187,7 +186,7 @@ class Configurations: ReloadTable, SetSchedules {
     /// then saves updated Configurations from memory to persistent store
     /// - parameter config: updated configuration
     /// - parameter index: index to Configuration to replace by config
-    func updateConfigurations (_ config: Configuration, index: Int) {
+    func updateConfigurations(_ config: Configuration, index: Int) {
         self.configurations![index] = config
         _ = PersistentStorageConfiguration(profile: self.profile).saveconfigInMemoryToPersistentStore()
     }
@@ -196,7 +195,7 @@ class Configurations: ReloadTable, SetSchedules {
     /// then saves updated Configurations from memory to persistent store.
     /// Function computes index by hiddenID.
     /// - parameter hiddenID: hiddenID which is unique for every Configuration
-    func deleteConfigurationsByhiddenID (hiddenID: Int) {
+    func deleteConfigurationsByhiddenID(hiddenID: Int) {
         let index = self.getIndex(hiddenID)
         self.configurations!.remove(at: index)
         _ = PersistentStorageConfiguration(profile: self.profile).saveconfigInMemoryToPersistentStore()
@@ -207,7 +206,7 @@ class Configurations: ReloadTable, SetSchedules {
     /// and stores Configuration i memory to
     /// persisten store
     /// - parameter index: index of Configuration to toogle batch on/off
-    func togglebatch (_ index: Int) {
+    func togglebatch(_ index: Int) {
         if self.configurations![index].batch == 1 {
             self.configurations![index].batch = 0
         } else {
@@ -243,7 +242,7 @@ class Configurations: ReloadTable, SetSchedules {
     }
 
     func getResourceConfiguration(_ hiddenID: Int, resource: ResourceInConfiguration) -> String {
-        let result = self.configurations!.filter({return ($0.hiddenID == hiddenID)})
+        let result = self.configurations!.filter { ($0.hiddenID == hiddenID) }
         guard result.count > 0 else { return "" }
         switch resource {
         case .localCatalog:
@@ -281,13 +280,13 @@ class Configurations: ReloadTable, SetSchedules {
     }
 
     func gethiddenID(index: Int) -> Int {
-        guard index != -1 &&  index < (self.configurations?.count ?? -1) else { return -1 }
+        guard index != -1, index < (self.configurations?.count ?? -1) else { return -1 }
         return self.configurations![index].hiddenID
     }
 
     func removecompressparameter(index: Int, delete: Bool) {
         guard self.configurations != nil else { return }
-        guard index < self.configurations!.count  else { return }
+        guard index < self.configurations!.count else { return }
         if delete {
             self.configurations![index].parameter3 = ""
         } else {
@@ -297,7 +296,7 @@ class Configurations: ReloadTable, SetSchedules {
 
     func removeedeleteparameter(index: Int, delete: Bool) {
         guard self.configurations != nil else { return }
-        guard index < self.configurations!.count  else { return }
+        guard index < self.configurations!.count else { return }
         if delete {
             self.configurations![index].parameter4 = ""
         } else {
@@ -307,7 +306,7 @@ class Configurations: ReloadTable, SetSchedules {
 
     func removeesshparameter(index: Int, delete: Bool) {
         guard self.configurations != nil else { return }
-        guard index < self.configurations!.count  else { return }
+        guard index < self.configurations!.count else { return }
         if delete {
             self.configurations![index].parameter5 = ""
         } else {
@@ -318,13 +317,13 @@ class Configurations: ReloadTable, SetSchedules {
     private func increasesnapshotnum(index: Int) {
         guard self.configurations != nil else { return }
         let num = self.configurations![index].snapshotnum ?? 0
-        self.configurations![index].snapshotnum  = num + 1
+        self.configurations![index].snapshotnum = num + 1
     }
 
     private func readconfigurations() {
         self.argumentAllConfigurations = [ArgumentsOneConfiguration]()
         let store: [Configuration]? = PersistentStorageConfiguration(profile: self.profile).getConfigurations()
-        for i in 0 ..< ( store?.count ?? 0 ) {
+        for i in 0 ..< (store?.count ?? 0) {
             if ViewControllerReference.shared.synctasks.contains(store![i].task) {
                 self.configurations?.append(store![i])
                 let rsyncArgumentsOneConfig = ArgumentsOneConfiguration(config: store![i])
@@ -333,7 +332,7 @@ class Configurations: ReloadTable, SetSchedules {
         }
         // Then prepare the datasource for use in tableviews as Dictionarys
         var data = [NSMutableDictionary]()
-        for i in 0 ..< ( self.configurations?.count ?? 0 ) {
+        for i in 0 ..< (self.configurations?.count ?? 0) {
             let task = self.configurations?[i].task
             if ViewControllerReference.shared.synctasks.contains(task ?? "") {
                 data.append(ConvertOneConfig(config: self.configurations![i]).dict)

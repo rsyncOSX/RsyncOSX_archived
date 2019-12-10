@@ -15,7 +15,6 @@ protocol Connections: class {
 }
 
 class TCPconnections: SetConfigurations, Delay {
-
     private var indexBoolremoteserverOff: [Bool]?
     weak var testconnectionsDelegate: Connections?
     weak var newprofileDelegate: NewProfile?
@@ -23,7 +22,7 @@ class TCPconnections: SetConfigurations, Delay {
     var connectionscheckcompleted: Bool = false
 
     // Test for TCP connection
-    func testTCPconnection (_ host: String, port: Int, timeout: Int) -> Bool {
+    func testTCPconnection(_ host: String, port: Int, timeout: Int) -> Bool {
         self.client = TCPClient(address: host, port: Int32(port))
         guard let client = client else { return true }
         switch client.connect(timeout: timeout) {
@@ -42,7 +41,7 @@ class TCPconnections: SetConfigurations, Delay {
     // Testing all remote servers.
     // Adding connection true or false in array[bool]
     // Do the check in background que, reload table in global main queue
-    func testAllremoteserverConnections () {
+    func testAllremoteserverConnections() {
         self.indexBoolremoteserverOff = nil
         self.indexBoolremoteserverOff = [Bool]()
         guard self.configurations!.configurationsDataSourcecount() > 0 else {
@@ -50,7 +49,7 @@ class TCPconnections: SetConfigurations, Delay {
             self.newprofileDelegate?.enableselectprofile()
             return
         }
-        globalDefaultQueue.async(execute: { () -> Void in
+        globalDefaultQueue.async { () -> Void in
             var port: Int = 22
             for i in 0 ..< self.configurations!.configurationsDataSourcecount() {
                 if let config = self.configurations?.getConfigurations()[i] {
@@ -75,7 +74,7 @@ class TCPconnections: SetConfigurations, Delay {
                     }
                 }
             }
-        })
+        }
     }
 
     init() {

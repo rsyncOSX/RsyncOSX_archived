@@ -21,7 +21,7 @@ final class CompleteQuickbackupTask: SetConfigurations, SetSchedules {
         self.schedulesDelegate?.reloadschedulesobject()
     }
 
-    init (dict: NSDictionary) {
+    init(dict: NSDictionary) {
         self.hiddenID = dict.value(forKey: "hiddenID") as? Int ?? -1
         self.index = self.configurations!.getIndex(hiddenID!)
     }

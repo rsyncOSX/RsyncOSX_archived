@@ -10,7 +10,6 @@
 import Foundation
 
 final class DuArgumentsSsh: SetConfigurations {
-
     private var config: Configuration?
     private var args: [String]?
     private var command: String?

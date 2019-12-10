@@ -7,15 +7,14 @@
 //
 // swiftlint:disable line_length
 
-import Foundation
 import Cocoa
+import Foundation
 
 protocol QuickBackupCompleted: class {
     func quickbackupcompleted()
 }
 
 class ViewControllerQuickBackup: NSViewController, SetDismisser, Abort, Delay, Setcolor {
-
     var seconds: Int?
     var row: Int?
     var filterby: Sortandfilter?
@@ -26,13 +25,13 @@ class ViewControllerQuickBackup: NSViewController, SetDismisser, Abort, Delay, S
     var diddissappear: Bool = false
     var indexinitiated: Int = -1
 
-    @IBOutlet weak var mainTableView: NSTableView!
-    @IBOutlet weak var abortbutton: NSButton!
-    @IBOutlet weak var completed: NSTextField!
-    @IBOutlet weak var working: NSProgressIndicator!
+    @IBOutlet var mainTableView: NSTableView!
+    @IBOutlet var abortbutton: NSButton!
+    @IBOutlet var completed: NSTextField!
+    @IBOutlet var working: NSProgressIndicator!
 
     // Either abort or close
-    @IBAction func abort(_ sender: NSButton) {
+    @IBAction func abort(_: NSButton) {
         if self.executing {
             self.quickbackup = nil
             self.abort()
@@ -73,9 +72,9 @@ class ViewControllerQuickBackup: NSViewController, SetDismisser, Abort, Delay, S
     override func viewDidAppear() {
         super.viewDidAppear()
         guard self.diddissappear == false else {
-            globalMainQueue.async(execute: { () -> Void in
+            globalMainQueue.async { () -> Void in
                 self.mainTableView.reloadData()
-            })
+            }
             return
         }
         guard self.quickbackup?.sortedlist?.count ?? 0 > 0 else {
@@ -86,9 +85,9 @@ class ViewControllerQuickBackup: NSViewController, SetDismisser, Abort, Delay, S
             return
         }
         self.quickbackup?.prepareandstartexecutetasks()
-        globalMainQueue.async(execute: { () -> Void in
+        globalMainQueue.async { () -> Void in
             self.mainTableView.reloadData()
-        })
+        }
         self.working.isHidden = false
         self.working.startAnimation(nil)
     }
@@ -113,17 +112,15 @@ class ViewControllerQuickBackup: NSViewController, SetDismisser, Abort, Delay, S
         let value = Double((self.inprogresscountDelegate?.inprogressCount())!)
         progress.doubleValue = value
     }
-
 }
 
 extension ViewControllerQuickBackup: NSTableViewDataSource {
-    func numberOfRows(in tableView: NSTableView) -> Int {
+    func numberOfRows(in _: NSTableView) -> Int {
         return self.quickbackup?.sortedlist?.count ?? 0
     }
 }
 
 extension ViewControllerQuickBackup: NSTableViewDelegate {
-
     func tableView(_ tableView: NSTableView, viewFor tableColumn: NSTableColumn?, row: Int) -> NSView? {
         guard self.quickbackup?.sortedlist != nil else { return nil }
         guard row < self.quickbackup!.sortedlist!.count else { return nil }
@@ -156,9 +153,9 @@ extension ViewControllerQuickBackup: NSTableViewDelegate {
 
 extension ViewControllerQuickBackup: Reloadandrefresh {
     func reloadtabledata() {
-        globalMainQueue.async(execute: { () -> Void in
+        globalMainQueue.async { () -> Void in
             self.mainTableView.reloadData()
-        })
+        }
     }
 }
 

@@ -7,21 +7,20 @@
 //
 // swiftlint:disable line_length
 
-import Foundation
 import Cocoa
+import Foundation
 
 protocol ReloadTableAllProfiles: class {
     func reloadtable()
 }
 
 class ViewControllerAllProfiles: NSViewController, Delay, Abort, Connected {
-
     // Main tableview
-    @IBOutlet weak var mainTableView: NSTableView!
-    @IBOutlet weak var search: NSSearchField!
-    @IBOutlet weak var sortdirection: NSButton!
-    @IBOutlet weak var numberOfprofiles: NSTextField!
-    @IBOutlet weak var working: NSProgressIndicator!
+    @IBOutlet var mainTableView: NSTableView!
+    @IBOutlet var search: NSSearchField!
+    @IBOutlet var sortdirection: NSButton!
+    @IBOutlet var numberOfprofiles: NSTextField!
+    @IBOutlet var working: NSProgressIndicator!
 
     private var allprofiles: AllConfigurations?
     private var allschedules: Allschedules?
@@ -33,12 +32,12 @@ class ViewControllerAllProfiles: NSViewController, Delay, Abort, Connected {
     private var outputprocess: OutputProcess?
     private var process: Process?
 
-    @IBAction func abort(_ sender: NSButton) {
+    @IBAction func abort(_: NSButton) {
         self.process?.terminate()
         self.process = nil
     }
 
-    @IBAction func sortdirection(_ sender: NSButton) {
+    @IBAction func sortdirection(_: NSButton) {
         if self.sortascending == true {
             self.sortascending = false
             self.sortdirection.image = #imageLiteral(resourceName: "down")
@@ -102,18 +101,18 @@ class ViewControllerAllProfiles: NSViewController, Delay, Abort, Connected {
         self.sortdirection.image = #imageLiteral(resourceName: "up")
         self.sortascending = true
         self.allprofiles?.allconfigurationsasdictionary = self.allprofiles!.sortbydate(notsortedlist: self.allprofiles?.allconfigurationsasdictionary, sortdirection: self.sortascending)
-        globalMainQueue.async(execute: { () -> Void in
+        globalMainQueue.async { () -> Void in
             self.mainTableView.reloadData()
-        })
+        }
     }
 
-    @objc(tableViewDoubleClick:) func tableViewDoubleClick(sender: AnyObject) {
+    @objc(tableViewDoubleClick:) func tableViewDoubleClick(sender _: AnyObject) {
         self.getremotesizes()
     }
 }
 
 extension ViewControllerAllProfiles: NSTableViewDataSource {
-    func numberOfRows(in tableView: NSTableView) -> Int {
+    func numberOfRows(in _: NSTableView) -> Int {
         if self.allprofiles?.allconfigurationsasdictionary == nil {
             self.numberOfprofiles.stringValue = NSLocalizedString("Number of configurations:", comment: "AllProfiles")
             return 0
@@ -126,9 +125,8 @@ extension ViewControllerAllProfiles: NSTableViewDataSource {
 }
 
 extension ViewControllerAllProfiles: NSTableViewDelegate, Attributedestring {
-
     // TableView delegates
-    func tableView(_ tableView: NSTableView, objectValueFor tableColumn: NSTableColumn?, row: Int) -> Any? {
+    func tableView(_: NSTableView, objectValueFor tableColumn: NSTableColumn?, row: Int) -> Any? {
         if row > self.allprofiles!.allconfigurationsasdictionary!.count - 1 { return nil }
         let object: NSDictionary = self.allprofiles!.allconfigurationsasdictionary![row]
         let hiddenID = object.value(forKey: "hiddenID") as? Int ?? -1
@@ -154,6 +152,7 @@ extension ViewControllerAllProfiles: NSTableViewDelegate, Attributedestring {
             return object[tableColumn!.identifier] as? String
         }
     }
+
     // setting which table row is selected
     func tableViewSelectionDidChange(_ notification: Notification) {
         let myTableViewFromNotification = (notification.object as? NSTableView)!
@@ -188,37 +187,36 @@ extension ViewControllerAllProfiles: NSTableViewDelegate, Attributedestring {
         } else {
             self.allprofiles?.allconfigurationsasdictionary = self.allprofiles?.sortbydate(notsortedlist: self.allprofiles?.allconfigurationsasdictionary, sortdirection: self.sortascending)
         }
-        globalMainQueue.async(execute: { () -> Void in
+        globalMainQueue.async { () -> Void in
             self.mainTableView.reloadData()
-        })
+        }
     }
 }
 
 extension ViewControllerAllProfiles: NSSearchFieldDelegate {
-
-    func controlTextDidChange(_ obj: Notification) {
+    func controlTextDidChange(_: Notification) {
         self.delayWithSeconds(0.25) {
             guard self.column != nil else { return }
             let filterstring = self.search.stringValue
             if filterstring.isEmpty {
-                globalMainQueue.async(execute: { () -> Void in
+                globalMainQueue.async { () -> Void in
                     self.allprofiles = AllConfigurations()
                     self.mainTableView.reloadData()
-                })
+                }
             } else {
-                globalMainQueue.async(execute: { () -> Void in
+                globalMainQueue.async { () -> Void in
                     self.allprofiles?.myownfilter(search: filterstring, filterby: self.filterby)
                     self.mainTableView.reloadData()
-                })
+                }
             }
         }
     }
 
-    func searchFieldDidEndSearching(_ sender: NSSearchField) {
-        globalMainQueue.async(execute: { () -> Void in
+    func searchFieldDidEndSearching(_: NSSearchField) {
+        globalMainQueue.async { () -> Void in
             self.allprofiles = AllConfigurations()
             self.mainTableView.reloadData()
-        })
+        }
     }
 }
 
@@ -231,9 +229,9 @@ extension ViewControllerAllProfiles: UpdateProgress {
         self.allprofiles!.allconfigurationsasdictionary?[self.index!].setValue(numbers.getused(), forKey: "used")
         self.allprofiles!.allconfigurationsasdictionary?[self.index!].setValue(numbers.getavail(), forKey: "avail")
         self.allprofiles!.allconfigurationsasdictionary?[self.index!].setValue(numbers.getpercentavaliable(), forKey: "availpercent")
-        globalMainQueue.async(execute: { () -> Void in
+        globalMainQueue.async { () -> Void in
             self.mainTableView.reloadData()
-        })
+        }
     }
 
     func fileHandler() {

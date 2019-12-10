@@ -9,7 +9,6 @@
 import Foundation
 
 class SchedulesXCTEST: Schedules {
-
     override func addschedule(hiddenID: Int, schedule: Scheduletype, start: Date) {
         var stop: Date?
         if schedule == .once {
