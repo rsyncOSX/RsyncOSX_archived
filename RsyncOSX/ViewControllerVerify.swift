@@ -195,7 +195,7 @@ class ViewControllerVerify: NSViewController, SetConfigurations, Index, VcMain, 
             self.dayslastbackup.stringValue = self.dayssince +  " " + numberlastbackup
             self.estimateremoteinfo(index: index, local: true)
         } else {
-            self.gotit.textColor = setcolor(nsviewcontroller: self, color: .red)
+            self.gotit.textColor = setcolor(nsviewcontroller: self, color: .green)
             let task: String = NSLocalizedString("Please select a task in Execute ...", comment: "Verify")
             self.gotit.stringValue = task
             self.outputprocess = nil
