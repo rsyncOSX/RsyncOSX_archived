@@ -4131,7 +4131,7 @@ DQ
                                 </connections>
                             </textField>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ZWj-qH-2I5">
-                                <rect key="frame" x="48" y="198" width="89" height="17"/>
+                                <rect key="frame" x="6" y="198" width="131" height="17"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="Local catalog:" id="J3H-wG-sas">
                                     <font key="font" metaFont="system"/>
@@ -4209,7 +4209,7 @@ DQ
                                 </textFieldCell>
                             </textField>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="JAl-oI-9Ah">
-                                <rect key="frame" x="18" y="175" width="118" height="17"/>
+                                <rect key="frame" x="6" y="175" width="130" height="17"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="Remote catalog:" id="xUg-0M-AYM">
                                     <font key="font" metaFont="system"/>
@@ -4281,6 +4281,8 @@ DQ
                         <outlet property="offsiteUsername" destination="jVM-RL-IuU" id="wl3-4L-PcG"/>
                         <outlet property="snapshotnum" destination="Zar-jw-2b8" id="rOK-LB-K08"/>
                         <outlet property="sshport" destination="xH3-OQ-4hl" id="kiy-q4-Yxt"/>
+                        <outlet property="stringlocalcatalog" destination="ZWj-qH-2I5" id="WEd-L3-Aot"/>
+                        <outlet property="stringremotecatalog" destination="JAl-oI-9Ah" id="1S1-DD-iE4"/>
                     </connections>
                 </viewController>
                 <customObject id="cus-9G-xLk" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>

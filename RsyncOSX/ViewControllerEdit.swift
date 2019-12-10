@@ -19,6 +19,8 @@ class ViewControllerEdit: NSViewController, SetConfigurations, SetDismisser, Ind
     @IBOutlet weak var backupID: NSTextField!
     @IBOutlet weak var sshport: NSTextField!
     @IBOutlet weak var snapshotnum: NSTextField!
+    @IBOutlet weak var stringlocalcatalog: NSTextField!
+    @IBOutlet weak var stringremotecatalog: NSTextField!
 
     var index: Int?
     var singleFile: Bool = false
@@ -98,6 +100,19 @@ class ViewControllerEdit: NSViewController, SetConfigurations, SetDismisser, Ind
         }
         if let snapshotnum = config.snapshotnum {
             self.snapshotnum.stringValue = String(snapshotnum)
+        }
+        self.changelabels()
+    }
+
+    private func changelabels() {
+        let config: Configuration = self.configurations!.getConfigurations()[self.index!]
+        switch config.task {
+        case ViewControllerReference.shared.syncremote:
+            self.stringlocalcatalog.stringValue = NSLocalizedString("Source catalog:", comment: "Tooltip")
+            self.stringremotecatalog.stringValue = NSLocalizedString("Destination catalog:", comment: "Tooltip")
+        default:
+            self.stringlocalcatalog.stringValue = NSLocalizedString("Local catalog:", comment: "Tooltip")
+            self.stringremotecatalog.stringValue = NSLocalizedString("Remote catalog:", comment: "Tooltip")
         }
     }
 }
